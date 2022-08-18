@@ -52,22 +52,14 @@ suffix, and signals related to the stimulus SHOULD use `_stim` suffix.
 The following table specifies metadata fields for the `*_<physio|stim>.json` file.
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "SamplingFrequency": "REQUIRED",
-      "StartTime": "REQUIRED",
-      "Columns": "REQUIRED",
-      "Manufacturer": "RECOMMENDED",
-      "ManufacturersModelName": "RECOMMENDED",
-      "SoftwareVersions": "RECOMMENDED",
-      "DeviceSerialNumber": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_sidecar_table(["continuous.Continuous", "continuous.Physio"]) }}
 
 Additional metadata may be included as in
 [any TSV file](../02-common-principles.md#tabular-files) to specify, for

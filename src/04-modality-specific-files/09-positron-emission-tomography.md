@@ -141,138 +141,64 @@ which we divide into several categories:
 #### Scanner Hardware
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "Manufacturer": ("REQUIRED", "Corresponds to DICOM Tag 0008, 0070 `Manufacturer`."),
-      "ManufacturersModelName": ("REQUIRED", "Corresponds to DICOM Tag 0008, 1090 `Manufacturers Model Name`."),
-      "Units": (
-         "REQUIRED",
-         'SI unit for radioactivity (Becquerel) should be used '
-         '(for example, `"Bq/mL"`). '
-         'Corresponds to DICOM Tag 0054, 1001 `Units`.',
-      ),
-      "InstitutionName": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 0080 `InstitutionName`."),
-      "InstitutionAddress": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 0081 `InstitutionAddress`."),
-      "InstitutionalDepartmentName": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 1040 `Institutional Department Name`."),
-      "BodyPart": ("RECOMMENDED", "Corresponds to DICOM Tag 0018, 0015 `Body Part Examined`."),
-   }
-) }}
+{{ MACROS___make_sidecar_table("pet.PETScannerHardware") }}
 
 #### Radiochemistry
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "TracerName": ("REQUIRED", "Corresponds to DICOM Tags (0008,0105) `Mapping Resource` and (0008,0122) `Mapping Resource Name`."),
-      "TracerRadionuclide": ("REQUIRED", "Corresponds to DICOM Tags (0008,0104) `CodeValue` and (0008,0104) `CodeMeaning`."),
-      "InjectedRadioactivity": "REQUIRED",
-      "InjectedRadioactivityUnits": "REQUIRED",
-      "InjectedMass": "REQUIRED",
-      "InjectedMassUnits": "REQUIRED",
-      "SpecificRadioactivity": "REQUIRED",
-      "SpecificRadioactivityUnits": "REQUIRED",
-      "ModeOfAdministration": "REQUIRED",
-      "TracerRadLex": "RECOMMENDED",
-      "TracerSNOMED": "RECOMMENDED",
-      "TracerMolecularWeight": "RECOMMENDED",
-      "TracerMolecularWeightUnits": "RECOMMENDED",
-      "InjectedMassPerWeight": "RECOMMENDED",
-      "InjectedMassPerWeightUnits": "RECOMMENDED",
-      "SpecificRadioactivityMeasTime": "RECOMMENDED",
-      "MolarActivity": "RECOMMENDED",
-      "MolarActivityUnits": "RECOMMENDED",
-      "MolarActivityMeasTime": "RECOMMENDED",
-      "InfusionRadioactivity": "RECOMMENDED, but REQUIRED if `ModeOfAdministration`  is `bolus-infusion`",
-      "InfusionStart": "RECOMMENDED, but REQUIRED if `ModeOfAdministration`  is `bolus-infusion`",
-      "InfusionSpeed": "RECOMMENDED, but REQUIRED if `ModeOfAdministration`  is `bolus-infusion`",
-      "InfusionSpeedUnits": "RECOMMENDED, but REQUIRED if `ModeOfAdministration`  is `bolus-infusion`",
-      "InjectedVolume": "RECOMMENDED, but REQUIRED if `ModeOfAdministration`  is `bolus-infusion`",
-      "Purity": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("pet.PETRadioChemistry") }}
 
 #### Pharmaceuticals
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "PharmaceuticalName": ("RECOMMENDED", "Corresponds to DICOM Tag (0008,0034) `Intervention Drug Name`."),
-      "PharmaceuticalDoseAmount": ("RECOMMENDED", "Corresponds to DICOM Tag (0008,0028) `Intervention Drug Dose`."),
-      "PharmaceuticalDoseUnits": "RECOMMENDED",
-      "PharmaceuticalDoseRegimen": "RECOMMENDED",
-      "PharmaceuticalDoseTime": ("RECOMMENDED", "Corresponds to a combination of DICOM Tags (0008,0027) `Intervention Drug Stop Time` and (0008,0035) `Intervention Drug Start Time`."),
-      "Anaesthesia": "OPTIONAL",
-   }
-) }}
+{{ MACROS___make_sidecar_table("pet.PETPharmaceuticals") }}
 
 #### Time
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "TimeZero": "REQUIRED",
-      "ScanStart": "REQUIRED",
-      "InjectionStart": ("REQUIRED", "This corresponds to DICOM Tag (0018,1072) `Radiopharmaceutical Start Time`."),
-      "FrameTimesStart": "REQUIRED",
-      "FrameDuration": "REQUIRED",
-      "InjectionEnd": ("RECOMMENDED", "This corresponds to DICOM Tag (0018,1073) `Radiopharmaceutical Stop Time` converted to seconds relative to TimeZero."),
-      "ScanDate": ("DEPRECATED", "This corresponds to DICOM Tag (0008,0022) `Acquisition Date`."),
-   }
-) }}
+{{ MACROS___make_sidecar_table("pet.PETTime") }}
 
 We refer to the common principles for the standards for describing dates and timestamps, including possibilities for anonymization (see [Units](../02-common-principles.md#units)).
 
 #### Reconstruction
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "AcquisitionMode": "REQUIRED",
-      "ImageDecayCorrected": "REQUIRED",
-      "ImageDecayCorrectionTime": "REQUIRED",
-      "ReconMethodName": ("REQUIRED", "This partly matches the DICOM Tag (0054,1103) `Reconstruction Method`."),
-      "ReconMethodParameterLabels": ("REQUIRED", "This partly matches the DICOM Tag (0054,1103) `Reconstruction Method`."),
-      "ReconMethodParameterUnits": ("REQUIRED", "This partly matches the DICOM Tag (0054,1103) `Reconstruction Method`."),
-      "ReconMethodParameterValues": ("REQUIRED", "This partly matches the DICOM Tag (0054,1103) `Reconstruction Method`."),
-      "ReconFilterType": ("REQUIRED", "This partly matches the DICOM Tag (0018,1210) `Convolution Kernel`."),
-      "ReconFilterSize": ("REQUIRED", "This partly matches the DICOM Tag (0018,1210) `Convolution Kernel`."),
-      "AttenuationCorrection": ("REQUIRED", "This corresponds to DICOM Tag (0054,1101) `Attenuation Correction Method`."),
-      "ReconMethodImplementationVersion": "RECOMMENDED",
-      "AttenuationCorrectionMethodReference": "RECOMMENDED",
-      "ScaleFactor": "RECOMMENDED",
-      "ScatterFraction": ("RECOMMENDED", "This corresponds to DICOM Tag (0054,1323) `Scatter Fraction Factor`."),
-      "DecayCorrectionFactor": ("RECOMMENDED", "This corresponds to DICOM Tag (0054,1321) `Decay Factor`."),
-      "DoseCalibrationFactor": ("RECOMMENDED", "This corresponds to DICOM Tag (0054,1322) `Dose Calibration Factor`."),
-      "PromptRate": "RECOMMENDED",
-      "RandomRate": "RECOMMENDED",
-      "SinglesRate": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("pet.PETReconstruction") }}
 
 All reconstruction-specific parameters that are not specified, but one wants to include, should go into the `ReconMethodParameterValues` field.
 
@@ -374,42 +300,26 @@ Some metadata about the recording MUST be provided in an additional JSON
 file.
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "PlasmaAvail": "REQUIRED",
-      "MetaboliteAvail": "REQUIRED",
-      "WholeBloodAvail": "REQUIRED",
-      "DispersionCorrected": "REQUIRED",
-      "WithdrawalRate": "RECOMMENDED",
-      "TubingType": "RECOMMENDED",
-      "TubingLength": "RECOMMENDED",
-      "DispersionConstant": "RECOMMENDED",
-      "Haematocrit": "RECOMMENDED",
-      "BloodDensity": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("pet.BloodRecording") }}
 
 The following metadata SHOULD or MUST be provided if corresponding flags are `true`.
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "PlasmaFreeFraction": "RECOMMENDED if `PlasmaAvail` is `true`",
-      "PlasmaFreeFractionMethod": "RECOMMENDED if `PlasmaAvail` is `true`",
-      "MetaboliteMethod": "REQUIRED if `MetaboliteAvail` is `true`",
-      "MetaboliteRecoveryCorrectionApplied": "REQUIRED if `MetaboliteAvail` is `true`",
-   }
-) }}
+{{ MACROS___make_sidecar_table(["pet.BloodPlasmaFreeFraction", "pet.BloodMetaboliteMethod"]) }}
 
 The following columns are defined for `_blood.tsv` files.
 The `time` column MUST always be the first column.
