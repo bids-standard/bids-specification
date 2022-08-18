@@ -117,7 +117,9 @@ MRIASLCommonMetadataFieldsM0TypeRec:
     - suffix == "asl"
     - sidecar.M0Type != "Estimate"
     fields:
-        M0Estimate: optional
+        M0Estimate:
+            level: optional
+            level_addendum: required if `M0Type` is `Estimate`
 
 MRIASLCommonMetadataFieldsM0TypeReq:
     selectors:
