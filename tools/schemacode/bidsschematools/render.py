@@ -17,6 +17,19 @@ lgr = utils.get_logger()
 utils.set_logger_level(lgr, os.environ.get("BIDS_SCHEMA_LOG_LEVEL", logging.INFO))
 logging.basicConfig(format="%(asctime)-15s [%(levelname)8s] %(message)s")
 
+TYPE_CONVERTER = {
+    "associated_data": "associated data",
+    "columns": "column",
+    "common_principles": "common principle",
+    "datatypes": "datatype",
+    "entities": "entity",
+    "extensions": "extension",
+    "formats": "format",
+    "metadata": "metadata",
+    "top_level_files": "top level file",
+    "suffixes": "suffix",
+}
+
 
 def get_relpath(src_path):
     """Retrieve relative path to the source root from the perspective of a Markdown file.
@@ -90,20 +103,17 @@ def _make_entity_definition(entity, entity_info, src_path):
     text = ""
     text += "## {}".format(entity_shorthand)
     text += "\n\n"
-    text += "Full name: {}".format(entity_info["display_name"])
+    text += f"**Full name**: {entity_info['display_name']}"
     text += "\n\n"
-    text += "Format: `{}-<{}>`".format(
-        entity_info["name"],
-        entity_info.get("format", "label"),
-    )
+    text += f"**Format**: `{entity_info['name']}-<{entity_info.get('format', 'label')}>`"
     text += "\n\n"
     if "enum" in entity_info.keys():
-        text += "Allowed values: `{}`".format("`, `".join(entity_info["enum"]))
+        text += f"**Allowed values**: `{'`, `'.join(entity_info['enum'])}`"
         text += "\n\n"
 
     description = entity_info["description"]
     description = description.replace("SPEC_ROOT", get_relpath(src_path))
-    text += "Definition: {}".format(description)
+    text += f"**Definition**: {description}"
     return text
 
 
@@ -126,14 +136,16 @@ def make_glossary(schema, src_path=None):
         information about the entities in the schema.
     """
     all_objects = {}
+    schema = schema.to_dict()
 
     for group, group_objects in schema["objects"].items():
         group_obj_keys = list(group_objects.keys())
-        # Remove private objects
+
+        # Do not include private objects in the glossary
         group_obj_keys = [k for k in group_obj_keys if not k.startswith("_")]
 
+        # Identify multi-sense objects (multiple entries, indicated by __ in key)
         multi_sense_objects = []
-        # Identify multi-sense objects (multiple entries, some with __ in them)
         for key in group_obj_keys:
             if "__" in key:
                 temp_key = key.split("__")[0]
@@ -158,6 +170,7 @@ def make_glossary(schema, src_path=None):
             new_name = f"{new_name} ({group})"
             all_objects[new_name] = {}
             all_objects[new_name]["key"] = f"objects.{group}.{key}"
+            all_objects[new_name]["type"] = TYPE_CONVERTER.get(group, group)
             all_objects[new_name]["definition"] = group_objects[key]
 
     text = ""
@@ -165,7 +178,8 @@ def make_glossary(schema, src_path=None):
         obj = all_objects[obj_key]
         obj_marker = obj["key"]
         obj_def = obj["definition"]
-        obj_name = obj_def["display_name"]
+
+        # Clean up the text description
         obj_desc = obj_def["description"]
         # A backslash before a newline means continue a string
         obj_desc = obj_desc.replace("\\\n", "")
@@ -178,16 +192,31 @@ def make_glossary(schema, src_path=None):
 
         text += f'\n<a name="{obj_marker}"></a>'
         text += f"\n## {obj_key}\n\n"
-        text += f"**Name**: {obj_name}\n\n"
+        text += f"**Name**: {obj_def['display_name']}\n\n"
+        text += f"**Type**: {obj['type'].title()}\n\n"
+
+        if obj["type"] == "suffix":
+            text += f"**Format**: `<entities>_{obj_def['value']}.<extension>`\n\n"
+        elif obj["type"] == "extension":
+            text += f"**Format**: `<entities>_<suffix>{obj_def['value']}`\n\n"
+        elif obj["type"] == "format":
+            text += f"**Regular expression**: `{obj_def['pattern']}`\n\n"
+
+        if "enum" in obj_def.keys():
+            allowed_vals = [f"`{enum}`" for enum in obj_def["enum"]]
+            text += f"**Allowed values**: {', '.join(allowed_vals)}\n\n"
+
         text += f"**Description**:\n{obj_desc}\n\n"
 
         temp_obj_def = {
-            k: v for k, v in obj_def.items() if k not in ("description", "display_name", "name")
+            k: v
+            for k, v in obj_def.items()
+            if k not in ("description", "display_name", "name", "value", "enum", "pattern")
         }
-        temp_obj_def = yaml.dump(temp_obj_def)
 
         if temp_obj_def:
-            text += f"**Schema Information**:\n```yaml\n{temp_obj_def}\n```"
+            temp_obj_def = yaml.dump(temp_obj_def)
+            text += f"**Schema information**:\n```yaml\n{temp_obj_def}\n```"
 
     return text
 
