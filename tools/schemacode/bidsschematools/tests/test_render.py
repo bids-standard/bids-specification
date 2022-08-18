@@ -157,6 +157,38 @@ def test_make_suffix_table(schema_obj):
         assert expected_name in suffix_table
 
 
+def test_make_sidecar_table(schema_obj):
+    """
+    Test whether expected metadata fields are present and the requirement level is
+    applied correctly.
+    This should be robust with respect to schema format.
+    """
+    # mri.MRISpatialEncoding selected for having some level and description addenda
+    rendered_table = render.make_sidecar_table(schema_obj, "mri.MRISpatialEncoding").split("\n")
+
+    assert rendered_table[0].startswith("| **Key name**")
+    assert rendered_table[1].startswith("|-------------")
+
+    fields = schema_obj.rules.sidecars.mri.MRISpatialEncoding.fields
+    assert len(rendered_table) == len(fields) + 2
+
+    for field, render_row in zip(fields, rendered_table[2:]):
+        assert render_row.startswith(f"| {field}")
+        spec = fields[field]
+        if isinstance(spec, str):
+            level = spec
+            level_addendum = ""
+            description_addendum = ""
+        else:
+            level = spec["level"]
+            level_addendum = spec.get("level_addendum", "").replace("required", "REQUIRED")
+            description_addendum = spec.get("description_addendum", "")
+
+        assert level.upper() in render_row
+        assert level_addendum.split("\n")[0] in render_row
+        assert description_addendum.split("\n")[0] in render_row
+
+
 def test_make_metadata_table(schema_obj):
     """
     Test whether expected metadata fields are present and the requirement level is
