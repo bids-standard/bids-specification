@@ -3,14 +3,14 @@ eeg:
   suffixes:
   - eeg
   extensions:
-  - .json
-  - .edf
-  - .vhdr
-  - .vmrk
-  - .eeg
-  - .set
-  - .fdt
-  - .bdf
+  - json
+  - edf
+  - vhdr
+  - vmrk
+  - eeg
+  - set
+  - fdt
+  - bdf
   datatypes:
   - eeg
   entities:
@@ -24,8 +24,8 @@ channels:
   suffixes:
   - channels
   extensions:
-  - .json
-  - .tsv
+  - json
+  - tsv
   datatypes:
   - eeg
   entities:
@@ -39,7 +39,7 @@ coordsystem:
   suffixes:
   - coordsystem
   extensions:
-  - .json
+  - json
   datatypes:
   - eeg
   entities:
@@ -52,8 +52,8 @@ electrodes:
   suffixes:
   - electrodes
   extensions:
-  - .json
-  - .tsv
+  - json
+  - tsv
   datatypes:
   - eeg
   entities:
@@ -66,8 +66,8 @@ events:
   suffixes:
   - events
   extensions:
-  - .json
-  - .tsv
+  - json
+  - tsv
   datatypes:
   - eeg
   entities:
@@ -81,9 +81,9 @@ photo:
   suffixes:
   - photo
   extensions:
-  - .jpg
-  - .png
-  - .tif
+  - jpg
+  - png
+  - tif
   datatypes:
   - eeg
   entities:
@@ -96,8 +96,8 @@ timeseries:
   - physio
   - stim
   extensions:
-  - .tsv.gz
-  - .json
+  - tsvgz
+  - json
   datatypes:
   - eeg
   entities:

@@ -3,9 +3,9 @@ pet:
   suffixes:
   - pet
   extensions:
-  - .nii.gz
-  - .nii
-  - .json
+  - niigz
+  - nii
+  - json
   datatypes:
   - pet
   entities:
@@ -20,8 +20,8 @@ blood:
   suffixes:
   - blood
   extensions:
-  - .tsv
-  - .json
+  - tsv
+  - json
   datatypes:
   - pet
   entities:
@@ -37,8 +37,8 @@ events:
   suffixes:
   - events
   extensions:
-  - .tsv
-  - .json
+  - tsv
+  - json
   datatypes:
   - pet
   entities:
@@ -54,8 +54,8 @@ timeseries:
   - physio
   - stim
   extensions:
-  - .tsv.gz
-  - .json
+  - tsvgz
+  - json
   datatypes:
   - pet
   entities:

@@ -4,8 +4,8 @@ timeseries:
   - stim
   - physio
   extensions:
-  - .tsv.gz
-  - .json
+  - tsvgz
+  - json
   datatypes:
   - beh
   entities:
@@ -22,8 +22,8 @@ noncontinuous:
   - events
   - beh
   extensions:
-  - .tsv
-  - .json
+  - tsv
+  - json
   datatypes:
   - beh
   entities:

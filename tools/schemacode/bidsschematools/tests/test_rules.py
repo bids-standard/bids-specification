@@ -56,8 +56,8 @@ def test_rule_objects(schema_obj):
         if not type_instances_in_rules:
             continue
 
-        for type_instance in type_instances_in_rules:
-            path, instance = type_instance
+        for path, instance in type_instances_in_rules:
+
             is_list = True
             if isinstance(instance, Mapping):
                 instance = list(instance)
@@ -76,15 +76,7 @@ def test_rule_objects(schema_obj):
                     # This test can't handle this yet, so skip.
                     continue
 
-                if object_type in ["extensions", "suffixes"]:
-                    # Some object types are referenced via their "value" fields in the rules
-                    object_values = [
-                        schema_obj["objects"][object_type][k]["value"]
-                        for k in schema_obj["objects"][object_type].keys()
-                    ]
-                else:
-                    # But other object types are referenced via their keys
-                    object_values = list(schema_obj["objects"][object_type].keys())
+                object_values = list(schema_obj["objects"][object_type].keys())
 
                 # Build a list of items mentioned in rules, but not found in objects.
                 if use not in object_values:

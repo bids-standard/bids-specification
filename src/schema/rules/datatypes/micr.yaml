@@ -12,19 +12,19 @@ microscopy:
   - CONF
   - PLI
   - CARS
-  - 2PE
+  - TwoPE
   - MPE
   - SR
   - NLO
   - OCT
   - SPIM
   extensions:
-  - .ome.tif
-  - .ome.btf
-  - .ome.zarr/
-  - .png
-  - .tif
-  - .json
+  - OMETiff
+  - OMEBigTiff
+  - OMEZARR
+  - png
+  - tif
+  - json
   datatypes:
   - micr
   entities:
@@ -40,10 +40,10 @@ photo:
   suffixes:
   - photo
   extensions:
-  - .jpg
-  - .png
-  - .tif
-  - .json
+  - jpg
+  - png
+  - tif
+  - json
   datatypes:
   - micr
   entities:

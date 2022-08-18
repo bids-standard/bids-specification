@@ -4,9 +4,9 @@ asl:
   - asl
   - m0scan
   extensions:
-  - .nii.gz
-  - .nii
-  - .json
+  - niigz
+  - nii
+  - json
   datatypes:
   - perf
   entities:
@@ -21,8 +21,8 @@ aslcontext:
   suffixes:
   - aslcontext
   extensions:
-  - .tsv
-  - .json
+  - tsv
+  - json
   datatypes:
   - perf
   entities:
@@ -37,7 +37,7 @@ asllabeling:
   suffixes:
   - asllabeling
   extensions:
-  - .jpg
+  - jpg
   datatypes:
   - perf
   entities:
@@ -52,8 +52,8 @@ timeseries:
   - physio
   - stim
   extensions:
-  - .tsv.gz
-  - .json
+  - tsvgz
+  - json
   datatypes:
   - perf
   entities:
