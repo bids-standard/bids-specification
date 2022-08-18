@@ -141,8 +141,12 @@ MRIASLCommonMetadataFieldsBackgroundSuppressionOpt:
     - suffix == "asl"
     - sidecar.BackgroundSuppression == false
     fields:
-        BackgroundSuppressionNumberPulses: optional
-        BackgroundSuppressionPulseTime: optional
+        BackgroundSuppressionNumberPulses:
+            level: optional
+            level_addendum: recommended if `BackgroundSuppression` is `true`
+        BackgroundSuppressionPulseTime:
+            level: optional
+            level_addendum: recommended if `BackgroundSuppression` is `true`
 
 MRIASLCommonMetadataFieldsBackgroundSuppressionReq:
     selectors:
