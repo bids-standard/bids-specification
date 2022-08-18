@@ -170,7 +170,6 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table([
        "derivatives.common_derivatives.MaskDerivatives",
-       "derivatives.common_derivatives.MaskDerivativesAtlas",
        "derivatives.common_derivatives.ImageDerivativeResEntity",
        "derivatives.common_derivatives.ImageDerivativeDenEntity",
    ]) }}
