@@ -198,6 +198,12 @@ def make_filename_template(
     n_dupes_to_combine : int
         The minimum number of suffixes/extensions to combine in the template as
         <suffix>/<extension>.
+    pdf_format : bool, optional
+        If True, the filename template will be compiled as a standard markdown code block,
+        without any hyperlinks, so that the specification's PDF build will look right.
+        If False, the filename template will use HTML and include hyperlinks.
+        This works on the website.
+        Default is False.
     kwargs : dict
         Keyword arguments used to filter the schema.
         Example kwargs that may be used include: "suffixes", "datatypes",
@@ -208,6 +214,12 @@ def make_filename_template(
     codeblock : str
         A multiline string containing the filename templates for file types
         in the schema, after filtering.
+
+    Notes
+    -----
+    This function doesn't use src_path, because the hyperlinks use absolute paths to HTML files.
+    It would be nice, at some point, to use src_path in conjunction with paths to markdown files,
+    like other functions do, instead.
     """
     if not schema:
         schema = load_schema()
@@ -223,13 +235,23 @@ def make_filename_template(
         f'{schema["objects"]["entities"]["subject"]["name"]}-'
         f'<{schema["objects"]["entities"]["subject"]["format"]}>'
     )
-    paragraph += utils._link_with_html(sub_string, entities_path, "sub", pdf_format=pdf_format)
+    paragraph += utils._link_with_html(
+        sub_string,
+        html_path=entities_path,
+        heading="sub",
+        pdf_format=pdf_format,
+    )
     paragraph += "/\n\t["
     ses_string = (
         f'{schema["objects"]["entities"]["session"]["name"]}-'
         f'<{schema["objects"]["entities"]["session"]["format"]}>'
     )
-    paragraph += utils._link_with_html(ses_string, entities_path, "ses", pdf_format=pdf_format)
+    paragraph += utils._link_with_html(
+        ses_string,
+        html_path=entities_path,
+        heading="ses",
+        pdf_format=pdf_format,
+    )
     paragraph += "/]\n"
 
     datatypes = schema.rules.datatypes
@@ -243,8 +265,8 @@ def make_filename_template(
         paragraph += "\t\t"
         paragraph += utils._link_with_html(
             datatype,
-            glossary_path,
-            f"{datatype}-datatypes",
+            html_path=glossary_path,
+            heading=f"{datatype}-datatypes",
             pdf_format=pdf_format,
         )
         paragraph += "/\n"

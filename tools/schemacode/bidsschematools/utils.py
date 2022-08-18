@@ -16,8 +16,28 @@ def get_schema_path():
     return op.abspath(op.join(op.dirname(__file__), "data", "schema"))
 
 
-def _link_with_html(string, html_path, heading, pdf_format=False):
-    """Wrap a string in an HTML hyperlink."""
+def _link_with_html(string, html_path=None, heading=None, pdf_format=False):
+    """Wrap a string in an HTML hyperlink.
+
+    Parameters
+    ----------
+    string : str
+        The string to wrap a hyperlink around.
+    html_path : None or str, optional
+        Path to the HTML file that the string should link to.
+    heading : None or str, optional
+        The heading on the HTML page the string should link to.
+    pdf_format : bool, optional
+        If True, the string will be returned unmodified.
+        If False, a hyperlink will be generated around the string,
+        linking to the ``heading`` heading in the ``html_path`` page.
+        Default is False.
+
+    Returns
+    -------
+    string : str
+        The modified (or unmodified) string.
+    """
     if not pdf_format:
         string = string.replace("<", "&lt;").replace(">", "&gt;")
         string = f'<a href="{html_path}#{heading}">{string}</a>'
@@ -35,6 +55,22 @@ def combine_extensions(lst, html_path=None, heading_lst=None, pdf_format=True):
     ----------
     lst : list of str
         Raw list of extensions.
+    html_path : None or str
+        Path to the HTML file that each extension should link to.
+        Only used if pdf_format is False.
+        Default is None.
+    heading_lst : None or list of str
+        List of headings in the HTML page to link to.
+        Should be one heading for each extension in lst.
+        Only used if pdf_format is False.
+        Default is None.
+    pdf_format : bool, optional
+        If True, the extensions will be compiled as markdown strings,
+        without any hyperlinks, so that the specification's PDF build will look right.
+        If False, the extensions will use HTML and include hyperlinks to the their
+        associated glossary entries.
+        This works on the website.
+        Default is True.
 
     Returns
     -------
