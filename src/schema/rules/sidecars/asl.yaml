@@ -170,7 +170,7 @@ MRIASLCommonMetadataFieldsVascularCrushingRec:
     fields:
         VascularCrushingVENC: recommended
 
-MRIASLPCASLSpecific:
+MRIASLCaslPcaslSpecific:
     selectors:
     - modality == "MRI"
     - datatype == "perf"
@@ -185,25 +185,29 @@ MRIASLPCASLSpecific:
         LabelingPulseFlipAngle: recommended
         LabelingPulseInterval: recommended
 
-MRIASLPCASLSpecific2:
+MRIASLPcaslSpecific:
     selectors:
     - modality == "MRI"
     - datatype == "perf"
     - suffix == "asl"
     - sidecar.ArterialSpinLabelingType == "PCASL"
     fields:
-        PCASLType: recommended
+        PCASLType:
+            level: recommended
+            level_addendum: if `ArterialSpinLabelingType` is `"PCASL"`
 
-MRIASLCASLSpecific:
+MRIASLCaslSpecific:
     selectors:
     - modality == "MRI"
     - datatype == "perf"
     - suffix == "asl"
     - sidecar.ArterialSpinLabelingType == "CASL"
     fields:
-        CASLType: recommended
+        CASLType:
+            level: recommended
+            level_addendum: if `ArterialSpinLabelingType` is `"CASL"`
 
-MRIASLPASLSpecific:
+MRIASLPaslSpecific:
     selectors:
     - modality == "MRI"
     - datatype == "perf"
@@ -229,7 +233,7 @@ MRIASLPASLSpecificBolusCutOffFlagFalse:
             level: optional
             level_addendum: required if `BolusCutOffFlag` is `true`
 
-MRIASLPASLSpecificBolusCutOffFlagTrue:
+MRIASLPaslSpecificBolusCutOffFlagTrue:
     selectors:
     - modality == "MRI"
     - datatype == "perf"

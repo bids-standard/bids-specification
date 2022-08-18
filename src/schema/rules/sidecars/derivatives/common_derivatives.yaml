@@ -3,21 +3,27 @@ CommonDerivativeFields:
   selectors:
   - dataset.DatasetType == "derivative"
   fields:
-    Description: recommended
+    Description:
+      level: recommended
+      description_addendum: This describes the nature of the file.
     Sources: optional
-    RawSources: optional
+    RawSources: deprecated
 
 SpatialReferenceEntity:
   selectors:
   - dataset.DatasetType == "derivative"
   - '"space" in entities'
   fields:
-    SpatialReference: recommended
+    SpatialReference:
+      level: recommended
+      level_addendum: |
+            if the derivative is aligned to a standard template listed in
+            [Standard template identifiers][templates]. Required otherwise.
 
 SpatialReferenceNonStandard:
   selectors:
   - dataset.DatasetType == "derivative"
-  - 'schema.objects.metadata._StandardTemplateCoordSys).includes(not(entities.space)'
+  - '!(schema.objects.metadata._StandardTemplateCoordSys).includes(entities.space)'
   fields:
     SpatialReference: required
 
@@ -47,7 +53,9 @@ MaskDerivativesAtlas:
   - suffix == "mask"
   - '"label" in entities'
   fields:
-    Atlas: recommended
+    Atlas:
+      level: recommended
+      level_addendum: if `label` entity is defined
 
 SegmentationCommon:
   selectors:
@@ -55,9 +63,19 @@ SegmentationCommon:
   - '["dseg", "probseg"].includes(suffix)'
   fields:
     Type: recommended
-    Atlas: optional
     Resolution: optional
     Density: optional
+    Manual: optional
+
+SegmentationCommonAtlas:
+  selectors:
+  - dataset.DatasetType == "derivative"
+  - '["dseg", "probseg"].includes(suffix)'
+  - '"atlas" in entities'
+  fields:
+    Atlas:
+      level: recommended
+      level_addendum: if `atlas` is present
 
 # Derivatives -> Imaging data types
 ImageDerivatives:
@@ -74,7 +92,9 @@ ImageDerivativeResEntity:
   - '["mri", "pet"].includes(modality)'
   - '"res" in entities'
   fields:
-    Resolution: required
+    Resolution:
+      level: required
+      level_addendum: if `res` is present
 
 ImageDerivativeDenEntity:
   selectors:
@@ -82,4 +102,6 @@ ImageDerivativeDenEntity:
   - '["mri", "pet"].includes(modality)'
   - '"den" in entities'
   fields:
-    Density: required
+    Density:
+      level: required
+      level_addendum: if `den` is present
