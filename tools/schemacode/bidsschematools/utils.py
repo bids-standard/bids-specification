@@ -25,7 +25,7 @@ def _link_with_html(string, html_path, heading, pdf_format=False):
     return string
 
 
-def combine_extensions(lst, html_path, heading_lst, pdf_format=False):
+def combine_extensions(lst, html_path=None, heading_lst=None, pdf_format=True):
     """Combine extensions with their compressed versions in a list.
 
     Valid combinations are hardcoded in the function,
@@ -43,6 +43,8 @@ def combine_extensions(lst, html_path, heading_lst, pdf_format=False):
         combined.
     """
     COMPRESSION_EXTENSIONS = [".gz"]
+    if pdf_format and not heading_lst:
+        heading_lst = lst[:]
 
     new_lst = []
     items_to_remove = []
