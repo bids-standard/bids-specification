@@ -53,18 +53,18 @@ A guide for using macros can be found at
 The following metadata JSON fields are defined for preprocessed images:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "SkullStripped": "REQUIRED",
-      "Resolution": "REQUIRED if `res` is present",
-      "Density": "REQUIRED if `den` is present",
-   }
-) }}
+{{ MACROS___make_sidecar_table([
+       "derivatives.common_derivatives.ImageDerivatives",
+       "derivatives.common_derivatives.ImageDerivativeResEntity",
+       "derivatives.common_derivatives.ImageDerivativeDenEntity",
+   ]) }}
 
 Example JSON file corresponding to
 `pipeline1/sub-001/func/sub-001_task-rest_run-1_space-MNI305_bold.json` above:
@@ -161,20 +161,19 @@ and the `Atlas` metadata SHOULD be defined.
 JSON metadata fields:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "RawSources": "REQUIRED",
-      "Type": "RECOMMENDED",
-      "Atlas": "RECOMMENDED if `label` entity is defined",
-      "Resolution": "REQUIRED if `res` is present",
-      "Density": "REQUIRED if `den` is present",
-   }
-) }}
+{{ MACROS___make_sidecar_table([
+       "derivatives.common_derivatives.MaskDerivatives",
+       "derivatives.common_derivatives.MaskDerivativesAtlas",
+       "derivatives.common_derivatives.ImageDerivativeResEntity",
+       "derivatives.common_derivatives.ImageDerivativeDenEntity",
+   ]) }}
 
 Examples:
 
@@ -242,19 +241,19 @@ Probabilistic segmentations of surfaces are currently [unspecified][].
 The following metadata fields apply to all segmentation files:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "Manual": "OPTIONAL",
-      "Atlas": "REQUIRED if `atlas` is present",
-      "Resolution": "REQUIRED if `res` is present",
-      "Density": "REQUIRED if `den` is present",
-   }
-) }}
+{{ MACROS___make_sidecar_table([
+       "derivatives.common_derivatives.SegmentationCommon",
+       "derivatives.common_derivatives.SegmentationCommonAtlas",
+       "derivatives.common_derivatives.ImageDerivativeResEntity",
+       "derivatives.common_derivatives.ImageDerivativeDenEntity",
+   ]) }}
 
 ### Discrete Segmentations
 

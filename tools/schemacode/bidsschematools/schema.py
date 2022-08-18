@@ -18,6 +18,10 @@ utils.set_logger_level(lgr, os.environ.get("BIDS_SCHEMA_LOG_LEVEL", logging.INFO
 logging.basicConfig(format="%(asctime)-15s [%(levelname)8s] %(message)s")
 
 
+class BIDSSchemaError(Exception):
+    """Errors indicating invalid values in the schema itself"""
+
+
 def _get_entry_name(path):
     if path.suffix == ".yaml":
         return path.name[:-5]  # no .yaml
