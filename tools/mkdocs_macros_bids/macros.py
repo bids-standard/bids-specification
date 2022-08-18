@@ -79,7 +79,11 @@ def make_filename_template(pdf_format=False, **kwargs):
         in the schema, after filtering.
     """
     schema_obj = schema.load_schema()
-    codeblock = render.make_filename_template(schema_obj, pdf_format=pdf_format, **kwargs)
+    codeblock = render.make_filename_template(
+        schema_obj,
+        pdf_format=pdf_format,
+        **kwargs,
+    )
     return codeblock
 
 
