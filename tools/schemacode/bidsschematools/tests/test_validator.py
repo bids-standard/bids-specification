@@ -377,7 +377,6 @@ def test_bids_datasets(bids_examples, tmp_path, dataset):
     result = validate_bids(
         target,
         schema_version=schema_path,
-        report_path=True,
     )
     # Have all files been validated?
     assert len(result["path_tracking"]) == 0
