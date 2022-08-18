@@ -275,8 +275,7 @@ def make_filename_template(schema, n_dupes_to_combine=6, src_path=None, **kwargs
             # In cases of large numbers of suffixes,
             # we use the "suffix" variable and expect a table later in the spec
             if len(group["suffixes"]) >= n_dupes_to_combine:
-                suffix = "_&lt;suffix&gt;"
-                string += suffix
+                string += '_&lt;<a href="{glossary_path}#suffix-common-principles">suffix</a>&gt;'
                 strings = [string]
             else:
                 strings = []
@@ -285,7 +284,7 @@ def make_filename_template(schema, n_dupes_to_combine=6, src_path=None, **kwargs
                     # but the rules reference the actual suffix string (2PE instead of TwoPE),
                     # so we need to look it up.
                     suffix_id = [
-                        k for k, v in schema["objects"]["suffixes"].items() if v["name"] == suffix
+                        k for k, v in schema["objects"]["suffixes"].items() if v["value"] == suffix
                     ][0]
                     strings.append(
                         f'{string}_<a href="{glossary_path}#{suffix_id}-suffixes">{suffix}</a>'
@@ -308,7 +307,7 @@ def make_filename_template(schema, n_dupes_to_combine=6, src_path=None, **kwargs
                 # but the rules reference the actual suffix string (.nii.gz instead of niigz),
                 # so we need to look it up.
                 ext_id = [
-                    k for k, v in schema["objects"]["extensions"].items() if v["name"] == extension
+                    k for k, v in schema["objects"]["extensions"].items() if v["value"] == extension
                 ]
                 if ext_id:
                     ext_id = ext_id[0]
