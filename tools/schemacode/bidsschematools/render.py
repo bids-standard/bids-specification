@@ -275,7 +275,7 @@ def make_filename_template(schema, n_dupes_to_combine=6, src_path=None, **kwargs
             # In cases of large numbers of suffixes,
             # we use the "suffix" variable and expect a table later in the spec
             if len(group["suffixes"]) >= n_dupes_to_combine:
-                string += '_&lt;<a href="{glossary_path}#suffix-common-principles">suffix</a>&gt;'
+                string += f'_&lt;<a href="{glossary_path}#suffix-common-principles">suffix</a>&gt;'
                 strings = [string]
             else:
                 strings = []
