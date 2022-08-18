@@ -8,7 +8,7 @@ from .. import version_file
 def test_make_archive(bids_examples, bids_error_examples, tmp_path):
     """
     ATTENTION! This is not a test!
-    Creates a static testdata directory containing only the bidsschematools whitelist of reference datasets.
+    Create static testdata archive containing the bidsschematools data reference whitelist.
 
     Notes
     -----
