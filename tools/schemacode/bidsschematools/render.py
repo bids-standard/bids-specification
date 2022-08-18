@@ -205,16 +205,18 @@ def make_filename_template(schema, n_dupes_to_combine=6, src_path=None, **kwargs
     """
     schema = Namespace(filter_schema(schema.to_dict(), **kwargs))
     entity_order = schema["rules"]["entities"]
+    entities_path = "/99-appendices/09-entities.html"
+    glossary_path = "/99-appendices/14-glossary.html"
 
     paragraph = ""
     # Parent directories
     paragraph += (
-        '<a href="/99-appendices/09-entities.html#subject">'
+        f'<a href="{entities_path}#sub">'
         f'{schema["objects"]["entities"]["subject"]["name"]}-&lt;'
         f'{schema["objects"]["entities"]["subject"]["format"]}&gt;'
         "</a>\n\t"
         "["
-        '<a href="/99-appendices/09-entities.html#session">'
+        f'<a href="{entities_path}#ses">'
         f'{schema["objects"]["entities"]["session"]["name"]}-&lt;'
         f'{schema["objects"]["entities"]["session"]["format"]}&gt;'
         "</a>]\n"
@@ -223,10 +225,14 @@ def make_filename_template(schema, n_dupes_to_combine=6, src_path=None, **kwargs
     datatypes = schema.rules.datatypes
 
     for datatype in datatypes:
-        # XXX We should have a full rethink of the schema hierarchy...
+        # NOTE: We should have a full rethink of the schema hierarchy
+        # so that derivatives aren't treated like a "datatype"
         if datatype == "derivatives":
             continue
-        paragraph += "\t\t{}/\n".format(datatype)
+
+        paragraph += (
+            f'\t\t<a href="{glossary_path}#{datatype}-datatypes">{datatype}</a>/\n'
+        )
 
         # Unique filename patterns
         for group in datatypes[datatype].values():
@@ -235,7 +241,8 @@ def make_filename_template(schema, n_dupes_to_combine=6, src_path=None, **kwargs
                 if "enum" in schema["objects"]["entities"][ent].keys():
                     # Entity key-value pattern with specific allowed values
                     ent_format = (
-                        f'<a href="/99-appendices/09-entities.html#{ent}">'
+                        f'<a href="{entities_path}#'
+                        f'{schema["objects"]["entities"][ent]["name"]}">'
                         f'{schema["objects"]["entities"][ent]["name"]}-&lt;'
                         f'{"|".join(schema["objects"]["entities"][ent]["enum"])}&gt;'
                         "</a>"
@@ -243,7 +250,8 @@ def make_filename_template(schema, n_dupes_to_combine=6, src_path=None, **kwargs
                 else:
                     # Standard entity key-value pattern with simple label/index
                     ent_format = (
-                        f'<a href="/99-appendices/09-entities.html#{ent}">'
+                        f'<a href="{entities_path}#'
+                        f'{schema["objects"]["entities"][ent]["name"]}">'
                         f'{schema["objects"]["entities"][ent]["name"]}-&lt;'
                         f'{schema["objects"]["entities"][ent].get("format", "label")}&gt;'
                         "</a>"
