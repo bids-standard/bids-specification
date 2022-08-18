@@ -224,13 +224,13 @@ def make_filename_template(
         f'<{schema["objects"]["entities"]["subject"]["format"]}>'
     )
     paragraph += utils._link_with_html(sub_string, entities_path, "sub", pdf_format=pdf_format)
-    paragraph += "\n\t["
+    paragraph += "/\n\t["
     ses_string = (
         f'{schema["objects"]["entities"]["session"]["name"]}-'
         f'<{schema["objects"]["entities"]["session"]["format"]}>'
     )
     paragraph += utils._link_with_html(ses_string, entities_path, "ses", pdf_format=pdf_format)
-    paragraph += "]\n"
+    paragraph += "]/\n"
 
     datatypes = schema.rules.datatypes
 
