@@ -248,9 +248,9 @@ BloodMetaboliteMethod:
     - suffix == "blood"
     - sidecar.MetaboliteAvail == true
     fields:
-        PlasmaFreeFraction:
+        MetaboliteMethod:
             level: required
             level_addendum: if `MetaboliteAvail` is `true`
-        PlasmaFreeFractionMethod:
+        MetaboliteRecoveryCorrectionApplied:
             level: required
             level_addendum: if `MetaboliteAvail` is `true`
