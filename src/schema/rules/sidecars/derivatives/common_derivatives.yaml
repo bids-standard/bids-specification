@@ -43,7 +43,7 @@ MaskDerivatives:
   fields:
     RawSources: required
     Type: recommended
-    Atlas: 
+    Atlas:
       level: optional
       level_addendum: recommended if `label` entity is defined
     Resolution: optional
