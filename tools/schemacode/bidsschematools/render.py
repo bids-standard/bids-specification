@@ -266,7 +266,7 @@ def make_filename_template(
         paragraph += utils._link_with_html(
             datatype,
             html_path=glossary_path,
-            heading=f"{datatype}-datatypes",
+            heading=f"{datatype.lower()}-datatypes",
             pdf_format=pdf_format,
         )
         paragraph += "/\n"
@@ -350,7 +350,7 @@ def make_filename_template(
                     suffix_string = utils._link_with_html(
                         suffix,
                         html_path=glossary_path,
-                        heading=f"{suffix_id}-suffixes",
+                        heading=f"{suffix_id.lower()}-suffixes",
                         pdf_format=pdf_format,
                     )
                     strings.append(f"{string}_{suffix_string}")
@@ -378,7 +378,7 @@ def make_filename_template(
                 ]
                 if ext_id:
                     ext_id = ext_id[0]
-                    ext_headings.append(f"{ext_id}-extensions")
+                    ext_headings.append(f"{ext_id.lower()}-extensions")
                 else:
                     ext_headings.append("extension-common_principles")
 

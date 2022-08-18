@@ -91,13 +91,13 @@ def combine_extensions(lst, html_path=None, heading_lst=None, pdf_format=True):
                 temp_item = _link_with_html(
                     lst[base_item_idx],
                     html_path=html_path,
-                    heading=heading_lst[base_item_idx],
+                    heading=heading_lst[base_item_idx].lower(),
                     pdf_format=pdf_format,
                 )
                 ext_string = _link_with_html(
                     ext,
                     html_path=html_path,
-                    heading=heading_lst[i_item],
+                    heading=heading_lst[i_item].lower(),
                     pdf_format=pdf_format,
                 )
 
