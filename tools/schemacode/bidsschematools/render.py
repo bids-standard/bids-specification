@@ -230,9 +230,7 @@ def make_filename_template(schema, n_dupes_to_combine=6, src_path=None, **kwargs
         if datatype == "derivatives":
             continue
 
-        paragraph += (
-            f'\t\t<a href="{glossary_path}#{datatype}-datatypes">{datatype}</a>/\n'
-        )
+        paragraph += f'\t\t<a href="{glossary_path}#{datatype}-datatypes">{datatype}</a>/\n'
 
         # Unique filename patterns
         for group in datatypes[datatype].values():
@@ -281,7 +279,10 @@ def make_filename_template(schema, n_dupes_to_combine=6, src_path=None, **kwargs
                 string += suffix
                 strings = [string]
             else:
-                strings = [string + "_" + suffix for suffix in group["suffixes"]]
+                strings = [
+                    string + "_" + f'<a href="{glossary_path}#{suffix}-suffixes">{suffix}</a>'
+                    for suffix in group["suffixes"]
+                ]
 
             # Add extensions
             full_strings = []
