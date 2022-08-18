@@ -16,7 +16,16 @@ def get_schema_path():
     return op.abspath(op.join(op.dirname(__file__), "data", "schema"))
 
 
-def combine_extensions(lst):
+def _link_with_html(string, html_path, heading, pdf_format=False):
+    """Wrap a string in an HTML hyperlink."""
+    if not pdf_format:
+        string = string.replace("<", "&lt;").replace(">", "&gt;")
+        string = f'<a href="{html_path}#{heading}">{string}</a>'
+
+    return string
+
+
+def combine_extensions(lst, html_path, heading_lst, pdf_format=False):
     """Combine extensions with their compressed versions in a list.
 
     Valid combinations are hardcoded in the function,
@@ -37,17 +46,43 @@ def combine_extensions(lst):
 
     new_lst = []
     items_to_remove = []
-    for item in lst:
+    for i_item, item in enumerate(lst):
         for ext in COMPRESSION_EXTENSIONS:
             if item.endswith(ext) and item.replace(ext, "") in lst:
-                temp_item = item.replace(ext, "") + "[" + ext + "]"
+                base_item_idx = lst.index(item.replace(ext, ""))
+                temp_item = _link_with_html(
+                    lst[base_item_idx],
+                    html_path=html_path,
+                    heading=heading_lst[base_item_idx],
+                    pdf_format=pdf_format,
+                )
+                ext_string = _link_with_html(
+                    ext,
+                    html_path=html_path,
+                    heading=heading_lst[i_item],
+                    pdf_format=pdf_format,
+                )
+
+                temp_item = temp_item + "[" + ext_string + "]"
                 new_lst.append(temp_item)
                 items_to_remove.append(item)
                 items_to_remove.append(item.replace(ext, ""))
                 continue
 
+    heading_lst = [head for i, head in enumerate(heading_lst) if lst[i] not in items_to_remove]
     items_to_add = [item for item in lst if item not in items_to_remove]
-    new_lst += items_to_add
+    item_strings_to_add = []
+    for i_item, item in enumerate(items_to_add):
+        item_strings_to_add.append(
+            _link_with_html(
+                item,
+                html_path=html_path,
+                heading=heading_lst[i_item],
+                pdf_format=pdf_format,
+            )
+        )
+
+    new_lst += item_strings_to_add
 
     return new_lst
 
