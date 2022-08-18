@@ -25,7 +25,9 @@ MRIASLTextOnlySliceTimingRec:
     - suffix == "asl"
     - sidecar.MRAcquisitionType != "2D"
     fields:
-        SliceTiming: recommended
+        SliceTiming:
+            level: recommended
+            level_addendum: required if `MRAcquisitionType` is defined as `2D`
 
 MRIASLTextOnlySliceTimingReq:
     selectors:
