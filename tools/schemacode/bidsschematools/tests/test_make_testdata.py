@@ -4,6 +4,7 @@ import tarfile
 
 from .. import version_file
 
+
 def test_make_archive(bids_examples, bids_error_examples, tmp_path):
     """
     ATTENTION! This is not a test!
@@ -19,8 +20,7 @@ def test_make_archive(bids_examples, bids_error_examples, tmp_path):
         testdata archive creation is now inconspicuously posing as a test.
     """
 
-
-    bst_version = open(version_file).read().rstrip('\n')
+    bst_version = open(version_file).read().rstrip("\n")
     archive_name = f"bidsschematools-testdata-{bst_version}"
     data_path = os.path.join(tmp_path, archive_name)
     archive_path = f"{data_path}.tar.gz"
@@ -35,4 +35,3 @@ def test_make_archive(bids_examples, bids_error_examples, tmp_path):
     with tarfile.open(archive_path, "w:gz") as tar:
         tar.add(data_path, arcname=os.path.basename(data_path))
     print(archive_path)
-
