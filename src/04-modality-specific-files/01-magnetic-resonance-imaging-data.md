@@ -942,7 +942,11 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("asl.MRIASLPCASLSpecific") }}
+{{ MACROS___make_sidecar_table([
+       "asl.MRIASLPcaslSpecific",
+       "asl.MRIASLCaslSpecific",
+       "asl.MRIASLCaslPcaslSpecific",
+   ]) }}
 
 #### PASL-specific metadata fields
 
@@ -956,7 +960,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("asl.MRIASLPASLSpecific") }}
+{{ MACROS___make_sidecar_table("asl.MRIASLPaslSpecific") }}
 
 ### `m0scan` metadata fields
 
