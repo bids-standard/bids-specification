@@ -402,7 +402,7 @@ def make_filename_template(
     if pdf_format:
         codeblock = f"Template:\n```Text\n{paragraph}\n```"
     else:
-        codeblock = f'Template:\n<pre style="overflow-x:scroll;">\n{paragraph}\n</pre>'
+        codeblock = f'Template:\n<pre style="overflow-x:scroll;"><code>\n{paragraph}\n</code></pre>'
 
     codeblock = codeblock.expandtabs(4)
     codeblock = codeblock.replace("SPEC_ROOT", get_relpath(src_path))
