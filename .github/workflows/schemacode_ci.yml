@@ -32,6 +32,8 @@ jobs:
   run_tests:
     needs: check_skip
     if: ${{ needs.check_skip.outputs.skip == 'false' }}
+    env:
+      BIDSSCHEMATOOLS_RELEASE: ${{github.event_name == 'push' && startsWith(github.ref, 'refs/tags/schema-')}}
     runs-on: ${{ matrix.os }}
     strategy:
         fail-fast: false
@@ -64,6 +66,11 @@ jobs:
         shell: bash {0}
         run: |
           python -m pytest --pyargs bidsschematools -m "not validate_schema" --cov-append --cov-report=xml --cov=bidsschematools
+
+      - name: "Test upload"
+        shell: bash {0}
+        run: |
+          if [ -z "$BIDSSCHEMATOOLS_RELEASE" ]; then echo "BIDSSCHEMATOOLS_RELEASE is unset"; else echo "BIDSSCHEMATOOLS_RELEASE is set to '$BIDSSCHEMATOOLS_RELEASE'"; fi
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
