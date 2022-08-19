@@ -13,14 +13,35 @@ MRIFuncRequired:
     selectors:
     - instrument == "mri"
     - datatype == "func"
+    - '[".nii", ".nii.gz"].includes(extension)'
     fields:
-        RepetitionTime: required
-        VolumeTiming: required
         TaskName:
             level: required
             description_addendum: |
                 A recommended convention is to name resting state task using labels
                 beginning with `rest`.
+
+MRIFuncRepetitionTime:
+    selectors:
+    - modality == "mri"
+    - datatype == "func"
+    - '!("VolumeTiming" in sidecar)'
+    - '[".nii", ".nii.gz"].includes(extension)'
+    fields:
+        RepetitionTime:
+            level: required
+            level_addendum: mutually exclusive with `VolumeTiming`
+
+MRIFuncVolumeTiming:
+    selectors:
+    - modality == "mri"
+    - datatype == "func"
+    - '!("RepetitionTime" in sidecar)'
+    - '[".nii", ".nii.gz"].includes(extension)'
+    fields:
+        VolumeTiming:
+            level: required
+            level_addendum: mutually exclusive with `RepetitionTime`
 
 # Timing Parameters
 MRIFuncTimingParameters:
