@@ -81,8 +81,10 @@ jobs:
           git describe --tags
           git describe --tags
           git describe --tags
-          echo "MY_TAG=$(git describe --tags)" >> $GITHUB_ENV
-          export BIDSSCHEMATOOLS_RELEASE=1
+          MY_TAG="$(git describe --tags)"
+          if [ "${MY_TAG:0:7}" = "schema-" ]; then
+            echo "BIDSSCHEMATOOLS_RELEASE=1" >> $GITHUB_ENV
+          fi
 
       - name: "Install the schemacode package"
         shell: bash {0}
@@ -99,8 +101,7 @@ jobs:
         shell: bash {0}
         run: |
           if [ -z "$BIDSSCHEMATOOLS_RELEASE" ]; then echo "BIDSSCHEMATOOLS_RELEASE is unset"; else echo "BIDSSCHEMATOOLS_RELEASE is set to '$BIDSSCHEMATOOLS_RELEASE'"; fi
-          echo $GITHUB_ENV
-          echo $MY_TAG
+          echo $BIDSSCHEMATOOLS_RELEASE
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
