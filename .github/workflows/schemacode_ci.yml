@@ -1,6 +1,7 @@
 name: "schemacode_ci"
 
 on:
+  workflow_dispatch
   push:
     branches:
       - "master"
@@ -17,7 +18,6 @@ on:
       - "src/schema/**"
     tags:
       - "schema-*"
-  workflow_dispatch
 
 
 jobs:
