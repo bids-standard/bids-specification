@@ -2,7 +2,7 @@
 
 pushd ..
 	export MY_BIDS_DATE="$(date +%s)"
-	echo "0.0.${MY_BIDS_DATE}-dev" >> src/schema/SCHEMA_VERSION
+	echo "0.0.${MY_BIDS_DATE}-dev" > src/schema/SCHEMA_VERSION
 	git commit -a -m "debug"
 	git tag -a "schema-$MY_BIDS_DATE" -m "debug"
 	git push origin
