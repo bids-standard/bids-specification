@@ -35,19 +35,20 @@ def get_gitrepo_fixture(url, whitelist):
     @pytest.fixture(scope="session")
     def fixture():
         archive_name = url.rsplit("/", 1)[-1]
-        testdata_archive = os.path.join(os.getcwd(), "testdata", archive_name)
-        if os.path.isdir(testdata_archive):
+        testdata_dir = os.path.join(os.path.dirname(__file__),"data","bundled",archive_name)
+        testdata_dir = os.path.abspath(testdata_dir)
+        if os.path.isdir(testdata_dir):
             lgr.info(
                 "Found static testdata archive under `%s`. "
                 "Not downloading latest data from version control.",
-                testdata_archive,
+                testdata_dir,
             )
-            yield testdata_archive
+            yield testdata_dir
         else:
             lgr.info(
                 "No static testdata available under `%s`. "
                 "Attempting to fetch live data from version control.",
-                testdata_archive,
+                testdata_dir,
             )
             with tempfile.TemporaryDirectory() as path:
                 assert os.path.exists(path)
