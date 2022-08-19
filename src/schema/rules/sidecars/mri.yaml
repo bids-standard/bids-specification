@@ -64,7 +64,7 @@ MRISequenceSpecifics:
 PETMRISequenceSpecifics:
     selectors:
     - instrument == "mri"
-    - dataset.modalities.includes("PET")
+    - dataset.datatypes.includes("pet")
     fields:
         NonlinearGradientCorrection: required
 
@@ -121,7 +121,7 @@ MRISpatialEncoding:
 
 PhaseEncodingDirectionRec:
     selectors:
-    - modality == "mri"
+    - instrument == "mri"
     - suffix != "epi"
     fields:
         PhaseEncodingDirection:
@@ -139,7 +139,7 @@ PhaseEncodingDirectionRec:
                 directions](#case-4-multiple-phase-encoded-directions-pepolar))
 PhaseEncodingDirectionReq:
     selectors:
-    - modality == "mri"
+    - instrument == "mri"
     - suffix == "epi"
     fields:
         PhaseEncodingDirection:
@@ -198,7 +198,7 @@ SliceTimingASL:
 # This is technically for sparse sequences only, but I don't know how to encode that.
 # SliceTimingSparse:
 #    selectors:
-#    - modality == "mri"
+#    - instrument == "mri"
 #    fields:
 #        SliceTiming: required
 
@@ -219,7 +219,7 @@ MRIFlipAngleLookLockerFalse:
 
 MRIFlipAngleLookLockerTrue:
     selectors:
-    - modality == "mri"
+    - instrument == "mri"
     - sidecar.LookLocker == true
     fields:
         FlipAngle:

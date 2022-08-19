@@ -106,7 +106,7 @@ MEGwithEEG:
     - instrument == "meg"
     - datatype == "meg"
     - suffix == "meg"
-    - dataset.modalities.includes("EEG")
+    - dataset.datatypes.includes("eeg")
     fields:
         EEGPlacementScheme: optional
         CapManufacturer: optional
@@ -215,7 +215,7 @@ MEGCoordsystemAnatomicalMRI:
     - instrument == "meg"
     - datatype == "meg"
     - suffix == "coordsystem"
-    - dataset.modalities.includes("anat")
+    - dataset.datatypes.includes("anat")
     fields:
         IntendedFor:
             level: optional

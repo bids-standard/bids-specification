@@ -154,7 +154,7 @@ EEGCoordsystemLandmark:
 
 EEGCoordsystemLandmarkDescriptionRec:
     selectors:
-    - modality == "eeg"
+    - instrument == "bioamp"
     - datatype == "eeg"
     - suffix == "coordsystem"
     - sidecar.AnatomicalLandmarkCoordinateSystem != "Other"

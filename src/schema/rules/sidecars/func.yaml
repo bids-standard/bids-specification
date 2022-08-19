@@ -23,7 +23,7 @@ MRIFuncRequired:
 
 MRIFuncRepetitionTime:
     selectors:
-    - modality == "mri"
+    - instrument == "mri"
     - datatype == "func"
     - '!("VolumeTiming" in sidecar)'
     - '[".nii", ".nii.gz"].includes(extension)'
@@ -34,7 +34,7 @@ MRIFuncRepetitionTime:
 
 MRIFuncVolumeTiming:
     selectors:
-    - modality == "mri"
+    - instrument == "mri"
     - datatype == "func"
     - '!("RepetitionTime" in sidecar)'
     - '[".nii", ".nii.gz"].includes(extension)'

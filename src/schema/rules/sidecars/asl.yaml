@@ -20,7 +20,7 @@ MRIASLTextOnly:
 
 MRIASLTextOnlySliceTimingRec:
     selectors:
-    - modality == "MRI"
+    - instrument == "mri"
     - datatype == "perf"
     - suffix == "asl"
     - sidecar.MRAcquisitionType != "2D"
@@ -57,7 +57,7 @@ MRIASLTextOnlySliceTimingReq:
 
 MRIASLTextOnlyFlipAngleRec:
     selectors:
-    - modality == "MRI"
+    - instrument == "mri"
     - datatype == "perf"
     - suffix == "asl"
     - '!(LookLocker in sidecar) || sidecar.LookLocker == false'
@@ -112,7 +112,7 @@ MRIASLCommonMetadataFields:
 
 MRIASLCommonMetadataFieldsM0TypeRec:
     selectors:
-    - modality == "MRI"
+    - instrument == "mri"
     - datatype == "perf"
     - suffix == "asl"
     - sidecar.M0Type != "Estimate"
@@ -140,7 +140,7 @@ MRIASLCommonMetadataFieldsM0TypeReq:
 
 MRIASLCommonMetadataFieldsBackgroundSuppressionOpt:
     selectors:
-    - modality == "MRI"
+    - instrument == "mri"
     - datatype == "perf"
     - suffix == "asl"
     - sidecar.BackgroundSuppression == false
@@ -164,7 +164,7 @@ MRIASLCommonMetadataFieldsBackgroundSuppressionReq:
 
 MRIASLCommonMetadataFieldsVascularCrushingOpt:
     selectors:
-    - modality == "MRI"
+    - instrument == "mri"
     - datatype == "perf"
     - suffix == "asl"
     - sidecar.VascularCrushing == false
@@ -232,7 +232,7 @@ MRIASLPaslSpecific:
 
 MRIASLPASLSpecificBolusCutOffFlagFalse:
     selectors:
-    - modality == "MRI"
+    - instrument == "mri"
     - datatype == "perf"
     - suffix == "asl"
     - sidecar.ArterialSpinLabelingType == "PASL"
@@ -290,7 +290,7 @@ MRIASLM0ScanTextOnly:
 
 MRIASLM0ScanTextOnlyFlipAngleRec:
     selectors:
-    - modality == "MRI"
+    - instrument == "mri"
     - datatype == "perf"
     - suffix == "m0scan"
     - '!(LookLocker in sidecar) || sidecar.LookLocker == false'
