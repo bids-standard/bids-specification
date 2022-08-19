@@ -7,12 +7,16 @@ on:
     paths:
       - "tools/schemacode/**"
       - "src/schema/**"
+    tag:
+      - "refs/tags/schema-*"
   pull_request:
     branches:
       - "*"
     paths:
       - "tools/schemacode/**"
       - "src/schema/**"
+    tag:
+      - "refs/tags/schema-*"
 
 jobs:
   check_skip:
@@ -32,6 +36,8 @@ jobs:
   run_tests:
     needs: check_skip
     if: ${{ needs.check_skip.outputs.skip == 'false' }}
+    env:
+      BIDSSCHEMATOOLS_RELEASE: ${{github.event_name == 'push' && startsWith(github.ref, 'refs/tags/schema-')}}
     runs-on: ${{ matrix.os }}
     strategy:
         fail-fast: false
