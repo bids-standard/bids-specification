@@ -4,78 +4,76 @@
 # Assumptions: never need disjunction of selectors
 # Assumptions: top-to-bottom overrides is sufficient logic
 
-
 ---
-
 # Entities
 
 EntitiesTaskMetadata:
-    selectors:
+  selectors:
     - '"task" in entities'
-    fields:
-        TaskName: recommended
+  fields:
+    TaskName: recommended
 
 EntitiesCeMetadata:
-    selectors:
+  selectors:
     - '"ce" in entities'
-    fields:
-        ContrastBolusIngredient: optional
+  fields:
+    ContrastBolusIngredient: optional
 
 EntitiesTrcMetadata:
-    selectors:
+  selectors:
     - '"trc" in entities'
-    fields:
-        TracerName: required
+  fields:
+    TracerName: required
 
 EntitiesStainMetadata:
-    selectors:
+  selectors:
     - '"stain" in entities'
-    fields:
-        SampleStaining: recommended
-        SamplePrimaryAntibody: recommended
-        SampleSecondaryAntibody: recommended
+  fields:
+    SampleStaining: recommended
+    SamplePrimaryAntibody: recommended
+    SampleSecondaryAntibody: recommended
 
 EntitiesEchoMetadata:
-    selectors:
+  selectors:
     - '"echo" in entities'
-    fields:
-        EchoTime: required
+  fields:
+    EchoTime: required
 
 EntitiesFlipMetadata:
-    selectors:
+  selectors:
     - '"flip" in entities'
-    fields:
-        FlipAngle: required
+  fields:
+    FlipAngle: required
 
 EntitiesInvMetadata:
-    selectors:
+  selectors:
     - '"inv" in entities'
-    fields:
-        InversionTime: required
+  fields:
+    InversionTime: required
 
 EntitiesMTMetadata:
-    selectors:
+  selectors:
     - '"mt" in entities'
-    fields:
-        MTState: required
+  fields:
+    MTState: required
 
 EntitiesPartMetadata:
-    selectors:
+  selectors:
     - entities.part == "phase"
-    fields:
-        Units:
-            level: required
-            rules:
-            - '["rad", "arbitrary"].includes(value)'
+  fields:
+    Units:
+      level: required
+      rules:
+        - '["rad", "arbitrary"].includes(value)'
 
 EntitiesResMetadata:
-    selectors:
+  selectors:
     - '"res" in entities'
-    fields:
-        Resolution: required
+  fields:
+    Resolution: required
 
 EntitiesDenMetadata:
-    selectors:
+  selectors:
     - '"den" in entities'
-    fields:
-        Density: required
+  fields:
+    Density: required

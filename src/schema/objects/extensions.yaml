@@ -2,7 +2,7 @@
 # This file describes valid file extensions in the specification.
 ave:
   value: .ave
-  display_name: AVE  # not sure what ave stands for
+  display_name: AVE # not sure what ave stands for
   description: |
     File containing data averaged by segments of interest.
 
@@ -301,7 +301,7 @@ Any:
   description: |
     Any extension is allowed.
 None:
-  value: ""
+  value: ''
   display_name: No extension
   description: |
     A file with no extension.

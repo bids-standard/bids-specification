@@ -38,9 +38,9 @@ func_volumetric:
 anat_parametric_mask:
   $ref: rules.datatypes.anat.parametric
   suffixes:
-  - mask
+    - mask
   extensions:
-  - .nii.gz
+    - .nii.gz
   entities:
     $ref: rules.datatypes.anat.parametric.entities
     space: optional
@@ -52,9 +52,9 @@ anat_parametric_mask:
 anat_nonparametric_mask:
   $ref: rules.datatypes.anat.nonparametric
   suffixes:
-  - mask
+    - mask
   extensions:
-  - .nii.gz
+    - .nii.gz
   entities:
     $ref: rules.datatypes.anat.nonparametric.entities
     space: optional
@@ -66,9 +66,9 @@ anat_nonparametric_mask:
 dwi_mask:
   $ref: rules.datatypes.dwi.dwi
   suffixes:
-  - mask
+    - mask
   extensions:
-  - .nii.gz
+    - .nii.gz
   entities:
     $ref: rules.datatypes.dwi.dwi.entities
     space: optional
@@ -80,9 +80,9 @@ dwi_mask:
 func_mask:
   $ref: rules.datatypes.func.func
   suffixes:
-  - mask
+    - mask
   extensions:
-  - .nii.gz
+    - .nii.gz
   entities:
     $ref: rules.datatypes.func.func.entities
     space: optional
@@ -94,9 +94,9 @@ func_mask:
 anat_parametric_discrete_segmentation:
   $ref: rules.datatypes.anat.parametric
   suffixes:
-  - dseg
+    - dseg
   extensions:
-  - .nii.gz
+    - .nii.gz
   entities:
     $ref: rules.datatypes.anat.parametric.entities
     space: optional
@@ -106,9 +106,9 @@ anat_parametric_discrete_segmentation:
 anat_nonparametric_discrete_segmentation:
   $ref: rules.datatypes.anat.nonparametric
   suffixes:
-  - dseg
+    - dseg
   extensions:
-  - .nii.gz
+    - .nii.gz
   entities:
     $ref: rules.datatypes.anat.nonparametric.entities
     space: optional
@@ -118,9 +118,9 @@ anat_nonparametric_discrete_segmentation:
 func_discrete_segmentation:
   $ref: rules.datatypes.func.func
   suffixes:
-  - dseg
+    - dseg
   extensions:
-  - .nii.gz
+    - .nii.gz
   entities:
     $ref: rules.datatypes.func.func.entities
     space: optional
@@ -130,9 +130,9 @@ func_discrete_segmentation:
 dwi_discrete_segmentation:
   $ref: rules.datatypes.dwi.dwi
   suffixes:
-  - dseg
+    - dseg
   extensions:
-  - .nii.gz
+    - .nii.gz
   entities:
     $ref: rules.datatypes.dwi.dwi.entities
     space: optional
@@ -142,9 +142,9 @@ dwi_discrete_segmentation:
 anat_parametric_probabilistic_segmentation:
   $ref: rules.datatypes.anat.parametric
   suffixes:
-  - probseg
+    - probseg
   extensions:
-  - .nii.gz
+    - .nii.gz
   entities:
     $ref: rules.datatypes.anat.parametric.entities
     space: optional
@@ -155,9 +155,9 @@ anat_parametric_probabilistic_segmentation:
 anat_nonparametric_probabilistic_segmentation:
   $ref: rules.datatypes.anat.nonparametric
   suffixes:
-  - probseg
+    - probseg
   extensions:
-  - .nii.gz
+    - .nii.gz
   entities:
     $ref: rules.datatypes.anat.nonparametric.entities
     space: optional
@@ -168,9 +168,9 @@ anat_nonparametric_probabilistic_segmentation:
 func_probabilistic_segmentation:
   $ref: rules.datatypes.func.func
   suffixes:
-  - probseg
+    - probseg
   extensions:
-  - .nii.gz
+    - .nii.gz
   entities:
     $ref: rules.datatypes.func.func.entities
     space: optional
@@ -181,9 +181,9 @@ func_probabilistic_segmentation:
 dwi_probabilistic_segmentation:
   $ref: rules.datatypes.dwi.dwi
   suffixes:
-  - probseg
+    - probseg
   extensions:
-  - .nii.gz
+    - .nii.gz
   entities:
     $ref: rules.datatypes.dwi.dwi.entities
     space: optional
@@ -194,10 +194,10 @@ dwi_probabilistic_segmentation:
 anat_parametic_discrete_surface:
   $ref: rules.datatypes.anat.parametric
   suffixes:
-  - dseg
+    - dseg
   extensions:
-  - .label.gii
-  - .dlabel.nii
+    - .label.gii
+    - .dlabel.nii
   entities:
     $ref: rules.datatypes.anat.parametric.entities
     hemisphere: optional
@@ -208,10 +208,10 @@ anat_parametic_discrete_surface:
 anat_nonparametic_discrete_surface:
   $ref: rules.datatypes.anat.nonparametric
   suffixes:
-  - dseg
+    - dseg
   extensions:
-  - .label.gii
-  - .dlabel.nii
+    - .label.gii
+    - .dlabel.nii
   entities:
     $ref: rules.datatypes.anat.nonparametric.entities
     hemisphere: optional
