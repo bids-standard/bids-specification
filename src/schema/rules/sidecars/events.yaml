@@ -4,11 +4,10 @@
 # Assumptions: never need disjunction of selectors
 # Assumptions: top-to-bottom overrides is sufficient logic
 
-
 ---
 # Metadata for events files
 StimulusPresentation:
-    selectors:
+  selectors:
     - suffix == "events"
-    fields:
-        StimulusPresentation: recommended
+  fields:
+    StimulusPresentation: recommended
