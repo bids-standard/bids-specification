@@ -101,10 +101,12 @@ jobs:
         shell: bash {0}
         run: |
           if [ -z "$BIDSSCHEMATOOLS_RELEASE" ]; then echo "BIDSSCHEMATOOLS_RELEASE is unset"; else echo "BIDSSCHEMATOOLS_RELEASE is set to '$BIDSSCHEMATOOLS_RELEASE'"; fi
-          echo $BIDSSCHEMATOOLS_RELEASE
-          ls /tmp/bidsschematools* -lah
-          cd /
-          find -name "*bidsschematools-testdata*"
+          if [ -z "$BIDSSCHEMATOOLS_RELEASE" ]; then
+            echo $BIDSSCHEMATOOLS_RELEASE
+            ls /tmp/bidsschematools* -lah
+            python -m build
+            twine upload -u __token__ -p ${{secrets.PYPI_TEST}} --repository testpypi dist/*
+          fi
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
