@@ -17,9 +17,7 @@ on:
       - "src/schema/**"
     tags:
       - "schema-*"
-  workflow_dispatch:
-    branches:
-      - "*"
+  workflow_dispatch
 
 
 jobs:
