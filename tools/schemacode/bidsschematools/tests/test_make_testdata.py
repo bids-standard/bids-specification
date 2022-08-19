@@ -35,4 +35,4 @@ def test_make_archive(bids_examples, bids_error_examples):
 
     with tarfile.open(archive_path, "w:gz") as tar:
         tar.add(bids_examples, arcname=f"{archive_name}/bids-examples")
-        tar.add(bids_error_examples, arcname=f"{archive_name}/bids-examples")
+        tar.add(bids_error_examples, arcname=f"{archive_name}/bids-error-examples")
