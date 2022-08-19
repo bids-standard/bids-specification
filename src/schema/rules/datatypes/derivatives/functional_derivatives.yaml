@@ -88,6 +88,6 @@ functional_derivatives_spatiotemporal_decomp_timeseries:
   - ".json"
   entities:
     _ref: rules.datatypes.func.func.entities
-    desc: OPTIONAL
+    description: OPTIONAL
   suffixies:
   - decomposition
