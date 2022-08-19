@@ -219,11 +219,7 @@ def make_glossary(schema, src_path=None):
 
         text += f"**Description**:\n{obj_desc}\n\n"
 
-        reduced_obj_def = {
-            k: v
-            for k, v in obj_def.items()
-            if k not in keys_to_drop
-        }
+        reduced_obj_def = {k: v for k, v in obj_def.items() if k not in keys_to_drop}
 
         if reduced_obj_def:
             reduced_obj_def = yaml.dump(reduced_obj_def)
