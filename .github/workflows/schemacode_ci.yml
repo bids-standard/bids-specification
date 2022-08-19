@@ -58,6 +58,7 @@ jobs:
         shell: bash {0}
         run: |
           echo ${{ github.GITHUB_REF }}
+          echo ${{ github.CI }}
 
       - name: "Run tests"
         shell: bash {0}
