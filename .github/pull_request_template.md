@@ -23,6 +23,6 @@ See the [CONTRIBUTING](https://github.com/bids-standard/bids-specification/blob/
 - After opening the PR, our continuous integration services will automatically check your contribution  for formatting errors and render a preview of the BIDS specification with your changes.
   To see the checks and preview, scroll down and click on the `show all checks` link.
   From the list, select the `Details` link of the `ci/circleci: build_docs artifact` check to see the preview of the BIDS specification.
-- If you are updating the schema *and* you need to subsequently make changes to the bidsschematools code (validation, tests, rendering), this means your PR probably introduces a compatibility breaking change and you should increment the minor version (i.e. second number) in `bids-specification/src/schema/SCHEMA_VERSION`.
+- If you are updating the schema *and* you need to subsequently make changes to the bidsschematools code (validation, tests, rendering), this means your PR probably introduces a compatibility breaking change and you should increment the minor version (the second number) in `bids-specification/src/schema/SCHEMA_VERSION`.
 
 --- PLEASE READ AND DELETE THE TEXT ABOVE BEFORE OPENING THE PULL REQUEST ---
