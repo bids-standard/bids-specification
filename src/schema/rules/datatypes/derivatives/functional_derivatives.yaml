@@ -11,7 +11,7 @@ functional_derivatives_maps:
     space: OPTIONAL
     resolution: OPTIONAL
     density: OPTIONAL
-    desc: OPTIONAL
+    description: OPTIONAL
   suffixes:
   - "mean"
   - "std"
