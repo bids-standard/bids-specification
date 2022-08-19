@@ -1,7 +1,5 @@
 import os
-import shutil
 import tarfile
-import tempfile
 
 import pytest
 
@@ -11,8 +9,7 @@ from .. import __version__
 def require_env(var):
     env = os.environ.get(var)
     return pytest.mark.skipif(
-        not env,
-        reason=f"To activate this test/feature `export {var}=1` and re-run."
+        not env, reason=f"To activate this test/feature `export {var}=1` and re-run."
     )
 
 
