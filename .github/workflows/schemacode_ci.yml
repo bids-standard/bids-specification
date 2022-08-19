@@ -65,6 +65,10 @@ jobs:
           echo ${{ env.CI }}
           echo $GITHUB_REF
           echo $CI
+          echo "$GITHUB_REF"
+          echo "$CI"
+          echo ${GITHUB_REF}
+          echo ${CI}
 
       - name: "Run tests"
         shell: bash {0}
