@@ -75,6 +75,12 @@ jobs:
         run: |
           echo ${{ github.GITHUB_REF }}
           echo ${{ github.CI }}
+          echo ${{ github.workspace.GITHUB_REF }}
+          echo ${{ github.workspace.CI }}
+          echo ${{ env.GITHUB_REF }}
+          echo ${{ env.CI }}
+          echo $GITHUB_REF
+          echo $CI
 
       - name: "Run tests"
         shell: bash {0}
