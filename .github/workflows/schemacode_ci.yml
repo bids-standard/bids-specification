@@ -88,7 +88,7 @@ jobs:
           echo ${CI}
           pwd
           ls -lah
-          ls -lah .git/
+          cat .git/COMMIT_EDITMSG
           which git
           git ls-remote --tags
           git describe
