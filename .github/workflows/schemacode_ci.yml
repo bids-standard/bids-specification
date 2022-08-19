@@ -85,13 +85,22 @@ jobs:
 
       - name: "Test upload"
         shell: bash {0}
+        id: testpypi_upload
         run: |
-          if [ -z "$BIDSSCHEMATOOLS_RELEASE" ]; then echo "BIDSSCHEMATOOLS_RELEASE is unset"; else echo "BIDSSCHEMATOOLS_RELEASE is set to '$BIDSSCHEMATOOLS_RELEASE'"; fi
           if [ -z "$BIDSSCHEMATOOLS_RELEASE" ]; then
-            echo $BIDSSCHEMATOOLS_RELEASE
+            echo "BIDSSCHEMATOOLS_RELEASE is set to '$BIDSSCHEMATOOLS_RELEASE'"
             ls /tmp/bidsschematools* -lah
             python -m build
-            twine upload -u __token__ -p ${{secrets.PYPI_TEST}} --repository testpypi dist/*
+            twine upload -u __token__ -p ${{secrets.BIDS_TOKEN_TEST}} --repository testpypi dist/*
+          fi
+
+      - name: "Real upload"
+        shell: bash {0}
+        if: ${{ success(testpypi_upload) }}
+        run: |
+          if [ -z "$BIDSSCHEMATOOLS_RELEASE" ]; then
+            echo "BIDSSCHEMATOOLS_RELEASE is set to '$BIDSSCHEMATOOLS_RELEASE'"
+            twine upload -u __token__ -p ${{secrets.BIDS_TOKEN_TEST}} --repository dist/*
           fi
 
       - name: Upload artifacts
