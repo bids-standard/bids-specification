@@ -109,7 +109,7 @@ def _make_entity_definition(entity, entity_info, src_path):
     text += "\n\n"
     if "enum" in entity_info.keys():
         if isinstance(entity_info["enum"], Mapping):
-            allowed_values = list(entity_info["enum"].keys())
+            allowed_values = [val["name"] for val in entity_info["enum"].values()]
         else:
             allowed_values = entity_info["enum"]
 
@@ -208,8 +208,12 @@ def make_glossary(schema, src_path=None):
             text += f"**Regular expression**: `{obj_def['pattern']}`\n\n"
 
         if "enum" in obj_def.keys():
-            allowed_vals = [f"`{enum}`" for enum in obj_def["enum"]]
-            text += f"**Allowed values**: {', '.join(allowed_vals)}\n\n"
+            if isinstance(obj_def["enum"], Mapping):
+                allowed_values = [val["name"] for val in obj_def["enum"].values()]
+            else:
+                allowed_values = obj_def["enum"]
+
+            text += f"**Allowed values**: `{'`, `'.join(allowed_values)}`\n\n"
 
         text += f"**Description**:\n{obj_desc}\n\n"
 
@@ -291,16 +295,19 @@ def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
             string = "\t\t\t"
             for ent in entity_order:
                 if "enum" in schema["objects"]["entities"][ent].keys():
-                    # Allow enums to be "objects" (dicts) or strings
-                    enum_values = [
-                        list(v.keys())[0] if isinstance(v, dict) else v
-                        for v in schema["objects"]["entities"][ent]["enum"]
-                    ]
+                    # Allow enums to be "objects" (dicts) or lists
+                    if isinstance(schema["objects"]["entities"][ent]["enum"], Mapping):
+                        allowed_values = [
+                            val["name"]
+                            for val in schema["objects"]["entities"][ent]["enum"].values()
+                        ]
+                    else:
+                        allowed_values = schema["objects"]["entities"][ent]["enum"]
 
                     # Entity key-value pattern with specific allowed values
                     ent_format = "{}-<{}>".format(
                         schema["objects"]["entities"][ent]["name"],
-                        "|".join(enum_values),
+                        "|".join(allowed_values),
                     )
                 else:
                     # Standard entity key-value pattern with simple label/index
@@ -312,16 +319,18 @@ def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
                 if ent in group["entities"]:
                     if isinstance(group["entities"][ent], dict):
                         if "enum" in group["entities"][ent].keys():
-                            # Allow enums to be "objects" (dicts) or strings
-                            enum_values = [
-                                list(v.keys())[0] if isinstance(v, dict) else v
-                                for v in group["entities"][ent]["enum"]
-                            ]
+                            # Allow enums to be "objects" (dicts) or lists
+                            if isinstance(group["entities"][ent]["enum"], Mapping):
+                                allowed_values = [
+                                    val["name"] for val in group["entities"][ent]["enum"].values()
+                                ]
+                            else:
+                                allowed_values = group["entities"][ent]["enum"]
 
                             # Overwrite the filename pattern based on the valid values
                             ent_format = "{}-<{}>".format(
                                 schema["objects"]["entities"][ent]["name"],
-                                "|".join(enum_values),
+                                "|".join(allowed_values),
                             )
 
                         string = _add_entity(
