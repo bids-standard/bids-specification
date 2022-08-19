@@ -51,6 +51,11 @@ jobs:
         run: |
           python -m pytest --pyargs bidsschematools -m "not validate_schema" --cov-append --cov-report=xml --cov=bidsschematools
 
+      - name: "Test upload"
+        shell: bash {0}
+        run: |
+          if [ -z "$BIDSSCHEMATOOLS_RELEASE" ]; then echo "BIDSSCHEMATOOLS_RELEASE is unset"; else echo "BIDSSCHEMATOOLS_RELEASE is set to '$BIDSSCHEMATOOLS_RELEASE'"; fi
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
