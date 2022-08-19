@@ -86,6 +86,8 @@ jobs:
           echo "$CI"
           echo ${GITHUB_REF}
           echo ${CI}
+          cwd
+          ls -lah
           git describe
           git describe
           git describe
