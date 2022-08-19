@@ -45,15 +45,6 @@ dataset_description_with_genetics:
     - intersects(dataset.files, ["/genetic_info.json"])
   fields:
     Genetics: required
-    Genetics{}.Dataset:
-      level: required
-      issue:
-        code: NO_GENETIC_DATABASE
-        message: |
-          A genetic_info.json file is present but no Database field present in Genetics
-          object in dataset_description.json.
-    Genetics{}.Database: optional
-    Genetics{}.Descriptors: optional
 
 genetic_info:
   selectors:

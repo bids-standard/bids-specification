@@ -33,14 +33,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_subobject_table(
-   ("objects", "metadata", "Genetics"),
-   {
-      "Dataset": "REQUIRED",
-      "Database": "OPTIONAL",
-      "Descriptors": "OPTIONAL",
-   },
-) }}
+{{ MACROS___make_subobject_table("metadata.Genetics") }}
 
 Example:
 

@@ -3116,6 +3116,12 @@ StimulusPresentation:
     `"Code"`.
     See table below for more information.
   type: object
+  recommended_fields:
+    - OperatingSystem
+    - SoftwareName
+    - SoftwareRRID
+    - SoftwareVersion
+    - Code
   properties:
     OperatingSystem:
       $ref: objects.metadata.OperatingSystem
