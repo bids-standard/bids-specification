@@ -16,6 +16,7 @@ on:
     paths:
       - "tools/schemacode/**"
       - "src/schema/**"
+      - ".github/workflows/*"
     tags:
       - "*"
       - "**"
@@ -53,10 +54,10 @@ jobs:
           python -m pip install --progress-bar off --upgrade pip
           python -m pip install ./tools/schemacode[all]
 
-      - name: "Collect tags!!!"
+      - name: "DO WITH tags!!!"
         shell: bash {0}
         run: |
-          python -m pytest --pyargs bidsschematools -m "not validate_schema" --cov-append --cov-report=xml --cov=bidsschematools
+          echo ${{ github.GITHUB_REF }}
 
       - name: "Run tests"
         shell: bash {0}
