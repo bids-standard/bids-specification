@@ -52,7 +52,7 @@ and a guide for using macros can be found at
    }
 ) }}
 
-<sup>5</sup> Note for MRI data:
+Note for MRI data:
 If any acquired scans have been discarded before forming the imaging data file,
 ensure that an `onset` of 0 corresponds to the time the first image was stored.
 For example in case there is an in scanner training phase that
@@ -60,8 +60,14 @@ begins before the scanning sequence has started events from this sequence should
 have negative onset time counting down to the beginning of the acquisition of
 the first volume.
 
+Note regarding the precision of numeric metadata:
+It is RECOMMENDENDED that dataset curators specify numeric metadata like `onset` and
+`duration` with as much decimal precision as is reasonable in the context of the experiment.
+For example in an EEG experiment with devices operating at 1000 Hz sampling frequency,
+dataset curators SHOULD specify **at least** 3 figures after the decimal point.
+
 An arbitrary number of additional columns can be added. Those allow describing
-other properties of events that could be later referred in modelling and
+other properties of events that could be later referenced in modelling and
 hypothesis extensions of BIDS.
 Note that the `trial_type` and any additional columns in a TSV file
 SHOULD be documented in an accompanying JSON sidecar file.
@@ -227,16 +233,14 @@ It is RECOMMENDED to include details of the stimulus presentation software,
 when applicable:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "StimulusPresentation": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("events.StimulusPresentation") }}
 
 The object supplied for `StimulusPresentation` SHOULD include the following key-value pairs:
 
@@ -246,7 +250,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
+{{ MACROS___make_subobject_table(("objects", "metadata", "StimulusPresentation"),
    {
       "OperatingSystem": "RECOMMENDED",
       "SoftwareName": "RECOMMENDED",

@@ -1,7 +1,7 @@
-"""Tests for the schemacode package."""
+"""Tests for the bidsschematools package."""
 import os
 
-from schemacode import render
+from bidsschematools import render
 
 
 def test_make_entity_definitions(schema_obj):
@@ -11,22 +11,22 @@ def test_make_entity_definitions(schema_obj):
     """
     schema_text = render.make_entity_definitions(schema_obj)
     expected_formats = [
-        "Format: `sub-<label>`",
-        "Format: `ses-<label>`",
-        "Format: `sample-<label>`",
-        "Format: `task-<label>`",
-        "Format: `acq-<label>`",
-        "Format: `ce-<label>`",
-        "Format: `trc-<label>`",
-        "Format: `stain-<label>`",
-        "Format: `rec-<label>`",
-        "Format: `dir-<label>`",
-        "Format: `run-<index>`",
-        "Format: `mod-<label>`",
-        "Format: `echo-<index>`",
-        "Format: `flip-<index>`",
-        "Format: `inv-<index>`",
-        "Format: `mt-<label>`",
+        "**Format**: `sub-<label>`",
+        "**Format**: `ses-<label>`",
+        "**Format**: `sample-<label>`",
+        "**Format**: `task-<label>`",
+        "**Format**: `acq-<label>`",
+        "**Format**: `ce-<label>`",
+        "**Format**: `trc-<label>`",
+        "**Format**: `stain-<label>`",
+        "**Format**: `rec-<label>`",
+        "**Format**: `dir-<label>`",
+        "**Format**: `run-<index>`",
+        "**Format**: `mod-<label>`",
+        "**Format**: `echo-<index>`",
+        "**Format**: `flip-<index>`",
+        "**Format**: `inv-<index>`",
+        "**Format**: `mt-<label>`",
     ]
     for expected_format in expected_formats:
         assert expected_format in schema_text
@@ -157,6 +157,38 @@ def test_make_suffix_table(schema_obj):
         assert expected_name in suffix_table
 
 
+def test_make_sidecar_table(schema_obj):
+    """
+    Test whether expected metadata fields are present and the requirement level is
+    applied correctly.
+    This should be robust with respect to schema format.
+    """
+    # mri.MRISpatialEncoding selected for having some level and description addenda
+    rendered_table = render.make_sidecar_table(schema_obj, "mri.MRISpatialEncoding").split("\n")
+
+    assert rendered_table[0].startswith("| **Key name**")
+    assert rendered_table[1].startswith("|-------------")
+
+    fields = schema_obj.rules.sidecars.mri.MRISpatialEncoding.fields
+    assert len(rendered_table) == len(fields) + 2
+
+    for field, render_row in zip(fields, rendered_table[2:]):
+        assert render_row.startswith(f"| {field}")
+        spec = fields[field]
+        if isinstance(spec, str):
+            level = spec
+            level_addendum = ""
+            description_addendum = ""
+        else:
+            level = spec["level"]
+            level_addendum = spec.get("level_addendum", "").replace("required", "REQUIRED")
+            description_addendum = spec.get("description_addendum", "")
+
+        assert level.upper() in render_row
+        assert level_addendum.split("\n")[0] in render_row
+        assert description_addendum.split("\n")[0] in render_row
+
+
 def test_make_metadata_table(schema_obj):
     """
     Test whether expected metadata fields are present and the requirement level is
@@ -176,7 +208,7 @@ def test_make_metadata_table(schema_obj):
         for i in metadata_tracking:
             if i in line:
                 # Is the requirement level displayed correctly?
-                assert target_metadata[i] in line
+                assert target_metadata[i].upper() in line
                 # Mark found
                 metadata_tracking.remove(i)
 
@@ -209,3 +241,12 @@ def test_make_columns_table(schema_obj):
 
     # Have we found all fields?
     assert len(columns_tracking) == 0
+
+
+def test_define_common_principles(schema_obj):
+    """Ensure that define_common_principles returns a string."""
+    common_principles_str = render.define_common_principles(schema_obj)
+    # Must be a string
+    assert isinstance(common_principles_str, str)
+    # Must be fairly long
+    assert len(common_principles_str) > 100

@@ -1,12 +1,12 @@
 ---
 nirs:
   suffixes:
-  - nirs
+    - nirs
   extensions:
-  - .snirf
-  - .json
+    - .snirf
+    - .json
   datatypes:
-  - nirs
+    - nirs
   entities:
     subject: required
     session: optional
@@ -16,11 +16,11 @@ nirs:
 
 channels:
   suffixes:
-  - channels
+    - channels
   extensions:
-  - .tsv
+    - .tsv
   datatypes:
-  - nirs
+    - nirs
   entities:
     subject: required
     session: optional
@@ -30,11 +30,11 @@ channels:
 
 coordsystem:
   suffixes:
-  - coordsystem
+    - coordsystem
   extensions:
-  - .json
+    - .json
   datatypes:
-  - nirs
+    - nirs
   entities:
     subject: required
     session: optional
@@ -42,11 +42,11 @@ coordsystem:
 
 optodes:
   suffixes:
-  - optodes
+    - optodes
   extensions:
-  - .tsv
+    - .tsv
   datatypes:
-  - nirs
+    - nirs
   entities:
     subject: required
     session: optional
@@ -54,12 +54,12 @@ optodes:
 
 events:
   suffixes:
-  - events
+    - events
   extensions:
-  - .tsv
-  - .json
+    - .tsv
+    - .json
   datatypes:
-  - nirs
+    - nirs
   entities:
     subject: required
     session: optional
@@ -69,24 +69,24 @@ events:
 
 photo:
   suffixes:
-  - photo
+    - photo
   extensions:
-  - .jpg
-  - .png
-  - .tif
+    - .jpg
+    - .png
+    - .tif
   entities:
     subject: required
     session: optional
 
 timeseries:
   suffixes:
-  - physio
-  - stim
+    - physio
+    - stim
   extensions:
-  - .tsv.gz
-  - .json
+    - .tsv.gz
+    - .json
   datatypes:
-  - nirs
+    - nirs
   entities:
     subject: required
     session: optional

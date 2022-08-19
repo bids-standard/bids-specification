@@ -1,53 +1,53 @@
 ---
 nirsChannels:
-    selectors:
+  selectors:
     - datatype == "nirs"
     - suffix == "channels"
     - extension == ".tsv"
-    initial_columns:
+  initial_columns:
     - name__channels
     - type__nirs_channels
     - source
     - detector
     - wavelength_nominal
     - units
-    columns:
-        name__channels: required
-        type__nirs_channels: required
-        source: required
-        detector: required
-        wavelength_nominal: required
-        units: required
-        orientation_component: optional
-        wavelength_actual: optional
-        description: optional
-        wavelength_emission_actual: optional
-        short_channel: optional
-        status: optional
-        status_description: optional
-    additional_columns: allowed_if_defined
+  columns:
+    name__channels: required
+    type__nirs_channels: required
+    source: required
+    detector: required
+    wavelength_nominal: required
+    units: required
+    orientation_component: optional
+    wavelength_actual: optional
+    description: optional
+    wavelength_emission_actual: optional
+    short_channel: optional
+    status: optional
+    status_description: optional
+  additional_columns: allowed_if_defined
 
 nirsOptodes:
-    selectors:
+  selectors:
     - datatype == "nirs"
     - suffix == "optodes"
     - extension == ".tsv"
-    initial_columns:
+  initial_columns:
     - name__optodes
     - type__optodes
     - x
     - y
     - z
-    columns:
-        name__optodes: required
-        type__optodes: required
-        x: required
-        y: required
-        z: required
-        template_x: optional
-        template_y: optional
-        template_z: optional
-        description: optional
-        detector_type: optional
-        source_type: optional
-    additional_columns: allowed_if_defined
+  columns:
+    name__optodes: required
+    type__optodes: required
+    x: required
+    y: required
+    z: required
+    template_x: optional
+    template_y: optional
+    template_z: optional
+    description: optional
+    detector_type: optional
+    source_type: optional
+  additional_columns: allowed_if_defined
