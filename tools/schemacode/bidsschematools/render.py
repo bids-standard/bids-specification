@@ -207,9 +207,11 @@ def make_glossary(schema, src_path=None):
         elif obj["type"] == "format":
             text += f"**Regular expression**: `{obj_def['pattern']}`\n\n"
 
+        keys_to_drop = ["description", "display_name", "name", "value", "pattern"]
         if "enum" in obj_def.keys():
             if isinstance(obj_def["enum"], Mapping):
                 allowed_values = [val["name"] for val in obj_def["enum"].values()]
+                keys_to_drop.append("enum")
             else:
                 allowed_values = obj_def["enum"]
 
@@ -217,15 +219,15 @@ def make_glossary(schema, src_path=None):
 
         text += f"**Description**:\n{obj_desc}\n\n"
 
-        temp_obj_def = {
+        reduced_obj_def = {
             k: v
             for k, v in obj_def.items()
-            if k not in ("description", "display_name", "name", "value", "enum", "pattern")
+            if k not in keys_to_drop
         }
 
-        if temp_obj_def:
-            temp_obj_def = yaml.dump(temp_obj_def)
-            text += f"**Schema information**:\n```yaml\n{temp_obj_def}\n```"
+        if reduced_obj_def:
+            temp_obj_def = yaml.dump(reduced_obj_def)
+            text += f"**Schema information**:\n```yaml\n{reduced_obj_def}\n```"
 
     return text
 
