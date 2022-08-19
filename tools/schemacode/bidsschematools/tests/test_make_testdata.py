@@ -2,6 +2,7 @@ import os
 import shutil
 import tarfile
 import tempfile
+
 import pytest
 
 from .. import version_file
@@ -11,10 +12,11 @@ def require_env(var):
     env = os.environ.get(var)
     return pytest.mark.skipif(
         not env,
-        reason=f"Release mode is not activated. Not generating static testdata archive. "
-		"In order to force testdata archive generation run: "
-		"`export BIDSSCHEMATOOLS_RELEASE_MODE_ACTIVATED=1`."
+        reason="Release mode is not activated. Not generating static testdata archive. "
+        "In order to force testdata archive generation run: "
+        "`export BIDSSCHEMATOOLS_RELEASE_MODE_ACTIVATED=1`.",
     )
+
 
 @require_env("BIDSSCHEMATOOLS_RELEASE_MODE_ACTIVATED")
 def test_make_archive(bids_examples, bids_error_examples):
