@@ -17,6 +17,7 @@ on:
     paths:
       - "tools/schemacode/**"
       - "src/schema/**"
+      - ".github/workflows/*"
     tags:
       - "*"
       - "**"
@@ -69,6 +70,11 @@ jobs:
           echo "$CI"
           echo ${GITHUB_REF}
           echo ${CI}
+          git describe
+          git describe
+          git describe
+          git describe
+          git describe
 
       - name: "Run tests"
         shell: bash {0}
