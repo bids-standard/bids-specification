@@ -17,7 +17,6 @@ on:
       - "tools/schemacode/**"
       - "src/schema/**"
 
-
 jobs:
   check_skip:
     runs-on: ubuntu-latest
@@ -36,8 +35,6 @@ jobs:
   run_tests:
     needs: check_skip
     if: ${{ needs.check_skip.outputs.skip == 'false' }}
-    env:
-      BIDSSCHEMATOOLS_RELEASE: ${{github.event_name == 'push' && startsWith(github.ref, 'refs/tags/schema-')}}
     runs-on: ${{ matrix.os }}
     strategy:
         fail-fast: false
@@ -84,6 +81,13 @@ jobs:
           git describe --tags
           git describe --tags
           git describe --tags
+          echo "MY_TAG=$(git describe --tags)" >> $GITHUB_ENV
+
+      - name: "Install the schemacode package"
+        shell: bash {0}
+        run: |
+          python -m pip install --progress-bar off --upgrade pip
+          python -m pip install ./tools/schemacode[all]
 
       - name: "Run tests"
         shell: bash {0}
@@ -94,12 +98,7 @@ jobs:
         shell: bash {0}
         run: |
           if [ -z "$BIDSSCHEMATOOLS_RELEASE" ]; then echo "BIDSSCHEMATOOLS_RELEASE is unset"; else echo "BIDSSCHEMATOOLS_RELEASE is set to '$BIDSSCHEMATOOLS_RELEASE'"; fi
-
-      - name: "Install the schemacode package"
-        shell: bash {0}
-        run: |
-          python -m pip install --progress-bar off --upgrade pip
-          python -m pip install ./tools/schemacode[all]
+          echo $GITHUB_ENV
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
