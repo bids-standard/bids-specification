@@ -89,5 +89,5 @@ functional_derivatives_spatiotemporal_decomp_timeseries:
   entities:
     _ref: rules.datatypes.func.func.entities
     description: OPTIONAL
-  suffixies:
+  suffixes:
   - decomposition
