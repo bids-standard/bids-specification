@@ -59,7 +59,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("mri.MRISpatialEncoding") }}
+{{ MACROS___make_sidecar_table(["mri.MRISpatialEncoding", "mri.PhaseEncodingDirectionRec"]) }}
 
 <sup>2</sup>Conveniently, for Siemens data, this value is easily obtained as
 `1 / (BWPPPE * ReconMatrixPE)`, where BWPPPE is the
@@ -94,7 +94,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("mri.MRIRFandContrast") }}
+{{ MACROS___make_sidecar_table(["mri.MRIFlipAngleLookLockerFalse", "mri.MRIRFandContrast" ]) }}
 
 ### Slice Acceleration
 
@@ -512,7 +512,12 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("func.MRIFuncRequired") }}
+{{ MACROS___make_sidecar_table([
+       "func.MRIFuncRepetitionTime",
+       "func.MRIFuncVolumeTiming",
+       "func.MRIFuncRequired",
+   ])
+}}
 
 For the fields described above and in the following section, the term "Volume"
 refers to a reconstruction of the object being imaged (for example, brain or part of a
@@ -928,7 +933,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("asl.MRIASLCommonMetadataFields") }}
+{{ MACROS___make_sidecar_table(["asl.MRIASLCommonMetadataFields", "asl.MRIASLCommonMetadataFieldsM0TypeRec", "asl.MRIASLCommonMetadataFieldsBackgroundSuppressionOpt", "asl.MRIASLCommonMetadataFieldsVascularCrushingOpt", ]) }}
 
 #### (P)CASL-specific metadata fields
 
@@ -960,7 +965,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("asl.MRIASLPaslSpecific") }}
+{{ MACROS___make_sidecar_table(["asl.MRIASLPaslSpecific", "asl.MRIASLPASLSpecificBolusCutOffFlagFalse"]) }}
 
 ### `m0scan` metadata fields
 

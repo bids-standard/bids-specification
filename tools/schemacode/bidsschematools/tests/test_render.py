@@ -11,22 +11,22 @@ def test_make_entity_definitions(schema_obj):
     """
     schema_text = render.make_entity_definitions(schema_obj)
     expected_formats = [
-        "Format: `sub-<label>`",
-        "Format: `ses-<label>`",
-        "Format: `sample-<label>`",
-        "Format: `task-<label>`",
-        "Format: `acq-<label>`",
-        "Format: `ce-<label>`",
-        "Format: `trc-<label>`",
-        "Format: `stain-<label>`",
-        "Format: `rec-<label>`",
-        "Format: `dir-<label>`",
-        "Format: `run-<index>`",
-        "Format: `mod-<label>`",
-        "Format: `echo-<index>`",
-        "Format: `flip-<index>`",
-        "Format: `inv-<index>`",
-        "Format: `mt-<label>`",
+        "**Format**: `sub-<label>`",
+        "**Format**: `ses-<label>`",
+        "**Format**: `sample-<label>`",
+        "**Format**: `task-<label>`",
+        "**Format**: `acq-<label>`",
+        "**Format**: `ce-<label>`",
+        "**Format**: `trc-<label>`",
+        "**Format**: `stain-<label>`",
+        "**Format**: `rec-<label>`",
+        "**Format**: `dir-<label>`",
+        "**Format**: `run-<index>`",
+        "**Format**: `mod-<label>`",
+        "**Format**: `echo-<index>`",
+        "**Format**: `flip-<index>`",
+        "**Format**: `inv-<index>`",
+        "**Format**: `mt-<label>`",
     ]
     for expected_format in expected_formats:
         assert expected_format in schema_text

@@ -42,6 +42,8 @@ MaskDerivatives:
   - suffix == "mask"
   fields:
     Type: recommended
+    Sources: recommended
+    RawSources: deprecated
 
 MaskDerivativesAtlas:
   selectors:
