@@ -17,6 +17,7 @@ on:
       - "src/schema/**"
     tags:
       - "schema-*"
+  workflow_dispatch:
 
 jobs:
   check_skip:
