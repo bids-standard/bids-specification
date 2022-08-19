@@ -69,7 +69,7 @@ functional_derivatives_outliers_timeseries:
   entities:
     _ref: rules.datatypes.func.func.entities
     desc: OPTIONAL
-  suffixies:
+  suffixes:
   - outliers
 
 functional_derivatives_spatiotemporal_timeseries:
