@@ -213,7 +213,9 @@ MRIFlipAngleLookLockerFalse:
     - modality == "mri"
     - sidecar.LookLocker == false
     fields:
-        FlipAngle: optional
+        FlipAngle:
+            level: recommended
+            level_addendum: required if LookLocker is set to `true`
 
 MRIFlipAngleLookLockerTrue:
     selectors:
