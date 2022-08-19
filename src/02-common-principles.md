@@ -9,125 +9,58 @@ interpreted as described in [[RFC2119](https://www.ietf.org/rfc/rfc2119.txt)].
 Throughout this specification we use a list of terms and abbreviations. To avoid
 misunderstanding we clarify them here.
 
-1.  **Dataset** - a set of neuroimaging and behavioral data acquired for a
-    purpose of a particular study. A dataset consists of data acquired from one
-    or more subjects, possibly from multiple sessions.
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___define_common_principles() }}
 
-1.  **Subject** - a person or animal participating in the study.  Used
-    interchangeably with term **Participant**.
+## Entities
 
-1.  **Session** - a logical grouping of neuroimaging and behavioral data
-    consistent across subjects. Session can (but doesn't have to) be synonymous
-    to a visit in a longitudinal study. In general, subjects will stay in the
-    scanner during one session. However, for example, if a subject has to leave
-    the scanner room and then be re-positioned on the scanner bed, the set of
-    MRI acquisitions will still be considered as a session and match sessions
-    acquired in other subjects. Similarly, in situations where different data
-    types are obtained over several visits (for example fMRI on one day followed
-    by DWI the day after) those can be grouped in one session. Defining multiple
-    sessions is appropriate when several identical or similar data acquisitions
-    are planned and performed on all -or most- subjects, often in the case of
-    some intervention between sessions (for example, training).
-    In the [PET](04-modality-specific-files/09-positron-emission-tomography.md)
-    context, a session may also indicate a group of related scans,
-    taken in one or more visits.
+An "entity" is an attribute that can be associated with a file, contributing
+to the identification of that file as a component of its filename in the
+form of a hyphen-separated key-value pair.
 
-1.  **Sample** - a sample pertaining to a subject such as tissue, primary cell
-    or cell-free sample.
-    The `sample-<label>` key/value pair is used to distinguish between different
-    samples from the same subject.
-    The label MUST be unique per subject and is RECOMMENDED to be unique
-    throughout the dataset.
+Each entity has the following attributes:
 
-1.  **Data acquisition** - a continuous uninterrupted block of time during which
-    a brain scanning instrument was acquiring data according to particular
-    scanning sequence/protocol.
+1.  *Name*: A comprehensive name describing the context of information
+    to be provided via the entity.
 
-1.  **Data type** - a functional group of different types of data.
-    BIDS defines the following data types:
+1.  *Key*: A short string, typically a compression of the entity name,
+    which uniquely identifies the entity when part of a filename.
 
-    1.  `func` (task based and resting state functional MRI)
-    1.  `dwi` (diffusion weighted imaging)
-    1.  `fmap` (field inhomogeneity mapping data such as field maps)
-    1.  `anat` (structural imaging such as T1, T2, PD, and so on)
-    1.  `perf` (perfusion)
-    1.  `meg` (magnetoencephalography)
-    1.  `eeg` (electroencephalography)
-    1.  `ieeg` (intracranial electroencephalography)
-    1.  `beh` (behavioral)
-    1.  `pet` (positron emission tomography)
+1.  *Value type*: The requisite form of the value that gets specified
+    alongside the key whenever the entity appears in a filename.
+    For each entity, the value is of one of two possible types:
 
-    Data files are contained in a directory named for the data type.
-    In raw datasets, the data type directory is nested inside subject and
-    (optionally) session directories.
+    1.  *Index*: A non-negative integer, potentially zero-padded for
+        consistent width.
 
-1.  **Task** - a set of structured activities performed by the participant.
-    Tasks are usually accompanied by stimuli and responses, and can greatly vary
-    in complexity. For the purpose of this specification we consider the so-called
-    "resting state" a task. In the context of brain scanning, a task is always
-    tied to one data acquisition. Therefore, even if during one acquisition the
-    subject performed multiple conceptually different behaviors (with different
-    sets of instructions) they will be considered one (combined) task.
+    1.  *Label*: An alphanumeric string.
+        Note that labels MUST not collide when casing is ignored
+        (see [Case collision intolerance](#case-collision-intolerance)).
 
-1.  **Event** - something that happens or may be perceived by a test subject as happening
-    at a particular instant during the recording.
-    Events are most commonly associated with on- or offset of stimulus presentations,
-    or with the distinct marker of on- or offset of a subject's response or motor action.
-    Other events may include unplanned incidents
-    (for example, sudden onset of noise and vibrations due to construction work,
-    laboratory device malfunction),
-    changes in task instructions (for example, switching the response hand),
-    or experiment control parameters (for example,
-    changing the stimulus presentation rate over experimental blocks),
-    and noted data feature occurrences (for example, a recording electrode producing noise).
-    In BIDS, each event has an onset time and duration.
-    Note that not all tasks will have recorded events (for example, "resting state").
+The entity *format* is a string that prescribes how the entity appears within
+any given filename.
+For a hypothetical entity with key "`key`", the format can be either
+"`key-<index>`" or "`key-<label>`", depending on the value type of that entity.
 
-1.  **Run** - an uninterrupted repetition of data acquisition that has the same
-    acquisition parameters and task (however events can change from run to run
-    due to different subject response or randomized nature of the stimuli). Run
-    is a synonym of a data acquisition.
-    Note that "uninterrupted" may look different by modality due to the nature of the
-    recording.
-    For example, in [MRI](04-modality-specific-files/01-magnetic-resonance-imaging-data.md)
-    or [MEG] (04-modality-specific-files/02-magnetoencephalography.md),
-    if a subject leaves the scanner, the acquisition must be restarted.
-    For some types of [PET](04-modality-specific-files/09-positron-emission-tomography.md) acquisitions,
-    a subject may leave and re-enter the scanner without interrupting the scan.
+An entity *instance* is the specific manifestation of an entity within the
+name of a specific file, based on the format of the entity but with a value
+that provides identifying information to the particular file in whose name
+it appears.
 
-1.  **Modality** - the category of brain data recorded by a file.
-    For MRI data, different pulse sequences are considered distinct modalities,
-    such as `T1w`, `bold` or `dwi`.
-    For passive recording techniques, such as EEG, MEG or iEEG,
-    the technique is sufficiently uniform to define the modalities `eeg`,
-    `meg` and `ieeg`.
-    When applicable, the modality is indicated in the **suffix**.
-    The modality may overlap with, but should not be confused with
-    the **data type**.
+Depending on context, any one of the entity name, key, format, or a specific
+entity instance, may be referred to as simply an "entity".
 
-1.  **`<index>`** - a nonnegative integer, possibly prefixed with arbitrary number of
-    0s for consistent indentation, for example, it is `01` in `run-01` following
-    `run-<index>` specification.
-
-1.  **`<label>`** - an alphanumeric value, possibly prefixed with arbitrary
-    number of 0s for consistent indentation, for example, it is `rest` in `task-rest`
-    following `task-<label>` specification. Note that labels MUST not collide when
-    casing is ignored (see [Case collision intolerance](#case-collision-intolerance)).
-
-1.  **`suffix`** - an alphanumeric value, located after the `key-value_` pairs (thus after
-    the final `_`), right before the **File extension**, for example, it is `eeg` in
-    `sub-05_task-matchingpennies_eeg.vhdr`.
-
-1.  **File extension** - a portion of the filename after the left-most
-    period (`.`) preceded by any other alphanumeric. For example, `.gitignore` does
-    not have a file extension, but the file extension of `test.nii.gz` is `.nii.gz`.
-    Note that the left-most period is included in the file extension.
-
-1.  **DEPRECATED** - A "deprecated" entity or metadata field SHOULD NOT be used in the
-    generation of new datasets.
-    It remains in the standard in order to preserve the interpretability of existing datasets.
-    Validating software SHOULD warn when deprecated practices are detected and provide a
-    suggestion for updating the dataset to preserve the curator's intent.
+"Subject", "session", "sample", "task", and "run" from the list of definitions
+above are all examples of entities.
+The comprehensive list of supported entities is defined in
+[Appendix IX](99-appendices/09-entities.md);
+further, whether each is OPTIONAL, REQUIRED, or MUST NOT be provided for
+various data files, as well as their relative ordering in a filename, are
+defined in the Entity Table in
+[Appendix IV](99-appendices/04-entity-table.md).
 
 ## Compulsory, optional, and additional data and metadata
 
@@ -139,7 +72,7 @@ T2 volume does not need to be included, but when it is available it should be
 saved under a particular filename specified in the standard. This standard
 aspires to describe a majority of datasets, but acknowledges that there will be
 cases that do not fit. In such cases one can include additional files and
-subfolders to the existing folder structure following common sense. For example
+subdirectories to the existing directory structure following common sense. For example
 one may want to include eye tracking data in a vendor specific format that is
 not covered by this standard. The most sensible place to put it is next to the
 continuous recording file with the same naming scheme but different extensions.
@@ -147,51 +80,63 @@ The solutions will change from case to case and publicly available datasets will
 be reviewed to include common data types in the future releases of the BIDS
 specification.
 
-## File name structure
+It is RECOMMENDED that non-compulsory metadata fields (like `notch` in `channels.tsv` files)
+and/or files (like `events.tsv`) are fully omitted *when they are unavailable or unapplicable*,
+instead of specified with an `n/a` value, or included as an empty file
+(for example an empty `events.tsv` file with only the headers included).
 
-A filename consists of a chain of *entities*, or key-value pairs, a *suffix* and an
-*extension*.
-Two prominent examples of entities are `subject` and `session`.
+## Filesystem structure
 
-For a data file that was collected in a given `session` from a given
-`subject`, the filename MUST begin with the string `sub-<label>_ses-<label>`.
-If the `session` level is omitted in the folder structure, the filename MUST begin
-with the string `sub-<label>`, without `ses-<label>`.
+Data for each subject are placed in sub-directories named "`sub-<label>`",
+where string "`<label>`" is substituted with the unique identification
+label of each subject.
+Additional information on each participant MAY be provided in a
+[participants file](03-modality-agnostic-files.md#participants-file)
+in the root directory of the dataset.
 
-Note that `sub-<label>` corresponds to the `subject` entity because it has
-the `sub-` "key" and`<label>` "value", where `<label>` would in a real data file
-correspond to a unique identifier of that subject, such as `01`.
-The same holds for the `session` entity with its `ses-` key and its `<label>`
-value.
+If data for the subject were acquired across multiple sessions, then within
+the subject directory resides sub-directories named "`ses-<label>`",
+where string "`<label>`" is substituted with a unique identification
+label for each session.
+In datasets where at least one subject has more than one session, this
+additional sub-directory later SHOULD be added for all subjects in the dataset.
+Additional information on each session MAY be provided in a
+[sessions file](03-modality-agnostic-files.md#sessions-file)
+within the subject directory.
 
-The extra session layer (at least one `/ses-<label>` subfolder) SHOULD
-be added for all subjects if at least one subject in the dataset has more than
-one session.
-If a `/ses-<label>` subfolder is included as part of the directory hierarchy,
-then the same [`ses-<label>`](./99-appendices/09-entities.md#ses)
-key/value pair MUST also be included as part of the filenames themselves.
-Acquisition time of session can
-be defined in the [sessions file](03-modality-agnostic-files.md#sessions-file).
+Within the session sub-directory (or the subject sub-directory if no
+session sub-directories are present) are sub-directories named according to
+data type as defined above.
+A data type directory SHOULD NOT be defined if there are no files to be placed
+in that directory.
 
-A chain of entities, followed by a suffix, connected by underscores (`_`)
-produces a human readable filename, such as `sub-01_task-rest_eeg.edf`.
-It is evident from the filename alone that the file contains resting state
-data from subject `01`.
-The suffix `eeg` and the extension `.edf` depend on the imaging modality and
-the data format and indicate further details of the file's contents.
+## Filenames
 
-Entities within a filename MUST be unique.
-For example, the following filename is not valid because it uses the `acq`
-entity twice:
-`sub-01_acq-laser_acq-uneven_electrodes.tsv`
+A filename consists of a chain of *entity instances* and a *suffix*
+all separated by underscores, and an *extension*.
+This pattern forms filenames that are both human- and machine-readable.
+For instance, file "`sub-01_task-rest_eeg.edf`" contains instances of the
+"subject" and "task" entities, making it evident from the filename alone that it
+contains resting-state data from subject `01`;
+the suffix `eeg` and extension `.edf` depend on the imaging modality and the data
+format, and can therefore convey further details of the file's contents.
 
-In cases where entities duplicate metadata,
-the presence of an entity should not be used as a replacement for
+For a data file that was collected in a given session from a given
+subject, the filename MUST begin with the string `sub-<label>_ses-<label>`.
+Conversely, if the session level is omitted in the directory structure, the file
+name MUST begin with the string `sub-<label>`, without `ses-<label>`.
+
+Any given entity MUST NOT appear more than once in any filename. For example,
+filename "`sub-01_acq-laser_acq-uneven_electrodes.tsv`" is invalid because
+it uses the "acquisition" entity twice.
+
+In cases where an entity and a metadata field convey similar contextual
+information, the presence of an entity should not be used as a replacement for
 the corresponding metadata field.
-For instance, in echo-planar imaging MRI,
-the [`dir-<label>`](./99-appendices/09-entities.md#dir) entity MAY be used
+For instance, in echo-planar imaging MRI, the
+[`dir-<label>`](./99-appendices/09-entities.md#dir) entity MAY be used
 to distinguish files with different phase-encoding directions,
-but the file's `PhaseEncodingDirection` can only be specified as metadata.
+but the file's `PhaseEncodingDirection` MUST be specified as metadata.
 
 A summary of all entities in BIDS and the order in which they MUST be
 specified is available in the [entity table](./99-appendices/04-entity-table.md)
@@ -251,25 +196,31 @@ recommending a particular naming scheme for including different types of
 source data (such as the raw event logs or parameter files, before conversion to BIDS).
 However, in the case that these data are to be included:
 
-1.  These data MUST be kept in separate `sourcedata` folder with a similar
-    folder structure as presented below for the BIDS-managed data. For example:
+1.  These data MUST be kept in separate `sourcedata` directory with a similar
+    directory structure as presented below for the BIDS-managed data. For example:
     `sourcedata/sub-01/ses-pre/func/sub-01_ses-pre_task-rest_bold.dicom.tgz` or
     `sourcedata/sub-01/ses-pre/func/MyEvent.sce`.
 
-1.  A README file SHOULD be found at the root of the `sourcedata` folder or the
-    `derivatives` folder, or both.
+1.  A README file SHOULD be found at the root of the `sourcedata` directory or the
+    `derivatives` directory, or both.
     This file should describe the nature of the raw data or the derived data.
     We RECOMMEND including the PDF print-out with the actual sequence
-    parameters generated by the scanner in the `sourcedata`  folder.
+    parameters generated by the scanner in the `sourcedata`  directory.
 
 Alternatively one can organize their data in the following way
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
     {
     "my_dataset-1": {
             "sourcedata": "",
             "...": "",
-            "sourcedata": {
+            "rawdata": {
+                "dataset_description.json": "",
+                "participants.tsv": "",
                 "sub-01": {},
                 "sub-02": {},
                 "...": "",
@@ -284,17 +235,17 @@ Alternatively one can organize their data in the following way
 ) }}
 
 In this example, where `sourcedata` and `derivatives` are not nested inside
-`rawdata`, **only the `rawdata` subfolder** needs to be a BIDS-compliant
+`rawdata`, **only the `rawdata` subdirectory** needs to be a BIDS-compliant
 dataset.
-The subfolders of `derivatives` MAY be BIDS-compliant derivatives datasets
+The subdirectories of `derivatives` MAY be BIDS-compliant derivatives datasets
 (see [Non-compliant derivatives](#non-compliant-derivatives) for further discussion).
 This specification does not prescribe anything about the contents of `sourcedata`
-folders in the above example - nor does it prescribe the `sourcedata`,
-`derivatives`, or `rawdata` folder names.
+directories in the above example - nor does it prescribe the `sourcedata`,
+`derivatives`, or `rawdata` directory names.
 The above example is just a convention that can be useful for organizing raw,
 source, and derived data while maintaining BIDS compliance of the raw data
-folder. When using this convention it is RECOMMENDED to set the `SourceDatasets`
-field in `dataset_description.json` of each subfolder of `derivatives` to:
+directory. When using this convention it is RECOMMENDED to set the `SourceDatasets`
+field in `dataset_description.json` of each subdirectory of `derivatives` to:
 
 ```JSON
 {
@@ -306,18 +257,18 @@ field in `dataset_description.json` of each subfolder of `derivatives` to:
 
 Derivatives can be stored/distributed in two ways:
 
-1.  Under a `derivatives/` subfolder in the root of the source BIDS dataset
-    folder to make a clear distinction between raw data and results of data
+1.  Under a `derivatives/` subdirectory in the root of the source BIDS dataset
+    directory to make a clear distinction between raw data and results of data
     processing.
     A data processing pipeline will typically have a dedicated directory
     under which it stores all of its outputs.
     Different components of a pipeline can, however, also be stored under different
-    subfolders.
+    subdirectories.
     There are few restrictions on the directory names;
     it is RECOMMENDED to use the format `<pipeline>-<variant>` in cases where
     it is anticipated that the same pipeline will output more than one variant
     (for example, `AFNI-blurring` and `AFNI-noblurring`).
-    For the sake of consistency, the subfolder name SHOULD be
+    For the sake of consistency, the subdirectory name SHOULD be
     the `GeneratedBy.Name` field in `data_description.json`,
     optionally followed by a hyphen and a suffix (see
     [Derived dataset and pipeline description][derived-dataset-description]).
@@ -357,6 +308,10 @@ Derivatives can be stored/distributed in two ways:
 
     Example of a derivative dataset including the raw dataset as source:
 
+    <!-- This block generates a file tree.
+    A guide for using macros can be found at
+    https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+    -->
     {{ MACROS___make_filetree_example(
         {
         "my_processed_data": {
@@ -394,113 +349,9 @@ session subdirectory within the corresponding subject directory; and so on.
 
 Nothing in this specification should be interpreted to disallow the
 storage/distribution of non-compliant derivatives of BIDS datasets.
-In particular, if a BIDS dataset contains a `derivatives/` sub-directory,
+In particular, if a BIDS dataset contains a `derivatives/` subdirectory,
 the contents of that directory may be a heterogeneous mix of BIDS Derivatives
 datasets and non-compliant derivatives.
-
-## The Inheritance Principle
-
-Any metadata file (such as `.json`, `.bvec` or `.tsv`) may be defined at any
-directory level, but no more than one applicable file may be defined at a given
-level (Example 1). The values from the top level are inherited by all lower
-levels unless they are overridden by a file at the lower level. For example,
-`sub-*_task-rest_bold.json` may be specified at the participant level, setting
-TR to a specific value. If one of the runs has a different TR than the one
-specified in that file, another `sub-*_task-rest_bold.json` file can be placed
-within that specific series directory specifying the TR for that specific run.
-There is no notion of "unsetting" a key/value pair.
-Once a key/value pair is set in a given level in the dataset, lower down in
-the hierarchy that key/value pair will always have some assigned value.
-Files for a particular participant can exist only at participant level directory,
-that is, `/dataset/sub-*[/ses-*]/sub-*_T1w.json`. Similarly, any file that is not
-specific to a participant is to be declared only at top level of dataset for example:
-`task-sist_bold.json` must be placed under `/dataset/task-sist_bold.json`
-
-Example 1: Two JSON files that are erroneously at the same level
-
-{{ MACROS___make_filetree_example(
-    {
-    "sub-01": {
-        "ses-test":{
-            "sub-01_ses-test_task-overtverbgeneration_bold.json": "",
-            "sub-01_ses-test_task-overtverbgeneration_run-2_bold.json": "",
-            "anat": {
-                "sub-01_ses-test_T1w.nii.gz": "",
-                },
-            "func": {
-                "sub-01_ses-test_task-overtverbgeneration_run-1_bold.nii.gz": "",
-                "sub-01_ses-test_task-overtverbgeneration_run-2_bold.nii.gz": "",
-                }
-            }
-        }
-    }
-) }}
-
-In the above example, two JSON files are listed under `sub-01/ses-test/`, which
-are each applicable to
-`sub-01_ses-test_task-overtverbgeneration_run-2_bold.nii.gz`, violating the
-constraint that no more than one file may be defined at a given level of the
-directory structure. Instead `sub-01_ses-test_task-overtverbgeneration_run-2_bold.json`
-should have been under `sub-01/ses-test/func/`.
-
-Example 2: Multiple `run`s and `rec`s with same acquisition (`acq`) parameters
-
-{{ MACROS___make_filetree_example(
-    {
-    "sub-01": {
-        "anat": {},
-        "func": {
-            "sub-01_task-xyz_acq-test1_run-1_bold.nii.gz": "",
-            "sub-01_task-xyz_acq-test1_run-2_bold.nii.gz": "",
-            "sub-01_task-xyz_acq-test1_rec-recon1_bold.nii.gz": "",
-            "sub-01_task-xyz_acq-test1_rec-recon2_bold.nii.gz": "",
-            "sub-01_task-xyz_acq-test1_bold.json": "",
-            }
-        }
-    }
-) }}
-
-For the above example, all NIfTI files are acquired with same scanning
-parameters (`acq-test1`). Hence a JSON file describing the acq parameters will
-apply to different runs and rec files. Also if the JSON file
-(`task-xyz_acq-test1_bold.json`) is defined at dataset top level directory, it
-will be applicable to all task runs with `test1` acquisition parameter.
-
-Example 3: Multiple JSON files at different levels for same task and acquisition parameters
-
-{{ MACROS___make_filetree_example(
-    {
-    "task-xyz_acq-test1_bold.json": "",
-    "sub-01": {
-        "anat": {},
-        "func": {
-            "sub-01_task-xyz_acq-test1_run-1_bold.nii.gz": "",
-            "sub-01_task-xyz_acq-test1_rec-recon1_bold.nii.gz": "",
-            "sub-01_task-xyz_acq-test1_rec-recon2_bold.nii.gz": "",
-            "sub-01_task-xyz_acq-test1_bold.json": "",
-            }
-        }
-    }
-) }}
-
-In the above example, the fields from the `task-xyz_acq-test1_bold.json` file
-at the top directory will apply to all bold runs. However, if there is a key
-with different value in the
-`sub-01/func/sub-01_task-xyz_acq-test1_bold.json` file defined at a
-deeper level, that value will be applicable for that particular run/task NIfTI
-file/s. In other words, the `.json` file at the deeper level overrides values
-that are potentially also defined in the `.json` at a more shallow level. If the
-`.json` file at the more shallow level contains key-value-pairs that are not
-present in the `.json` file at the deeper level, these key-value-pairs are
-inherited by the `.json` file at the deeper level (but NOT vice versa!).
-
-### Good practice recommendations
-
-**Try to avoid excessive amount of overrides.**  Do not specify a field
-value in the upper levels if lower levels have more or less even
-distribution of multiple possible values. For example, if a field `X` has one
-value for all `ses-01/` and another for all `ses-02/` it better not to be
-defined at all in the `.json` at the upper level.
 
 ## File Formation specification
 
@@ -527,10 +378,12 @@ files where commas are replaced by tabs. Tabs MUST be true tab characters and
 MUST NOT be a series of space characters. Each TSV file MUST start with a header
 line listing the names of all columns (with the exception of
 [physiological and other continuous recordings](04-modality-specific-files/06-physiological-and-other-continuous-recordings.md)).
-Names MUST be separated with tabs.
 It is RECOMMENDED that the column names in the header of the TSV file are
 written in [`snake_case`](https://en.wikipedia.org/wiki/Snake_case) with the
 first letter in lower case (for example, `variable_name`, not `Variable_name`).
+As for all other data in the TSV files, column names MUST be separated with tabs.
+Furthermore, column names MUST NOT be blank (that is, an empty string) and MUST NOT
+be duplicated within a single TSV file.
 String values containing tabs MUST be escaped using double
 quotes. Missing and non-applicable values MUST be coded as `n/a`. Numerical
 values MUST employ the dot (`.`) as decimal separator and MAY be specified
@@ -562,6 +415,12 @@ Note that if a field name included in the data dictionary matches a column name 
 then that field MUST contain a description of the corresponding column,
 using an object containing the following fields:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
         "LongName": "OPTIONAL",
@@ -601,9 +460,9 @@ Example:
 }
 ```
 
-### Key/value files (dictionaries)
+### Key-value files (dictionaries)
 
-JavaScript Object Notation (JSON) files MUST be used for storing key/value
+JavaScript Object Notation (JSON) files MUST be used for storing key-value
 pairs. JSON files MUST be in UTF-8 encoding. Extensive documentation of the
 format can be found at [https://www.json.org/](https://www.json.org/),
 and at [https://tools.ietf.org/html/std90](https://tools.ietf.org/html/std90).
@@ -644,6 +503,168 @@ for more information.
 }
 ```
 
+## The Inheritance Principle
+
+1.  Any metadata file (such as `.json`, `.bvec` or `.tsv`) MAY be defined at any directory level.
+
+1.  For a given data file, any metadata file is applicable to that data file if:
+    1.  It is stored at the same directory level or higher;
+    1.  The metadata and the data filenames possess the same suffix;
+    1.  The metadata filename does not include any entity absent from the data filename.
+
+1.  A metadata file MUST NOT have a filename that would be otherwise applicable
+    to some data file based on rules 2.b and 2.c but is made inapplicable based on its
+    location in the directory structure as per rule 2.a.
+
+1.  There MUST NOT be multiple metadata files applicable to a data file at one level
+    of the directory hierarchy.
+
+1.  If multiple metadata files satisfy criteria 2.a-c above:
+
+    1.  For [tabular files](#tabular-files) and other simple metadata files
+        (for instance, [`bvec` / `bval` files for diffusion MRI](#04-modality-specific-files/01-magnetic-resonance-imaging#required-gradient-orientation-information)),
+        accessing metadata associated with a data file MUST consider only the
+        applicable file that is lowest in the filesystem hierarchy.
+
+    1.  For [JSON files](#key-value-files-dictionaries), key-values are loaded
+        from files from the top of the directory hierarchy downwards, such that
+        key-values from the top level are inherited by all data files at lower
+        levels to which it is applicable unless overridden by a value for the
+        same key present in another metadata file at a lower level
+        (though it is RECOMMENDED to minimize the extent of such overrides).
+
+Corollaries:
+
+1.  As per rule 3, metadata files applicable only to a specific participant / session
+    MUST be defined in or below the directory corresponding to that participant / session;
+    similarly, a metadata file that is applicable to multiple participants / sessions
+    MUST NOT be placed within a directory corresponding to only one such participant / session.
+
+1.  It is permissible for a single metadata file to be applicable to multiple data
+    files at that level of the hierarchy or below. Where such metadata content is consistent
+    across multiple data files, it is RECOMMENDED to store metadata in this
+    way, rather than duplicating that metadata content across multiple metadata files.
+
+1.  Where multiple applicable JSON files are loaded as per rule 5.b, key-values can
+    only be overwritten by files lower in the filesystem hierarchy; the absence of
+    a key-value in a later file does not imply the "unsetting" of that field
+    (indeed removal of existing fields is not possible).
+
+Example 1: Demonstration of inheritance principle
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+    {
+    "sub-01": {
+        "func": {
+            "sub-01_task-rest_acq-default_bold.nii.gz": "",
+            "sub-01_task-rest_acq-longtr_bold.nii.gz": "",
+            "sub-01_task-rest_acq-longtr_bold.json": "",
+            }
+        },
+    "task-rest_bold.json": "",
+    }
+) }}
+
+Contents of file `task-rest_bold.json`:
+
+```JSON
+{
+    "EchoTime": 0.040,
+    "RepetitionTime": 1.0
+}
+```
+
+Contents of file `sub-01/func/sub-01_task-rest_acq-longtr_bold.json`:
+
+```JSON
+{
+    "RepetitionTime": 3.0
+}
+```
+
+When reading image `sub-01/func/sub-01_task-rest_acq-default_bold.nii.gz`, only
+metadata file `task-rest_bold.json` is read; file
+`sub-01/func/sub-01_task-rest_acq-longtr_bold.json` is inapplicable as it contains
+entity "`acq-longtr`" that is absent from the image path (rule 2.c). When reading image
+`sub-01/func/sub-01_task-rest_acq-longtr_bold.nii.gz`, metadata file
+`task-rest_bold.json` at the top level is read first, followed by file
+`sub-01/func/sub-01_task-rest_acq-longtr_bold.json` at the bottom level (rule 5.b);
+the value for field "`RepetitionTime`" is therefore overridden to the value `3.0`.
+The value for field "`EchoTime`" remains applicable to that image, and is not unset by its
+absence in the metadata file at the lower level (rule 5.b; corollary 3).
+
+Example 2: Impermissible use of multiple metadata files at one directory level (rule 4)
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+    {
+    "sub-01": {
+        "ses-test":{
+            "anat": {
+                "sub-01_ses-test_T1w.nii.gz": "",
+                },
+            "func": {
+                "sub-01_ses-test_task-overtverbgeneration_run-1_bold.nii.gz": "",
+                "sub-01_ses-test_task-overtverbgeneration_run-2_bold.nii.gz": "",
+                "sub-01_ses-test_task-overtverbgeneration_bold.json": "",
+                "sub-01_ses-test_task-overtverbgeneration_run-2_bold.json": "",
+                }
+            }
+        }
+    }
+) }}
+
+Example 3: Modification of filesystem structure from Example 2 to satisfy inheritance
+principle requirements
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+    {
+    "sub-01": {
+        "ses-test":{
+            "sub-01_ses-test_task-overtverbgeneration_bold.json": "",
+            "anat": {
+                "sub-01_ses-test_T1w.nii.gz": "",
+                },
+            "func": {
+                "sub-01_ses-test_task-overtverbgeneration_run-1_bold.nii.gz": "",
+                "sub-01_ses-test_task-overtverbgeneration_run-2_bold.nii.gz": "",
+                "sub-01_ses-test_task-overtverbgeneration_run-2_bold.json": "",
+                }
+            }
+        }
+    }
+) }}
+
+Example 4: Single metadata file applying to multiple data files (corollary 2)
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+    {
+    "sub-01": {
+        "anat": {},
+        "func": {
+            "sub-01_task-xyz_acq-test1_run-1_bold.nii.gz": "",
+            "sub-01_task-xyz_acq-test1_run-2_bold.nii.gz": "",
+            "sub-01_task-xyz_acq-test1_bold.json": "",
+            }
+        }
+    }
+) }}
+
 ## Participant names and other labels
 
 BIDS allows for custom user-defined `<label>`s and `<index>`es for example,
@@ -658,7 +679,21 @@ of `<index>`es.
 Please note that a given label or index is distinct from the "prefix"
 it refers to. For example `sub-01` refers to the `sub` entity (a
 subject) with the label `01`. The `sub-` prefix is not part of the subject
-label, but must be included in filenames (similarly to other key names).
+label, but must be included in filenames (similarly to other entities).
+
+## Specification of paths
+
+Several metadata fields in BIDS require the specification of paths,
+that is, a string of characters used to uniquely identify a location in a directory structure.
+For example the `IntendedFor` or `AssociatedEmptyroom` metadata fields.
+
+Throughout BIDS all such paths MUST be specified using the slash character (`/`),
+regardless of the operating system that a particular dataset is curated on or used on.
+
+Paths SHOULD NOT be absolute local paths,
+because these might break when a dataset is used on a different machine.
+It is RECOMMENDED that all paths specified in a BIDS dataset are relative paths,
+as specified in the respective descriptions of metadata fields that require the use of paths.
 
 ## Uniform Resource Indicator
 
@@ -674,7 +709,90 @@ specificity and persistence.
 
 Several fields are designated for DOIs, for example, `DatasetDOI` in `dataset_description.json`.
 DOI values SHOULD be fully specified URIs such as `doi:10.18112/openneuro.ds000001.v1.0.0`.
-Bare DOIs such as `10.18112/openneuro.ds000001.v1.0.0` are [DEPRECATED][deprecated].
+Bare DOIs such as `10.18112/openneuro.ds000001.v1.0.0` are [DEPRECATED][].
+
+### BIDS URI
+
+To reference files in BIDS datasets, the following URI scheme may be used:
+
+```plain
+bids:[<dataset-name>]:<relative-path>
+```
+
+The scheme component `bids` identifies a BIDS URI,
+which defines a `path` component of the form `<dataset-name>:<relative-path>`.
+The `dataset-name` component is an identifier for a BIDS dataset,
+and the `relative-path` component is the location of a resource within that
+BIDS dataset, relative to the root of that dataset.
+The `relative-path` MUST NOT start with a forward-slash character (`/`).
+
+Examples:
+
+```plain
+bids::sub-01/fmap/sub-01_dir-AP_epi.nii.gz
+bids:ds000001:sub-02/anat/sub-02_T1w.nii.gz
+bids:myderivatives:sub-03/func/sub-03_task-rest_space-MNI152_bold.nii.gz
+```
+
+If no dataset name is specified, the URI is relative to the current BIDS dataset.
+This is made more precise in the next section.
+
+#### Resolution of BIDS URIs
+
+In order to resolve a BIDS URI, the dataset name must be mapped to a BIDS dataset.
+
+The special case `""` (that is, the empty string) refers to the BIDS dataset in
+which the BIDS URI is found.
+The dataset root is the nearest parent directory that contains a valid
+`dataset_description.json`.
+
+All other dataset names MUST be specified in the `DatasetLinks` object in
+[dataset_description.json][], which maps dataset names to URIs that point
+to BIDS dataset locations.
+If the scheme is omitted from a URI in `DatasetLinks`,
+that path is resolved relative to the current dataset root
+(see `deriv1` example, below).
+
+BIDS URIs cannot be interpreted outside a BIDS dataset,
+as they require a `dataset_description.json` file to resolve.
+
+#### Examples
+
+Consider this example `dataset_description.json`:
+
+```YAML
+{
+    ...
+    "DatasetLinks": {
+        "deriv1": "derivatives/derivative1",
+        "phantoms": "file:///data/phantoms",
+        "ds000001": "doi:10.18112/openneuro.ds000001.v1.0.0"
+    }
+}
+```
+
+Here `deriv1` refers to a BIDS Derivatives dataset contained within the current
+dataset, `phantoms` refers to a BIDS dataset of phantom data stored on the local
+filesystem, and `ds000001` refers to a BIDS dataset that must be resolved by DOI.
+
+Note that resolving `bids:phantoms:sub-phantom01/anat/sub-phantom01_T1w.nii.gz`
+is a straightforward concatenation:
+`file:///data/phantoms/sub-phantom01/anat/sub-phantom01_T1w.nii.gz`.
+However, retrieving `bids:ds000001:sub-02/anat/sub-02_T1w.nii.gz` requires
+first resolving the DOI, identifying the retrieval method, possibly retrieving
+the entire dataset, and finally constructing a URI to the desired resource.
+
+No protocol is currently proposed to automatically resolve all possible BIDS URIs.
+
+#### Future statement
+
+BIDS URIs are parsable as standard [URIs][] with scheme `bids` and path
+`[<dataset-name>]:<relative-path>`.
+The authority, query and fragment components are unused.
+Future versions of BIDS may specify interpretations for these components,
+but MUST NOT change the interpretation of a previously valid BIDS URI.
+For example, a future version may specify an authority that would allow BIDS
+URIs to be resolved without reference to a local `dataset_description.json`.
 
 ## Units
 
@@ -760,10 +878,14 @@ Describing dates and timestamps:
 
 ### Single session example
 
-This is an example of the folder and file structure. Because there is only one
+This is an example of the directory and file structure. Because there is only one
 session, the session level is not required by the format. For details on
 individual files see descriptions in the next section:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
     {
     "sub-control01": {
@@ -805,7 +927,7 @@ individual files see descriptions in the next section:
 
 ## Unspecified data
 
-Additional files and folders containing raw data MAY be added as needed for
+Additional files and directories containing raw data MAY be added as needed for
 special cases.
 All non-standard file entities SHOULD conform to BIDS-style naming conventions, including
 alphabetic entities and suffixes and alphanumeric labels/indices.
@@ -824,7 +946,7 @@ to suppress warnings or provide interpretations of your filenames.
 <!-- Link Definitions -->
 
 [dataset-description]: 03-modality-agnostic-files.md#dataset-description
-
+[dataset_description.json]: 03-modality-agnostic-files.md#dataset_descriptionjson
 [derived-dataset-description]: 03-modality-agnostic-files.md#derived-dataset-and-pipeline-description
-
-[deprecated]: ./02-common-principles.md#definitions
+[deprecated]: #definitions
+[uris]: #uniform-resource-indicator

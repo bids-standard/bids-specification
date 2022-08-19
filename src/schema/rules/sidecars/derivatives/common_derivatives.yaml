@@ -1,0 +1,102 @@
+---
+CommonDerivativeFields:
+  selectors:
+    - dataset.DatasetType == "derivative"
+  fields:
+    Description:
+      level: recommended
+      description_addendum: This describes the nature of the file.
+    Sources: optional
+    RawSources: deprecated
+
+SpatialReferenceEntity:
+  selectors:
+    - dataset.DatasetType == "derivative"
+    - '"space" in entities'
+  fields:
+    SpatialReference:
+      level: recommended
+      level_addendum: |
+        if the derivative is aligned to a standard template listed in
+        [Standard template identifiers][templates]. Required otherwise.
+
+SpatialReferenceNonStandard:
+  selectors:
+    - dataset.DatasetType == "derivative"
+    - '!(schema.objects.metadata._StandardTemplateCoordSys).includes(entities.space)'
+  fields:
+    SpatialReference: required
+
+SpatialReferenceNoEntity:
+  selectors:
+    - dataset.DatasetType == "derivative"
+    - '!("space" in entities)'
+  fields:
+    SpatialReference: required
+
+# this needs to come before density and resolution overrides selected in a
+# different way
+MaskDerivatives:
+  selectors:
+    - dataset.DatasetType == "derivative"
+    - suffix == "mask"
+  fields:
+    Type: recommended
+    Sources: recommended
+    RawSources: deprecated
+
+MaskDerivativesAtlas:
+  selectors:
+    - dataset.DatasetType == "derivative"
+    - suffix == "mask"
+    - '"label" in entities'
+  fields:
+    Atlas:
+      level: recommended
+      level_addendum: if `label` entity is defined
+
+SegmentationCommon:
+  selectors:
+    - dataset.DatasetType == "derivative"
+    - '["dseg", "probseg"].includes(suffix)'
+  fields:
+    Manual: optional
+
+SegmentationCommonAtlas:
+  selectors:
+    - dataset.DatasetType == "derivative"
+    - '["dseg", "probseg"].includes(suffix)'
+    - '"atlas" in entities'
+  fields:
+    Atlas:
+      level: recommended
+      level_addendum: if `atlas` is present
+
+# Derivatives -> Imaging data types
+ImageDerivatives:
+  selectors:
+    - dataset.DatasetType == "derivative"
+    - '["mri", "pet"].includes(modality)'
+    - '[".nii", ".nii.gz"].includes(extension)'
+  fields:
+    SkullStripped: required
+
+ImageDerivativeResEntity:
+  selectors:
+    - dataset.DatasetType == "derivative"
+    - '["mri", "pet"].includes(modality)'
+    - '"res" in entities'
+  fields:
+    Resolution:
+      level: required
+      level_addendum: if `res` is present
+
+ImageDerivativeDenEntity:
+  selectors:
+    - dataset.DatasetType == "derivative"
+    - '["mri", "pet"].includes(modality)'
+    - '"den" in entities'
+  fields:
+    Density:
+      level: required
+      level_addendum: if `den` is present

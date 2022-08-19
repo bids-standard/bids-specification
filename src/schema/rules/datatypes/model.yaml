@@ -1,9 +1,9 @@
 ---
 - suffixes:
-  - eq
-  - param
+    - eq
+    - param
   extensions:
-  - .xml
+    - .xml
   entities:
     subject: optional
     session: optional

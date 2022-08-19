@@ -1,0 +1,94 @@
+#
+# Groups of related metadata fields
+#
+# Assumptions: never need disjunction of selectors
+# Assumptions: top-to-bottom overrides is sufficient logic
+
+---
+# Device Hardware
+MicroscopyDeviceHardware:
+  selectors:
+    - modality == "micr"
+    - datatype == "micr"
+  fields:
+    Manufacturer: recommended
+    ManufacturersModelName: recommended
+    DeviceSerialNumber: recommended
+    StationName: recommended
+    SoftwareVersions: recommended
+    InstitutionName: recommended
+    InstitutionAddress: recommended
+    InstitutionalDepartmentName: recommended
+
+# Image Acquisition
+MicroscopyImageAcquisition:
+  selectors:
+    - modality == "micr"
+    - datatype == "micr"
+  fields:
+    PixelSize: required
+    PixelSizeUnits: required
+    Immersion: optional
+    NumericalAperture: optional
+    Magnification: optional
+    ImageAcquisitionProtocol: optional
+    OtherAcquisitionParameters: optional
+
+# Sample
+MicroscopySample:
+  selectors:
+    - modality == "micr"
+    - datatype == "micr"
+  fields:
+    BodyPart:
+      level: recommended
+      description_addendum: |
+        From [DICOM Body Part
+        Examined](http://dicom.nema.org/medical/dicom/current/output/chtml/part16/chapter_L.html#chapter_L)
+        (for example `"BRAIN"`).
+    BodyPartDetails: recommended
+    BodyPartDetailsOntology: optional
+    SampleEnvironment: recommended
+    SampleEmbedding: optional
+    SampleFixation: optional
+    SampleStaining: recommended
+    SamplePrimaryAntibody: recommended
+    SampleSecondaryAntibody: recommended
+    SliceThickness: optional
+    TissueDeformationScaling: optional
+    SampleExtractionProtocol: optional
+    SampleExtractionInstitution: optional
+
+# Chunk Transformations
+MicroscopyChunkTransformations:
+  selectors:
+    - modality == "micr"
+    - datatype == "micr"
+    - '"chunk" in entities'
+  fields:
+    ChunkTransformationMatrix:
+      level: recommended
+      level_addendum: if `chunk-<index>` is used in filenames
+
+MicroscopyChunkTransformationsMatrixAxis:
+  selectors:
+    - modality == "micr"
+    - datatype == "micr"
+    - '"chunk" in entities'
+    - '"ChunkTransformationMatrix" in sidecar'
+  fields:
+    ChunkTransformationMatrixAxis:
+      level: required
+      level_addendum: if `ChunkTransformationMatrix` is present
+
+Photo:
+  selectors:
+    - modality == "micr"
+    - suffix == "photo"
+  fields:
+    PhotoDescription: optional
+    IntendedFor:
+      level: optional
+      description_addendum: |
+        This field is OPTIONAL, in case the photos do not correspond
+        to any particular images, it does not have to be filled.

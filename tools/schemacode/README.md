@@ -1,4 +1,4 @@
-# schemacode
+# BIDS Schema Tools
 
 A Python library for working with the BIDS schema.
 
