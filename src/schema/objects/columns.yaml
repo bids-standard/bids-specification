@@ -53,7 +53,7 @@ color:
   type: string
   unit: hexadecimal
 compcor:
-  name: ^[a|t|w|c]_compcor_cor_[0-9a-zA-Z]+$
+  name: '[a|t|w|c]_compcor_cor_[0-9a-zA-Z]+'
   display_name: CompCor
   description: |
     CompCor (Behzadi, et al., 2007) calculated with voxels chosen based on:
