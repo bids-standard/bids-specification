@@ -5,7 +5,7 @@ README:
   required: true
   pattern: 'README'
   extensions:
-  - None
+  - ""
   - .md
   - .rst
   - .txt
@@ -13,12 +13,12 @@ CHANGES:
   required: false
   pattern: 'CHANGES'
   extensions:
-  - None
+  - ""
 LICENSE:
   required: false
   pattern: 'LICENSE'
   extensions:
-  - None
+  - ""
 dataset_description:
   required: true
   pattern: 'dataset_description'

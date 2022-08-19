@@ -4,6 +4,7 @@ import os
 import re
 from copy import deepcopy
 from functools import lru_cache
+from pathlib import Path
 
 from . import schema, utils
 
@@ -19,6 +20,7 @@ DIR_ENTITIES = ["subject", "session"]
 def _get_paths(
     bids_paths,
     pseudofile_suffixes=[],
+    accept_dummy_paths=False,
 ):
     """
     Get all paths from a list of directories, excluding hidden subdirectories from distribution.
@@ -31,6 +33,8 @@ def _get_paths(
     pseudofile_suffixes : list of str
         Directory suffixes prompting the validation of the directory name and limiting further
         directory walk.
+    accept_dummy_paths : bool, optional
+        Whether to accept path strings which do not correspond to either files or directories.
 
     Notes
     -----
@@ -56,36 +60,37 @@ def _get_paths(
     bids_root_found = False
     for bids_path in bids_paths:
         bids_path = os.path.abspath(os.path.expanduser(bids_path))
-        if os.path.isfile(bids_path):
-            path_list.append(bids_path)
-            continue
-        for root, dirs, file_names in os.walk(bids_path, topdown=True):
-            if "dataset_description.json" in file_names:
-                if bids_root_found:
+        if os.path.isdir(bids_path):
+            for root, dirs, file_names in os.walk(bids_path, topdown=True):
+                if "dataset_description.json" in file_names:
+                    if bids_root_found:
+                        dirs[:] = []
+                        file_names[:] = []
+                    else:
+                        bids_root_found = True
+                if root.endswith(tuple(pseudofile_suffixes)):
+                    # Add the directory name to the validation paths list.
+                    path_list.append(Path(root).as_posix() + "/")
                     # Do not index the contents of the directory.
                     dirs[:] = []
                     file_names[:] = []
-                else:
-                    bids_root_found = True
-            if any(root.endswith(i) for i in pseudofile_suffixes):
-                # Add the directory name to the validation paths list.
-                path_list.append(f"{root}/")
-                dirs[:] = []
-                file_names[:] = []
-            # will break if BIDS ever puts meaningful data under `/.{dandi,datalad,git}*/`
-            if any(exclude_subdir in root for exclude_subdir in exclude_subdirs):
-                continue
-            for file_name in file_names:
-                if file_name in exclude_files:
+                # will break if BIDS ever puts meaningful data under `/.{dandi,datalad,git}*/`
+                if os.path.basename(root) in exclude_subdirs:
                     continue
-                file_path = os.path.join(root, file_name)
-                # This will need to be replaced with bids root finding.
-                path_list.append(file_path)
-
-    # Standardize Windows paths
-    if "\\" in path_list[0]:
-        for ix, i in enumerate(path_list):
-            path_list[ix] = i.replace("\\", "/")
+                for file_name in file_names:
+                    if file_name in exclude_files:
+                        continue
+                    file_path = os.path.join(root, file_name)
+                    # This will need to be replaced with bids root finding.
+                    path_list.append(Path(file_path).as_posix())
+        elif os.path.isfile(bids_path) or accept_dummy_paths:
+            path_list.append(Path(bids_path).as_posix())
+        else:
+            raise FileNotFoundError(
+                f"The input path `{bids_path}` could not be located. If this is a string "
+                "intended for path validation which does not correspond to an actual "
+                "path, please set the `accept_dummy_paths` parameter to True."
+            )
 
     return path_list
 
@@ -265,15 +270,17 @@ def load_entities(
 
     # Parsing tabular_metadata as a datatype, might be done automatically if the YAML is moved
     # to the same subdirectory
-    my_schema["rules"]["datatypes"]["tabular_metadata"] = my_schema["rules"]["tabular_metadata"]
-    datatypes = my_schema["rules"]["datatypes"]
+    datatypes = {
+        "tabular_metadata": my_schema.rules.tabular_metadata,
+        **my_schema.rules.datatypes,
+    }
     entity_order = my_schema["rules"]["entities"]
     entity_definitions = my_schema["objects"]["entities"]
     formats = my_schema["objects"]["formats"]
 
-    # Descriptions are not needed and very large.
-    for i in entity_definitions.values():
-        i.pop("description", None)
+    # # Descriptions are not needed and very large.
+    # for i in entity_definitions.values():
+    #     i.pop("description", None)
 
     # Needed for non-modality file separation as per:
     # https://github.com/bids-standard/bids-specification/pull/985#issuecomment-1019573787
@@ -285,6 +292,8 @@ def load_entities(
 
     regex_schema = []
     for datatype in datatypes:
+        if datatype == "derivatives":
+            continue
         for variant in datatypes[datatype].values():
             regex_entities = ""
             for entity in entity_order:
@@ -314,7 +323,12 @@ def load_entities(
             regex_string = _add_suffixes(regex_entities, variant)
             regex_string = _add_extensions(regex_string, variant)
             regex_string = _add_subdirs(
-                regex_string, variant, datatype, entity_definitions, formats, modality_datatypes
+                regex_string,
+                variant,
+                datatype,
+                entity_definitions,
+                formats,
+                modality_datatypes,
             )
 
             regex_string = f".*?{regex_string}$"
@@ -368,9 +382,8 @@ def load_all(
 
 
 def validate_all(
-    bids_paths,
+    paths_list,
     regex_schema,
-    pseudofile_suffixes=[],
 ):
     """
     Validate `bids_paths` based on a `regex_schema` dictionary list, including regexes.
@@ -384,11 +397,6 @@ def validate_all(
         separately).
     regex_schema : list of dict
         A list of dictionaries as generated by `load_all()`.
-    pseudofile_suffixes : list of str, optional
-        Any suffixes which identify BIDS-valid directory data.
-        These pseudo-file suffixes will be validated based on the directory name, with the
-        directory contents not being indexed for validation.
-        By default, no pseudo-file suffixes are checked.
 
     Returns
     -------
@@ -407,7 +415,6 @@ def validate_all(
     """
 
     tracking_schema = deepcopy(regex_schema)
-    paths_list = _get_paths(bids_paths, pseudofile_suffixes=pseudofile_suffixes)
     tracking_paths = deepcopy(paths_list)
     itemwise_results = []
     matched = False
@@ -438,7 +445,10 @@ def validate_all(
             match_entry["path"] = target_path
             match_listing.append(match_entry)
         else:
-            lgr.debug("The `%s` file could not be matched to any regex schema entry.", target_path)
+            lgr.debug(
+                "The `%s` file could not be matched to any regex schema entry.",
+                target_path,
+            )
     results = {}
     results["itemwise"] = itemwise_results
     results["schema_tracking"] = tracking_schema
@@ -452,7 +462,7 @@ def validate_all(
 
 def write_report(
     validation_result,
-    report_path="/var/tmp/bids-validator/report_{datetime}-{pid}.log",
+    report_path="~/.cache/bidsschematools/validator-report_{datetime}-{pid}.log",
     datetime_format="%Y%m%d%H%M%SZ",
 ):
     """Write a human-readable report based on the validation result.
@@ -482,8 +492,9 @@ def write_report(
         pid=os.getpid(),
     )
     report_path = os.path.abspath(os.path.expanduser(report_path))
+    report_dir = os.path.dirname(report_path)
     try:
-        os.makedirs(os.path.dirname(report_path))
+        os.makedirs(report_dir)
     except OSError:
         pass
 
@@ -529,12 +540,13 @@ def write_report(
 
 def _find_dataset_description(my_path):
     candidate = os.path.join(my_path, "dataset_description.json")
-    if my_path == "/":
+    # Windows support... otherwise we could do `if my_path == "/"`.
+    if my_path == "/" or not any(i in my_path for i in ["/", "\\"]):
         return None
     if os.path.isfile(candidate):
         return candidate
     else:
-        level_up = os.path.dirname(my_path.rstrip("/"))
+        level_up = os.path.dirname(my_path.rstrip("/\\"))
         return _find_dataset_description(level_up)
 
 
@@ -602,7 +614,7 @@ def select_schema_dir(
     for bids_path in bids_paths:
         bids_path = os.path.abspath(os.path.expanduser(bids_path))
         dataset_description = _find_dataset_description(bids_path)
-        if dataset_description not in dataset_descriptions:
+        if dataset_description and dataset_description not in dataset_descriptions:
             dataset_descriptions.append(dataset_description)
     if len(dataset_descriptions) > 1:
         raise ValueError(
@@ -717,9 +729,9 @@ def _inheritance_expansion(
     expansions = [
         {
             "regex": [
-                r".*?(?P<remove>sub-\(\?P<subject>\(\[0\-9a\-zA\-Z\]\+\)\)/).*?",
+                r".*?(?P<remove>sub-\(\?P<subject>\[0\-9a\-zA\-Z\]\+\)/).*?",
                 r".*?(?P<remove>sub-\(\?P=subject\))",
-                r".*?/(?P<remove>\(\|ses-\(\?P<session>\(\[0\-9a\-zA\-Z\]\+\)\)/\)\(\|_ses-\("
+                r".*?/(?P<remove>\(\|ses-\(\?P<session>\[0\-9a\-zA\-Z\]\+\)/\)\(\|_ses-\("
                 r"\?P=session\)\)_).*?",
             ],
             "replace": ["", "", ""],
@@ -779,14 +791,14 @@ def _get_directory_suffixes(my_schema):
     pseudofile_suffixes = []
     for i in my_schema["objects"]["extensions"].values():
         i_value = i["value"]
-        if i_value.endswith("/"):
-            if i_value != "/":
-                pseudofile_suffixes.append(i_value[:-1])
+        if i_value.endswith("/") and i_value != "/":
+            pseudofile_suffixes.append(i_value[:-1])
     return pseudofile_suffixes
 
 
 def validate_bids(
-    bids_paths,
+    in_paths,
+    accept_dummy_paths=False,
     schema_reference_root="{module_path}/data/",
     schema_version=None,
     report_path=False,
@@ -798,8 +810,10 @@ def validate_bids(
 
     Parameters
     ----------
-    paths : str or list of str
+    in_paths : str or list of str
         Paths which to validate, may be individual files or directories.
+    accept_dummy_paths : bool, optional
+        Whether to accept path strings which do not correspond to either files or directories.
     schema_reference_root : str, optional
         Path where schema versions are stored, and which contains directories named exactly
         according to the respective schema version, e.g. "1.7.0".
@@ -842,21 +856,25 @@ def validate_bids(
         https://github.com/bids-standard/bids-specification/pull/969#issuecomment-1132119492
     """
 
-    if isinstance(bids_paths, str):
-        bids_paths = [bids_paths]
+    if isinstance(in_paths, str):
+        in_paths = [in_paths]
 
     bids_schema_dir = select_schema_dir(
-        bids_paths,
+        in_paths,
         schema_reference_root,
         schema_version,
         schema_min_version=schema_min_version,
     )
     regex_schema, my_schema = load_all(bids_schema_dir)
     pseudofile_suffixes = _get_directory_suffixes(my_schema)
+    bids_paths = _get_paths(
+        in_paths,
+        accept_dummy_paths=accept_dummy_paths,
+        pseudofile_suffixes=pseudofile_suffixes,
+    )
     validation_result = validate_all(
         bids_paths,
         regex_schema,
-        pseudofile_suffixes=pseudofile_suffixes,
     )
 
     # Record schema version.

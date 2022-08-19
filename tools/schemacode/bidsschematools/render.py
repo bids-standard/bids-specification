@@ -2,12 +2,14 @@
 import logging
 import os
 import posixpath
+import typing as ty
+from collections.abc import Mapping
 
 import pandas as pd
 from tabulate import tabulate
 
 from . import utils
-from .schema import filter_schema
+from .schema import BIDSSchemaError, Namespace, filter_schema
 
 lgr = utils.get_logger()
 # Basic settings for output, for now just basic
@@ -33,6 +35,23 @@ def get_relpath(src_path):
     '.'
     """
     return posixpath.relpath(".", posixpath.dirname(src_path or ""))
+
+
+def normalize_requirements(text):
+    for level in ("optional", "recommended", "required", "deprecated"):
+        # Replace both "optional" and "Optional" with "OPTIONAL"
+        text = text.replace(level, level.upper())
+        text = text.replace(level[0].upper() + level[1:], level.upper())
+    return text
+
+
+def normalize_breaks(text):
+    # A backslash before a newline means continue a string
+    text = text.replace("\\\n", "")
+    # Two newlines should be respected
+    text = text.replace("\n\n", "<br>")
+    # Otherwise a newline corresponds to a space
+    return text.replace("\n", " ")
 
 
 def make_entity_definitions(schema, src_path=None):
@@ -199,8 +218,7 @@ def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
         A multiline string containing the filename templates for file types
         in the schema, after filtering.
     """
-    schema = filter_schema(schema, **kwargs)
-
+    schema = Namespace(filter_schema(schema.to_dict(), **kwargs))
     entity_order = schema["rules"]["entities"]
 
     paragraph = ""
@@ -212,11 +230,16 @@ def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
         schema["objects"]["entities"]["session"]["format"],
     )
 
-    for datatype in schema["rules"]["datatypes"].keys():
+    datatypes = schema.rules.datatypes
+
+    for datatype in datatypes:
+        # XXX We should have a full rethink of the schema hierarchy...
+        if datatype == "derivatives":
+            continue
         paragraph += "\t\t{}/\n".format(datatype)
 
         # Unique filename patterns
-        for group in schema["rules"]["datatypes"][datatype].values():
+        for group in datatypes[datatype].values():
             string = "\t\t\t"
             for ent in entity_order:
                 if "enum" in schema["objects"]["entities"][ent].keys():
@@ -303,7 +326,7 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
     table_str : str
         Markdown string containing the table.
     """
-    schema = filter_schema(schema, **kwargs)
+    schema = Namespace(filter_schema(schema.to_dict(), **kwargs))
 
     ENTITIES_FILE = "09-entities.md"
 
@@ -331,6 +354,8 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
 
         # each dtype could have multiple specs
         for dtype_spec in dtype_specs.values():
+            if dtype == "derivatives":
+                continue
             suffixes = dtype_spec.get("suffixes")
 
             # Skip this part of the schema if no suffixes are found.
@@ -342,7 +367,7 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
             suffixes_str = " ".join(suffixes) if suffixes else ""
             dtype_row = [dtype] + ([""] * len(all_entities))
             for ent, ent_info in dtype_spec.get("entities", {}).items():
-                if isinstance(ent_info, dict):
+                if isinstance(ent_info, Mapping):
                     requirement_level = ent_info["requirement"]
                 else:
                     requirement_level = ent_info
@@ -481,7 +506,7 @@ def make_obj_table(subschema, field_info, src_path=None, tablefmt="github"):
     # Use the "name" field in the table, to allow for filenames to not match
     # "names".
     df = pd.DataFrame(
-        index=[subschema[f]["name"] for f in subschema.keys()],
+        index=[subschema[f]["name"] for f in field_info],
         columns=["**Requirement Level**", "**Data type**", "**Description**"],
     )
     df.index.name = "**Key name**"
@@ -492,6 +517,7 @@ def make_obj_table(subschema, field_info, src_path=None, tablefmt="github"):
         if isinstance(requirement_info, tuple):
             requirement_info, description_addendum = requirement_info
 
+        requirement_info = normalize_requirements(requirement_info)
         requirement_info = requirement_info.replace(
             "DEPRECATED",
             "[DEPRECATED](/02-common-principles.html#definitions)",
@@ -499,26 +525,99 @@ def make_obj_table(subschema, field_info, src_path=None, tablefmt="github"):
 
         type_string = utils.resolve_metadata_type(subschema[field])
 
-        description = subschema[field]["description"] + " " + description_addendum
+        description = normalize_requirements(
+            subschema[field]["description"] + " " + description_addendum
+        )
 
         # Try to add info about valid values
         valid_values_str = utils.describe_valid_values(subschema[field])
         if valid_values_str:
             description += "\n\n\n\n" + valid_values_str
 
-        # A backslash before a newline means continue a string
-        description = description.replace("\\\n", "")
-        # Two newlines should be respected
-        description = description.replace("\n\n", "<br>")
-        # Otherwise a newline corresponds to a space
-        description = description.replace("\n", " ")
         # Spec internal links need to be replaced
         description = description.replace("SPEC_ROOT", get_relpath(src_path))
 
-        df.loc[field_name] = [requirement_info, type_string, description]
+        df.loc[field_name] = [
+            normalize_breaks(requirement_info),
+            type_string,
+            normalize_breaks(description),
+        ]
 
     # Print it as markdown
     table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
+    return table_str
+
+
+def make_sidecar_table(
+    schema: Namespace,
+    table_name: ty.Union[str, ty.List[str]],
+    src_path: ty.Optional[str] = None,
+    tablefmt: str = "github",
+):
+    """Produce metadata table (markdown) based on requested fields.
+
+    Parameters
+    ----------
+    schema : dict
+        The BIDS schema.
+    table_name : str or list of str
+        Qualified name(s) in schema.rules.sidecars
+    src_path : str | None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
+    tablefmt : string, optional
+        The target table format. The default is "github" (GitHub format).
+
+    Returns
+    -------
+    table_str : str
+        The tabulated table as a Markdown string.
+    """
+    if isinstance(table_name, str):
+        table_name = [table_name]
+    fields = {}
+    for table in table_name:
+        new_fields = schema.rules.sidecars[table].fields
+        overlap = set(new_fields) & set(fields)
+        if overlap:
+            raise BIDSSchemaError(
+                f"Schema tables {table_name} share overlapping fields: {overlap}"
+            )
+        fields.update(new_fields)
+    metadata = schema.objects.metadata
+
+    retained_fields = [f for f in fields if f in metadata]
+    dropped_fields = [f for f in fields if f not in metadata]
+    if dropped_fields:
+        print("Warning: Missing fields: {}".format(", ".join(dropped_fields)))
+
+    metadata_schema = {k: v for k, v in metadata.items() if k in retained_fields}
+    field_info = {}
+    for field, val in fields.items():
+        if isinstance(val, str):
+            level = val
+            level_addendum = None
+            description_addendum = None
+        else:
+            level = val["level"]
+            level_addendum = val.get("level_addendum")
+            description_addendum = val.get("description_addendum")
+        if level_addendum:
+            if level_addendum.startswith(("required", "recommended", "optional")):
+                level = f"{level}, but {level_addendum}"
+            else:
+                # Typically begins with "if"
+                level = f"{level} {level_addendum}"
+
+        field_info[field] = (level, description_addendum) if description_addendum else level
+
+    table_str = make_obj_table(
+        metadata_schema,
+        field_info=field_info,
+        src_path=src_path,
+        tablefmt=tablefmt,
+    )
+
     return table_str
 
 
@@ -606,7 +705,7 @@ def make_subobject_table(schema, object_tuple, field_info, src_path=None, tablef
         temp_dict = temp_dict[level_str]
 
     temp_dict = temp_dict["properties"]
-    assert isinstance(temp_dict, dict)
+    assert isinstance(temp_dict, Mapping)
     table_str = make_obj_table(
         temp_dict,
         field_info=field_info,
@@ -683,14 +782,11 @@ def make_columns_table(schema, column_info, src_path=None, tablefmt="github"):
         if valid_values_str:
             description += "\n\n\n\n" + valid_values_str
 
-        # A backslash before a newline means continue a string
-        description = description.replace("\\\n", "")
-        # Two newlines should be respected
-        description = description.replace("\n\n", "<br>")
-        # Otherwise a newline corresponds to a space
-        description = description.replace("\n", " ")
-
-        df.loc[field_name] = [requirement_info, type_string, description]
+        df.loc[field_name] = [
+            normalize_breaks(requirement_info),
+            type_string,
+            normalize_breaks(description),
+        ]
 
     # Print it as markdown
     table_str = tabulate(df, headers="keys", tablefmt=tablefmt)

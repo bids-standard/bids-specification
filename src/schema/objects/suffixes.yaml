@@ -557,6 +557,13 @@ defacemask:
   description: |
     A binary mask that was used to remove facial features from an anatomical MRI
     image.
+dseg:
+  value: dseg
+  display_name: Discrete Segmentation
+  description: |
+    A discrete segmentation.
+
+    This suffix may only be used in derivative datasets.
 dwi:
   value: dwi
   display_name: Diffusion-weighted image
@@ -649,6 +656,13 @@ markers:
     possible filename extensions  (`.sqd`, `.mrk`).
     For these files, the `markers` suffix MUST be used.
     For example: `sub-01_task-nback_markers.sqd`
+mask:
+  value: mask
+  display_name: Binary Mask
+  description: |
+    A binary mask that functions as a discrete "label" for a single structure.
+
+    This suffix may only be used in derivative datasets.
 meg:
   value: meg
   display_name: Magnetoencephalography
@@ -706,6 +720,13 @@ physio:
   display_name: Physiological recording
   description: |
     Physiological recordings such as cardiac and respiratory signals.
+probseg:
+  value: probseg
+  display_name: Probabilistic Segmentation
+  description: |
+    A probabilistic segmentation.
+
+    This suffix may only be used in derivative datasets.
 sbref:
   value: sbref
   display_name: Single-band reference image
