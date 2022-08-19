@@ -116,6 +116,7 @@ MRISpatialEncoding:
         EffectiveEchoSpacing:
             level: recommended
             level_addendum: required if corresponding fieldmap data present
+            description_addendum: <sup>2</sup>
         MixingTime: recommended
 
 PhaseEncodingDirectionRec:
