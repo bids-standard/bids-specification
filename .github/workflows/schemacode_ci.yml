@@ -13,9 +13,6 @@ on:
   pull_request:
     branches:
       - "*"
-    paths:
-      - "tools/schemacode/**"
-      - "src/schema/**"
     tags:
       - "*"
       - "**"
