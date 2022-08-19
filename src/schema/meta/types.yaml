@@ -17,27 +17,27 @@ columns:
     display_name: string
     description: string
     type:
-    - string:
-        supplementary_fields:
-        - format
-        - unit
-        - enum
-        - pattern
-    - number:
-        supplementary_fields:
-        - unit
-        - exclusiveMinimum
-        - minimum
-        - exclusiveMaximum
-        - maximum
-    - integer:
-        supplementary_fields:
-        - unit
-        - exclusiveMinimum
-        - minimum
-        - exclusiveMaximum
-        - maximum
-    - boolean
+      - string:
+          supplementary_fields:
+            - format
+            - unit
+            - enum
+            - pattern
+      - number:
+          supplementary_fields:
+            - unit
+            - exclusiveMinimum
+            - minimum
+            - exclusiveMaximum
+            - maximum
+      - integer:
+          supplementary_fields:
+            - unit
+            - exclusiveMinimum
+            - minimum
+            - exclusiveMaximum
+            - maximum
+      - boolean
 datatypes:
   name: Data Type
   description: |
@@ -58,10 +58,10 @@ entities:
     description: string
     entity: string
     type:
-    - string:
-        supplementary_fields:
-        - format
-        - enum
+      - string:
+          supplementary_fields:
+            - format
+            - enum
 extensions:
   name: File Extension
   description: |
@@ -92,36 +92,36 @@ metadata:
     display_name: string
     description: string
     type:
-    - string:
-        supplementary_fields:
-        - format
-        - unit
-        - enum
-        - pattern
-    - number:
-        supplementary_fields:
-        - unit
-        - exclusiveMinimum
-        - minimum
-        - exclusiveMaximum
-        - maximum
-    - integer:
-        supplementary_fields:
-        - unit
-        - exclusiveMinimum
-        - minimum
-        - exclusiveMaximum
-        - maximum
-    - array:
-        supplementary_fields:
-        - minItems
-        - maxItems
-        - items
-    - boolean
-    - object:
-        supplementary_fields:
-        - additionalProperties
-        - properties
+      - string:
+          supplementary_fields:
+            - format
+            - unit
+            - enum
+            - pattern
+      - number:
+          supplementary_fields:
+            - unit
+            - exclusiveMinimum
+            - minimum
+            - exclusiveMaximum
+            - maximum
+      - integer:
+          supplementary_fields:
+            - unit
+            - exclusiveMinimum
+            - minimum
+            - exclusiveMaximum
+            - maximum
+      - array:
+          supplementary_fields:
+            - minItems
+            - maxItems
+            - items
+      - boolean
+      - object:
+          supplementary_fields:
+            - additionalProperties
+            - properties
 modalities:
   name: Modality
   description: |
