@@ -5,7 +5,7 @@ import tempfile
 
 import pytest
 
-from .. import version_file
+from .. import __version__
 
 
 def require_env(var):
@@ -33,13 +33,9 @@ def test_make_archive(bids_examples, bids_error_examples):
     * Archives will be generated under `/tmp/bidsschematools-testdata-SCHEMA_VERSION.tar.gz`
     """
 
-    bst_version = open(version_file).read().rstrip("\n")
-    archive_name = f"bidsschematools-testdata-{bst_version}"
+    archive_name = f"bidsschematools-testdata-{__version__}"
     archive_path = f"/tmp/{archive_name}.tar.gz"
 
-    with tempfile.TemporaryDirectory() as temp_path:
-        shutil.copytree(bids_examples, os.path.join(temp_path, "bids-examples"))
-        shutil.copytree(bids_error_examples, os.path.join(temp_path, "bids-error-examples"))
-
-        with tarfile.open(archive_path, "w:gz") as tar:
-            tar.add(temp_path, arcname=archive_name)
+    with tarfile.open(archive_path, "w:gz") as tar:
+        tar.add(bids_examples, arcname=f"{archive_name}/bids-examples")
+        tar.add(bids_error_examples, arcname=f"{archive_name}/bids-examples")
