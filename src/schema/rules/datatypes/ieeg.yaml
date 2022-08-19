@@ -1,19 +1,19 @@
 ---
 ieeg:
   suffixes:
-  - ieeg
+    - ieeg
   extensions:
-  - .mefd/
-  - .json
-  - .edf
-  - .vhdr
-  - .eeg
-  - .vmrk
-  - .set
-  - .fdt
-  - .nwb
+    - .mefd/
+    - .json
+    - .edf
+    - .vhdr
+    - .eeg
+    - .vmrk
+    - .set
+    - .fdt
+    - .nwb
   datatypes:
-  - ieeg
+    - ieeg
   entities:
     subject: required
     session: optional
@@ -23,12 +23,12 @@ ieeg:
 
 channels:
   suffixes:
-  - channels
+    - channels
   extensions:
-  - .json
-  - .tsv
+    - .json
+    - .tsv
   datatypes:
-  - ieeg
+    - ieeg
   entities:
     subject: required
     session: optional
@@ -38,11 +38,11 @@ channels:
 
 coordsystem:
   suffixes:
-  - coordsystem
+    - coordsystem
   extensions:
-  - .json
+    - .json
   datatypes:
-  - ieeg
+    - ieeg
   entities:
     subject: required
     session: optional
@@ -51,12 +51,12 @@ coordsystem:
 
 electrodes:
   suffixes:
-  - electrodes
+    - electrodes
   extensions:
-  - .json
-  - .tsv
+    - .json
+    - .tsv
   datatypes:
-  - ieeg
+    - ieeg
   entities:
     subject: required
     session: optional
@@ -65,12 +65,12 @@ electrodes:
 
 events:
   suffixes:
-  - events
+    - events
   extensions:
-  - .json
-  - .tsv
+    - .json
+    - .tsv
   datatypes:
-  - ieeg
+    - ieeg
   entities:
     subject: required
     session: optional
@@ -80,11 +80,11 @@ events:
 
 photo:
   suffixes:
-  - photo
+    - photo
   extensions:
-  - .jpg
-  - .png
-  - .tif
+    - .jpg
+    - .png
+    - .tif
   entities:
     subject: required
     session: optional
@@ -92,13 +92,13 @@ photo:
 
 timeseries:
   suffixes:
-  - physio
-  - stim
+    - physio
+    - stim
   extensions:
-  - .tsv.gz
-  - .json
+    - .tsv.gz
+    - .json
   datatypes:
-  - ieeg
+    - ieeg
   entities:
     subject: required
     session: optional

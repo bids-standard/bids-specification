@@ -1,44 +1,44 @@
 ---
 MotionRelatedTimeSeries:
   selectors:
-  - dataset.DatasetType == "derivative"
-  - suffix == 'motion'
+    - dataset.DatasetType == "derivative"
+    - suffix == 'motion'
   columns:
-  - trans_x: optional
-  - trans_y: optional
-  - trans_z: optional
-  - rot_x: optional
-  - rot_y: optional
-  - rot_z: optional
-  - framewise_displacement: optional
-  - rmsd: optional
-  - rms: optional
+    - trans_x: optional
+    - trans_y: optional
+    - trans_z: optional
+    - rot_x: optional
+    - rot_y: optional
+    - rot_z: optional
+    - framewise_displacement: optional
+    - rmsd: optional
+    - rms: optional
   additional_columns: allowed_if_defined
 
 TemporalOutlierMasks:
   selectors:
-  - dataset.DatasetType == "derivative"
-  - suffix == 'outlier'
+    - dataset.DatasetType == "derivative"
+    - suffix == 'outlier'
   columns:
-  - non_steady_state_x: optional
+    - non_steady_state_x: optional
   additional_columns: allowed_if_defined
 
 OtherTimeSeries:
   selectors:
-  - dataset.DatasetType == "derivative"
-  - suffix == 'outlier'
+    - dataset.DatasetType == "derivative"
+    - suffix == 'outlier'
   columns:
-  - dvars: optional
-  - std_dvars: optional
-  - cosine_x: optional
-  - legendre: optional
+    - dvars: optional
+    - std_dvars: optional
+    - cosine_x: optional
+    - legendre: optional
   additional_columns: allowed_if_defined
 
 SpatiotemporalDecompositions:
   selectors:
-  - dataset.DatasetType == "derivative"
-  - '["components", "mixing"].includes(suffix)'
+    - dataset.DatasetType == "derivative"
+    - '["components", "mixing"].includes(suffix)'
   columns:
-  - compcor: optional
-  - melodic_x: optional
+    - compcor: optional
+    - melodic_x: optional
   additional_columns: allowed_if_defined

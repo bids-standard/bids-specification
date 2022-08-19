@@ -2,10 +2,10 @@
 functional_derivatives_maps:
   _ref: rules.datatypes.func.func
   extensions:
-  - ".nii"
-  - ".nii.gz"
-  - ".gii"
-  - ".dscalar.nii"
+    - '.nii'
+    - '.nii.gz'
+    - '.gii'
+    - '.dscalar.nii'
   entities:
     _ref: rules.datatypes.func.func.entities
     space: OPTIONAL
@@ -13,81 +13,81 @@ functional_derivatives_maps:
     density: OPTIONAL
     description: OPTIONAL
   suffixes:
-  - "mean"
-  - "std"
-  - "tsnr"
-  - "sfs"
-  - "alff"
-  - "falff"
-  - "reho"
-  - "dcb"
-  - "dcw"
-  - "ecb"
-  - "ecw"
-  - "lfcdb"
-  - "lfcdw"
-  - "vmhc"
+    - 'mean'
+    - 'std'
+    - 'tsnr'
+    - 'sfs'
+    - 'alff'
+    - 'falff'
+    - 'reho'
+    - 'dcb'
+    - 'dcw'
+    - 'ecb'
+    - 'ecw'
+    - 'lfcdb'
+    - 'lfcdw'
+    - 'vmhc'
 
 functional_derivatives_timeseries:
   extensions:
-  - ".tsv"
-  - ".json"
-  - ".time.gii"
-  - ".dtseries.nii"
+    - '.tsv'
+    - '.json'
+    - '.time.gii'
+    - '.dtseries.nii'
   entities:
     _ref: rules.datatypes.func.func.entities
     description: OPTIONAL
   suffixes:
-  - timeseries
+    - timeseries
 
 functional_derivatives_roi_based_timeseries:
   extensions:
-  - ".nii"
-  - ".tsv"
-  - ".json"
+    - '.nii'
+    - '.tsv'
+    - '.json'
   entities:
     _ref: rules.datatypes.func.func.entities
     description: OPTIONAL
     atlas: OPTIONAL
   suffixes:
-  - timeseries
+    - timeseries
 
 functional_derivatives_motion_timeseries:
   extensions:
-  - ".tsv"
-  - ".json"
+    - '.tsv'
+    - '.json'
   entities:
     _ref: rules.datatypes.func.func.entities
     description: OPTIONAL
   suffixes:
-  - motion
+    - motion
 
 functional_derivatives_outliers_timeseries:
   extensions:
-  - ".tsv"
-  - ".json"
+    - '.tsv'
+    - '.json'
   entities:
     _ref: rules.datatypes.func.func.entities
     description: OPTIONAL
   suffixes:
-  - outliers
+    - outliers
 
 functional_derivatives_spatiotemporal_timeseries:
   extensions:
-  - ".tsv"
-  - ".nii.gz"
+    - '.tsv'
+    - '.nii.gz'
   entities:
     _ref: rules.datatypes.func.func.entities
     description: OPTIONAL
   suffixes:
-  - mixing
-  - components
+    - mixing
+    - components
 
 functional_derivatives_spatiotemporal_decomp_timeseries:
   extensions:
-  - ".json"
+    - '.json'
   entities:
     _ref: rules.datatypes.func.func.entities
     description: OPTIONAL
   suffixes:
-  - decomposition
+    - decomposition
