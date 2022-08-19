@@ -1,12 +1,17 @@
 #!/usr/bin/env bash
 
+VERSION_FILE="src/schema/SCHEMA_VERSION"
+
 pushd ..
 	export MY_BIDS_DATE="$(date +%s)"
-	echo "0.0.${MY_BIDS_DATE}-dev" > src/schema/SCHEMA_VERSION
+	REAL_VERSION=$(cat "${VERSION_FILE}")
+	DUMMY_VERSION="0.0.${MY_BIDS_DATE}-dev"
+	echo "${DUMMY_VERSION}" > "${VERSION_FILE}"
 	git commit -a -m "debug"
-	git tag -a "schema-$MY_BIDS_DATE" -m "debug"
+	git tag -a "schema-$DUMMY_VERSION" -m "debug"
 	git push origin
-	git push origin "schema-$MY_BIDS_DATE"
+	git push origin "schema-$DUMMY_VERSION"
+	echo "${REAL_VERSION}" > "${VERSION_FILE}"
 popd
 unset MY_BIDS_DATE
 
