@@ -108,7 +108,12 @@ def _make_entity_definition(entity, entity_info, src_path):
     text += f"**Format**: `{entity_info['name']}-<{entity_info.get('format', 'label')}>`"
     text += "\n\n"
     if "enum" in entity_info.keys():
-        text += f"**Allowed values**: `{'`, `'.join(entity_info['enum'])}`"
+        if isinstance(entity_info["enum"], Mapping):
+            allowed_values = list(entity_info["enum"].keys())
+        else:
+            allowed_values = entity_info["enum"]
+
+        text += f"**Allowed values**: `{'`, `'.join(allowed_values)}`"
         text += "\n\n"
 
     description = entity_info["description"]
