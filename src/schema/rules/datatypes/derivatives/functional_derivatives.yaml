@@ -37,7 +37,7 @@ functional_derivatives_timeseries:
   entities:
     _ref: rules.datatypes.func.func.entities
     desc: OPTIONAL
-  suffixies:
+  suffixes:
   - timeseries
 
 functional_derivatives_roi_based_timeseries:
