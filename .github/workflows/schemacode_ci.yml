@@ -86,9 +86,9 @@ jobs:
           tree .git
           which git
           git ls-remote --tags
-          git describe
-          git describe
-          git describe
+          git describe --tags
+          git describe --tags
+          git describe --tags
           git describe
           git describe
 
