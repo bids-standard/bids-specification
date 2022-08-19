@@ -211,9 +211,9 @@ def make_glossary(schema, src_path=None):
         if "enum" in obj_def.keys():
             if isinstance(obj_def["enum"], Mapping):
                 allowed_values = [val["name"] for val in obj_def["enum"].values()]
-                keys_to_drop.append("enum")
             else:
                 allowed_values = obj_def["enum"]
+                keys_to_drop.append("enum")
 
             text += f"**Allowed values**: `{'`, `'.join(allowed_values)}`\n\n"
 
