@@ -16,7 +16,6 @@ on:
     paths:
       - "tools/schemacode/**"
       - "src/schema/**"
-      - ".github/workflows/*"
     tags:
       - "*"
       - "**"
