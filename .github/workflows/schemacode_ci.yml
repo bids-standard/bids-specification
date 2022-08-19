@@ -13,6 +13,10 @@ on:
   pull_request:
     branches:
       - "*"
+    paths:
+      - "tools/schemacode/**"
+      - "src/schema/**"
+      - ".github/workflows*"
     tags:
       - "*"
       - "**"
