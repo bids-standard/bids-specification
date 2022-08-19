@@ -60,6 +60,7 @@ SegmentationCommon:
   - '["dseg", "probseg"].includes(suffix)'
   fields:
     Type: recommended
+    Manual: optional
 
 SegmentationCommonAtlas:
   selectors:
