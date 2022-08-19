@@ -12,13 +12,11 @@ def require_env(var):
     env = os.environ.get(var)
     return pytest.mark.skipif(
         not env,
-        reason="Release mode is not activated. Not generating static testdata archive. "
-        "In order to force testdata archive generation run: "
-        "`export BIDSSCHEMATOOLS_RELEASE_MODE_ACTIVATED=1`.",
+        reason=f"To activate this test/feature `export {var}=1` and re-run."
     )
 
 
-@require_env("BIDSSCHEMATOOLS_RELEASE_MODE_ACTIVATED")
+@require_env("BIDSSCHEMATOOLS_RELEASE")
 def test_make_archive(bids_examples, bids_error_examples):
     """
     ATTENTION! This is not a test!
