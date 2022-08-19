@@ -9,17 +9,13 @@ on:
       - "tools/schemacode/**"
       - "src/schema/**"
     tags:
-      - "*"
-      - "**"
+      - "schema-*"
   pull_request:
     branches:
       - "*"
     paths:
       - "tools/schemacode/**"
       - "src/schema/**"
-    tags:
-      - "*"
-      - "**"
 
 
 jobs:
@@ -72,8 +68,6 @@ jobs:
           git describe --tags
           git describe --tags
           git describe --tags
-          git describe
-          git describe
 
       - name: "Run tests"
         shell: bash {0}
