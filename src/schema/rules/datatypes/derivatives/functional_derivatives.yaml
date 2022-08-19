@@ -36,7 +36,7 @@ functional_derivatives_timeseries:
   - ".dtseries.nii"
   entities:
     _ref: rules.datatypes.func.func.entities
-    desc: OPTIONAL
+    description: OPTIONAL
   suffixes:
   - timeseries
 
