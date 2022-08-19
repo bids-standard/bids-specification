@@ -58,7 +58,7 @@ functional_derivatives_motion_timeseries:
   - ".json"
   entities:
     _ref: rules.datatypes.func.func.entities
-    desc: OPTIONAL
+    description: OPTIONAL
   suffixes:
   - motion
 
