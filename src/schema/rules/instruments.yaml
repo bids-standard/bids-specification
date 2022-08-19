@@ -2,24 +2,24 @@
 # This file defines which data types fall under each instrument.
 mri:
   datatypes:
-  - anat
-  - dwi
-  - fmap
-  - func
-  - perf
+    - anat
+    - dwi
+    - fmap
+    - func
+    - perf
 bioamp:
   datatypes:
-  - eeg
-  - ieeg
+    - eeg
+    - ieeg
 meg:
   datatypes:
-  - meg
+    - meg
 beh:
   datatypes:
-  - beh
+    - beh
 pet:
   datatypes:
-  - pet
+    - pet
 micr:
   datatypes:
-  - micr
+    - micr
