@@ -1,19 +1,19 @@
 ---
 fieldmaps:
   suffixes:
-  - phasediff
-  - phase1
-  - phase2
-  - magnitude1
-  - magnitude2
-  - magnitude
-  - fieldmap
+    - phasediff
+    - phase1
+    - phase2
+    - magnitude1
+    - magnitude2
+    - magnitude
+    - fieldmap
   extensions:
-  - .nii.gz
-  - .nii
-  - .json
+    - .nii.gz
+    - .nii
+    - .json
   datatypes:
-  - fmap
+    - fmap
   entities:
     subject: required
     session: optional
@@ -22,14 +22,14 @@ fieldmaps:
 
 pepolar:
   suffixes:
-  - epi
-  - m0scan
+    - epi
+    - m0scan
   extensions:
-  - .nii.gz
-  - .nii
-  - .json
+    - .nii.gz
+    - .nii
+    - .json
   datatypes:
-  - fmap
+    - fmap
   entities:
     subject: required
     session: optional
@@ -40,13 +40,13 @@ pepolar:
 
 TB1DAM:
   suffixes:
-  - TB1DAM
+    - TB1DAM
   extensions:
-  - .nii.gz
-  - .nii
-  - .json
+    - .nii.gz
+    - .nii
+    - .json
   datatypes:
-  - fmap
+    - fmap
   entities:
     subject: required
     session: optional
@@ -60,13 +60,13 @@ TB1DAM:
 
 TB1EPI:
   suffixes:
-  - TB1EPI
+    - TB1EPI
   extensions:
-  - .nii.gz
-  - .nii
-  - .json
+    - .nii.gz
+    - .nii
+    - .json
   datatypes:
-  - fmap
+    - fmap
   entities:
     subject: required
     session: optional
@@ -81,16 +81,16 @@ TB1EPI:
 
 RFFieldMaps:
   suffixes:
-  - TB1AFI
-  - TB1TFL
-  - TB1RFM
-  - RB1COR
+    - TB1AFI
+    - TB1TFL
+    - TB1RFM
+    - RB1COR
   extensions:
-  - .nii.gz
-  - .nii
-  - .json
+    - .nii.gz
+    - .nii
+    - .json
   datatypes:
-  - fmap
+    - fmap
   entities:
     subject: required
     session: optional
@@ -105,13 +105,13 @@ RFFieldMaps:
 
 TB1SRGE:
   suffixes:
-  - TB1SRGE
+    - TB1SRGE
   extensions:
-  - .nii.gz
-  - .nii
-  - .json
+    - .nii.gz
+    - .nii
+    - .json
   datatypes:
-  - fmap
+    - fmap
   entities:
     subject: required
     session: optional
@@ -126,14 +126,14 @@ TB1SRGE:
 
 parametric:
   suffixes:
-  - TB1map
-  - RB1map
+    - TB1map
+    - RB1map
   extensions:
-  - .nii.gz
-  - .nii
-  - .json
+    - .nii.gz
+    - .nii
+    - .json
   datatypes:
-  - fmap
+    - fmap
   entities:
     subject: required
     session: optional

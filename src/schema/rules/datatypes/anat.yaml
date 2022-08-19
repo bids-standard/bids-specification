@@ -1,24 +1,24 @@
 ---
 nonparametric:
   suffixes:
-  - T1w
-  - T2w
-  - PDw
-  - T2starw
-  - FLAIR
-  - inplaneT1
-  - inplaneT2
-  - PDT2
-  - angio
-  - T2star  # deprecated
-  - FLASH  # deprecated
-  - PD  # deprecated
+    - T1w
+    - T2w
+    - PDw
+    - T2starw
+    - FLAIR
+    - inplaneT1
+    - inplaneT2
+    - PDT2
+    - angio
+    - T2star # deprecated
+    - FLASH # deprecated
+    - PD # deprecated
   extensions:
-  - .nii.gz
-  - .nii
-  - .json
+    - .nii.gz
+    - .nii
+    - .json
   datatypes:
-  - anat
+    - anat
   entities:
     subject: required
     session: optional
@@ -30,29 +30,29 @@ nonparametric:
 
 parametric:
   suffixes:
-  - T1map
-  - T2map
-  - T2starmap
-  - R1map
-  - R2map
-  - R2starmap
-  - PDmap
-  - MTRmap
-  - MTsat
-  - UNIT1
-  - T1rho
-  - MWFmap
-  - MTVmap
-  - PDT2map
-  - Chimap
-  - S0map
-  - M0map
+    - T1map
+    - T2map
+    - T2starmap
+    - R1map
+    - R2map
+    - R2starmap
+    - PDmap
+    - MTRmap
+    - MTsat
+    - UNIT1
+    - T1rho
+    - MWFmap
+    - MTVmap
+    - PDT2map
+    - Chimap
+    - S0map
+    - M0map
   extensions:
-  - .nii.gz
-  - .nii
-  - .json
+    - .nii.gz
+    - .nii
+    - .json
   datatypes:
-  - anat
+    - anat
   entities:
     subject: required
     session: optional
@@ -63,13 +63,13 @@ parametric:
 
 defacemask:
   suffixes:
-  - defacemask
+    - defacemask
   extensions:
-  - .nii.gz
-  - .nii
-  - .json
+    - .nii.gz
+    - .nii
+    - .json
   datatypes:
-  - anat
+    - anat
   entities:
     subject: required
     session: optional
@@ -81,14 +81,14 @@ defacemask:
 
 multiecho:
   suffixes:
-  - MESE
-  - MEGRE
+    - MESE
+    - MEGRE
   extensions:
-  - .nii.gz
-  - .nii
-  - .json
+    - .nii.gz
+    - .nii
+    - .json
   datatypes:
-  - anat
+    - anat
   entities:
     subject: required
     session: optional
@@ -101,13 +101,13 @@ multiecho:
 
 multiflip:
   suffixes:
-  - VFA
+    - VFA
   extensions:
-  - .nii.gz
-  - .nii
-  - .json
+    - .nii.gz
+    - .nii
+    - .json
   datatypes:
-  - anat
+    - anat
   entities:
     subject: required
     session: optional
@@ -121,13 +121,13 @@ multiflip:
 
 multiinversion:
   suffixes:
-  - IRT1
+    - IRT1
   extensions:
-  - .nii.gz
-  - .nii
-  - .json
+    - .nii.gz
+    - .nii
+    - .json
   datatypes:
-  - anat
+    - anat
   entities:
     subject: required
     session: optional
@@ -140,13 +140,13 @@ multiinversion:
 
 mp2rage:
   suffixes:
-  - MP2RAGE
+    - MP2RAGE
   extensions:
-  - .nii.gz
-  - .nii
-  - .json
+    - .nii.gz
+    - .nii
+    - .json
   datatypes:
-  - anat
+    - anat
   entities:
     subject: required
     session: optional
@@ -161,14 +161,14 @@ mp2rage:
 
 vfamt:
   suffixes:
-  - MPM
-  - MTS
+    - MPM
+    - MTS
   extensions:
-  - .nii.gz
-  - .nii
-  - .json
+    - .nii.gz
+    - .nii
+    - .json
   datatypes:
-  - anat
+    - anat
   entities:
     subject: required
     session: optional
@@ -183,13 +183,13 @@ vfamt:
 
 mtr:
   suffixes:
-  - MTR
+    - MTR
   extensions:
-  - .nii.gz
-  - .nii
-  - .json
+    - .nii.gz
+    - .nii
+    - .json
   datatypes:
-  - anat
+    - anat
   entities:
     subject: required
     session: optional

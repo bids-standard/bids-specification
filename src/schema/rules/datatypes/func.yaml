@@ -1,15 +1,15 @@
 ---
 func:
   suffixes:
-  - bold
-  - cbv
-  - sbref
+    - bold
+    - cbv
+    - sbref
   extensions:
-  - .nii.gz
-  - .nii
-  - .json
+    - .nii.gz
+    - .nii
+    - .json
   datatypes:
-  - func
+    - func
   entities:
     subject: required
     session: optional
@@ -24,13 +24,13 @@ func:
 
 phase:
   suffixes:
-  - phase  # deprecated
+    - phase # deprecated
   extensions:
-  - .nii.gz
-  - .nii
-  - .json
+    - .nii.gz
+    - .nii
+    - .json
   datatypes:
-  - func
+    - func
   entities:
     subject: required
     session: optional
@@ -44,12 +44,12 @@ phase:
 
 events:
   suffixes:
-  - events
+    - events
   extensions:
-  - .tsv
-  - .json
+    - .tsv
+    - .json
   datatypes:
-  - func
+    - func
   entities:
     subject: required
     session: optional
@@ -62,13 +62,13 @@ events:
 
 timeseries:
   suffixes:
-  - physio
-  - stim
+    - physio
+    - stim
   extensions:
-  - .tsv.gz
-  - .json
+    - .tsv.gz
+    - .json
   datatypes:
-  - func
+    - func
   entities:
     subject: required
     session: optional

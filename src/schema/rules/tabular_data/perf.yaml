@@ -1,8 +1,8 @@
 ---
 ASLContext:
-    selectors:
+  selectors:
     - datatype == "perf"
     - suffix == "aslcontext"
-    columns:
-        volume_type: required
-    additional_columns: not_allowed
+  columns:
+    volume_type: required
+  additional_columns: not_allowed

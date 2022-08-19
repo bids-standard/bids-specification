@@ -4,31 +4,30 @@
 # Assumptions: never need disjunction of selectors
 # Assumptions: top-to-bottom overrides is sufficient logic
 
-
 ---
 # Anatomy imaging data
 
 MRIAnatomyCommonMetadataFields:
-    selectors:
+  selectors:
     - modality == "MRI"
     - datatype == "anat"
-    fields:
-        ContrastBolusIngredient: optional
-        RepetitionTimeExcitation: optional
-        RepetitionTimePreparation: optional
+  fields:
+    ContrastBolusIngredient: optional
+    RepetitionTimeExcitation: optional
+    RepetitionTimePreparation: optional
 
 PhaseEntityUnits:
-    selectors:
+  selectors:
     - modality == "MRI"
     - datatype == "anat"
     - entities.part == "phase"
-    fields:
-        Units: required
+  fields:
+    Units: required
 
 PhaseSuffixUnits:
-    selectors:
+  selectors:
     - modality == "MRI"
     - datatype == "anat"
     - suffix == "phase"
-    fields:
-        Units: required
+  fields:
+    Units: required

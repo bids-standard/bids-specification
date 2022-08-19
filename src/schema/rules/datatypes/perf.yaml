@@ -1,14 +1,14 @@
 ---
 asl:
   suffixes:
-  - asl
-  - m0scan
+    - asl
+    - m0scan
   extensions:
-  - .nii.gz
-  - .nii
-  - .json
+    - .nii.gz
+    - .nii
+    - .json
   datatypes:
-  - perf
+    - perf
   entities:
     subject: required
     session: optional
@@ -19,12 +19,12 @@ asl:
 
 aslcontext:
   suffixes:
-  - aslcontext
+    - aslcontext
   extensions:
-  - .tsv
-  - .json
+    - .tsv
+    - .json
   datatypes:
-  - perf
+    - perf
   entities:
     subject: required
     session: optional
@@ -35,11 +35,11 @@ aslcontext:
 
 asllabeling:
   suffixes:
-  - asllabeling
+    - asllabeling
   extensions:
-  - .jpg
+    - .jpg
   datatypes:
-  - perf
+    - perf
   entities:
     subject: required
     session: optional
@@ -49,13 +49,13 @@ asllabeling:
 
 timeseries:
   suffixes:
-  - physio
-  - stim
+    - physio
+    - stim
   extensions:
-  - .tsv.gz
-  - .json
+    - .tsv.gz
+    - .json
   datatypes:
-  - perf
+    - perf
   entities:
     subject: required
     session: optional
