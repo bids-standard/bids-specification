@@ -18,6 +18,9 @@ on:
     tags:
       - "schema-*"
   workflow_dispatch:
+    branches:
+      - "*"
+
 
 jobs:
   check_skip:
