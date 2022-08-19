@@ -7,7 +7,7 @@ on:
     paths:
       - "tools/schemacode/**"
       - "src/schema/**"
-    tag:
+    tags:
       - "refs/tags/schema-*"
   pull_request:
     branches:
@@ -15,7 +15,7 @@ on:
     paths:
       - "tools/schemacode/**"
       - "src/schema/**"
-    tag:
+    tags:
       - "refs/tags/schema-*"
 
 jobs:
