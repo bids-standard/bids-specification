@@ -226,7 +226,7 @@ def make_glossary(schema, src_path=None):
         }
 
         if reduced_obj_def:
-            temp_obj_def = yaml.dump(reduced_obj_def)
+            reduced_obj_def = yaml.dump(reduced_obj_def)
             text += f"**Schema information**:\n```yaml\n{reduced_obj_def}\n```"
 
     return text
