@@ -284,11 +284,11 @@ def load_entities(
 
     # Needed for non-modality file separation as per:
     # https://github.com/bids-standard/bids-specification/pull/985#issuecomment-1019573787
-    modalities = my_schema["rules"]["modalities"]
-    modality_datatypes = []
-    for modality_key in modalities.keys():
-        for modality_datatype in modalities[modality_key]["datatypes"]:
-            modality_datatypes.append(modality_datatype)
+    instruments = my_schema["rules"]["instruments"]
+    instrument_datatypes = []
+    for instrument_key in instruments.keys():
+        for instrument_datatype in instruments[instrument_key]["datatypes"]:
+            instrument_datatypes.append(instrument_datatype)
 
     regex_schema = []
     for datatype in datatypes:
@@ -328,7 +328,7 @@ def load_entities(
                 datatype,
                 entity_definitions,
                 formats,
-                modality_datatypes,
+                instrument_datatypes,
             )
 
             regex_string = f".*?{regex_string}$"
