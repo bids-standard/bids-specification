@@ -166,13 +166,13 @@ mtransfer:
     respectively.
   type: string
   enum:
-    - "on":
-      name: "on"
+    - 'on':
+      name: 'on'
       description: |
         The image acquired in the presence of the magnetization transfer pulse,
         also known as the off-resonance pulse.
-    - "off":
-      name: "off"
+    - 'off':
+      name: 'off'
       description: |
         The image acquired in the absence of the magnetization transfer pulse.
 part:
