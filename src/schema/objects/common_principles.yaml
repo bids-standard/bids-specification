@@ -83,6 +83,18 @@ index:
   description: |
     A nonnegative integer, possibly prefixed with arbitrary number of 0s for consistent indentation,
     for example, it is `01` in `run-01` following `run-<index>` specification.
+instrument:
+  name: Instrument
+  display_name: Instrument
+  description: |
+    The class of technology used to record data to a file.
+    For example, both EEG and iEEG are data types using biopotential amplification.
+
+    Instrument is not directly reflected in the BIDS filesystem,
+    though the specification itself generally nests **data type**-specific sections within
+    **instrument**-specific chapters.
+
+    **Data types** reflects specific applications of **instruments**.
 label:
   name: label
   display_name: label
