@@ -41,8 +41,9 @@ MaskDerivatives:
   - dataset.DatasetType == "derivative"
   - suffix == "mask"
   fields:
-    RawSources: required
     Type: recommended
+    Sources: recommended
+    RawSources: deprecated
 
 MaskDerivativesAtlas:
   selectors:
