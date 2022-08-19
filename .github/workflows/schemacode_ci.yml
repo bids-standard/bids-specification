@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - "master"
+      - "autodata"
     paths:
       - "tools/schemacode/**"
       - "src/schema/**"
@@ -16,7 +17,6 @@ on:
     paths:
       - "tools/schemacode/**"
       - "src/schema/**"
-      - ".github/workflows/*"
     tags:
       - "*"
       - "**"
