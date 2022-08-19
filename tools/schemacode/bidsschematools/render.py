@@ -2,17 +2,33 @@
 import logging
 import os
 import posixpath
+import typing as ty
+from collections.abc import Mapping
 
 import pandas as pd
+import yaml
 from tabulate import tabulate
 
 from . import utils
-from .schema import filter_schema
+from .schema import BIDSSchemaError, Namespace, filter_schema
 
 lgr = utils.get_logger()
 # Basic settings for output, for now just basic
 utils.set_logger_level(lgr, os.environ.get("BIDS_SCHEMA_LOG_LEVEL", logging.INFO))
 logging.basicConfig(format="%(asctime)-15s [%(levelname)8s] %(message)s")
+
+TYPE_CONVERTER = {
+    "associated_data": "associated data",
+    "columns": "column",
+    "common_principles": "common principle",
+    "datatypes": "datatype",
+    "entities": "entity",
+    "extensions": "extension",
+    "formats": "format",
+    "metadata": "metadata",
+    "top_level_files": "top level file",
+    "suffixes": "suffix",
+}
 
 
 def get_relpath(src_path):
@@ -33,6 +49,23 @@ def get_relpath(src_path):
     '.'
     """
     return posixpath.relpath(".", posixpath.dirname(src_path or ""))
+
+
+def normalize_requirements(text):
+    for level in ("optional", "recommended", "required", "deprecated"):
+        # Replace both "optional" and "Optional" with "OPTIONAL"
+        text = text.replace(level, level.upper())
+        text = text.replace(level[0].upper() + level[1:], level.upper())
+    return text
+
+
+def normalize_breaks(text):
+    # A backslash before a newline means continue a string
+    text = text.replace("\\\n", "")
+    # Two newlines should be respected
+    text = text.replace("\n\n", "<br>")
+    # Otherwise a newline corresponds to a space
+    return text.replace("\n", " ")
 
 
 def make_entity_definitions(schema, src_path=None):
@@ -58,28 +91,29 @@ def make_entity_definitions(schema, src_path=None):
     text = ""
     for entity in entity_order:
         entity_info = entity_definitions[entity]
-        entity_shorthand = entity_info["name"]
-        text += "\n"
-        text += "## {}".format(entity_shorthand)
-        text += "\n\n"
-        text += "Full name: {}".format(entity_info["display_name"])
-        text += "\n\n"
-        text += "Format: `{}-<{}>`".format(
-            entity_info["name"],
-            entity_info.get("format", "label"),
-        )
-        text += "\n\n"
-        if "enum" in entity_info.keys():
-            # Allow enums to be "objects" (dicts) or strings
-            enum_values = [
-                list(v.keys())[0] if isinstance(v, dict) else v for v in entity_info["enum"]
-            ]
-            text += "Allowed values: `{}`".format("`, `".join(enum_values))
-            text += "\n\n"
+        entity_text = _make_entity_definition(entity, entity_info, src_path)
+        text += "\n" + entity_text
 
-        description = entity_info["description"]
-        description = description.replace("SPEC_ROOT", get_relpath(src_path))
-        text += "Definition: {}".format(description)
+    return text
+
+
+def _make_entity_definition(entity, entity_info, src_path):
+    """Describe an entity."""
+    entity_shorthand = entity_info["name"]
+    text = ""
+    text += "## {}".format(entity_shorthand)
+    text += "\n\n"
+    text += f"**Full name**: {entity_info['display_name']}"
+    text += "\n\n"
+    text += f"**Format**: `{entity_info['name']}-<{entity_info.get('format', 'label')}>`"
+    text += "\n\n"
+    if "enum" in entity_info.keys():
+        text += f"**Allowed values**: `{'`, `'.join(entity_info['enum'])}`"
+        text += "\n\n"
+
+    description = entity_info["description"]
+    description = description.replace("SPEC_ROOT", get_relpath(src_path))
+    text += f"**Definition**: {description}"
     return text
 
 
@@ -102,14 +136,16 @@ def make_glossary(schema, src_path=None):
         information about the entities in the schema.
     """
     all_objects = {}
+    schema = schema.to_dict()
 
     for group, group_objects in schema["objects"].items():
         group_obj_keys = list(group_objects.keys())
-        # Remove private objects
+
+        # Do not include private objects in the glossary
         group_obj_keys = [k for k in group_obj_keys if not k.startswith("_")]
 
+        # Identify multi-sense objects (multiple entries, indicated by __ in key)
         multi_sense_objects = []
-        # Identify multi-sense objects (multiple entries, some with __ in them)
         for key in group_obj_keys:
             if "__" in key:
                 temp_key = key.split("__")[0]
@@ -134,6 +170,7 @@ def make_glossary(schema, src_path=None):
             new_name = f"{new_name} ({group})"
             all_objects[new_name] = {}
             all_objects[new_name]["key"] = f"objects.{group}.{key}"
+            all_objects[new_name]["type"] = TYPE_CONVERTER.get(group, group)
             all_objects[new_name]["definition"] = group_objects[key]
 
     text = ""
@@ -141,7 +178,8 @@ def make_glossary(schema, src_path=None):
         obj = all_objects[obj_key]
         obj_marker = obj["key"]
         obj_def = obj["definition"]
-        obj_name = obj_def["display_name"]
+
+        # Clean up the text description
         obj_desc = obj_def["description"]
         # A backslash before a newline means continue a string
         obj_desc = obj_desc.replace("\\\n", "")
@@ -154,11 +192,31 @@ def make_glossary(schema, src_path=None):
 
         text += f'\n<a name="{obj_marker}"></a>'
         text += f"\n## {obj_key}\n\n"
-        text += f"name: {obj_name}\n\n"
-        text += f"description:\n>{obj_desc}\n\n"
+        text += f"**Name**: {obj_def['display_name']}\n\n"
+        text += f"**Type**: {obj['type'].title()}\n\n"
 
-        temp_obj_def = {k: v for k, v in obj_def.items() if k not in ("description", "name")}
-        text += f"schema information:\n```yaml\n{temp_obj_def}\n```"
+        if obj["type"] == "suffix":
+            text += f"**Format**: `<entities>_{obj_def['value']}.<extension>`\n\n"
+        elif obj["type"] == "extension":
+            text += f"**Format**: `<entities>_<suffix>{obj_def['value']}`\n\n"
+        elif obj["type"] == "format":
+            text += f"**Regular expression**: `{obj_def['pattern']}`\n\n"
+
+        if "enum" in obj_def.keys():
+            allowed_vals = [f"`{enum}`" for enum in obj_def["enum"]]
+            text += f"**Allowed values**: {', '.join(allowed_vals)}\n\n"
+
+        text += f"**Description**:\n{obj_desc}\n\n"
+
+        temp_obj_def = {
+            k: v
+            for k, v in obj_def.items()
+            if k not in ("description", "display_name", "name", "value", "enum", "pattern")
+        }
+
+        if temp_obj_def:
+            temp_obj_def = yaml.dump(temp_obj_def)
+            text += f"**Schema information**:\n```yaml\n{temp_obj_def}\n```"
 
     return text
 
@@ -203,8 +261,7 @@ def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
         A multiline string containing the filename templates for file types
         in the schema, after filtering.
     """
-    schema = filter_schema(schema, **kwargs)
-
+    schema = Namespace(filter_schema(schema.to_dict(), **kwargs))
     entity_order = schema["rules"]["entities"]
 
     paragraph = ""
@@ -216,11 +273,16 @@ def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
         schema["objects"]["entities"]["session"]["format"],
     )
 
-    for datatype in schema["rules"]["datatypes"].keys():
+    datatypes = schema.rules.datatypes
+
+    for datatype in datatypes:
+        # XXX We should have a full rethink of the schema hierarchy...
+        if datatype == "derivatives":
+            continue
         paragraph += "\t\t{}/\n".format(datatype)
 
         # Unique filename patterns
-        for group in schema["rules"]["datatypes"][datatype].values():
+        for group in datatypes[datatype].values():
             string = "\t\t\t"
             for ent in entity_order:
                 if "enum" in schema["objects"]["entities"][ent].keys():
@@ -319,7 +381,7 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
     table_str : str
         Markdown string containing the table.
     """
-    schema = filter_schema(schema, **kwargs)
+    schema = Namespace(filter_schema(schema.to_dict(), **kwargs))
 
     ENTITIES_FILE = "09-entities.md"
 
@@ -347,6 +409,8 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
 
         # each dtype could have multiple specs
         for dtype_spec in dtype_specs.values():
+            if dtype == "derivatives":
+                continue
             suffixes = dtype_spec.get("suffixes")
 
             # Skip this part of the schema if no suffixes are found.
@@ -358,7 +422,7 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
             suffixes_str = " ".join(suffixes) if suffixes else ""
             dtype_row = [dtype] + ([""] * len(all_entities))
             for ent, ent_info in dtype_spec.get("entities", {}).items():
-                if isinstance(ent_info, dict):
+                if isinstance(ent_info, Mapping):
                     requirement_level = ent_info["requirement"]
                 else:
                     requirement_level = ent_info
@@ -497,7 +561,7 @@ def make_obj_table(subschema, field_info, src_path=None, tablefmt="github"):
     # Use the "name" field in the table, to allow for filenames to not match
     # "names".
     df = pd.DataFrame(
-        index=[subschema[f]["name"] for f in subschema.keys()],
+        index=[subschema[f]["name"] for f in field_info],
         columns=["**Requirement Level**", "**Data type**", "**Description**"],
     )
     df.index.name = "**Key name**"
@@ -508,6 +572,7 @@ def make_obj_table(subschema, field_info, src_path=None, tablefmt="github"):
         if isinstance(requirement_info, tuple):
             requirement_info, description_addendum = requirement_info
 
+        requirement_info = normalize_requirements(requirement_info)
         requirement_info = requirement_info.replace(
             "DEPRECATED",
             "[DEPRECATED](/02-common-principles.html#definitions)",
@@ -515,26 +580,99 @@ def make_obj_table(subschema, field_info, src_path=None, tablefmt="github"):
 
         type_string = utils.resolve_metadata_type(subschema[field])
 
-        description = subschema[field]["description"] + " " + description_addendum
+        description = normalize_requirements(
+            subschema[field]["description"] + " " + description_addendum
+        )
 
         # Try to add info about valid values
         valid_values_str = utils.describe_valid_values(subschema[field])
         if valid_values_str:
             description += "\n\n\n\n" + valid_values_str
 
-        # A backslash before a newline means continue a string
-        description = description.replace("\\\n", "")
-        # Two newlines should be respected
-        description = description.replace("\n\n", "<br>")
-        # Otherwise a newline corresponds to a space
-        description = description.replace("\n", " ")
         # Spec internal links need to be replaced
         description = description.replace("SPEC_ROOT", get_relpath(src_path))
 
-        df.loc[field_name] = [requirement_info, type_string, description]
+        df.loc[field_name] = [
+            normalize_breaks(requirement_info),
+            type_string,
+            normalize_breaks(description),
+        ]
 
     # Print it as markdown
     table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
+    return table_str
+
+
+def make_sidecar_table(
+    schema: Namespace,
+    table_name: ty.Union[str, ty.List[str]],
+    src_path: ty.Optional[str] = None,
+    tablefmt: str = "github",
+):
+    """Produce metadata table (markdown) based on requested fields.
+
+    Parameters
+    ----------
+    schema : dict
+        The BIDS schema.
+    table_name : str or list of str
+        Qualified name(s) in schema.rules.sidecars
+    src_path : str | None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
+    tablefmt : string, optional
+        The target table format. The default is "github" (GitHub format).
+
+    Returns
+    -------
+    table_str : str
+        The tabulated table as a Markdown string.
+    """
+    if isinstance(table_name, str):
+        table_name = [table_name]
+    fields = {}
+    for table in table_name:
+        new_fields = schema.rules.sidecars[table].fields
+        overlap = set(new_fields) & set(fields)
+        if overlap:
+            raise BIDSSchemaError(
+                f"Schema tables {table_name} share overlapping fields: {overlap}"
+            )
+        fields.update(new_fields)
+    metadata = schema.objects.metadata
+
+    retained_fields = [f for f in fields if f in metadata]
+    dropped_fields = [f for f in fields if f not in metadata]
+    if dropped_fields:
+        print("Warning: Missing fields: {}".format(", ".join(dropped_fields)))
+
+    metadata_schema = {k: v for k, v in metadata.items() if k in retained_fields}
+    field_info = {}
+    for field, val in fields.items():
+        if isinstance(val, str):
+            level = val
+            level_addendum = None
+            description_addendum = None
+        else:
+            level = val["level"]
+            level_addendum = val.get("level_addendum")
+            description_addendum = val.get("description_addendum")
+        if level_addendum:
+            if level_addendum.startswith(("required", "recommended", "optional")):
+                level = f"{level}, but {level_addendum}"
+            else:
+                # Typically begins with "if"
+                level = f"{level} {level_addendum}"
+
+        field_info[field] = (level, description_addendum) if description_addendum else level
+
+    table_str = make_obj_table(
+        metadata_schema,
+        field_info=field_info,
+        src_path=src_path,
+        tablefmt=tablefmt,
+    )
+
     return table_str
 
 
@@ -622,7 +760,7 @@ def make_subobject_table(schema, object_tuple, field_info, src_path=None, tablef
         temp_dict = temp_dict[level_str]
 
     temp_dict = temp_dict["properties"]
-    assert isinstance(temp_dict, dict)
+    assert isinstance(temp_dict, Mapping)
     table_str = make_obj_table(
         temp_dict,
         field_info=field_info,
@@ -699,14 +837,11 @@ def make_columns_table(schema, column_info, src_path=None, tablefmt="github"):
         if valid_values_str:
             description += "\n\n\n\n" + valid_values_str
 
-        # A backslash before a newline means continue a string
-        description = description.replace("\\\n", "")
-        # Two newlines should be respected
-        description = description.replace("\n\n", "<br>")
-        # Otherwise a newline corresponds to a space
-        description = description.replace("\n", " ")
-
-        df.loc[field_name] = [requirement_info, type_string, description]
+        df.loc[field_name] = [
+            normalize_breaks(requirement_info),
+            type_string,
+            normalize_breaks(description),
+        ]
 
     # Print it as markdown
     table_str = tabulate(df, headers="keys", tablefmt=tablefmt)

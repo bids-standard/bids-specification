@@ -275,69 +275,38 @@ Microscopy data MUST be described by metadata fields, stored in sidecar JSON fil
 #### Device Hardware
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "Manufacturer": "RECOMMENDED",
-      "ManufacturersModelName": "RECOMMENDED",
-      "DeviceSerialNumber": "RECOMMENDED",
-      "StationName": "RECOMMENDED",
-      "SoftwareVersions": "RECOMMENDED",
-      "InstitutionName": "RECOMMENDED",
-      "InstitutionAddress": "RECOMMENDED",
-      "InstitutionalDepartmentName": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("micr.MicroscopyDeviceHardware") }}
 
 #### Image Acquisition
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "PixelSize": "REQUIRED",
-      "PixelSizeUnits": "REQUIRED",
-      "Immersion": "OPTIONAL",
-      "NumericalAperture": "OPTIONAL",
-      "Magnification": "OPTIONAL",
-      "ImageAcquisitionProtocol": "OPTIONAL",
-      "OtherAcquisitionParameters": "OPTIONAL",
-   }
-) }}
+{{ MACROS___make_sidecar_table("micr.MicroscopyImageAcquisition") }}
 
 #### Sample
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "BodyPart": ("RECOMMENDED", "From [DICOM Body Part Examined](http://dicom.nema.org/medical/dicom/current/output/chtml/part16/chapter_L.html#chapter_L) (for example `\"BRAIN\"`)."),
-      "BodyPartDetails": "RECOMMENDED",
-      "BodyPartDetailsOntology": "OPTIONAL",
-      "SampleEnvironment": "RECOMMENDED",
-      "SampleEmbedding": "OPTIONAL",
-      "SampleFixation": "OPTIONAL",
-      "SampleStaining": "RECOMMENDED",
-      "SamplePrimaryAntibody": "RECOMMENDED",
-      "SampleSecondaryAntibody": "RECOMMENDED",
-      "SliceThickness": "OPTIONAL",
-      "TissueDeformationScaling": "OPTIONAL",
-      "SampleExtractionProtocol": "OPTIONAL",
-      "SampleExtractionInstitution": "OPTIONAL",
-   }
-) }}
+{{ MACROS___make_sidecar_table("micr.MicroscopySample") }}
 
 #### Chunk Transformations
 
@@ -356,17 +325,17 @@ of the same sample in an implicit coordinate system.
 -   Other transformations should be described in derivatives.
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "ChunkTransformationMatrix": "RECOMMENDED if `<chunk-index>` is used in filenames",
-      "ChunkTransformationMatrixAxis": "REQUIRED if `ChunkTransformationMatrix` is present",
-   }
-) }}
+{{ MACROS___make_sidecar_table([
+	"micr.MicroscopyChunkTransformations",
+	"micr.MicroscopyChunkTransformationsMatrixAxis",
+   ]) }}
 
 An example of chunk transformations JSON metadata for `chunk-01` and `chunk-05` of Figure 2
 is shown below:
@@ -498,16 +467,15 @@ A guide for using macros can be found at
 Photo data MAY be accompanied by a JSON file containing the following fields.
 The `IntendedFor` field is used to link the photo to specific image(s) it was acquired for.
 
-{{ MACROS___make_metadata_table(
-   {
-      "PhotoDescription": "OPTIONAL",
-      "IntendedFor": (
-         "OPTIONAL",
-         "This field is OPTIONAL, in case the photos do not correspond "
-         "to any particular images, it does not have to be filled.",
-      ),
-   }
-) }}
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("micr.Photo") }}
 
 For example: `sub-01_ses-01_sample-01_acq-1_photo.json`
 

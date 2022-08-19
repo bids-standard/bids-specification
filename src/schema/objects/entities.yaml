@@ -120,8 +120,8 @@ hemisphere:
   type: string
   format: label
   enum:
-  - "L"
-  - "R"
+    - 'L'
+    - 'R'
 inversion:
   name: inv
   display_name: Inversion Time
@@ -166,12 +166,12 @@ mtransfer:
     respectively.
   type: string
   enum:
-  - "on":
+    - "on":
       name: "on"
       description: |
         The image acquired in the presence of the magnetization transfer pulse,
         also known as the off-resonance pulse.
-  - "off":
+    - "off":
       name: "off"
       description: |
         The image acquired in the absence of the magnetization transfer pulse.
@@ -195,22 +195,22 @@ part:
     omitted.
   type: string
   enum:
-  - mag:
+    - mag:
       name: magnitude
       description: |
         A magnitude image, typically paired with an associated "phase" image.
-  - phase:
+    - phase:
       name: phase
       description: |
         A phase image, typically paird with an associated "magnitude" (part-mag) image.
         Images with this key/value pair MAY be in radians or in arbitrary units.
         The sidecar JSON file MUST include the units of the `phase` image.
         The possible options are `rad` or `arbitrary`.
-  - real:
+    - real:
       name: real
       description: |
         A real-valued image, typically paired with an associated "imaginary" (part-imag) image.
-  - imag:
+    - imag:
       name: imaginary
       description: |
         An imaginary-valued image, typically paird with an associated "real" image.
