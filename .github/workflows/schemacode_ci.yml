@@ -9,6 +9,7 @@ on:
       - "src/schema/**"
     tags:
       - "*"
+      - "**"
   pull_request:
     branches:
       - "*"
@@ -17,6 +18,7 @@ on:
       - "src/schema/**"
     tags:
       - "*"
+      - "**"
 
 
 jobs:
