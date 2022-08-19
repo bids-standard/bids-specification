@@ -47,7 +47,7 @@ functional_derivatives_roi_based_timeseries:
   - ".json"
   entities:
     _ref: rules.datatypes.func.func.entities
-    desc: OPTIONAL
+    description: OPTIONAL
     atlas: OPTIONAL
   suffixes:
   - timeseries
