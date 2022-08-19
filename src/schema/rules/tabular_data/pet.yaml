@@ -1,7 +1,7 @@
 ---
 Blood:
     selectors:
-    - modality == "pet"
+    - instrument == "pet"
     - suffix == "blood"
     - extension == ".tsv"
     columns:
@@ -14,7 +14,7 @@ Blood:
 
 BloodPlasma:
     selectors:
-    - modality == "pet"
+    - instrument == "pet"
     - suffix == "blood"
     - extension == ".tsv"
     - '"PlasmaAvail" in sidecar'
@@ -23,7 +23,7 @@ BloodPlasma:
 
 BloodMetabolite:
     selectors:
-    - modality == "pet"
+    - instrument == "pet"
     - suffix == "blood"
     - extension == ".tsv"
     - '"MetaboliteAvail" in sidecar'
@@ -33,7 +33,7 @@ BloodMetabolite:
 
 BloodMetaboliteCorrection:
     selectors:
-    - modality == "pet"
+    - instrument == "pet"
     - suffix == "blood"
     - extension == ".tsv"
     - '"MetaboliteRecoveryCorrectionApplied" in sidecar'
@@ -43,7 +43,7 @@ BloodMetaboliteCorrection:
 
 BloodWholeBlood:
     selectors:
-    - modality == "pet"
+    - instrument == "pet"
     - suffix == "blood"
     - extension == ".tsv"
     - '"WholeBloodAvail" in sidecar'

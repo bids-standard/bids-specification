@@ -10,7 +10,7 @@
 
 MRIAnatomyCommonMetadataFields:
     selectors:
-    - modality == "MRI"
+    - instrument == "MRI"
     - datatype == "anat"
     fields:
         ContrastBolusIngredient: OPTIONAL
@@ -19,7 +19,7 @@ MRIAnatomyCommonMetadataFields:
 
 PhaseEntityUnits:
     selectors:
-    - modality == "MRI"
+    - instrument == "MRI"
     - datatype == "anat"
     - entities.part == "phase"
     fields:
@@ -27,7 +27,7 @@ PhaseEntityUnits:
 
 PhaseSuffixUnits:
     selectors:
-    - modality == "MRI"
+    - instrument == "MRI"
     - datatype == "anat"
     - suffix == "phase"
     fields:

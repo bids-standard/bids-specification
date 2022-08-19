@@ -1,5 +1,5 @@
 ---
-# This file defines which data types fall under each modality.
+# This file defines which data types fall under each instrument.
 mri:
   datatypes:
   - anat

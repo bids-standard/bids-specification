@@ -98,8 +98,8 @@ context:
         extension:
             description: "Extension of current file including initial dot"
             type: string
-        modality:
-            description: "Modality of current file, for examples, MRI"
+        instrument:
+            description: "Instrument used to acquire current file, for examples, MRI"
             type: string
 
         sidecar:

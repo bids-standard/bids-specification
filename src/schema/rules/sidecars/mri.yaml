@@ -9,7 +9,7 @@
 # MRI Common metadata fields
 MRIScannerHardware:
     selectors:
-    - modality == "mri"
+    - instrument == "mri"
     fields:
         Manufacturer:
             level: recommended
@@ -38,7 +38,7 @@ MRIScannerHardware:
 
 MRISequenceSpecifics:
     selectors:
-    - modality == "mri"
+    - instrument == "mri"
     fields:
         PulseSequenceType: recommended
         ScanningSequence: recommended
@@ -63,14 +63,14 @@ MRISequenceSpecifics:
 
 PETMRISequenceSpecifics:
     selectors:
-    - modality == "mri"
+    - instrument == "mri"
     - dataset.modalities.includes("PET")
     fields:
         NonlinearGradientCorrection: required
 
 ASLMRISequenceSpecifics:
     selectors:
-    - modality == "mri"
+    - instrument == "mri"
     - datatype == "perf"
     fields:
         MRAcquisitionType: required
@@ -110,7 +110,7 @@ SpoilingGradient:
 
 MRISpatialEncoding:
     selectors:
-    - modality == "mri"
+    - instrument == "mri"
     fields:
         NumberShots: recommended
         ParallelReductionFactorInPlane: recommended
@@ -152,7 +152,7 @@ MRISpatialEncoding:
 
 MRITimingParameters:
     selectors:
-    - modality == "mri"
+    - instrument == "mri"
     fields:
         EchoTime:
             level: recommended
@@ -182,7 +182,7 @@ MRITimingParameters:
 
 SliceTimingASL:
     selectors:
-    - modality == "mri"
+    - instrument == "mri"
     - datatype == "perf"
     - '["asl", "m0scan"].includes(suffix)'
     - '"MRAcquisitionType" in sidecar'
@@ -193,14 +193,14 @@ SliceTimingASL:
 # This is technically for sparse sequences only, but I don't know how to encode that.
 SliceTimingSparse:
     selectors:
-    - modality == "mri"
+    - instrument == "mri"
     - '"DelayTime" in sidecar'
     fields:
         SliceTiming: required
 
 MRIRFandContrast:
     selectors:
-    - modality == "mri"
+    - instrument == "mri"
     fields:
         FlipAngle:
             level: recommended
@@ -223,7 +223,7 @@ MRIRFandContrast:
 
 MRIFlipAngleLookLocker:
     selectors:
-    - modality == "mri"
+    - instrument == "mri"
     - '"LookLocker" in sidecar'
     - sidecar.LookLocker == True
     fields:
@@ -231,26 +231,26 @@ MRIFlipAngleLookLocker:
 
 MRISliceAcceleration:
     selectors:
-    - modality == "mri"
+    - instrument == "mri"
     fields:
         MultibandAccelerationFactor: recommended
 
 MRIAnatomicalLandmarks:
     selectors:
-    - modality == "mri"
+    - instrument == "mri"
     fields:
         AnatomicalLandmarkCoordinates__mri: recommended
 
 MRIEchoPlanarImagingAndB0Mapping:
     selectors:
-    - modality == "mri"
+    - instrument == "mri"
     fields:
         B0FieldIdentifier: recommended
         B0FieldSource: recommended
 
 MRIInstitutionInformation:
     selectors:
-    - modality == "mri"
+    - instrument == "mri"
     fields:
         InstitutionName:
             level: recommended

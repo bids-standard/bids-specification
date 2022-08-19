@@ -2,7 +2,7 @@
 # PET common metadata fields
 PETScannerHardware:
     selectors:
-    - modality == "pet"
+    - instrument == "pet"
     - suffix == "pet"
     fields:
         Manufacturer:
@@ -31,7 +31,7 @@ PETScannerHardware:
 
 PETRadioChemistry:
     selectors:
-    - modality == "pet"
+    - instrument == "pet"
     - suffix == "pet"
     fields:
         TracerName:
@@ -98,7 +98,7 @@ PETRadioChemistry:
 # PET Infusion conditionally required entities
 EntitiesBolusMetadata:
     selectors:
-    - modality == "pet"
+    - instrument == "pet"
     - suffix == "pet"
     - sidecar.ModeOfAdministration == 'bolus-infusion'
     fields:
@@ -115,7 +115,7 @@ EntitiesBolusMetadata:
 
 PETPharmaceuticals:
     selectors:
-    - modality == "pet"
+    - instrument == "pet"
     - suffix == "pet"
     fields:
         PharmaceuticalName:
@@ -138,7 +138,7 @@ PETPharmaceuticals:
 
 PETTime:
     selectors:
-    - modality == "pet"
+    - instrument == "pet"
     - suffix == "pet"
     fields:
         TimeZero:
@@ -163,7 +163,7 @@ PETTime:
 
 PETReconstruction:
     selectors:
-    - modality == "pet"
+    - instrument == "pet"
     - suffix == "pet"
     fields:
         AcquisitionMode:
@@ -215,7 +215,7 @@ PETReconstruction:
 
 BloodRecording:
     selectors:
-    - modality == "pet"
+    - instrument == "pet"
     - suffix == "blood"
     fields:
         PlasmaAvail: required
@@ -231,7 +231,7 @@ BloodRecording:
 
 BloodPlasmaFreeFraction:
     selectors:
-    - modality == "pet"
+    - instrument == "pet"
     - suffix == "blood"
     - sidecar.PlasmaAvail == true
     fields:
@@ -244,7 +244,7 @@ BloodPlasmaFreeFraction:
 
 BloodMetaboliteMethod:
     selectors:
-    - modality == "pet"
+    - instrument == "pet"
     - suffix == "blood"
     - sidecar.MetaboliteAvail == true
     fields:

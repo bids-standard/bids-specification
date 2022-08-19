@@ -2,7 +2,7 @@
 ResInSidecar:
     selectors:
     - dataset.dataset_description.DatasetType == "derivative"
-    - '["mri", "pet"].includes(modality)'
+    - '["mri", "pet"].includes(instrument)'
     - '["nii", " nii.gz"].includes(extension)'
     - type(sidecar.Resolution) == "object"
     checks:
@@ -11,7 +11,7 @@ ResInSidecar:
 DenInSidecar:
     selectors:
     - dataset.dataset_description.DatasetType == "derivative"
-    - '["mri", "pet"].includes(modality)'
+    - '["mri", "pet"].includes(instrument)'
     - '[".nii", ".nii.gz"].includes(extension)'
     - type(sidecar.Density) == "object"
     checks:

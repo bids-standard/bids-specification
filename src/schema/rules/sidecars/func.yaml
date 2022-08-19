@@ -11,7 +11,7 @@
 # Required fields
 MRIFuncRequired:
     selectors:
-    - modality == "mri"
+    - instrument == "mri"
     - datatype == "func"
     fields:
         RepetitionTime: required
@@ -25,7 +25,7 @@ MRIFuncRequired:
 # Timing Parameters
 MRIFuncTimingParameters:
     selectors:
-    - modality == "mri"
+    - instrument == "mri"
     - datatype == "func"
     fields:
         NumberOfVolumesDiscardedByScanner: recommended
@@ -47,7 +47,7 @@ MRIFuncTimingParameters:
 # NOTE: This introduces a prohibited level
 MRIFuncTimingParametersMutualExclusion1:
     selectors:
-    - modality == "mri"
+    - instrument == "mri"
     - datatype == "func"
     - '"RepetitionTime" in sidecar'
     fields:
@@ -56,7 +56,7 @@ MRIFuncTimingParametersMutualExclusion1:
 
 MRIFuncTimingParametersMutualExclusion2:
     selectors:
-    - modality == "mri"
+    - instrument == "mri"
     - datatype == "func"
     - '"SliceTiming" in sidecar'
     - '"VolumeTiming" in sidecar'
@@ -66,7 +66,7 @@ MRIFuncTimingParametersMutualExclusion2:
 
 MRIFuncTimingParametersMutualExclusion3:
     selectors:
-    - modality == "mri"
+    - instrument == "mri"
     - datatype == "func"
     - '"AcquisitionDuration" in sidecar'
     - '"VolumeTiming" in sidecar'
@@ -76,7 +76,7 @@ MRIFuncTimingParametersMutualExclusion3:
 
 MRIFuncTimingParametersMutualExclusion4:
     selectors:
-    - modality == "mri"
+    - instrument == "mri"
     - datatype == "func"
     - '"RepetitionTime" in sidecar'
     - '"SliceTiming" in sidecar'
@@ -86,7 +86,7 @@ MRIFuncTimingParametersMutualExclusion4:
 
 MRIFuncTimingParametersMutualExclusion5:
     selectors:
-    - modality == "mri"
+    - instrument == "mri"
     - datatype == "func"
     - '"RepetitionTime" in sidecar'
     - '"DelayTime" in sidecar'
@@ -97,7 +97,7 @@ MRIFuncTimingParametersMutualExclusion5:
 # fMRI task information
 MRIFuncTaskInformation:
     selectors:
-    - modality == "mri"
+    - instrument == "mri"
     - datatype == "func"
     fields:
         Instructions:

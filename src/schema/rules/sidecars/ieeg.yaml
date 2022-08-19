@@ -9,7 +9,7 @@
 
 iEEGGeneric:
     selectors:
-    - modality == "ieeg"
+    - instrument == "bioamp"
     - datatype == "ieeg"
     - suffix == "ieeg"
     fields:
@@ -21,7 +21,7 @@ iEEGGeneric:
 
 iEEGRecommended:
     selectors:
-    - modality == "ieeg"
+    - instrument == "bioamp"
     - datatype == "ieeg"
     - suffix == "ieeg"
     fields:
@@ -46,7 +46,7 @@ iEEGRecommended:
 # Specific iEEG fields MUST be present
 iEEGRequired:
     selectors:
-    - modality == "ieeg"
+    - instrument == "bioamp"
     - datatype == "ieeg"
     - suffix == "ieeg"
     fields:
@@ -62,7 +62,7 @@ iEEGRequired:
 # Specific iEEG fields SHOULD be present
 iEEGMoreRecommended:
     selectors:
-    - modality == "ieeg"
+    - instrument == "bioamp"
     - datatype == "ieeg"
     - suffix == "ieeg"
     fields:
@@ -89,7 +89,7 @@ iEEGMoreRecommended:
 # Specific iEEG fields MAY be present
 iEEGOptional:
     selectors:
-    - modality == "ieeg"
+    - instrument == "bioamp"
     - datatype == "ieeg"
     - suffix == "ieeg"
     fields:
@@ -99,7 +99,7 @@ iEEGOptional:
 # General fields
 iEEGCoordsystemGeneral:
     selectors:
-    - modality == "ieeg"
+    - instrument == "bioamp"
     - datatype == "ieeg"
     - suffix == "coordsystem"
     fields:
@@ -121,7 +121,7 @@ iEEGCoordsystemGeneral:
 # Fields relating to the iEEG electrode positions
 iEEGCoordsystemPositions:
     selectors:
-    - modality == "ieeg"
+    - instrument == "bioamp"
     - datatype == "ieeg"
     - suffix == "coordsystem"
     fields:
@@ -135,7 +135,7 @@ iEEGCoordsystemPositions:
 
 iEEGCoordsystemOther:
     selectors:
-    - modality == "ieeg"
+    - instrument == "bioamp"
     - datatype == "ieeg"
     - suffix == "coordsystem"
     - '"iEEGCoordinateSystem" in sidecar'

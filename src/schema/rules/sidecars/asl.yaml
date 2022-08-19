@@ -9,7 +9,7 @@
 # Fields described in text, but not in tables
 MRIASLTextOnly:
     selectors:
-    - modality == "MRI"
+    - instrument == "MRI"
     - datatype == "perf"
     - suffix == "asl"
     fields:
@@ -26,7 +26,7 @@ MRIASLTextOnly:
 
 MRIASLTextOnlySliceTiming:
     selectors:
-    - modality == "MRI"
+    - instrument == "MRI"
     - datatype == "perf"
     - suffix == "asl"
     - '"MRAcquisitionType" in sidecar'
@@ -53,7 +53,7 @@ MRIASLTextOnlySliceTiming:
 
 MRIASLTextOnlyFlipAngle:
     selectors:
-    - modality == "MRI"
+    - instrument == "MRI"
     - datatype == "perf"
     - suffix == "asl"
     - '"LookLocker in sidecar'
@@ -79,7 +79,7 @@ MRIASLTextOnlyFlipAngle:
 # Common metadata fields applicable to both (P)CASL and PASL
 MRIASLCommonMetadataFields:
     selectors:
-    - modality == "MRI"
+    - instrument == "MRI"
     - datatype == "perf"
     - suffix == "asl"
     fields:
@@ -110,7 +110,7 @@ MRIASLCommonMetadataFields:
 
 MRIASLCommonMetadataFieldsM0Type:
     selectors:
-    - modality == "MRI"
+    - instrument == "MRI"
     - datatype == "perf"
     - suffix == "asl"
     - '"M0Type" in sidecar'
@@ -128,7 +128,7 @@ MRIASLCommonMetadataFieldsM0Type:
 
 MRIASLCommonMetadataFieldsBackgroundSuppression:
     selectors:
-    - modality == "MRI"
+    - instrument == "MRI"
     - datatype == "perf"
     - suffix == "asl"
     - '"BackgroundSuppression" in sidecar'
@@ -139,7 +139,7 @@ MRIASLCommonMetadataFieldsBackgroundSuppression:
 
 MRIASLCommonMetadataFieldsVascularCrushing:
     selectors:
-    - modality == "MRI"
+    - instrument == "MRI"
     - datatype == "perf"
     - suffix == "asl"
     - '"VascularCrushing" in sidecar'
@@ -149,7 +149,7 @@ MRIASLCommonMetadataFieldsVascularCrushing:
 
 MRIASLCaslPcaslSpecific:
     selectors:
-    - modality == "MRI"
+    - instrument == "MRI"
     - datatype == "perf"
     - suffix == "asl"
     - '"ArterialSpinLabelingType" in sidecar'
@@ -165,7 +165,7 @@ MRIASLCaslPcaslSpecific:
 
 MRIASLPcaslSpecific:
     selectors:
-    - modality == "MRI"
+    - instrument == "MRI"
     - datatype == "perf"
     - suffix == "asl"
     - '"ArterialSpinLabelingType" in sidecar'
@@ -177,7 +177,7 @@ MRIASLPcaslSpecific:
 
 MRIASLCaslSpecific:
     selectors:
-    - modality == "MRI"
+    - instrument == "MRI"
     - datatype == "perf"
     - suffix == "asl"
     - '"ArterialSpinLabelingType" in sidecar'
@@ -189,7 +189,7 @@ MRIASLCaslSpecific:
 
 MRIASLPaslSpecific:
     selectors:
-    - modality == "MRI"
+    - instrument == "MRI"
     - datatype == "perf"
     - suffix == "asl"
     - '"ArterialSpinLabelingType" in sidecar'
@@ -207,7 +207,7 @@ MRIASLPaslSpecific:
 
 MRIASLPaslSpecificBolusCutOffFlag:
     selectors:
-    - modality == "MRI"
+    - instrument == "MRI"
     - datatype == "perf"
     - suffix == "asl"
     - '"ArterialSpinLabelingType" in sidecar'
@@ -243,7 +243,7 @@ MRIASLPaslSpecificBolusCutOffFlag:
 # m0scan metadata fields
 MRIASLM0ScanTextOnly:
     selectors:
-    - modality == "MRI"
+    - instrument == "MRI"
     - datatype == "perf"
     - suffix == "m0scan"
     fields:
@@ -255,7 +255,7 @@ MRIASLM0ScanTextOnly:
 
 MRIASLM0ScanTextOnlyFlipAngle:
     selectors:
-    - modality == "MRI"
+    - instrument == "MRI"
     - datatype == "perf"
     - suffix == "m0scan"
     - '"LookLocker" in sidecar'
@@ -278,7 +278,7 @@ MRIASLM0ScanTextOnlyFlipAngle:
 
 MRIASLM0Scan:
     selectors:
-    - modality == "MRI"
+    - instrument == "MRI"
     - datatype == "perf"
     - suffix == "m0scan"
     fields:

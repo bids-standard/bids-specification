@@ -9,14 +9,14 @@
 # Fieldmap data
 MRIFieldmapB0FieldIdentifier:
     selectors:
-    - modality == "MRI"
+    - instrument == "mri"
     - datatype == "fmap"
     fields:
         B0FieldIdentifier: recommended
 
 MRIFieldmapIntendedFor:
     selectors:
-    - modality == "MRI"
+    - instrument == "mri"
     - datatype == "fmap"
     fields:
         IntendedFor:
@@ -28,7 +28,7 @@ MRIFieldmapIntendedFor:
 # Case 1: Phase-difference map and at least one magnitude image
 MRIFieldmapPhaseDifferencePhasediff:
     selectors:
-    - modality == "MRI"
+    - instrument == "mri"
     - datatype == "fmap"
     - suffix == "phasediff"
     fields:
@@ -37,7 +37,7 @@ MRIFieldmapPhaseDifferencePhasediff:
 
 MRIFieldmapPhaseDifferenceMagnitude1:
     selectors:
-    - modality == "MRI"
+    - instrument == "mri"
     - datatype == "fmap"
     - suffix == "magnitude1"
     fields:
@@ -45,7 +45,7 @@ MRIFieldmapPhaseDifferenceMagnitude1:
 
 MRIFieldmapPhaseDifferenceMagnitude2:
     selectors:
-    - modality == "MRI"
+    - instrument == "mri"
     - datatype == "fmap"
     - suffix == "magnitude2"
     fields:
@@ -57,7 +57,7 @@ MRIFieldmapPhaseDifferenceMagnitude2:
 # but EchoTime1 if phasediff exists.
 MRIFieldmapTwoPhase:
     selectors:
-    - modality == "MRI"
+    - instrument == "mri"
     - datatype == "fmap"
     - '["phase1", "phase2", "magnitude1", "magnitude2"].includes(suffix)'
     fields:
@@ -66,7 +66,7 @@ MRIFieldmapTwoPhase:
 # Case 3: Direct field mapping
 MRIFieldmapDirectFieldMapping:
     selectors:
-    - modality == "MRI"
+    - instrument == "mri"
     - datatype == "fmap"
     - '["phase", "fieldmap"].includes(suffix)'
     fields:
@@ -79,7 +79,7 @@ MRIFieldmapDirectFieldMapping:
 # Case 4: Multiple phase encoded directions ("pepolar")
 MRIFieldmapPepolar:
     selectors:
-    - modality == "MRI"
+    - instrument == "mri"
     - datatype == "fmap"
     - suffix == "epi"
     fields:
