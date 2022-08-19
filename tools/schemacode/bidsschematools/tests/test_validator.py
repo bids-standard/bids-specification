@@ -223,122 +223,67 @@ def test__add_suffixes():
     assert _regex_string == regex_string
 
 
-def test__inheritance_expansion():
+@pytest.mark.parametrize("extension", ["bvec", "json", "tsv"])
+def test__inheritance_expansion(extension):
     from bidsschematools.validator import _inheritance_expansion
 
     # test .json
     base_entry = (
-        r".*?/sub-(?P<subject>([0-9a-zA-Z]+))/"
-        r"(|ses-(?P<session>([0-9a-zA-Z]+))/)func/sub-(?P=subject)"
-        r"(|_ses-(?P=session))_task-(?P<task>([0-9a-zA-Z]+))"
-        r"(|_acq-(?P<acquisition>([0-9a-zA-Z]+)))"
-        r"(|_ce-(?P<ceagent>([0-9a-zA-Z]+)))"
-        r"(|_rec-(?P<reconstruction>([0-9a-zA-Z]+)))"
-        r"(|_dir-(?P<direction>([0-9a-zA-Z]+)))"
-        r"(|_run-(?P<run>([0-9]*[1-9]+[0-9]*)))"
-        r"(|_echo-(?P<echo>([0-9]*[1-9]+[0-9]*)))"
-        r"_phase(\.nii\.gz|\.nii|\.json)$"
+        r".*?/sub-(?P<subject>[0-9a-zA-Z]+)/"
+        r"(|ses-(?P<session>[0-9a-zA-Z]+)/)func/sub-(?P=subject)"
+        r"(|_ses-(?P=session))_task-(?P<task>[0-9a-zA-Z]+)"
+        r"(|_acq-(?P<acquisition>[0-9a-zA-Z]+))"
+        r"(|_ce-(?P<ceagent>[0-9a-zA-Z]+))"
+        r"(|_rec-(?P<reconstruction>[0-9a-zA-Z]+))"
+        r"(|_dir-(?P<direction>[0-9a-zA-Z]+))"
+        r"(|_run-(?P<run>[0-9]*[1-9]+[0-9]*))"
+        r"(|_echo-(?P<echo>[0-9]*[1-9]+[0-9]*))"
+        r"_phase(\.nii\.gz|\.nii|\.{})$".format(extension)
     )
     expected_entries = [
-        ".*?/sub-(?P<subject>([0-9a-zA-Z]+))/"
-        "(|ses-(?P<session>([0-9a-zA-Z]+))/)"
-        "sub-(?P=subject)(|_ses-(?P=session))"
-        "_task-(?P<task>([0-9a-zA-Z]+))"
-        "(|_acq-(?P<acquisition>([0-9a-zA-Z]+)))"
-        "(|_ce-(?P<ceagent>([0-9a-zA-Z]+)))"
-        "(|_rec-(?P<reconstruction>([0-9a-zA-Z]+)))"
-        "(|_dir-(?P<direction>([0-9a-zA-Z]+)))"
-        "(|_run-(?P<run>([0-9]*[1-9]+[0-9]*)))"
-        "(|_echo-(?P<echo>([0-9]*[1-9]+[0-9]*)))"
-        "_phase(\\.nii\\.gz|\\.nii|\\.json)$",
-        ".*?/task-(?P<task>([0-9a-zA-Z]+))"
-        "(|_acq-(?P<acquisition>([0-9a-zA-Z]+)))"
-        "(|_ce-(?P<ceagent>([0-9a-zA-Z]+)))"
-        "(|_rec-(?P<reconstruction>([0-9a-zA-Z]+)))"
-        "(|_dir-(?P<direction>([0-9a-zA-Z]+)))"
-        "(|_run-(?P<run>([0-9]*[1-9]+[0-9]*)))"
-        "(|_echo-(?P<echo>([0-9]*[1-9]+[0-9]*)))"
-        "_phase(\\.nii\\.gz|\\.nii|\\.json)$",
+        ".*?/sub-(?P<subject>[0-9a-zA-Z]+)/"
+        "(|ses-(?P<session>[0-9a-zA-Z]+)/)sub-(?P=subject)"
+        "(|_ses-(?P=session))_task-(?P<task>[0-9a-zA-Z]+)"
+        "(|_acq-(?P<acquisition>[0-9a-zA-Z]+))"
+        "(|_ce-(?P<ceagent>[0-9a-zA-Z]+))"
+        "(|_rec-(?P<reconstruction>[0-9a-zA-Z]+))"
+        "(|_dir-(?P<direction>[0-9a-zA-Z]+))"
+        "(|_run-(?P<run>[0-9]*[1-9]+[0-9]*))"
+        "(|_echo-(?P<echo>[0-9]*[1-9]+[0-9]*))"
+        "_phase(\\.nii\\.gz|\\.nii|\\.{})$".format(extension),
+        ".*?/task-(?P<task>[0-9a-zA-Z]+)"
+        "(|_acq-(?P<acquisition>[0-9a-zA-Z]+))"
+        "(|_ce-(?P<ceagent>[0-9a-zA-Z]+))"
+        "(|_rec-(?P<reconstruction>[0-9a-zA-Z]+))"
+        "(|_dir-(?P<direction>[0-9a-zA-Z]+))"
+        "(|_run-(?P<run>[0-9]*[1-9]+[0-9]*))"
+        "(|_echo-(?P<echo>[0-9]*[1-9]+[0-9]*))"
+        "_phase(\\.nii\\.gz|\\.nii|\\.{})$".format(extension),
     ]
 
     inheritance_expanded_entries = _inheritance_expansion(base_entry, datatype="func")
     assert inheritance_expanded_entries == expected_entries
 
-    # test .tsv
-    base_entry = (
-        r".*?/sub-(?P<subject>([0-9a-zA-Z]+))/"
-        r"(|ses-(?P<session>([0-9a-zA-Z]+))/)func/sub-(?P=subject)"
-        r"(|_ses-(?P=session))_task-(?P<task>([0-9a-zA-Z]+))"
-        r"(|_acq-(?P<acquisition>([0-9a-zA-Z]+)))"
-        r"(|_ce-(?P<ceagent>([0-9a-zA-Z]+)))"
-        r"(|_rec-(?P<reconstruction>([0-9a-zA-Z]+)))"
-        r"(|_dir-(?P<direction>([0-9a-zA-Z]+)))"
-        r"(|_run-(?P<run>([0-9]*[1-9]+[0-9]*)))"
-        r"(|_echo-(?P<echo>([0-9]*[1-9]+[0-9]*)))"
-        r"_phase(\.nii\.gz|\.nii|\.tsv)$"
-    )
-    expected_entries = [
-        ".*?/sub-(?P<subject>([0-9a-zA-Z]+))/"
-        "(|ses-(?P<session>([0-9a-zA-Z]+))/)"
-        "sub-(?P=subject)(|_ses-(?P=session))"
-        "_task-(?P<task>([0-9a-zA-Z]+))"
-        "(|_acq-(?P<acquisition>([0-9a-zA-Z]+)))"
-        "(|_ce-(?P<ceagent>([0-9a-zA-Z]+)))"
-        "(|_rec-(?P<reconstruction>([0-9a-zA-Z]+)))"
-        "(|_dir-(?P<direction>([0-9a-zA-Z]+)))"
-        "(|_run-(?P<run>([0-9]*[1-9]+[0-9]*)))"
-        "(|_echo-(?P<echo>([0-9]*[1-9]+[0-9]*)))"
-        "_phase(\\.nii\\.gz|\\.nii|\\.tsv)$",
-        ".*?/task-(?P<task>([0-9a-zA-Z]+))"
-        "(|_acq-(?P<acquisition>([0-9a-zA-Z]+)))"
-        "(|_ce-(?P<ceagent>([0-9a-zA-Z]+)))"
-        "(|_rec-(?P<reconstruction>([0-9a-zA-Z]+)))"
-        "(|_dir-(?P<direction>([0-9a-zA-Z]+)))"
-        "(|_run-(?P<run>([0-9]*[1-9]+[0-9]*)))"
-        "(|_echo-(?P<echo>([0-9]*[1-9]+[0-9]*)))"
-        "_phase(\\.nii\\.gz|\\.nii|\\.tsv)$",
+
+def test_inheritance_examples():
+    from bidsschematools.validator import validate_bids
+
+    correct_inheritance = [
+        "/lala/sub-01/ses-test/sub-01_ses-test_task-sometask_bold.json",
+        "/lala/sub-01/sub-01_task-sometask_bold.json",
+        "/lala/task-sometask_bold.json",
+    ]
+    incorrect_inheritance = [
+        "/lala/sub-01/sub-01_ses-test_task-sometask_bold.json",
+        "/lala/ses-test_task-sometask.json",
     ]
 
-    inheritance_expanded_entries = _inheritance_expansion(base_entry, datatype="func")
-    assert inheritance_expanded_entries == expected_entries
-
-    # test .bvec
-    base_entry = (
-        r".*?/sub-(?P<subject>([0-9a-zA-Z]+))/"
-        r"(|ses-(?P<session>([0-9a-zA-Z]+))/)func/sub-(?P=subject)"
-        r"(|_ses-(?P=session))_task-(?P<task>([0-9a-zA-Z]+))"
-        r"(|_acq-(?P<acquisition>([0-9a-zA-Z]+)))"
-        r"(|_ce-(?P<ceagent>([0-9a-zA-Z]+)))"
-        r"(|_rec-(?P<reconstruction>([0-9a-zA-Z]+)))"
-        r"(|_dir-(?P<direction>([0-9a-zA-Z]+)))"
-        r"(|_run-(?P<run>([0-9]*[1-9]+[0-9]*)))"
-        r"(|_echo-(?P<echo>([0-9]*[1-9]+[0-9]*)))"
-        r"_phase(\.nii\.gz|\.nii|\.bvec)$"
+    result = validate_bids(
+        correct_inheritance + incorrect_inheritance,
+        accept_dummy_paths=True,
     )
-    expected_entries = [
-        ".*?/sub-(?P<subject>([0-9a-zA-Z]+))/"
-        "(|ses-(?P<session>([0-9a-zA-Z]+))/)"
-        "sub-(?P=subject)(|_ses-(?P=session))"
-        "_task-(?P<task>([0-9a-zA-Z]+))"
-        "(|_acq-(?P<acquisition>([0-9a-zA-Z]+)))"
-        "(|_ce-(?P<ceagent>([0-9a-zA-Z]+)))"
-        "(|_rec-(?P<reconstruction>([0-9a-zA-Z]+)))"
-        "(|_dir-(?P<direction>([0-9a-zA-Z]+)))"
-        "(|_run-(?P<run>([0-9]*[1-9]+[0-9]*)))"
-        "(|_echo-(?P<echo>([0-9]*[1-9]+[0-9]*)))"
-        "_phase(\\.nii\\.gz|\\.nii|\\.bvec)$",
-        ".*?/task-(?P<task>([0-9a-zA-Z]+))"
-        "(|_acq-(?P<acquisition>([0-9a-zA-Z]+)))"
-        "(|_ce-(?P<ceagent>([0-9a-zA-Z]+)))"
-        "(|_rec-(?P<reconstruction>([0-9a-zA-Z]+)))"
-        "(|_dir-(?P<direction>([0-9a-zA-Z]+)))"
-        "(|_run-(?P<run>([0-9]*[1-9]+[0-9]*)))"
-        "(|_echo-(?P<echo>([0-9]*[1-9]+[0-9]*)))"
-        "_phase(\\.nii\\.gz|\\.nii|\\.bvec)$",
-    ]
 
-    inheritance_expanded_entries = _inheritance_expansion(base_entry, datatype="func")
-    assert inheritance_expanded_entries == expected_entries
+    assert result["path_tracking"] == incorrect_inheritance
 
 
 def test_load_all():
@@ -432,7 +377,6 @@ def test_bids_datasets(bids_examples, tmp_path, dataset):
     result = validate_bids(
         target,
         schema_version=schema_path,
-        report_path=True,
     )
     # Have all files been validated?
     assert len(result["path_tracking"]) == 0

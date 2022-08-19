@@ -1,9 +1,8 @@
 """Utility functions for the bids-specification schema."""
 import logging
+import math
 import os.path as op
 from pprint import pprint
-
-import numpy as np
 
 
 def get_schema_path():
@@ -108,7 +107,7 @@ def drop_unused_entities(df):
     df : pandas.DataFrame
         DataFrame with columns associated with unused entities removed.
     """
-    df = df.replace("", np.nan).dropna(axis=1, how="all").fillna("")
+    df = df.replace("", math.nan).dropna(axis=1, how="all").fillna("")
     return df
 
 

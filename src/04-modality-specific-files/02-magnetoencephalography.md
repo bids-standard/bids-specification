@@ -99,123 +99,66 @@ systems (see [coordinates section](#coordinate-system-json-_coordsystemjson) bel
 Generic fields MUST be present:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "TaskName": ("REQUIRED", "A RECOMMENDED convention is to name resting state task using labels beginning with `rest`."),
-   }
-) }}
+{{ MACROS___make_sidecar_table("meg.MEGGeneric") }}
 
 SHOULD be present: For consistency between studies and institutions, we
 encourage users to extract the values of these fields from the actual raw data.
 Whenever possible, please avoid using ad-hoc wording.
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "InstitutionName": "RECOMMENDED",
-      "InstitutionAddress": "RECOMMENDED",
-      "InstitutionalDepartmentName": "RECOMMENDED",
-      "Manufacturer": (
-         "RECOMMENDED",
-         "For MEG scanners, this must be one of: "
-         '`"CTF"`, `"Elekta/Neuromag"`, `"BTi/4D"`, `"KIT/Yokogawa"`, '
-         '`"ITAB"`, `"KRISS"`, `"Other"`. '
-         "See [Appendix VII](/99-appendices/07-meg-systems.html) for "
-         "preferred names.",
-      ),
-      "ManufacturersModelName": (
-         "RECOMMENDED",
-         "See [Appendix VII](/99-appendices/07-meg-systems.html) for "
-         "preferred names.",
-      ),
-      "SoftwareVersions": "RECOMMENDED",
-      "TaskDescription": "RECOMMENDED",
-      "Instructions": ("RECOMMENDED", "This is especially important in context of resting state recordings and distinguishing between eyes open and eyes closed paradigms."),
-      "CogAtlasID": "RECOMMENDED",
-      "CogPOID": "RECOMMENDED",
-      "DeviceSerialNumber": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("meg.MEGRecommended") }}
 
 Specific MEG fields MUST be present:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "SamplingFrequency": ("REQUIRED", "The sampling frequency of data channels that deviate from the main sampling frequency SHOULD be specified in the `channels.tsv` file."),
-      "PowerLineFrequency": "REQUIRED",
-      "DewarPosition": "REQUIRED",
-      "SoftwareFilters": "REQUIRED",
-      "DigitizedLandmarks": "REQUIRED",
-      "DigitizedHeadPoints": "REQUIRED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("meg.MEGRequired") }}
 
 SHOULD be present:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "MEGChannelCount": "RECOMMENDED",
-      "MEGREFChannelCount": "RECOMMENDED",
-      "EEGChannelCount": "RECOMMENDED",
-      "ECOGChannelCount": "RECOMMENDED",
-      "SEEGChannelCount": "RECOMMENDED",
-      "EOGChannelCount": "RECOMMENDED",
-      "ECGChannelCount": "RECOMMENDED",
-      "EMGChannelCount": "RECOMMENDED",
-      "MiscChannelCount": "RECOMMENDED",
-      "TriggerChannelCount": "RECOMMENDED",
-      "RecordingDuration": "RECOMMENDED",
-      "RecordingType": "RECOMMENDED",
-      "EpochLength": "RECOMMENDED",
-      "ContinuousHeadLocalization": "RECOMMENDED",
-      "HeadCoilFrequency": "RECOMMENDED",
-      "MaxMovement": "RECOMMENDED",
-      "SubjectArtefactDescription": "RECOMMENDED",
-      "AssociatedEmptyRoom": "RECOMMENDED",
-      "HardwareFilters": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("meg.MEGMoreRecommended") }}
 
 Specific EEG fields
 (if recorded with MEG, see [Recording EEG simultaneously with MEG](#recording-eeg-simultaneously-with-meg)
 SHOULD be present:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "EEGPlacementScheme": "OPTIONAL",
-      "CapManufacturer": "OPTIONAL",
-      "CapManufacturersModelName": "OPTIONAL",
-      "EEGReference": "OPTIONAL",
-   }
-) }}
+{{ MACROS___make_sidecar_table("meg.MEGwithEEG") }}
 
 Example:
 
@@ -384,98 +327,62 @@ EEG, head localization coils, and anatomical landmarks.
 MEG and EEG sensors:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "MEGCoordinateSystem": "REQUIRED",
-      "MEGCoordinateUnits": "REQUIRED",
-      "MEGCoordinateSystemDescription": "OPTIONAL, but REQUIRED if `MEGCoordinateSystem` is `Other`",
-      "EEGCoordinateSystem": (
-         "OPTIONAL",
-         "See [Recording EEG simultaneously with MEG](/04-modality-specific-files/02-magnetoencephalography.html#recording-eeg-simultaneously-with-meg). "
-         "Preferably the same as the `MEGCoordinateSystem`.",
-      ),
-      "EEGCoordinateUnits": "OPTIONAL",
-      "EEGCoordinateSystemDescription": (
-         "OPTIONAL, but REQUIRED if `EEGCoordinateSystem` is `Other`",
-         "See [Recording EEG simultaneously with MEG](/04-modality-specific-files/02-magnetoencephalography.html#recording-eeg-simultaneously-with-meg).",
-      ),
-   }
-) }}
+{{ MACROS___make_sidecar_table("meg.MEGCoordsystemWithEEG") }}
 
 Head localization coils:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "HeadCoilCoordinates": "OPTIONAL",
-      "HeadCoilCoordinateSystem": "OPTIONAL",
-      "HeadCoilCoordinateUnits": "OPTIONAL",
-      "HeadCoilCoordinateSystemDescription": "OPTIONAL, but REQUIRED if `HeadCoilCoordinateSystem` is `Other`",
-   }
-) }}
+{{ MACROS___make_sidecar_table("meg.MEGCoordsystemHeadLocalizationCoils") }}
 
 Digitized head points:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "DigitizedHeadPoints__coordsystem": "OPTIONAL",
-      "DigitizedHeadPointsCoordinateSystem": "OPTIONAL",
-      "DigitizedHeadPointsCoordinateUnits": "OPTIONAL",
-      "DigitizedHeadPointsCoordinateSystemDescription": "OPTIONAL, but REQUIRED if `DigitizedHeadPointsCoordinateSystem` is `Other`",
-   }
-) }}
+{{ MACROS___make_sidecar_table("meg.MEGCoordsystemDigitizedHeadPoints") }}
 
 Anatomical MRI:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "IntendedFor": (
-         "OPTIONAL",
-         "This is used to identify the structural MRI(s), "
-         "possibly of different types if a list is specified, "
-         "to be used with the MEG recording.",
-      )
-   }
-) }}
+{{ MACROS___make_sidecar_table("meg.MEGCoordsystemAnatomicalMRI") }}
 
 Anatomical landmarks:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "AnatomicalLandmarkCoordinates": "OPTIONAL",
-      "AnatomicalLandmarkCoordinateSystem": ("OPTIONAL", "Preferably the same as the `MEGCoordinateSystem`."),
-      "AnatomicalLandmarkCoordinateUnits": "OPTIONAL",
-      "AnatomicalLandmarkCoordinateSystemDescription": "OPTIONAL, but REQUIRED if `AnatomicalLandmarkCoordinateSystem` is `Other`",
-   }
-) }}
+{{ MACROS___make_sidecar_table("meg.MEGCoordsystemAnatomicalLandmarks") }}
 
 It is also RECOMMENDED that the MRI voxel coordinates of the actual anatomical
 landmarks for co-registration of MEG with structural MRI are stored in the
@@ -496,16 +403,14 @@ session-specific labels for example, "NAS-session1": `[127,213,139]`,"NAS-sessio
 Fiducials information:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "FiducialsDescription": "OPTIONAL",
-   }
-) }}
+{{ MACROS___make_sidecar_table("meg.MEGCoordsystemFiducialsInformation") }}
 
 For more information on the definition of anatomical landmarks, please visit:
 [http://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined](http://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined)
