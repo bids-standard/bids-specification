@@ -54,7 +54,7 @@ jobs:
           python -m pip install --progress-bar off --upgrade pip
           python -m pip install ./tools/schemacode[all]
 
-      - name: "Collect tags!"
+      - name: "Collect tags!!"
         shell: bash {0}
         run: |
           python -m pytest --pyargs bidsschematools -m "not validate_schema" --cov-append --cov-report=xml --cov=bidsschematools
