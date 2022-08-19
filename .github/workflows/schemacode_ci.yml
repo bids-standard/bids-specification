@@ -102,6 +102,9 @@ jobs:
         run: |
           if [ -z "$BIDSSCHEMATOOLS_RELEASE" ]; then echo "BIDSSCHEMATOOLS_RELEASE is unset"; else echo "BIDSSCHEMATOOLS_RELEASE is set to '$BIDSSCHEMATOOLS_RELEASE'"; fi
           echo $BIDSSCHEMATOOLS_RELEASE
+          ls /tmp/bidsschematools* -lah
+          cd /
+          find -name "*bidsschematools-testdata*"
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
