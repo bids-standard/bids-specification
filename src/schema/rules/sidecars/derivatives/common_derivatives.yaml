@@ -52,7 +52,7 @@ MaskDerivativesAtlas:
   fields:
     Atlas:
       level: recommended
-      level_addendum: if `atlas` is present
+      level_addendum: if `label` entity is defined
 
 SegmentationCommon:
   selectors:
