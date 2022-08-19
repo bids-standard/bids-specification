@@ -31,7 +31,6 @@ BIDS_ERROR_SELECTION = [
 ]
 
 
-@pytest.mark.no_network
 def get_gitrepo_fixture(url, whitelist):
     @pytest.fixture(scope="session")
     def fixture():
@@ -77,16 +76,6 @@ def get_gitrepo_fixture(url, whitelist):
     return fixture
 
 
-bids_examples = get_gitrepo_fixture(
-    "https://github.com/bids-standard/bids-examples",
-    whitelist=BIDS_SELECTION,
-)
-bids_error_examples = get_gitrepo_fixture(
-    "https://github.com/bids-standard/bids-error-examples",
-    whitelist=BIDS_ERROR_SELECTION,
-)
-
-
 @pytest.fixture(scope="session")
 def schema_dir():
     """Path to the schema housed in the bids-specification repo."""
@@ -98,3 +87,13 @@ def schema_dir():
 def schema_obj(schema_dir):
     """Schema object."""
     return schema.load_schema(schema_dir)
+
+
+bids_examples = get_gitrepo_fixture(
+    "https://github.com/bids-standard/bids-examples",
+    whitelist=BIDS_SELECTION,
+)
+bids_error_examples = get_gitrepo_fixture(
+    "https://github.com/bids-standard/bids-error-examples",
+    whitelist=BIDS_ERROR_SELECTION,
+)
