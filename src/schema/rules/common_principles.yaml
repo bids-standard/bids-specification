@@ -2,8 +2,9 @@
 # This file simply defines the order in which the Common Principles are presented in the specification.
 # The actual term definitions appear in `objects/common_principles.yaml`.
 - dataset
-- modality
+- instrument
 - data_type
+- modality
 - subject
 - session
 - sample
