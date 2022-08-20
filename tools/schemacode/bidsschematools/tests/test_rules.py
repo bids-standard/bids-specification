@@ -14,6 +14,7 @@ TYPES = {
 }
 
 
+@pytest.mark.validate_schema
 def test_object_definitions(schema_obj):
     """Ensure that all object definitions follow the appropriate type definition."""
     for type_name, type_objects in schema_obj["objects"].items():
@@ -21,13 +22,17 @@ def test_object_definitions(schema_obj):
         type_def = type_obj["definition"]
 
         for obj, obj_def in type_objects.items():
-            print(obj)
-            print(obj_def)
+            if "type" in type_def.keys():
+                valid_types = [
+                    thing if isinstance(thing, str) else list(thing.keys())[0]
+                    for thing in type_def["type"]
+                ]
+                assert "type" in obj_def.keys(), f"{type_name}, {obj}"
+                assert obj_def["type"] in valid_types
 
-        for field in type_def.keys():
-            ...
-
-    raise Exception()
+            for field, value in obj_def.items():
+                if field not in type_def.keys():
+                    pass
 
 
 def _dict_key_lookup(_dict, key, path=[]):

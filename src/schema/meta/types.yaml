@@ -2,14 +2,16 @@
 # This file describes the types of objects in the BIDS schema.
 # Each object type has its own YAML file describing valid possible values for objects of that type.
 associated_data:
-  name: Associated Data
+  name: associated_data
+  display_name: Associated Data
   description: |
     Directories that may appear within a dataset directory without following BIDS rules.
   definition:
     display_name: string
     description: string
 columns:
-  name: Column
+  name: columns
+  display_name: Column
   description: |
     Columns which may appear within tabular data files, such as TSV or TSV.GZ files.
   definition:
@@ -17,29 +19,22 @@ columns:
     display_name: string
     description: string
     type:
-      - string:
-          supplementary_fields:
-            - format
-            - unit
-            - enum
-            - pattern
-      - number:
-          supplementary_fields:
-            - unit
-            - exclusiveMinimum
-            - minimum
-            - exclusiveMaximum
-            - maximum
-      - integer:
-          supplementary_fields:
-            - unit
-            - exclusiveMinimum
-            - minimum
-            - exclusiveMaximum
-            - maximum
       - boolean
+      - $ref: meta.types._integer
+      - $ref: meta.types._number
+      - $ref: meta.types._string
+common_principles:
+  name: common_principles
+  display_name: Common Principles
+  description: |
+    Directories that may appear within a dataset directory without following BIDS rules.
+  definition:
+    name: string
+    display_name: string
+    description: string
 datatypes:
-  name: Data Type
+  name: datatypes
+  display_name: Data Type
   description: |
     A functional group of different types of data.
     This is equivalent to the **Data Type** defined under Common Principles.
@@ -48,7 +43,8 @@ datatypes:
     display_name: string
     description: string
 entities:
-  name: Entity
+  name: entities
+  display_name: Entity
   description: |
     A key-value pair in a BIDS filename.
     Valid keys, and the order in which they must appear, is defined within the BIDS schema.
@@ -60,10 +56,11 @@ entities:
     type:
       - string:
           supplementary_fields:
-            - format
-            - enum
+            - format: string
+            - enum: array
 extensions:
-  name: File Extension
+  name: extensions
+  display_name: File Extension
   description: |
     A portion of the filename after the left-most
     period (`.`) preceded by any other alphanumeric. For example, `.gitignore` does
@@ -76,7 +73,8 @@ extensions:
     display_name: string
     description: string
 formats:
-  name: Format
+  name: formats
+  display_name: Format
   description: |
     A regular expression defining valid values of different types.
   definition:
@@ -84,7 +82,8 @@ formats:
     description: string
     pattern: string
 metadata:
-  name: Metadata Field
+  name: metadata
+  display_name: Metadata Field
   description: |
     A field that may be present in a BIDS sidecar JSON file.
   definition:
@@ -92,38 +91,15 @@ metadata:
     display_name: string
     description: string
     type:
-      - string:
-          supplementary_fields:
-            - format
-            - unit
-            - enum
-            - pattern
-      - number:
-          supplementary_fields:
-            - unit
-            - exclusiveMinimum
-            - minimum
-            - exclusiveMaximum
-            - maximum
-      - integer:
-          supplementary_fields:
-            - unit
-            - exclusiveMinimum
-            - minimum
-            - exclusiveMaximum
-            - maximum
-      - array:
-          supplementary_fields:
-            - minItems
-            - maxItems
-            - items
       - boolean
-      - object:
-          supplementary_fields:
-            - additionalProperties
-            - properties
+      - $ref: meta.types._array
+      - $ref: meta.types._integer
+      - $ref: meta.types._number
+      - $ref: meta.types._object
+      - $ref: meta.types._string
 modalities:
-  name: Modality
+  name: modalities
+  display_name: Modality
   description: |
     The category of brain data recorded by a file.
     This is equivalent to the **Modality** defined under Common Principles.
@@ -131,7 +107,8 @@ modalities:
     display_name: string
     description: string
 suffixes:
-  name: Suffix
+  name: suffixes
+  display_name: Suffix
   description: |
     An alphanumeric value within BIDS filenames, located after the entity `key-value_` pairs
     (thus after the final `_`), right before the **File extension**.
@@ -142,10 +119,69 @@ suffixes:
     description: string
     unit: string
 top_level_files:
-  name: Top-Level File
+  name: top_level_files
+  display_name: Top-Level File
   description: |
     A file which may appear at the top level of a dataset.
   definition:
     name: string
     display_name: string
     description: string
+_string:
+  string:
+    supplementary_fields:
+      - format
+      - unit
+      - enum
+      - pattern
+_number:
+  number:
+    supplementary_fields:
+      - unit: string
+      - exclusiveMinimum:
+          anyOf:
+            - number
+            - integer
+      - minimum:
+          anyOf:
+            - number
+            - integer
+      - exclusiveMaximum:
+          anyOf:
+            - number
+            - integer
+      - maximum:
+          anyOf:
+            - number
+            - integer
+_integer:
+  integer:
+    supplementary_fields:
+      - unit: string
+      - exclusiveMinimum:
+          anyOf:
+            - number
+            - integer
+      - minimum:
+          anyOf:
+            - number
+            - integer
+      - exclusiveMaximum:
+          anyOf:
+            - number
+            - integer
+      - maximum:
+          anyOf:
+            - number
+            - integer
+_array:
+  array:
+    supplementary_fields:
+      - minItems: integer
+      - maxItems: integer
+      - items: object
+_object:
+  object:
+    supplementary_fields:
+      - additionalProperties: object
+      - properties: object

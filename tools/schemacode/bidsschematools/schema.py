@@ -222,11 +222,17 @@ def load_schema(schema_path=None):
     """
     if schema_path is None:
         schema_path = utils.get_schema_path()
+
     schema = Namespace.from_directory(Path(schema_path))
+
     if not schema.objects:
         raise ValueError(f"objects subdirectory path not found in {schema_path}")
+
     if not schema.rules:
         raise ValueError(f"rules subdirectory path not found in {schema_path}")
+
+    if not schema.meta:
+        raise ValueError(f"meta subdirectory path not found in {schema_path}")
 
     dereferenced = dereference_mapping(schema, schema)
     return Namespace.build(dereferenced)
