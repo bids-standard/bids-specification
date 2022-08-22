@@ -132,7 +132,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Download artifacts
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
 
     - name: Upload to CodeCov
       uses: codecov/codecov-action@v2
