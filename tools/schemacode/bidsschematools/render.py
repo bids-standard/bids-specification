@@ -467,7 +467,7 @@ def make_filename_template(
         codeblock = f"Template:\n```Text\n{paragraph}\n```"
     else:
         codeblock = (
-            f'Template:\n<pre style="overflow-x:scroll;"><code>\n{paragraph}\n</code></pre>'
+            f'Template:\n<div class="highlight"><pre><code>{paragraph}\n</code></pre></div>'
         )
 
     codeblock = codeblock.expandtabs(4)
