@@ -765,6 +765,8 @@ outliers:
   display_name: Outliers
   description: |
     An outliers file.
+    Outlier masks are columns of zeros (0), with ones (1) indicating volumes that have been
+    identified as outliers by some method.
 
     This suffix may only be used in derivative datasets.
 pet:
@@ -891,6 +893,7 @@ timeseries:
   display_name: Timeseries
   description: |
     A timeseries file.
+    Any time series with common timing information may be stored in a timeseries file.
 
     This suffix may only be used in derivative datasets.
 tsnr:
