@@ -66,7 +66,7 @@ jobs:
           python -m pytest --pyargs bidsschematools -m "not validate_schema" --cov-append --cov-report=xml --cov=bidsschematools
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: unit_${{ matrix.os }}_${{ matrix.python-version }}
           path: coverage.xml
@@ -117,7 +117,7 @@ jobs:
       run: python -m pytest --pyargs bidsschematools -m "validate_schema" --cov-append --cov-report=xml --cov=bidsschematools
 
     - name: Upload artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: schema_validation
         path: coverage.xml
