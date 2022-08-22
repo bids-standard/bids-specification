@@ -248,6 +248,9 @@ def make_filename_template(
 ):
     """Create codeblocks containing example filename patterns for a given datatype.
 
+    By default, this function uses HTML, instead of direct Markdown codeblocks,
+    so that it can embed hyperlinks within the filenames.
+
     Parameters
     ----------
     schema : dict
