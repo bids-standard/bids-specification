@@ -80,6 +80,13 @@ dlabelnii:
     A CIFTI-2 dense label file.
 
     This extension may only be used in derivative datasets.
+dtseriesnii:
+  value: .dtseries.nii
+  display_name: Timeseries CIFTI File
+  description: |
+    A CIFTI timeseries file.
+
+    This extension may only be used in derivative datasets.
 edf:
   value: .edf
   display_name: European Data Format
@@ -251,6 +258,13 @@ tif:
   display_name: Tag Image File Format
   description: |
     A [Tag Image File Format](https://en.wikipedia.org/wiki/TIFF) file.
+timegii:
+  value: .time.gii
+  display_name: Surface timeseries
+  description: |
+    Surface timeseries.
+
+    This extension may only be used in derivative datasets.
 trg:
   value: .trg
   display_name: KRISS TRG
