@@ -281,17 +281,15 @@ def make_filename_template(
 
     Notes
     -----
-    This function doesn't use src_path, because the hyperlinks use absolute paths to HTML files.
-    It would be nice, at some point, to use src_path in conjunction with paths to markdown files,
-    like other functions do, instead.
+    This function links to HTML files, rather than markdown files.
     """
     if not schema:
         schema = load_schema()
 
     schema = Namespace(filter_schema(schema.to_dict(), **kwargs))
     entity_order = schema["rules"]["entities"]
-    entities_path = "/99-appendices/09-entities.html"
-    glossary_path = "/99-appendices/14-glossary.html"
+    entities_path = "SPEC_ROOT/99-appendices/09-entities.html"
+    glossary_path = "SPEC_ROOT/99-appendices/14-glossary.html"
 
     paragraph = ""
     # Parent directories

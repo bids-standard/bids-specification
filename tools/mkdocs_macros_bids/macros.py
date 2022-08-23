@@ -61,7 +61,7 @@ def _get_source_path(level=1):
     return caller.f_locals["_Context__self"]["page"].file.src_path
 
 
-def make_filename_template(pdf_format=False, **kwargs):
+def make_filename_template(src_path=None, pdf_format=False, **kwargs):
     """Generate a filename template snippet from the schema, based on specific filters.
 
     Parameters
@@ -83,9 +83,13 @@ def make_filename_template(pdf_format=False, **kwargs):
         A multiline string containing the filename templates for file types
         in the schema, after filtering.
     """
+    if src_path is None:
+        src_path = _get_source_path()
+
     schema_obj = schema.load_schema()
     codeblock = render.make_filename_template(
         schema_obj,
+        src_path=src_path,
         pdf_format=pdf_format,
         **kwargs,
     )
