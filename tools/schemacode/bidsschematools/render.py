@@ -10,7 +10,7 @@ import yaml
 from tabulate import tabulate
 
 from . import utils
-from .schema import BIDSSchemaError, Namespace, filter_schema, load_schema
+from .schema import BIDSSchemaError, Namespace, filter_schema
 
 lgr = utils.get_logger()
 # Basic settings for output, for now just basic
@@ -239,35 +239,17 @@ def _add_entity(filename_template, entity_pattern, requirement_level):
     return filename_template
 
 
-def make_filename_template(
-    schema=None,
-    src_path=None,
-    n_dupes_to_combine=6,
-    pdf_format=False,
-    **kwargs,
-):
+def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
     """Create codeblocks containing example filename patterns for a given datatype.
-
-    By default, this function uses HTML, instead of direct Markdown codeblocks,
-    so that it can embed hyperlinks within the filenames.
 
     Parameters
     ----------
     schema : dict
         The schema object, which is a dictionary with nested dictionaries and
         lists stored within it.
-    src_path : str | None
-        The file where this macro is called, which may be explicitly provided
-        by the "page.file.src_path" variable.
     n_dupes_to_combine : int
         The minimum number of suffixes/extensions to combine in the template as
         <suffix>/<extension>.
-    pdf_format : bool, optional
-        If True, the filename template will be compiled as a standard markdown code block,
-        without any hyperlinks, so that the specification's PDF build will look right.
-        If False, the filename template will use HTML and include hyperlinks.
-        This works on the website.
-        Default is False.
     kwargs : dict
         Keyword arguments used to filter the schema.
         Example kwargs that may be used include: "suffixes", "datatypes",
@@ -278,62 +260,26 @@ def make_filename_template(
     codeblock : str
         A multiline string containing the filename templates for file types
         in the schema, after filtering.
-
-    Notes
-    -----
-    This function doesn't use src_path, because the hyperlinks use absolute paths to HTML files.
-    It would be nice, at some point, to use src_path in conjunction with paths to markdown files,
-    like other functions do, instead.
     """
-    if not schema:
-        schema = load_schema()
-
     schema = Namespace(filter_schema(schema.to_dict(), **kwargs))
     entity_order = schema["rules"]["entities"]
-    entities_path = "/99-appendices/09-entities.html"
-    glossary_path = "/99-appendices/14-glossary.html"
 
     paragraph = ""
     # Parent directories
-    sub_string = (
-        f'{schema["objects"]["entities"]["subject"]["name"]}-'
-        f'<{schema["objects"]["entities"]["subject"]["format"]}>'
+    paragraph += "{}-<{}>/\n\t[{}-<{}>/]\n".format(
+        schema["objects"]["entities"]["subject"]["name"],
+        schema["objects"]["entities"]["subject"]["format"],
+        schema["objects"]["entities"]["session"]["name"],
+        schema["objects"]["entities"]["session"]["format"],
     )
-    paragraph += utils._link_with_html(
-        sub_string,
-        html_path=entities_path,
-        heading="sub",
-        pdf_format=pdf_format,
-    )
-    paragraph += "/\n\t["
-    ses_string = (
-        f'{schema["objects"]["entities"]["session"]["name"]}-'
-        f'<{schema["objects"]["entities"]["session"]["format"]}>'
-    )
-    paragraph += utils._link_with_html(
-        ses_string,
-        html_path=entities_path,
-        heading="ses",
-        pdf_format=pdf_format,
-    )
-    paragraph += "/]\n"
 
     datatypes = schema.rules.datatypes
 
     for datatype in datatypes:
-        # NOTE: We should have a full rethink of the schema hierarchy
-        # so that derivatives aren't treated like a "datatype"
+        # XXX We should have a full rethink of the schema hierarchy...
         if datatype == "derivatives":
             continue
-
-        paragraph += "\t\t"
-        paragraph += utils._link_with_html(
-            datatype,
-            html_path=glossary_path,
-            heading=f"{datatype.lower()}-datatypes",
-            pdf_format=pdf_format,
-        )
-        paragraph += "/\n"
+        paragraph += "\t\t{}/\n".format(datatype)
 
         # Unique filename patterns
         for group in datatypes[datatype].values():
@@ -341,41 +287,22 @@ def make_filename_template(
             for ent in entity_order:
                 if "enum" in schema["objects"]["entities"][ent].keys():
                     # Entity key-value pattern with specific allowed values
-                    ent_format = (
-                        f'{schema["objects"]["entities"][ent]["name"]}-'
-                        f'<{"|".join(schema["objects"]["entities"][ent]["enum"])}>'
-                    )
-                    ent_format = utils._link_with_html(
-                        ent_format,
-                        html_path=entities_path,
-                        heading=schema["objects"]["entities"][ent]["name"],
-                        pdf_format=pdf_format,
+                    ent_format = "{}-<{}>".format(
+                        schema["objects"]["entities"][ent]["name"],
+                        "|".join(schema["objects"]["entities"][ent]["enum"]),
                     )
                 else:
                     # Standard entity key-value pattern with simple label/index
-                    ent_format = utils._link_with_html(
+                    ent_format = "{}-<{}>".format(
                         schema["objects"]["entities"][ent]["name"],
-                        html_path=entities_path,
-                        heading=schema["objects"]["entities"][ent]["name"],
-                        pdf_format=pdf_format,
-                    )
-                    ent_format += "-"
-                    ent_format += "<" if pdf_format else "&lt;"
-                    ent_format += utils._link_with_html(
                         schema["objects"]["entities"][ent].get("format", "label"),
-                        html_path=glossary_path,
-                        heading=(
-                            f'{schema["objects"]["entities"][ent].get("format", "label")}-formats'
-                        ),
-                        pdf_format=pdf_format,
                     )
-                    ent_format += ">" if pdf_format else "&gt;"
 
                 if ent in group["entities"]:
                     if isinstance(group["entities"][ent], dict):
                         if "enum" in group["entities"][ent].keys():
-                            # Overwrite the filename pattern using valid values
-                            ent_format = "{}-&lt;{}&gt;".format(
+                            # Overwrite the filename pattern based on the valid values
+                            ent_format = "{}-<{}>".format(
                                 schema["objects"]["entities"][ent]["name"],
                                 "|".join(group["entities"][ent]["enum"]),
                             )
@@ -391,38 +318,17 @@ def make_filename_template(
             # In cases of large numbers of suffixes,
             # we use the "suffix" variable and expect a table later in the spec
             if len(group["suffixes"]) >= n_dupes_to_combine:
-                string += "_"
-                string += "<" if pdf_format else "&lt;"
-                string += utils._link_with_html(
-                    "suffix",
-                    html_path=glossary_path,
-                    heading="suffix-common_principles",
-                    pdf_format=pdf_format,
-                )
-                string += ">" if pdf_format else "&gt;"
+                suffix = "_<suffix>"
+                string += suffix
                 strings = [string]
             else:
-                strings = []
-                for suffix in group["suffixes"]:
-                    # The glossary indexes by the suffix identifier (TwoPE instead of 2PE),
-                    # but the rules reference the actual suffix string (2PE instead of TwoPE),
-                    # so we need to look it up.
-                    suffix_id = [
-                        k for k, v in schema["objects"]["suffixes"].items() if v["value"] == suffix
-                    ][0]
-
-                    suffix_string = utils._link_with_html(
-                        suffix,
-                        html_path=glossary_path,
-                        heading=f"{suffix_id.lower()}-suffixes",
-                        pdf_format=pdf_format,
-                    )
-                    strings.append(f"{string}_{suffix_string}")
+                strings = [string + "_" + suffix for suffix in group["suffixes"]]
 
             # Add extensions
             full_strings = []
             extensions = group["extensions"]
             extensions = [ext if ext != "*" else ".<extension>" for ext in extensions]
+            extensions = utils.combine_extensions(extensions)
             if len(extensions) >= n_dupes_to_combine:
                 # Combine exts when there are many, but keep JSON separate
                 if ".json" in extensions:
@@ -430,32 +336,9 @@ def make_filename_template(
                 else:
                     extensions = [".<extension>"]
 
-            ext_headings = []
-            for extension in extensions:
-                # The glossary indexes by the extension identifier (niigz instead of .nii.gz),
-                # but the rules reference the actual suffix string (.nii.gz instead of niigz),
-                # so we need to look it up.
-                ext_id = [
-                    k
-                    for k, v in schema["objects"]["extensions"].items()
-                    if v["value"] == extension
-                ]
-                if ext_id:
-                    ext_id = ext_id[0]
-                    ext_headings.append(f"{ext_id.lower()}-extensions")
-                else:
-                    ext_headings.append("extension-common_principles")
-
-            extensions = utils.combine_extensions(
-                extensions,
-                html_path=glossary_path,
-                heading_lst=ext_headings,
-                pdf_format=pdf_format,
-            )
-
             for extension in extensions:
                 for string in strings:
-                    new_string = f"{string}{extension}"
+                    new_string = string + extension
                     full_strings.append(new_string)
 
             full_strings = sorted(full_strings)
@@ -463,16 +346,8 @@ def make_filename_template(
                 paragraph += "\n".join(full_strings) + "\n"
 
     paragraph = paragraph.rstrip()
-    if pdf_format:
-        codeblock = f"Template:\n```Text\n{paragraph}\n```"
-    else:
-        codeblock = (
-            f'Template:\n<div class="highlight"><pre><code>{paragraph}\n</code></pre></div>'
-        )
-
+    codeblock = "Template:\n```Text\n" + paragraph + "\n```"
     codeblock = codeblock.expandtabs(4)
-    codeblock = codeblock.replace("SPEC_ROOT", get_relpath(src_path))
-
     return codeblock
 
 

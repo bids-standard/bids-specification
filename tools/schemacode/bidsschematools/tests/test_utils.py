@@ -5,7 +5,7 @@ def test_combine_extensions():
     """A unit test for utils.combine_extensions."""
     test_extensions = ["nii.gz", "nii", "json"]
     target_combined = ["nii[.gz]", "json"]
-    test_combined = utils.combine_extensions(test_extensions, pdf_format=True)
+    test_combined = utils.combine_extensions(test_extensions)
     assert test_combined == target_combined
 
 

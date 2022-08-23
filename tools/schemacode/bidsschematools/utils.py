@@ -16,36 +16,7 @@ def get_schema_path():
     return op.abspath(op.join(op.dirname(__file__), "data", "schema"))
 
 
-def _link_with_html(string, html_path=None, heading=None, pdf_format=False):
-    """Wrap a string in an HTML hyperlink.
-
-    Parameters
-    ----------
-    string : str
-        The string to wrap a hyperlink around.
-    html_path : None or str, optional
-        Path to the HTML file that the string should link to.
-    heading : None or str, optional
-        The heading on the HTML page the string should link to.
-    pdf_format : bool, optional
-        If True, the string will be returned unmodified.
-        If False, a hyperlink will be generated around the string,
-        linking to the ``heading`` heading in the ``html_path`` page.
-        Default is False.
-
-    Returns
-    -------
-    string : str
-        The modified (or unmodified) string.
-    """
-    if not pdf_format:
-        string = string.replace("<", "&lt;").replace(">", "&gt;")
-        string = f'<a href="{html_path}#{heading}">{string}</a>'
-
-    return string
-
-
-def combine_extensions(lst, html_path=None, heading_lst=None, pdf_format=True):
+def combine_extensions(lst):
     """Combine extensions with their compressed versions in a list.
 
     Valid combinations are hardcoded in the function,
@@ -55,22 +26,6 @@ def combine_extensions(lst, html_path=None, heading_lst=None, pdf_format=True):
     ----------
     lst : list of str
         Raw list of extensions.
-    html_path : None or str
-        Path to the HTML file that each extension should link to.
-        Only used if pdf_format is False.
-        Default is None.
-    heading_lst : None or list of str
-        List of headings in the HTML page to link to.
-        Should be one heading for each extension in lst.
-        Only used if pdf_format is False.
-        Default is None.
-    pdf_format : bool, optional
-        If True, the extensions will be compiled as markdown strings,
-        without any hyperlinks, so that the specification's PDF build will look right.
-        If False, the extensions will use HTML and include hyperlinks to the their
-        associated glossary entries.
-        This works on the website.
-        Default is True.
 
     Returns
     -------
@@ -79,48 +34,20 @@ def combine_extensions(lst, html_path=None, heading_lst=None, pdf_format=True):
         combined.
     """
     COMPRESSION_EXTENSIONS = [".gz"]
-    if pdf_format and not heading_lst:
-        heading_lst = lst[:]
 
     new_lst = []
     items_to_remove = []
-    for i_item, item in enumerate(lst):
+    for item in lst:
         for ext in COMPRESSION_EXTENSIONS:
             if item.endswith(ext) and item.replace(ext, "") in lst:
-                base_item_idx = lst.index(item.replace(ext, ""))
-                temp_item = _link_with_html(
-                    lst[base_item_idx],
-                    html_path=html_path,
-                    heading=heading_lst[base_item_idx].lower(),
-                    pdf_format=pdf_format,
-                )
-                ext_string = _link_with_html(
-                    ext,
-                    html_path=html_path,
-                    heading=heading_lst[i_item].lower(),
-                    pdf_format=pdf_format,
-                )
-
-                temp_item = temp_item + "[" + ext_string + "]"
+                temp_item = item.replace(ext, "") + "[" + ext + "]"
                 new_lst.append(temp_item)
                 items_to_remove.append(item)
                 items_to_remove.append(item.replace(ext, ""))
                 continue
 
-    heading_lst = [head for i, head in enumerate(heading_lst) if lst[i] not in items_to_remove]
     items_to_add = [item for item in lst if item not in items_to_remove]
-    item_strings_to_add = []
-    for i_item, item in enumerate(items_to_add):
-        item_strings_to_add.append(
-            _link_with_html(
-                item,
-                html_path=html_path,
-                heading=heading_lst[i_item],
-                pdf_format=pdf_format,
-            )
-        )
-
-    new_lst += item_strings_to_add
+    new_lst += items_to_add
 
     return new_lst
 
