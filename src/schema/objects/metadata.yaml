@@ -258,6 +258,12 @@ BackgroundSuppressionPulseTime:
     type: number
     minimum: 0
     unit: s
+BandpassFilter:
+  name: BandpassFilter
+  display_name: Bandpass Filter
+  description: |
+    String describing all relevant parameters of the applied bandpass filter.
+  type: string
 BasedOn:
   name: BasedOn
   display_name: Based On
@@ -1878,6 +1884,12 @@ MetaboliteRecoveryCorrectionApplied:
     If `true`, the `hplc_recovery_fractions` column MUST be present in the
     corresponding `*_blood.tsv` file.
   type: boolean
+Method:
+  name: Method
+  display_name: Method
+  description: |
+    String describing method used to calculate measure.
+  type: string
 MiscChannelCount:
   name: MiscChannelCount
   display_name: Misc Channel Count
@@ -1955,6 +1967,12 @@ NegativeContrast:
     usage of a contrast agent in conjunction with a T2\* weighted acquisition
     protocol.
   type: boolean
+Neighborhood:
+  name: Neighborhood
+  display_name: Neighborhood
+  description: |
+    String describing neighborhood for regional measures.
+  type: string
 NonlinearGradientCorrection:
   name: NonlinearGradientCorrection
   display_name: Nonlinear Gradient Correction
@@ -2996,6 +3014,12 @@ TermURL:
   description: |
     URL pointing to a formal definition of this type of data in an ontology
     available on the web.
+  type: string
+Threshold:
+  name: Threshold
+  display_name: Threshold
+  description: |
+    String describing threshold used for determining graph edges.
   type: string
 TimeZero:
   name: TimeZero
