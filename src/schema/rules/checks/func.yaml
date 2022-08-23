@@ -11,6 +11,6 @@ PhaseSuffixDeprecated:
       part-<mag|phase> or part-<real|imag> key/value.
     level: warning
   selectors:
-  - datatype == "func"
+    - datatype == "func"
   checks:
-  - '!(suffix == "phase")'
+    - '!(suffix == "phase")'

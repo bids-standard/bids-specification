@@ -5,39 +5,39 @@ README:
   required: true
   pattern: 'README'
   extensions:
-  - ""
-  - .md
-  - .rst
-  - .txt
+    - ''
+    - .md
+    - .rst
+    - .txt
 CHANGES:
   required: false
   pattern: 'CHANGES'
   extensions:
-  - ""
+    - ''
 LICENSE:
   required: false
   pattern: 'LICENSE'
   extensions:
-  - ""
+    - ''
 dataset_description:
   required: true
   pattern: 'dataset_description'
   extensions:
-  - .json
+    - .json
 genetic_info:
   required: false
   pattern: 'genetic_info'
   extensions:
-  - .json
+    - .json
 participants:
   required: false
   pattern: 'participants'
   extensions:
-  - .tsv
-  - .json
+    - .tsv
+    - .json
 samples:
   required: false
   pattern: 'samples'
   extensions:
-  - .tsv
-  - .json
+    - .tsv
+    - .json

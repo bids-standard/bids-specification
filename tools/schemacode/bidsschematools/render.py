@@ -6,15 +6,29 @@ import typing as ty
 from collections.abc import Mapping
 
 import pandas as pd
+import yaml
 from tabulate import tabulate
 
 from . import utils
-from .schema import BIDSSchemaError, Namespace, filter_schema
+from .schema import BIDSSchemaError, Namespace, filter_schema, load_schema
 
 lgr = utils.get_logger()
 # Basic settings for output, for now just basic
 utils.set_logger_level(lgr, os.environ.get("BIDS_SCHEMA_LOG_LEVEL", logging.INFO))
 logging.basicConfig(format="%(asctime)-15s [%(levelname)8s] %(message)s")
+
+TYPE_CONVERTER = {
+    "associated_data": "associated data",
+    "columns": "column",
+    "common_principles": "common principle",
+    "datatypes": "datatype",
+    "entities": "entity",
+    "extensions": "extension",
+    "formats": "format",
+    "metadata": "metadata",
+    "top_level_files": "top level file",
+    "suffixes": "suffix",
+}
 
 
 def get_relpath(src_path):
@@ -77,24 +91,29 @@ def make_entity_definitions(schema, src_path=None):
     text = ""
     for entity in entity_order:
         entity_info = entity_definitions[entity]
-        entity_shorthand = entity_info["name"]
-        text += "\n"
-        text += "## {}".format(entity_shorthand)
-        text += "\n\n"
-        text += "Full name: {}".format(entity_info["display_name"])
-        text += "\n\n"
-        text += "Format: `{}-<{}>`".format(
-            entity_info["name"],
-            entity_info.get("format", "label"),
-        )
-        text += "\n\n"
-        if "enum" in entity_info.keys():
-            text += "Allowed values: `{}`".format("`, `".join(entity_info["enum"]))
-            text += "\n\n"
+        entity_text = _make_entity_definition(entity, entity_info, src_path)
+        text += "\n" + entity_text
 
-        description = entity_info["description"]
-        description = description.replace("SPEC_ROOT", get_relpath(src_path))
-        text += "Definition: {}".format(description)
+    return text
+
+
+def _make_entity_definition(entity, entity_info, src_path):
+    """Describe an entity."""
+    entity_shorthand = entity_info["name"]
+    text = ""
+    text += "## {}".format(entity_shorthand)
+    text += "\n\n"
+    text += f"**Full name**: {entity_info['display_name']}"
+    text += "\n\n"
+    text += f"**Format**: `{entity_info['name']}-<{entity_info.get('format', 'label')}>`"
+    text += "\n\n"
+    if "enum" in entity_info.keys():
+        text += f"**Allowed values**: `{'`, `'.join(entity_info['enum'])}`"
+        text += "\n\n"
+
+    description = entity_info["description"]
+    description = description.replace("SPEC_ROOT", get_relpath(src_path))
+    text += f"**Definition**: {description}"
     return text
 
 
@@ -117,14 +136,16 @@ def make_glossary(schema, src_path=None):
         information about the entities in the schema.
     """
     all_objects = {}
+    schema = schema.to_dict()
 
     for group, group_objects in schema["objects"].items():
         group_obj_keys = list(group_objects.keys())
-        # Remove private objects
+
+        # Do not include private objects in the glossary
         group_obj_keys = [k for k in group_obj_keys if not k.startswith("_")]
 
+        # Identify multi-sense objects (multiple entries, indicated by __ in key)
         multi_sense_objects = []
-        # Identify multi-sense objects (multiple entries, some with __ in them)
         for key in group_obj_keys:
             if "__" in key:
                 temp_key = key.split("__")[0]
@@ -149,6 +170,7 @@ def make_glossary(schema, src_path=None):
             new_name = f"{new_name} ({group})"
             all_objects[new_name] = {}
             all_objects[new_name]["key"] = f"objects.{group}.{key}"
+            all_objects[new_name]["type"] = TYPE_CONVERTER.get(group, group)
             all_objects[new_name]["definition"] = group_objects[key]
 
     text = ""
@@ -156,7 +178,8 @@ def make_glossary(schema, src_path=None):
         obj = all_objects[obj_key]
         obj_marker = obj["key"]
         obj_def = obj["definition"]
-        obj_name = obj_def["display_name"]
+
+        # Clean up the text description
         obj_desc = obj_def["description"]
         # A backslash before a newline means continue a string
         obj_desc = obj_desc.replace("\\\n", "")
@@ -169,11 +192,31 @@ def make_glossary(schema, src_path=None):
 
         text += f'\n<a name="{obj_marker}"></a>'
         text += f"\n## {obj_key}\n\n"
-        text += f"name: {obj_name}\n\n"
-        text += f"description:\n>{obj_desc}\n\n"
+        text += f"**Name**: {obj_def['display_name']}\n\n"
+        text += f"**Type**: {obj['type'].title()}\n\n"
 
-        temp_obj_def = {k: v for k, v in obj_def.items() if k not in ("description", "name")}
-        text += f"schema information:\n```yaml\n{temp_obj_def}\n```"
+        if obj["type"] == "suffix":
+            text += f"**Format**: `<entities>_{obj_def['value']}.<extension>`\n\n"
+        elif obj["type"] == "extension":
+            text += f"**Format**: `<entities>_<suffix>{obj_def['value']}`\n\n"
+        elif obj["type"] == "format":
+            text += f"**Regular expression**: `{obj_def['pattern']}`\n\n"
+
+        if "enum" in obj_def.keys():
+            allowed_vals = [f"`{enum}`" for enum in obj_def["enum"]]
+            text += f"**Allowed values**: {', '.join(allowed_vals)}\n\n"
+
+        text += f"**Description**:\n{obj_desc}\n\n"
+
+        temp_obj_def = {
+            k: v
+            for k, v in obj_def.items()
+            if k not in ("description", "display_name", "name", "value", "enum", "pattern")
+        }
+
+        if temp_obj_def:
+            temp_obj_def = yaml.dump(temp_obj_def)
+            text += f"**Schema information**:\n```yaml\n{temp_obj_def}\n```"
 
     return text
 
@@ -196,17 +239,35 @@ def _add_entity(filename_template, entity_pattern, requirement_level):
     return filename_template
 
 
-def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
+def make_filename_template(
+    schema=None,
+    src_path=None,
+    n_dupes_to_combine=6,
+    pdf_format=False,
+    **kwargs,
+):
     """Create codeblocks containing example filename patterns for a given datatype.
+
+    By default, this function uses HTML, instead of direct Markdown codeblocks,
+    so that it can embed hyperlinks within the filenames.
 
     Parameters
     ----------
     schema : dict
         The schema object, which is a dictionary with nested dictionaries and
         lists stored within it.
+    src_path : str | None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
     n_dupes_to_combine : int
         The minimum number of suffixes/extensions to combine in the template as
         <suffix>/<extension>.
+    pdf_format : bool, optional
+        If True, the filename template will be compiled as a standard markdown code block,
+        without any hyperlinks, so that the specification's PDF build will look right.
+        If False, the filename template will use HTML and include hyperlinks.
+        This works on the website.
+        Default is False.
     kwargs : dict
         Keyword arguments used to filter the schema.
         Example kwargs that may be used include: "suffixes", "datatypes",
@@ -217,26 +278,60 @@ def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
     codeblock : str
         A multiline string containing the filename templates for file types
         in the schema, after filtering.
+
+    Notes
+    -----
+    This function links to HTML files, rather than markdown files.
     """
+    if not schema:
+        schema = load_schema()
+
     schema = Namespace(filter_schema(schema.to_dict(), **kwargs))
     entity_order = schema["rules"]["entities"]
+    entities_path = "SPEC_ROOT/99-appendices/09-entities.html"
+    glossary_path = "SPEC_ROOT/99-appendices/14-glossary.html"
 
     paragraph = ""
     # Parent directories
-    paragraph += "{}-<{}>/\n\t[{}-<{}>/]\n".format(
-        schema["objects"]["entities"]["subject"]["name"],
-        schema["objects"]["entities"]["subject"]["format"],
-        schema["objects"]["entities"]["session"]["name"],
-        schema["objects"]["entities"]["session"]["format"],
+    sub_string = (
+        f'{schema["objects"]["entities"]["subject"]["name"]}-'
+        f'<{schema["objects"]["entities"]["subject"]["format"]}>'
     )
+    paragraph += utils._link_with_html(
+        sub_string,
+        html_path=entities_path,
+        heading="sub",
+        pdf_format=pdf_format,
+    )
+    paragraph += "/\n\t["
+    ses_string = (
+        f'{schema["objects"]["entities"]["session"]["name"]}-'
+        f'<{schema["objects"]["entities"]["session"]["format"]}>'
+    )
+    paragraph += utils._link_with_html(
+        ses_string,
+        html_path=entities_path,
+        heading="ses",
+        pdf_format=pdf_format,
+    )
+    paragraph += "/]\n"
 
     datatypes = schema.rules.datatypes
 
     for datatype in datatypes:
-        # XXX We should have a full rethink of the schema hierarchy...
+        # NOTE: We should have a full rethink of the schema hierarchy
+        # so that derivatives aren't treated like a "datatype"
         if datatype == "derivatives":
             continue
-        paragraph += "\t\t{}/\n".format(datatype)
+
+        paragraph += "\t\t"
+        paragraph += utils._link_with_html(
+            datatype,
+            html_path=glossary_path,
+            heading=f"{datatype.lower()}-datatypes",
+            pdf_format=pdf_format,
+        )
+        paragraph += "/\n"
 
         # Unique filename patterns
         for group in datatypes[datatype].values():
@@ -244,22 +339,41 @@ def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
             for ent in entity_order:
                 if "enum" in schema["objects"]["entities"][ent].keys():
                     # Entity key-value pattern with specific allowed values
-                    ent_format = "{}-<{}>".format(
-                        schema["objects"]["entities"][ent]["name"],
-                        "|".join(schema["objects"]["entities"][ent]["enum"]),
+                    ent_format = (
+                        f'{schema["objects"]["entities"][ent]["name"]}-'
+                        f'<{"|".join(schema["objects"]["entities"][ent]["enum"])}>'
+                    )
+                    ent_format = utils._link_with_html(
+                        ent_format,
+                        html_path=entities_path,
+                        heading=schema["objects"]["entities"][ent]["name"],
+                        pdf_format=pdf_format,
                     )
                 else:
                     # Standard entity key-value pattern with simple label/index
-                    ent_format = "{}-<{}>".format(
+                    ent_format = utils._link_with_html(
                         schema["objects"]["entities"][ent]["name"],
-                        schema["objects"]["entities"][ent].get("format", "label"),
+                        html_path=entities_path,
+                        heading=schema["objects"]["entities"][ent]["name"],
+                        pdf_format=pdf_format,
                     )
+                    ent_format += "-"
+                    ent_format += "<" if pdf_format else "&lt;"
+                    ent_format += utils._link_with_html(
+                        schema["objects"]["entities"][ent].get("format", "label"),
+                        html_path=glossary_path,
+                        heading=(
+                            f'{schema["objects"]["entities"][ent].get("format", "label")}-formats'
+                        ),
+                        pdf_format=pdf_format,
+                    )
+                    ent_format += ">" if pdf_format else "&gt;"
 
                 if ent in group["entities"]:
                     if isinstance(group["entities"][ent], dict):
                         if "enum" in group["entities"][ent].keys():
-                            # Overwrite the filename pattern based on the valid values
-                            ent_format = "{}-<{}>".format(
+                            # Overwrite the filename pattern using valid values
+                            ent_format = "{}-&lt;{}&gt;".format(
                                 schema["objects"]["entities"][ent]["name"],
                                 "|".join(group["entities"][ent]["enum"]),
                             )
@@ -275,17 +389,38 @@ def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
             # In cases of large numbers of suffixes,
             # we use the "suffix" variable and expect a table later in the spec
             if len(group["suffixes"]) >= n_dupes_to_combine:
-                suffix = "_<suffix>"
-                string += suffix
+                string += "_"
+                string += "<" if pdf_format else "&lt;"
+                string += utils._link_with_html(
+                    "suffix",
+                    html_path=glossary_path,
+                    heading="suffix-common_principles",
+                    pdf_format=pdf_format,
+                )
+                string += ">" if pdf_format else "&gt;"
                 strings = [string]
             else:
-                strings = [string + "_" + suffix for suffix in group["suffixes"]]
+                strings = []
+                for suffix in group["suffixes"]:
+                    # The glossary indexes by the suffix identifier (TwoPE instead of 2PE),
+                    # but the rules reference the actual suffix string (2PE instead of TwoPE),
+                    # so we need to look it up.
+                    suffix_id = [
+                        k for k, v in schema["objects"]["suffixes"].items() if v["value"] == suffix
+                    ][0]
+
+                    suffix_string = utils._link_with_html(
+                        suffix,
+                        html_path=glossary_path,
+                        heading=f"{suffix_id.lower()}-suffixes",
+                        pdf_format=pdf_format,
+                    )
+                    strings.append(f"{string}_{suffix_string}")
 
             # Add extensions
             full_strings = []
             extensions = group["extensions"]
             extensions = [ext if ext != "*" else ".<extension>" for ext in extensions]
-            extensions = utils.combine_extensions(extensions)
             if len(extensions) >= n_dupes_to_combine:
                 # Combine exts when there are many, but keep JSON separate
                 if ".json" in extensions:
@@ -293,9 +428,32 @@ def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
                 else:
                     extensions = [".<extension>"]
 
+            ext_headings = []
+            for extension in extensions:
+                # The glossary indexes by the extension identifier (niigz instead of .nii.gz),
+                # but the rules reference the actual suffix string (.nii.gz instead of niigz),
+                # so we need to look it up.
+                ext_id = [
+                    k
+                    for k, v in schema["objects"]["extensions"].items()
+                    if v["value"] == extension
+                ]
+                if ext_id:
+                    ext_id = ext_id[0]
+                    ext_headings.append(f"{ext_id.lower()}-extensions")
+                else:
+                    ext_headings.append("extension-common_principles")
+
+            extensions = utils.combine_extensions(
+                extensions,
+                html_path=glossary_path,
+                heading_lst=ext_headings,
+                pdf_format=pdf_format,
+            )
+
             for extension in extensions:
                 for string in strings:
-                    new_string = string + extension
+                    new_string = f"{string}{extension}"
                     full_strings.append(new_string)
 
             full_strings = sorted(full_strings)
@@ -303,8 +461,16 @@ def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
                 paragraph += "\n".join(full_strings) + "\n"
 
     paragraph = paragraph.rstrip()
-    codeblock = "Template:\n```Text\n" + paragraph + "\n```"
+    if pdf_format:
+        codeblock = f"Template:\n```Text\n{paragraph}\n```"
+    else:
+        codeblock = (
+            f'Template:\n<div class="highlight"><pre><code>{paragraph}\n</code></pre></div>'
+        )
+
     codeblock = codeblock.expandtabs(4)
+    codeblock = codeblock.replace("SPEC_ROOT", get_relpath(src_path))
+
     return codeblock
 
 
