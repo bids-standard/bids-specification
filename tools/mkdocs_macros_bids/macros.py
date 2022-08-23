@@ -61,12 +61,17 @@ def _get_source_path(level=1):
     return caller.f_locals["_Context__self"]["page"].file.src_path
 
 
-def make_filename_template(**kwargs):
-    """Generate a filename template snippet from the schema, based on specific
-    filters.
+def make_filename_template(pdf_format=False, **kwargs):
+    """Generate a filename template snippet from the schema, based on specific filters.
 
     Parameters
     ----------
+    pdf_format : bool, optional
+        If True, the filename template will be compiled as a standard markdown code block,
+        without any hyperlinks, so that the specification's PDF build will look right.
+        If False, the filename template will use HTML and include hyperlinks.
+        This works on the website.
+        Default is False.
     kwargs : dict
         Keyword arguments used to filter the schema.
         Example kwargs that may be used include: "suffixes", "datatypes",
@@ -79,7 +84,11 @@ def make_filename_template(**kwargs):
         in the schema, after filtering.
     """
     schema_obj = schema.load_schema()
-    codeblock = render.make_filename_template(schema_obj, **kwargs)
+    codeblock = render.make_filename_template(
+        schema_obj,
+        pdf_format=pdf_format,
+        **kwargs,
+    )
     return codeblock
 
 
