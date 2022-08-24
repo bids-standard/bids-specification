@@ -61,7 +61,9 @@ jobs:
         shell: bash {0}
         run: |
           echo "BIDSSCHEMATOOLS_RELEASE is set to $BIDSSCHEMATOOLS_RELEASE"
-          python -m pytest --pyargs bidsschematools -m "not validate_schema" --cov-append --cov-report=xml --cov=bidsschematools
+          pushd tools/schemacode
+            python -m pytest -vvs --pyargs bidsschematools -m "not validate_schema" --cov-append --cov-report=xml --cov=bidsschematools
+          popd
           ls -lah
           tree
 
