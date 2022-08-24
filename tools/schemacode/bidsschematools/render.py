@@ -484,13 +484,11 @@ def append_filename_template_legend(
         return
 
     legend = """
-- Filename entities or folders between square brackets (for example `[_ses-<label>]`) are OPTIONAL.
-- Some entities may only allow specific values,
-in which case those values are listed in `<>`,
-separated by `|`.
-- `_<suffix>` means that there are several (>6) valid suffixes for this filename pattern.
-- `.<extension>` means that there are several (>6) valid extensions for this file type.
-- `[.gz]` means that both the unzipped and gzipped version of the extension are valid.
+"<li>Filename entities or folders between square brackets (for example <code>[_ses-<label>]</code>) are OPTIONAL.</li>",
+"<li>Some entities may only allow specific values, in which case those values are listed in <code><>`, separated by <code>|</code>.</li>",
+"<li><code>_<suffix></code> means that there are several (>6) valid suffixes for this filename pattern.</li>",
+"<li><code>.<extension></code> means that there are several (>6) valid extensions for this file type.</li>",
+"<li><code>[.gz]</code> means that both the unzipped and gzipped version of the extension are valid.</li>",
 """
 
     if pdf_format:
@@ -498,7 +496,7 @@ separated by `|`.
 
 **Legend**:
 
-{legend}
+{legend.replace("<li>", "- ").replace("</li>", "").replace("<code>", "`").replace("</code", "`")}
 
 """
     else:
@@ -506,9 +504,9 @@ separated by `|`.
 
 <details>
 <summary><strong>Legend:</strong></summary>
-
+<ul>
 {legend}
-
+</ul>
 </details>
 
 """
