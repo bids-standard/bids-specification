@@ -44,33 +44,13 @@ jobs:
         shell: bash {0}
         run: python -c "import sys; print(sys.version)"
 
-      - name: "DO WITH tags!!!"
+      - name: "Set Release Variable based on tag"
         shell: bash {0}
         run: |
-          echo ${{ github.GITHUB_REF }}
-          echo ${{ github.CI }}
-          echo ${{ github.workspace.GITHUB_REF }}
-          echo ${{ github.workspace.CI }}
-          echo ${{ env.GITHUB_REF }}
-          echo ${{ env.CI }}
-          echo $GITHUB_REF
-          echo $CI
-          echo "$GITHUB_REF"
-          echo "$CI"
-          echo ${GITHUB_REF}
-          echo ${CI}
-          pwd
-          ls -lah
-          cat .git/COMMIT_EDITMSG
-          tree .git
-          which git
-          git ls-remote --tags
-          git describe --tags
-          git describe --tags
-          git describe --tags
           MY_TAG="$(git describe --tags)"
           if [ "${MY_TAG:0:7}" = "schema-" ]; then
             echo "BIDSSCHEMATOOLS_RELEASE=1" >> $GITHUB_ENV
+            echo "BIDSSCHEMATOOLS_RELEASE is set to `$BIDSSCHEMATOOLS_RELEASE`"
           fi
 
       - name: "Install the schemacode package"
