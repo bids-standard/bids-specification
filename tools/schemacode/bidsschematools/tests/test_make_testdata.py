@@ -31,8 +31,8 @@ def test_make_archive(bids_examples, bids_error_examples):
     * Archives will be generated under `/tmp/bidsschematools-testdata-SCHEMA_VERSION.tar.gz`
     """
 
-    target_dir = os.path.abspath(os.path.join(os.path.dirname(__file__),"data","bundled"))
-    os.makedirs(target_dir, exist_ok = True)
+    target_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "data", "bundled"))
+    os.makedirs(target_dir, exist_ok=True)
     shutil.copytree(bids_examples, f"{target_dir}/bids-examples")
     shutil.copytree(bids_error_examples, f"{target_dir}/bids-error-examples")
 
