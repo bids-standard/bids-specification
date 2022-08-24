@@ -487,34 +487,34 @@ def append_filename_template_legend(
         return
 
     legend = """
-    - Filename entities or folders between square brackets (for example `[_ses-<label>]`) are OPTIONAL.
-    - Some entities may only allow specific values,
-    in which case those values are listed in `<>`,
-    separated by `|`.
-    - `_<suffix>` means that there are several (>6) valid suffixes for this filename pattern.
-    - `.<extension>` means that there are several (>6) valid extensions for this file type.
-    - `[.gz]` means that both the unzipped and gzipped version of the extension are valid.
-    """
+- Filename entities or folders between square brackets (for example `[_ses-<label>]`) are OPTIONAL.
+- Some entities may only allow specific values,
+in which case those values are listed in `<>`,
+separated by `|`.
+- `_<suffix>` means that there are several (>6) valid suffixes for this filename pattern.
+- `.<extension>` means that there are several (>6) valid extensions for this file type.
+- `[.gz]` means that both the unzipped and gzipped version of the extension are valid.
+"""
 
     if pdf_format:
         text += f"""
 
-    **Legend**:
+**Legend**:
 
-    {legend}
+{legend}
 
-    """
+"""
     else:
         text += f"""
 
-    <details>
-    <summary><strong>Legend:</strong></summary>
+<details>
+<summary><strong>Legend:</strong></summary>
 
-    {legend}
+{legend}
 
-    </details>
+</details>
 
-    """
+"""
 
     return text
 
