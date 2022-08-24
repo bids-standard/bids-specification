@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# This is a script which automates creation and pushing of unique tags for github actions.
+# It is particularly useful when debugging the upload hooks for pypi.
+# The workflow for that is to edit `.github/workflows/schemacode_ci.yml` and add a secondary branch name to the `on` section right after master.
+# This will allow you to keep pushing to the branch as if it were master and unix-time tagged archives being uploaded to test.pypi.
+
 VERSION_FILE="src/schema/SCHEMA_VERSION"
 
 pushd ..
