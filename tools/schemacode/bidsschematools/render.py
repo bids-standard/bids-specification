@@ -105,9 +105,7 @@ def _make_entity_definition(entity, entity_info, src_path):
     text += "\n\n"
     text += f"**Full name**: {entity_info['display_name']}"
     text += "\n\n"
-    text += (
-        f"**Format**: `{entity_info['name']}-<{entity_info.get('format', 'label')}>`"
-    )
+    text += f"**Format**: `{entity_info['name']}-<{entity_info.get('format', 'label')}>`"
     text += "\n\n"
     if "enum" in entity_info.keys():
         text += f"**Allowed values**: `{'`, `'.join(entity_info['enum'])}`"
@@ -213,8 +211,7 @@ def make_glossary(schema, src_path=None):
         temp_obj_def = {
             k: v
             for k, v in obj_def.items()
-            if k
-            not in ("description", "display_name", "name", "value", "enum", "pattern")
+            if k not in ("description", "display_name", "name", "value", "enum", "pattern")
         }
 
         if temp_obj_def:
@@ -409,9 +406,7 @@ def make_filename_template(
                     # but the rules reference the actual suffix string (2PE instead of TwoPE),
                     # so we need to look it up.
                     suffix_id = [
-                        k
-                        for k, v in schema["objects"]["suffixes"].items()
-                        if v["value"] == suffix
+                        k for k, v in schema["objects"]["suffixes"].items() if v["value"] == suffix
                     ][0]
 
                     suffix_string = utils._link_with_html(
@@ -469,7 +464,9 @@ def make_filename_template(
     if pdf_format:
         codeblock = f"Template:\n```Text\n{paragraph}\n```"
     else:
-        codeblock = f'Template:\n<div class="highlight"><pre><code>{paragraph}\n</code></pre></div>'
+        codeblock = (
+            f'Template:\n<div class="highlight"><pre><code>{paragraph}\n</code></pre></div>'
+        )
 
     codeblock = codeblock.expandtabs(4)
     codeblock = append_filename_template_legend(codeblock, pdf_format)
@@ -593,9 +590,7 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
                         dtype_rows.pop(existing_suffixes_str)
                         old_suffix_list = existing_suffixes_str.split(" ")
                         new_suffix_list = suffixes_str.split(" ")
-                        comb_suffix_list = sorted(
-                            list(set(new_suffix_list + old_suffix_list))
-                        )
+                        comb_suffix_list = sorted(list(set(new_suffix_list + old_suffix_list)))
 
                         # Identify if the list of suffixes comes from an existing alternate row
                         number_suffixes = list(filter(str.isnumeric, comb_suffix_list))
@@ -690,26 +685,18 @@ def make_suffix_table(schema, suffixes, src_path=None, tablefmt="github"):
     suffix_schema = schema["objects"]["suffixes"]
 
     all_suffixes = pd.DataFrame.from_records(list(suffix_schema.values()))
-    df = all_suffixes[all_suffixes.value.isin(suffixes)][
-        ["value", "display_name", "description"]
-    ]
+    df = all_suffixes[all_suffixes.value.isin(suffixes)][["value", "display_name", "description"]]
 
     suffixes_not_found = set(suffixes) - set(df.value)
     if suffixes_not_found:
-        raise Exception(
-            "Warning: Missing suffixes: {}".format(", ".join(suffixes_not_found))
-        )
+        raise Exception("Warning: Missing suffixes: {}".format(", ".join(suffixes_not_found)))
 
     def preproc(desc):
         return (
-            desc.replace(
-                "\\\n", ""
-            )  # A backslash before a newline means continue a string
+            desc.replace("\\\n", "")  # A backslash before a newline means continue a string
             .replace("\n\n", "<br>")  # Two newlines should be respected
             .replace("\n", " ")  # Otherwise a newline corresponds to a space
-            .replace(
-                "SPEC_ROOT", get_relpath(src_path)
-            )  # Spec internal links need to be replaced
+            .replace("SPEC_ROOT", get_relpath(src_path))  # Spec internal links need to be replaced
         )
 
     df.description = df.description.apply(preproc)
@@ -830,9 +817,7 @@ def make_sidecar_table(
                 # Typically begins with "if"
                 level = f"{level} {level_addendum}"
 
-        field_info[field] = (
-            (level, description_addendum) if description_addendum else level
-        )
+        field_info[field] = (level, description_addendum) if description_addendum else level
 
     table_str = make_obj_table(
         metadata_schema,
@@ -892,9 +877,7 @@ def make_metadata_table(schema, field_info, src_path=None, tablefmt="github"):
     return table_str
 
 
-def make_subobject_table(
-    schema, object_tuple, field_info, src_path=None, tablefmt="github"
-):
+def make_subobject_table(schema, object_tuple, field_info, src_path=None, tablefmt="github"):
     """Create a table of properties within an object.
 
     Parameters
