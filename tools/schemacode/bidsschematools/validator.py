@@ -462,7 +462,7 @@ def validate_all(
 
 def write_report(
     validation_result,
-    report_path="/var/tmp/bids-validator/report_{datetime}-{pid}.log",
+    report_path="~/.cache/bidsschematools/validator-report_{datetime}-{pid}.log",
     datetime_format="%Y%m%d%H%M%SZ",
 ):
     """Write a human-readable report based on the validation result.
@@ -492,8 +492,9 @@ def write_report(
         pid=os.getpid(),
     )
     report_path = os.path.abspath(os.path.expanduser(report_path))
+    report_dir = os.path.dirname(report_path)
     try:
-        os.makedirs(os.path.dirname(report_path))
+        os.makedirs(report_dir)
     except OSError:
         pass
 

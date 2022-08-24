@@ -11,21 +11,14 @@ Each derivative type defines their own set of fields, but all of them
 share the following (non-required) ones:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-        "Description": (
-            "RECOMMENDED",
-            "This describes the nature of the file.",
-        ),
-        "Sources": "OPTIONAL",
-        "RawSources": "DEPRECATED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("derivatives.common_derivatives.CommonDerivativeFields") }}
 
 ### Examples
 
@@ -102,16 +95,14 @@ or the space is not in the [Standard template identifiers][templates] table,
 then the `SpatialReference` metadata is REQUIRED.
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "SpatialReference": "RECOMMENDED if the derivative is aligned to a standard template listed in [Standard template identifiers][templates]. REQUIRED otherwise.",
-   }
-) }}
+{{ MACROS___make_sidecar_table("derivatives.common_derivatives.SpatialReferenceEntity") }}
 
 ### SpatialReference key allowed values
 

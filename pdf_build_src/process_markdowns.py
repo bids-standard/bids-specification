@@ -7,13 +7,13 @@ pandoc library documentation***) with pdf specific text rendering in mind as
 well.
 """
 
-from datetime import datetime
 import json
 import os
 import posixpath
 import re
 import subprocess
 import sys
+from datetime import datetime
 
 import numpy as np
 
@@ -645,8 +645,6 @@ def process_macros(duplicated_src_dir_path):
             page = MockPage()
             page.file = mock_file
 
-            _Context__self = {"page": page}
-
             # Replace code snippets in the text with their outputs
             matches = re.findall(re_code_snippets, contents)
             for m in matches:
@@ -656,7 +654,15 @@ def process_macros(duplicated_src_dir_path):
                 function_string = function_string.replace("MACROS___", "macros.")
                 # switch "use_pipe" flag OFF to render examples
                 if "make_filetree_example" in function_string:
-                    function_string = function_string.replace(")", ", False)")
+                    function_string = function_string.replace(
+                        ")",
+                        ", False)",
+                    )
+
+                # switch "pdf_format" ON to render filename templates
+                if "make_filename_template" in function_string:
+                    function_string = function_string.replace(")", ", pdf_format=True)")
+
                 # Run the function to get the output
                 new = eval(function_string)
                 # Replace the code snippet with the function output
