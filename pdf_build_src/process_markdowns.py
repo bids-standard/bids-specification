@@ -645,6 +645,8 @@ def process_macros(duplicated_src_dir_path):
             page = MockPage()
             page.file = mock_file
 
+            _Context__self = {"page": page}
+
             # Replace code snippets in the text with their outputs
             matches = re.findall(re_code_snippets, contents)
             for m in matches:
