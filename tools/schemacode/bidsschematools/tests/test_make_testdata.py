@@ -1,10 +1,11 @@
 import os
-import tarfile
+
+# import tarfile
 import shutil
 
 import pytest
 
-from .. import __version__
+# from .. import __version__
 
 
 def require_env(var):
