@@ -60,19 +60,20 @@ jobs:
       - name: "Run tests"
         shell: bash {0}
         run: |
-          echo "BIDSSCHEMATOOLS_RELEASE is set to $BIDSSCHEMATOOLS_RELEASE"
+          echo "Running test suite with BIDSSCHEMATOOLS_RELEASE set to $BIDSSCHEMATOOLS_RELEASE"
+          if [ -v BIDSSCHEMATOOLS_RELEASE ]; then
+            echo "This will save bundled data into test/data/bundled ."
+          fi
           pushd tools/schemacode
             python -m pytest -vvs --pyargs bidsschematools -m "not validate_schema" --cov-append --cov-report=xml --cov=bidsschematools
           popd
-          ls -lah
-          tree
 
       - name: "Test upload"
         shell: bash {0}
         id: testpypi_upload
         run: |
           if [ -v BIDSSCHEMATOOLS_RELEASE ]; then
-            python -m pip install build twine wheel
+            python -m pip install --upgrade build twine wheel
             echo "BIDSSCHEMATOOLS_RELEASE is set to $BIDSSCHEMATOOLS_RELEASE"
             pushd tools/schemacode
               python -m build
