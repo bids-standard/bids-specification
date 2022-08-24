@@ -5,6 +5,7 @@ on:
     branches:
       - "master"
       - "autodata"
+      - "autodata2"
     paths:
       - "tools/schemacode/**"
       - "src/schema/**"
