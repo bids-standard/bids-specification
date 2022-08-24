@@ -97,7 +97,7 @@ jobs:
 
       - name: "Real upload"
         shell: bash {0}
-        if: ${{ success(testpypi_upload) }}
+        if: steps.testpypi_upload.outputs.exit_code == 0
         run: |
           if [ -z "$BIDSSCHEMATOOLS_RELEASE" ]; then
             echo "BIDSSCHEMATOOLS_RELEASE is set to '$BIDSSCHEMATOOLS_RELEASE'"
