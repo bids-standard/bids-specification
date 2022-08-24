@@ -50,8 +50,7 @@ jobs:
           MY_TAG="$(git describe --tags)"
           if [ "${MY_TAG:0:7}" = "schema-" ]; then
             echo "BIDSSCHEMATOOLS_RELEASE=1" >> $GITHUB_ENV
-            export BIDSSCHEMATOOLS_RELEASE=1
-            echo "BIDSSCHEMATOOLS_RELEASE has been set to `$BIDSSCHEMATOOLS_RELEASE`"
+            echo "BIDSSCHEMATOOLS_RELEASE has been set to $BIDSSCHEMATOOLS_RELEASE"
           fi
 
       - name: "Install the schemacode package"
@@ -70,7 +69,7 @@ jobs:
         id: testpypi_upload
         run: |
           if [ -z "$BIDSSCHEMATOOLS_RELEASE" ]; then
-            echo "BIDSSCHEMATOOLS_RELEASE is set to `$BIDSSCHEMATOOLS_RELEASE`"
+            echo "BIDSSCHEMATOOLS_RELEASE is set to $BIDSSCHEMATOOLS_RELEASE"
             ls /tmp/bidsschematools* -lah
             python -m build
             twine upload -u __token__ -p ${{secrets.BIDS_TOKEN_TEST}} --repository testpypi dist/*
@@ -81,9 +80,8 @@ jobs:
         if: steps.testpypi_upload.outputs.exit_code == 0
         run: |
           echo "BIDSSCHEMATOOLS_RELEASE is set to $BIDSSCHEMATOOLS_RELEASE"
-          echo "BIDSSCHEMATOOLS_RELEASE is set to `$BIDSSCHEMATOOLS_RELEASE`"
           if [ -z "$BIDSSCHEMATOOLS_RELEASE" ]; then
-            echo "BIDSSCHEMATOOLS_RELEASE is set to `$BIDSSCHEMATOOLS_RELEASE`"
+            echo "BIDSSCHEMATOOLS_RELEASE is set to $BIDSSCHEMATOOLS_RELEASE"
             twine upload -u __token__ -p ${{secrets.BIDS_TOKEN_TEST}} --repository dist/*
           fi
 
