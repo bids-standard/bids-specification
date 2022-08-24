@@ -35,6 +35,7 @@ def test_make_archive(bids_examples, bids_error_examples):
     os.makedirs(target_dir, exist_ok=True)
     shutil.copytree(bids_examples, f"{target_dir}/bids-examples")
     shutil.copytree(bids_error_examples, f"{target_dir}/bids-error-examples")
+    print("TEST DATA IS BEING MADE in f{target_dir}")
 
     # Keeping this for now, it would be really nice to have a separate archive someday.
     # archive_name = f"bidsschematools-testdata-{__version__}"
