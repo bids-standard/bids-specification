@@ -11,7 +11,7 @@ from markdown_it import MarkdownIt
 from tabulate import tabulate
 
 from . import utils
-from .schema import BIDSSchemaError, filter_schema, load_schema, Namespace
+from .schema import BIDSSchemaError, Namespace, filter_schema, load_schema
 
 lgr = utils.get_logger()
 # Basic settings for output, for now just basic
