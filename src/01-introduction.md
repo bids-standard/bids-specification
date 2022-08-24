@@ -149,6 +149,14 @@ For example:
     Frontiers in Neuroscience, 16 (871228).
     [doi: 10.3389/fnins.2022.871228](https://doi.org/10.3389/fnins.2022.871228)
 
+#### qMRI
+
+-   Karakuzu, A., Appelhoff, S., Auer, T., Boudreau M., Feingold F., Khan A.R., Lazari A., Markiewicz C.J.,
+    Mulder M., Phillips C., Salo T., Stikov N., Whitaker K. and de Hollander G., 
+    **qMRI-BIDS: An extension to the brain imaging data structure for quantitative magnetic resonance imaging data.** 
+    Scientific Data 9, 517 (2022). [doi: 10.1038/s41597-022-01571-4](https://doi.org/10.1038/s41597-022-01571-4)
+
+
 ### Research Resource Identifier (RRID)
 
 BIDS has also a
