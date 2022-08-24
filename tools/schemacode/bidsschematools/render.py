@@ -9,6 +9,8 @@ import pandas as pd
 import yaml
 from tabulate import tabulate
 
+from markdown_it import MarkdownIt
+
 from . import utils
 from .schema import BIDSSchemaError, Namespace, filter_schema, load_schema
 
@@ -483,17 +485,15 @@ def append_filename_template_legend(
     if text is None:
         return
 
+    md = MarkdownIt().disable("image").enable("table")
+
     legend = """
-<li>Filename entities or folders between square brackets
-    (for example <code>[_ses-<label>]</code>) are OPTIONAL.</li>
-<li>Some entities may only allow specific values,
-    in which case those values are listed in <code><></code>, separated by <code>|</code>.</li>
-<li><code>_<suffix></code> means that there are several (>6) valid suffixes
-    for this filename pattern.</li>
-<li><code>.<extension></code> means that there are several (>6) valid extensions
-    for this file type.</li>
-<li><code>[.gz]</code> means that both the unzipped and gzipped versions
-    of the extension are valid.</li>
+- Filename entities or folders between square brackets (for example `[_ses-<label>]`) are OPTIONAL.
+- Some entities may only allow specific values,
+  in which case those values are listed in `<>`, separated by `|`.
+- `_<suffix>` means that there are several (>6) valid suffixes for this filename pattern.
+- `.<extension>` means that there are several (>6) valid extensions for this file type.
+- [.gz] means that both the unzipped and gzipped versions of the extension are valid.
 """
 
     if pdf_format:
@@ -501,7 +501,7 @@ def append_filename_template_legend(
 
 **Legend**:
 
-{legend.replace("<li>", "- ").replace("</li>", "").replace("<code>", "`").replace("</code>", "`")}
+{legend}
 
 """
     else:
@@ -510,7 +510,7 @@ def append_filename_template_legend(
 <details>
 <summary><strong>Legend:</strong></summary>
 <ul>
-{legend}
+{md.render(legend)}
 </ul>
 </details>
 
