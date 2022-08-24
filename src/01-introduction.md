@@ -147,7 +147,7 @@ For example:
     Castelli F.M., The BIDS Maintainers and Cohen-Adad J. (2022).
     **Microscopy-BIDS: An Extension to the Brain Imaging Data Structure for Microscopy Data**.
     Frontiers in Neuroscience, 16 (871228).
-    [doi: 10.3389/fnins.2022.871228](https://doi.org/10.3389/fnins.2022.871228)
+    [doi:10.3389/fnins.2022.871228](https://doi.org/10.3389/fnins.2022.871228)
 
 #### qMRI
 
