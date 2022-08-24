@@ -70,8 +70,9 @@ jobs:
           if [ -v BIDSSCHEMATOOLS_RELEASE ]; then
             python -m pip install twine
             echo "BIDSSCHEMATOOLS_RELEASE is set to $BIDSSCHEMATOOLS_RELEASE"
-            ls /tmp/bidsschematools* -lah
             python -m build
+            ls -lah
+            tree
             twine upload -u __token__ -p ${{secrets.BIDS_TOKEN_TEST}} --repository testpypi dist/*
           fi
 
