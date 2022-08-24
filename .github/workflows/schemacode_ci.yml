@@ -68,10 +68,10 @@ jobs:
         id: testpypi_upload
         run: |
           if [ -v BIDSSCHEMATOOLS_RELEASE ]; then
-            python -m pip install twine
+            python -m pip install twine wheel
             echo "BIDSSCHEMATOOLS_RELEASE is set to $BIDSSCHEMATOOLS_RELEASE"
             pushd tools/schemacode
-              python -m build .
+              python -m build
               twine upload -u __token__ -p ${{secrets.BIDS_TOKEN_TEST}} --repository testpypi dist/*
             popd
           fi
