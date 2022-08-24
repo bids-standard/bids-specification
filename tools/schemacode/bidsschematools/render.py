@@ -469,33 +469,49 @@ def make_filename_template(
         )
 
     codeblock = codeblock.expandtabs(4)
-    codeblock = append_filename_template_legend(codeblock)
+    codeblock = append_filename_template_legend(codeblock, pdf_format)
     codeblock = codeblock.replace("SPEC_ROOT", get_relpath(src_path))
 
     return codeblock
 
 
-def append_filename_template_legend(text=None):
+def append_filename_template_legend(
+    text=None,
+    pdf_format=False,
+):
 
     if text is None:
         return
 
-    text += """
+    legend = """
+    - Filename entities or folders between square brackets (for example `[_ses-<label>]`) are OPTIONAL.
+    - Some entities may only allow specific values,
+    in which case those values are listed in `<>`,
+    separated by `|`.
+    - `_<suffix>` means that there are several (>6) valid suffixes for this filename pattern.
+    - `.<extension>` means that there are several (>6) valid extensions for this file type.
+    - `[.gz]` means that both the unzipped and gzipped version of the extension are valid.
+    """
 
-<details>
-<summary><strong>Legend:</strong></summary>
+    if pdf_format:
+        text += f"""
 
-- Filename entities or folders between square brackets (for example `[_ses-<label>]`) are OPTIONAL.
-- Some entities may only allow specific values,
-  in which case those values are listed in `<>`,
-  separated by `|`.
-- `_<suffix>` means that there are several (>6) valid suffixes for this filename pattern.
-- `.<extension>` means that there are several (>6) valid extensions for this file type.
-- `[.gz]` means that both the unzipped and gzipped version of the extension are valid.
+        **Legend**:
 
-</details>
+        {legend}
 
-"""
+        """
+    else:
+        text += f"""
+
+        <details>
+        <summary><strong>Legend:</strong></summary>
+
+        {legend}
+
+        </details>
+
+        """
 
     return text
 
