@@ -7,12 +7,11 @@ from collections.abc import Mapping
 
 import pandas as pd
 import yaml
+from markdown_it import MarkdownIt
 from tabulate import tabulate
 
-from markdown_it import MarkdownIt
-
 from . import utils
-from .schema import BIDSSchemaError, Namespace, filter_schema, load_schema
+from .schema import BIDSSchemaError, filter_schema, load_schema, Namespace
 
 lgr = utils.get_logger()
 # Basic settings for output, for now just basic

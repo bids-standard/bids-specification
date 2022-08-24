@@ -6,7 +6,6 @@ See the companion Jupyter notebook ../filetree_example.ipynb to see demos
 on how to use this code.
 
 """
-
 import os
 
 

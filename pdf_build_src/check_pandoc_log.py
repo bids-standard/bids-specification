@@ -1,5 +1,4 @@
 """Inspect the pandoc log for warnings that should be raised as errors."""
-
 # %%
 import json
 

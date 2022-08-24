@@ -6,7 +6,6 @@ a pdf from multiple markdown files using the pandoc library (***add link to
 pandoc library documentation***) with pdf specific text rendering in mind as
 well.
 """
-
 import json
 import os
 import posixpath

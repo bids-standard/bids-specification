@@ -2,10 +2,10 @@
 Script that checks the order of the entities of the suffix group of each datatype
 and lists those that are out of order.
 """
-
-import yaml
 import warnings
 from pathlib import Path
+
+import yaml
 
 
 def main():
