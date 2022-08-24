@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - "master"
-      - "autodata"
       - "autodata2"
     paths:
       - "tools/schemacode/**"
@@ -61,7 +60,10 @@ jobs:
       - name: "Run tests"
         shell: bash {0}
         run: |
+          echo "BIDSSCHEMATOOLS_RELEASE is set to $BIDSSCHEMATOOLS_RELEASE"
           python -m pytest --pyargs bidsschematools -m "not validate_schema" --cov-append --cov-report=xml --cov=bidsschematools
+          ls -lah
+          tree
 
       - name: "Test upload"
         shell: bash {0}
@@ -80,7 +82,6 @@ jobs:
         shell: bash {0}
         if: steps.testpypi_upload.outputs.exit_code == 0
         run: |
-          echo "BIDSSCHEMATOOLS_RELEASE is set to $BIDSSCHEMATOOLS_RELEASE"
           if [ -v BIDSSCHEMATOOLS_RELEASE ]; then
             pushd tools/schemacode
               echo "BIDSSCHEMATOOLS_RELEASE is set to $BIDSSCHEMATOOLS_RELEASE"
