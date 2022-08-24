@@ -499,22 +499,22 @@ def append_filename_template_legend(
     if pdf_format:
         text += f"""
 
-        **Legend**:
+    **Legend**:
 
-        {legend}
+    {legend}
 
-        """
+    """
     else:
         text += f"""
 
-        <details>
-        <summary><strong>Legend:</strong></summary>
+    <details>
+    <summary><strong>Legend:</strong></summary>
 
-        {legend}
+    {legend}
 
-        </details>
+    </details>
 
-        """
+    """
 
     return text
 
