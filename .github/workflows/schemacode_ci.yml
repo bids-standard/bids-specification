@@ -68,6 +68,7 @@ jobs:
         id: testpypi_upload
         run: |
           if [ -v BIDSSCHEMATOOLS_RELEASE ]; then
+            python -m pip install twine
             echo "BIDSSCHEMATOOLS_RELEASE is set to $BIDSSCHEMATOOLS_RELEASE"
             ls /tmp/bidsschematools* -lah
             python -m build
