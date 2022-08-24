@@ -24,7 +24,7 @@ as well as their requirement levels.
 
 ## Object files
 
-The types of objects currently supported in the schema are:
+The types  of objects currently supported in the schema are:
 
 -   modalities,
 -   datatypes,
