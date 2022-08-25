@@ -53,17 +53,17 @@ color:
   type: string
   unit: hexadecimal
 component:
-    name: component
-    display_name: Coordinate System Component
-    description: |
-        Component of the representational system described in `*_coordinatesystem.tsv` that the
-        channel contains. Must be one of: "x" ,"y", "z", "n/a"
-    type: string
-    enum:
-    - "x"
-    - "y"
-    - "z"
-    - "n/a"
+  name: component
+  display_name: Coordinate System Component
+  description: |
+    Component of the representational system described in `*_coordinatesystem.tsv` that the
+    channel contains. Must be one of: "x" ,"y", "z", "n/a"
+  type: string
+  enum:
+  - "x"
+  - "y"
+  - "z"
+  - "n/a"
 derived_from:
   name: derived_from
   display_name: Derived from
