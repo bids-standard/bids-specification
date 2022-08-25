@@ -10,8 +10,6 @@ except ImportError:  # PY<3.9
 
 import pytest
 
-from bidsschematools import schema, utils
-
 lgr = logging.getLogger()
 
 # This selects a subset of the bids-examples collection to run the test suite on.
@@ -84,14 +82,16 @@ def get_gitrepo_fixture(url, whitelist):
 @pytest.fixture(scope="session")
 def schema_dir():
     """Path to the schema housed in the bids-specification repo."""
+    from bidsschematools import utils
     bids_schema = utils.get_schema_path()
     return bids_schema
 
 
 @pytest.fixture(scope="session")
-def schema_obj(schema_dir):
+def schema_obj():
     """Schema object."""
-    return schema.load_schema(schema_dir)
+    from bidsschematools import schema
+    return schema.load_schema()
 
 
 bids_examples = get_gitrepo_fixture(
