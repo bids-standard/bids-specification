@@ -30,7 +30,7 @@ jobs:
       - name: Build archive on tag
         run: pytest tools/schemacode/bidsschematools -k make_archive
         env:
-          BIDSSCHEMATOOLS_RELEASE: ${{ startsWith(github.ref, 'refs/tags/schema-') }}
+          BIDSSCHEMATOOLS_RELEASE: ${{ startsWith(github.ref, 'refs/tags/schema-') || ''}}
       - run: python -m build tools/schemacode
       - name: Check distributions
         run: twine check tools/schemacode/dist/*
