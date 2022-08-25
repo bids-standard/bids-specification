@@ -26,26 +26,28 @@ jobs:
       - uses: actions/setup-python@v4
         with:
             python-version: ${{ matrix.python-version }}
-      - run: pip install --upgrade build twine
-      - name: Install test dependencies
+      - name: "Install build dependencies"
+        run: pip install --upgrade build twine
+      - name: "Install test dependencies on tag"
         run: pip install --upgrade pytest pyyaml pandas tabulate
         if: ${{ startsWith(github.ref, 'refs/tags/schema-') }}
-      - name: Build archive on tag
+      - name: "Build archive on tag"
         run: pytest tools/schemacode/bidsschematools -k make_archive
         env:
           BIDSSCHEMATOOLS_RELEASE: 1
         if: ${{ startsWith(github.ref, 'refs/tags/schema-') }}
-      - run: python -m build tools/schemacode
-      - name: Check distributions
+      - name: "Build source distribution and wheel"
+        run: python -m build tools/schemacode
+      - name: "Check distribution metadata"
         run: twine check tools/schemacode/dist/*
       - uses: actions/upload-artifact@v3
         with:
           name: dist
           path: tools/schemacode/dist/
 
-  run_tests:
-
+  test:
     runs-on: ${{ matrix.os }}
+    needs: [build]
     strategy:
         fail-fast: false
         matrix:
@@ -67,30 +69,21 @@ jobs:
         shell: bash {0}
         run: python -c "import sys; print(sys.version)"
 
-      - name: "Set Release Variable based on tag"
-        shell: bash {0}
-        run: |
-          MY_TAG="$(git describe --tags)"
-          if [ "${MY_TAG:0:7}" = "schema-" ]; then
-            echo "BIDSSCHEMATOOLS_RELEASE=1" >> $GITHUB_ENV
-          fi
+      - name: "Fetch packages"
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+          path: dist/
 
-      - name: "Install the schemacode package"
-        shell: bash {0}
+      - name: "Install package"
         run: |
-          python -m pip install --progress-bar off --upgrade pip
-          python -m pip install ./tools/schemacode[all]
+          pip install $( ls dist/*.whl )[all]
 
       - name: "Run tests"
         shell: bash {0}
         run: |
-          echo "Running test suite with BIDSSCHEMATOOLS_RELEASE set to $BIDSSCHEMATOOLS_RELEASE"
-          if [ -v BIDSSCHEMATOOLS_RELEASE ]; then
-            echo "This will save bundled data into test/data/bundled ."
-          fi
-          pushd tools/schemacode
-            python -m pytest -vvs --pyargs bidsschematools -m "not validate_schema" --cov-append --cov-report=xml --cov=bidsschematools
-          popd
+          python -m pytest -vs --pyargs bidsschematools -m "not validate_schema" \
+              --cov-append --cov-report=xml --cov=bidsschematools
 
       # - name: "Test upload"
       #   shell: bash {0}
@@ -116,12 +109,12 @@ jobs:
       #       popd
       #     fi
 
-      # - name: Upload artifacts
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: unit_${{ matrix.os }}_${{ matrix.python-version }}
-      #     path: coverage.xml
-      #   if: success()
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: unit_${{ matrix.os }}_${{ matrix.python-version }}
+          path: coverage.xml
+        if: success()
 
   flake8-lint:
     runs-on: ubuntu-latest
@@ -177,7 +170,7 @@ jobs:
   upload_to_codecov:
     runs-on: "ubuntu-latest"
     name: Upload coverage
-    needs: [run_tests,validate_schema]
+    needs: [test,validate_schema]
     steps:
     - name: Checkout
       uses: actions/checkout@v2
