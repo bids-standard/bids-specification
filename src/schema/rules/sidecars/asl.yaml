@@ -54,41 +54,6 @@ MRIASLTextOnlySliceTimingReq:
           final entry in the `SliceTiming` list is the time of acquisition of slice 0.
           Without this parameter slice time correction will not be possible.
 
-MRIASLTextOnlyFlipAngleRec:
-  selectors:
-    - modality == "MRI"
-    - datatype == "perf"
-    - suffix == "asl"
-    - '!(LookLocker in sidecar) || sidecar.LookLocker == false'
-  fields:
-    FlipAngle:
-      level: recommended
-      level_addendum: required if `LookLocker` is `true`
-
-MRIASLTextOnlyFlipAngleReq:
-  selectors:
-    - modality == "MRI"
-    - datatype == "perf"
-    - suffix == "asl"
-    - sidecar.LookLocker == true
-  fields:
-    FlipAngle:
-      level: required
-      issue:
-        code: LOOK_LOCKER_FLIP_ANGLE_MISSING
-        message: |
-          You should define `FlipAngle` for this file, in case of a
-          LookLocker acquisition. `FlipAngle` is the flip angle (FA)
-          for the acquisition, specified in degrees. Corresponds to
-          DICOM Tag 0018, 1314 `Flip Angle`. The data type number may
-          apply to files from any MRI modality concerned with a single
-          value for this field, or to the files in a file collection
-          where the value of this field is iterated using the flip entity.
-          The data type array provides a value for each volume in a 4D
-          dataset and should only be used when the volume timing is critical
-          for interpretation of the data, such as in ASL or variable flip
-          angle fMRI sequences.
-
 # Common metadata fields applicable to both (P)CASL and PASL
 MRIASLCommonMetadataFields:
   selectors:
