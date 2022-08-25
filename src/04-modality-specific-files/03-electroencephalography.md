@@ -28,12 +28,12 @@ The EEG community uses a variety of formats for storing raw data, and there is
 no single standard that all researchers agree on. For BIDS, EEG data MUST be
 stored in one of the following formats:
 
-| **Format**                                                                                   | **Extension(s)**         | **Description**                                                                                                                                                                                      |
-| -------------------------------------------------------------------------------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [European data format](https://www.edfplus.info/)                                            | `.edf`                   | Each recording consists of a single `.edf` file. [`edf+`](https://www.edfplus.info/specs/edfplus.html) files are permitted. The capital `.EDF` extension MUST NOT be used.                           |
-| [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5) | `.vhdr`, `.vmrk`, `.eeg` | Each recording consists of a  `.vhdr`, `.vmrk`, `.eeg` file triplet.                                                                                                                                 |
-| [EEGLAB](https://sccn.ucsd.edu/eeglab)                                                       | `.set`, `.fdt`           | The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab). Each recording consists of a `.set` file with an optional `.fdt` file.                                                 |
-| [Biosemi](https://www.biosemi.com/)                                                          | `.bdf`                   | Each recording consists of a single `.bdf` file. [`bdf+`](https://www.teuniz.net/edfbrowser/bdfplus%20format%20description.html) files are permitted. The capital `.BDF` extension MUST NOT be used. |
+| **Format**                                        | **Extension(s)**         | **Description**                                                                                                                                                                                      |
+| ------------------------------------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [European data format](https://www.edfplus.info/) | `.edf`                   | Each recording consists of a single `.edf` file. [`edf+`](https://www.edfplus.info/specs/edfplus.html) files are permitted. The capital `.EDF` extension MUST NOT be used.                           |
+| [BrainVision Core Data Format][bvformat]          | `.vhdr`, `.vmrk`, `.eeg` | Each recording consists of a  `.vhdr`, `.vmrk`, `.eeg` file triplet.                                                                                                                                 |
+| [EEGLAB](https://sccn.ucsd.edu/eeglab)            | `.set`, `.fdt`           | The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab). Each recording consists of a `.set` file with an OPTIONAL `.fdt` file.                                                 |
+| [Biosemi](https://www.biosemi.com/)               | `.bdf`                   | Each recording consists of a single `.bdf` file. [`bdf+`](https://www.teuniz.net/edfbrowser/bdfplus%20format%20description.html) files are permitted. The capital `.BDF` extension MUST NOT be used. |
 
 It is RECOMMENDED to use the European data format, or the BrainVision data
 format. It is furthermore discouraged to use the other accepted formats over
@@ -48,7 +48,7 @@ also encourage users to provide additional meta information extracted from the
 manufacturer specific data files in the sidecar JSON file. Other relevant files
 MAY be included alongside the original EEG data in `/sourcedata`.
 
-Note the RecordingType, which depends on whether the data stream on disk
+Note the `RecordingType`, which depends on whether the data stream on disk
 is interrupted or not.
 Continuous data is by definition 1 segment without interruption.
 Epoched data consists of multiple segments that all have the same length
@@ -499,3 +499,7 @@ Picture of a NAS fiducial placed between the eyebrows, rather than at the
 actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
 
 ![placement of NAS fiducial](images/sub-0001_ses-001_acq-NAS_photo.jpg "placement of NAS fiducial")
+
+<!-- Link Definitions -->
+
+[bvformat]: https://www.brainproducts.com/support-resources/brainvision-core-data-format-1-0/
