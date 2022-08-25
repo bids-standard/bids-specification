@@ -455,10 +455,7 @@ Some recordings consist of multiple parts, that span several files,
 for example through `echo-`, `part-`, or `split-` entities,
 or due to the file format such as in the BrainVision (`.vhdr`, `.vmrk`, `.eeg`)
 or EEGLAB (`.set`, `.fdt`) formats.
-Recordings with multiple parts MUST be documented with one row per file.
-It is RECOMMENDED that if the multiple parts of a recording stem solely from the file format,
-that file is listed, which would also be passed to software functions for
-reading (for example `.vhdr` for BrainVision and `.set` for EEGLAB).
+Such recordings MUST be documented with one row per file.
 
 <!-- This block generates a columns table.
 The definitions of these fields can be found in
