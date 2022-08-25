@@ -1,11 +1,13 @@
 import logging
-import os
 import tempfile
 from subprocess import run
 
-import pytest
+try:
+    from importlib.resources import as_file, files
+except ImportError:  # PY<3.9
+    from importlib_resources import as_file, files
 
-from bidsschematools import schema, utils
+import pytest
 
 lgr = logging.getLogger()
 
@@ -35,15 +37,14 @@ def get_gitrepo_fixture(url, whitelist):
     @pytest.fixture(scope="session")
     def fixture():
         archive_name = url.rsplit("/", 1)[-1]
-        testdata_dir = os.path.join(os.path.dirname(__file__), "data", "bundled", archive_name)
-        testdata_dir = os.path.abspath(testdata_dir)
-        if os.path.isdir(testdata_dir):
+        testdata_dir = files("bidsschematools.tests.data") / archive_name
+        if testdata_dir.is_dir():
             lgr.info(
-                "Found static testdata archive under `%s`. "
-                "Not downloading latest data from version control.",
-                testdata_dir,
+                f"Found static testdata archive under `{testdata_dir}`. "
+                "Not downloading latest data from version control."
             )
-            yield testdata_dir
+            with as_file(testdata_dir) as path:
+                yield path
         else:
             lgr.info(
                 "No static testdata available under `%s`. "
@@ -51,7 +52,6 @@ def get_gitrepo_fixture(url, whitelist):
                 testdata_dir,
             )
             with tempfile.TemporaryDirectory() as path:
-                assert os.path.exists(path)
                 lgr.debug("Cloning %r into %r", url, path)
                 runout = run(
                     [
@@ -80,14 +80,18 @@ def get_gitrepo_fixture(url, whitelist):
 @pytest.fixture(scope="session")
 def schema_dir():
     """Path to the schema housed in the bids-specification repo."""
+    from bidsschematools import utils
+
     bids_schema = utils.get_schema_path()
     return bids_schema
 
 
 @pytest.fixture(scope="session")
-def schema_obj(schema_dir):
+def schema_obj():
     """Schema object."""
-    return schema.load_schema(schema_dir)
+    from bidsschematools import schema
+
+    return schema.load_schema()
 
 
 bids_examples = get_gitrepo_fixture(
