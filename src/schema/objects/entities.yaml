@@ -120,8 +120,8 @@ hemisphere:
   type: string
   format: label
   enum:
-  - "L"
-  - "R"
+    - 'L'
+    - 'R'
 inversion:
   name: inv
   display_name: Inversion Time
@@ -166,8 +166,8 @@ mtransfer:
     respectively.
   type: string
   enum:
-  - "on"
-  - "off"
+    - 'on'
+    - 'off'
 part:
   name: part
   display_name: Part
@@ -188,10 +188,10 @@ part:
     omitted.
   type: string
   enum:
-  - mag
-  - phase
-  - real
-  - imag
+    - mag
+    - phase
+    - real
+    - imag
 processing:
   name: proc
   display_name: Processed (on device)
@@ -349,10 +349,22 @@ task:
   name: task
   display_name: Task
   description: |
-    Each task has a unique label that MUST only consist of letters and/or
-    numbers (other characters, including spaces and underscores, are not
-    allowed).
-    Those labels MUST be consistent across subjects and sessions.
+    A set of structured activities performed by the participant.
+    Tasks are usually accompanied by stimuli and responses, and can greatly vary in complexity.
+    For the purpose of this specification we consider the so-called "resting state" a task,
+    although events files are not expected for resting state data.
+    Additionally, a common convention in the specification is to include the word "rest" in
+    the `task` label for resting state files (for example, `task-rest`).
+
+    In the context of brain scanning, a task is always tied to one data acquisition.
+    Therefore, even if during one acquisition the subject performed multiple conceptually different behaviors
+    (with different sets of instructions) they will be considered one (combined) task.
+    The `task-<label>` MUST be consistent across subjects and sessions.
+
+    Files with the `task-<label>` entity SHOULD have an associated
+    [events file](SPEC_ROOT/04-modality-specific-files/05-task-events.md#task-events),
+    as well as certain metadata fields in the associated JSON file.
+
   type: string
   format: label
 tracer:

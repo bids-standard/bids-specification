@@ -1,15 +1,15 @@
 ---
 dwi:
   suffixes:
-  - dwi
+    - dwi
   extensions:
-  - .nii.gz
-  - .nii
-  - .json
-  - .bvec
-  - .bval
+    - .nii.gz
+    - .nii
+    - .json
+    - .bvec
+    - .bval
   datatypes:
-  - dwi
+    - dwi
   entities:
     subject: required
     session: optional
@@ -21,13 +21,13 @@ dwi:
 
 sbref:
   suffixes:
-  - sbref
+    - sbref
   extensions:
-  - .nii.gz
-  - .nii
-  - .json
+    - .nii.gz
+    - .nii
+    - .json
   datatypes:
-  - dwi
+    - dwi
   entities:
     subject: required
     session: optional
@@ -39,13 +39,13 @@ sbref:
 
 timeseries:
   suffixes:
-  - physio
-  - stim
+    - physio
+    - stim
   extensions:
-  - .tsv.gz
-  - .json
+    - .tsv.gz
+    - .json
   datatypes:
-  - dwi
+    - dwi
   entities:
     subject: required
     session: optional

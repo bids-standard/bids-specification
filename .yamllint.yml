@@ -5,6 +5,8 @@ rules:
     max: 120
   indentation:
     # See https://github.com/yaml/pyyaml/issues/545 for why
-    indent-sequences: false
+    spaces: 2
+    indent-sequences: true
   comments:
     level: error
+    min-spaces-from-content: 1
