@@ -11,6 +11,10 @@ on:
     branches:
       - "*"
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   build:
     runs-on: ${{ matrix.os }}
@@ -18,9 +22,6 @@ jobs:
         matrix:
             os: ["ubuntu-latest"]
             python-version: ["3.10"]
-    defaults:
-      run:
-        shell: bash
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
@@ -54,9 +55,6 @@ jobs:
             os: ["ubuntu-latest"]
             python-version: ["3.7", "3.8", "3.9", "3.10"]
     name: ${{ matrix.os }} with Python ${{ matrix.python-version }}
-    defaults:
-      run:
-        shell: bash
     steps:
       - uses: actions/checkout@v3
 
@@ -66,7 +64,6 @@ jobs:
             python-version: ${{ matrix.python-version }}
 
       - name: "Display Python version"
-        shell: bash {0}
         run: python -c "import sys; print(sys.version)"
 
       - name: "Fetch packages"
@@ -132,14 +129,12 @@ jobs:
           python-version: "3.7"
 
       - name: Install the schemacode package
-        shell: bash {0}
         run: |
           python -m pip install --progress-bar off --upgrade pip setuptools wheel
           python -m pip install -e ./tools/schemacode[all]
 
       - name: Run flake8
         working-directory: ./tools/schemacode/
-        shell: bash {0}
         run: |
           flake8 .
 
@@ -155,7 +150,6 @@ jobs:
         python-version: "3.9"
 
     - name: Install the schemacode package
-      shell: bash {0}
       run: |
         python -m pip install --progress-bar off --upgrade pip setuptools wheel
         python -m pip install -e ./tools/schemacode[all]
