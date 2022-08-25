@@ -102,6 +102,7 @@ anat_parametric_discrete_segmentation:
     space: optional
     resolution: optional
     density: optional
+    description: optional
 
 anat_nonparametric_discrete_segmentation:
   $ref: rules.datatypes.anat.nonparametric
@@ -114,6 +115,7 @@ anat_nonparametric_discrete_segmentation:
     space: optional
     resolution: optional
     density: optional
+    description: optional
 
 func_discrete_segmentation:
   $ref: rules.datatypes.func.func
@@ -126,6 +128,7 @@ func_discrete_segmentation:
     space: optional
     resolution: optional
     density: optional
+    description: optional
 
 dwi_discrete_segmentation:
   $ref: rules.datatypes.dwi.dwi
@@ -138,6 +141,7 @@ dwi_discrete_segmentation:
     space: optional
     resolution: optional
     density: optional
+    description: optional
 
 anat_parametric_probabilistic_segmentation:
   $ref: rules.datatypes.anat.parametric
@@ -151,6 +155,7 @@ anat_parametric_probabilistic_segmentation:
     resolution: optional
     density: optional
     label: optional
+    description: optional
 
 anat_nonparametric_probabilistic_segmentation:
   $ref: rules.datatypes.anat.nonparametric
@@ -164,6 +169,7 @@ anat_nonparametric_probabilistic_segmentation:
     resolution: optional
     density: optional
     label: optional
+    description: optional
 
 func_probabilistic_segmentation:
   $ref: rules.datatypes.func.func
@@ -177,6 +183,7 @@ func_probabilistic_segmentation:
     resolution: optional
     density: optional
     label: optional
+    description: optional
 
 dwi_probabilistic_segmentation:
   $ref: rules.datatypes.dwi.dwi
@@ -190,6 +197,7 @@ dwi_probabilistic_segmentation:
     resolution: optional
     density: optional
     label: optional
+    description: optional
 
 anat_parametic_discrete_surface:
   $ref: rules.datatypes.anat.parametric
@@ -204,6 +212,7 @@ anat_parametic_discrete_surface:
     space: optional
     resolution: optional
     density: optional
+    description: optional
 
 anat_nonparametic_discrete_surface:
   $ref: rules.datatypes.anat.nonparametric
@@ -218,3 +227,4 @@ anat_nonparametic_discrete_surface:
     space: optional
     resolution: optional
     density: optional
+    description: optional
