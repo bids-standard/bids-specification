@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - "master"
-      - "autodata2"
     tags:
       - "schema-*"
   pull_request:
