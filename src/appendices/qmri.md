@@ -88,7 +88,7 @@ A guide for using macros can be found at
    }
 ) }}
 
-Please visit the [file collections appendix](./10-file-collections.md#magnetic-resonance-imaging) to see the list of currently supported qMRI applications.
+Please visit the [file collections appendix](./file-collections.md#magnetic-resonance-imaging) to see the list of currently supported qMRI applications.
 
 ### Quantitative maps are derivatives
 
@@ -156,7 +156,7 @@ in the [BIDS examples](https://github.com/bids-standard/bids-examples#qmri-datas
 
 ## Metadata requirements for qMRI data
 
-The table of required entities for qMRI file collections are provided in the [entity table](./04-entity-table.md).
+The table of required entities for qMRI file collections are provided in the [entity table](./entity-table.md).
 However, viability of a qMRI file collection is determined not only by the naming and organization of the input files,
 but also by which metadata fields are provided in accompanying json files.
 
@@ -369,7 +369,7 @@ In this table, (`entity`/`fixed`) denotes whether the OPTIONAL metadata that for
 flavor of qMRI application for the respective suffix varies across files of a file collection
 (which calls for using a linking entity) or fixed. If former is the case, the entity is to be
 added to the files in that file collection. Note that this addition MUST be allowed by the
-priority levels given for that suffix in the [`entity table`](./04-entity-table.md). If latter (`fixed`) is the case,
+priority levels given for that suffix in the [`entity table`](./entity-table.md). If latter (`fixed`) is the case,
 filenames will remain the same; however, the optional metadata (third column) may
 define the flavor of the application (fourth column) along with the conditional value of a
 required metadata field (second column).
@@ -406,7 +406,7 @@ introduce a new suffix:
     (for example, `MP2RAGE`), sequence names are not used as suffixes.
 
 -   File collection suffixes for qMRI applications attain a clear description of the qMRI method that they relate to in the
-    [file collections appendix](./10-file-collections.md#magnetic-resonance-imaging).
+    [file collections appendix](./file-collections.md#magnetic-resonance-imaging).
 
 -   Hyperlinks to example applications and reference method articles are encouraged whenever possible.
 

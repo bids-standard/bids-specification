@@ -12,11 +12,11 @@ Please keep the following list of linking entities up-to-date with the file coll
 included in this appendix:
 
 -   Magnetic Resonance Imaging
-    -   [`echo`](./09-entities.md#echo)
-    -   [`flip`](./09-entities.md#flip)
-    -   [`inv`](./09-entities.md#inv)
-    -   [`mt`](./09-entities.md#mt)
-    -   [`part`](./09-entities.md#part)
+    -   [`echo`](./entities.md#echo)
+    -   [`flip`](./entities.md#flip)
+    -   [`inv`](./entities.md#inv)
+    -   [`mt`](./entities.md#mt)
+    -   [`part`](./entities.md#part)
 
 ## Magnetic Resonance Imaging
 

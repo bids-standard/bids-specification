@@ -42,7 +42,7 @@ bvec:
     Following the FSL format for the `bvec` specification, the coordinate system of
     the *b* vectors MUST be defined with respect to the coordinate system defined by
     the header of the corresponding `_dwi` NIfTI file and not the scanner's device
-    coordinate system (see [Coordinate systems](../appendices/coordinate-systems.md)).
+    coordinate system (see [Coordinate systems](SPEC_PATH/appendices/coordinate-systems.md)).
     The most relevant limitation imposed by this choice is that the gradient information cannot
     be directly stored in this format if the scanner generates *b*-vectors in *scanner coordinates*.
 chn:

@@ -2,13 +2,13 @@
 
 Preferred names of MEG systems comprise restricted keywords for Manufacturer field in the `*_meg.json` file:
 
--   [`CTF`](06-meg-file-formats.md#ctf)
--   [`Neuromag/Elekta/Megin`](06-meg-file-formats.md#neuromagelektamegin)
--   [`BTi/4D`](06-meg-file-formats.md#bti4d-neuroimaging)
--   [`KIT/Yokogawa/Ricoh`](06-meg-file-formats.md#kityokogawaricoh)
--   [`KRISS`](06-meg-file-formats.md#kriss)
--   [`ITAB`](06-meg-file-formats.md#itab)
--   [`Aalto/MEG-MRI`](06-meg-file-formats.md#aalto-megmri)
+-   [`CTF`](meg-file-formats.md#ctf)
+-   [`Neuromag/Elekta/Megin`](meg-file-formats.md#neuromagelektamegin)
+-   [`BTi/4D`](meg-file-formats.md#bti4d-neuroimaging)
+-   [`KIT/Yokogawa/Ricoh`](meg-file-formats.md#kityokogawaricoh)
+-   [`KRISS`](meg-file-formats.md#kriss)
+-   [`ITAB`](meg-file-formats.md#itab)
+-   [`Aalto/MEG-MRI`](meg-file-formats.md#aalto-megmri)
 -   `Other`
 
 Restricted keywords for ManufacturersModelName field in the `*_meg.json` file:
