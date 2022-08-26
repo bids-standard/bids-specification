@@ -447,15 +447,31 @@ sub-<label>/
 
 Optional: Yes
 
-The purpose of this file is to describe timing and other properties of each
-imaging acquisition sequence (each *run* file) within one session.
+The purpose of this file is to describe timing and other properties of each neural recording *file* within one session.
+In general, each of these files SHOULD be described by exactly one row.
 
-Each neural recording *file* SHOULD be described by exactly one row.
-Some recordings consist of multiple parts, that span several files,
-for example through `echo-`, `part-`, or `split-` entities,
-or due to the file format such as in the BrainVision (`.vhdr`, `.vmrk`, `.eeg`)
-or EEGLAB (`.set`, `.fdt`) formats.
-Such recordings MUST be documented with one row per file.
+For *file formats* that are based on several files of different extensions,
+or a directory of files with different extensions (multi-file file formats),
+only that file SHOULD be listed that would also be passed to analysis software for reading the data.
+For example for BrainVision data (`.vhdr`, `.vmrk`, `.eeg`),
+only the `.vhdr` SHOULD be listed;
+for EEGLAB data (`.set`, `.fdt`),
+only the `.set` file SHOULD be listed;
+and for CTF data (`.ds`),
+the whole `.ds` directory SHOULD be listed,
+and not the individual files in that directory.
+
+Some neural recordings consist of multiple parts,
+that span several files,
+but that share the same extension.
+For example in [entity-linked file collections](../02-common-principles.md#entity-linked-file-collections),
+commonly used for qMRI,
+where recordings may be linked through entitues such as `echo` and `part`
+(using `.nii` or `.nii.gz` extensions).
+For another example consider the case of large files in `.fif` format that are linked through the `split` entity
+(see [Split files](./99-appendices/06-meg-file-formats.md#split-files)).
+Such recordings MUST be documented with one row per file
+(unlike the case of mutli-file file formats described above).
 
 <!-- This block generates a columns table.
 The definitions of these fields can be found in
