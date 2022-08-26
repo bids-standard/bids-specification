@@ -464,7 +464,7 @@ and not the individual files in that directory.
 Some neural recordings consist of multiple parts,
 that span several files,
 but that share the same extension.
-For example in [entity-linked file collections](../02-common-principles.md#entity-linked-file-collections),
+For example in [entity-linked file collections](./02-common-principles.md#entity-linked-file-collections),
 commonly used for qMRI,
 where recordings may be linked through entitues such as `echo` and `part`
 (using `.nii` or `.nii.gz` extensions).
