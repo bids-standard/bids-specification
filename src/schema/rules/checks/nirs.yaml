@@ -1,0 +1,87 @@
+NASamplingFreq:
+  selectors:
+  - datatype == "nirs"
+  - suffix == "channels"
+  - extension == ".tsv" 
+  - assoications.nirs.json.SamplingFrequency == 'n/a'
+  checks:
+  - columns.sampling_frequency != null
+
+ACCELChannelCountReq:
+  selectors:
+  - datatype == "nirs"
+  - suffix == "channels"
+  - extension == ".tsv" 
+  - columns.type[0] == "ACC"
+  checks:
+  - associations.nirs.json.ACCELChannelCount != null
+
+GYROChannelCountReq:
+  selectors:
+  - datatype == "nirs"
+  - suffix == "channels"
+  - extension == ".tsv" 
+  - columns.type[0] == "GYRO"
+  checks:
+  - associations.nirs.json.GYROChannelCount != null
+
+MAGNChannelCountReq:
+  selectors:
+  - datatype == "nirs"
+  - suffix == "channels"
+  - extension == ".tsv" 
+  - columns.type[0] == "MAGN"
+  checks:
+  - associations.nirs.json.MAGNChannelCount != null
+
+OrientationComponent:
+  selectors:
+  - datatype == "nirs"
+  - suffix == "channels"
+  - extension == ".tsv" 
+  - ["ACCEL", "GYRO", "MAGN"].includes(columns.type[0])
+  checks:
+  - columns.orientation_component != null
+
+RequiredChannels:
+  selectors:
+  - datatype == "nirs"
+  - suffix == "optnodes"
+  - extension == ".tsv" 
+  checks:
+  - associations.nirs.channels != null
+
+RequiredTemplateX:
+  selectors:
+  - datatype == "nirs"
+  - suffix == "optnodes"
+  - extension == ".tsv" 
+  - columns.x[0] == "n/a"
+  checks:
+  - columns.template_x != null
+
+RequiredTemplateY:
+  - datatype == "nirs"
+  selectors:
+  - suffix == "optnodes"
+  - extension == ".tsv" 
+  - columns.y[0] == "n/a"
+  checks:
+  - columns.template_y != null
+  
+RequiredTemplateZ:
+  selectors:
+  - datatype == "nirs"
+  - suffix == "optnodes"
+  - extension == ".tsv" 
+  - columns.z[0] == "n/a"
+  checks:
+  - columns.template_z != null
+
+RequiredCoordsystem:
+  selectors:
+  - datatype == "nirs"
+  - suffix == "optnodes"
+  - extension == ".tsv" 
+  checks:
+  - associations.nirs.coordsystem != null

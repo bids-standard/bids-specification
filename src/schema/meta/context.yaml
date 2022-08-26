@@ -181,6 +181,16 @@ context:
             n_cols:
               description: 'Number of columns in bvec file'
               type: integer
+        nirs:
+          description: 'nirs check dependencies'
+          type: object
+          properties:
+            json:
+              type: object
+              description 'contents of _nirs.json used by checks for channels.tsv'
+            channels:
+              type: boolean
+              description: 'boolean if _channels.tsv exists for optodes.tsv'
 
     # The following properties are populated if the current file is of an appropriate type
     columns:
@@ -260,3 +270,4 @@ context:
           name: 'sform code'
           description: 'Use of the affine fields.'
           type: integer
+
