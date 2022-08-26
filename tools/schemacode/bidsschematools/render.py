@@ -485,7 +485,7 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
         File in which entities are described.
         This is used for hyperlinks in the table, so the path to the file
         should be considered from the location of out_file.
-        Default is '09-entities.md'.
+        Default is 'entities.md'.
 
     Returns
     -------
@@ -494,7 +494,7 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
     """
     schema = Namespace(filter_schema(schema.to_dict(), **kwargs))
 
-    ENTITIES_FILE = "09-entities.md"
+    ENTITIES_FILE = "entities.md"
 
     # prepare the table based on the schema
     # import pdb; pdb.set_trace()
