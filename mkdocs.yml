@@ -74,14 +74,14 @@ nav:
       - Appendix:
         - Contributors: appendices/contributors.md
         - Licenses: appendices/licenses.md
-        - Hierarchical Event Descriptors: appendices/hed.md
         - Entity table: appendices/entity-table.md
+        - Entities: appendices/entities.md
+        - File collections: appendices/file-collections.md
         - Units: appendices/units.md
+        - Hierarchical Event Descriptors: appendices/hed.md
         - MEG file formats: appendices/meg-file-formats.md
         - MEG systems: appendices/meg-systems.md
         - Coordinate systems: appendices/coordinate-systems.md
-        - Entities: appendices/entities.md
-        - File collections: appendices/file-collections.md
         - Quantitative MRI: appendices/qmri.md
         - Arterial Spin Labeling: appendices/arterial-spin-labeling.md
         - Cross modality correspondence: appendices/cross-modality-correspondence.md
