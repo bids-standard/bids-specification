@@ -20,6 +20,9 @@
 context:
   type: object
   properties:
+    schema:
+      description: 'The BIDS specification schema'
+      type: object
     dataset:
       description: 'Properties and contents of the entire dataset'
       type: object
