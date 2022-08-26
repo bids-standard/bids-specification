@@ -1,7 +1,8 @@
+---
 NIRSCoordsystemBase:
   selectors:
-  - datatype == 'nirs'
-  - suffix == 'coordsystem'
+    - datatype == 'nirs'
+    - suffix == 'coordsystem'
   fields:
     NIRSCoordinateSystem: required
     NIRSCoordinateUnits: required
@@ -16,57 +17,56 @@ NIRSCoordsystemBase:
 
 NIRSCoordinateSystemDescriptionRec:
   selectors:
-  - datatype == "nirs"
-  - suffix == "coordsystem"
-  - json.NIRSCoordinateSystem != "other"
+    - datatype == "nirs"
+    - suffix == "coordsystem"
+    - json.NIRSCoordinateSystem != "other"
   fields:
     NIRSCoordinateSystemDescription: recommended,
 
 NIRSCoordinateSystemDescriptionReq:
   selectors:
-  - datatype == "nirs"
-  - suffix == "coordsystem"
-  - json.NIRSCoordinateSystem == "other"
+    - datatype == "nirs"
+    - suffix == "coordsystem"
+    - json.NIRSCoordinateSystem == "other"
   fields:
     NIRSCoordinateSystemDescription: REQUIRED,
 
 AnatomicalLandmarkCoordinateSystemDescriptionRec:
   selectors:
-  - datatype == "nirs"
-  - suffix == "coordsystem"
-  - json.AnatomicalLandmarkCoordinateSystem != "other"
+    - datatype == "nirs"
+    - suffix == "coordsystem"
+    - json.AnatomicalLandmarkCoordinateSystem != "other"
   fields:
     LandmarkCoordinateSystemDescription: recommended
-  
+
 AnatomicalLandmarkCoordinateSystemDescriptionReq:
   selectors:
-  - datatype == "nirs"
-  - suffix == "coordsystem"
-  - json.AnatomicalLandmarkCoordinateSystem == "other"
+    - datatype == "nirs"
+    - suffix == "coordsystem"
+    - json.AnatomicalLandmarkCoordinateSystem == "other"
   fields:
     LandmarkCoordinateSystemDescription: required
 
-FiducialsCoordinateSystemDescription: 'RECOMMENDED, but REQUIRED if `FiducialsCoordinateSystem` is `"Other"`',
 FiducialsCoordinateSystemDescriptionRec:
   selectors:
-  - datatype == "nirs"
-  - suffix == "coordsystem"
-  - json.FiducialsCoordinateSystem != "other"
+    - datatype == "nirs"
+    - suffix == "coordsystem"
+    - json.FiducialsCoordinateSystem != "other"
   fields:
     LandmarkCoordinateSystemDescription: recommended
-  
+
 FiducialsCoordinateSystemDescriptionReq:
   selectors:
-  - datatype == "nirs"
-  - suffix == "coordsystem"
-  - json.FiducialsCoordinateSystem == "other"
+    - datatype == "nirs"
+    - suffix == "coordsystem"
+    - json.FiducialsCoordinateSystem == "other"
   fields:
     LandmarkCoordinateSystemDescription: required
 
 FnirsBase:
   selectors:
-  - datatype == "nirs"
-  - suffix == "nirs"
+    - datatype == "nirs"
+    - suffix == "nirs"
   fields:
     TaskName: required
     InstitutionName: recommended
@@ -86,48 +86,47 @@ FnirsBase:
 
 FnirsRequired:
   selectors:
-  - datatype == "nirs"
-  - suffix == "nirs"
+    - datatype == "nirs"
+    - suffix == "nirs"
   fields:
     CapManufacturer:
-        level: recommended
-        level_addendum: |
-          If a custom-made cap is used then the string `custom` MUST be used. If no cap was used, such as with optodes
-          that are directly taped to the scalp, then the string `none` MUST be used and the `NIRSPlacementScheme` field
-          MAY be used to specify the optode placement.
-    CapManufacturersModelName: 
       level: recommended
       level_addendum: |
-        If there is no official model number then a description may be provided (for example, `Headband with print 
+        If a custom-made cap is used then the string `custom` MUST be used. If no cap was used, such as with optodes
+        that are directly taped to the scalp, then the string `none` MUST be used and the `NIRSPlacementScheme` field
+        MAY be used to specify the optode placement.
+    CapManufacturersModelName:
+      level: recommended
+      level_addendum: |
+        If there is no official model number then a description may be provided (for example, `Headband with print
         (S-M)`). If a cap from a standard manufacturer was modified, then the field MUST be set to `custom`. If no cap
         was used, then the `CapManufacturer` field MUST be `none` and this field MUST be `n/a`."),
-    SamplingFrequency__nirs: 
+    SamplingFrequency__nirs:
       level: required
       level_addendum: |
-        Sampling frequency (in Hz) of all the data in the recording, regardless of their type (for example, `12`). If 
-        individual channels have different sampling rates, then the field here MUST be specified as `n/a` and the 
+        Sampling frequency (in Hz) of all the data in the recording, regardless of their type (for example, `12`). If
+        individual channels have different sampling rates, then the field here MUST be specified as `n/a` and the
         values MUST be specified in the `sampling_frequency` column in channels.tsv.")
     NIRSChannelCount: required
     NIRSSourceOptodeCount: required
     NIRSDetectorOptodeCount: required
+    # Following counts required conditions enforced in checks
     ACCELChannelCount:
-       level: recommended 
-       level_addendum: required if any channel type is ACC
+      level: recommended
+      level_addendum: required if any channel type is ACC
     GYROChannelCount:
-        level: recommended 
-        level_addendum: required if any channel type is GYRO
-     MAGNChannelCount:
-        level: recommended
-        level_addendum: required if any channel type is MAGN
+      level: recommended
+      level_addendum: required if any channel type is GYRO
+    MAGNChannelCount:
+      level: recommended
+      level_addendum: required if any channel type is MAGN
 
 FnirsRecommend:
   selectors:
-  - modality == "fnirs"
-  - suffix == "nirs"
+    - modality == "fnirs"
+    - suffix == "nirs"
   fields:
-      SourceType: recommended
-      DetectorType: recommended
-      ShortChannelCount: recommended
-      NIRSPlacementScheme: recommended
-
-
+    SourceType: recommended
+    DetectorType: recommended
+    ShortChannelCount: recommended
+    NIRSPlacementScheme: recommended
