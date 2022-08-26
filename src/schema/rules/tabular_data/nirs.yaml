@@ -7,20 +7,20 @@ nirsChannels:
   initial_columns:
     - name__channels
     - type__nirs_channels
-    - source
-    - detector
+    - source__optodes
+    - detector__optodes
     - wavelength_nominal
-    - units
+    - units__nirs
   columns:
     name__channels: required
     type__nirs_channels: required
-    source: required
-    detector: required
+    source__optodes: required
+    detector__optodes: required
     wavelength_nominal: required
-    units: required
+    units__nirs: required
     orientation_component: optional
     wavelength_actual: optional
-    description: optional
+    description__optode: optional
     wavelength_emission_actual: optional
     short_channel: optional
     status: optional
@@ -35,19 +35,19 @@ nirsOptodes:
   initial_columns:
     - name__optodes
     - type__optodes
-    - x
-    - y
-    - z
+    - x__optodes
+    - y__optodes
+    - z__optodes
   columns:
     name__optodes: required
     type__optodes: required
-    x: required
-    y: required
-    z: required
-    template_x: optional
-    template_y: optional
-    template_z: optional
+    x__optodes: required
+    y__optodes: required
+    z__optodes: required
+    x__template: optional
+    y__template: optional
+    z__template: optional
     description: optional
-    detector_type: optional
-    source_type: optional
+    detector__optodes: optional
+    source__optodes: optional
   additional_columns: allowed_if_defined

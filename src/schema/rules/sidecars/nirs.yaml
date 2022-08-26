@@ -1,8 +1,8 @@
 ---
 NIRSCoordsystemBase:
   selectors:
-    - datatype == 'nirs'
-    - suffix == 'coordsystem'
+    - datatype == "nirs"
+    - suffix == "coordsystem"
   fields:
     NIRSCoordinateSystem: required
     NIRSCoordinateUnits: required
@@ -39,7 +39,7 @@ AnatomicalLandmarkCoordinateSystemDescriptionRec:
     - suffix == "coordsystem"
     - json.AnatomicalLandmarkCoordinateSystem != "other"
   fields:
-    LandmarkCoordinateSystemDescription:
+    AnatomicalLandmarkCoordinateSystemDescription:
       level: recommended
       level_addendum: required if NIRSCoordinateSystem is "other"
 
@@ -49,7 +49,7 @@ AnatomicalLandmarkCoordinateSystemDescriptionReq:
     - suffix == "coordsystem"
     - json.AnatomicalLandmarkCoordinateSystem == "other"
   fields:
-    LandmarkCoordinateSystemDescription: required
+    AnatomicalLandmarkCoordinateSystemDescription: required
 
 FiducialsCoordinateSystemDescriptionRec:
   selectors:
@@ -57,7 +57,7 @@ FiducialsCoordinateSystemDescriptionRec:
     - suffix == "coordsystem"
     - json.FiducialsCoordinateSystem != "other"
   fields:
-    LandmarkCoordinateSystemDescription:
+    FiducialsCoordinateSystemDescription:
       level: recommended
       level_addendum: required if FiducialsCoordinateSystem is "other"
 
@@ -67,7 +67,7 @@ FiducialsCoordinateSystemDescriptionReq:
     - suffix == "coordsystem"
     - json.FiducialsCoordinateSystem == "other"
   fields:
-    LandmarkCoordinateSystemDescription: required
+    FiducialsCoordinateSystemDescription: required
 
 FnirsBase:
   selectors:

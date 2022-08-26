@@ -2030,10 +2030,10 @@ NIRSCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `NIRSCoordinateSystemDescription`.
   anyOf:
-    - $ref: _MEGCoordSys
-    - $ref: _EEGCoordSys
-    - $ref: _StandardTemplateCoordSys
-    - $ref: _StandardTemplateDeprecatedCoordSys
+    - $ref:  objects.metadata._MEGCoordSys
+    - $ref: objects.metadata._EEGCoordSys
+    - $ref: objects.metadata._StandardTemplateCoordSys
+    - $ref: objects.metadata._StandardTemplateDeprecatedCoordSys
 NIRSCoordinateSystemDescription:
   name: NIRSCoordinateSystemDescription
   description: |

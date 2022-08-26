@@ -237,6 +237,11 @@ set:
 
     The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab).
     Each recording consists of a `.set` file with an optional `.fdt` file.
+snirf:
+  value: .snirf
+  display_name: Shared Near Infrared Spectroscopy Format
+  description: |
+    HDF5 file organized according to the [SNIRF specification](https://github.com/fNIRS/snirf)
 sqd:
   value: .sqd
   display_name: SQD
