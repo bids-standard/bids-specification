@@ -466,12 +466,12 @@ that span several files,
 but that share the same extension.
 For example in [entity-linked file collections](./02-common-principles.md#entity-linked-file-collections),
 commonly used for qMRI,
-where recordings may be linked through entitues such as `echo` and `part`
+where recordings may be linked through entities such as `echo` and `part`
 (using `.nii` or `.nii.gz` extensions).
 For another example consider the case of large files in `.fif` format that are linked through the `split` entity
 (see [Split files](./99-appendices/06-meg-file-formats.md#split-files)).
 Such recordings MUST be documented with one row per file
-(unlike the case of mutli-file file formats described above).
+(unlike the case of multi-file file formats described above).
 
 <!-- This block generates a columns table.
 The definitions of these fields can be found in
