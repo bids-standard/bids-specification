@@ -24,7 +24,7 @@ A guide for using macros can be found at
 
 Preprocessed `bold` NIfTI file in the original coordinate space of the original run.
 The location of the file in the original datasets is encoded in the `Sources` metadata,
-and [`_desc-<label>`](../99-appendices/09-entities.md#desc)
+and [`_desc-<label>`](../appendices/entities.md#desc)
 is used to prevent clashing with the original filename.
 
 <!-- This block generates a file tree.
@@ -85,12 +85,12 @@ and the raw original file.
 Derivatives are often aligned to a common spatial reference to allow for the
 comparison of acquired data across runs, sessions, subjects or datasets.
 A file may indicate the spatial reference to which it has been aligned using the
-[`space` entity](../99-appendices/09-entities.md#space) and/or the `SpatialReference` metadata.
+[`space` entity](../appendices/entities.md#space) and/or the `SpatialReference` metadata.
 
-The [`space` entity](../99-appendices/09-entities.md#space) may take any value in
+The [`space` entity](../appendices/entities.md#space) may take any value in
 [Image-Based Coordinate Systems][coordsys].
 
-If the [`space` entity](../99-appendices/09-entities.md#space) is omitted,
+If the [`space` entity](../appendices/entities.md#space) is omitted,
 or the space is not in the [Standard template identifiers][templates] table,
 then the `SpatialReference` metadata is REQUIRED.
 
@@ -198,11 +198,11 @@ Examples of preprocessing:
 -   Time-domain filtered EEG data
 -   MaxFilter (for example, SSS) cleaned MEG data
 
-The [`space` entity](../99-appendices/09-entities.md#space)
+The [`space` entity](../appendices/entities.md#space)
 is recommended to distinguish files with different underlying
 coordinate systems or registered to different reference maps.
 See [Spatial references](#spatial-references) for details.
-The [`desc` entity](../99-appendices/09-entities.md#desc) ("description")
+The [`desc` entity](../appendices/entities.md#desc) ("description")
 is a general purpose field with freeform values,
 which SHOULD be used to distinguish between multiple different versions of
 processing for the same input data.
@@ -256,9 +256,9 @@ static volume, a `RepetitionTime` property would no longer be relevant).
 
 <!-- Link Definitions -->
 
-[coordsys]: ../99-appendices/08-coordinate-systems.md#image-based-coordinate-systems
+[coordsys]: ../appendices/coordinate-systems.md#image-based-coordinate-systems
 
-[templates]: ../99-appendices/08-coordinate-systems.md#standard-template-identifiers
+[templates]: ../appendices/coordinate-systems.md#standard-template-identifiers
 
 [object]: https://www.json.org/json-en.html
 

@@ -479,7 +479,7 @@ UNIT1:
     contain white salt-and-pepper noise that most segmentation algorithms will
     fail on.
     Therefore, it is important to dissociate it from `T1w`.
-    Please see [`MP2RAGE` specific notes](SPEC_ROOT/99-appendices/11-qmri.md#unit1-images)
+    Please see [`MP2RAGE` specific notes](SPEC_ROOT/appendices/qmri.md#unit1-images)
     in the qMRI appendix for further information.
 VFA:
   value: VFA
@@ -685,7 +685,7 @@ phase:
     Phase information associated with magnitude information stored in BOLD
     contrast.
     This suffix should be replaced by the
-    [`part-phase`](SPEC_ROOT/99-appendices/09-entities.md#part)
+    [`part-phase`](SPEC_ROOT/appendices/entities.md#part)
     in conjunction with the `bold` suffix.
   anyOf:
     - unit: arbitrary

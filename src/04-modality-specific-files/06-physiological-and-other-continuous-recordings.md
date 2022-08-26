@@ -39,7 +39,7 @@ For example for the file `sub-control01_task-nback_run-1_bold.nii.gz`,
 Note that when supplying a `*_<physio|stim>.tsv.gz` file, an accompanying
 `*_<physio|stim>.json` MUST be supplied as well.
 
-The [`recording-<label>`](../99-appendices/09-entities.md#recording)
+The [`recording-<label>`](../appendices/entities.md#recording)
 entity MAY be used to distinguish between several recording files.
 For example `sub-01_task-bart_recording-eyetracking_physio.tsv.gz` to contain
 the eyetracking data in a certain sampling frequency, and
@@ -166,7 +166,7 @@ as deemed appropriate by the researcher.
 
 Recordings with different sampling frequencies or starting times should be
 stored in separate files
-(and the [`recording-<label>`](../99-appendices/09-entities.md#recording)
+(and the [`recording-<label>`](../appendices/entities.md#recording)
 entity MAY be used to distinguish these files).
 
 If the same continuous recording has been used for all subjects (for example in

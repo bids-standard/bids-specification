@@ -288,8 +288,8 @@ def make_filename_template(
 
     schema = Namespace(filter_schema(schema.to_dict(), **kwargs))
     entity_order = schema["rules"]["entities"]
-    entities_path = "SPEC_ROOT/99-appendices/09-entities.html"
-    glossary_path = "SPEC_ROOT/99-appendices/14-glossary.html"
+    entities_path = "SPEC_ROOT/appendices/entities.html"
+    glossary_path = "SPEC_ROOT/glossary.html"
 
     paragraph = ""
     # Parent directories

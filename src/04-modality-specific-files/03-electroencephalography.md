@@ -348,7 +348,7 @@ Cz     0.0000   0.0714   0.0699   cup      Ag/AgCl
 REF    -0.0742  -0.0200  -0.0100  cup      Ag/AgCl
 ```
 
-The [`acq-<label>`](../99-appendices/09-entities.md#acq) entity can be used to
+The [`acq-<label>`](../appendices/entities.md#acq) entity can be used to
 indicate acquisition of the same data. For
 example, this could be the recording of electrode positions with a different
 electrode position recording device, or repeated digitization before and after
@@ -488,7 +488,7 @@ Please note that the photos may need to be cropped or blurred to conceal
 identifying features prior to sharing, depending on the terms of the consent
 given by the participant.
 
-The [`acq-<label>`](../99-appendices/09-entities.md#acq) entity can be used to
+The [`acq-<label>`](../appendices/entities.md#acq) entity can be used to
 indicate acquisition of different photos of
 the same face (or other body part in different angles to show, for example, the
 location of the nasion (NAS) as opposed to the right periauricular point (RPA).

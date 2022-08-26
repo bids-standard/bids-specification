@@ -697,11 +697,11 @@ BIDS follows the
 specification, so we welcome and recognize all contributions from documentation
 to testing to code development.
 You can see a list of current contributors in the
-[BIDS specification](https://github.com/bids-standard/bids-specification/blob/master/src/99-appendices/01-contributors.md).
+[BIDS specification](https://github.com/bids-standard/bids-specification/blob/master/src/appendices/contributors.md).
 
 If you have made any type of contributions to the BIDS specifications, you can
 either make a change to the
-[contributors document](./src/99-appendices/01-contributors.md) and commit as
+[contributors document](./src/appendices/contributors.md) and commit as
 part of a pull request or you can edit this
 [page](https://github.com/bids-standard/bids-specification/wiki/Recent-Contributors)
 of the specification WIKI.
