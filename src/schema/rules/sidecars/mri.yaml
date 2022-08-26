@@ -71,7 +71,7 @@ MRISequenceSpecifics:
 PETMRISequenceSpecifics:
   selectors:
     - modality == "mri"
-    - intersects([dataset.modalities], ["PET"])
+    - intersects(dataset.modalities, ["pet"])
   fields:
     NonlinearGradientCorrection: required
 
