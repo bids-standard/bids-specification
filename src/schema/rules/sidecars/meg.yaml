@@ -214,7 +214,7 @@ MEGCoordsystemAnatomicalMRI:
     - modality == "meg"
     - datatype == "meg"
     - suffix == "coordsystem"
-    - intersects(dataset.modalities, ["anat"])
+    - intersects(dataset.datatypes, ["anat"])
   fields:
     IntendedFor:
       level: optional

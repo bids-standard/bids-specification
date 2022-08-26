@@ -39,6 +39,9 @@ context:
         ignored:
           description: 'Set of ignored files'
           type: array
+        datatypes:
+          description: 'Data types present in the dataset'
+          type: array
         modalities:
           description: 'Modalities present in the dataset'
           type: array
