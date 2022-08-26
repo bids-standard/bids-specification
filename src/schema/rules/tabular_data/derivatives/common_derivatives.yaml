@@ -1,7 +1,7 @@
 ---
 SegmentationLookup:
   selectors:
-    - dataset.DatasetType == "derivative"
+    - dataset.dataset_description.DatasetType == "derivative"
     - '["dseg", "probseg"].includes(suffix)'
   columns:
     index: required
