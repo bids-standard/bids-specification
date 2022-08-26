@@ -21,7 +21,9 @@ NIRSCoordinateSystemDescriptionRec:
     - suffix == "coordsystem"
     - json.NIRSCoordinateSystem != "other"
   fields:
-    NIRSCoordinateSystemDescription: recommended,
+    NIRSCoordinateSystemDescription:
+      level: recommended
+      level_addendum: required if NIRSCoordinateSystem is "other"
 
 NIRSCoordinateSystemDescriptionReq:
   selectors:
@@ -29,7 +31,7 @@ NIRSCoordinateSystemDescriptionReq:
     - suffix == "coordsystem"
     - json.NIRSCoordinateSystem == "other"
   fields:
-    NIRSCoordinateSystemDescription: REQUIRED,
+    NIRSCoordinateSystemDescription: REQUIRED
 
 AnatomicalLandmarkCoordinateSystemDescriptionRec:
   selectors:
@@ -37,7 +39,9 @@ AnatomicalLandmarkCoordinateSystemDescriptionRec:
     - suffix == "coordsystem"
     - json.AnatomicalLandmarkCoordinateSystem != "other"
   fields:
-    LandmarkCoordinateSystemDescription: recommended
+    LandmarkCoordinateSystemDescription:
+      level: recommended
+      level_addendum: required if NIRSCoordinateSystem is "other"
 
 AnatomicalLandmarkCoordinateSystemDescriptionReq:
   selectors:
@@ -53,7 +57,9 @@ FiducialsCoordinateSystemDescriptionRec:
     - suffix == "coordsystem"
     - json.FiducialsCoordinateSystem != "other"
   fields:
-    LandmarkCoordinateSystemDescription: recommended
+    LandmarkCoordinateSystemDescription:
+      level: recommended
+      level_addendum: required if FiducialsCoordinateSystem is "other"
 
 FiducialsCoordinateSystemDescriptionReq:
   selectors:
@@ -100,7 +106,7 @@ FnirsRequired:
       level_addendum: |
         If there is no official model number then a description may be provided (for example, `Headband with print
         (S-M)`). If a cap from a standard manufacturer was modified, then the field MUST be set to `custom`. If no cap
-        was used, then the `CapManufacturer` field MUST be `none` and this field MUST be `n/a`."),
+        was used, then the `CapManufacturer` field MUST be `none` and this field MUST be `n/a`.")
     SamplingFrequency__nirs:
       level: required
       level_addendum: |
