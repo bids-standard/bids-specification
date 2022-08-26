@@ -15,7 +15,7 @@ ACCELChannelCountReq:
     - extension == ".tsv"
     - columns.type[0] == "ACC"
   checks:
-    - associations.nirs.json.ACCELChannelCount != null
+    - associations.nirs.ACCELChannelCount != null
 
 GYROChannelCountReq:
   selectors:
@@ -24,7 +24,7 @@ GYROChannelCountReq:
     - extension == ".tsv"
     - columns.type[0] == "GYRO"
   checks:
-    - associations.nirs.json.GYROChannelCount != null
+    - associations.nirs.GYROChannelCount != null
 
 MAGNChannelCountReq:
   selectors:
@@ -33,7 +33,7 @@ MAGNChannelCountReq:
     - extension == ".tsv"
     - columns.type[0] == "MAGN"
   checks:
-    - associations.nirs.json.MAGNChannelCount != null
+    - associations.nirs.MAGNChannelCount != null
 
 OrientationComponent:
   selectors:
@@ -50,7 +50,7 @@ RequiredChannels:
     - suffix == "optnodes"
     - extension == ".tsv"
   checks:
-    - associations.nirs.channels != null
+    - associations.channels != null
 
 RequiredTemplateX:
   selectors:
@@ -85,4 +85,4 @@ RequiredCoordsystem:
     - suffix == "optnodes"
     - extension == ".tsv"
   checks:
-    - associations.nirs.coordsystem != null
+    - associations.coordsystem != null

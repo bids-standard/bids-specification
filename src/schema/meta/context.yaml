@@ -187,6 +187,9 @@ context:
         channels:
           type: boolean
           description: 'boolean if _channels.tsv exists'
+        coordsystem:
+          type: boolean
+          description: 'boolean if _coordsystem.json exists'
     # The following properties are populated if the current file is of an appropriate type
     columns:
       description: 'TSV columns, indexed by column header, values are arrays with column contents'
