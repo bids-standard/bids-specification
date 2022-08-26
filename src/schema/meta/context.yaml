@@ -182,15 +182,11 @@ context:
               description: 'Number of columns in bvec file'
               type: integer
         nirs:
-          description: 'nirs check dependencies'
+          description: 'contents of _nirs.json used by checks for channels.tsv'
           type: object
-          properties:
-            json:
-              type: object
-              description: 'contents of _nirs.json used by checks for channels.tsv'
-            channels:
-              type: boolean
-              description: 'boolean if _channels.tsv exists for optodes.tsv'
+        channels:
+          type: boolean
+          description: 'boolean if _channels.tsv exists'
     # The following properties are populated if the current file is of an appropriate type
     columns:
       description: 'TSV columns, indexed by column header, values are arrays with column contents'
