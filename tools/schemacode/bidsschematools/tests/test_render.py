@@ -108,6 +108,19 @@ sub-<label>/
     assert datatype_bases_found == datatype_count - 2
 
 
+def test_make_entity_table_transition(schema_obj):
+    entity_table = render.make_entity_table(schema_obj)
+    _entity_table = render._make_entity_table(schema_obj)
+    import difflib
+    import sys
+    a = difflib.unified_diff(entity_table, _entity_table)
+    sys.stdout.writelines(a)
+    print(a)
+
+
+    #assert entity_table == _entity_table
+
+
 def test_make_entity_table(schema_obj):
     """
     Test whether expected entities are present and listed correctly.
