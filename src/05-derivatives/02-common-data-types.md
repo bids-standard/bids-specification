@@ -267,3 +267,5 @@ static volume, a `RepetitionTime` property would no longer be relevant).
 [deprecated]: ../02-common-principles.md#definitions
 
 [uris]: ../02-common-principles.md#uniform-resource-indicator
+
+[uri]: ../02-common-principles.md#uniform-resource-indicator
