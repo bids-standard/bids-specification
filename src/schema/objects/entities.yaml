@@ -242,14 +242,14 @@ run:
   description: |
     If several data acquisitions (for example, MRI scans or EEG recordings)
     with the same acquisition parameters are acquired in the same session,
-    they MUST be indexed with the [`run-<index>`](SPEC_PATH/appendices/entities.md#run) entity:
+    they MUST be indexed with the [`run-<index>`](SPEC_ROOT/appendices/entities.md#run) entity:
     `_run-1`, `_run-2`, `_run-3`, and so on (only nonnegative integers are allowed as
     run labels).
 
     If different entities apply,
-    such as a different session indicated by [`ses-<label>`][SPEC_PATH/appendices/entities.md#ses),
+    such as a different session indicated by [`ses-<label>`][SPEC_ROOT/appendices/entities.md#ses),
     or different acquisition parameters indicated by
-    [`acq-<label>`](SPEC_PATH/appendices/entities.md#acq),
+    [`acq-<label>`](SPEC_ROOT/appendices/entities.md#acq),
     then `run` is not needed to distinguish the scans and MAY be omitted.
   type: string
   format: index
@@ -295,9 +295,9 @@ space:
     (for EEG/MEG/iEEG data) or
     the spatial reference to which a file has been aligned (for MRI data).
     The space `<label>` MUST be taken from one of the modality specific lists in
-    [Appendix VIII](SPEC_PATH/appendices/coordinate-systems.md).
+    [Appendix VIII](SPEC_ROOT/appendices/coordinate-systems.md).
     For example for iEEG data, the restricted keywords listed under
-    [iEEG Specific Coordinate Systems](SPEC_PATH/appendices/coordinate-systems.md#ieeg-specific-coordinate-systems)
+    [iEEG Specific Coordinate Systems](SPEC_ROOT/appendices/coordinate-systems.md#ieeg-specific-coordinate-systems)
     are acceptable for `<label>`.
 
     For EEG/MEG/iEEG data, this entity can be applied to raw data, but
