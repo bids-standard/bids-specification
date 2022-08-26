@@ -23,7 +23,7 @@ SpatialReferenceEntity:
 SpatialReferenceNonStandard:
   selectors:
     - dataset.dataset_description.DatasetType == "derivative"
-    - '!(schema.objects.metadata._StandardTemplateCoordSys).includes(entities.space)'
+    - '!intersects(schema.objects.metadata._StandardTemplateCoordSys, [entities.space])'
   fields:
     SpatialReference: required
 
@@ -58,14 +58,14 @@ MaskDerivativesAtlas:
 SegmentationCommon:
   selectors:
     - dataset.dataset_description.DatasetType == "derivative"
-    - '["dseg", "probseg"].includes(suffix)'
+    - '!intersects([suffix], ["dseg", "probseg"])'
   fields:
     Manual: optional
 
 SegmentationCommonAtlas:
   selectors:
     - dataset.dataset_description.DatasetType == "derivative"
-    - '["dseg", "probseg"].includes(suffix)'
+    - '!intersects([suffix], ["dseg", "probseg"])'
     - '"atlas" in entities'
   fields:
     Atlas:
@@ -76,15 +76,15 @@ SegmentationCommonAtlas:
 ImageDerivatives:
   selectors:
     - dataset.dataset_description.DatasetType == "derivative"
-    - '["mri", "pet"].includes(modality)'
-    - '[".nii", ".nii.gz"].includes(extension)'
+    - '!intersects([modality], ["mri", "pet"])'
+    - '!match(extension, "^\.nii(\.gz)?$")'
   fields:
     SkullStripped: required
 
 ImageDerivativeResEntity:
   selectors:
     - dataset.dataset_description.DatasetType == "derivative"
-    - '["mri", "pet"].includes(modality)'
+    - '!intersects([modality], ["mri", "pet"])'
     - '"res" in entities'
   fields:
     Resolution:
@@ -94,7 +94,7 @@ ImageDerivativeResEntity:
 ImageDerivativeDenEntity:
   selectors:
     - dataset.dataset_description.DatasetType == "derivative"
-    - '["mri", "pet"].includes(modality)'
+    - '!intersects([modality], ["mri", "pet"])'
     - '"den" in entities'
   fields:
     Density:

@@ -58,7 +58,7 @@ MRIFieldmapTwoPhase:
   selectors:
     - modality == "MRI"
     - datatype == "fmap"
-    - '["phase1", "phase2", "magnitude1", "magnitude2"].includes(suffix)'
+    - intersects([suffix], ["phase1", "phase2", "magnitude1", "magnitude2"])
   fields:
     EchoTime__fmap: required
 
@@ -67,7 +67,7 @@ MRIFieldmapDirectFieldMapping:
   selectors:
     - modality == "MRI"
     - datatype == "fmap"
-    - '["phase", "fieldmap"].includes(suffix)'
+    - intersects([suffix], ["phase", "fieldmap"])
   fields:
     Units:
       level: required

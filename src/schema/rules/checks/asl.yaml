@@ -256,7 +256,7 @@ ASLM0TypeAbsentASLContext:
   selectors:
     - suffix == "asl"
     - '"aslcontext" in associations'
-    - aslcontext.volume_type.includes('"m0scan")
+    - intersects(aslcontext.volume_type, ["m0scan"])
     - '"M0Type" in sidecar'
   checks:
     - sidecar.M0Type != "absent"

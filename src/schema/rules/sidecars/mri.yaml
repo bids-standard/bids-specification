@@ -39,7 +39,7 @@ MRIScannerHardwareASL:
   selectors:
     - datatype == "perf"
     - suffix == "asl"
-    - '["asl", "m0scan"].includes(suffix)'
+    - intersects([suffix], ["asl", "m0scan"])
   fields:
     MagneticFieldStrength: required
 
@@ -71,7 +71,7 @@ MRISequenceSpecifics:
 PETMRISequenceSpecifics:
   selectors:
     - modality == "mri"
-    - dataset.modalities.includes("PET")
+    - intersects([dataset.modalities], ["PET"])
   fields:
     NonlinearGradientCorrection: required
 
@@ -100,13 +100,13 @@ SpoilingType:
 
 SpoilingRF:
   selectors:
-    - '["RF", "COMBINED"].includes(sidecar.SpoilingType)'
+    - intersects([sidecar.SpoilingType], ["RF", "COMBINED"])
   fields:
     SpoilingRFPhaseIncrement: recommended
 
 SpoilingGradient:
   selectors:
-    - '["GRADIENT", "COMBINED"].includes(sidecar.SpoilingType)'
+    - intersects([sidecar.SpoilingType], ["GRADIENT", "COMBINED"])
   fields:
     SpoilingGradientMoment: recommended
     SpoilingGradientDuration: recommended
@@ -197,7 +197,7 @@ SliceTimingASL:
   selectors:
     - modality == "mri"
     - datatype == "perf"
-    - '["asl", "m0scan"].includes(suffix)'
+    - intersects([suffix], ["asl", "m0scan"])
     - sidecar.MRAcquisitionType == "2D"
   fields:
     EchoTime: required

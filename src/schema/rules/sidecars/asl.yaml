@@ -10,7 +10,7 @@ MRIASLTextOnly:
   selectors:
     - modality == "MRI"
     - datatype == "perf"
-    - '["asl", "m0scan"].includes(suffix)'
+    - intersects([suffix], ["asl", "m0scan"])
   fields:
     RepetitionTimePreparation: required
 
@@ -111,7 +111,7 @@ MRIASLCaslPcaslSpecific:
     - modality == "MRI"
     - datatype == "perf"
     - suffix == "asl"
-    - '["CASL", "PCASL"].includes(sidecar.ArterialSpinLabelingType)'
+    - intersects([sidecar.ArterialSpinLabelingType], ["CASL", "PCASL"])
   fields:
     LabelingDuration: required
     LabelingPulseAverageGradient: recommended

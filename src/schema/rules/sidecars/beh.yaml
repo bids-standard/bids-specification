@@ -8,7 +8,7 @@
 # Metadata for either beh or events files
 BEHTabularData:
   selectors:
-    - '["beh", "events"].includes(suffix)'
+    - intersects([suffix], ["beh", "events"])
   fields:
     TaskName: recommended
     Instructions: recommended
