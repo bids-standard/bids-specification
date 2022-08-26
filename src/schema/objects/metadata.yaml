@@ -4,6 +4,7 @@
 # This file **does not** define how and when metadata fields can be used with a given file.
 ACCELChannelCount:
   name: ACCELChannelCount
+  display_name: Accelerometer channel count
   description: |
     Number of accelerometer channels.
   type: integer
@@ -594,6 +595,7 @@ Description:
   type: string
 DetectorType:
   name: DetectorType
+  display_name: Detector Type
   description: |
     Type of detector. This is a free form description with the following suggested terms:
     `"SiPD"`, `"APD"`. Preferably a specific model/part number is supplied.
@@ -1149,6 +1151,7 @@ GradientSetType:
   type: string
 GYROChannelCount:
   name: GYROChannelCount
+  display_name: Gyrometer Channel Count
   description: |
     Number of gyrometer channels.
   type: integer
@@ -1698,6 +1701,7 @@ M0Type:
     - Absent
 MAGNChannelCount:
   name: MAGNChannelCount
+  display_name: Manetrometer Channel Count
   description: |
     Number of magnetometer channels.
   type: integer
@@ -1989,24 +1993,28 @@ NegativeContrast:
   type: boolean
 NIRSChannelCount:
   name: NIRSChannelCount
+  display_name: NIRS Channel Count
   description: |
     Number of NIRS channels.
   type: integer
   minimum: 0
 NIRSSourceOptodeCount:
   name: NIRSSourceOptodeCount
+  display_name: NIRS Source Optode Count
   description: |
     Number of fNIRS sources.
   type: integer
   minimum: 1
 NIRSDetectorOptodeCount:
   name: NIRSDetectorOptodeCount
+  display_name: NIRS Detector Optode Channel Count
   description: |
     Number of fNIRS detectors.
   type: integer
   minimum: 1
 NIRSPlacementScheme:
   name: NIRSPlacementScheme
+  display_name: NIRS Placement Scheme
   description: |
     Placement scheme of NIRS optodes.
     Either the name of a standardized placement system (for example, `"10-20"`)
@@ -2021,6 +2029,7 @@ NIRSPlacementScheme:
         type: string
 NIRSCoordinateSystem:
   name: NIRSCoordinateSystem
+  display_name: NIRS Coordinate System
   description: |
     Defines the coordinate system in which the optode positions are expressed.
 
@@ -2036,6 +2045,7 @@ NIRSCoordinateSystem:
     - $ref: objects.metadata._StandardTemplateDeprecatedCoordSys
 NIRSCoordinateSystemDescription:
   name: NIRSCoordinateSystemDescription
+  display_name: NIRS Coordinate System Description
   description: |
     Free-form text description of the coordinate system.
     May also include a link to a documentation page or paper describing the
@@ -2043,6 +2053,7 @@ NIRSCoordinateSystemDescription:
   type: string
 NIRSCoordinateUnits:
   name: NIRSCoordinateUnits
+  display_name: NIRS Coordinate Units
   description: |
     Units of the coordinates of `NIRSCoordinateSystem`.
   type: string
@@ -2053,6 +2064,7 @@ NIRSCoordinateUnits:
     - n/a
 NIRSCoordinateProcessingDescription:
   name: NIRSCoordinateProcessingDescription
+  display_name: NIRS Coordinate Processing Description
   description: |
     Has any post-processing (such as projection) been done on the optode
     positions (for example, `"surface_projection"`, `"none"`).
@@ -2698,6 +2710,7 @@ SamplingFrequency:
   unit: Hz
 SamplingFrequency__nirs:
   name: SamplingFrequency
+  display_name: Sampling Frequency
   description: |
     Sampling frequency (in Hz) of all the data in the recording,
     regardless of their type (for example, `2400`).
@@ -2785,6 +2798,7 @@ SequenceVariant:
         type: string
 ShortChannelCount:
   name: ShortChannelCount
+  display_name: Short Channel Count
   description: |
     The number of short channels. 0 indicates no short channels.
   type: integer
@@ -2946,6 +2960,7 @@ Sources:
     format: dataset_relative
 SourceType:
   name: SourceType
+  display_name: Source Type
   description: |
     Type of source. Preferably a specific model/part number is supplied.
     This is a freeform description, but the following keywords are suggested:

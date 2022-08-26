@@ -54,6 +54,7 @@ color:
   unit: hexadecimal
 detector__channels:
   name: detector
+  display_name: Detector Name
   description: |
     Name of the detector as specified in the `*_optodes.tsv` file.
     `n/a` for channels that do not contain fNIRS signals (for example, acceleration).
@@ -64,6 +65,7 @@ detector__channels:
         - n/a
 detector__optodes:
   name: detector_type
+  display_name: Detector Type
   description: |
     The type of detector. Only to be used if the field `DetectorType` in `*_nirs.json` is set to `mixed`.
   anyOf:
@@ -84,6 +86,7 @@ description:
   type: string
 description__optode:
   name: description
+  display_name: Description
   description: |
     Free-form text description of the optode, or other information of interest.
   type: string
@@ -263,6 +266,7 @@ name__electrodes:
   type: string
 name__optodes:
   name: name
+  display_name: Optode name
   description: |
     Name of the optode, must be unique.
   type: string
@@ -306,6 +310,7 @@ onset:
   unit: s
 orientation_component:
   name: orientation_component
+  display_name: Orientation Component
   description: |
     Description of the orientation of the `ACCEL`, `GYRO`, `MAGN` `type`.
   type: string
@@ -457,6 +462,7 @@ sex:
     - n/a
 short_channel:
   name: short_channel
+  display_name: Short Channel
   description: |
     Is the channel designated as short.
     The total number of channels listed as short channels
@@ -484,6 +490,7 @@ software_filters:
         - n/a
 source__channels:
   name: source
+  display_name: Source name
   description: |
     Name of the source as specified in the `*_optodes.tsv` file.
     `n/a` for channels that do not contain fNIRS signals (for example, acceleration).
@@ -494,6 +501,7 @@ source__channels:
         - n/a
 source__optodes:
   name: source_type
+  display_name: Source type
   description: |
     The type of source. Only to be used if the field `SourceType` in `*_nirs.json` is set to `mixed`.
   anyOf:
@@ -674,6 +682,7 @@ type__ieeg_channels:
     - OTHER
 type__nirs_channels:
   name: type
+  display_name: Channel type
   description: |
     Type of channel; MUST use the channel types listed below.
     Note that the type MUST be in upper-case.
@@ -726,6 +735,7 @@ type__electrodes:
   type: string
 type__optodes:
   name: type
+  display_name: Type
   description: |
     The type of the optode.
   type: string
@@ -744,6 +754,7 @@ units:
   format: unit
 units__nirs:
   name: units
+  display_name: Units
   description: |
     Physical unit of the value represented in this channel,
     specified according to the SI unit symbol and possibly prefix symbol,
@@ -776,6 +787,7 @@ volume_type:
     - cbf
 wavelength_nominal:
   name: wavelength_nominal
+  display_name: Wavelength nominal
   description: |
     Specified wavelength of light in nm.
     `n/a` for channels that do not contain raw fNIRS signals (for example, acceleration).
@@ -787,6 +799,7 @@ wavelength_nominal:
         - n/a
 wavelength_actual:
   name: wavelength_actual
+  display_name: Wavelength actual
   description: |
     Measured wavelength of light in nm.
     `n/a` for channels that do not contain raw NIRS signals (acceleration).
@@ -794,6 +807,7 @@ wavelength_actual:
   type: number
 wavelength_emission_actual:
   name: wavelength_emission_actual
+  display_name: Wavelength emission actual
   description: |
     Measured emission wavelength of light in nm.
     `n/a` for channels that do not contain raw NIRS signals (acceleration).
@@ -830,6 +844,7 @@ z:
         - n/a
 x__optodes:
   name: x
+  display_name: X position
   description: |
     Recorded position along the x-axis.
     `"n/a"` if not available.
@@ -840,6 +855,7 @@ x__optodes:
         - n/a
 y__optodes:
   name: y
+  display_name: Y position
   description: |
     Recorded position along the y-axis.
     `"n/a"` if not available.
@@ -850,6 +866,7 @@ y__optodes:
         - n/a
 z__optodes:
   name: z
+  display_name: Z position
   description: |
     Recorded position along the z-axis.
     `"n/a"` if not available.
@@ -860,6 +877,7 @@ z__optodes:
         - n/a
 x__template:
   name: template_x
+  display_name: X template position
   description: |
     Assumed or ideal position along the x axis.
   anyOf:
@@ -869,6 +887,7 @@ x__template:
         - n/a
 y__template:
   name: template_y
+  display_name: Y template position
   description: |
     Assumed or ideal position along the y axis.
   anyOf:
@@ -878,6 +897,7 @@ y__template:
         - n/a
 z__template:
   name: template_z
+  display_name: Z template position
   description: |
     Assumed or ideal position along the z axis.
   anyOf:
