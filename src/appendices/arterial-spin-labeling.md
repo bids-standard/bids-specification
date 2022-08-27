@@ -1,4 +1,4 @@
-# Appendix XI: Arterial Spin Labeling
+# Arterial Spin Labeling
 
 These sections provide additional clarification for some specific topics within the BIDS specification for Arterial Spin Labeling.
 

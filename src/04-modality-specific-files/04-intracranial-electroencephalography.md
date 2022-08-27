@@ -323,7 +323,7 @@ that coordinates are expected in cartesian coordinates according to the
 The optional [`space-<label>`](../appendices/entities.md#space) entity (`*[_space-<label>]_electrodes.tsv`) can be used to
 indicate the way in which electrode positions are interpreted.
 The space `<label>` MUST be taken from one of the modality specific lists in
-[Appendix VIII](../appendices/coordinate-systems.md).
+the [Coordinate Systems Appendix](../appendices/coordinate-systems.md).
 For example for iEEG data, the restricted keywords listed under
 [iEEG Specific Coordinate Systems](../appendices/coordinate-systems.md#ieeg-specific-coordinate-systems)
 are acceptable for `<label>`.
@@ -463,7 +463,7 @@ A guide for using macros can be found at
 
 It is preferred that electrodes are localized in a 3D coordinate system (with
 respect to a pre- and/or post-operative anatomical MRI or CT scans or in a
-standard space as specified in BIDS [Appendix VIII](../appendices/coordinate-systems.md)
+standard space as specified in the BIDS [Coordinate Systems Appendix](../appendices/coordinate-systems.md)
 about preferred names of coordinate systems, such as ACPC).
 
 ### Allowed 2D coordinate systems

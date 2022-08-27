@@ -56,11 +56,10 @@ entity instance, may be referred to as simply an "entity".
 "Subject", "session", "sample", "task", and "run" from the list of definitions
 above are all examples of entities.
 The comprehensive list of supported entities is defined in
-[Appendix IX](appendices/entities.md);
+the [Entities Appendix](appendices/entities.md);
 further, whether each is OPTIONAL, REQUIRED, or MUST NOT be provided for
 various data files, as well as their relative ordering in a filename, are
-defined in the Entity Table in
-[Appendix IV](appendices/entity-table.md).
+defined in the [Entity Tables Appendix](appendices/entity-table.md).
 
 ## Compulsory, optional, and additional data and metadata
 
@@ -805,14 +804,14 @@ In case data is expressed in SI units or SI derived units, the units MAY be
 specified in the sidecar JSON file.
 In case non-standard prefixes are added to SI or non-SI units, these
 non-standard prefixed units MUST be specified in the JSON file.
-See [Appendix V](appendices/units.md) for a list of standard units and
+See the [Units Appendix](appendices/units.md) for a list of standard units and
 prefixes.
 Note also that for the *formatting* of SI units, the [CMIXF-12](https://people.csail.mit.edu/jaffer/MIXF/CMIXF-12)
 convention for encoding units is RECOMMENDED.
 CMIXF provides a consistent system for all units and prefix symbols with only basic
 characters, avoiding symbols that can cause text encoding problems; for example the
 CMIXF formatting for "micro volts" is `uV`, "degrees Celsius" is `oC` and "Ohm" is `Ohm`.
-See [Appendix V](appendices/units.md) for more information.
+See the [Units Appendix](appendices/units.md) for more information.
 
 For additional rules, see below:
 

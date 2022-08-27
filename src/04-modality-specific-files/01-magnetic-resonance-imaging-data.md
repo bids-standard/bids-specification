@@ -879,7 +879,8 @@ The `*_aslcontext.tsv` table consists of a single column of labels identifying t
 Volume types are defined in the following table, based on DICOM Tag 0018, 9257 `ASL Context`.
 Note that the volume_types `control` and  `label` within BIDS only serve
 to specify the magnetization state of the blood and thus the ASL subtraction order.
-See [Appendix XII - ASL](../appendices/arterial-spin-labeling.md#which-image-is-control-and-which-is-label) for more information on `control` and  `label`.
+See the [ASL Appendix](../appendices/arterial-spin-labeling.md#which-image-is-control-and-which-is-label)
+for more information on `control` and  `label`.
 
 | **volume_type** | **Definition**                                                                                                                                                                         |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -897,7 +898,7 @@ If the `deltam` is not available,
 When `cbf` is stored within the `*_asl.nii[.gz]`,
 its units need to be specified in the `*_asl.json` as well.
 Note that the raw images, including the `m0scan`, may also be used for quality control.
-See [Appendix XII - ASL](../appendices/arterial-spin-labeling.md#_aslcontexttsv-three-possible-cases) for examples of the three possible cases, in order of decreasing preference.
+See the [ASL Appendix](../appendices/arterial-spin-labeling.md#_aslcontexttsv-three-possible-cases) for examples of the three possible cases, in order of decreasing preference.
 
 ### Scaling
 
@@ -921,7 +922,7 @@ Additionally, some common metadata fields are REQUIRED for the `*_asl.json`:
 `MagneticFieldStrength`, `MRAcquisitionType`, `EchoTime`,
 `SliceTiming` in case `MRAcquisitionType` is defined as 2D,
 `RepetitionTimePreparation`, and `FlipAngle` in case `LookLocker` is `true`.
-See [Appendix XII - ASL](../appendices/arterial-spin-labeling.md#summary-image-of-the-most-common-asl-sequences) for more information on the most common ASL sequences.
+See the [ASL Appendix](../appendices/arterial-spin-labeling.md#summary-image-of-the-most-common-asl-sequences) for more information on the most common ASL sequences.
 
 #### Common metadata fields applicable to both (P)CASL and PASL
 
@@ -937,7 +938,7 @@ A guide for using macros can be found at
 
 #### (P)CASL-specific metadata fields
 
-These fields can only be used when `ArterialSpinLabelingType` is `"CASL"` or `"PCASL"`. See [Appendix XII - ASL](../appendices/arterial-spin-labeling.md#pcasl-sequence) for more information on the (P)CASL sequence and the Labeling Pulse fields.
+These fields can only be used when `ArterialSpinLabelingType` is `"CASL"` or `"PCASL"`. See the [ASL Appendix](../appendices/arterial-spin-labeling.md#pcasl-sequence) for more information on the (P)CASL sequence and the Labeling Pulse fields.
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -955,7 +956,7 @@ A guide for using macros can be found at
 
 #### PASL-specific metadata fields
 
-These fields can only be used when `ArterialSpinLabelingType` is `PASL`. See [Appendix XII - ASL](../appendices/arterial-spin-labeling.md#pasl-sequence) for more information on the PASL sequence and the BolusCutOff fields.
+These fields can only be used when `ArterialSpinLabelingType` is `PASL`. See the [ASL Appendix](../appendices/arterial-spin-labeling.md#pasl-sequence) for more information on the PASL sequence and the BolusCutOff fields.
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -982,7 +983,7 @@ A guide for using macros can be found at
 {{ MACROS___make_sidecar_table("asl.MRIASLM0Scan") }}
 
 The following table recapitulates the ASL field dependencies. If Source field (column 1) contains the Value specified in column 2, then the Requirements in column 4 are
-imposed on the Dependent fields in column 3. See [Appendix XII](../appendices/arterial-spin-labeling.md#flowchart-based-on-dependency-table) for this information in the
+imposed on the Dependent fields in column 3. See the [ASL Appendix](../appendices/arterial-spin-labeling.md#flowchart-based-on-dependency-table) for this information in the
 form of flowcharts.
 
 | **Source field**         | **Value**    | **Dependent field**  | **Requirements**                                 |

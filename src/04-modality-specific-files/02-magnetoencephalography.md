@@ -70,7 +70,7 @@ which saves the MEG sensor coil positions in a separate file with two possible f
 For these files, the `markers` suffix MUST be used.
 For example: `sub-01_task-nback_markers.sqd`
 
-Please refer to [Appendix VI](../appendices/meg-file-formats.md)
+Please refer to the [MEG File Formats Appendix](../appendices/meg-file-formats.md)
 for general information on how to deal with such manufacturer specifics and to see more examples.
 
 The [`proc-<label>`](../appendices/entities.md#proc) entity is analogous to the
@@ -92,7 +92,8 @@ If however EEG is recorded simultaneously **with the same MEG system**,
 it MAY be stored under the `/meg` data type.
 In that case, it SHOULD have the same sampling frequency as MEG (see `SamplingFrequency` field below).
 Furthermore, the EEG sensor coordinates SHOULD be specified using MEG-specific coordinate
-systems (see [coordinates section](#coordinate-system-json-_coordsystemjson) below and [Appendix VIII](../appendices/coordinate-systems.md)).
+systems (see [coordinates section](#coordinate-system-json-_coordsystemjson) below and
+the [Coordinate Systems Appendix](../appendices/coordinate-systems.md)).
 
 ### Sidecar JSON (`*_meg.json`)
 
@@ -468,7 +469,7 @@ electrode locations can be digitized and stored in separate files. The
 [`acq-<label>`](../appendices/entities.md#acq) entity can be used when more than one type of digitization in done for
 a session, for example when the head points are in a separate file from the EEG
 locations. These files are stored in the specific format of the 3-D digitizer’s
-manufacturer (see [Appendix VI](../appendices/meg-file-formats.md)).
+manufacturer (see the [MEG File Formats Appendix](../appendices/meg-file-formats.md)).
 
 Example:
 

@@ -1,4 +1,4 @@
-# Appendix IX: Entities
+# Entities
 
 This section compiles the entities (key-value pairs within file names) described throughout this
 specification, and describes each.

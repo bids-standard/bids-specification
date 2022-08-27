@@ -1,4 +1,4 @@
-# Appendix VII: MEG systems
+# MEG systems
 
 Preferred names of MEG systems comprise restricted keywords for Manufacturer field in the `*_meg.json` file:
 

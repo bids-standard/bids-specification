@@ -1,4 +1,4 @@
-# Appendix X: File collections
+# File collections
 
 Here, some concrete use-cases of [entity-linked file collections](../02-common-principles.md#file-name-structure) are listed using descriptive tables, organized by modality.
 

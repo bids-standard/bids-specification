@@ -295,7 +295,7 @@ space:
     (for EEG/MEG/iEEG data) or
     the spatial reference to which a file has been aligned (for MRI data).
     The space `<label>` MUST be taken from one of the modality specific lists in
-    [Appendix VIII](SPEC_ROOT/appendices/coordinate-systems.md).
+    the [Coordinate Systems Appendix](SPEC_ROOT/appendices/coordinate-systems.md).
     For example for iEEG data, the restricted keywords listed under
     [iEEG Specific Coordinate Systems](SPEC_ROOT/appendices/coordinate-systems.md#ieeg-specific-coordinate-systems)
     are acceptable for `<label>`.

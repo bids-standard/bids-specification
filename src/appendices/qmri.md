@@ -1,4 +1,4 @@
-# Appendix XI: Quantitative MRI
+# Quantitative MRI
 
 Quantitative MRI (qMRI) is a collection of methods aiming at generating parametric maps
 that can characterize underlying tissue properties.
