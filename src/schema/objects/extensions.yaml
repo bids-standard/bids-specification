@@ -94,7 +94,7 @@ eeg:
   display_name: BrainVision Binary Data
   description: |
     A binary data file in the
-    [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5).
+    [BrainVision Core Data Format](https://www.brainproducts.com/support-resources/brainvision-core-data-format-1-0/).
     These files come in three-file sets, including a `.vhdr`, a `.vmrk`, and a `.eeg` file.
 fdt:
   value: .fdt
@@ -286,14 +286,14 @@ vhdr:
   display_name: BrainVision Text Header
   description: |
     A text header file in the
-    [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5).
+    [BrainVision Core Data Format](https://www.brainproducts.com/support-resources/brainvision-core-data-format-1-0/).
     These files come in three-file sets, including a `.vhdr`, a `.vmrk`, and a `.eeg` file.
 vmrk:
   value: .vmrk
   display_name: BrainVision Marker
   description: |
     A text marker file in the
-    [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5).
+    [BrainVision Core Data Format](https://www.brainproducts.com/support-resources/brainvision-core-data-format-1-0/).
     These files come in three-file sets, including a `.vhdr`, a `.vmrk`, and a `.eeg` file.
 Any:
   value: .*
