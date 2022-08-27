@@ -2,7 +2,11 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[MISC] Adding qMRI BIDS article reference (BEP001) [#1251](https://github.com/bids-standard/bids-specification/pull/1251) ([agahkarakuzu](https://github.com/agahkarakuzu))
+-   \[ENH] Link to filename element definitions in filename templates [#1228](https://github.com/bids-standard/bids-specification/pull/1228) ([tsalo](https://github.com/tsalo))
 -   \[MISC] Remove label format and inheritance principle redundancies in fMRI section [#1197](https://github.com/bids-standard/bids-specification/pull/1197) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[ENH] add task metadata to PET [#1196](https://github.com/bids-standard/bids-specification/pull/1196) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[FIX] clarify which file to list in scans.tsv for file formats with multiple files [#1178](https://github.com/bids-standard/bids-specification/pull/1178) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] add recommendation to fully omit non-compulsory data that is n/a [#1171](https://github.com/bids-standard/bids-specification/pull/1171) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Discourage use of "sample" in events if sampling frequency is ambiguous, add guidelines for precision [#1140](https://github.com/bids-standard/bids-specification/pull/1140) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Clarify MEG empty-room recommendations [#1125](https://github.com/bids-standard/bids-specification/pull/1125) ([robertoostenveld](https://github.com/robertoostenveld))
