@@ -3,14 +3,14 @@
 Each MEG system brand has specific file organization and data formats.
 RECOMMENDED values for `manufacturer_specific_extensions`:
 
-| **Value**                                        | **Description**                                                                       |
-| ------------------------------------------------ | ------------------------------------------------------------------------------------- |
-| [`ctf`](meg-file-formats.md#ctf)                 | CTF (directory with `.ds` extension)                                                  |
-| [`fif`](meg-file-formats.md#neuromagelektamegin) | Neuromag / Elekta / MEGIN and BabyMEG (file with extension `.fif`)                    |
-| [`4d`](meg-file-formats.md#bti4d-neuroimaging)   | BTi / 4D Neuroimaging (directory containing multiple files without extensions)        |
-| [`kit`](meg-file-formats.md#kityokogawaricoh)    | KIT / Yokogawa / Ricoh (file with extension `.sqd`, `.con`, `.raw`, `.ave` or `.mrk`) |
-| [`kdf`](meg-file-formats.md#kriss)               | KRISS (file with extension `.kdf`)                                                    |
-| [`itab`](meg-file-formats.md#itab)               | Chieti system (file with extension `.raw` and `.mhd`)                                 |
+| **Value**                     | **Description**                                                                       |
+| ----------------------------- | ------------------------------------------------------------------------------------- |
+| [`ctf`](#ctf)                 | CTF (directory with `.ds` extension)                                                  |
+| [`fif`](#neuromagelektamegin) | Neuromag / Elekta / MEGIN and BabyMEG (file with extension `.fif`)                    |
+| [`4d`](#bti4d-neuroimaging)   | BTi / 4D Neuroimaging (directory containing multiple files without extensions)        |
+| [`kit`](#kityokogawaricoh)    | KIT / Yokogawa / Ricoh (file with extension `.sqd`, `.con`, `.raw`, `.ave` or `.mrk`) |
+| [`kdf`](#kriss)               | KRISS (file with extension `.kdf`)                                                    |
+| [`itab`](#itab)               | Chieti system (file with extension `.raw` and `.mhd`)                                 |
 
 Below are specifications for each system brand.
 
@@ -439,6 +439,6 @@ A guide for using macros can be found at
 
 For stand-alone MEG data, the Aalto hybrid device uses the standard `.fif` data
 format and follows the conventions of Elekta/Neuromag as described
-[above](meg-file-formats.md#neuromagelektamegin). The `.fif` files may
+[above](#neuromagelektamegin). The `.fif` files may
 contain unreconstructed MRI data. The inclusion of MRI data and information for
 accurate reconstruction will be fully standardized at a later stage.
