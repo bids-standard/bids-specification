@@ -103,70 +103,19 @@ is stored in the field `ShortChannelCount`.
 If the field `ShortChannelCount` is populated, then the optional column `short_channel`
 may be used in `*_channels.tsv` to describe which channels were specified as short.
 
-{{ MACROS__make_sidecar_table(["nirs.FnirsBase", "nirs.FnirsRequired", "nirs.FnirsRecommended"]) }}
-
-Generic fields that MUST be present:
-
-{{ MACROS___make_metadata_table(
-   {
-      "TaskName": "REQUIRED",
-   }
-) }}
-
-Generic fields which SHOULD be present: For consistency between studies and institutions,
+Generic fields: For consistency between studies and institutions,
 we encourage users to extract the values of these fields from the actual raw data.
 Whenever possible, please avoid using ad hoc wording.
 
-{{ MACROS___make_metadata_table(
-   {
-      "InstitutionName": "RECOMMENDED",
-      "InstitutionAddress": "RECOMMENDED",
-      "Manufacturer": "RECOMMENDED",
-      "ManufacturersModelName": "RECOMMENDED",
-      "SoftwareVersions": "RECOMMENDED",
-      "TaskDescription": "RECOMMENDED",
-      "Instructions": "RECOMMENDED",
-      "CogAtlasID": "RECOMMENDED",
-      "CogPOID": "RECOMMENDED",
-      "DeviceSerialNumber": "RECOMMENDED",
-      "RecordingDuration": "RECOMMENDED",
-      "HeadCircumference": "RECOMMENDED",
-      "HardwareFilters": "RECOMMENDED",
-      "SubjectArtefactDescription": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("nirs.FnirsBase") }}
 
-{{ MACROS___make_metadata_table(
-   {
-      "CapManufacturer": ("RECOMMENDED", "If a custom-made cap is used then the string `custom` MUST be used. If no cap was used, such as with optodes that are directly taped to the scalp, then the string `none` MUST be used and the `NIRSPlacementScheme` field MAY be used to specify the optode placement."),
-      "CapManufacturersModelName": ("RECOMMENDED", "If there is no official model number then a description may be provided (for example, `Headband with print (S-M)`). If a cap from a standard manufacturer was modified, then the field MUST be set to `custom`. If no cap was used, then the `CapManufacturer` field MUST be `none` and this field MUST be `n/a`."),
-   }
-) }}
+Specific fNIRS fields that are REQUIRED or may be REQUIRED depending on other metadata values:
 
-Specific fNIRS fields that MUST be present:
-
-{{ MACROS___make_metadata_table(
-   {
-      "SamplingFrequency__nirs": ("REQUIRED", "Sampling frequency (in Hz) of all the data in the recording, regardless of their type (for example, `12`). If individual channels have different sampling rates, then the field here MUST be specified as `n/a` and the values MUST be specified in the `sampling_frequency` column in channels.tsv."),
-      "NIRSChannelCount": "REQUIRED",
-      "NIRSSourceOptodeCount": "REQUIRED",
-      "NIRSDetectorOptodeCount": "REQUIRED",
-      "ACCELChannelCount": "RECOMMENDED but REQUIRED if any channel type is ACC",
-      "GYROChannelCount": "RECOMMENDED but REQUIRED if any channel type is GYRO",
-      "MAGNChannelCount": "RECOMMENDED but REQUIRED if any channel type is MAGN",
-   }
-) }}
+{{ MACROS___make_sidecar_table("nirs.FnirsRequired") }}
 
 Specific fNIRS fields that SHOULD be present:
 
-{{ MACROS___make_metadata_table(
-   {
-      "SourceType": "RECOMMENDED",
-      "DetectorType": "RECOMMENDED",
-      "ShortChannelCount": "RECOMMENDED",
-      "NIRSPlacementScheme": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("nirs.FnirsRecommend") }}
 
 Example:
 
@@ -327,7 +276,7 @@ The following columns MAY be present:
       "y__template": "OPTIONAL but REQUIRED if `x` is `n/a`",
       "z__template": "OPTIONAL but REQUIRED if `x` is `n/a`",
       "description__optode": "OPTIONAL",
-      "detector__optodes": "OPTIONAL",
+      "detector_type": "OPTIONAL",
       "source__optodes": "OPTIONAL",
    }
 ) }}
