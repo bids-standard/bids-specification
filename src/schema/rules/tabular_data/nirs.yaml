@@ -8,14 +8,14 @@ nirsChannels:
     - name__channels
     - type__nirs_channels
     - source__optodes
-    - detector__optodes
+    - detector_type
     - wavelength_nominal
     - units__nirs
   columns:
     name__channels: required
     type__nirs_channels: required
     source__optodes: required
-    detector__optodes: required
+    detector_type: required
     wavelength_nominal: required
     units__nirs: required
     orientation_component: optional
@@ -48,6 +48,6 @@ nirsOptodes:
     y__template: optional
     z__template: optional
     description: optional
-    detector__optodes: optional
+    detector_type: optional
     source__optodes: optional
   additional_columns: allowed_if_defined
