@@ -1701,7 +1701,7 @@ M0Type:
     - Absent
 MAGNChannelCount:
   name: MAGNChannelCount
-  display_name: Manetrometer Channel Count
+  display_name: Magnetometer Channel Count
   description: |
     Number of magnetometer channels.
   type: integer
