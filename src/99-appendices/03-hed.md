@@ -210,7 +210,7 @@ These later schemas are located at
 ```
 The `sc:` and `ts:` are user-chosen prefixes used to distinguish the sources
 of the terms in the HED annotation.
-These prefixes must be alphanumeric.
+These prefixes MUST be alphanumeric.
 
 The following HED annotation from this dataset uses the `sc:` prefix with
 `Photomyogenic-response` and `Wicket-spikes` because these terms are from the
