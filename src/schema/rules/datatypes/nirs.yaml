@@ -19,6 +19,7 @@ channels:
     - channels
   extensions:
     - .tsv
+    - .json
   datatypes:
     - nirs
   entities:
@@ -45,6 +46,7 @@ optodes:
     - optodes
   extensions:
     - .tsv
+    - .json
   datatypes:
     - nirs
   entities:

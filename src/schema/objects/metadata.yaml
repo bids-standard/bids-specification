@@ -1701,7 +1701,7 @@ M0Type:
     - Absent
 MAGNChannelCount:
   name: MAGNChannelCount
-  display_name: Manetrometer Channel Count
+  display_name: Magnetometer Channel Count
   description: |
     Number of magnetometer channels.
   type: integer
@@ -2036,8 +2036,8 @@ NIRSCoordinateSystem:
     See
     [Appendix VIII](SPEC_ROOT/99-appendices/08-coordinate-systems.md)
     for a list of restricted keywords for coordinate systems.
-    If `"Other"`, provide definition of the coordinate system in
-    `NIRSCoordinateSystemDescription`.
+    If `"Other"`, a definition of the coordinate system MUST be
+    provided in `NIRSCoordinateSystemDescription`.
   anyOf:
     - $ref: objects.metadata._MEGCoordSys
     - $ref: objects.metadata._EEGCoordSys
