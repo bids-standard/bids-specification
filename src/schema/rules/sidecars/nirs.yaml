@@ -97,19 +97,19 @@ FnirsRequired:
   fields:
     CapManufacturer:
       level: recommended
-      level_addendum: |
+      description_addendum: |
         If a custom-made cap is used then the string `custom` MUST be used. If no cap was used, such as with optodes
         that are directly taped to the scalp, then the string `none` MUST be used and the `NIRSPlacementScheme` field
         MAY be used to specify the optode placement.
     CapManufacturersModelName:
       level: recommended
-      addendum: |
+      description_addendum: |
         If there is no official model number then a description may be provided (for example, `Headband with print
         (S-M)`). If a cap from a standard manufacturer was modified, then the field MUST be set to `custom`. If no cap
         was used, then the `CapManufacturer` field MUST be `none` and this field MUST be `n/a`.")
     SamplingFrequency__nirs:
       level: required
-      addendum: |
+      description_addendum: |
         Sampling frequency (in Hz) of all the data in the recording, regardless of their type (for example, `12`). If
         individual channels have different sampling rates, then the field here MUST be specified as `n/a` and the
         values MUST be specified in the `sampling_frequency` column in channels.tsv.")
