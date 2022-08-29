@@ -19,6 +19,7 @@ logging.basicConfig(format="%(asctime)-15s [%(levelname)8s] %(message)s")
 
 ENTITIES_PATH = "SPEC_ROOT/99-appendices/09-entities.html"
 GLOSSARY_PATH = "SPEC_ROOT/99-appendices/14-glossary.html"
+GLOSSARY_PATH_MD = "SPEC_ROOT/99-appendices/14-glossary.md"
 TYPE_CONVERTER = {
     "associated_data": "associated data",
     "columns": "column",
@@ -707,7 +708,7 @@ def make_obj_table(
             "enum" in subschema[field].keys()
             and len(subschema[field]["enum"]) >= n_values_to_combine
         ):
-            glossary_entry = f"{GLOSSARY_PATH}#objects.{field}"
+            glossary_entry = f"{GLOSSARY_PATH_MD}#objects.{field}"
             valid_values_str = (
                 "For a list of valid values for this field, see the "
                 f"[associated glossary entry]({glossary_entry})."
@@ -976,7 +977,7 @@ def make_columns_table(
             "enum" in subschema[field].keys()
             and len(subschema[field]["enum"]) >= n_values_to_combine
         ):
-            glossary_entry = f"{GLOSSARY_PATH}#objects.{field_type}.{field}"
+            glossary_entry = f"{GLOSSARY_PATH_MD}#objects.{field_type}.{field}"
             valid_values_str = (
                 "For a list of valid values for this field, see the "
                 f"[associated glossary entry]({glossary_entry})."
