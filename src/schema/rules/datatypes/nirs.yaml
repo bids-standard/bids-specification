@@ -45,6 +45,7 @@ optodes:
     - optodes
   extensions:
     - .tsv
+    - .json
   datatypes:
     - nirs
   entities:
