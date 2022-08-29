@@ -31,7 +31,7 @@ NIRSCoordinateSystemDescriptionReq:
     - suffix == "coordsystem"
     - json.NIRSCoordinateSystem == "other"
   fields:
-    NIRSCoordinateSystemDescription: REQUIRED
+    NIRSCoordinateSystemDescription: required
 
 AnatomicalLandmarkCoordinateSystemDescriptionRec:
   selectors:
