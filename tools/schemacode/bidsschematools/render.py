@@ -7,6 +7,7 @@ from collections.abc import Mapping
 
 import pandas as pd
 import yaml
+from markdown_it import MarkdownIt
 from tabulate import tabulate
 
 from . import utils
@@ -469,9 +470,52 @@ def make_filename_template(
         )
 
     codeblock = codeblock.expandtabs(4)
+    codeblock = append_filename_template_legend(codeblock, pdf_format)
     codeblock = codeblock.replace("SPEC_ROOT", get_relpath(src_path))
 
     return codeblock
+
+
+def append_filename_template_legend(
+    text=None,
+    pdf_format=False,
+):
+
+    if text is None:
+        return
+
+    md = MarkdownIt().disable("image").enable("table")
+
+    legend = """
+- Filename entities or folders between square brackets (for example, `[_ses-<label>]`) are OPTIONAL.
+- Some entities may only allow specific values,
+  in which case those values are listed in `<>`, separated by `|`.
+- `_<suffix>` means that there are several (>6) valid suffixes for this filename pattern.
+- `.<extension>` means that there are several (>6) valid extensions for this file type.
+- `[.gz]` means that both the unzipped and gzipped versions of the extension are valid.
+"""
+
+    if pdf_format:
+        text += f"""
+
+**Legend**:
+
+{legend}
+
+"""
+    else:
+        text += f"""
+
+<details>
+<summary><strong>Legend:</strong></summary>
+<ul>
+{md.render(legend)}
+</ul>
+</details>
+
+"""
+
+    return text
 
 
 def make_entity_table(schema, tablefmt="github", **kwargs):
