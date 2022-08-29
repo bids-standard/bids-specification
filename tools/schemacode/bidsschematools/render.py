@@ -487,7 +487,7 @@ def append_filename_template_legend(
     md = MarkdownIt().disable("image").enable("table")
 
     legend = """
-- Filename entities or folders between square brackets 
+- Filename entities or folders between square brackets
   (for example, `[_ses-<label>]`) are OPTIONAL.
 - Some entities may only allow specific values,
   in which case those values are listed in `<>`, separated by `|`.
