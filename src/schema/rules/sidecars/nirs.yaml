@@ -103,7 +103,7 @@ FnirsRequired:
         MAY be used to specify the optode placement.
     CapManufacturersModelName:
       level: recommended
-      level_addendum: |
+      addendum: |
         If there is no official model number then a description may be provided (for example, `Headband with print
         (S-M)`). If a cap from a standard manufacturer was modified, then the field MUST be set to `custom`. If no cap
         was used, then the `CapManufacturer` field MUST be `none` and this field MUST be `n/a`.")
