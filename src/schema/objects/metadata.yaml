@@ -2967,12 +2967,7 @@ SourceType:
     `"LED"`, `"LASER"`, `"VCSEL"`. If individual channels have different SourceType,
     then the field here should be specified as "mixed"
     and this column should be included in optodes.tsv.
-  anyOf:
-    - type: string
-      format: unit
-    - type: string
-      enum:
-        - mixed
+  type: string
 SpatialReference:
   name: SpatialReference
   display_name: Spatial Reference
