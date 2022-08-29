@@ -1,11 +1,11 @@
-from schemacode import utils
+from bidsschematools import utils
 
 
 def test_combine_extensions():
     """A unit test for utils.combine_extensions."""
     test_extensions = ["nii.gz", "nii", "json"]
     target_combined = ["nii[.gz]", "json"]
-    test_combined = utils.combine_extensions(test_extensions)
+    test_combined = utils.combine_extensions(test_extensions, pdf_format=True)
     assert test_combined == target_combined
 
 

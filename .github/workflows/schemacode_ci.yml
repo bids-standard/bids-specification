@@ -4,70 +4,117 @@ on:
   push:
     branches:
       - "master"
-    paths:
-      - "tools/schemacode/**"
-      - "src/schema/**"
+    tags:
+      - "schema-*"
   pull_request:
     branches:
       - "*"
-    paths:
-      - "tools/schemacode/**"
-      - "src/schema/**"
+
+defaults:
+  run:
+    shell: bash
 
 jobs:
-  check_skip:
-    runs-on: ubuntu-latest
-    outputs:
-      skip: ${{ steps.result_step.outputs.ci-skip }}
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - id: result_step
-        uses: mstachniuk/ci-skip@master
-        with:
-          commit-filter: "[skip ci];[ci skip];[skip github]"
-          commit-filter-separator: ";"
-
-  run_tests:
-    needs: check_skip
-    if: ${{ needs.check_skip.outputs.skip == 'false' }}
+  build:
     runs-on: ${{ matrix.os }}
     strategy:
-        fail-fast: false
-        matrix:
-            os: ["ubuntu-latest"]
-            python-version: ["3.6", "3.7", "3.8", "3.9", "3.10"]
+      matrix:
+        os: ["ubuntu-latest"]
+        python-version: ["3.10"]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: "Install build dependencies"
+        run: pip install --upgrade build twine
+      - name: "Install test dependencies on tag"
+        run: pip install --upgrade pytest pyyaml pandas tabulate
+        if: ${{ startsWith(github.ref, 'refs/tags/schema-') }}
+      - name: "Build archive on tag"
+        run: pytest tools/schemacode/bidsschematools -k make_archive
+        env:
+          BIDSSCHEMATOOLS_RELEASE: 1
+        if: ${{ startsWith(github.ref, 'refs/tags/schema-') }}
+      - name: "Build source distribution and wheel"
+        run: python -m build tools/schemacode
+      - name: "Check distribution metadata"
+        run: twine check tools/schemacode/dist/*
+      - uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: tools/schemacode/dist/
+
+  test:
+    runs-on: ${{ matrix.os }}
+    needs: [build]
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["ubuntu-latest"]
+        python-version: ["3.7", "3.8", "3.9", "3.10"]
     name: ${{ matrix.os }} with Python ${{ matrix.python-version }}
-    defaults:
-      run:
-        shell: bash
     steps:
       - uses: actions/checkout@v3
 
       - name: "Set up Python"
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v4
         with:
-            python-version: ${{ matrix.python-version }}
+          python-version: ${{ matrix.python-version }}
 
       - name: "Display Python version"
-        shell: bash {0}
         run: python -c "import sys; print(sys.version)"
 
-      - name: "Install the schemacode package"
-        shell: bash {0}
+      - name: "Fetch packages"
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+          path: dist/
+
+      - name: "Install package"
         run: |
-          python -m pip install --progress-bar off --upgrade pip setuptools wheel
-          python -m pip install -e ./tools/schemacode[tests]
+          pip install $( ls dist/*.whl )[all]
 
       - name: "Run tests"
-        shell: bash {0}
         run: |
-          python -m pytest --pyargs schemacode --cov=schemacode ./tools/schemacode/
+          python -m pytest -vs --pyargs bidsschematools -m "not validate_schema" \
+              --cov-append --cov-report=xml --cov=bidsschematools
 
-      - name: "Upload coverage to CodeCov"
-        uses: codecov/codecov-action@v1
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: unit_${{ matrix.os }}_${{ matrix.python-version }}
+          path: coverage.xml
         if: success()
+
+  publish:
+    runs-on: ${{ matrix.os }}
+    name: Publish Python Package
+    needs: [test]
+    if: github.event_name == 'push'
+    strategy:
+      matrix:
+        os: ["ubuntu-latest"]
+        python-version: ["3.10"]
+    steps:
+      - name: "Fetch packages"
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+          path: dist/
+      - name: "Test PyPI upload"
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          user: __token__
+          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
+          repository_url: https://test.pypi.org/legacy/
+          skip_existing: true
+      - name: "Upload to PyPI (on tags)"
+        if: startsWith(github.ref, 'refs/tags/schema-')
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          user: __token__
+          password: ${{ secrets.PYPI_API_TOKEN }}
 
   flake8-lint:
     runs-on: ubuntu-latest
@@ -77,18 +124,58 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up Python environment
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v4
         with:
           python-version: "3.7"
 
-      - name: "Install the schemacode package"
-        shell: bash {0}
+      - name: Install the schemacode package
         run: |
           python -m pip install --progress-bar off --upgrade pip setuptools wheel
-          python -m pip install -e ./tools/schemacode[tests]
+          python -m pip install -e ./tools/schemacode[all]
 
-      - name: "Run flake8"
+      - name: Run flake8
         working-directory: ./tools/schemacode/
-        shell: bash {0}
         run: |
           flake8 .
+
+  validate_schema:
+    runs-on: ubuntu-latest
+    name: Validate schema
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set Up Python environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - name: Install the schemacode package
+        run: |
+          python -m pip install --progress-bar off --upgrade pip setuptools wheel
+          python -m pip install -e ./tools/schemacode[all]
+
+      - name: Run schema validation tests
+        run: python -m pytest --pyargs bidsschematools -m "validate_schema" --cov-append --cov-report=xml --cov=bidsschematools
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: schema_validation
+          path: coverage.xml
+        if: success()
+
+  upload_to_codecov:
+    runs-on: "ubuntu-latest"
+    name: Upload coverage
+    needs: [test, validate_schema]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
+
+      - name: Upload to CodeCov
+        uses: codecov/codecov-action@v3
+        with:
+          fail_ci_if_error: true

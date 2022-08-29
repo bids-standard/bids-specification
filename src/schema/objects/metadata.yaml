@@ -4,12 +4,14 @@
 # This file **does not** define how and when metadata fields can be used with a given file.
 Acknowledgements:
   name: Acknowledgements
+  display_name: Acknowledgements
   description: |
     Text acknowledging contributions of individuals or institutions beyond
     those listed in Authors or Funding.
   type: string
 AcquisitionDuration:
   name: AcquisitionDuration
+  display_name: Acquisition Duration
   description: |
     Duration (in seconds) of volume acquisition.
     Corresponds to DICOM Tag 0018, 9073 `Acquisition Duration`.
@@ -19,11 +21,13 @@ AcquisitionDuration:
   unit: s
 AcquisitionMode:
   name: AcquisitionMode
+  display_name: Acquisition Mode
   description: |
     Type of acquisition of the PET data (for example, `"list mode"`).
   type: string
 AcquisitionVoxelSize:
   name: AcquisitionVoxelSize
+  display_name: Acquisition Voxel Size
   description: |
     An array of numbers with a length of 3, in millimeters.
     This parameter denotes the original acquisition voxel size,
@@ -40,11 +44,13 @@ AcquisitionVoxelSize:
     unit: mm
 Anaesthesia:
   name: Anaesthesia
+  display_name: Anaesthesia
   description: |
     Details of anaesthesia used, if any.
   type: string
 AnalyticalApproach:
   name: AnalyticalApproach
+  display_name: Analytical Approach
   description: |
     Methodology or methodologies used to analyse the `"GeneticLevel"`.
     Values MUST be taken from the
@@ -53,12 +59,13 @@ AnalyticalApproach:
     under /Study/Molecular Data Type (for example, SNP Genotypes (Array) or
     Methylation (CpG).
   anyOf:
-  - type: string
-  - type: array
-    items:
-      type: string
+    - type: string
+    - type: array
+      items:
+        type: string
 AnatomicalLandmarkCoordinateSystem:
   name: AnatomicalLandmarkCoordinateSystem
+  display_name: Anatomical Landmark Coordinate System
   description: |
     Defines the coordinate system for the anatomical landmarks.
     See [Appendix VIII](SPEC_ROOT/99-appendices/08-coordinate-systems.md)
@@ -66,12 +73,13 @@ AnatomicalLandmarkCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `"AnatomicalLandmarkCoordinateSystemDescription"`.
   anyOf:
-  - $ref: _MEGCoordSys
-  - $ref: _EEGCoordSys
-  - $ref: _StandardTemplateCoordSys
-  - $ref: _StandardTemplateDeprecatedCoordSys
+    - $ref: objects.metadata._MEGCoordSys
+    - $ref: objects.metadata._EEGCoordSys
+    - $ref: objects.metadata._StandardTemplateCoordSys
+    - $ref: objects.metadata._StandardTemplateDeprecatedCoordSys
 AnatomicalLandmarkCoordinateSystemDescription:
   name: AnatomicalLandmarkCoordinateSystemDescription
+  display_name: Anatomical Landmark Coordinate System Description
   description: |
     Free-form text description of the coordinate system.
     May also include a link to a documentation page or paper describing the
@@ -79,16 +87,18 @@ AnatomicalLandmarkCoordinateSystemDescription:
   type: string
 AnatomicalLandmarkCoordinateUnits:
   name: AnatomicalLandmarkCoordinateUnits
+  display_name: Anatomical Landmark Coordinate Units
   description: |
     Units of the coordinates of `"AnatomicalLandmarkCoordinateSystem"`.
   type: string
   enum:
-  - m
-  - mm
-  - cm
-  - n/a
+    - m
+    - mm
+    - cm
+    - n/a
 AnatomicalLandmarkCoordinates:
   name: AnatomicalLandmarkCoordinates
+  display_name: Anatomical Landmark Coordinates
   description: |
     Key-value pairs of the labels and 3-D digitized locations of anatomical landmarks,
     interpreted following the `"AnatomicalLandmarkCoordinateSystem"`
@@ -106,6 +116,7 @@ AnatomicalLandmarkCoordinates:
 # Redefinition of AnatomicalLandmarkCoordinates for MRI data
 AnatomicalLandmarkCoordinates__mri:
   name: AnatomicalLandmarkCoordinates
+  display_name: Anatomical Landmark Coordinates
   description: |
     Key-value pairs of any number of additional anatomical landmarks and their
     coordinates in voxel units (where first voxel has index 0,0,0)
@@ -124,47 +135,55 @@ AnatomicalLandmarkCoordinates__mri:
     maxItems: 3
 ArterialSpinLabelingType:
   name: ArterialSpinLabelingType
+  display_name: Arterial Spin Labeling Type
   description: |
     The arterial spin labeling type.
   type: string
   enum:
-  - CASL
-  - PCASL
-  - PASL
+    - CASL
+    - PCASL
+    - PASL
 AssociatedEmptyRoom:
   name: AssociatedEmptyRoom
+  display_name: Associated Empty Room
   description: |
-    A path pointing to an empty-room file associated with
-    the subject's MEG recording.
-    The path is relative to the BIDS dataset root.
-    The path needs to use forward slashes instead of backward slashes
-    (for example,
-    "sub-emptyroom/ses-rest/meg/sub-emptyroom_ses-rest_task-noise_run-01_meg.ds").
-    Supplying a list of several paths to empty-room files is possible.
+    One or more [BIDS URIs](SPEC_ROOT/02-common-principles.md#bids-uri)
+    pointing to empty-room file(s) associated with the subject's MEG recording.
+    Using forward-slash separated paths relative to the dataset root is
+    [DEPRECATED](SPEC_ROOT/02-common-principles.md#definitions).
   anyOf:
-  - type: array
-    items:
-      type: string
+    - type: array
+      items:
+        anyOf:
+          - type: string
+            format: dataset_relative
+          - type: string
+            format: bids_uri
+    - type: string
       format: dataset_relative
-  - type: string
-    format: dataset_relative
+    - type: string
+      format: bids_uri
 Atlas:
   name: Atlas
+  display_name: Atlas
   description: |
     Which atlas (if any) was used to generate the mask.
   type: string
 AttenuationCorrection:
   name: AttenuationCorrection
+  display_name: Attenuation Correction
   description: |
     Short description of the attenuation correction method used.
   type: string
 AttenuationCorrectionMethodReference:
   name: AttenuationCorrectionMethodReference
+  display_name: Attenuation Correction Method Reference
   description: |
     Reference paper for the attenuation correction method used.
   type: string
 Authors:
   name: Authors
+  display_name: Authors
   description: |
     List of individuals who contributed to the creation/curation of the dataset.
   type: array
@@ -172,6 +191,7 @@ Authors:
     type: string
 B0FieldIdentifier:
   name: B0FieldIdentifier
+  display_name: B0 Field Identifier
   description: |
     The presence of this key states that this particular 3D or 4D image MAY be
     used for fieldmap estimation purposes.
@@ -182,12 +202,13 @@ B0FieldIdentifier:
     DICOM tag 0018, 1030 `Protocol Name`, or DICOM tag 0018, 0024 `Sequence Name`
     when the former is not defined (for example, in GE devices.)
   anyOf:
-  - type: string
-  - type: array
-    items:
-      type: string
+    - type: string
+    - type: array
+      items:
+        type: string
 B0FieldSource:
   name: B0FieldSource
+  display_name: B0 Field Source
   description: |
     At least one existing `"B0FieldIdentifier"` defined by images in the
     participant's tree.
@@ -198,22 +219,25 @@ B0FieldSource:
     are used to estimate their own B<sub>0</sub> field, for example, in "pepolar"
     acquisitions.
   anyOf:
-  - type: string
-  - type: array
-    items:
-      type: string
+    - type: string
+    - type: array
+      items:
+        type: string
 BIDSVersion:
   name: BIDSVersion
+  display_name: BIDS Version
   description: |
     The version of the BIDS standard that was used.
   type: string
 BackgroundSuppression:
   name: BackgroundSuppression
+  display_name: Background Suppression
   description: |
     Boolean indicating if background suppression is used.
   type: boolean
 BackgroundSuppressionNumberPulses:
   name: BackgroundSuppressionNumberPulses
+  display_name: Background Suppression Number Pulses
   description: |
     The number of background suppression pulses used.
     Note that this excludes any effect of background suppression pulses applied
@@ -222,6 +246,7 @@ BackgroundSuppressionNumberPulses:
   minimum: 0
 BackgroundSuppressionPulseTime:
   name: BackgroundSuppressionPulseTime
+  display_name: Background Suppression Pulse Time
   description: |
     Array of numbers containing timing, in seconds,
     of the background suppression pulses with respect to the start of the
@@ -235,34 +260,42 @@ BackgroundSuppressionPulseTime:
     unit: s
 BasedOn:
   name: BasedOn
+  display_name: Based On
   description: |
     List of files in a file collection to generate the map.
     Fieldmaps are also listed, if involved in the processing.
+    This field is DEPRECATED, and this metadata SHOULD be recorded in the
+    `Sources` field using [BIDS URIs](SPEC_ROOT/02-common-principles.md#bids-uri)
+    to distinguish sources from different datasets.
   anyOf:
-  - type: string
-    format: participant_relative
-  - type: array
-    items:
-      type: string
+    - type: string
       format: participant_relative
+    - type: array
+      items:
+        type: string
+        format: participant_relative
 BloodDensity:
   name: BloodDensity
+  display_name: Blood Density
   description: |
     Measured blood density. Unit of blood density should be in `"g/mL"`.
   type: number
   unit: g/mL
 BodyPart:
   name: BodyPart
+  display_name: Body Part
   description: |
     Body part of the organ / body region scanned.
   type: string
 BodyPartDetails:
   name: BodyPartDetails
+  display_name: Body Part Details
   description: |
     Additional details about body part or location (for example: `"corpus callosum"`).
   type: string
 BodyPartDetailsOntology:
   name: BodyPartDetailsOntology
+  display_name: Body Part Details Ontology
   description: |
     [URI](SPEC_ROOT/02-common-principles.md#uniform-resource-indicator) of ontology used for
     BodyPartDetails (for example: `"https://www.ebi.ac.uk/ols/ontologies/uberon"`).
@@ -270,6 +303,7 @@ BodyPartDetailsOntology:
   format: uri
 BolusCutOffDelayTime:
   name: BolusCutOffDelayTime
+  display_name: Bolus Cut Off Delay Time
   description: |
     Duration between the end of the labeling and the start of the bolus cut-off
     saturation pulse(s), in seconds.
@@ -280,28 +314,31 @@ BolusCutOffDelayTime:
     pulses are provided.
     Based on DICOM Tag 0018, 925F `ASL Bolus Cut-off Delay Time`.
   anyOf:
-  - type: number
-    minimum: 0
-    unit: s
-  - type: array
-    items:
-      type: number
-      unit: s
+    - type: number
       minimum: 0
+      unit: s
+    - type: array
+      items:
+        type: number
+        unit: s
+        minimum: 0
 BolusCutOffFlag:
   name: BolusCutOffFlag
+  display_name: Bolus Cut Off Flag
   description: |
     Boolean indicating if a bolus cut-off technique is used.
     Corresponds to DICOM Tag 0018, 925C `ASL Bolus Cut-off Flag`.
   type: boolean
 BolusCutOffTechnique:
   name: BolusCutOffTechnique
+  display_name: Bolus Cut Off Technique
   description: |
     Name of the technique used, for example `"Q2TIPS"`, `"QUIPSS"`, `"QUIPSSII"`.
     Corresponds to DICOM Tag 0018, 925E `ASL Bolus Cut-off Technique`.
   type: string
 BrainLocation:
   name: BrainLocation
+  display_name: Brain Location
   description: |
     Refers to the location in space of the `"TissueOrigin"`.
     Values may be an MNI coordinate,
@@ -314,25 +351,29 @@ BrainLocation:
   type: string
 CASLType:
   name: CASLType
+  display_name: CASL Type
   description: |
     Describes if a separate coil is used for labeling.
   type: string
   enum:
-  - single-coil
-  - double-coil
+    - single-coil
+    - double-coil
 CapManufacturer:
   name: CapManufacturer
+  display_name: Cap Manufacturer
   description: |
     Name of the cap manufacturer (for example, `"EasyCap"`).
   type: string
 CapManufacturersModelName:
   name: CapManufacturersModelName
+  display_name: Cap Manufacturers Model Name
   description: |
     Manufacturer's designation of the EEG cap model
     (for example, `"actiCAP 64 Ch Standard-2"`).
   type: string
 CellType:
   name: CellType
+  display_name: Cell Type
   description: |
     Describes the type of cell analyzed.
     Values SHOULD come from the
@@ -340,6 +381,7 @@ CellType:
   type: string
 ChunkTransformationMatrix:
   name: ChunkTransformationMatrix
+  display_name: Chunk Transformation Matrix
   description: |
     3x3 or 4x4 affine transformation matrix describing spatial chunk transformation,
     for 2D and 3D respectively (for examples: `[[2, 0, 0], [0, 3, 0], [0, 0, 1]]`
@@ -349,36 +391,38 @@ ChunkTransformationMatrix:
     Note that non-spatial dimensions like time and channel are not included in the
     transformation matrix.
   anyOf:
-  - type: array
-    minItems: 3
-    maxItems: 3
-    items:
-      type: array
+    - type: array
       minItems: 3
       maxItems: 3
       items:
-        type: number
-  - type: array
-    minItems: 4
-    maxItems: 4
-    items:
-      type: array
+        type: array
+        minItems: 3
+        maxItems: 3
+        items:
+          type: number
+    - type: array
       minItems: 4
       maxItems: 4
       items:
-        type: number
+        type: array
+        minItems: 4
+        maxItems: 4
+        items:
+          type: number
 ChunkTransformationMatrixAxis:
   name: ChunkTransformationMatrixAxis
+  display_name: Chunk Transformation Matrix Axis
   description: |
     Describe the axis of the ChunkTransformationMatrix
     (for examples: `["X", "Y"]` or `["Z", "Y", "X"]`).
   type: array
+  minItems: 2
+  maxItems: 3
   items:
     type: string
-    minItems: 2
-    maxItems: 3
 Code:
   name: Code
+  display_name: Code
   description: |
     [URI](SPEC_ROOT/02-common-principles.md#uniform-resource-indicator)
     of the code used to present the stimuli.
@@ -389,6 +433,7 @@ Code:
   format: uri
 CogAtlasID:
   name: CogAtlasID
+  display_name: Cognitive Atlas ID
   description: |
     [URI](SPEC_ROOT/02-common-principles.md#uniform-resource-indicator)
     of the corresponding [Cognitive Atlas](https://www.cognitiveatlas.org/)
@@ -397,6 +442,7 @@ CogAtlasID:
   format: uri
 CogPOID:
   name: CogPOID
+  display_name: Cognitive Paradigm Ontology ID
   description: |
     [URI](SPEC_ROOT/02-common-principles.md#uniform-resource-indicator)
     of the corresponding [CogPO](http://www.cogpo.org/) term.
@@ -404,6 +450,7 @@ CogPOID:
   format: uri
 CoilCombinationMethod:
   name: CoilCombinationMethod
+  display_name: Coil Combination Method
   description: |
     Almost all fMRI studies using phased-array coils use root-sum-of-squares
     (rSOS) combination, but other methods exist.
@@ -413,6 +460,7 @@ CoilCombinationMethod:
   type: string
 Columns:
   name: Columns
+  display_name: Columns
   description: |
     Names of columns in file.
   type: array
@@ -420,24 +468,27 @@ Columns:
     type: string
 ContinuousHeadLocalization:
   name: ContinuousHeadLocalization
+  display_name: Continuous Head Localization
   description: |
     `true` or `false` value indicating whether continuous head localisation
     was performed.
   type: boolean
 ContrastBolusIngredient:
   name: ContrastBolusIngredient
+  display_name: Contrast Bolus Ingredient
   description: |
     Active ingredient of agent.
     Corresponds to DICOM Tag 0018, 1048 `Contrast/Bolus Ingredient`.
   type: string
   enum:
-  - IODINE
-  - GADOLINIUM
-  - CARBON DIOXIDE
-  - BARIUM
-  - XENON
+    - IODINE
+    - GADOLINIUM
+    - CARBON DIOXIDE
+    - BARIUM
+    - XENON
 DCOffsetCorrection:
   name: DCOffsetCorrection
+  display_name: DC Offset Correction
   description: |
     A description of the method (if any) used to correct for a DC offset.
     If the method used was subtracting the mean value for each channel,
@@ -445,6 +496,7 @@ DCOffsetCorrection:
   type: string
 DatasetDOI:
   name: DatasetDOI
+  display_name: DatasetDOI
   description: |
     The Digital Object Identifier of the dataset (not the corresponding paper).
     DOIs SHOULD be expressed as a valid
@@ -453,17 +505,31 @@ DatasetDOI:
     [DEPRECATED](SPEC_ROOT/02-common-principles.md#definitions).
   type: string
   format: uri
+DatasetLinks:
+  name: DatasetLinks
+  display_name: Dataset Links
+  description: |
+    Used to map a given `<dataset-name>` from a [BIDS URI](SPEC_ROOT/02-common-principles.md#bids-uri)
+    of the form `bids:<dataset-name>:path/within/dataset` to a local or remote location.
+    The `<dataset-name>`: `""` (an empty string) is a reserved keyword that MUST NOT be a key in
+    `DatasetLinks` (example: `bids::path/within/dataset`).
+  type: object
+  additionalProperties:
+    type: string
+    format: uri
 DatasetType:
   name: DatasetType
+  display_name: Dataset Type
   description: |
     The interpretation of the dataset.
     For backwards compatibility, the default value is `"raw"`.
   type: string
   enum:
-  - raw
-  - derivative
+    - raw
+    - derivative
 DecayCorrectionFactor:
   name: DecayCorrectionFactor
+  display_name: Decay Correction Factor
   description: |
     Decay correction factor for each frame.
   type: array
@@ -471,6 +537,7 @@ DecayCorrectionFactor:
     type: number
 DelayAfterTrigger:
   name: DelayAfterTrigger
+  display_name: Delay After Trigger
   description: |
     Duration (in seconds) from trigger delivery to scan onset.
     This delay is commonly caused by adjustments and loading times.
@@ -481,6 +548,7 @@ DelayAfterTrigger:
   unit: s
 DelayTime:
   name: DelayTime
+  display_name: Delay Time
   description: |
     User specified time (in seconds) to delay the acquisition of data for the
     following volume.
@@ -494,17 +562,19 @@ DelayTime:
   unit: s
 Density:
   name: Density
+  display_name: Density
   description: |
     Specifies the interpretation of the density keyword.
     If an object is used, then the keys should be values for the `den` entity
     and values should be descriptions of those `den` values.
   anyOf:
-  - type: string
-  - type: object
-    additionalProperties:
-      type: string
+    - type: string
+    - type: object
+      additionalProperties:
+        type: string
 Derivative:
   name: Derivative
+  display_name: Derivative
   description: |
     Indicates that values in the corresponding column are transformations of values
     from other columns (for example a summary score based on a subset of items in a
@@ -512,11 +582,13 @@ Derivative:
   type: boolean
 Description:
   name: Description
+  display_name: Description
   description: |
     Free-form natural language description.
   type: string
 DeviceSerialNumber:
   name: DeviceSerialNumber
+  display_name: Device Serial Number
   description: |
     The serial number of the equipment that produced the measurements.
     A pseudonym can also be used to prevent the equipment from being
@@ -524,6 +596,7 @@ DeviceSerialNumber:
   type: string
 DewarPosition:
   name: DewarPosition
+  display_name: Dewar Position
   description: |
     Position of the dewar during the MEG scan:
     `"upright"`, `"supine"` or `"degrees"` of angle from vertical:
@@ -531,12 +604,14 @@ DewarPosition:
   type: string
 DigitizedHeadPoints:
   name: DigitizedHeadPoints
+  display_name: Digitized Head Points
   description: |
     `true` or `false` value indicating whether head points outlining the
     scalp/face surface are contained within this recording.
   type: boolean
 DigitizedHeadPoints__coordsystem:
   name: DigitizedHeadPoints
+  display_name: Digitized Head Points
   description: |
     Relative path to the file containing the locations of digitized head points
     collected during the session (for example, `"sub-01_headshape.pos"`).
@@ -546,6 +621,7 @@ DigitizedHeadPoints__coordsystem:
   format: file_relative
 DigitizedHeadPointsCoordinateSystem:
   name: DigitizedHeadPointsCoordinateSystem
+  display_name: Digitized Head Points Coordinate System
   description: |
     Defines the coordinate system for the digitized head points.
     See
@@ -554,12 +630,13 @@ DigitizedHeadPointsCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `"DigitizedHeadPointsCoordinateSystemDescription"`.
   anyOf:
-  - $ref: _MEGCoordSys
-  - $ref: _EEGCoordSys
-  - $ref: _StandardTemplateCoordSys
-  - $ref: _StandardTemplateDeprecatedCoordSys
+    - $ref: objects.metadata._MEGCoordSys
+    - $ref: objects.metadata._EEGCoordSys
+    - $ref: objects.metadata._StandardTemplateCoordSys
+    - $ref: objects.metadata._StandardTemplateDeprecatedCoordSys
 DigitizedHeadPointsCoordinateSystemDescription:
   name: DigitizedHeadPointsCoordinateSystemDescription
+  display_name: Digitized Head Points Coordinate System Description
   description: |
     Free-form text description of the coordinate system.
     May also include a link to a documentation page or paper describing the
@@ -567,22 +644,25 @@ DigitizedHeadPointsCoordinateSystemDescription:
   type: string
 DigitizedHeadPointsCoordinateUnits:
   name: DigitizedHeadPointsCoordinateUnits
+  display_name: Digitized Head Points Coordinate Units
   description: |
     Units of the coordinates of `"DigitizedHeadPointsCoordinateSystem"`.
   type: string
   enum:
-  - m
-  - mm
-  - cm
-  - n/a
+    - m
+    - mm
+    - cm
+    - n/a
 DigitizedLandmarks:
   name: DigitizedLandmarks
+  display_name: Digitized Landmarks
   description: |
     `true` or `false` value indicating whether anatomical landmark points
     (fiducials) are contained within this recording.
   type: boolean
 DispersionConstant:
   name: DispersionConstant
+  display_name: Dispersion Constant
   description: |
     External dispersion time constant resulting from tubing in default unit
     seconds.
@@ -590,18 +670,21 @@ DispersionConstant:
   unit: s
 DispersionCorrected:
   name: DispersionCorrected
+  display_name: Dispersion Corrected
   description: |
     Boolean flag specifying whether the blood data have been dispersion-corrected.
     NOTE: not customary for manual samples, and hence should be set to `false`.
   type: boolean
 DoseCalibrationFactor:
   name: DoseCalibrationFactor
+  display_name: Dose Calibration Factor
   description: |
     Multiplication factor used to transform raw data (in counts/sec) to meaningful unit (Bq/ml).
     Corresponds to DICOM Tag 0054, 1322 `Dose Calibration Factor`.
   type: number
 DwellTime:
   name: DwellTime
+  display_name: Dwell Time
   description: |
     Actual dwell time (in seconds) of the receiver per point in the readout
     direction, including any oversampling.
@@ -617,24 +700,28 @@ DwellTime:
   unit: s
 ECGChannelCount:
   name: ECGChannelCount
+  display_name: ECG Channel Count
   description: |
     Number of ECG channels.
   type: integer
   minimum: 0
 ECOGChannelCount:
   name: ECOGChannelCount
+  display_name: ECOG Channel Count
   description: |
     Number of ECoG channels.
   type: integer
   minimum: 0
 EEGChannelCount:
   name: EEGChannelCount
+  display_name: EEG Channel Count
   description: |
     Number of EEG channels recorded simultaneously (for example, `21`).
   type: integer
   minimum: 0
 EEGCoordinateSystem:
   name: EEGCoordinateSystem
+  display_name: EEG Coordinate System
   description: |
     Defines the coordinate system for the EEG sensors.
 
@@ -644,12 +731,13 @@ EEGCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `EEGCoordinateSystemDescription`.
   anyOf:
-  - $ref: _MEGCoordSys
-  - $ref: _EEGCoordSys
-  - $ref: _StandardTemplateCoordSys
-  - $ref: _StandardTemplateDeprecatedCoordSys
+    - $ref: objects.metadata._MEGCoordSys
+    - $ref: objects.metadata._EEGCoordSys
+    - $ref: objects.metadata._StandardTemplateCoordSys
+    - $ref: objects.metadata._StandardTemplateDeprecatedCoordSys
 EEGCoordinateSystemDescription:
   name: EEGCoordinateSystemDescription
+  display_name: EEG Coordinate System Description
   description: |
     Free-form text description of the coordinate system.
     May also include a link to a documentation page or paper describing the
@@ -657,22 +745,25 @@ EEGCoordinateSystemDescription:
   type: string
 EEGCoordinateUnits:
   name: EEGCoordinateUnits
+  display_name: EEG Coordinate Units
   description: |
     Units of the coordinates of `EEGCoordinateSystem`.
   type: string
   enum:
-  - m
-  - mm
-  - cm
-  - n/a
+    - m
+    - mm
+    - cm
+    - n/a
 EEGGround:
   name: EEGGround
+  display_name: EEG Ground
   description: |
     Description of the location of the ground electrode
     (for example, `"placed on right mastoid (M2)"`).
   type: string
 EEGPlacementScheme:
   name: EEGPlacementScheme
+  display_name: EEG Placement Scheme
   description: |
     Placement scheme of EEG electrodes.
     Either the name of a standardized placement system (for example, `"10-20"`)
@@ -680,6 +771,7 @@ EEGPlacementScheme:
   type: string
 EEGReference:
   name: EEGReference
+  display_name: EEG Reference
   description: |
     General description of the reference scheme used and (when applicable) of
     location of the reference electrode in the raw recordings
@@ -690,18 +782,21 @@ EEGReference:
   type: string
 EMGChannelCount:
   name: EMGChannelCount
+  display_name: EMG Channel Count
   description: |
     Number of EMG channels.
   type: integer
   minimum: 0
 EOGChannelCount:
   name: EOGChannelCount
+  display_name: EOG Channel Count
   description: |
     Number of EOG channels.
   type: integer
   minimum: 0
 EchoTime:
   name: EchoTime
+  display_name: Echo Time
   description: |
     The echo time (TE) for the acquisition, specified in seconds.
     Corresponds to DICOM Tag 0018, 0081 `Echo Time`
@@ -718,16 +813,17 @@ EchoTime:
     arterial-spin-labeling-perfusion-data)
     or variable echo time fMRI sequences.
   anyOf:
-  - type: number
-    unit: s
-    exclusiveMinimum: 0
-  - type: array
-    items:
-      type: number
+    - type: number
       unit: s
       exclusiveMinimum: 0
+    - type: array
+      items:
+        type: number
+        unit: s
+        exclusiveMinimum: 0
 EchoTime1:
   name: EchoTime1
+  display_name: Echo Time1
   description: |
     The time (in seconds) when the first (shorter) echo occurs.
   type: number
@@ -735,6 +831,7 @@ EchoTime1:
   exclusiveMinimum: 0
 EchoTime2:
   name: EchoTime2
+  display_name: Echo Time2
   description: |
     The time (in seconds) when the second (longer) echo occurs.
   type: number
@@ -743,6 +840,7 @@ EchoTime2:
 # Redefinition of EchoTime for fieldmap data
 EchoTime__fmap:
   name: EchoTime
+  display_name: Echo Time
   description: |
     The time (in seconds) when the echo corresponding to this map was acquired.
   type: number
@@ -750,6 +848,7 @@ EchoTime__fmap:
   exclusiveMinimum: 0
 EffectiveEchoSpacing:
   name: EffectiveEchoSpacing
+  display_name: Effective Echo Spacing
   description: |
     The "effective" sampling interval, specified in seconds,
     between lines in the phase-encoding direction,
@@ -766,6 +865,7 @@ EffectiveEchoSpacing:
   unit: s
 ElectricalStimulation:
   name: ElectricalStimulation
+  display_name: Electrical Stimulation
   description: |
     Boolean field to specify if electrical stimulation was done during the
     recording (options are `true` or `false`). Parameters for event-like
@@ -773,6 +873,7 @@ ElectricalStimulation:
   type: boolean
 ElectricalStimulationParameters:
   name: ElectricalStimulationParameters
+  display_name: Electrical Stimulation Parameters
   description: |
     Free form description of stimulation parameters, such as frequency or shape.
     Specific onsets can be specified in the events.tsv file.
@@ -780,6 +881,7 @@ ElectricalStimulationParameters:
   type: string
 ElectrodeManufacturer:
   name: ElectrodeManufacturer
+  display_name: Electrode Manufacturer
   description: |
     Can be used if all electrodes are of the same manufacturer
     (for example, `"AD-TECH"`, `"DIXI"`).
@@ -788,12 +890,14 @@ ElectrodeManufacturer:
   type: string
 ElectrodeManufacturersModelName:
   name: ElectrodeManufacturersModelName
+  display_name: Electrode Manufacturers Model Name
   description: |
     If different electrode types are used,
     please use the corresponding table in the `_electrodes.tsv` file.
   type: string
 EpochLength:
   name: EpochLength
+  display_name: Epoch Length
   description: |
     Duration of individual epochs in seconds (for example, `1`)
     in case of epoched data.
@@ -802,17 +906,20 @@ EpochLength:
   minimum: 0
 EstimationAlgorithm:
   name: EstimationAlgorithm
+  display_name: Estimation Algorithm
   description: |
     Type of algorithm used to perform fitting
     (for example, `"linear"`, `"non-linear"`, `"LM"` and such).
   type: string
 EstimationReference:
   name: EstimationReference
+  display_name: Estimation Reference
   description: |
     Reference to the study/studies on which the implementation is based.
   type: string
 EthicsApprovals:
   name: EthicsApprovals
+  display_name: Ethics Approvals
   description: |
     List of ethics committee approvals of the research protocols and/or
     protocol identifiers.
@@ -821,6 +928,7 @@ EthicsApprovals:
     type: string
 FiducialsCoordinateSystem:
   name: FiducialsCoordinateSystem
+  display_name: Fiducials Coordinate System
   description: |
     Defines the coordinate system for the fiducials.
     Preferably the same as the `"EEGCoordinateSystem"`.
@@ -830,12 +938,13 @@ FiducialsCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `"FiducialsCoordinateSystemDescription"`.
   anyOf:
-  - $ref: _MEGCoordSys
-  - $ref: _EEGCoordSys
-  - $ref: _StandardTemplateCoordSys
-  - $ref: _StandardTemplateDeprecatedCoordSys
+    - $ref: objects.metadata._MEGCoordSys
+    - $ref: objects.metadata._EEGCoordSys
+    - $ref: objects.metadata._StandardTemplateCoordSys
+    - $ref: objects.metadata._StandardTemplateDeprecatedCoordSys
 FiducialsCoordinateSystemDescription:
   name: FiducialsCoordinateSystemDescription
+  display_name: Fiducials Coordinate System Description
   description: |
     Free-form text description of the coordinate system.
     May also include a link to a documentation page or paper describing the
@@ -843,17 +952,19 @@ FiducialsCoordinateSystemDescription:
   type: string
 FiducialsCoordinateUnits:
   name: FiducialsCoordinateUnits
+  display_name: Fiducials Coordinate Units
   description: |
     Units in which the coordinates that are  listed in the field
     `"FiducialsCoordinateSystem"` are represented.
   type: string
   enum:
-  - m
-  - mm
-  - cm
-  - n/a
+    - m
+    - mm
+    - cm
+    - n/a
 FiducialsCoordinates:
   name: FiducialsCoordinates
+  display_name: Fiducials Coordinates
   description: |
     Key-value pairs of the labels and 3-D digitized position of anatomical
     landmarks, interpreted following the `"FiducialsCoordinateSystem"`
@@ -870,6 +981,7 @@ FiducialsCoordinates:
     maxItems: 3
 FiducialsDescription:
   name: FiducialsDescription
+  display_name: Fiducials Description
   description: |
     Free-form text description of how the fiducials such as vitamin-E capsules
     were placed relative to anatomical landmarks,
@@ -878,6 +990,7 @@ FiducialsDescription:
   type: string
 FlipAngle:
   name: FlipAngle
+  display_name: Flip Angle
   description: |
     Flip angle (FA) for the acquisition, specified in degrees.
     Corresponds to: DICOM Tag 0018, 1314 `Flip Angle`.
@@ -893,18 +1006,19 @@ FlipAngle:
     arterial-spin-labeling-perfusion-data)
     or variable flip angle fMRI sequences.
   anyOf:
-  - type: number
-    unit: degree
-    exclusiveMinimum: 0
-    maximum: 360
-  - type: array
-    items:
-      type: number
+    - type: number
       unit: degree
       exclusiveMinimum: 0
       maximum: 360
+    - type: array
+      items:
+        type: number
+        unit: degree
+        exclusiveMinimum: 0
+        maximum: 360
 FrameDuration:
   name: FrameDuration
+  display_name: Frame Duration
   description: |
     Time duration of each frame in default unit seconds.
     This corresponds to DICOM Tag 0018, 1242 `Actual Frame Duration` converted
@@ -915,6 +1029,7 @@ FrameDuration:
   unit: s
 FrameTimesStart:
   name: FrameTimesStart
+  display_name: Frame Times Start
   description: |
     Start times for all frames relative to `"TimeZero"` in default unit seconds.
   type: array
@@ -923,6 +1038,7 @@ FrameTimesStart:
   unit: s
 Funding:
   name: Funding
+  display_name: Funding
   description: |
     List of sources of funding (grant numbers).
   type: array
@@ -930,6 +1046,7 @@ Funding:
     type: string
 GeneratedBy:
   name: GeneratedBy
+  display_name: Generated By
   description: |
     Used to specify provenance of the dataset.
   type: array
@@ -958,17 +1075,19 @@ GeneratedBy:
             format: uri
 GeneticLevel:
   name: GeneticLevel
+  display_name: Genetic Level
   description: |
     Describes the level of analysis.
     Values MUST be one of `"Genetic"`, `"Genomic"`, `"Epigenomic"`,
     `"Transcriptomic"`, `"Metabolomic"`, or `"Proteomic"`.
   anyOf:
-  - $ref: _GeneticLevelEnum
-  - type: array
-    items:
-      $ref: _GeneticLevelEnum
+    - $ref: objects.metadata._GeneticLevelEnum
+    - type: array
+      items:
+        $ref: objects.metadata._GeneticLevelEnum
 Genetics:
   name: Genetics
+  display_name: Genetics
   description: |
     An object containing information about the genetics descriptor.
   type: object
@@ -995,12 +1114,13 @@ Genetics:
         [URI](SPEC_ROOT/02-common-principles.md#uniform-resource-indicator)
         when possible.
       anyOf:
-      - type: string
-      - type: array
-        items:
-          type: string
+        - type: string
+        - type: array
+          items:
+            type: string
 GradientSetType:
   name: GradientSetType
+  display_name: Gradient Set Type
   description: |
     It should be possible to infer the gradient coil from the scanner model.
     If not, for example because of a custom upgrade or use of a gradient
@@ -1009,16 +1129,18 @@ GradientSetType:
   type: string
 HED:
   name: HED
+  display_name: HED
   description: |
     Hierarchical Event Descriptor (HED) information,
     see: [Appendix III](SPEC_ROOT/99-appendices/03-hed.md) for details.
   anyOf:
-  - type: string
-  - type: object
-    additionalProperties:
-      type: string
+    - type: string
+    - type: object
+      additionalProperties:
+        type: string
 HEDVersion:
   name: HEDVersion
+  display_name: HED Version
   description: |
     If HED tags are used:
     The version of the HED schema used to validate HED tags for study.
@@ -1030,12 +1152,14 @@ HEDVersion:
       type: string
 Haematocrit:
   name: Haematocrit
+  display_name: Haematocrit
   description: |
     Measured haematocrit, meaning the volume of erythrocytes divided by the
     volume of whole blood.
   type: number
 HardcopyDeviceSoftwareVersion:
   name: HardcopyDeviceSoftwareVersion
+  display_name: Hardcopy Device Software Version
   description: |
     Manufacturer's designation of the software of the device that created this
     Hardcopy Image (the printer).
@@ -1043,6 +1167,7 @@ HardcopyDeviceSoftwareVersion:
   type: string
 HardwareFilters:
   name: HardwareFilters
+  display_name: Hardware Filters
   description: |
     Object of temporal hardware filters applied, or `"n/a"` if the data is not
     available. Each key-value pair in the JSON object is a name of the filter and
@@ -1050,14 +1175,15 @@ HardwareFilters:
     For example, `{"Highpass RC filter": {"Half amplitude cutoff (Hz)":
     0.0159, "Roll-off": "6dB/Octave"}}`.
   anyOf:
-  - type: object
-    additionalProperties:
-      type: object
-  - type: string
-    enum:
-    - n/a
+    - type: object
+      additionalProperties:
+        type: object
+    - type: string
+      enum:
+        - n/a
 HeadCircumference:
   name: HeadCircumference
+  display_name: Head Circumference
   description: |
     Circumference of the participant's head, expressed in cm (for example, `58`).
   type: number
@@ -1065,6 +1191,7 @@ HeadCircumference:
   unit: cm
 HeadCoilCoordinateSystem:
   name: HeadCoilCoordinateSystem
+  display_name: Head Coil Coordinate System
   description: |
     Defines the coordinate system for the head coils.
     See
@@ -1073,28 +1200,31 @@ HeadCoilCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `HeadCoilCoordinateSystemDescription`.
   anyOf:
-  - $ref: _MEGCoordSys
-  - $ref: _EEGCoordSys
-  - $ref: _StandardTemplateCoordSys
-  - $ref: _StandardTemplateDeprecatedCoordSys
+    - $ref: objects.metadata._MEGCoordSys
+    - $ref: objects.metadata._EEGCoordSys
+    - $ref: objects.metadata._StandardTemplateCoordSys
+    - $ref: objects.metadata._StandardTemplateDeprecatedCoordSys
 HeadCoilCoordinateSystemDescription:
   name: HeadCoilCoordinateSystemDescription
+  display_name: Head Coil Coordinate System Description
   description: |
     Free-form text description of the coordinate system.
     May also include a link to a documentation page or paper describing the system in greater detail.
   type: string
 HeadCoilCoordinateUnits:
   name: HeadCoilCoordinateUnits
+  display_name: Head Coil Coordinate Units
   description: |
     Units of the coordinates of `HeadCoilCoordinateSystem`.
   type: string
   enum:
-  - m
-  - mm
-  - cm
-  - n/a
+    - m
+    - mm
+    - cm
+    - n/a
 HeadCoilCoordinates:
   name: HeadCoilCoordinates
+  display_name: Head Coil Coordinates
   description: |
     Key-value pairs describing head localization coil labels and their
     coordinates, interpreted following the `HeadCoilCoordinateSystem`
@@ -1116,20 +1246,22 @@ HeadCoilCoordinates:
     maxItems: 3
 HeadCoilFrequency:
   name: HeadCoilFrequency
+  display_name: Head Coil Frequency
   description: |
     List of frequencies (in Hz) used by the head localisation coils
     ('HLC' in CTF systems, 'HPI' in Elekta, 'COH' in BTi/4D)
     that track the subject's head position in the MEG helmet
     (for example, `[293, 307, 314, 321]`).
   anyOf:
-  - type: number
-    unit: Hz
-  - type: array
-    items:
-      type: number
+    - type: number
       unit: Hz
+    - type: array
+      items:
+        type: number
+        unit: Hz
 HowToAcknowledge:
   name: HowToAcknowledge
+  display_name: How To Acknowledge
   description: |
     Text containing instructions on how researchers using this dataset should
     acknowledge the original authors.
@@ -1138,6 +1270,7 @@ HowToAcknowledge:
   type: string
 ImageAcquisitionProtocol:
   name: ImageAcquisitionProtocol
+  display_name: Image Acquisition Protocol
   description: |
     Description of the image acquisition protocol or
     [URI](SPEC_ROOT/02-common-principles.md#uniform-resource-indicator)
@@ -1145,11 +1278,13 @@ ImageAcquisitionProtocol:
   type: string
 ImageDecayCorrected:
   name: ImageDecayCorrected
+  display_name: Image Decay Corrected
   description: |
     Boolean flag specifying whether the image data have been decay-corrected.
   type: boolean
 ImageDecayCorrectionTime:
   name: ImageDecayCorrectionTime
+  display_name: Image Decay Correction Time
   description: |
     Point in time from which the decay correction was applied with respect to
     `"TimeZero"` in the default unit seconds.
@@ -1157,12 +1292,14 @@ ImageDecayCorrectionTime:
   unit: s
 Immersion:
   name: Immersion
+  display_name: Immersion
   description: |
     Lens immersion medium. If the file format is OME-TIFF, the value MUST be consistent
     with the `Immersion` OME metadata field.
   type: string
 InfusionRadioactivity:
   name: InfusionRadioactivity
+  display_name: Infusion Radioactivity
   description: |
     Amount of radioactivity infused into the patient.
     This value must be less than or equal to the total injected radioactivity
@@ -1171,17 +1308,20 @@ InfusionRadioactivity:
   type: number
 InfusionSpeed:
   name: InfusionSpeed
+  display_name: Infusion Speed
   description: |
     If given, infusion speed.
   type: number
 InfusionSpeedUnits:
   name: InfusionSpeedUnits
+  display_name: Infusion Speed Units
   description: |
     Unit of infusion speed (for example, `"mL/s"`).
   type: string
   format: unit
 InfusionStart:
   name: InfusionStart
+  display_name: Infusion Start
   description: |
     Time of start of infusion with respect to `"TimeZero"` in the default unit
     seconds.
@@ -1189,6 +1329,7 @@ InfusionStart:
   unit: s
 InjectedMass:
   name: InjectedMass
+  display_name: Injected Mass
   description: |
     Total mass of radiolabeled compound injected into subject (for example, `10`).
     This can be derived as the ratio of the `"InjectedRadioactivity"` and
@@ -1196,17 +1337,19 @@ InjectedMass:
     **For those tracers in which injected mass is not available (for example FDG)
     can be set to `"n/a"`)**.
   anyOf:
-  - type: number
-  - type: string
-    enum:
-    - n/a
+    - type: number
+    - type: string
+      enum:
+        - n/a
 InjectedMassPerWeight:
   name: InjectedMassPerWeight
+  display_name: Injected Mass Per Weight
   description: |
     Injected mass per kilogram bodyweight.
   type: number
 InjectedMassPerWeightUnits:
   name: InjectedMassPerWeightUnits
+  display_name: Injected Mass Per Weight Units
   description: |
     Unit format of the injected mass per kilogram bodyweight
     (for example, `"ug/kg"`).
@@ -1214,19 +1357,21 @@ InjectedMassPerWeightUnits:
   format: unit
 InjectedMassUnits:
   name: InjectedMassUnits
+  display_name: Injected Mass Units
   description: |
     Unit format of the mass of compound injected (for example, `"ug"` or
     `"umol"`).
     **Note this is not required for an FDG acquisition, since it is not available,
     and SHOULD be set to `"n/a"`**.
   anyOf:
-  - type: string
-    format: unit
-  - type: string
-    enum:
-    - n/a
+    - type: string
+      format: unit
+    - type: string
+      enum:
+        - n/a
 InjectedRadioactivity:
   name: InjectedRadioactivity
+  display_name: Injected Radioactivity
   description: |
     Total amount of radioactivity injected into the patient (for example, `400`).
     For bolus-infusion experiments, this value should be the sum of all injected
@@ -1235,18 +1380,21 @@ InjectedRadioactivity:
   type: number
 InjectedRadioactivityUnits:
   name: InjectedRadioactivityUnits
+  display_name: Injected Radioactivity Units
   description: |
     Unit format of the specified injected radioactivity (for example, `"MBq"`).
   type: string
   format: unit
 InjectedVolume:
   name: InjectedVolume
+  display_name: Injected Volume
   description: |
     Injected volume of the radiotracer in the unit `"mL"`.
   type: number
   unit: mL
 InjectionEnd:
   name: InjectionEnd
+  display_name: Injection End
   description: |
     Time of end of injection with respect to `"TimeZero"` in the default unit
     seconds.
@@ -1254,6 +1402,7 @@ InjectionEnd:
   unit: s
 InjectionStart:
   name: InjectionStart
+  display_name: Injection Start
   description: |
     Time of start of injection with respect to `"TimeZero"` in the default unit
     seconds.
@@ -1263,59 +1412,74 @@ InjectionStart:
   unit: s
 InstitutionAddress:
   name: InstitutionAddress
+  display_name: Institution Address
   description: |
     The address of the institution in charge of the equipment that produced the
     measurements.
   type: string
 InstitutionName:
   name: InstitutionName
+  display_name: Institution Name
   description: |
     The name of the institution in charge of the equipment that produced the
     measurements.
   type: string
 InstitutionalDepartmentName:
   name: InstitutionalDepartmentName
+  display_name: Institutional Department Name
   description: |
     The department in the institution in charge of the equipment that produced
     the measurements.
   type: string
 Instructions:
   name: Instructions
+  display_name: Instructions
   description: |
     Text of the instructions given to participants before the recording.
   type: string
 IntendedFor:
   name: IntendedFor
+  display_name: Intended For
   description: |
     The paths to files for which the associated file is intended to be used.
-    Contains one or more filenames with paths relative to the participant
-    subdirectory.
-    Paths need to use forward slashes instead of backward slashes,
-    regardless of operating system.
+    Contains one or more [BIDS URIs](SPEC_ROOT/02-common-principles.md#bids-uri).
+    Using forward-slash separated paths relative to the participant subdirectory is
+    [DEPRECATED](SPEC_ROOT/02-common-principles.md#definitions).
   anyOf:
-  - type: string
-    format: participant_relative
-  - type: array
-    items:
-      type: string
+    - type: string
+      format: bids_uri
+    - type: string
       format: participant_relative
+    - type: array
+      items:
+        anyOf:
+          - type: string
+            format: bids_uri
+          - type: string
+            format: participant_relative
 IntendedFor__ds_relative:
   name: IntendedFor
+  display_name: Intended For
   description: |
     The paths to files for which the associated file is intended to be used.
-    Contains one or more filenames with paths relative to the dataset
-    root.
-    Paths need to use forward slashes instead of backward slashes,
-    regardless of operating system.
+    Contains one or more [BIDS URIs](SPEC_ROOT/02-common-principles.md#bids-uri).
+    Using forward-slash separated paths relative to the dataset root is
+    [DEPRECATED](SPEC_ROOT/02-common-principles.md#definitions).
   anyOf:
-  - type: string
-    format: dataset_relative
-  - type: array
-    items:
-      type: string
+    - type: string
+      format: bids_uri
+    - type: string
       format: dataset_relative
+    - type: array
+      items:
+        anyOf:
+          - type: string
+            format: bids_uri
+          - type: string
+            format: dataset_relative
 InversionTime:
   name: InversionTime
+  display_name: Inversion Time
   description: |
     The inversion time (TI) for the acquisition, specified in seconds.
     Inversion time is the time after the middle of inverting RF pulse to middle
@@ -1327,6 +1491,7 @@ InversionTime:
   exclusiveMinimum: 0
 LabelingDistance:
   name: LabelingDistance
+  display_name: Labeling Distance
   description: |
     Distance from the center of the imaging slab to the center of the labeling
     plane (`(P)CASL`) or the leading edge of the labeling slab (`PASL`),
@@ -1338,6 +1503,7 @@ LabelingDistance:
   unit: mm
 LabelingDuration:
   name: LabelingDuration
+  display_name: Labeling Duration
   description: |
     Total duration of the labeling pulse train, in seconds,
     corresponding to the temporal width of the labeling bolus for
@@ -1352,16 +1518,17 @@ LabelingDuration:
     `*_aslcontext.tsv`.
     Corresponds to DICOM Tag 0018, 9258 `ASL Pulse Train Duration`.
   anyOf:
-  - type: number
-    minimum: 0
-    unit: s
-  - type: array
-    items:
-      type: number
-      unit: s
+    - type: number
       minimum: 0
+      unit: s
+    - type: array
+      items:
+        type: number
+        unit: s
+        minimum: 0
 LabelingEfficiency:
   name: LabelingEfficiency
+  display_name: Labeling Efficiency
   description: |
     Labeling efficiency, specified as a number between zero and one,
     only if obtained externally (for example phase-contrast based).
@@ -1369,6 +1536,7 @@ LabelingEfficiency:
   exclusiveMinimum: 0
 LabelingLocationDescription:
   name: LabelingLocationDescription
+  display_name: Labeling Location Description
   description: |
     Description of the location of the labeling plane (`"CASL"` or `"PCASL"`) or
     the labeling slab (`"PASL"`) that cannot be captured by fields
@@ -1380,6 +1548,7 @@ LabelingLocationDescription:
   type: string
 LabelingOrientation:
   name: LabelingOrientation
+  display_name: Labeling Orientation
   description: |
     Orientation of the labeling plane (`(P)CASL`) or slab (`PASL`).
     The direction cosines of a normal vector perpendicular to the ASL labeling
@@ -1390,6 +1559,7 @@ LabelingOrientation:
     type: number
 LabelingPulseAverageB1:
   name: LabelingPulseAverageB1
+  display_name: Labeling Pulse Average B1
   description: |
     The average B1-field strength of the RF labeling pulses, in microteslas.
     As an alternative, `"LabelingPulseFlipAngle"` can be provided.
@@ -1398,6 +1568,7 @@ LabelingPulseAverageB1:
   unit: uT
 LabelingPulseAverageGradient:
   name: LabelingPulseAverageGradient
+  display_name: Labeling Pulse Average Gradient
   description: |
     The average labeling gradient, in milliteslas per meter.
   type: number
@@ -1405,6 +1576,7 @@ LabelingPulseAverageGradient:
   unit: mT/m
 LabelingPulseDuration:
   name: LabelingPulseDuration
+  display_name: Labeling Pulse Duration
   description: |
     Duration of the individual labeling pulses, in milliseconds.
   type: number
@@ -1412,6 +1584,7 @@ LabelingPulseDuration:
   unit: ms
 LabelingPulseFlipAngle:
   name: LabelingPulseFlipAngle
+  display_name: Labeling Pulse Flip Angle
   description: |
     The flip angle of a single labeling pulse, in degrees,
     which can be given as an alternative to `"LabelingPulseAverageB1"`.
@@ -1421,6 +1594,7 @@ LabelingPulseFlipAngle:
   unit: degree
 LabelingPulseInterval:
   name: LabelingPulseInterval
+  display_name: Labeling Pulse Interval
   description: |
     Delay between the peaks of the individual labeling pulses, in milliseconds.
   type: number
@@ -1428,6 +1602,7 @@ LabelingPulseInterval:
   unit: ms
 LabelingPulseMaximumGradient:
   name: LabelingPulseMaximumGradient
+  display_name: Labeling Pulse Maximum Gradient
   description: |
     The maximum amplitude of the gradient switched on during the application of
     the labeling RF pulse(s), in milliteslas per meter.
@@ -1436,6 +1611,7 @@ LabelingPulseMaximumGradient:
   unit: mT/m
 LabelingSlabThickness:
   name: LabelingSlabThickness
+  display_name: Labeling Slab Thickness
   description: |
     Thickness of the labeling slab in millimeters.
     For non-selective FAIR a zero is entered.
@@ -1445,6 +1621,7 @@ LabelingSlabThickness:
   unit: mm
 Levels:
   name: Levels
+  display_name: Levels
   description: |
     For categorical variables: An object of possible values (keys) and their
     descriptions (values).
@@ -1453,6 +1630,7 @@ Levels:
     type: string
 License:
   name: License
+  display_name: License
   description: |
     The license for the dataset.
     The use of license name abbreviations is RECOMMENDED for specifying a license
@@ -1462,16 +1640,19 @@ License:
   type: string
 LongName:
   name: LongName
+  display_name: Long Name
   description: |
     Long (unabbreviated) name of the column.
   type: string
 LookLocker:
   name: LookLocker
+  display_name: Look Locker
   description: |
     Boolean indicating if a Look-Locker readout is used.
   type: boolean
 M0Estimate:
   name: M0Estimate
+  display_name: M0Estimate
   description: |
     A single numerical whole-brain M0 value (referring to the M0 of blood),
     only if obtained externally
@@ -1480,6 +1661,7 @@ M0Estimate:
   exclusiveMinimum: 0
 M0Type:
   name: M0Type
+  display_name: M0Type
   description: |
     Describes the presence of M0 information.
     `"Separate"` means that a separate `*_m0scan.nii[.gz]` is present.
@@ -1489,18 +1671,20 @@ M0Type:
     `"Absent"` means that no specific M0 information is present.
   type: string
   enum:
-  - Separate
-  - Included
-  - Estimate
-  - Absent
+    - Separate
+    - Included
+    - Estimate
+    - Absent
 MEGChannelCount:
   name: MEGChannelCount
+  display_name: MEG Channel Count
   description: |
     Number of MEG channels (for example, `275`).
   type: integer
   minimum: 0
 MEGCoordinateSystem:
   name: MEGCoordinateSystem
+  display_name: MEG Coordinate System
   description: |
     Defines the coordinate system for the MEG sensors.
     See [Appendix VIII](SPEC_ROOT/99-appendices/08-coordinate-systems.md)
@@ -1508,12 +1692,13 @@ MEGCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `"MEGCoordinateSystemDescription"`.
   anyOf:
-  - $ref: _MEGCoordSys
-  - $ref: _EEGCoordSys
-  - $ref: _StandardTemplateCoordSys
-  - $ref: _StandardTemplateDeprecatedCoordSys
+    - $ref: objects.metadata._MEGCoordSys
+    - $ref: objects.metadata._EEGCoordSys
+    - $ref: objects.metadata._StandardTemplateCoordSys
+    - $ref: objects.metadata._StandardTemplateDeprecatedCoordSys
 MEGCoordinateSystemDescription:
   name: MEGCoordinateSystemDescription
+  display_name: MEG Coordinate System Description
   description: |
     Free-form text description of the coordinate system.
     May also include a link to a documentation page or paper describing the
@@ -1521,16 +1706,18 @@ MEGCoordinateSystemDescription:
   type: string
 MEGCoordinateUnits:
   name: MEGCoordinateUnits
+  display_name: MEG Coordinate Units
   description: |
     Units of the coordinates of `"MEGCoordinateSystem"`.
   type: string
   enum:
-  - m
-  - mm
-  - cm
-  - n/a
+    - m
+    - mm
+    - cm
+    - n/a
 MEGREFChannelCount:
   name: MEGREFChannelCount
+  display_name: MEGREF Channel Count
   description: |
     Number of MEG reference channels (for example, `23`).
     For systems without such channels (for example, Neuromag Vectorview),
@@ -1539,26 +1726,30 @@ MEGREFChannelCount:
   minimum: 0
 MRAcquisitionType:
   name: MRAcquisitionType
+  display_name: MR Acquisition Type
   description: |
     Type of sequence readout.
     Corresponds to DICOM Tag 0018, 0023 `MR Acquisition Type`.
   type: string
   enum:
-  - 2D
-  - 3D
+    - 2D
+    - 3D
 MRTransmitCoilSequence:
   name: MRTransmitCoilSequence
+  display_name: MR Transmit Coil Sequence
   description: |
     This is a relevant field if a non-standard transmit coil is used.
     Corresponds to DICOM Tag 0018, 9049 `MR Transmit Coil Sequence`.
   type: string
 MTNumberOfPulses:
   name: MTNumberOfPulses
+  display_name: MT Number Of Pulses
   description: |
     The number of magnetization transfer RF pulses applied before the readout.
   type: number
 MTOffsetFrequency:
   name: MTOffsetFrequency
+  display_name: MT Offset Frequency
   description: |
     The frequency offset of the magnetization transfer pulse with respect to the
     central H1 Larmor frequency in Hertz (Hz).
@@ -1566,18 +1757,21 @@ MTOffsetFrequency:
   unit: Hz
 MTPulseBandwidth:
   name: MTPulseBandwidth
+  display_name: MT Pulse Bandwidth
   description: |
     The excitation bandwidth of the magnetization transfer pulse in Hertz (Hz).
   type: number
   unit: Hz
 MTPulseDuration:
   name: MTPulseDuration
+  display_name: MT Pulse Duration
   description: |
     Duration of the magnetization transfer RF pulse in seconds.
   type: number
   unit: s
 MTPulseShape:
   name: MTPulseShape
+  display_name: MT Pulse Shape
   description: |
     Shape of the magnetization transfer RF pulse waveform.
     The value `"GAUSSHANN"` refers to a Gaussian pulse with a Hanning window.
@@ -1585,27 +1779,30 @@ MTPulseShape:
     The value `"SINCGAUSS"` refers to a sinc pulse with a Gaussian window.
   type: string
   enum:
-  - HARD
-  - GAUSSIAN
-  - GAUSSHANN
-  - SINC
-  - SINCHANN
-  - SINCGAUSS
-  - FERMI
+    - HARD
+    - GAUSSIAN
+    - GAUSSHANN
+    - SINC
+    - SINCHANN
+    - SINCGAUSS
+    - FERMI
 MTState:
   name: MTState
+  display_name: MT State
   description: |
     Boolean stating whether the magnetization transfer pulse is applied.
     Corresponds to DICOM Tag 0018, 9020 `Magnetization Transfer`.
   type: boolean
 MagneticFieldStrength:
   name: MagneticFieldStrength
+  display_name: Magnetic Field Strength
   description: |
     Nominal field strength of MR magnet in Tesla.
     Corresponds to DICOM Tag 0018, 0087 `Magnetic Field Strength`.
   type: number
 Magnification:
   name: Magnification
+  display_name: Magnification
   description: |
     Lens magnification (for example: `40`). If the file format is OME-TIFF,
     the value MUST be consistent with the `"NominalMagnification"` OME metadata field.
@@ -1613,22 +1810,26 @@ Magnification:
   exclusiveMinimum: 0
 Manual:
   name: Manual
+  display_name: Manual
   description: |
     Indicates if the segmentation was performed manually or via an automated
     process.
   type: boolean
 Manufacturer:
   name: Manufacturer
+  display_name: Manufacturer
   description: |
     Manufacturer of the equipment that produced the measurements.
   type: string
 ManufacturersModelName:
   name: ManufacturersModelName
+  display_name: Manufacturers Model Name
   description: |
     Manufacturer's model name of the equipment that produced the measurements.
   type: string
 MatrixCoilMode:
   name: MatrixCoilMode
+  display_name: Matrix Coil Mode
   description: |
     (If used)
     A method for reducing the number of independent channels by combining in
@@ -1638,6 +1839,7 @@ MatrixCoilMode:
   type: string
 MaxMovement:
   name: MaxMovement
+  display_name: Max Movement
   description: |
     Maximum head movement (in mm) detected during the recording,
     as measured by the head localisation coils (for example, `4.8`).
@@ -1645,6 +1847,7 @@ MaxMovement:
   unit: mm
 MeasurementToolMetadata:
   name: MeasurementToolMetadata
+  display_name: Measurement Tool Metadata
   description: |
     A description of the measurement tool as a whole.
     Contains two fields: `"Description"` and `"TermURL"`.
@@ -1659,6 +1862,7 @@ MeasurementToolMetadata:
       type: string
 MetaboliteAvail:
   name: MetaboliteAvail
+  display_name: Metabolite Available
   description: |
     Boolean that specifies if metabolite measurements are available.
     If `true`, the `metabolite_parent_fraction` column MUST be present in the
@@ -1666,11 +1870,13 @@ MetaboliteAvail:
   type: boolean
 MetaboliteMethod:
   name: MetaboliteMethod
+  display_name: Metabolite Method
   description: |
     Method used to measure metabolites.
   type: string
 MetaboliteRecoveryCorrectionApplied:
   name: MetaboliteRecoveryCorrectionApplied
+  display_name: Metabolite Recovery Correction Applied
   description: |
     Metabolite recovery correction from the HPLC, for tracers where it changes
     with time postinjection.
@@ -1679,12 +1885,14 @@ MetaboliteRecoveryCorrectionApplied:
   type: boolean
 MiscChannelCount:
   name: MiscChannelCount
+  display_name: Misc Channel Count
   description: |
     Number of miscellaneous analog channels for auxiliary signals.
   type: integer
   minimum: 0
 MixingTime:
   name: MixingTime
+  display_name: Mixing Time
   description: |
     In the context of a stimulated- and spin-echo 3D EPI sequence for B1+ mapping,
     corresponds to the interval between spin- and stimulated-echo pulses.
@@ -1695,18 +1903,21 @@ MixingTime:
   unit: s
 ModeOfAdministration:
   name: ModeOfAdministration
+  display_name: Mode Of Administration
   description: |
     Mode of administration of the injection
     (for example, `"bolus"`, `"infusion"`, or `"bolus-infusion"`).
   type: string
 MolarActivity:
   name: MolarActivity
+  display_name: Molar Activity
   description: |
     Molar activity of compound injected.
     Corresponds to DICOM Tag 0018, 1077 `Radiopharmaceutical Specific Activity`.
   type: number
 MolarActivityMeasTime:
   name: MolarActivityMeasTime
+  display_name: Molar Activity Measurement Time
   description: |
     Time to which molar radioactivity measurement above applies in the default
     unit `"hh:mm:ss"`.
@@ -1714,28 +1925,33 @@ MolarActivityMeasTime:
   format: time
 MolarActivityUnits:
   name: MolarActivityUnits
+  display_name: Molar Activity Units
   description: |
     Unit of the specified molar radioactivity (for example, `"GBq/umol"`).
   type: string
   format: unit
 MultibandAccelerationFactor:
   name: MultibandAccelerationFactor
+  display_name: Multiband Acceleration Factor
   description: |
     The multiband factor, for multiband acquisitions.
   type: number
 MultipartID:
   name: MultipartID
+  display_name: MultipartID
   description: |
     A unique (per participant) label tagging DWI runs that are part of a
     multipart scan.
   type: string
 Name:
   name: Name
+  display_name: Name
   description: |
     Name of the dataset.
   type: string
 NegativeContrast:
   name: NegativeContrast
+  display_name: Negative Contrast
   description: |
     `true` or `false` value specifying whether increasing voxel intensity
     (within sample voxels) denotes a decreased value with respect to the
@@ -1746,12 +1962,14 @@ NegativeContrast:
   type: boolean
 NonlinearGradientCorrection:
   name: NonlinearGradientCorrection
+  display_name: Nonlinear Gradient Correction
   description: |
     Boolean stating if the image saved has been corrected for gradient
     nonlinearities by the scanner sequence.
   type: boolean
 NumberOfVolumesDiscardedByScanner:
   name: NumberOfVolumesDiscardedByScanner
+  display_name: Number Of Volumes Discarded By Scanner
   description: |
     Number of volumes ("dummy scans") discarded by the scanner
     (as opposed to those discarded by the user post hoc)
@@ -1767,6 +1985,7 @@ NumberOfVolumesDiscardedByScanner:
   minimum: 0
 NumberOfVolumesDiscardedByUser:
   name: NumberOfVolumesDiscardedByUser
+  display_name: Number Of Volumes Discarded By User
   description: |
     Number of volumes ("dummy scans") discarded by the user before including the
     file in the dataset.
@@ -1779,6 +1998,7 @@ NumberOfVolumesDiscardedByUser:
   minimum: 0
 NumberShots:
   name: NumberShots
+  display_name: Number Shots
   description: |
     The number of RF excitations needed to reconstruct a slice or volume
     (may be referred to as partition).
@@ -1788,15 +2008,16 @@ NumberShots:
     after the k-space center is sampled.
     Please see
     [`"NumberShots"` metadata field]\
-    (/99-appendices/11-qmri.html#numbershots-metadata-field)
+    (SPEC_ROOT/99-appendices/11-qmri.md#numbershots-metadata-field)
     in the qMRI appendix for corresponding calculations.
   anyOf:
-  - type: number
-  - type: array
-    items:
-      type: number
+    - type: number
+    - type: array
+      items:
+        type: number
 NumericalAperture:
   name: NumericalAperture
+  display_name: Numerical Aperture
   description: |
     Lens numerical aperture (for example: `1.4`). If the file format is OME-TIFF,
     the value MUST be consistent with the `LensNA` OME metadata field.
@@ -1804,37 +2025,43 @@ NumericalAperture:
   exclusiveMinimum: 0
 OperatingSystem:
   name: OperatingSystem
+  display_name: Operating System
   description: |
     Operating system used to run the stimuli presentation software
     (for formatting recommendations, see examples below this table).
   type: string
 OtherAcquisitionParameters:
   name: OtherAcquisitionParameters
+  display_name: Other Acquisition Parameters
   description: |
     Description of other relevant image acquisition parameters.
   type: string
 PASLType:
   name: PASLType
+  display_name: PASL Type
   description: |
     Type of the labeling pulse of the `PASL` labeling,
     for example `"FAIR"`, `"EPISTAR"`, or `"PICORE"`.
   type: string
 PCASLType:
   name: PCASLType
+  display_name: PCASL Type
   description: |
     The type of gradient pulses used in the `control` condition.
   type: string
   enum:
-  - balanced
-  - unbalanced
+    - balanced
+    - unbalanced
 ParallelAcquisitionTechnique:
   name: ParallelAcquisitionTechnique
+  display_name: Parallel Acquisition Technique
   description: |
     The type of parallel imaging used (for example `"GRAPPA"`, `"SENSE"`).
     Corresponds to DICOM Tag 0018, 9078 `Parallel Acquisition Technique`.
   type: string
 ParallelReductionFactorInPlane:
   name: ParallelReductionFactorInPlane
+  display_name: Parallel Reduction Factor In Plane
   description: |
     The parallel imaging (for instance, GRAPPA) factor.
     Use the denominator of the fraction of k-space encoded for each slice.
@@ -1843,27 +2070,31 @@ ParallelReductionFactorInPlane:
   type: number
 PartialFourier:
   name: PartialFourier
+  display_name: Partial Fourier
   description: |
     The fraction of partial Fourier information collected.
     Corresponds to DICOM Tag 0018, 9081 `Partial Fourier`.
   type: number
 PartialFourierDirection:
   name: PartialFourierDirection
+  display_name: Partial Fourier Direction
   description: |
     The direction where only partial Fourier information was collected.
     Corresponds to DICOM Tag 0018, 9036 `Partial Fourier Direction`.
   type: string
 PharmaceuticalDoseAmount:
   name: PharmaceuticalDoseAmount
+  display_name: Pharmaceutical Dose Amount
   description: |
     Dose amount of pharmaceutical coadministered with tracer.
   anyOf:
-  - type: number
-  - type: array
-    items:
-      type: number
+    - type: number
+    - type: array
+      items:
+        type: number
 PharmaceuticalDoseRegimen:
   name: PharmaceuticalDoseRegimen
+  display_name: Pharmaceutical Dose Regimen
   description: |
     Details of the pharmaceutical dose regimen.
     Either adequate description or short-code relating to regimen documented
@@ -1871,6 +2102,7 @@ PharmaceuticalDoseRegimen:
   type: string
 PharmaceuticalDoseTime:
   name: PharmaceuticalDoseTime
+  display_name: Pharmaceutical Dose Time
   description: |
     Time of administration of pharmaceutical dose, relative to time zero.
     For an infusion, this should be a vector with two elements specifying the
@@ -1879,14 +2111,15 @@ PharmaceuticalDoseTime:
     interpretation of `"PharmaceuticalDoseTime"`.
     Unit format of the specified pharmaceutical dose time MUST be seconds.
   anyOf:
-  - type: number
-    unit: s
-  - type: array
-    items:
-      type: number
+    - type: number
       unit: s
+    - type: array
+      items:
+        type: number
+        unit: s
 PharmaceuticalDoseUnits:
   name: PharmaceuticalDoseUnits
+  display_name: Pharmaceutical Dose Units
   description: |
     Unit format relating to pharmaceutical dose
     (for example, `"mg"` or `"mg/kg"`).
@@ -1894,11 +2127,13 @@ PharmaceuticalDoseUnits:
   format: unit
 PharmaceuticalName:
   name: PharmaceuticalName
+  display_name: Pharmaceutical Name
   description: |
     Name of pharmaceutical coadministered with tracer.
   type: string
 PhaseEncodingDirection:
   name: PhaseEncodingDirection
+  display_name: Phase Encoding Direction
   description: |
     The letters `i`, `j`, `k` correspond to the first, second and third axis of
     the data in the NIFTI file.
@@ -1912,14 +2147,21 @@ PhaseEncodingDirection:
     `InPlanePhaseEncodingDirection` which can have `ROW` or `COL` values.
   type: string
   enum:
-  - i
-  - j
-  - k
-  - i-
-  - j-
-  - k-
+    - i
+    - j
+    - k
+    - i-
+    - j-
+    - k-
+PhotoDescription:
+  name: PhotoDescription
+  display_name: Photo Description
+  description: |
+    Description of the photo.
+  type: string
 PixelSize:
   name: PixelSize
+  display_name: Pixel Size
   description: |
     A 2- or 3-number array of the physical size of a pixel, either `[PixelSizeX, PixelSizeY]`
     or `[PixelSizeX, PixelSizeY, PixelSizeZ]`, where X is the width, Y the height and Z the
@@ -1936,21 +2178,24 @@ PixelSize:
     minimum: 0
 PixelSizeUnits:
   name: PixelSizeUnits
+  display_name: Pixel Size Units
   description: |
     Unit format of the specified `"PixelSize"`. MUST be one of: `"mm"` (millimeter), `"um"`
     (micrometer) or `"nm"` (nanometer).
   type: string
   enum:
-  - mm
-  - um
-  - nm
+    - mm
+    - um
+    - nm
 PlasmaAvail:
   name: PlasmaAvail
+  display_name: Plasma Avail
   description: |
     Boolean that specifies if plasma measurements are available.
   type: boolean
 PlasmaFreeFraction:
   name: PlasmaFreeFraction
+  display_name: Plasma Free Fraction
   description: |
     Measured free fraction in plasma, meaning the concentration of free compound
     in plasma divided by total concentration of compound in plasma
@@ -1960,11 +2205,13 @@ PlasmaFreeFraction:
   maximum: 100
 PlasmaFreeFractionMethod:
   name: PlasmaFreeFractionMethod
+  display_name: Plasma Free Fraction Method
   description: |
     Method used to estimate free fraction.
   type: string
 PostLabelingDelay:
   name: PostLabelingDelay
+  display_name: Post Labeling Delay
   description: |
     This is the postlabeling delay (PLD) time, in seconds, after the end of the
     labeling (for `"CASL"` or `"PCASL"`) or middle of the labeling pulse
@@ -1979,28 +2226,30 @@ PostLabelingDelay:
     Based on DICOM Tags 0018, 9079 `Inversion Times` and 0018, 0082
     `InversionTime`.
   anyOf:
-  - type: number
-    exclusiveMinimum: 0
-    unit: s
-  - type: array
-    items:
-      type: number
+    - type: number
       exclusiveMinimum: 0
       unit: s
+    - type: array
+      items:
+        type: number
+        exclusiveMinimum: 0
+        unit: s
 PowerLineFrequency:
   name: PowerLineFrequency
+  display_name: Power Line Frequency
   description: |
     Frequency (in Hz) of the power grid at the geographical location of the
     instrument (for example, `50` or `60`).
   anyOf:
-  - type: number
-    exclusiveMinimum: 0
-    unit: Hz
-  - type: string
-    enum:
-    - n/a
+    - type: number
+      exclusiveMinimum: 0
+      unit: Hz
+    - type: string
+      enum:
+        - n/a
 PromptRate:
   name: PromptRate
+  display_name: Prompt Rate
   description: |
     Prompt rate for each frame (same units as `Units`, for example, `"Bq/mL"`).
   type: array
@@ -2008,6 +2257,7 @@ PromptRate:
     type: number
 PulseSequenceDetails:
   name: PulseSequenceDetails
+  display_name: Pulse Sequence Details
   description: |
     Information beyond pulse sequence type that identifies the specific pulse
     sequence used (for example,
@@ -2017,6 +2267,7 @@ PulseSequenceDetails:
   type: string
 PulseSequenceType:
   name: PulseSequenceType
+  display_name: Pulse Sequence Type
   description: |
     A general description of the pulse sequence used for the scan
     (for example, `"MPRAGE"`, `"Gradient Echo EPI"`, `"Spin Echo EPI"`,
@@ -2024,6 +2275,7 @@ PulseSequenceType:
   type: string
 Purity:
   name: Purity
+  display_name: Purity
   description: |
     Purity of the radiolabeled compound (between 0 and 100%).
   type: number
@@ -2031,6 +2283,7 @@ Purity:
   maximum: 100
 RandomRate:
   name: RandomRate
+  display_name: Random Rate
   description: |
     Random rate for each frame (same units as `"Units"`, for example, `"Bq/mL"`).
   type: array
@@ -2038,15 +2291,20 @@ RandomRate:
     type: number
 RawSources:
   name: RawSources
+  display_name: Raw Sources
   description: |
     A list of paths relative to dataset root pointing to the BIDS-Raw file(s)
     that were used in the creation of this derivative.
+    This field is DEPRECATED, and this metadata SHOULD be recorded in the
+    `Sources` field using [BIDS URIs](SPEC_ROOT/02-common-principles.md#bids-uri)
+    to distinguish sources from different datasets.
   type: array
   items:
     type: string
     format: dataset_relative
 ReceiveCoilActiveElements:
   name: ReceiveCoilActiveElements
+  display_name: Receive Coil Active Elements
   description: |
     Information describing the active/selected elements of the receiver coil.
     This does not correspond to a tag in the DICOM ontology.
@@ -2054,6 +2312,7 @@ ReceiveCoilActiveElements:
   type: string
 ReceiveCoilName:
   name: ReceiveCoilName
+  display_name: Receive Coil Name
   description: |
     Information describing the receiver coil.
     Corresponds to DICOM Tag 0018, 1250 `Receive Coil Name`,
@@ -2063,36 +2322,41 @@ ReceiveCoilName:
   type: string
 ReconFilterSize:
   name: ReconFilterSize
+  display_name: Recon Filter Size
   description: |
     Kernel size of post-recon filter (FWHM) in default units `"mm"`.
   anyOf:
-  - type: number
-    unit: mm
-  - type: array
-    items:
-      type: number
+    - type: number
       unit: mm
+    - type: array
+      items:
+        type: number
+        unit: mm
 ReconFilterType:
   name: ReconFilterType
+  display_name: Recon Filter Type
   description: |
     Type of post-recon smoothing (for example, `["Shepp"]`).
   anyOf:
-  - type: string
-  - type: array
-    items:
-      type: string
+    - type: string
+    - type: array
+      items:
+        type: string
 ReconMethodImplementationVersion:
   name: ReconMethodImplementationVersion
+  display_name: Recon Method Implementation Version
   description: |
     Identification for the software used, such as name and version.
   type: string
 ReconMethodName:
   name: ReconMethodName
+  display_name: Recon Method Name
   description: |
     Reconstruction method or algorithm (for example, `"3d-op-osem"`).
   type: string
 ReconMethodParameterLabels:
   name: ReconMethodParameterLabels
+  display_name: Recon Method Parameter Labels
   description: |
     Names of reconstruction parameters (for example, `["subsets", "iterations"]`).
   type: array
@@ -2100,6 +2364,7 @@ ReconMethodParameterLabels:
     type: string
 ReconMethodParameterUnits:
   name: ReconMethodParameterUnits
+  display_name: Recon Method Parameter Units
   description: |
     Unit of reconstruction parameters (for example, `["none", "none"]`).
   type: array
@@ -2108,6 +2373,7 @@ ReconMethodParameterUnits:
     format: unit
 ReconMethodParameterValues:
   name: ReconMethodParameterValues
+  display_name: Recon Method Parameter Values
   description: |
     Values of reconstruction parameters (for example, `[21, 3]`).
   type: array
@@ -2115,23 +2381,26 @@ ReconMethodParameterValues:
     type: number
 RecordingDuration:
   name: RecordingDuration
+  display_name: Recording Duration
   description: |
     Length of the recording in seconds (for example, `3600`).
   type: number
   unit: s
 RecordingType:
   name: RecordingType
+  display_name: Recording Type
   description: |
     Defines whether the recording is `"continuous"`, `"discontinuous"`, or
     `"epoched"`, where `"epoched"` is limited to time windows about events of
     interest (for example, stimulus presentations or subject responses).
   type: string
   enum:
-  - continuous
-  - epoched
-  - discontinuous
+    - continuous
+    - epoched
+    - discontinuous
 ReferencesAndLinks:
   name: ReferencesAndLinks
+  display_name: References And Links
   description: |
     List of references to publications that contain information on the dataset.
     A reference may be textual or a
@@ -2141,6 +2410,7 @@ ReferencesAndLinks:
   type: array
 RepetitionTime:
   name: RepetitionTime
+  display_name: Repetition Time
   description: |
     The time in seconds between the beginning of an acquisition of one volume
     and the beginning of acquisition of the volume following it (TR).
@@ -2163,6 +2433,7 @@ RepetitionTime:
   unit: s
 RepetitionTimeExcitation:
   name: RepetitionTimeExcitation
+  display_name: Repetition Time Excitation
   description: |
     The interval, in seconds, between two successive excitations.
     [DICOM Tag 0018, 0080](http://dicomlookup.com/lookup.asp?sw=Tnumber&q=(0018,0080)
@@ -2174,14 +2445,15 @@ RepetitionTimeExcitation:
     `"RepetitionTimePreparation"` if needed) for anatomy imaging data rather than
     `"RepetitionTime"` as it is already defined as the amount of time that it takes
     to acquire a single volume in the
-    [task imaging data](/04-modality-specific-files/01-magnetic-resonance-\
-    imaging-data.html#task-including-resting-state-imaging-data)
+    [task imaging data](SPEC_ROOT/04-modality-specific-files/01-magnetic-resonance-\
+    imaging-data.md#task-including-resting-state-imaging-data)
     section.
   type: number
   minimum: 0
   unit: s
 RepetitionTimePreparation:
   name: RepetitionTimePreparation
+  display_name: Repetition Time Preparation
   description: |
     The interval, in seconds, that it takes a preparation pulse block to
     re-appear at the beginning of the succeeding (essentially identical) pulse
@@ -2194,54 +2466,60 @@ RepetitionTimePreparation:
     [ASL](SPEC_ROOT/04-modality-specific-files/01-magnetic-resonance-imaging-data.md\
     #arterial-spin-labeling-perfusion-data).
   anyOf:
-  - type: number
-    minimum: 0
-    unit: s
-  - type: array
-    items:
-      type: number
+    - type: number
       minimum: 0
       unit: s
+    - type: array
+      items:
+        type: number
+        minimum: 0
+        unit: s
 Resolution:
   name: Resolution
+  display_name: Resolution
   description: |
     Specifies the interpretation of the resolution keyword.
     If an object is used, then the keys should be values for the `res` entity
     and values should be descriptions of those `res` values.
   anyOf:
-  - type: string
-  - type: object
-    additionalProperties:
-      type: string
+    - type: string
+    - type: object
+      additionalProperties:
+        type: string
 SEEGChannelCount:
   name: SEEGChannelCount
+  display_name: SEEG Channel Count
   description: |
     Number of SEEG channels.
   type: integer
   minimum: 0
 SampleEmbedding:
   name: SampleEmbedding
+  display_name: Sample Embedding
   description: |
     Description of the tissue sample embedding (for example: `"Epoxy resin"`).
   type: string
 SampleEnvironment:
   name: SampleEnvironment
+  display_name: Sample Environment
   description: |
     Environment in which the sample was imaged. MUST be one of: `"in vivo"`, `"ex vivo"`
     or `"in vitro"`.
   type: string
   enum:
-  - in vivo
-  - ex vivo
-  - in vitro
+    - in vivo
+    - ex vivo
+    - in vitro
 SampleExtractionInstitution:
   name: SampleExtractionInstitution
+  display_name: Sample Extraction Institution
   description: |
     The name of the institution in charge of the extraction of the sample,
     if different from the institution in charge of the equipment that produced the image.
   type: string
 SampleExtractionProtocol:
   name: SampleExtractionProtocol
+  display_name: Sample Extraction Protocol
   description: |
     Description of the sample extraction protocol or
     [URI](SPEC_ROOT/02-common-principles.md#uniform-resource-indicator)
@@ -2249,26 +2527,29 @@ SampleExtractionProtocol:
   type: string
 SampleFixation:
   name: SampleFixation
+  display_name: Sample Fixation
   description: |
     Description of the tissue sample fixation
     (for example: `"4% paraformaldehyde, 2% glutaraldehyde"`).
   type: string
 SampleOrigin:
   name: SampleOrigin
+  display_name: Sample Origin
   description: |
     Describes from which tissue the genetic information was extracted.
   type: string
   enum:
-  - blood
-  - saliva
-  - brain
-  - csf
-  - breast milk
-  - bile
-  - amniotic fluid
-  - other biospecimen
+    - blood
+    - saliva
+    - brain
+    - csf
+    - breast milk
+    - bile
+    - amniotic fluid
+    - other biospecimen
 SamplePrimaryAntibody:
   name: SamplePrimaryAntibody
+  display_name: Sample Primary Antibody
   description: |
     Description(s) of the primary antibody used for immunostaining.
     Either an [RRID](https://scicrunch.org/resources) or the name, supplier and catalogue
@@ -2278,12 +2559,13 @@ SamplePrimaryAntibody:
     `"Rabbit anti-Human HTR5A Polyclonal Antibody, Invitrogen, Catalog # PA1-2453"`).
     MAY be an array of strings if different antibodies are used in each channel of the file.
   anyOf:
-  - type: string
-  - type: array
-    items:
-      type: string
+    - type: string
+    - type: array
+      items:
+        type: string
 SampleSecondaryAntibody:
   name: SampleSecondaryAntibody
+  display_name: Sample Secondary Antibody
   description: |
     Description(s) of the secondary antibody used for immunostaining.
     Either an [RRID](https://scicrunch.org/resources) or the name, supplier and catalogue
@@ -2293,23 +2575,25 @@ SampleSecondaryAntibody:
     `"Goat anti-Mouse IgM Secondary Antibody, Invitrogen, Catalog # 31172"`).
     MAY be an array of strings if different antibodies are used in each channel of the file.
   anyOf:
-  - type: string
-  - type: array
-    items:
-      type: string
+    - type: string
+    - type: array
+      items:
+        type: string
 SampleStaining:
   name: SampleStaining
+  display_name: Sample Staining
   description: |
     Description(s) of the tissue sample staining (for example: `"Osmium"`).
     MAY be an array of strings if different stains are used in each channel of the file
     (for example: `["LFB", "PLP"]`).
   anyOf:
-  - type: string
-  - type: array
-    items:
-      type: string
+    - type: string
+    - type: array
+      items:
+        type: string
 SamplingFrequency:
   name: SamplingFrequency
+  display_name: Sampling Frequency
   description: |
     Sampling frequency (in Hz) of all the data in the recording,
     regardless of their type (for example, `2400`).
@@ -2317,6 +2601,7 @@ SamplingFrequency:
   unit: Hz
 ScaleFactor:
   name: ScaleFactor
+  display_name: Scale Factor
   description: |
     Scale factor for each frame. This field MUST be defined if the imaging data (`.nii[.gz]`) are scaled.
     If this field is not defined, then it is assumed that the scaling factor is 1. Defining this field
@@ -2326,6 +2611,7 @@ ScaleFactor:
     type: number
 ScanDate:
   name: ScanDate
+  display_name: Scan Date
   description: |
     Date of scan in the format `"YYYY-MM-DD[Z]"`.
     This field is DEPRECATED, and this metadata SHOULD be recorded in the `acq_time` column of the
@@ -2334,32 +2620,36 @@ ScanDate:
   format: date
 ScanOptions:
   name: ScanOptions
+  display_name: Scan Options
   description: |
     Parameters of ScanningSequence.
     Corresponds to DICOM Tag 0018, 0022 `Scan Options`.
   anyOf:
-  - type: string
-  - type: array
-    items:
-      type: string
+    - type: string
+    - type: array
+      items:
+        type: string
 ScanStart:
   name: ScanStart
+  display_name: Scan Start
   description: |
     Time of start of scan with respect to `TimeZero` in the default unit seconds.
   type: number
   unit: s
 ScanningSequence:
   name: ScanningSequence
+  display_name: Scanning Sequence
   description: |
     Description of the type of data acquired.
     Corresponds to DICOM Tag 0018, 0020 `Scanning Sequence`.
   anyOf:
-  - type: string
-  - type: array
-    items:
-      type: string
+    - type: string
+    - type: array
+      items:
+        type: string
 ScatterFraction:
   name: ScatterFraction
+  display_name: Scatter Fraction
   description: |
     Scatter fraction for each frame (Units: 0-100%).
   type: array
@@ -2369,22 +2659,25 @@ ScatterFraction:
     maximum: 100
 SequenceName:
   name: SequenceName
+  display_name: Sequence Name
   description: |
     Manufacturer's designation of the sequence name.
     Corresponds to DICOM Tag 0018, 0024 `Sequence Name`.
   type: string
 SequenceVariant:
   name: SequenceVariant
+  display_name: Sequence Variant
   description: |
     Variant of the ScanningSequence.
     Corresponds to DICOM Tag 0018, 0021 `Sequence Variant`.
   anyOf:
-  - type: string
-  - type: array
-    items:
-      type: string
+    - type: string
+    - type: array
+      items:
+        type: string
 SinglesRate:
   name: SinglesRate
+  display_name: Singles Rate
   description: |
     Singles rate for each frame (same units as `Units`, for example, `"Bq/mL"`).
   type: array
@@ -2392,11 +2685,13 @@ SinglesRate:
     type: number
 SkullStripped:
   name: SkullStripped
+  display_name: Skull Stripped
   description: |
     Whether the volume was skull stripped (non-brain voxels set to zero) or not.
   type: boolean
 SliceEncodingDirection:
   name: SliceEncodingDirection
+  display_name: Slice Encoding Direction
   description: |
     The axis of the NIfTI data along which slices were acquired,
     and the direction in which `"SliceTiming"` is defined with respect to.
@@ -2411,14 +2706,15 @@ SliceEncodingDirection:
     slice index as defined by the NIfTI header.
   type: string
   enum:
-  - i
-  - j
-  - k
-  - i-
-  - j-
-  - k-
+    - i
+    - j
+    - k
+    - i-
+    - j-
+    - k-
 SliceThickness:
   name: SliceThickness
+  display_name: Slice Thickness
   description: |
     Slice thickness of the tissue sample in the unit micrometers (`"um"`) (for example: `5`).
   type: number
@@ -2426,6 +2722,7 @@ SliceThickness:
   exclusiveMinimum: 0
 SliceTiming:
   name: SliceTiming
+  display_name: Slice Timing
   description: |
     The time at which each slice was acquired within each volume (frame) of the
     acquisition.
@@ -2448,6 +2745,7 @@ SliceTiming:
     unit: s
 SoftwareFilters:
   name: SoftwareFilters
+  display_name: Software Filters
   description: |
     [Object](https://www.json.org/json-en.html)
     of temporal software filters applied, or `"n/a"` if the data is
@@ -2457,19 +2755,21 @@ SoftwareFilters:
     (for example, `{"Anti-aliasing filter":
     {"half-amplitude cutoff (Hz)": 500, "Roll-off": "6dB/Octave"}}`).
   anyOf:
-  - type: object
-    additionalProperties:
-      type: object
-  - type: string
-    enum:
-    - n/a
+    - type: object
+      additionalProperties:
+        type: object
+    - type: string
+      enum:
+        - n/a
 SoftwareName:
   name: SoftwareName
+  display_name: Software Name
   description: |
     Name of the software that was used to present the stimuli.
   type: string
 SoftwareRRID:
   name: SoftwareRRID
+  display_name: SoftwareRRID
   description: |
     [Research Resource Identifier](https://scicrunch.org/resources) of the
     software that was used to present the stimuli.
@@ -2479,17 +2779,20 @@ SoftwareRRID:
   format: rrid
 SoftwareVersion:
   name: SoftwareVersion
+  display_name: Software Version
   description: |
     Version of the software that was used to present the stimuli.
   type: string
 SoftwareVersions:
   name: SoftwareVersions
+  display_name: Software Versions
   description: |
     Manufacturer's designation of software version of the equipment that produced
     the measurements.
   type: string
 SourceDatasets:
   name: SourceDatasets
+  display_name: Source Datasets
   description: |
     Used to specify the locations and relevant attributes of all source datasets.
     Valid keys in each object include `"URL"`, `"DOI"` (see
@@ -2510,8 +2813,10 @@ SourceDatasets:
         type: string
 Sources:
   name: Sources
+  display_name: Sources
   description: |
-    A list of files with the paths specified relative to dataset root;
+    A list of files with the paths specified using
+    [BIDS URIs](SPEC_ROOT/02-common-principles.md#bids-uri);
     these files were directly used in the creation of this derivative data file.
     For example, if a derivative A is used in the creation of another
     derivative B, which is in turn used to generate C in a chain of A->B->C,
@@ -2519,47 +2824,55 @@ Sources:
     However, in case both X and Y are directly used in the creation of Z,
     then Z should list X and Y in `"Sources"`,
     regardless of whether X was used to generate Y.
+    Using paths specified relative to the dataset root is
+    [DEPRECATED](SPEC_ROOT/02-common-principles.md#definitions).
   type: array
   items:
-    type: string
-    format: dataset_relative
+    anyOf:
+      - type: string
+        format: dataset_relative
+      - type: string
+        format: bids_uri
 SpatialReference:
   name: SpatialReference
+  display_name: Spatial Reference
   description: |
     For images with a single reference, the value MUST be a single string.
     For images with multiple references, such as surface and volume references,
     a JSON object MUST be used.
   anyOf:
-  - type: string
-    enum:
-    - orig
-  - type: string
-    format: uri
-  - type: string
-    format: dataset_relative
-  - type: object
-    additionalProperties:
-      anyOf:
-      - type: string
-        enum:
+    - type: string
+      enum:
         - orig
-      - type: string
-        format: uri
-      - type: string
-        format: dataset_relative
+    - type: string
+      format: uri
+    - type: string
+      format: dataset_relative
+    - type: object
+      additionalProperties:
+        anyOf:
+          - type: string
+            enum:
+              - orig
+          - type: string
+            format: uri
+          - type: string
+            format: dataset_relative
 SpecificRadioactivity:
   name: SpecificRadioactivity
+  display_name: Specific Radioactivity
   description: |
     Specific activity of compound injected.
     **Note this is not required for an FDG acquisition, since it is not available,
     and SHOULD be set to `"n/a"`**.
   anyOf:
-  - type: number
-  - type: string
-    enum:
-    - n/a
+    - type: number
+    - type: string
+      enum:
+        - n/a
 SpecificRadioactivityMeasTime:
   name: SpecificRadioactivityMeasTime
+  display_name: Specific Radioactivity Measurement Time
   description: |
     Time to which specific radioactivity measurement above applies in the default
     unit `"hh:mm:ss"`.
@@ -2567,18 +2880,20 @@ SpecificRadioactivityMeasTime:
   format: time
 SpecificRadioactivityUnits:
   name: SpecificRadioactivityUnits
+  display_name: Specific Radioactivity Units
   description: |
     Unit format of specified specific radioactivity (for example, `"Bq/g"`).
     **Note this is not required for an FDG acquisition, since it is not available,
     and SHOULD be set to `"n/a"`**.
   anyOf:
-  - type: string
-    format: unit
-  - type: string
-    enum:
-    - n/a
+    - type: string
+      format: unit
+    - type: string
+      enum:
+        - n/a
 SpoilingGradientDuration:
   name: SpoilingGradientDuration
+  display_name: Spoiling Gradient Duration
   description: |
     The duration of the spoiler gradient lobe in seconds.
     The duration of a trapezoidal lobe is defined as the summation of ramp-up
@@ -2587,6 +2902,7 @@ SpoilingGradientDuration:
   unit: s
 SpoilingGradientMoment:
   name: SpoilingGradientMoment
+  display_name: Spoiling Gradient Moment
   description: |
     Zeroth moment of the spoiler gradient lobe in
     millitesla times second per meter (mT.s/m).
@@ -2594,6 +2910,7 @@ SpoilingGradientMoment:
   unit: mT.s/m
 SpoilingRFPhaseIncrement:
   name: SpoilingRFPhaseIncrement
+  display_name: Spoiling RF Phase Increment
   description: |
     The amount of incrementation described in degrees,
     which is applied to the phase of the excitation pulse at each TR period for
@@ -2602,21 +2919,24 @@ SpoilingRFPhaseIncrement:
   unit: degrees
 SpoilingState:
   name: SpoilingState
+  display_name: Spoiling State
   description: |
     Boolean stating whether the pulse sequence uses any type of spoiling
     strategy to suppress residual transverse magnetization.
   type: boolean
 SpoilingType:
   name: SpoilingType
+  display_name: Spoiling Type
   description: |
     Specifies which spoiling method(s) are used by a spoiled sequence.
   type: string
   enum:
-  - RF
-  - GRADIENT
-  - COMBINED
+    - RF
+    - GRADIENT
+    - COMBINED
 StartTime:
   name: StartTime
+  display_name: Start Time
   description: |
     Start time in seconds in relation to the start of acquisition of the first
     data sample in the corresponding neural dataset (negative values are allowed).
@@ -2624,11 +2944,13 @@ StartTime:
   unit: s
 StationName:
   name: StationName
+  display_name: Station Name
   description: |
     Institution defined name of the machine that produced the measurements.
   type: string
 StimulusPresentation:
   name: StimulusPresentation
+  display_name: Stimulus Presentation
   description: |
     Object containing key-value pairs related to the software used to present
     the stimuli during the experiment, specifically:
@@ -2638,17 +2960,18 @@ StimulusPresentation:
   type: object
   properties:
     OperatingSystem:
-      $ref: OperatingSystem
+      $ref: objects.metadata.OperatingSystem
     SoftwareName:
-      $ref: SoftwareName
+      $ref: objects.metadata.SoftwareName
     SoftwareRRID:
-      $ref: SoftwareRRID
+      $ref: objects.metadata.SoftwareRRID
     SoftwareVersion:
-      $ref: SoftwareVersion
+      $ref: objects.metadata.SoftwareVersion
     Code:
-      $ref: Code
+      $ref: objects.metadata.Code
 SubjectArtefactDescription:
   name: SubjectArtefactDescription
+  display_name: Subject Artefact Description
   description: |
     Freeform description of the observed subject artefact and its possible cause
     (for example, `"Vagus Nerve Stimulator"`, `"non-removable implant"`).
@@ -2657,27 +2980,31 @@ SubjectArtefactDescription:
   type: string
 TaskDescription:
   name: TaskDescription
+  display_name: Task Description
   description: |
     Longer description of the task.
   type: string
 TaskName:
   name: TaskName
+  display_name: Task Name
   description: |
     Name of the task.
     No two tasks should have the same name.
     The task label included in the file name is derived from this `"TaskName"` field
-    by removing all non-alphanumeric (`[a-zA-Z0-9]`) characters.
+    by removing all non-alphanumeric characters (that is, all except those matching `[0-9a-zA-Z]`).
     For example `"TaskName"` `"faces n-back"` will correspond to task label
     `facesnback`.
   type: string
 TermURL:
   name: TermURL
+  display_name: TermURL
   description: |
     URL pointing to a formal definition of this type of data in an ontology
     available on the web.
   type: string
 TimeZero:
   name: TimeZero
+  display_name: Time Zero
   description: |
     Time zero to which all scan and/or blood measurements have been adjusted to,
     in the unit "hh:mm:ss".
@@ -2686,6 +3013,7 @@ TimeZero:
   format: time
 TissueDeformationScaling:
   name: TissueDeformationScaling
+  display_name: Tissue Deformation Scaling
   description: |
     Estimated deformation of the tissue, given as a percentage of the original
     tissue size (for examples: for a shrinkage of 3%, the value is `97`;
@@ -2694,18 +3022,20 @@ TissueDeformationScaling:
   exclusiveMinimum: 0
 TissueOrigin:
   name: TissueOrigin
+  display_name: Tissue Origin
   description: |
     Describes the type of tissue analyzed for `"SampleOrigin"` `brain`.
   type: string
   enum:
-  - gray matter
-  - white matter
-  - csf
-  - meninges
-  - macrovascular
-  - microvascular
+    - gray matter
+    - white matter
+    - csf
+    - meninges
+    - macrovascular
+    - microvascular
 TotalAcquiredPairs:
   name: TotalAcquiredPairs
+  display_name: Total Acquired Pairs
   description: |
     The total number of acquired `control`-`label` pairs.
     A single pair consists of a single `control` and a single `label` image.
@@ -2713,6 +3043,7 @@ TotalAcquiredPairs:
   exclusiveMinimum: 0
 TotalReadoutTime:
   name: TotalReadoutTime
+  display_name: Total Readout Time
   description: |
     This is actually the "effective" total readout time,
     defined as the readout duration, specified in seconds,
@@ -2724,56 +3055,66 @@ TotalReadoutTime:
   unit: s
 TracerMolecularWeight:
   name: TracerMolecularWeight
+  display_name: Tracer Molecular Weight
   description: |
     Accurate molecular weight of the tracer used.
   type: number
 TracerMolecularWeightUnits:
   name: TracerMolecularWeightUnits
+  display_name: Tracer Molecular Weight Units
   description: |
     Unit of the molecular weights measurement (for example, `"g/mol"`).
   type: string
   format: unit
 TracerName:
   name: TracerName
+  display_name: Tracer Name
   description: |
     Name of the tracer compound used (for example, `"CIMBI-36"`)
   type: string
 TracerRadLex:
   name: TracerRadLex
+  display_name: Tracer Rad Lex
   description: |
     ID of the tracer compound from the RadLex Ontology.
   type: string
 TracerRadionuclide:
   name: TracerRadionuclide
+  display_name: Tracer Radionuclide
   description: |
     Radioisotope labelling tracer (for example, `"C11"`).
   type: string
 TracerSNOMED:
   name: TracerSNOMED
+  display_name: TracerSNOMED
   description: |
     ID of the tracer compound from the SNOMED Ontology
     (subclass of Radioactive isotope).
   type: string
 TriggerChannelCount:
   name: TriggerChannelCount
+  display_name: Trigger Channel Count
   description: |
     Number of channels for digital (TTL bit level) triggers.
   type: integer
   minimum: 0
 TubingLength:
   name: TubingLength
+  display_name: Tubing Length
   description: |
     The length of the blood tubing, from the subject to the detector in meters.
   type: number
   unit: m
 TubingType:
   name: TubingType
+  display_name: Tubing Type
   description: |
     Description of the type of tubing used, ideally including the material and
     (internal) diameter.
   type: string
 Type:
   name: Type
+  display_name: Type
   description: |
     Short identifier of the mask.
     The value `"Brain"` refers to a brain mask.
@@ -2782,12 +3123,13 @@ Type:
     The value `"ROI"` refers to a region of interest mask.
   type: string
   enum:
-  - Brain
-  - Lesion
-  - Face
-  - ROI
+    - Brain
+    - Lesion
+    - Face
+    - ROI
 Units:
   name: Units
+  display_name: Units
   description: |
     Measurement units for the associated file.
     SI units in CMIXF formatting are RECOMMENDED
@@ -2796,12 +3138,14 @@ Units:
   format: unit
 VascularCrushing:
   name: VascularCrushing
+  display_name: Vascular Crushing
   description: |
     Boolean indicating if Vascular Crushing is used.
     Corresponds to DICOM Tag 0018, 9259 `ASL Crusher Flag`.
   type: boolean
 VascularCrushingVENC:
   name: VascularCrushingVENC
+  display_name: Vascular Crushing VENC
   description: |
     The crusher gradient strength, in centimeters per second.
     Specify either one number for the total time-series, or provide an array of
@@ -2809,14 +3153,15 @@ VascularCrushingVENC:
     volumes for which `VascularCrushing` was turned off.
     Corresponds to DICOM Tag 0018, 925A `ASL Crusher Flow Limit`.
   anyOf:
-  - type: number
-    unit: cm/s
-  - type: array
-    items:
-      type: number
+    - type: number
       unit: cm/s
+    - type: array
+      items:
+        type: number
+        unit: cm/s
 VolumeTiming:
   name: VolumeTiming
+  display_name: Volume Timing
   description: |
     The time at which each volume was acquired during the acquisition.
     It is described using a list of times referring to the onset of each volume
@@ -2833,6 +3178,7 @@ VolumeTiming:
     unit: s
 WholeBloodAvail:
   name: WholeBloodAvail
+  display_name: Whole Blood Avail
   description: |
     Boolean that specifies if whole blood measurements are available.
     If `true`, the `whole_blood_radioactivity` column MUST be present in the
@@ -2840,6 +3186,7 @@ WholeBloodAvail:
   type: boolean
 WithdrawalRate:
   name: WithdrawalRate
+  display_name: Withdrawal Rate
   description: |
     The rate at which the blood was withdrawn from the subject.
     The unit of the specified withdrawal rate should be in `"mL/s"`.
@@ -2848,26 +3195,26 @@ WithdrawalRate:
 _CoordUnits:
   type: string
   enum:
-  - m
-  - mm
-  - cm
-  - n/a
+    - m
+    - mm
+    - cm
+    - n/a
 _EEGCoordSys:
   type: string
   enum:
-  - CapTrak
-  - EEGLAB
-  - EEGLAB-HJ
-  - Other
+    - CapTrak
+    - EEGLAB
+    - EEGLAB-HJ
+    - Other
 _GeneticLevelEnum:
   type: string
   enum:
-  - Genetic
-  - Genomic
-  - Epigenomic
-  - Transcriptomic
-  - Metabolomic
-  - Proteomic
+    - Genetic
+    - Genomic
+    - Epigenomic
+    - Transcriptomic
+    - Metabolomic
+    - Proteomic
 _LandmarkCoordinates:
   type: object
   additionalProperties:
@@ -2879,74 +3226,77 @@ _LandmarkCoordinates:
 _MEGCoordSys:
   type: string
   enum:
-  - CTF
-  - ElektaNeuromag
-  - 4DBti
-  - KitYokogawa
-  - ChietiItab
-  - Other
+    - CTF
+    - ElektaNeuromag
+    - 4DBti
+    - KitYokogawa
+    - ChietiItab
+    - Other
 _StandardTemplateCoordSys:
   type: string
   enum:
-  - ICBM452AirSpace
-  - ICBM452Warp5Space
-  - IXI549Space
-  - fsaverage
-  - fsaverageSym
-  - fsLR
-  - MNIColin27
-  - MNI152Lin
-  - MNI152NLin2009aSym
-  - MNI152NLin2009bSym
-  - MNI152NLin2009cSym
-  - MNI152NLin2009aAsym
-  - MNI152NLin2009bAsym
-  - MNI152NLin2009cAsym
-  - MNI152NLin6Sym
-  - MNI152NLin6ASym
-  - MNI305
-  - NIHPD
-  - OASIS30AntsOASISAnts
-  - OASIS30Atropos
-  - Talairach
-  - UNCInfant
+    - ICBM452AirSpace
+    - ICBM452Warp5Space
+    - IXI549Space
+    - fsaverage
+    - fsaverageSym
+    - fsLR
+    - MNIColin27
+    - MNI152Lin
+    - MNI152NLin2009aSym
+    - MNI152NLin2009bSym
+    - MNI152NLin2009cSym
+    - MNI152NLin2009aAsym
+    - MNI152NLin2009bAsym
+    - MNI152NLin2009cAsym
+    - MNI152NLin6Sym
+    - MNI152NLin6ASym
+    - MNI305
+    - NIHPD
+    - OASIS30AntsOASISAnts
+    - OASIS30Atropos
+    - Talairach
+    - UNCInfant
 _StandardTemplateDeprecatedCoordSys:
   type: string
   enum:
-  - fsaverage3
-  - fsaverage4
-  - fsaverage5
-  - fsaverage6
-  - fsaveragesym
-  - UNCInfant0V21
-  - UNCInfant1V21
-  - UNCInfant2V21
-  - UNCInfant0V22
-  - UNCInfant1V22
-  - UNCInfant2V22
-  - UNCInfant0V23
-  - UNCInfant1V23
-  - UNCInfant2V23
+    - fsaverage3
+    - fsaverage4
+    - fsaverage5
+    - fsaverage6
+    - fsaveragesym
+    - UNCInfant0V21
+    - UNCInfant1V21
+    - UNCInfant2V21
+    - UNCInfant0V22
+    - UNCInfant1V22
+    - UNCInfant2V22
+    - UNCInfant0V23
+    - UNCInfant1V23
+    - UNCInfant2V23
 _iEEGCoordSys:
   type: string
   enum:
-  - Pixels
-  - ACPC
-  - Other
+    - Pixels
+    - ACPC
+    - Other
 iEEGCoordinateProcessingDescription:
   name: iEEGCoordinateProcessingDescription
+  display_name: iEEG Coordinate Processing Description
   description: |
     Has any post-processing (such as projection) been done on the electrode
     positions (for example, `"surface_projection"`, `"none"`).
   type: string
 iEEGCoordinateProcessingReference:
   name: iEEGCoordinateProcessingReference
+  display_name: iEEG Coordinate Processing Reference
   description: |
     A reference to a paper that defines in more detail the method used to
     localize the electrodes and to post-process the electrode positions.
   type: string
 iEEGCoordinateSystem:
   name: iEEGCoordinateSystem
+  display_name: iEEG Coordinate System
   description: |
     Defines the coordinate system for the iEEG sensors.
     See
@@ -2958,14 +3308,15 @@ iEEGCoordinateSystem:
     (of either a volume-rendering, surface-rendering, operative photo, or
     operative drawing), this MUST be `"Pixels"`.
     For more information, see the section on
-    [2D coordinate systems](/04-modality-specific-files/04-intracranial\
-    -electroencephalography.html#allowed-2d-coordinate-systems).
+    [2D coordinate systems](SPEC_ROOT/04-modality-specific-files/04-intracranial\
+    -electroencephalography.md#allowed-2d-coordinate-systems).
   anyOf:
-  - $ref: _iEEGCoordSys
-  - $ref: _StandardTemplateCoordSys
-  - $ref: _StandardTemplateDeprecatedCoordSys
+    - $ref: objects.metadata._iEEGCoordSys
+    - $ref: objects.metadata._StandardTemplateCoordSys
+    - $ref: objects.metadata._StandardTemplateDeprecatedCoordSys
 iEEGCoordinateSystemDescription:
   name: iEEGCoordinateSystemDescription
+  display_name: iEEG Coordinate System Description
   description: |
     Free-form text description of the coordinate system.
     May also include a link to a documentation page or paper describing the
@@ -2973,18 +3324,20 @@ iEEGCoordinateSystemDescription:
   type: string
 iEEGCoordinateUnits:
   name: iEEGCoordinateUnits
+  display_name: iEEG Coordinate Units
   description: |
     Units of the `*_electrodes.tsv`.
     MUST be `"pixels"` if `iEEGCoordinateSystem` is `Pixels`.
   type: string
   enum:
-  - m
-  - mm
-  - cm
-  - pixels
-  - n/a
+    - m
+    - mm
+    - cm
+    - pixels
+    - n/a
 iEEGElectrodeGroups:
   name: iEEGElectrodeGroups
+  display_name: iEEG Electrode Groups
   description: |
     Field to describe the way electrodes are grouped into strips, grids or depth
     probes.
@@ -2993,12 +3346,14 @@ iEEGElectrodeGroups:
   type: string
 iEEGGround:
   name: iEEGGround
+  display_name: iEEG Ground
   description: |
     Description of the location of the ground electrode
     (`"placed on right mastoid (M2)"`).
   type: string
 iEEGPlacementScheme:
   name: iEEGPlacementScheme
+  display_name: iEEG Placement Scheme
   description: |
     Freeform description of the placement of the iEEG electrodes.
     Left/right/bilateral/depth/surface
@@ -3008,6 +3363,7 @@ iEEGPlacementScheme:
   type: string
 iEEGReference:
   name: iEEGReference
+  display_name: iEEG Reference
   description: |
     General description of the reference scheme used and (when applicable) of
     location of the reference electrode in the raw recordings

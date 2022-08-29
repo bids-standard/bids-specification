@@ -1,17 +1,20 @@
 ---
 HED:
   name: HED
+  display_name: HED Tag
   description: |
     Hierarchical Event Descriptor (HED) Tag.
     See [Appendix III](SPEC_ROOT/99-appendices/03-hed.md) for details.
   type: string
 abbreviation:
   name: abbreviation
+  display_name: Abbreviation
   description: |
     The unique label abbreviation
   type: string
 acq_time__scans:
   name: acq_time
+  display_name: Scan acquisition time
   description: |
     Acquisition time refers to when the first data point in each run was acquired.
     Furthermore, if this header is provided, the acquisition times of all files
@@ -22,6 +25,7 @@ acq_time__scans:
   format: datetime
 acq_time__sessions:
   name: acq_time
+  display_name: Session acquisition time
   description: |
     Acquisition time refers to when the first data point of the first run was acquired.
     Datetime format and their anonymization are described in
@@ -30,23 +34,27 @@ acq_time__sessions:
   format: datetime
 age:
   name: age
+  display_name: Subject age
   description: |
     Numeric value in years (float or integer value).
   type: number
   unit: year
 cardiac:
   name: cardiac
+  display_name: Cardiac measurement
   description: |
     continuous pulse measurement
   type: number
 color:
   name: color
+  display_name: Color label
   description: |
     Hexadecimal. Label color for visualization.
   type: string
   unit: hexadecimal
 derived_from:
   name: derived_from
+  display_name: Derived from
   description: |
     `sample-<label>` entity from which a sample is derived,
     for example a slice of tissue (`sample-02`) derived from a block of tissue (`sample-01`).
@@ -54,46 +62,52 @@ derived_from:
   pattern: ^sample-[0-9a-zA-Z]+$
 description:
   name: description
+  display_name: Description
   description: |
     Brief free-text description of the channel, or other information of interest.
   type: string
 dimension:
   name: dimension
+  display_name: Dimension
   description: |
     Size of the group (grid/strip/probe) that this electrode belongs to.
     Must be of form `[AxB]` with the smallest dimension first (for example, `[1x8]`).
   type: string
 duration:
   name: duration
+  display_name: Event duration
   description: |
     Duration of the event (measured from onset) in seconds.
     Must always be either zero or positive (or `n/a` if unavailable).
     A "duration" value of zero implies that the delta function or event is so
     short as to be effectively modeled as an impulse.
   anyOf:
-  - type: number
-    unit: s
-    minimum: 0
-  - type: string
-    enum:
-    - n/a
+    - type: number
+      unit: s
+      minimum: 0
+    - type: string
+      enum:
+        - n/a
 filename:
   name: filename
+  display_name: Filename
   description: |
     Relative paths to files.
   type: string
   format: participant_relative
-group:
+group__channel:
   name: group
+  display_name: Channel group
   description: |
     Which group of channels (grid/strip/seeg/depth) this channel belongs to.
     This is relevant because one group has one cable-bundle and noise can be shared.
     This can be a name or number.
   anyOf:
-  - type: string
-  - type: number
+    - type: string
+    - type: number
 handedness:
   name: handedness
+  display_name: Subject handedness
   description: |
     String value indicating one of "left", "right", "ambidextrous".
 
@@ -105,90 +119,100 @@ handedness:
     `Ambidextrous`.
   type: string
   enum:
-  - left
-  - l
-  - L
-  - LEFT
-  - Left
-  - right
-  - r
-  - R
-  - RIGHT
-  - Right
-  - ambidextrous
-  - a
-  - A
-  - AMBIDEXTROUS
-  - Ambidextrous
-  - n/a
+    - left
+    - l
+    - L
+    - LEFT
+    - Left
+    - right
+    - r
+    - R
+    - RIGHT
+    - Right
+    - ambidextrous
+    - a
+    - A
+    - AMBIDEXTROUS
+    - Ambidextrous
+    - n/a
 hemisphere:
   name: hemisphere
+  display_name: Electrode hemisphere
   description: |
     The hemisphere in which the electrode is placed.
   type: string
   enum:
-  - L
-  - R
+    - L
+    - R
 high_cutoff:
   name: high_cutoff
+  display_name: High cutoff
   description: |
     Frequencies used for the low-pass filter applied to the channel in Hz.
     If no low-pass filter applied, use `n/a`.
     Note that hardware anti-aliasing in A/D conversion of all MEG/EEG electronics
     applies a low-pass filter; specify its frequency here if applicable.
   anyOf:
-  - type: number
-    unit: Hz
-    minimum: 0
-  - type: string
-    enum:
-    - n/a
+    - type: number
+      unit: Hz
+      minimum: 0
+    - type: string
+      enum:
+        - n/a
 hplc_recovery_fractions:
   name: hplc_recovery_fractions
+  display_name: HPLC recovery fractions
   description: |
     HPLC recovery fractions (the fraction of activity that gets loaded onto the HPLC).
   type: number
   unit: arbitrary
 impedance:
   name: impedance
+  display_name: Electrode impedance
   description: |
     Impedance of the electrode, units MUST be in `kOhm`.
   type: number
   unit: kOhm
 index:
   name: index
+  display_name: Label index
   description: |
     The label integer index.
   type: integer
 low_cutoff:
   name: low_cutoff
+  display_name: Low cutoff
   description: |
     Frequencies used for the high-pass filter applied to the channel in Hz.
     If no high-pass filter applied, use `n/a`.
   anyOf:
-  - type: number
-    unit: Hz
-  - type: string
-    enum:
-    - n/a
+    - type: number
+      unit: Hz
+    - type: string
+      enum:
+        - n/a
 manufacturer:
   name: manufacturer
+  display_name: Manufacturer
   description: |
     The manufacturer for each electrode.
     Can be used if electrodes were manufactured by more than one company.
   type: string
 mapping:
   name: mapping
+  display_name: Label mapping
   description: |
     Corresponding integer label in the standard BIDS label lookup.
   type: integer
 material:
   name: material
+  display_name: Electrode material
   description: |
     Material of the electrode (for example, `Tin`, `Ag/AgCl`, `Gold`).
   type: string
 metabolite_parent_fraction:
   name: metabolite_parent_fraction
+  display_name: Metabolite parent fraction
   description: |
     Parent fraction of the radiotracer (0-1).
   type: number
@@ -196,6 +220,7 @@ metabolite_parent_fraction:
   maximum: 1
 metabolite_polar_fraction:
   name: metabolite_polar_fraction
+  display_name: Metabolite polar fraction
   description: |
     Polar metabolite fraction of the radiotracer (0-1).
   type: number
@@ -204,34 +229,39 @@ metabolite_polar_fraction:
 # name column for channels.tsv files
 name__channels:
   name: name
+  display_name: Channel name
   description: |
     Label of the channel.
   type: string
 # name column for electrodes.tsv files
 name__electrodes:
   name: name
+  display_name: Electrode name
   description: |
     Name of the electrode contact point.
   type: string
 # name column for dseg.tsv files
 name__segmentations:
   name: name
+  display_name: Label name
   description: |
     The unique label name.
   type: string
 notch:
   name: notch
+  display_name: Notch frequencies
   description: |
     Frequencies used for the notch filter applied to the channel, in Hz.
     If no notch filter applied, use `n/a`.
   anyOf:
-  - type: number
-    unit: Hz
-  - type: string
-    enum:
-    - n/a
+    - type: number
+      unit: Hz
+    - type: string
+      enum:
+        - n/a
 onset:
   name: onset
+  display_name: Event onset
   description: |
     Onset (in seconds) of the event, measured from the beginning of the acquisition
     of the first data point stored in the corresponding task data file.
@@ -250,6 +280,7 @@ onset:
   unit: s
 pathology:
   name: pathology
+  display_name: Pathology
   description: |
     String value describing the pathology of the sample or type of control.
     When different from `healthy`, pathology SHOULD be specified.
@@ -258,6 +289,7 @@ pathology:
   type: string
 participant_id:
   name: participant_id
+  display_name: Participant ID
   description: |
     A participant identifier of the form `sub-<label>`,
     matching a participant entity found in the dataset.
@@ -265,12 +297,14 @@ participant_id:
   pattern: ^sub-[0-9a-zA-Z]+$
 plasma_radioactivity:
   name: plasma_radioactivity
+  display_name: Plasma radioactivity
   description: |
     Radioactivity in plasma, in unit of plasma radioactivity (for example, `kBq/mL`).
   type: number
 # reference column for channels.tsv files for EEG data
 reference__eeg:
   name: reference
+  display_name: Electrode reference
   description: |
     Name of the reference electrode(s).
     This column is not needed when it is common to all channels.
@@ -279,39 +313,47 @@ reference__eeg:
 # reference column for channels.tsv files for iEEG data
 reference__ieeg:
   name: reference
+  display_name: Electrode reference
   description: |
     Specification of the reference (for example, `mastoid`, `ElectrodeName01`, `intracranial`, `CAR`, `other`, `n/a`).
     If the channel is not an electrode channel (for example, a microphone channel) use `n/a`.
   anyOf:
-  - type: string
-  - type: string
-    enum:
-    - n/a
+    - type: string
+    - type: string
+      enum:
+        - n/a
 respiratory:
   name: respiratory
+  display_name: Respiratory measurement
   description: |
     continuous breathing measurement
   type: number
 response_time:
   name: response_time
+  display_name: Response time
   description: |
     Response time measured in seconds.
     A negative response time can be used to represent preemptive responses and
     `n/a` denotes a missed response.
   anyOf:
-  - type: number
-    unit: s
-  - type: string
-    enum:
-    - n/a
+    - type: number
+      unit: s
+    - type: string
+      enum:
+        - n/a
 sample:
   name: sample
+  display_name: Sample index
   description: |
     Onset of the event according to the sampling scheme of the recorded modality
     (that is, referring to the raw data file that the `events.tsv` file accompanies).
+    When there are several sampling schemes present in the raw data file (as can be
+    the case for example for `.edf` files), this column is ambiguous and
+    SHOULD NOT be used.
   type: integer
 sample_id:
   name: sample_id
+  display_name: Sample ID
   description: |
     A sample identifier of the form `sample-<label>`,
     matching a sample entity found in the dataset.
@@ -319,28 +361,31 @@ sample_id:
   pattern: ^sample-[0-9a-zA-Z]+$
 sample_type:
   name: sample_type
+  display_name: Sample type
   description: |
     Biosample type defined by
     [ENCODE Biosample Type](https://www.encodeproject.org/profiles/biosample_type).
   type: string
   enum:
-  - cell line
-  - in vitro differentiated cells
-  - primary cell
-  - cell-free sample
-  - cloning host
-  - tissue
-  - whole organisms
-  - organoid
-  - technical sample
+    - cell line
+    - in vitro differentiated cells
+    - primary cell
+    - cell-free sample
+    - cloning host
+    - tissue
+    - whole organisms
+    - organoid
+    - technical sample
 sampling_frequency:
   name: sampling_frequency
+  display_name: Channel sampling frequency
   description: |
     Sampling rate of the channel in Hz.
   type: number
   unit: Hz
 session_id:
   name: session_id
+  display_name: Session ID
   description: |
     A session identifier of the form `ses-<label>`,
     matching a session found in the dataset.
@@ -348,6 +393,7 @@ session_id:
   pattern: ^ses-[0-9a-zA-Z]+$
 sex:
   name: sex
+  display_name: Sex
   description: |
     String value indicating phenotypical sex, one of "male", "female", "other".
 
@@ -358,42 +404,45 @@ sex:
     For "other", use one of these values: `other`, `o`, `O`, `OTHER`, `Other`.
   type: string
   enum:
-  - male
-  - m
-  - M
-  - MALE
-  - Male
-  - female
-  - f
-  - F
-  - FEMALE
-  - Female
-  - other
-  - o
-  - O
-  - OTHER
-  - Other
-  - n/a
+    - male
+    - m
+    - M
+    - MALE
+    - Male
+    - female
+    - f
+    - F
+    - FEMALE
+    - Female
+    - other
+    - o
+    - O
+    - OTHER
+    - Other
+    - n/a
 size:
   name: size
+  display_name: Electrode size
   description: |
     Surface area of the electrode, units MUST be in `mm^2`.
   type: number
-  unit: mm2
+  unit: 'mm^2'
 software_filters:
   name: software_filters
+  display_name: Software filters
   description: |
     List of temporal and/or spatial software filters applied
     (for example, `SSS`, `SpatialCompensation`).
     Note that parameters should be defined in the general MEG sidecar .json file.
     Indicate `n/a` in the absence of software filters applied.
   anyOf:
-  - type: string
-  - type: string
-    enum:
-    - n/a
+    - type: string
+    - type: string
+      enum:
+        - n/a
 species:
   name: species
+  display_name: Species
   description: |
     The `species` column SHOULD be a binomial species name from the
     [NCBI Taxonomy](https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi)
@@ -403,6 +452,7 @@ species:
   type: string
 status:
   name: status
+  display_name: Channel status
   description: |
     Data quality observed on the channel.
     A channel is considered `bad` if its data quality is compromised by excessive noise.
@@ -410,17 +460,19 @@ status:
     Description of noise type SHOULD be provided in `[status_description]`.
   type: string
   enum:
-  - good
-  - bad
-  - n/a
+    - good
+    - bad
+    - n/a
 status_description:
   name: status_description
+  display_name: Channel status description
   description: |
     Freeform text description of noise or artifact affecting data quality on the channel.
-    It is meant to explain why the channel was declared bad in `[status]`.
+    It is meant to explain why the channel was declared bad in the `status` column.
   type: string
 stim_file:
   name: stim_file
+  display_name: Stimulus file
   description: |
     Represents the location of the stimulus file (such as an image, video, or
     audio file) presented at the given onset time.
@@ -434,12 +486,14 @@ stim_file:
   format: stimuli_relative
 strain:
   name: strain
+  display_name: Strain
   description: |
     For species different from `homo sapiens`, string value indicating
     the strain of the species, for example: `C57BL/6J`.
   type: string
 strain_rrid:
   name: strain_rrid
+  display_name: Strain RRID
   description: |
     For species different from `homo sapiens`, research resource identifier
     ([RRID](https://scicrunch.org/resources/Organisms/search))
@@ -448,6 +502,7 @@ strain_rrid:
   format: rrid
 time:
   name: time
+  display_name: Time
   description: |
     Time, in seconds, relative to `TimeZero` defined by the `*_pet.json`.
     For example, 5.
@@ -455,6 +510,7 @@ time:
   unit: s
 trial_type:
   name: trial_type
+  display_name: Trial type
   description: |
     Primary categorisation of each trial to identify them as instances of the
     experimental conditions.
@@ -464,104 +520,110 @@ trial_type:
   type: string
 trigger:
   name: trigger
+  display_name: Trigger
   description: |
     continuous measurement of the scanner trigger signal
   type: number
 # type column in channels.tsv files
 type__eeg_channels:
   name: type
+  display_name: Channel type
   description: |
     Type of channel; MUST use the channel types listed below.
     Note that the type MUST be in upper-case.
   type: string
   enum:
-  - AUDIO
-  - EEG
-  - EOG
-  - ECG
-  - EMG
-  - EYEGAZE
-  - GSR
-  - HEOG
-  - MISC
-  - PPG
-  - PUPIL
-  - REF
-  - RESP
-  - SYSCLOCK
-  - TEMP
-  - TRIG
-  - VEOG
+    - AUDIO
+    - EEG
+    - EOG
+    - ECG
+    - EMG
+    - EYEGAZE
+    - GSR
+    - HEOG
+    - MISC
+    - PPG
+    - PUPIL
+    - REF
+    - RESP
+    - SYSCLOCK
+    - TEMP
+    - TRIG
+    - VEOG
 type__meg_channels:
   name: type
+  display_name: Channel type
   description: |
     Type of channel; MUST use the channel types listed below.
     Note that the type MUST be in upper-case.
   type: string
   enum:
-  - MEGMAG
-  - MEGGRADAXIAL
-  - MEGGRADPLANAR
-  - MEGREFMAG
-  - MEGREFGRADAXIAL
-  - MEGREFGRADPLANAR
-  - MEGOTHER
-  - EEG
-  - ECOG
-  - SEEG
-  - DBS
-  - VEOG
-  - HEOG
-  - EOG
-  - ECG
-  - EMG
-  - TRIG
-  - AUDIO
-  - PD
-  - EYEGAZE
-  - PUPIL
-  - MISC
-  - SYSCLOCK
-  - ADC
-  - DAC
-  - HLU
-  - FITERR
-  - OTHER
+    - MEGMAG
+    - MEGGRADAXIAL
+    - MEGGRADPLANAR
+    - MEGREFMAG
+    - MEGREFGRADAXIAL
+    - MEGREFGRADPLANAR
+    - MEGOTHER
+    - EEG
+    - ECOG
+    - SEEG
+    - DBS
+    - VEOG
+    - HEOG
+    - EOG
+    - ECG
+    - EMG
+    - TRIG
+    - AUDIO
+    - PD
+    - EYEGAZE
+    - PUPIL
+    - MISC
+    - SYSCLOCK
+    - ADC
+    - DAC
+    - HLU
+    - FITERR
+    - OTHER
 type__ieeg_channels:
   name: type
+  display_name: Channel type
   description: |
     Type of channel; MUST use the channel types listed below.
     Note that the type MUST be in upper-case.
   type: string
   enum:
-  - EEG
-  - ECOG
-  - SEEG
-  - DBS
-  - VEOG
-  - HEOG
-  - EOG
-  - ECG
-  - EMG
-  - TRIG
-  - AUDIO
-  - PD
-  - EYEGAZE
-  - PUPIL
-  - MISC
-  - SYSCLOCK
-  - ADC
-  - DAC
-  - REF
-  - OTHER
+    - EEG
+    - ECOG
+    - SEEG
+    - DBS
+    - VEOG
+    - HEOG
+    - EOG
+    - ECG
+    - EMG
+    - TRIG
+    - AUDIO
+    - PD
+    - EYEGAZE
+    - PUPIL
+    - MISC
+    - SYSCLOCK
+    - ADC
+    - DAC
+    - REF
+    - OTHER
 # type column for electrodes.tsv files
 type__electrodes:
   name: type
+  display_name: Electrode type
   description: |
     Type of the electrode (for example, cup, ring, clip-on, wire, needle).
   type: string
 units:
   name: units
+  display_name: Units
   description: |
     Physical unit of the value represented in this channel,
     for example, `V` for Volt, or `fT/cm` for femto Tesla per centimeter
@@ -570,46 +632,52 @@ units:
   format: unit
 value:
   name: value
+  display_name: Marker value
   description: |
     Marker value associated with the event (for example, the value of a TTL
     trigger that was recorded at the onset of the event).
   anyOf:
-  - type: number
-  - type: string
+    - type: number
+    - type: string
 volume_type:
   name: volume_type
+  display_name: ASL volume type
   description: |
     The `*_aslcontext.tsv` table consists of a single column of labels identifying
     the `volume_type` of each volume in the corresponding `*_asl.nii[.gz]` file.
   type: string
   enum:
-  - control
-  - label
-  - m0scan
-  - deltam
-  - cbf
+    - control
+    - label
+    - m0scan
+    - deltam
+    - cbf
 whole_blood_radioactivity:
   name: whole_blood_radioactivity
+  display_name: Whole blood radioactivity
   description: |
     Radioactivity in whole blood samples,
     in unit of radioactivity measurements in whole blood samples (for example, `kBq/mL`).
   type: number
 x:
   name: x
+  display_name: X position
   description: |
     Recorded position along the x-axis.
   type: number
 y:
   name: y
+  display_name: Y position
   description: |
     Recorded position along the y-axis.
   type: number
 z:
   name: z
+  display_name: Z position
   description: |
     Recorded position along the z-axis.
   anyOf:
-  - type: number
-  - type: string
-    enum:
-    - n/a
+    - type: number
+    - type: string
+      enum:
+        - n/a
