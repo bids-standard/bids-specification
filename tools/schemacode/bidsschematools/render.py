@@ -492,7 +492,7 @@ def append_filename_template_legend(
   in which case those values are listed in `<>`, separated by `|`.
 - `_<suffix>` means that there are several (>6) valid suffixes for this filename pattern.
 - `.<extension>` means that there are several (>6) valid extensions for this file type.
-- [.gz] means that both the unzipped and gzipped versions of the extension are valid.
+- `[.gz]` means that both the unzipped and gzipped versions of the extension are valid.
 """
 
     if pdf_format:
