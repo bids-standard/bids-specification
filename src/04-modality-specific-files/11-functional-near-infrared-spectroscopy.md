@@ -107,15 +107,15 @@ Generic fields: For consistency between studies and institutions,
 we encourage users to extract the values of these fields from the actual raw data.
 Whenever possible, please avoid using ad hoc wording.
 
-{{ MACROS___make_sidecar_table("nirs.FnirsBase") }}
+{{ MACROS___make_sidecar_table("nirs.NirsBase") }}
 
 Specific fNIRS fields that are REQUIRED or may be REQUIRED depending on other metadata values:
 
-{{ MACROS___make_sidecar_table("nirs.FnirsRequired") }}
+{{ MACROS___make_sidecar_table("nirs.NirsRequired") }}
 
 Specific fNIRS fields that SHOULD be present:
 
-{{ MACROS___make_sidecar_table("nirs.FnirsRecommend") }}
+{{ MACROS___make_sidecar_table("nirs.NirsRecommend") }}
 
 Example:
 
@@ -310,37 +310,15 @@ In this case, only x and y are specified and z is `"n/a"`.
 
 Fields relating to the fNIRS optode positions:
 
-{{ MACROS___make_metadata_table(
-   {
-      "NIRSCoordinateSystem": "REQUIRED",
-      "NIRSCoordinateUnits": "REQUIRED",
-      "NIRSCoordinateSystemDescription": "RECOMMENDED, but REQUIRED if `NIRSCoordinateSystem` is `Other`",
-      "NIRSCoordinateProcessingDescription": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_sidecar_table(["nirs.CoordinateSystem", "nirs.CoordinateSystemDescriptionRec"]) }}
 
 Fields relating to the position of fiducials measured during an fNIRS session/run:
 
-{{ MACROS___make_metadata_table(
-   {
-      "FiducialsDescription": "OPTIONAL",
-      "FiducialsCoordinates": "RECOMMENDED",
-      "FiducialsCoordinateSystem": "RECOMMENDED",
-      "FiducialsCoordinateUnits": "RECOMMENDED",
-      "FiducialsCoordinateSystemDescription": 'RECOMMENDED, but REQUIRED if `FiducialsCoordinateSystem` is `"Other"`',
-   }
-) }}
+{{ MACROS___make_sidecar_table(["nirs.Fiducials", "nirs.FiducialsCoordinateSystemDescriptionRec"]) }}
 
 Fields relating to the position of anatomical landmarks measured during an fNIRS session/run:
 
-{{ MACROS___make_metadata_table(
-   {
-      "AnatomicalLandmarkCoordinates": "RECOMMENDED",
-      "AnatomicalLandmarkCoordinateSystem": ("RECOMMENDED", "Preferably the same as the `NIRSCoordinateSystem`."),
-      "AnatomicalLandmarkCoordinateUnits": "RECOMMENDED",
-      "AnatomicalLandmarkCoordinateSystemDescription": 'RECOMMENDED, but REQUIRED if `AnatomicalLandmarkCoordinateSystem` is `"Other"`',
-   }
-) }}
+{{ MACROS___make_sidecar_table(["nirs.AnatomicalLandmark", "nirs.AnatomicalLandmarkCoordinateSystemDescriptionRec"]) }}
 
 Example:
 ```text

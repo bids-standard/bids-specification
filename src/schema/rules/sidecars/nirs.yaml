@@ -1,5 +1,5 @@
 ---
-NIRSCoordsystemBase:
+CoordinateSystem:
   selectors:
     - datatype == "nirs"
     - suffix == "coordsystem"
@@ -7,15 +7,27 @@ NIRSCoordsystemBase:
     NIRSCoordinateSystem: required
     NIRSCoordinateUnits: required
     NIRSCoordinateProcessingDescription: recommended
+
+Fiducials:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "coordsystem"
+  fields:
     FiducialsDescription: optional
     FiducialsCoordinates: recommended
-    FiducialsCoordinateSystem: recommended
     FiducialsCoordinateUnits: recommended
+    FiducialsCoordinateSystem: recommended
+
+AnatomicalLandmark:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "coordsystem"
+  fields:
     AnatomicalLandmarkCoordinates: recommended
     AnatomicalLandmarkCoordinateSystem: recommended
     AnatomicalLandmarkCoordinateUnits: recommended
 
-NIRSCoordinateSystemDescriptionRec:
+CoordinateSystemDescriptionRec:
   selectors:
     - datatype == "nirs"
     - suffix == "coordsystem"
@@ -25,7 +37,7 @@ NIRSCoordinateSystemDescriptionRec:
       level: recommended
       level_addendum: required if NIRSCoordinateSystem is "other"
 
-NIRSCoordinateSystemDescriptionReq:
+CoordinateSystemDescriptionReq:
   selectors:
     - datatype == "nirs"
     - suffix == "coordsystem"
@@ -69,7 +81,7 @@ FiducialsCoordinateSystemDescriptionReq:
   fields:
     FiducialsCoordinateSystemDescription: required
 
-FnirsBase:
+NirsBase:
   selectors:
     - datatype == "nirs"
     - suffix == "nirs"
@@ -90,7 +102,7 @@ FnirsBase:
     HardwareFilters: recommended
     SubjectArtefactDescription: recommended
 
-FnirsRequired:
+NirsRequired:
   selectors:
     - datatype == "nirs"
     - suffix == "nirs"
@@ -127,7 +139,7 @@ FnirsRequired:
       level: recommended
       level_addendum: required if any channel type is MAGN
 
-FnirsRecommend:
+NirsRecommend:
   selectors:
     - modality == "fnirs"
     - suffix == "nirs"
