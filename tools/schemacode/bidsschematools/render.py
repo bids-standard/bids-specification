@@ -669,7 +669,12 @@ def make_suffix_table(schema, suffixes, src_path=None, tablefmt="github"):
 
 
 def make_obj_table(
-    subschema, field_info, field_type, src_path=None, tablefmt="github", n_values_to_combine=15
+    subschema,
+    field_info,
+    field_type,
+    src_path=None,
+    tablefmt="github",
+    n_values_to_combine=15,
 ):
     """Make a generic table describing objects in the schema."""
     # Use the "name" field in the table, to allow for filenames to not match
@@ -901,7 +906,13 @@ def make_subobject_table(schema, object_tuple, field_info, src_path=None, tablef
     return table_str
 
 
-def make_columns_table(schema, column_info, src_path=None, tablefmt="github", n_values_to_combine=15):
+def make_columns_table(
+    schema,
+    column_info,
+    src_path=None,
+    tablefmt="github",
+    n_values_to_combine=15,
+):
     """Produce columns table (markdown) based on requested fields.
 
     Parameters
