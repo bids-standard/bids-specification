@@ -103,6 +103,8 @@ is stored in the field `ShortChannelCount`.
 If the field `ShortChannelCount` is populated, then the optional column `short_channel`
 may be used in `*_channels.tsv` to describe which channels were specified as short.
 
+{{ MACROS__make_sidecar_table(["nirs.FnirsBase", "nirs.FnirsRequired", "nirs.FnirsRecommended"]) }}
+
 Generic fields that MUST be present:
 
 {{ MACROS___make_metadata_table(
