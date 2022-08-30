@@ -22,7 +22,7 @@ GYROChannelCountReq:
     - datatype == "nirs"
     - suffix == "channels"
     - extension == ".tsv"
-    - columns.type[0] == "GYRO"
+    - intersect(columns.type, ["GYRO"])
   checks:
     - associations.nirs.GYROChannelCount != null
 
