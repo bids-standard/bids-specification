@@ -116,8 +116,6 @@ def test_make_entity_table_transition(schema_obj):
     a = difflib.unified_diff(entity_table, _entity_table)
     sys.stdout.writelines(a)
     print(a)
-
-
     #assert entity_table == _entity_table
 
 
