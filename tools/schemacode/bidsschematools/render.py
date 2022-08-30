@@ -18,6 +18,9 @@ lgr = utils.get_logger()
 utils.set_logger_level(lgr, os.environ.get("BIDS_SCHEMA_LOG_LEVEL", logging.INFO))
 logging.basicConfig(format="%(asctime)-15s [%(levelname)8s] %(message)s")
 
+# Remember to add extension (.html or .md) to the paths when using them.
+ENTITIES_PATH = "SPEC_ROOT/99-appendices/09-entities"
+GLOSSARY_PATH = "SPEC_ROOT/99-appendices/14-glossary"
 TYPE_CONVERTER = {
     "associated_data": "associated data",
     "columns": "column",
@@ -942,6 +945,7 @@ def make_columns_table(schema, column_info, src_path=None, tablefmt="github"):
     table_str : str
         The tabulated table as a Markdown string.
     """
+    src_path = get_relpath(src_path)
     fields = list(column_info.keys())
     # The filter function doesn't work here.
     column_schema = schema["objects"]["columns"]
@@ -954,10 +958,9 @@ def make_columns_table(schema, column_info, src_path=None, tablefmt="github"):
     # Use the "name" field in the table, to allow for filenames to not match
     # "names".
     df = pd.DataFrame(
-        index=[column_schema[f]["name"] for f in retained_fields],
-        columns=["**Requirement Level**", "**Data type**", "**Description**"],
+        index=retained_fields,
+        columns=["**Column name**", "**Requirement Level**", "**Data type**", "**Description**"],
     )
-    df.index.name = "**Column name**"
     for field in retained_fields:
         field_name = column_schema[field]["name"]
         requirement_info = column_info[field]
@@ -969,23 +972,29 @@ def make_columns_table(schema, column_info, src_path=None, tablefmt="github"):
             "DEPRECATED",
             "[DEPRECATED](/02-common-principles.html#definitions)",
         )
+        field_name = f"[{field_name}]({GLOSSARY_PATH}.md#objects.columns.{field})"
+        field_name = field_name.replace("SPEC_ROOT", src_path)
 
         type_string = utils.resolve_metadata_type(column_schema[field])
 
         description = column_schema[field]["description"] + " " + description_addendum
 
-        description = description.replace("SPEC_ROOT", get_relpath(src_path))
+        description = description.replace("SPEC_ROOT", src_path)
 
         # Try to add info about valid values
         valid_values_str = utils.describe_valid_values(column_schema[field])
         if valid_values_str:
             description += "\n\n\n\n" + valid_values_str
 
-        df.loc[field_name] = [
+        df.loc[field] = [
+            field_name,
             normalize_breaks(requirement_info),
             type_string,
             normalize_breaks(description),
         ]
+
+    df = df.set_index("**Column name**", drop=True)
+    df.index.name = "**Column name**"
 
     # Print it as markdown
     table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
