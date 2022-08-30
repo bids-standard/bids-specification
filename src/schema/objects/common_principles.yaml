@@ -39,6 +39,8 @@ data_type:
         10. `pet` (positron emission tomography)
 
         11. `micr` (microscopy)
+
+        12. `nirs` (near infra red spectroscopy)
 dataset:
   name: Dataset
   display_name: Dataset
