@@ -574,25 +574,9 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_filename_template(datatypes=["dwi"]) }}
 
-If more than one run of the same acquisition and direction has been acquired, the
-[`run-<index>`](../99-appendices/09-entities.md#run) entity MUST be used:
-`_run-1`, `_run-2`, `_run-3` (and so forth.)
-When there is only one scan of a given acquisition and direction, the `run` entity MAY be
-omitted.
 The [`run-<index>`](../99-appendices/09-entities.md#run) entity is RECOMMENDED
-to encode the splits of multipart DWI scans (see [below](#multipart-split-dwi-schemes).)
-
-The OPTIONAL [`acq-<label>`](../99-appendices/09-entities.md#acq)
-entity corresponds to a custom label the user may use to
-distinguish different sets of parameters.
-
-The OPTIONAL [`rec-<label>`](../99-appendices/09-entities.md#rec)
-key/value pair can be used to distinguish
-different pre-dicom reconstruction algorithms (for example one using sum of squares or another using a non-linear combination of the coils).
-
-The OPTIONAL [`dir-<label>`](../99-appendices/09-entities.md#dir)
-entity corresponds to a custom label the user may use to
-distinguish different sets of phase-encoding directions.
+to encode the splits of multipart DWI scans
+(see [below](#multipart-split-dwi-schemes) for more information on multipart DWI schemes).
 
 **Combining multi- and single-band acquisitions**.
 The single-band reference image MAY be stored with suffix `sbref` (for example,
@@ -968,15 +952,6 @@ and a guide for using macros can be found at
    )
 }}
 
-Two OPTIONAL entities, following more general rules of the specification,
-are allowed across all the four scenarios:
-
--   The OPTIONAL [`run-<index>`](../99-appendices/09-entities.md#run) entity corresponds to a one-based index
-    to distinguish multiple fieldmaps with the same parameters.
-
--   The OPTIONAL [`acq-<label>`](../99-appendices/09-entities.md#acq) entity corresponds to a custom label
-    the user may use to distinguish different set of parameters.
-
 ### Expressing the MR protocol intent for fieldmaps
 
 Fieldmaps are typically acquired with the purpose of correcting one or more EPI
@@ -1109,6 +1084,7 @@ For example, `sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phase2.json`
 ```
 
 #### Case 3: Direct *field mapping*
+
 In some cases (for example GE), the scanner software will directly reconstruct a
 *B<sub>0</sub>* field map along with a magnitude image used for anatomical reference.
 
