@@ -17,9 +17,9 @@ lgr = utils.get_logger()
 utils.set_logger_level(lgr, os.environ.get("BIDS_SCHEMA_LOG_LEVEL", logging.INFO))
 logging.basicConfig(format="%(asctime)-15s [%(levelname)8s] %(message)s")
 
-ENTITIES_PATH = "SPEC_ROOT/99-appendices/09-entities.html"
-GLOSSARY_PATH = "SPEC_ROOT/99-appendices/14-glossary.html"
-GLOSSARY_PATH_MD = "SPEC_ROOT/99-appendices/14-glossary.md"
+# Remember to add extension (.html or .md) to the paths when using them.
+ENTITIES_PATH = "SPEC_ROOT/99-appendices/09-entities"
+GLOSSARY_PATH = "SPEC_ROOT/99-appendices/14-glossary"
 TYPE_CONVERTER = {
     "associated_data": "associated data",
     "columns": "column",
@@ -300,7 +300,7 @@ def make_filename_template(
     )
     paragraph += utils._link_with_html(
         sub_string,
-        html_path=ENTITIES_PATH,
+        html_path=ENTITIES_PATH + ".html",
         heading="sub",
         pdf_format=pdf_format,
     )
@@ -311,7 +311,7 @@ def make_filename_template(
     )
     paragraph += utils._link_with_html(
         ses_string,
-        html_path=ENTITIES_PATH,
+        html_path=ENTITIES_PATH + ".html",
         heading="ses",
         pdf_format=pdf_format,
     )
@@ -328,7 +328,7 @@ def make_filename_template(
         paragraph += "\t\t"
         paragraph += utils._link_with_html(
             datatype,
-            html_path=GLOSSARY_PATH,
+            html_path=GLOSSARY_PATH + ".html",
             heading=f"{datatype.lower()}-datatypes",
             pdf_format=pdf_format,
         )
@@ -346,7 +346,7 @@ def make_filename_template(
                     )
                     ent_format = utils._link_with_html(
                         ent_format,
-                        html_path=ENTITIES_PATH,
+                        html_path=ENTITIES_PATH + ".html",
                         heading=schema["objects"]["entities"][ent]["name"],
                         pdf_format=pdf_format,
                     )
@@ -354,7 +354,7 @@ def make_filename_template(
                     # Standard entity key-value pattern with simple label/index
                     ent_format = utils._link_with_html(
                         schema["objects"]["entities"][ent]["name"],
-                        html_path=ENTITIES_PATH,
+                        html_path=ENTITIES_PATH + ".html",
                         heading=schema["objects"]["entities"][ent]["name"],
                         pdf_format=pdf_format,
                     )
@@ -362,7 +362,7 @@ def make_filename_template(
                     ent_format += "<" if pdf_format else "&lt;"
                     ent_format += utils._link_with_html(
                         schema["objects"]["entities"][ent].get("format", "label"),
-                        html_path=GLOSSARY_PATH,
+                        html_path=GLOSSARY_PATH + ".html",
                         heading=(
                             f'{schema["objects"]["entities"][ent].get("format", "label")}-formats'
                         ),
@@ -394,7 +394,7 @@ def make_filename_template(
                 string += "<" if pdf_format else "&lt;"
                 string += utils._link_with_html(
                     "suffix",
-                    html_path=GLOSSARY_PATH,
+                    html_path=GLOSSARY_PATH + ".html",
                     heading="suffix-common_principles",
                     pdf_format=pdf_format,
                 )
@@ -412,7 +412,7 @@ def make_filename_template(
 
                     suffix_string = utils._link_with_html(
                         suffix,
-                        html_path=GLOSSARY_PATH,
+                        html_path=GLOSSARY_PATH + ".html",
                         heading=f"{suffix_id.lower()}-suffixes",
                         pdf_format=pdf_format,
                     )
@@ -447,7 +447,7 @@ def make_filename_template(
 
             extensions = utils.combine_extensions(
                 extensions,
-                html_path=GLOSSARY_PATH,
+                html_path=GLOSSARY_PATH + ".html",
                 heading_lst=ext_headings,
                 pdf_format=pdf_format,
             )
@@ -677,9 +677,33 @@ def make_obj_table(
     tablefmt="github",
     n_values_to_combine=15,
 ):
-    """Make a generic table describing objects in the schema."""
-    # Use the "name" field in the table, to allow for filenames to not match
-    # "names".
+    """Make a generic table describing objects in the schema.
+
+    This does shared work between describing metadata fields and subobjects in the schema.
+
+    Parameters
+    ----------
+    subschema : Namespace or dict
+        Subset of the overall schema, including only the target object definitions.
+    field_info : dict
+        Additional information about each row in the table to be added to schema information.
+        Keys should match "name" entries in ``subschema``.
+        Values should be either a string (in which case, it's requirement information) or
+        a tuple (in which case, the first entry is requirement info and the second is
+        information to be added to the object's description).
+    field_type : str
+        The name of the field type. For example, "metadata".
+    src_path : str | None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
+    tablefmt : string, optional
+        The target table format. The default is "github" (GitHub format).
+    n_values_to_combine : int, optional
+        When there are many valid values for a given object,
+        instead of listing each one in the table,
+        link to the associated glossary entry.
+    """
+    # Use the "name" field in the table, to allow for filenames to not match "names".
     df = pd.DataFrame(
         index=[subschema[f]["name"] for f in field_info],
         columns=["**Requirement Level**", "**Data type**", "**Description**"],
@@ -708,7 +732,7 @@ def make_obj_table(
             "enum" in subschema[field].keys()
             and len(subschema[field]["enum"]) >= n_values_to_combine
         ):
-            glossary_entry = f"{GLOSSARY_PATH_MD}#objects.{field}"
+            glossary_entry = f"{GLOSSARY_PATH}.md#objects.{field}"
             valid_values_str = (
                 "For a list of valid values for this field, see the "
                 f"[associated glossary entry]({glossary_entry})."
@@ -759,8 +783,10 @@ def make_sidecar_table(
     table_str : str
         The tabulated table as a Markdown string.
     """
+    field_type = "metadata"
     if isinstance(table_name, str):
         table_name = [table_name]
+
     fields = {}
     for table in table_name:
         new_fields = schema.rules.sidecars[table].fields
@@ -770,14 +796,14 @@ def make_sidecar_table(
                 f"Schema tables {table_name} share overlapping fields: {overlap}"
             )
         fields.update(new_fields)
-    metadata = schema.objects.metadata
 
-    retained_fields = [f for f in fields if f in metadata]
-    dropped_fields = [f for f in fields if f not in metadata]
+    subschema = schema.objects[field_type]
+    retained_fields = [f for f in fields if f in subschema]
+    dropped_fields = [f for f in fields if f not in subschema]
     if dropped_fields:
         print("Warning: Missing fields: {}".format(", ".join(dropped_fields)))
 
-    subschema = {k: v for k, v in metadata.items() if k in retained_fields}
+    subschema = {k: v for k, v in subschema.items() if k in retained_fields}
     field_info = {}
     for field, val in fields.items():
         if isinstance(val, str):
@@ -800,7 +826,7 @@ def make_sidecar_table(
     table_str = make_obj_table(
         subschema,
         field_info=field_info,
-        field_type="metadata",
+        field_type=field_type,
         src_path=src_path,
         tablefmt=tablefmt,
     )
@@ -934,6 +960,10 @@ def make_columns_table(
         by the "page.file.src_path" variable.
     tablefmt : string, optional
         The target table format. The default is "github" (GitHub format).
+    n_values_to_combine : int, optional
+        When there are many valid values for a given column,
+        instead of listing each one in the table,
+        link to the associated glossary entry.
 
     Returns
     -------
@@ -977,7 +1007,7 @@ def make_columns_table(
             "enum" in subschema[field].keys()
             and len(subschema[field]["enum"]) >= n_values_to_combine
         ):
-            glossary_entry = f"{GLOSSARY_PATH_MD}#objects.{field_type}.{field}"
+            glossary_entry = f"{GLOSSARY_PATH}.md#objects.{field_type}.{field}"
             valid_values_str = (
                 "For a list of valid values for this field, see the "
                 f"[associated glossary entry]({glossary_entry})."
