@@ -35,7 +35,7 @@ vendor and coil to define the "active" coil elements.
 Since individual scans can sometimes not have the intended coil elements selected,
 it is preferable for this field to be populated directly from the DICOM
 for each individual scan, so that it can be used as a mechanism for checking
-that a given scan was collected with the intended coil elements selected
+that a given scan was collected with the intended coil elements selected.
 
 ### Sequence Specifics
 
@@ -405,41 +405,12 @@ based fMRI a corresponding task events file (see below) MUST be provided
 multiband acquisitions, one MAY also save the single-band reference image as
 type `sbref` (for example, `sub-control01_task-nback_sbref.nii.gz`).
 
-Each [`task-<label>`](../99-appendices/09-entities.md#task) MUST be consistent across subjects and sessions.
-
 If more than one run of the same task has been acquired the
 [`run-<index>`](../99-appendices/09-entities.md#run) entity MUST be used:
 `_run-1`, `_run-2`, `_run-3`, and so on. If only one run was acquired the
 `run-<index>` can be omitted. In the context of functional imaging a run is
 defined as the same task, but in some cases it can mean different set of stimuli
 (for example randomized order) and participant responses.
-
-The OPTIONAL [`acq-<label>`](../99-appendices/09-entities.md#acq)
-entity corresponds to a custom label one may
-use to distinguish different set of parameters used for acquiring the same task.
-For example this should be used when a study includes two resting state images -
-one single band and one multiband. In such case two files could have the
-following names: `sub-01_task-rest_acq-singleband_bold.nii.gz` and
-`sub-01_task-rest_acq-multiband_bold.nii.gz`, however the user is MAY choose any
-other label than `singleband` and `multiband` as long as they are consistent
-across subjects and sessions and consist only of the legal label characters.
-
-Similarly the OPTIONAL [`ce-<label>`](../99-appendices/09-entities.md#ce)
-entity can be used to distinguish
-sequences using different contrast enhanced images. The label is the name of the
-contrast agent. The key "`ContrastBolusIngredient`" MAY be also be added in the JSON
-file, with the same label.
-
-Similarly the OPTIONAL [`rec-<label>`](../99-appendices/09-entities.md#rec)
-entity can be used to distinguish
-different reconstruction algorithms (for example ones using motion correction).
-
-Similarly the OPTIONAL [`dir-<label>`](../99-appendices/09-entities.md#dir)
-and [`rec-<label>`](../99-appendices/09-entities.md#rec) entities
-can be used to distinguish different phase-encoding directions and
-reconstruction algorithms (for example ones using motion correction).
-See [`fmap` Case 4](01-magnetic-resonance-imaging-data.md#case-4-multiple-phase-encoded-directions-pepolar)
-for more information on `dir` field specification.
 
 Multi-echo data MUST be split into one file per echo using the
 [`echo-<index>`](../99-appendices/09-entities.md#echo) entity. For example:
