@@ -510,7 +510,7 @@ def append_filename_template_legend(text, pdf_format=False):
     return text
 
 
-def make_entity_table(schema, tablefmt="github", **kwargs):
+def make_entity_table(schema, tablefmt="github", src_path=None, **kwargs):
     """Produce entity table (markdown) based on schema.
 
     Parameters
@@ -530,8 +530,6 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
     """
     schema = Namespace(filter_schema(schema.to_dict(), **kwargs))
 
-    ENTITIES_FILE = "09-entities.md"
-
     # prepare the table based on the schema
     # import pdb; pdb.set_trace()
     header = ["Entity", "DataType"]
@@ -546,7 +544,7 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
         header.append(entity_spec["display_name"])
         formats.append(
             f'[`{entity_shorthand}-<{entity_spec.get("format", "label")}>`]'
-            f"({ENTITIES_FILE}#{entity_shorthand})"
+            f"({ENTITIES_PATH}.md#{entity_shorthand})"
         )
 
     # Go through data types
@@ -558,6 +556,7 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
         for dtype_spec in dtype_specs.values():
             if dtype == "derivatives":
                 continue
+
             suffixes = dtype_spec.get("suffixes")
 
             # Skip this part of the schema if no suffixes are found.
@@ -566,6 +565,9 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
                 continue
 
             # TODO: <br> is specific for html form
+            suffixes = [
+                f"[{suffix}]({GLOSSARY_PATH}.md#objects.suffixes.{suffix})" for suffix in suffixes
+            ]
             suffixes_str = " ".join(suffixes) if suffixes else ""
             dtype_row = [dtype] + ([""] * len(all_entities))
             for ent, ent_info in dtype_spec.get("entities", {}).items():
@@ -618,7 +620,10 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
                 dtype_rows[suffixes_str] = dtype_row
 
         # Add datatype to first column and reformat it
-        dtype_rows = {dtype + "<br>({})".format(k): v for k, v in dtype_rows.items()}
+        dtype_rows = {
+            f"[{dtype}]({GLOSSARY_PATH}.md#objects.datatypes.{dtype})<br>({k})": v
+            for k, v in dtype_rows.items()
+        }
         dtype_rows = [[k] + v for k, v in dtype_rows.items()]
 
         table += dtype_rows
@@ -655,6 +660,7 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
 
     # Print it as markdown
     table_str = tabulate(table, headers="keys", tablefmt=tablefmt)
+    table_str = table_str.replace("SPEC_ROOT", get_relpath(src_path))
     return table_str
 
 
@@ -860,6 +866,7 @@ def make_metadata_table(schema, field_info, src_path=None, tablefmt="github"):
         print("Warning: Missing fields: {}".format(", ".join(dropped_fields)))
 
     metadata_schema = {k: v for k, v in metadata_schema.items() if k in retained_fields}
+    # inverted_schema = {v["name"]: k for k, v in metadata_schema.items()}
 
     table_str = make_obj_table(
         metadata_schema,

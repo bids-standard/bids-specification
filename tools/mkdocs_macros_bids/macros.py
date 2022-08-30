@@ -96,7 +96,7 @@ def make_filename_template(src_path=None, pdf_format=False, **kwargs):
     return codeblock
 
 
-def make_entity_table(**kwargs):
+def make_entity_table(src_path=None, **kwargs):
     """Generate an entity table from the schema, based on specific filters.
 
     Parameters
@@ -112,8 +112,11 @@ def make_entity_table(**kwargs):
         A Markdown-format table containing the corresponding entity table for
         a subset of the schema.
     """
+    if src_path is None:
+        src_path = _get_source_path()
+
     schema_obj = schema.load_schema()
-    table = render.make_entity_table(schema_obj, **kwargs)
+    table = render.make_entity_table(schema_obj, src_path=src_path, **kwargs)
     return table
 
 
