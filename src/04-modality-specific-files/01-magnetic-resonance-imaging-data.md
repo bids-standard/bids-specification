@@ -405,13 +405,6 @@ based fMRI a corresponding task events file (see below) MUST be provided
 multiband acquisitions, one MAY also save the single-band reference image as
 type `sbref` (for example, `sub-control01_task-nback_sbref.nii.gz`).
 
-If more than one run of the same task has been acquired the
-[`run-<index>`](../99-appendices/09-entities.md#run) entity MUST be used:
-`_run-1`, `_run-2`, `_run-3`, and so on. If only one run was acquired the
-`run-<index>` can be omitted. In the context of functional imaging a run is
-defined as the same task, but in some cases it can mean different set of stimuli
-(for example randomized order) and participant responses.
-
 Multi-echo data MUST be split into one file per echo using the
 [`echo-<index>`](../99-appendices/09-entities.md#echo) entity. For example:
 
@@ -470,8 +463,7 @@ A guide for using macros can be found at
    }
 ) }}
 
-Some meta information about the acquisition MUST be provided in an additional
-JSON file.
+Some meta information about the acquisition MUST be provided in an additional JSON file.
 
 ### Required fields
 
