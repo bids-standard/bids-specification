@@ -477,7 +477,10 @@ def make_filename_template(
 
 
 def append_filename_template_legend(text, pdf_format=False):
+    """Append a legend to filename templates."""
     legend = """
+- For more information about filename elements (for example, entities, suffixes, extensions),
+  follow the links embedded in the filename template.
 - Filename entities or folders between square brackets
   (for example, `[_ses-<label>]`) are OPTIONAL.
 - Some entities may only allow specific values,
