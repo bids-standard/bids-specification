@@ -1,4 +1,3 @@
-,A,B,,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,AA,AB,AC
 1,Issue,Key,,Severity,Scope,"Coded in",Sources,Reason,Task,Status,PR,OriginalValidatorLink,SchemaLink,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 2,113,NO_AUTHORS,,warning,file,schema-query,"BIDS metadata","The Authors field of dataset_description.json should contain an array of fields - with one author per field. This was triggered because there are no authors, which will make DOI registration from dataset metadata impossible.","dataset_description task",MERGED,1064,linked,https://github.com/bids-standard/bids-specification/blob/b59550c3d934c788f0a4829293bf19e583e2b109/src/schema/rules/dataset_metadata.yaml#L13,,,,,,,,,,,,,,,,,
