@@ -477,8 +477,6 @@ def make_filename_template(
 
 
 def append_filename_template_legend(text, pdf_format=False):
-    md = MarkdownIt().disable("image").enable("table")
-
     legend = """
 - Filename entities or folders between square brackets
   (for example, `[_ses-<label>]`) are OPTIONAL.
