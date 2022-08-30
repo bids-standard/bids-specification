@@ -476,14 +476,7 @@ def make_filename_template(
     return codeblock
 
 
-def append_filename_template_legend(
-    text=None,
-    pdf_format=False,
-):
-
-    if text is None:
-        return
-
+def append_filename_template_legend(text, pdf_format=False):
     md = MarkdownIt().disable("image").enable("table")
 
     legend = """
@@ -505,15 +498,12 @@ def append_filename_template_legend(
 
 """
     else:
+        md = MarkdownIt()
         text += f"""
-
 <details>
 <summary><strong>Legend:</strong></summary>
-<ul>
 {md.render(legend)}
-</ul>
 </details>
-
 """
 
     return text
