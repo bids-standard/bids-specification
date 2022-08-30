@@ -207,37 +207,6 @@ entity corresponds to modality suffix,
 such as `T1w` or `inplaneT1`, referenced by the defacemask image.
 For example, `sub-01_mod-T1w_defacemask.nii.gz`.
 
-If several scans with the same acquisition parameters are acquired in the same session,
-they MUST be indexed with the [`run-<index>`](../99-appendices/09-entities.md#run) entity:
-`_run-1`, `_run-2`, `_run-3`, and so on (only nonnegative integers are allowed as
-run labels).
-
-If different entities apply,
-such as a different session indicated by [`ses-<label>`](../99-appendices/09-entities.md#ses),
-or different acquisition parameters indicated by
-[`acq-<label>`](../99-appendices/09-entities.md#acq),
-then `run` is not needed to distinguish the scans and MAY be omitted.
-
-The OPTIONAL [`acq-<label>`](../99-appendices/09-entities.md#acq)
-entity corresponds to a custom label the user
-MAY use to distinguish a different set of parameters used for acquiring the same
-modality. For example this should be used when a study includes two T1w images -
-one full brain low resolution and one restricted field of view but high
-resolution. In such case two files could have the following names:
-`sub-01_acq-highres_T1w.nii.gz` and `sub-01_acq-lowres_T1w.nii.gz`, however the
-user is free to choose any other label than `highres` and `lowres` as long as
-they are consistent across subjects and sessions. In case different sequences
-are used to record the same modality (for example, RARE and FLASH for T1w) this field
-can also be used to make that distinction. At what level of detail to make the
-distinction (for example, just between RARE and FLASH, or between RARE, FLASH, and
-FLASHsubsampled) remains at the discretion of the researcher.
-
-Similarly the OPTIONAL [`ce-<label>`](../99-appendices/09-entities.md#ce)
-entity can be used to distinguish
-sequences using different contrast enhanced images. The label is the name of the
-contrast agent. The key `ContrastBolusIngredient` MAY be also be added in the
-JSON file, with the same label.
-
 Some meta information about the acquisition MAY be provided in an additional
 JSON file. See [Common metadata fields](#common-metadata-fields) for a
 list of terms and their definitions. There are also some OPTIONAL JSON
@@ -398,12 +367,11 @@ and a guide for using macros can be found at
 {{ MACROS___make_filename_template(datatypes=["func"]) }}
 
 Functional imaging consists of techniques that support rapid temporal repetition.
-This includes but is not limited to task based fMRI
-as well as resting state fMRI, which is treated like any other task. For task
-based fMRI a corresponding task events file (see below) MUST be provided
-(please note that this file is not necessary for resting state scans). For
-multiband acquisitions, one MAY also save the single-band reference image as
-type `sbref` (for example, `sub-control01_task-nback_sbref.nii.gz`).
+This includes, but is not limited to, task based fMRI, as well as resting state fMRI, which is treated like any other task.
+For task based fMRI, a corresponding task events file (see below) MUST be provided
+(please note that this file is not necessary for resting state scans).
+For multiband acquisitions, one MAY also save the single-band reference image with the `sbref` suffix
+(for example, `sub-control01_task-nback_sbref.nii.gz`).
 
 Multi-echo data MUST be split into one file per echo using the
 [`echo-<index>`](../99-appendices/09-entities.md#echo) entity. For example:
