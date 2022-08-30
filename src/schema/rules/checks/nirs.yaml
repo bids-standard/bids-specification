@@ -4,7 +4,7 @@ NASamplingFreq:
     - datatype == "nirs"
     - suffix == "channels"
     - extension == ".tsv"
-    - assoications.nirs.json.SamplingFrequency == 'n/a'
+    - associations.nirs.json.SamplingFrequency == 'n/a'
   checks:
     - columns.sampling_frequency != null
 
@@ -47,7 +47,7 @@ OrientationComponent:
 RequiredChannels:
   selectors:
     - datatype == "nirs"
-    - suffix == "optnodes"
+    - suffix == "optodes"
     - extension == ".tsv"
   checks:
     - associations.channels != null
@@ -55,7 +55,7 @@ RequiredChannels:
 RequiredTemplateX:
   selectors:
     - datatype == "nirs"
-    - suffix == "optnodes"
+    - suffix == "optodes"
     - extension == ".tsv"
     - columns.x[0] == "n/a"
   checks:
@@ -64,7 +64,7 @@ RequiredTemplateX:
 RequiredTemplateY:
   selectors:
     - datatype == "nirs"
-    - suffix == "optnodes"
+    - suffix == "optodes"
     - extension == ".tsv"
     - columns.y[0] == "n/a"
   checks:
@@ -73,7 +73,7 @@ RequiredTemplateY:
 RequiredTemplateZ:
   selectors:
     - datatype == "nirs"
-    - suffix == "optnodes"
+    - suffix == "optodes"
     - extension == ".tsv"
     - columns.z[0] == "n/a"
   checks:
@@ -82,7 +82,7 @@ RequiredTemplateZ:
 RequiredCoordsystem:
   selectors:
     - datatype == "nirs"
-    - suffix == "optnodes"
+    - suffix == "optodes"
     - extension == ".tsv"
   checks:
     - associations.coordsystem != null
