@@ -13,7 +13,7 @@ ACCELChannelCountReq:
     - datatype == "nirs"
     - suffix == "channels"
     - extension == ".tsv"
-    - columns.type[0] == "ACC"
+    - intersect(columns.type, ["ACC"])
   checks:
     - associations.nirs.ACCELChannelCount != null
 
