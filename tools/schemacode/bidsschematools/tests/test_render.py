@@ -115,10 +115,11 @@ def test_make_entity_table_transition(schema_obj):
     import sys
     a = difflib.unified_diff(entity_table, _entity_table)
     sys.stdout.writelines(a)
-    if not entity_table == _entity_table:
-        print(a)
-    else:
+    try:
         assert entity_table == _entity_table
+    except AssertionError:
+        print(a)
+        raise AssertionError("Pandas-reduced output does not match original pandas output.")
 
 
 def test_make_entity_table(schema_obj):
