@@ -308,7 +308,7 @@ space:
   name: space
   display_name: Space
   description: |
-    The `space-<label>`` entity can be used to indicate the way in which electrode positions are interpreted
+    The `space-<label>` entity can be used to indicate the way in which electrode positions are interpreted
     (for EEG/MEG/iEEG data)
     or the spatial reference to which a file has been aligned (for MRI data).
     The `<label>` MUST be taken from one of the modality specific lists in
@@ -326,7 +326,7 @@ split:
   display_name: Split
   description: |
     In the case of long data recordings that exceed a file size of 2Gb,
-    `.fif`` files are conventionally split into multiple parts.
+    `.fif` files are conventionally split into multiple parts.
     Each of these files has an internal pointer to the next file.
     This is important when renaming these split recordings to the BIDS convention.
 
@@ -334,7 +334,7 @@ split:
     new names with dedicated tools like [MNE-Python](https://mne.tools/),
     which will ensure that not only the file names, but also the internal file pointers, will be updated.
 
-    It is RECOMMENDED that .fif files with multiple parts use the `split-<index>` entity to indicate each part.
+    It is RECOMMENDED that `.fif` files with multiple parts use the `split-<index>` entity to indicate each part.
     If there are multiple parts of a recording and the optional `scans.tsv` is provided,
     all files MUST be listed separately in `scans.tsv` and
     the entries for the `acq_time` column in `scans.tsv` MUST all be identical,
