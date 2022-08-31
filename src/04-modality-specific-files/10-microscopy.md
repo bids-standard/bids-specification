@@ -18,6 +18,13 @@ Further Microscopy datasets are available:
 
 ## Microscopy imaging data
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(datatypes=["micr"], suffixes=["TEM", "SEM", "uCT", "BF", "DF",
 "PC", "DIC", "FLUO", "CONF", "PLI", "CARS", "2PE", "MPE", "SR", "NLO", "OCT", "SPIM"], n_dupes_to_combine=4) }}
 
@@ -30,7 +37,8 @@ by the [Open Microscopy Environment](https://www.openmicroscopy.org/) for whole-
 the [OME-TIFF file specifications](https://docs.openmicroscopy.org/ome-model/6.1.2/ome-tiff/file-structure.html).
 The OME-TIFF file allows for multi-page TIFF files to store multiple image planes and supports
 multi-resolution pyramidal tiled images. An OME-XML data block is also embedded inside the
-file’s header.
+file’s header. Further, OME-ZARR (sometimes referred to as OME-NGFF or NGFF) has been developed to provide improved
+access and storage for large data via chunked and compressed N-dimensional arrays.
 
 The BIDS standard accepts microscopy data in a number of file formats to accommodate datasets
 stored in 2D image formats and whole-slide imaging formats, to accommodate lossless and lossy
@@ -47,16 +55,21 @@ Microscopy raw data MUST be stored in one of the following formats:
     (`.ome.tif` for standard TIFF files or `.ome.btf` for
     [BigTIFF](https://www.awaresystems.be/imaging/tiff/bigtiff.html) files)
 
-If different from PNG, TIFF or OME-TIFF, the original unprocessed data in the native format MAY be
-stored in the [`/sourcedata` directory](../02-common-principles.md#source-vs-raw-vs-derived-data).
+-   [OME-ZARR/NGFF](https://ngff.openmicroscopy.org/latest/) (`.ome.zarr` directories)
 
-Future versions may extend this list of supported file formats, for example with the
-Next-Generation File Formats currently developed by OME ([OME-NGFF](https://ngff.openmicroscopy.org/latest/))
-as a successor to OME-TIFF for better remote sharing of large datasets.
+If different from PNG, TIFF, OME-TIFF, or OME-ZARR, the original unprocessed data in the native format MAY be
+stored in the [`/sourcedata` directory](../02-common-principles.md#source-vs-raw-vs-derived-data).
 
 ### Modality suffixes
 Microscopy data currently support the following imaging modalities:
 
+<!--
+This block generates a suffix table.
+The definitions of these fields can be found in
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_suffix_table(
       [
          "TEM",
@@ -94,6 +107,10 @@ The label MUST be unique per subject and is RECOMMENDED to be unique throughout 
 For example: Three brain slices (`sample-01` to `sample-03`) extracted from subject `sub-01`,
 imaged by scanning electron microscopy (SEM) in PNG format
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {
@@ -126,6 +143,10 @@ For example: One brain slice (`sample-01`) extracted from subject `sub-01` with 
 stains (`stain-01`, `stain-02` and `stain-03`) in three separate files, imaged by selective plane
 illumination microscopy (SPIM) in OME-TIFF format
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {
@@ -179,6 +200,10 @@ Figure 1: Examples of chunks configurations.
 For example: Four chunks (`chunk-01` to `chunk-04`) from the same brain sample (`sample-01`)
 of subject `sub-01`, imaged by confocal microscopy (CONF) in OME-TIFF format
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {
@@ -208,11 +233,15 @@ JSON metadata may be defined per sample or per chunk as appropriate, as per the
 In microscopy, many pyramidal file formats store multiple resolutions for the same acquisition.
 In the case where a multiple resolutions file format is converted to single resolution file format,
 only the higher resolution file is present in the raw data.
-Lower resolutions files MUST be placed under the `derivatives` folder and use the
+Lower resolutions files MUST be placed under the `derivatives` directory and use the
 [`res-<label>`](../99-appendices/09-entities.md#res) entity.
 
 For example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "my_dataset": {
@@ -245,52 +274,39 @@ Microscopy data MUST be described by metadata fields, stored in sidecar JSON fil
 
 #### Device Hardware
 
-{{ MACROS___make_metadata_table(
-   {
-      "Manufacturer": "RECOMMENDED",
-      "ManufacturersModelName": "RECOMMENDED",
-      "DeviceSerialNumber": "RECOMMENDED",
-      "StationName": "RECOMMENDED",
-      "SoftwareVersions": "RECOMMENDED",
-      "InstitutionName": "RECOMMENDED",
-      "InstitutionAddress": "RECOMMENDED",
-      "InstitutionalDepartmentName": "RECOMMENDED",
-   }
-) }}
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("micr.MicroscopyDeviceHardware") }}
 
 #### Image Acquisition
 
-{{ MACROS___make_metadata_table(
-   {
-      "PixelSize": "REQUIRED",
-      "PixelSizeUnits": "REQUIRED",
-      "Immersion": "OPTIONAL",
-      "NumericalAperture": "OPTIONAL",
-      "Magnification": "OPTIONAL",
-      "ImageAcquisitionProtocol": "OPTIONAL",
-      "OtherAcquisitionParameters": "OPTIONAL",
-   }
-) }}
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("micr.MicroscopyImageAcquisition") }}
 
 #### Sample
 
-{{ MACROS___make_metadata_table(
-   {
-      "BodyPart": ("RECOMMENDED", "From [DICOM Body Part Examined](http://dicom.nema.org/medical/dicom/current/output/chtml/part16/chapter_L.html#chapter_L) (for example `\"BRAIN\"`)."),
-      "BodyPartDetails": "RECOMMENDED",
-      "BodyPartDetailsOntology": "OPTIONAL",
-      "SampleEnvironment": "RECOMMENDED",
-      "SampleEmbedding": "OPTIONAL",
-      "SampleFixation": "OPTIONAL",
-      "SampleStaining": "RECOMMENDED",
-      "SamplePrimaryAntibody": "RECOMMENDED",
-      "SampleSecondaryAntibody": "RECOMMENDED",
-      "SliceThickness": "OPTIONAL",
-      "TissueDeformationScaling": "OPTIONAL",
-      "SampleExtractionProtocol": "OPTIONAL",
-      "SampleExtractionInstitution": "OPTIONAL",
-   }
-) }}
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("micr.MicroscopySample") }}
 
 #### Chunk Transformations
 
@@ -308,12 +324,18 @@ of the same sample in an implicit coordinate system.
 
 -   Other transformations should be described in derivatives.
 
-{{ MACROS___make_metadata_table(
-   {
-      "ChunkTransformationMatrix": "RECOMMENDED if `<chunk-index>` is used in filenames",
-      "ChunkTransformationMatrixAxis": "REQUIRED if `ChunkTransformationMatrix` is present",
-   }
-) }}
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table([
+	"micr.MicroscopyChunkTransformations",
+	"micr.MicroscopyChunkTransformationsMatrixAxis",
+   ]) }}
 
 An example of chunk transformations JSON metadata for `chunk-01` and `chunk-05` of Figure 2
 is shown below:
@@ -409,6 +431,13 @@ Photos of the tissue sample, overview microscopy scans or blockface images from 
 MAY be included for visualization of large samples or to indicate the location of chunks
 in a sample.
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(datatypes=["micr"], suffixes=["photo"], n_dupes_to_combine=3) }}
 
 The file `<extension>` for photos MUST be either `.jpg`, `.png` or `.tif`.
@@ -418,16 +447,49 @@ acquisition of different photos of the same sample.
 
 For example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {
-      "micr": {
-         "sub-01_sample-01_acq-1_photo.jpg": "",
-         "sub-01_sample-01_acq-2_photo.jpg": "",
+      "ses-01": {
+         "micr": {
+            "sub-01_ses-01_sample-01_acq-1_photo.jpg": "",
+            "sub-01_ses_01_sample-01_acq-2_photo.jpg": "",
+            },
          },
       }
    }
 ) }}
+
+Photo data MAY be accompanied by a JSON file containing the following fields.
+The `IntendedFor` field is used to link the photo to specific image(s) it was acquired for.
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("micr.Photo") }}
+
+For example: `sub-01_ses-01_sample-01_acq-1_photo.json`
+
+```JSON
+{
+   "PhotoDescription": "After clearing",
+   "IntendedFor": [
+        "ses-01/micr/sub-01_ses-01_sample-01_run-1_chunk-01_SPIM.ome.tif",
+        "ses-01/micr/sub-01_ses-01_sample-01_run-1_chunk-02_SPIM.ome.tif",
+        "ses-01/micr/sub-01_ses-01_sample-01_run-1_chunk-03_SPIM.ome.tif",
+        "ses-01/micr/sub-01_ses-01_sample-01_run-1_chunk-04_SPIM.ome.tif"
+    ]
+}
+```
 
 Below is an example of a spinal cord SEM overview, modified from Zaimi et al., 2018.
 [doi:10.1038/s41598-018-22181-4](https://doi.org/10.1038/s41598-018-22181-4).

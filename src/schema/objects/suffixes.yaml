@@ -1,42 +1,50 @@
 ---
 # This file defines valid BIDS file suffixes.
 # For rules regarding how suffixes relate to datatypes, see files in `rules/datatypes/`.
-2PE:
-  name: 2-photon excitation microscopy
+TwoPE:
+  value: 2PE
+  display_name: 2-photon excitation microscopy
   description: |
     2-photon excitation microscopy imaging data
 BF:
-  name: Bright-field microscopy
+  value: BF
+  display_name: Bright-field microscopy
   description: |
     Bright-field microscopy imaging data
 Chimap:
-  name: Quantitative susceptibility map (QSM)
+  value: Chimap
+  display_name: Quantitative susceptibility map (QSM)
   description: |
     In parts per million (ppm).
     QSM allows for determining the underlying magnetic susceptibility of tissue
     (Chi)
-    ([Wang & Liu, 2014](https://onlinelibrary.wiley.com/doi/10.1002/mrm.25358)).
+    ([Wang & Liu, 2014](https://doi.org/10.1002/mrm.25358)).
     Chi maps are REQUIRED to use this suffix regardless of the method used to
     generate them.
   unit: ppm
 CARS:
-  name: Coherent anti-Stokes Raman spectroscopy
+  value: CARS
+  display_name: Coherent anti-Stokes Raman spectroscopy
   description: |
     Coherent anti-Stokes Raman spectroscopy imaging data
 CONF:
-  name: Confocal microscopy
+  value: CONF
+  display_name: Confocal microscopy
   description: |
     Confocal microscopy imaging data
 DIC:
-  name: Differential interference contrast microscopy
+  value: DIC
+  display_name: Differential interference contrast microscopy
   description: |
     Differential interference contrast microscopy imaging data
 DF:
-  name: Dark-field microscopy
+  value: DF
+  display_name: Dark-field microscopy
   description: |
     Dark-field microscopy imaging data
 FLAIR:
-  name: Fluid attenuated inversion recovery image
+  value: FLAIR
+  display_name: Fluid attenuated inversion recovery image
   description: |
     In arbitrary units (arbitrary).
     Structural images with predominant T2 contribution (also known as T2-FLAIR),
@@ -44,7 +52,8 @@ FLAIR:
     inversion time, coupled with notably long repetition and echo times.
   unit: arbitrary
 FLASH:
-  name: Fast-Low-Angle-Shot image
+  value: FLASH
+  display_name: Fast-Low-Angle-Shot image
   description: |
     FLASH (Fast-Low-Angle-Shot) is a vendor-specific implementation for spoiled
     gradient echo acquisition.
@@ -56,17 +65,20 @@ FLASH:
     different applications.
     **Change:** Removed from suffixes.
 FLUO:
-  name: Fluorescence microscopy
+  value: FLUO
+  display_name: Fluorescence microscopy
   description: |
     Fluorescence microscopy imaging data
 IRT1:
-  name: Inversion recovery T1 mapping
+  value: IRT1
+  display_name: Inversion recovery T1 mapping
   description: |
     The IRT1 method involves multiple inversion recovery spin-echo images
     acquired at different inversion times
     ([Barral et al. 2010](https://doi.org/10.1002/mrm.22497)).
 M0map:
-  name: Equilibrium magnetization (M0) map
+  value: M0map
+  display_name: Equilibrium magnetization (M0) map
   description: |
     In arbitrary units (arbitrary).
     A common quantitative MRI (qMRI) fitting variable that represents the amount
@@ -75,31 +87,36 @@ M0map:
     (for example, variable flip angle T1 mapping).
   unit: arbitrary
 MEGRE:
-  name: Multi-echo Gradient Recalled Echo
+  value: MEGRE
+  display_name: Multi-echo Gradient Recalled Echo
   description: |
     Anatomical gradient echo images acquired at different echo times.
     Please note that this suffix is not intended for the logical grouping of
     images acquired using an Echo Planar Imaging (EPI) readout.
 MESE:
-  name: Multi-echo Spin Echo
+  value: MESE
+  display_name: Multi-echo Spin Echo
   description: |
     The MESE method involves multiple spin echo images acquired at different echo
     times and is primarily used for T2 mapping.
     Please note that this suffix is not intended for the logical grouping of
     images acquired using an Echo Planar Imaging (EPI) readout.
 MP2RAGE:
-  name: Magnetization Prepared Two Gradient Echoes
+  value: MP2RAGE
+  display_name: Magnetization Prepared Two Gradient Echoes
   description: |
     The MP2RAGE method is a special protocol that collects several images at
     different flip angles and inversion times to create a parametric T1map by
     combining the magnitude and phase images
     ([Marques et al. 2010](https://doi.org/10.1016/j.neuroimage.2009.10.002)).
 MPE:
-  name: Multi-photon excitation microscopy
+  value: MPE
+  display_name: Multi-photon excitation microscopy
   description: |
     Multi-photon excitation microscopy imaging data
 MPM:
-  name: Multi-parametric Mapping
+  value: MPM
+  display_name: Multi-parametric Mapping
   description: |
     The MPM approaches (a.k.a hMRI) involves the acquisition of highly-similar
     anatomical images that differ in terms of application of a magnetization
@@ -109,12 +126,14 @@ MPM:
     See [here](https://owncloud.gwdg.de/index.php/s/iv2TOQwGy4FGDDZ) for
     suggested MPM acquisition protocols.
 MTR:
-  name: Magnetization Transfer Ratio
+  value: MTR
+  display_name: Magnetization Transfer Ratio
   description: |
     This method is to calculate a semi-quantitative magnetization transfer ratio
     map.
 MTRmap:
-  name: Magnetization transfer ratio image
+  value: MTRmap
+  display_name: Magnetization transfer ratio image
   description: |
     In arbitrary units (arbitrary).
     MTR maps are REQUIRED to use this suffix regardless of the method used to
@@ -125,7 +144,8 @@ MTRmap:
   minValue: 0
   maxValue: 100
 MTS:
-  name: Magnetization transfer saturation
+  value: MTS
+  display_name: Magnetization transfer saturation
   description: |
     This method is to calculate a semi-quantitative magnetization transfer
     saturation index map.
@@ -133,21 +153,24 @@ MTS:
     of application of a magnetization transfer RF pulse (MTon or MToff) and flip
     angle ([Helms et al. 2008](https://doi.org/10.1002/mrm.21732)).
 MTVmap:
-  name: Macromolecular tissue volume (MTV) image
+  value: MTVmap
+  display_name: Macromolecular tissue volume (MTV) image
   description: |
     In arbitrary units (arbitrary).
     MTV maps are REQUIRED to use this suffix regardless of the method used to
     generate them.
   unit: arbitrary
 MTsat:
-  name: Magnetization transfer saturation image
+  value: MTsat
+  display_name: Magnetization transfer saturation image
   description: |
     In arbitrary units (arbitrary).
     MTsat maps are REQUIRED to use this suffix regardless of the method used to
     generate them.
   unit: arbitrary
 MWFmap:
-  name: Myelin water fraction image
+  value: MWFmap
+  display_name: Myelin water fraction image
   description: |
     In arbitrary units (arbitrary).
     MWF maps are REQUIRED to use this suffix regardless of the method used to
@@ -158,25 +181,30 @@ MWFmap:
   minValue: 0
   maxValue: 100
 NLO:
-  name: Nonlinear optical microscopy
+  value: NLO
+  display_name: Nonlinear optical microscopy
   description: |
     Nonlinear optical microscopy imaging data
 OCT:
-  name: Optical coherence tomography
+  value: OCT
+  display_name: Optical coherence tomography
   description: |
     Optical coherence tomography imaging data
 PC:
-  name: Phase-contrast microscopy
+  value: PC
+  display_name: Phase-contrast microscopy
   description: |
     Phase-contrast microscopy imaging data
 PD:
-  name: Proton density image
+  value: PD
+  display_name: Proton density image
   description: |
     Ambiguous, may refer to a parametric image or to a conventional image.
     **Change:** Replaced by `PDw` or `PDmap`.
   unit: arbitrary
 PDT2:
-  name: PD and T2 weighted image
+  value: PDT2
+  display_name: PD and T2 weighted image
   description: |
     In arbitrary units (arbitrary).
     PDw and T2w images acquired using a dual echo FSE sequence through view
@@ -184,21 +212,24 @@ PDT2:
     ([Johnson et al. 1994](https://pubmed.ncbi.nlm.nih.gov/8010268/)).
   unit: arbitrary
 PDT2map:
-  name: Combined PD/T2 image
+  value: PDT2map
+  display_name: Combined PD/T2 image
   description: |
     In arbitrary units (arbitrary).
     Combined PD/T2 maps are REQUIRED to use this suffix regardless of the method
     used to generate them.
   unit: arbitrary
 PDmap:
-  name: Proton density image
+  value: PDmap
+  display_name: Proton density image
   description: |
     In arbitrary units (arbitrary).
     PD maps are REQUIRED to use this suffix regardless of the method used to
     generate them.
   unit: arbitrary
 PDw:
-  name: Proton density (PD) weighted image
+  value: PDw
+  display_name: Proton density (PD) weighted image
   description: |
     In arbitrary units (arbitrary).
     The contrast of these images is mainly determined by spatial variations in
@@ -209,39 +240,45 @@ PDw:
     repetition and short echo times, and at small flip angles.
   unit: arbitrary
 PLI:
-  name: Polarized-light microscopy
+  value: PLI
+  display_name: Polarized-light microscopy
   description: |
     Polarized-light microscopy imaging data
 R1map:
-  name: Longitudinal relaxation rate image
+  value: R1map
+  display_name: Longitudinal relaxation rate image
   description: |
     In seconds<sup>-1</sup> (1/s).
     R1 maps (R1 = 1/T1) are REQUIRED to use this suffix regardless of the method
     used to generate them.
   unit: 1/s
 R2map:
-  name: True transverse relaxation rate image
+  value: R2map
+  display_name: True transverse relaxation rate image
   description: |
     In seconds<sup>-1</sup> (1/s).
     R2 maps (R2 = 1/T2) are REQUIRED to use this suffix regardless of the method
     used to generate them.
   unit: 1/s
 R2starmap:
-  name: Observed transverse relaxation rate image
+  value: R2starmap
+  display_name: Observed transverse relaxation rate image
   description: |
     In seconds<sup>-1</sup> (1/s).
     R2-star maps (R2star = 1/T2star) are REQUIRED to use this suffix regardless
     of the method used to generate them.
   unit: 1/s
 RB1COR:
-  name: RB1COR
+  value: RB1COR
+  display_name: RB1COR
   description: |
     Low resolution images acquired by the body coil
     (in the gantry of the scanner) and the head coil using identical acquisition
     parameters to generate a combined sensitivity map as described in
     [Papp et al. (2016)](https://doi.org/10.1002/mrm.26058).
 RB1map:
-  name: RF receive sensitivity map
+  value: RB1map
+  display_name: RF receive sensitivity map
   description: |
     In arbitrary units (arbitrary).
     Radio frequency (RF) receive (B1-) sensitivity maps are REQUIRED to use this
@@ -251,7 +288,8 @@ RB1map:
     B1-<sub>intensity</sub>\*Amplitude<sub>ideal</sub>.
   unit: arbitrary
 S0map:
-  name: Observed signal amplitude (S0) image
+  value: S0map
+  display_name: Observed signal amplitude (S0) image
   description: |
     In arbitrary units (arbitrary).
     For a multi-echo (typically fMRI) sequence, S0 maps index the baseline signal
@@ -262,19 +300,23 @@ S0map:
     approach.html#monoexponential-decay-model-fit).
     S0 maps are RECOMMENDED to use this suffix if derived from an ME-FMRI dataset.
 SEM:
-  name: Scanning electron microscopy
+  value: SEM
+  display_name: Scanning electron microscopy
   description: |
     Scanning electron microscopy imaging data
 SPIM:
-  name: Selective plane illumination microscopy
+  value: SPIM
+  display_name: Selective plane illumination microscopy
   description: |
     Selective plane illumination microscopy imaging data
 SR:
-  name: Super-resolution microscopy
+  value: SR
+  display_name: Super-resolution microscopy
   description: |
     Super-resolution microscopy imaging data
 T1map:
-  name: Longitudinal relaxation time image
+  value: T1map
+  display_name: Longitudinal relaxation time image
   description: |
     In seconds (s).
     T1 maps are REQUIRED to use this suffix regardless of the method used to
@@ -283,14 +325,16 @@ T1map:
     for further reading on T1-mapping.
   unit: s
 T1rho:
-  name: T1 in rotating frame (T1 rho) image
+  value: T1rho
+  display_name: T1 in rotating frame (T1 rho) image
   description: |
     In seconds (s).
     T1-rho maps are REQUIRED to use this suffix regardless of the method used to
     generate them.
   unit: s
 T1w:
-  name: T1-weighted image
+  value: T1w
+  display_name: T1-weighted image
   description: |
     In arbitrary units (arbitrary).
     The contrast of these images is mainly determined by spatial variations in
@@ -304,29 +348,33 @@ T1w:
     sequence (for example, `TurboFLASH` or `MP-RAGE`).
   unit: arbitrary
 T2map:
-  name: True transverse relaxation time image
+  value: T2map
+  display_name: True transverse relaxation time image
   description: |
     In seconds (s).
     T2 maps are REQUIRED to use this suffix regardless of the method used to
     generate them.
   unit: s
 T2star:
-  name: T2\* image
+  value: T2star
+  display_name: T2\* image
   description: |
     Ambiguous, may refer to a parametric image or to a conventional image.
     **Change:** Replaced by `T2starw` or `T2starmap`.
   anyOf:
-  - unit: arbitrary
-  - unit: s
+    - unit: arbitrary
+    - unit: s
 T2starmap:
-  name: Observed transverse relaxation time image
+  value: T2starmap
+  display_name: Observed transverse relaxation time image
   description: |
     In seconds (s).
     T2-star maps are REQUIRED to use this suffix regardless of the method used to
     generate them.
   unit: s
 T2starw:
-  name: T2star weighted image
+  value: T2starw
+  display_name: T2star weighted image
   description: |
     In arbitrary units (arbitrary).
     The contrast of these images is mainly determined by spatial variations in
@@ -339,7 +387,8 @@ T2starw:
     and at small flip angles.
   unit: arbitrary
 T2w:
-  name: T2-weighted image
+  value: T2w
+  display_name: T2-weighted image
   description: |
     In arbitrary units (arbitrary).
     The contrast of these images is mainly determined by spatial variations in
@@ -351,13 +400,15 @@ T2w:
     than on T2.
   unit: arbitrary
 TB1AFI:
-  name: TB1AFI
+  value: TB1AFI
+  display_name: TB1AFI
   description: |
     This method ([Yarnykh 2007](https://doi.org/10.1002/mrm.21120))
     calculates a B1<sup>+</sup> map from two images acquired at interleaved (two)
     TRs with identical RF pulses using a steady-state sequence.
 TB1DAM:
-  name: TB1DAM
+  value: TB1DAM
+  display_name: TB1DAM
   description: |
     The double-angle B1<sup>+</sup> method
     ([Insko and Bolinger 1993](https://doi.org/10.1006/jmra.1993.1133)) is based
@@ -366,7 +417,8 @@ TB1DAM:
     Common sequence types for this application include spin echo and echo planar
     imaging.
 TB1EPI:
-  name: TB1EPI
+  value: TB1EPI
+  display_name: TB1EPI
   description: |
     This B1<sup>+</sup> mapping method
     ([Jiru and Klose 2006](https://doi.org/10.1002/mrm.21083)) is based on two
@@ -374,14 +426,16 @@ TB1EPI:
     multiple flip angles in one sequence, used in the calculation of deviations
     from the nominal flip angle.
 TB1RFM:
-  name: TB1RFM
+  value: TB1RFM
+  display_name: TB1RFM
   description: |
     The result of a Siemens `rf_map` product sequence.
     This sequence produces two images.
     The first image appears like an anatomical image and the second output is a
     scaled flip angle map.
 TB1SRGE:
-  name: TB1SRGE
+  value: TB1SRGE
+  display_name: TB1SRGE
   description: |
     Saturation-prepared with 2 rapid gradient echoes (SA2RAGE) uses a ratio of
     two saturation recovery images with different time delays,
@@ -391,14 +445,16 @@ TB1SRGE:
     iteratively improve B1+ and T1 map estimation
     ([Marques & Gruetter 2013](https://doi.org/10.1371/journal.pone.0069294)).
 TB1TFL:
-  name: TB1TFL
+  value: TB1TFL
+  display_name: TB1TFL
   description: |
     The result of a Siemens `tfl_b1_map` product sequence.
     This sequence produces two images.
     The first image appears like an anatomical image and the second output is a
     scaled flip angle map.
 TB1map:
-  name: RF transmit field image
+  value: TB1map
+  display_name: RF transmit field image
   description: |
     In arbitrary units (arbitrary).
     Radio frequency (RF) transmit (B1+) field maps are REQUIRED to use this
@@ -408,11 +464,13 @@ TB1map:
     B1+<sub>intensity</sub>\*FlipAngle<sub>nominal</sub> .
   unit: arbitrary
 TEM:
-  name: Transmission electron microscopy
+  value: TEM
+  display_name: Transmission electron microscopy
   description: |
     Transmission electron microscopy imaging data
 UNIT1:
-  name: Homogeneous (flat) T1-weighted MP2RAGE image
+  value: UNIT1
+  display_name: Homogeneous (flat) T1-weighted MP2RAGE image
   description: |
     In arbitrary units (arbitrary).
     UNIT1 images are REQUIRED to use this suffix regardless of the method used to
@@ -421,10 +479,11 @@ UNIT1:
     contain white salt-and-pepper noise that most segmentation algorithms will
     fail on.
     Therefore, it is important to dissociate it from `T1w`.
-    Please see [`MP2RAGE` specific notes](/99-appendices/11-qmri.html#unit1-images)
+    Please see [`MP2RAGE` specific notes](SPEC_ROOT/99-appendices/11-qmri.md#unit1-images)
     in the qMRI appendix for further information.
 VFA:
-  name: Variable flip angle
+  value: VFA
+  display_name: Variable flip angle
   description: |
     The VFA method involves at least two spoiled gradient echo (SPGR) of
     steady-state free precession (SSFP) images acquired at different flip angles.
@@ -432,193 +491,250 @@ VFA:
     data may be eligible for DESPOT1, DESPOT2 and their variants
     ([Deoni et al. 2005](https://doi.org/10.1002/mrm.20314)).
 angio:
-  name: Angiogram
+  value: angio
+  display_name: Angiogram
   description: |
     Magnetic resonance angiography sequences focus on enhancing the contrast of
     blood vessels (generally arteries, but sometimes veins) against other tissue
     types.
 asl:
-  name: Arterial Spin Labeling
+  value: asl
+  display_name: Arterial Spin Labeling
   description: |
     The complete ASL time series stored as a 4D NIfTI file in the original
     acquisition order, with possible volume types including: control, label,
     m0scan, deltam, cbf.
 aslcontext:
-  name: Arterial Spin Labeling Context
+  value: aslcontext
+  display_name: Arterial Spin Labeling Context
   description: |
     A TSV file defining the image types for volumes in an associated ASL file.
 asllabeling:
-  name: ASL Labeling Screenshot
+  value: asllabeling
+  display_name: ASL Labeling Screenshot
   description: |
     An anonymized screenshot of the planning of the labeling slab/plane with
     respect to the imaging slab or slices `*_asllabeling.jpg`.
     Based on DICOM macro C.8.13.5.14.
 beh:
-  name: Behavioral recording
+  value: beh
+  display_name: Behavioral recording
   description: |
     Behavioral recordings from tasks.
     These files are similar to events files, but do not include the `"onset"` and
     `"duration"` columns that are mandatory for events files.
 blood:
-  name: Blood recording data
+  value: blood
+  display_name: Blood recording data
   description: |
     Blood measurements of radioactivity stored in
-    [tabular files](/02-common-principles.html#tabular-files)
+    [tabular files](SPEC_ROOT/02-common-principles.md#tabular-files)
     and located in the `pet/` directory along with the corresponding PET data.
 bold:
-  name: Blood-Oxygen-Level Dependent image
+  value: bold
+  display_name: Blood-Oxygen-Level Dependent image
   description: |
     Blood-Oxygen-Level Dependent contrast (specialized T2\* weighting)
 cbv:
-  name: Cerebral blood volume image
+  value: cbv
+  display_name: Cerebral blood volume image
   description: |
     Cerebral Blood Volume contrast (specialized T2\* weighting or difference between T1 weighted images)
 channels:
-  name: Channels File
+  value: channels
+  display_name: Channels File
   description: |
     Channel information.
 coordsystem:
-  name: Coordinate System File
+  value: coordsystem
+  display_name: Coordinate System File
   description: |
     A JSON document specifying the coordinate system(s) used for the MEG, EEG,
     head localization coils, and anatomical landmarks.
 defacemask:
-  name: Defacing Mask
+  value: defacemask
+  display_name: Defacing Mask
   description: |
     A binary mask that was used to remove facial features from an anatomical MRI
     image.
+dseg:
+  value: dseg
+  display_name: Discrete Segmentation
+  description: |
+    A discrete segmentation.
+
+    This suffix may only be used in derivative datasets.
 dwi:
-  name: Diffusion-weighted image
+  value: dwi
+  display_name: Diffusion-weighted image
   description: |
     Diffusion-weighted imaging contrast (specialized T2 weighting).
 eeg:
-  name: Electroencephalography
+  value: eeg
+  display_name: Electroencephalography
   description: |
     Electroencephalography recording data.
 electrodes:
-  name: Electrodes
+  value: electrodes
+  display_name: Electrodes
   description: |
     File that gives the location of (i)EEG electrodes.
 epi:
-  name: EPI
+  value: epi
+  display_name: EPI
   description: |
     The phase-encoding polarity (PEpolar) technique combines two or more Spin Echo
     EPI scans with different phase encoding directions to estimate the underlying
     inhomogeneity/deformation map.
 events:
-  name: Events
+  value: events
+  display_name: Events
   description: |
     Event timing information from a behavioral task.
 fieldmap:
-  name: Fieldmap
+  value: fieldmap
+  display_name: Fieldmap
   description: |
     Some MR schemes such as spiral-echo imaging (SEI) sequences are able to
     directly provide maps of the *B<sub>0</sub>* field inhomogeneity.
 headshape:
-  name: Headshape File
+  value: headshape
+  display_name: Headshape File
   description: |
     The 3-D locations of points that describe the head shape and/or electrode
     locations can be digitized and stored in separate files.
 ieeg:
-  name: Intracranial Electroencephalography
+  value: ieeg
+  display_name: Intracranial Electroencephalography
   description: |
     Intracranial electroencephalography recording data.
 inplaneT1:
-  name: Inplane T1
+  value: inplaneT1
+  display_name: Inplane T1
   description: |
     In arbitrary units (arbitrary).
     T1 weighted structural image matched to a functional (task) image.
   unit: arbitrary
 inplaneT2:
-  name: Inplane T2
+  value: inplaneT2
+  display_name: Inplane T2
   description: |
     In arbitrary units (arbitrary).
     T2 weighted structural image matched to a functional (task) image.
   unit: arbitrary
 m0scan:
-  name: M0 image
+  value: m0scan
+  display_name: M0 image
   description: |
     The M0 image is a calibration image, used to estimate the equilibrium
     magnetization of blood.
 magnitude:
-  name: Magnitude
+  value: magnitude
+  display_name: Magnitude
   description: |
     Field-mapping MR schemes such as gradient-recalled echo (GRE) generate a
     Magnitude image to be used for anatomical reference.
     Requires the existence of Phase, Phase-difference or Fieldmap maps.
 magnitude1:
-  name: Magnitude
+  value: magnitude1
+  display_name: Magnitude
   description: |
     Magnitude map generated by GRE or similar schemes, associated with the first
     echo in the sequence.
 magnitude2:
-  name: Magnitude
+  value: magnitude2
+  display_name: Magnitude
   description: |
     Magnitude map generated by GRE or similar schemes, associated with the second
     echo in the sequence.
 markers:
-  name: MEG Sensor Coil Positions
+  value: markers
+  display_name: MEG Sensor Coil Positions
   description: |
     Another manufacturer-specific detail pertains to the KIT/Yokogawa/Ricoh
     system, which saves the MEG sensor coil positions in a separate file with two
     possible filename extensions  (`.sqd`, `.mrk`).
     For these files, the `markers` suffix MUST be used.
     For example: `sub-01_task-nback_markers.sqd`
+mask:
+  value: mask
+  display_name: Binary Mask
+  description: |
+    A binary mask that functions as a discrete "label" for a single structure.
+
+    This suffix may only be used in derivative datasets.
 meg:
-  name: Magnetoencephalography
+  value: meg
+  display_name: Magnetoencephalography
   description: |
     Unprocessed MEG data stored in the native file format of the MEG instrument
     with which the data was collected.
 pet:
-  name: Positron Emission Tomography
+  value: pet
+  display_name: Positron Emission Tomography
   description: |
     PET imaging data SHOULD be stored in 4D
     (or 3D, if only one volume was acquired) NIfTI files with the `_pet` suffix.
     Volumes MUST be stored in chronological order
     (the order they were acquired in).
 phase:
-  name: Phase image
+  value: phase
+  display_name: Phase image
   description: |
-    [DEPRECATED](/02-common-principles.html#definitions).
+    [DEPRECATED](SPEC_ROOT/02-common-principles.md#definitions).
     Phase information associated with magnitude information stored in BOLD
     contrast.
     This suffix should be replaced by the
-    [`part-phase`](/99-appendices/09-entities.html#part)
+    [`part-phase`](SPEC_ROOT/99-appendices/09-entities.md#part)
     in conjunction with the `bold` suffix.
   anyOf:
-  - unit: arbitrary
-  - unit: rad
+    - unit: arbitrary
+    - unit: rad
 phase1:
-  name: Phase
+  value: phase1
+  display_name: Phase
   description: |
     Phase map generated by GRE or similar schemes, associated with the first
     echo in the sequence.
 phase2:
-  name: Phase
+  value: phase2
+  display_name: Phase
   description: |
     Phase map generated by GRE or similar schemes, associated with the second
     echo in the sequence.
 phasediff:
-  name: Phase-difference
+  value: phasediff
+  display_name: Phase-difference
   description: |
     Some scanners subtract the `phase1` from the `phase2` map and generate a
     unique `phasediff` file.
     For instance, this is a common output for the built-in fieldmap sequence of
     Siemens scanners.
 photo:
-  name: Photo File
+  value: photo
+  display_name: Photo File
   description: |
     Photos of the anatomical landmarks, head localization coils or tissue sample.
 physio:
-  name: Physiological recording
+  value: physio
+  display_name: Physiological recording
   description: |
     Physiological recordings such as cardiac and respiratory signals.
+probseg:
+  value: probseg
+  display_name: Probabilistic Segmentation
+  description: |
+    A probabilistic segmentation.
+
+    This suffix may only be used in derivative datasets.
 sbref:
-  name: Single-band reference image
+  value: sbref
+  display_name: Single-band reference image
   description: |
     Single-band reference for one or more multi-band `dwi` images.
 scans:
-  name: Scans file
+  value: scans
+  display_name: Scans file
   description: |
     The purpose of this file is to describe timing and other properties of each imaging acquisition
     sequence (each run file) within one session.
@@ -636,7 +752,8 @@ scans:
     All such included additional fields SHOULD be documented in an accompanying _scans.json file
     that describes these fields in detail (see Tabular files).
 sessions:
-  name: Sessions file
+  value: sessions
+  display_name: Sessions file
   description: |
     In case of multiple sessions there is an option of adding additional sessions.tsv files
     describing variables changing between sessions.
@@ -645,10 +762,12 @@ sessions:
     Column names in sessions.tsv files MUST be different from group level participant key column
     names in the participants.tsv file.
 stim:
-  name: Continuous recording
+  value: stim
+  display_name: Continuous recording
   description: |
     Continuous measures, such as parameters of a film or audio stimulus.
 uCT:
-  name: Micro-CT
+  value: uCT
+  display_name: Micro-CT
   description: |
     Micro-CT imaging data

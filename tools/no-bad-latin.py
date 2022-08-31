@@ -11,14 +11,17 @@ import re
 import argparse
 from pull_files import filter_files
 
-HERE = os.getcwd()
-ABSOLUTE_HERE = os.path.dirname(HERE)
+ABSOLUTE_HERE = os.path.dirname(os.path.dirname(__file__))
 IGNORE_LIST = ["CHANGES.md", "01-contributors.md", "pregh-changes.md"]
 
 
 def parse_args():
     """Construct command line interface for parsing Pull Request number"""
-    DESCRIPTION = "Script to check for latin phrases in Markdown files"
+    DESCRIPTION = """Script to check for latin phrases in Markdown files.
+
+If no pull request number is provided, all relevant text files in the
+bids-specification are checked."""
+
     parser = argparse.ArgumentParser(description=DESCRIPTION)
 
     parser.add_argument(
@@ -94,19 +97,18 @@ def read_and_check_files(files):
                   containing the offending line.
     """
     failing_files = {}
-    bad_latin = [
-        "i.e.", "i.e ", " ie ",
-        "e.g.", "e.g ",
-        "e.t.c.", " etc", "et cetera"
-    ]
+    bad_latin = ["i.e.", "i.e ", " ie ", "e.g.", "e.g ", "e.t.c.", " etc", "et cetera"]
 
     for filename in files:
         if os.path.basename(filename) in IGNORE_LIST:
             pass
         else:
             try:
-                with open(os.path.join(ABSOLUTE_HERE, filename),
-                          encoding="utf8", errors="ignore") as f:
+                with open(
+                    os.path.join(ABSOLUTE_HERE, filename),
+                    encoding="utf8",
+                    errors="ignore",
+                ) as f:
                     text = f.read()
                     text = remove_comments(text)
 
@@ -121,6 +123,7 @@ def read_and_check_files(files):
             except FileNotFoundError:
                 pass
 
+    print(f"Checked {len(files)} files. {len(failing_files)} with problems.")
     return failing_files
 
 

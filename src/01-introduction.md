@@ -40,7 +40,7 @@ and the INCF Neuroimaging Data Sharing (NIDASH) Task Force.
 While working on BIDS we consulted
 many neuroscientists to make sure it covers most common experiments, but at the
 same time is intuitive and easy to adopt. The specification is intentionally
-based on simple file formats and folder structures to reflect current lab
+based on simple file formats and directory structures to reflect current lab
 practices and make it accessible to a wide range of scientists coming from
 different backgrounds.
 
@@ -139,6 +139,22 @@ For example:
     Vince Calhoun, Thomas Nichols, Cyril Pernet (2020).
     **The genetics-BIDS extension: Easing the search for genetic data associated with human brain imaging**.
     GigaScience, 9 (10). [doi:10.1093/gigascience/giaa104](https://doi.org/10.1093/gigascience/giaa104)
+
+#### Microscopy
+
+-   Bourget M.-H., Kamentsky L., Ghosh S.S., Mazzamuto G., Lazari A., Markiewicz C.J., Oostenveld R.,
+    Niso G., Halchenko Y.O., Lipp I., Takerkart S., Toussaint P.-J., Khan A.R., Nilsonne G.,
+    Castelli F.M., The BIDS Maintainers and Cohen-Adad J. (2022).
+    **Microscopy-BIDS: An Extension to the Brain Imaging Data Structure for Microscopy Data**.
+    Frontiers in Neuroscience, 16 (871228).
+    [doi:10.3389/fnins.2022.871228](https://doi.org/10.3389/fnins.2022.871228)
+
+#### qMRI
+
+-   Karakuzu, A., Appelhoff, S., Auer, T., Boudreau M., Feingold F., Khan A.R., Lazari A., Markiewicz C.J.,
+    Mulder M., Phillips C., Salo T., Stikov N., Whitaker K. and de Hollander G.,
+    **qMRI-BIDS: An extension to the brain imaging data structure for quantitative magnetic resonance imaging data.**
+    Scientific Data 9, 517 (2022). [doi:10.1038/s41597-022-01571-4](https://doi.org/10.1038/s41597-022-01571-4)
 
 ### Research Resource Identifier (RRID)
 

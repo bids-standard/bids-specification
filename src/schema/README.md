@@ -1,9 +1,9 @@
 # BIDS-schema
 
-Portions of the BIDS specification are defined using YAML files, in order to
+Portions of the BIDS specification are defined using YAML files in order to
 make the specification machine-readable.
 
-Currently, the portions of the specification that rely on this schema are
+Currently the portions of the specification that rely on this schema are
 the entity tables, entity definitions, filename templates, and metadata tables.
 Any changes to the specification should be mirrored in the schema.
 
@@ -32,14 +32,14 @@ The types of objects currently supported in the schema are:
 -   suffixes,
 -   metadata,
 -   top-level files,
--   and non-BIDS associated folders.
+-   and non-BIDS associated directories.
 
-Each of these object types has a single file in the `objects/` folder.
+Each of these object types has a single file in the `objects/` directory.
 
 -   `modalities.yaml`: The modalities, or types of technology, used to acquire data in a BIDS dataset.
     These modalities are not reflected directly in the specification.
     For example, while both fMRI and DWI data are acquired with an MRI,
-    in a BIDS dataset they are stored in different folders reflecting the two different `datatypes`.
+    in a BIDS dataset they are stored in different directories reflecting the two different `datatypes`.
 
 -   `datatypes.yaml`: Data types supported by the specification.
     The only information provided in the file is:
@@ -48,7 +48,7 @@ Each of these object types has a single file in the `objects/` folder.
     1.  each datatype's full name
     1.  a free text description of the datatype.
 
--   `entities.yaml`: Entities (key/value pairs in folder and filenames).
+-   `entities.yaml`: Entities (key-value pairs in directory and filenames).
 
 -   `metadata.yaml`: All valid metadata fields that are explicitly supported in BIDS sidecar JSON files.
 
@@ -58,7 +58,7 @@ Each of these object types has a single file in the `objects/` folder.
 
 -   `top_level_files.yaml`: Valid top-level files which may appear in a BIDS dataset.
 
--   `associated_data.yaml`: Folders that may appear within a dataset folder without following BIDS rules.
+-   `associated_data.yaml`: Directories that may appear within a dataset directory without following BIDS rules.
 
 ### On re-used objects with different definitions
 
@@ -73,7 +73,7 @@ For objects with `snake_case` names, two underscores must be used.
 There should also be a comment near the object definition in the YAML file describing the nature of the different objects.
 
 For example, the TSV column `"reference"` means different things when used for EEG data, as compared to iEEG data.
-As such, there are two definitions in `columns.yaml` for the `"reference"` column: `"reference__eeg"` and `"reference_ieeg"`.
+As such, there are two definitions in `columns.yaml` for the `"reference"` column: `"reference__eeg"` and `"reference__ieeg"`.
 
 ```yaml
 # reference column for channels.tsv files for EEG data
@@ -115,7 +115,7 @@ The `description` field is a freeform description of the modality.
 ### `datatypes.yaml`
 
 This file contains a dictionary in which each datatype is defined.
-Keys are the folder names associated with each datatype (for example, `anat` for anatomical MRI),
+Keys are the directory names associated with each datatype (for example, `anat` for anatomical MRI),
 and each associated value is a dictionary with two keys: `name` and `description`.
 
 The `name` field is the full name of the datatype.
@@ -123,7 +123,7 @@ The `description` field is a freeform description of the datatype.
 
 ### `entities.yaml`
 
-This file contains a dictionary in which each entity (key/value pair in filenames) is defined.
+This file contains a dictionary in which each entity (key-value pair in filenames) is defined.
 Keys are long-form versions of the entities, which are distinct from both the entities as
 they appear in filenames _and_ their full names.
 For example, the key for the "Contrast Enhancing Agent" entity, which appears in filenames as `ce-<label>`,
@@ -155,11 +155,11 @@ The `format` field defines the specific format the value should take.
 Entities are broadly divided into either `label` or `index` types.
 
 When `format` is `index`, then the entity's associated value should be a non-zero integer, optionally with leading zeros.
-For example, `run` should have an index, so a valid key-value pair in a filename would be `run-01`.
+For example, `run` should have an index, so a valid entity would be `run-01`.
 
 When `format` is `label`, then the value should be an alphanumeric string.
 Beyond limitations on which characters are allowed, labels have few restrictions.
-For example, `acq` should have a label, so a valid key-value pair might be `acq-someLabel`.
+For example, `acq` should have a label, so a valid entity might be `acq-someLabel`.
 
 For a small number of entities, only certain labels are allowed.
 In those cases, instead of a `format` field, there will be an `enum` field, which will provide a list of allowed values.
@@ -212,13 +212,15 @@ There are additional fields which may define rules that apply to a given type.
 
        -   `uri` (uniform resource identifiers),
 
+       -   `bids_uri` (BIDS URIs),
+
        -   `date` (date-times),
 
        -   `unit` (standard units),
 
        -   `dataset_relative` (relative paths from dataset root),
 
-       -   `participant_relative` (relative paths from participant folder).
+       -   `participant_relative` (relative paths from participant directory).
 
     -   `enum` defines a list of valid values for the field.
         The minimum string length (`minLength`) defaults to 1.
@@ -269,7 +271,7 @@ There are additional fields which may define rules that apply to a given type.
 -   `object`: If `type` is `object`, then there MAY be any of the following
     fields at the same level as `type`: `additionalProperties`,
     `properties`.
-    Objects are defined as sets of key/value pairs.
+    Objects are defined as sets of key-value pairs.
     Keys MUST be strings, while values may have specific attributes,
     which is what `additionalProperties` describes.
     Here is an example of a field which MUST be an object,
@@ -388,21 +390,21 @@ The `description` field is a freeform description of the file.
 
 ### `associated_data.yaml`
 
-This file contains a dictionary in which each non-BIDS folder is defined.
-Keys are folder names, and each associated value is a dictionary with two keys: `name` and `description`.
+This file contains a dictionary in which each non-BIDS directory is defined.
+Keys are directory names, and each associated value is a dictionary with two keys: `name` and `description`.
 
-The `name` field is the full name of the folder.
-The `description` field is a freeform description of the folder.
+The `name` field is the full name of the directory.
+The `description` field is a freeform description of the directory.
 
 ## Rule files
 
-The files in the `rules/` folder are less standardized than the files in `objects/`,
+The files in the `rules/` directory are less standardized than the files in `objects/`,
 because rules governing how different object types interact in a valid dataset are more variable
 than the object definitions.
 
 -   `modalities.yaml`: This file simply groups `datatypes` under their associated modality.
 
--   `datatypes/*.yaml`: Files in the `datatypes` folder contain information about valid filenames within a given datatype.
+-   `datatypes/*.yaml`: Files in the `datatypes` directory contain information about valid filenames within a given datatype.
     Specifically, each datatype's YAML file contains a list of dictionaries.
     Each dictionary contains a list of suffixes, entities, and file extensions which may constitute a valid BIDS filename.
 
@@ -410,7 +412,7 @@ than the object definitions.
 
 -   `top_level_files.yaml`: Requirement levels and valid file extensions of top-level files.
 
--   `associated_data.yaml`: Requirement levels of associated non-BIDS folders.
+-   `associated_data.yaml`: Requirement levels of associated non-BIDS directories.
 
 ### `modalities.yaml`
 
@@ -419,7 +421,7 @@ The `datatypes` dictionary contains a list of datatypes that fall under that mod
 
 ### `datatypes/*.yaml`
 
-The files in this folder are currently the least standardized of any part of the schema.
+The files in this directory are currently the least standardized of any part of the schema.
 
 Each file corresponds to a single `datatype`.
 Within the file is a list of dictionaries.
@@ -496,5 +498,36 @@ In cases where there is a data file and a metadata file, the `.json` extension f
 
 ### `associated_data.yaml`
 
-This file contains a dictionary in which each key is a folder and the value is a dictionary with one key: `required`.
-The `required` entry contains a boolean value to indicate if that folder is required for BIDS datasets or not.
+This file contains a dictionary in which each key is a directory and the value is a dictionary with one key: `required`.
+The `required` entry contains a boolean value to indicate if that directory is required for BIDS datasets or not.
+
+## Using links from a schema entry to places within the specification
+
+Sometimes a particular metadata entry will refer to other concepts within the
+BIDS specification using a link.
+Currently, in order for these links to get properly rendered with the MkDocs structure,
+they must be relative to the `src` directory of the bids-specification repository and
+ need to be prefixed with `SPEC_ROOT`. Furthermore, they must point to the Markdown document;
+that is, ending with `.md`, **not** `.html`.
+
+For more information please see the following pull request and linked discussions:
+[#1096](https://github.com/bids-standard/bids-specification/pull/1096)
+
+## Version of the schema
+
+File `SCHEMA_VERSION` in the top of the directory contains a semantic
+version (`MAJOR.MINOR.PATCH`) for the schema (how it is organized).
+Note that while in `0.` series, breaking changes are
+permitted without changing the `MAJOR` (leading) component of the version.
+Going forward, the 2nd, `MINOR` indicator should be
+incremented whenever schema organization introduces "breaking changes":
+changes which would cause existing tools reading schema to
+adjust their code to be able to read it again.
+Additions of new components to the schema should increment the last,
+`PATCH`, component of the version so that tools could selectively
+enable/disable loading specific components of the schema.
+With the release of `1.0.0` version of the schema,
+we expect that the `MAJOR` component
+will be incremented whenever schema organization introduces "breaking changes",
+`MINOR` - when adding new components to the schema,
+and `PATCH` - when fixing errors in existing components.

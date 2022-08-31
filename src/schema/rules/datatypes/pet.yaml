@@ -1,11 +1,13 @@
 ---
-# PET recordings
-- suffixes:
-  - pet
+pet:
+  suffixes:
+    - pet
   extensions:
-  - .nii.gz
-  - .nii
-  - .json
+    - .nii.gz
+    - .nii
+    - .json
+  datatypes:
+    - pet
   entities:
     subject: required
     session: optional
@@ -14,12 +16,14 @@
     reconstruction: optional
     run: optional
 
-# Blood recordings
-- suffixes:
-  - blood
+blood:
+  suffixes:
+    - blood
   extensions:
-  - .tsv
-  - .json
+    - .tsv
+    - .json
+  datatypes:
+    - pet
   entities:
     subject: required
     session: optional
@@ -29,12 +33,14 @@
     run: optional
     recording: required
 
-# Events
-- suffixes:
-  - events
+events:
+  suffixes:
+    - events
   extensions:
-  - .tsv
-  - .json
+    - .tsv
+    - .json
+  datatypes:
+    - pet
   entities:
     subject: required
     session: optional
@@ -43,13 +49,15 @@
     reconstruction: optional
     run: optional
 
-# Timeseries
-- suffixes:
-  - physio
-  - stim
+timeseries:
+  suffixes:
+    - physio
+    - stim
   extensions:
-  - .tsv.gz
-  - .json
+    - .tsv.gz
+    - .json
+  datatypes:
+    - pet
   entities:
     subject: required
     session: optional

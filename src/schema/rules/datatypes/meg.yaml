@@ -1,20 +1,23 @@
 ---
-# MEG data files
-# First group
-- suffixes:
-  - meg
+meg:
+  suffixes:
+    - meg
   extensions:
-  - /  # corresponds to BTi/4D data
-  - .ds/
-  - .json
-  - .fif
-  - .sqd
-  - .con
-  - .raw
-  - .ave
-  - .mrk
-  - .kdf
-  - .mhd
+    - / # corresponds to BTi/4D data
+    - .ds/
+    - .json
+    - .fif
+    - .sqd
+    - .con
+    - .raw
+    - .ave
+    - .mrk
+    - .kdf
+    - .mhd
+    - .trg
+    - .chn
+  datatypes:
+    - meg
   entities:
     subject: required
     session: optional
@@ -24,12 +27,13 @@
     processing: optional
     split: optional
 
-# Second group
-# Specifically, it's dat files with "acq-calibration"
-- suffixes:
-  - meg
+calibration:
+  suffixes:
+    - meg
   extensions:
-  - .dat
+    - .dat
+  datatypes:
+    - meg
   entities:
     subject: required
     session: optional
@@ -37,14 +41,15 @@
       requirement: required
       type: string
       enum:
-      - calibration
+        - calibration
 
-# Third group
-# fif files with "acq-crosstalk"
-- suffixes:
-  - meg
+crosstalk:
+  suffixes:
+    - meg
   extensions:
-  - .fif
+    - .fif
+  datatypes:
+    - meg
   entities:
     subject: required
     session: optional
@@ -52,24 +57,29 @@
       requirement: required
       type: string
       enum:
-      - crosstalk
+        - crosstalk
 
-# Headshape files
-- suffixes:
-  - headshape
+headshape:
+  suffixes:
+    - headshape
   extensions:
-  - "*"
+    - .*
+    - .pos
+  datatypes:
+    - meg
   entities:
     subject: required
     session: optional
     acquisition: optional
 
-# Marker files
-- suffixes:
-  - markers
+markers:
+  suffixes:
+    - markers
   extensions:
-  - .sqd
-  - .mrk
+    - .sqd
+    - .mrk
+  datatypes:
+    - meg
   entities:
     subject: required
     session: optional
@@ -77,22 +87,26 @@
     acquisition: optional
     space: optional
 
-# Coordinate systems
-- suffixes:
-  - coordsystem
+coordsystem:
+  suffixes:
+    - coordsystem
   extensions:
-  - .json
+    - .json
+  datatypes:
+    - meg
   entities:
     subject: required
     session: optional
     acquisition: optional
 
-# Channel files
-- suffixes:
-  - channels
+channels:
+  suffixes:
+    - channels
   extensions:
-  - .json
-  - .tsv
+    - .json
+    - .tsv
+  datatypes:
+    - meg
   entities:
     subject: required
     session: optional
@@ -101,12 +115,14 @@
     run: optional
     processing: optional
 
-# Events files
-- suffixes:
-  - events
+events:
+  suffixes:
+    - events
   extensions:
-  - .json
-  - .tsv
+    - .json
+    - .tsv
+  datatypes:
+    - meg
   entities:
     subject: required
     session: optional
@@ -114,23 +130,29 @@
     acquisition: optional
     run: optional
 
-# Head photos
-- suffixes:
-  - photo
+photo:
+  suffixes:
+    - photo
   extensions:
-  - .jpg
+    - .jpg
+    - .png
+    - .tif
+  datatypes:
+    - meg
   entities:
     subject: required
     session: optional
     acquisition: optional
 
-# Timeseries
-- suffixes:
-  - physio
-  - stim
+timeseries:
+  suffixes:
+    - physio
+    - stim
   extensions:
-  - .tsv.gz
-  - .json
+    - .tsv.gz
+    - .json
+  datatypes:
+    - meg
   entities:
     subject: required
     session: optional

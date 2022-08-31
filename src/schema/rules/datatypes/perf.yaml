@@ -1,12 +1,14 @@
 ---
-# First group
-- suffixes:
-  - asl
-  - m0scan
+asl:
+  suffixes:
+    - asl
+    - m0scan
   extensions:
-  - .nii.gz
-  - .nii
-  - .json
+    - .nii.gz
+    - .nii
+    - .json
+  datatypes:
+    - perf
   entities:
     subject: required
     session: optional
@@ -15,12 +17,14 @@
     direction: optional
     run: optional
 
-# Second group
-- suffixes:
-  - aslcontext
+aslcontext:
+  suffixes:
+    - aslcontext
   extensions:
-  - .tsv
-  - .json
+    - .tsv
+    - .json
+  datatypes:
+    - perf
   entities:
     subject: required
     session: optional
@@ -29,11 +33,13 @@
     direction: optional
     run: optional
 
-# Third group
-- suffixes:
-  - asllabeling
+asllabeling:
+  suffixes:
+    - asllabeling
   extensions:
-  - .jpg
+    - .jpg
+  datatypes:
+    - perf
   entities:
     subject: required
     session: optional
@@ -41,13 +47,15 @@
     reconstruction: optional
     run: optional
 
-# Timeseries
-- suffixes:
-  - physio
-  - stim
+timeseries:
+  suffixes:
+    - physio
+    - stim
   extensions:
-  - .tsv.gz
-  - .json
+    - .tsv.gz
+    - .json
+  datatypes:
+    - perf
   entities:
     subject: required
     session: optional

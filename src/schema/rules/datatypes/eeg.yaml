@@ -1,15 +1,18 @@
 ---
-- suffixes:
-  - eeg
+eeg:
+  suffixes:
+    - eeg
   extensions:
-  - .json
-  - .edf
-  - .vhdr
-  - .vmrk
-  - .eeg
-  - .set
-  - .fdt
-  - .bdf
+    - .json
+    - .edf
+    - .vhdr
+    - .vmrk
+    - .eeg
+    - .set
+    - .fdt
+    - .bdf
+  datatypes:
+    - eeg
   entities:
     subject: required
     session: optional
@@ -17,11 +20,14 @@
     acquisition: optional
     run: optional
 
-- suffixes:
-  - channels
+channels:
+  suffixes:
+    - channels
   extensions:
-  - .json
-  - .tsv
+    - .json
+    - .tsv
+  datatypes:
+    - eeg
   entities:
     subject: required
     session: optional
@@ -29,32 +35,41 @@
     acquisition: optional
     run: optional
 
-- suffixes:
-  - coordsystem
+coordsystem:
+  suffixes:
+    - coordsystem
   extensions:
-  - .json
+    - .json
+  datatypes:
+    - eeg
   entities:
     subject: required
     session: optional
     acquisition: optional
     space: optional
 
-- suffixes:
-  - electrodes
+electrodes:
+  suffixes:
+    - electrodes
   extensions:
-  - .json
-  - .tsv
+    - .json
+    - .tsv
+  datatypes:
+    - eeg
   entities:
     subject: required
     session: optional
     acquisition: optional
     space: optional
 
-- suffixes:
-  - events
+events:
+  suffixes:
+    - events
   extensions:
-  - .json
-  - .tsv
+    - .json
+    - .tsv
+  datatypes:
+    - eeg
   entities:
     subject: required
     session: optional
@@ -62,22 +77,29 @@
     acquisition: optional
     run: optional
 
-- suffixes:
-  - photo
+photo:
+  suffixes:
+    - photo
   extensions:
-  - .jpg
+    - .jpg
+    - .png
+    - .tif
+  datatypes:
+    - eeg
   entities:
     subject: required
     session: optional
     acquisition: optional
 
-# Timeseries
-- suffixes:
-  - physio
-  - stim
+timeseries:
+  suffixes:
+    - physio
+    - stim
   extensions:
-  - .tsv.gz
-  - .json
+    - .tsv.gz
+    - .json
+  datatypes:
+    - eeg
   entities:
     subject: required
     session: optional

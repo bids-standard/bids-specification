@@ -1,29 +1,32 @@
 ---
-# Microscopy
-- suffixes:
-  - TEM
-  - SEM
-  - uCT
-  - BF
-  - DF
-  - PC
-  - DIC
-  - FLUO
-  - CONF
-  - PLI
-  - CARS
-  - 2PE
-  - MPE
-  - SR
-  - NLO
-  - OCT
-  - SPIM
+microscopy:
+  suffixes:
+    - TEM
+    - SEM
+    - uCT
+    - BF
+    - DF
+    - PC
+    - DIC
+    - FLUO
+    - CONF
+    - PLI
+    - CARS
+    - 2PE
+    - MPE
+    - SR
+    - NLO
+    - OCT
+    - SPIM
   extensions:
-  - .ome.tif
-  - .ome.btf
-  - .png
-  - .tif
-  - .json
+    - .ome.tif
+    - .ome.btf
+    - .ome.zarr/
+    - .png
+    - .tif
+    - .json
+  datatypes:
+    - micr
   entities:
     subject: required
     session: optional
@@ -33,12 +36,16 @@
     run: optional
     chunk: optional
 
-- suffixes:
-  - photo
+photo:
+  suffixes:
+    - photo
   extensions:
-  - .jpg
-  - .png
-  - .tif
+    - .jpg
+    - .png
+    - .tif
+    - .json
+  datatypes:
+    - micr
   entities:
     subject: required
     session: optional
