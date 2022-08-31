@@ -1,5 +1,5 @@
 ---
-# This file defines which data types fall under each modality.
+# This file defines which data types fall under each instrument.
 mri:
   datatypes:
     - anat
@@ -7,11 +7,9 @@ mri:
     - fmap
     - func
     - perf
-eeg:
+bioamp:
   datatypes:
     - eeg
-ieeg:
-  datatypes:
     - ieeg
 meg:
   datatypes:

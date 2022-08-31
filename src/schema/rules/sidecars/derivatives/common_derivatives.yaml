@@ -76,7 +76,7 @@ SegmentationCommonAtlas:
 ImageDerivatives:
   selectors:
     - dataset.DatasetType == "derivative"
-    - '["mri", "pet"].includes(modality)'
+    - '["mri", "pet"].includes(instrument)'
     - '[".nii", ".nii.gz"].includes(extension)'
   fields:
     SkullStripped: required
@@ -84,7 +84,7 @@ ImageDerivatives:
 ImageDerivativeResEntity:
   selectors:
     - dataset.DatasetType == "derivative"
-    - '["mri", "pet"].includes(modality)'
+    - '["mri", "pet"].includes(instrument)'
     - '"res" in entities'
   fields:
     Resolution:
@@ -94,7 +94,7 @@ ImageDerivativeResEntity:
 ImageDerivativeDenEntity:
   selectors:
     - dataset.DatasetType == "derivative"
-    - '["mri", "pet"].includes(modality)'
+    - '["mri", "pet"].includes(instrument)'
     - '"den" in entities'
   fields:
     Density:

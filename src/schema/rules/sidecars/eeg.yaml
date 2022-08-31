@@ -7,7 +7,7 @@
 ---
 EEGGeneric:
   selectors:
-    - modality == "eeg"
+    - instrument == "bioamp"
     - datatype == "eeg"
     - suffix == "eeg"
   fields:
@@ -19,7 +19,7 @@ EEGGeneric:
 
 EEGRecommended:
   selectors:
-    - modality == "eeg"
+    - instrument == "bioamp"
     - datatype == "eeg"
     - suffix == "eeg"
   fields:
@@ -41,7 +41,7 @@ EEGRecommended:
 
 EEGRequired:
   selectors:
-    - modality == "eeg"
+    - instrument == "bioamp"
     - datatype == "eeg"
     - suffix == "eeg"
   fields:
@@ -56,7 +56,7 @@ EEGRequired:
 
 EEGMoreRecommended:
   selectors:
-    - modality == "eeg"
+    - instrument == "bioamp"
     - datatype == "eeg"
     - suffix == "eeg"
   fields:
@@ -80,7 +80,7 @@ EEGMoreRecommended:
 # General fields
 EEGCoordsystemGeneral:
   selectors:
-    - modality == "eeg"
+    - instrument == "bioamp"
     - datatype == "eeg"
     - suffix == "coordsystem"
   fields:
@@ -93,7 +93,7 @@ EEGCoordsystemGeneral:
 # Fields relating to the EEG electrode positions
 EEGCoordsystemPositions:
   selectors:
-    - modality == "eeg"
+    - instrument == "bioamp"
     - datatype == "eeg"
     - suffix == "coordsystem"
   fields:
@@ -105,7 +105,7 @@ EEGCoordsystemPositions:
 
 EEGCoordsystemOther:
   selectors:
-    - modality == "eeg"
+    - instrument == "bioamp"
     - datatype == "eeg"
     - suffix == "coordsystem"
     - '"EEGCoordinateSystem" in sidecar'
@@ -116,7 +116,7 @@ EEGCoordsystemOther:
 # Fields relating to the position of fiducials measured during an EEG session/run
 EEGCoordsystemFiducials:
   selectors:
-    - modality == "eeg"
+    - instrument == "bioamp"
     - datatype == "eeg"
     - suffix == "coordsystem"
   fields:
@@ -130,7 +130,7 @@ EEGCoordsystemFiducials:
 
 EEGCoordsystemOtherFiducialCoordinateSystem:
   selectors:
-    - modality == "eeg"
+    - instrument == "bioamp"
     - datatype == "eeg"
     - suffix == "coordsystem"
     - FiducialsCoordinateSystem == "Other"
@@ -140,7 +140,7 @@ EEGCoordsystemOtherFiducialCoordinateSystem:
 # Fields relating to the position of anatomical landmark measured during an EEG session/run
 EEGCoordsystemLandmark:
   selectors:
-    - modality == "eeg"
+    - instrument == "bioamp"
     - datatype == "eeg"
     - suffix == "coordsystem"
   fields:
@@ -152,7 +152,7 @@ EEGCoordsystemLandmark:
 
 EEGCoordsystemLandmarkDescriptionRec:
   selectors:
-    - modality == "eeg"
+    - instrument == "bioamp"
     - datatype == "eeg"
     - suffix == "coordsystem"
     - sidecar.AnatomicalLandmarkCoordinateSystem != "Other"
@@ -163,7 +163,7 @@ EEGCoordsystemLandmarkDescriptionRec:
 
 EEGCoordsystemLandmarkDescriptionReq:
   selectors:
-    - modality == "eeg"
+    - instrument == "bioamp"
     - datatype == "eeg"
     - suffix == "coordsystem"
     - sidecar.AnatomicalLandmarkCoordinateSystem == "Other"

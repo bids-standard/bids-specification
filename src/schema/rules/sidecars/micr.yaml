@@ -8,7 +8,7 @@
 # Device Hardware
 MicroscopyDeviceHardware:
   selectors:
-    - modality == "micr"
+    - instrument == "mri"
     - datatype == "micr"
   fields:
     Manufacturer: recommended
@@ -23,7 +23,7 @@ MicroscopyDeviceHardware:
 # Image Acquisition
 MicroscopyImageAcquisition:
   selectors:
-    - modality == "micr"
+    - instrument == "mri"
     - datatype == "micr"
   fields:
     PixelSize: required
@@ -37,7 +37,7 @@ MicroscopyImageAcquisition:
 # Sample
 MicroscopySample:
   selectors:
-    - modality == "micr"
+    - instrument == "mri"
     - datatype == "micr"
   fields:
     BodyPart:
@@ -62,7 +62,7 @@ MicroscopySample:
 # Chunk Transformations
 MicroscopyChunkTransformations:
   selectors:
-    - modality == "micr"
+    - instrument == "mri"
     - datatype == "micr"
     - '"chunk" in entities'
   fields:
@@ -72,7 +72,7 @@ MicroscopyChunkTransformations:
 
 MicroscopyChunkTransformationsMatrixAxis:
   selectors:
-    - modality == "micr"
+    - instrument == "mri"
     - datatype == "micr"
     - '"chunk" in entities'
     - '"ChunkTransformationMatrix" in sidecar'
@@ -83,7 +83,7 @@ MicroscopyChunkTransformationsMatrixAxis:
 
 Photo:
   selectors:
-    - modality == "micr"
+    - instrument == "mri"
     - suffix == "photo"
   fields:
     PhotoDescription: optional

@@ -8,7 +8,7 @@
 # MRI Common metadata fields
 MRIScannerHardware:
   selectors:
-    - modality == "mri"
+    - instrument == "mri"
   fields:
     Manufacturer:
       level: recommended
@@ -37,7 +37,7 @@ MRIScannerHardware:
 
 MRISequenceSpecifics:
   selectors:
-    - modality == "mri"
+    - instrument == "mri"
   fields:
     PulseSequenceType: recommended
     ScanningSequence: recommended
@@ -62,14 +62,14 @@ MRISequenceSpecifics:
 
 PETMRISequenceSpecifics:
   selectors:
-    - modality == "mri"
-    - dataset.modalities.includes("PET")
+    - instrument == "mri"
+    - dataset.datatypes.includes("pet")
   fields:
     NonlinearGradientCorrection: required
 
 ASLMRISequenceSpecifics:
   selectors:
-    - modality == "mri"
+    - instrument == "mri"
     - datatype == "perf"
   fields:
     MRAcquisitionType: required
@@ -105,7 +105,7 @@ SpoilingGradient:
 
 MRISpatialEncoding:
   selectors:
-    - modality == "mri"
+    - instrument == "mri"
   fields:
     NumberShots: recommended
     ParallelReductionFactorInPlane: recommended
@@ -120,7 +120,7 @@ MRISpatialEncoding:
 
 PhaseEncodingDirectionRec:
   selectors:
-    - modality == "mri"
+    - instrument == "mri"
     - suffix != "epi"
   fields:
     PhaseEncodingDirection:
@@ -138,7 +138,7 @@ PhaseEncodingDirectionRec:
         directions](#case-4-multiple-phase-encoded-directions-pepolar))
 PhaseEncodingDirectionReq:
   selectors:
-    - modality == "mri"
+    - instrument == "mri"
     - suffix == "epi"
   fields:
     PhaseEncodingDirection:
@@ -157,7 +157,7 @@ PhaseEncodingDirectionReq:
 
 MRITimingParameters:
   selectors:
-    - modality == "mri"
+    - instrument == "mri"
   fields:
     EchoTime:
       level: recommended
@@ -187,7 +187,7 @@ MRITimingParameters:
 
 SliceTimingASL:
   selectors:
-    - modality == "mri"
+    - instrument == "mri"
     - datatype == "perf"
     - '["asl", "m0scan"].includes(suffix)'
     - sidecar.MRAcquisitionType == "2D"
@@ -197,19 +197,19 @@ SliceTimingASL:
 # This is technically for sparse sequences only, but I don't know how to encode that.
 # SliceTimingSparse:
 #    selectors:
-#    - modality == "mri"
+#    - instrument == "mri"
 #    fields:
 #        SliceTiming: required
 
 MRIRFandContrast:
   selectors:
-    - modality == "mri"
+    - instrument == "mri"
   fields:
     NegativeContrast: optional
 
 MRIFlipAngleLookLockerFalse:
   selectors:
-    - modality == "mri"
+    - instrument == "mri"
     - sidecar.LookLocker == false
   fields:
     FlipAngle:
@@ -218,7 +218,7 @@ MRIFlipAngleLookLockerFalse:
 
 MRIFlipAngleLookLockerTrue:
   selectors:
-    - modality == "mri"
+    - instrument == "mri"
     - sidecar.LookLocker == true
   fields:
     FlipAngle:
@@ -240,26 +240,26 @@ MRIFlipAngleLookLockerTrue:
 
 MRISliceAcceleration:
   selectors:
-    - modality == "mri"
+    - instrument == "mri"
   fields:
     MultibandAccelerationFactor: recommended
 
 MRIAnatomicalLandmarks:
   selectors:
-    - modality == "mri"
+    - instrument == "mri"
   fields:
     AnatomicalLandmarkCoordinates__mri: recommended
 
 MRIEchoPlanarImagingAndB0Mapping:
   selectors:
-    - modality == "mri"
+    - instrument == "mri"
   fields:
     B0FieldIdentifier: recommended
     B0FieldSource: recommended
 
 MRIInstitutionInformation:
   selectors:
-    - modality == "mri"
+    - instrument == "mri"
   fields:
     InstitutionName:
       level: recommended

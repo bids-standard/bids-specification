@@ -1,17 +1,13 @@
 ---
-# This file describes modalities supported by BIDS.
+# This file describes instruments (technologies) supported by BIDS.
 mri:
   display_name: Magnetic Resonance Imaging
   description: |
     Data acquired with an MRI scanner.
-eeg:
-  display_name: Electroencephalography
+bioamp:
+  display_name: Biopotential Amplification
   description: |
-    Data acquired with EEG.
-ieeg:
-  display_name: Intracranial Electroencephalography
-  description: |
-    Data acquired with iEEG.
+    Data acquired with (i)EEG.
 meg:
   display_name: Magnetoencephalography
   description: |

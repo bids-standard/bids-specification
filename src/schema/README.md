@@ -26,7 +26,7 @@ as well as their requirement levels.
 
 The types of objects currently supported in the schema are:
 
--   modalities,
+-   instruments,
 -   datatypes,
 -   entities,
 -   suffixes,
@@ -36,8 +36,8 @@ The types of objects currently supported in the schema are:
 
 Each of these object types has a single file in the `objects/` directory.
 
--   `modalities.yaml`: The modalities, or types of technology, used to acquire data in a BIDS dataset.
-    These modalities are not reflected directly in the specification.
+-   `instruments.yaml`: The instruments, or types of technology, used to acquire data in a BIDS dataset.
+    These instruments are not reflected directly in the specification.
     For example, while both fMRI and DWI data are acquired with an MRI,
     in a BIDS dataset they are stored in different directories reflecting the two different `datatypes`.
 
@@ -103,14 +103,14 @@ If the differences between two versions of the same object are subtle or driven 
 then you can generally _append_ additional text to the object definition within the associated rendered table in the specification,
 rather than creating a separate entry in the schema.
 
-### `modalities.yaml`
+### `instruments.yaml`
 
-This file contains a dictionary in which each modality is defined.
-Keys are modality abbreviations (for example, `mri` for magnetic resonance imaging),
+This file contains a dictionary in which each instrument is defined.
+Keys are instrument abbreviations (for example, `mri` for magnetic resonance imaging),
 and each associated value is a dictionary with two keys: `name` and `description`.
 
-The `name` field is the full name of the modality.
-The `description` field is a freeform description of the modality.
+The `name` field is the full name of the instrument.
+The `description` field is a freeform description of the instrument.
 
 ### `datatypes.yaml`
 
@@ -402,7 +402,7 @@ The files in the `rules/` directory are less standardized than the files in `obj
 because rules governing how different object types interact in a valid dataset are more variable
 than the object definitions.
 
--   `modalities.yaml`: This file simply groups `datatypes` under their associated modality.
+-   `instruments.yaml`: This file simply groups `datatypes` under their associated instrument.
 
 -   `datatypes/*.yaml`: Files in the `datatypes` directory contain information about valid filenames within a given datatype.
     Specifically, each datatype's YAML file contains a list of dictionaries.
@@ -414,10 +414,10 @@ than the object definitions.
 
 -   `associated_data.yaml`: Requirement levels of associated non-BIDS directories.
 
-### `modalities.yaml`
+### `instruments.yaml`
 
-This file contains a dictionary in which each key is a modality abbreviation and the value is a dictionary with one key: `datatypes`.
-The `datatypes` dictionary contains a list of datatypes that fall under that modality.
+This file contains a dictionary in which each key is a instrument abbreviation and the value is a dictionary with one key: `datatypes`.
+The `datatypes` dictionary contains a list of datatypes that fall under that instrument.
 
 ### `datatypes/*.yaml`
 
