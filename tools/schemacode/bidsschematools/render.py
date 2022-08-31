@@ -711,16 +711,16 @@ def make_suffix_table(schema, suffixes, src_path=None, tablefmt="github"):
     return table_str
 
 
-def make_obj_table(subschema, field_info, src_path=None, tablefmt="github"):
-    # Use the "name" field in the table, to allow for filenames to not match
-    # "names".
+def make_obj_table(subschema, field_info, field_type=None, src_path=None, tablefmt="github"):
     df = pd.DataFrame(
-        index=[subschema[f]["name"] for f in field_info],
-        columns=["**Requirement Level**", "**Data type**", "**Description**"],
+        index=field_info.keys(),
+        columns=["**Key name**", "**Requirement Level**", "**Data type**", "**Description**"],
     )
-    df.index.name = "**Key name**"
     for field in subschema.keys():
         field_name = subschema[field]["name"]
+        if field_type:
+            field_name = f"[{field_name}]({GLOSSARY_PATH}.md#objects.{field_type}.{field})"
+
         requirement_info = field_info[field]
         description_addendum = ""
         if isinstance(requirement_info, tuple):
@@ -743,11 +743,15 @@ def make_obj_table(subschema, field_info, src_path=None, tablefmt="github"):
         if valid_values_str:
             description += "\n\n\n\n" + valid_values_str
 
-        df.loc[field_name] = [
+        df.loc[field] = [
+            field_name,
             normalize_breaks(requirement_info),
             type_string,
             normalize_breaks(description),
         ]
+
+    df = df.set_index("**Key name**", drop=True)
+    df.index.name = "**Key name**"
 
     # Print it as markdown
     table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
@@ -824,6 +828,7 @@ def make_sidecar_table(
     table_str = make_obj_table(
         metadata_schema,
         field_info=field_info,
+        field_type="metadata",
         src_path=src_path,
         tablefmt=tablefmt,
     )
@@ -873,6 +878,7 @@ def make_metadata_table(schema, field_info, src_path=None, tablefmt="github"):
     table_str = make_obj_table(
         metadata_schema,
         field_info=field_info,
+        field_type="metadata",
         src_path=src_path,
         tablefmt=tablefmt,
     )
@@ -920,6 +926,7 @@ def make_subobject_table(schema, object_tuple, field_info, src_path=None, tablef
     table_str = make_obj_table(
         temp_dict,
         field_info=field_info,
+        field_type=None,
         src_path=src_path,
         tablefmt=tablefmt,
     )
