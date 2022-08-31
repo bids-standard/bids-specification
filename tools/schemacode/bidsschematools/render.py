@@ -95,13 +95,14 @@ def make_entity_definitions(schema, src_path=None):
     text = ""
     for entity in entity_order:
         entity_info = entity_definitions[entity]
-        entity_text = _make_entity_definition(entity, entity_info, src_path)
+        entity_text = _make_entity_definition(entity, entity_info)
         text += "\n" + entity_text
 
+    text = text.replace("SPEC_ROOT", get_relpath(src_path))
     return text
 
 
-def _make_entity_definition(entity, entity_info, src_path):
+def _make_entity_definition(entity, entity_info):
     """Describe an entity."""
     entity_shorthand = entity_info["name"]
     text = ""
@@ -116,7 +117,6 @@ def _make_entity_definition(entity, entity_info, src_path):
         text += "\n\n"
 
     description = entity_info["description"]
-    description = description.replace("SPEC_ROOT", get_relpath(src_path))
     text += f"**Definition**: {description}"
     return text
 
@@ -191,8 +191,6 @@ def make_glossary(schema, src_path=None):
         obj_desc = obj_desc.replace("\n\n", "<br>")
         # Otherwise a newline corresponds to a space
         obj_desc = obj_desc.replace("\n", " ")
-        # Spec internal links need to be replaced
-        obj_desc = obj_desc.replace("SPEC_ROOT", get_relpath(src_path))
 
         text += f'\n<a name="{obj_marker}"></a>'
         text += f"\n## {obj_key}\n\n"
@@ -221,6 +219,9 @@ def make_glossary(schema, src_path=None):
         if temp_obj_def:
             temp_obj_def = yaml.dump(temp_obj_def)
             text += f"**Schema information**:\n```yaml\n{temp_obj_def}\n```"
+
+    # Spec internal links need to be replaced
+    text = text.replace("SPEC_ROOT", get_relpath(src_path))
 
     return text
 
@@ -742,9 +743,6 @@ def make_obj_table(subschema, field_info, src_path=None, tablefmt="github"):
         if valid_values_str:
             description += "\n\n\n\n" + valid_values_str
 
-        # Spec internal links need to be replaced
-        description = description.replace("SPEC_ROOT", get_relpath(src_path))
-
         df.loc[field_name] = [
             normalize_breaks(requirement_info),
             type_string,
@@ -753,6 +751,10 @@ def make_obj_table(subschema, field_info, src_path=None, tablefmt="github"):
 
     # Print it as markdown
     table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
+
+    # Spec internal links need to be replaced
+    table_str = table_str.replace("SPEC_ROOT", get_relpath(src_path))
+
     return table_str
 
 
@@ -980,13 +982,10 @@ def make_columns_table(schema, column_info, src_path=None, tablefmt="github"):
             "[DEPRECATED](/02-common-principles.html#definitions)",
         )
         field_name = f"[{field_name}]({GLOSSARY_PATH}.md#objects.columns.{field})"
-        field_name = field_name.replace("SPEC_ROOT", src_path)
 
         type_string = utils.resolve_metadata_type(column_schema[field])
 
         description = column_schema[field]["description"] + " " + description_addendum
-
-        description = description.replace("SPEC_ROOT", src_path)
 
         # Try to add info about valid values
         valid_values_str = utils.describe_valid_values(column_schema[field])
@@ -1005,6 +1004,7 @@ def make_columns_table(schema, column_info, src_path=None, tablefmt="github"):
 
     # Print it as markdown
     table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
+    table_str = table_str.replace("SPEC_ROOT", src_path)
     return table_str
 
 
@@ -1029,13 +1029,13 @@ def define_common_principles(schema, src_path=None):
     order = schema["rules"]["common_principles"]
     for i_prin, principle in enumerate(order):
         principle_name = common_principles[principle]["display_name"]
-        principle_desc = common_principles[principle]["description"].replace(
-            "SPEC_ROOT",
-            get_relpath(src_path),
+        substring = (
+            f"{i_prin + 1}. **{principle_name}** - {common_principles[principle]['description']}"
         )
-        substring = f"{i_prin + 1}. **{principle_name}** - {principle_desc}"
         string += substring
         if i_prin < len(order) - 1:
             string += "\n\n"
+
+    string = string.replace("SPEC_ROOT", get_relpath(src_path))
 
     return string
