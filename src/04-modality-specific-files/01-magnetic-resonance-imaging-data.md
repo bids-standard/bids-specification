@@ -202,7 +202,7 @@ and a guide for using macros can be found at
 If the structural images included in the dataset were defaced (to protect
 identity of participants) one MAY provide the binary mask that was used to
 remove facial features in the form of `_defacemask` files.
-In such cases,  the OPTIONAL [`mod-<label>`](../appendices/entities.md#mod)
+In such cases, the OPTIONAL [`mod-<label>`](../appendices/entities.md#mod)
 entity corresponds to modality suffix,
 such as `T1w` or `inplaneT1`, referenced by the defacemask image.
 For example, `sub-01_mod-T1w_defacemask.nii.gz`.

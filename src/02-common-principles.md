@@ -865,7 +865,7 @@ Describing dates and timestamps:
     Some analysis software packages (for example, MNE-Python) handle their data as `.fif`
     internally and will break if recording dates are specified prior to `1902`,
     even if the original data format is not `.fif`.
-    See [MEG-file-formats](./appendices/meg-file-formats.md#recording-dates-in-fif-files)
+    See the [MEG File Formats Appendix](./appendices/meg-file-formats.md#recording-dates-in-fif-files)
     for more information.
 
 -   Age SHOULD be given as the number of years since birth at the time of
