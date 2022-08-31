@@ -28,13 +28,13 @@ The iEEG community uses a variety of formats for storing raw data, and there is
 no single standard that all researchers agree on. For BIDS, iEEG data MUST be
 stored in one of the following formats:
 
-| **Format**                                                                                   | **Extension(s)**         | **Description**                                                                                                                                                            |
-| -------------------------------------------------------------------------------------------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [European data format](https://www.edfplus.info/)                                            | `.edf`                   | Each recording consists of a `.edf` single file. [`edf+`](https://www.edfplus.info/specs/edfplus.html) files are permitted. The capital `.EDF` extension MUST NOT be used. |
-| [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5) | `.vhdr`, `.vmrk`, `.eeg` | Each recording consists of a  `.vhdr`, `.vmrk`, `.eeg` file triplet.                                                                                                       |
-| [EEGLAB](https://sccn.ucsd.edu/eeglab)                                                       | `.set`, `.fdt`           | The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab). Each recording consists of a `.set` file with an optional `.fdt` file.                       |
-| [Neurodata Without Borders](https://nwb-schema.readthedocs.io)                               | `.nwb`                   | Each recording consists of a single `.nwb` file.                                                                                                                           |
-| [MEF3](https://osf.io/e3sf9/)                                                                | `.mefd`                  | Each recording consists of a `.mefd` directory.                                                                                                                            |
+| **Format**                                                     | **Extension(s)**         | **Description**                                                                                                                                                            |
+| -------------------------------------------------------------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [European data format](https://www.edfplus.info/)              | `.edf`                   | Each recording consists of a `.edf` single file. [`edf+`](https://www.edfplus.info/specs/edfplus.html) files are permitted. The capital `.EDF` extension MUST NOT be used. |
+| [BrainVision Core Data Format][bvformat]                       | `.vhdr`, `.vmrk`, `.eeg` | Each recording consists of a  `.vhdr`, `.vmrk`, `.eeg` file triplet.                                                                                                       |
+| [EEGLAB](https://sccn.ucsd.edu/eeglab)                         | `.set`, `.fdt`           | The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab). Each recording consists of a `.set` file with an OPTIONAL `.fdt` file.                       |
+| [Neurodata Without Borders](https://nwb-schema.readthedocs.io) | `.nwb`                   | Each recording consists of a single `.nwb` file.                                                                                                                           |
+| [MEF3](https://osf.io/e3sf9/)                                  | `.mefd`                  | Each recording consists of a `.mefd` directory.                                                                                                                            |
 
 It is RECOMMENDED to use the European data format, or the BrainVision data
 format. It is furthermore discouraged to use the other accepted formats over
@@ -589,3 +589,7 @@ onset duration trial_type             electrical_stimulation_type electrical_sti
 4.2   1        electrical_stimulation complex                     LT02-LT03                   n/a
 15.2  3        auditory_stimulus      n/a                         n/a                         n/a
 ```
+
+<!-- Link Definitions -->
+
+[bvformat]: https://www.brainproducts.com/support-resources/brainvision-core-data-format-1-0/

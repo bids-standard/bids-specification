@@ -1160,7 +1160,14 @@ HEDVersion:
   description: |
     If HED tags are used:
     The version of the HED schema used to validate HED tags for study.
-  type: string
+    May include a single schema or a base schema and one or more library schema.
+  anyOf:
+    - type: string
+      format: hed_version
+    - type: array
+      items:
+        type: string
+        format: hed_version
 Haematocrit:
   name: Haematocrit
   display_name: Haematocrit

@@ -202,6 +202,27 @@ A guide for using macros can be found at
 
 All reconstruction-specific parameters that are not specified, but one wants to include, should go into the `ReconMethodParameterValues` field.
 
+#### Task
+
+If the OPTIONAL [`task-<label>`](../99-appendices/09-entities.md#task) is used,
+the following metadata SHOULD be used.
+
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_metadata_table(
+   {
+      "CogPOID": "RECOMMENDED",
+      "CogAtlasID": "RECOMMENDED",
+      "TaskDescription": "RECOMMENDED",
+      "Instructions": ("RECOMMENDED", "This is especially important in context of resting state recordings and distinguishing between eyes open and eyes closed paradigms."),
+      "TaskName": ("RECOMMENDED", "If used to denote resting scans, a RECOMMENDED convention is to use labels beginning with `rest`."),
+   }
+) }}
+
 #### Example (`*_pet.json`)
 
 ```JSON

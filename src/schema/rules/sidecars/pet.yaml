@@ -254,3 +254,23 @@ BloodMetaboliteMethod:
     MetaboliteRecoveryCorrectionApplied:
       level: required
       level_addendum: if `MetaboliteAvail` is `true`
+
+# PET task information
+PETTask:
+  selectors:
+    - modality == "pet"
+    - '"task" in entities'
+  fields:
+    TaskName:
+      level: recommended
+      description_addendum: |
+        If used to denote resting scans, a RECOMMENDED convention is to use labels
+        beginning with `rest`.
+    Instructions:
+      level: recommended
+      description_addendum: |
+        This is especially important in context of resting state recordings
+        and distinguishing between eyes open and eyes closed paradigms.
+    TaskDescription: recommended
+    CogAtlasID: recommended
+    CogPOID: recommended
