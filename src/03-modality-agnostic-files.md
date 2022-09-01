@@ -217,6 +217,9 @@ The RECOMMENDED `species` column SHOULD be a binomial species name from the
 For backwards compatibility, if `species` is absent, the participant is assumed to be
 `homo sapiens`.
 
+The RECOMMENDED `age` column SHOULD be used when NIRS data is present,
+as this is required for calculation of age-specific pathlength factors.
+
 Commonly used *optional* columns in `participants.tsv` files are `age`, `sex`,
 `handedness`, `strain`, and `strain_rrid`. We RECOMMEND to make use
 of these columns, and in case that you do use them, we RECOMMEND to use the

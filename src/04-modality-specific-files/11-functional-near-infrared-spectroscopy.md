@@ -149,20 +149,6 @@ Example:
 }
 ```
 
-### Participant file
-
-The participants.tsv and participants.json files are RECOMMENDED to describe properties of participants such as
-age, sex, handedness. If the participants.tsv file exists, it MUST contain the column participant_id
-and SHOULD contain the age field, as this is required for calculation of age-specific pathlength factors.
-If the dataset contains multiple groups, for example patients and controls, then
-a column labeled `group` MAY be included (see [participants.tsv](https://bids-specification.readthedocs.io/en/stable/03-modality-agnostic-files.html#participants-file)).
-
-```text
-participant_id	age	 sex	hand  group
-sub-01       	34	 M	    n/a   patient
-sub-02	        32	 F	    n/a   control
-```
-
 ## Channels description (`*_channels.tsv`)
 
 {{ MACROS___make_filename_template(datatypes=["nirs"], suffixes=["channels"]) }}
