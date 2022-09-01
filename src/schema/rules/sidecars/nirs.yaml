@@ -110,14 +110,14 @@ NirsRequired:
     CapManufacturer:
       level: recommended
       description_addendum: |
-        If a custom-made cap is used then the string `custom` MUST be used. If no cap was used, such as with optodes
+        If no cap was used, such as with optodes
         that are directly taped to the scalp, then the string `none` MUST be used and the `NIRSPlacementScheme` field
         MAY be used to specify the optode placement.
     CapManufacturersModelName:
       level: recommended
       description_addendum: |
         If there is no official model number then a description may be provided (for example, `Headband with print
-        (S-M)`). If a cap from a standard manufacturer was modified, then the field MUST be set to `custom`. If no cap
+        (S-M)`). If a cap from a manufacturer was modified, then the field MUST be set to `custom`. If no cap
         was used, then the `CapManufacturer` field MUST be `none` and this field MUST be `n/a`.")
     SamplingFrequency__nirs:
       level: required
