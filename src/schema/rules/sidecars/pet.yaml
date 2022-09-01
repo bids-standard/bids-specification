@@ -79,19 +79,19 @@ PETRadioChemistry:
       level: recommended
     InfusionRadioactivity:
       level: recommended
-      level_addendum: required if ModeOfAdministration is `'bolus-infusion'`
+      description_addendum: required if ModeOfAdministration is `'bolus-infusion'`
     InfusionStart:
       level: recommended
-      level_addendum: required if ModeOfAdministration is `'bolus-infusion'`
+      description_addendum: required if ModeOfAdministration is `'bolus-infusion'`
     InfusionSpeed:
       level: recommended
-      level_addendum: required if ModeOfAdministration is `'bolus-infusion'`
+      description_addendum: required if ModeOfAdministration is `'bolus-infusion'`
     InfusionSpeedUnits:
       level: recommended
-      level_addendum: required if ModeOfAdministration is `'bolus-infusion'`
+      description_addendum: required if ModeOfAdministration is `'bolus-infusion'`
     InjectedVolume:
       level: recommended
-      level_addendum: required if ModeOfAdministration is `'bolus-infusion'`
+      description_addendum: required if ModeOfAdministration is `'bolus-infusion'`
     Purity:
       level: recommended
 
@@ -210,6 +210,8 @@ PETReconstruction:
       description_addendum: Corresponds to DICOM Tag (0054,1322) `Dose Calibration Factor`.
     PromptRate:
       level: recommended
+    RandomRate:
+      level: recommended
     SinglesRate:
       level: recommended
 
@@ -237,10 +239,10 @@ BloodPlasmaFreeFraction:
   fields:
     PlasmaFreeFraction:
       level: recommended
-      level_addendum: if `PlasmaAvail` is `true`
+      description_addendum: if `PlasmaAvail` is `true`
     PlasmaFreeFractionMethod:
       level: recommended
-      level_addendum: if `PlasmaAvail` is `true`
+      description_addendum: if `PlasmaAvail` is `true`
 
 BloodMetaboliteMethod:
   selectors:
@@ -250,10 +252,10 @@ BloodMetaboliteMethod:
   fields:
     MetaboliteMethod:
       level: required
-      level_addendum: if `MetaboliteAvail` is `true`
+      description_addendum: if `MetaboliteAvail` is `true`
     MetaboliteRecoveryCorrectionApplied:
       level: required
-      level_addendum: if `MetaboliteAvail` is `true`
+      description_addendum: if `MetaboliteAvail` is `true`
 
 # PET task information
 PETTask:
