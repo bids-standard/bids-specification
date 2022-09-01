@@ -43,7 +43,7 @@ share/python-wheels/
 MANIFEST
 
 # Poetry requirements / packaging
-pyproject.toml
+/pyproject.toml
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
