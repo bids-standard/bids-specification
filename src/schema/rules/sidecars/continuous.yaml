@@ -8,7 +8,7 @@
 # Metadata for either physio or stim files
 Continuous:
   selectors:
-    - '["physio", "stim"].includes(suffix)'
+    - intersects([suffix], ["physio", "stim"])
   fields:
     SamplingFrequency: required
     StartTime: required

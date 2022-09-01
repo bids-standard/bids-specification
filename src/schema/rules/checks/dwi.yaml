@@ -2,11 +2,12 @@
 ---
 # 29
 DWIVolumeCount:
-  code: VOLUME_COUNT_MISMATCH
-  description: |
-    The number of volumes in this scan does not match the number of volumes in the
-    corresponding .bvec and .bval files.
-  level: error
+  issue:
+    code: VOLUME_COUNT_MISMATCH
+    message: |
+      The number of volumes in this scan does not match the number of volumes in the
+      corresponding .bvec and .bval files.
+    level: error
   selectors:
     - suffix == "dwi"
     - '"bval" in associations'
@@ -17,10 +18,11 @@ DWIVolumeCount:
 
 # 30
 DWIBvalRows:
-  code: BVAL_MULTIPLE_ROWS
-  description: |
-    '.bval' files should contain exactly one row of volumes.
-  level: error
+  issue:
+    code: BVAL_MULTIPLE_ROWS
+    message: |
+      '.bval' files should contain exactly one row of volumes.
+    level: error
   selectors:
     - extension == "bval"
   checks:
@@ -28,10 +30,11 @@ DWIBvalRows:
 
 # 31
 DWIBvecRows:
-  code: BVEC_NUMBER_ROWS
-  description: |
-    '.bvec' files should contain exactly three rows of volumes.
-  level: error
+  issue:
+    code: BVEC_NUMBER_ROWS
+    message: |
+      '.bvec' files should contain exactly three rows of volumes.
+    level: error
   selectors:
     - extension == "bvec"
   checks:
@@ -39,10 +42,11 @@ DWIBvecRows:
 
 # 32
 DWIMissingBvec:
-  code: DWI_MISSING_BVEC
-  description: |
-    DWI scans must have a corresponding .bvec file.
-  level: error
+  issue:
+    code: DWI_MISSING_BVEC
+    message: |
+      DWI scans must have a corresponding .bvec file.
+    level: error
   selectors:
     - suffix == "dwi"
   checks:
@@ -50,10 +54,11 @@ DWIMissingBvec:
 
 # 33
 DWIMissingBval:
-  code: DWI_MISSING_BVAL
-  description: |
-    DWI scans must have a corresponding .bval file.
-  level: error
+  issue:
+    code: DWI_MISSING_BVAL
+    message: |
+      DWI scans must have a corresponding .bval file.
+    level: error
   selectors:
     - suffix == "dwi"
   checks:
