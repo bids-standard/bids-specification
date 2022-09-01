@@ -430,10 +430,10 @@ The `datatypes` dictionary contains a list of datatypes that fall under that mod
 The files in this directory are currently the least standardized of any part of the schema.
 
 Each file corresponds to a single `datatype`.
-Within the file is a dictionary of dictionaries.
-Each dictionary corresponds to a group of suffixes that have the same rules regarding filenames.
-
-The dictionaries have three keys: `suffixes`, `extensions`, and `entities`.
+Within the file is a dictionary.
+Each dictionary entry corresponds to a group of suffixes that have the same rules regarding filenames.
+The key to each entry is a unique identifier for the group of suffixes, such as `meg` for general MEG-related suffixes.
+The entry's corresponding value is a dictionary with four keys: `suffixes`, `extensions`, `datatypes`, and `entities`.
 
 The `suffixes` entry is a list of file suffixes for which all of the extensions in the `extensions` entry
 and all of the entity rules in the `entities` entry apply.
