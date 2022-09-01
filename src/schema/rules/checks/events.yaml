@@ -10,7 +10,7 @@ EventsMissing:
     level: warning # could be an error with the proper selectors, I think
   selectors:
     - '"task" in entities'
-    - '!(entities.task.includes("rest"))'
+    - '!matches(entities.task, "rest")'
     - suffix != "events"
   checks:
     - '"events" in associations'

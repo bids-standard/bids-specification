@@ -13,4 +13,4 @@ PhaseSuffixDeprecated:
   selectors:
     - datatype == "func"
   checks:
-    - '!(suffix == "phase")'
+    - suffix != "phase"
