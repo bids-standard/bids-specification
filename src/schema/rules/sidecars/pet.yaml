@@ -62,19 +62,19 @@ PETRadioChemistry:
     MolarActivityMeasTime: recommended
     InfusionRadioactivity:
       level: recommended
-      description_addendum: required if ModeOfAdministration is `'bolus-infusion'`
+      level_addendum: required if ModeOfAdministration is `'bolus-infusion'`
     InfusionStart:
       level: recommended
-      description_addendum: required if ModeOfAdministration is `'bolus-infusion'`
+      level_addendum: required if ModeOfAdministration is `'bolus-infusion'`
     InfusionSpeed:
       level: recommended
-      description_addendum: required if ModeOfAdministration is `'bolus-infusion'`
+      level_addendum: required if ModeOfAdministration is `'bolus-infusion'`
     InfusionSpeedUnits:
       level: recommended
-      description_addendum: required if ModeOfAdministration is `'bolus-infusion'`
+      level_addendum: required if ModeOfAdministration is `'bolus-infusion'`
     InjectedVolume:
       level: recommended
-      description_addendum: required if ModeOfAdministration is `'bolus-infusion'`
+      level_addendum: required if ModeOfAdministration is `'bolus-infusion'`
     Purity:
       level: recommended
 
@@ -204,10 +204,10 @@ BloodPlasmaFreeFraction:
   fields:
     PlasmaFreeFraction:
       level: recommended
-      description_addendum: if `PlasmaAvail` is `true`
+      level_addendum: if `PlasmaAvail` is `true`
     PlasmaFreeFractionMethod:
       level: recommended
-      description_addendum: if `PlasmaAvail` is `true`
+      level_addendum: if `PlasmaAvail` is `true`
 
 BloodMetaboliteMethod:
   selectors:
@@ -217,10 +217,10 @@ BloodMetaboliteMethod:
   fields:
     MetaboliteMethod:
       level: required
-      description_addendum: if `MetaboliteAvail` is `true`
+      level_addendum: if `MetaboliteAvail` is `true`
     MetaboliteRecoveryCorrectionApplied:
       level: required
-      description_addendum: if `MetaboliteAvail` is `true`
+      level_addendum: if `MetaboliteAvail` is `true`
 
 # PET task information
 PETTask:
