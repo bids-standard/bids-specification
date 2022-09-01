@@ -1044,7 +1044,7 @@ def make_columns_table(
 
         requirement_info = requirement_info.replace(
             "DEPRECATED",
-            "[DEPRECATED](/02-common-principles.html#definitions)",
+            "[DEPRECATED](SPEC_ROOT/02-common-principles.html#definitions)",
         )
         field_name = f"[{field_name}]({GLOSSARY_PATH}.md#objects.columns.{field})"
 
@@ -1067,8 +1067,6 @@ def make_columns_table(
 
         if valid_values_str:
             description += "\n\n\n\n" + valid_values_str
-
-        description = description.replace("SPEC_ROOT", get_relpath(src_path))
 
         df.loc[field] = [
             field_name,
