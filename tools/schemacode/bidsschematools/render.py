@@ -680,25 +680,32 @@ def make_suffix_table(schema, suffixes, src_path=None, tablefmt="github"):
     table_str : str
         Tabulated table as a string.
     """
-    # The filter function doesn't work here.
-    suffix_schema = schema["objects"]["suffixes"]
+    field_type = "suffixes"
 
-    all_suffixes = pd.DataFrame.from_records(list(suffix_schema.values()))
-    df = all_suffixes[all_suffixes.value.isin(suffixes)][["value", "display_name", "description"]]
+    # The filter function doesn't work here.
+    subschema = schema["objects"][field_type]
+
+    all_suffixes = pd.DataFrame.from_dict(subschema, orient="index")
+    df = all_suffixes[all_suffixes.value.isin(suffixes)]
+    df = df.reset_index(drop=False)
 
     suffixes_not_found = set(suffixes) - set(df.value)
     if suffixes_not_found:
         raise Exception("Warning: Missing suffixes: {}".format(", ".join(suffixes_not_found)))
 
-    def preproc(desc):
+    def preproc_desc(desc):
         return (
             desc.replace("\\\n", "")  # A backslash before a newline means continue a string
             .replace("\n\n", "<br>")  # Two newlines should be respected
             .replace("\n", " ")  # Otherwise a newline corresponds to a space
-            .replace("SPEC_ROOT", get_relpath(src_path))  # Spec internal links need to be replaced
         )
 
-    df.description = df.description.apply(preproc)
+    def preproc_suffix(row):
+        return f"[{row['value']}]({GLOSSARY_PATH}.md#objects.{field_type}.{row['index']})"
+
+    df.description = df.description.apply(preproc_desc)
+    df["suffix"] = df.apply(preproc_suffix, axis=1)
+    df = df[["suffix", "display_name", "description"]]
     df.columns = ["`suffix`", "**Name**", "**Description**"]
     df = df.reset_index(drop=False)
     df = df.set_index("**Name**")
@@ -706,6 +713,8 @@ def make_suffix_table(schema, suffixes, src_path=None, tablefmt="github"):
 
     # Print it as markdown
     table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
+    # Spec internal links need to be replaced
+    table_str = table_str.replace("SPEC_ROOT", get_relpath(src_path))
     return table_str
 
 
