@@ -25,7 +25,7 @@ which improves findability and tooling development.
 Raw fNIRS data in the native format, if different from SNIRF, can also
 be stored in the [`/sourcedata`](../02-common-principles.md#source-vs-raw-vs-derived-data)
 directory along with code to convert the data to
-SNIRF in the [`/code` directory](../02-common-principles.md#storage-of-derived-datasets).
+SNIRF in the [`/code`](../02-common-principles.md#storage-of-derived-datasets) directory.
 The unprocessed raw data should be stored in
 the manufacturer's format before any additional processing or conversion is applied.
 Retaining the native file format is especially valuable in a case when conversion elicits the
