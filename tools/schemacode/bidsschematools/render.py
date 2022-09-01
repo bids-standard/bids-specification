@@ -765,7 +765,7 @@ def make_obj_table(
             "enum" in subschema[field].keys()
             and len(subschema[field]["enum"]) >= n_values_to_combine
         ):
-            glossary_entry = f"{GLOSSARY_PATH}.md#objects.{field}"
+            glossary_entry = f"{GLOSSARY_PATH}.md#objects.{field_type}.{field}"
             valid_values_str = (
                 "For a list of valid values for this field, see the "
                 f"[associated glossary entry]({glossary_entry})."
