@@ -133,7 +133,7 @@ EEGCoordsystemOtherFiducialCoordinateSystem:
     - modality == "eeg"
     - datatype == "eeg"
     - suffix == "coordsystem"
-    - FiducialsCoordinateSystem == "Other"
+    - sidecar.FiducialsCoordinateSystem == "Other"
   fields:
     FiducialsCoordinateSystemDescription: required
 

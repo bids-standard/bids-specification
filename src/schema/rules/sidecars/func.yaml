@@ -12,7 +12,7 @@ MRIFuncRequired:
   selectors:
     - modality == "mri"
     - datatype == "func"
-    - '[".nii", ".nii.gz"].includes(extension)'
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     TaskName:
       level: required
@@ -25,7 +25,7 @@ MRIFuncRepetitionTime:
     - modality == "mri"
     - datatype == "func"
     - '!("VolumeTiming" in sidecar)'
-    - '[".nii", ".nii.gz"].includes(extension)'
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     RepetitionTime:
       level: required
@@ -36,7 +36,7 @@ MRIFuncVolumeTiming:
     - modality == "mri"
     - datatype == "func"
     - '!("RepetitionTime" in sidecar)'
-    - '[".nii", ".nii.gz"].includes(extension)'
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     VolumeTiming:
       level: required
