@@ -246,9 +246,7 @@ digitizer. If you also have idealized positions, where you wish the optodes to b
 placed, these can be listed in the template values
 (for example for "template positions" computed on a sphere).
 SNIRF contains arrays for both
-the 3D and 2D locations of data. The BIDS format MUST store the 3D locations if
-available, and only the 2D locations if 3D positions are unavailable. The storage
-of 2D locations would be indicated by the z field containing an `n/a` value.
+the 3D and 2D locations of data. In BIDS the `*_optodes.tsv` file MUST contain the 3D locations. Only in case 3D positions are unavailable the 2D locations should be used, setting the z field to an `n/a` value.
 
 The following columns MUST be present:
 
