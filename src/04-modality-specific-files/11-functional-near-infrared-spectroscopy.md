@@ -57,11 +57,11 @@ the wide variety of possible configurations, several fields are RECOMMENDED with
 the `*_nirs.json` file.
 Additionally, in certain situations, reserved keywords MUST be used,
 When a custom made cap is used, the reserved keyword `custom` MUST be used in the
-`CapManufacturer` field. 
+`CapManufacturer` field.
 Simillarly, when a custom cap is used or custom modifications are made to a cap,
 then the reserved keyword `custom` MUST be used for the `CapManufacturersModelName` field.
 If no cap is used the reserved keyword `none` MUST be used in the `CapManufacturer`
-and `CapManufacturersModelName` field. 
+and `CapManufacturersModelName` field.
 To clarify the usage and interaction of these fields, the following examples are provided:
 
 -   If a commercial cap such as EasyCap actiCAP 64 Ch Standard-2 was used:
