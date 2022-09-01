@@ -70,6 +70,7 @@ nav:
         - Common data types and metadata: 05-derivatives/02-common-data-types.md
         - Imaging data types: 05-derivatives/03-imaging.md
       - Longitudinal and multi-site studies: 06-longitudinal-and-multi-site-studies.md
+      - Glossary: glossary.md
       - BIDS Extension Proposals: 07-extensions.md
       - Appendix:
         - Contributors: appendices/contributors.md
@@ -85,7 +86,6 @@ nav:
         - Quantitative MRI: appendices/qmri.md
         - Arterial Spin Labeling: appendices/arterial-spin-labeling.md
         - Cross modality correspondence: appendices/cross-modality-correspondence.md
-      - Glossary: glossary.md
       - Changelog: CHANGES.md
     - The BIDS Starter Kit:
       - Website: https://bids-standard.github.io/bids-starter-kit
