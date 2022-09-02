@@ -7,6 +7,261 @@ Currently the portions of the specification that rely on this schema are
 the entity tables, entity definitions, filename templates, and metadata tables.
 Any changes to the specification should be mirrored in the schema.
 
+## Organization and syntax
+
+At the time of this writing, the schema has the following file layout:
+
+```
+src/schema
+├── BIDS_VERSION
+├── meta
+│   └── context.yaml
+├── objects
+│   ├── associated_data.yaml
+│   ├── ...
+│   └── top_level_files.yaml
+├── rules
+│   ├── associated_data.yaml
+│   ├── checks
+│   │   ├── asl.yaml
+│   │   ├── ...
+│   │   └── mri.yaml
+│   ├── ...
+│   └── top_level_files.yaml
+└── SCHEMA_VERSION
+```
+
+The top-level organization includes `objects`, where terms are defined;
+`rules`, where constraints (such as valid filenames or required metadata fields)
+are defined;
+and `meta`, where definitions useful for interpreting the schema are defined.
+
+Each file is a YAML structure, most often an *object*.
+To take an example, the file `rules/checks/mri.yaml` contains the contents:
+
+```YAML
+---
+PhasePartUnits:
+  issue:
+    code: PHASE_UNITS
+    message: |
+      Phase images (with the `part-phase` entity) must have units
+      "rad" or "arbitrary".
+    level: error
+  selectors:
+    - modality == "mri"
+    - entities.part == "phase"
+    - '"Units" in sidecar'
+  checks:
+    - intersects([sidecar.Units], ["rad", "arbitrary"])
+```
+
+When we wish to refer to a file, we might write `rules/checks/mri.yaml`.
+Alternately, we can use `rules.checks.mri` to refer to the object contained by the
+file.
+Using this notation, the *qualified name*, the contents of an entire directory or a
+portion of a file can be referred to unambiguously.
+For example, the entire `rules/checks/` directory is referred to as `rules.checks`,
+and `rules.checks.mri.PhasePartUnits.issue` refers to the object:
+
+```JSON
+{
+  "code": "PHASE_UNITS",
+  "message": "Phase images (with the `part-phase` [...]\n\"rad\" or \"arbitrary\".\n",
+  "level": "error"
+}
+```
+
+These qualified names may be used in this README, as well as in *references* and
+*expressions*.
+
+### References
+
+Some schema entries take the form:
+
+```
+ObjectName:
+  $ref: objects.metadata.OtherObjectName
+```
+
+This object may be *dereferenced* by replacing the `$ref` entry with the object being
+referenced.
+The following two prototypical examples are presented to clarify the semantics of
+references (the cases in which they are used will be presented later):
+
+1) In `objects.metadata`:
+   ```YAML
+   _GeneticLevelEnum:
+     type: string
+     enum:
+       - Genetic
+       - Genomic
+       - Epigenomic
+       - Transcriptomic
+       - Metabolomic
+       - Proteomic
+
+   GeneticLevel:
+     name: GeneticLevel
+     display_name: Genetic Level
+     description: |
+       Describes the level of analysis.
+       Values MUST be one of `"Genetic"`, `"Genomic"`, `"Epigenomic"`,
+       `"Transcriptomic"`, `"Metabolomic"`, or `"Proteomic"`.
+     anyOf:
+       - $ref: objects.metadata._GeneticLevelEnum
+       - type: array
+         items:
+           $ref: objects.metadata._GeneticLevelEnum
+   ```
+   Here `_GeneticLevelEnum` is used to describe the valid values of `GeneticLevel`,
+   and the references inside `GeneticLevel.anyOf` indicate that there may be a single
+   such value or a list of values.
+
+2) In `rules.datatypes.derivatives.common_derivatives`:
+   ```YAML
+   anat_nonparametric_common:
+     $ref: rules.datatypes.anat.nonparametric
+     entities:
+       $ref: rules.datatypes.anat.nonparametric.entities
+       space: optional
+       description: optional
+   ```
+   Here, the derivative datatype rule starts by copying the raw datatype rule
+   `rules.datatypes.anat.nonparametric`. It then *overrides* the `entities` portion
+   of that rule with a new object. To *extend* the original `entities`, it again
+   begins by referencing `rules.datatypes.anat.nonparametric.entities`, and adding
+   the new entities `space` and `description`.
+
+### Expressions
+
+In order to define a rule, we describe a limited language for boolean expressions,
+that is, having values of `true` or `false`.
+These expressions may be used as `selectors`, determining whether a rule applies,
+or `checks`, determining whether a rule is satisfied.
+
+Re-examining `rules.checks.mri.PhasePartUnits` from above:
+
+```YAML
+---
+PhasePartUnits:
+  issue:
+    code: PHASE_UNITS
+    message: |
+      Phase images (with the `part-phase` entity) must have units
+      "rad" or "arbitrary".
+    level: error
+  selectors:
+    - modality == "mri"
+    - entities.part == "phase"
+    - '"Units" in sidecar'
+  checks:
+    - intersects([sidecar.Units], ["rad", "arbitrary"])
+```
+
+We see expressions may contain:
+
+* fields such as `modality`, `entities` (which has a `.part` subfield), `sidecar`
+* String literals such as `"mri"`, `"Units"` or `"rad"`
+* Lists containing fields or strings
+* Comparison operators such as `==` (equality) or `in` (subfield exists in field)
+* Functions such as `intersects()`
+
+In fact, the full list of fields is defined in the `meta.context.context` object,
+which (currently) contains at the top level:
+
+* `schema`: access to the schema itself
+* `dataset`: attributes of the whole dataset
+* `subject`: attributes of the current subject
+* `path`: the full path of the current file (relative to dataset root)
+* `entities`: an object of entities parsed from the path
+* `datatype`: the datatype, parsed from the path
+* `suffix`: the suffix, parsed from the path
+* `extension`: the file extension
+* `modality`: the file modality, determined by datatype
+* `sidecar`: the metadata values, accumulated by the inheritance principle
+* `associations`: associated files, discovered by the inheritance principle
+* `columns`: the columns in the current TSV file
+* `json`: the contents of the current JSON file
+* `nifti_header`: selected contents of the current NIfTI file's header
+
+Some of these are strings, while others are nested objects.
+These are to be populated by an *interpreter* of the schema, and provide the
+*namespace* in which expressions are evaluated.
+
+The following operators should be defined by an interpreter:
+
+| Operator | Definition | Example |
+|--|--|--|
+| `==` | equality | `suffix == "T1w"` |
+| `!=` | inequality | `entities.task != "rest"` |
+| `<`/`>` | less-than / greater-than | `sidecar.EchoTime < 0.5` |
+| `<=`/`>=` | less-than-or-equal / greater-than-or-equal | `0 <= 4` |
+| `in` | object lookup, true if RHS is a subfield of LHS | `"Units" in sidecar` |
+| `!` | negation, true if the following value is false, or vice versa | `!true == false` |
+| `&&` | conjunction, true if both RHS and LHS are true | `` |
+| `||` | disjunction, true if either RHS or LHS is true | `` |
+| `.` | object query, returns value of subfield | `sidecar.Units` |
+| `[]` | array index, returns value of Nth element (0-indexed) of list | `columns.participant_label[0]` |
+
+The following functions should be defined by an interpreter:
+
+| Function | Definition | Example | Note |
+|--|--|--|--|
+| `match(arg: str, pattern: str) -> bool` | `true` if `arg` matches the regular expression `pattern` (anywhere in string) | `match(extension, ".gz$")` | True if the file extension ends with `.gz` |
+| `type(arg: Any) -> str` | The name of the type, including `"array"`, `"object"`, `"null"` | `type(datatypes)` | Returns `"array"` |
+| `intersects(a: array, b: array) -> bool` | `true` if arguments contain any shared elements | `intersects(dataset.modalities, ["pet", "mri"])` | True if either PET or MRI data is found in dataset |
+| `length(arg: array) -> int` | Number of elements in an array | `length(columns.onset) > 0` | True if there is at least one value in the onset column |
+| `count(arg: array, val: any)` | Number of elements in an array equal to `val` | `count(columns.type, "EEG")` | The number of times "EEG" appears in the column "type" of the current TSV file |
+| `min(arg: array)` | The smallest non-`n/a` value in an array | `min(sidecar.SliceTiming) == 0` | A check that the onset of the first slice is 0s |
+| `max(arg: array)` | The largest non-`n/a` value in an array | `max(columns.onset)` | The time of the last onset in an events.tsv file |
+
+#### The special value `null`
+
+Missing values in the context object have the special value `null`.
+This value propagates through all of the above operations in a fully-defined,
+hopefully intuitive way.
+Most operations involving `null` simply resolve to `null`:
+
+| Operation | Result |
+|--|--|--|
+| `sidecar.MissingValue` | `null` |
+| `null.anything` | `null` |
+| `null[0]` | `null` |
+| `null && true` | `null` |
+| `null \|\| true` | `null` |
+| `!null` | `null` |
+| `match(null, pattern)` | `null` |
+| `intersects(list, null)` | `null` |
+| `length(null)` | `null` |
+| `count(null, val)` | `null` |
+| `count(list, null)` | `null` |
+| `min(null)` | `null` |
+| `max(null)` | `null` |
+
+The following operators have boolean results:
+
+| Operation | Result | Comment |
+|--|--|--|
+| `null == false` | `false` |
+| `null == true` | `false` |
+| `null != false` | `true` |
+| `null != true` | `true` |
+| `null == null` | `true` |
+| `null == 1` | `false` | Also `<`, `>`, `<=` and `>=` |
+| `"VolumeTiming" in null` | `false` |
+
+The `type()` function returns a string:
+
+| Operation | Result |
+|--|--|--|
+| `type(null)` | `"null"` |
+
+Finally, if an expression (selector or check) evaluates to `null`,
+the `null` will be interpreted equivalent to `false`.
+That is, a `null` selector will not apply the current rule, and a `null`
+check will fail.
+
 ## The format of the schema
 
 The schema is divided into two parts: the object definitions and the rules.
