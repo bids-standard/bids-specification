@@ -61,10 +61,7 @@ EntitiesPartMetadata:
   selectors:
     - entities.part == "phase"
   fields:
-    Units:
-      level: required
-      rules:
-        - '["rad", "arbitrary"].includes(value)'
+    Units: required
 
 EntitiesResMetadata:
   selectors:
