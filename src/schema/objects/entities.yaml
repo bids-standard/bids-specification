@@ -7,21 +7,21 @@ acquisition:
   name: acq
   display_name: Acquisition
   description: |
-    The `acq-<label>` entity corresponds to a custom label the
-    user MAY use to distinguish a different set of parameters used for
-    acquiring the same modality.
-    For example this should be used when a study includes two T1w images - one
-    full brain low resolution and one restricted field of view but high
-    resolution.
+    The `acq-<label>` entity corresponds to a custom label the user MAY use to distinguish
+    a different set of parameters used for acquiring the same modality.
+
+    For example, this should be used when a study includes two T1w images -
+    one full brain low resolution and one restricted field of view but high resolution.
     In such case two files could have the following names:
-    `sub-01_acq-highres_T1w.nii.gz` and `sub-01_acq-lowres_T1w.nii.gz`, however
-    the user is free to choose any other label than `highres` and `lowres` as long
+    `sub-01_acq-highres_T1w.nii.gz` and `sub-01_acq-lowres_T1w.nii.gz`;
+    however, the user is free to choose any other label than `highres` and `lowres` as long
     as they are consistent across subjects and sessions.
+
     In case different sequences are used to record the same modality
     (for example, `RARE` and `FLASH` for T1w)
     this field can also be used to make that distinction.
-    At what level of detail to make the distinction (for example,
-    just between `RARE` and `FLASH`, or between `RARE`, `FLASH`, and `FLASHsubsampled`)
+    The level of detail at which the distinction is made
+    (for example, just between `RARE` and `FLASH`, or between `RARE`, `FLASH`, and `FLASHsubsampled`)
     remains at the discretion of the researcher.
   type: string
   format: label
@@ -39,20 +39,21 @@ ceagent:
   name: ce
   display_name: Contrast Enhancing Agent
   description: |
-    The `ce-<label>` entity can be used to distinguish
-    sequences using different contrast enhanced images.
+    The `ce-<label>` entity can be used to distinguish sequences using different contrast enhanced images.
     The label is the name of the contrast agent.
-    The key `"ContrastBolusIngredient"` MAY also be added in the JSON file,
-    with the same label.
+
+    This entity represents the `"ContrastBolusIngredient"` metadata field.
+    Therefore, if the `ce-<label>` entity is present in a filename,
+    `"ContrastBolusIngredient"` MAY also be added in the JSON file, with the same label.
   type: string
   format: label
 chunk:
   name: chunk
   display_name: Chunk
   description: |
-    The `chunk-<index>` key/value pair is used to distinguish between different
-    regions, 2D images or 3D volumes files, of the same physical sample with
-    different fields of view acquired in the same imaging experiment.
+    The `chunk-<index>` key/value pair is used to distinguish between different regions,
+    2D images or 3D volumes files,
+    of the same physical sample with different fields of view acquired in the same imaging experiment.
   type: string
   format: index
 density:
@@ -60,8 +61,10 @@ density:
   display_name: Density
   description: |
     Density of non-parametric surfaces.
-    MUST have a corresponding `Density` metadata field to provide
-    interpretation.
+
+    This entity represents the `"Density"` metadata field.
+    Therefore, if the `den-<label>` entity is present in a filename,
+    `"Density"` MUST also be added in the JSON file, to provide interpretation.
 
     This entity is only applicable to derivative data.
   type: string
@@ -71,7 +74,7 @@ description:
   display_name: Description
   description: |
     When necessary to distinguish two files that do not otherwise have a
-    distinguishing entity, the `_desc-<label>` entity SHOULD be used.
+    distinguishing entity, the `desc-<label>` entity SHOULD be used.
 
     This entity is only applicable to derivative data.
   type: string
@@ -81,8 +84,13 @@ direction:
   display_name: Phase-Encoding Direction
   description: |
     The `dir-<label>` entity can be set to an arbitrary alphanumeric label
-    (for example, `dir-LR` or `dir-AP`) to distinguish different phase-encoding
-    directions.
+    (for example, `dir-LR` or `dir-AP`)
+    to distinguish different phase-encoding directions.
+
+    This entity represents the `"PhaseEncodingDirection"` metadata field.
+    Therefore, if the `dir-<label>` entity is present in a filename,
+    `"PhaseEncodingDirection"` MUST be defined in the associated metadata.
+    Please note that the `<label>` does not need to match the actual value of the field.
   type: string
   format: label
 echo:
@@ -90,12 +98,13 @@ echo:
   display_name: Echo
   description: |
     If files belonging to an entity-linked file collection are acquired at different
-    echo times, the `_echo-<index>` entity MUST be used to distinguish
-    individual files.
-    This entity represents the `"EchoTime"` metadata field. Please note that the `<index>`
-    denotes the number/index (in the form of a nonnegative integer), not the
-    `"EchoTime"` value which needs to be stored in the field `"EchoTime"` of the separate
-    JSON file.
+    echo times, the `echo-<index>` entity MUST be used to distinguish individual files.
+
+    This entity represents the `"EchoTime"` metadata field.
+    Therefore, if the `echo-<index>` entity is present in a filename,
+    `"EchoTime"` MUST be defined in the associated metadata.
+    Please note that the `<index>` denotes the number/index (in the form of a nonnegative integer),
+    not the `"EchoTime"` value of the separate JSON file.
   type: string
   format: index
 flip:
@@ -105,9 +114,12 @@ flip:
     If files belonging to an entity-linked file collection are acquired at different
     flip angles, the `_flip-<index>` entity pair MUST be used to distinguish
     individual files.
-    This entity represents the `"FlipAngle"` metadata field. Please note that the `<index>`
-    denotes the number/index (in the form of a nonnegative integer), not the `"FlipAngle"`
-    value which needs to be stored in the field `"FlipAngle"` of the separate JSON file.
+
+    This entity represents the `"FlipAngle"` metadata field.
+    Therefore, if the `flip-<index>` entity is present in a filename,
+    `"FlipAngle"` MUST be defined in the associated metadata.
+    Please note that the `<index>` denotes the number/index (in the form of a nonnegative integer),
+    not the `"FlipAngle"` value of the separate JSON file.
   type: string
   format: index
 hemisphere:
@@ -126,12 +138,14 @@ inversion:
   name: inv
   display_name: Inversion Time
   description: |
-    If files belonging to an entity-linked file collection are acquired at different
-    inversion times, the `_inv-<index>` entity MUST be used to distinguish
-    individual files.
-    This entity represents the `"InversionTime` metadata field. Please note that the `<index>`
-    denotes the number/index (in the form of a nonnegative integer), not the `"InversionTime"`
-    value which needs to be stored in the field `"InversionTime"` of the separate JSON file.
+    If files belonging to an entity-linked file collection are acquired at different inversion times,
+    the `inv-<index>` entity MUST be used to distinguish individual files.
+
+    This entity represents the `"InversionTime` metadata field.
+    Therefore, if the `inv-<index>` entity is present in a filename,
+    `"InversionTime"` MUST be defined in the associated metadata.
+    Please note that the `<index>` denotes the number/index (in the form of a nonnegative integer),
+    not the `"InversionTime"` value of the separate JSON file.
   type: string
   format: index
 label:
@@ -161,9 +175,12 @@ mtransfer:
     If files belonging to an entity-linked file collection are acquired at different
     magnetization transfer (MT) states, the `_mt-<label>` entity MUST be used to
     distinguish individual files.
-    This entity represents the `"MTState"` metadata field. Allowed label values for this
-    entity are `on` and `off`, for images acquired in presence and absence of an MT pulse,
-    respectively.
+
+    This entity represents the `"MTState"` metadata field.
+    Therefore, if the `mt-<label>` entity is present in a filename,
+    `"MTState"` MUST be defined in the associated metadata.
+    Allowed label values for this entity are `on` and `off`,
+    for images acquired in presence and absence of an MT pulse, respectively.
   type: string
   enum:
     - 'on'
@@ -210,19 +227,19 @@ reconstruction:
   name: rec
   display_name: Reconstruction
   description: |
-    The `rec-<label>` entity can be used to distinguish
-    different reconstruction algorithms (for example `MoCo` for the ones using motion
-    correction).
+    The `rec-<label>` entity can be used to distinguish different reconstruction algorithms
+    (for example, `MoCo` for the ones using motion correction).
   type: string
   format: label
 recording:
   name: recording
   display_name: Recording
   description: |
-    More than one continuous recording file can be included (with different
-    sampling frequencies).
-    In such case use different labels.
-    For example: `_recording-contrast`, `_recording-saturation`.
+    The `recording-<label>` entity can be used to distinguish continuous recording files.
+
+    This entity is commonly applied when continuous recordings have different sampling frequencies or start times.
+    For example, physiological recordings with different sampling frequencies may be distinguished using
+    labels like `recording-100Hz` and `recording-500Hz`.
   type: string
   format: label
 resolution:
@@ -230,8 +247,10 @@ resolution:
   display_name: Resolution
   description: |
     Resolution of regularly sampled N-dimensional data.
-    MUST have a corresponding `"Resolution"` metadata field to provide
-    interpretation.
+
+    This entity represents the `"Resolution"` metadata field.
+    Therefore, if the `res-<label>` entity is present in a filename,
+    `"Resolution"` MUST also be added in the JSON file, to provide interpretation.
 
     This entity is only applicable to derivative data.
   type: string
@@ -240,11 +259,14 @@ run:
   name: run
   display_name: Run
   description: |
+    The `run-<index>` entity is used to distinguish separate data acquisitions with the same acquisition parameters
+    and (other) entities.
+
     If several data acquisitions (for example, MRI scans or EEG recordings)
     with the same acquisition parameters are acquired in the same session,
     they MUST be indexed with the [`run-<index>`](../99-appendices/09-entities.md#run) entity:
-    `_run-1`, `_run-2`, `_run-3`, and so on (only nonnegative integers are allowed as
-    run labels).
+    `_run-1`, `_run-2`, `_run-3`, and so on
+    (only nonnegative integers are allowed as run indices).
 
     If different entities apply,
     such as a different session indicated by [`ses-<label>`](../99-appendices/09-entities.md#ses),
@@ -257,22 +279,17 @@ sample:
   name: sample
   display_name: Sample
   description: |
-    A sample pertaining to a subject such as tissue, primary cell
-    or cell-free sample.
-    The `sample-<label>` entity is used to distinguish between different
-    samples from the same subject.
-    The label MUST be unique per subject and is RECOMMENDED to be unique
-    throughout the dataset.
+    A sample pertaining to a subject such as tissue, primary cell or cell-free sample.
+    The `sample-<label>` entity is used to distinguish between different samples from the same subject.
+    The label MUST be unique per subject and is RECOMMENDED to be unique throughout the dataset.
   type: string
   format: label
 session:
   name: ses
   display_name: Session
   description: |
-    A logical grouping of neuroimaging and behavioral data consistent across
-    subjects.
-    Session can (but doesn't have to) be synonymous to a visit in a
-    longitudinal study.
+    A logical grouping of neuroimaging and behavioral data consistent across subjects.
+    Session can (but doesn't have to) be synonymous to a visit in a longitudinal study.
     In general, subjects will stay in the scanner during one session.
     However, for example, if a subject has to leave the scanner room and then
     be re-positioned on the scanner bed, the set of MRI acquisitions will still
@@ -280,6 +297,7 @@ session:
     Similarly, in situations where different data types are obtained over
     several visits (for example fMRI on one day followed by DWI the day after)
     those can be grouped in one session.
+
     Defining multiple sessions is appropriate when several identical or similar
     data acquisitions are planned and performed on all -or most- subjects,
     often in the case of some intervention between sessions
@@ -290,40 +308,37 @@ space:
   name: space
   display_name: Space
   description: |
-    The space entity can be used to indicate
-    the way in which electrode positions are interpreted
-    (for EEG/MEG/iEEG data) or
-    the spatial reference to which a file has been aligned (for MRI data).
-    The space `<label>` MUST be taken from one of the modality specific lists in
+    The `space-<label>` entity can be used to indicate the way in which electrode positions are interpreted
+    (for EEG/MEG/iEEG data)
+    or the spatial reference to which a file has been aligned (for MRI data).
+    The `<label>` MUST be taken from one of the modality specific lists in
     [Appendix VIII](../99-appendices/08-coordinate-systems.md).
-    For example for iEEG data, the restricted keywords listed under
-    [iEEG Specific Coordinate Systems](../99-appendices/08-coordinate-systems.md#ieeg-specific-coordinate-systems)
+    For example, for iEEG data, the restricted keywords listed under
+    [iEEG-Specific Coordinate Systems](../99-appendices/08-coordinate-systems.md#ieeg-specific-coordinate-systems)
     are acceptable for `<label>`.
 
-    For EEG/MEG/iEEG data, this entity can be applied to raw data, but
-    for other data types, it is restricted to derivative data.
+    For EEG/MEG/iEEG data, this entity can be applied to raw data,
+    but for other data types, it is restricted to derivative data.
   type: string
   format: label
 split:
   name: split
   display_name: Split
   description: |
-    In the case of long data recordings that exceed a file size of 2Gb, the
-    .fif files are conventionally split into multiple parts.
+    In the case of long data recordings that exceed a file size of 2Gb,
+    `.fif` files are conventionally split into multiple parts.
     Each of these files has an internal pointer to the next file.
-    This is important when renaming these split recordings to the BIDS
-    convention.
+    This is important when renaming these split recordings to the BIDS convention.
 
     Instead of a simple renaming, files should be read in and saved under their
     new names with dedicated tools like [MNE-Python](https://mne.tools/),
-    which will ensure that not only the file names, but also the internal file
-    pointers will be updated.
-    It is RECOMMENDED that .fif files with multiple parts use the
-    `split-<index>` entity to indicate each part.
+    which will ensure that not only the file names, but also the internal file pointers, will be updated.
+
+    It is RECOMMENDED that `.fif` files with multiple parts use the `split-<index>` entity to indicate each part.
     If there are multiple parts of a recording and the optional `scans.tsv` is provided,
-    remember to list all files separately in `scans.tsv` and that the entries for the
-    `acq_time` column in `scans.tsv` MUST all be identical, as described in
-    [Scans file](../03-modality-agnostic-files.md#scans-file).
+    all files MUST be listed separately in `scans.tsv` and
+    the entries for the `acq_time` column in `scans.tsv` MUST all be identical,
+    as described in [Scans file](../03-modality-agnostic-files.md#scans-file).
   type: string
   format: index
 stain:
@@ -332,10 +347,14 @@ stain:
   description: |
     The `stain-<label>` key/pair values can be used to distinguish image files
     from the same sample using different stains or antibodies for contrast enhancement.
-    Stains SHOULD be indicated in the `"SampleStaining"` key in the sidecar JSON file,
+
+    This entity represents the `"SampleStaining"` metadata field.
+    Therefore, if the `stain-<label>` entity is present in a filename,
+    `"SampleStaining"` SHOULD be defined in the associated metadata,
     although the label may be different.
-    Description of antibodies SHOULD also be indicated in `"SamplePrimaryAntibodies"`
-    and/or `"SampleSecondaryAntobodies"` as appropriate.
+
+    Descriptions of antibodies SHOULD also be indicated in the `"SamplePrimaryAntibodies"`
+    and/or `"SampleSecondaryAntobodies"` metadata fields, as appropriate.
   type: string
   format: label
 subject:
@@ -351,29 +370,36 @@ task:
   description: |
     A set of structured activities performed by the participant.
     Tasks are usually accompanied by stimuli and responses, and can greatly vary in complexity.
-    For the purpose of this specification we consider the so-called "resting state" a task,
-    although events files are not expected for resting state data.
-    Additionally, a common convention in the specification is to include the word "rest" in
-    the `task` label for resting state files (for example, `task-rest`).
 
     In the context of brain scanning, a task is always tied to one data acquisition.
     Therefore, even if during one acquisition the subject performed multiple conceptually different behaviors
     (with different sets of instructions) they will be considered one (combined) task.
+
+    While tasks may be repeated across multiple acquisitions,
+    a given task may have different sets of stimuli (for example, randomized order) and participant responses
+    across subjects, sessions, and runs.
+
     The `task-<label>` MUST be consistent across subjects and sessions.
 
     Files with the `task-<label>` entity SHOULD have an associated
     [events file](SPEC_ROOT/04-modality-specific-files/05-task-events.md#task-events),
     as well as certain metadata fields in the associated JSON file.
 
+    For the purpose of this specification we consider the so-called "resting state" a task,
+    although events files are not expected for resting state data.
+    Additionally, a common convention in the specification is to include the word "rest" in
+    the `task` label for resting state files (for example, `task-rest`).
   type: string
   format: label
 tracer:
   name: trc
   display_name: Tracer
   description: |
-    The `trc-<label>` entity can be used to distinguish
-    sequences using different tracers.
-    The key `"TracerName"` MUST also be included in the associated JSON file,
-    although the label may be different.
+    The `trc-<label>` entity can be used to distinguish sequences using different tracers.
+
+    This entity represents the `"TracerName"` metadata field.
+    Therefore, if the `trc-<label>` entity is present in a filename,
+    `"TracerName"` MUST be defined in the associated metadata.
+    Please note that the `<label>` does not need to match the actual value of the field.
   type: string
   format: label

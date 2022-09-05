@@ -1,7 +1,7 @@
 ---
 CommonDerivativeFields:
   selectors:
-    - dataset.DatasetType == "derivative"
+    - dataset.dataset_description.DatasetType == "derivative"
   fields:
     Description:
       level: recommended
@@ -11,7 +11,7 @@ CommonDerivativeFields:
 
 SpatialReferenceEntity:
   selectors:
-    - dataset.DatasetType == "derivative"
+    - dataset.dataset_description.DatasetType == "derivative"
     - '"space" in entities'
   fields:
     SpatialReference:
@@ -22,14 +22,14 @@ SpatialReferenceEntity:
 
 SpatialReferenceNonStandard:
   selectors:
-    - dataset.DatasetType == "derivative"
-    - '!(schema.objects.metadata._StandardTemplateCoordSys).includes(entities.space)'
+    - dataset.dataset_description.DatasetType == "derivative"
+    - '!intersects(schema.objects.metadata._StandardTemplateCoordSys, [entities.space])'
   fields:
     SpatialReference: required
 
 SpatialReferenceNoEntity:
   selectors:
-    - dataset.DatasetType == "derivative"
+    - dataset.dataset_description.DatasetType == "derivative"
     - '!("space" in entities)'
   fields:
     SpatialReference: required
@@ -38,7 +38,7 @@ SpatialReferenceNoEntity:
 # different way
 MaskDerivatives:
   selectors:
-    - dataset.DatasetType == "derivative"
+    - dataset.dataset_description.DatasetType == "derivative"
     - suffix == "mask"
   fields:
     Type: recommended
@@ -47,7 +47,7 @@ MaskDerivatives:
 
 MaskDerivativesAtlas:
   selectors:
-    - dataset.DatasetType == "derivative"
+    - dataset.dataset_description.DatasetType == "derivative"
     - suffix == "mask"
     - '"label" in entities'
   fields:
@@ -57,15 +57,15 @@ MaskDerivativesAtlas:
 
 SegmentationCommon:
   selectors:
-    - dataset.DatasetType == "derivative"
-    - '["dseg", "probseg"].includes(suffix)'
+    - dataset.dataset_description.DatasetType == "derivative"
+    - '!intersects([suffix], ["dseg", "probseg"])'
   fields:
     Manual: optional
 
 SegmentationCommonAtlas:
   selectors:
-    - dataset.DatasetType == "derivative"
-    - '["dseg", "probseg"].includes(suffix)'
+    - dataset.dataset_description.DatasetType == "derivative"
+    - '!intersects([suffix], ["dseg", "probseg"])'
     - '"atlas" in entities'
   fields:
     Atlas:
@@ -75,16 +75,16 @@ SegmentationCommonAtlas:
 # Derivatives -> Imaging data types
 ImageDerivatives:
   selectors:
-    - dataset.DatasetType == "derivative"
-    - '["mri", "pet"].includes(modality)'
-    - '[".nii", ".nii.gz"].includes(extension)'
+    - dataset.dataset_description.DatasetType == "derivative"
+    - '!intersects([modality], ["mri", "pet"])'
+    - '!match(extension, "^\.nii(\.gz)?$")'
   fields:
     SkullStripped: required
 
 ImageDerivativeResEntity:
   selectors:
-    - dataset.DatasetType == "derivative"
-    - '["mri", "pet"].includes(modality)'
+    - dataset.dataset_description.DatasetType == "derivative"
+    - '!intersects([modality], ["mri", "pet"])'
     - '"res" in entities'
   fields:
     Resolution:
@@ -93,8 +93,8 @@ ImageDerivativeResEntity:
 
 ImageDerivativeDenEntity:
   selectors:
-    - dataset.DatasetType == "derivative"
-    - '["mri", "pet"].includes(modality)'
+    - dataset.dataset_description.DatasetType == "derivative"
+    - '!intersects([modality], ["mri", "pet"])'
     - '"den" in entities'
   fields:
     Density:
