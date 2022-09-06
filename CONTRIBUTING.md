@@ -318,6 +318,10 @@ you will probably have to also run:
 pip install -e tools/schemacode[render]
 ```
 
+This installs the `bidsschemacode` package in "editable" mode,
+so that any changes you make to the code will be reflected when you use it,
+such as when you build the documentation locally.
+
 #### 4. Ready to build!
 
 Using the terminal (command line) please enter `mkdocs serve`.
