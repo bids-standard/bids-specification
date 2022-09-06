@@ -117,17 +117,17 @@ def test_make_entity_table(schema_obj):
 
     # Non-exhaustive list covering both value and index formats
     expected_entities = [
-        "[`acq-<label>`](09-entities.md#acq)",
-        "[`ses-<label>`](09-entities.md#ses)",
-        "[`sample-<label>`](09-entities.md#sample)",
-        "[`task-<label>`](09-entities.md#task)",
-        "[`acq-<label>`](09-entities.md#acq)",
-        "[`ce-<label>`](09-entities.md#ce)",
-        "[`trc-<label>`](09-entities.md#trc)",
-        "[`stain-<label>`](09-entities.md#stain)",
-        "[`rec-<label>`](09-entities.md#rec)",
-        "[`dir-<label>`](09-entities.md#dir)",
-        "[`run-<index>`](09-entities.md#run)",
+        "[`acq-<label>`](./99-appendices/09-entities.md#acq)",
+        "[`ses-<label>`](./99-appendices/09-entities.md#ses)",
+        "[`sample-<label>`](./99-appendices/09-entities.md#sample)",
+        "[`task-<label>`](./99-appendices/09-entities.md#task)",
+        "[`acq-<label>`](./99-appendices/09-entities.md#acq)",
+        "[`ce-<label>`](./99-appendices/09-entities.md#ce)",
+        "[`trc-<label>`](./99-appendices/09-entities.md#trc)",
+        "[`stain-<label>`](./99-appendices/09-entities.md#stain)",
+        "[`rec-<label>`](./99-appendices/09-entities.md#rec)",
+        "[`dir-<label>`](./99-appendices/09-entities.md#dir)",
+        "[`run-<index>`](./99-appendices/09-entities.md#run)",
     ]
 
     for expected_entity in expected_entities:
@@ -173,7 +173,7 @@ def test_make_sidecar_table(schema_obj):
     assert len(rendered_table) == len(fields) + 2
 
     for field, render_row in zip(fields, rendered_table[2:]):
-        assert render_row.startswith(f"| {field}")
+        assert render_row.startswith(f"| [{field}](")
         spec = fields[field]
         if isinstance(spec, str):
             level = spec

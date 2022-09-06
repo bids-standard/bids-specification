@@ -95,13 +95,14 @@ def make_entity_definitions(schema, src_path=None):
     text = ""
     for entity in entity_order:
         entity_info = entity_definitions[entity]
-        entity_text = _make_entity_definition(entity, entity_info, src_path)
+        entity_text = _make_entity_definition(entity, entity_info)
         text += "\n" + entity_text
 
+    text = text.replace("SPEC_ROOT", get_relpath(src_path))
     return text
 
 
-def _make_entity_definition(entity, entity_info, src_path):
+def _make_entity_definition(entity, entity_info):
     """Describe an entity."""
     entity_shorthand = entity_info["name"]
     text = ""
@@ -116,7 +117,6 @@ def _make_entity_definition(entity, entity_info, src_path):
         text += "\n\n"
 
     description = entity_info["description"]
-    description = description.replace("SPEC_ROOT", get_relpath(src_path))
     text += f"**Definition**: {description}"
     return text
 
@@ -191,8 +191,6 @@ def make_glossary(schema, src_path=None):
         obj_desc = obj_desc.replace("\n\n", "<br>")
         # Otherwise a newline corresponds to a space
         obj_desc = obj_desc.replace("\n", " ")
-        # Spec internal links need to be replaced
-        obj_desc = obj_desc.replace("SPEC_ROOT", get_relpath(src_path))
 
         text += f'\n<a name="{obj_marker}"></a>'
         text += f"\n## {obj_key}\n\n"
@@ -221,6 +219,9 @@ def make_glossary(schema, src_path=None):
         if temp_obj_def:
             temp_obj_def = yaml.dump(temp_obj_def)
             text += f"**Schema information**:\n```yaml\n{temp_obj_def}\n```"
+
+    # Spec internal links need to be replaced
+    text = text.replace("SPEC_ROOT", get_relpath(src_path))
 
     return text
 
@@ -508,7 +509,7 @@ def append_filename_template_legend(text, pdf_format=False):
     return text
 
 
-def make_entity_table(schema, tablefmt="github", **kwargs):
+def make_entity_table(schema, tablefmt="github", src_path=None, **kwargs):
     """Produce entity table (markdown) based on schema.
 
     Parameters
@@ -528,8 +529,6 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
     """
     schema = Namespace(filter_schema(schema.to_dict(), **kwargs))
 
-    ENTITIES_FILE = "09-entities.md"
-
     # prepare the table based on the schema
     # import pdb; pdb.set_trace()
     header = ["Entity", "DataType"]
@@ -544,7 +543,7 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
         header.append(entity_spec["display_name"])
         formats.append(
             f'[`{entity_shorthand}-<{entity_spec.get("format", "label")}>`]'
-            f"({ENTITIES_FILE}#{entity_shorthand})"
+            f"({ENTITIES_PATH}.md#{entity_shorthand})"
         )
 
     # Go through data types
@@ -556,6 +555,7 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
         for dtype_spec in dtype_specs.values():
             if dtype == "derivatives":
                 continue
+
             suffixes = dtype_spec.get("suffixes")
 
             # Skip this part of the schema if no suffixes are found.
@@ -564,6 +564,9 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
                 continue
 
             # TODO: <br> is specific for html form
+            suffixes = [
+                f"[{suffix}]({GLOSSARY_PATH}.md#objects.suffixes.{suffix})" for suffix in suffixes
+            ]
             suffixes_str = " ".join(suffixes) if suffixes else ""
             dtype_row = [dtype] + ([""] * len(all_entities))
             for ent, ent_info in dtype_spec.get("entities", {}).items():
@@ -616,7 +619,10 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
                 dtype_rows[suffixes_str] = dtype_row
 
         # Add datatype to first column and reformat it
-        dtype_rows = {dtype + "<br>({})".format(k): v for k, v in dtype_rows.items()}
+        dtype_rows = {
+            f"[{dtype}]({GLOSSARY_PATH}.md#objects.datatypes.{dtype})<br>({k})": v
+            for k, v in dtype_rows.items()
+        }
         dtype_rows = [[k] + v for k, v in dtype_rows.items()]
 
         table += dtype_rows
@@ -653,6 +659,7 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
 
     # Print it as markdown
     table_str = tabulate(table, headers="keys", tablefmt=tablefmt)
+    table_str = table_str.replace("SPEC_ROOT", get_relpath(src_path))
     return table_str
 
 
@@ -673,25 +680,32 @@ def make_suffix_table(schema, suffixes, src_path=None, tablefmt="github"):
     table_str : str
         Tabulated table as a string.
     """
-    # The filter function doesn't work here.
-    suffix_schema = schema["objects"]["suffixes"]
+    field_type = "suffixes"
 
-    all_suffixes = pd.DataFrame.from_records(list(suffix_schema.values()))
-    df = all_suffixes[all_suffixes.value.isin(suffixes)][["value", "display_name", "description"]]
+    # The filter function doesn't work here.
+    subschema = schema["objects"][field_type]
+
+    all_suffixes = pd.DataFrame.from_dict(subschema, orient="index")
+    df = all_suffixes[all_suffixes.value.isin(suffixes)]
+    df = df.reset_index(drop=False)
 
     suffixes_not_found = set(suffixes) - set(df.value)
     if suffixes_not_found:
         raise Exception("Warning: Missing suffixes: {}".format(", ".join(suffixes_not_found)))
 
-    def preproc(desc):
+    def preproc_desc(desc):
         return (
             desc.replace("\\\n", "")  # A backslash before a newline means continue a string
             .replace("\n\n", "<br>")  # Two newlines should be respected
             .replace("\n", " ")  # Otherwise a newline corresponds to a space
-            .replace("SPEC_ROOT", get_relpath(src_path))  # Spec internal links need to be replaced
         )
 
-    df.description = df.description.apply(preproc)
+    def preproc_suffix(row):
+        return f"[{row['value']}]({GLOSSARY_PATH}.md#objects.{field_type}.{row['index']})"
+
+    df.description = df.description.apply(preproc_desc)
+    df["suffix"] = df.apply(preproc_suffix, axis=1)
+    df = df[["suffix", "display_name", "description"]]
     df.columns = ["`suffix`", "**Name**", "**Description**"]
     df = df.reset_index(drop=False)
     df = df.set_index("**Name**")
@@ -699,13 +713,15 @@ def make_suffix_table(schema, suffixes, src_path=None, tablefmt="github"):
 
     # Print it as markdown
     table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
+    # Spec internal links need to be replaced
+    table_str = table_str.replace("SPEC_ROOT", get_relpath(src_path))
     return table_str
 
 
 def make_obj_table(
     subschema,
     field_info,
-    field_type,
+    field_type=None,
     src_path=None,
     tablefmt="github",
     n_values_to_combine=15,
@@ -738,12 +754,14 @@ def make_obj_table(
     """
     # Use the "name" field in the table, to allow for filenames to not match "names".
     df = pd.DataFrame(
-        index=[subschema[f]["name"] for f in field_info],
-        columns=["**Requirement Level**", "**Data type**", "**Description**"],
+        index=field_info.keys(),
+        columns=["**Key name**", "**Requirement Level**", "**Data type**", "**Description**"],
     )
-    df.index.name = "**Key name**"
     for field in subschema.keys():
         field_name = subschema[field]["name"]
+        if field_type:
+            field_name = f"[{field_name}]({GLOSSARY_PATH}.md#objects.{field_type}.{field})"
+
         requirement_info = field_info[field]
         description_addendum = ""
         if isinstance(requirement_info, tuple):
@@ -777,17 +795,22 @@ def make_obj_table(
         if valid_values_str:
             description += "\n\n\n\n" + valid_values_str
 
-        # Spec internal links need to be replaced
-        description = description.replace("SPEC_ROOT", get_relpath(src_path))
-
-        df.loc[field_name] = [
+        df.loc[field] = [
+            field_name,
             normalize_breaks(requirement_info),
             type_string,
             normalize_breaks(description),
         ]
 
+    df = df.set_index("**Key name**", drop=True)
+    df.index.name = "**Key name**"
+
     # Print it as markdown
     table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
+
+    # Spec internal links need to be replaced
+    table_str = table_str.replace("SPEC_ROOT", get_relpath(src_path))
+
     return table_str
 
 
@@ -905,6 +928,7 @@ def make_metadata_table(schema, field_info, src_path=None, tablefmt="github"):
         print("Warning: Missing fields: {}".format(", ".join(dropped_fields)))
 
     subschema = {k: v for k, v in subschema.items() if k in retained_fields}
+    # inverted_schema = {v["name"]: k for k, v in subschema.items()}
 
     table_str = make_obj_table(
         subschema,
@@ -1003,6 +1027,7 @@ def make_columns_table(
     table_str : str
         The tabulated table as a Markdown string.
     """
+    src_path = get_relpath(src_path)
     fields = list(column_info.keys())
     # The filter function doesn't work here.
     field_type = "columns"
@@ -1016,10 +1041,9 @@ def make_columns_table(
     # Use the "name" field in the table, to allow for filenames to not match
     # "names".
     df = pd.DataFrame(
-        index=[subschema[f]["name"] for f in retained_fields],
-        columns=["**Requirement Level**", "**Data type**", "**Description**"],
+        index=retained_fields,
+        columns=["**Column name**", "**Requirement Level**", "**Data type**", "**Description**"],
     )
-    df.index.name = "**Column name**"
     for field in retained_fields:
         field_name = subschema[field]["name"]
         requirement_info = column_info[field]
@@ -1029,8 +1053,9 @@ def make_columns_table(
 
         requirement_info = requirement_info.replace(
             "DEPRECATED",
-            "[DEPRECATED](/02-common-principles.html#definitions)",
+            "[DEPRECATED](SPEC_ROOT/02-common-principles.html#definitions)",
         )
+        field_name = f"[{field_name}]({GLOSSARY_PATH}.md#objects.columns.{field})"
 
         type_string = utils.resolve_metadata_type(subschema[field])
 
@@ -1052,16 +1077,19 @@ def make_columns_table(
         if valid_values_str:
             description += "\n\n\n\n" + valid_values_str
 
-        description = description.replace("SPEC_ROOT", get_relpath(src_path))
-
-        df.loc[field_name] = [
+        df.loc[field] = [
+            field_name,
             normalize_breaks(requirement_info),
             type_string,
             normalize_breaks(description),
         ]
 
+    df = df.set_index("**Column name**", drop=True)
+    df.index.name = "**Column name**"
+
     # Print it as markdown
     table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
+    table_str = table_str.replace("SPEC_ROOT", src_path)
     return table_str
 
 
@@ -1086,13 +1114,13 @@ def define_common_principles(schema, src_path=None):
     order = schema["rules"]["common_principles"]
     for i_prin, principle in enumerate(order):
         principle_name = common_principles[principle]["display_name"]
-        principle_desc = common_principles[principle]["description"].replace(
-            "SPEC_ROOT",
-            get_relpath(src_path),
+        substring = (
+            f"{i_prin + 1}. **{principle_name}** - {common_principles[principle]['description']}"
         )
-        substring = f"{i_prin + 1}. **{principle_name}** - {principle_desc}"
         string += substring
         if i_prin < len(order) - 1:
             string += "\n\n"
+
+    string = string.replace("SPEC_ROOT", get_relpath(src_path))
 
     return string
