@@ -4,8 +4,10 @@ theme:
     name: material
     favicon: images/favicon.png
     logo: images/logo.png
+    custom_dir: src/overrides
     features:
       - navigation.sections
+      - header.autohide
 copyright: Copyright &copy; 2018-2022, BIDS Contributors - <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
 extra:
     generator: false
