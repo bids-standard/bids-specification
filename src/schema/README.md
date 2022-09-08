@@ -262,32 +262,90 @@ the `null` will be interpreted equivalent to `false`.
 That is, a `null` selector will not apply the current rule, and a `null`
 check will fail.
 
-## The format of the schema
+## Object files
 
-The schema is divided into two parts: the object definitions and the rules.
-
-The object definitions (files in `objects/`) describe attributes of individual
-objects or data types in the specification.
-Common information in these files includes full names, descriptions, and
-constraints on valid values.
+Object files define "objects" or "terms", which are semantic descriptions of
+concepts used in BIDS. These reside under the `object.*` namespace in the schema.
 These files **do not** describe how objects of different types
 (for example file suffixes and file entities) interact with one another, or
 whether objects are required in a given dataset or file.
 
-The rules (files in `rules/`) describe how objects related to one another,
-as well as their requirement levels.
+### Overview
 
-## Object files
+There are currently 11 sub-namespaces, which fall into five rough categories.
+The namespaces are:
 
-The types of objects currently supported in the schema are:
+| Namespace | Description | Group |
+|--|--|--|
+| `objects.common_principles` | Terms that are used throughout BIDS | General terms |
+| `objects.modalities` | Broad categories of data represented in BIDS, roughly matching recording instrument | General terms |
+| `objects.entities` | Name-value pairs appearing in file names | Name/value terms |
+| `objects.metadata` | Name-value pairs appearing in JSON files | Name/value terms |
+| `objects.columns` | Column headings and values appearing in TSV files | Name/value terms |
+| `objects.datatypes` | Subdirectories that organize files by type (e.g., `anat`, `eeg`) | Value terms |
+| `objects.suffixes` | Filename suffixes that describe the contents of the file | Value terms |
+| `objects.extensions` | Filename component that describe the format of the file | Value terms |
+| `objects.formats` | Terms that define the forms values (for example, in metadata) might take | Formats |
+| `objects.associated_data` | Directories that may appear at the root of a dataset | Files |
+| `objects.top_level_files` | Files that may appear at the root of a dataset | Files |
 
--   modalities,
--   datatypes,
--   entities,
--   suffixes,
--   metadata,
--   top-level files,
--   and non-BIDS associated directories.
+Because these objects vary, the contents of each namespace can vary.
+Common fields to all objects:
+
+| Field | Description |
+|--|--|
+| `display_name` | A human-friendly name, for tools to display; may include spaces |
+| `description` | A description of the term that can be understood that should not depend on particular surrounding text; may contain markdown for rendering |
+
+The name/value terms groups (`entities`, `metadata` and `columns`) define terms where
+a name, when present, has a given meaning, and its value may be restricted. These objects
+additionally have the field:
+
+| Field | Description |
+|--|--|
+| `name` | For terms that can take on multiple values (e.g., entities, metadata fields), the name of the term as it appears in the specification and in a dataset; must be alphanumeric; mutually exclusive with `value` |
+| `type` | The type (e.g., `string`, `integer`, `object`) of values the term describes |
+| `format` | The format of the term (defined in `objects.formats`) |
+
+Value terms groups (`datatypes`, `suffixes`, `extensions`) define terms where a field
+can take on multiple values. For example, a file has one datatype, as compared to a
+collection of entities. These objects may have the fields:
+
+| Field | Description |
+|--|--|
+| `value` | For terms that cannot take on multiple values (e.g., suffixes, extensions), the string value of the term |
+
+The `formats` terms provide one additional field:
+
+| Field | Description |
+|--|--|
+| `pattern` | Regular expression validating a string rendering of a value |
+
+#### Value constraints
+
+For name/value terms, the `type` and `format` fields allow constraints to be placed on
+the values described by the names.
+
+Additional fields may apply to further constrain the type:
+
+| Field | Description |
+|--|--|
+| `maximum`/`minimum`/`exclusiveMinimum` | Value ranges for `integer` and `number` types |
+| `maxValue`/`minValue` | Value ranges for `integer` and `number` types |
+| `maxItems`/`minItems` | Size ranges for `array` types |
+| `enum` | List of accepted values for `string` types |
+
+Some values may be more flexible, allowing multiple possible values, or may be
+arrays or objects:
+
+| Field | Description |
+|--|--|
+| `anyOf` | A list of constraints, any of which could apply |
+| `items` | The array described contains values whose types are constrained |
+| `properties` | The object described has a given set of fields; the values of these fields may be constrained |
+| `additionalProperties` | The object described has constraints on its values, but not the names |
+
+### Detailed exploration
 
 Each of these object types has a single file in the `objects/` directory.
 
