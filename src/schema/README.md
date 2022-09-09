@@ -73,6 +73,29 @@ and `rules.checks.mri.PhasePartUnits.issue` refers to the object:
 These qualified names may be used in this README, as well as in *references* and
 *expressions*.
 
+### Description formatting
+
+Many objects throughout the schema have `description` fields, which will typically be
+rendered somewhere in the specification. Because the specification is written in
+[Markdown](https://en.wikipedia.org/wiki/Markdown), these description fields may also
+contain Markdown, including links to other locations in the specification.
+
+Because the same description may be used in multiple locations, a mechanism is needed
+to ensure that the correct path is discovered to render the description in each location.
+To do this, the path should follow the form `SPEC_ROOT/path/within/source.md#anchor`.
+For example, to link to the
+[Definitions](https://bids-specification.readthedocs.io/en/stable/02-common-principles.html#definitions)
+section of
+[Common principles](https://bids-specification.readthedocs.io/en/stable/02-common-principles.html),
+use the path `SPEC_ROOT/02-common-principles.md#definitions`, e.g.,
+
+    [Common principles - Definitions](SPEC_ROOT/02-common-principles.md#definitions)
+
+Note that the Markdown extension `.md` MUST be used for this to render correctly.
+
+For more information please see the following pull request and linked discussions:
+[#1096](https://github.com/bids-standard/bids-specification/pull/1096)
+
 ### References
 
 Some schema entries take the form:
