@@ -1,13 +1,27 @@
-{% extends "base.html" %} 
-
-{% block announce %}
-  <h2>ANNOUNCEMENT: Nomination for the BIDS steering group election</h2>
-  <button>
-    <a
-      href="https://neurostars.org/t/bids-steering-group-election-nomination-period/23461"
-      target="_blank"
-    >
-      See here for more information.
-    </a>
-  </button>
+{% extends "base.html" %} {% block announce %}
+<div>
+  <style>
+    .announcement {
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 0;
+      margin: 0
+    }
+  </style>
+  <div class="announcement">
+    <h2>
+      <b>ANNOUNCEMENT</b><br>
+      Nomination for the BIDS steering group election<br>
+      <span color="blue">
+        <a
+          href="https://neurostars.org/t/bids-steering-group-election-nomination-period/23461"
+          target="_blank"
+        >
+          See here for more information.
+        </a>
+      </span>
+    </h2>
+  </div>
+</div>
 {% endblock %}
