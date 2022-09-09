@@ -364,45 +364,18 @@ arrays or objects:
 | `properties`           | The object described has a given set of fields; the values of these fields may be constrained |
 | `additionalProperties` | The object described has constraints on its values, but not the names                         |
 
-### Detailed exploration
-
-Each of these object types has a single file in the `objects/` directory.
-
--   `modalities.yaml`: The modalities, or types of technology, used to acquire data in a BIDS dataset.
-    These modalities are not reflected directly in the specification.
-    For example, while both fMRI and DWI data are acquired with an MRI,
-    in a BIDS dataset they are stored in different directories reflecting the two different `datatypes`.
-
--   `datatypes.yaml`: Data types supported by the specification.
-    The only information provided in the file is:
-
-    1.  a full list of valid BIDS datatypes
-    1.  each datatype's full name
-    1.  a free text description of the datatype.
-
--   `entities.yaml`: Entities (key-value pairs in directory and filenames).
-
--   `metadata.yaml`: All valid metadata fields that are explicitly supported in BIDS sidecar JSON files.
-
--   `columns.yaml`: All valid columns that are explicitly supported in BIDS TSV files.
-
--   `suffixes.yaml`: Valid file suffixes.
-
--   `top_level_files.yaml`: Valid top-level files which may appear in a BIDS dataset.
-
--   `associated_data.yaml`: Directories that may appear within a dataset directory without following BIDS rules.
-
 ### On re-used objects with different definitions
 
-If an object may mean something different depending on where it is used within the specification,
-then this must be reflected in the schema.
-Specifically, each version of the object must have its own definition within the relevant file.
-However, since object files are organized as dictionaries, each object must have a unique key.
-Thus, we append a suffix to each re-used object's key in order to make it unique.
-For objects with `CamelCase` names (for example, metadata fields), the suffix will start with a single underscore (`_`).
-For objects with `snake_case` names, two underscores must be used.
+In a few cases, two objects with the same name appear multiple times in the specification.
+When this happens, it is preferred to find a common definition, and clarify it in the rules (see below).
+However, in some cases, the object description and permissible values differ, and it needs to be defined
+as two separate objects.
+The following conventions are used:
 
-There should also be a comment near the object definition in the YAML file describing the nature of the different objects.
+1.  Each specific term takes on the form `<term>_<context>`, where `<term>` is the common name that
+    the two (or more) terms share, `<context>` indicates when the specific term applies.
+2.  If the `<term>` appears in `snake_case` (meaning it or similar objects may contain underscores),
+    then `<context>` begins with an extra `_`.
 
 For example, the TSV column `"reference"` means different things when used for EEG data, as compared to iEEG data.
 As such, there are two definitions in `columns.yaml` for the `"reference"` column: `"reference__eeg"` and `"reference__ieeg"`.
@@ -411,6 +384,7 @@ As such, there are two definitions in `columns.yaml` for the `"reference"` colum
 # reference column for channels.tsv files for EEG data
 reference__eeg:
   name: reference
+  display_name: Electrode reference
   description: |
     Name of the reference electrode(s).
     This column is not needed when it is common to all channels.
@@ -419,21 +393,16 @@ reference__eeg:
 # reference column for channels.tsv files for iEEG data
 reference__ieeg:
   name: reference
+  display_name: Electrode reference
   description: |
-    Specification of the reference (for example, 'mastoid', 'ElectrodeName01', 'intracranial', 'CAR', 'other', 'n/a').
+    Specification of the reference (for example, `mastoid`, `ElectrodeName01`, `intracranial`, `CAR`, `other`, `n/a`).
     If the channel is not an electrode channel (for example, a microphone channel) use `n/a`.
   anyOf:
-  - type: string
-  - type: string
-    enum:
-    - n/a
+    - type: string
+    - type: string
+      enum:
+        - n/a
 ```
-
-When adding new object definitions to the schema,
-every effort should be made to find a shared, common definition for the term, should it already exist.
-If the differences between two versions of the same object are subtle or driven by context,
-then you can generally _append_ additional text to the object definition within the associated rendered table in the specification,
-rather than creating a separate entry in the schema.
 
 ### `modalities.yaml`
 
