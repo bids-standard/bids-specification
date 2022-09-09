@@ -404,298 +404,106 @@ reference__ieeg:
         - n/a
 ```
 
-### `modalities.yaml`
+#### Valid fields for definitions
 
-This file contains a dictionary in which each modality is defined.
-Keys are modality abbreviations (for example, `mri` for magnetic resonance imaging),
-and each associated value is a dictionary with two keys: `name` and `description`.
+1.  `objects.common_principles`
+    | Field          | Description         |
+    | -------------- | ------------------- |
+    | `display_name` | Human-friendly name |
+    | `description`  | Term definition     |
 
-The `name` field is the full name of the modality.
-The `description` field is a freeform description of the modality.
+2.  `objects.modalities`
+    | Field          |                     |
+    | -------------- | ------------------- |
+    | `display_name` | Human-friendly name |
+    | `description`  | Term definition     |
 
-### `datatypes.yaml`
+3.  `objects.entities`
 
-This file contains a dictionary in which each datatype is defined.
-Keys are the directory names associated with each datatype (for example, `anat` for anatomical MRI),
-and each associated value is a dictionary with two keys: `name` and `description`.
+    | Field          |                                                         |
+    | -------------- | ------------------------------------------------------- |
+    | `display_name` | Human-friendly name                                     |
+    | `description`  | Term definition                                         |
+    | `name`         | Key of entity, such as `sub` or `ses`                   |
+    | `type`         | Type of value (always `string`)                         |
+    | `format`       | Permissible format of values, either `label` or `index` |
+    | `enum`         | Exclusive list of valid values, if present              |
 
-The `name` field is the full name of the datatype.
-The `description` field is a freeform description of the datatype.
+    Note that descriptions should apply to *all* uses of the entity; if additional information
+    applies in certain contexts, that should be written in the specification, and not the schema.
 
-### `entities.yaml`
+4.  `objects.metadata`
+    | Field          |                                                                                      |
+    | -------------- | ------------------------------------------------------------------------------------ |
+    | `display_name` | Human-friendly name                                                                  |
+    | `description`  | Term definition                                                                      |
+    | `name`         | Name of field in JSON object (in `CamelCase`)                                        |
+    | `unit`         | Interpretation of numeric values                                                     |
+    | `type`         | Type of value (one of `array`, `string`, `integer`, `number`, `object` or `boolean`) |
+    | `format`       | Permissible format of values, from definitions in `objects.formats`                  |
+    | `enum`         | Exclusive list of valid values, if present                                           |
+    | `maximum`      | Maximum for numeric values                                                           |
+    | `minimum`      | Minimum for numeric values                                                           |
+    | `*`            | JSON-schema fields to further constrain values                                       |
 
-This file contains a dictionary in which each entity (key-value pair in filenames) is defined.
-Keys are long-form versions of the entities, which are distinct from both the entities as
-they appear in filenames _and_ their full names.
-For example, the key for the "Contrast Enhancing Agent" entity, which appears in filenames as `ce-<label>`,
-is `ceagent`.
-These keys are also the recommended variable names for their associated entities in BIDS-compliant code,
-since many entities (such as `ce`) have very short filename elements.
-Each key's associated value is a dictionary with five keys:
+5.  `objects.columns`
+    | Field          |                                                                     |
+    | -------------- | ------------------------------------------------------------------- |
+    | `display_name` | Human-friendly name                                                 |
+    | `description`  | Term definition                                                     |
+    | `name`         | Name of column in TSV file (in `snake_case`)                        |
+    | `unit`         | Interpretation of numeric values                                    |
+    | `type`         | Type of value                                                       |
+    | `format`       | Permissible format of values, from definitions in `objects.formats` |
+    | `pattern`      | Regular expression constraining string values                       |
+    | `enum`         | Exclusive list of valid values, if present                          |
+    | `maximum`      | Maximum for numeric values                                          |
+    | `minimum`      | Minimum for numeric values                                          |
+    | `*`            | JSON-schema fields to further constrain values                      |
 
--   `name`,
--   `entity`,
--   `description`,
--   `type`,
--   and either `format` or `enum`.
+6.  `objects.datatypes`
+    | Field          |                            |
+    | -------------- | -------------------------- |
+    | `display_name` | Human-friendly name        |
+    | `description`  | Term definition            |
+    | `value`        | String value of `datatype` |
 
-The `name` field is the full name of the entity. For example, the `name` for `ceagent` is "Contrast Enhancing Agent".
+7.  `objects.suffixes`
+    | Field          |                                                                |
+    | -------------- | -------------------------------------------------------------- |
+    | `display_name` | Human-friendly name                                            |
+    | `description`  | Term definition                                                |
+    | `value`        | String value of `suffix`                                       |
+    | `unit`         | Interpretation of values in a data file with the given suffix  |
+    | `maxValue`     | Maximum permissible value in a data file with the given suffix |
+    | `minValue`     | Minimum permissible value in a data file with the given suffix |
+    | `anyOf`        | Used to describe multiple permissible units                    |
 
-The `entity` field is the entity as it appears in filenames. For example, the `entity` for `ceagent` is `ce`.
+8.  `objects.extensions`
+    | Field          |                             |
+    | -------------- | --------------------------- |
+    | `display_name` | Human-friendly name         |
+    | `description`  | Term definition             |
+    | `value`        | String value of `extension` |
 
-The `description` field is a freeform description of the entity.
-The description should apply to _all_ uses of the entity,
-so if there is some additional information about the entity that applies specifically to a subset of suffixes or datatypes,
-then that information should be provided in the specification, rather than the schema.
+9.  `objects.formats`
+    | Field          |                                    |
+    | -------------- | ---------------------------------- |
+    | `display_name` | Human-friendly name                |
+    | `description`  | Term definition                    |
+    | `pattern`      | Regular expression defining format |
 
-The `type` field defines the representation type for the value associated with the entity.
-Given that all entities appear in filenames, they should all be strings and the `type` field should always be `string`.
-This is true of both alphanumeric entities (such as `acq-desc`) and numeric ones (such as `run-1`).
+10. `objects.associated_data`
+    | Field          |                     |
+    | -------------- | ------------------- |
+    | `display_name` | Human-friendly name |
+    | `description`  | Term definition     |
 
-The `format` field defines the specific format the value should take.
-Entities are broadly divided into either `label` or `index` types.
-
-When `format` is `index`, then the entity's associated value should be a non-zero integer, optionally with leading zeros.
-For example, `run` should have an index, so a valid entity would be `run-01`.
-
-When `format` is `label`, then the value should be an alphanumeric string.
-Beyond limitations on which characters are allowed, labels have few restrictions.
-For example, `acq` should have a label, so a valid entity might be `acq-someLabel`.
-
-For a small number of entities, only certain labels are allowed.
-In those cases, instead of a `format` field, there will be an `enum` field, which will provide a list of allowed values.
-
-### `metadata.yaml`
-
-This file contains definitions for all metadata fields (fields which may appear in sidecar JSON files)
-currently supported in BIDS.
-
-Entries in this file contain, at minimum, the following fields: `name`,
-`description`, and a set of fields for describing the field's data type.
-
-The data types include:
-
--   `type`, which MUST have a value of `array`,
--   `string`,
--   `integer`,
--   `number`,
--   `object`,
--   or `boolean`.
-
-There are additional fields which may define rules that apply to a given type.
-
--   `array`: If `type` is `array`, then there MUST be an `items` field at
-    the same level as `type`. `items` describes the data type and rules that
-    apply to the individual items in the array. The same rules that apply to
-    describing data types for the field itself apply to `items`.
-    Additionally, there may be any of the following fields at the same level
-    as `type`: `minItems`, `maxItems`.
-    Here is an example of a field that MUST have three `integer` items:
-    ```yaml
-    ExampleField:
-        name: ExampleField
-        description: |
-            The description of "ExampleField".
-        type: array
-        minItems: 3
-        maxItems: 3
-        items:
-            type: integer
-    ```
-
--   `string`: If `type` is `string`, then there MAY be any of the following
-    fields at the same level as `type`: `pattern`, `format`, and `enum`.
-
-    -   `pattern` defines a regular expression for valid string names.
-
-    -   `format` defines the format for the string at the same level as `type`.
-        Valid values for `format` include:
-
-       -   `uri` (uniform resource identifiers),
-
-       -   `bids_uri` (BIDS URIs),
-
-       -   `date` (date-times),
-
-       -   `unit` (standard units),
-
-       -   `dataset_relative` (relative paths from dataset root),
-
-       -   `participant_relative` (relative paths from participant directory).
-
-    -   `enum` defines a list of valid values for the field.
-        The minimum string length (`minLength`) defaults to 1.
-        Here is an example of a field with a restricted set of possible values:
-        ```yaml
-        ExampleField:
-            name: ExampleField
-            description: |
-                The description of "ExampleField".
-            type: string
-            enum:
-                - PossibleValue1
-                - PossibleValue2
-        ```
-
--   `integer`: If `type` is `integer`, then there MAY be any of the
-    following fields at the same level as `type`: `unit`,
-    `minimum` (inclusive minimum), `maximum` (inclusive maximum),
-    `exclusiveMinimum`, `exclusiveMaximum`.
-    Here is an example of a field with a minimum value of 0:
-    ```yaml
-    ExampleField:
-        name: ExampleField
-        description: |
-            The description of "ExampleField".
-        type: integer
-        minimum: 0
-    ```
-
--   `number`: If `type` is `number`, then there MAY be any of the following
-    fields at the same level as `type`: `unit`,
-    `minimum` (inclusive minimum), `maximum` (inclusive maximum),
-    `exclusiveMinimum`, `exclusiveMaximum`.
-    Here is an example of a field with a minimum of 0, in units of
-    kilometers per second:
-    ```yaml
-    ExampleField:
-        name: ExampleField
-        description: |
-            The description of "ExampleField".
-        type: number
-        minimum: 0
-        # k stands for "kilo", m stands for "meter", "/" means "per", and
-        # s stands for "seconds"
-        unit: km/s
-    ```
-
--   `object`: If `type` is `object`, then there MAY be any of the following
-    fields at the same level as `type`: `additionalProperties`,
-    `properties`.
-    Objects are defined as sets of key-value pairs.
-    Keys MUST be strings, while values may have specific attributes,
-    which is what `additionalProperties` describes.
-    Here is an example of a field which MUST be an object,
-    with one optional field named "OptionalField" that MUST be a `string`
-    and any number of additional optional fields that MUST be `number`s.
-    ```yaml
-    ExampleField:
-        name: ExampleField
-        description: |
-            The description of "ExampleField".
-        type: object
-        properties:
-            OptionalField:
-                type: string
-        additionalProperties:
-            type: number
-    ```
-
--   `boolean`: If `type` is `boolean`, then the field's value MUST be one
-    of: `true`, `false`. Here is an example:
-    ```yaml
-    ExampleField:
-        name: ExampleField
-        description: |
-            The description of "ExampleField".
-        type: boolean
-    ```
-
-Additionally, if multiple data types are possible for a given field
-(for example, if a field may be a `number` or an `array` of `number`s),
-then an `anyOf` field MUST be used, in which an array of data type
-descriptions MUST be defined.
-Here is an example of one such case:
-```yaml
-ExampleField:
-    name: ExampleField
-    description: |
-        The description of "ExampleField".
-    anyOf:
-        - type: number
-        - type: array
-            items:
-            type: number
-```
-
-Furthermore, if the data type description of a field is reused across fields,
-then it may be defined in a separate field and referenced in each target field with the `$ref` keyword.
-Here is an example of a field definition using `$ref`:
-```yaml
-ExampleField:
-    name: ExampleField
-    description: |
-        The description of "ExampleField".
-    $ref: _ReferenceField
-```
-The target field (`_ReferenceField` in this case) MUST be located in
-the metadata YAML file, and MUST contain all information
-that would be used to describe the field's data type otherwise.
-
-Here is an example of a reference field:
-```yaml
-_ReferenceField:
-    name: _ReferenceField
-    description: |
-        Description of "_ReferenceField".
-    type: string
-    enum:
-        - PossibleValue1
-        - PossibleValue2
-```
-
-The result of including `$ref` makes the `ExampleField` above equivalent to the following format:
-```yaml
-ExampleField:
-    name: ExampleField
-    description: |
-        The description of "ExampleField".
-    type: string
-    enum:
-        - PossibleValue1
-        - PossibleValue2
-```
-
-### `columns.yaml`
-
-This file contains definitions for all TSV columns currently supported in BIDS.
-
-Entries in this file follow the same rules as `metadata.yaml`,
-although column names appear in `snake_case`, rather than `CamelCase`.
-
-### `suffixes.yaml`
-
-This file contains a dictionary in which each suffix is defined.
-Keys are the suffixes (for example, `T1w` for a T1-weighted image),
-and each associated value is a dictionary with three keys: `name`, `description`, and (optionally) `unit`.
-
-The `name` field is the full name of the suffix.
-The `description` field is a freeform description of the type of data stored in files with the suffix.
-
-The `unit` field describes units in which the data may appear.
-When no `unit` field is present, data with that suffix is assumed to be in arbitrary units.
-The `unit` field may use an `anyOf` keyword if multiple valid units are possible.
-
-These entries may also, rarely, include fields defining the range or types of values that are valid for
-files with the suffix.
-For example, `MTRmap` files must have values between 0 and 100, since they represent percentages.
-
-### `top_level_files.yaml`
-
-This file contains a dictionary in which each top-level file is defined.
-Keys are the filenames (without file extensions),
-and each associated value is a dictionary with two keys: `name` and `description`.
-
-The `name` field is the full name of the file.
-The `description` field is a freeform description of the file.
-
-### `associated_data.yaml`
-
-This file contains a dictionary in which each non-BIDS directory is defined.
-Keys are directory names, and each associated value is a dictionary with two keys: `name` and `description`.
-
-The `name` field is the full name of the directory.
-The `description` field is a freeform description of the directory.
+11. `objects.top_level_files`
+    | Field          |                     |
+    | -------------- | ------------------- |
+    | `display_name` | Human-friendly name |
+    | `description`  | Term definition     |
 
 ## Rule files
 
