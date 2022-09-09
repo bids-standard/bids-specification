@@ -199,8 +199,8 @@ The following operators should be defined by an interpreter:
 | `<=`/`>=` | less-than-or-equal / greater-than-or-equal | `0 <= 4` |
 | `in` | object lookup, true if RHS is a subfield of LHS | `"Units" in sidecar` |
 | `!` | negation, true if the following value is false, or vice versa | `!true == false` |
-| `&&` | conjunction, true if both RHS and LHS are true | `` |
-| `||` | disjunction, true if either RHS or LHS is true | `` |
+| `&&` | conjunction, true if both RHS and LHS are true | `"Units" in sidecar && sidecar.Units == "mm"` |
+| `\|\|` | disjunction, true if either RHS or LHS is true | `a < mn || a > mx` |
 | `.` | object query, returns value of subfield | `sidecar.Units` |
 | `[]` | array index, returns value of Nth element (0-indexed) of list | `columns.participant_label[0]` |
 
