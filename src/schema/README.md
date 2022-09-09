@@ -11,25 +11,23 @@ Any changes to the specification should be mirrored in the schema.
 
 At the time of this writing, the schema has the following file layout:
 
-```
-src/schema
-├── BIDS_VERSION
-├── meta
-│   └── context.yaml
-├── objects
-│   ├── associated_data.yaml
-│   ├── ...
-│   └── top_level_files.yaml
-├── rules
-│   ├── associated_data.yaml
-│   ├── checks
-│   │   ├── asl.yaml
-│   │   ├── ...
-│   │   └── mri.yaml
-│   ├── ...
-│   └── top_level_files.yaml
-└── SCHEMA_VERSION
-```
+    src/schema
+    ├── BIDS_VERSION
+    ├── meta
+    │   └── context.yaml
+    ├── objects
+    │   ├── associated_data.yaml
+    │   ├── ...
+    │   └── top_level_files.yaml
+    ├── rules
+    │   ├── associated_data.yaml
+    │   ├── checks
+    │   │   ├── asl.yaml
+    │   │   ├── ...
+    │   │   └── mri.yaml
+    │   ├── ...
+    │   └── top_level_files.yaml
+    └── SCHEMA_VERSION
 
 The top-level organization includes `objects`, where terms are defined;
 `rules`, where constraints (such as valid filenames or required metadata fields)
@@ -79,59 +77,57 @@ These qualified names may be used in this README, as well as in *references* and
 
 Some schema entries take the form:
 
-```
-ObjectName:
-  $ref: objects.metadata.OtherObjectName
-```
+    ObjectName:
+      $ref: objects.metadata.OtherObjectName
 
 This object may be *dereferenced* by replacing the `$ref` entry with the object being
 referenced.
 The following two prototypical examples are presented to clarify the semantics of
 references (the cases in which they are used will be presented later):
 
-1) In `objects.metadata`:
-   ```YAML
-   _GeneticLevelEnum:
-     type: string
-     enum:
-       - Genetic
-       - Genomic
-       - Epigenomic
-       - Transcriptomic
-       - Metabolomic
-       - Proteomic
+1.  In `objects.metadata`:
+    ```YAML
+    _GeneticLevelEnum:
+      type: string
+      enum:
+        - Genetic
+        - Genomic
+        - Epigenomic
+        - Transcriptomic
+        - Metabolomic
+        - Proteomic
 
-   GeneticLevel:
-     name: GeneticLevel
-     display_name: Genetic Level
-     description: |
-       Describes the level of analysis.
-       Values MUST be one of `"Genetic"`, `"Genomic"`, `"Epigenomic"`,
-       `"Transcriptomic"`, `"Metabolomic"`, or `"Proteomic"`.
-     anyOf:
-       - $ref: objects.metadata._GeneticLevelEnum
-       - type: array
-         items:
-           $ref: objects.metadata._GeneticLevelEnum
-   ```
-   Here `_GeneticLevelEnum` is used to describe the valid values of `GeneticLevel`,
-   and the references inside `GeneticLevel.anyOf` indicate that there may be a single
-   such value or a list of values.
+    GeneticLevel:
+      name: GeneticLevel
+      display_name: Genetic Level
+      description: |
+        Describes the level of analysis.
+        Values MUST be one of `"Genetic"`, `"Genomic"`, `"Epigenomic"`,
+        `"Transcriptomic"`, `"Metabolomic"`, or `"Proteomic"`.
+      anyOf:
+        - $ref: objects.metadata._GeneticLevelEnum
+        - type: array
+          items:
+            $ref: objects.metadata._GeneticLevelEnum
+    ```
+    Here `_GeneticLevelEnum` is used to describe the valid values of `GeneticLevel`,
+    and the references inside `GeneticLevel.anyOf` indicate that there may be a single
+    such value or a list of values.
 
-2) In `rules.datatypes.derivatives.common_derivatives`:
-   ```YAML
-   anat_nonparametric_common:
-     $ref: rules.datatypes.anat.nonparametric
-     entities:
-       $ref: rules.datatypes.anat.nonparametric.entities
-       space: optional
-       description: optional
-   ```
-   Here, the derivative datatype rule starts by copying the raw datatype rule
-   `rules.datatypes.anat.nonparametric`. It then *overrides* the `entities` portion
-   of that rule with a new object. To *extend* the original `entities`, it again
-   begins by referencing `rules.datatypes.anat.nonparametric.entities`, and adding
-   the new entities `space` and `description`.
+2.  In `rules.datatypes.derivatives.common_derivatives`:
+    ```YAML
+    anat_nonparametric_common:
+      $ref: rules.datatypes.anat.nonparametric
+      entities:
+        $ref: rules.datatypes.anat.nonparametric.entities
+        space: optional
+        description: optional
+    ```
+    Here, the derivative datatype rule starts by copying the raw datatype rule
+    `rules.datatypes.anat.nonparametric`. It then *overrides* the `entities` portion
+    of that rule with a new object. To *extend* the original `entities`, it again
+    begins by referencing `rules.datatypes.anat.nonparametric.entities`, and adding
+    the new entities `space` and `description`.
 
 ### Expressions
 
@@ -161,29 +157,29 @@ PhasePartUnits:
 
 We see expressions may contain:
 
-* fields such as `modality`, `entities` (which has a `.part` subfield), `sidecar`
-* String literals such as `"mri"`, `"Units"` or `"rad"`
-* Lists containing fields or strings
-* Comparison operators such as `==` (equality) or `in` (subfield exists in field)
-* Functions such as `intersects()`
+*   fields such as `modality`, `entities` (which has a `.part` subfield), `sidecar`
+*   String literals such as `"mri"`, `"Units"` or `"rad"`
+*   Lists containing fields or strings
+*   Comparison operators such as `==` (equality) or `in` (subfield exists in field)
+*   Functions such as `intersects()`
 
 In fact, the full list of fields is defined in the `meta.context.context` object,
 which (currently) contains at the top level:
 
-* `schema`: access to the schema itself
-* `dataset`: attributes of the whole dataset
-* `subject`: attributes of the current subject
-* `path`: the full path of the current file (relative to dataset root)
-* `entities`: an object of entities parsed from the path
-* `datatype`: the datatype, parsed from the path
-* `suffix`: the suffix, parsed from the path
-* `extension`: the file extension
-* `modality`: the file modality, determined by datatype
-* `sidecar`: the metadata values, accumulated by the inheritance principle
-* `associations`: associated files, discovered by the inheritance principle
-* `columns`: the columns in the current TSV file
-* `json`: the contents of the current JSON file
-* `nifti_header`: selected contents of the current NIfTI file's header
+*   `schema`: access to the schema itself
+*   `dataset`: attributes of the whole dataset
+*   `subject`: attributes of the current subject
+*   `path`: the full path of the current file (relative to dataset root)
+*   `entities`: an object of entities parsed from the path
+*   `datatype`: the datatype, parsed from the path
+*   `suffix`: the suffix, parsed from the path
+*   `extension`: the file extension
+*   `modality`: the file modality, determined by datatype
+*   `sidecar`: the metadata values, accumulated by the inheritance principle
+*   `associations`: associated files, discovered by the inheritance principle
+*   `columns`: the columns in the current TSV file
+*   `json`: the contents of the current JSON file
+*   `nifti_header`: selected contents of the current NIfTI file's header
 
 Some of these are strings, while others are nested objects.
 These are to be populated by an *interpreter* of the schema, and provide the
@@ -191,30 +187,30 @@ These are to be populated by an *interpreter* of the schema, and provide the
 
 The following operators should be defined by an interpreter:
 
-| Operator | Definition | Example |
-|--|--|--|
-| `==` | equality | `suffix == "T1w"` |
-| `!=` | inequality | `entities.task != "rest"` |
-| `<`/`>` | less-than / greater-than | `sidecar.EchoTime < 0.5` |
-| `<=`/`>=` | less-than-or-equal / greater-than-or-equal | `0 <= 4` |
-| `in` | object lookup, true if RHS is a subfield of LHS | `"Units" in sidecar` |
-| `!` | negation, true if the following value is false, or vice versa | `!true == false` |
-| `&&` | conjunction, true if both RHS and LHS are true | `"Units" in sidecar && sidecar.Units == "mm"` |
-| `\|\|` | disjunction, true if either RHS or LHS is true | `a < mn || a > mx` |
-| `.` | object query, returns value of subfield | `sidecar.Units` |
-| `[]` | array index, returns value of Nth element (0-indexed) of list | `columns.participant_label[0]` |
+| Operator  | Definition                                                    | Example                                       |
+| --------- | ------------------------------------------------------------- | --------------------------------------------- |
+| `==`      | equality                                                      | `suffix == "T1w"`                             |
+| `!=`      | inequality                                                    | `entities.task != "rest"`                     |
+| `<`/`>`   | less-than / greater-than                                      | `sidecar.EchoTime < 0.5`                      |
+| `<=`/`>=` | less-than-or-equal / greater-than-or-equal                    | `0 <= 4`                                      |
+| `in`      | object lookup, true if RHS is a subfield of LHS               | `"Units" in sidecar`                          |
+| `!`       | negation, true if the following value is false, or vice versa | `!true == false`                              |
+| `&&`      | conjunction, true if both RHS and LHS are true                | `"Units" in sidecar && sidecar.Units == "mm"` |
+| `\|\|`    | disjunction, true if either RHS or LHS is true                | `a < mn \|\| a > mx`                          |
+| `.`       | object query, returns value of subfield                       | `sidecar.Units`                               |
+| `[]`      | array index, returns value of Nth element (0-indexed) of list | `columns.participant_label[0]`                |
 
 The following functions should be defined by an interpreter:
 
-| Function | Definition | Example | Note |
-|--|--|--|--|
-| `match(arg: str, pattern: str) -> bool` | `true` if `arg` matches the regular expression `pattern` (anywhere in string) | `match(extension, ".gz$")` | True if the file extension ends with `.gz` |
-| `type(arg: Any) -> str` | The name of the type, including `"array"`, `"object"`, `"null"` | `type(datatypes)` | Returns `"array"` |
-| `intersects(a: array, b: array) -> bool` | `true` if arguments contain any shared elements | `intersects(dataset.modalities, ["pet", "mri"])` | True if either PET or MRI data is found in dataset |
-| `length(arg: array) -> int` | Number of elements in an array | `length(columns.onset) > 0` | True if there is at least one value in the onset column |
-| `count(arg: array, val: any)` | Number of elements in an array equal to `val` | `count(columns.type, "EEG")` | The number of times "EEG" appears in the column "type" of the current TSV file |
-| `min(arg: array)` | The smallest non-`n/a` value in an array | `min(sidecar.SliceTiming) == 0` | A check that the onset of the first slice is 0s |
-| `max(arg: array)` | The largest non-`n/a` value in an array | `max(columns.onset)` | The time of the last onset in an events.tsv file |
+| Function                                 | Definition                                                                    | Example                                          | Note                                                                           |
+| ---------------------------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `match(arg: str, pattern: str) -> bool`  | `true` if `arg` matches the regular expression `pattern` (anywhere in string) | `match(extension, ".gz$")`                       | True if the file extension ends with `.gz`                                     |
+| `type(arg: Any) -> str`                  | The name of the type, including `"array"`, `"object"`, `"null"`               | `type(datatypes)`                                | Returns `"array"`                                                              |
+| `intersects(a: array, b: array) -> bool` | `true` if arguments contain any shared elements                               | `intersects(dataset.modalities, ["pet", "mri"])` | True if either PET or MRI data is found in dataset                             |
+| `length(arg: array) -> int`              | Number of elements in an array                                                | `length(columns.onset) > 0`                      | True if there is at least one value in the onset column                        |
+| `count(arg: array, val: any)`            | Number of elements in an array equal to `val`                                 | `count(columns.type, "EEG")`                     | The number of times "EEG" appears in the column "type" of the current TSV file |
+| `min(arg: array)`                        | The smallest non-`n/a` value in an array                                      | `min(sidecar.SliceTiming) == 0`                  | A check that the onset of the first slice is 0s                                |
+| `max(arg: array)`                        | The largest non-`n/a` value in an array                                       | `max(columns.onset)`                             | The time of the last onset in an events.tsv file                               |
 
 #### The special value `null`
 
@@ -223,38 +219,38 @@ This value propagates through all of the above operations in a fully-defined,
 hopefully intuitive way.
 Most operations involving `null` simply resolve to `null`:
 
-| Operation | Result |
-|--|--|--|
-| `sidecar.MissingValue` | `null` |
-| `null.anything` | `null` |
-| `null[0]` | `null` |
-| `null && true` | `null` |
-| `null \|\| true` | `null` |
-| `!null` | `null` |
-| `match(null, pattern)` | `null` |
+| Operation                | Result |
+| ------------------------ | ------ |
+| `sidecar.MissingValue`   | `null` |
+| `null.anything`          | `null` |
+| `null[0]`                | `null` |
+| `null && true`           | `null` |
+| `null \|\| true`         | `null` |
+| `!null`                  | `null` |
+| `match(null, pattern)`   | `null` |
 | `intersects(list, null)` | `null` |
-| `length(null)` | `null` |
-| `count(null, val)` | `null` |
-| `count(list, null)` | `null` |
-| `min(null)` | `null` |
-| `max(null)` | `null` |
+| `length(null)`           | `null` |
+| `count(null, val)`       | `null` |
+| `count(list, null)`      | `null` |
+| `min(null)`              | `null` |
+| `max(null)`              | `null` |
 
 The following operators have boolean results:
 
-| Operation | Result | Comment |
-|--|--|--|
-| `null == false` | `false` |
-| `null == true` | `false` |
-| `null != false` | `true` |
-| `null != true` | `true` |
-| `null == null` | `true` |
-| `null == 1` | `false` | Also `<`, `>`, `<=` and `>=` |
-| `"VolumeTiming" in null` | `false` |
+| Operation                | Result  | Comment                      |
+| ------------------------ | ------- | ---------------------------- |
+| `null == false`          | `false` |                              |
+| `null == true`           | `false` |                              |
+| `null != false`          | `true`  |                              |
+| `null != true`           | `true`  |                              |
+| `null == null`           | `true`  |                              |
+| `null == 1`              | `false` | Also `<`, `>`, `<=` and `>=` |
+| `"VolumeTiming" in null` | `false` |                              |
 
 The `type()` function returns a string:
 
-| Operation | Result |
-|--|--|--|
+| Operation    | Result   |
+| ------------ | -------- |
 | `type(null)` | `"null"` |
 
 Finally, if an expression (selector or check) evaluates to `null`,
@@ -275,50 +271,50 @@ whether objects are required in a given dataset or file.
 There are currently 11 sub-namespaces, which fall into five rough categories.
 The namespaces are:
 
-| Namespace | Description | Group |
-|--|--|--|
-| `objects.common_principles` | Terms that are used throughout BIDS | General terms |
-| `objects.modalities` | Broad categories of data represented in BIDS, roughly matching recording instrument | General terms |
-| `objects.entities` | Name-value pairs appearing in file names | Name/value terms |
-| `objects.metadata` | Name-value pairs appearing in JSON files | Name/value terms |
-| `objects.columns` | Column headings and values appearing in TSV files | Name/value terms |
-| `objects.datatypes` | Subdirectories that organize files by type (e.g., `anat`, `eeg`) | Value terms |
-| `objects.suffixes` | Filename suffixes that describe the contents of the file | Value terms |
-| `objects.extensions` | Filename component that describe the format of the file | Value terms |
-| `objects.formats` | Terms that define the forms values (for example, in metadata) might take | Formats |
-| `objects.associated_data` | Directories that may appear at the root of a dataset | Files |
-| `objects.top_level_files` | Files that may appear at the root of a dataset | Files |
+| Namespace                   | Description                                                                         | Group            |
+| --------------------------- | ----------------------------------------------------------------------------------- | ---------------- |
+| `objects.common_principles` | Terms that are used throughout BIDS                                                 | General terms    |
+| `objects.modalities`        | Broad categories of data represented in BIDS, roughly matching recording instrument | General terms    |
+| `objects.entities`          | Name-value pairs appearing in file names                                            | Name/value terms |
+| `objects.metadata`          | Name-value pairs appearing in JSON files                                            | Name/value terms |
+| `objects.columns`           | Column headings and values appearing in TSV files                                   | Name/value terms |
+| `objects.datatypes`         | Subdirectories that organize files by type (e.g., `anat`, `eeg`)                    | Value terms      |
+| `objects.suffixes`          | Filename suffixes that describe the contents of the file                            | Value terms      |
+| `objects.extensions`        | Filename component that describe the format of the file                             | Value terms      |
+| `objects.formats`           | Terms that define the forms values (for example, in metadata) might take            | Formats          |
+| `objects.associated_data`   | Directories that may appear at the root of a dataset                                | Files            |
+| `objects.top_level_files`   | Files that may appear at the root of a dataset                                      | Files            |
 
 Because these objects vary, the contents of each namespace can vary.
 Common fields to all objects:
 
-| Field | Description |
-|--|--|
-| `display_name` | A human-friendly name, for tools to display; may include spaces |
-| `description` | A description of the term that can be understood that should not depend on particular surrounding text; may contain markdown for rendering |
+| Field          | Description                                                                                                                                |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `display_name` | A human-friendly name, for tools to display; may include spaces                                                                            |
+| `description`  | A description of the term that can be understood that should not depend on particular surrounding text; may contain markdown for rendering |
 
 The name/value terms groups (`entities`, `metadata` and `columns`) define terms where
 a name, when present, has a given meaning, and its value may be restricted. These objects
 additionally have the field:
 
-| Field | Description |
-|--|--|
-| `name` | For terms that can take on multiple values (e.g., entities, metadata fields), the name of the term as it appears in the specification and in a dataset; must be alphanumeric; mutually exclusive with `value` |
-| `type` | The type (e.g., `string`, `integer`, `object`) of values the term describes |
-| `format` | The format of the term (defined in `objects.formats`) |
+| Field    | Description                                                                                                                                                                                                   |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`   | For terms that can take on multiple values (e.g., entities, metadata fields), the name of the term as it appears in the specification and in a dataset; must be alphanumeric; mutually exclusive with `value` |
+| `type`   | The type (e.g., `string`, `integer`, `object`) of values the term describes                                                                                                                                   |
+| `format` | The format of the term (defined in `objects.formats`)                                                                                                                                                         |
 
 Value terms groups (`datatypes`, `suffixes`, `extensions`) define terms where a field
 can take on multiple values. For example, a file has one datatype, as compared to a
 collection of entities. These objects may have the fields:
 
-| Field | Description |
-|--|--|
+| Field   | Description                                                                                              |
+| ------- | -------------------------------------------------------------------------------------------------------- |
 | `value` | For terms that cannot take on multiple values (e.g., suffixes, extensions), the string value of the term |
 
 The `formats` terms provide one additional field:
 
-| Field | Description |
-|--|--|
+| Field     | Description                                                 |
+| --------- | ----------------------------------------------------------- |
 | `pattern` | Regular expression validating a string rendering of a value |
 
 #### Value constraints
@@ -328,22 +324,22 @@ the values described by the names.
 
 Additional fields may apply to further constrain the type:
 
-| Field | Description |
-|--|--|
+| Field                                  | Description                                   |
+| -------------------------------------- | --------------------------------------------- |
 | `maximum`/`minimum`/`exclusiveMinimum` | Value ranges for `integer` and `number` types |
-| `maxValue`/`minValue` | Value ranges for `integer` and `number` types |
-| `maxItems`/`minItems` | Size ranges for `array` types |
-| `enum` | List of accepted values for `string` types |
+| `maxValue`/`minValue`                  | Value ranges for `integer` and `number` types |
+| `maxItems`/`minItems`                  | Size ranges for `array` types                 |
+| `enum`                                 | List of accepted values for `string` types    |
 
 Some values may be more flexible, allowing multiple possible values, or may be
 arrays or objects:
 
-| Field | Description |
-|--|--|
-| `anyOf` | A list of constraints, any of which could apply |
-| `items` | The array described contains values whose types are constrained |
-| `properties` | The object described has a given set of fields; the values of these fields may be constrained |
-| `additionalProperties` | The object described has constraints on its values, but not the names |
+| Field                  | Description                                                                                   |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| `anyOf`                | A list of constraints, any of which could apply                                               |
+| `items`                | The array described contains values whose types are constrained                               |
+| `properties`           | The object described has a given set of fields; the values of these fields may be constrained |
+| `additionalProperties` | The object described has constraints on its values, but not the names                         |
 
 ### Detailed exploration
 
