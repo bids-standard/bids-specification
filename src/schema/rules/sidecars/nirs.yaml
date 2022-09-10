@@ -130,13 +130,13 @@ NirsRequired:
     NIRSDetectorOptodeCount: required
     # Following counts required conditions enforced in checks
     ACCELChannelCount:
-      level: recommended
+      level: optional
       level_addendum: required if any channel type is ACC
     GYROChannelCount:
-      level: recommended
+      level: optional
       level_addendum: required if any channel type is GYRO
     MAGNChannelCount:
-      level: recommended
+      level: optional
       level_addendum: required if any channel type is MAGN
 
 NirsRecommend:
