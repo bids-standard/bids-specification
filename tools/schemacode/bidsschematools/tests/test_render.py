@@ -173,7 +173,7 @@ def test_make_sidecar_table(schema_obj):
     assert len(rendered_table) == len(fields) + 2
 
     for field, render_row in zip(fields, rendered_table[2:]):
-        assert render_row.startswith(f"| {field}")
+        assert render_row.startswith(f"| [{field}](")
         spec = fields[field]
         if isinstance(spec, str):
             level = spec
@@ -250,3 +250,14 @@ def test_define_common_principles(schema_obj):
     assert isinstance(common_principles_str, str)
     # Must be fairly long
     assert len(common_principles_str) > 100
+
+
+def test_append_filename_template_legend():
+    """Check contents of generated string."""
+    test_str = render.append_filename_template_legend("", pdf_format=False)
+    assert isinstance(test_str, str)
+    assert "follow the links" in test_str
+
+    test_str = render.append_filename_template_legend("", pdf_format=True)
+    assert isinstance(test_str, str)
+    assert "follow the links" not in test_str
