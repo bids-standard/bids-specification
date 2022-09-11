@@ -19,8 +19,8 @@ utils.set_logger_level(lgr, os.environ.get("BIDS_SCHEMA_LOG_LEVEL", logging.INFO
 logging.basicConfig(format="%(asctime)-15s [%(levelname)8s] %(message)s")
 
 # Remember to add extension (.html or .md) to the paths when using them.
-ENTITIES_PATH = "SPEC_ROOT/99-appendices/09-entities"
-GLOSSARY_PATH = "SPEC_ROOT/99-appendices/14-glossary"
+ENTITIES_PATH = "SPEC_ROOT/appendices/entities"
+GLOSSARY_PATH = "SPEC_ROOT/glossary"
 TYPE_CONVERTER = {
     "associated_data": "associated data",
     "columns": "column",
@@ -529,7 +529,7 @@ def make_entity_table(schema, tablefmt="github", src_path=None, **kwargs):
         File in which entities are described.
         This is used for hyperlinks in the table, so the path to the file
         should be considered from the location of out_file.
-        Default is '09-entities.md'.
+        Default is 'entities.md'.
 
     Returns
     -------

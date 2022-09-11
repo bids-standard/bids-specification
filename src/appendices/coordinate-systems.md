@@ -1,4 +1,4 @@
-# Appendix VIII: Coordinate systems
+# Coordinate systems
 
 ## Introduction
 

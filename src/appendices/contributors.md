@@ -1,4 +1,4 @@
-# Appendix I: Contributors
+# Contributors
 
 Legend (source:
 <https://allcontributors.org/docs/en/emoji-key>)

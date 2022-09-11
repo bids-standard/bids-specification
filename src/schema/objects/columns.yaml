@@ -4,7 +4,7 @@ HED:
   display_name: HED Tag
   description: |
     Hierarchical Event Descriptor (HED) Tag.
-    See [Appendix III](SPEC_ROOT/99-appendices/03-hed.md) for details.
+    See the [HED Appendix](SPEC_ROOT/appendices/hed.md) for details.
   type: string
 abbreviation:
   name: abbreviation

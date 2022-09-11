@@ -117,17 +117,17 @@ def test_make_entity_table(schema_obj):
 
     # Non-exhaustive list covering both value and index formats
     expected_entities = [
-        "[`acq-<label>`](./99-appendices/09-entities.md#acq)",
-        "[`ses-<label>`](./99-appendices/09-entities.md#ses)",
-        "[`sample-<label>`](./99-appendices/09-entities.md#sample)",
-        "[`task-<label>`](./99-appendices/09-entities.md#task)",
-        "[`acq-<label>`](./99-appendices/09-entities.md#acq)",
-        "[`ce-<label>`](./99-appendices/09-entities.md#ce)",
-        "[`trc-<label>`](./99-appendices/09-entities.md#trc)",
-        "[`stain-<label>`](./99-appendices/09-entities.md#stain)",
-        "[`rec-<label>`](./99-appendices/09-entities.md#rec)",
-        "[`dir-<label>`](./99-appendices/09-entities.md#dir)",
-        "[`run-<index>`](./99-appendices/09-entities.md#run)",
+        "[`acq-<label>`](./appendices/entities.md#acq)",
+        "[`ses-<label>`](./appendices/entities.md#ses)",
+        "[`sample-<label>`](./appendices/entities.md#sample)",
+        "[`task-<label>`](./appendices/entities.md#task)",
+        "[`acq-<label>`](./appendices/entities.md#acq)",
+        "[`ce-<label>`](./appendices/entities.md#ce)",
+        "[`trc-<label>`](./appendices/entities.md#trc)",
+        "[`stain-<label>`](./appendices/entities.md#stain)",
+        "[`rec-<label>`](./appendices/entities.md#rec)",
+        "[`dir-<label>`](./appendices/entities.md#dir)",
+        "[`run-<index>`](./appendices/entities.md#run)",
     ]
 
     for expected_entity in expected_entities:
