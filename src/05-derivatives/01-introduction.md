@@ -30,70 +30,70 @@ in [Derived dataset and pipeline description][derived-dataset-description].
 
 ## Model-based grouping of derivatives
 
--  Here, a *model* is defined as a process via which parameters that describe
-   the data are fit/derived. This could include, but is not limited to things
-   like:
+Here, a *model* is defined as a process via which parameters that describe
+the data are fit/derived. This could include, but is not limited to things
+like:
 
-    1. The beta weights for different kinds of events in an event-related design
-       in fMRI.
-    1. The six components of the diffusion tensor in DTI.
-    1. Etc.
+1. The beta weights for different kinds of events in an event-related design
+    in fMRI.
+1. The six components of the diffusion tensor in DTI.
+1. Etc.
 
-   Model-based derivatives SHOULD be saved in a directory named
-   `model-<modelname>` that is placed under the datatype from which the model
-   was derived. A metadata file, `models.tsv` is OPTIONAL, accompanied by
-   a `models.json` file that is REQUIRED, if and only `models.tsv` is present.
-   The `models.json` is a dictionary for the `models.tsv` columns.
-   The purpose of the RECOMMENDED `models.tsv` file is to describe properties of the models
-   such as the datatype from which they are derived and a human-readable description of the
-   model. An additional metadata file, `model-<modelname>.json` is REQUIRED and describes the metadata for model fitting procedures, etc. for each model.
+Model-based derivatives SHOULD be saved in a directory named
+`model-<modelname>` that is placed under the datatype from which the model
+was derived. A metadata file, `models.tsv` is OPTIONAL, accompanied by
+a `models.json` file that is REQUIRED, if and only `models.tsv` is present.
+The `models.json` is a dictionary for the `models.tsv` columns.
+The purpose of the RECOMMENDED `models.tsv` file is to describe properties of the models
+such as the datatype from which they are derived and a human-readable description of the
+model. An additional metadata file, `model-<modelname>.json` is REQUIRED and describes the metadata for model fitting procedures, etc. for each model.
 
-   For example, if the model is principally derived from DWI data.
-   It would go into the following structure:
+For example, if the model is principally derived from DWI data.
+It would go into the following structure:
 
-    ```Text
-    <pipeline_name>/
-        sub-<label>/
-            <datatype>/
-                model-<modelname>/
-                    <model files>
-                    <model metadata files>
-                model-<modelname>_model.json
-                models.tsv
-                models.json
-    ```
+```Text
+<pipeline_name>/
+    sub-<label>/
+        <datatype>/
+            model-<modelname>/
+                <model files>
+                <model metadata files>
+            model-<modelname>_model.json
+            models.tsv
+            models.json
+```
 
-    The contents of the `model-<modelname>/` folders can differ widely between models
-    and modalities and are described in the relevant modality-specific derivative
-    specifications.
+The contents of the `model-<modelname>/` folders can differ widely between models
+and modalities and are described in the relevant modality-specific derivative
+specifications.
 
-    For a concrete example, consider the following multi-modal dataset:
+For a concrete example, consider the following multi-modal dataset:
 
-    ```Text
-    pipelineush-v2022a/
-        models.tsv
-        models.json
-        sub-01/
-            dwi/
-                model-DTI/
-                    sub-01_model-DTI_param-tensor_model.nii.gz
-                    sub-01_model-DTI_param-tensor_model.json
-                    sub-01_model-DTI_param-S0_model.nii.gz
-                    sub-01_model-DTI_param-S0_model.json
-                model-DTI_model.json
-            func/
-                model-VGG16/
-                    sub-01_model-VGG16_param-all_model.h5
-                    sub-01_model-VGG16_param-all_model.json
-                model-VGG16.json
-    ```
-    In this case, the `models.tsv` file could contain the following content:
+```Text
+pipelineush-v2022a/
+    models.tsv
+    models.json
+    sub-01/
+        dwi/
+            model-DTI/
+                sub-01_model-DTI_param-tensor_model.nii.gz
+                sub-01_model-DTI_param-tensor_model.json
+                sub-01_model-DTI_param-S0_model.nii.gz
+                sub-01_model-DTI_param-S0_model.json
+            model-DTI_model.json
+        func/
+            model-VGG16/
+                sub-01_model-VGG16_param-all_model.h5
+                sub-01_model-VGG16_param-all_model.json
+            model-VGG16.json
+```
+In this case, the `models.tsv` file could contain the following content:
 
-    ```Text
-    model_id    datatype    description
-    DTI	dwi Diffusion tensor model.
-    VGG16	func    A VGG convolutional neural network.
-    ```
+```Text
+model_id    datatype    description
+DTI	dwi Diffusion tensor model.
+VGG16	func    A VGG convolutional neural network.
+```
 
 ## File naming conventions
 
