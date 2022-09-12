@@ -672,6 +672,158 @@ def make_entity_table(schema, tablefmt="github", src_path=None, **kwargs):
     return table_str
 
 
+def _make_entity_table(schema, tablefmt="github", **kwargs):
+    """Produce entity table (markdown) based on schema.
+
+    Parameters
+    ----------
+    schema_path : str
+        Directory containing schema, which is stored in yaml files.
+    entities_file : str, optional
+        File in which entities are described.
+        This is used for hyperlinks in the table, so the path to the file
+        should be considered from the location of out_file.
+        Default is '09-entities.md'.
+
+    Returns
+    -------
+    table_str : str
+        Markdown string containing the table.
+    """
+    schema = Namespace(filter_schema(schema.to_dict(), **kwargs))
+
+    ENTITIES_FILE = "09-entities.md"
+
+    # prepare the table based on the schema
+    # import pdb; pdb.set_trace()
+    header = ["Entity", "DataType"]
+    formats = ["Format", "DataType"]
+    table = [formats]
+
+    # Compose header and formats first
+    all_entities = schema["rules"]["entities"]
+    for entity in all_entities:
+        entity_spec = schema["objects"]["entities"][entity]
+        entity_shorthand = entity_spec["name"]
+        header.append(entity_spec["display_name"])
+        formats.append(
+            f'[`{entity_shorthand}-<{entity_spec.get("format", "label")}>`]'
+            f"({ENTITIES_FILE}#{entity_shorthand})"
+        )
+
+    # Go through data types
+    for dtype, dtype_specs in schema["rules"]["datatypes"].items():
+        dtype_rows = {}
+        duplicate_row_counter = 0
+
+        # each dtype could have multiple specs
+        for dtype_spec in dtype_specs.values():
+            if dtype == "derivatives":
+                continue
+            suffixes = dtype_spec.get("suffixes")
+
+            # Skip this part of the schema if no suffixes are found.
+            # This is a hack to work around filter_schema's limitations.
+            if not len(suffixes):
+                continue
+
+            # TODO: <br> is specific for html form
+            suffixes_str = " ".join(suffixes) if suffixes else ""
+            dtype_row = [dtype] + ([""] * len(all_entities))
+            for ent, ent_info in dtype_spec.get("entities", {}).items():
+                if isinstance(ent_info, Mapping):
+                    requirement_level = ent_info["requirement"]
+                else:
+                    requirement_level = ent_info
+
+                dtype_row[all_entities.index(ent) + 1] = requirement_level.upper()
+
+            if dtype_row in dtype_rows.values():
+                # Merge specs within dtypes if they share all of the same entities
+                for existing_suffixes_str, existing_entities in dtype_rows.items():
+                    if dtype_row == existing_entities:
+                        # Combine suffixes from the existing row with ones from the new row
+                        dtype_rows.pop(existing_suffixes_str)
+                        old_suffix_list = existing_suffixes_str.split(" ")
+                        new_suffix_list = suffixes_str.split(" ")
+                        comb_suffix_list = sorted(list(set(new_suffix_list + old_suffix_list)))
+
+                        # Identify if the list of suffixes comes from an existing alternate row
+                        number_suffixes = list(filter(str.isnumeric, comb_suffix_list))
+                        if len(number_suffixes) == 1:
+                            # Suffixes come from an existing alternate row
+                            number = number_suffixes[0]
+                            comb_suffix_list.remove(number)
+                            new_suffixes_str = " ".join(comb_suffix_list)
+                            # Retain the old number
+                            new_suffixes_str = number + " " + new_suffixes_str
+                        elif len(number_suffixes) > 1:
+                            # The row exists already, but contains multiple numbers
+                            raise Exception("Something's wrong here.")
+                        else:
+                            # It's a new row
+                            new_suffixes_str = " ".join(comb_suffix_list)
+
+                        dtype_rows[new_suffixes_str] = existing_entities
+                        break
+
+            elif suffixes_str in dtype_rows.keys():
+                # Create new lines for multiple specs with the same dtype and suffix,
+                # but different entities
+                # Unfortunately, the keys need to be unique, so we include a number
+                # NOTE: This assumes that no suffix in BIDS will ever be purely numeric.
+                dtype_rows[str(duplicate_row_counter) + " " + suffixes_str] = dtype_row
+                duplicate_row_counter += 1
+
+            else:
+                # Otherwise, just add the new suffix group
+                dtype_rows[suffixes_str] = dtype_row
+
+        # Add datatype to first column and reformat it
+        dtype_rows = {dtype + "<br>({})".format(k): v for k, v in dtype_rows.items()}
+        dtype_rows = [[k] + v for k, v in dtype_rows.items()]
+
+        table += dtype_rows
+
+    # Create multi-level index because first two rows are headers
+    cols = list(zip(header, table[0]))
+    print(cols)
+    cols = pd.MultiIndex.from_tuples(cols)
+    print(cols.values.tolist())
+    table = pd.DataFrame(data=table[1:], columns=cols)
+    table = table.set_index(("Entity", "Format"))
+
+    # Remove unnecessary columns
+    table = utils.drop_unused_entities(table)
+    table = utils.flatten_multiindexed_columns(table)
+
+    # Remove fake numeric suffixes from first column
+    def _remove_numeric_suffixes(string):
+        import re
+
+        suffix_str = re.findall(r"\((.+)\)", string)
+        # The "Format" row should be skipped
+        if not suffix_str:
+            return string
+
+        suffix_str = suffix_str[0]  # Only one parenthesis should appear
+        suffixes = suffix_str.split(" ")
+        suffixes = list(filter(lambda v: not str.isnumeric(v), suffixes))
+        suffix_str2 = " ".join(suffixes)
+        new_string = string.replace(f"({suffix_str})", f"({suffix_str2})")
+        return new_string
+
+    table[table.index.name] = table.index
+    table[table.index.name] = table[table.index.name].apply(_remove_numeric_suffixes)
+    table = table.set_index(table.index.name, drop=True)
+    table_ = table.values.tolist()
+    print(table_[0])
+
+    # Print it as markdown
+    table_str = tabulate(table_, headers="keys", tablefmt=tablefmt)
+    return table_str
+
+
 def make_suffix_table(schema, suffixes, src_path=None, tablefmt="github"):
     """Produce suffix table (markdown) based on requested suffixes.
 
