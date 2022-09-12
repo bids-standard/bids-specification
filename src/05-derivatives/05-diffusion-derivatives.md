@@ -96,7 +96,7 @@ rather than the image data).
 ```
 
 -   Files "`<source_keywords>[_space-<space>][_desc-<label>]_param-<param*>_model.nii[.gz]`"
-    provide data corresponding to the various requisite [model parameters](#paramdef-model). 
+    provide data corresponding to the various requisite [model parameters](#paramdef-model).
     In cases where *all* [model parameters](#paramdef-model) are contained within a single image
     file, field "`_parameter-`" nevertheless MUST be included, with value "`all`"; e.g.:
 
@@ -484,6 +484,7 @@ another.
     }
     ```
 
+    Contents of JSON file "`sub-01_param-wm_csd.json`":
     Contents of JSON file "`sub-01_desc-csd_param-wm_model.json`":
 
     ```JSON
