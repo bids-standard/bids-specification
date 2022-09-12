@@ -86,8 +86,6 @@ in [Derived dataset and pipeline description][derived-dataset-description].
                     sub-01_model-VGG16_param-all_model.h5
                     sub-01_model-VGG16_param-all_model.json
                 model-VGG16.json
-
-
     ```
     In this case, the `models.tsv` file could contain the following content:
 
