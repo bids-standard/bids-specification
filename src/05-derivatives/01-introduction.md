@@ -28,29 +28,29 @@ in [Derived dataset and pipeline description][derived-dataset-description].
     to ensure that the values are still relevant and appropriate to the type of
     output data.
 
-## Model-based grouping of derivatives 
+## Model-based grouping of derivatives
 
 -  Here, a *model* is defined as a process via which parameters that describe
-   the data are fit/derived. This could include, but is not limited to things 
-   like: 
-    
-    1. The beta weights for different kinds of events in an event-related design 
-       in fMRI. 
-    1. The six components of the diffusion tensor in DTI. 
-    1. Etc. 
+   the data are fit/derived. This could include, but is not limited to things
+   like:
 
-   Model-based derivatives SHOULD be saved in a directory named 
-   `model-<modelname>` that is placed under the datatype from which the model 
-   was derived. A metadata file, `models.tsv` is OPTIONAL, accompanied by 
+    1. The beta weights for different kinds of events in an event-related design
+       in fMRI.
+    1. The six components of the diffusion tensor in DTI.
+    1. Etc.
+
+   Model-based derivatives SHOULD be saved in a directory named
+   `model-<modelname>` that is placed under the datatype from which the model
+   was derived. A metadata file, `models.tsv` is OPTIONAL, accompanied by
    a `models.json` file that is REQUIRED, if and only `models.tsv` is present.
-   The `models.json` is a dictionary for the `models.tsv` columns. 
-   The purpose of the RECOMMENDED `models.tsv` file is to describe properties of the models 
-   such as the datatype from which they are derived and a human-readable description of the 
-   model. An additional metadata file, `model-<modelname>.json` is REQUIRED and describes the metadata for model fitting procedures, etc. for each model. 
-   
-   For example, if the model is principally derived from DWI data. 
-   It would go into the following structure: 
-   
+   The `models.json` is a dictionary for the `models.tsv` columns.
+   The purpose of the RECOMMENDED `models.tsv` file is to describe properties of the models
+   such as the datatype from which they are derived and a human-readable description of the
+   model. An additional metadata file, `model-<modelname>.json` is REQUIRED and describes the metadata for model fitting procedures, etc. for each model.
+
+   For example, if the model is principally derived from DWI data.
+   It would go into the following structure:
+
     ```Text
     <pipeline_name>/
         sub-<label>/
@@ -63,9 +63,9 @@ in [Derived dataset and pipeline description][derived-dataset-description].
                 models.json
     ```
 
-    The contents of the `model-<modelname>/` folders can differ widely between models 
-    and modalities and are described in the relevant modality-specific derivative 
-    specifications. 
+    The contents of the `model-<modelname>/` folders can differ widely between models
+    and modalities and are described in the relevant modality-specific derivative
+    specifications.
 
     For a concrete example, consider the following multi-modal dataset:
 
@@ -89,7 +89,7 @@ in [Derived dataset and pipeline description][derived-dataset-description].
 
 
     ```
-    In this case, the `models.tsv` file could contain the following content: 
+    In this case, the `models.tsv` file could contain the following content:
 
     ```Text
     model_id    datatype    description
@@ -137,7 +137,7 @@ in [Derived dataset and pipeline description][derived-dataset-description].
 -   When naming files that are not yet standardized, it is RECOMMENDED to use
     names consistent with BIDS conventions where those conventions apply.
     For example, if a summary statistic is derived from a given task, the file
-    name SHOULD contain [`_task-<label>`](../appendices/entities.md#task). 
+    name SHOULD contain [`_task-<label>`](../appendices/entities.md#task).
 
 <!-- Link Definitions -->
 
