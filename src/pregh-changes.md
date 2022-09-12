@@ -39,7 +39,7 @@
 -   Added `InversionTime` metadata key.
 -   Clarification on the source vs raw language.
 -   Added `trial_type` column to the event files.
--   Added missing `sub-<participant_label>` in behavioral data file names.
+-   Added missing `sub-<participant_label>` in behavioral data filenames.
 -   Added ability to store stimuli files.
 -   Clarified the language describing allowed subject labels.
 -   Added quantitative proton density maps.

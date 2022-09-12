@@ -1,0 +1,16 @@
+# Rules for functional data that are not defined in tables.
+---
+PhaseSuffixDeprecated:
+  issue:
+    code: PHASE_SUFFIX_DEPRECATED
+    message: |
+      DEPRECATED. Phase information associated with magnitude information stored in BOLD contrast.
+      This suffix should be replaced by the part-phase in conjunction with the bold suffix.
+      For backwards compatibility, _phase is considered equivalent to _part-phase_bold.
+      When the _phase suffix is not used, each file shares the same name with the exception of the
+      part-<mag|phase> or part-<real|imag> key/value.
+    level: warning
+  selectors:
+    - datatype == "func"
+  checks:
+    - suffix != "phase"

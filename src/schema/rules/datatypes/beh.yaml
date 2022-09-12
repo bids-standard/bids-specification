@@ -1,11 +1,13 @@
 ---
-# Continuous data
-- suffixes:
-  - stim
-  - physio
+timeseries:
+  suffixes:
+    - stim
+    - physio
   extensions:
-  - .tsv.gz
-  - .json
+    - .tsv.gz
+    - .json
+  datatypes:
+    - beh
   entities:
     subject: required
     session: optional
@@ -15,12 +17,15 @@
     recording: optional
 
 # Non-continuous data
-- suffixes:
-  - events
-  - beh
+noncontinuous:
+  suffixes:
+    - events
+    - beh
   extensions:
-  - .tsv
-  - .json
+    - .tsv
+    - .json
+  datatypes:
+    - beh
   entities:
     subject: required
     session: optional

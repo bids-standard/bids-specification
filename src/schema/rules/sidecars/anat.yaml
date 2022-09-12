@@ -1,0 +1,33 @@
+#
+# Groups of related metadata fields
+#
+# Assumptions: never need disjunction of selectors
+# Assumptions: top-to-bottom overrides is sufficient logic
+
+---
+# Anatomy imaging data
+
+MRIAnatomyCommonMetadataFields:
+  selectors:
+    - modality == "mri"
+    - datatype == "anat"
+  fields:
+    ContrastBolusIngredient: optional
+    RepetitionTimeExcitation: optional
+    RepetitionTimePreparation: optional
+
+PhaseEntityUnits:
+  selectors:
+    - modality == "mri"
+    - datatype == "anat"
+    - entities.part == "phase"
+  fields:
+    Units: required
+
+PhaseSuffixUnits:
+  selectors:
+    - modality == "mri"
+    - datatype == "anat"
+    - suffix == "phase"
+  fields:
+    Units: required

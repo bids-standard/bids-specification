@@ -40,7 +40,7 @@ and the INCF Neuroimaging Data Sharing (NIDASH) Task Force.
 While working on BIDS we consulted
 many neuroscientists to make sure it covers most common experiments, but at the
 same time is intuitive and easy to adopt. The specification is intentionally
-based on simple file formats and folder structures to reflect current lab
+based on simple file formats and directory structures to reflect current lab
 practices and make it accessible to a wide range of scientists coming from
 different backgrounds.
 
@@ -113,12 +113,22 @@ For example:
 
 #### PET
 
+-   Norgaard, M., Matheson, G.J., Hansen, H.D., Thomas, A., Searle, G., Rizzo, G.,
+    Veronese, M., Giacomel, A., Yaqub, M., Tonietto, M., Funck, T., Gillman, A., Boniface,
+    H., Routier, A., Dalenberg, J.R.., Betthauser, T., Feingold, F., Markiewicz, C.J.,
+    Gorgolewski, K.J., Blair, R.W., Appelhoff, S., Gau, R., Salo, T., Niso, G., Pernet, C.,
+    Phillips, C., Oostenveld, R., Gallezot, J-D., Carson, R.E., Knudsen, G.M.,
+    Innis R.B. & Ganz M. (2021).
+    **PET-BIDS, an extension to the brain imaging data structure for positron emission tomography**.
+    Scientific Data, 9 (65).
+    [doi:10.1038/s41597-022-01164-1](https://doi.org/10.1038/s41597-022-01164-1)
+
 -   Knudsen GM, Ganz M, Appelhoff S, Boellaard R, Bormans G, Carson RE, Catana C,
     Doudet D, Gee AD, Greve DN, Gunn RN, Halldin C, Herscovitch P, Huang H, Keller SH,
     Lammertsma AA, Lanzenberger R, Liow JS, Lohith TG, Lubberink M, Lyoo CH, Mann JJ,
     Matheson GJ, Nichols TE, Nørgaard M, Ogden T, Parsey R, Pike VW, Price J, Rizzo G,
-    Rosa-Neto P, Schain M, Scott PJH, Searle G, Slifstein M, Suhara T, Talbot PS,
-    Thomas A, Veronese M, Wong DF, Yaqub M, Zanderigo F, Zoghbi S, Innis RB. (2020).
+    Rosa-Neto P, Schain M, Scott PJH, Searle G, Slifstein M, Suhara T, Talbot PS, Thomas A,
+    Veronese M, Wong DF, Yaqub M, Zanderigo F, Zoghbi S, Innis RB. (2020).
     **Guidelines for Content and Format of PET Brain Data in Publications and in Archives: A Consensus Paper**.
     Journal of Cerebral Blood Flow and Metabolism, 2020 Aug; 40(8): 1576-1585.
     [doi:10.1177/0271678X20905433](https://doi.org/10.1177/0271678X20905433)
@@ -129,6 +139,22 @@ For example:
     Vince Calhoun, Thomas Nichols, Cyril Pernet (2020).
     **The genetics-BIDS extension: Easing the search for genetic data associated with human brain imaging**.
     GigaScience, 9 (10). [doi:10.1093/gigascience/giaa104](https://doi.org/10.1093/gigascience/giaa104)
+
+#### Microscopy
+
+-   Bourget M.-H., Kamentsky L., Ghosh S.S., Mazzamuto G., Lazari A., Markiewicz C.J., Oostenveld R.,
+    Niso G., Halchenko Y.O., Lipp I., Takerkart S., Toussaint P.-J., Khan A.R., Nilsonne G.,
+    Castelli F.M., The BIDS Maintainers and Cohen-Adad J. (2022).
+    **Microscopy-BIDS: An Extension to the Brain Imaging Data Structure for Microscopy Data**.
+    Frontiers in Neuroscience, 16 (871228).
+    [doi:10.3389/fnins.2022.871228](https://doi.org/10.3389/fnins.2022.871228)
+
+#### qMRI
+
+-   Karakuzu, A., Appelhoff, S., Auer, T., Boudreau M., Feingold F., Khan A.R., Lazari A., Markiewicz C.J.,
+    Mulder M., Phillips C., Salo T., Stikov N., Whitaker K. and de Hollander G.,
+    **qMRI-BIDS: An extension to the brain imaging data structure for quantitative magnetic resonance imaging data.**
+    Scientific Data 9, 517 (2022). [doi:10.1038/s41597-022-01571-4](https://doi.org/10.1038/s41597-022-01571-4)
 
 ### Research Resource Identifier (RRID)
 

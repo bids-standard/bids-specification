@@ -1,27 +1,34 @@
-version: 2
+version: 2.1
 jobs:
   build_docs:
     docker:
-      - image: circleci/python:3.8
+      - image: cimg/python:3.8
     steps:
       # checkout code to default ~/project
       - checkout
       - run:
           name: install dependencies
           command: |
+            python -m venv env
+            source env/bin/activate
             python -m pip install --upgrade pip
             pip install -r requirements.txt
       - run:
           name: generate docs
-          command: mkdocs build --clean --strict --verbose
+          command: |
+            source env/bin/activate
+            mkdocs build --clean --strict --verbose
       - persist_to_workspace:
           # the mkdocs build outputs are in ~/project/site
           root: ~/project
           paths: site
+      - store_artifacts:
+          path: ~/project/site/
+          destination: dev_docs
 
-  linkchecker:
+  check_links:
     docker:
-      - image: yarikoptic/linkchecker:9.4.0.anchorfix1-1
+      - image: cimg/python:3.8
     steps:
       # checkout code to default ~/project
       - checkout
@@ -29,13 +36,16 @@ jobs:
           # mkdocs build outputs will be in ~/project/site
           at: ~/project
       - run:
-          name: install git
+          name: install linkchecker
           command: |
-            apt update -y
-            apt install git-all -y
+            python -m venv env
+            source env/bin/activate
+            python -m pip install --upgrade pip
+            python -m pip install linkchecker
       - run:
           name: check links
           command: |
+            source env/bin/activate
             git status
             if (! git log -1 --pretty=oneline | grep REL:) ; then
               chmod a+rX -R ~
@@ -44,9 +54,11 @@ jobs:
               # failures for local file:/// -- yoh found no better way,
               linkchecker -t 1 --check-extern \
                 --ignore-url 'file:///.*' \
-                --ignore-url https://fonts.gstatic.com \
-                --ignore-url "https://github.com/bids-standard/bids-specification/(pull|tree)/.*" \
-                --ignore-url "https://github.com/[^/]*" \
+                --ignore-url 'https://fonts.gstatic.com' \
+                --ignore-url 'https://github.com/bids-standard/bids-specification/(pull|tree)/.*' \
+                --ignore-url 'https://github.com/[^/]*' \
+                --ignore-url 'https://doi.org/.*' \
+                --ignore-url 'https://bids-specification.readthedocs.io/en/stable/.*' \
                 ~/project/site/*html ~/project/site/*/*.html
             else
               echo "Release PR - do nothing"
@@ -64,6 +76,7 @@ jobs:
             apt-get update && apt install -y python3-pip
             python3 -m pip install --upgrade pip
             python3 -m pip install -r  ~/project/requirements.txt
+            python3 -m pip install ~/project/tools/schemacode/[render]
       - run:
           name: install font that works with unicode emojis
           command: apt-get update && apt-get install -y fonts-symbola
@@ -76,8 +89,8 @@ jobs:
       - store_artifacts:
           path: bids-spec.pdf
 
-  # Auto changelog collector
-  github-changelog-generator:
+  # Automatically generate a changelog since migration from Google Docs to GitHub
+  github_changelog_generator:
     docker:
       - image: ferrarimarco/github-changelog-generator:1.14.3
     steps:
@@ -93,18 +106,21 @@ jobs:
             git status
             if (git log -1 --pretty=%s | grep Merge*) && (! git log -1 --pretty=%b | grep REL:) ; then
               github_changelog_generator \
+                --exclude-tags-regex "^(?!v).*?$" \
                 --user bids-standard \
                 --project bids-specification \
                 --token ${CHANGE_TOKEN} \
                 --output ~/changelog_build/CHANGES.md \
                 --base ~/project/src/pregh-changes.md \
                 --header-label "# Changelog" \
+                --release-branch master \
                 --no-issues \
-                --no-issues-wo-labels \
                 --no-filter-by-milestone \
                 --no-compare-link \
                 --pr-label "" \
-                --release-branch master
+                --enhancement-label "" \
+                --bugs-label "" \
+                --exclude-labels "exclude-from-changelog"
               cat ~/changelog_build/CHANGES.md
             else
               echo "Commit or Release, do nothing"
@@ -114,10 +130,10 @@ jobs:
           root: ~/.
           paths: changelog_build
 
-  # Run remark on the auto generated changes.md file
-  remark:
+  # Lint and fix the auto generated changes.md file
+  lint_generated_changelog:
     docker:
-      - image: node:latest
+      - image: cimg/node:lts
     steps:
       # checkout code to default ~/project
       - checkout
@@ -143,14 +159,14 @@ jobs:
               echo "Commit or Release, do nothing"
             fi
       - persist_to_workspace:
-          # fixed+linted changelog in ~/changelog_build/CHANGES.md
+          # linted and fixed changelog in ~/changelog_build/CHANGES.md
           root: ~/.
           paths: changelog_build
 
   # Push built changelog to repo
-  Changelog-bot:
+  commit_generated_changelog:
     docker:
-      - image: circleci/openjdk:8-jdk
+      - image: cimg/base:stable
     steps:
       - setup_remote_docker:
           version: 17.11.0-ce
@@ -182,22 +198,22 @@ workflows:
   search_build:
     jobs:
       - build_docs
-      - linkchecker:
+      - check_links:
           requires:
             - build_docs
-      - github-changelog-generator:
+      - github_changelog_generator:
           filters:
             branches:
               only: master
-      - remark:
+      - lint_generated_changelog:
           requires:
-            - github-changelog-generator
+            - github_changelog_generator
           filters:
             branches:
               only: master
-      - Changelog-bot:
+      - commit_generated_changelog:
           requires:
-            - remark
+            - lint_generated_changelog
           filters:
             branches:
               only: master

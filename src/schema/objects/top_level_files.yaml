@@ -4,6 +4,7 @@
 # For that information, see `rules/top_level_files.yaml`.
 CHANGES:
   name: CHANGES
+  display_name: Change log
   description: |
     Version history of the dataset (describing changes, updates and corrections) MAY be provided in
     the form of a `CHANGES` text file.
@@ -13,6 +14,7 @@ CHANGES:
     The `CHANGES` file MUST be either in ASCII or UTF-8 encoding.
 LICENSE:
   name: LICENSE
+  display_name: License
   description: |
     A `LICENSE` file MAY be provided in addition to the short specification of the
     used license in the `dataset_description.json` `"License"` field.
@@ -20,16 +22,30 @@ LICENSE:
     The `LICENSE` file MUST be either in ASCII or UTF-8 encoding.
 README:
   name: README
+  display_name: Readme
   description: |
-    In addition a free form text file (`README`) describing the dataset in more details SHOULD be
-    provided.
-    The `README` file MUST be either in ASCII or UTF-8 encoding.
+    A REQUIRED text file, `README`, SHOULD describe the dataset in more detail.
+    The `README` file MUST be either in ASCII or UTF-8 encoding and MAY have one of the extensions:
+    `.md` ([Markdown](https://www.markdownguide.org/)),
+    `.rst` ([reStructuredText](https://docutils.sourceforge.io/rst.html)),
+    or `.txt`.
+    A BIDS dataset MUST NOT contain more than one `README` file (with or without extension)
+    at its root directory.
+    BIDS does not make any recommendations with regards to the
+    [Markdown flavor](https://www.markdownguide.org/extended-syntax/#lightweight-markup-languages)
+    and does not validate the syntax of Markdown and reStructuredText.
+    The `README` file SHOULD be structured such that its contents can be easily understood
+    even if the used format is not rendered.
+    A guideline for creating a good `README` file can be found in the
+    [bids-starter-kit](https://github.com/bids-standard/bids-starter-kit/blob/master/templates/README).
 dataset_description:
   name: Dataset Description
+  display_name: Dataset Description
   description: |
     The file `dataset_description.json` is a JSON file describing the dataset.
 genetic_info:
   name: Genetic Information
+  display_name: Genetic Information
   description: |
     The `genetic_info.json` file describes the genetic information available in the
     `participants.tsv` file and/or the genetic database described in
@@ -38,6 +54,7 @@ genetic_info:
     `genetic_id` column in `participants.tsv` MUST include this file.
 participants:
   name: Participant Information
+  display_name: Participant Information
   description: |
     The purpose of this RECOMMENDED file is to describe properties of participants
     such as age, sex, handedness.
@@ -77,3 +94,35 @@ participants:
 
     Throughout BIDS you can indicate missing values with `n/a` (for "not
     available").
+
+samples:
+  name: Sample Information
+  display_name: Sample Information
+  description: |
+    The purpose of this file is to describe properties of samples, indicated by the `sample` entity.
+    This file is REQUIRED if `sample-<label>` is present in any file name within the dataset.
+    If this file exists, it MUST contain the three following columns:
+
+    -   `sample_id`: MUST consist of `sample-<label>` values identifying one row
+        for each sample
+
+    -   `participant_id`: MUST consist of `sub-<label>`
+
+    -   `sample_type`: MUST consist of sample type values, either `cell line`, `in vitro differentiated cells`,
+        `primary cell`, `cell-free sample`, `cloning host`, `tissue`, `whole organisms`, `organoid` or
+        `technical sample` from [ENCODE Biosample Type](https://www.encodeproject.org/profiles/biosample_type)
+
+    Other optional columns MAY be used to describe the samples.
+    Each sample MUST be described by one and only one row.
+
+    Commonly used *optional* columns in `samples.tsv` files are `pathology` and
+    `derived_from`. We RECOMMEND to make use of these columns, and in case that
+    you do use them, we RECOMMEND to use the following values for them:
+
+    -   `pathology`: string value describing the pathology of the sample or type of control.
+        When different from `healthy`, pathology SHOULD be specified in `samples.tsv`.
+        The pathology MAY instead be specified in
+        [Sessions files](SPEC_ROOT/03-modality-agnostic-files.md#sessions-file) in case it changes over time.
+
+    -   `derived_from`: `sample-<label>` key/value pair from which a sample is derived from,
+        for example a slice of tissue (`sample-02`) derived from a block of tissue (`sample-01`)

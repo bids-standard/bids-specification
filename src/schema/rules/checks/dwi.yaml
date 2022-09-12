@@ -1,0 +1,65 @@
+# Rules for DWI data that are not defined in tables.
+---
+# 29
+DWIVolumeCount:
+  issue:
+    code: VOLUME_COUNT_MISMATCH
+    message: |
+      The number of volumes in this scan does not match the number of volumes in the
+      corresponding .bvec and .bval files.
+    level: error
+  selectors:
+    - suffix == "dwi"
+    - '"bval" in associations'
+    - '"bvec" in associations'
+  checks:
+    - associations.bval.n_cols == nifti_header.dim[4]
+    - associations.bvec.n_cols == nifti_header.dim[4]
+
+# 30
+DWIBvalRows:
+  issue:
+    code: BVAL_MULTIPLE_ROWS
+    message: |
+      '.bval' files should contain exactly one row of volumes.
+    level: error
+  selectors:
+    - extension == "bval"
+  checks:
+    - data.n_rows == 1
+
+# 31
+DWIBvecRows:
+  issue:
+    code: BVEC_NUMBER_ROWS
+    message: |
+      '.bvec' files should contain exactly three rows of volumes.
+    level: error
+  selectors:
+    - extension == "bvec"
+  checks:
+    - data.n_rows == 3
+
+# 32
+DWIMissingBvec:
+  issue:
+    code: DWI_MISSING_BVEC
+    message: |
+      DWI scans must have a corresponding .bvec file.
+    level: error
+  selectors:
+    - suffix == "dwi"
+  checks:
+    - '"bvec" in associations'
+
+# 33
+DWIMissingBval:
+  issue:
+    code: DWI_MISSING_BVAL
+    message: |
+      DWI scans must have a corresponding .bval file.
+    level: error
+  selectors:
+    - suffix == "dwi"
+  checks:
+    - '"bval" in associations'

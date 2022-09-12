@@ -1,0 +1,142 @@
+#
+# Groups of related metadata fields
+#
+# Assumptions: never need disjunction of selectors
+# Assumptions: top-to-bottom overrides is sufficient logic
+
+---
+iEEGGeneric:
+  selectors:
+    - modality == "ieeg"
+    - datatype == "ieeg"
+    - suffix == "ieeg"
+  fields:
+    TaskName:
+      level: required
+      description_addendum: |
+        A recommended convention is to name resting state task using labels
+        beginning with `rest`.
+
+iEEGRecommended:
+  selectors:
+    - modality == "ieeg"
+    - datatype == "ieeg"
+    - suffix == "ieeg"
+  fields:
+    InstitutionName: recommended
+    InstitutionAddress: recommended
+    InstitutionalDepartmentName: recommended
+    Manufacturer:
+      level: recommended
+      description_addendum: For example, `"TDT"`, `"Blackrock"`.
+    ManufacturersModelName: recommended
+    SoftwareVersions: recommended
+    TaskDescription: recommended
+    Instructions:
+      level: recommended
+      description_addendum: |
+        This is especially important in context of resting state recordings and
+        distinguishing between eyes open and eyes closed paradigms.
+    CogAtlasID: recommended
+    CogPOID: recommended
+    DeviceSerialNumber: recommended
+
+# Specific iEEG fields MUST be present
+iEEGRequired:
+  selectors:
+    - modality == "ieeg"
+    - datatype == "ieeg"
+    - suffix == "ieeg"
+  fields:
+    iEEGReference: required
+    SamplingFrequency:
+      level: required
+      description_addendum: |
+        The sampling frequency of data channels that deviate from the main sampling
+        frequency SHOULD be specified in the `channels.tsv` file.
+    PowerLineFrequency: required
+    SoftwareFilters: required
+
+# Specific iEEG fields SHOULD be present
+iEEGMoreRecommended:
+  selectors:
+    - modality == "ieeg"
+    - datatype == "ieeg"
+    - suffix == "ieeg"
+  fields:
+    DCOffsetCorrection: deprecated
+    HardwareFilters: recommended
+    ElectrodeManufacturer: recommended
+    ElectrodeManufacturersModelName: recommended
+    ECOGChannelCount: recommended
+    SEEGChannelCount: recommended
+    EEGChannelCount: recommended
+    EOGChannelCount: recommended
+    ECGChannelCount: recommended
+    EMGChannelCount: recommended
+    MiscChannelCount: recommended
+    TriggerChannelCount: recommended
+    RecordingDuration: recommended
+    RecordingType: recommended
+    EpochLength: recommended
+    iEEGGround: recommended
+    iEEGPlacementScheme: recommended
+    iEEGElectrodeGroups: recommended
+    SubjectArtefactDescription: recommended
+
+# Specific iEEG fields MAY be present
+iEEGOptional:
+  selectors:
+    - modality == "ieeg"
+    - datatype == "ieeg"
+    - suffix == "ieeg"
+  fields:
+    ElectricalStimulation: optional
+    ElectricalStimulationParameters: optional
+
+# General fields
+iEEGCoordsystemGeneral:
+  selectors:
+    - modality == "ieeg"
+    - datatype == "ieeg"
+    - suffix == "coordsystem"
+  fields:
+    IntendedFor__ds_relative:
+      level: optional
+      description_addendum: |
+        If only a surface reconstruction is available, this should point to
+        the surface reconstruction file.
+        Note that this file should have the same coordinate system
+        specified in `iEEGCoordinateSystem`.
+        For example, **T1**: `'bids::sub-<label>/ses-<label>/anat/sub-01_T1w.nii.gz'`
+        **Surface**: `'bids::derivatives/surfaces/sub-<label>/ses-<label>/anat/
+        sub-01_hemi-R_desc-T1w_pial.surf.gii'`
+        **Operative photo**: `'bids::sub-<label>/ses-<label>/ieeg/
+        sub-0001_ses-01_acq-photo1_photo.jpg'`
+        **Talairach**: `'bids::derivatives/surfaces/sub-Talairach/ses-01/anat/
+        sub-Talairach_hemi-R_pial.surf.gii'`
+
+# Fields relating to the iEEG electrode positions
+iEEGCoordsystemPositions:
+  selectors:
+    - modality == "ieeg"
+    - datatype == "ieeg"
+    - suffix == "coordsystem"
+  fields:
+    iEEGCoordinateSystem: required
+    iEEGCoordinateUnits: required
+    iEEGCoordinateSystemDescription:
+      level: recommended
+      level_addendum: required if `iEEGCoordinateSystem` is `"Other"`
+    iEEGCoordinateProcessingDescription: recommended
+    iEEGCoordinateProcessingReference: recommended
+
+iEEGCoordsystemOther:
+  selectors:
+    - modality == "ieeg"
+    - datatype == "ieeg"
+    - suffix == "coordsystem"
+    - '"iEEGCoordinateSystem" in sidecar'
+    - sidecar.iEEGCoordinateSystem == "Other"
+  fields:
+    iEEGCoordinateSystemDescription: required

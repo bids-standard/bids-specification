@@ -7,12 +7,13 @@ pandoc library documentation***) with pdf specific text rendering in mind as
 well.
 """
 
-from datetime import datetime
 import json
 import os
+import posixpath
 import re
 import subprocess
 import sys
+from datetime import datetime
 
 import numpy as np
 
@@ -562,6 +563,13 @@ def edit_titlepage():
         file.writelines(data)
 
 
+class MockPage:
+    pass
+
+class MockFile:
+    pass
+
+
 def process_macros(duplicated_src_dir_path):
     """Search for mkdocs macros in the specification, run the embedded
     functions, and replace the macros with their outputs.
@@ -594,6 +602,17 @@ def process_macros(duplicated_src_dir_path):
             with open(filename, "r") as fo:
                 contents = fo.read()
 
+            # Create a mock MkDocs Page object that has a "file" attribute,
+            # which is a mock MkDocs File object with a str "src_path" attribute
+            # The src_path
+            mock_file = MockFile()
+            mock_file.src_path = posixpath.sep.join(filename.split(os.sep)[1:])
+
+            page = MockPage()
+            page.file = mock_file
+
+            _Context__self = {"page": page}
+
             # Replace code snippets in the text with their outputs
             matches = re.findall(re_code_snippets, contents)
             for m in matches:
@@ -607,9 +626,14 @@ def process_macros(duplicated_src_dir_path):
                 # switch "use_pipe" flag OFF to render examples
                 if "make_filetree_example" in function_string:
                     function_string = function_string.replace(
-                    ")",
-                    ", False)"
+                        ")",
+                        ", False)",
                     )
+
+                # switch "pdf_format" ON to render filename templates
+                if "make_filename_template" in function_string:
+                    function_string = function_string.replace(")", ", pdf_format=True)")
+
                 # Run the function to get the output
                 new = eval(function_string)
                 # Replace the code snippet with the function output

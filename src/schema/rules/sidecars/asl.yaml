@@ -1,0 +1,216 @@
+#
+# Groups of related metadata fields
+#
+# Assumptions: never need disjunction of selectors
+# Assumptions: top-to-bottom overrides is sufficient logic
+
+---
+# Fields described in text, but not in tables
+MRIASLTextOnly:
+  selectors:
+    - modality == "mri"
+    - datatype == "perf"
+    - intersects([suffix], ["asl", "m0scan"])
+  fields:
+    RepetitionTimePreparation: required
+
+# Common metadata fields applicable to both (P)CASL and PASL
+MRIASLCommonMetadataFields:
+  selectors:
+    - modality == "mri"
+    - datatype == "perf"
+    - suffix == "asl"
+  fields:
+    ArterialSpinLabelingType: required
+    PostLabelingDelay: required
+    BackgroundSuppression: required
+    M0Type: required
+    TotalAcquiredPairs: required
+    VascularCrushing: recommended
+    AcquisitionVoxelSize: recommended
+    LabelingOrientation: recommended
+    LabelingDistance: recommended
+    LabelingLocationDescription: recommended
+    LookLocker: optional
+    LabelingEfficiency: optional
+
+MRIASLCommonMetadataFieldsM0TypeRec:
+  selectors:
+    - modality == "mri"
+    - datatype == "perf"
+    - suffix == "asl"
+    - sidecar.M0Type != "Estimate"
+  fields:
+    M0Estimate:
+      level: optional
+      level_addendum: required if `M0Type` is `Estimate`
+
+MRIASLCommonMetadataFieldsM0TypeReq:
+  selectors:
+    - modality == "mri"
+    - datatype == "perf"
+    - suffix == "asl"
+    - sidecar.M0Type == "Estimate"
+  fields:
+    M0Estimate:
+      level: required
+      issue:
+        code: M0ESTIMATE_NOT_DEFINED
+        message: |
+          You must define `M0Estimate` for this file, because `M0Type` is set to
+          'Estimate'. `M0Estimate` is a single numerical whole-brain M0 value
+          (referring to the M0 of blood), only if obtained externally (for example
+          retrieved from CSF in a separate measurement).
+
+MRIASLCommonMetadataFieldsBackgroundSuppressionOpt:
+  selectors:
+    - modality == "mri"
+    - datatype == "perf"
+    - suffix == "asl"
+    - sidecar.BackgroundSuppression == false
+  fields:
+    BackgroundSuppressionNumberPulses:
+      level: optional
+      level_addendum: recommended if `BackgroundSuppression` is `true`
+    BackgroundSuppressionPulseTime:
+      level: optional
+      level_addendum: recommended if `BackgroundSuppression` is `true`
+
+MRIASLCommonMetadataFieldsBackgroundSuppressionReq:
+  selectors:
+    - modality == "mri"
+    - datatype == "perf"
+    - suffix == "asl"
+    - sidecar.BackgroundSuppression == true
+  fields:
+    BackgroundSuppressionNumberPulses: recommended
+    BackgroundSuppressionPulseTime: recommended
+
+MRIASLCommonMetadataFieldsVascularCrushingOpt:
+  selectors:
+    - modality == "mri"
+    - datatype == "perf"
+    - suffix == "asl"
+    - sidecar.VascularCrushing == false
+  fields:
+    VascularCrushingVENC:
+      level: optional
+      level_addendum: recommended if `VascularCrushing` is `true`
+
+MRIASLCommonMetadataFieldsVascularCrushingRec:
+  selectors:
+    - modality == "mri"
+    - datatype == "perf"
+    - suffix == "asl"
+    - sidecar.VascularCrushing == true
+  fields:
+    VascularCrushingVENC: recommended
+
+MRIASLCaslPcaslSpecific:
+  selectors:
+    - modality == "mri"
+    - datatype == "perf"
+    - suffix == "asl"
+    - intersects([sidecar.ArterialSpinLabelingType], ["CASL", "PCASL"])
+  fields:
+    LabelingDuration: required
+    LabelingPulseAverageGradient: recommended
+    LabelingPulseMaximumGradient: recommended
+    LabelingPulseAverageB1: recommended
+    LabelingPulseDuration: recommended
+    LabelingPulseFlipAngle: recommended
+    LabelingPulseInterval: recommended
+
+MRIASLPcaslSpecific:
+  selectors:
+    - modality == "mri"
+    - datatype == "perf"
+    - suffix == "asl"
+    - sidecar.ArterialSpinLabelingType == "PCASL"
+  fields:
+    PCASLType:
+      level: recommended
+      level_addendum: if `ArterialSpinLabelingType` is `"PCASL"`
+
+MRIASLCaslSpecific:
+  selectors:
+    - modality == "mri"
+    - datatype == "perf"
+    - suffix == "asl"
+    - sidecar.ArterialSpinLabelingType == "CASL"
+  fields:
+    CASLType:
+      level: recommended
+      level_addendum: if `ArterialSpinLabelingType` is `"CASL"`
+
+MRIASLPaslSpecific:
+  selectors:
+    - modality == "mri"
+    - datatype == "perf"
+    - suffix == "asl"
+    - sidecar.ArterialSpinLabelingType == "PASL"
+  fields:
+    BolusCutOffFlag: required
+    PASLType: recommended
+    LabelingSlabThickness: recommended
+
+MRIASLPASLSpecificBolusCutOffFlagFalse:
+  selectors:
+    - modality == "mri"
+    - datatype == "perf"
+    - suffix == "asl"
+    - sidecar.ArterialSpinLabelingType == "PASL"
+    - sidecar.BolusCutOffFlag == false
+  fields:
+    BolusCutOffDelayTime:
+      level: optional
+      level_addendum: required if `BolusCutOffFlag` is `true`
+    BolusCutOffTechnique:
+      level: optional
+      level_addendum: required if `BolusCutOffFlag` is `true`
+
+MRIASLPaslSpecificBolusCutOffFlagTrue:
+  selectors:
+    - modality == "mri"
+    - datatype == "perf"
+    - suffix == "asl"
+    - sidecar.ArterialSpinLabelingType == "PASL"
+    - sidecar.BolusCutOffFlag == true
+  fields:
+    BolusCutOffDelayTime:
+      level: required
+      issue:
+        code: PASL_BOLUS_CUT_OFF_DELAY_TIME
+        message: |
+          It is required to define 'BolusCutOffDelayTime' for this file,
+          when 'BolusCutOffFlag' is set to true. 'BolusCutOffDelayTime' is
+          the duration between the end of the labeling and the start of the
+          bolus cut-off saturation pulse(s), in seconds. This can be a number
+          or array of numbers, of which the values must be non-negative and
+          monotonically increasing, depending on the number of bolus cut-off
+          saturation pulses. For Q2TIPS, only the values for the first and last
+          bolus cut-off saturation pulses are provided. Based on DICOM Tag
+          0018,925F ASL Bolus Cut-off Delay Time.
+    BolusCutOffTechnique:
+      level: required
+      issue:
+        code: PASL_BOLUS_CUT_OFF_TECHINIQUE
+        message: |
+          It is required to define `BolusCutOffTechnique` for this file,
+          when `BolusCutOffFlag` is set to `true`. `BolusCutOffTechnique`,
+          is the name of the technique used
+          (for example, Q2TIPS, QUIPSS or QUIPSSII).
+          Corresponds to DICOM Tag 0018,925E `ASL Bolus Cut-off Technique`.
+
+# m0scan metadata fields
+MRIASLM0Scan:
+  selectors:
+    - modality == "mri"
+    - datatype == "perf"
+    - suffix == "m0scan"
+  fields:
+    IntendedFor:
+      level: required
+      description_addendum: |
+        This is used to refer to the ASL time series for which the `*_m0scan.nii[.gz]` is intended.
+    AcquisitionVoxelSize: recommended
