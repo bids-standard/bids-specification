@@ -35,7 +35,7 @@ the data are fit/derived. This could include, but is not limited to things
 like:
 
 1. The beta weights for different kinds of events in an event-related design
-    in fMRI.
+   in fMRI.
 1. The six components of the diffusion tensor in DTI.
 1. Etc.
 
