@@ -96,11 +96,9 @@ rather than the image data).
 ```
 
 -   Files "`<source_keywords>[_space-<space>]_model-<label>_param-<param*>_model.nii[.gz]`"
-    provide data corresponding to the various requisite [model parameters](#paramdef-model). 
-    
-    -   In cases where *all* [model parameters](#paramdef-model) are contained within a single image
-        file, field "`_parameter-`" nevertheless MUST be included, with value "`all`"; e.g.:
-
+    provide data corresponding to the various requisite [model parameters](#paramdef-model).
+    In cases where *all* [model parameters](#paramdef-model) are contained within a single image
+    file, entity "`_param-`" nevertheless MUST be included, with value "`all`"; e.g.:
         ```Text
         <pipeline_name>/
             sub-<participant_label>/
