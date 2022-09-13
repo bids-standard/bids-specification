@@ -663,6 +663,13 @@ mask:
     A binary mask that functions as a discrete "label" for a single structure.
 
     This suffix may only be used in derivative datasets.
+mdp:
+  value: mdp
+  display_name: Model-derived parameter
+  description: |
+    Parameters that are calculated from a model subsequent to model specification. These are often secondary calculations that are used
+    to intepret or further reduce the parameters that are fit to the
+    data.
 meg:
   value: meg
   display_name: Magnetoencephalography
