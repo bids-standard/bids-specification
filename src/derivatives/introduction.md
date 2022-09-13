@@ -51,7 +51,7 @@ that is placed under the datatype from which the model was derived.
       "sub-<label>": {
          "<datatype>": {
             "model-<label>": {
-                "<model files>"
+                "<model files>": ""
             }
          }
       }
