@@ -75,8 +75,8 @@ Template:
             "model-<label>": {
                 "<model files>": ""
             },
-            "models.tsv": "",
-            "models.json": ""
+            "sub-<label>_models.tsv": "",
+            "sub-<label>_models.json": ""
          }
       }
    }
