@@ -193,7 +193,7 @@ parameter files:
                 "sub-01_model-<label>_param-<label2>_model.nii.gz": "",
                 "sub-01_model-<label>_param-<label2>_model.json": "",
                 "sub-01_model-<label>_param-<labela>_mdp.nii.gz": "",
-                "sub-01_model-<label>_param-<labela>_mdp.json": ""
+                "sub-01_model-<label>_param-<labela>_mdp.json": "",
                 "sub-01_model-<label>_param-<labelb>_mdp.nii.gz": "",
                 "sub-01_model-<label>_param-<labelb>_mdp.json": ""
             },
