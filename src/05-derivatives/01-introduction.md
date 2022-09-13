@@ -87,7 +87,7 @@ pipelineush-v2022a/
             model-VGG16/
                 sub-01_model-VGG16_param-all_model.h5
                 sub-01_model-VGG16_param-all_model.json
-            model-VGG16.json
+            model-VGG16_model.json
 ```
 
 In this case, the `models.tsv` file could contain the following content:
