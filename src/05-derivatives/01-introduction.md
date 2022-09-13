@@ -162,14 +162,14 @@ derivative dataset:
                 "sub-01_model-DTI_param-S0_model.nii.gz": "",
                 "sub-01_model-DTI_param-S0_model.json": ""
             },
-            "model-DTI_model.tsv": ""
+            "model-DTI_model.json": ""
          },
          "func": {
             "model-VGG16": {
                 "sub-01_model-VGG16_param-all_model.h5": "",
                 "sub-01_model-VGG16_param-all_model.json": ""
             },
-            "model-VGG16_model.tsv": ""
+            "model-VGG16_model.json": ""
          }
       }
    }
