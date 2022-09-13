@@ -37,11 +37,12 @@ biological structure. A wide range of such models are available, each of
 which has its own unique requirements with respect to:
 
 -   The [input](#paramdef-input) parameters required in order to
-    define / constrain the model;
+    define / constrain the way in which the model will be fit to the
+    empirical image data;
 
 -   The appropriate [data representations](#data-representations) utilised to
-    store information parameterised [by](#paramdef-intrinsic) or
-    [from](#paramdef-extrinsic) the model onto the filesystem;
+    store information parameterised [by](#paramdef-fit) or
+    [from](#paramdef-derived) the model onto the filesystem;
 
 -   The requirements for encapsulation and complete representation of
     derived [orientation information](#orientation-specification), which is
@@ -59,7 +60,7 @@ these uses is defined thus:
     Value or non-numerical setting that influences the conformation
     of the diffusion model to the empirical diffusion-weighted data.
 
-1.  <a name="paramdef-model">*Model*</a> parameter:
+1.  <a name="paramdef-fit">Model *fit*</a> parameter:
 
     Value that is the direct result of fitting the diffusion model to the
     empirical diffusion-weighted data.
@@ -72,7 +73,7 @@ these uses is defined thus:
 
 For example, consider a diffusion tensor model fit: the number of
 iterations in the optimisation algorithm would be an *input* parameter;
-the six unique diffusion tensor coefficients would be the *model*
+the six unique diffusion tensor coefficients would be the *model fit*
 parameters; the Fractional Anisotropy (FA) would be a *model-derived*
 parameter (as it is calculated from the diffusion tensor coefficients
 rather than the image data).
@@ -96,9 +97,9 @@ rather than the image data).
 ```
 
 -   Files "`<source_keywords>[_space-<space>]_model-<label>_param-<param*>_model.nii[.gz]`"
-    provide data corresponding to the various requisite [model parameters](#paramdef-model).
+    provide data corresponding to the various requisite [model fit parameters](#paramdef-fit).
 
-    In cases where *all* [model parameters](#paramdef-model) are contained within a single image
+    In cases where *all* [model fit parameters](#paramdef-fit) are contained within a single image
     file, entity "`_param-`" MUST NOT be included; e.g.:
         ```Text
         <pipeline_name>/
@@ -132,7 +133,7 @@ interpretation of that information; see [orientation specification](#orientation
 
 1.  <a name="data-scalar">*Scalars*</a>:
 
-    Any parameter image (whether [model](#paramdef-model) or
+    Any parameter image (whether [model fit](#paramdef-fit) or
     [model-derived](#paramdef-derived)) where a solitary numerical value is
     defined in each 3D image voxel is referred to here as a "scalar" image.
 
@@ -230,7 +231,7 @@ interpretation of that information; see [orientation specification](#orientation
 
     4D image containing, for every image voxel, data corresponding to some
     set of model parameters, the names and order of which are defined within
-    the [model parameters](#paramdef-model) section below.
+    the [model fit parameters](#paramdef-fit) section below.
 
 ### Model parameters
 
@@ -330,7 +331,7 @@ Reserved keywords for models built into the specification are as follows:
 | `rd`                | Radial Diffusivity (also called perpendicular diffusivity)             | [Scalar](#data-scalar)                       | { `tensor` }           | \mu m<sup>2</sup>.ms<sup>-1</sup> <sup>[1](#diffusivity)</sup> |
 
 While not explicitly included in the table above, *any* [scalar](#data-scalar)
-[extrinsic](paramdef-extrinsic) parameter can theoretically be combined
+[model-derived parameter](paramdef-derived) can theoretically be combined
 with a separate source of orientation information from the diffusion model
 in order to produce a [directionally-encoded colour](#data-dec),
 [spherical coordinates](#data-spherical) or [3-vectors](#data-3vector) image.
@@ -470,7 +471,7 @@ another.
     Dimensions of NIfTI image "`sub-01_model-csd_param-gm_model.nii.gz`": *I*x*J*x*K*x1 ([spherical harmonics](#data-sh))
     Dimensions of NIfTI image "`sub-01_model-csd_param-csf_model.nii.gz`": *I*x*J*x*K*x1 ([spherical harmonics](#data-sh))
 
-    Contents of file "`sub-01_model-csd_model.json`" (common to all [model parameters](#paramdef-model)):
+    Contents of file "`sub-01_model-csd_model.json`" (common to all [model fit parameters](#paramdef-fit)):
 
     ```JSON
     {
