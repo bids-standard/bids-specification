@@ -69,6 +69,12 @@ component:
     - quat_z
     - quat_w
     - n/a
+datatype:
+  name: datatype
+  display_name: Data Type
+  description: |
+    The data type (as per BIDS definitions) from which the model was derived.
+  type: string
 detector__channels:
   name: detector
   display_name: Detector Name
@@ -106,6 +112,11 @@ description__optode:
   display_name: Description
   description: |
     Free-form text description of the optode, or other information of interest.
+description__models:
+  name: description
+  display_name: Description
+  description: |
+    Short free-text description of the model, or other information of interest.
   type: string
 dimension:
   name: dimension
@@ -267,6 +278,14 @@ metabolite_polar_fraction:
   type: number
   minimum: 0
   maximum: 1
+model_id:
+  name: model_id
+  display_name: Model ID
+  description: |
+    A unique identifier of the form `model-<label>`,
+    matching a model entity found in the dataset.
+  type: string
+  pattern: ^model-[0-9a-zA-Z]+$
 # name column for channels.tsv files
 name__channels:
   name: name

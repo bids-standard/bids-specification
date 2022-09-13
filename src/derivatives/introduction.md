@@ -93,7 +93,13 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-<!-- OE this table is WIP -->
+{{ MACROS___make_columns_table(
+   {
+      "model_id": ("REQUIRED", "There MUST be exactly one row for each model."),
+      "datatype": "RECOMMENDED",
+      "description__models": "RECOMMENDED",
+   }
+) }}
 
 In this case, the `models.tsv` file could contain the following content:
 
