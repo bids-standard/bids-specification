@@ -31,7 +31,9 @@ in [Derived dataset and pipeline description][derived-dataset-description].
 ## Model-based grouping of derivatives
 
 Here, a *model* is defined as a process via which parameters that describe
-the data are fit/derived. This could include, but is not limited to things
+the data are specified
+(consistent with [this](https://plato.stanford.edu/entries/models-science/#DescEqua)
+definition). This could include, but is not limited to things
 like:
 
 1.  The beta weights for different kinds of events in an event-related design
