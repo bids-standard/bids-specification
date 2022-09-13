@@ -44,13 +44,22 @@ like:
 Model-based derivatives SHOULD be saved in a directory named `model-<model_id>`
 that is placed under the datatype from which the model was derived.
 
-```Text
-<pipeline_name>/
-    sub-<label>/
-        <datatype>/
-            model-<model_id>/
-                <model files>
-```
+{{ MACROS___make_filetree_example(
+
+   {
+   "<pipeline_name>": {
+      "sub-<label>": {
+         "<datatype>": {
+            "model-<label>": {
+                "<model files>"
+            }
+         }
+      }
+   }
+   }
+
+) }}
+
 
 The specification of `<model files>` is [introduced below](#file-naming-conventions).
 
@@ -58,16 +67,23 @@ The specification of `<model files>` is [introduced below](#file-naming-conventi
 
 Template:
 
-```Text
-<pipeline_name>/
-    sub-<label>/
-        <datatype>/
-            model-<model_id>/
-                <model files>
-                <model metadata files>
-            models.tsv
-            models.json
-```
+{{ MACROS___make_filetree_example(
+
+   {
+   "<pipeline_name>": {
+      "sub-<label>": {
+         "<datatype>": {
+            "model-<label>": {
+                "<model files>": ""
+            },
+            "models.tsv": "",
+            "models.json": ""
+         }
+      }
+   }
+   }
+
+) }}
 
 A metadata file, `models.tsv` is OPTIONAL, accompanied by
 a `models.json` file that is REQUIRED, if and only if `models.tsv` is present.
@@ -133,24 +149,34 @@ and modalities and are described in the relevant modality-specific derivative
 specifications. For a more concrete example, consider the following
 derivative dataset:
 
-```Text
-my_pipeline-v2022a/
-    models.tsv
-    models.json
-    sub-01/
-        dwi/
-            model-DTI/
-                sub-01_model-DTI_param-tensor_model.nii.gz
-                sub-01_model-DTI_param-tensor_model.json
-                sub-01_model-DTI_param-S0_model.nii.gz
-                sub-01_model-DTI_param-S0_model.json
-            model-DTI_model.json
-        func/
-            model-VGG16/
-                sub-01_model-VGG16_param-all_model.h5
-                sub-01_model-VGG16_param-all_model.json
-            model-VGG16_model.json
-```
+{{ MACROS___make_filetree_example(
+
+   {
+   "my_pipeline-v2002a": {
+      "models.tsv": "",
+      "models.json": "",
+      "sub-01": {
+         "dwi": {
+            "model-DTI": {
+                "sub-01_model-DTI_param-tensor_model.nii.gz": "",
+                "sub-01_model-DTI_param-tensor_model.json": "",
+                "sub-01_model-DTI_param-S0_model.nii.gz": "",
+                "sub-01_model-DTI_param-S0_model.json": ""
+            },
+            "model-DTI_model.tsv": ""
+         },
+         "func": {
+            "model-VGG16": {
+                "sub-01_model-VGG16_param-all_model.h5": "",
+                "sub-01_model-VGG16_param-all_model.json": ""
+            },
+            "model-VGG16_model.tsv": ""
+         }
+      }
+   }
+   }
+
+) }}
 
 Please note that this example is fictional, and the `_model` suffix here has been
 used to only illustrate file names according to their particular convention (see below).
