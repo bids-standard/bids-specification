@@ -75,6 +75,18 @@ datatype:
   description: |
     The data type (as per BIDS definitions) from which the model was derived.
   type: string
+  enum:
+    - anat
+    - beh
+    - dwi
+    - eeg
+    - fmap
+    - func
+    - ieeg
+    - meg
+    - micr
+    - perf
+    - pet
 detector__channels:
   name: detector
   display_name: Detector Name
