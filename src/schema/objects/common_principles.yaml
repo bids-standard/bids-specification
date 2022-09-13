@@ -111,6 +111,7 @@ model:
     For example, the voxel-wise fit of water diffusion representations on DWI data.
     This definition is intended to be flexible for the user to call a *model* any step in their
     pipelines that generates derivatives of particular interest.
+    The model definition strictly applies to BIDS Derivatives.
 run:
   name: Run
   display_name: Run
