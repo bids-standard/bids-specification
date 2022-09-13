@@ -102,6 +102,15 @@ modality:
     the technique is sufficiently uniform to define the modalities `eeg`, `meg` and `ieeg`.
     When applicable, the modality is indicated in the **suffix**.
     The modality may overlap with, but should not be confused with the **data type**.
+model:
+  name: Model
+  display_name: Model
+  description: |
+    A step in the processing workflow via which parameters that describe the data are fit/derived,
+    and which have great protential for reuse.
+    For example, the voxel-wise fit of water diffusion representations on DWI data.
+    This definition is intended to be flexible for the user to call a *model* any step in their
+    pipelines that generates derivatives of particular interest.
 run:
   name: Run
   display_name: Run
