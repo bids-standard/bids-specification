@@ -153,9 +153,7 @@ suffixes `model` and `mdp`, used respectively for these two classes of model
 parameters.
 
 In its simplest form, with only one file storing model fit parameters and
-one model-derived parameter.
-
-Template:
+one model-derived parameter:
 
 {{ MACROS___make_filetree_example(
 
