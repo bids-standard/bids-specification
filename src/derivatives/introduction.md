@@ -111,7 +111,7 @@ model-VGG16   func    A VGG convolutional neural network.
 
 It is RECOMMENDED to accompany each `models.tsv` file with a sidecar
 `models.json` file to describe the TSV column names and properties of their values (see also
-the [section on tabular files](02-common-principles.md#tabular-files)).
+the [section on tabular files](../02-common-principles.md#tabular-files)).
 Such sidecar files are needed to interpret the data, especially so when
 custom columns are defined beyond `model_id`, `datatypes`, `description`.
 
