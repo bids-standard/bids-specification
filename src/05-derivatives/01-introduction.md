@@ -62,8 +62,8 @@ that is placed under the datatype from which the model was derived.
 ) }}
 
 The specification of the contents of the `model-<label>` directory (that is,
-`<model files>`) is [introduced
-below](#Model-fit-parameters-and-model-derived-parameters).
+`<model files>`) is
+[introduced below](#Model-fit-parameters-and-model-derived-parameters).
 
 ### Models file
 
