@@ -41,26 +41,87 @@ like:
 
 1.  Etc.
 
-Model-based derivatives SHOULD be saved in a directory named
-`model-<modelname>` that is placed under the datatype from which the model
-was derived. A metadata file, `models.tsv` is OPTIONAL, accompanied by
-a `models.json` file that is REQUIRED, if and only if `models.tsv` is present.
-The purpose of the RECOMMENDED `models.tsv` file is to describe properties of the models
-such as the datatype from which they are derived and a human-readable description of each
-model. The `models.json` is a dictionary for the `models.tsv` columns.
+Model-based derivatives SHOULD be saved in a directory named `model-<model_id>`
+that is placed under the datatype from which the model was derived.
 
 ```Text
 <pipeline_name>/
     sub-<label>/
         <datatype>/
-            model-<modelname>/
+            model-<model_id>/
+                <model files>
+                <model metadata files>
+```
+
+### Models file
+
+Template:
+
+```Text
+<pipeline_name>/
+    sub-<label>/
+        <datatype>/
+            model-<model_id>/
                 <model files>
                 <model metadata files>
             models.tsv
             models.json
 ```
 
-The contents of the `model-<modelname>/` folders can differ widely between models
+A metadata file, `models.tsv` is OPTIONAL, accompanied by
+a `models.json` file that is REQUIRED, if and only if `models.tsv` is present.
+The purpose of the RECOMMENDED `models.tsv` file is to index the available
+`<model_id>` labels and describe properties of the models such as the datatype
+from which they are derived and a human-readable description of each model.
+
+If this file exists, it MUST contain the column `model_id`,
+which MUST consist of `model-<label>` values identifying one row for each model,
+followed by a list of optional columns describing models.
+Each model MUST be described by one and only one row.
+
+The RECOMMENDED `datatype` column SHOULD be one of the available
+[data type identifiers](../02-common-principles.md#definitions).
+
+The RECOMMENDED `description` column SHOULD be string containing a short description
+of the model. It is RECOMMENDED that the description is a single line of no more than
+50 words. It is also RECOMMENDED to avoid special characters (e.g., new lines, tabs).
+
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/objects/columns.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+<!-- OE this table is WIP -->
+
+In this case, the `models.tsv` file could contain the following content:
+
+```Text
+model_id    datatype    description
+model-DTI dwi Diffusion tensor model.
+model-VGG16   func    A VGG convolutional neural network.
+```
+
+It is RECOMMENDED to accompany each `models.tsv` file with a sidecar
+`models.json` file to describe the TSV column names and properties of their values (see also
+the [section on tabular files](02-common-principles.md#tabular-files)).
+Such sidecar files are needed to interpret the data, especially so when
+custom columns are defined beyond `model_id`, `datatypes`, `description`.
+
+`models.json` example for a `models.tsv` file that has an extra column with name `runtime`:
+
+```JSON
+{
+    "runtime": {
+        "Description": "elapsed time for the execution of the model",
+        "Units": "seconds"
+    }
+}
+```
+
+### Example
+
+The contents of the `model-<model_id>/` folders can differ widely between models
 and modalities and are described in the relevant modality-specific derivative
 specifications. For a more concrete example, consider the following
 derivative dataset:
@@ -82,14 +143,6 @@ my_pipeline-v2022a/
                 sub-01_model-VGG16_param-all_model.h5
                 sub-01_model-VGG16_param-all_model.json
             model-VGG16_model.json
-```
-
-In this case, the `models.tsv` file could contain the following content:
-
-```Text
-model_id    datatype    description
-DTI	dwi Diffusion tensor model.
-VGG16	func    A VGG convolutional neural network.
 ```
 
 ## File naming conventions
