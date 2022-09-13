@@ -44,7 +44,7 @@ like:
 Model-based derivatives SHOULD be saved in a directory named
 `model-<modelname>` that is placed under the datatype from which the model
 was derived. A metadata file, `models.tsv` is OPTIONAL, accompanied by
-a `models.json` file that is REQUIRED, if and only `models.tsv` is present.
+a `models.json` file that is REQUIRED, if and only if `models.tsv` is present.
 The `models.json` is a dictionary for the `models.tsv` columns.
 The purpose of the RECOMMENDED `models.tsv` file is to describe properties of the models
 such as the datatype from which they are derived and a human-readable description of the
