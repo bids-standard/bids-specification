@@ -152,6 +152,9 @@ my_pipeline-v2022a/
             model-VGG16_model.json
 ```
 
+Please note that this example is fictional, and the `_model` suffix here has been
+used to only illustrate file names according to their particular convention (see below).
+
 ## File naming conventions
 
 -   Filenames that are permissible for a raw BIDS data type have a privileged
