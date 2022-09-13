@@ -58,6 +58,18 @@ datatype:
   description: |
     The data type (as per BIDS definitions) from which the model was derived.
   type: string
+  enum:
+    - anat
+    - beh
+    - dwi
+    - eeg
+    - fmap
+    - func
+    - ieeg
+    - meg
+    - micr
+    - perf
+    - pet
 derived_from:
   name: derived_from
   display_name: Derived from
