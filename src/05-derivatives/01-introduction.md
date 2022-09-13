@@ -61,7 +61,9 @@ that is placed under the datatype from which the model was derived.
 
 ) }}
 
-The specification of `<model files>` is [introduced below](#file-naming-conventions).
+The specification of the contents of the `model-<label>` directory (that is,
+`<model files>`) is [introduced
+below](#Model-fit-parameters-and-model-derived-parameters).
 
 ### Models file
 
@@ -142,6 +144,69 @@ custom columns are defined beyond `model_id`, `datatypes`, `description`.
 }
 ```
 
+### Model fit parameters and model-derived parameters
+
+We make a distinction between model fit parameters, which are those parameters
+that get calculated at model specification time and model-derived parameters,
+which can be calculated subsequently. These are distinguished through the
+suffixes `model` and `mdp`, used respectively for these two classes of model
+parameters.
+
+In its simplest form, with only one file storing model fit parameters and
+one model-derived parameter.
+
+Template:
+
+{{ MACROS___make_filetree_example(
+
+   {
+   "<pipeline_name>": {
+      "sub-<label>": {
+         "<datatype>": {
+            "model-<label>": {
+                "sub-01_model-<label>_model.nii.gz": "",
+                "sub-01_model-<label>_model.json": "",
+                "sub-01_model-<label>_param-<label>_mdp.nii.gz": "",
+                "sub-01_model-<label>_param-<label>_mdp.json": ""
+            },
+            "sub-<label>_models.tsv": "",
+            "sub-<label>_models.json": ""
+         }
+      }
+   }
+   }
+
+) }}
+
+With multiple files storing model fit parameters, and multiple model-derived
+parameter files:
+
+{{ MACROS___make_filetree_example(
+
+   {
+   "<pipeline_name>": {
+      "sub-<label>": {
+         "<datatype>": {
+            "model-<label>": {
+                "sub-01_model-<label>_param-<label1>_model.nii.gz": "",
+                "sub-01_model-<label>_param-<label1>_model.json": "",
+                "sub-01_model-<label>_param-<label2>_model.nii.gz": "",
+                "sub-01_model-<label>_param-<label2>_model.json": "",
+                "sub-01_model-<label>_param-<labela>_mdp.nii.gz": "",
+                "sub-01_model-<label>_param-<labela>_mdp.json": ""
+                "sub-01_model-<label>_param-<labelb>_mdp.nii.gz": "",
+                "sub-01_model-<label>_param-<labelb>_mdp.json": ""
+            },
+            "sub-<label>_models.tsv": "",
+            "sub-<label>_models.json": ""
+         }
+      }
+   }
+   }
+
+) }}
+
+
 ### Example
 
 The contents of the `model-<model_id>/` folders can differ widely between models
@@ -161,7 +226,9 @@ derivative dataset:
                 "sub-01_model-DTI_param-tensor_model.nii.gz": "",
                 "sub-01_model-DTI_param-tensor_model.json": "",
                 "sub-01_model-DTI_param-S0_model.nii.gz": "",
-                "sub-01_model-DTI_param-S0_model.json": ""
+                "sub-01_model-DTI_param-S0_model.json": "",
+                "sub-01_model-DTI_param-fa_mdp.nii.gz": "",
+                "sub-01_model-DTI_param-fa_mdp.json": ""
             },
             "model-DTI_model.json": ""
          },
@@ -177,9 +244,6 @@ derivative dataset:
    }
 
 ) }}
-
-Please note that this example is fictional, and the `_model` suffix here has been
-used to only illustrate file names according to their particular convention (see below).
 
 ## File naming conventions
 
