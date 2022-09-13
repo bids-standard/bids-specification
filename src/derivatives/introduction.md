@@ -60,7 +60,6 @@ It would go into the following structure:
             model-<modelname>/
                 <model files>
                 <model metadata files>
-            model-<modelname>_model.json
             models.tsv
             models.json
 ```
