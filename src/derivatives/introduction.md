@@ -45,13 +45,10 @@ Model-based derivatives SHOULD be saved in a directory named
 `model-<modelname>` that is placed under the datatype from which the model
 was derived. A metadata file, `models.tsv` is OPTIONAL, accompanied by
 a `models.json` file that is REQUIRED, if and only if `models.tsv` is present.
-The `models.json` is a dictionary for the `models.tsv` columns.
 The purpose of the RECOMMENDED `models.tsv` file is to describe properties of the models
-such as the datatype from which they are derived and a human-readable description of the
-model.
+such as the datatype from which they are derived and a human-readable description of each
+model. The `models.json` is a dictionary for the `models.tsv` columns. 
 
-For example, if the model is principally derived from DWI data.
-It would go into the following structure:
 
 ```Text
 <pipeline_name>/
@@ -66,12 +63,11 @@ It would go into the following structure:
 
 The contents of the `model-<modelname>/` folders can differ widely between models
 and modalities and are described in the relevant modality-specific derivative
-specifications.
-
-For a concrete example, consider the following multi-modal dataset:
+specifications. For a more concrete example, consider the following 
+derivative dataset:
 
 ```Text
-pipelineush-v2022a/
+my_pipeline-v2022a/
     models.tsv
     models.json
     sub-01/
