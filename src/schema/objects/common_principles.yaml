@@ -107,7 +107,8 @@ model:
   display_name: Model
   description: |
     A step in the processing workflow via which parameters that describe the data are fit/derived,
-    and which have great potential for reuse.
+    and which have great potential for reuse, consistent with
+    [this definition](https://plato.stanford.edu/entries/models-science/#DescEqua).
     For example, the voxel-wise fit of water diffusion representations on DWI data.
     This definition is intended to be flexible for the user to call a *model* any step in their
     pipelines that generates derivatives of particular interest.
