@@ -48,7 +48,7 @@ a `models.json` file that is REQUIRED, if and only `models.tsv` is present.
 The `models.json` is a dictionary for the `models.tsv` columns.
 The purpose of the RECOMMENDED `models.tsv` file is to describe properties of the models
 such as the datatype from which they are derived and a human-readable description of the
-model. An additional metadata file, `model-<modelname>.json` is REQUIRED and describes the metadata for model fitting procedures, etc. for each model.
+model.
 
 For example, if the model is principally derived from DWI data.
 It would go into the following structure:
