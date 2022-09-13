@@ -50,8 +50,9 @@ that is placed under the datatype from which the model was derived.
         <datatype>/
             model-<model_id>/
                 <model files>
-                <model metadata files>
 ```
+
+The specification of `<model files>` is [introduced below](#file-naming-conventions).
 
 ### Models file
 
