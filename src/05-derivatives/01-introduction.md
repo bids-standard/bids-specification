@@ -47,8 +47,7 @@ was derived. A metadata file, `models.tsv` is OPTIONAL, accompanied by
 a `models.json` file that is REQUIRED, if and only if `models.tsv` is present.
 The purpose of the RECOMMENDED `models.tsv` file is to describe properties of the models
 such as the datatype from which they are derived and a human-readable description of each
-model. The `models.json` is a dictionary for the `models.tsv` columns. 
-
+model. The `models.json` is a dictionary for the `models.tsv` columns.
 
 ```Text
 <pipeline_name>/
@@ -63,7 +62,7 @@ model. The `models.json` is a dictionary for the `models.tsv` columns.
 
 The contents of the `model-<modelname>/` folders can differ widely between models
 and modalities and are described in the relevant modality-specific derivative
-specifications. For a more concrete example, consider the following 
+specifications. For a more concrete example, consider the following
 derivative dataset:
 
 ```Text
