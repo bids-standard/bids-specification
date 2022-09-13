@@ -97,14 +97,14 @@ rather than the image data).
 
 -   Files "`<source_keywords>[_space-<space>]_model-<label>_param-<param*>_model.nii[.gz]`"
     provide data corresponding to the various requisite [model parameters](#paramdef-model).
+
     In cases where *all* [model parameters](#paramdef-model) are contained within a single image
-    file, entity "`_param-`" nevertheless MUST be included, with value "`all`"; e.g.:
+    file, entity "`_param-`" MUST NOT be included; e.g.:
         ```Text
         <pipeline_name>/
             sub-<participant_label>/
                 dwi/
-                    <source_keywords>[_space-<space>]_model-<label>_param-all_model.nii[.gz]
-                    [<source_keywords>[_space-<space>]_model-<label>_param-all_model.json]
+                    <source_keywords>[_space-<space>]_model-<label>_model.nii[.gz]
                     <source_keywords>[_space-<space>]_model-<label>_model.json
         ```
 
@@ -243,7 +243,7 @@ keywords for "`_param-`" fields, which are listed below.
 | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `bs`        | Ball-and-Stick(s) model \[[Behrens2003](#behrens2003)\],\[[Behrens2007](#behrens2007)\],\[[Jbabdi2012](#jbabdi2012)\]                           | One [spherical coordinates](#data-spherical) image with parameter name "`sticks`", providing both fibre volume fractions and orientations using polar angles;<br>Optional scalar images with parameter names {"`bzero`", "`dmean`", "`dstd`"} providing the model-estimated *b*=0 signal intensity, mean stick diffusivity, and standard deviation of stick diffusivities respectively                              |
 | `csd`       | Constrained Spherical Deconvolution \[[Tournier2007](#tournier2007)\],\[[Descoteaux2009](#descoteaux2009)\],\[[Jeurissen2014](#jeurissen2014)\] | [Spherical harmonics](#data-sh) image<br>If a multi-tissue decomposition is performed, provide one individual 4D image per tissue, with "`_param-<param>`" entity being an abbreviation of the tissue estimated by that particular ODF                                                                                                                                                                        |
-| `tensor`    | Diffusion Tensor \[[Basser1994](#basser1994)\]                                                                                                  | Single [parameter vectors](#data-param) image with parameter name "`all`" with 6 volumes in the order: *D<sub>xx</sub>*, *D<sub>xy</sub>*, *D<sub>xz</sub>*, *D<sub>yy</sub>*, *D<sub>yz</sub>*, *D<sub>zz</sub>*<br>OR<br>Tensor coefficients as [parameter vectors](#data-param) image with parameter name "`tensor`";<br>Estimated *b*=0 intensity as [scalar](#data-scalar) image with parameter name "`bzero`" |
+| `tensor`    | Diffusion Tensor \[[Basser1994](#basser1994)\]                                                                                                  | Single [parameter vectors](#data-param) image with no `param` entity with 6 volumes in the order: *D<sub>xx</sub>*, *D<sub>xy</sub>*, *D<sub>xz</sub>*, *D<sub>yy</sub>*, *D<sub>yz</sub>*, *D<sub>zz</sub>*<br>OR<br>Tensor coefficients as [parameter vectors](#data-param) image with parameter name "`tensor`";<br>Estimated *b*=0 intensity as [scalar](#data-scalar) image with parameter name "`bzero`" |
 
 The JSON sidecar for the intrinsic diffusion model parameters may contain
 the following key/value pairs irrespective of the particular model:
