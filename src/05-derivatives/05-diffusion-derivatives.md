@@ -67,7 +67,7 @@ these uses is defined thus:
 1.  <a name="paramdef-derived">Model-*derived*</a> parameter:
 
     Value that can be calculated directly from previously estimated
-    intrinsic model parameters, without necessitating reference to
+    *model parameters*, without necessitating reference to
     the empirical diffusion-weighted data.
 
 For example, consider a diffusion tensor model fit: the number of
