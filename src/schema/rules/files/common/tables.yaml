@@ -30,3 +30,12 @@ sessions: # This file may only exist if session is present in the dataset.
     - .json
   entities:
     subject: required
+models:
+  suffixes:
+    - models
+  extensions:
+    - .tsv
+    - .json
+  entities:
+    subject: optional
+    session: optional
