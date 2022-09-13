@@ -2002,7 +2002,7 @@ NIRSChannelCount:
   name: NIRSChannelCount
   display_name: NIRS Channel Count
   description: |
-    Number of NIRS channels.
+    Total number of NIRS channels, including short channels.
   type: integer
   minimum: 0
 NIRSSourceOptodeCount:
