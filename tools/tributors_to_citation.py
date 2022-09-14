@@ -1,5 +1,9 @@
+"""Replace author field of CITATION.CFF with content from .tributors"""
+
 import json
 import ruamel.yaml
+
+from rich import print
 
 from pathlib import Path
 
@@ -18,8 +22,8 @@ def load_citation(citation_file):
 
 def main():
 
-    with open(tributors_file, "r", encoding="utf8") as tributors_file:
-        tributors = json.load(tributors_file)
+    with open(tributors_file, "r", encoding="utf8") as input_file:
+        tributors = json.load(input_file)
 
     author_list = []
 

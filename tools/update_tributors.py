@@ -49,7 +49,7 @@ def return_this_contributor(tsv, name):
 
     github_username = None
     if github is not None:
-        github_username = github.replace("https://github.com/", "")
+        github_username = github.replace("https://github.com/", "").rstrip(" ")
 
     website = tsv[tsv.name == name].Website.values[0]
     if website == "nan" or isinstance(website, (float)):
@@ -62,6 +62,8 @@ def return_this_contributor(tsv, name):
     orcid = tsv[tsv.name == name].orcid.values[0]
     if orcid == "nan" or isinstance(orcid, (float)):
         orcid = None
+    if orcid is not None:
+        orcid = orcid.replace("http://", "https://")
 
     add_email = tsv[tsv.name == name].consent.values[0]
     add_email = add_email not in ["nan", "No"] and not isinstance(add_email, (float))
@@ -121,28 +123,36 @@ for name in tsv.name:
         assert allcontrib["contributors"][index_allcontrib]["name"] == name
         assert tributors[key_tributor]["name"] == name
 
-        if this_contributor["github_username"] is not None:
+        if this_contributor["website"] is not None:
             allcontrib["contributors"][index_allcontrib]["profile"] = this_contributor[
                 "website"
             ]
 
-        if this_contributor["website"] is not None:
+        if this_contributor["github_username"] is not None:
             allcontrib["contributors"][index_allcontrib]["login"] = this_contributor[
                 "github_username"
             ]
             tributors[key_tributor]["blog"] = this_contributor["website"]
 
-        if this_contributor["add_email"]:
+        if this_contributor["add_email"] is True and this_contributor["email"] is not None:
             tributors[key_tributor]["email"] = this_contributor["email"]
 
         if this_contributor["affiliation"] is not None:
             tributors[key_tributor]["affiliation"] = this_contributor["affiliation"]
 
         if this_contributor["orcid"] is not None:
-            tributors[key_tributor]["orcid"] = this_contributor["orcid"].replace("https://orcid.org/", "")
-
+            tributors[key_tributor]["orcid"] = this_contributor["orcid"].replace(
+                "https://orcid.org/", ""
+            )
 
         print("\n")
         print(this_contributor)
         print(tributors[key_tributor])
         print(allcontrib["contributors"][index_allcontrib])
+
+
+with open(allcontrib_file, "w", encoding="utf8") as output_file:
+    json.dump(allcontrib, output_file, indent=4, ensure_ascii=False)
+
+with open(tributors_file, "w", encoding="utf8") as output_file:
+    json.dump(tributors, output_file, indent=4, ensure_ascii=False)

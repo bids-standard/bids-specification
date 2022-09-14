@@ -42,7 +42,7 @@
             "contributions": [
                 "design"
             ],
-            "profile": "http://www.adina-wagner.com",
+            "profile": "https://www.adina-wagner.com",
             "avatar_url": [
                 "https://avatars.githubusercontent.com/u/29738718?v=4"
             ]
@@ -106,13 +106,14 @@
         },
         {
             "name": "Alexander L. Cohen",
-            "login": "alexander_l_cohen",
+            "login": "alexlicohen",
             "contributions": [
                 "bug",
                 "code",
                 "doc",
                 "question"
-            ]
+            ],
+            "profile": "https://bchcohenlab.com"
         },
         {
             "name": "Alexander von Lautz",
@@ -123,11 +124,12 @@
         },
         {
             "name": "Alexandre Gramfort",
-            "login": "alexandre_gramfort",
+            "login": "agramfort",
             "contributions": [
                 "doc",
                 "example"
-            ]
+            ],
+            "profile": "http://alexandre.gramfort.net"
         },
         {
             "name": "Alexandre Hutton",
@@ -242,11 +244,12 @@
         },
         {
             "name": "Arnaud Delorme",
-            "login": "arnaud_delorme",
+            "login": "arnodelorme",
             "contributions": [
                 "doc",
                 "example"
-            ]
+            ],
+            "profile": "https://www.arnauddelorme.com"
         },
         {
             "login": "Arshitha",
@@ -337,10 +340,11 @@
         },
         {
             "name": "Bradley Voytek",
-            "login": "bradley_voytek",
+            "login": "voytek",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://www.voyteklab.com/"
         },
         {
             "name": "Brett L. Foster",
@@ -365,10 +369,11 @@
         },
         {
             "name": "Camille Maumet",
-            "login": "camille_maumet",
+            "login": "cmaumet",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://camillemaumet.com/"
         },
         {
             "name": "Chloé Pasturel",
@@ -462,17 +467,19 @@
         },
         {
             "name": "Christophe Phillips",
-            "login": "christophe_phillips",
+            "login": "ChristophePhillips",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://www.uliege.be/cms/c_9054334/en/directory/?uid=U016440"
         },
         {
             "name": "Christopher J. Honey",
             "login": "christopher_j_honey",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://www.honeylab.org"
         },
         {
             "name": "Christopher Lee-Messer",
@@ -490,7 +497,7 @@
         },
         {
             "name": "Cyril Pernet",
-            "login": "cyril_pernet",
+            "login": "CPernet",
             "contributions": [
                 "question",
                 "blog",
@@ -500,7 +507,8 @@
                 "eventOrganizing",
                 "ideas",
                 "talk"
-            ]
+            ],
+            "profile": "https://cpernet.github.io/"
         },
         {
             "login": "dasturge",
@@ -515,10 +523,11 @@
         },
         {
             "name": "Dan Levitas",
-            "login": "dan_levitas",
+            "login": "dlevitas",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://github.com/dlevitas"
         },
         {
             "name": "Dan Lurie",
@@ -555,10 +564,11 @@
         },
         {
             "name": "David Groppe",
-            "login": "david_groppe",
+            "login": "dmgroppe",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://github.com/dmgroppe"
         },
         {
             "name": "David Keator",
@@ -591,10 +601,11 @@
         },
         {
             "name": "Dianne Patterson",
-            "login": "dianne_patterson",
+            "login": "dkp",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://profiles.arizona.edu/person/dkp"
         },
         {
             "login": "DimitriPapadopoulos",
@@ -651,10 +662,11 @@
         },
         {
             "name": "Eduard Ort",
-            "login": "eduard_ort",
+            "login": "eort",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://github.com/eort"
         },
         {
             "name": "Elizabeth Bock",
@@ -674,7 +686,7 @@
                 "ideas",
                 "question"
             ],
-            "profile": "http://emdupre.me",
+            "profile": "https://elizabeth-dupre.com",
             "avatar_url": [
                 "https://avatars.githubusercontent.com/u/15017191?v=4"
             ]
@@ -870,11 +882,12 @@
         },
         {
             "name": "Giacomo Mazzamuto",
-            "login": "giacomo_mazzamuto",
+            "login": "gmazzamuto",
             "contributions": [
                 "doc",
                 "data"
-            ]
+            ],
+            "profile": "https://github.com/gmazzamuto"
         },
         {
             "name": "Gilles de Hollander",
@@ -1016,7 +1029,7 @@
             "contributions": [
                 "code"
             ],
-            "profile": "http://chymera.eu",
+            "profile": "http://www.chymera.eu",
             "avatar_url": [
                 "https://avatars.githubusercontent.com/u/950524?v=4"
             ]
@@ -1101,7 +1114,7 @@
         },
         {
             "name": "Jan Petr",
-            "login": "jan_petr",
+            "login": "jan-petr",
             "contributions": [
                 "question",
                 "bug",
@@ -1114,7 +1127,8 @@
                 "projectManagement",
                 "test",
                 "talk"
-            ]
+            ],
+            "profile": "https://www.exploreasl.org"
         },
         {
             "name": "Jan-Mathijs Schoffelen",
@@ -1314,10 +1328,11 @@
         },
         {
             "name": "Julia Sprenger",
-            "login": "julia_sprenger",
+            "login": "juliasprenger",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://github.com/juliasprenger"
         },
         {
             "name": "Julien Cohen-Adad",
@@ -1330,10 +1345,11 @@
         },
         {
             "name": "Julius Welzel",
-            "login": "julius_welzel",
+            "login": "JuliusWelzel",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://github.com/JuliusWelzel"
         },
         {
             "name": "Kai J. Miller",
@@ -1391,7 +1407,8 @@
             "login": "kristofer_bouchard",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://bouchardlab.lbl.gov"
         },
         {
             "name": "Krzysztof J. Gorgolewski",
@@ -1512,7 +1529,7 @@
         },
         {
             "name": "Marco Castellaro",
-            "login": "marco_castellaro",
+            "login": "marcocastellaro",
             "contributions": [
                 "question",
                 "bug",
@@ -1522,14 +1539,16 @@
                 "test",
                 "talk",
                 "infra"
-            ]
+            ],
+            "profile": "https://github.com/marcocastellaro"
         },
         {
             "name": "Maria de la Iglesia",
-            "login": "maria_de_la_iglesia",
+            "login": "maigva",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://bimcv.cipf.es"
         },
         {
             "login": "mariehbourget",
@@ -1547,10 +1566,11 @@
         },
         {
             "name": "Mark Mikkelsen",
-            "login": "mark_mikkelsen",
+            "login": "markmikkelsen",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://vivo.weill.cornell.edu/display/cwid-mam4041"
         },
         {
             "name": "Markus Morawski",
@@ -1608,12 +1628,13 @@
         },
         {
             "name": "Mathias Goncalves",
-            "login": "mathias_goncalves",
+            "login": "mgxd",
             "contributions": [
                 "code",
                 "tool",
                 "talk"
-            ]
+            ],
+            "profile": "https://github.com/mgxd"
         },
         {
             "name": "Mathieu Boudreau",
@@ -1743,10 +1764,11 @@
         },
         {
             "name": "Mikaël Naveau",
-            "login": "mikael_naveau",
+            "login": "naveau",
             "contributions": [
                 "bug"
-            ]
+            ],
+            "profile": "https://www.cyceron.fr"
         },
         {
             "name": "Nader Pouratian",
@@ -1912,10 +1934,11 @@
         },
         {
             "name": "Petra Ritter",
-            "login": "petra_ritter",
+            "login": "BrainModes",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://www.brainsimulation.org"
         },
         {
             "name": "Pierre Rioux",
@@ -1981,10 +2004,11 @@
         },
         {
             "name": "Richard N. Henson",
-            "login": "richard_n_henson",
+            "login": "RikHenson",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "http://www.mrc-cbu.cam.ac.uk/people/rik.henson/personal"
         },
         {
             "login": "rob-luke",
@@ -2043,7 +2067,7 @@
                 "userTesting",
                 "video"
             ],
-            "profile": "https://github.com/robertoostenveld",
+            "profile": "https://robertoostenveld.nl",
             "avatar_url": [
                 "https://avatars.githubusercontent.com/u/899043?v=4"
             ]
@@ -2079,12 +2103,13 @@
         },
         {
             "name": "Russell A. Poldrack",
-            "login": "russell_a_poldrack",
+            "login": "poldrack",
             "contributions": [
                 "doc",
                 "fundingFinding",
                 "talk"
-            ]
+            ],
+            "profile": "http://www.poldracklab.org"
         },
         {
             "name": "Rémi Adon",
@@ -2141,7 +2166,7 @@
                 "doc",
                 "code"
             ],
-            "profile": "http://satra.cogitatum.org",
+            "profile": "https://satra.cogitatum.org",
             "avatar_url": [
                 "https://avatars.githubusercontent.com/u/184063?v=4"
             ]
@@ -2162,10 +2187,11 @@
         },
         {
             "name": "Sjoerd B. Vos",
-            "login": "sjoerd_vos",
+            "login": "sjoerdvos",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://research-repository.uwa.edu.au/en/persons/sjoerd-vos"
         },
         {
             "name": "Soichi Hayashi",
@@ -2301,7 +2327,7 @@
                 "doc",
                 "plugin"
             ],
-            "profile": "http://tsalo.github.io",
+            "profile": "https://tsalo.github.io",
             "avatar_url": [
                 "https://avatars.githubusercontent.com/u/8228902?v=4"
             ]
@@ -2349,7 +2375,7 @@
                 "review",
                 "maintenance"
             ],
-            "profile": "http://www.nisox.org",
+            "profile": "http://nisox.org",
             "avatar_url": [
                 "https://avatars.githubusercontent.com/u/5155907?v=4"
             ]
@@ -2363,7 +2389,7 @@
         },
         {
             "name": "Tibor Auer",
-            "login": "tibor_auer",
+            "login": "tiborauer",
             "contributions": [
                 "question",
                 "doc",
@@ -2372,21 +2398,24 @@
                 "talk",
                 "bug",
                 "ideas"
-            ]
+            ],
+            "profile": "https://tiborauer.github.io"
         },
         {
             "name": "Timotheus Berg",
-            "login": "timo_berg",
+            "login": "timo-berg",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://github.com/timo-berg"
         },
         {
             "name": "Timo Dickscheid",
-            "login": "timo_dickscheid",
+            "login": "dickscheid",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://go.fzj.de/dickscheid"
         },
         {
             "login": "xi",
