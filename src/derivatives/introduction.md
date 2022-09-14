@@ -75,6 +75,8 @@ Example:
 ```JSON
 {
   "Name": "Diffusion Tensor Imaging (DTI)",
+  "FitMethod": "WLS",
+  "Implementation": "dipy.reconst.dti",
   "ReferencesAndLinks": [
       "https://doi.org/10.1016/S0006-3495(94)80775-1"
   ]
