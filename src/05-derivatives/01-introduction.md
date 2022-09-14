@@ -154,6 +154,22 @@ custom columns are defined beyond `model_id`, `datatypes`, `description`.
 
 Derivatives from modeling steps MUST use the suffixes `mfp` and `mdp`, to denote
 *model-fit parameters* and *model-derived parameters* respectively.
+
+<!--
+This block generates a suffix table.
+The definitions of these fields can be found in
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_suffix_table(
+      [
+         "mfp",
+         "mdp",
+      ]
+   )
+}}
+
 In its simplest form, with only one file storing model-fit parameters and
 one storing model-derived parameters:
 
