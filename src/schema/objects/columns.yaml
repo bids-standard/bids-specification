@@ -52,6 +52,17 @@ color:
     Hexadecimal. Label color for visualization.
   type: string
   unit: hexadecimal
+compcor:
+  name: '[a|t|w|c]_compcor_cor_[0-9a-zA-Z]+'
+  display_name: CompCor
+  description: |
+    CompCor (Behzadi, et al., 2007) calculated with voxels chosen based on:
+    a: anatomically derived ROIs (white matter and CSF),
+    t: temporal variance, w: white matter voxels only, c: CSF voxels only
+cosine_x:
+  name: ^cosine_[0-9a-zA-Z]+$
+  display_name: Cosine <X>
+  description: Discrete cosine basis vectors
 derived_from:
   name: derived_from
   display_name: Derived from
@@ -88,6 +99,11 @@ duration:
     - type: string
       enum:
         - n/a
+dvars:
+  name: dvars
+  display_name: DVARS
+  description: Change in variance (Brett, 2006, Power, et al., 2012)
+  type: number
 filename:
   name: filename
   display_name: Filename
@@ -95,6 +111,12 @@ filename:
     Relative paths to files.
   type: string
   format: participant_relative
+framwise_displacement:
+  name: framewise_displacement
+  display_name: Framwise Displacement
+  description: Framewise displacement (Power, et al., 2012)
+  type: number
+  unit: mm
 group__channel:
   name: group
   display_name: Channel group
@@ -179,6 +201,14 @@ index:
   description: |
     The label integer index.
   type: integer
+legendre_x:
+  name: ^legendre_[0-9a-zA-Z]+$
+  display_name: Legendre <X>
+  description: Legendre polynomial basis vectors
+non_steady_state_x:
+  name: ^non_steady_state_[0-9a-zA-Z]+$
+  display_name: Non Steady State <X>
+  description: Initial non-steady-state volumes. One column per volume.
 low_cutoff:
   name: low_cutoff
   display_name: Low cutoff
@@ -204,6 +234,10 @@ mapping:
   description: |
     Corresponding integer label in the standard BIDS label lookup.
   type: integer
+melodic:
+  name: ^melodic_[0-9a-zA-Z]+$
+  display_name: FSL MELODIC
+  description: Columns from the mixing matrix in FSL MELODIC
 material:
   name: material
   display_name: Electrode material
@@ -341,6 +375,36 @@ response_time:
     - type: string
       enum:
         - n/a
+rmsd:
+  name: rmsd
+  display_name: Root Mean Square Derivation
+  description: Root mean square deviation (Jenkinson, 1999)
+  type: number
+  unit: mm
+rms:
+  name: rms
+  display_name: Root Mean Square
+  description: Root mean square of translation parameters (Van Dijk, et al., 2012)
+  type: number
+  unit: mm
+rot_x:
+  name: rot_x
+  display_name: X Axis Rotation
+  description: Rotation parameters
+  type: number
+  unit: rad
+rot_y:
+  name: rot_y
+  display_name: Y Axis Rotation
+  description: Rotation parameters
+  type: number
+  unit: rad
+rot_z:
+  name: rot_z
+  display_name: Z Axis Rotation
+  description: Rotation parameters
+  type: number
+  unit: rad
 sample:
   name: sample
   display_name: Sample index
@@ -470,6 +534,11 @@ status_description:
     Freeform text description of noise or artifact affecting data quality on the channel.
     It is meant to explain why the channel was declared bad in the `status` column.
   type: string
+std_dvars:
+  name: std_dvars
+  display_name: Standardized DVARS
+  description: Standardized DVARS (Nichols, 2013)
+  type: number
 stim_file:
   name: stim_file
   display_name: Stimulus file
@@ -508,6 +577,24 @@ time:
     For example, 5.
   type: number
   unit: s
+trans_x:
+  name: trans_x
+  display_name: X Axis Translation
+  description: Translation parameters
+  type: number
+  unit: mm
+trans_y:
+  name: trans_y
+  display_name: Y Axis Translation
+  description: Translation parameters
+  type: number
+  unit: mm
+trans_z:
+  name: trans_z
+  display_name: Z Axis Translation
+  description: Translation parameters
+  type: number
+  unit: mm
 trial_type:
   name: trial_type
   display_name: Trial type

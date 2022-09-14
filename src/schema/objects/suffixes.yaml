@@ -490,6 +490,13 @@ VFA:
     Depending on the provided metadata fields and the sequence type,
     data may be eligible for DESPOT1, DESPOT2 and their variants
     ([Deoni et al. 2005](https://doi.org/10.1002/mrm.20314)).
+alff:
+  value: alff
+  display_name: Amplitude low frequency fluctuations
+  description: |
+    Amplitude low frequency fluctuations.
+
+    This suffix may only be used in derivative datasets.
 angio:
   value: angio
   display_name: Angiogram
@@ -545,12 +552,40 @@ channels:
   display_name: Channels File
   description: |
     Channel information.
+components:
+  value: components
+  display_name: Timeseries
+  description: |
+    Components from a decomposition.
+
+    This suffix may only be used in derivative datasets.
 coordsystem:
   value: coordsystem
   display_name: Coordinate System File
   description: |
     A JSON document specifying the coordinate system(s) used for the MEG, EEG,
     head localization coils, and anatomical landmarks.
+dcb:
+  value: dcb
+  display_name: Binary degree centrality
+  description: |
+    Voxel-wise binary degree centrality.
+
+    This suffix may only be used in derivative datasets.
+dcw:
+  value: dcw
+  display_name: Weighted degree centrality
+  description: |
+    Voxel-wise weighted degree centrality.
+
+    This suffix may only be used in derivative datasets.
+decomposition:
+  value: decomposition
+  display_name: Decomposition
+  description: |
+    Metadata from a decomposition.
+
+    This suffix may only be used in derivative datasets.
 defacemask:
   value: defacemask
   display_name: Defacing Mask
@@ -569,6 +604,20 @@ dwi:
   display_name: Diffusion-weighted image
   description: |
     Diffusion-weighted imaging contrast (specialized T2 weighting).
+ecb:
+  value: ecb
+  display_name: Binary eigenvector centrality
+  description: |
+    Voxelwise binary eigenvector centrality.
+
+    This suffix may only be used in derivative datasets.
+ecw:
+  value: ecw
+  display_name: Weighted eigenvector centrality
+  description: |
+    Voxelwise weighted eigenvector centrality.
+
+    This suffix may only be used in derivative datasets.
 eeg:
   value: eeg
   display_name: Electroencephalography
@@ -591,6 +640,13 @@ events:
   display_name: Events
   description: |
     Event timing information from a behavioral task.
+falff:
+  value: falff
+  display_name: Fractional amplitude of low frequency fluctuations
+  description: |
+    Fractional amplitude of low frequency fluctuations.
+
+    This suffix may only be used in derivative datasets.
 fieldmap:
   value: fieldmap
   display_name: Fieldmap
@@ -622,6 +678,20 @@ inplaneT2:
     In arbitrary units (arbitrary).
     T2 weighted structural image matched to a functional (task) image.
   unit: arbitrary
+lfcdb:
+  value: lfcdb
+  display_name: Binary local functional connectivity density
+  description: |
+    Binary local functional connectivity density.
+
+    This suffix may only be used in derivative datasets.
+lfcdw:
+  value: lfcdw
+  display_name: Weighted local functional connectivity density
+  description: |
+    Weighted local functional connectivity density.
+
+    This suffix may only be used in derivative datasets.
 m0scan:
   value: m0scan
   display_name: M0 image
@@ -663,12 +733,42 @@ mask:
     A binary mask that functions as a discrete "label" for a single structure.
 
     This suffix may only be used in derivative datasets.
+mean:
+  value: mean
+  display_name: Mean image
+  description: |
+    Mean across the temporal/4th dimension of the data.
+
+    This suffix may only be used in derivative datasets.
 meg:
   value: meg
   display_name: Magnetoencephalography
   description: |
     Unprocessed MEG data stored in the native file format of the MEG instrument
     with which the data was collected.
+mixing:
+  value: mixing
+  display_name: Mixing Matrix
+  description: |
+    A mixing matrix from a decomposition.
+
+    This suffix may only be used in derivative datasets.
+motion:
+  value: motion
+  display_name: Motion
+  description: |
+    A motion file.
+
+    This suffix may only be used in derivative datasets.
+outliers:
+  value: outliers
+  display_name: Outliers
+  description: |
+    An outliers file.
+    Outlier masks are columns of zeros (0), with ones (1) indicating volumes that have been
+    identified as outliers by some method.
+
+    This suffix may only be used in derivative datasets.
 pet:
   value: pet
   display_name: Positron Emission Tomography
@@ -727,6 +827,14 @@ probseg:
     A probabilistic segmentation.
 
     This suffix may only be used in derivative datasets.
+reho:
+  value: reho
+  display_name: Regional homogeneity
+  description: |
+    Regional homogeneity image.
+    Only voxel-wise images are supported with this suffix.
+
+    This suffix may only be used in derivative datasets.
 sbref:
   value: sbref
   display_name: Single-band reference image
@@ -761,13 +869,50 @@ sessions:
     These files MUST include a session_id column and describe each session by one and only one row.
     Column names in sessions.tsv files MUST be different from group level participant key column
     names in the participants.tsv file.
+sfs:
+  value: sfs
+  display_name: Signal fluctuation sensitivity
+  description: |
+    Signal fluctuation sensitivity image.
+
+    This suffix may only be used in derivative datasets.
+std:
+  value: std
+  display_name: Standard deviation
+  description: |
+    Standard deviation across the temporal/4th dimension of the data.
+
+    This suffix may only be used in derivative datasets.
 stim:
   value: stim
   display_name: Continuous recording
   description: |
     Continuous measures, such as parameters of a film or audio stimulus.
+timeseries:
+  value: timeseries
+  display_name: Timeseries
+  description: |
+    A timeseries file.
+    Any time series with common timing information may be stored in a timeseries file.
+
+    This suffix may only be used in derivative datasets.
+tsnr:
+  value: tsnr
+  display_name: Temporal signal-to-noise ratio
+  description: |
+    Temporal signal-to-noise ratio.
+    This is defined as the temporal mean divided by the template standard deviation.
+
+    This suffix may only be used in derivative datasets.
 uCT:
   value: uCT
   display_name: Micro-CT
   description: |
     Micro-CT imaging data
+vmhc:
+  value: vmhc
+  display_name: Voxel mirrored homotopic connectivity
+  description: |
+    Voxel mirrored homotopic connectivity.
+
+    This suffix may only be used in derivative datasets.

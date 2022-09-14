@@ -1,0 +1,93 @@
+---
+functional_derivatives_maps:
+  _ref: rules.datatypes.func.func
+  extensions:
+    - '.nii'
+    - '.nii.gz'
+    - '.gii'
+    - '.dscalar.nii'
+  entities:
+    _ref: rules.datatypes.func.func.entities
+    space: OPTIONAL
+    resolution: OPTIONAL
+    density: OPTIONAL
+    description: OPTIONAL
+  suffixes:
+    - 'mean'
+    - 'std'
+    - 'tsnr'
+    - 'sfs'
+    - 'alff'
+    - 'falff'
+    - 'reho'
+    - 'dcb'
+    - 'dcw'
+    - 'ecb'
+    - 'ecw'
+    - 'lfcdb'
+    - 'lfcdw'
+    - 'vmhc'
+
+functional_derivatives_timeseries:
+  extensions:
+    - '.tsv'
+    - '.json'
+    - '.time.gii'
+    - '.dtseries.nii'
+  entities:
+    _ref: rules.datatypes.func.func.entities
+    description: OPTIONAL
+  suffixes:
+    - timeseries
+
+functional_derivatives_roi_based_timeseries:
+  extensions:
+    - '.nii'
+    - '.tsv'
+    - '.json'
+  entities:
+    _ref: rules.datatypes.func.func.entities
+    description: OPTIONAL
+    atlas: OPTIONAL
+  suffixes:
+    - timeseries
+
+functional_derivatives_motion_timeseries:
+  extensions:
+    - '.tsv'
+    - '.json'
+  entities:
+    _ref: rules.datatypes.func.func.entities
+    description: OPTIONAL
+  suffixes:
+    - motion
+
+functional_derivatives_outliers_timeseries:
+  extensions:
+    - '.tsv'
+    - '.json'
+  entities:
+    _ref: rules.datatypes.func.func.entities
+    description: OPTIONAL
+  suffixes:
+    - outliers
+
+functional_derivatives_spatiotemporal_timeseries:
+  extensions:
+    - '.tsv'
+    - '.nii.gz'
+  entities:
+    _ref: rules.datatypes.func.func.entities
+    description: OPTIONAL
+  suffixes:
+    - mixing
+    - components
+
+functional_derivatives_spatiotemporal_decomp_timeseries:
+  extensions:
+    - '.json'
+  entities:
+    _ref: rules.datatypes.func.func.entities
+    description: OPTIONAL
+  suffixes:
+    - decomposition
