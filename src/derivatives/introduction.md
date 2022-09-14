@@ -138,14 +138,6 @@ and a guide for using macros can be found at
    }
 ) }}
 
-In this case, the `models.tsv` file could contain the following content:
-
-```Text
-model_id    datatype    description
-model-DTI dwi Diffusion tensor model.
-model-VGG16   func    A VGG convolutional neural network.
-```
-
 It is RECOMMENDED to accompany each `models.tsv` file with a sidecar
 `models.json` file to describe the TSV column names and properties of their values (see also
 the [section on tabular files](../02-common-principles.md#tabular-files)).
@@ -201,6 +193,15 @@ derivative dataset:
 
 Please note that this example is fictional, and the `_model` suffix here has been
 used to only illustrate file names according to their particular convention (see below).
+
+In this case, the `models.tsv` file could contain the following content:
+
+```Text
+model_id    datatype    description
+model-DTI dwi Diffusion tensor model.
+model-VGG16   func    A VGG convolutional neural network.
+```
+
 
 ## File naming conventions
 
