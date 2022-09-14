@@ -185,6 +185,14 @@ mtransfer:
   enum:
     - 'on'
     - 'off'
+param:
+  name: param
+  display_name: Model parameter(s) label
+  description: |
+    A label that identifies the parameter(s) stored within the file that holds
+    this entity.
+  type: string
+  format: label
 part:
   name: part
   display_name: Part

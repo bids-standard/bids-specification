@@ -180,6 +180,16 @@ MWFmap:
   unit: arbitrary
   minValue: 0
   maxValue: 100
+mdp:
+  value: mdp
+  display_name: Model-fit parameters
+  description: |
+    Parameters that are calculated subsequently.
+mfp:
+  value: mfp
+  display_name: Model-fit parameters
+  description: |
+    Parameters that get calculated at model specification time.
 NLO:
   value: NLO
   display_name: Nonlinear optical microscopy
