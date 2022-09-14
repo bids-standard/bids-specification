@@ -2359,17 +2359,6 @@
             "login": "teonbrooks",
             "name": "Teon L Brooks",
             "contributions": [
-                "code"
-            ],
-            "profile": "https://teonbrooks.com",
-            "avatar_url": [
-                "https://avatars.githubusercontent.com/u/1578674?v=4"
-            ]
-        },
-        {
-            "name": "Teon L. Brooks",
-            "login": "teon_l_brooks",
-            "contributions": [
                 "doc",
                 "code",
                 "test",
@@ -2379,6 +2368,10 @@
                 "tool",
                 "bug",
                 "talk"
+            ],
+            "profile": "https://teonbrooks.com",
+            "avatar_url": [
+                "https://avatars.githubusercontent.com/u/1578674?v=4"
             ]
         },
         {

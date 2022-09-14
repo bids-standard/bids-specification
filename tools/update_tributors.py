@@ -166,9 +166,7 @@ for name in tsv.name:
         print(tributors[key_tributor])
         print(allcontrib["contributors"][index_allcontrib])
 
-print(len(allcontrib["contributors"]))
-print(len(tributors))
-# assert len(allcontrib) == len(tributors)
+assert len(allcontrib["contributors"]) == len(tributors)
 
 with open(allcontrib_file, "w", encoding="utf8") as output_file:
     json.dump(allcontrib, output_file, indent=4, ensure_ascii=False)
