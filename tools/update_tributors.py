@@ -1,8 +1,8 @@
 import json
-from math import isnan, nan
-from multiprocessing import allow_connection_pickling
+from math import nan
 import ruamel.yaml
 import pandas as pd
+import requests
 
 from rich import print
 
@@ -128,13 +128,29 @@ for name in tsv.name:
                 "website"
             ]
 
+        if this_contributor["github_username"] is not None and (
+            "avatar_url" not in allcontrib["contributors"][index_allcontrib]
+            or allcontrib["contributors"][index_allcontrib]["avatar_url"] is None
+        ):
+            response = requests.get(
+                f"https://api.github.com/users/{this_contributor['github_username']}",
+                auth=("Remi-Gau", TOKEN),
+            ).json()
+            print(response)
+            allcontrib["contributors"][index_allcontrib]["avatar_url"] = response[
+                "avatar_url"
+            ]
+
         if this_contributor["github_username"] is not None:
             allcontrib["contributors"][index_allcontrib]["login"] = this_contributor[
                 "github_username"
             ]
             tributors[key_tributor]["blog"] = this_contributor["website"]
 
-        if this_contributor["add_email"] is True and this_contributor["email"] is not None:
+        if (
+            this_contributor["add_email"] is True
+            and this_contributor["email"] is not None
+        ):
             tributors[key_tributor]["email"] = this_contributor["email"]
 
         if this_contributor["affiliation"] is not None:
@@ -150,6 +166,9 @@ for name in tsv.name:
         print(tributors[key_tributor])
         print(allcontrib["contributors"][index_allcontrib])
 
+print(len(allcontrib["contributors"]))
+print(len(tributors))
+# assert len(allcontrib) == len(tributors)
 
 with open(allcontrib_file, "w", encoding="utf8") as output_file:
     json.dump(allcontrib, output_file, indent=4, ensure_ascii=False)
