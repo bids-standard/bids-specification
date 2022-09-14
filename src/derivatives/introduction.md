@@ -74,7 +74,7 @@ Example:
 
 ```JSON
 {
-  "Name": "Diffusion Tensor Model (DTI)",
+  "Name": "Diffusion Tensor Imaging (DTI)",
   "ReferencesAndLinks": [
       "https://doi.org/10.1016/S0006-3495(94)80775-1"
   ]
@@ -92,7 +92,7 @@ Template:
       "sub-<label>": {
          "<datatype>": {
             "model-<label>": {
-                "model_description.json",
+                "model_description.json": "",
                 "<model files>": ""
             },
             "sub-<label>_models.tsv": "",
