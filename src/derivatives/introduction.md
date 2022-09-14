@@ -52,6 +52,7 @@ that is placed under the datatype from which the model was derived.
       "sub-<label>": {
          "<datatype>": {
             "model-<label>": {
+                "model_description.json": "",
                 "<model files>": ""
             }
          }
@@ -62,6 +63,23 @@ that is placed under the datatype from which the model was derived.
 ) }}
 
 The specification of `<model files>` is [introduced below](#file-naming-conventions).
+
+### The `model_description.json` file
+
+Mirroring the special role of the `dataset_description.json` in any BIDS and BIDS Derivatives
+dataset, a `model_description.json` file MUST be found at the top level of every model folder
+(see template above).
+
+Example:
+
+```JSON
+{
+  "Name": "Diffusion Tensor Model (DTI)",
+  "ReferencesAndLinks": [
+      "https://doi.org/10.1016/S0006-3495(94)80775-1"
+  ]
+}
+```
 
 ### Models file
 
@@ -74,6 +92,7 @@ Template:
       "sub-<label>": {
          "<datatype>": {
             "model-<label>": {
+                "model_description.json",
                 "<model files>": ""
             },
             "sub-<label>_models.tsv": "",
