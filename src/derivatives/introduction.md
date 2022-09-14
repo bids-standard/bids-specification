@@ -202,7 +202,6 @@ model-DTI dwi Diffusion tensor model.
 model-VGG16   func    A VGG convolutional neural network.
 ```
 
-
 ## File naming conventions
 
 -   Filenames that are permissible for a raw BIDS data type have a privileged
