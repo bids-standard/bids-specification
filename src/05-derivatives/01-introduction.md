@@ -144,16 +144,18 @@ custom columns are defined beyond `model_id`, `datatypes`, `description`.
 }
 ```
 
-### Model fit parameters and model-derived parameters
+### Definitions
 
-We make a distinction between model fit parameters, which are those parameters
-that get calculated at model specification time and model-derived parameters,
-which can be calculated subsequently. These are distinguished through the
-suffixes `model` and `mdp`, used respectively for these two classes of model
-parameters.
+**Model-fit parameters.** Parameters that get calculated at model specification time.
 
-In its simplest form, with only one file storing model fit parameters and
-one model-derived parameter:
+**Model-derived parameters.** Parameters that are calculated subsequently.
+
+### Model parameters specification
+
+Derivatives from modeling steps MUST use the suffixes `mfp` and `mdp`, to denote
+*model-fit parameters* and *model-derived parameters* respectively.
+In its simplest form, with only one file storing model-fit parameters and
+one storing model-derived parameters:
 
 {{ MACROS___make_filetree_example(
 
@@ -162,9 +164,9 @@ one model-derived parameter:
       "sub-<label>": {
          "<datatype>": {
             "model-<label>": {
-                "sub-01_model-<label>_model.nii.gz": "",
-                "sub-01_model-<label>_model.json": "",
-                "sub-01_model-<label>_param-<label>_mdp.nii.gz": "",
+                "sub-01_model-<label>_mfp.<ext>": "",
+                "sub-01_model-<label>_mfp.json": "",
+                "sub-01_model-<label>_param-<label>_mdp.<ext>": "",
                 "sub-01_model-<label>_param-<label>_mdp.json": ""
             },
             "sub-<label>_models.tsv": "",
@@ -176,7 +178,7 @@ one model-derived parameter:
 
 ) }}
 
-With multiple files storing model fit parameters, and multiple model-derived
+With multiple files storing model-fit parameters, and multiple model-derived
 parameter files:
 
 {{ MACROS___make_filetree_example(
@@ -186,13 +188,13 @@ parameter files:
       "sub-<label>": {
          "<datatype>": {
             "model-<label>": {
-                "sub-01_model-<label>_param-<label1>_model.nii.gz": "",
-                "sub-01_model-<label>_param-<label1>_model.json": "",
-                "sub-01_model-<label>_param-<label2>_model.nii.gz": "",
-                "sub-01_model-<label>_param-<label2>_model.json": "",
-                "sub-01_model-<label>_param-<labela>_mdp.nii.gz": "",
+                "sub-01_model-<label>_param-<label1>_mfp.<ext>": "",
+                "sub-01_model-<label>_param-<label1>_mfp.json": "",
+                "sub-01_model-<label>_param-<label2>_mfp.<ext>": "",
+                "sub-01_model-<label>_param-<label2>_mfp.json": "",
+                "sub-01_model-<label>_param-<labela>_mdp.<ext>": "",
                 "sub-01_model-<label>_param-<labela>_mdp.json": "",
-                "sub-01_model-<label>_param-<labelb>_mdp.nii.gz": "",
+                "sub-01_model-<label>_param-<labelb>_mdp.<ext>": "",
                 "sub-01_model-<label>_param-<labelb>_mdp.json": ""
             },
             "sub-<label>_models.tsv": "",
@@ -220,10 +222,10 @@ derivative dataset:
       "sub-01": {
          "dwi": {
             "model-DTI": {
-                "sub-01_model-DTI_param-tensor_model.nii.gz": "",
-                "sub-01_model-DTI_param-tensor_model.json": "",
-                "sub-01_model-DTI_param-S0_model.nii.gz": "",
-                "sub-01_model-DTI_param-S0_model.json": "",
+                "sub-01_model-DTI_param-tensor_mfp.nii.gz": "",
+                "sub-01_model-DTI_param-tensor_mfp.json": "",
+                "sub-01_model-DTI_param-S0_mfp.nii.gz": "",
+                "sub-01_model-DTI_param-S0_mfp.json": "",
                 "sub-01_model-DTI_param-fa_mdp.nii.gz": "",
                 "sub-01_model-DTI_param-fa_mdp.json": ""
             },
@@ -231,8 +233,8 @@ derivative dataset:
          },
          "func": {
             "model-VGG16": {
-                "sub-01_model-VGG16_param-all_model.h5": "",
-                "sub-01_model-VGG16_param-all_model.json": ""
+                "sub-01_model-VGG16_param-all_mfp.h5": "",
+                "sub-01_model-VGG16_param-all_mfp.json": ""
             },
             "model-VGG16_model.json": ""
          }
