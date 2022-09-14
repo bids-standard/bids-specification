@@ -464,13 +464,6 @@
             ]
         },
         {
-            "name": "Christian Horea",
-            "login": "christian_horea",
-            "contributions": [
-                "doc"
-            ]
-        },
-        {
             "name": "Christophe Phillips",
             "login": "ChristophePhillips",
             "contributions": [
@@ -1039,7 +1032,8 @@
             "login": "TheChymera",
             "name": "Horea Christian",
             "contributions": [
-                "code"
+                "code",
+                "doc"
             ],
             "profile": "http://www.chymera.eu",
             "avatar_url": [
