@@ -12,7 +12,7 @@
     "contributors": [
         {
             "name": "Aaron Oliver-Taylor",
-            "login": "TMP_aaron_oliver-taylor",
+            "login": "aaron_oliver-taylor",
             "contributions": [
                 "doc"
             ]
@@ -31,7 +31,7 @@
         },
         {
             "name": "Adeen Flinker",
-            "login": "TMP_adeen_flinker",
+            "login": "adeen_flinker",
             "contributions": [
                 "doc"
             ]
@@ -63,21 +63,21 @@
         },
         {
             "name": "Aki Nikolaidis",
-            "login": "TMP_aki_nikolaidis",
+            "login": "aki_nikolaidis",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Alberto Lazari",
-            "login": "TMP_alberto_lazari",
+            "login": "alberto_lazari",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Alejandro de la Vega",
-            "login": "TMP_alejandro_de_la_vega",
+            "login": "alejandro_de_la_vega",
             "contributions": [
                 "bug",
                 "code",
@@ -98,7 +98,7 @@
         },
         {
             "name": "Alexander Jones",
-            "login": "TMP_alexander_jones",
+            "login": "alexander_jones",
             "contributions": [
                 "code",
                 "bug"
@@ -106,7 +106,7 @@
         },
         {
             "name": "Alexander L. Cohen",
-            "login": "TMP_alexander_l_cohen",
+            "login": "alexander_l_cohen",
             "contributions": [
                 "bug",
                 "code",
@@ -116,14 +116,14 @@
         },
         {
             "name": "Alexander von Lautz",
-            "login": "TMP_alexander_von_lautz",
+            "login": "alexander_von_lautz",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Alexandre Gramfort",
-            "login": "TMP_alexandre_gramfort",
+            "login": "alexandre_gramfort",
             "contributions": [
                 "doc",
                 "example"
@@ -131,14 +131,14 @@
         },
         {
             "name": "Alexandre Hutton",
-            "login": "TMP_alexandre_hutton",
+            "login": "alexandre_hutton",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Alexandru Foias",
-            "login": "TMP_alexandru_foias",
+            "login": "alexandru_foias",
             "contributions": [
                 "doc",
                 "data"
@@ -146,21 +146,21 @@
         },
         {
             "name": "Ali Khan",
-            "login": "TMP_ali_khan",
+            "login": "ali_khan",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Ana Fouto",
-            "login": "TMP_ana_fouto",
+            "login": "ana_fouto",
             "contributions": [
                 "userTesting"
             ]
         },
         {
             "name": "Anders Eklund",
-            "login": "TMP_anders_eklund",
+            "login": "anders_eklund",
             "contributions": [
                 "doc",
                 "talk",
@@ -169,21 +169,21 @@
         },
         {
             "name": "Andrea Pigorini",
-            "login": "TMP_andrea_pigorini",
+            "login": "andrea_pigorini",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Andrew Hoopes",
-            "login": "TMP_andrew_hoopes",
+            "login": "andrew_hoopes",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Andrew Jahn",
-            "login": "TMP_andrew_jahn",
+            "login": "andrew_jahn",
             "contributions": [
                 "userTesting"
             ]
@@ -235,14 +235,14 @@
         },
         {
             "name": "Arjen Stolk",
-            "login": "TMP_arjen_stolk",
+            "login": "arjen_stolk",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Arnaud Delorme",
-            "login": "TMP_arnaud_delorme",
+            "login": "arnaud_delorme",
             "contributions": [
                 "doc",
                 "example"
@@ -263,35 +263,35 @@
         },
         {
             "name": "Ashley G. Gillman",
-            "login": "TMP_ashley_g_gillman",
+            "login": "ashley_g_gillman",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Athanasia Monika Mowinckel",
-            "login": "TMP_athanasia_monika_mowinckel",
+            "login": "athanasia_monika_mowinckel",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Aysegul Gunduz",
-            "login": "TMP_aysegul_gunduz",
+            "login": "aysegul_gunduz",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Azeez Adebimpe",
-            "login": "TMP_azeez_adebimpe",
+            "login": "azeez_adebimpe",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "B. Nolan Nichols",
-            "login": "TMP_b_nolan_nichols",
+            "login": "b_nolan_nichols",
             "contributions": [
                 "doc"
             ]
@@ -309,84 +309,84 @@
         },
         {
             "name": "Balint Kincses",
-            "login": "TMP_balint_kincses",
+            "login": "balint_kincses",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Benjamin Dichter",
-            "login": "TMP_benjamin_dichter",
+            "login": "benjamin_dichter",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Benjamin Gagl",
-            "login": "TMP_benjamin_gagl",
+            "login": "benjamin_gagl",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Bertrand Thirion",
-            "login": "TMP_bertrand_thirion",
+            "login": "bertrand_thirion",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Bradley Voytek",
-            "login": "TMP_bradley_voytek",
+            "login": "bradley_voytek",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Brett L. Foster",
-            "login": "TMP_brett_l_foster",
+            "login": "brett_l_foster",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Brian A. Wandell",
-            "login": "TMP_brian_a_wandell",
+            "login": "brian_a_wandell",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Brian N. Lundstrom",
-            "login": "TMP_brian_n_lundstrom",
+            "login": "brian_n_lundstrom",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Camille Maumet",
-            "login": "TMP_camille_maumet",
+            "login": "camille_maumet",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Chloé Pasturel",
-            "login": "TMP_chloé_pasturel",
+            "login": "chloé_pasturel",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Chris Benjamin",
-            "login": "TMP_chris_benjamin",
+            "login": "chris_benjamin",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Chris Gahnström",
-            "login": "TMP_chris_gahnström",
+            "login": "chris_gahnström",
             "contributions": [
                 "doc"
             ]
@@ -440,7 +440,7 @@
         },
         {
             "name": "Chris Rorden",
-            "login": "TMP_chris_rorden",
+            "login": "chris_rorden",
             "contributions": [
                 "doc",
                 "code"
@@ -448,49 +448,49 @@
         },
         {
             "name": "Christian Büchel",
-            "login": "TMP_christian_büchel",
+            "login": "christian_büchel",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Christian Horea",
-            "login": "TMP_christian_horea",
+            "login": "christian_horea",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Christophe Phillips",
-            "login": "TMP_christophe_phillips",
+            "login": "christophe_phillips",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Christopher J. Honey",
-            "login": "TMP_christopher_j_honey",
+            "login": "christopher_j_honey",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Christopher Lee-Messer",
-            "login": "TMP_christopher_lee-messer",
+            "login": "christopher_lee-messer",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Clara Moreau",
-            "login": "TMP_clara_moreau",
+            "login": "clara_moreau",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Cyril Pernet",
-            "login": "TMP_cyril_pernet",
+            "login": "cyril_pernet",
             "contributions": [
                 "question",
                 "blog",
@@ -515,14 +515,14 @@
         },
         {
             "name": "Dan Levitas",
-            "login": "TMP_dan_levitas",
+            "login": "dan_levitas",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Dan Lurie",
-            "login": "TMP_dan_lurie",
+            "login": "dan_lurie",
             "contributions": [
                 "ideas",
                 "doc",
@@ -534,49 +534,49 @@
         },
         {
             "name": "Daniel A. Handwerker",
-            "login": "TMP_daniel_a_handwerker",
+            "login": "daniel_a_handwerker",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "David Alsop",
-            "login": "TMP_david_alsop",
+            "login": "david_alsop",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "David Boas",
-            "login": "TMP_david_boas",
+            "login": "david_boas",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "David Groppe",
-            "login": "TMP_david_groppe",
+            "login": "david_groppe",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "David Keator",
-            "login": "TMP_david_keator",
+            "login": "david_keator",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "David McAlpine",
-            "login": "TMP_david_mcalpine",
+            "login": "david_mcalpine",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "David Thomas",
-            "login": "TMP_david_thomas",
+            "login": "david_thomas",
             "contributions": [
                 "doc",
                 "data"
@@ -584,14 +584,14 @@
         },
         {
             "name": "Dejan Draschkow",
-            "login": "TMP_dejan_draschkow",
+            "login": "dejan_draschkow",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Dianne Patterson",
-            "login": "TMP_dianne_patterson",
+            "login": "dianne_patterson",
             "contributions": [
                 "doc"
             ]
@@ -612,7 +612,7 @@
         },
         {
             "name": "Dmitry Petrov",
-            "login": "TMP_dmitry_petrov",
+            "login": "dmitry_petrov",
             "contributions": [
                 "doc",
                 "code"
@@ -635,14 +635,14 @@
         },
         {
             "name": "Dorien Huijser",
-            "login": "TMP_dorien_huijser",
+            "login": "dorien_huijser",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Dylan Nielson",
-            "login": "TMP_dylan_nielson",
+            "login": "dylan_nielson",
             "contributions": [
                 "doc",
                 "code",
@@ -651,14 +651,14 @@
         },
         {
             "name": "Eduard Ort",
-            "login": "TMP_eduard_ort",
+            "login": "eduard_ort",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Elizabeth Bock",
-            "login": "TMP_elizabeth_bock",
+            "login": "elizabeth_bock",
             "contributions": [
                 "doc",
                 "example"
@@ -692,7 +692,7 @@
         },
         {
             "name": "Eric Achten",
-            "login": "TMP_eric_achten",
+            "login": "eric_achten",
             "contributions": [
                 "doc",
                 "data",
@@ -701,7 +701,7 @@
         },
         {
             "name": "Eric Bridgeford",
-            "login": "TMP_eric_bridgeford",
+            "login": "eric_bridgeford",
             "contributions": [
                 "doc",
                 "tool"
@@ -740,7 +740,7 @@
         },
         {
             "name": "Ethan Blackwood",
-            "login": "TMP_ethan_blackwood",
+            "login": "ethan_blackwood",
             "contributions": [
                 "review",
                 "doc"
@@ -748,14 +748,14 @@
         },
         {
             "name": "Eugene P. Duff",
-            "login": "TMP_eugene_p_duff",
+            "login": "eugene_p_duff",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Ezequiel Mikulan",
-            "login": "TMP_ezequiel_mikulan",
+            "login": "ezequiel_mikulan",
             "contributions": [
                 "doc",
                 "code"
@@ -763,14 +763,14 @@
         },
         {
             "name": "Felipe Orihuela-Espina",
-            "login": "TMP_felipe_orihuela-espina",
+            "login": "felipe_orihuela-espina",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Fidel Alfaro Almagro",
-            "login": "TMP_fidel_alfaro_almagro",
+            "login": "fidel_alfaro_almagro",
             "contributions": [
                 "question",
                 "doc",
@@ -780,14 +780,14 @@
         },
         {
             "name": "Filip Szczepankiewicz",
-            "login": "TMP_filip_szczepankiewicz",
+            "login": "filip_szczepankiewicz",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Filippo Maria Castelli",
-            "login": "TMP_filippo_maria_castelli",
+            "login": "filippo_maria_castelli",
             "contributions": [
                 "doc",
                 "data"
@@ -836,7 +836,7 @@
         },
         {
             "name": "François Tadel",
-            "login": "TMP_françois_tadel",
+            "login": "françois_tadel",
             "contributions": [
                 "doc",
                 "plugin",
@@ -845,14 +845,14 @@
         },
         {
             "name": "Gang Chen",
-            "login": "TMP_gang_chen",
+            "login": "gang_chen",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Gaël Varoquaux",
-            "login": "TMP_gaël_varoquaux",
+            "login": "gaël_varoquaux",
             "contributions": [
                 "doc"
             ]
@@ -870,7 +870,7 @@
         },
         {
             "name": "Giacomo Mazzamuto",
-            "login": "TMP_giacomo_mazzamuto",
+            "login": "giacomo_mazzamuto",
             "contributions": [
                 "doc",
                 "data"
@@ -878,42 +878,42 @@
         },
         {
             "name": "Gilles de Hollander",
-            "login": "TMP_gilles_de_hollander",
+            "login": "gilles_de_hollander",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Gio Piantoni",
-            "login": "TMP_gio_piantoni",
+            "login": "gio_piantoni",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Giulio Castegnaro",
-            "login": "TMP_giulio_castegnaro",
+            "login": "giulio_castegnaro",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Giuseppe Gallitto",
-            "login": "TMP_giuseppe_gallitto",
+            "login": "giuseppe_gallitto",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Graham Searle",
-            "login": "TMP_graham_searle",
+            "login": "graham_searle",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Gregory Kiar",
-            "login": "TMP_gregory_kiar",
+            "login": "gregory_kiar",
             "contributions": [
                 "doc",
                 "code",
@@ -946,35 +946,35 @@
         },
         {
             "name": "Gunnar Schaefer",
-            "login": "TMP_gunnar_schaefer",
+            "login": "gunnar_schaefer",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Gustav Nilsonne",
-            "login": "TMP_gustav_nilsonne",
+            "login": "gustav_nilsonne",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Hamish Innes-Brown",
-            "login": "TMP_hamish_innes-brown",
+            "login": "hamish_innes-brown",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Hanzhang Lu",
-            "login": "TMP_hanzhang_lu",
+            "login": "hanzhang_lu",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Hao Ting Wang",
-            "login": "TMP_hao_ting_wang",
+            "login": "hao_ting_wang",
             "contributions": [
                 "doc",
                 "bug"
@@ -982,14 +982,14 @@
         },
         {
             "name": "Helena Cockx",
-            "login": "TMP_helena_cockx",
+            "login": "helena_cockx",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Henk Mutsaerts",
-            "login": "TMP_henk_mutsaerts",
+            "login": "henk_mutsaerts",
             "contributions": [
                 "question",
                 "bug",
@@ -1005,7 +1005,7 @@
         },
         {
             "name": "Hernando Ombao",
-            "login": "TMP_hernando_ombao",
+            "login": "hernando_ombao",
             "contributions": [
                 "doc"
             ]
@@ -1034,21 +1034,21 @@
         },
         {
             "name": "Ilkay Isik",
-            "login": "TMP_ilkay_isik",
+            "login": "ilkay_isik",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Ilona Lipp",
-            "login": "TMP_ilona_lipp",
+            "login": "ilona_lipp",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "International Neuroinformatics Coordinating Facility",
-            "login": "TMP_international_neuroinformatics_coordinating_facility",
+            "login": "international_neuroinformatics_coordinating_facility",
             "contributions": [
                 "financial",
                 "eventOrganizing"
@@ -1056,28 +1056,28 @@
         },
         {
             "name": "Iris Groen",
-            "login": "TMP_iris_groen",
+            "login": "iris_groen",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Isla Staden",
-            "login": "TMP_isla_staden",
+            "login": "isla_staden",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Jaap von der Aar",
-            "login": "TMP_jaap_von_der_aar",
+            "login": "jaap_von_der_aar",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Jakub Kaczmarzyk",
-            "login": "TMP_jakub_kaczmarzyk",
+            "login": "jakub_kaczmarzyk",
             "contributions": [
                 "doc",
                 "tool",
@@ -1086,14 +1086,14 @@
         },
         {
             "name": "James Gholam",
-            "login": "TMP_james_gholam",
+            "login": "james_gholam",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "James Kent",
-            "login": "TMP_james_kent",
+            "login": "james_kent",
             "contributions": [
                 "question",
                 "code"
@@ -1101,7 +1101,7 @@
         },
         {
             "name": "Jan Petr",
-            "login": "TMP_jan_petr",
+            "login": "jan_petr",
             "contributions": [
                 "question",
                 "bug",
@@ -1118,7 +1118,7 @@
         },
         {
             "name": "Jan-Mathijs Schoffelen",
-            "login": "TMP_jan-mathijs_schoffelen",
+            "login": "jan-mathijs_schoffelen",
             "contributions": [
                 "doc"
             ]
@@ -1150,21 +1150,21 @@
         },
         {
             "name": "Jean-Philippe Lachaux",
-            "login": "TMP_jean-philippe_lachaux",
+            "login": "jean-philippe_lachaux",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Jeanette Mumford",
-            "login": "TMP_jeanette_mumford",
+            "login": "jeanette_mumford",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Jeffrey G. Ojemann",
-            "login": "TMP_jeffrey_g_ojemann",
+            "login": "jeffrey_g_ojemann",
             "contributions": [
                 "doc"
             ]
@@ -1196,7 +1196,7 @@
         },
         {
             "name": "Jeremy Moreau",
-            "login": "TMP_jeremy_moreau",
+            "login": "jeremy_moreau",
             "contributions": [
                 "doc",
                 "example"
@@ -1204,28 +1204,28 @@
         },
         {
             "name": "Jessica A. Turner",
-            "login": "TMP_jessica_a_turner",
+            "login": "jessica_a_turner",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "John Detre",
-            "login": "TMP_john_detre",
+            "login": "john_detre",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "John Pellman",
-            "login": "TMP_john_pellman",
+            "login": "john_pellman",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Joke Durnez",
-            "login": "TMP_joke_durnez",
+            "login": "joke_durnez",
             "contributions": [
                 "doc",
                 "tool",
@@ -1246,35 +1246,35 @@
         },
         {
             "name": "Jonathan C. Lau",
-            "login": "TMP_jonathan_c_lau",
+            "login": "jonathan_c_lau",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Jonathan Winawer",
-            "login": "TMP_jonathan_winawer",
+            "login": "jonathan_winawer",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Joost Kuijer",
-            "login": "TMP_joost_kuijer",
+            "login": "joost_kuijer",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Jose Manuel Saborit",
-            "login": "TMP_jose_manuel_saborit",
+            "login": "jose_manuel_saborit",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Joseph Wexler",
-            "login": "TMP_joseph_wexler",
+            "login": "joseph_wexler",
             "contributions": [
                 "doc",
                 "example"
@@ -1282,7 +1282,7 @@
         },
         {
             "name": "Joseph Woods",
-            "login": "TMP_joseph_woods",
+            "login": "joseph_woods",
             "contributions": [
                 "doc"
             ]
@@ -1314,14 +1314,14 @@
         },
         {
             "name": "Julia Sprenger",
-            "login": "TMP_julia_sprenger",
+            "login": "julia_sprenger",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Julien Cohen-Adad",
-            "login": "TMP_julien_cohen-adad",
+            "login": "julien_cohen-adad",
             "contributions": [
                 "doc",
                 "data",
@@ -1330,35 +1330,35 @@
         },
         {
             "name": "Julius Welzel",
-            "login": "TMP_julius_welzel",
+            "login": "julius_welzel",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Kai J. Miller",
-            "login": "TMP_kai_j_miller",
+            "login": "kai_j_miller",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Kangjoo Lee",
-            "login": "TMP_kangjoo_lee",
+            "login": "kangjoo_lee",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Katja Heuer",
-            "login": "TMP_katja_heuer",
+            "login": "katja_heuer",
             "contributions": [
                 "tool"
             ]
         },
         {
             "name": "Kevin Larcher",
-            "login": "TMP_kevin_larcher",
+            "login": "kevin_larcher",
             "contributions": [
                 "question"
             ]
@@ -1381,21 +1381,21 @@
         },
         {
             "name": "Klara Gregorova",
-            "login": "TMP_klara_gregorova",
+            "login": "klara_gregorova",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Kristofer Bouchard",
-            "login": "TMP_kristofer_bouchard",
+            "login": "kristofer_bouchard",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Krzysztof J. Gorgolewski",
-            "login": "TMP_krzysztof_j_gorgolewski",
+            "login": "krzysztof_j_gorgolewski",
             "contributions": [
                 "doc",
                 "code",
@@ -1410,56 +1410,56 @@
         },
         {
             "name": "Laura and John Arnold Foundation",
-            "login": "TMP_laura_and_john_arnold_foundation",
+            "login": "laura_and_john_arnold_foundation",
             "contributions": [
                 "financial"
             ]
         },
         {
             "name": "Leandro Beltrachini",
-            "login": "TMP_leandro_beltrachini",
+            "login": "leandro_beltrachini",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Lee Kamentsky",
-            "login": "TMP_lee_kamentsky",
+            "login": "lee_kamentsky",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Lennart Walger",
-            "login": "TMP_lennart_walger",
+            "login": "lennart_walger",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Lennart Wittkuhn",
-            "login": "TMP_lennart_wittkuhn",
+            "login": "lennart_wittkuhn",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Liberty Hamilton",
-            "login": "TMP_liberty_hamilton",
+            "login": "liberty_hamilton",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Luca Pollonini",
-            "login": "TMP_luca_pollonini",
+            "login": "luca_pollonini",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Luis Hernandez-Garcia",
-            "login": "TMP_luis_hernandez-garcia",
+            "login": "luis_hernandez-garcia",
             "contributions": [
                 "doc",
                 "userTesting"
@@ -1467,7 +1467,7 @@
         },
         {
             "name": "Lyuba Zehl",
-            "login": "TMP_lyuba_zehl",
+            "login": "lyuba_zehl",
             "contributions": [
                 "doc"
             ]
@@ -1486,14 +1486,14 @@
         },
         {
             "name": "Manjari Narayan",
-            "login": "TMP_manjari_narayan",
+            "login": "manjari_narayan",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Manuel Mercier",
-            "login": "TMP_manuel_mercier",
+            "login": "manuel_mercier",
             "contributions": [
                 "doc",
                 "ideas"
@@ -1512,7 +1512,7 @@
         },
         {
             "name": "Marco Castellaro",
-            "login": "TMP_marco_castellaro",
+            "login": "marco_castellaro",
             "contributions": [
                 "question",
                 "bug",
@@ -1526,7 +1526,7 @@
         },
         {
             "name": "Maria de la Iglesia",
-            "login": "TMP_maria_de_la_iglesia",
+            "login": "maria_de_la_iglesia",
             "contributions": [
                 "doc"
             ]
@@ -1547,21 +1547,21 @@
         },
         {
             "name": "Mark Mikkelsen",
-            "login": "TMP_mark_mikkelsen",
+            "login": "mark_mikkelsen",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Markus Morawski",
-            "login": "TMP_markus_morawski",
+            "login": "markus_morawski",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Martin Craig",
-            "login": "TMP_martin_craig",
+            "login": "martin_craig",
             "contributions": [
                 "data"
             ]
@@ -1583,14 +1583,14 @@
         },
         {
             "name": "Martin Szinte",
-            "login": "TMP_martin_szinte",
+            "login": "martin_szinte",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Martin Wilson",
-            "login": "TMP_martin_wilson",
+            "login": "martin_wilson",
             "contributions": [
                 "doc"
             ]
@@ -1608,7 +1608,7 @@
         },
         {
             "name": "Mathias Goncalves",
-            "login": "TMP_mathias_goncalves",
+            "login": "mathias_goncalves",
             "contributions": [
                 "code",
                 "tool",
@@ -1617,7 +1617,7 @@
         },
         {
             "name": "Mathieu Boudreau",
-            "login": "TMP_mathieu_boudreau",
+            "login": "mathieu_boudreau",
             "contributions": [
                 "question",
                 "ideas",
@@ -1626,7 +1626,7 @@
         },
         {
             "name": "Matt Sanderson",
-            "login": "TMP_matt_sanderson",
+            "login": "matt_sanderson",
             "contributions": [
                 "doc",
                 "code"
@@ -1634,35 +1634,35 @@
         },
         {
             "name": "Matthias Günther",
-            "login": "TMP_matthias_günther",
+            "login": "matthias_günther",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Matthias Van Osch",
-            "login": "TMP_matthias_van_osch",
+            "login": "matthias_van_osch",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Maureen J Shader",
-            "login": "TMP_maureen_j_shader",
+            "login": "maureen_j_shader",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Maurice Pasternak",
-            "login": "TMP_maurice_pasternak",
+            "login": "maurice_pasternak",
             "contributions": [
                 "userTesting"
             ]
         },
         {
             "name": "Max A. van den Boom",
-            "login": "TMP_max_a_van_den_boom",
+            "login": "max_a_van_den_boom",
             "contributions": [
                 "code",
                 "review",
@@ -1688,7 +1688,7 @@
         },
         {
             "name": "Michael Chappell",
-            "login": "TMP_michael_chappell",
+            "login": "michael_chappell",
             "contributions": [
                 "doc",
                 "data",
@@ -1697,7 +1697,7 @@
         },
         {
             "name": "Michael Hanke",
-            "login": "TMP_michael_hanke",
+            "login": "michael_hanke",
             "contributions": [
                 "doc",
                 "ideas",
@@ -1708,7 +1708,7 @@
         },
         {
             "name": "Michael P. Harms",
-            "login": "TMP_michael_p_harms",
+            "login": "michael_p_harms",
             "contributions": [
                 "doc",
                 "test",
@@ -1717,7 +1717,7 @@
         },
         {
             "name": "Michael P. Milham",
-            "login": "TMP_michael_p_milham",
+            "login": "michael_p_milham",
             "contributions": [
                 "example",
                 "fundingFinding"
@@ -1725,7 +1725,7 @@
         },
         {
             "name": "Michael P. Notter",
-            "login": "TMP_michael_p_notter",
+            "login": "michael_p_notter",
             "contributions": [
                 "question",
                 "blog",
@@ -1736,35 +1736,35 @@
         },
         {
             "name": "Michael Schirner",
-            "login": "TMP_michael_schirner",
+            "login": "michael_schirner",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Mikaël Naveau",
-            "login": "TMP_mikael_naveau",
+            "login": "mikael_naveau",
             "contributions": [
                 "bug"
             ]
         },
         {
             "name": "Nader Pouratian",
-            "login": "TMP_nader_pouratian",
+            "login": "nader_pouratian",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Natalia Petridou",
-            "login": "TMP_natalia_petridou",
+            "login": "natalia_petridou",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "National Institute of Mental Health",
-            "login": "TMP_national_institute_of_mental_health",
+            "login": "national_institute_of_mental_health",
             "contributions": [
                 "financial"
             ]
@@ -1782,7 +1782,7 @@
         },
         {
             "name": "Nicholas Traut",
-            "login": "TMP_nicholas_traut",
+            "login": "nicholas_traut",
             "contributions": [
                 "doc",
                 "tool",
@@ -1791,28 +1791,28 @@
         },
         {
             "name": "Nick F. Ramsey",
-            "login": "TMP_nick_f_ramsey",
+            "login": "nick_f_ramsey",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Nicole C. Swann",
-            "login": "TMP_nicole_c_swann",
+            "login": "nicole_c_swann",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Olivier David",
-            "login": "TMP_olivier_david",
+            "login": "olivier_david",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Orrin Devinsky",
-            "login": "TMP_orrin_devinsky",
+            "login": "orrin_devinsky",
             "contributions": [
                 "doc"
             ]
@@ -1834,7 +1834,7 @@
         },
         {
             "name": "Pamela LaMontagne",
-            "login": "TMP_pamela_lamontagne",
+            "login": "pamela_lamontagne",
             "contributions": [
                 "doc",
                 "example"
@@ -1853,7 +1853,7 @@
         },
         {
             "name": "Parul Sethi",
-            "login": "TMP_parul_sethi",
+            "login": "parul_sethi",
             "contributions": [
                 "doc",
                 "tool",
@@ -1884,7 +1884,7 @@
         },
         {
             "name": "Patrick Park",
-            "login": "TMP_patrick_park",
+            "login": "patrick_park",
             "contributions": [
                 "doc",
                 "example",
@@ -1893,14 +1893,14 @@
         },
         {
             "name": "Paule-Joanne Toussaint",
-            "login": "TMP_paule-joanne_toussaint",
+            "login": "paule-joanne_toussaint",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Peer Herholz",
-            "login": "TMP_peer_herholz",
+            "login": "peer_herholz",
             "contributions": [
                 "question",
                 "doc",
@@ -1912,21 +1912,21 @@
         },
         {
             "name": "Petra Ritter",
-            "login": "TMP_petra_ritter",
+            "login": "petra_ritter",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Pierre Rioux",
-            "login": "TMP_pierre_rioux",
+            "login": "pierre_rioux",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Pieter Vandemaele",
-            "login": "TMP_pieter_vandemaele",
+            "login": "pieter_vandemaele",
             "contributions": [
                 "doc",
                 "code"
@@ -1934,7 +1934,7 @@
         },
         {
             "name": "Pradeep Reddy Raamana",
-            "login": "TMP_pradeep_reddy_raamana",
+            "login": "pradeep_reddy_raamana",
             "contributions": [
                 "code",
                 "tool"
@@ -1942,7 +1942,7 @@
         },
         {
             "name": "R. Cameron Craddock",
-            "login": "TMP_r_cameron_craddock",
+            "login": "r_cameron_craddock",
             "contributions": [
                 "doc",
                 "talk"
@@ -1981,7 +1981,7 @@
         },
         {
             "name": "Richard N. Henson",
-            "login": "TMP_richard_n_henson",
+            "login": "richard_n_henson",
             "contributions": [
                 "doc"
             ]
@@ -1999,7 +1999,7 @@
         },
         {
             "name": "Robert E. Smith",
-            "login": "TMP_robert_e_smith",
+            "login": "robert_e_smith",
             "contributions": [
                 "code",
                 "doc"
@@ -2007,14 +2007,14 @@
         },
         {
             "name": "Robert Knight",
-            "login": "TMP_robert_knight",
+            "login": "robert_knight",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Robert Luke",
-            "login": "TMP_robert_luke",
+            "login": "robert_luke",
             "contributions": [
                 "doc"
             ]
@@ -2061,7 +2061,7 @@
         },
         {
             "name": "Roberto Toro",
-            "login": "TMP_roberto_toro",
+            "login": "roberto_toro",
             "contributions": [
                 "tool"
             ]
@@ -2079,7 +2079,7 @@
         },
         {
             "name": "Russell A. Poldrack",
-            "login": "TMP_russell_a_poldrack",
+            "login": "russell_a_poldrack",
             "contributions": [
                 "doc",
                 "fundingFinding",
@@ -2088,21 +2088,21 @@
         },
         {
             "name": "Rémi Adon",
-            "login": "TMP_rémi_adon",
+            "login": "rémi_adon",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Samir Das",
-            "login": "TMP_samir_das",
+            "login": "samir_das",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Samuel Garcia",
-            "login": "TMP_samuel_garcia",
+            "login": "samuel_garcia",
             "contributions": [
                 "ideas",
                 "review",
@@ -2122,14 +2122,14 @@
         },
         {
             "name": "Sara Elgayar",
-            "login": "TMP_sara_elgayar",
+            "login": "sara_elgayar",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Sasha D'Ambrosio",
-            "login": "TMP_sasha_d_ambrosio",
+            "login": "sasha_d_ambrosio",
             "contributions": [
                 "doc"
             ]
@@ -2148,28 +2148,28 @@
         },
         {
             "name": "Sein Jeung",
-            "login": "TMP_sein_jeung",
+            "login": "sein_jeung",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Shashank Bansal",
-            "login": "TMP_shashank_bansal",
+            "login": "shashank_bansal",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Sjoerd B. Vos",
-            "login": "TMP_sjoerd_vos",
+            "login": "sjoerd_vos",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Soichi Hayashi",
-            "login": "TMP_soichi_hayashi",
+            "login": "soichi_hayashi",
             "contributions": [
                 "doc",
                 "tool",
@@ -2203,14 +2203,14 @@
         },
         {
             "name": "Stephan Bickel",
-            "login": "TMP_stephan_bickel",
+            "login": "stephan_bickel",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Suyash Bhogawar",
-            "login": "TMP_suyash_bhogawar",
+            "login": "suyash_bhogawar",
             "contributions": [
                 "doc",
                 "example",
@@ -2221,7 +2221,7 @@
         },
         {
             "name": "Sylvain Baillet",
-            "login": "TMP_sylvain_baillet",
+            "login": "sylvain_baillet",
             "contributions": [
                 "doc",
                 "fundingFinding"
@@ -2229,7 +2229,7 @@
         },
         {
             "name": "Sylvain Takerkart",
-            "login": "TMP_sylvain_takerkart",
+            "login": "sylvain_takerkart",
             "contributions": [
                 "doc"
             ]
@@ -2252,21 +2252,21 @@
         },
         {
             "name": "Sören Grothkopp",
-            "login": "TMP_sören_grothkopp",
+            "login": "sören_grothkopp",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Tal Pal Attia",
-            "login": "TMP_tal_pal_attia",
+            "login": "tal_pal_attia",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Tal Yarkoni",
-            "login": "TMP_tal_yarkoni",
+            "login": "tal_yarkoni",
             "contributions": [
                 "code",
                 "doc",
@@ -2281,14 +2281,14 @@
         },
         {
             "name": "Tamas Spisak",
-            "login": "TMP_tamas_spisak",
+            "login": "tamas_spisak",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Tamás Józsa",
-            "login": "TMP_tamás_józsa",
+            "login": "tamás_józsa",
             "contributions": [
                 "userTesting"
             ]
@@ -2319,7 +2319,7 @@
         },
         {
             "name": "Teon L. Brooks",
-            "login": "TMP_teon_l_brooks",
+            "login": "teon_l_brooks",
             "contributions": [
                 "doc",
                 "code",
@@ -2334,7 +2334,7 @@
         },
         {
             "name": "Thomas Kirk",
-            "login": "TMP_thomas_kirk",
+            "login": "thomas_kirk",
             "contributions": [
                 "doc"
             ]
@@ -2356,14 +2356,14 @@
         },
         {
             "name": "Thomas Okell",
-            "login": "TMP_thomas_okell",
+            "login": "thomas_okell",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Tibor Auer",
-            "login": "TMP_tibor_auer",
+            "login": "tibor_auer",
             "contributions": [
                 "question",
                 "doc",
@@ -2376,14 +2376,14 @@
         },
         {
             "name": "Timotheus Berg",
-            "login": "TMP_timo_berg",
+            "login": "timo_berg",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Timo Dickscheid",
-            "login": "TMP_timo_dickscheid",
+            "login": "timo_dickscheid",
             "contributions": [
                 "doc"
             ]
@@ -2401,21 +2401,21 @@
         },
         {
             "name": "Tom Hampshire",
-            "login": "TMP_tom_hampshire",
+            "login": "tom_hampshire",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Tor Wager",
-            "login": "TMP_tor_wager",
+            "login": "tor_wager",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Travis Riddle",
-            "login": "TMP_travis_riddle",
+            "login": "travis_riddle",
             "contributions": [
                 "doc",
                 "tool",
@@ -2424,7 +2424,7 @@
         },
         {
             "name": "Tristan Glatard",
-            "login": "TMP_tristan_glatard",
+            "login": "tristan_glatard",
             "contributions": [
                 "doc",
                 "code"
@@ -2432,21 +2432,21 @@
         },
         {
             "name": "Ulrike Bingel",
-            "login": "TMP_ulrike_bingel",
+            "login": "ulrike_bingel",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Vanessa Sochat",
-            "login": "TMP_vanessa_sochat",
+            "login": "vanessa_sochat",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Vasudev Raguram",
-            "login": "TMP_vasudev_raguram",
+            "login": "vasudev_raguram",
             "contributions": [
                 "code",
                 "design",
@@ -2456,7 +2456,7 @@
         },
         {
             "name": "Vince D. Calhoun",
-            "login": "TMP_vince_d_calhoun",
+            "login": "vince_d_calhoun",
             "contributions": [
                 "doc"
             ]
@@ -2476,14 +2476,14 @@
         },
         {
             "name": "Vladimir Litvak",
-            "login": "TMP_vladimir_litvak",
+            "login": "vladimir_litvak",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Wietske van der Zwaag",
-            "login": "TMP_wietske_van_der_zwaag",
+            "login": "wietske_van_der_zwaag",
             "contributions": [
                 "data",
                 "question"
@@ -2491,14 +2491,14 @@
         },
         {
             "name": "William Clarke",
-            "login": "TMP_william_clarke",
+            "login": "william_clarke",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "William Triplett",
-            "login": "TMP_william_triplett",
+            "login": "william_triplett",
             "contributions": [
                 "doc"
             ]
@@ -2516,14 +2516,14 @@
         },
         {
             "name": "Wouter V. Potters",
-            "login": "TMP_wouter_v_potters",
+            "login": "wouter_v_potters",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Xiangrui Li",
-            "login": "TMP_xiangrui_li",
+            "login": "xiangrui_li",
             "contributions": [
                 "doc",
                 "code"
@@ -2542,7 +2542,7 @@
         },
         {
             "name": "Yaroslav O. Halchenko",
-            "login": "TMP_yaroslav_o_halchenko",
+            "login": "yaroslav_o_halchenko",
             "contributions": [
                 "doc",
                 "talk",
@@ -2553,21 +2553,21 @@
         },
         {
             "name": "Yoni Ashar",
-            "login": "TMP_yoni_ashar",
+            "login": "yoni_ashar",
             "contributions": [
                 "doc"
             ]
         },
         {
             "name": "Yuan Wang",
-            "login": "TMP_yuan_wang",
+            "login": "yuan_wang",
             "contributions": [
                 "code"
             ]
         },
         {
             "name": "Zachary Michael",
-            "login": "TMP_zachary_michael",
+            "login": "zachary_michael",
             "contributions": [
                 "doc"
             ]
@@ -2618,7 +2618,7 @@
         },
         {
             "name": "Étienne Bergeron",
-            "login": "TMP_étienne_bergeron",
+            "login": "étienne_bergeron",
             "contributions": [
                 "data",
                 "code"
