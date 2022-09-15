@@ -817,15 +817,24 @@ EventsMissing:
     - '"events" in associations'
 ```
 
+### Ordering rules
+
+*   `rules.entities` - This file contains a list of keys into `objects.entities` and
+    simply defines the order in which entities, when present, MUST appear in filenames
+*   `rules.common_principles` - This file contains a list of terms that appear in `objects.common_principles`
+    that determines the order they appear in the specification
+
 ### One-off rules
 
 *   `rules.modalities` - The keys in this file are the modalities, the values objects with the following field:
     | Field       | Description                           |
     | ----------- | ------------------------------------- |
     | `datatypes` | List of datatypes mapping to modality |
-
-*   `rules.entities` - This file contains a list of keys into `objects.entities` and
-    simply defines the order in which entities, when present, MUST appear in filenames
+*   `rules.dataset_metadata` - These are similar to `rules.sidecars.*`, for JSON files at the root level.
+    This is likely to go away in favor of other approaches.
+*   `rules.errors` - This file describes errors that cannot be expressed in the schema. This provides common
+    codes and language that implementing validators can use to ensure the same problems are reported to
+    users in the same way.
 
 ## Version of the schema
 
