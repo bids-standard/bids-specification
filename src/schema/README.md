@@ -507,67 +507,81 @@ reference__ieeg:
 
 ## Rule files
 
-The files in the `rules/` directory are less standardized than the files in `objects/`,
-because rules governing how different object types interact in a valid dataset are more variable
-than the object definitions.
+The `rules.*` namespace contains most of the validatable content of the schema,
+apart from value constraints that can be encoded in `objects`.
 
--   `modalities.yaml`: This file simply groups `datatypes` under their associated modality.
+There are several types of rule, and this section is subject to reconsolidation as
+patterns are found.
 
--   `datatypes/*.yaml`: Files in the `datatypes` directory contain information about valid filenames within a given datatype.
-    Specifically, each datatype's YAML file contains a list of dictionaries.
-    Each dictionary contains a list of suffixes, entities, and file extensions which may constitute a valid BIDS filename.
+### Core concepts
 
--   `sidecars/*.yaml`: Files in the `sidecars` directory contain information about valid JSON
-    sidecar entries for files within a datatype.
+Core concepts are [expressions](#expressions) (defined above), requirement levels and issues.
 
--   `checks/*.yaml`: Files in the `checks` directory contain assertions on data, organized
-    broadly by datatype, but not constrained.
+#### Requirement levels and severity
 
--   `entities.yaml`: This file simply defines the order in which entities, when present, MUST appear in filenames.
+BIDS follows RFC 2119 and has three requirement levels: OPTIONAL, RECOMMENDED and REQUIRED.
+In the schema, we use `optional`, `recommended` and `required`. A rule interpreter (validator)
+is expected to treat missing REQUIRED data/metadata as an error, missing RECOMMENDED
+data/metadata as a warning, and silently pass over missing OPTIONAL data.
 
--   `top_level_files.yaml`: Requirement levels and valid file extensions of top-level files.
+BIDS also defines a level `DEPRECATED`, rendered in the schema as `deprecated`, and corresponding
+to a warning if the data/metadata is present.
 
--   `associated_data.yaml`: Requirement levels of associated non-BIDS directories.
+#### Issues
 
-### `modalities.yaml`
+Issues are messages intended to be communicated to a dataset curator to indicate an issue
+with their dataset. They have a code and severity as well:
 
-This file contains a dictionary in which each key is a modality abbreviation and the value is a dictionary with one key: `datatypes`.
-The `datatypes` dictionary contains a list of datatypes that fall under that modality.
+| Field     | Description                                    |
+| --------- | ---------------------------------------------- |
+| `code`    | Issue identifier, such as `EVENTS_TSV_MISSING` |
+| `level`   | Issue severity (`warning` or `error`)          |
+| `message` | Message for display to a user                  |
 
-### `datatypes/*.yaml`
+A level of `warning` corresponds to a rule in the specification that is RECOMMENDED, while a
+level of `error` corresponds to a rule that is REQUIRED.
 
-The files in this directory are currently the least standardized of any part of the schema.
+In some cases, an issue is contained next to a `level: required` or `level: recommended` as part
+of a larger rule. In these cases, the `level` field should be omitted from the issue to avoid
+duplication or conflict.
 
-Each file corresponds to a single `datatype`.
-Within the file is a dictionary.
-Each dictionary entry corresponds to a group of suffixes that have the same rules regarding filenames.
-The key to each entry is a unique identifier for the group of suffixes, such as `meg` for general MEG-related suffixes.
-The entry's corresponding value is a dictionary with four keys: `suffixes`, `extensions`, `datatypes`, and `entities`.
+### Filename construction rules
 
-The `suffixes` entry is a list of file suffixes for which all of the extensions in the `extensions` entry
-and all of the entity rules in the `entities` entry apply.
+A significant portion of BIDS is devoted to the naming of files, and almost all file names consist
+of entities, a suffix, an extension, and a data type. Exceptions will be noted below.
 
-The `extensions` entry is a list of valid file extensions.
+#### Data types
 
-The `entities` entry is a dictionary in which the keys are entity names and the values are whether the entity is
-required or optional for that suffix.
-Any entities that are not present in this dictionary are not allowed in files with any of the suffixes in the group.
-In rare occasions, there are restrictions on valid entity values
-(for example, some suffixes may only allow an `acq` value of `calibration`).
-In those cases, the entity's value will be another object, rather than a string indicating the requirement level.
-This object will contain at least two keys: "requirement" and "type".
+`rules.datatypes` contains a series of related rules, grouped by the `datatype` path component.
+All such files take the form:
 
-**NOTE**: The order in which entities appear in these dictionaries does not reflect how they should appear in filenames.
-That information is present in `rules/entities.yaml`.
+    [sub-<label>/][ses-<label>/]<datatype>/<entities>_<suffix><extension>
 
-As an example, let us look at part of `meg.yaml`:
+Rules have the following fields:
+
+| Field        | Description                                                                                                                                     |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `suffixes`   | List of suffixes found in `objects.suffixes`                                                                                                    |
+| `extensions` | List of valid extension strings, including initial dot (`.`)                                                                                    |
+| `datatypes`  | List of datatypes found in `objects.datatypes`                                                                                                  |
+| `entities`   | Object where the keys are entries in `objects.entities`. The value is either a requirement level or an object described by the following table. |
+
+| Field    | Requirement level | Description                                                                              |
+| -------- | ----------------- | ---------------------------------------------------------------------------------------- |
+| `level`  | REQUIRED          | Requirement level of field, one of (`optional`, `recommended`, `required`, `deprecated`) |
+| `format` | OPTIONAL          | Override of entity field - Permissible format of values, either `label` or `index`       |
+| `enum`   | OPTIONAL          | Override of entity field - Exclusive list of valid values, if present                    |
+
+As an example, let us look at a (modified) part of `meg.yaml`:
 
 ```yaml
 meg:
   suffixes:
-  - meg
+    - meg
   extensions:
-  - .fif
+    - .fif
+  datatypes:
+    - meg
   entities:
     subject: required
     session: optional
@@ -579,17 +593,18 @@ meg:
 
 crosstalk:
   suffixes:
-  - meg
+    - meg
   extensions:
-  - .fif
+    - .fif
+  datatypes:
+    - meg
   entities:
     subject: required
     session: optional
     acquisition:
-      requirement: required
-      type: string
+      level: required
       enum:
-      - crosstalk
+        - crosstalk
 ```
 
 In this case, the first group has one suffix: `meg`.
@@ -600,76 +615,155 @@ Specifically, files in the first group may have `task`, `run`, `processing`, and
 while files in the second group may not.
 Also, when files in the second group have the `acq` entity, the associated value MUST be `crosstalk`.
 
-### `sidecars/*.yaml`
+#### Tabular metadata
 
-Sidecar files introduce the idea of "selectors" to determine whether a set of fields is added
-to the sidecar schema that will be applied to the sidecar.
-From here, the `fields` property lists will be accumulated to set requirement levels.
-Rules that show up later in the document can override the rules that come before.
-By default, fields take a requirement level, but the object can be expanded to include
-level, additional level and description text for rendering the field in a table, and
-issue codes and messages if more specific error messages are warranted.
+Sessions files (`_sessions.tsv`) and scans files `_scans.tsv`) are defined in
+`rules.tabular_metadata`, for example:
+
+```YAML
+sessions:
+  suffixes:
+    - sessions
+  extensions:
+    - .tsv
+    - .json
+  entities:
+    subject: required
+```
+
+Note that these files do not have a `datatype`, but otherwise follow the same rules as above.
+
+#### Top-level files
+
+Top-level files follow somewhat different rules (and are likely to change). Currently, the
+rule name is the name of the file, and they contain `required` and `extensions` properties.
+For example:
+
+```YAML
+README:
+  required: true
+  extensions:
+    - ''
+    - .md
+    - .rst
+    - .txt
+CHANGES:
+  required: false
+  extensions:
+    - ''
+```
+
+Here, `README` and `README.md` are valid, while only `CHANGES` is permitted.
+
+### Sidecar and tabular data rules
+
+Tabular data and JSON sidecar files follow a similar pattern:
+
+|      | Name          | Value         |
+| ---- | ------------- | ------------- |
+| JSON | field         | value         |
+| TSV  | column header | column values |
+
+In the specification, groups of fields/columns are described together in a table
+that includes the name of the field/column, the requirement level and a description.
+The definitions, including name and description, appear in `objects.metadata`,
+and the columns appear in `objects.columns`.
+
+Here, we define YAML "tables" that can be rendered in the specification. These
+take the form:
 
 ```YAML
 RuleName:
   selectors:
-  - datatype == "anat"
+    - expression1
+    - expression2
   fields:
-    MyField1: required
-    MyField2:
-      level: recommended
-      level_addendum: Text to be added to the requirement level field.
-      description_addendum: Text to be added to the description field.
-      issue:
-        code: ISSUE_CODE_STRING
-        message: |
-          Common message text users will see if the field is missing.
+    - FieldName1:
+        level: recommended
+        level_addendum: required if XYZ
+        description_addendum: Additional text following object description.
+    - FieldName2: optional
 
-RuleNameOverride:
+RuleNameReq:
   selectors:
-  - datatype == "anat"
-  - suffix == "T1w"
+    - expression1
+    - expression2
+    - expression3
   fields:
-    MyField2:
-      level: required
-      issue:
-        code: DIFFERENT_ISSUE_STRING
-        message: |
-          T1w images require MyField to be defined, so override
+    - FieldName1:
+        level: required
+        issue:
+          code: ISSUE_NAME
+          message: A description of the problem for a user
 ```
 
-### `checks/*.yaml`
+Here we show an example of two fields, one that is RECOMMENDED in most cases
+but REQUIRED in another, the other of which is OPTIONAL.
 
-Check rules are similar to sidecar rules with selectors. These allow the issue field to
-be placed at the top level, and introduce a list of `checks` or assertions that cause the
-issue to fail if any evaluate to `False`.
+`selectors` indicate whether the current rule applies to a given file. This
+is not rendered in the text, but may be used by a validator.
+`fields` is an object with keys that appear in `objects.metadata`/`objects.columns`.
+If the value is a string, then it is a requirement level.
+If it is an object, then the it has the following fields
+
+| Field                  | Requirement level | Description                                                                              |
+| ---------------------- | ----------------- | ---------------------------------------------------------------------------------------- |
+| `level`                | REQUIRED          | Requirement level of field, one of (`optional`, `recommended`, `required`, `deprecated`) |
+| `level_addendum`       | OPTIONAL          | Additional text to describe cases where requirement level changes                        |
+| `description_addendum` | OPTIONAL          | Additional text to follow the `objects.metadata.<fieldname>.description`                 |
+| `issues`               | OPTIONAL          | [issue object](#issues), if additional communication is warranted                        |
+
+The second table implements the change in the first table's `level_addendum`.
+The `expression3` selector indicates the additional case where the more stringent
+rule is applied.
+
+#### Valid fields for definitions
+
+1.  `rules.sidecars.*`
+    | Field       | Description                                                                                              |
+    | ----------- | -------------------------------------------------------------------------------------------------------- |
+    | `selectors` | List of expressions; any evaluating false indicate rule does not apply                                   |
+    | `fields`    | Object with keys that may be found in `objects.metadata`, values either a requirement level or an object |
+
+2.  `rules.tabular_data.*`
+    | Field                | Description                                                                                                    |
+    | -------------------- | -------------------------------------------------------------------------------------------------------------- |
+    | `selectors`          | List of expressions; any evaluating false indicate rule does not apply                                         |
+    | `columns`            | Object with keys that may be found in `objects.columns`, values either a requirement level or an object        |
+    | `initial_columns`    | An optional list of columns that must be the first N columns of a file                                         |
+    | `additional_columns` | Indicates whether additional columns may be defined. One of `allowed`, `allowed_if_defined` and `not_allowed`. |
+
+The following tables demonstrate how mutual exclusive, required fields, may be
+set in `rules.sidecars.*`:
 
 ```YAML
-EventsMissing:
-  issue:
-    code: EVENTS_TSV_MISSING
-    message: |
-      Task scans should have a corresponding events.tsv file.
-      If this is a resting state scan you can ignore this warning or rename the task to include the word "rest".
-    severity: warning
+MRIFuncRepetitionTime:
   selectors:
-  - entities contains "task"
-  - not(entities.task contains "rest")  # Alternative for including the word "rest"
-  checks:
-  - associations contains "events"
+    - modality == "mri"
+    - datatype == "func"
+    - '!("VolumeTiming" in sidecar)'
+    - match(extension, "^\.nii(\.gz)?$")
+  fields:
+    RepetitionTime:
+      level: required
+      level_addendum: mutually exclusive with `VolumeTiming`
+
+MRIFuncVolumeTiming:
+  selectors:
+    - modality == "mri"
+    - datatype == "func"
+    - '!("RepetitionTime" in sidecar)'
+    - match(extension, "^\.nii(\.gz)?$")
+  fields:
+    VolumeTiming:
+      level: required
+      level_addendum: mutually exclusive with `RepetitionTime`
 ```
 
-Note that because we do not have requirement levels, severity must be explicitly specified.
+An additional check will be required to assert that both are not present, but
+these tables may be combined for rendering purposes.
 
-Selectors and checks use the same expression syntax. The difference is that selectors determine
-whether the rule is applied while checks determine whether it passes.
-
-### `tabular_data/*.yaml`
-
-Tabular data rules are essentially identical to sidecar rules, except that in place of fields
-there are columns. Additional properties include `initial_columns` that shows a required
-set (and order) of columns that should be the first in a table. The `additional_columns`
-property can take values of `allowed`, `allowed_if_defined` and `not_allowed`.
+Here we present an example rule in `rules.tabular_data.eeg`:
 
 ```YAML
 EEGChannels:
@@ -696,35 +790,42 @@ EEGChannels:
   additional_columns: allowed_if_defined
 ```
 
-### `entities.yaml`
+### Checks
 
-This file contains a list of entities in the order in which they must appear in filenames.
+`rules.checks` can contain more complex rules. Structurally, these are similar to sidecar rules,
+in that they have selectors. They additionally have a `checks` list, and an explicit issue.
 
-### `top_level_files.yaml`
+| Field       | Description                                                                                    |
+| ----------- | ---------------------------------------------------------------------------------------------- |
+| `issue`     | Issue code object (see [Issues](#issues)                                                       |
+| `selectors` | List of expressions; any evaluating false indicate rule does not apply                         |
+| `checks`    | List of expressions; any evaluating false indicate rule is violated and issue should be raised |
 
-This file contains a dictionary in which each key is a top-level file and the value is a dictionary with two keys:
-`required` and `extensions`.
-The `required` entry contains a boolean value (true or false) to indicate if that top-level file is required for BIDS datasets or not.
-The `extensions` entry contains a list of valid file extensions for the file.
+```YAML
+EventsMissing:
+  issue:
+    code: EVENTS_TSV_MISSING
+    message: |
+      Task scans should have a corresponding events.tsv file.
+      If this is a resting state scan you can ignore this warning or rename the task to include the word "rest".
+    level: warning # could be an error with the proper selectors, I think
+  selectors:
+    - '"task" in entities'
+    - '!matches(entities.task, "rest")'
+    - suffix != "events"
+  checks:
+    - '"events" in associations'
+```
 
-In cases where there is a data file and a metadata file, the `.json` extension for metadata file is included.
+### One-off rules
 
-### `associated_data.yaml`
+*   `rules.modalities` - The keys in this file are the modalities, the values objects with the following field:
+    | Field       | Description                           |
+    | ----------- | ------------------------------------- |
+    | `datatypes` | List of datatypes mapping to modality |
 
-This file contains a dictionary in which each key is a directory and the value is a dictionary with one key: `required`.
-The `required` entry contains a boolean value to indicate if that directory is required for BIDS datasets or not.
-
-## Using links from a schema entry to places within the specification
-
-Sometimes a particular metadata entry will refer to other concepts within the
-BIDS specification using a link.
-Currently, in order for these links to get properly rendered with the MkDocs structure,
-they must be relative to the `src` directory of the bids-specification repository and
- need to be prefixed with `SPEC_ROOT`. Furthermore, they must point to the Markdown document;
-that is, ending with `.md`, **not** `.html`.
-
-For more information please see the following pull request and linked discussions:
-[#1096](https://github.com/bids-standard/bids-specification/pull/1096)
+*   `rules.entities` - This file contains a list of keys into `objects.entities` and
+    simply defines the order in which entities, when present, MUST appear in filenames
 
 ## Version of the schema
 
