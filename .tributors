@@ -185,7 +185,7 @@
         "bio": "Postdoctoral Researcher @ Stanford University, Center for Reproducible Neuroscience; interested in neuroimaging, data sharing, statistics and preprocessing.",
         "blog": "https://profiles.stanford.edu/martin-noergaard"
     },
-    "Park-Patrick": {
+    "Patrick-Park": {
         "name": "Patrick Park",
         "blog": "https://github.com/Park-Patrick"
     },
@@ -371,13 +371,15 @@
         "name": "Adeen Flinker"
     },
     "aki_nikolaidis": {
-        "name": "Aki Nikolaidis"
+        "name": "Aki Nikolaidis",
+        "blog": "https://github.com/AkiNikolaidis"
     },
     "alberto_lazari": {
         "name": "Alberto Lazari"
     },
     "alejandro_de_la_vega": {
-        "name": "Alejandro de la Vega"
+        "name": "Alejandro de la Vega",
+        "blog": "https://github.com/adelavega"
     },
     "alexander_jones": {
         "name": "Alexander Jones"
@@ -456,7 +458,8 @@
         "name": "Benjamin Gagl"
     },
     "bertrand_thirion": {
-        "name": "Bertrand Thirion"
+        "name": "Bertrand Thirion",
+        "blog": "https://github.com/bthirion"
     },
     "bradley_voytek": {
         "name": "Bradley Voytek",
@@ -543,7 +546,8 @@
         "orcid": "0000-0002-3282-2514"
     },
     "david_keator": {
-        "name": "David Keator"
+        "name": "David Keator",
+        "blog": "https://github.com/dbkeator"
     },
     "david_mcalpine": {
         "name": "David McAlpine"
@@ -565,7 +569,8 @@
         "name": "Dmitry Petrov"
     },
     "dorien_huijser": {
-        "name": "Dorien Huijser"
+        "name": "Dorien Huijser",
+        "blog": "https://github.com/DorienHuijser"
     },
     "dylan_nielson": {
         "name": "Dylan Nielson"
@@ -613,7 +618,8 @@
         "name": "Gang Chen"
     },
     "gaël_varoquaux": {
-        "name": "Gaël Varoquaux"
+        "name": "Gaël Varoquaux",
+        "blog": "https://github.com/GaelVaroquaux"
     },
     "giacomo_mazzamuto": {
         "name": "Giacomo Mazzamuto",
@@ -622,7 +628,8 @@
         "orcid": "0000-0003-3077-3904"
     },
     "gilles_de_hollander": {
-        "name": "Gilles de Hollander"
+        "name": "Gilles de Hollander",
+        "blog": "https://github.com/Gilles86"
     },
     "gio_piantoni": {
         "name": "Gio Piantoni"
@@ -637,7 +644,8 @@
         "name": "Graham Searle"
     },
     "gregory_kiar": {
-        "name": "Gregory Kiar"
+        "name": "Gregory Kiar",
+        "blog": "https://github.com/gkiar"
     },
     "gunnar_schaefer": {
         "name": "Gunnar Schaefer"
@@ -652,13 +660,15 @@
         "name": "Hanzhang Lu"
     },
     "hao_ting_wang": {
-        "name": "Hao Ting Wang"
+        "name": "Hao Ting Wang",
+        "blog": "https://github.com/htwangtw"
     },
     "helena_cockx": {
         "name": "Helena Cockx"
     },
     "henk_mutsaerts": {
-        "name": "Henk Mutsaerts"
+        "name": "Henk Mutsaerts",
+        "blog": "https://github.com/HenkMutsaerts"
     },
     "hernando_ombao": {
         "name": "Hernando Ombao"
@@ -703,7 +713,8 @@
         "name": "Jean-Philippe Lachaux"
     },
     "jeanette_mumford": {
-        "name": "Jeanette Mumford"
+        "name": "Jeanette Mumford",
+        "blog": "https://github.com/jmumford"
     },
     "jeffrey_g_ojemann": {
         "name": "Jeffrey G. Ojemann"
@@ -764,7 +775,8 @@
         "name": "Kangjoo Lee"
     },
     "katja_heuer": {
-        "name": "Katja Heuer"
+        "name": "Katja Heuer",
+        "blog": "https://github.com/katjaq"
     },
     "kevin_larcher": {
         "name": "Kevin Larcher"
@@ -776,9 +788,6 @@
         "name": "Kristofer Bouchard",
         "affiliation": "LBNL, Scientific Data Division",
         "orcid": "0000-0002-1974-4603"
-    },
-    "krzysztof_j_gorgolewski": {
-        "name": "Krzysztof J. Gorgolewski"
     },
     "laura_and_john_arnold_foundation": {
         "name": "Laura and John Arnold Foundation"
@@ -879,7 +888,8 @@
         "name": "Michael Chappell"
     },
     "michael_hanke": {
-        "name": "Michael Hanke"
+        "name": "Michael Hanke",
+        "blog": "https://github.com/mih"
     },
     "michael_p_harms": {
         "name": "Michael P. Harms"
@@ -931,14 +941,12 @@
     "parul_sethi": {
         "name": "Parul Sethi"
     },
-    "patrick_park": {
-        "name": "Patrick Park"
-    },
     "paule-joanne_toussaint": {
         "name": "Paule-Joanne Toussaint"
     },
     "peer_herholz": {
-        "name": "Peer Herholz"
+        "name": "Peer Herholz",
+        "blog": "https://github.com/PeerHerholz"
     },
     "petra_ritter": {
         "name": "Petra Ritter",
@@ -956,7 +964,8 @@
         "name": "Pradeep Reddy Raamana"
     },
     "r_cameron_craddock": {
-        "name": "R. Cameron Craddock"
+        "name": "R. Cameron Craddock",
+        "blog": "https://github.com/ccraddock"
     },
     "richard_n_henson": {
         "name": "Richard N. Henson",
@@ -974,7 +983,8 @@
         "name": "Robert Luke"
     },
     "roberto_toro": {
-        "name": "Roberto Toro"
+        "name": "Roberto Toro",
+        "blog": "https://github.com/r03ert0"
     },
     "russell_a_poldrack": {
         "name": "Russell A. Poldrack",
@@ -1031,7 +1041,8 @@
         "name": "Tal Pal Attia"
     },
     "tal_yarkoni": {
-        "name": "Tal Yarkoni"
+        "name": "Tal Yarkoni",
+        "blog": "https://github.com/tyarkoni"
     },
     "tamas_spisak": {
         "name": "Tamas Spisak"
@@ -1068,7 +1079,8 @@
         "name": "Tom Hampshire"
     },
     "tor_wager": {
-        "name": "Tor Wager"
+        "name": "Tor Wager",
+        "blog": "https://github.com/torwager"
     },
     "travis_riddle": {
         "name": "Travis Riddle"
@@ -1105,9 +1117,6 @@
     },
     "xiangrui_li": {
         "name": "Xiangrui Li"
-    },
-    "yaroslav_o_halchenko": {
-        "name": "Yaroslav O. Halchenko"
     },
     "yoni_ashar": {
         "name": "Yoni Ashar"

@@ -1,19 +1,10 @@
 import json
 from math import nan
-import ruamel.yaml
-import pandas as pd
-import requests
-
-from rich import print
-
 from pathlib import Path
 
-root_dir = Path(__file__).parent.parent
-
-yaml = ruamel.yaml.YAML()
-
-tributors_file = root_dir.joinpath(".tributors")
-allcontrib_file = root_dir.joinpath(".all-contributorsrc")
+import pandas as pd
+import requests
+from rich import print
 
 
 def load_tributors(tributors_file):
@@ -86,6 +77,13 @@ def return_this_contributor(tsv, name):
     }
 
 
+def main():
+    root_dir = Path(__file__).parent.joinpath('..').resolve()
+    print(root_dir)
+
+    tributors_file = root_dir.joinpath(".tributors")
+    allcontrib_file = root_dir.joinpath(".all-contributorsrc")
+
 tsv = pd.read_csv("contributors.tsv", sep="\t", encoding="utf8")
 tsv = rename_columns(tsv)
 # print(tsv.head())
@@ -121,15 +119,15 @@ for name in tsv.name:
         index_allcontrib = allcontrib_names.index(name)
 
         assert allcontrib["contributors"][index_allcontrib]["name"] == name
-        assert tributors[key_tributor]["name"] == name
+            assert tributors[key_tributor]["name"] == name
 
-        if this_contributor["website"] is not None:
-            allcontrib["contributors"][index_allcontrib]["profile"] = this_contributor[
-                "website"
-            ]
+            if this_contributor["website"] is not None:
+                allcontrib["contributors"][index_allcontrib][
+                    "profile"
+                ] = this_contributor["website"]
 
-        if this_contributor["github_username"] is not None and (
-            "avatar_url" not in allcontrib["contributors"][index_allcontrib]
+            if this_contributor["github_username"] is not None and (
+                "avatar_url" not in allcontrib["contributors"][index_allcontrib]
             or allcontrib["contributors"][index_allcontrib]["avatar_url"] is None
         ):
             response = requests.get(
@@ -139,15 +137,15 @@ for name in tsv.name:
             print(response)
             allcontrib["contributors"][index_allcontrib]["avatar_url"] = response[
                 "avatar_url"
-            ]
+                ]
 
-        if this_contributor["github_username"] is not None:
-            allcontrib["contributors"][index_allcontrib]["login"] = this_contributor[
-                "github_username"
-            ]
-            tributors[key_tributor]["blog"] = this_contributor["website"]
+            if this_contributor["github_username"] is not None:
+                allcontrib["contributors"][index_allcontrib][
+                    "login"
+                ] = this_contributor["github_username"]
+                tributors[key_tributor]["blog"] = this_contributor["website"]
 
-        if (
+            if (
             this_contributor["add_email"] is True
             and this_contributor["email"] is not None
         ):
@@ -173,5 +171,9 @@ assert len(allcontrib["contributors"]) == len(tributors)
 with open(allcontrib_file, "w", encoding="utf8") as output_file:
     json.dump(allcontrib, output_file, indent=4, ensure_ascii=False)
 
-with open(tributors_file, "w", encoding="utf8") as output_file:
-    json.dump(tributors, output_file, indent=4, ensure_ascii=False)
+    with open(tributors_file, "w", encoding="utf8") as output_file:
+        json.dump(tributors, output_file, indent=4, ensure_ascii=False)
+
+
+if __name__ == "__main__":
+    main()
