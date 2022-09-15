@@ -134,7 +134,7 @@ authors:
   orcid: https://orcid.org/0000-0002-0380-4798
   affiliation: Inria Saclay - Île-de-France Research Centre
   email: richard.hoechenberger@gmail.com
-- given-names: Rob
+- given-names: Robert
   family-names: Luke
   website: https://github.com/rob-luke
 - given-names: Nell
@@ -327,8 +327,6 @@ authors:
   family-names: Khan
 - given-names: Ana
   family-names: Fouto
-- given-names: Anders
-  family-names: Eklund
 - given-names: Andrea
   family-names: Pigorini
 - given-names: Andrew
@@ -387,8 +385,6 @@ authors:
   family-names: Lee-Messer
 - given-names: Clara
   family-names: Moreau
-- given-names: Dan
-  family-names: Lurie
 - given-names: Daniel
   family-names: A. Handwerker
 - given-names: David
@@ -418,8 +414,6 @@ authors:
   family-names: Blackwood
   orcid: https://orcid.org/0000-0002-3049-0640
   affiliation: University of Pennsylvania
-- given-names: Eugene
-  family-names: P. Duff
 - given-names: Ezequiel
   family-names: Mikulan
   orcid: https://orcid.org/0000-0001-7259-6120
@@ -521,8 +515,6 @@ authors:
   affiliation: Loyola University Chicago
 - given-names: Joseph
   family-names: Woods
-- given-names: Julien
-  family-names: Cohen-Adad
 - given-names: Kai
   family-names: J. Miller
 - given-names: Kangjoo
@@ -643,20 +635,10 @@ authors:
   affiliation: McGill University Faculty of Medicine and Health Sciences
 - given-names: Pierre
   family-names: Rioux
-- given-names: Pieter
-  family-names: Vandemaele
-  orcid: https://orcid.org/0000-0002-4523-2476
-  affiliation: Ghent University Hospital
-- given-names: Pradeep
-  family-names: Reddy Raamana
 - given-names: Robert
   family-names: E. Smith
 - given-names: Robert
   family-names: Knight
-- given-names: Robert
-  family-names: Luke
-- given-names: Rémi
-  family-names: Adon
 - given-names: Samir
   family-names: Das
 - given-names: Samuel
@@ -672,20 +654,10 @@ authors:
   affiliation: Technical University of Berlin
 - given-names: Shashank
   family-names: Bansal
-- given-names: Soichi
-  family-names: Hayashi
-  orcid: https://orcid.org/0000-0003-3641-3491
-  affiliation: Indiana University
 - given-names: Stephan
   family-names: Bickel
 - given-names: Suyash
   family-names: Bhogawar
-- given-names: Sylvain
-  family-names: Baillet
-- given-names: Sylvain
-  family-names: Takerkart
-  orcid: https://orcid.org/0000-0001-8410-0962
-  affiliation: CNRS & Aix-Marseille Université
 - given-names: Sören
   family-names: Grothkopp
 - given-names: Tal
@@ -706,19 +678,11 @@ authors:
   family-names: Riddle
   orcid: https://orcid.org/0000-0001-8160-3986
   affiliation: National Police Foundation
-- given-names: Tristan
-  family-names: Glatard
-  orcid: https://orcid.org/0000-0003-2620-5883
 - given-names: Ulrike
   family-names: Bingel
   orcid: https://orcid.org/0000-0002-9528-3204
-- given-names: Vanessa
-  family-names: Sochat
-  orcid: https://orcid.org/0000-0002-4387-3819
 - given-names: Vasudev
   family-names: Raguram
-- given-names: Vince
-  family-names: D. Calhoun
 - given-names: Vladimir
   family-names: Litvak
   orcid: https://orcid.org/0000-0001-8535-7452
@@ -729,8 +693,6 @@ authors:
   family-names: Clarke
 - given-names: William
   family-names: Triplett
-- given-names: Wouter
-  family-names: V. Potters
 - given-names: Xiangrui
   family-names: Li
 - given-names: Yoni
@@ -971,3 +933,50 @@ authors:
   orcid: https://orcid.org/0000-0001-8227-8476
   affiliation: Charité—Universitätsmedizin Berlin, Department of Neurology, Berlin,
     10115, Germany
+- given-names: Anders
+  family-names: Eklund
+  website: https://github.com/wanderine
+- given-names: Dan
+  family-names: Lurie
+  website: https://github.com/danlurie
+- given-names: Eugene
+  family-names: P. Duff
+  website: https://github.com/eduff
+- given-names: Julien
+  family-names: Cohen-Adad
+  website: https://github.com/jcohenadad
+- given-names: Pieter
+  family-names: Vandemaele
+  website: https://github.com/pvdemael
+  orcid: https://orcid.org/0000-0002-4523-2476
+  affiliation: Ghent University Hospital
+- given-names: Pradeep
+  family-names: Reddy Raamana
+  website: https://github.com/raamana
+- given-names: Rémi
+  family-names: Adon
+  website: https://github.com/remiadon
+- given-names: Soichi
+  family-names: Hayashi
+  website: https://github.com/soichih
+  orcid: https://orcid.org/0000-0003-3641-3491
+  affiliation: Indiana University
+- given-names: Sylvain
+  family-names: Baillet
+  website: https://github.com/sbaillet
+- given-names: Sylvain
+  family-names: Takerkart
+  website: https://github.com/SylvainTakerkart
+  orcid: https://orcid.org/0000-0001-8410-0962
+  affiliation: CNRS & Aix-Marseille Université
+- given-names: Tristan
+  family-names: Glatard
+  website: https://github.com/glatard
+  orcid: https://orcid.org/0000-0003-2620-5883
+- given-names: Vanessa
+  family-names: Sochat
+  website: https://github.com/vsoch
+  orcid: https://orcid.org/0000-0002-4387-3819
+- given-names: Vince
+  family-names: D. Calhoun
+  website: https://github.com/vdcalhoun
