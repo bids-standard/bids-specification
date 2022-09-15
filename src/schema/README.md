@@ -406,21 +406,21 @@ reference__ieeg:
 
 #### Valid fields for definitions
 
-1.  `objects.common_principles`
+*   `objects.common_principles`
     | Field          | Description         |
     | -------------- | ------------------- |
     | `display_name` | Human-friendly name |
     | `description`  | Term definition     |
 
-2.  `objects.modalities`
-    | Field          |                     |
+*   `objects.modalities`
+    | Field          | Description         |
     | -------------- | ------------------- |
     | `display_name` | Human-friendly name |
     | `description`  | Term definition     |
 
-3.  `objects.entities`
+*   `objects.entities`
 
-    | Field          |                                                         |
+    | Field          | Description                                             |
     | -------------- | ------------------------------------------------------- |
     | `display_name` | Human-friendly name                                     |
     | `description`  | Term definition                                         |
@@ -432,8 +432,8 @@ reference__ieeg:
     Note that descriptions should apply to *all* uses of the entity; if additional information
     applies in certain contexts, that should be written in the specification, and not the schema.
 
-4.  `objects.metadata`
-    | Field          |                                                                                      |
+*   `objects.metadata`
+    | Field          | Description                                                                          |
     | -------------- | ------------------------------------------------------------------------------------ |
     | `display_name` | Human-friendly name                                                                  |
     | `description`  | Term definition                                                                      |
@@ -446,8 +446,8 @@ reference__ieeg:
     | `minimum`      | Minimum for numeric values                                                           |
     | `*`            | JSON-schema fields to further constrain values                                       |
 
-5.  `objects.columns`
-    | Field          |                                                                     |
+*   `objects.columns`
+    | Field          | Description                                                         |
     | -------------- | ------------------------------------------------------------------- |
     | `display_name` | Human-friendly name                                                 |
     | `description`  | Term definition                                                     |
@@ -461,15 +461,15 @@ reference__ieeg:
     | `minimum`      | Minimum for numeric values                                          |
     | `*`            | JSON-schema fields to further constrain values                      |
 
-6.  `objects.datatypes`
-    | Field          |                            |
+*   `objects.datatypes`
+    | Field          | Description                |
     | -------------- | -------------------------- |
     | `display_name` | Human-friendly name        |
     | `description`  | Term definition            |
     | `value`        | String value of `datatype` |
 
-7.  `objects.suffixes`
-    | Field          |                                                                |
+*   `objects.suffixes`
+    | Field          | Description                                                    |
     | -------------- | -------------------------------------------------------------- |
     | `display_name` | Human-friendly name                                            |
     | `description`  | Term definition                                                |
@@ -479,28 +479,28 @@ reference__ieeg:
     | `minValue`     | Minimum permissible value in a data file with the given suffix |
     | `anyOf`        | Used to describe multiple permissible units                    |
 
-8.  `objects.extensions`
-    | Field          |                             |
+*   `objects.extensions`
+    | Field          | Description                 |
     | -------------- | --------------------------- |
     | `display_name` | Human-friendly name         |
     | `description`  | Term definition             |
     | `value`        | String value of `extension` |
 
-9.  `objects.formats`
-    | Field          |                                    |
+*   `objects.formats`
+    | Field          | Description                        |
     | -------------- | ---------------------------------- |
     | `display_name` | Human-friendly name                |
     | `description`  | Term definition                    |
     | `pattern`      | Regular expression defining format |
 
-10. `objects.associated_data`
-    | Field          |                     |
+*   `objects.associated_data`
+    | Field          | Description         |
     | -------------- | ------------------- |
     | `display_name` | Human-friendly name |
     | `description`  | Term definition     |
 
-11. `objects.top_level_files`
-    | Field          |                     |
+*   `objects.top_level_files`
+    | Field          | Description         |
     | -------------- | ------------------- |
     | `display_name` | Human-friendly name |
     | `description`  | Term definition     |
