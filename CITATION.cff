@@ -215,7 +215,7 @@ authors:
   family-names: Earl
   website: https://ericearl.github.io/
   orcid: https://orcid.org/0000-0001-5512-0083
-  affiliation: National Institute of Mental Health
+  affiliation: NIMH Data Science & Sharing Team, Bethesda, MD, 20892, USA
   email: eric.earl@nih.gov
 - given-names: D.
   family-names: Sturgeon
@@ -245,6 +245,9 @@ authors:
 - given-names: Melanie
   family-names: Ganz-Benjaminsen
   website: https://sites.google.com/view/melanieganz/home
+  orcid: https://orcid.org/0000-0002-9120-8098
+  affiliation: University of Copenhagen, Department of Computer Science, Copenhagen,
+    2100, Denmark
 - given-names: Patricia
   family-names: Clement
   website: https://github.com/patsycle
@@ -433,8 +436,6 @@ authors:
   family-names: Maria Castelli
 - given-names: François
   family-names: Tadel
-- given-names: Gang
-  family-names: Chen
 - given-names: Gio
   family-names: Piantoni
 - given-names: Giulio
@@ -448,10 +449,6 @@ authors:
 - given-names: Gunnar
   family-names: Schaefer
   orcid: https://orcid.org/0000-0001-9661-2121
-- given-names: Gustav
-  family-names: Nilsonne
-  orcid: https://orcid.org/0000-0001-5273-0150
-  affiliation: Karolinska Institutet
 - given-names: Hamish
   family-names: Innes-Brown
 - given-names: Hanzhang
@@ -613,9 +610,6 @@ authors:
   family-names: P. Milham
 - given-names: Michael
   family-names: P. Notter
-- given-names: Michael
-  family-names: Schirner
-  orcid: https://orcid.org/0000-0001-8227-8476
 - given-names: Nader
   family-names: Pouratian
   orcid: https://orcid.org/0000-0002-0426-3241
@@ -910,12 +904,6 @@ authors:
 - given-names: Peer
   family-names: Herholz
   website: https://github.com/PeerHerholz
-- given-names: Petra
-  family-names: Ritter
-  website: https://www.brainsimulation.org
-  orcid: https://orcid.org/0000-0002-4643-4782
-  affiliation: Charité University Medicine Berlin,  Berlin Institute of Health, Berlin,
-    10115, Germany
 - given-names: R.
   family-names: Cameron Craddock
   website: https://github.com/ccraddock
@@ -964,3 +952,22 @@ authors:
 - given-names: Tor
   family-names: Wager
   website: https://github.com/torwager
+- given-names: Gang
+  family-names: Chen
+  website: https://github.com/afni-gangc
+  orcid: https://orcid.org/0000-0002-2960-089X
+  affiliation: National Institutes of Health, Scientific and Statistical Computing
+    Core, NIMH, Bethesda, MD 20892, USA
+- given-names: Gustav
+  family-names: Nilsonne
+  website: https://nilsonne.net/about/
+  orcid: https://orcid.org/0000-0001-5273-0150
+  affiliation: Karolinska Institutet, Department of Clinical Neuroscience, Stockholm,
+    17177, Sweden
+  email: gustav.nilsonne@ki.se
+- given-names: Michael
+  family-names: Schirner
+  website: https://www.brainsimulation.org
+  orcid: https://orcid.org/0000-0001-8227-8476
+  affiliation: Charité—Universitätsmedizin Berlin, Department of Neurology, Berlin,
+    10115, Germany

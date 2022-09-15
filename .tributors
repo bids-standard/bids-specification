@@ -246,7 +246,7 @@
         "bio": "Neuroinformaticist acting as a Data Scientist in the NIMH Data Science & Sharing Team",
         "blog": "https://ericearl.github.io/",
         "orcid": "0000-0001-5512-0083",
-        "affiliation": "National Institute of Mental Health"
+        "affiliation": "NIMH Data Science & Sharing Team, Bethesda, MD, 20892, USA"
     },
     "dasturge": {
         "name": "D. Sturgeon",
@@ -285,7 +285,9 @@
     },
     "melanieganz": {
         "name": "Melanie Ganz-Benjaminsen",
-        "blog": "https://sites.google.com/view/melanieganz/home"
+        "blog": "https://sites.google.com/view/melanieganz/home",
+        "affiliation": "University of Copenhagen, Department of Computer Science, Copenhagen, 2100, Denmark",
+        "orcid": "0000-0002-9120-8098"
     },
     "patsycle": {
         "name": "Patricia Clement",
@@ -545,9 +547,6 @@
     "françois_tadel": {
         "name": "François Tadel"
     },
-    "gang_chen": {
-        "name": "Gang Chen"
-    },
     "gio_piantoni": {
         "name": "Gio Piantoni"
     },
@@ -565,11 +564,6 @@
     "gunnar_schaefer": {
         "name": "Gunnar Schaefer",
         "orcid": "0000-0001-9661-2121"
-    },
-    "gustav_nilsonne": {
-        "name": "Gustav Nilsonne",
-        "orcid": "0000-0001-5273-0150",
-        "affiliation": "Karolinska Institutet"
     },
     "hamish_innes-brown": {
         "name": "Hamish Innes-Brown"
@@ -788,10 +782,6 @@
     },
     "michael_p_notter": {
         "name": "Michael P. Notter"
-    },
-    "michael_schirner": {
-        "name": "Michael Schirner",
-        "orcid": "0000-0001-8227-8476"
     },
     "nader_pouratian": {
         "name": "Nader Pouratian",
@@ -1165,12 +1155,6 @@
         "name": "Peer Herholz",
         "blog": "https://github.com/PeerHerholz"
     },
-    "BrainModes": {
-        "name": "Petra Ritter",
-        "blog": "https://www.brainsimulation.org",
-        "affiliation": "Charité University Medicine Berlin,  Berlin Institute of Health, Berlin, 10115, Germany",
-        "orcid": "0000-0002-4643-4782"
-    },
     "ccraddock": {
         "name": "R. Cameron Craddock",
         "blog": "https://github.com/ccraddock"
@@ -1224,5 +1208,24 @@
     "torwager": {
         "name": "Tor Wager",
         "blog": "https://github.com/torwager"
+    },
+    "afni-gangc": {
+        "name": "Gang Chen",
+        "blog": "https://github.com/afni-gangc",
+        "affiliation": "National Institutes of Health, Scientific and Statistical Computing Core, NIMH, Bethesda, MD 20892, USA",
+        "orcid": "0000-0002-2960-089X"
+    },
+    "GNilsonne": {
+        "name": "Gustav Nilsonne",
+        "orcid": "0000-0001-5273-0150",
+        "affiliation": "Karolinska Institutet, Department of Clinical Neuroscience, Stockholm, 17177, Sweden",
+        "blog": "https://nilsonne.net/about/",
+        "email": "gustav.nilsonne@ki.se"
+    },
+    "BrainModes/": {
+        "name": "Michael Schirner",
+        "orcid": "0000-0001-8227-8476",
+        "blog": "https://www.brainsimulation.org",
+        "affiliation": "Charité—Universitätsmedizin Berlin, Department of Neurology, Berlin, 10115, Germany"
     }
 }

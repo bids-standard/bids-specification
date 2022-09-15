@@ -177,9 +177,10 @@ for name in tsv.name:
             print(tributors[key_tributor])
             print(allcontrib["contributors"][index_allcontrib])
 
-print(set(tributors_names) - set(allcontrib_names))
+    print(set(tributors_names) - set(allcontrib_names))
+    print(set(allcontrib_names) - set(tributors_names))
 
-assert len(allcontrib["contributors"]) == len(tributors)
+    assert len(allcontrib["contributors"]) == len(tributors)
 
 with open(allcontrib_file, "w", encoding="utf8") as output_file:
     json.dump(allcontrib, output_file, indent=4, ensure_ascii=False)

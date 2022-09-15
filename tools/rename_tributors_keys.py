@@ -42,12 +42,11 @@ def main():
         index_allcontrib = allcontrib_names.index(name)
         new_key = allcontrib["contributors"][index_allcontrib]["login"]
 
-        print(f"\n[cyan]{name.upper()}[/cyan]")
-        print(old_key_tributor)
-        print(new_key)
-
         if new_key != old_key_tributor:
             tributors[new_key] = tributors.pop(old_key_tributor)
+            print(f"\n[cyan]{name.upper()}[/cyan]")
+            print(old_key_tributor)
+            print(new_key)
 
     with open(tributors_file, "w", encoding="utf8") as output_file:
         json.dump(tributors, output_file, indent=4, ensure_ascii=False)

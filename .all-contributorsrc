@@ -868,10 +868,12 @@
         },
         {
             "name": "Gang Chen",
-            "login": "gang_chen",
+            "login": "afni-gangc",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://github.com/afni-gangc",
+            "avatar_url": "https://avatars.githubusercontent.com/u/10375801?v=4"
         },
         {
             "name": "Gaël Varoquaux",
@@ -984,10 +986,12 @@
         },
         {
             "name": "Gustav Nilsonne",
-            "login": "gustav_nilsonne",
+            "login": "GNilsonne",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://nilsonne.net/about/",
+            "avatar_url": "https://avatars.githubusercontent.com/u/5601007?v=4"
         },
         {
             "name": "Hamish Innes-Brown",
@@ -1777,10 +1781,12 @@
         },
         {
             "name": "Michael Schirner",
-            "login": "michael_schirner",
+            "login": "BrainModes/",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://www.brainsimulation.org",
+            "avatar_url": "https://avatars.githubusercontent.com/u/8677353?v=4"
         },
         {
             "name": "Mikaël Naveau",
@@ -1947,15 +1953,6 @@
             ],
             "profile": "https://github.com/PeerHerholz",
             "avatar_url": "https://avatars.githubusercontent.com/u/20129524?v=4"
-        },
-        {
-            "name": "Petra Ritter",
-            "login": "BrainModes",
-            "contributions": [
-                "doc"
-            ],
-            "profile": "https://www.brainsimulation.org",
-            "avatar_url": "https://avatars.githubusercontent.com/u/8677353?v=4"
         },
         {
             "name": "Pierre Rioux",
