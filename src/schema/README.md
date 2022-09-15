@@ -11,23 +11,25 @@ Any changes to the specification should be mirrored in the schema.
 
 At the time of this writing, the schema has the following file layout:
 
-    src/schema
-    ├── BIDS_VERSION
-    ├── meta
-    │   └── context.yaml
-    ├── objects
-    │   ├── associated_data.yaml
-    │   ├── ...
-    │   └── top_level_files.yaml
-    ├── rules
-    │   ├── associated_data.yaml
-    │   ├── checks
-    │   │   ├── asl.yaml
-    │   │   ├── ...
-    │   │   └── mri.yaml
-    │   ├── ...
-    │   └── top_level_files.yaml
-    └── SCHEMA_VERSION
+```plain
+src/schema
+├── BIDS_VERSION
+├── meta
+│   └── context.yaml
+├── objects
+│   ├── associated_data.yaml
+│   ├── ...
+│   └── top_level_files.yaml
+├── rules
+│   ├── associated_data.yaml
+│   ├── checks
+│   │   ├── asl.yaml
+│   │   ├── ...
+│   │   └── mri.yaml
+│   ├── ...
+│   └── top_level_files.yaml
+└── SCHEMA_VERSION
+```
 
 The top-level organization includes `objects`, where terms are defined;
 `rules`, where constraints (such as valid filenames or required metadata fields)
@@ -89,7 +91,9 @@ section of
 [Common principles](https://bids-specification.readthedocs.io/en/stable/02-common-principles.html),
 use the path `SPEC_ROOT/02-common-principles.md#definitions`, e.g.,
 
-    [Common principles - Definitions](SPEC_ROOT/02-common-principles.md#definitions)
+```Markdown
+[Common principles - Definitions](SPEC_ROOT/02-common-principles.md#definitions)
+```
 
 Note that the Markdown extension `.md` MUST be used for this to render correctly.
 
@@ -100,8 +104,10 @@ For more information please see the following pull request and linked discussion
 
 Some schema entries take the form:
 
-    ObjectName:
-      $ref: objects.metadata.OtherObjectName
+```YAML
+ObjectName:
+  $ref: objects.metadata.OtherObjectName
+```
 
 This object may be *dereferenced* by replacing the `$ref` entry with the object being
 referenced.
@@ -137,7 +143,7 @@ references (the cases in which they are used will be presented later):
     and the references inside `GeneticLevel.anyOf` indicate that there may be a single
     such value or a list of values.
 
-2.  In `rules.datatypes.derivatives.common_derivatives`:
+1.  In `rules.datatypes.derivatives.common_derivatives`:
     ```YAML
     anat_nonparametric_common:
       $ref: rules.datatypes.anat.nonparametric
@@ -180,29 +186,29 @@ PhasePartUnits:
 
 We see expressions may contain:
 
-*   fields such as `modality`, `entities` (which has a `.part` subfield), `sidecar`
-*   String literals such as `"mri"`, `"Units"` or `"rad"`
-*   Lists containing fields or strings
-*   Comparison operators such as `==` (equality) or `in` (subfield exists in field)
-*   Functions such as `intersects()`
+-   fields such as `modality`, `entities` (which has a `.part` subfield), `sidecar`
+-   String literals such as `"mri"`, `"Units"` or `"rad"`
+-   Lists containing fields or strings
+-   Comparison operators such as `==` (equality) or `in` (subfield exists in field)
+-   Functions such as `intersects()`
 
 In fact, the full list of fields is defined in the `meta.context.context` object,
 which (currently) contains at the top level:
 
-*   `schema`: access to the schema itself
-*   `dataset`: attributes of the whole dataset
-*   `subject`: attributes of the current subject
-*   `path`: the full path of the current file (relative to dataset root)
-*   `entities`: an object of entities parsed from the path
-*   `datatype`: the datatype, parsed from the path
-*   `suffix`: the suffix, parsed from the path
-*   `extension`: the file extension
-*   `modality`: the file modality, determined by datatype
-*   `sidecar`: the metadata values, accumulated by the inheritance principle
-*   `associations`: associated files, discovered by the inheritance principle
-*   `columns`: the columns in the current TSV file
-*   `json`: the contents of the current JSON file
-*   `nifti_header`: selected contents of the current NIfTI file's header
+-   `schema`: access to the schema itself
+-   `dataset`: attributes of the whole dataset
+-   `subject`: attributes of the current subject
+-   `path`: the full path of the current file (relative to dataset root)
+-   `entities`: an object of entities parsed from the path
+-   `datatype`: the datatype, parsed from the path
+-   `suffix`: the suffix, parsed from the path
+-   `extension`: the file extension
+-   `modality`: the file modality, determined by datatype
+-   `sidecar`: the metadata values, accumulated by the inheritance principle
+-   `associations`: associated files, discovered by the inheritance principle
+-   `columns`: the columns in the current TSV file
+-   `json`: the contents of the current JSON file
+-   `nifti_header`: selected contents of the current NIfTI file's header
 
 Some of these are strings, while others are nested objects.
 These are to be populated by an *interpreter* of the schema, and provide the
@@ -374,7 +380,8 @@ The following conventions are used:
 
 1.  Each specific term takes on the form `<term>_<context>`, where `<term>` is the common name that
     the two (or more) terms share, `<context>` indicates when the specific term applies.
-2.  If the `<term>` appears in `snake_case` (meaning it or similar objects may contain underscores),
+
+1.  If the `<term>` appears in `snake_case` (meaning it or similar objects may contain underscores),
     then `<context>` begins with an extra `_`.
 
 For example, the TSV column `"reference"` means different things when used for EEG data, as compared to iEEG data.
@@ -406,19 +413,19 @@ reference__ieeg:
 
 #### Valid fields for definitions
 
-*   `objects.common_principles`
+-   `objects.common_principles`
     | Field          | Description         |
     | -------------- | ------------------- |
     | `display_name` | Human-friendly name |
     | `description`  | Term definition     |
 
-*   `objects.modalities`
+-   `objects.modalities`
     | Field          | Description         |
     | -------------- | ------------------- |
     | `display_name` | Human-friendly name |
     | `description`  | Term definition     |
 
-*   `objects.entities`
+-   `objects.entities`
 
     | Field          | Description                                             |
     | -------------- | ------------------------------------------------------- |
@@ -432,7 +439,7 @@ reference__ieeg:
     Note that descriptions should apply to *all* uses of the entity; if additional information
     applies in certain contexts, that should be written in the specification, and not the schema.
 
-*   `objects.metadata`
+-   `objects.metadata`
     | Field          | Description                                                                          |
     | -------------- | ------------------------------------------------------------------------------------ |
     | `display_name` | Human-friendly name                                                                  |
@@ -446,7 +453,7 @@ reference__ieeg:
     | `minimum`      | Minimum for numeric values                                                           |
     | `*`            | JSON-schema fields to further constrain values                                       |
 
-*   `objects.columns`
+-   `objects.columns`
     | Field          | Description                                                         |
     | -------------- | ------------------------------------------------------------------- |
     | `display_name` | Human-friendly name                                                 |
@@ -461,14 +468,14 @@ reference__ieeg:
     | `minimum`      | Minimum for numeric values                                          |
     | `*`            | JSON-schema fields to further constrain values                      |
 
-*   `objects.datatypes`
+-   `objects.datatypes`
     | Field          | Description                |
     | -------------- | -------------------------- |
     | `display_name` | Human-friendly name        |
     | `description`  | Term definition            |
     | `value`        | String value of `datatype` |
 
-*   `objects.suffixes`
+-   `objects.suffixes`
     | Field          | Description                                                    |
     | -------------- | -------------------------------------------------------------- |
     | `display_name` | Human-friendly name                                            |
@@ -479,27 +486,27 @@ reference__ieeg:
     | `minValue`     | Minimum permissible value in a data file with the given suffix |
     | `anyOf`        | Used to describe multiple permissible units                    |
 
-*   `objects.extensions`
+-   `objects.extensions`
     | Field          | Description                 |
     | -------------- | --------------------------- |
     | `display_name` | Human-friendly name         |
     | `description`  | Term definition             |
     | `value`        | String value of `extension` |
 
-*   `objects.formats`
+-   `objects.formats`
     | Field          | Description                        |
     | -------------- | ---------------------------------- |
     | `display_name` | Human-friendly name                |
     | `description`  | Term definition                    |
     | `pattern`      | Regular expression defining format |
 
-*   `objects.associated_data`
+-   `objects.associated_data`
     | Field          | Description         |
     | -------------- | ------------------- |
     | `display_name` | Human-friendly name |
     | `description`  | Term definition     |
 
-*   `objects.top_level_files`
+-   `objects.top_level_files`
     | Field          | Description         |
     | -------------- | ------------------- |
     | `display_name` | Human-friendly name |
@@ -555,7 +562,9 @@ of entities, a suffix, an extension, and a data type. Exceptions will be noted b
 `rules.datatypes` contains a series of related rules, grouped by the `datatype` path component.
 All such files take the form:
 
-    [sub-<label>/][ses-<label>/]<datatype>/<entities>_<suffix><extension>
+```plain
+[sub-<label>/][ses-<label>/]<datatype>/<entities>_<suffix><extension>
+```
 
 Rules have the following fields:
 
@@ -725,7 +734,7 @@ rule is applied.
     | `selectors` | List of expressions; any evaluating false indicate rule does not apply                                   |
     | `fields`    | Object with keys that may be found in `objects.metadata`, values either a requirement level or an object |
 
-2.  `rules.tabular_data.*`
+1.  `rules.tabular_data.*`
     | Field                | Description                                                                                                    |
     | -------------------- | -------------------------------------------------------------------------------------------------------------- |
     | `selectors`          | List of expressions; any evaluating false indicate rule does not apply                                         |
@@ -819,20 +828,23 @@ EventsMissing:
 
 ### Ordering rules
 
-*   `rules.entities` - This file contains a list of keys into `objects.entities` and
+-   `rules.entities` - This file contains a list of keys into `objects.entities` and
     simply defines the order in which entities, when present, MUST appear in filenames
-*   `rules.common_principles` - This file contains a list of terms that appear in `objects.common_principles`
+
+-   `rules.common_principles` - This file contains a list of terms that appear in `objects.common_principles`
     that determines the order they appear in the specification
 
 ### One-off rules
 
-*   `rules.modalities` - The keys in this file are the modalities, the values objects with the following field:
+-   `rules.modalities` - The keys in this file are the modalities, the values objects with the following field:
     | Field       | Description                           |
     | ----------- | ------------------------------------- |
     | `datatypes` | List of datatypes mapping to modality |
-*   `rules.dataset_metadata` - These are similar to `rules.sidecars.*`, for JSON files at the root level.
+
+-   `rules.dataset_metadata` - These are similar to `rules.sidecars.*`, for JSON files at the root level.
     This is likely to go away in favor of other approaches.
-*   `rules.errors` - This file describes errors that cannot be expressed in the schema. This provides common
+
+-   `rules.errors` - This file describes errors that cannot be expressed in the schema. This provides common
     codes and language that implementing validators can use to ensure the same problems are reported to
     users in the same way.
 
