@@ -122,7 +122,8 @@
     "wouterpotters": {
         "name": "Wouter Potters",
         "bio": "Technical Physician",
-        "blog": "https://www.wouterpotters.nl"
+        "blog": "https://www.wouterpotters.nl",
+        "orcid": "0000-0003-1249-1196"
     },
     "francopestilli": {
         "name": "Franco Pestilli",
@@ -208,7 +209,8 @@
     "agahkarakuzu": {
         "name": "Agah Karakuzu",
         "email": "agahkarakuzu@gmail.com",
-        "blog": "https://agahkarakuzu.github.io"
+        "blog": "https://agahkarakuzu.github.io",
+        "orcid": "0000-0001-7283-271X"
     },
     "edickie": {
         "name": "Erin W. Dickie",
@@ -365,7 +367,9 @@
         "name": "Aaron Oliver-Taylor"
     },
     "adeen_flinker": {
-        "name": "Adeen Flinker"
+        "name": "Adeen Flinker",
+        "orcid": "0000-0003-1247-1283",
+        "affiliation": "NYU Langone Health"
     },
     "alberto_lazari": {
         "name": "Alberto Lazari"
@@ -380,7 +384,8 @@
         "name": "Alexandre Hutton"
     },
     "alexandru_foias": {
-        "name": "Alexandru Foias"
+        "name": "Alexandru Foias",
+        "orcid": "0000-0001-5160-1402"
     },
     "ali_khan": {
         "name": "Ali Khan"
@@ -407,13 +412,17 @@
         "name": "Ashley G. Gillman"
     },
     "athanasia_monika_mowinckel": {
-        "name": "Athanasia Monika Mowinckel"
+        "name": "Athanasia Monika Mowinckel",
+        "orcid": "0000-0002-5756-0223",
+        "affiliation": "University of Oslo"
     },
     "aysegul_gunduz": {
         "name": "Aysegul Gunduz"
     },
     "azeez_adebimpe": {
-        "name": "Azeez Adebimpe"
+        "name": "Azeez Adebimpe",
+        "orcid": "0000-0001-9049-0135",
+        "affiliation": "University of Pennsylvania"
     },
     "b_nolan_nichols": {
         "name": "B. Nolan Nichols"
@@ -425,7 +434,9 @@
         "name": "Benjamin Dichter"
     },
     "benjamin_gagl": {
-        "name": "Benjamin Gagl"
+        "name": "Benjamin Gagl",
+        "orcid": "0000-0002-2339-6293",
+        "affiliation": "University of Vienna"
     },
     "brett_l_foster": {
         "name": "Brett L. Foster"
@@ -446,7 +457,9 @@
         "name": "Chris Gahnström"
     },
     "chris_rorden": {
-        "name": "Chris Rorden"
+        "name": "Chris Rorden",
+        "orcid": "0000-0002-7554-6142",
+        "affiliation": "University of South Carolina"
     },
     "christian_büchel": {
         "name": "Christian Büchel"
@@ -454,7 +467,8 @@
     "christopher_j_honey": {
         "name": "Christopher J. Honey",
         "affiliation": "Johns Hopkins University, Psychological and Brain Sciences, Baltimore, MD, 21218, United States",
-        "orcid": "0000-0002-0745-5089"
+        "orcid": "0000-0002-0745-5089",
+        "blog": "https://www.honeylab.org"
     },
     "christopher_lee-messer": {
         "name": "Christopher Lee-Messer"
@@ -481,13 +495,16 @@
         "name": "David Thomas"
     },
     "dejan_draschkow": {
-        "name": "Dejan Draschkow"
+        "name": "Dejan Draschkow",
+        "orcid": "0000-0003-1354-4835",
+        "affiliation": "University of Oxford"
     },
     "dmitry_petrov": {
         "name": "Dmitry Petrov"
     },
     "dylan_nielson": {
-        "name": "Dylan Nielson"
+        "name": "Dylan Nielson",
+        "orcid": "0000-0003-4613-6643"
     },
     "elizabeth_bock": {
         "name": "Elizabeth Bock"
@@ -499,13 +516,17 @@
         "name": "Eric Bridgeford"
     },
     "ethan_blackwood": {
-        "name": "Ethan Blackwood"
+        "name": "Ethan Blackwood",
+        "orcid": "0000-0002-3049-0640",
+        "affiliation": "University of Pennsylvania"
     },
     "eugene_p_duff": {
         "name": "Eugene P. Duff"
     },
     "ezequiel_mikulan": {
-        "name": "Ezequiel Mikulan"
+        "name": "Ezequiel Mikulan",
+        "orcid": "0000-0001-7259-6120",
+        "affiliation": "University of Milan"
     },
     "felipe_orihuela-espina": {
         "name": "Felipe Orihuela-Espina"
@@ -514,7 +535,9 @@
         "name": "Fidel Alfaro Almagro"
     },
     "filip_szczepankiewicz": {
-        "name": "Filip Szczepankiewicz"
+        "name": "Filip Szczepankiewicz",
+        "orcid": "0000-0002-5251-587X",
+        "affiliation": "Lund University"
     },
     "filippo_maria_castelli": {
         "name": "Filippo Maria Castelli"
@@ -532,31 +555,41 @@
         "name": "Giulio Castegnaro"
     },
     "giuseppe_gallitto": {
-        "name": "Giuseppe Gallitto"
+        "name": "Giuseppe Gallitto",
+        "orcid": "0000-0001-5185-0206",
+        "affiliation": "Essen University Hospital"
     },
     "graham_searle": {
         "name": "Graham Searle"
     },
     "gunnar_schaefer": {
-        "name": "Gunnar Schaefer"
+        "name": "Gunnar Schaefer",
+        "orcid": "0000-0001-9661-2121"
     },
     "gustav_nilsonne": {
-        "name": "Gustav Nilsonne"
+        "name": "Gustav Nilsonne",
+        "orcid": "0000-0001-5273-0150",
+        "affiliation": "Karolinska Institutet"
     },
     "hamish_innes-brown": {
         "name": "Hamish Innes-Brown"
     },
     "hanzhang_lu": {
-        "name": "Hanzhang Lu"
+        "name": "Hanzhang Lu",
+        "orcid": "0000-0003-3871-1564",
+        "affiliation": "Johns Hopkins Medicine"
     },
     "helena_cockx": {
-        "name": "Helena Cockx"
+        "name": "Helena Cockx",
+        "orcid": "0000-0001-7782-7178"
     },
     "hernando_ombao": {
         "name": "Hernando Ombao"
     },
     "ilkay_isik": {
-        "name": "Ilkay Isik"
+        "name": "Ilkay Isik",
+        "orcid": "0000-0002-1652-9297",
+        "affiliation": "Max Planck Institute for Empirical Aesthetics"
     },
     "ilona_lipp": {
         "name": "Ilona Lipp"
@@ -568,16 +601,19 @@
         "name": "Iris Groen"
     },
     "isla_staden": {
-        "name": "Isla Staden"
+        "name": "Isla Staden",
+        "orcid": "0000-0002-0795-1154"
     },
     "jaap_von_der_aar": {
         "name": "Jaap von der Aar"
     },
     "jakub_kaczmarzyk": {
-        "name": "Jakub Kaczmarzyk"
+        "name": "Jakub Kaczmarzyk",
+        "orcid": "0000-0002-5544-7577"
     },
     "james_gholam": {
-        "name": "James Gholam"
+        "name": "James Gholam",
+        "orcid": "0000-0003-4513-2341"
     },
     "james_kent": {
         "name": "James Kent"
@@ -586,7 +622,9 @@
         "name": "Jan-Mathijs Schoffelen"
     },
     "jean-philippe_lachaux": {
-        "name": "Jean-Philippe Lachaux"
+        "name": "Jean-Philippe Lachaux",
+        "orcid": "0000-0002-9459-0667",
+        "affiliation": "INSERM"
     },
     "jeffrey_g_ojemann": {
         "name": "Jeffrey G. Ojemann"
@@ -598,13 +636,18 @@
         "name": "Jessica A. Turner"
     },
     "john_detre": {
-        "name": "John Detre"
+        "name": "John Detre",
+        "orcid": "0000-0002-8115-6343",
+        "affiliation": "University of Pennsylvania"
     },
     "john_pellman": {
-        "name": "John Pellman"
+        "name": "John Pellman",
+        "orcid": "0000-0001-6810-4461"
     },
     "joke_durnez": {
-        "name": "Joke Durnez"
+        "name": "Joke Durnez",
+        "orcid": "0000-0001-9030-2202",
+        "affiliation": "Stanford University"
     },
     "jonathan_c_lau": {
         "name": "Jonathan C. Lau"
@@ -613,13 +656,16 @@
         "name": "Jonathan Winawer"
     },
     "joost_kuijer": {
-        "name": "Joost Kuijer"
+        "name": "Joost Kuijer",
+        "orcid": "0000-0002-4181-0427"
     },
     "jose_manuel_saborit": {
         "name": "Jose Manuel Saborit"
     },
     "joseph_wexler": {
-        "name": "Joseph Wexler"
+        "name": "Joseph Wexler",
+        "orcid": "0000-0001-9086-8484",
+        "affiliation": "Loyola University Chicago"
     },
     "joseph_woods": {
         "name": "Joseph Woods"
@@ -631,18 +677,22 @@
         "name": "Kai J. Miller"
     },
     "kangjoo_lee": {
-        "name": "Kangjoo Lee"
+        "name": "Kangjoo Lee",
+        "orcid": "0000-0002-7760-8079",
+        "affiliation": "Yale School of Medicine"
     },
     "kevin_larcher": {
         "name": "Kevin Larcher"
     },
     "klara_gregorova": {
-        "name": "Klara Gregorova"
+        "name": "Klara Gregorova",
+        "orcid": "0000-0002-3828-9386"
     },
     "kristofer_bouchard": {
         "name": "Kristofer Bouchard",
         "affiliation": "LBNL, Scientific Data Division",
-        "orcid": "0000-0002-1974-4603"
+        "orcid": "0000-0002-1974-4603",
+        "blog": "https://bouchardlab.lbl.gov"
     },
     "laura_and_john_arnold_foundation": {
         "name": "Laura and John Arnold Foundation"
@@ -653,25 +703,34 @@
         "orcid": "0000-0003-4602-1416"
     },
     "lee_kamentsky": {
-        "name": "Lee Kamentsky"
+        "name": "Lee Kamentsky",
+        "orcid": "0000-0002-8161-3604",
+        "affiliation": "MIT"
     },
     "lennart_walger": {
-        "name": "Lennart Walger"
+        "name": "Lennart Walger",
+        "orcid": "0000-0002-3300-6877"
     },
     "lennart_wittkuhn": {
-        "name": "Lennart Wittkuhn"
+        "name": "Lennart Wittkuhn",
+        "orcid": "0000-0003-2966-6888",
+        "affiliation": "Max Planck Institute for Human Development"
     },
     "liberty_hamilton": {
         "name": "Liberty Hamilton"
     },
     "luca_pollonini": {
-        "name": "Luca Pollonini"
+        "name": "Luca Pollonini",
+        "orcid": "0000-0003-2955-6355",
+        "affiliation": "University of Houston"
     },
     "luis_hernandez-garcia": {
         "name": "Luis Hernandez-Garcia"
     },
     "lyuba_zehl": {
-        "name": "Lyuba Zehl"
+        "name": "Lyuba Zehl",
+        "orcid": "0000-0002-5947-9939",
+        "affiliation": "Forschungszentrum Jülich"
     },
     "manjari_narayan": {
         "name": "Manjari Narayan"
@@ -682,7 +741,9 @@
         "orcid": "0000-0001-6358-4734"
     },
     "markus_morawski": {
-        "name": "Markus Morawski"
+        "name": "Markus Morawski",
+        "orcid": "0000-0002-3817-5186",
+        "affiliation": "Universität Leipzig"
     },
     "martin_craig": {
         "name": "Martin Craig"
@@ -694,7 +755,9 @@
         "name": "Martin Wilson"
     },
     "mathieu_boudreau": {
-        "name": "Mathieu Boudreau"
+        "name": "Mathieu Boudreau",
+        "orcid": "0000-0002-7726-4456",
+        "affiliation": "Polytechnique Montréal"
     },
     "matt_sanderson": {
         "name": "Matt Sanderson"
@@ -727,10 +790,12 @@
         "name": "Michael P. Notter"
     },
     "michael_schirner": {
-        "name": "Michael Schirner"
+        "name": "Michael Schirner",
+        "orcid": "0000-0001-8227-8476"
     },
     "nader_pouratian": {
-        "name": "Nader Pouratian"
+        "name": "Nader Pouratian",
+        "orcid": "0000-0002-0426-3241"
     },
     "natalia_petridou": {
         "name": "Natalia Petridou",
@@ -753,22 +818,29 @@
         "name": "Olivier David"
     },
     "orrin_devinsky": {
-        "name": "Orrin Devinsky"
+        "name": "Orrin Devinsky",
+        "orcid": "0000-0003-0044-4632",
+        "affiliation": "NYU School of Medicine"
     },
     "pamela_lamontagne": {
-        "name": "Pamela LaMontagne"
+        "name": "Pamela LaMontagne",
+        "orcid": "0000-0002-6752-8518"
     },
     "parul_sethi": {
         "name": "Parul Sethi"
     },
     "paule-joanne_toussaint": {
-        "name": "Paule-Joanne Toussaint"
+        "name": "Paule-Joanne Toussaint",
+        "orcid": "0000-0002-7446-150X",
+        "affiliation": "McGill University Faculty of Medicine and Health Sciences"
     },
     "pierre_rioux": {
         "name": "Pierre Rioux"
     },
     "pieter_vandemaele": {
-        "name": "Pieter Vandemaele"
+        "name": "Pieter Vandemaele",
+        "orcid": "0000-0002-4523-2476",
+        "affiliation": "Ghent University Hospital"
     },
     "pradeep_reddy_raamana": {
         "name": "Pradeep Reddy Raamana"
@@ -795,16 +867,21 @@
         "name": "Sara Elgayar"
     },
     "sasha_d_ambrosio": {
-        "name": "Sasha D'Ambrosio"
+        "name": "Sasha D'Ambrosio",
+        "orcid": "0000-0002-6600-6419"
     },
     "sein_jeung": {
-        "name": "Sein Jeung"
+        "name": "Sein Jeung",
+        "orcid": "0000-0002-0247-087X",
+        "affiliation": "Technical University of Berlin"
     },
     "shashank_bansal": {
         "name": "Shashank Bansal"
     },
     "soichi_hayashi": {
-        "name": "Soichi Hayashi"
+        "name": "Soichi Hayashi",
+        "orcid": "0000-0003-3641-3491",
+        "affiliation": "Indiana University"
     },
     "stephan_bickel": {
         "name": "Stephan Bickel"
@@ -816,7 +893,9 @@
         "name": "Sylvain Baillet"
     },
     "sylvain_takerkart": {
-        "name": "Sylvain Takerkart"
+        "name": "Sylvain Takerkart",
+        "orcid": "0000-0001-8410-0962",
+        "affiliation": "CNRS & Aix-Marseille Université"
     },
     "sören_grothkopp": {
         "name": "Sören Grothkopp"
@@ -834,22 +913,29 @@
         "name": "Thomas Kirk"
     },
     "thomas_okell": {
-        "name": "Thomas Okell"
+        "name": "Thomas Okell",
+        "orcid": "0000-0001-8258-0659",
+        "affiliation": "University of Oxford"
     },
     "tom_hampshire": {
         "name": "Tom Hampshire"
     },
     "travis_riddle": {
-        "name": "Travis Riddle"
+        "name": "Travis Riddle",
+        "orcid": "0000-0001-8160-3986",
+        "affiliation": "National Police Foundation"
     },
     "tristan_glatard": {
-        "name": "Tristan Glatard"
+        "name": "Tristan Glatard",
+        "orcid": "0000-0003-2620-5883"
     },
     "ulrike_bingel": {
-        "name": "Ulrike Bingel"
+        "name": "Ulrike Bingel",
+        "orcid": "0000-0002-9528-3204"
     },
     "vanessa_sochat": {
-        "name": "Vanessa Sochat"
+        "name": "Vanessa Sochat",
+        "orcid": "0000-0002-4387-3819"
     },
     "vasudev_raguram": {
         "name": "Vasudev Raguram"
@@ -858,7 +944,9 @@
         "name": "Vince D. Calhoun"
     },
     "vladimir_litvak": {
-        "name": "Vladimir Litvak"
+        "name": "Vladimir Litvak",
+        "orcid": "0000-0001-8535-7452",
+        "affiliation": "UCL Queen Square Institute of Neurology"
     },
     "wietske_van_der_zwaag": {
         "name": "Wietske van der Zwaag"
@@ -876,7 +964,8 @@
         "name": "Xiangrui Li"
     },
     "yoni_ashar": {
-        "name": "Yoni Ashar"
+        "name": "Yoni Ashar",
+        "orcid": "0000-0001-5602-5619"
     },
     "yuan_wang": {
         "name": "Yuan Wang"
@@ -885,11 +974,14 @@
         "name": "Zachary Michael"
     },
     "étienne_bergeron": {
-        "name": "Étienne Bergeron"
+        "name": "Étienne Bergeron",
+        "orcid": "0000-0002-8329-7852",
+        "affiliation": "Collège Sainte-Anne de Lachine"
     },
     "AkiNikolaidis": {
         "name": "Aki Nikolaidis",
-        "blog": "https://github.com/AkiNikolaidis"
+        "blog": "https://github.com/AkiNikolaidis",
+        "orcid": "0000-0001-8960-1934"
     },
     "adelavega": {
         "name": "Alejandro de la Vega",
@@ -916,7 +1008,8 @@
     },
     "bthirion": {
         "name": "Bertrand Thirion",
-        "blog": "https://github.com/bthirion"
+        "blog": "https://github.com/bthirion",
+        "orcid": "0000-0001-5018-7895"
     },
     "voytek": {
         "name": "Bradley Voytek",
@@ -957,7 +1050,9 @@
     },
     "dbkeator": {
         "name": "David Keator",
-        "blog": "https://github.com/dbkeator"
+        "blog": "https://github.com/dbkeator",
+        "orcid": "0000-0001-5281-5576",
+        "affiliation": "Change Your Brain, Change Your Life Foundation"
     },
     "dkp": {
         "name": "Dianne Patterson",
@@ -968,7 +1063,9 @@
     },
     "DorienHuijser": {
         "name": "Dorien Huijser",
-        "blog": "https://github.com/DorienHuijser"
+        "blog": "https://github.com/DorienHuijser",
+        "orcid": "0000-0003-3282-8083",
+        "affiliation": "Utrecht University"
     },
     "GaelVaroquaux": {
         "name": "Gaël Varoquaux",
@@ -986,7 +1083,9 @@
     },
     "gkiar": {
         "name": "Gregory Kiar",
-        "blog": "https://github.com/gkiar"
+        "blog": "https://github.com/gkiar",
+        "orcid": "0000-0001-8915-496X",
+        "affiliation": "Child Mind Institute"
     },
     "htwangtw": {
         "name": "Hao Ting Wang",
@@ -994,7 +1093,9 @@
     },
     "HenkMutsaerts": {
         "name": "Henk Mutsaerts",
-        "blog": "https://github.com/HenkMutsaerts"
+        "blog": "https://github.com/HenkMutsaerts",
+        "orcid": "0000-0003-0894-0307",
+        "affiliation": "Vrije Universiteit Amsterdam"
     },
     "jan-petr": {
         "name": "Jan Petr",
@@ -1021,7 +1122,9 @@
     },
     "katjaq": {
         "name": "Katja Heuer",
-        "blog": "https://github.com/katjaq"
+        "blog": "https://github.com/katjaq",
+        "orcid": "0000-0002-7237-0196",
+        "affiliation": "Institut Pasteur"
     },
     "marcocastellaro": {
         "name": "Marco Castellaro",
@@ -1096,7 +1199,8 @@
     },
     "tyarkoni": {
         "name": "Tal Yarkoni",
-        "blog": "https://github.com/tyarkoni"
+        "blog": "https://github.com/tyarkoni",
+        "orcid": "0000-0002-6558-5113"
     },
     "tiborauer": {
         "name": "Tibor Auer",
