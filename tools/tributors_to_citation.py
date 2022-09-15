@@ -5,19 +5,14 @@ import ruamel.yaml
 
 from rich import print
 
+from utils import load_citation, root_dir
+
 from pathlib import Path
 
 yaml = ruamel.yaml.YAML()
 
-root_dir = Path(__file__).parent.parent
-
-citation_file = root_dir.joinpath("CITATION.cff")
-tributors_file = root_dir.joinpath(".tributors")
-
-
-def load_citation(citation_file):
-    with open(citation_file, "r", encoding="utf8") as input_file:
-        return yaml.load(input_file)
+citation_file = root_dir().joinpath("CITATION.cff")
+tributors_file = root_dir().joinpath(".tributors")
 
 
 def main():
@@ -28,8 +23,6 @@ def main():
     author_list = []
 
     for count, tributor in enumerate(tributors, start=1):
-
-        print(count)
 
         this_tributor = tributors[tributor]
 
@@ -56,7 +49,8 @@ def main():
         if "email" in this_tributor:
             new_contrib["email"] = this_tributor["email"]
 
-        print(new_contrib)
+        # print(count)
+        # print(new_contrib)
 
         author_list.append(new_contrib)
 

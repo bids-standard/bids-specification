@@ -6,16 +6,7 @@ import pandas as pd
 import requests
 from rich import print
 
-
-def load_tributors(tributors_file):
-    with open(tributors_file, "r", encoding="utf8") as tributors_file:
-        return json.load(tributors_file)
-
-
-def load_from_allcontrib(allcontrib_file):
-    with open(allcontrib_file, "r", encoding="utf8") as input_file:
-        return json.load(input_file)
-
+from utils import load_tributors, load_from_allcontrib, root_dir
 
 def rename_columns(df):
     df.rename(
@@ -93,46 +84,45 @@ def get_gh_avatar(gh_username, auth_username, auth_token):
 def main():
 
     root_dir = Path(__file__).parent.joinpath("..").resolve()
-    print(root_dir)
 
-    tributors_file = root_dir.joinpath(".tributors")
-    allcontrib_file = root_dir.joinpath(".all-contributorsrc")
+    tributors_file = root_dir().joinpath(".tributors")
+    allcontrib_file = root_dir().joinpath(".all-contributorsrc")
 
-tsv = pd.read_csv("contributors.tsv", sep="\t", encoding="utf8")
-tsv = rename_columns(tsv)
-# print(tsv.head())
+    tsv = pd.read_csv("contributors.tsv", sep="\t", encoding="utf8")
+    tsv = rename_columns(tsv)
+    # print(tsv.head())
 
-tributors = load_tributors(tributors_file)
-tributors_keys = list(tributors.keys())
-tributors_names = [tributors[x]["name"] for x in tributors]
-# print(tributors_keys)
-# print(tributors_names)
+    tributors = load_tributors(tributors_file)
+    tributors_keys = list(tributors.keys())
+    tributors_names = [tributors[x]["name"] for x in tributors]
+    # print(tributors_keys)
+    # print(tributors_names)
 
-allcontrib = load_from_allcontrib(allcontrib_file)
-allcontrib_names = [x["name"] for x in allcontrib["contributors"]]
-# print(allcontrib["contributors"])
-# print(allcontrib_names)
+    allcontrib = load_from_allcontrib(allcontrib_file)
+    allcontrib_names = [x["name"] for x in allcontrib["contributors"]]
+    # print(allcontrib["contributors"])
+    # print(allcontrib_names)
 
-print("\n[red]NOT IN .tributors FILE[/red]")
-in_tributors = tsv.name.isin(tributors_names).to_list()
-# print(in_tributors)
-for i, value in enumerate(in_tributors):
-    if not value:
-        print(tsv.name[i])
-print("\n")
+    print("\n[red]NOT IN .tributors FILE[/red]")
+    in_tributors = tsv.name.isin(tributors_names).to_list()
+    # print(in_tributors)
+    for i, value in enumerate(in_tributors):
+        if not value:
+            print(tsv.name[i])
+    print("\n")
 
-for name in tsv.name:
+    for name in tsv.name:
 
-    if name in tributors_names:
+        if name in tributors_names:
 
-        this_contributor = return_this_contributor(tsv, name)
+            this_contributor = return_this_contributor(tsv, name)
 
-        index_tributor = tributors_names.index(name)
-        key_tributor = tributors_keys[index_tributor]
+            index_tributor = tributors_names.index(name)
+            key_tributor = tributors_keys[index_tributor]
 
-        index_allcontrib = allcontrib_names.index(name)
+            index_allcontrib = allcontrib_names.index(name)
 
-        assert allcontrib["contributors"][index_allcontrib]["name"] == name
+            assert allcontrib["contributors"][index_allcontrib]["name"] == name
             assert tributors[key_tributor]["name"] == name
 
             if this_contributor["website"] is not None:
@@ -159,16 +149,16 @@ for name in tsv.name:
                 tributors[key_tributor]["blog"] = this_contributor["website"]
 
             if (
-            this_contributor["add_email"] is True
-            and this_contributor["email"] is not None
-        ):
-            tributors[key_tributor]["email"] = this_contributor["email"]
+                this_contributor["add_email"] is True
+                and this_contributor["email"] is not None
+            ):
+                tributors[key_tributor]["email"] = this_contributor["email"]
 
-        if this_contributor["affiliation"] is not None:
-            tributors[key_tributor]["affiliation"] = this_contributor["affiliation"]
+            if this_contributor["affiliation"] is not None:
+                tributors[key_tributor]["affiliation"] = this_contributor["affiliation"]
 
-        if this_contributor["orcid"] is not None:
-            tributors[key_tributor]["orcid"] = this_contributor["orcid"].replace(
+            if this_contributor["orcid"] is not None:
+                tributors[key_tributor]["orcid"] = this_contributor["orcid"].replace(
                     "https://orcid.org/", ""
                 )
 
@@ -185,8 +175,8 @@ for name in tsv.name:
 
     assert len(allcontrib["contributors"]) == len(tributors)
 
-with open(allcontrib_file, "w", encoding="utf8") as output_file:
-    json.dump(allcontrib, output_file, indent=4, ensure_ascii=False)
+    with open(allcontrib_file, "w", encoding="utf8") as output_file:
+        json.dump(allcontrib, output_file, indent=4, ensure_ascii=False)
 
     with open(tributors_file, "w", encoding="utf8") as output_file:
         json.dump(tributors, output_file, indent=4, ensure_ascii=False)
