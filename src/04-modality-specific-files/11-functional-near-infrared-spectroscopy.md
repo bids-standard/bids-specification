@@ -58,33 +58,35 @@ the `*_nirs.json` file.
 Additionally, in certain situations, reserved keywords MUST be used,
 When a custom made cap is used, the reserved keyword `custom` MUST be used in the
 `CapManufacturer` field.
-Simillarly, when a custom cap is used or custom modifications are made to a cap,
+Similarly, when a custom cap is used or custom modifications are made to a cap,
 then the reserved keyword `custom` MUST be used for the `CapManufacturersModelName` field.
 If no cap is used the reserved keyword `none` MUST be used in the `CapManufacturer`
 and `CapManufacturersModelName` field.
+The use of 'NIRSPlacementScheme' is RECOMMENDED, certainly when no cap or a costomized cap is used,
+and describes the positioning of the optodes.
 To clarify the usage and interaction of these fields, the following examples are provided:
 
 -   If a commercial cap such as EasyCap actiCAP 64 Ch Standard-2 was used:
     ```JSON
     "CapManufacturer": "EasyCap",
     "CapManufacturersModelName": "actiCAP 64 Ch Standard-2",
-    "NIRSPlacementScheme": "n/a"
+    "NIRSPlacementScheme": "10-20"
     ```
 
--   If an EasyCap was used but with custom positions,
-    as may be done by cutting custom holes in the cap,
-    was used:
+-   If an Artinis Medical Systems cap with custom positions,
+as may be done by cutting custom holes in the cap,
+was used:
     ```JSON
-    "CapManufacturer": "EasyCap",
-    "CapManufacturersModelName": "custom",
-    "NIRSPlacementScheme": "n/a"
+    "CapManufacturer": "Artinis Medical Systems",
+    "CapManufacturersModelName": "headcap with print, size L, it was modified by adding holes for the optodes according to the NIRSPlacementScheme and optode_layout.pdf",
+    "NIRSPlacementScheme": "see optode_layout.pdf: 2 groups over the left and right dlPFC, 2 groups over the left and right PPC, 1 group over the left M1 and PMC"
     ```
 
 -   If a completely custom cap was knitted:
     ```JSON
     "CapManufacturer": "custom",
-    "CapManufacturersModelName": "custom",
-    "NIRSPlacementScheme": "n/a"
+    "CapManufacturersModelName": "custom knitted cap with holes for optodes according to the NIRSPlacementScheme and optode_knitted_layout.jpg",
+    "NIRSPlacementScheme": "see optode_knitted_layout.jpg: 2 groups over the left and right dlPFC, 2 groups over the left and right PPC."
     ```
 
 -   If no cap was used and optodes were taped to the scalp
