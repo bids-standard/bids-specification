@@ -77,8 +77,22 @@ def return_this_contributor(tsv, name):
     }
 
 
+def get_gh_avatar(gh_username, auth_username, auth_token):
+
+    avatar_url = None
+
+    if gh_username is not None:
+        url = f"https://api.github.com/users/{gh_username}"
+        response = requests.get(url, auth=(auth_username, auth_token))
+        if response.status_code == 200:
+            avatar_url = response.json()["avatar_url"]
+
+    return avatar_url
+
+
 def main():
-    root_dir = Path(__file__).parent.joinpath('..').resolve()
+
+    root_dir = Path(__file__).parent.joinpath("..").resolve()
     print(root_dir)
 
     tributors_file = root_dir.joinpath(".tributors")
@@ -126,18 +140,17 @@ for name in tsv.name:
                     "profile"
                 ] = this_contributor["website"]
 
-            if this_contributor["github_username"] is not None and (
+            if (
                 "avatar_url" not in allcontrib["contributors"][index_allcontrib]
-            or allcontrib["contributors"][index_allcontrib]["avatar_url"] is None
-        ):
-            response = requests.get(
-                f"https://api.github.com/users/{this_contributor['github_username']}",
-                auth=("Remi-Gau", TOKEN),
-            ).json()
-            print(response)
-            allcontrib["contributors"][index_allcontrib]["avatar_url"] = response[
-                "avatar_url"
-                ]
+                or allcontrib["contributors"][index_allcontrib]["avatar_url"] is None
+            ):
+                avatar_url = get_gh_avatar(
+                    this_contributor["github_username"], "Remi-Gau", TOKEN
+                )
+                if avatar_url is not None:
+                    allcontrib["contributors"][index_allcontrib][
+                        "avatar_url"
+                    ] = avatar_url
 
             if this_contributor["github_username"] is not None:
                 allcontrib["contributors"][index_allcontrib][
@@ -156,13 +169,13 @@ for name in tsv.name:
 
         if this_contributor["orcid"] is not None:
             tributors[key_tributor]["orcid"] = this_contributor["orcid"].replace(
-                "https://orcid.org/", ""
-            )
+                    "https://orcid.org/", ""
+                )
 
-        print("\n")
-        print(this_contributor)
-        print(tributors[key_tributor])
-        print(allcontrib["contributors"][index_allcontrib])
+            print(f"\n[cyan]{name.upper()}[/cyan]")
+            print(this_contributor)
+            print(tributors[key_tributor])
+            print(allcontrib["contributors"][index_allcontrib])
 
 print(set(tributors_names) - set(allcontrib_names))
 

@@ -15,13 +15,21 @@ export PRINT_HELP_PYSCRIPT
 ################################################################################
 #   General
 
-.PHONY: help
+.PHONY: help tools/contributors.tsv
 
 help: ## Show what this Makefile can do
 	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
-validate_cff: CITATION.cff
+validate_citation_cff: CITATION.cff
 	cffconvert --validate
 
-update_contrib_readme:
-	npx all-contributors generate
+update_citation_cff:
+	python tools/tributors_to_citation.py 
+
+update_all_contrib_readme:
+	yarn all-contributors generate
+
+tools/contributors.tsv:
+	rm -f tools/contributors.tsv
+	curl -L "https://docs.google.com/spreadsheets/d/1pYMQvyL_nY2yt2biPFuBjcUeOExq1WXuK67V5sKjseo/export?format=tsv" -o tools/contributors.tsv
+	
