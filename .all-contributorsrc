@@ -2555,20 +2555,14 @@
         },
         {
             "login": "wouterpotters",
-            "name": "Wouter Potters",
+            "name": "Wouter V. Potters",
             "contributions": [
-                "code"
+                "code",
+                "doc"
             ],
             "profile": "https://www.wouterpotters.nl",
             "avatar_url": [
                 "https://avatars.githubusercontent.com/u/981436?v=4"
-            ]
-        },
-        {
-            "name": "Wouter V. Potters",
-            "login": "wouter_v_potters",
-            "contributions": [
-                "doc"
             ]
         },
         {
