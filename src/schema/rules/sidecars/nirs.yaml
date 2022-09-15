@@ -118,7 +118,7 @@ NirsRequired:
       description_addendum: |
         If there is no official model number then a description may be provided (for example, `Headband with print
         (S-M)`). If a cap from a manufacturer was modified, then the field MUST be set to `custom`. If no cap
-        was used, then the `CapManufacturer` field MUST be `none` and this field MUST be `n/a`.")
+        was used, then the `CapManufacturer` field MUST be `none` and this field MUST be `none`.")
     SamplingFrequency__nirs:
       level: required
       description_addendum: |
