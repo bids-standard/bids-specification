@@ -50,9 +50,6 @@ authors:
   orcid: https://orcid.org/0000-0003-3321-7583
   affiliation: Google LLC
   email: krzysztof.gorgolewski@gmail.com
-- given-names: BIDS
-  family-names: Maintenance User
-  website: https://bids.neuroimaging.io/
 - given-names: Franklin
   family-names: W. Feingold
   website: https://github.com/franklin-feingold
@@ -94,8 +91,12 @@ authors:
   family-names: Smith
   website: http://www.mrtrix.org
   email: robert.smith@florey.edu.au
-- given-names: eort
+- given-names: Eduard
+  family-names: Ort
   website: https://github.com/eort
+  orcid: https://orcid.org/0000-0001-5546-3561
+  affiliation: Heinrich-Heine-University, Department of Experimental Psychology, Dusseldorf,
+    40224, Germany
 - given-names: Thomas
   family-names: E. Nichols
   website: http://nisox.org
@@ -123,6 +124,7 @@ authors:
 - given-names: Wouter
   family-names: Potters
   website: https://www.wouterpotters.nl
+  orcid: https://orcid.org/0000-0003-1249-1196
 - given-names: Franco
   family-names: Pestilli
   website: https://liberalarts.utexas.edu/psychology/faculty/fp4834
@@ -185,6 +187,7 @@ authors:
 - given-names: Agah
   family-names: Karakuzu
   website: https://agahkarakuzu.github.io
+  orcid: https://orcid.org/0000-0001-7283-271X
   email: agahkarakuzu@gmail.com
 - given-names: Erin
   family-names: W. Dickie
@@ -304,32 +307,19 @@ authors:
   family-names: Oliver-Taylor
 - given-names: Adeen
   family-names: Flinker
-- given-names: Aki
-  family-names: Nikolaidis
+  orcid: https://orcid.org/0000-0003-1247-1283
+  affiliation: NYU Langone Health
 - given-names: Alberto
   family-names: Lazari
-- given-names: Alejandro
-  family-names: de la Vega
 - given-names: Alexander
   family-names: Jones
 - given-names: Alexander
-  family-names: L. Cohen
-  website: https://bchcohenlab.com
-  orcid: https://orcid.org/0000-0001-6557-5866
-  affiliation: Boston Children's Hospital, Department of Neurology, Boston, MA, 02115,
-    USA
-- given-names: Alexander
   family-names: von Lautz
-- given-names: Alexandre
-  family-names: Gramfort
-  website: http://alexandre.gramfort.net
-  orcid: https://orcid.org/0000-0001-9791-4404
-  affiliation: Inria, Université Paris-Saclay
-  email: alexandre.gramfort@inria.fr
 - given-names: Alexandre
   family-names: Hutton
 - given-names: Alexandru
   family-names: Foias
+  orcid: https://orcid.org/0000-0001-5160-1402
 - given-names: Ali
   family-names: Khan
 - given-names: Ana
@@ -344,19 +334,18 @@ authors:
   family-names: Jahn
 - given-names: Arjen
   family-names: Stolk
-- given-names: Arnaud
-  family-names: Delorme
-  website: https://www.arnauddelorme.com
-  orcid: https://orcid.org/0000-0002-0799-3557
-  affiliation: UCSD, INC, San Diego, CA, 92093, USA
 - given-names: Ashley
   family-names: G. Gillman
 - given-names: Athanasia
   family-names: Monika Mowinckel
+  orcid: https://orcid.org/0000-0002-5756-0223
+  affiliation: University of Oslo
 - given-names: Aysegul
   family-names: Gunduz
 - given-names: Azeez
   family-names: Adebimpe
+  orcid: https://orcid.org/0000-0001-9049-0135
+  affiliation: University of Pennsylvania
 - given-names: B.
   family-names: Nolan Nichols
 - given-names: Balint
@@ -365,25 +354,14 @@ authors:
   family-names: Dichter
 - given-names: Benjamin
   family-names: Gagl
-- given-names: Bertrand
-  family-names: Thirion
-- given-names: Bradley
-  family-names: Voytek
-  website: https://www.voyteklab.com/
-  orcid: https://orcid.org/0000-0003-1640-2525
-  affiliation: UC San Diego, Cognitive Science and Data Science, La Jolla, CA, 92093,
-    USA
+  orcid: https://orcid.org/0000-0002-2339-6293
+  affiliation: University of Vienna
 - given-names: Brett
   family-names: L. Foster
 - given-names: Brian
   family-names: A. Wandell
 - given-names: Brian
   family-names: N. Lundstrom
-- given-names: Camille
-  family-names: Maumet
-  website: https://camillemaumet.com/
-  orcid: https://orcid.org/0000-0002-6290-553X
-  affiliation: Inria, Univ Rennes, CNRS, Inserm, Rennes, 35042, France
 - given-names: Chloé
   family-names: Pasturel
 - given-names: Chris
@@ -392,15 +370,13 @@ authors:
   family-names: Gahnström
 - given-names: Chris
   family-names: Rorden
+  orcid: https://orcid.org/0000-0002-7554-6142
+  affiliation: University of South Carolina
 - given-names: Christian
   family-names: Büchel
-- given-names: Christophe
-  family-names: Phillips
-  website: https://www.uliege.be/cms/c_9054334/en/directory/?uid=U016440
-  orcid: https://orcid.org/0000-0002-4990-425X
-  affiliation: University of Liège, GIGA CRC in vivo imaging, Liège, 4000, Belgium
 - given-names: Christopher
   family-names: J. Honey
+  website: https://www.honeylab.org
   orcid: https://orcid.org/0000-0002-0745-5089
   affiliation: Johns Hopkins University, Psychological and Brain Sciences, Baltimore,
     MD, 21218, United States
@@ -408,6 +384,416 @@ authors:
   family-names: Lee-Messer
 - given-names: Clara
   family-names: Moreau
+- given-names: Dan
+  family-names: Lurie
+- given-names: Daniel
+  family-names: A. Handwerker
+- given-names: David
+  family-names: Alsop
+- given-names: David
+  family-names: Boas
+- given-names: David
+  family-names: McAlpine
+- given-names: David
+  family-names: Thomas
+- given-names: Dejan
+  family-names: Draschkow
+  orcid: https://orcid.org/0000-0003-1354-4835
+  affiliation: University of Oxford
+- given-names: Dmitry
+  family-names: Petrov
+- given-names: Dylan
+  family-names: Nielson
+  orcid: https://orcid.org/0000-0003-4613-6643
+- given-names: Elizabeth
+  family-names: Bock
+- given-names: Eric
+  family-names: Achten
+- given-names: Eric
+  family-names: Bridgeford
+- given-names: Ethan
+  family-names: Blackwood
+  orcid: https://orcid.org/0000-0002-3049-0640
+  affiliation: University of Pennsylvania
+- given-names: Eugene
+  family-names: P. Duff
+- given-names: Ezequiel
+  family-names: Mikulan
+  orcid: https://orcid.org/0000-0001-7259-6120
+  affiliation: University of Milan
+- given-names: Felipe
+  family-names: Orihuela-Espina
+- given-names: Fidel
+  family-names: Alfaro Almagro
+- given-names: Filip
+  family-names: Szczepankiewicz
+  orcid: https://orcid.org/0000-0002-5251-587X
+  affiliation: Lund University
+- given-names: Filippo
+  family-names: Maria Castelli
+- given-names: François
+  family-names: Tadel
+- given-names: Gang
+  family-names: Chen
+- given-names: Gio
+  family-names: Piantoni
+- given-names: Giulio
+  family-names: Castegnaro
+- given-names: Giuseppe
+  family-names: Gallitto
+  orcid: https://orcid.org/0000-0001-5185-0206
+  affiliation: Essen University Hospital
+- given-names: Graham
+  family-names: Searle
+- given-names: Gunnar
+  family-names: Schaefer
+  orcid: https://orcid.org/0000-0001-9661-2121
+- given-names: Gustav
+  family-names: Nilsonne
+  orcid: https://orcid.org/0000-0001-5273-0150
+  affiliation: Karolinska Institutet
+- given-names: Hamish
+  family-names: Innes-Brown
+- given-names: Hanzhang
+  family-names: Lu
+  orcid: https://orcid.org/0000-0003-3871-1564
+  affiliation: Johns Hopkins Medicine
+- given-names: Helena
+  family-names: Cockx
+  orcid: https://orcid.org/0000-0001-7782-7178
+- given-names: Hernando
+  family-names: Ombao
+- given-names: Ilkay
+  family-names: Isik
+  orcid: https://orcid.org/0000-0002-1652-9297
+  affiliation: Max Planck Institute for Empirical Aesthetics
+- given-names: Ilona
+  family-names: Lipp
+- given-names: International
+  family-names: Neuroinformatics Coordinating Facility
+- given-names: Iris
+  family-names: Groen
+- given-names: Isla
+  family-names: Staden
+  orcid: https://orcid.org/0000-0002-0795-1154
+- given-names: Jaap
+  family-names: von der Aar
+- given-names: Jakub
+  family-names: Kaczmarzyk
+  orcid: https://orcid.org/0000-0002-5544-7577
+- given-names: James
+  family-names: Gholam
+  orcid: https://orcid.org/0000-0003-4513-2341
+- given-names: James
+  family-names: Kent
+- given-names: Jan-Mathijs
+  family-names: Schoffelen
+- given-names: Jean-Philippe
+  family-names: Lachaux
+  orcid: https://orcid.org/0000-0002-9459-0667
+  affiliation: INSERM
+- given-names: Jeffrey
+  family-names: G. Ojemann
+- given-names: Jeremy
+  family-names: Moreau
+- given-names: Jessica
+  family-names: A. Turner
+- given-names: John
+  family-names: Detre
+  orcid: https://orcid.org/0000-0002-8115-6343
+  affiliation: University of Pennsylvania
+- given-names: John
+  family-names: Pellman
+  orcid: https://orcid.org/0000-0001-6810-4461
+- given-names: Joke
+  family-names: Durnez
+  orcid: https://orcid.org/0000-0001-9030-2202
+  affiliation: Stanford University
+- given-names: Jonathan
+  family-names: C. Lau
+- given-names: Jonathan
+  family-names: Winawer
+- given-names: Joost
+  family-names: Kuijer
+  orcid: https://orcid.org/0000-0002-4181-0427
+- given-names: Jose
+  family-names: Manuel Saborit
+- given-names: Joseph
+  family-names: Wexler
+  orcid: https://orcid.org/0000-0001-9086-8484
+  affiliation: Loyola University Chicago
+- given-names: Joseph
+  family-names: Woods
+- given-names: Julien
+  family-names: Cohen-Adad
+- given-names: Kai
+  family-names: J. Miller
+- given-names: Kangjoo
+  family-names: Lee
+  orcid: https://orcid.org/0000-0002-7760-8079
+  affiliation: Yale School of Medicine
+- given-names: Kevin
+  family-names: Larcher
+- given-names: Klara
+  family-names: Gregorova
+  orcid: https://orcid.org/0000-0002-3828-9386
+- given-names: Kristofer
+  family-names: Bouchard
+  website: https://bouchardlab.lbl.gov
+  orcid: https://orcid.org/0000-0002-1974-4603
+  affiliation: LBNL, Scientific Data Division
+- given-names: Laura
+  family-names: and John Arnold Foundation
+- given-names: Leandro
+  family-names: Beltrachini
+  orcid: https://orcid.org/0000-0003-4602-1416
+  affiliation: Cardiff University, Cardiff University Brain Research Imaging Centre
+    (CUBRIC), UK
+- given-names: Lee
+  family-names: Kamentsky
+  orcid: https://orcid.org/0000-0002-8161-3604
+  affiliation: MIT
+- given-names: Lennart
+  family-names: Walger
+  orcid: https://orcid.org/0000-0002-3300-6877
+- given-names: Lennart
+  family-names: Wittkuhn
+  orcid: https://orcid.org/0000-0003-2966-6888
+  affiliation: Max Planck Institute for Human Development
+- given-names: Liberty
+  family-names: Hamilton
+- given-names: Luca
+  family-names: Pollonini
+  orcid: https://orcid.org/0000-0003-2955-6355
+  affiliation: University of Houston
+- given-names: Luis
+  family-names: Hernandez-Garcia
+- given-names: Lyuba
+  family-names: Zehl
+  orcid: https://orcid.org/0000-0002-5947-9939
+  affiliation: Forschungszentrum Jülich
+- given-names: Manjari
+  family-names: Narayan
+- given-names: Manuel
+  family-names: Mercier
+  orcid: https://orcid.org/0000-0001-6358-4734
+  affiliation: Dynamics of Cognitive Processes Group Institut de Neurosciences des
+    Systèmes, INS - UMR 1106 Inserm Aix-Marseille Université, France
+- given-names: Markus
+  family-names: Morawski
+  orcid: https://orcid.org/0000-0002-3817-5186
+  affiliation: Universität Leipzig
+- given-names: Martin
+  family-names: Craig
+- given-names: Martin
+  family-names: Szinte
+- given-names: Martin
+  family-names: Wilson
+- given-names: Mathieu
+  family-names: Boudreau
+  orcid: https://orcid.org/0000-0002-7726-4456
+  affiliation: Polytechnique Montréal
+- given-names: Matt
+  family-names: Sanderson
+- given-names: Matthias
+  family-names: Günther
+- given-names: Matthias
+  family-names: Van Osch
+- given-names: Maureen
+  family-names: J Shader
+- given-names: Maurice
+  family-names: Pasternak
+- given-names: Max
+  family-names: A. van den Boom
+- given-names: Michael
+  family-names: Chappell
+- given-names: Michael
+  family-names: P. Harms
+- given-names: Michael
+  family-names: P. Milham
+- given-names: Michael
+  family-names: P. Notter
+- given-names: Michael
+  family-names: Schirner
+  orcid: https://orcid.org/0000-0001-8227-8476
+- given-names: Nader
+  family-names: Pouratian
+  orcid: https://orcid.org/0000-0002-0426-3241
+- given-names: Natalia
+  family-names: Petridou
+  orcid: https://orcid.org/0000-0002-0783-0387
+  affiliation: High Field Dpt, Center for Image Sciences, University Medical Center
+    Utrecht, 3584 CX Utrecht, NL
+- given-names: National
+  family-names: Institute of Mental Health
+- given-names: Nicholas
+  family-names: Traut
+- given-names: Nick
+  family-names: F. Ramsey
+- given-names: Nicole
+  family-names: C. Swann
+- given-names: Olivier
+  family-names: David
+- given-names: Orrin
+  family-names: Devinsky
+  orcid: https://orcid.org/0000-0003-0044-4632
+  affiliation: NYU School of Medicine
+- given-names: Pamela
+  family-names: LaMontagne
+  orcid: https://orcid.org/0000-0002-6752-8518
+- given-names: Parul
+  family-names: Sethi
+- given-names: Paule-Joanne
+  family-names: Toussaint
+  orcid: https://orcid.org/0000-0002-7446-150X
+  affiliation: McGill University Faculty of Medicine and Health Sciences
+- given-names: Pierre
+  family-names: Rioux
+- given-names: Pieter
+  family-names: Vandemaele
+  orcid: https://orcid.org/0000-0002-4523-2476
+  affiliation: Ghent University Hospital
+- given-names: Pradeep
+  family-names: Reddy Raamana
+- given-names: Robert
+  family-names: E. Smith
+- given-names: Robert
+  family-names: Knight
+- given-names: Robert
+  family-names: Luke
+- given-names: Rémi
+  family-names: Adon
+- given-names: Samir
+  family-names: Das
+- given-names: Samuel
+  family-names: Garcia
+- given-names: Sara
+  family-names: Elgayar
+- given-names: Sasha
+  family-names: D'Ambrosio
+  orcid: https://orcid.org/0000-0002-6600-6419
+- given-names: Sein
+  family-names: Jeung
+  orcid: https://orcid.org/0000-0002-0247-087X
+  affiliation: Technical University of Berlin
+- given-names: Shashank
+  family-names: Bansal
+- given-names: Soichi
+  family-names: Hayashi
+  orcid: https://orcid.org/0000-0003-3641-3491
+  affiliation: Indiana University
+- given-names: Stephan
+  family-names: Bickel
+- given-names: Suyash
+  family-names: Bhogawar
+- given-names: Sylvain
+  family-names: Baillet
+- given-names: Sylvain
+  family-names: Takerkart
+  orcid: https://orcid.org/0000-0001-8410-0962
+  affiliation: CNRS & Aix-Marseille Université
+- given-names: Sören
+  family-names: Grothkopp
+- given-names: Tal
+  family-names: Pal Attia
+- given-names: Tamas
+  family-names: Spisak
+- given-names: Tamás
+  family-names: Józsa
+- given-names: Thomas
+  family-names: Kirk
+- given-names: Thomas
+  family-names: Okell
+  orcid: https://orcid.org/0000-0001-8258-0659
+  affiliation: University of Oxford
+- given-names: Tom
+  family-names: Hampshire
+- given-names: Travis
+  family-names: Riddle
+  orcid: https://orcid.org/0000-0001-8160-3986
+  affiliation: National Police Foundation
+- given-names: Tristan
+  family-names: Glatard
+  orcid: https://orcid.org/0000-0003-2620-5883
+- given-names: Ulrike
+  family-names: Bingel
+  orcid: https://orcid.org/0000-0002-9528-3204
+- given-names: Vanessa
+  family-names: Sochat
+  orcid: https://orcid.org/0000-0002-4387-3819
+- given-names: Vasudev
+  family-names: Raguram
+- given-names: Vince
+  family-names: D. Calhoun
+- given-names: Vladimir
+  family-names: Litvak
+  orcid: https://orcid.org/0000-0001-8535-7452
+  affiliation: UCL Queen Square Institute of Neurology
+- given-names: Wietske
+  family-names: van der Zwaag
+- given-names: William
+  family-names: Clarke
+- given-names: William
+  family-names: Triplett
+- given-names: Wouter
+  family-names: V. Potters
+- given-names: Xiangrui
+  family-names: Li
+- given-names: Yoni
+  family-names: Ashar
+  orcid: https://orcid.org/0000-0001-5602-5619
+- given-names: Yuan
+  family-names: Wang
+- given-names: Zachary
+  family-names: Michael
+- given-names: Étienne
+  family-names: Bergeron
+  orcid: https://orcid.org/0000-0002-8329-7852
+  affiliation: Collège Sainte-Anne de Lachine
+- given-names: Aki
+  family-names: Nikolaidis
+  website: https://github.com/AkiNikolaidis
+  orcid: https://orcid.org/0000-0001-8960-1934
+- given-names: Alejandro
+  family-names: de la Vega
+  website: https://github.com/adelavega
+- given-names: Alexander
+  family-names: L. Cohen
+  website: https://bchcohenlab.com
+  orcid: https://orcid.org/0000-0001-6557-5866
+  affiliation: Boston Children's Hospital, Department of Neurology, Boston, MA, 02115,
+    USA
+- given-names: Alexandre
+  family-names: Gramfort
+  website: http://alexandre.gramfort.net
+  orcid: https://orcid.org/0000-0001-9791-4404
+  affiliation: Inria, Université Paris-Saclay
+  email: alexandre.gramfort@inria.fr
+- given-names: Arnaud
+  family-names: Delorme
+  website: https://www.arnauddelorme.com
+  orcid: https://orcid.org/0000-0002-0799-3557
+  affiliation: UCSD, INC, San Diego, CA, 92093, USA
+- given-names: Bertrand
+  family-names: Thirion
+  website: https://github.com/bthirion
+  orcid: https://orcid.org/0000-0001-5018-7895
+- given-names: Bradley
+  family-names: Voytek
+  website: https://www.voyteklab.com/
+  orcid: https://orcid.org/0000-0003-1640-2525
+  affiliation: UC San Diego, Cognitive Science and Data Science, La Jolla, CA, 92093,
+    USA
+- given-names: Camille
+  family-names: Maumet
+  website: https://camillemaumet.com/
+  orcid: https://orcid.org/0000-0002-6290-553X
+  affiliation: Inria, Univ Rennes, CNRS, Inserm, Rennes, 35042, France
+- given-names: Christophe
+  family-names: Phillips
+  website: https://www.uliege.be/cms/c_9054334/en/directory/?uid=U016440
+  orcid: https://orcid.org/0000-0002-4990-425X
+  affiliation: University of Liège, GIGA CRC in vivo imaging, Liège, 4000, Belgium
 - given-names: Cyril
   family-names: Pernet
   website: https://cpernet.github.io/
@@ -421,14 +807,6 @@ authors:
   affiliation: Indiana University, Psychological & Brain Sciences, Bloomington, IN,
     47405, USA
   email: dlevitas@iu.edu
-- given-names: Dan
-  family-names: Lurie
-- given-names: Daniel
-  family-names: A. Handwerker
-- given-names: David
-  family-names: Alsop
-- given-names: David
-  family-names: Boas
 - given-names: David
   family-names: Groppe
   website: https://github.com/dmgroppe
@@ -436,56 +814,23 @@ authors:
   affiliation: Persyst Development Corporation, R&D, Toronto, ON M4K 1W8 Canada
 - given-names: David
   family-names: Keator
-- given-names: David
-  family-names: McAlpine
-- given-names: David
-  family-names: Thomas
-- given-names: Dejan
-  family-names: Draschkow
+  website: https://github.com/dbkeator
+  orcid: https://orcid.org/0000-0001-5281-5576
+  affiliation: Change Your Brain, Change Your Life Foundation
 - given-names: Dianne
   family-names: Patterson
   website: https://profiles.arizona.edu/person/dkp
   orcid: https://orcid.org/0000-0001-7518-3110
   affiliation: University of Arizona, RII, Tucson Arizona 85721 USA
   email: dkp@arizona.edu
-- given-names: Dmitry
-  family-names: Petrov
 - given-names: Dorien
   family-names: Huijser
-- given-names: Dylan
-  family-names: Nielson
-- given-names: Eduard
-  family-names: Ort
-  website: https://github.com/eort
-  orcid: https://orcid.org/0000-0001-5546-3561
-  affiliation: Heinrich-Heine-University, Department of Experimental Psychology, Dusseldorf,
-    40224, Germany
-- given-names: Elizabeth
-  family-names: Bock
-- given-names: Eric
-  family-names: Achten
-- given-names: Eric
-  family-names: Bridgeford
-- given-names: Ethan
-  family-names: Blackwood
-- given-names: Eugene
-  family-names: P. Duff
-- given-names: Ezequiel
-  family-names: Mikulan
-- given-names: Felipe
-  family-names: Orihuela-Espina
-- given-names: Fidel
-  family-names: Alfaro Almagro
-- given-names: Filip
-  family-names: Szczepankiewicz
-- given-names: Filippo
-  family-names: Maria Castelli
-- given-names: François
-  family-names: Tadel
-- given-names: Gang
-  family-names: Chen
+  website: https://github.com/DorienHuijser
+  orcid: https://orcid.org/0000-0003-3282-8083
+  affiliation: Utrecht University
 - given-names: Gaël
   family-names: Varoquaux
+  website: https://github.com/GaelVaroquaux
 - given-names: Giacomo
   family-names: Mazzamuto
   website: https://github.com/gmazzamuto
@@ -493,142 +838,44 @@ authors:
   affiliation: National Institute of Optics, National Research Council
 - given-names: Gilles
   family-names: de Hollander
-- given-names: Gio
-  family-names: Piantoni
-- given-names: Giulio
-  family-names: Castegnaro
-- given-names: Giuseppe
-  family-names: Gallitto
-- given-names: Graham
-  family-names: Searle
+  website: https://github.com/Gilles86
 - given-names: Gregory
   family-names: Kiar
-- given-names: Gunnar
-  family-names: Schaefer
-- given-names: Gustav
-  family-names: Nilsonne
-- given-names: Hamish
-  family-names: Innes-Brown
-- given-names: Hanzhang
-  family-names: Lu
+  website: https://github.com/gkiar
+  orcid: https://orcid.org/0000-0001-8915-496X
+  affiliation: Child Mind Institute
 - given-names: Hao
   family-names: Ting Wang
-- given-names: Helena
-  family-names: Cockx
+  website: https://github.com/htwangtw
 - given-names: Henk
   family-names: Mutsaerts
-- given-names: Hernando
-  family-names: Ombao
-- given-names: Ilkay
-  family-names: Isik
-- given-names: Ilona
-  family-names: Lipp
-- given-names: International
-  family-names: Neuroinformatics Coordinating Facility
-- given-names: Iris
-  family-names: Groen
-- given-names: Isla
-  family-names: Staden
-- given-names: Jaap
-  family-names: von der Aar
-- given-names: Jakub
-  family-names: Kaczmarzyk
-- given-names: James
-  family-names: Gholam
-- given-names: James
-  family-names: Kent
+  website: https://github.com/HenkMutsaerts
+  orcid: https://orcid.org/0000-0003-0894-0307
+  affiliation: Vrije Universiteit Amsterdam
 - given-names: Jan
   family-names: Petr
   website: https://www.exploreasl.org
   orcid: https://orcid.org/0000-0002-3201-6002
   affiliation: Helmholtz-Zentrum Dresden-Rossendorf, Dresden, 01309, Germany
-- given-names: Jan-Mathijs
-  family-names: Schoffelen
-- given-names: Jean-Philippe
-  family-names: Lachaux
 - given-names: Jeanette
   family-names: Mumford
-- given-names: Jeffrey
-  family-names: G. Ojemann
-- given-names: Jeremy
-  family-names: Moreau
-- given-names: Jessica
-  family-names: A. Turner
-- given-names: John
-  family-names: Detre
-- given-names: John
-  family-names: Pellman
-- given-names: Joke
-  family-names: Durnez
-- given-names: Jonathan
-  family-names: C. Lau
-- given-names: Jonathan
-  family-names: Winawer
-- given-names: Joost
-  family-names: Kuijer
-- given-names: Jose
-  family-names: Manuel Saborit
-- given-names: Joseph
-  family-names: Wexler
-- given-names: Joseph
-  family-names: Woods
+  website: https://github.com/jmumford
 - given-names: Julia
   family-names: Sprenger
   website: https://github.com/juliasprenger
   orcid: https://orcid.org/0000-0002-9986-7477
   affiliation: Institute de Neuroscience de la Timone, CNRS, Marseille, 13005, France
-- given-names: Julien
-  family-names: Cohen-Adad
 - given-names: Julius
   family-names: Welzel
   website: https://github.com/JuliusWelzel
   orcid: https://orcid.org/0000-0001-8958-0934
   affiliation: Kiel University, Department of Psychology, Kiel, Germany
   email: julius.welzel@gmail.com
-- given-names: Kai
-  family-names: J. Miller
-- given-names: Kangjoo
-  family-names: Lee
 - given-names: Katja
   family-names: Heuer
-- given-names: Kevin
-  family-names: Larcher
-- given-names: Klara
-  family-names: Gregorova
-- given-names: Kristofer
-  family-names: Bouchard
-  orcid: https://orcid.org/0000-0002-1974-4603
-  affiliation: LBNL, Scientific Data Division
-- given-names: Krzysztof
-  family-names: J. Gorgolewski
-- given-names: Laura
-  family-names: and John Arnold Foundation
-- given-names: Leandro
-  family-names: Beltrachini
-  orcid: https://orcid.org/0000-0003-4602-1416
-  affiliation: Cardiff University, Cardiff University Brain Research Imaging Centre
-    (CUBRIC), UK
-- given-names: Lee
-  family-names: Kamentsky
-- given-names: Lennart
-  family-names: Walger
-- given-names: Lennart
-  family-names: Wittkuhn
-- given-names: Liberty
-  family-names: Hamilton
-- given-names: Luca
-  family-names: Pollonini
-- given-names: Luis
-  family-names: Hernandez-Garcia
-- given-names: Lyuba
-  family-names: Zehl
-- given-names: Manjari
-  family-names: Narayan
-- given-names: Manuel
-  family-names: Mercier
-  orcid: https://orcid.org/0000-0001-6358-4734
-  affiliation: Dynamics of Cognitive Processes Group Institut de Neurosciences des
-    Systèmes, INS - UMR 1106 Inserm Aix-Marseille Université, France
+  website: https://github.com/katjaq
+  orcid: https://orcid.org/0000-0002-7237-0196
+  affiliation: Institut Pasteur
 - given-names: Marco
   family-names: Castellaro
   website: https://github.com/marcocastellaro
@@ -647,155 +894,54 @@ authors:
   affiliation: Weill Cornell Medicine, Department of Radiology, New York, NY, 10021,
     USA
   email: mam4041@med.cornell.edu
-- given-names: Markus
-  family-names: Morawski
-- given-names: Martin
-  family-names: Craig
-- given-names: Martin
-  family-names: Szinte
-- given-names: Martin
-  family-names: Wilson
 - given-names: Mathias
   family-names: Goncalves
   website: https://github.com/mgxd
   orcid: https://orcid.org/0000-0002-7252-7771
   affiliation: Psychology Department, Stanford University, Palo Alto, CA, 94305, USA
-- given-names: Mathieu
-  family-names: Boudreau
-- given-names: Matt
-  family-names: Sanderson
-- given-names: Matthias
-  family-names: Günther
-- given-names: Matthias
-  family-names: Van Osch
-- given-names: Maureen
-  family-names: J Shader
-- given-names: Maurice
-  family-names: Pasternak
-- given-names: Max
-  family-names: A. van den Boom
-- given-names: Michael
-  family-names: Chappell
 - given-names: Michael
   family-names: Hanke
-- given-names: Michael
-  family-names: P. Harms
-- given-names: Michael
-  family-names: P. Milham
-- given-names: Michael
-  family-names: P. Notter
-- given-names: Michael
-  family-names: Schirner
+  website: https://github.com/mih
 - given-names: Mikaël
   family-names: Naveau
   website: https://www.cyceron.fr
   orcid: https://orcid.org/0000-0002-4685-0057
   affiliation: UAR3408-US50 CYCERON, Caen, 14000, France
-- given-names: Nader
-  family-names: Pouratian
-- given-names: Natalia
-  family-names: Petridou
-  orcid: https://orcid.org/0000-0002-0783-0387
-  affiliation: High Field Dpt, Center for Image Sciences, University Medical Center
-    Utrecht, 3584 CX Utrecht, NL
-- given-names: National
-  family-names: Institute of Mental Health
-- given-names: Nicholas
-  family-names: Traut
-- given-names: Nick
-  family-names: F. Ramsey
-- given-names: Nicole
-  family-names: C. Swann
-- given-names: Olivier
-  family-names: David
-- given-names: Orrin
-  family-names: Devinsky
-- given-names: Pamela
-  family-names: LaMontagne
-- given-names: Parul
-  family-names: Sethi
-- given-names: Patrick
-  family-names: Park
-- given-names: Paule-Joanne
-  family-names: Toussaint
 - given-names: Peer
   family-names: Herholz
+  website: https://github.com/PeerHerholz
 - given-names: Petra
   family-names: Ritter
   website: https://www.brainsimulation.org
   orcid: https://orcid.org/0000-0002-4643-4782
   affiliation: Charité University Medicine Berlin,  Berlin Institute of Health, Berlin,
     10115, Germany
-- given-names: Pierre
-  family-names: Rioux
-- given-names: Pieter
-  family-names: Vandemaele
-- given-names: Pradeep
-  family-names: Reddy Raamana
 - given-names: R.
   family-names: Cameron Craddock
+  website: https://github.com/ccraddock
 - given-names: Richard
   family-names: N. Henson
   website: http://www.mrc-cbu.cam.ac.uk/people/rik.henson/personal
   orcid: https://orcid.org/0000-0002-0712-2639
   affiliation: MRC CBU, University of Cambridge, UK
-- given-names: Robert
-  family-names: E. Smith
-- given-names: Robert
-  family-names: Knight
-- given-names: Robert
-  family-names: Luke
 - given-names: Roberto
   family-names: Toro
+  website: https://github.com/r03ert0
 - given-names: Russell
   family-names: A. Poldrack
   website: http://www.poldracklab.org
   orcid: https://orcid.org/0000-0001-6755-0259
   affiliation: Stanford University, Stanford, CA 94305 USA
-- given-names: Rémi
-  family-names: Adon
-- given-names: Samir
-  family-names: Das
-- given-names: Samuel
-  family-names: Garcia
-- given-names: Sara
-  family-names: Elgayar
-- given-names: Sasha
-  family-names: D'Ambrosio
-- given-names: Sein
-  family-names: Jeung
-- given-names: Shashank
-  family-names: Bansal
 - given-names: Sjoerd
   family-names: B. Vos
   website: https://research-repository.uwa.edu.au/en/persons/sjoerd-vos
   orcid: https://orcid.org/0000-0002-8502-4487
   affiliation: University of Western Australia;Centre for Microscopy, Characterisation,
     and Analysis;Perth;WA;6009;Australia
-- given-names: Soichi
-  family-names: Hayashi
-- given-names: Stephan
-  family-names: Bickel
-- given-names: Suyash
-  family-names: Bhogawar
-- given-names: Sylvain
-  family-names: Baillet
-- given-names: Sylvain
-  family-names: Takerkart
-- given-names: Sören
-  family-names: Grothkopp
-- given-names: Tal
-  family-names: Pal Attia
 - given-names: Tal
   family-names: Yarkoni
-- given-names: Tamas
-  family-names: Spisak
-- given-names: Tamás
-  family-names: Józsa
-- given-names: Thomas
-  family-names: Kirk
-- given-names: Thomas
-  family-names: Okell
+  website: https://github.com/tyarkoni
+  orcid: https://orcid.org/0000-0002-6558-5113
 - given-names: Tibor
   family-names: Auer
   website: https://tiborauer.github.io
@@ -815,41 +961,6 @@ authors:
   affiliation: Forschungszentrum Jülich, Institute of Neuroscience and Medicine (INM-1),  Jülich,
     52428, Germany
   email: t.dickscheid@fz-juelich.de
-- given-names: Tom
-  family-names: Hampshire
 - given-names: Tor
   family-names: Wager
-- given-names: Travis
-  family-names: Riddle
-- given-names: Tristan
-  family-names: Glatard
-- given-names: Ulrike
-  family-names: Bingel
-- given-names: Vanessa
-  family-names: Sochat
-- given-names: Vasudev
-  family-names: Raguram
-- given-names: Vince
-  family-names: D. Calhoun
-- given-names: Vladimir
-  family-names: Litvak
-- given-names: Wietske
-  family-names: van der Zwaag
-- given-names: William
-  family-names: Clarke
-- given-names: William
-  family-names: Triplett
-- given-names: Wouter
-  family-names: V. Potters
-- given-names: Xiangrui
-  family-names: Li
-- given-names: Yaroslav
-  family-names: O. Halchenko
-- given-names: Yoni
-  family-names: Ashar
-- given-names: Yuan
-  family-names: Wang
-- given-names: Zachary
-  family-names: Michael
-- given-names: Étienne
-  family-names: Bergeron
+  website: https://github.com/torwager
