@@ -183,10 +183,6 @@
         "bio": "Postdoctoral Researcher @ Stanford University, Center for Reproducible Neuroscience; interested in neuroimaging, data sharing, statistics and preprocessing.",
         "blog": "https://profiles.stanford.edu/martin-noergaard"
     },
-    "Park-Patrick": {
-        "name": "Patrick Park",
-        "blog": "https://github.com/Park-Patrick"
-    },
     "alexrockhill": {
         "name": "Alex Rockhill",
         "email": "aprockhill@mailbox.org",
@@ -385,10 +381,6 @@
     "alexandre_hutton": {
         "name": "Alexandre Hutton"
     },
-    "alexandru_foias": {
-        "name": "Alexandru Foias",
-        "orcid": "0000-0001-5160-1402"
-    },
     "ali_khan": {
         "name": "Ali Khan"
     },
@@ -455,11 +447,6 @@
     "chris_gahnström": {
         "name": "Chris Gahnström"
     },
-    "chris_rorden": {
-        "name": "Chris Rorden",
-        "orcid": "0000-0002-7554-6142",
-        "affiliation": "University of South Carolina"
-    },
     "christian_büchel": {
         "name": "Christian Büchel"
     },
@@ -498,15 +485,8 @@
     "dmitry_petrov": {
         "name": "Dmitry Petrov"
     },
-    "dylan_nielson": {
-        "name": "Dylan Nielson",
-        "orcid": "0000-0003-4613-6643"
-    },
     "elizabeth_bock": {
         "name": "Elizabeth Bock"
-    },
-    "eric_achten": {
-        "name": "Eric Achten"
     },
     "eric_bridgeford": {
         "name": "Eric Bridgeford"
@@ -592,16 +572,9 @@
     "jaap_von_der_aar": {
         "name": "Jaap von der Aar"
     },
-    "jakub_kaczmarzyk": {
-        "name": "Jakub Kaczmarzyk",
-        "orcid": "0000-0002-5544-7577"
-    },
     "james_gholam": {
         "name": "James Gholam",
         "orcid": "0000-0003-4513-2341"
-    },
-    "james_kent": {
-        "name": "James Kent"
     },
     "jan-mathijs_schoffelen": {
         "name": "Jan-Mathijs Schoffelen"
@@ -629,16 +602,8 @@
         "name": "John Pellman",
         "orcid": "0000-0001-6810-4461"
     },
-    "joke_durnez": {
-        "name": "Joke Durnez",
-        "orcid": "0000-0001-9030-2202",
-        "affiliation": "Stanford University"
-    },
     "jonathan_c_lau": {
         "name": "Jonathan C. Lau"
-    },
-    "jonathan_winawer": {
-        "name": "Jonathan Winawer"
     },
     "joost_kuijer": {
         "name": "Joost Kuijer",
@@ -730,16 +695,8 @@
     "martin_craig": {
         "name": "Martin Craig"
     },
-    "martin_szinte": {
-        "name": "Martin Szinte"
-    },
     "martin_wilson": {
         "name": "Martin Wilson"
-    },
-    "mathieu_boudreau": {
-        "name": "Mathieu Boudreau",
-        "orcid": "0000-0002-7726-4456",
-        "affiliation": "Polytechnique Montréal"
     },
     "matt_sanderson": {
         "name": "Matt Sanderson"
@@ -803,9 +760,6 @@
     "pamela_lamontagne": {
         "name": "Pamela LaMontagne",
         "orcid": "0000-0002-6752-8518"
-    },
-    "parul_sethi": {
-        "name": "Parul Sethi"
     },
     "paule-joanne_toussaint": {
         "name": "Paule-Joanne Toussaint",
@@ -1234,5 +1188,62 @@
     "vdcalhoun": {
         "name": "Vince D. Calhoun",
         "blog": "https://github.com/vdcalhoun"
+    },
+    "alexfoias": {
+        "name": "Alexandru Foias",
+        "orcid": "0000-0001-5160-1402",
+        "blog": "https://github.com/alexfoias"
+    },
+    "neurolabusc": {
+        "name": "Chris Rorden",
+        "orcid": "0000-0002-7554-6142",
+        "affiliation": "University of South Carolina",
+        "blog": "https://github.com/neurolabusc"
+    },
+    "Shotgunosine": {
+        "name": "Dylan Nielson",
+        "orcid": "0000-0003-4613-6643",
+        "blog": "https://github.com/Shotgunosine"
+    },
+    "rikAchten": {
+        "name": "Eric Achten",
+        "blog": "https://github.com/rikAchten"
+    },
+    "kaczmarj": {
+        "name": "Jakub Kaczmarzyk",
+        "orcid": "0000-0002-5544-7577",
+        "blog": "https://github.com/kaczmarj"
+    },
+    "jdkent": {
+        "name": "James Kent",
+        "blog": "https://github.com/jdkent"
+    },
+    "jokedurnez": {
+        "name": "Joke Durnez",
+        "orcid": "0000-0001-9030-2202",
+        "affiliation": "Stanford University",
+        "blog": "https://github.com/jokedurnez"
+    },
+    "JWinawer": {
+        "name": "Jonathan Winawer",
+        "blog": "https://github.com/JWinawer"
+    },
+    "mszinte": {
+        "name": "Martin Szinte",
+        "blog": "https://github.com/mszinte"
+    },
+    "mathieuboudreau": {
+        "name": "Mathieu Boudreau",
+        "orcid": "0000-0002-7726-4456",
+        "affiliation": "Polytechnique Montréal",
+        "blog": "https://github.com/mathieuboudreau"
+    },
+    "Park-Patrick": {
+        "name": "Patrick Park",
+        "blog": "https://github.com/Park-Patrick"
+    },
+    "parulsethi": {
+        "name": "Parul Sethi",
+        "blog": "https://github.com/parulsethi"
     }
 }

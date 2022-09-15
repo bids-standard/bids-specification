@@ -146,11 +146,13 @@
         },
         {
             "name": "Alexandru Foias",
-            "login": "alexandru_foias",
+            "login": "alexfoias",
             "contributions": [
                 "doc",
                 "data"
-            ]
+            ],
+            "profile": "https://github.com/alexfoias",
+            "avatar_url": "https://avatars.githubusercontent.com/u/12564433?v=4"
         },
         {
             "name": "Ali Khan",
@@ -455,11 +457,13 @@
         },
         {
             "name": "Chris Rorden",
-            "login": "chris_rorden",
+            "login": "neurolabusc",
             "contributions": [
                 "doc",
                 "code"
-            ]
+            ],
+            "profile": "https://github.com/neurolabusc",
+            "avatar_url": "https://avatars.githubusercontent.com/u/8930807?v=4"
         },
         {
             "name": "Christian Büchel",
@@ -667,12 +671,14 @@
         },
         {
             "name": "Dylan Nielson",
-            "login": "dylan_nielson",
+            "login": "Shotgunosine",
             "contributions": [
                 "doc",
                 "code",
                 "tool"
-            ]
+            ],
+            "profile": "https://github.com/Shotgunosine",
+            "avatar_url": "https://avatars.githubusercontent.com/u/5289368?v=4"
         },
         {
             "name": "Eduard Ort",
@@ -719,12 +725,14 @@
         },
         {
             "name": "Eric Achten",
-            "login": "eric_achten",
+            "login": "rikAchten",
             "contributions": [
                 "doc",
                 "data",
                 "userTesting"
-            ]
+            ],
+            "profile": "https://github.com/rikAchten",
+            "avatar_url": "https://avatars.githubusercontent.com/u/22006949?v=4"
         },
         {
             "name": "Eric Bridgeford",
@@ -1123,12 +1131,14 @@
         },
         {
             "name": "Jakub Kaczmarzyk",
-            "login": "jakub_kaczmarzyk",
+            "login": "kaczmarj",
             "contributions": [
                 "doc",
                 "tool",
                 "infra"
-            ]
+            ],
+            "profile": "https://github.com/kaczmarj",
+            "avatar_url": "https://avatars.githubusercontent.com/u/17690870?v=4"
         },
         {
             "name": "James Gholam",
@@ -1139,11 +1149,13 @@
         },
         {
             "name": "James Kent",
-            "login": "james_kent",
+            "login": "jdkent",
             "contributions": [
                 "question",
                 "code"
-            ]
+            ],
+            "profile": "https://github.com/jdkent",
+            "avatar_url": "https://avatars.githubusercontent.com/u/12564882?v=4"
         },
         {
             "name": "Jan Petr",
@@ -1275,12 +1287,14 @@
         },
         {
             "name": "Joke Durnez",
-            "login": "joke_durnez",
+            "login": "jokedurnez",
             "contributions": [
                 "doc",
                 "tool",
                 "code"
-            ]
+            ],
+            "profile": "https://github.com/jokedurnez",
+            "avatar_url": "https://avatars.githubusercontent.com/u/7630327?v=4"
         },
         {
             "login": "jhlegarreta",
@@ -1303,10 +1317,12 @@
         },
         {
             "name": "Jonathan Winawer",
-            "login": "jonathan_winawer",
+            "login": "JWinawer",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://github.com/JWinawer",
+            "avatar_url": "https://avatars.githubusercontent.com/u/2119646?v=4"
         },
         {
             "name": "Joost Kuijer",
@@ -1632,10 +1648,12 @@
         },
         {
             "name": "Martin Szinte",
-            "login": "martin_szinte",
+            "login": "mszinte",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://github.com/mszinte",
+            "avatar_url": "https://avatars.githubusercontent.com/u/22450126?v=4"
         },
         {
             "name": "Martin Wilson",
@@ -1668,12 +1686,14 @@
         },
         {
             "name": "Mathieu Boudreau",
-            "login": "mathieu_boudreau",
+            "login": "mathieuboudreau",
             "contributions": [
                 "question",
                 "ideas",
                 "talk"
-            ]
+            ],
+            "profile": "https://github.com/mathieuboudreau",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1421029?v=4"
         },
         {
             "name": "Matt Sanderson",
@@ -1898,7 +1918,7 @@
             ]
         },
         {
-            "login": "Patrick-Park",
+            "login": "Park-Patrick",
             "name": "Patrick Park",
             "contributions": [
                 "doc",
@@ -1912,13 +1932,15 @@
         },
         {
             "name": "Parul Sethi",
-            "login": "parul_sethi",
+            "login": "parulsethi",
             "contributions": [
                 "doc",
                 "tool",
                 "test",
                 "code"
-            ]
+            ],
+            "profile": "https://github.com/parulsethi",
+            "avatar_url": "https://avatars.githubusercontent.com/u/11822050?v=4"
         },
         {
             "login": "patsycle",
