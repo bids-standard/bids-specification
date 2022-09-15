@@ -307,17 +307,6 @@
             ]
         },
         {
-            "login": "bids-maintenance",
-            "name": "BIDS Maintenance User",
-            "contributions": [
-                "code"
-            ],
-            "profile": "https://bids.neuroimaging.io/",
-            "avatar_url": [
-                "https://avatars.githubusercontent.com/u/61424864?v=4"
-            ]
-        },
-        {
             "name": "Balint Kincses",
             "login": "balint_kincses",
             "contributions": [

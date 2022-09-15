@@ -26,11 +26,6 @@
         "orcid": "0000-0003-3321-7583",
         "affiliation": "Google LLC"
     },
-    "bids-maintenance": {
-        "name": "BIDS Maintenance User",
-        "bio": "Doing work here-and-there for @bids-standard",
-        "blog": "https://bids.neuroimaging.io/"
-    },
     "franklin-feingold": {
         "name": "Franklin W. Feingold",
         "bio": "BIDS: https://github.com/bids-standard/bids-specification\r\n\r\nOpenNeuro: https://github.com/OpenNeuroOrg/openneuro ",
