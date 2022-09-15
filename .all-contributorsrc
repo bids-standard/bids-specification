@@ -1102,11 +1102,14 @@
         },
         {
             "name": "International Neuroinformatics Coordinating Facility",
-            "login": "international_neuroinformatics_coordinating_facility",
+            "login": "INCF",
             "contributions": [
                 "financial",
                 "eventOrganizing"
-            ]
+            ],
+            "profile": "https://github.com/INCF",
+            "avatar_url": "https://avatars.githubusercontent.com/u/758175?v=4"
+            
         },
         {
             "name": "Iris Groen",
