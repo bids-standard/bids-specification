@@ -167,9 +167,6 @@ authors:
   family-names: Norgaard
   website: https://profiles.stanford.edu/martin-noergaard
   email: martin.noergaard@nru.dk
-- given-names: Patrick
-  family-names: Park
-  website: https://github.com/Park-Patrick
 - given-names: Alex
   family-names: Rockhill
   website: https://github.com/alexrockhill
@@ -320,9 +317,6 @@ authors:
   family-names: von Lautz
 - given-names: Alexandre
   family-names: Hutton
-- given-names: Alexandru
-  family-names: Foias
-  orcid: https://orcid.org/0000-0001-5160-1402
 - given-names: Ali
   family-names: Khan
 - given-names: Ana
@@ -369,10 +363,6 @@ authors:
   family-names: Benjamin
 - given-names: Chris
   family-names: Gahnström
-- given-names: Chris
-  family-names: Rorden
-  orcid: https://orcid.org/0000-0002-7554-6142
-  affiliation: University of South Carolina
 - given-names: Christian
   family-names: Büchel
 - given-names: Christopher
@@ -401,13 +391,8 @@ authors:
   affiliation: University of Oxford
 - given-names: Dmitry
   family-names: Petrov
-- given-names: Dylan
-  family-names: Nielson
-  orcid: https://orcid.org/0000-0003-4613-6643
 - given-names: Elizabeth
   family-names: Bock
-- given-names: Eric
-  family-names: Achten
 - given-names: Eric
   family-names: Bridgeford
 - given-names: Ethan
@@ -469,14 +454,9 @@ authors:
   orcid: https://orcid.org/0000-0002-0795-1154
 - given-names: Jaap
   family-names: von der Aar
-- given-names: Jakub
-  family-names: Kaczmarzyk
-  orcid: https://orcid.org/0000-0002-5544-7577
 - given-names: James
   family-names: Gholam
   orcid: https://orcid.org/0000-0003-4513-2341
-- given-names: James
-  family-names: Kent
 - given-names: Jan-Mathijs
   family-names: Schoffelen
 - given-names: Jean-Philippe
@@ -496,14 +476,8 @@ authors:
 - given-names: John
   family-names: Pellman
   orcid: https://orcid.org/0000-0001-6810-4461
-- given-names: Joke
-  family-names: Durnez
-  orcid: https://orcid.org/0000-0001-9030-2202
-  affiliation: Stanford University
 - given-names: Jonathan
   family-names: C. Lau
-- given-names: Jonathan
-  family-names: Winawer
 - given-names: Joost
   family-names: Kuijer
   orcid: https://orcid.org/0000-0002-4181-0427
@@ -575,13 +549,7 @@ authors:
 - given-names: Martin
   family-names: Craig
 - given-names: Martin
-  family-names: Szinte
-- given-names: Martin
   family-names: Wilson
-- given-names: Mathieu
-  family-names: Boudreau
-  orcid: https://orcid.org/0000-0002-7726-4456
-  affiliation: Polytechnique Montréal
 - given-names: Matt
   family-names: Sanderson
 - given-names: Matthias
@@ -627,8 +595,6 @@ authors:
 - given-names: Pamela
   family-names: LaMontagne
   orcid: https://orcid.org/0000-0002-6752-8518
-- given-names: Parul
-  family-names: Sethi
 - given-names: Paule-Joanne
   family-names: Toussaint
   orcid: https://orcid.org/0000-0002-7446-150X
@@ -980,3 +946,48 @@ authors:
 - given-names: Vince
   family-names: D. Calhoun
   website: https://github.com/vdcalhoun
+- given-names: Alexandru
+  family-names: Foias
+  website: https://github.com/alexfoias
+  orcid: https://orcid.org/0000-0001-5160-1402
+- given-names: Chris
+  family-names: Rorden
+  website: https://github.com/neurolabusc
+  orcid: https://orcid.org/0000-0002-7554-6142
+  affiliation: University of South Carolina
+- given-names: Dylan
+  family-names: Nielson
+  website: https://github.com/Shotgunosine
+  orcid: https://orcid.org/0000-0003-4613-6643
+- given-names: Eric
+  family-names: Achten
+  website: https://github.com/rikAchten
+- given-names: Jakub
+  family-names: Kaczmarzyk
+  website: https://github.com/kaczmarj
+  orcid: https://orcid.org/0000-0002-5544-7577
+- given-names: James
+  family-names: Kent
+  website: https://github.com/jdkent
+- given-names: Joke
+  family-names: Durnez
+  website: https://github.com/jokedurnez
+  orcid: https://orcid.org/0000-0001-9030-2202
+  affiliation: Stanford University
+- given-names: Jonathan
+  family-names: Winawer
+  website: https://github.com/JWinawer
+- given-names: Martin
+  family-names: Szinte
+  website: https://github.com/mszinte
+- given-names: Mathieu
+  family-names: Boudreau
+  website: https://github.com/mathieuboudreau
+  orcid: https://orcid.org/0000-0002-7726-4456
+  affiliation: Polytechnique Montréal
+- given-names: Patrick
+  family-names: Park
+  website: https://github.com/Park-Patrick
+- given-names: Parul
+  family-names: Sethi
+  website: https://github.com/parulsethi
