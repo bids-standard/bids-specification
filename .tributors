@@ -138,7 +138,7 @@
         "affiliation": "Inria Saclay - Île-de-France Research Centre"
     },
     "rob-luke": {
-        "name": "Rob Luke",
+        "name": "Robert Luke",
         "blog": "https://github.com/rob-luke"
     },
     "nellh": {
@@ -395,9 +395,6 @@
     "ana_fouto": {
         "name": "Ana Fouto"
     },
-    "anders_eklund": {
-        "name": "Anders Eklund"
-    },
     "andrea_pigorini": {
         "name": "Andrea Pigorini"
     },
@@ -478,9 +475,6 @@
     "clara_moreau": {
         "name": "Clara Moreau"
     },
-    "dan_lurie": {
-        "name": "Dan Lurie"
-    },
     "daniel_a_handwerker": {
         "name": "Daniel A. Handwerker"
     },
@@ -521,9 +515,6 @@
         "name": "Ethan Blackwood",
         "orcid": "0000-0002-3049-0640",
         "affiliation": "University of Pennsylvania"
-    },
-    "eugene_p_duff": {
-        "name": "Eugene P. Duff"
     },
     "ezequiel_mikulan": {
         "name": "Ezequiel Mikulan",
@@ -663,9 +654,6 @@
     },
     "joseph_woods": {
         "name": "Joseph Woods"
-    },
-    "julien_cohen-adad": {
-        "name": "Julien Cohen-Adad"
     },
     "kai_j_miller": {
         "name": "Kai J. Miller"
@@ -827,25 +815,11 @@
     "pierre_rioux": {
         "name": "Pierre Rioux"
     },
-    "pieter_vandemaele": {
-        "name": "Pieter Vandemaele",
-        "orcid": "0000-0002-4523-2476",
-        "affiliation": "Ghent University Hospital"
-    },
-    "pradeep_reddy_raamana": {
-        "name": "Pradeep Reddy Raamana"
-    },
     "robert_e_smith": {
         "name": "Robert E. Smith"
     },
     "robert_knight": {
         "name": "Robert Knight"
-    },
-    "robert_luke": {
-        "name": "Robert Luke"
-    },
-    "rémi_adon": {
-        "name": "Rémi Adon"
     },
     "samir_das": {
         "name": "Samir Das"
@@ -868,24 +842,11 @@
     "shashank_bansal": {
         "name": "Shashank Bansal"
     },
-    "soichi_hayashi": {
-        "name": "Soichi Hayashi",
-        "orcid": "0000-0003-3641-3491",
-        "affiliation": "Indiana University"
-    },
     "stephan_bickel": {
         "name": "Stephan Bickel"
     },
     "suyash_bhogawar": {
         "name": "Suyash Bhogawar"
-    },
-    "sylvain_baillet": {
-        "name": "Sylvain Baillet"
-    },
-    "sylvain_takerkart": {
-        "name": "Sylvain Takerkart",
-        "orcid": "0000-0001-8410-0962",
-        "affiliation": "CNRS & Aix-Marseille Université"
     },
     "sören_grothkopp": {
         "name": "Sören Grothkopp"
@@ -915,23 +876,12 @@
         "orcid": "0000-0001-8160-3986",
         "affiliation": "National Police Foundation"
     },
-    "tristan_glatard": {
-        "name": "Tristan Glatard",
-        "orcid": "0000-0003-2620-5883"
-    },
     "ulrike_bingel": {
         "name": "Ulrike Bingel",
         "orcid": "0000-0002-9528-3204"
     },
-    "vanessa_sochat": {
-        "name": "Vanessa Sochat",
-        "orcid": "0000-0002-4387-3819"
-    },
     "vasudev_raguram": {
         "name": "Vasudev Raguram"
-    },
-    "vince_d_calhoun": {
-        "name": "Vince D. Calhoun"
     },
     "vladimir_litvak": {
         "name": "Vladimir Litvak",
@@ -946,9 +896,6 @@
     },
     "william_triplett": {
         "name": "William Triplett"
-    },
-    "wouter_v_potters": {
-        "name": "Wouter V. Potters"
     },
     "xiangrui_li": {
         "name": "Xiangrui Li"
@@ -1227,5 +1174,65 @@
         "orcid": "0000-0001-8227-8476",
         "blog": "https://www.brainsimulation.org",
         "affiliation": "Charité—Universitätsmedizin Berlin, Department of Neurology, Berlin, 10115, Germany"
+    },
+    "wanderine": {
+        "name": "Anders Eklund",
+        "blog": "https://github.com/wanderine"
+    },
+    "danlurie": {
+        "name": "Dan Lurie",
+        "blog": "https://github.com/danlurie"
+    },
+    "eduff": {
+        "name": "Eugene P. Duff",
+        "blog": "https://github.com/eduff"
+    },
+    "jcohenadad": {
+        "name": "Julien Cohen-Adad",
+        "blog": "https://github.com/jcohenadad"
+    },
+    "pvdemael": {
+        "name": "Pieter Vandemaele",
+        "orcid": "0000-0002-4523-2476",
+        "affiliation": "Ghent University Hospital",
+        "blog": "https://github.com/pvdemael"
+    },
+    "raamana": {
+        "name": "Pradeep Reddy Raamana",
+        "blog": "https://github.com/raamana"
+    },
+    "remiadon": {
+        "name": "Rémi Adon",
+        "blog": "https://github.com/remiadon"
+    },
+    "soichih": {
+        "name": "Soichi Hayashi",
+        "orcid": "0000-0003-3641-3491",
+        "affiliation": "Indiana University",
+        "blog": "https://github.com/soichih"
+    },
+    "sbaillet": {
+        "name": "Sylvain Baillet",
+        "blog": "https://github.com/sbaillet"
+    },
+    "SylvainTakerkart": {
+        "name": "Sylvain Takerkart",
+        "orcid": "0000-0001-8410-0962",
+        "affiliation": "CNRS & Aix-Marseille Université",
+        "blog": "https://github.com/SylvainTakerkart"
+    },
+    "glatard": {
+        "name": "Tristan Glatard",
+        "orcid": "0000-0003-2620-5883",
+        "blog": "https://github.com/glatard"
+    },
+    "vsoch": {
+        "name": "Vanessa Sochat",
+        "orcid": "0000-0002-4387-3819",
+        "blog": "https://github.com/vsoch"
+    },
+    "vdcalhoun": {
+        "name": "Vince D. Calhoun",
+        "blog": "https://github.com/vdcalhoun"
     }
 }

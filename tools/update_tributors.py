@@ -177,6 +177,9 @@ for name in tsv.name:
             print(tributors[key_tributor])
             print(allcontrib["contributors"][index_allcontrib])
 
+    allcontrib_names = [x["name"] for x in allcontrib["contributors"]]
+    tributors_names = [tributors[x]["name"] for x in tributors]
+
     print(set(tributors_names) - set(allcontrib_names))
     print(set(allcontrib_names) - set(tributors_names))
 

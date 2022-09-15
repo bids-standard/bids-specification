@@ -168,12 +168,14 @@
         },
         {
             "name": "Anders Eklund",
-            "login": "anders_eklund",
+            "login": "wanderine",
             "contributions": [
                 "doc",
                 "talk",
                 "code"
-            ]
+            ],
+            "profile": "https://github.com/wanderine",
+            "avatar_url": "https://avatars.githubusercontent.com/u/4303816?v=4"
         },
         {
             "name": "Andrea Pigorini",
@@ -535,7 +537,7 @@
         },
         {
             "name": "Dan Lurie",
-            "login": "dan_lurie",
+            "login": "danlurie",
             "contributions": [
                 "ideas",
                 "doc",
@@ -543,7 +545,9 @@
                 "plugin",
                 "code",
                 "question"
-            ]
+            ],
+            "profile": "https://github.com/danlurie",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1873103?v=4"
         },
         {
             "name": "Daniel A. Handwerker",
@@ -771,10 +775,12 @@
         },
         {
             "name": "Eugene P. Duff",
-            "login": "eugene_p_duff",
+            "login": "eduff",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://github.com/eduff",
+            "avatar_url": "https://avatars.githubusercontent.com/u/902484?v=4"
         },
         {
             "name": "Ezequiel Mikulan",
@@ -1367,12 +1373,14 @@
         },
         {
             "name": "Julien Cohen-Adad",
-            "login": "julien_cohen-adad",
+            "login": "jcohenadad",
             "contributions": [
                 "doc",
                 "data",
                 "ideas"
-            ]
+            ],
+            "profile": "https://github.com/jcohenadad",
+            "avatar_url": "https://avatars.githubusercontent.com/u/2482071?v=4"
         },
         {
             "name": "Julius Welzel",
@@ -1963,19 +1971,23 @@
         },
         {
             "name": "Pieter Vandemaele",
-            "login": "pieter_vandemaele",
+            "login": "pvdemael",
             "contributions": [
                 "doc",
                 "code"
-            ]
+            ],
+            "profile": "https://github.com/pvdemael",
+            "avatar_url": "https://avatars.githubusercontent.com/u/37624277?v=4"
         },
         {
             "name": "Pradeep Reddy Raamana",
-            "login": "pradeep_reddy_raamana",
+            "login": "raamana",
             "contributions": [
                 "code",
                 "tool"
-            ]
+            ],
+            "profile": "https://github.com/raamana",
+            "avatar_url": "https://avatars.githubusercontent.com/u/3196357?v=4"
         },
         {
             "name": "R. Cameron Craddock",
@@ -2029,7 +2041,7 @@
         },
         {
             "login": "rob-luke",
-            "name": "Rob Luke",
+            "name": "Robert Luke",
             "contributions": [
                 "code"
             ],
@@ -2049,13 +2061,6 @@
         {
             "name": "Robert Knight",
             "login": "robert_knight",
-            "contributions": [
-                "doc"
-            ]
-        },
-        {
-            "name": "Robert Luke",
-            "login": "robert_luke",
             "contributions": [
                 "doc"
             ]
@@ -2133,10 +2138,12 @@
         },
         {
             "name": "Rémi Adon",
-            "login": "rémi_adon",
+            "login": "remiadon",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://github.com/remiadon",
+            "avatar_url": "https://avatars.githubusercontent.com/u/2931080?v=4"
         },
         {
             "name": "Samir Das",
@@ -2216,12 +2223,14 @@
         },
         {
             "name": "Soichi Hayashi",
-            "login": "soichi_hayashi",
+            "login": "soichih",
             "contributions": [
                 "doc",
                 "tool",
                 "bug"
-            ]
+            ],
+            "profile": "https://github.com/soichih",
+            "avatar_url": "https://avatars.githubusercontent.com/u/923896?v=4"
         },
         {
             "login": "sappelhoff",
@@ -2268,18 +2277,22 @@
         },
         {
             "name": "Sylvain Baillet",
-            "login": "sylvain_baillet",
+            "login": "sbaillet",
             "contributions": [
                 "doc",
                 "fundingFinding"
-            ]
+            ],
+            "profile": "https://github.com/sbaillet",
+            "avatar_url": "https://avatars.githubusercontent.com/u/18703677?v=4"
         },
         {
             "name": "Sylvain Takerkart",
-            "login": "sylvain_takerkart",
+            "login": "SylvainTakerkart",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://github.com/SylvainTakerkart",
+            "avatar_url": "https://avatars.githubusercontent.com/u/7886280?v=4"
         },
         {
             "login": "sebastientourbier",
@@ -2474,11 +2487,13 @@
         },
         {
             "name": "Tristan Glatard",
-            "login": "tristan_glatard",
+            "login": "glatard",
             "contributions": [
                 "doc",
                 "code"
-            ]
+            ],
+            "profile": "https://github.com/glatard",
+            "avatar_url": "https://avatars.githubusercontent.com/u/5174953?v=4"
         },
         {
             "name": "Ulrike Bingel",
@@ -2489,10 +2504,12 @@
         },
         {
             "name": "Vanessa Sochat",
-            "login": "vanessa_sochat",
+            "login": "vsoch",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://github.com/vsoch",
+            "avatar_url": "https://avatars.githubusercontent.com/u/814322?v=4"
         },
         {
             "name": "Vasudev Raguram",
@@ -2506,10 +2523,12 @@
         },
         {
             "name": "Vince D. Calhoun",
-            "login": "vince_d_calhoun",
+            "login": "vdcalhoun",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://github.com/vdcalhoun",
+            "avatar_url": "https://avatars.githubusercontent.com/u/48063259?v=4"
         },
         {
             "login": "VisLab",
