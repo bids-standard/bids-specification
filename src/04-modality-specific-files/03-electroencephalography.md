@@ -213,6 +213,9 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+{{ MACROS___make_columns_table_2("eeg.EEGChannels") }}
+
+
 {{ MACROS___make_columns_table(
    {
       "name__channels": "REQUIRED",

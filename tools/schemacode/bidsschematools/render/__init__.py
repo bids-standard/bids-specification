@@ -5,6 +5,7 @@ from bidsschematools.render.tables import (
     make_sidecar_table,
     make_metadata_table,
     make_subobject_table,
+    make_columns_table_2,
     make_columns_table,
 )
 from bidsschematools.render.text import (
@@ -20,6 +21,7 @@ __all__ = [
     "make_sidecar_table",
     "make_metadata_table",
     "make_subobject_table",
+    "make_columns_table_2",
     "make_columns_table",
     "make_entity_definitions",
     "make_glossary",

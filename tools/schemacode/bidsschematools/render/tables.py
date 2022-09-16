@@ -347,50 +347,10 @@ def make_sidecar_table(
     table_str : str
         The tabulated table as a Markdown string.
     """
-    field_type = "metadata"
-    if isinstance(table_name, str):
-        table_name = [table_name]
-
-    fields = {}
-    for table in table_name:
-        new_fields = schema.rules.sidecars[table].fields
-        overlap = set(new_fields) & set(fields)
-        if overlap:
-            raise BIDSSchemaError(
-                f"Schema tables {table_name} share overlapping fields: {overlap}"
-            )
-        fields.update(new_fields)
-
-    subschema = schema.objects[field_type]
-    retained_fields = [f for f in fields if f in subschema]
-    dropped_fields = [f for f in fields if f not in subschema]
-    if dropped_fields:
-        print("Warning: Missing fields: {}".format(", ".join(dropped_fields)))
-
-    subschema = {k: v for k, v in subschema.items() if k in retained_fields}
-    field_info = {}
-    for field, val in fields.items():
-        if isinstance(val, str):
-            level = val
-            level_addendum = None
-            description_addendum = None
-        else:
-            level = val["level"]
-            level_addendum = val.get("level_addendum")
-            description_addendum = val.get("description_addendum")
-        if level_addendum:
-            if level_addendum.startswith(("required", "recommended", "optional")):
-                level = f"{level}, but {level_addendum}"
-            else:
-                # Typically begins with "if"
-                level = f"{level} {level_addendum}"
-
-        field_info[field] = (level, description_addendum) if description_addendum else level
-
-    table_str = make_obj_table(
-        subschema,
-        field_info=field_info,
-        field_type=field_type,
+    table_str = _make_table_from_rule(
+        schema=schema,
+        table_type="metadata",
+        table_name=table_name,
         src_path=src_path,
         tablefmt=tablefmt,
     )
@@ -498,99 +458,105 @@ def make_subobject_table(schema, object_tuple, field_info, src_path=None, tablef
     return table_str
 
 
-def make_obj_table(
-    subschema,
-    field_info,
-    field_type=None,
-    src_path=None,
-    tablefmt="github",
-    n_values_to_combine=15,
+def make_columns_table_2(
+    schema: Namespace,
+    table_name: ty.Union[str, ty.List[str]],
+    src_path: ty.Optional[str] = None,
+    tablefmt: str = "github",
 ):
-    """Make a generic table describing objects in the schema.
-
-    This does shared work between describing metadata fields and subobjects in the schema.
+    """Produce columns table (markdown) based on requested fields.
 
     Parameters
     ----------
-    subschema : Namespace or dict
-        Subset of the overall schema, including only the target object definitions.
-    field_info : dict
-        Additional information about each row in the table to be added to schema information.
-        Keys should match "name" entries in ``subschema``.
-        Values should be either a string (in which case, it's requirement information) or
-        a tuple (in which case, the first entry is requirement info and the second is
-        information to be added to the object's description).
-    field_type : str
-        The name of the field type. For example, "metadata".
+    schema : dict
+        The BIDS schema.
+    table_name : str or list of str
+        Qualified name(s) in schema.rules.tabular_data
     src_path : str | None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
     tablefmt : string, optional
         The target table format. The default is "github" (GitHub format).
-    n_values_to_combine : int, optional
-        When there are many valid values for a given object,
-        instead of listing each one in the table,
-        link to the associated glossary entry.
+
+    Returns
+    -------
+    table_str : str
+        The tabulated table as a Markdown string.
     """
-    # Use the "name" field in the table, to allow for filenames to not match "names".
-    df = pd.DataFrame(
-        index=field_info.keys(),
-        columns=["**Key name**", "**Requirement Level**", "**Data type**", "**Description**"],
+    table_str = _make_table_from_rule(
+        schema=schema,
+        table_type="columns",
+        table_name=table_name,
+        src_path=src_path,
+        tablefmt=tablefmt,
     )
-    for field in subschema.keys():
-        field_name = subschema[field]["name"]
-        if field_type:
-            field_name = f"[{field_name}]({GLOSSARY_PATH}.md#objects.{field_type}.{field})"
 
-        requirement_info = field_info[field]
-        description_addendum = ""
-        if isinstance(requirement_info, tuple):
-            requirement_info, description_addendum = requirement_info
+    return table_str
 
-        requirement_info = utils.normalize_requirements(requirement_info)
-        requirement_info = requirement_info.replace(
-            "DEPRECATED",
-            "[DEPRECATED](/02-common-principles.html#definitions)",
-        )
 
-        type_string = utils.resolve_metadata_type(subschema[field])
+def _make_table_from_rule(
+    schema: Namespace,
+    table_type: str,
+    table_name: ty.Union[str, ty.List[str]],
+    src_path: ty.Optional[str] = None,
+    tablefmt: str = "github",
+):
+    """Create a table for one or more rules."""
+    if isinstance(table_name, str):
+        table_name = [table_name]
 
-        description = utils.normalize_requirements(
-            subschema[field]["description"] + " " + description_addendum
-        )
-
-        if (
-            "enum" in subschema[field].keys()
-            and len(subschema[field]["enum"]) >= n_values_to_combine
-        ):
-            glossary_entry = f"{GLOSSARY_PATH}.md#objects.{field_type}.{field}"
-            valid_values_str = (
-                "For a list of valid values for this field, see the "
-                f"[associated glossary entry]({glossary_entry})."
-            )
+    elements = {}
+    for table in table_name:
+        if table_type == "metadata":
+            table_schema = schema.rules.sidecars[table]
+            new_elements = table_schema.fields
+        elif table_type == "columns":
+            table_schema = schema.rules.tabular_data[table]
+            new_elements = table_schema.columns
         else:
-            # Try to add info about valid values
-            valid_values_str = utils.describe_valid_values(subschema[field])
+            raise ValueError(f"Unsupported 'table_type': '{table_type}'")
 
-        if valid_values_str:
-            description += "\n\n\n\n" + valid_values_str
+        overlap = set(new_elements) & set(elements)
+        if overlap:
+            raise BIDSSchemaError(
+                f"Schema tables {table_name} share overlapping fields: {overlap}"
+            )
+        elements.update(new_elements)
 
-        df.loc[field] = [
-            field_name,
-            utils.normalize_breaks(requirement_info),
-            type_string,
-            utils.normalize_breaks(description),
-        ]
+    subschema = schema.objects[table_type]
+    retained_elements = [f for f in elements if f in subschema]
+    dropped_elements = [f for f in elements if f not in subschema]
+    if dropped_elements:
+        print("Warning: Missing elements: {}".format(", ".join(dropped_elements)))
 
-    df = df.set_index("**Key name**", drop=True)
-    df.index.name = "**Key name**"
+    subschema = {k: v for k, v in subschema.items() if k in retained_elements}
+    element_info = {}
+    for element, val in elements.items():
+        if isinstance(val, str):
+            level = val
+            level_addendum = None
+            description_addendum = None
+        else:
+            level = val["level"]
+            level_addendum = val.get("level_addendum", "")
+            description_addendum = val.get("description_addendum", "")
 
-    # Print it as markdown
-    table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
+        if level_addendum:
+            if level_addendum.startswith(("required", "recommended", "optional")):
+                level = f"{level}, but {level_addendum}"
+            else:
+                # Typically begins with "if"
+                level = f"{level} {level_addendum}"
 
-    # Spec internal links need to be replaced
-    table_str = table_str.replace("SPEC_ROOT", utils.get_relpath(src_path))
+        element_info["table_info"] = (level, description_addendum)
 
+    table_str = _make_object_table(
+        subschema,
+        field_info=element_info,
+        table_type=table_type,
+        src_path=src_path,
+        tablefmt=tablefmt,
+    )
     return table_str
 
 

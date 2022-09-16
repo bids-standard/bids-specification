@@ -308,6 +308,36 @@ def make_columns_table(column_info, src_path=None):
     return table
 
 
+def make_columns_table_2(table_name, src_path=None):
+    """Generate a markdown table of TSV column information.
+
+    Parameters
+    ----------
+    column_info : dict
+        A list of the column names.
+        Column names correspond to filenames in the "columns" directory of the
+        schema.
+        Until requirement levels can be codified in the schema,
+        this argument will be a dictionary, with the column names as keys and
+        the requirement levels as values.
+    src_path : str | None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
+
+    Returns
+    -------
+    table : str
+        A Markdown-format table containing the corresponding table for
+        the requested columns.
+    """
+    if src_path is None:
+        src_path = _get_source_path()
+
+    schema_obj = schema.load_schema()
+    table = render.make_columns_table_2(schema_obj, table_name, src_path=src_path)
+    return table
+
+
 def make_filetree_example(filetree_info, use_pipe=True):
     """Generate a filetree snippet from example content.
 
