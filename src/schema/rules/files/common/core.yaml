@@ -22,18 +22,6 @@ LICENSE:
 genetic_info:
   level: optional
   path: genetic_info.json
-participants:
-  level: optional
-  stem: participants
-  extensions:
-    - .tsv
-    - .json
-samples:
-  level: optional
-  stem: samples
-  extensions:
-    - .tsv
-    - .json
 code:
   level: optional
   path: code
