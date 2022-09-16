@@ -1,0 +1,35 @@
+name: Bug report
+
+# See the json schema to help you create / update this form
+# https://json.schemastore.org/github-issue-forms.json
+
+description: Create a report to help us improve
+
+title: "[BUG] "
+
+labels: ["bug"]
+
+body:
+
+  - type: markdown
+    attributes:
+      value: |
+        Please use the [NeuroStars forum](https://neurostars.org/) to ask (and answer)
+        concrete technical questions or about implementation details around BIDS.
+
+        Please use the [BIDS mailing list](https://groups.google.com/forum/#!forum/bids-discussion),
+        for announcements, and to draw attention to any item related to BIDS
+
+  - type: textarea
+    attributes:
+      label: Describe your problem in detail.
+
+  - type: textarea
+    attributes:
+      label: Describe what you expected.
+
+  - type: textarea
+    attributes:
+      label: BIDS specification section
+      description: Provide a link to the part of the BIDS specification that is relevant.
+      value: https://bids-specification.readthedocs.io/en/latest/...

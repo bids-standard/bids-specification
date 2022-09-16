@@ -1,3 +1,5 @@
+# Rules for functional data that are not defined in tables.
+---
 PhaseSuffixDeprecated:
   issue:
     code: PHASE_SUFFIX_DEPRECATED
@@ -9,6 +11,6 @@ PhaseSuffixDeprecated:
       part-<mag|phase> or part-<real|imag> key/value.
     level: warning
   selectors:
-  - datatype == "func"
+    - datatype == "func"
   checks:
-  - '!(suffix == "phase")'
+    - suffix != "phase"

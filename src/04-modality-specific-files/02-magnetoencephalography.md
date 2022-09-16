@@ -58,7 +58,7 @@ limit.
 For example Neuromag/Elekta/Megin, which can produce several files
 for a single recording.
 Both `some_file.fif` and `some_file-1.fif` would belong to a single recording.
-In BIDS, the [`split`](../99-appendices/09-entities.md#split) entity is RECOMMENDED to deal
+In BIDS, the [`split`](../appendices/entities.md#split) entity is RECOMMENDED to deal
 with split files.
 If there are multiple parts of a recording and the optional `scans.tsv` is provided,
 remember to list all files separately in `scans.tsv` and that the entries for the
@@ -70,11 +70,11 @@ which saves the MEG sensor coil positions in a separate file with two possible f
 For these files, the `markers` suffix MUST be used.
 For example: `sub-01_task-nback_markers.sqd`
 
-Please refer to [Appendix VI](../99-appendices/06-meg-file-formats.md)
+Please refer to the [MEG File Formats Appendix](../appendices/meg-file-formats.md)
 for general information on how to deal with such manufacturer specifics and to see more examples.
 
-The [`proc-<label>`](../99-appendices/09-entities.md#proc) entity is analogous to the
-[`rec-<label>`](../99-appendices/09-entities.md#rec) entity for MRI,
+The [`proc-<label>`](../appendices/entities.md#proc) entity is analogous to the
+[`rec-<label>`](../appendices/entities.md#rec) entity for MRI,
 and denotes a variant of a file that was a result of particular processing performed on the device.
 This is useful for files produced in particular by Elekta's MaxFilter
 (for example, sss, tsss, trans, quat, mc),
@@ -92,130 +92,74 @@ If however EEG is recorded simultaneously **with the same MEG system**,
 it MAY be stored under the `/meg` data type.
 In that case, it SHOULD have the same sampling frequency as MEG (see `SamplingFrequency` field below).
 Furthermore, the EEG sensor coordinates SHOULD be specified using MEG-specific coordinate
-systems (see [coordinates section](#coordinate-system-json-_coordsystemjson) below and [Appendix VIII](../99-appendices/08-coordinate-systems.md)).
+systems (see [coordinates section](#coordinate-system-json-_coordsystemjson) below and
+the [Coordinate Systems Appendix](../appendices/coordinate-systems.md)).
 
 ### Sidecar JSON (`*_meg.json`)
 
 Generic fields MUST be present:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "TaskName": ("REQUIRED", "A RECOMMENDED convention is to name resting state task using labels beginning with `rest`."),
-   }
-) }}
+{{ MACROS___make_sidecar_table("meg.MEGGeneric") }}
 
 SHOULD be present: For consistency between studies and institutions, we
 encourage users to extract the values of these fields from the actual raw data.
 Whenever possible, please avoid using ad-hoc wording.
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "InstitutionName": "RECOMMENDED",
-      "InstitutionAddress": "RECOMMENDED",
-      "InstitutionalDepartmentName": "RECOMMENDED",
-      "Manufacturer": (
-         "RECOMMENDED",
-         "For MEG scanners, this must be one of: "
-         '`"CTF"`, `"Elekta/Neuromag"`, `"BTi/4D"`, `"KIT/Yokogawa"`, '
-         '`"ITAB"`, `"KRISS"`, `"Other"`. '
-         "See [Appendix VII](/99-appendices/07-meg-systems.html) for "
-         "preferred names.",
-      ),
-      "ManufacturersModelName": (
-         "RECOMMENDED",
-         "See [Appendix VII](/99-appendices/07-meg-systems.html) for "
-         "preferred names.",
-      ),
-      "SoftwareVersions": "RECOMMENDED",
-      "TaskDescription": "RECOMMENDED",
-      "Instructions": ("RECOMMENDED", "This is especially important in context of resting state recordings and distinguishing between eyes open and eyes closed paradigms."),
-      "CogAtlasID": "RECOMMENDED",
-      "CogPOID": "RECOMMENDED",
-      "DeviceSerialNumber": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("meg.MEGRecommended") }}
 
 Specific MEG fields MUST be present:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "SamplingFrequency": ("REQUIRED", "The sampling frequency of data channels that deviate from the main sampling frequency SHOULD be specified in the `channels.tsv` file."),
-      "PowerLineFrequency": "REQUIRED",
-      "DewarPosition": "REQUIRED",
-      "SoftwareFilters": "REQUIRED",
-      "DigitizedLandmarks": "REQUIRED",
-      "DigitizedHeadPoints": "REQUIRED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("meg.MEGRequired") }}
 
 SHOULD be present:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "MEGChannelCount": "RECOMMENDED",
-      "MEGREFChannelCount": "RECOMMENDED",
-      "EEGChannelCount": "RECOMMENDED",
-      "ECOGChannelCount": "RECOMMENDED",
-      "SEEGChannelCount": "RECOMMENDED",
-      "EOGChannelCount": "RECOMMENDED",
-      "ECGChannelCount": "RECOMMENDED",
-      "EMGChannelCount": "RECOMMENDED",
-      "MiscChannelCount": "RECOMMENDED",
-      "TriggerChannelCount": "RECOMMENDED",
-      "RecordingDuration": "RECOMMENDED",
-      "RecordingType": "RECOMMENDED",
-      "EpochLength": "RECOMMENDED",
-      "ContinuousHeadLocalization": "RECOMMENDED",
-      "HeadCoilFrequency": "RECOMMENDED",
-      "MaxMovement": "RECOMMENDED",
-      "SubjectArtefactDescription": "RECOMMENDED",
-      "AssociatedEmptyRoom": "RECOMMENDED",
-      "HardwareFilters": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("meg.MEGMoreRecommended") }}
 
 Specific EEG fields
 (if recorded with MEG, see [Recording EEG simultaneously with MEG](#recording-eeg-simultaneously-with-meg)
 SHOULD be present:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "EEGPlacementScheme": "OPTIONAL",
-      "CapManufacturer": "OPTIONAL",
-      "CapManufacturersModelName": "OPTIONAL",
-      "EEGReference": "OPTIONAL",
-   }
-) }}
+{{ MACROS___make_sidecar_table("meg.MEGwithEEG") }}
 
 Example:
 
@@ -384,98 +328,62 @@ EEG, head localization coils, and anatomical landmarks.
 MEG and EEG sensors:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "MEGCoordinateSystem": "REQUIRED",
-      "MEGCoordinateUnits": "REQUIRED",
-      "MEGCoordinateSystemDescription": "OPTIONAL, but REQUIRED if `MEGCoordinateSystem` is `Other`",
-      "EEGCoordinateSystem": (
-         "OPTIONAL",
-         "See [Recording EEG simultaneously with MEG](/04-modality-specific-files/02-magnetoencephalography.html#recording-eeg-simultaneously-with-meg). "
-         "Preferably the same as the `MEGCoordinateSystem`.",
-      ),
-      "EEGCoordinateUnits": "OPTIONAL",
-      "EEGCoordinateSystemDescription": (
-         "OPTIONAL, but REQUIRED if `EEGCoordinateSystem` is `Other`",
-         "See [Recording EEG simultaneously with MEG](/04-modality-specific-files/02-magnetoencephalography.html#recording-eeg-simultaneously-with-meg).",
-      ),
-   }
-) }}
+{{ MACROS___make_sidecar_table("meg.MEGCoordsystemWithEEG") }}
 
 Head localization coils:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "HeadCoilCoordinates": "OPTIONAL",
-      "HeadCoilCoordinateSystem": "OPTIONAL",
-      "HeadCoilCoordinateUnits": "OPTIONAL",
-      "HeadCoilCoordinateSystemDescription": "OPTIONAL, but REQUIRED if `HeadCoilCoordinateSystem` is `Other`",
-   }
-) }}
+{{ MACROS___make_sidecar_table("meg.MEGCoordsystemHeadLocalizationCoils") }}
 
 Digitized head points:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "DigitizedHeadPoints__coordsystem": "OPTIONAL",
-      "DigitizedHeadPointsCoordinateSystem": "OPTIONAL",
-      "DigitizedHeadPointsCoordinateUnits": "OPTIONAL",
-      "DigitizedHeadPointsCoordinateSystemDescription": "OPTIONAL, but REQUIRED if `DigitizedHeadPointsCoordinateSystem` is `Other`",
-   }
-) }}
+{{ MACROS___make_sidecar_table("meg.MEGCoordsystemDigitizedHeadPoints") }}
 
 Anatomical MRI:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "IntendedFor": (
-         "OPTIONAL",
-         "This is used to identify the structural MRI(s), "
-         "possibly of different types if a list is specified, "
-         "to be used with the MEG recording.",
-      )
-   }
-) }}
+{{ MACROS___make_sidecar_table("meg.MEGCoordsystemAnatomicalMRI") }}
 
 Anatomical landmarks:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "AnatomicalLandmarkCoordinates": "OPTIONAL",
-      "AnatomicalLandmarkCoordinateSystem": ("OPTIONAL", "Preferably the same as the `MEGCoordinateSystem`."),
-      "AnatomicalLandmarkCoordinateUnits": "OPTIONAL",
-      "AnatomicalLandmarkCoordinateSystemDescription": "OPTIONAL, but REQUIRED if `AnatomicalLandmarkCoordinateSystem` is `Other`",
-   }
-) }}
+{{ MACROS___make_sidecar_table("meg.MEGCoordsystemAnatomicalLandmarks") }}
 
 It is also RECOMMENDED that the MRI voxel coordinates of the actual anatomical
 landmarks for co-registration of MEG with structural MRI are stored in the
@@ -496,16 +404,14 @@ session-specific labels for example, "NAS-session1": `[127,213,139]`,"NAS-sessio
 Fiducials information:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "FiducialsDescription": "OPTIONAL",
-   }
-) }}
+{{ MACROS___make_sidecar_table("meg.MEGCoordsystemFiducialsInformation") }}
 
 For more information on the definition of anatomical landmarks, please visit:
 [http://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined](http://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined)
@@ -536,7 +442,7 @@ taped to the skin. Please note that the photos may need to be cropped or blurred
 to conceal identifying features prior to sharing, depending on the terms of the
 consent given by the participant.
 
-The [`acq-<label>`](../99-appendices/09-entities.md#acq) entity can be used to indicate acquisition of different photos of
+The [`acq-<label>`](../appendices/entities.md#acq) entity can be used to indicate acquisition of different photos of
 the same face (or other body part in different angles to show, for example, the
 location of the nasion (NAS) as opposed to the right periauricular point (RPA)).
 
@@ -560,10 +466,10 @@ This file is RECOMMENDED.
 
 The 3-D locations of points that describe the head shape and/or EEG
 electrode locations can be digitized and stored in separate files. The
-[`acq-<label>`](../99-appendices/09-entities.md#acq) entity can be used when more than one type of digitization in done for
+[`acq-<label>`](../appendices/entities.md#acq) entity can be used when more than one type of digitization in done for
 a session, for example when the head points are in a separate file from the EEG
 locations. These files are stored in the specific format of the 3-D digitizer’s
-manufacturer (see [Appendix VI](../99-appendices/06-meg-file-formats.md)).
+manufacturer (see the [MEG File Formats Appendix](../appendices/meg-file-formats.md)).
 
 Example:
 
@@ -588,26 +494,26 @@ has to be updated, then for MEG it could be considered to be a new session.
 
 ## Empty-room MEG recordings
 
-Empty-room MEG recordings capture the environmental and recording system's
-noise.
-In the context of BIDS it is RECOMMENDED to perform an empty-room recording for
-each experimental session.
-It is RECOMMENDED to store the empty-room recording inside a subject directory
-named `sub-emptyroom`.
-The label for the [`task-<label>`](../99-appendices/09-entities.md#task) entity in the empty-room recording SHOULD be
-set to `noise`.
-If a [`session-<label>`](../99-appendices/09-entities.md#ses) entity is present, its label SHOULD be the date of the
-empty-room recording in the format `YYYYMMDD`, that is `ses-YYYYMMDD`.
-The `scans.tsv` file containing the date and time of the acquisition SHOULD
-also be included.
-The rationale is that this naming scheme will allow users to easily retrieve the
-empty-room recording that best matches a particular experimental session, based
-on date and time of the recording.
-It should be possible to query empty-room recordings just like usual subject
-recordings, hence all metadata sidecar files (such as the `channels.tsv`) file
-SHOULD be present as well.
+Empty-room MEG recordings capture the environmental and recording system's noise.
 
-Example:
+It is RECOMMENDED to explicitly specify which empty-room recording should be used with which experimental run(s) or session(s). This can be done via the [`AssociatedEmptyRoom`](../glossary.md#associatedemptyroom-metadata) field in the `*_meg.json` sidecar files.
+
+Empty-room recordings may be collected once per day, where a single empty-room recording may be shared between multiple subjects and/or sessions (see example 1).
+Empty-room recordings can also be collected for each individual experimental session (see example 2).
+
+In the case of empty-room recordings being associated with multiple subjects and/or sessions, it is RECOMMENDED to store the empty-room recording inside a subject directory named `sub-emptyroom`.
+If a [`session-<label>`](../appendices/entities.md#ses) entity is present, its label SHOULD be the date of the empty-room recording in the format `YYYYMMDD`, that is `ses-YYYYMMDD`.
+The `scans.tsv` file containing the date and time of the acquisition SHOULD also be included.
+The rationale is that this naming scheme will allow users to easily retrieve the empty-room recording that best matches a particular experimental session, based on date and time of the recording.
+It should be possible to query empty-room recordings just like usual subject recordings, hence all metadata sidecar files (such as the `channels.tsv`) file SHOULD be present as well.
+
+In the case of empty-room recordings being collected for the individual experimental session, it is recommended to store the empty-room recording along with that subject and session.
+
+In either case, the label for the [`task-<label>`](../appendices/entities.md#task) entity in the empty-room recording SHOULD be set to `noise`.
+
+Example 1:
+
+One empty-room recording per day, applying to all subjects for that day.
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -624,6 +530,32 @@ A guide for using macros can be found at
             "sub-emptyroom_ses-20170801_task-noise_meg.ds": "",
             "sub-emptyroom_ses-20170801_task-noise_meg.json": "",
             "sub-emptyroom_ses-20170801_task-noise_channels.tsv": "",
+            }
+         }
+      },
+   }
+) }}
+
+Example 2:
+
+One recording per session, stored within the session folder.
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+   {
+   "sub-control01": {
+      "ses-01": {
+         "sub-01_ses-01_scans.tsv": "",
+         "meg": {
+            "sub-control01_ses-01_task-rest_meg.ds": "",
+            "sub-control01_ses-01_task-rest_meg.json": "",
+            "sub-control01_ses-01_task-rest_channels.tsv": "",
+            "sub-control01_ses-01_task-noise_meg.ds": "",
+            "sub-control01_ses-01_task-noise_meg.json": "",
+            "sub-control01_ses-01_task-noise_channels.tsv": "",
             }
          }
       },
