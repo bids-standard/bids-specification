@@ -277,17 +277,21 @@
         },
         {
             "name": "Ashley G. Gillman",
-            "login": "ashley_g_gillman",
+            "login": "ashgillman",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://github.com/ashgillman",
+            "avatar_url": "https://avatars.githubusercontent.com/u/816777?v=4"
         },
         {
             "name": "Athanasia Monika Mowinckel",
-            "login": "athanasia_monika_mowinckel",
+            "login": "drmowinckels",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://github.com/drmowinckels",
+            "avatar_url": "https://avatars.githubusercontent.com/u/14014329?v=4"
         },
         {
             "name": "Aysegul Gunduz",
@@ -1033,10 +1037,12 @@
         },
         {
             "name": "Helena Cockx",
-            "login": "helena_cockx",
+            "login": "helenacockx",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://github.com/helenacockx",
+            "avatar_url": "https://avatars.githubusercontent.com/u/54403982?v=4"
         },
         {
             "name": "Henk Mutsaerts",
@@ -1088,17 +1094,21 @@
         },
         {
             "name": "Ilkay Isik",
-            "login": "ilkay_isik",
+            "login": "ilkayisik",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://github.com/ilkayisik",
+            "avatar_url": "https://avatars.githubusercontent.com/u/22478219?v=4"
         },
         {
             "name": "Ilona Lipp",
-            "login": "ilona_lipp",
+            "login": "IlonaLipp",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://github.com/IlonaLipp",
+            "avatar_url": "https://avatars.githubusercontent.com/u/43202449?v=4"
         },
         {
             "name": "International Neuroinformatics Coordinating Facility",
@@ -1109,14 +1119,15 @@
             ],
             "profile": "https://github.com/INCF",
             "avatar_url": "https://avatars.githubusercontent.com/u/758175?v=4"
-            
         },
         {
             "name": "Iris Groen",
-            "login": "iris_groen",
+            "login": "irisgroen",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://github.com/irisgroen",
+            "avatar_url": "https://avatars.githubusercontent.com/u/33101992?v=4"
         },
         {
             "name": "Isla Staden",
@@ -1419,10 +1430,12 @@
         },
         {
             "name": "Kangjoo Lee",
-            "login": "kangjoo_lee",
+            "login": "Kangjoo",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://github.com/Kangjoo",
+            "avatar_url": "https://avatars.githubusercontent.com/u/13531096?v=4"
         },
         {
             "name": "Katja Heuer",
@@ -1458,10 +1471,12 @@
         },
         {
             "name": "Klara Gregorova",
-            "login": "klara_gregorova",
+            "login": "greckla",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://github.com/greckla",
+            "avatar_url": "https://avatars.githubusercontent.com/u/49999446?v=4"
         },
         {
             "name": "Kristofer Bouchard",
@@ -1487,10 +1502,12 @@
         },
         {
             "name": "Lee Kamentsky",
-            "login": "lee_kamentsky",
+            "login": "LeeKamentsky",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://github.com/LeeKamentsky",
+            "avatar_url": "https://avatars.githubusercontent.com/u/660469?v=4"
         },
         {
             "name": "Lennart Walger",
@@ -1501,17 +1518,21 @@
         },
         {
             "name": "Lennart Wittkuhn",
-            "login": "lennart_wittkuhn",
+            "login": "lnnrtwttkhn",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://github.com/lnnrtwttkhn",
+            "avatar_url": "https://avatars.githubusercontent.com/u/42233065?v=4"
         },
         {
             "name": "Liberty Hamilton",
-            "login": "liberty_hamilton",
+            "login": "libertyh",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://github.com/libertyh",
+            "avatar_url": "https://avatars.githubusercontent.com/u/3268583?v=4"
         },
         {
             "name": "Luca Pollonini",
@@ -1530,10 +1551,12 @@
         },
         {
             "name": "Lyuba Zehl",
-            "login": "lyuba_zehl",
+            "login": "lzehl",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://github.com/lzehl",
+            "avatar_url": "https://avatars.githubusercontent.com/u/6161552?v=4"
         },
         {
             "login": "jasmainak",
@@ -1989,10 +2012,12 @@
         },
         {
             "name": "Pierre Rioux",
-            "login": "pierre_rioux",
+            "login": "prioux",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://github.com/prioux",
+            "avatar_url": "https://avatars.githubusercontent.com/u/777588?v=4"
         },
         {
             "name": "Pieter Vandemaele",
@@ -2172,10 +2197,12 @@
         },
         {
             "name": "Samir Das",
-            "login": "samir_das",
+            "login": "samirdas",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://github.com/samirdas",
+            "avatar_url": "https://avatars.githubusercontent.com/u/508512?v=4"
         },
         {
             "name": "Samuel Garcia",
@@ -2344,10 +2371,12 @@
         },
         {
             "name": "Tal Pal Attia",
-            "login": "tal_pal_attia",
+            "login": "tpatpa",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://github.com/tpatpa",
+            "avatar_url": "https://avatars.githubusercontent.com/u/24300712?v=4"
         },
         {
             "name": "Tal Yarkoni",
@@ -2368,10 +2397,12 @@
         },
         {
             "name": "Tamas Spisak",
-            "login": "tamas_spisak",
+            "login": "spisakt",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://github.com/spisakt",
+            "avatar_url": "https://avatars.githubusercontent.com/u/21124251?v=4"
         },
         {
             "name": "Tamás Józsa",

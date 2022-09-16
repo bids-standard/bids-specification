@@ -399,14 +399,6 @@
     "arjen_stolk": {
         "name": "Arjen Stolk"
     },
-    "ashley_g_gillman": {
-        "name": "Ashley G. Gillman"
-    },
-    "athanasia_monika_mowinckel": {
-        "name": "Athanasia Monika Mowinckel",
-        "orcid": "0000-0002-5756-0223",
-        "affiliation": "University of Oslo"
-    },
     "aysegul_gunduz": {
         "name": "Aysegul Gunduz"
     },
@@ -544,26 +536,11 @@
         "orcid": "0000-0003-3871-1564",
         "affiliation": "Johns Hopkins Medicine"
     },
-    "helena_cockx": {
-        "name": "Helena Cockx",
-        "orcid": "0000-0001-7782-7178"
-    },
     "hernando_ombao": {
         "name": "Hernando Ombao"
     },
-    "ilkay_isik": {
-        "name": "Ilkay Isik",
-        "orcid": "0000-0002-1652-9297",
-        "affiliation": "Max Planck Institute for Empirical Aesthetics"
-    },
-    "ilona_lipp": {
-        "name": "Ilona Lipp"
-    },
     "INCF": {
         "name": "International Neuroinformatics Coordinating Facility"
-    },
-    "iris_groen": {
-        "name": "Iris Groen"
     },
     "isla_staden": {
         "name": "Isla Staden",
@@ -623,17 +600,8 @@
     "kai_j_miller": {
         "name": "Kai J. Miller"
     },
-    "kangjoo_lee": {
-        "name": "Kangjoo Lee",
-        "orcid": "0000-0002-7760-8079",
-        "affiliation": "Yale School of Medicine"
-    },
     "kevin_larcher": {
         "name": "Kevin Larcher"
-    },
-    "klara_gregorova": {
-        "name": "Klara Gregorova",
-        "orcid": "0000-0002-3828-9386"
     },
     "kristofer_bouchard": {
         "name": "Kristofer Bouchard",
@@ -649,22 +617,9 @@
         "affiliation": "Cardiff University, Cardiff University Brain Research Imaging Centre (CUBRIC), UK",
         "orcid": "0000-0003-4602-1416"
     },
-    "lee_kamentsky": {
-        "name": "Lee Kamentsky",
-        "orcid": "0000-0002-8161-3604",
-        "affiliation": "MIT"
-    },
     "lennart_walger": {
         "name": "Lennart Walger",
         "orcid": "0000-0002-3300-6877"
-    },
-    "lennart_wittkuhn": {
-        "name": "Lennart Wittkuhn",
-        "orcid": "0000-0003-2966-6888",
-        "affiliation": "Max Planck Institute for Human Development"
-    },
-    "liberty_hamilton": {
-        "name": "Liberty Hamilton"
     },
     "luca_pollonini": {
         "name": "Luca Pollonini",
@@ -673,11 +628,6 @@
     },
     "luis_hernandez-garcia": {
         "name": "Luis Hernandez-Garcia"
-    },
-    "lyuba_zehl": {
-        "name": "Lyuba Zehl",
-        "orcid": "0000-0002-5947-9939",
-        "affiliation": "Forschungszentrum Jülich"
     },
     "manjari_narayan": {
         "name": "Manjari Narayan"
@@ -766,17 +716,11 @@
         "orcid": "0000-0002-7446-150X",
         "affiliation": "McGill University Faculty of Medicine and Health Sciences"
     },
-    "pierre_rioux": {
-        "name": "Pierre Rioux"
-    },
     "robert_e_smith": {
         "name": "Robert E. Smith"
     },
     "robert_knight": {
         "name": "Robert Knight"
-    },
-    "samir_das": {
-        "name": "Samir Das"
     },
     "samuel_garcia": {
         "name": "Samuel Garcia"
@@ -804,12 +748,6 @@
     },
     "sören_grothkopp": {
         "name": "Sören Grothkopp"
-    },
-    "tal_pal_attia": {
-        "name": "Tal Pal Attia"
-    },
-    "tamas_spisak": {
-        "name": "Tamas Spisak"
     },
     "tamás_józsa": {
         "name": "Tamás Józsa"
@@ -1245,5 +1183,83 @@
     "parulsethi": {
         "name": "Parul Sethi",
         "blog": "https://github.com/parulsethi"
+    },
+    "ashgillman": {
+        "name": "Ashley G. Gillman",
+        "blog": "https://github.com/ashgillman"
+    },
+    "drmowinckels": {
+        "name": "Athanasia Monika Mowinckel",
+        "orcid": "0000-0002-5756-0223",
+        "affiliation": "University of Oslo",
+        "blog": "https://github.com/drmowinckels"
+    },
+    "helenacockx": {
+        "name": "Helena Cockx",
+        "orcid": "0000-0001-7782-7178",
+        "blog": "https://github.com/helenacockx"
+    },
+    "ilkayisik": {
+        "name": "Ilkay Isik",
+        "orcid": "0000-0002-1652-9297",
+        "affiliation": "Max Planck Institute for Empirical Aesthetics",
+        "blog": "https://github.com/ilkayisik"
+    },
+    "IlonaLipp": {
+        "name": "Ilona Lipp",
+        "blog": "https://github.com/IlonaLipp"
+    },
+    "irisgroen": {
+        "name": "Iris Groen",
+        "blog": "https://github.com/irisgroen"
+    },
+    "Kangjoo": {
+        "name": "Kangjoo Lee",
+        "orcid": "0000-0002-7760-8079",
+        "affiliation": "Yale School of Medicine",
+        "blog": "https://github.com/Kangjoo"
+    },
+    "greckla": {
+        "name": "Klara Gregorova",
+        "orcid": "0000-0002-3828-9386",
+        "blog": "https://github.com/greckla"
+    },
+    "LeeKamentsky": {
+        "name": "Lee Kamentsky",
+        "orcid": "0000-0002-8161-3604",
+        "affiliation": "MIT",
+        "blog": "https://github.com/LeeKamentsky"
+    },
+    "lnnrtwttkhn": {
+        "name": "Lennart Wittkuhn",
+        "orcid": "0000-0003-2966-6888",
+        "affiliation": "Max Planck Institute for Human Development",
+        "blog": "https://github.com/lnnrtwttkhn"
+    },
+    "libertyh": {
+        "name": "Liberty Hamilton",
+        "blog": "https://github.com/libertyh"
+    },
+    "lzehl": {
+        "name": "Lyuba Zehl",
+        "orcid": "0000-0002-5947-9939",
+        "affiliation": "Forschungszentrum Jülich",
+        "blog": "https://github.com/lzehl"
+    },
+    "prioux": {
+        "name": "Pierre Rioux",
+        "blog": "https://github.com/prioux"
+    },
+    "samirdas": {
+        "name": "Samir Das",
+        "blog": "https://github.com/samirdas"
+    },
+    "tpatpa": {
+        "name": "Tal Pal Attia",
+        "blog": "https://github.com/tpatpa"
+    },
+    "spisakt": {
+        "name": "Tamas Spisak",
+        "blog": "https://github.com/spisakt"
     }
 }

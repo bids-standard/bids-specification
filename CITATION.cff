@@ -329,12 +329,6 @@ authors:
   family-names: Jahn
 - given-names: Arjen
   family-names: Stolk
-- given-names: Ashley
-  family-names: G. Gillman
-- given-names: Athanasia
-  family-names: Monika Mowinckel
-  orcid: https://orcid.org/0000-0002-5756-0223
-  affiliation: University of Oslo
 - given-names: Aysegul
   family-names: Gunduz
 - given-names: Azeez
@@ -434,21 +428,10 @@ authors:
   family-names: Lu
   orcid: https://orcid.org/0000-0003-3871-1564
   affiliation: Johns Hopkins Medicine
-- given-names: Helena
-  family-names: Cockx
-  orcid: https://orcid.org/0000-0001-7782-7178
 - given-names: Hernando
   family-names: Ombao
-- given-names: Ilkay
-  family-names: Isik
-  orcid: https://orcid.org/0000-0002-1652-9297
-  affiliation: Max Planck Institute for Empirical Aesthetics
-- given-names: Ilona
-  family-names: Lipp
 - given-names: International
   family-names: Neuroinformatics Coordinating Facility
-- given-names: Iris
-  family-names: Groen
 - given-names: Isla
   family-names: Staden
   orcid: https://orcid.org/0000-0002-0795-1154
@@ -491,15 +474,8 @@ authors:
   family-names: Woods
 - given-names: Kai
   family-names: J. Miller
-- given-names: Kangjoo
-  family-names: Lee
-  orcid: https://orcid.org/0000-0002-7760-8079
-  affiliation: Yale School of Medicine
 - given-names: Kevin
   family-names: Larcher
-- given-names: Klara
-  family-names: Gregorova
-  orcid: https://orcid.org/0000-0002-3828-9386
 - given-names: Kristofer
   family-names: Bouchard
   website: https://bouchardlab.lbl.gov
@@ -512,29 +488,15 @@ authors:
   orcid: https://orcid.org/0000-0003-4602-1416
   affiliation: Cardiff University, Cardiff University Brain Research Imaging Centre
     (CUBRIC), UK
-- given-names: Lee
-  family-names: Kamentsky
-  orcid: https://orcid.org/0000-0002-8161-3604
-  affiliation: MIT
 - given-names: Lennart
   family-names: Walger
   orcid: https://orcid.org/0000-0002-3300-6877
-- given-names: Lennart
-  family-names: Wittkuhn
-  orcid: https://orcid.org/0000-0003-2966-6888
-  affiliation: Max Planck Institute for Human Development
-- given-names: Liberty
-  family-names: Hamilton
 - given-names: Luca
   family-names: Pollonini
   orcid: https://orcid.org/0000-0003-2955-6355
   affiliation: University of Houston
 - given-names: Luis
   family-names: Hernandez-Garcia
-- given-names: Lyuba
-  family-names: Zehl
-  orcid: https://orcid.org/0000-0002-5947-9939
-  affiliation: Forschungszentrum Jülich
 - given-names: Manjari
   family-names: Narayan
 - given-names: Manuel
@@ -599,14 +561,10 @@ authors:
   family-names: Toussaint
   orcid: https://orcid.org/0000-0002-7446-150X
   affiliation: McGill University Faculty of Medicine and Health Sciences
-- given-names: Pierre
-  family-names: Rioux
 - given-names: Robert
   family-names: E. Smith
 - given-names: Robert
   family-names: Knight
-- given-names: Samir
-  family-names: Das
 - given-names: Samuel
   family-names: Garcia
 - given-names: Sara
@@ -626,10 +584,6 @@ authors:
   family-names: Bhogawar
 - given-names: Sören
   family-names: Grothkopp
-- given-names: Tal
-  family-names: Pal Attia
-- given-names: Tamas
-  family-names: Spisak
 - given-names: Tamás
   family-names: Józsa
 - given-names: Thomas
@@ -991,3 +945,65 @@ authors:
 - given-names: Parul
   family-names: Sethi
   website: https://github.com/parulsethi
+- given-names: Ashley
+  family-names: G. Gillman
+  website: https://github.com/ashgillman
+- given-names: Athanasia
+  family-names: Monika Mowinckel
+  website: https://github.com/drmowinckels
+  orcid: https://orcid.org/0000-0002-5756-0223
+  affiliation: University of Oslo
+- given-names: Helena
+  family-names: Cockx
+  website: https://github.com/helenacockx
+  orcid: https://orcid.org/0000-0001-7782-7178
+- given-names: Ilkay
+  family-names: Isik
+  website: https://github.com/ilkayisik
+  orcid: https://orcid.org/0000-0002-1652-9297
+  affiliation: Max Planck Institute for Empirical Aesthetics
+- given-names: Ilona
+  family-names: Lipp
+  website: https://github.com/IlonaLipp
+- given-names: Iris
+  family-names: Groen
+  website: https://github.com/irisgroen
+- given-names: Kangjoo
+  family-names: Lee
+  website: https://github.com/Kangjoo
+  orcid: https://orcid.org/0000-0002-7760-8079
+  affiliation: Yale School of Medicine
+- given-names: Klara
+  family-names: Gregorova
+  website: https://github.com/greckla
+  orcid: https://orcid.org/0000-0002-3828-9386
+- given-names: Lee
+  family-names: Kamentsky
+  website: https://github.com/LeeKamentsky
+  orcid: https://orcid.org/0000-0002-8161-3604
+  affiliation: MIT
+- given-names: Lennart
+  family-names: Wittkuhn
+  website: https://github.com/lnnrtwttkhn
+  orcid: https://orcid.org/0000-0003-2966-6888
+  affiliation: Max Planck Institute for Human Development
+- given-names: Liberty
+  family-names: Hamilton
+  website: https://github.com/libertyh
+- given-names: Lyuba
+  family-names: Zehl
+  website: https://github.com/lzehl
+  orcid: https://orcid.org/0000-0002-5947-9939
+  affiliation: Forschungszentrum Jülich
+- given-names: Pierre
+  family-names: Rioux
+  website: https://github.com/prioux
+- given-names: Samir
+  family-names: Das
+  website: https://github.com/samirdas
+- given-names: Tal
+  family-names: Pal Attia
+  website: https://github.com/tpatpa
+- given-names: Tamas
+  family-names: Spisak
+  website: https://github.com/spisakt
