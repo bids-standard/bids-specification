@@ -56,9 +56,15 @@ def _make_object_table(
         link to the associated glossary entry.
     """
     # Use the "name" field in the table, to allow for filenames to not match "names".
+    first_column = "**Column name**" if table_type == "columns" else "**Key name**"
     df = pd.DataFrame(
         index=field_info.keys(),
-        columns=["**Key name**", "**Requirement Level**", "**Data type**", "**Description**"],
+        columns=[
+            first_column,
+            "**Requirement Level**",
+            "**Data type**",
+            "**Description**",
+        ],
     )
     element_type = {
         "metadata": "field",
@@ -115,8 +121,8 @@ def _make_object_table(
             utils.normalize_breaks(description),
         ]
 
-    df = df.set_index("**Key name**", drop=True)
-    df.index.name = "**Key name**"
+    df = df.set_index(first_column, drop=True)
+    df.index.name = first_column
 
     # Print it as markdown
     table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
