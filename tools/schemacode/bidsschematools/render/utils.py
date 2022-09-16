@@ -320,3 +320,48 @@ def normalize_breaks(text):
     text = text.replace("\n\n", "<br>")
     # Otherwise a newline corresponds to a space
     return text.replace("\n", " ")
+
+
+def num2words(integer, to="ordinal"):
+    """Convert integers to words.
+
+    This is a very simplistic mapping of numbers to words,
+    to avoid adding num2words to our requirements.
+    It only works with the first few numbers.
+
+    Parameters
+    ----------
+    integer : int
+    to : {"ordinal", "cardinal"}, optional
+    """
+    if integer not in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]:
+        raise ValueError(f"Input {integer} is not supported.")
+
+    if to == "ordinal":
+        mapper = {
+            1: "first",
+            2: "second",
+            3: "third",
+            4: "fourth",
+            5: "fifth",
+            6: "sixth",
+            7: "seventh",
+            8: "eighth",
+            9: "ninth",
+            10: "tenth",
+        }
+    elif to == "cardinal":
+        mapper = {
+            1: "one",
+            2: "two",
+            3: "three",
+            4: "four",
+            5: "five",
+            6: "six",
+            7: "seven",
+            8: "eight",
+            9: "nine",
+            10: "ten",
+        }
+
+    return mapper[integer]

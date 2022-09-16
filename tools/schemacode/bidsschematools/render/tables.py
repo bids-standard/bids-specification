@@ -60,49 +60,55 @@ def _make_object_table(
         index=field_info.keys(),
         columns=["**Key name**", "**Requirement Level**", "**Data type**", "**Description**"],
     )
-    for field in subschema.keys():
-        field_name = subschema[field]["name"]
+    element_type = {
+        "metadata": "field",
+        "subobject": "subfield",
+        "columns": "column",
+    }.get(table_type)
+
+    for element in subschema.keys():
+        field_name = subschema[element]["name"]
         # NOTE: Link to the glossary entry,
         # except for subobjects (if table_type) and
         # "additional columns" (field_name.startswith("**"))
         if table_type and not field_name.startswith("**"):
-            field_name = f"[{field_name}]({GLOSSARY_PATH}.md#objects.{table_type}.{field})"
+            field_name = f"[{field_name}]({GLOSSARY_PATH}.md#objects.{table_type}.{element})"
 
         # Grab any requirement level information and text to be added to the description string
-        requirement_info, description_addendum = field_info[field]["table_info"]
+        requirement_info, description_addendum = field_info[element]["table_info"]
         requirement_info = utils.normalize_requirements(requirement_info)
         requirement_info = requirement_info.replace(
             "DEPRECATED",
             "[DEPRECATED](/02-common-principles.html#definitions)",
         )
 
-        type_string = utils.resolve_metadata_type(subschema[field])
+        type_string = utils.resolve_metadata_type(subschema[element])
 
         description = utils.normalize_requirements(
-            subschema[field]["description"] + " " + description_addendum
+            subschema[element]["description"] + " " + description_addendum
         )
 
         # Append a list of valid values, if provided, to the description.
         # If there are a lot of valid values, this will add a link to the description linking to
         # the associated glossary entry.
         if (
-            "enum" in subschema[field].keys()
-            and len(subschema[field]["enum"]) >= n_values_to_combine
+            "enum" in subschema[element].keys()
+            and len(subschema[element]["enum"]) >= n_values_to_combine
         ):
-            glossary_entry = f"{GLOSSARY_PATH}.md#objects.{table_type}.{field}"
+            glossary_entry = f"{GLOSSARY_PATH}.md#objects.{table_type}.{element}"
             valid_values_str = (
-                "For a list of valid values for this field, see the "
+                f"For a list of valid values for this {element_type}, see the "
                 f"[associated glossary entry]({glossary_entry})."
             )
         else:
             # Try to add info about valid values
-            valid_values_str = utils.describe_valid_values(subschema[field])
+            valid_values_str = utils.describe_valid_values(subschema[element])
 
         if valid_values_str:
             description += "\n\n\n\n" + valid_values_str
 
         # Add entry to DataFrame
-        df.loc[field] = [
+        df.loc[element] = [
             field_name,
             utils.normalize_breaks(requirement_info),
             type_string,
@@ -128,12 +134,14 @@ def _make_table_from_rule(
     src_path: ty.Optional[str] = None,
     tablefmt: str = "github",
 ):
-    """Create a table for one or more rules."""
+    """Create a table for one or more rules.
+
+    If ``table_type`` is "columns", only one table may be provided.
+    """
     if isinstance(table_name, str):
         table_name = [table_name]
 
     elements = {}
-    additional_columns = []
     for table in table_name:
         if table_type == "metadata":
             table_schema = schema.rules.sidecars[table]
@@ -141,7 +149,9 @@ def _make_table_from_rule(
         elif table_type == "columns":
             table_schema = schema.rules.tabular_data[table]
             new_elements = table_schema.columns
-            additional_columns.append(table_schema.get("additional_columns", "not_allowed"))
+            # Since only one table may be provided for columns, we can just use this directly.
+            additional_columns = table_schema.get("additional_columns", "not_allowed")
+            initial_columns = table_schema.get("initial_columns", [])
         else:
             raise ValueError(f"Unsupported 'table_type': '{table_type}'")
 
@@ -151,16 +161,6 @@ def _make_table_from_rule(
                 f"Schema tables {table_name} share overlapping fields: {overlap}"
             )
         elements.update(new_elements)
-
-    if table_type == "columns":
-        if len(set(additional_columns)) > 1:
-            print(
-                "Warning: Conflicting additional column information: "
-                f"{', '.join(additional_columns)}."
-            )
-            additional_columns = "its_complicated"
-        else:
-            additional_columns = additional_columns[0]
 
     subschema = schema.objects[table_type]
     retained_elements = [f for f in elements if f in subschema]
@@ -187,9 +187,21 @@ def _make_table_from_rule(
                 # Typically begins with "if"
                 level = f"{level} {level_addendum}"
 
+        if table_type == "columns" and initial_columns:
+            if element in initial_columns:
+                order = initial_columns.index(element) + 1
+                order_str = utils.num2words(order, to="ordinal")
+                description_addendum += (
+                    f"\n\n\n\nThis column must appear **{order_str}** in the file."
+                )
+            else:
+                description_addendum += "\n\n\n\nThis column may appear anywhere in the file."
+
         element_info[element] = {"table_info": (level, description_addendum)}
 
     if table_type == "columns":
+        # Add info about additional columns to table.
+        # its_complicated won't add any info about additional columns.
         if additional_columns == "not_allowed":
             element_info["Additional Columns"] = {
                 "table_info": ("NOT ALLOWED", "Additional columns are not allowed.")
@@ -204,7 +216,7 @@ def _make_table_from_rule(
                     ),
                 )
             }
-        else:
+        elif additional_columns == "allowed":
             element_info["Additional Columns"] = {
                 "table_info": ("OPTIONAL", "Additional columns are allowed.")
             }
@@ -695,7 +707,7 @@ def make_columns_table(
 
 def make_columns_table_2(
     schema: Namespace,
-    table_name: ty.Union[str, ty.List[str]],
+    table_name: str,
     src_path: ty.Optional[str] = None,
     tablefmt: str = "github",
 ):
@@ -705,8 +717,9 @@ def make_columns_table_2(
     ----------
     schema : dict
         The BIDS schema.
-    table_name : str or list of str
-        Qualified name(s) in schema.rules.tabular_data
+    table_name : str
+        Qualified name in schema.rules.tabular_data.
+        Only one table may be provided in this function.
     src_path : str | None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
