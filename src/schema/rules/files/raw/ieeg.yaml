@@ -21,21 +21,6 @@ ieeg:
     acquisition: optional
     run: optional
 
-events:
-  suffixes:
-    - events
-  extensions:
-    - .json
-    - .tsv
-  datatypes:
-    - ieeg
-  entities:
-    subject: required
-    session: optional
-    task: required
-    acquisition: optional
-    run: optional
-
 photo:
   suffixes:
     - photo
@@ -47,20 +32,3 @@ photo:
     subject: required
     session: optional
     acquisition: optional
-
-timeseries:
-  suffixes:
-    - physio
-    - stim
-  extensions:
-    - .tsv.gz
-    - .json
-  datatypes:
-    - ieeg
-  entities:
-    subject: required
-    session: optional
-    task: required
-    acquisition: optional
-    run: optional
-    recording: optional
