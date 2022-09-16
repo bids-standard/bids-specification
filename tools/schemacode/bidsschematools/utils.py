@@ -1,8 +1,6 @@
 """Utility functions for the bids-specification schema."""
 import logging
-import math
 import os.path as op
-from pprint import pprint
 
 
 def get_schema_path():

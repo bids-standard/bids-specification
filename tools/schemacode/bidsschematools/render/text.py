@@ -6,8 +6,8 @@ import yaml
 from markdown_it import MarkdownIt
 
 from bidsschematools.render import utils
-from bidsschematools.utils import get_logger, set_logger_level
 from bidsschematools.schema import Namespace, filter_schema, load_schema
+from bidsschematools.utils import get_logger, set_logger_level
 
 lgr = get_logger()
 # Basic settings for output, for now just basic

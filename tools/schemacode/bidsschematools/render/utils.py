@@ -1,7 +1,7 @@
 """Utility functions for specification rendering tools."""
 import math
-from pprint import pprint
 import posixpath
+from pprint import pprint
 
 
 def _link_with_html(string, html_path=None, heading=None, pdf_format=False):
