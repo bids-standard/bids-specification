@@ -6,10 +6,10 @@
 code:
   display_name: Code
   description: |
-    A directory in which to store any code used to generate the derivatives from the
-    source data.
+    A directory in which to store any code used to generate the derivatives
+    from the source data.
 derivatives:
-  display_name: Derivative data
+  display_name: Derivative data.
   description: |
     Derivative data
 sourcedata:
@@ -22,8 +22,7 @@ stimuli:
   description: |
     The stimulus files can be added in a `/stimuli` directory
     (under the root directory of the dataset; with optional subdirectories)
-    AND using a stim_file column in *_events.tsv mentioning which stimulus file was
-    used for a given event.
-
-    There are no restrictions on the file formats of the stimuli files, but they should be
-    stored in the `/stimuli` directory.
+    AND using a `stim_file` column in `*_events.tsv` mentioning 
+    which stimulus file was used for a given event.
+    There are no restrictions on the file formats of the stimuli files, 
+    but they should be stored in the `/stimuli` directory.
