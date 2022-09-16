@@ -14,46 +14,6 @@ nirs:
     acquisition: optional
     run: optional
 
-channels:
-  suffixes:
-    - channels
-  extensions:
-    - .tsv
-    - .json
-  datatypes:
-    - nirs
-  entities:
-    subject: required
-    session: optional
-    task: required
-    acquisition: optional
-    run: optional
-
-coordsystem:
-  suffixes:
-    - coordsystem
-  extensions:
-    - .json
-  datatypes:
-    - nirs
-  entities:
-    subject: required
-    session: optional
-    acquisition: optional
-
-optodes:
-  suffixes:
-    - optodes
-  extensions:
-    - .tsv
-    - .json
-  datatypes:
-    - nirs
-  entities:
-    subject: required
-    session: optional
-    acquisition: optional
-
 events:
   suffixes:
     - events

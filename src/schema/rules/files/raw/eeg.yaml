@@ -20,48 +20,6 @@ eeg:
     acquisition: optional
     run: optional
 
-channels:
-  suffixes:
-    - channels
-  extensions:
-    - .json
-    - .tsv
-  datatypes:
-    - eeg
-  entities:
-    subject: required
-    session: optional
-    task: required
-    acquisition: optional
-    run: optional
-
-coordsystem:
-  suffixes:
-    - coordsystem
-  extensions:
-    - .json
-  datatypes:
-    - eeg
-  entities:
-    subject: required
-    session: optional
-    acquisition: optional
-    space: optional
-
-electrodes:
-  suffixes:
-    - electrodes
-  extensions:
-    - .json
-    - .tsv
-  datatypes:
-    - eeg
-  entities:
-    subject: required
-    session: optional
-    acquisition: optional
-    space: optional
-
 events:
   suffixes:
     - events

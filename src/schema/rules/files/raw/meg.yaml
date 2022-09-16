@@ -85,34 +85,6 @@ markers:
     acquisition: optional
     space: optional
 
-coordsystem:
-  suffixes:
-    - coordsystem
-  extensions:
-    - .json
-  datatypes:
-    - meg
-  entities:
-    subject: required
-    session: optional
-    acquisition: optional
-
-channels:
-  suffixes:
-    - channels
-  extensions:
-    - .json
-    - .tsv
-  datatypes:
-    - meg
-  entities:
-    subject: required
-    session: optional
-    task: required
-    acquisition: optional
-    run: optional
-    processing: optional
-
 events:
   suffixes:
     - events
