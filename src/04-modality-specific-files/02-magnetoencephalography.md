@@ -217,42 +217,13 @@ Missing values MUST be indicated with `"n/a"`.
 
 The columns of the channels description table stored in `*_channels.tsv` are:
 
-MUST be present **in this specific order**:
-
 <!-- This block generates a columns table.
 The definitions of these fields can be found in
   src/schema/objects/columns.yaml
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_columns_table(
-   {
-      "name__channels": "REQUIRED",
-      "type__meg_channels": "REQUIRED",
-      "units": "REQUIRED",
-   }
-) }}
-
-SHOULD be present:
-
-<!-- This block generates a columns table.
-The definitions of these fields can be found in
-  src/schema/objects/columns.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_columns_table(
-   {
-      "description": "OPTIONAL",
-      "sampling_frequency": "OPTIONAL",
-      "low_cutoff": "OPTIONAL",
-      "high_cutoff": "OPTIONAL",
-      "notch": "OPTIONAL",
-      "software_filters": "OPTIONAL",
-      "status": "OPTIONAL",
-      "status_description": "OPTIONAL",
-   }
-) }}
+{{ MACROS___make_columns_table("meg.MEGChannels") }}
 
 Example:
 

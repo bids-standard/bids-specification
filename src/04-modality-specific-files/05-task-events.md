@@ -40,17 +40,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_columns_table(
-   {
-      "onset": "REQUIRED",
-      "duration": "REQUIRED",
-      "sample": "OPTIONAL",
-      "trial_type": "OPTIONAL",
-      "response_time": "OPTIONAL",
-      "value": "OPTIONAL",
-      "HED": "OPTIONAL",
-   }
-) }}
+{{ MACROS___make_columns_table("task.TaskEvents") }}
 
 Note for MRI data:
 If any acquired scans have been discarded before forming the imaging data file,
