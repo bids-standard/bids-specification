@@ -505,7 +505,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_columns_table("modality_agnostic.Sessions")
+{{ MACROS___make_columns_table("modality_agnostic.Sessions") }}
 
 `_sessions.tsv` example:
 

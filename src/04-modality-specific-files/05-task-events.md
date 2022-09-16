@@ -149,18 +149,6 @@ for a given event,
 There are no restrictions on the file formats of the stimuli files,
 but they should be stored in the `/stimuli` directory.
 
-<!-- This block generates a columns table.
-The definitions of these fields can be found in
-  src/schema/rules/tabular_data/*.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_columns_table(
-   {
-      "stim_file": "OPTIONAL",
-   }
-) }}
-
 ### Stimuli databases
 
 References to existing databases can also be encoded using additional columns.
