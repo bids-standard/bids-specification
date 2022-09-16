@@ -35,19 +35,3 @@ microscopy:
     stain: optional
     run: optional
     chunk: optional
-
-photo:
-  suffixes:
-    - photo
-  extensions:
-    - .jpg
-    - .png
-    - .tif
-    - .json
-  datatypes:
-    - micr
-  entities:
-    subject: required
-    session: optional
-    sample: required
-    acquisition: optional

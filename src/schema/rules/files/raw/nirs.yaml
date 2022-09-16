@@ -13,14 +13,3 @@ nirs:
     task: required
     acquisition: optional
     run: optional
-
-photo:
-  suffixes:
-    - photo
-  extensions:
-    - .jpg
-    - .png
-    - .tif
-  entities:
-    subject: required
-    session: optional

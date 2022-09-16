@@ -84,17 +84,3 @@ markers:
     task: optional
     acquisition: optional
     space: optional
-
-photo:
-  suffixes:
-    - photo
-  extensions:
-    - .jpg
-    - .png
-    - .tif
-  datatypes:
-    - meg
-  entities:
-    subject: required
-    session: optional
-    acquisition: optional

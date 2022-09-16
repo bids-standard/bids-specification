@@ -19,17 +19,3 @@ eeg:
     task: required
     acquisition: optional
     run: optional
-
-photo:
-  suffixes:
-    - photo
-  extensions:
-    - .jpg
-    - .png
-    - .tif
-  datatypes:
-    - eeg
-  entities:
-    subject: required
-    session: optional
-    acquisition: optional
