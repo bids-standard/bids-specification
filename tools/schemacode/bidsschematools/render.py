@@ -372,22 +372,17 @@ def make_filename_template(
                     )
                     ent_format += ">" if pdf_format else "&gt;"
 
-                if ent in group["entities"]:
-                    if isinstance(group["entities"][ent], dict):
-                        if "enum" in group["entities"][ent].keys():
-                            # Overwrite the filename pattern using valid values
-                            ent_format = "{}-&lt;{}&gt;".format(
-                                schema["objects"]["entities"][ent]["name"],
-                                "|".join(group["entities"][ent]["enum"]),
-                            )
-
-                        string = _add_entity(
-                            string,
-                            ent_format,
-                            group["entities"][ent]["requirement"],
-                        )
-                    else:
-                        string = _add_entity(string, ent_format, group["entities"][ent])
+                if ent in group.entities:
+                    level = group.entities[ent]
+                    if isinstance(level, dict):
+                        fmt = level.get("format")
+                        enum = level.get("enum")
+                        level = level["level"]
+                        if enum is not None:
+                            fmt = "|".join(enum)
+                        if fmt is not None:
+                            ent_format = f"{objects.entities[ent].name}-&lt;{fmt}&gt;"
+                    string = _add_entity(string, ent_format, level)
 
             # In cases of large numbers of suffixes,
             # we use the "suffix" variable and expect a table later in the spec
@@ -580,7 +575,7 @@ def make_entity_table(schema, tablefmt="github", src_path=None, **kwargs):
             dtype_row = [dtype] + ([""] * len(all_entities))
             for ent, ent_info in dtype_spec.get("entities", {}).items():
                 if isinstance(ent_info, Mapping):
-                    requirement_level = ent_info["requirement"]
+                    requirement_level = ent_info["level"]
                 else:
                     requirement_level = ent_info
 
