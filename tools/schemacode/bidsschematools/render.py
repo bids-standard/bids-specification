@@ -245,6 +245,10 @@ def _format_entity(entity, lt, gt):
     return f"{entity['name']}-{lt}{fmt}{gt}"
 
 
+def value_key_table(namespace):
+    return {struct.value: key for key, struct in namespace.items()}
+
+
 def make_filename_template(
     schema=None,
     src_path=None,
@@ -298,6 +302,8 @@ def make_filename_template(
         lt, gt = "&lt;", "&gt;"
 
     schema = Namespace(filter_schema(schema.to_dict(), **kwargs))
+    suffix_key_table = value_key_table(schema.objects.suffixes)
+    ext_key_table = value_key_table(schema.objects.extensions)
 
     paragraph = ""
     # Parent directories
@@ -343,7 +349,7 @@ def make_filename_template(
 
         # Unique filename patterns
         for group in datatypes[datatype].values():
-            string = ""
+            ent_string = ""
             for ent in schema.rules.entities:
                 if ent in group.entities:
                     ent_obj = group.entities[ent]
@@ -374,43 +380,34 @@ def make_filename_template(
                         )
                         pattern = _format_entity(entity, lt, gt)
 
-                    string = _add_entity(string, pattern, entity["level"])
-            string = f"\t\t\t{string}"
+                    ent_string = _add_entity(ent_string, pattern, entity["level"])
 
             # In cases of large numbers of suffixes,
             # we use the "suffix" variable and expect a table later in the spec
             if len(group["suffixes"]) >= n_dupes_to_combine:
-                string += f"_{lt}"
-                string += utils._link_with_html(
-                    "suffix",
-                    html_path=GLOSSARY_PATH + ".html",
-                    heading="suffix-common_principles",
-                    pdf_format=pdf_format,
-                )
-                string += gt
-                strings = [string]
-            else:
-                strings = []
-                for suffix in group["suffixes"]:
-                    # The glossary indexes by the suffix identifier (TwoPE instead of 2PE),
-                    # but the rules reference the actual suffix string (2PE instead of TwoPE),
-                    # so we need to look it up.
-                    suffix_id = [
-                        k for k, v in schema["objects"]["suffixes"].items() if v["value"] == suffix
-                    ][0]
-
-                    suffix_string = utils._link_with_html(
-                        suffix,
+                suffixes = [
+                    f"_{lt}"
+                    + utils._link_with_html(
+                        "suffix",
                         html_path=GLOSSARY_PATH + ".html",
-                        heading=f"{suffix_id.lower()}-suffixes",
+                        heading="suffix-common_principles",
                         pdf_format=pdf_format,
                     )
-                    strings.append(f"{string}_{suffix_string}")
+                    + gt
+                ]
+            else:
+                suffixes = [
+                    utils._link_with_html(
+                        suffix,
+                        html_path=GLOSSARY_PATH + ".html",
+                        heading=f"{suffix_key_table[suffix].lower()}-suffixes",
+                        pdf_format=pdf_format,
+                    )
+                    for suffix in group.suffixes
+                ]
 
             # Add extensions
-            full_strings = []
-            extensions = group["extensions"]
-            extensions = [ext if ext != "*" else ".<extension>" for ext in extensions]
+            extensions = [ext if ext != "*" else ".<extension>" for ext in group.extensions]
             if len(extensions) >= n_dupes_to_combine:
                 # Combine exts when there are many, but keep JSON separate
                 if ".json" in extensions:
@@ -423,14 +420,9 @@ def make_filename_template(
                 # The glossary indexes by the extension identifier (niigz instead of .nii.gz),
                 # but the rules reference the actual suffix string (.nii.gz instead of niigz),
                 # so we need to look it up.
-                ext_id = [
-                    k
-                    for k, v in schema["objects"]["extensions"].items()
-                    if v["value"] == extension
-                ]
-                if ext_id:
-                    ext_id = ext_id[0]
-                    ext_headings.append(f"{ext_id.lower()}-extensions")
+                key = ext_key_table.get(extension)
+                if key:
+                    ext_headings.append(f"{key.lower()}-extensions")
                 else:
                     ext_headings.append("extension-common_principles")
 
@@ -441,14 +433,11 @@ def make_filename_template(
                 pdf_format=pdf_format,
             )
 
-            for extension in extensions:
-                for string in strings:
-                    new_string = f"{string}{extension}"
-                    full_strings.append(new_string)
-
-            full_strings = sorted(full_strings)
-            if full_strings:
-                paragraph += "\n".join(full_strings) + "\n"
+            paragraph += "".join(
+                f"\t\t\t{ent_string}_{suffix}{extension}\n"
+                for suffix in sorted(suffixes)
+                for extension in sorted(extensions)
+            )
 
     paragraph = paragraph.rstrip()
     if pdf_format:
