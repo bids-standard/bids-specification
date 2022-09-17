@@ -375,7 +375,7 @@ def make_filename_template(
             # we use the "suffix" variable and expect a table later in the spec
             if len(group["suffixes"]) >= n_dupes_to_combine:
                 suffixes = [
-                    f"_{lt}"
+                    lt
                     + utils._link_with_html(
                         "suffix",
                         html_path=GLOSSARY_PATH + ".html",
