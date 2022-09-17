@@ -11,13 +11,11 @@ code:
     See the [code section](SPEC_ROOT/03-modality-agnostic-files.md#code)
     for more information.
 derivatives:
-  display_name: |
+  display_name: Derivative data.
+  description: |
     Derivative data.
     See the [source, raw, derived data section](SPEC_ROOT/02-common-principles.md#source-vs-raw-vs-derived-data)
     for more information.
-
-  description: |
-    Derivative data
 sourcedata:
   display_name: Source data
   description: |

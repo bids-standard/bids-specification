@@ -1133,3 +1133,37 @@ def define_common_principles(schema, src_path=None):
     string = string.replace("SPEC_ROOT", get_relpath(src_path))
 
     return string
+
+
+def define_allowed_top_directories(schema, src_path=None) -> str:
+    """Create a list of allowed top-level directories with their descriptions.
+
+    Parameters
+    ----------
+    schema : dict
+        The BIDS schema.
+    src_path : str | None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
+
+    Returns
+    -------
+    string : str
+        Unordered list describing top level directories.
+    """
+
+    string = ""
+
+    for key in schema["objects"]["associated_data"]:
+
+        required = schema["rules"]["associated_data"][key]["required"]
+        # TODO: update if some directories become RECOMMENDED
+        status = "REQUIRED" if required == True else "OPTIONAL"
+
+        description = schema["objects"]["associated_data"][key]["description"]
+
+        string += f"- `{key}`: [{status}] {description}"
+
+    string = string.replace("SPEC_ROOT", get_relpath(src_path))
+
+    return string

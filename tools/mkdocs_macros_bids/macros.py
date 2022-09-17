@@ -349,18 +349,11 @@ def define_common_principles(src_path=None):
     return string
 
 
-def define_allowed_top_directories():
+def define_allowed_top_directories(src_path=None):
+
+    if src_path is None:
+        src_path = _get_source_path()
 
     schema_obj = schema.load_schema()
-
-    text = ""
-
-    for key in schema_obj["objects"]["associated_data"]:
-
-        required = schema_obj["rules"]["associated_data"][key]["required"]
-        status = "REQUIRED" if required == True else "OPTIONAL"
-        description = schema_obj["objects"]["associated_data"][key]["description"]
-
-        text += f"- `{key}`: [{status}] {description}"
-
-    return text
+    string = render.define_allowed_top_directories(schema_obj, src_path=src_path)
+    return string
