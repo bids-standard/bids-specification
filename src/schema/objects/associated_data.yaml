@@ -6,10 +6,16 @@
 code:
   display_name: Code
   description: |
-    A directory in which to store any code used to generate the derivatives
-    from the source data.
+    A directory in which to store any code
+    (for example the one used to generate the derivatives from the raw data).
+    See the [code section](SPEC_ROOT/03-modality-agnostic-files.md#code)
+    for more information.
 derivatives:
-  display_name: Derivative data.
+  display_name: |
+    Derivative data.
+    See the [source, raw, derived data section](SPEC_ROOT/02-common-principles.md#source-vs-raw-vs-derived-data)
+    for more information.
+
   description: |
     Derivative data
 sourcedata:
@@ -17,12 +23,16 @@ sourcedata:
   description: |
     Data before harmonization, reconstruction, and/or file format conversion
     (for example, E-Prime event logs or DICOM files).
+    See the [source, raw, derived data section](SPEC_ROOT/02-common-principles.md#source-vs-raw-vs-derived-data)
+    for more information.
 stimuli:
   display_name: Stimulus files
   description: |
     The stimulus files can be added in a `/stimuli` directory
     (under the root directory of the dataset; with optional subdirectories)
-    AND using a `stim_file` column in `*_events.tsv` mentioning 
+    AND using a `stim_file` column in `*_events.tsv` mentioning
     which stimulus file was used for a given event.
-    There are no restrictions on the file formats of the stimuli files, 
+    There are no restrictions on the file formats of the stimuli files,
     but they should be stored in the `/stimuli` directory.
+    See the [stimuli section](SPEC_ROOT/04-modality-specific-files/05-task-events.md#stimuli)
+    for more information.
