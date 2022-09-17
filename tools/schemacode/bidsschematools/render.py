@@ -305,30 +305,20 @@ def make_filename_template(
     suffix_key_table = value_key_table(schema.objects.suffixes)
     ext_key_table = value_key_table(schema.objects.extensions)
 
-    paragraph = ""
     # Parent directories
-    sub_string = (
-        f'{schema["objects"]["entities"]["subject"]["name"]}-'
-        f'<{schema["objects"]["entities"]["subject"]["format"]}>'
-    )
-    paragraph += utils._link_with_html(
-        sub_string,
+    sub_string = utils._link_with_html(
+        _format_entity(schema.objects.entities.subject, lt, gt),
         html_path=ENTITIES_PATH + ".html",
         heading="sub",
         pdf_format=pdf_format,
     )
-    paragraph += "/\n\t["
-    ses_string = (
-        f'{schema["objects"]["entities"]["session"]["name"]}-'
-        f'<{schema["objects"]["entities"]["session"]["format"]}>'
-    )
-    paragraph += utils._link_with_html(
-        ses_string,
+    ses_string = utils._link_with_html(
+        _format_entity(schema.objects.entities.session, lt, gt),
         html_path=ENTITIES_PATH + ".html",
         heading="ses",
         pdf_format=pdf_format,
     )
-    paragraph += "/]\n"
+    lines = [f"{sub_string}/", f"\t[{ses_string}/]"]
 
     datatypes = schema.rules.datatypes
 
@@ -338,14 +328,13 @@ def make_filename_template(
         if datatype == "derivatives":
             continue
 
-        paragraph += "\t\t"
-        paragraph += utils._link_with_html(
+        datatype_string = utils._link_with_html(
             datatype,
             html_path=GLOSSARY_PATH + ".html",
             heading=f"{datatype.lower()}-datatypes",
             pdf_format=pdf_format,
         )
-        paragraph += "/\n"
+        lines.append(f"\t\t{datatype_string}/")
 
         # Unique filename patterns
         for group in datatypes[datatype].values():
@@ -433,13 +422,13 @@ def make_filename_template(
                 pdf_format=pdf_format,
             )
 
-            paragraph += "".join(
-                f"\t\t\t{ent_string}_{suffix}{extension}\n"
+            lines.extend(
+                f"\t\t\t{ent_string}_{suffix}{extension}"
                 for suffix in sorted(suffixes)
                 for extension in sorted(extensions)
             )
 
-    paragraph = paragraph.rstrip()
+    paragraph = "\n".join(lines)
     if pdf_format:
         codeblock = f"Template:\n```Text\n{paragraph}\n```"
     else:
