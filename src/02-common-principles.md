@@ -118,9 +118,6 @@ can also contain the following directories:
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-
-<!-- TODO add macro description to DOC -->
-
 {{ MACROS___define_allowed_top_directories() }}
 
 ## Filenames
