@@ -143,6 +143,27 @@ def _make_table_from_rule(
     """Create a table for one or more rules.
 
     If ``table_type`` is "columns", only one table may be provided.
+
+    Parameters
+    ----------
+    schema : Namespace
+        The BIDS schema.
+    table_type : {"metadata", "columns"}
+        The type of table. Either "metadata" or "columns".
+    table_name : str or list of str
+        Qualified name(s) in schema.rules.tabular_data (for "columns" tables) or
+        schema.rules.sidecars (for "metadata" files).
+        Only one item may be provided for columns tables.
+    src_path : str | None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
+    tablefmt : string, optional
+        The target table format. The default is "github" (GitHub format).
+
+    Returns
+    -------
+    table_str : str
+        The tabulated table as a Markdown string.
     """
     if isinstance(table_name, str):
         table_name = [table_name]
@@ -254,11 +275,11 @@ def make_entity_table(schema, tablefmt="github", src_path=None, **kwargs):
     ----------
     schema_path : str
         Directory containing schema, which is stored in yaml files.
-    entities_file : str, optional
-        File in which entities are described.
-        This is used for hyperlinks in the table, so the path to the file
-        should be considered from the location of out_file.
-        Default is 'entities.md'.
+    tablefmt : string, optional
+        The target table format. The default is "github" (GitHub format).
+    src_path : str | None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
 
     Returns
     -------
@@ -466,7 +487,7 @@ def make_sidecar_table(
 
     Parameters
     ----------
-    schema : dict
+    schema : Namespace
         The BIDS schema.
     table_name : str or list of str
         Qualified name(s) in schema.rules.sidecars
@@ -497,7 +518,7 @@ def make_metadata_table(schema, field_info, src_path=None, tablefmt="github"):
 
     Parameters
     ----------
-    schema : dict
+    schema : Namespace
         The BIDS schema.
     field_info : dict of strings or tuples
         A dictionary mapping metadata keys to requirement levels in the
@@ -556,7 +577,8 @@ def make_subobject_table(schema, object_tuple, field_info, src_path=None, tablef
 
     Parameters
     ----------
-    schema
+    schema : Namespace
+        The BIDS schema.
     object_tuple : tuple of strings
         A tuple of keys within the schema linking down to the object
         that will be rendered.
@@ -618,7 +640,7 @@ def make_columns_table(
 
     Parameters
     ----------
-    schema : dict
+    schema : Namespace
         The BIDS schema.
     table_name : str
         Qualified name in schema.rules.tabular_data.
