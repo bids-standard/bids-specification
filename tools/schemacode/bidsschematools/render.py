@@ -1158,7 +1158,7 @@ def define_allowed_top_directories(schema, src_path=None) -> str:
 
         required = schema["rules"]["associated_data"][key]["required"]
         # TODO: update if some directories become RECOMMENDED
-        status = "REQUIRED" if required == True else "OPTIONAL"
+        status = "REQUIRED" if required is True else "OPTIONAL"
 
         description = schema["objects"]["associated_data"][key]["description"]
 
