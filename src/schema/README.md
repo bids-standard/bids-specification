@@ -36,7 +36,7 @@ The top-level organization includes `objects`, where terms are defined;
 are defined;
 and `meta`, where definitions useful for interpreting the schema are defined.
 
-Each file is a YAML structure, most often an *object*.
+Each file is made up of YAML data, most often an *object*.
 To take an example, the file `rules/checks/mri.yaml` contains the contents:
 
 ```YAML
