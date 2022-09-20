@@ -330,7 +330,7 @@ def make_entity_table(schema, tablefmt="github", src_path=None, **kwargs):
             dtype_row = [dtype] + ([""] * len(all_entities))
             for ent, ent_info in dtype_spec.get("entities", {}).items():
                 if isinstance(ent_info, Mapping):
-                    requirement_level = ent_info["requirement"]
+                    requirement_level = ent_info["level"]
                 else:
                     requirement_level = ent_info
 
