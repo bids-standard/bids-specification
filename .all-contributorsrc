@@ -34,7 +34,8 @@
             "login": "adeen_flinker",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "http://flinkerlab.org"
         },
         {
             "login": "adswa",
@@ -466,7 +467,7 @@
                 "doc",
                 "code"
             ],
-            "profile": "https://github.com/neurolabusc",
+            "profile": "https://www.mricro.com",
             "avatar_url": "https://avatars.githubusercontent.com/u/8930807?v=4"
         },
         {
@@ -577,7 +578,7 @@
             "contributions": [
                 "doc"
             ],
-            "profile": "bu.edu/neurophotonics",
+            "profile": "http://bu.edu/neurophotonics",
             "avatar_url": "https://avatars.githubusercontent.com/u/30025716?v=4"
         },
         {
@@ -1063,7 +1064,7 @@
                 "talk",
                 "userTesting"
             ],
-            "profile": "www.ExploreASL.org",
+            "profile": "http://www.ExploreASL.org",
             "avatar_url": "https://avatars.githubusercontent.com/u/27774254?v=4"
         },
         {
@@ -1239,7 +1240,7 @@
             "contributions": [
                 "doc"
             ],
-            "profile": "https://github.com/jmumford",
+            "profile": "https://jeanettemumford.org/",
             "avatar_url": "https://avatars.githubusercontent.com/u/8420875?v=4"
         },
         {
@@ -1344,10 +1345,12 @@
         },
         {
             "name": "Joost Kuijer",
-            "login": "joost_kuijer",
+            "login": "wadqc",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://github.com/wadqc",
+            "avatar_url": "https://avatars.githubusercontent.com/u/2149732?v=4"
         },
         {
             "name": "Jose Manuel Saborit",
@@ -1686,7 +1689,7 @@
             "contributions": [
                 "doc"
             ],
-            "profile": "www.martinszinte.net",
+            "profile": "http://www.martinszinte.net",
             "avatar_url": "https://avatars.githubusercontent.com/u/22450126?v=4"
         },
         {
@@ -1938,7 +1941,7 @@
                 "question",
                 "code"
             ],
-            "profile": "https://github.com/oesteban",
+            "profile": "http://www.axonlab.org",
             "avatar_url": [
                 "https://avatars.githubusercontent.com/u/598470?v=4"
             ]
@@ -2006,7 +2009,7 @@
         },
         {
             "name": "Peer Herholz",
-            "login": "PeerHerholz",
+            "login": "peerherholz",
             "contributions": [
                 "question",
                 "doc",
@@ -2015,7 +2018,7 @@
                 "tutorial",
                 "talk"
             ],
-            "profile": "https://github.com/PeerHerholz",
+            "profile": "https://peerherholz.github.io/",
             "avatar_url": "https://avatars.githubusercontent.com/u/20129524?v=4"
         },
         {
@@ -2328,14 +2331,16 @@
         },
         {
             "name": "Suyash Bhogawar",
-            "login": "suyash_bhogawar",
+            "login": "suyashdb",
             "contributions": [
                 "doc",
                 "example",
                 "test",
                 "tool",
                 "question"
-            ]
+            ],
+            "profile": "https://www.linkedin.com/in/suyashb/",
+            "avatar_url": "https://avatars.githubusercontent.com/u/11152799?v=4"
         },
         {
             "name": "Sylvain Baillet",
@@ -2604,7 +2609,7 @@
                 "doc",
                 "bug"
             ],
-            "profile": "https://github.com/VisLab",
+            "profile": "http://www.cs.utsa.edu/~krobbins",
             "avatar_url": [
                 "https://avatars.githubusercontent.com/u/1189050?v=4"
             ]
@@ -2652,11 +2657,13 @@
         },
         {
             "name": "Xiangrui Li",
-            "login": "xiangrui_li",
+            "login": "xiangruili",
             "contributions": [
                 "doc",
                 "code"
-            ]
+            ],
+            "profile": "https://github.com/xiangruili",
+            "avatar_url": "https://avatars.githubusercontent.com/u/19894855?v=4"
         },
         {
             "login": "yarikoptic",

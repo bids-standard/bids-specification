@@ -69,8 +69,10 @@
     },
     "oesteban": {
         "name": "Oscar Esteban",
-        "email": "code@oscaresteban.es",
-        "blog": "https://github.com/oesteban"
+        "email": "phd@oscaresteban.es",
+        "blog": "http://www.axonlab.org",
+        "affiliation": "Department of Radiology, Lausanne University Hospital, Lausanne, CH-1011, Switzerland",
+        "orcid": "0000-0001-8435-6191"
     },
     "rwblair": {
         "name": "Ross Blair",
@@ -224,7 +226,10 @@
     },
     "VisLab": {
         "name": "Kay Robbins",
-        "blog": "https://github.com/VisLab"
+        "blog": "http://www.cs.utsa.edu/~krobbins",
+        "email": "kay.robbins@utsa.edu",
+        "affiliation": "University of Texas at San Antonio Department of Computer Science San Antonio, TX 78249 USA",
+        "orcid": "0000-0002-7147-5797"
     },
     "KirstieJane": {
         "name": "Kirstie Whitaker",
@@ -280,7 +285,9 @@
     "Moo-Marc": {
         "name": "Marc Lalancette",
         "bio": "MEG lab manager, MSc Physics, UBC 2003",
-        "blog": "https://github.com/Moo-Marc"
+        "blog": "https://github.com/Moo-Marc",
+        "affiliation": "Montreal Neurological Institute-Hospital, McConnell Brain Imaging Center, Montreal, Quebec, H2A ",
+        "orcid": "0000-0003-1161-3972"
     },
     "melanieganz": {
         "name": "Melanie Ganz-Benjaminsen",
@@ -375,7 +382,8 @@
     "adeen_flinker": {
         "name": "Adeen Flinker",
         "orcid": "0000-0003-1247-1283",
-        "affiliation": "NYU Langone Health"
+        "affiliation": "New York University, Department of Neurology, New York City, New York, 10016, USA",
+        "email": "adeen@nyu.edu"
     },
     "alberto_lazari": {
         "name": "Alberto Lazari"
@@ -587,10 +595,6 @@
     "jonathan_c_lau": {
         "name": "Jonathan C. Lau"
     },
-    "joost_kuijer": {
-        "name": "Joost Kuijer",
-        "orcid": "0000-0002-4181-0427"
-    },
     "jose_manuel_saborit": {
         "name": "Jose Manuel Saborit"
     },
@@ -729,16 +733,15 @@
     },
     "sasha_d_ambrosio": {
         "name": "Sasha D'Ambrosio",
-        "orcid": "0000-0002-6600-6419"
+        "orcid": "0000-0002-6600-6419",
+        "email": "sasha.dambrosio@unimi.it",
+        "affiliation": "University of Milan, Department of Biomedical and Clinical Sciences, Milan, 20137, Italy"
     },
     "shashank_bansal": {
         "name": "Shashank Bansal"
     },
     "stephan_bickel": {
         "name": "Stephan Bickel"
-    },
-    "suyash_bhogawar": {
-        "name": "Suyash Bhogawar"
     },
     "sören_grothkopp": {
         "name": "Sören Grothkopp"
@@ -782,9 +785,6 @@
     },
     "william_triplett": {
         "name": "William Triplett"
-    },
-    "xiangrui_li": {
-        "name": "Xiangrui Li"
     },
     "yoni_ashar": {
         "name": "Yoni Ashar",
@@ -922,7 +922,7 @@
     },
     "HenkMutsaerts": {
         "name": "Henk Mutsaerts",
-        "blog": "www.ExploreASL.org",
+        "blog": "http://www.ExploreASL.org",
         "orcid": "0000-0003-0894-0307",
         "affiliation": "Amsterdam University Medical Centers, Radiology and Nuclear Department, Amsterdam, 1013 EG, The Netherlands",
         "email": "h.j.mutsaerts@amsterdamumc.nl"
@@ -936,7 +936,8 @@
     },
     "jmumford": {
         "name": "Jeanette Mumford",
-        "blog": "https://github.com/jmumford"
+        "blog": "https://jeanettemumford.org/",
+        "affiliation": "Stanford, Department of Psychology, Stanford, CA"
     },
     "juliasprenger": {
         "name": "Julia Sprenger",
@@ -995,10 +996,6 @@
         "blog": "https://www.cyceron.fr",
         "affiliation": "UAR3408-US50 CYCERON, Caen, 14000, France",
         "orcid": "0000-0002-4685-0057"
-    },
-    "PeerHerholz": {
-        "name": "Peer Herholz",
-        "blog": "https://github.com/PeerHerholz"
     },
     "ccraddock": {
         "name": "R. Cameron Craddock",
@@ -1140,8 +1137,9 @@
     "neurolabusc": {
         "name": "Chris Rorden",
         "orcid": "0000-0002-7554-6142",
-        "affiliation": "University of South Carolina",
-        "blog": "https://github.com/neurolabusc"
+        "affiliation": "University of South Carolina, Department of Psychology, Columbia, SC, 29016, USA",
+        "blog": "https://www.mricro.com",
+        "email": "crorden6@gmail.com"
     },
     "Shotgunosine": {
         "name": "Dylan Nielson",
@@ -1173,7 +1171,7 @@
     },
     "mszinte": {
         "name": "Martin Szinte",
-        "blog": "www.martinszinte.net",
+        "blog": "http://www.martinszinte.net",
         "email": "mail@martinszinte.net",
         "affiliation": "CNRS, Institut des Neurosciences de la Timone, Marseille, 13008, France",
         "orcid": "0000-0003-2040-4005"
@@ -1275,7 +1273,7 @@
     },
     "dboas": {
         "name": "David Boas",
-        "blog": "bu.edu/neurophotonics",
+        "blog": "http://bu.edu/neurophotonics",
         "email": "dboas@bu.edu",
         "affiliation": "Boston University, Biomedical Engineering, Boston, MA 02215 USA",
         "orcid": "0000-0002-6709-7711"
@@ -1314,5 +1312,29 @@
         "affiliation": "Technical University of Berlin, Department of biopsychology and neuroergonomics, Berlin, 10623, Germany",
         "blog": "https://github.com/sjeung",
         "email": "seinjeung@gmail.com"
+    },
+    "wadqc": {
+        "name": "Joost Kuijer",
+        "orcid": "0000-0002-4181-0427",
+        "blog": "https://github.com/wadqc",
+        "email": "jpa.kuijer@amsterdamumc.nl",
+        "affiliation": "Amsterdam University Medical Centers, Radiology and Nuclear Medicine, Amsterdam, 1081 HV, The Netherlands"
+    },
+    "xiangruili": {
+        "name": "Xiangrui Li",
+        "blog": "https://github.com/xiangruili",
+        "email": "xiangrui.li@gmail.com",
+        "affiliation": "The Ohio State University"
+    },
+    "peerherholz": {
+        "name": "Peer Herholz",
+        "blog": "https://peerherholz.github.io/",
+        "email": "herholz.peer@gmail.com",
+        "affiliation": "NeuroDataScience - ORIGAMI lab, McConnell Brain Imaging Centre, Montreal Neurological Institute and Hospital, McGill University, Montreal, Québec, Canada",
+        "orcid": "0000-0002-9840-6257"
+    },
+    "suyashdb": {
+        "name": "Suyash Bhogawar",
+        "blog": "https://www.linkedin.com/in/suyashb/"
     }
 }
