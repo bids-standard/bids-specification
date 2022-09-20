@@ -1,8 +1,7 @@
 ---
 Participants:
   selectors:
-    - suffix == "participants"
-    - extension == ".tsv"
+    - path == "participants.tsv"
   initial_columns:
     - participant_id
   columns:
@@ -20,8 +19,7 @@ Participants:
 
 Samples:
   selectors:
-    - suffix == "samples"
-    - extension == ".tsv"
+    - path == "samples.tsv"
   columns:
     sample_id:
       level: required

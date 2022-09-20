@@ -93,7 +93,6 @@ def combine_extensions(lst, html_path=None, heading_lst=None, pdf_format=True):
                 new_lst.append(temp_item)
                 items_to_remove.append(item)
                 items_to_remove.append(item.replace(ext, ""))
-                continue
 
     heading_lst = [head for i, head in enumerate(heading_lst) if lst[i] not in items_to_remove]
     items_to_add = [item for item in lst if item not in items_to_remove]
@@ -253,34 +252,25 @@ def describe_valid_values(definition):
             enum_values = [f'`"{v}"`' for v in enum_values]
             description = f"Must be one of: {', '.join(enum_values)}."
 
+    minstr = maxstr = minmaxstr = ""
     elif definition["type"] in ("integer", "number"):
         if "minimum" in definition.keys():
             minstr = f"greater than or equal to {definition['minimum']}"
         elif "exclusiveMinimum" in definition.keys():
             minstr = f"greater than {definition['exclusiveMinimum']}"
-        else:
-            minstr = ""
 
         if "maximum" in definition.keys():
             maxstr = f"less than or equal to {definition['maximum']}"
         elif "exclusiveMaximum" in definition.keys():
             maxstr = f"less than {definition['exclusiveMaximum']}"
-        else:
-            maxstr = ""
 
         if minstr and maxstr:
             minmaxstr = f"{minstr} and {maxstr}"
-        elif minstr:
-            minmaxstr = minstr
-        elif maxstr:
-            minmaxstr = maxstr
-        else:
-            minmaxstr = ""
+        elif minstr or maxstr:
+            minmaxstr = minstr + maxstr
 
         if minmaxstr:
             description = f"Must be a number {minmaxstr}."
-        else:
-            description = ""
 
     return description
 
@@ -308,8 +298,7 @@ def get_relpath(src_path):
 def normalize_requirements(text):
     for level in ("optional", "recommended", "required", "deprecated"):
         # Replace both "optional" and "Optional" with "OPTIONAL"
-        text = text.replace(level, level.upper())
-        text = text.replace(level[0].upper() + level[1:], level.upper())
+        text = text.replace(level.title(), level).replace(level, level.upper())
     return text
 
 

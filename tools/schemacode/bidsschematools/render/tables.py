@@ -85,7 +85,7 @@ def _make_object_table(
         requirement_info = utils.normalize_requirements(requirement_info)
         requirement_info = requirement_info.replace(
             "DEPRECATED",
-            "[DEPRECATED](/02-common-principles.html#definitions)",
+            "[DEPRECATED](SPEC_ROOT/02-common-principles.html#definitions)",
         )
 
         type_string = utils.resolve_metadata_type(subschema[element])
