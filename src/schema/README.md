@@ -37,7 +37,7 @@ are defined;
 and `meta`, where definitions useful for interpreting the schema are defined.
 
 Each file is made up of YAML data, most often an *object*.
-To take an example, the file `rules/checks/mri.yaml` contains the contents:
+For example, the file `rules/checks/mri.yaml` contains the contents:
 
 ```YAML
 ---
@@ -56,7 +56,7 @@ PhasePartUnits:
     - intersects([sidecar.Units], ["rad", "arbitrary"])
 ```
 
-When we wish to refer to a file, we might write `rules/checks/mri.yaml`.
+When we wish to refer to a file we might write `rules/checks/mri.yaml`.
 Alternately, we can use `rules.checks.mri` to refer to the object contained by the
 file.
 Using this notation, the *qualified name*, the contents of an entire directory or a
@@ -77,9 +77,9 @@ These qualified names may be used in this README, as well as in *references* and
 
 ### Description formatting
 
-Many objects throughout the schema have `description` fields, which will typically be
+Many objects throughout the schema have a `description` field, which will typically be
 rendered somewhere in the specification. Because the specification is written in
-[Markdown](https://en.wikipedia.org/wiki/Markdown), these description fields may also
+[Markdown](https://en.wikipedia.org/wiki/Markdown), these `description` fields may also
 contain Markdown, including links to other locations in the specification.
 
 Because the same description may be used in multiple locations, a mechanism is needed
@@ -89,7 +89,7 @@ For example, to link to the
 [Definitions](https://bids-specification.readthedocs.io/en/stable/02-common-principles.html#definitions)
 section of
 [Common principles](https://bids-specification.readthedocs.io/en/stable/02-common-principles.html),
-use the path `SPEC_ROOT/02-common-principles.md#definitions`, e.g.,
+use the path `SPEC_ROOT/02-common-principles.md#definitions`:
 
 ```Markdown
 [Common principles - Definitions](SPEC_ROOT/02-common-principles.md#definitions)
@@ -411,7 +411,7 @@ reference__ieeg:
         - n/a
 ```
 
-#### Valid fields for definitions
+#### Valid fields for definitions by sub-namespace
 
 -   `objects.common_principles`
     | Field          | Description         |
