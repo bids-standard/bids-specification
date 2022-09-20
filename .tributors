@@ -64,7 +64,8 @@
         "name": "Robert Oostenveld",
         "blog": "https://robertoostenveld.nl",
         "affiliation": "Radboud University, Donders Institute, Nijmegen, 6525 EN, The Netherlands",
-        "orcid": "0000-0002-1974-1293"
+        "orcid": "0000-0002-1974-1293",
+        "email": "r.oostenveld@donders.ru.nl"
     },
     "oesteban": {
         "name": "Oscar Esteban",
@@ -90,7 +91,8 @@
         "name": "Thomas E. Nichols",
         "blog": "http://nisox.org",
         "affiliation": "University of Oxford, Big Data Institute, Oxford, OX3 7LF, UK ",
-        "orcid": "0000-0002-4516-5103"
+        "orcid": "0000-0002-4516-5103",
+        "email": "thomas.nichols@BDI.OX.AC.UK"
     },
     "choldgraf": {
         "name": "Chris Holdgraf",
@@ -217,7 +219,8 @@
         "bio": "PhD student at the Université de Sherbrooke",
         "blog": "https://github.com/jhlegarreta",
         "affiliation": "Université de Sherbrooke, Department of Computer Science, Sherbrooke, (Québec), J1K 2R1, Canada",
-        "orcid": "0000-0002-9661-1396"
+        "orcid": "0000-0002-9661-1396",
+        "email": "jon.haitz.legarreta@gmail.com"
     },
     "VisLab": {
         "name": "Kay Robbins",
@@ -287,7 +290,10 @@
     },
     "patsycle": {
         "name": "Patricia Clement",
-        "blog": "https://github.com/patsycle"
+        "blog": "https://github.com/patsycle",
+        "email": "patricia.clement@ugent.be",
+        "affiliation": "Department of Medical Imaging / Department of Medical Sciences,  Ghent University Hospital / Ghent University, Ghent, Belgium",
+        "orcid": "0000-0001-8546-0134"
     },
     "ghisvail": {
         "name": "Ghislain Vaillant",
@@ -304,8 +310,10 @@
     },
     "arokem": {
         "name": "Ariel Rokem",
-        "email": "arokem@gmail.com",
-        "blog": "http://arokem.org"
+        "email": "arokem@uw.edu",
+        "blog": "https://arokem.org/",
+        "affiliation": "University of Washington, Psychology, Seattle, WA, 98107, United States of America  ",
+        "orcid": "0000-0003-0679-1985"
     },
     "erdalkaraca": {
         "name": "Erdal Karaca",
@@ -460,9 +468,6 @@
     "david_alsop": {
         "name": "David Alsop"
     },
-    "david_boas": {
-        "name": "David Boas"
-    },
     "david_mcalpine": {
         "name": "David McAlpine"
     },
@@ -504,9 +509,6 @@
         "orcid": "0000-0002-5251-587X",
         "affiliation": "Lund University"
     },
-    "filippo_maria_castelli": {
-        "name": "Filippo Maria Castelli"
-    },
     "françois_tadel": {
         "name": "François Tadel"
     },
@@ -529,7 +531,10 @@
         "orcid": "0000-0001-9661-2121"
     },
     "hamish_innes-brown": {
-        "name": "Hamish Innes-Brown"
+        "name": "Hamish Innes-Brown",
+        "email": "hain@eriksholm.com",
+        "affiliation": "Oticon A/S, Eriksholm Research Centre, Snekkersten, Denmark",
+        "orcid": "0000-0002-1512-2823"
     },
     "hanzhang_lu": {
         "name": "Hanzhang Lu",
@@ -594,9 +599,6 @@
         "orcid": "0000-0001-9086-8484",
         "affiliation": "Loyola University Chicago"
     },
-    "joseph_woods": {
-        "name": "Joseph Woods"
-    },
     "kai_j_miller": {
         "name": "Kai J. Miller"
     },
@@ -607,7 +609,8 @@
         "name": "Kristofer Bouchard",
         "affiliation": "LBNL, Scientific Data Division",
         "orcid": "0000-0002-1974-4603",
-        "blog": "https://bouchardlab.lbl.gov"
+        "blog": "https://bouchardlab.lbl.gov",
+        "email": "kristofer.bouchard@gmail.com"
     },
     "laura_and_john_arnold_foundation": {
         "name": "Laura and John Arnold Foundation"
@@ -615,16 +618,12 @@
     "leandro_beltrachini": {
         "name": "Leandro Beltrachini",
         "affiliation": "Cardiff University, Cardiff University Brain Research Imaging Centre (CUBRIC), UK",
-        "orcid": "0000-0003-4602-1416"
+        "orcid": "0000-0003-4602-1416",
+        "email": "BeltrachiniL@cardiff.ac.uk"
     },
     "lennart_walger": {
         "name": "Lennart Walger",
         "orcid": "0000-0002-3300-6877"
-    },
-    "luca_pollonini": {
-        "name": "Luca Pollonini",
-        "orcid": "0000-0003-2955-6355",
-        "affiliation": "University of Houston"
     },
     "luis_hernandez-garcia": {
         "name": "Luis Hernandez-Garcia"
@@ -732,11 +731,6 @@
         "name": "Sasha D'Ambrosio",
         "orcid": "0000-0002-6600-6419"
     },
-    "sein_jeung": {
-        "name": "Sein Jeung",
-        "orcid": "0000-0002-0247-087X",
-        "affiliation": "Technical University of Berlin"
-    },
     "shashank_bansal": {
         "name": "Shashank Bansal"
     },
@@ -820,7 +814,8 @@
         "name": "Alexander L. Cohen",
         "blog": "https://bchcohenlab.com",
         "affiliation": "Boston Children's Hospital, Department of Neurology, Boston, MA, 02115, USA",
-        "orcid": "0000-0001-6557-5866"
+        "orcid": "0000-0001-6557-5866",
+        "email": "alexander.cohen2@childrens.harvard.edu"
     },
     "agramfort": {
         "name": "Alexandre Gramfort",
@@ -833,7 +828,8 @@
         "name": "Arnaud Delorme",
         "blog": "https://www.arnauddelorme.com",
         "affiliation": "UCSD, INC, San Diego, CA, 92093, USA",
-        "orcid": "0000-0002-0799-3557"
+        "orcid": "0000-0002-0799-3557",
+        "email": "adelorme@ucsd.edu"
     },
     "bthirion": {
         "name": "Bertrand Thirion",
@@ -856,13 +852,15 @@
         "name": "Christophe Phillips",
         "blog": "https://www.uliege.be/cms/c_9054334/en/directory/?uid=U016440",
         "affiliation": "University of Liège, GIGA CRC in vivo imaging, Liège, 4000, Belgium",
-        "orcid": "0000-0002-4990-425X"
+        "orcid": "0000-0002-4990-425X",
+        "email": "c.phillips@uliege.be"
     },
     "CPernet": {
         "name": "Cyril Pernet",
         "blog": "https://cpernet.github.io/",
         "affiliation": "Neurobiology Research Unit,  Copenhagen University Hospital Rigshospitalet, DK-2100 Copenhagen, Denmark",
-        "orcid": "0000-0003-4010-4632"
+        "orcid": "0000-0003-4010-4632",
+        "email": "wamcyril@gmail.com"
     },
     "dlevitas": {
         "name": "Dan Levitas",
@@ -875,7 +873,8 @@
         "name": "David Groppe",
         "blog": "https://github.com/dmgroppe",
         "affiliation": "Persyst Development Corporation, R&D, Toronto, ON M4K 1W8 Canada",
-        "orcid": "0000-0002-3282-2514"
+        "orcid": "0000-0002-3282-2514",
+        "email": "david.m.groppe@gmail.com"
     },
     "dbkeator": {
         "name": "David Keator",
@@ -904,7 +903,8 @@
         "name": "Giacomo Mazzamuto",
         "blog": "https://github.com/gmazzamuto",
         "affiliation": "National Institute of Optics, National Research Council",
-        "orcid": "0000-0003-3077-3904"
+        "orcid": "0000-0003-3077-3904",
+        "email": "mazzamuto@lens.unifi.it"
     },
     "Gilles86": {
         "name": "Gilles de Hollander",
@@ -922,15 +922,17 @@
     },
     "HenkMutsaerts": {
         "name": "Henk Mutsaerts",
-        "blog": "https://github.com/HenkMutsaerts",
+        "blog": "www.ExploreASL.org",
         "orcid": "0000-0003-0894-0307",
-        "affiliation": "Vrije Universiteit Amsterdam"
+        "affiliation": "Amsterdam University Medical Centers, Radiology and Nuclear Department, Amsterdam, 1013 EG, The Netherlands",
+        "email": "h.j.mutsaerts@amsterdamumc.nl"
     },
     "jan-petr": {
         "name": "Jan Petr",
         "blog": "https://www.exploreasl.org",
         "affiliation": "Helmholtz-Zentrum Dresden-Rossendorf, Dresden, 01309, Germany",
-        "orcid": "0000-0002-3201-6002"
+        "orcid": "0000-0002-3201-6002",
+        "email": "j.petr@hzdr.de"
     },
     "jmumford": {
         "name": "Jeanette Mumford",
@@ -940,7 +942,8 @@
         "name": "Julia Sprenger",
         "blog": "https://github.com/juliasprenger",
         "affiliation": "Institute de Neuroscience de la Timone, CNRS, Marseille, 13005, France",
-        "orcid": "0000-0002-9986-7477"
+        "orcid": "0000-0002-9986-7477",
+        "email": "julia.sprenger@univ-amu.fr"
     },
     "JuliusWelzel": {
         "name": "Julius Welzel",
@@ -959,13 +962,15 @@
         "name": "Marco Castellaro",
         "blog": "https://github.com/marcocastellaro",
         "affiliation": "University of Padova, Department of Information Engineering, Padova, Italy",
-        "orcid": "0000-0002-1203-2670"
+        "orcid": "0000-0002-1203-2670",
+        "email": "marco.castellaro@gmail.com"
     },
     "maigva": {
         "name": "Maria de la Iglesia",
         "blog": "https://bimcv.cipf.es",
         "affiliation": "FISABIO, Join Unit Biomedical Imagin, Valencia, Valencia, 46006, Spain",
-        "orcid": "0000-0003-4505-8399"
+        "orcid": "0000-0003-4505-8399",
+        "email": "delaiglesia_mar@gva.es"
     },
     "markmikkelsen": {
         "name": "Mark Mikkelsen",
@@ -978,7 +983,8 @@
         "name": "Mathias Goncalves",
         "blog": "https://github.com/mgxd",
         "affiliation": "Psychology Department, Stanford University, Palo Alto, CA, 94305, USA",
-        "orcid": "0000-0002-7252-7771"
+        "orcid": "0000-0002-7252-7771",
+        "email": "mathiasg@stanford.edu"
     },
     "mih": {
         "name": "Michael Hanke",
@@ -1002,7 +1008,8 @@
         "name": "Richard N. Henson",
         "blog": "http://www.mrc-cbu.cam.ac.uk/people/rik.henson/personal",
         "affiliation": "MRC CBU, University of Cambridge, UK",
-        "orcid": "0000-0002-0712-2639"
+        "orcid": "0000-0002-0712-2639",
+        "email": "Rik.Henson@mrc-cbu.cam.ac.uk"
     },
     "r03ert0": {
         "name": "Roberto Toro",
@@ -1012,7 +1019,8 @@
         "name": "Russell A. Poldrack",
         "blog": "http://www.poldracklab.org",
         "affiliation": "Stanford University, Stanford, CA 94305 USA",
-        "orcid": "0000-0001-6755-0259"
+        "orcid": "0000-0001-6755-0259",
+        "email": "russpold@stanford.edu"
     },
     "sjoerdvos": {
         "name": "Sjoerd B. Vos",
@@ -1029,13 +1037,15 @@
         "name": "Tibor Auer",
         "blog": "https://tiborauer.github.io",
         "affiliation": "University of Surrey, School of Psychology, Guildford, GU2 7XH, United Kingdom",
-        "orcid": "0000-0001-5153-1424"
+        "orcid": "0000-0001-5153-1424",
+        "email": "tibor.auer@gmail.com"
     },
     "timo-berg": {
         "name": "Timotheus Berg",
         "blog": "https://github.com/timo-berg",
         "affiliation": "TU Berlin, Biological Psychology and Neuroergonomics, Berlin, 10623, Germany",
-        "orcid": "0000-0002-0746-3679"
+        "orcid": "0000-0002-0746-3679",
+        "email": "timo.berg@campus.tu-berlin.de"
     },
     "dickscheid": {
         "name": "Timo Dickscheid",
@@ -1052,7 +1062,8 @@
         "name": "Gang Chen",
         "blog": "https://github.com/afni-gangc",
         "affiliation": "National Institutes of Health, Scientific and Statistical Computing Core, NIMH, Bethesda, MD 20892, USA",
-        "orcid": "0000-0002-2960-089X"
+        "orcid": "0000-0002-2960-089X",
+        "email": "gangchen@mail.nih.gov"
     },
     "GNilsonne": {
         "name": "Gustav Nilsonne",
@@ -1060,12 +1071,6 @@
         "affiliation": "Karolinska Institutet, Department of Clinical Neuroscience, Stockholm, 17177, Sweden",
         "blog": "https://nilsonne.net/about/",
         "email": "gustav.nilsonne@ki.se"
-    },
-    "BrainModes/": {
-        "name": "Michael Schirner",
-        "orcid": "0000-0001-8227-8476",
-        "blog": "https://www.brainsimulation.org",
-        "affiliation": "Charité—Universitätsmedizin Berlin, Department of Neurology, Berlin, 10115, Germany"
     },
     "wanderine": {
         "name": "Anders Eklund",
@@ -1168,7 +1173,10 @@
     },
     "mszinte": {
         "name": "Martin Szinte",
-        "blog": "https://github.com/mszinte"
+        "blog": "www.martinszinte.net",
+        "email": "mail@martinszinte.net",
+        "affiliation": "CNRS, Institut des Neurosciences de la Timone, Marseille, 13008, France",
+        "orcid": "0000-0003-2040-4005"
     },
     "mathieuboudreau": {
         "name": "Mathieu Boudreau",
@@ -1260,6 +1268,51 @@
     },
     "spisakt": {
         "name": "Tamas Spisak",
-        "blog": "https://github.com/spisakt"
+        "blog": "https://pni-lab.github.io/",
+        "email": "tamas.spisak@uk-essen.de",
+        "affiliation": "University Hospital Essen, Center for Translational and Behavioral Neuroscience, Department of Diagnostic and Interventional Radiology and Neuroradiology",
+        "orcid": "0000-0002-2942-0821"
+    },
+    "dboas": {
+        "name": "David Boas",
+        "blog": "bu.edu/neurophotonics",
+        "email": "dboas@bu.edu",
+        "affiliation": "Boston University, Biomedical Engineering, Boston, MA 02215 USA",
+        "orcid": "0000-0002-6709-7711"
+    },
+    "filippocastelli": {
+        "name": "Filippo Maria Castelli",
+        "blog": "https://github.com/filippocastelli",
+        "email": "castelli@lens.unifi.it",
+        "affiliation": "University of Florence, European Laboratory for NonLinear Spectroscopy, Sesto Fiorentino, (FI), 50019, Italy",
+        "orcid": "0000-0001-8170-8905"
+    },
+    "JosephGWoods": {
+        "name": "Joseph Woods",
+        "blog": "https://www.ndcn.ox.ac.uk/team/joseph-woods",
+        "email": "joseph.woods@ndcn.ox.ac.uk",
+        "affiliation": "University of Oxford, Nuffield Department of Clinical Neuroscience, Oxford, UK",
+        "orcid": "0000-0002-0329-824X"
+    },
+    "lpollonini": {
+        "name": "Luca Pollonini",
+        "orcid": "0000-0003-2955-6355",
+        "affiliation": "University of Houston, Dept. of Engineering Technology, Houston TX 77204, USA",
+        "blog": "https://polloninilab.com",
+        "email": "lpollonini@uh.edu"
+    },
+    "BrainModes": {
+        "name": "Michael Schirner",
+        "orcid": "0000-0001-8227-8476",
+        "blog": "https://www.brainsimulation.org",
+        "affiliation": "Charité—Universitätsmedizin Berlin, Department of Neurology, Berlin, 10115, Germany",
+        "email": "michael.schirner@charite.de"
+    },
+    "sjeung": {
+        "name": "Sein Jeung",
+        "orcid": "0000-0002-0247-087X",
+        "affiliation": "Technical University of Berlin, Department of biopsychology and neuroergonomics, Berlin, 10623, Germany",
+        "blog": "https://github.com/sjeung",
+        "email": "seinjeung@gmail.com"
     }
 }

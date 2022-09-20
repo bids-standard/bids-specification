@@ -240,7 +240,7 @@
             "contributions": [
                 "doc"
             ],
-            "profile": "http://arokem.org",
+            "profile": "https://arokem.org/",
             "avatar_url": [
                 "https://avatars.githubusercontent.com/u/118582?v=4"
             ]
@@ -573,10 +573,12 @@
         },
         {
             "name": "David Boas",
-            "login": "david_boas",
+            "login": "dboas",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "bu.edu/neurophotonics",
+            "avatar_url": "https://avatars.githubusercontent.com/u/30025716?v=4"
         },
         {
             "name": "David Groppe",
@@ -828,11 +830,13 @@
         },
         {
             "name": "Filippo Maria Castelli",
-            "login": "filippo_maria_castelli",
+            "login": "filippocastelli",
             "contributions": [
                 "doc",
                 "data"
-            ]
+            ],
+            "profile": "https://github.com/filippocastelli",
+            "avatar_url": "https://avatars.githubusercontent.com/u/37574218?v=4"
         },
         {
             "login": "francopestilli",
@@ -1059,7 +1063,7 @@
                 "talk",
                 "userTesting"
             ],
-            "profile": "https://github.com/HenkMutsaerts",
+            "profile": "www.ExploreASL.org",
             "avatar_url": "https://avatars.githubusercontent.com/u/27774254?v=4"
         },
         {
@@ -1362,10 +1366,12 @@
         },
         {
             "name": "Joseph Woods",
-            "login": "joseph_woods",
+            "login": "JosephGWoods",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://www.ndcn.ox.ac.uk/team/joseph-woods",
+            "avatar_url": "https://avatars.githubusercontent.com/u/62885897?v=4"
         },
         {
             "login": "guiomar",
@@ -1536,10 +1542,12 @@
         },
         {
             "name": "Luca Pollonini",
-            "login": "luca_pollonini",
+            "login": "lpollonini",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://polloninilab.com",
+            "avatar_url": "https://avatars.githubusercontent.com/u/17887222?v=4"
         },
         {
             "name": "Luis Hernandez-Garcia",
@@ -1678,7 +1686,7 @@
             "contributions": [
                 "doc"
             ],
-            "profile": "https://github.com/mszinte",
+            "profile": "www.martinszinte.net",
             "avatar_url": "https://avatars.githubusercontent.com/u/22450126?v=4"
         },
         {
@@ -1835,7 +1843,7 @@
         },
         {
             "name": "Michael Schirner",
-            "login": "BrainModes/",
+            "login": "BrainModes",
             "contributions": [
                 "doc"
             ],
@@ -2252,10 +2260,12 @@
         },
         {
             "name": "Sein Jeung",
-            "login": "sein_jeung",
+            "login": "sjeung",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "profile": "https://github.com/sjeung",
+            "avatar_url": "https://avatars.githubusercontent.com/u/28531404?v=4"
         },
         {
             "name": "Shashank Bansal",
@@ -2401,7 +2411,7 @@
             "contributions": [
                 "doc"
             ],
-            "profile": "https://github.com/spisakt",
+            "profile": "https://pni-lab.github.io/",
             "avatar_url": "https://avatars.githubusercontent.com/u/21124251?v=4"
         },
         {
