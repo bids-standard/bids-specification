@@ -28,6 +28,238 @@ in [Derived dataset and pipeline description][derived-dataset-description].
     to ensure that the values are still relevant and appropriate to the type of
     output data.
 
+## Model-based grouping of derivatives
+
+Here, a *model* is defined as a process via which parameters that describe
+the data are specified (consistent with
+[this definition](https://plato.stanford.edu/entries/models-science/#DescEqua)).
+This could include, but is not limited to things like:
+
+1.  The beta weights for different kinds of events in an event-related design
+    in fMRI.
+
+1.  The six components of the diffusion tensor in DTI.
+
+1.  Etc.
+
+Model-based derivatives SHOULD be saved in a directory named `model-<model_id>`
+that is placed under the datatype from which the model was derived.
+
+{{ MACROS___make_filetree_example(
+
+   {
+   "<pipeline_name>": {
+      "sub-<label>": {
+         "<datatype>": {
+            "model-<label>": {
+                "<model files>": ""
+            }
+         }
+      }
+   }
+   }
+
+) }}
+
+The specification of the contents of the `model-<label>` directory (that is,
+`<model files>`) is
+[introduced below](#Model-fit-parameters-and-model-derived-parameters).
+
+### Models file
+
+Template:
+
+{{ MACROS___make_filetree_example(
+
+   {
+   "<pipeline_name>": {
+      "sub-<label>": {
+         "<datatype>": {
+            "model-<label>": {
+                "<model files>": ""
+            },
+            "sub-<label>_models.tsv": "",
+            "sub-<label>_models.json": ""
+         }
+      }
+   }
+   }
+
+) }}
+
+A metadata file, `models.tsv` is OPTIONAL, accompanied by
+a `models.json` file that is REQUIRED, if and only if `models.tsv` is present.
+The purpose of the RECOMMENDED `models.tsv` file is to index the available
+`<model_id>` labels and describe properties of the models such as the datatype
+from which they are derived and a human-readable description of each model.
+
+If this file exists, it MUST contain the column `model_id`,
+which MUST consist of `model-<label>` values identifying one row for each model,
+followed by a list of optional columns describing models.
+Each model MUST be described by one and only one row.
+
+The RECOMMENDED `datatype` column SHOULD be one of the available
+[data type identifiers](../02-common-principles.md#definitions).
+
+The RECOMMENDED `description` column SHOULD be string containing a short description
+of the model. It is RECOMMENDED that the description is a single line of no more than
+50 words. It is also RECOMMENDED to avoid special characters (e.g., new lines, tabs).
+
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/objects/columns.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_columns_table(
+   {
+      "model_id": ("REQUIRED", "There MUST be exactly one row for each model."),
+      "datatype": "RECOMMENDED",
+      "description__models": "RECOMMENDED",
+   }
+) }}
+
+In this case, the `models.tsv` file could contain the following content:
+
+```Text
+model_id    datatype    description
+model-DTI dwi Diffusion tensor model.
+model-VGG16   func    A VGG convolutional neural network.
+```
+
+It is RECOMMENDED to accompany each `models.tsv` file with a sidecar
+`models.json` file to describe the TSV column names and properties of their values (see also
+the [section on tabular files](../02-common-principles.md#tabular-files)).
+Such sidecar files are needed to interpret the data, especially so when
+custom columns are defined beyond `model_id`, `datatypes`, `description`.
+
+`models.json` example for a `models.tsv` file that has an extra column with name `runtime`:
+
+```JSON
+{
+    "runtime": {
+        "Description": "elapsed time for the execution of the model",
+        "Units": "seconds"
+    }
+}
+```
+
+### Definitions
+
+**Model-fit parameters.** Parameters that get calculated at model specification time.
+
+**Model-derived parameters.** Parameters that are calculated subsequently.
+
+### Model parameters specification
+
+Derivatives from modeling steps MUST use the suffixes `mfp` and `mdp`, to denote
+*model-fit parameters* and *model-derived parameters* respectively.
+
+<!--
+This block generates a suffix table.
+The definitions of these fields can be found in
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_suffix_table(
+      [
+         "mfp",
+         "mdp",
+      ]
+   )
+}}
+
+In its simplest form, with only one file storing model-fit parameters and
+one storing model-derived parameters:
+
+{{ MACROS___make_filetree_example(
+
+   {
+   "<pipeline_name>": {
+      "sub-<label>": {
+         "<datatype>": {
+            "model-<label>": {
+                "sub-01_model-<label>_mfp.<ext>": "",
+                "sub-01_model-<label>_mfp.json": "",
+                "sub-01_model-<label>_param-<label>_mdp.<ext>": "",
+                "sub-01_model-<label>_param-<label>_mdp.json": ""
+            },
+            "sub-<label>_models.tsv": "",
+            "sub-<label>_models.json": ""
+         }
+      }
+   }
+   }
+
+) }}
+
+With multiple files storing model-fit parameters, and multiple model-derived
+parameter files:
+
+{{ MACROS___make_filetree_example(
+
+   {
+   "<pipeline_name>": {
+      "sub-<label>": {
+         "<datatype>": {
+            "model-<label>": {
+                "sub-01_model-<label>_param-<label1>_mfp.<ext>": "",
+                "sub-01_model-<label>_param-<label1>_mfp.json": "",
+                "sub-01_model-<label>_param-<label2>_mfp.<ext>": "",
+                "sub-01_model-<label>_param-<label2>_mfp.json": "",
+                "sub-01_model-<label>_param-<labela>_mdp.<ext>": "",
+                "sub-01_model-<label>_param-<labela>_mdp.json": "",
+                "sub-01_model-<label>_param-<labelb>_mdp.<ext>": "",
+                "sub-01_model-<label>_param-<labelb>_mdp.json": ""
+            },
+            "sub-<label>_models.tsv": "",
+            "sub-<label>_models.json": ""
+         }
+      }
+   }
+   }
+
+) }}
+
+### Example
+
+The contents of the `model-<model_id>/` folders can differ widely between models
+and modalities and are described in the relevant modality-specific derivative
+specifications. For a more concrete example, consider the following
+derivative dataset:
+
+{{ MACROS___make_filetree_example(
+
+   {
+   "my_pipeline-v2002a": {
+      "models.tsv": "",
+      "models.json": "",
+      "sub-01": {
+         "dwi": {
+            "model-DTI": {
+                "sub-01_model-DTI_param-tensor_mfp.nii.gz": "",
+                "sub-01_model-DTI_param-tensor_mfp.json": "",
+                "sub-01_model-DTI_param-S0_mfp.nii.gz": "",
+                "sub-01_model-DTI_param-S0_mfp.json": "",
+                "sub-01_model-DTI_param-fa_mdp.nii.gz": "",
+                "sub-01_model-DTI_param-fa_mdp.json": ""
+            },
+            "model-DTI_model.json": ""
+         },
+         "func": {
+            "model-VGG16": {
+                "sub-01_model-VGG16_param-all_mfp.h5": "",
+                "sub-01_model-VGG16_param-all_mfp.json": ""
+            },
+            "model-VGG16_model.json": ""
+         }
+      }
+   }
+   }
+
+) }}
+
 ## File naming conventions
 
 -   Filenames that are permissible for a raw BIDS data type have a privileged
