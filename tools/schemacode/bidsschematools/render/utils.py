@@ -212,10 +212,9 @@ def resolve_metadata_type(definition):
         string = " or ".join(substrings)
 
     else:
-        # A hack to deal with $ref in the current schema
-        print(f"Type could not be inferred for {definition['name']}")
-        pprint(definition)
-        string = "unknown"
+        # This clause should only catch $refs.
+        # The schema should be deferenced by this point, so $refs should not exist.
+        raise ValueError(f"Type could not be inferred for {definition['name']}")
 
     return string
 
