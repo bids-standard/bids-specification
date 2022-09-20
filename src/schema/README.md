@@ -376,16 +376,7 @@ In a few cases, two objects with the same name appear multiple times in the spec
 When this happens, it is preferred to find a common definition, and clarify it in the rules (see below).
 However, in some cases, the object description and permissible values differ, and it needs to be defined
 as two separate objects.
-The following conventions are used:
-
-1.  Each specific term takes on the form `<term>_<context>`, where `<term>` is the common name that
-    the two (or more) terms share, `<context>` indicates when the specific term applies.
-
-1.  If the `<term>` appears in `snake_case` (meaning it or similar objects may contain underscores),
-    then `<context>` begins with an extra `_`.
-
-For example, the TSV column `"reference"` means different things when used for EEG data, as compared to iEEG data.
-As such, there are two definitions in `columns.yaml` for the `"reference"` column: `"reference__eeg"` and `"reference__ieeg"`.
+Consider the following examples:
 
 ```yaml
 # reference column for channels.tsv files for EEG data
@@ -410,6 +401,18 @@ reference__ieeg:
       enum:
         - n/a
 ```
+
+Here, the TSV column `"reference"` means different things when used for EEG data,
+as compared to iEEG data, so two definitions are needed.
+Because columns use `snake_case` (meaning they can be expected to contain underscores),
+two underscores are needed to separate the column name from the string that indicates the use of the term.
+
+The convention can be summed up in the following rules:
+
+1.  Each specific term takes on the form `<term>_<context>`, where `<term>` is the common name that
+    the two (or more) terms share, `<context>` indicates when the specific term applies.
+
+1.  If the `<term>` appears in `snake_case` then `<context>` begins with an extra `_`.
 
 #### Valid fields for definitions by sub-namespace
 
