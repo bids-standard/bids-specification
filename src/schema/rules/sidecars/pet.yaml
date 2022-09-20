@@ -150,6 +150,9 @@ PETReconstruction:
       description_addendum: This partly matches the DICOM Tag (0054,1103) `Reconstruction Method`.
     ReconMethodParameterValues:
       level: required
+      level_addendum: |
+        Required if `ReconMethodParameterLabels` does not contain 'none', optional if 
+        no labels exist.
       description_addendum: This partly matches the DICOM Tag (0054,1103) `Reconstruction Method`.
     ReconFilterType:
       level: required
@@ -175,6 +178,14 @@ PETReconstruction:
     PromptRate: recommended
     SinglesRate: recommended
     RandomRate: recommended
+
+EntitiesReconMethodParameterValues:
+  selectors:
+    - modality == "pet"
+    - suffix == "pet"
+    - 'none' in sidecar.ReconMethodParameterLabels
+  fields:
+    ReconMethodParameterValues: optional
 
 BloodRecording:
   selectors:

@@ -2655,11 +2655,16 @@ ScatterFraction:
   display_name: Scatter Fraction
   description: |
     Scatter fraction for each frame (Units: 0-100%).
-  type: array
-  items:
-    type: number
+  anyOf:
+  - type: array
+    items:
+      type: number
+      minimum: 0
+      maximum: 100
+  - type: number
     minimum: 0
     maximum: 100
+
 SequenceName:
   name: SequenceName
   display_name: Sequence Name
