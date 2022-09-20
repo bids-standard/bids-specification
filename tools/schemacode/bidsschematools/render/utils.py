@@ -252,8 +252,9 @@ def describe_valid_values(definition):
             enum_values = [f'`"{v}"`' for v in enum_values]
             description = f"Must be one of: {', '.join(enum_values)}."
 
-    minstr = maxstr = minmaxstr = ""
     elif definition["type"] in ("integer", "number"):
+        minstr = maxstr = minmaxstr = ""
+
         if "minimum" in definition.keys():
             minstr = f"greater than or equal to {definition['minimum']}"
         elif "exclusiveMinimum" in definition.keys():
@@ -323,9 +324,6 @@ def num2words(integer, to="ordinal"):
     integer : int
     to : {"ordinal", "cardinal"}, optional
     """
-    if integer not in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]:
-        raise ValueError(f"Input {integer} is not supported.")
-
     if to == "ordinal":
         mapper = {
             1: "first",
@@ -353,4 +351,7 @@ def num2words(integer, to="ordinal"):
             10: "ten",
         }
 
-    return mapper[integer]
+    try:
+        return mapper[integer]
+    except KeyError:
+        raise ValueError(f"Input {integer} is not supported.")
