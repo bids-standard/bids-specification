@@ -160,8 +160,7 @@ references (the cases in which they are used will be presented later):
 
 ### Expressions
 
-In order to define a rule, we describe a limited language for boolean expressions,
-that is, having values of `true` or `false`.
+Rules definitions make use of a limited language of expressions that always evaluate to `true` or `false`.
 These expressions may be used as `selectors`, determining whether a rule applies,
 or `checks`, determining whether a rule is satisfied.
 
