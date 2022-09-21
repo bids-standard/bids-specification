@@ -271,7 +271,7 @@
                 "infra",
                 "code"
             ],
-            "profile": "http://cmn.nimh.nih.gov/dsst",
+            "profile": "https://github.com/Arshitha",
             "avatar_url": [
                 "https://avatars.githubusercontent.com/u/10297203?v=4"
             ]
@@ -1770,12 +1770,13 @@
         },
         {
             "name": "Max A. van den Boom",
-            "login": "max_a_van_den_boom",
+            "login": "MaxvandenBoom/",
             "contributions": [
                 "code",
                 "review",
                 "doc"
-            ]
+            ],
+            "profile": "https://github.com/MaxvandenBoom/"
         },
         {
             "login": "melanieganz",
@@ -2363,7 +2364,7 @@
         },
         {
             "login": "sebastientourbier",
-            "name": "Sébastien Tourbier",
+            "name": "Sebastien Tourbier",
             "contributions": [
                 "ideas",
                 "review",
@@ -2598,7 +2599,7 @@
             "contributions": [
                 "doc"
             ],
-            "profile": "https://github.com/vdcalhoun",
+            "profile": "http://trendscenter.org",
             "avatar_url": "https://avatars.githubusercontent.com/u/48063259?v=4"
         },
         {

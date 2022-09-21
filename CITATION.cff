@@ -94,6 +94,9 @@ authors:
 - given-names: Robert
   family-names: Smith
   website: http://www.mrtrix.org
+  orcid: https://orcid.org/0000-0003-3636-4642
+  affiliation: The Florey Institute of Neuroscience and Mental Health, Epilepsy Neuroinformatics
+    Laboratory, Heidelberg, Victoria, 3084, Australia
   email: robert.smith@florey.edu.au
 - given-names: Eduard
   family-names: Ort
@@ -149,11 +152,12 @@ authors:
 - given-names: Hugo
   family-names: Boniface
   website: https://github.com/Hboni
-- given-names: Sébastien
+- given-names: Sebastien
   family-names: Tourbier
   website: https://github.com/sebastientourbier
   orcid: https://orcid.org/0000-0002-4441-899X
-  affiliation: Centre Hospitalier Universitaire Vaudois (CHUV)
+  affiliation: Lausanne University Hospital (CHUV), Department of Clinical Neurosciences
+    (DNC), Lausanne, 1007, Switzerland
   email: sebastien.tourbier1@gmail.com
 - given-names: Teon
   family-names: L Brooks
@@ -234,12 +238,6 @@ authors:
   affiliation: Institute of Neuroscience and Medicine (INM-7), Research Center Juelich,
     Juelich, 52428, Germany
   email: adina.wagner@t-online.de
-- given-names: Arshitha
-  family-names: Basavaraj
-  website: http://cmn.nimh.nih.gov/dsst
-  orcid: https://orcid.org/0000-0002-6984-7969
-  affiliation: National Institute of Mental Health
-  email: arsh2794@gmail.com
 - given-names: ezemikulan
   website: https://github.com/ezemikulan
 - given-names: Jean-Baptiste
@@ -536,8 +534,6 @@ authors:
   family-names: J Shader
 - given-names: Maurice
   family-names: Pasternak
-- given-names: Max
-  family-names: A. van den Boom
 - given-names: Michael
   family-names: Chappell
 - given-names: Michael
@@ -919,6 +915,10 @@ authors:
 - given-names: Vince
   family-names: D. Calhoun
   website: https://github.com/vdcalhoun
+  affiliation: Tri-institutional Center for Translational Research in Neuroimaging
+    and Data Science (TReNDS), Georgia State, Georgia Tech, and Emory, Atlanta, GA
+    30030
+  email: vcalhoun@gsu.edu
 - given-names: Alexandru
   family-names: Foias
   website: https://github.com/alexfoias
@@ -1098,3 +1098,15 @@ authors:
 - given-names: Suyash
   family-names: Bhogawar
   website: https://www.linkedin.com/in/suyashb/
+- given-names: Max
+  family-names: A. van den Boom
+  website: https://github.com/MaxvandenBoom/
+  orcid: https://orcid.org/0000-0001-5481-1659
+  affiliation: Mayo Clinic, Department of neurosurgery, Rochester, MN, USA
+  email: m.a.vandenboom84@gmail.com
+- given-names: Arshitha
+  family-names: Basavaraj
+  website: https://github.com/Arshitha
+  orcid: https://orcid.org/0000-0002-6984-7969
+  affiliation: NIMH, Data Science and Sharing Team, Bethesda, MD, 20892, USA
+  email: arsh2794@gmail.com

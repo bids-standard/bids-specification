@@ -24,7 +24,10 @@ def rename_columns(df):
     return df
 
 
-def return_this_contributor(tsv, name):
+def return_this_contributor(tsv, name: str):
+
+    name = name.rstrip()
+
     github = tsv[tsv.name == name].github.values[0]
     if github in ["nan"] or isinstance(github, (float)):
         github = None
@@ -94,7 +97,7 @@ def main():
 
     tributors = load_tributors(tributors_file)
     tributors_keys = list(tributors.keys())
-    tributors_names = [tributors[x]["name"] for x in tributors]
+    tributors_names = [tributors[x]["name"].rstrip() for x in tributors]
     # print(tributors_keys)
     # print(tributors_names)
 
@@ -162,10 +165,10 @@ def main():
                     "https://orcid.org/", ""
                 )
 
-            print(f"\n[cyan]{name.upper()}[/cyan]")
-            print(this_contributor)
-            print(tributors[key_tributor])
-            print(allcontrib["contributors"][index_allcontrib])
+            # print(f"\n[cyan]{name.upper()}[/cyan]")
+            # print(this_contributor)
+            # print(tributors[key_tributor])
+            # print(allcontrib["contributors"][index_allcontrib])
 
     allcontrib_names = [x["name"] for x in allcontrib["contributors"]]
     tributors_names = [tributors[x]["name"] for x in tributors]

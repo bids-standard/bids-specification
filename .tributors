@@ -81,7 +81,9 @@
     "Lestropie": {
         "name": "Robert Smith",
         "email": "robert.smith@florey.edu.au",
-        "blog": "http://www.mrtrix.org"
+        "blog": "http://www.mrtrix.org",
+        "affiliation": "The Florey Institute of Neuroscience and Mental Health, Epilepsy Neuroinformatics Laboratory, Heidelberg, Victoria, 3084, Australia",
+        "orcid": "0000-0003-3636-4642"
     },
     "eort": {
         "name": "Eduard Ort",
@@ -155,11 +157,11 @@
         "blog": "https://github.com/Hboni"
     },
     "sebastientourbier": {
-        "name": "Sébastien Tourbier",
+        "name": "Sebastien Tourbier",
         "email": "sebastien.tourbier1@gmail.com",
         "bio": "Scientist with special interests in computational image analysis and reproducible workflows with medical application",
         "orcid": "0000-0002-4441-899X",
-        "affiliation": "Centre Hospitalier Universitaire Vaudois (CHUV)",
+        "affiliation": "Lausanne University Hospital (CHUV), Department of Clinical Neurosciences (DNC), Lausanne, 1007, Switzerland",
         "blog": "https://github.com/sebastientourbier"
     },
     "teonbrooks": {
@@ -264,14 +266,6 @@
         "blog": "https://www.adina-wagner.com",
         "orcid": "0000-0003-2917-3450",
         "affiliation": "Institute of Neuroscience and Medicine (INM-7), Research Center Juelich, Juelich, 52428, Germany"
-    },
-    "Arshitha": {
-        "name": "Arshitha Basavaraj",
-        "email": "arsh2794@gmail.com",
-        "bio": "Data Scientist ",
-        "blog": "http://cmn.nimh.nih.gov/dsst",
-        "orcid": "0000-0002-6984-7969",
-        "affiliation": "National Institute of Mental Health"
     },
     "ezemikulan": {
         "name": "ezemikulan",
@@ -665,9 +659,6 @@
     },
     "maurice_pasternak": {
         "name": "Maurice Pasternak"
-    },
-    "max_a_van_den_boom": {
-        "name": "Max A. van den Boom"
     },
     "michael_chappell": {
         "name": "Michael Chappell"
@@ -1127,7 +1118,9 @@
     },
     "vdcalhoun": {
         "name": "Vince D. Calhoun",
-        "blog": "https://github.com/vdcalhoun"
+        "blog": "https://github.com/vdcalhoun",
+        "email": "vcalhoun@gsu.edu",
+        "affiliation": "Tri-institutional Center for Translational Research in Neuroimaging and Data Science (TReNDS), Georgia State, Georgia Tech, and Emory, Atlanta, GA 30030"
     },
     "alexfoias": {
         "name": "Alexandru Foias",
@@ -1336,5 +1329,20 @@
     "suyashdb": {
         "name": "Suyash Bhogawar",
         "blog": "https://www.linkedin.com/in/suyashb/"
+    },
+    "MaxvandenBoom/": {
+        "name": "Max A. van den Boom",
+        "blog": "https://github.com/MaxvandenBoom/",
+        "email": "m.a.vandenboom84@gmail.com",
+        "affiliation": "Mayo Clinic, Department of neurosurgery, Rochester, MN, USA",
+        "orcid": "0000-0001-5481-1659"
+    },
+    "Arshitha": {
+        "name": "Arshitha Basavaraj",
+        "email": "arsh2794@gmail.com",
+        "bio": "Data Scientist ",
+        "blog": "https://github.com/Arshitha",
+        "orcid": "0000-0002-6984-7969",
+        "affiliation": "NIMH, Data Science and Sharing Team, Bethesda, MD, 20892, USA"
     }
 }
