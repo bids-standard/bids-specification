@@ -59,7 +59,8 @@ def _get_paths(
     path_list = []
     bids_root_found = False
     for bids_path in bids_paths:
-        bids_path = os.path.abspath(os.path.expanduser(bids_path))
+        if not accept_dummy_paths:
+            bids_path = os.path.abspath(os.path.expanduser(bids_path))
         if os.path.isdir(bids_path):
             for root, dirs, file_names in os.walk(bids_path, topdown=True):
                 if "dataset_description.json" in file_names:
@@ -84,6 +85,7 @@ def _get_paths(
                     # This will need to be replaced with bids root finding.
                     path_list.append(Path(file_path).as_posix())
         elif os.path.isfile(bids_path) or accept_dummy_paths:
+            #path_list.append(bids_path)
             path_list.append(Path(bids_path).as_posix())
         else:
             raise FileNotFoundError(
