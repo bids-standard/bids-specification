@@ -33,8 +33,8 @@ authors:
   orcid: https://orcid.org/0000-0001-8002-0877
   affiliation: Max Planck Institute for Human Development
   email: stefan.appelhoff@mailbox.org
-- given-names: Chris
-  family-names: Markiewicz
+- given-names: Christopher
+  family-names: J. Markiewicz
   website: https://github.com/effigies
   email: effigies@gmail.com
 - given-names: Taylor
@@ -45,7 +45,7 @@ authors:
     Pennsylvania, 19104, United States
   email: tsalo006@fiu.edu
 - given-names: Chris
-  family-names: Gorgolewski
+  family-names: J. Gorgolewski
   website: http://chrisgorgolewski.org
   orcid: https://orcid.org/0000-0003-3321-7583
   affiliation: Google LLC
@@ -62,13 +62,13 @@ authors:
   affiliation: Université catholique de Louvain
   email: remi.gau@tuebingen.mpg.de
 - given-names: Yaroslav
-  family-names: Halchenko
+  family-names: O. Halchenko
   website: http://www.onerussian.com
   orcid: https://orcid.org/0000-0003-3456-2493
   affiliation: Dartmouth College
   email: debian@onerussian.com
-- given-names: Horea
-  family-names: Christian
+- given-names: Christian
+  family-names: Horea
   website: http://www.chymera.eu
   affiliation: Dartmouth College, PBS, Hanover NH/USA
   email: chr@chymera.eu
@@ -89,7 +89,7 @@ authors:
     Switzerland
   email: phd@oscaresteban.es
 - given-names: Ross
-  family-names: Blair
+  family-names: W. Blair
   website: https://github.com/rwblair
 - given-names: Robert
   family-names: Smith
@@ -160,7 +160,7 @@ authors:
     (DNC), Lausanne, 1007, Switzerland
   email: sebastien.tourbier1@gmail.com
 - given-names: Teon
-  family-names: L Brooks
+  family-names: L. Brooks
   website: https://teonbrooks.com
 - given-names: Elizabeth
   family-names: DuPre
@@ -173,7 +173,7 @@ authors:
 - given-names: monkeyman192
   website: https://github.com/monkeyman192
 - given-names: Martin
-  family-names: Norgaard
+  family-names: Noergaard
   website: https://profiles.stanford.edu/martin-noergaard
   email: martin.noergaard@nru.dk
 - given-names: Alex
@@ -182,7 +182,7 @@ authors:
   orcid: https://orcid.org/0000-0003-3868-7453
   email: aprockhill@mailbox.org
 - given-names: Satrajit
-  family-names: Ghosh
+  family-names: S. Ghosh
   website: https://satra.cogitatum.org
   orcid: https://orcid.org/0000-0002-5312-6729
   affiliation: MIT, McGovern Institute for Brain Research, Cambridge, MA 02139, USA
@@ -223,7 +223,7 @@ authors:
   website: http://apjanke.net
   email: andrew@apjanke.net
 - given-names: Eric
-  family-names: Earl
+  family-names: A. Earl
   website: https://ericearl.github.io/
   orcid: https://orcid.org/0000-0001-5512-0083
   affiliation: NIMH Data Science & Sharing Team, Bethesda, MD, 20892, USA
@@ -232,7 +232,7 @@ authors:
   family-names: Sturgeon
   website: https://dasturge.github.io
 - given-names: Adina
-  family-names: Wagner
+  family-names: S. Wagner
   website: https://www.adina-wagner.com
   orcid: https://orcid.org/0000-0003-2917-3450
   affiliation: Institute of Neuroscience and Medicine (INM-7), Research Center Juelich,
@@ -294,7 +294,7 @@ authors:
   affiliation: Université de Sherbrooke
   email: jean.christophe.houde@gmail.com
 - given-names: Jeffrey
-  family-names: S. Grethe, Ph.D.
+  family-names: S. Grethe
   website: http://profiles.ucsd.edu/jeffrey.grethe
 - given-names: JegouA
   website: https://github.com/JegouA
