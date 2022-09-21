@@ -7,7 +7,7 @@
         "affiliation": "Max Planck Institute for Human Development"
     },
     "effigies": {
-        "name": "Chris Markiewicz",
+        "name": "Christopher J. Markiewicz",
         "email": "effigies@gmail.com",
         "blog": "https://github.com/effigies"
     },
@@ -20,7 +20,7 @@
         "affiliation": "University of Pennsylvania, Department of Psychiatry, Philadelphia, Pennsylvania, 19104, United States"
     },
     "chrisgorgo": {
-        "name": "Chris Gorgolewski",
+        "name": "Chris J. Gorgolewski",
         "email": "krzysztof.gorgolewski@gmail.com",
         "blog": "http://chrisgorgolewski.org",
         "orcid": "0000-0003-3321-7583",
@@ -42,7 +42,7 @@
         "affiliation": "Université catholique de Louvain"
     },
     "yarikoptic": {
-        "name": "Yaroslav Halchenko",
+        "name": "Yaroslav O. Halchenko",
         "email": "debian@onerussian.com",
         "bio": "Cheers!",
         "blog": "http://www.onerussian.com",
@@ -50,7 +50,7 @@
         "affiliation": "Dartmouth College"
     },
     "TheChymera": {
-        "name": "Horea Christian",
+        "name": "Christian Horea",
         "email": "chr@chymera.eu",
         "bio": "I bring Reproducibility, Freedom, and Open Source to Neuroscience, Academic Publishing, Software, and Life.",
         "blog": "http://www.chymera.eu",
@@ -165,7 +165,7 @@
         "blog": "https://github.com/sebastientourbier"
     },
     "teonbrooks": {
-        "name": "Teon L Brooks",
+        "name": "Teon L. Brooks",
         "blog": "https://teonbrooks.com"
     },
     "emdupre": {
@@ -184,7 +184,7 @@
         "blog": "https://github.com/monkeyman192"
     },
     "mnoergaard": {
-        "name": "Martin Norgaard",
+        "name": "Martin Noergaard",
         "email": "martin.noergaard@nru.dk",
         "bio": "Postdoctoral Researcher @ Stanford University, Center for Reproducible Neuroscience; interested in neuroimaging, data sharing, statistics and preprocessing.",
         "blog": "https://profiles.stanford.edu/martin-noergaard"
@@ -197,7 +197,7 @@
         "blog": "https://github.com/alexrockhill"
     },
     "satra": {
-        "name": "Satrajit Ghosh",
+        "name": "Satrajit S. Ghosh",
         "bio": "My research interests span computer science and neuroimaging, in the areas of applied machine learning, software engineering, and clinical applications.",
         "blog": "https://satra.cogitatum.org",
         "email": "satra@mit.edu",
@@ -260,7 +260,7 @@
         "blog": "https://dasturge.github.io"
     },
     "adswa": {
-        "name": "Adina Wagner",
+        "name": "Adina S. Wagner",
         "email": "adina.wagner@t-online.de",
         "bio": "Psychoinformagician in training",
         "blog": "https://www.adina-wagner.com",
@@ -334,7 +334,7 @@
         "affiliation": "Université de Sherbrooke"
     },
     "jgrethe": {
-        "name": "Jeffrey S. Grethe, Ph.D.",
+        "name": "Jeffrey S. Grethe",
         "blog": "http://profiles.ucsd.edu/jeffrey.grethe"
     },
     "JegouA": {
