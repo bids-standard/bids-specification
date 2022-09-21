@@ -46,7 +46,7 @@ Scans:
       description_addendum: |
         There MUST be exactly one row for each file.
     acq_time__scans: optional
-  additional_columns: allowed_if_defined
+  additional_columns: allowed
 
 Sessions:
   selectors:
@@ -61,4 +61,4 @@ Sessions:
         There MUST be exactly one row for each session.
     acq_time__sessions: optional
     pathology: recommended
-  additional_columns: allowed_if_defined
+  additional_columns: allowed
