@@ -9,7 +9,12 @@ iEEGChannels:
     - type__ieeg_channels
     - units
   columns:
-    name__channels: required
+    name__channels:
+      level: required
+      description_addendum: |
+        When a corresponding electrode is specified in `_electrodes.tsv`,
+        the name of that electrode MAY be specified here and the reference electrode
+        name MAY be provided in the `reference` column.
     type__ieeg_channels: required
     units: required
     low_cutoff: required
