@@ -59,7 +59,8 @@ def _get_paths(
     path_list = []
     bids_root_found = False
     for bids_path in bids_paths:
-        bids_path = os.path.abspath(os.path.expanduser(bids_path))
+        if not accept_dummy_paths:
+            bids_path = os.path.abspath(os.path.expanduser(bids_path))
         if os.path.isdir(bids_path):
             for root, dirs, file_names in os.walk(bids_path, topdown=True):
                 if "dataset_description.json" in file_names:
