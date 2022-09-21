@@ -85,7 +85,6 @@ def _get_paths(
                     # This will need to be replaced with bids root finding.
                     path_list.append(Path(file_path).as_posix())
         elif os.path.isfile(bids_path) or accept_dummy_paths:
-            #path_list.append(bids_path)
             path_list.append(Path(bids_path).as_posix())
         else:
             raise FileNotFoundError(
