@@ -908,8 +908,11 @@
         "affiliation": "Child Mind Institute"
     },
     "htwangtw": {
-        "name": "Hao Ting Wang",
-        "blog": "https://github.com/htwangtw"
+        "name": "Hao-Ting Wang",
+        "blog": "https://github.com/htwangtw",
+        "email": "htwangtw@gmail.com",
+        "affiliation": "CRIUGM, Montreal, Quebec, H3W 1W5, Canada",
+        "orcid": "0000-0003-4078-2038"
     },
     "HenkMutsaerts": {
         "name": "Henk Mutsaerts",

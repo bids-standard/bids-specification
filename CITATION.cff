@@ -731,9 +731,12 @@ authors:
   website: https://github.com/gkiar
   orcid: https://orcid.org/0000-0001-8915-496X
   affiliation: Child Mind Institute
-- given-names: Hao
-  family-names: Ting Wang
+- given-names: Hao-Ting
+  family-names: Wang
   website: https://github.com/htwangtw
+  orcid: https://orcid.org/0000-0003-4078-2038
+  affiliation: CRIUGM, Montreal, Quebec, H3W 1W5, Canada
+  email: htwangtw@gmail.com
 - given-names: Henk
   family-names: Mutsaerts
   website: http://www.ExploreASL.org
