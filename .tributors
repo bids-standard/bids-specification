@@ -169,11 +169,14 @@
     },
     "alegiac95": {
         "name": "Alessio Giacomel",
-        "blog": "https://github.com/alegiac95"
+        "blog": "https://github.com/alegiac95",
+        "orcid": "0000-0002-7784-2041",
+        "affiliation": "GlaxoSmithKline Research and Development"
     },
     "alexandreroutier": {
         "name": "Alexandre Routier",
-        "blog": "https://github.com/alexandreroutier"
+        "blog": "https://github.com/alexandreroutier",
+        "orcid": "0000-0003-1603-8049"
     },
     "arnaudmarcoux": {
         "name": "Arnaud Marcoux",
@@ -245,7 +248,9 @@
         "name": "Martin Noergaard",
         "email": "martin.noergaard@nru.dk",
         "bio": "Postdoctoral Researcher @ Stanford University, Center for Reproducible Neuroscience; interested in neuroimaging, data sharing, statistics and preprocessing.",
-        "blog": "https://profiles.stanford.edu/martin-noergaard"
+        "blog": "https://profiles.stanford.edu/martin-noergaard",
+        "orcid": "0000-0003-2131-5688",
+        "affiliation": "Stanford University"
     },
     "alexrockhill": {
         "name": "Alex Rockhill",
@@ -435,7 +440,8 @@
         "name": "Adeen Flinker",
         "orcid": "0000-0003-1247-1283",
         "affiliation": "New York University, Department of Neurology, New York City, New York, 10016, USA",
-        "email": "adeen@nyu.edu"
+        "email": "adeen@nyu.edu",
+        "blog": "http://flinkerlab.org"
     },
     "alberto_lazari": {
         "name": "Alberto Lazari"
@@ -605,7 +611,8 @@
         "name": "Hernando Ombao"
     },
     "INCF": {
-        "name": "International Neuroinformatics Coordinating Facility"
+        "name": "International Neuroinformatics Coordinating Facility",
+        "blog": "https://github.com/INCF"
     },
     "isla_staden": {
         "name": "Isla Staden",

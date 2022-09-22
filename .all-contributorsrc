@@ -41,7 +41,8 @@
             "login": "adswa",
             "name": "Adina S. Wagner",
             "contributions": [
-                "design"
+                "design",
+                "code"
             ],
             "profile": "https://www.adina-wagner.com",
             "avatar_url": [
@@ -55,7 +56,8 @@
                 "question",
                 "doc",
                 "data",
-                "ideas"
+                "ideas",
+                "code"
             ],
             "profile": "https://agahkarakuzu.github.io",
             "avatar_url": [
@@ -101,7 +103,8 @@
             "name": "Alex Rockhill",
             "contributions": [
                 "doc",
-                "tool"
+                "tool",
+                "code"
             ],
             "profile": "https://github.com/alexrockhill",
             "avatar_url": [
@@ -235,7 +238,8 @@
             "login": "bendhouseart",
             "name": "Anthony Galassi",
             "contributions": [
-                "doc"
+                "doc",
+                "code"
             ],
             "profile": "https://github.com/bendhouseart",
             "avatar_url": [
@@ -246,7 +250,8 @@
             "login": "arokem",
             "name": "Ariel Rokem",
             "contributions": [
-                "doc"
+                "doc",
+                "code"
             ],
             "profile": "https://arokem.org/",
             "avatar_url": [
@@ -436,7 +441,8 @@
             "name": "Chris Holdgraf",
             "contributions": [
                 "doc",
-                "ideas"
+                "ideas",
+                "code"
             ],
             "profile": "http://chrisholdgraf.com",
             "avatar_url": [
@@ -644,7 +650,8 @@
                 "doc",
                 "example",
                 "ideas",
-                "question"
+                "question",
+                "code"
             ],
             "profile": "https://github.com/DimitriPapadopoulos",
             "avatar_url": [
@@ -698,7 +705,8 @@
             "name": "Eduard Ort",
             "login": "eort",
             "contributions": [
-                "doc"
+                "doc",
+                "code"
             ],
             "profile": "https://github.com/eort",
             "avatar_url": "https://avatars.githubusercontent.com/u/8819465?v=4"
@@ -719,7 +727,8 @@
                 "example",
                 "fundingFinding",
                 "ideas",
-                "question"
+                "question",
+                "code"
             ],
             "profile": "https://elizabeth-dupre.com",
             "avatar_url": [
@@ -765,7 +774,8 @@
                 "bug",
                 "maintenance",
                 "tool",
-                "ideas"
+                "ideas",
+                "code"
             ],
             "profile": "https://ericearl.github.io/",
             "avatar_url": [
@@ -780,7 +790,8 @@
                 "ideas",
                 "review",
                 "talk",
-                "question"
+                "question",
+                "code"
             ],
             "profile": "http://imaging-genetics.camh.ca/",
             "avatar_url": [
@@ -880,7 +891,8 @@
                 "review",
                 "infra",
                 "content",
-                "projectManagement"
+                "projectManagement",
+                "code"
             ],
             "profile": "https://github.com/franklin-feingold",
             "avatar_url": [
@@ -988,7 +1000,8 @@
             "login": "greydongilmore",
             "name": "Greydon Gilmore",
             "contributions": [
-                "doc"
+                "doc",
+                "code"
             ],
             "profile": "http://greydongilmore.com",
             "avatar_url": [
@@ -1097,7 +1110,8 @@
             "login": "Hboni",
             "name": "Hugo Boniface",
             "contributions": [
-                "doc"
+                "doc",
+                "code"
             ],
             "profile": "https://github.com/Hboni",
             "avatar_url": [
@@ -1216,7 +1230,8 @@
                 "doc",
                 "talk",
                 "ideas",
-                "design"
+                "design",
+                "code"
             ],
             "profile": "https://github.com/jbpoline",
             "avatar_url": [
@@ -1227,7 +1242,8 @@
             "login": "jchoude",
             "name": "Jean-Christophe Houde",
             "contributions": [
-                "doc"
+                "doc",
+                "code"
             ],
             "profile": "http://scil.dinf.usherbrooke.ca/jchoude",
             "avatar_url": [
@@ -1264,7 +1280,8 @@
                 "question",
                 "bug",
                 "tutorial",
-                "talk"
+                "talk",
+                "code"
             ],
             "profile": "http://profiles.ucsd.edu/jeffrey.grethe",
             "avatar_url": [
@@ -1478,7 +1495,8 @@
                 "fundingFinding",
                 "ideas",
                 "talk",
-                "question"
+                "question",
+                "code"
             ],
             "profile": "https://whitakerlab.github.io",
             "avatar_url": [
@@ -1580,7 +1598,8 @@
             "login": "jasmainak",
             "name": "Mainak Jas",
             "contributions": [
-                "doc"
+                "doc",
+                "code"
             ],
             "profile": "http://jasmainak.github.io/",
             "avatar_url": [
@@ -1606,7 +1625,8 @@
             "login": "Moo-Marc",
             "name": "Marc Lalancette",
             "contributions": [
-                "doc"
+                "doc",
+                "code"
             ],
             "profile": "https://github.com/Moo-Marc",
             "avatar_url": [
@@ -1968,7 +1988,8 @@
             "contributions": [
                 "doc",
                 "example",
-                "question"
+                "question",
+                "code"
             ],
             "profile": "https://github.com/Park-Patrick",
             "avatar_url": [
@@ -2092,7 +2113,8 @@
             "login": "hoechenberger",
             "name": "Richard Höchenberger",
             "contributions": [
-                "doc"
+                "doc",
+                "code"
             ],
             "profile": "https://hoechenberger.net/",
             "avatar_url": [
@@ -2524,7 +2546,8 @@
             "contributions": [
                 "question",
                 "doc",
-                "plugin"
+                "plugin",
+                "code"
             ],
             "profile": "https://tsalo.github.io",
             "avatar_url": [
@@ -2565,7 +2588,8 @@
                 "talk",
                 "tool",
                 "review",
-                "maintenance"
+                "maintenance",
+                "code"
             ],
             "profile": "http://nisox.org",
             "avatar_url": [
@@ -2774,7 +2798,8 @@
                 "talk",
                 "tool",
                 "question",
-                "bug"
+                "bug",
+                "code"
             ],
             "profile": "http://www.onerussian.com",
             "avatar_url": [
