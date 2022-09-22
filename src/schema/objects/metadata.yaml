@@ -2660,6 +2660,7 @@ ScatterFraction:
     type: number
     minimum: 0
     maximum: 100
+
 SequenceName:
   name: SequenceName
   display_name: Sequence Name

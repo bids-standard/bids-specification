@@ -150,12 +150,16 @@ PETReconstruction:
       description_addendum: This partly matches the DICOM Tag (0054,1103) `Reconstruction Method`.
     ReconMethodParameterValues:
       level: required
+      level_addendum: |
+        Required if `ReconMethodParameterLabels` does not contain 'none', optional if
+        no labels exist.
       description_addendum: This partly matches the DICOM Tag (0054,1103) `Reconstruction Method`.
     ReconFilterType:
       level: required
       description_addendum: This partly matches the DICOM Tag (0018,1210) `Convolution Kernel`.
     ReconFilterSize:
       level: required
+      level_addendum: Required if `ReconFilterType` is not 'none'.
       description_addendum: This partly matches the DICOM Tag (0018,1210) `Convolution Kernel`.
     AttenuationCorrection:
       level: required
@@ -175,6 +179,25 @@ PETReconstruction:
     PromptRate: recommended
     SinglesRate: recommended
     RandomRate: recommended
+
+# set required reconstruction fields to optional when "none" is provided as a parameter label
+EntitiesReconMethodMetadata:
+  selectors:
+    - modality == "pet"
+    - suffix == "pet"
+    - count(sidecar.ReconMethodParameterLabels, "none") >= 1
+  fields:
+    ReconMethodParameterValues: optional
+    ReconMethodParameterUnits: optional
+
+# set required recon filter fields to optional when FilterType is "None"
+EntitiesReconFilterMetadata:
+  selectors:
+    - modality == "pet"
+    - suffix == "pet"
+    - sidecar.ReconFilterType == "none"
+  fields:
+    ReconFilterSize: optional
 
 BloodRecording:
   selectors:
