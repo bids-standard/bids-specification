@@ -78,7 +78,8 @@
             "login": "thinknoack",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "avatar_url": "https://avatars.githubusercontent.com/u/3342083?v=4"
         },
         {
             "name": "Alberto Lazari",
@@ -1797,13 +1798,14 @@
         },
         {
             "name": "Max A. van den Boom",
-            "login": "MaxvandenBoom/",
+            "login": "MaxvandenBoom",
             "contributions": [
                 "code",
                 "review",
                 "doc"
             ],
-            "profile": "https://github.com/MaxvandenBoom/"
+            "profile": "https://github.com/MaxvandenBoom",
+            "avatar_url": "https://avatars.githubusercontent.com/u/43676624?v=4"
         },
         {
             "login": "melanieganz",
@@ -2397,14 +2399,16 @@
             "contributions": [
                 "doc"
             ],
-            "profile": "https://cmn.nimh.nih.gov/dsst"
+            "profile": "https://cmn.nimh.nih.gov/dsst",
+            "avatar_url": "https://avatars.githubusercontent.com/u/7869017?v=4"
         },
         {
             "name": "Alessio Giacomel",
             "login": "alegiac95",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "avatar_url": "https://avatars.githubusercontent.com/u/44503635?v=4"
         },
         {
             "name": "Jan Mathijs Schoffelen",
@@ -2412,49 +2416,56 @@
             "contributions": [
                 "doc"
             ],
-            "profile": "https://github.com/schoffelen"
+            "profile": "https://github.com/schoffelen",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1517611?v=4"
         },
         {
             "name": "Alexandre Routier",
             "login": "alexandreroutier",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "avatar_url": "https://avatars.githubusercontent.com/u/24808663?v=4"
         },
         {
             "name": "Arnaud Marcoux",
             "login": "arnaudmarcoux",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "avatar_url": "https://avatars.githubusercontent.com/u/49677712?v=4"
         },
         {
             "name": "Douglas Greve",
             "login": "dngreve",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "avatar_url": "https://avatars.githubusercontent.com/u/26312022?v=4"
         },
         {
             "name": "Gaia Rizzo",
             "login": "gaiarizzo",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "avatar_url": "https://avatars.githubusercontent.com/u/16919574?v=4"
         },
         {
             "name": "Kris Thielemans",
             "login": "KrisThielemans",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "avatar_url": "https://avatars.githubusercontent.com/u/6362141?v=4"
         },
         {
             "name": "Kurt Schilling",
             "login": "schillkg",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "avatar_url": "https://avatars.githubusercontent.com/u/8438868?v=4"
         },
         {
             "name": "Matteo Tonietto",
@@ -2462,18 +2473,21 @@
             "contributions": [
                 "doc"
             ],
-            "profile": "https://github.com/matteotonietto"
+            "profile": "https://github.com/matteotonietto",
+            "avatar_url": "https://avatars.githubusercontent.com/u/9211296?v=4"
         },
         {
             "name": "Thomas Funck",
             "login": "tfunck",
             "contributions": [
                 "doc"
-            ]
+            ],
+            "avatar_url": "https://avatars.githubusercontent.com/u/6856252?v=4"
         },
         {
             "login": "mathesong",
-            "name": "Granville J. Matheson"
+            "name": "Granville J. Matheson",
+            "avatar_url": "https://avatars.githubusercontent.com/u/7190884?v=4"
         },
         {
             "login": "sebastientourbier",
@@ -2788,7 +2802,8 @@
                 "doc",
                 "code",
                 "tool"
-            ]
+            ],
+            "avatar_url": "https://avatars.githubusercontent.com/u/10362238?v=4"
         },
         {
             "login": "yarikoptic",

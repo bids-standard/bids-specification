@@ -8,6 +8,7 @@ from rich import print
 
 from utils import load_tributors, load_from_allcontrib, root_dir
 
+
 def rename_columns(df):
     df.rename(
         columns={
@@ -76,6 +77,7 @@ def get_gh_avatar(gh_username, auth_username, auth_token):
     avatar_url = None
 
     if gh_username is not None:
+        print(f"getting avatar: {gh_username}")
         url = f"https://api.github.com/users/{gh_username}"
         response = requests.get(url, auth=(auth_username, auth_token))
         if response.status_code == 200:
@@ -128,28 +130,32 @@ def main():
             assert allcontrib["contributors"][index_allcontrib]["name"] == name
             assert tributors[key_tributor]["name"] == name
 
+            # update some contributor info with data from .tributor
+            if (
+                this_contributor["website"] is None
+                and "blog" in tributors[key_tributor]
+                and tributors[key_tributor]["blog"] is not None
+            ):
+                this_contributor["website"] = tributors[key_tributor]["blog"]
+
+            if (
+                this_contributor["github_username"] is None
+                and allcontrib["contributors"][index_allcontrib]["login"] is not None
+            ):
+                this_contributor["github_username"] = allcontrib["contributors"][
+                    index_allcontrib
+                ]["login"]
+
             if this_contributor["website"] is not None:
                 allcontrib["contributors"][index_allcontrib][
                     "profile"
                 ] = this_contributor["website"]
-
-            if (
-                "avatar_url" not in allcontrib["contributors"][index_allcontrib]
-                or allcontrib["contributors"][index_allcontrib]["avatar_url"] is None
-            ):
-                avatar_url = get_gh_avatar(
-                    this_contributor["github_username"], "Remi-Gau", TOKEN
-                )
-                if avatar_url is not None:
-                    allcontrib["contributors"][index_allcontrib][
-                        "avatar_url"
-                    ] = avatar_url
+                tributors[key_tributor]["blog"] = this_contributor["website"]
 
             if this_contributor["github_username"] is not None:
                 allcontrib["contributors"][index_allcontrib][
                     "login"
                 ] = this_contributor["github_username"]
-                tributors[key_tributor]["blog"] = this_contributor["website"]
 
             if (
                 this_contributor["add_email"] is True
@@ -169,6 +175,17 @@ def main():
             # print(this_contributor)
             # print(tributors[key_tributor])
             # print(allcontrib["contributors"][index_allcontrib])
+
+    for i, this_contributor in enumerate(allcontrib["contributors"]):
+
+        if (
+            "avatar_url" not in this_contributor
+            or this_contributor["avatar_url"] is None
+        ):
+            avatar_url = get_gh_avatar(this_contributor["login"], "Remi-Gau", TOKEN)
+            print(avatar_url)
+            if avatar_url is not None:
+                allcontrib["contributors"][i]["avatar_url"] = avatar_url
 
     allcontrib_names = [x["name"] for x in allcontrib["contributors"]]
     tributors_names = [tributors[x]["name"] for x in tributors]
