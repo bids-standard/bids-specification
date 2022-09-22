@@ -72,6 +72,13 @@
             "avatar_url": "https://avatars.githubusercontent.com/u/4313908?v=4"
         },
         {
+            "name": "Gregory Noack",
+            "login": "thinknoack",
+            "contributions": [
+                "doc"
+            ]
+        },
+        {
             "name": "Alberto Lazari",
             "login": "alberto_lazari",
             "contributions": [
@@ -2363,8 +2370,92 @@
             "avatar_url": "https://avatars.githubusercontent.com/u/7886280?v=4"
         },
         {
+            "name": "Adam Thomas",
+            "login": "agt24",
+            "contributions": [
+                "doc"
+            ],
+            "profile": "https://cmn.nimh.nih.gov/dsst"
+        },
+        {
+            "name": "Alessio Giacomel",
+            "login": "alegiac95",
+            "contributions": [
+                "doc"
+            ]
+        },
+        {
+            "name": "Jan Mathijs Schoffelen",
+            "login": "schoffelen",
+            "contributions": [
+                "doc"
+            ],
+            "profile": "https://github.com/schoffelen"
+        },
+        {
+            "name": "Alexandre Routier",
+            "login": "alexandreroutier",
+            "contributions": [
+                "doc"
+            ]
+        },
+        {
+            "name": "Arnaud Marcoux",
+            "login": "arnaudmarcoux",
+            "contributions": [
+                "doc"
+            ]
+        },
+        {
+            "name": "Douglas Greve",
+            "login": "dngreve",
+            "contributions": [
+                "doc"
+            ]
+        },
+        {
+            "name": "Gaia Rizzo",
+            "login": "gaiarizzo",
+            "contributions": [
+                "doc"
+            ]
+        },
+        {
+            "name": "Kris Thielemans",
+            "login": "KrisThielemans",
+            "contributions": [
+                "doc"
+            ]
+        },
+        {
+            "name": "Kurt Schilling",
+            "login": "schillkg",
+            "contributions": [
+                "doc"
+            ]
+        },
+        {
+            "name": "Matteo Tonietto",
+            "login": "matteotonietto",
+            "contributions": [
+                "doc"
+            ],
+            "profile": "https://github.com/matteotonietto"
+        },
+        {
+            "name": "Thomas Funck",
+            "login": "tfunck",
+            "contributions": [
+                "doc"
+            ]
+        },
+        {
+            "login": "mathesong",
+            "name": "Granville J. Matheson"
+        },
+        {
             "login": "sebastientourbier",
-            "name": "Sebastien Tourbier",
+            "name": "Sébastien Tourbier",
             "contributions": [
                 "ideas",
                 "review",
@@ -2665,6 +2756,15 @@
             ],
             "profile": "https://github.com/xiangruili",
             "avatar_url": "https://avatars.githubusercontent.com/u/19894855?v=4"
+        },
+        {
+            "name": "Dung Truong",
+            "login": "dungscout96",
+            "contributions": [
+                "doc",
+                "code",
+                "tool"
+            ]
         },
         {
             "login": "yarikoptic",
