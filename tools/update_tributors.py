@@ -1,6 +1,5 @@
 import json
 from math import nan
-from pathlib import Path
 
 import pandas as pd
 import requests
@@ -183,7 +182,6 @@ def main():
             or this_contributor["avatar_url"] is None
         ):
             avatar_url = get_gh_avatar(this_contributor["login"], "Remi-Gau", TOKEN)
-            print(avatar_url)
             if avatar_url is not None:
                 allcontrib["contributors"][i]["avatar_url"] = avatar_url
 
