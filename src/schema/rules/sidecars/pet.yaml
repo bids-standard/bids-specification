@@ -147,6 +147,9 @@ PETReconstruction:
       description_addendum: This partly matches the DICOM Tag (0054,1103) `Reconstruction Method`.
     ReconMethodParameterUnits:
       level: required
+      level_addendum: |
+        Required if `ReconMethodParameterLabels`, does not contain 'none', optional if
+        no labels exist.
       description_addendum: This partly matches the DICOM Tag (0054,1103) `Reconstruction Method`.
     ReconMethodParameterValues:
       level: required
