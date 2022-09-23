@@ -11,7 +11,11 @@ have been formatted using this specification and can be used for practical guida
 
 ## fNIRS recording data
 
-{{ MACROS___make_filename_template(datatypes=["nirs"], suffixes=["nirs", "events", "channels", "optodes", "coordsystem"]) }}
+{{ MACROS___make_filename_template(
+   "raw",
+   datatypes=["nirs"],
+   suffixes=["nirs", "events", "channels", "optodes", "coordsystem"])
+}}
 
 Only the *Shared Near Infrared Spectroscopy Format* ([SNIRF](https://github.com/fNIRS/snirf))
 file specification is supported in BIDS. The SNIRF
@@ -157,7 +161,11 @@ Example:
 
 ## Channels description (`*_channels.tsv`)
 
-{{ MACROS___make_filename_template(datatypes=["nirs"], suffixes=["channels"]) }}
+{{ MACROS___make_filename_template(
+   "raw",
+   datatypes=["nirs"],
+   suffixes=["channels"])
+}}
 
 This file is RECOMMENDED as it provides easily searchable information across BIDS datasets.
 Channels are a pairing of source and detector optodes with a specific wavelength of light.
@@ -224,7 +232,11 @@ S3-D4        NIRSCWAMPLITUDE        VisS2       VisD4         760               
 
 ## Optode description (`*_optodes.tsv`)
 
-{{ MACROS___make_filename_template(datatypes=["nirs"], suffixes=["optodes"]) }}
+{{ MACROS___make_filename_template(
+   "raw",
+   datatypes=["nirs"],
+   suffixes=["optodes"])
+}}
 
 File that provides the location and type of optodes. Note that coordinates MUST be
 expressed  in Cartesian coordinates according to the NIRSCoordinateSystem and
@@ -256,7 +268,11 @@ VisD4   detector     0.0322     0.2214    0.2299     0.02          0.22         
 
 ## Coordinate System JSON (`*_coordsystem.json`)
 
-{{ MACROS___make_filename_template(datatypes=["nirs"], suffixes=["coordsystem"]) }}
+{{ MACROS___make_filename_template(
+   "raw",
+   datatypes=["nirs"],
+   suffixes=["coordsystem"])
+}}
 
 A `*_coordsystem.json` file is used to specify the fiducials, the location of anatomical landmarks,
 and the coordinate system and units in which the position of optodes and landmarks is expressed.

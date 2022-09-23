@@ -7,7 +7,7 @@ The inputs for this macro can be found in the folder
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filename_template(datatypes=["beh"]) }}
+{{ MACROS___make_filename_template("raw", datatypes=["beh"]) }}
 
 In addition to logs from behavioral experiments performed alongside imaging data
 acquisitions, one can also include data from experiments performed with no neural

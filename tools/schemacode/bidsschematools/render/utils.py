@@ -155,7 +155,6 @@ def flatten_multiindexed_columns(df):
     df.columns = df.columns.get_level_values(0)
     df = df.loc[["Format"] + vals]
     df.index.name = "Entity"
-    df = df.drop(columns=["DataType"])
     return df
 
 

@@ -172,7 +172,7 @@ The inputs for this macro can be found in the folder
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filename_template(datatypes=["anat"]) }}
+{{ MACROS___make_filename_template("raw", datatypes=["anat"]) }}
 
 Currently supported non-parametric structural MR images include:
 
@@ -364,7 +364,7 @@ The inputs for this macro can be found in the folder
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filename_template(datatypes=["func"]) }}
+{{ MACROS___make_filename_template("raw", datatypes=["func"]) }}
 
 Functional imaging consists of techniques that support rapid temporal repetition.
 This includes, but is not limited to, task based fMRI, as well as resting state fMRI, which is treated like any other task.
@@ -572,7 +572,7 @@ The inputs for this macro can be found in the folder
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filename_template(datatypes=["dwi"]) }}
+{{ MACROS___make_filename_template("raw", datatypes=["dwi"]) }}
 
 The [`run-<index>`](../appendices/entities.md#run) entity is RECOMMENDED
 to encode the splits of multipart DWI scans
@@ -782,7 +782,7 @@ The inputs for this macro can be found in the folder
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filename_template(datatypes=["perf"]) }}
+{{ MACROS___make_filename_template("raw", datatypes=["perf"]) }}
 
 The complete ASL time series should be stored as a 4D NIfTI file in the original acquisition order,
 accompanied by two ancillary files: `*_asl.json` and `*_aslcontext.tsv`.
@@ -1014,7 +1014,7 @@ The inputs for this macro can be found in the folder
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filename_template(datatypes=["fmap"], suffixes=["phasediff", "magnitude1", "magnitude2"]) }}
+{{ MACROS___make_filename_template("raw", datatypes=["fmap"], suffixes=["phasediff", "magnitude1", "magnitude2"]) }}
 
 where
 the REQUIRED `_phasediff` image corresponds to the phase-drift map between echo times,
@@ -1060,7 +1060,7 @@ The inputs for this macro can be found in the folder
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filename_template(datatypes=["fmap"], suffixes=["phase1", "phase2", "magnitude1", "magnitude2"]) }}
+{{ MACROS___make_filename_template("raw", datatypes=["fmap"], suffixes=["phase1", "phase2", "magnitude1", "magnitude2"]) }}
 
 Required fields:
 
@@ -1096,7 +1096,7 @@ The inputs for this macro can be found in the folder
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filename_template(datatypes=["fmap"], suffixes=["fieldmap", "magnitude"]) }}
+{{ MACROS___make_filename_template("raw", datatypes=["fmap"], suffixes=["fieldmap", "magnitude"]) }}
 
 Required fields:
 
@@ -1145,7 +1145,7 @@ The inputs for this macro can be found in the folder
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filename_template(datatypes=["fmap"], suffixes=["epi"]) }}
+{{ MACROS___make_filename_template("raw", datatypes=["fmap"], suffixes=["epi"]) }}
 
 The [`dir-<label>`](../appendices/entities.md#dir) entity is REQUIRED
 for these files.
