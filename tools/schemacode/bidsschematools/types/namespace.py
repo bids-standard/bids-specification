@@ -1,11 +1,12 @@
 """Namespace types"""
+import typing as ty
 from collections.abc import ItemsView, KeysView, Mapping, MutableMapping, ValuesView
 from pathlib import Path
 
 import yaml
 
 
-def _expand_dots(entry):
+def _expand_dots(entry: ty.Tuple[str, ty.Any]) -> ty.Tuple[str, ty.Any]:
     # Helper function for expand
     key, val = entry
     if "." in key:
@@ -149,7 +150,7 @@ class Namespace(MutableMapping):
     def __init__(self, *args, **kwargs):
         self._properties = dict(*args, **kwargs)
 
-    def to_dict(self):
+    def to_dict(self) -> dict:
         ret = {}
         for key, val in self._properties.items():
             if isinstance(val, Namespace):
@@ -175,13 +176,13 @@ class Namespace(MutableMapping):
         """Expand mapping recursively and return as namespace"""
         return cls(expand(mapping))
 
-    def items(self, *, level=1):
+    def items(self, *, level=1) -> NsItemsView:
         return NsItemsView(self, level)
 
-    def keys(self, *, level=1):
+    def keys(self, *, level=1) -> NsKeysView:
         return NsKeysView(self, level)
 
-    def values(self, *, level=1):
+    def values(self, *, level=1) -> NsValuesView:
         return NsValuesView(self, level)
 
     def __getattribute__(self, key):
@@ -198,7 +199,7 @@ class Namespace(MutableMapping):
         except KeyError:
             raise err
 
-    def _get_mapping(self, key: str) -> tuple:
+    def _get_mapping(self, key: str) -> ty.Tuple[Mapping, str]:
         subkeys = key.split(".")
         mapping = self._properties
         for subkey in subkeys[:-1]:
