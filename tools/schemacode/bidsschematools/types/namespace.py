@@ -235,15 +235,16 @@ class Namespace(MutableMapping):
 
     @classmethod
     def from_directory(cls, path, fmt="yaml"):
-        mapping = {}
-        fullpath = Path(path)
         if fmt == "yaml":
-            for subpath in sorted(fullpath.iterdir()):
-                if subpath.is_dir():
-                    submapping = cls.from_directory(subpath)
-                    if submapping:
-                        mapping[subpath.name] = submapping
-                elif subpath.name.endswith("yaml"):
-                    mapping[subpath.stem] = yaml.safe_load(subpath.read_text())
-            return cls.build(mapping)
+            return cls.build(_read_yaml_dir(Path(path)))
         raise NotImplementedError(f"Unknown format: {fmt}")
+
+
+def _read_yaml_dir(path: Path) -> dict:
+    mapping = {}
+    for subpath in sorted(path.iterdir()):
+        if subpath.is_dir():
+            mapping[subpath.name] = _read_yaml_dir(subpath)
+        elif subpath.name.endswith("yaml"):
+            mapping[subpath.stem] = yaml.safe_load(subpath.read_text())
+    return mapping
