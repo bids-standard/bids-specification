@@ -1,5 +1,5 @@
 """Namespace types"""
-from collections.abc import Mapping
+from collections.abc import ItemsView, KeysView, Mapping, ValuesView
 from pathlib import Path
 
 import yaml
@@ -29,6 +29,61 @@ def expand(element):
     return element
 
 
+class NsItemsView(ItemsView):
+    def __init__(self, namespace, level):
+        self._mapping = namespace
+        self._level = level
+
+    def __contains__(self, item):
+        key, val = item
+        keys = key.split(".", self._level - 1)
+        if "." in keys[-1]:
+            return False
+        return self._mapping[key] == val
+
+    def __iter__(self):
+        l1 = ItemsView(self._mapping)
+        if self._level == 1:
+            yield from l1
+        else:
+            yield from (
+                (f"{key}.{subkey}", subval)
+                for key, val in l1
+                # Items/keys/values can only be found in namespaces
+                # ignore lists and scalars
+                if isinstance(val, Mapping)
+                for subkey, subval in NsItemsView(val, self._level - 1)
+            )
+
+
+class NsKeysView(KeysView):
+    def __init__(self, namespace, level):
+        self._mapping = namespace
+        self._level = level
+
+    def __contains__(self, key):
+        keys = key.split(".", self._level - 1)
+        if "." in keys[-1]:
+            return False
+        return key in self._mapping
+
+    def __iter__(self):
+        yield from (key for key, val in NsItemsView(self._mapping, self._level))
+
+
+class NsValuesView(ValuesView):
+    def __init__(self, namespace, level):
+        self._mapping = namespace
+        self._level = level
+        self._items = NsItemsView(namespace, level)
+
+    def __contains__(self, val):
+        return any(val == item[1] for item in self._items)
+
+    def __iter__(self):
+        yield from (val for key, val in self._items)
+
+
 class Namespace(Mapping):
     """Provides recursive attribute style access to a dict-like structure
 
@@ -53,6 +108,35 @@ class Namespace(Mapping):
     'val'
     >>> ns["b"].c
     'val'
+
+    ``.keys()``, ``.values()`` and ``.items()`` can take an optional ``level`` argument:
+
+    >>> list(ns.keys())
+    ['a', 'b']
+    >>> list(ns.keys(level=2))
+    ['b.c']
+    >>> 'b.c' in ns.keys()
+    False
+    >>> 'b.c' in ns.keys(level=2)
+    True
+
+    >>> list(ns.values())
+    [1, <Namespace {'c': 'val'}>]
+    >>> list(ns.values(level=2))
+    ['val']
+    >>> 'val' in ns.values()
+    False
+    >>> 'val' in ns.values(level=2)
+    True
+
+    >>> list(ns.items())
+    [('a', 1), ('b', <Namespace {'c': 'val'}>)]
+    >>> list(ns.items(level=2))
+    [('b.c', 'val')]
+    >>> ("b.c", "val") in ns.items()
+    False
+    >>> ("b.c", "val") in ns.items(level=2)
+    True
     """
 
     def __init__(self, *args, **kwargs):
@@ -73,6 +157,15 @@ class Namespace(Mapping):
     def build(cls, mapping):
         """Expand mapping recursively and return as namespace"""
         return cls(expand(mapping))
+
+    def items(self, *, level=1):
+        return NsItemsView(self, level)
+
+    def keys(self, *, level=1):
+        return NsKeysView(self, level)
+
+    def values(self, *, level=1):
+        return NsValuesView(self, level)
 
     def __getattribute__(self, key):
         # Return actual properties first
