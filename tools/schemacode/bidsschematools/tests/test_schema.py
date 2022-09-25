@@ -4,7 +4,7 @@ from collections.abc import Mapping
 
 import pytest
 
-from bidsschematools import __bids_version__, schema
+from bidsschematools import __bids_version__, schema, types
 
 
 def test__get_bids_version(tmp_path):
@@ -220,8 +220,8 @@ def test_dereferencing():
         },
     }
 
-    sch = schema.Namespace.build(orig)
-    expanded = schema.expand(orig)
+    sch = types.Namespace.build(orig)
+    expanded = types.namespace.expand(orig)
     dereffed = schema.dereference_mapping(sch, expanded)
     assert dereffed == {
         "raw": {
@@ -278,8 +278,8 @@ def test_dereferencing():
         },
     }
 
-    sch = schema.Namespace.build(orig)
-    expanded = schema.expand(orig)
+    sch = types.Namespace.build(orig)
+    expanded = types.namespace.expand(orig)
     dereffed = schema.dereference_mapping(sch, expanded)
     assert dereffed == {
         "_DERIV_ENTS": {
