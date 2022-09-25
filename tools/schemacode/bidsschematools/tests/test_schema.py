@@ -186,7 +186,7 @@ def test_dereferencing():
             "Property2": "value4",
         },
     }
-    dereffed = schema.dereference_mapping(orig, orig.copy())
+    dereffed = schema.dereference(orig)
     assert dereffed == {
         "ReferencedObject": {
             "Property1": "value1",
@@ -221,8 +221,7 @@ def test_dereferencing():
     }
 
     sch = types.Namespace.build(orig)
-    expanded = types.namespace.expand(orig)
-    dereffed = schema.dereference_mapping(sch, expanded)
+    dereffed = schema.dereference(sch)
     assert dereffed == {
         "raw": {
             "func": {
@@ -279,8 +278,7 @@ def test_dereferencing():
     }
 
     sch = types.Namespace.build(orig)
-    expanded = types.namespace.expand(orig)
-    dereffed = schema.dereference_mapping(sch, expanded)
+    dereffed = schema.dereference(sch)
     assert dereffed == {
         "_DERIV_ENTS": {
             "space": "optional",

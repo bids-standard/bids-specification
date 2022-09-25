@@ -2,7 +2,7 @@
 import logging
 import os
 import re
-from collections.abc import Mapping
+from collections.abc import Iterable, Mapping
 from copy import deepcopy
 from functools import lru_cache
 
@@ -44,38 +44,61 @@ def _get_bids_version(bids_schema_dir):
     return bids_version
 
 
-def dereference_mapping(schema, struct):
-    """Recursively search a dictionary-like object for $ref keys.
+def _find(obj, predicate):
+    """Find objects in an arbitrary object that satisfy a predicate
 
-    Each $ref key is replaced with the contents of the referenced field in the overall
-    dictionary-like object.
+    Note that this does not cut branches, so every iterable sub-object
+    will be fully searched.
     """
-    if isinstance(struct, Mapping):
-        struct = dict(struct)
-        if "$ref" in struct:
-            ref_field = struct["$ref"]
-            template = schema[ref_field]
-            struct.pop("$ref")
-            # Result is template object with local overrides
-            struct = {**template, **struct}
+    try:
+        if predicate(obj):
+            yield obj
+    except Exception:
+        pass
 
-        struct = {key: dereference_mapping(schema, val) for key, val in struct.items()}
+    iterable = ()
+    if isinstance(obj, Mapping):
+        iterable = obj.values()
+    elif not isinstance(obj, str) and isinstance(obj, Iterable):
+        iterable = obj
 
-        # For the rare case of multiple sets of valid values (enums) from multiple references,
-        # anyOf is used. Here we try to flatten our anyOf of enums into a single enum list.
-        if "anyOf" in struct.keys():
-            if all("enum" in obj for obj in struct["anyOf"]):
-                all_enum = [v["enum"] for v in struct["anyOf"]]
-                all_enum = [item for sublist in all_enum for item in sublist]
+    for item in iterable:
+        yield from _find(item, predicate)
 
-                struct.pop("anyOf")
-                struct["type"] = "string"
-                struct["enum"] = all_enum
 
-    elif isinstance(struct, list):
-        struct = [dereference_mapping(schema, item) for item in struct]
+def dereference(namespace, inplace=True):
+    """Replace references in namespace with the contents of the referred object"""
+    if not inplace:
+        namespace = deepcopy(namespace)
+    for struct in _find(namespace, lambda obj: "$ref" in obj):
+        target = struct.pop("$ref")
+        struct.update({**namespace[target], **struct})
+    return namespace
 
-    return struct
+
+def flatten_enums(namespace, inplace=True):
+    """Replace enum collections with a single enum
+
+    >>> struct = {
+    ...   "anyOf": [
+    ...      {"type": "string", "enum": ["A", "B", "C"]},
+    ...      {"type": "string", "enum": ["D", "E", "F"]},
+    ...   ]
+    ... }
+    >>> flatten_enums(struct)
+    {'type': 'string', 'enum': ['A', 'B', 'C', 'D', 'E', 'F']}
+    """
+    if not inplace:
+        namespace = deepcopy(namespace)
+    for struct in _find(namespace, lambda obj: "anyOf" in obj):
+        try:
+            all_enum = [val for item in struct["anyOf"] for val in item["enum"]]
+        except KeyError:
+            continue
+
+        del struct["anyOf"]
+        struct.update({"type": "string", "enum": all_enum})
+    return namespace
 
 
 @lru_cache()
@@ -107,8 +130,10 @@ def load_schema(schema_path=None):
     if not schema.rules:
         raise ValueError(f"rules subdirectory path not found in {schema_path}")
 
-    dereferenced = dereference_mapping(schema, schema)
-    return Namespace.build(dereferenced)
+    dereference(schema)
+    flatten_enums(schema)
+
+    return schema
 
 
 def export_schema(schema):
