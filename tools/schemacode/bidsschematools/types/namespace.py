@@ -1,5 +1,5 @@
 """Namespace types"""
-from collections.abc import ItemsView, KeysView, Mapping, ValuesView
+from collections.abc import ItemsView, KeysView, Mapping, MutableMapping, ValuesView
 from pathlib import Path
 
 import yaml
@@ -84,7 +84,7 @@ class NsValuesView(ValuesView):
         yield from (val for key, val in self._items)
 
 
-class Namespace(Mapping):
+class Namespace(MutableMapping):
     """Provides recursive attribute style access to a dict-like structure
 
     Examples
@@ -137,6 +137,13 @@ class Namespace(Mapping):
     False
     >>> ("b.c", "val") in ns.items(level=2)
     True
+
+    >>> ns["d.e.f"] = "val2"
+    >>> ns.d.e
+    <Namespace {'f': 'val2'}>
+    >>> ns.d.e.f
+    'val2'
+    >>> del ns['d']
     """
 
     def __init__(self, *args, **kwargs):
@@ -152,6 +159,16 @@ class Namespace(Mapping):
 
     def __deepcopy__(self, memo):
         return self.build(self.to_dict())
+
+    @classmethod
+    def view(cls, mapping):
+        if isinstance(mapping, cls):
+            return mapping
+        if not isinstance(mapping, dict):
+            raise ValueError("Namespace.view can only be made from a dict")
+        new = cls()
+        new._properties = mapping
+        return new
 
     @classmethod
     def build(cls, mapping):
@@ -181,15 +198,30 @@ class Namespace(Mapping):
         except KeyError:
             raise err
 
+    def _get_mapping(self, key: str) -> tuple:
+        subkeys = key.split(".")
+        mapping = self._properties
+        for subkey in subkeys[:-1]:
+            mapping = mapping.setdefault(subkey, {})
+            mapping = getattr(mapping, "_properties", mapping)
+            if not isinstance(mapping, Mapping):
+                raise KeyError(f"{key} (subkey={subkey})")
+        return mapping, subkeys[-1]
+
     def __getitem__(self, key):
-        key, dot, subkey = key.partition(".")
-        val = self._properties[key]
+        mapping, subkey = self._get_mapping(key)
+        val = mapping[subkey]
         if isinstance(val, dict):
-            val = self.__class__(val)
-        if dot:
-            # Recursive step
-            val = val[subkey]
+            val = self.view(val)
         return val
+
+    def __setitem__(self, key, val):
+        mapping, subkey = self._get_mapping(key)
+        mapping[subkey] = val
+
+    def __delitem__(self, key):
+        mapping, subkey = self._get_mapping(key)
+        del mapping[subkey]
 
     def __repr__(self):
         return f"<Namespace {self._properties}>"
