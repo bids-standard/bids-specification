@@ -5,7 +5,6 @@ import re
 from collections.abc import Mapping
 from copy import deepcopy
 from functools import lru_cache
-from pathlib import Path
 
 from . import __bids_version__, __version__, utils
 from .types import Namespace
@@ -102,7 +101,7 @@ def load_schema(schema_path=None):
     """
     if schema_path is None:
         schema_path = utils.get_schema_path()
-    schema = Namespace.from_directory(Path(schema_path))
+    schema = Namespace.from_directory(schema_path)
     if not schema.objects:
         raise ValueError(f"objects subdirectory path not found in {schema_path}")
     if not schema.rules:
