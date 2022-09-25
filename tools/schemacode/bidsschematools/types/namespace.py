@@ -1,4 +1,5 @@
 """Namespace types"""
+import json
 import typing as ty
 from collections.abc import ItemsView, KeysView, Mapping, MutableMapping, ValuesView
 from pathlib import Path
@@ -239,6 +240,13 @@ class Namespace(MutableMapping):
             return cls.build(_read_yaml_dir(Path(path)))
         raise NotImplementedError(f"Unknown format: {fmt}")
 
+    def to_json(self, **kwargs) -> str:
+        return json.dumps(self, cls=MappingEncoder, **kwargs)
+
+    @classmethod
+    def from_json(cls, jsonstr: str):
+        return cls.build(json.loads(jsonstr))
+
 
 def _read_yaml_dir(path: Path) -> dict:
     mapping = {}
@@ -248,3 +256,14 @@ def _read_yaml_dir(path: Path) -> dict:
         elif subpath.name.endswith("yaml"):
             mapping[subpath.stem] = yaml.safe_load(subpath.read_text())
     return mapping
+
+
+class MappingEncoder(json.JSONEncoder):
+    def default(self, o):
+        try:
+            return super().default(o)
+        except TypeError as e:
+            err = e
+        if isinstance(o, Mapping):
+            return dict(o)
+        raise err
