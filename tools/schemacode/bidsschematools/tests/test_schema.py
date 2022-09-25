@@ -41,6 +41,9 @@ def test_load_schema(schema_dir):
     schema_obj = schema.load_schema(schema_dir)
     assert isinstance(schema_obj, Mapping)
 
+    # Check that it is fully dereferenced
+    assert "$ref" not in str(schema_obj)
+
 
 def test_object_definitions(schema_obj):
     """Ensure that object definitions in the schema contain required fields."""
