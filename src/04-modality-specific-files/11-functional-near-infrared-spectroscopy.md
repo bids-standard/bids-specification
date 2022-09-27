@@ -55,12 +55,12 @@ and optode holders to position their sources and detectors, or for optodes to
 be directly attached to the scalp with adhesive. To facilitate description of
 the wide variety of possible configurations, several fields are RECOMMENDED within
 the `*_nirs.json` file.
-Additionally, in certain situations, reserved keywords MUST be used,
+Additionally, in certain situations, reserved keywords MUST be used.
 When a custom made cap is used, the reserved keyword `custom` MUST be used in the
 `CapManufacturer` field.
 Similarly, when a custom cap is used or custom modifications are made to a cap,
 then the reserved keyword `custom` MUST be used for the `CapManufacturersModelName` field.
-If no cap is used the reserved keyword `none` MUST be used in the `CapManufacturer`
+If no cap is used, the reserved keyword `none` MUST be used in the `CapManufacturer`
 and `CapManufacturersModelName` field.
 The use of 'NIRSPlacementScheme' is RECOMMENDED, certainly when no cap or a costomized cap is used,
 and describes the positioning of the optodes.
@@ -177,12 +177,12 @@ The following columns MUST be present:
       "detector__channels": "REQUIRED",
       "wavelength_nominal": "REQUIRED",
       "units__nirs": "REQUIRED",
-      "sampling_frequency": "OPTIONAL but REQUIRED if `SamplingFrequency` is to `n/a` in `_nirs.json`",
+      "sampling_frequency": "OPTIONAL but REQUIRED if `SamplingFrequency` is `n/a` in `_nirs.json`",
       "orientation_component": "OPTIONAL but REQUIRED if `type` is `ACCEL`, `GYRO` or `MAGN`",
    }
 ) }}
 
-The following columns SHOULD be present:
+The following columns MAY be present:
 
 {{ MACROS___make_columns_table(
    {
@@ -267,8 +267,8 @@ The following columns MAY be present:
 {{ MACROS___make_columns_table(
    {
       "x__template": "OPTIONAL but REQUIRED if `x` is `n/a`",
-      "y__template": "OPTIONAL but REQUIRED if `x` is `n/a`",
-      "z__template": "OPTIONAL but REQUIRED if `x` is `n/a`",
+      "y__template": "OPTIONAL but REQUIRED if `y` is `n/a`",
+      "z__template": "OPTIONAL but REQUIRED if `z` is `n/a`",
       "description__optode": "OPTIONAL",
       "detector_type": "OPTIONAL",
       "source__optodes": "OPTIONAL",
@@ -295,7 +295,7 @@ and the coordinate system and units in which the position of optodes and landmar
 Fiducials are objects with a well-defined location used to facilitate the localization of sensors
 and co-registration, anatomical landmarks are locations on a research subject such as the nasion
 (for a detailed definition see the coordinate system description in the BIDS specification).
-The `*_coordsystem.json` is REQUIRED if the optional `*_optodes.tsv` is specified. If a corresponding
+The `*_coordsystem.json` is REQUIRED if the optional `*_optodes.tsv` is present. If a corresponding
 anatomical MRI is available, the locations of anatomical landmarks in that scan should also be stored
 in the `*_T1w.json` file which goes alongside the fNIRS data.
 

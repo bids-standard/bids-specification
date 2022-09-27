@@ -312,7 +312,7 @@ orientation_component:
   name: orientation_component
   display_name: Orientation Component
   description: |
-    Description of the orientation of the `ACCEL`, `GYRO`, `MAGN` `type`.
+    Description of the orientation of the channel.
   type: string
   enum:
     - x
@@ -466,7 +466,7 @@ short_channel:
   description: |
     Is the channel designated as short.
     The total number of channels listed as short channels
-    SHOULD be stored in `ShortChannelCount` in `*_fnirs.json`.
+    SHOULD be stored in `ShortChannelCount` in `*_nirs.json`.
   type: boolean
 size:
   name: size
