@@ -42,17 +42,11 @@ def _get_paths(
     * Deduplicate paths (if input dirs are subsets of other input dirs), might best be done at the
         very end.
     """
-    exclude_subdirs = [
-        rf"{os.sep}.dandi",
-        rf"{os.sep}.datalad",
-        rf"{os.sep}.git",
-    ]
     # `.bidsignore` is not, in fact, a BIDS file, as per:
     # https://github.com/bids-standard/bids-specification/issues/980
+    # Perhaps this should be parameterized for downstream flexibility and not having to keep track
+    # of downstream nuisance files here.
     exclude_files = [
-        ".gitattributes",
-        ".gitignore",
-        ".bidsignore",
         "dandiset.yaml",
     ]
 
@@ -76,10 +70,10 @@ def _get_paths(
                     dirs[:] = []
                     file_names[:] = []
                 # will break if BIDS ever puts meaningful data under `/.{dandi,datalad,git}*/`
-                if os.path.basename(root) in exclude_subdirs:
+                if os.path.basename(root).startswith("."):
                     continue
                 for file_name in file_names:
-                    if file_name in exclude_files:
+                    if file_name in exclude_files or file_name.startswith("."):
                         continue
                     file_path = os.path.join(root, file_name)
                     # This will need to be replaced with bids root finding.
