@@ -1,4 +1,4 @@
-# Appendix V: Units
+# Units
 
 As described in the [Units](../02-common-principles.md#units),
 the specification of units SHOULD follow the

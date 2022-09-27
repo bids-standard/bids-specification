@@ -58,7 +58,7 @@ limit.
 For example Neuromag/Elekta/Megin, which can produce several files
 for a single recording.
 Both `some_file.fif` and `some_file-1.fif` would belong to a single recording.
-In BIDS, the [`split`](../99-appendices/09-entities.md#split) entity is RECOMMENDED to deal
+In BIDS, the [`split`](../appendices/entities.md#split) entity is RECOMMENDED to deal
 with split files.
 If there are multiple parts of a recording and the optional `scans.tsv` is provided,
 remember to list all files separately in `scans.tsv` and that the entries for the
@@ -70,11 +70,11 @@ which saves the MEG sensor coil positions in a separate file with two possible f
 For these files, the `markers` suffix MUST be used.
 For example: `sub-01_task-nback_markers.sqd`
 
-Please refer to [Appendix VI](../99-appendices/06-meg-file-formats.md)
+Please refer to the [MEG File Formats Appendix](../appendices/meg-file-formats.md)
 for general information on how to deal with such manufacturer specifics and to see more examples.
 
-The [`proc-<label>`](../99-appendices/09-entities.md#proc) entity is analogous to the
-[`rec-<label>`](../99-appendices/09-entities.md#rec) entity for MRI,
+The [`proc-<label>`](../appendices/entities.md#proc) entity is analogous to the
+[`rec-<label>`](../appendices/entities.md#rec) entity for MRI,
 and denotes a variant of a file that was a result of particular processing performed on the device.
 This is useful for files produced in particular by Elekta's MaxFilter
 (for example, sss, tsss, trans, quat, mc),
@@ -92,7 +92,8 @@ If however EEG is recorded simultaneously **with the same MEG system**,
 it MAY be stored under the `/meg` data type.
 In that case, it SHOULD have the same sampling frequency as MEG (see `SamplingFrequency` field below).
 Furthermore, the EEG sensor coordinates SHOULD be specified using MEG-specific coordinate
-systems (see [coordinates section](#coordinate-system-json-_coordsystemjson) below and [Appendix VIII](../99-appendices/08-coordinate-systems.md)).
+systems (see [coordinates section](#coordinate-system-json-_coordsystemjson) below and
+the [Coordinate Systems Appendix](../appendices/coordinate-systems.md)).
 
 ### Sidecar JSON (`*_meg.json`)
 
@@ -441,7 +442,7 @@ taped to the skin. Please note that the photos may need to be cropped or blurred
 to conceal identifying features prior to sharing, depending on the terms of the
 consent given by the participant.
 
-The [`acq-<label>`](../99-appendices/09-entities.md#acq) entity can be used to indicate acquisition of different photos of
+The [`acq-<label>`](../appendices/entities.md#acq) entity can be used to indicate acquisition of different photos of
 the same face (or other body part in different angles to show, for example, the
 location of the nasion (NAS) as opposed to the right periauricular point (RPA)).
 
@@ -465,10 +466,10 @@ This file is RECOMMENDED.
 
 The 3-D locations of points that describe the head shape and/or EEG
 electrode locations can be digitized and stored in separate files. The
-[`acq-<label>`](../99-appendices/09-entities.md#acq) entity can be used when more than one type of digitization in done for
+[`acq-<label>`](../appendices/entities.md#acq) entity can be used when more than one type of digitization in done for
 a session, for example when the head points are in a separate file from the EEG
 locations. These files are stored in the specific format of the 3-D digitizer’s
-manufacturer (see [Appendix VI](../99-appendices/06-meg-file-formats.md)).
+manufacturer (see the [MEG File Formats Appendix](../appendices/meg-file-formats.md)).
 
 Example:
 
@@ -495,20 +496,20 @@ has to be updated, then for MEG it could be considered to be a new session.
 
 Empty-room MEG recordings capture the environmental and recording system's noise.
 
-It is RECOMMENDED to explicitly specify which empty-room recording should be used with which experimental run(s) or session(s). This can be done via the [`AssociatedEmptyRoom`](../99-appendices/14-glossary.md#associatedemptyroom-metadata) field in the `*_meg.json` sidecar files.
+It is RECOMMENDED to explicitly specify which empty-room recording should be used with which experimental run(s) or session(s). This can be done via the [`AssociatedEmptyRoom`](../glossary.md#associatedemptyroom-metadata) field in the `*_meg.json` sidecar files.
 
 Empty-room recordings may be collected once per day, where a single empty-room recording may be shared between multiple subjects and/or sessions (see example 1).
 Empty-room recordings can also be collected for each individual experimental session (see example 2).
 
 In the case of empty-room recordings being associated with multiple subjects and/or sessions, it is RECOMMENDED to store the empty-room recording inside a subject directory named `sub-emptyroom`.
-If a [`session-<label>`](../99-appendices/09-entities.md#ses) entity is present, its label SHOULD be the date of the empty-room recording in the format `YYYYMMDD`, that is `ses-YYYYMMDD`.
+If a [`session-<label>`](../appendices/entities.md#ses) entity is present, its label SHOULD be the date of the empty-room recording in the format `YYYYMMDD`, that is `ses-YYYYMMDD`.
 The `scans.tsv` file containing the date and time of the acquisition SHOULD also be included.
 The rationale is that this naming scheme will allow users to easily retrieve the empty-room recording that best matches a particular experimental session, based on date and time of the recording.
 It should be possible to query empty-room recordings just like usual subject recordings, hence all metadata sidecar files (such as the `channels.tsv`) file SHOULD be present as well.
 
 In the case of empty-room recordings being collected for the individual experimental session, it is recommended to store the empty-room recording along with that subject and session.
 
-In either case, the label for the [`task-<label>`](../99-appendices/09-entities.md#task) entity in the empty-room recording SHOULD be set to `noise`.
+In either case, the label for the [`task-<label>`](../appendices/entities.md#task) entity in the empty-room recording SHOULD be set to `noise`.
 
 Example 1:
 

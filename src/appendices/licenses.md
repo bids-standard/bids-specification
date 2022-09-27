@@ -1,4 +1,4 @@
-# Appendix II: Licenses
+# Licenses
 
 This section lists a number of common licenses for datasets and defines
 suggested abbreviations for use in the dataset metadata specifications.

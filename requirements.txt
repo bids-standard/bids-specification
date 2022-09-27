@@ -3,5 +3,6 @@ mkdocs-material>=5.4
 pymdown-extensions>=7.0.0
 mkdocs-branchcustomization-plugin~=0.1.3
 mkdocs-macros-plugin
+mkdocs-redirects
 numpy
 tools/schemacode/[render]

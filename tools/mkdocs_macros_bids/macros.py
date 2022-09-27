@@ -2,7 +2,7 @@
 import os
 import sys
 
-from bidsschematools import render, schema, utils
+from bidsschematools import render, schema
 
 code_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(code_path)
@@ -96,7 +96,7 @@ def make_filename_template(src_path=None, pdf_format=False, **kwargs):
     return codeblock
 
 
-def make_entity_table(**kwargs):
+def make_entity_table(src_path=None, **kwargs):
     """Generate an entity table from the schema, based on specific filters.
 
     Parameters
@@ -112,8 +112,11 @@ def make_entity_table(**kwargs):
         A Markdown-format table containing the corresponding entity table for
         a subset of the schema.
     """
+    if src_path is None:
+        src_path = _get_source_path()
+
     schema_obj = schema.load_schema()
-    table = render.make_entity_table(schema_obj, **kwargs)
+    table = render.make_entity_table(schema_obj, src_path=src_path, **kwargs)
     return table
 
 
@@ -129,6 +132,7 @@ def make_entity_definitions(src_path=None):
     """
     if src_path is None:
         src_path = _get_source_path()
+
     schema_obj = schema.load_schema()
     text = render.make_entity_definitions(schema_obj, src_path=src_path)
     return text
@@ -151,6 +155,7 @@ def make_glossary(src_path=None):
     """
     if src_path is None:
         src_path = _get_source_path()
+
     schema_obj = schema.load_schema()
     text = render.make_glossary(schema_obj, src_path=src_path)
     return text
@@ -175,6 +180,7 @@ def make_suffix_table(suffixes, src_path=None):
     """
     if src_path is None:
         src_path = _get_source_path()
+
     schema_obj = schema.load_schema()
     table = render.make_suffix_table(schema_obj, suffixes, src_path=src_path)
     return table
@@ -204,6 +210,7 @@ def make_metadata_table(field_info, src_path=None):
     """
     if src_path is None:
         src_path = _get_source_path()
+
     schema_obj = schema.load_schema()
     table = render.make_metadata_table(schema_obj, field_info, src_path=src_path)
     return table
@@ -228,6 +235,7 @@ def make_sidecar_table(table_name, src_path=None):
     """
     if src_path is None:
         src_path = _get_source_path()
+
     schema_obj = schema.load_schema()
     table = render.make_sidecar_table(schema_obj, table_name, src_path=src_path)
     return table
@@ -262,7 +270,10 @@ def make_subobject_table(object_tuple, field_info, src_path=None):
 
     schema_obj = schema.load_schema()
     table = render.make_subobject_table(
-        schema_obj, object_tuple, field_info, src_path=src_path
+        schema_obj,
+        object_tuple,
+        field_info,
+        src_path=src_path,
     )
     return table
 
@@ -291,6 +302,7 @@ def make_columns_table(column_info, src_path=None):
     """
     if src_path is None:
         src_path = _get_source_path()
+
     schema_obj = schema.load_schema()
     table = render.make_columns_table(schema_obj, column_info, src_path=src_path)
     return table
