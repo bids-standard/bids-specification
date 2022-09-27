@@ -2042,7 +2042,7 @@ NIRSCoordinateSystem:
     Defines the coordinate system in which the optode positions are expressed.
 
     See
-    [Appendix VIII](SPEC_ROOT/99-appendices/08-coordinate-systems.md)
+    [Appendix VIII](SPEC_ROOT/appendices/coordinate-systems.md)
     for a list of restricted keywords for coordinate systems.
     If `"Other"`, a definition of the coordinate system MUST be
     provided in `NIRSCoordinateSystemDescription`.
