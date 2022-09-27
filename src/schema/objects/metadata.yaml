@@ -2011,6 +2011,7 @@ NIRSSourceOptodeCount:
   display_name: NIRS Source Optode Count
   description: |
     Number of fNIRS sources.
+    Corresponds to the number of rows in `optodes.tsv` with type `"source"`.
   type: integer
   minimum: 1
 NIRSDetectorOptodeCount:
@@ -2018,6 +2019,7 @@ NIRSDetectorOptodeCount:
   display_name: NIRS Detector Optode Channel Count
   description: |
     Number of fNIRS detectors.
+    Corresponds to the number of rows in `optodes.tsv` with type `"detector"`.
   type: integer
   minimum: 1
 NIRSPlacementScheme:
