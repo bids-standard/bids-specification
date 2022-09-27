@@ -14,16 +14,18 @@ on:
       - "tools/typescript/**"
       - "src/schema/**"
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-
   build_module:
-
     runs-on: ${{ matrix.os }}
     strategy:
-        fail-fast: false
-        matrix:
-            os: ["ubuntu-latest"]
-            deno-version: [1.21.3]
+      fail-fast: false
+      matrix:
+        os: ["ubuntu-latest"]
+        deno-version: [1.21.3]
     name: ${{ matrix.os }} with Deno ${{ matrix.deno-version }}
     defaults:
       run:
