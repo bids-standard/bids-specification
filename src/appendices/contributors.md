@@ -29,7 +29,7 @@ Legend (source:
 | ⚠️        | Tests                                                                             |
 | ✅         | Tutorials                                                                         |
 | 📢        | Talks                                                                             |
-| 📓        | User testing (of new features, tools, etc.)                                       |
+| 📓        | User testing (of new features, tools, and so on)                                  |
 | 📹        | Videos                                                                            |
 
 The following individuals have contributed to the Brain Imaging Data Structure

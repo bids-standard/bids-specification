@@ -335,9 +335,9 @@ Value terms groups (`datatypes`, `suffixes`, `extensions`) define terms where a 
 can take on multiple values. For example, a file has one datatype, as compared to a
 collection of entities. These objects may have the fields:
 
-| Field   | Description                                                                                              |
-| ------- | -------------------------------------------------------------------------------------------------------- |
-| `value` | For terms that cannot take on multiple values (e.g., suffixes, extensions), the string value of the term |
+| Field   | Description                                                                                                      |
+| ------- | ---------------------------------------------------------------------------------------------------------------- |
+| `value` | For terms that cannot take on multiple values (for example suffixes or extensions), the string value of the term |
 
 The `formats` terms provide one additional field:
 
