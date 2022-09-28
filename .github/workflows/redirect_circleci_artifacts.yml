@@ -1,9 +1,5 @@
 on: [status]
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
   circleci_artifacts_redirector_job:
     runs-on: ubuntu-latest
