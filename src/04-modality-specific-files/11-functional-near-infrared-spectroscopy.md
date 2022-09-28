@@ -56,10 +56,10 @@ be directly attached to the scalp with adhesive. To facilitate description of
 the wide variety of possible configurations, several fields are RECOMMENDED within
 the `*_nirs.json` file.
 Additionally, in certain situations, reserved keywords MUST be used.
-When a custom made cap is used, the reserved keyword `custom` MUST be used in the
-`CapManufacturer` field.
-Similarly, when a custom cap is used or custom modifications are made to a cap,
+When custom modifications are made to a commercially available cap or a custom cap is used,
 then the reserved keyword `custom` MUST be used for the `CapManufacturersModelName` field.
+When a custom made cap is used, i.e. no (modified) commercially available cap,
+the reserved keyword `custom` MUST be used in the `CapManufacturer` field.
 If no cap is used, the reserved keyword `none` MUST be used in the `CapManufacturer`
 and `CapManufacturersModelName` field.
 The use of 'NIRSPlacementScheme' is RECOMMENDED, certainly when no cap or a costomized cap is used,
