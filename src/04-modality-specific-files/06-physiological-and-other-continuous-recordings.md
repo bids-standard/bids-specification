@@ -39,7 +39,7 @@ For example for the file `sub-control01_task-nback_run-1_bold.nii.gz`,
 Note that when supplying a `*_<physio|stim>.tsv.gz` file, an accompanying
 `*_<physio|stim>.json` MUST be supplied as well.
 
-The [`recording-<label>`](../99-appendices/09-entities.md#recording)
+The [`recording-<label>`](../appendices/entities.md#recording)
 entity MAY be used to distinguish between several recording files.
 For example `sub-01_task-bart_recording-eyetracking_physio.tsv.gz` to contain
 the eyetracking data in a certain sampling frequency, and
@@ -52,22 +52,14 @@ suffix, and signals related to the stimulus SHOULD use `_stim` suffix.
 The following table specifies metadata fields for the `*_<physio|stim>.json` file.
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "SamplingFrequency": "REQUIRED",
-      "StartTime": "REQUIRED",
-      "Columns": "REQUIRED",
-      "Manufacturer": "RECOMMENDED",
-      "ManufacturersModelName": "RECOMMENDED",
-      "SoftwareVersions": "RECOMMENDED",
-      "DeviceSerialNumber": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_sidecar_table(["continuous.Continuous", "continuous.Physio"]) }}
 
 Additional metadata may be included as in
 [any TSV file](../02-common-principles.md#tabular-files) to specify, for
@@ -174,7 +166,7 @@ as deemed appropriate by the researcher.
 
 Recordings with different sampling frequencies or starting times should be
 stored in separate files
-(and the [`recording-<label>`](../99-appendices/09-entities.md#recording)
+(and the [`recording-<label>`](../appendices/entities.md#recording)
 entity MAY be used to distinguish these files).
 
 If the same continuous recording has been used for all subjects (for example in

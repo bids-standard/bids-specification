@@ -3,8 +3,7 @@
 # This does not include information about whether these files are required or optional.
 # For that information, see `rules/top_level_files.yaml`.
 CHANGES:
-  name: CHANGES
-  display_name: Change log
+  display_name: Changelog
   description: |
     Version history of the dataset (describing changes, updates and corrections) MAY be provided in
     the form of a `CHANGES` text file.
@@ -13,7 +12,6 @@ CHANGES:
     CPAN/Changes/Spec.pod).
     The `CHANGES` file MUST be either in ASCII or UTF-8 encoding.
 LICENSE:
-  name: LICENSE
   display_name: License
   description: |
     A `LICENSE` file MAY be provided in addition to the short specification of the
@@ -21,8 +19,7 @@ LICENSE:
     The `"License"` field and `LICENSE` file MUST correspond.
     The `LICENSE` file MUST be either in ASCII or UTF-8 encoding.
 README:
-  name: README
-  display_name: Readme
+  display_name: README
   description: |
     A REQUIRED text file, `README`, SHOULD describe the dataset in more detail.
     The `README` file MUST be either in ASCII or UTF-8 encoding and MAY have one of the extensions:
@@ -39,12 +36,10 @@ README:
     A guideline for creating a good `README` file can be found in the
     [bids-starter-kit](https://github.com/bids-standard/bids-starter-kit/blob/master/templates/README).
 dataset_description:
-  name: Dataset Description
   display_name: Dataset Description
   description: |
     The file `dataset_description.json` is a JSON file describing the dataset.
 genetic_info:
-  name: Genetic Information
   display_name: Genetic Information
   description: |
     The `genetic_info.json` file describes the genetic information available in the
@@ -53,7 +48,6 @@ genetic_info:
     Datasets containing the `Genetics` field in `dataset_description.json` or the
     `genetic_id` column in `participants.tsv` MUST include this file.
 participants:
-  name: Participant Information
   display_name: Participant Information
   description: |
     The purpose of this RECOMMENDED file is to describe properties of participants
@@ -96,7 +90,6 @@ participants:
     available").
 
 samples:
-  name: Sample Information
   display_name: Sample Information
   description: |
     The purpose of this file is to describe properties of samples, indicated by the `sample` entity.
@@ -122,7 +115,7 @@ samples:
     -   `pathology`: string value describing the pathology of the sample or type of control.
         When different from `healthy`, pathology SHOULD be specified in `samples.tsv`.
         The pathology MAY instead be specified in
-        [Sessions files](../03-modality-agnostic-files.md#sessions-file) in case it changes over time.
+        [Sessions files](SPEC_ROOT/03-modality-agnostic-files.md#sessions-file) in case it changes over time.
 
     -   `derived_from`: `sample-<label>` key/value pair from which a sample is derived from,
         for example a slice of tissue (`sample-02`) derived from a block of tissue (`sample-01`)

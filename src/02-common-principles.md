@@ -56,11 +56,10 @@ entity instance, may be referred to as simply an "entity".
 "Subject", "session", "sample", "task", and "run" from the list of definitions
 above are all examples of entities.
 The comprehensive list of supported entities is defined in
-[Appendix IX](99-appendices/09-entities.md);
+the [Entities Appendix](appendices/entities.md);
 further, whether each is OPTIONAL, REQUIRED, or MUST NOT be provided for
 various data files, as well as their relative ordering in a filename, are
-defined in the Entity Table in
-[Appendix IV](99-appendices/04-entity-table.md).
+defined in the [Entity Tables Appendix](appendices/entity-table.md).
 
 ## Compulsory, optional, and additional data and metadata
 
@@ -134,12 +133,12 @@ In cases where an entity and a metadata field convey similar contextual
 information, the presence of an entity should not be used as a replacement for
 the corresponding metadata field.
 For instance, in echo-planar imaging MRI, the
-[`dir-<label>`](./99-appendices/09-entities.md#dir) entity MAY be used
+[`dir-<label>`](./appendices/entities.md#dir) entity MAY be used
 to distinguish files with different phase-encoding directions,
 but the file's `PhaseEncodingDirection` MUST be specified as metadata.
 
 A summary of all entities in BIDS and the order in which they MUST be
-specified is available in the [entity table](./99-appendices/04-entity-table.md)
+specified is available in the [entity table](./appendices/entity-table.md)
 in the appendix.
 
 ### Entity-linked file collections
@@ -161,7 +160,7 @@ Provided the conditions above are satisfied,
 any suffix (such as `bold`) can identify an entity-linked file collection,
 although certain suffixes are exclusive for this purpose (for example, `MP2RAGE`).
 Use cases concerning this convention are compiled in the
-[file collections](./99-appendices/10-file-collections.md) appendix.
+[file collections](./appendices/file-collections.md) appendix.
 This convention is mainly intended for but not limited to MRI modalities.
 
 ### Case collision intolerance
@@ -805,14 +804,14 @@ In case data is expressed in SI units or SI derived units, the units MAY be
 specified in the sidecar JSON file.
 In case non-standard prefixes are added to SI or non-SI units, these
 non-standard prefixed units MUST be specified in the JSON file.
-See [Appendix V](99-appendices/05-units.md) for a list of standard units and
+See the [Units Appendix](appendices/units.md) for a list of standard units and
 prefixes.
 Note also that for the *formatting* of SI units, the [CMIXF-12](https://people.csail.mit.edu/jaffer/MIXF/CMIXF-12)
 convention for encoding units is RECOMMENDED.
 CMIXF provides a consistent system for all units and prefix symbols with only basic
 characters, avoiding symbols that can cause text encoding problems; for example the
 CMIXF formatting for "micro volts" is `uV`, "degrees Celsius" is `oC` and "Ohm" is `Ohm`.
-See [Appendix V](99-appendices/05-units.md) for more information.
+See the [Units Appendix](appendices/units.md) for more information.
 
 For additional rules, see below:
 
@@ -866,7 +865,7 @@ Describing dates and timestamps:
     Some analysis software packages (for example, MNE-Python) handle their data as `.fif`
     internally and will break if recording dates are specified prior to `1902`,
     even if the original data format is not `.fif`.
-    See [MEG-file-formats](./99-appendices/06-meg-file-formats.md#recording-dates-in-fif-files)
+    See the [MEG File Formats Appendix](./appendices/meg-file-formats.md#recording-dates-in-fif-files)
     for more information.
 
 -   Age SHOULD be given as the number of years since birth at the time of

@@ -1,85 +1,102 @@
 ---
 CommonDerivativeFields:
   selectors:
-  - dataset.DatasetType == "derivative"
+    - dataset.dataset_description.DatasetType == "derivative"
   fields:
-    Description: RECOMMENDED
-    Sources: OPTIONAL
-    RawSources: OPTIONAL
+    Description:
+      level: recommended
+      description_addendum: This describes the nature of the file.
+    Sources: optional
+    RawSources: deprecated
 
 SpatialReferenceEntity:
   selectors:
-  - dataset.DatasetType == "derivative"
-  - '"space" in entities'
+    - dataset.dataset_description.DatasetType == "derivative"
+    - '"space" in entities'
   fields:
-    SpatialReference: RECOMMENDED
+    SpatialReference:
+      level: recommended
+      level_addendum: |
+        if the derivative is aligned to a standard template listed in
+        [Standard template identifiers][templates]. Required otherwise.
 
 SpatialReferenceNonStandard:
   selectors:
-  - dataset.DatasetType == "derivative"
-  - 'schema.objects.metadata._StandardTemplateCoordSys).includes(not(entities.space)'
+    - dataset.dataset_description.DatasetType == "derivative"
+    - '!intersects(schema.objects.metadata._StandardTemplateCoordSys, [entities.space])'
   fields:
-    SpatialReference: REQUIRED
+    SpatialReference: required
 
 SpatialReferenceNoEntity:
   selectors:
-  - dataset.DatasetType == "derivative"
-  - '!("space" in entities)'
+    - dataset.dataset_description.DatasetType == "derivative"
+    - '!("space" in entities)'
   fields:
-    SpatialReference: REQUIRED
+    SpatialReference: required
 
 # this needs to come before density and resolution overrides selected in a
 # different way
 MaskDerivatives:
   selectors:
-  - dataset.DatasetType == "derivative"
-  - suffix == "mask"
+    - dataset.dataset_description.DatasetType == "derivative"
+    - suffix == "mask"
   fields:
-    RawSources: REQUIRED
-    Type: RECOMMENDED
-    Atlas: OPTIONAL
-    Resolution: OPTIONAL
-    Density: OPTIONAL
+    Type: recommended
+    Sources: recommended
+    RawSources: deprecated
 
 MaskDerivativesAtlas:
   selectors:
-  - dataset.DatasetType == "derivative"
-  - suffix == "mask"
-  - '"label" in entities'
+    - dataset.dataset_description.DatasetType == "derivative"
+    - suffix == "mask"
+    - '"label" in entities'
   fields:
-    Atlas: RECOMMENDED
+    Atlas:
+      level: recommended
+      level_addendum: if `label` entity is defined
 
 SegmentationCommon:
   selectors:
-  - dataset.DatasetType == "derivative"
-  - '["dseg", "probseg"].includes(suffix)'
+    - dataset.dataset_description.DatasetType == "derivative"
+    - '!intersects([suffix], ["dseg", "probseg"])'
   fields:
-    Type: RECOMMENDED
-    Atlas: OPTIONAL
-    Resolution: OPTIONAL
-    Density: OPTIONAL
+    Manual: optional
+
+SegmentationCommonAtlas:
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - '!intersects([suffix], ["dseg", "probseg"])'
+    - '"atlas" in entities'
+  fields:
+    Atlas:
+      level: recommended
+      level_addendum: if `atlas` is present
 
 # Derivatives -> Imaging data types
 ImageDerivatives:
   selectors:
-  - dataset.DatasetType == "derivative"
-  - '["mri", "pet"].includes(modality)'
-  - '[".nii", ".nii.gz"].includes(extension)'
+    - dataset.dataset_description.DatasetType == "derivative"
+    - '!intersects([modality], ["mri", "pet"])'
+    - '!match(extension, "^\.nii(\.gz)?$")'
   fields:
-    SkullStripped: REQUIRED
+    SkullStripped: required
 
 ImageDerivativeResEntity:
   selectors:
-  - dataset.DatasetType == "derivative"
-  - '["mri", "pet"].includes(modality)'
-  - '"res" in entities'
+    - dataset.dataset_description.DatasetType == "derivative"
+    - '!intersects([modality], ["mri", "pet"])'
+    - '"res" in entities'
   fields:
-    Resolution: REQUIRED
+    Resolution:
+      level: required
+      level_addendum: if `res` is present
 
 ImageDerivativeDenEntity:
   selectors:
-  - dataset.DatasetType == "derivative"
-  - '["mri", "pet"].includes(modality)'
-  - '"den" in entities'
+    - dataset.dataset_description.DatasetType == "derivative"
+    - '!intersects([modality], ["mri", "pet"])'
+    - '"den" in entities'
   fields:
-    Density: REQUIRED
+    Density:
+      level: required
+      level_addendum: if `den` is present

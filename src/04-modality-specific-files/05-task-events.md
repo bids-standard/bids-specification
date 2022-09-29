@@ -139,7 +139,7 @@ Note: Events can also be documented in machine-actionable form
 using HED (Hierarchical Event Descriptor) tags.
 This type of documentation is particularly useful for datasets likely to be used
 in event-related analyses.
-See [Hierarchical Event Descriptors](../99-appendices/03-hed.md)
+See [Hierarchical Event Descriptors](../appendices/hed.md)
 for additional information and examples.
 
 ## Stimuli
@@ -233,16 +233,14 @@ It is RECOMMENDED to include details of the stimulus presentation software,
 when applicable:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "StimulusPresentation": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("events.StimulusPresentation") }}
 
 The object supplied for `StimulusPresentation` SHOULD include the following key-value pairs:
 
@@ -252,7 +250,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
+{{ MACROS___make_subobject_table(("objects", "metadata", "StimulusPresentation"),
    {
       "OperatingSystem": "RECOMMENDED",
       "SoftwareName": "RECOMMENDED",

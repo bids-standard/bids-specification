@@ -1,36 +1,36 @@
-# Appendix I: Contributors
+# Contributors
 
 Legend (source:
 <https://allcontributors.org/docs/en/emoji-key>)
 
-| **Emoji** | **Represents**                                                                    |
-| --------- | --------------------------------------------------------------------------------- |
-| 💬        | Answering Questions (on the mailing list, NeuroStars, GitHub, or in person, etc.) |
-| 🐛        | Bug reports                                                                       |
-| 📝        | Blogposts                                                                         |
-| 💻        | Code                                                                              |
-| 🖋        | Content (separate from Blogposts, for example Website news)                       |
-| 📖        | Documentation and specification                                                   |
-| 🔣        | Data (example datasets)                                                           |
-| 🎨        | Design                                                                            |
-| 💡        | Examples (for example datasets, use `Data`)                                       |
-| 📋        | Event Organizers                                                                  |
-| 💵        | Financial Support                                                                 |
-| 🔍        | Funding/Grant Finders                                                             |
-| 🤔        | Ideas & Planning                                                                  |
-| 🚇        | Infrastructure (hosting, build-tools, etc.)                                       |
-| 🚧        | Maintenance of the BIDS standard                                                  |
-| 🧑‍🏫     | Mentoring new contributors                                                        |
-| 🔌        | Plugin/utility libraries                                                          |
-| 📆        | Project management                                                                |
-| 👀        | Reviewed Pull Requests                                                            |
-| 🔧        | Tools                                                                             |
-| 🌍        | Translation                                                                       |
-| ⚠️        | Tests                                                                             |
-| ✅         | Tutorials                                                                         |
-| 📢        | Talks                                                                             |
-| 📓        | User testing (of new features, tools, etc.)                                       |
-| 📹        | Videos                                                                            |
+| **Emoji** | **Represents**                                                                         |
+| --------- | -------------------------------------------------------------------------------------- |
+| 💬        | Answering Questions (on the mailing list, NeuroStars, GitHub, in person, or otherwise) |
+| 🐛        | Bug reports                                                                            |
+| 📝        | Blogposts                                                                              |
+| 💻        | Code                                                                                   |
+| 🖋        | Content (separate from Blogposts, for example Website news)                            |
+| 📖        | Documentation and specification                                                        |
+| 🔣        | Data (example datasets)                                                                |
+| 🎨        | Design                                                                                 |
+| 💡        | Examples (for example datasets, use `Data`)                                            |
+| 📋        | Event Organizers                                                                       |
+| 💵        | Financial Support                                                                      |
+| 🔍        | Funding/Grant Finders                                                                  |
+| 🤔        | Ideas & Planning                                                                       |
+| 🚇        | Infrastructure (hosting, build-tools, and so on)                                       |
+| 🚧        | Maintenance of the BIDS standard                                                       |
+| 🧑‍🏫     | Mentoring new contributors                                                             |
+| 🔌        | Plugin/utility libraries                                                               |
+| 📆        | Project management                                                                     |
+| 👀        | Reviewed Pull Requests                                                                 |
+| 🔧        | Tools                                                                                  |
+| 🌍        | Translation                                                                            |
+| ⚠️        | Tests                                                                                  |
+| ✅         | Tutorials                                                                              |
+| 📢        | Talks                                                                                  |
+| 📓        | User testing (of new features, tools, and so on)                                       |
+| 📹        | Videos                                                                                 |
 
 The following individuals have contributed to the Brain Imaging Data Structure
 ecosystem (in alphabetical order).

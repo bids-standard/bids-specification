@@ -302,7 +302,6 @@ is to use the `requirements.txt` file contained in this repository as follows:
 ```bash
 pip install -U pip
 pip install -r requirements.txt
-pip install -e tools/schemacode/
 ```
 
 The first command ensures you are using an up to date version of `pip`,
@@ -310,6 +309,18 @@ and the second command installs all dependencies.
 The third command ensures to install the BIDS schema code as an "editable" install,
 so that if you make changes to the schema files,
 these are automatically reflected in the sourcecode.
+
+Note that if you need to work on the some of the Python code 
+that is used to render the specification, 
+you will probably have to also run:
+
+```bash
+pip install -e tools/schemacode[render]
+```
+
+This installs the `bidsschemacode` package in "editable" mode,
+so that any changes you make to the code will be reflected when you use it,
+such as when you build the documentation locally.
 
 #### 4. Ready to build!
 
@@ -697,11 +708,11 @@ BIDS follows the
 specification, so we welcome and recognize all contributions from documentation
 to testing to code development.
 You can see a list of current contributors in the
-[BIDS specification](https://github.com/bids-standard/bids-specification/blob/master/src/99-appendices/01-contributors.md).
+[BIDS specification](https://github.com/bids-standard/bids-specification/blob/master/src/appendices/contributors.md).
 
 If you have made any type of contributions to the BIDS specifications, you can
 either make a change to the
-[contributors document](./src/99-appendices/01-contributors.md) and commit as
+[contributors document](./src/appendices/contributors.md) and commit as
 part of a pull request or you can edit this
 [page](https://github.com/bids-standard/bids-specification/wiki/Recent-Contributors)
 of the specification WIKI.

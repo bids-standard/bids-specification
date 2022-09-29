@@ -1,4 +1,4 @@
-# Appendix XIV: Glossary of schema objects
+# Glossary of schema objects
 
 This section compiles the object definitions in the schema.
 

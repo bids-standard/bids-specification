@@ -28,12 +28,12 @@ The EEG community uses a variety of formats for storing raw data, and there is
 no single standard that all researchers agree on. For BIDS, EEG data MUST be
 stored in one of the following formats:
 
-| **Format**                                                                                   | **Extension(s)**         | **Description**                                                                                                                                                                                      |
-| -------------------------------------------------------------------------------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [European data format](https://www.edfplus.info/)                                            | `.edf`                   | Each recording consists of a single `.edf` file. [`edf+`](https://www.edfplus.info/specs/edfplus.html) files are permitted. The capital `.EDF` extension MUST NOT be used.                           |
-| [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5) | `.vhdr`, `.vmrk`, `.eeg` | Each recording consists of a  `.vhdr`, `.vmrk`, `.eeg` file triplet.                                                                                                                                 |
-| [EEGLAB](https://sccn.ucsd.edu/eeglab)                                                       | `.set`, `.fdt`           | The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab). Each recording consists of a `.set` file with an optional `.fdt` file.                                                 |
-| [Biosemi](https://www.biosemi.com/)                                                          | `.bdf`                   | Each recording consists of a single `.bdf` file. [`bdf+`](https://www.teuniz.net/edfbrowser/bdfplus%20format%20description.html) files are permitted. The capital `.BDF` extension MUST NOT be used. |
+| **Format**                                        | **Extension(s)**         | **Description**                                                                                                                                                                                      |
+| ------------------------------------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [European data format](https://www.edfplus.info/) | `.edf`                   | Each recording consists of a single `.edf` file. [`edf+`](https://www.edfplus.info/specs/edfplus.html) files are permitted. The capital `.EDF` extension MUST NOT be used.                           |
+| [BrainVision Core Data Format][bvformat]          | `.vhdr`, `.vmrk`, `.eeg` | Each recording consists of a  `.vhdr`, `.vmrk`, `.eeg` file triplet.                                                                                                                                 |
+| [EEGLAB](https://sccn.ucsd.edu/eeglab)            | `.set`, `.fdt`           | The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab). Each recording consists of a `.set` file with an OPTIONAL `.fdt` file.                                                 |
+| [Biosemi](https://www.biosemi.com/)               | `.bdf`                   | Each recording consists of a single `.bdf` file. [`bdf+`](https://www.teuniz.net/edfbrowser/bdfplus%20format%20description.html) files are permitted. The capital `.BDF` extension MUST NOT be used. |
 
 It is RECOMMENDED to use the European data format, or the BrainVision data
 format. It is furthermore discouraged to use the other accepted formats over
@@ -48,7 +48,7 @@ also encourage users to provide additional meta information extracted from the
 manufacturer specific data files in the sidecar JSON file. Other relevant files
 MAY be included alongside the original EEG data in `/sourcedata`.
 
-Note the RecordingType, which depends on whether the data stream on disk
+Note the `RecordingType`, which depends on whether the data stream on disk
 is interrupted or not.
 Continuous data is by definition 1 segment without interruption.
 Epoched data consists of multiple segments that all have the same length
@@ -87,88 +87,52 @@ be specified.
 Generic fields MUST be present:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "TaskName": ("REQUIRED", "A RECOMMENDED convention is to name resting state task using labels beginning with `rest`."),
-   }
-) }}
+{{ MACROS___make_sidecar_table("eeg.EEGGeneric") }}
 
 SHOULD be present: For consistency between studies and institutions, we
 encourage users to extract the values of these fields from the actual raw data.
 Whenever possible, please avoid using ad hoc wording.
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "InstitutionName": "RECOMMENDED",
-      "InstitutionAddress": "RECOMMENDED",
-      "InstitutionalDepartmentName": "RECOMMENDED",
-      "Manufacturer": "RECOMMENDED",
-      "ManufacturersModelName": "RECOMMENDED",
-      "SoftwareVersions": "RECOMMENDED",
-      "TaskDescription": "RECOMMENDED",
-      "Instructions": ("RECOMMENDED", "This is especially important in context of resting state recordings and distinguishing between eyes open and eyes closed paradigms."),
-      "CogAtlasID": "RECOMMENDED",
-      "CogPOID": "RECOMMENDED",
-      "DeviceSerialNumber": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("eeg.EEGRecommended") }}
 
 Specific EEG fields MUST be present:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "EEGReference": "REQUIRED",
-      "SamplingFrequency": ("REQUIRED", "The sampling frequency of data channels that deviate from the main sampling frequency SHOULD be specified in the `channels.tsv` file."),
-      "PowerLineFrequency": "REQUIRED",
-      "SoftwareFilters": "REQUIRED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("eeg.EEGRequired") }}
 
 SHOULD be present:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "CapManufacturer": "RECOMMENDED",
-      "CapManufacturersModelName": "RECOMMENDED",
-      "EEGChannelCount": "RECOMMENDED",
-      "ECGChannelCount": "RECOMMENDED",
-      "EMGChannelCount": "RECOMMENDED",
-      "EOGChannelCount": "RECOMMENDED",
-      "MiscChannelCount": "RECOMMENDED",
-      "TriggerChannelCount": "RECOMMENDED",
-      "RecordingDuration": "RECOMMENDED",
-      "RecordingType": "RECOMMENDED",
-      "EpochLength": "RECOMMENDED",
-      "EEGGround": "RECOMMENDED",
-      "HeadCircumference": "RECOMMENDED",
-      "EEGPlacementScheme": "RECOMMENDED",
-      "HardwareFilters": "RECOMMENDED",
-      "SubjectArtefactDescription": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("eeg.EEGMoreRecommended") }}
 
 Example:
 
@@ -384,7 +348,7 @@ Cz     0.0000   0.0714   0.0699   cup      Ag/AgCl
 REF    -0.0742  -0.0200  -0.0100  cup      Ag/AgCl
 ```
 
-The [`acq-<label>`](../99-appendices/09-entities.md#acq) entity can be used to
+The [`acq-<label>`](../appendices/entities.md#acq) entity can be used to
 indicate acquisition of the same data. For
 example, this could be the recording of electrode positions with a different
 electrode position recording device, or repeated digitization before and after
@@ -438,71 +402,50 @@ head.
 General fields:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "IntendedFor__ds_relative": (
-         "OPTIONAL",
-         "This identifies the MRI or CT scan associated with the electrodes, "
-         "landmarks, and fiducials.",
-      )
-   }
-) }}
+{{ MACROS___make_sidecar_table("eeg.EEGCoordsystemGeneral") }}
 
 Fields relating to the EEG electrode positions:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "EEGCoordinateSystem": "REQUIRED",
-      "EEGCoordinateUnits": "REQUIRED",
-      "EEGCoordinateSystemDescription": 'RECOMMENDED, but REQUIRED if `EEGCoordinateSystem` is `"Other"`',
-   }
-) }}
+{{ MACROS___make_sidecar_table("eeg.EEGCoordsystemPositions") }}
 
 Fields relating to the position of fiducials measured during an EEG session/run:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "FiducialsDescription": "OPTIONAL",
-      "FiducialsCoordinates": "RECOMMENDED",
-      "FiducialsCoordinateSystem": "RECOMMENDED",
-      "FiducialsCoordinateUnits": "RECOMMENDED",
-      "FiducialsCoordinateSystemDescription": 'RECOMMENDED, but REQUIRED if `FiducialsCoordinateSystem` is `"Other"`',
-   }
-) }}
+{{ MACROS___make_sidecar_table("eeg.EEGCoordsystemFiducials") }}
 
 Fields relating to the position of anatomical landmark measured during an EEG session/run:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "AnatomicalLandmarkCoordinates": "RECOMMENDED",
-      "AnatomicalLandmarkCoordinateSystem": ("RECOMMENDED", "Preferably the same as the `EEGCoordinateSystem`."),
-      "AnatomicalLandmarkCoordinateUnits": "RECOMMENDED",
-      "AnatomicalLandmarkCoordinateSystemDescription": 'RECOMMENDED, but REQUIRED if `AnatomicalLandmarkCoordinateSystem` is `"Other"`',
-   }
-) }}
+{{ MACROS___make_sidecar_table(["eeg.EEGCoordsystemLandmark", "eeg.EEGCoordsystemLandmarkDescriptionRec"]) }}
 
 If the position of anatomical landmarks is measured using the same system or
 device used to measure electrode positions, and if thereby the anatomical
@@ -545,7 +488,7 @@ Please note that the photos may need to be cropped or blurred to conceal
 identifying features prior to sharing, depending on the terms of the consent
 given by the participant.
 
-The [`acq-<label>`](../99-appendices/09-entities.md#acq) entity can be used to
+The [`acq-<label>`](../appendices/entities.md#acq) entity can be used to
 indicate acquisition of different photos of
 the same face (or other body part in different angles to show, for example, the
 location of the nasion (NAS) as opposed to the right periauricular point (RPA).
@@ -556,3 +499,7 @@ Picture of a NAS fiducial placed between the eyebrows, rather than at the
 actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
 
 ![placement of NAS fiducial](images/sub-0001_ses-001_acq-NAS_photo.jpg "placement of NAS fiducial")
+
+<!-- Link Definitions -->
+
+[bvformat]: https://www.brainproducts.com/support-resources/brainvision-core-data-format-1-0/

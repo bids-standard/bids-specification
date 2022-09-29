@@ -42,24 +42,19 @@ def _get_paths(
     * Deduplicate paths (if input dirs are subsets of other input dirs), might best be done at the
         very end.
     """
-    exclude_subdirs = [
-        rf"{os.sep}.dandi",
-        rf"{os.sep}.datalad",
-        rf"{os.sep}.git",
-    ]
     # `.bidsignore` is not, in fact, a BIDS file, as per:
     # https://github.com/bids-standard/bids-specification/issues/980
+    # Perhaps this should be parameterized for downstream flexibility and not having to keep track
+    # of downstream nuisance files here.
     exclude_files = [
-        ".gitattributes",
-        ".gitignore",
-        ".bidsignore",
         "dandiset.yaml",
     ]
 
     path_list = []
     bids_root_found = False
     for bids_path in bids_paths:
-        bids_path = os.path.abspath(os.path.expanduser(bids_path))
+        if not accept_dummy_paths:
+            bids_path = os.path.abspath(os.path.expanduser(bids_path))
         if os.path.isdir(bids_path):
             for root, dirs, file_names in os.walk(bids_path, topdown=True):
                 if "dataset_description.json" in file_names:
@@ -75,10 +70,10 @@ def _get_paths(
                     dirs[:] = []
                     file_names[:] = []
                 # will break if BIDS ever puts meaningful data under `/.{dandi,datalad,git}*/`
-                if os.path.basename(root) in exclude_subdirs:
+                if os.path.basename(root).startswith("."):
                     continue
                 for file_name in file_names:
-                    if file_name in exclude_files:
+                    if file_name in exclude_files or file_name.startswith("."):
                         continue
                     file_path = os.path.join(root, file_name)
                     # This will need to be replaced with bids root finding.
@@ -462,7 +457,7 @@ def validate_all(
 
 def write_report(
     validation_result,
-    report_path="/var/tmp/bids-validator/report_{datetime}-{pid}.log",
+    report_path="~/.cache/bidsschematools/validator-report_{datetime}-{pid}.log",
     datetime_format="%Y%m%d%H%M%SZ",
 ):
     """Write a human-readable report based on the validation result.
@@ -492,8 +487,9 @@ def write_report(
         pid=os.getpid(),
     )
     report_path = os.path.abspath(os.path.expanduser(report_path))
+    report_dir = os.path.dirname(report_path)
     try:
-        os.makedirs(os.path.dirname(report_path))
+        os.makedirs(report_dir)
     except OSError:
         pass
 
@@ -843,10 +839,13 @@ def validate_bids(
 
     Examples
     --------
-    >>> from bidsschematools import validator
-    >>> bids_paths = '~/.data2/datalad/000026/rawdata'
-    >>> schema_version='{module_path}/data/schema/'
-    >>> validator.validate_bids(bids_paths, schema_version=schema_version)"
+
+    ::
+
+        from bidsschematools import validator
+        bids_paths = '~/.data2/datalad/000026/rawdata'
+        schema_version='{module_path}/data/schema/'
+        validator.validate_bids(bids_paths, schema_version=schema_version)
 
     Notes
     -----

@@ -1,4 +1,4 @@
-# Appendix III: Hierarchical Event Descriptors
+# Hierarchical Event Descriptors
 
 Hierarchical Event Descriptors (HED) are a controlled vocabulary of terms describing
 events in a machine-actionable form so that algorithms can use the information without
@@ -167,7 +167,7 @@ This allows for a proper validation of the HED annotations
 (for example using the `bids-validator`).
 
 Example: The following `dataset_description.json` file specifies that the
-[`HED8.0.0.xml`](https://github.com/hed-standard/hed-specification/tree/master/hedxml/HED8.0.0.xml)
+[`HED8.1.0.xml`](https://github.com/hed-standard/hed-specification/tree/master/hedxml/HED8.1.0.xml)
 file from the `hedxml` directory of the
 [`hed-specification`](https://github.com/hed-standard/hed-specification)
 repository on GitHub should be used to validate the study event annotations.
@@ -175,13 +175,65 @@ repository on GitHub should be used to validate the study event annotations.
 ```JSON
 {
   "Name": "A great experiment",
-  "BIDSVersion": "1.6.0",
-  "HEDVersion": "8.0.0"
+  "BIDSVersion": "1.7.0",
+  "HEDVersion": "8.1.0"
 }
 ```
 
 If you omit the `HEDVersion` field from the dataset description file,
-any present HED information will be validated using the latest version of the HED schema,
-which is bound to result in problems.
-Hence, it is strongly RECOMMENDED that the `HEDVersion` field be included when using HED
-in a BIDS dataset.
+any present HED information will be validated using the latest version of the HED schema.
+This is bound to result in problems, and hence, it is strongly RECOMMENDED that the
+`HEDVersion` field be included when using HED in a BIDS dataset.
+
+### Using HED library schemas
+
+HED also allows you to use one or more specialized vocabularies along with or instead of
+the standard vocabulary. These specialized vocabularies are developed by
+communities of users and are available in the GitHub
+[hed-schema-library](https://github.com/hed-standard/hed-schema-library) repository.
+Library schema are specified in the form `<library-name<_>library-version>`.
+
+Example: The following `dataset_description.json` file specifies that the
+[HED8.1.0.xml](https://github.com/hed-standard/hed-specification/tree/master/hedxml/HED8.1.0.xml)
+standard schema should be used along with the
+SCORE library for clinical neurological annotation and a test library.
+These later schemas are located at
+[HED_score_0.0.1.xml](https://github.com/hed-standard/hed-schema-library/blob/main/library_schemas/score/hedxml/HED_score_0.0.1.xml) and
+[HED_testlib_1.0.2.xml](https://github.com/hed-standard/hed-schema-library/blob/main/library_schemas/testlib/hedxml/HED_testlib_1.0.2.xml), respectively.
+
+```JSON
+{
+  "Name": "A great experiment",
+  "BIDSVersion": "1.7.0",
+  "HEDVersion": ["8.1.0", "sc:score_0.0.1", "ts:testlib_1.0.2"]
+}
+```
+The `sc:` and `ts:` are user-chosen prefixes used to distinguish the sources
+of the terms in the HED annotation.
+These prefixes MUST be alphanumeric.
+
+The following HED annotation from this dataset uses the `sc:` prefix with
+`Photomyogenic-response` and `Wicket-spikes` because these terms are from the
+SCORE library, while `Data-feature` is from the standard HED schema.
+
+```Text
+Data-feature, sc:Photomyogenic-response, sc:Wicket-spikes
+```
+
+If only one schema is being used for annotation, the prefix can be omitted entirely.
+The following `dataset_description.json` indicates that only the SCORE library version
+0.0.1 will be used for HED annotation in this dataset.
+
+```JSON
+{
+  "Name": "A great experiment",
+  "BIDSVersion": "1.7.0",
+  "HEDVersion": "score_0.0.1"
+}
+```
+
+The corresponding notations in the dataset do not have a prefix:
+
+```Text
+Photomyogenic-response, Wicket-spikes
+```

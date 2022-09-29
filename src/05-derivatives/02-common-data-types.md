@@ -11,27 +11,20 @@ Each derivative type defines their own set of fields, but all of them
 share the following (non-required) ones:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-        "Description": (
-            "RECOMMENDED",
-            "This describes the nature of the file.",
-        ),
-        "Sources": "OPTIONAL",
-        "RawSources": "DEPRECATED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("derivatives.common_derivatives.CommonDerivativeFields") }}
 
 ### Examples
 
 Preprocessed `bold` NIfTI file in the original coordinate space of the original run.
 The location of the file in the original datasets is encoded in the `Sources` metadata,
-and [`_desc-<label>`](../99-appendices/09-entities.md#desc)
+and [`_desc-<label>`](../appendices/entities.md#desc)
 is used to prevent clashing with the original filename.
 
 <!-- This block generates a file tree.
@@ -92,26 +85,24 @@ and the raw original file.
 Derivatives are often aligned to a common spatial reference to allow for the
 comparison of acquired data across runs, sessions, subjects or datasets.
 A file may indicate the spatial reference to which it has been aligned using the
-[`space` entity](../99-appendices/09-entities.md#space) and/or the `SpatialReference` metadata.
+[`space` entity](../appendices/entities.md#space) and/or the `SpatialReference` metadata.
 
-The [`space` entity](../99-appendices/09-entities.md#space) may take any value in
+The [`space` entity](../appendices/entities.md#space) may take any value in
 [Image-Based Coordinate Systems][coordsys].
 
-If the [`space` entity](../99-appendices/09-entities.md#space) is omitted,
+If the [`space` entity](../appendices/entities.md#space) is omitted,
 or the space is not in the [Standard template identifiers][templates] table,
 then the `SpatialReference` metadata is REQUIRED.
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "SpatialReference": "RECOMMENDED if the derivative is aligned to a standard template listed in [Standard template identifiers][templates]. REQUIRED otherwise.",
-   }
-) }}
+{{ MACROS___make_sidecar_table("derivatives.common_derivatives.SpatialReferenceEntity") }}
 
 ### SpatialReference key allowed values
 
@@ -207,11 +198,11 @@ Examples of preprocessing:
 -   Time-domain filtered EEG data
 -   MaxFilter (for example, SSS) cleaned MEG data
 
-The [`space` entity](../99-appendices/09-entities.md#space)
+The [`space` entity](../appendices/entities.md#space)
 is recommended to distinguish files with different underlying
 coordinate systems or registered to different reference maps.
 See [Spatial references](#spatial-references) for details.
-The [`desc` entity](../99-appendices/09-entities.md#desc) ("description")
+The [`desc` entity](../appendices/entities.md#desc) ("description")
 is a general purpose field with freeform values,
 which SHOULD be used to distinguish between multiple different versions of
 processing for the same input data.
@@ -265,9 +256,9 @@ static volume, a `RepetitionTime` property would no longer be relevant).
 
 <!-- Link Definitions -->
 
-[coordsys]: ../99-appendices/08-coordinate-systems.md#image-based-coordinate-systems
+[coordsys]: ../appendices/coordinate-systems.md#image-based-coordinate-systems
 
-[templates]: ../99-appendices/08-coordinate-systems.md#standard-template-identifiers
+[templates]: ../appendices/coordinate-systems.md#standard-template-identifiers
 
 [object]: https://www.json.org/json-en.html
 
@@ -276,3 +267,5 @@ static volume, a `RepetitionTime` property would no longer be relevant).
 [deprecated]: ../02-common-principles.md#definitions
 
 [uris]: ../02-common-principles.md#uniform-resource-indicator
+
+[uri]: ../02-common-principles.md#uniform-resource-indicator

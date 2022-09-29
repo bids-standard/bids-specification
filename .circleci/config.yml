@@ -13,7 +13,6 @@ jobs:
             source env/bin/activate
             python -m pip install --upgrade pip
             pip install -r requirements.txt
-            pip install ~/project/tools/schemacode/[render]
       - run:
           name: generate docs
           command: |
@@ -107,6 +106,7 @@ jobs:
             git status
             if (git log -1 --pretty=%s | grep Merge*) && (! git log -1 --pretty=%b | grep REL:) ; then
               github_changelog_generator \
+                --exclude-tags-regex "^(?!v).*?$" \
                 --user bids-standard \
                 --project bids-specification \
                 --token ${CHANGE_TOKEN} \

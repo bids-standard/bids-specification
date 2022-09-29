@@ -2,7 +2,7 @@
 # This file describes valid file extensions in the specification.
 ave:
   value: .ave
-  display_name: AVE  # not sure what ave stands for
+  display_name: AVE # not sure what ave stands for
   description: |
     File containing data averaged by segments of interest.
 
@@ -42,7 +42,7 @@ bvec:
     Following the FSL format for the `bvec` specification, the coordinate system of
     the *b* vectors MUST be defined with respect to the coordinate system defined by
     the header of the corresponding `_dwi` NIfTI file and not the scanner's device
-    coordinate system (see [Coordinate systems](../99-appendices/08-coordinate-systems.md)).
+    coordinate system (see [Coordinate systems](SPEC_ROOT/appendices/coordinate-systems.md)).
     The most relevant limitation imposed by this choice is that the gradient information cannot
     be directly stored in this format if the scanner generates *b*-vectors in *scanner coordinates*.
 chn:
@@ -94,7 +94,7 @@ eeg:
   display_name: BrainVision Binary Data
   description: |
     A binary data file in the
-    [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5).
+    [BrainVision Core Data Format](https://www.brainproducts.com/support-resources/brainvision-core-data-format-1-0/).
     These files come in three-file sets, including a `.vhdr`, a `.vmrk`, and a `.eeg` file.
 fdt:
   value: .fdt
@@ -286,14 +286,14 @@ vhdr:
   display_name: BrainVision Text Header
   description: |
     A text header file in the
-    [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5).
+    [BrainVision Core Data Format](https://www.brainproducts.com/support-resources/brainvision-core-data-format-1-0/).
     These files come in three-file sets, including a `.vhdr`, a `.vmrk`, and a `.eeg` file.
 vmrk:
   value: .vmrk
   display_name: BrainVision Marker
   description: |
     A text marker file in the
-    [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5).
+    [BrainVision Core Data Format](https://www.brainproducts.com/support-resources/brainvision-core-data-format-1-0/).
     These files come in three-file sets, including a `.vhdr`, a `.vmrk`, and a `.eeg` file.
 Any:
   value: .*
@@ -301,7 +301,7 @@ Any:
   description: |
     Any extension is allowed.
 None:
-  value: ""
+  value: ''
   display_name: No extension
   description: |
     A file with no extension.

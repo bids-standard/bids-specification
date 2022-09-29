@@ -1,14 +1,23 @@
 # Changelog
 
-## [schema-0.3.1](https://github.com/bids-standard/bids-specification/tree/schema-0.3.1) (2022-08-16)
+## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
-## [schema-0.3.0](https://github.com/bids-standard/bids-specification/tree/schema-0.3.0) (2022-08-16)
-
--   \[MISC] Remove label format and inheritane principle redundancies in fMRI section [#1197](https://github.com/bids-standard/bids-specification/pull/1197) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[ENH] Add glossary links to all tables [#1268](https://github.com/bids-standard/bids-specification/pull/1268) ([tsalo](https://github.com/tsalo))
+-   \[ENH] Remove redundant entity definitions on MRI page [#1265](https://github.com/bids-standard/bids-specification/pull/1265) ([tsalo](https://github.com/tsalo))
+-   \[ENH] Standardize and organize entity descriptions [#1264](https://github.com/bids-standard/bids-specification/pull/1264) ([tsalo](https://github.com/tsalo))
+-   \[ENH] Add filename template legend [#1259](https://github.com/bids-standard/bids-specification/pull/1259) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[REF] Reorder appendices [#1256](https://github.com/bids-standard/bids-specification/pull/1256) ([tsalo](https://github.com/tsalo))
+-   \[MISC] Clarify: FieldMap PE technique --> no SPM [#1253](https://github.com/bids-standard/bids-specification/pull/1253) ([CPernet](https://github.com/CPernet))
+-   \[MISC] Adding qMRI BIDS article reference (BEP001) [#1251](https://github.com/bids-standard/bids-specification/pull/1251) ([agahkarakuzu](https://github.com/agahkarakuzu))
+-   \[ENH] Link to filename element definitions in filename templates [#1228](https://github.com/bids-standard/bids-specification/pull/1228) ([tsalo](https://github.com/tsalo))
+-   \[MISC] Remove label format and inheritance principle redundancies in fMRI section [#1197](https://github.com/bids-standard/bids-specification/pull/1197) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[ENH] add task metadata to PET [#1196](https://github.com/bids-standard/bids-specification/pull/1196) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[FIX] clarify which file to list in scans.tsv for file formats with multiple files [#1178](https://github.com/bids-standard/bids-specification/pull/1178) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] add recommendation to fully omit non-compulsory data that is n/a [#1171](https://github.com/bids-standard/bids-specification/pull/1171) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Discourage use of "sample" in events if sampling frequency is ambiguous, add guidelines for precision [#1140](https://github.com/bids-standard/bids-specification/pull/1140) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Clarify MEG empty-room recommendations [#1125](https://github.com/bids-standard/bids-specification/pull/1125) ([robertoostenveld](https://github.com/robertoostenveld))
 -   \[FIX] clarify no blank and duplicated headers in TSV [#1116](https://github.com/bids-standard/bids-specification/pull/1116) ([sappelhoff](https://github.com/sappelhoff))
+-   \[ENH] Added the specification for using HED libraries in BIDS [#1106](https://github.com/bids-standard/bids-specification/pull/1106) ([VisLab](https://github.com/VisLab))
 -   \[ENH] Microscopy: NGFF format support [#1104](https://github.com/bids-standard/bids-specification/pull/1104) ([TheChymera](https://github.com/TheChymera))
 -   \[ENH] Add Microscopy-BIDS citation [#1102](https://github.com/bids-standard/bids-specification/pull/1102) ([mariehbourget](https://github.com/mariehbourget))
 -   \[FIX] MEG link typo [#1100](https://github.com/bids-standard/bids-specification/pull/1100) ([xi](https://github.com/xi))

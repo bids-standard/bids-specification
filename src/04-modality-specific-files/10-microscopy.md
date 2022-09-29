@@ -95,12 +95,12 @@ and a guide for using macros can be found at
 
 ### Filename entities
 
-In the context of Microscopy, a session ([`ses-<label>`](../99-appendices/09-entities.md#ses))
+In the context of Microscopy, a session ([`ses-<label>`](../appendices/entities.md#ses))
 can refer to all the acquisitions between the start and the end of an imaging experiment
 for ex vivo imaging, or a subject lab visit for biopsy procedure and/or in vivo imaging.
 Consistent with other data types in BIDS, the session entity is optional.
 
-The [`sample-<label>`](../99-appendices/09-entities.md#sample) entity is REQUIRED for
+The [`sample-<label>`](../appendices/entities.md#sample) entity is REQUIRED for
 Microscopy data and is used to distinguish between different samples from the same subject.
 The label MUST be unique per subject and is RECOMMENDED to be unique throughout the dataset.
 
@@ -128,7 +128,7 @@ In this example, the JSON metadata is common for all samples of `sub-01`.
 JSON metadata may be defined per subject or per sample as appropriate, as per the
 [inheritance principle](../02-common-principles.md#the-inheritance-principle).
 
-The [`acq-<label>`](../99-appendices/09-entities.md#acq) entity corresponds to a custom label that
+The [`acq-<label>`](../appendices/entities.md#acq) entity corresponds to a custom label that
 MAY be used to distinguish a different set of parameters used for acquiring the same modality.
 For example, two images of the same sample acquired by bright-field microscopy (BF) in PNG format at
 different magnification of 40x and 60x.
@@ -136,7 +136,7 @@ In such case two files could have the following names: `sub-01_sample-01_acq-40x
 `sub-01_sample-01_acq-60x_BF.png`, however the user is free to choose any other label as long as
 they are consistent across subjects and sessions.
 
-The [`stain-<label>`](../99-appendices/09-entities.md#stain) entity MAY be used to distinguish
+The [`stain-<label>`](../appendices/entities.md#stain) entity MAY be used to distinguish
 image files from the same sample using different stains or antibodies for contrast enhancement.
 
 For example: One brain slice (`sample-01`) extracted from subject `sub-01` with three
@@ -173,11 +173,11 @@ Description of antibodies SHOULD also be indicated in `"SamplePrimaryAntibodies"
 and/or `"SampleSecondaryAntobodies"` as appropriate.
 
 If more than one run of the same sample, acquisition and stain are acquired during the same
-session, the [`run-<index>`](../99-appendices/09-entities.md#run) entity MUST be used:
+session, the [`run-<index>`](../appendices/entities.md#run) entity MUST be used:
 `_run-1`, `_run-2`, `_run-3`, and so on.
 If only one run was acquired the `run-<index>` can be omitted.
 
-The [`chunk-<index>`](../99-appendices/09-entities.md#chunk) entity is used when multiples
+The [`chunk-<index>`](../appendices/entities.md#chunk) entity is used when multiples
 regions (2D images or 3D volumes files) of the same physical sample are imaged with different
 fields of view, regardless if they overlap or not.
 
@@ -234,7 +234,7 @@ In microscopy, many pyramidal file formats store multiple resolutions for the sa
 In the case where a multiple resolutions file format is converted to single resolution file format,
 only the higher resolution file is present in the raw data.
 Lower resolutions files MUST be placed under the `derivatives` directory and use the
-[`res-<label>`](../99-appendices/09-entities.md#res) entity.
+[`res-<label>`](../appendices/entities.md#res) entity.
 
 For example:
 
@@ -275,69 +275,38 @@ Microscopy data MUST be described by metadata fields, stored in sidecar JSON fil
 #### Device Hardware
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "Manufacturer": "RECOMMENDED",
-      "ManufacturersModelName": "RECOMMENDED",
-      "DeviceSerialNumber": "RECOMMENDED",
-      "StationName": "RECOMMENDED",
-      "SoftwareVersions": "RECOMMENDED",
-      "InstitutionName": "RECOMMENDED",
-      "InstitutionAddress": "RECOMMENDED",
-      "InstitutionalDepartmentName": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("micr.MicroscopyDeviceHardware") }}
 
 #### Image Acquisition
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "PixelSize": "REQUIRED",
-      "PixelSizeUnits": "REQUIRED",
-      "Immersion": "OPTIONAL",
-      "NumericalAperture": "OPTIONAL",
-      "Magnification": "OPTIONAL",
-      "ImageAcquisitionProtocol": "OPTIONAL",
-      "OtherAcquisitionParameters": "OPTIONAL",
-   }
-) }}
+{{ MACROS___make_sidecar_table("micr.MicroscopyImageAcquisition") }}
 
 #### Sample
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "BodyPart": ("RECOMMENDED", "From [DICOM Body Part Examined](http://dicom.nema.org/medical/dicom/current/output/chtml/part16/chapter_L.html#chapter_L) (for example `\"BRAIN\"`)."),
-      "BodyPartDetails": "RECOMMENDED",
-      "BodyPartDetailsOntology": "OPTIONAL",
-      "SampleEnvironment": "RECOMMENDED",
-      "SampleEmbedding": "OPTIONAL",
-      "SampleFixation": "OPTIONAL",
-      "SampleStaining": "RECOMMENDED",
-      "SamplePrimaryAntibody": "RECOMMENDED",
-      "SampleSecondaryAntibody": "RECOMMENDED",
-      "SliceThickness": "OPTIONAL",
-      "TissueDeformationScaling": "OPTIONAL",
-      "SampleExtractionProtocol": "OPTIONAL",
-      "SampleExtractionInstitution": "OPTIONAL",
-   }
-) }}
+{{ MACROS___make_sidecar_table("micr.MicroscopySample") }}
 
 #### Chunk Transformations
 
@@ -356,17 +325,17 @@ of the same sample in an implicit coordinate system.
 -   Other transformations should be described in derivatives.
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "ChunkTransformationMatrix": "RECOMMENDED if `<chunk-index>` is used in filenames",
-      "ChunkTransformationMatrixAxis": "REQUIRED if `ChunkTransformationMatrix` is present",
-   }
-) }}
+{{ MACROS___make_sidecar_table([
+	"micr.MicroscopyChunkTransformations",
+	"micr.MicroscopyChunkTransformationsMatrixAxis",
+   ]) }}
 
 An example of chunk transformations JSON metadata for `chunk-01` and `chunk-05` of Figure 2
 is shown below:
@@ -473,7 +442,7 @@ and a guide for using macros can be found at
 
 The file `<extension>` for photos MUST be either `.jpg`, `.png` or `.tif`.
 
-The [`acq-<label>`](../99-appendices/09-entities.md#acq) entity MAY be used to indicate
+The [`acq-<label>`](../appendices/entities.md#acq) entity MAY be used to indicate
 acquisition of different photos of the same sample.
 
 For example:
@@ -498,16 +467,15 @@ A guide for using macros can be found at
 Photo data MAY be accompanied by a JSON file containing the following fields.
 The `IntendedFor` field is used to link the photo to specific image(s) it was acquired for.
 
-{{ MACROS___make_metadata_table(
-   {
-      "PhotoDescription": "OPTIONAL",
-      "IntendedFor": (
-         "OPTIONAL",
-         "This field is OPTIONAL, in case the photos do not correspond "
-         "to any particular images, it does not have to be filled.",
-      ),
-   }
-) }}
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("micr.Photo") }}
 
 For example: `sub-01_ses-01_sample-01_acq-1_photo.json`
 
