@@ -2078,7 +2078,7 @@ NIRSCoordinateProcessingDescription:
   display_name: NIRS Coordinate Processing Description
   description: |
     Has any post-processing (such as projection) been done on the optode
-    positions (for example, `"surface_projection"`, `"none"`).
+    positions (for example, `"surface_projection"`, `"n/a"`).
   type: string
 NonlinearGradientCorrection:
   name: NonlinearGradientCorrection
