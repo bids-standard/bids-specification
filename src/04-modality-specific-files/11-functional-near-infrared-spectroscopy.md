@@ -65,7 +65,7 @@ and `CapManufacturersModelName` field.
 The use of 'NIRSPlacementScheme' is RECOMMENDED, certainly when no cap or a costomized cap is used,
 and describes the positioning of the optodes. This field may also contain a reference to a file providing
 a graphical depiction of the cap, for example a PDF file, a photo, or a bitmap drawing. Note that this file
-should be listed in the .bidsignore file, as it is not recognized by the validator.
+should be placed in the [`/sourcedata`](../02-common-principles.md#source-vs-raw-vs-derived-data) directory, as it cannot be recognized by the validator.
 To clarify the usage and interaction of these fields, the following examples are provided:
 
 -   If a commercial cap such as EasyCap actiCAP 64 Ch Standard-2 was used:
