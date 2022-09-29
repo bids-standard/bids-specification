@@ -58,11 +58,11 @@ the `*_nirs.json` file.
 Additionally, in certain situations, reserved keywords MUST be used.
 When custom modifications are made to a commercially available cap or a custom cap is used,
 then the reserved keyword `custom` MUST be used for the `CapManufacturersModelName` field.
-When a custom made cap is used, i.e. no (modified) commercially available cap,
+When a custom made cap is used, that is, no (modified) commercially available cap,
 the reserved keyword `custom` MUST be used in the `CapManufacturer` field.
 If no cap is used, the reserved keyword `none` MUST be used in the `CapManufacturer`
 and `CapManufacturersModelName` field.
-The use of 'NIRSPlacementScheme' is RECOMMENDED, certainly when no cap or a costomized cap is used,
+The use of `NIRSPlacementScheme` is RECOMMENDED when no cap or a customized cap is used,
 and describes the positioning of the optodes. This field may also contain a reference to a file providing
 a graphical depiction of the cap, for example a PDF file, a photo, or a bitmap drawing. Note that this file
 should be placed in the [`/sourcedata`](../02-common-principles.md#source-vs-raw-vs-derived-data) directory, as it cannot be recognized by the validator.
