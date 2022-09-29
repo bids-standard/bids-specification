@@ -72,20 +72,6 @@ manipulations). See [here](https://lcni.uoregon.edu/kb-articles/kb-0003) and
 <sup>3</sup>We use the time between the center of the first "effective" echo
 and the center of the last "effective" echo, sometimes called the "FSL definition".
 
-### Out-of-Plane Spatial Encoding
-
-<!-- This block generates a metadata table.
-The definitions of these fields can be found in
-  src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_metadata_table(
-   {
-      "ParallelReductionFactorOutOfPlane": "RECOMMENDED",
-   }
-) }}
-
 ### Timing Parameters
 
 <!-- This block generates a metadata table.
