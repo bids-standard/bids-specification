@@ -302,7 +302,7 @@ In this case, only x and y are specified and z is `"n/a"`.
 
 General fields:
 
-{{ MACROS___make_sidecar_table("eeg.EEGCoordsystemGeneral") }}
+{{ MACROS___make_sidecar_table("nirs.CoordsystemGeneral") }}
 
 Fields relating to the fNIRS optode positions:
 
