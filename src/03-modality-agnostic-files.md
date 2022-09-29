@@ -217,9 +217,6 @@ The RECOMMENDED `species` column SHOULD be a binomial species name from the
 For backwards compatibility, if `species` is absent, the participant is assumed to be
 `homo sapiens`.
 
-The RECOMMENDED `age` column SHOULD be used when NIRS data is present,
-as this is required for calculation of age-specific pathlength factors.
-
 Commonly used *optional* columns in `participants.tsv` files are `age`, `sex`,
 `handedness`, `strain`, and `strain_rrid`. We RECOMMEND to make use
 of these columns, and in case that you do use them, we RECOMMEND to use the
@@ -472,7 +469,7 @@ commonly used for qMRI,
 where recordings may be linked through entities such as `echo` and `part`
 (using `.nii` or `.nii.gz` extensions).
 For another example consider the case of large files in `.fif` format that are linked through the `split` entity
-(see [Split files](./99-appendices/06-meg-file-formats.md#split-files)).
+(see [Split files](./appendices/meg-file-formats.md#split-files)).
 Such recordings MUST be documented with one row per file
 (unlike the case of multi-file file formats described above).
 

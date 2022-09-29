@@ -156,6 +156,10 @@ For example:
     **qMRI-BIDS: An extension to the brain imaging data structure for quantitative magnetic resonance imaging data.**
     Scientific Data 9, 517 (2022). [doi:10.1038/s41597-022-01571-4](https://doi.org/10.1038/s41597-022-01571-4)
 
+#### NIRS
+
+-   (publication forthcoming)
+
 ### Research Resource Identifier (RRID)
 
 BIDS has also a

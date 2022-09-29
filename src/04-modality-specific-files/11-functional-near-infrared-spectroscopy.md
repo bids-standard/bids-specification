@@ -296,13 +296,17 @@ A `*_coordsystem.json` file is used to specify the fiducials, the location of an
 and the coordinate system and units in which the position of optodes and landmarks is expressed.
 Fiducials are objects with a well-defined location used to facilitate the localization of sensors
 and co-registration, anatomical landmarks are locations on a research subject such as the nasion
-(for a detailed definition see the coordinate system description in the BIDS specification).
+(for a detailed definition see [coordinate system appendix](../appendices/coordinate-systems.md)).
 The `*_coordsystem.json` is REQUIRED if the optional `*_optodes.tsv` is present. If a corresponding
 anatomical MRI is available, the locations of anatomical landmarks in that scan should also be stored
 in the `*_T1w.json` file which goes alongside the fNIRS data.
 
 Not all fNIRS systems provide 3D coordinate information or digitization capabilities.
 In this case, only x and y are specified and z is `"n/a"`.
+
+General fields:
+
+{{ MACROS___make_sidecar_table("nirs.CoordsystemGeneral") }}
 
 Fields relating to the fNIRS optode positions:
 

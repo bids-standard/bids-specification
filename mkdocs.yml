@@ -31,6 +31,22 @@ plugins:
              - css/watermark.css
     - macros:
         module_name: tools/mkdocs_macros_bids/main
+    - redirects:
+        redirect_maps:
+            '99-appendices/14-glossary.md': 'glossary.md'
+            '99-appendices/01-contributors.md': 'appendices/contributors.md'
+            '99-appendices/02-licenses.md': 'appendices/licenses.md'
+            '99-appendices/03-hed.md': 'appendices/hed.md'
+            '99-appendices/04-entity-table.md': 'appendices/entity-table.md'
+            '99-appendices/05-units.md': 'appendices/units.md'
+            '99-appendices/06-meg-file-formats.md': 'appendices/meg-file-formats.md'
+            '99-appendices/07-meg-systems.md': 'appendices/meg-systems.md'
+            '99-appendices/08-coordinate-systems.md': 'appendices/coordinate-systems.md'
+            '99-appendices/09-entities.md': 'appendices/entities.md'
+            '99-appendices/10-file-collections.md': 'appendices/file-collections.md'
+            '99-appendices/11-qmri.md': 'appendices/qmri.md'
+            '99-appendices/12-arterial-spin-labeling.md': 'appendices/arterial-spin-labeling.md'
+            '99-appendices/13-cross-modality-correspondence.md': 'appendices/cross-modality-correspondence.md'
 docs_dir: 'src'
 use_directory_urls: false
 nav:
@@ -55,22 +71,22 @@ nav:
         - Common data types and metadata: 05-derivatives/02-common-data-types.md
         - Imaging data types: 05-derivatives/03-imaging.md
       - Longitudinal and multi-site studies: 06-longitudinal-and-multi-site-studies.md
+      - Glossary: glossary.md
       - BIDS Extension Proposals: 07-extensions.md
       - Appendix:
-        - Contributors: 99-appendices/01-contributors.md
-        - Licenses: 99-appendices/02-licenses.md
-        - Hierarchical Event Descriptors: 99-appendices/03-hed.md
-        - Entity table: 99-appendices/04-entity-table.md
-        - Units: 99-appendices/05-units.md
-        - MEG file formats: 99-appendices/06-meg-file-formats.md
-        - MEG systems: 99-appendices/07-meg-systems.md
-        - Coordinate systems: 99-appendices/08-coordinate-systems.md
-        - Entities: 99-appendices/09-entities.md
-        - File collections: 99-appendices/10-file-collections.md
-        - Quantitative MRI: 99-appendices/11-qmri.md
-        - Arterial Spin Labeling: 99-appendices/12-arterial-spin-labeling.md
-        - Cross modality correspondence: 99-appendices/13-cross-modality-correspondence.md
-        - Glossary: 99-appendices/14-glossary.md
+        - Contributors: appendices/contributors.md
+        - Licenses: appendices/licenses.md
+        - Entity table: appendices/entity-table.md
+        - Entities: appendices/entities.md
+        - File collections: appendices/file-collections.md
+        - Units: appendices/units.md
+        - Hierarchical Event Descriptors: appendices/hed.md
+        - MEG file formats: appendices/meg-file-formats.md
+        - MEG systems: appendices/meg-systems.md
+        - Coordinate systems: appendices/coordinate-systems.md
+        - Quantitative MRI: appendices/qmri.md
+        - Arterial Spin Labeling: appendices/arterial-spin-labeling.md
+        - Cross modality correspondence: appendices/cross-modality-correspondence.md
       - Changelog: CHANGES.md
     - The BIDS Starter Kit:
       - Website: https://bids-standard.github.io/bids-starter-kit

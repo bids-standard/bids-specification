@@ -27,6 +27,18 @@ AnatomicalLandmark:
     AnatomicalLandmarkCoordinateSystem: recommended
     AnatomicalLandmarkCoordinateUnits: recommended
 
+CoordsystemGeneral:
+  selectors:
+    - modality == "nirs"
+    - datatype == "nirs"
+    - suffix == "coordsystem"
+  fields:
+    IntendedFor:
+      level: optional
+      description_addendum: |
+        This identifies the MRI or CT scan associated with the optodes,
+        landmarks, and fiducials.
+
 CoordinateSystemDescriptionRec:
   selectors:
     - datatype == "nirs"
@@ -107,18 +119,6 @@ NirsRequired:
     - datatype == "nirs"
     - suffix == "nirs"
   fields:
-    CapManufacturer:
-      level: recommended
-      description_addendum: |
-        If no cap was used, such as with optodes
-        that are directly taped to the scalp, then the string `none` MUST be used and the `NIRSPlacementScheme` field
-        MAY be used to specify the optode placement.
-    CapManufacturersModelName:
-      level: recommended
-      description_addendum: |
-        If there is no official model number then a description may be provided (for example, `Headband with print
-        (S-M)`). If a cap from a manufacturer was modified, then the field MUST be set to `custom`. If no cap
-        was used, then the `CapManufacturer` field MUST be `none` and this field MUST be `none`.")
     SamplingFrequency__nirs:
       level: required
       description_addendum: |
@@ -144,6 +144,18 @@ NirsRecommend:
     - modality == "fnirs"
     - suffix == "nirs"
   fields:
+    CapManufacturer:
+      level: recommended
+      description_addendum: |
+        If no cap was used, such as with optodes
+        that are directly taped to the scalp, then the string `none` MUST be used and the `NIRSPlacementScheme` field
+        MAY be used to specify the optode placement.
+    CapManufacturersModelName:
+      level: recommended
+      description_addendum: |
+        If there is no official model number then a description may be provided (for example, `Headband with print
+        (S-M)`). If a cap from a manufacturer was modified, then the field MUST be set to `custom`. If no cap
+        was used, then the `CapManufacturer` field MUST be `none` and this field MUST be `n/a`.")
     SourceType: recommended
     DetectorType: recommended
     ShortChannelCount: recommended

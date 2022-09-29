@@ -66,7 +66,7 @@ Additionally, implement the same change in the version name perform above in the
 
 Note: this will make our continuous integration ([CircleCI](https://circleci.com/)) fail. This fails because the URL of the new ReadTheDocs rendering has not been generated at this time. It will be generated once the GitHub release has been completed.
 
-Synchronize the [Contributors appendix](https://github.com/bids-standard/bids-specification/blob/master/src/99-appendices/01-contributors.md)
+Synchronize the [Contributors appendix](https://github.com/bids-standard/bids-specification/blob/master/src/appendices/contributors.md)
 with the [Contributors wiki page](https://github.com/bids-standard/bids-specification/wiki/Contributors)
 to ensure all contributors are duly credited.
 Be sure not to remove credits if both have been edited.
@@ -92,7 +92,7 @@ By pushing `rel/` branches to the main repository, the chances of continuous int
 discrepancies is reduced.
 
 ```Shell
-$ git add src/CHANGES.md mkdocs.yml src/99-appendices/01-contributors.md
+$ git add src/CHANGES.md mkdocs.yml src/appendices/contributors.md
 $ git commit -m 'REL: v1.2.0'
 $ git push -u upstream rel/1.2.0
 ```

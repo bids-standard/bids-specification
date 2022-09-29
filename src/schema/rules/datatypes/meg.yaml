@@ -38,8 +38,7 @@ calibration:
     subject: required
     session: optional
     acquisition:
-      requirement: required
-      type: string
+      level: required
       enum:
         - calibration
 
@@ -54,8 +53,7 @@ crosstalk:
     subject: required
     session: optional
     acquisition:
-      requirement: required
-      type: string
+      level: required
       enum:
         - crosstalk
 

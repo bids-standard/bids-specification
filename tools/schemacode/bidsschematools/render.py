@@ -19,8 +19,8 @@ utils.set_logger_level(lgr, os.environ.get("BIDS_SCHEMA_LOG_LEVEL", logging.INFO
 logging.basicConfig(format="%(asctime)-15s [%(levelname)8s] %(message)s")
 
 # Remember to add extension (.html or .md) to the paths when using them.
-ENTITIES_PATH = "SPEC_ROOT/99-appendices/09-entities"
-GLOSSARY_PATH = "SPEC_ROOT/99-appendices/14-glossary"
+ENTITIES_PATH = "SPEC_ROOT/appendices/entities"
+GLOSSARY_PATH = "SPEC_ROOT/glossary"
 TYPE_CONVERTER = {
     "associated_data": "associated data",
     "columns": "column",
@@ -95,13 +95,14 @@ def make_entity_definitions(schema, src_path=None):
     text = ""
     for entity in entity_order:
         entity_info = entity_definitions[entity]
-        entity_text = _make_entity_definition(entity, entity_info, src_path)
+        entity_text = _make_entity_definition(entity, entity_info)
         text += "\n" + entity_text
 
+    text = text.replace("SPEC_ROOT", get_relpath(src_path))
     return text
 
 
-def _make_entity_definition(entity, entity_info, src_path):
+def _make_entity_definition(entity, entity_info):
     """Describe an entity."""
     entity_shorthand = entity_info["name"]
     text = ""
@@ -116,7 +117,6 @@ def _make_entity_definition(entity, entity_info, src_path):
         text += "\n\n"
 
     description = entity_info["description"]
-    description = description.replace("SPEC_ROOT", get_relpath(src_path))
     text += f"**Definition**: {description}"
     return text
 
@@ -191,8 +191,6 @@ def make_glossary(schema, src_path=None):
         obj_desc = obj_desc.replace("\n\n", "<br>")
         # Otherwise a newline corresponds to a space
         obj_desc = obj_desc.replace("\n", " ")
-        # Spec internal links need to be replaced
-        obj_desc = obj_desc.replace("SPEC_ROOT", get_relpath(src_path))
 
         text += f'\n<a name="{obj_marker}"></a>'
         text += f"\n## {obj_key}\n\n"
@@ -222,25 +220,33 @@ def make_glossary(schema, src_path=None):
             temp_obj_def = yaml.dump(temp_obj_def)
             text += f"**Schema information**:\n```yaml\n{temp_obj_def}\n```"
 
+    # Spec internal links need to be replaced
+    text = text.replace("SPEC_ROOT", get_relpath(src_path))
+
     return text
 
 
 def _add_entity(filename_template, entity_pattern, requirement_level):
     """Add entity pattern to filename template based on requirement level."""
-    if requirement_level == "required":
-        if len(filename_template.strip()):
-            filename_template += "_" + entity_pattern
-        else:
-            # Only the first entity doesn't need an underscore
-            filename_template += entity_pattern
-    else:
-        if len(filename_template.strip()):
-            filename_template += "[_" + entity_pattern + "]"
-        else:
-            # Only the first entity doesn't need an underscore
-            filename_template += "[" + entity_pattern + "]"
+    # Skip underscore on first entity
+    if filename_template:
+        entity_pattern = f"_{entity_pattern}"
+    if requirement_level != "required":
+        entity_pattern = f"[{entity_pattern}]"
+    return filename_template + entity_pattern
 
-    return filename_template
+
+def _format_entity(entity, lt, gt):
+    fmt = entity.get("format")
+    if "enum" in entity:
+        fmt = "|".join(entity["enum"])
+    if fmt is None:
+        raise ValueError(f"entity missing format or enum fields: {entity}")
+    return f"{entity['name']}-{lt}{fmt}{gt}"
+
+
+def value_key_table(namespace):
+    return {struct.value: key for key, struct in namespace.items()}
 
 
 def make_filename_template(
@@ -290,33 +296,29 @@ def make_filename_template(
     if not schema:
         schema = load_schema()
 
-    schema = Namespace(filter_schema(schema.to_dict(), **kwargs))
-    entity_order = schema["rules"]["entities"]
+    if pdf_format:
+        lt, gt = "<", ">"
+    else:
+        lt, gt = "&lt;", "&gt;"
 
-    paragraph = ""
+    schema = Namespace(filter_schema(schema.to_dict(), **kwargs))
+    suffix_key_table = value_key_table(schema.objects.suffixes)
+    ext_key_table = value_key_table(schema.objects.extensions)
+
     # Parent directories
-    sub_string = (
-        f'{schema["objects"]["entities"]["subject"]["name"]}-'
-        f'<{schema["objects"]["entities"]["subject"]["format"]}>'
-    )
-    paragraph += utils._link_with_html(
-        sub_string,
+    sub_string = utils._link_with_html(
+        _format_entity(schema.objects.entities.subject, lt, gt),
         html_path=ENTITIES_PATH + ".html",
         heading="sub",
         pdf_format=pdf_format,
     )
-    paragraph += "/\n\t["
-    ses_string = (
-        f'{schema["objects"]["entities"]["session"]["name"]}-'
-        f'<{schema["objects"]["entities"]["session"]["format"]}>'
-    )
-    paragraph += utils._link_with_html(
-        ses_string,
+    ses_string = utils._link_with_html(
+        _format_entity(schema.objects.entities.session, lt, gt),
         html_path=ENTITIES_PATH + ".html",
         heading="ses",
         pdf_format=pdf_format,
     )
-    paragraph += "/]\n"
+    lines = [f"{sub_string}/", f"\t[{ses_string}/]"]
 
     datatypes = schema.rules.datatypes
 
@@ -326,103 +328,79 @@ def make_filename_template(
         if datatype == "derivatives":
             continue
 
-        paragraph += "\t\t"
-        paragraph += utils._link_with_html(
+        datatype_string = utils._link_with_html(
             datatype,
             html_path=GLOSSARY_PATH + ".html",
             heading=f"{datatype.lower()}-datatypes",
             pdf_format=pdf_format,
         )
-        paragraph += "/\n"
+        lines.append(f"\t\t{datatype_string}/")
 
         # Unique filename patterns
         for group in datatypes[datatype].values():
-            string = "\t\t\t"
-            for ent in entity_order:
-                if "enum" in schema["objects"]["entities"][ent].keys():
-                    # Entity key-value pattern with specific allowed values
-                    ent_format = (
-                        f'{schema["objects"]["entities"][ent]["name"]}-'
-                        f'<{"|".join(schema["objects"]["entities"][ent]["enum"])}>'
-                    )
-                    ent_format = utils._link_with_html(
-                        ent_format,
-                        html_path=ENTITIES_PATH + ".html",
-                        heading=schema["objects"]["entities"][ent]["name"],
+            ent_string = ""
+            for ent in schema.rules.entities:
+                if ent not in group.entities:
+                    continue
+
+                # Add level and any overrides to entity
+                ent_obj = group.entities[ent]
+                if isinstance(ent_obj, str):
+                    ent_obj = {"level": ent_obj}
+                entity = {**schema.objects.entities[ent], **ent_obj}
+
+                if "enum" in entity:
+                    # Link full entity
+                    pattern = utils._link_with_html(
+                        _format_entity(entity, lt, gt),
+                        html_path=f"{ENTITIES_PATH}.html",
+                        heading=entity["name"],
                         pdf_format=pdf_format,
                     )
                 else:
-                    # Standard entity key-value pattern with simple label/index
-                    ent_format = utils._link_with_html(
-                        schema["objects"]["entities"][ent]["name"],
-                        html_path=ENTITIES_PATH + ".html",
-                        heading=schema["objects"]["entities"][ent]["name"],
+                    # Link entity and format separately
+                    entity["name"] = utils._link_with_html(
+                        entity["name"],
+                        html_path=f"{ENTITIES_PATH}.html",
+                        heading=entity["name"],
                         pdf_format=pdf_format,
                     )
-                    ent_format += "-"
-                    ent_format += "<" if pdf_format else "&lt;"
-                    ent_format += utils._link_with_html(
-                        schema["objects"]["entities"][ent].get("format", "label"),
-                        html_path=GLOSSARY_PATH + ".html",
-                        heading=(
-                            f'{schema["objects"]["entities"][ent].get("format", "label")}-formats'
-                        ),
+                    entity["format"] = utils._link_with_html(
+                        entity.get("format", "label"),
+                        html_path=f"{ENTITIES_PATH}.html",
+                        heading=entity.get("format", "label"),
                         pdf_format=pdf_format,
                     )
-                    ent_format += ">" if pdf_format else "&gt;"
+                    pattern = _format_entity(entity, lt, gt)
 
-                if ent in group["entities"]:
-                    if isinstance(group["entities"][ent], dict):
-                        if "enum" in group["entities"][ent].keys():
-                            # Overwrite the filename pattern using valid values
-                            ent_format = "{}-&lt;{}&gt;".format(
-                                schema["objects"]["entities"][ent]["name"],
-                                "|".join(group["entities"][ent]["enum"]),
-                            )
-
-                        string = _add_entity(
-                            string,
-                            ent_format,
-                            group["entities"][ent]["requirement"],
-                        )
-                    else:
-                        string = _add_entity(string, ent_format, group["entities"][ent])
+                ent_string = _add_entity(ent_string, pattern, entity["level"])
 
             # In cases of large numbers of suffixes,
             # we use the "suffix" variable and expect a table later in the spec
             if len(group["suffixes"]) >= n_dupes_to_combine:
-                string += "_"
-                string += "<" if pdf_format else "&lt;"
-                string += utils._link_with_html(
-                    "suffix",
-                    html_path=GLOSSARY_PATH + ".html",
-                    heading="suffix-common_principles",
-                    pdf_format=pdf_format,
-                )
-                string += ">" if pdf_format else "&gt;"
-                strings = [string]
-            else:
-                strings = []
-                for suffix in group["suffixes"]:
-                    # The glossary indexes by the suffix identifier (TwoPE instead of 2PE),
-                    # but the rules reference the actual suffix string (2PE instead of TwoPE),
-                    # so we need to look it up.
-                    suffix_id = [
-                        k for k, v in schema["objects"]["suffixes"].items() if v["value"] == suffix
-                    ][0]
-
-                    suffix_string = utils._link_with_html(
-                        suffix,
+                suffixes = [
+                    lt
+                    + utils._link_with_html(
+                        "suffix",
                         html_path=GLOSSARY_PATH + ".html",
-                        heading=f"{suffix_id.lower()}-suffixes",
+                        heading="suffix-common_principles",
                         pdf_format=pdf_format,
                     )
-                    strings.append(f"{string}_{suffix_string}")
+                    + gt
+                ]
+            else:
+                suffixes = [
+                    utils._link_with_html(
+                        suffix,
+                        html_path=GLOSSARY_PATH + ".html",
+                        heading=f"{suffix_key_table[suffix].lower()}-suffixes",
+                        pdf_format=pdf_format,
+                    )
+                    for suffix in group.suffixes
+                ]
 
             # Add extensions
-            full_strings = []
-            extensions = group["extensions"]
-            extensions = [ext if ext != "*" else ".<extension>" for ext in extensions]
+            extensions = [ext if ext != "*" else ".<extension>" for ext in group.extensions]
             if len(extensions) >= n_dupes_to_combine:
                 # Combine exts when there are many, but keep JSON separate
                 if ".json" in extensions:
@@ -435,14 +413,9 @@ def make_filename_template(
                 # The glossary indexes by the extension identifier (niigz instead of .nii.gz),
                 # but the rules reference the actual suffix string (.nii.gz instead of niigz),
                 # so we need to look it up.
-                ext_id = [
-                    k
-                    for k, v in schema["objects"]["extensions"].items()
-                    if v["value"] == extension
-                ]
-                if ext_id:
-                    ext_id = ext_id[0]
-                    ext_headings.append(f"{ext_id.lower()}-extensions")
+                key = ext_key_table.get(extension)
+                if key:
+                    ext_headings.append(f"{key.lower()}-extensions")
                 else:
                     ext_headings.append("extension-common_principles")
 
@@ -453,16 +426,13 @@ def make_filename_template(
                 pdf_format=pdf_format,
             )
 
-            for extension in extensions:
-                for string in strings:
-                    new_string = f"{string}{extension}"
-                    full_strings.append(new_string)
+            lines.extend(
+                f"\t\t\t{ent_string}_{suffix}{extension}"
+                for suffix in sorted(suffixes)
+                for extension in sorted(extensions)
+            )
 
-            full_strings = sorted(full_strings)
-            if full_strings:
-                paragraph += "\n".join(full_strings) + "\n"
-
-    paragraph = paragraph.rstrip()
+    paragraph = "\n".join(lines)
     if pdf_format:
         codeblock = f"Template:\n```Text\n{paragraph}\n```"
     else:
@@ -478,7 +448,16 @@ def make_filename_template(
 
 
 def append_filename_template_legend(text, pdf_format=False):
-    legend = """
+    """Append a legend to filename templates."""
+    if pdf_format:
+        info_str = ""
+    else:
+        info_str = """
+- For more information about filename elements (for example, entities, suffixes, extensions),
+  follow the links embedded in the filename template.
+  """
+
+    legend = f"""{info_str}
 - Filename entities or folders between square brackets
   (for example, `[_ses-<label>]`) are OPTIONAL.
 - Some entities may only allow specific values,
@@ -508,7 +487,7 @@ def append_filename_template_legend(text, pdf_format=False):
     return text
 
 
-def make_entity_table(schema, tablefmt="github", **kwargs):
+def make_entity_table(schema, tablefmt="github", src_path=None, **kwargs):
     """Produce entity table (markdown) based on schema.
 
     Parameters
@@ -519,7 +498,7 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
         File in which entities are described.
         This is used for hyperlinks in the table, so the path to the file
         should be considered from the location of out_file.
-        Default is '09-entities.md'.
+        Default is 'entities.md'.
 
     Returns
     -------
@@ -527,8 +506,6 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
         Markdown string containing the table.
     """
     schema = Namespace(filter_schema(schema.to_dict(), **kwargs))
-
-    ENTITIES_FILE = "09-entities.md"
 
     # prepare the table based on the schema
     # import pdb; pdb.set_trace()
@@ -544,7 +521,7 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
         header.append(entity_spec["display_name"])
         formats.append(
             f'[`{entity_shorthand}-<{entity_spec.get("format", "label")}>`]'
-            f"({ENTITIES_FILE}#{entity_shorthand})"
+            f"({ENTITIES_PATH}.md#{entity_shorthand})"
         )
 
     # Go through data types
@@ -556,6 +533,7 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
         for dtype_spec in dtype_specs.values():
             if dtype == "derivatives":
                 continue
+
             suffixes = dtype_spec.get("suffixes")
 
             # Skip this part of the schema if no suffixes are found.
@@ -564,11 +542,14 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
                 continue
 
             # TODO: <br> is specific for html form
+            suffixes = [
+                f"[{suffix}]({GLOSSARY_PATH}.md#objects.suffixes.{suffix})" for suffix in suffixes
+            ]
             suffixes_str = " ".join(suffixes) if suffixes else ""
             dtype_row = [dtype] + ([""] * len(all_entities))
             for ent, ent_info in dtype_spec.get("entities", {}).items():
                 if isinstance(ent_info, Mapping):
-                    requirement_level = ent_info["requirement"]
+                    requirement_level = ent_info["level"]
                 else:
                     requirement_level = ent_info
 
@@ -616,7 +597,10 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
                 dtype_rows[suffixes_str] = dtype_row
 
         # Add datatype to first column and reformat it
-        dtype_rows = {dtype + "<br>({})".format(k): v for k, v in dtype_rows.items()}
+        dtype_rows = {
+            f"[{dtype}]({GLOSSARY_PATH}.md#objects.datatypes.{dtype})<br>({k})": v
+            for k, v in dtype_rows.items()
+        }
         dtype_rows = [[k] + v for k, v in dtype_rows.items()]
 
         table += dtype_rows
@@ -653,6 +637,7 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
 
     # Print it as markdown
     table_str = tabulate(table, headers="keys", tablefmt=tablefmt)
+    table_str = table_str.replace("SPEC_ROOT", get_relpath(src_path))
     return table_str
 
 
@@ -673,25 +658,32 @@ def make_suffix_table(schema, suffixes, src_path=None, tablefmt="github"):
     table_str : str
         Tabulated table as a string.
     """
-    # The filter function doesn't work here.
-    suffix_schema = schema["objects"]["suffixes"]
+    field_type = "suffixes"
 
-    all_suffixes = pd.DataFrame.from_records(list(suffix_schema.values()))
-    df = all_suffixes[all_suffixes.value.isin(suffixes)][["value", "display_name", "description"]]
+    # The filter function doesn't work here.
+    subschema = schema["objects"][field_type]
+
+    all_suffixes = pd.DataFrame.from_dict(subschema, orient="index")
+    df = all_suffixes[all_suffixes.value.isin(suffixes)]
+    df = df.reset_index(drop=False)
 
     suffixes_not_found = set(suffixes) - set(df.value)
     if suffixes_not_found:
         raise Exception("Warning: Missing suffixes: {}".format(", ".join(suffixes_not_found)))
 
-    def preproc(desc):
+    def preproc_desc(desc):
         return (
             desc.replace("\\\n", "")  # A backslash before a newline means continue a string
             .replace("\n\n", "<br>")  # Two newlines should be respected
             .replace("\n", " ")  # Otherwise a newline corresponds to a space
-            .replace("SPEC_ROOT", get_relpath(src_path))  # Spec internal links need to be replaced
         )
 
-    df.description = df.description.apply(preproc)
+    def preproc_suffix(row):
+        return f"[{row['value']}]({GLOSSARY_PATH}.md#objects.{field_type}.{row['index']})"
+
+    df.description = df.description.apply(preproc_desc)
+    df["suffix"] = df.apply(preproc_suffix, axis=1)
+    df = df[["suffix", "display_name", "description"]]
     df.columns = ["`suffix`", "**Name**", "**Description**"]
     df = df.reset_index(drop=False)
     df = df.set_index("**Name**")
@@ -699,13 +691,15 @@ def make_suffix_table(schema, suffixes, src_path=None, tablefmt="github"):
 
     # Print it as markdown
     table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
+    # Spec internal links need to be replaced
+    table_str = table_str.replace("SPEC_ROOT", get_relpath(src_path))
     return table_str
 
 
 def make_obj_table(
     subschema,
     field_info,
-    field_type,
+    field_type=None,
     src_path=None,
     tablefmt="github",
     n_values_to_combine=15,
@@ -738,12 +732,14 @@ def make_obj_table(
     """
     # Use the "name" field in the table, to allow for filenames to not match "names".
     df = pd.DataFrame(
-        index=[subschema[f]["name"] for f in field_info],
-        columns=["**Requirement Level**", "**Data type**", "**Description**"],
+        index=field_info.keys(),
+        columns=["**Key name**", "**Requirement Level**", "**Data type**", "**Description**"],
     )
-    df.index.name = "**Key name**"
     for field in subschema.keys():
         field_name = subschema[field]["name"]
+        if field_type:
+            field_name = f"[{field_name}]({GLOSSARY_PATH}.md#objects.{field_type}.{field})"
+
         requirement_info = field_info[field]
         description_addendum = ""
         if isinstance(requirement_info, tuple):
@@ -777,17 +773,22 @@ def make_obj_table(
         if valid_values_str:
             description += "\n\n\n\n" + valid_values_str
 
-        # Spec internal links need to be replaced
-        description = description.replace("SPEC_ROOT", get_relpath(src_path))
-
-        df.loc[field_name] = [
+        df.loc[field] = [
+            field_name,
             normalize_breaks(requirement_info),
             type_string,
             normalize_breaks(description),
         ]
 
+    df = df.set_index("**Key name**", drop=True)
+    df.index.name = "**Key name**"
+
     # Print it as markdown
     table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
+
+    # Spec internal links need to be replaced
+    table_str = table_str.replace("SPEC_ROOT", get_relpath(src_path))
+
     return table_str
 
 
@@ -905,6 +906,7 @@ def make_metadata_table(schema, field_info, src_path=None, tablefmt="github"):
         print("Warning: Missing fields: {}".format(", ".join(dropped_fields)))
 
     subschema = {k: v for k, v in subschema.items() if k in retained_fields}
+    # inverted_schema = {v["name"]: k for k, v in subschema.items()}
 
     table_str = make_obj_table(
         subschema,
@@ -1003,6 +1005,7 @@ def make_columns_table(
     table_str : str
         The tabulated table as a Markdown string.
     """
+    src_path = get_relpath(src_path)
     fields = list(column_info.keys())
     # The filter function doesn't work here.
     field_type = "columns"
@@ -1016,10 +1019,9 @@ def make_columns_table(
     # Use the "name" field in the table, to allow for filenames to not match
     # "names".
     df = pd.DataFrame(
-        index=[subschema[f]["name"] for f in retained_fields],
-        columns=["**Requirement Level**", "**Data type**", "**Description**"],
+        index=retained_fields,
+        columns=["**Column name**", "**Requirement Level**", "**Data type**", "**Description**"],
     )
-    df.index.name = "**Column name**"
     for field in retained_fields:
         field_name = subschema[field]["name"]
         requirement_info = column_info[field]
@@ -1029,8 +1031,9 @@ def make_columns_table(
 
         requirement_info = requirement_info.replace(
             "DEPRECATED",
-            "[DEPRECATED](/02-common-principles.html#definitions)",
+            "[DEPRECATED](SPEC_ROOT/02-common-principles.html#definitions)",
         )
+        field_name = f"[{field_name}]({GLOSSARY_PATH}.md#objects.columns.{field})"
 
         type_string = utils.resolve_metadata_type(subschema[field])
 
@@ -1052,16 +1055,19 @@ def make_columns_table(
         if valid_values_str:
             description += "\n\n\n\n" + valid_values_str
 
-        description = description.replace("SPEC_ROOT", get_relpath(src_path))
-
-        df.loc[field_name] = [
+        df.loc[field] = [
+            field_name,
             normalize_breaks(requirement_info),
             type_string,
             normalize_breaks(description),
         ]
 
+    df = df.set_index("**Column name**", drop=True)
+    df.index.name = "**Column name**"
+
     # Print it as markdown
     table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
+    table_str = table_str.replace("SPEC_ROOT", src_path)
     return table_str
 
 
@@ -1086,13 +1092,13 @@ def define_common_principles(schema, src_path=None):
     order = schema["rules"]["common_principles"]
     for i_prin, principle in enumerate(order):
         principle_name = common_principles[principle]["display_name"]
-        principle_desc = common_principles[principle]["description"].replace(
-            "SPEC_ROOT",
-            get_relpath(src_path),
+        substring = (
+            f"{i_prin + 1}. **{principle_name}** - {common_principles[principle]['description']}"
         )
-        substring = f"{i_prin + 1}. **{principle_name}** - {principle_desc}"
         string += substring
         if i_prin < len(order) - 1:
             string += "\n\n"
+
+    string = string.replace("SPEC_ROOT", get_relpath(src_path))
 
     return string

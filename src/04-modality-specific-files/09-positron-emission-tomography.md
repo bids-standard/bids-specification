@@ -77,13 +77,13 @@ PET imaging data SHOULD be stored in 4D (or 3D, if only one volume was acquired)
 NIfTI files with the `_pet` suffix.
 Volumes MUST be stored in chronological order (the order they were acquired in).
 
-The OPTIONAL [`task-<label>`](../99-appendices/09-entities.md#task) is used to
+The OPTIONAL [`task-<label>`](../appendices/entities.md#task) is used to
 indicate a task subjects were asked to perform in the scanner.
 Those labels MUST be consistent across subjects and sessions.
 For task based PET, a corresponding [`task events`](./05-task-events.md) file MUST be provided
 (please note that this file is not necessary for resting scans).
 
-The [`trc-<label>`](../99-appendices/09-entities.md#trc) entity is used to
+The [`trc-<label>`](../appendices/entities.md#trc) entity is used to
 indicate the tracer used.
 This entity is OPTIONAL if only one tracer is used in the study,
 but REQUIRED to distinguish between tracers if multiple are used.
@@ -94,11 +94,11 @@ Other labels are permitted, as long as they are consistent across subjects and s
 and consist only of the legal label characters.
 
 If more than one run of the same task and acquisition (tracer) are acquired during
-the same session, the [`run-<index>`](../99-appendices/09-entities.md#run) entity MUST be used:
+the same session, the [`run-<index>`](../appendices/entities.md#run) entity MUST be used:
 `_run-1`, `_run-2`, `_run-3`, and so on.
 If only one run was acquired the `run-<index>` can be omitted.
 
-The OPTIONAL [`rec-<label>`](../99-appendices/09-entities.md#rec) entity
+The OPTIONAL [`rec-<label>`](../appendices/entities.md#rec) entity
 is used to indicate the reconstruction method used for the image,
 with four reserved values:
 
@@ -120,11 +120,11 @@ it is essential to specify whether MR images have been corrected for gradient no
 using the `NonLinearGradientCorrection` metadata field
 (see [Sequence Specifics](./01-magnetic-resonance-imaging-data.md#sequence-specifics)),
 which is REQUIRED for all MR data if PET data is also present in the dataset
-(see also [PET-MRI correspondence](../99-appendices/13-cross-modality-correspondence.md#pet-mri-correspondence)).
+(see also [PET-MRI correspondence](../appendices/cross-modality-correspondence.md#pet-mri-correspondence)).
 In the case of studies using combined PET/fMRI,
 subject-specific tasks may be carried out during the acquisition within the same session.
 If the same task is recorded with both modalities,
-the same [`task-<label>`](../99-appendices/09-entities.md#task) entity SHOULD be used.
+the same [`task-<label>`](../appendices/entities.md#task) entity SHOULD be used.
 For further details, see
 [Task (including resting state) imaging data](./01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data).
 
@@ -204,7 +204,7 @@ All reconstruction-specific parameters that are not specified, but one wants to 
 
 #### Task
 
-If the OPTIONAL [`task-<label>`](../99-appendices/09-entities.md#task) is used,
+If the OPTIONAL [`task-<label>`](../appendices/entities.md#task) is used,
 the following metadata SHOULD be used.
 
 <!-- This block generates a metadata table.

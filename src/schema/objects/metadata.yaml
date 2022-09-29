@@ -75,7 +75,7 @@ AnatomicalLandmarkCoordinateSystem:
   display_name: Anatomical Landmark Coordinate System
   description: |
     Defines the coordinate system for the anatomical landmarks.
-    See [Appendix VIII](SPEC_ROOT/99-appendices/08-coordinate-systems.md)
+    See the [Coordinate Systems Appendix](SPEC_ROOT/appendices/coordinate-systems.md)
     for a list of restricted keywords for coordinate systems.
     If `"Other"`, provide definition of the coordinate system in
     `"AnatomicalLandmarkCoordinateSystemDescription"`.
@@ -646,8 +646,8 @@ DigitizedHeadPointsCoordinateSystem:
   display_name: Digitized Head Points Coordinate System
   description: |
     Defines the coordinate system for the digitized head points.
-    See
-    [Appendix VIII](SPEC_ROOT/99-appendices/08-coordinate-systems.md)
+    See the
+    [Coordinate Systems Appendix](SPEC_ROOT/appendices/coordinate-systems.md)
     for a list of restricted keywords for coordinate systems.
     If `"Other"`, provide definition of the coordinate system in
     `"DigitizedHeadPointsCoordinateSystemDescription"`.
@@ -747,8 +747,8 @@ EEGCoordinateSystem:
   description: |
     Defines the coordinate system for the EEG sensors.
 
-    See
-    [Appendix VIII](SPEC_ROOT/99-appendices/08-coordinate-systems.md)
+    See the
+    [Coordinate Systems Appendix](SPEC_ROOT/appendices/coordinate-systems.md)
     for a list of restricted keywords for coordinate systems.
     If `"Other"`, provide definition of the coordinate system in
     `EEGCoordinateSystemDescription`.
@@ -825,9 +825,9 @@ EchoTime:
     (please note that the DICOM term is in milliseconds not seconds).
     The data type number may apply to files from any MRI modality concerned with
     a single value for this field, or to the files in a
-    [file collection](SPEC_ROOT/99-appendices/10-file-collections.md)
+    [file collection](SPEC_ROOT/appendices/file-collections.md)
     where the value of this field is iterated using the
-    [`echo` entity](SPEC_ROOT/99-appendices/09-entities.md#echo).
+    [`echo` entity](SPEC_ROOT/appendices/entities.md#echo).
     The data type array provides a value for each volume in a 4D dataset and
     should only be used when the volume timing is critical for interpretation
     of the data, such as in
@@ -954,8 +954,8 @@ FiducialsCoordinateSystem:
   description: |
     Defines the coordinate system for the fiducials.
     Preferably the same as the `"EEGCoordinateSystem"`.
-    See
-    [Appendix VIII](SPEC_ROOT/99-appendices/08-coordinate-systems.md)
+    See the
+    [Coordinate Systems Appendix](SPEC_ROOT/appendices/coordinate-systems.md)
     for a list of restricted keywords for coordinate systems.
     If `"Other"`, provide definition of the coordinate system in
     `"FiducialsCoordinateSystemDescription"`.
@@ -1018,9 +1018,9 @@ FlipAngle:
     Corresponds to: DICOM Tag 0018, 1314 `Flip Angle`.
     The data type number may apply to files from any MRI modality concerned with
     a single value for this field, or to the files in a
-    [file collection](SPEC_ROOT/99-appendices/10-file-collections.md)
+    [file collection](SPEC_ROOT/appendices/file-collections.md)
     where the value of this field is iterated using the
-    [`flip` entity](SPEC_ROOT/99-appendices/09-entities.md#flip).
+    [`flip` entity](SPEC_ROOT/appendices/entities.md#flip).
     The data type array provides a value for each volume in a 4D dataset and
     should only be used when the volume timing is critical for interpretation of
     the data, such as in
@@ -1161,7 +1161,7 @@ HED:
   display_name: HED
   description: |
     Hierarchical Event Descriptor (HED) information,
-    see: [Appendix III](SPEC_ROOT/99-appendices/03-hed.md) for details.
+    see the [HED Appendix](SPEC_ROOT/appendices/hed.md) for details.
   anyOf:
     - type: string
     - type: object
@@ -1225,8 +1225,8 @@ HeadCoilCoordinateSystem:
   display_name: Head Coil Coordinate System
   description: |
     Defines the coordinate system for the head coils.
-    See
-    [Appendix VIII](SPEC_ROOT/99-appendices/08-coordinate-systems.md)
+    See the
+    [Coordinate Systems Appendix](SPEC_ROOT/appendices/coordinate-systems.md)
     for a list of restricted keywords for coordinate systems.
     If `"Other"`, provide definition of the coordinate system in
     `HeadCoilCoordinateSystemDescription`.
@@ -1665,7 +1665,7 @@ License:
   description: |
     The license for the dataset.
     The use of license name abbreviations is RECOMMENDED for specifying a license
-    (see [Appendix II](SPEC_ROOT/99-appendices/02-licenses.md)).
+    (see [Licenses](SPEC_ROOT/appendices/licenses.md)).
     The corresponding full license text MAY be specified in an additional
     `LICENSE` file.
   type: string
@@ -1725,7 +1725,8 @@ MEGCoordinateSystem:
   display_name: MEG Coordinate System
   description: |
     Defines the coordinate system for the MEG sensors.
-    See [Appendix VIII](SPEC_ROOT/99-appendices/08-coordinate-systems.md)
+    See the
+    [Coordinate Systems Appendix](SPEC_ROOT/appendices/coordinate-systems.md)
     for a list of restricted keywords for coordinate systems.
     If `"Other"`, provide definition of the coordinate system in
     `"MEGCoordinateSystemDescription"`.
@@ -2003,6 +2004,7 @@ NIRSChannelCount:
   display_name: NIRS Channel Count
   description: |
     Total number of NIRS channels, including short channels.
+    Corresponds to the number of rows in `channels.tsv` with any NIRS type.
   type: integer
   minimum: 0
 NIRSSourceOptodeCount:
@@ -2010,6 +2012,7 @@ NIRSSourceOptodeCount:
   display_name: NIRS Source Optode Count
   description: |
     Number of fNIRS sources.
+    Corresponds to the number of rows in `optodes.tsv` with type `"source"`.
   type: integer
   minimum: 1
 NIRSDetectorOptodeCount:
@@ -2017,6 +2020,7 @@ NIRSDetectorOptodeCount:
   display_name: NIRS Detector Optode Channel Count
   description: |
     Number of fNIRS detectors.
+    Corresponds to the number of rows in `optodes.tsv` with type `"detector"`.
   type: integer
   minimum: 1
 NIRSPlacementScheme:
@@ -2041,7 +2045,7 @@ NIRSCoordinateSystem:
     Defines the coordinate system in which the optode positions are expressed.
 
     See
-    [Appendix VIII](SPEC_ROOT/99-appendices/08-coordinate-systems.md)
+    [Appendix VIII](SPEC_ROOT/appendices/coordinate-systems.md)
     for a list of restricted keywords for coordinate systems.
     If `"Other"`, a definition of the coordinate system MUST be
     provided in `NIRSCoordinateSystemDescription`.
@@ -2074,7 +2078,7 @@ NIRSCoordinateProcessingDescription:
   display_name: NIRS Coordinate Processing Description
   description: |
     Has any post-processing (such as projection) been done on the optode
-    positions (for example, `"surface_projection"`, `"none"`).
+    positions (for example, `"surface_projection"`, `"n/a"`).
   type: string
 NonlinearGradientCorrection:
   name: NonlinearGradientCorrection
@@ -2124,7 +2128,7 @@ NumberShots:
     after the k-space center is sampled.
     Please see
     [`"NumberShots"` metadata field]\
-    (SPEC_ROOT/99-appendices/11-qmri.md#numbershots-metadata-field)
+    (SPEC_ROOT/appendices/qmri.md#numbershots-metadata-field)
     in the qMRI appendix for corresponding calculations.
   anyOf:
     - type: number
@@ -3441,8 +3445,8 @@ iEEGCoordinateSystem:
   display_name: iEEG Coordinate System
   description: |
     Defines the coordinate system for the iEEG sensors.
-    See
-    [Appendix VIII](SPEC_ROOT/99-appendices/08-coordinate-systems.md)
+    See the
+    [Coordinate Systems Appendix](SPEC_ROOT/appendices/coordinate-systems.md)
     for a list of restricted keywords for coordinate systems.
     If `"Other"`, provide definition of the coordinate system in
     `iEEGCoordinateSystemDescription`.

@@ -8,6 +8,19 @@ NASamplingFreq:
   checks:
     - columns.sampling_frequency != null
 
+NIRSChannelCount:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "nirs"
+  checks:
+    - |
+      sidecar(NIRSChannelCount)
+      == count(associations.channels.type, "NIRSCWAMPLITUDE")
+      +  count(associations.channels.type, "NIRSCWFLUORESCENSEAMPLITUDE")
+      +  count(associations.channels.type, "NIRSCWOPTICALDENSITY")
+      +  count(associations.channels.type, "NIRSCWHBO")
+      +  count(associations.channels.type, "NIRSCWHBR")
+      +  count(associations.channels.type, "NIRSCWMUA")
 ACCELChannelCountReq:
   selectors:
     - datatype == "nirs"

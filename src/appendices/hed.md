@@ -1,4 +1,4 @@
-# Appendix III: Hierarchical Event Descriptors
+# Hierarchical Event Descriptors
 
 Hierarchical Event Descriptors (HED) are a controlled vocabulary of terms describing
 events in a machine-actionable form so that algorithms can use the information without

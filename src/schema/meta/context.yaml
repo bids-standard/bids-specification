@@ -187,15 +187,25 @@ context:
             n_cols:
               description: 'Number of columns in bvec file'
               type: integer
-        nirs:
-          description: 'contents of _nirs.json used by checks for channels.tsv'
-          type: object
         channels:
-          type: boolean
-          description: 'boolean if _channels.tsv exists'
+          description: 'Channels file'
+          type: object
+          properties:
+            path:
+              description: 'Path to associated channels file'
+              type: string
+            type:
+              description: 'Contents of the type column'
+              type: array
+              items:
+                type: string
         coordsystem:
-          type: boolean
-          description: 'boolean if _coordsystem.json exists'
+          description: 'Coordinate system file'
+          type: object
+          properties:
+            path:
+              description: 'Path to associated coordsystem file'
+              type: string
     # The following properties are populated if the current file is of an appropriate type
     columns:
       description: 'TSV columns, indexed by column header, values are arrays with column contents'
