@@ -278,7 +278,7 @@ def make_subobject_table(object_tuple, field_info, src_path=None):
     return table
 
 
-def make_columns_table(column_info, src_path=None):
+def make_columns_table(table_name, src_path=None):
     """Generate a markdown table of TSV column information.
 
     Parameters
@@ -304,7 +304,7 @@ def make_columns_table(column_info, src_path=None):
         src_path = _get_source_path()
 
     schema_obj = schema.load_schema()
-    table = render.make_columns_table(schema_obj, column_info, src_path=src_path)
+    table = render.make_columns_table(schema_obj, table_name, src_path=src_path)
     return table
 
 

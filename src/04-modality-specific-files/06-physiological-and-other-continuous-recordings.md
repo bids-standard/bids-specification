@@ -149,17 +149,11 @@ following naming conventions SHOULD be used for the column names:
 
 <!-- This block generates a columns table.
 The definitions of these fields can be found in
-  src/schema/objects/columns.yaml
+  src/schema/rules/tabular_data/*.yaml
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_columns_table(
-   {
-      "cardiac": "OPTIONAL",
-      "respiratory": "OPTIONAL",
-      "trigger": "OPTIONAL",
-   }
-) }}
+{{ MACROS___make_columns_table("physio.PhysioColumns") }}
 
 For any other data to be specified in columns, the column names can be chosen
 as deemed appropriate by the researcher.
