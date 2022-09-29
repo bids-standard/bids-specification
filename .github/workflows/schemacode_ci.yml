@@ -87,7 +87,7 @@ jobs:
       - name: "Run tests"
         run: |
           python -m pytest -vs --pyargs bidsschematools -m "not validate_schema" \
-              --cov-append --cov-report=xml --cov=bidsschematools
+              --cov-append --cov-report=xml --cov=bidsschematools --doctest-modules
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
