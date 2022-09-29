@@ -27,7 +27,7 @@ BIDS currently supports the following data modalities with more to come in the f
 - physiological
 - PET
 - microscopy
-- NIRS
+- fNIRS
 
 # Formatting your data with BIDS
 
