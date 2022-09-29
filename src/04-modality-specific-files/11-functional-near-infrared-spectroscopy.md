@@ -300,6 +300,10 @@ in the `*_T1w.json` file which goes alongside the fNIRS data.
 Not all fNIRS systems provide 3D coordinate information or digitization capabilities.
 In this case, only x and y are specified and z is `"n/a"`.
 
+General fields:
+
+{{ MACROS___make_sidecar_table("eeg.EEGCoordsystemGeneral") }}
+
 Fields relating to the fNIRS optode positions:
 
 {{ MACROS___make_sidecar_table(["nirs.CoordinateSystem", "nirs.CoordinateSystemDescriptionRec"]) }}
