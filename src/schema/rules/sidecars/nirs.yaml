@@ -27,6 +27,18 @@ AnatomicalLandmark:
     AnatomicalLandmarkCoordinateSystem: recommended
     AnatomicalLandmarkCoordinateUnits: recommended
 
+CoordsystemGeneral:
+  selectors:
+    - modality == "nirs"
+    - datatype == "nirs"
+    - suffix == "coordsystem"
+  fields:
+    IntendedFor:
+      level: optional
+      description_addendum: |
+        This identifies the MRI or CT scan associated with the optodes,
+        landmarks, and fiducials.
+
 CoordinateSystemDescriptionRec:
   selectors:
     - datatype == "nirs"
