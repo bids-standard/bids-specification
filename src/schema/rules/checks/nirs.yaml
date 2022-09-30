@@ -1,12 +1,10 @@
 ---
 NASamplingFreq:
   selectors:
-    - datatype == "nirs"
-    - suffix == "channels"
-    - extension == ".tsv"
-    - associations.nirs.json.SamplingFrequency == 'n/a'
+    - suffix == "nirs"
+    - samplingFrequency == "n/a"
   checks:
-    - columns.sampling_frequency != null
+    - associations.channels.sampling_frequency != null
 
 NIRSChannelCount:
   selectors:
@@ -14,46 +12,44 @@ NIRSChannelCount:
     - suffix == "nirs"
   checks:
     - |
-      sidecar(NIRSChannelCount)
+      sidecar.NIRSChannelCount
       == count(associations.channels.type, "NIRSCWAMPLITUDE")
       +  count(associations.channels.type, "NIRSCWFLUORESCENSEAMPLITUDE")
       +  count(associations.channels.type, "NIRSCWOPTICALDENSITY")
       +  count(associations.channels.type, "NIRSCWHBO")
       +  count(associations.channels.type, "NIRSCWHBR")
       +  count(associations.channels.type, "NIRSCWMUA")
+
 ACCELChannelCountReq:
   selectors:
-    - datatype == "nirs"
-    - suffix == "channels"
-    - extension == ".tsv"
-    - intersect(columns.type, ["ACC"])
+    - suffix == "nirs"
   checks:
-    - associations.nirs.ACCELChannelCount != null
+    - sidecar.ACCELChannelCount == count(associations.channels.type, "ACCEL")
 
 GYROChannelCountReq:
   selectors:
-    - datatype == "nirs"
-    - suffix == "channels"
-    - extension == ".tsv"
-    - intersect(columns.type, ["GYRO"])
+    - suffix == "nirs"
   checks:
-    - associations.nirs.GYROChannelCount != null
+    - sidecar.GYROChannelCount == count(associations.channels.type, "GYRO")
 
 MAGNChannelCountReq:
   selectors:
-    - datatype == "nirs"
-    - suffix == "channels"
-    - extension == ".tsv"
-    - intersect(columns.type, ["MAGN"])
+    - suffix == "nirs"
   checks:
-    - associations.nirs.MAGNChannelCount != null
+    - sidecar.MAGNChannelCount == count(associations.channels.type, "MAGN")
+
+ShortChannelCountReq:
+  selectors:
+    - suffix == "nirs"
+  checks:
+    - sidecar.ShortChannelCount == count(associations.channels.short_channel, true)
 
 OrientationComponent:
   selectors:
     - datatype == "nirs"
     - suffix == "channels"
     - extension == ".tsv"
-    - '["ACCEL", "GYRO", "MAGN"].includes(columns.type[0])'
+    - intersect(columns.type, ["ACCEL", "GYRO", "MAGN"])
   checks:
     - columns.orientation_component != null
 
@@ -70,7 +66,7 @@ RequiredTemplateX:
     - datatype == "nirs"
     - suffix == "optodes"
     - extension == ".tsv"
-    - columns.x[0] == "n/a"
+    - intersect(columns.x, ["n/a"])
   checks:
     - columns.template_x != null
 
@@ -79,7 +75,7 @@ RequiredTemplateY:
     - datatype == "nirs"
     - suffix == "optodes"
     - extension == ".tsv"
-    - columns.y[0] == "n/a"
+    - intersect(columns.y, ["n/a"])
   checks:
     - columns.template_y != null
 
@@ -88,7 +84,7 @@ RequiredTemplateZ:
     - datatype == "nirs"
     - suffix == "optodes"
     - extension == ".tsv"
-    - columns.z[0] == "n/a"
+    - intersect(columns.z, ["n/a"])
   checks:
     - columns.template_z != null
 
