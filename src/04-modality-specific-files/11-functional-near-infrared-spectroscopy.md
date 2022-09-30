@@ -159,11 +159,13 @@ Example:
 
 {{ MACROS___make_filename_template(datatypes=["nirs"], suffixes=["channels"]) }}
 
+This file is RECOMMENDED as it provides easily searchable information across BIDS datasets.
 Channels are a pairing of source and detector optodes with a specific wavelength of light.
 Unlike in other modalities, not all pairings of optodes correspond to meaningful data
 and not all pairs have to be recorded or represented in the data.  Note that the source
 and detector names used in the channel specifications are specified in the `*_optodes.tsv`
-file below. The required columns in the `*_channels.tsv` file MUST be ordered as listed below.
+file below. If a `*_channels.tsv` file is specified, an `*_optodes.tsv` file MUST be specified as well.
+The required columns in the `*_channels.tsv` file MUST be ordered as listed below.
 
 The BIDS specification supports several types of fNIRS devices which output raw data in
 different forms. The type of measurement is specified in the `type` column. For example,
