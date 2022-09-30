@@ -15,23 +15,19 @@ Participants:
     handedness: recommended
     strain: recommended
     strain_rrid: recommended
+  index_columns: [participant_id]
   additional_columns: allowed
 
 Samples:
   selectors:
     - path == "samples.tsv"
   columns:
-    sample_id:
-      level: required
-      description_addendum: |
-        The combination of `sample_id` and `participant_id` MUST be unique.
-    participant_id:
-      level: required
-      description_addendum: |
-        The combination of `sample_id` and `participant_id` MUST be unique.
+    sample_id: required
+    participant_id: required
     sample_type: required
     pathology: recommended
     derived_from: recommended
+  index_columns: [sample_id, participant_id]
   additional_columns: allowed
 
 Scans:
@@ -46,6 +42,7 @@ Scans:
       description_addendum: |
         There MUST be exactly one row for each file.
     acq_time__scans: optional
+  index_columns: [filename]
   additional_columns: allowed
 
 Sessions:
@@ -61,4 +58,5 @@ Sessions:
         There MUST be exactly one row for each session.
     acq_time__sessions: optional
     pathology: recommended
+  index_columns: [session_id]
   additional_columns: allowed

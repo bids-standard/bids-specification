@@ -179,6 +179,7 @@ def _make_table_from_rule(
             # Since only one table may be provided for columns, we can just use this directly.
             additional_columns = table_schema.get("additional_columns", "not_allowed")
             initial_columns = table_schema.get("initial_columns", [])
+            index_columns = table_schema.get("index_columns", [])
         else:
             raise ValueError(f"Unsupported 'table_type': '{table_type}'")
 
@@ -213,6 +214,14 @@ def _make_table_from_rule(
             else:
                 # Typically begins with "if"
                 level = f"{level} {level_addendum}"
+
+        if table_type == "columns" and element in index_columns:
+            if len(index_columns) == 1:
+                msg = f"Values in `{schema.objects.columns[element].name}`"
+            else:
+                cols = [f"`{schema.objects.columns[col].name}`" for col in index_columns]
+                msg = f"The combination of {', '.join(cols[:-1])} and {cols[-1]}"
+            description_addendum += f"\n\n\n\n{msg} MUST be unique."
 
         if table_type == "columns" and initial_columns:
             if element in initial_columns:

@@ -742,6 +742,7 @@ rule is applied.
     | `selectors`          | List of expressions; any evaluating false indicate rule does not apply                                         |
     | `columns`            | Object with keys that may be found in `objects.columns`, values either a requirement level or an object        |
     | `initial_columns`    | An optional list of columns that must be the first N columns of a file                                         |
+    | `index_columns`      | A list of columns that uniquely identify a row.                                                                |
     | `additional_columns` | Indicates whether additional columns may be defined. One of `allowed`, `allowed_if_defined` and `not_allowed`. |
 
 The following tables demonstrate how mutual exclusive, required fields, may be
