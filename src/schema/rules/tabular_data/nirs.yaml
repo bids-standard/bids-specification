@@ -7,20 +7,25 @@ nirsChannels:
   initial_columns:
     - name__channels
     - type__nirs_channels
-    - source__optodes
-    - detector_type
+    - source__channels
+    - detector__channels
     - wavelength_nominal
     - units__nirs
   columns:
     name__channels: required
     type__nirs_channels: required
-    source__optodes: required
-    detector_type: required
+    source__channels: required
+    detector__channels: required
     wavelength_nominal: required
     units__nirs: required
-    orientation_component: optional
+    sampling_frequency:
+      level: optional
+      level_addendum: required if `SamplingFrequency` is `n/a` in `_nirs.json`
+    orientation_component:
+      level: optional
+      level_addendum: required if `type` is `ACCEL`, `GYRO` or `MAGN`
     wavelength_actual: optional
-    description__optode: optional
+    description: optional
     wavelength_emission_actual: optional
     short_channel: optional
     status: optional
@@ -44,10 +49,16 @@ nirsOptodes:
     x__optodes: required
     y__optodes: required
     z__optodes: required
-    x__template: optional
-    y__template: optional
-    z__template: optional
-    description: optional
+    x__template:
+      level: optional
+      level_addendum: required if `x` is `n/a`
+    y__template:
+      level: optional
+      level_addendum: required if `y` is `n/a`
+    z__template:
+      level: optional
+      level_addendum: required if `z` is `n/a`
+    description__optode: optional
     detector_type: optional
     source__optodes: optional
   additional_columns: allowed_if_defined

@@ -171,33 +171,16 @@ when measurements are taken with a continuous wave (CW) device that saves the da
 as optical density, the `type` should be `NIRSCWOPTICALDENSITY` and the `units` should be `unitless`,
 this is equivalent to SNIRF data type `dOD`.
 
-The following columns MUST be present:
+The columns of the channels description table stored in `*_channels.tsv` are:
 
-{{ MACROS___make_columns_table(
-   {
-      "name__channels": "REQUIRED",
-      "type__nirs_channels": "REQUIRED",
-      "source__channels": "REQUIRED",
-      "detector__channels": "REQUIRED",
-      "wavelength_nominal": "REQUIRED",
-      "units__nirs": "REQUIRED",
-      "sampling_frequency": "OPTIONAL but REQUIRED if `SamplingFrequency` is `n/a` in `_nirs.json`",
-      "orientation_component": "OPTIONAL but REQUIRED if `type` is `ACCEL`, `GYRO` or `MAGN`",
-   }
-) }}
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/rules/tabular_data/*.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 
-The following columns MAY be present:
-
-{{ MACROS___make_columns_table(
-   {
-      "wavelength_actual": "OPTIONAL",
-      "description": "OPTIONAL",
-      "wavelength_emission_actual": "OPTIONAL",
-      "short_channel": "OPTIONAL",
-      "status": "OPTIONAL",
-      "status_description": "OPTIONAL",
-   }
-) }}
+{{ MACROS___make_columns_table("nirs.nirsChannels") }}
 
 ### Restricted keyword list for the channel types
 
@@ -254,30 +237,9 @@ placed, these can be listed in the template values
 SNIRF contains arrays for both
 the 3D and 2D locations of data. In BIDS the `*_optodes.tsv` file MUST contain the 3D locations. Only in case 3D positions are unavailable the 2D locations should be used, setting the z field to an `n/a` value.
 
-The following columns MUST be present:
+The columns of the optodes description table stored in `*_optodes.tsv` are:
 
-{{ MACROS___make_columns_table(
-   {
-      "name__optodes": "REQUIRED",
-      "type__optodes": "REQUIRED",
-      "x__optodes": "REQUIRED",
-      "y__optodes": "REQUIRED",
-      "z__optodes": "REQUIRED",
-   }
-) }}
-
-The following columns MAY be present:
-
-{{ MACROS___make_columns_table(
-   {
-      "x__template": "OPTIONAL but REQUIRED if `x` is `n/a`",
-      "y__template": "OPTIONAL but REQUIRED if `y` is `n/a`",
-      "z__template": "OPTIONAL but REQUIRED if `z` is `n/a`",
-      "description__optode": "OPTIONAL",
-      "detector_type": "OPTIONAL",
-      "source__optodes": "OPTIONAL",
-   }
-) }}
+{{ MACROS___make_columns_table("nirs.nirsOptodes") }}
 
 Example:
 ```Text
