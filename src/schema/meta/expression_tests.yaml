@@ -1,0 +1,53 @@
+---
+- expression: sidecar.MissingValue
+  result: null
+- expression: null.anything
+  result: null
+- expression: (null)
+  result: null
+- expression: null[0]
+  result: null
+- expression: null && true
+  result: null
+- expression: null || true
+  result: null
+- expression: '!null'
+  result: null
+- expression: intersects([], null)
+  result: null
+- expression: intersects(null, [])
+  result: null
+- expression: match(null, 'pattern')
+  result: null
+- expression: match('string', null)
+  result: null
+- expression: min(null)
+  result: null
+- expression: max(null)
+  result: null
+- expression: length(null)
+  result: null
+- expression: type(null)
+  result: 'null'
+- expression: null == false
+  result: false
+- expression: null == true
+  result: false
+- expression: null != false
+  result: true
+- expression: null != true
+  result: true
+- expression: null != 1.5
+  result: true
+- expression: null == null
+  result: true
+- expression: null == 1
+  result: false
+- expression: '"VolumeTiming" in null'
+  result: false
+- expression: evaluate(true)
+  result: true
+- expression: evaluate(false)
+  result: false
+- expression: evaluate(null)
+  result: false

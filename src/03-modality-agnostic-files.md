@@ -224,21 +224,11 @@ following values for them:
 
 <!-- This block generates a columns table.
 The definitions of these fields can be found in
-  src/schema/objects/columns.yaml
+  src/schema/rules/tabular_data/*.yaml
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_columns_table(
-   {
-      "participant_id": ("REQUIRED", "There MUST be exactly one row for each participant."),
-      "species": "RECOMMENDED",
-      "age": "RECOMMENDED",
-      "sex": "RECOMMENDED",
-      "handedness": "RECOMMENDED",
-      "strain": "RECOMMENDED",
-      "strain_rrid": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_columns_table("modality_agnostic.Participants") }}
 
 Throughout BIDS you can indicate missing values with `n/a` (for "not
 available").
@@ -309,19 +299,11 @@ Each sample MUST be described by one and only one row.
 
 <!-- This block generates a columns table.
 The definitions of these fields can be found in
-  src/schema/objects/columns.yaml
+  src/schema/rules/tabular_data/*.yaml
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_columns_table(
-   {
-      "sample_id": ("REQUIRED", "The combination of `sample_id` and `participant_id` MUST be unique."),
-      "participant_id": ("REQUIRED", "The combination of `sample_id` and `participant_id` MUST be unique."),
-      "sample_type": "REQUIRED",
-      "pathology": "RECOMMENDED",
-      "derived_from": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_columns_table("modality_agnostic.Samples") }}
 
 `samples.tsv` example:
 
@@ -475,16 +457,11 @@ Such recordings MUST be documented with one row per file
 
 <!-- This block generates a columns table.
 The definitions of these fields can be found in
-  src/schema/objects/columns.yaml
+  src/schema/rules/tabular_data/*.yaml
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_columns_table(
-   {
-      "filename": ("REQUIRED", "There MUST be exactly one row for each file."),
-      "acq_time__scans": ("OPTIONAL"),
-   }
-) }}
+{{ MACROS___make_columns_table("modality_agnostic.Scans") }}
 
 Additional fields can include external behavioral measures relevant to the
 scan.
@@ -524,17 +501,11 @@ Column names in `sessions.tsv` files MUST be different from group level particip
 
 <!-- This block generates a columns table.
 The definitions of these fields can be found in
-  src/schema/objects/columns.yaml
+  src/schema/rules/tabular_data/*.yaml
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_columns_table(
-   {
-      "session_id": ("REQUIRED", "There MUST be exactly one row for each session."),
-      "acq_time__sessions": ("OPTIONAL"),
-      "pathology": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_columns_table("modality_agnostic.Sessions") }}
 
 `_sessions.tsv` example:
 

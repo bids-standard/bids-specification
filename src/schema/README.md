@@ -306,7 +306,7 @@ The namespaces are:
 | `objects.entities`          | Name-value pairs appearing in file names                                            | Name/value terms |
 | `objects.metadata`          | Name-value pairs appearing in JSON files                                            | Name/value terms |
 | `objects.columns`           | Column headings and values appearing in TSV files                                   | Name/value terms |
-| `objects.datatypes`         | Subdirectories that organize files by type (e.g., `anat`, `eeg`)                    | Value terms      |
+| `objects.datatypes`         | Subdirectories that organize files by type (such as `anat`, `eeg`)                  | Value terms      |
 | `objects.suffixes`          | Filename suffixes that describe the contents of the file                            | Value terms      |
 | `objects.extensions`        | Filename component that describe the format of the file                             | Value terms      |
 | `objects.formats`           | Terms that define the forms values (for example, in metadata) might take            | Formats          |
@@ -325,19 +325,19 @@ The name/value terms groups (`entities`, `metadata` and `columns`) define terms 
 a name, when present, has a given meaning, and its value may be restricted. These objects
 additionally have the field:
 
-| Field    | Description                                                                                                                                                                                                   |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`   | For terms that can take on multiple values (e.g., entities, metadata fields), the name of the term as it appears in the specification and in a dataset; must be alphanumeric; mutually exclusive with `value` |
-| `type`   | The type (e.g., `string`, `integer`, `object`) of values the term describes                                                                                                                                   |
-| `format` | The format of the term (defined in `objects.formats`)                                                                                                                                                         |
+| Field    | Description                                                                                                                                                                                                     |
+| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`   | For terms that can take on multiple values (such as entities, metadata fields), the name of the term as it appears in the specification and in a dataset; must be alphanumeric; mutually exclusive with `value` |
+| `type`   | The type (such as `string`, `integer`, `object`) of values the term describes                                                                                                                                   |
+| `format` | The format of the term (defined in `objects.formats`)                                                                                                                                                           |
 
 Value terms groups (`datatypes`, `suffixes`, `extensions`) define terms where a field
 can take on multiple values. For example, a file has one datatype, as compared to a
 collection of entities. These objects may have the fields:
 
-| Field   | Description                                                                                              |
-| ------- | -------------------------------------------------------------------------------------------------------- |
-| `value` | For terms that cannot take on multiple values (e.g., suffixes, extensions), the string value of the term |
+| Field   | Description                                                                                                      |
+| ------- | ---------------------------------------------------------------------------------------------------------------- |
+| `value` | For terms that cannot take on multiple values (for example suffixes or extensions), the string value of the term |
 
 The `formats` terms provide one additional field:
 
