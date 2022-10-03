@@ -108,7 +108,7 @@ Restricted keywords for the `<CoordSysType>CoordinateSystem` field in the
 `coordinatesystem.json` file for MEG datasets:
 
 -   `CTF`: ALS orientation and the origin between the ears
--   `ElektaNeuromag`: RAS orientation and the origin between the ears
+-   `NeuromagElektaMEGIN`: RAS orientation and the origin between the ears
 -   `4DBti`: ALS orientation and the origin between the ears
 -   `KitYokogawa`: ALS orientation and the origin between the ears
 -   `ChietiItab`: RAS orientation and the origin between the ears
