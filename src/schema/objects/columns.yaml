@@ -875,7 +875,7 @@ z__optodes:
     - type: string
       enum:
         - n/a
-x__template:
+template_x:
   name: template_x
   display_name: X template position
   description: |
@@ -885,7 +885,7 @@ x__template:
     - type: string
       enum:
         - n/a
-y__template:
+template_y:
   name: template_y
   display_name: Y template position
   description: |
@@ -895,7 +895,7 @@ y__template:
     - type: string
       enum:
         - n/a
-z__template:
+template_z:
   name: template_z
   display_name: Z template position
   description: |

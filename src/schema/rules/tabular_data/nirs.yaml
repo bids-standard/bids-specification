@@ -49,13 +49,13 @@ nirsOptodes:
     x__optodes: required
     y__optodes: required
     z__optodes: required
-    x__template:
+    template_x:
       level: optional
       level_addendum: required if `x` is `n/a`
-    y__template:
+    template_y:
       level: optional
       level_addendum: required if `y` is `n/a`
-    z__template:
+    template_z:
       level: optional
       level_addendum: required if `z` is `n/a`
     description__optode: optional
