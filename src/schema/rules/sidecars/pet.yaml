@@ -147,19 +147,18 @@ PETReconstruction:
       description_addendum: This partly matches the DICOM Tag (0054,1103) `Reconstruction Method`.
     ReconMethodParameterUnits:
       level: recommended
-      level_addendum: Recommended, but required if `ReconMethodParameterLabels` does not contain 'none'.
+      level_addendum: required if `ReconMethodParameterLabels` does not contain `"none"`
       description_addendum: This partly matches the DICOM Tag (0054,1103) `Reconstruction Method`.
     ReconMethodParameterValues:
       level: recommended
-      level_addendum: |
-        Recommended, but required if `ReconMethodParameterLabels` does not contain 'none'.
+      level_addendum: required if `ReconMethodParameterLabels` does not contain `"none"`
       description_addendum: This partly matches the DICOM Tag (0054,1103) `Reconstruction Method`.
     ReconFilterType:
       level: required
       description_addendum: This partly matches the DICOM Tag (0018,1210) `Convolution Kernel`.
     ReconFilterSize:
       level: recommended
-      level_addendum: Recommended, but required if `ReconFilterType` is not "none".
+      level_addendum: required if `ReconFilterType` is not `"none"`
       description_addendum: This partly matches the DICOM Tag (0018,1210) `Convolution Kernel`.
     AttenuationCorrection:
       level: required
