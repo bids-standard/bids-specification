@@ -321,6 +321,22 @@ JSON file, with the same label.
 
 The OPTIONAL [`task-<label>`](../99-appendices/09-entities.md#task) entity can be used in order to allow tasks during structural MR acquisitions, e.g. pre-described motion paradigms such as nodding, to be described. Task labels MUST be consistent across subjects and sessions.
 
+### RECOMMENDED metadata for tasks in anatomical imaging
+
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_metadata_table(
+   {
+      "TaskName": "RECOMMENDED",
+      "TaskDescription": "RECOMMENDED",
+      "Instructions": "RECOMMENDED",      
+   }
+) }}
+
 Some meta information about the acquisition MAY be provided in an additional
 JSON file. See [Common metadata fields](#common-metadata-fields) for a
 list of terms and their definitions. There are also some OPTIONAL JSON
