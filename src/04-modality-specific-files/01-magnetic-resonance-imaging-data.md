@@ -207,7 +207,7 @@ entity corresponds to modality suffix,
 such as `T1w` or `inplaneT1`, referenced by the defacemask image.
 For example, `sub-01_mod-T1w_defacemask.nii.gz`.
 
-The OPTIONAL [`task-<label>`](../99-appendices/entities.md#task) entity can be used
+The OPTIONAL [`task-<label>`](../appendices/entities.md#task) entity can be used
 in order to allow tasks during structural MR acquisitions,
 for example pre-described motion paradigms such as nodding, to be described.
 Task labels MUST be consistent across subjects and sessions.
