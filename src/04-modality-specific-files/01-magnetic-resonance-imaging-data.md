@@ -227,6 +227,7 @@ and a guide for using macros can be found at
       "Instructions": "RECOMMENDED",
    }
 ) }}
+
 Some meta information about the acquisition MAY be provided in an additional
 JSON file. See [Common metadata fields](#common-metadata-fields) for a
 list of terms and their definitions. There are also some OPTIONAL JSON
