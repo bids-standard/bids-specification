@@ -362,8 +362,8 @@ T2star:
     Ambiguous, may refer to a parametric image or to a conventional image.
     **Change:** Replaced by `T2starw` or `T2starmap`.
   anyOf:
-  - unit: arbitrary
-  - unit: s
+    - unit: arbitrary
+    - unit: s
 T2starmap:
   value: T2starmap
   display_name: Observed transverse relaxation time image
@@ -479,7 +479,7 @@ UNIT1:
     contain white salt-and-pepper noise that most segmentation algorithms will
     fail on.
     Therefore, it is important to dissociate it from `T1w`.
-    Please see [`MP2RAGE` specific notes](SPEC_ROOT/99-appendices/11-qmri.md#unit1-images)
+    Please see [`MP2RAGE` specific notes](SPEC_ROOT/appendices/qmri.md#unit1-images)
     in the qMRI appendix for further information.
 VFA:
   value: VFA
@@ -557,6 +557,13 @@ defacemask:
   description: |
     A binary mask that was used to remove facial features from an anatomical MRI
     image.
+dseg:
+  value: dseg
+  display_name: Discrete Segmentation
+  description: |
+    A discrete segmentation.
+
+    This suffix may only be used in derivative datasets.
 dwi:
   value: dwi
   display_name: Diffusion-weighted image
@@ -649,12 +656,30 @@ markers:
     possible filename extensions  (`.sqd`, `.mrk`).
     For these files, the `markers` suffix MUST be used.
     For example: `sub-01_task-nback_markers.sqd`
+mask:
+  value: mask
+  display_name: Binary Mask
+  description: |
+    A binary mask that functions as a discrete "label" for a single structure.
+
+    This suffix may only be used in derivative datasets.
 meg:
   value: meg
   display_name: Magnetoencephalography
   description: |
     Unprocessed MEG data stored in the native file format of the MEG instrument
     with which the data was collected.
+nirs:
+  value: nirs
+  display_name: Near Infrared Spectroscopy
+  description:
+    Data associated with a Shared Near Infrared Spectroscopy Format file.
+optodes:
+  value: optodes
+  display_name: Optodes
+  description: |
+    Either a light emitting device, sometimes called a transmitter, or a photoelectric transducer, sometimes called a
+    receiver.
 pet:
   value: pet
   display_name: Positron Emission Tomography
@@ -671,11 +696,11 @@ phase:
     Phase information associated with magnitude information stored in BOLD
     contrast.
     This suffix should be replaced by the
-    [`part-phase`](SPEC_ROOT/99-appendices/09-entities.md#part)
+    [`part-phase`](SPEC_ROOT/appendices/entities.md#part)
     in conjunction with the `bold` suffix.
   anyOf:
-  - unit: arbitrary
-  - unit: rad
+    - unit: arbitrary
+    - unit: rad
 phase1:
   value: phase1
   display_name: Phase
@@ -706,6 +731,13 @@ physio:
   display_name: Physiological recording
   description: |
     Physiological recordings such as cardiac and respiratory signals.
+probseg:
+  value: probseg
+  display_name: Probabilistic Segmentation
+  description: |
+    A probabilistic segmentation.
+
+    This suffix may only be used in derivative datasets.
 sbref:
   value: sbref
   display_name: Single-band reference image

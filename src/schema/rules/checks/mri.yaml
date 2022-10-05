@@ -1,0 +1,14 @@
+---
+PhasePartUnits:
+  issue:
+    code: PHASE_UNITS
+    message: |
+      Phase images (with the `part-phase` entity) must have units
+      "rad" or "arbitrary".
+    level: error
+  selectors:
+    - modality == "mri"
+    - entities.part == "phase"
+    - '"Units" in sidecar'
+  checks:
+    - intersects([sidecar.Units], ["rad", "arbitrary"])

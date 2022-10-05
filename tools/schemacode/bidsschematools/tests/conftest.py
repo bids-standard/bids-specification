@@ -1,11 +1,13 @@
 import logging
-import shutil
 import tempfile
 from subprocess import run
 
-import pytest
+try:
+    from importlib.resources import as_file, files
+except ImportError:  # PY<3.9
+    from importlib_resources import as_file, files
 
-from bidsschematools import schema, utils
+import pytest
 
 lgr = logging.getLogger()
 
@@ -17,10 +19,11 @@ BIDS_SELECTION = [
     "asl003",  # anat, perf, _asl, _T1w
     "eeg_cbm",  # eeg
     "hcp_example_bids",  # anat, fmap
-    "micr_SEM",  # micr, SEM
+    "micr_SEMzarr",  # micr, SEM, OME-ZARR
     "micr_SPIM",  # micr, SPIM, .ome.tif
     "pet003",  # pet, anat
     "qmri_tb1tfl",  # fmap, _TB1TFL
+    "qmri_vfa",  # derivatives
 ]
 # Errors are described in the README of the respective datasets:
 # https://github.com/bids-standard/bids-error-examples
@@ -30,41 +33,65 @@ BIDS_ERROR_SELECTION = [
 ]
 
 
-@pytest.mark.no_network
 def get_gitrepo_fixture(url, whitelist):
     @pytest.fixture(scope="session")
     def fixture():
-        path = tempfile.mktemp()  # not using pytest's tmpdir fixture to not
-        # collide in different scopes etc. But we
-        # would need to remove it ourselves
-        lgr.debug("Cloning %r into %r", url, path)
-        try:
-            runout = run(
-                [
-                    "git",
-                    "clone",
-                    "--depth=1",
-                    "--filter=blob:none",
-                    "--sparse",
-                    url,
-                    path,
-                ]
+        archive_name = url.rsplit("/", 1)[-1]
+        testdata_dir = files("bidsschematools.tests.data") / archive_name
+        if testdata_dir.is_dir():
+            lgr.info(
+                f"Found static testdata archive under `{testdata_dir}`. "
+                "Not downloading latest data from version control."
             )
-            if runout.returncode:
-                raise RuntimeError(f"Failed to clone {url} into {path}")
-            # cwd specification is VERY important, not only to achieve the correct
-            # effects, but also to avoid dropping files from your repository if you
-            # were to run `git sparse-checkout` inside the software repo.
-            _ = run(["git", "sparse-checkout", "init", "--cone"], cwd=path)
-            _ = run(["git", "sparse-checkout", "set"] + whitelist, cwd=path)
-            yield path
-        finally:
-            try:
-                shutil.rmtree(path)
-            except BaseException as exc:
-                lgr.warning("Failed to remove %s - using Windows?: %s", path, exc)
+            with as_file(testdata_dir) as path:
+                yield path
+        else:
+            lgr.info(
+                "No static testdata available under `%s`. "
+                "Attempting to fetch live data from version control.",
+                testdata_dir,
+            )
+            with tempfile.TemporaryDirectory() as path:
+                lgr.debug("Cloning %r into %r", url, path)
+                runout = run(
+                    [
+                        "git",
+                        "clone",
+                        "--depth=1",
+                        "--filter=blob:none",
+                        "--sparse",
+                        url,
+                        path,
+                    ],
+                    capture_output=True,
+                )
+                if runout.returncode:
+                    raise RuntimeError(f"Failed to clone {url} into {path}")
+                # cwd specification is VERY important, not only to achieve the correct
+                # effects, but also to avoid dropping files from your repository if you
+                # were to run `git sparse-checkout` inside the software repo.
+                _ = run(["git", "sparse-checkout", "init", "--cone"], cwd=path)
+                _ = run(["git", "sparse-checkout", "set"] + whitelist, cwd=path)
+                yield path
 
     return fixture
+
+
+@pytest.fixture(scope="session")
+def schema_dir():
+    """Path to the schema housed in the bids-specification repo."""
+    from bidsschematools import utils
+
+    bids_schema = utils.get_schema_path()
+    return bids_schema
+
+
+@pytest.fixture(scope="session")
+def schema_obj():
+    """Schema object."""
+    from bidsschematools import schema
+
+    return schema.load_schema()
 
 
 bids_examples = get_gitrepo_fixture(
@@ -75,16 +102,3 @@ bids_error_examples = get_gitrepo_fixture(
     "https://github.com/bids-standard/bids-error-examples",
     whitelist=BIDS_ERROR_SELECTION,
 )
-
-
-@pytest.fixture(scope="session")
-def schema_dir():
-    """Path to the schema housed in the bids-specification repo."""
-    bids_schema = utils.get_schema_path()
-    return bids_schema
-
-
-@pytest.fixture(scope="session")
-def schema_obj(schema_dir):
-    """Schema object."""
-    return schema.load_schema(schema_dir)

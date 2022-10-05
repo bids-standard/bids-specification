@@ -3,218 +3,228 @@ anat_parametric_volumetric:
   $ref: rules.datatypes.anat.parametric
   entities:
     $ref: rules.datatypes.anat.parametric.entities
-    space: OPTIONAL
-    resolution: OPTIONAL
-    density: OPTIONAL
-    desc: OPTIONAL
+    space: optional
+    resolution: optional
+    density: optional
+    description: optional
 
 anat_nonparametric_volumetric:
   $ref: rules.datatypes.anat.nonparametric
   entities:
     $ref: rules.datatypes.anat.nonparametric.entities
-    space: OPTIONAL
-    resolution: OPTIONAL
-    density: OPTIONAL
-    desc: OPTIONAL
+    space: optional
+    resolution: optional
+    density: optional
+    description: optional
 
 dwi_volumetric:
   $ref: rules.datatypes.dwi.dwi
   entities:
     $ref: rules.datatypes.dwi.dwi.entities
-    space: OPTIONAL
-    resolution: OPTIONAL
-    density: OPTIONAL
-    desc: OPTIONAL
+    space: optional
+    resolution: optional
+    density: optional
+    description: optional
 
 func_volumetric:
   $ref: rules.datatypes.func.func
   entities:
     $ref: rules.datatypes.func.func.entities
-    space: OPTIONAL
-    resolution: OPTIONAL
-    density: OPTIONAL
-    desc: OPTIONAL
+    space: optional
+    resolution: optional
+    density: optional
+    description: optional
 
 anat_parametric_mask:
   $ref: rules.datatypes.anat.parametric
   suffixes:
-  - mask
+    - mask
   extensions:
-  - .nii.gz
+    - .nii.gz
   entities:
     $ref: rules.datatypes.anat.parametric.entities
-    space: OPTIONAL
-    resolution: OPTIONAL
-    density: OPTIONAL
-    label: OPTIONAL
-    desc: OPTIONAL
+    space: optional
+    resolution: optional
+    density: optional
+    label: optional
+    description: optional
 
 anat_nonparametric_mask:
   $ref: rules.datatypes.anat.nonparametric
   suffixes:
-  - mask
+    - mask
   extensions:
-  - .nii.gz
+    - .nii.gz
   entities:
     $ref: rules.datatypes.anat.nonparametric.entities
-    space: OPTIONAL
-    resolution: OPTIONAL
-    density: OPTIONAL
-    label: OPTIONAL
-    desc: OPTIONAL
+    space: optional
+    resolution: optional
+    density: optional
+    label: optional
+    description: optional
 
 dwi_mask:
   $ref: rules.datatypes.dwi.dwi
   suffixes:
-  - mask
+    - mask
   extensions:
-  - .nii.gz
+    - .nii.gz
   entities:
     $ref: rules.datatypes.dwi.dwi.entities
-    space: OPTIONAL
-    resolution: OPTIONAL
-    density: OPTIONAL
-    label: OPTIONAL
-    desc: OPTIONAL
+    space: optional
+    resolution: optional
+    density: optional
+    label: optional
+    description: optional
 
 func_mask:
   $ref: rules.datatypes.func.func
   suffixes:
-  - mask
+    - mask
   extensions:
-  - .nii.gz
+    - .nii.gz
   entities:
     $ref: rules.datatypes.func.func.entities
-    space: OPTIONAL
-    resolution: OPTIONAL
-    density: OPTIONAL
-    label: OPTIONAL
-    desc: OPTIONAL
+    space: optional
+    resolution: optional
+    density: optional
+    label: optional
+    description: optional
 
 anat_parametric_discrete_segmentation:
   $ref: rules.datatypes.anat.parametric
   suffixes:
-  - dseg
+    - dseg
   extensions:
-  - .nii.gz
+    - .nii.gz
   entities:
     $ref: rules.datatypes.anat.parametric.entities
-    space: OPTIONAL
-    resolution: OPTIONAL
-    density: OPTIONAL
+    space: optional
+    resolution: optional
+    density: optional
+    description: optional
 
 anat_nonparametric_discrete_segmentation:
   $ref: rules.datatypes.anat.nonparametric
   suffixes:
-  - dseg
+    - dseg
   extensions:
-  - .nii.gz
+    - .nii.gz
   entities:
     $ref: rules.datatypes.anat.nonparametric.entities
-    space: OPTIONAL
-    resolution: OPTIONAL
-    density: OPTIONAL
+    space: optional
+    resolution: optional
+    density: optional
+    description: optional
 
 func_discrete_segmentation:
   $ref: rules.datatypes.func.func
   suffixes:
-  - dseg
+    - dseg
   extensions:
-  - .nii.gz
+    - .nii.gz
   entities:
     $ref: rules.datatypes.func.func.entities
-    space: OPTIONAL
-    resolution: OPTIONAL
-    density: OPTIONAL
+    space: optional
+    resolution: optional
+    density: optional
+    description: optional
 
 dwi_discrete_segmentation:
   $ref: rules.datatypes.dwi.dwi
   suffixes:
-  - dseg
+    - dseg
   extensions:
-  - .nii.gz
+    - .nii.gz
   entities:
     $ref: rules.datatypes.dwi.dwi.entities
-    space: OPTIONAL
-    resolution: OPTIONAL
-    density: OPTIONAL
+    space: optional
+    resolution: optional
+    density: optional
+    description: optional
 
 anat_parametric_probabilistic_segmentation:
   $ref: rules.datatypes.anat.parametric
   suffixes:
-  - probseg
+    - probseg
   extensions:
-  - .nii.gz
+    - .nii.gz
   entities:
     $ref: rules.datatypes.anat.parametric.entities
-    space: OPTIONAL
-    resolution: OPTIONAL
-    density: OPTIONAL
-    label: OPTIONAL
+    space: optional
+    resolution: optional
+    density: optional
+    label: optional
+    description: optional
 
 anat_nonparametric_probabilistic_segmentation:
   $ref: rules.datatypes.anat.nonparametric
   suffixes:
-  - probseg
+    - probseg
   extensions:
-  - .nii.gz
+    - .nii.gz
   entities:
     $ref: rules.datatypes.anat.nonparametric.entities
-    space: OPTIONAL
-    resolution: OPTIONAL
-    density: OPTIONAL
-    label: OPTIONAL
+    space: optional
+    resolution: optional
+    density: optional
+    label: optional
+    description: optional
 
 func_probabilistic_segmentation:
   $ref: rules.datatypes.func.func
   suffixes:
-  - probseg
+    - probseg
   extensions:
-  - .nii.gz
+    - .nii.gz
   entities:
     $ref: rules.datatypes.func.func.entities
-    space: OPTIONAL
-    resolution: OPTIONAL
-    density: OPTIONAL
-    label: OPTIONAL
+    space: optional
+    resolution: optional
+    density: optional
+    label: optional
+    description: optional
 
 dwi_probabilistic_segmentation:
   $ref: rules.datatypes.dwi.dwi
   suffixes:
-  - probseg
+    - probseg
   extensions:
-  - .nii.gz
+    - .nii.gz
   entities:
     $ref: rules.datatypes.dwi.dwi.entities
-    space: OPTIONAL
-    resolution: OPTIONAL
-    density: OPTIONAL
-    label: OPTIONAL
+    space: optional
+    resolution: optional
+    density: optional
+    label: optional
+    description: optional
 
 anat_parametic_discrete_surface:
   $ref: rules.datatypes.anat.parametric
   suffixes:
-  - dseg
+    - dseg
   extensions:
-  - .label.gii
-  - .dlabel.nii
+    - .label.gii
+    - .dlabel.nii
   entities:
     $ref: rules.datatypes.anat.parametric.entities
-    hemisphere:: OPTIONAL
-    space: OPTIONAL
-    resolution: OPTIONAL
-    density: OPTIONAL
+    hemisphere: optional
+    space: optional
+    resolution: optional
+    density: optional
+    description: optional
 
 anat_nonparametic_discrete_surface:
   $ref: rules.datatypes.anat.nonparametric
   suffixes:
-  - dseg
+    - dseg
   extensions:
-  - .label.gii
-  - .dlabel.nii
+    - .label.gii
+    - .dlabel.nii
   entities:
     $ref: rules.datatypes.anat.nonparametric.entities
-    hemisphere:: OPTIONAL
-    space: OPTIONAL
-    resolution: OPTIONAL
-    density: OPTIONAL
+    hemisphere: optional
+    space: optional
+    resolution: optional
+    density: optional
+    description: optional

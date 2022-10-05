@@ -9,115 +9,11 @@ interpreted as described in [[RFC2119](https://www.ietf.org/rfc/rfc2119.txt)].
 Throughout this specification we use a list of terms and abbreviations. To avoid
 misunderstanding we clarify them here.
 
-1.  **Dataset** - a set of neuroimaging and behavioral data acquired for a
-    purpose of a particular study. A dataset consists of data acquired from one
-    or more subjects, possibly from multiple sessions.
-
-1.  **Subject** - a person or animal participating in the study. Used
-    interchangeably with term **Participant**.
-
-1.  **Session** - a logical grouping of neuroimaging and behavioral data
-    consistent across subjects. Session can (but doesn't have to) be synonymous
-    to a visit in a longitudinal study. In general, subjects will stay in the
-    scanner during one session. However, for example, if a subject has to leave
-    the scanner room and then be re-positioned on the scanner bed, the set of
-    MRI acquisitions will still be considered as a session and match sessions
-    acquired in other subjects. Similarly, in situations where different data
-    types are obtained over several visits (for example fMRI on one day followed
-    by DWI the day after) those can be grouped in one session. Defining multiple
-    sessions is appropriate when several identical or similar data acquisitions
-    are planned and performed on all -or most- subjects, often in the case of
-    some intervention between sessions (for example, training).
-    In the [PET](04-modality-specific-files/09-positron-emission-tomography.md)
-    context, a session may also indicate a group of related scans,
-    taken in one or more visits.
-
-1.  **Sample** - a sample pertaining to a subject such as tissue, primary cell
-    or cell-free sample.
-    Sample labels MUST be unique within a subject and it is RECOMMENDED that
-    they be unique throughout the dataset.
-
-1.  **Data acquisition** - a continuous uninterrupted block of time during which
-    a brain scanning instrument was acquiring data according to particular
-    scanning sequence/protocol.
-
-1.  **Data type** - a functional group of different types of data.
-    BIDS defines the following data types:
-
-    1.  `func` (task based and resting state functional MRI)
-    1.  `dwi` (diffusion weighted imaging)
-    1.  `fmap` (field inhomogeneity mapping data such as field maps)
-    1.  `anat` (structural imaging such as T1, T2, PD, and so on)
-    1.  `perf` (perfusion)
-    1.  `meg` (magnetoencephalography)
-    1.  `eeg` (electroencephalography)
-    1.  `ieeg` (intracranial electroencephalography)
-    1.  `beh` (behavioral)
-    1.  `pet` (positron emission tomography)
-    1.  `micr` (microscopy)
-
-    Data files are contained in a directory named for the data type.
-    In raw datasets, the data type directory is nested inside subject and
-    (optionally) session directories.
-
-1.  **Task** - a set of structured activities performed by the participant.
-    Tasks are usually accompanied by stimuli and responses, and can greatly vary
-    in complexity. For the purpose of this specification we consider the so-called
-    "resting state" a task. In the context of brain scanning, a task is always
-    tied to one data acquisition. Therefore, even if during one acquisition the
-    subject performed multiple conceptually different behaviors (with different
-    sets of instructions) they will be considered one (combined) task.
-
-1.  **Event** - something that happens or may be perceived by a test subject as happening
-    at a particular instant during the recording.
-    Events are most commonly associated with on- or offset of stimulus presentations,
-    or with the distinct marker of on- or offset of a subject's response or motor action.
-    Other events may include unplanned incidents
-    (for example, sudden onset of noise and vibrations due to construction work,
-    laboratory device malfunction),
-    changes in task instructions (for example, switching the response hand),
-    or experiment control parameters (for example,
-    changing the stimulus presentation rate over experimental blocks),
-    and noted data feature occurrences (for example, a recording electrode producing noise).
-    In BIDS, each event has an onset time and duration.
-    Note that not all tasks will have recorded events (for example, "resting state").
-
-1.  **Run** - an uninterrupted repetition of data acquisition that has the same
-    acquisition parameters and task (however events can change from run to run
-    due to different subject response or randomized nature of the stimuli). Run
-    is a synonym of a data acquisition.
-    Note that "uninterrupted" may look different by modality due to the nature of the
-    recording.
-    For example, in [MRI](04-modality-specific-files/01-magnetic-resonance-imaging-data.md)
-    or [MEG](04-modality-specific-files/02-magnetoencephalography.md),
-    if a subject leaves the scanner, the acquisition must be restarted.
-    For some types of [PET](04-modality-specific-files/09-positron-emission-tomography.md) acquisitions,
-    a subject may leave and re-enter the scanner without interrupting the scan.
-
-1.  **Modality** - the category of brain data recorded by a file.
-    For MRI data, different pulse sequences are considered distinct modalities,
-    such as `T1w`, `bold` or `dwi`.
-    For passive recording techniques, such as EEG, MEG or iEEG,
-    the technique is sufficiently uniform to define the modalities `eeg`,
-    `meg` and `ieeg`.
-    When applicable, the modality is indicated in the **suffix**.
-    The modality may overlap with, but should not be confused with
-    the **data type**.
-
-1.  **Suffix** - an alphanumeric string that forms part of a filename, located
-    after all [entities](#entities) and following a final `_`, right before the
-    **file extension**; for example, it is `eeg` in `sub-05_task-matchingpennies_eeg.vhdr`.
-
-1.  **File extension** - a portion of the filename after the left-most
-    period (`.`) preceded by any other alphanumeric. For example, `.gitignore` does
-    not have a file extension, but the file extension of `test.nii.gz` is `.nii.gz`.
-    Note that the left-most period is included in the file extension.
-
-1.  **DEPRECATED** - A "deprecated" [entity](#entities) or metadata field SHOULD NOT be used in the
-    generation of new datasets.
-    It remains in the standard in order to preserve the interpretability of existing datasets.
-    Validating software SHOULD warn when deprecated practices are detected and provide a
-    suggestion for updating the dataset to preserve the curator's intent.
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___define_common_principles() }}
 
 ## Entities
 
@@ -160,11 +56,10 @@ entity instance, may be referred to as simply an "entity".
 "Subject", "session", "sample", "task", and "run" from the list of definitions
 above are all examples of entities.
 The comprehensive list of supported entities is defined in
-[Appendix IX](99-appendices/09-entities.md);
+the [Entities Appendix](appendices/entities.md);
 further, whether each is OPTIONAL, REQUIRED, or MUST NOT be provided for
 various data files, as well as their relative ordering in a filename, are
-defined in the Entity Table in
-[Appendix IV](99-appendices/04-entity-table.md).
+defined in the [Entity Tables Appendix](appendices/entity-table.md).
 
 ## Compulsory, optional, and additional data and metadata
 
@@ -183,6 +78,11 @@ continuous recording file with the same naming scheme but different extensions.
 The solutions will change from case to case and publicly available datasets will
 be reviewed to include common data types in the future releases of the BIDS
 specification.
+
+It is RECOMMENDED that non-compulsory metadata fields (like `notch` in `channels.tsv` files)
+and/or files (like `events.tsv`) are fully omitted *when they are unavailable or unapplicable*,
+instead of specified with an `n/a` value, or included as an empty file
+(for example an empty `events.tsv` file with only the headers included).
 
 ## Filesystem structure
 
@@ -233,12 +133,12 @@ In cases where an entity and a metadata field convey similar contextual
 information, the presence of an entity should not be used as a replacement for
 the corresponding metadata field.
 For instance, in echo-planar imaging MRI, the
-[`dir-<label>`](./99-appendices/09-entities.md#dir) entity MAY be used
+[`dir-<label>`](./appendices/entities.md#dir) entity MAY be used
 to distinguish files with different phase-encoding directions,
 but the file's `PhaseEncodingDirection` MUST be specified as metadata.
 
 A summary of all entities in BIDS and the order in which they MUST be
-specified is available in the [entity table](./99-appendices/04-entity-table.md)
+specified is available in the [entity table](./appendices/entity-table.md)
 in the appendix.
 
 ### Entity-linked file collections
@@ -260,7 +160,7 @@ Provided the conditions above are satisfied,
 any suffix (such as `bold`) can identify an entity-linked file collection,
 although certain suffixes are exclusive for this purpose (for example, `MP2RAGE`).
 Use cases concerning this convention are compiled in the
-[file collections](./99-appendices/10-file-collections.md) appendix.
+[file collections](./appendices/file-collections.md) appendix.
 This convention is mainly intended for but not limited to MRI modalities.
 
 ### Case collision intolerance
@@ -904,14 +804,14 @@ In case data is expressed in SI units or SI derived units, the units MAY be
 specified in the sidecar JSON file.
 In case non-standard prefixes are added to SI or non-SI units, these
 non-standard prefixed units MUST be specified in the JSON file.
-See [Appendix V](99-appendices/05-units.md) for a list of standard units and
+See the [Units Appendix](appendices/units.md) for a list of standard units and
 prefixes.
 Note also that for the *formatting* of SI units, the [CMIXF-12](https://people.csail.mit.edu/jaffer/MIXF/CMIXF-12)
 convention for encoding units is RECOMMENDED.
 CMIXF provides a consistent system for all units and prefix symbols with only basic
 characters, avoiding symbols that can cause text encoding problems; for example the
 CMIXF formatting for "micro volts" is `uV`, "degrees Celsius" is `oC` and "Ohm" is `Ohm`.
-See [Appendix V](99-appendices/05-units.md) for more information.
+See the [Units Appendix](appendices/units.md) for more information.
 
 For additional rules, see below:
 
@@ -965,7 +865,7 @@ Describing dates and timestamps:
     Some analysis software packages (for example, MNE-Python) handle their data as `.fif`
     internally and will break if recording dates are specified prior to `1902`,
     even if the original data format is not `.fif`.
-    See [MEG-file-formats](./99-appendices/06-meg-file-formats.md#recording-dates-in-fif-files)
+    See the [MEG File Formats Appendix](./appendices/meg-file-formats.md#recording-dates-in-fif-files)
     for more information.
 
 -   Age SHOULD be given as the number of years since birth at the time of

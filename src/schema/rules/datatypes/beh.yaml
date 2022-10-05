@@ -1,13 +1,13 @@
 ---
 timeseries:
   suffixes:
-  - stim
-  - physio
+    - stim
+    - physio
   extensions:
-  - .tsv.gz
-  - .json
+    - .tsv.gz
+    - .json
   datatypes:
-  - beh
+    - beh
   entities:
     subject: required
     session: optional
@@ -19,13 +19,13 @@ timeseries:
 # Non-continuous data
 noncontinuous:
   suffixes:
-  - events
-  - beh
+    - events
+    - beh
   extensions:
-  - .tsv
-  - .json
+    - .tsv
+    - .json
   datatypes:
-  - beh
+    - beh
   entities:
     subject: required
     session: optional

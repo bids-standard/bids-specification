@@ -1,17 +1,22 @@
 """Schema loading- and processing-related functions."""
 import logging
 import os
+import re
+from collections.abc import Iterable, Mapping
 from copy import deepcopy
-from pathlib import Path
+from functools import lru_cache
 
-import yaml
-
-from . import utils
+from . import __bids_version__, __version__, utils
+from .types import Namespace
 
 lgr = utils.get_logger()
 # Basic settings for output, for now just basic
 utils.set_logger_level(lgr, os.environ.get("BIDS_SCHEMA_LOG_LEVEL", logging.INFO))
 logging.basicConfig(format="%(asctime)-15s [%(levelname)8s] %(message)s")
+
+
+class BIDSSchemaError(Exception):
+    """Errors indicating invalid values in the schema itself"""
 
 
 def _get_entry_name(path):
@@ -21,40 +26,83 @@ def _get_entry_name(path):
         return path.name
 
 
-def dereference_yaml(schema, struct):
-    """Recursively search a dictionary-like object for $ref keys.
+def _get_bids_version(bids_schema_dir):
+    """Determine schema version, with directory name, file specification, and string fallback."""
 
-    Each $ref key is replaced with the contents of the referenced field in the overall
-    dictionary-like object.
+    bids_version_path = os.path.join(bids_schema_dir, "BIDS_VERSION")
+    try:
+        with open(bids_version_path) as f:
+            bids_version = f.readline().rstrip()
+    # If this file is not in the schema, fall back to placeholder heuristics:
+    except FileNotFoundError:
+        # Maybe the directory encodes the version, as in:
+        # https://github.com/bids-standard/bids-schema
+        _, bids_version = os.path.split(bids_schema_dir)
+        if not re.match(r"^.*?[0-9]*?\.[0-9]*?\.[0-9]*?.*?$", bids_version):
+            # Then we don't know, really.
+            bids_version = bids_schema_dir
+    return bids_version
+
+
+def _find(obj, predicate):
+    """Find objects in an arbitrary object that satisfy a predicate
+
+    Note that this does not cut branches, so every iterable sub-object
+    will be fully searched.
     """
-    if isinstance(struct, dict):
-        if "$ref" in struct:
-            ref_field = struct["$ref"]
-            template = schema[ref_field]
-            struct.pop("$ref")
-            # Result is template object with local overrides
-            struct = {**template, **struct}
+    try:
+        if predicate(obj):
+            yield obj
+    except Exception:
+        pass
 
-        struct = {key: dereference_yaml(schema, val) for key, val in struct.items()}
+    iterable = ()
+    if isinstance(obj, Mapping):
+        iterable = obj.values()
+    elif not isinstance(obj, str) and isinstance(obj, Iterable):
+        iterable = obj
 
-        # For the rare case of multiple sets of valid values (enums) from multiple references,
-        # anyOf is used. Here we try to flatten our anyOf of enums into a single enum list.
-        if "anyOf" in struct.keys():
-            if all("enum" in obj for obj in struct["anyOf"]):
-                all_enum = [v["enum"] for v in struct["anyOf"]]
-                all_enum = [item for sublist in all_enum for item in sublist]
-
-                struct.pop("anyOf")
-                struct["type"] = "string"
-                struct["enum"] = all_enum
-
-    elif isinstance(struct, list):
-        struct = [dereference_yaml(schema, item) for item in struct]
-
-    return struct
+    for item in iterable:
+        yield from _find(item, predicate)
 
 
-def load_schema(schema_path):
+def dereference(namespace, inplace=True):
+    """Replace references in namespace with the contents of the referred object"""
+    if not inplace:
+        namespace = deepcopy(namespace)
+    for struct in _find(namespace, lambda obj: "$ref" in obj):
+        target = struct.pop("$ref")
+        struct.update({**namespace[target], **struct})
+    return namespace
+
+
+def flatten_enums(namespace, inplace=True):
+    """Replace enum collections with a single enum
+
+    >>> struct = {
+    ...   "anyOf": [
+    ...      {"type": "string", "enum": ["A", "B", "C"]},
+    ...      {"type": "string", "enum": ["D", "E", "F"]},
+    ...   ]
+    ... }
+    >>> flatten_enums(struct)
+    {'type': 'string', 'enum': ['A', 'B', 'C', 'D', 'E', 'F']}
+    """
+    if not inplace:
+        namespace = deepcopy(namespace)
+    for struct in _find(namespace, lambda obj: "anyOf" in obj):
+        try:
+            all_enum = [val for item in struct["anyOf"] for val in item["enum"]]
+        except KeyError:
+            continue
+
+        del struct["anyOf"]
+        struct.update({"type": "string", "enum": all_enum})
+    return namespace
+
+
+@lru_cache()
+def load_schema(schema_path=None):
     """Load the schema into a dictionary.
 
     This function allows the schema, like BIDS itself, to be specified in
@@ -65,47 +113,33 @@ def load_schema(schema_path):
 
     Parameters
     ----------
-    schema_path : str
-        Directory containing yaml files or yaml file.
+    schema_path : str, optional
+        Directory containing yaml files or yaml file. If ``None``, use the
+        default schema packaged with ``bidsschematools``.
 
     Returns
     -------
     dict
         Schema in dictionary form.
     """
-    schema_path = Path(schema_path)
-    objects_dir = schema_path / "objects/"
-    rules_dir = schema_path / "rules/"
+    if schema_path is None:
+        schema_path = utils.get_schema_path()
+    schema = Namespace.from_directory(schema_path)
+    if not schema.objects:
+        raise ValueError(f"objects subdirectory path not found in {schema_path}")
+    if not schema.rules:
+        raise ValueError(f"rules subdirectory path not found in {schema_path}")
 
-    if not objects_dir.is_dir() or not rules_dir.is_dir():
-        raise ValueError(
-            f"Schema path or paths do not exist:\n\t{str(objects_dir)}\n\t{str(rules_dir)}"
-        )
-
-    schema = {}
-    schema["objects"] = {}
-    schema["rules"] = {}
-
-    # Load object definitions. All are present in single files.
-    for object_group_file in sorted(objects_dir.glob("*.yaml")):
-        lgr.debug(f"Loading {object_group_file.stem} objects.")
-        dict_ = yaml.safe_load(object_group_file.read_text())
-        schema["objects"][object_group_file.stem] = dereference_yaml(dict_, dict_)
-
-    # Grab single-file rule groups
-    for rule_group_file in sorted(rules_dir.glob("*.yaml")):
-        lgr.debug(f"Loading {rule_group_file.stem} rules.")
-        dict_ = yaml.safe_load(rule_group_file.read_text())
-        schema["rules"][rule_group_file.stem] = dereference_yaml(dict_, dict_)
-
-    # Load directories of rule subgroups.
-    for rule_group_file in sorted(rules_dir.glob("*/*.yaml")):
-        rule = schema["rules"].setdefault(rule_group_file.parent.name, {})
-        lgr.debug(f"Loading {rule_group_file.stem} rules.")
-        dict_ = yaml.safe_load(rule_group_file.read_text())
-        rule[rule_group_file.stem] = dereference_yaml(dict_, dict_)
+    dereference(schema)
+    flatten_enums(schema)
 
     return schema
+
+
+def export_schema(schema):
+    versioned = Namespace.build({"schema_version": __version__, "bids_version": __bids_version__})
+    versioned.update(schema)
+    return versioned.to_json()
 
 
 def filter_schema(schema, **kwargs):

@@ -2,7 +2,7 @@
 # This file describes valid file extensions in the specification.
 ave:
   value: .ave
-  display_name: AVE  # not sure what ave stands for
+  display_name: AVE # not sure what ave stands for
   description: |
     File containing data averaged by segments of interest.
 
@@ -42,7 +42,7 @@ bvec:
     Following the FSL format for the `bvec` specification, the coordinate system of
     the *b* vectors MUST be defined with respect to the coordinate system defined by
     the header of the corresponding `_dwi` NIfTI file and not the scanner's device
-    coordinate system (see [Coordinate systems](../99-appendices/08-coordinate-systems.md)).
+    coordinate system (see [Coordinate systems](SPEC_ROOT/appendices/coordinate-systems.md)).
     The most relevant limitation imposed by this choice is that the gradient information cannot
     be directly stored in this format if the scanner generates *b*-vectors in *scanner coordinates*.
 chn:
@@ -73,6 +73,13 @@ CTF:
   display_name: CTF MEG Dataset Folder
   description: |
     A folder for MEG data, typically containing a `.meg4` file for the data and a `.res4` file for the resources.
+dlabelnii:
+  value: .dlabel.nii
+  display_name: CIFTI-2 Dense Label File
+  description: |
+    A CIFTI-2 dense label file.
+
+    This extension may only be used in derivative datasets.
 edf:
   value: .edf
   display_name: European Data Format
@@ -87,7 +94,7 @@ eeg:
   display_name: BrainVision Binary Data
   description: |
     A binary data file in the
-    [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5).
+    [BrainVision Core Data Format](https://www.brainproducts.com/support-resources/brainvision-core-data-format-1-0/).
     These files come in three-file sets, including a `.vhdr`, a `.vmrk`, and a `.eeg` file.
 fdt:
   value: .fdt
@@ -129,6 +136,13 @@ kdf:
     the digitized positions of the head points (`\_digitizer.txt`),
     the position of the center of the MEG coils (`.chn`),
     and the event markers (`.trg`).
+labelgii:
+  value: .label.gii
+  display_name: GIFTI label/annotation file
+  description: |
+    A GIFTI label/annotation file.
+
+    This extension may only be used in derivative datasets.
 md:
   value: .md
   display_name: Markdown
@@ -223,6 +237,11 @@ set:
 
     The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab).
     Each recording consists of a `.set` file with an optional `.fdt` file.
+snirf:
+  value: .snirf
+  display_name: Shared Near Infrared Spectroscopy Format
+  description: |
+    HDF5 file organized according to the [SNIRF specification](https://github.com/fNIRS/snirf)
 sqd:
   value: .sqd
   display_name: SQD
@@ -272,14 +291,14 @@ vhdr:
   display_name: BrainVision Text Header
   description: |
     A text header file in the
-    [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5).
+    [BrainVision Core Data Format](https://www.brainproducts.com/support-resources/brainvision-core-data-format-1-0/).
     These files come in three-file sets, including a `.vhdr`, a `.vmrk`, and a `.eeg` file.
 vmrk:
   value: .vmrk
   display_name: BrainVision Marker
   description: |
     A text marker file in the
-    [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5).
+    [BrainVision Core Data Format](https://www.brainproducts.com/support-resources/brainvision-core-data-format-1-0/).
     These files come in three-file sets, including a `.vhdr`, a `.vmrk`, and a `.eeg` file.
 Any:
   value: .*
@@ -287,7 +306,7 @@ Any:
   description: |
     Any extension is allowed.
 None:
-  value: ""
+  value: ''
   display_name: No extension
   description: |
     A file with no extension.

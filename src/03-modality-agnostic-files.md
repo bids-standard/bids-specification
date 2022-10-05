@@ -224,21 +224,11 @@ following values for them:
 
 <!-- This block generates a columns table.
 The definitions of these fields can be found in
-  src/schema/objects/columns.yaml
+  src/schema/rules/tabular_data/*.yaml
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_columns_table(
-   {
-      "participant_id": ("REQUIRED", "There MUST be exactly one row for each participant."),
-      "species": "RECOMMENDED",
-      "age": "RECOMMENDED",
-      "sex": "RECOMMENDED",
-      "handedness": "RECOMMENDED",
-      "strain": "RECOMMENDED",
-      "strain_rrid": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_columns_table("modality_agnostic.Participants") }}
 
 Throughout BIDS you can indicate missing values with `n/a` (for "not
 available").
@@ -309,19 +299,11 @@ Each sample MUST be described by one and only one row.
 
 <!-- This block generates a columns table.
 The definitions of these fields can be found in
-  src/schema/objects/columns.yaml
+  src/schema/rules/tabular_data/*.yaml
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_columns_table(
-   {
-      "sample_id": ("REQUIRED", "The combination of `sample_id` and `participant_id` MUST be unique."),
-      "participant_id": ("REQUIRED", "The combination of `sample_id` and `participant_id` MUST be unique."),
-      "sample_type": "REQUIRED",
-      "pathology": "RECOMMENDED",
-      "derived_from": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_columns_table("modality_agnostic.Samples") }}
 
 `samples.tsv` example:
 
@@ -447,26 +429,39 @@ sub-<label>/
 
 Optional: Yes
 
-The purpose of this file is to describe timing and other properties of each
-imaging acquisition sequence (each *run* file) within one session.
+The purpose of this file is to describe timing and other properties of each neural recording *file* within one session.
+In general, each of these files SHOULD be described by exactly one row.
 
-Each neural recording *file* SHOULD be described by exactly one row.
-Some recordings consist of multiple parts, that span several files,
-for example through `echo-`, `part-`, or `split-` entities.
-Such recordings MUST be documented with one row per file.
+For *file formats* that are based on several files of different extensions,
+or a directory of files with different extensions (multi-file file formats),
+only that file SHOULD be listed that would also be passed to analysis software for reading the data.
+For example for BrainVision data (`.vhdr`, `.vmrk`, `.eeg`),
+only the `.vhdr` SHOULD be listed;
+for EEGLAB data (`.set`, `.fdt`),
+only the `.set` file SHOULD be listed;
+and for CTF data (`.ds`),
+the whole `.ds` directory SHOULD be listed,
+and not the individual files in that directory.
+
+Some neural recordings consist of multiple parts,
+that span several files,
+but that share the same extension.
+For example in [entity-linked file collections](./02-common-principles.md#entity-linked-file-collections),
+commonly used for qMRI,
+where recordings may be linked through entities such as `echo` and `part`
+(using `.nii` or `.nii.gz` extensions).
+For another example consider the case of large files in `.fif` format that are linked through the `split` entity
+(see [Split files](./appendices/meg-file-formats.md#split-files)).
+Such recordings MUST be documented with one row per file
+(unlike the case of multi-file file formats described above).
 
 <!-- This block generates a columns table.
 The definitions of these fields can be found in
-  src/schema/objects/columns.yaml
+  src/schema/rules/tabular_data/*.yaml
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_columns_table(
-   {
-      "filename": ("REQUIRED", "There MUST be exactly one row for each file."),
-      "acq_time__scans": ("OPTIONAL"),
-   }
-) }}
+{{ MACROS___make_columns_table("modality_agnostic.Scans") }}
 
 Additional fields can include external behavioral measures relevant to the
 scan.
@@ -506,17 +501,11 @@ Column names in `sessions.tsv` files MUST be different from group level particip
 
 <!-- This block generates a columns table.
 The definitions of these fields can be found in
-  src/schema/objects/columns.yaml
+  src/schema/rules/tabular_data/*.yaml
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_columns_table(
-   {
-      "session_id": ("REQUIRED", "There MUST be exactly one row for each session."),
-      "acq_time__sessions": ("OPTIONAL"),
-      "pathology": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_columns_table("modality_agnostic.Sessions") }}
 
 `_sessions.tsv` example:
 

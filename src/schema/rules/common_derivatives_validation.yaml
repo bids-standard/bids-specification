@@ -1,18 +1,18 @@
 ---
 ResInSidecar:
-    selectors:
+  selectors:
     - dataset.dataset_description.DatasetType == "derivative"
-    - '["mri", "pet"].includes(modality)'
-    - '["nii", " nii.gz"].includes(extension)'
+    - intersects([modality], ["mri", "pet"])
+    - match(extension, '^\.nii(\.gz)?$')
     - type(sidecar.Resolution) == "object"
-    checks:
+  checks:
     - entities.resolution in sidecar.Resolution
 
 DenInSidecar:
-    selectors:
+  selectors:
     - dataset.dataset_description.DatasetType == "derivative"
-    - '["mri", "pet"].includes(modality)'
-    - '[".nii", ".nii.gz"].includes(extension)'
+    - intersects([modality], ["mri", "pet"])
+    - match(extension, '^\.nii(\.gz)?$')
     - type(sidecar.Density) == "object"
-    checks:
+  checks:
     - entities.density in sidecar.Density

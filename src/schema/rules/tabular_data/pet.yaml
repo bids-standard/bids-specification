@@ -1,52 +1,62 @@
 ---
 Blood:
-    selectors:
+  selectors:
     - modality == "pet"
     - suffix == "blood"
     - extension == ".tsv"
-    columns:
-        time: required
-        plasma_radioactivity: optional
-        metabolite_parent_fraction: optional
-        metabolite_polar_fraction: optional
-        hplc_recovery_fractions: optional
-        whole_blood_radioactivity: optional
+  columns:
+    time: required
+    plasma_radioactivity:
+      level: optional
+      level_addendum: required if `PlasmaAvail` is `true`
+    metabolite_parent_fraction:
+      level: optional
+      level_addendum: required if `MetaboliteAvail` is `true`
+    metabolite_polar_fraction:
+      level: optional
+      level_addendum: required if `MetaboliteAvail` is `true`
+    hplc_recovery_fractions:
+      level: optional
+      level_addendum: required if `MetaboliteRecoveryCorrectionApplied` is `true`
+    whole_blood_radioactivity:
+      level: optional
+      level_addendum: required if `WholeBloodAvail` is `true`
 
 BloodPlasma:
-    selectors:
+  selectors:
     - modality == "pet"
     - suffix == "blood"
     - extension == ".tsv"
     - '"PlasmaAvail" in sidecar'
-    columns:
-        plasma_radioactivity: required
+  columns:
+    plasma_radioactivity: required
 
 BloodMetabolite:
-    selectors:
+  selectors:
     - modality == "pet"
     - suffix == "blood"
     - extension == ".tsv"
     - '"MetaboliteAvail" in sidecar'
-    columns:
-        metabolite_parent_fraction: required
-        metabolite_polar_fraction: recommended
+  columns:
+    metabolite_parent_fraction: required
+    metabolite_polar_fraction: recommended
 
 BloodMetaboliteCorrection:
-    selectors:
+  selectors:
     - modality == "pet"
     - suffix == "blood"
     - extension == ".tsv"
     - '"MetaboliteRecoveryCorrectionApplied" in sidecar'
     - sidecar.MetaboliteRecoveryCorrectionApplied == true
-    columns:
-        hplc_recovery_fractions: required
+  columns:
+    hplc_recovery_fractions: required
 
 BloodWholeBlood:
-    selectors:
+  selectors:
     - modality == "pet"
     - suffix == "blood"
     - extension == ".tsv"
     - '"WholeBloodAvail" in sidecar'
     - sidecar.WholeBloodAvail == true
-    columns:
-        whole_blood_radioactivity: required
+  columns:
+    whole_blood_radioactivity: required

@@ -50,11 +50,11 @@ def build_pdf(filename="bids-spec.pdf", logfile="bids-spec_pandoc_log.json"):
 
     # Resources are searched relative to the working directory, but
     # we can add additional search paths using <path>:<another path>, ...
-    # When in one of the 99-appendices/ files there is a reference to
+    # When in one of the appendices/ files there is a reference to
     # "../04-modality-specific-files/images/...", then we need to use
-    # 99-appendices/ as a resource-path so that the relative files can
+    # appendices/ as a resource-path so that the relative files can
     # be found.
-    cmd += [f'--resource-path=.:{str(root / "99-appendices")}']
+    cmd += [f'--resource-path=.:{str(root / "appendices")}']
 
     # Add input files to command
     # The filenames in `markdown_list` will ensure correct order when sorted
