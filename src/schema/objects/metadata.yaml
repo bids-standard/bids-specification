@@ -2987,8 +2987,8 @@ TaskName:
     No two tasks should have the same name.
     The task label included in the file name is derived from this `"TaskName"` field
     by removing all non-alphanumeric characters (that is, all except those matching `[0-9a-zA-Z]`).
-    For example `"TaskName"` `"faces n-back"` will correspond to task label
-    `facesnback`.
+    For example `"TaskName"` `"task x-x"` will correspond to task label
+    `taskxx`.
   type: string
 TermURL:
   name: TermURL
