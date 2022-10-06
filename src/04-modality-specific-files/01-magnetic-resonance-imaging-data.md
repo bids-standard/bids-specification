@@ -210,7 +210,6 @@ For example, `sub-01_mod-T1w_defacemask.nii.gz`.
 The OPTIONAL [`task-<label>`](../appendices/entities.md#task) entity can be used
 in order to allow tasks during structural MR acquisitions,
 for example pre-described motion paradigms such as nodding, to be described.
-Task labels MUST be consistent across subjects and sessions.
 
 ### RECOMMENDED metadata for tasks in anatomical imaging
 
