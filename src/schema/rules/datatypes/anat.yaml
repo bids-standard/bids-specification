@@ -22,12 +22,12 @@ nonparametric:
   entities:
     subject: required
     session: optional
+    task: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
     run: optional
     part: optional
-    task: optional
 
 parametric:
   suffixes:
@@ -57,10 +57,10 @@ parametric:
   entities:
     subject: required
     session: optional
+    task: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
-    task: optional
     run: optional
 
 defacemask:
@@ -75,12 +75,12 @@ defacemask:
   entities:
     subject: required
     session: optional
+    task: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
     run: optional
     modality: optional
-    task: optional
 
 multiecho:
   suffixes:
@@ -95,13 +95,13 @@ multiecho:
   entities:
     subject: required
     session: optional
+    task: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
     run: optional
     echo: required
     part: optional
-    task: optional
 
 multiflip:
   suffixes:
@@ -115,6 +115,7 @@ multiflip:
   entities:
     subject: required
     session: optional
+    task: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
@@ -122,7 +123,6 @@ multiflip:
     echo: optional
     flip: required
     part: optional
-    task: optional
 
 multiinversion:
   suffixes:
@@ -136,13 +136,13 @@ multiinversion:
   entities:
     subject: required
     session: optional
+    task: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
     run: optional
     inversion: required
     part: optional
-    task: optional
 
 mp2rage:
   suffixes:
@@ -156,6 +156,7 @@ mp2rage:
   entities:
     subject: required
     session: optional
+    task: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
@@ -164,7 +165,6 @@ mp2rage:
     flip: optional
     inversion: required
     part: optional
-    task: optional
 
 vfamt:
   suffixes:
@@ -179,6 +179,7 @@ vfamt:
   entities:
     subject: required
     session: optional
+    task: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
@@ -187,7 +188,6 @@ vfamt:
     flip: required
     mtransfer: required
     part: optional
-    task: optional
 
 mtr:
   suffixes:
@@ -201,10 +201,10 @@ mtr:
   entities:
     subject: required
     session: optional
+    task: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
     run: optional
     mtransfer: required
     part: optional
-    task: optional
