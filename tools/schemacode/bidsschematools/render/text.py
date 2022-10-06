@@ -209,7 +209,7 @@ def value_key_table(namespace):
 
 
 def make_filename_template(
-    file_type,
+    dstype,
     schema=None,
     src_path=None,
     n_dupes_to_combine=6,
@@ -223,6 +223,9 @@ def make_filename_template(
 
     Parameters
     ----------
+    dstype : "raw" or "deriv"
+        The type of files being rendered; determines if rules are found in rules.files.raw
+        or rules.files.deriv
     schema : dict
         The schema object, which is a dictionary with nested dictionaries and
         lists stored within it.
@@ -280,7 +283,7 @@ def make_filename_template(
     )
     lines = [f"{sub_string}/", f"\t[{ses_string}/]"]
 
-    file_rules = schema.rules.files[file_type]
+    file_rules = schema.rules.files[dstype]
     file_groups = {}
     for rule in file_rules.values(level=2):
         for datatype in rule.datatypes:
