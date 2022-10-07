@@ -442,7 +442,7 @@ another.
 
     ```JSON
     {
-        "Model": "Diffusion Tensor",
+        "ModelDescription": "Diffusion Tensor",
         "OrientationRepresentation": "param",
         "ReferenceAxes": "xyz",
         "Parameters": {
@@ -475,7 +475,7 @@ another.
 
     ```JSON
     {
-        "Model": "Multi-Shell Multi-Tissue (MSMT) Constrained Spherical Deconvolution (CSD)",
+        "ModelDescription": "Multi-Shell Multi-Tissue (MSMT) Constrained Spherical Deconvolution (CSD)",
         "ModelURL": "https://mrtrix.readthedocs.io/en/latest/constrained_spherical_deconvolution/multi_shell_multi_tissue_csd.html",
         "Shells": [ 0, 1000, 2000, 3000 ],
         "Parameters": {
@@ -556,7 +556,7 @@ another.
 
     ```JSON
     {
-        "Model": "Ball-And-Sticks model using FSL bedpostx",
+        "ModelDescription": "Ball-And-Sticks model using FSL bedpostx",
         "ModelURL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
         "Parameters": {
             "ARDFudgeFactor": 1.0,
