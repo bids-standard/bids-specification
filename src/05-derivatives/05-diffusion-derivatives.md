@@ -144,6 +144,18 @@ interpretation of that information; see [orientation specification](#orientation
     \[[Pajevic1999](#pajevic1999)\]. Image data MUST NOT contain negative
     values.
 
+1.  <a name="data-tensor">*Rank-2 tensor*</a>:
+
+    4D image encoding coefficients of a rank-2 tensor.
+    If `"AntipodalSymmetry"` is `True` (or omitted),
+    then the image MUST contain six volumes, in the order:
+    *D<sub>xx</sub>*, *D<sub>xy</sub>*, *D<sub>xz</sub>*, *D<sub>yy</sub>*, *D<sub>yz</sub>*, *D<sub>zz</sub>.
+    If `"AntipodalSymmetry"` is `False`,
+    then the image MUST contain nine volumes, in the order:
+    *D<sub>xx</sub>*, *D<sub>xy</sub>*, *D<sub>xz</sub>*, *D<sub>yx</sub>*, *D<sub>yy</sub>*, *D<sub>yz</sub>, *D<sub>zx</sub>*, *D<sub>zy</sub>*, *D<sub>zz</sub>.
+    (If `"ReferenceAxes"` is `"ijk"`, then the interpretation of the coefficients
+    above should be substituted accordingly)
+
 1.  <a name="data-spherical">*Spherical coordinates*</a>:
 
     4D image where data across volumes within each voxel encode one or
@@ -244,7 +256,7 @@ keywords for "`_param-`" fields, which are listed below.
 | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `bs`        | Ball-and-Stick(s) model \[[Behrens2003](#behrens2003)\],\[[Behrens2007](#behrens2007)\],\[[Jbabdi2012](#jbabdi2012)\]                           | One [spherical coordinates](#data-spherical) image with parameter name "`sticks`", providing both fibre volume fractions and orientations using polar angles;<br>Optional scalar images with parameter names {"`bzero`", "`dmean`", "`dstd`"} providing the model-estimated *b*=0 signal intensity, mean stick diffusivity, and standard deviation of stick diffusivities respectively                              |
 | `csd`       | Constrained Spherical Deconvolution \[[Tournier2007](#tournier2007)\],\[[Descoteaux2009](#descoteaux2009)\],\[[Jeurissen2014](#jeurissen2014)\] | [Spherical harmonics](#data-sh) image<br>If a multi-tissue decomposition is performed, provide one individual 4D image per tissue, with "`_param-<param>`" entity being an abbreviation of the tissue estimated by that particular ODF                                                                                                                                                                        |
-| `tensor`    | Diffusion Tensor \[[Basser1994](#basser1994)\]                                                                                                  | Single [parameter vectors](#data-param) image with no `param` entity with 6 volumes in the order: *D<sub>xx</sub>*, *D<sub>xy</sub>*, *D<sub>xz</sub>*, *D<sub>yy</sub>*, *D<sub>yz</sub>*, *D<sub>zz</sub>*<br>OR<br>Tensor coefficients as [parameter vectors](#data-param) image with parameter name "`tensor`";<br>Estimated *b*=0 intensity as [scalar](#data-scalar) image with parameter name "`bzero`" |
+| `tensor`    | Diffusion Tensor \[[Basser1994](#basser1994)\]                                                                                                  | Single [tensor image](#data-tensor) with no `param` entity <br>OR<br>Tensor coefficients as [tensor image](#data-tensor) image with `param` entity ``tensor``;<br>Estimated *b*=0 intensity as [scalar image](#data-scalar) with `param` entity "`bzero`" |
 
 The JSON sidecar for the intrinsic diffusion model parameters may contain
 the following key/value pairs irrespective of the particular model:
@@ -340,7 +352,7 @@ in order to produce a [directionally-encoded colour](#data-dec),
 
 | **Key name**                | **Relevant [data representations](#data-representations)**                                                                                                       | **Description**                                                                                                                                                                                                                                           |
 | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `AntipodalSymmetry`         | [Spherical coordinates](#data-spherical), [3-vectors](#data-3vector), [spherical harmonics](#data-sh), [amplitudes](#data-amp), [parameter vectors](#data-param) | OPTIONAL. Boolean. Indicates whether orientation information should be interpreted as being antipodally symmetric. Assumed to be True if omitted.                                                                                                         |
+| `AntipodalSymmetry`         | [Tensor](#data_tensor), [Spherical coordinates](#data-spherical), [3-vectors](#data-3vector), [spherical harmonics](#data-sh), [amplitudes](#data-amp), [parameter vectors](#data-param) | OPTIONAL. Boolean. Indicates whether orientation information should be interpreted as being antipodally symmetric. Assumed to be True if omitted.                                                                                                         |
 | `Directions`                | [Amplitudes](#data-amp)                                                                                                                                          | REQUIRED. List. Data are either [spherical coordinates (directions only)](#data-spherical) or [3-vectors](#data-3vector) with unit norm. Defines the dense directional basis set on which samples of a spherical function within each voxel are provided. |
 | `FillValue`                 | [Spherical coordinates](#data-spherical), [3-vectors](#data-3vector)                                                                                             | OPTIONAL. Float; allowed values: { 0.0, NaN }. Value stored in image when number of discrete orientations in a voxel is fewer than the maximal number for that image.                                                                                     |
 | `OrientationRepresentation` | All except [scalar](#data-scalar)                                                                                                                                | REQUIRED. String; allowed values: { `dec`, `unitspherical`, `spherical`, `unit3vector`, `3vector`, `sh`, `amp`, `param` }. The [data representation](#data-representations) used to encode orientation information within the NIfTI image.                |
@@ -434,7 +446,7 @@ another.
                 sub-01_model-tensor_model.json
     ```
 
-    Dimensions of NIfTI image "`sub-01_model-tensor_param-tensor_model.nii.gz`": *I*x*J*x*K*x6 ([parameter vectors](#data-param))
+    Dimensions of NIfTI image "`sub-01_model-tensor_param-tensor_model.nii.gz`": *I*x*J*x*K*x6 ([tensor image](#data-tensor))
     Dimensions of NIfTI image "`sub-01_model-tensor_param-bzero_model.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
     Dimensions of NIfTI image "`sub-01_model-tensor_param-fa_mdp.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
 
