@@ -12,6 +12,7 @@ from bidsschematools.render.text import (
     make_entity_definitions,
     make_filename_template,
     make_glossary,
+    define_allowed_top_directories,
 )
 
 __all__ = [
@@ -25,4 +26,5 @@ __all__ = [
     "make_glossary",
     "make_filename_template",
     "define_common_principles",
+    "define_allowed_top_directories",
 ]
