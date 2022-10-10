@@ -25,7 +25,7 @@ The inputs for this macro can be found in the folder
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filename_template(datatypes=["micr"], suffixes=["TEM", "SEM", "uCT", "BF", "DF",
+{{ MACROS___make_filename_template("raw", datatypes=["micr"], suffixes=["TEM", "SEM", "uCT", "BF", "DF",
 "PC", "DIC", "FLUO", "CONF", "PLI", "CARS", "2PE", "MPE", "SR", "NLO", "OCT", "SPIM"], n_dupes_to_combine=4) }}
 
 Microscopy data MUST be stored in the `micr` directory.
@@ -438,7 +438,7 @@ The inputs for this macro can be found in the folder
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filename_template(datatypes=["micr"], suffixes=["photo"], n_dupes_to_combine=3) }}
+{{ MACROS___make_filename_template("raw", datatypes=["micr"], suffixes=["photo"], n_dupes_to_combine=3) }}
 
 The file `<extension>` for photos MUST be either `.jpg`, `.png` or `.tif`.
 

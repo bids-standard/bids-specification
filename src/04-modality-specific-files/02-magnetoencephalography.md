@@ -24,6 +24,7 @@ and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_filename_template(
+   "raw",
    datatypes=["meg"],
    suffixes=["meg", "markers", "events", "physio", "stim"])
 }}
@@ -207,7 +208,7 @@ The inputs for this macro can be found in the folder
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["channels"]) }}
+{{ MACROS___make_filename_template("raw", datatypes=["meg"], suffixes=["channels"]) }}
 
 This file is RECOMMENDED as it provides easily searchable information across BIDS datasets.
 For example for general curation, response to queries, or for batch analysis.
@@ -217,42 +218,13 @@ Missing values MUST be indicated with `"n/a"`.
 
 The columns of the channels description table stored in `*_channels.tsv` are:
 
-MUST be present **in this specific order**:
-
 <!-- This block generates a columns table.
 The definitions of these fields can be found in
-  src/schema/objects/columns.yaml
+  src/schema/rules/tabular_data/*.yaml
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_columns_table(
-   {
-      "name__channels": "REQUIRED",
-      "type__meg_channels": "REQUIRED",
-      "units": "REQUIRED",
-   }
-) }}
-
-SHOULD be present:
-
-<!-- This block generates a columns table.
-The definitions of these fields can be found in
-  src/schema/objects/columns.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_columns_table(
-   {
-      "description": "OPTIONAL",
-      "sampling_frequency": "OPTIONAL",
-      "low_cutoff": "OPTIONAL",
-      "high_cutoff": "OPTIONAL",
-      "notch": "OPTIONAL",
-      "software_filters": "OPTIONAL",
-      "status": "OPTIONAL",
-      "status_description": "OPTIONAL",
-   }
-) }}
+{{ MACROS___make_columns_table("meg.MEGChannels") }}
 
 Example:
 
@@ -320,7 +292,7 @@ The inputs for this macro can be found in the folder
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["coordsystem"]) }}
+{{ MACROS___make_filename_template("raw", datatypes=["meg"], suffixes=["coordsystem"]) }}
 
 OPTIONAL. A JSON document specifying the coordinate system(s) used for the MEG,
 EEG, head localization coils, and anatomical landmarks.
@@ -433,7 +405,7 @@ The inputs for this macro can be found in the folder
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["photo"]) }}
+{{ MACROS___make_filename_template("raw", datatypes=["meg"], suffixes=["photo"]) }}
 
 Photos of the anatomical landmarks and/or head localization coils on the
 subject’s head are RECOMMENDED. If the coils are not placed at the location of
@@ -460,7 +432,7 @@ The inputs for this macro can be found in the folder
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["headshape"]) }}
+{{ MACROS___make_filename_template("raw", datatypes=["meg"], suffixes=["headshape"]) }}
 
 This file is RECOMMENDED.
 

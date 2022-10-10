@@ -1,4 +1,4 @@
-[![Check Markdown style](https://github.com/bids-standard/bids-specification/actions/workflows/markdown_style.yml/badge.svg)](https://github.com/bids-standard/bids-specification/actions/workflows/markdown_style.yml)
+[![Validation](https://github.com/bids-standard/bids-specification/actions/workflows/validation.yml/badge.svg)](https://github.com/bids-standard/bids-specification/actions/workflows/validation.yml)
 [![CircleCI](https://circleci.com/gh/bids-standard/bids-specification.svg?style=shield)](https://circleci.com/gh/bids-standard/bids-specification)
 [![@BIDSstandard](http://img.shields.io/twitter/follow/bidsstandard.svg?style=social)](https://twitter.com/BIDSstandard)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3686061.svg)](https://doi.org/10.5281/zenodo.3686061)
@@ -27,6 +27,7 @@ BIDS currently supports the following data modalities with more to come in the f
 - physiological
 - PET
 - microscopy
+- fNIRS
 
 # Formatting your data with BIDS
 

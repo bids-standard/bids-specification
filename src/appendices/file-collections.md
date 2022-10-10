@@ -30,6 +30,7 @@ and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_filename_template(
+    "raw",
     datatypes=["anat"],
     suffixes=[
         "VFA",
@@ -64,6 +65,7 @@ and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_filename_template(
+    "raw",
     datatypes=["fmap"],
     suffixes=[
         "TB1DAM",
