@@ -8,11 +8,11 @@ from bidsschematools.render.tables import (
     make_suffix_table,
 )
 from bidsschematools.render.text import (
+    define_allowed_top_directories,
     define_common_principles,
     make_entity_definitions,
     make_filename_template,
     make_glossary,
-    define_allowed_top_directories,
 )
 
 __all__ = [
