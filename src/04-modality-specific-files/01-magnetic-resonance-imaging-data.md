@@ -211,8 +211,6 @@ The OPTIONAL [`task-<label>`](../appendices/entities.md#task) entity can be used
 in order to allow tasks during structural MR acquisitions,
 for example pre-described motion paradigms such as nodding, to be described.
 
-### RECOMMENDED metadata for tasks in anatomical imaging
-
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in
   src/schema/objects/metadata.yaml
