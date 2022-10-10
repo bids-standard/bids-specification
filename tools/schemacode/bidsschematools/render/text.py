@@ -2,8 +2,10 @@
 import logging
 import os
 
-import yaml
-from markdown_it import MarkdownIt
+import lazy_loader as lazy
+
+yaml = lazy.load("yaml")
+markdown_it = lazy.load("markdown_it")
 
 from bidsschematools.render import utils
 from bidsschematools.schema import Namespace, filter_schema, load_schema
@@ -438,7 +440,7 @@ def append_filename_template_legend(text, pdf_format=False):
 
 """
     else:
-        md = MarkdownIt()
+        md = markdown_it.MarkdownIt()
         text += f"""
 <details>
 <summary><strong>Legend:</strong></summary>

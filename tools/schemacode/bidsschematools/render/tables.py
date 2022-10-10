@@ -4,8 +4,10 @@ import os
 import typing as ty
 from collections.abc import Mapping
 
-import pandas as pd
-from tabulate import tabulate
+import lazy_loader as lazy
+
+pd = lazy.load("pandas")
+tab = lazy.load("tabulate")
 
 from bidsschematools.render import utils
 from bidsschematools.schema import BIDSSchemaError, Namespace, filter_schema
@@ -125,7 +127,7 @@ def _make_object_table(
     df.index.name = first_column
 
     # Print it as markdown
-    table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
+    table_str = tab.tabulate(df, headers="keys", tablefmt=tablefmt)
 
     # Spec internal links need to be replaced
     table_str = table_str.replace("SPEC_ROOT", utils.get_relpath(src_path))
@@ -345,7 +347,7 @@ def make_entity_table(schema, tablefmt="github", src_path=None, **kwargs):
     table = table.set_index(table.index.name, drop=True).sort_index()
 
     # Print it as markdown
-    table_str = tabulate(table, headers="keys", tablefmt=tablefmt)
+    table_str = tab.tabulate(table, headers="keys", tablefmt=tablefmt)
     table_str = table_str.replace("SPEC_ROOT", utils.get_relpath(src_path))
     return table_str
 
@@ -399,7 +401,7 @@ def make_suffix_table(schema, suffixes, src_path=None, tablefmt="github"):
     df = df[["`suffix`", "**Description**"]]
 
     # Print it as markdown
-    table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
+    table_str = tab.tabulate(df, headers="keys", tablefmt=tablefmt)
     # Spec internal links need to be replaced
     table_str = table_str.replace("SPEC_ROOT", utils.get_relpath(src_path))
     return table_str
