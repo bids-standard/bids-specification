@@ -500,15 +500,15 @@ def define_allowed_top_directories(schema, src_path=None) -> str:
 
     string = ""
 
-    for key in schema["objects"]["associated_data"]:
+    for key in schema["objects"]["files"]:
 
-        required = schema["rules"]["associated_data"][key]["required"]
-        # TODO: update if some directories become RECOMMENDED
-        status = "REQUIRED" if required is True else "OPTIONAL"
+        if key["file_type"] == "directory":
 
-        description = schema["objects"]["associated_data"][key]["description"]
+            level = schema["rules"]["files"]["common"]["core"][key]["level"]
 
-        string += f"- `{key}`: [{status}] {description}"
+            description = key["description"]
+
+            string += f"- `{key}`: [{level.upper()}] {description}"
 
     string = string.replace("SPEC_ROOT", utils.get_relpath(src_path))
 
