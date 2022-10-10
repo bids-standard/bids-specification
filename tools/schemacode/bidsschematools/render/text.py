@@ -503,11 +503,11 @@ def define_allowed_top_directories(schema, src_path=None) -> str:
 
     for key in schema["objects"]["files"]:
 
-        if key["file_type"] == "directory":
+        if schema["objects"]["files"][key]["file_type"] == "directory":
 
             level = schema["rules"]["files"]["common"]["core"][key]["level"]
 
-            description = key["description"]
+            description = schema["objects"]["files"][key]["description"]
 
             string += f"- `{key}`: [{level.upper()}] {description}"
 
