@@ -68,6 +68,7 @@ and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_filename_template(
+   "raw",
    datatypes=["pet"],
    suffixes=["pet", "events", "physio", "stim"])
 }}
@@ -300,7 +301,7 @@ The inputs for this macro can be found in the folder
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filename_template(datatypes=["pet"], suffixes=["blood"]) }}
+{{ MACROS___make_filename_template("raw", datatypes=["pet"], suffixes=["blood"]) }}
 
 If collected, blood measurements of radioactivity are be stored in
 [Tabular files](../02-common-principles.md#tabular-files) and located in

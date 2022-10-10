@@ -18,12 +18,12 @@ logging.basicConfig(format="%(asctime)-15s [%(levelname)8s] %(message)s")
 ENTITIES_PATH = "SPEC_ROOT/appendices/entities"
 GLOSSARY_PATH = "SPEC_ROOT/glossary"
 TYPE_CONVERTER = {
-    "associated_data": "associated data",
     "columns": "column",
     "common_principles": "common principle",
     "datatypes": "datatype",
     "entities": "entity",
     "extensions": "extension",
+    "files": "files and directories",
     "formats": "format",
     "metadata": "metadata",
     "top_level_files": "top level file",
@@ -209,6 +209,7 @@ def value_key_table(namespace):
 
 
 def make_filename_template(
+    dstype,
     schema=None,
     src_path=None,
     n_dupes_to_combine=6,
@@ -222,6 +223,9 @@ def make_filename_template(
 
     Parameters
     ----------
+    dstype : "raw" or "deriv"
+        The type of files being rendered; determines if rules are found in rules.files.raw
+        or rules.files.deriv
     schema : dict
         The schema object, which is a dictionary with nested dictionaries and
         lists stored within it.
@@ -279,14 +283,13 @@ def make_filename_template(
     )
     lines = [f"{sub_string}/", f"\t[{ses_string}/]"]
 
-    datatypes = schema.rules.datatypes
+    file_rules = schema.rules.files[dstype]
+    file_groups = {}
+    for rule in file_rules.values(level=2):
+        for datatype in rule.datatypes:
+            file_groups.setdefault(datatype, []).append(rule)
 
-    for datatype in datatypes:
-        # NOTE: We should have a full rethink of the schema hierarchy
-        # so that derivatives aren't treated like a "datatype"
-        if datatype == "derivatives":
-            continue
-
+    for datatype in sorted(file_groups):
         datatype_string = utils._link_with_html(
             datatype,
             html_path=GLOSSARY_PATH + ".html",
@@ -296,7 +299,7 @@ def make_filename_template(
         lines.append(f"\t\t{datatype_string}/")
 
         # Unique filename patterns
-        for group in datatypes[datatype].values():
+        for group in file_groups[datatype]:
             ent_string = ""
             for ent in schema.rules.entities:
                 if ent not in group.entities:

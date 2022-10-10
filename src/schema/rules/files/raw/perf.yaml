@@ -46,21 +46,3 @@ asllabeling:
     acquisition: optional
     reconstruction: optional
     run: optional
-
-timeseries:
-  suffixes:
-    - physio
-    - stim
-  extensions:
-    - .tsv.gz
-    - .json
-  datatypes:
-    - perf
-  entities:
-    subject: required
-    session: optional
-    acquisition: optional
-    reconstruction: optional
-    direction: optional
-    run: optional
-    recording: optional
