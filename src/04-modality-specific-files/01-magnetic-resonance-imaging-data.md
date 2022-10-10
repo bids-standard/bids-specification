@@ -219,13 +219,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "TaskName": "RECOMMENDED",
-      "TaskDescription": "RECOMMENDED",
-      "Instructions": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("anat.TaskMetadata") }}
 
 Some meta information about the acquisition MAY be provided in an additional
 JSON file. See [Common metadata fields](#common-metadata-fields) for a
