@@ -57,4 +57,4 @@ nirs:
   value: nirs
   display_name: Functional Near-Infrared Spectroscopy
   description:
-    Near-Infrared data organized around the SNIRF format
+    Near-Infrared Spectroscopy data organized around the SNIRF format
