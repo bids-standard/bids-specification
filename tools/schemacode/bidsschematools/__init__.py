@@ -1,4 +1,6 @@
 """A Python package for working with the BIDS schema."""
+import lazy_loader as lazy
+
 try:
     from importlib.resources import as_file, files
 except ImportError:  # PY<3.9
@@ -11,3 +13,12 @@ with as_file(version_file) as f:
 bids_version_file = files("bidsschematools.data") / "schema" / "BIDS_VERSION"
 with as_file(bids_version_file) as f:
     __bids_version__ = f.read_text().strip()
+
+subpackages = [
+    "render",
+    "schema",
+    "types",
+    "utils",
+    "validator",
+]
+__getattr__, __dir__, _ = lazy.attach(__name__, subpackages)
