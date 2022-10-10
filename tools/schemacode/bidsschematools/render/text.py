@@ -481,6 +481,7 @@ def define_common_principles(schema, src_path=None):
 
     return string
 
+
 def define_allowed_top_directories(schema, src_path=None) -> str:
     """Create a list of allowed top-level directories with their descriptions.
 
