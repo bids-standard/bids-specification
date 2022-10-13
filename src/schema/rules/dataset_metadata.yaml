@@ -22,14 +22,6 @@ dataset_description:
     ReferencesAndLinks: optional
     DatasetDOI: optional
     GeneratedBy: recommended
-    GeneratedBy[].Name: required
-    GeneratedBy[].Version: recommended
-    GeneratedBy[].Description: optional
-    GeneratedBy[].CodeURL: optional
-    GeneratedBy[].Container: optional
-    GeneratedBy[].Container{}.Type: recommended
-    GeneratedBy[].Container{}.Tag: recommended
-    GeneratedBy[].Container{}.URI: recommended
     SourceDatasets: recommended
 
 derivative_description:
