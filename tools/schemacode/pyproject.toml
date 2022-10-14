@@ -23,6 +23,6 @@ markers = [
 [tool.coverage.run]
 parallel = true
 omit = [
-  "*/*/tests/*",
-  "**/tests/*"
+  "**/tests/*",
+  "*/_lazy.py"
 ]
