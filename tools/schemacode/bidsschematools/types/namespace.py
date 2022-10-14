@@ -4,9 +4,9 @@ import typing as ty
 from collections.abc import ItemsView, KeysView, Mapping, MutableMapping, ValuesView
 from pathlib import Path
 
-import lazy_loader as lazy
+from .. import _lazy
 
-yaml = lazy.load("yaml")
+yaml = _lazy.load("yaml")
 
 
 def _expand_dots(entry: ty.Tuple[str, ty.Any]) -> ty.Tuple[str, ty.Any]:

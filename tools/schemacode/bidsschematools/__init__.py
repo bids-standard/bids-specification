@@ -1,5 +1,5 @@
 """A Python package for working with the BIDS schema."""
-import lazy_loader as lazy
+from . import _lazy
 
 try:
     from importlib.resources import as_file, files
@@ -21,4 +21,4 @@ subpackages = [
     "utils",
     "validator",
 ]
-__getattr__, __dir__, _ = lazy.attach(__name__, subpackages)
+__getattr__, __dir__, _ = _lazy.attach(__name__, subpackages)

@@ -2,10 +2,10 @@
 import logging
 import os
 
-import lazy_loader as lazy
+from .. import _lazy
 
-yaml = lazy.load("yaml")
-markdown_it = lazy.load("markdown_it")
+yaml = _lazy.load("yaml")
+markdown_it = _lazy.load("markdown_it")
 
 from bidsschematools.render import utils
 from bidsschematools.schema import Namespace, filter_schema, load_schema

@@ -4,10 +4,10 @@ import os
 import typing as ty
 from collections.abc import Mapping
 
-import lazy_loader as lazy
+from .. import _lazy
 
-pd = lazy.load("pandas")
-tab = lazy.load("tabulate")
+pd = _lazy.load("pandas")
+tab = _lazy.load("tabulate")
 
 from bidsschematools.render import utils
 from bidsschematools.schema import BIDSSchemaError, Namespace, filter_schema
