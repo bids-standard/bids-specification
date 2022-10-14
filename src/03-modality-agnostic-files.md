@@ -118,7 +118,7 @@ and a guide for using macros can be found at
    }
 ) }}
 
-If a derived dataset is stored as a subdirectory of the raw dataset, then the `Name` field
+If a derived dataset is stored as a sub-directory of the raw dataset, then the `Name` field
 of the first `GeneratedBy` object MUST be a substring of the derived dataset directory name.
 That is, in a directory `<dataset>/derivatives/<pipeline>[-<variant>]/`, the first
 `GeneratedBy` object should have a `Name` of `<pipeline>`.

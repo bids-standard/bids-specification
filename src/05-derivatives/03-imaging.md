@@ -495,7 +495,7 @@ A guide for using macros can be found at
 ) }}
 
 Definitions can also be specified with a top-level `dseg.tsv`, which propagates to
-segmentations in relative subdirectories.
+segmentations in relative sub-directories.
 
 Example:
 

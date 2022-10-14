@@ -167,7 +167,7 @@ A guide for using macros can be found at
 
 After applying SSS (for example, by using the MaxFilter software),
 files SHOULD be renamed with the corresponding label (for example, `proc-sss`)
-and placed in a `derivatives` subdirectory.
+and placed in a `derivatives` sub-directory.
 
 Example:
 
