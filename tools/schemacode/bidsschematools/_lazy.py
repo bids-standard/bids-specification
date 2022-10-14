@@ -6,7 +6,10 @@ Makes it easy to load subpackages and functions on demand.
 
 Vendored on 2022.10.14 from https://github.com/scientific-python/lazy_loader
 
-This file is an unmodified copy of lazy_loader/__init__.py @ cb22eba
+This file is a copy of lazy_loader/__init__.py @ cb22eba
+
+Modifications:
+    * Fix spelling of "occurred" in DelayedImportErrorModule to pacify codespell
 
 This file is released under the 3-Clause BSD License, which may be
 found in full at
@@ -119,7 +122,7 @@ class DelayedImportErrorModule(types.ModuleType):
             fd = self.__frame_data
             raise ModuleNotFoundError(
                 f"No module named '{fd['spec']}'\n\n"
-                "This error is lazily reported, having originally occured in\n"
+                "This error is lazily reported, having originally occurred in\n"
                 f'  File {fd["filename"]}, line {fd["lineno"]}, in {fd["function"]}\n\n'
                 f'----> {"".join(fd["code_context"]).strip()}'
             )
