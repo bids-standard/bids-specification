@@ -22,6 +22,7 @@ LICENSE:
 genetic_info:
   level: optional
   path: genetic_info.json
+  contents: objects.documents.GeneticInfo
 code:
   level: optional
   path: code
