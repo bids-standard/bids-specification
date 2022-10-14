@@ -71,7 +71,7 @@ T2 volume does not need to be included, but when it is available it should be
 saved under a particular filename specified in the standard. This standard
 aspires to describe a majority of datasets, but acknowledges that there will be
 cases that do not fit. In such cases one can include additional files and
-subdirectories to the existing directory structure following common sense. For example
+sub-directories to the existing directory structure following common sense. For example
 one may want to include eye tracking data in a vendor specific format that is
 not covered by this standard. The most sensible place to put it is next to the
 continuous recording file with the same naming scheme but different extensions.
@@ -234,9 +234,9 @@ A guide for using macros can be found at
 ) }}
 
 In this example, where `sourcedata` and `derivatives` are not nested inside
-`rawdata`, **only the `rawdata` subdirectory** needs to be a BIDS-compliant
+`rawdata`, **only the `rawdata` sub-directory** needs to be a BIDS-compliant
 dataset.
-The subdirectories of `derivatives` MAY be BIDS-compliant derivatives datasets
+The sub-directories of `derivatives` MAY be BIDS-compliant derivatives datasets
 (see [Non-compliant derivatives](#non-compliant-derivatives) for further discussion).
 This specification does not prescribe anything about the contents of `sourcedata`
 directories in the above example - nor does it prescribe the `sourcedata`,
@@ -244,7 +244,7 @@ directories in the above example - nor does it prescribe the `sourcedata`,
 The above example is just a convention that can be useful for organizing raw,
 source, and derived data while maintaining BIDS compliance of the raw data
 directory. When using this convention it is RECOMMENDED to set the `SourceDatasets`
-field in `dataset_description.json` of each subdirectory of `derivatives` to:
+field in `dataset_description.json` of each sub-directory of `derivatives` to:
 
 ```JSON
 {
@@ -256,18 +256,18 @@ field in `dataset_description.json` of each subdirectory of `derivatives` to:
 
 Derivatives can be stored/distributed in two ways:
 
-1.  Under a `derivatives/` subdirectory in the root of the source BIDS dataset
+1.  Under a `derivatives/` sub-directory in the root of the source BIDS dataset
     directory to make a clear distinction between raw data and results of data
     processing.
     A data processing pipeline will typically have a dedicated directory
     under which it stores all of its outputs.
     Different components of a pipeline can, however, also be stored under different
-    subdirectories.
+    sub-directories.
     There are few restrictions on the directory names;
     it is RECOMMENDED to use the format `<pipeline>-<variant>` in cases where
     it is anticipated that the same pipeline will output more than one variant
     (for example, `AFNI-blurring` and `AFNI-noblurring`).
-    For the sake of consistency, the subdirectory name SHOULD be
+    For the sake of consistency, the sub-directory name SHOULD be
     the `GeneratedBy.Name` field in `data_description.json`,
     optionally followed by a hyphen and a suffix (see
     [Derived dataset and pipeline description][derived-dataset-description]).
@@ -300,10 +300,10 @@ Derivatives can be stored/distributed in two ways:
     dataset is provided with read-only access, for publishing derivatives as
     independent bodies of work, or for describing derivatives that were created
     from more than one source dataset.
-    The `sourcedata/` subdirectory MAY be used to include the source dataset(s)
+    The `sourcedata/` sub-directory MAY be used to include the source dataset(s)
     that were used to generate the derivatives.
     Likewise, any code used to generate the derivatives from the source data
-    MAY be included in the `code/` subdirectory.
+    MAY be included in the `code/` sub-directory.
 
     Example of a derivative dataset including the raw dataset as source:
 
@@ -342,13 +342,13 @@ Consequently, files should be organized to comply with BIDS to the full extent
 possible (that is, unless explicitly contradicted for derivatives).
 Any subject-specific derivatives should be housed within each subject’s directory;
 if session-specific derivatives are generated, they should be deposited under a
-session subdirectory within the corresponding subject directory; and so on.
+session sub-directory within the corresponding subject directory; and so on.
 
 ### Non-compliant derivatives
 
 Nothing in this specification should be interpreted to disallow the
 storage/distribution of non-compliant derivatives of BIDS datasets.
-In particular, if a BIDS dataset contains a `derivatives/` subdirectory,
+In particular, if a BIDS dataset contains a `derivatives/` sub-directory,
 the contents of that directory may be a heterogeneous mix of BIDS Derivatives
 datasets and non-compliant derivatives.
 
