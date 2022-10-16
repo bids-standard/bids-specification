@@ -1,15 +1,15 @@
-# Functional Near-Infrared Spectroscopy
+# Near-Infrared Spectroscopy
 
-Support for functional Near-Infrared Spectroscopy (fNIRS) was developed as a
+Support for Near-Infrared Spectroscopy (NIRS) was developed as a
 [BIDS Extension Proposal](../07-extensions.md#bids-extension-proposals).
 Please see [Citing BIDS](../01-introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
-Several [example fNIRS datasets](https://github.com/bids-standard/bids-examples#fnirs-datasets)
+Several [example NIRS datasets](https://github.com/bids-standard/bids-examples#nirs-datasets)
 have been formatted using this specification and can be used for practical guidance when curating a new dataset.
 
-## fNIRS recording data
+## NIRS recording data
 
 {{ MACROS___make_filename_template(
    "raw",
@@ -19,25 +19,25 @@ have been formatted using this specification and can be used for practical guida
 
 Only the *Shared Near Infrared Spectroscopy Format* ([SNIRF](https://github.com/fNIRS/snirf))
 file specification is supported in BIDS. The SNIRF
-specification supports one or more fNIRS datasets to be stored in a single
+specification supports one or more NIRS datasets to be stored in a single
 `.snirf` file. However, to be BIDS compatible, each SNIRF file MUST contain
 only a single run. A limited set of fields from the SNIRF specification are
 replicated  in the BIDS specification. This redundancy allows the data to be
 easily parsed by humans and machines that do not have a SNIRF reader at hand,
 which improves findability and tooling development.
 
-Raw fNIRS data in the native format, if different from SNIRF, can also
+Raw NIRS data in the native format, if different from SNIRF, can also
 be stored in the [`/sourcedata`](../02-common-principles.md#source-vs-raw-vs-derived-data)
 directory along with code to convert the data to
 SNIRF in the [`/code`](../02-common-principles.md#storage-of-derived-datasets) directory.
 The unprocessed raw data should be stored in
 the manufacturer's format before any additional processing or conversion is applied.
 Retaining the native file format is especially valuable in a case when conversion elicits the
-loss of crucial metadata unique to specific manufacturers and fNIRS systems.
+loss of crucial metadata unique to specific manufacturers and NIRS systems.
 
 ### Terminology
 
-For proper documentation of fNIRS recording metadata, it is important
+For proper documentation of NIRS recording metadata, it is important
 to understand the difference between a Source, Detector, and Channel as these
 are defined differently to other modalities, such as EEG. The following definitions
 apply in this document:
@@ -54,7 +54,7 @@ apply in this document:
 
 ### Sidecar JSON (`*_nirs.json`)
 
-It is common within the fNIRS community for researchers to build their own caps
+It is common within the NIRS community for researchers to build their own caps
 and optode holders to position their sources and detectors, or for optodes to
 be directly attached to the scalp with adhesive. To facilitate description of
 the wide variety of possible configurations, several fields are RECOMMENDED within
@@ -62,7 +62,7 @@ the `*_nirs.json` file.
 Additionally, in certain situations, reserved keywords MUST be used.
 When custom modifications are made to a commercially available cap or a custom cap is used,
 then the reserved keyword `custom` MUST be used for the `CapManufacturersModelName` field.
-When a custom made cap is used, that is, no (modified) commercially available cap,
+When a custom-made cap is used, that is, no (modified) commercially available cap,
 the reserved keyword `custom` MUST be used in the `CapManufacturer` field.
 If no cap is used, the reserved keyword `none` MUST be used in the `CapManufacturer`
 and `CapManufacturersModelName` field.
@@ -106,7 +106,7 @@ was used:
     ```
     In these cases additional information regarding channels and optodes SHOULD be placed in `*_channels.tsv` and `*_optodes.tsv` files.
 
-Closely spaced or short-separation source-detector pairs are often included in fNIRS measurements to
+Closely spaced or short-separation source-detector pairs are often included in NIRS measurements to
 obtain a measure of systemic, rather than neural, activity. These source-detector
 pairs are referred to as *short channels*. There is variation in how manufacturers
 implement these short channels, some use specialised sources or detectors,
@@ -115,7 +115,7 @@ It is beyond the scope of the BIDS specification to define what constitutes a sh
 and detailed characteristics of channels may be stored within the SNIRF file
 (for example, in the `sourcePower` field).
 However, to improve searchability and ease of access for users, it is useful to
-know if short channels were included in the fNIRS measurements; the presence of short channels is
+know if short channels were included in the NIRS measurements; the presence of short channels is
 is stored in the field `ShortChannelCount`.
 If the field `ShortChannelCount` is populated, then the optional column `short_channel`
 may be used in `*_channels.tsv` to describe which channels were specified as short.
@@ -126,11 +126,11 @@ Whenever possible, please avoid using ad hoc wording.
 
 {{ MACROS___make_sidecar_table("nirs.NirsBase") }}
 
-Specific fNIRS fields that are REQUIRED or may be REQUIRED depending on other metadata values:
+Specific NIRS fields that are REQUIRED or may be REQUIRED depending on other metadata values:
 
 {{ MACROS___make_sidecar_table("nirs.NirsRequired") }}
 
-Specific fNIRS fields that SHOULD be present:
+Specific NIRS fields that SHOULD be present:
 
 {{ MACROS___make_sidecar_table("nirs.NirsRecommend") }}
 
@@ -175,7 +175,7 @@ and detector names used in the channel specifications are specified in the `*_op
 file below. If a `*_channels.tsv` file is specified, an `*_optodes.tsv` file MUST be specified as well.
 The required columns in the `*_channels.tsv` file MUST be ordered as listed below.
 
-The BIDS specification supports several types of fNIRS devices which output raw data in
+The BIDS specification supports several types of NIRS devices which output raw data in
 different forms. The type of measurement is specified in the `type` column. For example,
 when measurements are taken with a continuous wave (CW) device that saves the data
 as optical density, the `type` should be `NIRSCWOPTICALDENSITY` and the `units` should be `unitless`,
@@ -194,16 +194,16 @@ and a guide for using macros can be found at
 
 ### Restricted keyword list for the channel types
 
-All fNIRS channels types MUST correspond to a [valid SNIRF data type](https://github.com/fNIRS/snirf/blob/master/snirf_specification.md#appendix).
-Additional channels that are recorded simultaneously with the fNIRS
+All NIRS channels types MUST correspond to a [valid SNIRF data type](https://github.com/fNIRS/snirf/blob/master/snirf_specification.md#appendix).
+Additional channels that are recorded simultaneously with the NIRS
 device and stored in the same data file SHOULD be included as well.
 However, additional channels that are  simultaneously recorded with a different device
 SHOULD be stored according to their appropriate modality specification.
 For example, motion data that was simultaneously recorded with a different device should be specified
-according to BEP029 and not according to the fNIRS data type.
-Whereas, if the motion data was acquired in with the fNIRS device itself, it should be included here with the fNIRS data.
+according to BEP029 and not according to the NIRS data type.
+Whereas, if the motion data was acquired in with the NIRS device itself, it should be included here with the NIRS data.
 Any of the channel types defined in other BIDS specification MAY be used here as well such as `ACCEL` or `MAGN`.
-As several of these data types are commonly acquired using fNIRS devices they are included as an example at the base of the table.
+As several of these data types are commonly acquired using NIRS devices they are included as an example at the base of the table.
 Note that upper-case is REQUIRED.
 
 | **Keyword**                 | **Description**                                                                                                                                                              |
@@ -281,24 +281,24 @@ and co-registration, anatomical landmarks are locations on a research subject su
 (for a detailed definition see [coordinate system appendix](../appendices/coordinate-systems.md)).
 The `*_coordsystem.json` is REQUIRED if the optional `*_optodes.tsv` is present. If a corresponding
 anatomical MRI is available, the locations of anatomical landmarks in that scan should also be stored
-in the `*_T1w.json` file which goes alongside the fNIRS data.
+in the `*_T1w.json` file which goes alongside the NIRS data.
 
-Not all fNIRS systems provide 3D coordinate information or digitization capabilities.
+Not all NIRS systems provide 3D coordinate information or digitization capabilities.
 In this case, only x and y are specified and z is `"n/a"`.
 
 General fields:
 
 {{ MACROS___make_sidecar_table("nirs.CoordsystemGeneral") }}
 
-Fields relating to the fNIRS optode positions:
+Fields relating to the NIRS optode positions:
 
 {{ MACROS___make_sidecar_table(["nirs.CoordinateSystem", "nirs.CoordinateSystemDescriptionRec"]) }}
 
-Fields relating to the position of fiducials measured during an fNIRS session/run:
+Fields relating to the position of fiducials measured during an NIRS session/run:
 
 {{ MACROS___make_sidecar_table(["nirs.Fiducials", "nirs.FiducialsCoordinateSystemDescriptionRec"]) }}
 
-Fields relating to the position of anatomical landmarks measured during an fNIRS session/run:
+Fields relating to the position of anatomical landmarks measured during an NIRS session/run:
 
 {{ MACROS___make_sidecar_table(["nirs.AnatomicalLandmark", "nirs.AnatomicalLandmarkCoordinateSystemDescriptionRec"]) }}
 
