@@ -501,16 +501,8 @@ def define_allowed_top_directories(schema, src_path=None) -> str:
 
     string = ""
 
-    for key in schema["objects"]["files"]:
+    for dirname, definition in schema.objects.files.items():
+        if definition.file_type == "directory":
+            string += f"- `{dirname}`: {definition.description}"
 
-        if schema["objects"]["files"][key]["file_type"] == "directory":
-
-            level = schema["rules"]["files"]["common"]["core"][key]["level"]
-
-            description = schema["objects"]["files"][key]["description"]
-
-            string += f"- `{key}`: [{level.upper()}] {description}"
-
-    string = string.replace("SPEC_ROOT", utils.get_relpath(src_path))
-
-    return string
+    return string.replace("SPEC_ROOT", utils.get_relpath(src_path))
