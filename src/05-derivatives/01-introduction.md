@@ -11,12 +11,6 @@ Placement and naming conventions for derived datasets are addressed in
 [Storage of derived datasets][storage], and dataset-level metadata is included
 in [Derived dataset and pipeline description][derived-dataset-description].
 
-Try this: Sub-directory
-Sub-directories
-folder
-Folder
-This is jsut a normal typo
-
 ## Metadata conventions
 
 -   Unless specified otherwise, individual sidecar JSON files and all metadata

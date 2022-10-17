@@ -30,7 +30,8 @@ jobs:
             --skip js,*.svg,*.eps \
             --ignore-words-list fo,te,als \
             --builtin clear,rare \
-            --dictionary codespell_words.txt
+            --dictionary codespell_words.txt \
+            --exclude-file src/CHANGES.md
 
   # Markdown formatting
   remark:
