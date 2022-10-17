@@ -141,7 +141,7 @@ NirsRequired:
 
 NirsRecommend:
   selectors:
-    - modality == "fnirs"
+    - modality == "nirs"
     - suffix == "nirs"
   fields:
     CapManufacturer:
