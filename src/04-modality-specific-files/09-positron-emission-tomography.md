@@ -80,7 +80,6 @@ Volumes MUST be stored in chronological order (the order they were acquired in).
 
 The OPTIONAL [`task-<label>`](../appendices/entities.md#task) is used to
 indicate a task subjects were asked to perform in the scanner.
-Those labels MUST be consistent across subjects and sessions.
 For task based PET, a corresponding [`task events`](./05-task-events.md) file MUST be provided
 (please note that this file is not necessary for resting scans).
 
@@ -91,8 +90,6 @@ but REQUIRED to distinguish between tracers if multiple are used.
 The label used is arbitrary and each file requires a separate JSON sidecar
 with details of the tracer used (see below).
 Examples are `trc-18FFDG` for fludeoxyglucose or `trc-11CPIB` for Pittsburgh compound B.
-Other labels are permitted, as long as they are consistent across subjects and sessions
-and consist only of the legal label characters.
 
 If more than one run of the same task and acquisition (tracer) are acquired during
 the same session, the [`run-<index>`](../appendices/entities.md#run) entity MUST be used:

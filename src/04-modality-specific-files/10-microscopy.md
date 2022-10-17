@@ -133,8 +133,7 @@ MAY be used to distinguish a different set of parameters used for acquiring the 
 For example, two images of the same sample acquired by bright-field microscopy (BF) in PNG format at
 different magnification of 40x and 60x.
 In such case two files could have the following names: `sub-01_sample-01_acq-40x_BF.png` and
-`sub-01_sample-01_acq-60x_BF.png`, however the user is free to choose any other label as long as
-they are consistent across subjects and sessions.
+`sub-01_sample-01_acq-60x_BF.png`.
 
 The [`stain-<label>`](../appendices/entities.md#stain) entity MAY be used to distinguish
 image files from the same sample using different stains or antibodies for contrast enhancement.
