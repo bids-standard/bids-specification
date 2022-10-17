@@ -57,7 +57,7 @@ detector__channels:
   display_name: Detector Name
   description: |
     Name of the detector as specified in the `*_optodes.tsv` file.
-    `n/a` for channels that do not contain fNIRS signals (for example, acceleration).
+    `n/a` for channels that do not contain NIRS signals (for example, acceleration).
   anyOf:
     - type: string
     - type: string
@@ -790,7 +790,7 @@ wavelength_nominal:
   display_name: Wavelength nominal
   description: |
     Specified wavelength of light in nm.
-    `n/a` for channels that do not contain raw fNIRS signals (for example, acceleration).
+    `n/a` for channels that do not contain raw NIRS signals (for example, acceleration).
     This field is equivalent to `/nirs(i)/probe/wavelengths` in the SNIRF specification.
   anyOf:
     - type: number
