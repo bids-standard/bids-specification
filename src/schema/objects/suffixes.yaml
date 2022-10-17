@@ -672,8 +672,7 @@ meg:
 nirs:
   value: nirs
   display_name: Near Infrared Spectroscopy
-  description:
-    Data associated with a Shared Near Infrared Spectroscopy Format file.
+  description: Data associated with a Shared Near Infrared Spectroscopy Format file.
 optodes:
   value: optodes
   display_name: Optodes

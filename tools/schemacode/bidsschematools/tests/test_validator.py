@@ -10,7 +10,10 @@ from .conftest import BIDS_ERROR_SELECTION, BIDS_SELECTION
 
 def test_path_rule():
     rule = Namespace.build({"path": "dataset_description.json", "level": "required"})
-    assert validator._path_rule(rule) == {"regex": r"dataset_description\.json", "mandatory": True}
+    assert validator._path_rule(rule) == {
+        "regex": r"dataset_description\.json",
+        "mandatory": True,
+    }
 
     rule = Namespace.build({"path": "LICENSE", "level": "optional"})
     assert validator._path_rule(rule) == {"regex": "LICENSE", "mandatory": False}
