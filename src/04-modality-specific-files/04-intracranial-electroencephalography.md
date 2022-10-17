@@ -20,6 +20,7 @@ and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_filename_template(
+   "raw",
    datatypes=["ieeg"],
    suffixes=["ieeg", "events", "physio", "stim"])
 }}
@@ -207,7 +208,7 @@ The inputs for this macro can be found in the folder
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filename_template(datatypes=["ieeg"], suffixes=["channels"]) }}
+{{ MACROS___make_filename_template("raw", datatypes=["ieeg"], suffixes=["channels"]) }}
 
 A channel represents one time series recorded with the recording system
 (for example, there can be a bipolar channel, recorded from two electrodes or contact points on the tissue).
@@ -221,45 +222,13 @@ Note that electrode positions SHOULD NOT be added to this file but to `*_electro
 
 The columns of the channels description table stored in `*_channels.tsv` are:
 
-MUST be present **in this specific order**:
-
 <!-- This block generates a columns table.
 The definitions of these fields can be found in
-  src/schema/objects/columns.yaml
+  src/schema/rules/tabular_data/*.yaml
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_columns_table(
-   {
-      "name__channels": ("REQUIRED", "When a corresponding electrode is specified in `_electrodes.tsv`, "
-                         "the name of that electrode MAY be specified here and the reference electrode "
-                         "name MAY be provided in the `reference` column."),
-      "type__ieeg_channels": "REQUIRED",
-      "units": "REQUIRED",
-      "low_cutoff": "REQUIRED",
-      "high_cutoff": "REQUIRED",
-   }
-) }}
-
-SHOULD be present:
-
-<!-- This block generates a columns table.
-The definitions of these fields can be found in
-  src/schema/objects/columns.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_columns_table(
-   {
-      "reference__ieeg": "OPTIONAL",
-      "group__channel": ("OPTIONAL", "Note that any groups specified in `_electrodes.tsv` must match those present here."),
-      "sampling_frequency": "OPTIONAL",
-      "description": "OPTIONAL",
-      "notch": "OPTIONAL",
-      "status": "OPTIONAL",
-      "status_description": "OPTIONAL",
-   }
-) }}
+{{ MACROS___make_columns_table("ieeg.iEEGChannels") }}
 
 **Example** `sub-01_channels.tsv`:
 
@@ -312,7 +281,7 @@ The inputs for this macro can be found in the folder
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filename_template(datatypes=["ieeg"], suffixes=["electrodes"]) }}
+{{ MACROS___make_filename_template("raw", datatypes=["ieeg"], suffixes=["electrodes"]) }}
 
 File that gives the location, size and other properties of iEEG electrodes. Note
 that coordinates are expected in cartesian coordinates according to the
@@ -360,56 +329,13 @@ The order of the required columns in the `*_electrodes.tsv` file MUST be as list
 The `x`, `y`, and `z` columns indicate the positions of the center of each electrode in Cartesian coordinates.
 Units are specified in `space-<label>_coordsystem.json`.
 
-MUST be present **in this specific order**:
-
 <!-- This block generates a columns table.
 The definitions of these fields can be found in
-  src/schema/objects/columns.yaml
+  src/schema/rules/tabular_data/*.yaml
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_columns_table(
-   {
-      "name__electrodes": "REQUIRED",
-      "x": "REQUIRED",
-      "y": "REQUIRED",
-      "z": ("REQUIRED", "If electrodes are in 2D space this should be a column of `n/a` values."),
-      "size": "REQUIRED",
-   }
-) }}
-
-SHOULD be present:
-
-<!-- This block generates a columns table.
-The definitions of these fields can be found in
-  src/schema/objects/columns.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_columns_table(
-   {
-      "material": "RECOMMENDED",
-      "manufacturer": "RECOMMENDED",
-      "group__channel": ("RECOMMENDED", "Note that any group specified here should match a group specified in `_channels.tsv`."),
-      "hemisphere": "RECOMMENDED",
-   }
-) }}
-
-MAY be present:
-
-<!-- This block generates a columns table.
-The definitions of these fields can be found in
-  src/schema/objects/columns.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_columns_table(
-   {
-      "type__electrodes": "OPTIONAL",
-      "impedance": "OPTIONAL",
-      "dimension": "OPTIONAL",
-   }
-) }}
+{{ MACROS___make_columns_table("ieeg.iEEGElectrodes") }}
 
 Example:
 
@@ -429,7 +355,7 @@ The inputs for this macro can be found in the folder
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filename_template(datatypes=["ieeg"], suffixes=["coordsystem"]) }}
+{{ MACROS___make_filename_template("raw", datatypes=["ieeg"], suffixes=["coordsystem"]) }}
 
 This `_coordsystem.json` file contains the coordinate system in which electrode
 positions are expressed. The associated MRI, CT, X-Ray, or operative photo can
@@ -509,7 +435,7 @@ The inputs for this macro can be found in the folder
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filename_template(datatypes=["ieeg"], suffixes=["photo"]) }}
+{{ MACROS___make_filename_template("raw", datatypes=["ieeg"], suffixes=["photo"]) }}
 
 These can include photos of the electrodes on the brain surface, photos of
 anatomical features or landmarks (such as sulcal structure), and fiducials. Photos

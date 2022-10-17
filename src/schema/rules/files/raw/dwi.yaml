@@ -1,34 +1,38 @@
 ---
-timeseries:
+dwi:
   suffixes:
-    - stim
-    - physio
+    - dwi
   extensions:
-    - .tsv.gz
+    - .nii.gz
+    - .nii
     - .json
+    - .bvec
+    - .bval
   datatypes:
-    - beh
+    - dwi
   entities:
     subject: required
     session: optional
-    task: required
     acquisition: optional
+    reconstruction: optional
+    direction: optional
     run: optional
-    recording: optional
+    part: optional
 
-# Non-continuous data
-noncontinuous:
+sbref:
   suffixes:
-    - events
-    - beh
+    - sbref
   extensions:
-    - .tsv
+    - .nii.gz
+    - .nii
     - .json
   datatypes:
-    - beh
+    - dwi
   entities:
     subject: required
     session: optional
-    task: required
     acquisition: optional
+    reconstruction: optional
+    direction: optional
     run: optional
+    part: optional

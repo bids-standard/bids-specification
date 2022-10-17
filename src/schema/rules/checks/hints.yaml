@@ -10,7 +10,7 @@ SuspiciouslyLongBOLDDesign:
     - suffix == "bold"
     - associations.events != null
   checks:
-    - max(associations.events.onset) > nifti_header.pixdim[4] * nifti_header.dim[4]
+    - max(associations.events.onset) < nifti_header.pixdim[4] * nifti_header.dim[4]
 
 SuspiciouslyShortBOLDDesign:
   issue:
@@ -23,4 +23,4 @@ SuspiciouslyShortBOLDDesign:
     - suffix == "bold"
     - associations.events != null
   checks:
-    - max(associations.events.onset) < nifti_header.pixdim[4] * nifti_header.dim[4] / 2
+    - max(associations.events.onset) > nifti_header.pixdim[4] * nifti_header.dim[4] / 2

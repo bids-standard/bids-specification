@@ -1,57 +1,43 @@
 ---
-dwi:
+func:
   suffixes:
-    - dwi
-  extensions:
-    - .nii.gz
-    - .nii
-    - .json
-    - .bvec
-    - .bval
-  datatypes:
-    - dwi
-  entities:
-    subject: required
-    session: optional
-    acquisition: optional
-    reconstruction: optional
-    direction: optional
-    run: optional
-    part: optional
-
-sbref:
-  suffixes:
+    - bold
+    - cbv
     - sbref
   extensions:
     - .nii.gz
     - .nii
     - .json
   datatypes:
-    - dwi
+    - func
   entities:
     subject: required
     session: optional
+    task: required
     acquisition: optional
+    ceagent: optional
     reconstruction: optional
     direction: optional
     run: optional
+    echo: optional
     part: optional
 
-timeseries:
+phase:
   suffixes:
-    - physio
-    - stim
+    - phase # deprecated
   extensions:
-    - .tsv.gz
+    - .nii.gz
+    - .nii
     - .json
   datatypes:
-    - dwi
+    - func
   entities:
     subject: required
     session: optional
+    task: required
     acquisition: optional
+    ceagent: optional
     reconstruction: optional
     direction: optional
     run: optional
-    part: optional
-    recording: optional
+    echo: optional

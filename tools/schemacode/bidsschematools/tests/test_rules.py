@@ -46,11 +46,14 @@ def test_rule_objects(schema_obj):
     }
 
     not_found = []  # A list of undefined, but referenced, objects
-    object_types = list(schema_obj["objects"].keys())
-    for object_type in object_types:
+    for object_type in schema_obj.objects:
+        # "files" is both an object name and a grouping of rules
+        # The next line would be a false positive hit
+        if object_type == "files":
+            continue
         # Find all uses of a given object type in the schema rules
         type_instances_in_rules = _dict_key_lookup(
-            schema_obj["rules"],
+            schema_obj.rules,
             OBJECT_TYPE_MAPPER.get(object_type, object_type),
         )
         if not type_instances_in_rules:
@@ -106,29 +109,21 @@ def test_entity_order(schema_obj):
     """
     status_ok = True
 
-    entities_order = schema_obj["rules"]["entities"]
-    datatypes_schema_obj = schema_obj["rules"]["datatypes"]
+    entities_order = schema_obj.rules.entities
 
-    for datatype, datatype_schema_obj in datatypes_schema_obj.items():
+    for key, group in schema_obj.rules.files.items(level=2):
+        print(f"Checking {key}")
+        entities = list(group.get("entities", ()))
+        correct_order = sorted(entities, key=lambda x: entities_order.index(x))
 
-        print(f"Checking: {datatype}")
-        # Skip over derivatives folders nested in regular folders
-        if datatype == "derivatives":
-            continue
-
-        for suffix_group, suffix_group_obj in datatype_schema_obj.items():
-            entities = list(suffix_group_obj["entities"].keys())
-            correct_order = sorted(entities, key=lambda x: entities_order.index(x))
-
-            if entities != correct_order:
-                status_ok = False
-                warnings.warn(
-                    f"""
-                \nsuffix group {suffix_group} in {datatype} is out of order:
+        if entities != correct_order:
+            status_ok = False
+            warnings.warn(
+                f"""\n\nfilename rule {key} has entities out-of-order:
                 - got: {entities}
                 - should be: {correct_order}
                 """
-                )
+            )
 
     if not status_ok:
         raise RuntimeError(

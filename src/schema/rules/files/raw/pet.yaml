@@ -1,0 +1,34 @@
+---
+pet:
+  suffixes:
+    - pet
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  datatypes:
+    - pet
+  entities:
+    subject: required
+    session: optional
+    task: optional
+    tracer: optional
+    reconstruction: optional
+    run: optional
+
+blood:
+  suffixes:
+    - blood
+  extensions:
+    - .tsv
+    - .json
+  datatypes:
+    - pet
+  entities:
+    subject: required
+    session: optional
+    task: optional
+    tracer: optional
+    reconstruction: optional
+    run: optional
+    recording: required

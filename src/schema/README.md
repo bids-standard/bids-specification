@@ -17,17 +17,16 @@ src/schema
 ├── meta
 │   └── context.yaml
 ├── objects
-│   ├── associated_data.yaml
+│   ├── columns.yaml
 │   ├── ...
-│   └── top_level_files.yaml
+│   └── suffixes.yaml
 ├── rules
-│   ├── associated_data.yaml
 │   ├── checks
 │   │   ├── asl.yaml
 │   │   ├── ...
 │   │   └── mri.yaml
 │   ├── ...
-│   └── top_level_files.yaml
+│   └── suffixes.yaml
 └── SCHEMA_VERSION
 ```
 
@@ -306,12 +305,11 @@ The namespaces are:
 | `objects.entities`          | Name-value pairs appearing in file names                                            | Name/value terms |
 | `objects.metadata`          | Name-value pairs appearing in JSON files                                            | Name/value terms |
 | `objects.columns`           | Column headings and values appearing in TSV files                                   | Name/value terms |
-| `objects.datatypes`         | Subdirectories that organize files by type (e.g., `anat`, `eeg`)                    | Value terms      |
+| `objects.datatypes`         | Subdirectories that organize files by type (such as `anat`, `eeg`)                  | Value terms      |
 | `objects.suffixes`          | Filename suffixes that describe the contents of the file                            | Value terms      |
 | `objects.extensions`        | Filename component that describe the format of the file                             | Value terms      |
 | `objects.formats`           | Terms that define the forms values (for example, in metadata) might take            | Formats          |
-| `objects.associated_data`   | Directories that may appear at the root of a dataset                                | Files            |
-| `objects.top_level_files`   | Files that may appear at the root of a dataset                                      | Files            |
+| `objects.files`             | Files and directories that may appear at the root of a dataset                      | Files            |
 
 Because these objects vary, the contents of each namespace can vary.
 Common fields to all objects:
@@ -325,19 +323,19 @@ The name/value terms groups (`entities`, `metadata` and `columns`) define terms 
 a name, when present, has a given meaning, and its value may be restricted. These objects
 additionally have the field:
 
-| Field    | Description                                                                                                                                                                                                   |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`   | For terms that can take on multiple values (e.g., entities, metadata fields), the name of the term as it appears in the specification and in a dataset; must be alphanumeric; mutually exclusive with `value` |
-| `type`   | The type (e.g., `string`, `integer`, `object`) of values the term describes                                                                                                                                   |
-| `format` | The format of the term (defined in `objects.formats`)                                                                                                                                                         |
+| Field    | Description                                                                                                                                                                                                     |
+| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`   | For terms that can take on multiple values (such as entities, metadata fields), the name of the term as it appears in the specification and in a dataset; must be alphanumeric; mutually exclusive with `value` |
+| `type`   | The type (such as `string`, `integer`, `object`) of values the term describes                                                                                                                                   |
+| `format` | The format of the term (defined in `objects.formats`)                                                                                                                                                           |
 
 Value terms groups (`datatypes`, `suffixes`, `extensions`) define terms where a field
 can take on multiple values. For example, a file has one datatype, as compared to a
 collection of entities. These objects may have the fields:
 
-| Field   | Description                                                                                              |
-| ------- | -------------------------------------------------------------------------------------------------------- |
-| `value` | For terms that cannot take on multiple values (e.g., suffixes, extensions), the string value of the term |
+| Field   | Description                                                                                                      |
+| ------- | ---------------------------------------------------------------------------------------------------------------- |
+| `value` | For terms that cannot take on multiple values (for example suffixes or extensions), the string value of the term |
 
 The `formats` terms provide one additional field:
 
@@ -502,17 +500,12 @@ The convention can be summed up in the following rules:
     | `description`  | Term definition                    |
     | `pattern`      | Regular expression defining format |
 
--   `objects.associated_data`
-    | Field          | Description         |
-    | -------------- | ------------------- |
-    | `display_name` | Human-friendly name |
-    | `description`  | Term definition     |
-
--   `objects.top_level_files`
-    | Field          | Description         |
-    | -------------- | ------------------- |
-    | `display_name` | Human-friendly name |
-    | `description`  | Term definition     |
+-   `objects.files`
+    | Field          | Description                                                                          |
+    | -------------- | ------------------------------------------------------------------------------------ |
+    | `display_name` | Human-friendly name                                                                  |
+    | `description`  | Term definition                                                                      |
+    | `file_type`    | Indicator that the file is a regular file (`"regular"`) or directory (`"directory"`) |
 
 ## Rule files
 
@@ -559,10 +552,86 @@ duplication or conflict.
 A significant portion of BIDS is devoted to the naming of files, and almost all file names consist
 of entities, a suffix, an extension, and a data type. Exceptions will be noted below.
 
-#### Data types
+`rules.files` contains the following subdivisions.
 
-`rules.datatypes` contains a series of related rules, grouped by the `datatype` path component.
-All such files take the form:
+| Namespace                   | Description                                                                               |
+| --------------------------- | ----------------------------------------------------------------------------------------- |
+| `rules.files.common.core`   | Files and directories that reside at the top level of datasets                            |
+| `rules.files.common.tables` | Tabular metadata files that associate metadata with entities                              |
+| `rules.files.raw.*`         | Raw data and metadata files that have entities, suffixes, datatypes and extensions        |
+| `rules.files.deriv.*`       | Derivative data and metadata files that have entities, suffixes, datatypes and extensions |
+
+#### Core files and directories
+
+`rules.files.common.core` describes files that have little-to-no variability in their form.
+These either have a single `path` field, or a `stem` field and a list of `extensions`:
+
+| Field        | Description                                                                                                   |
+| ------------ | ------------------------------------------------------------------------------------------------------------- |
+| `level`      | Requirement level of file, one of (`optional`, `recommended`, `required`, `deprecated`)                       |
+| `path`       | Location of file, relative to dataset root; mutually exclusive with `stem` and `extensions`                   |
+| `stem`       | Name of file, relative to dataset root, up to but not including the extension; mutually exclusive with `path` |
+| `extensions` | List of valid extension strings, including the initial dot (`.`); mutually exclusive with `path`              |
+
+These are the entries for `dataset_description.json` and `README`:
+
+```YAML
+dataset_description:
+  level: required
+  path: dataset_description.json
+README:
+  level: required
+  stem: README
+  extensions:
+    - ''
+    - .md
+    - .rst
+    - .txt
+```
+
+Here, `README` and `README.md` are both valid, while only `dataset_description.json` is permitted.
+
+#### Tabular metadata files
+
+`rules.files.common.tables` describes TSV files and their associated metadata,
+including `participants.tsv`, `samples.tsv`, `*_sessions.tsv` and `*_scans.tsv`.
+The first two use the `stem` field, while the latter two specify the entities used
+to construct the filename.
+The valid fields are:
+
+| Field        | Description                                                                                                       |
+| ------------ | ----------------------------------------------------------------------------------------------------------------- |
+| `level`      | Requirement level of file, one of (`optional`, `recommended`, `required`, `deprecated`)                           |
+| `stem`       | Name of file, relative to dataset root, up to but not including the extension; mutually exclusive with `entities` |
+| `entities`   | Object where the keys are entries in `objects.entities`. The value is a requirement level.                        |
+| `extensions` | List of valid extension strings, including the initial dot (`.`)                                                  |
+
+For example:
+
+```YAML
+participants:
+  level: optional
+  stem: participants
+  extensions:
+    - .tsv
+    - .json
+sessions:
+  suffixes:
+    - sessions
+  extensions:
+    - .tsv
+    - .json
+  entities:
+    subject: required
+```
+
+Note that these files do not have a `datatype`, but otherwise follow the same rules as above.
+
+#### BIDS filenames
+
+`rules.files.raw` and `rules.files.deriv` contain series of related rules.
+These are largely grouped by datatype, but file types that appear in multiple locations may be grouped together.
+The files described take the form:
 
 ```plain
 [sub-<label>/][ses-<label>/]<datatype>/<entities>_<suffix><extension>
@@ -626,45 +695,40 @@ Specifically, files in the first group may have `task`, `run`, `processing`, and
 while files in the second group may not.
 Also, when files in the second group have the `acq` entity, the associated value MUST be `crosstalk`.
 
-#### Tabular metadata
+A common derivatives type is preprocessed data, where the type of the generated data is the same
+as the input data. BIDS Derivatives specifies that these files may be distinguished from raw data
+with the new entities `space-<label>` or `desc-<label>`. This rule is encoded:
 
-Sessions files (`_sessions.tsv`) and scans files `_scans.tsv`) are defined in
-`rules.tabular_metadata`, for example:
+```yaml
+meg_meg_common:
+  $ref: rules.files.raw.meg.meg
+  entities:
+    $ref: rules.files.raw.meg.meg.entities
+    space: optional
+    description: optional
+```
 
-```YAML
-sessions:
+When expanded, this becomes:
+
+```yaml
+meg_meg_common:
   suffixes:
-    - sessions
+    - meg
   extensions:
-    - .tsv
-    - .json
+    - .fif
+  datatypes:
+    - meg
   entities:
     subject: required
+    session: optional
+    task: required
+    acquisition: optional
+    run: optional
+    processing: optional
+    split: optional
+    space: optional
+    description: optional
 ```
-
-Note that these files do not have a `datatype`, but otherwise follow the same rules as above.
-
-#### Top-level files
-
-Top-level files follow somewhat different rules (and are likely to change). Currently, the
-rule name is the name of the file, and they contain `required` and `extensions` properties.
-For example:
-
-```YAML
-README:
-  required: true
-  extensions:
-    - ''
-    - .md
-    - .rst
-    - .txt
-CHANGES:
-  required: false
-  extensions:
-    - ''
-```
-
-Here, `README` and `README.md` are valid, while only `CHANGES` is permitted.
 
 ### Sidecar and tabular data rules
 
@@ -742,6 +806,7 @@ rule is applied.
     | `selectors`          | List of expressions; any evaluating false indicate rule does not apply                                         |
     | `columns`            | Object with keys that may be found in `objects.columns`, values either a requirement level or an object        |
     | `initial_columns`    | An optional list of columns that must be the first N columns of a file                                         |
+    | `index_columns`      | An optional list of columns that uniquely identify a row.                                                      |
     | `additional_columns` | Indicates whether additional columns may be defined. One of `allowed`, `allowed_if_defined` and `not_allowed`. |
 
 The following tables demonstrate how mutual exclusive, required fields, may be

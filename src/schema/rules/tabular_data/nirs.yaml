@@ -1,0 +1,64 @@
+---
+nirsChannels:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "channels"
+    - extension == ".tsv"
+  initial_columns:
+    - name__channels
+    - type__nirs_channels
+    - source__channels
+    - detector__channels
+    - wavelength_nominal
+    - units__nirs
+  columns:
+    name__channels: required
+    type__nirs_channels: required
+    source__channels: required
+    detector__channels: required
+    wavelength_nominal: required
+    units__nirs: required
+    sampling_frequency:
+      level: optional
+      level_addendum: required if `SamplingFrequency` is `n/a` in `_nirs.json`
+    orientation_component:
+      level: optional
+      level_addendum: required if `type` is `ACCEL`, `GYRO` or `MAGN`
+    wavelength_actual: optional
+    description: optional
+    wavelength_emission_actual: optional
+    short_channel: optional
+    status: optional
+    status_description: optional
+  additional_columns: allowed_if_defined
+
+nirsOptodes:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "optodes"
+    - extension == ".tsv"
+  initial_columns:
+    - name__optodes
+    - type__optodes
+    - x__optodes
+    - y__optodes
+    - z__optodes
+  columns:
+    name__optodes: required
+    type__optodes: required
+    x__optodes: required
+    y__optodes: required
+    z__optodes: required
+    template_x:
+      level: optional
+      level_addendum: required if `x` is `n/a`
+    template_y:
+      level: optional
+      level_addendum: required if `y` is `n/a`
+    template_z:
+      level: optional
+      level_addendum: required if `z` is `n/a`
+    description__optode: optional
+    detector_type: optional
+    source__optodes: optional
+  additional_columns: allowed_if_defined

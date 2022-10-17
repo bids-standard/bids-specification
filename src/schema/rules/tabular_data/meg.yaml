@@ -20,4 +20,5 @@ MEGChannels:
     software_filters: optional
     status: optional
     status_description: optional
+  index_columns: [name__channels]
   additional_columns: allowed_if_defined

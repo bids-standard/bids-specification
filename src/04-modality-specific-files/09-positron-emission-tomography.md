@@ -68,6 +68,7 @@ and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_filename_template(
+   "raw",
    datatypes=["pet"],
    suffixes=["pet", "events", "physio", "stim"])
 }}
@@ -300,7 +301,7 @@ The inputs for this macro can be found in the folder
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filename_template(datatypes=["pet"], suffixes=["blood"]) }}
+{{ MACROS___make_filename_template("raw", datatypes=["pet"], suffixes=["blood"]) }}
 
 If collected, blood measurements of radioactivity are be stored in
 [Tabular files](../02-common-principles.md#tabular-files) and located in
@@ -347,20 +348,11 @@ The `time` column MUST always be the first column.
 
 <!-- This block generates a columns table.
 The definitions of these fields can be found in
-  src/schema/objects/columns.yaml
+  src/schema/rules/tabular_data/*.yaml
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_columns_table(
-   {
-      "time": "REQUIRED",
-      "plasma_radioactivity": "REQUIRED if `PlasmaAvail` is `true`",
-      "metabolite_parent_fraction": "REQUIRED if `MetaboliteAvail` is `true`",
-      "metabolite_polar_fraction": "RECOMMENDED if `MetaboliteAvail` is `true`",
-      "hplc_recovery_fractions": "REQUIRED if `MetaboliteRecoveryCorrectionApplied` is `true`",
-      "whole_blood_radioactivity": "REQUIRED if `WholeBloodAvail` is `true`",
-   }
-) }}
+{{ MACROS___make_columns_table("pet.Blood") }}
 
 As with all [tabular files](../02-common-principles.md#tabular-files),
 additional columns MAY be defined in `_blood.json`.

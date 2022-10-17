@@ -2,6 +2,13 @@
 # This file defines valid BIDS metadata fields.
 # These definitions include the field names, their descriptions, and valid values.
 # This file **does not** define how and when metadata fields can be used with a given file.
+ACCELChannelCount:
+  name: ACCELChannelCount
+  display_name: Accelerometer channel count
+  description: |
+    Number of accelerometer channels.
+  type: integer
+  minimum: 0
 Acknowledgements:
   name: Acknowledgements
   display_name: Acknowledgements
@@ -368,7 +375,7 @@ CapManufacturersModelName:
   name: CapManufacturersModelName
   display_name: Cap Manufacturers Model Name
   description: |
-    Manufacturer's designation of the EEG cap model
+    Manufacturer's designation of the cap model
     (for example, `"actiCAP 64 Ch Standard-2"`).
   type: string
 CellType:
@@ -586,6 +593,21 @@ Description:
   description: |
     Free-form natural language description.
   type: string
+DetectorType:
+  name: DetectorType
+  display_name: Detector Type
+  description: |
+    Type of detector. This is a free form description with the following suggested terms:
+    `"SiPD"`, `"APD"`. Preferably a specific model/part number is supplied.
+    If individual channels have different `DetectorType`,
+    then the field here should be specified as `"mixed"`
+    and this column should be included in `optodes.tsv`.
+  anyOf:
+    - type: string
+      format: unit
+    - type: string
+      enum:
+        - mixed
 DeviceSerialNumber:
   name: DeviceSerialNumber
   display_name: Device Serial Number
@@ -1127,6 +1149,13 @@ GradientSetType:
     insert set, then the specifications of the actual gradient coil should be
     reported independently.
   type: string
+GYROChannelCount:
+  name: GYROChannelCount
+  display_name: Gyrometer Channel Count
+  description: |
+    Number of gyrometer channels.
+  type: integer
+  minimum: 0
 HED:
   name: HED
   display_name: HED
@@ -1677,6 +1706,13 @@ M0Type:
     - Included
     - Estimate
     - Absent
+MAGNChannelCount:
+  name: MAGNChannelCount
+  display_name: Magnetometer Channel Count
+  description: |
+    Number of magnetometer channels.
+  type: integer
+  minimum: 0
 MEGChannelCount:
   name: MEGChannelCount
   display_name: MEG Channel Count
@@ -1963,6 +1999,87 @@ NegativeContrast:
     usage of a contrast agent in conjunction with a T2\* weighted acquisition
     protocol.
   type: boolean
+NIRSChannelCount:
+  name: NIRSChannelCount
+  display_name: NIRS Channel Count
+  description: |
+    Total number of NIRS channels, including short channels.
+    Corresponds to the number of rows in `channels.tsv` with any NIRS type.
+  type: integer
+  minimum: 0
+NIRSSourceOptodeCount:
+  name: NIRSSourceOptodeCount
+  display_name: NIRS Source Optode Count
+  description: |
+    Number of fNIRS sources.
+    Corresponds to the number of rows in `optodes.tsv` with type `"source"`.
+  type: integer
+  minimum: 1
+NIRSDetectorOptodeCount:
+  name: NIRSDetectorOptodeCount
+  display_name: NIRS Detector Optode Channel Count
+  description: |
+    Number of fNIRS detectors.
+    Corresponds to the number of rows in `optodes.tsv` with type `"detector"`.
+  type: integer
+  minimum: 1
+NIRSPlacementScheme:
+  name: NIRSPlacementScheme
+  display_name: NIRS Placement Scheme
+  description: |
+    Placement scheme of NIRS optodes.
+    Either the name of a standardized placement system (for example, `"10-20"`)
+    or an array of standardized position names (for example, `["Cz", "Pz"]`).
+    This field should only be used if a cap was not used.
+    If a standard cap was used, then it should be specified in `CapManufacturer`
+    and `CapManufacturersModelName` and this field should be set to `"n/a"`
+  anyOf:
+    - type: string
+    - type: array
+      items:
+        type: string
+NIRSCoordinateSystem:
+  name: NIRSCoordinateSystem
+  display_name: NIRS Coordinate System
+  description: |
+    Defines the coordinate system in which the optode positions are expressed.
+
+    See
+    [Appendix VIII](SPEC_ROOT/appendices/coordinate-systems.md)
+    for a list of restricted keywords for coordinate systems.
+    If `"Other"`, a definition of the coordinate system MUST be
+    provided in `NIRSCoordinateSystemDescription`.
+  anyOf:
+    - $ref: objects.metadata._MEGCoordSys
+    - $ref: objects.metadata._EEGCoordSys
+    - $ref: objects.metadata._StandardTemplateCoordSys
+    - $ref: objects.metadata._StandardTemplateDeprecatedCoordSys
+NIRSCoordinateSystemDescription:
+  name: NIRSCoordinateSystemDescription
+  display_name: NIRS Coordinate System Description
+  description: |
+    Free-form text description of the coordinate system.
+    May also include a link to a documentation page or paper describing the
+    system in greater detail.
+  type: string
+NIRSCoordinateUnits:
+  name: NIRSCoordinateUnits
+  display_name: NIRS Coordinate Units
+  description: |
+    Units of the coordinates of `NIRSCoordinateSystem`.
+  type: string
+  enum:
+    - m
+    - mm
+    - cm
+    - n/a
+NIRSCoordinateProcessingDescription:
+  name: NIRSCoordinateProcessingDescription
+  display_name: NIRS Coordinate Processing Description
+  description: |
+    Has any post-processing (such as projection) been done on the optode
+    positions (for example, `"surface_projection"`, `"n/a"`).
+  type: string
 NonlinearGradientCorrection:
   name: NonlinearGradientCorrection
   display_name: Nonlinear Gradient Correction
@@ -2439,7 +2556,7 @@ RepetitionTimeExcitation:
   display_name: Repetition Time Excitation
   description: |
     The interval, in seconds, between two successive excitations.
-    [DICOM Tag 0018, 0080](http://dicomlookup.com/lookup.asp?sw=Tnumber&q=(0018,0080)
+    [DICOM Tag 0018, 0080](http://dicomlookup.com/lookup.asp?sw=Tnumber&q=(0018,0080))
     best refers to this parameter.
     This field may be used together with the `"RepetitionTimePreparation"` for
     certain use cases, such as
@@ -2602,6 +2719,18 @@ SamplingFrequency:
     regardless of their type (for example, `2400`).
   type: number
   unit: Hz
+SamplingFrequency__nirs:
+  name: SamplingFrequency
+  display_name: Sampling Frequency
+  description: |
+    Sampling frequency (in Hz) of all the data in the recording,
+    regardless of their type (for example, `2400`).
+  anyOf:
+    - type: number
+      unit: Hz
+    - type: string
+      enum:
+        - n/a
 ScaleFactor:
   name: ScaleFactor
   display_name: Scale Factor
@@ -2678,6 +2807,13 @@ SequenceVariant:
     - type: array
       items:
         type: string
+ShortChannelCount:
+  name: ShortChannelCount
+  display_name: Short Channel Count
+  description: |
+    The number of short channels. 0 indicates no short channels.
+  type: integer
+  minimum: 0
 SinglesRate:
   name: SinglesRate
   display_name: Singles Rate
@@ -2831,11 +2967,18 @@ Sources:
     [DEPRECATED](SPEC_ROOT/02-common-principles.md#definitions).
   type: array
   items:
-    anyOf:
-      - type: string
-        format: dataset_relative
-      - type: string
-        format: bids_uri
+    type: string
+    format: dataset_relative
+SourceType:
+  name: SourceType
+  display_name: Source Type
+  description: |
+    Type of source. Preferably a specific model/part number is supplied.
+    This is a freeform description, but the following keywords are suggested:
+    `"LED"`, `"LASER"`, `"VCSEL"`. If individual channels have different SourceType,
+    then the field here should be specified as "mixed"
+    and this column should be included in optodes.tsv.
+  type: string
 SpatialReference:
   name: SpatialReference
   display_name: Spatial Reference
