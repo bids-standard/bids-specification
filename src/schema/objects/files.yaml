@@ -132,7 +132,7 @@ code:
   description: |
     A directory in which to store any code
     (for example the one used to generate the derivatives from the raw data).
-    See the [relevant section](SPEC_ROOT/03-modality-agnostic-files.md#code)
+    See the [Code section](SPEC_ROOT/03-modality-agnostic-files.md#code)
     for more information.
 derivatives:
   display_name: Derivative data

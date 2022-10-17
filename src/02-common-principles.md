@@ -111,8 +111,8 @@ in that directory.
 
 ### Other top level directories
 
-In addition of the subject subdirectories, the root directory of a BIDS dataset
-can also contain the following directories:
+In addition to the subject directories, the root directory of a BIDS dataset
+MAY also contain the following directories:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
