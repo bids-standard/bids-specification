@@ -265,7 +265,7 @@ Examples of free-form text for field `description`:
 -   vertical EOG
 -   skin conductance
 
-### Example `*_channels.tsv`:
+### Example `*_channels.tsv`
 
 ```Text
 name  type  units low_cutoff  high_cutoff status  status_description
