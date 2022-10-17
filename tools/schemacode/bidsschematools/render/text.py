@@ -420,7 +420,7 @@ def append_filename_template_legend(text, pdf_format=False):
   """
 
     legend = f"""{info_str}
-- Filename entities or folders between square brackets
+- Filename entities or directories between square brackets
   (for example, `[_ses-<label>]`) are OPTIONAL.
 - Some entities may only allow specific values,
   in which case those values are listed in `<>`, separated by `|`.

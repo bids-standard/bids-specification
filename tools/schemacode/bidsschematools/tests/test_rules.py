@@ -68,7 +68,7 @@ def test_rule_objects(schema_obj):
 
             for i_use, use in enumerate(instance):
                 if use == "derivatives":
-                    # Skip derivatives folders, because the folder is treated as a "use" instead.
+                    # Skip derivatives directories, because the directory is treated as a "use" instead.
                     continue
                 elif "[]" in use:
                     # Rules may reference metadata fields with lists.
