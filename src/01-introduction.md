@@ -2,6 +2,8 @@
 
 ## Motivation
 
+sub-directories
+
 Neuroimaging experiments result in complicated data that can be arranged in many
 different ways. So far there is no consensus how to organize and share data
 obtained in neuroimaging experiments. Even two researchers working in the same
