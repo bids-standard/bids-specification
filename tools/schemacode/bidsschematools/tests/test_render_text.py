@@ -124,3 +124,8 @@ def test_append_filename_template_legend():
     test_str = text.append_filename_template_legend("", pdf_format=True)
     assert isinstance(test_str, str)
     assert "follow the links" not in test_str
+
+def test_define_allowed_top_directories(schema_obj):
+    """smoke test for allowed top directories."""
+    test_str = text.append_filename_template_legend(schema_obj)
+    assert isinstance(test_str, str)
