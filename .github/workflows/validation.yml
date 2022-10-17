@@ -21,6 +21,7 @@ jobs:
         with:
           skip: js,*.svg
           ignore_words_list: fo,te,als
+          exclude_file: BIDS_logo/BIDS_logo.eps
 
   # Markdown formatting
   remark:
