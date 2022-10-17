@@ -127,5 +127,5 @@ def test_append_filename_template_legend():
 
 def test_define_allowed_top_directories(schema_obj):
     """smoke test for allowed top directories."""
-    test_str = text.append_filename_template_legend(schema_obj)
+    test_str = text.define_allowed_top_directories(schema_obj)
     assert isinstance(test_str, str)
