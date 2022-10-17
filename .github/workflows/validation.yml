@@ -18,8 +18,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: codespell-project/actions-codespell@master
-        with:
-          config: .codespellrc
 
   # Markdown formatting
   remark:
