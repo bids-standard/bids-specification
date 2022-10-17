@@ -54,12 +54,12 @@ def copy_bids_logo():
 def copy_images(root_path):
     """Copy images.
 
-    Will be done from images directory of sub-directories to images directory
+    Will be done from images directory of subdirectories to images directory
     in the src directory
     """
     subdir_list = []
 
-    # walk through the src directory to find sub-directories named 'images'
+    # walk through the src directory to find subdirectories named 'images'
     # and copy contents to the 'images' directory in the duplicate src
     # directory
     for root, dirs, files in sorted(os.walk(root_path)):
@@ -656,7 +656,7 @@ if __name__ == '__main__':
     # Step 3: copy BIDS_logo to images directory of the src_copy directory
     copy_bids_logo()
 
-    # Step 4: copy images from sub-directories of src_copy directory
+    # Step 4: copy images from subdirectories of src_copy directory
     copy_images(duplicated_src_dir_path)
     subprocess.call("mv src_copy/src/images/images/* src_copy/src/images/",
                     shell=True)

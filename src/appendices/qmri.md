@@ -40,7 +40,7 @@ application by creating logical groups of input files through `suffix` and certa
 representing acquisition parameters (`echo`, `flip`, `inv`, `mt`) or file parts (`part`).
 
 If a qMRI file collection is intended for creating structural quantitative maps (for example, `T1map`),
-files belonging to that collection are stored in the `anat` sub-directory.
+files belonging to that collection are stored in the `anat` subdirectory.
 Below is an example file collection for `MP2RAGE`:
 
 <!-- This block generates a file tree.
@@ -64,7 +64,7 @@ A guide for using macros can be found at
 
 Commonly, RF fieldmaps (`B1+` and `B1-` maps) are used for the correction of structural quantitative maps.
 As these images do not convey substantial structural information,
-respective file collections of RF fieldmaps are stored in the `fmap` sub-directory.
+respective file collections of RF fieldmaps are stored in the `fmap` subdirectory.
 Below is an example file collection for RF transmit field map `TB1EPI`:
 
 <!-- This block generates a file tree.

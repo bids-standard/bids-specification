@@ -142,7 +142,7 @@ This can be done by using a `/stimuli` directory or by reference to a stimuli da
 ### Stimuli directory
 
 The stimulus files can be added in a `/stimuli` directory
-(under the root directory of the dataset; with optional sub-directories) AND using a
+(under the root directory of the dataset; with optional subdirectories) AND using a
 `stim_file` column in `events.tsv` mentioning which stimulus file was used
 for a given event,
 

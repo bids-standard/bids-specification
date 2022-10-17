@@ -305,7 +305,7 @@ The namespaces are:
 | `objects.entities`          | Name-value pairs appearing in file names                                            | Name/value terms |
 | `objects.metadata`          | Name-value pairs appearing in JSON files                                            | Name/value terms |
 | `objects.columns`           | Column headings and values appearing in TSV files                                   | Name/value terms |
-| `objects.datatypes`         | Sub-directories that organize files by type (such as `anat`, `eeg`)                 | Value terms      |
+| `objects.datatypes`         | Subdirectories that organize files by type (such as `anat`, `eeg`)                  | Value terms      |
 | `objects.suffixes`          | Filename suffixes that describe the contents of the file                            | Value terms      |
 | `objects.extensions`        | Filename component that describe the format of the file                             | Value terms      |
 | `objects.formats`           | Terms that define the forms values (for example, in metadata) might take            | Formats          |

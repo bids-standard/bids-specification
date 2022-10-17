@@ -1474,7 +1474,7 @@ IntendedFor:
   description: |
     The paths to files for which the associated file is intended to be used.
     Contains one or more [BIDS URIs](SPEC_ROOT/02-common-principles.md#bids-uri).
-    Using forward-slash separated paths relative to the participant sub-directory is
+    Using forward-slash separated paths relative to the participant subdirectory is
     [DEPRECATED](SPEC_ROOT/02-common-principles.md#definitions).
   anyOf:
     - type: string
