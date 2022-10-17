@@ -17,21 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
-        with:
-          python-version: 3
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install codespell
-      - name: Run codespell
-        run: |
-          codespell \
-            --skip js,*.svg,*.eps,.git \
-            --ignore-words-list fo,te,als \
-            --builtin clear,rare \
-            --dictionary codespell_words.txt \
-            --exclude-file src/CHANGES.md
+      - uses: codespell-project/actions-codespell@master
 
   # Markdown formatting
   remark:
