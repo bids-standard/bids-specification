@@ -26,7 +26,11 @@ jobs:
           python -m pip install codespell
       - name: Run codespell
         run: |
-          codespell --skip js,*.svg,*.eps --ignore-words-list fo,te,als
+          codespell \
+            --skip js,*.svg,*.eps \
+            --ignore-words-list fo,te,als \
+            --builtin clear,rare \
+            --dictionary codespell_words.txt
 
   # Markdown formatting
   remark:
