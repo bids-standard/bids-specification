@@ -18,7 +18,7 @@ the [BIDS examples repository](https://github.com/bids-standard/bids-examples).
 
 <!--
 This block generates a filename templates.
-The inputs for this macro can be found in the folder
+The inputs for this macro can be found in the directory
   src/schema/rules/datatypes
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
@@ -203,7 +203,7 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 
 <!--
 This block generates a filename templates.
-The inputs for this macro can be found in the folder
+The inputs for this macro can be found in the directory
   src/schema/rules/datatypes
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
@@ -287,7 +287,7 @@ UADC001 AUDIO V envelope of audio signal presented to participant
 
 <!--
 This block generates a filename templates.
-The inputs for this macro can be found in the folder
+The inputs for this macro can be found in the directory
   src/schema/rules/datatypes
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
@@ -400,7 +400,7 @@ Photos of the anatomical landmarks and/or head localization coils
 
 <!--
 This block generates a filename templates.
-The inputs for this macro can be found in the folder
+The inputs for this macro can be found in the directory
   src/schema/rules/datatypes
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
@@ -427,7 +427,7 @@ actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
 
 <!--
 This block generates a filename templates.
-The inputs for this macro can be found in the folder
+The inputs for this macro can be found in the directory
   src/schema/rules/datatypes
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
@@ -510,7 +510,7 @@ A guide for using macros can be found at
 
 Example 2:
 
-One recording per session, stored within the session folder.
+One recording per session, stored within the session directory.
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
