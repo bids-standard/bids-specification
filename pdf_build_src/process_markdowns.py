@@ -585,16 +585,12 @@ def edit_titlepage():
         data = file.readlines()
 
     data[-1] = (
-        "\\textsc{\\large "
-        + version_number
-        + "}"
-        + "\\\\[0.5cm]"
-        + "{\\large "
-        + build_date
-        + "}"
-        + "\\\\[2cm]"
-        + "\\vfill"
-        + "\\end{titlepage}"
+        fr"\textsc{{\large {version_number}}}"
+        r"\\[0.5cm]"
+        fr"{{\large {build_date}}}"
+        r"\\[2cm]"
+        r"\vfill"
+        r"\end{titlepage}"
     )
 
     with open("cover.tex", "w") as file:
