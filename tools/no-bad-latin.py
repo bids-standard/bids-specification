@@ -78,8 +78,8 @@ def construct_error_message(files_dict):
     error_message = ["Bad latin found in the following files:\n"]
 
     error_message.extend(
-        f"{file}:\t{files_dict[file]['latin_type']}\tfound in line\t[{files_dict[file]['line']}]\n"
-        for file in files_dict.keys()
+        f"{file}:\t{info['latin_type']}\tfound in line\t[{info['line']}]\n"
+        for file, info in files_dict.items()
     )
 
     return "\n".join(error_message)
