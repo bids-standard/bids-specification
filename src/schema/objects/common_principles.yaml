@@ -94,7 +94,7 @@ label:
     Note that labels MUST not collide when casing is ignored
     (see [Case collision intolerance](SPEC_ROOT/02-common-principles.md#case-collision-intolerance)).
     For a given data type, labels MUST be consistent across subjects and sessions.
-    For example label `acq-hires` for the `anat` data of a given subject
+    For example, an `acq` entity label `hires` used on the `anat` data of a given subject
     MUST mean the same thing as `acq-hires` in `anat` files of any other subject.
 modality:
   name: Modality
