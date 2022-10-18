@@ -109,6 +109,17 @@ data type as defined above.
 A data type directory SHOULD NOT be defined if there are no files to be placed
 in that directory.
 
+### Other top level directories
+
+In addition to the subject directories, the root directory of a BIDS dataset
+MAY also contain the following directories:
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___define_allowed_top_directories() }}
+
 ## Filenames
 
 A filename consists of a chain of *entity instances* and a *suffix*

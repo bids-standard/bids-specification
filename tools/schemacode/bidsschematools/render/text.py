@@ -480,3 +480,29 @@ def define_common_principles(schema, src_path=None):
     string = string.replace("SPEC_ROOT", utils.get_relpath(src_path))
 
     return string
+
+
+def define_allowed_top_directories(schema, src_path=None) -> str:
+    """Create a list of allowed top-level directories with their descriptions.
+
+    Parameters
+    ----------
+    schema : dict
+        The BIDS schema.
+    src_path : str | None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
+
+    Returns
+    -------
+    string : str
+        Unordered list describing top level directories.
+    """
+
+    string = ""
+
+    for dirname, definition in schema.objects.files.items():
+        if definition.file_type == "directory":
+            string += f"- `{dirname}`: {definition.description}"
+
+    return string.replace("SPEC_ROOT", utils.get_relpath(src_path))
