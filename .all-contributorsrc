@@ -2886,6 +2886,81 @@
                 "data",
                 "code"
             ]
+        },
+        {
+            "name": "Benjamin Beasley",
+            "login": "musicinmybrain",
+            "contributions": [
+                "doc"
+            ],
+            "profile": "https://github.com/musicinmybrain",
+            "avatar_url": "https://avatars.githubusercontent.com/u/6898909?v=4"
+        },
+        {
+            "name": "Cyrus Eierud",
+            "login": "DrCyPhi",
+            "contributions": [
+                "doc"
+            ],
+            "profile": "https://trendscenter.org/cyrus-eierud/",
+            "avatar_url": "https://avatars.githubusercontent.com/u/25708582?v=4"
+        },
+        {
+            "name": "Hanne D. Hansen",
+            "login": "hanne_d._hansen",
+            "contributions": [
+                "doc"
+            ]
+        },
+        {
+            "name": "Jean-Dominique Gallezot",
+            "login": "jean-dominique_gallezot",
+            "contributions": [
+                "doc"
+            ]
+        },
+        {
+            "name": "Jelle Dalenberg",
+            "login": "jrdalenberg",
+            "contributions": [
+                "doc"
+            ],
+            "profile": "https://github.com/jrdalenberg",
+            "avatar_url": "https://avatars.githubusercontent.com/u/32652989?v=4"
+        },
+        {
+            "name": "Jochem Rieger",
+            "login": "jochem_rieger",
+            "contributions": [
+                "doc"
+            ],
+            "profile": "https://uol.de/en/applied-neurocognitive-psychology"
+        },
+        {
+            "name": "Petra Ritter",
+            "login": "BrainModes",
+            "contributions": [
+                "doc"
+            ],
+            "profile": "https://www.brainsimulation.org",
+            "avatar_url": "https://avatars.githubusercontent.com/u/8677353?v=4"
+        },
+        {
+            "name": "Robert Innis",
+            "login": "robert_innis",
+            "contributions": [
+                "doc"
+            ],
+            "profile": "https://www.nimh.nih.gov/research/research-conducted-at-nimh/research-areas/clinics-and-labs/mib/molecular-imaging-branch-mib"
+        },
+        {
+            "name": "Scott Makeig",
+            "login": "smakeig",
+            "contributions": [
+                "doc"
+            ],
+            "profile": "https://sccn.ucsd.edu/~scott",
+            "avatar_url": "https://avatars.githubusercontent.com/u/43755798?v=4"
         }
     ],
     "contributorsPerLine": 7

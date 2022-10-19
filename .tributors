@@ -1364,10 +1364,10 @@
     },
     "BrainModes": {
         "name": "Michael Schirner",
-        "orcid": "0000-0001-8227-8476",
         "blog": "https://www.brainsimulation.org",
+        "email": "michael.schirner@charite.de",
         "affiliation": "Charité—Universitätsmedizin Berlin, Department of Neurology, Berlin, 10115, Germany",
-        "email": "michael.schirner@charite.de"
+        "orcid": "0000-0001-8227-8476"
     },
     "sjeung": {
         "name": "Sein Jeung",
@@ -1426,5 +1426,62 @@
         "blog": "www.neuro.polymtl.ca",
         "affiliation": "Polytechnique Montreal, Department of Electrical Engineering, Montreal, QC, Canada",
         "orcid": "0000-0003-3662-9532"
+    },
+    "hanne_d._hansen": {
+        "name": "Hanne D. Hansen",
+        "email": "hanne.d.hansen@nru.dk",
+        "affiliation": "Copenhagen University Hospital, Neurobiology Research Unit, Section 8057, Blegdamsvej 9, 2100 Copenhagen, Denmark",
+        "orcid": "0000-0001-5564-7627"
+    },
+    "jean-dominique_gallezot": {
+        "name": "Jean-Dominique Gallezot",
+        "email": "jean-dominique.gallezot@yale.edu",
+        "affiliation": "Yale School of Medicine, Department of Radiology and Biomedical Imaging, New Haven, CT, 06511, USA",
+        "orcid": "0000-0003-0399-8374"
+    },
+    "jochem_rieger": {
+        "name": "Jochem Rieger",
+        "blog": "https://uol.de/en/applied-neurocognitive-psychology",
+        "email": "jochem.rieger@uni-oldenburg.de",
+        "affiliation": "Oldenburg University, Dept. of Psychology, 26129, Germany",
+        "orcid": "0000-0003-0955-2306"
+    },
+    "robert_innis": {
+        "name": "Robert Innis",
+        "blog": "https://www.nimh.nih.gov/research/research-conducted-at-nimh/research-areas/clinics-and-labs/mib/molecular-imaging-branch-mib",
+        "email": "robert.innis@nih.gov",
+        "affiliation": "NIMH Intramural Research Program, Bethesda, MD 20850 USA, MD 20892  USA",
+        "orcid": "0000-0003-1238-7209"
+    },
+    "musicinmybrain": {
+        "name": "Benjamin Beasley",
+        "blog": "https://github.com/musicinmybrain"
+    },
+    "DrCyPhi": {
+        "name": "Cyrus Eierud",
+        "blog": "https://trendscenter.org/cyrus-eierud/",
+        "email": "ceierud@gsu.edu",
+        "affiliation": "Georgia State University",
+        "orcid": "0000-0002-9942-676X"
+    },
+    "jrdalenberg": {
+        "name": "Jelle Dalenberg",
+        "blog": "https://github.com/jrdalenberg",
+        "email": "j.r.dalenberg@umcg.nl",
+        "affiliation": "University of Groningen, University Medical Center Groningen, Department of Neurology, Movement Disorders Groningen, Hanzeplein 1, 9713 GZ, Groningen ",
+        "orcid": "0000-0001-8580-5358"
+    },
+    "smakeig": {
+        "name": "Scott Makeig",
+        "blog": "https://sccn.ucsd.edu/~scott",
+        "email": "smakeig@gmail.com",
+        "affiliation": "Institute for Neural Computation, University of California San Diego, La Jolla, CA 92-93-0955, USA"
+    },
+    "petra_ritter": {
+        "name": "Petra Ritter",
+        "blog": "https://www.brainsimulation.org",
+        "email": "petra.ritter@charite.de",
+        "affiliation": "Charité University Medicine Berlin,  Berlin Institute of Health, Berlin, 10115, Germany",
+        "orcid": "0000-0002-4643-4782"
     }
 }

@@ -5,7 +5,14 @@ import pandas as pd
 import requests
 from rich import print
 
-from utils import load_tributors, load_from_allcontrib, root_dir
+from utils import (
+    load_tributors,
+    load_from_allcontrib,
+    root_dir,
+    return_missing_from_tributors,
+    add_to_tributors,
+    add_to_allcontrib,
+)
 
 
 def rename_columns(df):
@@ -87,7 +94,7 @@ def get_gh_avatar(gh_username, auth_username, auth_token):
 
 def main():
 
-    root_dir = Path(__file__).parent.joinpath("..").resolve()
+    TOKEN = "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"
 
     tributors_file = root_dir().joinpath(".tributors")
     allcontrib_file = root_dir().joinpath(".all-contributorsrc")
@@ -95,6 +102,18 @@ def main():
     tsv = pd.read_csv("contributors.tsv", sep="\t", encoding="utf8")
     tsv = rename_columns(tsv)
     # print(tsv.head())
+
+    print("\n[red]NOT IN .tributors FILE[/red]")
+    new_contrib_names = tsv.name.to_list()
+    missing_from_tributors = return_missing_from_tributors(
+        tributors_file, new_contrib_names
+    )
+    print(missing_from_tributors)
+    print("\n")
+
+    for name in missing_from_tributors:
+        add_to_tributors(tributors_file, name)
+        add_to_allcontrib(allcontrib_file, name)
 
     tributors = load_tributors(tributors_file)
     tributors_keys = list(tributors.keys())
@@ -106,14 +125,6 @@ def main():
     allcontrib_names = [x["name"] for x in allcontrib["contributors"]]
     # print(allcontrib["contributors"])
     # print(allcontrib_names)
-
-    print("\n[red]NOT IN .tributors FILE[/red]")
-    in_tributors = tsv.name.isin(tributors_names).to_list()
-    # print(in_tributors)
-    for i, value in enumerate(in_tributors):
-        if not value:
-            print(tsv.name[i])
-    print("\n")
 
     for name in tsv.name:
 
