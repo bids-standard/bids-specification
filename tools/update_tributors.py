@@ -22,6 +22,28 @@ from utils import (
 UPDATE_AVATARS = False
 
 
+def transfer_contribution(tributors: dict, allcontrib: dict) -> dict:
+    """transfer contribution list from tributors to allcontrib"""
+
+    tributors_keys = list(tributors.keys())
+    tributors_names = [tributors[x]["name"].rstrip() for x in tributors]
+
+    allcontrib_names = [x["name"] for x in allcontrib["contributors"]]
+
+    for name in tributors_names:
+
+        index_allcontrib = allcontrib_names.index(name)
+
+        index_tributor = tributors_names.index(name)
+        key_tributor = tributors_keys[index_tributor]
+
+        allcontrib["contributors"][index_allcontrib]["contributions"] = tributors[
+            key_tributor
+        ]["contributions"]
+
+    return allcontrib
+
+
 def rename_columns(df):
     df.rename(
         columns={
@@ -40,7 +62,7 @@ def rename_columns(df):
 
 def return_this_contributor(tsv, name: str):
 
-    name = name.rstrip()
+    name = name.strip()
 
     github = tsv[tsv.name == name].github.values[0]
     if github in ["nan"] or isinstance(github, (float)):
@@ -161,6 +183,9 @@ def main():
                     "login"
                 ] = this_contributor["github_username"]
 
+            """
+            update .tributor
+            """
             if (
                 this_contributor["add_email"] is True
                 and this_contributor["email"] is not None
@@ -194,6 +219,8 @@ def main():
     print(set(tributors_names) - set(allcontrib_names))
     print(set(allcontrib_names) - set(tributors_names))
     assert len(allcontrib["contributors"]) == len(tributors)
+
+    allcontrib = transfer_contribution(tributors, allcontrib)
 
     write_from_allcontrib(allcontrib_file, allcontrib)
 
