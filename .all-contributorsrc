@@ -2324,11 +2324,15 @@
             "profile": "https://www.nimh.nih.gov/research/research-conducted-at-nimh/research-areas/clinics-and-labs/mib/molecular-imaging-branch-mib"
         },
         {
+            "login": "Lestropie",
             "name": "Robert E. Smith",
-            "login": "robert_e_smith",
             "contributions": [
                 "code",
                 "doc"
+            ],
+            "profile": "http://www.mrtrix.org",
+            "avatar_url": [
+                "https://avatars.githubusercontent.com/u/5637955?v=4"
             ]
         },
         {
@@ -2376,17 +2380,6 @@
             "profile": "https://robertoostenveld.nl",
             "avatar_url": [
                 "https://avatars.githubusercontent.com/u/899043?v=4"
-            ]
-        },
-        {
-            "login": "Lestropie",
-            "name": "Robert Smith",
-            "contributions": [
-                "code"
-            ],
-            "profile": "http://www.mrtrix.org",
-            "avatar_url": [
-                "https://avatars.githubusercontent.com/u/5637955?v=4"
             ]
         },
         {

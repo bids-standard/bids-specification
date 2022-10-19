@@ -1179,8 +1179,12 @@
         "affiliation": "NIMH Intramural Research Program, Bethesda, MD 20850 USA, MD 20892  USA",
         "orcid": "0000-0003-1238-7209"
     },
-    "robert_e_smith": {
-        "name": "Robert E. Smith"
+    "Lestropie": {
+        "name": "Robert E. Smith",
+        "email": "robert.smith@florey.edu.au",
+        "blog": "http://www.mrtrix.org",
+        "affiliation": "The Florey Institute of Neuroscience and Mental Health, Epilepsy Neuroinformatics Laboratory, Heidelberg, Victoria, 3084, Australia",
+        "orcid": "0000-0003-3636-4642"
     },
     "robert_knight": {
         "name": "Robert Knight"
@@ -1195,13 +1199,6 @@
         "affiliation": "Radboud University, Donders Institute, Nijmegen, 6525 EN, The Netherlands",
         "orcid": "0000-0002-1974-1293",
         "email": "r.oostenveld@donders.ru.nl"
-    },
-    "Lestropie": {
-        "name": "Robert Smith",
-        "email": "robert.smith@florey.edu.au",
-        "blog": "http://www.mrtrix.org",
-        "affiliation": "The Florey Institute of Neuroscience and Mental Health, Epilepsy Neuroinformatics Laboratory, Heidelberg, Victoria, 3084, Australia",
-        "orcid": "0000-0003-3636-4642"
     },
     "r03ert0": {
         "name": "Roberto Toro",
