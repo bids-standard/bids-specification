@@ -201,6 +201,8 @@ authors:
     website: https://camillemaumet.com/
     orcid: https://orcid.org/0000-0002-6290-553X
     affiliation: Inria, Univ Rennes, CNRS, Inserm, Rennes, 35042, France
+  - given-names: Carlo
+    family-names: Miniussi
   - given-names: Chloé
     family-names: Pasturel
   - given-names: Chris
@@ -344,6 +346,8 @@ authors:
     orcid: https://orcid.org/0000-0001-5546-3561
     affiliation: Heinrich-Heine-University, Department of Experimental Psychology,
       Dusseldorf, 40224, Germany
+  - given-names: Eleonora
+    family-names: Marcantoni
   - given-names: Elizabeth
     family-names: Bock
   - given-names: Elizabeth
@@ -428,6 +432,10 @@ authors:
     family-names: Vaillant
     website: https://github.com/ghisvail
     orcid: https://orcid.org/0000-0003-0267-3033
+  - given-names: Giacomo
+    family-names: Bertazzoli
+  - given-names: Giacomo
+    family-names: Guidali
   - given-names: Giacomo
     family-names: Mazzamuto
     website: https://github.com/gmazzamuto
@@ -807,6 +815,8 @@ authors:
     family-names: Morawski
     orcid: https://orcid.org/0000-0002-3817-5186
     affiliation: Universität Leipzig
+  - given-names: Marta
+    family-names: Bortoletto
   - given-names: Martin
     family-names: Craig
   - given-names: Martin
@@ -824,6 +834,8 @@ authors:
     email: mail@martinszinte.net
   - given-names: Martin
     family-names: Wilson
+  - given-names: Martina
+    family-names: Bulgari
   - given-names: Mateusz
     family-names: Pawlik
     website: https://github.com/mateuszpawlik
@@ -1212,6 +1224,8 @@ authors:
       and Data Science (TReNDS), Georgia State, Georgia Tech, and Emory, Atlanta,
       GA 30030
     email: vcalhoun@gsu.edu
+  - given-names: Vittorio
+    family-names: Iacovella
   - given-names: Vladimir
     family-names: Litvak
     orcid: https://orcid.org/0000-0001-8535-7452

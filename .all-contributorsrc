@@ -435,6 +435,13 @@
             "contributions": [
                 "doc"
             ],
+            "login": "carlo_miniussi",
+            "name": "Carlo Miniussi"
+        },
+        {
+            "contributions": [
+                "doc"
+            ],
             "login": "chloé_pasturel",
             "name": "Chloé Pasturel"
         },
@@ -794,6 +801,13 @@
         },
         {
             "contributions": [
+                "doc"
+            ],
+            "login": "eleonora_marcantoni",
+            "name": "Eleonora Marcantoni"
+        },
+        {
+            "contributions": [
                 "doc",
                 "example"
             ],
@@ -1026,6 +1040,21 @@
             "login": "ghisvail",
             "name": "Ghislain Vaillant",
             "profile": "https://github.com/ghisvail"
+        },
+        {
+            "avatar_url": "https://avatars.githubusercontent.com/u/39560621?v=4",
+            "contributions": [
+                "doc"
+            ],
+            "login": "GiacomoBert",
+            "name": "Giacomo Bertazzoli"
+        },
+        {
+            "contributions": [
+                "doc"
+            ],
+            "login": "giacomo_guidali",
+            "name": "Giacomo Guidali"
         },
         {
             "avatar_url": "https://avatars.githubusercontent.com/u/18688794?v=4",
@@ -1878,6 +1907,13 @@
         },
         {
             "contributions": [
+                "doc"
+            ],
+            "login": "marta_bortoletto",
+            "name": "Marta Bortoletto"
+        },
+        {
+            "contributions": [
                 "data"
             ],
             "login": "martin_craig",
@@ -1913,6 +1949,13 @@
             ],
             "login": "martin_wilson",
             "name": "Martin Wilson"
+        },
+        {
+            "contributions": [
+                "doc"
+            ],
+            "login": "martina_bulgari",
+            "name": "Martina Bulgari"
         },
         {
             "avatar_url": [
@@ -2071,6 +2114,7 @@
             "name": "Michael P. Notter"
         },
         {
+            "avatar_url": "https://avatars.githubusercontent.com/u/29461056?v=4",
             "contributions": [
                 "doc"
             ],
@@ -2877,6 +2921,14 @@
             "login": "vdcalhoun",
             "name": "Vince D. Calhoun",
             "profile": "http://trendscenter.org"
+        },
+        {
+            "avatar_url": "https://avatars.githubusercontent.com/u/1639782?v=4",
+            "contributions": [
+                "doc"
+            ],
+            "login": "viacovella",
+            "name": "Vittorio Iacovella"
         },
         {
             "contributions": [

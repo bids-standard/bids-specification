@@ -17,30 +17,10 @@ from utils import (
     write_citation,
     write_allcontrib,
     write_tributors,
+    transfer_contribution,
 )
 
-UPDATE_AVATARS = False
-
-
-def transfer_contribution(tributors: dict, allcontrib: dict) -> dict:
-    """transfer contribution list from tributors to allcontrib"""
-
-    tributors_keys = list(tributors.keys())
-    tributors_names = [tributors[x]["name"].rstrip() for x in tributors]
-
-    allcontrib_names = [x["name"] for x in allcontrib["contributors"]]
-
-    for name in tributors_names:
-
-        index_allcontrib = allcontrib_names.index(name)
-
-        index_tributor = tributors_names.index(name)
-        key_tributor = tributors_keys[index_tributor]
-
-        contributions = tributors[key_tributor].get("contributions", ["doc"])
-        allcontrib["contributors"][index_allcontrib]["contributions"] = contributions
-
-    return allcontrib
+UPDATE_AVATARS = True
 
 
 def rename_columns(df):

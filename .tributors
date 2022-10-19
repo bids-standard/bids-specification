@@ -396,6 +396,12 @@
         "orcid": "0000-0002-6290-553X",
         "publish_email": false
     },
+    "carlo_miniussi": {
+        "contributions": [
+            "doc"
+        ],
+        "name": "Carlo Miniussi"
+    },
     "chloé_pasturel": {
         "contributions": [
             "doc"
@@ -744,6 +750,12 @@
         "orcid": "0000-0001-5546-3561",
         "publish_email": false
     },
+    "eleonora_marcantoni": {
+        "contributions": [
+            "doc"
+        ],
+        "name": "Eleonora Marcantoni"
+    },
     "elizabeth_bock": {
         "contributions": [
             "doc",
@@ -966,6 +978,18 @@
         ],
         "name": "Ghislain Vaillant",
         "orcid": "0000-0003-0267-3033"
+    },
+    "GiacomoBert": {
+        "contributions": [
+            "doc"
+        ],
+        "name": "Giacomo Bertazzoli"
+    },
+    "giacomo_guidali": {
+        "contributions": [
+            "doc"
+        ],
+        "name": "Giacomo Guidali"
     },
     "gmazzamuto": {
         "affiliation": "National Institute of Optics, National Research Council",
@@ -1804,6 +1828,12 @@
         "name": "Markus Morawski",
         "orcid": "0000-0002-3817-5186"
     },
+    "marta_bortoletto": {
+        "contributions": [
+            "doc"
+        ],
+        "name": "Marta Bortoletto"
+    },
     "martin_craig": {
         "contributions": [
             "data"
@@ -1842,6 +1872,12 @@
             "doc"
         ],
         "name": "Martin Wilson"
+    },
+    "martina_bulgari": {
+        "contributions": [
+            "doc"
+        ],
+        "name": "Martina Bulgari"
     },
     "mateuszpawlik": {
         "blog": "https://github.com/mateuszpawlik",
@@ -1992,6 +2028,9 @@
     "MichaelSchirner": {
         "affiliation": "Charité—Universitätsmedizin Berlin, Department of Neurology, Berlin, 10115, Germany",
         "blog": "https://www.brainsimulation.org",
+        "contributions": [
+            "doc"
+        ],
         "email": "michael.schirner@charite.de",
         "name": "Michael Schirner",
         "orcid": "0000-0001-8227-8476",
@@ -2768,6 +2807,12 @@
         "email": "vcalhoun@gsu.edu",
         "name": "Vince D. Calhoun",
         "publish_email": true
+    },
+    "viacovella": {
+        "contributions": [
+            "doc"
+        ],
+        "name": "Vittorio Iacovella"
     },
     "vladimir_litvak": {
         "affiliation": "UCL Queen Square Institute of Neurology",
