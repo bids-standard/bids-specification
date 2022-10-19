@@ -1172,15 +1172,15 @@
         "orcid": "0000-0002-0712-2639",
         "email": "Rik.Henson@mrc-cbu.cam.ac.uk"
     },
-    "robert_e_smith": {
-        "name": "Robert E. Smith"
-    },
-    "robert_innis": {
+    "robert_b._innis": {
         "name": "Robert B. Innis",
         "blog": "https://www.nimh.nih.gov/research/research-conducted-at-nimh/research-areas/clinics-and-labs/mib/molecular-imaging-branch-mib",
         "email": "robert.innis@nih.gov",
         "affiliation": "NIMH Intramural Research Program, Bethesda, MD 20850 USA, MD 20892  USA",
         "orcid": "0000-0003-1238-7209"
+    },
+    "robert_e_smith": {
+        "name": "Robert E. Smith"
     },
     "robert_knight": {
         "name": "Robert Knight"

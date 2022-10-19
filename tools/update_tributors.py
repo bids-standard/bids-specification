@@ -16,6 +16,9 @@ from utils import (
     get_gh_avatar,
 )
 
+UPDATE_AVATARS = False
+
+
 def rename_columns(df):
     df.rename(
         columns={
@@ -175,10 +178,7 @@ def main():
 
     for i, this_contributor in enumerate(allcontrib["contributors"]):
 
-        if (
-            "avatar_url" not in this_contributor
-            or this_contributor["avatar_url"] is None
-        ):
+        if UPDATE_AVATARS and this_contributor.get("avatar_url") is None:
             avatar_url = get_gh_avatar(this_contributor["login"], "Remi-Gau", TOKEN)
             if avatar_url is not None:
                 allcontrib["contributors"][i]["avatar_url"] = avatar_url

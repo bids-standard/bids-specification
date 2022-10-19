@@ -747,7 +747,7 @@
             "avatar_url": "https://avatars.githubusercontent.com/u/58177697?v=4"
         },
         {
-            "name": "Douglas Greve",
+            "name": "Douglas N. Greve",
             "login": "dngreve",
             "contributions": [
                 "doc"
@@ -2316,20 +2316,20 @@
             "avatar_url": "https://avatars.githubusercontent.com/u/2071058?v=4"
         },
         {
+            "name": "Robert B. Innis",
+            "login": "robert_b._innis",
+            "contributions": [
+                "doc"
+            ],
+            "profile": "https://www.nimh.nih.gov/research/research-conducted-at-nimh/research-areas/clinics-and-labs/mib/molecular-imaging-branch-mib"
+        },
+        {
             "name": "Robert E. Smith",
             "login": "robert_e_smith",
             "contributions": [
                 "code",
                 "doc"
             ]
-        },
-        {
-            "name": "Robert Innis",
-            "login": "robert_innis",
-            "contributions": [
-                "doc"
-            ],
-            "profile": "https://www.nimh.nih.gov/research/research-conducted-at-nimh/research-areas/clinics-and-labs/mib/molecular-imaging-branch-mib"
         },
         {
             "name": "Robert Knight",
