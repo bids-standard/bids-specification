@@ -1178,7 +1178,60 @@ authors:
   email: m.a.vandenboom84@gmail.com
 - given-names: Julien
   family-names: Cohen-Adad
-  website: www.neuro.polymtl.ca
+  website: https://www.neuro.polymtl.ca
   orcid: https://orcid.org/0000-0003-3662-9532
   affiliation: Polytechnique Montreal, Department of Electrical Engineering, Montreal,
     QC, Canada
+- given-names: Hanne
+  family-names: D. Hansen
+  orcid: https://orcid.org/0000-0001-5564-7627
+  affiliation: Copenhagen University Hospital, Neurobiology Research Unit, Section
+    8057, Blegdamsvej 9, 2100 Copenhagen, Denmark
+  email: hanne.d.hansen@nru.dk
+- given-names: Jean-Dominique
+  family-names: Gallezot
+  orcid: https://orcid.org/0000-0003-0399-8374
+  affiliation: Yale School of Medicine, Department of Radiology and Biomedical Imaging,
+    New Haven, CT, 06511, USA
+  email: jean-dominique.gallezot@yale.edu
+- given-names: Jochem
+  family-names: Rieger
+  website: https://uol.de/en/applied-neurocognitive-psychology
+  orcid: https://orcid.org/0000-0003-0955-2306
+  affiliation: Oldenburg University, Dept. of Psychology, 26129, Germany
+  email: jochem.rieger@uni-oldenburg.de
+- given-names: Robert
+  family-names: Innis
+  website: https://www.nimh.nih.gov/research/research-conducted-at-nimh/research-areas/clinics-and-labs/mib/molecular-imaging-branch-mib
+  orcid: https://orcid.org/0000-0003-1238-7209
+  affiliation: NIMH Intramural Research Program, Bethesda, MD 20850 USA, MD 20892  USA
+  email: robert.innis@nih.gov
+- given-names: Benjamin
+  family-names: Beasley
+  website: https://github.com/musicinmybrain
+- given-names: Cyrus
+  family-names: Eierud
+  website: https://trendscenter.org/cyrus-eierud/
+  orcid: https://orcid.org/0000-0002-9942-676X
+  affiliation: Georgia State University
+  email: ceierud@gsu.edu
+- given-names: Jelle
+  family-names: Dalenberg
+  website: https://github.com/jrdalenberg
+  orcid: https://orcid.org/0000-0001-8580-5358
+  affiliation: 'University of Groningen, University Medical Center Groningen, Department
+    of Neurology, Movement Disorders Groningen, Hanzeplein 1, 9713 GZ, Groningen '
+  email: j.r.dalenberg@umcg.nl
+- given-names: Scott
+  family-names: Makeig
+  website: https://sccn.ucsd.edu/~scott
+  affiliation: Institute for Neural Computation, University of California San Diego,
+    La Jolla, CA 92-93-0955, USA
+  email: smakeig@gmail.com
+- given-names: Petra
+  family-names: Ritter
+  website: https://www.brainsimulation.org
+  orcid: https://orcid.org/0000-0002-4643-4782
+  affiliation: Charité University Medicine Berlin,  Berlin Institute of Health, Berlin,
+    10115, Germany
+  email: petra.ritter@charite.de
