@@ -3,9 +3,6 @@
 validate_citation_cff: CITATION.cff
 	cffconvert --validate
 
-update_citation_cff:
-	python tools/tributors_to_citation.py 
-
 update_readme_all_contrib:
 	yarn all-contributors generate
 
@@ -15,7 +12,7 @@ update_all_contributors:
 tools/contributors.tsv:
 	rm -f tools/contributors.tsv
 	curl -L "https://docs.google.com/spreadsheets/d/1pYMQvyL_nY2yt2biPFuBjcUeOExq1WXuK67V5sKjseo/export?format=tsv" -o tools/contributors.tsv
-	
+
 
 runprettier:
 	prettier --write "src/schema/**/*.yaml"
@@ -35,4 +32,3 @@ formatschema: runprettier commitschema
 all:
 
 .PHONY: runprettier commitschema
-
