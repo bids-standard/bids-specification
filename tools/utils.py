@@ -4,6 +4,9 @@ import ruamel.yaml
 import emoji
 from rich import print
 
+yaml = ruamel.yaml.YAML()
+yaml.indent(mapping=2, sequence=4, offset=2)
+
 
 def root_dir():
     return Path(__file__).parent.parent
@@ -14,15 +17,31 @@ def load_tributors(tributors_file):
         return json.load(tributors_file)
 
 
+def write_tributors(tributors_file, tributors):
+    tributors = sort_tributors(tributors)
+    with open(tributors_file, "w", encoding="utf8") as output_file:
+        json.dump(tributors, output_file, indent=4, ensure_ascii=False)
+
+
 def load_from_allcontrib(allcontrib_file):
     with open(allcontrib_file, "r", encoding="utf8") as input_file:
         return json.load(input_file)
 
 
+def write_from_allcontrib(allcontrib_file, allcontrib):
+    allcontrib = sort_all_contrib(allcontrib)
+    with open(allcontrib_file, "w", encoding="utf8") as output_file:
+        json.dump(allcontrib, output_file, indent=4, ensure_ascii=False)
+
+
 def load_citation(citation_file):
-    yaml = ruamel.yaml.YAML()
     with open(citation_file, "r", encoding="utf8") as input_file:
         return yaml.load(input_file)
+
+
+def write_citation(citation_file, citation):
+    with open(citation_file, "r", encoding="utf8") as output_file:
+        return yaml.dump(citation, output_file)
 
 
 def emoji_map():
@@ -64,6 +83,10 @@ def return_missing_from_tributors(tributors_file, names: list[str]) -> list[str]
     return sorted(list(missing_from_tributors))
 
 
+def sort_tributors(tributors):
+    return dict(sorted(tributors.items(), key=lambda item: item[1]["name"]))
+
+
 def add_to_tributors(tributors_file, user: str):
     user = user.strip()
     tributors = load_tributors(tributors_file)
@@ -72,8 +95,14 @@ def add_to_tributors(tributors_file, user: str):
         print(f"adding {user} to {tributors_file}")
         user_login = user.lower().replace(" ", "_")
         tributors[user_login] = {"name": user}
-        with open(tributors_file, "w", encoding="utf8") as output_file:
-            json.dump(tributors, output_file, indent=4, ensure_ascii=False)
+        write_tributors(tributors_file, tributors)
+
+
+def sort_all_contrib(allcontrib):
+    allcontrib["contributors"] = sorted(
+        allcontrib["contributors"], key=lambda x: x["name"]
+    )
+    return allcontrib
 
 
 def add_to_allcontrib(allcontrib_file, user: str):
@@ -92,5 +121,4 @@ def add_to_allcontrib(allcontrib_file, user: str):
                 ],
             }
         )
-        with open(allcontrib_file, "w", encoding="utf8") as output_file:
-            json.dump(allcontrib, output_file, indent=4, ensure_ascii=False)
+        write_from_allcontrib(allcontrib_file, allcontrib)

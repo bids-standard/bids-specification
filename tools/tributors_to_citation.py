@@ -5,9 +5,8 @@ import ruamel.yaml
 
 from rich import print
 
-from utils import load_citation, root_dir
+from utils import load_citation, root_dir, write_citation
 
-from pathlib import Path
 
 yaml = ruamel.yaml.YAML()
 
@@ -57,8 +56,7 @@ def main():
     citation = load_citation(citation_file)
     citation["authors"] = author_list
 
-    with open(citation_file, "w") as output_file:
-        yaml.dump(citation, output_file)
+    write_citation(citation_file, citation)
 
 
 if __name__ == "__main__":

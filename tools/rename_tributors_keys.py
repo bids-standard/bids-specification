@@ -4,6 +4,8 @@ from pathlib import Path
 
 from rich import print
 
+from utils import write_tributors
+
 
 def load_tributors(tributors_file):
     with open(tributors_file, "r", encoding="utf8") as tributors_file:
@@ -48,8 +50,7 @@ def main():
             print(old_key_tributor)
             print(new_key)
 
-    with open(tributors_file, "w", encoding="utf8") as output_file:
-        json.dump(tributors, output_file, indent=4, ensure_ascii=False)
+    write_tributors(tributors_file, tributors)
 
 
 if __name__ == "__main__":
