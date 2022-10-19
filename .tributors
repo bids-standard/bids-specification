@@ -22,7 +22,8 @@
         "orcid": "0000-0002-2850-1419",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "adeen_flinker": {
         "name": "Adeen Flinker",
@@ -32,7 +33,8 @@
         "blog": "http://flinkerlab.org",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "adswa": {
         "name": "Adina S. Wagner",
@@ -44,7 +46,8 @@
         "contributions": [
             "design",
             "code"
-        ]
+        ],
+        "publish_email": true
     },
     "agahkarakuzu": {
         "name": "Agah Karakuzu",
@@ -121,7 +124,8 @@
             "code",
             "doc",
             "question"
-        ]
+        ],
+        "publish_email": true
     },
     "alexander_von_lautz": {
         "name": "Alexander von Lautz",
@@ -138,7 +142,8 @@
         "contributions": [
             "doc",
             "example"
-        ]
+        ],
+        "publish_email": true
     },
     "alexandre_hutton": {
         "name": "Alexandre Hutton",
@@ -239,7 +244,8 @@
         "contributions": [
             "doc",
             "code"
-        ]
+        ],
+        "publish_email": true
     },
     "arjen_stolk": {
         "name": "Arjen Stolk",
@@ -256,7 +262,8 @@
         "contributions": [
             "doc",
             "example"
-        ]
+        ],
+        "publish_email": true
     },
     "arnaudmarcoux": {
         "name": "Arnaud Marcoux",
@@ -276,7 +283,8 @@
             "doc",
             "infra",
             "code"
-        ]
+        ],
+        "publish_email": true
     },
     "ashgillman": {
         "name": "Ashley G. Gillman",
@@ -325,7 +333,8 @@
         "blog": "https://github.com/musicinmybrain",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "benjamin_dichter": {
         "name": "Benjamin Dichter",
@@ -356,7 +365,8 @@
         "orcid": "0000-0003-1640-2525",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": false
     },
     "brett_l_foster": {
         "name": "Brett L. Foster",
@@ -383,7 +393,8 @@
         "orcid": "0000-0002-6290-553X",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": false
     },
     "chloé_pasturel": {
         "name": "Chloé Pasturel",
@@ -441,7 +452,8 @@
         "contributions": [
             "doc",
             "code"
-        ]
+        ],
+        "publish_email": true
     },
     "christian_büchel": {
         "name": "Christian Büchel",
@@ -459,7 +471,8 @@
         "contributions": [
             "code",
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "ChristophePhillips": {
         "name": "Christophe Phillips",
@@ -469,7 +482,8 @@
         "email": "c.phillips@uliege.be",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "christopher_j_honey": {
         "name": "Christopher J. Honey",
@@ -478,7 +492,8 @@
         "blog": "https://www.honeylab.org",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": false
     },
     "effigies": {
         "name": "Christopher J. Markiewicz",
@@ -528,7 +543,8 @@
             "eventOrganizing",
             "ideas",
             "talk"
-        ]
+        ],
+        "publish_email": true
     },
     "DrCyPhi": {
         "name": "Cyrus Eierud",
@@ -538,7 +554,8 @@
         "orcid": "0000-0002-9942-676X",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "dasturge": {
         "name": "D. Sturgeon",
@@ -556,7 +573,8 @@
         "orcid": "0000-0003-2279-7447",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "danlurie": {
         "name": "Dan Lurie",
@@ -590,7 +608,8 @@
         "orcid": "0000-0002-6709-7711",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "dmgroppe": {
         "name": "David Groppe",
@@ -600,7 +619,8 @@
         "email": "david.m.groppe@gmail.com",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "dbkeator": {
         "name": "David Keator",
@@ -640,7 +660,8 @@
         "orcid": "0000-0001-7518-3110",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "DimitriPapadopoulos": {
         "name": "Dimitri Papadopoulos Orfanos",
@@ -720,7 +741,8 @@
         "contributions": [
             "doc",
             "code"
-        ]
+        ],
+        "publish_email": false
     },
     "elizabeth_bock": {
         "name": "Elizabeth Bock",
@@ -742,7 +764,8 @@
             "ideas",
             "question",
             "code"
-        ]
+        ],
+        "publish_email": false
     },
     "erdalkaraca": {
         "name": "Erdal Karaca",
@@ -766,7 +789,8 @@
             "tool",
             "ideas",
             "code"
-        ]
+        ],
+        "publish_email": true
     },
     "rikAchten": {
         "name": "Eric Achten",
@@ -813,7 +837,8 @@
         "orcid": "0000-0001-8795-5472",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "ezequiel_mikulan": {
         "name": "Ezequiel Mikulan",
@@ -856,7 +881,8 @@
         "contributions": [
             "doc",
             "data"
-        ]
+        ],
+        "publish_email": true
     },
     "francopestilli": {
         "name": "Franco Pestilli",
@@ -911,7 +937,8 @@
         "orcid": "0000-0001-7272-8576 ",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": false
     },
     "afni-gangc": {
         "name": "Gang Chen",
@@ -921,7 +948,8 @@
         "email": "gangchen@mail.nih.gov",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "GaelVaroquaux": {
         "name": "Gaël Varoquaux",
@@ -948,7 +976,8 @@
         "contributions": [
             "doc",
             "data"
-        ]
+        ],
+        "publish_email": true
     },
     "Gilles86": {
         "name": "Gilles de Hollander",
@@ -1051,7 +1080,8 @@
         "email": "gustav.nilsonne@ki.se",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "hamish_innes-brown": {
         "name": "Hamish Innes-Brown",
@@ -1060,7 +1090,8 @@
         "orcid": "0000-0002-1512-2823",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "hanne_d._hansen": {
         "name": "Hanne D. Hansen",
@@ -1069,7 +1100,8 @@
         "orcid": "0000-0001-5564-7627",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "hanzhang_lu": {
         "name": "Hanzhang Lu",
@@ -1088,7 +1120,8 @@
         "contributions": [
             "doc",
             "bug"
-        ]
+        ],
+        "publish_email": true
     },
     "helenacockx": {
         "name": "Helena Cockx",
@@ -1115,7 +1148,8 @@
             "projectManagement",
             "talk",
             "userTesting"
-        ]
+        ],
+        "publish_email": true
     },
     "hernando_ombao": {
         "name": "Hernando Ombao",
@@ -1208,7 +1242,8 @@
         "orcid": "0000-0003-0923-6610",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "jan-petr": {
         "name": "Jan Petr",
@@ -1228,7 +1263,8 @@
             "projectManagement",
             "test",
             "talk"
-        ]
+        ],
+        "publish_email": true
     },
     "jan-mathijs_schoffelen": {
         "name": "Jan-Mathijs Schoffelen",
@@ -1266,7 +1302,8 @@
         "orcid": "0000-0003-0399-8374",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "jean-philippe_lachaux": {
         "name": "Jean-Philippe Lachaux",
@@ -1282,7 +1319,8 @@
         "affiliation": "Stanford, Department of Psychology, Stanford, CA",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": false
     },
     "jeffrey_g_ojemann": {
         "name": "Jeffrey G. Ojemann",
@@ -1316,7 +1354,8 @@
         "orcid": "0000-0001-8580-5358",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "jeremy_moreau": {
         "name": "Jeremy Moreau",
@@ -1339,7 +1378,8 @@
         "orcid": "0000-0003-0955-2306",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "john_detre": {
         "name": "John Detre",
@@ -1384,7 +1424,8 @@
         "contributions": [
             "code",
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "jonathan_c_lau": {
         "name": "Jonathan C. Lau",
@@ -1407,7 +1448,8 @@
         "affiliation": "Amsterdam University Medical Centers, Radiology and Nuclear Medicine, Amsterdam, 1081 HV, The Netherlands",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "jose_manuel_saborit": {
         "name": "Jose Manuel Saborit",
@@ -1432,7 +1474,8 @@
         "orcid": "0000-0002-0329-824X",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "guiomar": {
         "name": "Julia Guiomar Niso Galán",
@@ -1466,7 +1509,8 @@
         "email": "julia.sprenger@univ-amu.fr",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "jcohenadad": {
         "name": "Julien Cohen-Adad",
@@ -1477,7 +1521,8 @@
             "doc",
             "data",
             "ideas"
-        ]
+        ],
+        "publish_email": false
     },
     "JuliusWelzel": {
         "name": "Julius Welzel",
@@ -1487,7 +1532,8 @@
         "orcid": "0000-0001-8958-0934",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "kai_j_miller": {
         "name": "Kai J. Miller",
@@ -1523,7 +1569,8 @@
             "code",
             "doc",
             "bug"
-        ]
+        ],
+        "publish_email": true
     },
     "kevin_larcher": {
         "name": "Kevin Larcher",
@@ -1571,7 +1618,8 @@
         "email": "kristofer.bouchard@gmail.com",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "schillkg": {
         "name": "Kurt Schilling",
@@ -1593,7 +1641,8 @@
         "email": "BeltrachiniL@cardiff.ac.uk",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "LeeKamentsky": {
         "name": "Lee Kamentsky",
@@ -1635,7 +1684,8 @@
         "email": "lpollonini@uh.edu",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "luis_hernandez-garcia": {
         "name": "Luis Hernandez-Garcia",
@@ -1675,7 +1725,8 @@
         "contributions": [
             "doc",
             "ideas"
-        ]
+        ],
+        "publish_email": false
     },
     "maqsood_yaqub": {
         "name": "Maqsood Yaqub",
@@ -1692,7 +1743,8 @@
         "contributions": [
             "doc",
             "code"
-        ]
+        ],
+        "publish_email": false
     },
     "marcocastellaro": {
         "name": "Marco Castellaro",
@@ -1709,7 +1761,8 @@
             "test",
             "talk",
             "infra"
-        ]
+        ],
+        "publish_email": true
     },
     "maigva": {
         "name": "Maria de la Iglesia",
@@ -1719,7 +1772,8 @@
         "email": "delaiglesia_mar@gva.es",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "mariehbourget": {
         "name": "Marie-Hélène Bourget",
@@ -1739,7 +1793,8 @@
         "orcid": "0000-0002-0349-3782",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "markus_morawski": {
         "name": "Markus Morawski",
@@ -1768,7 +1823,8 @@
             "code",
             "ideas",
             "talk"
-        ]
+        ],
+        "publish_email": true
     },
     "mszinte": {
         "name": "Martin Szinte",
@@ -1778,7 +1834,8 @@
         "orcid": "0000-0003-2040-4005",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "martin_wilson": {
         "name": "Martin Wilson",
@@ -1804,7 +1861,8 @@
             "code",
             "tool",
             "talk"
-        ]
+        ],
+        "publish_email": true
     },
     "mathieuboudreau": {
         "name": "Mathieu Boudreau",
@@ -1831,7 +1889,8 @@
         "orcid": "0000-0001-9591-5710",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": false
     },
     "matthias_günther": {
         "name": "Matthias Günther",
@@ -1867,7 +1926,8 @@
             "code",
             "review",
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "melanieganz": {
         "name": "Melanie Ganz-Benjaminsen",
@@ -1882,7 +1942,8 @@
             "projectManagement",
             "fundingFinding",
             "talk"
-        ]
+        ],
+        "publish_email": false
     },
     "michael_chappell": {
         "name": "Michael Chappell",
@@ -1933,7 +1994,8 @@
         "blog": "https://www.brainsimulation.org",
         "email": "michael.schirner@charite.de",
         "affiliation": "Charité—Universitätsmedizin Berlin, Department of Neurology, Berlin, 10115, Germany",
-        "orcid": "0000-0001-8227-8476"
+        "orcid": "0000-0001-8227-8476",
+        "publish_email": true
     },
     "naveau": {
         "name": "Mikaël Naveau",
@@ -1942,7 +2004,8 @@
         "orcid": "0000-0002-4685-0057",
         "contributions": [
             "bug"
-        ]
+        ],
+        "publish_email": false
     },
     "nader_pouratian": {
         "name": "Nader Pouratian",
@@ -1957,7 +2020,8 @@
         "orcid": "0000-0002-0783-0387",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": false
     },
     "national_institute_of_mental_health": {
         "name": "National Institute of Mental Health",
@@ -2025,7 +2089,8 @@
             "ideas",
             "question",
             "code"
-        ]
+        ],
+        "publish_email": true
     },
     "pamela_lamontagne": {
         "name": "Pamela LaMontagne",
@@ -2063,7 +2128,8 @@
             "projectManagement",
             "test",
             "talk"
-        ]
+        ],
+        "publish_email": true
     },
     "Park-Patrick": {
         "name": "Patrick Park",
@@ -2096,7 +2162,8 @@
             "tool",
             "tutorial",
             "talk"
-        ]
+        ],
+        "publish_email": true
     },
     "BrainModes": {
         "name": "Petra Ritter",
@@ -2106,7 +2173,8 @@
         "blog": "https://www.brainsimulation.org",
         "email": "petra.ritter@charite.de",
         "affiliation": "Charité University Medicine Berlin,  Berlin Institute of Health, Berlin, 10115, Germany",
-        "orcid": "0000-0002-4643-4782"
+        "orcid": "0000-0002-4643-4782",
+        "publish_email": true
     },
     "prioux": {
         "name": "Pierre Rioux",
@@ -2180,7 +2248,8 @@
         "email": "Rik.Henson@mrc-cbu.cam.ac.uk",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "robert_b._innis": {
         "name": "Robert B. Innis",
@@ -2190,7 +2259,8 @@
         "orcid": "0000-0003-1238-7209",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "Lestropie": {
         "name": "Robert E. Smith",
@@ -2201,7 +2271,8 @@
         "contributions": [
             "code",
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "robert_knight": {
         "name": "Robert Knight",
@@ -2242,7 +2313,8 @@
             "review",
             "userTesting",
             "video"
-        ]
+        ],
+        "publish_email": true
     },
     "r03ert0": {
         "name": "Roberto Toro",
@@ -2274,7 +2346,8 @@
             "doc",
             "fundingFinding",
             "talk"
-        ]
+        ],
+        "publish_email": true
     },
     "remiadon": {
         "name": "Rémi Adon",
@@ -2321,7 +2394,8 @@
         "affiliation": "University of Milan, Department of Biomedical and Clinical Sciences, Milan, 20137, Italy",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "satra": {
         "name": "Satrajit S. Ghosh",
@@ -2333,7 +2407,8 @@
         "contributions": [
             "doc",
             "code"
-        ]
+        ],
+        "publish_email": true
     },
     "smakeig": {
         "name": "Scott Makeig",
@@ -2343,7 +2418,8 @@
         "orcid": "0000-0002-9048-8438",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "sjeung": {
         "name": "Sein Jeung",
@@ -2353,7 +2429,8 @@
         "email": "seinjeung@gmail.com",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "shashank_bansal": {
         "name": "Shashank Bansal",
@@ -2368,7 +2445,8 @@
         "orcid": "0000-0002-8502-4487",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": false
     },
     "soichih": {
         "name": "Soichi Hayashi",
@@ -2420,7 +2498,8 @@
             "test",
             "tool",
             "question"
-        ]
+        ],
+        "publish_email": false
     },
     "sbaillet": {
         "name": "Sylvain Baillet",
@@ -2438,7 +2517,8 @@
         "email": "sylvain.takerkart@univ-amu.fr",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "sebastientourbier": {
         "name": "Sébastien Tourbier",
@@ -2454,7 +2534,8 @@
             "bug",
             "code",
             "doc"
-        ]
+        ],
+        "publish_email": false
     },
     "sören_grothkopp": {
         "name": "Sören Grothkopp",
@@ -2493,7 +2574,8 @@
         "orcid": "0000-0002-2942-0821",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "tamás_józsa": {
         "name": "Tamás Józsa",
@@ -2513,7 +2595,8 @@
             "doc",
             "plugin",
             "code"
-        ]
+        ],
+        "publish_email": true
     },
     "teonbrooks": {
         "name": "Teon L. Brooks",
@@ -2543,7 +2626,8 @@
             "review",
             "maintenance",
             "code"
-        ]
+        ],
+        "publish_email": true
     },
     "tfunck": {
         "name": "Thomas Funck",
@@ -2580,7 +2664,8 @@
             "talk",
             "bug",
             "ideas"
-        ]
+        ],
+        "publish_email": true
     },
     "dickscheid": {
         "name": "Timo Dickscheid",
@@ -2590,7 +2675,8 @@
         "orcid": "0000-0002-9051-3701",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "timo-berg": {
         "name": "Timotheus Berg",
@@ -2600,7 +2686,8 @@
         "email": "timo.berg@campus.tu-berlin.de",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "tobey_betthauser": {
         "name": "Tobey Betthauser",
@@ -2679,7 +2766,8 @@
         "affiliation": "Tri-institutional Center for Translational Research in Neuroimaging and Data Science (TReNDS), Georgia State, Georgia Tech, and Emory, Atlanta, GA 30030",
         "contributions": [
             "doc"
-        ]
+        ],
+        "publish_email": true
     },
     "vladimir_litvak": {
         "name": "Vladimir Litvak",
@@ -2726,7 +2814,8 @@
         "contributions": [
             "doc",
             "code"
-        ]
+        ],
+        "publish_email": true
     },
     "yarikoptic": {
         "name": "Yaroslav O. Halchenko",

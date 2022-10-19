@@ -101,7 +101,7 @@ def return_this_contributor(tsv, name: str):
         "website": website,
         "affiliation": affiliation,
         "orcid": orcid,
-        "add_email": add_email,
+        "publish_email": add_email,
         "email": email,
     }
 
@@ -185,8 +185,9 @@ def main():
             """
             update .tributor
             """
+            tributors[key_tributor]["publish_email"] = this_contributor["publish_email"]
             if (
-                this_contributor["add_email"] is True
+                tributors[key_tributor]["publish_email"] is True
                 and this_contributor["email"] is not None
             ):
                 tributors[key_tributor]["email"] = this_contributor["email"]
