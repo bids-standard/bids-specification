@@ -400,7 +400,9 @@
         "contributions": [
             "doc"
         ],
-        "name": "Carlo Miniussi"
+        "name": "Carlo Miniussi",
+        "orcid": "0000-0002-5436-4745",
+        "affiliation": "University of Trento"
     },
     "chloé_pasturel": {
         "contributions": [
@@ -754,7 +756,9 @@
         "contributions": [
             "doc"
         ],
-        "name": "Eleonora Marcantoni"
+        "name": "Eleonora Marcantoni",
+        "orcid": "0000-0003-1137-4983",
+        "affiliation": "IRCCS Istituto Centro San Giovanni di Dio Fatebenefratelli di Brescia"
     },
     "elizabeth_bock": {
         "contributions": [
@@ -983,13 +987,17 @@
         "contributions": [
             "doc"
         ],
-        "name": "Giacomo Bertazzoli"
+        "name": "Giacomo Bertazzoli",
+        "orcid": "0000-0003-1624-2576",
+        "affiliation": "Centro San Giovanni di Dio Fatebenefratelli"
     },
     "giacomo_guidali": {
         "contributions": [
             "doc"
         ],
-        "name": "Giacomo Guidali"
+        "name": "Giacomo Guidali",
+        "orcid": "0000-0002-3741-0404",
+        "affiliation": "IRCCS Centro San Giovanni di Dio Fatebenefratelli"
     },
     "gmazzamuto": {
         "affiliation": "National Institute of Optics, National Research Council",
@@ -1756,7 +1764,9 @@
         "contributions": [
             "doc"
         ],
-        "name": "Maqsood Yaqub"
+        "name": "Maqsood Yaqub",
+        "orcid": "0000-0003-2122-740X",
+        "affiliation": "Amsterdam UMC, locatie VUmc"
     },
     "Moo-Marc": {
         "affiliation": "Montreal Neurological Institute-Hospital, McConnell Brain Imaging Center, Montreal, Quebec, H2A ",
@@ -1832,7 +1842,9 @@
         "contributions": [
             "doc"
         ],
-        "name": "Marta Bortoletto"
+        "name": "Marta Bortoletto",
+        "orcid": "0000-0002-8489-8043",
+        "affiliation": "IRCCS Centro S Giovanni di Dio Fatebenefratelli"
     },
     "martin_craig": {
         "contributions": [
@@ -1877,7 +1889,9 @@
         "contributions": [
             "doc"
         ],
-        "name": "Martina Bulgari"
+        "name": "Martina Bulgari",
+        "orcid": "0000-0003-1594-9617",
+        "affiliation": "IRCCS Centro San Giovanni di Dio Fatebenefratelli"
     },
     "mateuszpawlik": {
         "blog": "https://github.com/mateuszpawlik",
@@ -2100,7 +2114,8 @@
         "contributions": [
             "doc"
         ],
-        "name": "Nima Bigdely Shamlo"
+        "name": "Nima Bigdely Shamlo",
+        "orcid": "0000-0001-6403-892X"
     },
     "olivier_david": {
         "contributions": [
@@ -2732,7 +2747,9 @@
         "contributions": [
             "doc"
         ],
-        "name": "Tobey Betthauser"
+        "name": "Tobey Betthauser",
+        "orcid": "0000-0001-8856-1352",
+        "affiliation": "University of Wisconsin-Madison"
     },
     "xi": {
         "blog": "http://tobib.spline.de",
@@ -2812,7 +2829,8 @@
         "contributions": [
             "doc"
         ],
-        "name": "Vittorio Iacovella"
+        "name": "Vittorio Iacovella",
+        "orcid": "0000-0002-0853-1573"
     },
     "vladimir_litvak": {
         "affiliation": "UCL Queen Square Institute of Neurology",
