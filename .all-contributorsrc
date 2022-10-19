@@ -755,6 +755,13 @@
             "avatar_url": "https://avatars.githubusercontent.com/u/26312022?v=4"
         },
         {
+            "name": "Duncan Macleod",
+            "login": "duncan_macleod",
+            "contributions": [
+                "doc"
+            ]
+        },
+        {
             "name": "Dung Truong",
             "login": "dungscout96",
             "contributions": [
@@ -1042,6 +1049,13 @@
         {
             "name": "Gio Piantoni",
             "login": "gio_piantoni",
+            "contributions": [
+                "doc"
+            ]
+        },
+        {
+            "name": "Gitte M. Knudsen",
+            "login": "gitte_m._knudsen",
             "contributions": [
                 "doc"
             ]
@@ -1789,6 +1803,13 @@
             ]
         },
         {
+            "name": "Maqsood Yaqub",
+            "login": "maqsood_yaqub",
+            "contributions": [
+                "doc"
+            ]
+        },
+        {
             "login": "Moo-Marc",
             "name": "Marc Lalancette",
             "contributions": [
@@ -2122,6 +2143,13 @@
             ]
         },
         {
+            "name": "Nima Bigdely Shamlo",
+            "login": "nima_bigdely_shamlo",
+            "contributions": [
+                "doc"
+            ]
+        },
+        {
             "name": "Olivier David",
             "login": "olivier_david",
             "contributions": [
@@ -2390,6 +2418,13 @@
             ],
             "profile": "https://github.com/r03ert0",
             "avatar_url": "https://avatars.githubusercontent.com/u/2310732?v=4"
+        },
+        {
+            "name": "Rohan Goyal",
+            "login": "rohan_goyal",
+            "contributions": [
+                "doc"
+            ]
         },
         {
             "login": "rwblair",
@@ -2754,6 +2789,13 @@
             ],
             "profile": "https://github.com/timo-berg",
             "avatar_url": "https://avatars.githubusercontent.com/u/63448407?v=4"
+        },
+        {
+            "name": "Tobey Betthauser",
+            "login": "tobey_betthauser",
+            "contributions": [
+                "doc"
+            ]
         },
         {
             "login": "xi",

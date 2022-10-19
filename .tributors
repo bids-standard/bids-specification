@@ -379,6 +379,9 @@
         "name": "Douglas N. Greve",
         "blog": "https://github.com/dngreve"
     },
+    "duncan_macleod": {
+        "name": "Duncan Macleod"
+    },
     "dungscout96": {
         "name": "Dung Truong",
         "blog": "https://github.com/dungscout96"
@@ -513,6 +516,9 @@
     },
     "gio_piantoni": {
         "name": "Gio Piantoni"
+    },
+    "gitte_m._knudsen": {
+        "name": "Gitte M. Knudsen"
     },
     "giulio_castegnaro": {
         "name": "Giulio Castegnaro"
@@ -914,6 +920,9 @@
         "affiliation": "Dynamics of Cognitive Processes Group Institut de Neurosciences des Systèmes, INS - UMR 1106 Inserm Aix-Marseille Université, France",
         "orcid": "0000-0001-6358-4734"
     },
+    "maqsood_yaqub": {
+        "name": "Maqsood Yaqub"
+    },
     "Moo-Marc": {
         "name": "Marc Lalancette",
         "bio": "MEG lab manager, MSc Physics, UBC 2003",
@@ -1079,6 +1088,9 @@
     "nicole_c_swann": {
         "name": "Nicole C. Swann"
     },
+    "nima_bigdely_shamlo": {
+        "name": "Nima Bigdely Shamlo"
+    },
     "olivier_david": {
         "name": "Olivier David"
     },
@@ -1203,6 +1215,9 @@
     "r03ert0": {
         "name": "Roberto Toro",
         "blog": "https://github.com/r03ert0"
+    },
+    "rohan_goyal": {
+        "name": "Rohan Goyal"
     },
     "rwblair": {
         "name": "Ross W. Blair",
@@ -1385,6 +1400,9 @@
         "affiliation": "TU Berlin, Biological Psychology and Neuroergonomics, Berlin, 10623, Germany",
         "orcid": "0000-0002-0746-3679",
         "email": "timo.berg@campus.tu-berlin.de"
+    },
+    "tobey_betthauser": {
+        "name": "Tobey Betthauser"
     },
     "xi": {
         "name": "Tobias Bengfort",
