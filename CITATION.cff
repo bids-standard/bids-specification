@@ -203,6 +203,8 @@ authors:
     affiliation: Inria, Univ Rennes, CNRS, Inserm, Rennes, 35042, France
   - given-names: Carlo
     family-names: Miniussi
+    orcid: https://orcid.org/0000-0002-5436-4745
+    affiliation: University of Trento
   - given-names: Chloé
     family-names: Pasturel
   - given-names: Chris
@@ -348,6 +350,8 @@ authors:
       Dusseldorf, 40224, Germany
   - given-names: Eleonora
     family-names: Marcantoni
+    orcid: https://orcid.org/0000-0003-1137-4983
+    affiliation: IRCCS Istituto Centro San Giovanni di Dio Fatebenefratelli di Brescia
   - given-names: Elizabeth
     family-names: Bock
   - given-names: Elizabeth
@@ -434,8 +438,12 @@ authors:
     orcid: https://orcid.org/0000-0003-0267-3033
   - given-names: Giacomo
     family-names: Bertazzoli
+    orcid: https://orcid.org/0000-0003-1624-2576
+    affiliation: Centro San Giovanni di Dio Fatebenefratelli
   - given-names: Giacomo
     family-names: Guidali
+    orcid: https://orcid.org/0000-0002-3741-0404
+    affiliation: IRCCS Centro San Giovanni di Dio Fatebenefratelli
   - given-names: Giacomo
     family-names: Mazzamuto
     website: https://github.com/gmazzamuto
@@ -781,6 +789,8 @@ authors:
       Systèmes, INS - UMR 1106 Inserm Aix-Marseille Université, France
   - given-names: Maqsood
     family-names: Yaqub
+    orcid: https://orcid.org/0000-0003-2122-740X
+    affiliation: Amsterdam UMC, locatie VUmc
   - given-names: Marc
     family-names: Lalancette
     website: https://github.com/Moo-Marc
@@ -817,6 +827,8 @@ authors:
     affiliation: Universität Leipzig
   - given-names: Marta
     family-names: Bortoletto
+    orcid: https://orcid.org/0000-0002-8489-8043
+    affiliation: IRCCS Centro S Giovanni di Dio Fatebenefratelli
   - given-names: Martin
     family-names: Craig
   - given-names: Martin
@@ -836,6 +848,8 @@ authors:
     family-names: Wilson
   - given-names: Martina
     family-names: Bulgari
+    orcid: https://orcid.org/0000-0003-1594-9617
+    affiliation: IRCCS Centro San Giovanni di Dio Fatebenefratelli
   - given-names: Mateusz
     family-names: Pawlik
     website: https://github.com/mateuszpawlik
@@ -925,6 +939,7 @@ authors:
     family-names: C. Swann
   - given-names: Nima
     family-names: Bigdely Shamlo
+    orcid: https://orcid.org/0000-0001-6403-892X
   - given-names: Olivier
     family-names: David
   - given-names: Orrin
@@ -1191,6 +1206,8 @@ authors:
     email: timo.berg@campus.tu-berlin.de
   - given-names: Tobey
     family-names: Betthauser
+    orcid: https://orcid.org/0000-0001-8856-1352
+    affiliation: University of Wisconsin-Madison
   - given-names: Tobias
     family-names: Bengfort
     website: http://tobib.spline.de
@@ -1226,6 +1243,7 @@ authors:
     email: vcalhoun@gsu.edu
   - given-names: Vittorio
     family-names: Iacovella
+    orcid: https://orcid.org/0000-0002-0853-1573
   - given-names: Vladimir
     family-names: Litvak
     orcid: https://orcid.org/0000-0001-8535-7452
