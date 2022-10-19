@@ -5,15 +5,18 @@ import pandas as pd
 from rich import print
 
 from utils import (
-    load_tributors,
-    load_from_allcontrib,
-    root_dir,
-    return_missing_from_tributors,
     add_to_tributors,
     add_to_allcontrib,
-    write_tributors,
-    write_from_allcontrib,
     get_gh_avatar,
+    load_citation,
+    load_from_allcontrib,
+    load_tributors,
+    root_dir,
+    return_author_list_for_cff,
+    return_missing_from_tributors,
+    write_citation,
+    write_from_allcontrib,
+    write_tributors,
 )
 
 UPDATE_AVATARS = False
@@ -88,6 +91,7 @@ def main():
 
     tributors_file = root_dir().joinpath(".tributors")
     allcontrib_file = root_dir().joinpath(".all-contributorsrc")
+    citation_file = root_dir().joinpath("CITATION.cff")
 
     tsv = pd.read_csv("contributors.tsv", sep="\t", encoding="utf8")
     tsv = rename_columns(tsv)
@@ -186,14 +190,18 @@ def main():
     allcontrib_names = [x["name"] for x in allcontrib["contributors"]]
     tributors_names = [tributors[x]["name"] for x in tributors]
 
+    # sanity checks
     print(set(tributors_names) - set(allcontrib_names))
     print(set(allcontrib_names) - set(tributors_names))
-
     assert len(allcontrib["contributors"]) == len(tributors)
 
     write_from_allcontrib(allcontrib_file, allcontrib)
 
     write_tributors(tributors_file, tributors)
+
+    citation = load_citation(citation_file)
+    citation["authors"] = return_author_list_for_cff(tributors_file)
+    write_citation(citation_file, citation)
 
 
 if __name__ == "__main__":

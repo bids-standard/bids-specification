@@ -41,7 +41,7 @@ def load_citation(citation_file):
 
 
 def write_citation(citation_file, citation):
-    with open(citation_file, "r", encoding="utf8") as output_file:
+    with open(citation_file, "w", encoding="utf8") as output_file:
         return yaml.dump(citation, output_file)
 
 
@@ -137,3 +137,40 @@ def add_to_allcontrib(allcontrib_file, user: str):
             }
         )
         write_from_allcontrib(allcontrib_file, allcontrib)
+
+def return_author_list_for_cff(tributors_file):
+
+    tributors = load_tributors(tributors_file)
+
+    author_list = []
+
+    for count, tributor in enumerate(tributors, start=1):
+
+        this_tributor = tributors[tributor]
+
+        name = this_tributor["name"]
+
+        given_names = name.split()[0]
+
+        new_contrib = {
+            "given-names": given_names,
+        }
+
+        if family_names := " ".join(name.split()[1:]):
+            new_contrib["family-names"] = family_names
+
+        if "blog" in this_tributor:
+            new_contrib["website"] = this_tributor["blog"]
+
+        if "orcid" in this_tributor:
+            new_contrib["orcid"] = "https://orcid.org/" + this_tributor["orcid"]
+
+        if "affiliation" in this_tributor:
+            new_contrib["affiliation"] = this_tributor["affiliation"]
+
+        if "email" in this_tributor:
+            new_contrib["email"] = this_tributor["email"]
+
+        author_list.append(new_contrib)
+
+    return author_list
