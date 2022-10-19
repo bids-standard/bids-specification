@@ -9,11 +9,6 @@ update_readme_all_contrib:
 update_all_contributors:
 	tributors update allcontrib
 
-tools/contributors.tsv:
-	rm -f tools/contributors.tsv
-	curl -L "https://docs.google.com/spreadsheets/d/1pYMQvyL_nY2yt2biPFuBjcUeOExq1WXuK67V5sKjseo/export?format=tsv" -o tools/contributors.tsv
-
-
 runprettier:
 	prettier --write "src/schema/**/*.yaml"
 	python3 -m yamllint -f standard src/schema/ -c .yamllint.yml
