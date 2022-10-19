@@ -37,9 +37,8 @@ def transfer_contribution(tributors: dict, allcontrib: dict) -> dict:
         index_tributor = tributors_names.index(name)
         key_tributor = tributors_keys[index_tributor]
 
-        allcontrib["contributors"][index_allcontrib]["contributions"] = tributors[
-            key_tributor
-        ]["contributions"]
+        contributions = tributors[key_tributor].get("contributions", ["doc"])
+        allcontrib["contributors"][index_allcontrib]["contributions"] = contributions
 
     return allcontrib
 
@@ -218,7 +217,10 @@ def main():
     # sanity checks
     print(set(tributors_names) - set(allcontrib_names))
     print(set(allcontrib_names) - set(tributors_names))
-    assert len(allcontrib["contributors"]) == len(tributors)
+
+    assert len(tributors_names) == len(set(tributors_names))
+    assert len(allcontrib_names) == len(set(allcontrib_names))
+    assert len(tributors_names) == len(allcontrib_names)
 
     allcontrib = transfer_contribution(tributors, allcontrib)
 

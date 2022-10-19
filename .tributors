@@ -1928,15 +1928,12 @@
             "doc"
         ]
     },
-    "BrainModes": {
+    "MichaelSchirner": {
         "name": "Michael Schirner",
         "blog": "https://www.brainsimulation.org",
         "email": "michael.schirner@charite.de",
         "affiliation": "Charité—Universitätsmedizin Berlin, Department of Neurology, Berlin, 10115, Germany",
-        "orcid": "0000-0001-8227-8476",
-        "contributions": [
-            "doc"
-        ]
+        "orcid": "0000-0001-8227-8476"
     },
     "naveau": {
         "name": "Mikaël Naveau",
@@ -2101,15 +2098,15 @@
             "talk"
         ]
     },
-    "petra_ritter": {
+    "BrainModes": {
         "name": "Petra Ritter",
+        "contributions": [
+            "doc"
+        ],
         "blog": "https://www.brainsimulation.org",
         "email": "petra.ritter@charite.de",
         "affiliation": "Charité University Medicine Berlin,  Berlin Institute of Health, Berlin, 10115, Germany",
-        "orcid": "0000-0002-4643-4782",
-        "contributions": [
-            "doc"
-        ]
+        "orcid": "0000-0002-4643-4782"
     },
     "prioux": {
         "name": "Pierre Rioux",
