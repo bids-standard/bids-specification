@@ -7,8 +7,6 @@ from utils import load_from_allcontrib, root_dir
 
 tmp_file = Path(__file__).parent.joinpath("tmp.md")
 
-tmp_dict = [{"name": "foo", "contributions": ["financial", "eventOrganizing"]}]
-
 
 def contributor_table_header(max_name_length, max_contrib_length):
     return f"""
@@ -37,9 +35,9 @@ def main():
 
     max_name_length = len(max(allcontrib_names, key=len))
 
-    max_contrib_length = max(
-        [len(x["contributions"]) for x in allcontrib["contributors"]]
-    ) * 2
+    max_contrib_length = (
+        max(len(x["contributions"]) for x in allcontrib["contributors"]) * 2
+    )
 
     with open(tmp_file, "w", encoding="utf8") as output_file:
         output_file.write(contributor_table_header(max_name_length, max_contrib_length))

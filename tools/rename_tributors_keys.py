@@ -1,20 +1,8 @@
-import json
-
 from pathlib import Path
 
 from rich import print
 
-from utils import write_tributors
-
-
-def load_tributors(tributors_file):
-    with open(tributors_file, "r", encoding="utf8") as tributors_file:
-        return json.load(tributors_file)
-
-
-def load_from_allcontrib(allcontrib_file):
-    with open(allcontrib_file, "r", encoding="utf8") as input_file:
-        return json.load(input_file)
+from utils import write_tributors, load_tributors, load_from_allcontrib
 
 
 def main():

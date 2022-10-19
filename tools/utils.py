@@ -3,6 +3,7 @@ import json
 import ruamel.yaml
 import emoji
 from rich import print
+import requests
 
 yaml = ruamel.yaml.YAML()
 yaml.indent(mapping=2, sequence=4, offset=2)
@@ -72,6 +73,20 @@ def emoji_map():
         "maintenance": ":construction:",
         "financial": ":dollar_banknote:",
     }
+
+
+def get_gh_avatar(gh_username, auth_username, auth_token):
+
+    avatar_url = None
+
+    if gh_username is not None:
+        print(f"getting avatar: {gh_username}")
+        url = f"https://api.github.com/users/{gh_username}"
+        response = requests.get(url, auth=(auth_username, auth_token))
+        if response.status_code == 200:
+            avatar_url = response.json()["avatar_url"]
+
+    return avatar_url
 
 
 def return_missing_from_tributors(tributors_file, names: list[str]) -> list[str]:

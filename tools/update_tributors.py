@@ -1,8 +1,7 @@
-import json
 from math import nan
 
 import pandas as pd
-import requests
+
 from rich import print
 
 from utils import (
@@ -12,8 +11,10 @@ from utils import (
     return_missing_from_tributors,
     add_to_tributors,
     add_to_allcontrib,
+    write_tributors,
+    write_from_allcontrib,
+    get_gh_avatar,
 )
-
 
 def rename_columns(df):
     df.rename(
@@ -76,20 +77,6 @@ def return_this_contributor(tsv, name: str):
         "add_email": add_email,
         "email": email,
     }
-
-
-def get_gh_avatar(gh_username, auth_username, auth_token):
-
-    avatar_url = None
-
-    if gh_username is not None:
-        print(f"getting avatar: {gh_username}")
-        url = f"https://api.github.com/users/{gh_username}"
-        response = requests.get(url, auth=(auth_username, auth_token))
-        if response.status_code == 200:
-            avatar_url = response.json()["avatar_url"]
-
-    return avatar_url
 
 
 def main():
@@ -204,11 +191,9 @@ def main():
 
     assert len(allcontrib["contributors"]) == len(tributors)
 
-    with open(allcontrib_file, "w", encoding="utf8") as output_file:
-        json.dump(allcontrib, output_file, indent=4, ensure_ascii=False)
+    write_from_allcontrib(allcontrib_file, allcontrib)
 
-    with open(tributors_file, "w", encoding="utf8") as output_file:
-        json.dump(tributors, output_file, indent=4, ensure_ascii=False)
+    write_tributors(tributors_file, tributors)
 
 
 if __name__ == "__main__":
