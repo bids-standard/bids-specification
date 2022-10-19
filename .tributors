@@ -1140,11 +1140,10 @@
     },
     "eduff": {
         "name": "Eugene P. Duff",
-        "blog": "https://github.com/eduff"
-    },
-    "jcohenadad": {
-        "name": "Julien Cohen-Adad",
-        "blog": "https://github.com/jcohenadad"
+        "blog": "http://eduff.github.io",
+        "email": "eduff@imperial.ac.uk",
+        "affiliation": "UK Dementia Research Institute, Imperial College London, UK",
+        "orcid": "0000-0001-8795-5472"
     },
     "pvdemael": {
         "name": "Pieter Vandemaele",
@@ -1401,13 +1400,6 @@
         "name": "Suyash Bhogawar",
         "blog": "https://www.linkedin.com/in/suyashb/"
     },
-    "MaxvandenBoom/": {
-        "name": "Max A. van den Boom",
-        "blog": "https://github.com/MaxvandenBoom",
-        "email": "m.a.vandenboom84@gmail.com",
-        "affiliation": "Mayo Clinic, Department of neurosurgery, Rochester, MN, USA",
-        "orcid": "0000-0001-5481-1659"
-    },
     "Arshitha": {
         "name": "Arshitha Basavaraj",
         "email": "arsh2794@gmail.com",
@@ -1421,5 +1413,18 @@
         "blog": "https://github.com/matteotonietto",
         "affiliation": "Hoffmann-La Roche Ltd, Research and Early Development,  Basel, 4070, Switzerland",
         "orcid": "0000-0001-9591-5710"
+    },
+    "MaxvandenBoom": {
+        "name": "Max A. van den Boom",
+        "blog": "https://github.com/MaxvandenBoom",
+        "email": "m.a.vandenboom84@gmail.com",
+        "affiliation": "Mayo Clinic, Department of neurosurgery, Rochester, MN, USA",
+        "orcid": "0000-0001-5481-1659"
+    },
+    "jcohenadad": {
+        "name": "Julien Cohen-Adad",
+        "blog": "www.neuro.polymtl.ca",
+        "affiliation": "Polytechnique Montreal, Department of Electrical Engineering, Montreal, QC, Canada",
+        "orcid": "0000-0003-3662-9532"
     }
 }

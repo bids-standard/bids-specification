@@ -201,6 +201,9 @@ authors:
 - given-names: Gaia
   family-names: Rizzo
   website: http://fair.dei.unipd.it/gaia-rizzo/
+  orcid: 'https://orcid.org/0000-0001-7272-8576 '
+  affiliation: Invicro, Burlington Danes Building, Imperial College London, Hammersmith
+    Hospital, Du Cane Road, London, W12 0NN, UK
 - given-names: Sébastien
   family-names: Tourbier
   website: https://github.com/sebastientourbier
@@ -225,8 +228,8 @@ authors:
   family-names: Noergaard
   website: https://profiles.stanford.edu/martin-noergaard
   orcid: https://orcid.org/0000-0003-2131-5688
-  affiliation: Stanford University
-  email: martin.noergaard@nru.dk
+  affiliation: Stanford University, Department of Psychology, CA, 94304, USA
+  email: noergard@stanford.edu
 - given-names: Alex
   family-names: Rockhill
   website: https://github.com/alexrockhill
@@ -932,10 +935,10 @@ authors:
   website: https://github.com/danlurie
 - given-names: Eugene
   family-names: P. Duff
-  website: https://github.com/eduff
-- given-names: Julien
-  family-names: Cohen-Adad
-  website: https://github.com/jcohenadad
+  website: http://eduff.github.io
+  orcid: https://orcid.org/0000-0001-8795-5472
+  affiliation: UK Dementia Research Institute, Imperial College London, UK
+  email: eduff@imperial.ac.uk
 - given-names: Pieter
   family-names: Vandemaele
   website: https://github.com/pvdemael
@@ -959,7 +962,8 @@ authors:
   family-names: Takerkart
   website: https://github.com/SylvainTakerkart
   orcid: https://orcid.org/0000-0001-8410-0962
-  affiliation: CNRS & Aix-Marseille Université
+  affiliation: CNRS, Institut de Neurosciences de la Timone (INT), Marseille, France
+  email: sylvain.takerkart@univ-amu.fr
 - given-names: Tristan
   family-names: Glatard
   website: https://github.com/glatard
@@ -1154,12 +1158,6 @@ authors:
 - given-names: Suyash
   family-names: Bhogawar
   website: https://www.linkedin.com/in/suyashb/
-- given-names: Max
-  family-names: A. van den Boom
-  website: https://github.com/MaxvandenBoom
-  orcid: https://orcid.org/0000-0001-5481-1659
-  affiliation: Mayo Clinic, Department of neurosurgery, Rochester, MN, USA
-  email: m.a.vandenboom84@gmail.com
 - given-names: Arshitha
   family-names: Basavaraj
   website: https://github.com/Arshitha
@@ -1172,3 +1170,15 @@ authors:
   orcid: https://orcid.org/0000-0001-9591-5710
   affiliation: Hoffmann-La Roche Ltd, Research and Early Development,  Basel, 4070,
     Switzerland
+- given-names: Max
+  family-names: A. van den Boom
+  website: https://github.com/MaxvandenBoom
+  orcid: https://orcid.org/0000-0001-5481-1659
+  affiliation: Mayo Clinic, Department of neurosurgery, Rochester, MN, USA
+  email: m.a.vandenboom84@gmail.com
+- given-names: Julien
+  family-names: Cohen-Adad
+  website: www.neuro.polymtl.ca
+  orcid: https://orcid.org/0000-0003-3662-9532
+  affiliation: Polytechnique Montreal, Department of Electrical Engineering, Montreal,
+    QC, Canada
