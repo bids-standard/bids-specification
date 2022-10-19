@@ -26,6 +26,9 @@ keywords:
 - standards
 - data-standards
 
+# The authors section is automatically generated from the content
+#  of the .tributors file. Please do not edit manually.
+
 authors:
 - given-names: Stefan
   family-names: Appelhoff

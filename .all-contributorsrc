@@ -1875,7 +1875,7 @@
             ]
         },
         {
-            "name": "Michael Schirner",
+            "name": "Petra Ritter",
             "login": "BrainModes",
             "contributions": [
                 "doc"
@@ -2937,15 +2937,6 @@
             "profile": "https://uol.de/en/applied-neurocognitive-psychology"
         },
         {
-            "name": "Petra Ritter",
-            "login": "BrainModes",
-            "contributions": [
-                "doc"
-            ],
-            "profile": "https://www.brainsimulation.org",
-            "avatar_url": "https://avatars.githubusercontent.com/u/8677353?v=4"
-        },
-        {
             "name": "Robert Innis",
             "login": "robert_innis",
             "contributions": [
@@ -2961,6 +2952,17 @@
             ],
             "profile": "https://sccn.ucsd.edu/~scott",
             "avatar_url": "https://avatars.githubusercontent.com/u/43755798?v=4"
+        },
+        {
+            "login": "jwodder",
+            "name": "John T. Wodder",
+            "contributions": [
+                "code"
+            ],
+            "profile": "https://github.com/jwodder",
+            "avatar_url": [
+                "https://avatars.githubusercontent.com/u/98207?v=4"
+            ]
         }
     ],
     "contributorsPerLine": 7

@@ -1457,6 +1457,10 @@
         "name": "Benjamin Beasley",
         "blog": "https://github.com/musicinmybrain"
     },
+    "jwodder": {
+        "name": "John T. Wodder",
+        "blog": "https://github.com/jwodder"
+    },
     "DrCyPhi": {
         "name": "Cyrus Eierud",
         "blog": "https://trendscenter.org/cyrus-eierud/",
@@ -1475,7 +1479,8 @@
         "name": "Scott Makeig",
         "blog": "https://sccn.ucsd.edu/~scott",
         "email": "smakeig@gmail.com",
-        "affiliation": "Institute for Neural Computation, University of California San Diego, La Jolla, CA 92-93-0955, USA"
+        "affiliation": "Institute for Neural Computation, University of California San Diego, La Jolla, CA 92-93-0955, USA",
+        "orcid": "0000-0002-9048-8438"
     },
     "petra_ritter": {
         "name": "Petra Ritter",
