@@ -5,6 +5,9 @@ import emoji
 from rich import print
 import requests
 
+from collections import OrderedDict
+
+
 yaml = ruamel.yaml.YAML()
 yaml.indent(mapping=2, sequence=4, offset=2)
 
@@ -99,6 +102,8 @@ def return_missing_from_tributors(tributors_file, names: list[str]) -> list[str]
 
 
 def sort_tributors(tributors):
+    for key in tributors:
+        tributors[key] = dict(OrderedDict(sorted(tributors[key].items())))
     return dict(sorted(tributors.items(), key=lambda item: item[1]["name"]))
 
 
@@ -114,6 +119,8 @@ def add_to_tributors(tributors_file, user: str):
 
 
 def sort_all_contrib(allcontrib):
+    for i, contrib in enumerate(allcontrib["contributors"]):
+        allcontrib["contributors"][i] = dict(OrderedDict(sorted(contrib.items())))
     allcontrib["contributors"] = sorted(
         allcontrib["contributors"], key=lambda x: x["name"]
     )
