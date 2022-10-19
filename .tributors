@@ -1,25 +1,38 @@
 {
     "aaron_oliver-taylor": {
-        "name": "Aaron Oliver-Taylor"
+        "name": "Aaron Oliver-Taylor",
+        "contributions": [
+            "doc"
+        ]
     },
     "adam2392": {
         "name": "Adam Li",
         "bio": "I am a Postdoctoral Research Fellow at Columbia University in the Causal AI Lab. PhD in BME and MS in Applied Math&Stats from Johns Hopkins U.",
-        "blog": "https://adam2392.github.io/"
+        "blog": "https://adam2392.github.io/",
+        "contributions": [
+            "doc",
+            "code"
+        ]
     },
     "agt24": {
         "name": "Adam Thomas",
         "blog": "https://cmn.nimh.nih.gov/dsst",
         "email": "adamt@nih.gov",
         "affiliation": "NIMH, Intramural Research Program, Bethesda, MD, 20891, USA",
-        "orcid": "0000-0002-2850-1419"
+        "orcid": "0000-0002-2850-1419",
+        "contributions": [
+            "doc"
+        ]
     },
     "adeen_flinker": {
         "name": "Adeen Flinker",
         "orcid": "0000-0003-1247-1283",
         "affiliation": "New York University, Department of Neurology, New York City, New York, 10016, USA",
         "email": "adeen@nyu.edu",
-        "blog": "http://flinkerlab.org"
+        "blog": "http://flinkerlab.org",
+        "contributions": [
+            "doc"
+        ]
     },
     "adswa": {
         "name": "Adina S. Wagner",
@@ -27,128 +40,230 @@
         "bio": "Psychoinformagician in training",
         "blog": "https://www.adina-wagner.com",
         "orcid": "0000-0003-2917-3450",
-        "affiliation": "Institute of Neuroscience and Medicine (INM-7), Research Center Juelich, Juelich, 52428, Germany"
+        "affiliation": "Institute of Neuroscience and Medicine (INM-7), Research Center Juelich, Juelich, 52428, Germany",
+        "contributions": [
+            "design",
+            "code"
+        ]
     },
     "agahkarakuzu": {
         "name": "Agah Karakuzu",
         "email": "agahkarakuzu@gmail.com",
         "blog": "https://agahkarakuzu.github.io",
-        "orcid": "0000-0001-7283-271X"
+        "orcid": "0000-0001-7283-271X",
+        "contributions": [
+            "question",
+            "doc",
+            "data",
+            "ideas",
+            "code"
+        ]
     },
     "AkiNikolaidis": {
         "name": "Aki Nikolaidis",
         "blog": "https://github.com/AkiNikolaidis",
-        "orcid": "0000-0001-8960-1934"
+        "orcid": "0000-0001-8960-1934",
+        "contributions": [
+            "doc"
+        ]
     },
     "alberto_lazari": {
-        "name": "Alberto Lazari"
+        "name": "Alberto Lazari",
+        "contributions": [
+            "doc"
+        ]
     },
     "adelavega": {
         "name": "Alejandro de la Vega",
-        "blog": "https://github.com/adelavega"
+        "blog": "https://github.com/adelavega",
+        "contributions": [
+            "bug",
+            "code",
+            "test"
+        ]
     },
     "alegiac95": {
         "name": "Alessio Giacomel",
         "blog": "https://github.com/alegiac95",
         "orcid": "0000-0002-7784-2041",
-        "affiliation": "GlaxoSmithKline Research and Development"
+        "affiliation": "GlaxoSmithKline Research and Development",
+        "contributions": [
+            "doc"
+        ]
     },
     "alexrockhill": {
         "name": "Alex Rockhill",
         "email": "aprockhill@mailbox.org",
         "bio": "Graduate Student in the Swann Lab",
         "orcid": "0000-0003-3868-7453",
-        "blog": "https://github.com/alexrockhill"
+        "blog": "https://github.com/alexrockhill",
+        "contributions": [
+            "doc",
+            "tool",
+            "code"
+        ]
     },
     "alexander_jones": {
-        "name": "Alexander Jones"
+        "name": "Alexander Jones",
+        "contributions": [
+            "code",
+            "bug"
+        ]
     },
     "alexlicohen": {
         "name": "Alexander L. Cohen",
         "blog": "https://bchcohenlab.com",
         "affiliation": "Boston Children's Hospital, Department of Neurology, Boston, MA, 02115, USA",
         "orcid": "0000-0001-6557-5866",
-        "email": "alexander.cohen2@childrens.harvard.edu"
+        "email": "alexander.cohen2@childrens.harvard.edu",
+        "contributions": [
+            "bug",
+            "code",
+            "doc",
+            "question"
+        ]
     },
     "alexander_von_lautz": {
-        "name": "Alexander von Lautz"
+        "name": "Alexander von Lautz",
+        "contributions": [
+            "doc"
+        ]
     },
     "agramfort": {
         "name": "Alexandre Gramfort",
         "blog": "http://alexandre.gramfort.net",
         "email": "alexandre.gramfort@inria.fr",
         "affiliation": "Inria, Université Paris-Saclay",
-        "orcid": "0000-0001-9791-4404"
+        "orcid": "0000-0001-9791-4404",
+        "contributions": [
+            "doc",
+            "example"
+        ]
     },
     "alexandre_hutton": {
-        "name": "Alexandre Hutton"
+        "name": "Alexandre Hutton",
+        "contributions": [
+            "doc"
+        ]
     },
     "alexandreroutier": {
         "name": "Alexandre Routier",
         "blog": "https://github.com/alexandreroutier",
-        "orcid": "0000-0003-1603-8049"
+        "orcid": "0000-0003-1603-8049",
+        "contributions": [
+            "doc"
+        ]
     },
     "alexfoias": {
         "name": "Alexandru Foias",
         "orcid": "0000-0001-5160-1402",
-        "blog": "https://github.com/alexfoias"
+        "blog": "https://github.com/alexfoias",
+        "contributions": [
+            "doc",
+            "data"
+        ]
     },
     "ali_khan": {
-        "name": "Ali Khan"
+        "name": "Ali Khan",
+        "contributions": [
+            "doc"
+        ]
     },
     "ana_fouto": {
-        "name": "Ana Fouto"
+        "name": "Ana Fouto",
+        "contributions": [
+            "userTesting"
+        ]
     },
     "wanderine": {
         "name": "Anders Eklund",
-        "blog": "https://github.com/wanderine"
+        "blog": "https://github.com/wanderine",
+        "contributions": [
+            "doc",
+            "talk",
+            "code"
+        ]
     },
     "andrea_pigorini": {
-        "name": "Andrea Pigorini"
+        "name": "Andrea Pigorini",
+        "contributions": [
+            "doc"
+        ]
     },
     "andrew_hoopes": {
-        "name": "Andrew Hoopes"
+        "name": "Andrew Hoopes",
+        "contributions": [
+            "doc"
+        ]
     },
     "andrew_jahn": {
-        "name": "Andrew Jahn"
+        "name": "Andrew Jahn",
+        "contributions": [
+            "userTesting"
+        ]
     },
     "apjanke": {
         "name": "Andrew Janke",
         "email": "andrew@apjanke.net",
-        "blog": "http://apjanke.net"
+        "blog": "http://apjanke.net",
+        "contributions": [
+            "doc",
+            "code"
+        ]
     },
     "anibalsolon": {
         "name": "Anibal Sólon",
         "email": "anibalsolon@gmail.com",
         "bio": "Everywhere: @anibalsolon ",
         "blog": "https://anibalsolon.com/",
-        "orcid": "0000-0002-2050-0614"
+        "orcid": "0000-0002-2050-0614",
+        "contributions": [
+            "code"
+        ]
     },
     "bendhouseart": {
         "name": "Anthony Galassi",
         "orcid": "0000-0001-6550-4574",
-        "blog": "https://github.com/bendhouseart"
+        "blog": "https://github.com/bendhouseart",
+        "contributions": [
+            "doc",
+            "code"
+        ]
     },
     "arokem": {
         "name": "Ariel Rokem",
         "email": "arokem@uw.edu",
         "blog": "https://arokem.org/",
         "affiliation": "University of Washington, Psychology, Seattle, WA, 98107, United States of America  ",
-        "orcid": "0000-0003-0679-1985"
+        "orcid": "0000-0003-0679-1985",
+        "contributions": [
+            "doc",
+            "code"
+        ]
     },
     "arjen_stolk": {
-        "name": "Arjen Stolk"
+        "name": "Arjen Stolk",
+        "contributions": [
+            "doc"
+        ]
     },
     "arnodelorme": {
         "name": "Arnaud Delorme",
         "blog": "https://www.arnauddelorme.com",
         "affiliation": "UCSD, INC, San Diego, CA, 92093, USA",
         "orcid": "0000-0002-0799-3557",
-        "email": "adelorme@ucsd.edu"
+        "email": "adelorme@ucsd.edu",
+        "contributions": [
+            "doc",
+            "example"
+        ]
     },
     "arnaudmarcoux": {
         "name": "Arnaud Marcoux",
-        "blog": "https://github.com/arnaudmarcoux"
+        "blog": "https://github.com/arnaudmarcoux",
+        "contributions": [
+            "doc"
+        ]
     },
     "Arshitha": {
         "name": "Arshitha Basavaraj",
@@ -156,101 +271,183 @@
         "bio": "Data Scientist ",
         "blog": "https://github.com/Arshitha",
         "orcid": "0000-0002-6984-7969",
-        "affiliation": "NIMH, Data Science and Sharing Team, Bethesda, MD, 20892, USA"
+        "affiliation": "NIMH, Data Science and Sharing Team, Bethesda, MD, 20892, USA",
+        "contributions": [
+            "doc",
+            "infra",
+            "code"
+        ]
     },
     "ashgillman": {
         "name": "Ashley G. Gillman",
-        "blog": "https://github.com/ashgillman"
+        "blog": "https://github.com/ashgillman",
+        "contributions": [
+            "doc"
+        ]
     },
     "drmowinckels": {
         "name": "Athanasia Monika Mowinckel",
         "orcid": "0000-0002-5756-0223",
         "affiliation": "University of Oslo",
-        "blog": "https://github.com/drmowinckels"
+        "blog": "https://github.com/drmowinckels",
+        "contributions": [
+            "doc"
+        ]
     },
     "aysegul_gunduz": {
-        "name": "Aysegul Gunduz"
+        "name": "Aysegul Gunduz",
+        "contributions": [
+            "doc"
+        ]
     },
     "azeez_adebimpe": {
         "name": "Azeez Adebimpe",
         "orcid": "0000-0001-9049-0135",
-        "affiliation": "University of Pennsylvania"
+        "affiliation": "University of Pennsylvania",
+        "contributions": [
+            "doc"
+        ]
     },
     "b_nolan_nichols": {
-        "name": "B. Nolan Nichols"
+        "name": "B. Nolan Nichols",
+        "contributions": [
+            "doc"
+        ]
     },
     "balint_kincses": {
-        "name": "Balint Kincses"
+        "name": "Balint Kincses",
+        "contributions": [
+            "doc"
+        ]
     },
     "musicinmybrain": {
         "name": "Benjamin Beasley",
-        "blog": "https://github.com/musicinmybrain"
+        "blog": "https://github.com/musicinmybrain",
+        "contributions": [
+            "doc"
+        ]
     },
     "benjamin_dichter": {
-        "name": "Benjamin Dichter"
+        "name": "Benjamin Dichter",
+        "contributions": [
+            "doc"
+        ]
     },
     "benjamin_gagl": {
         "name": "Benjamin Gagl",
         "orcid": "0000-0002-2339-6293",
-        "affiliation": "University of Vienna"
+        "affiliation": "University of Vienna",
+        "contributions": [
+            "doc"
+        ]
     },
     "bthirion": {
         "name": "Bertrand Thirion",
         "blog": "https://github.com/bthirion",
-        "orcid": "0000-0001-5018-7895"
+        "orcid": "0000-0001-5018-7895",
+        "contributions": [
+            "doc"
+        ]
     },
     "voytek": {
         "name": "Bradley Voytek",
         "blog": "https://www.voyteklab.com/",
         "affiliation": "UC San Diego, Cognitive Science and Data Science, La Jolla, CA, 92093, USA",
-        "orcid": "0000-0003-1640-2525"
+        "orcid": "0000-0003-1640-2525",
+        "contributions": [
+            "doc"
+        ]
     },
     "brett_l_foster": {
-        "name": "Brett L. Foster"
+        "name": "Brett L. Foster",
+        "contributions": [
+            "doc"
+        ]
     },
     "brian_a_wandell": {
-        "name": "Brian A. Wandell"
+        "name": "Brian A. Wandell",
+        "contributions": [
+            "doc"
+        ]
     },
     "brian_n_lundstrom": {
-        "name": "Brian N. Lundstrom"
+        "name": "Brian N. Lundstrom",
+        "contributions": [
+            "doc"
+        ]
     },
     "cmaumet": {
         "name": "Camille Maumet",
         "blog": "https://camillemaumet.com/",
         "affiliation": "Inria, Univ Rennes, CNRS, Inserm, Rennes, 35042, France",
-        "orcid": "0000-0002-6290-553X"
+        "orcid": "0000-0002-6290-553X",
+        "contributions": [
+            "doc"
+        ]
     },
     "chloé_pasturel": {
-        "name": "Chloé Pasturel"
+        "name": "Chloé Pasturel",
+        "contributions": [
+            "doc"
+        ]
     },
     "chris_benjamin": {
-        "name": "Chris Benjamin"
+        "name": "Chris Benjamin",
+        "contributions": [
+            "doc"
+        ]
     },
     "chris_gahnström": {
-        "name": "Chris Gahnström"
+        "name": "Chris Gahnström",
+        "contributions": [
+            "doc"
+        ]
     },
     "choldgraf": {
         "name": "Chris Holdgraf",
         "bio": "I work with Project Jupyter and other open communities to build tools and solve problems for scientific research and education.",
         "blog": "http://chrisholdgraf.com",
-        "orcid": "0000-0002-9420-9301"
+        "orcid": "0000-0002-9420-9301",
+        "contributions": [
+            "doc",
+            "ideas",
+            "code"
+        ]
     },
     "chrisgorgo": {
         "name": "Chris J. Gorgolewski",
         "email": "krzysztof.gorgolewski@gmail.com",
         "blog": "http://chrisgorgolewski.org",
         "orcid": "0000-0003-3321-7583",
-        "affiliation": "Google LLC"
+        "affiliation": "Google LLC",
+        "contributions": [
+            "doc",
+            "code",
+            "question",
+            "ideas",
+            "fundingFinding",
+            "talk",
+            "blog",
+            "example",
+            "plugin"
+        ]
     },
     "neurolabusc": {
         "name": "Chris Rorden",
         "orcid": "0000-0002-7554-6142",
         "affiliation": "University of South Carolina, Department of Psychology, Columbia, SC, 29016, USA",
         "blog": "https://www.mricro.com",
-        "email": "crorden6@gmail.com"
+        "email": "crorden6@gmail.com",
+        "contributions": [
+            "doc",
+            "code"
+        ]
     },
     "christian_büchel": {
-        "name": "Christian Büchel"
+        "name": "Christian Büchel",
+        "contributions": [
+            "doc"
+        ]
     },
     "TheChymera": {
         "name": "Christian Horea",
@@ -258,158 +455,301 @@
         "email": "chr@chymera.eu",
         "bio": "I bring Reproducibility, Freedom, and Open Source to Neuroscience, Academic Publishing, Software, and Life.",
         "blog": "http://www.chymera.eu",
-        "affiliation": "Dartmouth College, PBS, Hanover NH/USA"
+        "affiliation": "Dartmouth College, PBS, Hanover NH/USA",
+        "contributions": [
+            "code",
+            "doc"
+        ]
     },
     "ChristophePhillips": {
         "name": "Christophe Phillips",
         "blog": "https://www.uliege.be/cms/c_9054334/en/directory/?uid=U016440",
         "affiliation": "University of Liège, GIGA CRC in vivo imaging, Liège, 4000, Belgium",
         "orcid": "0000-0002-4990-425X",
-        "email": "c.phillips@uliege.be"
+        "email": "c.phillips@uliege.be",
+        "contributions": [
+            "doc"
+        ]
     },
     "christopher_j_honey": {
         "name": "Christopher J. Honey",
         "affiliation": "Johns Hopkins University, Psychological and Brain Sciences, Baltimore, MD, 21218, United States",
         "orcid": "0000-0002-0745-5089",
-        "blog": "https://www.honeylab.org"
+        "blog": "https://www.honeylab.org",
+        "contributions": [
+            "doc"
+        ]
     },
     "effigies": {
         "name": "Christopher J. Markiewicz",
         "email": "effigies@gmail.com",
-        "blog": "https://github.com/effigies"
+        "blog": "https://github.com/effigies",
+        "contributions": [
+            "question",
+            "bug",
+            "code",
+            "doc",
+            "design",
+            "example",
+            "ideas",
+            "plugin",
+            "review",
+            "tool",
+            "talk",
+            "data",
+            "eventOrganizing",
+            "maintenance"
+        ]
     },
     "christopher_lee-messer": {
-        "name": "Christopher Lee-Messer"
+        "name": "Christopher Lee-Messer",
+        "contributions": [
+            "doc"
+        ]
     },
     "clara_moreau": {
-        "name": "Clara Moreau"
+        "name": "Clara Moreau",
+        "contributions": [
+            "doc"
+        ]
     },
     "CPernet": {
         "name": "Cyril Pernet",
         "blog": "https://cpernet.github.io/",
         "affiliation": "Neurobiology Research Unit,  Copenhagen University Hospital Rigshospitalet, DK-2100 Copenhagen, Denmark",
         "orcid": "0000-0003-4010-4632",
-        "email": "wamcyril@gmail.com"
+        "email": "wamcyril@gmail.com",
+        "contributions": [
+            "question",
+            "blog",
+            "doc",
+            "design",
+            "example",
+            "eventOrganizing",
+            "ideas",
+            "talk"
+        ]
     },
     "DrCyPhi": {
         "name": "Cyrus Eierud",
         "blog": "https://trendscenter.org/cyrus-eierud/",
         "email": "ceierud@gsu.edu",
         "affiliation": "Georgia State University",
-        "orcid": "0000-0002-9942-676X"
+        "orcid": "0000-0002-9942-676X",
+        "contributions": [
+            "doc"
+        ]
     },
     "dasturge": {
         "name": "D. Sturgeon",
         "bio": "Computer Vision, Dataflow Programming, and Deep Learning",
-        "blog": "https://dasturge.github.io"
+        "blog": "https://dasturge.github.io",
+        "contributions": [
+            "code"
+        ]
     },
     "dlevitas": {
         "name": "Dan Levitas",
         "blog": "https://github.com/dlevitas",
         "email": "dlevitas@iu.edu",
         "affiliation": "Indiana University, Psychological & Brain Sciences, Bloomington, IN, 47405, USA",
-        "orcid": "0000-0003-2279-7447"
+        "orcid": "0000-0003-2279-7447",
+        "contributions": [
+            "doc"
+        ]
     },
     "danlurie": {
         "name": "Dan Lurie",
-        "blog": "https://github.com/danlurie"
+        "blog": "https://github.com/danlurie",
+        "contributions": [
+            "ideas",
+            "doc",
+            "tool",
+            "plugin",
+            "code",
+            "question"
+        ]
     },
     "daniel_a_handwerker": {
-        "name": "Daniel A. Handwerker"
+        "name": "Daniel A. Handwerker",
+        "contributions": [
+            "doc"
+        ]
     },
     "david_alsop": {
-        "name": "David Alsop"
+        "name": "David Alsop",
+        "contributions": [
+            "doc"
+        ]
     },
     "dboas": {
         "name": "David Boas",
         "blog": "http://bu.edu/neurophotonics",
         "email": "dboas@bu.edu",
         "affiliation": "Boston University, Biomedical Engineering, Boston, MA 02215 USA",
-        "orcid": "0000-0002-6709-7711"
+        "orcid": "0000-0002-6709-7711",
+        "contributions": [
+            "doc"
+        ]
     },
     "dmgroppe": {
         "name": "David Groppe",
         "blog": "https://github.com/dmgroppe",
         "affiliation": "Persyst Development Corporation, R&D, Toronto, ON M4K 1W8 Canada",
         "orcid": "0000-0002-3282-2514",
-        "email": "david.m.groppe@gmail.com"
+        "email": "david.m.groppe@gmail.com",
+        "contributions": [
+            "doc"
+        ]
     },
     "dbkeator": {
         "name": "David Keator",
         "blog": "https://github.com/dbkeator",
         "orcid": "0000-0001-5281-5576",
-        "affiliation": "Change Your Brain, Change Your Life Foundation"
+        "affiliation": "Change Your Brain, Change Your Life Foundation",
+        "contributions": [
+            "doc"
+        ]
     },
     "david_mcalpine": {
-        "name": "David McAlpine"
+        "name": "David McAlpine",
+        "contributions": [
+            "doc"
+        ]
     },
     "david_thomas": {
-        "name": "David Thomas"
+        "name": "David Thomas",
+        "contributions": [
+            "doc",
+            "data"
+        ]
     },
     "dejan_draschkow": {
         "name": "Dejan Draschkow",
         "orcid": "0000-0003-1354-4835",
-        "affiliation": "University of Oxford"
+        "affiliation": "University of Oxford",
+        "contributions": [
+            "doc"
+        ]
     },
     "dkp": {
         "name": "Dianne Patterson",
         "blog": "https://profiles.arizona.edu/person/dkp",
         "email": "dkp@arizona.edu",
         "affiliation": "University of Arizona, RII, Tucson Arizona 85721 USA",
-        "orcid": "0000-0001-7518-3110"
+        "orcid": "0000-0001-7518-3110",
+        "contributions": [
+            "doc"
+        ]
     },
     "DimitriPapadopoulos": {
         "name": "Dimitri Papadopoulos Orfanos",
-        "blog": "https://github.com/DimitriPapadopoulos"
+        "blog": "https://github.com/DimitriPapadopoulos",
+        "contributions": [
+            "doc",
+            "example",
+            "ideas",
+            "question",
+            "code"
+        ]
     },
     "dmitry_petrov": {
-        "name": "Dmitry Petrov"
+        "name": "Dmitry Petrov",
+        "contributions": [
+            "doc",
+            "code"
+        ]
     },
     "dorahermes": {
         "name": "Dora Hermes",
-        "blog": "https://github.com/dorahermes"
+        "blog": "https://github.com/dorahermes",
+        "contributions": [
+            "doc",
+            "code",
+            "tutorial",
+            "fundingFinding",
+            "ideas"
+        ]
     },
     "DorienHuijser": {
         "name": "Dorien Huijser",
         "blog": "https://github.com/DorienHuijser",
         "orcid": "0000-0003-3282-8083",
-        "affiliation": "Utrecht University"
+        "affiliation": "Utrecht University",
+        "contributions": [
+            "doc"
+        ]
     },
     "dngreve": {
         "name": "Douglas N. Greve",
-        "blog": "https://github.com/dngreve"
+        "blog": "https://github.com/dngreve",
+        "contributions": [
+            "doc"
+        ]
     },
     "duncan_macleod": {
-        "name": "Duncan Macleod"
+        "name": "Duncan Macleod",
+        "contributions": [
+            "doc"
+        ]
     },
     "dungscout96": {
         "name": "Dung Truong",
-        "blog": "https://github.com/dungscout96"
+        "blog": "https://github.com/dungscout96",
+        "contributions": [
+            "doc",
+            "code",
+            "tool"
+        ]
     },
     "Shotgunosine": {
         "name": "Dylan Nielson",
         "orcid": "0000-0003-4613-6643",
-        "blog": "https://github.com/Shotgunosine"
+        "blog": "https://github.com/Shotgunosine",
+        "contributions": [
+            "doc",
+            "code",
+            "tool"
+        ]
     },
     "eort": {
         "name": "Eduard Ort",
         "blog": "https://github.com/eort",
         "affiliation": "Heinrich-Heine-University, Department of Experimental Psychology, Dusseldorf, 40224, Germany",
-        "orcid": "0000-0001-5546-3561"
+        "orcid": "0000-0001-5546-3561",
+        "contributions": [
+            "doc",
+            "code"
+        ]
     },
     "elizabeth_bock": {
-        "name": "Elizabeth Bock"
+        "name": "Elizabeth Bock",
+        "contributions": [
+            "doc",
+            "example"
+        ]
     },
     "emdupre": {
         "name": "Elizabeth DuPre",
         "bio": "Neuroscience graduate student at McGill University",
         "blog": "https://elizabeth-dupre.com",
         "affiliation": "Stanford University, Department of Psychology, Stanford, CA, 94063, USA",
-        "orcid": "0000-0003-1358-196X"
+        "orcid": "0000-0003-1358-196X",
+        "contributions": [
+            "doc",
+            "example",
+            "fundingFinding",
+            "ideas",
+            "question",
+            "code"
+        ]
     },
     "erdalkaraca": {
         "name": "Erdal Karaca",
-        "blog": "https://github.com/erdalkaraca"
+        "blog": "https://github.com/erdalkaraca",
+        "contributions": [
+            "code"
+        ]
     },
     "ericearl": {
         "name": "Eric A. Earl",
@@ -417,333 +757,622 @@
         "bio": "Neuroinformaticist acting as a Data Scientist in the NIMH Data Science & Sharing Team",
         "blog": "https://ericearl.github.io/",
         "orcid": "0000-0001-5512-0083",
-        "affiliation": "NIMH Data Science & Sharing Team, Bethesda, MD, 20892, USA"
+        "affiliation": "NIMH Data Science & Sharing Team, Bethesda, MD, 20892, USA",
+        "contributions": [
+            "doc",
+            "question",
+            "bug",
+            "maintenance",
+            "tool",
+            "ideas",
+            "code"
+        ]
     },
     "rikAchten": {
         "name": "Eric Achten",
-        "blog": "https://github.com/rikAchten"
+        "blog": "https://github.com/rikAchten",
+        "contributions": [
+            "doc",
+            "data",
+            "userTesting"
+        ]
     },
     "eric_bridgeford": {
-        "name": "Eric Bridgeford"
+        "name": "Eric Bridgeford",
+        "contributions": [
+            "doc",
+            "tool"
+        ]
     },
     "edickie": {
         "name": "Erin W. Dickie",
-        "blog": "http://imaging-genetics.camh.ca/"
+        "blog": "http://imaging-genetics.camh.ca/",
+        "contributions": [
+            "doc",
+            "ideas",
+            "review",
+            "talk",
+            "question",
+            "code"
+        ]
     },
     "ethan_blackwood": {
         "name": "Ethan Blackwood",
         "orcid": "0000-0002-3049-0640",
-        "affiliation": "University of Pennsylvania"
+        "affiliation": "University of Pennsylvania",
+        "contributions": [
+            "review",
+            "doc"
+        ]
     },
     "eduff": {
         "name": "Eugene P. Duff",
         "blog": "http://eduff.github.io",
         "email": "eduff@imperial.ac.uk",
         "affiliation": "UK Dementia Research Institute, Imperial College London, UK",
-        "orcid": "0000-0001-8795-5472"
+        "orcid": "0000-0001-8795-5472",
+        "contributions": [
+            "doc"
+        ]
     },
     "ezequiel_mikulan": {
         "name": "Ezequiel Mikulan",
         "orcid": "0000-0001-7259-6120",
-        "affiliation": "University of Milan"
+        "affiliation": "University of Milan",
+        "contributions": [
+            "doc",
+            "code"
+        ]
     },
     "felipe_orihuela-espina": {
-        "name": "Felipe Orihuela-Espina"
+        "name": "Felipe Orihuela-Espina",
+        "contributions": [
+            "doc"
+        ]
     },
     "fidel_alfaro_almagro": {
-        "name": "Fidel Alfaro Almagro"
+        "name": "Fidel Alfaro Almagro",
+        "contributions": [
+            "question",
+            "doc",
+            "example",
+            "plugin"
+        ]
     },
     "filip_szczepankiewicz": {
         "name": "Filip Szczepankiewicz",
         "orcid": "0000-0002-5251-587X",
-        "affiliation": "Lund University"
+        "affiliation": "Lund University",
+        "contributions": [
+            "doc"
+        ]
     },
     "filippocastelli": {
         "name": "Filippo Maria Castelli",
         "blog": "https://github.com/filippocastelli",
         "email": "castelli@lens.unifi.it",
         "affiliation": "University of Florence, European Laboratory for NonLinear Spectroscopy, Sesto Fiorentino, (FI), 50019, Italy",
-        "orcid": "0000-0001-8170-8905"
+        "orcid": "0000-0001-8170-8905",
+        "contributions": [
+            "doc",
+            "data"
+        ]
     },
     "francopestilli": {
         "name": "Franco Pestilli",
         "bio": "{Cloud, Code, Science} Data {Human, \r\nBrain, Behavior}",
-        "blog": "https://liberalarts.utexas.edu/psychology/faculty/fp4834"
+        "blog": "https://liberalarts.utexas.edu/psychology/faculty/fp4834",
+        "contributions": [
+            "doc",
+            "code",
+            "design",
+            "example",
+            "ideas",
+            "review",
+            "tool",
+            "eventOrganizing",
+            "fundingFinding",
+            "infra"
+        ]
     },
     "franklin-feingold": {
         "name": "Franklin W. Feingold",
         "bio": "BIDS: https://github.com/bids-standard/bids-specification\r\n\r\nOpenNeuro: https://github.com/OpenNeuroOrg/openneuro ",
         "orcid": "0000-0002-6533-2909",
         "affiliation": "Stanford University ",
-        "blog": "https://github.com/franklin-feingold"
+        "blog": "https://github.com/franklin-feingold",
+        "contributions": [
+            "eventOrganizing",
+            "blog",
+            "tutorial",
+            "question",
+            "ideas",
+            "design",
+            "talk",
+            "review",
+            "infra",
+            "content",
+            "projectManagement",
+            "code"
+        ]
     },
     "françois_tadel": {
-        "name": "François Tadel"
+        "name": "François Tadel",
+        "contributions": [
+            "doc",
+            "plugin",
+            "example"
+        ]
     },
     "gaiarizzo": {
         "name": "Gaia Rizzo",
         "blog": "http://fair.dei.unipd.it/gaia-rizzo/",
         "affiliation": "Invicro, Burlington Danes Building, Imperial College London, Hammersmith Hospital, Du Cane Road, London, W12 0NN, UK",
-        "orcid": "0000-0001-7272-8576 "
+        "orcid": "0000-0001-7272-8576 ",
+        "contributions": [
+            "doc"
+        ]
     },
     "afni-gangc": {
         "name": "Gang Chen",
         "blog": "https://github.com/afni-gangc",
         "affiliation": "National Institutes of Health, Scientific and Statistical Computing Core, NIMH, Bethesda, MD 20892, USA",
         "orcid": "0000-0002-2960-089X",
-        "email": "gangchen@mail.nih.gov"
+        "email": "gangchen@mail.nih.gov",
+        "contributions": [
+            "doc"
+        ]
     },
     "GaelVaroquaux": {
         "name": "Gaël Varoquaux",
-        "blog": "https://github.com/GaelVaroquaux"
+        "blog": "https://github.com/GaelVaroquaux",
+        "contributions": [
+            "doc"
+        ]
     },
     "ghisvail": {
         "name": "Ghislain Vaillant",
         "bio": "Former research scientist turned software engineer, on a mission to improve tooling for medical research one project at a time.",
         "orcid": "0000-0003-0267-3033",
-        "blog": "https://github.com/ghisvail"
+        "blog": "https://github.com/ghisvail",
+        "contributions": [
+            "code"
+        ]
     },
     "gmazzamuto": {
         "name": "Giacomo Mazzamuto",
         "blog": "https://github.com/gmazzamuto",
         "affiliation": "National Institute of Optics, National Research Council",
         "orcid": "0000-0003-3077-3904",
-        "email": "mazzamuto@lens.unifi.it"
+        "email": "mazzamuto@lens.unifi.it",
+        "contributions": [
+            "doc",
+            "data"
+        ]
     },
     "Gilles86": {
         "name": "Gilles de Hollander",
-        "blog": "https://github.com/Gilles86"
+        "blog": "https://github.com/Gilles86",
+        "contributions": [
+            "doc"
+        ]
     },
     "gio_piantoni": {
-        "name": "Gio Piantoni"
+        "name": "Gio Piantoni",
+        "contributions": [
+            "doc"
+        ]
     },
     "gitte_m._knudsen": {
-        "name": "Gitte M. Knudsen"
+        "name": "Gitte M. Knudsen",
+        "contributions": [
+            "doc"
+        ]
     },
     "giulio_castegnaro": {
-        "name": "Giulio Castegnaro"
+        "name": "Giulio Castegnaro",
+        "contributions": [
+            "doc"
+        ]
     },
     "giuseppe_gallitto": {
         "name": "Giuseppe Gallitto",
         "orcid": "0000-0001-5185-0206",
-        "affiliation": "Essen University Hospital"
+        "affiliation": "Essen University Hospital",
+        "contributions": [
+            "doc"
+        ]
     },
     "graham_searle": {
-        "name": "Graham Searle"
+        "name": "Graham Searle",
+        "contributions": [
+            "doc"
+        ]
     },
     "mathesong": {
         "blog": "http://www.granvillematheson.com",
-        "name": "Granville J. Matheson"
+        "name": "Granville J. Matheson",
+        "contributions": [
+            "doc"
+        ]
     },
     "gkiar": {
         "name": "Gregory Kiar",
         "blog": "https://github.com/gkiar",
         "orcid": "0000-0001-8915-496X",
-        "affiliation": "Child Mind Institute"
+        "affiliation": "Child Mind Institute",
+        "contributions": [
+            "doc",
+            "code",
+            "design",
+            "tool"
+        ]
     },
     "thinknoack": {
         "name": "Gregory Noack",
-        "blog": "https://github.com/thinknoack"
+        "blog": "https://github.com/thinknoack",
+        "contributions": [
+            "doc"
+        ]
     },
     "greydongilmore": {
         "name": "Greydon Gilmore",
         "email": "ggilmore@uwo.ca",
         "bio": "Ph.D. Candidate in Biomedical Engineering",
         "blog": "http://greydongilmore.com",
-        "orcid": "0000-0001-7523-5734"
+        "orcid": "0000-0001-7523-5734",
+        "contributions": [
+            "doc",
+            "code"
+        ]
     },
     "gllmflndn": {
         "name": "Guillaume Flandin",
         "blog": "https://www.fil.ion.ucl.ac.uk/team/spm-team/",
         "orcid": "0000-0003-0077-7859",
-        "affiliation": "University College London"
+        "affiliation": "University College London",
+        "contributions": [
+            "doc",
+            "code"
+        ]
     },
     "gunnar_schaefer": {
         "name": "Gunnar Schaefer",
-        "orcid": "0000-0001-9661-2121"
+        "orcid": "0000-0001-9661-2121",
+        "contributions": [
+            "doc"
+        ]
     },
     "GNilsonne": {
         "name": "Gustav Nilsonne",
         "orcid": "0000-0001-5273-0150",
         "affiliation": "Karolinska Institutet, Department of Clinical Neuroscience, Stockholm, 17177, Sweden",
         "blog": "https://nilsonne.net/about/",
-        "email": "gustav.nilsonne@ki.se"
+        "email": "gustav.nilsonne@ki.se",
+        "contributions": [
+            "doc"
+        ]
     },
     "hamish_innes-brown": {
         "name": "Hamish Innes-Brown",
         "email": "hain@eriksholm.com",
         "affiliation": "Oticon A/S, Eriksholm Research Centre, Snekkersten, Denmark",
-        "orcid": "0000-0002-1512-2823"
+        "orcid": "0000-0002-1512-2823",
+        "contributions": [
+            "doc"
+        ]
     },
     "hanne_d._hansen": {
         "name": "Hanne D. Hansen",
         "email": "hanne.d.hansen@nru.dk",
         "affiliation": "Copenhagen University Hospital, Neurobiology Research Unit, Section 8057, Blegdamsvej 9, 2100 Copenhagen, Denmark",
-        "orcid": "0000-0001-5564-7627"
+        "orcid": "0000-0001-5564-7627",
+        "contributions": [
+            "doc"
+        ]
     },
     "hanzhang_lu": {
         "name": "Hanzhang Lu",
         "orcid": "0000-0003-3871-1564",
-        "affiliation": "Johns Hopkins Medicine"
+        "affiliation": "Johns Hopkins Medicine",
+        "contributions": [
+            "doc"
+        ]
     },
     "htwangtw": {
         "name": "Hao-Ting Wang",
         "blog": "https://github.com/htwangtw",
         "email": "htwangtw@gmail.com",
         "affiliation": "CRIUGM, Montreal, Quebec, H3W 1W5, Canada",
-        "orcid": "0000-0003-4078-2038"
+        "orcid": "0000-0003-4078-2038",
+        "contributions": [
+            "doc",
+            "bug"
+        ]
     },
     "helenacockx": {
         "name": "Helena Cockx",
         "orcid": "0000-0001-7782-7178",
-        "blog": "https://github.com/helenacockx"
+        "blog": "https://github.com/helenacockx",
+        "contributions": [
+            "doc"
+        ]
     },
     "HenkMutsaerts": {
         "name": "Henk Mutsaerts",
         "blog": "http://www.ExploreASL.org",
         "orcid": "0000-0003-0894-0307",
         "affiliation": "Amsterdam University Medical Centers, Radiology and Nuclear Department, Amsterdam, 1013 EG, The Netherlands",
-        "email": "h.j.mutsaerts@amsterdamumc.nl"
+        "email": "h.j.mutsaerts@amsterdamumc.nl",
+        "contributions": [
+            "question",
+            "bug",
+            "code",
+            "doc",
+            "example",
+            "eventOrganizing",
+            "ideas",
+            "projectManagement",
+            "talk",
+            "userTesting"
+        ]
     },
     "hernando_ombao": {
-        "name": "Hernando Ombao"
+        "name": "Hernando Ombao",
+        "contributions": [
+            "doc"
+        ]
     },
     "Hboni": {
         "name": "Hugo Boniface",
-        "blog": "https://github.com/Hboni"
+        "blog": "https://github.com/Hboni",
+        "contributions": [
+            "doc",
+            "code"
+        ]
     },
     "ilkayisik": {
         "name": "Ilkay Isik",
         "orcid": "0000-0002-1652-9297",
         "affiliation": "Max Planck Institute for Empirical Aesthetics",
-        "blog": "https://github.com/ilkayisik"
+        "blog": "https://github.com/ilkayisik",
+        "contributions": [
+            "doc"
+        ]
     },
     "IlonaLipp": {
         "name": "Ilona Lipp",
-        "blog": "https://github.com/IlonaLipp"
+        "blog": "https://github.com/IlonaLipp",
+        "contributions": [
+            "doc"
+        ]
     },
     "INCF": {
         "name": "International Neuroinformatics Coordinating Facility",
-        "blog": "https://github.com/INCF"
+        "blog": "https://github.com/INCF",
+        "contributions": [
+            "financial",
+            "eventOrganizing"
+        ]
     },
     "irisgroen": {
         "name": "Iris Groen",
-        "blog": "https://github.com/irisgroen"
+        "blog": "https://github.com/irisgroen",
+        "contributions": [
+            "doc"
+        ]
     },
     "isla_staden": {
         "name": "Isla Staden",
-        "orcid": "0000-0002-0795-1154"
+        "orcid": "0000-0002-0795-1154",
+        "contributions": [
+            "doc"
+        ]
     },
     "jaap_von_der_aar": {
-        "name": "Jaap von der Aar"
+        "name": "Jaap von der Aar",
+        "contributions": [
+            "doc"
+        ]
     },
     "kaczmarj": {
         "name": "Jakub Kaczmarzyk",
         "orcid": "0000-0002-5544-7577",
-        "blog": "https://github.com/kaczmarj"
+        "blog": "https://github.com/kaczmarj",
+        "contributions": [
+            "doc",
+            "tool",
+            "infra"
+        ]
     },
     "james_gholam": {
         "name": "James Gholam",
-        "orcid": "0000-0003-4513-2341"
+        "orcid": "0000-0003-4513-2341",
+        "contributions": [
+            "doc"
+        ]
     },
     "jdkent": {
         "name": "James Kent",
-        "blog": "https://github.com/jdkent"
+        "blog": "https://github.com/jdkent",
+        "contributions": [
+            "question",
+            "code"
+        ]
     },
     "schoffelen": {
         "name": "Jan Mathijs Schoffelen",
         "blog": "https://github.com/schoffelen",
         "email": "jm.schoffelen@gmail.com",
         "affiliation": "Radboud University Nijmegen, Donders Institute, Nijmegen, 6500 HB, The Netherlands",
-        "orcid": "0000-0003-0923-6610"
+        "orcid": "0000-0003-0923-6610",
+        "contributions": [
+            "doc"
+        ]
     },
     "jan-petr": {
         "name": "Jan Petr",
         "blog": "https://www.exploreasl.org",
         "affiliation": "Helmholtz-Zentrum Dresden-Rossendorf, Dresden, 01309, Germany",
         "orcid": "0000-0002-3201-6002",
-        "email": "j.petr@hzdr.de"
+        "email": "j.petr@hzdr.de",
+        "contributions": [
+            "question",
+            "bug",
+            "code",
+            "doc",
+            "data",
+            "example",
+            "eventOrganizing",
+            "ideas",
+            "projectManagement",
+            "test",
+            "talk"
+        ]
     },
     "jan-mathijs_schoffelen": {
-        "name": "Jan-Mathijs Schoffelen"
+        "name": "Jan-Mathijs Schoffelen",
+        "contributions": [
+            "doc"
+        ]
     },
     "jbpoline": {
         "name": "Jean-Baptiste Poline",
         "orcid": "0000-0002-9794-749X",
-        "blog": "https://github.com/jbpoline"
+        "blog": "https://github.com/jbpoline",
+        "contributions": [
+            "doc",
+            "talk",
+            "ideas",
+            "design",
+            "code"
+        ]
     },
     "jchoude": {
         "name": "Jean-Christophe Houde",
         "email": "jean.christophe.houde@gmail.com",
         "blog": "http://scil.dinf.usherbrooke.ca/jchoude",
         "orcid": "0000-0003-3026-021X",
-        "affiliation": "Université de Sherbrooke"
+        "affiliation": "Université de Sherbrooke",
+        "contributions": [
+            "doc",
+            "code"
+        ]
     },
     "jean-dominique_gallezot": {
         "name": "Jean-Dominique Gallezot",
         "email": "jean-dominique.gallezot@yale.edu",
         "affiliation": "Yale School of Medicine, Department of Radiology and Biomedical Imaging, New Haven, CT, 06511, USA",
-        "orcid": "0000-0003-0399-8374"
+        "orcid": "0000-0003-0399-8374",
+        "contributions": [
+            "doc"
+        ]
     },
     "jean-philippe_lachaux": {
         "name": "Jean-Philippe Lachaux",
         "orcid": "0000-0002-9459-0667",
-        "affiliation": "INSERM"
+        "affiliation": "INSERM",
+        "contributions": [
+            "doc"
+        ]
     },
     "jmumford": {
         "name": "Jeanette Mumford",
         "blog": "https://jeanettemumford.org/",
-        "affiliation": "Stanford, Department of Psychology, Stanford, CA"
+        "affiliation": "Stanford, Department of Psychology, Stanford, CA",
+        "contributions": [
+            "doc"
+        ]
     },
     "jeffrey_g_ojemann": {
-        "name": "Jeffrey G. Ojemann"
+        "name": "Jeffrey G. Ojemann",
+        "contributions": [
+            "doc"
+        ]
     },
     "jgrethe": {
         "name": "Jeffrey S. Grethe",
-        "blog": "http://profiles.ucsd.edu/jeffrey.grethe"
+        "blog": "http://profiles.ucsd.edu/jeffrey.grethe",
+        "contributions": [
+            "question",
+            "bug",
+            "tutorial",
+            "talk",
+            "code"
+        ]
     },
     "JegouA": {
         "name": "JegouA",
-        "blog": "https://github.com/JegouA"
+        "blog": "https://github.com/JegouA",
+        "contributions": [
+            "code"
+        ]
     },
     "jrdalenberg": {
         "name": "Jelle Dalenberg",
         "blog": "https://github.com/jrdalenberg",
         "email": "j.r.dalenberg@umcg.nl",
         "affiliation": "University of Groningen, University Medical Center Groningen, Department of Neurology, Movement Disorders Groningen, Hanzeplein 1, 9713 GZ, Groningen ",
-        "orcid": "0000-0001-8580-5358"
+        "orcid": "0000-0001-8580-5358",
+        "contributions": [
+            "doc"
+        ]
     },
     "jeremy_moreau": {
-        "name": "Jeremy Moreau"
+        "name": "Jeremy Moreau",
+        "contributions": [
+            "doc",
+            "example"
+        ]
     },
     "jessica_a_turner": {
-        "name": "Jessica A. Turner"
+        "name": "Jessica A. Turner",
+        "contributions": [
+            "doc"
+        ]
     },
     "jochem_rieger": {
         "name": "Jochem Rieger",
         "blog": "https://uol.de/en/applied-neurocognitive-psychology",
         "email": "jochem.rieger@uni-oldenburg.de",
         "affiliation": "Oldenburg University, Dept. of Psychology, 26129, Germany",
-        "orcid": "0000-0003-0955-2306"
+        "orcid": "0000-0003-0955-2306",
+        "contributions": [
+            "doc"
+        ]
     },
     "john_detre": {
         "name": "John Detre",
         "orcid": "0000-0002-8115-6343",
-        "affiliation": "University of Pennsylvania"
+        "affiliation": "University of Pennsylvania",
+        "contributions": [
+            "doc"
+        ]
     },
     "john_pellman": {
         "name": "John Pellman",
-        "orcid": "0000-0001-6810-4461"
+        "orcid": "0000-0001-6810-4461",
+        "contributions": [
+            "doc"
+        ]
     },
     "jwodder": {
         "name": "John T. Wodder",
-        "blog": "https://github.com/jwodder"
+        "blog": "https://github.com/jwodder",
+        "contributions": [
+            "code"
+        ]
     },
     "jokedurnez": {
         "name": "Joke Durnez",
         "orcid": "0000-0001-9030-2202",
         "affiliation": "Stanford University",
-        "blog": "https://github.com/jokedurnez"
+        "blog": "https://github.com/jokedurnez",
+        "contributions": [
+            "doc",
+            "tool",
+            "code"
+        ]
     },
     "jhlegarreta": {
         "name": "Jon Haitz Legarreta Gorroño",
@@ -751,88 +1380,156 @@
         "blog": "https://github.com/jhlegarreta",
         "affiliation": "Université de Sherbrooke, Department of Computer Science, Sherbrooke, (Québec), J1K 2R1, Canada",
         "orcid": "0000-0002-9661-1396",
-        "email": "jon.haitz.legarreta@gmail.com"
+        "email": "jon.haitz.legarreta@gmail.com",
+        "contributions": [
+            "code",
+            "doc"
+        ]
     },
     "jonathan_c_lau": {
-        "name": "Jonathan C. Lau"
+        "name": "Jonathan C. Lau",
+        "contributions": [
+            "doc"
+        ]
     },
     "JWinawer": {
         "name": "Jonathan Winawer",
-        "blog": "https://github.com/JWinawer"
+        "blog": "https://github.com/JWinawer",
+        "contributions": [
+            "doc"
+        ]
     },
     "wadqc": {
         "name": "Joost Kuijer",
         "orcid": "0000-0002-4181-0427",
         "blog": "https://github.com/wadqc",
         "email": "jpa.kuijer@amsterdamumc.nl",
-        "affiliation": "Amsterdam University Medical Centers, Radiology and Nuclear Medicine, Amsterdam, 1081 HV, The Netherlands"
+        "affiliation": "Amsterdam University Medical Centers, Radiology and Nuclear Medicine, Amsterdam, 1081 HV, The Netherlands",
+        "contributions": [
+            "doc"
+        ]
     },
     "jose_manuel_saborit": {
-        "name": "Jose Manuel Saborit"
+        "name": "Jose Manuel Saborit",
+        "contributions": [
+            "doc"
+        ]
     },
     "joseph_wexler": {
         "name": "Joseph Wexler",
         "orcid": "0000-0001-9086-8484",
-        "affiliation": "Loyola University Chicago"
+        "affiliation": "Loyola University Chicago",
+        "contributions": [
+            "doc",
+            "example"
+        ]
     },
     "JosephGWoods": {
         "name": "Joseph Woods",
         "blog": "https://www.ndcn.ox.ac.uk/team/joseph-woods",
         "email": "joseph.woods@ndcn.ox.ac.uk",
         "affiliation": "University of Oxford, Nuffield Department of Clinical Neuroscience, Oxford, UK",
-        "orcid": "0000-0002-0329-824X"
+        "orcid": "0000-0002-0329-824X",
+        "contributions": [
+            "doc"
+        ]
     },
     "guiomar": {
         "name": "Julia Guiomar Niso Galán",
         "bio": "Open neuroimaging: standards (BIDS), tools (Brainlife, Brainstorm, Hermes), data repositories (OMEGA).\r\nChair BIDS Steering Group",
         "blog": "http://guiomarniso.com",
         "orcid": "0000-0001-5872-8924",
-        "affiliation": "Indiana University"
+        "affiliation": "Indiana University",
+        "contributions": [
+            "ideas",
+            "design",
+            "fundingFinding",
+            "review",
+            "eventOrganizing",
+            "blog",
+            "tool",
+            "bug",
+            "code",
+            "data",
+            "tutorial",
+            "question",
+            "doc",
+            "example",
+            "talk"
+        ]
     },
     "juliasprenger": {
         "name": "Julia Sprenger",
         "blog": "https://github.com/juliasprenger",
         "affiliation": "Institute de Neuroscience de la Timone, CNRS, Marseille, 13005, France",
         "orcid": "0000-0002-9986-7477",
-        "email": "julia.sprenger@univ-amu.fr"
+        "email": "julia.sprenger@univ-amu.fr",
+        "contributions": [
+            "doc"
+        ]
     },
     "jcohenadad": {
         "name": "Julien Cohen-Adad",
         "blog": "https://www.neuro.polymtl.ca",
         "affiliation": "Polytechnique Montreal, Department of Electrical Engineering, Montreal, QC, Canada",
-        "orcid": "0000-0003-3662-9532"
+        "orcid": "0000-0003-3662-9532",
+        "contributions": [
+            "doc",
+            "data",
+            "ideas"
+        ]
     },
     "JuliusWelzel": {
         "name": "Julius Welzel",
         "blog": "https://github.com/JuliusWelzel",
         "email": "julius.welzel@gmail.com",
         "affiliation": "Kiel University, Department of Psychology, Kiel, Germany",
-        "orcid": "0000-0001-8958-0934"
+        "orcid": "0000-0001-8958-0934",
+        "contributions": [
+            "doc"
+        ]
     },
     "kai_j_miller": {
-        "name": "Kai J. Miller"
+        "name": "Kai J. Miller",
+        "contributions": [
+            "doc"
+        ]
     },
     "Kangjoo": {
         "name": "Kangjoo Lee",
         "orcid": "0000-0002-7760-8079",
         "affiliation": "Yale School of Medicine",
-        "blog": "https://github.com/Kangjoo"
+        "blog": "https://github.com/Kangjoo",
+        "contributions": [
+            "doc"
+        ]
     },
     "katjaq": {
         "name": "Katja Heuer",
         "blog": "https://github.com/katjaq",
         "orcid": "0000-0002-7237-0196",
-        "affiliation": "Institut Pasteur"
+        "affiliation": "Institut Pasteur",
+        "contributions": [
+            "tool"
+        ]
     },
     "VisLab": {
         "name": "Kay Robbins",
         "blog": "http://www.cs.utsa.edu/~krobbins",
         "email": "kay.robbins@utsa.edu",
         "affiliation": "University of Texas at San Antonio Department of Computer Science San Antonio, TX 78249 USA",
-        "orcid": "0000-0002-7147-5797"
+        "orcid": "0000-0002-7147-5797",
+        "contributions": [
+            "code",
+            "doc",
+            "bug"
+        ]
     },
     "kevin_larcher": {
-        "name": "Kevin Larcher"
+        "name": "Kevin Larcher",
+        "contributions": [
+            "question"
+        ]
     },
     "KirstieJane": {
         "name": "Kirstie Whitaker",
@@ -840,128 +1537,223 @@
         "bio": "Programme Lead for Tools, Practices and Systems at the Alan Turing Institute. Passionate about diversity and reproducibility in all forms.",
         "blog": "https://whitakerlab.github.io",
         "orcid": "0000-0001-8498-4059",
-        "affiliation": "University of Cambridge"
+        "affiliation": "University of Cambridge",
+        "contributions": [
+            "doc",
+            "example",
+            "fundingFinding",
+            "ideas",
+            "talk",
+            "question",
+            "code"
+        ]
     },
     "greckla": {
         "name": "Klara Gregorova",
         "orcid": "0000-0002-3828-9386",
-        "blog": "https://github.com/greckla"
+        "blog": "https://github.com/greckla",
+        "contributions": [
+            "doc"
+        ]
     },
     "KrisThielemans": {
         "name": "Kris Thielemans",
-        "blog": "https://iris.ucl.ac.uk/iris/browse/profile?upi=KTHIE60"
+        "blog": "https://iris.ucl.ac.uk/iris/browse/profile?upi=KTHIE60",
+        "contributions": [
+            "doc"
+        ]
     },
     "kristofer_bouchard": {
         "name": "Kristofer Bouchard",
         "affiliation": "LBNL, Scientific Data Division",
         "orcid": "0000-0002-1974-4603",
         "blog": "https://bouchardlab.lbl.gov",
-        "email": "kristofer.bouchard@gmail.com"
+        "email": "kristofer.bouchard@gmail.com",
+        "contributions": [
+            "doc"
+        ]
     },
     "schillkg": {
         "name": "Kurt Schilling",
-        "blog": "https://github.com/schillkg"
+        "blog": "https://github.com/schillkg",
+        "contributions": [
+            "doc"
+        ]
     },
     "laura_and_john_arnold_foundation": {
-        "name": "Laura and John Arnold Foundation"
+        "name": "Laura and John Arnold Foundation",
+        "contributions": [
+            "financial"
+        ]
     },
     "leandro_beltrachini": {
         "name": "Leandro Beltrachini",
         "affiliation": "Cardiff University, Cardiff University Brain Research Imaging Centre (CUBRIC), UK",
         "orcid": "0000-0003-4602-1416",
-        "email": "BeltrachiniL@cardiff.ac.uk"
+        "email": "BeltrachiniL@cardiff.ac.uk",
+        "contributions": [
+            "doc"
+        ]
     },
     "LeeKamentsky": {
         "name": "Lee Kamentsky",
         "orcid": "0000-0002-8161-3604",
         "affiliation": "MIT",
-        "blog": "https://github.com/LeeKamentsky"
+        "blog": "https://github.com/LeeKamentsky",
+        "contributions": [
+            "doc"
+        ]
     },
     "lennart_walger": {
         "name": "Lennart Walger",
-        "orcid": "0000-0002-3300-6877"
+        "orcid": "0000-0002-3300-6877",
+        "contributions": [
+            "doc"
+        ]
     },
     "lnnrtwttkhn": {
         "name": "Lennart Wittkuhn",
         "orcid": "0000-0003-2966-6888",
         "affiliation": "Max Planck Institute for Human Development",
-        "blog": "https://github.com/lnnrtwttkhn"
+        "blog": "https://github.com/lnnrtwttkhn",
+        "contributions": [
+            "doc"
+        ]
     },
     "libertyh": {
         "name": "Liberty Hamilton",
-        "blog": "https://github.com/libertyh"
+        "blog": "https://github.com/libertyh",
+        "contributions": [
+            "doc"
+        ]
     },
     "lpollonini": {
         "name": "Luca Pollonini",
         "orcid": "0000-0003-2955-6355",
         "affiliation": "University of Houston, Dept. of Engineering Technology, Houston TX 77204, USA",
         "blog": "https://polloninilab.com",
-        "email": "lpollonini@uh.edu"
+        "email": "lpollonini@uh.edu",
+        "contributions": [
+            "doc"
+        ]
     },
     "luis_hernandez-garcia": {
-        "name": "Luis Hernandez-Garcia"
+        "name": "Luis Hernandez-Garcia",
+        "contributions": [
+            "doc",
+            "userTesting"
+        ]
     },
     "lzehl": {
         "name": "Lyuba Zehl",
         "orcid": "0000-0002-5947-9939",
         "affiliation": "Forschungszentrum Jülich",
-        "blog": "https://github.com/lzehl"
+        "blog": "https://github.com/lzehl",
+        "contributions": [
+            "doc"
+        ]
     },
     "jasmainak": {
         "name": "Mainak Jas",
         "blog": "http://jasmainak.github.io/",
-        "orcid": "0000-0002-3199-9027"
+        "orcid": "0000-0002-3199-9027",
+        "contributions": [
+            "doc",
+            "code"
+        ]
     },
     "manjari_narayan": {
-        "name": "Manjari Narayan"
+        "name": "Manjari Narayan",
+        "contributions": [
+            "doc"
+        ]
     },
     "manuel_mercier": {
         "name": "Manuel Mercier",
         "affiliation": "Dynamics of Cognitive Processes Group Institut de Neurosciences des Systèmes, INS - UMR 1106 Inserm Aix-Marseille Université, France",
-        "orcid": "0000-0001-6358-4734"
+        "orcid": "0000-0001-6358-4734",
+        "contributions": [
+            "doc",
+            "ideas"
+        ]
     },
     "maqsood_yaqub": {
-        "name": "Maqsood Yaqub"
+        "name": "Maqsood Yaqub",
+        "contributions": [
+            "doc"
+        ]
     },
     "Moo-Marc": {
         "name": "Marc Lalancette",
         "bio": "MEG lab manager, MSc Physics, UBC 2003",
         "blog": "https://github.com/Moo-Marc",
         "affiliation": "Montreal Neurological Institute-Hospital, McConnell Brain Imaging Center, Montreal, Quebec, H2A ",
-        "orcid": "0000-0003-1161-3972"
+        "orcid": "0000-0003-1161-3972",
+        "contributions": [
+            "doc",
+            "code"
+        ]
     },
     "marcocastellaro": {
         "name": "Marco Castellaro",
         "blog": "https://github.com/marcocastellaro",
         "affiliation": "University of Padova, Department of Information Engineering, Padova, Italy",
         "orcid": "0000-0002-1203-2670",
-        "email": "marco.castellaro@gmail.com"
+        "email": "marco.castellaro@gmail.com",
+        "contributions": [
+            "question",
+            "bug",
+            "code",
+            "doc",
+            "example",
+            "test",
+            "talk",
+            "infra"
+        ]
     },
     "maigva": {
         "name": "Maria de la Iglesia",
         "blog": "https://bimcv.cipf.es",
         "affiliation": "FISABIO, Join Unit Biomedical Imagin, Valencia, Valencia, 46006, Spain",
         "orcid": "0000-0003-4505-8399",
-        "email": "delaiglesia_mar@gva.es"
+        "email": "delaiglesia_mar@gva.es",
+        "contributions": [
+            "doc"
+        ]
     },
     "mariehbourget": {
         "name": "Marie-Hélène Bourget",
-        "blog": "https://github.com/mariehbourget"
+        "blog": "https://github.com/mariehbourget",
+        "contributions": [
+            "doc",
+            "data",
+            "code",
+            "ideas"
+        ]
     },
     "markmikkelsen": {
         "name": "Mark Mikkelsen",
         "blog": "https://vivo.weill.cornell.edu/display/cwid-mam4041",
         "email": "mam4041@med.cornell.edu",
         "affiliation": "Weill Cornell Medicine, Department of Radiology, New York, NY, 10021, USA",
-        "orcid": "0000-0002-0349-3782"
+        "orcid": "0000-0002-0349-3782",
+        "contributions": [
+            "doc"
+        ]
     },
     "markus_morawski": {
         "name": "Markus Morawski",
         "orcid": "0000-0002-3817-5186",
-        "affiliation": "Universität Leipzig"
+        "affiliation": "Universität Leipzig",
+        "contributions": [
+            "doc"
+        ]
     },
     "martin_craig": {
-        "name": "Martin Craig"
+        "name": "Martin Craig",
+        "contributions": [
+            "data"
+        ]
     },
     "mnoergaard": {
         "name": "Martin Noergaard",
@@ -969,198 +1761,388 @@
         "bio": "Postdoctoral Researcher @ Stanford University, Center for Reproducible Neuroscience; interested in neuroimaging, data sharing, statistics and preprocessing.",
         "blog": "https://profiles.stanford.edu/martin-noergaard",
         "orcid": "0000-0003-2131-5688",
-        "affiliation": "Stanford University, Department of Psychology, CA, 94304, USA"
+        "affiliation": "Stanford University, Department of Psychology, CA, 94304, USA",
+        "contributions": [
+            "doc",
+            "data",
+            "code",
+            "ideas",
+            "talk"
+        ]
     },
     "mszinte": {
         "name": "Martin Szinte",
         "blog": "http://www.martinszinte.net",
         "email": "mail@martinszinte.net",
         "affiliation": "CNRS, Institut des Neurosciences de la Timone, Marseille, 13008, France",
-        "orcid": "0000-0003-2040-4005"
+        "orcid": "0000-0003-2040-4005",
+        "contributions": [
+            "doc"
+        ]
     },
     "martin_wilson": {
-        "name": "Martin Wilson"
+        "name": "Martin Wilson",
+        "contributions": [
+            "doc"
+        ]
     },
     "mateuszpawlik": {
         "name": "Mateusz Pawlik",
         "email": "mateusz.pawlik@plus.ac.at",
-        "blog": "https://github.com/mateuszpawlik"
+        "blog": "https://github.com/mateuszpawlik",
+        "contributions": [
+            "code"
+        ]
     },
     "mgxd": {
         "name": "Mathias Goncalves",
         "blog": "https://github.com/mgxd",
         "affiliation": "Psychology Department, Stanford University, Palo Alto, CA, 94305, USA",
         "orcid": "0000-0002-7252-7771",
-        "email": "mathiasg@stanford.edu"
+        "email": "mathiasg@stanford.edu",
+        "contributions": [
+            "code",
+            "tool",
+            "talk"
+        ]
     },
     "mathieuboudreau": {
         "name": "Mathieu Boudreau",
         "orcid": "0000-0002-7726-4456",
         "affiliation": "Polytechnique Montréal",
-        "blog": "https://github.com/mathieuboudreau"
+        "blog": "https://github.com/mathieuboudreau",
+        "contributions": [
+            "question",
+            "ideas",
+            "talk"
+        ]
     },
     "matt_sanderson": {
-        "name": "Matt Sanderson"
+        "name": "Matt Sanderson",
+        "contributions": [
+            "doc",
+            "code"
+        ]
     },
     "matteotonietto": {
         "name": "Matteo Tonietto",
         "blog": "https://github.com/matteotonietto",
         "affiliation": "Hoffmann-La Roche Ltd, Research and Early Development,  Basel, 4070, Switzerland",
-        "orcid": "0000-0001-9591-5710"
+        "orcid": "0000-0001-9591-5710",
+        "contributions": [
+            "doc"
+        ]
     },
     "matthias_günther": {
-        "name": "Matthias Günther"
+        "name": "Matthias Günther",
+        "contributions": [
+            "doc"
+        ]
     },
     "matthias_van_osch": {
-        "name": "Matthias Van Osch"
+        "name": "Matthias Van Osch",
+        "contributions": [
+            "doc"
+        ]
     },
     "maureen_j_shader": {
-        "name": "Maureen J Shader"
+        "name": "Maureen J Shader",
+        "contributions": [
+            "doc"
+        ]
     },
     "maurice_pasternak": {
-        "name": "Maurice Pasternak"
+        "name": "Maurice Pasternak",
+        "contributions": [
+            "userTesting"
+        ]
     },
     "MaxvandenBoom": {
         "name": "Max A. van den Boom",
         "blog": "https://github.com/MaxvandenBoom",
         "email": "m.a.vandenboom84@gmail.com",
         "affiliation": "Mayo Clinic, Department of neurosurgery, Rochester, MN, USA",
-        "orcid": "0000-0001-5481-1659"
+        "orcid": "0000-0001-5481-1659",
+        "contributions": [
+            "code",
+            "review",
+            "doc"
+        ]
     },
     "melanieganz": {
         "name": "Melanie Ganz-Benjaminsen",
         "blog": "https://sites.google.com/view/melanieganz/home",
         "affiliation": "University of Copenhagen, Department of Computer Science, Copenhagen, 2100, Denmark",
-        "orcid": "0000-0002-9120-8098"
+        "orcid": "0000-0002-9120-8098",
+        "contributions": [
+            "doc",
+            "data",
+            "code",
+            "ideas",
+            "projectManagement",
+            "fundingFinding",
+            "talk"
+        ]
     },
     "michael_chappell": {
-        "name": "Michael Chappell"
+        "name": "Michael Chappell",
+        "contributions": [
+            "doc",
+            "data",
+            "projectManagement"
+        ]
     },
     "mih": {
         "name": "Michael Hanke",
-        "blog": "https://github.com/mih"
+        "blog": "https://github.com/mih",
+        "contributions": [
+            "doc",
+            "ideas",
+            "tool",
+            "bug",
+            "talk"
+        ]
     },
     "michael_p_harms": {
-        "name": "Michael P. Harms"
+        "name": "Michael P. Harms",
+        "contributions": [
+            "doc",
+            "test",
+            "tool"
+        ]
     },
     "michael_p_milham": {
-        "name": "Michael P. Milham"
+        "name": "Michael P. Milham",
+        "contributions": [
+            "example",
+            "fundingFinding"
+        ]
     },
     "michael_p_notter": {
-        "name": "Michael P. Notter"
+        "name": "Michael P. Notter",
+        "contributions": [
+            "question",
+            "blog",
+            "tutorial",
+            "talk",
+            "doc"
+        ]
     },
     "BrainModes": {
         "name": "Michael Schirner",
         "blog": "https://www.brainsimulation.org",
         "email": "michael.schirner@charite.de",
         "affiliation": "Charité—Universitätsmedizin Berlin, Department of Neurology, Berlin, 10115, Germany",
-        "orcid": "0000-0001-8227-8476"
+        "orcid": "0000-0001-8227-8476",
+        "contributions": [
+            "doc"
+        ]
     },
     "naveau": {
         "name": "Mikaël Naveau",
         "blog": "https://www.cyceron.fr",
         "affiliation": "UAR3408-US50 CYCERON, Caen, 14000, France",
-        "orcid": "0000-0002-4685-0057"
+        "orcid": "0000-0002-4685-0057",
+        "contributions": [
+            "bug"
+        ]
     },
     "nader_pouratian": {
         "name": "Nader Pouratian",
-        "orcid": "0000-0002-0426-3241"
+        "orcid": "0000-0002-0426-3241",
+        "contributions": [
+            "doc"
+        ]
     },
     "natalia_petridou": {
         "name": "Natalia Petridou",
         "affiliation": "High Field Dpt, Center for Image Sciences, University Medical Center Utrecht, 3584 CX Utrecht, NL",
-        "orcid": "0000-0002-0783-0387"
+        "orcid": "0000-0002-0783-0387",
+        "contributions": [
+            "doc"
+        ]
     },
     "national_institute_of_mental_health": {
-        "name": "National Institute of Mental Health"
+        "name": "National Institute of Mental Health",
+        "contributions": [
+            "financial"
+        ]
     },
     "nellh": {
         "name": "Nell Hardcastle",
         "orcid": "0000-0002-3837-0707",
-        "blog": "https://github.com/nellh"
+        "blog": "https://github.com/nellh",
+        "contributions": [
+            "code"
+        ]
     },
     "nicholas_traut": {
-        "name": "Nicholas Traut"
+        "name": "Nicholas Traut",
+        "contributions": [
+            "doc",
+            "tool",
+            "code"
+        ]
     },
     "nick_f_ramsey": {
-        "name": "Nick F. Ramsey"
+        "name": "Nick F. Ramsey",
+        "contributions": [
+            "doc"
+        ]
     },
     "nicole_c_swann": {
-        "name": "Nicole C. Swann"
+        "name": "Nicole C. Swann",
+        "contributions": [
+            "doc"
+        ]
     },
     "nima_bigdely_shamlo": {
-        "name": "Nima Bigdely Shamlo"
+        "name": "Nima Bigdely Shamlo",
+        "contributions": [
+            "doc"
+        ]
     },
     "olivier_david": {
-        "name": "Olivier David"
+        "name": "Olivier David",
+        "contributions": [
+            "doc"
+        ]
     },
     "orrin_devinsky": {
         "name": "Orrin Devinsky",
         "orcid": "0000-0003-0044-4632",
-        "affiliation": "NYU School of Medicine"
+        "affiliation": "NYU School of Medicine",
+        "contributions": [
+            "doc"
+        ]
     },
     "oesteban": {
         "name": "Oscar Esteban",
         "email": "phd@oscaresteban.es",
         "blog": "http://www.axonlab.org",
         "affiliation": "Department of Radiology, Lausanne University Hospital, Lausanne, CH-1011, Switzerland",
-        "orcid": "0000-0001-8435-6191"
+        "orcid": "0000-0001-8435-6191",
+        "contributions": [
+            "doc",
+            "tool",
+            "ideas",
+            "question",
+            "code"
+        ]
     },
     "pamela_lamontagne": {
         "name": "Pamela LaMontagne",
-        "orcid": "0000-0002-6752-8518"
+        "orcid": "0000-0002-6752-8518",
+        "contributions": [
+            "doc",
+            "example"
+        ]
     },
     "parulsethi": {
         "name": "Parul Sethi",
-        "blog": "https://github.com/parulsethi"
+        "blog": "https://github.com/parulsethi",
+        "contributions": [
+            "doc",
+            "tool",
+            "test",
+            "code"
+        ]
     },
     "patsycle": {
         "name": "Patricia Clement",
         "blog": "https://github.com/patsycle",
         "email": "patricia.clement@ugent.be",
         "affiliation": "Department of Medical Imaging / Department of Medical Sciences,  Ghent University Hospital / Ghent University, Ghent, Belgium",
-        "orcid": "0000-0001-8546-0134"
+        "orcid": "0000-0001-8546-0134",
+        "contributions": [
+            "question",
+            "bug",
+            "code",
+            "doc",
+            "data",
+            "example",
+            "eventOrganizing",
+            "ideas",
+            "projectManagement",
+            "test",
+            "talk"
+        ]
     },
     "Park-Patrick": {
         "name": "Patrick Park",
-        "blog": "https://github.com/Park-Patrick"
+        "blog": "https://github.com/Park-Patrick",
+        "contributions": [
+            "doc",
+            "example",
+            "question",
+            "code"
+        ]
     },
     "paule-joanne_toussaint": {
         "name": "Paule-Joanne Toussaint",
         "orcid": "0000-0002-7446-150X",
-        "affiliation": "McGill University Faculty of Medicine and Health Sciences"
+        "affiliation": "McGill University Faculty of Medicine and Health Sciences",
+        "contributions": [
+            "doc"
+        ]
     },
     "peerherholz": {
         "name": "Peer Herholz",
         "blog": "https://peerherholz.github.io/",
         "email": "herholz.peer@gmail.com",
         "affiliation": "NeuroDataScience - ORIGAMI lab, McConnell Brain Imaging Centre, Montreal Neurological Institute and Hospital, McGill University, Montreal, Québec, Canada",
-        "orcid": "0000-0002-9840-6257"
+        "orcid": "0000-0002-9840-6257",
+        "contributions": [
+            "question",
+            "doc",
+            "review",
+            "tool",
+            "tutorial",
+            "talk"
+        ]
     },
     "petra_ritter": {
         "name": "Petra Ritter",
         "blog": "https://www.brainsimulation.org",
         "email": "petra.ritter@charite.de",
         "affiliation": "Charité University Medicine Berlin,  Berlin Institute of Health, Berlin, 10115, Germany",
-        "orcid": "0000-0002-4643-4782"
+        "orcid": "0000-0002-4643-4782",
+        "contributions": [
+            "doc"
+        ]
     },
     "prioux": {
         "name": "Pierre Rioux",
-        "blog": "https://github.com/prioux"
+        "blog": "https://github.com/prioux",
+        "contributions": [
+            "doc"
+        ]
     },
     "pvdemael": {
         "name": "Pieter Vandemaele",
         "orcid": "0000-0002-4523-2476",
         "affiliation": "Ghent University Hospital",
-        "blog": "https://github.com/pvdemael"
+        "blog": "https://github.com/pvdemael",
+        "contributions": [
+            "doc",
+            "code"
+        ]
     },
     "raamana": {
         "name": "Pradeep Reddy Raamana",
-        "blog": "https://github.com/raamana"
+        "blog": "https://github.com/raamana",
+        "contributions": [
+            "code",
+            "tool"
+        ]
     },
     "ccraddock": {
         "name": "R. Cameron Craddock",
-        "blog": "https://github.com/ccraddock"
+        "blog": "https://github.com/ccraddock",
+        "contributions": [
+            "doc",
+            "talk"
+        ]
     },
     "Remi-Gau": {
         "name": "Remi Gau",
@@ -1168,94 +2150,181 @@
         "bio": "Neuroimaging (high-res & laminar fMRI) and multisensory.\r\n\r\nToo much matlab and presentation and not enough R and python",
         "blog": "https://remi-gau.github.io/",
         "orcid": "0000-0002-1535-9767",
-        "affiliation": "Université catholique de Louvain"
+        "affiliation": "Université catholique de Louvain",
+        "contributions": [
+            "doc",
+            "code",
+            "question",
+            "talk",
+            "bug",
+            "code",
+            "infra",
+            "review",
+            "tool",
+            "ideas"
+        ]
     },
     "hoechenberger": {
         "name": "Richard Höchenberger",
         "email": "richard.hoechenberger@gmail.com",
         "blog": "https://hoechenberger.net/",
         "orcid": "0000-0002-0380-4798",
-        "affiliation": "Inria Saclay - Île-de-France Research Centre"
+        "affiliation": "Inria Saclay - Île-de-France Research Centre",
+        "contributions": [
+            "doc",
+            "code"
+        ]
     },
     "RikHenson": {
         "name": "Richard N. Henson",
         "blog": "http://www.mrc-cbu.cam.ac.uk/people/rik.henson/personal",
         "affiliation": "MRC CBU, University of Cambridge, UK",
         "orcid": "0000-0002-0712-2639",
-        "email": "Rik.Henson@mrc-cbu.cam.ac.uk"
+        "email": "Rik.Henson@mrc-cbu.cam.ac.uk",
+        "contributions": [
+            "doc"
+        ]
     },
     "robert_b._innis": {
         "name": "Robert B. Innis",
         "blog": "https://www.nimh.nih.gov/research/research-conducted-at-nimh/research-areas/clinics-and-labs/mib/molecular-imaging-branch-mib",
         "email": "robert.innis@nih.gov",
         "affiliation": "NIMH Intramural Research Program, Bethesda, MD 20850 USA, MD 20892  USA",
-        "orcid": "0000-0003-1238-7209"
+        "orcid": "0000-0003-1238-7209",
+        "contributions": [
+            "doc"
+        ]
     },
     "Lestropie": {
         "name": "Robert E. Smith",
         "email": "robert.smith@florey.edu.au",
         "blog": "http://www.mrtrix.org",
         "affiliation": "The Florey Institute of Neuroscience and Mental Health, Epilepsy Neuroinformatics Laboratory, Heidelberg, Victoria, 3084, Australia",
-        "orcid": "0000-0003-3636-4642"
+        "orcid": "0000-0003-3636-4642",
+        "contributions": [
+            "code",
+            "doc"
+        ]
     },
     "robert_knight": {
-        "name": "Robert Knight"
+        "name": "Robert Knight",
+        "contributions": [
+            "doc"
+        ]
     },
     "rob-luke": {
         "name": "Robert Luke",
-        "blog": "https://github.com/rob-luke"
+        "blog": "https://github.com/rob-luke",
+        "contributions": [
+            "code"
+        ]
     },
     "robertoostenveld": {
         "name": "Robert Oostenveld",
         "blog": "https://robertoostenveld.nl",
         "affiliation": "Radboud University, Donders Institute, Nijmegen, 6525 EN, The Netherlands",
         "orcid": "0000-0002-1974-1293",
-        "email": "r.oostenveld@donders.ru.nl"
+        "email": "r.oostenveld@donders.ru.nl",
+        "contributions": [
+            "doc",
+            "tool",
+            "talk",
+            "example",
+            "tutorial",
+            "test",
+            "ideas",
+            "question",
+            "bug",
+            "blog",
+            "code",
+            "content",
+            "data",
+            "design",
+            "eventOrganizing",
+            "infra",
+            "review",
+            "userTesting",
+            "video"
+        ]
     },
     "r03ert0": {
         "name": "Roberto Toro",
-        "blog": "https://github.com/r03ert0"
+        "blog": "https://github.com/r03ert0",
+        "contributions": [
+            "tool"
+        ]
     },
     "rohan_goyal": {
-        "name": "Rohan Goyal"
+        "name": "Rohan Goyal",
+        "contributions": [
+            "doc"
+        ]
     },
     "rwblair": {
         "name": "Ross W. Blair",
-        "blog": "https://github.com/rwblair"
+        "blog": "https://github.com/rwblair",
+        "contributions": [
+            "code"
+        ]
     },
     "poldrack": {
         "name": "Russell A. Poldrack",
         "blog": "http://www.poldracklab.org",
         "affiliation": "Stanford University, Stanford, CA 94305 USA",
         "orcid": "0000-0001-6755-0259",
-        "email": "russpold@stanford.edu"
+        "email": "russpold@stanford.edu",
+        "contributions": [
+            "doc",
+            "fundingFinding",
+            "talk"
+        ]
     },
     "remiadon": {
         "name": "Rémi Adon",
-        "blog": "https://github.com/remiadon"
+        "blog": "https://github.com/remiadon",
+        "contributions": [
+            "doc"
+        ]
     },
     "samirdas": {
         "name": "Samir Das",
-        "blog": "https://github.com/samirdas"
+        "blog": "https://github.com/samirdas",
+        "contributions": [
+            "doc"
+        ]
     },
     "samuel_garcia": {
-        "name": "Samuel Garcia"
+        "name": "Samuel Garcia",
+        "contributions": [
+            "ideas",
+            "review",
+            "doc"
+        ]
     },
     "snastase": {
         "name": "Samuel Nastase",
         "email": "sam.nastase@gmail.com",
         "blog": "https://snastase.github.io/",
         "orcid": "0000-0001-7013-5275",
-        "affiliation": "Princeton University"
+        "affiliation": "Princeton University",
+        "contributions": [
+            "code"
+        ]
     },
     "sara_elgayar": {
-        "name": "Sara Elgayar"
+        "name": "Sara Elgayar",
+        "contributions": [
+            "doc"
+        ]
     },
     "sasha_d_ambrosio": {
         "name": "Sasha D'Ambrosio",
         "orcid": "0000-0002-6600-6419",
         "email": "sasha.dambrosio@unimi.it",
-        "affiliation": "University of Milan, Department of Biomedical and Clinical Sciences, Milan, 20137, Italy"
+        "affiliation": "University of Milan, Department of Biomedical and Clinical Sciences, Milan, 20137, Italy",
+        "contributions": [
+            "doc"
+        ]
     },
     "satra": {
         "name": "Satrajit S. Ghosh",
@@ -1263,61 +2332,116 @@
         "blog": "https://satra.cogitatum.org",
         "email": "satra@mit.edu",
         "affiliation": "MIT, McGovern Institute for Brain Research, Cambridge, MA 02139, USA",
-        "orcid": "0000-0002-5312-6729"
+        "orcid": "0000-0002-5312-6729",
+        "contributions": [
+            "doc",
+            "code"
+        ]
     },
     "smakeig": {
         "name": "Scott Makeig",
         "blog": "https://sccn.ucsd.edu/~scott",
         "email": "smakeig@gmail.com",
         "affiliation": "Institute for Neural Computation, University of California San Diego, La Jolla, CA 92-93-0955, USA",
-        "orcid": "0000-0002-9048-8438"
+        "orcid": "0000-0002-9048-8438",
+        "contributions": [
+            "doc"
+        ]
     },
     "sjeung": {
         "name": "Sein Jeung",
         "orcid": "0000-0002-0247-087X",
         "affiliation": "Technical University of Berlin, Department of biopsychology and neuroergonomics, Berlin, 10623, Germany",
         "blog": "https://github.com/sjeung",
-        "email": "seinjeung@gmail.com"
+        "email": "seinjeung@gmail.com",
+        "contributions": [
+            "doc"
+        ]
     },
     "shashank_bansal": {
-        "name": "Shashank Bansal"
+        "name": "Shashank Bansal",
+        "contributions": [
+            "doc"
+        ]
     },
     "sjoerdvos": {
         "name": "Sjoerd B. Vos",
         "blog": "https://research-repository.uwa.edu.au/en/persons/sjoerd-vos",
         "affiliation": "University of Western Australia;Centre for Microscopy, Characterisation, and Analysis;Perth;WA;6009;Australia",
-        "orcid": "0000-0002-8502-4487"
+        "orcid": "0000-0002-8502-4487",
+        "contributions": [
+            "doc"
+        ]
     },
     "soichih": {
         "name": "Soichi Hayashi",
         "orcid": "0000-0003-3641-3491",
         "affiliation": "Indiana University",
-        "blog": "https://github.com/soichih"
+        "blog": "https://github.com/soichih",
+        "contributions": [
+            "doc",
+            "tool",
+            "bug"
+        ]
     },
     "sappelhoff": {
         "name": "Stefan Appelhoff",
         "email": "stefan.appelhoff@mailbox.org",
         "blog": "https://www.stefanappelhoff.com",
         "orcid": "0000-0001-8002-0877",
-        "affiliation": "Max Planck Institute for Human Development"
+        "affiliation": "Max Planck Institute for Human Development",
+        "contributions": [
+            "doc",
+            "question",
+            "ideas",
+            "bug",
+            "example",
+            "code",
+            "review",
+            "test",
+            "talk",
+            "tutorial",
+            "tool",
+            "plugin",
+            "blog",
+            "maintenance",
+            "data"
+        ]
     },
     "stephan_bickel": {
-        "name": "Stephan Bickel"
+        "name": "Stephan Bickel",
+        "contributions": [
+            "doc"
+        ]
     },
     "suyashdb": {
         "name": "Suyash Bhogawar",
-        "blog": "https://www.linkedin.com/in/suyashb/"
+        "blog": "https://www.linkedin.com/in/suyashb/",
+        "contributions": [
+            "doc",
+            "example",
+            "test",
+            "tool",
+            "question"
+        ]
     },
     "sbaillet": {
         "name": "Sylvain Baillet",
-        "blog": "https://github.com/sbaillet"
+        "blog": "https://github.com/sbaillet",
+        "contributions": [
+            "doc",
+            "fundingFinding"
+        ]
     },
     "SylvainTakerkart": {
         "name": "Sylvain Takerkart",
         "orcid": "0000-0001-8410-0962",
         "affiliation": "CNRS, Institut de Neurosciences de la Timone (INT), Marseille, France",
         "blog": "https://github.com/SylvainTakerkart",
-        "email": "sylvain.takerkart@univ-amu.fr"
+        "email": "sylvain.takerkart@univ-amu.fr",
+        "contributions": [
+            "doc"
+        ]
     },
     "sebastientourbier": {
         "name": "Sébastien Tourbier",
@@ -1325,29 +2449,60 @@
         "bio": "Scientist with special interests in computational image analysis and reproducible workflows with medical application",
         "orcid": "0000-0002-4441-899X",
         "affiliation": "Lausanne University Hospital (CHUV), Department of Clinical Neurosciences (DNC), Lausanne, 1007, Switzerland",
-        "blog": "https://github.com/sebastientourbier"
+        "blog": "https://github.com/sebastientourbier",
+        "contributions": [
+            "ideas",
+            "review",
+            "talk",
+            "bug",
+            "code",
+            "doc"
+        ]
     },
     "sören_grothkopp": {
-        "name": "Sören Grothkopp"
+        "name": "Sören Grothkopp",
+        "contributions": [
+            "doc"
+        ]
     },
     "tpatpa": {
         "name": "Tal Pal Attia",
-        "blog": "https://github.com/tpatpa"
+        "blog": "https://github.com/tpatpa",
+        "contributions": [
+            "doc"
+        ]
     },
     "tyarkoni": {
         "name": "Tal Yarkoni",
         "blog": "https://github.com/tyarkoni",
-        "orcid": "0000-0002-6558-5113"
+        "orcid": "0000-0002-6558-5113",
+        "contributions": [
+            "code",
+            "doc",
+            "ideas",
+            "fundingFinding",
+            "plugin",
+            "review",
+            "talk",
+            "bug",
+            "design"
+        ]
     },
     "spisakt": {
         "name": "Tamas Spisak",
         "blog": "https://pni-lab.github.io/",
         "email": "tamas.spisak@uk-essen.de",
         "affiliation": "University Hospital Essen, Center for Translational and Behavioral Neuroscience, Department of Diagnostic and Interventional Radiology and Neuroradiology",
-        "orcid": "0000-0002-2942-0821"
+        "orcid": "0000-0002-2942-0821",
+        "contributions": [
+            "doc"
+        ]
     },
     "tamás_józsa": {
-        "name": "Tamás Józsa"
+        "name": "Tamás Józsa",
+        "contributions": [
+            "userTesting"
+        ]
     },
     "tsalo": {
         "name": "Taylor Salo",
@@ -1355,120 +2510,226 @@
         "bio": "I am a Psychology Ph.D. student at FIU working with @angielaird in the @NBCLab. I am interested in performing reproducible, transparent research with fMRI.",
         "blog": "https://tsalo.github.io",
         "orcid": "0000-0001-9813-3167",
-        "affiliation": "University of Pennsylvania, Department of Psychiatry, Philadelphia, Pennsylvania, 19104, United States"
+        "affiliation": "University of Pennsylvania, Department of Psychiatry, Philadelphia, Pennsylvania, 19104, United States",
+        "contributions": [
+            "question",
+            "doc",
+            "plugin",
+            "code"
+        ]
     },
     "teonbrooks": {
         "name": "Teon L. Brooks",
-        "blog": "https://teonbrooks.com"
+        "blog": "https://teonbrooks.com",
+        "contributions": [
+            "doc",
+            "code",
+            "test",
+            "question",
+            "review",
+            "ideas",
+            "tool",
+            "bug",
+            "talk"
+        ]
     },
     "nicholst": {
         "name": "Thomas E. Nichols",
         "blog": "http://nisox.org",
         "affiliation": "University of Oxford, Big Data Institute, Oxford, OX3 7LF, UK ",
         "orcid": "0000-0002-4516-5103",
-        "email": "thomas.nichols@BDI.OX.AC.UK"
+        "email": "thomas.nichols@BDI.OX.AC.UK",
+        "contributions": [
+            "doc",
+            "talk",
+            "tool",
+            "review",
+            "maintenance",
+            "code"
+        ]
     },
     "tfunck": {
         "name": "Thomas Funck",
-        "blog": "https://github.com/tfunck"
+        "blog": "https://github.com/tfunck",
+        "contributions": [
+            "doc"
+        ]
     },
     "thomas_kirk": {
-        "name": "Thomas Kirk"
+        "name": "Thomas Kirk",
+        "contributions": [
+            "doc"
+        ]
     },
     "thomas_okell": {
         "name": "Thomas Okell",
         "orcid": "0000-0001-8258-0659",
-        "affiliation": "University of Oxford"
+        "affiliation": "University of Oxford",
+        "contributions": [
+            "doc"
+        ]
     },
     "tiborauer": {
         "name": "Tibor Auer",
         "blog": "https://tiborauer.github.io",
         "affiliation": "University of Surrey, School of Psychology, Guildford, GU2 7XH, United Kingdom",
         "orcid": "0000-0001-5153-1424",
-        "email": "tibor.auer@gmail.com"
+        "email": "tibor.auer@gmail.com",
+        "contributions": [
+            "question",
+            "doc",
+            "example",
+            "tool",
+            "talk",
+            "bug",
+            "ideas"
+        ]
     },
     "dickscheid": {
         "name": "Timo Dickscheid",
         "blog": "https://go.fzj.de/dickscheid",
         "email": "t.dickscheid@fz-juelich.de",
         "affiliation": "Forschungszentrum Jülich, Institute of Neuroscience and Medicine (INM-1),  Jülich, 52428, Germany",
-        "orcid": "0000-0002-9051-3701"
+        "orcid": "0000-0002-9051-3701",
+        "contributions": [
+            "doc"
+        ]
     },
     "timo-berg": {
         "name": "Timotheus Berg",
         "blog": "https://github.com/timo-berg",
         "affiliation": "TU Berlin, Biological Psychology and Neuroergonomics, Berlin, 10623, Germany",
         "orcid": "0000-0002-0746-3679",
-        "email": "timo.berg@campus.tu-berlin.de"
+        "email": "timo.berg@campus.tu-berlin.de",
+        "contributions": [
+            "doc"
+        ]
     },
     "tobey_betthauser": {
-        "name": "Tobey Betthauser"
+        "name": "Tobey Betthauser",
+        "contributions": [
+            "doc"
+        ]
     },
     "xi": {
         "name": "Tobias Bengfort",
         "email": "tobias.bengfort@posteo.de",
-        "blog": "http://tobib.spline.de"
+        "blog": "http://tobib.spline.de",
+        "contributions": [
+            "code"
+        ]
     },
     "tom_hampshire": {
-        "name": "Tom Hampshire"
+        "name": "Tom Hampshire",
+        "contributions": [
+            "doc"
+        ]
     },
     "torwager": {
         "name": "Tor Wager",
-        "blog": "https://github.com/torwager"
+        "blog": "https://github.com/torwager",
+        "contributions": [
+            "doc"
+        ]
     },
     "travis_riddle": {
         "name": "Travis Riddle",
         "orcid": "0000-0001-8160-3986",
-        "affiliation": "National Police Foundation"
+        "affiliation": "National Police Foundation",
+        "contributions": [
+            "doc",
+            "tool",
+            "bug"
+        ]
     },
     "glatard": {
         "name": "Tristan Glatard",
         "orcid": "0000-0003-2620-5883",
-        "blog": "https://github.com/glatard"
+        "blog": "https://github.com/glatard",
+        "contributions": [
+            "doc",
+            "code"
+        ]
     },
     "ulrike_bingel": {
         "name": "Ulrike Bingel",
-        "orcid": "0000-0002-9528-3204"
+        "orcid": "0000-0002-9528-3204",
+        "contributions": [
+            "doc"
+        ]
     },
     "vsoch": {
         "name": "Vanessa Sochat",
         "orcid": "0000-0002-4387-3819",
-        "blog": "https://github.com/vsoch"
+        "blog": "https://github.com/vsoch",
+        "contributions": [
+            "doc"
+        ]
     },
     "vasudev_raguram": {
-        "name": "Vasudev Raguram"
+        "name": "Vasudev Raguram",
+        "contributions": [
+            "code",
+            "design",
+            "doc",
+            "tool"
+        ]
     },
     "vdcalhoun": {
         "name": "Vince D. Calhoun",
         "blog": "http://trendscenter.org",
         "email": "vcalhoun@gsu.edu",
-        "affiliation": "Tri-institutional Center for Translational Research in Neuroimaging and Data Science (TReNDS), Georgia State, Georgia Tech, and Emory, Atlanta, GA 30030"
+        "affiliation": "Tri-institutional Center for Translational Research in Neuroimaging and Data Science (TReNDS), Georgia State, Georgia Tech, and Emory, Atlanta, GA 30030",
+        "contributions": [
+            "doc"
+        ]
     },
     "vladimir_litvak": {
         "name": "Vladimir Litvak",
         "orcid": "0000-0001-8535-7452",
-        "affiliation": "UCL Queen Square Institute of Neurology"
+        "affiliation": "UCL Queen Square Institute of Neurology",
+        "contributions": [
+            "doc"
+        ]
     },
     "wietske_van_der_zwaag": {
-        "name": "Wietske van der Zwaag"
+        "name": "Wietske van der Zwaag",
+        "contributions": [
+            "data",
+            "question"
+        ]
     },
     "william_clarke": {
-        "name": "William Clarke"
+        "name": "William Clarke",
+        "contributions": [
+            "doc"
+        ]
     },
     "william_triplett": {
-        "name": "William Triplett"
+        "name": "William Triplett",
+        "contributions": [
+            "doc"
+        ]
     },
     "wouterpotters": {
         "name": "Wouter V. Potters",
         "bio": "Technical Physician",
         "blog": "https://www.wouterpotters.nl",
-        "orcid": "0000-0003-1249-1196"
+        "orcid": "0000-0003-1249-1196",
+        "contributions": [
+            "code",
+            "doc"
+        ]
     },
     "xiangruili": {
         "name": "Xiangrui Li",
         "blog": "https://github.com/xiangruili",
         "email": "xiangrui.li@gmail.com",
-        "affiliation": "The Ohio State University"
+        "affiliation": "The Ohio State University",
+        "contributions": [
+            "doc",
+            "code"
+        ]
     },
     "yarikoptic": {
         "name": "Yaroslav O. Halchenko",
@@ -1476,33 +2737,63 @@
         "bio": "Cheers!",
         "blog": "http://www.onerussian.com",
         "orcid": "0000-0003-3456-2493",
-        "affiliation": "Dartmouth College"
+        "affiliation": "Dartmouth College",
+        "contributions": [
+            "doc",
+            "talk",
+            "tool",
+            "question",
+            "bug",
+            "code"
+        ]
     },
     "yoni_ashar": {
         "name": "Yoni Ashar",
-        "orcid": "0000-0001-5602-5619"
+        "orcid": "0000-0001-5602-5619",
+        "contributions": [
+            "doc"
+        ]
     },
     "yuan_wang": {
-        "name": "Yuan Wang"
+        "name": "Yuan Wang",
+        "contributions": [
+            "code"
+        ]
     },
     "zachary_michael": {
-        "name": "Zachary Michael"
+        "name": "Zachary Michael",
+        "contributions": [
+            "doc"
+        ]
     },
     "ezemikulan": {
         "name": "ezemikulan",
-        "blog": "https://github.com/ezemikulan"
+        "blog": "https://github.com/ezemikulan",
+        "contributions": [
+            "code"
+        ]
     },
     "josator2": {
         "name": "josator2",
-        "blog": "https://github.com/josator2"
+        "blog": "https://github.com/josator2",
+        "contributions": [
+            "code"
+        ]
     },
     "monkeyman192": {
         "name": "monkeyman192",
-        "blog": "https://github.com/monkeyman192"
+        "blog": "https://github.com/monkeyman192",
+        "contributions": [
+            "code"
+        ]
     },
     "étienne_bergeron": {
         "name": "Étienne Bergeron",
         "orcid": "0000-0002-8329-7852",
-        "affiliation": "Collège Sainte-Anne de Lachine"
+        "affiliation": "Collège Sainte-Anne de Lachine",
+        "contributions": [
+            "data",
+            "code"
+        ]
     }
 }
