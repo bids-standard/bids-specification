@@ -1040,6 +1040,13 @@
     "michael_p_notter": {
         "name": "Michael P. Notter"
     },
+    "michael_schirner": {
+        "name": "Michael Schirner",
+        "blog": "https://www.brainsimulation.org",
+        "email": "michael.schirner@charite.de",
+        "affiliation": "Charité—Universitätsmedizin Berlin, Department of Neurology, Berlin, 10115, Germany",
+        "orcid": "0000-0001-8227-8476"
+    },
     "naveau": {
         "name": "Mikaël Naveau",
         "blog": "https://www.cyceron.fr",
