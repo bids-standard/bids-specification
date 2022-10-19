@@ -24,12 +24,12 @@ def write_tributors(tributors_file, tributors):
         json.dump(tributors, output_file, indent=4, ensure_ascii=False)
 
 
-def load_from_allcontrib(allcontrib_file):
+def load_allcontrib(allcontrib_file):
     with open(allcontrib_file, "r", encoding="utf8") as input_file:
         return json.load(input_file)
 
 
-def write_from_allcontrib(allcontrib_file, allcontrib):
+def write_allcontrib(allcontrib_file, allcontrib):
     allcontrib = sort_all_contrib(allcontrib)
     with open(allcontrib_file, "w", encoding="utf8") as output_file:
         json.dump(allcontrib, output_file, indent=4, ensure_ascii=False)
@@ -122,7 +122,7 @@ def sort_all_contrib(allcontrib):
 
 def add_to_allcontrib(allcontrib_file, user: str):
     user = user.strip()
-    allcontrib = load_from_allcontrib(allcontrib_file)
+    allcontrib = load_allcontrib(allcontrib_file)
     allcontrib_names = [x["name"] for x in allcontrib["contributors"]]
     if user not in allcontrib_names:
         print(f"adding {user} to {allcontrib_file}")
@@ -136,7 +136,8 @@ def add_to_allcontrib(allcontrib_file, user: str):
                 ],
             }
         )
-        write_from_allcontrib(allcontrib_file, allcontrib)
+        write_allcontrib(allcontrib_file, allcontrib)
+
 
 def return_author_list_for_cff(tributors_file):
 

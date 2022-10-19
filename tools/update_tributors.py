@@ -9,13 +9,13 @@ from utils import (
     add_to_allcontrib,
     get_gh_avatar,
     load_citation,
-    load_from_allcontrib,
+    load_allcontrib,
     load_tributors,
     root_dir,
     return_author_list_for_cff,
     return_missing_from_tributors,
     write_citation,
-    write_from_allcontrib,
+    write_allcontrib,
     write_tributors,
 )
 
@@ -137,7 +137,7 @@ def main():
     # print(tributors_keys)
     # print(tributors_names)
 
-    allcontrib = load_from_allcontrib(allcontrib_file)
+    allcontrib = load_allcontrib(allcontrib_file)
     allcontrib_names = [x["name"] for x in allcontrib["contributors"]]
     # print(allcontrib["contributors"])
     # print(allcontrib_names)
@@ -222,7 +222,7 @@ def main():
 
     allcontrib = transfer_contribution(tributors, allcontrib)
 
-    write_from_allcontrib(allcontrib_file, allcontrib)
+    write_allcontrib(allcontrib_file, allcontrib)
 
     write_tributors(tributors_file, tributors)
 

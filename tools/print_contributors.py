@@ -3,7 +3,7 @@ from pathlib import Path
 import emoji
 
 from utils import emoji_map
-from utils import load_from_allcontrib, root_dir
+from utils import load_allcontrib, root_dir
 
 tmp_file = Path(__file__).parent.joinpath("tmp.md")
 
@@ -26,18 +26,22 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 def create_line_contributor(contributor, max_name_length, max_contrib_length):
     # TODO add link to contributor blog? or orcid?
     name = contributor["name"]
+
     line = f"| {name}{' '*(max_name_length-len(name)-1)}|"
+
     nb_contrib = len(contributor["contributions"]) * 2
     for contrib in contributor["contributions"]:
         line += emoji.emojize(emoji_map()[contrib])
+
     line += f"{' '*(max_contrib_length-nb_contrib)}|\n"
+
     return line
 
 
 def main():
 
     allcontrib_file = root_dir().joinpath(".all-contributorsrc")
-    allcontrib = load_from_allcontrib(allcontrib_file)
+    allcontrib = load_allcontrib(allcontrib_file)
 
     allcontrib_names = [x["name"] for x in allcontrib["contributors"]]
     sorted_allcontrib_names = sorted(allcontrib_names)

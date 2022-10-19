@@ -2,7 +2,7 @@ from pathlib import Path
 
 from rich import print
 
-from utils import write_tributors, load_tributors, load_from_allcontrib
+from utils import write_tributors, load_tributors, load_allcontrib
 
 
 def main():
@@ -19,7 +19,7 @@ def main():
     # print(tributors_keys)
     # print(tributors_names)
 
-    allcontrib = load_from_allcontrib(allcontrib_file)
+    allcontrib = load_allcontrib(allcontrib_file)
     allcontrib_names = [x["name"] for x in allcontrib["contributors"]]
     # print(allcontrib["contributors"])
     # print(allcontrib_names)
