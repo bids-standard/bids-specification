@@ -1,8 +1,8 @@
 # Genetic Descriptor
 
 Support genetic descriptors was developed as a
-[BIDS Extension Proposal](../07-extensions.md#bids-extension-proposals).
-Please see [Citing BIDS](../01-introduction.md#citing-bids)
+[BIDS Extension Proposal](../extensions.md#bids-extension-proposals).
+Please see [Citing BIDS](../introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
@@ -20,7 +20,7 @@ and can be used for practical guidance when curating a new dataset.
 ## Dataset Description
 
 Genetic descriptors are encoded as an additional, OPTIONAL entry in the
-[`dataset_description.json`](../03-modality-agnostic-files.md#dataset_descriptionjson)
+[`dataset_description.json`](../modality-agnostic-files.md#dataset_descriptionjson)
 file.
 
 Datasets linked to a genetic database entry include the following REQUIRED or OPTIONAL
@@ -71,7 +71,7 @@ in the `participants.tsv` file by adding optional columns (like `idh_mutation` i
 example below).
 Note that optional columns MUST be further described in an accompanying
 `participants.json` file as described in
-[Tabular files](../02-common-principles.md#tabular-files).
+[Tabular files](../common-principles.md#tabular-files).
 
 `participants.tsv` example:
 

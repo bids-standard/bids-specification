@@ -62,7 +62,7 @@ A guide for using macros can be found at
 {{ MACROS___make_sidecar_table(["continuous.Continuous", "continuous.Physio"]) }}
 
 Additional metadata may be included as in
-[any TSV file](../02-common-principles.md#tabular-files) to specify, for
+[any TSV file](../common-principles.md#tabular-files) to specify, for
 example, the units of the recorded time series.
 Please note that, in contrast to other TSV files in BIDS, the TSV files specified
 for physiological and other continuous recordings *do not* include a header
@@ -136,7 +136,7 @@ and `Manufacturer`,
 each individual column in the TSV file may be documented as its own field in the JSON file
 (identical to the practice in other TSV+JSON file pairs).
 Here, only the `Description` and `Units` fields are shown, but you may use any other of the
-[defined fields](../02-common-principles.md#tabular-files) such as `TermURL`, `LongName`, and so on.
+[defined fields](../common-principles.md#tabular-files) such as `TermURL`, `LongName`, and so on.
 In this example, the `"cardiac"` and `"respiratory"` time series are produced by devices from
 the same manufacturer and follow the same sampling frequency.
 To specify different sampling frequencies or manufacturers, the time series would have to be split
