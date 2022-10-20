@@ -50,7 +50,7 @@ func_gifti:
   $ref: rules.files.raw.func.func
   entities:
     $ref: rules.files.raw.func.func.entities
-    hemi: required
+    hemisphere: required
     space: optional
     density: optional
     description: optional
