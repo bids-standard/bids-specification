@@ -46,6 +46,17 @@ func_dtseries:
   extensions:
     - .dtseries.nii
 
+func_gifti:
+  $ref: rules.files.raw.func.func
+  entities:
+    $ref: rules.files.raw.func.func.entities
+    hemi: required
+    space: optional
+    density: optional
+    description: optional
+  extensions:
+    - .func.gii
+
 anat_parametric_mask:
   $ref: rules.files.raw.anat.parametric
   suffixes:
