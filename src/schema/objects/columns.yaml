@@ -20,7 +20,7 @@ acq_time__scans:
     Furthermore, if this header is provided, the acquisition times of all files
     from the same recording MUST be identical.
     Datetime format and their anonymization are described in
-    [Units](SPEC_ROOT/02-common-principles.md#units).
+    [Units](SPEC_ROOT/common-principles.md#units).
   type: string
   format: datetime
 acq_time__sessions:
@@ -29,7 +29,7 @@ acq_time__sessions:
   description: |
     Acquisition time refers to when the first data point of the first run was acquired.
     Datetime format and their anonymization are described in
-    [Units](SPEC_ROOT/02-common-principles.md#units).
+    [Units](SPEC_ROOT/common-principles.md#units).
   type: string
   format: datetime
 age:
@@ -749,7 +749,7 @@ units:
   description: |
     Physical unit of the value represented in this channel,
     for example, `V` for Volt, or `fT/cm` for femto Tesla per centimeter
-    (see [Units](SPEC_ROOT/02-common-principles.md#units)).
+    (see [Units](SPEC_ROOT/common-principles.md#units)).
   type: string
   format: unit
 units__nirs:
@@ -760,7 +760,7 @@ units__nirs:
     specified according to the SI unit symbol and possibly prefix symbol,
     or as a derived SI unit (for example, `V`, or unitless for changes in optical densities).
     For guidelines about units see the [Appendix](SPEC_ROOT/appendices/units.md)
-    and [Common Principles](SPEC_ROOT/02-common-principles.md#units) pages.
+    and [Common Principles](SPEC_ROOT/common-principles.md#units) pages.
   type: string
   format: unit
 value:
