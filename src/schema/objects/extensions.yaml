@@ -16,6 +16,15 @@ bdf:
     Each recording consists of a single `.bdf` file.
     [`bdf+`](https://www.teuniz.net/edfbrowser/bdfplus%20format%20description.html) files are permitted.
     The capital `.BDF` extension MUST NOT be used.
+dtseriesnii:
+  value: .dtseries.nii
+  display_name: Time Series fMRI Data
+  description: |
+    This file type represents data points in a series for every vertex and voxel in the mapping. A
+    row is a complete data series, for a single vertex or voxel in the mapping that applies along the
+    second dimension. A dataseries is often a timeseries, but it can also represent other data types
+    such as a series of sampling depths along the surface normal from the white to pial surface. It
+    retains the ‘t’ in dtseries from CIFTI-1 naming conventions.
 bval:
   value: .bval
   display_name: FSL-Format Gradient Amplitudes
@@ -109,6 +118,11 @@ fif:
   display_name: Functional Imaging File Format
   description: |
     An MEG file format used by Neuromag, Elekta, and MEGIN.
+funcgii:
+  value: .func.gii
+  display_name: Functional GIFTI
+  description: |
+    GIFTI surface data format file.
 jpg:
   value: .jpg
   display_name: Joint Photographic Experts Group Format
