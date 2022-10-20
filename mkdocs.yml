@@ -1,5 +1,48 @@
 site_name: Brain Imaging Data Structure v1.7.1-dev
 site_url: https://bids-specification.readthedocs.io/en/stable/
+nav:
+    - The BIDS Specification:
+      - Introduction: 01-introduction.md
+      - Common principles: 02-common-principles.md
+      - Modality agnostic files: 03-modality-agnostic-files.md
+      - Modality specific files:
+        - Magnetic Resonance Imaging: 04-modality-specific-files/01-magnetic-resonance-imaging-data.md
+        - Magnetoencephalography: 04-modality-specific-files/02-magnetoencephalography.md
+        - Electroencephalography: 04-modality-specific-files/03-electroencephalography.md
+        - Intracranial Electroencephalography: 04-modality-specific-files/04-intracranial-electroencephalography.md
+        - Task events: 04-modality-specific-files/05-task-events.md
+        - Physiological and other continuous recordings: 04-modality-specific-files/06-physiological-and-other-continuous-recordings.md
+        - Behavioral experiments (with no neural recordings): 04-modality-specific-files/07-behavioral-experiments.md
+        - Genetic Descriptor: 04-modality-specific-files/08-genetic-descriptor.md
+        - Positron Emission Tomography: 04-modality-specific-files/09-positron-emission-tomography.md
+        - Microscopy: 04-modality-specific-files/10-microscopy.md
+        - Near-Infrared Spectroscopy: 04-modality-specific-files/11-near-infrared-spectroscopy.md
+      - Derivatives:
+        - BIDS Derivatives: 05-derivatives/01-introduction.md
+        - Common data types and metadata: 05-derivatives/02-common-data-types.md
+        - Imaging data types: 05-derivatives/03-imaging.md
+      - Longitudinal and multi-site studies: 06-longitudinal-and-multi-site-studies.md
+      - Glossary: glossary.md
+      - BIDS Extension Proposals: 07-extensions.md
+      - Appendix:
+        - Contributors: appendices/contributors.md
+        - Licenses: appendices/licenses.md
+        - Entity table: appendices/entity-table.md
+        - Entities: appendices/entities.md
+        - File collections: appendices/file-collections.md
+        - Units: appendices/units.md
+        - Hierarchical Event Descriptors: appendices/hed.md
+        - MEG file formats: appendices/meg-file-formats.md
+        - MEG systems: appendices/meg-systems.md
+        - Coordinate systems: appendices/coordinate-systems.md
+        - Quantitative MRI: appendices/qmri.md
+        - Arterial Spin Labeling: appendices/arterial-spin-labeling.md
+        - Cross modality correspondence: appendices/cross-modality-correspondence.md
+      - Changelog: CHANGES.md
+    - The BIDS Starter Kit:
+      - Website: https://bids-standard.github.io/bids-starter-kit
+      - Tutorials: https://bids-standard.github.io/bids-starter-kit/tutorials/tutorials.html
+      - GitHub repository: https://github.com/bids-standard/bids-starter-kit
 theme:
     name: material
     favicon: images/favicon.png
@@ -49,46 +92,3 @@ plugins:
             '99-appendices/13-cross-modality-correspondence.md': 'appendices/cross-modality-correspondence.md'
 docs_dir: 'src'
 use_directory_urls: false
-nav:
-    - The BIDS Specification:
-      - Introduction: 01-introduction.md
-      - Common principles: 02-common-principles.md
-      - Modality agnostic files: 03-modality-agnostic-files.md
-      - Modality specific files:
-        - Magnetic Resonance Imaging: 04-modality-specific-files/01-magnetic-resonance-imaging-data.md
-        - Magnetoencephalography: 04-modality-specific-files/02-magnetoencephalography.md
-        - Electroencephalography: 04-modality-specific-files/03-electroencephalography.md
-        - Intracranial Electroencephalography: 04-modality-specific-files/04-intracranial-electroencephalography.md
-        - Task events: 04-modality-specific-files/05-task-events.md
-        - Physiological and other continuous recordings: 04-modality-specific-files/06-physiological-and-other-continuous-recordings.md
-        - Behavioral experiments (with no neural recordings): 04-modality-specific-files/07-behavioral-experiments.md
-        - Genetic Descriptor: 04-modality-specific-files/08-genetic-descriptor.md
-        - Positron Emission Tomography: 04-modality-specific-files/09-positron-emission-tomography.md
-        - Microscopy: 04-modality-specific-files/10-microscopy.md
-        - Near-Infrared Spectroscopy: 04-modality-specific-files/11-near-infrared-spectroscopy.md
-      - Derivatives:
-        - BIDS Derivatives: 05-derivatives/01-introduction.md
-        - Common data types and metadata: 05-derivatives/02-common-data-types.md
-        - Imaging data types: 05-derivatives/03-imaging.md
-      - Longitudinal and multi-site studies: 06-longitudinal-and-multi-site-studies.md
-      - Glossary: glossary.md
-      - BIDS Extension Proposals: 07-extensions.md
-      - Appendix:
-        - Contributors: appendices/contributors.md
-        - Licenses: appendices/licenses.md
-        - Entity table: appendices/entity-table.md
-        - Entities: appendices/entities.md
-        - File collections: appendices/file-collections.md
-        - Units: appendices/units.md
-        - Hierarchical Event Descriptors: appendices/hed.md
-        - MEG file formats: appendices/meg-file-formats.md
-        - MEG systems: appendices/meg-systems.md
-        - Coordinate systems: appendices/coordinate-systems.md
-        - Quantitative MRI: appendices/qmri.md
-        - Arterial Spin Labeling: appendices/arterial-spin-labeling.md
-        - Cross modality correspondence: appendices/cross-modality-correspondence.md
-      - Changelog: CHANGES.md
-    - The BIDS Starter Kit:
-      - Website: https://bids-standard.github.io/bids-starter-kit
-      - Tutorials: https://bids-standard.github.io/bids-starter-kit/tutorials/tutorials.html
-      - GitHub repository: https://github.com/bids-standard/bids-starter-kit
