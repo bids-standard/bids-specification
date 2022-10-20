@@ -35,7 +35,7 @@ func_volumetric:
     density: optional
     description: optional
 
-func_dtseries
+func_dtseries:
   $ref: rules.files.raw.func.func
   entities:
     $ref: rules.files.raw.func.func.entities
