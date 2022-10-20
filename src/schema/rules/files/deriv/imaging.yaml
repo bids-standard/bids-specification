@@ -35,6 +35,17 @@ func_volumetric:
     density: optional
     description: optional
 
+func_dtseries
+  $ref: rules.files.raw.func.func
+  entities:
+    $ref: rules.files.raw.func.func.entities
+    space: optional
+    resolution: optional
+    density: optional
+    description: optional
+  extensions:
+    - .dtseries.nii
+
 anat_parametric_mask:
   $ref: rules.files.raw.anat.parametric
   suffixes:
