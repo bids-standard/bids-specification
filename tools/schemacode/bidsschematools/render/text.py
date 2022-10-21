@@ -420,7 +420,7 @@ def append_filename_template_legend(text, pdf_format=False):
   """
 
     legend = f"""{info_str}
-- Filename entities or folders between square brackets
+- Filename entities or directories between square brackets
   (for example, `[_ses-<label>]`) are OPTIONAL.
 - Some entities may only allow specific values,
   in which case those values are listed in `<>`, separated by `|`.
@@ -480,3 +480,29 @@ def define_common_principles(schema, src_path=None):
     string = string.replace("SPEC_ROOT", utils.get_relpath(src_path))
 
     return string
+
+
+def define_allowed_top_directories(schema, src_path=None) -> str:
+    """Create a list of allowed top-level directories with their descriptions.
+
+    Parameters
+    ----------
+    schema : dict
+        The BIDS schema.
+    src_path : str | None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
+
+    Returns
+    -------
+    string : str
+        Unordered list describing top level directories.
+    """
+
+    string = ""
+
+    for dirname, definition in schema.objects.files.items():
+        if definition.file_type == "directory":
+            string += f"- `{dirname}`: {definition.description}"
+
+    return string.replace("SPEC_ROOT", utils.get_relpath(src_path))

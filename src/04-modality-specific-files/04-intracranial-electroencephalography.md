@@ -14,7 +14,7 @@ and can be used for practical guidance when curating a new dataset.
 
 <!--
 This block generates a filename templates.
-The inputs for this macro can be found in the folder
+The inputs for this macro can be found in the directory
   src/schema/rules/datatypes
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
@@ -162,7 +162,11 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("ieeg.iEEGOptional") }}
 
-Example:
+Note that the date and time information SHOULD be stored in the study key file
+([`scans.tsv`](../03-modality-agnostic-files.md#scans-file)).
+Date time information MUST be expressed as indicated in [Units](../02-common-principles.md#units)
+
+#### Example `*_ieeg.json`
 
 ```JSON
 {
@@ -195,15 +199,11 @@ Example:
 }
 ```
 
-Note that the date and time information SHOULD be stored in the Study key file
-([`scans.tsv`](../03-modality-agnostic-files.md#scans-file)).
-Date time information MUST be expressed as indicated in [Units](../02-common-principles.md#units)
-
 ## Channels description (`*_channels.tsv`)
 
 <!--
 This block generates a filename templates.
-The inputs for this macro can be found in the folder
+The inputs for this macro can be found in the directory
   src/schema/rules/datatypes
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
@@ -229,17 +229,6 @@ and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_columns_table("ieeg.iEEGChannels") }}
-
-**Example** `sub-01_channels.tsv`:
-
-```Text
-name  type  units low_cutoff  high_cutoff status  status_description
-LT01  ECOG  uV    300         0.11        good    n/a
-LT02  ECOG  uV    300         0.11        bad     broken
-H01   SEEG  uV    300         0.11        bad     line_noise
-ECG1  ECG   uV    n/a         0.11        good    n/a
-TR1   TRIG  n/a   n/a         n/a         good    n/a
-```
 
 Restricted keyword list for field type in alphabetic order (shared with the MEG
 and EEG modality; however, only types that are common in iEEG data are listed here).
@@ -268,15 +257,30 @@ Note that upper-case is REQUIRED:
 | REF         | Reference channel                                                      |
 | OTHER       | Any other type of channel                                              |
 
-Example of free-form text for field `description`:
+Examples of free-form text for field `description`:
 
--   intracranial, stimulus, response, vertical EOG, skin conductance
+-   intracranial
+-   stimulus
+-   response
+-   vertical EOG
+-   skin conductance
+
+### Example `*_channels.tsv`
+
+```Text
+name  type  units low_cutoff  high_cutoff status  status_description
+LT01  ECOG  uV    300         0.11        good    n/a
+LT02  ECOG  uV    300         0.11        bad     broken
+H01   SEEG  uV    300         0.11        bad     line_noise
+ECG1  ECG   uV    n/a         0.11        good    n/a
+TR1   TRIG  n/a   n/a         n/a         good    n/a
+```
 
 ## Electrode description (`*_electrodes.tsv`)
 
 <!--
 This block generates a filename templates.
-The inputs for this macro can be found in the folder
+The inputs for this macro can be found in the directory
   src/schema/rules/datatypes
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
@@ -299,10 +303,10 @@ are acceptable for `<label>`.
 
 For examples:
 
--   `_space-MNI152Lin` (electrodes are coregistred and scaled to a specific MNI
+-   `*_space-MNI152Lin` (electrodes are coregistred and scaled to a specific MNI
     template)
 
--   `_space-Talairach` (electrodes are coregistred and scaled to Talairach
+-   `*_space-Talairach` (electrodes are coregistred and scaled to Talairach
     space)
 
 When referring to the `*_electrodes.tsv` file in a certain _space_ as defined
@@ -337,7 +341,7 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_columns_table("ieeg.iEEGElectrodes") }}
 
-Example:
+### Example `*_electrodes.tsv`
 
 ```Text
 name  x   y    z    size   manufacturer
@@ -350,14 +354,14 @@ H01   27  -42  -21  5      AdTech
 
 <!--
 This block generates a filename templates.
-The inputs for this macro can be found in the folder
+The inputs for this macro can be found in the directory
   src/schema/rules/datatypes
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_filename_template("raw", datatypes=["ieeg"], suffixes=["coordsystem"]) }}
 
-This `_coordsystem.json` file contains the coordinate system in which electrode
+This `*_coordsystem.json` file contains the coordinate system in which electrode
 positions are expressed. The associated MRI, CT, X-Ray, or operative photo can
 also be specified.
 
@@ -413,7 +417,7 @@ Note that the [`space-<label>`](../appendices/entities.md#space) fields must cor
 between `*_electrodes.tsv` and `*_coordsystem.json` if they refer to the same
 data.
 
-Example:
+### Example `*_coordsystem.json`
 
 ```json
 {
@@ -430,7 +434,7 @@ Example:
 
 <!--
 This block generates a filename templates.
-The inputs for this macro can be found in the folder
+The inputs for this macro can be found in the directory
   src/schema/rules/datatypes
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
@@ -457,6 +461,8 @@ with:
 -   `*_acq-render#_photo.jpg` in case of a rendering
 
 The [`ses-<label>`](../appendices/entities.md#ses) entity may be used to specify when the photo was taken.
+
+### Example `*_photo.jpg`
 
 Example of the operative photo of ECoG electrodes (here is an annotated example in
 which electrodes and vasculature are marked, taken from Hermes et al.,
@@ -496,16 +502,16 @@ EEG technician and provided to the epileptologists (for example, see Burneo JG e
 
 In case of electrical stimulation of brain tissue by passing current through the
 iEEG electrodes, and the electrical stimulation has an event structure (on-off,
-onset, duration), the `_events.tsv` file can contain the electrical stimulation
+onset, duration), the `*_events.tsv` file can contain the electrical stimulation
 parameters in addition to other events. Note that these can be intermixed with
 other task events. Electrical stimulation parameters can be described in columns
 called `electrical_stimulation_<label>`, with labels chosen by the researcher and
-optionally defined in more detail in an accompanying `_events.json` file (as
+optionally defined in more detail in an accompanying `*_events.json` file (as
 per the main BIDS spec). Functions for complex stimulation patterns can, similar
 as when a video is presented, be stored in a directory in the `/stimuli/` directory.
 For example: `/stimuli/electrical_stimulation_functions/biphasic.tsv`
 
-Example:
+### Example `*_events.tsv`
 
 ```Text
 onset duration trial_type             electrical_stimulation_type electrical_stimulation_site electrical_stimulation_current

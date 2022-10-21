@@ -2,6 +2,9 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[SCHEMA] Random fixes from trying to valdiate  [#1330](https://github.com/bids-standard/bids-specification/pull/1330) ([rwblair](https://github.com/rwblair))
+-   \[FIX] Drop the functional and f for NIRS [#1325](https://github.com/bids-standard/bids-specification/pull/1325) ([rob-luke](https://github.com/rob-luke))
+-   \[ENH] use schema to mention which "top directories" are allowed [#1289](https://github.com/bids-standard/bids-specification/pull/1289) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[ENH] Add glossary links to all tables [#1268](https://github.com/bids-standard/bids-specification/pull/1268) ([tsalo](https://github.com/tsalo))
 -   \[ENH] Remove redundant entity definitions on MRI page [#1265](https://github.com/bids-standard/bids-specification/pull/1265) ([tsalo](https://github.com/tsalo))
 -   \[ENH] Standardize and organize entity descriptions [#1264](https://github.com/bids-standard/bids-specification/pull/1264) ([tsalo](https://github.com/tsalo))
@@ -42,6 +45,7 @@
 -   \[ENH] Introduce the atlas entity for derivatives data [#997](https://github.com/bids-standard/bids-specification/pull/997) ([sebastientourbier](https://github.com/sebastientourbier))
 -   \[ENH] Clearly define "entity" in common principles [#947](https://github.com/bids-standard/bids-specification/pull/947) ([Lestropie](https://github.com/Lestropie))
 -   \[ENH] Add BIDS URIs and deprecate relative paths, RawSources and (possibly unused) BasedOn [#918](https://github.com/bids-standard/bids-specification/pull/918) ([effigies](https://github.com/effigies))
+-   \[ENH] BEP030: Functional Near-Infrared Spectroscopy [#802](https://github.com/bids-standard/bids-specification/pull/802) ([rob-luke](https://github.com/rob-luke))
 -   \[FIX] Clarify run entity to accommodate multiple imaging modalities [#760](https://github.com/bids-standard/bids-specification/pull/760) ([yarikoptic](https://github.com/yarikoptic))
 
 ## [v1.7.0](https://github.com/bids-standard/bids-specification/tree/v1.7.0) (2022-02-15)
@@ -324,7 +328,7 @@
 -   \[FIX] Clarify channels.tsv is RECOMMENDED consistently across ephys [#347](https://github.com/bids-standard/bids-specification/pull/347) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Typo fix (contract -> contrast) in events documentation [#346](https://github.com/bids-standard/bids-specification/pull/346) ([snastase](https://github.com/snastase))
 -   \[MISC] rm TOC.md - seems no longer pertinent/used [#341](https://github.com/bids-standard/bids-specification/pull/341) ([yarikoptic](https://github.com/yarikoptic))
--   \[MISC] Move the PR template to a separate folder and improve contents [#338](https://github.com/bids-standard/bids-specification/pull/338) ([jhlegarreta](https://github.com/jhlegarreta))
+-   \[MISC] Move the PR template to a separate directory and improve contents [#338](https://github.com/bids-standard/bids-specification/pull/338) ([jhlegarreta](https://github.com/jhlegarreta))
 -   \[INFRA] Find npm requirements file in Circle [#336](https://github.com/bids-standard/bids-specification/pull/336) ([franklin-feingold](https://github.com/franklin-feingold))
 -   \[ENH] Clarify phenotypic and assessment data in new section [#331](https://github.com/bids-standard/bids-specification/pull/331) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] add information about continuous integration checks to PR template [#330](https://github.com/bids-standard/bids-specification/pull/330) ([sappelhoff](https://github.com/sappelhoff))

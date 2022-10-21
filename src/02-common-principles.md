@@ -86,7 +86,7 @@ instead of specified with an `n/a` value, or included as an empty file
 
 ## Filesystem structure
 
-Data for each subject are placed in sub-directories named "`sub-<label>`",
+Data for each subject are placed in subdirectories named "`sub-<label>`",
 where string "`<label>`" is substituted with the unique identification
 label of each subject.
 Additional information on each participant MAY be provided in a
@@ -94,20 +94,31 @@ Additional information on each participant MAY be provided in a
 in the root directory of the dataset.
 
 If data for the subject were acquired across multiple sessions, then within
-the subject directory resides sub-directories named "`ses-<label>`",
+the subject directory resides subdirectories named "`ses-<label>`",
 where string "`<label>`" is substituted with a unique identification
 label for each session.
 In datasets where at least one subject has more than one session, this
-additional sub-directory later SHOULD be added for all subjects in the dataset.
+additional subdirectory later SHOULD be added for all subjects in the dataset.
 Additional information on each session MAY be provided in a
 [sessions file](03-modality-agnostic-files.md#sessions-file)
 within the subject directory.
 
-Within the session sub-directory (or the subject sub-directory if no
-session sub-directories are present) are sub-directories named according to
+Within the session subdirectory (or the subject subdirectory if no
+session subdirectories are present) are subdirectories named according to
 data type as defined above.
 A data type directory SHOULD NOT be defined if there are no files to be placed
 in that directory.
+
+### Other top level directories
+
+In addition to the subject directories, the root directory of a BIDS dataset
+MAY also contain the following directories:
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___define_allowed_top_directories() }}
 
 ## Filenames
 

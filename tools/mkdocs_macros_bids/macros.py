@@ -348,3 +348,13 @@ def define_common_principles(src_path=None):
     schema_obj = schema.load_schema()
     string = render.define_common_principles(schema_obj, src_path=src_path)
     return string
+
+
+def define_allowed_top_directories(src_path=None):
+
+    if src_path is None:
+        src_path = _get_source_path()
+
+    schema_obj = schema.load_schema()
+    string = render.define_allowed_top_directories(schema_obj, src_path=src_path)
+    return string
