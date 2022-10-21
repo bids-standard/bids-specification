@@ -146,16 +146,19 @@ PETReconstruction:
       level: required
       description_addendum: This partly matches the DICOM Tag (0054,1103) `Reconstruction Method`.
     ReconMethodParameterUnits:
-      level: required
+      level: recommended
+      level_addendum: required if `ReconMethodParameterLabels` does not contain `"none"`
       description_addendum: This partly matches the DICOM Tag (0054,1103) `Reconstruction Method`.
     ReconMethodParameterValues:
-      level: required
+      level: recommended
+      level_addendum: required if `ReconMethodParameterLabels` does not contain `"none"`
       description_addendum: This partly matches the DICOM Tag (0054,1103) `Reconstruction Method`.
     ReconFilterType:
       level: required
       description_addendum: This partly matches the DICOM Tag (0018,1210) `Convolution Kernel`.
     ReconFilterSize:
-      level: required
+      level: recommended
+      level_addendum: required if `ReconFilterType` is not `"none"`
       description_addendum: This partly matches the DICOM Tag (0018,1210) `Convolution Kernel`.
     AttenuationCorrection:
       level: required
@@ -175,6 +178,25 @@ PETReconstruction:
     PromptRate: recommended
     SinglesRate: recommended
     RandomRate: recommended
+
+# set required reconstruction fields to optional when "none" is provided as a parameter label
+EntitiesReconMethodMetadata:
+  selectors:
+    - modality == "pet"
+    - suffix == "pet"
+    - '!intersects(sidecar.ReconMethodParameterLabels, ["none"])'
+  fields:
+    ReconMethodParameterValues: required
+    ReconMethodParameterUnits: required
+
+# set required recon filter fields to optional when FilterType is "None"
+EntitiesReconFilterMetadata:
+  selectors:
+    - modality == "pet"
+    - suffix == "pet"
+    - '!intersects(sidecar.ReconFilterType, ["none"])'
+  fields:
+    ReconFilterSize: required
 
 BloodRecording:
   selectors:
