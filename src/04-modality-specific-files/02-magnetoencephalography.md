@@ -162,7 +162,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("meg.MEGwithEEG") }}
 
-Example:
+#### Example `*_meg.json`
 
 ```JSON
 {
@@ -268,12 +268,18 @@ Note that upper-case is REQUIRED:
 | FITERR           | Fit error signal from each head localization coil    |
 | OTHER            | Any other type of channel                            |
 
-Example of free text for field `description`:
+Examples of free text for field `description`:
 
--   stimulus, response, vertical EOG, horizontal EOG, skin conductance, sats,
-    intracranial, eyetracker
+-   stimulus
+-   response
+-   vertical EOG
+-   horizontal EOG
+-   skin conductance
+-   sats
+-   intracranial
+-   eyetracker
 
-Example:
+### Example `*_channels.tsv`
 
 ```Text
 name type units description
@@ -418,6 +424,8 @@ The [`acq-<label>`](../appendices/entities.md#acq) entity can be used to indicat
 the same face (or other body part in different angles to show, for example, the
 location of the nasion (NAS) as opposed to the right periauricular point (RPA)).
 
+### Example `*_photo.jpg`
+
 Example of the NAS fiducial placed between the eyebrows, rather than at the
 actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
 
@@ -443,7 +451,7 @@ a session, for example when the head points are in a separate file from the EEG
 locations. These files are stored in the specific format of the 3-D digitizer’s
 manufacturer (see the [MEG File Formats Appendix](../appendices/meg-file-formats.md)).
 
-Example:
+For example:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -470,8 +478,8 @@ Empty-room MEG recordings capture the environmental and recording system's noise
 
 It is RECOMMENDED to explicitly specify which empty-room recording should be used with which experimental run(s) or session(s). This can be done via the [`AssociatedEmptyRoom`](../glossary.md#associatedemptyroom-metadata) field in the `*_meg.json` sidecar files.
 
-Empty-room recordings may be collected once per day, where a single empty-room recording may be shared between multiple subjects and/or sessions (see example 1).
-Empty-room recordings can also be collected for each individual experimental session (see example 2).
+Empty-room recordings may be collected once per day, where a single empty-room recording may be shared between multiple subjects and/or sessions (see [Example 1](#example-1)).
+Empty-room recordings can also be collected for each individual experimental session (see [Example 2](#example-2)).
 
 In the case of empty-room recordings being associated with multiple subjects and/or sessions, it is RECOMMENDED to store the empty-room recording inside a subject directory named `sub-emptyroom`.
 If a [`session-<label>`](../appendices/entities.md#ses) entity is present, its label SHOULD be the date of the empty-room recording in the format `YYYYMMDD`, that is `ses-YYYYMMDD`.
@@ -483,7 +491,7 @@ In the case of empty-room recordings being collected for the individual experime
 
 In either case, the label for the [`task-<label>`](../appendices/entities.md#task) entity in the empty-room recording SHOULD be set to `noise`.
 
-Example 1:
+### Example 1
 
 One empty-room recording per day, applying to all subjects for that day.
 
@@ -508,7 +516,7 @@ A guide for using macros can be found at
    }
 ) }}
 
-Example 2:
+### Example 2
 
 One recording per session, stored within the session directory.
 
@@ -533,5 +541,3 @@ A guide for using macros can be found at
       },
    }
 ) }}
-
-<!-- Link Definitions -->

@@ -134,7 +134,7 @@ Specific NIRS fields that SHOULD be present:
 
 {{ MACROS___make_sidecar_table("nirs.NirsRecommend") }}
 
-Example:
+#### Example `*_nirs.json`
 
 ```JSON
 {
@@ -219,7 +219,7 @@ Note that upper-case is REQUIRED.
 | MAGN                        | Magnetomenter channel, one channel for each orientation. An extra column `component` for the axis of the orientation MUST be added to the `*_channels.tsv` file (x, y or z). |
 | MISC                        | Miscellaneous                                                                                                                                                                |
 
-Example:
+### Example `*_channels.tsv`
 
 ```Text
 Name         type                   source      detector      wavelength_nominal   units
@@ -255,7 +255,8 @@ The columns of the optodes description table stored in `*_optodes.tsv` are:
 
 {{ MACROS___make_columns_table("nirs.nirsOptodes") }}
 
-Example:
+### Example `*_optodes.tsv`
+
 ```Text
 name    type         x          y         z          template_x    template_y   template_z
 A1      source       -0.0707    0.0000    -0.0707    -0.07         0.00         0.07
@@ -302,8 +303,9 @@ Fields relating to the position of anatomical landmarks measured during an NIRS 
 
 {{ MACROS___make_sidecar_table(["nirs.AnatomicalLandmark", "nirs.AnatomicalLandmarkCoordinateSystemDescriptionRec"]) }}
 
-Example:
-```text
+### Example `*_coordsystem.json`
+
+```json
 {
   "NIRSCoordinateSystem": "Other",
   "NIRSCoordinateUnits": "mm",

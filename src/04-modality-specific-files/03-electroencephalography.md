@@ -135,7 +135,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("eeg.EEGMoreRecommended") }}
 
-Example:
+#### Example `*_eeg.json`
 
 ```JSON
 {
@@ -238,11 +238,15 @@ Note that upper-case is REQUIRED:
 | TRIG        | System triggers                                              |
 | VEOG        | Vertical EOG (eye)                                           |
 
-Example of free-form text for field `description`
+Examples of free-form text for field `description`
 
--   n/a, stimulus, response, skin conductance, battery status
+-   n/a
+-   stimulus
+-   response
+-   skin conductance
+-   battery status
 
-### Example `channels.tsv`
+### Example `*_channels.tsv`
 
 See also the corresponding [`electrodes.tsv` example](#example-electrodestsv).
 
@@ -280,7 +284,7 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_columns_table("eeg.EEGElectrodes") }}
 
-### Example `electrodes.tsv`
+### Example `*_electrodes.tsv`
 
 See also the corresponding [`electrodes.tsv` example](#example-channelstsv).
 
@@ -405,7 +409,7 @@ landmarks or fiducials during an EEG session/run, must be stored separately in
 the corresponding `*_T1w.json` or `*_T2w.json` file and should be expressed in
 voxels (starting from `[0, 0, 0]`).
 
-Example:
+### Example `*_coordsystem.json`
 
 ```JSON
 {
@@ -440,7 +444,7 @@ indicate acquisition of different photos of
 the same face (or other body part in different angles to show, for example, the
 location of the nasion (NAS) as opposed to the right periauricular point (RPA).
 
-Example:
+### Example `*_photo.jpg`
 
 Picture of a NAS fiducial placed between the eyebrows, rather than at the
 actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
