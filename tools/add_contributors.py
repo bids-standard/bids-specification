@@ -45,6 +45,9 @@ def main():
     for gh_usernames in tributors:
         if tributors[gh_usernames].get("contributions") is None:
             tributors[gh_usernames]["contributions"] = ["doc"]
+        for key in tributors[gh_usernames]:
+            if isinstance(tributors[gh_usernames][key], (str)):
+                tributors[gh_usernames][key] = tributors[gh_usernames][key].strip()
 
     allcontrib = load_allcontrib(allcontrib_file)
     allcontrib = transfer_contribution(tributors, allcontrib)

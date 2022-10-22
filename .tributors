@@ -217,7 +217,7 @@
         "name": "Andrew Janke"
     },
     "anibalsolon": {
-        "bio": "Everywhere: @anibalsolon ",
+        "bio": "Everywhere: @anibalsolon",
         "blog": "https://anibalsolon.com/",
         "contributions": [
             "code"
@@ -236,7 +236,7 @@
         "orcid": "0000-0001-6550-4574"
     },
     "arokem": {
-        "affiliation": "University of Washington, Psychology, Seattle, WA, 98107, United States of America  ",
+        "affiliation": "University of Washington, Psychology, Seattle, WA, 98107, United States of America",
         "blog": "https://arokem.org/",
         "contributions": [
             "doc",
@@ -274,7 +274,7 @@
     },
     "Arshitha": {
         "affiliation": "NIMH, Data Science and Sharing Team, Bethesda, MD, 20892, USA",
-        "bio": "Data Scientist ",
+        "bio": "Data Scientist",
         "blog": "https://github.com/Arshitha",
         "contributions": [
             "doc",
@@ -479,7 +479,7 @@
         ],
         "email": "chr@chymera.eu",
         "name": "Christian Horea",
-        "orcid": "0000-0001-7037-2449 ",
+        "orcid": "0000-0001-7037-2449",
         "publish_email": true
     },
     "ChristophePhillips": {
@@ -918,8 +918,8 @@
         "name": "Franco Pestilli"
     },
     "franklin-feingold": {
-        "affiliation": "Stanford University ",
-        "bio": "BIDS: https://github.com/bids-standard/bids-specification\r\n\r\nOpenNeuro: https://github.com/OpenNeuroOrg/openneuro ",
+        "affiliation": "Stanford University",
+        "bio": "BIDS: https://github.com/bids-standard/bids-specification\r\n\r\nOpenNeuro: https://github.com/OpenNeuroOrg/openneuro",
         "blog": "https://github.com/franklin-feingold",
         "contributions": [
             "eventOrganizing",
@@ -953,7 +953,7 @@
             "doc"
         ],
         "name": "Gaia Rizzo",
-        "orcid": "0000-0001-7272-8576 ",
+        "orcid": "0000-0001-7272-8576",
         "publish_email": false
     },
     "afni-gangc": {
@@ -1379,7 +1379,7 @@
         "name": "JegouA"
     },
     "jrdalenberg": {
-        "affiliation": "University of Groningen, University Medical Center Groningen, Department of Neurology, Movement Disorders Groningen, Hanzeplein 1, 9713 GZ, Groningen ",
+        "affiliation": "University of Groningen, University Medical Center Groningen, Department of Neurology, Movement Disorders Groningen, Hanzeplein 1, 9713 GZ, Groningen",
         "blog": "https://github.com/jrdalenberg",
         "contributions": [
             "doc"
@@ -1769,7 +1769,7 @@
         "orcid": "0000-0003-2122-740X"
     },
     "Moo-Marc": {
-        "affiliation": "Montreal Neurological Institute-Hospital, McConnell Brain Imaging Center, Montreal, Quebec, H2A ",
+        "affiliation": "Montreal Neurological Institute-Hospital, McConnell Brain Imaging Center, Montreal, Quebec, H2A",
         "bio": "MEG lab manager, MSc Physics, UBC 2003",
         "blog": "https://github.com/Moo-Marc",
         "contributions": [
@@ -2668,7 +2668,7 @@
         "name": "Teon L. Brooks"
     },
     "nicholst": {
-        "affiliation": "University of Oxford, Big Data Institute, Oxford, OX3 7LF, UK ",
+        "affiliation": "University of Oxford, Big Data Institute, Oxford, OX3 7LF, UK",
         "blog": "http://nisox.org",
         "contributions": [
             "doc",
