@@ -20,15 +20,15 @@ You should have a remote, which we will call `upstream`, for the
 repository:
 
 ```Shell
-$ git remote get-url upstream
+git remote get-url upstream
 git@github.com:bids-standard/bids-specification.git
 ```
 
 If you do not, add it with:
 
 ```Shell
-$ cd bids-specification
-$ git remote add upstream git@github.com:bids-standard/bids-specification.git
+cd bids-specification
+git remote add upstream git@github.com:bids-standard/bids-specification.git
 ```
 
 Fetch the current repository state and create a new `rel/<version>` branch based on
@@ -36,8 +36,8 @@ Fetch the current repository state and create a new `rel/<version>` branch based
 For example, if releasing version `1.2.0`:
 
 ```Shell
-$ git fetch upstream
-$ git checkout -b rel/1.2.0 upstream/master
+git fetch upstream
+git checkout -b rel/1.2.0 upstream/master
 ```
 
 ### 2. Update the version, contributors list, previous version URLs, and the Changelog
@@ -92,9 +92,9 @@ By pushing `rel/` branches to the main repository, the chances of continuous int
 discrepancies is reduced.
 
 ```Shell
-$ git add src/CHANGES.md mkdocs.yml src/appendices/contributors.md
-$ git commit -m 'REL: v1.2.0'
-$ git push -u upstream rel/1.2.0
+git add src/CHANGES.md mkdocs.yml src/appendices/contributors.md
+git commit -m 'REL: v1.2.0'
+git push -u upstream rel/1.2.0
 ```
 
 ### 4. Open a pull request against the master branch
@@ -118,10 +118,10 @@ probably wait.
 If `master` is updated, it should be merged into the `rel/<version>` branch:
 
 ```Shell
-$ git fetch upstream
-$ git checkout rel/1.2.0
-$ git merge upstream/master
-$ git push rel/1.2.0
+git fetch upstream
+git checkout rel/1.2.0
+git merge upstream/master
+git push rel/1.2.0
 ```
 
 ### 5. Set release date and merge
@@ -145,12 +145,13 @@ Upon each commit to the `master` branch, CircleCI builds a PDF version of the
 specification (see `.circleci/config.yml` and the `pdf_build_src` directory).
 
 So after merging the new "stable" version into `master`, wait for the CircleCI
-jobs to finish and then check the built PDF using this link:
+jobs to finish and then check the built PDF using the following steps:
 
-`https://circleci.com/api/v1.1/project/github/bids-standard/bids-specification/latest/artifacts/0/bids-spec.pdf?branch=master`
-
-Download the PDF and hold it ready for upload to our Zenodo archive. See the
-*Uploading the stable PDF to Zenodo* step below.
+1. Go to the [list of recent commits](https://github.com/bids-standard/bids-specification/commits/master)
+1. Click on the "CI checks" for the most recent commit (should be a green checkmark)
+1. From the list of CI checks, click on the one called: `Check the rendered PDF version here!`
+1. Download the PDF and check that the date and version on the first page are as expected
+1. Hold the PDF ready for upload to our Zenodo archive (see the *Uploading the stable PDF to Zenodo* step below)
 
 ### 7. Tag the release
 
@@ -160,9 +161,9 @@ To do this, `fetch` the current state of `upstream` (see step 1), tag `upstream/
 `push` the tag to `upstream`.
 
 ```Shell
-$ git fetch upstream
-$ git tag -a -m "v1.2.0 (2019-03-04)" v1.2.0 upstream/master
-$ git push upstream v1.2.0
+git fetch upstream
+git tag -a -m "v1.2.0 (2019-03-04)" v1.2.0 upstream/master
+git push upstream v1.2.0
 ```
 
 There are four components to the tag command:
