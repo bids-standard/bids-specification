@@ -56,5 +56,4 @@ pet:
 nirs:
   value: nirs
   display_name: Near-Infrared Spectroscopy
-  description:
-    Near-Infrared Spectroscopy data organized around the SNIRF format
+  description: Near-Infrared Spectroscopy data organized around the SNIRF format
