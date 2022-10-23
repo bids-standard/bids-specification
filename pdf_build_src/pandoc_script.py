@@ -22,25 +22,25 @@ def build_pdf(filename="bids-spec.pdf", logfile="bids-spec_pandoc_log.json"):
 
     # Get all input files
     markdown_list = []
-    for root, dirs, files in os.walk('.'):
+    for root, dirs, files in os.walk("."):
         for file in files:
             fpath = os.path.join(root, file)
             if fpath.endswith(".md") and fpath not in EXCLUDE:
                 markdown_list.append(fpath)
-            elif fpath.endswith('index.md'):
+            elif fpath.endswith("index.md"):
                 # Special role for index.md
                 index_page = fpath
 
     # Prepare the command options
     cmd = [
-        'pandoc',
-        '--from=markdown_github+yaml_metadata_block',
-        '--include-before-body=./cover.tex',
-        '--include-in-header=./header.tex',
-        '--include-in-header=./header_setup.tex',
-        '--pdf-engine=xelatex',
-        f'--log={logfile}',
-        f'--output={filename}',
+        "pandoc",
+        "--from=markdown_github+yaml_metadata_block",
+        "--include-before-body=./cover.tex",
+        "--include-in-header=./header.tex",
+        "--include-in-header=./header_setup.tex",
+        "--pdf-engine=xelatex",
+        f"--log={logfile}",
+        f"--output={filename}",
     ]
 
     # location of this file: This is also the working directory when
@@ -62,7 +62,7 @@ def build_pdf(filename="bids-spec.pdf", logfile="bids-spec_pandoc_log.json"):
     cmd += [str(root / i) for i in ["../../metadata.yml"] + sorted(markdown_list)]
 
     # print and run
-    print('running: \n\n' + '\n'.join(cmd))
+    print("running: \n\n" + "\n".join(cmd))
     subprocess.run(cmd)
 
 

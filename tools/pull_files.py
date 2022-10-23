@@ -7,13 +7,15 @@ doi:10.5281/zenodo.3233853
 https://github.com/alan-turing-institute/the-turing-way/blob/af98c94/tests/pull_files.py
 
 """
-import requests
 import argparse
+
+import requests
 
 
 def parse_args():
     """Construct the command line interface for the script"""
-    DESCRIPTION = "Script to pull changed files in a Pull Request using a GET request to the GitHub API."
+    DESCRIPTION = """Script to pull changed files in a Pull Request
+using a GET request to the GitHub API."""
     parser = argparse.ArgumentParser(description=DESCRIPTION)
 
     parser.add_argument(
