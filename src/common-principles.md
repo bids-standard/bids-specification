@@ -532,8 +532,8 @@ for more information.
 1.  If multiple metadata files satisfy criteria 2.a-c above:
 
     1.  For [tabular files](#tabular-files) and other simple metadata files
-        (for instance, [`bvec` / `bval` files for diffusion
-	MRI](modality-specific-files/magnetic-resonance-imaging-data.md#required-gradient-orientation-information)),
+        (for instance,
+        [`bvec` / `bval` files for diffusion MRI](modality-specific-files/magnetic-resonance-imaging-data.md#required-gradient-orientation-information)),
         accessing metadata associated with a data file MUST consider only the
         applicable file that is lowest in the filesystem hierarchy.
 
