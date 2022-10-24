@@ -75,16 +75,13 @@ Please change the previous version links from GitHub to ReadTheDocs.
 In the figure below, we update v1.2.2.
 ![github-to-rtd](release_images/GitHub_to_RTD_spec_rendering.png "github-to-rtd")
 
-Remove `REL:` entries in [src/CHANGES.md](https://github.com/bids-standard/bids-specification/blob/master/src/CHANGES.md).
-
-```Diff
-- REL: v1.2.2 #405 (franklin-feingold)
-```
-
 Review `src/CHANGES.md` to ensure that the document produces a changelog that is useful to a
 reader of the specification.
 For example, several small PRs fixing typos might be merged into a single line-item, or less
 important changes might be moved down the list to ensure that large changes are more prominent.
+You can also make use of the `exclude-from-changelog` label.
+Adding this label to PRs in the GitHub web interface will prevent the changelog generator from
+considering this item for inclusion in the changelog.
 
 ### 3. Commit changes and push to upstream
 
@@ -99,7 +96,10 @@ git push -u upstream rel/1.2.0
 
 ### 4. Open a pull request against the master branch
 
-Important note: The pull request title **must** be named "REL: vX.Y.Z" (for example, "REL: v1.2.0").
+**Important notes:**
+
+1. The pull request title **must** be named "REL: vX.Y.Z" (for example, "REL: v1.2.0")
+1. The pull request **must** get a GitHub label called `exclude-from-changelog`
 
 **This will open a period of discussion for 5 business days regarding if we are ready to release.**
 
