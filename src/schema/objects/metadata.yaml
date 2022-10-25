@@ -3241,7 +3241,10 @@ TriggerChannelCount:
   name: TriggerChannelCount
   display_name: Trigger Channel Count
   description: |
-    Number of channels for digital (TTL bit level) triggers.
+    Number of channels for digital (TTL bit level) triggers or
+    analog equivalents that could unambiguously be converted to
+    a digital format (step function-like voltage differences).
+    Corresponds to the `TRIG` channel type.
   type: integer
   minimum: 0
 TubingLength:
