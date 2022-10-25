@@ -66,6 +66,7 @@ nav:
         - Positron Emission Tomography: 04-modality-specific-files/09-positron-emission-tomography.md
         - Microscopy: 04-modality-specific-files/10-microscopy.md
         - Near-Infrared Spectroscopy: 04-modality-specific-files/11-near-infrared-spectroscopy.md
+        - Magnetic Resonance Spectroscopy: 04-modality-specific-files/12-magnetic-resonance-spectroscopy.md
       - Derivatives:
         - BIDS Derivatives: 05-derivatives/01-introduction.md
         - Common data types and metadata: 05-derivatives/02-common-data-types.md

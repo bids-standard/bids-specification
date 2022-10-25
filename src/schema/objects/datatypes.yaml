@@ -43,6 +43,10 @@ micr:
   value: micr
   display_name: Microscopy
   description: Microscopy
+mrs:
+  value: mrs
+  display_name: Magnetic Resonance Spectroscopy
+  description: Magnetic resonance spectroscopy data
 perf:
   value: perf
   display_name: Perfusion imaging

@@ -669,6 +669,12 @@ meg:
   description: |
     Unprocessed MEG data stored in the native file format of the MEG instrument
     with which the data was collected.
+mrsi:
+  value: mrsi
+  display_name: Magnetic resonance spectroscopy imaging
+  description: |
+    MRS acquisitions where additional imaging gradients are used
+    to detect the MR signal from 1, 2, or 3 spatial dimensions.
 nirs:
   value: nirs
   display_name: Near Infrared Spectroscopy
@@ -737,6 +743,13 @@ probseg:
     A probabilistic segmentation.
 
     This suffix may only be used in derivative datasets.
+ref:
+  value: ref
+  display_name: MRS
+  description: |
+    An MRS acquisition acquired to detect a signal to serve
+    as a concentration reference for absolute quantification
+    or for preprocessing (e.g., eddy-current correction).
 sbref:
   value: sbref
   display_name: Single-band reference image
@@ -776,8 +789,19 @@ stim:
   display_name: Continuous recording
   description: |
     Continuous measures, such as parameters of a film or audio stimulus.
+svs:
+  value: svs
+  display_name: Single-voxel spectroscopy
+  description: |
+    MRS acquisitions where the detected MR signal is spatially localized to a single volume.
 uCT:
   value: uCT
   display_name: Micro-CT
   description: |
     Micro-CT imaging data
+unloc:
+  value: unloc
+  display_name: Unlocalized spectroscopy
+  description: |
+    MRS acquisitions run without localization.
+    This includes signals detected using coil sensitivity only.

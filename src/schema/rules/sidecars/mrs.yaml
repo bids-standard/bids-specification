@@ -1,0 +1,32 @@
+#
+# Groups of related metadata fields
+#
+# Assumptions: never need disjunction of selectors
+# Assumptions: top-to-bottom overrides is sufficient logic
+
+---
+# MRS Common metadata fields
+MRSScannerHardware:
+  selectors:
+    - modality == "mrs"
+  fields:
+    Manufacturer:
+      level: recommended
+      description_addendum: Corresponds to DICOM Tag 0008, 0070 `Manufacturer`.
+    ManufacturersModelName:
+      level: recommended
+      description_addendum: Corresponds to DICOM Tag 0008, 1090 `Manufacturers Model Name`.
+    DeviceSerialNumber:
+      level: recommended
+      description_addendum: Corresponds to DICOM Tag 0018, 1000 `DeviceSerialNumber`.
+    StationName:
+      level: recommended
+      description_addendum: Corresponds to DICOM Tag 0008, 1010 `Station Name`.
+    SoftwareVersions:
+      level: recommended
+      description_addendum: Corresponds to DICOM Tag 0018, 1020 `Software Versions`.
+    HardcopyDeviceSoftwareVersion: DEPRECATED
+    MagneticFieldStrength:
+      level: recommended
+    ReceiveCoilName: recommended
+    ReceiveCoilActiveElements: recommended
