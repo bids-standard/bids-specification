@@ -235,7 +235,7 @@ Note that upper-case is REQUIRED:
 | RESP        | Respiration                                                  |
 | SYSCLOCK    | System time showing elapsed time since trial started         |
 | TEMP        | Temperature                                                  |
-| TRIG        | Analog (in volt) or digital (TTL bit level) trigger channel  |
+| TRIG        | Analog (TTL in Volt) or digital (binary TTL) trigger channel |
 | VEOG        | Vertical EOG (eye)                                           |
 
 Examples of free-form text for field `description`
