@@ -31,7 +31,7 @@ def build_pdf(filename="bids-spec.pdf", logfile="bids-spec_pandoc_log.json"):
     fname_mkdocs_yml = next(
         path / "mkdocs.yml"
         for path in pathlib.Path(__file__).absolute().parents
-        if Path.isfile(path / "mkdocs.yml")
+        if pathlib.Path.is_file(path / "mkdocs.yml")
     )
 
     with open(fname_mkdocs_yml, "r") as stream:
