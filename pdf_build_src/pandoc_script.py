@@ -61,6 +61,7 @@ def build_pdf(filename="bids-spec.pdf", logfile="bids-spec_pandoc_log.json"):
     # "../04-modality-specific-files/images/...", then we need to use
     # appendices/ as a resource-path so that the relative files can
     # be found.
+    root = pathlib.Path(__file__).parent.absolute()
     cmd += [f'--resource-path=.:{str(root / "appendices")}']
 
     # Add input files to command
