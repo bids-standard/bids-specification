@@ -2,6 +2,7 @@
 
 This is done once the duplicate src directory is processed.
 """
+import os
 import pathlib
 import subprocess
 import yaml
@@ -17,6 +18,12 @@ def build_pdf(filename="bids-spec.pdf", logfile="bids-spec_pandoc_log.json"):
     logfile : str
         Name of the log file. Defaults to "bids-spec_pandoc_log.json".
     """
+    # change directory name if running on CI
+    runs_on_CI = True if os.getenv("CIRCLE_BRANCH") else False
+    proj_fname = "bids-specification"
+    if runs_on_CI:
+        proj_fname = "project"
+
     # location of this file: This is also the working directory when
     # the pdf is being built using `cd build_pdf_src` and then
     # `bash build_pdf.sh`
@@ -42,7 +49,7 @@ def build_pdf(filename="bids-spec.pdf", logfile="bids-spec_pandoc_log.json"):
         return True
 
     fname_mkdocs_yml = [
-        i for i in list(root.parents) if str(i).endswith("bids-specification")
+        i for i in list(root.parents) if str(i).endswith(proj_fname)
     ][0] / "mkdocs.yml"
     with open(fname_mkdocs_yml, "r") as stream:
         mkdocs_yml = yaml.safe_load(stream)
@@ -56,7 +63,7 @@ def build_pdf(filename="bids-spec.pdf", logfile="bids-spec_pandoc_log.json"):
     # special files
     index_page = "./index.md"
     pandoc_metadata = (
-        [i for i in list(root.parents) if str(i).endswith("bids-specification")][0]
+        [i for i in list(root.parents) if str(i).endswith(proj_fname)][0]
         / "pdf_build_src"
         / "metadata.yml"
     )
