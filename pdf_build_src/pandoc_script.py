@@ -3,9 +3,19 @@
 This is done once the duplicate src directory is processed.
 """
 import os
-import pathlib
 import subprocess
 import yaml
+from pathlib import Path
+
+HERE = Path(__file__).absolute()
+
+
+def _find(path, filename):
+    return next(
+        parent / filename
+        for parent in path.parents
+        if Path.is_file(parent / filename)
+    )
 
 
 def build_pdf(filename="bids-spec.pdf", logfile="bids-spec_pandoc_log.json"):
@@ -28,12 +38,7 @@ def build_pdf(filename="bids-spec.pdf", logfile="bids-spec_pandoc_log.json"):
                 else:
                     yield from _flatten_values(val)
 
-    # Find mkdocs.yml in some parent directory of this script
-    fname_mkdocs_yml = next(
-        path / "mkdocs.yml"
-        for path in pathlib.Path(__file__).absolute().parents
-        if pathlib.Path.is_file(path / "mkdocs.yml")
-    )
+    fname_mkdocs_yml = _find(HERE, "mkdocs.yml")
 
     with open(fname_mkdocs_yml, "r") as stream:
         mkdocs_yml = yaml.safe_load(stream)
@@ -42,7 +47,7 @@ def build_pdf(filename="bids-spec.pdf", logfile="bids-spec_pandoc_log.json"):
 
     # special files
     index_page = "./index.md"
-    pandoc_metadata = pathlib.Path(__file__).with_name("metadata.yml")
+    pandoc_metadata = _find(HERE, "metadata.yml")
 
     # Prepare the command options
     cmd = [
@@ -62,14 +67,14 @@ def build_pdf(filename="bids-spec.pdf", logfile="bids-spec_pandoc_log.json"):
     # "../04-modality-specific-files/images/...", then we need to use
     # appendices/ as a resource-path so that the relative files can
     # be found.
-    root = pathlib.Path(__file__).parent.absolute()
-    cmd += [f'--resource-path=.:{str(root / "appendices")}']
+    build_root = HERE.parent
+    cmd += [f'--resource-path=.:{build_root / "appendices"}']
 
     # Add input files to command
     # The filenames in `markdown_list` will ensure correct order when sorted
-    cmd += [str(root / index_page)]
+    cmd += [str(build_root / index_page)]
     cmd += [str(pandoc_metadata)]
-    cmd += [str(root / md) for md in _flatten_values(sections)]
+    cmd += [str(build_root / md) for md in _flatten_values(sections)]
 
     # print and run
     print("pandoc command being run: \n\n" + "\n".join(cmd))
