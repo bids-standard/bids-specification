@@ -27,12 +27,13 @@ def build_pdf(filename="bids-spec.pdf", logfile="bids-spec_pandoc_log.json"):
             else:
                 yield from _flatten_values(val)
 
-      # Find mkdocs.yml in some parent directory of this script
-      fname_mkdocs_yml = next(
-          path / "mkdocs.yml"
-          for path in pathlib.Path(__file__).absolute().parents
-          if Path.isfile(path / "mkdocs.yml")
-      )
+    # Find mkdocs.yml in some parent directory of this script
+    fname_mkdocs_yml = next(
+        path / "mkdocs.yml"
+        for path in pathlib.Path(__file__).absolute().parents
+        if Path.isfile(path / "mkdocs.yml")
+    )
+
     with open(fname_mkdocs_yml, "r") as stream:
         mkdocs_yml = yaml.safe_load(stream)
 
