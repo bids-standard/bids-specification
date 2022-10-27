@@ -21,11 +21,12 @@ def build_pdf(filename="bids-spec.pdf", logfile="bids-spec_pandoc_log.json"):
 
     def _flatten_values(lst):
         """Flatten a list of dicts of lists to a list of values."""
-        for val in (obj.values() for obj in lst):
-            if isinstance(val, str):
-                yield val
-            else:
-                yield from _flatten_values(val)
+        for obj in lst:
+            for val in obj.values():
+                if isinstance(val, str):
+                    yield val
+                else:
+                    yield from _flatten_values(val)
 
     # Find mkdocs.yml in some parent directory of this script
     fname_mkdocs_yml = next(
