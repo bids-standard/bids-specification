@@ -76,7 +76,8 @@ def _get_paths(
                     file_names[:] = []
                 # will break if BIDS ever puts meaningful data under `/.{dandi,datalad,git}*/`
                 if os.path.basename(root).startswith("."):
-                    continue
+                    dirs[:] = []
+                    file_names[:] = []
                 for file_name in file_names:
                     if file_name in exclude_files or file_name.startswith("."):
                         continue
