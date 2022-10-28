@@ -30,3 +30,17 @@ MRSScannerHardware:
       level: recommended
     ReceiveCoilName: recommended
     ReceiveCoilActiveElements: recommended
+
+MRSSequenceSpecifics:
+  selectors:
+    - modality == "mrs"
+  fields:
+    PulseSequenceType:
+      level: recommended
+      description_addendum: A general description of the pulse sequence used for the scan (for example, "sLASER”, “MEGA-PRESS", "EPSI", "Metabolite-cycled MRSI").
+    ScanningSequence: recommended
+    SequenceVariant: recommended
+    ScanOptions: recommended
+    SequenceName: recommended
+    PulseSequenceDetails: recommended
+    MRAcquisitionType: recommended

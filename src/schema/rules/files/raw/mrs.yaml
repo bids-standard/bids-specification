@@ -1,9 +1,69 @@
 ---
-mrs:
+svs:
   suffixes:
     - svs
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  datatypes:
+    - mrs
+  entities:
+    subject: required
+    session: optional
+    task: optional
+    acquisition: optional
+    reconstruction: optional
+    run: optional
+    echo: optional
+    inversion: optional
+    nucleus: optional
+    volume: optional
+
+mrsi:
+  suffixes:
     - mrsi
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  datatypes:
+    - mrs
+  entities:
+    subject: required
+    session: optional
+    task: optional
+    acquisition: optional
+    reconstruction: optional
+    run: optional
+    echo: optional
+    inversion: optional
+    nucleus: optional
+    volume: optional
+
+references:
+  suffixes:
     - ref
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  datatypes:
+    - mrs
+  entities:
+    subject: required
+    session: optional
+    task: optional
+    acquisition: optional
+    reconstruction: optional
+    run: optional
+    echo: optional
+    inversion: optional
+    nucleus: optional
+    volume: optional
+
+unlocalized:
+  suffixes:
     - unloc
   extensions:
     - .nii.gz
@@ -16,4 +76,9 @@ mrs:
     session: optional
     task: optional
     acquisition: optional
+    reconstruction: optional
     run: optional
+    echo: optional
+    inversion: optional
+    nucleus: optional
+    volume: optional
