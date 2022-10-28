@@ -1,4 +1,4 @@
-from bidsschematools import utils
+from bidsschematools.render import utils
 
 
 def test_combine_extensions():

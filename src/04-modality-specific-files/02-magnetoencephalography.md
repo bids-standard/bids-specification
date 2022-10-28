@@ -18,12 +18,13 @@ the [BIDS examples repository](https://github.com/bids-standard/bids-examples).
 
 <!--
 This block generates a filename templates.
-The inputs for this macro can be found in the folder
+The inputs for this macro can be found in the directory
   src/schema/rules/datatypes
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_filename_template(
+   "raw",
    datatypes=["meg"],
    suffixes=["meg", "markers", "events", "physio", "stim"])
 }}
@@ -161,7 +162,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("meg.MEGwithEEG") }}
 
-Example:
+#### Example `*_meg.json`
 
 ```JSON
 {
@@ -202,12 +203,12 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 
 <!--
 This block generates a filename templates.
-The inputs for this macro can be found in the folder
+The inputs for this macro can be found in the directory
   src/schema/rules/datatypes
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["channels"]) }}
+{{ MACROS___make_filename_template("raw", datatypes=["meg"], suffixes=["channels"]) }}
 
 This file is RECOMMENDED as it provides easily searchable information across BIDS datasets.
 For example for general curation, response to queries, or for batch analysis.
@@ -217,42 +218,13 @@ Missing values MUST be indicated with `"n/a"`.
 
 The columns of the channels description table stored in `*_channels.tsv` are:
 
-MUST be present **in this specific order**:
-
 <!-- This block generates a columns table.
 The definitions of these fields can be found in
-  src/schema/objects/columns.yaml
+  src/schema/rules/tabular_data/*.yaml
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_columns_table(
-   {
-      "name__channels": "REQUIRED",
-      "type__meg_channels": "REQUIRED",
-      "units": "REQUIRED",
-   }
-) }}
-
-SHOULD be present:
-
-<!-- This block generates a columns table.
-The definitions of these fields can be found in
-  src/schema/objects/columns.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_columns_table(
-   {
-      "description": "OPTIONAL",
-      "sampling_frequency": "OPTIONAL",
-      "low_cutoff": "OPTIONAL",
-      "high_cutoff": "OPTIONAL",
-      "notch": "OPTIONAL",
-      "software_filters": "OPTIONAL",
-      "status": "OPTIONAL",
-      "status_description": "OPTIONAL",
-   }
-) }}
+{{ MACROS___make_columns_table("meg.MEGChannels") }}
 
 Example:
 
@@ -296,12 +268,18 @@ Note that upper-case is REQUIRED:
 | FITERR           | Fit error signal from each head localization coil    |
 | OTHER            | Any other type of channel                            |
 
-Example of free text for field `description`:
+Examples of free text for field `description`:
 
--   stimulus, response, vertical EOG, horizontal EOG, skin conductance, sats,
-    intracranial, eyetracker
+-   stimulus
+-   response
+-   vertical EOG
+-   horizontal EOG
+-   skin conductance
+-   sats
+-   intracranial
+-   eyetracker
 
-Example:
+### Example `*_channels.tsv`
 
 ```Text
 name type units description
@@ -315,12 +293,12 @@ UADC001 AUDIO V envelope of audio signal presented to participant
 
 <!--
 This block generates a filename templates.
-The inputs for this macro can be found in the folder
+The inputs for this macro can be found in the directory
   src/schema/rules/datatypes
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["coordsystem"]) }}
+{{ MACROS___make_filename_template("raw", datatypes=["meg"], suffixes=["coordsystem"]) }}
 
 OPTIONAL. A JSON document specifying the coordinate system(s) used for the MEG,
 EEG, head localization coils, and anatomical landmarks.
@@ -428,12 +406,12 @@ Photos of the anatomical landmarks and/or head localization coils
 
 <!--
 This block generates a filename templates.
-The inputs for this macro can be found in the folder
+The inputs for this macro can be found in the directory
   src/schema/rules/datatypes
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["photo"]) }}
+{{ MACROS___make_filename_template("raw", datatypes=["meg"], suffixes=["photo"]) }}
 
 Photos of the anatomical landmarks and/or head localization coils on the
 subject’s head are RECOMMENDED. If the coils are not placed at the location of
@@ -446,6 +424,8 @@ The [`acq-<label>`](../appendices/entities.md#acq) entity can be used to indicat
 the same face (or other body part in different angles to show, for example, the
 location of the nasion (NAS) as opposed to the right periauricular point (RPA)).
 
+### Example `*_photo.jpg`
+
 Example of the NAS fiducial placed between the eyebrows, rather than at the
 actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
 
@@ -455,12 +435,12 @@ actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
 
 <!--
 This block generates a filename templates.
-The inputs for this macro can be found in the folder
+The inputs for this macro can be found in the directory
   src/schema/rules/datatypes
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["headshape"]) }}
+{{ MACROS___make_filename_template("raw", datatypes=["meg"], suffixes=["headshape"]) }}
 
 This file is RECOMMENDED.
 
@@ -471,7 +451,7 @@ a session, for example when the head points are in a separate file from the EEG
 locations. These files are stored in the specific format of the 3-D digitizer’s
 manufacturer (see the [MEG File Formats Appendix](../appendices/meg-file-formats.md)).
 
-Example:
+For example:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -498,8 +478,8 @@ Empty-room MEG recordings capture the environmental and recording system's noise
 
 It is RECOMMENDED to explicitly specify which empty-room recording should be used with which experimental run(s) or session(s). This can be done via the [`AssociatedEmptyRoom`](../glossary.md#associatedemptyroom-metadata) field in the `*_meg.json` sidecar files.
 
-Empty-room recordings may be collected once per day, where a single empty-room recording may be shared between multiple subjects and/or sessions (see example 1).
-Empty-room recordings can also be collected for each individual experimental session (see example 2).
+Empty-room recordings may be collected once per day, where a single empty-room recording may be shared between multiple subjects and/or sessions (see [Example 1](#example-1)).
+Empty-room recordings can also be collected for each individual experimental session (see [Example 2](#example-2)).
 
 In the case of empty-room recordings being associated with multiple subjects and/or sessions, it is RECOMMENDED to store the empty-room recording inside a subject directory named `sub-emptyroom`.
 If a [`session-<label>`](../appendices/entities.md#ses) entity is present, its label SHOULD be the date of the empty-room recording in the format `YYYYMMDD`, that is `ses-YYYYMMDD`.
@@ -511,7 +491,7 @@ In the case of empty-room recordings being collected for the individual experime
 
 In either case, the label for the [`task-<label>`](../appendices/entities.md#task) entity in the empty-room recording SHOULD be set to `noise`.
 
-Example 1:
+### Example 1
 
 One empty-room recording per day, applying to all subjects for that day.
 
@@ -536,9 +516,9 @@ A guide for using macros can be found at
    }
 ) }}
 
-Example 2:
+### Example 2
 
-One recording per session, stored within the session folder.
+One recording per session, stored within the session directory.
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -561,5 +541,3 @@ A guide for using macros can be found at
       },
    }
 ) }}
-
-<!-- Link Definitions -->

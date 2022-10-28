@@ -4,6 +4,7 @@
 # For that information, see `rules/top_level_files.yaml`.
 CHANGES:
   display_name: Changelog
+  file_type: regular
   description: |
     Version history of the dataset (describing changes, updates and corrections) MAY be provided in
     the form of a `CHANGES` text file.
@@ -13,6 +14,7 @@ CHANGES:
     The `CHANGES` file MUST be either in ASCII or UTF-8 encoding.
 LICENSE:
   display_name: License
+  file_type: regular
   description: |
     A `LICENSE` file MAY be provided in addition to the short specification of the
     used license in the `dataset_description.json` `"License"` field.
@@ -20,6 +22,7 @@ LICENSE:
     The `LICENSE` file MUST be either in ASCII or UTF-8 encoding.
 README:
   display_name: README
+  file_type: regular
   description: |
     A REQUIRED text file, `README`, SHOULD describe the dataset in more detail.
     The `README` file MUST be either in ASCII or UTF-8 encoding and MAY have one of the extensions:
@@ -37,10 +40,12 @@ README:
     [bids-starter-kit](https://github.com/bids-standard/bids-starter-kit/blob/master/templates/README).
 dataset_description:
   display_name: Dataset Description
+  file_type: regular
   description: |
     The file `dataset_description.json` is a JSON file describing the dataset.
 genetic_info:
   display_name: Genetic Information
+  file_type: regular
   description: |
     The `genetic_info.json` file describes the genetic information available in the
     `participants.tsv` file and/or the genetic database described in
@@ -49,6 +54,7 @@ genetic_info:
     `genetic_id` column in `participants.tsv` MUST include this file.
 participants:
   display_name: Participant Information
+  file_type: regular
   description: |
     The purpose of this RECOMMENDED file is to describe properties of participants
     such as age, sex, handedness.
@@ -91,6 +97,7 @@ participants:
 
 samples:
   display_name: Sample Information
+  file_type: regular
   description: |
     The purpose of this file is to describe properties of samples, indicated by the `sample` entity.
     This file is REQUIRED if `sample-<label>` is present in any file name within the dataset.
@@ -119,3 +126,33 @@ samples:
 
     -   `derived_from`: `sample-<label>` key/value pair from which a sample is derived from,
         for example a slice of tissue (`sample-02`) derived from a block of tissue (`sample-01`)
+code:
+  display_name: Code
+  file_type: directory
+  description: |
+    A directory in which to store any code
+    (for example the one used to generate the derivatives from the raw data).
+    See the [Code section](SPEC_ROOT/03-modality-agnostic-files.md#code)
+    for more information.
+derivatives:
+  display_name: Derivative data
+  file_type: directory
+  description: |
+    Derivative data (for example preprocessed files).
+    See the [relevant section](SPEC_ROOT/02-common-principles.md#source-vs-raw-vs-derived-data)
+    for more information.
+sourcedata:
+  display_name: Source data
+  file_type: directory
+  description: |
+    A directory where to store data before harmonization, reconstruction,
+    and/or file format conversion (for example, E-Prime event logs or DICOM files).
+    See the [relevant section](SPEC_ROOT/02-common-principles.md#source-vs-raw-vs-derived-data)
+    for more information.
+stimuli:
+  display_name: Stimulus files
+  file_type: directory
+  description: |
+    A directory to store any stimulus files used during an experiment.
+    See the [relevant section](SPEC_ROOT/04-modality-specific-files/05-task-events.md#stimuli-directory)
+    for more information.

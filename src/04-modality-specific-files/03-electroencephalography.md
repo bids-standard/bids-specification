@@ -14,12 +14,13 @@ and can be used for practical guidance when curating a new dataset.
 
 <!--
 This block generates a filename templates.
-The inputs for this macro can be found in the folder
+The inputs for this macro can be found in the directory
   src/schema/rules/datatypes
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_filename_template(
+   "raw",
    datatypes=["eeg"],
    suffixes=["eeg", "events", "physio", "stim"])
 }}
@@ -134,7 +135,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("eeg.EEGMoreRecommended") }}
 
-Example:
+#### Example `*_eeg.json`
 
 ```JSON
 {
@@ -182,12 +183,12 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 
 <!--
 This block generates a filename templates.
-The inputs for this macro can be found in the folder
+The inputs for this macro can be found in the directory
   src/schema/rules/datatypes
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filename_template(datatypes=["eeg"], suffixes=["channels"]) }}
+{{ MACROS___make_filename_template("raw", datatypes=["eeg"], suffixes=["channels"]) }}
 
 This file is RECOMMENDED as it provides easily searchable information across BIDS datasets.
 For example for general curation, response to queries, or for batch analysis.
@@ -205,42 +206,13 @@ See the examples for `*_channels.tsv` below, and for `*_electrodes.tsv` in
 
 The columns of the channels description table stored in `*_channels.tsv` are:
 
-MUST be present **in this specific order**:
-
 <!-- This block generates a columns table.
 The definitions of these fields can be found in
-  src/schema/objects/columns.yaml
+  src/schema/rules/tabular_data/*.yaml
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_columns_table(
-   {
-      "name__channels": "REQUIRED",
-      "type__eeg_channels": "REQUIRED",
-      "units": "REQUIRED",
-   }
-) }}
-
-SHOULD be present:
-
-<!-- This block generates a columns table.
-The definitions of these fields can be found in
-  src/schema/objects/columns.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_columns_table(
-   {
-      "description": "OPTIONAL",
-      "sampling_frequency": "OPTIONAL",
-      "reference__eeg": "OPTIONAL",
-      "low_cutoff": "OPTIONAL",
-      "high_cutoff": "OPTIONAL",
-      "notch": "OPTIONAL",
-      "status": "OPTIONAL",
-      "status_description": "OPTIONAL",
-   }
-) }}
+{{ MACROS___make_columns_table("eeg.EEGChannels") }}
 
 Restricted keyword list for field `type` in alphabetic order (shared with the
 MEG and iEEG modality; however, only the types that are common in EEG data are listed here).
@@ -266,11 +238,15 @@ Note that upper-case is REQUIRED:
 | TRIG        | System triggers                                              |
 | VEOG        | Vertical EOG (eye)                                           |
 
-Example of free-form text for field `description`
+Examples of free-form text for field `description`
 
--   n/a, stimulus, response, skin conductance, battery status
+-   n/a
+-   stimulus
+-   response
+-   skin conductance
+-   battery status
 
-### Example `channels.tsv`
+### Example `*_channels.tsv`
 
 See also the corresponding [`electrodes.tsv` example](#example-electrodestsv).
 
@@ -286,12 +262,12 @@ UADC001  MISC  n/a    envelope of audio signal        n/a           good    n/a
 
 <!--
 This block generates a filename templates.
-The inputs for this macro can be found in the folder
+The inputs for this macro can be found in the directory
   src/schema/rules/datatypes
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filename_template(datatypes=["eeg"], suffixes=["electrodes"]) }}
+{{ MACROS___make_filename_template("raw", datatypes=["eeg"], suffixes=["electrodes"]) }}
 
 File that gives the location of EEG electrodes. Note that coordinates are
 expected in cartesian coordinates according to the `EEGCoordinateSystem` and
@@ -300,40 +276,15 @@ expected in cartesian coordinates according to the `EEGCoordinateSystem` and
 file MUST be specified as well**. The order of the required columns in the
 `*_electrodes.tsv` file MUST be as listed below.
 
-MUST be present **in this specific order**:
-
 <!-- This block generates a columns table.
 The definitions of these fields can be found in
-  src/schema/objects/columns.yaml
+  src/schema/rules/tabular_data/*.yaml
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_columns_table(
-   {
-      "name__electrodes": "REQUIRED",
-      "x": "REQUIRED",
-      "y": "REQUIRED",
-      "z": "REQUIRED",
-   }
-) }}
+{{ MACROS___make_columns_table("eeg.EEGElectrodes") }}
 
-SHOULD be present:
-
-<!-- This block generates a columns table.
-The definitions of these fields can be found in
-  src/schema/objects/columns.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_columns_table(
-   {
-      "type__electrodes": "RECOMMENDED",
-      "material": "RECOMMENDED",
-      "impedance": "RECOMMENDED",
-   }
-) }}
-
-### Example `electrodes.tsv`
+### Example `*_electrodes.tsv`
 
 See also the corresponding [`electrodes.tsv` example](#example-channelstsv).
 
@@ -358,12 +309,12 @@ the recording.
 
 <!--
 This block generates a filename templates.
-The inputs for this macro can be found in the folder
+The inputs for this macro can be found in the directory
   src/schema/rules/datatypes
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filename_template(datatypes=["eeg"], suffixes=["coordsystem"]) }}
+{{ MACROS___make_filename_template("raw", datatypes=["eeg"], suffixes=["coordsystem"]) }}
 
 A `*_coordsystem.json` file is used to specify the fiducials, the location of
 anatomical landmarks, and the coordinate system and units in which the position
@@ -458,7 +409,7 @@ landmarks or fiducials during an EEG session/run, must be stored separately in
 the corresponding `*_T1w.json` or `*_T2w.json` file and should be expressed in
 voxels (starting from `[0, 0, 0]`).
 
-Example:
+### Example `*_coordsystem.json`
 
 ```JSON
 {
@@ -476,12 +427,12 @@ Photos of the anatomical landmarks and/or fiducials.
 
 <!--
 This block generates a filename templates.
-The inputs for this macro can be found in the folder
+The inputs for this macro can be found in the directory
   src/schema/rules/datatypes
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filename_template(datatypes=["eeg"], suffixes=["photo"]) }}
+{{ MACROS___make_filename_template("raw", datatypes=["eeg"], suffixes=["photo"]) }}
 
 Photos of the anatomical landmarks and/or fiducials are OPTIONAL.
 Please note that the photos may need to be cropped or blurred to conceal
@@ -493,7 +444,7 @@ indicate acquisition of different photos of
 the same face (or other body part in different angles to show, for example, the
 location of the nasion (NAS) as opposed to the right periauricular point (RPA).
 
-Example:
+### Example `*_photo.jpg`
 
 Picture of a NAS fiducial placed between the eyebrows, rather than at the
 actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`

@@ -669,6 +669,16 @@ meg:
   description: |
     Unprocessed MEG data stored in the native file format of the MEG instrument
     with which the data was collected.
+nirs:
+  value: nirs
+  display_name: Near Infrared Spectroscopy
+  description: Data associated with a Shared Near Infrared Spectroscopy Format file.
+optodes:
+  value: optodes
+  display_name: Optodes
+  description: |
+    Either a light emitting device, sometimes called a transmitter, or a photoelectric transducer, sometimes called a
+    receiver.
 pet:
   value: pet
   display_name: Positron Emission Tomography

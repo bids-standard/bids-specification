@@ -1,5 +1,18 @@
 ---
+participants:
+  level: optional
+  stem: participants
+  extensions:
+    - .tsv
+    - .json
+samples:
+  level: optional
+  stem: samples
+  extensions:
+    - .tsv
+    - .json
 scans:
+  level: optional
   suffixes:
     - scans
   extensions:
@@ -9,6 +22,7 @@ scans:
     subject: required
     session: optional # session is required if session is present in the dataset.
 sessions: # This file may only exist if session is present in the dataset.
+  level: optional
   suffixes:
     - sessions
   extensions:
