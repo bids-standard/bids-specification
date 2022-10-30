@@ -1,3 +1,21 @@
+"""Add new contributors listed in new_contributors.tsv to .tributors file
+
+The tributor file is then used to update
+- the CITATION.cff file
+- the .all-contributorsrc file
+- TODO: the table of contributors in the appendix of the spec
+
+Contrary to the typical .tributors file, the one here also centralizes the contributions
+that would otherwise be listed in the .all-contributorsrc file.
+
+This can also be used to update all files if new_contributors.tsv is empty.
+"""
+
+# TODO: handle the following cases
+# - ORCID
+# - affiliation
+# - getting avatars
+
 import pandas as pd
 
 from rich import print

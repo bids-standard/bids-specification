@@ -77,6 +77,7 @@ def emoji_map():
         "financial": ":dollar_banknote:",
     }
 
+
 def transfer_contribution(tributors: dict, allcontrib: dict) -> dict:
     """transfer contribution list from tributors to allcontrib"""
 
@@ -178,13 +179,19 @@ def return_author_list_for_cff(tributors_file):
 
         name = this_tributor["name"]
 
+        # take as given name the first part of the name and anything ending with a dot
+        # suboptimal for people with multiple given names
         given_names = name.split()[0]
+        str_index = 1
+        while str_index < len(name.split()) and name.split()[str_index].endswith("."):
+            given_names += f" {name.split()[str_index]}"
+            str_index += 1
 
         new_contrib = {
             "given-names": given_names,
         }
 
-        if family_names := " ".join(name.split()[1:]):
+        if family_names := " ".join(name.split()[str_index:]):
             new_contrib["family-names"] = family_names
 
         if "blog" in this_tributor:
