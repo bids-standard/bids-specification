@@ -20,7 +20,11 @@ from utils import (
     transfer_contribution,
 )
 
-UPDATE_AVATARS = True
+from cffconvert.cli.create_citation import create_citation
+from cffconvert.cli.validate_or_write_output import validate_or_write_output
+
+
+UPDATE_AVATARS = False
 
 
 def rename_columns(df):
@@ -49,7 +53,7 @@ def return_this_contributor(tsv, name: str):
 
     github_username = None
     if github is not None:
-        github_username = github.replace("https://github.com/", "").rstrip(" ")
+        github_username = github.replace("https://github.com/", "").strip(" ")
 
     website = tsv[tsv.name == name].Website.values[0]
     if website == "nan" or isinstance(website, (float)):
@@ -73,6 +77,7 @@ def return_this_contributor(tsv, name: str):
         email = None
     if not add_email:
         email = None
+
 
     return {
         "name": name,
@@ -212,6 +217,11 @@ def main():
     citation = load_citation(citation_file)
     citation["authors"] = return_author_list_for_cff(tributors_file)
     write_citation(citation_file, citation)
+
+    citation = create_citation(infile=citation_file, url=None)
+    validate_or_write_output(
+    outfile=None, outputformat=None, validate_only=True, citation=citation
+    )
 
 
 if __name__ == "__main__":

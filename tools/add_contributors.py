@@ -18,6 +18,9 @@ from utils import (
     transfer_contribution,
 )
 
+from cffconvert.cli.create_citation import create_citation
+from cffconvert.cli.validate_or_write_output import validate_or_write_output
+
 
 def main():
 
@@ -59,6 +62,11 @@ def main():
     citation = load_citation(citation_file)
     citation["authors"] = return_author_list_for_cff(tributors_file)
     write_citation(citation_file, citation)
+
+    citation = create_citation(infile=citation_file, url=None)
+    validate_or_write_output(
+    outfile=None, outputformat=None, validate_only=True, citation=citation
+    )
 
 
 if __name__ == "__main__":
