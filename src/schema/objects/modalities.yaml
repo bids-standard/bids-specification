@@ -30,5 +30,4 @@ micr:
     Data acquired with a microscope.
 nirs:
   display_name: Near-Infrared Spectroscopy
-  description:
-    Data acquired with NIRS.
+  description: Data acquired with NIRS.
