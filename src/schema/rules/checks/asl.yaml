@@ -1,6 +1,5 @@
 # Rules for ASL data that are not defined in tables.
 ---
-
 # 157
 ASLLabelingDurationNiftiLength:
   issue:
@@ -19,11 +18,11 @@ ASLLabelingDurationNiftiLength:
       `*_aslcontext.tsv`. Corresponds to DICOM Tag 0018,9258 `ASL Pulse Train Duration`.
     level: error
   selectors:
-  - suffix == "asl"
-  - '"LabelingDuration" in sidecar'
-  - type(sidecar.LabelingDuration) == 'array'
+    - suffix == "asl"
+    - '"LabelingDuration" in sidecar'
+    - type(sidecar.LabelingDuration) == 'array'
   checks:
-  - nifti_header.dim[4] == sidecar.LabelingDuration.length
+    - length(sidecar.LabelingDuration) == nifti_header.dim[4]
 
 # 165
 ASLContextConsistent:
@@ -34,10 +33,10 @@ ASLContextConsistent:
       values in the NIfTI header.
     level: error
   selectors:
-  - suffix == "asl"
-  - '"aslcontext" in associations'
+    - suffix == "asl"
+    - '"aslcontext" in associations'
   checks:
-  - nifti_header.dim[4] == associations.aslcontext.n_rows
+    - nifti_header.dim[4] == associations.aslcontext.n_rows
 
 # 168
 ASLFlipAngleNiftiLength:
@@ -54,11 +53,11 @@ ASLFlipAngleNiftiLength:
       angle fMRI sequences.
     level: error
   selectors:
-  - suffix == "asl"
-  - '"FlipAngle" in sidecar'
-  - type(sidecar.FlipAngle) == 'array'
+    - suffix == "asl"
+    - '"FlipAngle" in sidecar'
+    - type(sidecar.FlipAngle) == 'array'
   checks:
-  - nifti_header.dim[4] == sidecar.FlipAngle.length
+    - length(sidecar.FlipAngle) == nifti_header.dim[4]
 
 # 172
 ASLFlipAngleASLContextLength:
@@ -75,12 +74,12 @@ ASLFlipAngleASLContextLength:
       timing is critical for interpretation of the data, such as in ASL or variable flip angle fMRI sequences.
     level: error
   selectors:
-  - suffix == "asl"
-  - '"aslcontext" in associations'
-  - '"FlipAngle" in sidecar'
-  - type(sidecar.FlipAngle) == 'array'
+    - suffix == "asl"
+    - '"aslcontext" in associations'
+    - '"FlipAngle" in sidecar'
+    - type(sidecar.FlipAngle) == 'array'
   checks:
-  - aslcontext.n_rows == sidecar.FlipAngle.length
+    - length(sidecar.FlipAngle) == aslcontext.n_rows
 
 # 173
 ASLPostLabelingDelayNiftiLength:
@@ -100,11 +99,11 @@ ASLPostLabelingDelayNiftiLength:
       Based on DICOM Tags 0018,9079 Inversion Times and 0018,0082 InversionTime.
     level: error
   selectors:
-  - suffix == "asl"
-  - '"aslcontext" in associations'
-  - type(sidecar.PostLabelingDelay) == 'array'
+    - suffix == "asl"
+    - '"aslcontext" in associations'
+    - type(sidecar.PostLabelingDelay) == 'array'
   checks:
-  - nifti_header.pixdim[4] == sidecar.PostLabelingDelay.length
+    - length(sidecar.PostLabelingDelay) == nifti_header.dim[4]
 
 # 174
 ASLPostLabelingDelayASLContextLength:
@@ -124,11 +123,11 @@ ASLPostLabelingDelayASLContextLength:
       Based on DICOM Tags 0018,9079 Inversion Times and 0018,0082 InversionTime.
     level: error
   selectors:
-  - suffix == "asl"
-  - '"aslcontext" in associations'
-  - type(sidecar.PostLabelingDelay) == 'array'
+    - suffix == "asl"
+    - '"aslcontext" in associations'
+    - type(sidecar.PostLabelingDelay) == 'array'
   checks:
-  - aslcontext.n_rows == sidecar.PostLabelingDelay.length
+    - length(sidecar.PostLabelingDelay) == aslcontext.n_rows
 
 # 175
 ASLLabelingDurationASLContextLength:
@@ -149,12 +148,12 @@ ASLLabelingDurationASLContextLength:
       Corresponds to DICOM Tag 0018,9258 `ASL Pulse Train Duration`.
     level: error
   selectors:
-  - suffix == "asl"
-  - '"aslcontext" in associations'
-  - '"LabelingDuration" in sidecar'
-  - type(sidecar.LabelingDuration) == 'array'
+    - suffix == "asl"
+    - '"aslcontext" in associations'
+    - '"LabelingDuration" in sidecar'
+    - type(sidecar.LabelingDuration) == 'array'
   checks:
-  - aslcontext.n_rows == sidecar.LabelingDuration.length
+    - length(sidecar.LabelingDuration) == aslcontext.n_rows
 
 # 177
 ASLRepetitionTimePreparationASLContextLength:
@@ -170,12 +169,12 @@ ASLRepetitionTimePreparationASLContextLength:
       volume timing is critical for interpretation of the data, such as in ASL.
     level: error
   selectors:
-  - suffix == "asl"
-  - '"aslcontext" in associations'
-  - '"RepetitionTimePreparation" in sidecar'
-  - type(sidecar.RepetitionTimePreparation) == 'array'
+    - suffix == "asl"
+    - '"aslcontext" in associations'
+    - '"RepetitionTimePreparation" in sidecar'
+    - type(sidecar.RepetitionTimePreparation) == 'array'
   checks:
-  - aslcontext.n_rows == sidecar.RepetitionTimePreparation.length
+    - length(sidecar.RepetitionTimePreparation) == aslcontext.n_rows
 
 # 180
 ASLBackgroundSuppressionNumberPulses:
@@ -188,12 +187,12 @@ ASLBackgroundSuppressionNumberPulses:
       Note that this excludes any effect of background suppression pulses applied before the labeling.
     level: warning
   selectors:
-  - suffix == "asl"
-  - '"BackgroundSuppressionNumberPulses" in sidecar'
-  - '"BackgroundSuppressionPulseTime" in sidecar'
-  - type(sidecar.BackgroundSuppressionPulseTime) == 'array'
+    - suffix == "asl"
+    - '"BackgroundSuppressionNumberPulses" in sidecar'
+    - '"BackgroundSuppressionPulseTime" in sidecar'
+    - type(sidecar.BackgroundSuppressionPulseTime) == 'array'
   checks:
-  - sidecar.BackgroundSuppressionPulseTime.length == sidecar.BackgroundSuppressionNumberPulses
+    - length(sidecar.BackgroundSuppressionPulseTime) == sidecar.BackgroundSuppressionNumberPulses
 
 # 181
 ASLTotalAcquiredVolumesASLContextLength:
@@ -206,11 +205,11 @@ ASLTotalAcquiredVolumesASLContextLength:
       'sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv'.
     level: warning
   selectors:
-  - suffix == "asl"
-  - '"aslcontext" in associations'
-  - '"TotalAcquiredVolumes" in sidecar'
+    - suffix == "asl"
+    - '"aslcontext" in associations'
+    - '"TotalAcquiredVolumes" in sidecar'
   checks:
-  - aslcontext.n_rows == sidecar.TotalAcquiredVolumes
+    - aslcontext.n_rows == sidecar.TotalAcquiredVolumes
 
 # 196
 ASLEchoTimeASLContextLength:
@@ -222,12 +221,12 @@ ASLEchoTimeASLContextLength:
       'EchoTime' is the echo time (TE) for the acquisition, specified in seconds.
     level: warning
   selectors:
-  - suffix == "asl"
-  - '"aslcontext" in associations'
-  - '"EchoTime" in sidecar'
-  - type(sidecar.EchoTime) == 'array'
+    - suffix == "asl"
+    - '"aslcontext" in associations'
+    - '"EchoTime" in sidecar'
+    - type(sidecar.EchoTime) == 'array'
   checks:
-  - aslcontext.n_rows == sidecar.EchoTime.length
+    - length(sidecar.EchoTime) == aslcontext.n_rows
 
 # 198
 ASLM0TypeAbsentScan:
@@ -239,12 +238,12 @@ ASLM0TypeAbsentScan:
       This is not allowed, please check that this field are filled correctly.
     level: error
   selectors:
-  - suffix == "asl"
-  - '"aslcontext" in associations'
-  - '"m0scan" in associations'
-  - '"M0Type" in sidecar'
+    - suffix == "asl"
+    - '"aslcontext" in associations'
+    - '"m0scan" in associations'
+    - '"M0Type" in sidecar'
   checks:
-  - sidecar.M0Type != "absent"
+    - sidecar.M0Type != "absent"
 
 # 199
 ASLM0TypeAbsentASLContext:
@@ -255,12 +254,12 @@ ASLM0TypeAbsentASLContext:
       This is not allowed, please check that this field are filled correctly.
     level: error
   selectors:
-  - suffix == "asl"
-  - '"aslcontext" in associations'
-  - aslcontext.volume_type.includes('"m0scan")
-  - '"M0Type" in sidecar'
+    - suffix == "asl"
+    - '"aslcontext" in associations'
+    - intersects(aslcontext.volume_type, ["m0scan"])
+    - '"M0Type" in sidecar'
   checks:
-  - sidecar.M0Type != "absent"
+    - sidecar.M0Type != "absent"
 
 # 202
 ASLM0TypeIncorrect:
@@ -271,9 +270,9 @@ ASLM0TypeIncorrect:
       If 'M0Type' is equal to 'separate', the dataset should include a *_m0scan.nii[.gz] and *_m0scan.json file.
     level: error
   selectors:
-  - suffix == "asl"
-  - '"aslcontext" in associations'
-  - '"M0Type" in sidecar'
-  - sidecar.M0Type == "separate"
+    - suffix == "asl"
+    - '"aslcontext" in associations'
+    - '"M0Type" in sidecar'
+    - sidecar.M0Type == "separate"
   checks:
-  - '"m0scan" in associations'
+    - '"m0scan" in associations'

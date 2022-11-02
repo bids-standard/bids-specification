@@ -18,9 +18,9 @@ Jump to the following sections:
 -   [Joining the BIDS community](#joining-the-community)
 -   [Contributing through GitHub](#contributing-through-github)
 -   [Understanding issues](#understanding-issues)
--   [Writing in markdown](#writing-in-markdown)
+-   [Writing in Markdown](#writing-in-markdown)
 -   [Using macros](#using-macros)
--   [Fixing markdown style errors](#fixing-markdown-style-errors)
+-   [Fixing Markdown style errors](#fixing-markdown-style-errors)
 -   [Using pre-commit hooks](#using-pre-commit-hooks)
 -   [Adding a figure to the specifications](#adding-a-figure-to-the-specifications)
 -   [Making a change with a pull request](#making-a-change-with-a-pull-request)
@@ -28,6 +28,8 @@ Jump to the following sections:
 -   [Commenting on a pull request](#commenting-on-a-pull-request)
 -   [Accepting suggestion from a review](#accepting-suggestion-from-a-review)
 -   [Making a change to the BIDS-schema](#making-a-change-to-the-BIDS-schema)
+-   [How the decision to merge a pull request is made?](#how-is-the-decision-to-merge-a-pull-request-made)
+-   [How is the changelog generated?](#how-is-the-changelog-generated)
 -   [Recognizing contributions](#recognizing-contributions)
 
 ## Joining the community
@@ -121,7 +123,7 @@ The current list of labels are
     These issues highlight pieces of work or discussions
     around how we can support our members and make it easier to contribute.
 
-## Writing in markdown
+## Writing in Markdown
 
 The specification documents follow the
 [Markdown Style Guide](http://www.cirosantilli.com/markdown-style-guide/).
@@ -131,7 +133,7 @@ You can validate your changes against the guide using
 [standalone command line tool](https://github.com/remarkjs/remark/tree/master/packages/remark-cli)
 as well as
 [a plugin for various text editors](https://github.com/remarkjs/remark-lint#editor-integrations).
-Remark preserves consistent markdown styling across the contributions.
+Remark preserves consistent Markdown styling across the contributions.
 Please ensure before submitting a contribution that you do not have any linter errors
 in your text editor.
 
@@ -157,7 +159,7 @@ Some others need to fixed manually:
 
 #### Soft rules
 
-We follow certain "soft rules" in the way we format the specification in markdown.
+We follow certain "soft rules" in the way we format the specification in Markdown.
 
 These rules are sometimes for internal consistency in terms of styling and aesthetics,
 but several of them are also there because they help the workflow of
@@ -176,13 +178,13 @@ but if they are followed they will definitely make the lives of many people easi
 
 Don't do this:
 
-```markdown
+```Markdown
 Unprocessed MEG data MUST be stored in the native file format of the MEG instrument with which the data was collected. With the MEG specification of BIDS, we wish to promote the adoption of good practices in the management of scientific data.
 ```
 
 But do this:
 
-```markdown
+```Markdown
 Unprocessed MEG data MUST be stored in the native file format of the MEG instrument
 with which the data was collected.
 With the MEG specification of BIDS, we wish to promote the adoption of good practices
@@ -196,7 +198,7 @@ in the management of scientific data.
 
 Don't do this:
 
-```markdown
+```Markdown
 | **Key name** | **Description**                                          |
 |--------------|----------------------------------------------------------|
 | Manufacturer | Manufacturer of the equipment, for example (`Siemens`)   |
@@ -210,7 +212,7 @@ That would look like this:
 
 But do this instead:
 
-```markdown
+```Markdown
 | **Key name** | **Description**                                          |
 |--------------|----------------------------------------------------------|
 | Manufacturer | Manufacturer of the equipment, for example (`"Siemens"`) |
@@ -227,12 +229,11 @@ That would look like this:
 We use [mkdocs-macros](https://mkdocs-macros-plugin.readthedocs.io/en/latest/)
 to standardize how some aspects of the BIDS specification are rendered in HTML.
 
-<!-- TODO update link once we know we have found a final home for that doc -->
-We have dedicated documentation for [this](./macro_doc.md).
+We have dedicated documentation for this, see the [macros_doc.ms](./macros_doc.md) file.
 
-## Building the specification using mkdocs
+## Building the specification using MkDocs
 
-We are using mkdocs to render our specification.
+We are using MkDocs to render our specification.
 Please follow these instructions if you would like to build the specification locally.
 
 #### 1. Download the BIDS specification [repository](https://github.com/bids-standard/bids-specification/tree/master) onto your computer
@@ -262,14 +263,14 @@ cd bids-specification
 
 Enter all commands below from the command line prompt located at the root of the local version of the specification.
 
-#### 3. Install mkdocs, the material theme and the required extensions
+#### 3. Install MkDocs, the Material theme and the required extensions
 
 In the following links, you can find more information about
 
-- [mkdocs](https://www.mkdocs.org/#installation) and how to install it locally,
-- [the material theme](https://squidfunk.github.io/mkdocs-material/) we use.
+- [MkDocs](https://www.mkdocs.org/#installation) and how to install it locally,
+- [the Material theme](https://squidfunk.github.io/mkdocs-material/) we use.
 
-You will also need several other mkdocs plugins, like `branchcustomization` and `macros`.
+You will also need several other MkDocs plugins, like `branchcustomization` and `macros`.
 
 To install all of this make sure you have a recent version of Python on your computer.
 The [DataLad Handbook](http://handbook.datalad.org/en/latest/intro/installation.html#python-3-all-operating-systems) provides helpful instructions for setting up Python.
@@ -295,13 +296,12 @@ Note that this will create a local directory called `env` within the bids-specif
 but that its content will not be tracked by `git` because it is listed in the `.gitignore` file.
 
 Once you have activated your isolated Python environment,
-an easy way to install the correct version of mkdocs and all the other required extensions
+an easy way to install the correct version of MkDocs and all the other required extensions
 is to use the `requirements.txt` file contained in this repository as follows:
 
 ```bash
 pip install -U pip
 pip install -r requirements.txt
-pip install -e tools/schemacode/
 ```
 
 The first command ensures you are using an up to date version of `pip`,
@@ -310,6 +310,18 @@ The third command ensures to install the BIDS schema code as an "editable" insta
 so that if you make changes to the schema files,
 these are automatically reflected in the sourcecode.
 
+Note that if you need to work on the some of the Python code
+that is used to render the specification,
+you will probably have to also run:
+
+```bash
+pip install -e tools/schemacode[render]
+```
+
+This installs the `bidsschemacode` package in "editable" mode,
+so that any changes you make to the code will be reflected when you use it,
+such as when you build the documentation locally.
+
 #### 4. Ready to build!
 
 Using the terminal (command line) please enter `mkdocs serve`.
@@ -317,7 +329,7 @@ This will allow you to see a local version of the specification.
 The local address will be `http://127.0.0.1:8000`.
 You may enter that into your browser and this will bring up the specification!
 
-## Fixing markdown style errors
+## Fixing Markdown style errors
 
 We use a linter called [Remarkjs](https://github.com/remarkjs/remark-lint) to
 ensure all of our Markdown documents are consistent and well-styled.
@@ -327,7 +339,7 @@ When GitHub Actions returns an error, use the following process to resolve the i
 
 ### 1. Install NodeJS / npm
 
-We use a markdown linter written in Javascript. To run command Javascript tools
+We use a Markdown linter written in Javascript. To run command Javascript tools
 on the command line, please [download and install](https://nodejs.org/en/download/)
 NodeJS.
 
@@ -423,7 +435,7 @@ where your image will be added. For example if you want to add a figure `figure0
 Figures can be inserted in a Markdown like this (see also
 [Markdown-Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#images)):
 
-```markdown
+```Markdown
 ![text to show if image does not load](relative_path_to_file "text to show when hovering over image")
 ```
 ### Recommendations for figures
@@ -474,8 +486,8 @@ Please detail the changes you are attempting to make.
 
 #### 4. Submit a [pull request](https://help.github.com/articles/about-pull-requests/)
 
-Please keep the title of your pull request short but informative - it will
-appear in the [changelog](src/CHANGES.md).
+Please keep the title of your pull request short but informative because it will
+appear in the [changelog](src/CHANGES.md) ([see below](#how-is-the-changelog-generated)).
 
 Use one of the following prefixes in the title of your pull request:
 
@@ -483,7 +495,8 @@ Use one of the following prefixes in the title of your pull request:
     support for a new data type
 -   `[FIX]` - fix of a typo or language clarification
 -   `[INFRA]` - changes to the infrastructure automating the specification
-    release (for example, building HTML docs)
+    release (for example building HTML docs)
+-   `[SCHEMA]` - changes to the BIDS schema and/or related code
 -   `[MISC]` - everything else including changes to the file listing
     contributors
 
@@ -642,6 +655,7 @@ reflected in the schema as well.
 ### 2. Ensure that changes to the schema are matched in auto-generated sections of the specification
 
 The schema is used to generate a number of elements in the specification text, including:
+
 - Filename format templates
 - Entity tables
 - Entity definitions
@@ -665,10 +679,27 @@ For more information on making general changes with a pull request, please
 review
 [Making a change with a pull request](#making-a-change-with-a-pull-request).
 
-## How the decision to merge a pull request is made?
+## How is the decision to merge a pull request made?
 
 The decision-making rules are outlined in
 [DECISION-MAKING.md](DECISION-MAKING.md).
+
+## How is the changelog generated?
+
+The changelog (see `src/CHANGES.md`) is generated automatically using
+[github-changelog-generator](https://github.com/github-changelog-generator/github-changelog-generator).
+You can see the workflow in the CircleCI configuration file (`.circleci/config.yml`).
+
+As it stands, the changelog is generated whenever a pull request is integrated into
+the `master` branch of the specification via a "Merge commit"
+(as opposed to "Squash and merge" or "Rebase and merge";
+see the [GitHub help page](https://help.github.com/en/articles/about-merge-methods-on-github)
+for more information on merge methods).
+
+Note that for pull requests starting with `REL:`, no changelog is generated.
+
+To exclude pull requests from showing up in the changelog, they have to be labeled with
+the "exclude-from-changelog" label.
 
 ## Recognizing contributions
 
@@ -677,11 +708,11 @@ BIDS follows the
 specification, so we welcome and recognize all contributions from documentation
 to testing to code development.
 You can see a list of current contributors in the
-[BIDS specification](https://github.com/bids-standard/bids-specification/blob/master/src/99-appendices/01-contributors.md).
+[BIDS specification](https://github.com/bids-standard/bids-specification/blob/master/src/appendices/contributors.md).
 
 If you have made any type of contributions to the BIDS specifications, you can
 either make a change to the
-[contributors document](./src/99-appendices/01-contributors.md) and commit as
+[contributors document](./src/appendices/contributors.md) and commit as
 part of a pull request or you can edit this
 [page](https://github.com/bids-standard/bids-specification/wiki/Recent-Contributors)
 of the specification WIKI.

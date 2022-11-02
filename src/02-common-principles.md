@@ -9,126 +9,57 @@ interpreted as described in [[RFC2119](https://www.ietf.org/rfc/rfc2119.txt)].
 Throughout this specification we use a list of terms and abbreviations. To avoid
 misunderstanding we clarify them here.
 
-1.  **Dataset** - a set of neuroimaging and behavioral data acquired for a
-    purpose of a particular study. A dataset consists of data acquired from one
-    or more subjects, possibly from multiple sessions.
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___define_common_principles() }}
 
-1.  **Subject** - a person or animal participating in the study.  Used
-    interchangeably with term **Participant**.
+## Entities
 
-1.  **Session** - a logical grouping of neuroimaging and behavioral data
-    consistent across subjects. Session can (but doesn't have to) be synonymous
-    to a visit in a longitudinal study. In general, subjects will stay in the
-    scanner during one session. However, for example, if a subject has to leave
-    the scanner room and then be re-positioned on the scanner bed, the set of
-    MRI acquisitions will still be considered as a session and match sessions
-    acquired in other subjects. Similarly, in situations where different data
-    types are obtained over several visits (for example fMRI on one day followed
-    by DWI the day after) those can be grouped in one session. Defining multiple
-    sessions is appropriate when several identical or similar data acquisitions
-    are planned and performed on all -or most- subjects, often in the case of
-    some intervention between sessions (for example, training).
-    In the [PET](04-modality-specific-files/09-positron-emission-tomography.md)
-    context, a session may also indicate a group of related scans,
-    taken in one or more visits.
+An "entity" is an attribute that can be associated with a file, contributing
+to the identification of that file as a component of its filename in the
+form of a hyphen-separated key-value pair.
 
-1.  **Sample** - a sample pertaining to a subject such as tissue, primary cell
-    or cell-free sample.
-    The `sample-<label>` key/value pair is used to distinguish between different
-    samples from the same subject.
-    The label MUST be unique per subject and is RECOMMENDED to be unique
-    throughout the dataset.
+Each entity has the following attributes:
 
-1.  **Data acquisition** - a continuous uninterrupted block of time during which
-    a brain scanning instrument was acquiring data according to particular
-    scanning sequence/protocol.
+1.  *Name*: A comprehensive name describing the context of information
+    to be provided via the entity.
 
-1.  **Data type** - a functional group of different types of data.
-    BIDS defines the following data types:
+1.  *Key*: A short string, typically a compression of the entity name,
+    which uniquely identifies the entity when part of a filename.
 
-    1.  `func` (task based and resting state functional MRI)
-    1.  `dwi` (diffusion weighted imaging)
-    1.  `fmap` (field inhomogeneity mapping data such as field maps)
-    1.  `anat` (structural imaging such as T1, T2, PD, and so on)
-    1.  `perf` (perfusion)
-    1.  `meg` (magnetoencephalography)
-    1.  `eeg` (electroencephalography)
-    1.  `ieeg` (intracranial electroencephalography)
-    1.  `beh` (behavioral)
-    1.  `pet` (positron emission tomography)
-    1.  `micr` (microscopy)
+1.  *Value type*: The requisite form of the value that gets specified
+    alongside the key whenever the entity appears in a filename.
+    For each entity, the value is of one of two possible types:
 
-    Data files are contained in a directory named for the data type.
-    In raw datasets, the data type directory is nested inside subject and
-    (optionally) session directories.
+    1.  *Index*: A non-negative integer, potentially zero-padded for
+        consistent width.
 
-1.  **Task** - a set of structured activities performed by the participant.
-    Tasks are usually accompanied by stimuli and responses, and can greatly vary
-    in complexity. For the purpose of this specification we consider the so-called
-    "resting state" a task. In the context of brain scanning, a task is always
-    tied to one data acquisition. Therefore, even if during one acquisition the
-    subject performed multiple conceptually different behaviors (with different
-    sets of instructions) they will be considered one (combined) task.
+    1.  *Label*: An alphanumeric string.
+        Note that labels MUST not collide when casing is ignored
+        (see [Case collision intolerance](#case-collision-intolerance)).
 
-1.  **Event** - something that happens or may be perceived by a test subject as happening
-    at a particular instant during the recording.
-    Events are most commonly associated with on- or offset of stimulus presentations,
-    or with the distinct marker of on- or offset of a subject's response or motor action.
-    Other events may include unplanned incidents
-    (for example, sudden onset of noise and vibrations due to construction work,
-    laboratory device malfunction),
-    changes in task instructions (for example, switching the response hand),
-    or experiment control parameters (for example,
-    changing the stimulus presentation rate over experimental blocks),
-    and noted data feature occurrences (for example, a recording electrode producing noise).
-    In BIDS, each event has an onset time and duration.
-    Note that not all tasks will have recorded events (for example, "resting state").
+The entity *format* is a string that prescribes how the entity appears within
+any given filename.
+For a hypothetical entity with key "`key`", the format can be either
+"`key-<index>`" or "`key-<label>`", depending on the value type of that entity.
 
-1.  **Run** - an uninterrupted repetition of data acquisition that has the same
-    acquisition parameters and task (however events can change from run to run
-    due to different subject response or randomized nature of the stimuli). Run
-    is a synonym of a data acquisition.
-    Note that "uninterrupted" may look different by modality due to the nature of the
-    recording.
-    For example, in [MRI](04-modality-specific-files/01-magnetic-resonance-imaging-data.md)
-    or [MEG](04-modality-specific-files/02-magnetoencephalography.md),
-    if a subject leaves the scanner, the acquisition must be restarted.
-    For some types of [PET](04-modality-specific-files/09-positron-emission-tomography.md) acquisitions,
-    a subject may leave and re-enter the scanner without interrupting the scan.
+An entity *instance* is the specific manifestation of an entity within the
+name of a specific file, based on the format of the entity but with a value
+that provides identifying information to the particular file in whose name
+it appears.
 
-1.  **Modality** - the category of brain data recorded by a file.
-    For MRI data, different pulse sequences are considered distinct modalities,
-    such as `T1w`, `bold` or `dwi`.
-    For passive recording techniques, such as EEG, MEG or iEEG,
-    the technique is sufficiently uniform to define the modalities `eeg`,
-    `meg` and `ieeg`.
-    When applicable, the modality is indicated in the **suffix**.
-    The modality may overlap with, but should not be confused with
-    the **data type**.
+Depending on context, any one of the entity name, key, format, or a specific
+entity instance, may be referred to as simply an "entity".
 
-1.  **`<index>`** - a nonnegative integer, possibly prefixed with arbitrary number of
-    0s for consistent indentation, for example, it is `01` in `run-01` following
-    `run-<index>` specification.
-
-1.  **`<label>`** - an alphanumeric value, possibly prefixed with arbitrary
-    number of 0s for consistent indentation, for example, it is `rest` in `task-rest`
-    following `task-<label>` specification. Note that labels MUST not collide when
-    casing is ignored (see [Case collision intolerance](#case-collision-intolerance)).
-
-1.  **`suffix`** - an alphanumeric value, located after the `key-value_` pairs (thus after
-    the final `_`), right before the **File extension**, for example, it is `eeg` in
-    `sub-05_task-matchingpennies_eeg.vhdr`.
-
-1.  **File extension** - a portion of the filename after the left-most
-    period (`.`) preceded by any other alphanumeric. For example, `.gitignore` does
-    not have a file extension, but the file extension of `test.nii.gz` is `.nii.gz`.
-    Note that the left-most period is included in the file extension.
-
-1.  **DEPRECATED** - A "deprecated" entity or metadata field SHOULD NOT be used in the
-    generation of new datasets.
-    It remains in the standard in order to preserve the interpretability of existing datasets.
-    Validating software SHOULD warn when deprecated practices are detected and provide a
-    suggestion for updating the dataset to preserve the curator's intent.
+"Subject", "session", "sample", "task", and "run" from the list of definitions
+above are all examples of entities.
+The comprehensive list of supported entities is defined in
+the [Entities Appendix](appendices/entities.md);
+further, whether each is OPTIONAL, REQUIRED, or MUST NOT be provided for
+various data files, as well as their relative ordering in a filename, are
+defined in the [Entity Tables Appendix](appendices/entity-table.md).
 
 ## Compulsory, optional, and additional data and metadata
 
@@ -148,54 +79,77 @@ The solutions will change from case to case and publicly available datasets will
 be reviewed to include common data types in the future releases of the BIDS
 specification.
 
-## File name structure
+It is RECOMMENDED that non-compulsory metadata fields (like `notch` in `channels.tsv` files)
+and/or files (like `events.tsv`) are fully omitted *when they are unavailable or unapplicable*,
+instead of specified with an `n/a` value, or included as an empty file
+(for example an empty `events.tsv` file with only the headers included).
 
-A filename consists of a chain of *entities*, or key-value pairs, a *suffix* and an
-*extension*.
-Two prominent examples of entities are `subject` and `session`.
+## Filesystem structure
 
-For a data file that was collected in a given `session` from a given
-`subject`, the filename MUST begin with the string `sub-<label>_ses-<label>`.
-If the `session` level is omitted in the directory structure, the filename MUST begin
-with the string `sub-<label>`, without `ses-<label>`.
+Data for each subject are placed in subdirectories named "`sub-<label>`",
+where string "`<label>`" is substituted with the unique identification
+label of each subject.
+Additional information on each participant MAY be provided in a
+[participants file](03-modality-agnostic-files.md#participants-file)
+in the root directory of the dataset.
 
-Note that `sub-<label>` corresponds to the `subject` entity because it has
-the `sub-` "key" and`<label>` "value", where `<label>` would in a real data file
-correspond to a unique identifier of that subject, such as `01`.
-The same holds for the `session` entity with its `ses-` key and its `<label>`
-value.
+If data for the subject were acquired across multiple sessions, then within
+the subject directory resides subdirectories named "`ses-<label>`",
+where string "`<label>`" is substituted with a unique identification
+label for each session.
+In datasets where at least one subject has more than one session, this
+additional subdirectory later SHOULD be added for all subjects in the dataset.
+Additional information on each session MAY be provided in a
+[sessions file](03-modality-agnostic-files.md#sessions-file)
+within the subject directory.
 
-The extra session layer (at least one `/ses-<label>` subdirectory) SHOULD
-be added for all subjects if at least one subject in the dataset has more than
-one session.
-If a `/ses-<label>` subdirectory is included as part of the directory hierarchy,
-then the same [`ses-<label>`](./99-appendices/09-entities.md#ses)
-key/value pair MUST also be included as part of the filenames themselves.
-Acquisition time of session can
-be defined in the [sessions file](03-modality-agnostic-files.md#sessions-file).
+Within the session subdirectory (or the subject subdirectory if no
+session subdirectories are present) are subdirectories named according to
+data type as defined above.
+A data type directory SHOULD NOT be defined if there are no files to be placed
+in that directory.
 
-A chain of entities, followed by a suffix, connected by underscores (`_`)
-produces a human readable filename, such as `sub-01_task-rest_eeg.edf`.
-It is evident from the filename alone that the file contains resting state
-data from subject `01`.
-The suffix `eeg` and the extension `.edf` depend on the imaging modality and
-the data format and indicate further details of the file's contents.
+### Other top level directories
 
-Entities within a filename MUST be unique.
-For example, the following filename is not valid because it uses the `acq`
-entity twice:
-`sub-01_acq-laser_acq-uneven_electrodes.tsv`
+In addition to the subject directories, the root directory of a BIDS dataset
+MAY also contain the following directories:
 
-In cases where entities duplicate metadata,
-the presence of an entity should not be used as a replacement for
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___define_allowed_top_directories() }}
+
+## Filenames
+
+A filename consists of a chain of *entity instances* and a *suffix*
+all separated by underscores, and an *extension*.
+This pattern forms filenames that are both human- and machine-readable.
+For instance, file "`sub-01_task-rest_eeg.edf`" contains instances of the
+"subject" and "task" entities, making it evident from the filename alone that it
+contains resting-state data from subject `01`;
+the suffix `eeg` and extension `.edf` depend on the imaging modality and the data
+format, and can therefore convey further details of the file's contents.
+
+For a data file that was collected in a given session from a given
+subject, the filename MUST begin with the string `sub-<label>_ses-<label>`.
+Conversely, if the session level is omitted in the directory structure, the file
+name MUST begin with the string `sub-<label>`, without `ses-<label>`.
+
+Any given entity MUST NOT appear more than once in any filename. For example,
+filename "`sub-01_acq-laser_acq-uneven_electrodes.tsv`" is invalid because
+it uses the "acquisition" entity twice.
+
+In cases where an entity and a metadata field convey similar contextual
+information, the presence of an entity should not be used as a replacement for
 the corresponding metadata field.
-For instance, in echo-planar imaging MRI,
-the [`dir-<label>`](./99-appendices/09-entities.md#dir) entity MAY be used
+For instance, in echo-planar imaging MRI, the
+[`dir-<label>`](./appendices/entities.md#dir) entity MAY be used
 to distinguish files with different phase-encoding directions,
-but the file's `PhaseEncodingDirection` can only be specified as metadata.
+but the file's `PhaseEncodingDirection` MUST be specified as metadata.
 
 A summary of all entities in BIDS and the order in which they MUST be
-specified is available in the [entity table](./99-appendices/04-entity-table.md)
+specified is available in the [entity table](./appendices/entity-table.md)
 in the appendix.
 
 ### Entity-linked file collections
@@ -217,7 +171,7 @@ Provided the conditions above are satisfied,
 any suffix (such as `bold`) can identify an entity-linked file collection,
 although certain suffixes are exclusive for this purpose (for example, `MP2RAGE`).
 Use cases concerning this convention are compiled in the
-[file collections](./99-appendices/10-file-collections.md) appendix.
+[file collections](./appendices/file-collections.md) appendix.
 This convention is mainly intended for but not limited to MRI modalities.
 
 ### Case collision intolerance
@@ -434,10 +388,12 @@ files where commas are replaced by tabs. Tabs MUST be true tab characters and
 MUST NOT be a series of space characters. Each TSV file MUST start with a header
 line listing the names of all columns (with the exception of
 [physiological and other continuous recordings](04-modality-specific-files/06-physiological-and-other-continuous-recordings.md)).
-Names MUST be separated with tabs.
 It is RECOMMENDED that the column names in the header of the TSV file are
 written in [`snake_case`](https://en.wikipedia.org/wiki/Snake_case) with the
 first letter in lower case (for example, `variable_name`, not `Variable_name`).
+As for all other data in the TSV files, column names MUST be separated with tabs.
+Furthermore, column names MUST NOT be blank (that is, an empty string) and MUST NOT
+be duplicated within a single TSV file.
 String values containing tabs MUST be escaped using double
 quotes. Missing and non-applicable values MUST be coded as `n/a`. Numerical
 values MUST employ the dot (`.`) as decimal separator and MAY be specified
@@ -514,9 +470,9 @@ Example:
 }
 ```
 
-### Key/value files (dictionaries)
+### Key-value files (dictionaries)
 
-JavaScript Object Notation (JSON) files MUST be used for storing key/value
+JavaScript Object Notation (JSON) files MUST be used for storing key-value
 pairs. JSON files MUST be in UTF-8 encoding. Extensive documentation of the
 format can be found at [https://www.json.org/](https://www.json.org/),
 and at [https://tools.ietf.org/html/std90](https://tools.ietf.org/html/std90).
@@ -733,7 +689,7 @@ of `<index>`es.
 Please note that a given label or index is distinct from the "prefix"
 it refers to. For example `sub-01` refers to the `sub` entity (a
 subject) with the label `01`. The `sub-` prefix is not part of the subject
-label, but must be included in filenames (similarly to other key names).
+label, but must be included in filenames (similarly to other entities).
 
 ## Specification of paths
 
@@ -763,7 +719,90 @@ specificity and persistence.
 
 Several fields are designated for DOIs, for example, `DatasetDOI` in `dataset_description.json`.
 DOI values SHOULD be fully specified URIs such as `doi:10.18112/openneuro.ds000001.v1.0.0`.
-Bare DOIs such as `10.18112/openneuro.ds000001.v1.0.0` are [DEPRECATED][deprecated].
+Bare DOIs such as `10.18112/openneuro.ds000001.v1.0.0` are [DEPRECATED][].
+
+### BIDS URI
+
+To reference files in BIDS datasets, the following URI scheme may be used:
+
+```plain
+bids:[<dataset-name>]:<relative-path>
+```
+
+The scheme component `bids` identifies a BIDS URI,
+which defines a `path` component of the form `<dataset-name>:<relative-path>`.
+The `dataset-name` component is an identifier for a BIDS dataset,
+and the `relative-path` component is the location of a resource within that
+BIDS dataset, relative to the root of that dataset.
+The `relative-path` MUST NOT start with a forward-slash character (`/`).
+
+Examples:
+
+```plain
+bids::sub-01/fmap/sub-01_dir-AP_epi.nii.gz
+bids:ds000001:sub-02/anat/sub-02_T1w.nii.gz
+bids:myderivatives:sub-03/func/sub-03_task-rest_space-MNI152_bold.nii.gz
+```
+
+If no dataset name is specified, the URI is relative to the current BIDS dataset.
+This is made more precise in the next section.
+
+#### Resolution of BIDS URIs
+
+In order to resolve a BIDS URI, the dataset name must be mapped to a BIDS dataset.
+
+The special case `""` (that is, the empty string) refers to the BIDS dataset in
+which the BIDS URI is found.
+The dataset root is the nearest parent directory that contains a valid
+`dataset_description.json`.
+
+All other dataset names MUST be specified in the `DatasetLinks` object in
+[dataset_description.json][], which maps dataset names to URIs that point
+to BIDS dataset locations.
+If the scheme is omitted from a URI in `DatasetLinks`,
+that path is resolved relative to the current dataset root
+(see `deriv1` example, below).
+
+BIDS URIs cannot be interpreted outside a BIDS dataset,
+as they require a `dataset_description.json` file to resolve.
+
+#### Examples
+
+Consider this example `dataset_description.json`:
+
+```YAML
+{
+    ...
+    "DatasetLinks": {
+        "deriv1": "derivatives/derivative1",
+        "phantoms": "file:///data/phantoms",
+        "ds000001": "doi:10.18112/openneuro.ds000001.v1.0.0"
+    }
+}
+```
+
+Here `deriv1` refers to a BIDS Derivatives dataset contained within the current
+dataset, `phantoms` refers to a BIDS dataset of phantom data stored on the local
+filesystem, and `ds000001` refers to a BIDS dataset that must be resolved by DOI.
+
+Note that resolving `bids:phantoms:sub-phantom01/anat/sub-phantom01_T1w.nii.gz`
+is a straightforward concatenation:
+`file:///data/phantoms/sub-phantom01/anat/sub-phantom01_T1w.nii.gz`.
+However, retrieving `bids:ds000001:sub-02/anat/sub-02_T1w.nii.gz` requires
+first resolving the DOI, identifying the retrieval method, possibly retrieving
+the entire dataset, and finally constructing a URI to the desired resource.
+
+No protocol is currently proposed to automatically resolve all possible BIDS URIs.
+
+#### Future statement
+
+BIDS URIs are parsable as standard [URIs][] with scheme `bids` and path
+`[<dataset-name>]:<relative-path>`.
+The authority, query and fragment components are unused.
+Future versions of BIDS may specify interpretations for these components,
+but MUST NOT change the interpretation of a previously valid BIDS URI.
+For example, a future version may specify an authority that would allow BIDS
+URIs to be resolved without reference to a local `dataset_description.json`.
 
 ## Units
 
@@ -776,14 +815,14 @@ In case data is expressed in SI units or SI derived units, the units MAY be
 specified in the sidecar JSON file.
 In case non-standard prefixes are added to SI or non-SI units, these
 non-standard prefixed units MUST be specified in the JSON file.
-See [Appendix V](99-appendices/05-units.md) for a list of standard units and
+See the [Units Appendix](appendices/units.md) for a list of standard units and
 prefixes.
 Note also that for the *formatting* of SI units, the [CMIXF-12](https://people.csail.mit.edu/jaffer/MIXF/CMIXF-12)
 convention for encoding units is RECOMMENDED.
 CMIXF provides a consistent system for all units and prefix symbols with only basic
 characters, avoiding symbols that can cause text encoding problems; for example the
 CMIXF formatting for "micro volts" is `uV`, "degrees Celsius" is `oC` and "Ohm" is `Ohm`.
-See [Appendix V](99-appendices/05-units.md) for more information.
+See the [Units Appendix](appendices/units.md) for more information.
 
 For additional rules, see below:
 
@@ -837,7 +876,7 @@ Describing dates and timestamps:
     Some analysis software packages (for example, MNE-Python) handle their data as `.fif`
     internally and will break if recording dates are specified prior to `1902`,
     even if the original data format is not `.fif`.
-    See [MEG-file-formats](./99-appendices/06-meg-file-formats.md#recording-dates-in-fif-files)
+    See the [MEG File Formats Appendix](./appendices/meg-file-formats.md#recording-dates-in-fif-files)
     for more information.
 
 -   Age SHOULD be given as the number of years since birth at the time of
@@ -917,7 +956,7 @@ to suppress warnings or provide interpretations of your filenames.
 <!-- Link Definitions -->
 
 [dataset-description]: 03-modality-agnostic-files.md#dataset-description
-
+[dataset_description.json]: 03-modality-agnostic-files.md#dataset_descriptionjson
 [derived-dataset-description]: 03-modality-agnostic-files.md#derived-dataset-and-pipeline-description
-
-[deprecated]: ./02-common-principles.md#definitions
+[deprecated]: #definitions
+[uris]: #uniform-resource-indicator

@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 jobs:
   build_docs:
     docker:
@@ -13,7 +13,6 @@ jobs:
             source env/bin/activate
             python -m pip install --upgrade pip
             pip install -r requirements.txt
-            pip install -e ~/project/tools/schemacode/
       - run:
           name: generate docs
           command: |
@@ -27,7 +26,7 @@ jobs:
           path: ~/project/site/
           destination: dev_docs
 
-  linkchecker:
+  check_links:
     docker:
       - image: cimg/python:3.8
     steps:
@@ -77,6 +76,7 @@ jobs:
             apt-get update && apt install -y python3-pip
             python3 -m pip install --upgrade pip
             python3 -m pip install -r  ~/project/requirements.txt
+            python3 -m pip install ~/project/tools/schemacode/[render]
       - run:
           name: install font that works with unicode emojis
           command: apt-get update && apt-get install -y fonts-symbola
@@ -89,8 +89,8 @@ jobs:
       - store_artifacts:
           path: bids-spec.pdf
 
-  # Auto changelog collector
-  github-changelog-generator:
+  # Automatically generate a changelog since migration from Google Docs to GitHub
+  github_changelog_generator:
     docker:
       - image: ferrarimarco/github-changelog-generator:1.14.3
     steps:
@@ -106,18 +106,21 @@ jobs:
             git status
             if (git log -1 --pretty=%s | grep Merge*) && (! git log -1 --pretty=%b | grep REL:) ; then
               github_changelog_generator \
+                --exclude-tags-regex "^(?!v).*?$" \
                 --user bids-standard \
                 --project bids-specification \
                 --token ${CHANGE_TOKEN} \
                 --output ~/changelog_build/CHANGES.md \
                 --base ~/project/src/pregh-changes.md \
                 --header-label "# Changelog" \
+                --release-branch master \
                 --no-issues \
-                --no-issues-wo-labels \
                 --no-filter-by-milestone \
                 --no-compare-link \
                 --pr-label "" \
-                --release-branch master
+                --enhancement-label "" \
+                --bugs-label "" \
+                --exclude-labels "exclude-from-changelog"
               cat ~/changelog_build/CHANGES.md
             else
               echo "Commit or Release, do nothing"
@@ -127,8 +130,8 @@ jobs:
           root: ~/.
           paths: changelog_build
 
-  # Run remark on the auto generated changes.md file
-  remark:
+  # Lint and fix the auto generated changes.md file
+  lint_generated_changelog:
     docker:
       - image: cimg/node:lts
     steps:
@@ -156,12 +159,12 @@ jobs:
               echo "Commit or Release, do nothing"
             fi
       - persist_to_workspace:
-          # fixed+linted changelog in ~/changelog_build/CHANGES.md
+          # linted and fixed changelog in ~/changelog_build/CHANGES.md
           root: ~/.
           paths: changelog_build
 
   # Push built changelog to repo
-  Changelog-bot:
+  commit_generated_changelog:
     docker:
       - image: cimg/base:stable
     steps:
@@ -195,22 +198,22 @@ workflows:
   search_build:
     jobs:
       - build_docs
-      - linkchecker:
+      - check_links:
           requires:
             - build_docs
-      - github-changelog-generator:
+      - github_changelog_generator:
           filters:
             branches:
               only: master
-      - remark:
+      - lint_generated_changelog:
           requires:
-            - github-changelog-generator
+            - github_changelog_generator
           filters:
             branches:
               only: master
-      - Changelog-bot:
+      - commit_generated_changelog:
           requires:
-            - remark
+            - lint_generated_changelog
           filters:
             branches:
               only: master

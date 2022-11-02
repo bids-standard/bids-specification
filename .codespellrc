@@ -1,0 +1,6 @@
+[codespell]
+skip = *.js,*.svg,*.eps,.git
+ignore-words-list = fo,te,als
+builtin = clear,rare
+dictionary = .codespell_dict
+exclude-file = src/CHANGES.md

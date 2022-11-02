@@ -57,8 +57,8 @@ in [Derived dataset and pipeline description][derived-dataset-description].
     files.
 
 -   When necessary to distinguish two files that do not otherwise have a
-    distinguishing entity, the [`_desc-<label>`](../99-appendices/09-entities.md#desc)
-    keyword-value SHOULD be used.
+    distinguishing entity, the [`_desc-<label>`](../appendices/entities.md#desc)
+    entity SHOULD be used.
     This includes the cases of needing to distinguish both differing inputs and
     differing outputs (for example, `_desc-T1w` and `_desc-T2w` to distinguish
     brain mask files derived from T1w and T2w images;
@@ -68,7 +68,7 @@ in [Derived dataset and pipeline description][derived-dataset-description].
 -   When naming files that are not yet standardized, it is RECOMMENDED to use
     names consistent with BIDS conventions where those conventions apply.
     For example, if a summary statistic is derived from a given task, the file
-    name SHOULD contain [`_task-<label>`](../99-appendices/09-entities.md#task).
+    name SHOULD contain [`_task-<label>`](../appendices/entities.md#task).
 
 <!-- Link Definitions -->
 

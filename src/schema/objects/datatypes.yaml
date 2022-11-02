@@ -2,43 +2,58 @@
 # This file defines valid BIDS datatypes, along with their full names and descriptions.
 # For rules regarding how suffixes relate to datatypes, see files in `rules/datatypes/`.
 anat:
-  name: Anatomical Magnetic Resonance Imaging
+  value: anat
+  display_name: Anatomical Magnetic Resonance Imaging
   description: |
     Magnetic resonance imaging sequences designed to characterize static, anatomical features.
 beh:
-  name: Behavioral Data
+  value: beh
+  display_name: Behavioral Data
   description: |
     Behavioral data.
 dwi:
-  name: Diffusion-Weighted Imaging
+  value: dwi
+  display_name: Diffusion-Weighted Imaging
   description: |
     Diffusion-weighted imaging (DWI).
 eeg:
-  name: Electroencephalography
+  value: eeg
+  display_name: Electroencephalography
   description: Electroencephalography
 fmap:
-  name: Field maps
+  value: fmap
+  display_name: Field maps
   description: |
     MRI scans for estimating B0 inhomogeneity-induced distortions.
 func:
-  name: Task-Based Magnetic Resonance Imaging
+  value: func
+  display_name: Task-Based Magnetic Resonance Imaging
   description: |
     Task (including resting state) imaging data
 ieeg:
-  name: Intracranial electroencephalography
+  value: ieeg
+  display_name: Intracranial electroencephalography
   description: |
     Intracranial electroencephalography (iEEG) or electrocorticography (ECoG) data
 meg:
-  name: Magnetoencephalography
+  value: meg
+  display_name: Magnetoencephalography
   description: Magnetoencephalography
 micr:
-  name: Microscopy
+  value: micr
+  display_name: Microscopy
   description: Microscopy
 perf:
-  name: Perfusion imaging
+  value: perf
+  display_name: Perfusion imaging
   description: |
     Blood perfusion imaging data, including arterial spin labeling (ASL)
 pet:
-  name: Positron Emission Tomography
+  value: pet
+  display_name: Positron Emission Tomography
   description: |
     Positron emission tomography data
+nirs:
+  value: nirs
+  display_name: Near-Infrared Spectroscopy
+  description: Near-Infrared Spectroscopy data organized around the SNIRF format
