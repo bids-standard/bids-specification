@@ -93,6 +93,12 @@ anat_parametric_discrete_segmentation:
     resolution: optional
     density: optional
     description: optional
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+    - .tsv
+
 
 anat_nonparametric_discrete_segmentation:
   $ref: rules.files.raw.anat.nonparametric
@@ -104,6 +110,11 @@ anat_nonparametric_discrete_segmentation:
     resolution: optional
     density: optional
     description: optional
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+    - .tsv
 
 func_discrete_segmentation:
   $ref: rules.files.raw.func.func
@@ -183,6 +194,7 @@ anat_parametic_discrete_surface:
     - .label.gii
     - .dlabel.nii
     - .json
+    - .tsv
   entities:
     $ref: rules.files.raw.anat.parametric.entities
     hemisphere: optional
@@ -199,6 +211,7 @@ anat_nonparametic_discrete_surface:
     - .label.gii
     - .dlabel.nii
     - .json
+    - .tsv
   entities:
     $ref: rules.files.raw.anat.nonparametric.entities
     hemisphere: optional
