@@ -18,7 +18,7 @@ bdf:
     The capital `.BDF` extension MUST NOT be used.
 dtseriesnii:
   value: .dtseries.nii
-  display_name: Time Series fMRI Data
+  display_name: CIFTI-2 Dense Time Series
   description: |
     This file type represents data points in a series for every vertex and voxel in the mapping. A
     row is a complete data series, for a single vertex or voxel in the mapping that applies along the
