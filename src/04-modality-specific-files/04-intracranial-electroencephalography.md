@@ -245,7 +245,7 @@ Note that upper-case is REQUIRED:
 | EOG         | Generic EOG channel if HEOG or VEOG information not available          |
 | ECG         | ElectroCardioGram (heart)                                              |
 | EMG         | ElectroMyoGram (muscle)                                                |
-| TRIG        | System Triggers                                                        |
+| TRIG        | Analog (TTL in Volt) or digital (binary TTL) trigger channel           |
 | AUDIO       | Audio signal                                                           |
 | PD          | Photodiode                                                             |
 | EYEGAZE     | Eye Tracker gaze                                                       |
