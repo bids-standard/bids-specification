@@ -93,6 +93,9 @@ label:
     for example, it is `rest` in `task-rest` following `task-<label>` specification.
     Note that labels MUST not collide when casing is ignored
     (see [Case collision intolerance](SPEC_ROOT/02-common-principles.md#case-collision-intolerance)).
+    For a given data type, labels MUST be consistent across subjects and sessions.
+    For example, an `acq` entity label `hires` used on the `anat` data of a given subject
+    MUST mean the same thing as `acq-hires` in `anat` files of any other subject.
 modality:
   name: Modality
   display_name: Modality

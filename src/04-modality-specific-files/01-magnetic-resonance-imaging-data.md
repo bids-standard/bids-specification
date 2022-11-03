@@ -590,7 +590,7 @@ MUST be used to distinguish both images.
 In such a case, two files could have the following names:
 `sub-01_acq-singleband_dwi.nii.gz` and `sub-01_acq-multiband_dwi.nii.gz`.
 The user is free to choose any other label than `singleband` and
-`multiband`, as long as they are consistent across subjects and sessions.
+`multiband`.
 
 ### REQUIRED gradient orientation information
 

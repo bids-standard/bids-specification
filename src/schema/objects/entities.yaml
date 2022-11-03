@@ -13,9 +13,7 @@ acquisition:
     For example, this should be used when a study includes two T1w images -
     one full brain low resolution and one restricted field of view but high resolution.
     In such case two files could have the following names:
-    `sub-01_acq-highres_T1w.nii.gz` and `sub-01_acq-lowres_T1w.nii.gz`;
-    however, the user is free to choose any other label than `highres` and `lowres` as long
-    as they are consistent across subjects and sessions.
+    `sub-01_acq-highres_T1w.nii.gz` and `sub-01_acq-lowres_T1w.nii.gz`.
 
     In case different sequences are used to record the same modality
     (for example, `RARE` and `FLASH` for T1w)
@@ -380,8 +378,6 @@ task:
     While tasks may be repeated across multiple acquisitions,
     a given task may have different sets of stimuli (for example, randomized order) and participant responses
     across subjects, sessions, and runs.
-
-    The `task-<label>` MUST be consistent across subjects and sessions.
 
     Files with the `task-<label>` entity SHOULD have an associated
     [events file](SPEC_ROOT/04-modality-specific-files/05-task-events.md#task-events),

@@ -24,7 +24,6 @@ rather than `_events.tsv`.
 Each task has a unique label that MUST only consist of letters and/or numbers
 (other characters, including spaces and underscores, are not allowed) with the
 [`task-<label>`](../appendices/entities.md#task) entity.
-Those labels MUST be consistent across subjects and sessions.
 
 The OPTIONAL [`acq-<label>`](../appendices/entities.md#acq) entity corresponds to a custom label to
 distinguish different conditions present during multiple runs of the same task.
