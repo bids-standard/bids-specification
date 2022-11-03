@@ -193,6 +193,29 @@ Explanation of the table:
 
 #### Field maps
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the directory
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filename_template(
+   "raw",
+   datatypes=["fmap"],
+   suffixes=[
+    "TB1DAM",
+    "TB1EPI",
+    "TB1AFI",
+    "TB1TFL",
+    "TB1RFM",
+    "RB1COR",
+    "TB1SRGE",
+    "TB1map",
+    "RB1map",
+    ])
+}}
+
 | **File collection**  | **REQUIRED metadata**                                                                                |
 |----------------------|------------------------------------------------------------------------------------------------------|
 | TB1DAM               | `FlipAngle`                                                                                          |
