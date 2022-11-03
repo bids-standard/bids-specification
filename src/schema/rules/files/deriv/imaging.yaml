@@ -94,7 +94,9 @@ anat_parametric_discrete_segmentation:
     density: optional
     description: optional
   extensions:
-    - $ref: rules.files.raw.anat.parametric.extensions
+    - .nii.gz
+    - .nii
+    - .json
     - .tsv
 
 
