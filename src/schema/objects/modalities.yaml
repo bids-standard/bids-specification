@@ -1,30 +1,33 @@
 ---
 # This file describes modalities supported by BIDS.
 mri:
-  name: Magnetic Resonance Imaging
+  display_name: Magnetic Resonance Imaging
   description: |
     Data acquired with an MRI scanner.
 eeg:
-  name: Electroencephalography
+  display_name: Electroencephalography
   description: |
     Data acquired with EEG.
 ieeg:
-  name: Intracranial Electroencephalography
+  display_name: Intracranial Electroencephalography
   description: |
     Data acquired with iEEG.
 meg:
-  name: Magnetoencephalography
+  display_name: Magnetoencephalography
   description: |
     Data acquired with an MEG scanner.
 beh:
-  name: Behavioral experiments
+  display_name: Behavioral experiments
   description: |
     Behavioral data acquired without accompanying neuroimaging data.
 pet:
-  name: Positron Emission Tomography
+  display_name: Positron Emission Tomography
   description: |
     Data acquired with PET.
 micr:
-  name: Microscopy
+  display_name: Microscopy
   description: |
     Data acquired with a microscope.
+nirs:
+  display_name: Near-Infrared Spectroscopy
+  description: Data acquired with NIRS.

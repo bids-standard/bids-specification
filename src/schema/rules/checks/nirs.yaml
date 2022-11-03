@@ -1,0 +1,97 @@
+---
+NASamplingFreq:
+  selectors:
+    - suffix == "nirs"
+    - samplingFrequency == "n/a"
+  checks:
+    - associations.channels.sampling_frequency != null
+
+NIRSChannelCount:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "nirs"
+  checks:
+    - |
+      sidecar.NIRSChannelCount
+      == count(associations.channels.type, "NIRSCWAMPLITUDE")
+      +  count(associations.channels.type, "NIRSCWFLUORESCENSEAMPLITUDE")
+      +  count(associations.channels.type, "NIRSCWOPTICALDENSITY")
+      +  count(associations.channels.type, "NIRSCWHBO")
+      +  count(associations.channels.type, "NIRSCWHBR")
+      +  count(associations.channels.type, "NIRSCWMUA")
+
+ACCELChannelCountReq:
+  selectors:
+    - suffix == "nirs"
+  checks:
+    - sidecar.ACCELChannelCount == count(associations.channels.type, "ACCEL")
+
+GYROChannelCountReq:
+  selectors:
+    - suffix == "nirs"
+  checks:
+    - sidecar.GYROChannelCount == count(associations.channels.type, "GYRO")
+
+MAGNChannelCountReq:
+  selectors:
+    - suffix == "nirs"
+  checks:
+    - sidecar.MAGNChannelCount == count(associations.channels.type, "MAGN")
+
+ShortChannelCountReq:
+  selectors:
+    - suffix == "nirs"
+  checks:
+    - sidecar.ShortChannelCount == count(associations.channels.short_channel, true)
+
+OrientationComponent:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "channels"
+    - extension == ".tsv"
+    - intersect(columns.type, ["ACCEL", "GYRO", "MAGN"])
+  checks:
+    - columns.orientation_component != null
+
+RequiredChannels:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "optodes"
+    - extension == ".tsv"
+  checks:
+    - associations.channels != null
+
+RequiredTemplateX:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "optodes"
+    - extension == ".tsv"
+    - intersect(columns.x, ["n/a"])
+  checks:
+    - columns.template_x != null
+
+RequiredTemplateY:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "optodes"
+    - extension == ".tsv"
+    - intersect(columns.y, ["n/a"])
+  checks:
+    - columns.template_y != null
+
+RequiredTemplateZ:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "optodes"
+    - extension == ".tsv"
+    - intersect(columns.z, ["n/a"])
+  checks:
+    - columns.template_z != null
+
+RequiredCoordsystem:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "optodes"
+    - extension == ".tsv"
+  checks:
+    - associations.coordsystem != null
