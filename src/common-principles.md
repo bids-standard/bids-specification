@@ -369,7 +369,7 @@ datasets and non-compliant derivatives.
 
 All imaging data MUST be stored using the NIfTI file format. We RECOMMEND using
 compressed NIfTI files (.nii.gz), either version 1.0 or 2.0. If using compressed files,
-the gzip header MUST lack source filenames timestamps. Imaging data SHOULD
+the gzip header SHOULD lack source filenames and timestamps. Imaging data SHOULD
 be converted to the NIfTI format using a tool that provides as much of the NIfTI
 header information (such as orientation and slice timing information) as
 possible. Since the NIfTI standard offers limited support for the various image
