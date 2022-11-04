@@ -49,7 +49,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("mri.MRISequenceSpecifics") }}
 
-### In-Plane Spatial Encoding
+### In- and Out-of-Plane Spatial Encoding
 
 <!-- This block generates a metadata table.
 These tables are defined in
