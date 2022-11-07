@@ -2183,10 +2183,22 @@ ParallelReductionFactorInPlane:
   name: ParallelReductionFactorInPlane
   display_name: Parallel Reduction Factor In Plane
   description: |
-    The parallel imaging (for instance, GRAPPA) factor.
+    The parallel imaging (for instance, GRAPPA) factor in plane.
     Use the denominator of the fraction of k-space encoded for each slice.
     For example, 2 means half of k-space is encoded.
     Corresponds to DICOM Tag 0018, 9069 `Parallel Reduction Factor In-plane`.
+  type: number
+ParallelReductionFactorOutOfPlane:
+  name: ParallelReductionFactorOutOfPlane
+  display_name: Parallel Reduction Factor Out of Plane
+  description: |
+    The parallel imaging (for instance, GRAPPA) factor in the second phase encoding dimension of 3D sequences.
+    Use the denominator of the fraction of k-space encoded in the second phase encoding dimension.
+    For example, 2 means half of k-space is encoded.
+    Will typically be 1 for 2D sequences, as each slice in a 2D acquisition is usually fully encoded.
+    `ParallelReductionFactorOutOfPlane` should not be confused with `MultibandAccelerationFactor`,
+    as they imply different methods of accelerating the acquisition.
+    Corresponds to DICOM Tag 0018, 9155 `Parallel Reduction Factor out-of-plane`.
   type: number
 PartialFourier:
   name: PartialFourier
@@ -3241,7 +3253,8 @@ TriggerChannelCount:
   name: TriggerChannelCount
   display_name: Trigger Channel Count
   description: |
-    Number of channels for digital (TTL bit level) triggers.
+    Number of channels for digital (binary TTL) triggers or analog equivalents (TTL in volt).
+    Corresponds to the `TRIG` channel type.
   type: integer
   minimum: 0
 TubingLength:

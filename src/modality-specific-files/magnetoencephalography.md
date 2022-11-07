@@ -226,47 +226,39 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_columns_table("meg.MEGChannels") }}
 
-Example:
-
-```Text
-name type units description sampling_frequency low_cutoff high_cutoff notch software_filters status
-UDIO001 TRIG V analogue trigger 1200 0.1 300 0 n/a good
-MLC11 MEGGRADAXIAL T sensor 1st-order grad 1200 0 n/a 50 SSS bad
-```
-
 Restricted keyword list for field `type`.
 Note that upper-case is REQUIRED:
 
-| **Keyword**      | **Description**                                      |
-| ---------------- | ---------------------------------------------------- |
-| MEGMAG           | MEG magnetometer                                     |
-| MEGGRADAXIAL     | MEG axial gradiometer                                |
-| MEGGRADPLANAR    | MEG planargradiometer                                |
-| MEGREFMAG        | MEG reference magnetometer                           |
-| MEGREFGRADAXIAL  | MEG reference axial gradiometer                      |
-| MEGREFGRADPLANAR | MEG reference planar gradiometer                     |
-| MEGOTHER         | Any other type of MEG sensor                         |
-| EEG              | Electrode channel                                    |
-| ECOG             | Electrode channel                                    |
-| SEEG             | Electrode channel                                    |
-| DBS              | Electrode channel                                    |
-| VEOG             | Vertical EOG (electrooculogram)                      |
-| HEOG             | Horizontal EOG                                       |
-| EOG              | Generic EOG channel                                  |
-| ECG              | ElectroCardioGram (heart)                            |
-| EMG              | ElectroMyoGram (muscle)                              |
-| TRIG             | System Triggers                                      |
-| AUDIO            | Audio signal                                         |
-| PD               | Photodiode                                           |
-| EYEGAZE          | Eye Tracker gaze                                     |
-| PUPIL            | Eye Tracker pupil diameter                           |
-| MISC             | Miscellaneous                                        |
-| SYSCLOCK         | System time showing elapsed time since trial started |
-| ADC              | Analog to Digital input                              |
-| DAC              | Digital to Analog output                             |
-| HLU              | Measured position of head and head coils             |
-| FITERR           | Fit error signal from each head localization coil    |
-| OTHER            | Any other type of channel                            |
+| **Keyword**      | **Description**                                              |
+| ---------------- | ------------------------------------------------------------ |
+| MEGMAG           | MEG magnetometer                                             |
+| MEGGRADAXIAL     | MEG axial gradiometer                                        |
+| MEGGRADPLANAR    | MEG planargradiometer                                        |
+| MEGREFMAG        | MEG reference magnetometer                                   |
+| MEGREFGRADAXIAL  | MEG reference axial gradiometer                              |
+| MEGREFGRADPLANAR | MEG reference planar gradiometer                             |
+| MEGOTHER         | Any other type of MEG sensor                                 |
+| EEG              | Electrode channel                                            |
+| ECOG             | Electrode channel                                            |
+| SEEG             | Electrode channel                                            |
+| DBS              | Electrode channel                                            |
+| VEOG             | Vertical EOG (electrooculogram)                              |
+| HEOG             | Horizontal EOG                                               |
+| EOG              | Generic EOG channel                                          |
+| ECG              | ElectroCardioGram (heart)                                    |
+| EMG              | ElectroMyoGram (muscle)                                      |
+| TRIG             | Analog (TTL in Volt) or digital (binary TTL) trigger channel |
+| AUDIO            | Audio signal                                                 |
+| PD               | Photodiode                                                   |
+| EYEGAZE          | Eye Tracker gaze                                             |
+| PUPIL            | Eye Tracker pupil diameter                                   |
+| MISC             | Miscellaneous                                                |
+| SYSCLOCK         | System time showing elapsed time since trial started         |
+| ADC              | Analog to Digital input                                      |
+| DAC              | Digital to Analog output                                     |
+| HLU              | Measured position of head and head coils                     |
+| FITERR           | Fit error signal from each head localization coil            |
+| OTHER            | Any other type of channel                                    |
 
 Examples of free text for field `description`:
 

@@ -27,13 +27,6 @@ SpatialReferenceNonStandard:
   fields:
     SpatialReference: required
 
-SpatialReferenceNoEntity:
-  selectors:
-    - dataset.dataset_description.DatasetType == "derivative"
-    - '!("space" in entities)'
-  fields:
-    SpatialReference: required
-
 # this needs to come before density and resolution overrides selected in a
 # different way
 MaskDerivatives:
