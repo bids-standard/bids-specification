@@ -4,7 +4,7 @@
 
 Each derivative data file SHOULD be described by a JSON file provided as a sidecar
 or higher up in the hierarchy of the derived dataset (according to the
-[Inheritance Principle](../02-common-principles.md#the-inheritance-principle))
+[Inheritance Principle](../common-principles.md#the-inheritance-principle))
 unless a particular derivative includes REQUIRED metadata fields, in which case a
 JSON file is also REQUIRED.
 Each derivative type defines their own set of fields, but all of them
@@ -262,10 +262,10 @@ static volume, a `RepetitionTime` property would no longer be relevant).
 
 [object]: https://www.json.org/json-en.html
 
-[bids uris]: ../02-common-principles.md#bids-uri
+[bids uris]: ../common-principles.md#bids-uri
 
-[deprecated]: ../02-common-principles.md#definitions
+[deprecated]: ../common-principles.md#definitions
 
-[uris]: ../02-common-principles.md#uniform-resource-indicator
+[uris]: ../common-principles.md#uniform-resource-indicator
 
-[uri]: ../02-common-principles.md#uniform-resource-indicator
+[uri]: ../common-principles.md#uniform-resource-indicator

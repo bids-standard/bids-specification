@@ -1,8 +1,8 @@
 # Positron Emission Tomography
 
 Support for Positron Emission Tomography (PET) was developed as a
-[BIDS Extension Proposal](../07-extensions.md#bids-extension-proposals).
-Please see [Citing BIDS](../01-introduction.md#citing-bids)
+[BIDS Extension Proposal](../extensions.md#bids-extension-proposals).
+Please see [Citing BIDS](../introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
@@ -18,7 +18,7 @@ PET-BIDS is fully consistent with the BIDS specification as a whole.
 However, BIDS was initially developed in the context of MRI,
 so some terminology may be unfamiliar to researchers from each field.
 This section adds clarifications to
-[Common Principles - Definitions](../02-common-principles.md#definitions)
+[Common Principles - Definitions](../common-principles.md#definitions)
 for the PET context, and introduces the term "time zero" which is currently
 specific to PET.
 
@@ -81,7 +81,7 @@ Volumes MUST be stored in chronological order (the order they were acquired in).
 The OPTIONAL [`task-<label>`](../appendices/entities.md#task) is used to
 indicate a task subjects were asked to perform in the scanner.
 Those labels MUST be consistent across subjects and sessions.
-For task based PET, a corresponding [`task events`](./05-task-events.md) file MUST be provided
+For task based PET, a corresponding [`task events`](./task-events.md) file MUST be provided
 (please note that this file is not necessary for resting scans).
 
 The [`trc-<label>`](../appendices/entities.md#trc) entity is used to
@@ -119,7 +119,7 @@ PET and MRI images may be aggregated in the same dataset.
 When analyzing MRI and PET data together,
 it is essential to specify whether MR images have been corrected for gradient non-linearities,
 using the `NonLinearGradientCorrection` metadata field
-(see [Sequence Specifics](./01-magnetic-resonance-imaging-data.md#sequence-specifics)),
+(see [Sequence Specifics](./magnetic-resonance-imaging-data.md#sequence-specifics)),
 which is REQUIRED for all MR data if PET data is also present in the dataset
 (see also [PET-MRI correspondence](../appendices/cross-modality-correspondence.md#pet-mri-correspondence)).
 In the case of studies using combined PET/fMRI,
@@ -127,7 +127,7 @@ subject-specific tasks may be carried out during the acquisition within the same
 If the same task is recorded with both modalities,
 the same [`task-<label>`](../appendices/entities.md#task) entity SHOULD be used.
 For further details, see
-[Task (including resting state) imaging data](./01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data).
+[Task (including resting state) imaging data](./magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data).
 
 In addition to the imaging data (`*.nii`) a `_pet.json` sidecar file MUST be provided.
 The included metadata are divided into sections described below.
@@ -187,7 +187,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("pet.PETTime") }}
 
-We refer to the common principles for the standards for describing dates and timestamps, including possibilities for anonymization (see [Units](../02-common-principles.md#units)).
+We refer to the common principles for the standards for describing dates and timestamps, including possibilities for anonymization (see [Units](../common-principles.md#units)).
 
 #### Reconstruction
 
@@ -269,8 +269,8 @@ Knudsen et al. 2020
 ([doi:10.1177/0271678X20905433](https://doi.org/10.1177/0271678X20905433))
 recommends recording participant body weight.
 If recorded once per participant, these data SHOULD be included in the
-[Participants file](../03-modality-agnostic-files.md#participants-file) or as
-[Phenotypic and assessment data](../03-modality-agnostic-files.md#phenotypic-and-assessment-data).
+[Participants file](../modality-agnostic-files.md#participants-file) or as
+[Phenotypic and assessment data](../modality-agnostic-files.md#phenotypic-and-assessment-data).
 
 For example:
 
@@ -282,7 +282,7 @@ sub-03 72
 ```
 
 If multiple measurements are made, these data SHOULD be included in the
-[Sessions file](../03-modality-agnostic-files.md#sessions-file).
+[Sessions file](../modality-agnostic-files.md#sessions-file).
 
 For example:
 
@@ -304,7 +304,7 @@ and a guide for using macros can be found at
 {{ MACROS___make_filename_template("raw", datatypes=["pet"], suffixes=["blood"]) }}
 
 If collected, blood measurements of radioactivity are be stored in
-[Tabular files](../02-common-principles.md#tabular-files) and located in
+[Tabular files](../common-principles.md#tabular-files) and located in
 the `pet/` directory along with the corresponding PET data.
 
 The REQUIRED `recording` entity is used to distinguish sampling methods.
@@ -354,7 +354,7 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_columns_table("pet.Blood") }}
 
-As with all [tabular files](../02-common-principles.md#tabular-files),
+As with all [tabular files](../common-principles.md#tabular-files),
 additional columns MAY be defined in `_blood.json`.
 For clarity, it is RECOMMENDED to include the above column definitions in `_blood.json`,
 as shown in the following example.

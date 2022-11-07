@@ -249,6 +249,6 @@ Please note that `space-scanner` SHOULD NOT be used, it is mentioned in this spe
 
 <!-- Link Definitions -->
 
-[common file level metadata fields]: ../05-derivatives/02-common-data-types.md#common-file-level-metadata-fields
+[common file level metadata fields]: ../derivatives/common-data-types.md#common-file-level-metadata-fields
 
-[deprecated]: ../02-common-principles.md#definitions
+[deprecated]: ../common-principles.md#definitions
