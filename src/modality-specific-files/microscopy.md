@@ -1,9 +1,9 @@
 # Microscopy
 
 Support for Microscopy was developed as a
-[BIDS Extension Proposal](../07-extensions.md#bids-extension-proposals).
+[BIDS Extension Proposal](../extensions.md#bids-extension-proposals).
 
-Please see [Citing BIDS](../01-introduction.md#citing-bids)
+Please see [Citing BIDS](../introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
@@ -58,7 +58,7 @@ Microscopy raw data MUST be stored in one of the following formats:
 -   [OME-ZARR/NGFF](https://ngff.openmicroscopy.org/latest/) (`.ome.zarr` directories)
 
 If different from PNG, TIFF, OME-TIFF, or OME-ZARR, the original unprocessed data in the native format MAY be
-stored in the [`/sourcedata` directory](../02-common-principles.md#source-vs-raw-vs-derived-data).
+stored in the [`/sourcedata` directory](../common-principles.md#source-vs-raw-vs-derived-data).
 
 ### Modality suffixes
 Microscopy data currently support the following imaging modalities:
@@ -126,7 +126,7 @@ A guide for using macros can be found at
 
 In this example, the JSON metadata is common for all samples of `sub-01`.
 JSON metadata may be defined per subject or per sample as appropriate, as per the
-[inheritance principle](../02-common-principles.md#the-inheritance-principle).
+[inheritance principle](../common-principles.md#the-inheritance-principle).
 
 The [`acq-<label>`](../appendices/entities.md#acq) entity corresponds to a custom label that
 MAY be used to distinguish a different set of parameters used for acquiring the same modality.
@@ -224,11 +224,11 @@ A guide for using macros can be found at
 The index number can be assigned arbitrarily and, in the case of "ordered" chunks, the chunks'
 relative positions (in terms of scaling and translation) SHOULD be defined by an affine
 transformation matrix in the JSON sidecar file of each chunk, as described in
-[Chunk Transformations](10-microscopy.md#chunk-transformations).
+[Chunk Transformations](microscopy.md#chunk-transformations).
 
 In this example, the JSON metadata is different for each chunk of `sub-01_sample-01`.
 JSON metadata may be defined per sample or per chunk as appropriate, as per the
-[inheritance principle](../02-common-principles.md#the-inheritance-principle).
+[inheritance principle](../common-principles.md#the-inheritance-principle).
 
 In microscopy, many pyramidal file formats store multiple resolutions for the same acquisition.
 In the case where a multiple resolutions file format is converted to single resolution file format,
@@ -265,7 +265,7 @@ A guide for using macros can be found at
    }
 ) }}
 
-See [Preprocessed, coregistered and/or resampled volumes](../05-derivatives/03-imaging.md#preprocessed-coregistered-andor-resampled-volumes)
+See [Preprocessed, coregistered and/or resampled volumes](../derivatives/imaging.md#preprocessed-coregistered-andor-resampled-volumes)
 for details.
 
 ### Microscopy metadata (Sidecar JSON)
@@ -391,7 +391,7 @@ In this example, there is no scaling and `chunk-01` is at the origin.
 
 ## Required Samples file
 
-For Microscopy data, the [Samples file](../03-modality-agnostic-files.md#samples-file)
+For Microscopy data, the [Samples file](../modality-agnostic-files.md#samples-file)
 `samples.tsv` is REQUIRED and its associated sidecar `samples.json` file is RECOMMENDED.
 
 Additional optional columns MAY be used to describe other samples' attributes.
@@ -399,7 +399,7 @@ Additional optional columns MAY be used to describe other samples' attributes.
 ## Recommended Participants data
 
 For Microscopy data, we RECOMMEND to make use of the columns `species`, `strain` and
-`strain_rrid` in the [Participants file](../03-modality-agnostic-files.md#participants-file)
+`strain_rrid` in the [Participants file](../modality-agnostic-files.md#participants-file)
 when applicable.
 
 Additional optional columns MAY be used to describe other subjects' attributes.

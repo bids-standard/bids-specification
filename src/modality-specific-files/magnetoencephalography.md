@@ -1,8 +1,8 @@
 # Magnetoencephalography
 
 Support for Magnetoencephalography (MEG) was developed as a
-[BIDS Extension Proposal](../07-extensions.md#bids-extension-proposals).
-Please see [Citing BIDS](../01-introduction.md#citing-bids)
+[BIDS Extension Proposal](../extensions.md#bids-extension-proposals).
+Please see [Citing BIDS](../introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
@@ -64,7 +64,7 @@ with split files.
 If there are multiple parts of a recording and the optional `scans.tsv` is provided,
 remember to list all files separately in `scans.tsv` and that the entries for the
 `acq_time` column in `scans.tsv` MUST all be identical, as described in
-[Scans file](../03-modality-agnostic-files.md#scans-file).
+[Scans file](../modality-agnostic-files.md#scans-file).
 
 Another manufacturer-specific detail pertains to the KIT/Yokogawa/Ricoh system,
 which saves the MEG sensor coil positions in a separate file with two possible filename extensions  (`.sqd`, `.mrk`).
@@ -87,7 +87,7 @@ that have to be performed to before the MEG data can actually be exploited.
 
 Note that if EEG is recorded with a separate amplifier,
 it SHOULD be stored separately under a new `/eeg` data type
-(see [the EEG specification](03-electroencephalography.md)).
+(see [the EEG specification](electroencephalography.md)).
 
 If however EEG is recorded simultaneously **with the same MEG system**,
 it MAY be stored under the `/meg` data type.
@@ -196,8 +196,8 @@ A guide for using macros can be found at
 ```
 
 Note that the date and time information SHOULD be stored in the Study key file
-(`scans.tsv`), see [Scans file](../03-modality-agnostic-files.md#scans-file).
-Date time information MUST be expressed as indicated in [Units](../02-common-principles.md#units)
+(`scans.tsv`), see [Scans file](../modality-agnostic-files.md#scans-file).
+Date time information MUST be expressed as indicated in [Units](../common-principles.md#units)
 
 ## Channels description (`*_channels.tsv`)
 
@@ -359,7 +359,7 @@ It is also RECOMMENDED that the MRI voxel coordinates of the actual anatomical
 landmarks for co-registration of MEG with structural MRI are stored in the
 `AnatomicalLandmarkCoordinates` field in the JSON sidecar of the corresponding
 T1w MRI anatomical data of the subject seen in the MEG session
-(see [Anatomy Imaging Data](01-magnetic-resonance-imaging-data.md#anatomy-imaging-data)).
+(see [Anatomy Imaging Data](magnetic-resonance-imaging-data.md#anatomy-imaging-data)).
 
 For example: `"sub-01/ses-mri/anat/sub-01_ses-mri_acq-mprage_T1w.json"`
 

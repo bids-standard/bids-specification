@@ -90,7 +90,7 @@ Data for each subject are placed in subdirectories named "`sub-<label>`",
 where string "`<label>`" is substituted with the unique identification
 label of each subject.
 Additional information on each participant MAY be provided in a
-[participants file](03-modality-agnostic-files.md#participants-file)
+[participants file](modality-agnostic-files.md#participants-file)
 in the root directory of the dataset.
 
 If data for the subject were acquired across multiple sessions, then within
@@ -100,7 +100,7 @@ label for each session.
 In datasets where at least one subject has more than one session, this
 additional subdirectory later SHOULD be added for all subjects in the dataset.
 Additional information on each session MAY be provided in a
-[sessions file](03-modality-agnostic-files.md#sessions-file)
+[sessions file](modality-agnostic-files.md#sessions-file)
 within the subject directory.
 
 Within the session subdirectory (or the subject subdirectory if no
@@ -387,7 +387,7 @@ Tabular data MUST be saved as tab delimited values (`.tsv`) files, that is, CSV
 files where commas are replaced by tabs. Tabs MUST be true tab characters and
 MUST NOT be a series of space characters. Each TSV file MUST start with a header
 line listing the names of all columns (with the exception of
-[physiological and other continuous recordings](04-modality-specific-files/06-physiological-and-other-continuous-recordings.md)).
+[physiological and other continuous recordings](modality-specific-files/physiological-and-other-continuous-recordings.md)).
 It is RECOMMENDED that the column names in the header of the TSV file are
 written in [`snake_case`](https://en.wikipedia.org/wiki/Snake_case) with the
 first letter in lower case (for example, `variable_name`, not `Variable_name`).
@@ -499,7 +499,7 @@ Example of a hypothetical `*_bold.json` file, accompanying a `*_bold.nii` file:
 Example of a hypothetical `*_events.json` file, accompanying an
 `*_events.tsv` file. Note that the JSON file contains a key describing an
 *arbitrary* column `stim_presentation_side` in the TSV file it accompanies.
-See [task events section](04-modality-specific-files/05-task-events.md)
+See [task events section](modality-specific-files/task-events.md)
 for more information.
 
 ```JSON
@@ -532,7 +532,8 @@ for more information.
 1.  If multiple metadata files satisfy criteria 2.a-c above:
 
     1.  For [tabular files](#tabular-files) and other simple metadata files
-        (for instance, [`bvec` / `bval` files for diffusion MRI](#04-modality-specific-files/01-magnetic-resonance-imaging#required-gradient-orientation-information)),
+        (for instance,
+        [`bvec` / `bval` files for diffusion MRI](modality-specific-files/magnetic-resonance-imaging-data.md#required-gradient-orientation-information)),
         accessing metadata associated with a data file MUST consider only the
         applicable file that is lowest in the filesystem hierarchy.
 
@@ -680,7 +681,7 @@ A guide for using macros can be found at
 BIDS allows for custom user-defined `<label>`s and `<index>`es for example,
 for naming of participants, sessions, acquisition schemes.
 Note that they MUST consist only of allowed characters as described in
-[Definitions](02-common-principles.md#definitions) above.
+[Definitions](common-principles.md#definitions) above.
 In `<index>`es we RECOMMEND using zero padding (for example, `01` instead of `1`
 if you have more than nine subjects) to make alphabetical sorting more intuitive.
 Note that zero padding SHOULD NOT be used to merely maintain uniqueness
@@ -955,8 +956,8 @@ to suppress warnings or provide interpretations of your filenames.
 
 <!-- Link Definitions -->
 
-[dataset-description]: 03-modality-agnostic-files.md#dataset-description
-[dataset_description.json]: 03-modality-agnostic-files.md#dataset_descriptionjson
-[derived-dataset-description]: 03-modality-agnostic-files.md#derived-dataset-and-pipeline-description
+[dataset-description]: modality-agnostic-files.md#dataset-description
+[dataset_description.json]: modality-agnostic-files.md#dataset_descriptionjson
+[derived-dataset-description]: modality-agnostic-files.md#derived-dataset-and-pipeline-description
 [deprecated]: #definitions
 [uris]: #uniform-resource-indicator

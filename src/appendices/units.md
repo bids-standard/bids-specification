@@ -1,6 +1,6 @@
 # Units
 
-As described in the [Units](../02-common-principles.md#units),
+As described in the [Units](../common-principles.md#units),
 the specification of units SHOULD follow the
 [International System of Units](https://en.wikipedia.org/wiki/International_System_of_Units)
 (SI, abbreviated from the French Système international (d'unités)).
@@ -10,7 +10,7 @@ for encoding units is RECOMMENDED to achieve maximum portability and limited
 variability of representation.
 If a CMIXF-12 representation of a unit is not possible, the unit can be declared
 as custom units and defined in an accompanying JSON file, as described in the
-[units section](../02-common-principles.md#units).
+[units section](../common-principles.md#units).
 Earlier versions of the BIDS standard listed the following Unicode symbols, and
 these are still included for backwards compatibility:
 
@@ -27,7 +27,7 @@ It is RECOMMENDED that units be CMIXF-12 compliant or among these five Unicode
 characters.
 Please note the appropriate upper- or lower- casing when using CMIXF-12.
 
-For cases that are unspecified by this appendix or the [units section](../02-common-principles.md#units),
+For cases that are unspecified by this appendix or the [units section](../common-principles.md#units),
 the [CMIXF-12](https://people.csail.mit.edu/jaffer/MIXF/CMIXF-12) convention
 applies.
 

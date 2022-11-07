@@ -35,7 +35,7 @@ There are two main ways to obtain a quantitative map:
 
 ### Inputs are file collections
 
-The common concept of [entity-linked file collections](../02-common-principles.md#entity-linked-file-collections) enables the description of a qMRI
+The common concept of [entity-linked file collections](../common-principles.md#entity-linked-file-collections) enables the description of a qMRI
 application by creating logical groups of input files through `suffix` and certain entities
 representing acquisition parameters (`echo`, `flip`, `inv`, `mt`) or file parts (`part`).
 
@@ -231,7 +231,7 @@ and a guide for using macros can be found at
 ### Metadata requirements for qMRI maps
 
 As qMRI maps are stored as derivatives, they are subjected to the metadata requirements of
-[derived datasets](../03-modality-agnostic-files.md#derived-dataset-and-pipeline-description).
+[derived datasets](../modality-agnostic-files.md#derived-dataset-and-pipeline-description).
 
 An example `dataset_description.json` for a qMRI map derivatives directory:
 
