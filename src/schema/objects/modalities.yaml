@@ -35,3 +35,6 @@ motion:
 nirs:
   display_name: Near-Infrared Spectroscopy
   description: Data acquired with NIRS.
+ephys:
+  display_name: Electrophysiology
+  description: Data acquired using microelectrodes.

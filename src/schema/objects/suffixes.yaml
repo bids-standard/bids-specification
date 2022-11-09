@@ -571,6 +571,11 @@ electrodes:
   display_name: Electrodes
   description: |
     File that gives the location of (i)EEG electrodes.
+ephys:
+  value: ephys
+  display_name: Electrophysiology
+  description: |
+    Extra- or intracellular microelectrode recording data.
 epi:
   value: epi
   display_name: EPI
@@ -727,6 +732,11 @@ physio:
   display_name: Physiological recording
   description: |
     Physiological recordings such as cardiac and respiratory signals.
+probe:
+  value: probe
+  display_name: A recording probe
+  description: |
+    A probe with one or more recording contacts.
 probseg:
   value: probseg
   display_name: Probabilistic Segmentation
