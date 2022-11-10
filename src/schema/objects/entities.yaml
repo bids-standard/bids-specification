@@ -132,16 +132,8 @@ hemisphere:
   type: string
   format: label
   enum:
-    left:
-      name: 'L'
-      display_name: Left Hemisphere
-      description: |
-        A left hemibrain image.
-    right:
-      name: 'R'
-      display_name: Right Hemisphere
-      description: |
-        A right hemibrain image.
+    - $ref: objects.values.left_hemisphere
+    - $ref: objects.values.right_hemisphere
 inversion:
   name: inv
   display_name: Inversion Time
@@ -192,17 +184,8 @@ mtransfer:
   type: string
   format: label
   enum:
-    'on':
-      name: 'on'
-      display_name: 'On'
-      description: |
-        The image acquired in the presence of the magnetization transfer pulse,
-        also known as the off-resonance pulse.
-    'off':
-      name: 'off'
-      display_name: 'Off'
-      description: |
-        The image acquired in the absence of the magnetization transfer pulse.
+    - $ref: objects.values.'on'
+    - $ref: objects.values.'off'
 part:
   name: part
   display_name: Part
@@ -224,29 +207,10 @@ part:
   type: string
   format: label
   enum:
-    magnitude:
-      name: mag
-      display_name: Magnitude
-      description: |
-        A magnitude image, typically paired with an associated "phase" image.
-    phase:
-      name: phase
-      display_name: Phase
-      description: |
-        A phase image, typically paird with an associated "magnitude" (part-mag) image.
-        Images with this key/value pair MAY be in radians or in arbitrary units.
-        The sidecar JSON file MUST include the units of the `phase` image.
-        The possible options are `rad` or `arbitrary`.
-    real:
-      name: real
-      display_name: Real
-      description: |
-        A real-valued image, typically paired with an associated "imaginary" (part-imag) image.
-    imaginary:
-      name: imag
-      display_name: Imaginary
-      description: |
-        An imaginary-valued image, typically paird with an associated "real" image.
+    - $ref: objects.values.magnitude
+    - $ref: objects.values.phase
+    - $ref: objects.values.real
+    - $ref: objects.values.imaginary
 processing:
   name: proc
   display_name: Processed (on device)
