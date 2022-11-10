@@ -242,20 +242,13 @@ def make_sidecar_table(table_name, src_path=None):
     return table
 
 
-def make_subobject_table(object_tuple, field_info, src_path=None):
+def make_subobject_table(object_name, src_path=None):
     """Generate a markdown table of a metadata object's field information.
 
     Parameters
     ----------
     object_tuple : tuple of string
         A tuple pointing to the object to render.
-    field_names : dict
-        A list of the field names.
-        Field names correspond to filenames in the "metadata" directory of the
-        schema.
-        Until requirement levels can be codified in the schema,
-        this argument will be dictionary, with the field names as keys and
-        the requirement levels as values.
     src_path : str | None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
@@ -272,8 +265,7 @@ def make_subobject_table(object_tuple, field_info, src_path=None):
     schema_obj = schema.load_schema()
     table = render.make_subobject_table(
         schema_obj,
-        object_tuple,
-        field_info,
+        object_name,
         src_path=src_path,
     )
     return table
