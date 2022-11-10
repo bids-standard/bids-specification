@@ -248,11 +248,6 @@ ChietiItab:
   display_name: Chieti ITAB
   description: |
     RAS orientation and the origin between the ears.
-Other:
-  name: Other
-  display_name: Other
-  description: |
-    Other coordinate system.
 individual:
   name: individual
   display_name: individual
@@ -570,11 +565,6 @@ ScanRAS:
     strongly encouraged to align the subject's T1w to ACPC so that the `ACPC`
     coordinate system can be used. If the subject's T1w in the BIDS dataset
     is not aligned to ACPC, `ScanRAS` should be used.
-Other:
-  name: Other
-  display_name: Other
-  description: |
-    Other coordinate system.
 on__mtransfer:
   name: 'on'
   display_name: 'On'
