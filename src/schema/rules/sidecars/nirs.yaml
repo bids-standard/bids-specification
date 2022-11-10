@@ -1,0 +1,162 @@
+---
+CoordinateSystem:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "coordsystem"
+  fields:
+    NIRSCoordinateSystem: required
+    NIRSCoordinateUnits: required
+    NIRSCoordinateProcessingDescription: recommended
+
+Fiducials:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "coordsystem"
+  fields:
+    FiducialsDescription: optional
+    FiducialsCoordinates: recommended
+    FiducialsCoordinateUnits: recommended
+    FiducialsCoordinateSystem: recommended
+
+AnatomicalLandmark:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "coordsystem"
+  fields:
+    AnatomicalLandmarkCoordinates: recommended
+    AnatomicalLandmarkCoordinateSystem: recommended
+    AnatomicalLandmarkCoordinateUnits: recommended
+
+CoordsystemGeneral:
+  selectors:
+    - modality == "nirs"
+    - datatype == "nirs"
+    - suffix == "coordsystem"
+  fields:
+    IntendedFor:
+      level: optional
+      description_addendum: |
+        This identifies the MRI or CT scan associated with the optodes,
+        landmarks, and fiducials.
+
+CoordinateSystemDescriptionRec:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "coordsystem"
+    - json.NIRSCoordinateSystem != "other"
+  fields:
+    NIRSCoordinateSystemDescription:
+      level: recommended
+      level_addendum: required if NIRSCoordinateSystem is "other"
+
+CoordinateSystemDescriptionReq:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "coordsystem"
+    - json.NIRSCoordinateSystem == "other"
+  fields:
+    NIRSCoordinateSystemDescription: required
+
+AnatomicalLandmarkCoordinateSystemDescriptionRec:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "coordsystem"
+    - json.AnatomicalLandmarkCoordinateSystem != "other"
+  fields:
+    AnatomicalLandmarkCoordinateSystemDescription:
+      level: recommended
+      level_addendum: required if NIRSCoordinateSystem is "other"
+
+AnatomicalLandmarkCoordinateSystemDescriptionReq:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "coordsystem"
+    - json.AnatomicalLandmarkCoordinateSystem == "other"
+  fields:
+    AnatomicalLandmarkCoordinateSystemDescription: required
+
+FiducialsCoordinateSystemDescriptionRec:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "coordsystem"
+    - json.FiducialsCoordinateSystem != "other"
+  fields:
+    FiducialsCoordinateSystemDescription:
+      level: recommended
+      level_addendum: required if FiducialsCoordinateSystem is "other"
+
+FiducialsCoordinateSystemDescriptionReq:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "coordsystem"
+    - json.FiducialsCoordinateSystem == "other"
+  fields:
+    FiducialsCoordinateSystemDescription: required
+
+NirsBase:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "nirs"
+  fields:
+    TaskName: required
+    InstitutionName: recommended
+    InstitutionAddress: recommended
+    Manufacturer: recommended
+    ManufacturersModelName: recommended
+    SoftwareVersions: recommended
+    TaskDescription: recommended
+    Instructions: recommended
+    CogAtlasID: recommended
+    CogPOID: recommended
+    DeviceSerialNumber: recommended
+    RecordingDuration: recommended
+    HeadCircumference: recommended
+    HardwareFilters: recommended
+    SubjectArtefactDescription: recommended
+
+NirsRequired:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "nirs"
+  fields:
+    SamplingFrequency__nirs:
+      level: required
+      description_addendum: |
+        Sampling frequency (in Hz) of all the data in the recording, regardless of their type (for example, `12`). If
+        individual channels have different sampling rates, then the field here MUST be specified as `n/a` and the
+        values MUST be specified in the `sampling_frequency` column in channels.tsv.")
+    NIRSChannelCount: required
+    NIRSSourceOptodeCount: required
+    NIRSDetectorOptodeCount: required
+    # Following counts required conditions enforced in checks
+    ACCELChannelCount:
+      level: optional
+      level_addendum: required if any channel type is ACC
+    GYROChannelCount:
+      level: optional
+      level_addendum: required if any channel type is GYRO
+    MAGNChannelCount:
+      level: optional
+      level_addendum: required if any channel type is MAGN
+
+NirsRecommend:
+  selectors:
+    - modality == "nirs"
+    - suffix == "nirs"
+  fields:
+    CapManufacturer:
+      level: recommended
+      description_addendum: |
+        If no cap was used, such as with optodes
+        that are directly taped to the scalp, then the string `none` MUST be used and the `NIRSPlacementScheme` field
+        MAY be used to specify the optode placement.
+    CapManufacturersModelName:
+      level: recommended
+      description_addendum: |
+        If there is no official model number then a description may be provided (for example, `Headband with print
+        (S-M)`). If a cap from a manufacturer was modified, then the field MUST be set to `custom`. If no cap
+        was used, then the `CapManufacturer` field MUST be `none` and this field MUST be `n/a`.")
+    SourceType: recommended
+    DetectorType: recommended
+    ShortChannelCount: recommended
+    NIRSPlacementScheme: recommended

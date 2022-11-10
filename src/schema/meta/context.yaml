@@ -20,6 +20,9 @@
 context:
   type: object
   properties:
+    schema:
+      description: 'The BIDS specification schema'
+      type: object
     dataset:
       description: 'Properties and contents of the entire dataset'
       type: object
@@ -35,6 +38,9 @@ context:
           type: object
         ignored:
           description: 'Set of ignored files'
+          type: array
+        datatypes:
+          description: 'Data types present in the dataset'
           type: array
         modalities:
           description: 'Modalities present in the dataset'
@@ -181,7 +187,25 @@ context:
             n_cols:
               description: 'Number of columns in bvec file'
               type: integer
-
+        channels:
+          description: 'Channels file'
+          type: object
+          properties:
+            path:
+              description: 'Path to associated channels file'
+              type: string
+            type:
+              description: 'Contents of the type column'
+              type: array
+              items:
+                type: string
+        coordsystem:
+          description: 'Coordinate system file'
+          type: object
+          properties:
+            path:
+              description: 'Path to associated coordsystem file'
+              type: string
     # The following properties are populated if the current file is of an appropriate type
     columns:
       description: 'TSV columns, indexed by column header, values are arrays with column contents'

@@ -35,6 +35,14 @@ MRIScannerHardware:
     MatrixCoilMode: recommended
     CoilCombinationMethod: recommended
 
+MRIScannerHardwareASL:
+  selectors:
+    - datatype == "perf"
+    - suffix == "asl"
+    - intersects([suffix], ["asl", "m0scan"])
+  fields:
+    MagneticFieldStrength: required
+
 MRISequenceSpecifics:
   selectors:
     - modality == "mri"
@@ -46,7 +54,7 @@ MRISequenceSpecifics:
     SequenceName: recommended
     PulseSequenceDetails: recommended
     NonlinearGradientCorrection: |
-      recommended, but required if [PET](./09-positron-emission-tomography.md) data are present
+      recommended, but required if [PET](./positron-emission-tomography.md) data are present
     MRAcquisitionType: recommended, but required for Arterial Spin Labeling
     MTState: recommended
     MTOffsetFrequency: optional
@@ -63,7 +71,7 @@ MRISequenceSpecifics:
 PETMRISequenceSpecifics:
   selectors:
     - modality == "mri"
-    - dataset.modalities.includes("PET")
+    - intersects(dataset.modalities, ["pet"])
   fields:
     NonlinearGradientCorrection: required
 
@@ -92,13 +100,13 @@ SpoilingType:
 
 SpoilingRF:
   selectors:
-    - '["RF", "COMBINED"].includes(sidecar.SpoilingType)'
+    - intersects([sidecar.SpoilingType], ["RF", "COMBINED"])
   fields:
     SpoilingRFPhaseIncrement: recommended
 
 SpoilingGradient:
   selectors:
-    - '["GRADIENT", "COMBINED"].includes(sidecar.SpoilingType)'
+    - intersects([sidecar.SpoilingType], ["GRADIENT", "COMBINED"])
   fields:
     SpoilingGradientMoment: recommended
     SpoilingGradientDuration: recommended
@@ -109,6 +117,7 @@ MRISpatialEncoding:
   fields:
     NumberShots: recommended
     ParallelReductionFactorInPlane: recommended
+    ParallelReductionFactorOutOfPlane: recommended
     ParallelAcquisitionTechnique: recommended
     PartialFourier: recommended
     PartialFourierDirection: recommended
@@ -189,10 +198,28 @@ SliceTimingASL:
   selectors:
     - modality == "mri"
     - datatype == "perf"
-    - '["asl", "m0scan"].includes(suffix)'
+    - intersects([suffix], ["asl", "m0scan"])
     - sidecar.MRAcquisitionType == "2D"
   fields:
-    SliceTiming: required
+    EchoTime: required
+    SliceTiming:
+      level: required
+      issue:
+        code: SLICE_TIMING_NOT_DEFINED_2D_ASL
+        message: |
+          You should define `SliceTiming` for this file, because `SequenceType` is sets
+          to a 2D sequence. `SliceTiming` is the time at which each slice was
+          acquired within each volume (frame) of the acquisition. Slice timing
+          is not slice order -- rather, it is a list of times containing the
+          time (in seconds) of each slice acquisition in relation to the beginning
+          of volume acquisition. The list goes through the slices along the slice
+          axis in the slice encoding dimension (see below). Note that to ensure the
+          proper interpretation of the `SliceTiming` field, it is important to check
+          if the optional `SliceEncodingDirection` exists. In particular, if
+          `SliceEncodingDirection` is negative, the entries in `SliceTiming` are
+          defined in reverse order with respect to the slice axis, such that the
+          final entry in the `SliceTiming` list is the time of acquisition of slice 0.
+          Without this parameter slice time correction will not be possible.
 
 # This is technically for sparse sequences only, but I don't know how to encode that.
 # SliceTimingSparse:
@@ -210,7 +237,7 @@ MRIRFandContrast:
 MRIFlipAngleLookLockerFalse:
   selectors:
     - modality == "mri"
-    - sidecar.LookLocker == false
+    - sidecar.LookLocker != true
   fields:
     FlipAngle:
       level: recommended

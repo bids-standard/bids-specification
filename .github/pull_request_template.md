@@ -5,7 +5,7 @@ See the [CONTRIBUTING](https://github.com/bids-standard/bids-specification/blob/
 - Please keep the title of your Pull Request (PR) short but informative - it will
   appear in the changelog.
 - If you do **not** want a PR to appear in the changelog, it must receive the `exclude-from-changelog` label.
-- Please ensure your name is credited on our [Contributors appendix](https://github.com/bids-standard/bids-specification/blob/master/src/99-appendices/01-contributors.md).
+- Please ensure your name is credited on our [Contributors appendix](https://github.com/bids-standard/bids-specification/blob/master/src/appendices/contributors.md).
   To add your name, please edit our [Contributors wiki](https://github.com/bids-standard/bids-specification/wiki/Contributors) and add your name with the type of contribution.
   For assistance, please tag @bids-standard/maintainers.
 - Use one of the following prefixes in the title of your PR:
