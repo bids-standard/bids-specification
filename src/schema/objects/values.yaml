@@ -575,13 +575,13 @@ Other:
   display_name: Other
   description: |
     Other coordinate system.
-'on':
+on__mtransfer:
   name: 'on'
   display_name: 'On'
   description: |
     The image acquired in the presence of the magnetization transfer pulse,
     also known as the off-resonance pulse.
-'off':
+off__mtransfer:
   name: 'off'
   display_name: 'Off'
   description: |

@@ -184,8 +184,8 @@ mtransfer:
   type: string
   format: label
   enum:
-    - $ref: objects.values.'on'
-    - $ref: objects.values.'off'
+    - $ref: objects.values.on__mtransfer
+    - $ref: objects.values.off__mtransfer
 part:
   name: part
   display_name: Part
