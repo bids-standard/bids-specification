@@ -9,8 +9,9 @@ EventsMissing:
       If this is a resting state scan you can ignore this warning or rename the task to include the word "rest".
     level: warning # could be an error with the proper selectors, I think
   selectors:
+    - dataset.dataset_description.DatasetType == "raw"
     - '"task" in entities'
-    - '!matches(entities.task, "rest")'
+    - '!match(entities.task, "rest")'
     - suffix != "events"
   checks:
     - '"events" in associations'

@@ -212,7 +212,7 @@ entity to indicate each part.
 If there are multiple parts of a recording and the optional `scans.tsv` is provided,
 remember to list all files separately in `scans.tsv` and that the entries
 for the `acq_time` column in `scans.tsv` MUST all be identical, as described in
-[Scans file](../03-modality-agnostic-files.md#scans-file).
+[Scans file](../modality-agnostic-files.md#scans-file).
 
 Example:
 

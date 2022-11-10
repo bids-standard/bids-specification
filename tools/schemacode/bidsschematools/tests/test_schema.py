@@ -4,7 +4,7 @@ from collections.abc import Mapping
 
 import pytest
 
-from bidsschematools import __bids_version__, schema
+from bidsschematools import __bids_version__, schema, types
 
 
 def test__get_bids_version(tmp_path):
@@ -40,6 +40,9 @@ def test_load_schema(schema_dir):
     # Otherwise the function should return a dictionary
     schema_obj = schema.load_schema(schema_dir)
     assert isinstance(schema_obj, Mapping)
+
+    # Check that it is fully dereferenced
+    assert "$ref" not in str(schema_obj)
 
 
 def test_object_definitions(schema_obj):
@@ -186,7 +189,7 @@ def test_dereferencing():
             "Property2": "value4",
         },
     }
-    dereffed = schema.dereference_mapping(orig, orig.copy())
+    dereffed = schema.dereference(orig)
     assert dereffed == {
         "ReferencedObject": {
             "Property1": "value1",
@@ -220,9 +223,8 @@ def test_dereferencing():
         },
     }
 
-    sch = schema.Namespace.build(orig)
-    expanded = schema.expand(orig)
-    dereffed = schema.dereference_mapping(sch, expanded)
+    sch = types.Namespace.build(orig)
+    dereffed = schema.dereference(sch)
     assert dereffed == {
         "raw": {
             "func": {
@@ -278,9 +280,8 @@ def test_dereferencing():
         },
     }
 
-    sch = schema.Namespace.build(orig)
-    expanded = schema.expand(orig)
-    dereffed = schema.dereference_mapping(sch, expanded)
+    sch = types.Namespace.build(orig)
+    dereffed = schema.dereference(sch)
     assert dereffed == {
         "_DERIV_ENTS": {
             "space": "optional",

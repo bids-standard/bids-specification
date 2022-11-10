@@ -9,3 +9,4 @@ SegmentationLookup:
     abbreviation: optional
     color: optional
     mapping: optional
+  index_columns: [index]
