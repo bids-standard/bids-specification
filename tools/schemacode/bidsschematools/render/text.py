@@ -1,6 +1,7 @@
 """Functions for rendering portions of the schema as text."""
 import logging
 import os
+from collections.abc import Mapping
 
 import yaml
 from markdown_it import MarkdownIt
@@ -72,7 +73,12 @@ def _make_entity_definition(entity, entity_info):
     text += f"**Format**: `{entity_info['name']}-<{entity_info.get('format', 'label')}>`"
     text += "\n\n"
     if "enum" in entity_info.keys():
-        text += f"**Allowed values**: `{'`, `'.join(entity_info['enum'])}`"
+        if isinstance(entity_info["enum"], Mapping):
+            allowed_values = [val["name"] for val in entity_info["enum"].values()]
+        else:
+            allowed_values = entity_info["enum"]
+
+        text += f"**Allowed values**: `{'`, `'.join(allowed_values)}`"
         text += "\n\n"
 
     description = entity_info["description"]
@@ -163,21 +169,23 @@ def make_glossary(schema, src_path=None):
         elif obj["type"] == "format":
             text += f"**Regular expression**: `{obj_def['pattern']}`\n\n"
 
+        keys_to_drop = ["description", "display_name", "name", "value", "pattern"]
         if "enum" in obj_def.keys():
-            allowed_vals = [f"`{enum}`" for enum in obj_def["enum"]]
-            text += f"**Allowed values**: {', '.join(allowed_vals)}\n\n"
+            if isinstance(obj_def["enum"], Mapping):
+                allowed_values = [val["name"] for val in obj_def["enum"].values()]
+            else:
+                allowed_values = obj_def["enum"]
+                keys_to_drop.append("enum")
+
+            text += f"**Allowed values**: `{'`, `'.join(allowed_values)}`\n\n"
 
         text += f"**Description**:\n{obj_desc}\n\n"
 
-        temp_obj_def = {
-            k: v
-            for k, v in obj_def.items()
-            if k not in ("description", "display_name", "name", "value", "enum", "pattern")
-        }
+        reduced_obj_def = {k: v for k, v in obj_def.items() if k not in keys_to_drop}
 
-        if temp_obj_def:
-            temp_obj_def = yaml.dump(temp_obj_def)
-            text += f"**Schema information**:\n```yaml\n{temp_obj_def}\n```"
+        if reduced_obj_def:
+            reduced_obj_def = yaml.dump(reduced_obj_def)
+            text += f"**Schema information**:\n```yaml\n{reduced_obj_def}\n```"
 
     # Spec internal links need to be replaced
     text = text.replace("SPEC_ROOT", utils.get_relpath(src_path))
@@ -198,7 +206,13 @@ def _add_entity(filename_template, entity_pattern, requirement_level):
 def _format_entity(entity, lt, gt):
     fmt = entity.get("format")
     if "enum" in entity:
-        fmt = "|".join(entity["enum"])
+        # Allow enums to be "objects" (dicts) or lists
+        if isinstance(entity["enum"], Mapping):
+            allowed_values = [val["name"] for val in entity["enum"].values()]
+        else:
+            allowed_values = entity["enum"]
+
+        fmt = "|".join(allowed_values)
     if fmt is None:
         raise ValueError(f"entity missing format or enum fields: {entity}")
     return f"{entity['name']}-{lt}{fmt}{gt}"
