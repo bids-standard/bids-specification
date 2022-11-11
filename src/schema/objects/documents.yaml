@@ -22,6 +22,7 @@ DatasetDescription:
       $ref: objects.metadata.HEDVersion
     DatasetLinks:
       $ref: objects.metadata.DatasetLinks
+      level_addendum: required if BIDS URIs are used
     DatasetType:
       $ref: objects.metadata.DatasetType
     License:
