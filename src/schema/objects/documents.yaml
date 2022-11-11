@@ -47,6 +47,7 @@ DatasetDescription:
       $ref: objects.metadata.SourceDatasets
     Genetics:
       $ref: objects.metadata.Genetics
+      level_addendum: required if `genetic_info.json` is present
 
 GeneticInfo:
   name: GeneticInfo
