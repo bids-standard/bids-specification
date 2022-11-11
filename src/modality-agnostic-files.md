@@ -20,25 +20,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "Name": "REQUIRED",
-      "BIDSVersion": "REQUIRED",
-      "HEDVersion": "RECOMMENDED",
-      "DatasetLinks": "REQUIRED if [BIDS URIs][] are used",
-      "DatasetType": "RECOMMENDED",
-      "License": "RECOMMENDED",
-      "Authors": "RECOMMENDED",
-      "Acknowledgements": "OPTIONAL",
-      "HowToAcknowledge": "OPTIONAL",
-      "Funding": "OPTIONAL",
-      "EthicsApprovals": "OPTIONAL",
-      "ReferencesAndLinks": "OPTIONAL",
-      "DatasetDOI": "OPTIONAL",
-      "GeneratedBy": "RECOMMENDED",
-      "SourceDatasets": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_subobject_table("documents.DatasetDescription") }}
 
 Each object in the `GeneratedBy` array includes the following REQUIRED, RECOMMENDED
 and OPTIONAL keys:
