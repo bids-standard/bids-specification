@@ -1,0 +1,39 @@
+---
+NoAuthors:
+  issue:
+    code: NO_AUTHORS
+    message: |
+      The Authors field of dataset_description.json should contain an array of fields -
+      with one author per field. This was triggered because there are no authors, which
+      will make DOI registration from dataset metadata impossible.
+    level: warning
+  selectors:
+    - path == "/dataset_description.json"
+  checks:
+    - length(json.Authors) > 0
+
+DerivativesGeneratedBy:
+  issue:
+    code: NO_GENERATED_BY
+    message: |
+      `GeneratedBy` is a required field in `dataset_description.json` if
+      `DatasetType` is `"derivative"`.
+    level: error
+  selectors:
+    - path == "/dataset_description.json"
+    - json.DatasetType == "derivative"
+  checks:
+    - type(json.GeneratedBy) != "null"
+
+NoGeneticDatabase:
+  issue:
+    code: NO_GENETIC_DATABASE
+    message: |
+      A `genetic_info.json` file is present but no Database field present in Genetics
+      object in `dataset_description.json`.
+    level: error
+  selectors:
+    - path == "/dataset_description.json"
+    - intersects(dataset.files, ["/genetic_info.json"])
+  checks:
+    - type(json.Genetics.Database) != "null"
