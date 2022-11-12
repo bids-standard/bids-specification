@@ -102,7 +102,7 @@ Specific eye-tracking fields MUST be present:
 
 {{ MACROS___make_metadata_table(
    {
-      "SamplingFrequency_eyetrack": "REQUIRED",
+      "SamplingFrequency__eyetrack": "REQUIRED",
       "SampleCoordinateUnit": "REQUIRED",
       "SampleCoordinateSystem": "REQUIRED",
       "EnvironmentCoordinates": "REQUIRED",
@@ -117,7 +117,7 @@ Specific eye-tracking fields MUST be present:
    }
 ) }}
 
-Specific ET fields SHOULD be present:
+Specific eye-tracking fields SHOULD be present:
 
 {{ MACROS___make_metadata_table(
    {
@@ -227,7 +227,7 @@ Participants were asked to just look at the photos. Each matrix was presented fo
 Eye-tracking data, measured with an Eyelink 2000 in a 3T Philips Achieva scanner.
 20 participants were invited to fixate at the screen center during 2 runs.
 They were told to keep the eyes open and to let their mind wander.
-Here we use this example dataset to present how to deal with eyetracking data when the main recording
+Here we use this example dataset to present how to deal with eye-tracking data when the main recording
 modality is fMRI, therefore we provide T1w/T2w, functional and field map data in addition to eye tracking records.
 
 [BIDS dataset](https://openneuro.org/datasets/ds004158/versions/1.0.1)
