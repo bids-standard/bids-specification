@@ -7,7 +7,7 @@ Support for eye-tracking dataset developed as a [BIDS Extension Proposal](../07-
 Eye-tracking-BIDS is fully consistent with the BIDS specification as a whole. However, BIDS was initially developed in the context of MRI, so some terminology may be unfamiliar to researchers from other fields. This section adds clarifications to [Common Principles - Definitions](../02-common-principles.html) for the eye-tracking context.
 
 -   **Eye-tracker** - refer to the apparatus allowing the records of gaze position and/or pupil size.
--	 **Screen** - Video display used to present visual stimulation (for example projector, monitor, tablet).
+-   **Screen** - Video display used to present visual stimulation (for example projector, monitor, tablet).
 
 ## Eye-tracking data
 
