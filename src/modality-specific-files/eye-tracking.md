@@ -86,7 +86,7 @@ Specific eye-tracking fields MUST be present:
       "ScreenResolution": "REQUIRED",
       "ScreenDistance": (
          "REQUIRED",
-         "Screen distance in cm (e.g 60 for a screen distance of 60 cm), "
+         "Screen distance in cm (for example 60 for a screen distance of 60 cm), "
          'if no screen use "n/a". '
          "For MRI, it corresponds to the distance between the head-coil mirror "
          "to the projection screen for example."),
