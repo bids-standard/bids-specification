@@ -140,6 +140,17 @@ AnatomicalLandmarkCoordinates__mri:
       type: number
     minItems: 3
     maxItems: 3
+AOIDefinition:
+  name: AOIDefinition
+  display_name: Area of Interest Definition
+  description: |
+    Define, what shape are the AOIs and what coordinates are used.
+    `["square", ["x_start", "x_stop", "y_start", "y_stop"]]`
+    Other options:
+    `"custom"/"circle"/"triangle", [["x", "y"], ["x", "y"], ["x", "y"], and so on.]`
+  type: object
+  items:
+    type: object
 ArterialSpinLabelingType:
   name: ArterialSpinLabelingType
   display_name: Arterial Spin Labeling Type
@@ -196,6 +207,13 @@ Authors:
   type: array
   items:
     type: string
+AverageCalibrationError:
+  name: AverageCalibrationError
+  display_name: Average Calibration Error
+  description: |
+    Average calibration error in visual degree.
+  type: number
+  unit: visual degree
 B0FieldIdentifier:
   name: B0FieldIdentifier
   display_name: B0 Field Identifier
@@ -356,6 +374,47 @@ BrainLocation:
     or layer to refer to layer-specific gene expression,
     which can also tie up with laminar fMRI.
   type: string
+CalibrationList:
+  name: CalibrationList
+  display_name: Calibration List
+  description: |
+    List of lists including information for each calibration.
+    This list includes the calibration type, recorded eye,
+    maximal calibration error, average calibration error,
+    and time relative to the first event of the event file.
+  type: object
+  items:
+    type: object
+CalibrationPosition:
+  name: CalibrationPosition
+  display_name: Calibration Position
+  description: |
+    Provide a list of X/Y coordinates in the `CalibrationUnit`.
+    For example, using 5 positions calibration presented on an HD screen,
+    it could be `[[960,50],[960,540],[960,1030],[50,540],[1870,540]]`.
+  anyOf:
+    - type: array
+      items:
+        type: number
+CalibrationType:
+  name: CalibrationType
+  display_name: Calibration Type
+  description: |
+    Description of the calibration procedure.
+    For example the `"H3"` for horizontal calibration with 3 positions
+    or `"HV9"` for horizontal and vertical calibration with 9 positions,
+    or one point calibration.
+  type: string
+CalibrationUnit:
+  name: CalibrationUnit
+  display_name: Calibration Unit
+  description: |
+    Unit of `"CalibrationPosition"`.
+  type: string
+  enum:
+    - pixel
+    - mm
+    - cm
 CASLType:
   name: CASLType
   display_name: CASL Type
@@ -593,6 +652,26 @@ Description:
   description: |
     Free-form natural language description.
   type: string
+DetectionAlgorithm:
+  name: DetectionAlgorithm
+  display_name: Detection Algorithm
+  description: |
+    Name the event detection algorithm.
+    If a detection algorithm is used,
+    settings SHOULD be present in `"DetectionAlgorithmSettings"`.
+  type: string
+DetectionAlgorithmSettings:
+  name: DetectionAlgorithmSettings
+  display_name: Detection Algorithm Settings
+  description: |
+    List of parameter settings used in the `"DetectionAlgorithm"` for eye movement events.
+  anyOf:
+    - type: object
+      items:
+        type: object
+    - type: string
+      enum:
+        - n/a
 DetectorType:
   name: DetectorType
   display_name: Detector Type

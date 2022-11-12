@@ -1,5 +1,0 @@
----
-name: AverageCalibrationError
-description: |
-  Average calibration error in visual degree.
-type: number

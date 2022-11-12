@@ -1,7 +1,0 @@
----
-name: DetectionAlgorithm
-description: |
-  Name the event detection algorithm.
-  If a detection algorithm is used,
-  settings SHOULD be present in `DetectionAlgorithmSettings`.
-type: string

@@ -1,6 +1,0 @@
----
-name: CalibrationUnit
-description: |
-  Unit of `CalibrationPosition`: `"pixel"`, `"mm"` or `"cm"`.
-
-type: string

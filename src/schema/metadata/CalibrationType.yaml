@@ -1,8 +1,0 @@
----
-name: CalibrationType
-description: |
-  Description of the calibration procedure.
-  For example the `"H3"` for horizontal calibration with 3 positions
-  or `"HV9"` for horizontal and vertical calibration with 9 positions,
-  or one point calibration.
-type: string
