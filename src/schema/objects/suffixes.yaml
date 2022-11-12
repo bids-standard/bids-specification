@@ -591,6 +591,11 @@ events:
   display_name: Events
   description: |
     Event timing information from a behavioral task.
+eyetrack:
+  value: eyetrack
+  display_name: Eye-tracking
+  description: |
+    Eye-tracking recording data.
 fieldmap:
   value: fieldmap
   display_name: Fieldmap
