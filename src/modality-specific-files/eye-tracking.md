@@ -6,8 +6,8 @@ Support for eye-tracking dataset developed as a [BIDS Extension Proposal](../07-
 
 Eye-tracking-BIDS is fully consistent with the BIDS specification as a whole. However, BIDS was initially developed in the context of MRI, so some terminology may be unfamiliar to researchers from other fields. This section adds clarifications to [Common Principles - Definitions](../02-common-principles.html) for the eye-tracking context.
 
--  **Eye-tracker** - refer to the apparatus allowing the records of gaze position and/or pupil size.
--	**Screen** - Video display used to present visual stimulation (for example projector, monitor, tablet).
+-   **Eye-tracker** - refer to the apparatus allowing the records of gaze position and/or pupil size.
+-	 **Screen** - Video display used to present visual stimulation (for example projector, monitor, tablet).
 
 ## Eye-tracking data
 
@@ -73,7 +73,6 @@ For consistency between studies and institutions, we encourage users to extract 
    }
 ) }}
 
-
 Specific eye-tracking fields MUST be present:
 
 {{ MACROS___make_metadata_table(
@@ -120,7 +119,7 @@ Specific ET fields SHOULD be present:
    }
 ) }}
 
-### Example:
+### Example
 
 ```JSON
 {"TaskName": "PSC_train",
@@ -150,15 +149,14 @@ Specific ET fields SHOULD be present:
 
 ### Example Dataset
 
-**Potsdam Sentence Corpus Dataset**
+#### Potsdam Sentence Corpus Dataset
 
 Eye-tracking data, measured with an Eyelink, from 2 German speaker learners reading 36 sentences from the Potsdamer Sentence Corpus ([Kliegl et al., 2004](https://doi.org/10.1080/09541440340000213)). They were measured on four occasions, in a randomized controlled design (that is, before and after a control and experimental training). The sentences appeared after the calibration check on the fixation cross and disappeared as soon as a saccade crossed the invisible boundary on the right sight of the screen. The participants were asked to fixate the fixation cross and then read the sentences naturally as they would read a book or a newspaper. After they have read the sentence, they should look to a fixation cross in the right down corner of the screen. With this action they automatically passed the boundary and the sentence disappeared. After some sentences a question sign appeared and the experimenter asked the participant a question about the content of the sentence to check if the participant understood it. The correctness of the answer was recorded by the experimenter by pressing the key "r" ("correct") or "f" ("false").
 
 [BIDS dataset](https://github.com/greckla/Eye-Tracking-BIDS/tree/master/PSC_train/PSC_train_raw_data_BIDS)<br />
 [Conversion script](https://github.com/greckla/Eye-Tracking-BIDS/blob/master/PSC_train/from_asc_to_BIDS_asc.Rmd)
 
-
-**Reading Hyperlinks Dataset**
+#### Reading Hyperlinks Dataset
 
 Eye-tracking data, measured with an Eyelink, from 8 subjects reading sentences with 320 embedded target words and invisible boundary manipulation. The task of participants was similar as in the Dataset in the "Potsdam Sentence Corpus Dataset", silent reading with comprehension questions. The main interest of the study was to investigate word recognition processes of the target word under different conditions (for example, was the word presented in blue or black). The invisible boundary manipulation allowed the investigation of parafoveal preview benefits in relation to the conditions of interest. Here, the predominant characteristics of Hyperlinks.
 For details see [here](https://doi.org/10.7717/peerj.2467).
@@ -166,17 +164,17 @@ For details see [here](https://doi.org/10.7717/peerj.2467).
 [BIDS dataset](https://github.com/greckla/Eye-Tracking-BIDS/tree/master/hyperlink/hyperlinks_raw_data_BIDS)<br />
 [Conversion script](https://github.com/greckla/Eye-Tracking-BIDS/blob/master/hyperlink/from_asc_to_BIDS_asc.Rmd)
 
-**Emotional Faces Dataset**
+#### Emotional Faces Dataset
 
 Eye-tracking data, measured with an Eyelink, from 4 subjects viewing a grid of sixteen faces showing different emotions without any explicit task. The procedure resembled that described by Lazarov and colleagues (2018). Grids of 4x4 stimulus matrices of 16 color photographs of human faces displaying emotional expressions were presented. Photos were taken from the FACES database (Ebner et al., 2010). The paradigm was divided into two tasks:
--  Task 1 (happy + sad): 8 faces with happy and 8 faces with sad expression.
--  Task 2 (happy/sad + neutral): 8 faces with happy or sad and 8 faces with neutral expression.
+-   Task 1 (happy + sad): 8 faces with happy and 8 faces with sad expression.
+-   Task 2 (happy/sad + neutral): 8 faces with happy or sad and 8 faces with neutral expression.
 In both tasks, 64 stimulus matrices in 2 blocks of 32 matrices were presented. Participants were asked to just look at the photos. Each matrix was presented for 6s.
 
 [BIDS dataset](https://github.com/greckla/Eye-Tracking-BIDS/tree/master/emotional_faces/freeviewfaces_raw_data_BIDS)<br />
 [Conversion script](https://github.com/greckla/Eye-Tracking-BIDS/blob/master/emotional_faces/from_asc_to_BIDS_asc.Rmd)
 
-**Resting State inside MRI Dataset**
+#### Resting State inside MRI Dataset
 
 Eye-tracking data, measured with an Eyelink 2000 in a 3T Philips Achieva scanner. 20 participants were
 invited to fixate at the screen center during 2 runs. They were told to keep the eyes open
