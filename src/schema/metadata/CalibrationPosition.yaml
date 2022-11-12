@@ -1,8 +1,8 @@
 ---
 name: CalibrationPosition
 description: |
-  Provide a list of X/Y coordinates in the `CalibrationUnit`. 
-  For example, using 5 positions calibration presented on an HD screen, 
+  Provide a list of X/Y coordinates in the `CalibrationUnit`.
+  For example, using 5 positions calibration presented on an HD screen,
   it could be `[[960,50],[960,540],[960,1030],[50,540],[1870,540]]`.
 anyOf:
   - type: array
