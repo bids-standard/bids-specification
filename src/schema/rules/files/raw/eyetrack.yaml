@@ -1,21 +1,9 @@
 ---
-# eyetrack recordings
-- suffixes:
+eyetrack:
+  suffixes:
     - eyetrack
   extensions:
     - .<datatype>
-    - .json
-  entities:
-    subject: required
-    session: optional
-    task: optional
-    acquisition: optional
-    run: optional
-# Events
-- suffixes:
-    - events
-  extensions:
-    - .tsv
     - .json
   entities:
     subject: required

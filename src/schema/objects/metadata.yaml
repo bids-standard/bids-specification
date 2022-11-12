@@ -2591,6 +2591,7 @@ PulseSequenceType:
   type: string
 PupilFitMethod:
   name: PupilFitMethod
+  display_name: Pupil Fit Method
   description: |
     The method employed for fitting the pupil:
     `"centre-of-mass"` or `"ellipse"`.
