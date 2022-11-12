@@ -9,7 +9,7 @@ when referring to it in the context of the academic literature.
 Eye-tracking-BIDS is fully consistent with the BIDS specification as a whole.
 However, BIDS was initially developed in the context of MRI,
 so some terminology may be unfamiliar to researchers from other fields.
-This section adds clarifications to [Common Principles - Definitions](../common-principles.html)
+This section adds clarifications to [Common Principles - Definitions](../common-principles.md#definitions)
 for the eye-tracking context.
 
 -   **Eye-tracker** - refer to the apparatus allowing the records of gaze position and/or pupil size.
