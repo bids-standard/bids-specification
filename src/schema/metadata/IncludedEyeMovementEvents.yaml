@@ -3,7 +3,7 @@ name: IncludedEyeMovementEvents
 description: |
   List of included events with message specifications.
   For example, if fixation markers from the EyeLink are included add:
-  `[[Start of fixation: “SFIX”], [End of fixation: “EFIX”]]`.
+  `[[Start of fixation: "SFIX"], [End of fixation: "EFIX"]]`.
   If no events are included write `None`.
 anyOf:
   - type: object

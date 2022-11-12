@@ -2,6 +2,6 @@
 name: Manufacturer
 description: |
   Manufacturer of the eye-tracking system
-  (for example `SR-Research`, `Tobii`, `SMI`, `Gazepoint`, `Pupil Labs`,
-  `Custom built`, ... , `Other`)
+  (for example `"SR-Research"`, `"Tobii"`, `"SMI"`, `"Gazepoint"`, `"Pupil Labs"`,
+  `"Custom built"`, ... , `"Other"`)
 type: string

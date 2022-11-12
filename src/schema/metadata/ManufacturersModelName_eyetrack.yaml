@@ -2,5 +2,5 @@
 name: ManufacturersModelName
 description: |
   Manufacturer’s designation of the eye-tracker model
-  (for example `Eye-link 1000`).
+  (for example `"Eye-link 1000"`).
 type: string

@@ -6,8 +6,8 @@ Support for eye-tracking dataset developed as a [BIDS Extension Proposal](../07-
 
 Eye-tracking-BIDS is fully consistent with the BIDS specification as a whole. However, BIDS was initially developed in the context of MRI, so some terminology may be unfamiliar to researchers from other fields. This section adds clarifications to [Common Principles - Definitions](../02-common-principles.html) for the eye-tracking context.
 
--  __Eye-tracker__ - refer to the apparatus allowing the records of gaze position and/or pupil size. 
--	__Screen__ - Video display used to present visual stimulation (for example projector, monitor, tablet).
+-  **Eye-tracker** - refer to the apparatus allowing the records of gaze position and/or pupil size. 
+-	**Screen** - Video display used to present visual stimulation (for example projector, monitor, tablet).
 
 ## Eye-tracking data
 
@@ -23,7 +23,7 @@ sub-<label>/
 
 The eye-tracking data files generally contain gaze position (x/y coordinates) and pupil size data. With Eye-Tracking-BIDS, we wish to promote the adoption of good practices in the management of scientific data. Hence, the current emphasis of Eye-Tracking-BIDS is not to impose a generic data format for the modality, but to standardize the way data is stored in repositories. 
 
-Eye-tracking data MUST be stored in the main data recording modality or `<datatype>` directory (for example func, anat, dwi, meg, eeg, ieeg, or beh). The current version of this extension *does not* include a specification of the extension format and data formatting of recorded eye-tracking data. Thus, data must be stored in an open format (for example EDF file converted in ASCII `.asc` format or `.tsv` etc) with the `_eyetrack` suffix.
+Eye-tracking data MUST be stored in the main data recording modality or `<datatype>` directory (for example `func`, `anat`, `dwi`, `meg`, `eeg`, `ieeg`, `beh`, `pet`...). The current version of this extension *does not* include a specification of the extension format and data formatting of recorded eye-tracking data. Thus, data must be stored in an open format (for example EDF file converted in ASCII `.asc` format or `.tsv`...) with the `_eyetrack` suffix.
 
 We encourage every user to put the raw data before conversion within the `/sourcedata` folder (for example put property EDF files in the sourcedata folder).
 
@@ -74,7 +74,7 @@ For consistency between studies and institutions, we encourage users to extract 
 ) }}
 
 
-Specific ET fields MUST be present:
+Specific eye-tracking fields MUST be present:
 
 {{ MACROS___make_metadata_table(
    {

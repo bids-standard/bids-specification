@@ -2,9 +2,9 @@
 name: AOIDefinition
 description: |
   Define, what shape are the AOIs and what coordinates are used.
-  `[“square”,[“x_start”, “x_stop”, “y_start”, “y_stop”]]`
+  `["square",["x_start", "x_stop", "y_start", "y_stop"]]`
   Other options:
-  `“custom”/”circle”/”triangle”,[[“x”,”y”],[“x”,”y”],[“x”,”y”],and so on.]`
+  `"custom"/"circle"/"triangle", [["x", "y"], ["x", "y"], ["x", "y"],and so on.]`
 type: object
 items:
   type: object
