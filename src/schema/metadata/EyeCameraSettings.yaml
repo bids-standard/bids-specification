@@ -1,9 +1,0 @@
----
-name: EyeCameraSettings
-description: |
-  A field to store any settings that influence the resolution
-  and quality of the eye imagery.
-  Autowhitebalance? Changes in sharpness?
-type: object
-items:
-  type: object

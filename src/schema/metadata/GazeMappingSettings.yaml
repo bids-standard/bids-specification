@@ -1,9 +1,0 @@
----
-name: GazeMappingSettings
-description: |
-  A place to store arbitrary information related to gaze mapping.
-  For example, if there was a threshold on pupil confidence required for gaze mapping,
-  one could store that information here.
-type: object
-items:
-  type: object

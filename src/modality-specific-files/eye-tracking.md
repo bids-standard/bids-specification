@@ -87,7 +87,7 @@ from the actual raw data. Whenever possible, please avoid using ad hoc wording.
          "Manufacturer's designation of the eye-tracker model (for example"
          '`"Eye-link 1000"`).'
          ),
-      "SoftwareVersion": "RECOMMENDED",
+      "SoftwareVersions": "RECOMMENDED",
       "TaskDescription": "RECOMMENDED",
       "Instructions": (
          "RECOMMENDED",

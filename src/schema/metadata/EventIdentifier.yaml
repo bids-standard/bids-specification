@@ -1,8 +1,0 @@
----
-name: EventIdentifier
-description: |
-  The message sent to the eye tracker which disambiguates the belonging
-  of the sample to a certain event, condition or group.
-  This can be a unique trial identifier, or in the case of
-  continuous presentation (for example video) the annotated event of interest.
-type: string

@@ -1,9 +1,0 @@
----
-name: SamplingFrequency
-description: |
-  Sampling frequency (in Hz) of the corresponding data in the recording
-  (for example, `1000`).
-  If the sampling frequency change across run,
-  sidecar JSON document must be created specifying the run number.
-type: number
-unit: Hz

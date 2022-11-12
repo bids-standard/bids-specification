@@ -1,5 +1,0 @@
----
-name: SoftwareVersion
-description: |
-  Manufacturer’s designation of the data acquisition software.
-type: string

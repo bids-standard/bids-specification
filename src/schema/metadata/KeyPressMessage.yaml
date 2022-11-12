@@ -1,6 +1,0 @@
----
-name: KeyPressMessage
-description: |
-  When the paradigm includes pressing a key,
-  message identifying this should be included to the sidecar JSON file.
-type: string

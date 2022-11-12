@@ -1,6 +1,0 @@
----
-name: StartMessage
-description: |
-  The message sent to the eye tracker to indicate the start of each trial.
-  Could be the start of the presentation of an image, word, video, and so on.
-type: string

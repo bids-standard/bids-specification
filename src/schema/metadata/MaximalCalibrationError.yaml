@@ -1,5 +1,0 @@
----
-name: MaximalCalibrationError
-description: |
-  Maximal calibration error in visual degree.
-type: number

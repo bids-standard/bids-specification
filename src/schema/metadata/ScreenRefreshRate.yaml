@@ -1,7 +1,0 @@
----
-name: ScreenRefreshRate
-description: |
-  Refresh rate of the screen (when used), in Hertz
-  (for example, `60` for 60 Hz).
-type: number
-unit: Hz

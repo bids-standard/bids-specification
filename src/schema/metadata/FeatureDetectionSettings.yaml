@@ -1,8 +1,0 @@
----
-name: FeatureDetectionSettings
-description: |
-  A place to store arbitrary information related to feature detection.
-  For example Minimum/maximum pupil size.
-type: object
-items:
-  type: object

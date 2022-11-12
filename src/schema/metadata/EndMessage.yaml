@@ -1,6 +1,0 @@
----
-name: EndMessage
-description: |
-  The message sent to the eye tracker to indicate the end of each trial presentation.
-  Could be the end of the presentation of an image, word, video, and so on.
-type: string
