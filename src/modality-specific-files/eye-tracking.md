@@ -1,7 +1,7 @@
 # Eye-tracking including gaze position and pupil size
 
-Support for eye-tracking dataset developed as a [BIDS Extension Proposal](../07-extensions.md#bids-extension-proposals).
-Please see [Citing BIDS](../01-introduction.md#citing-bids) on how to appropriately credit this extension
+Support for eye-tracking dataset developed as a [BIDS Extension Proposal](../extensions.md#bids-extension-proposals).
+Please see [Citing BIDS](../introduction.md#citing-bids) on how to appropriately credit this extension
 when referring to it in the context of the academic literature.
 
 ## Terminology and conventions
@@ -9,7 +9,7 @@ when referring to it in the context of the academic literature.
 Eye-tracking-BIDS is fully consistent with the BIDS specification as a whole.
 However, BIDS was initially developed in the context of MRI,
 so some terminology may be unfamiliar to researchers from other fields.
-This section adds clarifications to [Common Principles - Definitions](../02-common-principles.html)
+This section adds clarifications to [Common Principles - Definitions](../common-principles.html)
 for the eye-tracking context.
 
 -   **Eye-tracker** - refer to the apparatus allowing the records of gaze position and/or pupil size.
@@ -42,19 +42,19 @@ and data formatting of recorded eye-tracking data. Thus, data must be stored in 
 We encourage every user to put the raw data before conversion within the `/sourcedata` directory
 (for example put property EDF files in the sourcedata directory).
 
-The OPTIONAL [`task-<label>`](../99-appendices/09-entities.md#task) is used to indicate
+The OPTIONAL [`task-<label>`](../appendices/entities.md#task) is used to indicate
 a task subject were asked to perform while eye-tracking records were obtained.
 Those labels MUST be consistent across subjects and sessions. For task based eye-tracking,
-a corresponding [task events](../04-modality-specific-files/05-task-events.md) file MUST be provided
+a corresponding [task events](../modality-specific-files/task-events.md) file MUST be provided
 (please note that this file is not necessary for resting state tasks).
 
-The OPTIONAL [`acq-<label>`](../99-appendices/09-entities.md#acq) refers
+The OPTIONAL [`acq-<label>`](../appendices/entities.md#acq) refers
 to a custom label the user MAY use to distinguish a different set of parameters used
 for acquiring the same modality. Acquisition labels corresponds mostly to imaging records
 (for example eye-tracking with fMRI) but can also be specified when combining eye-tracking and imaging methods.
 
 If more than one run of the same task and acquisition are acquired during the same session,
-the [`run-<index>`](../99-appendices/09-entities.md#run) entity MUST be used:
+the [`run-<index>`](../appendices/entities.md#run) entity MUST be used:
 _run-1, _run-2, _run-3, and so on. If only one run was acquired the run-<index> can be omitted.
 
 ### Sidecar JSON document (`*_eyetrack.json`)
