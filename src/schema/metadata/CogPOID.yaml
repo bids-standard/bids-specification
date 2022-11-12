@@ -1,7 +1,0 @@
----
-name: CogPOID
-description: |
-  [URI](/02-common-principles.html#uniform-resource-indicator)
-  of the corresponding [CogPO](http://www.cogpo.org/) term.
-type: string
-format: uri

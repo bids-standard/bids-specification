@@ -1,0 +1,25 @@
+#
+# Groups of related metadata fields
+#
+# Assumptions: never need disjunction of selectors
+# Assumptions: top-to-bottom overrides is sufficient logic
+
+---
+# Metadata for either physio or stim files
+Continuous:
+  selectors:
+    - intersects([suffix], ["physio", "stim"])
+  fields:
+    SamplingFrequency: required
+    StartTime: required
+    Columns: required
+
+# Other recommended metadata for physiological data
+Physio:
+  selectors:
+    - suffix == "physio"
+  fields:
+    Manufacturer: recommended
+    ManufacturersModelName: recommended
+    SoftwareVersions: recommended
+    DeviceSerialNumber: recommended

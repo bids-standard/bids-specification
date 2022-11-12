@@ -1,7 +1,0 @@
----
-name: RB1COR
-description: |
-  Low resolution images acquired by the body coil
-  (in the gantry of the scanner) and the head coil using identical acquisition
-  parameters to generate a combined sensitivity map as described in
-  [Papp et al. (2016)](https://doi.org/10.1002/mrm.26058).

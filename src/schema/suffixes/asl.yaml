@@ -1,6 +1,0 @@
----
-name: Arterial Spin Labeling
-description: |
-  The complete ASL time series stored as a 4D NIfTI file in the original
-  acquisition order, with possible volume types including: control, label,
-  m0scan, deltam, cbf.

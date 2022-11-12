@@ -1,0 +1,37 @@
+---
+microscopy:
+  suffixes:
+    - TEM
+    - SEM
+    - uCT
+    - BF
+    - DF
+    - PC
+    - DIC
+    - FLUO
+    - CONF
+    - PLI
+    - CARS
+    - 2PE
+    - MPE
+    - SR
+    - NLO
+    - OCT
+    - SPIM
+  extensions:
+    - .ome.tif
+    - .ome.btf
+    - .ome.zarr/
+    - .png
+    - .tif
+    - .json
+  datatypes:
+    - micr
+  entities:
+    subject: required
+    session: optional
+    sample: required
+    acquisition: optional
+    stain: optional
+    run: optional
+    chunk: optional

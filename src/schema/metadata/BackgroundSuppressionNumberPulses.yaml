@@ -1,9 +1,0 @@
----
-name: BackgroundSuppressionNumberPulses
-description: |
-  The number of background suppression pulses used.
-  Note that this excludes any effect of background suppression pulses applied
-  before the labeling.
-# TODO: Determine if this should be an integer.
-type: number
-minimum: 0

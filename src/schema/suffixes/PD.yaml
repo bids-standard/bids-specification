@@ -1,6 +1,0 @@
----
-name: Proton density image
-description: |
-  Ambiguous, may refer to a parametric image or to a conventional image.
-  **Change:** Replaced by `PDw` or `PDmap`.
-unit: arbitrary

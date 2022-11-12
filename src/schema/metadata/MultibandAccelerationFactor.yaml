@@ -1,6 +1,0 @@
----
-name: MultibandAccelerationFactor
-description: |
-  The multiband factor, for multiband acquisitions.
-# TODO: Determine if integer would be more appropriate.
-type: number

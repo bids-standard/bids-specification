@@ -1,0 +1,86 @@
+#
+# Groups of related metadata fields
+#
+# Assumptions: never need disjunction of selectors
+# Assumptions: top-to-bottom overrides is sufficient logic
+
+---
+# Fieldmap data
+MRIFieldmapB0FieldIdentifier:
+  selectors:
+    - modality == "mri"
+    - datatype == "fmap"
+  fields:
+    B0FieldIdentifier: recommended
+
+MRIFieldmapIntendedFor:
+  selectors:
+    - modality == "mri"
+    - datatype == "fmap"
+  fields:
+    IntendedFor:
+      level: optional
+      description_addendum: |
+        This field is optional, and in case the fieldmaps do not correspond
+        to any particular scans, it does not have to be filled.
+
+# Case 1: Phase-difference map and at least one magnitude image
+MRIFieldmapPhaseDifferencePhasediff:
+  selectors:
+    - modality == "mri"
+    - datatype == "fmap"
+    - suffix == "phasediff"
+  fields:
+    EchoTime1: required
+    EchoTime2: required
+
+MRIFieldmapPhaseDifferenceMagnitude1:
+  selectors:
+    - modality == "mri"
+    - datatype == "fmap"
+    - suffix == "magnitude1"
+  fields:
+    EchoTime1: required
+
+MRIFieldmapPhaseDifferenceMagnitude2:
+  selectors:
+    - modality == "mri"
+    - datatype == "fmap"
+    - suffix == "magnitude2"
+  fields:
+    EchoTime2: required
+
+# Case 2: Two phase maps and two magnitude images
+# NOTE: Need to check for presence of related files.
+# For example, magnitude1 needs EchoTime__fmap only if phase1 file exists,
+# but EchoTime1 if phasediff exists.
+MRIFieldmapTwoPhase:
+  selectors:
+    - modality == "mri"
+    - datatype == "fmap"
+    - intersects([suffix], ["phase1", "phase2", "magnitude1", "magnitude2"])
+  fields:
+    EchoTime__fmap: required
+
+# Case 3: Direct field mapping
+MRIFieldmapDirectFieldMapping:
+  selectors:
+    - modality == "mri"
+    - datatype == "fmap"
+    - intersects([suffix], ["phase", "fieldmap"])
+  fields:
+    Units:
+      level: required
+      description_addendum: |
+        Fieldmaps must be in units of Hertz (`"Hz"`),
+        radians per second (`"rad/s"`), or Tesla (`"T"`).
+
+# Case 4: Multiple phase encoded directions ("pepolar")
+MRIFieldmapPepolar:
+  selectors:
+    - modality == "mri"
+    - datatype == "fmap"
+    - suffix == "epi"
+  fields:
+    PhaseEncodingDirection: required
+    TotalReadoutTime: required

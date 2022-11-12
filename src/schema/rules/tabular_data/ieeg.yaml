@@ -1,0 +1,65 @@
+---
+iEEGChannels:
+  selectors:
+    - datatype == "ieeg"
+    - suffix == "channels"
+    - extension == ".tsv"
+  initial_columns:
+    - name__channels
+    - type__ieeg_channels
+    - units
+  columns:
+    name__channels:
+      level: required
+      description_addendum: |
+        When a corresponding electrode is specified in `_electrodes.tsv`,
+        the name of that electrode MAY be specified here and the reference electrode
+        name MAY be provided in the `reference` column.
+    type__ieeg_channels: required
+    units: required
+    low_cutoff: required
+    high_cutoff: required
+    reference__ieeg: optional
+    group__channel:
+      level: optional
+      description_addendum: |
+        Note that any groups specified in `_electrodes.tsv` must match those present here.
+    sampling_frequency: optional
+    description: optional
+    notch: optional
+    status: optional
+    status_description: optional
+  index_columns: [name__channels]
+  additional_columns: allowed_if_defined
+
+iEEGElectrodes:
+  selectors:
+    - datatype == "ieeg"
+    - suffix == "electrodes"
+    - extension == ".tsv"
+  initial_columns:
+    - name__electrodes
+    - x
+    - y
+    - z
+  columns:
+    name__electrodes: required
+    x: required
+    y: required
+    z:
+      level: required
+      description_addendum: |
+        If electrodes are in 2D space this should be a column of `n/a` values.
+    size: required
+    material: recommended
+    manufacturer: recommended
+    group__channel:
+      level: recommended
+      description_addendum: |
+        Note that any group specified here should match a group specified in `_channels.tsv`.
+    hemisphere: recommended
+    type__electrodes: optional
+    impedance: optional
+    dimension: optional
+  index_columns: [name__electrodes]
+  additional_columns: allowed_if_defined

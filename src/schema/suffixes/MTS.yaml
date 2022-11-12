@@ -1,8 +1,0 @@
----
-name: Magnetization transfer saturation
-description: |
-  This method is to calculate a semi-quantitative magnetization transfer
-  saturation index map.
-  The MTS method involves three sets of anatomical images that differ in terms
-  of application of a magnetization transfer RF pulse (MTon or MToff) and flip
-  angle ([Helms et al. 2008](https://doi.org/10.1002/mrm.21732)).

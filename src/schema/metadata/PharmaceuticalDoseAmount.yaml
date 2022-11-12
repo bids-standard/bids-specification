@@ -1,9 +1,0 @@
----
-name: PharmaceuticalDoseAmount
-description: |
-  Dose amount of pharmaceutical coadministered with tracer.
-anyOf:
-  - type: number
-  - type: array
-    items:
-      type: number

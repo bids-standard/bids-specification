@@ -1,0 +1,169 @@
+---
+# This file describes terms defined in the specification as "Common Principles".
+# WARNING: The terms are presented here in alphabetical order!
+# The order in which these terms are presented in the specification is defined in `rules/common_principles.yaml`,
+# rather than this file (`objects/common_principles.yaml`).
+data_acquisition:
+  name: Data acquisition
+  display_name: Data acquisition
+  description: |
+    A continuous uninterrupted block of time during which a brain scanning instrument was acquiring data according to
+    particular scanning sequence/protocol.
+data_type:
+  name: Data type
+  display_name: Data type
+  description: |
+    A functional group of different types of data.
+    Data files are contained in a directory named for the data type.
+    In raw datasets, the data type directory is nested inside subject and (optionally) session directories.
+    BIDS defines the following data types:
+
+        1.  `func` (task based and resting state functional MRI)
+
+        2.  `dwi` (diffusion weighted imaging)
+
+        3.  `fmap` (field inhomogeneity mapping data such as field maps)
+
+        4.  `anat` (structural imaging such as T1, T2, PD, and so on)
+
+        5.  `perf` (perfusion)
+
+        6.  `meg` (magnetoencephalography)
+
+        7.  `eeg` (electroencephalography)
+
+        8.  `ieeg` (intracranial electroencephalography)
+
+        9.  `beh` (behavioral)
+
+        10. `pet` (positron emission tomography)
+
+        11. `micr` (microscopy)
+
+        12. `nirs` (near infrared spectroscopy)
+dataset:
+  name: Dataset
+  display_name: Dataset
+  description: |
+    A set of neuroimaging and behavioral data acquired for a purpose of a particular study.
+    A dataset consists of data acquired from one or more subjects, possibly from multiple sessions.
+deprecated:
+  name: DEPRECATED
+  display_name: DEPRECATED
+  description: |
+    A "deprecated" entity or metadata field SHOULD NOT be used in the generation of new datasets.
+    It remains in the standard in order to preserve the interpretability of existing datasets.
+    Validating software SHOULD warn when deprecated practices are detected
+    and provide a suggestion for updating the dataset to preserve the curator's intent.
+event:
+  name: Event
+  display_name: Event
+  description: |
+    Something that happens or may be perceived by a test subject as happening
+    at a particular instant during the recording.
+    Events are most commonly associated with on- or offset of stimulus presentations,
+    or with the distinct marker of on- or offset of a subject's response or motor action.
+    Other events may include unplanned incidents
+    (for example, sudden onset of noise and vibrations due to construction work,
+    laboratory device malfunction),
+    changes in task instructions (for example, switching the response hand),
+    or experiment control parameters (for example, changing the stimulus presentation rate over experimental blocks),
+    and noted data feature occurrences (for example, a recording electrode producing noise).
+    In BIDS, each event has an onset time and duration.
+    Note that not all tasks will have recorded events (for example, "resting state").
+extension:
+  name: File extension
+  display_name: File extension
+  description: |
+    A portion of the file name after the left-most period (`.`) preceded by any other alphanumeric.
+    For example, `.gitignore` does not have a file extension,
+    but the file extension of `test.nii.gz` is `.nii.gz`.
+    Note that the left-most period is included in the file extension.
+index:
+  name: index
+  display_name: index
+  description: |
+    A nonnegative integer, possibly prefixed with arbitrary number of 0s for consistent indentation,
+    for example, it is `01` in `run-01` following `run-<index>` specification.
+label:
+  name: label
+  display_name: label
+  description: |
+    An alphanumeric value, possibly prefixed with arbitrary number of 0s for consistent indentation,
+    for example, it is `rest` in `task-rest` following `task-<label>` specification.
+    Note that labels MUST not collide when casing is ignored
+    (see [Case collision intolerance](SPEC_ROOT/common-principles.md#case-collision-intolerance)).
+modality:
+  name: Modality
+  display_name: Modality
+  description: |
+    The category of brain data recorded by a file.
+    For MRI data, different pulse sequences are considered distinct modalities,
+    such as `T1w`, `bold` or `dwi`.
+    For passive recording techniques, such as EEG, MEG or iEEG,
+    the technique is sufficiently uniform to define the modalities `eeg`, `meg` and `ieeg`.
+    When applicable, the modality is indicated in the **suffix**.
+    The modality may overlap with, but should not be confused with the **data type**.
+run:
+  name: Run
+  display_name: Run
+  description: |
+    An uninterrupted repetition of data acquisition that has the same acquisition parameters and task
+    (however events can change from run to run due to different subject response
+    or randomized nature of the stimuli).
+    Run is a synonym of a data acquisition.
+    Note that "uninterrupted" may look different by modality due to the nature of the recording.
+    For example, in [MRI](SPEC_ROOT/modality-specific-files/magnetic-resonance-imaging-data.md)
+    or [MEG](SPEC_ROOT/modality-specific-files/magnetoencephalography.md),
+    if a subject leaves the scanner, the acquisition must be restarted.
+    For some types of [PET](SPEC_ROOT/modality-specific-files/positron-emission-tomography.md) acquisitions,
+    a subject may leave and re-enter the scanner without interrupting the scan.
+sample:
+  name: Sample
+  display_name: Sample
+  description: |
+    A sample pertaining to a subject such as tissue, primary cell or cell-free sample.
+    Sample labels MUST be unique within a subject and it is RECOMMENDED
+    that they be unique throughout the dataset.
+session:
+  name: Session
+  display_name: Session
+  description: |
+    A logical grouping of neuroimaging and behavioral data consistent across subjects.
+    Session can (but doesn't have to) be synonymous to a visit in a longitudinal study.
+    In general, subjects will stay in the scanner during one session.
+    However, for example, if a subject has to leave the scanner room
+    and then be re-positioned on the scanner bed,
+    the set of MRI acquisitions will still be considered as a session
+    and match sessions acquired in other subjects.
+    Similarly, in situations where different data types are obtained over several visits
+    (for example fMRI on one day followed by DWI the day after) those can be grouped in one session.
+    Defining multiple sessions is appropriate when several identical or similar data acquisitions
+    are planned and performed on all -or most- subjects,
+    often in the case of some intervention between sessions (for example, training).
+    In the [PET](SPEC_ROOT/modality-specific-files/positron-emission-tomography.md) context,
+    a session may also indicate a group of related scans, taken in one or more visits.
+suffix:
+  name: suffix
+  display_name: suffix
+  description: |
+    An alphanumeric string that forms part of a filename, located after all
+    [entities](SPEC_ROOT/common-principles.md#entities) and
+    following a final `_`, right before the **file extension**;
+    for example, it is `eeg` in `sub-05_task-matchingpennies_eeg.vhdr`.
+subject:
+  name: Subject
+  display_name: Subject
+  description: |
+    A person or animal participating in the study.
+    Used interchangeably with term **Participant**.
+task:
+  name: Task
+  display_name: Task
+  description: |
+    A set of structured activities performed by the participant.
+    Tasks are usually accompanied by stimuli and responses, and can greatly vary in complexity.
+    For the purpose of this specification we consider the so-called "resting state" a task.
+    In the context of brain scanning, a task is always tied to one data acquisition.
+    Therefore, even if during one acquisition the subject performed multiple conceptually different behaviors
+    (with different sets of instructions) they will be considered one (combined) task.

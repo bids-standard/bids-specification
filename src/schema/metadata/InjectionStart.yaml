@@ -1,9 +1,0 @@
----
-name: InjectionStart
-description: |
-  Time of start of injection with respect to `TimeZero` in the default unit
-  seconds.
-  This corresponds to DICOM Tag 0018, 1042 `Contrast/Bolus Start Time`
-  converted to seconds relative to `TimeZero`.
-type: number
-unit: s

@@ -1,5 +1,0 @@
----
-name: SkullStripped
-description: |
-  Whether the volume was skull stripped (non-brain voxels set to zero) or not.
-type: boolean

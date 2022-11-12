@@ -1,0 +1,131 @@
+---
+# This file defines valid patterns for different formats
+# Entity patterns
+index:
+  display_name: Index
+  description: |
+    Non-negative, non-zero integers, optionally prefixed with leading zeros for sortability.
+    An index may not be all zeros.
+  pattern: '[0-9]*[1-9]+[0-9]*'
+label:
+  display_name: Label
+  description: |
+    Freeform labels without special characters.
+  pattern: '[0-9a-zA-Z]+'
+# Metadata types
+boolean:
+  display_name: Boolean
+  description: |
+    A boolean.
+    Must be either "true" or "false".
+  pattern: '(true|false)'
+integer:
+  display_name: Integer
+  description: |
+    An integer which may be positive or negative.
+  pattern: '[+-]?\d+'
+number:
+  display_name: Number
+  description: |
+    A number which may be an integer or float, positive or negative.
+  pattern: '[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)([eE][+-]?[0-9]+)?'
+string:
+  display_name: String
+  description: |
+    The basic string type (not a specific format).
+    This should allow any free-form string.
+  pattern: '.*'
+# String formats
+hed_version:
+  display_name: HED Version
+  description: |
+    The version string of the used HED schema.
+  pattern: '^(?:[a-zA-Z]+:)?(?:[a-zA-Z]+_)?(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\
+    (?:-(?:(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?\
+    (?:\+(?:[0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$'
+bids_uri:
+  display_name: BIDS uniform resource indicator
+  description: |
+    A BIDS uniform resource indicator.
+
+    The validation for this format is minimal.
+    It simply ensures that the value is a string with any characters that may appear in a valid URI,
+    starting with "bids:".
+  pattern: 'bids:[0-9a-zA-Z/#:\?\_\-\.]+'
+dataset_relative:
+  display_name: Path relative to the BIDS dataset directory
+  description: |
+    A path to a file, relative to the dataset directory.
+
+    The validation for this format is minimal.
+    It simply ensures that the value is a string with any characters that may appear in a valid path,
+    without starting with "/" (an absolute path).
+  pattern: '(?!/)[0-9a-zA-Z/\_\-\.]+'
+date:
+  display_name: Date
+  description: |
+    A date in the form `"YYYY-MM-DD[Z]"`,
+    where [Z] is an optional, valid timezone code.
+  pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}([A-Z]{2,4})?'
+datetime:
+  display_name: Datetime
+  description: |
+    A datetime in the form `"YYYY-MM-DDThh:mm:ss[.000000][Z]"`,
+    where [.000000] is an optional subsecond resolution between 1 and 6 decimal points,
+    and [Z] is an optional, valid timezone code.
+  pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}T(?:2[0-3]|[01][0-9]):[0-5][0-9]:[0-5][0-9](\.[0-9]{1,6})?([A-Z]{2,4})?'
+file_relative:
+  display_name: Path relative to the parent file
+  description: |
+    A path to a file, relative to the file in which the field is defined.
+
+    The validation for this format is minimal.
+    It simply ensures that the value is a string with any characters that may appear in a valid path,
+    without starting with "/" (an absolute path).
+  pattern: '(?!/)[0-9a-zA-Z/\_\-\.]+'
+participant_relative:
+  display_name: Path relative to the participant directory
+  description: |
+    A path to a file, relative to the participant's directory in the dataset.
+
+    The validation for this format is minimal.
+    It simply ensures that the value is a string with any characters that may appear in a valid path,
+    without starting with "/" (an absolute path) or "sub/"
+    (a relative path starting with the participant directory, rather than relative to that directory).
+  pattern: '(?!/)(?!sub-)[0-9a-zA-Z/\_\-\.]+'
+rrid:
+  display_name: Research resource identifier
+  description: |
+    A [research resource identifier](https://scicrunch.org/resources).
+  pattern: 'RRID:.+_.+'
+stimuli_relative:
+  display_name: Path relative to the stimuli directory
+  description: |
+    A path to a stimulus file, relative to a `/stimuli` directory somewhere.
+
+    The validation for this format is minimal.
+    It simply ensures that the value is a string with any characters that may appear in a valid path,
+    without starting with "/" (an absolute path) or "stimuli/"
+    (a relative path starting with the stimuli directory, rather than relative to that directory).
+  pattern: '(?!/)(?!stimuli/)[0-9a-zA-Z/\_\-\.]+'
+time:
+  display_name: Time
+  description: |
+    A time in the form `"hh:mm:ss"`.
+  pattern: '(?:2[0-3]|[01]?[0-9]):[0-5][0-9]:[0-5][0-9]'
+unit:
+  display_name: A standardized unit
+  description: |
+    A unit.
+    SI units in CMIXF formatting are RECOMMENDED
+    (see [Units](SPEC_ROOT/common-principles.md#units)).
+
+    Currently this matches any string.
+
+    TODO: Somehow reference the actual unit options in the Units appendix.
+  pattern: '.*'
+uri:
+  display_name: Uniform resource indicator
+  description: |
+    A uniform resource indicator.
+  pattern: '(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?'

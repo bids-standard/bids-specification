@@ -1,6 +1,0 @@
----
-name: EPI
-description: |
-  The phase-encoding polarity (PEpolar) technique combines two or more Spin Echo
-  EPI scans with different phase encoding directions to estimate the underlying
-  inhomogeneity/deformation map.

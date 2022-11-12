@@ -1,0 +1,24 @@
+---
+MEGChannels:
+  selectors:
+    - datatype == "meg"
+    - suffix == "channels"
+    - extension == ".tsv"
+  initial_columns:
+    - name__channels
+    - type__meg_channels
+    - units
+  columns:
+    name__channels: required
+    type__meg_channels: required
+    units: required
+    description: optional
+    sampling_frequency: optional
+    low_cutoff: optional
+    high_cutoff: optional
+    notch: optional
+    software_filters: optional
+    status: optional
+    status_description: optional
+  index_columns: [name__channels]
+  additional_columns: allowed_if_defined

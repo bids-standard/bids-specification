@@ -1,5 +1,0 @@
----
-name: Instructions
-description: |
-  Text of the instructions given to participants before the recording.
-type: string

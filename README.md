@@ -1,9 +1,10 @@
-[![Check Markdown style](https://github.com/bids-standard/bids-specification/actions/workflows/markdown_style.yml/badge.svg)](https://github.com/bids-standard/bids-specification/actions/workflows/markdown_style.yml)
+[![Validation](https://github.com/bids-standard/bids-specification/actions/workflows/validation.yml/badge.svg)](https://github.com/bids-standard/bids-specification/actions/workflows/validation.yml)
 [![CircleCI](https://circleci.com/gh/bids-standard/bids-specification.svg?style=shield)](https://circleci.com/gh/bids-standard/bids-specification)
 [![@BIDSstandard](http://img.shields.io/twitter/follow/bidsstandard.svg?style=social)](https://twitter.com/BIDSstandard)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3686061.svg)](https://doi.org/10.5281/zenodo.3686061)
 
-<img src="./BIDS_logo/BIDS_logo_black_transparent_background_crop.png" alt="bids-logo" width="600"/>
+<img src="./BIDS_logo/BIDS_logo_white_transparent_background_crop.png#gh-dark-mode-only" alt="bids-logo" width="600"/>
+<img src="./BIDS_logo/BIDS_logo_black_transparent_background_crop.png#gh-light-mode-only" alt="bids-logo" width="600"/>
 
 The [Brain Imaging Data Structure (BIDS)](https://bids.neuroimaging.io) is an emerging standard for the
 organisation of neuroimaging data.
@@ -25,6 +26,8 @@ BIDS currently supports the following data modalities with more to come in the f
 - behavioral
 - physiological
 - PET
+- microscopy
+- NIRS
 
 # Formatting your data with BIDS
 
@@ -48,7 +51,7 @@ The specification is provided in the form of a webpage, built using
 BIDS is a community-driven standard, and it depends on contributions from its members.
 We welcome new contributors, and we appreciate all contributions to the project!
 
-For a current list of our contributors, please see our [Contributors appendix](https://github.com/bids-standard/bids-specification/blob/master/src/99-appendices/01-contributors.md).
+For a current list of our contributors, please see our [Contributors appendix](https://github.com/bids-standard/bids-specification/blob/master/src/appendices/contributors.md).
 
 When you're ready to get started, check out [our contributing guidelines](https://github.com/bids-standard/bids-specification/blob/master/CONTRIBUTING.md).
 

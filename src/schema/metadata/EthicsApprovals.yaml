@@ -1,8 +1,0 @@
----
-name: EthicsApprovals
-description: |
-  List of ethics committee approvals of the research protocols and/or
-  protocol identifiers.
-type: array
-items:
-  type: string

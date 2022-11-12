@@ -1,7 +1,0 @@
----
-name: WithdrawalRate
-description: |
-  The rate at which the blood was withdrawn from the subject.
-  The unit of the specified withdrawal rate should be in `"mL/s"`.
-type: number
-unit: mL/s

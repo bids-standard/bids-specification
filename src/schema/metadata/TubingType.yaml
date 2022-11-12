@@ -1,6 +1,0 @@
----
-name: TubingType
-description: |
-  Description of the type of tubing used, ideally including the material and
-  (internal) diameter.
-type: string

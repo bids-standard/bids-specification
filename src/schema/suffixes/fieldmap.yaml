@@ -1,5 +1,0 @@
----
-name: Fieldmap
-description: |
-  Some MR schemes such as spiral-echo imaging (SEI) sequences are able to
-  directly provide maps of the *B<sub>0</sub>* field inhomogeneity.

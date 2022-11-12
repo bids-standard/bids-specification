@@ -1,8 +1,0 @@
----
-name: Fluid attenuated inversion recovery image
-description: |
-  In arbitrary units (arbitrary).
-  Structural images with predominant T2 contribution (also known as T2-FLAIR),
-  in which signal from fluids (for example, CSF) is nulled out by adjusting
-  inversion time, coupled with notably long repetition and echo times.
-unit: arbitrary

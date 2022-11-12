@@ -1,6 +1,0 @@
----
-name: DoseCalibrationFactor
-description: |
-  Multiplication factor used to transform raw data (in counts/sec) to meaningful unit (Bq/ml).
-  Corresponds to DICOM Tag 0054, 1322 `Dose Calibration Factor`.
-type: number

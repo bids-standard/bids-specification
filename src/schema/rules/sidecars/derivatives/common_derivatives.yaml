@@ -1,0 +1,95 @@
+---
+CommonDerivativeFields:
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+  fields:
+    Description:
+      level: recommended
+      description_addendum: This describes the nature of the file.
+    Sources: optional
+    RawSources: deprecated
+
+SpatialReferenceEntity:
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - '"space" in entities'
+  fields:
+    SpatialReference:
+      level: recommended
+      level_addendum: |
+        if the derivative is aligned to a standard template listed in
+        [Standard template identifiers][templates]. Required otherwise.
+
+SpatialReferenceNonStandard:
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - '!intersects(schema.objects.metadata._StandardTemplateCoordSys, [entities.space])'
+  fields:
+    SpatialReference: required
+
+# this needs to come before density and resolution overrides selected in a
+# different way
+MaskDerivatives:
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - suffix == "mask"
+  fields:
+    Type: recommended
+    Sources: recommended
+    RawSources: deprecated
+
+MaskDerivativesAtlas:
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - suffix == "mask"
+    - '"label" in entities'
+  fields:
+    Atlas:
+      level: recommended
+      level_addendum: if `label` entity is defined
+
+SegmentationCommon:
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - 'intersects([suffix], ["dseg", "probseg"])'
+  fields:
+    Manual: optional
+
+SegmentationCommonAtlas:
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - 'intersects([suffix], ["dseg", "probseg"])'
+    - '"atlas" in entities'
+  fields:
+    Atlas:
+      level: recommended
+      level_addendum: if `atlas` is present
+
+# Derivatives -> Imaging data types
+ImageDerivatives:
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - 'intersects([modality], ["mri", "pet"])'
+    - 'match(extension, "^\.nii(\.gz)?$")'
+  fields:
+    SkullStripped: required
+
+ImageDerivativeResEntity:
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - 'intersects([modality], ["mri", "pet"])'
+    - '"res" in entities'
+  fields:
+    Resolution:
+      level: required
+      level_addendum: if `res` is present
+
+ImageDerivativeDenEntity:
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - 'intersects([modality], ["mri", "pet"])'
+    - '"den" in entities'
+  fields:
+    Density:
+      level: required
+      level_addendum: if `den` is present

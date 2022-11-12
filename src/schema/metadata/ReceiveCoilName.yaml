@@ -1,9 +1,0 @@
----
-name: ReceiveCoilName
-description: |
-  Information describing the receiver coil.
-  Corresponds to DICOM Tag 0018, 1250 `Receive Coil Name`,
-  although not all vendors populate that DICOM Tag,
-  in which case this field can be derived from an appropriate
-  private DICOM field.
-type: string

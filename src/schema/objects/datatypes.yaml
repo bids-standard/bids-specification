@@ -1,0 +1,59 @@
+---
+# This file defines valid BIDS datatypes, along with their full names and descriptions.
+# For rules regarding how suffixes relate to datatypes, see files in `rules/datatypes/`.
+anat:
+  value: anat
+  display_name: Anatomical Magnetic Resonance Imaging
+  description: |
+    Magnetic resonance imaging sequences designed to characterize static, anatomical features.
+beh:
+  value: beh
+  display_name: Behavioral Data
+  description: |
+    Behavioral data.
+dwi:
+  value: dwi
+  display_name: Diffusion-Weighted Imaging
+  description: |
+    Diffusion-weighted imaging (DWI).
+eeg:
+  value: eeg
+  display_name: Electroencephalography
+  description: Electroencephalography
+fmap:
+  value: fmap
+  display_name: Field maps
+  description: |
+    MRI scans for estimating B0 inhomogeneity-induced distortions.
+func:
+  value: func
+  display_name: Task-Based Magnetic Resonance Imaging
+  description: |
+    Task (including resting state) imaging data
+ieeg:
+  value: ieeg
+  display_name: Intracranial electroencephalography
+  description: |
+    Intracranial electroencephalography (iEEG) or electrocorticography (ECoG) data
+meg:
+  value: meg
+  display_name: Magnetoencephalography
+  description: Magnetoencephalography
+micr:
+  value: micr
+  display_name: Microscopy
+  description: Microscopy
+perf:
+  value: perf
+  display_name: Perfusion imaging
+  description: |
+    Blood perfusion imaging data, including arterial spin labeling (ASL)
+pet:
+  value: pet
+  display_name: Positron Emission Tomography
+  description: |
+    Positron emission tomography data
+nirs:
+  value: nirs
+  display_name: Near-Infrared Spectroscopy
+  description: Near-Infrared Spectroscopy data organized around the SNIRF format

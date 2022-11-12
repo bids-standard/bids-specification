@@ -1,6 +1,0 @@
----
-name: OperatingSystem
-description: |
-  Operating system used to run the stimuli presentation software
-  (for formatting recommendations, see examples below this table).
-type: string

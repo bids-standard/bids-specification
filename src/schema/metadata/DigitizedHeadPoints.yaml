@@ -1,6 +1,0 @@
----
-name: DigitizedHeadPoints
-description: |
-  `true` or `false` value indicating whether head points outlining the
-  scalp/face surface are contained within this recording.
-type: boolean

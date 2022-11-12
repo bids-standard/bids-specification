@@ -1,8 +1,0 @@
----
-name: ScanDate
-description: |
-  Date of scan in the format `"YYYY-MM-DD[Z]"`.
-  This field is DEPRECATED, and this metadata SHOULD be recorded in the `acq_time` column of the
-  corresponding [Scans file](/03-modality-agnostic-files.html#scans-file).
-type: string
-pattern: date

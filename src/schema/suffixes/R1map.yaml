@@ -1,7 +1,0 @@
----
-name: Longitudinal relaxation rate image
-description: |
-  In seconds<sup>-1</sup> (1/s).
-  R1 maps (R1 = 1/T1) are REQUIRED to use this suffix regardless of the method
-  used to generate them.
-unit: 1/s

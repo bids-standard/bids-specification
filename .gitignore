@@ -2,8 +2,10 @@ site/
 .DS_Store
 .idea
 venvs
+.vscode/
 
 pdf_build_src/bids-spec.pdf
+pdf_build_src/bids-spec_pandoc_log.json
 pdf_build_src/src_copy
 
 # JS/NPM
@@ -39,6 +41,9 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+
+# Poetry requirements / packaging
+/pyproject.toml
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -150,3 +155,5 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+.*.swp

@@ -1,8 +1,0 @@
----
-name: TimeZero
-description: |
-  Time zero to which all scan and/or blood measurements have been adjusted to,
-  in the unit "hh:mm:ss".
-  This should be equal to `InjectionStart` or `ScanStart`.
-type: string
-pattern: ^(?:2[0-3]|[01][0-9]):[0-5][0-9]:[0-5][0-9]$

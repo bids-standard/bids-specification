@@ -1,3 +1,10 @@
+/* 76.1875em are based on stylesheets: https://github.com/squidfunk/mkdocs-material/tree/master/material/assets/stylesheets */
+@media screen and (max-width: 76.1875em) {
+    .md-nav__title[for=__drawer] {
+        background-color: #ff0000 !important;
+    }
+}
+
 .md-header {
     background-color: #ff0000;
 }

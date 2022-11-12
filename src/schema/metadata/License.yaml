@@ -1,9 +1,0 @@
----
-name: License
-description: |
-  The license for the dataset.
-  The use of license name abbreviations is RECOMMENDED for specifying a license
-  (see [Appendix II](/99-appendices/02-licenses.html)).
-  The corresponding full license text MAY be specified in an additional
-  `LICENSE` file.
-type: string
