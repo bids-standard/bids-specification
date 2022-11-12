@@ -2589,6 +2589,12 @@ PulseSequenceType:
     (for example, `"MPRAGE"`, `"Gradient Echo EPI"`, `"Spin Echo EPI"`,
     `"Multiband gradient echo EPI"`).
   type: string
+PupilFitMethod:
+  name: PupilFitMethod
+  description: |
+    The method employed for fitting the pupil:
+    `"centre-of-mass"` or `"ellipse"`.
+  type: string
 Purity:
   name: Purity
   display_name: Purity
@@ -2605,6 +2611,13 @@ RandomRate:
   type: array
   items:
     type: number
+RawDataFilters:
+  name: RawDataFilters
+  displau_name: Raw Data Filters
+  description: |
+    Filter settings applied to eye-movement raw data.
+    For example Eyelink trackers typically automatically filter the raw data.
+  type: string
 RawSources:
   name: RawSources
   display_name: Raw Sources
@@ -2695,6 +2708,15 @@ ReconMethodParameterValues:
   type: array
   items:
     type: number
+RecordedEye:
+  name: RecordedEye
+  display_name: Recorded Eye
+  description: |
+    Specification for which eye was tracked (`"left"`, `"right"`, `"both"`)
+  enum:
+    - left
+    - right
+    - both
 RecordingDuration:
   name: RecordingDuration
   display_name: Recording Duration
@@ -2809,6 +2831,20 @@ SEEGChannelCount:
     Number of SEEG channels.
   type: integer
   minimum: 0
+SampleCoordinateSystem:
+  name: SampleCoordinateSystem
+  display_name: SampleCoordinateSystem
+  description: |
+    Classical screen-based eye tracking data would be `"gaze-on-screen"`,
+    but `"eye-in-head"` or `"gaze-in-world"` are also possible coordinate systems
+    (for example for virtual reality).
+  type: string
+SampleCoordinateUnit:
+  name: SampleCoordinateUnit
+  display_name: Sample Coordinate Unit
+  description: |
+    Unit of individual samples (`"pixel"`, `"mm"` or `"cm"`) .
+  type: string
 SampleEmbedding:
   name: SampleEmbedding
   display_name: Sample Embedding

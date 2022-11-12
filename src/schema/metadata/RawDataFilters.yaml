@@ -1,6 +1,0 @@
----
-name: RawDataFilters
-description: |
-  Filter settings applied to eye-movement raw data.
-  For example Eyelink trackers typically automatically filter the raw data.
-type: string

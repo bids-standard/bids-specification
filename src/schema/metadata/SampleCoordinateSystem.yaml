@@ -1,7 +1,0 @@
----
-name: SampleCoordinateSystem
-description: |
-  Classical screen-based eye tracking data would be `"gaze-on-screen"`,
-  but `"eye-in-head"` or `"gaze-in-world"` are also possible coordinate systems
-  (for example for virtual reality).
-type: string

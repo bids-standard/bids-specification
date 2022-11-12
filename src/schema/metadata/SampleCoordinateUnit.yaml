@@ -1,5 +1,0 @@
----
-name: SampleCoordinateUnit
-description: |
-  Unit of individual samples (`"pixel"`, `"mm"` or `"cm"`) .
-type: string
