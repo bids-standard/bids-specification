@@ -2614,7 +2614,7 @@ RandomRate:
     type: number
 RawDataFilters:
   name: RawDataFilters
-  displau_name: Raw Data Filters
+  display_name: Raw Data Filters
   description: |
     Filter settings applied to eye-movement raw data.
     For example Eyelink trackers typically automatically filter the raw data.
@@ -2967,6 +2967,7 @@ SamplingFrequency__nirs:
         - n/a
 SamplingFrequency__eyetrack:
   name: SamplingFrequency
+  display_name: Sampling Frequency
   description: |
     Sampling frequency (in Hz) of the corresponding data in the recording
     (for example, `1000`).

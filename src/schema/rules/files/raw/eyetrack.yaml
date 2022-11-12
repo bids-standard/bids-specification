@@ -5,6 +5,15 @@ eyetrack:
   extensions:
     - .tsv
     - .json
+  datatypes:
+    - beh
+    - eeg
+    - func
+    - ieeg
+    - meg
+    - nirs
+    - perf
+    - pet
   entities:
     subject: required
     session: optional
