@@ -12,21 +12,8 @@ The document outlining our governance structure is hosted on the BIDS website:
 In the following, we list the current members of subgroups detailed in the
 BIDS governance.
 
-### Steering Group
-
-| Name                                                                         |
-|------------------------------------------------------------------------------|
-| Guiomar Niso ([@guiomar](https://github.com/guiomar))                        |
-| Melanie Ganz ([@melanieganz](https://github.com/melanieganz))                |
-| Robert Oostenveld ([@robertoostenveld](https://github.com/robertoostenveld)) |
-| Russell Poldrack ([@poldrack](https://github.com/poldrack))                  |
-| Ariel Rokem ([@arokem](https://github.com/arokem))            |
-
-#### Past steering group members
-
-| Name                                                                         |
-|------------------------------------------------------------------------------|
-| Kirstie Whitaker ([@KirstieJane](https://github.com/KirstieJane))            |
+Curent and past members of the steering group can be found
+[here](https://bids.neuroimaging.io/governance.html#bids-steering-group).
 
 ### Maintainers Group
 
