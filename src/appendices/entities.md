@@ -4,7 +4,7 @@ This section compiles the entities (key-value pairs within file names) described
 specification, and describes each.
 
 A general introduction to entities is given in the section on
-[filename structure](../02-common-principles.md#file-name-structure).
+[filename structure](../common-principles.md#file-name-structure).
 
 The ordering of entities, and whether each is OPTIONAL, REQUIRED, or MUST NOT
 be specified for a given file type, is specified in the [Entity Table](entity-table.md).

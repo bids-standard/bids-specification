@@ -10,7 +10,7 @@ Entity formats indicate whether the value is alphanumeric
 (`<label>`) or numeric (`<index>`).
 
 A general introduction to entities is given in the section on
-[filename structure](../02-common-principles.md#file-name-structure),
+[filename structure](../common-principles.md#file-name-structure),
 while entity definitions are in the [Entities Appendix](entities.md).
 
 <!--

@@ -1,16 +1,13 @@
 """Schema loading- and processing-related functions."""
-import json
 import logging
 import os
 import re
-from collections.abc import Mapping
+from collections.abc import Iterable, Mapping
 from copy import deepcopy
 from functools import lru_cache
-from pathlib import Path
-
-import yaml
 
 from . import __bids_version__, __version__, utils
+from .types import Namespace
 
 lgr = utils.get_logger()
 # Basic settings for output, for now just basic
@@ -47,156 +44,61 @@ def _get_bids_version(bids_schema_dir):
     return bids_version
 
 
-def _expand_dots(entry):
-    # Helper function for expand
-    key, val = entry
-    if "." in key:
-        init, post = key.split(".", 1)
-        return init, dict([_expand_dots((post, val))])
-    return key, expand(val)
+def _find(obj, predicate):
+    """Find objects in an arbitrary object that satisfy a predicate
 
-
-def expand(element):
-    """Expand a dict, recursively, to replace dots in keys with recursive dictionaries
-
-    Examples
-    --------
-    >>> expand({"a": 1, "b.c": 2, "d": [{"e": 3, "f.g": 4}]})
-    {'a': 1, 'b': {'c': 2}, 'd': [{'e': 3, 'f': {'g': 4}}]}
+    Note that this does not cut branches, so every iterable sub-object
+    will be fully searched.
     """
-    if isinstance(element, dict):
-        return {key: val for key, val in map(_expand_dots, element.items())}
-    elif isinstance(element, list):
-        return [expand(el) for el in element]
-    return element
+    try:
+        if predicate(obj):
+            yield obj
+    except Exception:
+        pass
+
+    iterable = ()
+    if isinstance(obj, Mapping):
+        iterable = obj.values()
+    elif not isinstance(obj, str) and isinstance(obj, Iterable):
+        iterable = obj
+
+    for item in iterable:
+        yield from _find(item, predicate)
 
 
-class Namespace(Mapping):
-    """Provides recursive attribute style access to a dict-like structure
+def dereference(namespace, inplace=True):
+    """Replace references in namespace with the contents of the referred object"""
+    if not inplace:
+        namespace = deepcopy(namespace)
+    for struct in _find(namespace, lambda obj: "$ref" in obj):
+        target = struct.pop("$ref")
+        struct.update({**namespace[target], **struct})
+    return namespace
 
-    Examples
-    --------
-    >>> ns = Namespace.build({"a": 1, "b.c": "val"})
-    >>> ns.a
-    1
-    >>> ns["a"]
-    1
-    >>> ns.b
-    <Namespace {'c': 'val'}>
-    >>> ns["b"]
-    <Namespace {'c': 'val'}>
-    >>> ns.b.c
-    'val'
-    >>> ns["b.c"]
-    'val'
-    >>> ns["b"]["c"]
-    'val'
-    >>> ns.b["c"]
-    'val'
-    >>> ns["b"].c
-    'val'
+
+def flatten_enums(namespace, inplace=True):
+    """Replace enum collections with a single enum
+
+    >>> struct = {
+    ...   "anyOf": [
+    ...      {"type": "string", "enum": ["A", "B", "C"]},
+    ...      {"type": "string", "enum": ["D", "E", "F"]},
+    ...   ]
+    ... }
+    >>> flatten_enums(struct)
+    {'type': 'string', 'enum': ['A', 'B', 'C', 'D', 'E', 'F']}
     """
-
-    def __init__(self, *args, **kwargs):
-        self._properties = dict(*args, **kwargs)
-
-    def to_dict(self):
-        ret = {}
-        for key, val in self._properties.items():
-            if isinstance(val, Namespace):
-                val = val.to_dict()
-            ret[key] = val
-        return ret
-
-    def __deepcopy__(self, memo):
-        return self.build(self.to_dict())
-
-    @classmethod
-    def build(cls, mapping):
-        """Expand mapping recursively and return as namespace"""
-        return cls(expand(mapping))
-
-    def __getattribute__(self, key):
-        # Return actual properties first
-        err = None
+    if not inplace:
+        namespace = deepcopy(namespace)
+    for struct in _find(namespace, lambda obj: "anyOf" in obj):
         try:
-            return super().__getattribute__(key)
-        except AttributeError as e:
-            err = e
-
-        # Utilize __getitem__ but keep original error on failure
-        try:
-            return self[key]
+            all_enum = [val for item in struct["anyOf"] for val in item["enum"]]
         except KeyError:
-            raise err
+            continue
 
-    def __getitem__(self, key):
-        key, dot, subkey = key.partition(".")
-        val = self._properties[key]
-        if isinstance(val, dict):
-            val = self.__class__(val)
-        if dot:
-            # Recursive step
-            val = val[subkey]
-        return val
-
-    def __repr__(self):
-        return f"<Namespace {self._properties}>"
-
-    def __len__(self):
-        return len(self._properties)
-
-    def __iter__(self):
-        return iter(self._properties)
-
-    @classmethod
-    def from_directory(cls, path, fmt="yaml"):
-        mapping = {}
-        fullpath = Path(path)
-        if fmt == "yaml":
-            for subpath in sorted(fullpath.iterdir()):
-                if subpath.is_dir():
-                    submapping = cls.from_directory(subpath)
-                    if submapping:
-                        mapping[subpath.name] = submapping
-                elif subpath.name.endswith("yaml"):
-                    mapping[subpath.stem] = yaml.safe_load(subpath.read_text())
-            return cls.build(mapping)
-        raise NotImplementedError(f"Unknown format: {fmt}")
-
-
-def dereference_mapping(schema, struct):
-    """Recursively search a dictionary-like object for $ref keys.
-
-    Each $ref key is replaced with the contents of the referenced field in the overall
-    dictionary-like object.
-    """
-    if isinstance(struct, Mapping):
-        struct = dict(struct)
-        if "$ref" in struct:
-            ref_field = struct["$ref"]
-            template = schema[ref_field]
-            struct.pop("$ref")
-            # Result is template object with local overrides
-            struct = {**template, **struct}
-
-        struct = {key: dereference_mapping(schema, val) for key, val in struct.items()}
-
-        # For the rare case of multiple sets of valid values (enums) from multiple references,
-        # anyOf is used. Here we try to flatten our anyOf of enums into a single enum list.
-        if "anyOf" in struct.keys():
-            if all("enum" in obj for obj in struct["anyOf"]):
-                all_enum = [v["enum"] for v in struct["anyOf"]]
-                all_enum = [item for sublist in all_enum for item in sublist]
-
-                struct.pop("anyOf")
-                struct["type"] = "string"
-                struct["enum"] = all_enum
-
-    elif isinstance(struct, list):
-        struct = [dereference_mapping(schema, item) for item in struct]
-
-    return struct
+        del struct["anyOf"]
+        struct.update({"type": "string", "enum": all_enum})
+    return namespace
 
 
 @lru_cache()
@@ -222,21 +124,22 @@ def load_schema(schema_path=None):
     """
     if schema_path is None:
         schema_path = utils.get_schema_path()
-    schema = Namespace.from_directory(Path(schema_path))
+    schema = Namespace.from_directory(schema_path)
     if not schema.objects:
         raise ValueError(f"objects subdirectory path not found in {schema_path}")
     if not schema.rules:
         raise ValueError(f"rules subdirectory path not found in {schema_path}")
 
-    dereferenced = dereference_mapping(schema, schema)
-    return Namespace.build(dereferenced)
+    dereference(schema)
+    flatten_enums(schema)
+
+    return schema
 
 
 def export_schema(schema):
-    schema_dict = schema.to_dict()
-    schema_dict["schema_version"] = __version__
-    schema_dict["bids_version"] = __bids_version__
-    return json.dumps(schema_dict)
+    versioned = Namespace.build({"schema_version": __version__, "bids_version": __bids_version__})
+    versioned.update(schema)
+    return versioned.to_json()
 
 
 def filter_schema(schema, **kwargs):

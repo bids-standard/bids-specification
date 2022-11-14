@@ -35,7 +35,7 @@ on GitHub.
 
 Event-related data in BIDS appears in tab-separated value (`events.tsv`)
 files in various places in the dataset hierarchy
-(see [Events](../04-modality-specific-files/05-task-events.md)).
+(see [Events](../modality-specific-files/task-events.md)).
 
 `events.tsv` files MUST have `onset` and `duration` columns.
 Dataset curators MAY also include additional columns and define their
@@ -152,7 +152,7 @@ If possible, users should annotate these columns in a single
 If some recordings in the dataset have a column whose values deviate from a
 standard pattern, then the annotations for that column MUST be placed in
 sidecars located deeper in the dataset directory hierarchy.
-According to the BIDS [Inheritance Principle](../02-common-principles.md#the-inheritance-principle),
+According to the BIDS [Inheritance Principle](../common-principles.md#the-inheritance-principle),
 once a column key in a sidecar (that is, the column name found in the `events.tsv` files) is set,
 information about that column cannot be overridden by a sidecar appearing in a directory
 closer to the dataset root.

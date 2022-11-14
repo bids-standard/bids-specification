@@ -1,0 +1,62 @@
+---
+Participants:
+  selectors:
+    - path == "participants.tsv"
+  initial_columns:
+    - participant_id
+  columns:
+    participant_id:
+      level: required
+      description_addendum: |
+        There MUST be exactly one row for each participant.
+    species: recommended
+    age: recommended
+    sex: recommended
+    handedness: recommended
+    strain: recommended
+    strain_rrid: recommended
+  index_columns: [participant_id]
+  additional_columns: allowed
+
+Samples:
+  selectors:
+    - path == "samples.tsv"
+  columns:
+    sample_id: required
+    participant_id: required
+    sample_type: required
+    pathology: recommended
+    derived_from: recommended
+  index_columns: [sample_id, participant_id]
+  additional_columns: allowed
+
+Scans:
+  selectors:
+    - suffix == "scans"
+    - extension == ".tsv"
+  initial_columns:
+    - filename
+  columns:
+    filename:
+      level: required
+      description_addendum: |
+        There MUST be exactly one row for each file.
+    acq_time__scans: optional
+  index_columns: [filename]
+  additional_columns: allowed
+
+Sessions:
+  selectors:
+    - suffix == "sessions"
+    - extension == ".tsv"
+  initial_columns:
+    - session_id
+  columns:
+    session_id:
+      level: required
+      description_addendum: |
+        There MUST be exactly one row for each session.
+    acq_time__sessions: optional
+    pathology: recommended
+  index_columns: [session_id]
+  additional_columns: allowed

@@ -3,266 +3,114 @@ import shutil
 
 import pytest
 
+from .. import validator
+from ..types import Namespace
 from .conftest import BIDS_ERROR_SELECTION, BIDS_SELECTION
 
 
-def test__add_entity():
-    from bidsschematools.validator import _add_entity
-
-    # Test empty input and directory creation and required entity
-    regex_entities = ""
-    entity = "subject"
-    entity_shorthand = "sub"
-    variable_field = "[0-9a-zA-Z]+"
-    requirement_level = "required"
-
-    _regex_entities = _add_entity(
-        regex_entities,
-        entity,
-        entity_shorthand,
-        variable_field,
-        requirement_level,
-    )
-
-    assert _regex_entities == "sub-(?P=subject)"
-
-    # Test append input and optional entity
-    regex_entities = (
-        "sub-(?P=subject)(|_ses-(?P=session))"
-        "(|_task-(?P<task>[0-9a-zA-Z]+))(|_trc-(?P<tracer>[0-9a-zA-Z]+))"
-        "(|_rec-(?P<reconstruction>[0-9a-zA-Z]+))"
-        "(|_run-(?P<run>[0-9a-zA-Z]+))"
-    )
-    entity = "recording"
-    entity_shorthand = "recording"
-    variable_field = "[0-9a-zA-Z]+"
-    requirement_level = "optional"
-
-    _regex_entities = _add_entity(
-        regex_entities,
-        entity,
-        entity_shorthand,
-        variable_field,
-        requirement_level,
-    )
-
-    assert (
-        _regex_entities == "sub-(?P=subject)(|_ses-(?P=session))"
-        "(|_task-(?P<task>[0-9a-zA-Z]+))(|_trc-(?P<tracer>[0-9a-zA-Z]+))"
-        "(|_rec-(?P<reconstruction>[0-9a-zA-Z]+))"
-        "(|_run-(?P<run>[0-9a-zA-Z]+))"
-        "(|_recording-(?P<recording>[0-9a-zA-Z]+))"
-    )
-
-
-def test__add_extensions():
-    from bidsschematools.validator import _add_extensions
-
-    # Test single extension
-    regex_string = (
-        "sub-(?P=subject)(|_ses-(?P=session))"
-        "_sample-(?P<sample>[0-9a-zA-Z]+)"
-        "(|_acq-(?P<acquisition>[0-9a-zA-Z]+))_photo"
-    )
-    variant = {
-        "suffixes": ["photo"],
-        "extensions": [".jpg"],
-        "entities": {
-            "subject": "required",
-            "session": "optional",
-            "sample": "required",
-            "acquisition": "optional",
-        },
+def test_path_rule():
+    rule = Namespace.build({"path": "dataset_description.json", "level": "required"})
+    assert validator._path_rule(rule) == {
+        "regex": r"dataset_description\.json",
+        "mandatory": True,
     }
-    _regex_string = _add_extensions(regex_string, variant)
 
-    assert (
-        _regex_string == "sub-(?P=subject)(|_ses-(?P=session))"
-        "_sample-(?P<sample>[0-9a-zA-Z]+)"
-        "(|_acq-(?P<acquisition>[0-9a-zA-Z]+))_photo\\.jpg"
-    )
+    rule = Namespace.build({"path": "LICENSE", "level": "optional"})
+    assert validator._path_rule(rule) == {"regex": "LICENSE", "mandatory": False}
 
-    # Test multiple extensions
-    regex_string = (
-        "sub-(?P=subject)(|_ses-(?P=session))"
-        "_sample-(?P<sample>[0-9a-zA-Z]+)"
-        "(|_acq-(?P<acquisition>[0-9a-zA-Z]+))_photo"
-    )
-    variant = {
-        "suffixes": ["photo"],
-        "extensions": [".jpg", ".png", ".tif"],
-        "entities": {
-            "subject": "required",
-            "session": "optional",
-            "sample": "required",
-            "acquisition": "optional",
-        },
+
+def test_stem_rule():
+    rule = Namespace.build({"stem": "README", "level": "required", "extensions": ["", ".md"]})
+    assert validator._stem_rule(rule) == {
+        "regex": r"README(?P<extension>|\.md)",
+        "mandatory": True,
     }
-    _regex_string = _add_extensions(regex_string, variant)
 
-    assert (
-        _regex_string == "sub-(?P=subject)(|_ses-(?P=session))"
-        "_sample-(?P<sample>[0-9a-zA-Z]+)"
-        "(|_acq-(?P<acquisition>[0-9a-zA-Z]+))"
-        "_photo(\\.jpg|\\.png|\\.tif)"
+    rule = Namespace.build(
+        {"stem": "participants", "level": "optional", "extensions": [".tsv", ".json"]}
     )
-
-
-def test__add_subdirs():
-    from bidsschematools.validator import _add_subdirs
-
-    regex_string = "sub-(?P=subject)_sessions\\.(tsv|json)"
-    variant = {
-        "suffixes": ["sessions"],
-        "extensions": [".tsv", ".json"],
-        "entities": {"subject": "required"},
+    assert validator._stem_rule(rule) == {
+        "regex": r"participants(?P<extension>\.tsv|\.json)",
+        "mandatory": False,
     }
-    datatype = "tabular_metadata"
-    entity_definitions = {
-        "acquisition": {
-            "display_name": "Acquisition",
-            "name": "acq",
-            "type": "string",
-            "format": "label",
-        },
-        "session": {
-            "display_name": "Session",
-            "name": "ses",
-            "type": "string",
-            "format": "label",
-        },
-        "subject": {
-            "display_name": "Subject",
-            "name": "sub",
-            "type": "string",
-            "format": "label",
-        },
-    }
-    formats = {
-        "label": {
-            "pattern": "[0-9a-zA-Z]+",
+
+
+def test_entity_rule(schema_obj):
+    # Simple
+    rule = Namespace.build(
+        {
+            "datatypes": ["anat"],
+            "entities": {"subject": "required", "session": "optional"},
+            "suffixes": ["T1w"],
+            "extensions": [".nii"],
         }
+    )
+    assert validator._entity_rule(rule, schema_obj) == {
+        "regex": (
+            r"sub-(?P<subject>[0-9a-zA-Z]+)/"
+            r"(?:ses-(?P<session>[0-9a-zA-Z]+)/)?"
+            r"(?P<datatype>anat)/"
+            r"sub-(?P=subject)_"
+            r"(?:ses-(?P=session)_)?"
+            r"(?P<suffix>T1w)"
+            r"(?P<extension>\.nii)"
+        ),
+        "mandatory": False,
     }
-    modality_datatypes = [
-        "anat",
-        "dwi",
-        "fmap",
-        "func",
-        "perf",
-        "eeg",
-        "ieeg",
-        "meg",
-        "beh",
-        "pet",
-        "micr",
-    ]
-    _regex_string = _add_subdirs(
-        regex_string, variant, datatype, entity_definitions, formats, modality_datatypes
+
+    # Sidecar entities are optional
+    rule = Namespace.build(
+        {
+            "datatypes": ["anat", ""],
+            "entities": {"subject": "optional", "session": "optional"},
+            "suffixes": ["T1w"],
+            "extensions": [".json"],
+        }
     )
-
-    assert _regex_string == "/sub-(?P<subject>[0-9a-zA-Z]+)/sub-(?P=subject)_sessions\\.(tsv|json)"
-
-
-def test__add_suffixes():
-    from bidsschematools.validator import _add_suffixes
-
-    # Test single expansion
-    regex_entities = "sub-(?P=subject)"
-    variant = {
-        "suffixes": ["sessions"],
-        "extensions": [
-            ".tsv",
-            ".json",
-        ],
-        "entities": {"subject": "required"},
+    assert validator._entity_rule(rule, schema_obj) == {
+        "regex": (
+            r"(?:sub-(?P<subject>[0-9a-zA-Z]+)/)?"
+            r"(?:ses-(?P<session>[0-9a-zA-Z]+)/)?"
+            r"(?:(?P<datatype>anat)/)?"
+            r"(?:sub-(?P=subject)_)?"
+            r"(?:ses-(?P=session)_)?"
+            r"(?P<suffix>T1w)"
+            r"(?P<extension>\.json)"
+        ),
+        "mandatory": False,
     }
-    regex_string = "sub-(?P=subject)_sessions"
 
-    _regex_string = _add_suffixes(regex_entities, variant)
 
-    assert _regex_string == regex_string
-
-    # Test multiple expansions
-    regex_entities = (
-        "sub-(?P=subject)(|_ses-(?P=session))"
-        "(|_acq-(?P<acquisition>[0-9a-zA-Z]+))"
-        "(|_rec-(?P<reconstruction>[0-9a-zA-Z]+))"
-        "(|_dir-(?P<direction>[0-9a-zA-Z]+))(|_run-(?P<run>[0-9a-zA-Z]+))"
-        "(|_recording-(?P<recording>[0-9a-zA-Z]+))"
-    )
-    variant = {
-        "suffixes": [
-            "physio",
-            "stim",
-        ],
-        "extensions": [
-            ".tsv.gz",
-            ".json",
-        ],
-        "entities": {
-            "subject": "required",
-            "session": "optional",
-            "acquisition": "optional",
-            "reconstruction": "optional",
-            "direction": "optional",
-            "run": "optional",
-            "recording": "optional",
-        },
+def test_split_inheritance_rules():
+    rule = {
+        "datatypes": ["anat"],
+        "entities": {"subject": "required", "session": "optional"},
+        "suffixes": ["T1w"],
+        "extensions": [".nii", ".json"],
     }
-    regex_string = (
-        "sub-(?P=subject)(|_ses-(?P=session))"
-        "(|_acq-(?P<acquisition>[0-9a-zA-Z]+))"
-        "(|_rec-(?P<reconstruction>[0-9a-zA-Z]+))"
-        "(|_dir-(?P<direction>[0-9a-zA-Z]+))(|_run-(?P<run>[0-9a-zA-Z]+))"
-        "(|_recording-(?P<recording>[0-9a-zA-Z]+))"
-        "_(physio|stim)"
-    )
 
-    _regex_string = _add_suffixes(regex_entities, variant)
+    main, sidecar = validator.split_inheritance_rules(rule)
+    assert main == {
+        "datatypes": ["anat"],
+        "entities": {"subject": "required", "session": "optional"},
+        "suffixes": ["T1w"],
+        "extensions": [".nii"],
+    }
+    assert sidecar == {
+        "datatypes": ["", "anat"],
+        "entities": {"subject": "optional", "session": "optional"},
+        "suffixes": ["T1w"],
+        "extensions": [".json"],
+    }
 
-    assert _regex_string == regex_string
-
-
-@pytest.mark.parametrize("extension", ["bvec", "json", "tsv"])
-def test__inheritance_expansion(extension):
-    from bidsschematools.validator import _inheritance_expansion
-
-    # test .json
-    base_entry = (
-        r".*?/sub-(?P<subject>[0-9a-zA-Z]+)/"
-        r"(|ses-(?P<session>[0-9a-zA-Z]+)/)func/sub-(?P=subject)"
-        r"(|_ses-(?P=session))_task-(?P<task>[0-9a-zA-Z]+)"
-        r"(|_acq-(?P<acquisition>[0-9a-zA-Z]+))"
-        r"(|_ce-(?P<ceagent>[0-9a-zA-Z]+))"
-        r"(|_rec-(?P<reconstruction>[0-9a-zA-Z]+))"
-        r"(|_dir-(?P<direction>[0-9a-zA-Z]+))"
-        r"(|_run-(?P<run>[0-9]*[1-9]+[0-9]*))"
-        r"(|_echo-(?P<echo>[0-9]*[1-9]+[0-9]*))"
-        r"_phase(\.nii\.gz|\.nii|\.{})$".format(extension)
-    )
-    expected_entries = [
-        ".*?/sub-(?P<subject>[0-9a-zA-Z]+)/"
-        "(|ses-(?P<session>[0-9a-zA-Z]+)/)sub-(?P=subject)"
-        "(|_ses-(?P=session))_task-(?P<task>[0-9a-zA-Z]+)"
-        "(|_acq-(?P<acquisition>[0-9a-zA-Z]+))"
-        "(|_ce-(?P<ceagent>[0-9a-zA-Z]+))"
-        "(|_rec-(?P<reconstruction>[0-9a-zA-Z]+))"
-        "(|_dir-(?P<direction>[0-9a-zA-Z]+))"
-        "(|_run-(?P<run>[0-9]*[1-9]+[0-9]*))"
-        "(|_echo-(?P<echo>[0-9]*[1-9]+[0-9]*))"
-        "_phase(\\.nii\\.gz|\\.nii|\\.{})$".format(extension),
-        ".*?/task-(?P<task>[0-9a-zA-Z]+)"
-        "(|_acq-(?P<acquisition>[0-9a-zA-Z]+))"
-        "(|_ce-(?P<ceagent>[0-9a-zA-Z]+))"
-        "(|_rec-(?P<reconstruction>[0-9a-zA-Z]+))"
-        "(|_dir-(?P<direction>[0-9a-zA-Z]+))"
-        "(|_run-(?P<run>[0-9]*[1-9]+[0-9]*))"
-        "(|_echo-(?P<echo>[0-9]*[1-9]+[0-9]*))"
-        "_phase(\\.nii\\.gz|\\.nii|\\.{})$".format(extension),
-    ]
-
-    inheritance_expanded_entries = _inheritance_expansion(base_entry, datatype="func")
-    assert inheritance_expanded_entries == expected_entries
+    # Can't split again
+    (main2,) = validator.split_inheritance_rules(main)
+    assert main2 == {
+        "datatypes": ["anat"],
+        "entities": {"subject": "required", "session": "optional"},
+        "suffixes": ["T1w"],
+        "extensions": [".nii"],
+    }
 
 
 def test_inheritance_examples():
@@ -468,3 +316,20 @@ def test_error_datasets(bids_error_examples, dataset):
     )
     # Are there non-validated files?
     assert len(result["path_tracking"]) != 0
+
+
+def test_gitdir(bids_examples, tmp_path):
+    """Maybe better handled in example data?"""
+    from distutils.dir_util import copy_tree
+
+    from bidsschematools.validator import validate_bids
+
+    selected_dir = os.path.join(bids_examples, BIDS_SELECTION[0])
+    tmp_path = str(tmp_path)
+    copy_tree(selected_dir, tmp_path)
+
+    os.makedirs(os.path.join(tmp_path, ".git"))
+    with open(os.path.join(tmp_path, ".git", "config"), "w") as temp_file:
+        temp_file.write("")
+    result = validate_bids(tmp_path)
+    assert len(result["path_tracking"]) == 0

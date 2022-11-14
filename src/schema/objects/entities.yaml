@@ -182,6 +182,7 @@ mtransfer:
     Allowed label values for this entity are `on` and `off`,
     for images acquired in presence and absence of an MT pulse, respectively.
   type: string
+  format: label
   enum:
     - 'on'
     - 'off'
@@ -204,6 +205,7 @@ part:
     When there is only a magnitude image of a given type, the `part` entity MAY be
     omitted.
   type: string
+  format: label
   enum:
     - mag
     - phase
@@ -338,7 +340,7 @@ split:
     If there are multiple parts of a recording and the optional `scans.tsv` is provided,
     all files MUST be listed separately in `scans.tsv` and
     the entries for the `acq_time` column in `scans.tsv` MUST all be identical,
-    as described in [Scans file](SPEC_ROOT/03-modality-agnostic-files.md#scans-file).
+    as described in [Scans file](SPEC_ROOT/modality-agnostic-files.md#scans-file).
   type: string
   format: index
 stain:
@@ -382,7 +384,7 @@ task:
     The `task-<label>` MUST be consistent across subjects and sessions.
 
     Files with the `task-<label>` entity SHOULD have an associated
-    [events file](SPEC_ROOT/04-modality-specific-files/05-task-events.md#task-events),
+    [events file](SPEC_ROOT/modality-specific-files/task-events.md#task-events),
     as well as certain metadata fields in the associated JSON file.
 
     For the purpose of this specification we consider the so-called "resting state" a task,
