@@ -12,6 +12,8 @@ The document outlining our governance structure is hosted on the BIDS website:
 In the following, we list the current members of subgroups detailed in the
 BIDS governance.
 
+### Steering Group
+
 Curent and past members of the steering group can be found
 [here](https://bids.neuroimaging.io/governance.html#bids-steering-group).
 
