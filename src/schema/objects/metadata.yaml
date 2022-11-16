@@ -154,10 +154,10 @@ AssociatedEmptyRoom:
   name: AssociatedEmptyRoom
   display_name: Associated Empty Room
   description: |
-    One or more [BIDS URIs](SPEC_ROOT/02-common-principles.md#bids-uri)
+    One or more [BIDS URIs](SPEC_ROOT/common-principles.md#bids-uri)
     pointing to empty-room file(s) associated with the subject's MEG recording.
     Using forward-slash separated paths relative to the dataset root is
-    [DEPRECATED](SPEC_ROOT/02-common-principles.md#definitions).
+    [DEPRECATED](SPEC_ROOT/common-principles.md#definitions).
   anyOf:
     - type: array
       items:
@@ -272,7 +272,7 @@ BasedOn:
     List of files in a file collection to generate the map.
     Fieldmaps are also listed, if involved in the processing.
     This field is DEPRECATED, and this metadata SHOULD be recorded in the
-    `Sources` field using [BIDS URIs](SPEC_ROOT/02-common-principles.md#bids-uri)
+    `Sources` field using [BIDS URIs](SPEC_ROOT/common-principles.md#bids-uri)
     to distinguish sources from different datasets.
   anyOf:
     - type: string
@@ -304,7 +304,7 @@ BodyPartDetailsOntology:
   name: BodyPartDetailsOntology
   display_name: Body Part Details Ontology
   description: |
-    [URI](SPEC_ROOT/02-common-principles.md#uniform-resource-indicator) of ontology used for
+    [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator) of ontology used for
     BodyPartDetails (for example: `"https://www.ebi.ac.uk/ols/ontologies/uberon"`).
   type: string
   format: uri
@@ -431,7 +431,7 @@ Code:
   name: Code
   display_name: Code
   description: |
-    [URI](SPEC_ROOT/02-common-principles.md#uniform-resource-indicator)
+    [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
     of the code used to present the stimuli.
     Persistent identifiers such as DOIs are preferred.
     If multiple versions of code may be hosted at the same location,
@@ -442,7 +442,7 @@ CogAtlasID:
   name: CogAtlasID
   display_name: Cognitive Atlas ID
   description: |
-    [URI](SPEC_ROOT/02-common-principles.md#uniform-resource-indicator)
+    [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
     of the corresponding [Cognitive Atlas](https://www.cognitiveatlas.org/)
     Task term.
   type: string
@@ -451,7 +451,7 @@ CogPOID:
   name: CogPOID
   display_name: Cognitive Paradigm Ontology ID
   description: |
-    [URI](SPEC_ROOT/02-common-principles.md#uniform-resource-indicator)
+    [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
     of the corresponding [CogPO](http://www.cogpo.org/) term.
   type: string
   format: uri
@@ -507,16 +507,16 @@ DatasetDOI:
   description: |
     The Digital Object Identifier of the dataset (not the corresponding paper).
     DOIs SHOULD be expressed as a valid
-    [URI](SPEC_ROOT/02-common-principles.md#uniform-resource-indicator);
+    [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator);
     bare DOIs such as `10.0.2.3/dfjj.10` are
-    [DEPRECATED](SPEC_ROOT/02-common-principles.md#definitions).
+    [DEPRECATED](SPEC_ROOT/common-principles.md#definitions).
   type: string
   format: uri
 DatasetLinks:
   name: DatasetLinks
   display_name: Dataset Links
   description: |
-    Used to map a given `<dataset-name>` from a [BIDS URI](SPEC_ROOT/02-common-principles.md#bids-uri)
+    Used to map a given `<dataset-name>` from a [BIDS URI](SPEC_ROOT/common-principles.md#bids-uri)
     of the form `bids:<dataset-name>:path/within/dataset` to a local or remote location.
     The `<dataset-name>`: `""` (an empty string) is a reserved keyword that MUST NOT be a key in
     `DatasetLinks` (example: `bids::path/within/dataset`).
@@ -831,7 +831,7 @@ EchoTime:
     The data type array provides a value for each volume in a 4D dataset and
     should only be used when the volume timing is critical for interpretation
     of the data, such as in
-    [ASL](SPEC_ROOT/04-modality-specific-files/01-magnetic-resonance-imaging-data.md#\
+    [ASL](SPEC_ROOT/modality-specific-files/magnetic-resonance-imaging-data.md#\
     arterial-spin-labeling-perfusion-data)
     or variable echo time fMRI sequences.
   anyOf:
@@ -1024,7 +1024,7 @@ FlipAngle:
     The data type array provides a value for each volume in a 4D dataset and
     should only be used when the volume timing is critical for interpretation of
     the data, such as in
-    [ASL](SPEC_ROOT/04-modality-specific-files/01-magnetic-resonance-imaging-data.md#\
+    [ASL](SPEC_ROOT/modality-specific-files/magnetic-resonance-imaging-data.md#\
     arterial-spin-labeling-perfusion-data)
     or variable flip angle fMRI sequences.
   anyOf:
@@ -1075,18 +1075,42 @@ GeneratedBy:
   minItems: 1
   items:
     type: object
+    required_fields: [Name]
+    recommended_fields: [Version]
     properties:
       Name:
+        name: Name
+        description: |
+          Name of the pipeline or process that generated the outputs. Use `"Manual"` to
+          indicate the derivatives were generated by hand, or adjusted manually after an
+          initial run of an automated pipeline.
         type: string
       Version:
+        name: Version
+        description: Version of the pipeline
         type: string
       Description:
+        name: Description
+        description: |
+          Plain-text description of the pipeline or process that generated the outputs.
+          RECOMMENDED if `Name` is `"Manual"`.
         type: string
       CodeURL:
+        name: CodeURL
+        description: URL where the code used to generate the dataset may be found.
         type: string
         format: uri
       Container:
+        name: Container
+        description: |
+          Used to specify the location and relevant attributes of software container image
+          used to produce the dataset. Valid keys in this object include `Type`, `Tag` and
+          [`URI`][uri] with [string][] values.
         type: object
+        recommended_fields:
+          - Type
+          - Tag
+          - URI
         properties:
           Type:
             type: string
@@ -1117,14 +1141,14 @@ Genetics:
     Database:
       name: Database
       description: |
-        [URI](SPEC_ROOT/02-common-principles.md#uniform-resource-indicator)
+        [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
         of database where the dataset is hosted.
       type: string
       format: uri
     Dataset:
       name: Dataset
       description: |
-        [URI](SPEC_ROOT/02-common-principles.md#uniform-resource-indicator)
+        [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
         where data can be retrieved.
       type: string
       format: uri
@@ -1133,7 +1157,7 @@ Genetics:
       description: |
         List of relevant descriptors (for example, journal articles) for dataset
         using a valid
-        [URI](SPEC_ROOT/02-common-principles.md#uniform-resource-indicator)
+        [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
         when possible.
       anyOf:
         - type: string
@@ -1304,7 +1328,7 @@ ImageAcquisitionProtocol:
   display_name: Image Acquisition Protocol
   description: |
     Description of the image acquisition protocol or
-    [URI](SPEC_ROOT/02-common-principles.md#uniform-resource-indicator)
+    [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
     (for example from [protocols.io](https://www.protocols.io/)).
   type: string
 ImageDecayCorrected:
@@ -1473,9 +1497,9 @@ IntendedFor:
   display_name: Intended For
   description: |
     The paths to files for which the associated file is intended to be used.
-    Contains one or more [BIDS URIs](SPEC_ROOT/02-common-principles.md#bids-uri).
+    Contains one or more [BIDS URIs](SPEC_ROOT/common-principles.md#bids-uri).
     Using forward-slash separated paths relative to the participant subdirectory is
-    [DEPRECATED](SPEC_ROOT/02-common-principles.md#definitions).
+    [DEPRECATED](SPEC_ROOT/common-principles.md#definitions).
   anyOf:
     - type: string
       format: bids_uri
@@ -1493,9 +1517,9 @@ IntendedFor__ds_relative:
   display_name: Intended For
   description: |
     The paths to files for which the associated file is intended to be used.
-    Contains one or more [BIDS URIs](SPEC_ROOT/02-common-principles.md#bids-uri).
+    Contains one or more [BIDS URIs](SPEC_ROOT/common-principles.md#bids-uri).
     Using forward-slash separated paths relative to the dataset root is
-    [DEPRECATED](SPEC_ROOT/02-common-principles.md#definitions).
+    [DEPRECATED](SPEC_ROOT/common-principles.md#definitions).
   anyOf:
     - type: string
       format: bids_uri
@@ -2183,10 +2207,22 @@ ParallelReductionFactorInPlane:
   name: ParallelReductionFactorInPlane
   display_name: Parallel Reduction Factor In Plane
   description: |
-    The parallel imaging (for instance, GRAPPA) factor.
+    The parallel imaging (for instance, GRAPPA) factor in plane.
     Use the denominator of the fraction of k-space encoded for each slice.
     For example, 2 means half of k-space is encoded.
     Corresponds to DICOM Tag 0018, 9069 `Parallel Reduction Factor In-plane`.
+  type: number
+ParallelReductionFactorOutOfPlane:
+  name: ParallelReductionFactorOutOfPlane
+  display_name: Parallel Reduction Factor Out of Plane
+  description: |
+    The parallel imaging (for instance, GRAPPA) factor in the second phase encoding dimension of 3D sequences.
+    Use the denominator of the fraction of k-space encoded in the second phase encoding dimension.
+    For example, 2 means half of k-space is encoded.
+    Will typically be 1 for 2D sequences, as each slice in a 2D acquisition is usually fully encoded.
+    `ParallelReductionFactorOutOfPlane` should not be confused with `MultibandAccelerationFactor`,
+    as they imply different methods of accelerating the acquisition.
+    Corresponds to DICOM Tag 0018, 9155 `Parallel Reduction Factor out-of-plane`.
   type: number
 PartialFourier:
   name: PartialFourier
@@ -2416,7 +2452,7 @@ RawSources:
     A list of paths relative to dataset root pointing to the BIDS-Raw file(s)
     that were used in the creation of this derivative.
     This field is DEPRECATED, and this metadata SHOULD be recorded in the
-    `Sources` field using [BIDS URIs](SPEC_ROOT/02-common-principles.md#bids-uri)
+    `Sources` field using [BIDS URIs](SPEC_ROOT/common-principles.md#bids-uri)
     to distinguish sources from different datasets.
   type: array
   items:
@@ -2524,7 +2560,7 @@ ReferencesAndLinks:
   description: |
     List of references to publications that contain information on the dataset.
     A reference may be textual or a
-    [URI](SPEC_ROOT/02-common-principles.md#uniform-resource-indicator).
+    [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator).
   items:
     type: string
   type: array
@@ -2565,7 +2601,7 @@ RepetitionTimeExcitation:
     `"RepetitionTimePreparation"` if needed) for anatomy imaging data rather than
     `"RepetitionTime"` as it is already defined as the amount of time that it takes
     to acquire a single volume in the
-    [task imaging data](SPEC_ROOT/04-modality-specific-files/01-magnetic-resonance-\
+    [task imaging data](SPEC_ROOT/modality-specific-files/magnetic-resonance-\
     imaging-data.md#task-including-resting-state-imaging-data)
     section.
   type: number
@@ -2583,7 +2619,7 @@ RepetitionTimePreparation:
     The data type array provides a value for each volume in a 4D dataset and
     should only be used when the volume timing is critical for interpretation of
     the data, such as in
-    [ASL](SPEC_ROOT/04-modality-specific-files/01-magnetic-resonance-imaging-data.md\
+    [ASL](SPEC_ROOT/modality-specific-files/magnetic-resonance-imaging-data.md\
     #arterial-spin-labeling-perfusion-data).
   anyOf:
     - type: number
@@ -2642,7 +2678,7 @@ SampleExtractionProtocol:
   display_name: Sample Extraction Protocol
   description: |
     Description of the sample extraction protocol or
-    [URI](SPEC_ROOT/02-common-principles.md#uniform-resource-indicator)
+    [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
     (for example from [protocols.io](https://www.protocols.io/)).
   type: string
 SampleFixation:
@@ -2747,7 +2783,7 @@ ScanDate:
   description: |
     Date of scan in the format `"YYYY-MM-DD[Z]"`.
     This field is DEPRECATED, and this metadata SHOULD be recorded in the `acq_time` column of the
-    corresponding [Scans file](SPEC_ROOT/03-modality-agnostic-files.md#scans-file).
+    corresponding [Scans file](SPEC_ROOT/modality-agnostic-files.md#scans-file).
   type: string
   format: date
 ScanOptions:
@@ -2935,7 +2971,7 @@ SourceDatasets:
   description: |
     Used to specify the locations and relevant attributes of all source datasets.
     Valid keys in each object include `"URL"`, `"DOI"` (see
-    [URI](SPEC_ROOT/02-common-principles.md#uniform-resource-indicator)), and
+    [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)), and
     `"Version"` with
     [string](https://www.w3schools.com/js/js_json_datatypes.asp)
     values.
@@ -2955,7 +2991,7 @@ Sources:
   display_name: Sources
   description: |
     A list of files with the paths specified using
-    [BIDS URIs](SPEC_ROOT/02-common-principles.md#bids-uri);
+    [BIDS URIs](SPEC_ROOT/common-principles.md#bids-uri);
     these files were directly used in the creation of this derivative data file.
     For example, if a derivative A is used in the creation of another
     derivative B, which is in turn used to generate C in a chain of A->B->C,
@@ -2964,7 +3000,7 @@ Sources:
     then Z should list X and Y in `"Sources"`,
     regardless of whether X was used to generate Y.
     Using paths specified relative to the dataset root is
-    [DEPRECATED](SPEC_ROOT/02-common-principles.md#definitions).
+    [DEPRECATED](SPEC_ROOT/common-principles.md#definitions).
   type: array
   items:
     type: string
@@ -3104,6 +3140,12 @@ StimulusPresentation:
     `"Code"`.
     See table below for more information.
   type: object
+  recommended_fields:
+    - OperatingSystem
+    - SoftwareName
+    - SoftwareRRID
+    - SoftwareVersion
+    - Code
   properties:
     OperatingSystem:
       $ref: objects.metadata.OperatingSystem
@@ -3241,7 +3283,8 @@ TriggerChannelCount:
   name: TriggerChannelCount
   display_name: Trigger Channel Count
   description: |
-    Number of channels for digital (TTL bit level) triggers.
+    Number of channels for digital (binary TTL) triggers or analog equivalents (TTL in volt).
+    Corresponds to the `TRIG` channel type.
   type: integer
   minimum: 0
 TubingLength:
@@ -3279,7 +3322,7 @@ Units:
   description: |
     Measurement units for the associated file.
     SI units in CMIXF formatting are RECOMMENDED
-    (see [Units](SPEC_ROOT/02-common-principles.md#units)).
+    (see [Units](SPEC_ROOT/common-principles.md#units)).
   type: string
   format: unit
 VascularCrushing:
@@ -3454,7 +3497,7 @@ iEEGCoordinateSystem:
     (of either a volume-rendering, surface-rendering, operative photo, or
     operative drawing), this MUST be `"Pixels"`.
     For more information, see the section on
-    [2D coordinate systems](SPEC_ROOT/04-modality-specific-files/04-intracranial\
+    [2D coordinate systems](SPEC_ROOT/modality-specific-files/intracranial\
     -electroencephalography.md#allowed-2d-coordinate-systems).
   anyOf:
     - $ref: objects.metadata._iEEGCoordSys

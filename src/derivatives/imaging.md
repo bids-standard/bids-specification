@@ -547,6 +547,6 @@ index   name                abbreviation
 
 <!-- Link Definitions -->
 
-[common_preproc]: 02-common-data-types.md#preprocessed-or-cleaned-data
+[common_preproc]: common-data-types.md#preprocessed-or-cleaned-data
 
-[unspecified]: ../02-common-principles.md#unspecified-data
+[unspecified]: ../common-principles.md#unspecified-data

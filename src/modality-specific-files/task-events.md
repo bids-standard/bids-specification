@@ -3,7 +3,7 @@
 The purpose of this file is to describe timing and other properties of events
 recorded during a run.
 Events are, for example, stimuli presented to the participant or participant responses
-(see [Definitions](../02-common-principles.md#definitions)).
+(see [Definitions](../common-principles.md#definitions)).
 A single event file MAY include any combination of stimulus, response, and other events.
 Events MAY overlap in time.
 Please mind that this does not imply that only so called "event related" study designs
@@ -26,10 +26,10 @@ Where `<matches>` corresponds to task filename. For example:
 Each task events file REQUIRES a corresponding task data file.
 It is also possible to have a single `events.tsv` file describing events
 for all participants and runs (see
-[Inheritance Principle](../02-common-principles.md#the-inheritance-principle)).
+[Inheritance Principle](../common-principles.md#the-inheritance-principle)).
 As with all other tabular data, `events.tsv` files MAY be accompanied by a JSON
 file describing the columns in detail (see
-[Tabular Files](../02-common-principles.md#tabular-files)).
+[Tabular Files](../common-principles.md#tabular-files)).
 
 The tabular files consists of one row per event and a set of REQUIRED
 and OPTIONAL columns:
@@ -222,21 +222,13 @@ A guide for using macros can be found at
 
 The object supplied for `StimulusPresentation` SHOULD include the following key-value pairs:
 
-<!-- This block generates a metadata table.
+<!-- This block generates a table describing subfields within a metadata field.
 The definitions of these fields can be found in
   src/schema/objects/metadata.yaml
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_subobject_table(("objects", "metadata", "StimulusPresentation"),
-   {
-      "OperatingSystem": "RECOMMENDED",
-      "SoftwareName": "RECOMMENDED",
-      "SoftwareRRID": "RECOMMENDED",
-      "SoftwareVersion": "RECOMMENDED",
-      "Code": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_subobject_table("metadata.StimulusPresentation") }}
 
 The operating system description SHOULD include the following attributes:
 

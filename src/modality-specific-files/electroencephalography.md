@@ -1,8 +1,8 @@
 # Electroencephalography
 
 Support for Electroencephalography (EEG) was developed as a
-[BIDS Extension Proposal](../07-extensions.md#bids-extension-proposals).
-Please see [Citing BIDS](../01-introduction.md#citing-bids)
+[BIDS Extension Proposal](../extensions.md#bids-extension-proposals).
+Please see [Citing BIDS](../introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
@@ -41,7 +41,7 @@ format. It is furthermore discouraged to use the other accepted formats over
 these RECOMMENDED formats, particularly because there are conversion scripts
 available in most commonly used programming languages to convert data into the
 RECOMMENDED formats. The data in their original format, if different from the
-supported formats, can be stored in the [`/sourcedata` directory](../02-common-principles.md#source-vs-raw-vs-derived-data).
+supported formats, can be stored in the [`/sourcedata` directory](../common-principles.md#source-vs-raw-vs-derived-data).
 
 The original data format is especially valuable in case conversion elicits the
 loss of crucial metadata specific to manufacturers and specific EEG systems. We
@@ -176,8 +176,8 @@ A guide for using macros can be found at
 ```
 
 Note that the date and time information SHOULD be stored in the Study key file
-([`scans.tsv`](../03-modality-agnostic-files.md#scans-file)).
-Date time information MUST be expressed as indicated in [Units](../02-common-principles.md#units)
+([`scans.tsv`](../modality-agnostic-files.md#scans-file)).
+Date time information MUST be expressed as indicated in [Units](../common-principles.md#units)
 
 ## Channels description (`*_channels.tsv`)
 
@@ -196,13 +196,13 @@ To avoid confusion, the channels SHOULD be listed in the order they appear in th
 Any number of additional columns MAY be added to provide additional information about the channels.
 
 Note that electrode positions SHOULD NOT be added to this file, but to
-[`*_electrodes.tsv`](./03-electroencephalography.md#electrodes-description-_electrodestsv).
+[`*_electrodes.tsv`](./electroencephalography.md#electrodes-description-_electrodestsv).
 Furthermore, the entries in `*_electrodes.tsv` and `*_channels.tsv` do not have to match exactly,
 as for example in the case of recording a single `EOG` channel from a bipolar referencing scheme
 of two electrodes, or a data channel originating from an auxiliary, non-electrode device.
 That is, in most cases `*_electrodes.tsv` will have more entries than `*_channels.tsv`.
 See the examples for `*_channels.tsv` below, and for `*_electrodes.tsv` in
-["Electrodes description"](./03-electroencephalography.md#electrodes-description-_electrodestsv).
+["Electrodes description"](./electroencephalography.md#electrodes-description-_electrodestsv).
 
 The columns of the channels description table stored in `*_channels.tsv` are:
 
@@ -235,7 +235,7 @@ Note that upper-case is REQUIRED:
 | RESP        | Respiration                                                  |
 | SYSCLOCK    | System time showing elapsed time since trial started         |
 | TEMP        | Temperature                                                  |
-| TRIG        | System triggers                                              |
+| TRIG        | Analog (TTL in Volt) or digital (binary TTL) trigger channel |
 | VEOG        | Vertical EOG (eye)                                           |
 
 Examples of free-form text for field `description`
@@ -321,7 +321,7 @@ anatomical landmarks, and the coordinate system and units in which the position
 of electrodes and landmarks is expressed. **The `*_coordsystem.json` is
 REQUIRED if the optional `*_electrodes.tsv` is specified**. If a corresponding
 anatomical MRI is available, the locations of landmarks and fiducials according
-to that scan should also be stored in the [`*_T1w.json`](./01-magnetic-resonance-imaging-data.md)
+to that scan should also be stored in the [`*_T1w.json`](./magnetic-resonance-imaging-data.md)
 file which goes alongside the MRI data.
 
 For disambiguation, we employ the following definitions for fiducials and

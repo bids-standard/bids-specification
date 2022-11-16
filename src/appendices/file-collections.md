@@ -1,6 +1,6 @@
 # File collections
 
-Here, some concrete use-cases of [entity-linked file collections](../02-common-principles.md#file-name-structure) are listed using descriptive tables, organized by modality.
+Here, some concrete use-cases of [entity-linked file collections](../common-principles.md#file-name-structure) are listed using descriptive tables, organized by modality.
 
 The tables in this appendix catalog applications where the use of
 a file collection is REQUIRED.

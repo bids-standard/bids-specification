@@ -85,13 +85,13 @@ Because the same description may be used in multiple locations, a mechanism is n
 to ensure that the correct path is discovered to render the description in each location.
 To do this, the path should follow the form `SPEC_ROOT/path/within/source.md#anchor`.
 For example, to link to the
-[Definitions](https://bids-specification.readthedocs.io/en/stable/02-common-principles.html#definitions)
+[Definitions](https://bids-specification.readthedocs.io/en/stable/common-principles.html#definitions)
 section of
-[Common principles](https://bids-specification.readthedocs.io/en/stable/02-common-principles.html),
-use the path `SPEC_ROOT/02-common-principles.md#definitions`:
+[Common principles](https://bids-specification.readthedocs.io/en/stable/common-principles.html),
+use the path `SPEC_ROOT/common-principles.md#definitions`:
 
 ```Markdown
-[Common principles - Definitions](SPEC_ROOT/02-common-principles.md#definitions)
+[Common principles - Definitions](SPEC_ROOT/common-principles.md#definitions)
 ```
 
 Note that the Markdown extension `.md` MUST be used for this to render correctly.
