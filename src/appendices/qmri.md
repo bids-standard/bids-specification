@@ -282,7 +282,7 @@ A guide for using macros can be found at
   ],
   "SourceDatasets": [
     {
-      "DOI": "DOI 10.17605/OSF.IO/K4BS5",
+      "DOI": "doi:10.17605/OSF.IO/K4BS5",
       "URL": "https://osf.io/k4bs5/",
       "Version": "1"
     }
