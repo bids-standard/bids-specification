@@ -72,7 +72,7 @@ def test_make_filename_template(schema_obj, schema_dir):
         * all files under the datatype rules subdirectory have corresponding entries.
         This may need to be updated for schema hierarchy changes.
     """
-    filename_template = text.make_filename_template(schema_obj, pdf_format=True)
+    filename_template = text.make_filename_template("raw", schema_obj, pdf_format=True)
 
     # Test predefined substrings
     expected_template_part = """
@@ -83,15 +83,14 @@ sub-<label>/
     assert expected_template_part in filename_template
 
     # Test consistency
-    datatype_bases = []
-    for root, dirs, files in os.walk(schema_dir, topdown=False):
-        if "datatype" in root:
-            for datatype_file in files:
-                datatype_base, _ = os.path.splitext(datatype_file)
-                datatype_bases.append(datatype_base)
+    datatypes = {
+        datatype
+        for rule in schema_obj.rules.files.raw.values(level=2)
+        for datatype in rule.datatypes
+    }
 
-    datatype_count = len(datatype_bases)
-    datatype_bases = [f"        {i}/" for i in datatype_bases]
+    datatype_count = len(datatypes)
+    datatype_bases = [f"        {i}/" for i in datatypes]
     datatype_level = False
     datatype_file_start = "            sub-<label>"
     datatype_bases_found = 0
@@ -104,8 +103,7 @@ sub-<label>/
             datatype_level = True
             datatype_bases_found += 1
     # Are all datatypes listed?
-    # correct for derivatives files in count
-    assert datatype_bases_found == datatype_count - 2
+    assert datatype_bases_found == datatype_count
 
 
 def test_define_common_principles(schema_obj):
@@ -126,3 +124,9 @@ def test_append_filename_template_legend():
     test_str = text.append_filename_template_legend("", pdf_format=True)
     assert isinstance(test_str, str)
     assert "follow the links" not in test_str
+
+
+def test_define_allowed_top_directories(schema_obj):
+    """smoke test for allowed top directories."""
+    test_str = text.define_allowed_top_directories(schema_obj)
+    assert isinstance(test_str, str)

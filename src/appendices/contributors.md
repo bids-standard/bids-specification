@@ -48,10 +48,12 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Sylvain Baillet 📖🔍
 -   Shashank Bansal 📖
 -   Arshitha Basavaraj 📖🚇💻
+-   Ben Beasley 💻
 -   Leandro Beltrachini 📖
 -   Chris Benjamin 📖
 -   Timo Berg 📖
 -   Étienne Bergeron 🔣💻
+-   Giacomo Bertazzoli 📖
 -   Suyash Bhogawar 📖💡⚠️🔧💬
 -   Stephan Bickel 📖
 -   Ulrike Bingel 📖
@@ -59,11 +61,13 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   David Boas 📖
 -   Elizabeth Bock 📖💡
 -   Hugo Boniface 📖
+-   Marta Bortoletto 📖
 -   Kristofer Bouchard 📖
 -   Mathieu Boudreau 💬🤔📢
 -   Marie-Hélène Bourget 📖🔣💻🤔
 -   Eric Bridgeford 📖🔧
 -   Teon L. Brooks 📖💻⚠️💬👀🤔🔧🐛📢
+-   Martina Bulgari 📖
 -   Christian Büchel 📖
 -   Vince D. Calhoun 📖
 -   Giulio Castegnaro 📖
@@ -94,6 +98,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Elizabeth DuPre 📖💡🔍🤔💬
 -   Joke Durnez 📖🔧💻
 -   Eric Earl 📖💬🐛🚧🔧🤔
+-   Cyrus Eierud 💻
 -   Anders Eklund 📖📢💻
 -   Sara Elgayar 📖
 -   Oscar Esteban 📖🔧🤔💬💻
@@ -117,6 +122,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Tristan Glatard 📖💻
 -   Mathias Goncalves 💻🔧📢
 -   Krzysztof J. Gorgolewski 📖💻💬🤔🔍📢📝💡🔌
+-   Rohan Goyal 💻
 -   Alexandre Gramfort 📖💡
 -   Klara Gregorova 📖
 -   Jeffrey S. Grethe 💬🐛✅📢
@@ -124,12 +130,14 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   David Groppe 📖
 -   Sören Grothkopp 📖
 -   Aysegul Gunduz 📖
+-   Giacomo Guidali 📖
 -   Matthias Günther 📖
 -   Yaroslav O. Halchenko 📖📢🔧💬🐛
 -   Liberty Hamilton 📖
 -   Tom Hampshire 📖
 -   Daniel A. Handwerker 📖
 -   Michael Hanke 📖🤔🔧🐛📢
+-   Nell Hardcastle 💻 🤔 🚇 💬 👀
 -   Michael P. Harms 📖⚠️🔧
 -   Soichi Hayashi 📖🔧🐛
 -   Richard N. Henson 📖
@@ -145,6 +153,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Andrew Hoopes 📖
 -   Christian Horea 📖
 -   Jean-Christophe Houde 📖
+-   Vittorio Iacovella 📖
 -   Maria de la Iglesia 📖
 -   Ilkay Isik 📖
 -   Hamish Innes-Brown 📖
@@ -186,13 +195,16 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Robert Luke 📖
 -   Brian N. Lundstrom 📖
 -   Dan Lurie 🤔📖🔧🔌💻💬
--   Camille Maumet 📖
+-   Duncan Macleod 🚇
+-   Eleonora Marcantoni 📖
 -   Christopher J. Markiewicz 💬🐛💻📖🎨💡🤔🔌👀🔧📢🔣📋🚧
+-   Camille Maumet 📖
 -   Giacomo Mazzamuto 📖🔣
 -   David McAlpine 📖
 -   Manuel Mercier 📖🤔
 -   Mark Mikkelsen 📖
 -   Kai J. Miller 📖
+-   Carlo Miniussi 📖
 -   Markus Morawski 📖
 -   Clara Moreau 📖
 -   Jeremy Moreau 📖💡
@@ -211,6 +223,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Aki Nikolaidis 📖
 -   Gustav Nilsonne 📖
 -   Guiomar Niso 🤔🎨🔍👀📋📝🔧🐛💻🔣✅💬📖💡📢
+-   Gregory Noack 💻 ⚠️
 -   Martin Noergaard 📖🔣💻🤔📢
 -   Michael P. Notter 💬📝✅📢📖
 -   Jeffrey G. Ojemann 📖
@@ -225,6 +238,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Maurice Pasternak 📓
 -   Chloé Pasturel 📖
 -   Dianne Patterson 📖
+-   Mateusz Pawlik 🤔 📖 🚧 👀 🐛
 -   John Pellman 📖
 -   Cyril Pernet 💬📝📖🎨💡📋🤔📢
 -   Franco Pestilli 📖💻🎨💡🤔👀🔧📋🔍🚇
@@ -260,6 +274,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Maureen J Shader 📖
 -   Robert E. Smith 💻📖
 -   Vanessa Sochat 📖
+-   Anibal Sólon 🐛
 -   Tamas Spisak 📖
 -   Julia Sprenger 📖
 -   Isla Staden 📖
@@ -278,7 +293,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   William Triplett 📖
 -   Jessica A. Turner 📖
 -   Pieter Vandemaele 📖💻
--   Max A. van den Boom 💻👀📖
+-   Max A. van den Boom 💻👀📖🐛
 -   Wietske van der Zwaag 🔣💬
 -   Matthias Van Osch 📖
 -   Gaël Varoquaux 📖

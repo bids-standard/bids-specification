@@ -55,6 +55,5 @@ pet:
     Positron emission tomography data
 nirs:
   value: nirs
-  display_name: Functional Near-Infrared Spectroscopy
-  description:
-    Near-Infrared Spectroscopy data organized around the SNIRF format
+  display_name: Near-Infrared Spectroscopy
+  description: Near-Infrared Spectroscopy data organized around the SNIRF format

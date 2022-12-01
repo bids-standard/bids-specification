@@ -1,0 +1,36 @@
+---
+# Core files are files and directories that can be found at the top level
+# of a dataset.
+# The keys of this file must match keys in objects/files.yaml
+dataset_description:
+  level: required
+  path: dataset_description.json
+README:
+  level: recommended
+  stem: README
+  extensions:
+    - ''
+    - .md
+    - .rst
+    - .txt
+CHANGES:
+  level: optional
+  path: CHANGES
+LICENSE:
+  level: optional
+  path: LICENSE
+genetic_info:
+  level: optional
+  path: genetic_info.json
+code:
+  level: optional
+  path: code
+derivatives:
+  level: optional
+  path: derivatives
+sourcedata:
+  level: optional
+  path: sourcedata
+stimuli:
+  level: optional
+  path: stimuli

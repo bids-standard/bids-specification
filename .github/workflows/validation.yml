@@ -18,9 +18,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: codespell-project/actions-codespell@master
-        with:
-          skip: js,*.svg
-          ignore_words_list: fo,te,als
 
   # Markdown formatting
   remark:

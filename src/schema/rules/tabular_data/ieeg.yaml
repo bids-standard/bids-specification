@@ -29,6 +29,7 @@ iEEGChannels:
     notch: optional
     status: optional
     status_description: optional
+  index_columns: [name__channels]
   additional_columns: allowed_if_defined
 
 iEEGElectrodes:
@@ -60,4 +61,5 @@ iEEGElectrodes:
     type__electrodes: optional
     impedance: optional
     dimension: optional
+  index_columns: [name__electrodes]
   additional_columns: allowed_if_defined
