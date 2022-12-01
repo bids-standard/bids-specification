@@ -215,6 +215,19 @@ context:
     json:
       description: 'Contents of the current JSON file'
       type: object
+    gzip:
+      description: 'Parsed contents of gzip header'
+      type: object
+      properties:
+        timestamp:
+          description: 'Modification time, unix timestamp'
+          type: number
+        filename:
+          description: 'File name'
+          type: string
+        comment:
+          description: 'Comment'
+          type: string
     nifti_header:
       name: 'NIfTI Header'
       description: 'Parsed contents of NIfTI header referenced elsewhere in schema.'
