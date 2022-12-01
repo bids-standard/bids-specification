@@ -207,6 +207,18 @@ entity corresponds to modality suffix,
 such as `T1w` or `inplaneT1`, referenced by the defacemask image.
 For example, `sub-01_mod-T1w_defacemask.nii.gz`.
 
+The OPTIONAL [`task-<label>`](../appendices/entities.md#task) entity can be used
+in order to allow tasks during structural MR acquisitions,
+for example pre-described motion paradigms such as nodding, to be described.
+
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("anat.TaskMetadata") }}
+
 Some meta information about the acquisition MAY be provided in an additional
 JSON file. See [Common metadata fields](#common-metadata-fields) for a
 list of terms and their definitions. There are also some OPTIONAL JSON
