@@ -2642,6 +2642,31 @@ Resolution:
     - type: object
       additionalProperties:
         type: string
+RotationOrder:
+  name: RotationOrder
+  display_name: RotationOrder
+  description: |
+    Specify the sequence in which the elemental rotations are applied around the extrinsic axes.
+    A 3D rotation is represented about 3 different axes (Tait-Bryan convention).
+  type: string
+  enum:
+  - XYZ
+  - XZY
+  - YXZ
+  - YZX
+  - ZXY
+  - ZYX
+RotationRule:
+  name: RotationRule
+  display_name: Rotation Rule
+  description: |
+    In case orientation channels are present, indicate whether rotations are applied
+    clockwise around an axis when seen from the positive direction (left-hand rule) or
+    counter-clockwise (right-hand rule). Must be one of: "left-hand", "right-hand".
+  type: string
+  enum:
+  - left-hand
+  - right-hand
 SEEGChannelCount:
   name: SEEGChannelCount
   display_name: SEEG Channel Count

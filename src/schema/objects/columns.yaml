@@ -52,6 +52,19 @@ color:
     Hexadecimal. Label color for visualization.
   type: string
   unit: hexadecimal
+component:
+  name: component
+  display_name: Coordinate System Component
+  description: |
+    Component of the representational system described in `*_coordinatesystem.tsv` that the
+    channel contains. Must be one of: "w", "x" ,"y", "z", "n/a"
+  type: string
+  enum:
+  - "w"
+  - "x"
+  - "y"
+  - "z"
+  - "n/a"
 detector__channels:
   name: detector
   display_name: Detector Name
