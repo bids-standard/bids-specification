@@ -140,12 +140,12 @@ AnatomicalLandmarkCoordinates__mri:
       type: number
     minItems: 3
     maxItems: 3
-AOIDefinition:
-  name: AOIDefinition
-  display_name: Area of Interest Definition
+ScreenAOIDefinition:
+  name: ScreenAOIDefinition
+  display_name: Screen Area of Interest Definition
   description: |
-    Define, what shape are the AOIs and what coordinates are used.
-    `["square", ["x_start", "x_stop", "y_start", "y_stop"]]`
+    Define, what shape are the Screen AOIs and what coordinates are used.
+     ["square", ["x_start", "x_stop", "y_start", "y_stop"]]`
     Other options:
     `"custom"/"circle"/"triangle", [["x", "y"], ["x", "y"], ["x", "y"], and so on.]`
   type: object
@@ -2965,16 +2965,6 @@ SamplingFrequency__nirs:
     - type: string
       enum:
         - n/a
-SamplingFrequency__eyetrack:
-  name: SamplingFrequency
-  display_name: Sampling Frequency
-  description: |
-    Sampling frequency (in Hz) of the corresponding data in the recording
-    (for example, `1000`).
-    If the sampling frequency change across run,
-    sidecar JSON document must be created specifying the run number.
-  type: number
-  unit: Hz
 ScaleFactor:
   name: ScaleFactor
   display_name: Scale Factor

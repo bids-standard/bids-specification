@@ -1,0 +1,16 @@
+---
+EyeTracking:
+ selectors:
+    - suffix == 'eyetrack'
+    - extension == ".tsv.gz"
+  columns:
+    - sample: required
+    - eye1_x: required
+    - eye1_y: required
+    - eye1_p: optional
+    - eye2_x: optional
+    - eye2_y: optional
+    - eye2_p: optional
+  additional_columns: allowed
+  initial_columns:
+    - sample
