@@ -17,6 +17,7 @@ eye-tracking context.
 
 -   **Eye-tracker** - refers to the apparatus allowing the records of gaze
     position and/or pupil size.
+
 -   **Screen** - Video display used to present visual stimulation (for example
     projector, monitor, tablet).
 
