@@ -11,7 +11,7 @@ Please see [Citing BIDS](../introduction.md#citing-bids) on how to
 Eyetracking-BIDS is fully consistent with the BIDS specification as a whole.
 However, BIDS was initially developed in the context of MRI,
  so some terminology may be unfamiliar to researchers from other fields.
-This section adds clarifications to 
+This section adds clarifications to
 [Common Principles - Definitions](../common-principles.md#definitions) for the
  eye-tracking context.
 
@@ -42,7 +42,7 @@ A guide for editing it can be found at
    }
 
 ) }}
-    
+
 Eye-tracking data MUST be stored in the main data recording modality or
  `<datatype>` directory (for example `func` when combined with fMRI, or
  `beh` when combined with behavioral measures).
@@ -58,7 +58,7 @@ The tabular files consist of one row per event and a set of REQUIRED and
  be accompanied by a JSON file describing the columns in detail (see
  [Tabular Files](../common-principles.md#tabular-files)).
 
-<!-- 
+<!--
 This block generates a columns table.
 The definitions of these fields can be found in
   src/schema/rules/tabular_data/eyetrack.yaml
@@ -114,9 +114,9 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_sidecar_table("eyetrack.EyeTrackingMoreRecommended") }}
-    
+
 ### Example sidecar JSON document
-    
+
 ```JSON
 {
 "Manufacturer": "SR-Research",
@@ -141,17 +141,17 @@ A guide for using macros can be found at
 
 ### Example Datasets
 
-* Combined behavior and eye-tracking fixation and saccade data, 
+* Combined behavior and eye-tracking fixation and saccade data,
  measured with an Eyelink (SR Research), from 8 particpants reading 320
  embedded target words and invisible boundary
  (Gagl, 2016)[https://peerj.com/articles/2467/].<br>
  [BIDS dataset](https://tobedefined.soon)
-    
-* Combined behavior and eye-tracking position and pupil data, 
+
+* Combined behavior and eye-tracking position and pupil data,
  measured with an Eyelink (SR Research), from 26 particpants experiencing
  perception multistability (Brascamp et.al, 2021)[https://doi.org/10.7554/eLife.66161].<br>
  [BIDS dataset](https://tobedefined.soon)
-    
+
 * Combine resting-state fMRI and eye-tracking data, measured with an Eyelink
  from 20 participants (2 runs each) fixating at the screen center.<br>
 [BIDS dataset](https://openneuro.org/datasets/ds004158/versions/1.0.1)

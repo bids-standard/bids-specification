@@ -1,6 +1,6 @@
 ---
 EyeTracking:
- selectors:
+  selectors:
     - datatype == "eyetrack"
     - suffix == 'eyetrack'
     - extension == ".tsv.gz"
