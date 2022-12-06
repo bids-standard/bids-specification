@@ -438,7 +438,7 @@ A guide for using macros can be found at
 ## Aalto MEG–MRI
 
 For stand-alone MEG data, the Aalto hybrid device uses the standard `.fif` data
-format and follows the conventions of Elekta/Neuromag as described
+format and follows the conventions of Neuromag/Elekta/MEGIN as described
 [above](#neuromagelektamegin). The `.fif` files may
 contain unreconstructed MRI data. The inclusion of MRI data and information for
 accurate reconstruction will be fully standardized at a later stage.
