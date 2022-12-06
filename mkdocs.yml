@@ -70,7 +70,7 @@ plugins:
     - search
     - branchcustomization:
         update_config:
-         - branch: /(?!^bep020$)/
+         - branch: /(?!^master$)/
            +extra_css:
              - css/watermark.css
     - macros:
