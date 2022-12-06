@@ -595,7 +595,7 @@ eyetrack:
   value: eyetrack
   display_name: Eye-tracking
   description: |
-    Eye-tracking recording data.
+    Eye-tracking including gaze position and pupil size.
 fieldmap:
   value: fieldmap
   display_name: Fieldmap

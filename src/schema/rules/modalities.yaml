@@ -28,3 +28,6 @@ micr:
 nirs:
   datatypes:
     - nirs
+eyetrack:
+  datatypes:
+    - eeg

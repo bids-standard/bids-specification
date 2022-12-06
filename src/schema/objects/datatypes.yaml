@@ -20,6 +20,10 @@ eeg:
   value: eeg
   display_name: Electroencephalography
   description: Electroencephalography
+eyetrack:
+  value: eyetrack
+  display_name: Eye-tracking
+  description: Eye-tracking including gaze position and pupil size
 fmap:
   value: fmap
   display_name: Field maps

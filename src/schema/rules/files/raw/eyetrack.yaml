@@ -1,18 +1,12 @@
 ---
-eeg:
+eyetrack:
   suffixes:
-    - eeg
+    - eyetrack
   extensions:
     - .json
-    - .edf
-    - .vhdr
-    - .vmrk
-    - .eeg
-    - .set
-    - .fdt
-    - .bdf
+    - .tsv.gz
   datatypes:
-    - eeg
+    - eyetrack
   entities:
     subject: required
     session: optional

@@ -65,8 +65,8 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_columns_table("eyetrack.EyeTracking") }}    
-    
+{{ MACROS___make_columns_table("eyetrack.EyeTracking") }}
+
 Throughout BIDS you can indicate missing values with `n/a` (for "not
 available").<br>
 
@@ -79,55 +79,26 @@ We encourage users to put the eye-tracking raw data within the
 __Specific eye-tracking fields SHOULD be present:__
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
-  src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+These tables are defined in
+ src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+ src/schema/objects/metadata.yaml
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "Manufacturer": (
-         "RECOMMENDED",
-         "Manufacturer of the eye-tracking system (for example "
-         '`"SR-Research"`, `"Tobii"`, `"SMI"`, `"Gazepoint"`, '
-         '`"Pupil Labs"`, `"Custom built"`, `"Other"`) '
-      ),
-      "ManufacturersModelName": (
-         "RECOMMENDED",
-         "Manufacturer's designation of the eye-tracker model (for example"
-         '`"Eye-link 1000"`).'
-         ),
-      "SoftwareVersions": "RECOMMENDED",
-      "TaskDescription": "RECOMMENDED",
-      "DeviceSerialNumber": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("eeg.EyeTrackingRecommended") }}
 
 __Specific eye-tracking fields MUST be present:__
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
-  src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+These tables are defined in
+ src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+ src/schema/objects/metadata.yaml
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-
-{{ MACROS___make_metadata_table(
-   {
-      "SamplingFrequency": "REQUIRED",
-      "SampleCoordinateUnits": "REQUIRED",
-      "SampleCoordinateSystem": "REQUIRED",
-      "EnvironmentCoordinates": "REQUIRED",
-      "ScreenSize": "REQUIRED",
-      "ScreenResolution": "REQUIRED",
-      "ScreenDistance": (
-         "REQUIRED",
-         "Screen distance in cm (for example 60 for a screen distance of 60 cm), "
-         'if no screen use "n/a". '
-         "For MRI, it corresponds to the distance between the head-coil mirror "
-         "to the projection screen for example."),
-   }
-) }}
+{{ MACROS___make_sidecar_table("eyetrack.EyeTrackingRequired") }}
 
 Note that ScreenSize `ScreenResolution` and `ScreenDistance` are REQUIRED as
  they are considered essential in eye-tracking data analysis.
@@ -135,36 +106,15 @@ Note that ScreenSize `ScreenResolution` and `ScreenDistance` are REQUIRED as
 __Specific eye-tracking fields SHOULD be present:__
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
-  src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+These tables are defined in
+ src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+ src/schema/objects/metadata.yaml
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "IncludedEyeMovementEvents": "RECOMMENDED",
-      "DetectionAlgorithm": "RECOMMENDED",
-      "DetectionAlgorithmSettings": "RECOMMENDED",
-      "StartMessage": "RECOMMENDED",
-      "EndMessage": "RECOMMENDED",
-      "KeyPressMessage": "RECOMMENDED",
-      "CalibrationType": "RECOMMENDED",
-      "CalibrationUnit": "RECOMMENDED",
-      "CalibrationPosition": "RECOMMENDED",
-      "MaximalCalibrationError": "RECOMMENDED",
-      "AverageCalibrationError": "RECOMMENDED",
-      "CalibrationList": "RECOMMENDED",
-      "RecordedEye": "RECOMMENDED",
-      "EyeCameraSettings": "RECOMMENDED",
-      "FeatureDetectionSettings": "RECOMMENDED",
-      "GazeMappingSettings": "RECOMMENDED",
-      "RawDataFilters": "RECOMMENDED",
-      "ScreenRefreshRate": "RECOMMENDED",
-      "ScreenAOIDefinition": "RECOMMENDED",
-      "PupilFitMethod": "RECOMMENDED",
-   }
-) }}
-
+{{ MACROS___make_sidecar_table("eyetrack.EyeTrackingMoreRecommended") }}
+    
 ### Example sidecar JSON document
     
 ```JSON

@@ -2841,7 +2841,7 @@ SampleCoordinateSystem:
     but `"eye-in-head"` or `"gaze-in-world"` are also possible coordinate systems
     (for example for virtual reality).
   type: string
-SampleCoordinateUnit:
+SampleCoordinateUnits:
   name: SampleCoordinateUnit
   display_name: Sample Coordinate Unit
   description: |
