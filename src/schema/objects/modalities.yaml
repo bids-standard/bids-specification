@@ -31,3 +31,6 @@ micr:
 nirs:
   display_name: Near-Infrared Spectroscopy
   description: Data acquired with NIRS.
+eyetrack:
+  display_name: Eyetracking
+  description: Data acquired with an eyetracker.
