@@ -41,7 +41,8 @@ designer may choose to also allow the export of un-averaged transients or data f
 elements. Contrarily, Bruker stores two binary files: one file stores each average separately, while
 the other file stores the sum of the average. Bruker stores the sequence name, voxel position, voxel
 orientation, and other metadata in a separate plaintext file. These files are considered source data
-and, if present, MUST be stored x.
+and, if present, MUST be stored in the
+[`/sourcedata`](../02-common-principles.md#source-vs-raw-vs-derived-data) directory.
 
 Due to the diversity in manufacturers' MRS data formats, raw data MUST be converted into the
 [NIfTI-MRS format](https://onlinelibrary.wiley.com/doi/10.1002/mrm.29418) (`*.nii[.gz]`). This
@@ -74,12 +75,12 @@ exist for a given dataset, the user MAY use the `acq-<label>` entity to distingu
 example, `sub-01_acq-conc_ref.nii.gz` and `sub-01_acq-ecc_ref.nii.gz` could be used to name two
 references to be used for concentration scaling and eddy-current correction, respectively.
 
-| **Name**                                        | **`suffix`**         | **Description**                                                                                                                                                                                      |
-| ------------------------------------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Single-voxel spectroscopy | svs                   | MRS acquisitions where the detected MR signal is spatially localized to a single volume.                           |
-| Magnetic resonance spectroscopic imaging | mrsi                   | MRS acquisitions where additional imaging gradients are used to detect the MR signal from 1, 2, or 3 spatial dimensions.                          |
-| Concentration or calibration reference | ref                   | A separate MRS acquisition acquired to detect a signal to serve as a concentration reference for absolute quantification or for preprocessing (e.g., eddy-current correction).                          |
-| Unlocalized spectroscopy | unloc                   | MRS acquisitions run without localization. This includes signals detected using coil sensitivity only.                           |
+| **Name**                                 | **`suffix`** | **Description**                                                                                                                                                                |
+| ---------------------------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Single-voxel spectroscopy                | svs          | MRS acquisitions where the detected MR signal is spatially localized to a single volume.                                                                                       |
+| Magnetic resonance spectroscopic imaging | mrsi         | MRS acquisitions where additional imaging gradients are used to detect the MR signal from 1, 2, or 3 spatial dimensions.                                                       |
+| Concentration or calibration reference   | ref          | A separate MRS acquisition acquired to detect a signal to serve as a concentration reference for absolute quantification or for preprocessing (e.g., eddy-current correction). |
+| Unlocalized spectroscopy                 | unloc        | MRS acquisitions run without localization. This includes signals detected using coil sensitivity only.                                                                         |
 
 ### MRS sequences
 
@@ -93,24 +94,32 @@ long as they are consistent across participants and sessions and use only legal 
 used, the chosen label SHOULD also be described in the `PulseSequenceType` field in the sidecar JSON
 file.
 
-| **Name**                                        | **`label`**         | **Description**                                                                                                                                                                                      |
-| ------------------------------------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| PRESS                              | press                  | A double spin-echo sequence that achieves spatial localization by employing three slice-selective RF pulses: 90°–180°–180°–acq                |
-| STEAM                              | steam                  | A stimulated echo sequence that uses three 90° slice-selective pulses for spatial localization.              |
-| LASER/sLASER                       | laser/slaser           | LASER uses three pairs of slice-selective 180° adiabatic full-passage (AFP) refocusing pulses for localization. These are preceded by a non-slice-selective adiabatic half-passage (AHP) excitation pulse. In sLASER, the AHP and first pair of AFP pulses are replaced with a non-adiabatic slice-selective 90° excitation pulse, typically employed to reduce the minimum TE.                                   |
-| SPECIAL                            | special                | SPECIAL is a two-shot experiment. In the first shot, a pre-excitation slice-selective 180° degree AFP inversion pulse precedes a spin-echo acquisition with slice selection (90°–180°–acq). In the second shot, the adiabatic pulse is not applied. The 3D localized signal is derived by subtracting the two shots.          |
-| MEGA                               | mega                   | This spectral editing technique employs a pair of frequency-selective 180° pulses to refocus *J*-coupled spins at a narrowband frequency without affecting the spins of metabolites with resonances beyond the frequency range. Applying these pulses in alternating scans (e.g., edit-ON and edit-OFF) and then subtracting the ON/OFF pairs results in a *J*-difference-edited spectrum that removes the unedited signals leaving only those signals that were affected by the editing pulses.                  |
-| HERMES/HERCULES                    | hermes/hercules        | HERMES is an extension of MEGA editing whereby the two-step experiment becomes a four-step experiment. This permits multiple metabolites to be edited in a multiplexed manner. By employing Hadamard combination of the four edited sub-spectra, HERMES can reveal several metabolites unambiguously. HERCULES is a different flavor of HERMES that targets more metabolites using the same four-step experiment.                |
-| Multiple-quantum coherence editing | mqc                    | Multiple-quantum coherence (MQC) editing targets *J*-coupled resonances by selecting desired coherence pathways using MQ gradients and frequency-selective RF pulses.                |
-| L-COSY                             | lcosy                  | Localized correlation spectroscopy (L-COSY) is a 2D MRS technique whereby one of the interpulse durations is changed sequentially. A 2D Fourier transform produces a 2D spectrum that displays singlets on the diagonal and *J*-coupled metabolites on the off-diagonal, with the offsets equal to the *J*-coupling constants.          |
-| *J*-resolved spectroscopy          | j                      | Another 2D technique, in a *J*-resolved acquisition, a series of transients are collected at different TEs. A 2D Fourier transform is applied to generate a 2D spectrum where one dimension characterizes both chemical shift and *J*-coupling and the other only the *J*-coupling constant.                              |
-| Diffusion-weighted spectroscopy    | dw                     | The diffusion of intracellular metabolites can be characterized using diffusion-weighted MRS. In such acquisitions, the strength of gradients in a conventional MRS sequence is modulated to sensitize the metabolite signals to diffusion.          |
-| FID spectroscopy                   | fid                    | FID spectroscopy is a pulse-acquire acquisition where an excitation pulse is followed by direct acquisition of the FID. When combined with slice- or slab-selection, , this approach is most often used in MRSI (i.e., FID-MRSI).         |
-| Spin-echo spectroscopy             | spinecho               | An MRS experiment whereby the MR signal is detected using a spin-echo acquisition: e.g., 90°–180°–acq.          |
+| **Name**                           | **`label`**     | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ---------------------------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| PRESS                              | press           | A double spin-echo sequence that achieves spatial localization by employing three slice-selective RF pulses: 90°–180°–180°–acq                                                                                                                                                                                                                                                                                                                                                                   |
+| STEAM                              | steam           | A stimulated echo sequence that uses three 90° slice-selective pulses for spatial localization.                                                                                                                                                                                                                                                                                                                                                                                                  |
+| LASER/sLASER                       | laser/slaser    | LASER uses three pairs of slice-selective 180° adiabatic full-passage (AFP) refocusing pulses for localization. These are preceded by a non-slice-selective adiabatic half-passage (AHP) excitation pulse. In sLASER, the AHP and first pair of AFP pulses are replaced with a non-adiabatic slice-selective 90° excitation pulse, typically employed to reduce the minimum TE.                                                                                                                  |
+| SPECIAL                            | special         | SPECIAL is a two-shot experiment. In the first shot, a pre-excitation slice-selective 180° degree AFP inversion pulse precedes a spin-echo acquisition with slice selection (90°–180°–acq). In the second shot, the adiabatic pulse is not applied. The 3D localized signal is derived by subtracting the two shots.                                                                                                                                                                             |
+| MEGA                               | mega            | This spectral editing technique employs a pair of frequency-selective 180° pulses to refocus *J*-coupled spins at a narrowband frequency without affecting the spins of metabolites with resonances beyond the frequency range. Applying these pulses in alternating scans (e.g., edit-ON and edit-OFF) and then subtracting the ON/OFF pairs results in a *J*-difference-edited spectrum that removes the unedited signals leaving only those signals that were affected by the editing pulses. |
+| HERMES/HERCULES                    | hermes/hercules | HERMES is an extension of MEGA editing whereby the two-step experiment becomes a four-step experiment. This permits multiple metabolites to be edited in a multiplexed manner. By employing Hadamard combination of the four edited sub-spectra, HERMES can reveal several metabolites unambiguously. HERCULES is a different flavor of HERMES that targets more metabolites using the same four-step experiment.                                                                                |
+| Multiple-quantum coherence editing | mqc             | Multiple-quantum coherence (MQC) editing targets *J*-coupled resonances by selecting desired coherence pathways using MQ gradients and frequency-selective RF pulses.                                                                                                                                                                                                                                                                                                                            |
+| L-COSY                             | lcosy           | Localized correlation spectroscopy (L-COSY) is a 2D MRS technique whereby one of the interpulse durations is changed sequentially. A 2D Fourier transform produces a 2D spectrum that displays singlets on the diagonal and *J*-coupled metabolites on the off-diagonal, with the offsets equal to the *J*-coupling constants.                                                                                                                                                                   |
+| *J*-resolved spectroscopy          | j               | Another 2D technique, in a *J*-resolved acquisition, a series of transients are collected at different TEs. A 2D Fourier transform is applied to generate a 2D spectrum where one dimension characterizes both chemical shift and *J*-coupling and the other only the *J*-coupling constant.                                                                                                                                                                                                     |
+| Diffusion-weighted spectroscopy    | dw              | The diffusion of intracellular metabolites can be characterized using diffusion-weighted MRS. In such acquisitions, the strength of gradients in a conventional MRS sequence is modulated to sensitize the metabolite signals to diffusion.                                                                                                                                                                                                                                                      |
+| FID spectroscopy                   | fid             | FID spectroscopy is a pulse-acquire acquisition where an excitation pulse is followed by direct acquisition of the FID. When combined with slice- or slab-selection, , this approach is most often used in MRSI (i.e., FID-MRSI).                                                                                                                                                                                                                                                                |
+| Spin-echo spectroscopy             | spinecho        | An MRS experiment whereby the MR signal is detected using a spin-echo acquisition: e.g., 90°–180°–acq.                                                                                                                                                                                                                                                                                                                                                                                           |
 
-Each `<label>` in the table MAY be combined with another to describe the localization approach used
-for more specific description of the acquisition. For example, `megaspecial`, `jpress`, `dwslaser`,
-and so on.
+Each `<label>` in the table MAY be combined with another to better describe the acquisition used.
+For example, `megaspecial`, `jpress`, `dwslaser`, and so on.
+
+The OPTIONAL `nuc-<label>` key/value pair can be used to distinguish acquisitions tuned to detect
+different nuclei. The label is the name of the nucleus or nuclei, which corresponds to DICOM Tag
+0018, 9100. The key `"ResonantNucleus"` MUST also be included in the JSON file, with the same label.
+
+Similarly, the OPTIONAL `voi-<label>` key/value pair can be used to distinguish between repeated
+acquisitions localized to different regions (i.e., acquisitions with different VOI). The label
+SHOULD be the name of the body region or part scanned. If used, the entities `"BodyPart"` and
+`"BodyPartDetails"` MUST also be included in the JSON file.
 
 ## MRS metadata
 
@@ -135,50 +144,18 @@ A guide for using macros can be found at
 
 #### Sequence specifics
 
-<!-- This block generates a metadata table.
-These tables are defined in
-  src/schema/rules/sidecars
-The definitions of the fields specified in these tables may be found in
-  src/schema/objects/metadata.yaml
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
 {{ MACROS___make_sidecar_table("mrs.MRSSequenceSpecifics") }}
 
 ### MRS-specific fields
 
 Metadata fields that MUST be present:
 
-<!-- This block generates a metadata table.
-These tables are defined in
-  src/schema/rules/sidecars
-The definitions of the fields specified in these tables may be found in
-  src/schema/objects/metadata.yaml
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
 {{ MACROS___make_sidecar_table("mrs.MRSRequiredFields") }}
 
-SHOULD be present:
+SHOULD be present
 
-<!-- This block generates a metadata table.
-These tables are defined in
-  src/schema/rules/sidecars
-The definitions of the fields specified in these tables may be found in
-  src/schema/objects/metadata.yaml
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
+{{ MACROS___make_sidecar_table("mrs.MRSRecommendedFields") }}
 
-MAY be present:
-
-<!-- This block generates a metadata table.
-These tables are defined in
-  src/schema/rules/sidecars
-The definitions of the fields specified in these tables may be found in
-  src/schema/objects/metadata.yaml
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
+MAY be present
 
 ### Example `*_svs.json`

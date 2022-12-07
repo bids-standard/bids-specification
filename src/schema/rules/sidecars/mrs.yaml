@@ -44,7 +44,7 @@ MRSSequenceSpecifics:
     ScanOptions: recommended
     SequenceName: recommended
     PulseSequenceDetails: recommended
-    MRAcquisitionType: recommended
+    MRAcquisitionType: recommended for MRSI
 
 MRSRequiredFields:
   selectors:
@@ -54,3 +54,29 @@ MRSRequiredFields:
     SpectrometerFrequency: required
     SpectralWidth: required
     EchoTime: required
+
+MRSRecommendedFields:
+  selectors:
+    - modality == "mrs"
+  fields:
+    NumberOfSpectralPoints: recommended
+    NumberOfTransients: recommended for SVS
+    RepetitionTime: recommended
+    MixingTime: recommended
+    InversionTime: recommended for inversion recovery data
+    FlipAngle: recommended
+    AcquisitionVoxelSize: recommended
+    MatrixSize: recommended
+    VolumeAffineMatrix: recommended for MRSI
+    BodyPart: recommended
+    BodyPartDetails: recommended
+    EditTarget: recommended for edited data
+    EditCondition: recommended for edited data
+    EditPulse: recommended for edited data
+    WaterSuppressed: recommended
+    WaterSuppressionTechnique: recommended
+    EncodingTechnique: recommended for MRSI
+    B0ShimmingTechnique: recommended
+    OuterVolumeSuppression: recommended
+    ReferenceSignal: recommended
+    AnatomicalImage: recommended in anatomical imaging data are present
