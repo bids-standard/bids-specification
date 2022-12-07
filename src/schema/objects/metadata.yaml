@@ -717,7 +717,7 @@ DigitizedHeadPoints__coordsystem:
     Relative path to the file containing the locations of digitized head points
     collected during the session (for example, `"sub-01_headshape.pos"`).
     RECOMMENDED for all MEG systems, especially for CTF and BTi/4D.
-    For Elekta/Neuromag the head points will be stored in the fif file.
+    For Neuromag/Elekta/MEGIN, the head points will be stored in the `.fif` file.
   type: string
   format: file_relative
 DigitizedHeadPointsCoordinateSystem:
@@ -1418,8 +1418,8 @@ HeadCoilCoordinates:
     (for example, `{"NAS": [12.7,21.3,13.9], "LPA": [5.2,11.3,9.6],
     "RPA": [20.2,11.3,9.1]}`).
     Note that coils are not always placed at locations that have a known
-    anatomical name (for example, for Elekta, Yokogawa systems); in that case
-    generic labels can be used
+    anatomical name (for example, for Neuromag/Elekta/MEGIN, Yokogawa systems);
+    in that case generic labels can be used
     (for example, `{"coil1": [12.2,21.3,12.3], "coil2": [6.7,12.3,8.6],
     "coil3": [21.9,11.0,8.1]}`).
     Each array MUST contain three numeric values corresponding to x, y, and z
@@ -1436,7 +1436,7 @@ HeadCoilFrequency:
   display_name: Head Coil Frequency
   description: |
     List of frequencies (in Hz) used by the head localisation coils
-    ('HLC' in CTF systems, 'HPI' in Elekta, 'COH' in BTi/4D)
+    ('HLC' in CTF systems, 'HPI' in Neuromag/Elekta/MEGIN, 'COH' in BTi/4D)
     that track the subject's head position in the MEG helmet
     (for example, `[293, 307, 314, 321]`).
   anyOf:
@@ -3434,8 +3434,8 @@ TaskName:
     No two tasks should have the same name.
     The task label included in the file name is derived from this `"TaskName"` field
     by removing all non-alphanumeric characters (that is, all except those matching `[0-9a-zA-Z]`).
-    For example `"TaskName"` `"faces n-back"` will correspond to task label
-    `facesnback`.
+    For example `"TaskName"` `"faces n-back"` or `"head nodding" will correspond to task labels
+    `facesnback` and `headnodding`, respectively.
   type: string
 TermURL:
   name: TermURL

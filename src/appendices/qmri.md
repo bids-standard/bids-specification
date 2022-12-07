@@ -196,7 +196,7 @@ Explanation of the table:
 <!--
 This block generates a filename templates.
 The inputs for this macro can be found in the directory
-  src/schema/rules/datatypes
+  src/schema/rules/files/raw
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->

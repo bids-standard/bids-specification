@@ -16,7 +16,7 @@ EyeTrackingRecommended:
       description: |
         The sampling frequency of data channels that deviate from the main
          sampling frequency SHOULD be specified in the `channels.tsv` file.
-    ManufacturersModelName: 
+    ManufacturersModelName:
       level: recommended
       description: |
         Manufacturer's designation of the eye-tracker model (for example"

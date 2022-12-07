@@ -99,7 +99,6 @@ anat_parametric_discrete_segmentation:
     - .json
     - .tsv
 
-
 anat_nonparametric_discrete_segmentation:
   $ref: rules.files.raw.anat.nonparametric
   suffixes:
