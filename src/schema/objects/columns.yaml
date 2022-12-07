@@ -905,57 +905,39 @@ template_z:
     - type: string
       enum:
         - n/a
-eye1_x:
-  name: eye1_x
+eye1_x_coordinate:
+  name: eye1_x_coordinate
   display_name: Eye 1 x-coordinate
   description: |
     Sampled x-coordinate of the first recorded eye.
-  anyOf:
-    - type: integer
-      enum:
-        - n/a
-eye1_y:
-  name: eye1_y
+  type: integer
+eye1_y_coordinate:
+  name: eye1_y_coordinate
   display_name: Eye 1 y-coordinate
   description: |
     Sample y-coordinate of the first recorded eye.
-  anyOf:
-    - type: integer
-      enum:
-        - n/a
-eye1_p:
-  name: eye1_p
+  type: integer
+eye1_pupil_size:
+  name: eye1_pupil_size
   display_name: Eye 1 pupil size
   description: |
     Sample pupil size of the first recorded eye.
-  anyOf:
-    - type: integer
-      enum:
-        - n/a
-eye2_x:
-  name: eye2_x
+  type: integer
+eye2_x_coordinate:
+  name: eye2_x_coordinate
   display_name: Eye 2 x-coordinate
   description: |
     Sampled x-coordinate of the second recorded eye.
-  anyOf:
-    - type: integer
-      enum:
-        - n/a
-eye2_y:
-  name: eye2_y
+  type: integer
+eye2_y_coordinate:
+  name: eye2_y_coordinate
   display_name: Eye 2 y-coordinate
   description: |
     Sampled y-coordinate of the second recorded eye.
-  anyOf:
-    - type: integer
-      enum:
-        - n/a
-eye2_p:
-  name: eye2_p
+  type: integer
+eye2_pupil_size:
+  name: eye2_pupil_size
   display_name: Eye 2 pupil size
   description: |
     Sampled pupil size of the second recorded eye.
-  anyOf:
-    - type: integer
-      enum:
-        - n/a
+  type: integer

@@ -7,7 +7,6 @@
 ---
 EyeTrackingRecommended:
   selectors:
-    - modality == "eyetrack"
     - datatype == "eyetrack"
     - suffix == "eyetrack"
   fields:
@@ -25,7 +24,6 @@ EyeTrackingRecommended:
     DeviceSerialNumber: recommended
 EyeTrackingRequired:
   selectors:
-    - modality == "eyetrack"
     - datatype == "eyetrack"
     - suffix == "eyetrack"
   fields:
@@ -38,7 +36,6 @@ EyeTrackingRequired:
     ScreenDistance: required
 EyeTrackingMoreRecommended:
   selectors:
-    - modality == "eyetrack"
     - datatype == "eyetrack"
     - suffix == "eyetrack"
   fields:

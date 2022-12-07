@@ -26,6 +26,8 @@ eye-tracking context.
 With EyeTracking-BIDS, we wish to promote the adoption of good practices in
 the management of scientific data.
 
+### Template:
+
 <!--
 This block generates a filetree exanple.
 A guide for editing it can be found at
@@ -38,6 +40,7 @@ A guide for editing it can be found at
       "<datatype>": {
          "<matches>_eyetrack.json": "",
          "<matches>_eyetrack.tsv.gz": "",
+         "<matches>_eyetrack.tsv": "",
          },
       }
    }
@@ -53,11 +56,11 @@ before the suffix. For example if fMRI is considered the main modality with
 files such as `sub-01_ses-1_task-pRF_run-1_bold.nii.gz`, `<matches>` would
 then correspond to `sub-01_ses-1_task-pRF_run-1`.
 
-The eye-tracking data must be saved in `.tsv.gz` format.<br>
-The tabular files consist of one row per event and a set of REQUIRED and
-OPTIONAL columns. As with all other tabular data, `_eyetrack.tsv.gz` files MAY
-be accompanied by a JSON file describing the columns in detail (see
-[Tabular Files](../common-principles.md#tabular-files)).
+### Tabular file (`*_eyetrack.tsv.gz` or `*_eyetrack.tsv`)
+
+The eye-tracking data must be saved in `.tsv.gz` or `.tsv` format.<br>
+The tabular files consist of one row per sample and a set of REQUIRED and
+OPTIONAL columns.
 
 <!--
 This block generates a columns table.
