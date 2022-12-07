@@ -47,7 +47,9 @@ MRISequenceSpecifics:
   selectors:
     - modality == "mri"
   fields:
-    PulseSequenceType: recommended
+    PulseSequenceType:
+      level: recommended
+      description_addendum: For example, `"MPRAGE"`, `"Gradient Echo EPI"`, `"Spin Echo EPI"`, `"Multiband gradient echo EPI"`.
     ScanningSequence: recommended
     SequenceVariant: recommended
     ScanOptions: recommended

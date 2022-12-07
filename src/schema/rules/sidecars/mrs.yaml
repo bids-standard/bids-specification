@@ -30,6 +30,7 @@ MRSScannerHardware:
       level: recommended
     ReceiveCoilName: recommended
     ReceiveCoilActiveElements: recommended
+    NumberReceiveCoilActiveElements: recommended
 
 MRSSequenceSpecifics:
   selectors:
@@ -37,10 +38,19 @@ MRSSequenceSpecifics:
   fields:
     PulseSequenceType:
       level: recommended
-      description_addendum: A general description of the pulse sequence used for the scan (for example, "sLASER”, “MEGA-PRESS", "EPSI", "Metabolite-cycled MRSI").
+      description_addendum: For example, `"sLASER"`, `"MEGA-PRESS"`, `"EPSI"`, `"Metabolite-cycled MRSI"`.
     ScanningSequence: recommended
     SequenceVariant: recommended
     ScanOptions: recommended
     SequenceName: recommended
     PulseSequenceDetails: recommended
     MRAcquisitionType: recommended
+
+MRSRequiredFields:
+  selectors:
+    - modality == "mrs"
+  fields:
+    ResonantNucleus: required
+    SpectrometerFrequency: required
+    SpectralWidth: required
+    EchoTime: required

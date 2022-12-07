@@ -6,8 +6,9 @@ Please see [Citing BIDS](../01-introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
-Several [example MRS datasets](https://github.com/bids-standard/bids-examples#mrs-datasets)
-have been formatted using this specification and can be used for practical guidance when curating a new dataset.
+Several [example MRS datasets](https://github.com/bids-standard/bids-examples#mrs-datasets) have
+been formatted using this specification and can be used for practical guidance when curating a new
+dataset.
 
 ## MRS data
 
@@ -24,59 +25,54 @@ and a guide for using macros can be found at
    suffixes=["svs", "mrsi", "ref", "unloc"])
 }}
 
-Each manufacturer has its own file format (sometimes multiple formats) for exporting MRS data from the scanner console for offline processing.
-GE exports a P-file that stores unprocessed, un-coil-combined data with metadata embedded in a proprietary data header.
-Philips has multiple export formats, the most common being the SDAT/SPAR format.
-The `*.sdat` file contains either each coil-combined average stored separately or all averages summed into a signal average.
-The `*.spar` file is a plaintext file describing acquisition parameters.
-It is also possible to export raw data as .data/.list and DICOM files.
-Siemens scanners allow data export in 4 formats:
-1) a proprietary DICOM structured file known as IMA (`*.ima`);
-2) a conventional DICOM MR Spectroscopy Storage format (`*.dcm`);
-3) RDA (`*.rda`) a proprietary file format with a text formatted header followed by the binary data points and
-4) TWIX (`*.dat`) a proprietary file format designed for storing unreconstructed and unprocessed MRS data from each individual coil element.
-IMA, DICOM MRS and RDA formats are typically used to export the reconstructed and processed data,
-however the sequence designer may choose to also allow the export of un-averaged transients or data from individual coil elements.
-Contrarily, Bruker stores two binary files: one file stores each average separately,
-while the other file stores the sum of the average.
-Bruker stores the sequence, voxel position, and voxel orientation;
-other metadata are stored in a separate plaintext file.
+Each manufacturer has its own file format (sometimes multiple formats) for exporting MRS data from
+the scanner console for offline processing. GE exports a P-file that stores unprocessed,
+un-coil-combined data with metadata embedded in a proprietary data header. Philips has multiple
+export formats, the most common being the SDAT/SPAR format. The `*.sdat` file contains either each
+coil-combined average stored separately or all averages summed into a signal average. The `*.spar`
+file is a plaintext file describing acquisition parameters. It is also possible to export raw data
+as `*.data`/`*.list` and DICOM files. Siemens scanners allow data export in four formats: i) a
+proprietary DICOM structured file known as IMA (`*.ima`); ii) a conventional DICOM MR Spectroscopy
+Storage format (`*.dcm`); iii) RDA (`*.rda`) a proprietary file format with a text formatted header
+followed by the binary data points; and iv) TWIX (`*.dat`) a proprietary file format designed for
+storing unreconstructed and unprocessed MRS data from each individual coil element. IMA, DICOM MRS,
+and RDA formats are typically used to export reconstructed and processed data; however, the sequence
+designer may choose to also allow the export of un-averaged transients or data from individual coil
+elements. Contrarily, Bruker stores two binary files: one file stores each average separately, while
+the other file stores the sum of the average. Bruker stores the sequence name, voxel position, voxel
+orientation, and other metadata in a separate plaintext file. These files are considered source data
+and, if present, MUST be stored x.
 
-Due to the diversity in manufacturer MRS data formats, we define a single standardized format for storing MRS data.
-For compliance, data MUST be converted to the [NIfTI-MRS format](https://onlinelibrary.wiley.com/doi/10.1002/mrm.29418) (`*.nii[.gz]`),
-a data format based on the NIfTI framework designed to accommodate the nuances of raw MRS data.
-All necessary information to parse this `*.nii[.gz]` file (e.g., spectrometer frequency,
-echo time, repetition time, etc.) will be stored in a sidecar JSON (`*.json`) file.
-Conversion of proprietary MRS file formats to NIfTI-MRS and extraction of
-some (but not all) BIDS-compliant metadata can be performed using [spec2nii](https://github.com/wtclarke/spec2nii).
-Note that the "rawness" of data stored in the NIfTI-MRS file will depend
-on what format the source data are in.
-It is RECOMMENDED that users export their source data in an appropriately raw format
-prior to conversion.
+Due to the diversity in manufacturers' MRS data formats, raw data MUST be converted into the
+[NIfTI-MRS format](https://onlinelibrary.wiley.com/doi/10.1002/mrm.29418) (`*.nii[.gz]`). This
+format is based on the NIfTI framework and is designed to accommodate the nuances of raw MRS data.
+All necessary information to parse this `*.nii[.gz]` file (e.g., spectrometer frequency, echo time,
+repetition time, etc.) are stored in an JSON header extension. Conversion of proprietary MRS file
+formats to NIfTI-MRS and extractiaon of some (but not all) BIDS-compliant metadata can be performed
+using [spec2nii](https://github.com/wtclarke/spec2nii). Note that the "rawness" of data stored in
+the NIfTI-MRS file will depend on the format of the source data. It is RECOMMENDED that users export
+their source data from the scanner in an appropriately raw format prior to conversion.
 
-For MRSI data, "raw" signifies spatially reconstructed data
-(i.e., in image space rather than (*k*,*t*)-space),
-given the complexity and diversity of sampling approaches.
-NIfTI-MRS is not designed to store data that has not been spatially reconstructed.
+For MRSI data, "raw" signifies spatially reconstructed data (that is, in image space rather than
+(*k*,*t*)-space), given the complexity and diversity of sampling approaches. Note that NIfTI-MRS is
+not designed to store data that has not been spatially reconstructed.
 
 ### Single-voxel spectroscopy and MRS imaging
 
-A major distinction between MRS acquisitions is whether the acquisition technique probes
-spectral information from a single volume (single-voxel spectroscopy, SVS)
-or encodes this information along 1, 2 or 3 spatial dimensions
-resulting in multiple subvolumes (MRS imaging, MRSI).
-To avoid confusion, a suffix MUST be included in the filename and MUST be denoted as `svs` or `mrsi`.
-For cases where localization is not used, the suffix `unloc` SHOULD be used.
+A major distinction between MRS acquisitions is whether the acquisition technique probes spectral
+information from a single volume (single-voxel spectroscopy, SVS) or encodes this information along
+1, 2, or 3 spatial dimensions resulting in multiple subvolumes (MRS imaging, MRSI). To avoid
+confusion, the suffixes `svs` amd `mrsi` MUST be used to distinguish the two techniques. For cases
+where localization is not used, the suffix `unloc` MUST be used.
 
-Furthermore, it is common to acquire an additional MRS dataset that may serve
-as a reference for scaling metabolite levels (e.g., to obtain concentrations)
-and/or aid preprocessing steps such as eddy-current correction, RF coil combination, phasing, and frequency calibration.
-This could be either an external reference (e.g., a phantom or a synthetic signal) or,
-more typically, an internal tissue water reference.
-For such datasets, the suffix `ref` MUST be used.
-Should multiple references exist for a given dataset, the user MAY use the `acq-<label>` entity to distinguish the files.
-For example, `sub-01_acq-conc_ref.nii.gz` and `sub-01_acq-ecc_ref.nii.gz` could be used
-to name two references to be used for concentration scaling and eddy-current correction, respectively.
+Furthermore, it is common to acquire an additional MRS dataset that may serve as a reference for
+scaling metabolite levels (e.g., to obtain concentrations) and/or aid preprocessing steps such as
+eddy-current correction, RF coil combination, phasing, and frequency calibration. This could be
+either an external reference (e.g., a phantom or a synthetic signal) or, more typically, an internal
+tissue water reference. For such datasets, the suffix `ref` MUST be used. Should multiple references
+exist for a given dataset, the user MAY use the `acq-<label>` entity to distinguish the files. For
+example, `sub-01_acq-conc_ref.nii.gz` and `sub-01_acq-ecc_ref.nii.gz` could be used to name two
+references to be used for concentration scaling and eddy-current correction, respectively.
 
 | **Name**                                        | **`suffix`**         | **Description**                                                                                                                                                                                      |
 | ------------------------------------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -87,16 +83,15 @@ to name two references to be used for concentration scaling and eddy-current cor
 
 ### MRS sequences
 
-Given the large variety of MRS sequences, there will be times when
-providing sufficient detail of acquisition parameters is helpful
-or indeed necessary to distinguish between datasets in a given study.
-Thus, it is beneficial to provide sufficient detail in each sidecar JSON file.
+Given the large variety of MRS sequences, there will be times when providing sufficient detail of
+acquisition parameters is helpful or indeed necessary to distinguish between datasets in a given
+study. Thus, it is beneficial to provide sufficient detail in each sidecar JSON file.
 
-The following labels for the most commonly used in vivo MRS sequences/techniques are
-OPTIONAL to use when using the `acq-<label>` entity in the filename.
-Users are free to choose any label they wish as long as they are consistent
-across participants and sessions and use only legal label characters.
-If used, the chosen label SHOULD also be described in the `PulseSequenceType` field in the sidecar JSON file.
+The following labels for the most commonly used in vivo MRS sequences/techniques are OPTIONAL to use
+when using the `acq-<label>` entity in the filename. Users are free to choose any label they wish as
+long as they are consistent across participants and sessions and use only legal label characters. If
+used, the chosen label SHOULD also be described in the `PulseSequenceType` field in the sidecar JSON
+file.
 
 | **Name**                                        | **`label`**         | **Description**                                                                                                                                                                                      |
 | ------------------------------------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -113,13 +108,20 @@ If used, the chosen label SHOULD also be described in the `PulseSequenceType` fi
 | FID spectroscopy                   | fid                    | FID spectroscopy is a pulse-acquire acquisition where an excitation pulse is followed by direct acquisition of the FID. When combined with slice- or slab-selection, , this approach is most often used in MRSI (i.e., FID-MRSI).         |
 | Spin-echo spectroscopy             | spinecho               | An MRS experiment whereby the MR signal is detected using a spin-echo acquisition: e.g., 90°–180°–acq.          |
 
-Each `<label>` in the table MAY be combined with another to, for instance,
-describe the localization approach used for more specific description of the acquisition.
-For example, `megaspecial`, `jpress`, `dwslaser`, and so on.
+Each `<label>` in the table MAY be combined with another to describe the localization approach used
+for more specific description of the acquisition. For example, `megaspecial`, `jpress`, `dwslaser`,
+and so on.
 
-## MRS metadata JSON sidecar
+## MRS metadata
 
-### Scanner Hardware
+MRS data MUST be described by metadata fields, stored in sidecar JSON files (`*.json`).
+
+### Common metadata fields
+
+Metadata described in the following sections are shared with other MR modalities
+and SHOULD be present in sidecar JSON files.
+
+#### Scanner hardware
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -131,7 +133,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("mrs.MRSScannerHardware") }}
 
-### Sequence Specifics
+#### Sequence specifics
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -142,5 +144,41 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_sidecar_table("mrs.MRSSequenceSpecifics") }}
+
+### MRS-specific fields
+
+Metadata fields that MUST be present:
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("mrs.MRSRequiredFields") }}
+
+SHOULD be present:
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+
+MAY be present:
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 
 ### Example `*_svs.json`

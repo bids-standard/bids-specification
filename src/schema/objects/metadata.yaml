@@ -2116,6 +2116,12 @@ NumberOfVolumesDiscardedByUser:
     `"NumberOfVolumesDiscardedByUser"` field.
   type: integer
   minimum: 0
+NumberReceiveCoilActiveElements:
+  name: NumberReceiveCoilActiveElements
+  display_name: Number of Receive Coil Active Elements
+  description: |
+    The number of active RF elements used by the receive coil.
+  type: integer
 NumberShots:
   name: NumberShots
   display_name: Number Shots
@@ -2389,9 +2395,7 @@ PulseSequenceType:
   name: PulseSequenceType
   display_name: Pulse Sequence Type
   description: |
-    A general description of the pulse sequence used for the scan
-    (for example, `"MPRAGE"`, `"Gradient Echo EPI"`, `"Spin Echo EPI"`,
-    `"Multiband gradient echo EPI"`).
+    A general description of the pulse sequence used for the scan.
   type: string
 Purity:
   name: Purity
@@ -2605,6 +2609,19 @@ Resolution:
     - type: string
     - type: object
       additionalProperties:
+        type: string
+ResonantNucleus:
+  name: ResonantNucleus
+  display_name: Resonant Nucleus
+  description: |
+    The isotope of interest of an MR experiment (for example, `"1H"`, `"13C"`, `"31P"`).
+    For multi-nuclei experiments such as <sup>1</sup>H-[<sup>13</sup>C] MR,
+    an array can be used: `["1H", "13C"]`.
+    Corresponds to DICOM Tag 0018, 9100 `Resonant Nucleus`.
+  anyOf:
+    - type: string
+    - type: array
+      items:
         type: string
 SEEGChannelCount:
   name: SEEGChannelCount
@@ -3037,6 +3054,27 @@ SpecificRadioactivityUnits:
     - type: string
       enum:
         - n/a
+SpectralWidth:
+  name: SpectralWidth
+  display_name: Spectral Width
+  description: |
+    The spectral bandwidth of the MR signal (in Hz) that is sampled (for example, `2000`).
+    Corresponds to DICOM Tag 0018, 9052 `Spectral Width`.
+  type: number
+SpectrometerFrequency:
+  name: SpectrometerFrequency
+  display_name: Spectrometer Frequency
+  description: |
+    The frequency of the spectrometer (in MHz).
+    For example, this could be `127.764` for a 3T scanner tuned
+    to the resonant frequency of <sup>1</sup>H.
+    For multi-nuclei experiments such as <sup>1</sup>H-[<sup>13</sup>C] MR at 3T,
+    an array can be used: `[127.731, 32.125]`.
+  anyOf:
+    - type: number
+    - type: array
+      items:
+        type: number
 SpoilingGradientDuration:
   name: SpoilingGradientDuration
   display_name: Spoiling Gradient Duration
