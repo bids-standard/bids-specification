@@ -12,11 +12,7 @@ EyeTracking:
     eye2_x: optional
     eye2_y: optional
     eye2_p: optional
-<<<<<<< HEAD
   initial_columns:
     - sample
   additional_columns: allowed_if_defined
   
-=======
-  additional_columns: allowed_if_defined
->>>>>>> 77bf48294b86b39dad1a1821d838c42466ade3db
