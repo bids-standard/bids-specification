@@ -112,6 +112,49 @@ duration:
     - type: string
       enum:
         - n/a
+eye1_x_coordinate:
+  name: eye1_x_coordinate
+  display_name: Eye 1 x-coordinate
+  description: |
+    Gaze position x-coordinate of the first recorded eye.
+  type: integer
+eye1_y_coordinate:
+  name: eye1_y_coordinate
+  display_name: Eye 1 y-coordinate
+  description: |
+    Gaze position y-coordinate of the first recorded eye.
+  type: integer
+eye1_pupil_size:
+  name: eye1_pupil_size
+  display_name: Eye 1 pupil size
+  description: |
+    Pupil size of the first recorded eye.
+  type: integer
+eye2_x_coordinate:
+  name: eye2_x_coordinate
+  display_name: Eye 2 x-coordinate
+  description: |
+    Gaze position x-coordinate of the second recorded eye.
+  type: integer
+eye2_y_coordinate:
+  name: eye2_y_coordinate
+  display_name: Eye 2 y-coordinate
+  description: |
+    Gaze position y-coordinate of the second recorded eye.
+  type: integer
+eye2_pupil_size:
+  name: eye2_pupil_size
+  display_name: Eye 2 pupil size
+  description: |
+    Pupil size of the second recorded eye.
+  type: integer
+eye_sample:
+  name: eye_sample
+  display_name: Eye-tracking sample onset
+  description: |
+    Onset of the sampled recorded eye(s) gaze position coordinates
+    and/or pupil size. According to the sampling scheme of the eye-tracker.
+  type: integer
 filename:
   name: filename
   display_name: Filename
@@ -905,39 +948,3 @@ template_z:
     - type: string
       enum:
         - n/a
-eye1_x_coordinate:
-  name: eye1_x_coordinate
-  display_name: Eye 1 x-coordinate
-  description: |
-    Sampled x-coordinate of the first recorded eye.
-  type: integer
-eye1_y_coordinate:
-  name: eye1_y_coordinate
-  display_name: Eye 1 y-coordinate
-  description: |
-    Sample y-coordinate of the first recorded eye.
-  type: integer
-eye1_pupil_size:
-  name: eye1_pupil_size
-  display_name: Eye 1 pupil size
-  description: |
-    Sample pupil size of the first recorded eye.
-  type: integer
-eye2_x_coordinate:
-  name: eye2_x_coordinate
-  display_name: Eye 2 x-coordinate
-  description: |
-    Sampled x-coordinate of the second recorded eye.
-  type: integer
-eye2_y_coordinate:
-  name: eye2_y_coordinate
-  display_name: Eye 2 y-coordinate
-  description: |
-    Sampled y-coordinate of the second recorded eye.
-  type: integer
-eye2_pupil_size:
-  name: eye2_pupil_size
-  display_name: Eye 2 pupil size
-  description: |
-    Sampled pupil size of the second recorded eye.
-  type: integer

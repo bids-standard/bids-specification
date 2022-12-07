@@ -5,12 +5,9 @@ EyeTracking:
     - datatype == "eyetrack"
     - suffix == "eyetrack"
   extension:
-    - '.tsv'
+    - '.tsv.gz'
   columns:
-    sample:
-      level: required
-      description: |
-        Onset of the event according to the sampling scheme of the recorded modality.
+    eye_sample: required
     eye1_x_coordinate: required
     eye1_y_coordinate: required
     eye1_pupil_size: optional
@@ -18,4 +15,5 @@ EyeTracking:
     eye2_y_coordinate: optional
     eye2_pupil_size: optional
   initial_columns:
-    - sample
+    - eye_sample
+  additional_columns: allowed_if_defined
