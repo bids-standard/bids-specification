@@ -30,4 +30,4 @@ nirs:
     - nirs
 eyetrack:
   datatypes:
-    - eeg
+    - eyetrack

@@ -4,10 +4,8 @@ EyeTracking:
     - modality == "eyetrack"
     - datatype == "eyetrack"
     - suffix == "eyetrack"
-    - extension:
-      anyof:
-        - '.tsv'
-        - '.tsv.gz'
+  extension:
+    - '.tsv'
   columns:
     sample:
       level: required

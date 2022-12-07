@@ -40,7 +40,6 @@ A guide for editing it can be found at
       "<datatype>": {
          "<matches>_eyetrack.json": "",
          "<matches>_eyetrack.tsv.gz": "",
-         "<matches>_eyetrack.tsv": "",
          },
       }
    }
@@ -56,9 +55,9 @@ before the suffix. For example if fMRI is considered the main modality with
 files such as `sub-01_ses-1_task-pRF_run-1_bold.nii.gz`, `<matches>` would
 then correspond to `sub-01_ses-1_task-pRF_run-1`.
 
-### Tabular file (`*_eyetrack.tsv.gz` or `*_eyetrack.tsv`)
+### Tabular file (`*_eyetrack.tsv.gz`)
 
-The eye-tracking data must be saved in `.tsv.gz` or `.tsv` format.<br>
+The eye-tracking data must be saved in `.tsv.gz` format.<br>
 The tabular files consist of one row per sample and a set of REQUIRED and
 OPTIONAL columns.
 
