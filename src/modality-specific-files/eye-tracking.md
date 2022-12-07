@@ -127,7 +127,12 @@ A guide for using macros can be found at
 "SampleCoordinateUnits": "pixel",
 "SampleCoordinateSystem": "gaze-on-screen",
 "EnvironmentCoordinates": "top-left",
-"IncludedEyeMovementEvents": [["Start of fixation", "SFIX"],["End of fixation", "EFIX"],["Start of saccade", "SSACC"], ["End of saccade", "ESACC"],["Start of blink", "SBLINK"], ["End of blink", "EBLINK"]],
+"IncludedEyeMovementEvents": [["Start of fixation", "SFIX"],
+                              ["End of fixation", "EFIX"],
+                              ["Start of saccade", "SSACC"],
+                              ["End of saccade", "ESACC"],
+                              ["Start of blink", "SBLINK"],
+                              ["End of blink", "EBLINK"]],
 "DetectionAlgorithm": "SR-Research",
 "StartMessage": "SENTENCESTART",
 "EndMessage": "SENTENCESTOP",
@@ -136,7 +141,8 @@ A guide for using macros can be found at
 "ScreenSize": [38.6, 29],
 "ScreenResolution": [1024, 768],
 "ScreenDistance": 60,
-"ScreenAOIDefinition": ["square",["x_start", "x_stop", "y_start", "y_stop"]]
+"ScreenAOIDefinition": ["square",
+                        ["x_start", "x_stop", "y_start", "y_stop"]]
 }
 ```
 
