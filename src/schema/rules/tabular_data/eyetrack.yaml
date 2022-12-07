@@ -20,4 +20,3 @@ EyeTracking:
     eye2_pupil_size: optional
   initial_columns:
     - sample
-  additional_columns: allowed_if_defined
