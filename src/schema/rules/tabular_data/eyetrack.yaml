@@ -1,11 +1,9 @@
 ---
 EyeTracking:
- selectors:
+  selectors:
     - datatype == "eyetrack"
     - suffix == 'eyetrack'
     - extension == ".tsv.gz"
-  initial_columns:
-    - sample
   columns:
     sample: required
     eye1_x: required
@@ -14,4 +12,7 @@ EyeTracking:
     eye2_x: optional
     eye2_y: optional
     eye2_p: optional
+  initial_columns:
+    - sample
   additional_columns: allowed_if_defined
+  

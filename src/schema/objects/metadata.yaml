@@ -3028,8 +3028,7 @@ ScreenDistance:
   display_name: Screen Distance
   description: |
     Screen distance in cm
-    (for example `60` for a screen distance of 60 cm),
-    if no screen use `n/a`.
+    (for example `60` for a screen distance of 60 cm), if no screen use `n/a`.
   anyOf:
     - type: number
       unit: cm
