@@ -15,4 +15,3 @@ EyeTracking:
   initial_columns:
     - sample
   additional_columns: allowed_if_defined
-  
