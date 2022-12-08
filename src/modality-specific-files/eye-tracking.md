@@ -130,14 +130,13 @@ A guide for using macros can be found at
 
 -   Combined behavior and eye-tracking fixation and saccade data,
     measured with an Eyelink (SR Research), from 8 particpants reading 320
-    embedded target words and invisible boundary
-    [Gagl, 2016](https://peerj.com/articles/2467/).
+    embedded target words and invisible boundary (see [Gagl, 2016](https://peerj.com/articles/2467/)).
 
     [BIDS dataset](https://tobedefined.soon)
 
 -   Combined behavior and eye-tracking position and pupil data,
     measured with an Eyelink (SR Research), from 26 particpants experiencing
-    perception multistability [Brascamp et.al, 2021](https://doi.org/10.7554/eLife.66161).
+    perception multistability (see [Brascamp et.al, 2021](https://doi.org/10.7554/eLife.66161)).
 
     [BIDS dataset](https://tobedefined.soon)
 
