@@ -144,7 +144,7 @@ ScreenAOIDefinition:
   name: ScreenAOIDefinition
   display_name: Definition of the eye-tracking Screen Area of Interest
   description: |
-    Define, what shape are the Screen AOIs and what coordinates are used.
+    A description of the shape of the Screen AOIs and what coordinates are used.
     `["square", ["x_start", "x_stop", "y_start", "y_stop"]]`
     Other options:
     `"custom"/"circle"/"triangle", [["x", "y"], ["x", "y"], ["x", "y"], and so on.]`
@@ -2669,7 +2669,7 @@ RecordedEye:
   name: RecordedEye
   display_name: Recorded Eye
   description: |
-    Specification for which eye was tracked (`"left"`, `"right"`, `"both"`)
+    Specification for which eye was tracked.
   type: string
   enum:
     - left
@@ -2999,8 +2999,7 @@ ScreenDistance:
   name: ScreenDistance
   display_name: Screen Distance
   description: |
-    Screen distance in cm
-    (for example `60` for a screen distance of 60 cm), if no screen use `n/a`.
+    Distance between the participant's eye and the screen. If no screen was used, use `n/a`.
   anyOf:
     - type: number
       unit: cm
