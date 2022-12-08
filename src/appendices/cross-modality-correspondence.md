@@ -15,7 +15,7 @@ Norgaard et al. 2019, [doi:10.1016/j.neuroimage.2019.05.055](https://doi.org/10.
 
 ## MRS-MRI correspondence
 
-It is typical to acquire a high-resolution 3D anatomical MR image alongside MRS data for
+It is typical to acquire high-resolution 3D anatomical MR images alongside MRS data for
 voxel/slab placement, co-registration, and partial volume tissue correction of metabolite concentrations.
 To avoid incorrectly matching an MRS dataset with a corresponding anatomical MR image,
-it is RECOMMENDED that the field `AnatomicalImage` be included in the MRS sidecar JSON file.
+it is RECOMMENDED that the field `AnatomicalImage` be included in the MRS sidecar JSON files.

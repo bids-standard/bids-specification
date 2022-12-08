@@ -50,7 +50,9 @@ MRISequenceSpecifics:
     PulseSequenceType:
       level: recommended
       description_addendum: For example, `"MPRAGE"`, `"Gradient Echo EPI"`, `"Spin Echo EPI"`, `"Multiband gradient echo EPI"`.
-    ScanningSequence: recommended
+    ScanningSequence:
+      level: recommended
+      description_addendum: Corresponds to DICOM Tag 0018, 0020 `Scanning Sequence`.
     SequenceVariant: recommended
     ScanOptions: recommended
     SequenceName: recommended
@@ -174,6 +176,13 @@ MRITimingParameters:
       level_addendum: |
         required if corresponding fieldmap data is present,
         or the data comes from a multi-echo sequence or Arterial Spin Labeling.
+      description_addendum: |
+        The data type array provides a value for each volume in a 4D dataset and
+        should only be used when the volume timing is critical for interpretation
+        of the data, such as in
+        [ASL](SPEC_ROOT/04-modality-specific-files/01-magnetic-resonance-imaging-data.md#\
+        arterial-spin-labeling-perfusion-data)
+        or variable echo time fMRI sequences.
       issue:
         name: ECHO_TIME_NOT_DEFINED
         message: |
@@ -243,6 +252,13 @@ MRIFlipAngleLookLockerFalse:
     FlipAngle:
       level: recommended
       level_addendum: required if LookLocker is set to `true`
+      description_addendum: |
+        The data type array provides a value for each volume in a 4D dataset and
+        should only be used when the volume timing is critical for interpretation of
+        the data, such as in
+        [ASL](SPEC_ROOT/04-modality-specific-files/01-magnetic-resonance-imaging-data.md#\
+        arterial-spin-labeling-perfusion-data)
+        or variable flip angle fMRI sequences.
 
 MRIFlipAngleLookLockerTrue:
   selectors:
@@ -251,6 +267,13 @@ MRIFlipAngleLookLockerTrue:
   fields:
     FlipAngle:
       level: required
+      description_addendum: |
+        The data type array provides a value for each volume in a 4D dataset and
+        should only be used when the volume timing is critical for interpretation of
+        the data, such as in
+        [ASL](SPEC_ROOT/04-modality-specific-files/01-magnetic-resonance-imaging-data.md#\
+        arterial-spin-labeling-perfusion-data)
+        or variable flip angle fMRI sequences.
       issue:
         name: LOOK_LOCKER_FLIP_ANGLE_MISSING
         message: |

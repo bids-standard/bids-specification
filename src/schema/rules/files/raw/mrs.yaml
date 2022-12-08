@@ -41,7 +41,7 @@ mrsi:
     nucleus: optional
     volume: optional
 
-references:
+reference:
   suffixes:
     - ref
   extensions:

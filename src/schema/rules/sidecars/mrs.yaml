@@ -10,24 +10,16 @@ MRSScannerHardware:
   selectors:
     - modality == "mrs"
   fields:
-    Manufacturer:
-      level: recommended
-      description_addendum: Corresponds to DICOM Tag 0008, 0070 `Manufacturer`.
-    ManufacturersModelName:
-      level: recommended
-      description_addendum: Corresponds to DICOM Tag 0008, 1090 `Manufacturers Model Name`.
-    DeviceSerialNumber:
-      level: recommended
-      description_addendum: Corresponds to DICOM Tag 0018, 1000 `DeviceSerialNumber`.
-    StationName:
-      level: recommended
-      description_addendum: Corresponds to DICOM Tag 0008, 1010 `Station Name`.
-    SoftwareVersions:
-      level: recommended
-      description_addendum: Corresponds to DICOM Tag 0018, 1020 `Software Versions`.
+    InstitutionName: recommended
+    InstitutionAddress: recommended
+    InstitutionalDepartmentName: recommended
+    Manufacturer: recommended
+    ManufacturersModelName: recommended
+    DeviceSerialNumber: recommended
+    StationName: recommended
+    SoftwareVersions: recommended
     HardcopyDeviceSoftwareVersion: DEPRECATED
-    MagneticFieldStrength:
-      level: recommended
+    MagneticFieldStrength: recommended
     ReceiveCoilName: recommended
     ReceiveCoilActiveElements: recommended
     NumberReceiveCoilActiveElements: recommended
@@ -38,13 +30,12 @@ MRSSequenceSpecifics:
   fields:
     PulseSequenceType:
       level: recommended
-      description_addendum: For example, `"sLASER"`, `"MEGA-PRESS"`, `"EPSI"`, `"Metabolite-cycled MRSI"`.
-    ScanningSequence: recommended
-    SequenceVariant: recommended
-    ScanOptions: recommended
+      description_addendum: |
+        For example, `"sLASER"`, `"MEGA-PRESS"`, `"EPSI"`, `"Metabolite-cycled MRSI"`.
+    ScanningSequence__mrs: recommended
     SequenceName: recommended
     PulseSequenceDetails: recommended
-    MRAcquisitionType: recommended for MRSI
+    MRAcquisitionType__mrs: recommended for MRSI
 
 MRSRequiredFields:
   selectors:
@@ -61,7 +52,7 @@ MRSRecommendedFields:
   fields:
     NumberOfSpectralPoints: recommended
     NumberOfTransients: recommended for SVS
-    RepetitionTime: recommended
+    RepetitionTime__mrs: recommended
     MixingTime: recommended
     InversionTime: recommended for inversion recovery data
     FlipAngle: recommended
@@ -73,10 +64,26 @@ MRSRecommendedFields:
     EditTarget: recommended for edited data
     EditPulse: recommended for edited data
     EditCondition: recommended for edited data
-    WaterSuppressed: recommended
+    WaterSuppression: recommended
     WaterSuppressionTechnique: recommended
+    OuterVolumeSuppression: recommended
     EncodingTechnique: recommended for MRSI
     B0ShimmingTechnique: recommended
-    OuterVolumeSuppression: recommended
     ReferenceSignal: recommended if MRS reference data are present
     AnatomicalImage: recommended if anatomical MRI data are present
+
+MRSOptionalFields:
+  selectors:
+    - modality == "mrs"
+  fields:
+    ChemicalShiftOffset: optional
+    ChemicalShiftReference: optional
+    EchoAcquisition: optional
+    ParallelReductionFactorInPlane: optional
+    ParallelAcquisitionTechnique: optional
+    MultibandAccelerationFactor: optional
+    NumberTransmitCoilActiveElements: optional
+    B1ShimmingTechnique: optional
+    PulseSequenceTiming: optional
+    PulseSequencePulses: optional
+    ReceiveGain: optional
