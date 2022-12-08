@@ -6,18 +6,18 @@ nav:
       - Common principles: common-principles.md
       - Modality agnostic files: modality-agnostic-files.md
       - Modality specific files:
-        - Behavioral experiments (with no neural recordings): modality-specific-files/behavioral-experiments.md
-        - Electroencephalography: modality-specific-files/electroencephalography.md
-        - Eye Tracking: modality-specific-files/eye-tracking.md
-        - Genetic Descriptor: modality-specific-files/genetic-descriptor.md
-        - Intracranial Electroencephalography: modality-specific-files/intracranial-electroencephalography.md
         - Magnetic Resonance Imaging: modality-specific-files/magnetic-resonance-imaging-data.md
         - Magnetoencephalography: modality-specific-files/magnetoencephalography.md
+        - Electroencephalography: modality-specific-files/electroencephalography.md
+        - Intracranial Electroencephalography: modality-specific-files/intracranial-electroencephalography.md
+        - Task events: modality-specific-files/task-events.md
+        - Physiological and other continuous recordings: modality-specific-files/physiological-and-other-continuous-recordings.md
+        - Behavioral experiments (with no neural recordings): modality-specific-files/behavioral-experiments.md
+        - Genetic Descriptor: modality-specific-files/genetic-descriptor.md
+        - Positron Emission Tomography: modality-specific-files/positron-emission-tomography.md
         - Microscopy: modality-specific-files/microscopy.md
         - Near-Infrared Spectroscopy: modality-specific-files/near-infrared-spectroscopy.md
-        - Physiological and other continuous recordings: modality-specific-files/physiological-and-other-continuous-recordings.md
-        - Positron Emission Tomography: modality-specific-files/positron-emission-tomography.md
-        - Task events: modality-specific-files/task-events.md
+        - Eye Tracking: modality-specific-files/eye-tracking.md
       - Derivatives:
         - BIDS Derivatives: derivatives/introduction.md
         - Common data types and metadata: derivatives/common-data-types.md
