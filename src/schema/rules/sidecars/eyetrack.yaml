@@ -6,7 +6,6 @@
 ---
 EyeTrackingRequired:
   selectors:
-    - modality == "eyetrack"
     - datatype == "eyetrack"
     - suffix == "eyetrack"
   fields:
@@ -20,7 +19,6 @@ EyeTrackingRequired:
 
 EyeTrackingRecommended:
   selectors:
-    - modality == "eyetrack"
     - datatype == "eyetrack"
     - suffix == "eyetrack"
   fields:

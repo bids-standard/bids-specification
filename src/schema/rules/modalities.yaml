@@ -28,6 +28,3 @@ micr:
 nirs:
   datatypes:
     - nirs
-eyetrack:
-  datatypes:
-    - eyetrack

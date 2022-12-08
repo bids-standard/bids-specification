@@ -8,10 +8,6 @@ eeg:
   display_name: Electroencephalography
   description: |
     Data acquired with EEG.
-eyetrack:
-  display_name: Eye-tracking
-  description: |
-    Data acquired with an eye-tracker.
 ieeg:
   display_name: Intracranial Electroencephalography
   description: |

@@ -1,7 +1,6 @@
 ---
 EyeTracking:
   selectors:
-    - modality == "eyetrack"
     - datatype == "eyetrack"
     - suffix == "eyetrack"
   extension:
