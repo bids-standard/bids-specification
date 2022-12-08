@@ -138,9 +138,9 @@ A guide for using macros can be found at
 
     [BIDS dataset](https://zenodo.org/record/1228659)
 
--   Combined behavior and eye-tracking position and pupil data,
-    measured with an Eyelink (SR Research), from 26 particpants experiencing
-    perception multistability (see [Brascamp et.al, 2021](https://doi.org/10.7554/eLife.66161)).
+-   Combined behavior and eye-tracking position and pupil data, measured with
+    an Eyelink (SR Research),from 26 participants performing a
+    binocular rivalry task (see [Brascamp et.al, 2021](https://doi.org/10.7554/eLife.66161)).
 
     [BIDS dataset](https://doi.org/10.5061/dryad.41ns1rncp)
 
