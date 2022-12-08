@@ -2689,6 +2689,18 @@ RecordingType:
     - continuous
     - epoched
     - discontinuous
+RecordTimeStart:
+  name: RecordTimeStart
+  display_name: Eye-tracking recording start time
+  description: |
+    Eye-tracking timestamp corresponding to the onset (start) of the run.
+  type: number
+RecordTimeEnd:
+  name: RecordTimeEnd
+  display_name: Eye-tracking recording start time
+  description: |
+    Eye-tracking timestamp corresponding to the offset (end) of the run.
+  type: number
 ReferencesAndLinks:
   name: ReferencesAndLinks
   display_name: References And Links
