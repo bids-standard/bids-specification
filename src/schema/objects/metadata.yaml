@@ -2549,8 +2549,10 @@ PupilFitMethod:
   name: PupilFitMethod
   display_name: Pupil Fit Method
   description: |
-    The method employed for fitting the pupil:
+    The method employed for fitting the pupil, for example
     `"centre-of-mass"` or `"ellipse"`.
+    If `"centre-of-mass"` or `"ellipse"` method is used, it is RECOMMENDED to
+    use these exact labels.
   type: string
 Purity:
   name: Purity
@@ -2805,9 +2807,11 @@ SampleCoordinateSystem:
   name: SampleCoordinateSystem
   display_name: SampleCoordinateSystem
   description: |
-    Classical screen-based eye tracking data would be `"gaze-on-screen"`,
-    but `"eye-in-head"` or `"gaze-in-world"` are also possible coordinate systems
-    (for example for virtual reality).
+    Coordinate system of the sampled gaze position data. Generally eye-tracker
+    are set to use `"gaze-on-screen"` coordinate system but you may use
+    `"eye-in-head"` or `"gaze-in-world"` or other alternatives of your choice.
+    If you use the standard `"gaze-on-screen"`, it is RECOMMENDED to use this
+    exact label.
   type: string
 SampleCoordinateUnits:
   name: SampleCoordinateUnit
@@ -3023,7 +3027,9 @@ ScreenResolution:
   anyOf:
     - type: array
       items:
-        type: number
+        type: integer
+        minItems: 2
+        maxItems: 2
     - type: string
       enum:
         - n/a
@@ -3039,6 +3045,8 @@ ScreenSize:
       items:
         type: number
         unit: cm
+        minItems: 2
+        maxItems: 2
     - type: string
       enum:
         - n/a
