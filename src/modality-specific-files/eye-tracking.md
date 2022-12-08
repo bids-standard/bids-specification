@@ -51,7 +51,7 @@ Eye-tracking data MUST be stored in the main data recording modality or
  `beh` when combined with behavioral measures).
 
 In the template filenames, the `<matches>` part corresponds to task filename
-before the suffix. For example if fMRI is considered the main modality with
+before the suffix. For example, when fMRI is considered the main modality with
 files such as `sub-01_ses-1_task-pRF_run-1_bold.nii.gz`, `<matches>` would
 then correspond to `sub-01_ses-1_task-pRF_run-1`.
 
@@ -74,8 +74,8 @@ Throughout BIDS you can indicate missing values with `n/a` (for "not
 available").
 
 We encourage users to put the eye-tracking raw data within the
- `/sourcedata` directory (for example put eye-tracker proprietary files before conversion to tsv.gz format
- in the sourcedata directory).
+`/sourcedata` directory (for example put eye-tracker proprietary files before
+conversion to `tsv.gz` format in the sourcedata directory).
 
 ### Sidecar JSON document (`*_eyetrack.json`)
 
@@ -89,8 +89,8 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("eyetrack.EyeTrackingRequired") }}
 
-Note that ScreenSize `ScreenResolution` and `ScreenDistance` are REQUIRED as
- they are considered essential in eye-tracking data analysis.
+Note that `ScreenSize`, `ScreenResolution` and `ScreenDistance` are REQUIRED as
+they are considered essential in eye-tracking data analysis.
 
 **Specific eye-tracking fields SHOULD be present:**
 
@@ -127,22 +127,25 @@ A guide for using macros can be found at
 ```
 
 ### Example Datasets
+<!--
+1. Datasets will be updated later to adapt to the aggreed format.
+2. We aim at adding a last example converting published dataset from openeuro.
+-->
 
 -   Combined behavior and eye-tracking fixation and saccade data,
     measured with an Eyelink (SR Research), from 8 particpants reading 320
     embedded target words and invisible boundary (see [Gagl, 2016](https://peerj.com/articles/2467/)).
 
-    [BIDS dataset](https://tobedefined.soon)
+    [BIDS dataset](https://zenodo.org/record/1228659)
 
 -   Combined behavior and eye-tracking position and pupil data,
     measured with an Eyelink (SR Research), from 26 particpants experiencing
     perception multistability (see [Brascamp et.al, 2021](https://doi.org/10.7554/eLife.66161)).
 
-    [BIDS dataset](https://tobedefined.soon)
+    [BIDS dataset](https://doi.org/10.5061/dryad.41ns1rncp)
 
 -   Combine resting-state fMRI and eye-tracking data, measured with an Eyelink
-    from 20 participants (2 runs each) fixating at the screen center.
+    (SR research) from 20 participants (2 runs each) keeping their gaze steady
+    at the screen center.
 
     [BIDS dataset](https://openneuro.org/datasets/ds004158/versions/1.0.1)
-
-<!-- TODO Open-neuro dataset, Remi will write something here. -->
