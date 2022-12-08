@@ -2664,7 +2664,7 @@ RecordedEye:
   name: RecordedEye
   display_name: Recorded Eye
   description: |
-    Specification for which eye was tracked (`"left"`, `"right"`, `"both"`)
+    Specification for which eye was tracked.
   type: string
   enum:
     - left
