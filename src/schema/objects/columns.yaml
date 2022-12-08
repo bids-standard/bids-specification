@@ -148,12 +148,12 @@ eye2_pupil_size:
   description: |
     Pupil size of the second recorded eye.
   type: integer
-eye_sample:
+eye_timestamp:
   name: eye_sample
   display_name: Eye-tracking sample onset
   description: |
-    Onset of the sampled recorded eye(s) gaze position coordinates
-    and/or pupil size. According to the sampling scheme of the eye-tracker.
+    Eye-tracker timestamp of the sampled recorded eye(s) gaze position
+    coordinates and/or pupil size.
   type: integer
 filename:
   name: filename
