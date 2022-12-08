@@ -144,7 +144,7 @@ ScreenAOIDefinition:
   name: ScreenAOIDefinition
   display_name: Definition of the eye-tracking Screen Area of Interest
   description: |
-    Define, what shape are the Screen AOIs and what coordinates are used.
+    A description of the shape of the Screen AOIs and what coordinates are used.
     `["square", ["x_start", "x_stop", "y_start", "y_stop"]]`
     Other options:
     `"custom"/"circle"/"triangle", [["x", "y"], ["x", "y"], ["x", "y"], and so on.]`
