@@ -134,18 +134,20 @@ A guide for using macros can be found at
 
 -   Combined behavior and eye-tracking fixation and saccade data,
     measured with an Eyelink (SR Research), from 8 particpants reading 320
-    embedded target words and invisible boundary (see [Gagl, 2016](https://peerj.com/articles/2467/)).
+    embedded target words and invisible boundary (see
+    [Gagl, 2016](https://peerj.com/articles/2467/)).
 
     [BIDS dataset](https://zenodo.org/record/1228659)
 
 -   Combined behavior and eye-tracking position and pupil data, measured with
-    an Eyelink (SR Research),from 26 participants performing a
-    binocular rivalry task (see [Brascamp et.al, 2021](https://doi.org/10.7554/eLife.66161)).
+    an Eyelink (SR Research), from 26 participants performing a
+    binocular rivalry task (see
+    [Brascamp et.al, 2021](https://doi.org/10.7554/eLife.66161)).
 
     [BIDS dataset](https://doi.org/10.5061/dryad.41ns1rncp)
 
 -   Combine resting-state fMRI and eye-tracking data, measured with an Eyelink
-    (SR research) from 20 participants (2 runs each) keeping their gaze steady
-    at the screen center.
+    (SR research), from 20 participants keeping their gaze steady at the
+    screen center.
 
     [BIDS dataset](https://openneuro.org/datasets/ds004158/versions/1.0.1)
