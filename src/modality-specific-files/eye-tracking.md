@@ -74,7 +74,7 @@ Throughout BIDS you can indicate missing values with `n/a` (for "not
 available").<br>
 
 We encourage users to put the eye-tracking raw data within the
- `/sourcedata` directory (for example put eye-tracker proprietary files before
+ `/sourcedata` directory (for example put eye-tracker proprietary files before conversion to tsv.gz format
  in the sourcedata directory).
 
 ### Sidecar JSON document (`*_eyetrack.json`)
