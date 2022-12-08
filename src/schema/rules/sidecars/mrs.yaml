@@ -66,17 +66,17 @@ MRSRecommendedFields:
     InversionTime: recommended for inversion recovery data
     FlipAngle: recommended
     AcquisitionVoxelSize: recommended
-    MatrixSize: recommended
+    MatrixSize: recommended for MRSI
     VolumeAffineMatrix: recommended for MRSI
     BodyPart: recommended
     BodyPartDetails: recommended
     EditTarget: recommended for edited data
-    EditCondition: recommended for edited data
     EditPulse: recommended for edited data
+    EditCondition: recommended for edited data
     WaterSuppressed: recommended
     WaterSuppressionTechnique: recommended
     EncodingTechnique: recommended for MRSI
     B0ShimmingTechnique: recommended
     OuterVolumeSuppression: recommended
-    ReferenceSignal: recommended
-    AnatomicalImage: recommended in anatomical imaging data are present
+    ReferenceSignal: recommended if MRS reference data are present
+    AnatomicalImage: recommended if anatomical MRI data are present
