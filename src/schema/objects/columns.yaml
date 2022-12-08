@@ -149,7 +149,7 @@ eye2_pupil_size:
     Pupil size of the second recorded eye.
   type: integer
 eye_timestamp:
-  name: eye_sample
+  name: eye_timestamp
   display_name: Eye-tracking sample onset
   description: |
     Eye-tracker timestamp of the sampled recorded eye(s) gaze position
