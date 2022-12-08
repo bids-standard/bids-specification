@@ -2990,8 +2990,7 @@ ScreenDistance:
   name: ScreenDistance
   display_name: Screen Distance
   description: |
-    Screen distance in cm
-    (for example `60` for a screen distance of 60 cm), if no screen use `n/a`.
+    Distance between the participant's eye and the screen. If no screen was used, use `n/a`.
   anyOf:
     - type: number
       unit: cm
