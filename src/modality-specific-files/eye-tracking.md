@@ -79,20 +79,6 @@ We encourage users to put the eye-tracking raw data within the
 
 ### Sidecar JSON document (`*_eyetrack.json`)
 
-**Specific eye-tracking fields SHOULD be present:**
-
-<!-- This block generates a metadata table.
-These tables are defined in
- src/schema/rules/sidecars
-The definitions of the fields specified in these tables may be found in
- src/schema/objects/metadata.yaml
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_sidecar_table("eyetrack.EyeTrackingRecommended") }}
-
-**Specific eye-tracking fields MUST be present:**
-
 <!-- This block generates a metadata table.
 These tables are defined in
  src/schema/rules/sidecars
@@ -116,7 +102,9 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("eyetrack.EyeTrackingMoreRecommended") }}
+{{ MACROS___make_sidecar_table("eyetrack.EyeTrackingRecommended") }}
+
+**Specific eye-tracking fields MUST be present:**
 
 ### Example sidecar JSON document
 
