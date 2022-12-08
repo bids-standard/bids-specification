@@ -146,7 +146,7 @@ A guide for using macros can be found at
 
     [BIDS dataset](https://doi.org/10.5061/dryad.41ns1rncp)
 
--   Combine resting-state fMRI and eye-tracking data, measured with an Eyelink
+-   Combined resting-state fMRI and eye-tracking data, measured with an Eyelink
     (SR research), from 20 participants keeping their gaze steady at the
     screen center.
 
