@@ -71,7 +71,7 @@ and a guide for using macros can be found at
 {{ MACROS___make_columns_table("eyetrack.EyeTracking") }}
 
 Throughout BIDS you can indicate missing values with `n/a` (for "not
-available").<br>
+available").
 
 We encourage users to put the eye-tracking raw data within the
  `/sourcedata` directory (for example put eye-tracker proprietary files before conversion to tsv.gz format
@@ -153,16 +153,19 @@ A guide for using macros can be found at
 -   Combined behavior and eye-tracking fixation and saccade data,
     measured with an Eyelink (SR Research), from 8 particpants reading 320
     embedded target words and invisible boundary
-    (Gagl, 2016)[https://peerj.com/articles/2467/].<br>
+    [Gagl, 2016](https://peerj.com/articles/2467/).
+
     [BIDS dataset](https://tobedefined.soon)
 
 -   Combined behavior and eye-tracking position and pupil data,
     measured with an Eyelink (SR Research), from 26 particpants experiencing
-    perception multistability (Brascamp et.al, 2021)[https://doi.org/10.7554/eLife.66161].<br>
+    perception multistability [Brascamp et.al, 2021](https://doi.org/10.7554/eLife.66161).
+
     [BIDS dataset](https://tobedefined.soon)
 
 -   Combine resting-state fMRI and eye-tracking data, measured with an Eyelink
-    from 20 participants (2 runs each) fixating at the screen center.<br>
+    from 20 participants (2 runs each) fixating at the screen center.
+
     [BIDS dataset](https://openneuro.org/datasets/ds004158/versions/1.0.1)
 
 <!-- TODO Open-neuro dataset, Remi will write something here. -->

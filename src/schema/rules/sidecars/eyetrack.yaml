@@ -3,7 +3,6 @@
 #
 # Assumptions: never need disjunction of selectors
 # Assumptions: top-to-bottom overrides is sufficient logic
-
 ---
 EyeTrackingRequired:
   selectors:
@@ -18,6 +17,7 @@ EyeTrackingRequired:
     ScreenSize: required
     ScreenResolution: required
     ScreenDistance: required
+
 EyeTrackingRecommended:
   selectors:
     - modality == "eyetrack"
@@ -44,5 +44,3 @@ EyeTrackingRecommended:
     PupilFitMethod: recommended
     RecordTimeStart: recommended
     RecordTimeEnd: recommended
-
-
