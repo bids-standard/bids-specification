@@ -57,7 +57,7 @@ then correspond to `sub-01_ses-1_task-pRF_run-1`.
 
 ### Tabular file (`*_eyetrack.tsv.gz`)
 
-The eye-tracking data must be saved in `.tsv.gz` format.<br>
+The eye-tracking data must be saved in `.tsv.gz` format.
 The tabular files consist of one row per sample and a set of REQUIRED and
 OPTIONAL columns.
 

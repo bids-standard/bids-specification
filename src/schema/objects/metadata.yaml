@@ -652,26 +652,6 @@ Description:
   description: |
     Free-form natural language description.
   type: string
-DetectionAlgorithm:
-  name: DetectionAlgorithm
-  display_name: Detection Algorithm
-  description: |
-    Name the event detection algorithm.
-    If a detection algorithm is used,
-    settings SHOULD be present in `"DetectionAlgorithmSettings"`.
-  type: string
-DetectionAlgorithmSettings:
-  name: DetectionAlgorithmSettings
-  display_name: Detection Algorithm Settings
-  description: |
-    List of parameter settings used in the `"DetectionAlgorithm"` for eye movement events.
-  anyOf:
-    - type: object
-      items:
-        type: object
-    - type: string
-      enum:
-        - n/a
 DetectorType:
   name: DetectorType
   display_name: Detector Type
@@ -995,13 +975,6 @@ ElectrodeManufacturersModelName:
   description: |
     If different electrode types are used,
     please use the corresponding table in the `_electrodes.tsv` file.
-  type: string
-EndMessage:
-  name: EndMessage
-  display_name: End Message
-  description: |
-    The message sent to the eye tracker to indicate the end of each trial presentation.
-    Could be the end of the presentation of an image, word, video, and so on.
   type: string
 EnvironmentCoordinates:
   name: EnvironmentCoordinates
@@ -1484,21 +1457,6 @@ Immersion:
     Lens immersion medium. If the file format is OME-TIFF, the value MUST be consistent
     with the `Immersion` OME metadata field.
   type: string
-IncludedEyeMovementEvents:
-  name: IncludedEyeMovementEvents
-  display_name: Included Eye Movement Events
-  description: |
-    List of included events with message specifications.
-    For example, if fixation markers from the EyeLink are included add:
-    `[[Start of fixation: "SFIX"], [End of fixation: "EFIX"]]`.
-    If no events are included write `None`.
-  anyOf:
-    - type: object
-      items:
-        type: object
-    - type: string
-      enum:
-        - n/a
 InfusionRadioactivity:
   name: InfusionRadioactivity
   display_name: Infusion Radioactivity
@@ -1691,13 +1649,6 @@ InversionTime:
   type: number
   unit: s
   exclusiveMinimum: 0
-KeyPressMessage:
-  name: KeyPressMessage
-  display_name: Key Press Message
-  description: |
-    When the paradigm includes pressing a key,
-    message identifying this should be included to the sidecar JSON file.
-  type: string
 LabelingDistance:
   name: LabelingDistance
   display_name: Labeling Distance
@@ -3039,8 +2990,7 @@ ScreenRefreshRate:
   name: ScreenRefreshRate
   display_name: Screen Refresh Rate
   description: |
-    Refresh rate of the screen (when used), in Hertz
-    (for example, `60` for 60 Hz).
+    Refresh rate of the screen (when used), in Hertz.
   type: number
   unit: Hz
 ScreenResolution:
@@ -3363,13 +3313,6 @@ SpoilingType:
     - RF
     - GRADIENT
     - COMBINED
-StartMessage:
-  name: StartMessage
-  display_name: Start Message
-  description: |
-    The message sent to the eye tracker to indicate the start of each trial.
-    Could be the start of the presentation of an image, word, video, and so on.
-  type: string
 StartTime:
   name: StartTime
   display_name: Start Time

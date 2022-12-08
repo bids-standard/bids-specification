@@ -5,24 +5,6 @@
 # Assumptions: top-to-bottom overrides is sufficient logic
 
 ---
-EyeTrackingRecommended:
-  selectors:
-    - modality == "eyetrack"
-    - datatype == "eyetrack"
-    - suffix == "eyetrack"
-  fields:
-    Manufacturer:
-      level: recommended
-      description: |
-        The sampling frequency of data channels that deviate from the main
-         sampling frequency SHOULD be specified in the `channels.tsv` file.
-    ManufacturersModelName:
-      level: recommended
-      description: |
-        Manufacturer's designation of the eye-tracker model (for example"
-         `Eye-link 1000`).
-    SoftwareVersions: recommended
-    DeviceSerialNumber: recommended
 EyeTrackingRequired:
   selectors:
     - modality == "eyetrack"
@@ -36,18 +18,17 @@ EyeTrackingRequired:
     ScreenSize: required
     ScreenResolution: required
     ScreenDistance: required
-EyeTrackingMoreRecommended:
+EyeTrackingRecommended:
   selectors:
     - modality == "eyetrack"
     - datatype == "eyetrack"
     - suffix == "eyetrack"
   fields:
-    IncludedEyeMovementEvents: recommended
-    DetectionAlgorithm: recommended
-    DetectionAlgorithmSettings: recommended
-    StartMessage: recommended
-    EndMessage: recommended
-    KeyPressMessage: recommended
+    ScreenRefreshRate: recommended
+    Manufacturer: recommended
+    ManufacturersModelName: recommended
+    SoftwareVersions: recommended
+    DeviceSerialNumber: recommended
     CalibrationType: recommended
     CalibrationUnit: recommended
     CalibrationPosition: recommended
@@ -59,6 +40,9 @@ EyeTrackingMoreRecommended:
     FeatureDetectionSettings: recommended
     GazeMappingSettings: recommended
     RawDataFilters: recommended
-    ScreenRefreshRate: recommended
     ScreenAOIDefinition: recommended
     PupilFitMethod: recommended
+    RecordTimeStart: recommended
+    RecordTimeEnd: recommended
+
+
