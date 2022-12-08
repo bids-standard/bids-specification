@@ -213,7 +213,7 @@ AverageCalibrationError:
   description: |
     Average calibration error in visual degree.
   type: number
-  unit: visual degree
+  unit: degree
 B0FieldIdentifier:
   name: B0FieldIdentifier
   display_name: B0 Field Identifier
@@ -382,9 +382,9 @@ CalibrationList:
     This list includes the calibration type, recorded eye,
     maximal calibration error, average calibration error,
     and time relative to the first event of the event file.
-  type: object
+  type: array
   items:
-    type: object
+    type: array
 CalibrationPosition:
   name: CalibrationPosition
   display_name: Calibration Position
@@ -395,7 +395,11 @@ CalibrationPosition:
   anyOf:
     - type: array
       items:
-        type: number
+        type: array
+        minItems: 2
+        maxItems: 2
+        items:
+          type: number
 CalibrationType:
   name: CalibrationType
   display_name: Calibration Type
@@ -2017,8 +2021,9 @@ MaximalCalibrationError:
   name: MaximalCalibrationError
   display_name: Maximal Calibration Error
   description: |
-    Maximal calibration error in visual degree.
+    Maximal calibration error in degree.
   type: number
+  unit: degree
 MeasurementToolMetadata:
   name: MeasurementToolMetadata
   display_name: Measurement Tool Metadata
@@ -2810,6 +2815,10 @@ SampleCoordinateUnits:
   description: |
     Unit of individual samples (`"pixel"`, `"mm"` or `"cm"`) .
   type: string
+  enum:
+    - pixel
+    - mm
+    - cm
 SampleEmbedding:
   name: SampleEmbedding
   display_name: Sample Embedding
