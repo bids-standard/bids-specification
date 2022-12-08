@@ -26,7 +26,7 @@ eye-tracking context.
 With EyeTracking-BIDS, we wish to promote the adoption of good practices in
 the management of scientific data.
 
-### Template:
+### Template
 
 <!--
 This block generates a filetree exanple.
