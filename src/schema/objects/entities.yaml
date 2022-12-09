@@ -367,7 +367,7 @@ stain:
     although the label may be different.
 
     Descriptions of antibodies SHOULD also be indicated in the `"SamplePrimaryAntibodies"`
-    and/or `"SampleSecondaryAntobodies"` metadata fields, as appropriate.
+    and/or `"SampleSecondaryAntibodies"` metadata fields, as appropriate.
   type: string
   format: label
 subject:
