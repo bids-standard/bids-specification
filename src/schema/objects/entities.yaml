@@ -420,7 +420,7 @@ volume:
   name: voi
   display_name: Volume of Interest
   description: |
-    The `voi-<label>` entity can be used to distinguish sequences localized to different regions.
+    The `voi-<label>` entity can be used to distinguish acquisitions localized to different regions.
     The label SHOULD be the name of the body region or part scanned.
     If used, the entities `"BodyPart"` and `"BodyPartDetails"` MUST also be defined in the JSON file.
   type: string
