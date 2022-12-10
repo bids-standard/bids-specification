@@ -3186,10 +3186,7 @@ StimulusPresentation:
   display_name: Stimulus Presentation
   description: |
     Object containing key-value pairs related to the software used to present
-    the stimuli during the experiment, specifically:
-    `"OperatingSystem"`, `"SoftwareName"`, `"SoftwareRRID"`, `"SoftwareVersion"` and
-    `"Code"`.
-    See table below for more information.
+    the stimuli during the experiment.
   type: object
   recommended_fields:
     - OperatingSystem
