@@ -429,7 +429,7 @@ sub-<label>/
 
 Optional: Yes
 
-The purpose of this file is to describe timing and other properties of each neural recording *file* within one session.
+The purpose of this file is to describe timing and other properties of each recording *file* within one session.
 In general, each of these files SHOULD be described by exactly one row.
 
 For *file formats* that are based on several files of different extensions,
