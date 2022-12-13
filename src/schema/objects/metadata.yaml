@@ -2832,7 +2832,7 @@ ScreenDistance:
     Distance between the participant's eye and the screen. If no screen was used, use `n/a`.
   anyOf:
     - type: number
-      unit: cm
+      unit: m
     - type: string
       enum:
         - n/a
@@ -2870,7 +2870,7 @@ ScreenSize:
     - type: array
       items:
         type: number
-        unit: cm
+        unit: m
         minItems: 2
         maxItems: 2
     - type: string
