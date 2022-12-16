@@ -79,6 +79,7 @@ conversion to `tsv.gz` format in the sourcedata directory).
 
 ### Sidecar JSON document (`*_eyetrack.json`)
 
+**Specific eye-tracking fields MUST be present:**
 <!-- This block generates a metadata table.
 These tables are defined in
  src/schema/rules/sidecars
@@ -94,6 +95,10 @@ they are considered essential in eye-tracking data analysis.
 
 **Specific eye-tracking fields SHOULD be present:**
 
+Altough not REQUIRED for the validity of your dataset, the following fields
+are important and should be well documented. In particular, we highly
+RECOMMEND to carefully document the calibration metadata.
+
 <!-- This block generates a metadata table.
 These tables are defined in
  src/schema/rules/sidecars
@@ -104,7 +109,6 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("eyetrack.EyeTrackingRecommended") }}
 
-**Specific eye-tracking fields MUST be present:**
 
 ### Example sidecar JSON document
 
