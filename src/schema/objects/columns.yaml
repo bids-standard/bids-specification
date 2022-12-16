@@ -117,36 +117,42 @@ eye1_x_coordinate:
   display_name: Eye 1 x-coordinate
   description: |
     Gaze position x-coordinate of the first recorded eye.
+    If the two eyes are recorded, it MUST be the left eye x-coordinate.
   type: integer
 eye1_y_coordinate:
   name: eye1_y_coordinate
   display_name: Eye 1 y-coordinate
   description: |
     Gaze position y-coordinate of the first recorded eye.
+    If the two eyes are recorded, it MUST be the left eye y-coordinate.
   type: integer
 eye1_pupil_size:
   name: eye1_pupil_size
   display_name: Eye 1 pupil size
   description: |
     Pupil size of the first recorded eye.
+    If the two eyes are recorded, it MUST be the left eye pupil size.
   type: integer
 eye2_x_coordinate:
   name: eye2_x_coordinate
   display_name: Eye 2 x-coordinate
   description: |
     Gaze position x-coordinate of the second recorded eye.
+    If the two eyes are recorded, it MUST be the right eye x-coordinate.
   type: integer
 eye2_y_coordinate:
   name: eye2_y_coordinate
   display_name: Eye 2 y-coordinate
   description: |
     Gaze position y-coordinate of the second recorded eye.
+    If the two eyes are recorded, it MUST be the right eye y-coordinate.
   type: integer
 eye2_pupil_size:
   name: eye2_pupil_size
   display_name: Eye 2 pupil size
   description: |
     Pupil size of the second recorded eye.
+    If the two eyes are recorded, it MUST be the right eye pupil size.
   type: integer
 eye_timestamp:
   name: eye_timestamp
