@@ -122,7 +122,7 @@ A guide for using macros can be found at
 "ScreenResolution": [1024, 768],
 "ScreenDistance": 60,
 "ScreenAOIDefinition": ["square",
-                        ["x_start", "x_stop", "y_start", "y_stop"]]
+                        [100, 150, 300, 350]]
 }
 ```
 
