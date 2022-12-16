@@ -2696,18 +2696,6 @@ RecordingType:
     - continuous
     - epoched
     - discontinuous
-RecordTimeStart:
-  name: RecordTimeStart
-  display_name: Eye-tracking recording start time
-  description: |
-    Eye-tracking timestamp corresponding to the onset (start) of the run.
-  type: number
-RecordTimeEnd:
-  name: RecordTimeEnd
-  display_name: Eye-tracking recording start time
-  description: |
-    Eye-tracking timestamp corresponding to the offset (end) of the run.
-  type: number
 ReferencesAndLinks:
   name: ReferencesAndLinks
   display_name: References And Links
@@ -3349,6 +3337,12 @@ StartTime:
     data sample in the corresponding neural dataset (negative values are allowed).
   type: number
   unit: s
+StartTime_eyetrack:
+  name: StartTime
+  display_name: Eye-tracking recording start time
+  description: |
+    Eye-tracking timestamp corresponding to the onset (start) of the run.
+  type: number
 StationName:
   name: StationName
   display_name: Station Name
@@ -3382,6 +3376,12 @@ StimulusPresentation:
       $ref: objects.metadata.SoftwareVersion
     Code:
       $ref: objects.metadata.Code
+StopTime_eyetrack:
+  name: StopTime
+  display_name: Eye-tracking recording stop time
+  description: |
+    Eye-tracking timestamp corresponding to the offset (stop) of the run.
+  type: number
 SubjectArtefactDescription:
   name: SubjectArtefactDescription
   display_name: Subject Artefact Description

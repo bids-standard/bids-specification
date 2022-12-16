@@ -40,5 +40,5 @@ EyeTrackingRecommended:
     RawDataFilters: recommended
     ScreenAOIDefinition: recommended
     PupilFitMethod: recommended
-    RecordTimeStart: recommended
-    RecordTimeEnd: recommended
+    StartTime_eyetrack: recommended
+    StopTime_eyetrack: recommended
