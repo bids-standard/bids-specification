@@ -49,6 +49,7 @@ events__mri:
     $ref: rules.files.raw.task.events.entities
     ceagent: optional
     reconstruction: optional
+    processing: optional
     direction: optional
 
 events__pet:
@@ -62,6 +63,7 @@ events__pet:
     task: required
     tracer: optional
     reconstruction: optional
+    processing: optional
     run: optional
 
 timeseries__mri:
@@ -72,6 +74,7 @@ timeseries__mri:
   entities:
     $ref: rules.files.raw.task.timeseries.entities
     reconstruction: optional
+    processing: optional
     direction: optional
 
 timeseries__func:
@@ -101,5 +104,6 @@ timeseries__pet:
     task: required
     tracer: optional
     reconstruction: optional
+    processing: optional
     run: optional
     recording: optional

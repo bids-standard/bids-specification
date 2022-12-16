@@ -15,6 +15,7 @@ dwi:
     session: optional
     acquisition: optional
     reconstruction: optional
+    processing: optional
     direction: optional
     run: optional
     part: optional
@@ -33,6 +34,7 @@ sbref:
     session: optional
     acquisition: optional
     reconstruction: optional
+    processing: optional
     direction: optional
     run: optional
     part: optional

@@ -17,6 +17,7 @@ func:
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    processing: optional
     direction: optional
     run: optional
     echo: optional
@@ -38,6 +39,7 @@ phase:
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    processing: optional
     direction: optional
     run: optional
     echo: optional
