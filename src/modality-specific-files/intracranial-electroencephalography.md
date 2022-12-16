@@ -22,7 +22,7 @@ and a guide for using macros can be found at
 {{ MACROS___make_filename_template(
    "raw",
    datatypes=["ieeg"],
-   suffixes=["ieeg", "events", "physio", "stim"])
+   suffixes=["ieeg", "events", "physio", "stim", "eyetrack"])
 }}
 
 The iEEG community uses a variety of formats for storing raw data, and there is
