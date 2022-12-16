@@ -8,22 +8,15 @@ channels:
   datatypes:
     - eeg
     - ieeg
+    - meg
     - nirs
   entities:
     subject: required
     session: optional
     task: required
     acquisition: optional
-    run: optional
-
-# MEG has an additional entity available
-channels__meg:
-  $ref: rules.files.raw.channels.channels
-  datatypes:
-    - meg
-  entities:
-    $ref: rules.files.raw.channels.channels.entities
     processing: optional
+    run: optional
 
 coordsystem:
   suffixes:
