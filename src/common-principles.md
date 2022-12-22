@@ -259,7 +259,7 @@ field in `dataset_description.json` of each subdirectory of `derivatives` to:
 
 ```JSON
 {
-  "SourceDatasets": [ {"URL": "file://../../rawdata/"} ]
+  "SourceDatasets": [ {"URL": "../../rawdata/"} ]
 }
 ```
 
