@@ -36,7 +36,7 @@ jobs:
     - uses: actions/checkout@v3
 
 
-    - name: Update schema-docs repo from bids-specification
+    - name: Pull schema-docs and reqs from bids-specification
       run: |
         
         pushd $HOME
@@ -57,12 +57,12 @@ jobs:
       with:
         limit-access-to-actor: true
     
-    - name: Finish
+    - name: Push Updates to schema-docs
       run: |    
       
         pushd $HOME/schema-docs
         
-        git diff --exit-code 
+        git diff --exit-code > $HOME/gitdiff.log
         if [[ $? == 0 ]]; then
           echo "No changes found schema code, this workflow should only run when changes are made to schema-*."
           echo "You must be up to no good."
