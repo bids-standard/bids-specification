@@ -35,12 +35,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Debug
-      uses: mxschmitt/action-tmate@v3
-      if: ${{ github.event_name == 'workflow_dispatch' && inputs.debug_enabled }}
-      timeout-minutes: 15
-      with:
-        limit-access-to-actor: true
 
     - name: Update schema-docs repo from bids-specification
       run: |
@@ -56,6 +50,16 @@ jobs:
         sort $HOME/schema-docs/requirements.txt | uniq > $HOME/schema-docs/requirements.txt.tmp
         mv $HOME/schema-docs/requirements.txt.tmp $HOME/schema-docs/requirements.txt
 
+    - name: Debug
+      uses: mxschmitt/action-tmate@v3
+      if: ${{ github.event_name == 'workflow_dispatch' && inputs.debug_enabled }}
+      timeout-minutes: 15
+      with:
+        limit-access-to-actor: true
+    
+    - name: Finish
+      run: |    
+      
         pushd $HOME/schema-docs
         
         git diff --exit-code 
