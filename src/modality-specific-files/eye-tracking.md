@@ -79,7 +79,10 @@ conversion to `tsv.gz` format in the sourcedata directory).
 
 ### Sidecar JSON document (`*_eyetrack.json`)
 
-**Specific eye-tracking fields MUST be present:**
+#### Required fields
+
+The following specific eye-tracking fields MUST be present:
+
 <!-- This block generates a metadata table.
 These tables are defined in
  src/schema/rules/sidecars
@@ -93,9 +96,9 @@ A guide for using macros can be found at
 Note that `ScreenSize`, `ScreenResolution` and `ScreenDistance` are REQUIRED as
 they are considered essential in eye-tracking data analysis.
 
-**Specific eye-tracking fields SHOULD be present:**
+#### Recommended fields
 
-Altough not REQUIRED for the validity of your dataset, the following fields
+Although not REQUIRED for the validity of your dataset, the following fields
 are important and should be well documented. In particular, we highly
 RECOMMEND to carefully document the calibration metadata.
 
