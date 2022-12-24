@@ -112,7 +112,6 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("eyetrack.EyeTrackingRecommended") }}
 
-
 ### Example sidecar JSON document
 
 ```JSON
