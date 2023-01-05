@@ -191,7 +191,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Giacomo Mazzamuto 📖🔣
 -   David McAlpine 📖
 -   Manuel Mercier 📖🤔
--   Mark Mikkelsen 📖
+-   Mark Mikkelsen 📖💻
 -   Kai J. Miller 📖
 -   Markus Morawski 📖
 -   Clara Moreau 📖
