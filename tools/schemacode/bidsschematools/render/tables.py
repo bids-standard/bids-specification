@@ -2,7 +2,6 @@
 import logging
 import os
 import typing as ty
-from collections.abc import Mapping
 
 import pandas as pd
 from tabulate import tabulate
@@ -85,7 +84,7 @@ def _make_object_table(
         requirement_info = utils.normalize_requirements(requirement_info)
         requirement_info = requirement_info.replace(
             "DEPRECATED",
-            "[DEPRECATED](SPEC_ROOT/02-common-principles.md#definitions)",
+            "[DEPRECATED](SPEC_ROOT/common-principles.md#definitions)",
         )
 
         type_string = utils.resolve_metadata_type(subschema[element])
@@ -500,55 +499,48 @@ def make_metadata_table(schema, field_info, src_path=None, tablefmt="github"):
     return table_str
 
 
-def make_subobject_table(schema, object_tuple, field_info, src_path=None, tablefmt="github"):
-    """Create a table of properties within an object.
+def make_subobject_table(
+    schema: Namespace,
+    object_name: str,
+    src_path: ty.Optional[str] = None,
+    tablefmt: str = "github",
+):
+    """Create a metadata table (markdown) based on the properties of an object
 
     Parameters
     ----------
     schema : Namespace
         The BIDS schema.
-    object_tuple : tuple of strings
-        A tuple of keys within the schema linking down to the object
-        that will be rendered.
-        For example, ("objects", "metadata", "Genetics") will result in a table
-        rendering the properties specified in
-        schema["object"]["metadata"]["Genetics"].
-    field_info : dict of strings or tuples
-        A dictionary mapping metadata keys to requirement levels in the
-        rendered metadata table.
-        The dictionary values may be strings, in which case the string
-        is the requirement level information, or two-item tuples of strings,
-        in which case the first string is the requirement level information
-        and the second string is additional table-specific information
-        about the metadata field that will be appended to the field's base
-        definition from the schema.
+    object_name : str
+        Qualified name in schema.objects
     src_path : str | None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
     tablefmt : string, optional
         The target table format. The default is "github" (GitHub format).
+
+    Returns
+    -------
+    table_str : str
+        The tabulated table as a Markdown string.
     """
-    assert isinstance(object_tuple, tuple)
-    assert all([isinstance(i, str) for i in object_tuple])
+    obj = schema.objects[object_name]
+    required_fields = set(obj.get("required_fields", ()))
+    recommended_fields = set(obj.get("recommended_fields", ()))
 
-    # Reformat the field info (requirement level and description addendum)
-    field_info_2 = {}
-    for field, val in field_info.items():
-        if isinstance(val, tuple):
-            field_info_2[field] = {"table_info": val}
+    field_info = {}
+    for field in obj.properties:
+        if field in required_fields:
+            req_level = "required"
+        elif field in recommended_fields:
+            req_level = "recommended"
         else:
-            field_info_2[field] = {"table_info": (val, "")}
+            req_level = "optional"
+        field_info[field] = {"table_info": (req_level, "")}
 
-    temp_dict = schema[object_tuple[0]]
-    for i in range(1, len(object_tuple)):
-        level_str = object_tuple[i]
-        temp_dict = temp_dict[level_str]
-
-    temp_dict = temp_dict["properties"]
-    assert isinstance(temp_dict, Mapping)
     table_str = _make_object_table(
-        temp_dict,
-        field_info=field_info_2,
+        obj.properties,
+        field_info=field_info,
         table_type="subobject",
         src_path=src_path,
         tablefmt=tablefmt,

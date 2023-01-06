@@ -73,7 +73,7 @@ Y. Suzuki and [OSIPI Task force 4.1: ASL lexicon milestone 1](https://osipi.gith
 
 ### (P)CASL sequence
 
-![PCASL](../04-modality-specific-files/images/asl_pcasl_sequence.png)
+![PCASL](../modality-specific-files/images/asl_pcasl_sequence.png)
 
 For (P)CASL, specifying the `LabelingDuration` and the `PostLabelingDelay` is required.
 The `LabelingDuration` is defined as the total duration of the labeling pulse train in seconds.
@@ -89,7 +89,7 @@ whereas in case of `CASL`,the recommended `CASLType` field describes if a separa
 
 ### (P)CASL Labeling Pulses
 
-![PCASL Labeling Pulses](../04-modality-specific-files/images/asl_pcasl_labeling_pulses.png)
+![PCASL Labeling Pulses](../modality-specific-files/images/asl_pcasl_labeling_pulses.png)
 
 Several recommended metadata fields describe the labeling pulses of the labeling pulse train in PCASL.
 The `LabelingPulseAverageGradient` and the `LabelingPulseMaximumGradient` are the average labeling gradient
@@ -101,7 +101,7 @@ and the delay between the peaks of the individual labeling pulses in millisecond
 
 ### PASL sequence
 
-![PASL without Bolus Cut-off](../04-modality-specific-files/images/asl_pasl_boluscutoff_false.png)
+![PASL without Bolus Cut-off](../modality-specific-files/images/asl_pasl_boluscutoff_false.png)
 
 For PASL, specifying the `PostLabelingDelay` is required.
 `PostLabelingDelay` is the time, in seconds, from the middle of the labeling pulse until the middle of
@@ -109,7 +109,7 @@ the excitation pulse applied to the imaging slab (for 3D acquisition) or first s
 Additionally, the `BolusCutOffFlag` field is required,
 which is a boolean indicating if a bolus cut-off technique has been applied.
 
-![PASL QUIPSSII](../04-modality-specific-files/images/asl_pasl_boluscutoff_true_quipssII.png)
+![PASL QUIPSSII](../modality-specific-files/images/asl_pasl_boluscutoff_true_quipssII.png)
 
 When `BolusCutOffFlag` is set true for `PASL`, two additional metadata fields are required:
 `BolusCutOffTechnique` and `BolusCutOffDelay`.
@@ -117,7 +117,7 @@ In this example, the `BolusCutOffTechnique`, which is the name of the technique 
 is QUIPSS-II consisting of only one bolus cut-off pulse.
 The `BolusCutOffDelay` is therefore a number, representing the duration between the end of the labeling and the start of the bolus cut-off saturation pulse, in seconds.
 
-![PASL Q2TIPS](../04-modality-specific-files/images/asl_pasl_boluscutoff_true_q2tips.png)
+![PASL Q2TIPS](../modality-specific-files/images/asl_pasl_boluscutoff_true_q2tips.png)
 
 In this example, the `BolusCutOffTechnique` applied is Q2TIPS, consisting of multiple bolus cut-off pulses.
 In this case, only the duration of the first and last pulse should be specified in `BolusCutOffDelay`.
@@ -127,4 +127,4 @@ In this case, only the duration of the first and last pulse should be specified 
 The specification includes a dependency table, describing metadata field dependencies for ASL.
 This flowchart is intended to further clarify that table.
 
-![ASL Flowchart](../04-modality-specific-files/images/asl_flowchart.png)
+![ASL Flowchart](../modality-specific-files/images/asl_flowchart.png)

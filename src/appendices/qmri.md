@@ -35,7 +35,7 @@ There are two main ways to obtain a quantitative map:
 
 ### Inputs are file collections
 
-The common concept of [entity-linked file collections](../02-common-principles.md#entity-linked-file-collections) enables the description of a qMRI
+The common concept of [entity-linked file collections](../common-principles.md#entity-linked-file-collections) enables the description of a qMRI
 application by creating logical groups of input files through `suffix` and certain entities
 representing acquisition parameters (`echo`, `flip`, `inv`, `mt`) or file parts (`part`).
 
@@ -193,6 +193,29 @@ Explanation of the table:
 
 #### Field maps
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the directory
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filename_template(
+   "raw",
+   datatypes=["fmap"],
+   suffixes=[
+    "TB1DAM",
+    "TB1EPI",
+    "TB1AFI",
+    "TB1TFL",
+    "TB1RFM",
+    "RB1COR",
+    "TB1SRGE",
+    "TB1map",
+    "RB1map",
+    ])
+}}
+
 | **File collection**  | **REQUIRED metadata**                                                                                |
 |----------------------|------------------------------------------------------------------------------------------------------|
 | TB1DAM               | `FlipAngle`                                                                                          |
@@ -208,7 +231,7 @@ Explanation of the table:
 ### Metadata requirements for qMRI maps
 
 As qMRI maps are stored as derivatives, they are subjected to the metadata requirements of
-[derived datasets](../03-modality-agnostic-files.md#derived-dataset-and-pipeline-description).
+[derived datasets](../modality-agnostic-files.md#derived-dataset-and-pipeline-description).
 
 An example `dataset_description.json` for a qMRI map derivatives directory:
 
@@ -259,7 +282,7 @@ A guide for using macros can be found at
   ],
   "SourceDatasets": [
     {
-      "DOI": "DOI 10.17605/OSF.IO/K4BS5",
+      "DOI": "doi:10.17605/OSF.IO/K4BS5",
       "URL": "https://osf.io/k4bs5/",
       "Version": "1"
     }

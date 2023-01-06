@@ -1,8 +1,8 @@
 # Near-Infrared Spectroscopy
 
 Support for Near-Infrared Spectroscopy (NIRS) was developed as a
-[BIDS Extension Proposal](../07-extensions.md#bids-extension-proposals).
-Please see [Citing BIDS](../01-introduction.md#citing-bids)
+[BIDS Extension Proposal](../extensions.md#bids-extension-proposals).
+Please see [Citing BIDS](../introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
@@ -14,7 +14,7 @@ have been formatted using this specification and can be used for practical guida
 {{ MACROS___make_filename_template(
    "raw",
    datatypes=["nirs"],
-   suffixes=["nirs", "events", "channels", "optodes", "coordsystem"])
+   suffixes=["nirs", "events", "channels", "optodes", "coordsystem", "physio", "stim"])
 }}
 
 Only the *Shared Near Infrared Spectroscopy Format* ([SNIRF](https://github.com/fNIRS/snirf))
@@ -27,9 +27,9 @@ easily parsed by humans and machines that do not have a SNIRF reader at hand,
 which improves findability and tooling development.
 
 Raw NIRS data in the native format, if different from SNIRF, can also
-be stored in the [`/sourcedata`](../02-common-principles.md#source-vs-raw-vs-derived-data)
+be stored in the [`/sourcedata`](../common-principles.md#source-vs-raw-vs-derived-data)
 directory along with code to convert the data to
-SNIRF in the [`/code`](../02-common-principles.md#storage-of-derived-datasets) directory.
+SNIRF in the [`/code`](../common-principles.md#storage-of-derived-datasets) directory.
 The unprocessed raw data should be stored in
 the manufacturer's format before any additional processing or conversion is applied.
 Retaining the native file format is especially valuable in a case when conversion elicits the
@@ -71,7 +71,7 @@ and describes the positioning of the optodes.
 This field may also contain a reference to a file providing a graphical depiction of the cap,
 for example a PDF file, a photo, or a bitmap drawing.
 If the referred file is not specified in BIDS, it MAY be placed in the
-[`/sourcedata`](../02-common-principles.md#source-vs-raw-vs-derived-data) directory.
+[`/sourcedata`](../common-principles.md#source-vs-raw-vs-derived-data) directory.
 To clarify the usage and interaction of these fields, the following examples are provided:
 
 -   If a commercial cap such as EasyCap actiCAP 64 Ch Standard-2 was used:
