@@ -27,7 +27,7 @@ and a guide for using macros can be found at
 
 Each manufacturer has its own file format (sometimes multiple formats) for exporting MRS data from
 the scanner console for offline processing.
-GE exports a P-file that stores unprocessed, un-coil-combined data with metadata embedded
+GE exports a P-file (`*.7`) that stores unprocessed, un-coil-combined data with metadata embedded
 in a proprietary data header.
 Philips has multiple export formats, the most common being the SDAT/SPAR format.
 The `*.sdat` file contains either each coil-combined transient stored separately
@@ -74,11 +74,11 @@ Note that NIfTI-MRS is not designed to store data that has not been spatially re
 A major distinction between MRS acquisitions is whether the acquisition technique probes spectral
 information from a single volume (single-voxel spectroscopy, SVS) or encodes this information along
 1, 2, or 3 spatial dimensions resulting in multiple sub-volumes (MRS imaging, MRSI).
-To avoid confusion, the suffixes `svs` amd `mrsi` MUST be used to distinguish the two techniques.
+To avoid confusion, the suffixes `svs` and `mrsi` MUST be used to distinguish the two techniques.
 For cases where localization is not used, the suffix `unloc` MUST be used.
 
 Furthermore, it is common to acquire an additional MRS dataset that may serve as a reference for
-scaling metabolite levels (for example, to obtain concentrations) and/or aid preprocessing steps such as
+scaling metabolite signal levels (for example, to obtain concentrations) and/or for preprocessing steps such as
 eddy-current correction, RF coil combination, phasing, and frequency calibration.
 This could be either an external reference (for example, a phantom or a synthetic signal) or, more typically,
 an internal tissue water reference.
@@ -90,7 +90,7 @@ two references to be used for concentration scaling and eddy-current correction,
 ### MRS sequences
 
 Given the large variety of MRS sequences, there will be times when providing sufficient detail of
-acquisition parameters is helpful or necessary to distinguish datasets in a given study.
+acquisition parameters in filenames is helpful or necessary to distinguish datasets in a given study.
 
 The following labels for the most commonly used in vivo MRS sequences/techniques are OPTIONAL to use
 when using the `acq-<label>` entity in the filename.
@@ -118,12 +118,12 @@ For example, `megaspecial`, `jpress`, `dwslaser`, and so on.
 
 The OPTIONAL `nuc-<label>` key/value pair can be used to distinguish acquisitions tuned to detect different nuclei.
 The label is the name of the nucleus or nuclei, which corresponds to DICOM Tag 0018, 9100.
-The key `"ResonantNucleus"` MUST also be included in the sidecar JSON file, with the same label.
+The key `ResonantNucleus` MUST also be included in the sidecar JSON file, with the same label.
 
 Similarly, the OPTIONAL `voi-<label>` key/value pair can be used to distinguish between repeated
 acquisitions localized to different regions (that is, acquisitions with different VOI).
 The label SHOULD be the name of the body region or part scanned.
-If used, the entities `"BodyPart"` and `"BodyPartDetails"` MUST also be included in the sidecar JSON file.
+If used, the entities `BodyPart` and `BodyPartDetails` MUST also be included in the sidecar JSON file.
 
 ## Sidecar JSON
 
