@@ -1,6 +1,6 @@
 ---
 # This file defines valid BIDS datatypes, along with their full names and descriptions.
-# For rules regarding how suffixes relate to datatypes, see files in `rules/datatypes/`.
+# For rules regarding how suffixes relate to datatypes, see files in `rules/files/raw/`.
 anat:
   value: anat
   display_name: Anatomical Magnetic Resonance Imaging

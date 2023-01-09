@@ -1,0 +1,15 @@
+---
+GzipHeaderFields:
+  issue:
+    code: GZIP_HEADER_DATA
+    message: |
+      The gzip header contains a non-zero timestamp or a non-empty filename
+      and/or comment field. These may leak sensitive information or indicate
+      a non-reproducible conversion process.
+    level: warning
+  selectors:
+    - match(extension, ".gz$")
+  checks:
+    - gzip.timestamp == 0
+    - gzip.filename == ""
+    - gzip.comment == ""
