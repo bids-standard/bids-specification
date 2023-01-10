@@ -749,7 +749,7 @@ ref:
   description: |
     An MRS acquisition acquired to detect a signal to serve
     as a concentration reference for absolute quantification
-    or for preprocessing (e.g., eddy-current correction).
+    or for preprocessing (for example, eddy-current correction).
 sbref:
   value: sbref
   display_name: Single-band reference image

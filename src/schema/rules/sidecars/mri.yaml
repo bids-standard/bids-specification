@@ -49,7 +49,9 @@ MRISequenceSpecifics:
   fields:
     PulseSequenceType:
       level: recommended
-      description_addendum: For example, `"MPRAGE"`, `"Gradient Echo EPI"`, `"Spin Echo EPI"`, `"Multiband gradient echo EPI"`.
+      description_addendum: |
+        For example, `"MPRAGE"`, `"Gradient Echo EPI"`, `"Spin Echo EPI"`, `"Multiband gradient
+        echo EPI"`.
     ScanningSequence:
       level: recommended
       description_addendum: Corresponds to DICOM Tag 0018, 0020 `Scanning Sequence`.
