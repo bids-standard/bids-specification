@@ -49,7 +49,7 @@ different backgrounds.
 The BIDS specification can be extended in a backwards compatible way and will
 evolve over time. This is accomplished through community-driven BIDS Extension
 Proposals (BEPs). For more information about the BEP process, see
-[Extending the BIDS specification](07-extensions.md).
+[Extending the BIDS specification](extensions.md).
 
 ## Citing BIDS
 
@@ -155,6 +155,14 @@ For example:
     Mulder M., Phillips C., Salo T., Stikov N., Whitaker K. and de Hollander G.,
     **qMRI-BIDS: An extension to the brain imaging data structure for quantitative magnetic resonance imaging data.**
     Scientific Data 9, 517 (2022). [doi:10.1038/s41597-022-01571-4](https://doi.org/10.1038/s41597-022-01571-4)
+
+#### ASL
+
+-   Clement P., Castellaro M., Okell T. W., Thomas D. L., Vandemaele P., Elgayar S., Oliver-Taylor A.,
+    Kirk T., Woods J. G., Vos S. B., Kuijer J. P. A., Achten E., van Osch M. J. P., BIDS maintainers,
+    Detre J. A., Lu H., Alsop D. C., Chappell M. A., Hernandez-Garcia L., Petr J. & Mutsaerts H. J. M. M.
+    **ASL-BIDS, the brain imaging data structure extension for arterial spin labeling.**
+    Scientific Data 9, 543 (2022). [doi:10.1038/s41597-022-01615-9](https://doi.org/10.1038/s41597-022-01615-9)
 
 #### NIRS
 

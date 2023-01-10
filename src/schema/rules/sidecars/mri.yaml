@@ -60,7 +60,7 @@ MRISequenceSpecifics:
     SequenceName: recommended
     PulseSequenceDetails: recommended
     NonlinearGradientCorrection: |
-      recommended, but required if [PET](./09-positron-emission-tomography.md) data are present
+      recommended, but required if [PET](./positron-emission-tomography.md) data are present
     MRAcquisitionType: recommended, but required for Arterial Spin Labeling
     MTState: recommended
     MTOffsetFrequency: optional
@@ -123,6 +123,7 @@ MRISpatialEncoding:
   fields:
     NumberShots: recommended
     ParallelReductionFactorInPlane: recommended
+    ParallelReductionFactorOutOfPlane: recommended
     ParallelAcquisitionTechnique: recommended
     PartialFourier: recommended
     PartialFourierDirection: recommended

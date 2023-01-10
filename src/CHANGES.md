@@ -2,6 +2,20 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   RF: allow for any "recording" file to be listed in \_scans.tsv not just "neural recording" [#1368](https://github.com/bids-standard/bids-specification/pull/1368) ([yarikoptic](https://github.com/yarikoptic))
+-   \[FIX] make references to Neuromag/Elekta/MEGIN consistent [#1359](https://github.com/bids-standard/bids-specification/pull/1359) ([sappelhoff](https://github.com/sappelhoff))
+-   \[DOC] link to steering group section on bids website [#1358](https://github.com/bids-standard/bids-specification/pull/1358) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[ENH] Add reference for ASL BEP [#1357](https://github.com/bids-standard/bids-specification/pull/1357) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[FIX] remove redundant entity definitions in behavioral page [#1356](https://github.com/bids-standard/bids-specification/pull/1356) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[FIX] add missing processing entity for MEG physio files and render physio filename templates for fNIRS [#1355](https://github.com/bids-standard/bids-specification/pull/1355) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[ENH] Recommend gzip header fields be set to empty values [#1349](https://github.com/bids-standard/bids-specification/pull/1349) ([kousu](https://github.com/kousu))
+-   \[FIX] clarify TriggerChannelCount and TRIG type [#1342](https://github.com/bids-standard/bids-specification/pull/1342) ([sappelhoff](https://github.com/sappelhoff))
+-   \[ENH] Add qMRI fieldmap filename templates [#1336](https://github.com/bids-standard/bids-specification/pull/1336) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[ENH] Add ParallelReductionFactorOutOfPlane to MRI metadata [#1221](https://github.com/bids-standard/bids-specification/pull/1221) ([lukeje](https://github.com/lukeje))
+-   \[ENH]\[SCHEMA] Adding an OPTIONAL \_task-\<label> to structural MRI acquisitions [#1185](https://github.com/bids-standard/bids-specification/pull/1185) ([melanieganz](https://github.com/melanieganz))
+
+## [v1.8.0](https://github.com/bids-standard/bids-specification/tree/v1.8.0) (2022-10-29)
+
 -   \[FIX] Drop the functional and f for NIRS [#1325](https://github.com/bids-standard/bids-specification/pull/1325) ([rob-luke](https://github.com/rob-luke))
 -   \[FIX]\[SCHEMA] Add conditionals for PET ReconMethod\* and ReconFilter [#1299](https://github.com/bids-standard/bids-specification/pull/1299) ([bendhouseart](https://github.com/bendhouseart))
 -   \[ENH] use schema to mention which "top directories" are allowed [#1289](https://github.com/bids-standard/bids-specification/pull/1289) ([Remi-Gau](https://github.com/Remi-Gau))
@@ -466,30 +480,30 @@
 
 -   Added support for MEG data (merged BEP008).
 -   Added `SequenceName` field.
--   Added support for describing events with Hierarchical Event Descriptors: [4.3 Task events](04-modality-specific-files/05-task-events.md).
--   Added `VolumeTiming` and `AcquisitionDuration` fields: [4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data).
+-   Added support for describing events with Hierarchical Event Descriptors: [4.3 Task events](modality-specific-files/task-events.md).
+-   Added `VolumeTiming` and `AcquisitionDuration` fields: [4.1 Task (including resting state) imaging data](modality-specific-files/magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data).
 -   Added `DwellTime` field.
 
 ## [1.0.2](https://doi.org/10.5281/zenodo.3759801) (2017-07-18)
 
--   Added support for high resolution (anatomical) T2star images: [4.1 Anatomy imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#anatomy-imaging-data).
--   Added support for multiple defacing masks: [4.1 Anatomy imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#anatomy-imaging-data).
--   Added optional key and metadata field for contrast enhanced structural scans: [4.1 Anatomy imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#anatomy-imaging-data).
--   Added `DelayTime` field: [4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data).
--   Added support for multi echo BOLD data: [4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data).
+-   Added support for high resolution (anatomical) T2star images: [4.1 Anatomy imaging data](modality-specific-files/magnetic-resonance-imaging-data.md#anatomy-imaging-data).
+-   Added support for multiple defacing masks: [4.1 Anatomy imaging data](modality-specific-files/magnetic-resonance-imaging-data.md#anatomy-imaging-data).
+-   Added optional key and metadata field for contrast enhanced structural scans: [4.1 Anatomy imaging data](modality-specific-files/magnetic-resonance-imaging-data.md#anatomy-imaging-data).
+-   Added `DelayTime` field: [4.1 Task (including resting state) imaging data](modality-specific-files/magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data).
+-   Added support for multi echo BOLD data: [4.1 Task (including resting state) imaging data](modality-specific-files/magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data).
 
 ## [1.0.1](https://doi.org/10.5281/zenodo.3759788) (2017-03-13)
 
--   Added `InstitutionName` field: [4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data).
--   Added `InstitutionAddress` field: [4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data).
--   Added `DeviceSerialNumber` field: [4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data).
--   Added `NumberOfVolumesDiscardedByUser` and `NumberOfVolumesDiscardedByScanner` field: [4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data).
--   Added `TotalReadoutTime to` functional images metadata list: [4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data).
+-   Added `InstitutionName` field: [4.1 Task (including resting state) imaging data](modality-specific-files/magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data).
+-   Added `InstitutionAddress` field: [4.1 Task (including resting state) imaging data](modality-specific-files/magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data).
+-   Added `DeviceSerialNumber` field: [4.1 Task (including resting state) imaging data](modality-specific-files/magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data).
+-   Added `NumberOfVolumesDiscardedByUser` and `NumberOfVolumesDiscardedByScanner` field: [4.1 Task (including resting state) imaging data](modality-specific-files/magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data).
+-   Added `TotalReadoutTime to` functional images metadata list: [4.1 Task (including resting state) imaging data](modality-specific-files/magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data).
 
 ## 1.0.1-rc1
 
--   Added T1 Rho maps: [4.1 Anatomy imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#anatomy-imaging-data).
--   Added support for phenotypic information split into multiple files: [3.2 Participant key file](03-modality-agnostic-files.md#participants-file).
+-   Added T1 Rho maps: [4.1 Anatomy imaging data](modality-specific-files/magnetic-resonance-imaging-data.md#anatomy-imaging-data).
+-   Added support for phenotypic information split into multiple files: [3.2 Participant key file](modality-agnostic-files.md#participants-file).
 -   Added recommendations for multi site datasets.
 -   Added `SoftwareVersions`.
 -   Added `run-<run_index>` to the phase encoding maps. Improved the description.

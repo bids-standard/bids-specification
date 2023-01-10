@@ -1,6 +1,6 @@
 ---
 # This file defines valid BIDS file suffixes.
-# For rules regarding how suffixes relate to datatypes, see files in `rules/datatypes/`.
+# For rules regarding how suffixes relate to datatypes, see files in `rules/files/raw/`.
 TwoPE:
   value: 2PE
   display_name: 2-photon excitation microscopy
@@ -528,7 +528,7 @@ blood:
   display_name: Blood recording data
   description: |
     Blood measurements of radioactivity stored in
-    [tabular files](SPEC_ROOT/02-common-principles.md#tabular-files)
+    [tabular files](SPEC_ROOT/common-principles.md#tabular-files)
     and located in the `pet/` directory along with the corresponding PET data.
 bold:
   value: bold
@@ -697,7 +697,7 @@ phase:
   value: phase
   display_name: Phase image
   description: |
-    [DEPRECATED](SPEC_ROOT/02-common-principles.md#definitions).
+    [DEPRECATED](SPEC_ROOT/common-principles.md#definitions).
     Phase information associated with magnitude information stored in BOLD
     contrast.
     This suffix should be replaced by the

@@ -316,3 +316,20 @@ def test_error_datasets(bids_error_examples, dataset):
     )
     # Are there non-validated files?
     assert len(result["path_tracking"]) != 0
+
+
+def test_gitdir(bids_examples, tmp_path):
+    """Maybe better handled in example data?"""
+    from distutils.dir_util import copy_tree
+
+    from bidsschematools.validator import validate_bids
+
+    selected_dir = os.path.join(bids_examples, BIDS_SELECTION[0])
+    tmp_path = str(tmp_path)
+    copy_tree(selected_dir, tmp_path)
+
+    os.makedirs(os.path.join(tmp_path, ".git"))
+    with open(os.path.join(tmp_path, ".git", "config"), "w") as temp_file:
+        temp_file.write("")
+    result = validate_bids(tmp_path)
+    assert len(result["path_tracking"]) == 0

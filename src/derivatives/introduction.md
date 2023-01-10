@@ -19,7 +19,7 @@ in [Derived dataset and pipeline description][derived-dataset-description].
     types of files, there may be one or more required metadata fields, in which
     case at least one metadata file containing that field must be located
     somewhere within the file’s hierarchy (per the
-    [Inheritance Principle](../02-common-principles.md#the-inheritance-principle)).
+    [Inheritance Principle](../common-principles.md#the-inheritance-principle)).
 
 -   When chaining derivative pipelines, any JSON fields that were specified as
     mandatory in the input files SHOULD be propagated forward in the output
@@ -72,8 +72,8 @@ in [Derived dataset and pipeline description][derived-dataset-description].
 
 <!-- Link Definitions -->
 
-[definitions]: ../02-common-principles.md#definitions
+[definitions]: ../common-principles.md#definitions
 
-[storage]: ../02-common-principles.md#storage-of-derived-datasets
+[storage]: ../common-principles.md#storage-of-derived-datasets
 
-[derived-dataset-description]: ../03-modality-agnostic-files.md#derived-dataset-and-pipeline-description
+[derived-dataset-description]: ../modality-agnostic-files.md#derived-dataset-and-pipeline-description

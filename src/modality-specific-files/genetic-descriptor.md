@@ -1,8 +1,8 @@
 # Genetic Descriptor
 
 Support genetic descriptors was developed as a
-[BIDS Extension Proposal](../07-extensions.md#bids-extension-proposals).
-Please see [Citing BIDS](../01-introduction.md#citing-bids)
+[BIDS Extension Proposal](../extensions.md#bids-extension-proposals).
+Please see [Citing BIDS](../introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
@@ -20,12 +20,11 @@ and can be used for practical guidance when curating a new dataset.
 ## Dataset Description
 
 Genetic descriptors are encoded as an additional, OPTIONAL entry in the
-[`dataset_description.json`](../03-modality-agnostic-files.md#dataset_descriptionjson)
+[`dataset_description.json`](../modality-agnostic-files.md#dataset_descriptionjson)
 file.
 
 Datasets linked to a genetic database entry include the following REQUIRED or OPTIONAL
-`dataset_description.json` keys (a dot in the key name denotes a key in a sub-[object][],
-see the example further below):
+keys in the `Genetics` sub-[object][] of `dataset_description.json`:
 
 <!-- This block generates a table describing subfields within a metadata field.
 The definitions of these fields can be found in
@@ -33,14 +32,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_subobject_table(
-   ("objects", "metadata", "Genetics"),
-   {
-      "Dataset": "REQUIRED",
-      "Database": "OPTIONAL",
-      "Descriptors": "OPTIONAL",
-   },
-) }}
+{{ MACROS___make_subobject_table("metadata.Genetics") }}
 
 Example:
 
@@ -55,7 +47,7 @@ Example:
      "Dataset": "https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs001364.v1.p1",
      "Database": "https://www.ncbi.nlm.nih.gov/gap/",
      "Descriptors": ["doi:10.1016/j.neuroimage.2013.05.041"]
-     }
+  }
 }
 ```
 
@@ -71,7 +63,7 @@ in the `participants.tsv` file by adding optional columns (like `idh_mutation` i
 example below).
 Note that optional columns MUST be further described in an accompanying
 `participants.json` file as described in
-[Tabular files](../02-common-principles.md#tabular-files).
+[Tabular files](../common-principles.md#tabular-files).
 
 `participants.tsv` example:
 

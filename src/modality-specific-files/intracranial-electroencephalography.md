@@ -1,8 +1,8 @@
 # Intracranial Electroencephalography
 
 Support for Intracranial Electroencephalography (iEEG) was developed as a
-[BIDS Extension Proposal](../07-extensions.md#bids-extension-proposals).
-Please see [Citing BIDS](../01-introduction.md#citing-bids)
+[BIDS Extension Proposal](../extensions.md#bids-extension-proposals).
+Please see [Citing BIDS](../introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
@@ -15,7 +15,7 @@ and can be used for practical guidance when curating a new dataset.
 <!--
 This block generates a filename templates.
 The inputs for this macro can be found in the directory
-  src/schema/rules/datatypes
+  src/schema/rules/files/raw
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
@@ -56,7 +56,7 @@ in case conversion elicits the loss of crucial metadata specific to
 manufacturers and specific iEEG systems. We also encourage users to provide
 additional meta information extracted from the manufacturer-specific data files
 in the sidecar JSON file. Other relevant files MAY be included alongside the
-original iEEG data in the [`/sourcedata` directory](../02-common-principles.md#source-vs-raw-vs-derived-data).
+original iEEG data in the [`/sourcedata` directory](../common-principles.md#source-vs-raw-vs-derived-data).
 
 Note the RecordingType, which depends on whether the data stream on disk is interrupted or not.
 Continuous data is by definition 1 segment without interruption.
@@ -163,8 +163,8 @@ A guide for using macros can be found at
 {{ MACROS___make_sidecar_table("ieeg.iEEGOptional") }}
 
 Note that the date and time information SHOULD be stored in the study key file
-([`scans.tsv`](../03-modality-agnostic-files.md#scans-file)).
-Date time information MUST be expressed as indicated in [Units](../02-common-principles.md#units)
+([`scans.tsv`](../modality-agnostic-files.md#scans-file)).
+Date time information MUST be expressed as indicated in [Units](../common-principles.md#units)
 
 #### Example `*_ieeg.json`
 
@@ -204,7 +204,7 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 <!--
 This block generates a filename templates.
 The inputs for this macro can be found in the directory
-  src/schema/rules/datatypes
+  src/schema/rules/files/raw
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
@@ -245,7 +245,7 @@ Note that upper-case is REQUIRED:
 | EOG         | Generic EOG channel if HEOG or VEOG information not available          |
 | ECG         | ElectroCardioGram (heart)                                              |
 | EMG         | ElectroMyoGram (muscle)                                                |
-| TRIG        | System Triggers                                                        |
+| TRIG        | Analog (TTL in Volt) or digital (binary TTL) trigger channel           |
 | AUDIO       | Audio signal                                                           |
 | PD          | Photodiode                                                             |
 | EYEGAZE     | Eye Tracker gaze                                                       |
@@ -281,7 +281,7 @@ TR1   TRIG  n/a   n/a         n/a         good    n/a
 <!--
 This block generates a filename templates.
 The inputs for this macro can be found in the directory
-  src/schema/rules/datatypes
+  src/schema/rules/files/raw
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
@@ -355,7 +355,7 @@ H01   27  -42  -21  5      AdTech
 <!--
 This block generates a filename templates.
 The inputs for this macro can be found in the directory
-  src/schema/rules/datatypes
+  src/schema/rules/files/raw
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
@@ -435,7 +435,7 @@ data.
 <!--
 This block generates a filename templates.
 The inputs for this macro can be found in the directory
-  src/schema/rules/datatypes
+  src/schema/rules/files/raw
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
