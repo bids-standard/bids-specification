@@ -21,9 +21,9 @@ and a guide for using macros can be found at
 -->
 
 {{ MACROS\_\__make_filename_template(
-"raw",
-datatypes=\["mrs"],
-suffixes=\["svs", "mrsi", "ref", "unloc"])
+    "raw",
+    datatypes=\["mrs"],
+    suffixes=\["svs", "mrsi", "ref", "unloc"])
 }}
 
 Each manufacturer has its own file format (sometimes multiple formats) for exporting MRS data from

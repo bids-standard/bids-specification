@@ -17,7 +17,7 @@ nav:
         - Positron Emission Tomography: modality-specific-files/positron-emission-tomography.md
         - Microscopy: modality-specific-files/microscopy.md
         - Near-Infrared Spectroscopy: modality-specific-files/near-infrared-spectroscopy.md
-        - Magnetic Resonance Spectroscopy: 04-modality-specific-files/12-magnetic-resonance-spectroscopy.md
+        - Magnetic Resonance Spectroscopy: modality-specific-files/magnetic-resonance-spectroscopy.md
       - Derivatives:
         - BIDS Derivatives: derivatives/introduction.md
         - Common data types and metadata: derivatives/common-data-types.md
@@ -91,6 +91,7 @@ plugins:
             '04-modality-specific-files/09-positron-emission-tomography.md': 'modality-specific-files/positron-emission-tomography.md'
             '04-modality-specific-files/10-microscopy.md': 'modality-specific-files/microscopy.md'
             '04-modality-specific-files/11-near-infrared-spectroscopy.md': 'modality-specific-files/near-infrared-spectroscopy.md'
+            '04-modality-specific-files/12-magnetic-resonance-spectroscopy.md': 'modality-specific-files/magnetic-resonance-spectroscopy.md'
             '05-derivatives/01-introduction.md': 'derivatives/introduction.md'
             '05-derivatives/02-common-data-types.md': 'derivatives/common-data-types.md'
             '05-derivatives/03-imaging.md': 'derivatives/imaging.md'
