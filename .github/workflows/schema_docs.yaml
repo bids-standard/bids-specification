@@ -32,6 +32,12 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Debug
+      uses: mxschmitt/action-tmate@v3
+      if: ${{ inputs.debug_enabled }}
+      timeout-minutes: 15
+      with:
+        limit-access-to-actor: true
 
     - name: Pull schema-docs and reqs from bids-specification
       run: |
@@ -46,13 +52,6 @@ jobs:
         cat ${{ github.workspace }}/requirements.txt | grep -v tools/schemacode >> $HOME/schema-docs/requirements.txt
         sort $HOME/schema-docs/requirements.txt | uniq > $HOME/schema-docs/requirements.txt.tmp
         mv $HOME/schema-docs/requirements.txt.tmp $HOME/schema-docs/requirements.txt
-
-    - name: Debug
-      uses: mxschmitt/action-tmate@v3
-      if: ${{ inputs.debug_enabled }}
-      timeout-minutes: 15
-      with:
-        limit-access-to-actor: true
     
     - name: Push Updates to schema-docs
       run: |    
@@ -65,6 +64,6 @@ jobs:
           echo "You must be up to no good."
         else
           git add --all
-          git commit -m "Auto update from bids-specification ${{ github.sha }}"
+          git commit -m "Auto update from bids-specification $GITHUB_SHA"
           git push origin main
         fi
