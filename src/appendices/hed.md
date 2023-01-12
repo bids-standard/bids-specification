@@ -4,7 +4,7 @@ Hierarchical Event Descriptors (HED) are a controlled vocabulary of terms descri
 events in a machine-actionable form so that algorithms can use the information without
 manual recoding.
 HED annotation can be used to describe any experimental events by combining
-information from the dataset's `_events.tsv` files and `_events.json` sidecars.
+information from the dataset's `events.tsv` files and `events.json` sidecars.
 
 ## HED annotations and vocabulary
 
@@ -14,8 +14,7 @@ Individual terms are comma-separated and may be grouped using parentheses to ind
 association.
 See [https://www.hedtags.org/display_hed.html](https://www.hedtags.org/display_hed.html)
 to view the HED schema and the
-[HED documentation](https://hed-specification.readthedocs.io/en/latest/index.html)
-for additional resources.
+[HED resources](https://www.hed-resources.org) site for additional information.
 
 Starting with HED version 8.0.0, HED allows users to annotate using individual
 terms or partial paths in the HED vocabulary (for example `Red` or `Visual-presentation`)
@@ -24,8 +23,8 @@ rather than the full paths in the HED hierarchy (
 or
 `Property/Sensory-property/Sensory-presentation/Visual-presentation`).
 
-HED specific tools MUST treat the short and long HED tag forms interchangeably,
-converting between the forms when necessary, based on the HED schema.
+HED specific tools MUST treat the short (single term) and long (full path) HED tag forms interchangeably,
+converting between the forms when necessary based on the HED schema.
 Examples of test datasets using the various forms can be found in
 [hed-examples/datasets](https://github.com/hed-standard/hed-examples/tree/main/datasets)
 on GitHub.
@@ -83,12 +82,12 @@ The `duration` column is also annotated as a value column.
     "LongName": "Event category",
     "Description": "Indicator of type of action that is expected",
     "Levels": {
-      "go": "A red square is displayed to indicate starting",
-      "stop": "A blue square is displayed to indicate stopping"
+      "go": "A blue square is displayed to indicate starting",
+      "stop": "A red square is displayed to indicate stopping"
     },
     "HED": {
-          "go": "Sensory-event, Visual-presentation, ((Square, Blue),(Computer-screen, Center-of))",
-          "stop": "Sensory-event, Visual-presentation, ((Square, Blue), (Computer-screen, Center-of))"
+          "go": "Sensory-event, Visual-presentation, (Square, Blue)",
+          "stop": "Sensory-event, Visual-presentation, (Square, Red)"
        }
    },
    "response_time": {
@@ -105,17 +104,16 @@ The `duration` column is also annotated as a value column.
 }
 ```
 
-Dedicated HED tools MUST assemble an annotation for each event by concatenating the
-annotations for each column.
+Dedicated HED tools MUST assemble the HED annotation for each event (row) by concatenating the
+annotations for each column, along with the annotation contained directly in a `HED` column
+of that row as described in the next section.
 
 Example: The fully assembled annotation for the first event in the above
 `events.tsv` file with onset `1.2` (the first row) is:
 
 ```Text
-Duration/0.6 s, Sensory-event, Visual-presentation,
-((Square, Blue), (Computer-screen, Center-of)),
-(Delay/1.435 ms, Agent-action,
-(Experiment-participant, (Press, Mouse-button))),
+Duration/0.6 s, Sensory-event, Visual-presentation, (Square, Blue),
+(Delay/1.435 ms, Agent-action, (Experiment-participant, (Press, Mouse-button))),
 Pathname/images/red_square.jpg
 ```
 
@@ -124,21 +122,22 @@ Pathname/images/red_square.jpg
 Another tagging strategy is to annotate individual events directly by
 including a `HED` column in the `events.tsv` file.
 This approach is necessary when each event has annotations that are unique
-and do not fit into a standard set of patterns.
+and do not fit into a standard set of patterns, 
+such as during manual annotation of artifacts or signal features.
 
-Some acquisition or presentation software systems directly
-write annotations during the experiment, and these MAY also be placed in the
-`HED` column of the `events.tsv` file.
+Some acquisition or presentation software systems may produce
+individual annotations for each event during the experiment.
+These individualized annotations may be placed into the `HED` column of the `events.tsv` file
+when the data is converted into BIDS format.
 
-Dedicated HED tools that assemble the full annotation for events treat MUST not distinguish
-between HED annotations extracted from `_events.json` sidecars and those
-appearing in the `HED` column of `_events.tsv` files.
+Dedicated HED tools that assemble the full annotation for events MUST not distinguish
+between HED annotations extracted from `events.json` sidecars and those
+appearing in the `HED` column of `events.tsv` files.
 The HED strings from all sources are concatenated to form the final
 event annotations.
 
-Annotations placed in sidecars are the RECOMMENDED way
-to annotate data using HED.
-These annnotations are preferred to those placed
+Annotations placed in sidecars are the RECOMMENDED way to annotate data using HED.
+These annotations are preferred to those placed
 directly in the `HED` column, because they are simpler, more compact,
 more easily edited, and less prone to inconsistencies.
 
@@ -167,9 +166,9 @@ This allows for a proper validation of the HED annotations
 (for example using the `bids-validator`).
 
 Example: The following `dataset_description.json` file specifies that the
-[`HED8.1.0.xml`](https://github.com/hed-standard/hed-specification/tree/master/hedxml/HED8.1.0.xml)
+[`HED8.1.0.xml`](https://github.com/hed-standard/hed-schemas/blob/main/standard_schema/hedxml/HED8.1.0.xml)
 file from the `hedxml` directory of the
-[`hed-specification`](https://github.com/hed-standard/hed-specification)
+[`hed-schemas`](https://github.com/hed-standard/hed-schemas)
 repository on GitHub should be used to validate the study event annotations.
 
 ```JSON
@@ -181,36 +180,33 @@ repository on GitHub should be used to validate the study event annotations.
 ```
 
 If you omit the `HEDVersion` field from the dataset description file,
-any present HED information will be validated using the latest version of the HED schema.
-This is bound to result in problems, and hence, it is strongly RECOMMENDED that the
-`HEDVersion` field be included when using HED in a BIDS dataset.
+an error will result.
 
 ### Using HED library schemas
 
 HED also allows you to use one or more specialized vocabularies along with or instead of
 the standard vocabulary. These specialized vocabularies are developed by
 communities of users and are available in the GitHub
-[hed-schema-library](https://github.com/hed-standard/hed-schema-library) repository.
+[hed-schemas](https://github.com/hed-standard/hed-schemas) repository.
 Library schema are specified in the form `<library-name<_>library-version>`.
 
 Example: The following `dataset_description.json` file specifies that the
-[HED8.1.0.xml](https://github.com/hed-standard/hed-specification/tree/master/hedxml/HED8.1.0.xml)
+[HED8.1.0.xml](https://github.com/hed-standard/hed-schemas/blob/main/standard_schema/hedxml/HED8.1.0.xml)
 standard schema should be used along with the
-SCORE library for clinical neurological annotation and a test library.
-These later schemas are located at
-[HED_score_0.0.1.xml](https://github.com/hed-standard/hed-schema-library/blob/main/library_schemas/score/hedxml/HED_score_0.0.1.xml) and
-[HED_testlib_1.0.2.xml](https://github.com/hed-standard/hed-schema-library/blob/main/library_schemas/testlib/hedxml/HED_testlib_1.0.2.xml), respectively.
+SCORE library for clinical neurological annotation located at
+[HED_score_0.0.1.xml](https://github.com/hed-standard/hed-schemas/blob/main/library_schemas/score/hedxml/HED_score_0.0.1.xml).
 
 ```JSON
 {
   "Name": "A great experiment",
   "BIDSVersion": "1.7.0",
-  "HEDVersion": ["8.1.0", "sc:score_0.0.1", "ts:testlib_1.0.2"]
+  "HEDVersion": ["8.1.0", "sc:score_0.0.1"]
 }
 ```
-The `sc:` and `ts:` are user-chosen prefixes used to distinguish the sources
+The `sc:` is a user-chosen prefixes used to distinguish the sources
 of the terms in the HED annotation.
-These prefixes MUST be alphanumeric.
+The prefixes MUST be alphanumeric.
+Any number of prefixed schemas may be used in addition to a non-prefixed one.
 
 The following HED annotation from this dataset uses the `sc:` prefix with
 `Photomyogenic-response` and `Wicket-spikes` because these terms are from the
