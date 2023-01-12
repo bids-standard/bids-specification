@@ -269,10 +269,10 @@ in the accompanying JSON sidecar as follows (based on the example of the previou
         "SoftwareRRID": "SCR_002881",
         "SoftwareVersion": "3.0.14",
         "Code": "doi:10.5281/zenodo.3361717",
-        "ScreenDistance": 180,
+        "ScreenDistance": 1.8,
         "ScreenRefreshRate": 60,
         "ScreenResolution": [1920, 1200],
-        "ScreenSize": [47.2, 29.5]
+        "ScreenSize": [0.472, 0.295]
     }
 }
 ```
