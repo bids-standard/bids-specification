@@ -11,8 +11,8 @@
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
 import os
-import sys
 import pathlib
+import sys
 
 schemacode_path = pathlib.Path(os.path.abspath("bidsschematools"))
 sys.path.insert(0, str(schemacode_path))
