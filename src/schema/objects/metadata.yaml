@@ -2825,6 +2825,57 @@ ScatterFraction:
     type: number
     minimum: 0
     maximum: 100
+ScreenDistance:
+  name: ScreenDistance
+  display_name: Screen Distance
+  description: |
+    Distance between the participant's eye and the screen. If no screen was used, use `n/a`.
+  anyOf:
+    - type: number
+      unit: m
+    - type: string
+      enum:
+        - n/a
+ScreenRefreshRate:
+  name: ScreenRefreshRate
+  display_name: Screen Refresh Rate
+  description: |
+    Refresh rate of the screen (when used), in Hertz (equivalent to frames per second, "FPS").
+  type: number
+  unit: Hz
+ScreenResolution:
+  name: ScreenResolution
+  display_name: Screen Resolution
+  description: |
+    Screen resolution in pixel
+    (for example `[1920, 1200]` for a screen of 1920-width by 1080-height pixels),
+    if no screen use `n/a`.
+  anyOf:
+    - type: array
+      items:
+        type: integer
+        minItems: 2
+        maxItems: 2
+    - type: string
+      enum:
+        - n/a
+ScreenSize:
+  name: ScreenSize
+  display_name: Screen Size
+  description: |
+    Screen size in m, excluding potential screen borders
+    (for example `[0.472, 0.295]` for a screen of 47.2-width by 29.5-height cm),
+    if no screen use `n/a`.
+  anyOf:
+    - type: array
+      items:
+        type: number
+        unit: m
+        minItems: 2
+        maxItems: 2
+    - type: string
+      enum:
+        - n/a
 SequenceName:
   name: SequenceName
   display_name: Sequence Name
@@ -3135,13 +3186,14 @@ StimulusPresentation:
   display_name: Stimulus Presentation
   description: |
     Object containing key-value pairs related to the software used to present
-    the stimuli during the experiment, specifically:
-    `"OperatingSystem"`, `"SoftwareName"`, `"SoftwareRRID"`, `"SoftwareVersion"` and
-    `"Code"`.
-    See table below for more information.
+    the stimuli during the experiment.
   type: object
   recommended_fields:
     - OperatingSystem
+    - ScreenDistance
+    - ScreenRefreshRate
+    - ScreenResolution
+    - ScreenSize
     - SoftwareName
     - SoftwareRRID
     - SoftwareVersion
@@ -3149,6 +3201,14 @@ StimulusPresentation:
   properties:
     OperatingSystem:
       $ref: objects.metadata.OperatingSystem
+    ScreenDistance:
+      $ref: objects.metadata.ScreenDistance
+    ScreenRefreshRate:
+      $ref: objects.metadata.ScreenRefreshRate
+    ScreenResolution:
+      $ref: objects.metadata.ScreenResolution
+    ScreenSize:
+      $ref: objects.metadata.ScreenSize
     SoftwareName:
       $ref: objects.metadata.SoftwareName
     SoftwareRRID:
