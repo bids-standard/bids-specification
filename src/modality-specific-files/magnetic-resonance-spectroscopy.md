@@ -20,11 +20,7 @@ and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 
-{{ MACROS\_\__make_filename_template(
-    "raw",
-    datatypes=\["mrs"],
-    suffixes=\["svs", "mrsi", "ref", "unloc"])
-}}
+{{ MACROS___make_filename_template("raw", datatypes=["mrs"], suffixes=["svs", "mrsi", "ref", "unloc"]) }}
 
 Each manufacturer has its own file format (sometimes multiple formats) for exporting MRS data from
 the scanner console for offline processing.
@@ -149,25 +145,25 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 
-{{ MACROS\_\__make_sidecar_table("mrs.MRSScannerHardware") }}
+{{ MACROS___make_sidecar_table("mrs.MRSScannerHardware") }}
 
 #### Sequence specifics
 
-{{ MACROS\_\__make_sidecar_table("mrs.MRSSequenceSpecifics") }}
+{{ MACROS___make_sidecar_table("mrs.MRSSequenceSpecifics") }}
 
 ### MRS-specific fields
 
 Metadata fields that MUST be present:
 
-{{ MACROS\_\__make_sidecar_table("mrs.MRSRequiredFields") }}
+{{ MACROS___make_sidecar_table("mrs.MRSRequiredFields") }}
 
 SHOULD be present:
 
-{{ MACROS\_\__make_sidecar_table("mrs.MRSRecommendedFields") }}
+{{ MACROS___make_sidecar_table("mrs.MRSRecommendedFields") }}
 
 MAY be present:
 
-{{ MACROS\_\__make_sidecar_table("mrs.MRSOptionalFields") }}
+{{ MACROS___make_sidecar_table("mrs.MRSOptionalFields") }}
 
 ### Example `*_svs.json`
 
