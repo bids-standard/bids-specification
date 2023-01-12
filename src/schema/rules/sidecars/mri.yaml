@@ -183,7 +183,7 @@ MRITimingParameters:
         The data type array provides a value for each volume in a 4D dataset and
         should only be used when the volume timing is critical for interpretation
         of the data, such as in
-        [ASL](SPEC_ROOT/04-modality-specific-files/01-magnetic-resonance-imaging-data.md#\
+        [ASL](SPEC_ROOT/modality-specific-files/magnetic-resonance-imaging-data.md#\
         arterial-spin-labeling-perfusion-data)
         or variable echo time fMRI sequences.
       issue:
@@ -259,7 +259,7 @@ MRIFlipAngleLookLockerFalse:
         The data type array provides a value for each volume in a 4D dataset and
         should only be used when the volume timing is critical for interpretation of
         the data, such as in
-        [ASL](SPEC_ROOT/04-modality-specific-files/01-magnetic-resonance-imaging-data.md#\
+        [ASL](SPEC_ROOT/modality-specific-files/magnetic-resonance-imaging-data.md#\
         arterial-spin-labeling-perfusion-data)
         or variable flip angle fMRI sequences.
 
@@ -274,7 +274,7 @@ MRIFlipAngleLookLockerTrue:
         The data type array provides a value for each volume in a 4D dataset and
         should only be used when the volume timing is critical for interpretation of
         the data, such as in
-        [ASL](SPEC_ROOT/04-modality-specific-files/01-magnetic-resonance-imaging-data.md#\
+        [ASL](SPEC_ROOT/modality-specific-files/magnetic-resonance-imaging-data.md#\
         arterial-spin-labeling-perfusion-data)
         or variable flip angle fMRI sequences.
       issue:
