@@ -47,7 +47,7 @@ Contrarily, Bruker stores two binary files: one file stores each transient separ
 while the other stores the sum of the transients.
 Bruker stores the sequence name, voxel position, voxel orientation, and other metadata in a separate plaintext file.
 These files are considered source data and, if present, MUST be stored in the
-[`/sourcedata`](../02-common-principles.md#source-vs-raw-vs-derived-data) directory.
+[`/sourcedata`](../common-principles.md#source-vs-raw-vs-derived-data) directory.
 
 Due to the diversity in manufacturers' MRS data file formats, source data MUST be converted into the
 [NIfTI-MRS format](https://onlinelibrary.wiley.com/doi/10.1002/mrm.29418) (`*.nii[.gz]`).
