@@ -64,6 +64,6 @@ jobs:
           echo "You must be up to no good."
         else
           git add --all
-          git commit -m "Auto update from bids-specification ${{ github.sha }}"
+          git commit -m "Auto update from bids-specification $GITHUB_SHA"
           git push origin main
         fi
