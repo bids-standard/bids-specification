@@ -6,9 +6,6 @@ on:
       - "master"
     tags:
       - "schema-*"
-  pull_request:
-    branches:
-      - "*"
   workflow_dispatch:
     inputs:
       debug_enabled:
