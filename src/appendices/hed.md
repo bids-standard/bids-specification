@@ -122,7 +122,7 @@ Pathname/images/red_square.jpg
 Another tagging strategy is to annotate individual events directly by
 including a `HED` column in the `events.tsv` file.
 This approach is necessary when each event has annotations that are unique
-and do not fit into a standard set of patterns, 
+and do not fit into a standard set of patterns,
 such as during manual annotation of artifacts or signal features.
 
 Some acquisition or presentation software systems may produce
