@@ -167,7 +167,7 @@ This allows for a proper validation of the HED annotations
 
 Example: The following `dataset_description.json` file specifies that the
 [`HED8.1.0.xml`](https://github.com/hed-standard/hed-schemas/blob/main/standard_schema/hedxml/HED8.1.0.xml)
-file from the `hedxml` directory of the
+file from the `standard_schema/hedxml` directory of the
 [`hed-schemas`](https://github.com/hed-standard/hed-schemas)
 repository on GitHub should be used to validate the study event annotations.
 
@@ -180,7 +180,10 @@ repository on GitHub should be used to validate the study event annotations.
 ```
 
 If you omit the `HEDVersion` field from the dataset description file,
-an error will result.
+a warning will be generated and
+any present HED information will be validated using the latest version of the HED schema.
+This is bound to result in problems, and hence, it is strongly RECOMMENDED that the
+`HEDVersion` field be included when using HED in a BIDS dataset.
 
 ### Using HED library schemas
 
