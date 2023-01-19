@@ -200,7 +200,7 @@ Restricted keyword list for column `type` in alphabetic order (shared with the o
 
 | **Keyword** | **Description**               |
 | ----------- | ----------------------------- |
-| ACC         | Acceleration                  |
+| ACCEL       | Acceleration                  |
 | ANGACC      | Angular acceleration          |
 | GYRO        | Angular velocity              |
 | LATENCY     | Latency of samples in seconds |
