@@ -45,6 +45,10 @@
   result: false
 - expression: '"VolumeTiming" in null'
   result: false
+- expression: exists(null, "bids-uri")
+  result: false
+- expression: exists([], null)
+  result: false
 - expression: evaluate(true)
   result: true
 - expression: evaluate(false)
