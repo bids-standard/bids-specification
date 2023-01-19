@@ -1,0 +1,69 @@
+name: "schemacode_docs"
+
+on:
+  push:
+    branches:
+      - "master"
+    tags:
+      - "schema-*"
+  workflow_dispatch:
+    inputs:
+      debug_enabled:
+        type: boolean
+        description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'
+        required: false
+        default: false
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  push_schema_for_docs:
+    runs-on: ${{ matrix.os }}
+    name: Push Schema to Schema Docs
+    strategy:
+      matrix:
+        os: ["ubuntu-latest"]
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Debug
+      uses: mxschmitt/action-tmate@v3
+      if: ${{ inputs.debug_enabled }}
+      timeout-minutes: 15
+      with:
+        limit-access-to-actor: true
+
+    - name: Pull schema-docs and reqs from bids-specification
+      run: |
+        
+        pushd $HOME
+        git config --global user.name "${{ github.actor }}"
+        git config --global user.email "${{ github.actor}}@noreply.com"
+        git clone https://${{ github.repository_owner }}:${{ secrets.SCHEMA_DOCS_GITHUB_API_TOKEN }}@github.com/${{ github.repository_owner }}/schema-docs
+        popd
+        rsync --recursive --copy-links ${{ github.workspace }}/tools/schemacode/bidsschematools $HOME/schema-docs/
+        rsync --recursive --copy-links ${{ github.workspace }}/tools/schemacode/docs $HOME/schema-docs/
+        cat ${{ github.workspace }}/requirements.txt | grep -v tools/schemacode >> $HOME/schema-docs/requirements.txt
+        sort $HOME/schema-docs/requirements.txt | uniq > $HOME/schema-docs/requirements.txt.tmp
+        mv $HOME/schema-docs/requirements.txt.tmp $HOME/schema-docs/requirements.txt
+    
+    - name: Push Updates to schema-docs
+      run: |    
+      
+        pushd $HOME/schema-docs
+        
+        git diff --exit-code > $HOME/gitdiff.log
+        if [[ $? == 0 ]]; then
+          echo "No changes found schema code, this workflow should only run when changes are made to schema-*."
+          echo "You must be up to no good."
+        else
+          git add --all
+          git commit -m "Auto update from bids-specification $GITHUB_SHA"
+          git push origin main
+        fi

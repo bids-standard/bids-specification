@@ -2888,8 +2888,8 @@ ScreenSize:
   name: ScreenSize
   display_name: Screen Size
   description: |
-    Screen size in cm, excluding potential screen borders
-    (for example `[47.2, 29.5]` for a screen of 47.2-width by 29.5-height cm),
+    Screen size in m, excluding potential screen borders
+    (for example `[0.472, 0.295]` for a screen of 47.2-width by 29.5-height cm),
     if no screen use `n/a`.
   anyOf:
     - type: array
