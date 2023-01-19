@@ -222,21 +222,13 @@ A guide for using macros can be found at
 
 The object supplied for `StimulusPresentation` SHOULD include the following key-value pairs:
 
-<!-- This block generates a metadata table.
+<!-- This block generates a table describing subfields within a metadata field.
 The definitions of these fields can be found in
   src/schema/objects/metadata.yaml
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_subobject_table(("objects", "metadata", "StimulusPresentation"),
-   {
-      "OperatingSystem": "RECOMMENDED",
-      "SoftwareName": "RECOMMENDED",
-      "SoftwareRRID": "RECOMMENDED",
-      "SoftwareVersion": "RECOMMENDED",
-      "Code": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_subobject_table("metadata.StimulusPresentation") }}
 
 The operating system description SHOULD include the following attributes:
 
@@ -276,7 +268,11 @@ in the accompanying JSON sidecar as follows (based on the example of the previou
         "SoftwareName": "Psychtoolbox",
         "SoftwareRRID": "SCR_002881",
         "SoftwareVersion": "3.0.14",
-        "Code": "doi:10.5281/zenodo.3361717"
+        "Code": "doi:10.5281/zenodo.3361717",
+        "ScreenDistance": 1.8,
+        "ScreenRefreshRate": 60,
+        "ScreenResolution": [1920, 1200],
+        "ScreenSize": [0.472, 0.295]
     }
 }
 ```
