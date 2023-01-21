@@ -118,16 +118,6 @@ WrongNewLine:
   selectors:
     - extension == ".tsv"
 
-# BIDS Validator Original Issue Code #74
-# Was DUPLICATE_NIFTI_FILES, but applies generally
-DuplicateFiles:
-  code: DUPLICATE_FILES
-  message: |
-    File exists with and without `.gz` extension
-  level: error
-  selectors:
-    - match(extension, '\.gz$')
-
 # BIDS Validator Original Issue Code #88
 MalformedBvec:
   code: MALFORMED_BVEC
