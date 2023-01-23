@@ -4,13 +4,11 @@
 # The order in which these terms are presented in the specification is defined in `rules/common_principles.yaml`,
 # rather than this file (`objects/common_principles.yaml`).
 data_acquisition:
-  name: Data acquisition
   display_name: Data acquisition
   description: |
     A continuous uninterrupted block of time during which a brain scanning instrument was acquiring data according to
     particular scanning sequence/protocol.
 data_type:
-  name: Data type
   display_name: Data type
   description: |
     A functional group of different types of data.
@@ -42,13 +40,11 @@ data_type:
 
         12. `nirs` (near infrared spectroscopy)
 dataset:
-  name: Dataset
   display_name: Dataset
   description: |
     A set of neuroimaging and behavioral data acquired for a purpose of a particular study.
     A dataset consists of data acquired from one or more subjects, possibly from multiple sessions.
 deprecated:
-  name: DEPRECATED
   display_name: DEPRECATED
   description: |
     A "deprecated" entity or metadata field SHOULD NOT be used in the generation of new datasets.
@@ -56,7 +52,6 @@ deprecated:
     Validating software SHOULD warn when deprecated practices are detected
     and provide a suggestion for updating the dataset to preserve the curator's intent.
 event:
-  name: Event
   display_name: Event
   description: |
     Something that happens or may be perceived by a test subject as happening
@@ -72,7 +67,6 @@ event:
     In BIDS, each event has an onset time and duration.
     Note that not all tasks will have recorded events (for example, "resting state").
 extension:
-  name: File extension
   display_name: File extension
   description: |
     A portion of the file name after the left-most period (`.`) preceded by any other alphanumeric.
@@ -80,13 +74,11 @@ extension:
     but the file extension of `test.nii.gz` is `.nii.gz`.
     Note that the left-most period is included in the file extension.
 index:
-  name: index
   display_name: index
   description: |
     A nonnegative integer, possibly prefixed with arbitrary number of 0s for consistent indentation,
     for example, it is `01` in `run-01` following `run-<index>` specification.
 label:
-  name: label
   display_name: label
   description: |
     An alphanumeric value, possibly prefixed with arbitrary number of 0s for consistent indentation,
@@ -94,7 +86,6 @@ label:
     Note that labels MUST not collide when casing is ignored
     (see [Case collision intolerance](SPEC_ROOT/common-principles.md#case-collision-intolerance)).
 modality:
-  name: Modality
   display_name: Modality
   description: |
     The category of brain data recorded by a file.
@@ -105,7 +96,6 @@ modality:
     When applicable, the modality is indicated in the **suffix**.
     The modality may overlap with, but should not be confused with the **data type**.
 run:
-  name: Run
   display_name: Run
   description: |
     An uninterrupted repetition of data acquisition that has the same acquisition parameters and task
@@ -119,14 +109,12 @@ run:
     For some types of [PET](SPEC_ROOT/modality-specific-files/positron-emission-tomography.md) acquisitions,
     a subject may leave and re-enter the scanner without interrupting the scan.
 sample:
-  name: Sample
   display_name: Sample
   description: |
     A sample pertaining to a subject such as tissue, primary cell or cell-free sample.
     Sample labels MUST be unique within a subject and it is RECOMMENDED
     that they be unique throughout the dataset.
 session:
-  name: Session
   display_name: Session
   description: |
     A logical grouping of neuroimaging and behavioral data consistent across subjects.
@@ -144,7 +132,6 @@ session:
     In the [PET](SPEC_ROOT/modality-specific-files/positron-emission-tomography.md) context,
     a session may also indicate a group of related scans, taken in one or more visits.
 suffix:
-  name: suffix
   display_name: suffix
   description: |
     An alphanumeric string that forms part of a filename, located after all
@@ -152,13 +139,11 @@ suffix:
     following a final `_`, right before the **file extension**;
     for example, it is `eeg` in `sub-05_task-matchingpennies_eeg.vhdr`.
 subject:
-  name: Subject
   display_name: Subject
   description: |
     A person or animal participating in the study.
     Used interchangeably with term **Participant**.
 task:
-  name: Task
   display_name: Task
   description: |
     A set of structured activities performed by the participant.
