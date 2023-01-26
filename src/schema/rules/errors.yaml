@@ -118,7 +118,7 @@ WrongNewLine:
   selectors:
     - extension == ".tsv"
 
-# BIDS Validator Original Issue Code #74
+# BIDS Validator Original Issue Code #88
 MalformedBvec:
   code: MALFORMED_BVEC
   message: |
@@ -127,7 +127,7 @@ MalformedBvec:
   selectors:
     - extension == ".bvec"
 
-# BIDS Validator Original Issue Code #88
+# BIDS Validator Original Issue Code #89
 MalformedBval:
   code: MALFORMED_BVAL
   message: |
@@ -136,7 +136,7 @@ MalformedBval:
   selectors:
     - extension == ".bval"
 
-# BIDS Validator Original Issue Code #89
+# BIDS Validator Original Issue Code #90
 SidecarWithoutDatafile:
   code: SIDECAR_WITHOUT_DATAFILE
   message: |
@@ -145,7 +145,7 @@ SidecarWithoutDatafile:
   selectors:
     - extension == ".json"
 
-# BIDS Validator Original Issue Code #90
+# BIDS Validator Original Issue Code #97
 MissingSession:
   code: MISSING_SESSION
   message: |
