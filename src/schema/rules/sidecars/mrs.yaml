@@ -18,7 +18,6 @@ MRSScannerHardware:
     DeviceSerialNumber: recommended
     StationName: recommended
     SoftwareVersions: recommended
-    HardcopyDeviceSoftwareVersion: DEPRECATED
     MagneticFieldStrength: recommended
     ReceiveCoilName: recommended
     ReceiveCoilActiveElements: recommended

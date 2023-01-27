@@ -77,8 +77,6 @@ AnatomicalImage:
     The path(s) to the anatomical MR image file(s), if present,
     to which the associated MRS data file corresponds.
     Contains one or more [BIDS URIs](SPEC_ROOT/common-principles.md#bids-uri).
-    Using forward-slash separated paths relative to the participant subdirectory is
-    [DEPRECATED](SPEC_ROOT/common-principles.md#definitions).
   anyOf:
     - type: string
     - type: array
