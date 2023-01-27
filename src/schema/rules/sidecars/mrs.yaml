@@ -50,7 +50,9 @@ MRSRecommendedFields:
     - modality == "mrs"
   fields:
     NumberOfSpectralPoints: recommended
-    NumberOfTransients: recommended for SVS
+    NumberOfTransients:
+      level: optional
+      level_addendum: recommended for SVS and unloc
     RepetitionTime__mrs: recommended
     MixingTime: recommended
     InversionTime: recommended for inversion recovery data
