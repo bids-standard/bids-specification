@@ -46,7 +46,7 @@ These files are considered source data and, if present, MUST be stored in the
 [`/sourcedata`](../common-principles.md#source-vs-raw-vs-derived-data) directory.
 
 Due to the diversity in manufacturers' MRS data file formats, source data MUST be converted into the
-[NIfTI-MRS format](https://onlinelibrary.wiley.com/doi/10.1002/mrm.29418) (`*.nii[.gz]`).
+[NIfTI-MRS format](https://doi.org/10.1002/mrm.29418) (`*.nii[.gz]`).
 This format is based on the NIfTI framework and is designed to accommodate the nuances of raw MRS data.
 All necessary information to parse this `*.nii[.gz]` file (for example, spectrometer frequency, echo time,
 repetition time, and so on) are stored in a JSON header extension.
