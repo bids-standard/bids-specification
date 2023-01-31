@@ -1,0 +1,74 @@
+#
+# Groups of related metadata fields
+#
+# Assumptions: never need disjunction of selectors
+# Assumptions: top-to-bottom overrides is sufficient logic
+
+---
+motionGeneric:
+  selectors:
+    - modality == "motion"
+    - datatype == "motion"
+    - suffix == "motion"
+  fields:
+    TaskName:
+      level: required
+
+motionRecommended:
+  selectors:
+    - modality == "motion"
+    - datatype == "motion"
+    - suffix == "motion"
+  fields:
+    InstitutionName: recommended
+    InstitutionAddress: recommended
+    InstitutionalDepartmentName: recommended
+    Manufacturer: recommended
+    ManufacturersModelName: recommended
+    SoftwareVersions: recommended
+    TaskDescription: recommended
+    Instructions: recommended
+    DeviceSerialNumber: optional
+    ExternalSoftwareVersions: optional
+    Manufacturer: optional
+    ManufacturersModelName: optional
+    SoftwareVersions: optional
+
+motionRequired:
+  selectors:
+    - modality == "motion"
+    - datatype == "motion"
+    - suffix == "motion"
+  fields:
+    SamplingFrequency:
+      level: required
+      description_addendum: |
+        The sampling frequency of data channels that deviate from the main sampling
+        frequency SHOULD be specified in the `channels.tsv` file.
+    TrackingSystemName: required
+
+motionMoreRecommended:
+  selectors:
+    - modality == "motion"
+    - datatype == "motion"
+    - suffix == "motion"
+  fields:
+    ACCELChannelCount: recommended
+    ANGACCChannelCount: recommended
+    GYROChannelCount: recommended
+    JNTANGChannelCount: recommended
+    LATENCYChannelCount: recommended
+    MAGNChannelCount: recommended
+    MISCChannelCount: recommended
+    MissingValues: recommended
+    MotionChannelCount: recommended
+    ORNTChannelCount: recommended
+    POSChannelCount: recommended
+    RotationOrder: recommended
+    RotationRule: recommended
+    SamplingFrequencyEffective: recommended
+    SpatialAxes: recommended
+    StartTime: optional
+    SubjectArtefactDescription: recommended
+    TrackedPointsCount: recommended
+    VELChannelCount: recommended
