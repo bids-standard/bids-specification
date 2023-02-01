@@ -31,39 +31,51 @@ jobs:
         os: ["ubuntu-latest"]
     steps:
     - uses: actions/checkout@v3
-
-    - name: Debug
-      uses: mxschmitt/action-tmate@v3
-      if: ${{ inputs.debug_enabled }}
-      timeout-minutes: 15
       with:
-        limit-access-to-actor: true
+        path: source
+        persist-credentials: false
 
-    - name: Pull schema-docs and reqs from bids-specification
-      run: |
-        
-        pushd $HOME
-        git config --global user.name "${{ github.actor }}"
-        git config --global user.email "${{ github.actor}}@noreply.com"
-        git clone https://${{ github.repository_owner }}:${{ secrets.SCHEMA_DOCS_GITHUB_API_TOKEN }}@github.com/${{ github.repository_owner }}/schema-docs
-        popd
-        rsync --recursive --copy-links ${{ github.workspace }}/tools/schemacode/bidsschematools $HOME/schema-docs/
-        rsync --recursive --copy-links ${{ github.workspace }}/tools/schemacode/docs $HOME/schema-docs/
-        cat ${{ github.workspace }}/requirements.txt | grep -v tools/schemacode >> $HOME/schema-docs/requirements.txt
-        sort $HOME/schema-docs/requirements.txt | uniq > $HOME/schema-docs/requirements.txt.tmp
-        mv $HOME/schema-docs/requirements.txt.tmp $HOME/schema-docs/requirements.txt
-    
-    - name: Push Updates to schema-docs
-      run: |    
+    - name: Collect schema-docs repo
+      uses: actions/checkout@v3
+      with:
+        ref: main
+        repository: ${{ github.repository_owner }}/schema-docs
+        path: dest
+        token: ${{ secrets.SCHEMA_DOCS_GITHUB_API_TOKEN }}
+        fetch-depth: 0
+        persist-credentials: true
       
-        pushd $HOME/schema-docs
-        
-        git diff --exit-code > $HOME/gitdiff.log
-        if [[ $? == 0 ]]; then
+    - name: Update schema-docs from bids-specification  
+      run: |
+        rsync --recursive --copy-links source/tools/schemacode/bidsschematools dest/
+        rsync --recursive --copy-links source/tools/schemacode/docs dest/
+        cat source/requirements.txt | grep -v tools/schemacode >> dest/requirements.txt
+        sort dest/requirements.txt | uniq > dest/requirements.txt.tmp
+        mv dest/requirements.txt.tmp dest/requirements.txt
+
+    - name: Check for Updates
+      id: updatesmade
+      working-directory: dest
+      run: |
+        git add --all
+        git status --porcelain
+        if [[ $(git status --porcelain | wc -l) -gt 0 ]]; then
+          echo "changesmade=true" >> $GITHUB_OUTPUT
+        else
           echo "No changes found schema code, this workflow should only run when changes are made to schema-*."
           echo "You must be up to no good."
-        else
-          git add --all
-          git commit -m "Auto update from bids-specification $GITHUB_SHA"
-          git push origin main
+          echo "changesmade=false" >> $GITHUB_OUTPUT
         fi
+
+    - name: Push Updates
+      if: ${{ steps.updatesmade.outputs.changesmade  == 'true' }}
+      working-directory: dest
+      env:
+        ACTOR: ${{ github.actor }}
+        OWNER: ${{ github.repository_owner }}
+      run: |
+        git config --global user.name "$ACTOR"
+        git config --global user.email "$ACTOR@noreply.com"
+        git add --all
+        git commit -m "Auto update from bids-specification $GITHUB_SHA"
+        git push
