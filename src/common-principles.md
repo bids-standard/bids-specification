@@ -183,6 +183,10 @@ as the labels would collide on a case-insensitive filesystem.
 Additionally, because the suffix `eeg` is defined,
 then the suffix `EEG` will not be added to future versions of the standard.
 
+## Filesystem structure & Filenames richness versus distinctness
+
+BIDS provides a rich filesystem structure and rich filenames by using entites, but it is important to keep in mind that files also have to be readable. They have to be readable by machines, and this implies that filenames cannot be longer than 255 characters. They also have to be readable by humans, and this implies minimizing length. A useful way to think about filenaming is distinctness: what is the minimal information needed for distinguish files? A simple illustration is given by using the [`ses-`](https://bids-specification.readthedocs.io/en/stable/glossary.html#session-entities) and [`run-`](https://bids-specification.readthedocs.io/en/stable/appendices/entities.html#run) entities. A T1 weighted MRI image could, in  principle, be called `sub-X_ses-1-run-1_T1w.nii`. When there is only 1 session, and only 1 run, this is not needed as `ses-` and `run-` do not increase distinctivness. Here, it is recommended to use the shorter version `sub-X_T1w.nii`.  In some cases, this principle is enforced in the BIDS validator.
+
 ## Source vs. raw vs. derived data
 
 BIDS was originally designed to describe and apply consistent naming conventions
