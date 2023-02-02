@@ -9,4 +9,4 @@ DuplicateFiles:
   selectors:
     - match(extension, '\.gz$')
   checks:
-    - "!exists(substr(path, 0, length(path) - 3))"
+    - exists(substr(path, 0, length(path) - 3)) == 0
