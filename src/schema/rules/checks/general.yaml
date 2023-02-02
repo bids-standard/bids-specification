@@ -1,0 +1,12 @@
+---
+# BIDS Validator Original Issue Code #74
+# Was DUPLICATE_NIFTI_FILES, but applies generally
+DuplicateFiles:
+  code: DUPLICATE_FILES
+  message: |
+    File exists with and without `.gz` extension
+  level: error
+  selectors:
+    - match(extension, '\.gz$')
+  checks:
+    - exists(substr(path, 0, length(path) - 3)) == 0
