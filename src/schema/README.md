@@ -264,9 +264,9 @@ Most operations involving `null` simply resolve to `null`:
 | `null / 1`                 | `null` |
 | `match(null, pattern)`     | `null` |
 | `intersects(list, null)`   | `null` |
-| `substr(null, 0, 1)        | `null` |
-| `substr(str, null, 1)      | `null` |
-| `substr(str, 0, null)      | `null` |
+| `substr(null, 0, 1)`       | `null` |
+| `substr(str, null, 1)`     | `null` |
+| `substr(str, 0, null)`     | `null` |
 | `length(null)`             | `null` |
 | `count(null, val)`         | `null` |
 | `count(list, null)`        | `null` |
