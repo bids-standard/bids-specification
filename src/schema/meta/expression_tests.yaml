@@ -37,9 +37,9 @@
   result: null
 - expression: 1 / null
   result: null
-- expression: 'str1' + null
+- expression: "'str1' + null"
   result: null
-- expression: null + 'str1'
+- expression: "null + 'str1'"
   result: null
 - expression: intersects([], null)
   result: null
