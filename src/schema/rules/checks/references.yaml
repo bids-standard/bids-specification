@@ -1,0 +1,43 @@
+---
+SubjectRelativeIntendedFor:
+  selectors:
+    - datatype != "ieeg"
+    - type(sidecar.IntendedFor) != "null"
+  checks:
+    - exists(sidecar.IntendedFor, "bids-uri") || exists(sidecar.IntendedFor, "subject")
+
+DatasetRelativeIntendedFor:
+  selectors:
+    - datatype == "ieeg"
+    - type(sidecar.IntendedFor) != "null"
+  checks:
+    - exists(sidecar.IntendedFor, "bids-uri") || exists(sidecar.IntendedFor, "dataset")
+
+AssociatedEmptyRoom:
+  selectors:
+    - suffix == "meg"
+    - type(sidecar.AssociatedEmptyRoom) != "null"
+  checks:
+    - exists(sidecar.AssociatedEmptyRoom, "bids-uri") || exists(sidecar.AssociatedEmptyRoom, "dataset")
+
+Stimuli:
+  selectors:
+    - suffix == "events"
+    - extension == ".tsv"
+    - type(columns.stim_file) != "null"
+  checks:
+    - exists(columns.stim_file, "stimuli")
+
+Sources:
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivatives"
+    - type(sidecar.Sources) != "null"
+  checks:
+    - exists(sidecar.Sources, "bids-uri") || exists(sidecar.Sources, "dataset")
+
+SpatialReferences:
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivatives"
+    - type(sidecar.SpatialReference.URI) != "null"
+  checks:
+    - exists(sidecar.SpatialReference.URI, "bids-uri") || exists(sidecar.SpatialReference.URI, "dataset")

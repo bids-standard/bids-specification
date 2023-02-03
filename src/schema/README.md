@@ -214,30 +214,34 @@ These are to be populated by an *interpreter* of the schema, and provide the
 
 The following operators should be defined by an interpreter:
 
-| Operator  | Definition                                                    | Example                                       |
-| --------- | ------------------------------------------------------------- | --------------------------------------------- |
-| `==`      | equality                                                      | `suffix == "T1w"`                             |
-| `!=`      | inequality                                                    | `entities.task != "rest"`                     |
-| `<`/`>`   | less-than / greater-than                                      | `sidecar.EchoTime < 0.5`                      |
-| `<=`/`>=` | less-than-or-equal / greater-than-or-equal                    | `0 <= 4`                                      |
-| `in`      | object lookup, true if RHS is a subfield of LHS               | `"Units" in sidecar`                          |
-| `!`       | negation, true if the following value is false, or vice versa | `!true == false`                              |
-| `&&`      | conjunction, true if both RHS and LHS are true                | `"Units" in sidecar && sidecar.Units == "mm"` |
-| `\|\|`    | disjunction, true if either RHS or LHS is true                | `a < mn \|\| a > mx`                          |
-| `.`       | object query, returns value of subfield                       | `sidecar.Units`                               |
-| `[]`      | array index, returns value of Nth element (0-indexed) of list | `columns.participant_label[0]`                |
+| Operator    | Definition                                                    | Example                                       |
+| ----------- | ------------------------------------------------------------- | --------------------------------------------- |
+| `==`        | equality                                                      | `suffix == "T1w"`                             |
+| `!=`        | inequality                                                    | `entities.task != "rest"`                     |
+| `<`/`>`     | less-than / greater-than                                      | `sidecar.EchoTime < 0.5`                      |
+| `<=`/`>=`   | less-than-or-equal / greater-than-or-equal                    | `0 <= 4`                                      |
+| `in`        | object lookup, true if RHS is a subfield of LHS               | `"Units" in sidecar`                          |
+| `!`         | negation, true if the following value is false, or vice versa | `!true == false`                              |
+| `&&`        | conjunction, true if both RHS and LHS are true                | `"Units" in sidecar && sidecar.Units == "mm"` |
+| `\|\|`      | disjunction, true if either RHS or LHS is true                | `a < mn \|\| a > mx`                          |
+| `.`         | object query, returns value of subfield                       | `sidecar.Units`                               |
+| `[]`        | array index, returns value of Nth element (0-indexed) of list | `columns.participant_label[0]`                |
+| `+`         | numeric addition / string concatenation                       | `x + 1`, `stem + "suffix"`                    |
+| `-`/`*`/`/` | numeric operators (division coerces to float)                 | `length(array) - 2`, `x * 2`, `1 / 2 == 0.5`  |
 
 The following functions should be defined by an interpreter:
 
-| Function                                 | Definition                                                                    | Example                                          | Note                                                                           |
-| ---------------------------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `match(arg: str, pattern: str) -> bool`  | `true` if `arg` matches the regular expression `pattern` (anywhere in string) | `match(extension, ".gz$")`                       | True if the file extension ends with `.gz`                                     |
-| `type(arg: Any) -> str`                  | The name of the type, including `"array"`, `"object"`, `"null"`               | `type(datatypes)`                                | Returns `"array"`                                                              |
-| `intersects(a: array, b: array) -> bool` | `true` if arguments contain any shared elements                               | `intersects(dataset.modalities, ["pet", "mri"])` | True if either PET or MRI data is found in dataset                             |
-| `length(arg: array) -> int`              | Number of elements in an array                                                | `length(columns.onset) > 0`                      | True if there is at least one value in the onset column                        |
-| `count(arg: array, val: any)`            | Number of elements in an array equal to `val`                                 | `count(columns.type, "EEG")`                     | The number of times "EEG" appears in the column "type" of the current TSV file |
-| `min(arg: array)`                        | The smallest non-`n/a` value in an array                                      | `min(sidecar.SliceTiming) == 0`                  | A check that the onset of the first slice is 0s                                |
-| `max(arg: array)`                        | The largest non-`n/a` value in an array                                       | `max(columns.onset)`                             | The time of the last onset in an events.tsv file                               |
+| Function                                        | Definition                                                                                                                                                 | Example                                          | Note                                                                           |
+| ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `match(arg: str, pattern: str) -> bool`         | `true` if `arg` matches the regular expression `pattern` (anywhere in string)                                                                              | `match(extension, ".gz$")`                       | True if the file extension ends with `.gz`                                     |
+| `substr(arg: str, start: int, end: int) -> str` | The portion of the input string spanning from start position to end position                                                                               | `substr(path, 0, length(path) - 3)`              | `path` with the last three characters dropped                                  |
+| `type(arg: Any) -> str`                         | The name of the type, including `"array"`, `"object"`, `"null"`                                                                                            | `type(datatypes)`                                | Returns `"array"`                                                              |
+| `intersects(a: array, b: array) -> bool`        | `true` if arguments contain any shared elements                                                                                                            | `intersects(dataset.modalities, ["pet", "mri"])` | True if either PET or MRI data is found in dataset                             |
+| `length(arg: array) -> int`                     | Number of elements in an array                                                                                                                             | `length(columns.onset) > 0`                      | True if there is at least one value in the onset column                        |
+| `count(arg: array, val: any)`                   | Number of elements in an array equal to `val`                                                                                                              | `count(columns.type, "EEG")`                     | The number of times "EEG" appears in the column "type" of the current TSV file |
+| `min(arg: array)`                               | The smallest non-`n/a` value in an array                                                                                                                   | `min(sidecar.SliceTiming) == 0`                  | A check that the onset of the first slice is 0s                                |
+| `max(arg: array)`                               | The largest non-`n/a` value in an array                                                                                                                    | `max(columns.onset)`                             | The time of the last onset in an events.tsv file                               |
+| `exists(arg: str \| array, rule: str) -> int`   | Count of files in an array that exist in the dataset. String is array with length 1. Rules include `"bids-uri"`, `"dataset"`, `"subject"` and `"stimuli"`. | `exists(sidecar.IntendedFor, "subject")`         | True if all files in `IntendedFor` exist, relative to the subject directory.   |
 
 #### The special value `null`
 
@@ -246,21 +250,30 @@ This value propagates through all of the above operations in a fully-defined,
 hopefully intuitive way.
 Most operations involving `null` simply resolve to `null`:
 
-| Operation                | Result |
-| ------------------------ | ------ |
-| `sidecar.MissingValue`   | `null` |
-| `null.anything`          | `null` |
-| `null[0]`                | `null` |
-| `null && true`           | `null` |
-| `null \|\| true`         | `null` |
-| `!null`                  | `null` |
-| `match(null, pattern)`   | `null` |
-| `intersects(list, null)` | `null` |
-| `length(null)`           | `null` |
-| `count(null, val)`       | `null` |
-| `count(list, null)`      | `null` |
-| `min(null)`              | `null` |
-| `max(null)`              | `null` |
+| Operation                  | Result |
+| -------------------------- | ------ |
+| `sidecar.MissingValue`     | `null` |
+| `null.anything`            | `null` |
+| `null[0]`                  | `null` |
+| `null && true`             | `null` |
+| `null \|\| true`           | `null` |
+| `!null`                    | `null` |
+| `null + 1`                 | `null` |
+| `null - 1`                 | `null` |
+| `null * 1`                 | `null` |
+| `null / 1`                 | `null` |
+| `match(null, pattern)`     | `null` |
+| `intersects(list, null)`   | `null` |
+| `substr(null, 0, 1)`       | `null` |
+| `substr(str, null, 1)`     | `null` |
+| `substr(str, 0, null)`     | `null` |
+| `length(null)`             | `null` |
+| `count(null, val)`         | `null` |
+| `count(list, null)`        | `null` |
+| `min(null)`                | `null` |
+| `max(null)`                | `null` |
+| `exists(null, "bids-uri")` | `null` |
+| `exists("/path", null)`    | `null` |
 
 The following operators have boolean results:
 

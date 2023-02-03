@@ -11,7 +11,35 @@
   result: null
 - expression: null || true
   result: null
+- expression: true && null
+  result: null
+- expression: false && null
+  result: false
+- expression: true || null
+  result: true
+- expression: false || null
+  result: null
 - expression: '!null'
+  result: null
+- expression: null + 1
+  result: null
+- expression: null - 1
+  result: null
+- expression: null * 1
+  result: null
+- expression: null / 1
+  result: null
+- expression: 1 + null
+  result: null
+- expression: 1 - null
+  result: null
+- expression: 1 * null
+  result: null
+- expression: 1 / null
+  result: null
+- expression: "'str1' + null"
+  result: null
+- expression: "null + 'str1'"
   result: null
 - expression: intersects([], null)
   result: null
@@ -45,9 +73,19 @@
   result: false
 - expression: '"VolumeTiming" in null'
   result: false
+- expression: exists(null, "bids-uri")
+  result: false
+- expression: exists([], null)
+  result: false
 - expression: evaluate(true)
   result: true
 - expression: evaluate(false)
   result: false
 - expression: evaluate(null)
   result: false
+- expression: 1 + 2
+  result: 3
+- expression: '"cat" + "dog"'
+  result: 'catdog'
+- expression: '1 + "cat"'
+  result: null
