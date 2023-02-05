@@ -5,6 +5,17 @@
 # Assumptions: top-to-bottom overrides is sufficient logic
 
 ---
+EEGHardware:
+  selectors:
+    - modality == "eeg"
+    - datatype == "eeg"
+    - suffix == "eeg"
+  fields:
+    Manufacturer: recommended
+    ManufacturersModelName: recommended
+    SoftwareVersions: recommended
+    DeviceSerialNumber: recommended
+
 EEGTaskInformation:
   selectors:
     - modality == "eeg"
@@ -35,17 +46,6 @@ EEGInstitutionInformation:
     InstitutionAddress: recommended
     InstitutionalDepartmentName: recommended
 
-EEGHardware:
-  selectors:
-    - modality == "eeg"
-    - datatype == "eeg"
-    - suffix == "eeg"
-  fields:
-    Manufacturer: recommended
-    ManufacturersModelName: recommended
-    SoftwareVersions: recommended
-    DeviceSerialNumber: recommended
-
 EEGRequired:
   selectors:
     - modality == "eeg"
@@ -61,7 +61,7 @@ EEGRequired:
     PowerLineFrequency: required
     SoftwareFilters: required
 
-EEGMoreRecommended:
+EEGRecommended:
   selectors:
     - modality == "eeg"
     - datatype == "eeg"
