@@ -11,6 +11,14 @@ have been formatted using this specification and can be used for practical guida
 
 ## NIRS recording data
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the directory
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+
 {{ MACROS___make_filename_template(
    "raw",
    datatypes=["nirs"],
@@ -120,31 +128,73 @@ is stored in the field `ShortChannelCount`.
 If the field `ShortChannelCount` is populated, then the optional column `short_channel`
 may be used in `*_channels.tsv` to describe which channels were specified as short.
 
-#### Generic fields
+#### Generic information
 
 For consistency between studies and institutions, we encourage users to extract
 the values of these fields from the actual raw data. Whenever possible, please
 avoid using ad hoc wording.
 
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("nirs.NirsBase") }}
+
 #### Institution information
 
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_sidecar_table("nirs.NirsInstitutionInformation") }}
 
 #### Task information
 
-{{ MACROS___make_sidecar_table("nirs.NirsInstitutionInformation") }}
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("nirs.NirsTaskInformation") }}
 
 #### Required NIRS specific fields
 
 Specific NIRS fields that are REQUIRED or may be REQUIRED depending on other
 metadata values:
 
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_sidecar_table("nirs.NirsRequired") }}
 
 #### Recommended NIRS specific fields
 
 Specific NIRS fields that SHOULD be present:
 
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_sidecar_table("nirs.NirsRecommend") }}
 
 #### Example `*_nirs.json`
@@ -173,6 +223,14 @@ Specific NIRS fields that SHOULD be present:
 ```
 
 ## Channels description (`*_channels.tsv`)
+
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the directory
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 
 {{ MACROS___make_filename_template(
    "raw",
@@ -245,6 +303,14 @@ S3-D4        NIRSCWAMPLITUDE        VisS2       VisD4         760               
 
 ## Optode description (`*_optodes.tsv`)
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the directory
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+
 {{ MACROS___make_filename_template(
    "raw",
    datatypes=["nirs"],
@@ -282,6 +348,14 @@ VisD4   detector     0.0322     0.2214    0.2299     0.02          0.22         
 
 ## Coordinate System JSON (`*_coordsystem.json`)
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the directory
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+
 {{ MACROS___make_filename_template(
    "raw",
    datatypes=["nirs"],
@@ -302,17 +376,53 @@ In this case, only x and y are specified and z is `"n/a"`.
 
 General fields:
 
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+
 {{ MACROS___make_sidecar_table("nirs.CoordsystemGeneral") }}
 
 Fields relating to the NIRS optode positions:
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 
 {{ MACROS___make_sidecar_table(["nirs.CoordinateSystem", "nirs.CoordinateSystemDescriptionRec"]) }}
 
 Fields relating to the position of fiducials measured during an NIRS session/run:
 
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+
 {{ MACROS___make_sidecar_table(["nirs.Fiducials", "nirs.FiducialsCoordinateSystemDescriptionRec"]) }}
 
 Fields relating to the position of anatomical landmarks measured during an NIRS session/run:
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 
 {{ MACROS___make_sidecar_table(["nirs.AnatomicalLandmark", "nirs.AnatomicalLandmarkCoordinateSystemDescriptionRec"]) }}
 

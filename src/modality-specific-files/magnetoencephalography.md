@@ -98,7 +98,11 @@ the [Coordinate Systems Appendix](../appendices/coordinate-systems.md)).
 
 ### Sidecar JSON (`*_meg.json`)
 
-Generic fields MUST be present:
+For consistency between studies and institutions,
+we encourage users to extract the values of metadata fields from the actual raw data.
+Whenever possible, please avoid using ad hoc wording.
+
+#### Hardware information
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -108,11 +112,9 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("meg.MEGGeneric") }}
+{{ MACROS___make_sidecar_table("meg.MEGHardware") }}
 
-SHOULD be present: For consistency between studies and institutions, we
-encourage users to extract the values of these fields from the actual raw data.
-Whenever possible, please avoid using ad-hoc wording.
+#### Task information
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -122,9 +124,24 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("meg.MEGRecommended") }}
+{{ MACROS___make_sidecar_table("meg.MEGTaskInformation") }}
 
-Specific MEG fields MUST be present:
+#### Institution information
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("meg.MEGInstitutionInformation") }}
+
+
+#### Required specific MEG fields
+
+Those fields MUST be present:
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -136,7 +153,9 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("meg.MEGRequired") }}
 
-SHOULD be present:
+#### Recommended specific MEG fields
+
+Those fields SHOULD be present:
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -146,10 +165,12 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("meg.MEGMoreRecommended") }}
+{{ MACROS___make_sidecar_table("meg.MEGRecommended") }}
 
-Specific EEG fields
-(if recorded with MEG, see [Recording EEG simultaneously with MEG](#recording-eeg-simultaneously-with-meg)
+
+#### Specific EEG fields
+
+If recorded with MEG, see [Recording EEG simultaneously with MEG](#recording-eeg-simultaneously-with-meg)
 SHOULD be present:
 
 <!-- This block generates a metadata table.

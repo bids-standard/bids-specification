@@ -272,7 +272,7 @@ for details.
 
 Microscopy data MUST be described by metadata fields, stored in sidecar JSON files.
 
-#### Device Hardware
+#### Hardware information
 
 <!-- This block generates a metadata table.
 These tables are defined in
