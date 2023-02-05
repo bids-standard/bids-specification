@@ -89,7 +89,7 @@ For consistency between studies and institutions,
 we encourage users to extract the values of these fields from the actual raw data.
 Whenever possible, please avoid using ad hoc wording.
 
-#### EEG hardware
+#### Hardware information
 
 <!-- This block generates a metadata table.
 These tables are defined in

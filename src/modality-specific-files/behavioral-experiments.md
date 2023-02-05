@@ -57,7 +57,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("beh.BEHInstitutionInformation") }}
 
-### Example of the content of a `_beh.tsv` and its accompanying `_beh.json` sidecar file
+### Example `_beh.tsv`
 
 ```Text
 trial	response	response_time	stim_file
