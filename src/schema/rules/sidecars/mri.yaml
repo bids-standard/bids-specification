@@ -30,10 +30,12 @@ MRIHardware:
       level: recommended, but required for Arterial Spin Labeling
     ReceiveCoilName: recommended
     ReceiveCoilActiveElements: recommended
+    NumberReceiveCoilActiveElements: optional
     GradientSetType: recommended
     MRTransmitCoilSequence: recommended
     MatrixCoilMode: recommended
     CoilCombinationMethod: recommended
+    NumberTransmitCoilActiveElements: optional
 
 MRISample:
   selectors:
@@ -75,6 +77,10 @@ MRISequenceSpecifics:
     SpoilingRFPhaseIncrement: optional
     SpoilingGradientMoment: optional
     SpoilingGradientDuration: optional
+    WaterSuppression: optional
+    WaterSuppressionTechnique: optional
+    B0ShimmingTechnique: optional
+    B1ShimmingTechnique: optional
 
 PETMRISequenceSpecifics:
   selectors:
