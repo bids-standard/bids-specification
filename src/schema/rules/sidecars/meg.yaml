@@ -79,7 +79,7 @@ MEGRequired:
     DigitizedHeadPoints: required
 
 # Specific MEG fields SHOULD be present
-MEGMRecommended:
+MEGRecommended:
   selectors:
     - modality == "meg"
     - datatype == "meg"

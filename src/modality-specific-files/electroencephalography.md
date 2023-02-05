@@ -125,7 +125,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("eeg.EEGInstitutionInformation") }}
 
-#### Required specific EEG fields
+#### Required fields
 
 Those fields MUST be present:
 
@@ -139,7 +139,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("eeg.EEGRequired") }}
 
-#### Recommended specific EEG fields
+#### Recommended fields
 
 Those fields SHOULD be present:
 

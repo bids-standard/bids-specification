@@ -38,7 +38,7 @@ iEEGTaskInformation:
     CogAtlasID: recommended
     CogPOID: recommended
 
-EEGInstitutionInformation:
+iEEGInstitutionInformation:
   selectors:
     - modality == "ieeg"
     - datatype == "ieeg"
