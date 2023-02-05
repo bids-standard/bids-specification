@@ -138,7 +138,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("meg.MEGInstitutionInformation") }}
 
-#### Required specific MEG fields
+#### Required fields
 
 Those fields MUST be present:
 
@@ -152,7 +152,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("meg.MEGRequired") }}
 
-#### Recommended specific MEG fields
+#### Recommended fields
 
 Those fields SHOULD be present:
 
