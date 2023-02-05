@@ -120,15 +120,28 @@ is stored in the field `ShortChannelCount`.
 If the field `ShortChannelCount` is populated, then the optional column `short_channel`
 may be used in `*_channels.tsv` to describe which channels were specified as short.
 
-Generic fields: For consistency between studies and institutions,
-we encourage users to extract the values of these fields from the actual raw data.
-Whenever possible, please avoid using ad hoc wording.
+#### Generic fields
 
-{{ MACROS___make_sidecar_table("nirs.NirsBase") }}
+For consistency between studies and institutions, we encourage users to extract
+the values of these fields from the actual raw data. Whenever possible, please
+avoid using ad hoc wording.
 
-Specific NIRS fields that are REQUIRED or may be REQUIRED depending on other metadata values:
+#### Institution information
+
+{{ MACROS___make_sidecar_table("nirs.NirsInstitutionInformation") }}
+
+#### Task information
+
+{{ MACROS___make_sidecar_table("nirs.NirsInstitutionInformation") }}
+
+#### Required NIRS specific fields
+
+Specific NIRS fields that are REQUIRED or may be REQUIRED depending on other
+metadata values:
 
 {{ MACROS___make_sidecar_table("nirs.NirsRequired") }}
+
+#### Recommended NIRS specific fields
 
 Specific NIRS fields that SHOULD be present:
 
