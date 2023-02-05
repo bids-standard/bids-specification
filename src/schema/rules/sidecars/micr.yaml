@@ -16,6 +16,12 @@ MicroscopyDeviceHardware:
     DeviceSerialNumber: recommended
     StationName: recommended
     SoftwareVersions: recommended
+
+MicroscopyInstitutionInformation:
+  selectors:
+    - modality == "micr"
+    - datatype == "micr"
+  fields:
     InstitutionName: recommended
     InstitutionAddress: recommended
     InstitutionalDepartmentName: recommended
