@@ -35,6 +35,14 @@ MRIHardware:
     MatrixCoilMode: recommended
     CoilCombinationMethod: recommended
 
+MRISample:
+  selectors:
+    - modality == "mri"
+  fields:
+    BodyPart: optional
+    BodyPartDetails: optional
+    BodyPartDetailsOntology: optional
+
 MRIScannerHardwareASL:
   selectors:
     - datatype == "perf"
