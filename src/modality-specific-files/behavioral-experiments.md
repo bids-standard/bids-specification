@@ -32,7 +32,7 @@ In addition to the metadata that is either:
 
 it is RECOMMENDED to add the following metadata to the JSON files of this directory:
 
-#### Task information
+### Task information
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -45,7 +45,7 @@ A guide for using macros can be found at
 
 {{ MACROS___make_sidecar_table("beh.BEHTaskInformation") }}
 
-#### Institution information
+### Institution information
 
 <!-- This block generates a metadata table.
 These tables are defined in
