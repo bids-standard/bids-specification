@@ -162,7 +162,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("ieeg.iEEGMoreRecommended") }}
+{{ MACROS___make_sidecar_table("ieeg.iEEGRecommended") }}
 
 #### Optional specific iEEG fields
 
