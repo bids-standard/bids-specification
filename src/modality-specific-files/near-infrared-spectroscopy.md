@@ -168,7 +168,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("nirs.NirsTaskInformation") }}
 
-#### Required NIRS specific fields
+#### Required fields
 
 Specific NIRS fields that are REQUIRED or may be REQUIRED depending on other
 metadata values:
@@ -183,7 +183,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("nirs.NirsRequired") }}
 
-#### Recommended NIRS specific fields
+#### Recommended fields
 
 Specific NIRS fields that SHOULD be present:
 
