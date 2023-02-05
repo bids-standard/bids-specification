@@ -138,7 +138,6 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("meg.MEGInstitutionInformation") }}
 
-
 #### Required specific MEG fields
 
 Those fields MUST be present:
@@ -166,7 +165,6 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_sidecar_table("meg.MEGRecommended") }}
-
 
 #### Specific EEG fields
 
