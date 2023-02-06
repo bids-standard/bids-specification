@@ -26,6 +26,7 @@ def _get_paths(
     bids_paths,
     pseudofile_suffixes=[],
     accept_dummy_paths=False,
+    exclude_files=[],
 ):
     """
     Get all paths from a list of directories, excluding hidden subdirectories from distribution.
@@ -51,9 +52,6 @@ def _get_paths(
     # https://github.com/bids-standard/bids-specification/issues/980
     # Perhaps this should be parameterized for downstream flexibility and not having to keep track
     # of downstream nuisance files here.
-    exclude_files = [
-        "dandiset.yaml",
-    ]
 
     path_list = []
     bids_root_found = False
@@ -676,6 +674,7 @@ def validate_bids(
     report_path=False,
     suppress_errors=False,
     schema_min_version="schema",
+    exclude_files=[],
 ):
     """
     Validate paths according to BIDS schema.
@@ -705,6 +704,11 @@ def validate_bids(
     schema_min_version : str, optional
         Minimal working schema version, used by the `bidsschematools.select_schema_dir()` function
         only if no schema version is found or a lower schema version is specified by the dataset.
+    exclude_files : str, optional
+        Files which will not be indexed for validation, use this if your data is in an archive
+        standard which requires the presence of archive-specific files (e.g. DANDI requiring 
+        `dandiset.yaml`).
+        Dot files (`.*`) do not need to be explicitly listed, as these are excluded by default.
 
     Returns
     -------
@@ -746,6 +750,7 @@ def validate_bids(
         in_paths,
         accept_dummy_paths=accept_dummy_paths,
         pseudofile_suffixes=pseudofile_suffixes,
+        exclude_files=exclude_files,
     )
     validation_result = validate_all(
         bids_paths,
