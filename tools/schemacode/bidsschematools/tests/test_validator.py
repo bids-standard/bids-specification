@@ -301,25 +301,24 @@ def test_exclude_files(bids_examples, tmp_path):
     from bidsschematools.validator import validate_bids
 
     dataset = "asl003"
-    dataset_path = os.path.join(bids_examples, dataset)
+    dataset_reference = os.path.join(bids_examples, dataset)
+    dataset_tmp = os.path.join(tmp_path, dataset)
+    shutil.copytree(dataset_reference, dataset_tmp)
 
     # Create non-BIDS non-dotfile
     archive_file_name = "dandiset.yaml"
-    archive_file_path = os.path.join(dataset_path, archive_file_name)
+    archive_file_path = os.path.join(dataset_tmp, archive_file_name)
     with open(archive_file_path, "w") as f:
         f.write(" \n")
 
     # Does it fail, as it should (more like a failsafe assertion)
     result = validate_bids(
-        dataset_path,
+        dataset_tmp,
     )
     assert len(result["path_tracking"]) == 1
 
     # Does the parameter work?
-    result = validate_bids(
-        dataset_path,
-        exclude_files=[archive_file_name]
-    )
+    result = validate_bids(dataset_tmp, exclude_files=[archive_file_name])
     assert len(result["path_tracking"]) == 0
 
 

@@ -706,7 +706,7 @@ def validate_bids(
         only if no schema version is found or a lower schema version is specified by the dataset.
     exclude_files : str, optional
         Files which will not be indexed for validation, use this if your data is in an archive
-        standard which requires the presence of archive-specific files (e.g. DANDI requiring 
+        standard which requires the presence of archive-specific files (e.g. DANDI requiring
         `dandiset.yaml`).
         Dot files (`.*`) do not need to be explicitly listed, as these are excluded by default.
 
