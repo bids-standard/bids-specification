@@ -3,6 +3,8 @@ import shutil
 
 import pytest
 
+from bidsschematools.validator import validate_bids
+
 from .. import validator
 from ..types import Namespace
 from .conftest import BIDS_ERROR_SELECTION, BIDS_SELECTION
@@ -114,7 +116,6 @@ def test_split_inheritance_rules():
 
 
 def test_inheritance_examples():
-    from bidsschematools.validator import validate_bids
 
     correct_inheritance = [
         "/lala/sub-01/ses-test/sub-01_ses-test_task-sometask_bold.json",
@@ -216,7 +217,6 @@ def test_write_report(tmp_path):
 )
 @pytest.mark.parametrize("dataset", BIDS_SELECTION)
 def test_bids_datasets(bids_examples, tmp_path, dataset):
-    from bidsschematools.validator import validate_bids
 
     schema_path = "{module_path}/data/schema/"
 
@@ -235,7 +235,6 @@ def test_bids_datasets(bids_examples, tmp_path, dataset):
     reason="no network",
 )
 def test_validate_bids(bids_examples, tmp_path):
-    from bidsschematools.validator import validate_bids
 
     schema_path = "{module_path}/data/schema/"
 
@@ -279,7 +278,6 @@ def test_validate_bids(bids_examples, tmp_path):
 def test_broken_json_dataset(bids_examples, tmp_path):
     """Perhaps this can be integrated into
     https://github.com/bids-standard/bids-error-examples ."""
-    from bidsschematools.validator import validate_bids
 
     dataset = "asl003"
     dataset_path = os.path.join(bids_examples, dataset)
@@ -304,7 +302,6 @@ def test_broken_json_dataset(bids_examples, tmp_path):
 )
 @pytest.mark.parametrize("dataset", BIDS_ERROR_SELECTION)
 def test_error_datasets(bids_error_examples, dataset):
-    from bidsschematools.validator import validate_bids
 
     schema_path = "{module_path}/data/schema/"
 
@@ -322,7 +319,6 @@ def test_gitdir(bids_examples, tmp_path):
     """Maybe better handled in example data?"""
     from distutils.dir_util import copy_tree
 
-    from bidsschematools.validator import validate_bids
 
     selected_dir = os.path.join(bids_examples, BIDS_SELECTION[0])
     tmp_path = str(tmp_path)
