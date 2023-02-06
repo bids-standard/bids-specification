@@ -125,6 +125,43 @@ jobs:
           user: __token__
           password: ${{ secrets.PYPI_API_TOKEN }}
 
+  publish-schema:
+    runs-on: ${{ matrix.os }}
+    name: Publish to dandi-schema (on master)
+    needs: [ publish ]
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - name: "Checkout dandi-schema"
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+          repository: bids-standard/bids-schema
+
+      - name: Set Up Python environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - name: Install the schemacode package for bst tool used by inject-schema
+        run: |
+          python -m pip install --progress-bar off --upgrade pip setuptools wheel
+          python -m pip install -e ./tools/schemacode[all]
+
+      - name: "Add copy of 'master' to bids-schema"
+        run:
+          sha=$(git describe --match 'v*' --always master)
+          cd bids-schema
+          tools/inject-schema master ..
+          if ! git diff --exit-code; then
+            git config credential.helper 'cache --timeout=120'
+            git config user.email "bids.maintenance@gmail.com"
+            git config user.name "bids-maintenance"
+
+            git add versions/
+            git commit -m "Added master version of schema from $sha"
+            git push https://${{ secrets.CHANGE_TOKEN }}@github.com/bids-standard/bids-schema.git main
+          fi
+
   validate_schema:
     runs-on: ubuntu-latest
     name: Validate schema
