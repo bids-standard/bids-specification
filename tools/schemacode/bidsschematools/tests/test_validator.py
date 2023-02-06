@@ -297,6 +297,36 @@ def test_broken_json_dataset(bids_examples, tmp_path):
     os.environ.get("SCHEMACODE_TESTS_NONETWORK") is not None,
     reason="no network",
 )
+def test_exclude_files(bids_examples, tmp_path):
+    from bidsschematools.validator import validate_bids
+
+    dataset = "asl003"
+    dataset_path = os.path.join(bids_examples, dataset)
+
+    # Create non-BIDS non-dotfile
+    archive_file_name = "dandiset.yaml"
+    archive_file_path = os.path.join(dataset_path, archive_file_name)
+    with open(archive_file_path, "w") as f:
+        f.write(" \n")
+
+    # Does it fail, as it should (more like a failsafe assertion)
+    result = validate_bids(
+        dataset_path,
+    )
+    assert len(result["path_tracking"]) == 1
+
+    # Does the parameter work?
+    result = validate_bids(
+        dataset_path,
+        exclude_files=[archive_file_name]
+    )
+    assert len(result["path_tracking"]) == 0
+
+
+@pytest.mark.skipif(
+    os.environ.get("SCHEMACODE_TESTS_NONETWORK") is not None,
+    reason="no network",
+)
 @pytest.mark.parametrize("dataset", BIDS_ERROR_SELECTION)
 def test_error_datasets(bids_error_examples, dataset):
     schema_path = "{module_path}/data/schema/"
