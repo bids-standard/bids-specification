@@ -317,12 +317,10 @@ def test_error_datasets(bids_error_examples, dataset):
 
 def test_gitdir(bids_examples, tmp_path):
     """Maybe better handled in example data?"""
-    from distutils.dir_util import copy_tree
-
 
     selected_dir = os.path.join(bids_examples, BIDS_SELECTION[0])
     tmp_path = str(tmp_path)
-    copy_tree(selected_dir, tmp_path)
+    shutil.copytree(selected_dir, tmp_path, dirs_exist_ok=True)
 
     os.makedirs(os.path.join(tmp_path, ".git"))
     with open(os.path.join(tmp_path, ".git", "config"), "w") as temp_file:
