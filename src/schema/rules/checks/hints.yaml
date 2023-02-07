@@ -12,6 +12,7 @@ SuspiciouslyLongBOLDDesign:
   checks:
     - max(associations.events.onset) < nifti_header.pixdim[4] * nifti_header.dim[4]
 
+# 86
 SuspiciouslyShortBOLDDesign:
   issue:
     code: SUSPICIOUSLY_SHORT_EVENT_DESIGN

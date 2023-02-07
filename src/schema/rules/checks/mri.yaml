@@ -12,3 +12,32 @@ PhasePartUnits:
     - '"Units" in sidecar'
   checks:
     - intersects([sidecar.Units], ["rad", "arbitrary"])
+
+# 87
+SliceTimingElements:
+  issue:
+    code: SLICETIMING_ELEMENTS
+    message: |
+      The number of elements in the SliceTiming array should match the 'k'
+      dimension of the corresponding NIfTI volume.
+    level: warning
+  selectors:
+    - modality == "MRI"
+    - type(sidecar.SliceTiming) != null
+  checks:
+    - length(sidecar.SliceTiming) == nifti_header.dim[3]
+
+
+# 201
+RepetitionTimePreparationNotConsistent:
+  issue:
+    code: REPETITIONTIME_PREPARATION_NOT_CONSISTENT
+    message: |
+      The number of values for 'RepetitionTimePreparation' for this file does
+      not match the 4th dimension of the NIfTI header.
+    level: error
+  selectors:
+    - modality == "MRI"
+    - type(sidecar.RepetitionTimePreparation) == "array"
+  checks:
+    - length(sidecar.RepetitionTimePreparation) == nifti_header.dim[4]

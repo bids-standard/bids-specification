@@ -15,6 +15,21 @@ PhaseSuffixDeprecated:
   checks:
     - suffix != "phase"
 
+# 66
+SliceTimingGreaterThanRepetitionTime:
+  issue:
+    code: SLICETIMING_VALUES_GREATER_THAN_REPETITION_TIME
+    message: |
+      SliceTiming values contains invalid value as it is greater than RepetitionTime.
+      SliceTiming values should be in seconds not milliseconds (common mistake).
+    level: error
+  selectors:
+    - suffix == "bold"
+    - type(sidecar.SliceTiming) != "null"
+    - type(sidecar.RepetitionTime) != "null"
+  checks:
+    - max(sidecar.SliceTiming) <= sidecar.RepetitionTime
+
 ### The following rules implement the functional imaging acquisition timing rules
 ### For the sake of informative errors, they are implemented in more rules than
 ### strictly necessary
