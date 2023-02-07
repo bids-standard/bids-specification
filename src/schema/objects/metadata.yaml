@@ -414,7 +414,7 @@ ChemicalShiftOffset:
   name: ChemicalShiftOffset
   display_name: Chemical Shift Offset
   description: |
-    The chemical shift at the center of `"SpectralWidth"` corresponding to 0 Hz,
+    The chemical shift at the center of `SpectralWidth` corresponding to 0 Hz,
     specified in ppm (for example, `4.65`).
   type: number
 ChemicalShiftReference:
