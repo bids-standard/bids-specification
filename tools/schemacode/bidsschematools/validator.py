@@ -47,11 +47,8 @@ def _get_paths(
     * Figure out how to return paths from BIDS root.
     * Deduplicate paths (if input dirs are subsets of other input dirs), might best be done at the
         very end.
+    * All dot files are ignored.
     """
-    # `.bidsignore` is not, in fact, a BIDS file, as per:
-    # https://github.com/bids-standard/bids-specification/issues/980
-    # Perhaps this should be parameterized for downstream flexibility and not having to keep track
-    # of downstream nuisance files here.
 
     path_list = []
     bids_root_found = False
