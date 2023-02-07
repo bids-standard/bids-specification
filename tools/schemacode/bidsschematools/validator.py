@@ -54,6 +54,7 @@ def _get_paths(
     """
 
     path_list = []
+    bidsignore_list = []
     bids_root_found = False
     for bids_path in bids_paths:
         if not accept_dummy_paths:
@@ -62,17 +63,22 @@ def _get_paths(
             for root, dirs, file_names in os.walk(bids_path, topdown=True):
                 if "dataset_description.json" in file_names:
                     if bids_root_found:
+                        # Not currently supporting nested BIDS,
+                        # do not index the contents of the directory.
                         dirs[:] = []
                         file_names[:] = []
                     else:
                         bids_root_found = True
+                        try:
+                            bidsignore_list = open(".bidsignore").readlines()
+                        except FileNotFoundError:
+                            pass
                 if root.endswith(tuple(pseudofile_suffixes)):
                     # Add the directory name to the validation paths list.
                     path_list.append(Path(root).as_posix() + "/")
                     # Do not index the contents of the directory.
                     dirs[:] = []
                     file_names[:] = []
-                # will break if BIDS ever puts meaningful data under `/.{dandi,datalad,git}*/`
                 if os.path.basename(root).startswith("."):
                     dirs[:] = []
                     file_names[:] = []
