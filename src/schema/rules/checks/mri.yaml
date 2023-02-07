@@ -13,6 +13,26 @@ PhasePartUnits:
   checks:
     - intersects([sidecar.Units], ["rad", "arbitrary"])
 
+# 76
+EffectiveEchoSpacingTooLarge:
+  issue:
+    code: EFFECTIVEECHOSPACING_TOO_LARGE
+    message: |
+      Abnormally high value of 'EffectiveEchoSpacing'.
+    level: error
+  selectors:
+    - modality == "MRI"
+    - type(sidecar.RepetitionTime) != null
+    - type(sidecar.EffectiveEchoSpacing) != null
+    - type(sidecar.PhaseEncodingDirection) != null
+  checks:
+    - |
+      sidecar.RepetitionTime >= (
+        sidecar.EffectiveEchoSpacing
+        * nifti_header.dim[index(["i", "j", "k"], sidecar.PhaseEncodingDirection[0])]
+      )
+
+
 # 87
 SliceTimingElements:
   issue:
