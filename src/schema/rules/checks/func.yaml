@@ -14,3 +14,61 @@ PhaseSuffixDeprecated:
     - datatype == "func"
   checks:
     - suffix != "phase"
+
+### The following rules implement the functional imaging acquisition timing rules
+### For the sake of informative errors, they are implemented in more rules than
+### strictly necessary
+### The selectors/checks are implemented with the least likely case in the selector
+### for efficiency.
+
+# 178
+VolumeTimingRepetitionTimeMutex:
+  issue:
+    code: VOLUME_TIMING_AND_REPETITION_TIME_MUTUALLY_EXCLUSIVE
+    message: |
+      The fields 'VolumeTiming' and 'RepetitionTime' for this file are mutually exclusive.
+      Choose 'RepetitionTime' when the same repetition time is used for all volumes,
+      or 'VolumeTiming' when variable times are used.
+    level: error
+  selectors:
+    - type(sidecar.VolumeTiming) != null
+  checks:
+    - type(sidecar.RepetitionTime) == null
+
+RepetitionTimeAcquisitionDurationMutex:
+  issue:
+    code: REPETITION_TIME_AND_ACQUISITION_DURATION_MUTUALLY_EXCLUSIVE
+    message: |
+      The fields 'RepetitionTime' and 'AcquisitionDuration' for this file are mutually exclusive.
+      To specify acquisition duration, use 'SliceTiming' or 'DelayTime'
+      (RepetitionTime - AcquisitionDuration).
+    level: error
+  selectors:
+    - type(sidecar.AcquistionDuration) != null
+  checks:
+    - type(sidecar.RepetitionTime) == null
+
+VolumeTimingDelayTimeMutex:
+  issue:
+    code: VOLUME_TIMING_AND_DELAY_TIME_MUTUALLY_EXCLUSIVE
+    message: |
+      The fields 'VolumeTiming' and 'DelayTime' for this file are mutually exclusive.
+      To specify acquisition duration, use 'AcquisitionDuration' or 'SliceTiming'.
+    level: error
+  selectors:
+    - type(sidecar.VolumeTiming) != null
+  checks:
+    - type(sidecar.DelayTime) == null
+
+SliceTimingAcquisitionDurationMutex:
+  issue:
+    code: SLICE_TIMING_AND_DURATION_MUTUALLY_EXCLUSIVE
+    message: |
+      'SliceTiming' is defined for this file.
+      Neither 'DelayTime' nor 'AcquisitionDuration' may be defined in addition.
+    level: error
+  selectors:
+    - type(sidecar.SliceTiming) != null
+  checks:
+    - type(sidecar.AcquisitionDuration) == null
+    - type(sidecar.DelayTime) == null
