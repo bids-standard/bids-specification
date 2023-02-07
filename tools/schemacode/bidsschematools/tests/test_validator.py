@@ -116,7 +116,6 @@ def test_split_inheritance_rules():
 
 
 def test_inheritance_examples():
-
     correct_inheritance = [
         "/lala/sub-01/ses-test/sub-01_ses-test_task-sometask_bold.json",
         "/lala/sub-01/sub-01_task-sometask_bold.json",
@@ -217,7 +216,6 @@ def test_write_report(tmp_path):
 )
 @pytest.mark.parametrize("dataset", BIDS_SELECTION)
 def test_bids_datasets(bids_examples, tmp_path, dataset):
-
     schema_path = "{module_path}/data/schema/"
 
     # Validate per dataset:
@@ -235,7 +233,6 @@ def test_bids_datasets(bids_examples, tmp_path, dataset):
     reason="no network",
 )
 def test_validate_bids(bids_examples, tmp_path):
-
     schema_path = "{module_path}/data/schema/"
 
     # Create input for file list based validation
@@ -302,7 +299,6 @@ def test_broken_json_dataset(bids_examples, tmp_path):
 )
 @pytest.mark.parametrize("dataset", BIDS_ERROR_SELECTION)
 def test_error_datasets(bids_error_examples, dataset):
-
     schema_path = "{module_path}/data/schema/"
 
     target = os.path.join(bids_error_examples, dataset)
