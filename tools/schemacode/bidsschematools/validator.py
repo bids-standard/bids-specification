@@ -50,6 +50,7 @@ def _get_paths(
     * Figure out how to return paths from BIDS root.
     * Deduplicate paths (if input dirs are subsets of other input dirs), might best be done at the
         very end.
+    * TODO: support `.bidsignore`
     """
 
     path_list = []
