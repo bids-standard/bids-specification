@@ -302,23 +302,23 @@ def test_exclude_files(bids_examples, tmp_path):
 
     dataset = "asl003"
     dataset_reference = os.path.join(bids_examples, dataset)
-    dataset_tmp = os.path.join(tmp_path, dataset)
-    shutil.copytree(dataset_reference, dataset_tmp)
+    tmp_path = str(tmp_path)
+    shutil.copytree(dataset_reference, tmp_path, dirs_exist_ok=True)
 
     # Create non-BIDS non-dotfile
     archive_file_name = "dandiset.yaml"
-    archive_file_path = os.path.join(dataset_tmp, archive_file_name)
+    archive_file_path = os.path.join(tmp_path, archive_file_name)
     with open(archive_file_path, "w") as f:
         f.write(" \n")
 
     # Does it fail, as it should (more like a failsafe assertion)
     result = validate_bids(
-        dataset_tmp,
+        tmp_path,
     )
     assert len(result["path_tracking"]) == 1
 
     # Does the parameter work?
-    result = validate_bids(dataset_tmp, exclude_files=[archive_file_name])
+    result = validate_bids(tmp_path, exclude_files=[archive_file_name])
     assert len(result["path_tracking"]) == 0
 
 
