@@ -41,13 +41,15 @@ def _get_paths(
         directory walk.
     accept_dummy_paths : bool, optional
         Whether to accept path strings which do not correspond to either files or directories.
+    exclude_files : list, optional
+        Files to exclude from listing.
+        Dot files (`.*`) do not need to be explicitly listed, as these are excluded by default.
 
     Notes
     -----
     * Figure out how to return paths from BIDS root.
     * Deduplicate paths (if input dirs are subsets of other input dirs), might best be done at the
         very end.
-    * All dot files are ignored.
     """
 
     path_list = []
