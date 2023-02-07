@@ -3,6 +3,7 @@ import json
 import os
 import re
 import typing as ty
+import fnmatch
 from collections.abc import Mapping
 from copy import deepcopy
 from functools import lru_cache
@@ -50,7 +51,7 @@ def _get_paths(
     * Figure out how to return paths from BIDS root.
     * Deduplicate paths (if input dirs are subsets of other input dirs), might best be done at the
         very end.
-    * TODO: support `.bidsignore`
+    * Currently this only supports file entries (no directories of `**`) for `.bidsignore`
     """
 
     path_list = []
@@ -68,11 +69,12 @@ def _get_paths(
                         dirs[:] = []
                         file_names[:] = []
                     else:
-                        bids_root_found = True
                         try:
-                            bidsignore_list = open(".bidsignore").readlines()
+                            with open(os.path.join(root, ".bidsignore")) as f:
+                                bidsignore_list = f.read().splitlines()
                         except FileNotFoundError:
                             pass
+                        bids_root_found = True
                 if root.endswith(tuple(pseudofile_suffixes)):
                     # Add the directory name to the validation paths list.
                     path_list.append(Path(root).as_posix() + "/")
@@ -85,9 +87,14 @@ def _get_paths(
                 for file_name in file_names:
                     if file_name in exclude_files or file_name.startswith("."):
                         continue
-                    file_path = os.path.join(root, file_name)
-                    # This will need to be replaced with bids root finding.
-                    path_list.append(Path(file_path).as_posix())
+                    elif bidsignore_list:
+                        for ignore_expression in bidsignore_list:
+                            if fnmatch.fnmatch(file_name, ignore_expression):
+                                continue
+                    else:
+                        file_path = os.path.join(root, file_name)
+                        # This will need to be replaced with bids root finding.
+                        path_list.append(Path(file_path).as_posix())
         elif os.path.isfile(bids_path) or accept_dummy_paths:
             path_list.append(Path(bids_path).as_posix())
         else:
