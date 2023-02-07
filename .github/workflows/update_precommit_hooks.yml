@@ -52,6 +52,7 @@ jobs:
         with:
           commit-message: pre-commit hooks autoupdate
           base: master
+          token: ${{ secrets.GITHUB_TOKEN }}
           delete-branch: true
           title: '[BOT] update pre-commit hooks'
           body: 'done via this [GitHub Action](https://github.com/bids-standard/bids-specification/blob/master/.github/workflows/update_precommit_hooks.yml)'
