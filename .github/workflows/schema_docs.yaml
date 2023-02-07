@@ -44,8 +44,8 @@ jobs:
         token: ${{ secrets.SCHEMA_DOCS_GITHUB_API_TOKEN }}
         fetch-depth: 0
         persist-credentials: true
-      
-    - name: Update schema-docs from bids-specification  
+
+    - name: Update schema-docs from bids-specification
       run: |
         rsync --recursive --copy-links source/tools/schemacode/bidsschematools dest/
         rsync --recursive --copy-links source/tools/schemacode/docs dest/
