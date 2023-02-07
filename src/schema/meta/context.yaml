@@ -266,6 +266,22 @@ context:
           maxItems: 8
           items:
             type: number
+        shape:
+          name: 'Data shape'
+          description: 'Data array shape, equal to dim[1:dim[0] + 1]'
+          type: array
+          minItems: 0
+          maxItems: 7
+          items:
+            type: integer
+        voxel_sizes:
+          name: 'Voxel sizes'
+          description: 'Voxel sizes, equal to pixdim[1:dim[0] + 1]'
+          type: array
+          minItems: 0
+          maxItems: 7
+          items:
+            type: number
         xyzt_units:
           name: 'XYZT Units'
           description: 'Units of pixdim[1..4]'
