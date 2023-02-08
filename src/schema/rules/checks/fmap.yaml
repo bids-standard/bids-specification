@@ -1,9 +1,22 @@
 # Rules for fieldmap data that are not defined in tables.
 ---
+# 83
+EchoTime12DifferenceUnreasonable:
+  issue:
+    code: ECHOTIME1_2_DIFFERENCE_UNREASONABLE
+    message: |
+      The value of (EchoTime2 - EchoTime1) should be within the range of 0.0001 - 0.01.
+    level: error
+  selectors:
+    - suffix == "phasediff"
+  checks:
+    - sidecar.EchoTime2 - sidecar.EchoTime1 >= 0.0001
+    - sidecar.EchoTime2 - sidecar.EchoTime1 <= 0.01
+
 # 91
 FmapFieldmapWithoutMagnitude:
   issue:
-    code: _FIELDMAP_WITHOUT_MAGNITUDE_FILE
+    code: FIELDMAP_WITHOUT_MAGNITUDE_FILE
     message: |
       '_fieldmap.nii[.gz]' file does not have accompanying '_magnitude.nii[.gz]' file.
     level: error
@@ -24,15 +37,15 @@ FmapPhasediffWithoutMagnitude:
   checks:
     - '"magnitude1" in associations'
 
-# 83
-EchoTime12DifferenceUnreasonable:
+# 94
+MagnitudeFileWithTooManyDimensions:
   issue:
-    code: ECHOTIME1_2_DIFFERENCE_UNREASONABLE
+    code: MAGNITUDE_FILE_WITH_TOO_MANY_DIMENSIONS
     message: |
-      The value of (EchoTime2 - EchoTime1) should be within the range of 0.0001 - 0.01.
+      _magnitude1.nii[.gz] and _magnitude2.nii[.gz] files must have exactly three dimensions.
     level: error
   selectors:
-    - suffix == "phasediff"
+    - intersects([suffix], ['magnitude1', 'magnitude2'])
+    - nifti_header != null
   checks:
-    - sidecar.EchoTime2 - sidecar.EchoTime1 >= 0.0001
-    - sidecar.EchoTime2 - sidecar.EchoTime1 <= 0.01
+    - nifti_header.dim[0] == 3

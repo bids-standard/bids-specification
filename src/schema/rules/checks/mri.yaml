@@ -13,6 +13,32 @@ PhasePartUnits:
   checks:
     - intersects([sidecar.Units], ["rad", "arbitrary"])
 
+# 3
+EchoTimeGreaterThan:
+  issue:
+    code: ECHO_TIME_GREATER_THAN
+    message: |
+      'EchoTime' is greater than 1 are you sure it's expressed in seconds?
+    level: warning
+  selectors:
+    - modality == "MRI"
+    - sidecar.EchoTime
+  checks:
+    - sidecar.EchoTime <= 1
+
+# 5
+TotalReadoutTimeGreaterThan:
+  issue:
+    code: TOTAL_READOUT_TIME_GREATER_THAN
+    message: |
+      'TotalReadoutTime' is greater than 10 are you sure it's expressed in seconds?
+    level: warning
+  selectors:
+    - modality == "MRI"
+    - sidecar.TotalReadoutTime
+  checks:
+    - sidecar.TotalReadoutTime <= 10
+
 # 76
 EffectiveEchoSpacingTooLarge:
   issue:
@@ -32,7 +58,6 @@ EffectiveEchoSpacingTooLarge:
         * nifti_header.dim[index(["i", "j", "k"], sidecar.PhaseEncodingDirection[0])]
       )
 
-
 # 87
 SliceTimingElements:
   issue:
@@ -47,6 +72,19 @@ SliceTimingElements:
   checks:
     - length(sidecar.SliceTiming) == nifti_header.dim[3]
 
+# 93
+EESGreaterThanTRT:
+  issue:
+    code: EFFECTIVEECHOSPACING_LARGER_THAN_TOTALREADOUTTIME
+    message: |
+      EffectiveEchoSpacing should always be smaller than TotalReadoutTime.
+    level: error
+  selectors:
+    - modality == "MRI"
+    - sidecar.EffectiveEchoSpacing != null
+    - sidecar.TotalReadoutTime != null
+  checks:
+    - sidecar.EffectiveEchoSpacing < sidecar.TotalReadoutTime
 
 # 201
 RepetitionTimePreparationNotConsistent:

@@ -15,6 +15,33 @@ PhaseSuffixDeprecated:
   checks:
     - suffix != "phase"
 
+# 2
+RepetitionTimeGreaterThan:
+  issue:
+    code: REPETITION_TIME_GREATER_THAN
+    message: |
+      'RepetitionTime' is greater than 100 are you sure it's expressed in seconds?
+    level: warning
+  selectors:
+    - suffix == "bold"
+    - sidecar.RepetitionTime != null
+  checks:
+    - sidecar.RepetitionTime <= 100
+
+# 12
+RepetitionTimeMismatch:
+  issue:
+    code: REPETITION_TIME_MISMATCH
+    message: |
+      Repetition time did not match between the scan's header and the associated JSON metadata file.
+    level: error
+  selectors:
+    - suffix == "bold"
+    - sidecar.RepetitionTime != null
+    - nifti_header != null
+  checks:
+    - sidecar.RepetitionTime == nifti_header.pixdim[4]
+
 # 66
 SliceTimingGreaterThanRepetitionTime:
   issue:
