@@ -32,7 +32,7 @@ channels__motion:
     - motion
   entities:
     $ref: rules.files.raw.channels.channels.entities
-    tracked_point: optional
+    tracksys: optional
 
 coordsystem:
   suffixes:
