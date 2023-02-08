@@ -96,7 +96,7 @@ def schema_obj():
 
 
 bids_examples = get_gitrepo_fixture(
-    "https://github.com/TheChymera/bids-examples",
+    "https://github.com/bids-standard/bids-examples",
     whitelist=BIDS_SELECTION,
 )
 bids_error_examples = get_gitrepo_fixture(
