@@ -1992,7 +1992,8 @@ MissingValues:
   name: MissingValues
   display_name: MissingValues
   description: |
-    Describes how missing values are represented in the given recording system (for example a tracking system in motion), can take values such as, "NaN", "0".
+    Describes how missing values are represented in the given recording system
+    (for example a tracking system in motion), can take values such as, "NaN", "0".
   type: string
 MixingTime:
   name: MixingTime
@@ -3459,7 +3460,8 @@ TrackingSystemName:
   name: TrackingSystemName
   display_name: Tracking System Name
   description: |
-    Name of the tracking system. The value must match the `"tracksys"` label of the corresponding *_motion.tsv file name.
+    Name of the tracking system. The value must match the `"tracksys"` label
+    of the corresponding *_motion.tsv file name.
   type: string
 TubingType:
   name: TubingType

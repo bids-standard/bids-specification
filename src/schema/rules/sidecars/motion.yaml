@@ -30,9 +30,6 @@ motionRecommended:
     Instructions: recommended
     DeviceSerialNumber: optional
     ExternalSoftwareVersions: optional
-    Manufacturer: optional
-    ManufacturersModelName: optional
-    SoftwareVersions: optional
 
 motionRequired:
   selectors:
