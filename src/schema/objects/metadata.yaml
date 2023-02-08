@@ -2698,12 +2698,12 @@ RotationOrder:
     A 3D rotation is represented about 3 different axes (Tait-Bryan convention).
   type: string
   enum:
-  - XYZ
-  - XZY
-  - YXZ
-  - YZX
-  - ZXY
-  - ZYX
+    - XYZ
+    - XZY
+    - YXZ
+    - YZX
+    - ZXY
+    - ZYX
 RotationRule:
   name: RotationRule
   display_name: Rotation Rule
@@ -2713,8 +2713,8 @@ RotationRule:
     counter-clockwise (right-hand rule). Must be one of: "left-hand", "right-hand".
   type: string
   enum:
-  - left-hand
-  - right-hand
+    - left-hand
+    - right-hand
 SEEGChannelCount:
   name: SEEGChannelCount
   display_name: SEEG Channel Count
@@ -2833,7 +2833,7 @@ SamplingFrequencyEffective:
   display_name: Effective Sampling Frequency
   description: |
     Effective sampling frequency (in Hz) of all the data in the recording,
-    regardless of their type (for example, `2400`) which can be determined if timestamps 
+    regardless of their type (for example, `2400`) which can be determined if timestamps
     per sample are provided.
   type: number
   unit: Hz
@@ -3152,12 +3152,12 @@ SpatialAxes:
   name: SpatialAxes
   display_name: Spatial axes
   description: |
-    Refers to the coordinate system in which the motion data are to be interpreted, 
-    if the recorded data can be mapped to a fixed reference frame. A sequence of 
-    characters F/B (forward-backward), L/R (left-right), and U/D (up-down). The 
-    position of a character in the sequence determines which of the X,Y,Z axes it 
-    maps to. For example, "FRD" for X-forward, Y-right, Z-down. For 1D or 2D cases, 
-    only specify the used axes and use the character "_" for unused axes 
+    Refers to the coordinate system in which the motion data are to be interpreted,
+    if the recorded data can be mapped to a fixed reference frame. A sequence of
+    characters F/B (forward-backward), L/R (left-right), and U/D (up-down). The
+    position of a character in the sequence determines which of the X,Y,Z axes it
+    maps to. For example, "FRD" for X-forward, Y-right, Z-down. For 1D or 2D cases,
+    only specify the used axes and use the character "_" for unused axes
     ("F_R" when the Y axis is not used, for instance).
   type: string
 SpatialReference:
@@ -3167,7 +3167,7 @@ SpatialReference:
     For images with a single reference, the value MUST be a single string.
     For images with multiple references, such as surface and volume references,
     a JSON object MUST be used.
-  anyOf: 
+  anyOf:
     - type: string
       enum:
         - orig

@@ -60,11 +60,11 @@ component:
     channel contains. Must be one of: "w", "x" ,"y", "z", "n/a"
   type: string
   enum:
-  - "w"
-  - "x"
-  - "y"
-  - "z"
-  - "n/a"
+    - 'w'
+    - 'x'
+    - 'y'
+    - 'z'
+    - 'n/a'
 detector__channels:
   name: detector
   display_name: Detector Name
