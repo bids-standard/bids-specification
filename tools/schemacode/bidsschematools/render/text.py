@@ -140,10 +140,14 @@ def make_glossary(schema, src_path=None):
     for obj_key in sorted(all_objects.keys()):
         obj = all_objects[obj_key]
         obj_marker = obj["key"]
-        obj_def = obj["definition"]
+        obj_def = obj.get("definition", None)
+        if obj_def is None:
+            raise ValueError(f"{obj_marker} has no definition.")
 
         # Clean up the text description
-        obj_desc = obj_def["description"]
+        obj_desc = obj_def.get("description", None)
+        if obj_desc is None:
+            raise ValueError(f"{obj_marker} has no description.")
         # A backslash before a newline means continue a string
         obj_desc = obj_desc.replace("\\\n", "")
         # Two newlines should be respected

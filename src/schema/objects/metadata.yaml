@@ -3435,12 +3435,12 @@ TracerSNOMED:
     (subclass of Radioactive isotope).
   type: string
 TubingLength:
-name: TubingLength
-display_name: Tubing Length
-description: |
-  The length of the blood tubing, from the subject to the detector in meters.
-type: number
-unit: m
+  name: TubingLength
+  display_name: Tubing Length
+  description: |
+    The length of the blood tubing, from the subject to the detector in meters.
+  type: number
+  unit: m
 TriggerChannelCount:
   name: TriggerChannelCount
   display_name: Trigger Channel Count
