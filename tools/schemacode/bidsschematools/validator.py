@@ -1,9 +1,9 @@
 import datetime
+import fnmatch
 import json
 import os
 import re
 import typing as ty
-import fnmatch
 from collections.abc import Mapping
 from copy import deepcopy
 from functools import lru_cache
@@ -87,14 +87,17 @@ def _get_paths(
                 for file_name in file_names:
                     if file_name in exclude_files or file_name.startswith("."):
                         continue
-                    elif bidsignore_list:
+                    if bidsignore_list:
+                        ignored = False
                         for ignore_expression in bidsignore_list:
                             if fnmatch.fnmatch(file_name, ignore_expression):
-                                continue
-                    else:
-                        file_path = os.path.join(root, file_name)
-                        # This will need to be replaced with bids root finding.
-                        path_list.append(Path(file_path).as_posix())
+                                ignored = True
+                                break
+                        if ignored:
+                            continue
+                    file_path = os.path.join(root, file_name)
+                    # This will need to be replaced with bids root finding.
+                    path_list.append(Path(file_path).as_posix())
         elif os.path.isfile(bids_path) or accept_dummy_paths:
             path_list.append(Path(bids_path).as_posix())
         else:
