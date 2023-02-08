@@ -16,13 +16,22 @@ repos:
     rev: 23.1.0
     hooks:
       - id: black
+        files: ^tools/(?!schemacode)
+        args: ["--verbose"]
+      - id: black
+        name: "black bidsschematools"
         files: tools/schemacode
-        args: [--verbose]
+        args: ["--config", "tools/schemacode/pyproject.toml", "--verbose"]
   - repo: https://github.com/pyCQA/isort
     rev: 5.12.0
     hooks:
       - id: isort
-        files: tools/
+        files: ^tools/(?!schemacode)
+        args: ["--profile", "black"]
+      - id: isort
+        name: "isort bidsschematools"
+        files: tools/schemacode
+        args: ["--settings-file", "tools/schemacode/pyproject.toml"]
   - repo: https://github.com/pyCQA/flake8
     rev: 6.0.0
     hooks:
