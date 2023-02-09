@@ -7,6 +7,7 @@ from copy import deepcopy
 from pathlib import Path
 
 import bidsschematools as bst
+import bidsschematools.parse
 import bidsschematools.schema
 import bidsschematools.types
 import bidsschematools.utils

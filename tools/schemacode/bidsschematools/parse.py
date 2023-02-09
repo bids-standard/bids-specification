@@ -1,8 +1,10 @@
-import bidsschematools as bst
 import typing as ty
 from collections.abc import Mapping
 from functools import lru_cache
 import re
+
+import bidsschematools as bst
+import bidsschematools.types
 
 # The list of which entities create directories could be dynamically specified by the YAML, but for
 # now, it is not.
