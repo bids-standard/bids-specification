@@ -26,7 +26,7 @@ DIR_ENTITIES = ["subject", "session"]
 def _get_paths(
     bids_paths,
     pseudofile_suffixes=[],
-    accept_dummy_paths=False,
+    dummy_paths=False,
     exclude_files=[],
 ):
     """
@@ -40,7 +40,7 @@ def _get_paths(
     pseudofile_suffixes : list of str
         Directory suffixes prompting the validation of the directory name and limiting further
         directory walk.
-    accept_dummy_paths : bool, optional
+    dummy_paths : bool, optional
         Whether to accept path strings which do not correspond to either files or directories.
     exclude_files : list, optional
         Files to exclude from listing.
@@ -58,7 +58,7 @@ def _get_paths(
     bidsignore_list = []
     bids_root_found = False
     for bids_path in bids_paths:
-        if not accept_dummy_paths:
+        if not dummy_paths:
             bids_path = os.path.abspath(os.path.expanduser(bids_path))
         if os.path.isdir(bids_path):
             for root, dirs, file_names in os.walk(bids_path, topdown=True):
@@ -98,13 +98,13 @@ def _get_paths(
                     file_path = os.path.join(root, file_name)
                     # This will need to be replaced with bids root finding.
                     path_list.append(Path(file_path).as_posix())
-        elif os.path.isfile(bids_path) or accept_dummy_paths:
+        elif os.path.isfile(bids_path) or dummy_paths:
             path_list.append(Path(bids_path).as_posix())
         else:
             raise FileNotFoundError(
                 f"The input path `{bids_path}` could not be located. If this is a string "
                 "intended for path validation which does not correspond to an actual "
-                "path, please set the `accept_dummy_paths` parameter to True."
+                "path, please set the `dummy_paths` parameter to True."
             )
 
     return path_list
@@ -673,7 +673,7 @@ def _get_directory_suffixes(my_schema):
 
 def validate_bids(
     in_paths,
-    accept_dummy_paths=False,
+    dummy_paths=False,
     schema_reference_root="{module_path}/data/",
     schema_version=None,
     report_path=False,
@@ -689,7 +689,7 @@ def validate_bids(
     ----------
     in_paths : str or list of str
         Paths which to validate, may be individual files or directories.
-    accept_dummy_paths : bool, optional
+    dummy_paths : bool, optional
         Whether to accept path strings which do not correspond to either files or directories.
     schema_reference_root : str, optional
         Path where schema versions are stored, and which contains directories named exactly
@@ -745,7 +745,10 @@ def validate_bids(
     if isinstance(in_paths, str):
         in_paths = [in_paths]
 
-    bids_root = _find_bids_root(in_paths, accept_non_bids_dir)
+    if dummy_paths:
+        bids_root = None
+    else:
+        bids_root = _find_bids_root(in_paths, accept_non_bids_dir)
 
     bids_schema_dir = select_schema_dir(
         bids_root,
@@ -757,7 +760,7 @@ def validate_bids(
     pseudofile_suffixes = _get_directory_suffixes(my_schema)
     bids_paths = _get_paths(
         in_paths,
-        accept_dummy_paths=accept_dummy_paths,
+        dummy_paths=dummy_paths,
         pseudofile_suffixes=pseudofile_suffixes,
         exclude_files=exclude_files,
     )

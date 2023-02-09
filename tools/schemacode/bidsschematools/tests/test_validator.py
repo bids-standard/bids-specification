@@ -128,7 +128,7 @@ def test_inheritance_examples():
 
     result = validate_bids(
         correct_inheritance + incorrect_inheritance,
-        accept_dummy_paths=True,
+        dummy_paths=True,
     )
 
     assert result["path_tracking"] == incorrect_inheritance
