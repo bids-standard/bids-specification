@@ -25,11 +25,10 @@ motionRecommended:
     InstitutionalDepartmentName: recommended
     Manufacturer: recommended
     ManufacturersModelName: recommended
-    SoftwareVersions: recommended
     TaskDescription: recommended
     Instructions: recommended
     DeviceSerialNumber: optional
-    # ExternalSoftwareVersions: optional
+    SoftwareVersions: optional
 
 motionRequired:
   selectors:
@@ -60,7 +59,7 @@ motionMoreRecommended:
     MissingValues: recommended
     MotionChannelCount: recommended
     ORNTChannelCount: recommended
-    # POSChannelCount: recommended
+    POSChannelCount: recommended
     RotationOrder: recommended
     RotationRule: recommended
     SamplingFrequencyEffective: recommended

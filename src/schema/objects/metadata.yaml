@@ -2414,6 +2414,13 @@ PlasmaFreeFractionMethod:
   description: |
     Method used to estimate free fraction.
   type: string
+POSChannelCount:
+  name: POSChannelCount
+  display_name: Position Channel Count
+  description: |
+    Number of position channels.
+  type: integer
+  minimum: 0
 PostLabelingDelay:
   name: PostLabelingDelay
   display_name: Post Labeling Delay
