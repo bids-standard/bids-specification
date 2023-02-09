@@ -18,6 +18,125 @@ BUNDLED_SCHEMA_PATH = "{module_path}/data/schema"
 VALIDATOR_SCHEMA_COMPATIBILITY_LEVEL = "minor"
 
 
+def _bids_schema_versioncheck(schema_dir, compatibility=VALIDATOR_SCHEMA_COMPATIBILITY_LEVEL):
+    """
+    Use the `SCHEMA_VERSION` descriptor file to determine whether a selected schema directory is
+    compatible with the validator.
+
+    Parameters
+    ----------
+    schema_dir : str
+        A string which specifies a path.
+    compatibility : "major" or "minor", optional
+        Compatibility range of the validator. Major means "M.*" are considered compatible, minor
+        means "M.m.*" are considered compatible.
+
+    Returns
+    -------
+    bool:
+        Whether the schema is compatible with the validator.
+    """
+    schema_version_file = os.path.join(schema_dir, "SCHEMA_VERSION")
+    try:
+        with open(schema_version_file, "r") as f:
+            schema_version = f.readlines()[0].strip()
+            if _bids_schema_versioncheck(schema_version_file):
+                if compatibility == "major":
+                    if schema_version.rsplit(".", 1)[0] == bst.__version__.rsplit(".", 1)[0]:
+                        return True
+                elif compatibility == "minor":
+                    if schema_version.rsplit(".", 2)[:2] == bst.__version__.rsplit(".", 2)[:2]:
+                        return True
+                else:
+                    raise ValueError(
+                        "Schema compatibility needs to be set to either “major” or “minor”."
+                    )
+                lgr.warning(
+                    "The selected schema `%s`, has a schema version (`%s`) which is "
+                    "incompatible with the validator. Attempting to query the BIDS reference "
+                    "for compatible versions.",
+                    schema_dir,
+                )
+    except FileNotFoundError:
+        lgr.warning(
+            "The selected schema directory, `%s`, does not contain a SCHEMA_VERSION file. "
+            "Cannot ascertain compatibility. Attempting to query the BIDS reference for "
+            "compatible versions.",
+            schema_dir,
+        )
+    return False
+
+
+def _find_bids_root(in_paths, accept_non_bids_dir):
+    """
+    Return BIDS root for a list of paths.
+    Raise error if more than one root is found and, optionally, if none is found.
+    """
+
+    dataset_descriptions = []
+    for in_path in in_paths:
+        in_path = os.path.abspath(os.path.expanduser(in_path))
+        dataset_description = _find_dataset_description(in_path)
+        if dataset_description and dataset_description not in dataset_descriptions:
+            dataset_descriptions.append(dataset_description)
+    if len(dataset_descriptions) > 1:
+        raise ValueError(
+            f"You have selected files belonging to {len(dataset_descriptions)} "
+            "different datasets. Please run the validator once per dataset."
+        )
+    elif len(dataset_descriptions) == 0:
+        if accept_non_bids_dir:
+            lgr.warning(
+                "None of the files in the input list are part of a BIDS dataset. Proceeding."
+            )
+            return ""
+        else:
+            raise ValueError(
+                "None of the files in the input list are part of a BIDS dataset. Aborting."
+            )
+    return os.path.dirname(dataset_descriptions[0])
+
+
+def _find_dataset_description(my_path):
+    candidate = os.path.join(my_path, "dataset_description.json")
+    # Windows support... otherwise we could do `if my_path == "/"`.
+    if my_path == "/" or not any(i in my_path for i in ["/", "\\"]):
+        return None
+    if os.path.isfile(candidate):
+        return candidate
+    else:
+        level_up = os.path.dirname(my_path.rstrip("/\\"))
+        return _find_dataset_description(level_up)
+
+
+def _get_directory_suffixes(my_schema):
+    """Query schema for suffixes which identify directory entities.
+
+    Parameters
+    ----------
+    my_schema : dict
+        Nested directory as produced by `bidsschematools.schema.load_schema()`.
+
+    Returns
+    -------
+    list of str
+        Directory pseudofile suffixes excluding trailing slashes.
+
+    Notes
+    -----
+    * Yes this seems super-awkward to do explicitly, after all, the trailing slash is
+        already in so it should automagically work, but no:
+        - Subdirectory names need to be dynamically excluded from validation input.
+        - Backslash directory delimiters are still in use, which is regrettable.
+    """
+    pseudofile_suffixes = []
+    for i in my_schema["objects"]["extensions"].values():
+        i_value = i["value"]
+        if i_value.endswith("/") and i_value != "/":
+            pseudofile_suffixes.append(i_value[:-1])
+    return pseudofile_suffixes
+
+
 def _get_paths(
     bids_paths,
     pseudofile_suffixes=[],
@@ -103,6 +222,117 @@ def _get_paths(
             )
 
     return path_list
+
+
+def log_errors(validation_result):
+    """
+    Raise errors for validation result.
+
+    Parameters
+    ----------
+    validation_result : dict
+        A dictionary as returned by `validate_all()` with keys including "schema_tracking",
+        "path_tracking", "path_listing", and, optionally "itemwise".
+        The "itemwise" value, if present, should be a list of dictionaries, with keys including
+        "path", "regex", and "match".
+    """
+    total_file_count = len(validation_result["path_listing"])
+    validated_files_count = total_file_count - len(validation_result["path_tracking"])
+    if validated_files_count == 0:
+        lgr.error("No valid BIDS files were found.")
+    for entry in validation_result["schema_tracking"]:
+        if entry["mandatory"]:
+            lgr.error(
+                "The `%s` regex pattern file required by BIDS was not found.",
+                entry["regex"],
+            )
+    for i in validation_result["path_tracking"]:
+        lgr.warning("The `%s` file was not matched by any regex schema entry.", i)
+
+
+def select_schema_path(
+    bids_version="",
+    bids_root="",
+    bids_reference_root="/usr/share/bids-schema/versions",
+):
+    """
+    Select schema directory, according to a priority logic whereby the schema path is
+    either:
+        (1) a concatenation of `bids_reference_root` and `bids_version`, if the latter is
+            specified, and the BIDS version schema is compatible with the validator,
+        (2) a concatenation of `bids_reference_root` the detected version specification
+            inside the BIDS root directory, if such a directory is provided and the BIDS version
+            schema is compatible with the validator.
+        (3) The bundled schema supplied with the validator. This involves throwing a lot of
+            warnings at the user.
+
+    Parameters
+    ----------
+    bids_root : str, optional
+        The path to the BIDS root for the paths to be validated.
+    bids_reference_root : str, optional
+        Path where schema versions are stored, and which contains directories named exactly
+        according to the respective schema version, e.g. "1.7.0".
+        If the path starts with the string "{module_path}" it will be expanded relative to the
+        module path.
+    bids_version : str, optional
+        BIDS version desired for validation.
+        If empty, the `dataset_description.json` fie will be queried for the dataset schema
+        version.
+
+
+    Returns
+    -------
+    str
+        A string which is a path to the selected schema directory.
+
+    Notes
+    -----
+    * This is a purely aspirational function, and is pre-empted by logic inside
+        `bst.validator.validate_bids()`, and further contingent on better schema stability and
+        ongoing work in: https://github.com/bids-standard/bids-schema
+    * The default `bids_reference_root` value is based on the FHS and ideally should be enforced.
+        Alternatively this could be handled by an environment variable, though that also requires
+        enforcement on the package distribution side.
+    """
+
+    bids_reference_root = os.path.abspath(os.path.expanduser(bids_reference_root))
+
+    schema_dir = False
+    if bids_root and not bids_version:
+        dataset_description = os.path.join(bids_root, "dataset_description.json")
+        with open(dataset_description) as f:
+            try:
+                dataset_info = json.load(f)
+            except json.decoder.JSONDecodeError:
+                lgr.error(
+                    "The `%s` file cannot be loaded. Please check whether it is valid JSON.",
+                    dataset_description,
+                )
+            else:
+                try:
+                    bids_version = dataset_info["BIDSVersion"]
+                except KeyError:
+                    lgr.warning("BIDSVersion is not specified in `dataset_description.json`.")
+    if bids_version:
+        schema_dir = os.path.join(bids_reference_root, bids_version)
+        if _bids_schema_versioncheck(schema_dir):
+            return schema_dir
+
+    try:
+        for schema_dir_candidate in os.listdir(bids_reference_root):
+            schema_dir = os.path.join(bids_reference_root, schema_dir_candidate)
+            if _bids_schema_versioncheck(schema_dir):
+                return schema_dir
+    except FileNotFoundError:
+        pass
+    lgr.warning(
+        "No suitable schema could be found in the BIDS reference root (`%s`). Falling back to the "
+        "bundled schema, `%s`.",
+        bids_reference_root,
+        BUNDLED_SCHEMA_PATH,
+    )
+    return BUNDLED_SCHEMA_PATH
 
 
 def validate_all(
@@ -262,204 +492,6 @@ def write_report(
     lgr.info("BIDS validation log written to %s", report_path)
 
 
-def _find_dataset_description(my_path):
-    candidate = os.path.join(my_path, "dataset_description.json")
-    # Windows support... otherwise we could do `if my_path == "/"`.
-    if my_path == "/" or not any(i in my_path for i in ["/", "\\"]):
-        return None
-    if os.path.isfile(candidate):
-        return candidate
-    else:
-        level_up = os.path.dirname(my_path.rstrip("/\\"))
-        return _find_dataset_description(level_up)
-
-
-def select_schema_path(
-    bids_version="",
-    bids_root="",
-    bids_reference_root="/usr/share/bids-schema/versions",
-):
-    """
-    Select schema directory, according to a priority logic whereby the schema path is
-    either:
-        (1) a concatenation of `bids_reference_root` and `bids_version`, if the latter is
-            specified, and the BIDS version schema is compatible with the validator,
-        (2) a concatenation of `bids_reference_root` the detected version specification
-            inside the BIDS root directory, if such a directory is provided and the BIDS version
-            schema is compatible with the validator.
-        (3) The bundled schema supplied with the validator. This involves throwing a lot of
-            warnings at the user.
-
-    Parameters
-    ----------
-    bids_root : str, optional
-        The path to the BIDS root for the paths to be validated.
-    bids_reference_root : str, optional
-        Path where schema versions are stored, and which contains directories named exactly
-        according to the respective schema version, e.g. "1.7.0".
-        If the path starts with the string "{module_path}" it will be expanded relative to the
-        module path.
-    bids_version : str, optional
-        BIDS version desired for validation.
-        If empty, the `dataset_description.json` fie will be queried for the dataset schema version.
-
-
-    Returns
-    -------
-    str
-        A string which is a path to the selected schema directory.
-
-    Notes
-    -----
-    * This is a purely aspirational function, and is pre-empted by logic inside
-        `bst.validator.validate_bids()`, and further contingent on better schema stability and
-        ongoing work in: https://github.com/bids-standard/bids-schema
-    * The default `bids_reference_root` value is based on the FHS and ideally should be enforced.
-        Alternatively this could be handled by an environment variable, though that also requires
-        enforcement on the package distribution side.
-    """
-
-    bids_reference_root = os.path.abspath(os.path.expanduser(bids_reference_root))
-
-    schema_dir = False
-    if bids_root and not bids_version:
-        dataset_description = os.path.join(bids_root, "dataset_description.json")
-        with open(dataset_description) as f:
-            try:
-                dataset_info = json.load(f)
-            except json.decoder.JSONDecodeError:
-                lgr.error(
-                    "The `%s` file cannot be loaded. Please check whether it is valid JSON.",
-                    dataset_description,
-                )
-            else:
-                try:
-                    bids_version = dataset_info["BIDSVersion"]
-                except KeyError:
-                    lgr.warning("BIDSVersion is not specified in `dataset_description.json`.")
-    if bids_version:
-        schema_dir = os.path.join(bids_reference_root, bids_version)
-        if _bids_schema_versioncheck(schema_dir):
-            return schema_dir
-
-    try:
-        for schema_dir_candidate in os.listdir(bids_reference_root):
-            schema_dir = os.path.join(bids_reference_root, schema_dir_candidate)
-            if _bids_schema_versioncheck(schema_dir):
-                return schema_dir
-    except FileNotFoundError:
-        pass
-    lgr.warning(
-        "No suitable schema could be found in the BIDS reference root (`%s`). Falling back to the "
-        "bundled schema, `%s`.",
-        bids_reference_root,
-        BUNDLED_SCHEMA_PATH,
-    )
-    return BUNDLED_SCHEMA_PATH
-
-
-def _bids_schema_versioncheck(schema_dir, compatibility=VALIDATOR_SCHEMA_COMPATIBILITY_LEVEL):
-    """
-    Use the `SCHEMA_VERSION` descriptor file to determine whether a selected schema directory is compatible with the validator.
-
-    Parameters
-    ----------
-    schema_dir : str
-        A string which specifies a path.
-    compatibility : "major" or "minor", optional
-        Compatibility range of the validator. Major means "M.*" are considered compatible, minor
-        means "M.m.*" are considered compatible.
-
-    Returns
-    -------
-    bool:
-        Whether the schema is compatible with the validator.
-    """
-    schema_version_file = os.path.join(schema_dir, "SCHEMA_VERSION")
-    try:
-        with open(schema_version_file, "r") as f:
-            schema_version = f.readlines()[0].strip()
-            if _bids_schema_versioncheck(schema_version_file):
-                if compatibility == "major":
-                    if schema_version.rsplit(".", 1)[0] == __version__.rsplit(".", 1)[0]:
-                        return True
-                elif compatibility == "minor":
-                    if schema_version.rsplit(".", 2)[:2] == __version__.rsplit(".", 2)[:2]:
-                        return True
-                else:
-                    raise ValueError(
-                        "Schema compatibility needs to be set to either “major” or “minor”."
-                    )
-                lgr.warning(
-                    "The selected BIDS Version, `%s`, has a schema version (`%s`) which is incompatible "
-                    "with the validator. Attempting to query the BIDS reference for compatible "
-                    "versions.",
-                    bids_version,
-                )
-    except FileNotFoundError:
-        lgr.warning(
-            "The selected schema directory, `%s`, does not contain a SCHEMA_VERSION file. "
-            "Cannot ascertain compatibility. Attempting to query the BIDS reference for "
-            "compatible versions.",
-            schema_dir,
-        )
-    return False
-
-
-def log_errors(validation_result):
-    """
-    Raise errors for validation result.
-
-    Parameters
-    ----------
-    validation_result : dict
-        A dictionary as returned by `validate_all()` with keys including "schema_tracking",
-        "path_tracking", "path_listing", and, optionally "itemwise".
-        The "itemwise" value, if present, should be a list of dictionaries, with keys including
-        "path", "regex", and "match".
-    """
-    total_file_count = len(validation_result["path_listing"])
-    validated_files_count = total_file_count - len(validation_result["path_tracking"])
-    if validated_files_count == 0:
-        lgr.error("No valid BIDS files were found.")
-    for entry in validation_result["schema_tracking"]:
-        if entry["mandatory"]:
-            lgr.error(
-                "The `%s` regex pattern file required by BIDS was not found.",
-                entry["regex"],
-            )
-    for i in validation_result["path_tracking"]:
-        lgr.warning("The `%s` file was not matched by any regex schema entry.", i)
-
-
-def _get_directory_suffixes(my_schema):
-    """Query schema for suffixes which identify directory entities.
-
-    Parameters
-    ----------
-    my_schema : dict
-        Nested directory as produced by `bidsschematools.schema.load_schema()`.
-
-    Returns
-    -------
-    list of str
-        Directory pseudofile suffixes excluding trailing slashes.
-
-    Notes
-    -----
-    * Yes this seems super-awkward to do explicitly, after all, the trailing slash is
-        already in so it should automagically work, but no:
-        - Subdirectory names need to be dynamically excluded from validation input.
-        - Backslash directory delimiters are still in use, which is regrettable.
-    """
-    pseudofile_suffixes = []
-    for i in my_schema["objects"]["extensions"].values():
-        i_value = i["value"]
-        if i_value.endswith("/") and i_value != "/":
-            pseudofile_suffixes.append(i_value[:-1])
-    return pseudofile_suffixes
-
-
 def validate_bids(
     in_paths,
     dummy_paths=False,
@@ -582,33 +614,3 @@ def validate_bids(
             write_report(validation_result)
 
     return validation_result
-
-
-def _find_bids_root(in_paths, accept_non_bids_dir):
-    """
-    Return BIDS root for a list of paths.
-    Raise error if more than one root is found and, optionally, if none is found.
-    """
-
-    dataset_descriptions = []
-    for in_path in in_paths:
-        in_path = os.path.abspath(os.path.expanduser(in_path))
-        dataset_description = _find_dataset_description(in_path)
-        if dataset_description and dataset_description not in dataset_descriptions:
-            dataset_descriptions.append(dataset_description)
-    if len(dataset_descriptions) > 1:
-        raise ValueError(
-            f"You have selected files belonging to {len(dataset_descriptions)} "
-            "different datasets. Please run the validator once per dataset."
-        )
-    elif len(dataset_descriptions) == 0:
-        if accept_non_bids_dir:
-            lgr.warning(
-                "None of the files in the input list are part of a BIDS dataset. Proceeding."
-            )
-            return ""
-        else:
-            raise ValueError(
-                "None of the files in the input list are part of a BIDS dataset. Aborting."
-            )
-    return os.path.dirname(dataset_descriptions[0])
