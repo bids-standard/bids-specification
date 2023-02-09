@@ -806,7 +806,7 @@ def _find_bids_root(in_paths, accept_non_bids_dir):
             lgr.warning(
                 "None of the files in the input list are part of a BIDS dataset. Proceeding."
             )
-            return "None"
+            return ""
         else:
             raise ValueError(
                 "None of the files in the input list are part of a BIDS dataset. Aborting."

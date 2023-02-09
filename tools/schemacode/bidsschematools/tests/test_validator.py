@@ -312,13 +312,38 @@ def test_exclude_files(bids_examples, tmp_path):
         f.write(" \n")
 
     # Does it fail, as it should (more like a failsafe assertion)
-    result = validate_bids(
-        tmp_path,
-    )
+    result = validate_bids(tmp_path)
     assert len(result["path_tracking"]) == 1
 
     # Does the parameter work?
     result = validate_bids(tmp_path, exclude_files=[archive_file_name])
+    assert len(result["path_tracking"]) == 0
+
+
+@pytest.mark.skipif(
+    os.environ.get("SCHEMACODE_TESTS_NONETWORK") is not None,
+    reason="no network",
+)
+def test_accept_non_bids_dir(bids_examples, tmp_path):
+    from bidsschematools.validator import validate_bids
+
+    dataset = "asl003"
+    dataset_reference = os.path.join(bids_examples, dataset)
+    tmp_path = str(tmp_path)
+    shutil.copytree(dataset_reference, tmp_path, dirs_exist_ok=True)
+
+    # remove `dataset_description.json`
+    os.remove(os.path.join(tmp_path, "dataset_description.json"))
+
+    # Does it fail, as it should (more like a failsafe assertion)
+    with pytest.raises(
+        ValueError,
+        match="None of the files in the input list are part of a BIDS dataset. Aborting.",
+    ):
+        _ = validate_bids(tmp_path)
+
+    # Does the parameter work?
+    result = validate_bids(tmp_path, accept_non_bids_dir=True)
     assert len(result["path_tracking"]) == 0
 
 
