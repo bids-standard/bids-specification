@@ -162,10 +162,14 @@ def _get_paths(
 
     Notes
     -----
-    * Figure out how to return paths from BIDS root.
     * Deduplicate paths (if input dirs are subsets of other input dirs), might best be done at the
-        very end.
-    * Currently this only supports file entries (no directories of `**`) for `.bidsignore`
+        very end. This is only relevant for poor usage (e.g. passing parent *and* child
+        directories), and has thus far not caused problems, but it would be good to brace for
+        that.
+    * The `dataset_description.json` and `.bidsignore` handling should be split out of the main
+        loop, since we now have BIDS root detection called before file detection. This is
+        non-critical however, since the topdown `os.walk` makes sure top-level files are detected
+        first.
     """
 
     path_list = []
@@ -178,8 +182,7 @@ def _get_paths(
             for root, dirs, file_names in os.walk(bids_path, topdown=True):
                 if "dataset_description.json" in file_names:
                     if bids_root_found:
-                        # Not currently supporting nested BIDS,
-                        # do not index the contents of the directory.
+                        # No nested BIDS.
                         dirs[:] = []
                         file_names[:] = []
                     else:
@@ -204,13 +207,12 @@ def _get_paths(
                     if bidsignore_list:
                         ignored = False
                         for ignore_expression in bidsignore_list:
-                            if fnmatch.fnmatch(file_name, ignore_expression):
-                                ignored = True
+                            ignored = _bidsignore_check(ignore_expression, file_name, root)
+                            if ignored:
                                 break
                         if ignored:
                             continue
                     file_path = os.path.join(root, file_name)
-                    # This will need to be replaced with bids root finding.
                     path_list.append(Path(file_path).as_posix())
         elif os.path.isfile(bids_path) or dummy_paths:
             path_list.append(Path(bids_path).as_posix())
@@ -222,6 +224,45 @@ def _get_paths(
             )
 
     return path_list
+
+
+def _bidsignore_check(ignore_expression, file_name, file_root):
+    """
+    Check whether a file is set to be ignored as per `.bidsignore`
+
+    Parameters
+    ----------
+    ignore_expression : str
+        A string following git-wildcard conventions (including `**/`).
+    file_name : str
+        A string which represents a file name.
+    file_root : str
+        The directory containing the file specifiled in `file_name`.
+
+    Returns
+    -------
+    bool:
+        Whether the file should be ignored.
+
+    Notes
+    -----
+    * We cannot use `glob` since that would pre-empt working with theoretical or non-local
+        paths, therefore we use `fnmatch`.
+    * `fnmatch` does not support `**/` matching as that is an optional convention from e.g.
+        globstar and git, and not part of the standard Unix shell. As we formalize `.bidsignore`
+        I suppose we drop it, since we already treat simple file names as to-be-ignored in
+        all directories.
+    """
+
+    if ignore_expression.startswith("**/"):
+        ignore_expression = ignore_expression.lstrip("**/")
+    elif any(i in ignore_expression for i in ["/", "\\"]):
+        file_name = os.path.join(file_root, file_name)
+
+    if fnmatch.fnmatch(file_name, ignore_expression):
+        return True
+    else:
+        return False
 
 
 def log_errors(validation_result):
