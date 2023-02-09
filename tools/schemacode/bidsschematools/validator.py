@@ -503,7 +503,7 @@ def _find_dataset_description(my_path):
 
 
 def select_schema_dir(
-    bids_paths,
+    bids_root,
     schema_reference_root,
     schema_version,
     schema_min_version,
@@ -562,19 +562,8 @@ def select_schema_dir(
         schema_dir = os.path.join(schema_reference_root, schema_version)
         return schema_dir
 
-    dataset_descriptions = []
-    for bids_path in bids_paths:
-        bids_path = os.path.abspath(os.path.expanduser(bids_path))
-        dataset_description = _find_dataset_description(bids_path)
-        if dataset_description and dataset_description not in dataset_descriptions:
-            dataset_descriptions.append(dataset_description)
-    if len(dataset_descriptions) > 1:
-        raise ValueError(
-            f"You have selected files belonging to {len(dataset_descriptions)} "
-            "different datasets. Please run the validator once per dataset."
-        )
-    if dataset_descriptions:
-        dataset_description = dataset_descriptions[0]
+    if bids_root:
+        dataset_description = os.path.join(bids_root, "dataset_description.json")
         with open(dataset_description) as f:
             try:
                 dataset_info = json.load(f)
@@ -600,7 +589,7 @@ def select_schema_dir(
                     schema_version = schema_min_version
     if not schema_version:
         lgr.warning(
-            "No BIDSVersion could be found for the dataset. Falling back to `%s`.",
+            "No BIDSVersion could be determined for the dataset. Falling back to `%s`.",
             schema_min_version,
         )
         schema_version = schema_min_version
@@ -759,7 +748,7 @@ def validate_bids(
     bids_root = _find_bids_root(in_paths, accept_non_bids_dir)
 
     bids_schema_dir = select_schema_dir(
-        in_paths,
+        bids_root,
         schema_reference_root,
         schema_version,
         schema_min_version=schema_min_version,
@@ -814,6 +803,7 @@ def _find_bids_root(in_paths, accept_non_bids_dir):
             lgr.warning(
                 "None of the files in the input list are part of a BIDS dataset. Proceeding."
             )
+            return "None"
         else:
             raise ValueError(
                 "None of the files in the input list are part of a BIDS dataset. Aborting."
