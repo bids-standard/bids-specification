@@ -14,6 +14,9 @@ import bidsschematools.utils
 
 lgr = bst.utils.get_logger()
 
+BUNDLED_SCHEMA_PATH = "{module_path}/data/schema"
+VALIDATOR_SCHEMA_COMPATIBILITY_LEVEL = "minor"
+
 
 def _get_paths(
     bids_paths,
@@ -271,119 +274,136 @@ def _find_dataset_description(my_path):
         return _find_dataset_description(level_up)
 
 
-def select_schema_dir(
-    bids_root,
-    schema_reference_root,
-    schema_version,
-    schema_min_version,
+def select_schema_path(
+    bids_version="",
+    bids_root="",
+    bids_reference_root="/usr/share/bids-schema/versions",
 ):
     """
-    Select schema directory, according to a fallback logic whereby the schema path is
-    either (1) `schema_version` if the value is a path, (2) a concatenation of
-    `schema_reference_root` and `schema_version`, (3) a concatenation of the detected
-    version specification from a `dataset_description.json` file if one is found in
-    parents of the input path, (4) `schema_min_version` if no other version can be found
-    or if the detected version from `dataset_description.json` is smaller than
-    `schema_min_version`.
+    Select schema directory, according to a priority logic whereby the schema path is
+    either:
+        (1) a concatenation of `bids_reference_root` and `bids_version`, if the latter is
+            specified, and the BIDS version schema is compatible with the validator,
+        (2) a concatenation of `bids_reference_root` the detected version specification
+            inside the BIDS root directory, if such a directory is provided and the BIDS version
+            schema is compatible with the validator.
+        (3) The bundled schema supplied with the validator. This involves throwing a lot of
+            warnings at the user.
 
     Parameters
     ----------
-    bids_paths : list of str
-        Paths to be validated.
-        Entries in this list will be used to crawl the directory tree upwards until a
-        dataset_description.json file is found.
-    schema_reference_root : str, optional
+    bids_root : str, optional
+        The path to the BIDS root for the paths to be validated.
+    bids_reference_root : str, optional
         Path where schema versions are stored, and which contains directories named exactly
         according to the respective schema version, e.g. "1.7.0".
         If the path starts with the string "{module_path}" it will be expanded relative to the
         module path.
-    schema_version : str or None
-        Version of BIDS schema, or path to schema.
-        If a path is given, this will be expanded and used directly, not concatenated with
-        `schema_reference_root`.
-        If the path starts with the string "{module_path}" it will be expanded relative to the
-        module path.
-        If None, the `dataset_description.json` fie will be queried for the dataset schema version.
-    schema_min_version : str
-        Minimal version to use UNLESS the schema version is manually specified.
-        If the version is auto-detected and the version is smaller than schema_min_version,
-        schema_min_version will be selected instead.
+    bids_version : str, optional
+        BIDS version desired for validation.
+        If empty, the `dataset_description.json` fie will be queried for the dataset schema version.
 
 
     Returns
     -------
+    str
+        A string which is a path to the selected schema directory.
 
+    Notes
+    -----
+    * This is a purely aspirational function, and is pre-empted by logic inside
+        `bst.validator.validate_bids()`, and further contingent on better schema stability and
+        ongoing work in: https://github.com/bids-standard/bids-schema
+    * The default `bids_reference_root` value is based on the FHS and ideally should be enforced.
+        Alternatively this could be handled by an environment variable, though that also requires
+        enforcement on the package distribution side.
     """
-    # Expand module_path
-    module_path = os.path.abspath(os.path.dirname(__file__))
-    if schema_reference_root.startswith("{module_path}"):
-        schema_reference_root = schema_reference_root.format(module_path=module_path)
-    schema_reference_root = os.path.abspath(os.path.expanduser(schema_reference_root))
 
-    # Handle path schema specification
-    if schema_version:
-        if "/" in schema_version:
-            schema_dir = schema_version
-            if schema_version.startswith("{module_path}"):
-                schema_dir = schema_version.format(module_path=module_path)
-            schema_dir = os.path.abspath(os.path.expanduser(schema_dir))
-            return schema_dir
-        schema_dir = os.path.join(schema_reference_root, schema_version)
-        return schema_dir
+    bids_reference_root = os.path.abspath(os.path.expanduser(bids_reference_root))
 
-    if bids_root:
+    schema_dir = False
+    if bids_root and not bids_version:
         dataset_description = os.path.join(bids_root, "dataset_description.json")
         with open(dataset_description) as f:
             try:
                 dataset_info = json.load(f)
             except json.decoder.JSONDecodeError:
                 lgr.error(
-                    "The `%s` file could not be loaded. "
-                    "Please check whether the file is valid JSON. "
-                    "Falling back to the `%s` BIDS version.",
+                    "The `%s` file cannot be loaded. Please check whether it is valid JSON.",
                     dataset_description,
-                    schema_min_version,
                 )
-                schema_version = schema_min_version
             else:
                 try:
-                    schema_version = dataset_info["BIDSVersion"]
+                    bids_version = dataset_info["BIDSVersion"]
                 except KeyError:
-                    lgr.warning(
-                        "BIDSVersion is not specified in "
-                        "`dataset_description.json`. "
-                        "Falling back to `%s`.",
-                        schema_min_version,
+                    lgr.warning("BIDSVersion is not specified in `dataset_description.json`.")
+    if bids_version:
+        schema_dir = os.path.join(bids_reference_root, bids_version)
+        if _bids_schema_versioncheck(schema_dir):
+            return schema_dir
+
+    try:
+        for schema_dir_candidate in os.listdir(bids_reference_root):
+            schema_dir = os.path.join(bids_reference_root, schema_dir_candidate)
+            if _bids_schema_versioncheck(schema_dir):
+                return schema_dir
+    except FileNotFoundError:
+        pass
+    lgr.warning(
+        "No suitable schema could be found in the BIDS reference root (`%s`). Falling back to the "
+        "bundled schema, `%s`.",
+        bids_reference_root,
+        BUNDLED_SCHEMA_PATH,
+    )
+    return BUNDLED_SCHEMA_PATH
+
+
+def _bids_schema_versioncheck(schema_dir, compatibility=VALIDATOR_SCHEMA_COMPATIBILITY_LEVEL):
+    """
+    Use the `SCHEMA_VERSION` descriptor file to determine whether a selected schema directory is compatible with the validator.
+
+    Parameters
+    ----------
+    schema_dir : str
+        A string which specifies a path.
+    compatibility : "major" or "minor", optional
+        Compatibility range of the validator. Major means "M.*" are considered compatible, minor
+        means "M.m.*" are considered compatible.
+
+    Returns
+    -------
+    bool:
+        Whether the schema is compatible with the validator.
+    """
+    schema_version_file = os.path.join(schema_dir, "SCHEMA_VERSION")
+    try:
+        with open(schema_version_file, "r") as f:
+            schema_version = f.readlines()[0].strip()
+            if _bids_schema_versioncheck(schema_version_file):
+                if compatibility == "major":
+                    if schema_version.rsplit(".", 1)[0] == __version__.rsplit(".", 1)[0]:
+                        return True
+                elif compatibility == "minor":
+                    if schema_version.rsplit(".", 2)[:2] == __version__.rsplit(".", 2)[:2]:
+                        return True
+                else:
+                    raise ValueError(
+                        "Schema compatibility needs to be set to either “major” or “minor”."
                     )
-                    schema_version = schema_min_version
-    if not schema_version:
+                lgr.warning(
+                    "The selected BIDS Version, `%s`, has a schema version (`%s`) which is incompatible "
+                    "with the validator. Attempting to query the BIDS reference for compatible "
+                    "versions.",
+                    bids_version,
+                )
+    except FileNotFoundError:
         lgr.warning(
-            "No BIDSVersion could be determined for the dataset. Falling back to `%s`.",
-            schema_min_version,
+            "The selected schema directory, `%s`, does not contain a SCHEMA_VERSION file. "
+            "Cannot ascertain compatibility. Attempting to query the BIDS reference for "
+            "compatible versions.",
+            schema_dir,
         )
-        schema_version = schema_min_version
-    elif schema_min_version:
-        if schema_version < schema_min_version:
-            lgr.warning(
-                "BIDSVersion `%s` is less than the minimal working "
-                "`%s`. "
-                "Falling back to `%s`. "
-                "To force the usage of earlier versions specify them explicitly "
-                "when calling the validator.",
-                schema_version,
-                schema_min_version,
-                schema_min_version,
-            )
-            schema_version = schema_min_version
-    schema_dir = os.path.join(schema_reference_root, schema_version)
-    if os.path.isdir(schema_dir):
-        return schema_dir
-    else:
-        raise ValueError(
-            f"The expected schema directory {schema_dir} does not exist on the system. "
-            "Please ensure the file exists or manually specify a schema version for "
-            "which the bidsschematools files are available on your system."
-        )
+    return False
 
 
 def log_errors(validation_result):
@@ -443,11 +463,12 @@ def _get_directory_suffixes(my_schema):
 def validate_bids(
     in_paths,
     dummy_paths=False,
-    schema_reference_root="{module_path}/data/",
-    schema_version=None,
+    bids_reference_root="/usr/share/bids-schema/versions",
+    schema_path=BUNDLED_SCHEMA_PATH,
+    bids_version=None,
     report_path=False,
     suppress_errors=False,
-    schema_min_version="schema",
+    schema_min_version=False,
     accept_non_bids_dir=False,
     exclude_files=[],
 ):
@@ -460,25 +481,26 @@ def validate_bids(
         Paths which to validate, may be individual files or directories.
     dummy_paths : bool, optional
         Whether to accept path strings which do not correspond to either files or directories.
-    schema_reference_root : str, optional
+    bids_reference_root : str, optional
         Path where schema versions are stored, and which contains directories named exactly
         according to the respective schema version, e.g. "1.7.0".
         If the path starts with the string "{module_path}" it will be expanded relative to the
         module path.
-    schema_version : str or None, optional
-        Version of BIDS schema, or path to schema.
-        If a path is given, this will be expanded and used directly, not concatenated with
-        `schema_reference_root`.
-        If the path starts with the string "{module_path}" it will be expanded relative to the
-        module path.
-        If None, the `dataset_description.json` fie will be queried for the dataset schema version.
+    bids_version : str or None, optional
+        Version of BIDS schema, or path to schema. This supersedes the specification detected in
+        `dataset_description.json` and is itself superseded if `schema_path` is specified.
+    schema_path : str or None, optional
+        If a path is given, this will be expanded and used directly, ignoring all other BIDS
+        version specification logic. If the path starts with the string "{module_path}" it will
+        be expanded relative to the module path. This is not relative to `bids_reference_root`.
     report_path : bool or str, optional
         If `True` a log will be written using the standard output path of `.write_report()`.
         If string, the string will be used as the output path.
         If the variable evaluates as False, no log will be written.
     schema_min_version : str, optional
-        Minimal working schema version, used by the `bidsschematools.select_schema_dir()` function
-        only if no schema version is found or a lower schema version is specified by the dataset.
+        Minimal working schema version, used by the `bidsschematools.select_schema_dir()`
+        function. N.B. this is the *schema* version as is relevant for validator parsing, and
+        *not* the BIDS version.
     accept_non_bids_dir : bool, optional
     exclude_files : str, optional
         Files which will not be indexed for validation, use this if your data is in an archive
@@ -514,32 +536,41 @@ def validate_bids(
     if isinstance(in_paths, str):
         in_paths = [in_paths]
 
+    # Are we dealing with real paths?
     if dummy_paths:
         bids_root = None
     else:
         bids_root = _find_bids_root(in_paths, accept_non_bids_dir)
 
-    bids_schema_dir = select_schema_dir(
-        bids_root,
-        schema_reference_root,
-        schema_version,
-        schema_min_version=schema_min_version,
-    )
-    regex_schema, my_schema = bst.parse.regexify_all(bids_schema_dir)
+    # Select schema path:
+    if not schema_path:
+        schema_path = select_schema_path(
+            bids_version,
+            bids_root,
+        )
+    if schema_path.startswith("{module_path}"):
+        module_path = os.path.abspath(os.path.dirname(__file__))
+        schema_path = schema_path.format(module_path=module_path)
+
+    regex_schema, my_schema = bst.parse.regexify_all(schema_path)
     pseudofile_suffixes = _get_directory_suffixes(my_schema)
+
+    # Get list of all paths since inputs can be directories.
     bids_paths = _get_paths(
         in_paths,
         dummy_paths=dummy_paths,
         pseudofile_suffixes=pseudofile_suffixes,
         exclude_files=exclude_files,
     )
+
+    # Go!
     validation_result = validate_all(
         bids_paths,
         regex_schema,
     )
 
     # Record schema version.
-    bids_version = bst.schema._get_bids_version(bids_schema_dir)
+    bids_version = bst.schema._get_bids_version(schema_path)
     validation_result["bids_version"] = bids_version
 
     log_errors(validation_result)

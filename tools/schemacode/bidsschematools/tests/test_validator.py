@@ -91,13 +91,10 @@ def test_write_report(tmp_path):
 )
 @pytest.mark.parametrize("dataset", BIDS_SELECTION)
 def test_bids_datasets(bids_examples, tmp_path, dataset):
-    schema_path = "{module_path}/data/schema/"
-
     # Validate per dataset:
     target = os.path.join(bids_examples, dataset)
     result = validate_bids(
         target,
-        schema_version=schema_path,
     )
     # Have all files been validated?
     assert len(result["path_tracking"]) == 0
@@ -108,8 +105,6 @@ def test_bids_datasets(bids_examples, tmp_path, dataset):
     reason="no network",
 )
 def test_validate_bids(bids_examples, tmp_path):
-    schema_path = "{module_path}/data/schema/"
-
     # Create input for file list based validation
     selected_dir = os.path.join(bids_examples, BIDS_SELECTION[0])
     selected_paths = []
@@ -117,15 +112,14 @@ def test_validate_bids(bids_examples, tmp_path):
         for f in files:
             selected_path = os.path.join(root, f)
             selected_paths.append(selected_path)
-    # Do version fallback work?
-    result = validate_bids(selected_paths, schema_version=None)
+    # Does version fallback work?
+    result = validate_bids(selected_paths, schema_path=False)
     # Does default log path specification work?
-    result = validate_bids(selected_paths, schema_version=schema_path, report_path=True)
+    result = validate_bids(selected_paths, report_path=True)
 
     # Does custom log path specification work?
     result = validate_bids(
         selected_paths,
-        schema_version=schema_path,
         report_path=os.path.join(tmp_path, "test_bids.log"),
     )
     # Have all files been validated?
@@ -228,12 +222,9 @@ def test_accept_non_bids_dir(bids_examples, tmp_path):
 )
 @pytest.mark.parametrize("dataset", BIDS_ERROR_SELECTION)
 def test_error_datasets(bids_error_examples, dataset):
-    schema_path = "{module_path}/data/schema/"
-
     target = os.path.join(bids_error_examples, dataset)
     result = validate_bids(
         target,
-        schema_version=schema_path,
         report_path=True,
     )
     # Are there non-validated files?
