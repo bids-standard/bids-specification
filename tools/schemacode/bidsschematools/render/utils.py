@@ -159,6 +159,18 @@ def flatten_multiindexed_columns(df):
 
 
 def get_link(string):
+    """Return a hyperlink to the JSON specification for a given JSON type.
+
+    Parameters
+    ----------
+    string : str
+        The JSON type to link to.
+
+    Returns
+    -------
+    url : str
+        The hyperlink to the JSON specification for the given JSON type.
+    """
     refs = {
         "array": "https://www.w3schools.com/js/js_json_arrays.asp",
         "string": "https://www.w3schools.com/js/js_json_datatypes.asp",
@@ -185,7 +197,7 @@ def resolve_metadata_type(definition):
 
     Returns
     -------
-    string : :obj:`str`
+    string : str
         A string describing the valid value types for the metadata term.
     """
     if "type" in definition.keys():
@@ -230,8 +242,7 @@ def describe_valid_values(definition):
 
     Returns
     -------
-    :obj:`str`
-        A sentence describing valid values for the object.
+    str : A sentence describing valid values for the object.
     """
     description = ""
     if "anyOf" in definition.keys():
@@ -294,6 +305,16 @@ def get_relpath(src_path):
 
 
 def normalize_requirements(text):
+    """Normalize requirements wording in a string.
+
+    Parameters
+    ----------
+    text : str
+
+    Returns
+    -------
+    text : str
+    """
     for level in ("optional", "recommended", "required", "deprecated"):
         # Replace both "optional" and "Optional" with "OPTIONAL"
         text = text.replace(level.title(), level).replace(level, level.upper())
@@ -301,6 +322,16 @@ def normalize_requirements(text):
 
 
 def normalize_breaks(text):
+    """Normalize line breaks in a string, for new lines, escaped new lines and double new lines.
+
+    Parameters
+    ----------
+    text : str
+
+    Returns
+    -------
+    text : str
+    """
     # A backslash before a newline means continue a string
     text = text.replace("\\\n", "")
     # Two newlines should be respected
@@ -320,6 +351,10 @@ def num2words(integer, to="ordinal"):
     ----------
     integer : int
     to : {"ordinal", "cardinal"}, optional
+
+    Returns
+    -------
+    word : str
     """
     if to == "ordinal":
         mapper = {
