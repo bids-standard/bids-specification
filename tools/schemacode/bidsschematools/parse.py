@@ -1,7 +1,7 @@
+import re
 import typing as ty
 from collections.abc import Mapping
 from functools import lru_cache
-import re
 
 import bidsschematools as bst
 import bidsschematools.types

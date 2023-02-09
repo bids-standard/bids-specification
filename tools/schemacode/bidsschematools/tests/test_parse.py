@@ -1,5 +1,7 @@
 import os
+
 from bidsschematools import parse
+
 from ..types import Namespace
 
 
