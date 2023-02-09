@@ -690,6 +690,7 @@ def validate_bids(
     report_path=False,
     suppress_errors=False,
     schema_min_version="schema",
+    accept_non_bids_dir=False,
     exclude_files=[],
 ):
     """
@@ -720,6 +721,7 @@ def validate_bids(
     schema_min_version : str, optional
         Minimal working schema version, used by the `bidsschematools.select_schema_dir()` function
         only if no schema version is found or a lower schema version is specified by the dataset.
+    accept_non_bids_dir : bool, optional
     exclude_files : str, optional
         Files which will not be indexed for validation, use this if your data is in an archive
         standard which requires the presence of archive-specific files (e.g. DANDI requiring
@@ -754,6 +756,8 @@ def validate_bids(
     if isinstance(in_paths, str):
         in_paths = [in_paths]
 
+    bids_root = _find_bids_root(in_paths, accept_non_bids_dir)
+
     bids_schema_dir = select_schema_dir(
         in_paths,
         schema_reference_root,
@@ -786,3 +790,32 @@ def validate_bids(
             write_report(validation_result)
 
     return validation_result
+
+
+def _find_bids_root(in_paths, accept_non_bids_dir):
+    """
+    Return BIDS root for a list of paths.
+    Raise error if more than one root is found and, optionally, if none is found.
+    """
+
+    dataset_descriptions = []
+    for in_path in in_paths:
+        in_path = os.path.abspath(os.path.expanduser(in_path))
+        dataset_description = _find_dataset_description(in_path)
+        if dataset_description and dataset_description not in dataset_descriptions:
+            dataset_descriptions.append(dataset_description)
+    if len(dataset_descriptions) > 1:
+        raise ValueError(
+            f"You have selected files belonging to {len(dataset_descriptions)} "
+            "different datasets. Please run the validator once per dataset."
+        )
+    elif len(dataset_descriptions) == 0:
+        if accept_non_bids_dir:
+            lgr.warning(
+                "None of the files in the input list are part of a BIDS dataset. Proceeding."
+            )
+        else:
+            raise ValueError(
+                "None of the files in the input list are part of a BIDS dataset. Aborting."
+            )
+    return os.path.dirname(dataset_descriptions[0])
