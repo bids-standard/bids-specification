@@ -57,7 +57,7 @@ def test_split_inheritance_rules():
         "extensions": [".nii", ".json"],
     }
 
-    main, sidecar = parse.split_inheritance_rules(rule)
+    main, sidecar = parse._split_inheritance_rules(rule)
     assert main == {
         "datatypes": ["anat"],
         "entities": {"subject": "required", "session": "optional"},
@@ -72,7 +72,7 @@ def test_split_inheritance_rules():
     }
 
     # Can't split again
-    (main2,) = parse.split_inheritance_rules(main)
+    (main2,) = parse._split_inheritance_rules(main)
     assert main2 == {
         "datatypes": ["anat"],
         "entities": {"subject": "required", "session": "optional"},

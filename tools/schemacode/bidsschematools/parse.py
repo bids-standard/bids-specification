@@ -115,7 +115,7 @@ def _entity_rule(rule: Mapping, schema: bst.types.Namespace):
     }
 
 
-def split_inheritance_rules(rule: Mapping) -> ty.List[Mapping]:
+def _split_inheritance_rules(rule: Mapping) -> ty.List[Mapping]:
     """Break composite rules into main and sidecar rules
 
     Implements the inheritance principle for file naming.
@@ -200,7 +200,7 @@ def regexify_filename_rules(
             regex_schema.append(_stem_rule(rule_template))
         else:
             regex_schema.extend(
-                _entity_rule(rule, schema) for rule in split_inheritance_rules(rule_template)
+                _entity_rule(rule, schema) for rule in _split_inheritance_rules(rule_template)
             )
 
     return regex_schema
