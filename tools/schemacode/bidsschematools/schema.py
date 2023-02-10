@@ -178,7 +178,7 @@ def load_schema(schema_path=None):
     return schema
 
 
-def export_schema(schema):
+def _jsonify(schema):
     """Export the schema to JSON format.
 
     Parameters
@@ -246,3 +246,32 @@ def filter_schema(schema, **kwargs):
             if isinstance(item, dict):
                 new_schema[i] = filter_schema(item, **kwargs)
     return new_schema
+
+
+def export(schema, output):
+    """
+    Export BIDS schema to JSON document.
+
+    Parameters
+    ----------
+    schema : dict
+        The schema object, which is a dictionary with nested dictionaries and
+        lists stored within it.
+    output : str
+        A path which to write a JSON exported schema to.
+
+    Examples
+    --------
+    """
+    logger = logging.getLogger("bidsschematools")
+    schema = load_schema(schema)
+    text = _jsonify(schema)
+    if output == "-":
+        logger.debug("Writing to stdout")
+        print(text)
+    else:
+        output = os.path.abspath(os.path.expanduser(output))
+        logger.debug(f"Writing to {output}")
+        with open(output, "w") as fobj:
+            fobj.write(text)
+
