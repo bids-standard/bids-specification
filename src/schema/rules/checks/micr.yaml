@@ -1,4 +1,30 @@
 ---
+# 221
+PixelSizeInconsistent:
+  issue:
+    code: PIXEL_SIZE_INCONSISTENT
+    message: |
+      PixelSize need to be consistent with PhysicalSizeX, PhysicalSizeY and PhysicalSizeZ OME metadata fields
+    level: error
+  selectors:
+    - ome != null
+    - sidecar.PixelSize != null
+    - sidecar.PixelSizeUnit != null
+  checks:
+    - |
+      ome.PhysicalSizeX * (
+        10 ** (3 * (index(["mm", "um", "nm"], sidecar.PixelSizeUnit) - index(["mm", "um", "nm"], ome.PhysicalSizeXUnit)))
+      ) == sidecar.PixelSize[0]
+    - |
+      ome.PhysicalSizeY * (
+        10 ** (3 * (index(["mm", "um", "nm"], sidecar.PixelSizeUnit) - index(["mm", "um", "nm"], ome.PhysicalSizeYUnit)))
+      ) == sidecar.PixelSize[1]
+    - |
+      ome.PhysicalSizeZ * (
+        10 ** (3 * (index(["mm", "um", "nm"], sidecar.PixelSizeUnit) - index(["mm", "um", "nm"], ome.PhysicalSizeZUnit)))
+      ) == sidecar.PixelSize[2]
+
+# 227
 InconsistentTiffExtension:
   issue:
     code: INCONSISTENT_TIFF_EXTENSION
