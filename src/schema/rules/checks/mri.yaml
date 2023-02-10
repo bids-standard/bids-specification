@@ -86,6 +86,32 @@ EESGreaterThanTRT:
   checks:
     - sidecar.EffectiveEchoSpacing < sidecar.TotalReadoutTime
 
+# 188
+VolumeTimingNotMonotonicallyIncreasing:
+  issue:
+    code: VOLUME_TIMING_NOT_MONOTONICALLY_INCREASING
+    message: |
+      'VolumeTiming' is not monotonically increasing.
+    level: error
+  selectors:
+    - modality == "MRI"
+    - sidecar.VolumeTiming != null
+  checks:
+    - sorted(sidecar.VolumeTiming) == sidecar.VolumeTiming
+
+# 192
+BolusCutOffDelayTimeNotMonotonicallyIncreasing:
+  issue:
+    code: BOLUS_CUT_OFF_DELAY_TIME_NOT_MONOTONICALLY_INCREASING
+    message: |
+      'BolusCutOffDelayTime' is not monotonically increasing.
+    level: error
+  selectors:
+    - modality == "MRI"
+    - sidecar.BolusCutoffDelayTime != null
+  checks:
+    - sorted(sidecar.BolusCutoffDelayTime) == sidecar.BolusCutoffDelayTime
+
 # 201
 RepetitionTimePreparationNotConsistent:
   issue:
