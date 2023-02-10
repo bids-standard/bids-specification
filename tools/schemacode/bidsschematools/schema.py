@@ -84,7 +84,10 @@ def dereference(namespace, inplace=True):
 
 
 def flatten_enums(namespace, inplace=True):
-    """Replace enum collections with a single enum.
+    """Replace enum collections with a single enum, merging enums contents.
+
+    The function helps reducing the complexity of the schema by assuming
+    that the values in the conditions (anyOf) are mutually exclusive.
 
     Parameters
     ----------
