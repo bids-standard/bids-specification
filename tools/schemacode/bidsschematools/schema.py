@@ -248,15 +248,16 @@ def filter_schema(schema, **kwargs):
     return new_schema
 
 
-def export(schema, output):
+def export(schema_dir, output):
     """
     Export BIDS schema to JSON document.
 
     Parameters
     ----------
-    schema : dict
-        The schema object, which is a dictionary with nested dictionaries and
-        lists stored within it.
+    schema : str
+        A path to the schema directory you wish to export to JSON.
+        If the path starts with the string "{module_path}" it will be expanded relative to the
+        module path.
     output : str
         A path which to write a JSON exported schema to.
 
@@ -264,7 +265,14 @@ def export(schema, output):
     --------
     """
     logger = logging.getLogger("bidsschematools")
-    schema = load_schema(schema)
+
+    # For schema location relative to module path.
+    if schema_dir.startswith("{module_path}"):
+        module_path = os.path.abspath(os.path.dirname(__file__))
+        schema_dir = schema_dir.format(module_path=module_path)
+    schema_dir = os.path.abspath(os.path.expanduser(schema_dir))
+
+    schema = load_schema(schema_dir)
     text = _jsonify(schema)
     if output == "-":
         logger.debug("Writing to stdout")
@@ -274,4 +282,3 @@ def export(schema, output):
         logger.debug(f"Writing to {output}")
         with open(output, "w") as fobj:
             fobj.write(text)
-
