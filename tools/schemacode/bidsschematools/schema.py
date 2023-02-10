@@ -19,13 +19,6 @@ class BIDSSchemaError(Exception):
     """Errors indicating invalid values in the schema itself"""
 
 
-def _get_entry_name(path):
-    if path.suffix == ".yaml":
-        return path.name[:-5]  # no .yaml
-    else:
-        return path.name
-
-
 def _get_bids_version(bids_schema_dir):
     """Determine schema version, with directory name, file specification, and string fallback."""
 
