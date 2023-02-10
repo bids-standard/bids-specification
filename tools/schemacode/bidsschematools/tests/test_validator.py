@@ -3,7 +3,11 @@ import shutil
 
 import pytest
 
-from bidsschematools.validator import validate_bids
+from bidsschematools.validator import (
+    BUNDLED_SCHEMA_PATH,
+    select_schema_path,
+    validate_bids,
+)
 
 from .conftest import BIDS_ERROR_SELECTION, BIDS_SELECTION
 
@@ -243,3 +247,12 @@ def test_gitdir(bids_examples, tmp_path):
         temp_file.write("")
     result = validate_bids(tmp_path)
     assert len(result["path_tracking"]) == 0
+
+
+def test_select_schema_path(bids_examples, tmp_path):
+    dataset = "asl003"
+    dataset_path = os.path.join(bids_examples, dataset)
+
+    # Does the failsafe fallback work?
+    schema_path = select_schema_path(dataset_path)
+    assert schema_path == BUNDLED_SCHEMA_PATH
