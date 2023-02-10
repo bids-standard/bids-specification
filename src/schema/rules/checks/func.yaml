@@ -42,6 +42,19 @@ RepetitionTimeMismatch:
   checks:
     - sidecar.RepetitionTime == nifti_header.pixdim[4]
 
+# 54
+BoldNot4d:
+  issue:
+    code: BOLD_NOT_4D
+    message: |
+      Bold scans must be 4 dimensional.
+    level: error
+  selectors:
+    - suffix == "bold"
+    - nifti_header != null
+  checks:
+    - nifti_header.dim[0] == 4
+
 # 66
 SliceTimingGreaterThanRepetitionTime:
   issue:
