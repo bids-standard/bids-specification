@@ -92,6 +92,9 @@ context:
     path:
       description: 'Path of the current file'
       type: string
+    size:
+      description: 'Length of the current file in bytes'
+      type: int
     entities:
       description: 'Entities parsed from the current filename'
       type: object
