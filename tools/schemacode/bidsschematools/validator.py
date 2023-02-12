@@ -72,12 +72,12 @@ def _find_bids_root(in_paths, accept_non_bids_dir):
     Raise error if more than one root is found and, optionally, if none is found.
     """
 
-    dataset_descriptions = ()
+    dataset_descriptions = []
     for in_path in in_paths:
         in_path = os.path.abspath(os.path.expanduser(in_path))
         dataset_description = _find_dataset_description(in_path)
         if dataset_description and dataset_description not in dataset_descriptions:
-            dataset_descriptions.add(dataset_description)
+            dataset_descriptions.append(dataset_description)
     if len(dataset_descriptions) > 1:
         raise ValueError(
             f"You have selected files belonging to {len(dataset_descriptions)} "
