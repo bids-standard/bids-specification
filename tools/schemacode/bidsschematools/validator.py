@@ -40,23 +40,6 @@ def _bids_schema_versioncheck(schema_dir, compatibility=VALIDATOR_SCHEMA_COMPATI
     try:
         with open(schema_version_file, "r") as f:
             schema_version = f.readlines()[0].strip()
-            if _bids_schema_versioncheck(schema_version_file):
-                if compatibility == "major":
-                    if schema_version.rsplit(".", 1)[0] == bst.__version__.rsplit(".", 1)[0]:
-                        return True
-                elif compatibility == "minor":
-                    if schema_version.rsplit(".", 2)[:2] == bst.__version__.rsplit(".", 2)[:2]:
-                        return True
-                else:
-                    raise ValueError(
-                        "Schema compatibility needs to be set to either “major” or “minor”."
-                    )
-                lgr.warning(
-                    "The selected schema `%s`, has a schema version (`%s`) which is "
-                    "incompatible with the validator. Attempting to query the BIDS reference "
-                    "for compatible versions.",
-                    schema_dir,
-                )
     except FileNotFoundError:
         lgr.warning(
             "The selected schema directory, `%s`, does not contain a SCHEMA_VERSION file. "
@@ -64,6 +47,22 @@ def _bids_schema_versioncheck(schema_dir, compatibility=VALIDATOR_SCHEMA_COMPATI
             "compatible versions.",
             schema_dir,
         )
+    else:
+        if compatibility == "major":
+            nparts = 1
+        elif compatibility == "minor":
+            nparts = 2
+        else:
+            raise ValueError(
+                "Schema compatibility needs to be set to either “major” or “minor”."
+            )
+        return schema_version.split(".", nparts)[:-1] == bst.__version__.split(".", nparts)[:-1]
+    lgr.warning(
+        "The selected schema `%s`, has a schema version (`%s`) which is "
+        "incompatible with the validator. Attempting to query the BIDS reference "
+        "for compatible versions.",
+        schema_dir,
+    )
     return False
 
 
