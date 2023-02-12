@@ -243,8 +243,10 @@ def _bidsignore_check(ignore_expression, file_name, file_root):
         paths, therefore we use `fnmatch`.
     * `fnmatch` does not support `**/` matching as that is an optional convention from e.g.
         globstar and git, and not part of the standard Unix shell. As we formalize `.bidsignore`
-        I suppose we drop it, since we already treat simple file names as to-be-ignored in
-        all directories.
+        we may choose drop it, since we already treat simple file names as to-be-ignored in
+        all directories, and with BIDS having only up to 4 hierarchical levels, the utility of
+        other usage is limited and expansion to `..*/*..` would only mean at maximum a duplication
+        of entries.
     """
 
     if ignore_expression.startswith("**/"):
