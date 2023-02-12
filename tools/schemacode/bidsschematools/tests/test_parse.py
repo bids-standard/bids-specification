@@ -111,14 +111,7 @@ def test_path_rule():
 
 
 def test_regexify_all():
-    # schema_path = "/usr/share/bids-schema/1.7.0/"
-    schema_path = os.path.join(
-        os.path.abspath(os.path.dirname(__file__)),
-        os.pardir,
-        "data",
-        "schema",
-    )
-    schema_all, _ = parse.regexify_all(schema_path)
+    schema_all, _ = parse.regexify_all()
 
     # Check if expected keys are present in all entries
     for entry in schema_all:
