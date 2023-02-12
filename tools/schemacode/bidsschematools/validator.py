@@ -286,8 +286,8 @@ def log_errors(validation_result):
 
 
 def select_schema_path(
-    bids_version="",
-    bids_root="",
+    bids_version=None,
+    bids_root=None,
     bids_reference_root="/usr/share/bids-schema/versions",
 ):
     """
@@ -303,12 +303,12 @@ def select_schema_path(
 
     Parameters
     ----------
-    bids_root : str, optional
+    bids_root : str or None, optional
         The path to the BIDS root for the paths to be validated.
     bids_reference_root : str, optional
         Path where schema versions are stored, and which contains directories named exactly
         according to the respective schema version, e.g. "1.7.0".
-    bids_version : str, optional
+    bids_version : str or None, optional
         BIDS version desired for validation.
         If empty, the `dataset_description.json` fie will be queried for the dataset schema
         version.
