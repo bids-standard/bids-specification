@@ -57,12 +57,13 @@ def _bids_schema_versioncheck(schema_dir, compatibility=VALIDATOR_SCHEMA_COMPATI
                 "Schema compatibility needs to be set to either “major” or “minor”."
             )
         return schema_version.split(".", nparts)[:-1] == bst.__version__.split(".", nparts)[:-1]
-    lgr.warning(
-        "The selected schema `%s`, has a schema version (`%s`) which is "
-        "incompatible with the validator. Attempting to query the BIDS reference "
-        "for compatible versions.",
-        schema_dir,
-    )
+        lgr.warning(
+            "The selected schema `%s`, has a schema version (`%s`) which is "
+            "incompatible with the validator. Attempting to query the BIDS reference "
+            "for compatible versions.",
+            schema_dir,
+            schema_version,
+        )
     return False
 
 
