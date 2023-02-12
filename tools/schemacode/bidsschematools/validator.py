@@ -98,15 +98,12 @@ def _find_bids_root(in_paths, accept_non_bids_dir):
 
 
 def _find_dataset_description(my_path):
-    candidate = os.path.join(my_path, "dataset_description.json")
-    # Windows support... otherwise we could do `if my_path == "/"`.
-    if my_path == "/" or not any(i in my_path for i in ["/", "\\"]):
-        return None
-    if os.path.isfile(candidate):
-        return candidate
-    else:
-        level_up = os.path.dirname(my_path.rstrip("/\\"))
-        return _find_dataset_description(level_up)
+    my_path = Path(my_path)
+    for path in (my_path, *my_path.parents):
+        candidate = path / "dataset_description.json"
+        if candidate.is_file():
+            return candidate
+    return None
 
 
 def _get_directory_suffixes(my_schema):
