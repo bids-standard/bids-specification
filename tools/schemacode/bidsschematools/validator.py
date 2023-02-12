@@ -129,12 +129,11 @@ def _get_directory_suffixes(my_schema):
         - Subdirectory names need to be dynamically excluded from validation input.
         - Backslash directory delimiters are still in use, which is regrettable.
     """
-    pseudofile_suffixes = []
-    for i in my_schema["objects"]["extensions"].values():
-        i_value = i["value"]
-        if i_value.endswith("/") and i_value != "/":
-            pseudofile_suffixes.append(i_value[:-1])
-    return pseudofile_suffixes
+    return [
+        ext.value[:-1]
+        for ext in my_schema.objects.extensions.values()
+        if len(ext.value) > 1 and ext.value.endswith("/")
+    ]
 
 
 def _get_paths(
