@@ -36,6 +36,10 @@ def _bids_schema_versioncheck(schema_dir, compatibility=VALIDATOR_SCHEMA_COMPATI
     bool:
         Whether the schema is compatible with the validator.
     """
+
+    if compatibility not in ("major", "minor"):
+        raise ValueError("Schema compatibility needs to be set to either “major” or “minor”.")
+
     schema_version_file = os.path.join(schema_dir, "SCHEMA_VERSION")
     try:
         with open(schema_version_file, "r") as f:
@@ -48,12 +52,7 @@ def _bids_schema_versioncheck(schema_dir, compatibility=VALIDATOR_SCHEMA_COMPATI
             schema_dir,
         )
     else:
-        if compatibility == "major":
-            nparts = 1
-        elif compatibility == "minor":
-            nparts = 2
-        else:
-            raise ValueError("Schema compatibility needs to be set to either “major” or “minor”.")
+        nparts = 1 if compatibility == "major" else 2
         return schema_version.split(".", nparts)[:-1] == bst.__version__.split(".", nparts)[:-1]
         lgr.warning(
             "The selected schema `%s`, has a schema version (`%s`) which is "
