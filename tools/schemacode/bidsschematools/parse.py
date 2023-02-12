@@ -209,9 +209,7 @@ def regexify_filename_rules(
 
 
 @lru_cache()
-def regexify_all(
-    schema_dir,
-):
+def regexify_all(schema_dir=None):
     """
     Create full path regexes for all BIDS specification files.
 
