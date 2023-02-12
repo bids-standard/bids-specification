@@ -115,5 +115,5 @@ def test_regexify_all():
 
     # Check if expected keys are present in all entries
     for entry in schema_all:
-        assert "regex" in list(entry.keys())
-        assert "mandatory" in list(entry.keys())
+        assert "regex" in entry
+        assert "mandatory" in entry
