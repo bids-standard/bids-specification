@@ -14,7 +14,6 @@ import bidsschematools.utils
 
 lgr = bst.utils.get_logger()
 
-BUNDLED_SCHEMA_PATH = "{module_path}/data/schema"
 VALIDATOR_SCHEMA_COMPATIBILITY_LEVEL = "minor"
 
 
@@ -299,8 +298,8 @@ def select_schema_path(
         (2) a concatenation of `bids_reference_root` the detected version specification
             inside the BIDS root directory, if such a directory is provided and the BIDS version
             schema is compatible with the validator.
-        (3) The bundled schema supplied with the validator. This involves throwing a lot of
-            warnings at the user.
+        (3) `None`, expanded to the bundled schema supplied with the validator by
+            `bst.utils.get_bundled_schema_path`.
 
     Parameters
     ----------
@@ -309,8 +308,6 @@ def select_schema_path(
     bids_reference_root : str, optional
         Path where schema versions are stored, and which contains directories named exactly
         according to the respective schema version, e.g. "1.7.0".
-        If the path starts with the string "{module_path}" it will be expanded relative to the
-        module path.
     bids_version : str, optional
         BIDS version desired for validation.
         If empty, the `dataset_description.json` fie will be queried for the dataset schema
@@ -363,12 +360,10 @@ def select_schema_path(
     except FileNotFoundError:
         pass
     lgr.warning(
-        "No suitable schema could be found in the BIDS reference root (`%s`). Falling back to the "
-        "bundled schema, `%s`.",
+        "No suitable schema could be found in the BIDS reference root (`%s`).",
         bids_reference_root,
-        BUNDLED_SCHEMA_PATH,
     )
-    return BUNDLED_SCHEMA_PATH
+    return None
 
 
 def validate_all(
@@ -532,11 +527,10 @@ def validate_bids(
     in_paths,
     dummy_paths=False,
     bids_reference_root="/usr/share/bids-schema/versions",
-    schema_path=BUNDLED_SCHEMA_PATH,
+    schema_path=None,
     bids_version=None,
     report_path=False,
     suppress_errors=False,
-    schema_min_version=False,
     accept_non_bids_dir=False,
     exclude_files=[],
 ):
@@ -552,23 +546,16 @@ def validate_bids(
     bids_reference_root : str, optional
         Path where schema versions are stored, and which contains directories named exactly
         according to the respective schema version, e.g. "1.7.0".
-        If the path starts with the string "{module_path}" it will be expanded relative to the
-        module path.
     bids_version : str or None, optional
         Version of BIDS schema, or path to schema. This supersedes the specification detected in
         `dataset_description.json` and is itself superseded if `schema_path` is specified.
     schema_path : str or None, optional
         If a path is given, this will be expanded and used directly, ignoring all other BIDS
-        version specification logic. If the path starts with the string "{module_path}" it will
-        be expanded relative to the module path. This is not relative to `bids_reference_root`.
+        version specification logic. This is not relative to `bids_reference_root`.
     report_path : bool or str, optional
         If `True` a log will be written using the standard output path of `.write_report()`.
         If string, the string will be used as the output path.
         If the variable evaluates as False, no log will be written.
-    schema_min_version : str, optional
-        Minimal working schema version, used by the `bidsschematools.select_schema_dir()`
-        function. N.B. this is the *schema* version as is relevant for validator parsing, and
-        *not* the BIDS version.
     accept_non_bids_dir : bool, optional
     exclude_files : str, optional
         Files which will not be indexed for validation, use this if your data is in an archive
@@ -591,8 +578,7 @@ def validate_bids(
 
         from bidsschematools import validator
         bids_paths = '~/.data2/datalad/000026/rawdata'
-        schema_version='{module_path}/data/schema/'
-        validator.validate_bids(bids_paths, schema_version=schema_version)
+        validator.validate_bids(bids_paths)
 
     Notes
     -----
@@ -616,9 +602,6 @@ def validate_bids(
             bids_version,
             bids_root,
         )
-    if schema_path.startswith("{module_path}"):
-        module_path = os.path.abspath(os.path.dirname(__file__))
-        schema_path = schema_path.format(module_path=module_path)
 
     regex_schema, my_schema = bst.parse.regexify_all(schema_path)
     pseudofile_suffixes = _get_directory_suffixes(my_schema)
@@ -638,8 +621,7 @@ def validate_bids(
     )
 
     # Record schema version.
-    bids_version = bst.schema._get_bids_version(schema_path)
-    validation_result["bids_version"] = bids_version
+    validation_result["bids_version"] = my_schema["BIDSVersion"]
 
     log_errors(validation_result)
 

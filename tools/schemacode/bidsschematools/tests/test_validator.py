@@ -3,11 +3,7 @@ import shutil
 
 import pytest
 
-from bidsschematools.validator import (
-    BUNDLED_SCHEMA_PATH,
-    select_schema_path,
-    validate_bids,
-)
+from bidsschematools.validator import select_schema_path, validate_bids
 
 from .conftest import BIDS_ERROR_SELECTION, BIDS_SELECTION
 
@@ -253,6 +249,6 @@ def test_select_schema_path(bids_examples, tmp_path):
     dataset = "asl003"
     dataset_path = os.path.join(bids_examples, dataset)
 
-    # Does the failsafe fallback work?
+    # Does fallback to None work without any `raise`?
     schema_path = select_schema_path(dataset_path)
-    assert schema_path == BUNDLED_SCHEMA_PATH
+    assert schema_path is None

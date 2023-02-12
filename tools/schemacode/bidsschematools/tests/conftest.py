@@ -83,7 +83,7 @@ def schema_dir():
     """Path to the schema housed in the bids-specification repo."""
     from bidsschematools import utils
 
-    bids_schema = utils.get_schema_path()
+    bids_schema = utils.get_bundled_schema_path()
     return bids_schema
 
 

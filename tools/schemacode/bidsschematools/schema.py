@@ -147,7 +147,8 @@ def load_schema(schema_path=None):
     This function is cached, so it will only be called once per schema path.
     """
     if schema_path is None:
-        schema_path = utils.get_schema_path()
+        schema_path = utils.get_bundled_schema_path()
+        lgr.info("No schema path specified, defaulting to the bundled schema, `%s`.", schema_path)
     schema = Namespace.from_directory(schema_path)
     if not schema.objects:
         raise ValueError(f"objects subdirectory path not found in {schema_path}")
@@ -156,6 +157,8 @@ def load_schema(schema_path=None):
 
     dereference(schema)
     flatten_enums(schema)
+
+    schema["BIDSVersion"] = _get_bids_version(schema_path)
 
     return schema
 
