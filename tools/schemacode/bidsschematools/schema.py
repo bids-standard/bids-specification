@@ -257,7 +257,7 @@ def export(output, schema_path=None):
     output : str
         A path which to write a JSON exported schema to, or `-` if the output is to be written
         to stdout.
-    schema : str or None, optional
+    schema_path : str or None, optional
         A path to the schema directory you wish to export to JSON.
 
     Examples
