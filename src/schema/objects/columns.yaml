@@ -69,7 +69,7 @@ component__channels:
   name: component
   display_name: Component channel
   description: |
-    Component of the representational system described in `*_motion.json` that the 
+    Component of the representational system described in `*_motion.json` that the
     channel contains.
   anyOf:
     - type: string
@@ -369,8 +369,8 @@ placement__motion:
   name: placement
   display_name: Placement
   description: |
-    Placement of the tracked point on the body (for example, 
-    participant, avatar centroid, torso, left arm). 
+    Placement of the tracked point on the body (for example,
+    participant, avatar centroid, torso, left arm).
     It can refer to an external vocabulary for describing body parts.
   type: string
 plasma_radioactivity:
@@ -616,7 +616,7 @@ tracked_point__channels:
   name: tracked_point
   display_name: Tracked point channel
   description: |
-    Label of the point that is being tracked, for example, label of a tracker 
+    Label of the point that is being tracked, for example, label of a tracker
     or a marker (for example,`"LeftFoot"`, `"RightWrist"`).
   type: string
 trial_type:
@@ -831,11 +831,11 @@ units__motion:
   name: units
   display_name: Units
   description: |
-    Physical or virtual unit of the value represented in this channel, 
-    for example, '"rad"' or '"deg"' for angular quantities or '"m"' for position data. 
-    If motion data is recorded in a virtual space and deviate from standard SI units, 
-    the unit used MUST be specified in the sidecar `*_motion.json` 
-    file (for example `"vm"` for virtual meters). `"rad"` is used for euler angles 
+    Physical or virtual unit of the value represented in this channel,
+    for example, '"rad"' or '"deg"' for angular quantities or '"m"' for position data.
+    If motion data is recorded in a virtual space and deviate from standard SI units,
+    the unit used MUST be specified in the sidecar `*_motion.json`
+    file (for example `"vm"` for virtual meters). `"rad"` is used for euler angles
     and `"n/a"` for quaternions.
     For guidelines about units see the [Appendix](SPEC_ROOT/appendices/units.md)
     and [Common Principles](SPEC_ROOT/common-principles.md#units) pages.
