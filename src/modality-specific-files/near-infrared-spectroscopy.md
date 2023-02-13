@@ -214,9 +214,9 @@ Note that upper-case is REQUIRED.
 | NIRSCWHBO                   | Continuous wave oxygenated hemoglobin (oxyhemoglobin) concentration measurements. Equivalent to dataTypeLabel HbO in SNIRF.                                                  |
 | NIRSCWHBR                   | Continuous wave deoxygenated hemoglobin (deoxyhemoglobin) concentration measurements. Equivalent to dataTypeLabel HbR in SNIRF.                                              |
 | NIRSCWMUA                   | Continuous wave optical absorption  measurements. Equivalent to dataTypeLabel mua in SNIRF.                                                                                  |
-| ACCEL                       | Accelerometer channel, one channel for each orientation. An extra column `component` for the axis of the orientation MUST be added to the `*_channels.tsv` file (x, y or z). |
-| GYRO                        | Gyrometer channel, one channel for each orientation. An extra column `component` for the axis of the orientation MUST be added to the `*_channels.tsv` file (x, y or z).     |
-| MAGN                        | Magnetomenter channel, one channel for each orientation. An extra column `component` for the axis of the orientation MUST be added to the `*_channels.tsv` file (x, y or z). |
+| ACCEL                       | Accelerometer channel, one channel for each spatial axis. An extra column `component` for the axis of the orientation MUST be added to the `*_channels.tsv` file (x, y or z). |
+| GYRO                        | Gyrometer channel, one channel for each spatial axis. An extra column `component` for the axis of the orientation MUST be added to the `*_channels.tsv` file (x, y or z).     |
+| MAGN                        | Magnetomenter channel, one channel for each spatial axis. An extra column `component` for the axis of the orientation MUST be added to the `*_channels.tsv` file (x, y or z). |
 | MISC                        | Miscellaneous                                                                                                                                                                |
 
 ### Example `*_channels.tsv`
