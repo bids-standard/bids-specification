@@ -4,7 +4,6 @@ motion:
     - motion
   extensions:
     - .tsv
-    - .tsv.gz
     - .json
   datatypes:
     - motion

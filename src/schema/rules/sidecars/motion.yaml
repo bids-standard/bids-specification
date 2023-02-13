@@ -13,6 +13,8 @@ motionGeneric:
   fields:
     TaskName:
       level: required
+      description_addendum: |
+        Task names for motion datasets usually contain information about the specific motion task (for example, "`walking`").
 
 motionRecommended:
   selectors:
@@ -23,11 +25,11 @@ motionRecommended:
     InstitutionName: recommended
     InstitutionAddress: recommended
     InstitutionalDepartmentName: recommended
-    Manufacturer: recommended
-    ManufacturersModelName: recommended
     TaskDescription: recommended
     Instructions: recommended
     DeviceSerialNumber: optional
+    Manufacturer: optional
+    ManufacturersModelName: optional
     SoftwareVersions: optional
 
 motionRequired:
@@ -39,8 +41,11 @@ motionRequired:
     SamplingFrequency:
       level: required
       description_addendum: |
-        The sampling frequency of data channels that deviate from the main sampling
-        frequency SHOULD be specified in the `channels.tsv` file.
+        This filed refers to the nominal sampling frequency. For motion data one can use 
+        "`SamplingFrequencyEffective`" if nominal and effective differ.
+        
+        The sampling frequency of data channels that deviate from the main (nominal) sampling
+        frequency SHOULD be specified in the "`_tracksys-<label>_channels.tsv`" file.
     TrackingSystemName: required
 
 motionMoreRecommended:
@@ -63,8 +68,12 @@ motionMoreRecommended:
     RotationOrder: recommended
     RotationRule: recommended
     SamplingFrequencyEffective: recommended
+      description_addendum: |
+        If not available, the field takes the same value as field "`SamplingFrequency`".
     SpatialAxes: recommended
     StartTime: optional
+      description_addendum: |
+        Can also be found in "`*scans.tsv`".
     SubjectArtefactDescription: recommended
     TrackedPointsCount: recommended
     VELChannelCount: recommended

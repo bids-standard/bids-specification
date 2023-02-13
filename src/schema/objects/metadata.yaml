@@ -4,9 +4,9 @@
 # This file **does not** define how and when metadata fields can be used with a given file.
 ACCELChannelCount:
   name: ACCELChannelCount
-  display_name: Accelerometer channel count
+  display_name: Acceleration channel count
   description: |
-    Number of accelerometer channels.
+    Number of acceleration channels.
   type: integer
   minimum: 0
 Acknowledgements:
@@ -2712,6 +2712,7 @@ RotationOrder:
     - YZX
     - ZXY
     - ZYX
+    - n/a
 RotationRule:
   name: RotationRule
   display_name: Rotation Rule
@@ -2723,6 +2724,7 @@ RotationRule:
   enum:
     - left-hand
     - right-hand
+    - n/a
 SEEGChannelCount:
   name: SEEGChannelCount
   display_name: SEEG Channel Count

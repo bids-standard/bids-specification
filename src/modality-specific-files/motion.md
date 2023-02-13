@@ -3,6 +3,8 @@
 <!--Here insert link to actual manuscript?-->
 
 For information on how to cite this extension when referencing it in the context of the academic literature, please read [Citing BIDS](../introduction.md#citing-bids).
+on how to appropriately credit this extension when referring to it in the
+context of the academic literature.
 
 This specification has been used to format a number of [example Motion datasets](https://github.com/bids-standard/bids-examples), which can be used as helpful guidance when curating new datasets.
 
@@ -14,24 +16,11 @@ datatypes=["motion"],
 suffixes=["motion", "channels", "events"])
 }}
 
-Template:
-
-```markdown
-└─ sub-<label>\
-  └─ \[ses-<label>]\
-    └─ motion\
-   ├─ sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_tracksys-<label>_motion.tsv
-      ├─ sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_tracksys-<label>_motion.json
-      ├─ sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_tracksys-<label>_channels.tsv
-      ├─ sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_tracksys-<label>_events.tsv
-      └─ sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_tracksys-<label>_events.json
-```
-
-A wide variety of motion capture systems are used in human research, resulting in different proprietary data formats. This BIDS extension deals with common outputs from motion capture systems such as positions, orientations, or their time derivatives. 
+A wide variety of motion capture systems are used in human research, resulting in different proprietary data formats. This BIDS extension deals common outputs from motion capture systems such as positions, orientations, or their time derivatives. For camera-based motion capture, the raw camera footage falls out of scope. To share motion data recorded using an optical system, typically the positions and orientations of objects derived from the video data is formatted in BIDS, not the raw camera footage.
 
 The extension is not limited to motion data in physical space but also encompasses simulated movement in virtual space, as far as these are comparable to movements in physical space. The extension is also not limited to the positions and orientations of human body parts. Other dynamic objects in the environment
 whose motion is tracked may be included as additional tracked objects.
-This specification does not include raw camera fotages, either from camera-based motion captures or optical system recordigns (where typically the positions and orientations of objects derived from the video data are formatted in BIDS, but not the raw camera footage).
+
 In MOTION-BIDS, positions (and their time derivatives) are represented as Cartesian coordinates along up to three spatial axes, and orientations (and their time derivatives) are represented as Euler angles. However, to cover recordings from computer graphics applications (for example, virtual 3D motion or immersive virtual reality recording in physical space), orientations are also allowed to be represented as quaternions. In this case, the quaternion channels can be distinguished from channels containing Euler angles based on the entries in columns `component` and `units` in the `*_channels.tsv` file . See subsection on `Channels description` for further details.
 
 Motion data from one tracking system MUST be stored in a `*_motion.tsv` file. A tracking system is defined as a group of motion channels that share hardware properties (the recording device) and software properties (the recording duration and sampling rate). For example, if the position time series of multiple optical markers is processed via one recording unit, this can be defined as a single tracking system. Note that it is not uncommon to have multiple tracking systems to record at the same time. Each tracking system should have its own `*tracksys-<label>_motion.tsv` file. One column in the `*tracksys-<label>_motion.tsv` file is intended to represent one data channel. The ordering of columns has to match the order of rows in the `*channels.tsv` file for unambiguous assignment. All relevant metadata about a tracking systems is stored in accompanying sidecar `*tracksys-<label>_motion.json` file. The source data from each tracking system in their original format, if different from `.tsv`, can be stored in the [`/sourcedata` directory](../common-principles.md#source-vs-raw-vs-derived-data). The original data format may hold more metadata than currently specified in the `*_motion.json` file.
@@ -46,37 +35,13 @@ Generic fields (shared with other BIDS modalities) MUST be present:
 
 {{ MACROS___make_sidecar_table("motion.motionGeneric") }}
 
-| **Key name** | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                   |
-| ------------ | --------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| TaskName     | REQUIRED              | string        | Name of the task. No two tasks should have the same name. The task label included in the file name is derived from this TaskName field by removing all non-alphanumeric `[a-zA-Z0-9]` characters. |
-
-Generic fields (shared with other BIDS modalities) SHOULD be present: For consistency between studies and institutions, we
-encourage users to extract the values of these fields from the actual raw data.
-Whenever possible, please avoid using ad hoc wording.
+Generic fields (shared with other BIDS modalities) SHOULD be present:
 
 {{ MACROS___make_sidecar_table("motion.motionRecommended") }}
-
-| **Key name**                | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                                                  |
-| --------------------------- | --------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| InstitutionAddress          | RECOMMENDED           | string        | The address of the institution in charge of the equipment that produced the composite instances.                                                                                                                                                                                                                 |
-| InstitutionalDepartmentName | RECOMMENDED           | string        | The department in the institution in charge of the equipment that produced the composite instances.                                                                                                                                                                                                              |
-| InstitutionName             | RECOMMENDED           | string        | The name of the institution in charge of the equipment that produced the composite instances.                                                                                                                                                                                                                    |
-| Instructions                | RECOMMENDED           | string        | Text of the instructions given to participants before the recording.                                                                                                                                                                                                                                             |
-| TaskDescription             | RECOMMENDED           | string        | Longer description of the task.                                                                                                                                                                                                                                                                                  |
-| DeviceSerialNumber          | OPTIONAL              | string        | The serial number of the equipment that produced the composite instances. This would be the serial number of the tracking system, rather than the single recording units. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset. |
-| ExternalSoftwareVersions    | OPTIONAL              | string        | Names and versions of additional software used for presentation or recording, other than the software designated by the manufacture of the motion capture system in field `SoftwareVersions`.                                                                                                                    |
-| Manufacturer                | OPTIONAL              | string        | Manufacturer of the motion tracking system.                                                                                                                                                                                                                                                                      |
-| ManufacturersModelName      | OPTIONAL              | string        | Manufacturer’s designation of the motion tracking hardware model.                                                                                                                                                                                                                                                |
-| SoftwareVersions            | OPTIONAL              | string        | Manufacturer’s designation of the acquisition software.                                                                                                                                                                                                                                                          |
 
 Motion specific fields MUST be present:
 
 {{ MACROS___make_sidecar_table("motion.motionRequired") }}
-
-| **Key name**       | **Requirement level** | **Data type** | **Description**                                                                                                     |
-| ------------------ | --------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------- |
-| SamplingFrequency  | REQUIRED              | number        | Nominal sampling rate of the tracking system in Hz.                                                                 |
-| TrackingSystemName | REQUIRED              | string        | Name of the tracking system. The value must match the `tracksys` label of the corresponding *_motion.tsv file name. |
 
 Motion specific fields SHOULD be present:
 
@@ -91,7 +56,7 @@ Motion specific fields SHOULD be present:
 | SamplingFrequencyEffective | RECOMMENDED           | number        | Effective sampling rate of the tracking system in Hz. If duration of the corresponding recording is available, effective sampling rate is computed by dividing the `RecordingDuration` in seconds by the number of samples included in the time series. If not available, the field takes the same value as field `SamplingFrequency`.                                                                                                                                                                                          |
 | SpatialAxes                | RECOMMENDED           | string        | Refers to the coordinate system in which the motion data are to be interpreted, if the recorded data can be mapped to a fixed reference frame. A sequence of characters F/B (forward-backward), L/R (left-right), and U/D (up-down). The position of a character in the sequence determines which of the X,Y,Z axes it maps to. For example, "FRD" for  X-forward, Y-right, Z-down. For 1D or 2D cases, only specify the used axes and use the character "_" for unused axes ("F_R" when the Y axis is not used, for instance). |
 | SubjectArtefactDescription | RECOMMENDED           | string        | Freeform description of the observed subject artefact and its possible cause (for example: "stopped at 20 min", "fall at 10 min"). If this field is left empty, it will be interpreted as absence of artifacts.                                                                                                                                                                                                                                                                                                                 |
-| TrackedPointsCount         | RECOMMENDED           | number        | Number of different points tracked in a motion tracking system.                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| TrackedPointsCount         | RECOMMENDED           | number        | Number of different tracked points tracked in a motion tracking system.                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | ACCELChannelCount          | RECOMMENDED           | number        | Number of acceleration channels recorded by the system.                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | ANGACCChannelCount         | RECOMMENDED           | number        | Number of angular acceleration channels recorded by the system.                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | GYROChannelCount           | RECOMMENDED           | number        | Number of angular velocity channels recorded by the system.                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
@@ -153,7 +118,7 @@ Example `*_tracksys-<label>_motion.json`:
 }
 ```
 
-In this example, the `*_motion.json` contains data from one tracking system consisting of two [inertial measurement units (imu)](https://en.wikipedia.org/wiki/Motion_capture#Inertial_systems). If there are additional, for example optical [motion capture (omc)](https://en.wikipedia.org/wiki/Motion_capture#Optical_systems), tracking systems, data from each tracking system would be stored in different files (`*_tracksys-<label>_motion.tsv`, `*_tracksys-<label>_motion.json`, `*_tracksys-<label>_channels.tsv`. All specified tracking systems can share  `tracked_point` defined in `*_channels.tsv`, when tracking devices are placed on the same location.
+In this example, the `*_motion.json` contains data from one tracking system consisting of two [inertial measurement units (imu)](https://en.wikipedia.org/wiki/Motion_capture#Inertial_systems). If there are additional, for example optical [motion capture (omc)](https://en.wikipedia.org/wiki/Motion_capture#Optical_systems), tracking systems, data from each tracking system would be stored in different files (`*_tracksys-<label>_motion.tsv`, `*_tracksys-<label>_motion.json`, `*_tracksys-<label>_channels.tsv`. All specified tracking systems can share  `tracked_point`, when tracking devices are placed on the same location.
 
 Note that the onsets of the recordings SHOULD be stored in the study key file [(`scans.tsv`)](../modality-agnostic-files.md#scans-file). Here, date-time information MUST be expressed as indicated in [Units](../common-principles.md#units). The [`scans.tsv`](../modality-agnostic-files.md#scans-file) file contains the filename and the acquisition time of a recording, which can be used to synchronize multiple recordings. However, synchronization information between the two systems can also be stored using channel `latency` in the `*_motion.tsv` if available.
 
