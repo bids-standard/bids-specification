@@ -1,9 +1,12 @@
 ---
-- suffixes:
+model:
+  suffixes:
     - eq
     - param
   extensions:
     - .xml
+  datatypes:
+    - model
   entities:
     subject: optional
     session: optional

@@ -98,6 +98,7 @@ def test_rule_objects(schema_obj):
                     not_found.append((temp_path, use))
 
     if not_found:
+        print(not_found)
         not_found_string = "\n".join([f"{'.'.join(path)} == {val}" for path, val in not_found])
         raise ValueError(not_found_string)
 
