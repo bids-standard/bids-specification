@@ -69,7 +69,7 @@ Whenever possible, please avoid using ad hoc wording.
 | ManufacturersModelName      | OPTIONAL              | string        | Manufacturer’s designation of the motion tracking hardware model.                                                                                                                                                                                                                                                |
 | SoftwareVersions            | OPTIONAL              | string        | Manufacturer’s designation of the acquisition software.                                                                                                                                                                                                                                                          |
 
-Specific MOTION fields MUST be present:
+Motion specific fields MUST be present:
 
 {{ MACROS___make_sidecar_table("motion.motionRequired") }}
 
