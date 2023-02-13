@@ -112,7 +112,7 @@ Code involves
 Every BIDS dataset that contains simulation results **MUST** either directly store the
 **source code** and the **executable machine code** that was used to produce the result in
 the
-[modality agnostic folder code](https://bids-specification.readthedocs.io/en/stable/03-modality-agnostic-files.html#code)
+[modality agnostic directory code](https://bids-specification.readthedocs.io/en/stable/03-modality-agnostic-files.html#code)
 or in a publicly accessible long-term repository.
 Every BIDS file that contains a simulation result **MUST** have a JSON sidecar file that
 links to the location of the used codes (either using URIs or relative file paths in the
