@@ -14,19 +14,6 @@ datatypes=["motion"],
 suffixes=["motion", "channels", "events"])
 }}
 
-Template:
-
-```markdown
-└─ sub-<label>\
-  └─ \[ses-<label>]\
-    └─ motion\
-   ├─ sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_tracksys-<label>_motion.tsv
-      ├─ sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_tracksys-<label>_motion.json
-      ├─ sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_tracksys-<label>_channels.tsv
-      ├─ sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_tracksys-<label>_events.tsv
-      └─ sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_tracksys-<label>_events.json
-```
-
 A wide variety of motion capture systems are used in human research, resulting in different proprietary data formats.
 This BIDS extension deals with common outputs from motion capture systems such as positions, orientations, or their time derivatives.
 
@@ -68,63 +55,17 @@ Generic fields (shared with other BIDS modalities) MUST be present:
 
 {{ MACROS___make_sidecar_table("motion.motionGeneric") }}
 
-| **Key name** | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                   |
-| ------------ | --------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| TaskName     | REQUIRED              | string        | Name of the task. No two tasks should have the same name. The task label included in the file name is derived from this TaskName field by removing all non-alphanumeric `[a-zA-Z0-9]` characters. |
-
 Generic fields (shared with other BIDS modalities) SHOULD be present:
-For consistency between studies and institutions, we encourage users to extract the values of these fields from the actual raw data.
-Whenever possible, please avoid using ad hoc wording.
 
 {{ MACROS___make_sidecar_table("motion.motionRecommended") }}
-
-| **Key name**                | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                                                  |
-| --------------------------- | --------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| InstitutionAddress          | RECOMMENDED           | string        | The address of the institution in charge of the equipment that produced the composite instances.                                                                                                                                                                                                                 |
-| InstitutionalDepartmentName | RECOMMENDED           | string        | The department in the institution in charge of the equipment that produced the composite instances.                                                                                                                                                                                                              |
-| InstitutionName             | RECOMMENDED           | string        | The name of the institution in charge of the equipment that produced the composite instances.                                                                                                                                                                                                                    |
-| Instructions                | RECOMMENDED           | string        | Text of the instructions given to participants before the recording.                                                                                                                                                                                                                                             |
-| TaskDescription             | RECOMMENDED           | string        | Longer description of the task.                                                                                                                                                                                                                                                                                  |
-| DeviceSerialNumber          | OPTIONAL              | string        | The serial number of the equipment that produced the composite instances. This would be the serial number of the tracking system, rather than the single recording units. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset. |
-| ExternalSoftwareVersions    | OPTIONAL              | string        | Names and versions of additional software used for presentation or recording, other than the software designated by the manufacture of the motion capture system in field `SoftwareVersions`.                                                                                                                    |
-| Manufacturer                | OPTIONAL              | string        | Manufacturer of the motion tracking system.                                                                                                                                                                                                                                                                      |
-| ManufacturersModelName      | OPTIONAL              | string        | Manufacturer’s designation of the motion tracking hardware model.                                                                                                                                                                                                                                                |
-| SoftwareVersions            | OPTIONAL              | string        | Manufacturer’s designation of the acquisition software.                                                                                                                                                                                                                                                          |
 
 Motion specific fields MUST be present:
 
 {{ MACROS___make_sidecar_table("motion.motionRequired") }}
 
-| **Key name**       | **Requirement level** | **Data type** | **Description**                                                                                                     |
-| ------------------ | --------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------- |
-| SamplingFrequency  | REQUIRED              | number        | Nominal sampling rate of the tracking system in Hz.                                                                 |
-| TrackingSystemName | REQUIRED              | string        | Name of the tracking system. The value must match the `tracksys` label of the corresponding *_motion.tsv file name. |
-
 Motion specific fields SHOULD be present:
 
 {{ MACROS___make_sidecar_table("motion.motionMoreRecommended") }}
-
-| **Key name**               | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| -------------------------- | --------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| MissingValues              | RECOMMENDED           | string        | How missing values are represented in the given tracking system, for example, "NaN", "0".                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| MotionChannelCount         | RECOMMENDED           | number        | Number of motion channels included in the recording. A channel corresponds to a time series that has one value per time point. (for example, a time series of coordinates for positions in 3D consists of 3 channels, each corresponding to the x, y, and z coordinates, respectively.)                                                                                                                                                                                                                                         |
-| RotationRule               | RECOMMENDED           | string        | In case orientation channels are present, indicate whether rotations are applied clockwise around an axis when seen from the positive direction (left-hand rule) or counter-clockwise (right-hand rule). Must be one of: "left-hand", "right-hand" or "n/a".                                                                                                                                                                                                                                                                    |
-| RotationOrder              | RECOMMENDED           | string        | Specify the sequence in which the elemental rotations are applied around the extrinsic axes. A 3D rotation is represented about 3 different axes (Tait-Bryan convention). Must be one of: "XYZ", "XZY", "YXZ", "YZX", "ZXY", "ZYX" or "n/a".                                                                                                                                                                                                                                                                                    |
-| SamplingFrequencyEffective | RECOMMENDED           | number        | Effective sampling rate of the tracking system in Hz. If duration of the corresponding recording is available, effective sampling rate is computed by dividing the `RecordingDuration` in seconds by the number of samples included in the time series. If not available, the field takes the same value as field `SamplingFrequency`.                                                                                                                                                                                          |
-| SpatialAxes                | RECOMMENDED           | string        | Refers to the coordinate system in which the motion data are to be interpreted, if the recorded data can be mapped to a fixed reference frame. A sequence of characters F/B (forward-backward), L/R (left-right), and U/D (up-down). The position of a character in the sequence determines which of the X,Y,Z axes it maps to. For example, "FRD" for X-forward, Y-right, Z-down. For 1D or 2D cases, only specify the used axes and use the character "_" for unused axes ("F_R" when the Y axis is not used, for instance).  |
-| SubjectArtefactDescription | RECOMMENDED           | string        | Freeform description of the observed subject artefact and its possible cause (for example: "stopped at 20 min", "fall at 10 min"). If this field is left empty, it will be interpreted as absence of artifacts.                                                                                                                                                                                                                                                                                                                 |
-| TrackedPointsCount         | RECOMMENDED           | number        | Number of different points tracked in a motion tracking system.                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| ACCELChannelCount          | RECOMMENDED           | number        | Number of acceleration channels recorded by the system.                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| ANGACCChannelCount         | RECOMMENDED           | number        | Number of angular acceleration channels recorded by the system.                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| GYROChannelCount           | RECOMMENDED           | number        | Number of angular velocity channels recorded by the system.                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| JNTANGChannelCount         | RECOMMENDED           | number        | Number of joint angle channels recorded by the system.                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| LATENCYChannelCount        | RECOMMENDED           | number        | Number of latency channels recorded by the system.                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| MAGNChannelCount           | RECOMMENDED           | number        | Number of magnetic field strength channels recorded by the system.                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| MISCChannelCount           | RECOMMENDED           | number        | Number of miscellaneous channels whose types are not covered by restricted keywords for *_channels.tsv column `type`.                                                                                                                                                                                                                                                                                                                                                                                                           |
-| POSChannelCount            | RECOMMENDED           | number        | Number of position channels recorded by the system.                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| ORNTChannelCount           | RECOMMENDED           | number        | Number of orientation channels recorded by the system.                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| VELChannelCount            | RECOMMENDED           | number        | Number of linear velocity channels recorded by the system.                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| StartTime                  | OPTIONAL              | number        | Start time in seconds in relation to the start of acquisition of the first data sample in the corresponding neural dataset (negative values are allowed). Can also be found in `*scans.tsv`.                                                                                                                                                                                                                                                                                                                                    |
 
 Restricted keyword list for field `RotationRule`:
 
@@ -206,25 +147,7 @@ The `*tracksys-<label>_channels.tsv` file should give additional information abo
 
 The columns of the channels description table stored in `*_channels.tsv` are:
 
-MUST be present:
-
-| **Key name**  | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                |   |
-| ------------- | --------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | - |
-| component     | REQUIRED              | string        | Component of the representational system described in `*_motion.json` that the channel contains. Must be one of: "x" ,"y", "z", "quat_x", "quat_y", "quat_z", "quat_w", "n/a".                                                                                                                                                                                                                                                                                                 |   |
-| name          | REQUIRED              | string        | Label of the channel.                                                                                                                                                                                                                                                                                                                                                                                                                                                          |   |
-| tracked_point | REQUIRED              | string        | Label of the point that is being tracked, for example, label of a tracker or a marker (`LeftFoot`, `RightWrist`).                                                                                                                                                                                                                                                                                                                                                              |   |
-| type          | REQUIRED              | string        | Type of data. Position, orientation, acceleration or any related format. Can also be latency. Must be one of: "ACCEL", "ANGACC", "GYRO", "JNTANG", "LATENCY", "MAGN", "MISC", "ORNT", "POS", "TIME", "VEL".                                                                                                                                                                                                                                                                    |   |
-| units         | REQUIRED              | string        | Physical or virtual unit of the value represented in this channel, for example, `rad` radian or `deg` degrees for angular quantities or `m` for position data. See the BIDS spec for guidelines for Units and Prefixes. If motion data is recorded in a virtual space and deviate from standard SI units, the unit used MUST be specified in the sidecar `*_motion.json` file (for example `vm` for virtual meters). `rad` is used for euler angles and `n/a` for quaternions. |   |
-
-SHOULD be present:
-
-| **Key name**       | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                              |
-| ------------------ | --------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| placement          | RECOMMENDED           | string        | Placement of the tracked point on the body (for example, participant, avatar centroid, torso, left arm). It can refer to an external vocabulary for describing body parts.                                                                                                                   |
-| description        | OPTIONAL              | string        | Brief free-text description of the channel, or other information of interest.                                                                                                                                                                                                                |
-| sampling_frequency | OPTIONAL              | number        | Nominal sampling rate of the channel in Hz. In case the sampling rates differ between channels or from SamplingFrequency in *_motion.json file, this can be specified here.                                                                                                                  |
-| status_description | OPTIONAL              | string        | Brief free-text description of the channel, or other information of interest.                                                                                                                                                                                                                |
-| status             | OPTIONAL              | string        | Data quality observed on the channel. A channel is considered bad if its data quality is compromised by excessive noise. If quality is unknown, then a value of n/a may be used. Description of noise type SHOULD be provided in [status_description]. Must be one of: "good", "bad", "n/a". |
+{{ MACROS___make_columns_table("motion.motionChannels") }}
 
 Restricted keyword list for column `component`. When using quaternions to represent orientations, the axial components that corresponds to the three spatial axes must be specified as "quat_x", "quat_y", "quat_z", and the non-axial component as "quat_w".
 
@@ -256,20 +179,18 @@ Restricted keyword list for column `type` in alphabetic order (shared with the o
 Example `*channels.tsv`:
 
 ```Text
-name        tracked_point  type   component units
-t1_acc_x    LeftFoot      ACCEL    x         m/s^2
-t1_acc_y  LeftFoot     ACCEL    y         m/s^2
-t1_acc_z  LeftFoot      ACCEL    z         m/s^2
-t1_gyro_x   LeftFoot      GYRO x      rad/s
-t1_gyro_y   LeftFoot      GYRO y      rad/s
-t1_gyro_z   LeftFoot      GYRO z      rad/s
+name        tracked_point   type  component units
+t1_acc_x    LeftFoot        ACCEL x         m/s^2
+t1_acc_y    LeftFoot        ACCEL y         m/s^2
+t1_acc_z    LeftFoot        ACCEL z         m/s^2
+t1_gyro_x   LeftFoot        GYRO  x         rad/s
+t1_gyro_y   LeftFoot        GYRO  y         rad/s
+t1_gyro_z   LeftFoot        GYRO  z         rad/s
 …
-t2_acc_x  RightWrist    ACCEL  x  m/s^2
-t2_acc_y  RightWrist    ACCEL  y  m/s^2
-t2_acc_z  RightWrist    ACCEL  z  m/s^2
-t2_gyro_x  RightWrist    GYRO x   rad/s
-t2_gyro_y   RightWrist  GYRO y   rad/s
-t2_gyro_z   RightWrist   GYRO z   rad/s
+t2_acc_x    RightWrist      ACCEL x         m/s^2
+t2_acc_y    RightWrist      ACCEL y         m/s^2
+t2_acc_z    RightWrist      ACCEL z         m/s^2
+t2_gyro_x   RightWrist      GYRO  x         rad/s
+t2_gyro_y   RightWrist      GYRO  y         rad/s
+t2_gyro_z   RightWrist      GYRO  z         rad/s
 ```
-
-{{ MACROS___make_columns_table("motion.motionChannels") }}
