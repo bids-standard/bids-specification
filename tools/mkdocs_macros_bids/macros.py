@@ -343,7 +343,6 @@ def define_common_principles(src_path=None):
 
 
 def define_allowed_top_directories(src_path=None):
-
     if src_path is None:
         src_path = _get_source_path()
 
