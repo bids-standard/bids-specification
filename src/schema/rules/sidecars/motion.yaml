@@ -67,11 +67,13 @@ motionMoreRecommended:
     POSChannelCount: recommended
     RotationOrder: recommended
     RotationRule: recommended
-    SamplingFrequencyEffective: recommended
+    SamplingFrequencyEffective: 
+      level: recommended
       description_addendum: |
         If not available, the field takes the same value as field "`SamplingFrequency`".
     SpatialAxes: recommended
-    StartTime: optional
+    StartTime: 
+      level: optional
       description_addendum: |
         Can also be found in "`*scans.tsv`".
     SubjectArtefactDescription: recommended
