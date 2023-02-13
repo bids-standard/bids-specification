@@ -25,6 +25,9 @@ pet:
 micr:
   datatypes:
     - micr
+nirs:
+  datatypes:
+    - nirs
 comp:
   datatypes:
     - model

@@ -14,19 +14,8 @@ BIDS governance.
 
 ### Steering Group
 
-| Name                                                                         |
-|------------------------------------------------------------------------------|
-| Guiomar Niso ([@guiomar](https://github.com/guiomar))                        |
-| Melanie Ganz ([@melanieganz](https://github.com/melanieganz))                |
-| Robert Oostenveld ([@robertoostenveld](https://github.com/robertoostenveld)) |
-| Russell Poldrack ([@poldrack](https://github.com/poldrack))                  |
-| Ariel Rokem ([@arokem](https://github.com/arokem))            |
-
-#### Past steering group members
-
-| Name                                                                         |
-|------------------------------------------------------------------------------|
-| Kirstie Whitaker ([@KirstieJane](https://github.com/KirstieJane))            |
+Curent and past members of the steering group can be found
+[here](https://bids.neuroimaging.io/governance.html#bids-steering-group).
 
 ### Maintainers Group
 
@@ -61,7 +50,7 @@ Leaders of BIDS Extension Proposals are listed in the
 
 ### Contributors Group
 
-Contributors are listed in [Appendix I](https://bids-specification.readthedocs.io/en/stable/99-appendices/01-contributors.html)
+Contributors are listed in the [Contributors appendix](https://bids-specification.readthedocs.io/en/stable/appendices/contributors.html)
 of the BIDS specification. Contributors who have not yet entered their name
 into this list are encouraged to edit the [Contributors WIKI page](https://github.com/bids-standard/bids-specification/wiki/Contributors)
 with their name, using the emojis listed in the WIKI to indicate their

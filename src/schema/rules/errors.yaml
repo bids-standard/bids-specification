@@ -9,7 +9,7 @@ NiftiHeaderUnreadable:
     Please ensure it is not corrupted or mislabeled.
   level: error
   selectors:
-    - '[".nii", ".nii.gz"].includes(extension)'
+    - match(extension, '^\.nii(\.gz)?$')
 
 # BIDS Validator Original Issue Code #27
 JsonInvalid:
@@ -27,7 +27,7 @@ GzNotGzipped:
     This file ends in the .gz extension but is not actually gzipped.
   level: error
   selectors:
-    - extension.includes(".gz")
+    - match(extension, '\.gz$')
 
 # BIDS Validator Original Issue Code #30
 BvalMultipleRows:
@@ -54,7 +54,7 @@ NiftiTooSmall:
     This file is too small to contain the minimal NIfTI header.
   level: error
   selectors:
-    - '[".nii", ".nii.gz"].includes(extension)'
+    - match(extension, '^\.nii(\.gz)?$')
 
 # BIDS Validator Original Issue Code #43
 OrphanedSymlink:
@@ -90,7 +90,7 @@ BFile:
     and contain only numerical values.
   level: error
   selectors:
-    - '[".bval", ".bvec"].includes(extension)'
+    - intersects([extension], [".bval", ".bvec"])
 
 # BIDS Validator Original Issue Code #55
 JsonSchemaValidationError:
@@ -118,7 +118,7 @@ WrongNewLine:
   selectors:
     - extension == ".tsv"
 
-# BIDS Validator Original Issue Code #74
+# BIDS Validator Original Issue Code #88
 MalformedBvec:
   code: MALFORMED_BVEC
   message: |
@@ -127,7 +127,7 @@ MalformedBvec:
   selectors:
     - extension == ".bvec"
 
-# BIDS Validator Original Issue Code #88
+# BIDS Validator Original Issue Code #89
 MalformedBval:
   code: MALFORMED_BVAL
   message: |
@@ -136,7 +136,7 @@ MalformedBval:
   selectors:
     - extension == ".bval"
 
-# BIDS Validator Original Issue Code #89
+# BIDS Validator Original Issue Code #90
 SidecarWithoutDatafile:
   code: SIDECAR_WITHOUT_DATAFILE
   message: |
@@ -145,7 +145,7 @@ SidecarWithoutDatafile:
   selectors:
     - extension == ".json"
 
-# BIDS Validator Original Issue Code #90
+# BIDS Validator Original Issue Code #97
 MissingSession:
   code: MISSING_SESSION
   message: |
@@ -175,7 +175,7 @@ BrainvisionLinksBroken:
     and *.vmrk) are broken or some files do not exist.
   level: error
   selectors:
-    - '[ ".eeg", ".vhdr", ".vmrk"].includes(extension)'
+    - intersects([extension], [".eeg", ".vhdr", ".vmrk"])
 
 # BIDS Validator Original Issue Code #104
 HedError:

@@ -1,9 +1,12 @@
 import os
-import tarfile
+import shutil
+
+try:
+    from importlib.resources import files
+except ImportError:  # PY<3.9
+    from importlib_resources import files
 
 import pytest
-
-from .. import __version__
 
 
 def require_env(var):
@@ -30,9 +33,15 @@ def test_make_archive(bids_examples, bids_error_examples):
     * Archives will be generated under `/tmp/bidsschematools-testdata-SCHEMA_VERSION.tar.gz`
     """
 
-    archive_name = f"bidsschematools-testdata-{__version__}"
-    archive_path = f"/tmp/{archive_name}.tar.gz"
+    testdata_dir = files("bidsschematools.tests.data")
+    ignore_git = shutil.ignore_patterns(".git*")
+    shutil.copytree(bids_examples, testdata_dir / "bids-examples", ignore=ignore_git)
+    shutil.copytree(bids_error_examples, testdata_dir / "bids-error-examples", ignore=ignore_git)
 
-    with tarfile.open(archive_path, "w:gz") as tar:
-        tar.add(bids_examples, arcname=f"{archive_name}/bids-examples")
-        tar.add(bids_error_examples, arcname=f"{archive_name}/bids-error-examples")
+    # Keeping this for now, it would be really nice to have a separate archive someday.
+    # archive_name = f"bidsschematools-testdata-{__version__}"
+    # archive_path = f"/tmp/{archive_name}.tar.gz"
+
+    # with tarfile.open(archive_path, "w:gz") as tar:
+    #     tar.add(bids_examples, arcname=f"{archive_name}/bids-examples")
+    #     tar.add(bids_error_examples, arcname=f"{archive_name}/bids-error-examples")

@@ -36,6 +36,13 @@ string:
     This should allow any free-form string.
   pattern: '.*'
 # String formats
+hed_version:
+  display_name: HED Version
+  description: |
+    The version string of the used HED schema.
+  pattern: '^(?:[a-zA-Z]+:)?(?:[a-zA-Z]+_)?(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\
+    (?:-(?:(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?\
+    (?:\+(?:[0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$'
 bids_uri:
   display_name: BIDS uniform resource indicator
   description: |
@@ -111,7 +118,7 @@ unit:
   description: |
     A unit.
     SI units in CMIXF formatting are RECOMMENDED
-    (see [Units](SPEC_ROOT/02-common-principles.md#units)).
+    (see [Units](SPEC_ROOT/common-principles.md#units)).
 
     Currently this matches any string.
 

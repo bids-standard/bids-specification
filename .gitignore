@@ -42,6 +42,9 @@ share/python-wheels/
 *.egg
 MANIFEST
 
+# Poetry requirements / packaging
+/pyproject.toml
+
 # PyInstaller
 #  Usually these files are written by a python script from a template
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
@@ -138,6 +141,9 @@ venv.bak/
 
 # mkdocs documentation
 /site
+
+# schema docs documentation
+tools/schemacode/build/*
 
 # mypy
 .mypy_cache/

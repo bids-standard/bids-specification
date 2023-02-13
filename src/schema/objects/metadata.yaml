@@ -2,6 +2,13 @@
 # This file defines valid BIDS metadata fields.
 # These definitions include the field names, their descriptions, and valid values.
 # This file **does not** define how and when metadata fields can be used with a given file.
+ACCELChannelCount:
+  name: ACCELChannelCount
+  display_name: Accelerometer channel count
+  description: |
+    Number of accelerometer channels.
+  type: integer
+  minimum: 0
 Acknowledgements:
   name: Acknowledgements
   display_name: Acknowledgements
@@ -68,7 +75,7 @@ AnatomicalLandmarkCoordinateSystem:
   display_name: Anatomical Landmark Coordinate System
   description: |
     Defines the coordinate system for the anatomical landmarks.
-    See [Appendix VIII](SPEC_ROOT/99-appendices/08-coordinate-systems.md)
+    See the [Coordinate Systems Appendix](SPEC_ROOT/appendices/coordinate-systems.md)
     for a list of restricted keywords for coordinate systems.
     If `"Other"`, provide definition of the coordinate system in
     `"AnatomicalLandmarkCoordinateSystemDescription"`.
@@ -147,10 +154,10 @@ AssociatedEmptyRoom:
   name: AssociatedEmptyRoom
   display_name: Associated Empty Room
   description: |
-    One or more [BIDS URIs](SPEC_ROOT/02-common-principles.md#bids-uri)
+    One or more [BIDS URIs](SPEC_ROOT/common-principles.md#bids-uri)
     pointing to empty-room file(s) associated with the subject's MEG recording.
     Using forward-slash separated paths relative to the dataset root is
-    [DEPRECATED](SPEC_ROOT/02-common-principles.md#definitions).
+    [DEPRECATED](SPEC_ROOT/common-principles.md#definitions).
   anyOf:
     - type: array
       items:
@@ -265,7 +272,7 @@ BasedOn:
     List of files in a file collection to generate the map.
     Fieldmaps are also listed, if involved in the processing.
     This field is DEPRECATED, and this metadata SHOULD be recorded in the
-    `Sources` field using [BIDS URIs](SPEC_ROOT/02-common-principles.md#bids-uri)
+    `Sources` field using [BIDS URIs](SPEC_ROOT/common-principles.md#bids-uri)
     to distinguish sources from different datasets.
   anyOf:
     - type: string
@@ -297,7 +304,7 @@ BodyPartDetailsOntology:
   name: BodyPartDetailsOntology
   display_name: Body Part Details Ontology
   description: |
-    [URI](SPEC_ROOT/02-common-principles.md#uniform-resource-indicator) of ontology used for
+    [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator) of ontology used for
     BodyPartDetails (for example: `"https://www.ebi.ac.uk/ols/ontologies/uberon"`).
   type: string
   format: uri
@@ -368,7 +375,7 @@ CapManufacturersModelName:
   name: CapManufacturersModelName
   display_name: Cap Manufacturers Model Name
   description: |
-    Manufacturer's designation of the EEG cap model
+    Manufacturer's designation of the cap model
     (for example, `"actiCAP 64 Ch Standard-2"`).
   type: string
 CellType:
@@ -424,7 +431,7 @@ Code:
   name: Code
   display_name: Code
   description: |
-    [URI](SPEC_ROOT/02-common-principles.md#uniform-resource-indicator)
+    [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
     of the code used to present the stimuli.
     Persistent identifiers such as DOIs are preferred.
     If multiple versions of code may be hosted at the same location,
@@ -435,7 +442,7 @@ CogAtlasID:
   name: CogAtlasID
   display_name: Cognitive Atlas ID
   description: |
-    [URI](SPEC_ROOT/02-common-principles.md#uniform-resource-indicator)
+    [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
     of the corresponding [Cognitive Atlas](https://www.cognitiveatlas.org/)
     Task term.
   type: string
@@ -444,7 +451,7 @@ CogPOID:
   name: CogPOID
   display_name: Cognitive Paradigm Ontology ID
   description: |
-    [URI](SPEC_ROOT/02-common-principles.md#uniform-resource-indicator)
+    [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
     of the corresponding [CogPO](http://www.cogpo.org/) term.
   type: string
   format: uri
@@ -513,16 +520,16 @@ DatasetDOI:
   description: |
     The Digital Object Identifier of the dataset (not the corresponding paper).
     DOIs SHOULD be expressed as a valid
-    [URI](SPEC_ROOT/02-common-principles.md#uniform-resource-indicator);
+    [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator);
     bare DOIs such as `10.0.2.3/dfjj.10` are
-    [DEPRECATED](SPEC_ROOT/02-common-principles.md#definitions).
+    [DEPRECATED](SPEC_ROOT/common-principles.md#definitions).
   type: string
   format: uri
 DatasetLinks:
   name: DatasetLinks
   display_name: Dataset Links
   description: |
-    Used to map a given `<dataset-name>` from a [BIDS URI](SPEC_ROOT/02-common-principles.md#bids-uri)
+    Used to map a given `<dataset-name>` from a [BIDS URI](SPEC_ROOT/common-principles.md#bids-uri)
     of the form `bids:<dataset-name>:path/within/dataset` to a local or remote location.
     The `<dataset-name>`: `""` (an empty string) is a reserved keyword that MUST NOT be a key in
     `DatasetLinks` (example: `bids::path/within/dataset`).
@@ -599,6 +606,21 @@ Description:
   description: |
     Free-form natural language description.
   type: string
+DetectorType:
+  name: DetectorType
+  display_name: Detector Type
+  description: |
+    Type of detector. This is a free form description with the following suggested terms:
+    `"SiPD"`, `"APD"`. Preferably a specific model/part number is supplied.
+    If individual channels have different `DetectorType`,
+    then the field here should be specified as `"mixed"`
+    and this column should be included in `optodes.tsv`.
+  anyOf:
+    - type: string
+      format: unit
+    - type: string
+      enum:
+        - mixed
 DeviceSerialNumber:
   name: DeviceSerialNumber
   display_name: Device Serial Number
@@ -629,7 +651,7 @@ DigitizedHeadPoints__coordsystem:
     Relative path to the file containing the locations of digitized head points
     collected during the session (for example, `"sub-01_headshape.pos"`).
     RECOMMENDED for all MEG systems, especially for CTF and BTi/4D.
-    For Elekta/Neuromag the head points will be stored in the fif file.
+    For Neuromag/Elekta/MEGIN, the head points will be stored in the `.fif` file.
   type: string
   format: file_relative
 DigitizedHeadPointsCoordinateSystem:
@@ -637,8 +659,8 @@ DigitizedHeadPointsCoordinateSystem:
   display_name: Digitized Head Points Coordinate System
   description: |
     Defines the coordinate system for the digitized head points.
-    See
-    [Appendix VIII](SPEC_ROOT/99-appendices/08-coordinate-systems.md)
+    See the
+    [Coordinate Systems Appendix](SPEC_ROOT/appendices/coordinate-systems.md)
     for a list of restricted keywords for coordinate systems.
     If `"Other"`, provide definition of the coordinate system in
     `"DigitizedHeadPointsCoordinateSystemDescription"`.
@@ -738,8 +760,8 @@ EEGCoordinateSystem:
   description: |
     Defines the coordinate system for the EEG sensors.
 
-    See
-    [Appendix VIII](SPEC_ROOT/99-appendices/08-coordinate-systems.md)
+    See the
+    [Coordinate Systems Appendix](SPEC_ROOT/appendices/coordinate-systems.md)
     for a list of restricted keywords for coordinate systems.
     If `"Other"`, provide definition of the coordinate system in
     `EEGCoordinateSystemDescription`.
@@ -816,13 +838,13 @@ EchoTime:
     (please note that the DICOM term is in milliseconds not seconds).
     The data type number may apply to files from any MRI modality concerned with
     a single value for this field, or to the files in a
-    [file collection](SPEC_ROOT/99-appendices/10-file-collections.md)
+    [file collection](SPEC_ROOT/appendices/file-collections.md)
     where the value of this field is iterated using the
-    [`echo` entity](SPEC_ROOT/99-appendices/09-entities.md#echo).
+    [`echo` entity](SPEC_ROOT/appendices/entities.md#echo).
     The data type array provides a value for each volume in a 4D dataset and
     should only be used when the volume timing is critical for interpretation
     of the data, such as in
-    [ASL](SPEC_ROOT/04-modality-specific-files/01-magnetic-resonance-imaging-data.md#\
+    [ASL](SPEC_ROOT/modality-specific-files/magnetic-resonance-imaging-data.md#\
     arterial-spin-labeling-perfusion-data)
     or variable echo time fMRI sequences.
   anyOf:
@@ -945,8 +967,8 @@ FiducialsCoordinateSystem:
   description: |
     Defines the coordinate system for the fiducials.
     Preferably the same as the `"EEGCoordinateSystem"`.
-    See
-    [Appendix VIII](SPEC_ROOT/99-appendices/08-coordinate-systems.md)
+    See the
+    [Coordinate Systems Appendix](SPEC_ROOT/appendices/coordinate-systems.md)
     for a list of restricted keywords for coordinate systems.
     If `"Other"`, provide definition of the coordinate system in
     `"FiducialsCoordinateSystemDescription"`.
@@ -1009,13 +1031,13 @@ FlipAngle:
     Corresponds to: DICOM Tag 0018, 1314 `Flip Angle`.
     The data type number may apply to files from any MRI modality concerned with
     a single value for this field, or to the files in a
-    [file collection](SPEC_ROOT/99-appendices/10-file-collections.md)
+    [file collection](SPEC_ROOT/appendices/file-collections.md)
     where the value of this field is iterated using the
-    [`flip` entity](SPEC_ROOT/99-appendices/09-entities.md#flip).
+    [`flip` entity](SPEC_ROOT/appendices/entities.md#flip).
     The data type array provides a value for each volume in a 4D dataset and
     should only be used when the volume timing is critical for interpretation of
     the data, such as in
-    [ASL](SPEC_ROOT/04-modality-specific-files/01-magnetic-resonance-imaging-data.md#\
+    [ASL](SPEC_ROOT/modality-specific-files/magnetic-resonance-imaging-data.md#\
     arterial-spin-labeling-perfusion-data)
     or variable flip angle fMRI sequences.
   anyOf:
@@ -1066,18 +1088,42 @@ GeneratedBy:
   minItems: 1
   items:
     type: object
+    required_fields: [Name]
+    recommended_fields: [Version]
     properties:
       Name:
+        name: Name
+        description: |
+          Name of the pipeline or process that generated the outputs. Use `"Manual"` to
+          indicate the derivatives were generated by hand, or adjusted manually after an
+          initial run of an automated pipeline.
         type: string
       Version:
+        name: Version
+        description: Version of the pipeline
         type: string
       Description:
+        name: Description
+        description: |
+          Plain-text description of the pipeline or process that generated the outputs.
+          RECOMMENDED if `Name` is `"Manual"`.
         type: string
       CodeURL:
+        name: CodeURL
+        description: URL where the code used to generate the dataset may be found.
         type: string
         format: uri
       Container:
+        name: Container
+        description: |
+          Used to specify the location and relevant attributes of software container image
+          used to produce the dataset. Valid keys in this object include `Type`, `Tag` and
+          [`URI`][uri] with [string][] values.
         type: object
+        recommended_fields:
+          - Type
+          - Tag
+          - URI
         properties:
           Type:
             type: string
@@ -1108,14 +1154,14 @@ Genetics:
     Database:
       name: Database
       description: |
-        [URI](SPEC_ROOT/02-common-principles.md#uniform-resource-indicator)
+        [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
         of database where the dataset is hosted.
       type: string
       format: uri
     Dataset:
       name: Dataset
       description: |
-        [URI](SPEC_ROOT/02-common-principles.md#uniform-resource-indicator)
+        [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
         where data can be retrieved.
       type: string
       format: uri
@@ -1124,7 +1170,7 @@ Genetics:
       description: |
         List of relevant descriptors (for example, journal articles) for dataset
         using a valid
-        [URI](SPEC_ROOT/02-common-principles.md#uniform-resource-indicator)
+        [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
         when possible.
       anyOf:
         - type: string
@@ -1140,12 +1186,19 @@ GradientSetType:
     insert set, then the specifications of the actual gradient coil should be
     reported independently.
   type: string
+GYROChannelCount:
+  name: GYROChannelCount
+  display_name: Gyrometer Channel Count
+  description: |
+    Number of gyrometer channels.
+  type: integer
+  minimum: 0
 HED:
   name: HED
   display_name: HED
   description: |
     Hierarchical Event Descriptor (HED) information,
-    see: [Appendix III](SPEC_ROOT/99-appendices/03-hed.md) for details.
+    see the [HED Appendix](SPEC_ROOT/appendices/hed.md) for details.
   anyOf:
     - type: string
     - type: object
@@ -1157,7 +1210,14 @@ HEDVersion:
   description: |
     If HED tags are used:
     The version of the HED schema used to validate HED tags for study.
-  type: string
+    May include a single schema or a base schema and one or more library schema.
+  anyOf:
+    - type: string
+      format: hed_version
+    - type: array
+      items:
+        type: string
+        format: hed_version
 Haematocrit:
   name: Haematocrit
   display_name: Haematocrit
@@ -1202,8 +1262,8 @@ HeadCoilCoordinateSystem:
   display_name: Head Coil Coordinate System
   description: |
     Defines the coordinate system for the head coils.
-    See
-    [Appendix VIII](SPEC_ROOT/99-appendices/08-coordinate-systems.md)
+    See the
+    [Coordinate Systems Appendix](SPEC_ROOT/appendices/coordinate-systems.md)
     for a list of restricted keywords for coordinate systems.
     If `"Other"`, provide definition of the coordinate system in
     `HeadCoilCoordinateSystemDescription`.
@@ -1239,8 +1299,8 @@ HeadCoilCoordinates:
     (for example, `{"NAS": [12.7,21.3,13.9], "LPA": [5.2,11.3,9.6],
     "RPA": [20.2,11.3,9.1]}`).
     Note that coils are not always placed at locations that have a known
-    anatomical name (for example, for Elekta, Yokogawa systems); in that case
-    generic labels can be used
+    anatomical name (for example, for Neuromag/Elekta/MEGIN, Yokogawa systems);
+    in that case generic labels can be used
     (for example, `{"coil1": [12.2,21.3,12.3], "coil2": [6.7,12.3,8.6],
     "coil3": [21.9,11.0,8.1]}`).
     Each array MUST contain three numeric values corresponding to x, y, and z
@@ -1257,7 +1317,7 @@ HeadCoilFrequency:
   display_name: Head Coil Frequency
   description: |
     List of frequencies (in Hz) used by the head localisation coils
-    ('HLC' in CTF systems, 'HPI' in Elekta, 'COH' in BTi/4D)
+    ('HLC' in CTF systems, 'HPI' in Neuromag/Elekta/MEGIN, 'COH' in BTi/4D)
     that track the subject's head position in the MEG helmet
     (for example, `[293, 307, 314, 321]`).
   anyOf:
@@ -1281,7 +1341,7 @@ ImageAcquisitionProtocol:
   display_name: Image Acquisition Protocol
   description: |
     Description of the image acquisition protocol or
-    [URI](SPEC_ROOT/02-common-principles.md#uniform-resource-indicator)
+    [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
     (for example from [protocols.io](https://www.protocols.io/)).
   type: string
 ImageDecayCorrected:
@@ -1450,9 +1510,9 @@ IntendedFor:
   display_name: Intended For
   description: |
     The paths to files for which the associated file is intended to be used.
-    Contains one or more [BIDS URIs](SPEC_ROOT/02-common-principles.md#bids-uri).
+    Contains one or more [BIDS URIs](SPEC_ROOT/common-principles.md#bids-uri).
     Using forward-slash separated paths relative to the participant subdirectory is
-    [DEPRECATED](SPEC_ROOT/02-common-principles.md#definitions).
+    [DEPRECATED](SPEC_ROOT/common-principles.md#definitions).
   anyOf:
     - type: string
       format: bids_uri
@@ -1470,9 +1530,9 @@ IntendedFor__ds_relative:
   display_name: Intended For
   description: |
     The paths to files for which the associated file is intended to be used.
-    Contains one or more [BIDS URIs](SPEC_ROOT/02-common-principles.md#bids-uri).
+    Contains one or more [BIDS URIs](SPEC_ROOT/common-principles.md#bids-uri).
     Using forward-slash separated paths relative to the dataset root is
-    [DEPRECATED](SPEC_ROOT/02-common-principles.md#definitions).
+    [DEPRECATED](SPEC_ROOT/common-principles.md#definitions).
   anyOf:
     - type: string
       format: bids_uri
@@ -1642,7 +1702,7 @@ License:
   description: |
     The license for the dataset.
     The use of license name abbreviations is RECOMMENDED for specifying a license
-    (see [Appendix II](SPEC_ROOT/99-appendices/02-licenses.md)).
+    (see [Licenses](SPEC_ROOT/appendices/licenses.md)).
     The corresponding full license text MAY be specified in an additional
     `LICENSE` file.
   type: string
@@ -1683,6 +1743,13 @@ M0Type:
     - Included
     - Estimate
     - Absent
+MAGNChannelCount:
+  name: MAGNChannelCount
+  display_name: Magnetometer Channel Count
+  description: |
+    Number of magnetometer channels.
+  type: integer
+  minimum: 0
 MEGChannelCount:
   name: MEGChannelCount
   display_name: MEG Channel Count
@@ -1695,7 +1762,8 @@ MEGCoordinateSystem:
   display_name: MEG Coordinate System
   description: |
     Defines the coordinate system for the MEG sensors.
-    See [Appendix VIII](SPEC_ROOT/99-appendices/08-coordinate-systems.md)
+    See the
+    [Coordinate Systems Appendix](SPEC_ROOT/appendices/coordinate-systems.md)
     for a list of restricted keywords for coordinate systems.
     If `"Other"`, provide definition of the coordinate system in
     `"MEGCoordinateSystemDescription"`.
@@ -2010,6 +2078,87 @@ NegativeContrast:
     usage of a contrast agent in conjunction with a T2\* weighted acquisition
     protocol.
   type: boolean
+NIRSChannelCount:
+  name: NIRSChannelCount
+  display_name: NIRS Channel Count
+  description: |
+    Total number of NIRS channels, including short channels.
+    Corresponds to the number of rows in `channels.tsv` with any NIRS type.
+  type: integer
+  minimum: 0
+NIRSSourceOptodeCount:
+  name: NIRSSourceOptodeCount
+  display_name: NIRS Source Optode Count
+  description: |
+    Number of NIRS sources.
+    Corresponds to the number of rows in `optodes.tsv` with type `"source"`.
+  type: integer
+  minimum: 1
+NIRSDetectorOptodeCount:
+  name: NIRSDetectorOptodeCount
+  display_name: NIRS Detector Optode Channel Count
+  description: |
+    Number of NIRS detectors.
+    Corresponds to the number of rows in `optodes.tsv` with type `"detector"`.
+  type: integer
+  minimum: 1
+NIRSPlacementScheme:
+  name: NIRSPlacementScheme
+  display_name: NIRS Placement Scheme
+  description: |
+    Placement scheme of NIRS optodes.
+    Either the name of a standardized placement system (for example, `"10-20"`)
+    or an array of standardized position names (for example, `["Cz", "Pz"]`).
+    This field should only be used if a cap was not used.
+    If a standard cap was used, then it should be specified in `CapManufacturer`
+    and `CapManufacturersModelName` and this field should be set to `"n/a"`
+  anyOf:
+    - type: string
+    - type: array
+      items:
+        type: string
+NIRSCoordinateSystem:
+  name: NIRSCoordinateSystem
+  display_name: NIRS Coordinate System
+  description: |
+    Defines the coordinate system in which the optode positions are expressed.
+
+    See
+    [Appendix VIII](SPEC_ROOT/appendices/coordinate-systems.md)
+    for a list of restricted keywords for coordinate systems.
+    If `"Other"`, a definition of the coordinate system MUST be
+    provided in `NIRSCoordinateSystemDescription`.
+  anyOf:
+    - $ref: objects.metadata._MEGCoordSys
+    - $ref: objects.metadata._EEGCoordSys
+    - $ref: objects.metadata._StandardTemplateCoordSys
+    - $ref: objects.metadata._StandardTemplateDeprecatedCoordSys
+NIRSCoordinateSystemDescription:
+  name: NIRSCoordinateSystemDescription
+  display_name: NIRS Coordinate System Description
+  description: |
+    Free-form text description of the coordinate system.
+    May also include a link to a documentation page or paper describing the
+    system in greater detail.
+  type: string
+NIRSCoordinateUnits:
+  name: NIRSCoordinateUnits
+  display_name: NIRS Coordinate Units
+  description: |
+    Units of the coordinates of `NIRSCoordinateSystem`.
+  type: string
+  enum:
+    - m
+    - mm
+    - cm
+    - n/a
+NIRSCoordinateProcessingDescription:
+  name: NIRSCoordinateProcessingDescription
+  display_name: NIRS Coordinate Processing Description
+  description: |
+    Has any post-processing (such as projection) been done on the optode
+    positions (for example, `"surface_projection"`, `"n/a"`).
+  type: string
 NonlinearGradientCorrection:
   name: NonlinearGradientCorrection
   display_name: Nonlinear Gradient Correction
@@ -2058,7 +2207,7 @@ NumberShots:
     after the k-space center is sampled.
     Please see
     [`"NumberShots"` metadata field]\
-    (SPEC_ROOT/99-appendices/11-qmri.md#numbershots-metadata-field)
+    (SPEC_ROOT/appendices/qmri.md#numbershots-metadata-field)
     in the qMRI appendix for corresponding calculations.
   anyOf:
     - type: number
@@ -2113,10 +2262,22 @@ ParallelReductionFactorInPlane:
   name: ParallelReductionFactorInPlane
   display_name: Parallel Reduction Factor In Plane
   description: |
-    The parallel imaging (for instance, GRAPPA) factor.
+    The parallel imaging (for instance, GRAPPA) factor in plane.
     Use the denominator of the fraction of k-space encoded for each slice.
     For example, 2 means half of k-space is encoded.
     Corresponds to DICOM Tag 0018, 9069 `Parallel Reduction Factor In-plane`.
+  type: number
+ParallelReductionFactorOutOfPlane:
+  name: ParallelReductionFactorOutOfPlane
+  display_name: Parallel Reduction Factor Out of Plane
+  description: |
+    The parallel imaging (for instance, GRAPPA) factor in the second phase encoding dimension of 3D sequences.
+    Use the denominator of the fraction of k-space encoded in the second phase encoding dimension.
+    For example, 2 means half of k-space is encoded.
+    Will typically be 1 for 2D sequences, as each slice in a 2D acquisition is usually fully encoded.
+    `ParallelReductionFactorOutOfPlane` should not be confused with `MultibandAccelerationFactor`,
+    as they imply different methods of accelerating the acquisition.
+    Corresponds to DICOM Tag 0018, 9155 `Parallel Reduction Factor out-of-plane`.
   type: number
 PartialFourier:
   name: PartialFourier
@@ -2346,7 +2507,7 @@ RawSources:
     A list of paths relative to dataset root pointing to the BIDS-Raw file(s)
     that were used in the creation of this derivative.
     This field is DEPRECATED, and this metadata SHOULD be recorded in the
-    `Sources` field using [BIDS URIs](SPEC_ROOT/02-common-principles.md#bids-uri)
+    `Sources` field using [BIDS URIs](SPEC_ROOT/common-principles.md#bids-uri)
     to distinguish sources from different datasets.
   type: array
   items:
@@ -2454,7 +2615,7 @@ ReferencesAndLinks:
   description: |
     List of references to publications that contain information on the dataset.
     A reference may be textual or a
-    [URI](SPEC_ROOT/02-common-principles.md#uniform-resource-indicator).
+    [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator).
   items:
     type: string
   type: array
@@ -2486,7 +2647,7 @@ RepetitionTimeExcitation:
   display_name: Repetition Time Excitation
   description: |
     The interval, in seconds, between two successive excitations.
-    [DICOM Tag 0018, 0080](http://dicomlookup.com/lookup.asp?sw=Tnumber&q=(0018,0080)
+    [DICOM Tag 0018, 0080](http://dicomlookup.com/lookup.asp?sw=Tnumber&q=(0018,0080))
     best refers to this parameter.
     This field may be used together with the `"RepetitionTimePreparation"` for
     certain use cases, such as
@@ -2495,7 +2656,7 @@ RepetitionTimeExcitation:
     `"RepetitionTimePreparation"` if needed) for anatomy imaging data rather than
     `"RepetitionTime"` as it is already defined as the amount of time that it takes
     to acquire a single volume in the
-    [task imaging data](SPEC_ROOT/04-modality-specific-files/01-magnetic-resonance-\
+    [task imaging data](SPEC_ROOT/modality-specific-files/magnetic-resonance-\
     imaging-data.md#task-including-resting-state-imaging-data)
     section.
   type: number
@@ -2513,7 +2674,7 @@ RepetitionTimePreparation:
     The data type array provides a value for each volume in a 4D dataset and
     should only be used when the volume timing is critical for interpretation of
     the data, such as in
-    [ASL](SPEC_ROOT/04-modality-specific-files/01-magnetic-resonance-imaging-data.md\
+    [ASL](SPEC_ROOT/modality-specific-files/magnetic-resonance-imaging-data.md\
     #arterial-spin-labeling-perfusion-data).
   anyOf:
     - type: number
@@ -2572,7 +2733,7 @@ SampleExtractionProtocol:
   display_name: Sample Extraction Protocol
   description: |
     Description of the sample extraction protocol or
-    [URI](SPEC_ROOT/02-common-principles.md#uniform-resource-indicator)
+    [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
     (for example from [protocols.io](https://www.protocols.io/)).
   type: string
 SampleFixation:
@@ -2649,6 +2810,18 @@ SamplingFrequency:
     regardless of their type (for example, `2400`).
   type: number
   unit: Hz
+SamplingFrequency__nirs:
+  name: SamplingFrequency
+  display_name: Sampling Frequency
+  description: |
+    Sampling frequency (in Hz) of all the data in the recording,
+    regardless of their type (for example, `2400`).
+  anyOf:
+    - type: number
+      unit: Hz
+    - type: string
+      enum:
+        - n/a
 ScaleFactor:
   name: ScaleFactor
   display_name: Scale Factor
@@ -2665,7 +2838,7 @@ ScanDate:
   description: |
     Date of scan in the format `"YYYY-MM-DD[Z]"`.
     This field is DEPRECATED, and this metadata SHOULD be recorded in the `acq_time` column of the
-    corresponding [Scans file](SPEC_ROOT/03-modality-agnostic-files.md#scans-file).
+    corresponding [Scans file](SPEC_ROOT/modality-agnostic-files.md#scans-file).
   type: string
   format: date
 ScanOptions:
@@ -2707,6 +2880,57 @@ ScatterFraction:
     type: number
     minimum: 0
     maximum: 100
+ScreenDistance:
+  name: ScreenDistance
+  display_name: Screen Distance
+  description: |
+    Distance between the participant's eye and the screen. If no screen was used, use `n/a`.
+  anyOf:
+    - type: number
+      unit: m
+    - type: string
+      enum:
+        - n/a
+ScreenRefreshRate:
+  name: ScreenRefreshRate
+  display_name: Screen Refresh Rate
+  description: |
+    Refresh rate of the screen (when used), in Hertz (equivalent to frames per second, "FPS").
+  type: number
+  unit: Hz
+ScreenResolution:
+  name: ScreenResolution
+  display_name: Screen Resolution
+  description: |
+    Screen resolution in pixel
+    (for example `[1920, 1200]` for a screen of 1920-width by 1080-height pixels),
+    if no screen use `n/a`.
+  anyOf:
+    - type: array
+      items:
+        type: integer
+        minItems: 2
+        maxItems: 2
+    - type: string
+      enum:
+        - n/a
+ScreenSize:
+  name: ScreenSize
+  display_name: Screen Size
+  description: |
+    Screen size in m, excluding potential screen borders
+    (for example `[0.472, 0.295]` for a screen of 47.2-width by 29.5-height cm),
+    if no screen use `n/a`.
+  anyOf:
+    - type: array
+      items:
+        type: number
+        unit: m
+        minItems: 2
+        maxItems: 2
+    - type: string
+      enum:
+        - n/a
 SequenceName:
   name: SequenceName
   display_name: Sequence Name
@@ -2725,6 +2949,13 @@ SequenceVariant:
     - type: array
       items:
         type: string
+ShortChannelCount:
+  name: ShortChannelCount
+  display_name: Short Channel Count
+  description: |
+    The number of short channels. 0 indicates no short channels.
+  type: integer
+  minimum: 0
 SinglesRate:
   name: SinglesRate
   display_name: Singles Rate
@@ -2862,7 +3093,7 @@ SourceDatasets:
   description: |
     Used to specify the locations and relevant attributes of all source datasets.
     Valid keys in each object include `"URL"`, `"DOI"` (see
-    [URI](SPEC_ROOT/02-common-principles.md#uniform-resource-indicator)), and
+    [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)), and
     `"Version"` with
     [string](https://www.w3schools.com/js/js_json_datatypes.asp)
     values.
@@ -2882,7 +3113,7 @@ Sources:
   display_name: Sources
   description: |
     A list of files with the paths specified using
-    [BIDS URIs](SPEC_ROOT/02-common-principles.md#bids-uri);
+    [BIDS URIs](SPEC_ROOT/common-principles.md#bids-uri);
     these files were directly used in the creation of this derivative data file.
     For example, if a derivative A is used in the creation of another
     derivative B, which is in turn used to generate C in a chain of A->B->C,
@@ -2891,14 +3122,21 @@ Sources:
     then Z should list X and Y in `"Sources"`,
     regardless of whether X was used to generate Y.
     Using paths specified relative to the dataset root is
-    [DEPRECATED](SPEC_ROOT/02-common-principles.md#definitions).
+    [DEPRECATED](SPEC_ROOT/common-principles.md#definitions).
   type: array
   items:
-    anyOf:
-      - type: string
-        format: dataset_relative
-      - type: string
-        format: bids_uri
+    type: string
+    format: dataset_relative
+SourceType:
+  name: SourceType
+  display_name: Source Type
+  description: |
+    Type of source. Preferably a specific model/part number is supplied.
+    This is a freeform description, but the following keywords are suggested:
+    `"LED"`, `"LASER"`, `"VCSEL"`. If individual channels have different SourceType,
+    then the field here should be specified as "mixed"
+    and this column should be included in optodes.tsv.
+  type: string
 SpatialReference:
   name: SpatialReference
   display_name: Spatial Reference
@@ -3019,14 +3257,29 @@ StimulusPresentation:
   display_name: Stimulus Presentation
   description: |
     Object containing key-value pairs related to the software used to present
-    the stimuli during the experiment, specifically:
-    `"OperatingSystem"`, `"SoftwareName"`, `"SoftwareRRID"`, `"SoftwareVersion"` and
-    `"Code"`.
-    See table below for more information.
+    the stimuli during the experiment.
   type: object
+  recommended_fields:
+    - OperatingSystem
+    - ScreenDistance
+    - ScreenRefreshRate
+    - ScreenResolution
+    - ScreenSize
+    - SoftwareName
+    - SoftwareRRID
+    - SoftwareVersion
+    - Code
   properties:
     OperatingSystem:
       $ref: objects.metadata.OperatingSystem
+    ScreenDistance:
+      $ref: objects.metadata.ScreenDistance
+    ScreenRefreshRate:
+      $ref: objects.metadata.ScreenRefreshRate
+    ScreenResolution:
+      $ref: objects.metadata.ScreenResolution
+    ScreenSize:
+      $ref: objects.metadata.ScreenSize
     SoftwareName:
       $ref: objects.metadata.SoftwareName
     SoftwareRRID:
@@ -3058,8 +3311,8 @@ TaskName:
     No two tasks should have the same name.
     The task label included in the file name is derived from this `"TaskName"` field
     by removing all non-alphanumeric characters (that is, all except those matching `[0-9a-zA-Z]`).
-    For example `"TaskName"` `"faces n-back"` will correspond to task label
-    `facesnback`.
+    For example `"TaskName"` `"faces n-back"` or `"head nodding" will correspond to task labels
+    `facesnback` and `headnodding`, respectively.
   type: string
 TermURL:
   name: TermURL
@@ -3161,7 +3414,8 @@ TriggerChannelCount:
   name: TriggerChannelCount
   display_name: Trigger Channel Count
   description: |
-    Number of channels for digital (TTL bit level) triggers.
+    Number of channels for digital (binary TTL) triggers or analog equivalents (TTL in volt).
+    Corresponds to the `TRIG` channel type.
   type: integer
   minimum: 0
 TubingLength:
@@ -3199,7 +3453,7 @@ Units:
   description: |
     Measurement units for the associated file.
     SI units in CMIXF formatting are RECOMMENDED
-    (see [Units](SPEC_ROOT/02-common-principles.md#units)).
+    (see [Units](SPEC_ROOT/common-principles.md#units)).
   type: string
   format: unit
 VascularCrushing:
@@ -3365,8 +3619,8 @@ iEEGCoordinateSystem:
   display_name: iEEG Coordinate System
   description: |
     Defines the coordinate system for the iEEG sensors.
-    See
-    [Appendix VIII](SPEC_ROOT/99-appendices/08-coordinate-systems.md)
+    See the
+    [Coordinate Systems Appendix](SPEC_ROOT/appendices/coordinate-systems.md)
     for a list of restricted keywords for coordinate systems.
     If `"Other"`, provide definition of the coordinate system in
     `iEEGCoordinateSystemDescription`.
@@ -3374,7 +3628,7 @@ iEEGCoordinateSystem:
     (of either a volume-rendering, surface-rendering, operative photo, or
     operative drawing), this MUST be `"Pixels"`.
     For more information, see the section on
-    [2D coordinate systems](SPEC_ROOT/04-modality-specific-files/04-intracranial\
+    [2D coordinate systems](SPEC_ROOT/modality-specific-files/intracranial\
     -electroencephalography.md#allowed-2d-coordinate-systems).
   anyOf:
     - $ref: objects.metadata._iEEGCoordSys

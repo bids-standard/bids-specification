@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# Execute this script from anywhere in the repository to push to a new unique testing tag.
+# This is a script which automates creation and pushing of unique tags for github actions.
+# It is particularly useful when debugging the upload hooks for pypi.
+# The workflow for that is to edit `.github/workflows/schemacode_ci.yml` and add a secondary branch name to the `on` section right after master.
+# This will allow you to keep pushing to the branch as if it were master and unix-time tagged archives being uploaded to test.pypi.
+
+EPOCH="$(date +%s)"
+
+GIT_DIR=$( git rev-parse --git-dir )
+REPO_ROOT=$( ls -d ${GIT_DIR%.git} )
+
+VERSION_FILE="$REPO_ROOT/src/schema/SCHEMA_VERSION"
+
+REAL_VERSION=$(cat "${VERSION_FILE}")
+DUMMY_VERSION="0.0.${EPOCH}-dev"
+
+echo "${DUMMY_VERSION}" > "${VERSION_FILE}"
+git commit -a -m "Test release $DUMMY_VERSION"
+git tag -a "schema-$DUMMY_VERSION" -m "Test release $DUMMY_VERSION"
+
+echo "${REAL_VERSION}" > "${VERSION_FILE}"

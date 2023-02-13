@@ -43,40 +43,23 @@ PETRadioChemistry:
       level: required
       description_addendum: |
         Corresponds to DICOM Tags (0008,0104) `CodeValue` and (0008,0104) `CodeMeaning`.
-    InjectedRadioactivity:
-      level: required
-    InjectedRadioactivityUnits:
-      level: required
-    InjectedMass:
-      level: required
-    InjectedMassUnits:
-      level: required
-    SpecificRadioactivity:
-      level: required
-    SpecificRadioactivityUnits:
-      level: required
-    ModeOfAdministration:
-      level: required
-    TracerRadLex:
-      level: recommended
-    TracerSNOMED:
-      level: recommended
-    TracerMolecularWeight:
-      level: recommended
-    TracerMolecularWeightUnits:
-      level: recommended
-    InjectedMassPerWeight:
-      level: recommended
-    InjectedMassPerWeightUnits:
-      level: recommended
-    SpecificRadioactivityMeasTime:
-      level: recommended
-    MolarActivity:
-      level: recommended
-    MolarActivityUnits:
-      level: recommended
-    MolarActivityMeasTime:
-      level: recommended
+    InjectedRadioactivity: required
+    InjectedRadioactivityUnits: required
+    InjectedMass: required
+    InjectedMassUnits: required
+    SpecificRadioactivity: required
+    SpecificRadioactivityUnits: required
+    ModeOfAdministration: required
+    TracerRadLex: recommended
+    TracerSNOMED: recommended
+    TracerMolecularWeight: recommended
+    TracerMolecularWeightUnits: recommended
+    InjectedMassPerWeight: recommended
+    InjectedMassPerWeightUnits: recommended
+    SpecificRadioactivityMeasTime: recommended
+    MolarActivity: recommended
+    MolarActivityUnits: recommended
+    MolarActivityMeasTime: recommended
     InfusionRadioactivity:
       level: recommended
       level_addendum: required if ModeOfAdministration is `'bolus-infusion'`
@@ -92,8 +75,7 @@ PETRadioChemistry:
     InjectedVolume:
       level: recommended
       level_addendum: required if ModeOfAdministration is `'bolus-infusion'`
-    Purity:
-      level: recommended
+    Purity: recommended
 
 # PET Infusion conditionally required entities
 EntitiesBolusMetadata:
@@ -102,16 +84,11 @@ EntitiesBolusMetadata:
     - suffix == "pet"
     - sidecar.ModeOfAdministration == 'bolus-infusion'
   fields:
-    InfusionRadioactivity:
-      level: required
-    InfusionStart:
-      level: required
-    InfusionSpeed:
-      level: required
-    InfusionSpeedUnits:
-      level: required
-    InjectedVolume:
-      level: required
+    InfusionRadioactivity: required
+    InfusionStart: required
+    InfusionSpeed: required
+    InfusionSpeedUnits: required
+    InjectedVolume: required
 
 PETPharmaceuticals:
   selectors:
@@ -124,34 +101,27 @@ PETPharmaceuticals:
     PharmaceuticalDoseAmount:
       level: recommended
       description_addendum: Corresponds to DICOM Tag (0008,0028) `Intervention Drug Dose`.
-    PharmaceuticalDoseUnits:
-      level: recommended
-    PharmaceuticalDoseRegimen:
-      level: recommended
+    PharmaceuticalDoseUnits: recommended
+    PharmaceuticalDoseRegimen: recommended
     PharmaceuticalDoseTime:
       level: recommended
       description_addendum: |
         Corresponds to a combination of DICOM Tags (0008,0027) `Intervention Drug Stop Time`
         and (0008,0035) `Intervention Drug Start Time`.
-    Anaesthesia:
-      level: optional
+    Anaesthesia: optional
 
 PETTime:
   selectors:
     - modality == "pet"
     - suffix == "pet"
   fields:
-    TimeZero:
-      level: required
-    ScanStart:
-      level: required
+    TimeZero: required
+    ScanStart: required
     InjectionStart:
       level: required
       description_addendum: Corresponds to DICOM Tag (0018,1072) `Radiopharmaceutical Start Time`.
-    FrameTimesStart:
-      level: required
-    FrameDuration:
-      level: required
+    FrameTimesStart: required
+    FrameDuration: required
     InjectionEnd:
       level: recommended
       description_addendum: |
@@ -166,12 +136,9 @@ PETReconstruction:
     - modality == "pet"
     - suffix == "pet"
   fields:
-    AcquisitionMode:
-      level: required
-    ImageDecayCorrected:
-      level: required
-    ImageDecayCorrectionTime:
-      level: required
+    AcquisitionMode: required
+    ImageDecayCorrected: required
+    ImageDecayCorrectionTime: required
     ReconMethodName:
       level: required
       description_addendum: This partly matches the DICOM Tag (0054,1103) `Reconstruction Method`.
@@ -179,26 +146,26 @@ PETReconstruction:
       level: required
       description_addendum: This partly matches the DICOM Tag (0054,1103) `Reconstruction Method`.
     ReconMethodParameterUnits:
-      level: required
+      level: recommended
+      level_addendum: required if `ReconMethodParameterLabels` does not contain `"none"`
       description_addendum: This partly matches the DICOM Tag (0054,1103) `Reconstruction Method`.
     ReconMethodParameterValues:
-      level: required
+      level: recommended
+      level_addendum: required if `ReconMethodParameterLabels` does not contain `"none"`
       description_addendum: This partly matches the DICOM Tag (0054,1103) `Reconstruction Method`.
     ReconFilterType:
       level: required
       description_addendum: This partly matches the DICOM Tag (0018,1210) `Convolution Kernel`.
     ReconFilterSize:
-      level: required
+      level: recommended
+      level_addendum: required if `ReconFilterType` is not `"none"`
       description_addendum: This partly matches the DICOM Tag (0018,1210) `Convolution Kernel`.
     AttenuationCorrection:
       level: required
       description_addendum: This corresponds to DICOM Tag (0054,1101) `Attenuation Correction Method`.
-    ReconMethodImplementationVersion:
-      level: recommended
-    AttenuationCorrectionMethodReference:
-      level: recommended
-    ScaleFactor:
-      level: recommended
+    ReconMethodImplementationVersion: recommended
+    AttenuationCorrectionMethodReference: recommended
+    ScaleFactor: recommended
     ScatterFraction:
       level: recommended
       description_addendum: Corresponds to DICOM Tag (0054,1323) `Scatter Fraction Factor`.
@@ -208,10 +175,28 @@ PETReconstruction:
     DoseCalibrationFactor:
       level: recommended
       description_addendum: Corresponds to DICOM Tag (0054,1322) `Dose Calibration Factor`.
-    PromptRate:
-      level: recommended
-    SinglesRate:
-      level: recommended
+    PromptRate: recommended
+    SinglesRate: recommended
+    RandomRate: recommended
+
+# set required reconstruction fields to optional when "none" is provided as a parameter label
+EntitiesReconMethodMetadata:
+  selectors:
+    - modality == "pet"
+    - suffix == "pet"
+    - '!intersects(sidecar.ReconMethodParameterLabels, ["none"])'
+  fields:
+    ReconMethodParameterValues: required
+    ReconMethodParameterUnits: required
+
+# set required recon filter fields to optional when FilterType is "None"
+EntitiesReconFilterMetadata:
+  selectors:
+    - modality == "pet"
+    - suffix == "pet"
+    - '!intersects(sidecar.ReconFilterType, ["none"])'
+  fields:
+    ReconFilterSize: required
 
 BloodRecording:
   selectors:
@@ -254,3 +239,23 @@ BloodMetaboliteMethod:
     MetaboliteRecoveryCorrectionApplied:
       level: required
       level_addendum: if `MetaboliteAvail` is `true`
+
+# PET task information
+PETTask:
+  selectors:
+    - modality == "pet"
+    - '"task" in entities'
+  fields:
+    TaskName:
+      level: recommended
+      description_addendum: |
+        If used to denote resting scans, a RECOMMENDED convention is to use labels
+        beginning with `rest`.
+    Instructions:
+      level: recommended
+      description_addendum: |
+        This is especially important in context of resting state recordings
+        and distinguishing between eyes open and eyes closed paradigms.
+    TaskDescription: recommended
+    CogAtlasID: recommended
+    CogPOID: recommended

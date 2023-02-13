@@ -35,12 +35,12 @@ MEGRecommended:
         For MEG scanners, this must be one of:
         `"CTF"`, `"Elekta/Neuromag"`, `"BTi/4D"`, `"KIT/Yokogawa"`,
         `"ITAB"`, `"KRISS"`, `"Other"`.
-        See [Appendix VII](SPEC_ROOT/99-appendices/07-meg-systems.md) for
+        See the [MEG Systems Appendix](SPEC_ROOT/appendices/meg-systems.md) for
         preferred names.
     ManufacturersModelName:
       level: recommended
       description_addendum: |
-        See [Appendix VII](SPEC_ROOT/99-appendices/07-meg-systems.md) for
+        See the [MEG Systems Appendix](SPEC_ROOT/appendices/meg-systems.md) for
         preferred names.
     SoftwareVersions: recommended
     TaskDescription: recommended
@@ -105,7 +105,7 @@ MEGwithEEG:
     - modality == "meg"
     - datatype == "meg"
     - suffix == "meg"
-    - dataset.modalities.includes("EEG")
+    - intersects(dataset.modalities, ["eeg"])
   fields:
     EEGPlacementScheme: optional
     CapManufacturer: optional
@@ -128,7 +128,7 @@ MEGCoordsystemWithEEG:
       level: optional
       description_addendum: |
         See [Recording EEG simultaneously with MEG]
-        (/04-modality-specific-files/02-magnetoencephalography.html#recording-eeg-simultaneously-with-meg).
+        (/modality-specific-files/magnetoencephalography.html#recording-eeg-simultaneously-with-meg).
         Preferably the same as the `MEGCoordinateSystem`.
     EEGCoordinateUnits: optional
     EEGCoordinateSystemDescription:
@@ -136,7 +136,7 @@ MEGCoordsystemWithEEG:
       level_addendum: required if `EEGCoordinateSystem` is `Other`
       description_addendum: |
         See [Recording EEG simultaneously with MEG]
-        (/04-modality-specific-files/02-magnetoencephalography.html#recording-eeg-simultaneously-with-meg).
+        (/modality-specific-files/magnetoencephalography.html#recording-eeg-simultaneously-with-meg).
 
 # NOTE: The JSON isn't really a sidecar, so "sidecar.MEGCoordinateSystem" is misleading.
 MEGCoordsystemWithEEGMEGCoordinateSystem:
@@ -214,7 +214,7 @@ MEGCoordsystemAnatomicalMRI:
     - modality == "meg"
     - datatype == "meg"
     - suffix == "coordsystem"
-    - dataset.modalities.includes("anat")
+    - intersects(dataset.datatypes, ["anat"])
   fields:
     IntendedFor:
       level: optional

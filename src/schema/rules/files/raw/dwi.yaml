@@ -1,0 +1,38 @@
+---
+dwi:
+  suffixes:
+    - dwi
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+    - .bvec
+    - .bval
+  datatypes:
+    - dwi
+  entities:
+    subject: required
+    session: optional
+    acquisition: optional
+    reconstruction: optional
+    direction: optional
+    run: optional
+    part: optional
+
+sbref:
+  suffixes:
+    - sbref
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  datatypes:
+    - dwi
+  entities:
+    subject: required
+    session: optional
+    acquisition: optional
+    reconstruction: optional
+    direction: optional
+    run: optional
+    part: optional
