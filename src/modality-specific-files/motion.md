@@ -27,7 +27,7 @@ Template:
       └─ sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_tracksys-<label>_events.json
 ```
 
-A wide variety of motion capture systems are used in human research, resulting in different proprietary data formats. This BIDS extension deals common outputs from motion capture systems such as positions, orientations, or their time derivatives. For camera-based motion capture, the raw camera footage falls out of scope. To share motion data recorded using an optical system, typically the positions and orientations of objects derived from the video data is formatted in BIDS, not the raw camera footage.
+A wide variety of motion capture systems are used in human research, resulting in different proprietary data formats. This BIDS extension deals with common outputs from motion capture systems such as positions, orientations, or their time derivatives. 
 
 The extension is not limited to motion data in physical space but also encompasses simulated movement in virtual space, as far as these are comparable to movements in physical space. The extension is also not limited to the positions and orientations of human body parts. Other dynamic objects in the environment
 whose motion is tracked may be included as additional tracked objects.
