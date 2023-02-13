@@ -6,7 +6,7 @@ build:
     python: "3.10"
   jobs:
     pre_build:
-      - bst -v export --output src/schema.json
+      - bst export src/schema.json
 
 mkdocs:
   configuration: mkdocs.yml
