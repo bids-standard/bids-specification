@@ -3,8 +3,6 @@
 <!--Here insert link to actual manuscript?-->
 
 For information on how to cite this extension when referencing it in the context of the academic literature, please read [Citing BIDS](../introduction.md#citing-bids).
-on how to appropriately credit this extension when referring to it in the
-context of the academic literature.
 
 This specification has been used to format a number of [example Motion datasets](https://github.com/bids-standard/bids-examples), which can be used as helpful guidance when curating new datasets.
 
