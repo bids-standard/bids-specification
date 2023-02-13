@@ -587,6 +587,7 @@ epi:
     EPI scans with different phase encoding directions to estimate the underlying
     inhomogeneity/deformation map.
 eq:
+  value: eq
   name: Equations
   display_name: Equations
   description: |
@@ -685,6 +686,7 @@ optodes:
     Either a light emitting device, sometimes called a transmitter, or a photoelectric transducer, sometimes called a
     receiver.
 param:
+  value: param
   name: Parameters
   display_name: Parameters
   description: |
