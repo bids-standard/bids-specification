@@ -588,6 +588,7 @@ epi:
     inhomogeneity/deformation map.
 eq:
   name: Equations
+  display_name: Equations
   description: |
     Mathematical equations in [LEMS](http://lems.github.io/LEMS) format.
 events:
@@ -675,6 +676,7 @@ meg:
     with which the data was collected.
 param:
   name: Parameters
+  display_name: Parameters
   description: |
     Parameters in [LEMS](http://lems.github.io/LEMS) format.
 pet:

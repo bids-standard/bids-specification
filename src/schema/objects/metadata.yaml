@@ -468,6 +468,7 @@ Columns:
     type: string
 Connectivity:
   name: Connectivity
+  display_name: Connectivity
   description: |
     Reference to one or more `_conndata-network_connectivity.tsv` file(s) where the
     structural connectivity used to produce a simulation result is specified.
@@ -1802,6 +1803,7 @@ MTState:
   type: boolean
 MachineCodeRepository:
   name: MachineCodeRepository
+  display_name: MachineCodeRepository
   description: |
     Either reference to modality agnostic folder "code" or
     [URI](/02-common-principles.html#uniform-resource-indicator) to a publicly
@@ -1932,6 +1934,7 @@ ModeOfAdministration:
   type: string
 ModelEq:
   name: ModelEq
+  display_name: ModelEq
   description: |
     Reference to one or more `_eq.xml` file(s) where the computational model used to
     produce a simulation result is specified in [LEMS](http://lems.github.io/LEMS) format.
@@ -1944,6 +1947,7 @@ ModelEq:
       format: dataset_relative
 ModelParam:
   name: ModelParam
+  display_name: ModelParam
   description: |
     Reference to one or more `_param.xml` file(s) where the parameter setting used to
     produce a simulation result is specified in [LEMS](http://lems.github.io/LEMS) format.
@@ -2838,6 +2842,7 @@ SoftwareVersions:
   type: string
 SourceCodeRepository:
   name: SourceCodeRepository
+  display_name: SourceCodeRepository
   description: |
     Either reference to modality agnostic folder "code" or
     [URI](/02-common-principles.html#uniform-resource-indicator) to a publicly

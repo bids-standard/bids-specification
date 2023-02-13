@@ -29,6 +29,6 @@ micr:
   description: |
     Data acquired with a microscope.
 comp:
-  name: Computational Modelling
+  display_name: Computational Modelling
   description: |
     Computational models and data simulated with computational models.

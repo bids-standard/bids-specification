@@ -44,7 +44,8 @@ micr:
   display_name: Microscopy
   description: Microscopy
 model:
-  name: Computational models
+  value: model
+  display_name: Computational models
   description: |
     Mathematical equations and parameter settings in [LEMS](http://lems.github.io/LEMS) format.
 perf:
