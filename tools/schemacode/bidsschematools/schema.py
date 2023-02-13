@@ -248,29 +248,25 @@ def filter_schema(schema, **kwargs):
     return new_schema
 
 
-def export(schema_path, output):
+def export(output, schema_path=None):
     """
     Export BIDS schema to JSON document.
 
     Parameters
     ----------
-    schema : str
-        A path to the schema directory you wish to export to JSON.
-        If the path starts with the string "{module_path}" it will be expanded relative to the
-        module path.
     output : str
-        A path which to write a JSON exported schema to.
+        A path which to write a JSON exported schema to, or `-` if the output is to be written
+        to stdout.
+    schema : str or None, optional
+        A path to the schema directory you wish to export to JSON.
 
     Examples
     --------
     """
     logger = logging.getLogger("bidsschematools")
 
-    # For schema location relative to module path.
-    if schema_path.startswith("{module_path}"):
-        module_path = os.path.abspath(os.path.dirname(__file__))
-        schema_path = schema_path.format(module_path=module_path)
-    schema_path = os.path.abspath(os.path.expanduser(schema_path))
+    if schema_path:
+        schema_path = os.path.abspath(os.path.expanduser(schema_path))
 
     schema = load_schema(schema_path)
     text = _jsonify(schema)
