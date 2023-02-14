@@ -34,9 +34,9 @@ motionTaskInformation:
   fields:
     TaskName:
     level: required
-      description_addendum: |
-        Task names for motion datasets usually contain information
-        about the specific motion task (for example, "`walking`").
+    description_addendum: |
+      Task names for motion datasets usually contain information
+      about the specific motion task (for example, "`walking`").
     TaskDescription: recommended
     Instructions: recommended
 
