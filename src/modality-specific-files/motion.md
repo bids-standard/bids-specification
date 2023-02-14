@@ -51,13 +51,19 @@ The onsets in the event file can be related to the starting time of the tracking
 
 ### Sidecar JSON (`*_motion.json`)
 
-Generic fields (shared with other BIDS modalities) MUST be present:
+#### Task information
 
-{{ MACROS___make_sidecar_table("motion.motionGeneric") }}
+{{ MACROS___make_sidecar_table("motion.motionHardware") }}
 
-Generic fields (shared with other BIDS modalities) SHOULD be present:
+#### Hardware information
 
-{{ MACROS___make_sidecar_table("motion.motionRecommended") }}
+{{ MACROS___make_sidecar_table("motion.motionHardware") }}
+
+#### Insitution information
+
+{{ MACROS___make_sidecar_table("motion.motionInstitutionInformation") }}
+
+#### Motion specific fiels
 
 Motion specific fields MUST be present:
 

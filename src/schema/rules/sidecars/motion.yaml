@@ -5,19 +5,18 @@
 # Assumptions: top-to-bottom overrides is sufficient logic
 
 ---
-motionGeneric:
+motionHardware:
   selectors:
     - modality == "motion"
     - datatype == "motion"
     - suffix == "motion"
   fields:
-    TaskName:
-      level: required
-      description_addendum: |
-        Task names for motion datasets usually contain information
-        about the specific motion task (for example, "`walking`").
+    DeviceSerialNumber: optional
+    Manufacturer: optional
+    ManufacturersModelName: optional
+    SoftwareVersions: optional
 
-motionRecommended:
+motionInstitutionInformation:
   selectors:
     - modality == "motion"
     - datatype == "motion"
@@ -26,12 +25,20 @@ motionRecommended:
     InstitutionName: recommended
     InstitutionAddress: recommended
     InstitutionalDepartmentName: recommended
+
+motionTaskInformation:
+  selectors:
+    - modality == "motion"
+    - datatype == "motion"
+    - suffix == "motion"
+  fields:
+    TaskName:
+    level: required
+      description_addendum: |
+        Task names for motion datasets usually contain information
+        about the specific motion task (for example, "`walking`").
     TaskDescription: recommended
     Instructions: recommended
-    DeviceSerialNumber: optional
-    Manufacturer: optional
-    ManufacturersModelName: optional
-    SoftwareVersions: optional
 
 motionRequired:
   selectors:
@@ -48,7 +55,7 @@ motionRequired:
         frequency SHOULD be specified in the "`_tracksys-<label>_channels.tsv`" file.
     TrackingSystemName: required
 
-motionMoreRecommended:
+motionRecommended:
   selectors:
     - modality == "motion"
     - datatype == "motion"
