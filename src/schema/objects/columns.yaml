@@ -312,8 +312,8 @@ component:
   name: component
   display_name: Component
   description: |
-    Description of the spatial axis or label of quaternion component associated with the channel. 
-    For example, `x`,`y`,`z` for position channels, 
+    Description of the spatial axis or label of quaternion component associated with the channel.
+    For example, `x`,`y`,`z` for position channels,
     or `quat_x`, `quat_y`, `quat_z`, `quat_w` for quaternion orientation channels.
   type: string
   enum:
