@@ -71,7 +71,7 @@ Motion specific fields MUST be present:
 
 Motion specific fields SHOULD be present:
 
-{{ MACROS___make_sidecar_table("motion.motionMoreRecommended") }}
+{{ MACROS___make_sidecar_table("motion.motionRecommended") }}
 
 Restricted keyword list for field `RotationRule`:
 
