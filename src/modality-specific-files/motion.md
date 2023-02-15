@@ -17,37 +17,35 @@ suffixes=["motion", "channels", "events"])
 A wide variety of motion capture systems are used in human research, resulting in different proprietary data formats.
 This BIDS extension deals with common outputs from motion capture systems such as positions, orientations, or their time derivatives.
 
-The extension is not limited to motion data in physical space but also encompasses simulated movement in virtual space, as far as these are comparable to movements in physical space.
-The extension is also not limited to the positions and orientations of human body parts.
-Other dynamic objects in the environment whose motion is tracked may be included as additional tracked objects.
-This specification does not include raw camera fotages, either from camera-based motion captures or optical system recordigns
-(where typically the positions and orientations of objects derived from the video data are formatted in BIDS, but not the raw camera footage).
+The extension is not limited to motion data in physical space but also encompasses simulated movement in virtual space.
+Other dynamic objects than human body parts whose motion is tracked may as well be included as tracked objects.
+This specification does not include raw camera footages (from camera-based or optical motion capture recordings), but includes the positions or orientations computed computed using such data.
+
+
 In this specification, positions (and their time derivatives) are represented as Cartesian coordinates along up to three spatial axes,
 and orientations (and their time derivatives) are represented as Euler angles.
-However, to cover recordings from computer graphics applications (for example, virtual 3D motion or immersive virtual reality recording in physical space),
-orientations are also allowed to be represented as quaternions.
+While proper Euler angles consist of three rotations applied to two spatial axes, here the term 'Euler angles' is used informally to refer to a rotation sequence about three distinct spatial axes, as in Tait-Bryan angles. To cover recordings from computer graphics applications (for example, virtual 3D motion or immersive virtual reality recording in physical space),
+orientations may be represented as quaternions.
 In this case, the quaternion channels can be distinguished from channels containing Euler angles based on the entries in columns `component` and `units` in the `*_channels.tsv` file.
 See subsection on `Channels description` for further details.
 
-Motion data from one tracking system MUST be stored in a `*_motion.tsv` file.
-A tracking system is defined as a group of motion channels that share hardware properties (the recording device) and software properties (the recording duration and sampling rate).
+Motion data from one tracking system MUST be stored in a single `*_motion.tsv` file.
+A tracking system is defined as a group of motion channels that share hardware properties (the recording device) and software properties (the recording duration and number of samples).
 For example, if the position time series of multiple optical markers is processed via one recording unit, this can be defined as a single tracking system.
 Note that it is not uncommon to have multiple tracking systems to record at the same time.
-Each tracking system should have its own `*tracksys-<label>_motion.tsv` file.
-One column in the `*tracksys-<label>_motion.tsv` file is intended to represent one data channel.
-The ordering of columns has to match the order of rows in the `*channels.tsv` file for unambiguous assignment.
+Each tracking system has its own `*tracksys-<label>_motion.tsv` file.
+One column in the `*tracksys-<label>_motion.tsv` file represents one data channel.
+The ordering of columns MUST match the order of rows in the `*channels.tsv` file for unambiguous assignment.
 All relevant metadata about a tracking systems is stored in accompanying sidecar `*tracksys-<label>_motion.json` file.
 The source data from each tracking system in their original format, if different from `.tsv`,
 can be stored in the [`/sourcedata` directory](../common-principles.md#source-vs-raw-vs-derived-data).
 The original data format MAY hold more metadata than currently specified in the `*_motion.json` file.
 
-When multiple tracking systems are used to record motion or motion capture is used alongside the recording of other BIDS modalities, it is possible to temporally synchronise the recordings.
-A guideline to time synchronization between multiple modalities using recording onset and event time offset is described later in the specifications.
-To store the differences between recording onsets, `scans.tsv` files can be used.
+When multiple tracking systems are used to record motion or motion capture is used alongside the recording of other BIDS modalities, it may be necessary to temporally synchronize the recordings. To save the differences between recording onsets, column [`acq_time`](https://bids-specification.readthedocs.io/en/stable/glossary.html#objects.columns.acq_time__scans) of the [`scans.tsv`](https://bids-specification.readthedocs.io/en/stable/03-modality-agnostic-files.html#scans-file) file can be used.
 
-To store events which relate to a tracking system, it is recommended to use designated events files per tracking system.
-Such an events file name would include the tracksys key and look like `sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_tracksys-<label>_events.tsv`.
-The onsets in the event file can be related to the starting time of the tracking system in the `scans.tsv` file.
+
+To store events alongside motion data when there are multiple tracking systems simultaneously in use, it is recommended to assign a tracking system to the events file. 
+Such an events file name would include the `tracksys` key and look like `sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_tracksys-<label>_events.tsv`. Event latencies can then be related to motion samples of multiple tracking systems also by using `acq_time` column entries in the `scans.tsv`. The same principle applies when the events file is saved alongside a simultaneously recorded non-motion data (for example EEG).
 
 ### Sidecar JSON (`*_motion.json`)
 
@@ -76,20 +74,20 @@ Motion specific fields SHOULD be present:
 Restricted keyword list for field `RotationRule`:
 
 | **Keyword** | **Description**                                                                                                                                        |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| left-hand   | Rotation is following the left hand convention, such that the left thumb points in a direction, and the fingers curl along the orientation rotation.   |
-| right-hand  | Rotation is following the right hand convention, such that the right thumb points in a direction, and the fingers curl along the orientation rotation. |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------                           |
+| left-hand   | Rotation is following the left-hand convention, such that the left thumb points to the positive end of the spatial axis, and the fingers curl along the orientation rotation.     |
+| right-hand  | Rotation is following the right-hand convention, such that the right thumb points to the positive end of the spatial axis, and the fingers curl along the orientation rotation. |
 
 Restricted keyword list for field `RotationOrder`:
 
-| **Keyword** | **Description**                   |
-| ----------- | --------------------------------- |
-| XYZ         | Sequence to follow for rotations. |
-| XZY         | Sequence to follow for rotations. |
-| YXZ         | Sequence to follow for rotations. |
-| YZX         | Sequence to follow for rotations. |
-| ZXY         | Sequence to follow for rotations. |
-| ZYX         | Sequence to follow for rotations. |
+| **Keyword** | **Description**                                                                         |
+| ----------- | --------------------------------------------------------------------------------------- |
+| XYZ         | Sequence in which elemental rotations are applied to define an orientation in 3D space. |
+| XZY         | Sequence in which elemental rotations are applied to define an orientation in 3D space. |
+| YXZ         | Sequence in which elemental rotations are applied to define an orientation in 3D space. |
+| YZX         | Sequence in which elemental rotations are applied to define an orientation in 3D space. |
+| ZXY         | Sequence in which elemental rotations are applied to define an orientation in 3D space. |
+| ZYX         | Sequence in which elemental rotations are applied to define an orientation in 3D space. |
 
 Example `*_tracksys-<label>_motion.json`:
 
@@ -130,7 +128,6 @@ All specified tracking systems can share `tracked_point` defined in `*_channels.
 Note that the onsets of the recordings SHOULD be stored in the study key file [(`scans.tsv`)](../modality-agnostic-files.md#scans-file).
 Here, date-time information MUST be expressed as indicated in [Units](../common-principles.md#units).
 The [`scans.tsv`](../modality-agnostic-files.md#scans-file) file contains the filename and the acquisition time of a recording, which can be used to synchronize multiple recordings.
-However, synchronization information between the two systems can also be stored using channel `latency` in the `*_motion.tsv` if available.
 
 ## Channels description (`*_channels.tsv`)
 
