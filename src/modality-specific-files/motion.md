@@ -170,17 +170,17 @@ Restricted keyword list for column `component`. When using quaternions to repres
 
 Restricted keyword list for column `type` in alphabetic order (shared with the other BIDS modalities?). Note that upper-case is REQUIRED:
 
-| **Keyword** | **Description**                                                                                                                                                                                                   |
-| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ACCEL       | Accelerometer channel, one channel for each spatial axis. An extra column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).                                                       |
-| ANGACC      | Angular acceleration channel, one channel for each spatial axis. An extra column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).                                                | 
-| GYRO        | Gyrometer channel, one channel for each spatial axis. An extra column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).                                                           |
-| LATENCY     | Latency of samples in seconds from recording onset.                                                                                                                                                               |
-| MAGN        | Magnetic field strength.                                                                                                                                                                                          |
-| MISC        | Miscellaneous channels.                                                                                                                                                                                           |
-| ORNT        | Orientation channel, one channel for each spatial axis or quaternion component. An extra column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, z, quat_x, quat_y, quat_z, or quat_w). |
-| POS         | Position in space, one channel for each spatial axis. An extra column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z).                                                            |
-| VEL         | Velocity, one channel for each spatial axis. An extra column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z).                                                                     |
+| **Keyword** | **Description**                                                                                                                                                                                                              |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ACCEL       | Accelerometer channel, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).                                                                           |
+| ANGACC      | Angular acceleration channel, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).                                                                    | 
+| GYRO        | Gyrometer channel, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).                                                                               |
+| LATENCY     | Latency of samples in seconds from recording onset.                                                                                                                                                                          |
+| MAGN        | Magnetic field strength, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z)                                                                           |
+| MISC        | Miscellaneous channels.                                                                                                                                                                                                      |
+| ORNT        | Orientation channel, one channel for each spatial axis or quaternion component. Column `component` for the axis or quaternion label MUST be added to the `*_channels.tsv` file (x, y, z, quat_x, quat_y, quat_z, or quat_w). |
+| POS         | Position in space, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z).                                                                                |
+| VEL         | Velocity, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z).                                                                                         |
 
 Example `*channels.tsv`:
 
