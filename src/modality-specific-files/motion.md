@@ -17,7 +17,7 @@ suffixes=["motion", "channels", "events"])
 A wide variety of motion capture systems are used in human research, resulting in different proprietary data formats.
 This BIDS extension deals with common outputs from motion capture systems such as positions, orientations, or their time derivatives.
 
-The extension is not limited to motion data in physical space but also encompasses simulated movement in virtual space, as far as these are comparable to movements in physical space.
+The extension is not limited to motion data in physical space but also encompasses simulated movement in virtual space.
 Other dynamic objects than human body parts whose motion is tracked may as well be included as tracked objects.
 This specification does not include raw camera footages (from camera-based or optical motion capture recordings), but includes the positions or orientations computed computed using such data.
 In this specification, positions (and their time derivatives) are represented as Cartesian coordinates along up to three spatial axes,
@@ -39,11 +39,11 @@ The source data from each tracking system in their original format, if different
 can be stored in the [`/sourcedata` directory](../common-principles.md#source-vs-raw-vs-derived-data).
 The original data format MAY hold more metadata than currently specified in the `*_motion.json` file.
 
-When multiple tracking systems are used to record motion or motion capture is used alongside the recording of other BIDS modalities, it may be necessary to temporally synchronise the recordings. To save the differences between recording onsets, column [acq_time](https://bids-specification.readthedocs.io/en/stable/glossary.html#objects.columns.acq_time__scans) of the `scans.tsv` file can be used.
+When multiple tracking systems are used to record motion or motion capture is used alongside the recording of other BIDS modalities, it may be necessary to temporally synchronize the recordings. To save the differences between recording onsets, column [`acq_time`](https://bids-specification.readthedocs.io/en/stable/glossary.html#objects.columns.acq_time__scans) of the [`scans.tsv`](https://bids-specification.readthedocs.io/en/stable/03-modality-agnostic-files.html#scans-file) file can be used.
 
 
-To store events alongside motion data when there are multiple tracking systems simulatenously in use, it is recommended to designate a tracking system to the events file. 
-Such an events file name would include the `tracksys` key and look like `sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_tracksys-<label>_events.tsv`. Event latencies can then be related to motion samples of multiple tracking systems also by using `acq_time` column entries in the `scans.tsv`. The same principle applies when the events file is saved alongside a simulatneously recorded non-motion data (for example EEG).
+To store events alongside motion data when there are multiple tracking systems simultaneously in use, it is recommended to assign a tracking system to the events file. 
+Such an events file name would include the `tracksys` key and look like `sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_tracksys-<label>_events.tsv`. Event latencies can then be related to motion samples of multiple tracking systems also by using `acq_time` column entries in the `scans.tsv`. The same principle applies when the events file is saved alongside a simultaneously recorded non-motion data (for example EEG).
 
 ### Sidecar JSON (`*_motion.json`)
 
@@ -72,20 +72,20 @@ Motion specific fields SHOULD be present:
 Restricted keyword list for field `RotationRule`:
 
 | **Keyword** | **Description**                                                                                                                                        |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| left-hand   | Rotation is following the left hand convention, such that the left thumb points in a direction, and the fingers curl along the orientation rotation.   |
-| right-hand  | Rotation is following the right hand convention, such that the right thumb points in a direction, and the fingers curl along the orientation rotation. |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------                           |
+| left-hand   | Rotation is following the left-hand convention, such that the left thumb points to the positive end of the spatial axis, and the fingers curl along the orientation rotation.     |
+| right-hand  | Rotation is following the right-hand convention, such that the right thumb points to the positive end of the spatial axis, and the fingers curl along the orientation rotation. |
 
 Restricted keyword list for field `RotationOrder`:
 
-| **Keyword** | **Description**                   |
-| ----------- | --------------------------------- |
-| XYZ         | Sequence to follow for rotations. |
-| XZY         | Sequence to follow for rotations. |
-| YXZ         | Sequence to follow for rotations. |
-| YZX         | Sequence to follow for rotations. |
-| ZXY         | Sequence to follow for rotations. |
-| ZYX         | Sequence to follow for rotations. |
+| **Keyword** | **Description**                                                                         |
+| ----------- | --------------------------------------------------------------------------------------- |
+| XYZ         | Sequence in which elemental rotations are applied to define an orientation in 3D space. |
+| XZY         | Sequence in which elemental rotations are applied to define an orientation in 3D space. |
+| YXZ         | Sequence in which elemental rotations are applied to define an orientation in 3D space. |
+| YZX         | Sequence in which elemental rotations are applied to define an orientation in 3D space. |
+| ZXY         | Sequence in which elemental rotations are applied to define an orientation in 3D space. |
+| ZYX         | Sequence in which elemental rotations are applied to define an orientation in 3D space. |
 
 Example `*_tracksys-<label>_motion.json`:
 
@@ -126,7 +126,6 @@ All specified tracking systems can share `tracked_point` defined in `*_channels.
 Note that the onsets of the recordings SHOULD be stored in the study key file [(`scans.tsv`)](../modality-agnostic-files.md#scans-file).
 Here, date-time information MUST be expressed as indicated in [Units](../common-principles.md#units).
 The [`scans.tsv`](../modality-agnostic-files.md#scans-file) file contains the filename and the acquisition time of a recording, which can be used to synchronize multiple recordings.
-However, synchronization information between the two systems can also be stored using channel `latency` in the `*_motion.tsv` if available.
 
 ## Channels description (`*_channels.tsv`)
 
