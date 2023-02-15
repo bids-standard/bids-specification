@@ -15,17 +15,16 @@ suffixes=["motion", "channels", "events"])
 }}
 
 A wide variety of motion capture systems are used in human research, resulting in different proprietary data formats.
-This BIDS extension deals with common outputs from motion capture systems such as positions, orientations, or their time derivatives.
-
-The extension is not limited to motion data in physical space but also encompasses simulated movement in virtual space.
-Other dynamic objects than human body parts whose motion is tracked may as well be included as tracked objects.
-This specification does not include raw camera footages (from camera-based or optical motion capture recordings), but includes the positions or orientations computed computed using such data.
+This BIDS extension deals with common outputs from motion capture systems, mainly time series of spatial quantities such as positions, orientations, or their time derivatives.
 
 
-In this specification, positions (and their time derivatives) are represented as Cartesian coordinates along up to three spatial axes,
-and orientations (and their time derivatives) are represented as Euler angles.
+The scope is not limited to motion data in physical space but also encompasses simulated movement in virtual space. When camera-based or optical motion capture recordings are shared, this specification applies to the positions or orientations computed computed using such data, not the raw video footage.
+
+
+Positions (and their time derivatives) are to be represented as Cartesian coordinates along up to three spatial axes,
+and orientations (and their time derivatives) as Euler angles.
 While proper Euler angles consist of three rotations applied to two spatial axes, here the term 'Euler angles' is used informally to refer to a rotation sequence about three distinct spatial axes, as in Tait-Bryan angles. To cover recordings from computer graphics applications (for example, virtual 3D motion or immersive virtual reality recording in physical space),
-orientations may be represented as quaternions.
+orientations may also be represented as quaternions.
 In this case, the quaternion channels can be distinguished from channels containing Euler angles based on the entries in columns `component` and `units` in the `*_channels.tsv` file.
 See subsection on `Channels description` for further details.
 
