@@ -157,16 +157,16 @@ The columns of the channels description table stored in `*_channels.tsv` are:
 
 Restricted keyword list for column `component`. When using quaternions to represent orientations, the axial components that corresponds to the three spatial axes must be specified as "quat_x", "quat_y", "quat_z", and the non-axial component as "quat_w".
 
-| **Keyword** | **Description**                                                                                                                                            |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| x           | position along the X-axis, or rotation about the X-axis among the Euler angles that represent the orientation, or magnetic field strength along the X-axis |
-| y           | position along the Y-axis or rotation about the Y-axis among the Euler angles that represent the orientation, or magnetic field strength along the Y-axis  |
-| z           | position along the Z-axis or rotation about the Z-axis among the Euler angles that represent the orientation, or magnetic field strength along the Z-axis  |
-| quat_x      | quaternion component associated with the X-axis                                                                                                            |
-| quat_y      | quaternion component associated with the Y-axis                                                                                                            |
-| quat_z      | quaternion component associated with the Z-axis                                                                                                            |
-| quat_w      | non-axial quaternion component                                                                                                                             |
-| n/a         | channels that have no corresponding spatial axis                                                                                                           |
+| **Keyword** | **Description**                                                                                                                                             |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| x           | Position along the X-axis, or rotation about the X-axis among the Euler angles that represent the orientation, or magnetic field strength along the X-axis. |
+| y           | Position along the Y-axis or rotation about the Y-axis among the Euler angles that represent the orientation, or magnetic field strength along the Y-axis.  |
+| z           | Position along the Z-axis or rotation about the Z-axis among the Euler angles that represent the orientation, or magnetic field strength along the Z-axis.  |
+| quat_x      | Quaternion component associated with the X-axis.                                                                                                            |
+| quat_y      | Quaternion component associated with the Y-axis.                                                                                                            |
+| quat_z      | Quaternion component associated with the Z-axis.                                                                                                            |
+| quat_w      | Non-axial quaternion component.                                                                                                                             |
+| n/a         | Channels that have no corresponding spatial axis.                                                                                                           |
 
 Restricted keyword list for column `type` in alphabetic order (shared with the other BIDS modalities?). Note that upper-case is REQUIRED:
 
