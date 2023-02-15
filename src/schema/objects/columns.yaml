@@ -67,21 +67,21 @@ component:
     - 'n/a'
 component__channels:
   name: component
-  display_name: Component channel
+  display_name: Component
   description: |
-    Component of the representational system described in `*_motion.json` that the
-    channel contains.
-  anyOf:
-    - type: string
-      enum:
-        - x
-        - y
-        - z
-        - quat_x
-        - quat_y
-        - quat_z
-        - quat_w
-        - n/a
+    Description of the spatial axis or label of quaternion component associated with the channel.
+    For example, `x`,`y`,`z` for position channels,
+    or `quat_x`, `quat_y`, `quat_z`, `quat_w` for quaternion orientation channels.
+  type: string
+  enum:
+    - x
+    - y
+    - z
+    - quat_x
+    - quat_y
+    - quat_z
+    - quat_w
+    - n/a
 detector__channels:
   name: detector
   display_name: Detector Name
@@ -338,23 +338,6 @@ onset:
     acquired data point.
   type: number
   unit: s
-component:
-  name: component
-  display_name: Component
-  description: |
-    Description of the spatial axis or label of quaternion component associated with the channel.
-    For example, `x`,`y`,`z` for position channels,
-    or `quat_x`, `quat_y`, `quat_z`, `quat_w` for quaternion orientation channels.
-  type: string
-  enum:
-    - x
-    - y
-    - z
-    - quat_x
-    - quat_y
-    - quat_z
-    - quat_w
-    - n/a
 pathology:
   name: pathology
   display_name: Pathology
