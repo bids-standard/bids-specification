@@ -16,7 +16,8 @@ ReadmeFileSmall:
   issue:
     code: README_FILE_SMALL
     message: |
-      The recommended file /README is very small. Please consider expanding it with additional information about the dataset.
+      The recommended file /README is very small. Please consider expanding it
+      with additional information about the dataset.
     level: warning
   selectors:
     - match(path, '^README')

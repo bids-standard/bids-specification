@@ -12,17 +12,14 @@ PixelSizeInconsistent:
     - sidecar.PixelSizeUnit != null
   checks:
     - |
-      ome.PhysicalSizeX * (
-        10 ** (3 * (index(["mm", "um", "nm"], sidecar.PixelSizeUnit) - index(["mm", "um", "nm"], ome.PhysicalSizeXUnit)))
-      ) == sidecar.PixelSize[0]
+      ome.PhysicalSizeX * 10 ** (-3 * index(["mm", "um", "nm"], ome.PhysicalSizeXUnit))
+      == sidecar.PixelSize[0] * 10 ** (-3 * index(["mm", "um", "nm"], sidecar.PixelSizeUnit))
     - |
-      ome.PhysicalSizeY * (
-        10 ** (3 * (index(["mm", "um", "nm"], sidecar.PixelSizeUnit) - index(["mm", "um", "nm"], ome.PhysicalSizeYUnit)))
-      ) == sidecar.PixelSize[1]
+      ome.PhysicalSizeY * 10 ** (-3 * index(["mm", "um", "nm"], ome.PhysicalSizeYUnit))
+      == sidecar.PixelSize[1] * 10 ** (-3 * index(["mm", "um", "nm"], sidecar.PixelSizeUnit))
     - |
-      ome.PhysicalSizeZ * (
-        10 ** (3 * (index(["mm", "um", "nm"], sidecar.PixelSizeUnit) - index(["mm", "um", "nm"], ome.PhysicalSizeZUnit)))
-      ) == sidecar.PixelSize[2]
+      ome.PhysicalSizeZ * 10 ** (-3 * index(["mm", "um", "nm"], ome.PhysicalSizeZUnit))
+      == sidecar.PixelSize[2] * 10 ** (-3 * index(["mm", "um", "nm"], sidecar.PixelSizeUnit))
 
 # 227
 InconsistentTiffExtension:
