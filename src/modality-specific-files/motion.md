@@ -91,7 +91,7 @@ Restricted keyword list for field `RotationOrder`:
 | ZXY         | Sequence to follow for rotations. |
 | ZYX         | Sequence to follow for rotations. |
 
-Example `*_tracksys-<label>_motion.json`:
+#### Example `*_tracksys-<label>_motion.json`:
 
 ```JSON
 {
@@ -155,6 +155,8 @@ The columns of the channels description table stored in `*_channels.tsv` are:
 
 {{ MACROS___make_columns_table("motion.motionChannels") }}
 
+### Restricted keyword list for channel component:
+
 Restricted keyword list for column `component`. When using quaternions to represent orientations, the axial components that corresponds to the three spatial axes must be specified as "quat_x", "quat_y", "quat_z", and the non-axial component as "quat_w".
 
 | **Keyword** | **Description**                                                                                                                                            |
@@ -167,6 +169,8 @@ Restricted keyword list for column `component`. When using quaternions to repres
 | quat_z      | quaternion component associated with the Z-axis                                                                                                            |
 | quat_w      | non-axial quaternion component                                                                                                                             |
 | n/a         | channels that have no corresponding spatial axis                                                                                                           |
+
+### Restricted keyword list for channel type:
 
 Restricted keyword list for column `type` in alphabetic order (shared with the other BIDS modalities?). Note that upper-case is REQUIRED:
 
@@ -182,7 +186,7 @@ Restricted keyword list for column `type` in alphabetic order (shared with the o
 | POS         | Position in space             |
 | VEL         | Velocity                      |
 
-Example `*channels.tsv`:
+### Example `*channels.tsv`:
 
 ```Text
 name        tracked_point   type  component units
