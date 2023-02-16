@@ -53,7 +53,7 @@ The onsets in the event file can be related to the starting time of the tracking
 
 #### Task information
 
-{{ MACROS___make_sidecar_table("motion.motionHardware") }}
+{{ MACROS___make_sidecar_table("motion.motionTaskInformation") }}
 
 #### Hardware information
 
