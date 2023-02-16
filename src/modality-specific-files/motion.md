@@ -185,18 +185,18 @@ Restricted keyword list for column `type` in alphabetic order (shared with the o
 ### Example `*_channels.tsv`
 
 ```Text
-name        tracked_point   type  component units
-t1_acc_x    LeftFoot        ACCEL x         m/s^2
-t1_acc_y    LeftFoot        ACCEL y         m/s^2
-t1_acc_z    LeftFoot        ACCEL z         m/s^2
-t1_gyro_x   LeftFoot        GYRO  x         rad/s
-t1_gyro_y   LeftFoot        GYRO  y         rad/s
-t1_gyro_z   LeftFoot        GYRO  z         rad/s
+name        component   type   tracked_point   units
+t1_acc_x    x           ACCEL  LeftFoot        m/s^2
+t1_acc_y    y           ACCEL  LeftFoot        m/s^2
+t1_acc_z    z           ACCEL  LeftFoot        m/s^2
+t1_gyro_x   x           GYRO   LeftFoot        rad/s
+t1_gyro_y   y           GYRO   LeftFoot        rad/s
+t1_gyro_z   z           GYRO   LeftFoot        rad/s
 …
-t2_acc_x    RightWrist      ACCEL x         m/s^2
-t2_acc_y    RightWrist      ACCEL y         m/s^2
-t2_acc_z    RightWrist      ACCEL z         m/s^2
-t2_gyro_x   RightWrist      GYRO  x         rad/s
-t2_gyro_y   RightWrist      GYRO  y         rad/s
-t2_gyro_z   RightWrist      GYRO  z         rad/s
+t2_acc_x    x           ACCEL  RightWrist      m/s^2
+t2_acc_y    y           ACCEL  RightWrist      m/s^2
+t2_acc_z    z           ACCEL  RightWrist      m/s^2
+t2_gyro_x   x           GYRO   RightWrist      rad/s
+t2_gyro_y   y           GYRO   RightWrist      rad/s
+t2_gyro_z   z           GYRO   RightWrist      rad/s
 ```
