@@ -77,13 +77,12 @@ motionRecommended:
     SamplingFrequencyEffective:
       level: recommended
       description_addendum: |
-        If not available, the field takes the same value as
-        field "`SamplingFrequency`".
+        If not available, the field takes value `n/a`.
     SpatialAxes: recommended
     StartTime:
       level: optional
       description_addendum: |
-        Can also be found in "`*scans.tsv`".
+        Can also be found in "`*_scans.tsv`".
     SubjectArtefactDescription: recommended
     TrackedPointsCount: recommended
     VELChannelCount: recommended
