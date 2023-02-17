@@ -197,13 +197,13 @@ Example: The following `dataset_description.json` file specifies that the
 [HED8.1.0.xml](https://github.com/hed-standard/hed-schemas/blob/main/standard_schema/hedxml/HED8.1.0.xml)
 standard schema should be used along with the
 SCORE library for clinical neurological annotation located at
-[HED_score_0.0.1.xml](https://github.com/hed-standard/hed-schemas/blob/main/library_schemas/score/hedxml/HED_score_0.0.1.xml).
+[HED_score_1.0.0.xml](https://github.com/hed-standard/hed-schemas/blob/main/library_schemas/score/hedxml/HED_score_1.0.0.xml).
 
 ```JSON
 {
   "Name": "A great experiment",
   "BIDSVersion": "1.7.0",
-  "HEDVersion": ["8.1.0", "sc:score_0.0.1"]
+  "HEDVersion": ["8.1.0", "sc:score_1.0.0"]
 }
 ```
 The `sc:` is a user-chosen prefixes used to distinguish the sources
@@ -227,7 +227,7 @@ The following `dataset_description.json` indicates that only the SCORE library v
 {
   "Name": "A great experiment",
   "BIDSVersion": "1.7.0",
-  "HEDVersion": "score_0.0.1"
+  "HEDVersion": "score_1.0.0"
 }
 ```
 
