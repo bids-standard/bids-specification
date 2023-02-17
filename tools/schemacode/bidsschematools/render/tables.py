@@ -44,7 +44,7 @@ def _make_object_table(
         information to be added to the object's description).
     table_type : str
         The name of the field type. For example, "metadata".
-    src_path : str | None
+    src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
     tablefmt : string, optional
@@ -153,7 +153,7 @@ def _make_table_from_rule(
         Qualified name(s) in schema.rules.tabular_data (for "columns" tables) or
         schema.rules.sidecars (for "metadata" files).
         Only one item may be provided for columns tables.
-    src_path : str | None
+    src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
     tablefmt : string, optional
@@ -285,7 +285,7 @@ def make_entity_table(schema, tablefmt="github", src_path=None, **kwargs):
         Directory containing schema, which is stored in yaml files.
     tablefmt : string, optional
         The target table format. The default is "github" (GitHub format).
-    src_path : str | None
+    src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
 
@@ -356,7 +356,7 @@ def make_suffix_table(schema, suffixes, src_path=None, tablefmt="github"):
     ----------
     schema : dict
     suffixes : list of str
-    src_path : str | None
+    src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
     tablefmt : str
@@ -418,7 +418,7 @@ def make_sidecar_table(
         The BIDS schema.
     table_name : str or list of str
         Qualified name(s) in schema.rules.sidecars
-    src_path : str | None
+    src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
     tablefmt : string, optional
@@ -456,7 +456,7 @@ def make_metadata_table(schema, field_info, src_path=None, tablefmt="github"):
         and the second string is additional table-specific information
         about the metadata field that will be appended to the field's base
         definition from the schema.
-    src_path : str | None
+    src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
     tablefmt : string, optional
@@ -513,7 +513,7 @@ def make_subobject_table(
         The BIDS schema.
     object_name : str
         Qualified name in schema.objects
-    src_path : str | None
+    src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
     tablefmt : string, optional
@@ -565,7 +565,7 @@ def make_columns_table(
     table_name : str
         Qualified name in schema.rules.tabular_data.
         Only one table may be provided in this function.
-    src_path : str | None
+    src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
     tablefmt : string, optional

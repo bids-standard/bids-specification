@@ -19,13 +19,6 @@ class BIDSSchemaError(Exception):
     """Errors indicating invalid values in the schema itself"""
 
 
-def _get_entry_name(path):
-    if path.suffix == ".yaml":
-        return path.name[:-5]  # no .yaml
-    else:
-        return path.name
-
-
 def _get_bids_version(bids_schema_dir):
     """Determine schema version, with directory name, file specification, and string fallback."""
 
@@ -67,7 +60,21 @@ def _find(obj, predicate):
 
 
 def dereference(namespace, inplace=True):
-    """Replace references in namespace with the contents of the referred object"""
+    """Replace references in namespace with the contents of the referred object
+
+    Parameters
+    ----------
+    namespace : Namespace
+        Namespace for which to dereference
+
+    inplace : bool, optional
+        Whether to modify the namespace in place or create a copy, by default True
+
+    Returns
+    -------
+    namespace : Namespace
+        Deferred namespace
+    """
     if not inplace:
         namespace = deepcopy(namespace)
     for struct in _find(namespace, lambda obj: "$ref" in obj):
@@ -77,7 +84,20 @@ def dereference(namespace, inplace=True):
 
 
 def flatten_enums(namespace, inplace=True):
-    """Replace enum collections with a single enum
+    """Replace enum collections with a single enum, merging enums contents.
+
+    The function helps reducing the complexity of the schema by assuming
+    that the values in the conditions (anyOf) are mutually exclusive.
+
+    Parameters
+    ----------
+    schema : dict
+        Schema in dictionary form to be flattened.
+
+    Returns
+    -------
+    schema : dict
+        Schema with flattened enums.
 
     >>> struct = {
     ...   "anyOf": [
@@ -121,6 +141,10 @@ def load_schema(schema_path=None):
     -------
     dict
         Schema in dictionary form.
+
+    Notes
+    -----
+    This function is cached, so it will only be called once per schema path.
     """
     if schema_path is None:
         schema_path = utils.get_schema_path()
@@ -137,6 +161,18 @@ def load_schema(schema_path=None):
 
 
 def export_schema(schema):
+    """Export the schema to JSON format.
+
+    Parameters
+    ----------
+    schema : dict
+        The schema object, in dictionary form.
+
+    Returns
+    -------
+    json : str
+        The schema serialized as a JSON string.
+    """
     versioned = Namespace.build({"schema_version": __version__, "bids_version": __bids_version__})
     versioned.update(schema)
     return versioned.to_json()
@@ -150,7 +186,10 @@ def filter_schema(schema, **kwargs):
     schema : dict
         The schema object, which is a dictionary with nested dictionaries and
         lists stored within it.
-    kwargs : dict
+
+    Other Parameters
+    ----------------
+    **kwargs : dict
         Keyword arguments used to filter the schema.
         Example kwargs that may be used include: "suffixes", "datatypes",
         "extensions".
