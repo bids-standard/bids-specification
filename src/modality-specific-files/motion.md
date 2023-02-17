@@ -15,6 +15,7 @@ suffixes=["motion", "channels", "events"])
 }}
 
 A wide variety of motion capture systems are used in human research, resulting in different proprietary data formats.
+
 This BIDS extension deals with common outputs from motion capture systems such as positions, orientations, or their time derivatives.
 
 The extension is not limited to motion data in physical space but also encompasses simulated movement in virtual space, as far as these are comparable to movements in physical space.
@@ -27,20 +28,24 @@ In this specification, positions (and their time derivatives) are represented as
 and orientations (and their time derivatives) are represented as Euler angles.
 However, to cover recordings from computer graphics applications (for example, virtual 3D motion or immersive virtual reality recording in physical space),
 orientations are also allowed to be represented as quaternions.
+
 In this case, the quaternion channels can be distinguished from channels containing Euler angles based on the entries in columns `component` and `units` in the `*_channels.tsv` file.
 See subsection on `Channels description` for further details.
 
-Motion data from one tracking system MUST be stored in a `*_motion.tsv` file.
-A tracking system is defined as a group of motion channels that share hardware properties (the recording device) and software properties (the recording duration and sampling rate).
+Motion data from one tracking system MUST be stored in a single `*_motion.tsv` file.
+A tracking system is defined as a group of motion channels that share hardware properties (the recording device) and software properties (the recording duration and number of samples).
 For example, if the position time series of multiple optical markers is processed via one recording unit, this can be defined as a single tracking system.
 Note that it is not uncommon to have multiple tracking systems to record at the same time.
+
 Each tracking system should have its own `*_tracksys-<label>_motion.tsv` file, where `<label>` is a user definded key word to be used to identify each file belonging to a tracking system. This is especially helpful when more than one tracking system is used.
 One column in the `*_tracksys-<label>_motion.tsv` file is intended to represent one data channel.
 The ordering of columns has to match the order of rows in the `*_channels.tsv` file for unambiguous assignment.
 All relevant metadata about a tracking systems is stored in accompanying sidecar `*_tracksys-<label>_motion.json` file.
+
 The source data from each tracking system in their original format, if different from `.tsv`,
 can be stored in the [`/sourcedata` directory](../common-principles.md#source-vs-raw-vs-derived-data).
 The original data format MAY hold more metadata than currently specified in the `*_motion.json` file.
+
 
 When multiple tracking systems are used to record motion or motion capture is used alongside the recording of other BIDS modalities, it is possible to temporally synchronize the recordings.
 A guideline to time synchronization between multiple modalities using recording onset and event time offset is described later in the specifications.
@@ -77,20 +82,20 @@ Motion specific fields SHOULD be present:
 Restricted keyword list for field `RotationRule`:
 
 | **Keyword** | **Description**                                                                                                                                        |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| left-hand   | Rotation is following the left hand convention, such that the left thumb points in a direction, and the fingers curl along the orientation rotation.   |
-| right-hand  | Rotation is following the right hand convention, such that the right thumb points in a direction, and the fingers curl along the orientation rotation. |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------                           |
+| left-hand   | Rotation is following the left-hand convention, such that the left thumb points to the positive end of the spatial axis, and the fingers curl along the orientation rotation.     |
+| right-hand  | Rotation is following the right-hand convention, such that the right thumb points to the positive end of the spatial axis, and the fingers curl along the orientation rotation. |
 
 Restricted keyword list for field `RotationOrder`:
 
-| **Keyword** | **Description**                   |
-| ----------- | --------------------------------- |
-| XYZ         | Sequence to follow for rotations. |
-| XZY         | Sequence to follow for rotations. |
-| YXZ         | Sequence to follow for rotations. |
-| YZX         | Sequence to follow for rotations. |
-| ZXY         | Sequence to follow for rotations. |
-| ZYX         | Sequence to follow for rotations. |
+| **Keyword** | **Description**                                                                         |
+| ----------- | --------------------------------------------------------------------------------------- |
+| XYZ         | Sequence in which elemental rotations are applied to define an orientation in 3D space. |
+| XZY         | Sequence in which elemental rotations are applied to define an orientation in 3D space. |
+| YXZ         | Sequence in which elemental rotations are applied to define an orientation in 3D space. |
+| YZX         | Sequence in which elemental rotations are applied to define an orientation in 3D space. |
+| ZXY         | Sequence in which elemental rotations are applied to define an orientation in 3D space. |
+| ZYX         | Sequence in which elemental rotations are applied to define an orientation in 3D space. |
 
 #### Example `*_tracksys-<label>_motion.json`
 
@@ -126,7 +131,6 @@ All specified tracking systems can share `tracked_point` defined in `*_channels.
 Note that the onsets of the recordings SHOULD be stored in the study key file [(`scans.tsv`)](../modality-agnostic-files.md#scans-file).
 Here, date-time information MUST be expressed as indicated in [Units](../common-principles.md#units).
 The [`scans.tsv`](../modality-agnostic-files.md#scans-file) file contains the filename and the acquisition time of a recording, which can be used to synchronize multiple recordings.
-However, synchronization information between the two systems can also be stored using channel `latency` in the `*_motion.tsv` if available.
 
 ## Channels description (`*_channels.tsv`)
 
@@ -155,32 +159,32 @@ The columns of the channels description table stored in `*_channels.tsv` are:
 
 Restricted keyword list for column `component`. When using quaternions to represent orientations, the axial components that corresponds to the three spatial axes must be specified as "quat_x", "quat_y", "quat_z", and the non-axial component as "quat_w".
 
-| **Keyword** | **Description**                                                                                                                                            |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| x           | position along the X-axis, or rotation about the X-axis among the Euler angles that represent the orientation, or magnetic field strength along the X-axis |
-| y           | position along the Y-axis or rotation about the Y-axis among the Euler angles that represent the orientation, or magnetic field strength along the Y-axis  |
-| z           | position along the Z-axis or rotation about the Z-axis among the Euler angles that represent the orientation, or magnetic field strength along the Z-axis  |
-| quat_x      | quaternion component associated with the X-axis                                                                                                            |
-| quat_y      | quaternion component associated with the Y-axis                                                                                                            |
-| quat_z      | quaternion component associated with the Z-axis                                                                                                            |
-| quat_w      | non-axial quaternion component                                                                                                                             |
-| n/a         | channels that have no corresponding spatial axis                                                                                                           |
+| **Keyword** | **Description**                                                                                                                                             |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| x           | Position along the X-axis, or rotation about the X-axis among the Euler angles that represent the orientation, or magnetic field strength along the X-axis. |
+| y           | Position along the Y-axis or rotation about the Y-axis among the Euler angles that represent the orientation, or magnetic field strength along the Y-axis.  |
+| z           | Position along the Z-axis or rotation about the Z-axis among the Euler angles that represent the orientation, or magnetic field strength along the Z-axis.  |
+| quat_x      | Quaternion component associated with the X-axis.                                                                                                            |
+| quat_y      | Quaternion component associated with the Y-axis.                                                                                                            |
+| quat_z      | Quaternion component associated with the Z-axis.                                                                                                            |
+| quat_w      | Non-axial quaternion component.                                                                                                                             |
+| n/a         | Channels that have no corresponding spatial axis.                                                                                                           |
 
 ### Restricted keyword list for channel type
 
 Restricted keyword list for column `type` in alphabetic order (shared with the other BIDS modalities?). Note that upper-case is REQUIRED:
 
-| **Keyword** | **Description**               |
-| ----------- | ----------------------------- |
-| ACCEL       | Acceleration                  |
-| ANGACC      | Angular acceleration          |
-| GYRO        | Angular velocity              |
-| LATENCY     | Latency of samples in seconds |
-| MAGN        | Magnetic field                |
-| MISC        | Miscellaneous channels        |
-| ORNT        | Orientation                   |
-| POS         | Position in space             |
-| VEL         | Velocity                      |
+| **Keyword** | **Description**                                                                                                                                                                                                              |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ACCEL       | Accelerometer channel, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).                                                                           |
+| ANGACC      | Angular acceleration channel, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).                                                                    | 
+| GYRO        | Gyrometer channel, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).                                                                               |
+| LATENCY     | Latency of samples in seconds from recording onset.                                                                                                                                                                          |
+| MAGN        | Magnetic field strength, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z)                                                                           |
+| MISC        | Miscellaneous channels.                                                                                                                                                                                                      |
+| ORNT        | Orientation channel, one channel for each spatial axis or quaternion component. Column `component` for the axis or quaternion label MUST be added to the `*_channels.tsv` file (x, y, z, quat_x, quat_y, quat_z, or quat_w). |
+| POS         | Position in space, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z).                                                                                |
+| VEL         | Velocity, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z).                                                                                         |
 
 ### Example `*_channels.tsv`
 

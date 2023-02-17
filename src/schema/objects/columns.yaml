@@ -54,19 +54,6 @@ color:
   unit: hexadecimal
 component:
   name: component
-  display_name: Coordinate System Component
-  description: |
-    Component of the representational system described in `*_coordinatesystem.tsv` that the
-    channel contains. Must be one of: "w", "x" ,"y", "z", "n/a"
-  type: string
-  enum:
-    - 'w'
-    - 'x'
-    - 'y'
-    - 'z'
-    - 'n/a'
-component__channels:
-  name: component
   display_name: Component
   description: |
     Description of the spatial axis or label of quaternion component associated with the channel.

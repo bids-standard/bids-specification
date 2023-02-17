@@ -2702,8 +2702,7 @@ RotationOrder:
   name: RotationOrder
   display_name: RotationOrder
   description: |
-    Specify the sequence in which the elemental rotations are applied around the extrinsic axes.
-    A 3D rotation is represented about 3 different axes (Tait-Bryan convention).
+    Specify the sequence in which the elemental 3D extrinsic rotations are applied around the three distinct axes. 
   type: string
   enum:
     - XYZ
