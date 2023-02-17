@@ -8,10 +8,10 @@ This specification has been used to format a number of [example Motion datasets]
 
 ## Motion recording data
 
-{{ MACROS___make_filename_template(
+{{ MACROS\_\__make_filename_template(
 "raw",
-datatypes=["motion"],
-suffixes=["motion", "channels", "events"])
+datatypes=\["motion"],
+suffixes=\["motion", "channels", "events"])
 }}
 
 A wide variety of motion capture systems are used in human research, resulting in different proprietary data formats.
@@ -46,7 +46,6 @@ The source data from each tracking system in their original format, if different
 can be stored in the [`/sourcedata` directory](../common-principles.md#source-vs-raw-vs-derived-data).
 The original data format MAY hold more metadata than currently specified in the `*_motion.json` file.
 
-
 When multiple tracking systems are used to record motion or motion capture is used alongside the recording of other BIDS modalities, it is possible to temporally synchronize the recordings.
 A guideline to time synchronization between multiple modalities using recording onset and event time offset is described later in the specifications.
 To store the differences between recording onsets, [`scans.tsv`](../modality-agnostic-files.md#scans-file) files can be used.
@@ -59,31 +58,31 @@ The onsets in the event file can be related to the starting time of the tracking
 
 #### Task information
 
-{{ MACROS___make_sidecar_table("motion.motionTaskInformation") }}
+{{ MACROS\_\__make_sidecar_table("motion.motionTaskInformation") }}
 
 #### Hardware information
 
-{{ MACROS___make_sidecar_table("motion.motionHardware") }}
+{{ MACROS\_\__make_sidecar_table("motion.motionHardware") }}
 
 #### Insitution information
 
-{{ MACROS___make_sidecar_table("motion.motionInstitutionInformation") }}
+{{ MACROS\_\__make_sidecar_table("motion.motionInstitutionInformation") }}
 
 #### Motion specific fiels
 
 Motion specific fields MUST be present:
 
-{{ MACROS___make_sidecar_table("motion.motionRequired") }}
+{{ MACROS\_\__make_sidecar_table("motion.motionRequired") }}
 
 Motion specific fields SHOULD be present:
 
-{{ MACROS___make_sidecar_table("motion.motionRecommended") }}
+{{ MACROS\_\__make_sidecar_table("motion.motionRecommended") }}
 
 Restricted keyword list for field `RotationRule`:
 
-| **Keyword** | **Description**                                                                                                                                        |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------                           |
-| left-hand   | Rotation is following the left-hand convention, such that the left thumb points to the positive end of the spatial axis, and the fingers curl along the orientation rotation.     |
+| **Keyword** | **Description**                                                                                                                                                                 |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| left-hand   | Rotation is following the left-hand convention, such that the left thumb points to the positive end of the spatial axis, and the fingers curl along the orientation rotation.   |
 | right-hand  | Rotation is following the right-hand convention, such that the right thumb points to the positive end of the spatial axis, and the fingers curl along the orientation rotation. |
 
 Restricted keyword list for field `RotationOrder`:
@@ -134,10 +133,10 @@ The [`scans.tsv`](../modality-agnostic-files.md#scans-file) file contains the fi
 
 ## Channels description (`*_channels.tsv`)
 
-{{ MACROS___make_filename_template(
+{{ MACROS\_\__make_filename_template(
 "raw",
-datatypes=["motion"],
-suffixes=["channels"])
+datatypes=\["motion"],
+suffixes=\["channels"])
 }}
 
 ```markdown
@@ -153,7 +152,7 @@ The `*_tracksys-<label>_channels.tsv` file should give additional information ab
 
 The columns of the channels description table stored in `*_channels.tsv` are:
 
-{{ MACROS___make_columns_table("motion.motionChannels") }}
+{{ MACROS\_\__make_columns_table("motion.motionChannels") }}
 
 ### Restricted keyword list for channel component
 
@@ -177,7 +176,7 @@ Restricted keyword list for column `type` in alphabetic order (shared with the o
 | **Keyword** | **Description**                                                                                                                                                                                                              |
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ACCEL       | Accelerometer channel, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).                                                                           |
-| ANGACC      | Angular acceleration channel, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).                                                                    | 
+| ANGACC      | Angular acceleration channel, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).                                                                    |
 | GYRO        | Gyrometer channel, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).                                                                               |
 | LATENCY     | Latency of samples in seconds from recording onset.                                                                                                                                                                          |
 | MAGN        | Magnetic field strength, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z)                                                                           |
