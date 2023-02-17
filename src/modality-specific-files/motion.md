@@ -8,7 +8,7 @@ This specification has been used to format a number of [example Motion datasets]
 
 ## Motion recording data
 
-{{ MACROS\_\__make_filename_template(
+{{ MACROS___make_filename_template(
 "raw",
 datatypes=\["motion"],
 suffixes=\["motion", "channels", "events"])
@@ -58,25 +58,25 @@ The onsets in the event file can be related to the starting time of the tracking
 
 #### Task information
 
-{{ MACROS\_\__make_sidecar_table("motion.motionTaskInformation") }}
+{{ MACROS___make_sidecar_table("motion.motionTaskInformation") }}
 
 #### Hardware information
 
-{{ MACROS\_\__make_sidecar_table("motion.motionHardware") }}
+{{ MACROS___make_sidecar_table("motion.motionHardware") }}
 
 #### Insitution information
 
-{{ MACROS\_\__make_sidecar_table("motion.motionInstitutionInformation") }}
+{{ MACROS___make_sidecar_table("motion.motionInstitutionInformation") }}
 
 #### Motion specific fiels
 
 Motion specific fields MUST be present:
 
-{{ MACROS\_\__make_sidecar_table("motion.motionRequired") }}
+{{ MACROS___make_sidecar_table("motion.motionRequired") }}
 
 Motion specific fields SHOULD be present:
 
-{{ MACROS\_\__make_sidecar_table("motion.motionRecommended") }}
+{{ MACROS___make_sidecar_table("motion.motionRecommended") }}
 
 Restricted keyword list for field `RotationRule`:
 
@@ -133,7 +133,7 @@ The [`scans.tsv`](../modality-agnostic-files.md#scans-file) file contains the fi
 
 ## Channels description (`*_channels.tsv`)
 
-{{ MACROS\_\__make_filename_template(
+{{ MACROS___make_filename_template(
 "raw",
 datatypes=\["motion"],
 suffixes=\["channels"])
@@ -152,7 +152,7 @@ The `*_tracksys-<label>_channels.tsv` file should give additional information ab
 
 The columns of the channels description table stored in `*_channels.tsv` are:
 
-{{ MACROS\_\__make_columns_table("motion.motionChannels") }}
+{{ MACROS___make_columns_table("motion.motionChannels") }}
 
 ### Restricted keyword list for channel component
 
