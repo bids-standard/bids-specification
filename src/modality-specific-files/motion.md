@@ -10,8 +10,8 @@ This specification has been used to format a number of [example Motion datasets]
 
 {{ MACROS___make_filename_template(
 "raw",
-datatypes=\["motion"],
-suffixes=\["motion", "channels", "events"])
+datatypes=["motion"],
+suffixes=["motion", "channels", "events"])
 }}
 
 A wide variety of motion capture systems are used in human research, resulting in different proprietary data formats.
@@ -135,8 +135,8 @@ The [`scans.tsv`](../modality-agnostic-files.md#scans-file) file contains the fi
 
 {{ MACROS___make_filename_template(
 "raw",
-datatypes=\["motion"],
-suffixes=\["channels"])
+datatypes=["motion"],
+suffixes=["channels"])
 }}
 
 ```markdown
