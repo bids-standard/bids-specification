@@ -165,6 +165,18 @@ whenever possible. See also
 
 ## Anatomy imaging data
 
+Anatomy MRI sequences measure static, structural features of the brain.
+Each type of contrast has an associated suffix, resulting in many suffixes for this datatype.
+For the sake of convenience, these suffixes are broadly divided into two groups: non-parametric and parametric.
+
+Non-parametric suffixes have an arbitrary scale.
+For example, T1w data are T1-weighted, but the values do not correspond to actual T1 value estimates.
+
+Parametric suffixes, on the other hand, have a non-arbitrary scale.
+A T1map file contains T1 value estimates, in seconds.
+
+### Non-parametric structural MR images
+
 Currently supported non-parametric structural MR images include the following:
 
 <!--
