@@ -45,7 +45,7 @@ The original data format MAY hold more metadata than currently specified in the 
 
 When multiple tracking systems are used to record motion or motion capture is used alongside the recording of other BIDS modalities, it may be necessary to temporally synchronise the recordings. To save the differences between recording onsets, column [acq_time](https://bids-specification.readthedocs.io/en/stable/glossary.html#objects.columns.acq_time__scans) of [`scans.tsv`](../modality-agnostic-files.md#scans-file) files can be used.
 
-To store events alongside motion data when there are multiple tracking systems simulatenously in use, it is recommended to designate a tracking system to the events file. Such an events file name SHOULD include the `tracksys` key and looks like `sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_tracksys-<label>_events.tsv`. Event latencies can then be related to motion samples of multiple tracking systems also by using `acq_time` column entries in the `scans.tsv`. The same principle applies when the events file is saved alongside a simulatneously recorded non-motion data (for example EEG).
+To store events alongside motion data when there are multiple tracking systems simulatenously in use, it is RECOMMENDED to designate a tracking system to the events file. Such an events file name SHOULD include the `tracksys` key and looks like `sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_tracksys-<label>_events.tsv`. Event latencies can then be related to motion samples of multiple tracking systems also by using `acq_time` column entries in the `scans.tsv`. The same principle applies when the events file is saved alongside a simulatneously recorded non-motion data (for example EEG).
 
 ### Sidecar JSON (`*_motion.json`)
 
@@ -124,7 +124,7 @@ suffixes=["channels"])
 
 This file is REQUIRED as it makes it easy to browse or query over larger collections of datasets.
 The REQUIRED columns are channel `component`, `name`, `tracked_point`, `type` and `unit`.
-Any number of additional columns may be added to provide additional information about the channels.
+Any number of additional columns MAY be added to provide additional information about the channels.
 The `*_tracksys-<label>_channels.tsv` file SHOULD give additional information about individual recorded channel, some of which my not be found summarized in `*_motion.json`.
 
 The columns of the channels description table stored in `*_channels.tsv` are:
@@ -134,7 +134,7 @@ The columns of the channels description table stored in `*_channels.tsv` are:
 ### Restricted keyword list for channel component
 
 Restricted keyword list for column `component`.
-When using quaternions to represent orientations, the axial components that corresponds to the three spatial axes must be specified as "quat_x", "quat_y", "quat_z", and the non-axial component as "quat_w".
+When using quaternions to represent orientations, the axial components that corresponds to the three spatial axes MUST be specified as "quat_x", "quat_y", "quat_z", and the non-axial component as "quat_w".
 
 | **Keyword** | **Description**                                                                                                                                             |
 | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
