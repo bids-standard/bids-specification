@@ -166,14 +166,16 @@ whenever possible. See also
 ## Anatomy imaging data
 
 Anatomy MRI sequences measure static, structural features of the brain.
-Each type of contrast has an associated suffix, resulting in many suffixes for this datatype.
-For the sake of convenience, these suffixes are broadly divided into two groups: non-parametric and parametric.
 
-Non-parametric suffixes have an arbitrary scale.
-For example, T1w data are T1-weighted, but the values do not correspond to actual T1 value estimates.
+This datatype is divided into two groups:
+non-parametric and parametric.
 
-Parametric suffixes, on the other hand, have a non-arbitrary scale.
-A T1map file contains T1 value estimates, in seconds.
+Non-parametric structural images have an arbitrary scale.
+For example, T1w data are T1-weighted,
+but the values do not correspond to actual T1 value estimates.
+
+Parametric structural imaging, on the other hand, use a non-arbitrary scale.
+For example, a T1map file contains T1 value estimates, in seconds.
 
 ### Non-parametric structural MR images
 
@@ -222,53 +224,6 @@ and a guide for using macros can be found at
          "angio",
       ])
 }}
-
-If the structural images included in the dataset were defaced (to protect
-identity of participants) one MAY provide the binary mask that was used to
-remove facial features in the form of `_defacemask` files.
-In such cases, the OPTIONAL [`mod-<label>`](../appendices/entities.md#mod)
-entity corresponds to modality suffix,
-such as `T1w` or `inplaneT1`, referenced by the defacemask image.
-For example, `sub-01_mod-T1w_defacemask.nii.gz`.
-
-<!--
-This block generates a filename templates.
-The inputs for this macro can be found in the directory
-  src/schema/rules/files/raw
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filename_template("raw", datatypes=["anat"], suffixes=[
-         "defacemask",
-      ])
-}}
-
-The OPTIONAL [`task-<label>`](../appendices/entities.md#task) entity can be used
-in order to allow tasks during structural MR acquisitions,
-for example pre-described motion paradigms such as nodding, to be described.
-
-<!-- This block generates a metadata table.
-The definitions of these fields can be found in
-  src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_sidecar_table("anat.TaskMetadata") }}
-
-Some meta information about the acquisition MAY be provided in an additional
-JSON file. See [Common metadata fields](#common-metadata-fields) for a
-list of terms and their definitions. There are also some OPTIONAL JSON
-fields specific to anatomical scans:
-
-<!-- This block generates a metadata table.
-These tables are defined in
-  src/schema/rules/sidecars
-The definitions of the fields specified in these tables may be found in
-  src/schema/objects/metadata.yaml
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_sidecar_table("anat.MRIAnatomyCommonMetadataFields") }}
 
 The [`part-<label>`](../appendices/entities.md#part) entity is
 used to indicate which component of the complex representation of the MRI
@@ -385,6 +340,57 @@ For any other details on the organization of parametric maps, their
 recommended metadata fields, and the application specific entity or
 metadata requirement levels of [file collections](../appendices/file-collections.md) that can generate
 them, visit the [qMRI appendix](../appendices/qmri.md).
+
+### Defacing masks
+
+If the structural images included in the dataset were defaced (to protect
+identity of participants) one MAY provide the binary mask that was used to
+remove facial features in the form of `_defacemask` files.
+In such cases, the OPTIONAL [`mod-<label>`](../appendices/entities.md#mod)
+entity corresponds to modality suffix,
+such as `T1w` or `inplaneT1`, referenced by the defacemask image.
+For example, `sub-01_mod-T1w_defacemask.nii.gz`.
+
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the directory
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filename_template("raw", datatypes=["anat"], suffixes=[
+         "defacemask",
+      ])
+}}
+
+### Task metadata for anatomical scans
+
+The OPTIONAL [`task-<label>`](../appendices/entities.md#task) entity can be used
+in order to allow tasks during structural MR acquisitions,
+for example pre-described motion paradigms such as nodding, to be described.
+
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("anat.TaskMetadata") }}
+
+Some meta information about the acquisition MAY be provided in an additional
+JSON file. See [Common metadata fields](#common-metadata-fields) for a
+list of terms and their definitions. There are also some OPTIONAL JSON
+fields specific to anatomical scans:
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("anat.MRIAnatomyCommonMetadataFields") }}
 
 ### Deprecated suffixes
 
