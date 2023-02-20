@@ -311,10 +311,6 @@ For example, for `sub-01_part-phase_T1w.json`:
 
 When there is only a magnitude image of a given type, the `part` entity MAY be omitted.
 
-Similarly, the OPTIONAL [`rec-<label>`](../appendices/entities.md#rec)
-entity can be used to distinguish
-different reconstruction algorithms (for example ones using motion correction).
-
 ### Parametric structural MR images
 
 Structural MR images whose intensity is represented in a non-arbitrary scale
