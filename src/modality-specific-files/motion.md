@@ -78,23 +78,6 @@ Motion specific fields SHOULD be present:
 
 {{ MACROS___make_sidecar_table("motion.motionRecommended") }}
 
-Restricted keyword list for field `RotationRule`:
-
-| **Keyword** | **Description**                                                                                                                                                                 |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| left-hand   | Rotation is following the left-hand convention, such that the left thumb points to the positive end of the spatial axis, and the fingers curl along the orientation rotation.   |
-| right-hand  | Rotation is following the right-hand convention, such that the right thumb points to the positive end of the spatial axis, and the fingers curl along the orientation rotation. |
-
-Restricted keyword list for field `RotationOrder`:
-
-| **Keyword** | **Description**                                                                         |
-| ----------- | --------------------------------------------------------------------------------------- |
-| XYZ         | Sequence in which elemental rotations are applied to define an orientation in 3D space. |
-| XZY         | Sequence in which elemental rotations are applied to define an orientation in 3D space. |
-| YXZ         | Sequence in which elemental rotations are applied to define an orientation in 3D space. |
-| YZX         | Sequence in which elemental rotations are applied to define an orientation in 3D space. |
-| ZXY         | Sequence in which elemental rotations are applied to define an orientation in 3D space. |
-| ZYX         | Sequence in which elemental rotations are applied to define an orientation in 3D space. |
 
 #### Example `*_tracksys-<label>_motion.json`
 
