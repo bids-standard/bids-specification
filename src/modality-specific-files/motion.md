@@ -1,10 +1,9 @@
 # Motion
 
-<!--Here insert link to actual manuscript?-->
-
 For information on how to cite this extension when referencing it in the context of the academic literature, please read [Citing BIDS](../introduction.md#citing-bids).
 
-This specification has been used to format a number of [example Motion datasets](https://github.com/bids-standard/bids-examples), which can be used as helpful guidance when curating new datasets.
+This specification has been used to format a number of [example datasets](https://github.com/bids-standard/bids-examples#motion-datasets) with the motion modality,
+which can be used as helpful guidance when curating new datasets.
 
 ## Motion recording data
 
@@ -27,7 +26,7 @@ This specification does not include raw camera fotages, either from camera-based
 In this specification, positions (and their time derivatives) are represented as Cartesian coordinates along up to three spatial axes,
 and orientations (and their time derivatives) are represented as Euler angles.
 However, to cover recordings from computer graphics applications (for example, virtual 3D motion or immersive virtual reality recording in physical space),
-orientations are also allowed to be represented as quaternions.
+orientations are also allowed to be represented as [quaternions](https://en.wikipedia.org/wiki/Quaternion).
 
 In this case, the quaternion channels can be distinguished from channels containing Euler angles based on the entries in columns `component` and `units` in the `*_channels.tsv` file.
 See subsection on `Channels description` for further details.
@@ -37,7 +36,8 @@ A tracking system is defined as a group of motion channels that share hardware p
 For example, if the position time series of multiple optical markers is processed via one recording unit, this can be defined as a single tracking system.
 Note that it is not uncommon to have multiple tracking systems to record at the same time.
 
-Each tracking system should have its own `*_tracksys-<label>_motion.tsv` file, where `<label>` is a user definded key word to be used to identify each file belonging to a tracking system. This is especially helpful when more than one tracking system is used.
+Each tracking system SHOULD have its own `*_tracksys-<label>_motion.tsv` file, where `<label>` is a user definded key word to be used to identify each file belonging to a tracking system.
+This is especially helpful when more than one tracking system is used.
 One column in the `*_tracksys-<label>_motion.tsv` file is intended to represent one data channel.
 The ordering of columns has to match the order of rows in the `*_channels.tsv` file for unambiguous assignment.
 All relevant metadata about a tracking systems is stored in accompanying sidecar `*_tracksys-<label>_motion.json` file.
@@ -50,7 +50,7 @@ When multiple tracking systems are used to record motion or motion capture is us
 A guideline to time synchronization between multiple modalities using recording onset and event time offset is described later in the specifications.
 To store the differences between recording onsets, [`scans.tsv`](../modality-agnostic-files.md#scans-file) files can be used.
 
-To store events which relate to a tracking system, it is recommended to use designated events files per tracking system.
+To store events which relate to a tracking system, it is RECOMMENDED to use designated events files per tracking system.
 Such an events file name would include the `tracksys` entity and look like `sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_tracksys-<label>_events.tsv`.
 The onsets in the event file can be related to the starting time of the tracking system in the `scans.tsv` file.
 
@@ -146,9 +146,10 @@ suffixes=["channels"])
       └─ sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_tracksys-<label>_channels.tsv
 ```
 
-This file is REQUIRED as it makes it easy to browse or query over larger collections of datasets. The REQUIRED columns are channel `component`, `name`, `tracked_point`, `type` and `unit`.
+This file is REQUIRED as it makes it easy to browse or query over larger collections of datasets.
+The REQUIRED columns are channel `component`, `name`, `tracked_point`, `type` and `unit`.
 Any number of additional columns may be added to provide additional information about the channels.
-The `*_tracksys-<label>_channels.tsv` file should give additional information about individual recorded channel, some of which my not be found summarized in `*_motion.json`.
+The `*_tracksys-<label>_channels.tsv` file SHOULD give additional information about individual recorded channel, some of which my not be found summarized in `*_motion.json`.
 
 The columns of the channels description table stored in `*_channels.tsv` are:
 
@@ -156,7 +157,8 @@ The columns of the channels description table stored in `*_channels.tsv` are:
 
 ### Restricted keyword list for channel component
 
-Restricted keyword list for column `component`. When using quaternions to represent orientations, the axial components that corresponds to the three spatial axes must be specified as "quat_x", "quat_y", "quat_z", and the non-axial component as "quat_w".
+Restricted keyword list for column `component`.
+When using quaternions to represent orientations, the axial components that corresponds to the three spatial axes must be specified as "quat_x", "quat_y", "quat_z", and the non-axial component as "quat_w".
 
 | **Keyword** | **Description**                                                                                                                                             |
 | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -171,7 +173,8 @@ Restricted keyword list for column `component`. When using quaternions to repres
 
 ### Restricted keyword list for channel type
 
-Restricted keyword list for column `type` in alphabetic order (shared with the other BIDS modalities?). Note that upper-case is REQUIRED:
+Restricted keyword list for column `type` in alphabetic order.
+Note that upper-case is REQUIRED:
 
 | **Keyword** | **Description**                                                                                                                                                                                                              |
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
