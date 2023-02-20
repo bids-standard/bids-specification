@@ -61,7 +61,7 @@ To store events alongside motion data when there are multiple tracking systems s
 
 {{ MACROS___make_sidecar_table("motion.motionInstitutionInformation") }}
 
-#### Motion specific fiels
+#### Motion specific fields
 
 Motion specific fields MUST be present:
 
