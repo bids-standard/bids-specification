@@ -168,6 +168,10 @@ For example:
 
 -   (publication forthcoming)
 
+#### Motion
+
+-   (publication forthcoming)
+
 ### Research Resource Identifier (RRID)
 
 BIDS has also a
