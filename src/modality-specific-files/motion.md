@@ -17,7 +17,8 @@ A wide variety of motion capture systems are used in human research, resulting i
 
 This BIDS extension deals with common outputs from motion capture systems such as positions, orientations, or their time derivatives.
 
-The extension is not limited to motion data in physical space but also encompasses simulated movement in virtual space, as far as these are comparable to movements in physical space. Other dynamic objects than human body parts whose motion is tracked may as well be included as tracked objects.
+The extension is not limited to motion data in physical space but also encompasses simulated movement in virtual space, as far as these are comparable to movements in physical space.
+Other dynamic objects than human body parts whose motion is tracked may as well be included as tracked objects.
 This specification does not include raw camera footages (from camera-based or optical motion capture recordings), but includes the positions or orientations computed using such data.
 
 In this specification, positions (and their time derivatives) are represented as Cartesian coordinates along up to three spatial axes,
@@ -43,9 +44,13 @@ The source data from each tracking system in their original format, if different
 can be stored in the [`/sourcedata` directory](../common-principles.md#source-vs-raw-vs-derived-data).
 The original data format MAY hold more metadata than currently specified in the `*_motion.json` file.
 
-When multiple tracking systems are used to record motion or motion capture is used alongside the recording of other BIDS modalities, it may be necessary to temporally synchronise the recordings. To save the differences between recording onsets, column [acq_time](https://bids-specification.readthedocs.io/en/stable/glossary.html#objects.columns.acq_time__scans) of [`scans.tsv`](../modality-agnostic-files.md#scans-file) files can be used.
+When multiple tracking systems are used to record motion or motion capture is used alongside the recording of other BIDS modalities, it may be necessary to temporally synchronize the recordings.
+To save the differences between recording onsets, the `acq_time` column of the [`scans.tsv`](../modality-agnostic-files.md#scans-file) files can be used.
 
-To store events alongside motion data when there are multiple tracking systems simulatenously in use, it is RECOMMENDED to designate a tracking system to the events file. Such an events file name SHOULD include the `tracksys` key and looks like `sub-<label>[_ses-<label>]_task-<label>[_acq-<label>]_tracksys-<label>[_run-<index>]_events.tsv`. Event latencies can then be related to motion samples of multiple tracking systems also by using `acq_time` column entries in the `scans.tsv`. The same principle applies when the events file is saved alongside a simulatneously recorded non-motion data (for example EEG).
+To store events alongside motion data when there are multiple tracking systems simulatenously in use, it is RECOMMENDED to designate a tracking system to the events file.
+Such an events file name SHOULD include the `tracksys` key and looks like `sub-<label>[_ses-<label>]_task-<label>[_acq-<label>]_tracksys-<label>[_run-<index>]_events.tsv`.
+Event latencies can then be related to motion samples of multiple tracking systems also by using `acq_time` column entries in the `scans.tsv`.
+The same principle applies when the events file is saved alongside a simultaneously recorded non-motion data (for example EEG).
 
 ### Sidecar JSON (`*_motion.json`)
 
