@@ -11,10 +11,10 @@ motionHardware:
     - datatype == "motion"
     - suffix == "motion"
   fields:
-    DeviceSerialNumber: optional
-    Manufacturer: optional
-    ManufacturersModelName: optional
-    SoftwareVersions: optional
+    DeviceSerialNumber: recommended
+    Manufacturer: recommended
+    ManufacturersModelName: recommended
+    SoftwareVersions: recommended
 
 motionInstitutionInformation:
   selectors:
@@ -53,7 +53,6 @@ motionRequired:
         "`SamplingFrequencyEffective`" if nominal and effective differ.
         The sampling frequency of data channels that deviate from the main (nominal) sampling
         frequency SHOULD be specified in the "`_tracksys-<label>_channels.tsv`" file.
-    TrackingSystemName: required
 
 motionRecommended:
   selectors:
@@ -79,10 +78,7 @@ motionRecommended:
       description_addendum: |
         If not available, the field takes value `n/a`.
     SpatialAxes: recommended
-    StartTime:
-      level: optional
-      description_addendum: |
-        Can also be found in "`*_scans.tsv`".
     SubjectArtefactDescription: recommended
     TrackedPointsCount: recommended
+    TrackingSystemName: optional
     VELChannelCount: recommended
