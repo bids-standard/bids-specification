@@ -122,7 +122,7 @@ suffixes=["channels"])
 ```
 
 This file is REQUIRED as it makes it easy to browse or query over larger collections of datasets.
-The REQUIRED columns are channel `component`, `name`, `tracked_point`, `type` and `unit`.
+The REQUIRED columns are channel `name`, `component`, `type`, `tracked_point` and `units`.
 Any number of additional columns MAY be added to provide additional information about the channels.
 The `*_tracksys-<label>_channels.tsv` file SHOULD give additional information about individual recorded channel, some of which my not be found summarized in `*_motion.json`.
 

@@ -12,8 +12,8 @@ motionChannels:
     - units__motion
   columns:
     name__channels: required
-    type__motion_channels: required
     component: required
+    type__motion_channels: required
     tracked_point__channels: required
     units__motion: required
     placement__motion: recommended
