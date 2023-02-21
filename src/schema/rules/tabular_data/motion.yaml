@@ -18,9 +18,7 @@ motionChannels:
     units__motion: required
     placement__motion: recommended
     description: optional
-    sampling_frequency:
-      level: optional
-      level_addendum: required if `SamplingFrequency` is `n/a` in `_motion.json`
+    sampling_frequency: optional
     status: optional
     status_description: optional
   additional_columns: allowed_if_defined

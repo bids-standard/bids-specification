@@ -12,5 +12,5 @@ motion:
     session: optional
     task: required
     acquisition: optional
-    run: optional
     tracksys: required
+    run: optional
