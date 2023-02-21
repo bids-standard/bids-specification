@@ -71,7 +71,6 @@ Motion specific fields SHOULD be present:
 
 {{ MACROS___make_sidecar_table("motion.motionRecommended") }}
 
-
 #### Example `*_tracksys-<label>_motion.json`
 
 ```JSON
