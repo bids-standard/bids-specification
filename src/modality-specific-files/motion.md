@@ -114,13 +114,6 @@ datatypes=["motion"],
 suffixes=["channels"])
 }}
 
-```markdown
-└─ sub-<label>\
-  └─ \[ses-<label>]\
-    └─ motion\
-      └─ sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_tracksys-<label>_channels.tsv
-```
-
 This file is REQUIRED as it makes it easy to browse or query over larger collections of datasets.
 The REQUIRED columns are channel `name`, `component`, `type`, `tracked_point` and `units`.
 Any number of additional columns MAY be added to provide additional information about the channels.
