@@ -45,7 +45,7 @@ The original data format MAY hold more metadata than currently specified in the 
 
 When multiple tracking systems are used to record motion or motion capture is used alongside the recording of other BIDS modalities, it may be necessary to temporally synchronise the recordings. To save the differences between recording onsets, column [acq_time](https://bids-specification.readthedocs.io/en/stable/glossary.html#objects.columns.acq_time__scans) of [`scans.tsv`](../modality-agnostic-files.md#scans-file) files can be used.
 
-To store events alongside motion data when there are multiple tracking systems simulatenously in use, it is RECOMMENDED to designate a tracking system to the events file. Such an events file name SHOULD include the `tracksys` key and looks like `sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_tracksys-<label>_events.tsv`. Event latencies can then be related to motion samples of multiple tracking systems also by using `acq_time` column entries in the `scans.tsv`. The same principle applies when the events file is saved alongside a simulatneously recorded non-motion data (for example EEG).
+To store events alongside motion data when there are multiple tracking systems simulatenously in use, it is RECOMMENDED to designate a tracking system to the events file. Such an events file name SHOULD include the `tracksys` key and looks like `sub-<label>[_ses-<label>]_task-<label>[_acq-<label>]_tracksys-<label>[_run-<index>]_events.tsv`. Event latencies can then be related to motion samples of multiple tracking systems also by using `acq_time` column entries in the `scans.tsv`. The same principle applies when the events file is saved alongside a simulatneously recorded non-motion data (for example EEG).
 
 ### Sidecar JSON (`*_motion.json`)
 
@@ -99,7 +99,7 @@ Motion specific fields SHOULD be present:
 
 In this example, the `*_motion.json` contains data from one tracking system consisting of two [inertial measurement units (imu)](https://en.wikipedia.org/wiki/Motion_capture#Inertial_systems).
 If there are additional, for example optical [motion capture (omc)](https://en.wikipedia.org/wiki/Motion_capture#Optical_systems), tracking systems,
-data from each tracking system MUST be stored in different files (`*_tracksys-<label>_motion.tsv`, `*_tracksys-<label>_motion.json`, `*_tracksys-<label>_channels.tsv`.
+data from each tracking system MUST be stored in different files (`*_tracksys-<label>_motion.tsv`, `*_tracksys-<label>_motion.json`, `*_tracksys-<label>_channels.tsv`).
 All specified tracking systems can share `tracked_point` defined in `*_channels.tsv`, when tracking devices are placed on the same location.
 
 Note that the onsets of the recordings SHOULD be stored in the study key file [(`scans.tsv`)](../modality-agnostic-files.md#scans-file).
