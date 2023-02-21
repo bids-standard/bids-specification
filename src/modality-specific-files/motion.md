@@ -83,7 +83,7 @@ Motion specific fields SHOULD be present:
  "SamplingFrequency": 60,
  "SamplingFrequencyEffective": 60.00197437,
  "TaskName": "BIDS Motion fictive example",
- "TrackingSystemName": "imu1",
+ "TrackingSystemName": "IMU Right Hand",
  "TaskDescription": "walking and talking",
  "InstitutionAddress": "Fictive address",
  "InstitutionName": "Fictive Institution",

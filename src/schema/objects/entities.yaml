@@ -414,9 +414,8 @@ tracksys:
     It can also be used to label *_channel.tsv or *_events.tsv files
     when they belong to a specific tracking system.
 
-    This entity represents the `"TrackingSystemName"` metadata field in a *_motion.json file.
-    Therefore, if the `tracksys-<label>` entity is present in a filename,
-    `"TrackingSystemName"` MUST be defined in the associated metadata.
-    Please note that the `<label>` MUST match the actual value of the field.
+    This entity corresponds to the `"TrackingSystemName"` metadata field in a *_motion.json file.
+    `tracksys-<label>` entity is a concise string whereas `"TrackingSystemName"`
+    may be longer and more human readable.
   type: string
   format: label

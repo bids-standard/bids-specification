@@ -3468,7 +3468,7 @@ TrackingSystemName:
   name: TrackingSystemName
   display_name: Tracking System Name
   description: |
-    Name of the tracking system. The value must match the `"tracksys"` label
+    A human-readable name of the tracking system to complement `"tracksys"` label
     of the corresponding *_motion.tsv file name.
   type: string
 TubingType:
