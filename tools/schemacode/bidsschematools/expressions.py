@@ -70,7 +70,11 @@ test = Forward()
 
 testlist = delimited_list(test)
 
+# Numbers and strings are base types, this could be expanded with bools and null
+# if it seems useful
 literal = common.number | quoted_string
+# Items are units that operations can be done on, including arithmetic, comparison,
+# function calls, index lookups and attribute lookups
 item = (
     Group(lpar + test + rpar)
     | Group(lsqr + Optional(testlist) + rsqr)("array")
@@ -79,20 +83,26 @@ item = (
     | common.identifier
     | literal
 )
+# Trailers are function calls, array indexes, and object attributes
 trailer = (
     Group(lpar + Optional(testlist) + rpar)("args")
     | Group(lsqr + test + rsqr)("index")
     | Group(Literal(".") + common.identifier)("attr")
 )
+# An atom might have some lookups done, but now it can be part of an arithmetic
+# expression
 atom = item + ZeroOrMore(trailer)
 
+# Arithmetic expressions
 factor <<= atom + ZeroOrMore(Group(expOp + factor))
 term <<= factor + ZeroOrMore(Group(mulOp + term))
 expr <<= term + ZeroOrMore(Group(addOp + expr))
 
+# Logic expressions (tests, to avoid name collision)
 comparison <<= expr + ZeroOrMore(Group(compOp + comparison))
 notTest <<= notOp + notTest | comparison
 andTest <<= notTest + ZeroOrMore(Group(andOp + andTest))
 test <<= andTest + ZeroOrMore(Group(orOp + test))
 
+# Schema expressions must parse from start to finish
 expression = StringStart() + test + StringEnd()
