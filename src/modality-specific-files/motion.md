@@ -2,7 +2,7 @@
 
 For information on how to cite this extension when referencing it in the context of the academic literature, please read [Citing BIDS](../introduction.md#citing-bids).
 
-This specification has been used to format a number of [example datasets](https://github.com/bids-standard/bids-examples#motion-datasets) with the motion modality,
+This specification has been used to format a number of [example datasets](https://github.com/bids-standard/bids-examples/pull/348) with the motion modality,
 which can be used as helpful guidance when curating new datasets.
 
 ## Motion recording data
