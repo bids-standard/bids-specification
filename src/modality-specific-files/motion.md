@@ -38,7 +38,7 @@ Each tracking system MUST have its own `*_tracksys-<label>_motion.tsv` file, whe
 This is especially helpful when more than one tracking system is used.
 Data from different tracking systems MUST be stored in different `*_tracksys-<label>_motion.tsv` files,
 each of which is accompanied by `*_tracksys-<label>_motion.json` and `*_tracksys-<label>_channels.tsv` files.
-Between `tracksys-<label>` entity and `*_motion.tsv`, `*_motion.json`, or `*_channels.tsv` suffixes, optional [`acq-<label>`](../appendices/entities.md#acq) or [`run-<index>`](../appendices/entities.md#run) entity can be inserted. 
+Between `tracksys-<label>` entity and `*_motion.tsv`, `*_motion.json`, or `*_channels.tsv` suffixes, optional [`acq-<label>`](../appendices/entities.md#acq) or [`run-<index>`](../appendices/entities.md#run) entity can be inserted.
 
 One column in the `*_tracksys-<label>_motion.tsv` file represents one data channel.
 The ordering of columns MUST match the order of rows in the `*_channels.tsv` file for unambiguous assignment.
@@ -107,7 +107,7 @@ Motion specific fields SHOULD be present:
 ```
 
 In this example, the `*_motion.json` contains data from one tracking system consisting of two [inertial measurement units (imu)](https://en.wikipedia.org/wiki/Motion_capture#Inertial_systems).
-If there are additional, for example [optical motion capture](https://en.wikipedia.org/wiki/Motion_capture#Optical_systems), tracking systems, data from these MUST be stored as separate files like `*_tracksys-omcA_motion.tsv` and `*_tracksys-omcB_motion.tsv`. 
+If there are additional, for example [optical motion capture](https://en.wikipedia.org/wiki/Motion_capture#Optical_systems), tracking systems, data from these MUST be stored as separate files like `*_tracksys-omcA_motion.tsv` and `*_tracksys-omcB_motion.tsv`.
 All specified tracking systems can share `tracked_point` defined in `*_channels.tsv`, when tracking devices are placed on the same object or body part.
 
 Note that the onsets of the recordings SHOULD be stored in the study key file [(`scans.tsv`)](../modality-agnostic-files.md#scans-file).
