@@ -93,7 +93,7 @@ FiducialsCoordinateSystemDescriptionReq:
   fields:
     FiducialsCoordinateSystemDescription: required
 
-NirsBase:
+NirsHardware:
   selectors:
     - datatype == "nirs"
     - suffix == "nirs"
@@ -102,6 +102,12 @@ NirsBase:
     ManufacturersModelName: recommended
     SoftwareVersions: recommended
     DeviceSerialNumber: recommended
+
+NirsBase:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "nirs"
+  fields:
     RecordingDuration: recommended
     HeadCircumference: recommended
     HardwareFilters: recommended

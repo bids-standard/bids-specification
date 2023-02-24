@@ -6,7 +6,7 @@
 
 ---
 # Device Hardware
-MicroscopyDeviceHardware:
+MicroscopyHardware:
   selectors:
     - modality == "micr"
     - datatype == "micr"
