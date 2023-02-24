@@ -43,7 +43,7 @@ from pyparsing import (
 # andTest    :: notTest [ '&&' andTest ]*
 # test       :: andTest [ '||' test ]*
 #
-# testList   :: test [ ',' testList ]*
+# testList   :: test [ ',' test ]*
 #
 # expression :: ^ test $
 
@@ -59,9 +59,10 @@ lpar, rpar = Suppress("("), Suppress(")")
 lsqr, rsqr = Suppress("["), Suppress("]")
 dot = Suppress(".")
 
-# Recursively-defined expressions
+# Right-associative expressions need to be recursively defined
 factor = Forward()
 notTest = Forward()
+andTest = Forward()
 test = Forward()
 
 testlist = delimited_list(test)
@@ -96,8 +97,8 @@ expr = term + (addOp + term)[...]
 # Logic expressions (tests, to avoid name collision)
 comparison = expr + (compOp + expr)[...]
 notTest <<= notOp + notTest | comparison
-andTest = notTest + (andOp + notTest)[...]
-test <<= andTest + (orOp + andTest)[...]
+andTest <<= notTest + (andOp + andTest)[...]  # Right-associative
+test <<= andTest + (orOp + test)[...]  # Right-associative
 
 # Schema expressions must parse from start to finish
 expression = StringStart() + test + StringEnd()

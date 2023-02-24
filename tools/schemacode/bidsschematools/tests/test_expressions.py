@@ -22,6 +22,7 @@ def test_schema_expressions(schema_obj):
             """x.y * 10 ** (-3 * index(["a", "b", "c"], w.z))""",
             """((x.y) * (10 ** (-3 * index(['"a"', '"b"', '"c"'], (w.z)))))""",
         ),
+        ("a && b && c || d || e && f", "((a && (b && c)) || (d || (e && f)))"),
     ],
 )
 def test_expression_associations(expr, disambiguated):
