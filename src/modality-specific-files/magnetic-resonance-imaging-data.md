@@ -10,7 +10,7 @@ MRI acquisition parameters are divided into several categories based on
 [checklist](https://winnower-production.s3.amazonaws.com/papers/977/assets/993e199d-6bc3-4418-be3a-f620af1188b7-Parameter_Reporting_V1p3.pdf))
 by Ben Inglis.
 
-### Scanner Hardware
+### Hardware information
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -20,7 +20,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("mri.MRIScannerHardware") }}
+{{ MACROS___make_sidecar_table("mri.MRIHardware") }}
 
 Example for `ReceiveCoilActiveElements`:
 
