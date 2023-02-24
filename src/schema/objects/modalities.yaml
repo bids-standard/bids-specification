@@ -31,3 +31,7 @@ micr:
 nirs:
   display_name: Near-Infrared Spectroscopy
   description: Data acquired with NIRS.
+comp:
+  display_name: Computational Modelling
+  description: |
+    Computational models and data simulated with computational models.

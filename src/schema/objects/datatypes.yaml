@@ -43,6 +43,11 @@ micr:
   value: micr
   display_name: Microscopy
   description: Microscopy
+model:
+  value: model
+  display_name: Computational models
+  description: |
+    Mathematical equations and parameter settings in [LEMS](http://lems.github.io/LEMS) format.
 perf:
   value: perf
   display_name: Perfusion imaging

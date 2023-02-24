@@ -586,6 +586,12 @@ epi:
     The phase-encoding polarity (PEpolar) technique combines two or more Spin Echo
     EPI scans with different phase encoding directions to estimate the underlying
     inhomogeneity/deformation map.
+eq:
+  value: eq
+  name: Equations
+  display_name: Equations
+  description: |
+    Mathematical equations in [LEMS](http://lems.github.io/LEMS) format.
 events:
   value: events
   display_name: Events
@@ -679,6 +685,12 @@ optodes:
   description: |
     Either a light emitting device, sometimes called a transmitter, or a photoelectric transducer, sometimes called a
     receiver.
+param:
+  value: param
+  name: Parameters
+  display_name: Parameters
+  description: |
+    Parameters in [LEMS](http://lems.github.io/LEMS) format.
 pet:
   value: pet
   display_name: Positron Emission Tomography

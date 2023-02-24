@@ -28,3 +28,7 @@ micr:
 nirs:
   datatypes:
     - nirs
+comp:
+  datatypes:
+    - model
+    - code
