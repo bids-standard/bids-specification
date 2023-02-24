@@ -10,6 +10,11 @@ MRI acquisition parameters are divided into several categories based on
 [checklist](https://winnower-production.s3.amazonaws.com/papers/977/assets/993e199d-6bc3-4418-be3a-f620af1188b7-Parameter_Reporting_V1p3.pdf))
 by Ben Inglis.
 
+When adding additional metadata please use the CamelCase version of
+[DICOM ontology terms](https://scicrunch.org/scicrunch/interlex/dashboard)
+whenever possible. See also
+[recommendations on JSON files](../common-principles.md#keyvalue-files-dictionaries).
+
 ### Hardware information
 
 <!-- This block generates a metadata table.
@@ -36,6 +41,18 @@ Since individual scans can sometimes not have the intended coil elements selecte
 it is preferable for this field to be populated directly from the DICOM
 for each individual scan, so that it can be used as a mechanism for checking
 that a given scan was collected with the intended coil elements selected.
+
+### Institution information
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("mri.MRIInstitutionInformation") }}
 
 ### Sequence Specifics
 
@@ -145,23 +162,6 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_sidecar_table("mri.MRIEchoPlanarImagingAndB0Mapping") }}
-
-### Institution information
-
-<!-- This block generates a metadata table.
-These tables are defined in
-  src/schema/rules/sidecars
-The definitions of the fields specified in these tables may be found in
-  src/schema/objects/metadata.yaml
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_sidecar_table("mri.MRIInstitutionInformation") }}
-
-When adding additional metadata please use the CamelCase version of
-[DICOM ontology terms](https://scicrunch.org/scicrunch/interlex/dashboard)
-whenever possible. See also
-[recommendations on JSON files](../common-principles.md#keyvalue-files-dictionaries).
 
 ## Anatomy imaging data
 
