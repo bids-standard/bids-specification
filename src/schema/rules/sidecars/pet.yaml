@@ -1,6 +1,6 @@
 ---
 # PET common metadata fields
-PETScannerHardware:
+PETHardware:
   selectors:
     - modality == "pet"
     - suffix == "pet"

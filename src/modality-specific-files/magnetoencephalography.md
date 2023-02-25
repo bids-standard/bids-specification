@@ -102,6 +102,30 @@ For consistency between studies and institutions,
 we encourage users to extract the values of metadata fields from the actual raw data.
 Whenever possible, please avoid using ad hoc wording.
 
+Those fields MUST be present:
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("meg.MEGRequired") }}
+
+Those fields SHOULD be present:
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("meg.MEGRecommended") }}
+
 #### Hardware information
 
 <!-- This block generates a metadata table.
@@ -137,34 +161,6 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_sidecar_table("meg.MEGInstitutionInformation") }}
-
-#### Required fields
-
-Those fields MUST be present:
-
-<!-- This block generates a metadata table.
-These tables are defined in
-  src/schema/rules/sidecars
-The definitions of the fields specified in these tables may be found in
-  src/schema/objects/metadata.yaml
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_sidecar_table("meg.MEGRequired") }}
-
-#### Recommended fields
-
-Those fields SHOULD be present:
-
-<!-- This block generates a metadata table.
-These tables are defined in
-  src/schema/rules/sidecars
-The definitions of the fields specified in these tables may be found in
-  src/schema/objects/metadata.yaml
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_sidecar_table("meg.MEGRecommended") }}
 
 #### Specific EEG fields
 
