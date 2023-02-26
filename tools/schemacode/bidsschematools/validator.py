@@ -253,10 +253,7 @@ def _bidsignore_check(ignore_expression, file_name, file_root):
     elif any(i in ignore_expression for i in ["/", "\\"]):
         file_name = os.path.join(file_root, file_name)
 
-    if fnmatch.fnmatch(file_name, ignore_expression):
-        return True
-    else:
-        return False
+    return fnmatch.fnmatch(file_name, ignore_expression)
 
 
 def log_errors(validation_result):
