@@ -619,7 +619,7 @@ def validate_bids(
     )
 
     # Record schema version.
-    validation_result["bids_version"] = my_schema["BIDSVersion"]
+    validation_result["bids_version"] = my_schema["bids_version"]
 
     log_errors(validation_result)
 
