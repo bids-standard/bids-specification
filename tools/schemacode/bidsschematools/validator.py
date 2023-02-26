@@ -7,7 +7,7 @@ from copy import deepcopy
 from pathlib import Path
 
 import bidsschematools as bst
-import bidsschematools.parse
+import bidsschematools.rules
 import bidsschematools.schema
 import bidsschematools.types
 import bidsschematools.utils
@@ -603,7 +603,7 @@ def validate_bids(
             bids_root,
         )
 
-    regex_schema, my_schema = bst.parse.regexify_all(schema_path)
+    regex_schema, my_schema = bst.rules.regexify_all(schema_path)
     pseudofile_suffixes = _get_directory_suffixes(my_schema)
 
     # Get list of all paths since inputs can be directories.
