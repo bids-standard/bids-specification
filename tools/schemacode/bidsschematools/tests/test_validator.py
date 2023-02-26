@@ -252,3 +252,15 @@ def test_select_schema_path(bids_examples, tmp_path):
     # Does fallback to None work without any `raise`?
     schema_path = select_schema_path(dataset_path)
     assert schema_path is None
+
+
+def test_bids_schema_versioncheck(monkeypatch):
+    """Test incompatible version."""
+    import bidsschematools as bst
+
+    from ..utils import get_bundled_schema_path
+
+    schema_dir = get_bundled_schema_path()
+    assert bst.validator._bids_schema_versioncheck(schema_dir)
+    monkeypatch.setattr(bst, "__version__", "99.99.99")
+    assert not bst.validator._bids_schema_versioncheck(schema_dir)
