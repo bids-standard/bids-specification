@@ -523,7 +523,7 @@ def write_report(
 def validate_bids(
     in_paths,
     dummy_paths=False,
-    bids_reference_root="/usr/share/bids-schema/versions",
+    bids_reference_root=None,
     schema_path=None,
     bids_version=None,
     report_path=False,
@@ -543,6 +543,7 @@ def validate_bids(
     bids_reference_root : str, optional
         Path where schema versions are stored, and which contains directories named exactly
         according to the respective schema version, e.g. "1.7.0".
+        Currently this is untested.
     bids_version : str or None, optional
         Version of BIDS schema, or path to schema. This supersedes the specification detected in
         `dataset_description.json` and is itself superseded if `schema_path` is specified.
