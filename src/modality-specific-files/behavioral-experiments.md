@@ -21,7 +21,7 @@ Additionally, events files that do not include the mandatory `onset` and
 `duration` columns can still be included, but should be labeled `_beh.tsv`
 rather than `_events.tsv`.
 
-### Sidecar JSON (`*_beh.json`)
+## Sidecar JSON (`*_beh.json`)
 
 In addition to the metadata that is either:
 

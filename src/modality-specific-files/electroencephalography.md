@@ -149,7 +149,6 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("eeg.EEGInstitutionInformation") }}
 
-
 #### Example `*_eeg.json`
 
 ```JSON

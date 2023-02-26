@@ -384,7 +384,6 @@ A guide for using macros can be found at
 
 {{ MACROS___make_sidecar_table("micr.MicroscopyInstitutionInformation") }}
 
-
 #### Example of sidecar JSON file (`*_<suffix>.json`)
 ```JSON
 {
