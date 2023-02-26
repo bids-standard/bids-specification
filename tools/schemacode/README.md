@@ -11,4 +11,3 @@ Features:
 * lightweight
 * reference schema parsing implementation used for schema testing
 * simple CLI bindings (e.g. `bst export`)
-
