@@ -285,7 +285,7 @@ def log_errors(validation_result):
 def select_schema_path(
     bids_version=None,
     bids_root=None,
-    bids_reference_root="/usr/share/bids-schema/versions",
+    bids_reference_root=None,
 ):
     """
     Select schema directory, according to a priority logic whereby the schema path is
@@ -325,6 +325,10 @@ def select_schema_path(
         Alternatively this could be handled by an environment variable, though that also requires
         enforcement on the package distribution side.
     """
+
+    if bids_reference_root is None:
+        lgr.warning("No BIDS reference root provided.")
+        return None
 
     bids_reference_root = os.path.abspath(os.path.expanduser(bids_reference_root))
 
@@ -599,6 +603,7 @@ def validate_bids(
         schema_path = select_schema_path(
             bids_version,
             bids_root,
+            bids_reference_root=bids_reference_root,
         )
 
     regex_schema, my_schema = bst.rules.regexify_all(schema_path)
