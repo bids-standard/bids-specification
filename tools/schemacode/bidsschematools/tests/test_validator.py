@@ -3,9 +3,8 @@ import shutil
 
 import pytest
 
+from bidsschematools.conftest import BIDS_ERROR_SELECTION, BIDS_SELECTION
 from bidsschematools.validator import select_schema_path, validate_bids
-
-from .conftest import BIDS_ERROR_SELECTION, BIDS_SELECTION
 
 
 def test_inheritance_examples():
