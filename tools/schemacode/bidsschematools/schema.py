@@ -6,7 +6,6 @@ from collections.abc import Iterable, Mapping
 from copy import deepcopy
 from functools import lru_cache
 
-from . import __bids_version__, __version__, utils
 from .types import Namespace
 
 lgr = utils.get_logger()
@@ -178,24 +177,6 @@ def load_schema(schema_path=None):
     return schema
 
 
-def _jsonify(schema):
-    """Export the schema to JSON format.
-
-    Parameters
-    ----------
-    schema : dict
-        The schema object, in dictionary form.
-
-    Returns
-    -------
-    json : str
-        The schema serialized as a JSON string.
-    """
-    versioned = Namespace.build({"schema_version": __version__, "bids_version": __bids_version__})
-    versioned.update(schema)
-    return versioned.to_json()
-
-
 def filter_schema(schema, **kwargs):
     """Filter the schema based on a set of keyword arguments.
 
@@ -269,7 +250,7 @@ def export(output, schema_path=None):
         schema_path = os.path.abspath(os.path.expanduser(schema_path))
 
     schema = load_schema(schema_path)
-    text = _jsonify(schema)
+    text = schema.to_json()
     if output == "-":
         logger.debug("Writing to stdout")
         print(text)
