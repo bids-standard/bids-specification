@@ -3,7 +3,7 @@ import subprocess
 
 import pytest
 
-from ..conftest import BIDS_ERROR_SELECTION, BIDS_SELECTION
+from ...conftest import BIDS_ERROR_SELECTION, BIDS_SELECTION
 
 
 @pytest.mark.skipif(
