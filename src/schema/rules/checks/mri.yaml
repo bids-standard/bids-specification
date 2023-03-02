@@ -48,9 +48,9 @@ EffectiveEchoSpacingTooLarge:
     level: error
   selectors:
     - modality == "MRI"
-    - type(sidecar.RepetitionTime) != null
-    - type(sidecar.EffectiveEchoSpacing) != null
-    - type(sidecar.PhaseEncodingDirection) != null
+    - type(sidecar.RepetitionTime) != "null"
+    - type(sidecar.EffectiveEchoSpacing) != "null"
+    - type(sidecar.PhaseEncodingDirection) != "null"
   checks:
     - |
       sidecar.RepetitionTime >= (
@@ -68,7 +68,7 @@ SliceTimingElements:
     level: warning
   selectors:
     - modality == "MRI"
-    - type(sidecar.SliceTiming) != null
+    - type(sidecar.SliceTiming) != "null"
   checks:
     - length(sidecar.SliceTiming) == nifti_header.dim[3]
 

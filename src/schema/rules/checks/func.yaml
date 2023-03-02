@@ -24,7 +24,7 @@ RepetitionTimeGreaterThan:
     level: warning
   selectors:
     - suffix == "bold"
-    - sidecar.RepetitionTime != null
+    - sidecar.RepetitionTime != "null"
   checks:
     - sidecar.RepetitionTime <= 100
 
@@ -37,8 +37,8 @@ RepetitionTimeMismatch:
     level: error
   selectors:
     - suffix == "bold"
-    - sidecar.RepetitionTime != null
-    - nifti_header != null
+    - sidecar.RepetitionTime != "null"
+    - nifti_header != "null"
   checks:
     - sidecar.RepetitionTime == nifti_header.pixdim[4]
 
@@ -51,7 +51,7 @@ BoldNot4d:
     level: error
   selectors:
     - suffix == "bold"
-    - nifti_header != null
+    - nifti_header != "null"
   checks:
     - nifti_header.dim[0] == 4
 
@@ -86,9 +86,9 @@ VolumeTimingRepetitionTimeMutex:
       or 'VolumeTiming' when variable times are used.
     level: error
   selectors:
-    - type(sidecar.VolumeTiming) != null
+    - type(sidecar.VolumeTiming) != "null"
   checks:
-    - type(sidecar.RepetitionTime) == null
+    - type(sidecar.RepetitionTime) == "null"
 
 RepetitionTimeAcquisitionDurationMutex:
   issue:
@@ -99,9 +99,9 @@ RepetitionTimeAcquisitionDurationMutex:
       (RepetitionTime - AcquisitionDuration).
     level: error
   selectors:
-    - type(sidecar.AcquistionDuration) != null
+    - type(sidecar.AcquistionDuration) != "null"
   checks:
-    - type(sidecar.RepetitionTime) == null
+    - type(sidecar.RepetitionTime) == "null"
 
 VolumeTimingDelayTimeMutex:
   issue:
@@ -111,9 +111,9 @@ VolumeTimingDelayTimeMutex:
       To specify acquisition duration, use 'AcquisitionDuration' or 'SliceTiming'.
     level: error
   selectors:
-    - type(sidecar.VolumeTiming) != null
+    - type(sidecar.VolumeTiming) != "null"
   checks:
-    - type(sidecar.DelayTime) == null
+    - type(sidecar.DelayTime) == "null"
 
 SliceTimingAcquisitionDurationMutex:
   issue:
@@ -123,7 +123,7 @@ SliceTimingAcquisitionDurationMutex:
       Neither 'DelayTime' nor 'AcquisitionDuration' may be defined in addition.
     level: error
   selectors:
-    - type(sidecar.SliceTiming) != null
+    - type(sidecar.SliceTiming) != "null"
   checks:
-    - type(sidecar.AcquisitionDuration) == null
-    - type(sidecar.DelayTime) == null
+    - type(sidecar.AcquisitionDuration) == "null"
+    - type(sidecar.DelayTime) == "null"
