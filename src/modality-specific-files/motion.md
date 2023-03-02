@@ -48,8 +48,15 @@ The source data from each tracking system in their original format, if different
 can be stored in the [`/sourcedata` directory](../common-principles.md#source-vs-raw-vs-derived-data).
 The original data format MAY hold more metadata than currently specified in the `*_motion.json` file.
 
-When multiple tracking systems are used to record motion or motion capture is used alongside the recording of other BIDS modalities, it may be necessary to temporally synchronize the recordings.
-To save the differences between recording onsets, the `acq_time` column of the [`scans.tsv`](../modality-agnostic-files.md#scans-file) files can be used.
+When multiple tracking systems are used to record motion or motion capture is used alongside the recording of other BIDS modalities and recordings should be interpreted together, it is
+adviced to provide a possibility to synchronize the recordings. The prefered way to do so is to use the acquisition time of the first data point of recordings and store this information
+in the `acq_time` column of the [`*_scans.tsv`](../modality-agnostic-files.md#scans-file) file. The Note that the [BIDS date time format](../common-principles.md#units) allows optional
+fractional seconds, which SHOULD be used to maximize the precision of the syncronization.
+Only if the precision of the synchronization is not high enough, the `*_events.tsv` file SHOULD be used to syncronize recordings. In this file, the start- and stop time of the recording
+of a system can be specified in relation to a system to synchronize with. If more than two systems are to be synchronized, it is up to the user to indntify the "main" system.
+
+In case a tracking system provides time information with every recorded sample, these time information can be stored in form of latencies to recording onsetm(first sample) in the
+[*_motion.tsv] file. If a system has uneven sampling rate behaviour, the `LATENCY` channel can be used to share these information.
 
 To store events alongside motion data when there are multiple tracking systems simulatenously in use, it is RECOMMENDED to designate a tracking system to the events file.
 Such an events file name SHOULD include the `tracksys` key and looks like `sub-<label>[_ses-<label>]_task-<label>[_acq-<label>]_tracksys-<label>[_run-<index>]_events.tsv`.
@@ -152,17 +159,18 @@ When using quaternions to represent orientations, the axial components that corr
 Restricted keyword list for column `type` in alphabetic order.
 Note that upper-case is REQUIRED:
 
-| **Keyword** | **Description**                                                                                                                                                                                                              |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ACCEL       | Accelerometer channel, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).                                                                           |
-| ANGACC      | Angular acceleration channel, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).                                                                    |
-| GYRO        | Gyrometer channel, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).                                                                               |
-| LATENCY     | Latency of samples in seconds from recording onset.                                                                                                                                                                          |
-| MAGN        | Magnetic field strength, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z)                                                                           |
-| MISC        | Miscellaneous channels.                                                                                                                                                                                                      |
-| ORNT        | Orientation channel, one channel for each spatial axis or quaternion component. Column `component` for the axis or quaternion label MUST be added to the `*_channels.tsv` file (x, y, z, quat_x, quat_y, quat_z, or quat_w). |
-| POS         | Position in space, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z).                                                                                |
-| VEL         | Velocity, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z).                                                                                         |
+| **Keyword**                     | **Description**                                                                                                                                                                                                              |
+| ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ACCEL                           | Accelerometer channel, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).                                                                           |
+| ANGACC                          | Angular acceleration channel, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).                                                                    |
+| GYRO                            | Gyrometer channel, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).                                                                               |
+| LATENCY                         | Latency of samples in seconds from recording onset. MUST be in form of `ss[.000000]` , where [.000000] is an optional subsecond resolution                                                                                   |
+| between 1 and 6 decimal points. |                                                                                                                                                                                                                              |
+| MAGN                            | Magnetic field strength, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z)                                                                           |
+| MISC                            | Miscellaneous channels.                                                                                                                                                                                                      |
+| ORNT                            | Orientation channel, one channel for each spatial axis or quaternion component. Column `component` for the axis or quaternion label MUST be added to the `*_channels.tsv` file (x, y, z, quat_x, quat_y, quat_z, or quat_w). |
+| POS                             | Position in space, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z).                                                                                |
+| VEL                             | Velocity, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z).                                                                                         |
 
 ### Example `*_channels.tsv`
 
