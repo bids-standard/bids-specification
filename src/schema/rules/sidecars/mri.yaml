@@ -79,6 +79,7 @@ ASLMRISequenceSpecifics:
   selectors:
     - modality == "mri"
     - datatype == "perf"
+    - suffix == "asl"
   fields:
     MRAcquisitionType: required
 
