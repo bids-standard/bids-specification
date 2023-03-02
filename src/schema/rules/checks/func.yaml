@@ -14,3 +14,116 @@ PhaseSuffixDeprecated:
     - datatype == "func"
   checks:
     - suffix != "phase"
+
+# 2
+RepetitionTimeGreaterThan:
+  issue:
+    code: REPETITION_TIME_GREATER_THAN
+    message: |
+      'RepetitionTime' is greater than 100 are you sure it's expressed in seconds?
+    level: warning
+  selectors:
+    - suffix == "bold"
+    - sidecar.RepetitionTime != null
+  checks:
+    - sidecar.RepetitionTime <= 100
+
+# 12
+RepetitionTimeMismatch:
+  issue:
+    code: REPETITION_TIME_MISMATCH
+    message: |
+      Repetition time did not match between the scan's header and the associated JSON metadata file.
+    level: error
+  selectors:
+    - suffix == "bold"
+    - sidecar.RepetitionTime != null
+    - nifti_header != null
+  checks:
+    - sidecar.RepetitionTime == nifti_header.pixdim[4]
+
+# 54
+BoldNot4d:
+  issue:
+    code: BOLD_NOT_4D
+    message: |
+      Bold scans must be 4 dimensional.
+    level: error
+  selectors:
+    - suffix == "bold"
+    - nifti_header != null
+  checks:
+    - nifti_header.dim[0] == 4
+
+# 66
+SliceTimingGreaterThanRepetitionTime:
+  issue:
+    code: SLICETIMING_VALUES_GREATER_THAN_REPETITION_TIME
+    message: |
+      SliceTiming values contains invalid value as it is greater than RepetitionTime.
+      SliceTiming values should be in seconds not milliseconds (common mistake).
+    level: error
+  selectors:
+    - suffix == "bold"
+    - type(sidecar.SliceTiming) != "null"
+    - type(sidecar.RepetitionTime) != "null"
+  checks:
+    - max(sidecar.SliceTiming) <= sidecar.RepetitionTime
+
+### The following rules implement the functional imaging acquisition timing rules
+### For the sake of informative errors, they are implemented in more rules than
+### strictly necessary
+### The selectors/checks are implemented with the least likely case in the selector
+### for efficiency.
+
+# 178
+VolumeTimingRepetitionTimeMutex:
+  issue:
+    code: VOLUME_TIMING_AND_REPETITION_TIME_MUTUALLY_EXCLUSIVE
+    message: |
+      The fields 'VolumeTiming' and 'RepetitionTime' for this file are mutually exclusive.
+      Choose 'RepetitionTime' when the same repetition time is used for all volumes,
+      or 'VolumeTiming' when variable times are used.
+    level: error
+  selectors:
+    - type(sidecar.VolumeTiming) != null
+  checks:
+    - type(sidecar.RepetitionTime) == null
+
+RepetitionTimeAcquisitionDurationMutex:
+  issue:
+    code: REPETITION_TIME_AND_ACQUISITION_DURATION_MUTUALLY_EXCLUSIVE
+    message: |
+      The fields 'RepetitionTime' and 'AcquisitionDuration' for this file are mutually exclusive.
+      To specify acquisition duration, use 'SliceTiming' or 'DelayTime'
+      (RepetitionTime - AcquisitionDuration).
+    level: error
+  selectors:
+    - type(sidecar.AcquistionDuration) != null
+  checks:
+    - type(sidecar.RepetitionTime) == null
+
+VolumeTimingDelayTimeMutex:
+  issue:
+    code: VOLUME_TIMING_AND_DELAY_TIME_MUTUALLY_EXCLUSIVE
+    message: |
+      The fields 'VolumeTiming' and 'DelayTime' for this file are mutually exclusive.
+      To specify acquisition duration, use 'AcquisitionDuration' or 'SliceTiming'.
+    level: error
+  selectors:
+    - type(sidecar.VolumeTiming) != null
+  checks:
+    - type(sidecar.DelayTime) == null
+
+SliceTimingAcquisitionDurationMutex:
+  issue:
+    code: SLICE_TIMING_AND_DURATION_MUTUALLY_EXCLUSIVE
+    message: |
+      'SliceTiming' is defined for this file.
+      Neither 'DelayTime' nor 'AcquisitionDuration' may be defined in addition.
+    level: error
+  selectors:
+    - type(sidecar.SliceTiming) != null
+  checks:
+    - type(sidecar.AcquisitionDuration) == null
+    - type(sidecar.DelayTime) == null
