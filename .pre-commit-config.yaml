@@ -46,3 +46,19 @@ repos:
     rev: v2.2.2
     hooks:
       - id: codespell
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.0.1
+    hooks:
+      - id: mypy
+        # Sync with project.optional-dependencies.typing
+        additional_dependencies:
+          - click
+          - markdown-it-py
+          - importlib_resources
+          - pandas-stubs
+          - pyparsing
+          - pytest
+          - types-PyYAML
+          - types-tabulate
+        args: ["tools/schemacode/bidsschematools"]
+        pass_filenames: false
