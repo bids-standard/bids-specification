@@ -56,11 +56,11 @@ Only if the precision of the synchronization is not high enough, the `*_events.t
 of a system can be specified in relation to a system to synchronize with. If more than two systems are to be synchronized, it is up to the user to indntify the "main" system.
 
 In case a tracking system provides time information with every recorded sample, these time information can be stored in form of latencies to recording onsetm(first sample) in the
-[*_motion.tsv] file. If a system has uneven sampling rate behaviour, the `LATENCY` channel can be used to share these information.
+`*_motion.tsv` file. If a system has uneven sampling rate behaviour, the `LATENCY` channel can be used to share these information.
 
 To store events alongside motion data when there are multiple tracking systems simulatenously in use, it is RECOMMENDED to designate a tracking system to the events file.
 Such an events file name SHOULD include the `tracksys` key and looks like `sub-<label>[_ses-<label>]_task-<label>[_acq-<label>]_tracksys-<label>[_run-<index>]_events.tsv`.
-Event latencies can then be related to motion samples of multiple tracking systems also by using `acq_time` column entries in the `scans.tsv`.
+Event latencies can then be related to motion samples of multiple tracking systems also by using `acq_time` column entries in the `*_scans.tsv`.
 The same principle applies when the events file is saved alongside a simultaneously recorded non-motion data (for example EEG).
 
 ### Sidecar JSON (`*_motion.json`)
