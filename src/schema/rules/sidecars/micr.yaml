@@ -10,6 +10,7 @@ MicroscopyDeviceHardware:
   selectors:
     - modality == "micr"
     - datatype == "micr"
+    - suffix != "photo"
   fields:
     Manufacturer: recommended
     ManufacturersModelName: recommended
@@ -25,6 +26,7 @@ MicroscopyImageAcquisition:
   selectors:
     - modality == "micr"
     - datatype == "micr"
+    - suffix != "photo"
   fields:
     PixelSize: required
     PixelSizeUnits: required
@@ -39,6 +41,7 @@ MicroscopySample:
   selectors:
     - modality == "micr"
     - datatype == "micr"
+    - suffix != "photo"
   fields:
     BodyPart:
       level: recommended
