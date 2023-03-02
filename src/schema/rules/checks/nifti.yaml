@@ -49,4 +49,3 @@ XformCodes0:
     - nifti_header != null
   checks:
     - nifti_header.qform_code != 0 || nifti_header.sform_code != 0
-
