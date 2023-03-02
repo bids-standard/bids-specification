@@ -49,6 +49,7 @@ DWIMissingBvec:
     level: error
   selectors:
     - suffix == "dwi"
+    - extension != "json"
   checks:
     - '"bvec" in associations'
 
@@ -61,5 +62,6 @@ DWIMissingBval:
     level: error
   selectors:
     - suffix == "dwi"
+    - extension != "json"
   checks:
     - '"bval" in associations'
