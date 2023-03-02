@@ -92,6 +92,9 @@ context:
     path:
       description: 'Path of the current file'
       type: string
+    size:
+      description: 'Length of the current file in bytes'
+      type: int
     entities:
       description: 'Entities parsed from the current filename'
       type: object
@@ -313,3 +316,41 @@ context:
           name: 'sform code'
           description: 'Use of the affine fields.'
           type: integer
+    ome:
+      name: 'Open Microscopy Environment fields'
+      description: 'Parsed contents of OME-XML header, which may be found in OME-TIFF or OME-ZARR files'
+      type: object
+      properties:
+        PhysicalSizeX:
+          name: 'PhysicalSizeX'
+          description: 'Pixels / @PhysicalSizeX'
+          type: float
+        PhysicalSizeY:
+          name: 'PhysicalSizeY'
+          description: 'Pixels / @PhysicalSizeY'
+          type: float
+        PhysicalSizeZ:
+          name: 'PhysicalSizeZ'
+          description: 'Pixels / @PhysicalSizeZ'
+          type: float
+        PhysicalSizeXUnit:
+          name: 'PhysicalSizeXUnit'
+          description: 'Pixels / @PhysicalSizeXUnit'
+          type: string
+        PhysicalSizeYUnit:
+          name: 'PhysicalSizeYUnit'
+          description: 'Pixels / @PhysicalSizeYUnit'
+          type: string
+        PhysicalSizeZUnit:
+          name: 'PhysicalSizeZUnit'
+          description: 'Pixels / @PhysicalSizeZUnit'
+          type: string
+    tiff:
+      name: 'TIFF'
+      description: 'TIFF file format metadata'
+      type: object
+      properties:
+        version:
+          name: 'Version'
+          description: 'TIFF file format version (the second 2-byte block)'
+          type: int

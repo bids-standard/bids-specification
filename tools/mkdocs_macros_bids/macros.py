@@ -72,7 +72,10 @@ def make_filename_template(dstype="raw", src_path=None, pdf_format=False, **kwar
         If False, the filename template will use HTML and include hyperlinks.
         This works on the website.
         Default is False.
-    kwargs : dict
+
+    Other Parameters
+    ----------------
+    **kwargs : dict
         Keyword arguments used to filter the schema.
         Example kwargs that may be used include: "suffixes", "datatypes",
         "extensions".
@@ -102,7 +105,13 @@ def make_entity_table(src_path=None, **kwargs):
 
     Parameters
     ----------
-    kwargs : dict
+    src_path : str or None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
+
+    Other Parameters
+    ----------------
+    **kwargs : dict
         Keyword arguments used to filter the schema.
         Example kwargs that may be used include: "suffixes", "datatypes",
         "extensions".
@@ -125,6 +134,12 @@ def make_entity_definitions(src_path=None):
     """Generate definitions and other relevant information for entities in the
     specification.
 
+    Parameters
+    ----------
+    src_path : str or None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
+
     Returns
     -------
     text : str
@@ -144,7 +159,7 @@ def make_glossary(src_path=None):
 
     Parameters
     ----------
-    src_path : str | None
+    src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
 
@@ -169,7 +184,7 @@ def make_suffix_table(suffixes, src_path=None):
     ----------
     suffixes : list of str
         A list of the suffixes to include in the table.
-    src_path : str | None
+    src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
 
@@ -199,7 +214,7 @@ def make_metadata_table(field_info, src_path=None):
         Until requirement levels can be codified in the schema,
         this argument will be dictionary, with the field names as keys and
         the requirement levels as values.
-    src_path : str | None
+    src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
 
@@ -224,7 +239,7 @@ def make_sidecar_table(table_name, src_path=None):
     ----------
     table_name : str or list of str
         Qualified name(s) in schema.rules.sidecars
-    src_path : str | None
+    src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
 
@@ -249,7 +264,7 @@ def make_subobject_table(object_name, src_path=None):
     ----------
     object_tuple : tuple of string
         A tuple pointing to the object to render.
-    src_path : str | None
+    src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
 
@@ -283,7 +298,7 @@ def make_columns_table(table_name, src_path=None):
         Until requirement levels can be codified in the schema,
         this argument will be a dictionary, with the column names as keys and
         the requirement levels as values.
-    src_path : str | None
+    src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
 
@@ -325,7 +340,7 @@ def define_common_principles(src_path=None):
 
     Parameters
     ----------
-    src_path : str | None
+    src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
 
@@ -343,7 +358,6 @@ def define_common_principles(src_path=None):
 
 
 def define_allowed_top_directories(src_path=None):
-
     if src_path is None:
         src_path = _get_source_path()
 
