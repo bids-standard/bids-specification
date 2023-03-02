@@ -67,6 +67,7 @@ MicroscopyChunkTransformations:
   selectors:
     - modality == "micr"
     - datatype == "micr"
+    - suffix != "photo"
     - '"chunk" in entities'
   fields:
     ChunkTransformationMatrix:
@@ -77,6 +78,7 @@ MicroscopyChunkTransformationsMatrixAxis:
   selectors:
     - modality == "micr"
     - datatype == "micr"
+    - suffix != "photo"
     - '"chunk" in entities'
     - '"ChunkTransformationMatrix" in sidecar'
   fields:
