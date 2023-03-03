@@ -3,13 +3,13 @@ Script that checks the order of the entities of the suffix group of each datatyp
 and lists those that are out of order.
 """
 
-import yaml
 import warnings
 from pathlib import Path
 
+import yaml
+
 
 def main():
-
     status_ok = True
 
     entities_order = return_entities_order()
@@ -20,15 +20,12 @@ def main():
     files_to_check = datatypes_schema_path.rglob("*.yaml")
 
     for file_ in files_to_check:
-
         print(f"Checking: {file_}")
 
         with open(file_, "r") as f:
-
             schema = yaml.safe_load(f)
 
             for suffix_group in schema:
-
                 entities = list(schema[suffix_group]["entities"].keys())
 
                 if "$ref" in entities:
@@ -37,7 +34,6 @@ def main():
                 correct_order = sorted(entities, key=lambda x: entities_order.index(x))
 
                 if entities != correct_order:
-
                     status_ok = False
 
                     warnings.warn(

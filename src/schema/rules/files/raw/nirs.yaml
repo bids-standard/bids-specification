@@ -1,0 +1,15 @@
+---
+nirs:
+  suffixes:
+    - nirs
+  extensions:
+    - .snirf
+    - .json
+  datatypes:
+    - nirs
+  entities:
+    subject: required
+    session: optional
+    task: required
+    acquisition: optional
+    run: optional

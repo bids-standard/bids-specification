@@ -20,7 +20,7 @@ acq_time__scans:
     Furthermore, if this header is provided, the acquisition times of all files
     from the same recording MUST be identical.
     Datetime format and their anonymization are described in
-    [Units](SPEC_ROOT/02-common-principles.md#units).
+    [Units](SPEC_ROOT/common-principles.md#units).
   type: string
   format: datetime
 acq_time__sessions:
@@ -29,7 +29,7 @@ acq_time__sessions:
   description: |
     Acquisition time refers to when the first data point of the first run was acquired.
     Datetime format and their anonymization are described in
-    [Units](SPEC_ROOT/02-common-principles.md#units).
+    [Units](SPEC_ROOT/common-principles.md#units).
   type: string
   format: datetime
 age:
@@ -52,6 +52,24 @@ color:
     Hexadecimal. Label color for visualization.
   type: string
   unit: hexadecimal
+detector__channels:
+  name: detector
+  display_name: Detector Name
+  description: |
+    Name of the detector as specified in the `*_optodes.tsv` file.
+    `n/a` for channels that do not contain NIRS signals (for example, acceleration).
+  anyOf:
+    - type: string
+    - type: string
+      enum:
+        - n/a
+detector_type:
+  name: detector_type
+  display_name: Detector Type
+  description: |
+    The type of detector. Only to be used if the field `DetectorType` in `*_nirs.json` is set to `mixed`.
+  anyOf:
+    - type: string
 derived_from:
   name: derived_from
   display_name: Derived from
@@ -65,6 +83,12 @@ description:
   display_name: Description
   description: |
     Brief free-text description of the channel, or other information of interest.
+  type: string
+description__optode:
+  name: description
+  display_name: Description
+  description: |
+    Free-form text description of the optode, or other information of interest.
   type: string
 dimension:
   name: dimension
@@ -240,6 +264,12 @@ name__electrodes:
   description: |
     Name of the electrode contact point.
   type: string
+name__optodes:
+  name: name
+  display_name: Optode name
+  description: |
+    Name of the optode, must be unique.
+  type: string
 # name column for dseg.tsv files
 name__segmentations:
   name: name
@@ -278,6 +308,23 @@ onset:
     acquired data point.
   type: number
   unit: s
+component:
+  name: component
+  display_name: Component
+  description: |
+    Description of the spatial axis or label of quaternion component associated with the channel.
+    For example, `x`,`y`,`z` for position channels,
+    or `quat_x`, `quat_y`, `quat_z`, `quat_w` for quaternion orientation channels.
+  type: string
+  enum:
+    - x
+    - y
+    - z
+    - quat_x
+    - quat_y
+    - quat_z
+    - quat_w
+    - n/a
 pathology:
   name: pathology
   display_name: Pathology
@@ -420,6 +467,14 @@ sex:
     - OTHER
     - Other
     - n/a
+short_channel:
+  name: short_channel
+  display_name: Short Channel
+  description: |
+    Is the channel designated as short.
+    The total number of channels listed as short channels
+    SHOULD be stored in `ShortChannelCount` in `*_nirs.json`.
+  type: boolean
 size:
   name: size
   display_name: Electrode size
@@ -440,6 +495,24 @@ software_filters:
     - type: string
       enum:
         - n/a
+source__channels:
+  name: source
+  display_name: Source name
+  description: |
+    Name of the source as specified in the `*_optodes.tsv` file.
+    `n/a` for channels that do not contain fNIRS signals (for example, acceleration).
+  anyOf:
+    - type: string
+    - type: string
+      enum:
+        - n/a
+source__optodes:
+  name: source_type
+  display_name: Source type
+  description: |
+    The type of source. Only to be used if the field `SourceType` in `*_nirs.json` is set to `mixed`.
+  anyOf:
+    - type: string
 species:
   name: species
   display_name: Species
@@ -614,6 +687,52 @@ type__ieeg_channels:
     - DAC
     - REF
     - OTHER
+type__nirs_channels:
+  name: type
+  display_name: Channel type
+  description: |
+    Type of channel; MUST use the channel types listed below.
+    Note that the type MUST be in upper-case.
+  type: string
+  enum:
+    - NIRSCWAMPLITUDE
+    - NIRSCWFLUORESCENSEAMPLITUDE
+    - NIRSCWOPTICALDENSITY
+    - NIRSCWHBO
+    - NIRSCWHBR
+    - NIRSCWMUA
+    - MEGMAG
+    - MEGGRADAXIAL
+    - MEGGRADPLANAR
+    - MEGREFMAG
+    - MEGREFGRADAXIAL
+    - MEGREFGRADPLANAR
+    - MEGOTHER
+    - EEG
+    - ECOG
+    - SEEG
+    - DBS
+    - VEOG
+    - HEOG
+    - EOG
+    - ECG
+    - EMG
+    - TRIG
+    - AUDIO
+    - PD
+    - EYEGAZE
+    - PUPIL
+    - MISC
+    - SYSCLOCK
+    - ADC
+    - DAC
+    - HLU
+    - FITERR
+    - ACCEL
+    - GYRO
+    - MAGN
+    - MISC
+    - OTHER
 # type column for electrodes.tsv files
 type__electrodes:
   name: type
@@ -621,13 +740,34 @@ type__electrodes:
   description: |
     Type of the electrode (for example, cup, ring, clip-on, wire, needle).
   type: string
+type__optodes:
+  name: type
+  display_name: Type
+  description: |
+    The type of the optode.
+  type: string
+  enum:
+    - source
+    - detector
+    - n/a
 units:
   name: units
   display_name: Units
   description: |
     Physical unit of the value represented in this channel,
     for example, `V` for Volt, or `fT/cm` for femto Tesla per centimeter
-    (see [Units](SPEC_ROOT/02-common-principles.md#units)).
+    (see [Units](SPEC_ROOT/common-principles.md#units)).
+  type: string
+  format: unit
+units__nirs:
+  name: units
+  display_name: Units
+  description: |
+    Physical unit of the value represented in this channel,
+    specified according to the SI unit symbol and possibly prefix symbol,
+    or as a derived SI unit (for example, `V`, or unitless for changes in optical densities).
+    For guidelines about units see the [Appendix](SPEC_ROOT/appendices/units.md)
+    and [Common Principles](SPEC_ROOT/common-principles.md#units) pages.
   type: string
   format: unit
 value:
@@ -652,6 +792,34 @@ volume_type:
     - m0scan
     - deltam
     - cbf
+wavelength_nominal:
+  name: wavelength_nominal
+  display_name: Wavelength nominal
+  description: |
+    Specified wavelength of light in nm.
+    `n/a` for channels that do not contain raw NIRS signals (for example, acceleration).
+    This field is equivalent to `/nirs(i)/probe/wavelengths` in the SNIRF specification.
+  anyOf:
+    - type: number
+    - type: string
+      enum:
+        - n/a
+wavelength_actual:
+  name: wavelength_actual
+  display_name: Wavelength actual
+  description: |
+    Measured wavelength of light in nm.
+    `n/a` for channels that do not contain raw NIRS signals (acceleration).
+    This field is equivalent to `measurementList.wavelengthActual` in the SNIRF specification.
+  type: number
+wavelength_emission_actual:
+  name: wavelength_emission_actual
+  display_name: Wavelength emission actual
+  description: |
+    Measured emission wavelength of light in nm.
+    `n/a` for channels that do not contain raw NIRS signals (acceleration).
+    This field is equivalent to `measurementList.wavelengthEmissionActual` in the SNIRF specification.
+  type: number
 whole_blood_radioactivity:
   name: whole_blood_radioactivity
   display_name: Whole blood radioactivity
@@ -676,6 +844,69 @@ z:
   display_name: Z position
   description: |
     Recorded position along the z-axis.
+  anyOf:
+    - type: number
+    - type: string
+      enum:
+        - n/a
+x__optodes:
+  name: x
+  display_name: X position
+  description: |
+    Recorded position along the x-axis.
+    `"n/a"` if not available.
+  anyOf:
+    - type: number
+    - type: string
+      enum:
+        - n/a
+y__optodes:
+  name: y
+  display_name: Y position
+  description: |
+    Recorded position along the y-axis.
+    `"n/a"` if not available.
+  anyOf:
+    - type: number
+    - type: string
+      enum:
+        - n/a
+z__optodes:
+  name: z
+  display_name: Z position
+  description: |
+    Recorded position along the z-axis.
+    `"n/a"` if not available.
+  anyOf:
+    - type: number
+    - type: string
+      enum:
+        - n/a
+template_x:
+  name: template_x
+  display_name: X template position
+  description: |
+    Assumed or ideal position along the x axis.
+  anyOf:
+    - type: number
+    - type: string
+      enum:
+        - n/a
+template_y:
+  name: template_y
+  display_name: Y template position
+  description: |
+    Assumed or ideal position along the y axis.
+  anyOf:
+    - type: number
+    - type: string
+      enum:
+        - n/a
+template_z:
+  name: template_z
+  display_name: Z template position
+  description: |
+    Assumed or ideal position along the z axis.
   anyOf:
     - type: number
     - type: string

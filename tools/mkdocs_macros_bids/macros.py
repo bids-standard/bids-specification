@@ -61,7 +61,7 @@ def _get_source_path(level=1):
     return caller.f_locals["_Context__self"]["page"].file.src_path
 
 
-def make_filename_template(src_path=None, pdf_format=False, **kwargs):
+def make_filename_template(dstype="raw", src_path=None, pdf_format=False, **kwargs):
     """Generate a filename template snippet from the schema, based on specific filters.
 
     Parameters
@@ -72,7 +72,10 @@ def make_filename_template(src_path=None, pdf_format=False, **kwargs):
         If False, the filename template will use HTML and include hyperlinks.
         This works on the website.
         Default is False.
-    kwargs : dict
+
+    Other Parameters
+    ----------------
+    **kwargs : dict
         Keyword arguments used to filter the schema.
         Example kwargs that may be used include: "suffixes", "datatypes",
         "extensions".
@@ -88,6 +91,7 @@ def make_filename_template(src_path=None, pdf_format=False, **kwargs):
 
     schema_obj = schema.load_schema()
     codeblock = render.make_filename_template(
+        dstype,
         schema_obj,
         src_path=src_path,
         pdf_format=pdf_format,
@@ -101,7 +105,13 @@ def make_entity_table(src_path=None, **kwargs):
 
     Parameters
     ----------
-    kwargs : dict
+    src_path : str or None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
+
+    Other Parameters
+    ----------------
+    **kwargs : dict
         Keyword arguments used to filter the schema.
         Example kwargs that may be used include: "suffixes", "datatypes",
         "extensions".
@@ -124,6 +134,12 @@ def make_entity_definitions(src_path=None):
     """Generate definitions and other relevant information for entities in the
     specification.
 
+    Parameters
+    ----------
+    src_path : str or None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
+
     Returns
     -------
     text : str
@@ -143,7 +159,7 @@ def make_glossary(src_path=None):
 
     Parameters
     ----------
-    src_path : str | None
+    src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
 
@@ -168,7 +184,7 @@ def make_suffix_table(suffixes, src_path=None):
     ----------
     suffixes : list of str
         A list of the suffixes to include in the table.
-    src_path : str | None
+    src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
 
@@ -198,7 +214,7 @@ def make_metadata_table(field_info, src_path=None):
         Until requirement levels can be codified in the schema,
         this argument will be dictionary, with the field names as keys and
         the requirement levels as values.
-    src_path : str | None
+    src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
 
@@ -223,7 +239,7 @@ def make_sidecar_table(table_name, src_path=None):
     ----------
     table_name : str or list of str
         Qualified name(s) in schema.rules.sidecars
-    src_path : str | None
+    src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
 
@@ -241,21 +257,14 @@ def make_sidecar_table(table_name, src_path=None):
     return table
 
 
-def make_subobject_table(object_tuple, field_info, src_path=None):
+def make_subobject_table(object_name, src_path=None):
     """Generate a markdown table of a metadata object's field information.
 
     Parameters
     ----------
     object_tuple : tuple of string
         A tuple pointing to the object to render.
-    field_names : dict
-        A list of the field names.
-        Field names correspond to filenames in the "metadata" directory of the
-        schema.
-        Until requirement levels can be codified in the schema,
-        this argument will be dictionary, with the field names as keys and
-        the requirement levels as values.
-    src_path : str | None
+    src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
 
@@ -271,14 +280,13 @@ def make_subobject_table(object_tuple, field_info, src_path=None):
     schema_obj = schema.load_schema()
     table = render.make_subobject_table(
         schema_obj,
-        object_tuple,
-        field_info,
+        object_name,
         src_path=src_path,
     )
     return table
 
 
-def make_columns_table(column_info, src_path=None):
+def make_columns_table(table_name, src_path=None):
     """Generate a markdown table of TSV column information.
 
     Parameters
@@ -290,7 +298,7 @@ def make_columns_table(column_info, src_path=None):
         Until requirement levels can be codified in the schema,
         this argument will be a dictionary, with the column names as keys and
         the requirement levels as values.
-    src_path : str | None
+    src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
 
@@ -304,7 +312,7 @@ def make_columns_table(column_info, src_path=None):
         src_path = _get_source_path()
 
     schema_obj = schema.load_schema()
-    table = render.make_columns_table(schema_obj, column_info, src_path=src_path)
+    table = render.make_columns_table(schema_obj, table_name, src_path=src_path)
     return table
 
 
@@ -332,7 +340,7 @@ def define_common_principles(src_path=None):
 
     Parameters
     ----------
-    src_path : str | None
+    src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
 
@@ -346,4 +354,13 @@ def define_common_principles(src_path=None):
 
     schema_obj = schema.load_schema()
     string = render.define_common_principles(schema_obj, src_path=src_path)
+    return string
+
+
+def define_allowed_top_directories(src_path=None):
+    if src_path is None:
+        src_path = _get_source_path()
+
+    schema_obj = schema.load_schema()
+    string = render.define_allowed_top_directories(schema_obj, src_path=src_path)
     return string

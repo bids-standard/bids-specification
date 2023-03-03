@@ -20,6 +20,7 @@ EEGChannels:
     notch: optional
     status: optional
     status_description: optional
+  index_columns: [name__channels]
   additional_columns: allowed_if_defined
 
 EEGElectrodes:
@@ -40,4 +41,5 @@ EEGElectrodes:
     type__electrodes: recommended
     material: recommended
     impedance: recommended
+  index_columns: [name__electrodes]
   additional_columns: allowed_if_defined

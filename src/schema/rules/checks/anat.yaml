@@ -1,0 +1,14 @@
+# Rules for anatomical data that are not defined in tables
+---
+# 95
+T1wFileWithTooManyDimensions:
+  issue:
+    code: T1W_FILE_WITH_TOO_MANY_DIMENSIONS
+    message: |
+      _T1w.nii[.gz] files must have exactly three dimensions.
+    level: error
+  selectors:
+    - suffix == 'T1w'
+    - nifti_header != null
+  checks:
+    - nifti_header.dim[0] == 3

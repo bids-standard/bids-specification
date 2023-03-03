@@ -1,0 +1,158 @@
+---
+# This file describes files which may appear at the top level of a dataset.
+# This does not include information about whether these files are required or optional.
+# For that information, see `rules/top_level_files.yaml`.
+CHANGES:
+  display_name: Changelog
+  file_type: regular
+  description: |
+    Version history of the dataset (describing changes, updates and corrections) MAY be provided in
+    the form of a `CHANGES` text file.
+    This file MUST follow the
+    [CPAN Changelog convention](https://metacpan.org/pod/release/HAARG/CPAN-Changes-0.400002/lib/\
+    CPAN/Changes/Spec.pod).
+    The `CHANGES` file MUST be either in ASCII or UTF-8 encoding.
+LICENSE:
+  display_name: License
+  file_type: regular
+  description: |
+    A `LICENSE` file MAY be provided in addition to the short specification of the
+    used license in the `dataset_description.json` `"License"` field.
+    The `"License"` field and `LICENSE` file MUST correspond.
+    The `LICENSE` file MUST be either in ASCII or UTF-8 encoding.
+README:
+  display_name: README
+  file_type: regular
+  description: |
+    A REQUIRED text file, `README`, SHOULD describe the dataset in more detail.
+    The `README` file MUST be either in ASCII or UTF-8 encoding and MAY have one of the extensions:
+    `.md` ([Markdown](https://www.markdownguide.org/)),
+    `.rst` ([reStructuredText](https://docutils.sourceforge.io/rst.html)),
+    or `.txt`.
+    A BIDS dataset MUST NOT contain more than one `README` file (with or without extension)
+    at its root directory.
+    BIDS does not make any recommendations with regards to the
+    [Markdown flavor](https://www.markdownguide.org/extended-syntax/#lightweight-markup-languages)
+    and does not validate the syntax of Markdown and reStructuredText.
+    The `README` file SHOULD be structured such that its contents can be easily understood
+    even if the used format is not rendered.
+    A guideline for creating a good `README` file can be found in the
+    [bids-starter-kit](https://github.com/bids-standard/bids-starter-kit/blob/master/templates/README).
+dataset_description:
+  display_name: Dataset Description
+  file_type: regular
+  description: |
+    The file `dataset_description.json` is a JSON file describing the dataset.
+genetic_info:
+  display_name: Genetic Information
+  file_type: regular
+  description: |
+    The `genetic_info.json` file describes the genetic information available in the
+    `participants.tsv` file and/or the genetic database described in
+    `dataset_description.json`.
+    Datasets containing the `Genetics` field in `dataset_description.json` or the
+    `genetic_id` column in `participants.tsv` MUST include this file.
+participants:
+  display_name: Participant Information
+  file_type: regular
+  description: |
+    The purpose of this RECOMMENDED file is to describe properties of participants
+    such as age, sex, handedness.
+    If this file exists, it MUST contain the column `participant_id`,
+    which MUST consist of `sub-<label>` values identifying one row for each participant,
+    followed by a list of optional columns describing participants.
+    Each participant MUST be described by one and only one row.
+
+    Commonly used *optional* columns in `participant.tsv` files are `age`, `sex`,
+    and `handedness`. We RECOMMEND to make use of these columns, and
+    in case that you do use them, we RECOMMEND to use the following values
+    for them:
+
+    -   `age`: numeric value in years (float or integer value)
+
+    -   `sex`: string value indicating phenotypical sex, one of "male", "female",
+        "other"
+
+        -   for "male", use one of these values: `male`, `m`, `M`, `MALE`, `Male`
+
+        -   for "female", use one of these values: `female`, `f`, `F`, `FEMALE`,
+            `Female`
+
+        -   for "other", use one of these values: `other`, `o`, `O`, `OTHER`,
+            `Other`
+
+    -   `handedness`: string value indicating one of "left", "right",
+        "ambidextrous"
+
+        -   for "left", use one of these values: `left`, `l`, `L`, `LEFT`, `Left`
+
+        -   for "right", use one of these values: `right`, `r`, `R`, `RIGHT`,
+            `Right`
+
+        -   for "ambidextrous", use one of these values: `ambidextrous`, `a`, `A`,
+            `AMBIDEXTROUS`, `Ambidextrous`
+
+    Throughout BIDS you can indicate missing values with `n/a` (for "not
+    available").
+
+samples:
+  display_name: Sample Information
+  file_type: regular
+  description: |
+    The purpose of this file is to describe properties of samples, indicated by the `sample` entity.
+    This file is REQUIRED if `sample-<label>` is present in any file name within the dataset.
+    If this file exists, it MUST contain the three following columns:
+
+    -   `sample_id`: MUST consist of `sample-<label>` values identifying one row
+        for each sample
+
+    -   `participant_id`: MUST consist of `sub-<label>`
+
+    -   `sample_type`: MUST consist of sample type values, either `cell line`, `in vitro differentiated cells`,
+        `primary cell`, `cell-free sample`, `cloning host`, `tissue`, `whole organisms`, `organoid` or
+        `technical sample` from [ENCODE Biosample Type](https://www.encodeproject.org/profiles/biosample_type)
+
+    Other optional columns MAY be used to describe the samples.
+    Each sample MUST be described by one and only one row.
+
+    Commonly used *optional* columns in `samples.tsv` files are `pathology` and
+    `derived_from`. We RECOMMEND to make use of these columns, and in case that
+    you do use them, we RECOMMEND to use the following values for them:
+
+    -   `pathology`: string value describing the pathology of the sample or type of control.
+        When different from `healthy`, pathology SHOULD be specified in `samples.tsv`.
+        The pathology MAY instead be specified in
+        [Sessions files](SPEC_ROOT/modality-agnostic-files.md#sessions-file) in case it changes over time.
+
+    -   `derived_from`: `sample-<label>` key/value pair from which a sample is derived from,
+        for example a slice of tissue (`sample-02`) derived from a block of tissue (`sample-01`)
+code:
+  display_name: Code
+  file_type: directory
+  description: |
+    A directory in which to store any code
+    (for example the one used to generate the derivatives from the raw data).
+    See the [Code section](SPEC_ROOT/modality-agnostic-files.md#code)
+    for more information.
+derivatives:
+  display_name: Derivative data
+  file_type: directory
+  description: |
+    Derivative data (for example preprocessed files).
+    See the [relevant section](SPEC_ROOT/common-principles.md#source-vs-raw-vs-derived-data)
+    for more information.
+sourcedata:
+  display_name: Source data
+  file_type: directory
+  description: |
+    A directory where to store data before harmonization, reconstruction,
+    and/or file format conversion (for example, E-Prime event logs or DICOM files).
+    See the [relevant section](SPEC_ROOT/common-principles.md#source-vs-raw-vs-derived-data)
+    for more information.
+stimuli:
+  display_name: Stimulus files
+  file_type: directory
+  description: |
+    A directory to store any stimulus files used during an experiment.
+    See the [relevant section](SPEC_ROOT/modality-specific-files/task-events.md#stimuli-directory)
+    for more information.
