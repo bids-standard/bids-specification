@@ -6,9 +6,6 @@ validate_citation_cff: CITATION.cff
 update_readme_all_contrib:
 	yarn all-contributors generate
 
-update_all_contributors:
-	tributors update allcontrib
-
 runprettier:
 	prettier --write "src/schema/**/*.yaml"
 	python3 -m yamllint -f standard src/schema/ -c .yamllint.yml
