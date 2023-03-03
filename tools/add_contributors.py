@@ -175,6 +175,34 @@ def add_to_tributors(tributors, this_contributor: str):
     return tributors
 
 
+def update_tributors(tributors: dict, this_contributor: dict[str, str]) -> dict:
+    tributors_names = [tributors[x]["name"] for x in tributors]
+
+    if this_contributor["name"] not in tributors_names:
+        return tributors
+
+    index_tributor = tributors_names.index(this_contributor["name"])
+    tributors_keys = list(tributors.keys())
+    key_tributor = tributors_keys[index_tributor]
+
+    for key, value in this_contributor.items():
+        if key not in tributors[key_tributor]:
+            update_key(
+                contributor=tributors[key_tributor],
+                key=key,
+                value=value,
+            )
+
+        if tributors[key_tributor][key] != value:
+            update_key(
+                contributor=tributors[key_tributor],
+                key=key,
+                value=value,
+            )
+
+    return tributors
+
+
 """ALCONTRIB"""
 
 
@@ -200,7 +228,7 @@ def sort_all_contrib(allcontrib):
     return allcontrib
 
 
-def updating_allcontrib(allcontrib: dict, this_contributor: dict[str, str]) -> dict:
+def update_allcontrib(allcontrib: dict, this_contributor: dict[str, str]) -> dict:
     allcontrib_names = [x["name"] for x in allcontrib["contributors"]]
 
     if this_contributor["name"] not in allcontrib_names:
@@ -208,23 +236,22 @@ def updating_allcontrib(allcontrib: dict, this_contributor: dict[str, str]) -> d
         allcontrib["contributors"].append(this_contributor)
         return allcontrib
 
-    else:
-        index_allcontrib = allcontrib_names.index(this_contributor["name"])
+    index_allcontrib = allcontrib_names.index(this_contributor["name"])
 
-        for key, value in this_contributor.items():
-            if key not in allcontrib["contributors"][index_allcontrib]:
-                update_allcontrib_key(
-                    contributor=allcontrib["contributors"][index_allcontrib],
-                    key=key,
-                    value=value,
-                )
+    for key, value in this_contributor.items():
+        if key not in allcontrib["contributors"][index_allcontrib]:
+            update_key(
+                contributor=allcontrib["contributors"][index_allcontrib],
+                key=key,
+                value=value,
+            )
 
-            if allcontrib["contributors"][index_allcontrib][key] != value:
-                update_allcontrib_key(
-                    contributor=allcontrib["contributors"][index_allcontrib],
-                    key=key,
-                    value=value,
-                )
+        if allcontrib["contributors"][index_allcontrib][key] != value:
+            update_key(
+                contributor=allcontrib["contributors"][index_allcontrib],
+                key=key,
+                value=value,
+            )
 
     return allcontrib
 
@@ -234,17 +261,19 @@ def get_gh_avatar(gh_username: str, auth_username: str, auth_token: str):
 
     avatar_url = None
 
-    if gh_username is not None:
-        print(f"getting avatar: {gh_username}")
-        url = f"https://api.github.com/users/{gh_username}"
-        response = requests.get(url, auth=(auth_username, auth_token))
-        if response.status_code == 200:
-            avatar_url = response.json()["avatar_url"]
+    if gh_username is None:
+        return avatar_url
+
+    print(f"getting avatar: {gh_username}")
+    url = f"https://api.github.com/users/{gh_username}"
+    response = requests.get(url, auth=(auth_username, auth_token))
+    if response.status_code == 200:
+        avatar_url = response.json()["avatar_url"]
 
     return avatar_url
 
 
-def update_allcontrib_key(contributor: dict, key: str, value: str):
+def update_key(contributor: dict, key: str, value: str):
     print(f"updating {contributor['name']} - {key}")
     contributor[key] = value
 
@@ -340,46 +369,46 @@ def main():
     allcontrib_file = root_dir() / ".all-contributorsrc"
     citation_file = root_dir() / "CITATION.cff"
 
-    new_contrib_names = df.name.to_list()
-    missing_from_tributors = return_missing_from_tributors(
-        tributors_file, new_contrib_names
-    )
-    if len(missing_from_tributors) != 0:
-        print("\n[red]NOT IN .tributors FILE[/red]")
-        print(missing_from_tributors)
-
     tributors = load_tributors(tributors_file)
-    allcontrib = load_allcontrib(allcontrib_file)
-    citation = load_citation(citation_file)
-
-    allcontrib_names = [x["name"] for x in allcontrib["contributors"]]
     tributors_names = [tributors[x]["name"] for x in tributors]
 
-    # sanity checks
+    allcontrib = load_allcontrib(allcontrib_file)
+    allcontrib_names = [x["name"] for x in allcontrib["contributors"]]
+
+    citation = load_citation(citation_file)
+
+    # sanity checks to make sure no contributor was added manually
     assert len(tributors_names) == len(set(tributors_names))
     assert len(allcontrib_names) == len(set(allcontrib_names))
     assert len(tributors_names) == len(allcontrib_names)
     assert len(tributors_names) == len(citation["authors"])
 
-    print("\n[green]ADDING TO .tributors[/green]")
-    for name in missing_from_tributors:
-        this_contributor = return_this_contributor(df, name)
-        add_to_tributors(tributors, this_contributor)
+    new_contrib_names = df.name.to_list()
+    missing_from_tributors = return_missing_from_tributors(
+        tributors_file, new_contrib_names
+    )
+    if len(missing_from_tributors) != 0:
+        print("\n[green]ADDING TO .tributors[/green]")
+        for name in missing_from_tributors:
+            this_contributor = return_this_contributor(df, name)
+
+            add_to_tributors(tributors, this_contributor)
 
     write_tributors(tributors_file, tributors)
 
     print("\n[green]UPDATING .all-contributorsrc[/green]")
     for github_username in tributors:
         this_contributor = tributors[github_username]
+        this_contributor["login"] = github_username
+        this_contributor = rename_keys_for_allcontrib(this_contributor)
+
         if UPDATE_AVATARS:
             avatar_url = get_gh_avatar(
                 this_contributor["github_username"], GH_USERNAME, token
             )
             this_contributor["avatar_url"] = avatar_url
-        this_contributor["login"] = github_username
-        this_contributor = rename_keys_for_allcontrib(this_contributor)
 
-        allcontrib = updating_allcontrib(allcontrib, this_contributor)
+        allcontrib = update_allcontrib(allcontrib, this_contributor)
 
     write_allcontrib(allcontrib_file, allcontrib)
 
