@@ -7,7 +7,6 @@ from utils import load_allcontrib, root_dir
 
 tmp_file = Path(__file__).parent.joinpath("tmp.md")
 
-
 def contributor_table_header(max_name_length, max_contrib_length):
     return f"""# Contributors
 
