@@ -5,7 +5,8 @@ The tributor file is then used to update
 - the .all-contributorsrc file
 - TODO: the table of contributors in the appendix of the spec
 
-Contrary to the typical .tributors file, the one here also centralizes the contributions
+Contrary to the typical .tributors file,
+the one here also centralizes the contributions
 that would otherwise be listed in the .all-contributorsrc file.
 
 This can also be used to update all files if new_contributors.tsv is empty.
@@ -15,6 +16,8 @@ This can also be used to update all files if new_contributors.tsv is empty.
 # - ORCID
 # - affiliation
 # - getting avatars
+
+from pathlib import Path
 
 import pandas as pd
 from cffconvert.cli.create_citation import create_citation
@@ -29,6 +32,7 @@ from utils import (
     load_tributors,
     return_author_list_for_cff,
     return_missing_from_tributors,
+    return_this_contributor,
     root_dir,
     transfer_contribution,
     write_allcontrib,
@@ -36,14 +40,27 @@ from utils import (
     write_tributors,
 )
 
+UPDATE_AVATARS = False
+
+GH_USERNAME = "Remi-Gau"
+
+TOKEN_FILE = None
+
+INPUT_FILE = Path(__file__).parent / "new_contributors.tsv"
+
 
 def main():
-    tsv = pd.read_csv("new_contributors.tsv", sep="\t", encoding="utf8")
+    token = None
+    if TOKEN_FILE is not None:
+        with open(Path(TOKEN_FILE)) as f:
+            token = f.read().strip()
+
+    tsv = pd.read_csv(INPUT_FILE, sep="\t", encoding="utf8")
     print(tsv.head())
 
-    tributors_file = root_dir().joinpath(".tributors")
-    allcontrib_file = root_dir().joinpath(".all-contributorsrc")
-    citation_file = root_dir().joinpath("CITATION.cff")
+    tributors_file = root_dir() / ".tributors"
+    allcontrib_file = root_dir() / ".all-contributorsrc"
+    citation_file = root_dir() / "CITATION.cff"
 
     print("\n[red]NOT IN .tributors FILE[/red]")
     new_contrib_names = tsv.name.to_list()
@@ -54,7 +71,13 @@ def main():
     print("\n")
 
     for name in missing_from_tributors:
+        this_contributor = return_this_contributor(tsv, name)
         add_to_tributors(tributors_file, name)
+        if UPDATE_AVATARS:
+            avatar_url = get_gh_avatar(
+                this_contributor["github_username"], GH_USERNAME, token
+            )
+            this_contributor["avatar_url"] = avatar_url
         add_to_allcontrib(allcontrib_file, name)
 
     tributors = load_tributors(tributors_file)

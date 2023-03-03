@@ -176,7 +176,7 @@ def return_author_list_for_cff(tributors_file):
 
     author_list = []
 
-    for count, tributor in enumerate(tributors, start=1):
+    for _, tributor in enumerate(tributors, start=1):
         this_tributor = tributors[tributor]
 
         name = this_tributor["name"]
@@ -211,3 +211,45 @@ def return_author_list_for_cff(tributors_file):
         author_list.append(new_contrib)
 
     return author_list
+
+
+def return_this_contributor(tsv, name: str):
+    name = name.strip()
+
+    mask = tsv.name == name
+
+    github = tsv[mask].github.values[0]
+    if not isinstance(github, (str)):
+        github = None
+
+    github_username = None
+    if github is not None:
+        github_username = github.replace("https://github.com/", "").strip(" ")
+
+    website = tsv[mask].website.values[0]
+    if not isinstance(website, (str)):
+        website = github
+
+    affiliation = tsv[mask].affiliation.values[0]
+    if not isinstance(affiliation, (str)):
+        affiliation = None
+
+    orcid = tsv[mask].orcid.values[0]
+    if not isinstance(orcid, (str)):
+        orcid = None
+    if orcid is not None:
+        orcid = orcid.replace("http://", "https://")
+
+    email = tsv[mask].email.values[0]
+    if not isinstance(email, (str)):
+        email = None
+
+    return {
+        "name": name,
+        "github": github,
+        "github_username": github_username,
+        "website": website,
+        "affiliation": affiliation,
+        "orcid": orcid,
+        "email": email,
+    }

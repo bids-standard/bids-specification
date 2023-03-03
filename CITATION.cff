@@ -133,8 +133,8 @@ authors:
     family-names: Rokem
     website: https://arokem.org/
     orcid: https://orcid.org/0000-0003-0679-1985
-    affiliation: 'University of Washington, Psychology, Seattle, WA, 98107, United
-      States of America  '
+    affiliation: University of Washington, Psychology, Seattle, WA, 98107, United
+      States of America
     email: arokem@uw.edu
   - given-names: Arjen
     family-names: Stolk
@@ -419,7 +419,7 @@ authors:
   - given-names: Gaia
     family-names: Rizzo
     website: http://fair.dei.unipd.it/gaia-rizzo/
-    orcid: 'https://orcid.org/0000-0001-7272-8576 '
+    orcid: https://orcid.org/0000-0001-7272-8576
     affiliation: Invicro, Burlington Danes Building, Imperial College London, Hammersmith
       Hospital, Du Cane Road, London, W12 0NN, UK
   - given-names: Gang
@@ -612,8 +612,8 @@ authors:
     family-names: Dalenberg
     website: https://github.com/jrdalenberg
     orcid: https://orcid.org/0000-0001-8580-5358
-    affiliation: 'University of Groningen, University Medical Center Groningen, Department
-      of Neurology, Movement Disorders Groningen, Hanzeplein 1, 9713 GZ, Groningen '
+    affiliation: University of Groningen, University Medical Center Groningen, Department
+      of Neurology, Movement Disorders Groningen, Hanzeplein 1, 9713 GZ, Groningen
     email: j.r.dalenberg@umcg.nl
   - given-names: Jeremy
     family-names: Moreau
@@ -795,8 +795,8 @@ authors:
     family-names: Lalancette
     website: https://github.com/Moo-Marc
     orcid: https://orcid.org/0000-0003-1161-3972
-    affiliation: 'Montreal Neurological Institute-Hospital, McConnell Brain Imaging
-      Center, Montreal, Quebec, H2A '
+    affiliation: Montreal Neurological Institute-Hospital, McConnell Brain Imaging
+      Center, Montreal, Quebec, H2A
   - given-names: Marco
     family-names: Castellaro
     website: https://github.com/marcocastellaro
@@ -1172,7 +1172,7 @@ authors:
     family-names: Nichols
     website: http://nisox.org
     orcid: https://orcid.org/0000-0002-4516-5103
-    affiliation: 'University of Oxford, Big Data Institute, Oxford, OX3 7LF, UK '
+    affiliation: University of Oxford, Big Data Institute, Oxford, OX3 7LF, UK
     email: thomas.nichols@BDI.OX.AC.UK
   - given-names: Thomas
     family-names: Funck
