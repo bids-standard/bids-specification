@@ -25,7 +25,7 @@ def create_line_contributor(
 ):
     name = contributor["name"]
 
-    line = f"| {name}{' '*(max_name_length-len(name)-1)} | "
+    line = f"| {name}{' '*(max_name_length-len(name)-1)}  | "
 
     nb_contrib = len(contributor["contributions"]) * 2
     for contrib in contributor["contributions"]:
