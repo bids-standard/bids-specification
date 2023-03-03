@@ -1,4 +1,4 @@
-"""Update the table of contributors in the specifaction appendice.
+"""Update the table of contributors in the specifiction appendice.
 
 
 Takes the content from ".all-contributorsrc"
@@ -9,23 +9,14 @@ to update the table of contributors names and contribution.
 from pathlib import Path
 
 import emoji
-from utils import emoji_map, load_allcontrib, root_dir
+from add_contributors import emoji_map, load_allcontrib, root_dir
 
-tmp_file = Path(__file__).parent.joinpath("tmp.md")
+output_file = Path(__file__).parent.parent / "src" / "appendices" / "contributors.md"
 
 
 def contributor_table_header(max_name_length, max_contrib_length):
-    return f"""# Contributors
-
-Legend (source:
-<https://allcontributors.org/docs/en/emoji-key>)
-
-The following individuals have contributed to the Brain Imaging Data Structure
-ecosystem (in alphabetical order).
-If you contributed to the BIDS ecosystem and your name is not listed, please add it.
-
-|name{" " * (max_name_length-4)}|contributions{" " * (max_contrib_length-13)}|
-|{"-" * max_name_length}|{"-"*max_contrib_length}|
+    return f"""| name{" " * (max_name_length-4)} | contributions{" " * (max_contrib_length-13)} |
+| {"-" * max_name_length} | {"-"*max_contrib_length} |
 """
 
 
@@ -34,13 +25,13 @@ def create_line_contributor(
 ):
     name = contributor["name"]
 
-    line = f"| {name}{' '*(max_name_length-len(name)-1)}|"
+    line = f"| {name}{' '*(max_name_length-len(name)-1)} | "
 
     nb_contrib = len(contributor["contributions"]) * 2
     for contrib in contributor["contributions"]:
         line += emoji.emojize(emoji_map()[contrib])
 
-    line += f"{' '*(max_contrib_length-nb_contrib)}|\n"
+    line += f"{' '*(max_contrib_length-nb_contrib)} |\n"
 
     return line
 
@@ -56,13 +47,21 @@ def main():
         max(len(x["contributions"]) for x in allcontrib["contributors"]) * 2
     )
 
-    with open(tmp_file, "w", encoding="utf8") as output_file:
-        output_file.write(contributor_table_header(max_name_length, max_contrib_length))
+    with open(output_file, "r", encoding="utf8") as f:
+        content = f.readlines()
+
+    with open(output_file, "w", encoding="utf8") as f:
+        for line in content:
+            if line.startswith("| name"):
+                break
+            f.write(line)
+
+        f.write(contributor_table_header(max_name_length, max_contrib_length))
 
         for name in sorted(allcontrib_names):
             index_allcontrib = allcontrib_names.index(name)
             this_contrib = allcontrib["contributors"][index_allcontrib]
-            output_file.write(
+            f.write(
                 create_line_contributor(
                     this_contrib, max_name_length, max_contrib_length
                 )
