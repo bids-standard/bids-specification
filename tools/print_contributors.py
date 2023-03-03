@@ -1,3 +1,11 @@
+"""Update the table of contributors in the specifaction appendice.
+
+
+Takes the content from ".all-contributorsrc"
+to update the table of contributors names and contribution.
+
+"""
+
 from pathlib import Path
 
 import emoji
@@ -6,6 +14,7 @@ from utils import emoji_map
 from utils import load_allcontrib, root_dir
 
 tmp_file = Path(__file__).parent.joinpath("tmp.md")
+
 
 def contributor_table_header(max_name_length, max_contrib_length):
     return f"""# Contributors
@@ -22,8 +31,9 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 """
 
 
-def create_line_contributor(contributor, max_name_length, max_contrib_length):
-    # TODO add link to contributor blog? or orcid?
+def create_line_contributor(contributor: dict[str, str],
+                            max_name_length:int,
+                            max_contrib_length:int):
     name = contributor["name"]
 
     line = f"| {name}{' '*(max_name_length-len(name)-1)}|"
@@ -43,18 +53,17 @@ def main():
     allcontrib = load_allcontrib(allcontrib_file)
 
     allcontrib_names = [x["name"] for x in allcontrib["contributors"]]
-    sorted_allcontrib_names = sorted(allcontrib_names)
 
     max_name_length = len(max(allcontrib_names, key=len))
-
     max_contrib_length = (
         max(len(x["contributions"]) for x in allcontrib["contributors"]) * 2
     )
 
     with open(tmp_file, "w", encoding="utf8") as output_file:
-        output_file.write(contributor_table_header(max_name_length, max_contrib_length))
+        output_file.write(contributor_table_header(max_name_length,
+                                                   max_contrib_length))
 
-        for name in sorted_allcontrib_names:
+        for name in sorted(allcontrib_names):
             index_allcontrib = allcontrib_names.index(name)
             this_contrib = allcontrib["contributors"][index_allcontrib]
             output_file.write(

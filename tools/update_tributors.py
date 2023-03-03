@@ -4,6 +4,9 @@ import pandas as pd
 
 from rich import print
 
+from cffconvert.cli.create_citation import create_citation
+from cffconvert.cli.validate_or_write_output import validate_or_write_output
+
 from utils import (
     add_to_tributors,
     add_to_allcontrib,
@@ -19,10 +22,6 @@ from utils import (
     write_tributors,
     transfer_contribution,
 )
-
-from cffconvert.cli.create_citation import create_citation
-from cffconvert.cli.validate_or_write_output import validate_or_write_output
-
 
 UPDATE_AVATARS = False
 

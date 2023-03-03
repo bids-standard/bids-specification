@@ -1,7 +1,6 @@
 from pathlib import Path
 import json
 import ruamel.yaml
-import emoji
 from rich import print
 import requests
 
@@ -17,33 +16,39 @@ def root_dir():
 
 
 def load_tributors(tributors_file: Path):
+    """Load .tributors file."""
     with open(tributors_file, "r", encoding="utf8") as tributors_file:
         return json.load(tributors_file)
 
 
 def write_tributors(tributors_file: Path, tributors):
+    """Write .tributors file."""
     tributors = sort_tributors(tributors)
     with open(tributors_file, "w", encoding="utf8") as output_file:
         json.dump(tributors, output_file, indent=4, ensure_ascii=False)
 
 
 def load_allcontrib(allcontrib_file: Path):
+    """Load .all-contributorsrc file."""
     with open(allcontrib_file, "r", encoding="utf8") as input_file:
         return json.load(input_file)
 
 
 def write_allcontrib(allcontrib_file: Path, allcontrib):
+    """Write .all-contributorsrc file."""
     allcontrib = sort_all_contrib(allcontrib)
     with open(allcontrib_file, "w", encoding="utf8") as output_file:
         json.dump(allcontrib, output_file, indent=4, ensure_ascii=False)
 
 
 def load_citation(citation_file: Path):
+    """Load CITATION.CFF file."""
     with open(citation_file, "r", encoding="utf8") as input_file:
         return yaml.load(input_file)
 
 
 def write_citation(citation_file: Path, citation):
+    """Write CITATION.CFF file."""
     with open(citation_file, "w", encoding="utf8") as output_file:
         return yaml.dump(citation, output_file)
 
@@ -79,7 +84,7 @@ def emoji_map() -> dict[str, str]:
 
 
 def transfer_contribution(tributors: dict, allcontrib: dict) -> dict:
-    """transfer contribution list from tributors to allcontrib"""
+    """Transfer contribution list from tributors to allcontrib."""
 
     tributors_keys = list(tributors.keys())
     tributors_names = [tributors[x]["name"].rstrip() for x in tributors]
@@ -100,6 +105,7 @@ def transfer_contribution(tributors: dict, allcontrib: dict) -> dict:
 
 
 def get_gh_avatar(gh_username: str, auth_username: str, auth_token: str):
+    """Return url of github avatar."""
 
     avatar_url = None
 
@@ -113,7 +119,7 @@ def get_gh_avatar(gh_username: str, auth_username: str, auth_token: str):
     return avatar_url
 
 
-def return_missing_from_tributors(tributors_file, names: list[str]) -> list[str]:
+def return_missing_from_tributors(tributors_file: Path, names: list[str]) -> list[str]:
     tributors = load_tributors(tributors_file)
     tributors_names = [tributors[x]["name"].strip() for x in tributors]
     for i, name in enumerate(names):
