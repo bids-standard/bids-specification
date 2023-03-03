@@ -70,17 +70,21 @@ def main():
     print(missing_from_tributors)
     print("\n")
 
+    tributors = load_tributors(tributors_file)
+    allcontrib = load_allcontrib(allcontrib_file)
+
+    # add new contributors to .tributors and .all-contributorsrc
     for name in missing_from_tributors:
         this_contributor = return_this_contributor(tsv, name)
-        add_to_tributors(tributors_file, name)
+
+        add_to_tributors(tributors, this_contributor)
+
         if UPDATE_AVATARS:
             avatar_url = get_gh_avatar(
                 this_contributor["github_username"], GH_USERNAME, token
             )
             this_contributor["avatar_url"] = avatar_url
         add_to_allcontrib(allcontrib_file, name)
-
-    tributors = load_tributors(tributors_file)
 
     for gh_usernames in tributors:
         if tributors[gh_usernames].get("contributions") is None:
@@ -89,9 +93,7 @@ def main():
             if isinstance(tributors[gh_usernames][key], (str)):
                 tributors[gh_usernames][key] = tributors[gh_usernames][key].strip()
 
-    allcontrib = load_allcontrib(allcontrib_file)
     allcontrib = transfer_contribution(tributors, allcontrib)
-
     write_allcontrib(allcontrib_file, allcontrib)
 
     write_tributors(tributors_file, tributors)

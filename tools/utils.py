@@ -2,6 +2,7 @@ import json
 from collections import OrderedDict
 from pathlib import Path
 
+import pandas as pd
 import requests
 import ruamel.yaml
 from rich import print
@@ -132,15 +133,20 @@ def sort_tributors(tributors) -> dict:
     return dict(sorted(tributors.items(), key=lambda item: item[1]["name"]))
 
 
-def add_to_tributors(tributors_file, user: str):
-    user = user.strip()
-    tributors = load_tributors(tributors_file)
+def add_to_tributors(tributors, this_contributor: str):
+    name = this_contributor.get("name").strip()
+
     tributors_names = [tributors[x]["name"].strip() for x in tributors]
-    if user not in tributors_names:
-        print(f"adding {user} to {tributors_file}")
-        user_login = user.lower().replace(" ", "_")
-        tributors[user_login] = {"name": user}
-        write_tributors(tributors_file, tributors)
+    if name in tributors_names:
+        return tributors
+
+    print(f"adding {name}")
+
+    user_login = this_contributor.get("github_username")
+    this_contributor.pop("github_username", None)
+
+    tributors[user_login] = this_contributor
+    return tributors
 
 
 def sort_all_contrib(allcontrib):
@@ -213,42 +219,54 @@ def return_author_list_for_cff(tributors_file):
     return author_list
 
 
-def return_this_contributor(tsv, name: str):
+def return_this_contributor(tsv: pd.DataFrame, name: str):
     name = name.strip()
 
     mask = tsv.name == name
 
     github = tsv[mask].github.values[0]
-    if not isinstance(github, (str)):
+    if pd.isna(github) or not isinstance(github, (str)):
         github = None
 
     github_username = None
     if github is not None:
         github_username = github.replace("https://github.com/", "").strip(" ")
+    if github_username is None:
+        github_username = name.lower().replace(" ", "_")
+
+    contributions = tsv[mask].contributions[0]
+    if pd.isna(contributions) or contributions is None:
+        raise ValueError(f"Contributions for {name} not defined in input file.")
+    allowed_contributions = list(emoji_map().keys())[0]
+    if any(x for x in contributions if x not in allowed_contributions):
+        raise ValueError(
+            f"Contributions must be one of {allowed_contributions}."
+            f" Got '{contributions}' for {name}."
+        )
 
     website = tsv[mask].website.values[0]
-    if not isinstance(website, (str)):
+    if pd.isna(website) or not isinstance(website, (str)):
         website = github
 
     affiliation = tsv[mask].affiliation.values[0]
-    if not isinstance(affiliation, (str)):
+    if pd.isna(affiliation) or not isinstance(affiliation, (str)):
         affiliation = None
 
     orcid = tsv[mask].orcid.values[0]
-    if not isinstance(orcid, (str)):
+    if pd.isna(orcid) or not isinstance(orcid, (str)):
         orcid = None
     if orcid is not None:
         orcid = orcid.replace("http://", "https://")
 
     email = tsv[mask].email.values[0]
-    if not isinstance(email, (str)):
+    if pd.isna(email) or not isinstance(email, (str)):
         email = None
 
     return {
         "name": name,
         "github": github,
         "github_username": github_username,
-        "website": website,
+        "blog": website,
         "affiliation": affiliation,
         "orcid": orcid,
         "email": email,
