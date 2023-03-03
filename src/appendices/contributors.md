@@ -172,7 +172,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Hugo Boniface                                        | 📖💻                                   |
 | Ilkay Isik                                           | 📖                                     |
 | Ilona Lipp                                           | 📖                                     |
-| International Neuroinformatics Coordinating Facility  | 💵📋                                   |
+| International Neuroinformatics Coordinating Facility | 💵📋                                   |
 | Iris Groen                                           | 📖                                     |
 | Isla Staden                                          | 📖                                     |
 | Jaap von der Aar                                     | 📖                                     |
