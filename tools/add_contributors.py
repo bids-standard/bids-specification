@@ -74,7 +74,7 @@ def emoji_map() -> dict[str, str]:
     }
 
 
-def return_this_contributor(df: pd.DataFrame, name: str):
+def return_this_contributor(df: pd.DataFrame, name: str, contribution_needed=True):
     name = name.strip()
 
     mask = df.name == name
@@ -85,27 +85,23 @@ def return_this_contributor(df: pd.DataFrame, name: str):
 
     github_username = None
     if github is not None:
-        github_username = github.replace("https://github.com/", "").strip(" ")
+        github_username = github.replace("https://github.com/", "")
     if github_username is None:
         github_username = name.lower().replace(" ", "_")
 
-    contributions = df[mask].contributions[0]
-    if pd.isna(contributions) or contributions is None:
+    contributions = df[mask].contributions.values[0]
+    if pd.isna(contributions):
+        contributions is None
+    if contribution_needed and contributions is None:
         raise ValueError(f"Contributions for {name} not defined in input file.")
-    allowed_contributions = list(emoji_map().keys())[0]
-    if any(x for x in contributions if x not in allowed_contributions):
-        raise ValueError(
-            f"Contributions must be one of {allowed_contributions}."
-            f" Got '{contributions}' for {name}."
-        )
-
-    website = df[mask].website.values[0]
-    if pd.isna(website) or not isinstance(website, (str)):
-        website = github
-
-    affiliation = df[mask].affiliation.values[0]
-    if pd.isna(affiliation) or not isinstance(affiliation, (str)):
-        affiliation = None
+    if contributions is not None:
+        contributions = [x.strip() for x in contributions.split(",")]
+        allowed_contributions = list(emoji_map().keys())
+        if any(x for x in contributions if x not in allowed_contributions):
+            raise ValueError(
+                f"Contributions must be one of {allowed_contributions}.\n"
+                f" Got '{contributions}' for {name}."
+            )
 
     orcid = df[mask].orcid.values[0]
     if pd.isna(orcid) or not isinstance(orcid, (str)):
@@ -113,11 +109,11 @@ def return_this_contributor(df: pd.DataFrame, name: str):
     if orcid is not None:
         orcid = orcid.replace("http://", "https://")
 
+    website = df[mask].website.values[0]
+    affiliation = df[mask].affiliation.values[0]
     email = df[mask].email.values[0]
-    if pd.isna(email) or not isinstance(email, (str)):
-        email = None
 
-    return {
+    this_contributor = {
         "name": name,
         "github": github,
         "github_username": github_username,
@@ -125,7 +121,31 @@ def return_this_contributor(df: pd.DataFrame, name: str):
         "affiliation": affiliation,
         "orcid": orcid,
         "email": email,
+        "contributions": contributions,
     }
+
+    # light validation / clean up
+    for key in this_contributor:
+        if this_contributor[key] is None:
+            continue
+        elif not isinstance(this_contributor[key], (list)) and pd.isna(
+            this_contributor[key]
+        ):
+            this_contributor[key] = None
+        elif isinstance(this_contributor[key], (str)):
+            this_contributor[key] = this_contributor[key].strip()
+        elif all(pd.isna(x) for x in this_contributor[key]):
+            this_contributor[key] = None
+
+    return this_contributor
+
+
+def update_key(contributor: dict, key: str, value: str):
+    if value is None:
+        return contributor
+    print(f"updating {contributor['name']} - {key}")
+    contributor[key] = value
+    return contributor
 
 
 """TRIBUTORS"""
@@ -146,7 +166,7 @@ def write_tributors(tributors_file: Path, tributors):
 
 def return_missing_from_tributors(tributors_file: Path, names: list[str]) -> list[str]:
     tributors = load_tributors(tributors_file)
-    tributors_names = [tributors[x]["name"].strip() for x in tributors]
+    tributors_names = [tributors[x]["name"] for x in tributors]
     for i, name in enumerate(names):
         names[i] = name.strip()
     missing_from_tributors = set(names) - set(tributors_names)
@@ -160,9 +180,9 @@ def sort_tributors(tributors) -> dict:
 
 
 def add_to_tributors(tributors, this_contributor: str):
-    name = this_contributor.get("name").strip()
+    name = this_contributor.get("name")
 
-    tributors_names = [tributors[x]["name"].strip() for x in tributors]
+    tributors_names = [tributors[x]["name"] for x in tributors]
     if name in tributors_names:
         return tributors
 
@@ -178,7 +198,9 @@ def add_to_tributors(tributors, this_contributor: str):
 def update_tributors(tributors: dict, this_contributor: dict[str, str]) -> dict:
     tributors_names = [tributors[x]["name"] for x in tributors]
 
-    if this_contributor["name"] not in tributors_names:
+    name = this_contributor["name"]
+
+    if name not in tributors_names:
         return tributors
 
     index_tributor = tributors_names.index(this_contributor["name"])
@@ -186,15 +208,18 @@ def update_tributors(tributors: dict, this_contributor: dict[str, str]) -> dict:
     key_tributor = tributors_keys[index_tributor]
 
     for key, value in this_contributor.items():
+        if key == "github_username" or value is None:
+            continue
+
         if key not in tributors[key_tributor]:
-            update_key(
+            tributors[key_tributor] = update_key(
                 contributor=tributors[key_tributor],
                 key=key,
                 value=value,
             )
 
         if tributors[key_tributor][key] != value:
-            update_key(
+            tributors[key_tributor] = update_key(
                 contributor=tributors[key_tributor],
                 key=key,
                 value=value,
@@ -240,14 +265,14 @@ def update_allcontrib(allcontrib: dict, this_contributor: dict[str, str]) -> dic
 
     for key, value in this_contributor.items():
         if key not in allcontrib["contributors"][index_allcontrib]:
-            update_key(
+            allcontrib["contributors"][index_allcontrib] = update_key(
                 contributor=allcontrib["contributors"][index_allcontrib],
                 key=key,
                 value=value,
             )
 
         if allcontrib["contributors"][index_allcontrib][key] != value:
-            update_key(
+            allcontrib["contributors"][index_allcontrib] = update_key(
                 contributor=allcontrib["contributors"][index_allcontrib],
                 key=key,
                 value=value,
@@ -271,11 +296,6 @@ def get_gh_avatar(gh_username: str, auth_username: str, auth_token: str):
         avatar_url = response.json()["avatar_url"]
 
     return avatar_url
-
-
-def update_key(contributor: dict, key: str, value: str):
-    print(f"updating {contributor['name']} - {key}")
-    contributor[key] = value
 
 
 def rename_keys_for_allcontrib(this_contributor):
@@ -391,8 +411,16 @@ def main():
         print("\n[green]ADDING TO .tributors[/green]")
         for name in missing_from_tributors:
             this_contributor = return_this_contributor(df, name)
-
             add_to_tributors(tributors, this_contributor)
+
+    contributors_to_update = set(new_contrib_names) - set(missing_from_tributors)
+    if len(contributors_to_update) != 0:
+        print("\n[green]UPDATING .tributors[/green]")
+        for name in contributors_to_update:
+            this_contributor = return_this_contributor(
+                df=df, name=name, contribution_needed=False
+            )
+            tributors = update_tributors(tributors, this_contributor)
 
     write_tributors(tributors_file, tributors)
 
