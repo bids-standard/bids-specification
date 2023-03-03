@@ -2,15 +2,17 @@
 import logging
 import os
 import re
+
 from collections.abc import Iterable, Mapping
 from copy import deepcopy
 from functools import lru_cache
 
 from .types import Namespace
+from .utils import get_logger, get_bundled_schema_path, set_logger_level
 
-lgr = utils.get_logger()
+lgr = get_logger()
 # Basic settings for output, for now just basic
-utils.set_logger_level(lgr, os.environ.get("BIDS_SCHEMA_LOG_LEVEL", logging.INFO))
+set_logger_level(lgr, os.environ.get("BIDS_SCHEMA_LOG_LEVEL", logging.INFO))
 logging.basicConfig(format="%(asctime)-15s [%(levelname)8s] %(message)s")
 
 
@@ -160,7 +162,7 @@ def load_schema(schema_path=None):
     This function is cached, so it will only be called once per schema path.
     """
     if schema_path is None:
-        schema_path = utils.get_bundled_schema_path()
+        schema_path = get_bundled_schema_path()
         lgr.info("No schema path specified, defaulting to the bundled schema, `%s`.", schema_path)
     schema = Namespace.from_directory(schema_path)
     if not schema.objects:
