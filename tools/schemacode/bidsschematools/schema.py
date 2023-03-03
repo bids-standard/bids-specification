@@ -2,13 +2,12 @@
 import logging
 import os
 import re
-
 from collections.abc import Iterable, Mapping
 from copy import deepcopy
 from functools import lru_cache
 
 from .types import Namespace
-from .utils import get_logger, get_bundled_schema_path, set_logger_level
+from .utils import get_bundled_schema_path, get_logger, set_logger_level
 
 lgr = get_logger()
 # Basic settings for output, for now just basic
