@@ -16,39 +16,39 @@ def root_dir():
     return Path(__file__).parent.parent
 
 
-def load_tributors(tributors_file):
+def load_tributors(tributors_file: Path):
     with open(tributors_file, "r", encoding="utf8") as tributors_file:
         return json.load(tributors_file)
 
 
-def write_tributors(tributors_file, tributors):
+def write_tributors(tributors_file: Path, tributors):
     tributors = sort_tributors(tributors)
     with open(tributors_file, "w", encoding="utf8") as output_file:
         json.dump(tributors, output_file, indent=4, ensure_ascii=False)
 
 
-def load_allcontrib(allcontrib_file):
+def load_allcontrib(allcontrib_file: Path):
     with open(allcontrib_file, "r", encoding="utf8") as input_file:
         return json.load(input_file)
 
 
-def write_allcontrib(allcontrib_file, allcontrib):
+def write_allcontrib(allcontrib_file: Path, allcontrib):
     allcontrib = sort_all_contrib(allcontrib)
     with open(allcontrib_file, "w", encoding="utf8") as output_file:
         json.dump(allcontrib, output_file, indent=4, ensure_ascii=False)
 
 
-def load_citation(citation_file):
+def load_citation(citation_file: Path):
     with open(citation_file, "r", encoding="utf8") as input_file:
         return yaml.load(input_file)
 
 
-def write_citation(citation_file, citation):
+def write_citation(citation_file: Path, citation):
     with open(citation_file, "w", encoding="utf8") as output_file:
         return yaml.dump(citation, output_file)
 
 
-def emoji_map():
+def emoji_map() -> dict[str, str]:
     # https://allcontributors.org/docs/en/emoji-key
     return {
         "code": ":laptop:",
@@ -99,7 +99,7 @@ def transfer_contribution(tributors: dict, allcontrib: dict) -> dict:
     return allcontrib
 
 
-def get_gh_avatar(gh_username, auth_username, auth_token):
+def get_gh_avatar(gh_username: str, auth_username: str, auth_token: str):
 
     avatar_url = None
 
@@ -122,7 +122,7 @@ def return_missing_from_tributors(tributors_file, names: list[str]) -> list[str]
     return sorted(list(missing_from_tributors))
 
 
-def sort_tributors(tributors):
+def sort_tributors(tributors) -> dict:
     for key in tributors:
         tributors[key] = dict(OrderedDict(sorted(tributors[key].items())))
     return dict(sorted(tributors.items(), key=lambda item: item[1]["name"]))

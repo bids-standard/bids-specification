@@ -220,7 +220,8 @@
         "bio": "Everywhere: @anibalsolon",
         "blog": "https://anibalsolon.com/",
         "contributions": [
-            "code"
+            "code",
+            "bug"
         ],
         "email": "anibalsolon@gmail.com",
         "name": "Anibal Sólon",
@@ -718,7 +719,8 @@
     },
     "duncan_macleod": {
         "contributions": [
-            "doc"
+            "doc",
+            "infra"
         ],
         "name": "Duncan Macleod"
     },
@@ -1072,7 +1074,9 @@
     "thinknoack": {
         "blog": "https://github.com/thinknoack",
         "contributions": [
-            "doc"
+            "doc",
+            "code",
+            "test"
         ],
         "name": "Gregory Noack"
     },
@@ -1896,7 +1900,11 @@
     "mateuszpawlik": {
         "blog": "https://github.com/mateuszpawlik",
         "contributions": [
-            "code"
+            "doc",
+            "bug",
+            "ideas",
+            "maintenance",
+            "review"
         ],
         "email": "mateusz.pawlik@plus.ac.at",
         "name": "Mateusz Pawlik"
@@ -1972,7 +1980,8 @@
         "contributions": [
             "code",
             "review",
-            "doc"
+            "doc",
+            "bug"
         ],
         "email": "m.a.vandenboom84@gmail.com",
         "name": "Max A. van den Boom",
@@ -2085,7 +2094,12 @@
     "nellh": {
         "blog": "https://github.com/nellh",
         "contributions": [
-            "code"
+            "code",
+            "doc",
+            "ideas",
+            "infra",
+            "review",
+            "question"
         ],
         "name": "Nell Hardcastle",
         "orcid": "0000-0002-3837-0707"
