@@ -1,26 +1,23 @@
 from math import nan
 
 import pandas as pd
-
-from rich import print
-
 from cffconvert.cli.create_citation import create_citation
 from cffconvert.cli.validate_or_write_output import validate_or_write_output
-
+from rich import print
 from utils import (
-    add_to_tributors,
     add_to_allcontrib,
+    add_to_tributors,
     get_gh_avatar,
-    load_citation,
     load_allcontrib,
+    load_citation,
     load_tributors,
-    root_dir,
     return_author_list_for_cff,
     return_missing_from_tributors,
-    write_citation,
-    write_allcontrib,
-    write_tributors,
+    root_dir,
     transfer_contribution,
+    write_allcontrib,
+    write_citation,
+    write_tributors,
 )
 
 UPDATE_AVATARS = False
@@ -43,7 +40,6 @@ def rename_columns(df):
 
 
 def return_this_contributor(tsv, name: str):
-
     name = name.strip()
 
     github = tsv[tsv.name == name].github.values[0]
@@ -77,7 +73,6 @@ def return_this_contributor(tsv, name: str):
     if not add_email:
         email = None
 
-
     return {
         "name": name,
         "github": github,
@@ -91,7 +86,6 @@ def return_this_contributor(tsv, name: str):
 
 
 def main():
-
     TOKEN = "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"
 
     tributors_file = root_dir().joinpath(".tributors")
@@ -126,9 +120,7 @@ def main():
     # print(allcontrib_names)
 
     for name in tsv.name:
-
         if name in tributors_names:
-
             this_contributor = return_this_contributor(tsv, name)
 
             index_tributor = tributors_names.index(name)
@@ -190,7 +182,6 @@ def main():
             # print(allcontrib["contributors"][index_allcontrib])
 
     for i, this_contributor in enumerate(allcontrib["contributors"]):
-
         if UPDATE_AVATARS and this_contributor.get("avatar_url") is None:
             avatar_url = get_gh_avatar(this_contributor["login"], "Remi-Gau", TOKEN)
             if avatar_url is not None:
@@ -219,7 +210,7 @@ def main():
 
     citation = create_citation(infile=citation_file, url=None)
     validate_or_write_output(
-    outfile=None, outputformat=None, validate_only=True, citation=citation
+        outfile=None, outputformat=None, validate_only=True, citation=citation
     )
 
 

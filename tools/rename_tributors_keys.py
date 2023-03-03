@@ -1,12 +1,10 @@
 from pathlib import Path
 
 from rich import print
-
-from utils import write_tributors, load_tributors, load_allcontrib
+from utils import load_allcontrib, load_tributors, write_tributors
 
 
 def main():
-
     root_dir = Path(__file__).parent.joinpath("..").resolve()
     print(root_dir)
 
@@ -25,7 +23,6 @@ def main():
     # print(allcontrib_names)
 
     for name in allcontrib_names:
-
         index_tributor = tributors_names.index(name)
         old_key_tributor = tributors_keys[index_tributor]
 

@@ -17,31 +17,27 @@ This can also be used to update all files if new_contributors.tsv is empty.
 # - getting avatars
 
 import pandas as pd
-
-from rich import print
-
-from utils import (
-    add_to_tributors,
-    add_to_allcontrib,
-    get_gh_avatar,
-    load_citation,
-    load_allcontrib,
-    load_tributors,
-    root_dir,
-    return_author_list_for_cff,
-    return_missing_from_tributors,
-    write_citation,
-    write_allcontrib,
-    write_tributors,
-    transfer_contribution,
-)
-
 from cffconvert.cli.create_citation import create_citation
 from cffconvert.cli.validate_or_write_output import validate_or_write_output
+from rich import print
+from utils import (
+    add_to_allcontrib,
+    add_to_tributors,
+    get_gh_avatar,
+    load_allcontrib,
+    load_citation,
+    load_tributors,
+    return_author_list_for_cff,
+    return_missing_from_tributors,
+    root_dir,
+    transfer_contribution,
+    write_allcontrib,
+    write_citation,
+    write_tributors,
+)
 
 
 def main():
-
     tsv = pd.read_csv("new_contributors.tsv", sep="\t", encoding="utf8")
     print(tsv.head())
 
@@ -83,7 +79,7 @@ def main():
 
     citation = create_citation(infile=citation_file, url=None)
     validate_or_write_output(
-    outfile=None, outputformat=None, validate_only=True, citation=citation
+        outfile=None, outputformat=None, validate_only=True, citation=citation
     )
 
 

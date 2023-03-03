@@ -9,9 +9,7 @@ to update the table of contributors names and contribution.
 from pathlib import Path
 
 import emoji
-
-from utils import emoji_map
-from utils import load_allcontrib, root_dir
+from utils import emoji_map, load_allcontrib, root_dir
 
 tmp_file = Path(__file__).parent.joinpath("tmp.md")
 
@@ -31,9 +29,9 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 """
 
 
-def create_line_contributor(contributor: dict[str, str],
-                            max_name_length:int,
-                            max_contrib_length:int):
+def create_line_contributor(
+    contributor: dict[str, str], max_name_length: int, max_contrib_length: int
+):
     name = contributor["name"]
 
     line = f"| {name}{' '*(max_name_length-len(name)-1)}|"
@@ -48,7 +46,6 @@ def create_line_contributor(contributor: dict[str, str],
 
 
 def main():
-
     allcontrib_file = root_dir().joinpath(".all-contributorsrc")
     allcontrib = load_allcontrib(allcontrib_file)
 
@@ -60,8 +57,7 @@ def main():
     )
 
     with open(tmp_file, "w", encoding="utf8") as output_file:
-        output_file.write(contributor_table_header(max_name_length,
-                                                   max_contrib_length))
+        output_file.write(contributor_table_header(max_name_length, max_contrib_length))
 
         for name in sorted(allcontrib_names):
             index_allcontrib = allcontrib_names.index(name)

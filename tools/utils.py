@@ -1,11 +1,10 @@
-from pathlib import Path
 import json
+from collections import OrderedDict
+from pathlib import Path
+
+import requests
 import ruamel.yaml
 from rich import print
-import requests
-
-from collections import OrderedDict
-
 
 yaml = ruamel.yaml.YAML()
 yaml.indent(mapping=2, sequence=4, offset=2)
@@ -92,7 +91,6 @@ def transfer_contribution(tributors: dict, allcontrib: dict) -> dict:
     allcontrib_names = [x["name"] for x in allcontrib["contributors"]]
 
     for name in tributors_names:
-
         index_allcontrib = allcontrib_names.index(name)
 
         index_tributor = tributors_names.index(name)
@@ -174,13 +172,11 @@ def add_to_allcontrib(allcontrib_file, user: str):
 
 
 def return_author_list_for_cff(tributors_file):
-
     tributors = load_tributors(tributors_file)
 
     author_list = []
 
     for count, tributor in enumerate(tributors, start=1):
-
         this_tributor = tributors[tributor]
 
         name = this_tributor["name"]
