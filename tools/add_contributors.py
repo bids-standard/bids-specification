@@ -20,16 +20,19 @@ This can also be used to update all files if new_contributors.tsv is empty.
 from __future__ import annotations
 
 import json
+import logging
 from collections import OrderedDict
 from pathlib import Path
 from typing import Optional
 
+import emoji
 import pandas as pd
 import requests
 import ruamel.yaml
 from cffconvert.cli.create_citation import create_citation
 from cffconvert.cli.validate_or_write_output import validate_or_write_output
-from rich import print
+from rich.logging import RichHandler
+from rich.traceback import install
 
 yaml = ruamel.yaml.YAML()
 yaml.indent(mapping=2, sequence=4, offset=2)
@@ -41,6 +44,22 @@ GH_USERNAME = "Remi-Gau"
 TOKEN_FILE = None
 
 INPUT_FILE = Path(__file__).parent / "new_contributors.tsv"
+
+LOG_LEVEL = "DEBUG"  # 'DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'
+
+
+def logger(log_level="INFO") -> logging.Logger:
+    """Create log."""
+    # let rich print the traceback
+    install(show_locals=True)
+    FORMAT = "%(asctime)s - %(message)s"
+    logging.basicConfig(
+        level=log_level, format=FORMAT, datefmt="[%X]", handlers=[RichHandler()]
+    )
+    return logging.getLogger("rich")
+
+
+log = logger(log_level=LOG_LEVEL)
 
 
 def root_dir() -> Path:
@@ -96,18 +115,16 @@ def return_this_contributor(
         github_username = name.lower().replace(" ", "_")
 
     contributions = df[mask].contributions.values[0]
+    log.debug(f"contributions for {name}: '{contributions}'")
     if pd.isna(contributions):
         contributions is None
     if contribution_needed and contributions is None:
         raise ValueError(f"Contributions for {name} not defined in input file.")
     if contributions is not None:
-        contributions = [x.strip() for x in contributions.split(",")]
-        allowed_contributions = list(emoji_map().keys())
-        if any(x for x in contributions if x not in allowed_contributions):
-            raise ValueError(
-                f"Contributions must be one of {allowed_contributions}.\n"
-                f" Got '{contributions}' for {name}."
-            )
+        contributions = listify_contributions(contributions)
+        validate_contributions(contributions, name)
+        contributions = canonicalize_contributions(contributions)
+    log.debug(f"kept contributions for {name}: {contributions}")
 
     orcid = df[mask].orcid.values[0]
     if pd.isna(orcid) or not isinstance(orcid, (str)):
@@ -131,8 +148,8 @@ def return_this_contributor(
     }
 
     # light validation / clean up
-    for key in this_contributor:
-        if this_contributor[key] is None:
+    for key, value in this_contributor.items():
+        if value is None:
             continue
         elif not isinstance(this_contributor[key], (list)) and pd.isna(
             this_contributor[key]
@@ -146,13 +163,49 @@ def return_this_contributor(
     return this_contributor
 
 
+def listify_contributions(contributions: str):
+    contributions = [x.strip() for x in contributions.split(",")]
+    tmp = []
+    for contribution_ in contributions:
+        tmp.extend(iter(contribution_.split(" ")))
+    return tmp
+
+
+def validate_contributions(contributions: list, name: str):
+    allowed_contributions = list(emoji_map().keys())
+    allowed_emojis = [emoji.emojize(x) for x in list(emoji_map().values())]
+    allowed_contributions += allowed_emojis
+    allowed_contributions.extend(x.replace(":", "") for x in list(emoji_map().values()))
+    if any(x for x in contributions if x.replace(":", "") not in allowed_contributions):
+        raise ValueError(
+            f"Contributions must be one of {allowed_contributions}.\n"
+            f" Got '{contributions}' for {name}."
+        )
+
+
+def canonicalize_contributions(contributions: list) -> list:
+    allowed_emojis = [emoji.emojize(x) for x in list(emoji_map().values())]
+    for contribution_ in contributions:
+        if contribution_ in allowed_emojis:
+            contributions[contributions.index(contribution_)] = emoji.demojize(
+                contribution_
+            ).replace(":", "")
+    for contribution_ in contributions:
+        contributions[contributions.index(contribution_)] = contribution_.replace(
+            ":", ""
+        )
+    contributions = sorted(list(set(contributions)))
+
+    return contributions
+
+
 def update_key(
     contributor: dict[str, str], key: str, value: str | None
 ) -> dict[str, str]:
     """Update a key in a contributor dict if the value is not None."""
     if value is None:
         return contributor
-    print(f"updating {contributor['name']} - {key}")
+    log.info(f"updating {contributor['name']} - {key}")
     contributor[key] = value
     return contributor
 
@@ -200,7 +253,7 @@ def add_to_tributors(
     if name in tributors_names:
         return tributors
 
-    print(f"adding {name}")
+    log.info(f"adding {name}")
 
     user_login = this_contributor.get("github_username")
     this_contributor.pop("github_username", None)
@@ -275,7 +328,7 @@ def update_allcontrib(allcontrib: dict, this_contributor: dict[str, str]) -> dic
     allcontrib_names = [x["name"] for x in allcontrib["contributors"]]
 
     if this_contributor["name"] not in allcontrib_names:
-        print(f"adding {this_contributor['name']}")
+        log.info(f"adding {this_contributor['name']}")
         allcontrib["contributors"].append(this_contributor)
         return allcontrib
 
@@ -306,7 +359,7 @@ def get_gh_avatar(gh_username: str, auth_username: str, auth_token: str) -> str:
     if gh_username is None:
         return avatar_url
 
-    print(f"getting avatar: {gh_username}")
+    log.info(f"getting avatar: {gh_username}")
     url = f"https://api.github.com/users/{gh_username}"
     response = requests.get(url, auth=(auth_username, auth_token))
     if response.status_code == 200:
@@ -375,16 +428,16 @@ def return_author_list_for_cff(tributors_file: Path) -> list[dict[str, str]]:
         if family_names := " ".join(name.split()[str_index:]):
             new_contrib["family-names"] = family_names
 
-        if "blog" in this_tributor:
+        if this_tributor.get("website") is not None:
             new_contrib["website"] = this_tributor["blog"]
 
-        if "orcid" in this_tributor:
+        if this_tributor.get("orcid") is not None:
             new_contrib["orcid"] = "https://orcid.org/" + this_tributor["orcid"]
 
-        if "affiliation" in this_tributor:
+        if this_tributor.get("affiliation") is not None:
             new_contrib["affiliation"] = this_tributor["affiliation"]
 
-        if "email" in this_tributor:
+        if this_tributor.get("email") is not None:
             new_contrib["email"] = this_tributor["email"]
 
         author_list.append(new_contrib)
@@ -401,8 +454,9 @@ def main():
         with open(Path(TOKEN_FILE)) as f:
             token = f.read().strip()
 
+    log.debug(f"Reading: {INPUT_FILE}")
     df = pd.read_csv(INPUT_FILE, sep="\t", encoding="utf8")
-    print(df.head())
+    log.debug(f"\n{df.head()}")
 
     tributors_file = root_dir() / ".tributors"
     allcontrib_file = root_dir() / ".all-contributorsrc"
@@ -427,14 +481,14 @@ def main():
         tributors_file, new_contrib_names
     )
     if len(missing_from_tributors) != 0:
-        print("\n[green]ADDING TO .tributors[/green]")
+        log.info("ADDING TO .tributors")
         for name in missing_from_tributors:
             this_contributor = return_this_contributor(df, name)
             add_to_tributors(tributors, this_contributor)
 
     contributors_to_update = set(new_contrib_names) - set(missing_from_tributors)
     if len(contributors_to_update) != 0:
-        print("\n[green]UPDATING .tributors[/green]")
+        log.info("UPDATING .tributors")
         for name in contributors_to_update:
             this_contributor = return_this_contributor(
                 df=df, name=name, contribution_needed=False
@@ -443,7 +497,7 @@ def main():
 
     write_tributors(tributors_file, tributors)
 
-    print("\n[green]UPDATING .all-contributorsrc[/green]")
+    log.info("UPDATING .all-contributorsrc")
     for github_username in tributors:
         this_contributor = tributors[github_username]
         this_contributor["login"] = github_username
@@ -459,11 +513,12 @@ def main():
 
     write_allcontrib(allcontrib_file, allcontrib)
 
-    print("\n[green]UPDATING CITATION.CFF[/green]")
+    log.info("UPDATING CITATION.cff")
     citation = load_citation(citation_file)
     citation["authors"] = return_author_list_for_cff(tributors_file)
     write_citation(citation_file, citation)
 
+    log.info("VALIDATING CITATION.cff")
     citation = create_citation(infile=citation_file, url=None)
     validate_or_write_output(
         outfile=None, outputformat=None, validate_only=True, citation=citation
