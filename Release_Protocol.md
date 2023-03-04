@@ -42,6 +42,10 @@ git checkout -b rel/1.2.0 upstream/master
 
 ### 2. Update the version, contributors list, previous version URLs, and the Changelog
 
+#### 2.1 Update the version
+
+Update the version in CITATION.cff.
+
 Change the "Unreleased" heading in
 [src/CHANGES.md](https://github.com/bids-standard/bids-specification/blob/master/src/CHANGES.md)
 to `v<version>`, and link to the target ReadTheDocs URL.
@@ -64,16 +68,35 @@ In the figure below, we update `v1.2.0-dev` to `v1.2.0`.
 
 Additionally, implement the same change in the version name perform above in the `src/schema/BIDS_VERSION` file.
 
-Note: this will make our continuous integration ([CircleCI](https://circleci.com/)) fail. This fails because the URL of the new ReadTheDocs rendering has not been generated at this time. It will be generated once the GitHub release has been completed.
+Note:
+this will make our continuous integration ([CircleCI](https://circleci.com/)) fail.
+This fails because the URL of the new ReadTheDocs rendering has not been generated at this time.
+It will be generated once the GitHub release has been completed.
+
+#### 2.2 Update the contributors list
 
 Synchronize the [Contributors appendix](https://github.com/bids-standard/bids-specification/blob/master/src/appendices/contributors.md)
 with the [Contributors wiki page](https://github.com/bids-standard/bids-specification/wiki/Contributors)
 to ensure all contributors are duly credited.
 Be sure not to remove credits if both have been edited.
 
+- add new contributors info to the `tools/new_contributors.tsv` file.
+- make sure that you have installed
+  - all the python packages listed in `tools/requirements.txt`
+  - the [allcontributors](https://allcontributors.org/docs/en/cli/installation) package
+- run:
+```bash
+make update_contributors
+```
+- review and commit the changes
+
+#### 2.3 Update the previous version URLs
+
 Please change the previous version links from GitHub to ReadTheDocs.
 In the figure below, we update v1.2.2.
 ![github-to-rtd](release_images/GitHub_to_RTD_spec_rendering.png "github-to-rtd")
+
+#### 2.4 Update the Changelog
 
 Review `src/CHANGES.md` to ensure that the document produces a changelog that is useful to a
 reader of the specification.
@@ -213,6 +236,8 @@ For example, after the 1.3.0 release, either `1.3.1-dev` or `1.4.0-dev` would be
 on the expected next version.
 
 Additionally, the same version name set above in `mkdocs.yaml` should be set in the `src/schema/BIDS_VERSION` schema version file.
+
+Similarly update the version in CITATION.cff with a `dev` suffix.
 
 ### 10. Uploading the stable PDF to Zenodo
 

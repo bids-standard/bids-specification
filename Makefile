@@ -3,7 +3,9 @@
 validate_citation_cff: CITATION.cff
 	cffconvert --validate
 
-update_readme_all_contrib:
+update_contributors:
+	python tools/add_contributors.py
+	python tools/print_contributors.py
 	yarn all-contributors generate
 
 runprettier:
