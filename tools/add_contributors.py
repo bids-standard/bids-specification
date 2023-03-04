@@ -34,18 +34,18 @@ from cffconvert.cli.validate_or_write_output import validate_or_write_output
 from rich.logging import RichHandler
 from rich.traceback import install
 
-yaml = ruamel.yaml.YAML()
-yaml.indent(mapping=2, sequence=4, offset=2)
-
-UPDATE_AVATARS = False
-
-GH_USERNAME = "Remi-Gau"
-
-TOKEN_FILE = None
-
 INPUT_FILE = Path(__file__).parent / "new_contributors.tsv"
 
-LOG_LEVEL = "DEBUG"  # 'DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'
+LOG_LEVEL = "INFO"  # 'DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'
+
+# Set to True to update the avatars
+# update with your github username and path to a file with github token
+UPDATE_AVATARS = False
+GH_USERNAME = "Remi-Gau"
+TOKEN_FILE = None
+
+# Set to True to use some of the dummy data in the "new_contributors.tsv"
+TEST = False
 
 
 def logger(log_level="INFO") -> logging.Logger:
@@ -60,6 +60,9 @@ def logger(log_level="INFO") -> logging.Logger:
 
 
 log = logger(log_level=LOG_LEVEL)
+
+yaml = ruamel.yaml.YAML()
+yaml.indent(mapping=2, sequence=4, offset=2)
 
 
 def root_dir() -> Path:
@@ -151,7 +154,7 @@ def return_this_contributor(
     for key, value in this_contributor.items():
         if value is None:
             continue
-        elif not isinstance(this_contributor[key], (list)) and pd.isna(
+        if not isinstance(this_contributor[key], (list)) and pd.isna(
             this_contributor[key]
         ):
             this_contributor[key] = None
@@ -160,7 +163,12 @@ def return_this_contributor(
         elif all(pd.isna(x) for x in this_contributor[key]):
             this_contributor[key] = None
 
-    return this_contributor
+    tmp = this_contributor.copy()
+    for key in this_contributor:
+        if tmp[key] is None:
+            tmp.pop(key)
+
+    return tmp
 
 
 def listify_contributions(contributions: str):
@@ -428,7 +436,7 @@ def return_author_list_for_cff(tributors_file: Path) -> list[dict[str, str]]:
         if family_names := " ".join(name.split()[str_index:]):
             new_contrib["family-names"] = family_names
 
-        if this_tributor.get("website") is not None:
+        if this_tributor.get("blog") is not None:
             new_contrib["website"] = this_tributor["blog"]
 
         if this_tributor.get("orcid") is not None:
@@ -477,12 +485,19 @@ def main():
     assert len(tributors_names) == len(citation["authors"])
 
     new_contrib_names = df.name.to_list()
+
     missing_from_tributors = return_missing_from_tributors(
         tributors_file, new_contrib_names
     )
     if len(missing_from_tributors) != 0:
         log.info("ADDING TO .tributors")
         for name in missing_from_tributors:
+            if not TEST and name in (
+                "Margaret E. Heafield",
+                "Maria Salomea Skłodowska",
+            ):
+                log.info(f"skipping {name}")
+                continue
             this_contributor = return_this_contributor(df, name)
             add_to_tributors(tributors, this_contributor)
 
@@ -490,6 +505,12 @@ def main():
     if len(contributors_to_update) != 0:
         log.info("UPDATING .tributors")
         for name in contributors_to_update:
+            if not TEST and name in (
+                "Margaret E. Heafield",
+                "Maria Salomea Skłodowska",
+            ):
+                log.info(f"skipping {name}")
+                continue
             this_contributor = return_this_contributor(
                 df=df, name=name, contribution_needed=False
             )
