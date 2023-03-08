@@ -197,10 +197,10 @@ and a guide for using macros can be found at
 All NIRS channels types MUST correspond to a [valid SNIRF data type](https://github.com/fNIRS/snirf/blob/master/snirf_specification.md#appendix).
 Additional channels that are recorded simultaneously with the NIRS
 device and stored in the same data file SHOULD be included as well.
-However, additional channels that are  simultaneously recorded with a different device
+However, additional channels that are simultaneously recorded with a different device
 SHOULD be stored according to their appropriate modality specification.
 For example, motion data that was simultaneously recorded with a different device should be specified
-according to BEP029 and not according to the NIRS data type.
+according to [BIDS-Motion](../modality-specific-files/motion.html) and not according to the NIRS data type.
 Whereas, if the motion data was acquired in with the NIRS device itself, it should be included here with the NIRS data.
 Any of the channel types defined in other BIDS specification MAY be used here as well such as `ACCEL` or `MAGN`.
 As several of these data types are commonly acquired using NIRS devices they are included as an example at the base of the table.
