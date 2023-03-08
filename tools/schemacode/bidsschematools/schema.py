@@ -19,10 +19,24 @@ class BIDSSchemaError(Exception):
     """Errors indicating invalid values in the schema itself"""
 
 
-def _get_bids_version(bids_schema_dir):
-    """Determine schema version, with directory name, file specification, and string fallback."""
+def _get_schema_version(schema_dir):
+    """
+    Determine schema version for given schema directory, based on file specification.
+    """
 
-    bids_version_path = os.path.join(bids_schema_dir, "BIDS_VERSION")
+    schema_version_path = os.path.join(schema_dir, "SCHEMA_VERSION")
+    with open(schema_version_path) as f:
+        schema_version = f.readline().rstrip()
+    return schema_version
+
+
+def _get_bids_version(schema_dir):
+    """
+    Determine BIDS version for given schema directory, with directory name, file specification,
+    and string fallback.
+    """
+
+    bids_version_path = os.path.join(schema_dir, "BIDS_VERSION")
     try:
         with open(bids_version_path) as f:
             bids_version = f.readline().rstrip()
@@ -30,10 +44,10 @@ def _get_bids_version(bids_schema_dir):
     except FileNotFoundError:
         # Maybe the directory encodes the version, as in:
         # https://github.com/bids-standard/bids-schema
-        _, bids_version = os.path.split(bids_schema_dir)
+        _, bids_version = os.path.split(schema_dir)
         if not re.match(r"^.*?[0-9]*?\.[0-9]*?\.[0-9]*?.*?$", bids_version):
             # Then we don't know, really.
-            bids_version = bids_schema_dir
+            bids_version = schema_dir
     return bids_version
 
 
@@ -147,7 +161,8 @@ def load_schema(schema_path=None):
     This function is cached, so it will only be called once per schema path.
     """
     if schema_path is None:
-        schema_path = utils.get_schema_path()
+        schema_path = utils.get_bundled_schema_path()
+        lgr.info("No schema path specified, defaulting to the bundled schema, `%s`.", schema_path)
     schema = Namespace.from_directory(schema_path)
     if not schema.objects:
         raise ValueError(f"objects subdirectory path not found in {schema_path}")
@@ -156,6 +171,9 @@ def load_schema(schema_path=None):
 
     dereference(schema)
     flatten_enums(schema)
+
+    schema["bids_version"] = _get_bids_version(schema_path)
+    schema["schema_version"] = _get_schema_version(schema_path)
 
     return schema
 
