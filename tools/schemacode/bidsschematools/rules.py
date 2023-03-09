@@ -139,7 +139,7 @@ def _split_inheritance_rules(rule: Mapping) -> ty.List[Mapping]:
         return [rule]
 
     sidecar_dtypes = [""] + rule.get("datatypes", [])
-    sidecar_entities = {ent: "optional" for ent in rule.get("entities")}
+    sidecar_entities = {ent: "optional" for ent in rule["entities"]}
 
     main_rule = {**rule, **{"extensions": list(main_exts)}}
     sidecar_rule = {
