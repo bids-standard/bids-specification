@@ -49,7 +49,7 @@ motionRequired:
     SamplingFrequency:
       level: required
       description_addendum: |
-        This filed refers to the nominal sampling frequency. For motion data one can use
+        This field refers to the nominal sampling frequency. For motion data one can use
         "`SamplingFrequencyEffective`" if nominal and effective differ.
         The sampling frequency of data channels that deviate from the main (nominal) sampling
         frequency SHOULD be specified in the "`_tracksys-<label>_channels.tsv`" file.

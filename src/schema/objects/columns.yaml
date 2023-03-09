@@ -812,7 +812,7 @@ units__motion:
     for example, '"rad"' or '"deg"' for angular quantities or '"m"' for position data.
     If motion data is recorded in a virtual space and deviate from standard SI units,
     the unit used MUST be specified in the sidecar `*_motion.json`
-    file (for example `"vm"` for virtual meters). `"rad"` is used for euler angles
+    file (for example `"vm"` for virtual meters). `"rad"` is used for Euler angles
     and `"n/a"` for quaternions.
     For guidelines about units see the [Appendix](SPEC_ROOT/appendices/units.md)
     and [Common Principles](SPEC_ROOT/common-principles.md#units) pages.
