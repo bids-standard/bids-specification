@@ -8,6 +8,8 @@ iEEGChannels:
     - name__channels
     - type__ieeg_channels
     - units
+    - low_cutoff
+    - high_cutoff
   columns:
     name__channels:
       level: required
@@ -42,6 +44,7 @@ iEEGElectrodes:
     - x
     - y
     - z
+    - size
   columns:
     name__electrodes: required
     x: required

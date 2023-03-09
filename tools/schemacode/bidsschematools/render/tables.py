@@ -1,4 +1,6 @@
 """Functions for rendering portions of the schema as text."""
+from __future__ import annotations
+
 import logging
 import os
 import typing as ty
@@ -167,7 +169,7 @@ def _make_table_from_rule(
     if isinstance(table_name, str):
         table_name = [table_name]
 
-    elements = {}
+    elements: dict[str, str | dict[str, str]] = {}
     for table in table_name:
         if table_type == "metadata":
             table_schema = schema.rules.sidecars[table]

@@ -36,3 +36,16 @@ NiftiPixdim:
     - type(nifti_header) != "null"
   checks:
     - min(nifti_header.voxel_sizes) > 0
+
+# 60
+XformCodes0:
+  issue:
+    code: SFORM_AND_QFORM_IN_IMAGE_HEADER_ARE_ZERO
+    message: |
+      sform_code and qform_code in the image header are 0.
+      The image/file will be considered invalid or assumed to be in LAS orientation.
+    level: warning
+  selectors:
+    - nifti_header != null
+  checks:
+    - nifti_header.qform_code != 0 || nifti_header.sform_code != 0

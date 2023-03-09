@@ -1,9 +1,3 @@
-#
-# Groups of related metadata fields
-#
-# Assumptions: never need disjunction of selectors
-# Assumptions: top-to-bottom overrides is sufficient logic
-
 ---
 # Multipart (split) DWI schemes
 # NOTE: I don't think this can be schemafied, since it depends on owner intent.
@@ -12,7 +6,7 @@ MRIDiffusionMultipart:
     - modality == "mri"
     - datatype == "dwi"
   fields:
-    MultipartID: required
+    MultipartID: optional
 
 # Other recommended metadata
 MRIDiffusionOtherMetadata:
