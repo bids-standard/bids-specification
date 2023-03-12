@@ -757,6 +757,7 @@ type__motion_channels:
   type: string
   enum:
     - ACCEL
+    - ANGACC
     - ANGVEL
     - GYRO
     - JNTANG
@@ -765,7 +766,6 @@ type__motion_channels:
     - MISC
     - ORNT
     - POS
-    - TIME
     - VEL
 # type column for electrodes.tsv files
 type__electrodes:
