@@ -44,14 +44,14 @@ ShortChannelCountReq:
   checks:
     - sidecar.ShortChannelCount == count(associations.channels.short_channel, true)
 
-OrientationComponent:
+Component:
   selectors:
     - datatype == "nirs"
     - suffix == "channels"
     - extension == ".tsv"
     - intersect(columns.type, ["ACCEL", "GYRO", "MAGN"])
   checks:
-    - columns.orientation_component != null
+    - columns.component != null
 
 RequiredChannels:
   selectors:

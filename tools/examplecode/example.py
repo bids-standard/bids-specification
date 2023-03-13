@@ -53,7 +53,6 @@ class _TreeGenerator:
         entries_count = len(directory)
 
         for index, entry in enumerate(directory):
-
             # change connector if this is the last item in this directory
             connector = self.ELBOW if index == entries_count - 1 else self.TEE
             self._add_dictionary(

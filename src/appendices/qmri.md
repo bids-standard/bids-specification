@@ -41,6 +41,49 @@ representing acquisition parameters (`echo`, `flip`, `inv`, `mt`) or file parts 
 
 If a qMRI file collection is intended for creating structural quantitative maps (for example, `T1map`),
 files belonging to that collection are stored in the `anat` subdirectory.
+
+List of currently supported collections:
+
+<!--
+This block generates a suffix table.
+The definitions of these fields can be found in
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_suffix_table(
+      [
+         "MESE",
+         "MEGRE",
+         "VFA",
+         "IRT1",
+         "MP2RAGE",
+         "MPM",
+         "MTS",
+         "MTR",
+      ]
+   )
+}}
+
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the directory
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filename_template("raw", datatypes=["anat"], suffixes=[
+         "MESE",
+         "MEGRE",
+         "VFA",
+         "IRT1",
+         "MP2RAGE",
+         "MPM",
+         "MTS",
+         "MTR",
+      ])
+}}
+
 Below is an example file collection for `MP2RAGE`:
 
 <!-- This block generates a file tree.
@@ -194,6 +237,28 @@ Explanation of the table:
 #### Field maps
 
 <!--
+This block generates a suffix table.
+The definitions of these fields can be found in
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_suffix_table(
+      [
+        "TB1DAM",
+        "TB1EPI",
+        "TB1AFI",
+        "TB1TFL",
+        "TB1RFM",
+        "RB1COR",
+        "TB1SRGE",
+        "TB1map",
+        "RB1map",
+      ]
+   )
+}}
+
+<!--
 This block generates a filename templates.
 The inputs for this macro can be found in the directory
   src/schema/rules/files/raw
@@ -282,7 +347,7 @@ A guide for using macros can be found at
   ],
   "SourceDatasets": [
     {
-      "DOI": "DOI 10.17605/OSF.IO/K4BS5",
+      "DOI": "doi:10.17605/OSF.IO/K4BS5",
       "URL": "https://osf.io/k4bs5/",
       "Version": "1"
     }
