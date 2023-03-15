@@ -10,7 +10,7 @@ nav:
         - Magnetoencephalography: modality-specific-files/magnetoencephalography.md
         - Electroencephalography: modality-specific-files/electroencephalography.md
         - Intracranial Electroencephalography: modality-specific-files/intracranial-electroencephalography.md
-        - Task events: modality-specific-files/task-events.md
+        - Events: modality-specific-files/task-events.md
         - Physiological and other continuous recordings: modality-specific-files/physiological-and-other-continuous-recordings.md
         - Behavioral experiments (with no neural recordings): modality-specific-files/behavioral-experiments.md
         - Genetic Descriptor: modality-specific-files/genetic-descriptor.md
