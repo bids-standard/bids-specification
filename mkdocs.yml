@@ -10,7 +10,7 @@ nav:
         - Magnetoencephalography: modality-specific-files/magnetoencephalography.md
         - Electroencephalography: modality-specific-files/electroencephalography.md
         - Intracranial Electroencephalography: modality-specific-files/intracranial-electroencephalography.md
-        - Events: modality-specific-files/task-events.md
+        - Events: modality-specific-files/events.md
         - Physiological and other continuous recordings: modality-specific-files/physiological-and-other-continuous-recordings.md
         - Behavioral experiments (with no neural recordings): modality-specific-files/behavioral-experiments.md
         - Genetic Descriptor: modality-specific-files/genetic-descriptor.md
@@ -109,5 +109,6 @@ plugins:
             '99-appendices/11-qmri.md': 'appendices/qmri.md'
             '99-appendices/12-arterial-spin-labeling.md': 'appendices/arterial-spin-labeling.md'
             '99-appendices/13-cross-modality-correspondence.md': 'appendices/cross-modality-correspondence.md'
+            'modality-specific-files/task-events.md': 'modality-specific-files/events.md'
 docs_dir: 'src'
 use_directory_urls: false
