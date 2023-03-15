@@ -2,7 +2,7 @@
 
 ## Language
 
-BIDS specification is written in American English.
+The BIDS specification is written in American English.
 
 ## Definitions
 
