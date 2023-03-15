@@ -394,10 +394,13 @@ sample:
   description: |
     Onset of the event according to the sampling scheme of the recorded modality
     (that is, referring to the raw data file that the `events.tsv` file accompanies).
+    A sample MAY contain a fractional part when the precision of the event recording
+    is higher than the sampling rate of the corresponding data file.
+    Sample indices start at 0.
     When there are several sampling schemes present in the raw data file (as can be
     the case for example for `.edf` files), this column is ambiguous and
     SHOULD NOT be used.
-  type: integer
+  type: number
 sample_id:
   name: sample_id
   display_name: Sample ID
