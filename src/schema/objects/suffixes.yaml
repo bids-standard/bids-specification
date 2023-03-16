@@ -673,18 +673,18 @@ models:
   value: models
   display_name: Models file
   description: |
-    [Models](SPEC_ROOT/02-common-principles.md#definitions) SHOULD be specified within
-    `model-<model_id>` folders, and be complemented with a REQUIRED `sub-<label>_model.tsv`.
-    The models file describes all models available in the hierarchy. Several models file
-    can be stored at any level of the BIDS-Derivatives hierarchy, except under individual
-    `model-<model_id>` folders.
-    These files MUST include a `model_id` column, and describe each model by one and only
-    one row.
 motion:
   value: motion
   display_name: Motion
   description: |
     Data fromrecorded from a tracking system store.
+    [Models](SPEC_ROOT/common-principles.md#definitions) SHOULD be specified
+    within `model-<model_id>` directories, and be complemented with a REQUIRED
+    `sub-<label>_model.tsv`. The models file describes all models available in
+    the hierarchy. Several models file can be stored at any level of the
+    BIDS-Derivatives hierarchy, except under individual `model-<model_id>`
+    directories. These files MUST include a `model_id` column, and describe
+    each model by one and only one row.
 nirs:
   value: nirs
   display_name: Near Infrared Spectroscopy
