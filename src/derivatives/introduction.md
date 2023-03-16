@@ -38,9 +38,9 @@ This could include, but is not limited to things like:
 1.  The beta weights for different kinds of events in an event-related design
     in fMRI.
 
-2.  The six components of the diffusion tensor in DTI.
+1.  The six components of the diffusion tensor in DTI.
 
-3.  And so forth.
+1.  And so forth.
 
 Model-based derivatives SHOULD be saved in a directory named `model-<model_id>`
 that is placed under the datatype from which the model was derived.
