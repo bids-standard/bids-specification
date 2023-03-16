@@ -40,7 +40,7 @@ This could include, but is not limited to things like:
 
 2.  The six components of the diffusion tensor in DTI.
 
-3.  Etc.
+3.  And so forth.
 
 Model-based derivatives SHOULD be saved in a directory named `model-<model_id>`
 that is placed under the datatype from which the model was derived.
@@ -66,9 +66,9 @@ The specification of `<model files>` is [introduced below](#file-naming-conventi
 
 ### The `model_description.json` file
 
-Mirroring the special role of the `dataset_description.json` in any BIDS and BIDS Derivatives
-dataset, a `model_description.json` file MUST be found at the top level of every model folder
-(see template above).
+Mirroring the special role of the `dataset_description.json` in any BIDS and
+BIDS Derivatives dataset, a `model_description.json` file MUST be found at the
+top level of every model directory (see template above).
 
 Example:
 
@@ -157,9 +157,9 @@ custom columns are defined beyond `model_id`, `datatypes`, `description`.
 
 ### Example
 
-The contents of the `model-<model_id>/` folders can differ widely between models
-and modalities and are described in the relevant modality-specific derivative
-specifications. For a more concrete example, consider the following
+The contents of the `model-<model_id>/` directories can differ widely between
+models and modalities and are described in the relevant modality-specific
+derivative specifications. For a more concrete example, consider the following
 derivative dataset:
 
 {{ MACROS___make_filetree_example(
