@@ -1137,6 +1137,7 @@ Genetics:
   description: |
     An object containing information about the genetics descriptor.
   type: object
+  required_fields: [Dataset]
   properties:
     Database:
       name: Database
