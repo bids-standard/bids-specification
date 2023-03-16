@@ -124,6 +124,7 @@ description__optode:
   display_name: Description
   description: |
     Free-form text description of the optode, or other information of interest.
+  type: string
 description__models:
   name: description
   display_name: Description

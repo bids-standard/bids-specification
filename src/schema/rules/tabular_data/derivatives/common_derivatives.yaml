@@ -10,3 +10,13 @@ SegmentationLookup:
     color: optional
     mapping: optional
   index_columns: [index]
+
+ModelsTSV:
+  selectors:
+    - suffix == 'models'
+    - extension == '.tsv'
+  columns:
+    model_id: required
+    datatype: recommended
+    description__models: recommended
+  index_columns: [model_id]

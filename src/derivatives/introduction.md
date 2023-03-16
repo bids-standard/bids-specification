@@ -131,13 +131,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_columns_table(
-   {
-      "model_id": ("REQUIRED", "There MUST be exactly one row for each model."),
-      "datatype": "RECOMMENDED",
-      "description__models": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_columns_table("derivatives.common_derivatives.ModelsTSV") }}
 
 It is RECOMMENDED to accompany each `models.tsv` file with a sidecar
 `models.json` file to describe the TSV column names and properties of their values (see also
