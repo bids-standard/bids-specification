@@ -23,5 +23,5 @@ comments:
 labels:
   exclude-from-changelog:
     include:
-      - '^\[pre\-commit.ci\] pre\-commit autoupdate$'
+      - 'pre-commit\.ci'
     exclude: []
