@@ -2,8 +2,9 @@
 
 For information on how to cite this extension when referencing it in the context of the academic literature, please read [Citing BIDS](../introduction.md#citing-bids).
 
-This specification has been used to format a number of [example datasets](https://github.com/bids-standard/bids-examples/pull/348) with the motion modality,
-which can be used as helpful guidance when curating new datasets.
+Motion datasets formatted using this specification are available on the
+[BIDS examples repository](https://github.com/bids-standard/bids-examples#motion-datasets)
+and can be used as helpful guidance when curating new datasets.
 
 ## Motion recording data
 
@@ -116,13 +117,16 @@ Motion specific fields SHOULD be present:
 }
 ```
 
-In this example, the `*_motion.json` contains data from one tracking system consisting of two [inertial measurement units (imu)](https://en.wikipedia.org/wiki/Motion_capture#Inertial_systems).
-If there are additional, for example [optical motion capture](https://en.wikipedia.org/wiki/Motion_capture#Optical_systems), tracking systems, data from these MUST be stored as separate files like `*_tracksys-omcA_motion.tsv` and `*_tracksys-omcB_motion.tsv`.
+In this example, the `*_motion.json` contains data from one tracking system consisting of two
+[inertial measurement units (imu)](https://en.wikipedia.org/wiki/Motion_capture#Inertial_systems).
+If there are additional tracking systems (for example [optical motion capture](https://en.wikipedia.org/wiki/Motion_capture#Optical_systems)),
+data from these MUST be stored as separate files like `*_tracksys-omcA_motion.tsv` and `*_tracksys-omcB_motion.tsv`.
 All specified tracking systems MAY share `tracked_point` defined in `*_channels.tsv`, when tracking devices are placed on the same object or body part.
 
 Note that the onsets of the recordings SHOULD be stored in the study key file [(`scans.tsv`)](../modality-agnostic-files.md#scans-file).
 Here, date-time information MUST be expressed as indicated in [Units](../common-principles.md#units).
-The [`scans.tsv`](../modality-agnostic-files.md#scans-file) file contains the filename and the acquisition time of a recording, which can be used to synchronize multiple recordings.
+The [`scans.tsv`](../modality-agnostic-files.md#scans-file) file contains the filename and the acquisition time of a recording,
+which MAY be used to synchronize multiple recordings.
 
 ## Channels description (`*_channels.tsv`)
 
@@ -135,7 +139,8 @@ suffixes=["channels"])
 This file is REQUIRED as it makes it easy to browse or query over larger collections of datasets.
 The REQUIRED columns are channel `name`, `component`, `type`, `tracked_point` and `units`.
 Any number of additional columns MAY be added to provide additional information about the channels.
-The `*_tracksys-<label>_channels.tsv` file SHOULD give additional information about individual recorded channel, some of which my not be found summarized in `*_motion.json`.
+The `*_tracksys-<label>_channels.tsv` file SHOULD give additional information about individual recorded channel,
+some of which my not be found summarized in `*_motion.json`.
 
 The columns of the channels description table stored in `*_channels.tsv` are:
 
@@ -144,7 +149,8 @@ The columns of the channels description table stored in `*_channels.tsv` are:
 ### Restricted keyword list for channel component
 
 Restricted keyword list for column `component`.
-When using quaternions to represent orientations, the axial components that corresponds to the three spatial axes MUST be specified as "quat_x", "quat_y", "quat_z", and the non-axial component as "quat_w".
+When using quaternions to represent orientations,
+the axial components that corresponds to the three spatial axes MUST be specified as "quat_x", "quat_y", "quat_z", and the non-axial component as "quat_w".
 
 | **Keyword** | **Description**                                                                                                                                             |
 | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -162,19 +168,19 @@ When using quaternions to represent orientations, the axial components that corr
 Restricted keyword list for column `type` in alphabetic order.
 Note that upper-case is REQUIRED:
 
-| **Keyword** | **Description**                                                                                                                                                                                                              | **Modalities to be shared with**         |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
-| ACCEL       | Accelerometer channel, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).                                                                           | [fNIRS](.\near-infrared-spectroscopy.md) |
-| ANGACC      | Angular acceleration channel, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).                                                                    | NONE                                     |
-| ANGVEL      | Angular velocity channel, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).                                                                        | None                                     |
-| GYRO        | Gyrometer channel, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).                                                                               | [fNIRS](.\near-infrared-spectroscopy.md) |
-| JNTANG      | Joint angle channel between two fixed axis belonging to two bodyparts. Angle SHOULD be defined between proximal and distal bodypart in `deg`.                                                                                | NONE                                     |
-| LATENCY     | Latency of samples in seconds from recording onset. MUST be in form of `ss[.000000]` , where [.000000] is an optional subsecond resolution between 1 and 6 decimal points.                                                   | ALL                                      |
-| MAGN        | Magnetic field strength, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z).                                                                          | [fNIRS](.\near-infrared-spectroscopy.md) |
-| MISC        | Miscellaneous channels.                                                                                                                                                                                                      | ALL                                      |
-| ORNT        | Orientation channel, one channel for each spatial axis or quaternion component. Column `component` for the axis or quaternion label MUST be added to the `*_channels.tsv` file (x, y, z, quat_x, quat_y, quat_z, or quat_w). | [fNIRS](.\near-infrared-spectroscopy.md) |
-| POS         | Position in space, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z).                                                                                | NONE                                     |
-| VEL         | Velocity, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z).                                                                                         | NONE                                     |
+| **Keyword** | **Description**                                                                                                                                                                                                              | **Modalities to be shared with**                                    |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| ACCEL       | Accelerometer channel, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).                                                                           | [fNIRS](./near-infrared-spectroscopy.md#near-infrared-spectroscopy) |
+| ANGACC      | Angular acceleration channel, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).                                                                    | NONE                                                                |
+| ANGVEL      | Angular velocity channel, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).                                                                        | None                                                                |
+| GYRO        | Gyrometer channel, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).                                                                               | [fNIRS](./near-infrared-spectroscopy.md#near-infrared-spectroscopy) |
+| JNTANG      | Joint angle channel between two fixed axis belonging to two bodyparts. Angle SHOULD be defined between proximal and distal bodypart in `deg`.                                                                                | NONE                                                                |
+| LATENCY     | Latency of samples in seconds from recording onset. MUST be in form of `ss[.000000]` , where [.000000] is an optional subsecond resolution between 1 and 6 decimal points.                                                   | ALL                                                                 |
+| MAGN        | Magnetic field strength, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z).                                                                          | [fNIRS](./near-infrared-spectroscopy.md#near-infrared-spectroscopy) |
+| MISC        | Miscellaneous channels.                                                                                                                                                                                                      | ALL                                                                 |
+| ORNT        | Orientation channel, one channel for each spatial axis or quaternion component. Column `component` for the axis or quaternion label MUST be added to the `*_channels.tsv` file (x, y, z, quat_x, quat_y, quat_z, or quat_w). | [fNIRS](./near-infrared-spectroscopy.md#near-infrared-spectroscopy) |
+| POS         | Position in space, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z).                                                                                | NONE                                                                |
+| VEL         | Velocity, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z).                                                                                         | NONE                                                                |
 
 ### Example `*_channels.tsv`
 
