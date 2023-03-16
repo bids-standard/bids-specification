@@ -122,7 +122,8 @@ The RECOMMENDED `datatype` column SHOULD be one of the available
 
 The RECOMMENDED `description` column SHOULD be string containing a short description
 of the model. It is RECOMMENDED that the description is a single line of no more than
-50 words. It is also RECOMMENDED to avoid special characters (e.g., new lines, tabs).
+50 words. It is also RECOMMENDED to avoid special characters (for example,
+new lines, tabs).
 
 <!-- This block generates a columns table.
 The definitions of these fields can be found in
