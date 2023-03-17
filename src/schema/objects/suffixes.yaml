@@ -682,13 +682,16 @@ noRF:
   value: noRF
   display_name: No Radio Frequency Excitation Scan
   description: |
-    A noise scan acquired alongside a `bold` scan.
+    A noise scan acquired alongside another scan.
 
     These noise scans are acquired by disabling the radio frequency excitation,
-    while maintaining all other parameters from the associated `bold` scan.
-    In sequences that support `noRF` scans, one or more noise volumes are typically acquired
-    at the beginning or end of the `bold` scan, and must be separated out into separate files
-    outside of the DICOM conversion.
+    while maintaining all other parameters from the associated scan.
+    These can be aquired using some other sequence with RF excitation removed
+    or as part of sequences that turn off RF at the beginning or end of a run.
+    For example a `bold` scan where the file few volumes are acquired with RF off.
+    There is no consistent DICOM denotation for these scans so separating and
+    labeling noRF volumes would need to be done outside of automatic DICOM
+    conversion.
 
     `noRF` are typically used to estimate properties of the scanner and
     sequence that are independent from the object being imaged.
