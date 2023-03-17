@@ -52,6 +52,23 @@ color:
     Hexadecimal. Label color for visualization.
   type: string
   unit: hexadecimal
+component:
+  name: component
+  display_name: Component
+  description: |
+    Description of the spatial axis or label of quaternion component associated with the channel.
+    For example, `x`,`y`,`z` for position channels,
+    or `quat_x`, `quat_y`, `quat_z`, `quat_w` for quaternion orientation channels.
+  type: string
+  enum:
+    - x
+    - y
+    - z
+    - quat_x
+    - quat_y
+    - quat_z
+    - quat_w
+    - n/a
 detector__channels:
   name: detector
   display_name: Detector Name
@@ -308,23 +325,6 @@ onset:
     acquired data point.
   type: number
   unit: s
-component:
-  name: component
-  display_name: Component
-  description: |
-    Description of the spatial axis or label of quaternion component associated with the channel.
-    For example, `x`,`y`,`z` for position channels,
-    or `quat_x`, `quat_y`, `quat_z`, `quat_w` for quaternion orientation channels.
-  type: string
-  enum:
-    - x
-    - y
-    - z
-    - quat_x
-    - quat_y
-    - quat_z
-    - quat_w
-    - n/a
 pathology:
   name: pathology
   display_name: Pathology
@@ -342,6 +342,14 @@ participant_id:
     matching a participant entity found in the dataset.
   type: string
   pattern: ^sub-[0-9a-zA-Z]+$
+placement__motion:
+  name: placement
+  display_name: Placement
+  description: |
+    Placement of the tracked point on the body (for example,
+    participant, avatar centroid, torso, left arm).
+    It can refer to an external vocabulary for describing body parts.
+  type: string
 plasma_radioactivity:
   name: plasma_radioactivity
   display_name: Plasma radioactivity
@@ -581,6 +589,13 @@ time:
     For example, 5.
   type: number
   unit: s
+tracked_point__channels:
+  name: tracked_point
+  display_name: Tracked point channel
+  description: |
+    Label of the point that is being tracked, for example, label of a tracker
+    or a marker (for example,`"LeftFoot"`, `"RightWrist"`).
+  type: string
 trial_type:
   name: trial_type
   display_name: Trial type
@@ -733,6 +748,25 @@ type__nirs_channels:
     - MAGN
     - MISC
     - OTHER
+type__motion_channels:
+  name: type
+  display_name: Channel type
+  description: |
+    Type of channel; MUST use the channel types listed below.
+    Note that the type MUST be in upper-case.
+  type: string
+  enum:
+    - ACCEL
+    - ANGACC
+    - ANGVEL
+    - GYRO
+    - JNTANG
+    - LATENCY
+    - MAGN
+    - MISC
+    - ORNT
+    - POS
+    - VEL
 # type column for electrodes.tsv files
 type__electrodes:
   name: type
@@ -766,6 +800,20 @@ units__nirs:
     Physical unit of the value represented in this channel,
     specified according to the SI unit symbol and possibly prefix symbol,
     or as a derived SI unit (for example, `V`, or unitless for changes in optical densities).
+    For guidelines about units see the [Appendix](SPEC_ROOT/appendices/units.md)
+    and [Common Principles](SPEC_ROOT/common-principles.md#units) pages.
+  type: string
+  format: unit
+units__motion:
+  name: units
+  display_name: Units
+  description: |
+    Physical or virtual unit of the value represented in this channel,
+    for example, '"rad"' or '"deg"' for angular quantities or '"m"' for position data.
+    If motion data is recorded in a virtual space and deviate from standard SI units,
+    the unit used MUST be specified in the sidecar `*_motion.json`
+    file (for example `"vm"` for virtual meters). `"rad"` is used for Euler angles
+    and `"n/a"` for quaternions.
     For guidelines about units see the [Appendix](SPEC_ROOT/appendices/units.md)
     and [Common Principles](SPEC_ROOT/common-principles.md#units) pages.
   type: string

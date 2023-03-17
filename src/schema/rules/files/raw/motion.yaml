@@ -1,0 +1,16 @@
+---
+motion:
+  suffixes:
+    - motion
+  extensions:
+    - .tsv
+    - .json
+  datatypes:
+    - motion
+  entities:
+    subject: required
+    session: optional
+    task: required
+    tracksys: required
+    acquisition: optional
+    run: optional

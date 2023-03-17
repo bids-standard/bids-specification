@@ -4,9 +4,9 @@
 # This file **does not** define how and when metadata fields can be used with a given file.
 ACCELChannelCount:
   name: ACCELChannelCount
-  display_name: Accelerometer channel count
+  display_name: Acceleration channel count
   description: |
-    Number of accelerometer channels.
+    Number of acceleration channels.
   type: integer
   minimum: 0
 Acknowledgements:
@@ -140,6 +140,13 @@ AnatomicalLandmarkCoordinates__mri:
       type: number
     minItems: 3
     maxItems: 3
+ANGACCChannelCount:
+  name: ANGACCChannelCount
+  display_name: Angular acceleration channel count
+  description: |
+    Number of angular acceleration channels.
+  type: integer
+  minimum: 0
 ArterialSpinLabelingType:
   name: ArterialSpinLabelingType
   display_name: Arterial Spin Labeling Type
@@ -1544,6 +1551,13 @@ InversionTime:
   type: number
   unit: s
   exclusiveMinimum: 0
+JNTANGChannelCount:
+  name: JNTANGChannelCount
+  display_name: Joint angle channel count
+  description: |
+    Number of joint angle channels.
+  type: integer
+  minimum: 0
 LabelingDistance:
   name: LabelingDistance
   display_name: Labeling Distance
@@ -1674,6 +1688,13 @@ LabelingSlabThickness:
   type: number
   exclusiveMinimum: 0
   unit: mm
+LATENCYChannelCount:
+  name: LATENCYChannelCount
+  display_name: Latency channel count
+  description: |
+    Number of Latency channels.
+  type: integer
+  minimum: 0
 Levels:
   name: Levels
   display_name: Levels
@@ -1785,6 +1806,20 @@ MEGREFChannelCount:
     Number of MEG reference channels (for example, `23`).
     For systems without such channels (for example, Neuromag Vectorview),
     `MEGREFChannelCount` should be set to `0`.
+  type: integer
+  minimum: 0
+MISCChannelCount:
+  name: MISCChannelCount
+  display_name: Miscellaneous channel count
+  description: |
+    Number of miscellaneous channels not covered otherwise.
+  type: integer
+  minimum: 0
+MotionChannelCount:
+  name: MotionChannelCount
+  display_name: Motion Channel Count
+  description: |
+    Number of motion channels (for example, `275`).
   type: integer
   minimum: 0
 MRAcquisitionType:
@@ -1953,6 +1988,13 @@ MiscChannelCount:
     Number of miscellaneous analog channels for auxiliary signals.
   type: integer
   minimum: 0
+MissingValues:
+  name: MissingValues
+  display_name: MissingValues
+  description: |
+    Describes how missing values are represented in the given recording system
+    (for example a tracking system in motion), can take values such as, "NaN", "0".
+  type: string
 MixingTime:
   name: MixingTime
   display_name: Mixing Time
@@ -2174,6 +2216,13 @@ OperatingSystem:
     Operating system used to run the stimuli presentation software
     (for formatting recommendations, see examples below this table).
   type: string
+ORNTChannelCount:
+  name: ORNTChannelCount
+  display_name: Orientation Channel Count
+  description: |
+    Number of orientation channels.
+  type: integer
+  minimum: 0
 OtherAcquisitionParameters:
   name: OtherAcquisitionParameters
   display_name: Other Acquisition Parameters
@@ -2365,6 +2414,13 @@ PlasmaFreeFractionMethod:
   description: |
     Method used to estimate free fraction.
   type: string
+POSChannelCount:
+  name: POSChannelCount
+  display_name: Position Channel Count
+  description: |
+    Number of position channels.
+  type: integer
+  minimum: 0
 PostLabelingDelay:
   name: PostLabelingDelay
   display_name: Post Labeling Delay
@@ -2642,6 +2698,32 @@ Resolution:
     - type: object
       additionalProperties:
         type: string
+RotationOrder:
+  name: RotationOrder
+  display_name: RotationOrder
+  description: |
+    Specify the sequence in which the elemental 3D extrinsic rotations are applied around the three distinct axes.
+  type: string
+  enum:
+    - XYZ
+    - XZY
+    - YXZ
+    - YZX
+    - ZXY
+    - ZYX
+    - n/a
+RotationRule:
+  name: RotationRule
+  display_name: Rotation Rule
+  description: |
+    In case orientation channels are present, indicate whether rotations are applied
+    clockwise around an axis when seen from the positive direction (left-hand rule) or
+    counter-clockwise (right-hand rule). Must be one of: "left-hand", "right-hand".
+  type: string
+  enum:
+    - left-hand
+    - right-hand
+    - n/a
 SEEGChannelCount:
   name: SEEGChannelCount
   display_name: SEEG Channel Count
@@ -2753,6 +2835,15 @@ SamplingFrequency:
   description: |
     Sampling frequency (in Hz) of all the data in the recording,
     regardless of their type (for example, `2400`).
+  type: number
+  unit: Hz
+SamplingFrequencyEffective:
+  name: SamplingFrequencyEffective
+  display_name: Effective Sampling Frequency
+  description: |
+    Effective sampling frequency (in Hz) of all the data in the recording,
+    regardless of their type (for example, `2400`) which can be determined if timestamps
+    per sample are provided.
   type: number
   unit: Hz
 SamplingFrequency__nirs:
@@ -3066,6 +3157,18 @@ SourceType:
     then the field here should be specified as "mixed"
     and this column should be included in optodes.tsv.
   type: string
+SpatialAxes:
+  name: SpatialAxes
+  display_name: Spatial axes
+  description: |
+    Refers to the coordinate system in which the motion data are to be interpreted,
+    if the recorded data can be mapped to a fixed reference frame. A sequence of
+    characters F/B (forward-backward), L/R (left-right), and U/D (up-down). The
+    position of a character in the sequence determines which of the X,Y,Z axes it
+    maps to. For example, "FRD" for X-forward, Y-right, Z-down. For 1D or 2D cases,
+    only specify the used axes and use the character "_" for unused axes
+    ("F_R" when the Y axis is not used, for instance).
+  type: string
 SpatialReference:
   name: SpatialReference
   display_name: Spatial Reference
@@ -3172,7 +3275,7 @@ StartTime:
   display_name: Start Time
   description: |
     Start time in seconds in relation to the start of acquisition of the first
-    data sample in the corresponding neural dataset (negative values are allowed).
+    data sample in the corresponding (neural) dataset (negative values are allowed).
   type: number
   unit: s
 StationName:
@@ -3339,6 +3442,13 @@ TracerSNOMED:
     ID of the tracer compound from the SNOMED Ontology
     (subclass of Radioactive isotope).
   type: string
+TubingLength:
+  name: TubingLength
+  display_name: Tubing Length
+  description: |
+    The length of the blood tubing, from the subject to the detector in meters.
+  type: number
+  unit: m
 TriggerChannelCount:
   name: TriggerChannelCount
   display_name: Trigger Channel Count
@@ -3347,13 +3457,20 @@ TriggerChannelCount:
     Corresponds to the `TRIG` channel type.
   type: integer
   minimum: 0
-TubingLength:
-  name: TubingLength
-  display_name: Tubing Length
+TrackedPointsCount:
+  name: TrackedPointsCount
+  display_name: Tracked Points Count
   description: |
-    The length of the blood tubing, from the subject to the detector in meters.
+    Number of different tracked points tracked in a motion tracking system.
   type: number
   unit: m
+TrackingSystemName:
+  name: TrackingSystemName
+  display_name: Tracking System Name
+  description: |
+    A human-readable name of the tracking system to complement `"tracksys"` label
+    of the corresponding *_motion.tsv file name.
+  type: string
 TubingType:
   name: TubingType
   display_name: Tubing Type
@@ -3408,6 +3525,13 @@ VascularCrushingVENC:
       items:
         type: number
         unit: cm/s
+VELChannelCount:
+  name: VELChannelCount
+  display_name: Velocity Channel Count
+  description: |
+    Number of linear velocity channels.
+  type: integer
+  minimum: 0
 VolumeTiming:
   name: VolumeTiming
   display_name: Volume Timing
