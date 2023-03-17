@@ -673,11 +673,25 @@ motion:
   value: motion
   display_name: Motion
   description: |
-    Data fromrecorded from a tracking system store.
+    Data recorded from a tracking system store.
 nirs:
   value: nirs
   display_name: Near Infrared Spectroscopy
   description: Data associated with a Shared Near Infrared Spectroscopy Format file.
+noRF:
+  value: noRF
+  display_name: No Radio Frequency Excitation Scan
+  description: |
+    A noise scan acquired alongside a `bold` scan.
+
+    These noise scans are acquired by disabling the radio frequency excitation,
+    while maintaining all other parameters from the associated `bold` scan.
+    In sequences that support `noRF` scans, one or more noise volumes are typically acquired
+    at the beginning or end of the `bold` scan, and must be separated out into separate files
+    outside of the DICOM conversion.
+
+    `noRF` are typically used to estimate properties of the scanner and
+    sequence that are independent from the object being imaged.
 optodes:
   value: optodes
   display_name: Optodes

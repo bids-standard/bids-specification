@@ -4,6 +4,7 @@ func:
     - bold
     - cbv
     - sbref
+    - noRF
   extensions:
     - .nii.gz
     - .nii
