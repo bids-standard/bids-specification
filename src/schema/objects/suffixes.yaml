@@ -673,7 +673,7 @@ motion:
   value: motion
   display_name: Motion
   description: |
-    Data fromrecorded from a tracking system store.
+    Data recorded from a tracking system store.
 nirs:
   value: nirs
   display_name: Near Infrared Spectroscopy
