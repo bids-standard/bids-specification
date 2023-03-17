@@ -208,11 +208,10 @@ PDT2:
   description: |
     In arbitrary units (arbitrary).
     A two-volume 4D image, where the volumes are, respectively, PDw and T2w
-    images acquired using a dual-echo FSE sequence through a view sharing process
-    (for example, [Johnson et al. 1994](https://pubmed.ncbi.nlm.nih.gov/8010268/)).
-    If separated into 3D volumes, the `PDw` and `T2w` suffixes SHOULD be used
-    instead, and an acquisition entity MAY be used to indicate the origin of the
-    images, for example, `acq-PDT2_PDw.nii` and `acq-PDT2_T2w.nii`.
+    images acquired simultaneously.
+    If separated into 3D volumes, the `PDw` and `T2w` suffixes SHOULD be used instead,
+    and an acquisition entity MAY be used to distinguish the images from others with
+    the same suffix, for example, `acq-PDT2_PDw.nii` and `acq-PDT2_T2w.nii`.
   unit: arbitrary
 PDmap:
   value: PDmap
