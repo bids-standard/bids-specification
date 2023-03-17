@@ -334,10 +334,11 @@ def make_filename_template(
                         heading=entity["name"],
                         pdf_format=pdf_format,
                     )
+                    fmt = entity.get("format", "label")
                     entity["format"] = utils._link_with_html(
                         entity.get("format", "label"),
-                        html_path=f"{ENTITIES_PATH}.html",
-                        heading=entity.get("format", "label"),
+                        html_path=f"{GLOSSARY_PATH}.html",
+                        heading=f"{fmt}-common_principles",
                         pdf_format=pdf_format,
                     )
                     pattern = _format_entity(entity, lt, gt)
