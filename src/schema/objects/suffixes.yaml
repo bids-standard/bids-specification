@@ -682,7 +682,7 @@ noRF:
   value: noRF
   display_name: No Radio Frequency Excitation Scan
   description: |
-    A noise scan acquired alongside another scan.
+    An MR noise scan acquired alongside another MR scan.
 
     These noise scans are acquired by disabling the radio frequency excitation,
     while maintaining all other parameters from the associated scan.
