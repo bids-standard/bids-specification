@@ -669,15 +669,15 @@ meg:
   description: |
     Unprocessed MEG data stored in the native file format of the MEG instrument
     with which the data was collected.
-models:
-  value: models
-  display_name: Models file
-  description: |
 motion:
   value: motion
   display_name: Motion
   description: |
     Data fromrecorded from a tracking system store.
+models:
+  value: models
+  display_name: Models file
+  description: |
     [Models](SPEC_ROOT/common-principles.md#definitions) SHOULD be specified
     within `model-<model_id>` directories, and be complemented with a REQUIRED
     `sub-<label>_model.tsv`. The models file describes all models available in
