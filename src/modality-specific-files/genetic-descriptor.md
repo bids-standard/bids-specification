@@ -20,7 +20,7 @@ and can be used for practical guidance when curating a new dataset.
 ## Dataset Description
 
 If information on associated genetic data is supplied as part of a BIDS dataset,
-genetic descriptors are encoded as an additional, REQUIRED entry in the
+these "genetic descriptors" are encoded as an additional, REQUIRED entry in the
 [`dataset_description.json`](../modality-agnostic-files.md#dataset_descriptionjson)
 file.
 
