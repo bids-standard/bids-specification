@@ -81,7 +81,14 @@ def _entity_rule(rule: Mapping, schema: bst.types.Namespace):
         entity = {**schema.objects.entities[ent], **ent_obj}
 
         if "enum" in entity:
-            pattern = "|".join(entity["enum"])
+            allowed_values = []
+            for value in entity["enum"]:
+                if isinstance(value, str):
+                    allowed_values.append(value)
+                else:
+                    allowed_values.append(value["name"])
+
+            pattern = "|".join(allowed_values)
         else:
             pattern = schema.objects.formats[entity["format"]].pattern
 

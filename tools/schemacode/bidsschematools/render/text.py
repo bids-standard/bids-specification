@@ -1,7 +1,6 @@
 """Functions for rendering portions of the schema as text."""
 import logging
 import os
-from collections.abc import Mapping
 
 import yaml
 from markdown_it import MarkdownIt
