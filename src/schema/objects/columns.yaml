@@ -629,7 +629,7 @@ type__eeg_channels:
     - EYEGAZE
     - GSR
     - HEOG
-    - MISC
+    - $ref: objects.values.MISC
     - PPG
     - PUPIL
     - REF
@@ -667,7 +667,7 @@ type__meg_channels:
     - PD
     - EYEGAZE
     - PUPIL
-    - MISC
+    - $ref: objects.values.MISC
     - SYSCLOCK
     - ADC
     - DAC
@@ -696,7 +696,7 @@ type__ieeg_channels:
     - PD
     - EYEGAZE
     - PUPIL
-    - MISC
+    - $ref: objects.values.MISC
     - SYSCLOCK
     - ADC
     - DAC
@@ -737,16 +737,16 @@ type__nirs_channels:
     - PD
     - EYEGAZE
     - PUPIL
-    - MISC
+    - $ref: objects.values.MISC
     - SYSCLOCK
     - ADC
     - DAC
     - HLU
     - FITERR
-    - ACCEL
-    - GYRO
-    - MAGN
-    - MISC
+    - $ref: objects.values.ACCEL
+    - $ref: objects.values.GYRO
+    - $ref: objects.values.MAGN
+    - $ref: objects.values.MISC
     - OTHER
 type__motion_channels:
   name: type
@@ -756,17 +756,17 @@ type__motion_channels:
     Note that the type MUST be in upper-case.
   type: string
   enum:
-    - ACCEL
-    - ANGACC
-    - ANGVEL
-    - GYRO
-    - JNTANG
-    - LATENCY
-    - MAGN
-    - MISC
-    - ORNT
-    - POS
-    - VEL
+    - $ref: objects.values.ACCEL
+    - $ref: objects.values.ANGACC
+    - $ref: objects.values.ANGVEL
+    - $ref: objects.values.GYRO
+    - $ref: objects.values.JNTANG
+    - $ref: objects.values.LATENCY
+    - $ref: objects.values.MAGN
+    - $ref: objects.values.MISC
+    - $ref: objects.values.ORNT
+    - $ref: objects.values.POS
+    - $ref: objects.values.VEL
 # type column for electrodes.tsv files
 type__electrodes:
   name: type

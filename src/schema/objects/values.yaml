@@ -599,3 +599,70 @@ imaginary:
   display_name: Imaginary
   description: |
     An imaginary-valued image, typically paird with an associated "real" image.
+ACCEL:
+  name: ACCEL
+  display_name: ACCEL
+  description: |
+    Accelerometer channel, one channel for each spatial axis.
+    Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).
+ANGACC:
+  name: ANGACC
+  display_name: ANGACC
+  description: |
+    Angular acceleration channel, one channel for each spatial axis.
+    Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).
+ANGVEL:
+  name: ANGVEL
+  display_name: ANGVEL
+  description: |
+    Angular velocity channel, one channel for each spatial axis.
+    Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).
+GYRO:
+  name: GYRO
+  display_name: GYRO
+  description: |
+    Gyrometer channel, one channel for each spatial axis.
+    Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).
+JNTANG:
+  name: JNTANG
+  display_name: JNTANG
+  description: |
+    Joint angle channel between two fixed axis belonging to two bodyparts.
+    Angle SHOULD be defined between proximal and distal bodypart in `deg`.
+LATENCY:
+  name: LATENCY
+  display_name: LATENCY
+  description: |
+    Latency of samples in seconds from recording onset.
+    MUST be in form of `ss[.000000]`,
+    where `[.000000]` is an optional subsecond resolution between 1 and 6 decimal points.
+MAGN:
+  name: MAGN
+  display_name: MAGN
+  description: |
+    Magnetic field strength, one channel for each spatial axis.
+    Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z).
+MISC:
+  name: MISC
+  display_name: MISC
+  description: |
+    Miscellaneous channels.
+ORNT:
+  name: ORNT
+  display_name: ORNT
+  description: |
+    Orientation channel, one channel for each spatial axis or quaternion component.
+    Column `component` for the axis or quaternion label MUST be added to the `*_channels.tsv` file
+    (x, y, z, quat_x, quat_y, quat_z, or quat_w).
+POS:
+  name: POS
+  display_name: POS
+  description: |
+    Position in space, one channel for each spatial axis.
+    Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z).
+VEL:
+  name: VEL
+  display_name: VEL
+  description: |
+    Velocity, one channel for each spatial axis.
+    Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z).
