@@ -73,10 +73,12 @@ def _make_entity_definition(entity, entity_info):
     text += f"**Format**: `{entity_info['name']}-<{entity_info.get('format', 'label')}>`"
     text += "\n\n"
     if "enum" in entity_info.keys():
-        if isinstance(entity_info["enum"], Mapping):
-            allowed_values = [val["name"] for val in entity_info["enum"].values()]
-        else:
-            allowed_values = entity_info["enum"]
+        allowed_values = []
+        for value in entity_info["enum"]:
+            if isinstance(value, str):
+                allowed_values.append(value)
+            else:
+                allowed_values.append(value["name"])
 
         text += f"**Allowed values**: `{'`, `'.join(allowed_values)}`"
         text += "\n\n"
@@ -175,11 +177,13 @@ def make_glossary(schema, src_path=None):
 
         keys_to_drop = ["description", "display_name", "name", "value", "pattern"]
         if "enum" in obj_def.keys():
-            if isinstance(obj_def["enum"], Mapping):
-                allowed_values = [val["name"] for val in obj_def["enum"].values()]
-            else:
-                allowed_values = obj_def["enum"]
-                keys_to_drop.append("enum")
+            allowed_values = []
+            keys_to_drop.append("enum")
+            for value in obj_def["enum"]:
+                if isinstance(value, str):
+                    allowed_values.append(value)
+                else:
+                    allowed_values.append(value["name"])
 
             text += f"**Allowed values**: `{'`, `'.join(allowed_values)}`\n\n"
 
@@ -210,15 +214,18 @@ def _add_entity(filename_template, entity_pattern, requirement_level):
 def _format_entity(entity, lt, gt):
     fmt = entity.get("format")
     if "enum" in entity:
-        # Allow enums to be "objects" (dicts) or lists
-        if isinstance(entity["enum"], Mapping):
-            allowed_values = [val["name"] for val in entity["enum"].values()]
-        else:
-            allowed_values = entity["enum"]
+        allowed_values = []
+        for value in entity["enum"]:
+            if isinstance(value, str):
+                allowed_values.append(value)
+            else:
+                allowed_values.append(value["name"])
 
         fmt = "|".join(allowed_values)
+
     if fmt is None:
         raise ValueError(f"entity missing format or enum fields: {entity}")
+
     return f"{entity['name']}-{lt}{fmt}{gt}"
 
 
