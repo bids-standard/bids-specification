@@ -211,6 +211,43 @@ ASLTotalAcquiredVolumesASLContextLength:
   checks:
     - aslcontext.n_rows == sidecar.TotalAcquiredVolumes
 
+# 184
+PostLabelingDelayGreater:
+  issue:
+    code: POST_LABELING_DELAY_GREATER
+    message: |
+      'PostLabelingDelay' is greater than 10, are you sure it's expressed in seconds?
+    level: warning
+  selectors:
+    - suffix == "asl"
+    - sidecar.PostLabelingDelay != null
+  checks:
+    - sidecar.PostLabelingDelay <= 10
+
+# 186
+BolusCutOffDelayTimeGreater:
+  issue:
+    code: BOLUS_CUT_OFF_DELAY_TIME_GREATER
+    message: |
+      'BolusCutOffDelayTime' is greater than 10, are you sure it's expressed in seconds?
+    level: warning
+  selectors:
+    - sidecar.BolusCutOffDelayTime != null
+  checks:
+    - sidecar.BolusCutOffDelayTime <= 10
+
+# 187
+LabelingDurationGreater:
+  issue:
+    code: LABELING_DURATION_GREATER
+    message: |
+      'LabelingDuration' is greater than 10, are you sure it's expressed in seconds?
+    level: warning
+  selectors:
+    - sidecar.LabelingDuration != null
+  checks:
+    - sidecar.LabelingDuration <= 10
+
 # 196
 ASLEchoTimeASLContextLength:
   issue:
@@ -223,10 +260,11 @@ ASLEchoTimeASLContextLength:
   selectors:
     - suffix == "asl"
     - '"aslcontext" in associations'
-    - '"EchoTime" in sidecar'
     - type(sidecar.EchoTime) == 'array'
   checks:
     - length(sidecar.EchoTime) == aslcontext.n_rows
+
+## 197 ECHO_TIME_ELEMENTS duplicates 165 and 196 (length(sidecar.EchoTime) == nifti_header.dim[4])
 
 # 198
 ASLM0TypeAbsentScan:

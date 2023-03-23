@@ -24,8 +24,7 @@ Genetic descriptors are encoded as an additional, OPTIONAL entry in the
 file.
 
 Datasets linked to a genetic database entry include the following REQUIRED or OPTIONAL
-`dataset_description.json` keys (a dot in the key name denotes a key in a sub-[object][],
-see the example further below):
+keys in the `Genetics` sub-[object][] of `dataset_description.json`:
 
 <!-- This block generates a table describing subfields within a metadata field.
 The definitions of these fields can be found in
@@ -33,14 +32,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_subobject_table(
-   ("objects", "metadata", "Genetics"),
-   {
-      "Dataset": "REQUIRED",
-      "Database": "OPTIONAL",
-      "Descriptors": "OPTIONAL",
-   },
-) }}
+{{ MACROS___make_subobject_table("metadata.Genetics") }}
 
 Example:
 
@@ -55,7 +47,7 @@ Example:
      "Dataset": "https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs001364.v1.p1",
      "Database": "https://www.ncbi.nlm.nih.gov/gap/",
      "Descriptors": ["doi:10.1016/j.neuroimage.2013.05.041"]
-     }
+  }
 }
 ```
 

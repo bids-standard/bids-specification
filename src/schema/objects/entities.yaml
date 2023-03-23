@@ -218,8 +218,8 @@ processing:
     The proc label is analogous to rec for MR and denotes a variant of
     a file that was a result of particular processing performed on the device.
 
-    This is useful for files produced in particular by Elekta's MaxFilter
-    (for example, `sss`, `tsss`, `trans`, `quat` or `mc`),
+    This is useful for files produced in particular by Neuromag/Elekta/MEGIN's
+    MaxFilter (for example, `sss`, `tsss`, `trans`, `quat` or `mc`),
     which some installations impose to be run on raw data because of active
     shielding software corrections before the MEG data can actually be
     exploited.
@@ -403,5 +403,19 @@ tracer:
     Therefore, if the `trc-<label>` entity is present in a filename,
     `"TracerName"` MUST be defined in the associated metadata.
     Please note that the `<label>` does not need to match the actual value of the field.
+  type: string
+  format: label
+tracksys:
+  name: tracksys
+  display_name: Tracking system
+  description: |
+    The `tracksys-<label>` entity can be used as a key-value pair
+    to label *_motion.tsv and *_motion.json files.
+    It can also be used to label *_channel.tsv or *_events.tsv files
+    when they belong to a specific tracking system.
+
+    This entity corresponds to the `"TrackingSystemName"` metadata field in a *_motion.json file.
+    `tracksys-<label>` entity is a concise string whereas `"TrackingSystemName"`
+    may be longer and more human readable.
   type: string
   format: label

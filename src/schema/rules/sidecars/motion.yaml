@@ -1,0 +1,84 @@
+#
+# Groups of related metadata fields
+#
+# Assumptions: never need disjunction of selectors
+# Assumptions: top-to-bottom overrides is sufficient logic
+
+---
+motionHardware:
+  selectors:
+    - modality == "motion"
+    - datatype == "motion"
+    - suffix == "motion"
+  fields:
+    DeviceSerialNumber: recommended
+    Manufacturer: recommended
+    ManufacturersModelName: recommended
+    SoftwareVersions: recommended
+
+motionInstitutionInformation:
+  selectors:
+    - modality == "motion"
+    - datatype == "motion"
+    - suffix == "motion"
+  fields:
+    InstitutionName: recommended
+    InstitutionAddress: recommended
+    InstitutionalDepartmentName: recommended
+
+motionTaskInformation:
+  selectors:
+    - modality == "motion"
+    - datatype == "motion"
+    - suffix == "motion"
+  fields:
+    TaskName:
+      level: required
+      description_addendum: |
+        Task names for motion datasets usually contain information
+        about the specific motion task (for example, "`walking`").
+    TaskDescription: recommended
+    Instructions: recommended
+
+motionRequired:
+  selectors:
+    - modality == "motion"
+    - datatype == "motion"
+    - suffix == "motion"
+  fields:
+    SamplingFrequency:
+      level: required
+      description_addendum: |
+        This field refers to the nominal sampling frequency. For motion data one can use
+        "`SamplingFrequencyEffective`" if nominal and effective differ.
+        The sampling frequency of data channels that deviate from the main (nominal) sampling
+        frequency SHOULD be specified in the "`_tracksys-<label>_channels.tsv`" file.
+
+motionRecommended:
+  selectors:
+    - modality == "motion"
+    - datatype == "motion"
+    - suffix == "motion"
+  fields:
+    ACCELChannelCount: recommended
+    ANGACCChannelCount: recommended
+    GYROChannelCount: recommended
+    JNTANGChannelCount: recommended
+    LATENCYChannelCount: recommended
+    MAGNChannelCount: recommended
+    MISCChannelCount: recommended
+    MissingValues: recommended
+    MotionChannelCount: recommended
+    ORNTChannelCount: recommended
+    POSChannelCount: recommended
+    RotationOrder: recommended
+    RotationRule: recommended
+    SamplingFrequencyEffective:
+      level: recommended
+      description_addendum: |
+        If not available, the field takes value `n/a`.
+    SpatialAxes: recommended
+    SubjectArtefactDescription: recommended
+    TrackedPointsCount: recommended
+    TrackingSystemName: optional
+    VELChannelCount: recommended

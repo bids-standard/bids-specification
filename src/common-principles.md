@@ -183,6 +183,18 @@ as the labels would collide on a case-insensitive filesystem.
 Additionally, because the suffix `eeg` is defined,
 then the suffix `EEG` will not be added to future versions of the standard.
 
+## Filesystem structure & Filenames richness versus distinctness
+
+BIDS provides a rich filesystem structure and rich filenames by using entites, but it is important to keep in mind that files also have to be readable.
+They have to be readable by machines, and this implies that filenames cannot be longer than 255 characters.
+They also have to be readable by humans, and this implies minimizing length.
+A useful way to think about filenaming is distinctness: what is the minimal information needed for distinguish files?
+A simple illustration is given by using the [`ses-`](./glossary.md#session-entities) and [`run-`](./appendices/entities.md#run) entities.
+A T1 weighted MRI image could, in principle, be called `sub-X_ses-1_run-1_T1w.nii`.
+When there is only 1 session, and only 1 run, this is not needed as `ses-` and `run-` do not increase distinctivness.
+Here, it is recommended to use the shorter version `sub-X_T1w.nii`.
+In some cases, this principle is enforced in the BIDS validator.
+
 ## Source vs. raw vs. derived data
 
 BIDS was originally designed to describe and apply consistent naming conventions
@@ -259,7 +271,7 @@ field in `dataset_description.json` of each subdirectory of `derivatives` to:
 
 ```JSON
 {
-  "SourceDatasets": [ {"URL": "file://../../rawdata/"} ]
+  "SourceDatasets": [ {"URL": "../../rawdata/"} ]
 }
 ```
 
@@ -368,7 +380,8 @@ datasets and non-compliant derivatives.
 ### Imaging files
 
 All imaging data MUST be stored using the NIfTI file format. We RECOMMEND using
-compressed NIfTI files (.nii.gz), either version 1.0 or 2.0. Imaging data SHOULD
+compressed NIfTI files (.nii.gz), either version 1.0 or 2.0. If using compressed files,
+the gzip header SHOULD lack source filenames and timestamps. Imaging data SHOULD
 be converted to the NIfTI format using a tool that provides as much of the NIfTI
 header information (such as orientation and slice timing information) as
 possible. Since the NIfTI standard offers limited support for the various image

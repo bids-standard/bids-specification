@@ -94,7 +94,7 @@ def make_glossary(schema, src_path=None):
     schema : dict
         The schema object, which is a dictionary with nested dictionaries and
         lists stored within it.
-    src_path : str | None
+    src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
 
@@ -146,10 +146,14 @@ def make_glossary(schema, src_path=None):
     for obj_key in sorted(all_objects.keys()):
         obj = all_objects[obj_key]
         obj_marker = obj["key"]
-        obj_def = obj["definition"]
+        obj_def = obj.get("definition", None)
+        if obj_def is None:
+            raise ValueError(f"{obj_marker} has no definition.")
 
         # Clean up the text description
-        obj_desc = obj_def["description"]
+        obj_desc = obj_def.get("description", None)
+        if obj_desc is None:
+            raise ValueError(f"{obj_marker} has no description.")
         # A backslash before a newline means continue a string
         obj_desc = obj_desc.replace("\\\n", "")
         # Two newlines should be respected
@@ -243,7 +247,7 @@ def make_filename_template(
     schema : dict
         The schema object, which is a dictionary with nested dictionaries and
         lists stored within it.
-    src_path : str | None
+    src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
     n_dupes_to_combine : int
@@ -255,7 +259,10 @@ def make_filename_template(
         If False, the filename template will use HTML and include hyperlinks.
         This works on the website.
         Default is False.
-    kwargs : dict
+
+    Other Parameters
+    ----------------
+    **kwargs : dict
         Keyword arguments used to filter the schema.
         Example kwargs that may be used include: "suffixes", "datatypes",
         "extensions".
@@ -341,10 +348,11 @@ def make_filename_template(
                         heading=entity["name"],
                         pdf_format=pdf_format,
                     )
+                    fmt = entity.get("format", "label")
                     entity["format"] = utils._link_with_html(
                         entity.get("format", "label"),
-                        html_path=f"{ENTITIES_PATH}.html",
-                        heading=entity.get("format", "label"),
+                        html_path=f"{GLOSSARY_PATH}.html",
+                        heading=f"{fmt}-common_principles",
                         pdf_format=pdf_format,
                     )
                     pattern = _format_entity(entity, lt, gt)
@@ -424,7 +432,21 @@ def make_filename_template(
 
 
 def append_filename_template_legend(text, pdf_format=False):
-    """Append a legend to filename templates."""
+    """Append a legend to filename templates.
+
+    Parameters
+    ----------
+    text : str
+        The text to append the legend to.
+
+    pdf_format : bool
+        Whether to format the legend for PDF output.
+
+    Returns
+    -------
+    str :
+        The text with the legend appended.
+    """
     if pdf_format:
         info_str = ""
     else:
@@ -470,7 +492,7 @@ def define_common_principles(schema, src_path=None):
     ----------
     schema : dict
         The BIDS schema.
-    src_path : str | None
+    src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
 
@@ -503,7 +525,7 @@ def define_allowed_top_directories(schema, src_path=None) -> str:
     ----------
     schema : dict
         The BIDS schema.
-    src_path : str | None
+    src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
 

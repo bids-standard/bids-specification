@@ -3,7 +3,7 @@
 <!--
 This block generates a filename templates.
 The inputs for this macro can be found in the directory
-  src/schema/rules/datatypes
+  src/schema/rules/files/raw
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
@@ -20,17 +20,6 @@ as for tasks performed during MRI, electrophysiological or other neural recordin
 Additionally, events files that do not include the mandatory `onset` and
 `duration` columns can still be included, but should be labeled `_beh.tsv`
 rather than `_events.tsv`.
-
-Each task has a unique label that MUST only consist of letters and/or numbers
-(other characters, including spaces and underscores, are not allowed) with the
-[`task-<label>`](../appendices/entities.md#task) entity.
-Those labels MUST be consistent across subjects and sessions.
-
-The OPTIONAL [`acq-<label>`](../appendices/entities.md#acq) entity corresponds to a custom label to
-distinguish different conditions present during multiple runs of the same task.
-For example, if a study includes runs of an n-back task, with deep brain
-stimulation turned on or off, the data files may be labelled
-`sub-01_task-nback_acq-dbson_beh.tsv` and `sub-01_task-nback_acq-dbsoff_beh.tsv`.
 
 ## RECOMMENDED metadata
 

@@ -29,7 +29,6 @@ timeseries:
     - beh
     - eeg
     - ieeg
-    - meg
     - nirs
   entities:
     subject: required
@@ -51,6 +50,14 @@ events__mri:
     ceagent: optional
     reconstruction: optional
     direction: optional
+
+events__motion:
+  $ref: rules.files.raw.task.events
+  datatypes:
+    - motion
+  entities:
+    $ref: rules.files.raw.task.events.entities
+    tracksys: required
 
 events__pet:
   $ref: rules.files.raw.task.events
@@ -82,6 +89,14 @@ timeseries__func:
   entities:
     $ref: rules.files.raw.task.timeseries__mri.entities
     ceagent: optional
+
+timeseries__meg:
+  $ref: rules.files.raw.task.timeseries
+  datatypes:
+    - meg
+  entities:
+    $ref: rules.files.raw.task.timeseries.entities
+    processing: optional
 
 timeseries__pet:
   $ref: rules.files.raw.task.timeseries

@@ -1,6 +1,6 @@
 ---
 # This file defines valid BIDS file suffixes.
-# For rules regarding how suffixes relate to datatypes, see files in `rules/datatypes/`.
+# For rules regarding how suffixes relate to datatypes, see files in `rules/files/raw/`.
 TwoPE:
   value: 2PE
   display_name: 2-photon excitation microscopy
@@ -669,6 +669,11 @@ meg:
   description: |
     Unprocessed MEG data stored in the native file format of the MEG instrument
     with which the data was collected.
+motion:
+  value: motion
+  display_name: Motion
+  description: |
+    Data recorded from a tracking system store.
 nirs:
   value: nirs
   display_name: Near Infrared Spectroscopy
