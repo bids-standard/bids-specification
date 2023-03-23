@@ -621,23 +621,23 @@ type__eeg_channels:
     Note that the type MUST be in upper-case.
   type: string
   enum:
-    - AUDIO
-    - EEG
-    - EOG
-    - ECG
-    - EMG
-    - EYEGAZE
-    - GSR
-    - HEOG
+    - $ref: objects.values.AUDIO
+    - $ref: objects.values.EEG
+    - $ref: objects.values.EOG
+    - $ref: objects.values.ECG
+    - $ref: objects.values.EMG
+    - $ref: objects.values.EYEGAZE
+    - $ref: objects.values.GSR
+    - $ref: objects.values.HEOG
     - $ref: objects.values.MISC
-    - PPG
-    - PUPIL
-    - REF
-    - RESP
-    - SYSCLOCK
-    - TEMP
-    - TRIG
-    - VEOG
+    - $ref: objects.values.PPG
+    - $ref: objects.values.PUPIL
+    - $ref: objects.values.REF
+    - $ref: objects.values.RESP
+    - $ref: objects.values.SYSCLOCK
+    - $ref: objects.values.TEMP
+    - $ref: objects.values.TRIG
+    - $ref: objects.values.VEOG
 type__meg_channels:
   name: type
   display_name: Channel type
@@ -653,22 +653,22 @@ type__meg_channels:
     - MEGREFGRADAXIAL
     - MEGREFGRADPLANAR
     - MEGOTHER
-    - EEG
+    - $ref: objects.values.EEG
     - ECOG
     - SEEG
     - DBS
-    - VEOG
-    - HEOG
-    - EOG
-    - ECG
-    - EMG
-    - TRIG
-    - AUDIO
+    - $ref: objects.values.VEOG
+    - $ref: objects.values.HEOG
+    - $ref: objects.values.EOG
+    - $ref: objects.values.ECG
+    - $ref: objects.values.EMG
+    - $ref: objects.values.TRIG
+    - $ref: objects.values.AUDIO
     - PD
-    - EYEGAZE
-    - PUPIL
+    - $ref: objects.values.EYEGAZE
+    - $ref: objects.values.PUPIL
     - $ref: objects.values.MISC
-    - SYSCLOCK
+    - $ref: objects.values.SYSCLOCK
     - ADC
     - DAC
     - HLU
@@ -682,25 +682,25 @@ type__ieeg_channels:
     Note that the type MUST be in upper-case.
   type: string
   enum:
-    - EEG
+    - $ref: objects.values.EEG
     - ECOG
     - SEEG
     - DBS
-    - VEOG
-    - HEOG
-    - EOG
-    - ECG
-    - EMG
-    - TRIG
-    - AUDIO
+    - $ref: objects.values.VEOG
+    - $ref: objects.values.HEOG
+    - $ref: objects.values.EOG
+    - $ref: objects.values.ECG
+    - $ref: objects.values.EMG
+    - $ref: objects.values.TRIG
+    - $ref: objects.values.AUDIO
     - PD
-    - EYEGAZE
-    - PUPIL
+    - $ref: objects.values.EYEGAZE
+    - $ref: objects.values.PUPIL
     - $ref: objects.values.MISC
-    - SYSCLOCK
+    - $ref: objects.values.SYSCLOCK
     - ADC
     - DAC
-    - REF
+    - $ref: objects.values.REF
     - OTHER
 type__nirs_channels:
   name: type
@@ -723,22 +723,22 @@ type__nirs_channels:
     - MEGREFGRADAXIAL
     - MEGREFGRADPLANAR
     - MEGOTHER
-    - EEG
+    - $ref: objects.values.EEG
     - ECOG
     - SEEG
     - DBS
-    - VEOG
-    - HEOG
-    - EOG
-    - ECG
-    - EMG
-    - TRIG
-    - AUDIO
+    - $ref: objects.values.VEOG
+    - $ref: objects.values.HEOG
+    - $ref: objects.values.EOG
+    - $ref: objects.values.ECG
+    - $ref: objects.values.EMG
+    - $ref: objects.values.TRIG
+    - $ref: objects.values.AUDIO
     - PD
-    - EYEGAZE
-    - PUPIL
+    - $ref: objects.values.EYEGAZE
+    - $ref: objects.values.PUPIL
     - $ref: objects.values.MISC
-    - SYSCLOCK
+    - $ref: objects.values.SYSCLOCK
     - ADC
     - DAC
     - HLU

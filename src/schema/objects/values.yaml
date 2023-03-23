@@ -666,3 +666,97 @@ VEL:
   description: |
     Velocity, one channel for each spatial axis.
     Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z).
+AUDIO:
+  name: AUDIO
+  display_name: AUDIO
+  description: |
+    Audio signal.
+EEG:
+  name: EEG
+  display_name: EEG
+  description: |
+    Electroencephalogram channel.
+EOG:
+  name: EOG
+  display_name: EOG
+  description: |
+    Generic electrooculogram (eye), different from HEOG and VEOG.
+ECG:
+  name: ECG
+  display_name: ECG
+  description: |
+    Electrocardiogram (heart).
+EMG:
+  name: EMG
+  display_name: EMG
+  description: |
+    Electromyogram (muscle).
+EYEGAZE:
+  name: EYEGAZE
+  display_name: EYEGAZE
+  description: |
+    Eye tracker gaze.
+GSR:
+  name: GSR
+  display_name: GSR
+  description: |
+    Galvanic skin response.
+HEOG:
+  name: HEOG
+  display_name: HEOG
+  description: |
+    Horizontal EOG (eye).
+PPG:
+  name: PPG
+  display_name: PPG
+  description: |
+    Photoplethysmography.
+PUPIL:
+  name: PUPIL
+  display_name: PUPIL
+  description: |
+    Eye tracker pupil diameter.
+REF:
+  name: REF
+  display_name: REF
+  description: |
+    Reference channel.
+RESP:
+  name: RESP
+  display_name: RESP
+  description: |
+    Respiration.
+SYSCLOCK:
+  name: SYSCLOCK
+  display_name: SYSCLOCK
+  description: |
+    System time showing elapsed time since trial started.
+TEMP:
+  name: TEMP
+  display_name: TEMP
+  description: |
+    Temperature.
+TRIG:
+  name: TRIG
+  display_name: TRIG
+  description: |
+    Analog (TTL in Volt) or digital (binary TTL) trigger channel.
+VEOG:
+  name: VEOG
+  display_name: VEOG
+  description: |
+    Vertical EOG (eye).
+:
+  name:
+  display_name:
+  description: |
+
+:
+  name:
+  display_name:
+  description: |
+
+:
+  name:
+  display_name:
+  description: |
