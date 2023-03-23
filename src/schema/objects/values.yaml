@@ -746,3 +746,83 @@ VEOG:
   display_name: VEOG
   description: |
     Vertical EOG (eye).
+MEGMAG:
+  name: MEGMAG
+  display_name: MEGMAG
+  description: |
+    MEG magnetometer.
+MEGGRADAXIAL:
+  name: MEGGRADAXIAL
+  display_name: MEGGRADAXIAL
+  description: |
+    MEG axial gradiometer.
+MEGGRADPLANAR:
+  name: MEGGRADPLANAR
+  display_name: MEGGRADPLANAR
+  description: |
+    MEG planargradiometer.
+MEGREFMAG:
+  name: MEGREFMAG
+  display_name: MEGREFMAG
+  description: |
+    MEG reference magnetometer.
+MEGREFGRADAXIAL:
+  name: MEGREFGRADAXIAL
+  display_name: MEGREFGRADAXIAL
+  description: |
+    MEG reference axial gradiometer.
+MEGREFGRADPLANAR:
+  name: MEGREFGRADPLANAR
+  display_name: MEGREFGRADPLANAR
+  description: |
+    MEG reference planar gradiometer.
+MEGOTHER:
+  name: MEGOTHER
+  display_name: MEGOTHER
+  description: |
+    Any other type of MEG sensor.
+ECOG:
+  name: ECOG
+  display_name: ECOG
+  description: |
+    Electrode channel.
+SEEG:
+  name: SEEG
+  display_name: SEEG
+  description: |
+    Electrode channel.
+DBS:
+  name: DBS
+  display_name: DBS
+  description: |
+    Electrode channel.
+PD:
+  name: PD
+  display_name: PD
+  description: |
+    Photodiode.
+ADC:
+  name: ADC
+  display_name: ADC
+  description: |
+    Analog to Digital input.
+DAC:
+  name: DAC
+  display_name: DAC
+  description: |
+    Digital to Analog output.
+HLU:
+  name: HLU
+  display_name: HLU
+  description: |
+    Measured position of head and head coils.
+FITERR:
+  name: FITERR
+  display_name: FITERR
+  description: |
+    Fit error signal from each head localization coil.
+OTHER:
+  name: OTHER
+  display_name: OTHER
+  description: |
+    Any other type of channel.
