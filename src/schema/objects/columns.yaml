@@ -472,7 +472,7 @@ sex:
     - other
     - o
     - O
-    - OTHER
+    - $ref: objects.values.OTHER
     - Other
     - n/a
 short_channel:
@@ -646,17 +646,17 @@ type__meg_channels:
     Note that the type MUST be in upper-case.
   type: string
   enum:
-    - MEGMAG
-    - MEGGRADAXIAL
-    - MEGGRADPLANAR
-    - MEGREFMAG
-    - MEGREFGRADAXIAL
-    - MEGREFGRADPLANAR
-    - MEGOTHER
+    - $ref: objects.values.MEGMAG
+    - $ref: objects.values.MEGGRADAXIAL
+    - $ref: objects.values.MEGGRADPLANAR
+    - $ref: objects.values.MEGREFMAG
+    - $ref: objects.values.MEGREFGRADAXIAL
+    - $ref: objects.values.MEGREFGRADPLANAR
+    - $ref: objects.values.MEGOTHER
     - $ref: objects.values.EEG
-    - ECOG
-    - SEEG
-    - DBS
+    - $ref: objects.values.ECOG
+    - $ref: objects.values.SEEG
+    - $ref: objects.values.DBS
     - $ref: objects.values.VEOG
     - $ref: objects.values.HEOG
     - $ref: objects.values.EOG
@@ -664,16 +664,16 @@ type__meg_channels:
     - $ref: objects.values.EMG
     - $ref: objects.values.TRIG
     - $ref: objects.values.AUDIO
-    - PD
+    - $ref: objects.values.PD
     - $ref: objects.values.EYEGAZE
     - $ref: objects.values.PUPIL
     - $ref: objects.values.MISC
     - $ref: objects.values.SYSCLOCK
-    - ADC
-    - DAC
-    - HLU
-    - FITERR
-    - OTHER
+    - $ref: objects.values.ADC
+    - $ref: objects.values.DAC
+    - $ref: objects.values.HLU
+    - $ref: objects.values.FITERR
+    - $ref: objects.values.OTHER
 type__ieeg_channels:
   name: type
   display_name: Channel type
@@ -683,9 +683,9 @@ type__ieeg_channels:
   type: string
   enum:
     - $ref: objects.values.EEG
-    - ECOG
-    - SEEG
-    - DBS
+    - $ref: objects.values.ECOG
+    - $ref: objects.values.SEEG
+    - $ref: objects.values.DBS
     - $ref: objects.values.VEOG
     - $ref: objects.values.HEOG
     - $ref: objects.values.EOG
@@ -693,15 +693,15 @@ type__ieeg_channels:
     - $ref: objects.values.EMG
     - $ref: objects.values.TRIG
     - $ref: objects.values.AUDIO
-    - PD
+    - $ref: objects.values.PD
     - $ref: objects.values.EYEGAZE
     - $ref: objects.values.PUPIL
     - $ref: objects.values.MISC
     - $ref: objects.values.SYSCLOCK
-    - ADC
-    - DAC
+    - $ref: objects.values.ADC
+    - $ref: objects.values.DAC
     - $ref: objects.values.REF
-    - OTHER
+    - $ref: objects.values.OTHER
 type__nirs_channels:
   name: type
   display_name: Channel type
@@ -710,23 +710,23 @@ type__nirs_channels:
     Note that the type MUST be in upper-case.
   type: string
   enum:
-    - NIRSCWAMPLITUDE
-    - NIRSCWFLUORESCENSEAMPLITUDE
-    - NIRSCWOPTICALDENSITY
-    - NIRSCWHBO
-    - NIRSCWHBR
-    - NIRSCWMUA
-    - MEGMAG
-    - MEGGRADAXIAL
-    - MEGGRADPLANAR
-    - MEGREFMAG
-    - MEGREFGRADAXIAL
-    - MEGREFGRADPLANAR
-    - MEGOTHER
+    - $ref: objects.values.NIRSCWAMPLITUDE
+    - $ref: objects.values.NIRSCWFLUORESCENSEAMPLITUDE
+    - $ref: objects.values.NIRSCWOPTICALDENSITY
+    - $ref: objects.values.NIRSCWHBO
+    - $ref: objects.values.NIRSCWHBR
+    - $ref: objects.values.NIRSCWMUA
+    - $ref: objects.values.MEGMAG
+    - $ref: objects.values.MEGGRADAXIAL
+    - $ref: objects.values.MEGGRADPLANAR
+    - $ref: objects.values.MEGREFMAG
+    - $ref: objects.values.MEGREFGRADAXIAL
+    - $ref: objects.values.MEGREFGRADPLANAR
+    - $ref: objects.values.MEGOTHER
     - $ref: objects.values.EEG
-    - ECOG
-    - SEEG
-    - DBS
+    - $ref: objects.values.ECOG
+    - $ref: objects.values.SEEG
+    - $ref: objects.values.DBS
     - $ref: objects.values.VEOG
     - $ref: objects.values.HEOG
     - $ref: objects.values.EOG
@@ -734,20 +734,20 @@ type__nirs_channels:
     - $ref: objects.values.EMG
     - $ref: objects.values.TRIG
     - $ref: objects.values.AUDIO
-    - PD
+    - $ref: objects.values.PD
     - $ref: objects.values.EYEGAZE
     - $ref: objects.values.PUPIL
     - $ref: objects.values.MISC
     - $ref: objects.values.SYSCLOCK
-    - ADC
-    - DAC
-    - HLU
-    - FITERR
+    - $ref: objects.values.ADC
+    - $ref: objects.values.DAC
+    - $ref: objects.values.HLU
+    - $ref: objects.values.FITERR
     - $ref: objects.values.ACCEL
     - $ref: objects.values.GYRO
     - $ref: objects.values.MAGN
     - $ref: objects.values.MISC
-    - OTHER
+    - $ref: objects.values.OTHER
 type__motion_channels:
   name: type
   display_name: Channel type

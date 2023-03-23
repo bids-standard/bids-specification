@@ -826,3 +826,35 @@ OTHER:
   display_name: OTHER
   description: |
     Any other type of channel.
+NIRSCWAMPLITUDE:
+  name: NIRSCWAMPLITUDE
+  display_name: NIRSCWAMPLITUDE
+  description: |
+    Continuous wave amplitude measurements. Equivalent to dataType 001 in SNIRF.
+NIRSCWFLUORESCENSEAMPLITUDE:
+  name: NIRSCWFLUORESCENSEAMPLITUDE
+  display_name: NIRSCWFLUORESCENSEAMPLITUDE
+  description: |
+    Continuous wave fluorescence amplitude measurements. Equivalent to dataType 051 in SNIRF.
+NIRSCWOPTICALDENSITY:
+  name: NIRSCWOPTICALDENSITY
+  display_name: NIRSCWOPTICALDENSITY
+  description: |
+    Continuous wave change in optical density measurements. Equivalent to dataTypeLabel dOD in SNIRF.
+NIRSCWHBO:
+  name: NIRSCWHBO
+  display_name: NIRSCWHBO
+  description: |
+    Continuous wave oxygenated hemoglobin (oxyhemoglobin) concentration measurements.
+    Equivalent to dataTypeLabel HbO in SNIRF.
+NIRSCWHBR:
+  name: NIRSCWHBR
+  display_name: NIRSCWHBR
+  description: |
+    Continuous wave deoxygenated hemoglobin (deoxyhemoglobin) concentration measurements.
+    Equivalent to dataTypeLabel HbR in SNIRF.
+NIRSCWMUA:
+  name: NIRSCWMUA
+  display_name: NIRSCWMUA
+  description: |
+    Continuous wave optical absorption  measurements. Equivalent to dataTypeLabel mua in SNIRF.
