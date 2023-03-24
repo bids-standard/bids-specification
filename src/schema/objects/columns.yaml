@@ -472,7 +472,7 @@ sex:
     - other
     - o
     - O
-    - $ref: objects.values.OTHER
+    - OTHER
     - Other
     - n/a
 short_channel:
