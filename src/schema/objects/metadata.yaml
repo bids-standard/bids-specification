@@ -1144,19 +1144,20 @@ Genetics:
   description: |
     An object containing information about the genetics descriptor.
   type: object
+  required_fields: [Dataset]
   properties:
-    Database:
-      name: Database
-      description: |
-        [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
-        of database where the dataset is hosted.
-      type: string
-      format: uri
     Dataset:
       name: Dataset
       description: |
         [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
         where data can be retrieved.
+      type: string
+      format: uri
+    Database:
+      name: Database
+      description: |
+        [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
+        of database where the dataset is hosted.
       type: string
       format: uri
     Descriptors:
