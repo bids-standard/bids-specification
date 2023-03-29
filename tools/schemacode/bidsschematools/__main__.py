@@ -1,7 +1,7 @@
 import argparse
 import logging
 
-import argh
+from argh import add_commands, dispatch  # type: ignore
 
 from .schema import export
 from .validator import validate_bids
@@ -14,7 +14,7 @@ def cli():
     )
     parser.add_argument("--verbose", "-v", action="count", default=0)
     validate_bids.__name__ = "validate"
-    argh.add_commands(parser, [export, validate_bids])
+    add_commands(parser, [export, validate_bids])
     args = parser.parse_args()
     logging.getLogger("bidsschematools").setLevel(logging.WARNING - args.verbose * 10)
-    argh.dispatch(parser)
+    dispatch(parser)
