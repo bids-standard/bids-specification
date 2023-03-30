@@ -201,10 +201,10 @@ then the suffix `EEG` will not be added to future versions of the standard.
 BIDS provides a rich filesystem structure and rich filenames by using entites, but it is important to keep in mind that files also have to be readable.
 They have to be readable by machines, and this implies that filenames cannot be longer than 255 characters.
 They also have to be readable by humans, and this implies minimizing length.
-A useful way to think about filenaming is distinctness: what is the minimal information needed for distinguish files?
+A useful way to think about filenaming is distinctness: what is the minimal information needed to distinguish files?
 A simple illustration is given by using the [`ses-`](./glossary.md#session-entities) and [`run-`](./appendices/entities.md#run) entities.
 A T1 weighted MRI image could, in principle, be called `sub-X_ses-1_run-1_T1w.nii`.
-When there is only 1 session, and only 1 run, this is not needed as `ses-` and `run-` do not increase distinctivness.
+When there is only 1 session, and only 1 run, this is not needed as `ses-` and `run-` do not increase distinctiveness.
 Here, it is recommended to use the shorter version `sub-X_T1w.nii`.
 In some cases, this principle is enforced in the BIDS validator.
 
