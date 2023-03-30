@@ -207,17 +207,11 @@ PDT2:
   display_name: PD and T2 weighted image
   description: |
     In arbitrary units (arbitrary).
-    PDw and T2w images acquired using a dual echo FSE sequence through view
-    sharing process
-    ([Johnson et al. 1994](https://pubmed.ncbi.nlm.nih.gov/8010268/)).
-  unit: arbitrary
-PDT2map:
-  value: PDT2map
-  display_name: Combined PD/T2 image
-  description: |
-    In arbitrary units (arbitrary).
-    Combined PD/T2 maps are REQUIRED to use this suffix regardless of the method
-    used to generate them.
+    A two-volume 4D image, where the volumes are, respectively, PDw and T2w
+    images acquired simultaneously.
+    If separated into 3D volumes, the `PDw` and `T2w` suffixes SHOULD be used instead,
+    and an acquisition entity MAY be used to distinguish the images from others with
+    the same suffix, for example, `acq-PDT2_PDw.nii` and `acq-PDT2_T2w.nii`.
   unit: arbitrary
 PDmap:
   value: PDmap
