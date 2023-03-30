@@ -51,6 +51,14 @@ events__mri:
     reconstruction: optional
     direction: optional
 
+events__motion:
+  $ref: rules.files.raw.task.events
+  datatypes:
+    - motion
+  entities:
+    $ref: rules.files.raw.task.events.entities
+    tracksys: required
+
 events__pet:
   $ref: rules.files.raw.task.events
   datatypes:

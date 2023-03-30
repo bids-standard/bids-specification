@@ -405,3 +405,17 @@ tracer:
     Please note that the `<label>` does not need to match the actual value of the field.
   type: string
   format: label
+tracksys:
+  name: tracksys
+  display_name: Tracking system
+  description: |
+    The `tracksys-<label>` entity can be used as a key-value pair
+    to label *_motion.tsv and *_motion.json files.
+    It can also be used to label *_channel.tsv or *_events.tsv files
+    when they belong to a specific tracking system.
+
+    This entity corresponds to the `"TrackingSystemName"` metadata field in a *_motion.json file.
+    `tracksys-<label>` entity is a concise string whereas `"TrackingSystemName"`
+    may be longer and more human readable.
+  type: string
+  format: label

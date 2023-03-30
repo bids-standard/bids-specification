@@ -43,6 +43,10 @@ micr:
   value: micr
   display_name: Microscopy
   description: Microscopy
+motion:
+  value: motion
+  display_name: Motion
+  description: Motion data from a tracking system
 perf:
   value: perf
   display_name: Perfusion imaging

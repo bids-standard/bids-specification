@@ -12,3 +12,31 @@ T1wFileWithTooManyDimensions:
     - nifti_header != null
   checks:
     - nifti_header.dim[0] == 3
+
+PDT2Volumes:
+  issue:
+    code: PDT2_FILE_SHOULD_HAVE_TWO_VOLUMES
+    message: |
+      _PDT2.nii[.gz] files should be 4D images with exactly two volumes.
+    level: warning
+  selectors:
+    - suffix == 'PDT2'
+    - nifti_header != null
+  checks:
+    - nifti_header.dim[0] == 4
+    - nifti_header.dim[4] == 2
+
+PDT2Echos:
+  issue:
+    code: PDT2_ECHOS_SHOULD_MATCH_NIFTI_LENGTH
+    message: |
+      The EchoTime parameter for _PDT2.nii[.gz] files should have one value
+      per volume.
+    level: warning
+  selectors:
+    - suffix == 'PDT2'
+    - sidecar.EchoTime != null
+    - nifti_header.dim[0] == 4
+  checks:
+    - type(sidecar.EchoTime) == 'array'
+    - len(sidecar.EchoTime) == nifti_header.dim[4]

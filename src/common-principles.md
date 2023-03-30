@@ -10,8 +10,17 @@ The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
 interpreted as described in [[RFC2119](https://www.ietf.org/rfc/rfc2119.txt)].
 
-Throughout this specification we use a list of terms and abbreviations. To avoid
-misunderstanding we clarify them here.
+Based on these keywords, we define three requirement levels for specifying data or metadata:
+REQUIRED, RECOMMENDED, and OPTIONAL.
+The guiding principles for when particular data is placed under a given requirement level
+can be loosely described as below:
+
+* REQUIRED: Data cannot be be interpreted without this information (or the ambiguity is unacceptably high)
+* RECOMMENDED: Interpretation/utility would be dramatically improved with this information
+* OPTIONAL: Users and/or tools might find it useful to have this information
+
+Throughout this specification we use a list of terms and abbreviations.
+To avoid misunderstanding we clarify them here.
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
