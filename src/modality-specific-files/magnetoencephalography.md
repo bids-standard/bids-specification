@@ -391,10 +391,10 @@ For more information on typical coordinate systems for MEG-MRI coregistration:
 or:
 [http://neuroimage.usc.edu/brainstorm/CoordinateSystems](http://neuroimage.usc.edu/brainstorm/CoordinateSystems)
 
-## Landmark photos (`*_photo.jpg`)
+## Landmark photos (`*_photo.<extension>`)
 
 Photos of the anatomical landmarks and/or head localization coils
-(`*_photo.jpg`)
+(`*_photo.<extension>`)
 
 <!--
 This block generates a filename templates.
@@ -416,14 +416,14 @@ The [`acq-<label>`](../appendices/entities.md#acq) entity can be used to indicat
 the same face (or other body part in different angles to show, for example, the
 location of the nasion (NAS) as opposed to the right periauricular point (RPA)).
 
-### Example `*_photo.jpg`
+### Example `*_photo.<extension>`
 
 Example of the NAS fiducial placed between the eyebrows, rather than at the
 actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
 
 ![placement of NAS fiducial](images/sub-0001_ses-001_acq-NAS_photo.jpg "placement of NAS fiducial")
 
-## Head shape and electrode description (`*_headshape.<ext>`)
+## Head shape and electrode description (`*_headshape.<extension>`)
 
 <!--
 This block generates a filename templates.

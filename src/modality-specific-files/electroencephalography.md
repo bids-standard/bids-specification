@@ -421,7 +421,7 @@ voxels (starting from `[0, 0, 0]`).
 }
 ```
 
-## Landmark photos (`*_photo.jpg`)
+## Landmark photos (`*_photo.<extension>`)
 
 Photos of the anatomical landmarks and/or fiducials.
 
@@ -444,7 +444,7 @@ indicate acquisition of different photos of
 the same face (or other body part in different angles to show, for example, the
 location of the nasion (NAS) as opposed to the right periauricular point (RPA).
 
-### Example `*_photo.jpg`
+### Example `*_photo.<extension>`
 
 Picture of a NAS fiducial placed between the eyebrows, rather than at the
 actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
