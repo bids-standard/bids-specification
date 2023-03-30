@@ -6,12 +6,13 @@
 
 # 102
 TooFewAuthors:
-  code: TOO_FEW_AUTHORS
-  message: |
-    The Authors field of dataset_description.json should contain an array of fields -
-    with one author per field. This was triggered based on the presence of only one
-    author field. Please ignore if all contributors are already properly listed.
-  level: warning
+  issue:
+    code: TOO_FEW_AUTHORS
+    message: |
+      The Authors field of dataset_description.json should contain an array of fields -
+      with one author per field. This was triggered based on the presence of only one
+      author field. Please ignore if all contributors are already properly listed.
+    level: warning
   selectors:
     - path == '/dataset_description.json'
   checks:
