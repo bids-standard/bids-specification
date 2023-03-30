@@ -10,7 +10,7 @@ nav:
         - Magnetoencephalography: modality-specific-files/magnetoencephalography.md
         - Electroencephalography: modality-specific-files/electroencephalography.md
         - Intracranial Electroencephalography: modality-specific-files/intracranial-electroencephalography.md
-        - Task events: modality-specific-files/task-events.md
+        - Events: modality-specific-files/events.md
         - Physiological and other continuous recordings: modality-specific-files/physiological-and-other-continuous-recordings.md
         - Behavioral experiments (with no neural recordings): modality-specific-files/behavioral-experiments.md
         - Genetic Descriptor: modality-specific-files/genetic-descriptor.md
@@ -84,7 +84,7 @@ plugins:
             '04-modality-specific-files/02-magnetoencephalography.md': 'modality-specific-files/magnetoencephalography.md'
             '04-modality-specific-files/03-electroencephalography.md': 'modality-specific-files/electroencephalography.md'
             '04-modality-specific-files/04-intracranial-electroencephalography.md': 'modality-specific-files/intracranial-electroencephalography.md'
-            '04-modality-specific-files/05-task-events.md': 'modality-specific-files/task-events.md'
+            '04-modality-specific-files/05-task-events.md': 'modality-specific-files/events.md'
             '04-modality-specific-files/06-physiological-and-other-continuous-recordings.md': 'modality-specific-files/physiological-and-other-continuous-recordings.md'
             '04-modality-specific-files/07-behavioral-experiments.md': 'modality-specific-files/behavioral-experiments.md'
             '04-modality-specific-files/08-genetic-descriptor.md': 'modality-specific-files/genetic-descriptor.md'
@@ -110,5 +110,6 @@ plugins:
             '99-appendices/11-qmri.md': 'appendices/qmri.md'
             '99-appendices/12-arterial-spin-labeling.md': 'appendices/arterial-spin-labeling.md'
             '99-appendices/13-cross-modality-correspondence.md': 'appendices/cross-modality-correspondence.md'
+            'modality-specific-files/task-events.md': 'modality-specific-files/events.md'
 docs_dir: 'src'
 use_directory_urls: false
