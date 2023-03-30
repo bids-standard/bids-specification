@@ -1,5 +1,9 @@
 # Common principles
 
+## Language
+
+The BIDS specification is written in American English.
+
 ## Definitions
 
 The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",

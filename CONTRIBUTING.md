@@ -157,6 +157,8 @@ Some others need to fixed manually:
   to some readers and try to replace them by common English equivalents such as
   `"for example"`, `"that is"`, `"and so on"`.
 
+The BIDS specification is written in American English.
+
 #### Soft rules
 
 We follow certain "soft rules" in the way we format the specification in Markdown.
