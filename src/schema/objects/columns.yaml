@@ -613,7 +613,7 @@ trigger:
     continuous measurement of the scanner trigger signal
   type: number
 # type column in channels.tsv files
-type__eeg_channels:
+type__channels:
   name: type
   display_name: Channel type
   description: |
@@ -621,152 +621,55 @@ type__eeg_channels:
     Note that the type MUST be in upper-case.
   type: string
   enum:
+    - $ref: objects.values.ACCEL
+    - $ref: objects.values.ADC
+    - $ref: objects.values.ANGACC
+    - $ref: objects.values.ANGVEL
     - $ref: objects.values.AUDIO
-    - $ref: objects.values.EEG
-    - $ref: objects.values.EOG
+    - $ref: objects.values.DAC
+    - $ref: objects.values.DBS
     - $ref: objects.values.ECG
+    - $ref: objects.values.ECOG
+    - $ref: objects.values.EEG
     - $ref: objects.values.EMG
+    - $ref: objects.values.EOG
     - $ref: objects.values.EYEGAZE
+    - $ref: objects.values.FITERR
     - $ref: objects.values.GSR
+    - $ref: objects.values.GYRO
     - $ref: objects.values.HEOG
+    - $ref: objects.values.HLU
+    - $ref: objects.values.JNTANG
+    - $ref: objects.values.LATENCY
+    - $ref: objects.values.MAGN
+    - $ref: objects.values.MEGGRADAXIAL
+    - $ref: objects.values.MEGGRADPLANAR
+    - $ref: objects.values.MEGMAG
+    - $ref: objects.values.MEGOTHER
+    - $ref: objects.values.MEGREFGRADAXIAL
+    - $ref: objects.values.MEGREFGRADPLANAR
+    - $ref: objects.values.MEGREFMAG
     - $ref: objects.values.MISC
+    - $ref: objects.values.NIRSCWAMPLITUDE
+    - $ref: objects.values.NIRSCWFLUORESCENSEAMPLITUDE
+    - $ref: objects.values.NIRSCWHBO
+    - $ref: objects.values.NIRSCWHBR
+    - $ref: objects.values.NIRSCWMUA
+    - $ref: objects.values.NIRSCWOPTICALDENSITY
+    - $ref: objects.values.ORNT
+    - $ref: objects.values.OTHER
+    - $ref: objects.values.PD
+    - $ref: objects.values.POS
     - $ref: objects.values.PPG
     - $ref: objects.values.PUPIL
     - $ref: objects.values.REF
     - $ref: objects.values.RESP
+    - $ref: objects.values.SEEG
     - $ref: objects.values.SYSCLOCK
     - $ref: objects.values.TEMP
     - $ref: objects.values.TRIG
-    - $ref: objects.values.VEOG
-type__meg_channels:
-  name: type
-  display_name: Channel type
-  description: |
-    Type of channel; MUST use the channel types listed below.
-    Note that the type MUST be in upper-case.
-  type: string
-  enum:
-    - $ref: objects.values.MEGMAG
-    - $ref: objects.values.MEGGRADAXIAL
-    - $ref: objects.values.MEGGRADPLANAR
-    - $ref: objects.values.MEGREFMAG
-    - $ref: objects.values.MEGREFGRADAXIAL
-    - $ref: objects.values.MEGREFGRADPLANAR
-    - $ref: objects.values.MEGOTHER
-    - $ref: objects.values.EEG
-    - $ref: objects.values.ECOG
-    - $ref: objects.values.SEEG
-    - $ref: objects.values.DBS
-    - $ref: objects.values.VEOG
-    - $ref: objects.values.HEOG
-    - $ref: objects.values.EOG
-    - $ref: objects.values.ECG
-    - $ref: objects.values.EMG
-    - $ref: objects.values.TRIG
-    - $ref: objects.values.AUDIO
-    - $ref: objects.values.PD
-    - $ref: objects.values.EYEGAZE
-    - $ref: objects.values.PUPIL
-    - $ref: objects.values.MISC
-    - $ref: objects.values.SYSCLOCK
-    - $ref: objects.values.ADC
-    - $ref: objects.values.DAC
-    - $ref: objects.values.HLU
-    - $ref: objects.values.FITERR
-    - $ref: objects.values.OTHER
-type__ieeg_channels:
-  name: type
-  display_name: Channel type
-  description: |
-    Type of channel; MUST use the channel types listed below.
-    Note that the type MUST be in upper-case.
-  type: string
-  enum:
-    - $ref: objects.values.EEG
-    - $ref: objects.values.ECOG
-    - $ref: objects.values.SEEG
-    - $ref: objects.values.DBS
-    - $ref: objects.values.VEOG
-    - $ref: objects.values.HEOG
-    - $ref: objects.values.EOG
-    - $ref: objects.values.ECG
-    - $ref: objects.values.EMG
-    - $ref: objects.values.TRIG
-    - $ref: objects.values.AUDIO
-    - $ref: objects.values.PD
-    - $ref: objects.values.EYEGAZE
-    - $ref: objects.values.PUPIL
-    - $ref: objects.values.MISC
-    - $ref: objects.values.SYSCLOCK
-    - $ref: objects.values.ADC
-    - $ref: objects.values.DAC
-    - $ref: objects.values.REF
-    - $ref: objects.values.OTHER
-type__nirs_channels:
-  name: type
-  display_name: Channel type
-  description: |
-    Type of channel; MUST use the channel types listed below.
-    Note that the type MUST be in upper-case.
-  type: string
-  enum:
-    - $ref: objects.values.NIRSCWAMPLITUDE
-    - $ref: objects.values.NIRSCWFLUORESCENSEAMPLITUDE
-    - $ref: objects.values.NIRSCWOPTICALDENSITY
-    - $ref: objects.values.NIRSCWHBO
-    - $ref: objects.values.NIRSCWHBR
-    - $ref: objects.values.NIRSCWMUA
-    - $ref: objects.values.MEGMAG
-    - $ref: objects.values.MEGGRADAXIAL
-    - $ref: objects.values.MEGGRADPLANAR
-    - $ref: objects.values.MEGREFMAG
-    - $ref: objects.values.MEGREFGRADAXIAL
-    - $ref: objects.values.MEGREFGRADPLANAR
-    - $ref: objects.values.MEGOTHER
-    - $ref: objects.values.EEG
-    - $ref: objects.values.ECOG
-    - $ref: objects.values.SEEG
-    - $ref: objects.values.DBS
-    - $ref: objects.values.VEOG
-    - $ref: objects.values.HEOG
-    - $ref: objects.values.EOG
-    - $ref: objects.values.ECG
-    - $ref: objects.values.EMG
-    - $ref: objects.values.TRIG
-    - $ref: objects.values.AUDIO
-    - $ref: objects.values.PD
-    - $ref: objects.values.EYEGAZE
-    - $ref: objects.values.PUPIL
-    - $ref: objects.values.MISC
-    - $ref: objects.values.SYSCLOCK
-    - $ref: objects.values.ADC
-    - $ref: objects.values.DAC
-    - $ref: objects.values.HLU
-    - $ref: objects.values.FITERR
-    - $ref: objects.values.ACCEL
-    - $ref: objects.values.GYRO
-    - $ref: objects.values.MAGN
-    - $ref: objects.values.MISC
-    - $ref: objects.values.OTHER
-type__motion_channels:
-  name: type
-  display_name: Channel type
-  description: |
-    Type of channel; MUST use the channel types listed below.
-    Note that the type MUST be in upper-case.
-  type: string
-  enum:
-    - $ref: objects.values.ACCEL
-    - $ref: objects.values.ANGACC
-    - $ref: objects.values.ANGVEL
-    - $ref: objects.values.GYRO
-    - $ref: objects.values.JNTANG
-    - $ref: objects.values.LATENCY
-    - $ref: objects.values.MAGN
-    - $ref: objects.values.MISC
-    - $ref: objects.values.ORNT
-    - $ref: objects.values.POS
     - $ref: objects.values.VEL
+    - $ref: objects.values.VEOG
 # type column for electrodes.tsv files
 type__electrodes:
   name: type
