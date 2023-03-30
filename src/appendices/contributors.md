@@ -161,7 +161,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Andrew Jahn 📓
 -   Andrew Janke 📖💻
 -   Mainak Jas 📖💻
--   Sein Jeung 📖
+-   Sein Jeung 📖💡
 -   Alexander Jones 💻🐛
 -   Tamás Józsa 📓
 -   Jakub Kaczmarzyk 📖🔧🚇
@@ -306,7 +306,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Brian A. Wandell 📖
 -   Hao Ting Wang 📖🐛
 -   Yuan Wang 💻
--   Julius Welzel 📖
+-   Julius Welzel 📖💡
 -   Joseph Wexler 📖💡
 -   Kirstie Whitaker 📖💡🔍🤔📢💬
 -   Martin Wilson 📖

@@ -39,6 +39,8 @@ data_type:
         11. `micr` (microscopy)
 
         12. `nirs` (near infrared spectroscopy)
+
+        13. `motion` (motion)
 dataset:
   display_name: Dataset
   description: |
