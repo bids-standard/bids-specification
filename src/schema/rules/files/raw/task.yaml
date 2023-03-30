@@ -30,6 +30,7 @@ timeseries:
     - eeg
     - ieeg
     - nirs
+    - motion
   entities:
     subject: required
     session: optional
