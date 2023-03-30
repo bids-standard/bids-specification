@@ -11,7 +11,7 @@ and can be used as helpful guidance when curating new datasets.
 {{ MACROS___make_filename_template(
 "raw",
 datatypes=["motion"],
-suffixes=["motion", "channels", "events", "physio", "stim"])
+suffixes=["motion", "events", "physio", "stim"])
 }}
 
 A wide variety of motion capture systems are used in human research, resulting in different proprietary data formats.
