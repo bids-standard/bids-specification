@@ -66,6 +66,12 @@ remember to list all files separately in `scans.tsv` and that the entries for th
 `acq_time` column in `scans.tsv` MUST all be identical, as described in
 [Scans file](../modality-agnostic-files.md#scans-file).
 
+The Neuromag/Elekta/Megin system may also produce datasets that require a set of
+`crosstalk` and `calibration` files to be used properly (see also filename templates above).
+Please refer to
+[Cross-talk and fine-calibration files](../appendices/meg-file-formats.md#cross-talk-and-fine-calibration-files)
+for more information on this detail.
+
 Another manufacturer-specific detail pertains to the KIT/Yokogawa/Ricoh system,
 which saves the MEG sensor coil positions in a separate file with two possible filename extensions  (`.sqd`, `.mrk`).
 For these files, the `markers` suffix MUST be used.
