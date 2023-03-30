@@ -1,187 +1,187 @@
 ---
 # This file defines valid values in BIDS key-value pairs.
 left_hemisphere:
-  name: 'L'
+  value: 'L'
   display_name: Left Hemisphere
   description: |
     A left hemibrain image.
 right_hemisphere:
-  name: 'R'
+  value: 'R'
   display_name: Right Hemisphere
   description: |
     A right hemibrain image.
 CASL:
-  name: CASL
+  value: CASL
   display_name: Continuous arterial spin labeling
   description: |
     Continuous arterial spin labeling was employed.
 PCASL:
-  name: PCASL
+  value: PCASL
   display_name: Pseudo-continuous arterial spin labeling
   description: |
     Pseudo-continuous arterial spin labeling was employed.
 PASL:
-  name: PASL
+  value: PASL
   display_name: Pulsed arterial spin labeling
   description: |
     Pulsed arterial spin labeling was employed.
 Separate:
-  name: Separate
+  value: Separate
   display_name: Separate
   description: |
     A separate `m0scan` file is present.
 Included:
-  name: Included
+  value: Included
   display_name: Included
   description: |
     An m0scan volume is contained within the associated `asl` file.
 Estimate:
-  name: Estimate
+  value: Estimate
   display_name: Estimate
   description: |
     A single whole-brain M0 value is provided in the metadata.
 Absent:
-  name: Absent
+  value: Absent
   display_name: Absent
   description: |
     No specific M0 information is present.
 TwoD:
-  name: 2D
+  value: 2D
   display_name: Two-dimensional
   description: |
     Two-dimensional MR acquisition.
 ThreeD:
-  name: 3D
+  value: 3D
   display_name: Three-dimensional
   description: |
     Three-dimensional MR acquisition.
 HARD:
-  name: HARD
+  value: HARD
   display_name: Hard pulse
   description: |
     A very brief, strong, rectangular pulse.
 GAUSSIAN:
-  name: GAUSSIAN
+  value: GAUSSIAN
   display_name: Gaussian pulse
   description: |
     A Gaussian pulse.
 GAUSSHANN:
-  name: GAUSSHANN
+  value: GAUSSHANN
   display_name: Gaussian-Hanning pulse.
   description: |
     A Gaussian pulse with a Hanning window.
 SINC:
-  name: SINC
+  value: SINC
   display_name: Sinc pulse
   description: |
     A sinc-shaped pulse.
 SINCHANN:
-  name: SINCHANN
+  value: SINCHANN
   display_name: Sinc-Hanning pulse
   description: |
     A sinc-shaped pulse with a Hanning window.
 SINCGAUSS:
-  name: SINCGAUSS
+  value: SINCGAUSS
   display_name: Sinc-Gauss pulse
   description: |
     A sinc-shaped pulse with a Gaussian window.
 FERMI:
-  name: FERMI
+  value: FERMI
   display_name: Fermi pulse
   description: |
     A Fermi-shaped pulse.
 i:
-  name: i
+  value: i
   display_name: i
   description: |
     Phase/Slice encoding direction is along the first axis of the data in the NIFTI file,
     with phase encoding going from the zero index to the maximum index.
 j:
-  name: j
+  value: j
   display_name: j
   description: |
     Phase/Slice encoding direction is along the second axis of the data in the NIFTI file,
     with phase encoding going from the zero index to the maximum index.
 k:
-  name: k
+  value: k
   display_name: k
   description: |
     Phase/Slice encoding direction is along the third axis of the data in the NIFTI file,
     with phase encoding going from the zero index to the maximum index.
 iMinus:
-  name: i-
+  value: i-
   display_name: i-
   description: |
     Phase/Slice encoding direction is along the first axis of the data in the NIFTI file,
     with phase encoding going from the maximum index to the zero index.
 jMinus:
-  name: j-
+  value: j-
   display_name: j-
   description: |
     Phase/Slice encoding direction is along the second axis of the data in the NIFTI file,
     with phase encoding going from the maximum index to the zero index.
 kMinus:
-  name: k-
+  value: k-
   display_name: k-
   description: |
     Phase/Slice encoding direction is along the third axis of the data in the NIFTI file,
     with phase encoding going from the maximum index to the zero index.
 continuous:
-  name: continuous
+  value: continuous
   display_name: Continuous recording
   description: |
     Continuous recording.
 epoched:
-  name: epoched
+  value: epoched
   display_name: Epoched recording
   description: |
     Recording is limited to time windows around events of interest
     (for example, stimulus presentations or subject responses).
 discontinuous:
-  name: discontinuous
+  value: discontinuous
   display_name: Discontinuous recording
   description: |
     Discontinuous recording.
 orig:
-  name: orig
+  value: orig
   display_name: orig
   description: |
     A (potentially unique) per-image space.
     Useful for describing the source of transforms from an input image to a target space.
 Brain:
-  name: Brain
+  value: Brain
   display_name: Brain mask
   description: |
     A brain mask.
 Lesion:
-  name: Lesion
+  value: Lesion
   display_name: Lesion mask
   description: |
     A lesion mask.
 Face:
-  name: Face
+  value: Face
   display_name: Face mask
   description: |
     A face mask.
 ROI:
-  name: ROI
+  value: ROI
   display_name: ROI mask
   description: |
     A region of interest mask.
 CapTrak:
-  name: CapTrak
+  value: CapTrak
   display_name: CapTrak
   description: |
     RAS orientation and the origin approximately between LPA and RPA
 EEGLAB:
-  name: EEGLAB
+  value: EEGLAB
   display_name: EEGLAB
   description: |
     ALS orientation and the origin exactly between LPA and RPA.
     For more information, see the
     [EEGLAB wiki page](https://eeglab.org/tutorials/ConceptsGuide/coordinateSystem.html#eeglab-coordinate-system).
 EEGLAB-HJ:
-  name: EEGLAB-HJ
+  value: EEGLAB-HJ
   display_name: EEGLAB-HJ
   description: |
     ALS orientation and the origin exactly between LHJ and RHJ.
@@ -189,67 +189,67 @@ EEGLAB-HJ:
     [EEGLAB wiki page](https://eeglab.org/tutorials/ConceptsGuide/coordinateSystem.html#\
     eeglab-hj-coordinate-system).
 Other:
-  name: Other
+  value: Other
   display_name: Other
   description: |
     Other coordinate system.
 Genetic:
-  name: Genetic
+  value: Genetic
   display_name: Genetic
   description: |
     Data report on a single genetic location (typically directly in the `participants.tsv` file).
 Genomic:
-  name: Genomic
+  value: Genomic
   display_name: Genomic
   description: |
     Data link to participants' genome (multiple genetic locations).
 Epigenomic:
-  name: Epigenomic
+  value: Epigenomic
   display_name: Epigenomic
   description: |
     Data link to participants' characterization of reversible modifications of DNA.
 Transcriptomic:
-  name: Transcriptomic
+  value: Transcriptomic
   display_name: Transcriptomic
   description: |
     Data link to participants RNA levels.
 Metabolomic:
-  name: Metabolomic
+  value: Metabolomic
   display_name: Metabolomic
   description: |
     Data link to participants' products of cellular metabolic functions.
 Proteomic:
-  name: Proteomic
+  value: Proteomic
   display_name: Proteomic
   description: |
     Data link to participants peptides and proteins quantification.
 CTF:
-  name: CTF
+  value: CTF
   display_name: CTF
   description: |
     ALS orientation and the origin between the ears.
 ElektaNeuromag:
-  name: ElektaNeuromag
+  value: ElektaNeuromag
   display_name: Elekta Neuromag
   description: |
     RAS orientation and the origin between the ears.
 4DBti:
-  name: 4DBti
+  value: 4DBti
   display_name: 4D BTI
   description: |
     ALS orientation and the origin between the ears.
 KitYokogawa:
-  name: KitYokogawa
+  value: KitYokogawa
   display_name: KIT/Yokogawa
   description: |
     ALS orientation and the origin between the ears.
 ChietiItab:
-  name: ChietiItab
+  value: ChietiItab
   display_name: Chieti ITAB
   description: |
     RAS orientation and the origin between the ears.
 individual:
-  name: individual
+  value: individual
   display_name: individual
   description: |
     Participant specific anatomical space (for example derived from T1w and/or T2w images).
@@ -258,7 +258,7 @@ individual:
 
     In order for this space to be interpretable, `SpatialReference` metadata MUST be provided.
 study:
-  name: study
+  value: study
   display_name: study
   description: |
     Custom space defined using a group/study-specific template.
@@ -266,7 +266,7 @@ study:
 
     In order for this space to be interpretable, `SpatialReference` metadata MUST be provided.
 scanner:
-  name: scanner
+  value: scanner
   display_name: scanner
   description: |
     The intrinsic coordinate system of the original image (the first entry of `RawSources`)
@@ -278,20 +278,20 @@ scanner:
     Please note that `space-scanner` SHOULD NOT be used,
     it is mentioned in this specification to make its existence explicit.
 ICBM452AirSpace:
-  name: ICBM452AirSpace
+  value: ICBM452AirSpace
   display_name: ICBM452AirSpace
   description: |
     Reference space defined by the "average of 452 T1-weighted MRIs of normal young adult brains"
     with "linear transforms of the subjects into the atlas space using a 12-parameter affine
     transformation".
 ICBM452Warp5Space:
-  name: ICBM452Warp5Space
+  value: ICBM452Warp5Space
   display_name: ICBM452Warp5Space
   description: |
     Reference space defined by the "average of 452 T1-weighted MRIs of normal young adult brains"
     "based on a 5th order polynomial transformation into the atlas space".
 IXI549Space:
-  name: IXI549Space
+  value: IXI549Space
   display_name: IXI549Space
   description: |
     Reference space defined by the average of the "549 (...) subjects from the IXI dataset"
@@ -299,7 +299,7 @@ IXI549Space:
 
     Used by SPM12.
 fsaverage:
-  name: fsaverage
+  value: fsaverage
   display_name: fsaverage
   description: |
     The `fsaverage` is a **dual template** providing both volumetric and surface coordinates references.
@@ -308,7 +308,7 @@ fsaverage:
 
     Used by Freesurfer.
 fsaverageSym:
-  name: fsaverageSym
+  value: fsaverageSym
   display_name: fsaverageSym
   description: |
     The `fsaverage` is a **dual template** providing both volumetric and surface coordinates references.
@@ -318,7 +318,7 @@ fsaverageSym:
 
     Used by Freesurfer.
 fsLR:
-  name: fsLR
+  value: fsLR
   display_name: fsLR
   description: |
     The `fsLR` is a **dual template** providing both volumetric and surface coordinates references.
@@ -331,21 +331,21 @@ fsLR:
 
     Used by Freesurfer.
 MNIColin27:
-  name: MNIColin27
+  value: MNIColin27
   display_name: MNIColin27
   description: |
     Average of 27 T1 scans of a single subject.
 
     Used by SPM96.
 MNI152Lin:
-  name: MNI152Lin
+  value: MNI152Lin
   display_name: MNI152Lin
   description: |
     Also known as ICBM (version with linear coregistration).
 
     Used by SPM99 to SPM8.
 MNI152NLin2009aSym:
-  name: MNI152NLin2009aSym
+  value: MNI152NLin2009aSym
   display_name: MNI152NLin2009aSym
   description: |
     Also known as ICBM (non-linear coregistration with 40 iterations, released in 2009).
@@ -353,7 +353,7 @@ MNI152NLin2009aSym:
 
     Used by the DARTEL toolbox in SPM12b.
 MNI152NLin2009bSym:
-  name: MNI152NLin2009bSym
+  value: MNI152NLin2009bSym
   display_name: MNI152NLin2009bSym
   description: |
     Also known as ICBM (non-linear coregistration with 40 iterations, released in 2009).
@@ -361,7 +361,7 @@ MNI152NLin2009bSym:
 
     Used by the DARTEL toolbox in SPM12b.
 MNI152NLin2009cSym:
-  name: MNI152NLin2009cSym
+  value: MNI152NLin2009cSym
   display_name: MNI152NLin2009cSym
   description: |
     Also known as ICBM (non-linear coregistration with 40 iterations, released in 2009).
@@ -369,7 +369,7 @@ MNI152NLin2009cSym:
 
     Used by the DARTEL toolbox in SPM12b.
 MNI152NLin2009aAsym:
-  name: MNI152NLin2009aAsym
+  value: MNI152NLin2009aAsym
   display_name: MNI152NLin2009aAsym
   description: |
     Also known as ICBM (non-linear coregistration with 40 iterations, released in 2009).
@@ -377,7 +377,7 @@ MNI152NLin2009aAsym:
 
     Used by the DARTEL toolbox in SPM12b.
 MNI152NLin2009bAsym:
-  name: MNI152NLin2009bAsym
+  value: MNI152NLin2009bAsym
   display_name: MNI152NLin2009bAsym
   description: |
     Also known as ICBM (non-linear coregistration with 40 iterations, released in 2009).
@@ -385,7 +385,7 @@ MNI152NLin2009bAsym:
 
     Used by the DARTEL toolbox in SPM12b.
 MNI152NLin2009cAsym:
-  name: MNI152NLin2009cAsym
+  value: MNI152NLin2009cAsym
   display_name: MNI152NLin2009cAsym
   description: |
     Also known as ICBM (non-linear coregistration with 40 iterations, released in 2009).
@@ -393,14 +393,14 @@ MNI152NLin2009cAsym:
 
     Used by the DARTEL toolbox in SPM12b.
 MNI152NLin6Sym:
-  name: MNI152NLin6Sym
+  value: MNI152NLin6Sym
   display_name: MNI152NLin6Sym
   description: |
     Also known as symmetric ICBM 6th generation (non-linear coregistration).
 
     Used by FSL.
 MNI152NLin6ASym:
-  name: MNI152NLin6ASym
+  value: MNI152NLin6ASym
   display_name: MNI152NLin6ASym
   description: |
     A variation of `MNI152NLin6Sym` built by A. Janke that is released as the _MNI template_ of FSL.
@@ -410,12 +410,12 @@ MNI152NLin6ASym:
 
     Used by FSL and HPC-Pipelines.
 MNI305:
-  name: MNI305
+  value: MNI305
   display_name: MNI205
   description: |
     Also known as avg305.
 NIHPD:
-  name: NIHPD
+  value: NIHPD
   display_name: NIHPD
   description: |
     Pediatric templates generated from the NIHPD sample.
@@ -423,116 +423,116 @@ NIHPD:
     (4.5-18.5 y.o., 4.5-8.5 y.o., 7-11 y.o., 7.5-13.5 y.o., 10-14 y.o., 13-18.5 y.o.).
     This template also comes in either -symmetric or -asymmetric flavor.
 OASIS30AntsOASISAnts:
-  name: OASIS30AntsOASISAnts
+  value: OASIS30AntsOASISAnts
   display_name: OASIS30AntsOASISAnts
   description: |
     OASIS30AntsOASISAnts
 OASIS30Atropos:
-  name: OASIS30Atropos
+  value: OASIS30Atropos
   display_name: OASIS30Atropos
   description: |
     OASIS30Atropos
 Talairach:
-  name: Talairach
+  value: Talairach
   display_name: Talairach
   description: |
     Piecewise linear scaling of the brain is implemented as described in TT88.
 UNCInfant:
-  name: UNCInfant
+  value: UNCInfant
   display_name: UNCInfant
   description: |
     Infant Brain Atlases from Neonates to 1- and 2-year-olds.
 fsaverage3:
-  name: fsaverage3
+  value: fsaverage3
   display_name: fsaverage3
   description: |
     Images were sampled to the FreeSurfer surface reconstructed from the subject's T1w image,
     and registered to an fsaverage template.
     For new datasets, the recommended alternative is fsaverage.
 fsaverage4:
-  name: fsaverage4
+  value: fsaverage4
   display_name: fsaverage4
   description: |
     Images were sampled to the FreeSurfer surface reconstructed from the subject's T1w image,
     and registered to an fsaverage template.
     For new datasets, the recommended alternative is fsaverage.
 fsaverage5:
-  name: fsaverage5
+  value: fsaverage5
   display_name: fsaverage5
   description: |
     Images were sampled to the FreeSurfer surface reconstructed from the subject's T1w image,
     and registered to an fsaverage template.
     For new datasets, the recommended alternative is fsaverage.
 fsaverage6:
-  name: fsaverage6
+  value: fsaverage6
   display_name: fsaverage6
   description: |
     Images were sampled to the FreeSurfer surface reconstructed from the subject's T1w image,
     and registered to an fsaverage template.
     For new datasets, the recommended alternative is fsaverage.
 fsaveragesym:
-  name: fsaveragesym
+  value: fsaveragesym
   display_name: fsaveragesym
   description: |
     Images were sampled to the FreeSurfer surface reconstructed from the subject's T1w image,
     and registered to an fsaverage template.
     For new datasets, the recommended alternative is fsaverageSym.
 UNCInfant0V21:
-  name: UNCInfant0V21
+  value: UNCInfant0V21
   display_name: UNCInfant0V21
   description: |
     Infant Brain Atlases from Neonates to 1- and 2-year-olds. See https://www.nitrc.org/projects/pediatricatlas.
     For new datasets, the recommended alternative is UNCInfant.
 UNCInfant1V21:
-  name: UNCInfant1V21
+  value: UNCInfant1V21
   display_name: UNCInfant1V21
   description: |
     Infant Brain Atlases from Neonates to 1- and 2-year-olds. See https://www.nitrc.org/projects/pediatricatlas.
     For new datasets, the recommended alternative is UNCInfant.
 UNCInfant2V21:
-  name: UNCInfant2V21
+  value: UNCInfant2V21
   display_name: UNCInfant2V21
   description: |
     Infant Brain Atlases from Neonates to 1- and 2-year-olds. See https://www.nitrc.org/projects/pediatricatlas.
     For new datasets, the recommended alternative is UNCInfant.
 UNCInfant0V22:
-  name: UNCInfant0V22
+  value: UNCInfant0V22
   display_name: UNCInfant0V22
   description: |
     Infant Brain Atlases from Neonates to 1- and 2-year-olds. See https://www.nitrc.org/projects/pediatricatlas.
     For new datasets, the recommended alternative is UNCInfant.
 UNCInfant1V22:
-  name: UNCInfant1V22
+  value: UNCInfant1V22
   display_name: UNCInfant1V22
   description: |
     Infant Brain Atlases from Neonates to 1- and 2-year-olds. See https://www.nitrc.org/projects/pediatricatlas.
     For new datasets, the recommended alternative is UNCInfant.
 UNCInfant2V22:
-  name: UNCInfant2V22
+  value: UNCInfant2V22
   display_name: UNCInfant2V22
   description: |
     Infant Brain Atlases from Neonates to 1- and 2-year-olds. See https://www.nitrc.org/projects/pediatricatlas.
     For new datasets, the recommended alternative is UNCInfant.
 UNCInfant0V23:
-  name: UNCInfant0V23
+  value: UNCInfant0V23
   display_name: UNCInfant0V23
   description: |
     Infant Brain Atlases from Neonates to 1- and 2-year-olds. See https://www.nitrc.org/projects/pediatricatlas.
     For new datasets, the recommended alternative is UNCInfant.
 UNCInfant1V23:
-  name: UNCInfant1V23
+  value: UNCInfant1V23
   display_name: UNCInfant1V23
   description: |
     Infant Brain Atlases from Neonates to 1- and 2-year-olds. See https://www.nitrc.org/projects/pediatricatlas.
     For new datasets, the recommended alternative is UNCInfant.
 UNCInfant2V23:
-  name: UNCInfant2V23
+  value: UNCInfant2V23
   display_name: UNCInfant2V23
   description: |
     Infant Brain Atlases from Neonates to 1- and 2-year-olds. See https://www.nitrc.org/projects/pediatricatlas.
     For new datasets, the recommended alternative is UNCInfant.
 Pixels:
-  name: Pixels
+  value: Pixels
   display_name: Pixels
   description: |
     If electrodes are localized in 2D space (only x and y are
@@ -542,7 +542,7 @@ Pixels:
     pairs, with (0,0) corresponding to the upper left pixel and (N,0)
     corresponding to the lower left pixel.
 ACPC:
-  name: ACPC
+  value: ACPC
   display_name: ACPC
   description: |
     The origin of the coordinate system is at the Anterior Commissure
@@ -554,7 +554,7 @@ ACPC:
     [ACPC site](https://www.fieldtriptoolbox.org/faq/acpc/) on the FieldTrip
     toolbox wiki.
 ScanRAS:
-  name: ScanRAS
+  value: ScanRAS
   display_name: ScanRAS
   description: |
     The origin of the coordinate system is the center of the
@@ -566,23 +566,23 @@ ScanRAS:
     coordinate system can be used. If the subject's T1w in the BIDS dataset
     is not aligned to ACPC, `ScanRAS` should be used.
 on__mtransfer:
-  name: 'on'
+  value: 'on'
   display_name: 'On'
   description: |
     The image acquired in the presence of the magnetization transfer pulse,
     also known as the off-resonance pulse.
 off__mtransfer:
-  name: 'off'
+  value: 'off'
   display_name: 'Off'
   description: |
     The image acquired in the absence of the magnetization transfer pulse.
 magnitude:
-  name: mag
+  value: mag
   display_name: Magnitude
   description: |
     A magnitude image, typically paired with an associated "phase" image.
 phase:
-  name: phase
+  value: phase
   display_name: Phase
   description: |
     A phase image, typically paird with an associated "magnitude" (part-mag) image.
@@ -590,271 +590,271 @@ phase:
     The sidecar JSON file MUST include the units of the `phase` image.
     The possible options are `rad` or `arbitrary`.
 real:
-  name: real
+  value: real
   display_name: Real
   description: |
     A real-valued image, typically paired with an associated "imaginary" (part-imag) image.
 imaginary:
-  name: imag
+  value: imag
   display_name: Imaginary
   description: |
     An imaginary-valued image, typically paird with an associated "real" image.
 ACCEL:
-  name: ACCEL
+  value: ACCEL
   display_name: ACCEL
   description: |
     Accelerometer channel, one channel for each spatial axis.
     Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).
 ANGACC:
-  name: ANGACC
+  value: ANGACC
   display_name: ANGACC
   description: |
     Angular acceleration channel, one channel for each spatial axis.
     Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).
 ANGVEL:
-  name: ANGVEL
+  value: ANGVEL
   display_name: ANGVEL
   description: |
     Angular velocity channel, one channel for each spatial axis.
     Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).
 GYRO:
-  name: GYRO
+  value: GYRO
   display_name: GYRO
   description: |
     Gyrometer channel, one channel for each spatial axis.
     Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).
 JNTANG:
-  name: JNTANG
+  value: JNTANG
   display_name: JNTANG
   description: |
     Joint angle channel between two fixed axis belonging to two bodyparts.
     Angle SHOULD be defined between proximal and distal bodypart in `deg`.
 LATENCY:
-  name: LATENCY
+  value: LATENCY
   display_name: LATENCY
   description: |
     Latency of samples in seconds from recording onset.
     MUST be in form of `ss[.000000]`,
     where `[.000000]` is an optional subsecond resolution between 1 and 6 decimal points.
 MAGN:
-  name: MAGN
+  value: MAGN
   display_name: MAGN
   description: |
     Magnetic field strength, one channel for each spatial axis.
     Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z).
 MISC:
-  name: MISC
+  value: MISC
   display_name: MISC
   description: |
     Miscellaneous channels.
 ORNT:
-  name: ORNT
+  value: ORNT
   display_name: ORNT
   description: |
     Orientation channel, one channel for each spatial axis or quaternion component.
     Column `component` for the axis or quaternion label MUST be added to the `*_channels.tsv` file
     (x, y, z, quat_x, quat_y, quat_z, or quat_w).
 POS:
-  name: POS
+  value: POS
   display_name: POS
   description: |
     Position in space, one channel for each spatial axis.
     Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z).
 VEL:
-  name: VEL
+  value: VEL
   display_name: VEL
   description: |
     Velocity, one channel for each spatial axis.
     Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z).
 AUDIO:
-  name: AUDIO
+  value: AUDIO
   display_name: AUDIO
   description: |
     Audio signal.
 EEG:
-  name: EEG
+  value: EEG
   display_name: EEG
   description: |
     Electroencephalogram channel.
 EOG:
-  name: EOG
+  value: EOG
   display_name: EOG
   description: |
     Generic electrooculogram (eye), different from HEOG and VEOG.
 ECG:
-  name: ECG
+  value: ECG
   display_name: ECG
   description: |
     Electrocardiogram (heart).
 EMG:
-  name: EMG
+  value: EMG
   display_name: EMG
   description: |
     Electromyogram (muscle).
 EYEGAZE:
-  name: EYEGAZE
+  value: EYEGAZE
   display_name: EYEGAZE
   description: |
     Eye tracker gaze.
 GSR:
-  name: GSR
+  value: GSR
   display_name: GSR
   description: |
     Galvanic skin response.
 HEOG:
-  name: HEOG
+  value: HEOG
   display_name: HEOG
   description: |
     Horizontal EOG (eye).
 PPG:
-  name: PPG
+  value: PPG
   display_name: PPG
   description: |
     Photoplethysmography.
 PUPIL:
-  name: PUPIL
+  value: PUPIL
   display_name: PUPIL
   description: |
     Eye tracker pupil diameter.
 REF:
-  name: REF
+  value: REF
   display_name: REF
   description: |
     Reference channel.
 RESP:
-  name: RESP
+  value: RESP
   display_name: RESP
   description: |
     Respiration.
 SYSCLOCK:
-  name: SYSCLOCK
+  value: SYSCLOCK
   display_name: SYSCLOCK
   description: |
     System time showing elapsed time since trial started.
 TEMP:
-  name: TEMP
+  value: TEMP
   display_name: TEMP
   description: |
     Temperature.
 TRIG:
-  name: TRIG
+  value: TRIG
   display_name: TRIG
   description: |
     Analog (TTL in Volt) or digital (binary TTL) trigger channel.
 VEOG:
-  name: VEOG
+  value: VEOG
   display_name: VEOG
   description: |
     Vertical EOG (eye).
 MEGMAG:
-  name: MEGMAG
+  value: MEGMAG
   display_name: MEGMAG
   description: |
     MEG magnetometer.
 MEGGRADAXIAL:
-  name: MEGGRADAXIAL
+  value: MEGGRADAXIAL
   display_name: MEGGRADAXIAL
   description: |
     MEG axial gradiometer.
 MEGGRADPLANAR:
-  name: MEGGRADPLANAR
+  value: MEGGRADPLANAR
   display_name: MEGGRADPLANAR
   description: |
     MEG planargradiometer.
 MEGREFMAG:
-  name: MEGREFMAG
+  value: MEGREFMAG
   display_name: MEGREFMAG
   description: |
     MEG reference magnetometer.
 MEGREFGRADAXIAL:
-  name: MEGREFGRADAXIAL
+  value: MEGREFGRADAXIAL
   display_name: MEGREFGRADAXIAL
   description: |
     MEG reference axial gradiometer.
 MEGREFGRADPLANAR:
-  name: MEGREFGRADPLANAR
+  value: MEGREFGRADPLANAR
   display_name: MEGREFGRADPLANAR
   description: |
     MEG reference planar gradiometer.
 MEGOTHER:
-  name: MEGOTHER
+  value: MEGOTHER
   display_name: MEGOTHER
   description: |
     Any other type of MEG sensor.
 ECOG:
-  name: ECOG
+  value: ECOG
   display_name: ECOG
   description: |
     Electrode channel.
 SEEG:
-  name: SEEG
+  value: SEEG
   display_name: SEEG
   description: |
     Electrode channel.
 DBS:
-  name: DBS
+  value: DBS
   display_name: DBS
   description: |
     Electrode channel.
 PD:
-  name: PD
+  value: PD
   display_name: PD
   description: |
     Photodiode.
 ADC:
-  name: ADC
+  value: ADC
   display_name: ADC
   description: |
     Analog to Digital input.
 DAC:
-  name: DAC
+  value: DAC
   display_name: DAC
   description: |
     Digital to Analog output.
 HLU:
-  name: HLU
+  value: HLU
   display_name: HLU
   description: |
     Measured position of head and head coils.
 FITERR:
-  name: FITERR
+  value: FITERR
   display_name: FITERR
   description: |
     Fit error signal from each head localization coil.
 OTHER:
-  name: OTHER
+  value: OTHER
   display_name: OTHER
   description: |
     Any other type of channel.
 NIRSCWAMPLITUDE:
-  name: NIRSCWAMPLITUDE
+  value: NIRSCWAMPLITUDE
   display_name: NIRSCWAMPLITUDE
   description: |
     Continuous wave amplitude measurements. Equivalent to dataType 001 in SNIRF.
 NIRSCWFLUORESCENSEAMPLITUDE:
-  name: NIRSCWFLUORESCENSEAMPLITUDE
+  value: NIRSCWFLUORESCENSEAMPLITUDE
   display_name: NIRSCWFLUORESCENSEAMPLITUDE
   description: |
     Continuous wave fluorescence amplitude measurements. Equivalent to dataType 051 in SNIRF.
 NIRSCWOPTICALDENSITY:
-  name: NIRSCWOPTICALDENSITY
+  value: NIRSCWOPTICALDENSITY
   display_name: NIRSCWOPTICALDENSITY
   description: |
     Continuous wave change in optical density measurements. Equivalent to dataTypeLabel dOD in SNIRF.
 NIRSCWHBO:
-  name: NIRSCWHBO
+  value: NIRSCWHBO
   display_name: NIRSCWHBO
   description: |
     Continuous wave oxygenated hemoglobin (oxyhemoglobin) concentration measurements.
     Equivalent to dataTypeLabel HbO in SNIRF.
 NIRSCWHBR:
-  name: NIRSCWHBR
+  value: NIRSCWHBR
   display_name: NIRSCWHBR
   description: |
     Continuous wave deoxygenated hemoglobin (deoxyhemoglobin) concentration measurements.
     Equivalent to dataTypeLabel HbR in SNIRF.
 NIRSCWMUA:
-  name: NIRSCWMUA
+  value: NIRSCWMUA
   display_name: NIRSCWMUA
   description: |
-    Continuous wave optical absorption  measurements. Equivalent to dataTypeLabel mua in SNIRF.
+    Continuous wave optical absorption measurements. Equivalent to dataTypeLabel mua in SNIRF.
