@@ -30,7 +30,6 @@ timeseries:
     - eeg
     - ieeg
     - nirs
-    - motion
   entities:
     subject: required
     session: optional
@@ -98,6 +97,14 @@ timeseries__meg:
   entities:
     $ref: rules.files.raw.task.timeseries.entities
     processing: optional
+
+timeseries__motion:
+  $ref: rules.files.raw.task.timeseries
+  datatypes:
+    - motion
+  entities:
+    $ref: rules.files.raw.task.timeseries.entities
+    tracksys: required
 
 timeseries__pet:
   $ref: rules.files.raw.task.timeseries
