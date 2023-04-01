@@ -50,11 +50,11 @@ can be stored in the [`/sourcedata` directory](../common-principles.md#source-vs
 The original data format MAY hold more metadata than currently specified in the `*_motion.json` file.
 
 When multiple tracking systems are used to record motion or motion capture is used alongside the recording of other BIDS modalities and recordings should be interpreted together,
-it is adviced to provide a possibility to synchronize recordings.
-The prefered way to do so is to use the acquisition time of the first data point of recordings and
+it is advised to provide a possibility to synchronize recordings.
+The preferred way to do so is to use the acquisition time of the first data point of recordings and
 to store this information in the `acq_time` column of the [`*_scans.tsv`](../modality-agnostic-files.md#scans-file) file.
-The Note that the [BIDS date time format](../common-principles.md#units) allows optional fractional seconds, which SHOULD be used to maximize the precision of the syncronization.
-Only if the precision of the synchronization is not high enough, the `*_events.tsv` file SHOULD be used to syncronize recordings.
+The Note that the [BIDS date time format](../common-principles.md#units) allows optional fractional seconds, which SHOULD be used to maximize the precision of the synchronization.
+Only if the precision of the synchronization is not high enough, the `*_events.tsv` file SHOULD be used to synchronize recordings.
 In this file, the start- and stop time of the recording of a system are specified in relation to a system to synchronize with.
 If more than two systems are to be synchronized, it is up to the user to indntify the "main" system.
 
@@ -62,7 +62,7 @@ In case a tracking system provides time information with every recorded sample,
 these time information MAY be stored in form of latencies to recording onset (first sample) in the `*_motion.tsv` file.
 If a system has uneven sampling rate behavior, the `LATENCY` channel can be used to share these information.
 
-To store events alongside motion data when there are multiple tracking systems simulatenously in use, it is RECOMMENDED to designate a tracking system to the events file.
+To store events alongside motion data when there are multiple tracking systems simultaneously in use, it is RECOMMENDED to designate a tracking system to the events file.
 Such an events file name SHOULD include the `tracksys` key and looks like `sub-<label>[_ses-<label>]_task-<label>[_acq-<label>]_tracksys-<label>[_run-<index>]_events.tsv`.
 Event latencies can then be related to motion samples of multiple tracking systems also by using `acq_time` column entries in the `*_scans.tsv`.
 The same principle applies when the events file is saved alongside a simultaneously recorded non-motion data (for example EEG).
@@ -77,7 +77,7 @@ The same principle applies when the events file is saved alongside a simultaneou
 
 {{ MACROS___make_sidecar_table("motion.motionHardware") }}
 
-#### Insitution information
+#### Institution information
 
 {{ MACROS___make_sidecar_table("motion.motionInstitutionInformation") }}
 

@@ -238,7 +238,7 @@ def _bidsignore_check(ignore_expression, file_name, file_root):
 
     Notes
     -----
-    * We cannot use `glob` since that would pre-empt working with theoretical or non-local
+    * We cannot use `glob` since that would preempt working with theoretical or non-local
         paths, therefore we use `fnmatch`.
     * `fnmatch` does not support `**/` matching as that is an optional convention from e.g.
         globstar and git, and not part of the standard Unix shell. As we formalize `.bidsignore`
