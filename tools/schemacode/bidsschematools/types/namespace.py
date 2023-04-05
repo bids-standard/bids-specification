@@ -19,6 +19,16 @@ def _expand_dots(entry: ty.Tuple[str, ty.Any]) -> ty.Tuple[str, ty.Any]:
 def expand(element):
     """Expand a dict, recursively, to replace dots in keys with recursive dictionaries
 
+    Parameters
+    ----------
+    element : dict
+        The dictionary to expand
+
+    Returns
+    -------
+    dict :
+        The expanded dictionary
+
     Examples
     --------
     >>> expand({"a": 1, "b.c": 2, "d": [{"e": 3, "f.g": 4}]})

@@ -1,0 +1,24 @@
+---
+motionChannels:
+  selectors:
+    - datatype == "motion"
+    - suffix == "channels"
+    - extension == ".tsv"
+  initial_columns:
+    - name__channels
+    - component
+    - type__motion_channels
+    - tracked_point__channels
+    - units__motion
+  columns:
+    name__channels: required
+    component: required
+    type__motion_channels: required
+    tracked_point__channels: required
+    units__motion: required
+    placement__motion: recommended
+    description: optional
+    sampling_frequency: optional
+    status: optional
+    status_description: optional
+  additional_columns: allowed_if_defined

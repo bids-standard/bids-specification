@@ -21,7 +21,7 @@ nirsChannels:
     sampling_frequency:
       level: optional
       level_addendum: required if `SamplingFrequency` is `n/a` in `_nirs.json`
-    orientation_component:
+    component:
       level: optional
       level_addendum: required if `type` is `ACCEL`, `GYRO` or `MAGN`
     wavelength_actual: optional

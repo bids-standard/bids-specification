@@ -14,7 +14,7 @@ BIDS governance.
 
 ### Steering Group
 
-Curent and past members of the steering group can be found
+Current and past members of the steering group can be found
 [here](https://bids.neuroimaging.io/governance.html#bids-steering-group).
 
 ### Maintainers Group

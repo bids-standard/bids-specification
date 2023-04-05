@@ -37,6 +37,7 @@ BloodMetabolite:
     - suffix == "blood"
     - extension == ".tsv"
     - '"MetaboliteAvail" in sidecar'
+    - sidecar.MetaboliteAvail == true
   columns:
     metabolite_parent_fraction: required
     metabolite_polar_fraction: recommended

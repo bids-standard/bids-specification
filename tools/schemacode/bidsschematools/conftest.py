@@ -24,6 +24,7 @@ BIDS_SELECTION = [
     "pet003",  # pet, anat
     "qmri_tb1tfl",  # fmap, _TB1TFL
     "qmri_vfa",  # derivatives
+    "ds000248",  # .bidsignore
 ]
 # Errors are described in the README of the respective datasets:
 # https://github.com/bids-standard/bids-error-examples
@@ -82,7 +83,7 @@ def schema_dir():
     """Path to the schema housed in the bids-specification repo."""
     from bidsschematools import utils
 
-    bids_schema = utils.get_schema_path()
+    bids_schema = utils.get_bundled_schema_path()
     return bids_schema
 
 
