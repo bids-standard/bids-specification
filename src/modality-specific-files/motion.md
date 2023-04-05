@@ -63,7 +63,8 @@ these time information MAY be stored in form of latencies to recording onset (fi
 If a system has uneven sampling rate behavior, the `LATENCY` channel can be used to share these information.
 
 To store events alongside motion data when there are multiple tracking systems simulatenously in use, it is RECOMMENDED to designate a tracking system to the events file.
-Such an events file name SHOULD include the `tracksys` key and looks like `sub-<label>[_ses-<label>]_task-<label>[_acq-<label>]_tracksys-<label>[_run-<index>]_events.tsv`.
+Such an events file name SHOULD include the `tracksys` key and looks like
+`sub-<label>[_ses-<label>]_task-<label>[_tracksys-<label>][_acq-<label>][_run-<index>]_events.tsv`
 Event latencies can then be related to motion samples of multiple tracking systems also by using `acq_time` column entries in the `*_scans.tsv`.
 The same principle applies when the events file is saved alongside a simultaneously recorded non-motion data (for example EEG).
 

@@ -57,7 +57,7 @@ events__motion:
     - motion
   entities:
     $ref: rules.files.raw.task.events.entities
-    tracksys: required
+    tracksys: optional
 
 events__pet:
   $ref: rules.files.raw.task.events
@@ -104,7 +104,7 @@ timeseries__motion:
     - motion
   entities:
     $ref: rules.files.raw.task.timeseries.entities
-    tracksys: required
+    tracksys: optional
 
 timeseries__pet:
   $ref: rules.files.raw.task.timeseries
