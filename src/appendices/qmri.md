@@ -707,7 +707,7 @@ The example above applies to the `TB1RFM` suffix as well.
 #### `RB1COR` specific notes
 
 This method generates a receive sensitivity map by combining two low resolution images
-collected by two different RF coils in receive mode (the body and the head coil)
+collected sequentially by two different RF coils in receive mode (the body and the head coil)
 with otherwise identical acquisition parameters.
 To correct for dynamic changes in the receive sensitivity over time due to, for example,
 subject motion, separate receive sensitivity maps may be acquired for each anatomical
