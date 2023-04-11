@@ -168,8 +168,8 @@ the axial components that corresponds to the three spatial axes MUST be specifie
 Restricted keyword list for column `type` in alphabetic order.
 Note that upper-case is REQUIRED:
 
-| Keyword |                                                                                                        Description                                                                                                       |
-|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Keyword** | **Description**                                                                                                                                                                                                              |
+|-------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | ACCEL   | Accelerometer channel, one channel for each spatial axis. Column component for the axis MUST be added to the *_channels.tsv file (x, y, or z).                                                                           |
 | ANGACC  | Angular acceleration channel, one channel for each spatial axis. Column component for the axis MUST be added to the *_channels.tsv file (x, y, or z).                                                                    |
 | ANGVEL  | Angular velocity channel, one channel for each spatial axis. Column component for the axis MUST be added to the *_channels.tsv file (x, y, or z).                                                                        |
