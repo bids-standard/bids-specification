@@ -430,7 +430,7 @@ data.
 }
 ```
 
-## Photos of the electrode positions (`*_photo.jpg`)
+## Photos of the electrode positions (`*_photo.<extension>`)
 
 <!--
 This block generates a filename templates.
@@ -451,18 +451,18 @@ or entirely omitted prior to sharing, depending on obtained consent.
 If there are photos of the electrodes, the [`acq-<label>`](../appendices/entities.md#acq) entity should be specified
 with:
 
--   `*_photo.jpg` in case of an operative photo
+-   `*_photo.<extension>` in case of an operative photo
 
--   `*_acq-xray#_photo.jpg` in case of an x-ray picture
+-   `*_acq-xray#_photo.<extension>` in case of an x-ray picture
 
--   `*_acq-drawing#_photo.jpg` in case of a drawing or sketch of electrode
+-   `*_acq-drawing#_photo.<extension>` in case of a drawing or sketch of electrode
     placements
 
--   `*_acq-render#_photo.jpg` in case of a rendering
+-   `*_acq-render#_photo.<extension>` in case of a rendering
 
 The [`ses-<label>`](../appendices/entities.md#ses) entity may be used to specify when the photo was taken.
 
-### Example `*_photo.jpg`
+### Example `*_photo.<extension>`
 
 Example of the operative photo of ECoG electrodes (here is an annotated example in
 which electrodes and vasculature are marked, taken from Hermes et al.,

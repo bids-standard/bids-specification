@@ -11,7 +11,7 @@ Template:
 <pipeline_name>/
     sub-<label>/
         <datatype>/
-            <source_entities>[_space-<space>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<ext>
+            <source_entities>[_space-<space>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
 ```
 
 Volumetric preprocessing does not modify the number of dimensions, and so
