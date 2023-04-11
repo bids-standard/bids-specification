@@ -6,10 +6,8 @@ TaskEvents:
   columns:
     onset: required
     duration: required
-    sample: optional
     trial_type: optional
     response_time: optional
-    value: optional
     HED: optional
     stim_file: optional
   additional_columns: allowed

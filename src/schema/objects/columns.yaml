@@ -396,16 +396,6 @@ response_time:
     - type: string
       enum:
         - n/a
-sample:
-  name: sample
-  display_name: Sample index
-  description: |
-    Onset of the event according to the sampling scheme of the recorded modality
-    (that is, referring to the raw data file that the `events.tsv` file accompanies).
-    When there are several sampling schemes present in the raw data file (as can be
-    the case for example for `.edf` files), this column is ambiguous and
-    SHOULD NOT be used.
-  type: integer
 sample_id:
   name: sample_id
   display_name: Sample ID
@@ -818,15 +808,6 @@ units__motion:
     and [Common Principles](SPEC_ROOT/common-principles.md#units) pages.
   type: string
   format: unit
-value:
-  name: value
-  display_name: Marker value
-  description: |
-    Marker value associated with the event (for example, the value of a TTL
-    trigger that was recorded at the onset of the event).
-  anyOf:
-    - type: number
-    - type: string
 volume_type:
   name: volume_type
   display_name: ASL volume type
