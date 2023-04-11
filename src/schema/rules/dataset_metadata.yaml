@@ -15,7 +15,7 @@ dataset_description:
           The Authors field of dataset_description.json should contain an array of fields -
           with one author per field. This was triggered because there are no authors, which
           will make DOI registration from dataset metadata impossible.
-    Acknowledgments: optional
+    Acknowledgements: optional
     HowToAcknowledge: optional
     Funding: optional
     EthicsApprovals: optional

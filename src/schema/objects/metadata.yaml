@@ -9,9 +9,9 @@ ACCELChannelCount:
     Number of acceleration channels.
   type: integer
   minimum: 0
-Acknowledgments:
-  name: Acknowledgments
-  display_name: Acknowledgments
+Acknowledgements:
+  name: Acknowledgements
+  display_name: Acknowledgements
   description: |
     Text acknowledging contributions of individuals or institutions beyond
     those listed in Authors or Funding.
