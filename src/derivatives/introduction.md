@@ -39,7 +39,7 @@ in [Derived dataset and pipeline description][derived-dataset-description].
     copy of that raw file.
 
 -   Each Derivatives filename MUST be of the form:
-    `<source_entities>[_keyword-<value>]_<suffix>.<ext>`
+    `<source_entities>[_keyword-<value>]_<suffix>.<extension>`
     (where `<value>` could either be an `<index>` or a `<label>` depending on
     the keyword; see [Definitions][definitions])
 
