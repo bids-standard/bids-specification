@@ -1,7 +1,8 @@
 # Entity table
 
-This section compiles the entities (key-value pairs within file names) described throughout this
-specification, and establishes a common order within a filename.
+This section compiles the entities (key-value pairs within filenames)
+described throughout this specification,
+and establishes a common order within a filename.
 For example, if a file has an acquisition and reconstruction label, the
 acquisition entity must precede the reconstruction entity.
 REQUIRED and OPTIONAL entities for a given file type are denoted;

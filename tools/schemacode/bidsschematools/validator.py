@@ -227,7 +227,7 @@ def _bidsignore_check(ignore_expression, file_name, file_root):
     ignore_expression : str
         A string following git-wildcard conventions (including `**/`).
     file_name : str
-        A string which represents a file name.
+        A string which represents a filename.
     file_root : str
         The directory containing the file specifiled in `file_name`.
 
@@ -242,7 +242,7 @@ def _bidsignore_check(ignore_expression, file_name, file_root):
         paths, therefore we use `fnmatch`.
     * `fnmatch` does not support `**/` matching as that is an optional convention from e.g.
         globstar and git, and not part of the standard Unix shell. As we formalize `.bidsignore`
-        we may choose drop it, since we already treat simple file names as to-be-ignored in
+        we may choose drop it, since we already treat simple filenames as to-be-ignored in
         all directories, and with BIDS having only up to 4 hierarchical levels, the utility of
         other usage is limited and expansion to `..*/*..` would only mean at maximum a duplication
         of entries.

@@ -1233,7 +1233,7 @@ The [`dir-<label>`](../appendices/entities.md#dir) entity is REQUIRED
 for these files.
 This entity MUST be used in addition to
 the REQUIRED `PhaseEncodingDirection` metadata field
-(see [File name structure](../common-principles.md#filenames)).
+(see [Filename structure](../common-principles.md#filenames)).
 
 Required fields:
 

@@ -3342,7 +3342,7 @@ TaskName:
   description: |
     Name of the task.
     No two tasks should have the same name.
-    The task label included in the file name is derived from this `"TaskName"` field
+    The task label included in the filename is derived from this `"TaskName"` field
     by removing all non-alphanumeric characters (that is, all except those matching `[0-9a-zA-Z]`).
     For example `"TaskName"` `"faces n-back"` or `"head nodding"` will correspond to task labels
     `facesnback` and `headnodding`, respectively.
@@ -3470,7 +3470,7 @@ TrackingSystemName:
   display_name: Tracking System Name
   description: |
     A human-readable name of the tracking system to complement `"tracksys"` label
-    of the corresponding *_motion.tsv file name.
+    of the corresponding *_motion.tsv filename.
   type: string
 TubingType:
   name: TubingType

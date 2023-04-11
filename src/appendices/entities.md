@@ -1,7 +1,7 @@
 # Entities
 
-This section compiles the entities (key-value pairs within file names) described throughout this
-specification, and describes each.
+This section compiles the entities (key-value pairs within filenames)
+described throughout this specification, and describes each.
 
 A general introduction to entities is given in the section on
 [filename structure](../common-principles.md#filenames).
