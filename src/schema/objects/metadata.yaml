@@ -3277,6 +3277,8 @@ StartTime:
   description: |
     Start time in seconds in relation to the start of acquisition of the first
     data sample in the corresponding (neural) dataset (negative values are allowed).
+    This data MAY be specified with sub-second precision using the syntax `s[.000000]`,
+    where `s` reflects whole seconds, and `.000000` reflects OPTIONAL fractional seconds.
   type: number
   unit: s
 StationName:
