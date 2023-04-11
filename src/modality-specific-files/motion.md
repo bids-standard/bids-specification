@@ -168,19 +168,19 @@ the axial components that corresponds to the three spatial axes MUST be specifie
 Restricted keyword list for column `type` in alphabetic order.
 Note that upper-case is REQUIRED:
 
-| **Keyword** | **Description**                                                                                                                                                                                                              |
-|-------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ACCEL   | Accelerometer channel, one channel for each spatial axis. Column component for the axis MUST be added to the *_channels.tsv file (x, y, or z).                                                                           |
-| ANGACC  | Angular acceleration channel, one channel for each spatial axis. Column component for the axis MUST be added to the *_channels.tsv file (x, y, or z).                                                                    |
-| ANGVEL  | Angular velocity channel, one channel for each spatial axis. Column component for the axis MUST be added to the *_channels.tsv file (x, y, or z).                                                                        |
-| GYRO    | Gyrometer channel, one channel for each spatial axis. Column component for the axis MUST be added to the *_channels.tsv file (x, y, or z).                                                                               |
-| JNTANG  | Joint angle channel between two fixed axis belonging to two bodyparts. Angle SHOULD be defined between proximal and distal bodypart in deg.                                                                              |
-| LATENCY | Latency of samples in seconds from recording onset. MUST be in form of `s[.000000]`, where `s` reflects whole seconds, and `.000000` reflects OPTIONAL fractional seconds.                                               |
-| MAGN    | Magnetic field strength, one channel for each spatial axis. Column component for the axis MUST be added to the *_channels.tsv file (x, y or z).                                                                          |
-| MISC    | Miscellaneous channels.                                                                                                                                                                                                  |
-| ORNT    | Orientation channel, one channel for each spatial axis or quaternion component. Column component for the axis or quaternion label MUST be added to the *_channels.tsv file (x, y, z, quat_x, quat_y, quat_z, or quat_w). |
-| POS     | Position in space, one channel for each spatial axis. Column component for the axis MUST be added to the *_channels.tsv file (x, y or z).                                                                                |
-| VEL     | Velocity, one channel for each spatial axis. Column component for the axis MUST be added to the *_channels.tsv file (x, y or z).                                                                                         |
+| **Keyword** | **Description**                                                                                                                                                                                                                        |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ACCEL       | Accelerometer channel, one channel for each spatial axis. Column component for the axis MUST be added to the *_channels.tsv file (x, y, or z).                                                                                         |
+| ANGACC      | Angular acceleration channel, one channel for each spatial axis. Column component for the axis MUST be added to the *_channels.tsv file (x, y, or z).                                                                                  |
+| ANGVEL      | Angular velocity channel, one channel for each spatial axis. Column component for the axis MUST be added to the *_channels.tsv file (x, y, or z).                                                                                      |
+| GYRO        | Gyrometer channel, one channel for each spatial axis. Column component for the axis MUST be added to the *_channels.tsv file (x, y, or z).                                                                                             |
+| JNTANG      | Joint angle channel between two fixed axis belonging to two bodyparts. Angle SHOULD be defined between proximal and distal bodypart in deg.                                                                                            |
+| LATENCY     | Latency of samples in seconds from recording onset (see `acq_time` column of the respecive `*_scans.tsv` file). MUST be in form of `s[.000000]`, where `s` reflects whole seconds, and `.000000` reflects OPTIONAL fractional seconds. |
+| MAGN        | Magnetic field strength, one channel for each spatial axis. Column component for the axis MUST be added to the *_channels.tsv file (x, y or z).                                                                                        |
+| MISC        | Miscellaneous channels.                                                                                                                                                                                                                |
+| ORNT        | Orientation channel, one channel for each spatial axis or quaternion component. Column component for the axis or quaternion label MUST be added to the *_channels.tsv file (x, y, z, quat_x, quat_y, quat_z, or quat_w).               |
+| POS         | Position in space, one channel for each spatial axis. Column component for the axis MUST be added to the *_channels.tsv file (x, y or z).                                                                                              |
+| VEL         | Velocity, one channel for each spatial axis. Column component for the axis MUST be added to the *_channels.tsv file (x, y or z).                                                                                                       |
 
 ### Example `*_channels.tsv`
 
