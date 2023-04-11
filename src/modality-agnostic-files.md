@@ -29,7 +29,7 @@ and a guide for using macros can be found at
       "DatasetType": "RECOMMENDED",
       "License": "RECOMMENDED",
       "Authors": "RECOMMENDED",
-      "Acknowledgements": "OPTIONAL",
+      "Acknowledgments": "OPTIONAL",
       "HowToAcknowledge": "OPTIONAL",
       "Funding": "OPTIONAL",
       "EthicsApprovals": "OPTIONAL",
@@ -63,7 +63,7 @@ Example:
     "Paul Broca",
     "Carl Wernicke"
   ],
-  "Acknowledgements": "Special thanks to Korbinian Brodmann for help in formatting this dataset in BIDS. We thank Alan Lloyd Hodgkin and Andrew Huxley for helpful comments and discussions about the experiment and manuscript; Hermann Ludwig Helmholtz for administrative support; and Claudius Galenus for providing data for the medial-to-lateral index analysis.",
+  "Acknowledgments": "Special thanks to Korbinian Brodmann for help in formatting this dataset in BIDS. We thank Alan Lloyd Hodgkin and Andrew Huxley for helpful comments and discussions about the experiment and manuscript; Hermann Ludwig Helmholtz for administrative support; and Claudius Galenus for providing data for the medial-to-lateral index analysis.",
   "HowToAcknowledge": "Please cite this paper: https://www.ncbi.nlm.nih.gov/pubmed/001012092119281",
   "Funding": [
     "National Institute of Neuroscience Grant F378236MFH1",

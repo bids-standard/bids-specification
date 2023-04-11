@@ -9,9 +9,9 @@ ACCELChannelCount:
     Number of acceleration channels.
   type: integer
   minimum: 0
-Acknowledgements:
-  name: Acknowledgements
-  display_name: Acknowledgements
+Acknowledgments:
+  name: Acknowledgments
+  display_name: Acknowledgments
   description: |
     Text acknowledging contributions of individuals or institutions beyond
     those listed in Authors or Funding.
@@ -59,7 +59,7 @@ AnalyticalApproach:
   name: AnalyticalApproach
   display_name: Analytical Approach
   description: |
-    Methodology or methodologies used to analyse the `"GeneticLevel"`.
+    Methodology or methodologies used to analyze the `"GeneticLevel"`.
     Values MUST be taken from the
     [database of Genotypes and Phenotypes
     (dbGaP)](https://www.ncbi.nlm.nih.gov/gap/advanced)
@@ -2791,7 +2791,7 @@ SamplePrimaryAntibody:
   display_name: Sample Primary Antibody
   description: |
     Description(s) of the primary antibody used for immunostaining.
-    Either an [RRID](https://scicrunch.org/resources) or the name, supplier and catalogue
+    Either an [RRID](https://scicrunch.org/resources) or the name, supplier and catalog
     number of a commercial antibody.
     For non-commercial antibodies either an [RRID](https://scicrunch.org/resources) or the
     host-animal and immunogen used (for examples: `"RRID:AB_2122563"` or
@@ -2807,7 +2807,7 @@ SampleSecondaryAntibody:
   display_name: Sample Secondary Antibody
   description: |
     Description(s) of the secondary antibody used for immunostaining.
-    Either an [RRID](https://scicrunch.org/resources) or the name, supplier and catalogue
+    Either an [RRID](https://scicrunch.org/resources) or the name, supplier and catalog
     number of a commercial antibody.
     For non-commercial antibodies either an [RRID](https://scicrunch.org/resources) or the
     host-animal and immunogen used (for examples: `"RRID:AB_228322"` or
@@ -3323,9 +3323,9 @@ StimulusPresentation:
       $ref: objects.metadata.Code
 SubjectArtefactDescription:
   name: SubjectArtefactDescription
-  display_name: Subject Artefact Description
+  display_name: Subject Artifact Description
   description: |
-    Freeform description of the observed subject artefact and its possible cause
+    Freeform description of the observed subject artifact and its possible cause
     (for example, `"Vagus Nerve Stimulator"`, `"non-removable implant"`).
     If this field is set to `"n/a"`, it will be interpreted as absence of major
     source of artifacts except cardiac and blinks.
@@ -3434,7 +3434,7 @@ TracerRadionuclide:
   name: TracerRadionuclide
   display_name: Tracer Radionuclide
   description: |
-    Radioisotope labelling tracer (for example, `"C11"`).
+    Radioisotope labeling tracer (for example, `"C11"`).
   type: string
 TracerSNOMED:
   name: TracerSNOMED

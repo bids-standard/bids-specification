@@ -109,7 +109,7 @@ was used:
 Closely spaced or short-separation source-detector pairs are often included in NIRS measurements to
 obtain a measure of systemic, rather than neural, activity. These source-detector
 pairs are referred to as *short channels*. There is variation in how manufacturers
-implement these short channels, some use specialised sources or detectors,
+implement these short channels, some use specialized sources or detectors,
 and the placement mechanisms vary.
 It is beyond the scope of the BIDS specification to define what constitutes a short channel,
 and detailed characteristics of channels may be stored within the SNIRF file
@@ -310,6 +310,6 @@ Fields relating to the position of anatomical landmarks measured during an NIRS 
   "NIRSCoordinateSystem": "Other",
   "NIRSCoordinateUnits": "mm",
   "NIRSCoordinateSystemDescription": "RAS orientation: Origin halfway between LPA and RPA, positive x-axis towards RPA, positive y-axis orthogonal to x-axis through Nasion, z-axis orthogonal to xy-plane, pointing in superior direction.",
-  "FiducialsDescription": "Optodes and fiducials were digitized with Polhemus, fiducials were recorded as the centre of vitamin E capsules sticked on the left/right pre-auricular and on the nasion, these are also visible on the T1w MRI"
+  "FiducialsDescription": "Optodes and fiducials were digitized with Polhemus, fiducials were recorded as the center of vitamin E capsules sticked on the left/right pre-auricular and on the nasion, these are also visible on the T1w MRI"
 }
 ```
