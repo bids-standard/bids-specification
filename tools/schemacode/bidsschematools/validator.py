@@ -270,16 +270,24 @@ def log_errors(validation_result):
     """
     total_file_count = len(validation_result["path_listing"])
     validated_files_count = total_file_count - len(validation_result["path_tracking"])
-    if validated_files_count == 0:
-        lgr.error("No valid BIDS files were found.")
-    for entry in validation_result["schema_tracking"]:
-        if entry["mandatory"]:
-            lgr.error(
-                "The `%s` regex pattern file required by BIDS was not found.",
-                entry["regex"],
-            )
+    errorless = True
     for i in validation_result["path_tracking"]:
         lgr.warning("The `%s` file was not matched by any regex schema entry.", i)
+        errorless = False
+    if validated_files_count == 0:
+        lgr.error("No valid BIDS files were found.")
+        errorless = False
+    else:
+        # No use reporting this separately if no BIDS files were found
+        for entry in validation_result["schema_tracking"]:
+            if entry["mandatory"]:
+                lgr.error(
+                    "The `%s` regex pattern file required by BIDS was not found.",
+                    entry["regex"],
+                )
+                errorless = False
+    if errorless:
+        lgr.info("SUCCESS: All files are BIDS valid and no BIDS-required files are missing.")
 
 
 def select_schema_path(
