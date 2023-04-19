@@ -287,7 +287,7 @@ def log_errors(validation_result):
                 )
                 errorless = False
     if errorless:
-        lgr.info("All files are BIDS valid and not BIDS-required files are missing.")
+        lgr.info("SUCCESS: All files are BIDS valid and no BIDS-required files are missing.")
 
 
 def select_schema_path(
