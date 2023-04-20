@@ -50,7 +50,7 @@ DWIMissingBvec:
     level: error
   selectors:
     - suffix == "dwi"
-    - extension != ".json"
+    - match(extension, '^\.nii(\.gz)?$')
   checks:
     - '"bvec" in associations'
 
@@ -63,6 +63,6 @@ DWIMissingBval:
     level: error
   selectors:
     - suffix == "dwi"
-    - extension != ".json"
+    - match(extension, '^\.nii(\.gz)?$')
   checks:
     - '"bval" in associations'
