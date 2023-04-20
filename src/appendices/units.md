@@ -48,9 +48,9 @@ Examples for CMIXF-12 (including the five unicode symbols mentioned above):
 
 | **Unit name**  | **Unit symbol** | **Quantity name**                          |
 | ---------------| --------------- | ------------------------------------------ |
-| metre          | m               | length                                     |
+| meter          | m               | length                                     |
 | kilogram       | kg              | mass                                       |
-| litre (liter)  | L               | volume                                     |
+| liter          | L               | volume                                     |
 | second         | s               | time                                       |
 | ampere         | A               | electric current                           |
 | kelvin         | K               | thermodynamic temperature                  |

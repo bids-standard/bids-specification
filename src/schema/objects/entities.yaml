@@ -334,7 +334,7 @@ split:
 
     Instead of a simple renaming, files should be read in and saved under their
     new names with dedicated tools like [MNE-Python](https://mne.tools/),
-    which will ensure that not only the file names, but also the internal file pointers, will be updated.
+    which will ensure that not only the filenames, but also the internal file pointers, will be updated.
 
     It is RECOMMENDED that `.fif` files with multiple parts use the `split-<index>` entity to indicate each part.
     If there are multiple parts of a recording and the optional `scans.tsv` is provided,

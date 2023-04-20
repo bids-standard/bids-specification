@@ -226,7 +226,7 @@ context:
           description: 'Modification time, unix timestamp'
           type: number
         filename:
-          description: 'File name'
+          description: 'Filename'
           type: string
         comment:
           description: 'Comment'

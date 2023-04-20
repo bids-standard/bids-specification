@@ -189,7 +189,7 @@ This convention is mainly intended for but not limited to MRI modalities.
 
 ### Case collision intolerance
 
-File name components are case sensitive,
+Filename components are case sensitive,
 but collisions MUST be avoided when casing is ignored.
 For example, a dataset cannot contain both `sub-s1` and `sub-S1`,
 as the labels would collide on a case-insensitive filesystem.
