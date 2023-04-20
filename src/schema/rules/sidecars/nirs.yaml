@@ -93,26 +93,45 @@ FiducialsCoordinateSystemDescriptionReq:
   fields:
     FiducialsCoordinateSystemDescription: required
 
+NirsHardware:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "nirs"
+  fields:
+    Manufacturer: recommended
+    ManufacturersModelName: recommended
+    SoftwareVersions: recommended
+    DeviceSerialNumber: recommended
+
 NirsBase:
   selectors:
     - datatype == "nirs"
     - suffix == "nirs"
   fields:
-    TaskName: required
-    InstitutionName: recommended
-    InstitutionAddress: recommended
-    Manufacturer: recommended
-    ManufacturersModelName: recommended
-    SoftwareVersions: recommended
-    TaskDescription: recommended
-    Instructions: recommended
-    CogAtlasID: recommended
-    CogPOID: recommended
-    DeviceSerialNumber: recommended
     RecordingDuration: recommended
     HeadCircumference: recommended
     HardwareFilters: recommended
     SubjectArtefactDescription: recommended
+
+NirsTaskInformation:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "nirs"
+  fields:
+    TaskName: required
+    TaskDescription: recommended
+    Instructions: recommended
+    CogAtlasID: recommended
+    CogPOID: recommended
+
+NirsInstitutionInformation:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "nirs"
+  fields:
+    InstitutionName: recommended
+    InstitutionAddress: recommended
+    InstitutionalDepartmentName: recommended
 
 NirsRequired:
   selectors:

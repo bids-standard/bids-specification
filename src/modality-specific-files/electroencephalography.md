@@ -85,33 +85,11 @@ be specified.
 
 ### Sidecar JSON (`*_eeg.json`)
 
-Generic fields MUST be present:
-
-<!-- This block generates a metadata table.
-These tables are defined in
-  src/schema/rules/sidecars
-The definitions of the fields specified in these tables may be found in
-  src/schema/objects/metadata.yaml
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_sidecar_table("eeg.EEGGeneric") }}
-
-SHOULD be present: For consistency between studies and institutions, we
-encourage users to extract the values of these fields from the actual raw data.
+For consistency between studies and institutions,
+we encourage users to extract the values of these fields from the actual raw data.
 Whenever possible, please avoid using ad hoc wording.
 
-<!-- This block generates a metadata table.
-These tables are defined in
-  src/schema/rules/sidecars
-The definitions of the fields specified in these tables may be found in
-  src/schema/objects/metadata.yaml
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_sidecar_table("eeg.EEGRecommended") }}
-
-Specific EEG fields MUST be present:
+Those fields MUST be present:
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -123,7 +101,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("eeg.EEGRequired") }}
 
-SHOULD be present:
+Those fields SHOULD be present:
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -133,7 +111,43 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("eeg.EEGMoreRecommended") }}
+{{ MACROS___make_sidecar_table("eeg.EEGRecommended") }}
+
+#### Hardware information
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("eeg.EEGHardware") }}
+
+#### Task information
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("eeg.EEGTaskInformation") }}
+
+#### Institution information
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("eeg.EEGInstitutionInformation") }}
 
 #### Example `*_eeg.json`
 
