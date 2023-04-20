@@ -66,6 +66,12 @@ remember to list all files separately in `scans.tsv` and that the entries for th
 `acq_time` column in `scans.tsv` MUST all be identical, as described in
 [Scans file](../modality-agnostic-files.md#scans-file).
 
+The Neuromag/Elekta/Megin system may also produce datasets that require a set of
+`crosstalk` and `calibration` files to be used properly (see also filename templates above).
+Please refer to
+[Cross-talk and fine-calibration files](../appendices/meg-file-formats.md#cross-talk-and-fine-calibration-files)
+for more information on this detail.
+
 Another manufacturer-specific detail pertains to the KIT/Yokogawa/Ricoh system,
 which saves the MEG sensor coil positions in a separate file with two possible filename extensions  (`.sqd`, `.mrk`).
 For these files, the `markers` suffix MUST be used.
@@ -406,10 +412,10 @@ For more information on typical coordinate systems for MEG-MRI coregistration:
 or:
 [http://neuroimage.usc.edu/brainstorm/CoordinateSystems](http://neuroimage.usc.edu/brainstorm/CoordinateSystems)
 
-## Landmark photos (`*_photo.jpg`)
+## Landmark photos (`*_photo.<extension>`)
 
 Photos of the anatomical landmarks and/or head localization coils
-(`*_photo.jpg`)
+(`*_photo.<extension>`)
 
 <!--
 This block generates a filename templates.
@@ -431,14 +437,14 @@ The [`acq-<label>`](../appendices/entities.md#acq) entity can be used to indicat
 the same face (or other body part in different angles to show, for example, the
 location of the nasion (NAS) as opposed to the right periauricular point (RPA)).
 
-### Example `*_photo.jpg`
+### Example `*_photo.<extension>`
 
 Example of the NAS fiducial placed between the eyebrows, rather than at the
 actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
 
 ![placement of NAS fiducial](images/sub-0001_ses-001_acq-NAS_photo.jpg "placement of NAS fiducial")
 
-## Head shape and electrode description (`*_headshape.<ext>`)
+## Head shape and electrode description (`*_headshape.<extension>`)
 
 <!--
 This block generates a filename templates.

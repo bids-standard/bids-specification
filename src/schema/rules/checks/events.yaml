@@ -15,3 +15,15 @@ EventsMissing:
     - suffix != "events"
   checks:
     - '"events" in associations'
+
+StimulusFileMissing:
+  issue:
+    code: STIMULUS_FILE_MISSING
+    message: |
+      A stimulus file was declared but not found in the dataset.
+    level: error
+  selectors:
+    - suffix == "events"
+    - columns.stim_file != null
+  checks:
+    - exists(columns.stim_file, "stimuli") == length(columns.stim_file)

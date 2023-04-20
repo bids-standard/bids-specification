@@ -1,4 +1,5 @@
 ---
+# null fall-through logic
 - expression: sidecar.MissingValue
   result: null
 - expression: null.anything
@@ -49,6 +50,12 @@
   result: null
 - expression: match('string', null)
   result: null
+- expression: substr(null, 1, 4)
+  result: null
+- expression: substr('string', null, 4)
+  result: null
+- expression: substr('string', 1, null)
+  result: null
 - expression: min(null)
   result: null
 - expression: max(null)
@@ -77,15 +84,61 @@
   result: false
 - expression: exists([], null)
   result: false
+
+# Truth/falsity of final expressions
 - expression: evaluate(true)
   result: true
 - expression: evaluate(false)
   result: false
 - expression: evaluate(null)
   result: false
+
+# General expressions
 - expression: 1 + 2
   result: 3
 - expression: '"cat" + "dog"'
   result: 'catdog'
 - expression: '1 + "cat"'
   result: null
+- expression: match('string', '.*')
+  result: true
+- expression: match('', '.')
+  result: false
+- expression: substr('string', 1, 4)
+  result: 'tri'
+- expression: substr('string', 0, 20)
+  result: 'string'
+- expression: type(1)
+  result: 'number'
+- expression: type([])
+  result: 'array'
+- expression: type({})
+  result: 'object'
+- expression: type(true)
+  result: 'boolean'
+- expression: intersects([1], [1, 2])
+  result: true
+- expression: intersects([1], [])
+  result: false
+- expression: length([1, 2, 3])
+  result: 3
+- expression: length([])
+  result: 0
+- expression: count([1, 2, 3], 1)
+  result: 1
+- expression: index(["i", "j", "k"], "i")
+  result: 0
+- expression: index(["i", "j", "k"], "j")
+  result: 1
+- expression: index(["i", "j", "k"], "x")
+  result: null
+- expression: sorted([3, 2, 1])
+  result: [1, 2, 3]
+- expression: min([-1, "n/a", 1])
+  result: -1
+- expression: max([-1, "n/a", 1])
+  result: 1
+- expression: '[3, 2, 1][0]'
+  result: 3
+- expression: '"string"[0]'
+  result: 's'

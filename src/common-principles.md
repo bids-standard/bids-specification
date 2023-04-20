@@ -1,13 +1,26 @@
 # Common principles
 
+## Language
+
+The BIDS specification is written in American English.
+
 ## Definitions
 
 The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
 interpreted as described in [[RFC2119](https://www.ietf.org/rfc/rfc2119.txt)].
 
-Throughout this specification we use a list of terms and abbreviations. To avoid
-misunderstanding we clarify them here.
+Based on these keywords, we define three requirement levels for specifying data or metadata:
+REQUIRED, RECOMMENDED, and OPTIONAL.
+The guiding principles for when particular data is placed under a given requirement level
+can be loosely described as below:
+
+* REQUIRED: Data cannot be be interpreted without this information (or the ambiguity is unacceptably high)
+* RECOMMENDED: Interpretation/utility would be dramatically improved with this information
+* OPTIONAL: Users and/or tools might find it useful to have this information
+
+Throughout this specification we use a list of terms and abbreviations.
+To avoid misunderstanding we clarify them here.
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -185,7 +198,15 @@ then the suffix `EEG` will not be added to future versions of the standard.
 
 ## Filesystem structure & Filenames richness versus distinctness
 
-BIDS provides a rich filesystem structure and rich filenames by using entites, but it is important to keep in mind that files also have to be readable. They have to be readable by machines, and this implies that filenames cannot be longer than 255 characters. They also have to be readable by humans, and this implies minimizing length. A useful way to think about filenaming is distinctness: what is the minimal information needed for distinguish files? A simple illustration is given by using the [`ses-`](https://bids-specification.readthedocs.io/en/stable/glossary.html#session-entities) and [`run-`](https://bids-specification.readthedocs.io/en/stable/appendices/entities.html#run) entities. A T1 weighted MRI image could, in  principle, be called `sub-X_ses-1-run-1_T1w.nii`. When there is only 1 session, and only 1 run, this is not needed as `ses-` and `run-` do not increase distinctivness. Here, it is recommended to use the shorter version `sub-X_T1w.nii`.  In some cases, this principle is enforced in the BIDS validator.
+BIDS provides a rich filesystem structure and rich filenames by using entities, but it is important to keep in mind that files also have to be readable.
+They have to be readable by machines, and this implies that filenames cannot be longer than 255 characters.
+They also have to be readable by humans, and this implies minimizing length.
+A useful way to think about filenaming is distinctness: what is the minimal information needed to distinguish files?
+A simple illustration is given by using the [`ses-`](./glossary.md#session-entities) and [`run-`](./appendices/entities.md#run) entities.
+A T1 weighted MRI image could, in principle, be called `sub-X_ses-1_run-1_T1w.nii`.
+When there is only 1 session, and only 1 run, this is not needed as `ses-` and `run-` do not increase distinctiveness.
+Here, it is recommended to use the shorter version `sub-X_T1w.nii`.
+In some cases, this principle is enforced in the BIDS validator.
 
 ## Source vs. raw vs. derived data
 

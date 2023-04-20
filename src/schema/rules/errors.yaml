@@ -1,6 +1,22 @@
 ---
 # This file describes rules for broad "standard" errors in the specification.
 
+# BIDS Validator Original Issue Code #0
+InternalError:
+  code: INTERNAL_ERROR
+  message: |
+    Internal error. SOME VALIDATION STEPS MAY NOT HAVE OCCURRED.
+  level: error
+
+# BIDS Validator Original Issue Code #1
+NotIncluded:
+  code: NOT_INCLUDED
+  message: |
+    Files with such naming scheme are not part of BIDS specification. This error is
+    most commonly caused by typos in file names that make them not BIDS compatible.
+    Please consult the specification and make sure your files are named correctly.
+  level: error
+
 # BIDS Validator Original Issue Code #26
 NiftiHeaderUnreadable:
   code: NIFTI_HEADER_UNREADABLE
