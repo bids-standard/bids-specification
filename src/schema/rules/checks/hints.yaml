@@ -31,6 +31,7 @@ SuspiciouslyLongBOLDDesign:
   selectors:
     - suffix == "bold"
     - associations.events != null
+    - type(nifti_header) != "null"
   checks:
     - max(associations.events.onset) < nifti_header.pixdim[4] * nifti_header.dim[4]
 
@@ -45,5 +46,6 @@ SuspiciouslyShortBOLDDesign:
   selectors:
     - suffix == "bold"
     - associations.events != null
+    - type(nifti_header) != "null"
   checks:
     - max(associations.events.onset) > nifti_header.pixdim[4] * nifti_header.dim[4] / 2

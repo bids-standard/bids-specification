@@ -21,6 +21,7 @@ ASLLabelingDurationNiftiLength:
     - suffix == "asl"
     - '"LabelingDuration" in sidecar'
     - type(sidecar.LabelingDuration) == 'array'
+    - type(nifti_header) != "null"
   checks:
     - length(sidecar.LabelingDuration) == nifti_header.dim[4]
 
@@ -34,7 +35,8 @@ ASLContextConsistent:
     level: error
   selectors:
     - suffix == "asl"
-    - '"aslcontext" in associations'
+    - type(associations.aslcontext) != "null"
+    - type(nifti_header) != "null"
   checks:
     - nifti_header.dim[4] == associations.aslcontext.n_rows
 
@@ -56,6 +58,7 @@ ASLFlipAngleNiftiLength:
     - suffix == "asl"
     - '"FlipAngle" in sidecar'
     - type(sidecar.FlipAngle) == 'array'
+    - type(nifti_header) != "null"
   checks:
     - length(sidecar.FlipAngle) == nifti_header.dim[4]
 
@@ -75,8 +78,7 @@ ASLFlipAngleASLContextLength:
     level: error
   selectors:
     - suffix == "asl"
-    - '"aslcontext" in associations'
-    - '"FlipAngle" in sidecar'
+    - type(associations.aslcontext) != "null"
     - type(sidecar.FlipAngle) == 'array'
   checks:
     - length(sidecar.FlipAngle) == aslcontext.n_rows
@@ -100,8 +102,9 @@ ASLPostLabelingDelayNiftiLength:
     level: error
   selectors:
     - suffix == "asl"
-    - '"aslcontext" in associations'
+    - type(associations.aslcontext) != "null"
     - type(sidecar.PostLabelingDelay) == 'array'
+    - type(nifti_header) != "null"
   checks:
     - length(sidecar.PostLabelingDelay) == nifti_header.dim[4]
 
@@ -124,7 +127,7 @@ ASLPostLabelingDelayASLContextLength:
     level: error
   selectors:
     - suffix == "asl"
-    - '"aslcontext" in associations'
+    - type(associations.aslcontext) != "null"
     - type(sidecar.PostLabelingDelay) == 'array'
   checks:
     - length(sidecar.PostLabelingDelay) == aslcontext.n_rows
@@ -149,8 +152,7 @@ ASLLabelingDurationASLContextLength:
     level: error
   selectors:
     - suffix == "asl"
-    - '"aslcontext" in associations'
-    - '"LabelingDuration" in sidecar'
+    - type(associations.aslcontext) != "null"
     - type(sidecar.LabelingDuration) == 'array'
   checks:
     - length(sidecar.LabelingDuration) == aslcontext.n_rows
@@ -170,8 +172,7 @@ ASLRepetitionTimePreparationASLContextLength:
     level: error
   selectors:
     - suffix == "asl"
-    - '"aslcontext" in associations'
-    - '"RepetitionTimePreparation" in sidecar'
+    - type(associations.aslcontext) != "null"
     - type(sidecar.RepetitionTimePreparation) == 'array'
   checks:
     - length(sidecar.RepetitionTimePreparation) == aslcontext.n_rows
@@ -206,7 +207,7 @@ ASLTotalAcquiredVolumesASLContextLength:
     level: warning
   selectors:
     - suffix == "asl"
-    - '"aslcontext" in associations'
+    - type(associations.aslcontext) != "null"
     - '"TotalAcquiredVolumes" in sidecar'
   checks:
     - aslcontext.n_rows == sidecar.TotalAcquiredVolumes
@@ -259,7 +260,7 @@ ASLEchoTimeASLContextLength:
     level: warning
   selectors:
     - suffix == "asl"
-    - '"aslcontext" in associations'
+    - type(associations.aslcontext) != "null"
     - type(sidecar.EchoTime) == 'array'
   checks:
     - length(sidecar.EchoTime) == aslcontext.n_rows
@@ -277,8 +278,8 @@ ASLM0TypeAbsentScan:
     level: error
   selectors:
     - suffix == "asl"
-    - '"aslcontext" in associations'
-    - '"m0scan" in associations'
+    - type(associations.aslcontext) != "null"
+    - type(associations.m0scan) != "null"
     - '"M0Type" in sidecar'
   checks:
     - sidecar.M0Type != "absent"
@@ -293,7 +294,7 @@ ASLM0TypeAbsentASLContext:
     level: error
   selectors:
     - suffix == "asl"
-    - '"aslcontext" in associations'
+    - type(associations.aslcontext) != "null"
     - intersects(aslcontext.volume_type, ["m0scan"])
     - '"M0Type" in sidecar'
   checks:
@@ -309,8 +310,7 @@ ASLM0TypeIncorrect:
     level: error
   selectors:
     - suffix == "asl"
-    - '"aslcontext" in associations'
-    - '"M0Type" in sidecar'
+    - type(associations.aslcontext) != "null"
     - sidecar.M0Type == "separate"
   checks:
-    - '"m0scan" in associations'
+    - type(associations.m0scan) != "null"
