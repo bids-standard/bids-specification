@@ -79,7 +79,7 @@ jobs:
             python3 -m pip install ~/project/tools/schemacode/[render]
       - run:
           name: install font that works with unicode emojis
-          command: apt-get update && apt-get install -y fonts-symbola --security=false
+          command: apt-get update --security=false && apt-get install -y fonts-symbola --security=false
       - run:
           name: generate pdf version docs
           command: |
