@@ -19,11 +19,12 @@ and can be used for practical guidance when curating a new dataset.
 
 ## Dataset Description
 
-Genetic descriptors are encoded as an additional, OPTIONAL entry in the
+If information on associated genetic data is supplied as part of a BIDS dataset,
+these "genetic descriptors" are encoded as an additional, REQUIRED entry in the
 [`dataset_description.json`](../modality-agnostic-files.md#dataset_descriptionjson)
 file.
 
-Datasets linked to a genetic database entry include the following REQUIRED or OPTIONAL
+Datasets linked to a genetic database entry include the following REQUIRED and OPTIONAL
 keys in the `Genetics` sub-[object][] of `dataset_description.json`:
 
 <!-- This block generates a table describing subfields within a metadata field.

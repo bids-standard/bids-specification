@@ -31,3 +31,18 @@ PhaseSuffixUnits:
     - suffix == "phase"
   fields:
     Units: required
+
+TaskMetadata:
+  selectors:
+    - datatype == "anat"
+    - entity.task != null
+  fields:
+    TaskName:
+      level: recommended
+      level_addendum: if `task` entity is present
+    TaskDescription:
+      level: recommended
+      level_addendum: if `task` entity is present
+    Instructions:
+      level: recommended
+      level_addendum: if `task` entity is present

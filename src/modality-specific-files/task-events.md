@@ -57,7 +57,7 @@ For example in an EEG experiment with devices operating at 1000 Hz sampling freq
 dataset curators SHOULD specify **at least** 3 figures after the decimal point.
 
 An arbitrary number of additional columns can be added. Those allow describing
-other properties of events that could be later referenced in modelling and
+other properties of events that could be later referenced in modeling and
 hypothesis extensions of BIDS.
 Note that the `trial_type` and any additional columns in a TSV file
 SHOULD be documented in an accompanying JSON sidecar file.
@@ -268,7 +268,11 @@ in the accompanying JSON sidecar as follows (based on the example of the previou
         "SoftwareName": "Psychtoolbox",
         "SoftwareRRID": "SCR_002881",
         "SoftwareVersion": "3.0.14",
-        "Code": "doi:10.5281/zenodo.3361717"
+        "Code": "doi:10.5281/zenodo.3361717",
+        "ScreenDistance": 1.8,
+        "ScreenRefreshRate": 60,
+        "ScreenResolution": [1920, 1200],
+        "ScreenSize": [0.472, 0.295]
     }
 }
 ```

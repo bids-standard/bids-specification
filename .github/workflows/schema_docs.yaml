@@ -1,0 +1,81 @@
+name: "schemacode_docs"
+
+on:
+  push:
+    branches:
+      - "master"
+    tags:
+      - "schema-*"
+  workflow_dispatch:
+    inputs:
+      debug_enabled:
+        type: boolean
+        description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'
+        required: false
+        default: false
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  push_schema_for_docs:
+    runs-on: ${{ matrix.os }}
+    name: Push Schema to Schema Docs
+    strategy:
+      matrix:
+        os: ["ubuntu-latest"]
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        path: source
+        persist-credentials: false
+
+    - name: Collect schema-docs repo
+      uses: actions/checkout@v3
+      with:
+        ref: main
+        repository: ${{ github.repository_owner }}/schema-docs
+        path: dest
+        token: ${{ secrets.SCHEMA_DOCS_GITHUB_API_TOKEN }}
+        fetch-depth: 0
+        persist-credentials: true
+
+    - name: Update schema-docs from bids-specification
+      run: |
+        rsync --recursive --copy-links source/tools/schemacode/bidsschematools dest/
+        rsync --recursive --copy-links source/tools/schemacode/docs dest/
+        cat source/requirements.txt | grep -v tools/schemacode >> dest/requirements.txt
+        sort dest/requirements.txt | uniq > dest/requirements.txt.tmp
+        mv dest/requirements.txt.tmp dest/requirements.txt
+
+    - name: Check for Updates
+      id: updatesmade
+      working-directory: dest
+      run: |
+        git add --all
+        git status --porcelain
+        if [[ $(git status --porcelain | wc -l) -gt 0 ]]; then
+          echo "changesmade=true" >> $GITHUB_OUTPUT
+        else
+          echo "No changes found schema code, this workflow should only run when changes are made to schema-*."
+          echo "You must be up to no good."
+          echo "changesmade=false" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Push Updates
+      if: ${{ steps.updatesmade.outputs.changesmade  == 'true' }}
+      working-directory: dest
+      env:
+        ACTOR: ${{ github.actor }}
+        OWNER: ${{ github.repository_owner }}
+      run: |
+        git config --global user.name "$ACTOR"
+        git config --global user.email "$ACTOR@noreply.com"
+        git add --all
+        git commit -m "Auto update from bids-specification $GITHUB_SHA"
+        git push

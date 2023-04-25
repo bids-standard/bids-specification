@@ -22,6 +22,7 @@ nonparametric:
   entities:
     subject: required
     session: optional
+    task: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
@@ -43,7 +44,6 @@ parametric:
     - T1rho
     - MWFmap
     - MTVmap
-    - PDT2map
     - Chimap
     - S0map
     - M0map
@@ -56,6 +56,7 @@ parametric:
   entities:
     subject: required
     session: optional
+    task: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
@@ -73,6 +74,7 @@ defacemask:
   entities:
     subject: required
     session: optional
+    task: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
@@ -92,6 +94,7 @@ multiecho:
   entities:
     subject: required
     session: optional
+    task: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
@@ -111,6 +114,7 @@ multiflip:
   entities:
     subject: required
     session: optional
+    task: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
@@ -131,6 +135,7 @@ multiinversion:
   entities:
     subject: required
     session: optional
+    task: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
@@ -150,6 +155,7 @@ mp2rage:
   entities:
     subject: required
     session: optional
+    task: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
@@ -172,6 +178,7 @@ vfamt:
   entities:
     subject: required
     session: optional
+    task: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
@@ -193,6 +200,7 @@ mtr:
   entities:
     subject: required
     session: optional
+    task: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional

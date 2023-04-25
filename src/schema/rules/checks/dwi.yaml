@@ -12,6 +12,7 @@ DWIVolumeCount:
     - suffix == "dwi"
     - '"bval" in associations'
     - '"bvec" in associations'
+    - type(nifti_header) != "null"
   checks:
     - associations.bval.n_cols == nifti_header.dim[4]
     - associations.bvec.n_cols == nifti_header.dim[4]
@@ -24,7 +25,7 @@ DWIBvalRows:
       '.bval' files should contain exactly one row of volumes.
     level: error
   selectors:
-    - extension == "bval"
+    - extension == ".bval"
   checks:
     - data.n_rows == 1
 
@@ -36,7 +37,7 @@ DWIBvecRows:
       '.bvec' files should contain exactly three rows of volumes.
     level: error
   selectors:
-    - extension == "bvec"
+    - extension == ".bvec"
   checks:
     - data.n_rows == 3
 
@@ -49,6 +50,7 @@ DWIMissingBvec:
     level: error
   selectors:
     - suffix == "dwi"
+    - match(extension, '^\.nii(\.gz)?$')
   checks:
     - '"bvec" in associations'
 
@@ -61,5 +63,6 @@ DWIMissingBval:
     level: error
   selectors:
     - suffix == "dwi"
+    - match(extension, '^\.nii(\.gz)?$')
   checks:
     - '"bval" in associations'

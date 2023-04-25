@@ -52,6 +52,23 @@ color:
     Hexadecimal. Label color for visualization.
   type: string
   unit: hexadecimal
+component:
+  name: component
+  display_name: Component
+  description: |
+    Description of the spatial axis or label of quaternion component associated with the channel.
+    For example, `x`,`y`,`z` for position channels,
+    or `quat_x`, `quat_y`, `quat_z`, `quat_w` for quaternion orientation channels.
+  type: string
+  enum:
+    - x
+    - y
+    - z
+    - quat_x
+    - quat_y
+    - quat_z
+    - quat_w
+    - n/a
 detector__channels:
   name: detector
   display_name: Detector Name
@@ -308,16 +325,6 @@ onset:
     acquired data point.
   type: number
   unit: s
-orientation_component:
-  name: orientation_component
-  display_name: Orientation Component
-  description: |
-    Description of the orientation of the channel.
-  type: string
-  enum:
-    - x
-    - y
-    - z
 pathology:
   name: pathology
   display_name: Pathology
@@ -335,6 +342,14 @@ participant_id:
     matching a participant entity found in the dataset.
   type: string
   pattern: ^sub-[0-9a-zA-Z]+$
+placement__motion:
+  name: placement
+  display_name: Placement
+  description: |
+    Placement of the tracked point on the body (for example,
+    participant, avatar centroid, torso, left arm).
+    It can refer to an external vocabulary for describing body parts.
+  type: string
 plasma_radioactivity:
   name: plasma_radioactivity
   display_name: Plasma radioactivity
@@ -381,16 +396,6 @@ response_time:
     - type: string
       enum:
         - n/a
-sample:
-  name: sample
-  display_name: Sample index
-  description: |
-    Onset of the event according to the sampling scheme of the recorded modality
-    (that is, referring to the raw data file that the `events.tsv` file accompanies).
-    When there are several sampling schemes present in the raw data file (as can be
-    the case for example for `.edf` files), this column is ambiguous and
-    SHOULD NOT be used.
-  type: integer
 sample_id:
   name: sample_id
   display_name: Sample ID
@@ -574,6 +579,13 @@ time:
     For example, 5.
   type: number
   unit: s
+tracked_point__channels:
+  name: tracked_point
+  display_name: Tracked point channel
+  description: |
+    Label of the point that is being tracked, for example, label of a tracker
+    or a marker (for example,`"LeftFoot"`, `"RightWrist"`).
+  type: string
 trial_type:
   name: trial_type
   display_name: Trial type
@@ -726,6 +738,25 @@ type__nirs_channels:
     - MAGN
     - MISC
     - OTHER
+type__motion_channels:
+  name: type
+  display_name: Channel type
+  description: |
+    Type of channel; MUST use the channel types listed below.
+    Note that the type MUST be in upper-case.
+  type: string
+  enum:
+    - ACCEL
+    - ANGACC
+    - ANGVEL
+    - GYRO
+    - JNTANG
+    - LATENCY
+    - MAGN
+    - MISC
+    - ORNT
+    - POS
+    - VEL
 # type column for electrodes.tsv files
 type__electrodes:
   name: type
@@ -763,15 +794,20 @@ units__nirs:
     and [Common Principles](SPEC_ROOT/common-principles.md#units) pages.
   type: string
   format: unit
-value:
-  name: value
-  display_name: Marker value
+units__motion:
+  name: units
+  display_name: Units
   description: |
-    Marker value associated with the event (for example, the value of a TTL
-    trigger that was recorded at the onset of the event).
-  anyOf:
-    - type: number
-    - type: string
+    Physical or virtual unit of the value represented in this channel,
+    for example, '"rad"' or '"deg"' for angular quantities or '"m"' for position data.
+    If motion data is recorded in a virtual space and deviate from standard SI units,
+    the unit used MUST be specified in the sidecar `*_motion.json`
+    file (for example `"vm"` for virtual meters). `"rad"` is used for Euler angles
+    and `"n/a"` for quaternions.
+    For guidelines about units see the [Appendix](SPEC_ROOT/appendices/units.md)
+    and [Common Principles](SPEC_ROOT/common-principles.md#units) pages.
+  type: string
+  format: unit
 volume_type:
   name: volume_type
   display_name: ASL volume type

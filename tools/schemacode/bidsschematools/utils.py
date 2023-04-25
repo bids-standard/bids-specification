@@ -3,7 +3,7 @@ import logging
 import os.path as op
 
 
-def get_schema_path():
+def get_bundled_schema_path():
     """Get the path to the schema directory.
 
     Returns

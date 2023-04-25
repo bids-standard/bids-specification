@@ -2,14 +2,22 @@ on: [status]
 
 jobs:
   circleci_artifacts_redirector_job:
-    if: "${{ startsWith(github.event.context, 'ci/circleci: build_docs_pdf') }}"
     runs-on: ubuntu-latest
+    if: "${{ startsWith(github.event.context, 'ci/circleci: build_docs_pdf') }}"
+    permissions:
+      statuses: write
     name: Run CircleCI artifacts redirector
     steps:
       - name: GitHub Action step
+        id: step1
         uses: larsoner/circleci-artifacts-redirector-action@master
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
+          api-token: ${{ secrets.CIRCLECI_TOKEN }}
           artifact-path: 0/bids-spec.pdf
           circleci-jobs: build_docs_pdf
           job-title: Check the rendered PDF version here!
+      - name: Check the URL
+        if: github.event.status != 'pending'
+        run: |
+          curl --fail ${{ steps.step1.outputs.url }} | grep $GITHUB_SHA

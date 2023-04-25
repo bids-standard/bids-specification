@@ -19,7 +19,7 @@ the [BIDS examples repository](https://github.com/bids-standard/bids-examples).
 <!--
 This block generates a filename templates.
 The inputs for this macro can be found in the directory
-  src/schema/rules/datatypes
+  src/schema/rules/files/raw
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
@@ -66,6 +66,12 @@ remember to list all files separately in `scans.tsv` and that the entries for th
 `acq_time` column in `scans.tsv` MUST all be identical, as described in
 [Scans file](../modality-agnostic-files.md#scans-file).
 
+The Neuromag/Elekta/Megin system may also produce datasets that require a set of
+`crosstalk` and `calibration` files to be used properly (see also filename templates above).
+Please refer to
+[Cross-talk and fine-calibration files](../appendices/meg-file-formats.md#cross-talk-and-fine-calibration-files)
+for more information on this detail.
+
 Another manufacturer-specific detail pertains to the KIT/Yokogawa/Ricoh system,
 which saves the MEG sensor coil positions in a separate file with two possible filename extensions  (`.sqd`, `.mrk`).
 For these files, the `markers` suffix MUST be used.
@@ -98,33 +104,11 @@ the [Coordinate Systems Appendix](../appendices/coordinate-systems.md)).
 
 ### Sidecar JSON (`*_meg.json`)
 
-Generic fields MUST be present:
+For consistency between studies and institutions,
+we encourage users to extract the values of metadata fields from the actual raw data.
+Whenever possible, please avoid using ad hoc wording.
 
-<!-- This block generates a metadata table.
-These tables are defined in
-  src/schema/rules/sidecars
-The definitions of the fields specified in these tables may be found in
-  src/schema/objects/metadata.yaml
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_sidecar_table("meg.MEGGeneric") }}
-
-SHOULD be present: For consistency between studies and institutions, we
-encourage users to extract the values of these fields from the actual raw data.
-Whenever possible, please avoid using ad-hoc wording.
-
-<!-- This block generates a metadata table.
-These tables are defined in
-  src/schema/rules/sidecars
-The definitions of the fields specified in these tables may be found in
-  src/schema/objects/metadata.yaml
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_sidecar_table("meg.MEGRecommended") }}
-
-Specific MEG fields MUST be present:
+Those fields MUST be present:
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -136,7 +120,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("meg.MEGRequired") }}
 
-SHOULD be present:
+Those fields SHOULD be present:
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -146,10 +130,47 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("meg.MEGMoreRecommended") }}
+{{ MACROS___make_sidecar_table("meg.MEGRecommended") }}
 
-Specific EEG fields
-(if recorded with MEG, see [Recording EEG simultaneously with MEG](#recording-eeg-simultaneously-with-meg)
+#### Hardware information
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("meg.MEGHardware") }}
+
+#### Task information
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("meg.MEGTaskInformation") }}
+
+#### Institution information
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("meg.MEGInstitutionInformation") }}
+
+#### Specific EEG fields
+
+If recorded with MEG, see [Recording EEG simultaneously with MEG](#recording-eeg-simultaneously-with-meg)
 SHOULD be present:
 
 <!-- This block generates a metadata table.
@@ -204,7 +225,7 @@ Date time information MUST be expressed as indicated in [Units](../common-princi
 <!--
 This block generates a filename templates.
 The inputs for this macro can be found in the directory
-  src/schema/rules/datatypes
+  src/schema/rules/files/raw
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
@@ -286,7 +307,7 @@ UADC001 AUDIO V envelope of audio signal presented to participant
 <!--
 This block generates a filename templates.
 The inputs for this macro can be found in the directory
-  src/schema/rules/datatypes
+  src/schema/rules/files/raw
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
@@ -391,15 +412,15 @@ For more information on typical coordinate systems for MEG-MRI coregistration:
 or:
 [http://neuroimage.usc.edu/brainstorm/CoordinateSystems](http://neuroimage.usc.edu/brainstorm/CoordinateSystems)
 
-## Landmark photos (`*_photo.jpg`)
+## Landmark photos (`*_photo.<extension>`)
 
 Photos of the anatomical landmarks and/or head localization coils
-(`*_photo.jpg`)
+(`*_photo.<extension>`)
 
 <!--
 This block generates a filename templates.
 The inputs for this macro can be found in the directory
-  src/schema/rules/datatypes
+  src/schema/rules/files/raw
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
@@ -416,19 +437,19 @@ The [`acq-<label>`](../appendices/entities.md#acq) entity can be used to indicat
 the same face (or other body part in different angles to show, for example, the
 location of the nasion (NAS) as opposed to the right periauricular point (RPA)).
 
-### Example `*_photo.jpg`
+### Example `*_photo.<extension>`
 
 Example of the NAS fiducial placed between the eyebrows, rather than at the
 actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
 
 ![placement of NAS fiducial](images/sub-0001_ses-001_acq-NAS_photo.jpg "placement of NAS fiducial")
 
-## Head shape and electrode description (`*_headshape.<ext>`)
+## Head shape and electrode description (`*_headshape.<extension>`)
 
 <!--
 This block generates a filename templates.
 The inputs for this macro can be found in the directory
-  src/schema/rules/datatypes
+  src/schema/rules/files/raw
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->

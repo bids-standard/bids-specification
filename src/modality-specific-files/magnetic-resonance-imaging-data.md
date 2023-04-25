@@ -10,7 +10,12 @@ MRI acquisition parameters are divided into several categories based on
 [checklist](https://winnower-production.s3.amazonaws.com/papers/977/assets/993e199d-6bc3-4418-be3a-f620af1188b7-Parameter_Reporting_V1p3.pdf))
 by Ben Inglis.
 
-### Scanner Hardware
+When adding additional metadata please use the CamelCase version of
+[DICOM ontology terms](https://scicrunch.org/scicrunch/interlex/dashboard)
+whenever possible. See also
+[recommendations on JSON files](../common-principles.md#keyvalue-files-dictionaries).
+
+### Hardware information
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -20,7 +25,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("mri.MRIScannerHardware") }}
+{{ MACROS___make_sidecar_table("mri.MRIHardware") }}
 
 Example for `ReceiveCoilActiveElements`:
 
@@ -36,6 +41,18 @@ Since individual scans can sometimes not have the intended coil elements selecte
 it is preferable for this field to be populated directly from the DICOM
 for each individual scan, so that it can be used as a mechanism for checking
 that a given scan was collected with the intended coil elements selected.
+
+### Institution information
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("mri.MRIInstitutionInformation") }}
 
 ### Sequence Specifics
 
@@ -146,40 +163,49 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("mri.MRIEchoPlanarImagingAndB0Mapping") }}
 
-### Institution information
-
-<!-- This block generates a metadata table.
-These tables are defined in
-  src/schema/rules/sidecars
-The definitions of the fields specified in these tables may be found in
-  src/schema/objects/metadata.yaml
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_sidecar_table("mri.MRIInstitutionInformation") }}
-
-When adding additional metadata please use the CamelCase version of
-[DICOM ontology terms](https://scicrunch.org/scicrunch/interlex/dashboard)
-whenever possible. See also
-[recommendations on JSON files](../common-principles.md#keyvalue-files-dictionaries).
-
 ## Anatomy imaging data
+
+Anatomy MRI sequences measure static, structural features of the brain.
+
+This datatype is divided into two groups:
+non-parametric and parametric.
+
+Non-parametric structural images have an arbitrary scale.
+For example, T1w data are T1-weighted,
+but the values do not correspond to actual T1 value estimates.
+
+Parametric structural imaging, on the other hand, use a non-arbitrary scale.
+For example, a T1map file contains T1 value estimates, in seconds.
+
+### Non-parametric structural MR images
 
 <!--
 This block generates a filename templates.
 The inputs for this macro can be found in the directory
-  src/schema/rules/datatypes
+  src/schema/rules/files/raw
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filename_template("raw", datatypes=["anat"]) }}
+{{ MACROS___make_filename_template("raw", datatypes=["anat"], suffixes=[
+         "T1w",
+         "T2w",
+         "PDw",
+         "T2starw",
+         "FLAIR",
+         "inplaneT1",
+         "inplaneT2",
+         "PDT2",
+         "UNIT1",
+         "angio",
+      ])
+}}
 
-Currently supported non-parametric structural MR images include:
+Currently supported non-parametric structural MR images include the following:
 
 <!--
 This block generates a suffix table.
 The definitions of these fields can be found in
-  src/schema/rules/datatypes
+  src/schema/rules/files/raw
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
@@ -198,29 +224,6 @@ and a guide for using macros can be found at
       ]
    )
 }}
-
-If the structural images included in the dataset were defaced (to protect
-identity of participants) one MAY provide the binary mask that was used to
-remove facial features in the form of `_defacemask` files.
-In such cases, the OPTIONAL [`mod-<label>`](../appendices/entities.md#mod)
-entity corresponds to modality suffix,
-such as `T1w` or `inplaneT1`, referenced by the defacemask image.
-For example, `sub-01_mod-T1w_defacemask.nii.gz`.
-
-Some meta information about the acquisition MAY be provided in an additional
-JSON file. See [Common metadata fields](#common-metadata-fields) for a
-list of terms and their definitions. There are also some OPTIONAL JSON
-fields specific to anatomical scans:
-
-<!-- This block generates a metadata table.
-These tables are defined in
-  src/schema/rules/sidecars
-The definitions of the fields specified in these tables may be found in
-  src/schema/objects/metadata.yaml
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_sidecar_table("anat.MRIAnatomyCommonMetadataFields") }}
 
 The [`part-<label>`](../appendices/entities.md#part) entity is
 used to indicate which component of the complex representation of the MRI
@@ -246,7 +249,8 @@ A guide for using macros can be found at
          },
       }
    }
-) }}
+)
+}}
 
 Phase images MAY be in radians or in arbitrary units.
 The sidecar JSON file MUST include the units of the `phase` image.
@@ -262,17 +266,45 @@ For example, for `sub-01_part-phase_T1w.json`:
 
 When there is only a magnitude image of a given type, the `part` entity MAY be omitted.
 
-Similarly, the OPTIONAL [`rec-<label>`](../appendices/entities.md#rec)
-entity can be used to distinguish
-different reconstruction algorithms (for example ones using motion correction).
+### Parametric structural MR images
 
 Structural MR images whose intensity is represented in a non-arbitrary scale
-constitute parametric maps. Currently supported parametric maps include:
+constitute parametric maps.
+
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the directory
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filename_template("raw", datatypes=["anat"], suffixes=[
+         "T1map",
+         "R1map",
+         "T2map",
+         "R2map",
+         "T2starmap",
+         "R2starmap",
+         "PDmap",
+         "MTRmap",
+         "MTsat",
+         "T1rho",
+         "MWFmap",
+         "MTVmap",
+         "Chimap",
+         "TB1map",
+         "RB1map",
+         "S0map",
+         "M0map",
+      ])
+}}
+
+Currently supported parametric maps include:
 
 <!--
 This block generates a suffix table.
 The definitions of these fields can be found in
-  src/schema/rules/datatypes
+  src/schema/rules/files/raw
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
@@ -290,7 +322,6 @@ and a guide for using macros can be found at
          "T1rho",
          "MWFmap",
          "MTVmap",
-         "PDT2map",
          "Chimap",
          "TB1map",
          "RB1map",
@@ -310,6 +341,57 @@ recommended metadata fields, and the application specific entity or
 metadata requirement levels of [file collections](../appendices/file-collections.md) that can generate
 them, visit the [qMRI appendix](../appendices/qmri.md).
 
+### Defacing masks
+
+If the structural images included in the dataset were defaced (to protect
+identity of participants) one MAY provide the binary mask that was used to
+remove facial features in the form of `_defacemask` files.
+In such cases, the OPTIONAL [`mod-<label>`](../appendices/entities.md#mod)
+entity corresponds to modality suffix,
+such as `T1w` or `inplaneT1`, referenced by the defacemask image.
+For example, `sub-01_mod-T1w_defacemask.nii.gz`.
+
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the directory
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filename_template("raw", datatypes=["anat"], suffixes=[
+         "defacemask",
+      ])
+}}
+
+### Task metadata for anatomical scans
+
+The OPTIONAL [`task-<label>`](../appendices/entities.md#task) entity can be used
+in order to allow tasks during structural MR acquisitions,
+for example pre-described motion paradigms such as nodding, to be described.
+
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("anat.TaskMetadata") }}
+
+Some meta information about the acquisition MAY be provided in an additional
+JSON file. See [Common metadata fields](#common-metadata-fields) for a
+list of terms and their definitions. There are also some OPTIONAL JSON
+fields specific to anatomical scans:
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("anat.MRIAnatomyCommonMetadataFields") }}
+
 ### Deprecated suffixes
 
 Some suffixes that were available in versions of the specification prior to
@@ -324,7 +406,7 @@ datasets (created after version 1.5.0.):
 <!--
 This block generates a suffix table.
 The definitions of these fields can be found in
-  src/schema/rules/datatypes
+  src/schema/rules/files/raw
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
@@ -344,7 +426,7 @@ Currently supported image contrasts include:
 <!--
 This block generates a suffix table.
 The definitions of these fields can be found in
-  src/schema/rules/datatypes
+  src/schema/rules/files/raw
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
@@ -360,7 +442,7 @@ and a guide for using macros can be found at
 <!--
 This block generates a filename templates.
 The inputs for this macro can be found in the directory
-  src/schema/rules/datatypes
+  src/schema/rules/files/raw
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
@@ -553,7 +635,7 @@ Currently supported image types include:
 <!--
 This block generates a suffix table.
 The definitions of these fields can be found in
-  src/schema/rules/datatypes
+  src/schema/rules/files/raw
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
@@ -568,7 +650,7 @@ and a guide for using macros can be found at
 <!--
 This block generates a filename templates.
 The inputs for this macro can be found in the directory
-  src/schema/rules/datatypes
+  src/schema/rules/files/raw
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
@@ -778,7 +860,7 @@ and can be used for practical guidance when curating a new dataset.
 <!--
 This block generates a filename templates.
 The inputs for this macro can be found in the directory
-  src/schema/rules/datatypes
+  src/schema/rules/files/raw
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
@@ -935,7 +1017,7 @@ using the following image types:
 <!--
 This block generates a suffix table.
 The definitions of these fields can be found in
-  src/schema/rules/datatypes
+  src/schema/rules/files/raw
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
@@ -1010,7 +1092,7 @@ containing that type of fieldmap can be found here:
 <!--
 This block generates a filename templates.
 The inputs for this macro can be found in the directory
-  src/schema/rules/datatypes
+  src/schema/rules/files/raw
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
@@ -1056,7 +1138,7 @@ second echos are available.
 <!--
 This block generates a filename templates.
 The inputs for this macro can be found in the directory
-  src/schema/rules/datatypes
+  src/schema/rules/files/raw
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
@@ -1092,7 +1174,7 @@ In some cases (for example GE), the scanner software will directly reconstruct a
 <!--
 This block generates a filename templates.
 The inputs for this macro can be found in the directory
-  src/schema/rules/datatypes
+  src/schema/rules/files/raw
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
@@ -1141,7 +1223,7 @@ AFNI `3dqwarp`.
 <!--
 This block generates a filename templates.
 The inputs for this macro can be found in the directory
-  src/schema/rules/datatypes
+  src/schema/rules/files/raw
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
@@ -1151,7 +1233,7 @@ The [`dir-<label>`](../appendices/entities.md#dir) entity is REQUIRED
 for these files.
 This entity MUST be used in addition to
 the REQUIRED `PhaseEncodingDirection` metadata field
-(see [File name structure](../common-principles.md#file-name-structure)).
+(see [Filename structure](../common-principles.md#filenames)).
 
 Required fields:
 
