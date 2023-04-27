@@ -175,7 +175,7 @@ ASLRepetitionTimePreparationASLContextLength:
     - type(associations.aslcontext) != "null"
     - type(sidecar.RepetitionTimePreparation) == 'array'
   checks:
-    - length(sidecar.RepetitionTimePreparation) == aslcontext.n_rows
+    - length(sidecar.RepetitionTimePreparation) == associations.aslcontext.n_rows
 
 # 180
 ASLBackgroundSuppressionNumberPulses:
