@@ -320,7 +320,7 @@ The namespaces are:
 | --------------------------- | ----------------------------------------------------------------------------------- | ---------------- |
 | `objects.common_principles` | Terms that are used throughout BIDS                                                 | General terms    |
 | `objects.modalities`        | Broad categories of data represented in BIDS, roughly matching recording instrument | General terms    |
-| `objects.entities`          | Name-value pairs appearing in file names                                            | Name/value terms |
+| `objects.entities`          | Name-value pairs appearing in filenames                                             | Name/value terms |
 | `objects.metadata`          | Name-value pairs appearing in JSON files                                            | Name/value terms |
 | `objects.columns`           | Column headings and values appearing in TSV files                                   | Name/value terms |
 | `objects.datatypes`         | Subdirectories that organize files by type (such as `anat`, `eeg`)                  | Value terms      |
@@ -567,7 +567,7 @@ duplication or conflict.
 
 ### Filename construction rules
 
-A significant portion of BIDS is devoted to the naming of files, and almost all file names consist
+A significant portion of BIDS is devoted to the naming of files, and almost all filenames consist
 of entities, a suffix, an extension, and a data type. Exceptions will be noted below.
 
 `rules.files` contains the following subdivisions.

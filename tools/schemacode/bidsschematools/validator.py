@@ -227,7 +227,7 @@ def _bidsignore_check(ignore_expression, file_name, file_root):
     ignore_expression : str
         A string following git-wildcard conventions (including `**/`).
     file_name : str
-        A string which represents a file name.
+        A string which represents a filename.
     file_root : str
         The directory containing the file specifiled in `file_name`.
 
@@ -238,11 +238,11 @@ def _bidsignore_check(ignore_expression, file_name, file_root):
 
     Notes
     -----
-    * We cannot use `glob` since that would pre-empt working with theoretical or non-local
+    * We cannot use `glob` since that would preempt working with theoretical or non-local
         paths, therefore we use `fnmatch`.
     * `fnmatch` does not support `**/` matching as that is an optional convention from e.g.
         globstar and git, and not part of the standard Unix shell. As we formalize `.bidsignore`
-        we may choose drop it, since we already treat simple file names as to-be-ignored in
+        we may choose drop it, since we already treat simple filenames as to-be-ignored in
         all directories, and with BIDS having only up to 4 hierarchical levels, the utility of
         other usage is limited and expansion to `..*/*..` would only mean at maximum a duplication
         of entries.
@@ -270,16 +270,24 @@ def log_errors(validation_result):
     """
     total_file_count = len(validation_result["path_listing"])
     validated_files_count = total_file_count - len(validation_result["path_tracking"])
-    if validated_files_count == 0:
-        lgr.error("No valid BIDS files were found.")
-    for entry in validation_result["schema_tracking"]:
-        if entry["mandatory"]:
-            lgr.error(
-                "The `%s` regex pattern file required by BIDS was not found.",
-                entry["regex"],
-            )
+    errorless = True
     for i in validation_result["path_tracking"]:
         lgr.warning("The `%s` file was not matched by any regex schema entry.", i)
+        errorless = False
+    if validated_files_count == 0:
+        lgr.error("No valid BIDS files were found.")
+        errorless = False
+    else:
+        # No use reporting this separately if no BIDS files were found
+        for entry in validation_result["schema_tracking"]:
+            if entry["mandatory"]:
+                lgr.error(
+                    "The `%s` regex pattern file required by BIDS was not found.",
+                    entry["regex"],
+                )
+                errorless = False
+    if errorless:
+        lgr.info("SUCCESS: All files are BIDS valid and no BIDS-required files are missing.")
 
 
 def select_schema_path(

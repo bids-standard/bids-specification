@@ -12,6 +12,7 @@ DWIVolumeCount:
     - suffix == "dwi"
     - '"bval" in associations'
     - '"bvec" in associations'
+    - type(nifti_header) != "null"
   checks:
     - associations.bval.n_cols == nifti_header.dim[4]
     - associations.bvec.n_cols == nifti_header.dim[4]
@@ -49,7 +50,7 @@ DWIMissingBvec:
     level: error
   selectors:
     - suffix == "dwi"
-    - extension != ".json"
+    - match(extension, '^\.nii(\.gz)?$')
   checks:
     - '"bvec" in associations'
 
@@ -62,6 +63,6 @@ DWIMissingBval:
     level: error
   selectors:
     - suffix == "dwi"
-    - extension != ".json"
+    - match(extension, '^\.nii(\.gz)?$')
   checks:
     - '"bval" in associations'

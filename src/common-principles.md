@@ -189,7 +189,7 @@ This convention is mainly intended for but not limited to MRI modalities.
 
 ### Case collision intolerance
 
-File name components are case sensitive,
+Filename components are case sensitive,
 but collisions MUST be avoided when casing is ignored.
 For example, a dataset cannot contain both `sub-s1` and `sub-S1`,
 as the labels would collide on a case-insensitive filesystem.
@@ -198,7 +198,7 @@ then the suffix `EEG` will not be added to future versions of the standard.
 
 ## Filesystem structure & Filenames richness versus distinctness
 
-BIDS provides a rich filesystem structure and rich filenames by using entites, but it is important to keep in mind that files also have to be readable.
+BIDS provides a rich filesystem structure and rich filenames by using entities, but it is important to keep in mind that files also have to be readable.
 They have to be readable by machines, and this implies that filenames cannot be longer than 255 characters.
 They also have to be readable by humans, and this implies minimizing length.
 A useful way to think about filenaming is distinctness: what is the minimal information needed to distinguish files?

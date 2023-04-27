@@ -6,7 +6,7 @@
 
 ---
 # Device Hardware
-MicroscopyDeviceHardware:
+MicroscopyHardware:
   selectors:
     - modality == "micr"
     - datatype == "micr"
@@ -17,6 +17,12 @@ MicroscopyDeviceHardware:
     DeviceSerialNumber: recommended
     StationName: recommended
     SoftwareVersions: recommended
+
+MicroscopyInstitutionInformation:
+  selectors:
+    - modality == "micr"
+    - datatype == "micr"
+  fields:
     InstitutionName: recommended
     InstitutionAddress: recommended
     InstitutionalDepartmentName: recommended

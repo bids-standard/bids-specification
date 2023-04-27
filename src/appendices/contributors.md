@@ -261,6 +261,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Petra Ritter 📖
 -   Kay Robbins 💻📖🐛
 -   Alex Rockhill 📖🔧
+-   Christine Rogers 🤔🚇📖🔣🔧
 -   Ariel Rokem 📖
 -   Chris Rorden 📖💻
 -   Jose Manuel Saborit 📖
