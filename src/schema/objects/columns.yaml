@@ -748,7 +748,6 @@ type__motion_channels:
   enum:
     - ACCEL
     - ANGACC
-    - ANGVEL
     - GYRO
     - JNTANG
     - LATENCY
