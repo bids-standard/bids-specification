@@ -40,7 +40,7 @@ which has its own unique requirements with respect to:
     define / constrain the way in which the model will be fit to the
     empirical image data;
 
--   The appropriate [data representations](#data-representations) utilised to
+-   The appropriate [data representations](#data-representations) utilized to
     store information parameterised [by](#paramdef-fit) or
     [from](#paramdef-derived) the model onto the filesystem;
 
@@ -72,7 +72,7 @@ these uses is defined thus:
     the empirical diffusion-weighted data.
 
 For example, consider a diffusion tensor model fit: the number of
-iterations in the optimisation algorithm would be an *input* parameter;
+iterations in the optimization algorithm would be an *input* parameter;
 the six unique diffusion tensor coefficients would be the *model fit*
 parameters; the Fractional Anisotropy (FA) would be a *model-derived*
 parameter (as it is calculated from the diffusion tensor coefficients
@@ -137,10 +137,10 @@ interpretation of that information; see [orientation specification](#orientation
     [model-derived](#paramdef-derived)) where a solitary numerical value is
     defined in each 3D image voxel is referred to here as a "scalar" image.
 
-1.  <a name="data-dec">*Directionally-Encoded Colours (DEC)*</a>:
+1.  <a name="data-dec">*Directionally-Encoded colors (DEC)*</a>:
 
     4D image with three volumes, intended to be interpreted as red, green
-    and blue colour intensities for visualisation
+    and blue color intensities for visualization
     \[[Pajevic1999](#pajevic1999)\]. Image data MUST NOT contain negative
     values.
 
@@ -277,7 +277,7 @@ field depends on the particular model used.
 
 | **Key name**     | **Description**                                                                                                                                                                                                                                                                                        |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| FitMethod        | OPTIONAL. String. The optimisation procedure used to fit the intrinsic model parameters to the empirical diffusion-weighted signal. Options are: "`ols`" (Ordinary Least Squares); "`wls`" (Weighted Least Squares); "`iwls`" (Iterative Weighted Least Squares); "`nlls`" (Non-Linear Least Squares). |
+| FitMethod        | OPTIONAL. String. The optimization procedure used to fit the intrinsic model parameters to the empirical diffusion-weighted signal. Options are: "`ols`" (Ordinary Least Squares); "`wls`" (Weighted Least Squares); "`iwls`" (Iterative Weighted Least Squares); "`nlls`" (Non-Linear Least Squares). |
 | Iterations       | OPTIONAL. Integer. The number of iterations used for any form of model fitting procedure where the number of iterations is a fixed input parameter.                                                                                                                                                    |
 | OutlierRejection | OPTIONAL. Boolean. Value indicating whether or not rejection of outlier values was performed during fitting of the intrinsic model parameters.                                                                                                                                                         |
 | Samples          | OPTIONAL. Integer. The number of realisations of a diffusion model from which statistical summaries (e.g. mean, standard deviation) of those parameters are provided.                                                                                                                                  |
@@ -293,7 +293,7 @@ Reserved keywords for models built into the specification are as follows:
 
 -   `csd`:
 
-    -   `NonNegativityConstraint`: String. Options are: { `soft`, `hard` }. Specifies whether the ODF was estimated using regularisation ("`soft`") or prevention ("`hard`") of negative values.
+    -   `NonNegativityConstraint`: String. Options are: { `soft`, `hard` }. Specifies whether the ODF was estimated using regularization ("`soft`") or prevention ("`hard`") of negative values.
 
     -   `ResponseFunctionZSH`: Two options:
 
@@ -333,7 +333,7 @@ Reserved keywords for models built into the specification are as follows:
 While not explicitly included in the table above, *any* [scalar](#data-scalar)
 [model-derived parameter](paramdef-derived) can theoretically be combined
 with a separate source of orientation information from the diffusion model
-in order to produce a [directionally-encoded colour](#data-dec),
+in order to produce a [directionally-encoded color](#data-dec),
 [spherical coordinates](#data-spherical) or [3-vectors](#data-3vector) image.
 
 ### Orientation specification
@@ -377,7 +377,7 @@ another.
     -   Antipodally symmetric: all basis functions with odd degree are
         assumed zero; `AntipodalSymmetry` MUST NOT be set to `False`.
 
-    -   Utilised basis functions:
+    -   Utilized basis functions:
 
         -   `MRtrix3`
 
@@ -516,7 +516,7 @@ another.
                                  [ 224.9 ],
                                  [ 128.8 ] ],
         "SphericalHarmonicDegree": 0,
-        "Tissue": "Grey matter"
+        "Tissue": "Gray matter"
     }
     ```
 
