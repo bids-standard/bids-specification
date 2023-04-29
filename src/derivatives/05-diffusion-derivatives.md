@@ -385,7 +385,7 @@ another.
 
         -   `Descoteaux`
 
-        ![Descoteaux SH basis functions](https://latex.codecogs.com/gif.latex?Y_{lm}(\theta,\phi)=\begin{Bmatrix}&space;0&\text{if&space;}l\text{&space;is&space;odd},\\&space;\sqrt{2}\times\text{Re}\left[Y_l^{-m}(\theta,\phi)\right]&\text{if&space;}m%3C0,\\&space;Y_l^0(\theta,\phi)&\text{if&space;}m=0,\\&space;\sqrt{2}\times\text{Im}\left[Y_l^m(\theta,\phi)\right]&\text{if&space;}m%3E0\\&space;\end{Bmatrix})
+        ![Descoteaux SH basis functions](https://latex.codecogs.com/gif.latex?Y_{lm}(\theta,\phi)=\begin{Bmatrix}&space;0&\text{if&space;}l\text{&space;is&space;odd},\\&space;\sqrt{2}\times\text{Re}\left[Y_l^{-m}(\theta,\phi)\right]&\text{if&space;}m<0,\\&space;Y_l^0(\theta,\phi)&\text{if&space;}m=0,\\&space;\sqrt{2}\times\text{Im}\left[Y_l^m(\theta,\phi)\right]&\text{if&space;}m>0\\&space;\end{Bmatrix})
 
     -   Mapping between image volume *V* and spherical harmonic basis
         function coefficient *Y<sub>l,m</sub>*:
