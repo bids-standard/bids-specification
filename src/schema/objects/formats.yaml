@@ -5,7 +5,7 @@ index:
   display_name: Index
   description: |
     Non-negative, optionally prefixed with leading zeros for better visual homogeneity and sorting.
-  pattern: '[0-9]*'
+  pattern: '[0-9]+'
 label:
   display_name: Label
   description: |
