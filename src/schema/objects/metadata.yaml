@@ -140,8 +140,8 @@ AnatomicalLandmarkCoordinates__mri:
       type: number
     minItems: 3
     maxItems: 3
-ANGACCChannelCount:
-  name: ANGACCChannelCount
+ANGACCELChannelCount:
+  name: ANGACCELChannelCount
   display_name: Angular acceleration channel count
   description: |
     Number of angular acceleration channels.
