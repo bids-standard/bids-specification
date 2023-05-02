@@ -56,6 +56,7 @@ channel:
     If multiple channels are specified, separate with commas (`,`) or a
     delimiter specified in the `"Delimiter"` field describing the `channel`
     column.
+  type: string
 color:
   name: color
   display_name: Color label
