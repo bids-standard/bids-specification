@@ -48,6 +48,14 @@ cardiac:
   description: |
     continuous pulse measurement
   type: number
+channel:
+  name: channel
+  display_name: Channel
+  description: |
+    Channel(s) associated with an event.
+    If multiple channels are specified, separate with commas (`,`) or a
+    delimiter specified in the `"Delimiter"` field describing the `channel`
+    column.
 color:
   name: color
   display_name: Color label
