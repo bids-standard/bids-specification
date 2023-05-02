@@ -81,7 +81,7 @@ ASLFlipAngleASLContextLength:
     - type(associations.aslcontext) != "null"
     - type(sidecar.FlipAngle) == 'array'
   checks:
-    - length(sidecar.FlipAngle) == aslcontext.n_rows
+    - length(sidecar.FlipAngle) == associations.aslcontext.n_rows
 
 # 173
 ASLPostLabelingDelayNiftiLength:
@@ -130,7 +130,7 @@ ASLPostLabelingDelayASLContextLength:
     - type(associations.aslcontext) != "null"
     - type(sidecar.PostLabelingDelay) == 'array'
   checks:
-    - length(sidecar.PostLabelingDelay) == aslcontext.n_rows
+    - length(sidecar.PostLabelingDelay) == associations.aslcontext.n_rows
 
 # 175
 ASLLabelingDurationASLContextLength:
@@ -155,7 +155,7 @@ ASLLabelingDurationASLContextLength:
     - type(associations.aslcontext) != "null"
     - type(sidecar.LabelingDuration) == 'array'
   checks:
-    - length(sidecar.LabelingDuration) == aslcontext.n_rows
+    - length(sidecar.LabelingDuration) == associations.aslcontext.n_rows
 
 # 177
 ASLRepetitionTimePreparationASLContextLength:
@@ -175,7 +175,7 @@ ASLRepetitionTimePreparationASLContextLength:
     - type(associations.aslcontext) != "null"
     - type(sidecar.RepetitionTimePreparation) == 'array'
   checks:
-    - length(sidecar.RepetitionTimePreparation) == aslcontext.n_rows
+    - length(sidecar.RepetitionTimePreparation) == associations.aslcontext.n_rows
 
 # 180
 ASLBackgroundSuppressionNumberPulses:
@@ -263,7 +263,7 @@ ASLEchoTimeASLContextLength:
     - type(associations.aslcontext) != "null"
     - type(sidecar.EchoTime) == 'array'
   checks:
-    - length(sidecar.EchoTime) == aslcontext.n_rows
+    - length(sidecar.EchoTime) == associations.aslcontext.n_rows
 
 ## 197 ECHO_TIME_ELEMENTS duplicates 165 and 196 (length(sidecar.EchoTime) == nifti_header.dim[4])
 
@@ -295,7 +295,7 @@ ASLM0TypeAbsentASLContext:
   selectors:
     - suffix == "asl"
     - type(associations.aslcontext) != "null"
-    - intersects(aslcontext.volume_type, ["m0scan"])
+    - intersects(associations.aslcontext.volume_type, ["m0scan"])
     - '"M0Type" in sidecar'
   checks:
     - sidecar.M0Type != "absent"
