@@ -22,7 +22,6 @@ aslcontext:
     - aslcontext
   extensions:
     - .tsv
-    - .json
   datatypes:
     - perf
   entities:
