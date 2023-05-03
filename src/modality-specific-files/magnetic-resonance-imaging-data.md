@@ -902,6 +902,14 @@ See the [ASL Appendix](../appendices/arterial-spin-labeling.md#_aslcontexttsv-th
 The `*_asl.nii.gz` and `*_m0scan.nii.gz` should contain appropriately scaled data, and no additional scaling factors are allowed other than the scale slope in the respective
 NIfTI headers.
 
+### `*_asllabeling.*`
+
+An anonymized screenshot of the planning of the labeling slab/plane
+with respect to the imaging slab or slices \*_asllabeling.*.
+Based on DICOM macro C.8.13.5.14.
+
+See `LabelingLocationDescription` for more detail.
+
 ### M0
 
 The `m0scan` can either be stored inside the 4D ASL time-series NIfTI file

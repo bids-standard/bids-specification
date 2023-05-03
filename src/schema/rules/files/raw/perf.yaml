@@ -37,6 +37,8 @@ asllabeling:
     - asllabeling
   extensions:
     - .jpg
+    - .png
+    - .tif
   datatypes:
     - perf
   entities:
