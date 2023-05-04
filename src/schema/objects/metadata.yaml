@@ -1613,7 +1613,7 @@ LabelingLocationDescription:
     `LabelingOrientation` or `LabelingDistance`.
     May include a link to an anonymized screenshot of the planning of the
     labeling slab/plane with respect to the imaging slab or slices
-    `*_asllabeling.jpg`.
+    `*_asllabeling.*`.
     Based on DICOM macro C.8.13.5.14.
   type: string
 LabelingOrientation:

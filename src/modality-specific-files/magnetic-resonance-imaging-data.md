@@ -910,7 +910,7 @@ An anonymized screenshot of the planning of the labeling slab/plane
 with respect to the imaging slab or slices.
 This screenshot is based on DICOM macro C.8.13.5.14.
 
-See `LabelingLocationDescription` for more detail.
+See `LabelingLocationDescription` for more details.
 
 ### M0
 
