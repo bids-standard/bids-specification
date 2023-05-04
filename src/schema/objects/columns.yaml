@@ -613,8 +613,7 @@ type__channels:
   enum:
     - $ref: objects.values.ACCEL
     - $ref: objects.values.ADC
-    - $ref: objects.values.ANGACC
-    - $ref: objects.values.ANGVEL
+    - $ref: objects.values.ANGACCEL
     - $ref: objects.values.AUDIO
     - $ref: objects.values.DAC
     - $ref: objects.values.DBS

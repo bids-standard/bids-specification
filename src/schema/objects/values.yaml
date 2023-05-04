@@ -605,17 +605,11 @@ ACCEL:
   description: |
     Accelerometer channel, one channel for each spatial axis.
     Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).
-ANGACC:
-  value: ANGACC
-  display_name: ANGACC
+ANGACCEL:
+  value: ANGACCEL
+  display_name: ANGACCEL
   description: |
     Angular acceleration channel, one channel for each spatial axis.
-    Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).
-ANGVEL:
-  value: ANGVEL
-  display_name: ANGVEL
-  description: |
-    Angular velocity channel, one channel for each spatial axis.
     Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).
 GYRO:
   value: GYRO
