@@ -154,9 +154,9 @@ ArterialSpinLabelingType:
     The arterial spin labeling type.
   type: string
   enum:
-    - $ref: objects.values.CASL
-    - $ref: objects.values.PCASL
-    - $ref: objects.values.PASL
+    - $ref: objects.values.CASL.value
+    - $ref: objects.values.PCASL.value
+    - $ref: objects.values.PASL.value
 AssociatedEmptyRoom:
   name: AssociatedEmptyRoom
   display_name: Associated Empty Room
@@ -1752,10 +1752,10 @@ M0Type:
     `"Absent"` means that no specific M0 information is present.
   type: string
   enum:
-    - $ref: objects.values.Separate
-    - $ref: objects.values.Included
-    - $ref: objects.values.Estimate
-    - $ref: objects.values.Absent
+    - $ref: objects.values.Separate.value
+    - $ref: objects.values.Included.value
+    - $ref: objects.values.Estimate.value
+    - $ref: objects.values.Absent.value
 MAGNChannelCount:
   name: MAGNChannelCount
   display_name: Magnetometer Channel Count
@@ -1835,8 +1835,8 @@ MRAcquisitionType:
     Corresponds to DICOM Tag 0018, 0023 `MR Acquisition Type`.
   type: string
   enum:
-    - $ref: objects.values.TwoD
-    - $ref: objects.values.ThreeD
+    - $ref: objects.values.TwoD.value
+    - $ref: objects.values.ThreeD.value
 MRTransmitCoilSequence:
   name: MRTransmitCoilSequence
   display_name: MR Transmit Coil Sequence
@@ -1882,13 +1882,13 @@ MTPulseShape:
     The value `"SINCGAUSS"` refers to a sinc pulse with a Gaussian window.
   type: string
   enum:
-    - $ref: objects.values.HARD
-    - $ref: objects.values.GAUSSIAN
-    - $ref: objects.values.GAUSSHANN
-    - $ref: objects.values.SINC
-    - $ref: objects.values.SINCHANN
-    - $ref: objects.values.SINCGAUSS
-    - $ref: objects.values.FERMI
+    - $ref: objects.values.HARD.value
+    - $ref: objects.values.GAUSSIAN.value
+    - $ref: objects.values.GAUSSHANN.value
+    - $ref: objects.values.SINC.value
+    - $ref: objects.values.SINCHANN.value
+    - $ref: objects.values.SINCGAUSS.value
+    - $ref: objects.values.FERMI.value
 MTState:
   name: MTState
   display_name: MT State
@@ -2358,12 +2358,12 @@ PhaseEncodingDirection:
     `InPlanePhaseEncodingDirection` which can have `ROW` or `COL` values.
   type: string
   enum:
-    - $ref: objects.values.i
-    - $ref: objects.values.iMinus
-    - $ref: objects.values.j
-    - $ref: objects.values.jMinus
-    - $ref: objects.values.k
-    - $ref: objects.values.kMinus
+    - $ref: objects.values.i.value
+    - $ref: objects.values.iMinus.value
+    - $ref: objects.values.j.value
+    - $ref: objects.values.jMinus.value
+    - $ref: objects.values.k.value
+    - $ref: objects.values.kMinus.value
 PhotoDescription:
   name: PhotoDescription
   display_name: Photo Description
@@ -2613,9 +2613,9 @@ RecordingType:
     interest (for example, stimulus presentations or subject responses).
   type: string
   enum:
-    - $ref: objects.values.continuous
-    - $ref: objects.values.epoched
-    - $ref: objects.values.discontinuous
+    - $ref: objects.values.continuous.value
+    - $ref: objects.values.epoched.value
+    - $ref: objects.values.discontinuous.value
 ReferencesAndLinks:
   name: ReferencesAndLinks
   display_name: References And Links
@@ -3030,12 +3030,12 @@ SliceEncodingDirection:
     slice index as defined by the NIfTI header.
   type: string
   enum:
-    - $ref: objects.values.i
-    - $ref: objects.values.iMinus
-    - $ref: objects.values.j
-    - $ref: objects.values.jMinus
-    - $ref: objects.values.k
-    - $ref: objects.values.kMinus
+    - $ref: objects.values.i.value
+    - $ref: objects.values.iMinus.value
+    - $ref: objects.values.j.value
+    - $ref: objects.values.jMinus.value
+    - $ref: objects.values.k.value
+    - $ref: objects.values.kMinus.value
 SliceThickness:
   name: SliceThickness
   display_name: Slice Thickness
@@ -3186,7 +3186,7 @@ SpatialReference:
   anyOf:
     - type: string
       enum:
-        - $ref: objects.values.orig
+        - $ref: objects.values.orig.value
     - type: string
       format: uri
     - type: string
@@ -3196,7 +3196,7 @@ SpatialReference:
         anyOf:
           - type: string
             enum:
-              - $ref: objects.values.orig
+              - $ref: objects.values.orig.value
           - type: string
             format: uri
           - type: string
@@ -3500,10 +3500,10 @@ Type:
     The value `"ROI"` refers to a region of interest mask.
   type: string
   enum:
-    - $ref: objects.values.Brain
-    - $ref: objects.values.Lesion
-    - $ref: objects.values.Face
-    - $ref: objects.values.ROI
+    - $ref: objects.values.Brain.value
+    - $ref: objects.values.Lesion.value
+    - $ref: objects.values.Face.value
+    - $ref: objects.values.ROI.value
 Units:
   name: Units
   display_name: Units
@@ -3586,19 +3586,19 @@ _CoordUnits:
 _EEGCoordSys:
   type: string
   enum:
-    - $ref: objects.values.CapTrak
-    - $ref: objects.values.EEGLAB
-    - $ref: objects.values.EEGLAB-HJ
-    - $ref: objects.values.Other
+    - $ref: objects.values.CapTrak.value
+    - $ref: objects.values.EEGLAB.value
+    - $ref: objects.values.EEGLAB-HJ.value
+    - $ref: objects.values.Other.value
 _GeneticLevelEnum:
   type: string
   enum:
-    - $ref: objects.values.Genetic
-    - $ref: objects.values.Genomic
-    - $ref: objects.values.Epigenomic
-    - $ref: objects.values.Transcriptomic
-    - $ref: objects.values.Metabolomic
-    - $ref: objects.values.Proteomic
+    - $ref: objects.values.Genetic.value
+    - $ref: objects.values.Genomic.value
+    - $ref: objects.values.Epigenomic.value
+    - $ref: objects.values.Transcriptomic.value
+    - $ref: objects.values.Metabolomic.value
+    - $ref: objects.values.Proteomic.value
 _LandmarkCoordinates:
   type: object
   additionalProperties:
@@ -3610,70 +3610,70 @@ _LandmarkCoordinates:
 _MEGCoordSys:
   type: string
   enum:
-    - $ref: objects.values.CTF
-    - $ref: objects.values.ElektaNeuromag
-    - $ref: objects.values.4DBti
-    - $ref: objects.values.KitYokogawa
-    - $ref: objects.values.ChietiItab
-    - $ref: objects.values.Other
+    - $ref: objects.values.CTF.value
+    - $ref: objects.values.ElektaNeuromag.value
+    - $ref: objects.values.4DBti.value
+    - $ref: objects.values.KitYokogawa.value
+    - $ref: objects.values.ChietiItab.value
+    - $ref: objects.values.Other.value
 _NonstandardTemplateCoordSys:
   type: string
   enum:
-    - $ref: objects.values.individual
-    - $ref: objects.values.study
+    - $ref: objects.values.individual.value
+    - $ref: objects.values.study.value
 _NonTemplateCoordSys:
   type: string
   enum:
-    - $ref: objects.values.scanner
+    - $ref: objects.values.scanner.value
 _StandardTemplateCoordSys:
   type: string
   enum:
-    - $ref: objects.values.ICBM452AirSpace
-    - $ref: objects.values.ICBM452Warp5Space
-    - $ref: objects.values.IXI549Space
-    - $ref: objects.values.fsaverage
-    - $ref: objects.values.fsaverageSym
-    - $ref: objects.values.fsLR
-    - $ref: objects.values.MNIColin27
-    - $ref: objects.values.MNI152Lin
-    - $ref: objects.values.MNI152NLin2009aSym
-    - $ref: objects.values.MNI152NLin2009bSym
-    - $ref: objects.values.MNI152NLin2009cSym
-    - $ref: objects.values.MNI152NLin2009aAsym
-    - $ref: objects.values.MNI152NLin2009bAsym
-    - $ref: objects.values.MNI152NLin2009cAsym
-    - $ref: objects.values.MNI152NLin6Sym
-    - $ref: objects.values.MNI152NLin6ASym
-    - $ref: objects.values.MNI305
-    - $ref: objects.values.NIHPD
-    - $ref: objects.values.OASIS30AntsOASISAnts
-    - $ref: objects.values.OASIS30Atropos
-    - $ref: objects.values.Talairach
-    - $ref: objects.values.UNCInfant
+    - $ref: objects.values.ICBM452AirSpace.value
+    - $ref: objects.values.ICBM452Warp5Space.value
+    - $ref: objects.values.IXI549Space.value
+    - $ref: objects.values.fsaverage.value
+    - $ref: objects.values.fsaverageSym.value
+    - $ref: objects.values.fsLR.value
+    - $ref: objects.values.MNIColin27.value
+    - $ref: objects.values.MNI152Lin.value
+    - $ref: objects.values.MNI152NLin2009aSym.value
+    - $ref: objects.values.MNI152NLin2009bSym.value
+    - $ref: objects.values.MNI152NLin2009cSym.value
+    - $ref: objects.values.MNI152NLin2009aAsym.value
+    - $ref: objects.values.MNI152NLin2009bAsym.value
+    - $ref: objects.values.MNI152NLin2009cAsym.value
+    - $ref: objects.values.MNI152NLin6Sym.value
+    - $ref: objects.values.MNI152NLin6ASym.value
+    - $ref: objects.values.MNI305.value
+    - $ref: objects.values.NIHPD.value
+    - $ref: objects.values.OASIS30AntsOASISAnts.value
+    - $ref: objects.values.OASIS30Atropos.value
+    - $ref: objects.values.Talairach.value
+    - $ref: objects.values.UNCInfant.value
 _StandardTemplateDeprecatedCoordSys:
   type: string
   enum:
-    - $ref: objects.values.fsaverage3
-    - $ref: objects.values.fsaverage4
-    - $ref: objects.values.fsaverage5
-    - $ref: objects.values.fsaverage6
-    - $ref: objects.values.fsaveragesym
-    - $ref: objects.values.UNCInfant0V21
-    - $ref: objects.values.UNCInfant1V21
-    - $ref: objects.values.UNCInfant2V21
-    - $ref: objects.values.UNCInfant0V22
-    - $ref: objects.values.UNCInfant1V22
-    - $ref: objects.values.UNCInfant2V22
-    - $ref: objects.values.UNCInfant0V23
-    - $ref: objects.values.UNCInfant1V23
-    - $ref: objects.values.UNCInfant2V23
+    - $ref: objects.values.fsaverage3.value
+    - $ref: objects.values.fsaverage4.value
+    - $ref: objects.values.fsaverage5.value
+    - $ref: objects.values.fsaverage6.value
+    - $ref: objects.values.fsaveragesym.value
+    - $ref: objects.values.UNCInfant0V21.value
+    - $ref: objects.values.UNCInfant1V21.value
+    - $ref: objects.values.UNCInfant2V21.value
+    - $ref: objects.values.UNCInfant0V22.value
+    - $ref: objects.values.UNCInfant1V22.value
+    - $ref: objects.values.UNCInfant2V22.value
+    - $ref: objects.values.UNCInfant0V23.value
+    - $ref: objects.values.UNCInfant1V23.value
+    - $ref: objects.values.UNCInfant2V23.value
 _iEEGCoordSys:
   type: string
   enum:
-    - $ref: objects.values.Pixels
-    - $ref: objects.values.ACPC
-    - $ref: objects.values.ScanRAS
-    - $ref: objects.values.Other
+    - $ref: objects.values.Pixels.value
+    - $ref: objects.values.ACPC.value
+    - $ref: objects.values.ScanRAS.value
+    - $ref: objects.values.Other.value
 iEEGCoordinateProcessingDescription:
   name: iEEGCoordinateProcessingDescription
   display_name: iEEG Coordinate Processing Description
