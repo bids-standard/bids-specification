@@ -6,9 +6,9 @@ build:
     python: "3.9"
   #jobs:
   #  post_create_environment:
-  #    # Why are we using poetry and not just pip installing requirements? Well b/c this works at the moment and it's a way to keep the dependencies for 
+  #    # Why are we using poetry and not just pip installing requirements? Well b/c this works at the moment and it's a way to keep the dependencies for
   #    # the requirements for this readthedocs/sphinx based repository separate from where the code is actually stored and created (bids-specification).
-  #    # More elegant PR's will always be considered and most likely merged. 
+  #    # More elegant PR's will always be considered and most likely merged.
   #    # install poetry
   #    # https://python-poetry.org/docs/#osx--linux--bashonwindows-install-instructions
   #    - curl -sSL https://install.python-poetry.org | python3 -
