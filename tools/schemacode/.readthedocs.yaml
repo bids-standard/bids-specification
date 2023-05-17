@@ -17,7 +17,7 @@ build:
   #    - $HOME/.local/bin/poetry add $( cat requirements.txt )
 
 sphinx:
-  configuration: docs/conf.py
+  configuration: tools/schemacode/docs/conf.py
 
 python:
   install:
