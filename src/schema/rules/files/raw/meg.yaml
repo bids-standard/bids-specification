@@ -8,6 +8,7 @@ meg:
     - [/, .ds/, .fif]
     - [.sqd, .con]
     - .ave # mentioned once in the appendix
+    # .raw and .raw.mhd work as a pair
     - .raw
     - .raw.mhd
     # .kdf with possible additional files .chn, .trg and _digitizer.txt (see other suffix group below)
