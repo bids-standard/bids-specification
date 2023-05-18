@@ -3,8 +3,7 @@ pet:
   suffixes:
     - pet
   extensions:
-    - .nii.gz
-    - .nii
+    - [.nii.gz, .nii]
     - .json
   datatypes:
     - pet

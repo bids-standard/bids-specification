@@ -9,10 +9,7 @@ README:
   level: recommended
   stem: README
   extensions:
-    - ''
-    - .md
-    - .rst
-    - .txt
+    - ['', .md, .rst, .txt]
 CHANGES:
   level: optional
   path: CHANGES
