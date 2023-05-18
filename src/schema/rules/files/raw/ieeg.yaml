@@ -3,15 +3,13 @@ ieeg:
   suffixes:
     - ieeg
   extensions:
+    - [.nwb, .edf, .mefd/, .eeg, .set]
     - .json
     # .vhdr, .vmrk, .eeg must work as triplet
     - .vhdr
     - .vmrk
-    - .eeg
     # .set file with an OPTIONAL .fdt
-    - .set
     - .fdt
-    - [.nwb, .edf, .mefd/]
   datatypes:
     - ieeg
   entities:

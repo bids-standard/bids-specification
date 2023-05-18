@@ -5,14 +5,11 @@ meg:
   extensions:
     # / corresponds to BTi/4D data
     - .json
-    - [/, .ds/, .fif]
-    - [.sqd, .con]
+    - [/, .ds/, .fif, .sqd, .con, .raw, .kdf]
     - .ave # mentioned once in the appendix
     # .raw and .raw.mhd work as a pair
-    - .raw
     - .raw.mhd
     # .kdf with possible additional files .chn, .trg and _digitizer.txt (see other suffix group below)
-    - .kdf
     - .chn
     - .trg
   datatypes:
