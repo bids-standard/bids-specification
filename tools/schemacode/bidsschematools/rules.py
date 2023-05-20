@@ -162,7 +162,11 @@ def _sanitize_extension(ext: str) -> str:
 
 def _stem_rule(rule: bst.types.Namespace):
     stem_regex = re.escape(rule.stem)
-    ext_match = "|".join(_sanitize_extension(ext) for ext in rule.extensions)
+    if isinstance(rule.extensions[0], list) and len(rule.extensions) == 1:
+        extensions = rule.extensions[0]
+    else:
+        extensions = rule.extensions
+    ext_match = "|".join(_sanitize_extension(ext) for ext in extensions)
     ext_regex = f"(?P<extension>{ext_match})"
 
     return {"regex": stem_regex + ext_regex, "mandatory": rule.level == "required"}
