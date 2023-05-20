@@ -1,4 +1,7 @@
 """Functions for rendering portions of the schema as text."""
+
+from __future__ import annotations
+
 import logging
 import os
 
