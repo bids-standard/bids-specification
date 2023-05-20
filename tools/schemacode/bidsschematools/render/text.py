@@ -272,8 +272,6 @@ def make_filename_template(
         lt, gt = "&lt;", "&gt;"
 
     schema = Namespace(filter_schema(schema.to_dict(), **kwargs))
-    suffix_key_table = _value_key_table(schema.objects.suffixes)
-    ext_key_table = _value_key_table(schema.objects.extensions)
 
     # Parent directories
     sub_string = utils._link_with_html(
@@ -299,7 +297,7 @@ def make_filename_template(
     for datatype in sorted(file_groups):
         datatype_string = utils._link_with_html(
             datatype,
-            html_path=GLOSSARY_PATH + ".html",
+            html_path=f"{GLOSSARY_PATH}.html",
             heading=f"{datatype.lower()}-datatypes",
             pdf_format=pdf_format,
         )
@@ -345,62 +343,35 @@ def make_filename_template(
 
                 ent_string = _add_entity(ent_string, pattern, entity["level"])
 
-            # In cases of large numbers of suffixes,
-            # we use the "suffix" variable and expect a table later in the spec
-            if len(group["suffixes"]) >= n_dupes_to_combine:
-                suffixes = [
-                    lt
-                    + utils._link_with_html(
-                        "suffix",
-                        html_path=GLOSSARY_PATH + ".html",
-                        heading="suffix-common_principles",
-                        pdf_format=pdf_format,
-                    )
-                    + gt
-                ]
+            suffixes = _suffixes_for_this_group(schema, group, n_dupes_to_combine, pdf_format)
+
+            if _nb_extensions(group) >= n_dupes_to_combine or all(
+                isinstance(x, str) for x in group.extensions
+            ):
+                extensions = _listify_all_extensions(group.extensions)
+
+                if _nb_extensions(group) >= n_dupes_to_combine:
+                    # Combine exts when there are many, but keep JSON separate
+                    if ".json" in extensions:
+                        extensions = [".<extension>", ".json"]
+                    else:
+                        extensions = [".<extension>"]
+
+                extensions = _combine_extensions_with_headings(schema, extensions, pdf_format)
+                lines.extend(
+                    f"\t\t\t{ent_string}_{suffix}{extension}"
+                    for suffix in sorted(suffixes)
+                    for extension in sorted(extensions)
+                )
+
             else:
-                suffixes = [
-                    utils._link_with_html(
-                        suffix,
-                        html_path=GLOSSARY_PATH + ".html",
-                        heading=f"{suffix_key_table[suffix].lower()}-suffixes",
-                        pdf_format=pdf_format,
+                for i in group.extensions:
+                    extensions = _combine_extensions_with_headings(schema, i, pdf_format)
+                    lines.extend(
+                        f"\t\t\t{ent_string}_{suffix}{extension}"
+                        for suffix in sorted(suffixes)
+                        for extension in sorted(extensions)
                     )
-                    for suffix in group.suffixes
-                ]
-
-            # Add extensions
-            extensions = listify_all_extensions(group.extensions)
-            if len(extensions) >= n_dupes_to_combine:
-                # Combine exts when there are many, but keep JSON separate
-                if ".json" in extensions:
-                    extensions = [".<extension>", ".json"]
-                else:
-                    extensions = [".<extension>"]
-
-            ext_headings = []
-            for extension in extensions:
-                # The glossary indexes by the extension identifier (niigz instead of .nii.gz),
-                # but the rules reference the actual suffix string (.nii.gz instead of niigz),
-                # so we need to look it up.
-                key = ext_key_table.get(extension)
-                if key:
-                    ext_headings.append(f"{key.lower()}-extensions")
-                else:
-                    ext_headings.append("extension-common_principles")
-
-            extensions = utils.combine_extensions(
-                extensions,
-                html_path=GLOSSARY_PATH + ".html",
-                heading_lst=ext_headings,
-                pdf_format=pdf_format,
-            )
-
-            lines.extend(
-                f"\t\t\t{ent_string}_{suffix}{extension}"
-                for suffix in sorted(suffixes)
-                for extension in sorted(extensions)
-            )
 
     paragraph = "\n".join(lines)
     if pdf_format:
@@ -417,7 +388,74 @@ def make_filename_template(
     return codeblock
 
 
-def listify_all_extensions(extensions) -> list[str]:
+def _suffixes_for_this_group(
+    schema, group, n_dupes_to_combine: int, pdf_format: bool
+) -> list[str]:
+    suffix_key_table = _value_key_table(schema.objects.suffixes)
+
+    lt, gt = ("<", ">") if pdf_format else ("&lt;", "&gt;")
+
+    # In cases of large numbers of suffixes,
+    # we use the "suffix" variable and expect a table later in the spec
+    if len(group["suffixes"]) >= n_dupes_to_combine:
+        suffixes = [
+            lt
+            + utils._link_with_html(
+                "suffix",
+                html_path=f"{GLOSSARY_PATH}.html",
+                heading="suffix-common_principles",
+                pdf_format=pdf_format,
+            )
+            + gt
+        ]
+
+        return suffixes
+
+    return [
+        utils._link_with_html(
+            suffix,
+            html_path=f"{GLOSSARY_PATH}.html",
+            heading=f"{suffix_key_table[suffix].lower()}-suffixes",
+            pdf_format=pdf_format,
+        )
+        for suffix in group.suffixes
+    ]
+
+
+def _combine_extensions_with_headings(schema, extensions: str | list[str], pdf_format: bool):
+    if isinstance(extensions, str):
+        extensions = [extensions]
+
+    ext_headings = _get_extension_headings(schema, extensions)
+
+    return utils.combine_extensions(
+        extensions,
+        html_path=f"{GLOSSARY_PATH}.html",
+        heading_lst=ext_headings,
+        pdf_format=pdf_format,
+    )
+
+
+def _get_extension_headings(schema, extensions):
+    """The glossary indexes by the extension identifier (niigz instead of .nii.gz),
+    but the rules reference the actual suffix string (.nii.gz instead of niigz),
+    so we need to look it up."""
+    ext_key_table = _value_key_table(schema.objects.extensions)
+    ext_headings = []
+    for extension in extensions:
+        key = ext_key_table.get(extension)
+        if key:
+            ext_headings.append(f"{key.lower()}-extensions")
+        else:
+            ext_headings.append("extension-common_principles")
+    return ext_headings
+
+
+def _nb_extensions(group):
+    return len(_listify_all_extensions(group))
+
+
+def _listify_all_extensions(extensions) -> list[str]:
     extensions = [ext if isinstance(ext, str) else ext[:] for ext in extensions]
     return [ext if ext != "*" else ".<extension>" for ext in extensions]
 

@@ -1,6 +1,8 @@
 """Tests for the bidsschematools package."""
 import os
 
+import pytest
+
 from bidsschematools.render import text
 
 
@@ -130,3 +132,21 @@ def test_define_allowed_top_directories(schema_obj):
     """smoke test for allowed top directories."""
     test_str = text.define_allowed_top_directories(schema_obj)
     assert isinstance(test_str, str)
+
+
+@pytest.mark.parametrize(
+    "extensions, expected, pdf_format",
+    [
+        (
+            ["json"],
+            ['<a href="SPEC_ROOT/glossary.html#extension-common_principles">json</a>'],
+            False,
+        ),
+        (["nii.gz", "nii", "json"], ["nii[.gz]", "json"], True),
+    ],
+)
+def test_extension_for_this_group(schema_obj, extensions, expected, pdf_format):
+    extensions = text._combine_extensions_with_headings(
+        schema_obj, extensions, pdf_format=pdf_format
+    )
+    assert extensions == expected
