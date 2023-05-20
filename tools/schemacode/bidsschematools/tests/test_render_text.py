@@ -42,13 +42,13 @@ def test_make_glossary(schema_obj, schema_dir):
     """
     # Test consistency
     object_files = []
-    for root, dirs, files in os.walk(schema_dir, topdown=False):
+    for root, _, files in os.walk(schema_dir, topdown=False):
         if "objects" in root:
             for object_file in files:
                 object_base, _ = os.path.splitext(object_file)
                 object_files.append(object_base)
     rule_files = []
-    for root, dirs, files in os.walk(schema_dir, topdown=False):
+    for root, _, files in os.walk(schema_dir, topdown=False):
         if "rules" in root:
             for rule_file in files:
                 rule_base, _ = os.path.splitext(rule_file)
@@ -59,12 +59,12 @@ def test_make_glossary(schema_obj, schema_dir):
     for line in glossary.split("\n"):
         if line.startswith('<a name="objects.'):
             # Are all objects objects?
-            assert any([line.startswith(f'<a name="objects.{i}') for i in object_files])
+            assert any(line.startswith(f'<a name="objects.{i}') for i in object_files)
             # Are rules loaded incorrectly?
-            assert not any([line.startswith(f'<a name="objects.{i}') for i in rules_only])
+            assert not any(line.startswith(f'<a name="objects.{i}') for i in rules_only)
 
 
-def test_make_filename_template(schema_obj, schema_dir):
+def test_make_filename_template(schema_obj):
     """
     Test whether:
         * the base hierarchy structure of mandatory subject and optional session is
@@ -106,6 +106,38 @@ sub-<label>/
             datatype_bases_found += 1
     # Are all datatypes listed?
     assert datatype_bases_found == datatype_count
+
+
+def test_make_filename_template_mutually_exclusive_extensions():
+    """Extensions that are mutually exclusive appear on a single line.
+
+    In this case mrk and sqd for MEG data.
+    """
+    filename_template = text.make_filename_template(
+        "raw",
+        datatypes=["meg"],
+        suffixes=["markers"],
+        pdf_format=True,
+        include_legend=False,
+    )
+    print(filename_template)
+    assert "legend" not in filename_template
+    nb_lines = len(filename_template.split("\n"))
+    assert nb_lines == 7
+
+
+def test_make_filename_template_mutually_combine_extensions_when_too_many():
+    """Combine extensions on a single line, there are too many extensions."""
+    filename_template = text.make_filename_template(
+        "raw",
+        datatypes=["meg"],
+        suffixes=["meg"],
+        pdf_format=True,
+        include_legend=False,
+    )
+    print(filename_template)
+    nb_lines = len(filename_template.split("\n"))
+    assert nb_lines == 10
 
 
 def test_define_common_principles(schema_obj):
@@ -150,3 +182,21 @@ def test_extension_for_this_group(schema_obj, extensions, expected, pdf_format):
         schema_obj, extensions, pdf_format=pdf_format
     )
     assert extensions == expected
+
+
+class Group:
+    def __init__(self, extensions):
+        self.extensions = extensions
+
+
+@pytest.mark.parametrize("extensions, expected", [(["nii"], 1), (["nii", ["bar", "baz"]], 3)])
+def test_nb_extensions(extensions, expected):
+    group = Group(extensions=extensions)
+    assert text._nb_extensions(group) == expected
+
+
+@pytest.mark.parametrize(
+    "extensions, expected", [(["nii"], ["nii"]), (["nii", ["bar", "baz"]], ["nii", "bar", "baz"])]
+)
+def test_listify_all_extensions(extensions, expected):
+    assert text._listify_all_extensions(extensions) == expected

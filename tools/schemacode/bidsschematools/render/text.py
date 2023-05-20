@@ -218,6 +218,7 @@ def make_filename_template(
     src_path=None,
     n_dupes_to_combine=6,
     pdf_format=False,
+    include_legend=True,
     **kwargs,
 ):
     """Create codeblocks containing example filename patterns for a given datatype.
@@ -230,21 +231,28 @@ def make_filename_template(
     dstype : "raw" or "deriv"
         The type of files being rendered; determines if rules are found in rules.files.raw
         or rules.files.deriv
+
     schema : dict
         The schema object, which is a dictionary with nested dictionaries and
         lists stored within it.
+
     src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
+
     n_dupes_to_combine : int
         The minimum number of suffixes/extensions to combine in the template as
         <suffix>/<extension>.
+
     pdf_format : bool, optional
         If True, the filename template will be compiled as a standard markdown code block,
         without any hyperlinks, so that the specification's PDF build will look right.
         If False, the filename template will use HTML and include hyperlinks.
         This works on the website.
         Default is False.
+
+    include_legend : bool, optional
+        If True, the filename template will include a legend below the codeblock.
 
     Other Parameters
     ----------------
@@ -358,6 +366,7 @@ def make_filename_template(
                         extensions = [".<extension>"]
 
                 extensions = _combine_extensions_with_headings(schema, extensions, pdf_format)
+
                 lines.extend(
                     f"\t\t\t{ent_string}_{suffix}{extension}"
                     for suffix in sorted(suffixes)
@@ -365,8 +374,17 @@ def make_filename_template(
                 )
 
             else:
-                for i in group.extensions:
-                    extensions = _combine_extensions_with_headings(schema, i, pdf_format)
+                for extension_ in group.extensions:
+                    if isinstance(extension_, str):
+                        extensions = _combine_extensions_with_headings(
+                            schema, extension_, pdf_format
+                        )
+                    elif isinstance(extension_, list):
+                        extensions = _combine_extensions_with_headings(
+                            schema, extension_, pdf_format, mutually_exclusive=True
+                        )
+                        extensions = [extensions]
+
                     lines.extend(
                         f"\t\t\t{ent_string}_{suffix}{extension}"
                         for suffix in sorted(suffixes)
@@ -382,7 +400,8 @@ def make_filename_template(
         )
 
     codeblock = codeblock.expandtabs(4)
-    codeblock = _append_filename_template_legend(codeblock, pdf_format)
+    if include_legend:
+        codeblock = _append_filename_template_legend(codeblock, pdf_format)
     codeblock = codeblock.replace("SPEC_ROOT", utils.get_relpath(src_path))
 
     return codeblock
@@ -422,18 +441,22 @@ def _suffixes_for_this_group(
     ]
 
 
-def _combine_extensions_with_headings(schema, extensions: str | list[str], pdf_format: bool):
+def _combine_extensions_with_headings(
+    schema, extensions: str | list[str], pdf_format: bool, mutually_exclusive: bool = False
+):
     if isinstance(extensions, str):
         extensions = [extensions]
 
     ext_headings = _get_extension_headings(schema, extensions)
 
-    return utils.combine_extensions(
+    extensions = utils.combine_extensions(
         extensions,
         html_path=f"{GLOSSARY_PATH}.html",
         heading_lst=ext_headings,
         pdf_format=pdf_format,
     )
+
+    return f"<{'|'.join(extensions)}>" if mutually_exclusive else extensions
 
 
 def _get_extension_headings(schema, extensions):
@@ -452,12 +475,17 @@ def _get_extension_headings(schema, extensions):
 
 
 def _nb_extensions(group):
-    return len(_listify_all_extensions(group))
+    return len(_listify_all_extensions(group.extensions))
 
 
-def _listify_all_extensions(extensions) -> list[str]:
-    extensions = [ext if isinstance(ext, str) else ext[:] for ext in extensions]
-    return [ext if ext != "*" else ".<extension>" for ext in extensions]
+def _listify_all_extensions(extensions: list[str | list[str]]) -> list[str]:
+    tmp = []
+    for ext in extensions:
+        if isinstance(ext, str):
+            tmp.append(ext)
+        else:
+            tmp.extend(ext)
+    return [ext if ext != "*" else ".<extension>" for ext in tmp]
 
 
 def _append_filename_template_legend(text, pdf_format=False):
