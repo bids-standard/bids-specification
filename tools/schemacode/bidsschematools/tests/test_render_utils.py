@@ -1,6 +1,13 @@
 from bidsschematools.render import utils
 
 
+def test_stringify_extension_group():
+    test_extensions = ["bdf", "edf", "eeg", "set"]
+    target_string = "<bdf|edf|eeg|set>"
+    test_string = utils.stringify_extension_group(test_extensions, pdf_format=True)
+    assert test_string == target_string
+
+
 def test_combine_extensions():
     """A unit test for utils.combine_extensions."""
     test_extensions = ["nii.gz", "nii", "json"]

@@ -3,8 +3,8 @@ meg:
   suffixes:
     - meg
   extensions:
-    # / corresponds to BTi/4D data
     - .json
+    # / corresponds to BTi/4D data
     - [/, .ds/, .fif, .sqd, .con, .raw, .kdf]
     - .ave # mentioned once in the appendix
     # .raw and .raw.mhd work as a pair

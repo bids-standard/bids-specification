@@ -32,6 +32,13 @@ def _link_with_html(string, html_path=None, heading=None, pdf_format=False):
     return string
 
 
+def stringify_extension_group(lst, html_path=None, heading_lst=None, pdf_format=True):
+    tmp = combine_extensions(
+        lst, html_path=html_path, heading_lst=heading_lst, pdf_format=pdf_format
+    )
+    return f"<{'|'.join(tmp)}>"
+
+
 def combine_extensions(lst, html_path=None, heading_lst=None, pdf_format=True):
     """Combine extensions with their compressed versions in a list.
 

@@ -370,7 +370,7 @@ def make_filename_template(
                 ]
 
             # Add extensions
-            extensions = [ext if ext != "*" else ".<extension>" for ext in group.extensions]
+            extensions = listify_all_extensions(group.extensions)
             if len(extensions) >= n_dupes_to_combine:
                 # Combine exts when there are many, but keep JSON separate
                 if ".json" in extensions:
@@ -415,6 +415,11 @@ def make_filename_template(
     codeblock = codeblock.replace("SPEC_ROOT", utils.get_relpath(src_path))
 
     return codeblock
+
+
+def listify_all_extensions(extensions) -> list[str]:
+    extensions = [ext if isinstance(ext, str) else ext[:] for ext in extensions]
+    return [ext if ext != "*" else ".<extension>" for ext in extensions]
 
 
 def _append_filename_template_legend(text, pdf_format=False):
