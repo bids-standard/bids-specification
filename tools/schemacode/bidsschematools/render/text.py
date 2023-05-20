@@ -54,14 +54,14 @@ def make_entity_definitions(schema, src_path=None):
     text = ""
     for entity in entity_order:
         entity_info = entity_definitions[entity]
-        entity_text = _make_entity_definition(entity, entity_info)
+        entity_text = _make_definition_for_entity(entity_info)
         text += "\n" + entity_text
 
     text = text.replace("SPEC_ROOT", utils.get_relpath(src_path))
     return text
 
 
-def _make_entity_definition(entity, entity_info):
+def _make_definition_for_entity(entity_info):
     """Describe an entity."""
     entity_shorthand = entity_info["name"]
     text = ""
@@ -208,7 +208,7 @@ def _format_entity(entity, lt, gt):
     return f"{entity['name']}-{lt}{fmt}{gt}"
 
 
-def value_key_table(namespace):
+def _value_key_table(namespace):
     return {struct.value: key for key, struct in namespace.items()}
 
 
@@ -272,8 +272,8 @@ def make_filename_template(
         lt, gt = "&lt;", "&gt;"
 
     schema = Namespace(filter_schema(schema.to_dict(), **kwargs))
-    suffix_key_table = value_key_table(schema.objects.suffixes)
-    ext_key_table = value_key_table(schema.objects.extensions)
+    suffix_key_table = _value_key_table(schema.objects.suffixes)
+    ext_key_table = _value_key_table(schema.objects.extensions)
 
     # Parent directories
     sub_string = utils._link_with_html(
@@ -411,13 +411,13 @@ def make_filename_template(
         )
 
     codeblock = codeblock.expandtabs(4)
-    codeblock = append_filename_template_legend(codeblock, pdf_format)
+    codeblock = _append_filename_template_legend(codeblock, pdf_format)
     codeblock = codeblock.replace("SPEC_ROOT", utils.get_relpath(src_path))
 
     return codeblock
 
 
-def append_filename_template_legend(text, pdf_format=False):
+def _append_filename_template_legend(text, pdf_format=False):
     """Append a legend to filename templates.
 
     Parameters

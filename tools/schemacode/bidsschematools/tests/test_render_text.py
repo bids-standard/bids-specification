@@ -117,11 +117,11 @@ def test_define_common_principles(schema_obj):
 
 def test_append_filename_template_legend():
     """Check contents of generated string."""
-    test_str = text.append_filename_template_legend("", pdf_format=False)
+    test_str = text._append_filename_template_legend("", pdf_format=False)
     assert isinstance(test_str, str)
     assert "follow the links" in test_str
 
-    test_str = text.append_filename_template_legend("", pdf_format=True)
+    test_str = text._append_filename_template_legend("", pdf_format=True)
     assert isinstance(test_str, str)
     assert "follow the links" not in test_str
 
