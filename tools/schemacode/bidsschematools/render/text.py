@@ -415,7 +415,7 @@ def make_filename_template(
 
 
 def _suffixes_for_this_group(
-    schema, group, n_dupes_to_combine: int, pdf_format: bool
+    schema: Namespace, group, n_dupes_to_combine: int, pdf_format: bool
 ) -> list[str]:
     """List all suffixes in the template with their headings in the glossary \
        if necessary.
@@ -462,7 +462,10 @@ def _suffixes_for_this_group(
 
 
 def _combine_extensions_with_headings(
-    schema, extensions: str | list[str], pdf_format: bool, mutually_exclusive: bool = False
+    schema: Namespace,
+    extensions: str | list[str],
+    pdf_format: bool,
+    mutually_exclusive: bool = False,
 ) -> str | list[str]:
     """
     Parameters
@@ -490,7 +493,7 @@ def _combine_extensions_with_headings(
     return f"{lt}{'|'.join(extensions)}{gt}" if mutually_exclusive else extensions
 
 
-def _get_extension_headings(schema, extensions: list[str]) -> list[str]:
+def _get_extension_headings(schema: Namespace, extensions: list[str]) -> list[str]:
     """The glossary indexes by the extension identifier (niigz instead of .nii.gz),
     but the rules reference the actual suffix string (.nii.gz instead of niigz),
     so we need to look it up."""
@@ -573,7 +576,7 @@ def _append_filename_template_legend(text: str, pdf_format=False) -> str:
     return text
 
 
-def define_common_principles(schema, src_path: str | None = None) -> str:
+def define_common_principles(schema: Namespace, src_path: str | None = None) -> str:
     """Enumerate the common principles defined in the schema.
 
     Parameters
@@ -607,7 +610,7 @@ def define_common_principles(schema, src_path: str | None = None) -> str:
     return string
 
 
-def define_allowed_top_directories(schema, src_path: str | None = None) -> str:
+def define_allowed_top_directories(schema: Namespace, src_path: str | None = None) -> str:
     """Create a list of allowed top-level directories with their descriptions.
 
     Parameters
