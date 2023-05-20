@@ -274,23 +274,20 @@ def make_filename_template(
     if not schema:
         schema = load_schema()
 
-    if pdf_format:
-        lt, gt = "<", ">"
-    else:
-        lt, gt = "&lt;", "&gt;"
+    lt, gt = ("<", ">") if pdf_format else ("&lt;", "&gt;")
 
     schema = Namespace(filter_schema(schema.to_dict(), **kwargs))
 
     # Parent directories
     sub_string = utils._link_with_html(
         _format_entity(schema.objects.entities.subject, lt, gt),
-        html_path=ENTITIES_PATH + ".html",
+        html_path=f"{ENTITIES_PATH}.html",
         heading="sub",
         pdf_format=pdf_format,
     )
     ses_string = utils._link_with_html(
         _format_entity(schema.objects.entities.session, lt, gt),
-        html_path=ENTITIES_PATH + ".html",
+        html_path=f"{ENTITIES_PATH}.html",
         heading="ses",
         pdf_format=pdf_format,
     )
@@ -353,6 +350,11 @@ def make_filename_template(
 
             suffixes = _suffixes_for_this_group(schema, group, n_dupes_to_combine, pdf_format)
 
+            # Deal with extensions for this suffix group
+            # 1) Either we have many extensions,
+            # in this case we combine them into a single extension
+            # or we have only non mutually exclusive extensions
+            # in this case we keep them separate on separate lines
             if _nb_extensions(group) >= n_dupes_to_combine or all(
                 isinstance(x, str) for x in group.extensions
             ):
@@ -373,6 +375,8 @@ def make_filename_template(
                     for extension in sorted(extensions)
                 )
 
+            # 2) We have some mutually exclusive extensions in this suffix group
+            # in this case those extensions are combined onto a single line
             else:
                 for extension_ in group.extensions:
                     if isinstance(extension_, str):
@@ -410,13 +414,23 @@ def make_filename_template(
 def _suffixes_for_this_group(
     schema, group, n_dupes_to_combine: int, pdf_format: bool
 ) -> list[str]:
-    suffix_key_table = _value_key_table(schema.objects.suffixes)
+    """List all suffixes in the template with their headings in the glossary \
+       if necessary.
 
-    lt, gt = ("<", ">") if pdf_format else ("&lt;", "&gt;")
+    In cases of large numbers of suffixes,
+    we use the "suffix" variable and expect a table later in the spec.
 
-    # In cases of large numbers of suffixes,
-    # we use the "suffix" variable and expect a table later in the spec
+    Parameters
+    ----------
+    group :
+        A group of suffixes in the schema.
+
+    See make_filename_template for parameters description.
+    """
+
     if len(group["suffixes"]) >= n_dupes_to_combine:
+        lt, gt = ("<", ">") if pdf_format else ("&lt;", "&gt;")
+
         suffixes = [
             lt
             + utils._link_with_html(
@@ -430,20 +444,32 @@ def _suffixes_for_this_group(
 
         return suffixes
 
-    return [
-        utils._link_with_html(
-            suffix,
-            html_path=f"{GLOSSARY_PATH}.html",
-            heading=f"{suffix_key_table[suffix].lower()}-suffixes",
-            pdf_format=pdf_format,
-        )
-        for suffix in group.suffixes
-    ]
+    else:
+        suffix_key_table = _value_key_table(schema.objects.suffixes)
+
+        return [
+            utils._link_with_html(
+                suffix,
+                html_path=f"{GLOSSARY_PATH}.html",
+                heading=f"{suffix_key_table[suffix].lower()}-suffixes",
+                pdf_format=pdf_format,
+            )
+            for suffix in group.suffixes
+        ]
 
 
 def _combine_extensions_with_headings(
     schema, extensions: str | list[str], pdf_format: bool, mutually_exclusive: bool = False
-):
+) -> str | list[str]:
+    """
+    Parameters
+    ----------
+    mutually_exclusive : bool, default=False
+        Set to True if the extensions are mutually exclusive (e.g. .nii and .nii.gz)
+        when you cannot have 2 data files that only differ by extension.
+
+    See make_filename_template for other parameters description.
+    """
     if isinstance(extensions, str):
         extensions = [extensions]
 
@@ -456,10 +482,12 @@ def _combine_extensions_with_headings(
         pdf_format=pdf_format,
     )
 
-    return f"<{'|'.join(extensions)}>" if mutually_exclusive else extensions
+    lt, gt = ("<", ">") if pdf_format else ("&lt;", "&gt;")
+
+    return f"{lt}{'|'.join(extensions)}{gt}" if mutually_exclusive else extensions
 
 
-def _get_extension_headings(schema, extensions):
+def _get_extension_headings(schema, extensions: list[str]) -> list[str]:
     """The glossary indexes by the extension identifier (niigz instead of .nii.gz),
     but the rules reference the actual suffix string (.nii.gz instead of niigz),
     so we need to look it up."""
@@ -474,7 +502,7 @@ def _get_extension_headings(schema, extensions):
     return ext_headings
 
 
-def _nb_extensions(group):
+def _nb_extensions(group) -> int:
     return len(_listify_all_extensions(group.extensions))
 
 
@@ -488,7 +516,7 @@ def _listify_all_extensions(extensions: list[str | list[str]]) -> list[str]:
     return [ext if ext != "*" else ".<extension>" for ext in tmp]
 
 
-def _append_filename_template_legend(text, pdf_format=False):
+def _append_filename_template_legend(text: str, pdf_format=False) -> str:
     """Append a legend to filename templates.
 
     Parameters
@@ -542,13 +570,14 @@ def _append_filename_template_legend(text, pdf_format=False):
     return text
 
 
-def define_common_principles(schema, src_path=None):
+def define_common_principles(schema, src_path: str | None = None) -> str:
     """Enumerate the common principles defined in the schema.
 
     Parameters
     ----------
-    schema : dict
+    schema :
         The BIDS schema.
+
     src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
@@ -575,13 +604,14 @@ def define_common_principles(schema, src_path=None):
     return string
 
 
-def define_allowed_top_directories(schema, src_path=None) -> str:
+def define_allowed_top_directories(schema, src_path: str | None = None) -> str:
     """Create a list of allowed top-level directories with their descriptions.
 
     Parameters
     ----------
     schema : dict
         The BIDS schema.
+
     src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
