@@ -2,13 +2,11 @@
 
 ## Common metadata fields
 
-MR Data described in the following sections share the following RECOMMENDED metadata
-fields (stored in sidecar JSON files).
-MRI acquisition parameters are divided into several categories based on
-"A checklist for fMRI acquisition methods reporting in the literature"
-([article](https://winnower-production.s3.amazonaws.com/papers/977/v4/pdf/977-a-checklist-for-fmri-acquisition-methods-reporting-in-the-literature.pdf),
-[checklist](https://winnower-production.s3.amazonaws.com/papers/977/assets/993e199d-6bc3-4418-be3a-f620af1188b7-Parameter_Reporting_V1p3.pdf))
-by Ben Inglis.
+MR Data described in the following sections share the following RECOMMENDED
+metadata fields (stored in sidecar JSON files). MRI acquisition parameters are
+divided into several categories based on "A checklist for fMRI acquisition
+methods reporting in the literature"
+([article](https://doi.org/10.15200/winn.143191.17127)) by Ben Inglis.
 
 When adding additional metadata please use the CamelCase version of
 [DICOM ontology terms](https://scicrunch.org/scicrunch/interlex/dashboard)
@@ -25,22 +23,23 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_sidecar_table("mri.MRIHardware") }}
 
 Example for `ReceiveCoilActiveElements`:
 
 For Siemens, coil channels are typically not activated/selected individually,
-but rather in pre-defined selectable "groups" of individual channels,
-and the list of the "groups" of elements that are active/selected in any
-given scan populates the `Coil String` entry in Siemens' private DICOM fields
-(for example, `HEA;HEP` for the Siemens standard 32 ch coil
-when both the anterior and posterior groups are activated).
-This is a flexible field that can be used as most appropriate for a given
-vendor and coil to define the "active" coil elements.
-Since individual scans can sometimes not have the intended coil elements selected,
-it is preferable for this field to be populated directly from the DICOM
-for each individual scan, so that it can be used as a mechanism for checking
-that a given scan was collected with the intended coil elements selected.
+but rather in pre-defined selectable "groups" of individual channels, and the
+list of the "groups" of elements that are active/selected in any given scan
+populates the `Coil String` entry in Siemens' private DICOM fields (for example,
+`HEA;HEP` for the Siemens standard 32 ch coil when both the anterior and
+posterior groups are activated). This is a flexible field that can be used as
+most appropriate for a given vendor and coil to define the "active" coil
+elements. Since individual scans can sometimes not have the intended coil
+elements selected, it is preferable for this field to be populated directly from
+the DICOM for each individual scan, so that it can be used as a mechanism for
+checking that a given scan was collected with the intended coil elements
+selected.
 
 ### Institution information
 
@@ -52,6 +51,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_sidecar_table("mri.MRIInstitutionInformation") }}
 
 ### Sequence Specifics
@@ -64,6 +64,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_sidecar_table("mri.MRISequenceSpecifics") }}
 
 ### In- and Out-of-Plane Spatial Encoding
@@ -76,18 +77,19 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_sidecar_table(["mri.MRISpatialEncoding", "mri.PhaseEncodingDirectionRec"]) }}
 
 <sup>2</sup>Conveniently, for Siemens data, this value is easily obtained as
 `1 / (BWPPPE * ReconMatrixPE)`, where BWPPPE is the
-"BandwidthPerPixelPhaseEncode" in DICOM Tag 0019, 1028 and ReconMatrixPE is
-the size of the actual reconstructed data in the phase direction (which is NOT
+"BandwidthPerPixelPhaseEncode" in DICOM Tag 0019, 1028 and ReconMatrixPE is the
+size of the actual reconstructed data in the phase direction (which is NOT
 reflected in a single DICOM Tag for all possible aforementioned scan
 manipulations). See [here](https://lcni.uoregon.edu/kb-articles/kb-0003) and
 [here](https://github.com/neurolabusc/dcm_qa/tree/master/In/TotalReadoutTime)
 
-<sup>3</sup>We use the time between the center of the first "effective" echo
-and the center of the last "effective" echo, sometimes called the "FSL definition".
+<sup>3</sup>We use the time between the center of the first "effective" echo and
+the center of the last "effective" echo, sometimes called the "FSL definition".
 
 ### Timing Parameters
 
@@ -99,6 +101,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_sidecar_table("mri.MRITimingParameters") }}
 
 ### RF & Contrast
@@ -111,6 +114,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_sidecar_table(["mri.MRIFlipAngleLookLockerFalse", "mri.MRIRFandContrast" ]) }}
 
 ### Slice Acceleration
@@ -123,6 +127,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_sidecar_table("mri.MRISliceAcceleration") }}
 
 ### Anatomical landmarks
@@ -137,21 +142,22 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_sidecar_table("mri.MRIAnatomicalLandmarks") }}
 
-### Echo-Planar Imaging and *B<sub>0</sub>* mapping
+### Echo-Planar Imaging and _B<sub>0</sub>_ mapping
 
-Echo-Planar Imaging (EPI) schemes typically used in the acquisition of
-diffusion and functional MRI may also be *intended for* estimating the
-*B<sub>0</sub>* field nonuniformity inside the scanner (in other words,
-*mapping the field*) without the acquisition of additional MRI schemes
-such as gradient-recalled echo (GRE) sequences that are stored under the
-`fmap/` directory of the BIDS structure.
+Echo-Planar Imaging (EPI) schemes typically used in the acquisition of diffusion
+and functional MRI may also be _intended for_ estimating the _B<sub>0</sub>_
+field nonuniformity inside the scanner (in other words, _mapping the field_)
+without the acquisition of additional MRI schemes such as gradient-recalled echo
+(GRE) sequences that are stored under the `fmap/` directory of the BIDS
+structure.
 
-The modality labels `dwi` (under `dwi/`), `bold` (under `func/`),
-`asl` (under `perf/`), `sbref` (under `dwi/`, `func/` or `perf/`), and
-any modality under `fmap/` are allowed to encode the MR protocol intent for
-fieldmap estimation using the following metadata:
+The modality labels `dwi` (under `dwi/`), `bold` (under `func/`), `asl` (under
+`perf/`), `sbref` (under `dwi/`, `func/` or `perf/`), and any modality under
+`fmap/` are allowed to encode the MR protocol intent for fieldmap estimation
+using the following metadata:
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -161,21 +167,20 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_sidecar_table("mri.MRIEchoPlanarImagingAndB0Mapping") }}
 
 ## Anatomy imaging data
 
 Anatomy MRI sequences measure static, structural features of the brain.
 
-This datatype is divided into two groups:
-non-parametric and parametric.
+This datatype is divided into two groups: non-parametric and parametric.
 
-Non-parametric structural images have an arbitrary scale.
-For example, T1w data are T1-weighted,
-but the values do not correspond to actual T1 value estimates.
+Non-parametric structural images have an arbitrary scale. For example, T1w data
+are T1-weighted, but the values do not correspond to actual T1 value estimates.
 
-Parametric structural imaging, on the other hand, use a non-arbitrary scale.
-For example, a T1map file contains T1 value estimates, in seconds.
+Parametric structural imaging, on the other hand, use a non-arbitrary scale. For
+example, a T1map file contains T1 value estimates, in seconds.
 
 ### Non-parametric structural MR images
 
@@ -186,6 +191,7 @@ The inputs for this macro can be found in the directory
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_filename_template("raw", datatypes=["anat"], suffixes=[
          "T1w",
          "T2w",
@@ -209,6 +215,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_suffix_table(
       [
          "T1w",
@@ -225,19 +232,18 @@ and a guide for using macros can be found at
    )
 }}
 
-The [`part-<label>`](../appendices/entities.md#part) entity is
-used to indicate which component of the complex representation of the MRI
-signal is represented in voxel data.
-This entity is associated with the DICOM Tag `0008, 9208`.
+The [`part-<label>`](../appendices/entities.md#part) entity is used to indicate
+which component of the complex representation of the MRI signal is represented
+in voxel data. This entity is associated with the DICOM Tag `0008, 9208`.
 Allowed label values for this entity are `phase`, `mag`, `real` and `imag`,
 which are typically used in `part-mag`/`part-phase` or `part-real`/`part-imag`
-pairs of files.
-For example:
+pairs of files. For example:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {
@@ -252,9 +258,9 @@ A guide for using macros can be found at
 )
 }}
 
-Phase images MAY be in radians or in arbitrary units.
-The sidecar JSON file MUST include the units of the `phase` image.
-The possible options are `rad` or `arbitrary`.
+Phase images MAY be in radians or in arbitrary units. The sidecar JSON file MUST
+include the units of the `phase` image. The possible options are `rad` or
+`arbitrary`.
 
 For example, for `sub-01_part-phase_T1w.json`:
 
@@ -264,7 +270,8 @@ For example, for `sub-01_part-phase_T1w.json`:
 }
 ```
 
-When there is only a magnitude image of a given type, the `part` entity MAY be omitted.
+When there is only a magnitude image of a given type, the `part` entity MAY be
+omitted.
 
 ### Parametric structural MR images
 
@@ -278,6 +285,7 @@ The inputs for this macro can be found in the directory
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_filename_template("raw", datatypes=["anat"], suffixes=[
          "T1map",
          "R1map",
@@ -308,6 +316,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_suffix_table(
       [
          "T1map",
@@ -332,24 +341,24 @@ and a guide for using macros can be found at
 }}
 
 Parametric images listed in the table above are typically generated by
-processing a [file collection](../common-principles.md#entity-linked-file-collections).
-Please visit the [file collections appendix](../appendices/file-collections.md) to see the
-list of suffixes available for quantitative MRI (qMRI) applications associated
-with these maps.
-For any other details on the organization of parametric maps, their
-recommended metadata fields, and the application specific entity or
-metadata requirement levels of [file collections](../appendices/file-collections.md) that can generate
-them, visit the [qMRI appendix](../appendices/qmri.md).
+processing a
+[file collection](../common-principles.md#entity-linked-file-collections).
+Please visit the [file collections appendix](../appendices/file-collections.md)
+to see the list of suffixes available for quantitative MRI (qMRI) applications
+associated with these maps. For any other details on the organization of
+parametric maps, their recommended metadata fields, and the application specific
+entity or metadata requirement levels of
+[file collections](../appendices/file-collections.md) that can generate them,
+visit the [qMRI appendix](../appendices/qmri.md).
 
 ### Defacing masks
 
 If the structural images included in the dataset were defaced (to protect
 identity of participants) one MAY provide the binary mask that was used to
-remove facial features in the form of `_defacemask` files.
-In such cases, the OPTIONAL [`mod-<label>`](../appendices/entities.md#mod)
-entity corresponds to modality suffix,
-such as `T1w` or `inplaneT1`, referenced by the defacemask image.
-For example, `sub-01_mod-T1w_defacemask.nii.gz`.
+remove facial features in the form of `_defacemask` files. In such cases, the
+OPTIONAL [`mod-<label>`](../appendices/entities.md#mod) entity corresponds to
+modality suffix, such as `T1w` or `inplaneT1`, referenced by the defacemask
+image. For example, `sub-01_mod-T1w_defacemask.nii.gz`.
 
 <!--
 This block generates a filename templates.
@@ -358,6 +367,7 @@ The inputs for this macro can be found in the directory
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_filename_template("raw", datatypes=["anat"], suffixes=[
          "defacemask",
       ])
@@ -366,8 +376,8 @@ and a guide for using macros can be found at
 ### Task metadata for anatomical scans
 
 The OPTIONAL [`task-<label>`](../appendices/entities.md#task) entity can be used
-in order to allow tasks during structural MR acquisitions,
-for example pre-described motion paradigms such as nodding, to be described.
+in order to allow tasks during structural MR acquisitions, for example
+pre-described motion paradigms such as nodding, to be described.
 
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in
@@ -375,12 +385,13 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_sidecar_table("anat.TaskMetadata") }}
 
 Some meta information about the acquisition MAY be provided in an additional
-JSON file. See [Common metadata fields](#common-metadata-fields) for a
-list of terms and their definitions. There are also some OPTIONAL JSON
-fields specific to anatomical scans:
+JSON file. See [Common metadata fields](#common-metadata-fields) for a list of
+terms and their definitions. There are also some OPTIONAL JSON fields specific
+to anatomical scans:
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -390,15 +401,16 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_sidecar_table("anat.MRIAnatomyCommonMetadataFields") }}
 
 ### Deprecated suffixes
 
 Some suffixes that were available in versions of the specification prior to
-1.5.0 have been deprecated.
-These suffixes are ambiguous and have been superseded by more precise conventions.
-Therefore, they are not recommended for use in new datasets.
-They are, however, still valid suffixes, to maintain backwards compatibility.
+1.5.0 have been deprecated. These suffixes are ambiguous and have been
+superseded by more precise conventions. Therefore, they are not recommended for
+use in new datasets. They are, however, still valid suffixes, to maintain
+backwards compatibility.
 
 The following suffixes are valid, but SHOULD NOT be used for new BIDS compatible
 datasets (created after version 1.5.0.):
@@ -410,6 +422,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_suffix_table(
       [
          "T2star",
@@ -430,6 +443,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_suffix_table(
       [
          "bold",
@@ -446,14 +460,16 @@ The inputs for this macro can be found in the directory
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_filename_template("raw", datatypes=["func"]) }}
 
-Functional imaging consists of techniques that support rapid temporal repetition.
-This includes, but is not limited to, task based fMRI, as well as resting state fMRI, which is treated like any other task.
-For task based fMRI, a corresponding task events file (see below) MUST be provided
-(please note that this file is not necessary for resting state scans).
-For multiband acquisitions, one MAY also save the single-band reference image with the `sbref` suffix
-(for example, `sub-control01_task-nback_sbref.nii.gz`).
+Functional imaging consists of techniques that support rapid temporal
+repetition. This includes, but is not limited to, task based fMRI, as well as
+resting state fMRI, which is treated like any other task. For task based fMRI, a
+corresponding task events file (see below) MUST be provided (please note that
+this file is not necessary for resting state scans). For multiband acquisitions,
+one MAY also save the single-band reference image with the `sbref` suffix (for
+example, `sub-control01_task-nback_sbref.nii.gz`).
 
 Multi-echo data MUST be split into one file per echo using the
 [`echo-<index>`](../appendices/entities.md#echo) entity. For example:
@@ -462,6 +478,7 @@ Multi-echo data MUST be split into one file per echo using the
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {
@@ -478,17 +495,18 @@ A guide for using macros can be found at
 ) }}
 
 Please note that the `<index>` denotes the number/index (in the form of a
-nonnegative integer) of the echo not the echo time value which needs to be stored in the
-field EchoTime of the separate JSON file.
+nonnegative integer) of the echo not the echo time value which needs to be
+stored in the field EchoTime of the separate JSON file.
 
-Complex-valued data MUST be split into one file for each data type.
-For BOLD data, there are separate suffixes for magnitude (`_bold`) and phase
-(`_phase`) data, but the `_phase` suffix is [deprecated](../common-principles.md#definitions).
-Newly generated datasets SHOULD NOT use the `_phase` suffix, and the suffix will be removed
-from the specification in the next major release.
-For backwards compatibility, `_phase` is considered equivalent to `_part-phase_bold`.
-When the `_phase` suffix is not used, each file shares the same
-name with the exception of the `part-<mag|phase>` or `part-<real|imag>` entity.
+Complex-valued data MUST be split into one file for each data type. For BOLD
+data, there are separate suffixes for magnitude (`_bold`) and phase (`_phase`)
+data, but the `_phase` suffix is
+[deprecated](../common-principles.md#definitions). Newly generated datasets
+SHOULD NOT use the `_phase` suffix, and the suffix will be removed from the
+specification in the next major release. For backwards compatibility, `_phase`
+is considered equivalent to `_part-phase_bold`. When the `_phase` suffix is not
+used, each file shares the same name with the exception of the
+`part-<mag|phase>` or `part-<real|imag>` entity.
 
 For example:
 
@@ -496,6 +514,7 @@ For example:
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {
@@ -513,7 +532,8 @@ A guide for using macros can be found at
    }
 ) }}
 
-Some meta information about the acquisition MUST be provided in an additional JSON file.
+Some meta information about the acquisition MUST be provided in an additional
+JSON file.
 
 ### Required fields
 
@@ -525,6 +545,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_sidecar_table([
        "func.MRIFuncRepetitionTime",
        "func.MRIFuncVolumeTiming",
@@ -533,9 +554,9 @@ A guide for using macros can be found at
 }}
 
 For the fields described above and in the following section, the term "Volume"
-refers to a reconstruction of the object being imaged (for example, brain or part of a
-brain). In case of multiple channels in a coil, the term "Volume" refers to a
-combined image rather than an image from each coil.
+refers to a reconstruction of the object being imaged (for example, brain or
+part of a brain). In case of multiple channels in a coil, the term "Volume"
+refers to a combined image rather than an image from each coil.
 
 ### Other RECOMMENDED metadata
 
@@ -549,6 +570,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_sidecar_table("func.MRIFuncTimingParameters") }}
 
 The following table recapitulates the different ways that specific fields have
@@ -558,17 +580,17 @@ sparse sequences.
 
 |          | **`RepetitionTime`** | **`SliceTiming`** | **`AcquisitionDuration`** | **`DelayTime`** | **`VolumeTiming`** |
 | -------- | -------------------- | ----------------- | ------------------------- | --------------- | ------------------ |
-| option A |     \[ X ]           |                   |         \[ ]              |                 |     \[ ]           |
-| option B |      \[ ]            |    \[ X ]         |                           |    \[ ]         |    \[ X ]          |
-| option C |      \[ ]            |                   |        \[ X ]             |    \[ ]         |    \[ X ]          |
-| option D |     \[ X ]           |    \[ X ]         |         \[ ]              |                 |     \[ ]           |
-| option E |     \[ X ]           |                   |         \[ ]              |   \[ X ]        |     \[ ]           |
+| option A | \[ X ]               |                   | \[ ]                      |                 | \[ ]               |
+| option B | \[ ]                 | \[ X ]            |                           | \[ ]            | \[ X ]             |
+| option C | \[ ]                 |                   | \[ X ]                    | \[ ]            | \[ X ]             |
+| option D | \[ X ]               | \[ X ]            | \[ ]                      |                 | \[ ]               |
+| option E | \[ X ]               |                   | \[ ]                      | \[ X ]          | \[ ]               |
 
 **Legend**
 
--   \[ X ] --> MUST be defined
--   \[  \] --> MUST NOT be defined
--   empty cell --> MAY be specified
+- \[ X ] --> MUST be defined
+- \[ \] --> MUST NOT be defined
+- empty cell --> MAY be specified
 
 #### fMRI task information
 
@@ -580,10 +602,11 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_sidecar_table("func.MRIFuncTaskInformation") }}
 
-See [Common metadata fields](#common-metadata-fields) for a list of
-additional terms and their definitions.
+See [Common metadata fields](#common-metadata-fields) for a list of additional
+terms and their definitions.
 
 Example:
 
@@ -591,6 +614,7 @@ Example:
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {
@@ -621,16 +645,16 @@ A guide for using macros can be found at
 ## Diffusion imaging data
 
 Several [example datasets](https://github.com/bids-standard/bids-examples)
-contain diffusion imaging data formatted using this specification
-and that can be used for practical guidance when curating a new dataset:
+contain diffusion imaging data formatted using this specification and that can
+be used for practical guidance when curating a new dataset:
 
--   [`genetics_ukbb`](https://github.com/bids-standard/bids-examples/tree/master/genetics_ukbb)
--   [`eeg_rest_fmri`](https://github.com/bids-standard/bids-examples/tree/master/eeg_rest_fmri)
--   [`ds114`](https://github.com/bids-standard/bids-examples/tree/master/ds114)
--   [`ds000117`](https://github.com/bids-standard/bids-examples/tree/master/ds000117)
+- [`genetics_ukbb`](https://github.com/bids-standard/bids-examples/tree/master/genetics_ukbb)
+- [`eeg_rest_fmri`](https://github.com/bids-standard/bids-examples/tree/master/eeg_rest_fmri)
+- [`ds114`](https://github.com/bids-standard/bids-examples/tree/master/ds114)
+- [`ds000117`](https://github.com/bids-standard/bids-examples/tree/master/ds000117)
 
-Diffusion-weighted imaging data acquired for a participant.
-Currently supported image types include:
+Diffusion-weighted imaging data acquired for a participant. Currently supported
+image types include:
 
 <!--
 This block generates a suffix table.
@@ -639,6 +663,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_suffix_table(
       [
          "dwi",
@@ -654,56 +679,61 @@ The inputs for this macro can be found in the directory
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_filename_template("raw", datatypes=["dwi"]) }}
 
-The [`run-<index>`](../appendices/entities.md#run) entity is RECOMMENDED
-to encode the splits of multipart DWI scans
-(see [below](#multipart-split-dwi-schemes) for more information on multipart DWI schemes).
+The [`run-<index>`](../appendices/entities.md#run) entity is RECOMMENDED to
+encode the splits of multipart DWI scans (see
+[below](#multipart-split-dwi-schemes) for more information on multipart DWI
+schemes).
 
-**Combining multi- and single-band acquisitions**.
-The single-band reference image MAY be stored with suffix `sbref` (for example,
+**Combining multi- and single-band acquisitions**. The single-band reference
+image MAY be stored with suffix `sbref` (for example,
 `dwi/sub-control01_sbref.nii[.gz]`) as long as the image has no corresponding
 [gradient information (`[*_]dwi.bval` and `[*_]dwi.bvec` sidecar files)](#required-gradient-orientation-information)
 to be stored.
 
-Otherwise, if some gradient information is associated to the single-band diffusion
-image and a multi-band diffusion image also exists, the `acq-<label>` entity
-MUST be used to distinguish both images.
-In such a case, two files could have the following names:
-`sub-01_acq-singleband_dwi.nii.gz` and `sub-01_acq-multiband_dwi.nii.gz`.
-The user is free to choose any other label than `singleband` and
-`multiband`, as long as they are consistent across subjects and sessions.
+Otherwise, if some gradient information is associated to the single-band
+diffusion image and a multi-band diffusion image also exists, the `acq-<label>`
+entity MUST be used to distinguish both images. In such a case, two files could
+have the following names: `sub-01_acq-singleband_dwi.nii.gz` and
+`sub-01_acq-multiband_dwi.nii.gz`. The user is free to choose any other label
+than `singleband` and `multiband`, as long as they are consistent across
+subjects and sessions.
 
 ### REQUIRED gradient orientation information
 
 The REQUIRED gradient orientation information corresponding to a DWI acquisition
-MUST be stored using `[*_]dwi.bval` and `[*_]dwi.bvec` pairs of files.
-The `[*_]dwi.bval` and `[*_]dwi.bvec` files MAY be saved on any level of the directory structure
-and thus define those values for all sessions and/or subjects in one place (see
+MUST be stored using `[*_]dwi.bval` and `[*_]dwi.bvec` pairs of files. The
+`[*_]dwi.bval` and `[*_]dwi.bvec` files MAY be saved on any level of the
+directory structure and thus define those values for all sessions and/or
+subjects in one place (see
 [the inheritance principle](../common-principles.md#the-inheritance-principle)).
 
 As an exception to the [common principles](../common-principles.md#definitions)
 that parameters are constant across runs, the gradient table information (stored
 within the `[*_]dwi.bval` and `[*_]dwi.bvec` files) MAY change across DWI runs.
 
-**Gradient orientation file formats**.
-The `[*_]dwi.bval` and `[*_]dwi.bvec` files MUST follow the
-[FSL format](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT/UserGuide#DTIFIT):
-The `[*_]dwi.bvec` file contains 3 rows with *N* space-delimited floating-point numbers
-(corresponding to the *N* volumes in the corresponding NIfTI file.)
-The first row contains the *x* elements, the second row contains the *y* elements and
-the third row contains the *z* elements of a unit vector in the direction of the applied
-diffusion gradient, where the *i*-th elements in each row correspond together to
-the *i*-th volume, with `[0,0,0]` for *non-diffusion-weighted* (also called *b*=0 or *low-b*)
-volumes.
-Following the FSL format for the `[*_]dwi.bvec` specification, the coordinate system of
-the *b* vectors MUST be defined with respect to the coordinate system defined by
-the header of the corresponding `_dwi` NIfTI file and not the scanner's device
-coordinate system (see [Coordinate systems](../appendices/coordinate-systems.md)).
-The most relevant limitation imposed by this choice is that the gradient information cannot
-be directly stored in this format if the scanner generates *b*-vectors in *scanner coordinates*.
+**Gradient orientation file formats**. The `[*_]dwi.bval` and `[*_]dwi.bvec`
+files MUST follow the
+[FSL format](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT/UserGuide#DTIFIT): The
+`[*_]dwi.bvec` file contains 3 rows with _N_ space-delimited floating-point
+numbers (corresponding to the _N_ volumes in the corresponding NIfTI file.) The
+first row contains the _x_ elements, the second row contains the _y_ elements
+and the third row contains the _z_ elements of a unit vector in the direction of
+the applied diffusion gradient, where the _i_-th elements in each row correspond
+together to the _i_-th volume, with `[0,0,0]` for _non-diffusion-weighted_ (also
+called _b_=0 or _low-b_) volumes. Following the FSL format for the
+`[*_]dwi.bvec` specification, the coordinate system of the _b_ vectors MUST be
+defined with respect to the coordinate system defined by the header of the
+corresponding `_dwi` NIfTI file and not the scanner's device coordinate system
+(see [Coordinate systems](../appendices/coordinate-systems.md)). The most
+relevant limitation imposed by this choice is that the gradient information
+cannot be directly stored in this format if the scanner generates _b_-vectors in
+_scanner coordinates_.
 
-Example of `[*_]dwi.bvec` file, with *N*=6, with two *b*=0 volumes in the beginning:
+Example of `[*_]dwi.bvec` file, with _N_=6, with two _b_=0 volumes in the
+beginning:
 
 ```Text
 0 0 0.021828 -0.015425 -0.70918 -0.2465
@@ -711,10 +741,12 @@ Example of `[*_]dwi.bvec` file, with *N*=6, with two *b*=0 volumes in the beginn
 0 0 -0.59636 0.97516 -0.70503 -0.96351
 ```
 
-The `[*_]dwi.bval` file contains the *b*-values (in s/mm<sup>2</sup>) corresponding to the
-volumes in the relevant NIfTI file), with 0 designating *b*=0 volumes, space-delimited.
+The `[*_]dwi.bval` file contains the _b_-values (in s/mm<sup>2</sup>)
+corresponding to the volumes in the relevant NIfTI file), with 0 designating
+_b_=0 volumes, space-delimited.
 
-Example of `[*_]dwi.bval` file, corresponding to the previous `[*_]dwi.bvec` example:
+Example of `[*_]dwi.bval` file, corresponding to the previous `[*_]dwi.bvec`
+example:
 
 ```Text
 0 0 2000 2000 1000 1000
@@ -722,16 +754,14 @@ Example of `[*_]dwi.bval` file, corresponding to the previous `[*_]dwi.bvec` exa
 
 ### Multipart (split) DWI schemes
 
-Some MR schemes cannot be acquired directly by some scanner devices,
-requiring to generate several DWI runs that were originally meant to belong
-in a single one.
-For instance, some GE scanners cannot collect more than &asymp;160 volumes
-in a single run under fast-changing gradients, so acquiring *HCP-style*
-diffusion images will require splitting the DWI scheme in several runs.
-Because researchers will generally optimize the data splits, these will likely
-not be able to be directly concatenated.
-BIDS permits defining arbitrary groupings of these multipart scans with the
-following metadata:
+Some MR schemes cannot be acquired directly by some scanner devices, requiring
+to generate several DWI runs that were originally meant to belong in a single
+one. For instance, some GE scanners cannot collect more than &asymp;160 volumes
+in a single run under fast-changing gradients, so acquiring _HCP-style_
+diffusion images will require splitting the DWI scheme in several runs. Because
+researchers will generally optimize the data splits, these will likely not be
+able to be directly concatenated. BIDS permits defining arbitrary groupings of
+these multipart scans with the following metadata:
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -741,6 +771,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_sidecar_table("dwi.MRIDiffusionMultipart") }}
 
 JSON example:
@@ -751,15 +782,16 @@ JSON example:
 }
 ```
 
-For instance, if there are two phase-encoding directions (`AP`, `PA`), and
-two runs each, and the intent of the researcher is that all of them are
-part of a unique multipart scan, then they will tag all four runs with the
-same `MultipartID` (shown at the right-hand side of the file listing):
+For instance, if there are two phase-encoding directions (`AP`, `PA`), and two
+runs each, and the intent of the researcher is that all of them are part of a
+unique multipart scan, then they will tag all four runs with the same
+`MultipartID` (shown at the right-hand side of the file listing):
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_filetree_example(
    {
    "sub-1": {
@@ -773,13 +805,14 @@ A guide for using macros can be found at
    }
 ) }}
 
-If, conversely, the researcher wanted to store two multipart scans, one possibility
-is to combine matching phase-encoding directions:
+If, conversely, the researcher wanted to store two multipart scans, one
+possibility is to combine matching phase-encoding directions:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_filetree_example(
    {
    "sub-1": {
@@ -800,6 +833,7 @@ runs instead:
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_filetree_example(
    {
    "sub-1": {
@@ -820,6 +854,7 @@ The `MultipartID` metadata MAY be used with the
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_filetree_example(
    {
    "sub-1": {
@@ -835,11 +870,11 @@ A guide for using macros can be found at
 
 ### Other RECOMMENDED metadata
 
-The `PhaseEncodingDirection` and `TotalReadoutTime` metadata
-fields are RECOMMENDED to enable the correction of geometrical distortions
-with [fieldmap information](#fieldmap-data).
-See [Common metadata fields](#common-metadata-fields) for a list of
-additional terms that can be included in the corresponding JSON file.
+The `PhaseEncodingDirection` and `TotalReadoutTime` metadata fields are
+RECOMMENDED to enable the correction of geometrical distortions with
+[fieldmap information](#fieldmap-data). See
+[Common metadata fields](#common-metadata-fields) for a list of additional terms
+that can be included in the corresponding JSON file.
 
 JSON example:
 
@@ -853,9 +888,10 @@ JSON example:
 
 ## Arterial Spin Labeling perfusion data
 
-Several [example ASL datasets](https://github.com/bids-standard/bids-examples#asl-datasets)
-have been formatted using this specification
-and can be used for practical guidance when curating a new dataset.
+Several
+[example ASL datasets](https://github.com/bids-standard/bids-examples#asl-datasets)
+have been formatted using this specification and can be used for practical
+guidance when curating a new dataset.
 
 <!--
 This block generates a filename templates.
@@ -864,20 +900,23 @@ The inputs for this macro can be found in the directory
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_filename_template("raw", datatypes=["perf"]) }}
 
-The complete ASL time series should be stored as a 4D NIfTI file in the original acquisition order,
-accompanied by two ancillary files: `*_asl.json` and `*_aslcontext.tsv`.
+The complete ASL time series should be stored as a 4D NIfTI file in the original
+acquisition order, accompanied by two ancillary files: `*_asl.json` and
+`*_aslcontext.tsv`.
 
 ### `*_aslcontext.tsv`
 
-The `*_aslcontext.tsv` table consists of a single column of labels identifying the
-`volume_type` of each volume in the corresponding `*_asl.nii[.gz]` file.
-Volume types are defined in the following table, based on DICOM Tag 0018, 9257 `ASL Context`.
-Note that the volume_types `control` and  `label` within BIDS only serve
-to specify the magnetization state of the blood and thus the ASL subtraction order.
-See the [ASL Appendix](../appendices/arterial-spin-labeling.md#which-image-is-control-and-which-is-label)
-for more information on `control` and  `label`.
+The `*_aslcontext.tsv` table consists of a single column of labels identifying
+the `volume_type` of each volume in the corresponding `*_asl.nii[.gz]` file.
+Volume types are defined in the following table, based on DICOM Tag 0018, 9257
+`ASL Context`. Note that the volume_types `control` and `label` within BIDS only
+serve to specify the magnetization state of the blood and thus the ASL
+subtraction order. See the
+[ASL Appendix](../appendices/arterial-spin-labeling.md#which-image-is-control-and-which-is-label)
+for more information on `control` and `label`.
 
 | **volume_type** | **Definition**                                                                                                                                                                         |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -887,39 +926,43 @@ for more information on `control` and  `label`.
 | deltam          | The deltaM image is a perfusion-weighted image, obtained by the subtraction of `control` - `label`.                                                                                    |
 | cbf             | The cerebral blood flow (CBF) image is produced by dividing the deltaM by the M0, quantified into `mL/100g/min` (See also [doi:10.1002/mrm.25197](https://doi.org/10.1002/mrm.25197)). |
 
-If the `control` and `label` images are not available,
-their derivative `deltam` should be stored within the `*_asl.nii[.gz]`
-and specified in the `*_aslcontext.tsv` instead.
-If the `deltam` is not available,
-`cbf` should be stored within the `*_asl.nii[.gz]` and specified in the `*_aslcontext.tsv`.
-When `cbf` is stored within the `*_asl.nii[.gz]`,
-its units need to be specified in the `*_asl.json` as well.
-Note that the raw images, including the `m0scan`, may also be used for quality control.
-See the [ASL Appendix](../appendices/arterial-spin-labeling.md#_aslcontexttsv-three-possible-cases) for examples of the three possible cases, in order of decreasing preference.
+If the `control` and `label` images are not available, their derivative `deltam`
+should be stored within the `*_asl.nii[.gz]` and specified in the
+`*_aslcontext.tsv` instead. If the `deltam` is not available, `cbf` should be
+stored within the `*_asl.nii[.gz]` and specified in the `*_aslcontext.tsv`. When
+`cbf` is stored within the `*_asl.nii[.gz]`, its units need to be specified in
+the `*_asl.json` as well. Note that the raw images, including the `m0scan`, may
+also be used for quality control. See the
+[ASL Appendix](../appendices/arterial-spin-labeling.md#_aslcontexttsv-three-possible-cases)
+for examples of the three possible cases, in order of decreasing preference.
 
 ### Scaling
 
-The `*_asl.nii.gz` and `*_m0scan.nii.gz` should contain appropriately scaled data, and no additional scaling factors are allowed other than the scale slope in the respective
-NIfTI headers.
+The `*_asl.nii.gz` and `*_m0scan.nii.gz` should contain appropriately scaled
+data, and no additional scaling factors are allowed other than the scale slope
+in the respective NIfTI headers.
 
 ### M0
 
-The `m0scan` can either be stored inside the 4D ASL time-series NIfTI file
-or as a separate NIfTI file,
-depending on whether it was acquired within the ASL time-series or as a separate scan.
-These and other M0 options are specified in the REQUIRED `M0Type` field of the `*_asl.json` file.
-It can also be stored under `fmap/sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<label>[_run-<index>]_m0scan.nii[.gz]`,
-when the [pepolar approach](#case-4-multiple-phase-encoded-directions-pepolar) is used.
+The `m0scan` can either be stored inside the 4D ASL time-series NIfTI file or as
+a separate NIfTI file, depending on whether it was acquired within the ASL
+time-series or as a separate scan. These and other M0 options are specified in
+the REQUIRED `M0Type` field of the `*_asl.json` file. It can also be stored
+under
+`fmap/sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<label>[_run-<index>]_m0scan.nii[.gz]`,
+when the [pepolar approach](#case-4-multiple-phase-encoded-directions-pepolar)
+is used.
 
 ### `*_asl.json` file
 
-Depending on the method used for ASL acquisition ((P)CASL or PASL)
-different metadata fields are applicable.
-Additionally, some common metadata fields are REQUIRED for the `*_asl.json`:
-`MagneticFieldStrength`, `MRAcquisitionType`, `EchoTime`,
-`SliceTiming` in case `MRAcquisitionType` is defined as 2D,
-`RepetitionTimePreparation`, and `FlipAngle` in case `LookLocker` is `true`.
-See the [ASL Appendix](../appendices/arterial-spin-labeling.md#summary-image-of-the-most-common-asl-sequences) for more information on the most common ASL sequences.
+Depending on the method used for ASL acquisition ((P)CASL or PASL) different
+metadata fields are applicable. Additionally, some common metadata fields are
+REQUIRED for the `*_asl.json`: `MagneticFieldStrength`, `MRAcquisitionType`,
+`EchoTime`, `SliceTiming` in case `MRAcquisitionType` is defined as 2D,
+`RepetitionTimePreparation`, and `FlipAngle` in case `LookLocker` is `true`. See
+the
+[ASL Appendix](../appendices/arterial-spin-labeling.md#summary-image-of-the-most-common-asl-sequences)
+for more information on the most common ASL sequences.
 
 #### Common metadata fields applicable to both (P)CASL and PASL
 
@@ -931,11 +974,15 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_sidecar_table(["asl.MRIASLCommonMetadataFields", "asl.MRIASLCommonMetadataFieldsM0TypeRec", "asl.MRIASLCommonMetadataFieldsBackgroundSuppressionOpt", "asl.MRIASLCommonMetadataFieldsVascularCrushingOpt", ]) }}
 
 #### (P)CASL-specific metadata fields
 
-These fields can only be used when `ArterialSpinLabelingType` is `"CASL"` or `"PCASL"`. See the [ASL Appendix](../appendices/arterial-spin-labeling.md#pcasl-sequence) for more information on the (P)CASL sequence and the Labeling Pulse fields.
+These fields can only be used when `ArterialSpinLabelingType` is `"CASL"` or
+`"PCASL"`. See the
+[ASL Appendix](../appendices/arterial-spin-labeling.md#pcasl-sequence) for more
+information on the (P)CASL sequence and the Labeling Pulse fields.
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -945,6 +992,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_sidecar_table([
        "asl.MRIASLPcaslSpecific",
        "asl.MRIASLCaslSpecific",
@@ -953,7 +1001,9 @@ A guide for using macros can be found at
 
 #### PASL-specific metadata fields
 
-These fields can only be used when `ArterialSpinLabelingType` is `PASL`. See the [ASL Appendix](../appendices/arterial-spin-labeling.md#pasl-sequence) for more information on the PASL sequence and the BolusCutOff fields.
+These fields can only be used when `ArterialSpinLabelingType` is `PASL`. See the
+[ASL Appendix](../appendices/arterial-spin-labeling.md#pasl-sequence) for more
+information on the PASL sequence and the BolusCutOff fields.
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -963,11 +1013,13 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_sidecar_table(["asl.MRIASLPaslSpecific", "asl.MRIASLPASLSpecificBolusCutOffFlagFalse"]) }}
 
 ### `m0scan` metadata fields
 
-Some common metadata fields are REQUIRED for the `*_m0scan.json`: `EchoTime`, `RepetitionTimePreparation`, and `FlipAngle` in case `LookLocker` is `true`.
+Some common metadata fields are REQUIRED for the `*_m0scan.json`: `EchoTime`,
+`RepetitionTimePreparation`, and `FlipAngle` in case `LookLocker` is `true`.
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -977,42 +1029,46 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_sidecar_table("asl.MRIASLM0Scan") }}
 
-The following table recapitulates the ASL field dependencies. If Source field (column 1) contains the Value specified in column 2, then the Requirements in column 4 are
-imposed on the Dependent fields in column 3. See the [ASL Appendix](../appendices/arterial-spin-labeling.md#flowchart-based-on-dependency-table) for this information in the
-form of flowcharts.
+The following table recapitulates the ASL field dependencies. If Source field
+(column 1) contains the Value specified in column 2, then the Requirements in
+column 4 are imposed on the Dependent fields in column 3. See the
+[ASL Appendix](../appendices/arterial-spin-labeling.md#flowchart-based-on-dependency-table)
+for this information in the form of flowcharts.
 
 | **Source field**         | **Value**    | **Dependent field**  | **Requirements**                                 |
-|--------------------------|--------------|----------------------|--------------------------------------------------|
+| ------------------------ | ------------ | -------------------- | ------------------------------------------------ |
 | MRAcquisitionType        | 2D / 3D      | SliceTiming          | \[X\] / \[\]                                     |
 | LookLocker               | true         | FlipAngle            | \[X\]                                            |
 | ArterialSpinLabelingType | PCASL        | LabelingDuration     | \[X\]                                            |
 | ArterialSpinLabelingType | PASL         | BolusCutOffFlag      | \[X\]                                            |
 | BolusCutOffFlag          | true / false | BolusCutOffDelayTime | \[X\] / \[\]                                     |
 | BolusCutOffFlag          | true / false | BolusCutOffTechnique | \[X\] / \[\]                                     |
-| M0Type                   | Separate     | */perf/              | contains `*_m0scan.nii[.gz]` and `*_m0scan.json` |
-| M0Type                   | Included     | *_aslcontext.tsv     | contains m0scan                                  |
+| M0Type                   | Separate     | \*/perf/             | contains `*_m0scan.nii[.gz]` and `*_m0scan.json` |
+| M0Type                   | Included     | \*\_aslcontext.tsv   | contains m0scan                                  |
 | M0Type                   | Estimate     | M0Estimate           | \[X\]                                            |
 | `*_aslcontext.tsv`       | cbf          | Units                | \[X\]                                            |
 
 **Legend**
 
--   \[ X ] --> MUST be defined
--   \[   \] --> MUST NOT be defined
+- \[ X ] --> MUST be defined
+- \[ \] --> MUST NOT be defined
 
 ## Fieldmap data
 
-Data acquired to correct for *B<sub>0</sub>* inhomogeneities can come in different forms.
-The current version of this standard considers four different scenarios:
+Data acquired to correct for _B<sub>0</sub>_ inhomogeneities can come in
+different forms. The current version of this standard considers four different
+scenarios:
 
 1.  [Phase-difference map](#case-1-phase-difference-map-and-at-least-one-magnitude-image)
 1.  [Two phase maps](#case-2-two-phase-maps-and-two-magnitude-images)
-1.  [Direct *field mapping*](#case-3-direct-field-mapping)
-1.  ["*PEpolar*" fieldmaps](#case-4-multiple-phase-encoded-directions-pepolar)
+1.  [Direct _field mapping_](#case-3-direct-field-mapping)
+1.  ["_PEpolar_" fieldmaps](#case-4-multiple-phase-encoded-directions-pepolar)
 
-These four different types of field mapping strategies can be encoded
-using the following image types:
+These four different types of field mapping strategies can be encoded using the
+following image types:
 
 <!--
 This block generates a suffix table.
@@ -1021,6 +1077,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_suffix_table(
       [
          "magnitude",
@@ -1038,19 +1095,18 @@ and a guide for using macros can be found at
 ### Expressing the MR protocol intent for fieldmaps
 
 Fieldmaps are typically acquired with the purpose of correcting one or more EPI
-scans under `dwi/`, `func/`, or `perf/` for distortions derived from *B<sub>0</sub>*
-nonuniformity.
+scans under `dwi/`, `func/`, or `perf/` for distortions derived from
+_B<sub>0</sub>_ nonuniformity.
 
 #### Using `B0FieldIdentifier` metadata
 
-The general purpose [`B0FieldIdentifier` MRI metadata](#echo-planar-imaging-and-b0-mapping)
-is RECOMMENDED for the prescription of the *B<sub>0</sub>* field estimation intent of the
-original acquisition protocol.
-`B0FieldIdentifier` and `B0FieldSource` duplicate the capabilities of
-the original `IntendedFor` approach (see below), while permitting more
-complex use cases.
-It is RECOMMENDED to use both approaches to maintain compatibility with
-tools that support older datasets.
+The general purpose
+[`B0FieldIdentifier` MRI metadata](#echo-planar-imaging-and-b0-mapping) is
+RECOMMENDED for the prescription of the _B<sub>0</sub>_ field estimation intent
+of the original acquisition protocol. `B0FieldIdentifier` and `B0FieldSource`
+duplicate the capabilities of the original `IntendedFor` approach (see below),
+while permitting more complex use cases. It is RECOMMENDED to use both
+approaches to maintain compatibility with tools that support older datasets.
 
 #### Using `IntendedFor` metadata
 
@@ -1065,6 +1121,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_sidecar_table("fmap.MRIFieldmapIntendedFor") }}
 
 For example:
@@ -1082,12 +1139,12 @@ For example:
 
 #### Case 1: Phase-difference map and at least one magnitude image
 
-[Example datasets](https://github.com/bids-standard/bids-examples)
-containing that type of fieldmap can be found here:
+[Example datasets](https://github.com/bids-standard/bids-examples) containing
+that type of fieldmap can be found here:
 
--   [`7t_trt`](https://github.com/bids-standard/bids-examples/tree/master/7t_trt)
--   [`genetics_ukbb`](https://github.com/bids-standard/bids-examples/tree/master/genetics_ukbb)
--   [`ds000117`](https://github.com/bids-standard/bids-examples/tree/master/ds000117)
+- [`7t_trt`](https://github.com/bids-standard/bids-examples/tree/master/7t_trt)
+- [`genetics_ukbb`](https://github.com/bids-standard/bids-examples/tree/master/genetics_ukbb)
+- [`ds000117`](https://github.com/bids-standard/bids-examples/tree/master/ds000117)
 
 <!--
 This block generates a filename templates.
@@ -1096,12 +1153,12 @@ The inputs for this macro can be found in the directory
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_filename_template("raw", datatypes=["fmap"], suffixes=["phasediff", "magnitude1", "magnitude2"]) }}
 
-where
-the REQUIRED `_phasediff` image corresponds to the phase-drift map between echo times,
-the REQUIRED `_magnitude1` image corresponds to the shorter echo time, and
-the OPTIONAL `_magnitude2` image to the longer echo time.
+where the REQUIRED `_phasediff` image corresponds to the phase-drift map between
+echo times, the REQUIRED `_magnitude1` image corresponds to the shorter echo
+time, and the OPTIONAL `_magnitude2` image to the longer echo time.
 
 Required fields:
 
@@ -1113,13 +1170,13 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_sidecar_table("fmap.MRIFieldmapPhaseDifferencePhasediff") }}
 
 In this particular case, the sidecar JSON file
-`sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phasediff.json`
-MUST define the time of two echos used to map the phase and finally calculate
-the phase-difference map.
-For example:
+`sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phasediff.json` MUST
+define the time of two echos used to map the phase and finally calculate the
+phase-difference map. For example:
 
 ```JSON
 {
@@ -1132,8 +1189,8 @@ For example:
 #### Case 2: Two phase maps and two magnitude images
 
 Similar to case 1, but instead of a precomputed phase-difference map, two
-separate phase images and two magnitude images corresponding to first and
-second echos are available.
+separate phase images and two magnitude images corresponding to first and second
+echos are available.
 
 <!--
 This block generates a filename templates.
@@ -1142,6 +1199,7 @@ The inputs for this macro can be found in the directory
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_filename_template("raw", datatypes=["fmap"], suffixes=["phase1", "phase2", "magnitude1", "magnitude2"]) }}
 
 Required fields:
@@ -1154,10 +1212,12 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_sidecar_table("fmap.MRIFieldmapTwoPhase") }}
 
-Each phase map has a corresponding sidecar JSON file to specify its corresponding `EchoTime`.
-For example, `sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phase2.json` may read:
+Each phase map has a corresponding sidecar JSON file to specify its
+corresponding `EchoTime`. For example,
+`sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phase2.json` may read:
 
 ```JSON
 {
@@ -1166,10 +1226,11 @@ For example, `sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phase2.json`
 }
 ```
 
-#### Case 3: Direct *field mapping*
+#### Case 3: Direct _field mapping_
 
 In some cases (for example GE), the scanner software will directly reconstruct a
-*B<sub>0</sub>* field map along with a magnitude image used for anatomical reference.
+_B<sub>0</sub>_ field map along with a magnitude image used for anatomical
+reference.
 
 <!--
 This block generates a filename templates.
@@ -1178,6 +1239,7 @@ The inputs for this macro can be found in the directory
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_filename_template("raw", datatypes=["fmap"], suffixes=["fieldmap", "magnitude"]) }}
 
 Required fields:
@@ -1190,6 +1252,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_sidecar_table("fmap.MRIFieldmapDirectFieldMapping") }}
 
 For example:
@@ -1202,23 +1265,23 @@ For example:
 }
 ```
 
-See [Using `IntendedFor` metadata](#using-intendedfor-metadata)
-for details on the `IntendedFor` field.
+See [Using `IntendedFor` metadata](#using-intendedfor-metadata) for details on
+the `IntendedFor` field.
 
 #### Case 4: Multiple phase encoded directions ("pepolar")
 
-An [example dataset](https://github.com/bids-standard/bids-examples)
-containing that type of fieldmap can be found here:
+An [example dataset](https://github.com/bids-standard/bids-examples) containing
+that type of fieldmap can be found here:
 
--   [`ieeg_visual_multimodal`](https://github.com/bids-standard/bids-examples/tree/master/ieeg_visual_multimodal)
+- [`ieeg_visual_multimodal`](https://github.com/bids-standard/bids-examples/tree/master/ieeg_visual_multimodal)
 
 The phase-encoding polarity (PEpolar) technique combines two or more Spin Echo
 EPI scans with different phase encoding directions to estimate the distortion
-map corresponding to the nonuniformities of the *B<sub>0</sub>* field.
-These `*_epi.nii[.gz]` - or `*_m0scan.nii[.gz]` for arterial spin labeling perfusion data - files can be 3D or 4D --
-in the latter case, all timepoints share the same scanning parameters.
-Examples of software tools using these kinds of images are FSL TOPUP and
-AFNI `3dqwarp`.
+map corresponding to the nonuniformities of the _B<sub>0</sub>_ field. These
+`*_epi.nii[.gz]` - or `*_m0scan.nii[.gz]` for arterial spin labeling perfusion
+data - files can be 3D or 4D -- in the latter case, all timepoints share the
+same scanning parameters. Examples of software tools using these kinds of images
+are FSL TOPUP and AFNI `3dqwarp`.
 
 <!--
 This block generates a filename templates.
@@ -1227,13 +1290,13 @@ The inputs for this macro can be found in the directory
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_filename_template("raw", datatypes=["fmap"], suffixes=["epi"]) }}
 
-The [`dir-<label>`](../appendices/entities.md#dir) entity is REQUIRED
-for these files.
-This entity MUST be used in addition to
-the REQUIRED `PhaseEncodingDirection` metadata field
-(see [Filename structure](../common-principles.md#filenames)).
+The [`dir-<label>`](../appendices/entities.md#dir) entity is REQUIRED for these
+files. This entity MUST be used in addition to the REQUIRED
+`PhaseEncodingDirection` metadata field (see
+[Filename structure](../common-principles.md#filenames)).
 
 Required fields:
 
@@ -1245,6 +1308,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_sidecar_table("fmap.MRIFieldmapPepolar") }}
 
 For example:
@@ -1258,10 +1322,10 @@ For example:
 }
 ```
 
-See [Using `IntendedFor` metadata](#using-intendedfor-metadata)
-for details on the `IntendedFor` field.
+See [Using `IntendedFor` metadata](#using-intendedfor-metadata) for details on
+the `IntendedFor` field.
 
 As for other EPI sequences, these field mapping sequences may have any of the
-[in-plane spatial encoding](#in-plane-spatial-encoding) metadata keys.
-However, please note that `PhaseEncodingDirection` and `TotalReadoutTime` keys
-are REQUIRED for these field mapping sequences.
+[in-plane spatial encoding](#in-plane-spatial-encoding) metadata keys. However,
+please note that `PhaseEncodingDirection` and `TotalReadoutTime` keys are
+REQUIRED for these field mapping sequences.
