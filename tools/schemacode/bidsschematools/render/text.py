@@ -539,9 +539,12 @@ def render_description(schema, object: str, key: str, src_path=None):
         The BIDS schema.
 
     object : str
-        The object to render the description for.
+        The object to render the description for:
+        possible values correspond to the keys in schema["objects"].
 
-
+    key : str
+        The key of the object to render the description for:
+        possible values correspond to the keys in schema["objects"][object]
 
     src_path : str or None
         The file where this macro is called, which may be explicitly provided

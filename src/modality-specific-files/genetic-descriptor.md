@@ -83,12 +83,11 @@ Template:
 genetic_info.json
 ```
 
-The `genetic_info.json` file describes the genetic information available in the
-`participants.tsv` file and/or the genetic database described in
-`dataset_description.json`.
-Datasets containing the `Genetics` field in `dataset_description.json` or the
-`genetic_id` column in `participants.tsv` MUST include this file with the following
-fields:
+<!-- This block generates a description.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___render_description("files", "genetic_info") }}
 
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in
