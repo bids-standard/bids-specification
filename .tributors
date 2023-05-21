@@ -1564,7 +1564,8 @@
         "affiliation": "Kiel University, Department of Psychology, Kiel, Germany",
         "blog": "https://github.com/JuliusWelzel",
         "contributions": [
-            "doc"
+            "doc",
+            "example"
         ],
         "email": "julius.welzel@gmail.com",
         "name": "Julius Welzel",
@@ -2493,7 +2494,8 @@
         "affiliation": "Technical University of Berlin, Department of biopsychology and neuroergonomics, Berlin, 10623, Germany",
         "blog": "https://github.com/sjeung",
         "contributions": [
-            "doc"
+            "doc",
+            "example"
         ],
         "email": "seinjeung@gmail.com",
         "name": "Sein Jeung",

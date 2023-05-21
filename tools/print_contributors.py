@@ -1,4 +1,4 @@
-"""Update the table of contributors in the specifiction appendice.
+"""Update the table of contributors in the specification appendice.
 
 
 Takes the content from ".all-contributorsrc"

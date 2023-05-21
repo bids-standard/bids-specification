@@ -1640,7 +1640,8 @@
         {
             "avatar_url": "https://avatars.githubusercontent.com/u/52565341?v=4",
             "contributions": [
-                "doc"
+                "doc",
+                "example"
             ],
             "login": "JuliusWelzel",
             "name": "Julius Welzel",
@@ -2591,7 +2592,8 @@
         {
             "avatar_url": "https://avatars.githubusercontent.com/u/28531404?v=4",
             "contributions": [
-                "doc"
+                "doc",
+                "example"
             ],
             "login": "sjeung",
             "name": "Sein Jeung",
