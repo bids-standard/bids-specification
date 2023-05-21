@@ -6,7 +6,7 @@
 
 ---
 # MRI Common metadata fields
-MRIScannerHardware:
+MRIHardware:
   selectors:
     - modality == "mri"
   fields:

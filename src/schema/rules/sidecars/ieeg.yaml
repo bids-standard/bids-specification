@@ -5,7 +5,20 @@
 # Assumptions: top-to-bottom overrides is sufficient logic
 
 ---
-iEEGGeneric:
+iEEGHardware:
+  selectors:
+    - modality == "ieeg"
+    - datatype == "ieeg"
+    - suffix == "ieeg"
+  fields:
+    Manufacturer:
+      level: recommended
+      description_addendum: For example, `"TDT"`, `"Blackrock"`.
+    ManufacturersModelName: recommended
+    SoftwareVersions: recommended
+    DeviceSerialNumber: recommended
+
+iEEGTaskInformation:
   selectors:
     - modality == "ieeg"
     - datatype == "ieeg"
@@ -16,21 +29,6 @@ iEEGGeneric:
       description_addendum: |
         A recommended convention is to name resting state task using labels
         beginning with `rest`.
-
-iEEGRecommended:
-  selectors:
-    - modality == "ieeg"
-    - datatype == "ieeg"
-    - suffix == "ieeg"
-  fields:
-    InstitutionName: recommended
-    InstitutionAddress: recommended
-    InstitutionalDepartmentName: recommended
-    Manufacturer:
-      level: recommended
-      description_addendum: For example, `"TDT"`, `"Blackrock"`.
-    ManufacturersModelName: recommended
-    SoftwareVersions: recommended
     TaskDescription: recommended
     Instructions:
       level: recommended
@@ -39,7 +37,16 @@ iEEGRecommended:
         distinguishing between eyes open and eyes closed paradigms.
     CogAtlasID: recommended
     CogPOID: recommended
-    DeviceSerialNumber: recommended
+
+iEEGInstitutionInformation:
+  selectors:
+    - modality == "ieeg"
+    - datatype == "ieeg"
+    - suffix == "ieeg"
+  fields:
+    InstitutionName: recommended
+    InstitutionAddress: recommended
+    InstitutionalDepartmentName: recommended
 
 # Specific iEEG fields MUST be present
 iEEGRequired:
@@ -58,7 +65,7 @@ iEEGRequired:
     SoftwareFilters: required
 
 # Specific iEEG fields SHOULD be present
-iEEGMoreRecommended:
+iEEGRecommended:
   selectors:
     - modality == "ieeg"
     - datatype == "ieeg"

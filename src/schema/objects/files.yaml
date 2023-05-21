@@ -100,7 +100,7 @@ samples:
   file_type: regular
   description: |
     The purpose of this file is to describe properties of samples, indicated by the `sample` entity.
-    This file is REQUIRED if `sample-<label>` is present in any file name within the dataset.
+    This file is REQUIRED if `sample-<label>` is present in any filename within the dataset.
     If this file exists, it MUST contain the three following columns:
 
     -   `sample_id`: MUST consist of `sample-<label>` values identifying one row

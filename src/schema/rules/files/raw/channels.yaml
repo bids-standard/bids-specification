@@ -25,6 +25,15 @@ channels__meg:
     $ref: rules.files.raw.channels.channels.entities
     processing: optional
 
+# motion has an additional entity available
+channels__motion:
+  $ref: rules.files.raw.channels.channels
+  datatypes:
+    - motion
+  entities:
+    $ref: rules.files.raw.channels.channels.entities
+    tracksys: required
+
 coordsystem:
   suffixes:
     - coordsystem

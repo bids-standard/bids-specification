@@ -50,3 +50,15 @@ SamplesTSVMissing:
     - '"micr" in dataset.modalities'
   checks:
     - "'samples.tsv' in dataset.files"
+
+UnknownVersion:
+  issue:
+    code: UNKNOWN_BIDS_VERSION
+    message: |
+      The BIDSVersion field of dataset_description.json does not match a known release.
+      The BIDS Schema used for validation may be out of date.
+    level: warning
+  selectors:
+    - path == 'dataset_description.json'
+  checks:
+    - intersects([json.BIDSVersion], schema.meta.versions)

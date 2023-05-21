@@ -7,7 +7,7 @@
 <img src="./BIDS_logo/BIDS_logo_black_transparent_background_crop.png#gh-light-mode-only" alt="bids-logo" width="600"/>
 
 The [Brain Imaging Data Structure (BIDS)](https://bids.neuroimaging.io) is an emerging standard for the
-organisation of neuroimaging data.
+organization of neuroimaging data.
 
 In this repository, we develop the
 [BIDS specification](https://bids-specification.readthedocs.io/en/latest/).
@@ -29,6 +29,7 @@ BIDS currently supports the following data modalities with more to come in the f
 - PET
 - microscopy
 - NIRS
+- motion
 
 # Formatting your data with BIDS
 

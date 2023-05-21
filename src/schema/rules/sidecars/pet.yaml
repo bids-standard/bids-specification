@@ -1,6 +1,6 @@
 ---
 # PET common metadata fields
-PETScannerHardware:
+PETHardware:
   selectors:
     - modality == "pet"
     - suffix == "pet"
@@ -16,6 +16,15 @@ PETScannerHardware:
       description_addendum: |
         SI unit for radioactivity (Becquerel) should be used (for example, "Bq/mL").
         Corresponds to DICOM Tag 0054, 1001 `Units`.
+    BodyPart:
+      level: recommended
+      description_addendum: Corresponds to DICOM Tag 0018, 0015 `Body Part Examined`.
+
+PETInstitutionInformation:
+  selectors:
+    - modality == "pet"
+    - suffix == "pet"
+  fields:
     InstitutionName:
       level: recommended
       description_addendum: Corresponds to DICOM Tag 0008, 0080 `InstitutionName`.
@@ -25,9 +34,6 @@ PETScannerHardware:
     InstitutionalDepartmentName:
       level: recommended
       description_addendum: Corresponds to DICOM Tag 0008, 1040 `Institutional Department Name`.
-    BodyPart:
-      level: recommended
-      description_addendum: Corresponds to DICOM Tag 0018, 0015 `Body Part Examined`.
 
 PETRadioChemistry:
   selectors:
