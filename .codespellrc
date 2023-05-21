@@ -1,5 +1,5 @@
 [codespell]
-skip = *.js,*.svg,*.eps,.git,node_modules,env,venv,.mypy_cache,package-lock.json,CITATION.cff
+skip = *.js,*.svg,*.eps,.git,node_modules,env,venv,.mypy_cache,package-lock.json,CITATION.cff,tools/new_contributors.tsv
 ignore-words-list = fo,te,als,Acknowledgements,acknowledgements,weill,bu
 builtin = clear,rare,en-GB_to_en-US
 # this overloads default dictionaries and I have not yet figured out

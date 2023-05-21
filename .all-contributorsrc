@@ -290,7 +290,8 @@
             "avatar_url": "https://avatars.githubusercontent.com/u/1872705?v=4",
             "contributions": [
                 "doc",
-                "example"
+                "example",
+                "ideas"
             ],
             "login": "arnodelorme",
             "name": "Arnaud Delorme",
@@ -591,6 +592,14 @@
             "name": "Clara Moreau"
         },
         {
+            "contributions": [
+                "doc",
+                "ideas"
+            ],
+            "login": "clint_hansen",
+            "name": "Clint Hansen"
+        },
+        {
             "avatar_url": "https://avatars.githubusercontent.com/u/4772878?v=4",
             "contributions": [
                 "question",
@@ -790,7 +799,8 @@
             "contributions": [
                 "doc",
                 "code",
-                "tool"
+                "tool",
+                "ideas"
             ],
             "login": "dungscout96",
             "name": "Dung Truong",
@@ -847,6 +857,14 @@
             "login": "emdupre",
             "name": "Elizabeth DuPre",
             "profile": "https://elizabeth-dupre.com"
+        },
+        {
+            "contributions": [
+                "data",
+                "doc"
+            ],
+            "login": "elke_warmerdam",
+            "name": "Elke Warmerdam"
         },
         {
             "avatar_url": [
@@ -1234,7 +1252,9 @@
         {
             "avatar_url": "https://avatars.githubusercontent.com/u/54403982?v=4",
             "contributions": [
-                "doc"
+                "doc",
+                "ideas",
+                "question"
             ],
             "login": "helenacockx",
             "name": "Helena Cockx",
@@ -1652,7 +1672,13 @@
             "avatar_url": "https://avatars.githubusercontent.com/u/52565341?v=4",
             "contributions": [
                 "doc",
-                "example"
+                "example",
+                "bug",
+                "code",
+                "data",
+                "ideas",
+                "question",
+                "userTesting"
             ],
             "login": "JuliusWelzel",
             "name": "Julius Welzel",
@@ -1728,6 +1754,14 @@
             "login": "greckla",
             "name": "Klara Gregorova",
             "profile": "https://github.com/greckla"
+        },
+        {
+            "contributions": [
+                "doc",
+                "ideas"
+            ],
+            "login": "klaus_gramann",
+            "name": "Klaus Gramann"
         },
         {
             "avatar_url": "https://avatars.githubusercontent.com/u/6362141?v=4",
@@ -1819,6 +1853,14 @@
             ],
             "login": "luis_hernandez-garcia",
             "name": "Luis Hernandez-Garcia"
+        },
+        {
+            "contributions": [
+                "doc",
+                "question"
+            ],
+            "login": "lukeje",
+            "name": "Luke J. Edwards"
         },
         {
             "avatar_url": "https://avatars.githubusercontent.com/u/6161552?v=4",
@@ -2604,7 +2646,14 @@
             "avatar_url": "https://avatars.githubusercontent.com/u/28531404?v=4",
             "contributions": [
                 "doc",
-                "example"
+                "example",
+                "bug",
+                "code",
+                "data",
+                "ideas",
+                "question",
+                "tool",
+                "userTesting"
             ],
             "login": "sjeung",
             "name": "Sein Jeung",
@@ -2719,7 +2768,9 @@
         },
         {
             "contributions": [
-                "doc"
+                "doc",
+                "data",
+                "userTesting"
             ],
             "login": "sören_grothkopp",
             "name": "Sören Grothkopp"
@@ -2865,7 +2916,9 @@
         {
             "avatar_url": "https://avatars.githubusercontent.com/u/63448407?v=4",
             "contributions": [
-                "doc"
+                "doc",
+                "ideas",
+                "userTesting"
             ],
             "login": "timo-berg",
             "name": "Timotheus Berg",

@@ -142,7 +142,7 @@ authors:
     family-names: Delorme
     website: https://www.arnauddelorme.com
     orcid: https://orcid.org/0000-0002-0799-3557
-    affiliation: UCSD, INC, San Diego, CA, 92093, USA
+    affiliation: Swartz Center for Computational Neuroscience
     email: adelorme@ucsd.edu
   - given-names: Arnaud
     family-names: Marcoux
@@ -238,7 +238,10 @@ authors:
     email: chr@chymera.eu
   - given-names: Christine
     family-names: Rogers
-    email: rogers@bic.mni.mcgill.ca
+    orcid: https://orcid.org/0000-0002-9893-8448
+    affiliation: McGill Centre for Integrative Neuroscience, Montreal Neurological
+      Institute
+    email: christine.rogers@mcgill.ca
   - given-names: Christophe
     family-names: Phillips
     website: https://www.uliege.be/cms/c_9054334/en/directory/?uid=U016440
@@ -259,6 +262,10 @@ authors:
     family-names: Lee-Messer
   - given-names: Clara
     family-names: Moreau
+  - given-names: Clint
+    family-names: Hansen
+    affiliation: Kiel University
+    email: c.hansen@neurologie.uni-kiel.de
   - given-names: Cyril
     family-names: Pernet
     website: https://cpernet.github.io/
@@ -341,6 +348,8 @@ authors:
   - given-names: Dung
     family-names: Truong
     website: https://github.com/dungscout96
+    affiliation: Swartz Center for Computational Neuroscience
+    email: dutruong@ucsd.edu
   - given-names: Dylan
     family-names: Nielson
     website: https://github.com/Shotgunosine
@@ -363,6 +372,10 @@ authors:
     orcid: https://orcid.org/0000-0003-1358-196X
     affiliation: Stanford University, Department of Psychology, Stanford, CA, 94063,
       USA
+  - given-names: Elke
+    family-names: Warmerdam
+    affiliation: Saarland University
+    email: elke.warmerdam@uni-saarland.de
   - given-names: Erdal
     family-names: Karaca
     website: https://github.com/erdalkaraca
@@ -524,6 +537,8 @@ authors:
     family-names: Cockx
     website: https://github.com/helenacockx
     orcid: https://orcid.org/0000-0001-7782-7178
+    affiliation: Radboud University
+    email: helena.cockx@donders.ru.nl
   - given-names: Henk
     family-names: Mutsaerts
     website: http://www.ExploreASL.org
@@ -696,7 +711,7 @@ authors:
     family-names: Welzel
     website: https://github.com/JuliusWelzel
     orcid: https://orcid.org/0000-0001-8958-0934
-    affiliation: Kiel University, Department of Psychology, Kiel, Germany
+    affiliation: Kiel University
     email: julius.welzel@gmail.com
   - given-names: Kai J.
     family-names: Miller
@@ -729,6 +744,10 @@ authors:
     family-names: Gregorova
     website: https://github.com/greckla
     orcid: https://orcid.org/0000-0002-3828-9386
+  - given-names: Klaus
+    family-names: Gramann
+    affiliation: Technical University Berlin
+    email: klaus.gramann@tu-berlin.de
   - given-names: Kris
     family-names: Thielemans
     website: https://iris.ucl.ac.uk/iris/browse/profile?upi=KTHIE60
@@ -774,6 +793,10 @@ authors:
     email: lpollonini@uh.edu
   - given-names: Luis
     family-names: Hernandez-Garcia
+  - given-names: Luke J.
+    family-names: Edwards
+    orcid: https://orcid.org/0000-0002-8320-7298
+    affiliation: Max Planck Institute for Human Cognitive and Brain Sciences
   - given-names: Lyuba
     family-names: Zehl
     website: https://github.com/lzehl
@@ -1100,8 +1123,7 @@ authors:
     family-names: Jeung
     website: https://github.com/sjeung
     orcid: https://orcid.org/0000-0002-0247-087X
-    affiliation: Technical University of Berlin, Department of biopsychology and neuroergonomics,
-      Berlin, 10623, Germany
+    affiliation: Technical University Berlin
     email: seinjeung@gmail.com
   - given-names: Shashank
     family-names: Bansal
@@ -1145,6 +1167,8 @@ authors:
     email: sebastien.tourbier1@gmail.com
   - given-names: Sören
     family-names: Grothkopp
+    affiliation: Technical University Berlin
+    email: s.grothkopp@secure.mailbox.org
   - given-names: Tal
     family-names: Pal Attia
     website: https://github.com/tpatpa
@@ -1204,8 +1228,7 @@ authors:
     family-names: Berg
     website: https://github.com/timo-berg
     orcid: https://orcid.org/0000-0002-0746-3679
-    affiliation: TU Berlin, Biological Psychology and Neuroergonomics, Berlin, 10623,
-      Germany
+    affiliation: Technical University Berlin
     email: timo.berg@campus.tu-berlin.de
   - given-names: Tobey
     family-names: Betthauser

@@ -255,13 +255,15 @@
         "name": "Arjen Stolk"
     },
     "arnodelorme": {
-        "affiliation": "UCSD, INC, San Diego, CA, 92093, USA",
+        "affiliation": "Swartz Center for Computational Neuroscience",
         "blog": "https://www.arnauddelorme.com",
         "contributions": [
             "doc",
-            "example"
+            "example",
+            "ideas"
         ],
         "email": "adelorme@ucsd.edu",
+        "github": "arnodelorme",
         "name": "Arnaud Delorme",
         "orcid": "0000-0002-0799-3557",
         "publish_email": true
@@ -484,6 +486,7 @@
         "publish_email": true
     },
     "christinerogers": {
+        "affiliation": "McGill Centre for Integrative Neuroscience, Montreal Neurological Institute",
         "contributions": [
             "data",
             "doc",
@@ -491,9 +494,10 @@
             "infra",
             "tool"
         ],
-        "email": "rogers@bic.mni.mcgill.ca",
+        "email": "christine.rogers@mcgill.ca",
         "github": "christinerogers",
-        "name": "Christine Rogers"
+        "name": "Christine Rogers",
+        "orcid": "0000-0002-9893-8448"
     },
     "ChristophePhillips": {
         "affiliation": "University of Liège, GIGA CRC in vivo imaging, Liège, 4000, Belgium",
@@ -548,6 +552,15 @@
             "doc"
         ],
         "name": "Clara Moreau"
+    },
+    "clint_hansen": {
+        "affiliation": "Kiel University",
+        "contributions": [
+            "doc",
+            "ideas"
+        ],
+        "email": "c.hansen@neurologie.uni-kiel.de",
+        "name": "Clint Hansen"
     },
     "CPernet": {
         "affiliation": "Neurobiology Research Unit,  Copenhagen University Hospital Rigshospitalet, DK-2100 Copenhagen, Denmark",
@@ -737,12 +750,16 @@
         "name": "Duncan Macleod"
     },
     "dungscout96": {
+        "affiliation": "Swartz Center for Computational Neuroscience",
         "blog": "https://github.com/dungscout96",
         "contributions": [
             "doc",
             "code",
-            "tool"
+            "tool",
+            "ideas"
         ],
+        "email": "dutruong@ucsd.edu",
+        "github": "dungscout96",
         "name": "Dung Truong"
     },
     "Shotgunosine": {
@@ -796,6 +813,15 @@
         "name": "Elizabeth DuPre",
         "orcid": "0000-0003-1358-196X",
         "publish_email": false
+    },
+    "elke_warmerdam": {
+        "affiliation": "Saarland University",
+        "contributions": [
+            "data",
+            "doc"
+        ],
+        "email": "elke.warmerdam@uni-saarland.de",
+        "name": "Elke Warmerdam"
     },
     "erdalkaraca": {
         "blog": "https://github.com/erdalkaraca",
@@ -1172,10 +1198,15 @@
         "publish_email": true
     },
     "helenacockx": {
+        "affiliation": "Radboud University",
         "blog": "https://github.com/helenacockx",
         "contributions": [
-            "doc"
+            "doc",
+            "ideas",
+            "question"
         ],
+        "email": "helena.cockx@donders.ru.nl",
+        "github": "helenacockx",
         "name": "Helena Cockx",
         "orcid": "0000-0001-7782-7178"
     },
@@ -1573,13 +1604,20 @@
         "publish_email": false
     },
     "JuliusWelzel": {
-        "affiliation": "Kiel University, Department of Psychology, Kiel, Germany",
+        "affiliation": "Kiel University",
         "blog": "https://github.com/JuliusWelzel",
         "contributions": [
             "doc",
-            "example"
+            "example",
+            "bug",
+            "code",
+            "data",
+            "ideas",
+            "question",
+            "userTesting"
         ],
         "email": "julius.welzel@gmail.com",
+        "github": "JuliusWelzel",
         "name": "Julius Welzel",
         "orcid": "0000-0001-8958-0934",
         "publish_email": true
@@ -1651,6 +1689,15 @@
         ],
         "name": "Klara Gregorova",
         "orcid": "0000-0002-3828-9386"
+    },
+    "klaus_gramann": {
+        "affiliation": "Technical University Berlin",
+        "contributions": [
+            "doc",
+            "ideas"
+        ],
+        "email": "klaus.gramann@tu-berlin.de",
+        "name": "Klaus Gramann"
     },
     "KrisThielemans": {
         "blog": "https://iris.ucl.ac.uk/iris/browse/profile?upi=KTHIE60",
@@ -1742,6 +1789,16 @@
             "userTesting"
         ],
         "name": "Luis Hernandez-Garcia"
+    },
+    "lukeje": {
+        "affiliation": "Max Planck Institute for Human Cognitive and Brain Sciences",
+        "contributions": [
+            "doc",
+            "question"
+        ],
+        "github": "lukeje",
+        "name": "Luke J. Edwards",
+        "orcid": "0000-0002-8320-7298"
     },
     "lzehl": {
         "affiliation": "Forschungszentrum Jülich",
@@ -2503,13 +2560,21 @@
         "publish_email": true
     },
     "sjeung": {
-        "affiliation": "Technical University of Berlin, Department of biopsychology and neuroergonomics, Berlin, 10623, Germany",
+        "affiliation": "Technical University Berlin",
         "blog": "https://github.com/sjeung",
         "contributions": [
             "doc",
-            "example"
+            "example",
+            "bug",
+            "code",
+            "data",
+            "ideas",
+            "question",
+            "tool",
+            "userTesting"
         ],
         "email": "seinjeung@gmail.com",
+        "github": "sjeung",
         "name": "Sein Jeung",
         "orcid": "0000-0002-0247-087X",
         "publish_email": true
@@ -2620,9 +2685,14 @@
         "publish_email": false
     },
     "sören_grothkopp": {
+        "affiliation": "Technical University Berlin",
         "contributions": [
-            "doc"
+            "doc",
+            "data",
+            "userTesting"
         ],
+        "email": "s.grothkopp@secure.mailbox.org",
+        "github": "sgrothk",
         "name": "Sören Grothkopp"
     },
     "tpatpa": {
@@ -2761,12 +2831,15 @@
         "publish_email": true
     },
     "timo-berg": {
-        "affiliation": "TU Berlin, Biological Psychology and Neuroergonomics, Berlin, 10623, Germany",
+        "affiliation": "Technical University Berlin",
         "blog": "https://github.com/timo-berg",
         "contributions": [
-            "doc"
+            "doc",
+            "ideas",
+            "userTesting"
         ],
         "email": "timo.berg@campus.tu-berlin.de",
+        "github": "timo-berg",
         "name": "Timotheus Berg",
         "orcid": "0000-0002-0746-3679",
         "publish_email": true

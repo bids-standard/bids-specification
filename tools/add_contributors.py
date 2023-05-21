@@ -77,8 +77,12 @@ def root_dir() -> Path:
     return Path(__file__).parent.parent
 
 
-def emoji_map() -> dict[str, str]:
+def emoji_map(reverse=False) -> dict[str, str]:
     # https://allcontributors.org/docs/en/emoji-key
+    if reverse:
+        tmp = emoji_map()
+        return {v: k for k, v in tmp.items()}
+
     return {
         "code": ":laptop:",
         "doc": ":open_book:",
@@ -191,7 +195,6 @@ def validate_contributions(contributions: list, name: str):
     allowed_contributions = list(emoji_map().keys())
     allowed_emojis = [emoji.emojize(x) for x in list(emoji_map().values())]
     allowed_contributions += allowed_emojis
-    allowed_contributions.extend(x.replace(":", "") for x in list(emoji_map().values()))
     if any(x for x in contributions if x.replace(":", "") not in allowed_contributions):
         raise ValueError(
             f"Contributions must be one of {allowed_contributions}.\n"
@@ -203,9 +206,10 @@ def canonicalize_contributions(contributions: list) -> list:
     allowed_emojis = [emoji.emojize(x) for x in list(emoji_map().values())]
     for contribution_ in contributions:
         if contribution_ in allowed_emojis:
-            contributions[contributions.index(contribution_)] = emoji.demojize(
-                contribution_
-            ).replace(":", "")
+            demoji = emoji.demojize(contribution_)
+            contributions[contributions.index(contribution_)] = emoji_map(
+                reverse=True
+            ).get(demoji)
     for contribution_ in contributions:
         contributions[contributions.index(contribution_)] = contribution_.replace(
             ":", ""
@@ -222,7 +226,12 @@ def update_key(
     if value is None:
         return contributor
     log.info(f"updating {contributor['name']} - {key}")
-    contributor[key] = value
+    if key == "contributions":
+        for contribution in value:
+            if contribution not in contributor[key]:
+                contributor[key].append(contribution)
+    else:
+        contributor[key] = value
     return contributor
 
 
