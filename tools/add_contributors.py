@@ -36,13 +36,14 @@ from rich.traceback import install
 
 INPUT_FILE = Path(__file__).parent / "new_contributors.tsv"
 
-LOG_LEVEL = "INFO"  # 'DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'
+LOG_LEVEL = "DEBUG"  # 'DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'
 
 # Set to True to update the avatars
 # update with your github username and path to a file with github token
 UPDATE_AVATARS = False
 GH_USERNAME = "Remi-Gau"
 TOKEN_FILE = None
+RICH_STACKTRACE = False
 
 # Set to True to use some of the dummy data in the "new_contributors.tsv"
 TEST = False
@@ -51,11 +52,18 @@ TEST = False
 def logger(log_level="INFO") -> logging.Logger:
     """Create log."""
     # let rich print the traceback
-    install(show_locals=True)
     FORMAT = "%(asctime)s - %(message)s"
-    logging.basicConfig(
-        level=log_level, format=FORMAT, datefmt="[%X]", handlers=[RichHandler()]
-    )
+    if RICH_STACKTRACE:
+        install(show_locals=True)
+        logging.basicConfig(
+            level=log_level, format=FORMAT, datefmt="[%X]", handlers=[RichHandler()]
+        )
+    else:
+        logging.basicConfig(
+            level=log_level,
+            format=FORMAT,
+            datefmt="[%X]",
+        )
     return logging.getLogger("rich")
 
 

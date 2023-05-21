@@ -525,6 +525,17 @@
             "profile": "http://www.chymera.eu"
         },
         {
+            "contributions": [
+                "data",
+                "doc",
+                "ideas",
+                "infra",
+                "tool"
+            ],
+            "login": "christinerogers",
+            "name": "Christine Rogers"
+        },
+        {
             "avatar_url": "https://avatars.githubusercontent.com/u/2011934?v=4",
             "contributions": [
                 "doc"

@@ -483,6 +483,18 @@
         "orcid": "0000-0001-7037-2449",
         "publish_email": true
     },
+    "christinerogers": {
+        "contributions": [
+            "data",
+            "doc",
+            "ideas",
+            "infra",
+            "tool"
+        ],
+        "email": "rogers@bic.mni.mcgill.ca",
+        "github": "christinerogers",
+        "name": "Christine Rogers"
+    },
     "ChristophePhillips": {
         "affiliation": "University of Liège, GIGA CRC in vivo imaging, Liège, 4000, Belgium",
         "blog": "https://www.uliege.be/cms/c_9054334/en/directory/?uid=U016440",
