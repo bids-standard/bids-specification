@@ -528,3 +528,42 @@ def define_allowed_top_directories(schema, src_path=None) -> str:
             string += f"- `{dirname}`: {definition.description}"
 
     return string.replace("SPEC_ROOT", utils.get_relpath(src_path))
+
+
+def render_description(schema, object: str, key: str, src_path=None):
+    """
+
+    Parameters
+    ----------
+    schema : dict
+        The BIDS schema.
+
+    object : str
+        The object to render the description for.
+
+
+
+    src_path : str or None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
+
+    Returns
+    -------
+    desc : str
+        Description of the object.
+    """
+    schema = schema.to_dict()
+    if object not in schema["objects"]:
+        raise ValueError(
+            f"Object {object} not found in schema.\n"
+            f"Possible values are: {list(schema['objects'].keys())}."
+            f"Got: {object}"
+        )
+    if key not in schema["objects"][object]:
+        raise ValueError(
+            f"Key {key} not found in schema.\n"
+            f"Possible values are: {list(schema['objects'][object].keys())}."
+            f"Got: {key}"
+        )
+    desc = schema["objects"][object][key]["description"]
+    return desc

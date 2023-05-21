@@ -46,3 +46,4 @@ def define_env(env):
     env.macro(
         macros.define_allowed_top_directories, "MACROS___define_allowed_top_directories"
     )
+    env.macro(macros.render_description, "MACROS___render_description")
