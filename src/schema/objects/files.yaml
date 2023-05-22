@@ -37,7 +37,7 @@ README:
     The `README` file SHOULD be structured such that its contents can be easily understood
     even if the used format is not rendered.
     A guideline for creating a good `README` file can be found in the
-    [bids-starter-kit](https://github.com/bids-standard/bids-starter-kit/blob/master/templates/README).
+    [bids-starter-kit](https://github.com/bids-standard/bids-starter-kit/tree/main/templates/).
 dataset_description:
   display_name: Dataset Description
   file_type: regular

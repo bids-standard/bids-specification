@@ -6,9 +6,7 @@ MR Data described in the following sections share the following RECOMMENDED meta
 fields (stored in sidecar JSON files).
 MRI acquisition parameters are divided into several categories based on
 "A checklist for fMRI acquisition methods reporting in the literature"
-([article](https://winnower-production.s3.amazonaws.com/papers/977/v4/pdf/977-a-checklist-for-fmri-acquisition-methods-reporting-in-the-literature.pdf),
-[checklist](https://winnower-production.s3.amazonaws.com/papers/977/assets/993e199d-6bc3-4418-be3a-f620af1188b7-Parameter_Reporting_V1p3.pdf))
-by Ben Inglis.
+([article](https://doi.org/10.15200/winn.143191.17127)) by Ben Inglis.
 
 When adding additional metadata please use the CamelCase version of
 [DICOM ontology terms](https://scicrunch.org/scicrunch/interlex/dashboard)
