@@ -24,7 +24,7 @@ jobs:
     strategy:
       matrix:
         os: ["ubuntu-latest"]
-        python-version: ["3.10"]
+        python-version: ["3.11"]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
@@ -56,7 +56,7 @@ jobs:
       fail-fast: false
       matrix:
         os: ["ubuntu-latest"]
-        python-version: ["3.8", "3.9", "3.10"]
+        python-version: ["3.8", "3.9", "3.10", "3.11"]
         include:
           - os: macos-latest
             python-version: 3
@@ -104,7 +104,7 @@ jobs:
     strategy:
       matrix:
         os: ["ubuntu-latest"]
-        python-version: ["3.10"]
+        python-version: ["3.11"]
     steps:
       - name: "Fetch packages"
         uses: actions/download-artifact@v3
