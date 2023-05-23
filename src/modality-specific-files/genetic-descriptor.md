@@ -83,6 +83,8 @@ Template:
 genetic_info.json
 ```
 
+The following fields are defined for genetic_info.json:
+
 <!-- This block generates a description.
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
