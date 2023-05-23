@@ -5,7 +5,18 @@
 # Assumptions: top-to-bottom overrides is sufficient logic
 
 ---
-EEGGeneric:
+EEGHardware:
+  selectors:
+    - modality == "eeg"
+    - datatype == "eeg"
+    - suffix == "eeg"
+  fields:
+    Manufacturer: recommended
+    ManufacturersModelName: recommended
+    SoftwareVersions: recommended
+    DeviceSerialNumber: recommended
+
+EEGTaskInformation:
   selectors:
     - modality == "eeg"
     - datatype == "eeg"
@@ -16,19 +27,6 @@ EEGGeneric:
       description_addendum: |
         A recommended convention is to name resting state task using labels
         beginning with `rest`.
-
-EEGRecommended:
-  selectors:
-    - modality == "eeg"
-    - datatype == "eeg"
-    - suffix == "eeg"
-  fields:
-    InstitutionName: recommended
-    InstitutionAddress: recommended
-    InstitutionalDepartmentName: recommended
-    Manufacturer: recommended
-    ManufacturersModelName: recommended
-    SoftwareVersions: recommended
     TaskDescription: recommended
     Instructions:
       level: recommended
@@ -37,7 +35,16 @@ EEGRecommended:
         distinguishing between eyes open and eyes closed paradigms.
     CogAtlasID: recommended
     CogPOID: recommended
-    DeviceSerialNumber: recommended
+
+EEGInstitutionInformation:
+  selectors:
+    - modality == "eeg"
+    - datatype == "eeg"
+    - suffix == "eeg"
+  fields:
+    InstitutionName: recommended
+    InstitutionAddress: recommended
+    InstitutionalDepartmentName: recommended
 
 EEGRequired:
   selectors:
@@ -54,7 +61,7 @@ EEGRequired:
     PowerLineFrequency: required
     SoftwareFilters: required
 
-EEGMoreRecommended:
+EEGRecommended:
   selectors:
     - modality == "eeg"
     - datatype == "eeg"

@@ -59,7 +59,7 @@ AnalyticalApproach:
   name: AnalyticalApproach
   display_name: Analytical Approach
   description: |
-    Methodology or methodologies used to analyse the `"GeneticLevel"`.
+    Methodology or methodologies used to analyze the `"GeneticLevel"`.
     Values MUST be taken from the
     [database of Genotypes and Phenotypes
     (dbGaP)](https://www.ncbi.nlm.nih.gov/gap/advanced)
@@ -152,7 +152,7 @@ ScreenAOIDefinition:
   items:
     type: objec
 ANGACCChannelCount:
-  name: ANGACCChannelCount
+  name: ANGACCELChannelCount
   display_name: Angular acceleration channel count
   description: |
     Number of angular acceleration channels.
@@ -1722,7 +1722,7 @@ LabelingLocationDescription:
     `LabelingOrientation` or `LabelingDistance`.
     May include a link to an anonymized screenshot of the planning of the
     labeling slab/plane with respect to the imaging slab or slices
-    `*_asllabeling.jpg`.
+    `*_asllabeling.*`.
     Based on DICOM macro C.8.13.5.14.
   type: string
 LabelingOrientation:
@@ -2953,7 +2953,7 @@ SamplePrimaryAntibody:
   display_name: Sample Primary Antibody
   description: |
     Description(s) of the primary antibody used for immunostaining.
-    Either an [RRID](https://scicrunch.org/resources) or the name, supplier and catalogue
+    Either an [RRID](https://scicrunch.org/resources) or the name, supplier and catalog
     number of a commercial antibody.
     For non-commercial antibodies either an [RRID](https://scicrunch.org/resources) or the
     host-animal and immunogen used (for examples: `"RRID:AB_2122563"` or
@@ -2969,7 +2969,7 @@ SampleSecondaryAntibody:
   display_name: Sample Secondary Antibody
   description: |
     Description(s) of the secondary antibody used for immunostaining.
-    Either an [RRID](https://scicrunch.org/resources) or the name, supplier and catalogue
+    Either an [RRID](https://scicrunch.org/resources) or the name, supplier and catalog
     number of a commercial antibody.
     For non-commercial antibodies either an [RRID](https://scicrunch.org/resources) or the
     host-animal and immunogen used (for examples: `"RRID:AB_228322"` or
@@ -3439,6 +3439,8 @@ StartTime:
   description: |
     Start time in seconds in relation to the start of acquisition of the first
     data sample in the corresponding (neural) dataset (negative values are allowed).
+    This data MAY be specified with sub-second precision using the syntax `s[.000000]`,
+    where `s` reflects whole seconds, and `.000000` reflects OPTIONAL fractional seconds.
   type: number
   unit: s
 StartTime_eyetrack:
@@ -3497,9 +3499,9 @@ StopTime_eyetrack:
   type: number
 SubjectArtefactDescription:
   name: SubjectArtefactDescription
-  display_name: Subject Artefact Description
+  display_name: Subject Artifact Description
   description: |
-    Freeform description of the observed subject artefact and its possible cause
+    Freeform description of the observed subject artifact and its possible cause
     (for example, `"Vagus Nerve Stimulator"`, `"non-removable implant"`).
     If this field is set to `"n/a"`, it will be interpreted as absence of major
     source of artifacts except cardiac and blinks.
@@ -3516,7 +3518,7 @@ TaskName:
   description: |
     Name of the task.
     No two tasks should have the same name.
-    The task label included in the file name is derived from this `"TaskName"` field
+    The task label included in the filename is derived from this `"TaskName"` field
     by removing all non-alphanumeric characters (that is, all except those matching `[0-9a-zA-Z]`).
     For example `"TaskName"` `"faces n-back"` or `"head nodding"` will correspond to task labels
     `facesnback` and `headnodding`, respectively.
@@ -3608,7 +3610,7 @@ TracerRadionuclide:
   name: TracerRadionuclide
   display_name: Tracer Radionuclide
   description: |
-    Radioisotope labelling tracer (for example, `"C11"`).
+    Radioisotope labeling tracer (for example, `"C11"`).
   type: string
 TracerSNOMED:
   name: TracerSNOMED
@@ -3644,7 +3646,7 @@ TrackingSystemName:
   display_name: Tracking System Name
   description: |
     A human-readable name of the tracking system to complement `"tracksys"` label
-    of the corresponding *_motion.tsv file name.
+    of the corresponding *_motion.tsv filename.
   type: string
 TubingType:
   name: TubingType

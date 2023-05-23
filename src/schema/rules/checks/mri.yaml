@@ -51,6 +51,7 @@ EffectiveEchoSpacingTooLarge:
     - type(sidecar.RepetitionTime) != "null"
     - type(sidecar.EffectiveEchoSpacing) != "null"
     - type(sidecar.PhaseEncodingDirection) != "null"
+    - type(nifti_header) != "null"
   checks:
     - |
       sidecar.RepetitionTime >= (
@@ -69,6 +70,7 @@ SliceTimingElements:
   selectors:
     - modality == "MRI"
     - type(sidecar.SliceTiming) != "null"
+    - type(nifti_header) != "null"
   checks:
     - length(sidecar.SliceTiming) == nifti_header.dim[3]
 
@@ -123,5 +125,6 @@ RepetitionTimePreparationNotConsistent:
   selectors:
     - modality == "MRI"
     - type(sidecar.RepetitionTimePreparation) == "array"
+    - type(nifti_header) != "null"
   checks:
     - length(sidecar.RepetitionTimePreparation) == nifti_header.dim[4]

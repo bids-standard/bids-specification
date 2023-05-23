@@ -71,7 +71,7 @@ event:
 extension:
   display_name: File extension
   description: |
-    A portion of the file name after the left-most period (`.`) preceded by any other alphanumeric.
+    A portion of the filename after the left-most period (`.`) preceded by any other alphanumeric.
     For example, `.gitignore` does not have a file extension,
     but the file extension of `test.nii.gz` is `.nii.gz`.
     Note that the left-most period is included in the file extension.

@@ -227,7 +227,7 @@ def _bidsignore_check(ignore_expression, file_name, file_root):
     ignore_expression : str
         A string following git-wildcard conventions (including `**/`).
     file_name : str
-        A string which represents a file name.
+        A string which represents a filename.
     file_root : str
         The directory containing the file specifiled in `file_name`.
 
@@ -242,7 +242,7 @@ def _bidsignore_check(ignore_expression, file_name, file_root):
         paths, therefore we use `fnmatch`.
     * `fnmatch` does not support `**/` matching as that is an optional convention from e.g.
         globstar and git, and not part of the standard Unix shell. As we formalize `.bidsignore`
-        we may choose drop it, since we already treat simple file names as to-be-ignored in
+        we may choose drop it, since we already treat simple filenames as to-be-ignored in
         all directories, and with BIDS having only up to 4 hierarchical levels, the utility of
         other usage is limited and expansion to `..*/*..` would only mean at maximum a duplication
         of entries.
@@ -270,16 +270,24 @@ def log_errors(validation_result):
     """
     total_file_count = len(validation_result["path_listing"])
     validated_files_count = total_file_count - len(validation_result["path_tracking"])
-    if validated_files_count == 0:
-        lgr.error("No valid BIDS files were found.")
-    for entry in validation_result["schema_tracking"]:
-        if entry["mandatory"]:
-            lgr.error(
-                "The `%s` regex pattern file required by BIDS was not found.",
-                entry["regex"],
-            )
+    errorless = True
     for i in validation_result["path_tracking"]:
         lgr.warning("The `%s` file was not matched by any regex schema entry.", i)
+        errorless = False
+    if validated_files_count == 0:
+        lgr.error("No valid BIDS files were found.")
+        errorless = False
+    else:
+        # No use reporting this separately if no BIDS files were found
+        for entry in validation_result["schema_tracking"]:
+            if entry["mandatory"]:
+                lgr.error(
+                    "The `%s` regex pattern file required by BIDS was not found.",
+                    entry["regex"],
+                )
+                errorless = False
+    if errorless:
+        lgr.info("SUCCESS: All files are BIDS valid and no BIDS-required files are missing.")
 
 
 def select_schema_path(
@@ -400,18 +408,21 @@ def validate_all(
         groups as well.
     """
 
-    tracking_schema = deepcopy(regex_schema)
     tracking_paths = deepcopy(paths_list)
+    tracking_schema = []
     itemwise_results = []
     matched = False
     match_listing = []
     for target_path in paths_list:
         lgr.debug("Checking file `%s`.", target_path)
         lgr.debug("Trying file types:")
-        for regex_entry in tracking_schema:
-            target_regex = regex_entry["regex"]
+        for regex_entry in regex_schema:
+            target_regex = r"(?:.*/)?" + regex_entry["regex"]
+            # We need to record the actual expressions we query.
+            _regex_entry = deepcopy(regex_entry)
+            _regex_entry.update({"regex": target_regex})
             lgr.debug("\t* `%s`, with pattern: `%`", target_path, target_regex)
-            matched = re.match(r"(?:.*/)?" + target_regex, target_path)
+            matched = re.match(target_regex, target_path)
             itemwise_result = {}
             itemwise_result["path"] = target_path
             itemwise_result["regex"] = target_regex
@@ -425,12 +436,13 @@ def validate_all(
         if matched:
             tracking_paths.remove(target_path)
             # Might be fragile since it relies on where the loop broke:
-            if regex_entry["mandatory"]:
-                tracking_schema.remove(regex_entry)
+            if not regex_entry["mandatory"]:
+                tracking_schema.append(_regex_entry)
             match_entry = matched.groupdict()
             match_entry["path"] = target_path
             match_listing.append(match_entry)
         else:
+            tracking_schema.append(_regex_entry)
             lgr.debug(
                 "The `%s` file could not be matched to any regex schema entry.",
                 target_path,

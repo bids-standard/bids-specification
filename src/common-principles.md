@@ -189,7 +189,7 @@ This convention is mainly intended for but not limited to MRI modalities.
 
 ### Case collision intolerance
 
-File name components are case sensitive,
+Filename components are case sensitive,
 but collisions MUST be avoided when casing is ignored.
 For example, a dataset cannot contain both `sub-s1` and `sub-S1`,
 as the labels would collide on a case-insensitive filesystem.
@@ -709,7 +709,7 @@ for naming of participants, sessions, acquisition schemes.
 Note that they MUST consist only of allowed characters as described in
 [Definitions](common-principles.md#definitions) above.
 In `<index>`es we RECOMMEND using zero padding (for example, `01` instead of `1`
-if you have more than nine subjects) to make alphabetical sorting more intuitive.
+if some participants have two-digit labels) to make alphabetical sorting more intuitive.
 Note that zero padding SHOULD NOT be used to merely maintain uniqueness
 of `<index>`es.
 

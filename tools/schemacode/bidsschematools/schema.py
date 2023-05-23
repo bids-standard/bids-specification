@@ -141,7 +141,7 @@ def load_schema(schema_path=None):
 
     This function allows the schema, like BIDS itself, to be specified in
     a hierarchy of directories and files.
-    File names (minus extensions) and directory names become keys
+    Filenames (minus extensions) and directory names become keys
     in the associative array (dict) of entries composed from content
     of files and entire directories.
 

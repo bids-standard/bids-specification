@@ -27,7 +27,8 @@ Current and past members of the steering group can be found
 | Remi Gau ([@Remi-Gau](https://github.com/Remi-Gau))                            | 3h/week         | Community development, MRI       |
 | Anthony Galassi  ([@bendhouseart](https://github.com/bendhouseart))            | 3h/week         | PET, Community development       |
 | Eric Earl ([@ericearl](https://github.com/ericearl))                           | 2h/week         |                                  |
-| Ross Blair ([@rwblair](https://github.com/rwblair))                            |                 | Maintainer of the bids-validator |
+| Ross Blair ([@rwblair](https://github.com/rwblair))      |   | Maintainer of the bids-validator |
+| Christine Rogers ([@christinerogers](https://github.com/christinerogers))      | 2h/mo        | interoperability, EEG and multi-modal |
 
 In addition to the [BIDS Governance](https://bids.neuroimaging.io/governance.html#bids-maintainers-group)
 classification of a maintainer, maintainers may declare a limited scope of responsibility.

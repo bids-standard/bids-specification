@@ -13,7 +13,7 @@ NotIncluded:
   code: NOT_INCLUDED
   message: |
     Files with such naming scheme are not part of BIDS specification. This error is
-    most commonly caused by typos in file names that make them not BIDS compatible.
+    most commonly caused by typos in filenames that make them not BIDS compatible.
     Please consult the specification and make sure your files are named correctly.
   level: error
 

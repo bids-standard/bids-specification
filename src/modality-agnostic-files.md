@@ -169,7 +169,7 @@ and does not validate the syntax of Markdown and reStructuredText.
 The `README` file SHOULD be structured such that its contents can be easily understood
 even if the used format is not rendered.
 A guideline for creating a good `README` file can be found in the
-[bids-starter-kit](https://github.com/bids-standard/bids-starter-kit/blob/master/templates/README).
+[bids-starter-kit](https://github.com/bids-standard/bids-starter-kit/tree/main/templates/).
 
 ### `CHANGES`
 
@@ -351,7 +351,7 @@ individual files separate from `participants.tsv`.
 
 Each of the measurement files MUST be kept in a `/phenotype` directory placed
 at the root of the BIDS dataset and MUST end with the `.tsv` extension.
-File names SHOULD be chosen to reflect the contents of the file.
+Filenames SHOULD be chosen to reflect the contents of the file.
 For example, the "Adult ADHD Clinical Diagnostic Scale" could be saved in a file
 called `/phenotype/acds_adult.tsv`.
 
