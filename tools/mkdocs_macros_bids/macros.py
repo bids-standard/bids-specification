@@ -366,10 +366,10 @@ def define_allowed_top_directories(src_path=None):
     return string
 
 
-def render_description(object, key, src_path=None):
+def render_text(key, src_path=None):
     if src_path is None:
         src_path = _get_source_path()
 
     schema_obj = schema.load_schema()
-    string = render.render_description(schema_obj, object, key, src_path=src_path)
+    string = render.render_text(schema_obj, key, src_path=src_path)
     return string

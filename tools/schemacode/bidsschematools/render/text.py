@@ -530,7 +530,7 @@ def define_allowed_top_directories(schema, src_path=None) -> str:
     return string.replace("SPEC_ROOT", utils.get_relpath(src_path))
 
 
-def render_description(schema, object: str, key: str, src_path=None):
+def render_text(schema, key: str, src_path=None):
     """
 
     Parameters
@@ -555,18 +555,7 @@ def render_description(schema, object: str, key: str, src_path=None):
     desc : str
         Description of the object.
     """
-    schema = schema.to_dict()
-    if object not in schema["objects"]:
-        raise ValueError(
-            f"Object {object} not found in schema.\n"
-            f"Possible values are: {list(schema['objects'].keys())}."
-            f"Got: {object}"
-        )
-    if key not in schema["objects"][object]:
-        raise ValueError(
-            f"Key {key} not found in schema.\n"
-            f"Possible values are: {list(schema['objects'][object].keys())}."
-            f"Got: {key}"
-        )
-    desc = schema["objects"][object][key]["description"]
-    return desc
+    text = schema.get(key)
+    if not isinstance(text, str):
+        raise ValueError(f"{key} does not refer to a text field")
+    return text.replace("SPEC_ROOT", utils.get_relpath(src_path))
