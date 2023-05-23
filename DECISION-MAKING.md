@@ -23,7 +23,7 @@ Current and past members of the steering group can be found
 |---------------------------------------------------------------------------|-----------------|---------------------------------------|----------|
 | Stefan Appelhoff ([@sappelhoff](https://github.com/sappelhoff))           | 5h/week         | Lead Maintainer                       | Mar 2020 |
 | Chris Markiewicz ([@effigies](https://github.com/effigies))               | 5h/week         |                                       | Mar 2020 |
-| Ross Blair ([@rwblair](https://github.com/rwblair))                       |                 | Maintainer of the bids-validator      | Mar 2020 |     
+| Ross Blair ([@rwblair](https://github.com/rwblair))                       |                 | Maintainer of the bids-validator      | Mar 2020 |
 | Taylor Salo ([@tsalo](https://github.com/tsalo))                          | 3h/week         | MRI                                   | Sep 2020 |
 | Remi Gau ([@Remi-Gau](https://github.com/Remi-Gau))                       | 3h/week         | Community development, MRI            | Oct 2020 |
 | Anthony Galassi  ([@bendhouseart](https://github.com/bendhouseart))       | 3h/week         | PET, Community development            | Sep 2021 |
