@@ -15,7 +15,7 @@ Templates:
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___render_description("files", "dataset_description") }}
+{{ MACROS___render_text("objects.files.dataset_description.description") }}
 
 Every dataset MUST include this file with the following fields:
 
@@ -165,7 +165,7 @@ Example:
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___render_description("files", "README") }}
+{{ MACROS___render_text("objects.files.README.description") }}
 
 ### `CHANGES`
 
@@ -173,7 +173,7 @@ A guide for using macros can be found at
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___render_description("files", "CHANGES") }}
+{{ MACROS___render_text("objects.files.CHANGES.description") }}
 
 Example:
 
@@ -191,7 +191,7 @@ Example:
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___render_description("files", "LICENSE") }}
+{{ MACROS___render_text("objects.files.LICENSE.description") }}
 
 ## Participants file
 
@@ -206,7 +206,7 @@ participants.json
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___render_description("files", "participants") }}
+{{ MACROS___render_text("objects.files.participants.description") }}
 
 We RECOMMEND to make use of these columns, and
 in case that you do use them, we RECOMMEND to use the following values
@@ -287,7 +287,7 @@ samples.json
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___render_description("files", "samples") }}
+{{ MACROS___render_text("objects.files.samples.description") }}
 
 <!-- This block generates a columns table.
 The definitions of these fields can be found in

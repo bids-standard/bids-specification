@@ -87,7 +87,7 @@ genetic_info.json
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___render_description("files", "genetic_info") }}
+{{ MACROS___render_text("objects.files.genetic_info.description") }}
 
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in
