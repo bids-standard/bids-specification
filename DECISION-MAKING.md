@@ -42,7 +42,7 @@ contributions elsewhere are welcome, as well.
 
 | Name                                                                           | Duration            |
 |--------------------------------------------------------------------------------|---------------------|
-| Franklin Feingold ([@franklin-feingold](https://github.com/franklin-feingold)) | Mar 2020 - Sep 2022 |
+| Franklin Feingold ([@franklin-feingold](https://github.com/franklin-feingold)) | Mar 2020 - Jul 2022 |
 
 ### BEP Leads Group
 
