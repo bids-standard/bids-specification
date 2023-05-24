@@ -30,7 +30,6 @@ def test_make_archive(bids_examples, bids_error_examples):
         (3) wrappers evaluating the yield statement
         (4) the desire to not download testdata twice for archive creation
         testdata archive creation is now inconspicuously posing as a test.
-    * Archives will be generated under `/tmp/bidsschematools-testdata-SCHEMA_VERSION.tar.gz`
     """
 
     testdata_dir = files("bidsschematools.tests.data")
