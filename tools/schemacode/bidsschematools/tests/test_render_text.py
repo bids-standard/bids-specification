@@ -1,6 +1,8 @@
 """Tests for the bidsschematools package."""
 import os
 
+import pytest
+
 from bidsschematools.render import text
 
 
@@ -130,3 +132,17 @@ def test_define_allowed_top_directories(schema_obj):
     """smoke test for allowed top directories."""
     test_str = text.define_allowed_top_directories(schema_obj)
     assert isinstance(test_str, str)
+
+
+def test_render_text(schema_obj):
+    test_str = text.render_text(
+        schema_obj, key="objects.files.dataset_description.description", src_path=None
+    )
+    assert (
+        test_str == "The file `dataset_description.json` is a JSON file describing the dataset.\n"
+    )
+
+
+def test_render_text_errors(schema_obj):
+    with pytest.raises(ValueError, match="does not refer to a text field"):
+        text.render_text(schema_obj, key="dataset_description", src_path=None)
