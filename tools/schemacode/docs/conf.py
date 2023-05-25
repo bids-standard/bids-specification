@@ -19,7 +19,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = "bidsschematools"
+project = "BIDS Schema Tools"
 copyright = "2022, bids-specification"
 author = "bids-specification"
 
