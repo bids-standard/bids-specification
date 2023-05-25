@@ -30,6 +30,7 @@ author = "bids-specification"
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    "sphinx.ext.intersphinx",
     "sphinx.ext.duration",
     "sphinx.ext.doctest",
     "sphinx.ext.coverage",
@@ -54,6 +55,8 @@ exclude_patterns = ["_build", "tests"]
 autosummary_mock_imports = [
     "bidsschematools.conftest",
 ]
+
+intersphinx_mapping = {"python": ("https://docs.python.org/3", None)}
 
 
 # -- Options for HTML output -------------------------------------------------
