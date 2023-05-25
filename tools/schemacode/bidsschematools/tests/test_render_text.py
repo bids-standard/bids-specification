@@ -67,12 +67,13 @@ def test_make_glossary(schema_obj, schema_dir):
 def test_make_filename_template(schema_obj, schema_dir):
     """
     Test whether:
-        * the base hierarchy structure of mandatory subject and optional session is
-        returned. This should be robust with respect to schema format.
-        * each directory contains at least one possible pattern.
-        This should be robust with respect to schema format.
-        * all files under the datatype rules subdirectory have corresponding entries.
-        This may need to be updated for schema hierarchy changes.
+
+    * The base hierarchy structure of mandatory subject and optional session is
+      returned. This should be robust with respect to schema format.
+    * Each directory contains at least one possible pattern.
+      This should be robust with respect to schema format.
+    * All files under the datatype rules subdirectory have corresponding entries.
+      This may need to be updated for schema hierarchy changes.
     """
     filename_template = text.make_filename_template("raw", schema_obj, pdf_format=True)
 
