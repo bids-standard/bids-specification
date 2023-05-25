@@ -4,10 +4,10 @@ Portions of the BIDS specification are defined using YAML files in order to
 make the specification machine-readable.
 
 Currently the portions of the specification that rely on this schema are:
-- the entity tables,
-- entity definitions,
-- filename templates,
-- metadata tables.
+-   the entity tables,
+-   entity definitions,
+-   filename templates,
+-   metadata tables.
 
 Any changes to the specification should be mirrored in the schema.
 
@@ -190,7 +190,6 @@ or `checks`, determining whether a rule is satisfied.
 Re-examining `rules.checks.mri.PhasePartUnits` from above:
 
 ```YAML
----
 PhasePartUnits:
   issue:
     code: PHASE_UNITS
@@ -573,9 +572,9 @@ BIDS follows RFC 2119 and has three requirement levels: OPTIONAL, RECOMMENDED an
 In the schema, we use `optional`, `recommended` and `required`.
 
 A rule interpreter (validator) is expected to treat:
-- missing REQUIRED data/metadata as an error,
-- missing RECOMMENDED data/metadata as a warning,
-- and silently pass over missing OPTIONAL data.
+-   missing REQUIRED data/metadata as an error,
+-   missing RECOMMENDED data/metadata as a warning,
+-   and silently pass over missing OPTIONAL data.
 
 BIDS also defines a level `DEPRECATED`, rendered in the schema as `deprecated`,
 and corresponding to a warning if the data/metadata is present.
