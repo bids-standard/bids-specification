@@ -6,8 +6,9 @@ Contents
 
 .. toctree::
    description
-   modules
    :maxdepth: 2
+
+   api
 
 
 Indices and tables

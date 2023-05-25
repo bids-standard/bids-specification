@@ -24,12 +24,14 @@ def test_make_archive(bids_examples, bids_error_examples):
 
     Notes
     -----
-    * Due to intricacies arising from:
-        (1) fixtures not working outside of pytest
-        (2) implicit teardown leveraging tempdata removal (while held open by yield)
-        (3) wrappers evaluating the yield statement
-        (4) the desire to not download testdata twice for archive creation
-        testdata archive creation is now inconspicuously posing as a test.
+    Due to intricacies arising from:
+
+    (1) fixtures not working outside of pytest
+    (2) implicit teardown leveraging tempdata removal (while held open by yield)
+    (3) wrappers evaluating the yield statement
+    (4) the desire to not download testdata twice for archive creation
+
+    testdata archive creation is now inconspicuously posing as a test.
     """
 
     testdata_dir = files("bidsschematools.tests.data")
