@@ -1,10 +1,12 @@
-Welcome to bidsschematools's documentation!
-===========================================
+.. include:: ../README.md
+   :parser: myst_parser.sphinx_
+
+Contents
+========
 
 .. toctree::
    modules
    :maxdepth: 2
-   :caption: Contents:
 
 
 Indices and tables
