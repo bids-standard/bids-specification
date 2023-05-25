@@ -61,7 +61,6 @@ Each file is made up of YAML data, most often an *object*.
 For example, the file `rules/checks/mri.yaml` contains the contents:
 
 ```YAML
----
 PhasePartUnits:
   issue:
     code: PHASE_UNITS
@@ -339,6 +338,7 @@ or whether objects are required in a given dataset or file.
 ### Overview
 
 There are currently 11 sub-namespaces, which fall into five rough categories.
+
 The namespaces are:
 
 | Namespace                   | Description                                                                         | Group            |
@@ -355,6 +355,7 @@ The namespaces are:
 | `objects.suffixes`          | Filename suffixes that describe the contents of the file                            | Value terms      |
 
 Because these objects vary, the contents of each namespace can vary.
+
 Common fields to all objects:
 
 | Field          | Description                                                                                                                                |
@@ -363,8 +364,9 @@ Common fields to all objects:
 | `display_name` | A human-friendly name, for tools to display; may include spaces                                                                            |
 
 The name/value terms groups (`entities`, `metadata` and `columns`) define terms where
-a name, when present, has a given meaning, and its value may be restricted. These objects
-additionally have the field:
+a name, when present, has a given meaning, and its value may be restricted.
+
+These objects additionally have the field:
 
 | Field    | Description                                                                                                                                                                                                     |
 | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -373,8 +375,10 @@ additionally have the field:
 | `format` | The format of the term (defined in `objects.formats`)                                                                                                                                                           |
 
 Value terms groups (`datatypes`, `suffixes`, `extensions`) define terms where a field
-can take on multiple values. For example, a file has one datatype, as compared to a
-collection of entities. These objects may have the fields:
+can take on multiple values.
+For example, a file has one datatype, as compared to a collection of entities.
+
+These objects may have the fields:
 
 | Field   | Description                                                                                                      |
 | ------- | ---------------------------------------------------------------------------------------------------------------- |
@@ -416,6 +420,7 @@ In a few cases, two objects with the same name appear multiple times in the spec
 When this happens, it is preferred to find a common definition, and clarify it in the rules (see below).
 However, in some cases, the object description and permissible values differ, and it needs to be defined
 as two separate objects.
+
 Consider the following examples:
 
 ```yaml
@@ -565,17 +570,22 @@ Core concepts are [expressions](#expressions) (defined above), requirement level
 #### Requirement levels and severity
 
 BIDS follows RFC 2119 and has three requirement levels: OPTIONAL, RECOMMENDED and REQUIRED.
-In the schema, we use `optional`, `recommended` and `required`. A rule interpreter (validator)
-is expected to treat missing REQUIRED data/metadata as an error, missing RECOMMENDED
-data/metadata as a warning, and silently pass over missing OPTIONAL data.
+In the schema, we use `optional`, `recommended` and `required`.
 
-BIDS also defines a level `DEPRECATED`, rendered in the schema as `deprecated`, and corresponding
-to a warning if the data/metadata is present.
+A rule interpreter (validator) is expected to treat:
+- missing REQUIRED data/metadata as an error,
+- missing RECOMMENDED data/metadata as a warning,
+- and silently pass over missing OPTIONAL data.
+
+BIDS also defines a level `DEPRECATED`, rendered in the schema as `deprecated`,
+and corresponding to a warning if the data/metadata is present.
 
 #### Issues
 
 Issues are messages intended to be communicated to a dataset curator to indicate an issue
-with their dataset. They have a code and severity as well:
+with their dataset.
+
+They have a code and severity as well:
 
 | Field     | Description                                    |
 | --------- | ---------------------------------------------- |
@@ -583,17 +593,19 @@ with their dataset. They have a code and severity as well:
 | `level`   | Issue severity (`warning` or `error`)          |
 | `message` | Message for display to a user                  |
 
-A level of `warning` corresponds to a rule in the specification that is RECOMMENDED, while a
-level of `error` corresponds to a rule that is REQUIRED.
+A level of `warning` corresponds to a rule in the specification that is RECOMMENDED,
+while a level of `error` corresponds to a rule that is REQUIRED.
 
-In some cases, an issue is contained next to a `level: required` or `level: recommended` as part
-of a larger rule. In these cases, the `level` field should be omitted from the issue to avoid
-duplication or conflict.
+In some cases, an issue is contained next to a `level: required` or `level: recommended`
+as part of a larger rule.
+In these cases, the `level` field should be omitted from the issue
+to avoid duplication or conflict.
 
 ### Filename construction rules
 
-A significant portion of BIDS is devoted to the naming of files, and almost all filenames consist
-of entities, a suffix, an extension, and a data type. Exceptions will be noted below.
+A significant portion of BIDS is devoted to the naming of files,
+and almost all filenames consist of entities, a suffix, an extension, and a data type.
+Exceptions will be noted below.
 
 `rules.files` contains the following subdivisions.
 
@@ -637,6 +649,7 @@ Here, `README` and `README.md` are both valid, while only `dataset_description.j
 including `participants.tsv`, `samples.tsv`, `*_sessions.tsv` and `*_scans.tsv`.
 The first two use the `stem` field, while the latter two specify the entities used
 to construct the filename.
+
 The valid fields are:
 
 | Field        | Description                                                                                                       |
@@ -671,6 +684,7 @@ Note that these files do not have a `datatype`, but otherwise follow the same ru
 
 `rules.files.raw` and `rules.files.deriv` contain series of related rules.
 These are largely grouped by datatype, but file types that appear in multiple locations may be grouped together.
+
 The files described take the form:
 
 ```plain
@@ -736,8 +750,11 @@ while files in the second group may not.
 Also, when files in the second group have the `acq` entity, the associated value MUST be `crosstalk`.
 
 A common derivatives type is preprocessed data, where the type of the generated data is the same
-as the input data. BIDS Derivatives specifies that these files may be distinguished from raw data
-with the new entities `space-<label>` or `desc-<label>`. This rule is encoded:
+as the input data.
+BIDS Derivatives specifies that these files may be distinguished from raw data
+with the new entities `space-<label>` or `desc-<label>`.
+
+This rule is encoded:
 
 ```yaml
 meg_meg_common:
@@ -815,8 +832,8 @@ RuleNameReq:
 Here we show an example of two fields, one that is RECOMMENDED in most cases
 but REQUIRED in another, the other of which is OPTIONAL.
 
-`selectors` indicate whether the current rule applies to a given file. This
-is not rendered in the text, but may be used by a validator.
+`selectors` indicate whether the current rule applies to a given file.
+This is not rendered in the text, but may be used by a validator.
 `fields` is an object with keys that appear in `objects.metadata`/`objects.columns`.
 If the value is a string, then it is a requirement level.
 If it is an object, then the it has the following fields
@@ -824,9 +841,9 @@ If it is an object, then the it has the following fields
 | Field                  | Requirement level | Description                                                                              |
 | ---------------------- | ----------------- | ---------------------------------------------------------------------------------------- |
 | `level`                | REQUIRED          | Requirement level of field, one of (`optional`, `recommended`, `required`, `deprecated`) |
-| `level_addendum`       | OPTIONAL          | Additional text to describe cases where requirement level changes                        |
 | `description_addendum` | OPTIONAL          | Additional text to follow the `objects.metadata.<fieldname>.description`                 |
 | `issues`               | OPTIONAL          | [issue object](#issues), if additional communication is warranted                        |
+| `level_addendum`       | OPTIONAL          | Additional text to describe cases where requirement level changes                        |
 
 The second table implements the change in the first table's `level_addendum`.
 The `expression3` selector indicates the additional case where the more stringent
@@ -835,12 +852,14 @@ rule is applied.
 #### Valid fields for definitions
 
 1.  `rules.sidecars.*`
+
     | Field       | Description                                                                                              |
     | ----------- | -------------------------------------------------------------------------------------------------------- |
     | `selectors` | List of expressions; any evaluating false indicate rule does not apply                                   |
     | `fields`    | Object with keys that may be found in `objects.metadata`, values either a requirement level or an object |
 
-1.  `rules.tabular_data.*`
+2.  `rules.tabular_data.*`
+
     | Field                | Description                                                                                                    |
     | -------------------- | -------------------------------------------------------------------------------------------------------------- |
     | `selectors`          | List of expressions; any evaluating false indicate rule does not apply                                         |
@@ -849,8 +868,8 @@ rule is applied.
     | `index_columns`      | An optional list of columns that uniquely identify a row.                                                      |
     | `additional_columns` | Indicates whether additional columns may be defined. One of `allowed`, `allowed_if_defined` and `not_allowed`. |
 
-The following tables demonstrate how mutual exclusive, required fields, may be
-set in `rules.sidecars.*`:
+The following tables demonstrate how mutual exclusive, required fields,
+may be set in `rules.sidecars.*`:
 
 ```YAML
 MRIFuncRepetitionTime:
@@ -876,8 +895,8 @@ MRIFuncVolumeTiming:
       level_addendum: mutually exclusive with `RepetitionTime`
 ```
 
-An additional check will be required to assert that both are not present, but
-these tables may be combined for rendering purposes.
+An additional check will be required to assert that both are not present,
+but these tables may be combined for rendering purposes.
 
 Here we present an example rule in `rules.tabular_data.eeg`:
 
@@ -909,7 +928,8 @@ EEGChannels:
 ### Checks
 
 `rules.checks` can contain more complex rules. Structurally, these are similar to sidecar rules,
-in that they have selectors. They additionally have a `checks` list, and an explicit issue.
+in that they have selectors.
+They additionally have a `checks` list, and an explicit issue.
 
 | Field       | Description                                                                                    |
 | ----------- | ---------------------------------------------------------------------------------------------- |
