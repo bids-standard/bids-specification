@@ -1,10 +1,14 @@
-# BIDS-schema
+# BIDS schema description
 
 Portions of the BIDS specification are defined using YAML files in order to
 make the specification machine-readable.
 
-Currently the portions of the specification that rely on this schema are
-the entity tables, entity definitions, filename templates, and metadata tables.
+Currently the portions of the specification that rely on this schema are:
+- the entity tables,
+- entity definitions,
+- filename templates,
+- metadata tables.
+
 Any changes to the specification should be mirrored in the schema.
 
 ## Organization and syntax
@@ -12,21 +16,39 @@ Any changes to the specification should be mirrored in the schema.
 At the time of this writing, the schema has the following file layout:
 
 ```plain
-src/schema
-├── BIDS_VERSION
 ├── meta
-│   └── context.yaml
+│   ├── ...
+│   └── versions.yaml
 ├── objects
-│   ├── columns.yaml
 │   ├── ...
 │   └── suffixes.yaml
 ├── rules
 │   ├── checks
-│   │   ├── asl.yaml
 │   │   ├── ...
-│   │   └── mri.yaml
+│   │   └── references.yaml
+│   ├── files
+│   │   ├── common
+│   │   │   ├── core.yaml
+│   │   │   └── tables.yaml
+│   │   ├── deriv
+│   │   │   ├── imaging.yaml
+│   │   │   └── preprocessed_data.yaml
+│   │   └── raw
+│   │       ├── ...
+│   │       └── task.yaml
+│   ├── sidecars
+│   │   ├── derivatives
+│   │   │   └── common_derivatives.yaml
+│   │   ├── ...
+│   │   └── pet.yaml
+│   ├── tabular_data
+│   │   ├── derivatives
+│   │   │   └── common_derivatives.yaml
+│   │   ├── ...
+│   │   └── task.yaml
 │   ├── ...
-│   └── suffixes.yaml
+│   └── modalities.yaml
+├── BIDS_VERSION
 └── SCHEMA_VERSION
 ```
 
@@ -76,13 +98,15 @@ These qualified names may be used in this README, as well as in *references* and
 
 ### Description formatting
 
-Many objects throughout the schema have a `description` field, which will typically be
-rendered somewhere in the specification. Because the specification is written in
-[Markdown](https://en.wikipedia.org/wiki/Markdown), these `description` fields may also
-contain Markdown, including links to other locations in the specification.
+Many objects throughout the schema have a `description` field,
+which will typically be rendered somewhere in the specification.
+Because the specification is written in [Markdown](https://en.wikipedia.org/wiki/Markdown),
+these `description` fields may also contain Markdown,
+including links to other locations in the specification.
 
-Because the same description may be used in multiple locations, a mechanism is needed
-to ensure that the correct path is discovered to render the description in each location.
+Because the same description may be used in multiple locations,
+a mechanism is needed to ensure that the correct path is discovered
+to render the description in each location.
 To do this, the path should follow the form `SPEC_ROOT/path/within/source.md#anchor`.
 For example, to link to the
 [Definitions](https://bids-specification.readthedocs.io/en/stable/common-principles.html#definitions)
@@ -108,8 +132,8 @@ ObjectName:
   $ref: objects.metadata.OtherObjectName
 ```
 
-This object may be *dereferenced* by replacing the `$ref` entry with the object being
-referenced.
+This object may be *dereferenced* by replacing the `$ref` entry
+with the object being referenced.
 The following two prototypical examples are presented to clarify the semantics of
 references (the cases in which they are used will be presented later):
 
@@ -152,10 +176,11 @@ references (the cases in which they are used will be presented later):
         description: optional
     ```
     Here, the derivative datatype rule starts by copying the raw datatype rule
-    `rules.datatypes.anat.nonparametric`. It then *overrides* the `entities` portion
-    of that rule with a new object. To *extend* the original `entities`, it again
-    begins by referencing `rules.datatypes.anat.nonparametric.entities`, and adding
-    the new entities `space` and `description`.
+    `rules.datatypes.anat.nonparametric`.
+    It then *overrides* the `entities` portion of that rule with a new object.
+    To *extend* the original `entities`, it again begins
+    by referencing `rules.datatypes.anat.nonparametric.entities`,
+    and adding the new entities `space` and `description`.
 
 ### Expressions
 
@@ -209,8 +234,8 @@ which (currently) contains at the top level:
 -   `nifti_header`: selected contents of the current NIfTI file's header
 
 Some of these are strings, while others are nested objects.
-These are to be populated by an *interpreter* of the schema, and provide the
-*namespace* in which expressions are evaluated.
+These are to be populated by an *interpreter* of the schema,
+and provide the *namespace* in which expressions are evaluated.
 
 The following operators should be defined by an interpreter:
 
@@ -233,17 +258,17 @@ The following functions should be defined by an interpreter:
 
 | Function                                        | Definition                                                                                                                                                 | Example                                                | Note                                                                           |
 | ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `match(arg: str, pattern: str) -> bool`         | `true` if `arg` matches the regular expression `pattern` (anywhere in string)                                                                              | `match(extension, ".gz$")`                             | True if the file extension ends with `.gz`                                     |
-| `substr(arg: str, start: int, end: int) -> str` | The portion of the input string spanning from start position to end position                                                                               | `substr(path, 0, length(path) - 3)`                    | `path` with the last three characters dropped                                  |
-| `type(arg: Any) -> str`                         | The name of the type, including `"array"`, `"object"`, `"null"`                                                                                            | `type(datatypes)`                                      | Returns `"array"`                                                              |
+| `count(arg: array, val: any)`                   | Number of elements in an array equal to `val`                                                                                                              | `count(columns.type, "EEG")`                           | The number of times "EEG" appears in the column "type" of the current TSV file |
+| `exists(arg: str \| array, rule: str) -> int`   | Count of files in an array that exist in the dataset. String is array with length 1. Rules include `"bids-uri"`, `"dataset"`, `"subject"` and `"stimuli"`. | `exists(sidecar.IntendedFor, "subject")`               | True if all files in `IntendedFor` exist, relative to the subject directory.   |
+| `index(arg: array, val: any)`                   | Index of first element in an array equal to `val`, `null` if not found                                                                                     | `index(["i", "j", "k"], axis)`                         | The number, from 0-2 corresponding to the string `axis`                        |
 | `intersects(a: array, b: array) -> bool`        | `true` if arguments contain any shared elements                                                                                                            | `intersects(dataset.modalities, ["pet", "mri"])`       | True if either PET or MRI data is found in dataset                             |
 | `length(arg: array) -> int`                     | Number of elements in an array                                                                                                                             | `length(columns.onset) > 0`                            | True if there is at least one value in the onset column                        |
-| `count(arg: array, val: any)`                   | Number of elements in an array equal to `val`                                                                                                              | `count(columns.type, "EEG")`                           | The number of times "EEG" appears in the column "type" of the current TSV file |
-| `index(arg: array, val: any)`                   | Index of first element in an array equal to `val`, `null` if not found                                                                                     | `index(["i", "j", "k"], axis)`                         | The number, from 0-2 corresponding to the string `axis`                        |
-| `sorted(arg: array) -> array`                   | The sorted values of the input array                                                                                                                       | `sorted(sidecar.VolumeTiming) == sidecar.VolumeTiming` | True if `sidecar.VolumeTiming` is sorted                                       |
-| `min(arg: array) -> number`                     | The smallest non-`n/a` value in an array                                                                                                                   | `min(sidecar.SliceTiming) == 0`                        | A check that the onset of the first slice is 0s                                |
+| `match(arg: str, pattern: str) -> bool`         | `true` if `arg` matches the regular expression `pattern` (anywhere in string)                                                                              | `match(extension, ".gz$")`                             | True if the file extension ends with `.gz`                                     |
 | `max(arg: array) -> number`                     | The largest non-`n/a` value in an array                                                                                                                    | `max(columns.onset)`                                   | The time of the last onset in an events.tsv file                               |
-| `exists(arg: str \| array, rule: str) -> int`   | Count of files in an array that exist in the dataset. String is array with length 1. Rules include `"bids-uri"`, `"dataset"`, `"subject"` and `"stimuli"`. | `exists(sidecar.IntendedFor, "subject")`               | True if all files in `IntendedFor` exist, relative to the subject directory.   |
+| `min(arg: array) -> number`                     | The smallest non-`n/a` value in an array                                                                                                                   | `min(sidecar.SliceTiming) == 0`                        | A check that the onset of the first slice is 0s                                |
+| `sorted(arg: array) -> array`                   | The sorted values of the input array                                                                                                                       | `sorted(sidecar.VolumeTiming) == sidecar.VolumeTiming` | True if `sidecar.VolumeTiming` is sorted                                       |
+| `substr(arg: str, start: int, end: int) -> str` | The portion of the input string spanning from start position to end position                                                                               | `substr(path, 0, length(path) - 3)`                    | `path` with the last three characters dropped                                  |
+| `type(arg: Any) -> str`                         | The name of the type, including `"array"`, `"object"`, `"null"`                                                                                            | `type(datatypes)`                                      | Returns `"array"`                                                              |
 
 #### The special value `null`
 
@@ -308,8 +333,8 @@ check will fail.
 Object files define "objects" or "terms", which are semantic descriptions of
 concepts used in BIDS. These reside under the `object.*` namespace in the schema.
 These files **do not** describe how objects of different types
-(for example file suffixes and file entities) interact with one another, or
-whether objects are required in a given dataset or file.
+(for example file suffixes and file entities) interact with one another,
+or whether objects are required in a given dataset or file.
 
 ### Overview
 
@@ -318,24 +343,24 @@ The namespaces are:
 
 | Namespace                   | Description                                                                         | Group            |
 | --------------------------- | ----------------------------------------------------------------------------------- | ---------------- |
-| `objects.common_principles` | Terms that are used throughout BIDS                                                 | General terms    |
-| `objects.modalities`        | Broad categories of data represented in BIDS, roughly matching recording instrument | General terms    |
-| `objects.entities`          | Name-value pairs appearing in filenames                                             | Name/value terms |
-| `objects.metadata`          | Name-value pairs appearing in JSON files                                            | Name/value terms |
 | `objects.columns`           | Column headings and values appearing in TSV files                                   | Name/value terms |
+| `objects.common_principles` | Terms that are used throughout BIDS                                                 | General terms    |
 | `objects.datatypes`         | Subdirectories that organize files by type (such as `anat`, `eeg`)                  | Value terms      |
-| `objects.suffixes`          | Filename suffixes that describe the contents of the file                            | Value terms      |
+| `objects.entities`          | Name-value pairs appearing in filenames                                             | Name/value terms |
 | `objects.extensions`        | Filename component that describe the format of the file                             | Value terms      |
-| `objects.formats`           | Terms that define the forms values (for example, in metadata) might take            | Formats          |
 | `objects.files`             | Files and directories that may appear at the root of a dataset                      | Files            |
+| `objects.formats`           | Terms that define the forms values (for example, in metadata) might take            | Formats          |
+| `objects.metadata`          | Name-value pairs appearing in JSON files                                            | Name/value terms |
+| `objects.modalities`        | Broad categories of data represented in BIDS, roughly matching recording instrument | General terms    |
+| `objects.suffixes`          | Filename suffixes that describe the contents of the file                            | Value terms      |
 
 Because these objects vary, the contents of each namespace can vary.
 Common fields to all objects:
 
 | Field          | Description                                                                                                                                |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| `display_name` | A human-friendly name, for tools to display; may include spaces                                                                            |
 | `description`  | A description of the term that can be understood that should not depend on particular surrounding text; may contain markdown for rendering |
+| `display_name` | A human-friendly name, for tools to display; may include spaces                                                                            |
 
 The name/value terms groups (`entities`, `metadata` and `columns`) define terms where
 a name, when present, has a given meaning, and its value may be restricted. These objects
@@ -601,10 +626,7 @@ README:
   level: required
   stem: README
   extensions:
-    - ''
-    - .md
-    - .rst
-    - .txt
+    - ['', '.md', '.rst', '.txt']
 ```
 
 Here, `README` and `README.md` are both valid, while only `dataset_description.json` is permitted.
