@@ -5,8 +5,9 @@ Contents
 ========
 
 .. toctree::
-   modules
    :maxdepth: 2
+
+   api
 
 
 Indices and tables
