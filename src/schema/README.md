@@ -857,7 +857,7 @@ rule is applied.
     | `selectors` | List of expressions; any evaluating false indicate rule does not apply                                   |
     | `fields`    | Object with keys that may be found in `objects.metadata`, values either a requirement level or an object |
 
-2.  `rules.tabular_data.*`
+1.  `rules.tabular_data.*`
 
     | Field                | Description                                                                                                    |
     | -------------------- | -------------------------------------------------------------------------------------------------------------- |
