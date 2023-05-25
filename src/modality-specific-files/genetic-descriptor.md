@@ -90,22 +90,13 @@ Datasets containing the `Genetics` field in `dataset_description.json` or the
 `genetic_id` column in `participants.tsv` MUST include this file with the following
 fields:
 
-<!-- This block generates a metadata table.
+<!-- This block generates a document table.
 The definitions of these fields can be found in
-  src/schema/objects/metadata.yaml
+  src/schema/objects/documents.yaml
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "GeneticLevel": "REQUIRED",
-      "AnalyticalApproach": "OPTIONAL",
-      "SampleOrigin": "REQUIRED",
-      "TissueOrigin": "OPTIONAL",
-      "BrainLocation": "OPTIONAL",
-      "CellType": "OPTIONAL",
-   }
-) }}
+{{ MACROS___make_subobject_table("documents.GeneticInfo") }}
 
 To ensure dataset description consistency, we recommend following [Multi-omics approaches to disease](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-017-1215-1) by Hasin et al. 2017 to determine the `GeneticLevel:`
 

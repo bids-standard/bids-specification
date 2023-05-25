@@ -5,6 +5,7 @@
 dataset_description:
   level: required
   path: dataset_description.json
+  contents: objects.documents.DatasetDescription
 README:
   level: recommended
   stem: README
@@ -22,6 +23,7 @@ LICENSE:
 genetic_info:
   level: optional
   path: genetic_info.json
+  contents: objects.documents.GeneticInfo
 code:
   level: optional
   path: code

@@ -1,0 +1,71 @@
+---
+DatasetDescription:
+  name: DatasetDescription
+  display_name: Dataset description
+  description: |
+    An document stored in /dataset_description.json
+  type: object
+  required_fields: [Name, BIDSVersion]
+  recommended_fields:
+    - HEDVersion
+    - DatasetType
+    - License
+    - Authors
+    - GeneratedBy
+    - SourceDatasets
+  properties:
+    Name:
+      $ref: objects.metadata.Name
+    BIDSVersion:
+      $ref: objects.metadata.BIDSVersion
+    HEDVersion:
+      $ref: objects.metadata.HEDVersion
+    DatasetLinks:
+      $ref: objects.metadata.DatasetLinks
+      level_addendum: required if BIDS URIs are used
+    DatasetType:
+      $ref: objects.metadata.DatasetType
+    License:
+      $ref: objects.metadata.License
+    Authors:
+      $ref: objects.metadata.Authors
+    Acknowledgements:
+      $ref: objects.metadata.Acknowledgements
+    HowToAcknowledge:
+      $ref: objects.metadata.HowToAcknowledge
+    Funding:
+      $ref: objects.metadata.Funding
+    EthicsApprovals:
+      $ref: objects.metadata.EthicsApprovals
+    ReferencesAndLinks:
+      $ref: objects.metadata.ReferencesAndLinks
+    DatasetDOI:
+      $ref: objects.metadata.DatasetDOI
+    GeneratedBy:
+      $ref: objects.metadata.GeneratedBy
+    SourceDatasets:
+      $ref: objects.metadata.SourceDatasets
+    Genetics:
+      $ref: objects.metadata.Genetics
+      level_addendum: required if `genetic_info.json` is present
+
+GeneticInfo:
+  name: GeneticInfo
+  display_name: Genetic Info
+  description: |
+    An document stored in /genetic_info.json
+  type: object
+  required_fields: [GeneticLevel, SampleOrigin]
+  properties:
+    GeneticLevel:
+      $ref: objects.metadata.GeneticLevel
+    AnalyticalApproach:
+      $ref: objects.metadata.AnalyticalApproach
+    SampleOrigin:
+      $ref: objects.metadata.SampleOrigin
+    TissueOrigin:
+      $ref: objects.metadata.TissueOrigin
+    BrainLocation:
+      $ref: objects.metadata.BrainLocation
+    CellType:
+      $ref: objects.metadata.CellType

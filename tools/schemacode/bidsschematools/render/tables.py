@@ -88,6 +88,10 @@ def _make_object_table(
             "DEPRECATED",
             "[DEPRECATED](SPEC_ROOT/common-principles.md#definitions)",
         )
+        requirement_info = requirement_info.replace(
+            "BIDS URI",
+            "[BIDS URI](SPEC_ROOT/common-principles.md#bids-uri)",
+        )
 
         type_string = utils.resolve_metadata_type(subschema[element])
 
@@ -538,6 +542,12 @@ def make_subobject_table(
             req_level = "recommended"
         else:
             req_level = "optional"
+        addendum = obj.properties[field].get("level_addendum", "")
+        if addendum.startswith(("required", "recommended", "optional")):
+            req_level = f"{req_level}, but {addendum}"
+        else:
+            # Typically begins with "if"
+            req_level = f"{req_level} {addendum}"
         field_info[field] = {"table_info": (req_level, "")}
 
     table_str = _make_object_table(
