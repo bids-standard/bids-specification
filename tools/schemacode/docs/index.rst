@@ -5,9 +5,9 @@ Contents
 ========
 
 .. toctree::
-   description
    :maxdepth: 2
 
+   description
    api
 
 

@@ -6,8 +6,7 @@
 [![PyPI version fury.io](https://badge.fury.io/py/bidsschematools.svg)](https://pypi.org/project/bidsschematools/)
 
 A Python library (available after installation in the Python interpreter as `bidsschematools`)
-for working with the schema
-for the [brain imaging data structure (BIDS)](https://bids.neuroimaging.io/).
+for working with the [Brain Imaging Data Structure (BIDS)](https://bids.neuroimaging.io/) schema.
 
 Features:
 * lightweight
