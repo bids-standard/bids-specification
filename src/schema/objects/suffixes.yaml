@@ -507,9 +507,9 @@ asllabeling:
   value: asllabeling
   display_name: ASL Labeling Screenshot
   description: |
-    An anonymized screenshot of the planning of the labeling slab/plane with
-    respect to the imaging slab or slices `*_asllabeling.jpg`.
-    Based on DICOM macro C.8.13.5.14.
+    An anonymized screenshot of the planning of the labeling slab/plane
+    with respect to the imaging slab or slices.
+    This screenshot is based on DICOM macro C.8.13.5.14.
 beh:
   value: beh
   display_name: Behavioral recording

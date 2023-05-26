@@ -92,6 +92,7 @@ All the macros we use are in listed in this
 | make_suffix_table              | Generate a markdown table of suffix information.                                       | Yes         | [link](https://github.com/bids-standard/bids-specification/blob/9201b203ffaa72d83b2fa30d1c61f46f089f77de/src/04-modality-specific-files/01-magnetic-resonance-imaging-data.md?plain=1#L199) |
 | define_common_principles       | List the common principles and definitions.                                            | Yes         | [link](https://github.com/bids-standard/bids-specification/blob/831ee55577b91aaa110153e9269e7829b095fb6f/src/02-common-principles.md?plain=1#L12)                                           |
 | define_allowed_top_directories | Create a list of allowed top-level directories with their descriptions.                | Yes         | [link](https://github.com/bids-standard/bids-specification/blob/2a701fd034d51c25e8fe18ba67bb7b76621ba477/src/02-common-principles.md?plain=1#L124)                                          |
+| render_description             | Renders the description of an object in the schema.                                    | Yes         | [link] (???)                                          |
 
 
 ## When should I use a macro?
