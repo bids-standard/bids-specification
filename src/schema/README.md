@@ -841,7 +841,7 @@ If it is an object, then the it has the following fields
 | ---------------------- | ----------------- | ---------------------------------------------------------------------------------------- |
 | `level`                | REQUIRED          | Requirement level of field, one of (`optional`, `recommended`, `required`, `deprecated`) |
 | `description_addendum` | OPTIONAL          | Additional text to follow the `objects.metadata.<fieldname>.description`                 |
-| `issues`               | OPTIONAL          | [issue object](#issues), if additional communication is warranted                        |
+| `issue`                | OPTIONAL          | [issue object](#issues), if additional communication is warranted                        |
 | `level_addendum`       | OPTIONAL          | Additional text to describe cases where requirement level changes                        |
 
 The second table implements the change in the first table's `level_addendum`.
