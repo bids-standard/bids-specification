@@ -342,16 +342,16 @@ The namespaces are:
 
 | Namespace                   | Description                                                                         | Group            |
 | --------------------------- | ----------------------------------------------------------------------------------- | ---------------- |
-| `objects.columns`           | Column headings and values appearing in TSV files                                   | Name/value terms |
 | `objects.common_principles` | Terms that are used throughout BIDS                                                 | General terms    |
-| `objects.datatypes`         | Subdirectories that organize files by type (such as `anat`, `eeg`)                  | Value terms      |
-| `objects.entities`          | Name-value pairs appearing in filenames                                             | Name/value terms |
-| `objects.extensions`        | Filename component that describe the format of the file                             | Value terms      |
-| `objects.files`             | Files and directories that may appear at the root of a dataset                      | Files            |
-| `objects.formats`           | Terms that define the forms values (for example, in metadata) might take            | Formats          |
-| `objects.metadata`          | Name-value pairs appearing in JSON files                                            | Name/value terms |
 | `objects.modalities`        | Broad categories of data represented in BIDS, roughly matching recording instrument | General terms    |
+| `objects.entities`          | Name-value pairs appearing in filenames                                             | Name/value terms |
+| `objects.metadata`          | Name-value pairs appearing in JSON files                                            | Name/value terms |
+| `objects.columns`           | Column headings and values appearing in TSV files                                   | Name/value terms |
+| `objects.datatypes`         | Subdirectories that organize files by type (such as `anat`, `eeg`)                  | Value terms      |
 | `objects.suffixes`          | Filename suffixes that describe the contents of the file                            | Value terms      |
+| `objects.extensions`        | Filename component that describe the format of the file                             | Value terms      |
+| `objects.formats`           | Terms that define the forms values (for example, in metadata) might take            | Formats          |
+| `objects.files`             | Files and directories that may appear at the root of a dataset                      | Files            |
 
 Because these objects vary, the contents of each namespace can vary.
 
@@ -637,7 +637,10 @@ README:
   level: required
   stem: README
   extensions:
-    - ['', '.md', '.rst', '.txt']
+    - ''
+    - '.md'
+    - '.rst'
+    - '.txt'
 ```
 
 Here, `README` and `README.md` are both valid, while only `dataset_description.json` is permitted.
@@ -840,9 +843,9 @@ If it is an object, then the it has the following fields
 | Field                  | Requirement level | Description                                                                              |
 | ---------------------- | ----------------- | ---------------------------------------------------------------------------------------- |
 | `level`                | REQUIRED          | Requirement level of field, one of (`optional`, `recommended`, `required`, `deprecated`) |
+| `level_addendum`       | OPTIONAL          | Additional text to describe cases where requirement level changes                        |
 | `description_addendum` | OPTIONAL          | Additional text to follow the `objects.metadata.<fieldname>.description`                 |
 | `issue`                | OPTIONAL          | [issue object](#issues), if additional communication is warranted                        |
-| `level_addendum`       | OPTIONAL          | Additional text to describe cases where requirement level changes                        |
 
 The second table implements the change in the first table's `level_addendum`.
 The `expression3` selector indicates the additional case where the more stringent
