@@ -638,9 +638,9 @@ README:
   stem: README
   extensions:
     - ''
-    - '.md'
-    - '.rst'
-    - '.txt'
+    - .md
+    - .rst
+    - .txt
 ```
 
 Here, `README` and `README.md` are both valid, while only `dataset_description.json` is permitted.
