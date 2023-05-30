@@ -15,6 +15,16 @@ utils.set_logger_level(lgr, os.environ.get("BIDS_SCHEMA_LOG_LEVEL", logging.INFO
 logging.basicConfig(format="%(asctime)-15s [%(levelname)8s] %(message)s")
 
 
+def listify(obj):
+    """Convert string or list of strings into a list of strings"""
+    if isinstance(obj, str):
+        return [obj]
+    if isinstance(obj, list):
+        return obj
+
+    raise ValueError("Unknown object to listify")
+
+
 class BIDSSchemaError(Exception):
     """Errors indicating invalid values in the schema itself"""
 
@@ -97,6 +107,20 @@ def dereference(namespace, inplace=True):
     return namespace
 
 
+def uniformize(namespace: Namespace, inplace=True) -> Namespace:
+    """Expand shorthand schema entries into uniform types
+
+    Currently:
+
+    * Changes single strings in extensions lists into lists of length 1
+    """
+    if not inplace:
+        namespace = deepcopy(namespace)
+    for struct in _find(namespace.rules.files, lambda obj: "extensions" in obj):
+        struct.extensions[:] = [listify(group) for group in struct.extensions]
+    return namespace
+
+
 def flatten_enums(namespace, inplace=True):
     """Replace enum collections with a single enum, merging enums contents.
 
@@ -171,6 +195,7 @@ def load_schema(schema_path=None):
 
     dereference(schema)
     flatten_enums(schema)
+    uniformize(schema)
 
     schema["bids_version"] = _get_bids_version(schema_path)
     schema["schema_version"] = _get_schema_version(schema_path)
