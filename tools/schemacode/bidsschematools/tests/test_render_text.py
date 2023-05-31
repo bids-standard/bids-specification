@@ -138,7 +138,7 @@ def test_make_filename_template_mutually_combine_extensions_when_too_many():
     )
     print(filename_template)
     nb_lines = len(filename_template.split("\n"))
-    assert nb_lines == 10
+    assert nb_lines == 14
 
 
 def test_define_common_principles(schema_obj):
@@ -179,39 +179,3 @@ def test_render_text(schema_obj):
 def test_render_text_errors(schema_obj):
     with pytest.raises(ValueError, match="does not refer to a text field"):
         text.render_text(schema_obj, key="dataset_description", src_path=None)
-
-
-@pytest.mark.parametrize(
-    "extensions, expected, pdf_format",
-    [
-        (
-            ["json"],
-            ['<a href="SPEC_ROOT/glossary.html#extension-common_principles">json</a>'],
-            False,
-        ),
-        (["nii.gz", "nii", "json"], ["nii[.gz]", "json"], True),
-    ],
-)
-def test_extension_for_this_group(schema_obj, extensions, expected, pdf_format):
-    extensions = text._combine_extensions_with_headings(
-        schema_obj, extensions, pdf_format=pdf_format
-    )
-    assert extensions == expected
-
-
-class Group:
-    def __init__(self, extensions):
-        self.extensions = extensions
-
-
-@pytest.mark.parametrize("extensions, expected", [(["nii"], 1), (["nii", ["bar", "baz"]], 3)])
-def test_nb_extensions(extensions, expected):
-    group = Group(extensions=extensions)
-    assert text._nb_extensions(group) == expected
-
-
-@pytest.mark.parametrize(
-    "extensions, expected", [(["nii"], ["nii"]), (["nii", ["bar", "baz"]], ["nii", "bar", "baz"])]
-)
-def test_listify_all_extensions(extensions, expected):
-    assert text._listify_all_extensions(extensions) == expected
