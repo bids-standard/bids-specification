@@ -156,7 +156,7 @@ mefd:
 
     Each recording consists of a `.mefd` directory.
 mhd:
-  value: .mhd
+  value: .raw.mhd
   display_name: ITAB Binary Header
   description: |
     Produced by ITAB-ARGOS153 systems. This file a binary header file, and is generated along with a
