@@ -92,8 +92,19 @@ def dereference(namespace, inplace=True):
     if not inplace:
         namespace = deepcopy(namespace)
     for struct in _find(namespace, lambda obj: "$ref" in obj):
-        target = struct.pop("$ref")
-        struct.update({**namespace[target], **struct})
+        target = namespace.get(struct["$ref"])
+        if isinstance(target, Mapping):
+            struct.pop("$ref")
+            struct.update({**target, **struct})
+    # At this point, any remaining refs are one-off objects in lists
+    for struct in _find(namespace, lambda obj: any("$ref" in sub for sub in obj)):
+        for i, item in enumerate(struct):
+            try:
+                target = item.pop("$ref")
+            except (AttributeError, KeyError):
+                pass
+            else:
+                struct[i] = namespace.get(target)
     return namespace
 
 

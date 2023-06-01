@@ -312,3 +312,36 @@ def test_dereferencing():
             }
         },
     }
+
+    orig = {
+        "objects": {
+            "values": {
+                "left": {"value": "L"},
+                "right": {"value": "R"},
+            },
+            "entities.hemisphere": {
+                "name": "hemi",
+                "enum": [
+                    {"$ref": "objects.values.left.value"},
+                    {"$ref": "objects.values.right.value"},
+                ],
+            },
+        },
+    }
+
+    sch = types.Namespace.build(orig)
+    dereffed = schema.dereference(sch)
+    assert dereffed == {
+        "objects": {
+            "values": {
+                "left": {"value": "L"},
+                "right": {"value": "R"},
+            },
+            "entities": {
+                "hemisphere": {
+                    "name": "hemi",
+                    "enum": ["L", "R"],
+                },
+            },
+        },
+    }
