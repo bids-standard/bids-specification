@@ -602,30 +602,42 @@ imaginary:
 ACCEL:
   value: ACCEL
   display_name: ACCEL
+  tags:
+    - fnirs
+    - motion
   description: |
     Accelerometer channel, one channel for each spatial axis.
     Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).
 ANGACCEL:
   value: ANGACCEL
   display_name: ANGACCEL
+  tags:
+    - motion
   description: |
     Angular acceleration channel, one channel for each spatial axis.
     Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).
 GYRO:
   value: GYRO
   display_name: GYRO
+  tags:
+    - fnirs
+    - motion
   description: |
     Gyrometer channel, one channel for each spatial axis.
     Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).
 JNTANG:
   value: JNTANG
   display_name: JNTANG
+  tags:
+    - motion
   description: |
     Joint angle channel between two fixed axis belonging to two bodyparts.
     Angle SHOULD be defined between proximal and distal bodypart in `deg`.
 LATENCY:
   value: LATENCY
   display_name: LATENCY
+  tags:
+    - motion
   description: |
     Latency of samples in seconds from recording onset.
     MUST be in form of `ss[.000000]`,
@@ -633,17 +645,29 @@ LATENCY:
 MAGN:
   value: MAGN
   display_name: MAGN
+  tags:
+    - fnirs
+    - motion
   description: |
     Magnetic field strength, one channel for each spatial axis.
     Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z).
 MISC:
   value: MISC
   display_name: MISC
+  tags:
+    - eeg
+    - meg
+    - ieeg
+    - fnirs
+    - motion
   description: |
     Miscellaneous channels.
 ORNT:
   value: ORNT
   display_name: ORNT
+  tags:
+    - fnirs
+    - motion
   description: |
     Orientation channel, one channel for each spatial axis or quaternion component.
     Column `component` for the axis or quaternion label MUST be added to the `*_channels.tsv` file
@@ -651,204 +675,341 @@ ORNT:
 POS:
   value: POS
   display_name: POS
+  tags:
+    - motion
   description: |
     Position in space, one channel for each spatial axis.
     Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z).
 VEL:
   value: VEL
   display_name: VEL
+  tags:
+    - motion
   description: |
     Velocity, one channel for each spatial axis.
     Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z).
 AUDIO:
   value: AUDIO
   display_name: AUDIO
+  tags:
+    - eeg
+    - meg
+    - ieeg
+    - fnirs
   description: |
     Audio signal.
 EEG:
   value: EEG
   display_name: EEG
+  tags:
+    - eeg
+    - meg
+    - ieeg
+    - fnirs
   description: |
     Electroencephalogram channel.
 EOG:
   value: EOG
   display_name: EOG
+  tags:
+    - eeg
+    - meg
+    - ieeg
+    - fnirs
   description: |
     Generic electrooculogram (eye), different from HEOG and VEOG.
 ECG:
   value: ECG
   display_name: ECG
+  tags:
+    - eeg
+    - meg
+    - ieeg
+    - fnirs
   description: |
     Electrocardiogram (heart).
 EMG:
   value: EMG
   display_name: EMG
+  tags:
+    - eeg
+    - meg
+    - ieeg
+    - fnirs
   description: |
     Electromyogram (muscle).
 EYEGAZE:
   value: EYEGAZE
   display_name: EYEGAZE
+  tags:
+    - eeg
+    - meg
+    - ieeg
+    - fnirs
   description: |
     Eye tracker gaze.
 GSR:
   value: GSR
   display_name: GSR
+  tags:
+    - eeg
   description: |
     Galvanic skin response.
 HEOG:
   value: HEOG
   display_name: HEOG
+  tags:
+    - eeg
+    - meg
+    - ieeg
+    - fnirs
   description: |
     Horizontal EOG (eye).
 PPG:
   value: PPG
   display_name: PPG
+  tags:
+    - eeg
   description: |
     Photoplethysmography.
 PUPIL:
   value: PUPIL
   display_name: PUPIL
+  tags:
+    - eeg
+    - meg
+    - ieeg
+    - fnirs
   description: |
     Eye tracker pupil diameter.
 REF:
   value: REF
   display_name: REF
+  tags:
+    - eeg
+    - ieeg
   description: |
     Reference channel.
 RESP:
   value: RESP
   display_name: RESP
+  tags:
+    - eeg
   description: |
     Respiration.
 SYSCLOCK:
   value: SYSCLOCK
   display_name: SYSCLOCK
+  tags:
+    - eeg
+    - meg
+    - ieeg
+    - fnirs
   description: |
     System time showing elapsed time since trial started.
 TEMP:
   value: TEMP
   display_name: TEMP
+  tags:
+    - eeg
   description: |
     Temperature.
 TRIG:
   value: TRIG
   display_name: TRIG
+  tags:
+    - eeg
+    - meg
+    - ieeg
+    - fnirs
   description: |
     Analog (TTL in Volt) or digital (binary TTL) trigger channel.
 VEOG:
   value: VEOG
   display_name: VEOG
+  tags:
+    - eeg
+    - meg
+    - ieeg
+    - fnirs
   description: |
     Vertical EOG (eye).
 MEGMAG:
   value: MEGMAG
   display_name: MEGMAG
+  tags:
+    - meg
+    - fnirs
   description: |
     MEG magnetometer.
 MEGGRADAXIAL:
   value: MEGGRADAXIAL
   display_name: MEGGRADAXIAL
+  tags:
+    - meg
+    - fnirs
   description: |
     MEG axial gradiometer.
 MEGGRADPLANAR:
   value: MEGGRADPLANAR
   display_name: MEGGRADPLANAR
+  tags:
+    - meg
+    - fnirs
   description: |
     MEG planargradiometer.
 MEGREFMAG:
   value: MEGREFMAG
   display_name: MEGREFMAG
+  tags:
+    - meg
+    - fnirs
   description: |
     MEG reference magnetometer.
 MEGREFGRADAXIAL:
   value: MEGREFGRADAXIAL
   display_name: MEGREFGRADAXIAL
+  tags:
+    - meg
+    - fnirs
   description: |
     MEG reference axial gradiometer.
 MEGREFGRADPLANAR:
   value: MEGREFGRADPLANAR
   display_name: MEGREFGRADPLANAR
+  tags:
+    - meg
+    - fnirs
   description: |
     MEG reference planar gradiometer.
 MEGOTHER:
   value: MEGOTHER
   display_name: MEGOTHER
+  tags:
+    - meg
+    - ieeg
+    - fnirs
   description: |
     Any other type of MEG sensor.
 ECOG:
   value: ECOG
   display_name: ECOG
+  tags:
+    - meg
+    - ieeg
+    - fnirs
   description: |
     Electrode channel.
 SEEG:
   value: SEEG
   display_name: SEEG
+  tags:
+    - meg
+    - ieeg
+    - fnirs
   description: |
     Electrode channel.
 DBS:
   value: DBS
   display_name: DBS
+  tags:
+    - meg
+    - ieeg
+    - fnirs
   description: |
     Electrode channel.
 PD:
   value: PD
   display_name: PD
+  tags:
+    - meg
+    - ieeg
+    - fnirs
   description: |
     Photodiode.
 ADC:
   value: ADC
   display_name: ADC
+  tags:
+    - meg
+    - ieeg
+    - fnirs
   description: |
     Analog to Digital input.
 DAC:
   value: DAC
   display_name: DAC
+  tags:
+    - meg
+    - ieeg
+    - fnirs
   description: |
     Digital to Analog output.
 HLU:
   value: HLU
   display_name: HLU
+  tags:
+    - meg
+    - fnirs
   description: |
     Measured position of head and head coils.
 FITERR:
   value: FITERR
   display_name: FITERR
+  tags:
+    - meg
+    - fnirs
   description: |
     Fit error signal from each head localization coil.
 OTHER:
   value: OTHER
   display_name: OTHER
+  tags:
+    - meg
+    - fnirs
   description: |
     Any other type of channel.
 NIRSCWAMPLITUDE:
   value: NIRSCWAMPLITUDE
   display_name: NIRSCWAMPLITUDE
+  tags:
+    - fnirs
   description: |
     Continuous wave amplitude measurements. Equivalent to dataType 001 in SNIRF.
 NIRSCWFLUORESCENSEAMPLITUDE:
   value: NIRSCWFLUORESCENSEAMPLITUDE
   display_name: NIRSCWFLUORESCENSEAMPLITUDE
+  tags:
+    - fnirs
   description: |
     Continuous wave fluorescence amplitude measurements. Equivalent to dataType 051 in SNIRF.
 NIRSCWOPTICALDENSITY:
   value: NIRSCWOPTICALDENSITY
   display_name: NIRSCWOPTICALDENSITY
+  tags:
+    - fnirs
   description: |
     Continuous wave change in optical density measurements. Equivalent to dataTypeLabel dOD in SNIRF.
 NIRSCWHBO:
   value: NIRSCWHBO
   display_name: NIRSCWHBO
+  tags:
+    - fnirs
   description: |
     Continuous wave oxygenated hemoglobin (oxyhemoglobin) concentration measurements.
     Equivalent to dataTypeLabel HbO in SNIRF.
 NIRSCWHBR:
   value: NIRSCWHBR
   display_name: NIRSCWHBR
+  tags:
+    - fnirs
   description: |
     Continuous wave deoxygenated hemoglobin (deoxyhemoglobin) concentration measurements.
     Equivalent to dataTypeLabel HbR in SNIRF.
 NIRSCWMUA:
   value: NIRSCWMUA
   display_name: NIRSCWMUA
+  tags:
+    - fnirs
   description: |
     Continuous wave optical absorption measurements. Equivalent to dataTypeLabel mua in SNIRF.
