@@ -548,3 +548,34 @@ def define_allowed_top_directories(schema, src_path=None) -> str:
             string += f"- `{dirname}`: {definition.description}"
 
     return string.replace("SPEC_ROOT", utils.get_relpath(src_path))
+
+
+def render_text(schema, key: str, src_path=None):
+    """
+
+    Parameters
+    ----------
+    schema : dict
+        The BIDS schema.
+
+    object : str
+        The object to render the description for:
+        possible values correspond to the keys in schema["objects"].
+
+    key : str
+        The key of the object to render the description for:
+        possible values correspond to the keys in schema["objects"][object]
+
+    src_path : str or None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
+
+    Returns
+    -------
+    desc : str
+        Description of the object.
+    """
+    text = schema.get(key)
+    if not isinstance(text, str):
+        raise ValueError(f"{key} does not refer to a text field")
+    return text.replace("SPEC_ROOT", utils.get_relpath(src_path))
