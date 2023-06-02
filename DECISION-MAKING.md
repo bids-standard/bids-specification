@@ -19,16 +19,16 @@ Current and past members of the steering group can be found
 
 ### Maintainers Group
 
-| Name                                                                           | Time commitment | Scope                            |
-|--------------------------------------------------------------------------------|-----------------|----------------------------------|
-| Stefan Appelhoff ([@sappelhoff](https://github.com/sappelhoff))                | 5h/week         | Lead Maintainer                  |
-| Chris Markiewicz ([@effigies](https://github.com/effigies))                    | 5h/week         |                                  |
-| Taylor Salo ([@tsalo](https://github.com/tsalo))                               | 3h/week         | MRI                              |
-| Remi Gau ([@Remi-Gau](https://github.com/Remi-Gau))                            | 3h/week         | Community development, MRI       |
-| Anthony Galassi  ([@bendhouseart](https://github.com/bendhouseart))            | 3h/week         | PET, Community development       |
-| Eric Earl ([@ericearl](https://github.com/ericearl))                           | 2h/week         |                                  |
-| Ross Blair ([@rwblair](https://github.com/rwblair))      |   | Maintainer of the bids-validator |
-| Christine Rogers ([@christinerogers](https://github.com/christinerogers))      | 2h/mo        | interoperability, EEG and multi-modal |
+| Name                                                                      | Time commitment | Scope                                 | Joined   |
+|---------------------------------------------------------------------------|-----------------|---------------------------------------|----------|
+| Stefan Appelhoff ([@sappelhoff](https://github.com/sappelhoff))           | 5h/week         | Lead Maintainer                       | Mar 2020 |
+| Chris Markiewicz ([@effigies](https://github.com/effigies))               | 5h/week         |                                       | Mar 2020 |
+| Ross Blair ([@rwblair](https://github.com/rwblair))                       |                 | Maintainer of the bids-validator      | Mar 2020 |
+| Taylor Salo ([@tsalo](https://github.com/tsalo))                          | 3h/week         | MRI                                   | Sep 2020 |
+| Remi Gau ([@Remi-Gau](https://github.com/Remi-Gau))                       | 3h/week         | Community development, MRI            | Oct 2020 |
+| Anthony Galassi  ([@bendhouseart](https://github.com/bendhouseart))       | 3h/week         | PET, Community development            | Sep 2021 |
+| Eric Earl ([@ericearl](https://github.com/ericearl))                      | 2h/week         |                                       | Dec 2021 |
+| Christine Rogers ([@christinerogers](https://github.com/christinerogers)) | 2h/mo           | Interoperability, EEG and multi-modal | Apr 2023 |
 
 In addition to the [BIDS Governance](https://bids.neuroimaging.io/governance.html#bids-maintainers-group)
 classification of a maintainer, maintainers may declare a limited scope of responsibility.
@@ -40,9 +40,9 @@ contributions elsewhere are welcome, as well.
 
 #### Past maintainers group members
 
-| Name                                                                           |
-|--------------------------------------------------------------------------------|
-| Franklin Feingold ([@franklin-feingold](https://github.com/franklin-feingold)) |
+| Name                                                                           | Duration            |
+|--------------------------------------------------------------------------------|---------------------|
+| Franklin Feingold ([@franklin-feingold](https://github.com/franklin-feingold)) | Mar 2020 - Jul 2022 |
 
 ### BEP Leads Group
 
