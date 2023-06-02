@@ -388,7 +388,7 @@ In particular, if a BIDS dataset contains a `derivatives/` subdirectory,
 the contents of that directory may be a heterogeneous mix of BIDS Derivatives
 datasets and non-compliant derivatives.
 
-## File Formation specification
+## File format specification
 
 ### Imaging files
 
