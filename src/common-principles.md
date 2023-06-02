@@ -196,6 +196,18 @@ as the labels would collide on a case-insensitive filesystem.
 Additionally, because the suffix `eeg` is defined,
 then the suffix `EEG` will not be added to future versions of the standard.
 
+## No duplicate files under different file extensions
+
+BIDS datasets MUST NOT contain identical data under different extensions.
+For example if the files
+
+- `sub-01_ses-01_sample-A_photo.jpg` and
+- `sub-01_ses-01_sample-A_photo.tif`
+
+contain a representation of the same data,
+then the dataset curator MUST decide for one of the two extensions
+and delete the other file from the BIDS dataset.
+
 ## Filesystem structure & Filenames richness versus distinctness
 
 BIDS provides a rich filesystem structure and rich filenames by using entities, but it is important to keep in mind that files also have to be readable.
