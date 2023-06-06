@@ -70,6 +70,38 @@ in [Derived dataset and pipeline description][derived-dataset-description].
     For example, if a summary statistic is derived from a given task, the file
     name SHOULD contain [`_task-<label>`](../appendices/entities.md#task).
 
+## File format specification
+
+Derived data may be resampled into structures that are not well-handled by the
+raw data formats.
+In this section, we describe standard formats that SHOULD be adhered to when
+appropriate, and the extensions they should have.
+
+### GIFTI Surface Data Format
+
+The [GIFTI][gifti] format is an XML-based structure containing one or more data arrays,
+and is well-suited to describing surface geometry and parcellations.
+
+The following extension table is reproduced in part from Section 9.0 of the
+[GIFTI specification][gifti-spec], indicating the expected extensions of different data arrays
+or combinations of data arrays.
+
+| Intent      | Extension     |
+|-------------|---------------|
+| Coordinates | `.coord.gii`  |
+| Functional  | `.func.gii`   |
+| Labels      | `.label.gii`  |
+| RGB or RGBA | `.rgba.gii`   |
+| Shape       | `.shape.gii`  |
+| Surface     | `.surf.gii`   |
+| Tensors     | `.tensor.gii` |
+| Time Series | `.time.gii`   |
+| Topology    | `.topo.gii`   |
+| Vector      | `.vector.gii` |
+
+Unless otherwise stated, bare `.gii` extensions SHOULD NOT be used
+for GIFTI files.
+
 <!-- Link Definitions -->
 
 [definitions]: ../common-principles.md#definitions
@@ -77,3 +109,7 @@ in [Derived dataset and pipeline description][derived-dataset-description].
 [storage]: ../common-principles.md#storage-of-derived-datasets
 
 [derived-dataset-description]: ../modality-agnostic-files.md#derived-dataset-and-pipeline-description
+
+[gifti]: https://www.nitrc.org/projects/gifti/
+
+[gifti-spec]: https://www.nitrc.org/frs/download.php/2871/GIFTI_Surface_Format.pdf

@@ -71,6 +71,7 @@ ImageDerivatives:
     - dataset.dataset_description.DatasetType == "derivative"
     - 'intersects([modality], ["mri", "pet"])'
     - 'match(extension, "^\.nii(\.gz)?$")'
+    - '!intersects([suffix], ["dseg", "probseg", "mask"])'
   fields:
     SkullStripped: required
 
