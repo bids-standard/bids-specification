@@ -81,8 +81,9 @@ A guide for using macros can be found at
 "BandwidthPerPixelPhaseEncode" in DICOM Tag 0019, 1028 and ReconMatrixPE is
 the size of the actual reconstructed data in the phase direction (which is NOT
 reflected in a single DICOM Tag for all possible aforementioned scan
-manipulations). See [here](https://lcni.uoregon.edu/kb-articles/kb-0003) and
-[here](https://github.com/neurolabusc/dcm_qa/tree/master/In/TotalReadoutTime)
+manipulations). See
+[Acquiring and using field maps - LCNI](https://lcni.uoregon.edu/wiki/acquiring-and-using-field-maps/)
+and [TotalReadoutTime - dcm\_qa](https://github.com/neurolabusc/dcm_qa/tree/master/In/TotalReadoutTime).
 
 <sup>3</sup>We use the time between the center of the first "effective" echo
 and the center of the last "effective" echo, sometimes called the "FSL definition".
