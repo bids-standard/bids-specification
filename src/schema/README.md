@@ -995,3 +995,18 @@ we expect that the `MAJOR` component
 will be incremented whenever schema organization introduces "breaking changes",
 `MINOR` - when adding new components to the schema,
 and `PATCH` - when fixing errors in existing components.
+
+## Schema publication
+
+The BIDS Schema is compiled into a single, dereferenced object during
+the ReadTheDocs build of the specification.
+This object is published as a JSON document that can be found at `/schema.json`
+at the root of the specification.
+For example, the schema used to construct the 1.8.0 release of BIDS can be found at
+<https://bids-specification.readthedocs.io/en/v1.8.0/schema.json>,
+and the latest version that includes unreleased changes to BIDS and the schema may
+be found at <https://bids-specification.readthedocs.io/en/latest/schema.json>.
+
+The JSON version of the schema contains `schema_version` and `bids_version` keys
+that identify the state of both the schema and the specification at the time it was
+compiled.
