@@ -196,17 +196,22 @@ as the labels would collide on a case-insensitive filesystem.
 Additionally, because the suffix `eeg` is defined,
 then the suffix `EEG` will not be added to future versions of the standard.
 
-## No duplicate files under different file extensions
+## Uniqueness of data files
 
-BIDS datasets MUST NOT contain identical data under different extensions.
-For example if the files
+Data files MUST be uniquely identified by BIDS path components
+(entities, datatype, suffix).
+If multiple extensions are permissible (for example, `.nii` and `.nii.gz`),
+there MUST only be one such file with the same entities, datatype and suffix.
+This limitation does not apply to metadata files,
+such as JSON sidecar files or format-specific metadata files.
 
-- `sub-01_ses-01_sample-A_photo.jpg` and
-- `sub-01_ses-01_sample-A_photo.tif`
-
-contain a representation of the same data,
-then the dataset curator MUST decide for one of the two extensions
-and delete the other file from the BIDS dataset.
+Note that duplicating files to make the same data available in multiple formats
+is not permitted.
+For example, if the files `sub-01_ses-01_sample-A_photo.jpg` and
+`sub-01_ses-01_sample-A_photo.tif` contain a representation of the same data,
+then the dataset MUST NOT contain both images.
+If the files contain different images,
+other entities MUST be used to distinguish the two.
 
 ## Filesystem structure & Filenames richness versus distinctness
 
