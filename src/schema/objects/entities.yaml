@@ -132,8 +132,8 @@ hemisphere:
   type: string
   format: label
   enum:
-    - $ref: objects.values.left_hemisphere.value
-    - $ref: objects.values.right_hemisphere.value
+    - $ref: objects.enum.left_hemisphere.value
+    - $ref: objects.enum.right_hemisphere.value
 inversion:
   name: inv
   display_name: Inversion Time
@@ -184,8 +184,8 @@ mtransfer:
   type: string
   format: label
   enum:
-    - $ref: objects.values.on__mtransfer.value
-    - $ref: objects.values.off__mtransfer.value
+    - $ref: objects.enum.on__mtransfer.value
+    - $ref: objects.enum.off__mtransfer.value
 part:
   name: part
   display_name: Part
@@ -207,10 +207,10 @@ part:
   type: string
   format: label
   enum:
-    - $ref: objects.values.magnitude.value
-    - $ref: objects.values.phase.value
-    - $ref: objects.values.real.value
-    - $ref: objects.values.imaginary.value
+    - $ref: objects.enum.magnitude.value
+    - $ref: objects.enum.phase.value
+    - $ref: objects.enum.real.value
+    - $ref: objects.enum.imaginary.value
 processing:
   name: proc
   display_name: Processed (on device)
