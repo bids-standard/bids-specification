@@ -298,6 +298,7 @@ def select_schema_path(
     """
     Select schema directory, according to a priority logic whereby the schema path is
     either:
+
         (1) a concatenation of `bids_reference_root` and `bids_version`, if the latter is
             specified, and the BIDS version schema is compatible with the validator,
         (2) a concatenation of `bids_reference_root` the detected version specification
