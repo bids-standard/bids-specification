@@ -183,8 +183,8 @@ hemisphere:
     The hemisphere in which the electrode is placed.
   type: string
   enum:
-    - L
-    - R
+    - $ref: objects.enums.left_hemisphere.value
+    - $ref: objects.enums.right_hemisphere.value
 high_cutoff:
   name: high_cutoff
   display_name: High cutoff
