@@ -105,9 +105,6 @@ Motion specific fields SHOULD be present:
  "InstitutionName": "Fictive Institution",
  "MotionChannelCount": 18,
  "RecordingDuration": 4667.641106,
- "RotationRule": "right-hand",
- "RotationOrder": "ZXY",
- "SpatialAxes": "FRU",
  "SubjectArtefactDescription": "n/a",
  "TrackedPointsCount" : 2,
  "ACCELChannelCount": 6,
@@ -199,4 +196,36 @@ t2_acc_z    z           ACCEL  RightWrist      m/s^2
 t2_gyro_x   x           GYRO   RightWrist      rad/s
 t2_gyro_y   y           GYRO   RightWrist      rad/s
 t2_gyro_z   z           GYRO   RightWrist      rad/s
+```
+
+## Reference frame description (`*_channels.json`)
+
+It is RECOMMENDED that the `*_channels.json` file contains additional metadata about channel which cannot be found in the `*_channels.tsv` or `*_motion.json` file.
+One RECOMMENDED use case is the information about the reference frame the data is to be interpreted in.
+The definition SHOULD be stored in a field called `reference_frame`, the defined level CAN be matched to a value in the `reference_frame` colunm in the `*_channels.tsv` file.
+The use of a meanigful combination of `RotationRule`, `RotationOrder` and `SpatialAxis` for this definition is RECOMMENDED.
+If non of these principals apply for the motion data, it is RECOMMENDED to use a free form field `CoordinateSystemDescription` for the definition.
+
+### Example of `*_channels.json`
+
+```json
+"reference_frame": {
+        "Levels": {
+            "global": {
+                "CoordinateSystemDescription": "n/a",
+                "SpatialAxes": "ALS",
+                "RotationOrder": "ZXY",
+                "RotationRule": "right-hand"
+            },
+            "local": {
+                "CoordinateSystemDescription": "Joint angles are described following the ISB-based coordinate system, 
+                                                with a local reference frame attached to the body segment. 
+                                                See Wu and Cavanagh (1995), Wu et al. (2002), Wu et al. (2005), 
+                                                and the Xsens MVN Awinda user manual for more information.",
+                "SpatialAxes": "n/a",
+                "RotationOrder": "n/a",
+                "RotationRule": "n/a"
+            }
+        }
+    }
 ```

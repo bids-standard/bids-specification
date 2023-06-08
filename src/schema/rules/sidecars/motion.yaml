@@ -71,13 +71,10 @@ motionRecommended:
     MotionChannelCount: recommended
     ORNTChannelCount: recommended
     POSChannelCount: recommended
-    RotationOrder: recommended
-    RotationRule: recommended
     SamplingFrequencyEffective:
       level: recommended
       description_addendum: |
         If not available, the field takes value `n/a`.
-    SpatialAxes: recommended
     SubjectArtefactDescription: recommended
     TrackedPointsCount: recommended
     TrackingSystemName: optional
