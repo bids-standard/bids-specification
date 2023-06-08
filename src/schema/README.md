@@ -556,11 +556,11 @@ The convention can be summed up in the following rules:
     | `file_type`    | Indicator that the file is a regular file (`"regular"`) or directory (`"directory"`) |
 
 -   `objects.enums`
-    | Field          | Description                |
-    | -------------- | -------------------------- |
-    | `display_name` | Human-friendly name        |
-    | `description`  | Term definition            |
-    | `value`        | String value of `enum`     |
+    | Field          | Description            |
+    | -------------- | ---------------------- |
+    | `display_name` | Human-friendly name    |
+    | `description`  | Term definition        |
+    | `value`        | String value of `enum` |
 
 ## Rule files
 
