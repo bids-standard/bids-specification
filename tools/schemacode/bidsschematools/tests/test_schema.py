@@ -315,7 +315,7 @@ def test_dereferencing():
 
     orig = {
         "objects": {
-            "values": {
+            "enum_values": {
                 "left": {"value": "L"},
                 "right": {"value": "R"},
             },
@@ -333,7 +333,7 @@ def test_dereferencing():
     dereffed = schema.dereference(sch)
     assert dereffed == {
         "objects": {
-            "values": {
+            "enum_values": {
                 "left": {"value": "L"},
                 "right": {"value": "R"},
             },
