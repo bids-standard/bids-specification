@@ -322,8 +322,8 @@ def test_dereferencing():
             "entities.hemisphere": {
                 "name": "hemi",
                 "enum": [
-                    {"$ref": "objects.enum.left.value"},
-                    {"$ref": "objects.enum.right.value"},
+                    {"$ref": "objects.enum_values.left.value"},
+                    {"$ref": "objects.enum_values.right.value"},
                 ],
             },
         },
