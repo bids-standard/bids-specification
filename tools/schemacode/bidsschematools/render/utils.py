@@ -254,9 +254,7 @@ def describe_valid_values(definition):
     elif definition["type"] == "string":
         if "enum" in definition.keys():
             # Allow enums to be "objects" (dicts) or strings
-            enums = [
-                list(v.keys())[0] if isinstance(v, dict) else v for v in definition["enum"]
-            ]
+            enums = [list(v.keys())[0] if isinstance(v, dict) else v for v in definition["enum"]]
             enums = [f'`"{v}"`' for v in enums]
             description = f"Must be one of: {', '.join(enums)}."
 
