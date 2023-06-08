@@ -254,11 +254,11 @@ def describe_valid_values(definition):
     elif definition["type"] == "string":
         if "enum" in definition.keys():
             # Allow enums to be "objects" (dicts) or strings
-            enum_values = [
+            enums = [
                 list(v.keys())[0] if isinstance(v, dict) else v for v in definition["enum"]
             ]
-            enum_values = [f'`"{v}"`' for v in enum_values]
-            description = f"Must be one of: {', '.join(enum_values)}."
+            enums = [f'`"{v}"`' for v in enums]
+            description = f"Must be one of: {', '.join(enums)}."
 
     elif definition["type"] in ("integer", "number"):
         minstr = maxstr = minmaxstr = ""

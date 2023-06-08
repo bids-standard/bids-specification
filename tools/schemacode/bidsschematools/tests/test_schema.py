@@ -315,15 +315,15 @@ def test_dereferencing():
 
     orig = {
         "objects": {
-            "enum_values": {
+            "enums": {
                 "left": {"value": "L"},
                 "right": {"value": "R"},
             },
             "entities.hemisphere": {
                 "name": "hemi",
                 "enum": [
-                    {"$ref": "objects.enum_values.left.value"},
-                    {"$ref": "objects.enum_values.right.value"},
+                    {"$ref": "objects.enums.left.value"},
+                    {"$ref": "objects.enums.right.value"},
                 ],
             },
         },
@@ -333,7 +333,7 @@ def test_dereferencing():
     dereffed = schema.dereference(sch)
     assert dereffed == {
         "objects": {
-            "enum_values": {
+            "enums": {
                 "left": {"value": "L"},
                 "right": {"value": "R"},
             },

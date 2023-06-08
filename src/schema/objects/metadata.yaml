@@ -80,10 +80,10 @@ AnatomicalLandmarkCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `"AnatomicalLandmarkCoordinateSystemDescription"`.
   anyOf:
-    - $ref: objects.metadata._MEGCoordSys
-    - $ref: objects.metadata._EEGCoordSys
-    - $ref: objects.metadata._StandardTemplateCoordSys
-    - $ref: objects.metadata._StandardTemplateDeprecatedCoordSys
+    - $ref: objects.enums._MEGCoordSys
+    - $ref: objects.enums._EEGCoordSys
+    - $ref: objects.enums._StandardTemplateCoordSys
+    - $ref: objects.enums._StandardTemplateDeprecatedCoordSys
 AnatomicalLandmarkCoordinateSystemDescription:
   name: AnatomicalLandmarkCoordinateSystemDescription
   display_name: Anatomical Landmark Coordinate System Description
@@ -154,9 +154,9 @@ ArterialSpinLabelingType:
     The arterial spin labeling type.
   type: string
   enum:
-    - $ref: objects.enum_values.CASL.value
-    - $ref: objects.enum_values.PCASL.value
-    - $ref: objects.enum_values.PASL.value
+    - $ref: objects.enums.CASL.value
+    - $ref: objects.enums.PCASL.value
+    - $ref: objects.enums.PASL.value
 AssociatedEmptyRoom:
   name: AssociatedEmptyRoom
   display_name: Associated Empty Room
@@ -659,10 +659,10 @@ DigitizedHeadPointsCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `"DigitizedHeadPointsCoordinateSystemDescription"`.
   anyOf:
-    - $ref: objects.metadata._MEGCoordSys
-    - $ref: objects.metadata._EEGCoordSys
-    - $ref: objects.metadata._StandardTemplateCoordSys
-    - $ref: objects.metadata._StandardTemplateDeprecatedCoordSys
+    - $ref: objects.enums._MEGCoordSys
+    - $ref: objects.enums._EEGCoordSys
+    - $ref: objects.enums._StandardTemplateCoordSys
+    - $ref: objects.enums._StandardTemplateDeprecatedCoordSys
 DigitizedHeadPointsCoordinateSystemDescription:
   name: DigitizedHeadPointsCoordinateSystemDescription
   display_name: Digitized Head Points Coordinate System Description
@@ -760,10 +760,10 @@ EEGCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `EEGCoordinateSystemDescription`.
   anyOf:
-    - $ref: objects.metadata._MEGCoordSys
-    - $ref: objects.metadata._EEGCoordSys
-    - $ref: objects.metadata._StandardTemplateCoordSys
-    - $ref: objects.metadata._StandardTemplateDeprecatedCoordSys
+    - $ref: objects.enums._MEGCoordSys
+    - $ref: objects.enums._EEGCoordSys
+    - $ref: objects.enums._StandardTemplateCoordSys
+    - $ref: objects.enums._StandardTemplateDeprecatedCoordSys
 EEGCoordinateSystemDescription:
   name: EEGCoordinateSystemDescription
   display_name: EEG Coordinate System Description
@@ -967,10 +967,10 @@ FiducialsCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `"FiducialsCoordinateSystemDescription"`.
   anyOf:
-    - $ref: objects.metadata._MEGCoordSys
-    - $ref: objects.metadata._EEGCoordSys
-    - $ref: objects.metadata._StandardTemplateCoordSys
-    - $ref: objects.metadata._StandardTemplateDeprecatedCoordSys
+    - $ref: objects.enums._MEGCoordSys
+    - $ref: objects.enums._EEGCoordSys
+    - $ref: objects.enums._StandardTemplateCoordSys
+    - $ref: objects.enums._StandardTemplateDeprecatedCoordSys
 FiducialsCoordinateSystemDescription:
   name: FiducialsCoordinateSystemDescription
   display_name: Fiducials Coordinate System Description
@@ -1138,10 +1138,10 @@ GeneticLevel:
     [Multi-omics approaches to disease](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-017-1215-1)
     by Hasin et al. 2017.
   anyOf:
-    - $ref: objects.metadata._GeneticLevelEnum
+    - $ref: objects.enums._GeneticLevelEnum
     - type: array
       items:
-        $ref: objects.metadata._GeneticLevelEnum
+        $ref: objects.enums._GeneticLevelEnum
 Genetics:
   name: Genetics
   display_name: Genetics
@@ -1267,10 +1267,10 @@ HeadCoilCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `HeadCoilCoordinateSystemDescription`.
   anyOf:
-    - $ref: objects.metadata._MEGCoordSys
-    - $ref: objects.metadata._EEGCoordSys
-    - $ref: objects.metadata._StandardTemplateCoordSys
-    - $ref: objects.metadata._StandardTemplateDeprecatedCoordSys
+    - $ref: objects.enums._MEGCoordSys
+    - $ref: objects.enums._EEGCoordSys
+    - $ref: objects.enums._StandardTemplateCoordSys
+    - $ref: objects.enums._StandardTemplateDeprecatedCoordSys
 HeadCoilCoordinateSystemDescription:
   name: HeadCoilCoordinateSystemDescription
   display_name: Head Coil Coordinate System Description
@@ -1752,10 +1752,10 @@ M0Type:
     `"Absent"` means that no specific M0 information is present.
   type: string
   enum:
-    - $ref: objects.enum_values.Separate.value
-    - $ref: objects.enum_values.Included.value
-    - $ref: objects.enum_values.Estimate.value
-    - $ref: objects.enum_values.Absent.value
+    - $ref: objects.enums.Separate.value
+    - $ref: objects.enums.Included.value
+    - $ref: objects.enums.Estimate.value
+    - $ref: objects.enums.Absent.value
 MAGNChannelCount:
   name: MAGNChannelCount
   display_name: Magnetometer Channel Count
@@ -1781,10 +1781,10 @@ MEGCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `"MEGCoordinateSystemDescription"`.
   anyOf:
-    - $ref: objects.metadata._MEGCoordSys
-    - $ref: objects.metadata._EEGCoordSys
-    - $ref: objects.metadata._StandardTemplateCoordSys
-    - $ref: objects.metadata._StandardTemplateDeprecatedCoordSys
+    - $ref: objects.enums._MEGCoordSys
+    - $ref: objects.enums._EEGCoordSys
+    - $ref: objects.enums._StandardTemplateCoordSys
+    - $ref: objects.enums._StandardTemplateDeprecatedCoordSys
 MEGCoordinateSystemDescription:
   name: MEGCoordinateSystemDescription
   display_name: MEG Coordinate System Description
@@ -1835,8 +1835,8 @@ MRAcquisitionType:
     Corresponds to DICOM Tag 0018, 0023 `MR Acquisition Type`.
   type: string
   enum:
-    - $ref: objects.enum_values.TwoD.value
-    - $ref: objects.enum_values.ThreeD.value
+    - $ref: objects.enums.TwoD.value
+    - $ref: objects.enums.ThreeD.value
 MRTransmitCoilSequence:
   name: MRTransmitCoilSequence
   display_name: MR Transmit Coil Sequence
@@ -1882,13 +1882,13 @@ MTPulseShape:
     The value `"SINCGAUSS"` refers to a sinc pulse with a Gaussian window.
   type: string
   enum:
-    - $ref: objects.enum_values.HARD.value
-    - $ref: objects.enum_values.GAUSSIAN.value
-    - $ref: objects.enum_values.GAUSSHANN.value
-    - $ref: objects.enum_values.SINC.value
-    - $ref: objects.enum_values.SINCHANN.value
-    - $ref: objects.enum_values.SINCGAUSS.value
-    - $ref: objects.enum_values.FERMI.value
+    - $ref: objects.enums.HARD.value
+    - $ref: objects.enums.GAUSSIAN.value
+    - $ref: objects.enums.GAUSSHANN.value
+    - $ref: objects.enums.SINC.value
+    - $ref: objects.enums.SINCHANN.value
+    - $ref: objects.enums.SINCGAUSS.value
+    - $ref: objects.enums.FERMI.value
 MTState:
   name: MTState
   display_name: MT State
@@ -2121,10 +2121,10 @@ NIRSCoordinateSystem:
     If `"Other"`, a definition of the coordinate system MUST be
     provided in `NIRSCoordinateSystemDescription`.
   anyOf:
-    - $ref: objects.metadata._MEGCoordSys
-    - $ref: objects.metadata._EEGCoordSys
-    - $ref: objects.metadata._StandardTemplateCoordSys
-    - $ref: objects.metadata._StandardTemplateDeprecatedCoordSys
+    - $ref: objects.enums._MEGCoordSys
+    - $ref: objects.enums._EEGCoordSys
+    - $ref: objects.enums._StandardTemplateCoordSys
+    - $ref: objects.enums._StandardTemplateDeprecatedCoordSys
 NIRSCoordinateSystemDescription:
   name: NIRSCoordinateSystemDescription
   display_name: NIRS Coordinate System Description
@@ -2358,12 +2358,12 @@ PhaseEncodingDirection:
     `InPlanePhaseEncodingDirection` which can have `ROW` or `COL` values.
   type: string
   enum:
-    - $ref: objects.enum_values.i.value
-    - $ref: objects.enum_values.iMinus.value
-    - $ref: objects.enum_values.j.value
-    - $ref: objects.enum_values.jMinus.value
-    - $ref: objects.enum_values.k.value
-    - $ref: objects.enum_values.kMinus.value
+    - $ref: objects.enums.i.value
+    - $ref: objects.enums.iMinus.value
+    - $ref: objects.enums.j.value
+    - $ref: objects.enums.jMinus.value
+    - $ref: objects.enums.k.value
+    - $ref: objects.enums.kMinus.value
 PhotoDescription:
   name: PhotoDescription
   display_name: Photo Description
@@ -2613,9 +2613,9 @@ RecordingType:
     interest (for example, stimulus presentations or subject responses).
   type: string
   enum:
-    - $ref: objects.enum_values.continuous.value
-    - $ref: objects.enum_values.epoched.value
-    - $ref: objects.enum_values.discontinuous.value
+    - $ref: objects.enums.continuous.value
+    - $ref: objects.enums.epoched.value
+    - $ref: objects.enums.discontinuous.value
 ReferencesAndLinks:
   name: ReferencesAndLinks
   display_name: References And Links
@@ -3030,12 +3030,12 @@ SliceEncodingDirection:
     slice index as defined by the NIfTI header.
   type: string
   enum:
-    - $ref: objects.enum_values.i.value
-    - $ref: objects.enum_values.iMinus.value
-    - $ref: objects.enum_values.j.value
-    - $ref: objects.enum_values.jMinus.value
-    - $ref: objects.enum_values.k.value
-    - $ref: objects.enum_values.kMinus.value
+    - $ref: objects.enums.i.value
+    - $ref: objects.enums.iMinus.value
+    - $ref: objects.enums.j.value
+    - $ref: objects.enums.jMinus.value
+    - $ref: objects.enums.k.value
+    - $ref: objects.enums.kMinus.value
 SliceThickness:
   name: SliceThickness
   display_name: Slice Thickness
@@ -3186,7 +3186,7 @@ SpatialReference:
   anyOf:
     - type: string
       enum:
-        - $ref: objects.enum_values.orig.value
+        - $ref: objects.enums.orig.value
     - type: string
       format: uri
     - type: string
@@ -3196,7 +3196,7 @@ SpatialReference:
         anyOf:
           - type: string
             enum:
-              - $ref: objects.enum_values.orig.value
+              - $ref: objects.enums.orig.value
           - type: string
             format: uri
           - type: string
@@ -3500,10 +3500,10 @@ Type:
     The value `"ROI"` refers to a region of interest mask.
   type: string
   enum:
-    - $ref: objects.enum_values.Brain.value
-    - $ref: objects.enum_values.Lesion.value
-    - $ref: objects.enum_values.Face.value
-    - $ref: objects.enum_values.ROI.value
+    - $ref: objects.enums.Brain.value
+    - $ref: objects.enums.Lesion.value
+    - $ref: objects.enums.Face.value
+    - $ref: objects.enums.ROI.value
 Units:
   name: Units
   display_name: Units
@@ -3576,104 +3576,6 @@ WithdrawalRate:
     The unit of the specified withdrawal rate should be in `"mL/s"`.
   type: number
   unit: mL/s
-_CoordUnits:
-  type: string
-  enum:
-    - m
-    - mm
-    - cm
-    - n/a
-_EEGCoordSys:
-  type: string
-  enum:
-    - $ref: objects.enum_values.CapTrak.value
-    - $ref: objects.enum_values.EEGLAB.value
-    - $ref: objects.enum_values.EEGLAB-HJ.value
-    - $ref: objects.enum_values.Other.value
-_GeneticLevelEnum:
-  type: string
-  enum:
-    - $ref: objects.enum_values.Genetic.value
-    - $ref: objects.enum_values.Genomic.value
-    - $ref: objects.enum_values.Epigenomic.value
-    - $ref: objects.enum_values.Transcriptomic.value
-    - $ref: objects.enum_values.Metabolomic.value
-    - $ref: objects.enum_values.Proteomic.value
-_LandmarkCoordinates:
-  type: object
-  additionalProperties:
-    type: array
-    items:
-      type: number
-    minItems: 3
-    maxItems: 3
-_MEGCoordSys:
-  type: string
-  enum:
-    - $ref: objects.enum_values.CTF.value
-    - $ref: objects.enum_values.ElektaNeuromag.value
-    - $ref: objects.enum_values.4DBti.value
-    - $ref: objects.enum_values.KitYokogawa.value
-    - $ref: objects.enum_values.ChietiItab.value
-    - $ref: objects.enum_values.Other.value
-_NonstandardTemplateCoordSys:
-  type: string
-  enum:
-    - $ref: objects.enum_values.individual.value
-    - $ref: objects.enum_values.study.value
-_NonTemplateCoordSys:
-  type: string
-  enum:
-    - $ref: objects.enum_values.scanner.value
-_StandardTemplateCoordSys:
-  type: string
-  enum:
-    - $ref: objects.enum_values.ICBM452AirSpace.value
-    - $ref: objects.enum_values.ICBM452Warp5Space.value
-    - $ref: objects.enum_values.IXI549Space.value
-    - $ref: objects.enum_values.fsaverage.value
-    - $ref: objects.enum_values.fsaverageSym.value
-    - $ref: objects.enum_values.fsLR.value
-    - $ref: objects.enum_values.MNIColin27.value
-    - $ref: objects.enum_values.MNI152Lin.value
-    - $ref: objects.enum_values.MNI152NLin2009aSym.value
-    - $ref: objects.enum_values.MNI152NLin2009bSym.value
-    - $ref: objects.enum_values.MNI152NLin2009cSym.value
-    - $ref: objects.enum_values.MNI152NLin2009aAsym.value
-    - $ref: objects.enum_values.MNI152NLin2009bAsym.value
-    - $ref: objects.enum_values.MNI152NLin2009cAsym.value
-    - $ref: objects.enum_values.MNI152NLin6Sym.value
-    - $ref: objects.enum_values.MNI152NLin6ASym.value
-    - $ref: objects.enum_values.MNI305.value
-    - $ref: objects.enum_values.NIHPD.value
-    - $ref: objects.enum_values.OASIS30AntsOASISAnts.value
-    - $ref: objects.enum_values.OASIS30Atropos.value
-    - $ref: objects.enum_values.Talairach.value
-    - $ref: objects.enum_values.UNCInfant.value
-_StandardTemplateDeprecatedCoordSys:
-  type: string
-  enum:
-    - $ref: objects.enum_values.fsaverage3.value
-    - $ref: objects.enum_values.fsaverage4.value
-    - $ref: objects.enum_values.fsaverage5.value
-    - $ref: objects.enum_values.fsaverage6.value
-    - $ref: objects.enum_values.fsaveragesym.value
-    - $ref: objects.enum_values.UNCInfant0V21.value
-    - $ref: objects.enum_values.UNCInfant1V21.value
-    - $ref: objects.enum_values.UNCInfant2V21.value
-    - $ref: objects.enum_values.UNCInfant0V22.value
-    - $ref: objects.enum_values.UNCInfant1V22.value
-    - $ref: objects.enum_values.UNCInfant2V22.value
-    - $ref: objects.enum_values.UNCInfant0V23.value
-    - $ref: objects.enum_values.UNCInfant1V23.value
-    - $ref: objects.enum_values.UNCInfant2V23.value
-_iEEGCoordSys:
-  type: string
-  enum:
-    - $ref: objects.enum_values.Pixels.value
-    - $ref: objects.enum_values.ACPC.value
-    - $ref: objects.enum_values.ScanRAS.value
-    - $ref: objects.enum_values.Other.value
 iEEGCoordinateProcessingDescription:
   name: iEEGCoordinateProcessingDescription
   display_name: iEEG Coordinate Processing Description
@@ -3705,9 +3607,9 @@ iEEGCoordinateSystem:
     [2D coordinate systems](SPEC_ROOT/modality-specific-files/intracranial\
     -electroencephalography.md#allowed-2d-coordinate-systems).
   anyOf:
-    - $ref: objects.metadata._iEEGCoordSys
-    - $ref: objects.metadata._StandardTemplateCoordSys
-    - $ref: objects.metadata._StandardTemplateDeprecatedCoordSys
+    - $ref: objects.enums._iEEGCoordSys
+    - $ref: objects.enums._StandardTemplateCoordSys
+    - $ref: objects.enums._StandardTemplateDeprecatedCoordSys
 iEEGCoordinateSystemDescription:
   name: iEEGCoordinateSystemDescription
   display_name: iEEG Coordinate System Description

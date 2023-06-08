@@ -1,5 +1,103 @@
 ---
 # This file defines valid values in BIDS key-value pairs.
+_CoordUnits:
+  type: string
+  enum:
+    - m
+    - mm
+    - cm
+    - n/a
+_EEGCoordSys:
+  type: string
+  enum:
+    - $ref: objects.enums.CapTrak.value
+    - $ref: objects.enums.EEGLAB.value
+    - $ref: objects.enums.EEGLAB-HJ.value
+    - $ref: objects.enums.Other.value
+_GeneticLevelEnum:
+  type: string
+  enum:
+    - $ref: objects.enums.Genetic.value
+    - $ref: objects.enums.Genomic.value
+    - $ref: objects.enums.Epigenomic.value
+    - $ref: objects.enums.Transcriptomic.value
+    - $ref: objects.enums.Metabolomic.value
+    - $ref: objects.enums.Proteomic.value
+_LandmarkCoordinates:
+  type: object
+  additionalProperties:
+    type: array
+    items:
+      type: number
+    minItems: 3
+    maxItems: 3
+_MEGCoordSys:
+  type: string
+  enum:
+    - $ref: objects.enums.CTF.value
+    - $ref: objects.enums.ElektaNeuromag.value
+    - $ref: objects.enums.4DBti.value
+    - $ref: objects.enums.KitYokogawa.value
+    - $ref: objects.enums.ChietiItab.value
+    - $ref: objects.enums.Other.value
+_NonstandardTemplateCoordSys:
+  type: string
+  enum:
+    - $ref: objects.enums.individual.value
+    - $ref: objects.enums.study.value
+_NonTemplateCoordSys:
+  type: string
+  enum:
+    - $ref: objects.enums.scanner.value
+_StandardTemplateCoordSys:
+  type: string
+  enum:
+    - $ref: objects.enums.ICBM452AirSpace.value
+    - $ref: objects.enums.ICBM452Warp5Space.value
+    - $ref: objects.enums.IXI549Space.value
+    - $ref: objects.enums.fsaverage.value
+    - $ref: objects.enums.fsaverageSym.value
+    - $ref: objects.enums.fsLR.value
+    - $ref: objects.enums.MNIColin27.value
+    - $ref: objects.enums.MNI152Lin.value
+    - $ref: objects.enums.MNI152NLin2009aSym.value
+    - $ref: objects.enums.MNI152NLin2009bSym.value
+    - $ref: objects.enums.MNI152NLin2009cSym.value
+    - $ref: objects.enums.MNI152NLin2009aAsym.value
+    - $ref: objects.enums.MNI152NLin2009bAsym.value
+    - $ref: objects.enums.MNI152NLin2009cAsym.value
+    - $ref: objects.enums.MNI152NLin6Sym.value
+    - $ref: objects.enums.MNI152NLin6ASym.value
+    - $ref: objects.enums.MNI305.value
+    - $ref: objects.enums.NIHPD.value
+    - $ref: objects.enums.OASIS30AntsOASISAnts.value
+    - $ref: objects.enums.OASIS30Atropos.value
+    - $ref: objects.enums.Talairach.value
+    - $ref: objects.enums.UNCInfant.value
+_StandardTemplateDeprecatedCoordSys:
+  type: string
+  enum:
+    - $ref: objects.enums.fsaverage3.value
+    - $ref: objects.enums.fsaverage4.value
+    - $ref: objects.enums.fsaverage5.value
+    - $ref: objects.enums.fsaverage6.value
+    - $ref: objects.enums.fsaveragesym.value
+    - $ref: objects.enums.UNCInfant0V21.value
+    - $ref: objects.enums.UNCInfant1V21.value
+    - $ref: objects.enums.UNCInfant2V21.value
+    - $ref: objects.enums.UNCInfant0V22.value
+    - $ref: objects.enums.UNCInfant1V22.value
+    - $ref: objects.enums.UNCInfant2V22.value
+    - $ref: objects.enums.UNCInfant0V23.value
+    - $ref: objects.enums.UNCInfant1V23.value
+    - $ref: objects.enums.UNCInfant2V23.value
+_iEEGCoordSys:
+  type: string
+  enum:
+    - $ref: objects.enums.Pixels.value
+    - $ref: objects.enums.ACPC.value
+    - $ref: objects.enums.ScanRAS.value
+    - $ref: objects.enums.Other.value
 left_hemisphere:
   value: 'L'
   display_name: Left Hemisphere
