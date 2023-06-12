@@ -157,7 +157,7 @@ ANGACCChannelCount:
   description: |
     Number of angular acceleration channels.
   type: integer
-  minimum:
+  minimum: 0
 ArterialSpinLabelingType:
   name: ArterialSpinLabelingType
   display_name: Arterial Spin Labeling Type
