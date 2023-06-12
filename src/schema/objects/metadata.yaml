@@ -150,7 +150,7 @@ ScreenAOIDefinition:
     `"custom"/"circle"/"triangle", [["x", "y"], ["x", "y"], ["x", "y"], and so on.]`
   type: object
   items:
-    type: objec
+    type: object
 ANGACCChannelCount:
   name: ANGACCELChannelCount
   display_name: Angular acceleration channel count

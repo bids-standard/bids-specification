@@ -134,7 +134,7 @@ A guide for using macros can be found at
 
 ### Example Datasets
 <!--
-1. Datasets will be updated later to adapt to the aggreed format.
+1. Datasets will be updated later to adapt to the agreed format.
 2. We aim at adding a last example converting published dataset from openeuro.
 -->
 
