@@ -174,14 +174,14 @@ j:
   value: j
   display_name: j
   description: |
-    Phase/Slice encoding direction is along the second axis of the data in the NIFTI file,
-    with phase encoding going from the zero index to the maximum index.
+    The encoding direction is along the second axis of the data in the NIFTI file,
+    and the encoding value increases from the zero index to the maximum index.
 k:
   value: k
   display_name: k
   description: |
-    Phase/Slice encoding direction is along the third axis of the data in the NIFTI file,
-    with phase encoding going from the zero index to the maximum index.
+    The encoding direction is along the third axis of the data in the NIFTI file,
+    and the encoding value increases from the zero index to the maximum index.
 iMinus:
   value: i-
   display_name: i-
@@ -192,14 +192,14 @@ jMinus:
   value: j-
   display_name: j-
   description: |
-    Phase/Slice encoding direction is along the second axis of the data in the NIFTI file,
-    with phase encoding going from the maximum index to the zero index.
+    The encoding direction is along the second axis of the data in the NIFTI file,
+    and the encoding value decreases from the zero index to the maximum index.
 kMinus:
   value: k-
   display_name: k-
   description: |
-    Phase/Slice encoding direction is along the third axis of the data in the NIFTI file,
-    with phase encoding going from the maximum index to the zero index.
+    The encoding direction is along the third axis of the data in the NIFTI file,
+    and the encoding value decreases from the zero index to the maximum index.
 continuous:
   value: continuous
   display_name: Continuous recording
