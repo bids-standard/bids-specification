@@ -1,12 +1,5 @@
 ---
 # This file defines valid values in BIDS key-value pairs.
-_CoordUnits:
-  type: string
-  enum:
-    - m
-    - mm
-    - cm
-    - n/a
 _EEGCoordSys:
   type: string
   enum:
@@ -23,14 +16,6 @@ _GeneticLevelEnum:
     - $ref: objects.enums.Transcriptomic.value
     - $ref: objects.enums.Metabolomic.value
     - $ref: objects.enums.Proteomic.value
-_LandmarkCoordinates:
-  type: object
-  additionalProperties:
-    type: array
-    items:
-      type: number
-    minItems: 3
-    maxItems: 3
 _MEGCoordSys:
   type: string
   enum:
@@ -40,15 +25,6 @@ _MEGCoordSys:
     - $ref: objects.enums.KitYokogawa.value
     - $ref: objects.enums.ChietiItab.value
     - $ref: objects.enums.Other.value
-_NonstandardTemplateCoordSys:
-  type: string
-  enum:
-    - $ref: objects.enums.individual.value
-    - $ref: objects.enums.study.value
-_NonTemplateCoordSys:
-  type: string
-  enum:
-    - $ref: objects.enums.scanner.value
 _StandardTemplateCoordSys:
   type: string
   enum:
