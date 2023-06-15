@@ -168,8 +168,8 @@ i:
   value: i
   display_name: i
   description: |
-    Phase/Slice encoding direction is along the first axis of the data in the NIFTI file,
-    with phase encoding going from the zero index to the maximum index.
+    The encoding direction is along the first axis of the data in the NIFTI file,
+    and the encoding value increases from the zero index to the maximum index.
 j:
   value: j
   display_name: j
@@ -186,8 +186,8 @@ iMinus:
   value: i-
   display_name: i-
   description: |
-    Phase/Slice encoding direction is along the first axis of the data in the NIFTI file,
-    with phase encoding going from the maximum index to the zero index.
+    The encoding direction is along the first axis of the data in the NIFTI file,
+    and the encoding value decreases from the zero index to the maximum index.
 jMinus:
   value: j-
   display_name: j-
