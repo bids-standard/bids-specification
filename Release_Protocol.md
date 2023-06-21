@@ -88,7 +88,9 @@ Be sure not to remove credits if both have been edited.
 ```bash
 make update_contributors
 ```
-- review and commit the changes
+- you may need to fix some errors in the contributions names in case of crash
+- make sure to review the changes and not commit them blindly
+- commit the changes
 
 #### 2.3 Update the previous version URLs
 
