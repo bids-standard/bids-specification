@@ -46,7 +46,7 @@ TOKEN_FILE = None
 RICH_STACKTRACE = False
 
 # Set to True to use some of the dummy data in the "new_contributors.tsv"
-TEST = False
+TEST = True
 
 
 def logger(log_level="INFO") -> logging.Logger:
