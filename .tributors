@@ -1665,6 +1665,19 @@
         ],
         "name": "Kevin Larcher"
     },
+    "kimberlylray": {
+        "affiliation": "UT Austin",
+        "contributions": [
+            "doc",
+            "eventOrganizing",
+            "ideas",
+            "projectManagement"
+        ],
+        "email": "kimberlylray@gmail.com",
+        "github": "kimberlylray",
+        "name": "Kimberly Ray",
+        "orcid": "0000-0003-1302-2834"
+    },
     "KirstieJane": {
         "affiliation": "University of Cambridge",
         "bio": "Programme Lead for Tools, Practices and Systems at the Alan Turing Institute. Passionate about diversity and reproducibility in all forms.",

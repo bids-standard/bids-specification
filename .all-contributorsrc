@@ -1730,6 +1730,16 @@
             "name": "Kevin Larcher"
         },
         {
+            "contributions": [
+                "doc",
+                "eventOrganizing",
+                "ideas",
+                "projectManagement"
+            ],
+            "login": "kimberlylray",
+            "name": "Kimberly Ray"
+        },
+        {
             "avatar_url": [
                 "https://avatars.githubusercontent.com/u/3626306?v=4"
             ],
