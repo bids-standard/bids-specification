@@ -1,10 +1,14 @@
-# BIDS-schema
+# BIDS schema description
 
 Portions of the BIDS specification are defined using YAML files in order to
 make the specification machine-readable.
 
-Currently the portions of the specification that rely on this schema are
-the entity tables, entity definitions, filename templates, and metadata tables.
+Currently the portions of the specification that rely on this schema are:
+-   the entity tables,
+-   entity definitions,
+-   filename templates,
+-   metadata tables.
+
 Any changes to the specification should be mirrored in the schema.
 
 ## Organization and syntax
@@ -12,21 +16,39 @@ Any changes to the specification should be mirrored in the schema.
 At the time of this writing, the schema has the following file layout:
 
 ```plain
-src/schema
-├── BIDS_VERSION
 ├── meta
-│   └── context.yaml
+│   ├── ...
+│   └── versions.yaml
 ├── objects
-│   ├── columns.yaml
 │   ├── ...
 │   └── suffixes.yaml
 ├── rules
 │   ├── checks
-│   │   ├── asl.yaml
 │   │   ├── ...
-│   │   └── mri.yaml
+│   │   └── references.yaml
+│   ├── files
+│   │   ├── common
+│   │   │   ├── core.yaml
+│   │   │   └── tables.yaml
+│   │   ├── deriv
+│   │   │   ├── imaging.yaml
+│   │   │   └── preprocessed_data.yaml
+│   │   └── raw
+│   │       ├── ...
+│   │       └── task.yaml
+│   ├── sidecars
+│   │   ├── derivatives
+│   │   │   └── common_derivatives.yaml
+│   │   ├── ...
+│   │   └── pet.yaml
+│   ├── tabular_data
+│   │   ├── derivatives
+│   │   │   └── common_derivatives.yaml
+│   │   ├── ...
+│   │   └── task.yaml
 │   ├── ...
-│   └── suffixes.yaml
+│   └── modalities.yaml
+├── BIDS_VERSION
 └── SCHEMA_VERSION
 ```
 
@@ -39,7 +61,6 @@ Each file is made up of YAML data, most often an *object*.
 For example, the file `rules/checks/mri.yaml` contains the contents:
 
 ```YAML
----
 PhasePartUnits:
   issue:
     code: PHASE_UNITS
@@ -76,13 +97,15 @@ These qualified names may be used in this README, as well as in *references* and
 
 ### Description formatting
 
-Many objects throughout the schema have a `description` field, which will typically be
-rendered somewhere in the specification. Because the specification is written in
-[Markdown](https://en.wikipedia.org/wiki/Markdown), these `description` fields may also
-contain Markdown, including links to other locations in the specification.
+Many objects throughout the schema have a `description` field,
+which will typically be rendered somewhere in the specification.
+Because the specification is written in [Markdown](https://en.wikipedia.org/wiki/Markdown),
+these `description` fields may also contain Markdown,
+including links to other locations in the specification.
 
-Because the same description may be used in multiple locations, a mechanism is needed
-to ensure that the correct path is discovered to render the description in each location.
+Because the same description may be used in multiple locations,
+a mechanism is needed to ensure that the correct path is discovered
+to render the description in each location.
 To do this, the path should follow the form `SPEC_ROOT/path/within/source.md#anchor`.
 For example, to link to the
 [Definitions](https://bids-specification.readthedocs.io/en/stable/common-principles.html#definitions)
@@ -108,8 +131,8 @@ ObjectName:
   $ref: objects.metadata.OtherObjectName
 ```
 
-This object may be *dereferenced* by replacing the `$ref` entry with the object being
-referenced.
+This object may be *dereferenced* by replacing the `$ref` entry
+with the object being referenced.
 The following two prototypical examples are presented to clarify the semantics of
 references (the cases in which they are used will be presented later):
 
@@ -152,10 +175,11 @@ references (the cases in which they are used will be presented later):
         description: optional
     ```
     Here, the derivative datatype rule starts by copying the raw datatype rule
-    `rules.datatypes.anat.nonparametric`. It then *overrides* the `entities` portion
-    of that rule with a new object. To *extend* the original `entities`, it again
-    begins by referencing `rules.datatypes.anat.nonparametric.entities`, and adding
-    the new entities `space` and `description`.
+    `rules.datatypes.anat.nonparametric`.
+    It then *overrides* the `entities` portion of that rule with a new object.
+    To *extend* the original `entities`, it again begins
+    by referencing `rules.datatypes.anat.nonparametric.entities`,
+    and adding the new entities `space` and `description`.
 
 ### Expressions
 
@@ -166,7 +190,6 @@ or `checks`, determining whether a rule is satisfied.
 Re-examining `rules.checks.mri.PhasePartUnits` from above:
 
 ```YAML
----
 PhasePartUnits:
   issue:
     code: PHASE_UNITS
@@ -209,8 +232,8 @@ which (currently) contains at the top level:
 -   `nifti_header`: selected contents of the current NIfTI file's header
 
 Some of these are strings, while others are nested objects.
-These are to be populated by an *interpreter* of the schema, and provide the
-*namespace* in which expressions are evaluated.
+These are to be populated by an *interpreter* of the schema,
+and provide the *namespace* in which expressions are evaluated.
 
 The following operators should be defined by an interpreter:
 
@@ -233,17 +256,17 @@ The following functions should be defined by an interpreter:
 
 | Function                                        | Definition                                                                                                                                                 | Example                                                | Note                                                                           |
 | ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `match(arg: str, pattern: str) -> bool`         | `true` if `arg` matches the regular expression `pattern` (anywhere in string)                                                                              | `match(extension, ".gz$")`                             | True if the file extension ends with `.gz`                                     |
-| `substr(arg: str, start: int, end: int) -> str` | The portion of the input string spanning from start position to end position                                                                               | `substr(path, 0, length(path) - 3)`                    | `path` with the last three characters dropped                                  |
-| `type(arg: Any) -> str`                         | The name of the type, including `"array"`, `"object"`, `"null"`                                                                                            | `type(datatypes)`                                      | Returns `"array"`                                                              |
+| `count(arg: array, val: any)`                   | Number of elements in an array equal to `val`                                                                                                              | `count(columns.type, "EEG")`                           | The number of times "EEG" appears in the column "type" of the current TSV file |
+| `exists(arg: str \| array, rule: str) -> int`   | Count of files in an array that exist in the dataset. String is array with length 1. Rules include `"bids-uri"`, `"dataset"`, `"subject"` and `"stimuli"`. | `exists(sidecar.IntendedFor, "subject")`               | True if all files in `IntendedFor` exist, relative to the subject directory.   |
+| `index(arg: array, val: any)`                   | Index of first element in an array equal to `val`, `null` if not found                                                                                     | `index(["i", "j", "k"], axis)`                         | The number, from 0-2 corresponding to the string `axis`                        |
 | `intersects(a: array, b: array) -> bool`        | `true` if arguments contain any shared elements                                                                                                            | `intersects(dataset.modalities, ["pet", "mri"])`       | True if either PET or MRI data is found in dataset                             |
 | `length(arg: array) -> int`                     | Number of elements in an array                                                                                                                             | `length(columns.onset) > 0`                            | True if there is at least one value in the onset column                        |
-| `count(arg: array, val: any)`                   | Number of elements in an array equal to `val`                                                                                                              | `count(columns.type, "EEG")`                           | The number of times "EEG" appears in the column "type" of the current TSV file |
-| `index(arg: array, val: any)`                   | Index of first element in an array equal to `val`, `null` if not found                                                                                     | `index(["i", "j", "k"], axis)`                         | The number, from 0-2 corresponding to the string `axis`                        |
-| `sorted(arg: array) -> array`                   | The sorted values of the input array                                                                                                                       | `sorted(sidecar.VolumeTiming) == sidecar.VolumeTiming` | True if `sidecar.VolumeTiming` is sorted                                       |
-| `min(arg: array) -> number`                     | The smallest non-`n/a` value in an array                                                                                                                   | `min(sidecar.SliceTiming) == 0`                        | A check that the onset of the first slice is 0s                                |
+| `match(arg: str, pattern: str) -> bool`         | `true` if `arg` matches the regular expression `pattern` (anywhere in string)                                                                              | `match(extension, ".gz$")`                             | True if the file extension ends with `.gz`                                     |
 | `max(arg: array) -> number`                     | The largest non-`n/a` value in an array                                                                                                                    | `max(columns.onset)`                                   | The time of the last onset in an events.tsv file                               |
-| `exists(arg: str \| array, rule: str) -> int`   | Count of files in an array that exist in the dataset. String is array with length 1. Rules include `"bids-uri"`, `"dataset"`, `"subject"` and `"stimuli"`. | `exists(sidecar.IntendedFor, "subject")`               | True if all files in `IntendedFor` exist, relative to the subject directory.   |
+| `min(arg: array) -> number`                     | The smallest non-`n/a` value in an array                                                                                                                   | `min(sidecar.SliceTiming) == 0`                        | A check that the onset of the first slice is 0s                                |
+| `sorted(arg: array) -> array`                   | The sorted values of the input array                                                                                                                       | `sorted(sidecar.VolumeTiming) == sidecar.VolumeTiming` | True if `sidecar.VolumeTiming` is sorted                                       |
+| `substr(arg: str, start: int, end: int) -> str` | The portion of the input string spanning from start position to end position                                                                               | `substr(path, 0, length(path) - 3)`                    | `path` with the last three characters dropped                                  |
+| `type(arg: Any) -> str`                         | The name of the type, including `"array"`, `"object"`, `"null"`                                                                                            | `type(datatypes)`                                      | Returns `"array"`                                                              |
 
 #### The special value `null`
 
@@ -308,12 +331,13 @@ check will fail.
 Object files define "objects" or "terms", which are semantic descriptions of
 concepts used in BIDS. These reside under the `object.*` namespace in the schema.
 These files **do not** describe how objects of different types
-(for example file suffixes and file entities) interact with one another, or
-whether objects are required in a given dataset or file.
+(for example file suffixes and file entities) interact with one another,
+or whether objects are required in a given dataset or file.
 
 ### Overview
 
 There are currently 11 sub-namespaces, which fall into five rough categories.
+
 The namespaces are:
 
 | Namespace                   | Description                                                                         | Group            |
@@ -330,16 +354,18 @@ The namespaces are:
 | `objects.files`             | Files and directories that may appear at the root of a dataset                      | Files            |
 
 Because these objects vary, the contents of each namespace can vary.
+
 Common fields to all objects:
 
 | Field          | Description                                                                                                                                |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| `display_name` | A human-friendly name, for tools to display; may include spaces                                                                            |
 | `description`  | A description of the term that can be understood that should not depend on particular surrounding text; may contain markdown for rendering |
+| `display_name` | A human-friendly name, for tools to display; may include spaces                                                                            |
 
 The name/value terms groups (`entities`, `metadata` and `columns`) define terms where
-a name, when present, has a given meaning, and its value may be restricted. These objects
-additionally have the field:
+a name, when present, has a given meaning, and its value may be restricted.
+
+These objects additionally have the field:
 
 | Field    | Description                                                                                                                                                                                                     |
 | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -348,8 +374,10 @@ additionally have the field:
 | `format` | The format of the term (defined in `objects.formats`)                                                                                                                                                           |
 
 Value terms groups (`datatypes`, `suffixes`, `extensions`) define terms where a field
-can take on multiple values. For example, a file has one datatype, as compared to a
-collection of entities. These objects may have the fields:
+can take on multiple values.
+For example, a file has one datatype, as compared to a collection of entities.
+
+These objects may have the fields:
 
 | Field   | Description                                                                                                      |
 | ------- | ---------------------------------------------------------------------------------------------------------------- |
@@ -391,6 +419,7 @@ In a few cases, two objects with the same name appear multiple times in the spec
 When this happens, it is preferred to find a common definition, and clarify it in the rules (see below).
 However, in some cases, the object description and permissible values differ, and it needs to be defined
 as two separate objects.
+
 Consider the following examples:
 
 ```yaml
@@ -540,17 +569,22 @@ Core concepts are [expressions](#expressions) (defined above), requirement level
 #### Requirement levels and severity
 
 BIDS follows RFC 2119 and has three requirement levels: OPTIONAL, RECOMMENDED and REQUIRED.
-In the schema, we use `optional`, `recommended` and `required`. A rule interpreter (validator)
-is expected to treat missing REQUIRED data/metadata as an error, missing RECOMMENDED
-data/metadata as a warning, and silently pass over missing OPTIONAL data.
+In the schema, we use `optional`, `recommended` and `required`.
 
-BIDS also defines a level `DEPRECATED`, rendered in the schema as `deprecated`, and corresponding
-to a warning if the data/metadata is present.
+A rule interpreter (validator) is expected to treat:
+-   missing REQUIRED data/metadata as an error,
+-   missing RECOMMENDED data/metadata as a warning,
+-   and silently pass over missing OPTIONAL data.
+
+BIDS also defines a level `DEPRECATED`, rendered in the schema as `deprecated`,
+and corresponding to a warning if the data/metadata is present.
 
 #### Issues
 
 Issues are messages intended to be communicated to a dataset curator to indicate an issue
-with their dataset. They have a code and severity as well:
+with their dataset.
+
+They have a code and severity as well:
 
 | Field     | Description                                    |
 | --------- | ---------------------------------------------- |
@@ -558,17 +592,19 @@ with their dataset. They have a code and severity as well:
 | `level`   | Issue severity (`warning` or `error`)          |
 | `message` | Message for display to a user                  |
 
-A level of `warning` corresponds to a rule in the specification that is RECOMMENDED, while a
-level of `error` corresponds to a rule that is REQUIRED.
+A level of `warning` corresponds to a rule in the specification that is RECOMMENDED,
+while a level of `error` corresponds to a rule that is REQUIRED.
 
-In some cases, an issue is contained next to a `level: required` or `level: recommended` as part
-of a larger rule. In these cases, the `level` field should be omitted from the issue to avoid
-duplication or conflict.
+In some cases, an issue is contained next to a `level: required` or `level: recommended`
+as part of a larger rule.
+In these cases, the `level` field should be omitted from the issue
+to avoid duplication or conflict.
 
 ### Filename construction rules
 
-A significant portion of BIDS is devoted to the naming of files, and almost all filenames consist
-of entities, a suffix, an extension, and a data type. Exceptions will be noted below.
+A significant portion of BIDS is devoted to the naming of files,
+and almost all filenames consist of entities, a suffix, an extension, and a data type.
+Exceptions will be noted below.
 
 `rules.files` contains the following subdivisions.
 
@@ -615,6 +651,7 @@ Here, `README` and `README.md` are both valid, while only `dataset_description.j
 including `participants.tsv`, `samples.tsv`, `*_sessions.tsv` and `*_scans.tsv`.
 The first two use the `stem` field, while the latter two specify the entities used
 to construct the filename.
+
 The valid fields are:
 
 | Field        | Description                                                                                                       |
@@ -649,6 +686,7 @@ Note that these files do not have a `datatype`, but otherwise follow the same ru
 
 `rules.files.raw` and `rules.files.deriv` contain series of related rules.
 These are largely grouped by datatype, but file types that appear in multiple locations may be grouped together.
+
 The files described take the form:
 
 ```plain
@@ -714,8 +752,11 @@ while files in the second group may not.
 Also, when files in the second group have the `acq` entity, the associated value MUST be `crosstalk`.
 
 A common derivatives type is preprocessed data, where the type of the generated data is the same
-as the input data. BIDS Derivatives specifies that these files may be distinguished from raw data
-with the new entities `space-<label>` or `desc-<label>`. This rule is encoded:
+as the input data.
+BIDS Derivatives specifies that these files may be distinguished from raw data
+with the new entities `space-<label>` or `desc-<label>`.
+
+This rule is encoded:
 
 ```yaml
 meg_meg_common:
@@ -793,8 +834,8 @@ RuleNameReq:
 Here we show an example of two fields, one that is RECOMMENDED in most cases
 but REQUIRED in another, the other of which is OPTIONAL.
 
-`selectors` indicate whether the current rule applies to a given file. This
-is not rendered in the text, but may be used by a validator.
+`selectors` indicate whether the current rule applies to a given file.
+This is not rendered in the text, but may be used by a validator.
 `fields` is an object with keys that appear in `objects.metadata`/`objects.columns`.
 If the value is a string, then it is a requirement level.
 If it is an object, then the it has the following fields
@@ -804,7 +845,7 @@ If it is an object, then the it has the following fields
 | `level`                | REQUIRED          | Requirement level of field, one of (`optional`, `recommended`, `required`, `deprecated`) |
 | `level_addendum`       | OPTIONAL          | Additional text to describe cases where requirement level changes                        |
 | `description_addendum` | OPTIONAL          | Additional text to follow the `objects.metadata.<fieldname>.description`                 |
-| `issues`               | OPTIONAL          | [issue object](#issues), if additional communication is warranted                        |
+| `issue`                | OPTIONAL          | [issue object](#issues), if additional communication is warranted                        |
 
 The second table implements the change in the first table's `level_addendum`.
 The `expression3` selector indicates the additional case where the more stringent
@@ -813,12 +854,14 @@ rule is applied.
 #### Valid fields for definitions
 
 1.  `rules.sidecars.*`
+
     | Field       | Description                                                                                              |
     | ----------- | -------------------------------------------------------------------------------------------------------- |
     | `selectors` | List of expressions; any evaluating false indicate rule does not apply                                   |
     | `fields`    | Object with keys that may be found in `objects.metadata`, values either a requirement level or an object |
 
 1.  `rules.tabular_data.*`
+
     | Field                | Description                                                                                                    |
     | -------------------- | -------------------------------------------------------------------------------------------------------------- |
     | `selectors`          | List of expressions; any evaluating false indicate rule does not apply                                         |
@@ -827,8 +870,8 @@ rule is applied.
     | `index_columns`      | An optional list of columns that uniquely identify a row.                                                      |
     | `additional_columns` | Indicates whether additional columns may be defined. One of `allowed`, `allowed_if_defined` and `not_allowed`. |
 
-The following tables demonstrate how mutual exclusive, required fields, may be
-set in `rules.sidecars.*`:
+The following tables demonstrate how mutual exclusive, required fields,
+may be set in `rules.sidecars.*`:
 
 ```YAML
 MRIFuncRepetitionTime:
@@ -854,8 +897,8 @@ MRIFuncVolumeTiming:
       level_addendum: mutually exclusive with `RepetitionTime`
 ```
 
-An additional check will be required to assert that both are not present, but
-these tables may be combined for rendering purposes.
+An additional check will be required to assert that both are not present,
+but these tables may be combined for rendering purposes.
 
 Here we present an example rule in `rules.tabular_data.eeg`:
 
@@ -887,7 +930,8 @@ EEGChannels:
 ### Checks
 
 `rules.checks` can contain more complex rules. Structurally, these are similar to sidecar rules,
-in that they have selectors. They additionally have a `checks` list, and an explicit issue.
+in that they have selectors.
+They additionally have a `checks` list, and an explicit issue.
 
 | Field       | Description                                                                                    |
 | ----------- | ---------------------------------------------------------------------------------------------- |
@@ -951,3 +995,18 @@ we expect that the `MAJOR` component
 will be incremented whenever schema organization introduces "breaking changes",
 `MINOR` - when adding new components to the schema,
 and `PATCH` - when fixing errors in existing components.
+
+## Schema publication
+
+The BIDS Schema is compiled into a single, dereferenced object during
+the ReadTheDocs build of the specification.
+This object is published as a JSON document that can be found at `/schema.json`
+at the root of the specification.
+For example, the schema used to construct the 1.8.0 release of BIDS can be found at
+<https://bids-specification.readthedocs.io/en/v1.8.0/schema.json>,
+and the latest version that includes unreleased changes to BIDS and the schema may
+be found at <https://bids-specification.readthedocs.io/en/latest/schema.json>.
+
+The JSON version of the schema contains `schema_version` and `bids_version` keys
+that identify the state of both the schema and the specification at the time it was
+compiled.
