@@ -182,29 +182,38 @@ Note that upper-case is REQUIRED:
 ### Example `*_channels.tsv`
 
 ```Text
-name        component   type   tracked_point   units
-t1_acc_x    x           ACCEL  LeftFoot        m/s^2
-t1_acc_y    y           ACCEL  LeftFoot        m/s^2
-t1_acc_z    z           ACCEL  LeftFoot        m/s^2
-t1_gyro_x   x           GYRO   LeftFoot        rad/s
-t1_gyro_y   y           GYRO   LeftFoot        rad/s
-t1_gyro_z   z           GYRO   LeftFoot        rad/s
+name        component   type   tracked_point   units    reference_frame
+t1_acc_x    x           ACCEL  LeftFoot        m/s^2    global
+t1_acc_y    y           ACCEL  LeftFoot        m/s^2    global
+t1_acc_z    z           ACCEL  LeftFoot        m/s^2    global
+t1_gyro_x   x           GYRO   LeftFoot        rad/s    global
+t1_gyro_y   y           GYRO   LeftFoot        rad/s    global
+t1_gyro_z   z           GYRO   LeftFoot        rad/s    global
 …
-t2_acc_x    x           ACCEL  RightWrist      m/s^2
-t2_acc_y    y           ACCEL  RightWrist      m/s^2
-t2_acc_z    z           ACCEL  RightWrist      m/s^2
-t2_gyro_x   x           GYRO   RightWrist      rad/s
-t2_gyro_y   y           GYRO   RightWrist      rad/s
-t2_gyro_z   z           GYRO   RightWrist      rad/s
+t2_acc_x    x           ACCEL  RightWrist      m/s^2    global
+t2_acc_y    y           ACCEL  RightWrist      m/s^2    global
+t2_acc_z    z           ACCEL  RightWrist      m/s^2    global
+t2_gyro_x   x           GYRO   RightWrist      rad/s    global
+t2_gyro_y   y           GYRO   RightWrist      rad/s    global
+t2_gyro_z   z           GYRO   RightWrist      rad/s    global
 ```
 
 ## Reference frame description (`*_channels.json`)
 
-It is RECOMMENDED that the `*_channels.json` file contains additional metadata about channel which cannot be found in the `*_channels.tsv` or `*_motion.json` file.
-One RECOMMENDED use case is the information about the reference frame the data is to be interpreted in.
-The definition SHOULD be stored in a field called `reference_frame`, the defined level CAN be matched to a value in the `reference_frame` colunm in the `*_channels.tsv` file.
-The use of a meanigful combination of `RotationRule`, `RotationOrder` and `SpatialAxis` for this definition is RECOMMENDED.
-If non of these principals apply for the motion data, it is RECOMMENDED to use a free form field `CoordinateSystemDescription` for the definition.
+A reference frame specifies the origin and orientation of the spatial axes with respect to which motion data is to be interpreted.
+In case the information is available, sharing this can immensely boost the usability of shared data.
+It is RECOMMENDED that the `*_channels.json` file contains information about the reference frames used for motion channels.
+When shared, it SHOULD be stored in field `reference_frame`.
+The defined levels are specified as user-defined keywords, which MUST match a value in the `reference_frame` colunm in the matching `*_channels.tsv` file.
+Nested under each level of `reference_frame` are three RECOMMENDED fields, namely `RotationRule`, `RotationOrder` and `SpatialAxes`.
+Field `RotationOrder` specifies the sequence in which the elemental 3D extrinsic rotations are applied around the three distinct axes.
+The value MUST be one of: "XYZ", "XZY", "YXZ", "YZX", "ZXY", "ZYX", or "n/a".
+Field `RotationRule` indicates whether rotations are applied clockwise around an axis when seen from the positive direction (left-hand rule) or counter-clockwise (right-hand rule). The value MUST be one of: "left-hand", "right-hand", or "n/a".
+Lastly, field `SpatialAxis` refers to the coordinate system in which the motion data are to be interpreted, if the recorded data can be mapped to a fixed reference frame.
+A sequence of characters A/P (anterior-posterior, indicating forward-backward), L/R (left-right), and S/I (superior-inferior, indicating up-down).
+The position of a character in the sequence determines which of the X,Y,Z axes it maps to. For example, "ARS" for X-anterior, Y-right, Z-superior.
+For 1D or 2D cases, only specify the used axes and use the character "_" for unused axes ("A_R" when the Y axis is not used, for instance).
+If non of these principals apply, a free-form field `ReferenceFrameDescription` MAY be used for the definition.
 
 ### Example of `*_channels.json`
 
@@ -212,13 +221,13 @@ If non of these principals apply for the motion data, it is RECOMMENDED to use a
 "reference_frame": {
         "Levels": {
             "global": {
-                "CoordinateSystemDescription": "n/a",
+                "ReferenceFrameDescription": "n/a",
                 "SpatialAxes": "ALS",
                 "RotationOrder": "ZXY",
                 "RotationRule": "right-hand"
             },
             "local": {
-                "CoordinateSystemDescription": "Joint angles are described following the ISB-based coordinate system, 
+                "ReferenceFrameDescription": "Joint angles are described following the ISB-based coordinate system, 
                                                 with a local reference frame attached to the body segment. 
                                                 See Wu and Cavanagh (1995), Wu et al. (2002), Wu et al. (2005), 
                                                 and the Xsens MVN Awinda user manual for more information.",
