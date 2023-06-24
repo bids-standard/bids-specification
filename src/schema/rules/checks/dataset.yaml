@@ -62,3 +62,15 @@ UnknownVersion:
     - path == 'dataset_description.json'
   checks:
     - intersects([json.BIDSVersion], schema.meta.versions)
+
+SingleSourceAuthors:
+  issue:
+    code: AUTHORS_AND_CITATION_FILE_MUTUALLY_EXCLUSIVE
+    level: error
+    message: |
+      CITATION.cff file found. The "Authors" field of dataset_description.json
+      must be removed to avoid inconsistency.
+  selectors:
+    - path == 'CITATION.cff'
+  checks:
+    - '!("Authors" in dataset.dataset_description)'
