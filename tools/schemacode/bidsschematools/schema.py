@@ -137,6 +137,9 @@ def flatten_enums(namespace, inplace=True):
     schema : dict
         Schema with flattened enums.
 
+    Examples
+    --------
+
     >>> struct = {
     ...   "anyOf": [
     ...      {"type": "string", "enum": ["A", "B", "C"]},

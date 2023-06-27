@@ -1,3 +1,5 @@
+"""A partial implementation of schema-based validation in Python."""
+
 import datetime
 import fnmatch
 import json
@@ -299,13 +301,13 @@ def select_schema_path(
     Select schema directory, according to a priority logic whereby the schema path is
     either:
 
-        (1) a concatenation of `bids_reference_root` and `bids_version`, if the latter is
-            specified, and the BIDS version schema is compatible with the validator,
-        (2) a concatenation of `bids_reference_root` the detected version specification
-            inside the BIDS root directory, if such a directory is provided and the BIDS version
-            schema is compatible with the validator.
-        (3) `None`, expanded to the bundled schema supplied with the validator by
-            `bst.utils.get_bundled_schema_path`.
+    (1) a concatenation of `bids_reference_root` and `bids_version`, if the latter is
+        specified, and the BIDS version schema is compatible with the validator,
+    (2) a concatenation of `bids_reference_root` the detected version specification
+        inside the BIDS root directory, if such a directory is provided and the BIDS version
+        schema is compatible with the validator.
+    (3) `None`, expanded to the bundled schema supplied with the validator by
+        `bst.utils.get_bundled_schema_path`.
 
     Parameters
     ----------
