@@ -7,14 +7,14 @@ motionChannels:
   initial_columns:
     - name__channels
     - component
-    - type__motion_channels
+    - type__channels
     - tracked_point__channels
     - units__motion
   columns:
     name__channels: required
     component: required
     reference_frame__motion: recommended
-    type__motion_channels: required
+    type__channels: required
     tracked_point__channels: required
     units__motion: required
     placement__motion: recommended

@@ -6,6 +6,9 @@ import pytest
 from bidsschematools.conftest import BIDS_ERROR_SELECTION, BIDS_SELECTION
 from bidsschematools.validator import select_schema_path, validate_bids
 
+from ..data import load_resource
+from .data import load_test_data
+
 
 def test_inheritance_examples():
     correct_inheritance = [
@@ -68,20 +71,11 @@ def test_write_report(tmp_path):
         "rawdata/sub-EXC022/anat/sub-EXC022_ses-MRI_flip-1_VFA.nii.gz"
     ]
 
-    report_path = os.path.join(
-        tmp_path,
-        "output_bids_validator_xs_write.log",
-    )
-    expected_report_path = os.path.join(
-        os.path.abspath(os.path.dirname(__file__)),
-        "data/expected_bids_validator_xs_write.log",
-    )
-    write_report(validation_result, report_path=report_path)
-    with open(report_path, "r") as f:
-        report_text = f.read()
-    with open(expected_report_path, "r") as f:
-        expected_report_text = f.read()
-    assert report_text == expected_report_text
+    report_path = tmp_path / "output_bids_validator_xs_write.log"
+    write_report(validation_result, report_path=str(report_path))
+
+    expected_report_path = load_test_data("expected_bids_validator_xs_write.log")
+    assert report_path.read_text() == expected_report_path.read_text()
 
 
 @pytest.mark.skipif(
@@ -125,12 +119,7 @@ def test_validate_bids(bids_examples, tmp_path):
     assert len(result["path_tracking"]) == 0
 
     # Is the schema version recorded correctly?
-    schema_path = os.path.join(
-        os.path.abspath(os.path.dirname(__file__)),
-        os.pardir,
-        "data",
-        "schema",
-    )
+    schema_path = load_resource("schema")
     with open(os.path.join(schema_path, "BIDS_VERSION")) as f:
         expected_version = f.readline().rstrip()
     assert result["bids_version"] == expected_version
@@ -148,10 +137,7 @@ def test_broken_json_dataset(bids_examples, tmp_path):
     dataset_path = os.path.join(bids_examples, dataset)
     dataset_json = os.path.join(dataset_path, "dataset_description.json")
 
-    broken_json = os.path.join(
-        os.path.abspath(os.path.dirname(__file__)),
-        "data/broken_dataset_description.json",
-    )
+    broken_json = load_test_data("broken_dataset_description.json")
     shutil.copyfile(broken_json, dataset_json)
 
     # No assert, will simply raise JSON reader error if not catching it properly.

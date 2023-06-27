@@ -1,6 +1,7 @@
 """Utility functions for the bids-specification schema."""
 import logging
-import os.path as op
+
+from . import data
 
 
 def get_bundled_schema_path():
@@ -11,7 +12,7 @@ def get_bundled_schema_path():
     str
         Absolute path to the directory containing schema-related files.
     """
-    return op.abspath(op.join(op.dirname(__file__), "data", "schema"))
+    return str(data.load_resource("schema"))
 
 
 def get_logger(name=None):
