@@ -336,7 +336,7 @@ or whether objects are required in a given dataset or file.
 
 ### Overview
 
-There are currently 11 sub-namespaces, which fall into five rough categories.
+There are currently 12 sub-namespaces, which fall into five rough categories.
 
 The namespaces are:
 
@@ -352,6 +352,7 @@ The namespaces are:
 | `objects.extensions`        | Filename component that describe the format of the file                             | Value terms      |
 | `objects.formats`           | Terms that define the forms values (for example, in metadata) might take            | Formats          |
 | `objects.files`             | Files and directories that may appear at the root of a dataset                      | Files            |
+| `objects.enums`             | Full descriptions of enumerated values used in other sub-namespaces                 | Value terms      |
 
 Because these objects vary, the contents of each namespace can vary.
 
@@ -553,6 +554,13 @@ The convention can be summed up in the following rules:
     | `display_name` | Human-friendly name                                                                  |
     | `description`  | Term definition                                                                      |
     | `file_type`    | Indicator that the file is a regular file (`"regular"`) or directory (`"directory"`) |
+
+-   `objects.enums`
+    | Field          | Description            |
+    | -------------- | ---------------------- |
+    | `display_name` | Human-friendly name    |
+    | `description`  | Term definition        |
+    | `value`        | String value of `enum` |
 
 ## Rule files
 
@@ -910,11 +918,11 @@ EEGChannels:
   - extension == ".tsv"
   initial_columns:
   - name__channels
-  - type__eeg_channels
+  - type__channels
   - units
   columns:
     name__channels: required
-    type__eeg_channels: required
+    type__channels: required
     units: required
     description: optional
     sampling_frequency: optional
