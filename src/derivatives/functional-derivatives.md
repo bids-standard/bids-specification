@@ -41,7 +41,7 @@ The following table lists allowed labels for the `stat` entity and their corresp
 | ---------------- | ---------------------------------------------------------------- |
 | `mean`           | Mean across the temporal/4th dimension of the data               |
 | `std`            | Standard deviation across the temporal/4th dimension of the data |
-| `tsnr`           | Temporal SNR (i.e. mean / std)                                   |
+| `tsnr`           | Temporal SNR (`mean / std`)                                      |
 | `sfs`            | Signal fluctuation sensitivity                                   |
 | `alff`           | Amplitude low frequency fluctuations                             |
 | `falff`          | Fractional amplitude of low frequency fluctuations               |
@@ -174,7 +174,7 @@ sub-001/
 
 ROI-based time series will generally be stored as tables, with a row of column
 headers indicating the name of the time series.
-In the case where every voxel has a time series (i.e., voxel-wise regressors,
+In the case where every voxel has a time series (that is, voxel-wise regressors,
 as in ANATICOR), then the time series should be saved as a NIfTI file.
 
 #### Column metadata special fields
