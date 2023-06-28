@@ -1065,8 +1065,8 @@ EyeTrackingMethod:
   description: |
     Method used to track gaze or pupil position:
     "P–CR" for video based eye-tracking using pupil and corneal reflection;
-    "DPI" for Dual-Purkinje Imaging system, "SSC" for scleral search coils; 
-    "EOG" for electro-oculogram; "Limbus" for trackers estimating limbus borders 
+    "DPI" for Dual-Purkinje Imaging system, "SSC" for scleral search coils;
+    "EOG" for electro-oculogram; "Limbus" for trackers estimating limbus borders
     between the iris and sclera; or other.
     See details here: https://doi.org/10.3758/s13428-021-01762-8
   type: string
