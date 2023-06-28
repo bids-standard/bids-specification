@@ -65,7 +65,6 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("derivatives.fmri.FunctionalMapFields") }}
 
-
 ## Time series
 
 A time series is a chronologically ordered series of numeric values.
@@ -83,9 +82,9 @@ In the case of spatial time series files, the notion of column name does not
 apply, so column-level metadata may be applied to the entire file.
 In addition, the following fields apply to the entire file in all cases:
 
-| Field name        | Definition                                                                                                                                                   |
-| :---------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| SamplingFrequency | REQUIRED. Sampling frequency (in Hz) of all columns in the file. Special value `"TR"` indicates one sample per volume of a corresponding BOLD series.        |
+| Field name        | Definition                                                                                                                                                     |
+| :---------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| SamplingFrequency | REQUIRED. Sampling frequency (in Hz) of all columns in the file. Special value `"TR"` indicates one sample per volume of a corresponding BOLD series.          |
 | StartTime         | OPTIONAL. Start time (in seconds) in relation to the start of acquisition of the first volume in the corresponding imaging file (negative values are allowed). |
 
 Note that there are several differences with these fields in
@@ -400,7 +399,7 @@ should be named `a_comp_cor_00`.
 
 The following reserved words indicate common algorithms:
 
-| Column name              | Description                                                                                                                                                                                                |
-| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `[a|t|w|c]_comp_cor_<x>` | CompCor (Behzadi, et al., 2007) calculated with voxels chosen based on: `a`: anatomically derived ROIs (white matter and CSF), `t`: temporal variance, `w`: white matter voxels only, `c`: CSF voxels only |
-| `melodic_<x>`            | Columns from the mixing matrix in FSL MELODIC                                                                                                                                                              |
+| Column name                 | Description                                                                                                                                                                                                |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `[a\|t\|w\|c]_comp_cor_<x>` | CompCor (Behzadi, et al., 2007) calculated with voxels chosen based on: `a`: anatomically derived ROIs (white matter and CSF), `t`: temporal variance, `w`: white matter voxels only, `c`: CSF voxels only |
+| `melodic_<x>`               | Columns from the mixing matrix in FSL MELODIC                                                                                                                                                              |
