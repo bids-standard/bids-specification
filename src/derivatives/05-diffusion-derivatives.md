@@ -402,7 +402,7 @@ another.
         | 5       | *Y<sub>2,2</sub>*  |
         | 6       | *Y<sub>4,-4</sub>* |
         | 7       | *Y<sub>4,-3</sub>* |
-        | ...     | etc.               |
+        | ...     | ...                |
 
     -   Relationship between maximal spherical harmonic degree *l<sub>max</sub>*
         and number of image volumes *N*:
@@ -411,7 +411,7 @@ another.
 
         | ***l<sub>max</sub>*** | 0 | 2 | 4  | 6  | 8  | ...  |
         | --------------------- |--:|--:|--: |--: |--: | :--: |
-        | ***N***               | 1 | 6 | 15 | 28 | 45 | etc. |
+        | ***N***               | 1 | 6 | 15 | 28 | 45 | ...  |
 
     -   Relationship between maximal degree of *zonal* spherical harmonic
         function (spherical harmonics function where all *m* != 0 terms are
@@ -422,7 +422,7 @@ another.
 
         | ***l<sub>max</sub>*** | 0 | 2 | 4 | 6 | 8 | ...  |
         | --------------------- |--:|--:|--:|--:|--:| :--: |
-        | ***N***               | 1 | 2 | 3 | 4 | 5 | etc. |
+        | ***N***               | 1 | 2 | 3 | 4 | 5 | ...  |
 
 
 ## Demonstrative examples
