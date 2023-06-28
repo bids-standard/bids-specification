@@ -510,6 +510,11 @@ asllabeling:
     An anonymized screenshot of the planning of the labeling slab/plane
     with respect to the imaging slab or slices.
     This screenshot is based on DICOM macro C.8.13.5.14.
+aslref:
+  value: aslref
+  display_name: ASL reference image
+  description: |
+    Reference image for arterial spin labeling (ASL) series
 beh:
   value: beh
   display_name: Behavioral recording
@@ -529,11 +534,21 @@ bold:
   display_name: Blood-Oxygen-Level Dependent image
   description: |
     Blood-Oxygen-Level Dependent contrast (specialized T2\* weighting)
+boldref:
+  value: boldref
+  display_name: BOLD reference image
+  description: |
+    Reference image for blood-oxygen-level-dependent (BOLD) series
 cbv:
   value: cbv
   display_name: Cerebral blood volume image
   description: |
     Cerebral Blood Volume contrast (specialized T2\* weighting or difference between T1 weighted images)
+cbvref:
+  value: cbvref
+  display_name: CBV reference image
+  description: |
+    Reference image for cerebral blood volume (CBV) series
 channels:
   value: channels
   display_name: Channels File
@@ -563,6 +578,11 @@ dwi:
   display_name: Diffusion-weighted image
   description: |
     Diffusion-weighted imaging contrast (specialized T2 weighting).
+dwiref:
+  value: dwiref
+  display_name: DWI reference image
+  description: |
+    Reference image for diffusion-weighted imaging (DWI) series
 eeg:
   value: eeg
   display_name: Electroencephalography
