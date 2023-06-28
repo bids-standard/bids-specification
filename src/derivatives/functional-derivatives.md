@@ -72,7 +72,7 @@ A time series is a chronologically ordered series of numeric values.
 Time series will generally be stored as tables, with a row of column headers
 indicating the name of the series.
 In the case where the time series varies spatially, the data SHOULD be stored in
-an appropriate file, such as a 4D NIfTI file, a `.time.gii` GIFTI file,
+an appropriate file, such as a 4D NIfTI file, a `.func.gii` GIFTI file,
 or a `.dtseries.nii` CIFTI-2 file.
 
 All time series files MUST be accompanied by a data dictionary in JSON format,
