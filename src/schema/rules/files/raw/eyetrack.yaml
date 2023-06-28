@@ -4,6 +4,7 @@ eyetrack:
     - eyetrack
   extensions:
     - .json
+    - .tsv
     - .tsv.gz
   datatypes:
     - eyetrack

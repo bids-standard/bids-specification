@@ -23,6 +23,7 @@ EyeTrackingRecommended:
     - suffix == "eyetrack"
   fields:
     ScreenRefreshRate: recommended
+    EyeTrackingMethod: recommended
     Manufacturer: recommended
     ManufacturersModelName: recommended
     SoftwareVersions: recommended
@@ -33,8 +34,10 @@ EyeTrackingRecommended:
     MaximalCalibrationError: recommended
     AverageCalibrationError: recommended
     CalibrationList: recommended
+    CalibrationCount: recommended
     RecordedEye: recommended
     EyeCameraSettings: recommended
+    EyeTrackerDistance: recommended
     FeatureDetectionSettings: recommended
     GazeMappingSettings: recommended
     RawDataFilters: recommended

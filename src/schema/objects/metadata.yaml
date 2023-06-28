@@ -381,6 +381,13 @@ BrainLocation:
     or layer to refer to layer-specific gene expression,
     which can also tie up with laminar fMRI.
   type: string
+CalibrationCount:
+  name: CalibrationType
+  display_name: Calibration Type
+  description: |
+    Provide here the number of calibration performed per run.
+  type: number
+  minimum: 0
 CalibrationList:
   name: CalibrationList
   display_name: Calibration List
@@ -1045,6 +1052,24 @@ EyeCameraSettings:
   type: object
   items:
     type: object
+EyeTrackerDistance:
+  name: EyeTrackerDistance
+  display_name: Eye-Tracker Distance
+  description: |
+    Distance (in meter) between the eye-tracker and the participant eye(s).
+  type: number
+  unit: m
+EyeTrackingMethod:
+  name: EyeTrackingMethod
+  display_name: Eye-Tracking Method
+  description: |
+    Method used to track gaze or pupil position:
+    "P–CR" for video based eye-tracking using pupil and corneal reflection;
+    "DPI" for Dual-Purkinje Imaging system, "SSC" for scleral search coils; 
+    "EOG" for electro-oculogram; "Limbus" for trackers estimating limbus borders 
+    between the iris and sclera; or other.
+    See details here: https://doi.org/10.3758/s13428-021-01762-8
+  type: string
 FeatureDetectionSettings:
   name: FeatureDetectionSettings
   display_name: Feature Detection Settings
