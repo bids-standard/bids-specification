@@ -212,12 +212,12 @@ cortical atlas, summarized by taking the first principal component.
 To indicate the summarization method applied to construct a single time series
 for an ROI, the following column suffixes are defined:
 
-| Column suffix | Description of the transformation                                                                                                                       |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `_mean`       | The mean of voxel time series                                                                                                                           |
-| `_median`     | The median of voxel time series                                                                                                                         |
-| `_pc[_<x>]`   | The ith eigenvariate from principal component analysis, where `x` is 0 indexed. If `x` is not specified, the first component is implied (i.e., `pc_0`). |
-| `_spat_reg`   | Spatial regression                                                                                                                                      |
+| Column suffix | Description of the transformation                                                                                                                            |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `_mean`       | The mean of voxel time series                                                                                                                                |
+| `_median`     | The median of voxel time series                                                                                                                              |
+| `_pc[_<i>]`   | The `i`th eigenvariate from principal component analysis, where `i` is 0 indexed. If `i` is not specified, the first component is implied (that is, `pc_0`). |
+| `_spat_reg`   | Spatial regression                                                                                                                                           |
 
 Example:
 
