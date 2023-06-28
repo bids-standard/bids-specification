@@ -61,7 +61,7 @@ motionRecommended:
     - suffix == "motion"
   fields:
     ACCELChannelCount: recommended
-    ANGACCChannelCount: recommended
+    ANGACCELChannelCount: recommended
     GYROChannelCount: recommended
     JNTANGChannelCount: recommended
     LATENCYChannelCount: recommended

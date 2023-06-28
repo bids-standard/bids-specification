@@ -22,7 +22,6 @@ aslcontext:
     - aslcontext
   extensions:
     - .tsv
-    - .json
   datatypes:
     - perf
   entities:
@@ -38,6 +37,8 @@ asllabeling:
     - asllabeling
   extensions:
     - .jpg
+    - .png
+    - .tif
   datatypes:
     - perf
   entities:

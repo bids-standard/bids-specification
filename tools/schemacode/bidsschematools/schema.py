@@ -52,10 +52,20 @@ def _get_bids_version(schema_dir):
 
 
 def _find(obj, predicate):
-    """Find objects in an arbitrary object that satisfy a predicate
+    """Find objects in an arbitrary object that satisfy a predicate.
 
     Note that this does not cut branches, so every iterable sub-object
     will be fully searched.
+
+    Parameters
+    ----------
+    obj : object
+    predicate : function
+
+    Returns
+    -------
+    generator
+        A generator of entries in ``obj`` that satisfy the predicate.
     """
     try:
         if predicate(obj):
@@ -74,26 +84,40 @@ def _find(obj, predicate):
 
 
 def dereference(namespace, inplace=True):
-    """Replace references in namespace with the contents of the referred object
+    """Replace references in namespace with the contents of the referred object.
 
     Parameters
     ----------
     namespace : Namespace
-        Namespace for which to dereference
+        Namespace for which to dereference.
 
     inplace : bool, optional
-        Whether to modify the namespace in place or create a copy, by default True
+        Whether to modify the namespace in place or create a copy, by default True.
 
     Returns
     -------
     namespace : Namespace
-        Deferred namespace
+        Dereferenced namespace
     """
     if not inplace:
         namespace = deepcopy(namespace)
+
     for struct in _find(namespace, lambda obj: "$ref" in obj):
-        target = struct.pop("$ref")
-        struct.update({**namespace[target], **struct})
+        target = namespace.get(struct["$ref"])
+        if isinstance(target, Mapping):
+            struct.pop("$ref")
+            struct.update({**target, **struct})
+
+    # At this point, any remaining refs are one-off objects in lists
+    for struct in _find(namespace, lambda obj: any("$ref" in sub for sub in obj)):
+        for i, item in enumerate(struct):
+            try:
+                target = item.pop("$ref")
+            except (AttributeError, KeyError):
+                pass
+            else:
+                struct[i] = namespace.get(target)
+
     return namespace
 
 
@@ -112,6 +136,9 @@ def flatten_enums(namespace, inplace=True):
     -------
     schema : dict
         Schema with flattened enums.
+
+    Examples
+    --------
 
     >>> struct = {
     ...   "anyOf": [

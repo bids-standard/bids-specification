@@ -118,7 +118,7 @@ A guide for using macros can be found at
 {
     "SamplingFrequency": 100.0,
     "StartTime": -22.345,
-    "Columns": ["cardiac", "respiratory"],
+    "Columns": ["cardiac", "respiratory", "trigger"],
     "Manufacturer": "Brain Research Equipment ltd.",
     "cardiac": {
         "Description": "continuous pulse measurement",
@@ -127,6 +127,9 @@ A guide for using macros can be found at
     "respiratory": {
         "Description": "continuous measurements by respiration belt",
         "Units": "mV"
+        },
+    "trigger": {
+        "Description": "continuous measurement of the scanner trigger signal"
         }
 }
 ```

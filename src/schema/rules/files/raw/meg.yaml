@@ -39,6 +39,7 @@ calibration:
     session: optional
     acquisition:
       level: required
+      # TODO: Add definitions for these values.
       enum:
         - calibration
 
@@ -54,6 +55,7 @@ crosstalk:
     session: optional
     acquisition:
       level: required
+      # TODO: Add definitions for these values.
       enum:
         - crosstalk
 

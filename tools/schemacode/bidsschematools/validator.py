@@ -1,3 +1,5 @@
+"""A partial implementation of schema-based validation in Python."""
+
 import datetime
 import fnmatch
 import json
@@ -298,13 +300,14 @@ def select_schema_path(
     """
     Select schema directory, according to a priority logic whereby the schema path is
     either:
-        (1) a concatenation of `bids_reference_root` and `bids_version`, if the latter is
-            specified, and the BIDS version schema is compatible with the validator,
-        (2) a concatenation of `bids_reference_root` the detected version specification
-            inside the BIDS root directory, if such a directory is provided and the BIDS version
-            schema is compatible with the validator.
-        (3) `None`, expanded to the bundled schema supplied with the validator by
-            `bst.utils.get_bundled_schema_path`.
+
+    (1) a concatenation of `bids_reference_root` and `bids_version`, if the latter is
+        specified, and the BIDS version schema is compatible with the validator,
+    (2) a concatenation of `bids_reference_root` the detected version specification
+        inside the BIDS root directory, if such a directory is provided and the BIDS version
+        schema is compatible with the validator.
+    (3) `None`, expanded to the bundled schema supplied with the validator by
+        `bst.utils.get_bundled_schema_path`.
 
     Parameters
     ----------
@@ -408,18 +411,21 @@ def validate_all(
         groups as well.
     """
 
-    tracking_schema = deepcopy(regex_schema)
     tracking_paths = deepcopy(paths_list)
+    tracking_schema = []
     itemwise_results = []
     matched = False
     match_listing = []
     for target_path in paths_list:
         lgr.debug("Checking file `%s`.", target_path)
         lgr.debug("Trying file types:")
-        for regex_entry in tracking_schema:
-            target_regex = regex_entry["regex"]
+        for regex_entry in regex_schema:
+            target_regex = r"(?:.*/)?" + regex_entry["regex"]
+            # We need to record the actual expressions we query.
+            _regex_entry = deepcopy(regex_entry)
+            _regex_entry.update({"regex": target_regex})
             lgr.debug("\t* `%s`, with pattern: `%`", target_path, target_regex)
-            matched = re.match(r"(?:.*/)?" + target_regex, target_path)
+            matched = re.match(target_regex, target_path)
             itemwise_result = {}
             itemwise_result["path"] = target_path
             itemwise_result["regex"] = target_regex
@@ -433,12 +439,13 @@ def validate_all(
         if matched:
             tracking_paths.remove(target_path)
             # Might be fragile since it relies on where the loop broke:
-            if regex_entry["mandatory"]:
-                tracking_schema.remove(regex_entry)
+            if not regex_entry["mandatory"]:
+                tracking_schema.append(_regex_entry)
             match_entry = matched.groupdict()
             match_entry["path"] = target_path
             match_listing.append(match_entry)
         else:
+            tracking_schema.append(_regex_entry)
             lgr.debug(
                 "The `%s` file could not be matched to any regex schema entry.",
                 target_path,
