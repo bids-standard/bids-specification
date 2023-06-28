@@ -1,4 +1,7 @@
-# Functional derivatives
+# Functional MRI derivatives
+
+This section describes files deriving from functional MRI (fMRI) recordings,
+namely BOLD and CBV series.
 
 ## Functional derivatives maps
 
@@ -11,8 +14,8 @@ Template:
 <pipeline_name>/
     sub-<label>/
         func/
-            <source_entities>[_space-<space>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.{nii[.gz],gii,dscalar.nii}
-            <source_entities>[_space-<space>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.json
+            <source_entities>[_space-<space>][_res-<label>][_den-<label>][_stat-<label>][_desc-<label>]_<suffix>.{nii[.gz],func.gii,dscalar.nii}
+            <source_entities>[_space-<space>][_res-<label>][_den-<label>][_stat-<label>][_desc-<label>]_<suffix>.json
 ```
 
 for example:
@@ -21,13 +24,20 @@ for example:
 pipeline1/
     sub-001/
         func/
-            sub-001_task-rest_run-1_space-MNI305_mean.nii.gz
-            sub-001_task-rest_run-1_space-MNI305_mean.json
+            sub-001_task-rest_run-1_space-MNI305_stat-mean_boldmap.nii.gz
+            sub-001_task-rest_run-1_space-MNI305_stat-mean_boldmap.json
 ```
 
-The following table lists allowed suffixes and their corresponding measures:
+Suffixes take the form `<source_suffix>map`:
 
-| `<suffix>`       | Measure                                                          |
+| Original suffix | Derivative map suffix |
+| --------------- | --------------------- |
+| `bold`          | `boldmap`             |
+| `cbv`           | `cbvmap`              |
+
+The following table lists allowed labels for the `stat` entity and their corresponding measures:
+
+| `stat-<label>`   | Measure                                                          |
 | ---------------- | ---------------------------------------------------------------- |
 | `mean`           | Mean across the temporal/4th dimension of the data               |
 | `std`            | Standard deviation across the temporal/4th dimension of the data |
@@ -41,14 +51,20 @@ The following table lists allowed suffixes and their corresponding measures:
 | `lfcdb`, `lfcdw` | Local functional connectivity density                            |
 | `vmhc`           | Voxel mirrored homotopic connectivity                            |
 
+### Sidecar JSON (`*_boldmap.json`/`*_cbvmap.json`)
+
 The following metadata JSON fields are valid for derivative maps:
 
-| Key name       | Description                                                               | Required for suffix        |
-| -------------- | ------------------------------------------------------------------------- | -------------------------- |
-| BandpassFilter | String describing all relevant parameters of the applied bandpass filter. | `alff`, `falff`            |
-| Neighborhood   | String describing neighborhood for regional measures.                     | `reho`                     |
-| Threshold      | String describing threshold used for determining graph edges.             | `dcb`, `dcw`, `ecb`, `ecw` |
-| Method         | String describing method used to calculate measure.                       | `dcb`, `dcw`, `ecb`, `ecw` |
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("derivatives.fmri.FunctionalMapFields") }}
+
 
 ## Time series
 

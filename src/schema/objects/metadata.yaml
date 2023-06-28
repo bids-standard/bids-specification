@@ -1986,6 +1986,12 @@ MetaboliteRecoveryCorrectionApplied:
     If `true`, the `hplc_recovery_fractions` column MUST be present in the
     corresponding `*_blood.tsv` file.
   type: boolean
+Method:
+  name: Method
+  display_name: Method
+  description: |
+    Description of method used to calculate the measure contained in a file.
+  type: string
 MiscChannelCount:
   name: MiscChannelCount
   display_name: Misc Channel Count
@@ -2070,6 +2076,12 @@ NegativeContrast:
     usage of a contrast agent in conjunction with a T2\* weighted acquisition
     protocol.
   type: boolean
+Neighborhood:
+  name: Neighborhood
+  display_name: Neighborhood
+  description: |
+    A description of the neighborhood used for calculating regional measures.
+  type: string
 NIRSChannelCount:
   name: NIRSChannelCount
   display_name: NIRS Channel Count
@@ -3363,6 +3375,15 @@ TermURL:
     URL pointing to a formal definition of this type of data in an ontology
     available on the web.
   type: string
+Threshold:
+  name: Threshold
+  display_name: Threshold
+  description: |
+    String or number describing a threshold used to calculate the measure
+    contained in a file.
+  anyOf:
+    - type: number
+    - type: string
 TimeZero:
   name: TimeZero
   display_name: Time Zero

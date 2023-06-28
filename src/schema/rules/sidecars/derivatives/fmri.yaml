@@ -1,0 +1,41 @@
+---
+FunctionalMapFields:
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - intersects([suffix], ["boldmap", "cbfmap"])
+    - intersects([extension], [".nii", ".nii.gz", ".func.gii", ".dscalar.nii"])
+  fields:
+    SoftwareFilters:
+      level: optional
+      level_addendum: required for `stat-alff` and `stat-falff`
+    Neighborhood:
+      level: optional
+      level_addendum: required for `stat-reho`
+    Threshold:
+      level: optional
+      level_addendum: required for `stat-{dcb,dcw,ecb,ecw}`
+    Method:
+      level: optional
+      level_addendum: required for `stat-{dcb,dcw,ecb,ecw}`
+
+ALFFFields:
+  selectors:
+    - $ref: rules.sidecars.derivatives.fmri.FunctionalMapFields
+    - intersects([entities.stat], ["alff", "falff"])
+  fields:
+    SoftwareFilters: required
+
+ReHoFields:
+  selectors:
+    - $ref: rules.sidecars.derivatives.fmri.FunctionalMapFields
+    - entities.stat == "reho"
+  fields:
+    Neighborhood: required
+
+CentralityFields:
+  selectors:
+    - $ref: rules.sidecars.derivatives.fmri.FunctionalMapFields
+    - intersects([entities.stat], ["dcb", "dcw", "ecb", "ecw"])
+  fields:
+    Threshold: required
+    Method: required

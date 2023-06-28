@@ -529,11 +529,22 @@ bold:
   display_name: Blood-Oxygen-Level Dependent image
   description: |
     Blood-Oxygen-Level Dependent contrast (specialized T2\* weighting)
+boldmap:
+  value: boldmap
+  display_name: BOLD-derived map
+  description: |
+    Summary image derived from a blood-oxygenation-level-dependent (BOLD)
+    time series.
 cbv:
   value: cbv
   display_name: Cerebral blood volume image
   description: |
     Cerebral Blood Volume contrast (specialized T2\* weighting or difference between T1 weighted images)
+cbvmap:
+  value: cbvmap
+  display_name: CBV-derived map
+  description: |
+    Summary image derived from a cerebral blood volume (CBV) time series.
 channels:
   value: channels
   display_name: Channels File
