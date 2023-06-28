@@ -202,9 +202,9 @@ atlases or segmentation algorithms:
 
 Column names are unique alphanumeric values that are defined in a relevant JSON
 sidecar file. A naming convention might be to concatenate the atlas, ROI index,
-summarization method (defined below) and transformations (see [Time series
-transformations](#time-series-transformations)) using snake case. For example,
-`harvard_oxford_cortical_4_PC` could indicate ROI 4 of the Harvard-Oxford
+summarization method (defined below) and transformations
+(see [Time series transformations](#time-series-transformations)) using snake case.
+For example, `harvard_oxford_cortical_4_PC` could indicate ROI 4 of the Harvard-Oxford
 cortical atlas, summarized by taking the first principal component.
 
 #### Summarization methods
@@ -277,9 +277,8 @@ following names and units:
 | `trans_x`, `trans_y`, `trans_z` | mm      | Translation parameters |
 | `rot_x`, `rot_y`, `rot_z`       | radians | Rotation parameters    |
 
-Transformations (see [Time series
-transformations](#time-series-transformations)) of motion parameters may be
-included in the same file.
+Transformations (see [Time series transformations](#time-series-transformations))
+of motion parameters may be included in the same file.
 For example, `rot_z_shift_back_sq` means square of the lagged version of Z
 rotation.
 
