@@ -51,8 +51,9 @@ templates_path = ["_templates"]
 exclude_patterns = ["_build", "tests"]
 
 
-# Mock internal modules to avoid building docs
 autosummary_mock_imports = [
+    "pytest",
+    # Mock internal modules to avoid building docs
     "bidsschematools.conftest",
 ]
 

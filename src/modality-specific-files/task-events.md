@@ -153,7 +153,7 @@ but they should be stored in the `/stimuli` directory.
 
 References to existing databases can also be encoded using additional columns.
 The following example includes references to the
-[Karolinska Directed Emotional Faces (KDEF) database](https://www.emotionlab.se/resources/kdef).
+[Karolinska Directed Emotional Faces (KDEF) database](https://www.kdef.se/).
 
 Example:
 
