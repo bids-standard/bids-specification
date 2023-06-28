@@ -140,6 +140,31 @@ And the corresponding `sub-001_task-rest_run-1_space-fsLR_bold.json` file:
 }
 ```
 
+## Reference volumes
+
+Template:
+
+```Text
+<pipeline_name>/
+    sub-<label>/
+        func|dwi|perf/
+            <source_entities>[_space-<space>][_res-<label>][_desc-<label>]_<suffix>.nii.gz
+```
+
+A reference volume is a 3D image that is used to represent a 4D series.
+Reference volumes are often used for registration, as resampling targets,
+as well as for generating quality control reports.
+
+The suffix of a reference volume is derived by adding `ref` to the suffix
+of the series for which it is a reference.
+
+| Data type | Original suffix | Reference volume suffix |
+|-----------|-----------------|-------------------------|
+| `func`    | `bold`          | `boldref`               |
+| `func`    | `cbv`           | `cbvref`                |
+| `dwi`     | `dwi`           | `dwiref`                |
+| `perf`    | `asl`           | `aslref`                |
+
 ## Masks
 
 Template:
