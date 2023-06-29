@@ -55,9 +55,9 @@ before the suffix. For example, when fMRI is considered the main modality with
 files such as `sub-01_ses-1_task-pRF_run-1_bold.nii.gz`, `<matches>` would
 then correspond to `sub-01_ses-1_task-pRF_run-1`.
 
-### Tabular file (`*_eyetrack.tsv.gz`)
+### Tabular file (`*_eyetrack.tsv[.gz]`)
 
-The eye-tracking data must be saved in `.tsv.gz` format.
+The eye-tracking data must be saved in `.tsv` or `.tsv.gz` format.
 The tabular files consist of one row per sample and a set of REQUIRED and
 OPTIONAL columns.
 
@@ -93,8 +93,10 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("eyetrack.EyeTrackingRequired") }}
 
-Note that `ScreenSize`, `ScreenResolution` and `ScreenDistance` are REQUIRED as
-they are considered essential in eye-tracking data analysis.
+Note that `StimulusPresentation.ScreenSize`,
+`StimulusPresentation.ScreenResolution` and `StimulusPresentation.ScreenDistance`
+from `*_events.json` files
+are REQUIRED as they are considered essential in eye-tracking data analysis.
 
 #### Recommended fields
 
@@ -111,6 +113,18 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_sidecar_table("eyetrack.EyeTrackingRecommended") }}
+
+#### Hardware information
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("eyetrack.EyeTrackingHardware") }}
 
 ### Example sidecar JSON document
 

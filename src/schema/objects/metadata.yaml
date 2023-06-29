@@ -151,7 +151,7 @@ ScreenAOIDefinition:
   type: object
   items:
     type: object
-ANGACCChannelCount:
+ANGACCELChannelCount:
   name: ANGACCELChannelCount
   display_name: Angular acceleration channel count
   description: |

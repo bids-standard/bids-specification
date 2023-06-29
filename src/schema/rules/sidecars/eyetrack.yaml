@@ -4,44 +4,51 @@
 # Assumptions: never need disjunction of selectors
 # Assumptions: top-to-bottom overrides is sufficient logic
 ---
+EyeTrackingHardware:
+  selectors:
+    - datatype == "eyetrack"
+    - suffix == "eyetrack"
+  fields:
+    Manufacturer: recommended
+    ManufacturersModelName: recommended
+    SoftwareVersions: recommended
+    DeviceSerialNumber: recommended
+
 EyeTrackingRequired:
   selectors:
     - datatype == "eyetrack"
     - suffix == "eyetrack"
   fields:
+    EnvironmentCoordinates: required
     SamplingFrequency: required
     SampleCoordinateUnits: required
     SampleCoordinateSystem: required
-    EnvironmentCoordinates: required
-    ScreenSize: required
-    ScreenResolution: required
-    ScreenDistance: required
 
 EyeTrackingRecommended:
   selectors:
     - datatype == "eyetrack"
     - suffix == "eyetrack"
   fields:
-    ScreenRefreshRate: recommended
-    EyeTrackingMethod: recommended
-    Manufacturer: recommended
-    ManufacturersModelName: recommended
-    SoftwareVersions: recommended
-    DeviceSerialNumber: recommended
+    AverageCalibrationError: recommended
+    CalibrationCount: recommended
+    CalibrationList: recommended
+    CalibrationPosition: recommended
     CalibrationType: recommended
     CalibrationUnit: recommended
-    CalibrationPosition: recommended
-    MaximalCalibrationError: recommended
-    AverageCalibrationError: recommended
-    CalibrationList: recommended
-    CalibrationCount: recommended
-    RecordedEye: recommended
     EyeCameraSettings: recommended
     EyeTrackerDistance: recommended
+    EyeTrackingMethod: recommended
     FeatureDetectionSettings: recommended
     GazeMappingSettings: recommended
-    RawDataFilters: recommended
-    ScreenAOIDefinition: recommended
+    MaximalCalibrationError: recommended
     PupilFitMethod: recommended
+    RawDataFilters: recommended
+    RecordedEye: recommended
+    ScreenAOIDefinition: recommended
     StartTime_eyetrack: recommended
     StopTime_eyetrack: recommended
+# for events.json
+# ScreenSize: required
+# ScreenResolution: required
+# ScreenDistance: required
+# ScreenRefreshRate: recommended
