@@ -93,10 +93,11 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("eyetrack.EyeTrackingRequired") }}
 
-Note that `StimulusPresentation.ScreenSize`,
-`StimulusPresentation.ScreenResolution` and `StimulusPresentation.ScreenDistance`
-from `*_events.json` files
-are REQUIRED as they are considered essential in eye-tracking data analysis.
+Note that the following fields from `*_events.json` files
+are REQUIRED as they are considered essential in eye-tracking data analysis:
+- `StimulusPresentation.ScreenSize`,
+- `StimulusPresentation.ScreenResolution`,
+- `StimulusPresentation.ScreenDistance`.
 
 #### Recommended fields
 
@@ -128,21 +129,57 @@ A guide for using macros can be found at
 
 ### Example sidecar JSON document
 
+Below is an example of the sidecar JSON files
+for a behavioral dataset with eye-tracking data.
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "beh": {
+         "sub-01_task-visualSearch_beh.json": "",
+         "sub-01_task-visualSearch_eyetrack.json": "",
+         },
+      }
+   }
+) }}
+
+
+Content of `sub-01_task-visualSearch_eyetrack.json`:
+
 ```JSON
 {
-"Manufacturer": "SR-Research",
-"ManufacturersModelName": "EYELINK II CL v4.56 Aug 18 2010",
-"SoftwareVersion": "SREB1.10.1630 WIN32 LID:F2AE011 Mod:2017.04.21 15:19 CEST",
-"SamplingFrequency": 1000,
-"SampleCoordinateUnits": "pixel",
-"SampleCoordinateSystem": "gaze-on-screen",
-"EnvironmentCoordinates": "top-left",
-"RecordedEye": "Both",
-"ScreenSize": [38.6, 29],
-"ScreenResolution": [1024, 768],
-"ScreenDistance": 60,
-"ScreenAOIDefinition": ["square",
-                        [100, 150, 300, 350]]
+    "Manufacturer": "SR-Research",
+    "ManufacturersModelName": "EYELINK II CL v4.56 Aug 18 2010",
+    "DeviceSerialNumber": "17535483",
+    "SoftwareVersion": "SREB1.10.1630 WIN32 LID:F2AE011 Mod:2017.04.21 15:19 CEST",
+    "SamplingFrequency": 1000,
+    "SampleCoordinateUnits": "pixel",
+    "SampleCoordinateSystem": "gaze-on-screen",
+    "EnvironmentCoordinates": "top-left",
+    "RecordedEye": "Both",
+    "ScreenAOIDefinition": ["square",
+                            [100, 150, 300, 350]]
+}
+```
+
+Content of `sub-01_task-VisualSearch_eyetrack.json`:
+
+
+```JSON
+{
+   "TaskName": "Visual Search",
+   "InstitutionName": "Stanford University",
+   "InstitutionAddress": "450 Serra Mall, Stanford, CA 94305-2004, USA",
+   "StimulusPresentation": {
+       "ScreenDistance": 60,
+       "ScreenRefreshRate": 60,
+       "ScreenResolution": [1024, 768],
+       "ScreenSize": [38.6, 29]
+   }
 }
 ```
 

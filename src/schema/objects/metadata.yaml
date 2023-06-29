@@ -140,17 +140,6 @@ AnatomicalLandmarkCoordinates__mri:
       type: number
     minItems: 3
     maxItems: 3
-ScreenAOIDefinition:
-  name: ScreenAOIDefinition
-  display_name: Definition of the eye-tracking Screen Area of Interest
-  description: |
-    A description of the shape of the Screen AOIs and what coordinates are used.
-    `["square", ["x_start", "x_stop", "y_start", "y_stop"]]`
-    Other options:
-    `"custom"/"circle"/"triangle", [["x", "y"], ["x", "y"], ["x", "y"], and so on.]`
-  type: object
-  items:
-    type: object
 ANGACCELChannelCount:
   name: ANGACCELChannelCount
   display_name: Angular acceleration channel count
@@ -3110,6 +3099,17 @@ ScatterFraction:
     type: number
     minimum: 0
     maximum: 100
+ScreenAOIDefinition:
+  name: ScreenAOIDefinition
+  display_name: Definition of the eye-tracking Screen Area of Interest
+  description: |
+    A description of the shape of the Screen AOIs and what coordinates are used.
+    `["square", ["x_start", "x_stop", "y_start", "y_stop"]]`
+    Other options:
+    `"custom"/"circle"/"triangle", [["x", "y"], ["x", "y"], ["x", "y"], and so on.]`
+  type: object
+  items:
+    type: object
 ScreenDistance:
   name: ScreenDistance
   display_name: Screen Distance
