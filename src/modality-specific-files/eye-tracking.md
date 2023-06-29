@@ -95,9 +95,9 @@ A guide for using macros can be found at
 
 Note that the following fields from `*_events.json` files
 are REQUIRED as they are considered essential in eye-tracking data analysis:
-- `StimulusPresentation.ScreenSize`,
-- `StimulusPresentation.ScreenResolution`,
-- `StimulusPresentation.ScreenDistance`.
+-   `StimulusPresentation.ScreenSize`,
+-   `StimulusPresentation.ScreenResolution`,
+-   `StimulusPresentation.ScreenDistance`.
 
 #### Recommended fields
 
@@ -147,7 +147,6 @@ A guide for using macros can be found at
    }
 ) }}
 
-
 Content of `sub-01_task-visualSearch_eyetrack.json`:
 
 ```JSON
@@ -167,7 +166,6 @@ Content of `sub-01_task-visualSearch_eyetrack.json`:
 ```
 
 Content of `sub-01_task-VisualSearch_eyetrack.json`:
-
 
 ```JSON
 {
