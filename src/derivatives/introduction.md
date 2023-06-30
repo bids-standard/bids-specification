@@ -10,7 +10,7 @@ The following sections cover additions to and divergences from "raw" BIDS. Raw d
 data that have been curated to BIDS, i.e. a BIDS “raw” dataset does not have another BIDS
 dataset as a source. If you are in doubt if your dataset is "raw" or
 is "derivatives" ask yourself the following question: "Are my data derived from at least
-one BIDS valid dataset?" if the answer is yes, then this is a BIDS derivative dataset.
+one other valid BIDS dataset?" if the answer is yes, then this is a BIDS derivative dataset.
 
 ## Derivatives storage and folders structure
 
