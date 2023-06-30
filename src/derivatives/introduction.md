@@ -1,12 +1,19 @@
 # BIDS Derivatives
 
-Derivatives are outputs of common processing pipelines, capturing data and
+Derivatives are outputs of common processing pipelines, capturing data and 
 meta-data sufficient for a researcher to understand and (critically) reuse those
-outputs in subsequent processing.
+outputs in subsequent processing. 
 Standardizing derivatives is motivated by use cases where formalized
-machine-readable access to processed data enables higher level processing.
+machine-readable access to processed data enables higher-level processing.
 
-The following sections cover additions to and divergences from "raw" BIDS.
+The following sections cover additions to and divergences from "raw" BIDS. Raw data are 
+data that have been curated to BIDS, i.e. a BIDS “raw” dataset does not have another BIDS
+dataset as a source. If you are in doubt if your dataset is "raw" or
+is "derivatives" ask yourself the following question: "Are my data derived from at least
+one BIDS valid dataset?" if the answer is yes, then this is a BIDS derivative dataset. 
+
+## Derivatives storage and folders structure
+
 Placement and naming conventions for derived datasets are addressed in
 [Storage of derived datasets][storage], and dataset-level metadata is included
 in [Derived dataset and pipeline description][derived-dataset-description].
