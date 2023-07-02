@@ -594,7 +594,7 @@ A guide for using macros can be found at
    {
    "sub-01": {
       "func": {
-         "sub-control01_task-nback_bold.json": "",
+         "sub-01_task-nback_bold.json": "",
          },
       }
    }

@@ -23,7 +23,7 @@ directory.
 
 ```Text
 [sub-<label>[_ses-<label>]_headshape.pos]
-sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg.ds>
+sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg.ds/
 ```
 
 CTF's data storage is therefore via directories containing multiple files. The
@@ -255,7 +255,7 @@ containing multiple files without extensions.
 
 ```Text
 [sub-<label>[_ses-<label>]_headshape.pos]
-sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg>
+sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg/
 ```
 
 One SHOULD rename/create a parent run-specific directory and keep the original
