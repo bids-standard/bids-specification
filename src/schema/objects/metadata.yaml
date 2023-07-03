@@ -3553,6 +3553,8 @@ VELChannelCount:
   type: integer
   minimum: 0
 VisualAids:
+  name: VisualAids
+  display_name: Visual aids
   description: |
     Type of visual aids worn by the participant during the experiment.
     Example: "spectacles", "lenses", "none".
