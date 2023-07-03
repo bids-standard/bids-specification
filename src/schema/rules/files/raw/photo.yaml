@@ -17,7 +17,7 @@ photo:
 photo__micr:
   $ref: rules.files.raw.photo.photo
   extensions:
-    - [.jpg, .png, .tif]
+    - $ref: rules.files.raw.photo.photo.extensions
     - .json
   datatypes:
     - micr
