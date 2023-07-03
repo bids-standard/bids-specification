@@ -1326,6 +1326,14 @@ HeadCoilFrequency:
       items:
         type: number
         unit: Hz
+HeadStabilization:
+  name: HeadStabilization
+  display_name: Head stabilization
+  description: |
+    Head restraint method used during the experiment
+    to prevent rotation and/or translation of the head.
+    Example: "chin-rest", "head-rest", "bite-bar", "chin-rest and head-rest", "none"
+  type: string
 HowToAcknowledge:
   name: HowToAcknowledge
   display_name: How To Acknowledge
@@ -3311,6 +3319,7 @@ StimulusPresentation:
     - SoftwareRRID
     - SoftwareVersion
     - Code
+    - HeadStabilization
   properties:
     OperatingSystem:
       $ref: objects.metadata.OperatingSystem
@@ -3543,6 +3552,11 @@ VELChannelCount:
     Number of linear velocity channels.
   type: integer
   minimum: 0
+VisualAids:
+  description: |
+    Type of visual aids worn by the participant during the experiment.
+    Example: "spectacles", "lenses", "none".
+  type: string
 VolumeTiming:
   name: VolumeTiming
   display_name: Volume Timing
