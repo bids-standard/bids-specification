@@ -165,7 +165,7 @@ Content of `sub-01_task-visualSearch_eyetrack.json`:
 }
 ```
 
-Content of `sub-01_task-VisualSearch_eyetrack.json`:
+Content of `sub-01_task-VisualSearch_beh.json`:
 
 ```JSON
 {
