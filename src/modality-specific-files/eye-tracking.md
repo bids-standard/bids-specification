@@ -130,7 +130,7 @@ A guide for using macros can be found at
 ### Example sidecar JSON document
 
 Below is an example of the sidecar JSON files
-for a behavioral dataset with eye-tracking data.
+for a fMRI dataset with eye-tracking data.
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -139,8 +139,12 @@ A guide for using macros can be found at
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {
-      "beh": {
-         "sub-01_task-visualSearch_beh.json": "",
+      "func": {
+         "sub-01_task-visualSearch_bold.nii.gz": "",
+         "sub-01_task-visualSearch_bold.json": "",
+         "sub-01_task-visualSearch_events.tsv": "",
+         "sub-01_task-visualSearch_events.json": "",
+         "sub-01_task-visualSearch_eyetrack.tsv": "",
          "sub-01_task-visualSearch_eyetrack.json": "",
          },
       }
@@ -165,7 +169,7 @@ Content of `sub-01_task-visualSearch_eyetrack.json`:
 }
 ```
 
-Content of `sub-01_task-VisualSearch_beh.json`:
+Content of `sub-01_task-VisualSearch_events.json`:
 
 ```JSON
 {
