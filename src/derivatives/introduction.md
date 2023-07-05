@@ -12,6 +12,18 @@ dataset as a source. If you are in doubt if your dataset is "raw" or
 is "derivatives" ask yourself the following question: "Are my data derived from at least
 one other valid BIDS dataset?" if the answer is yes, then this is a BIDS derivative dataset.
 
+Examples:
+
+A defaced T1w image would typically be made during the curation process and is thus under raw
+
+`sourcedata/private/sub-01/anat/sub-01_T1w.nii.gz`  
+`sub-01/anat/sub-01_desc-defaced_T1w.nii.gz`
+
+A defaced T1w image could also, in theory, be derived from a BIDS dataset and would thus be under derivatives
+
+`sub-01/anat/sub-01_T1w.nii.gz`  
+`derivatives/sub-01/anat/sub-01_desc-defaced_T1w.nii.gz`
+
 ## Derivatives storage and folders structure
 
 Placement and naming conventions for derived datasets are addressed in
