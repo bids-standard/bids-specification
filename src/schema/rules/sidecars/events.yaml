@@ -11,3 +11,13 @@ StimulusPresentation:
     - suffix == "events"
   fields:
     StimulusPresentation: recommended
+
+StimulusPresentation_for_eyetracking:
+  selectors:
+    - suffix == "events"
+    - intersects([suffix], ["eyetrack"])
+  fields:
+    StimulusPresentation.ScreenSize: required
+    StimulusPresentation.ScreenResolution: required
+    StimulusPresentation.ScreenDistance: required
+    StimulusPresentation.ScreenRefreshRate: recommended

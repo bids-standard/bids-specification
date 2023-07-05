@@ -47,8 +47,3 @@ EyeTrackingRecommended:
     ScreenAOIDefinition: recommended
     StartTime_eyetrack: recommended
     StopTime_eyetrack: recommended
-# for events.json
-# ScreenSize: required
-# ScreenResolution: required
-# ScreenDistance: required
-# ScreenRefreshRate: recommended
