@@ -8,7 +8,7 @@ on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
 Microscopy datasets formatted using this specification are available on the
-[BIDS examples repository](https://github.com/bids-standard/bids-examples#microscopy-datasets)
+[BIDS examples repository](https://bids-standard.github.io/bids-examples/#microscopy)
 and can be used for practical guidance when curating a new dataset.
 
 Further Microscopy datasets are available:

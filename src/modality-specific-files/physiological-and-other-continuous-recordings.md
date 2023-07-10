@@ -9,7 +9,7 @@ specified using two files:
 
 1.  a JSON file for storing metadata fields (see below)
 
-[Example datasets](https://github.com/bids-standard/bids-examples)
+[Example datasets](https://bids-standard.github.io/bids-examples/#dataset-index)
 with physiological data have been formatted using this specification
 and can be used for practical guidance when curating a new dataset:
 
