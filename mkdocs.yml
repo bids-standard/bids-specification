@@ -26,6 +26,7 @@ nav:
       - Glossary: glossary.md
       - BIDS Extension Proposals: extensions.md
       - Appendix:
+        - Schema: appendices/schema.md
         - Contributors: appendices/contributors.md
         - Licenses: appendices/licenses.md
         - Entity table: appendices/entity-table.md
