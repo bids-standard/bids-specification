@@ -21,8 +21,10 @@ A defaced T1w image would typically be made during the curation process and is t
 
 A defaced T1w image could also, in theory, be derived from a BIDS dataset and would thus be under derivatives
 
-`sub-01/anat/sub-01_T1w.nii.gz`
-`derivatives/sub-01/anat/sub-01_desc-defaced_T1w.nii.gz`
+```
+sub-01/anat/sub-01_T1w.nii.gz
+derivatives/sub-01/anat/sub-01_desc-defaced_T1w.nii.gz
+```
 
 ## Derivatives storage and folders structure
 
