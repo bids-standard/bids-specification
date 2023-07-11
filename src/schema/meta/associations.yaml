@@ -1,0 +1,43 @@
+# These rules indicate whether an association (defined in meta.context.context.associations)
+# applies to a given file. These are hints to allow implementations to avoid unnecessary
+# directory and file reads.
+#
+# If the selectors match a given file, a conforming tool MUST attempt to load the association.
+# Tools MAY attempt to load associations when selectors do not match.
+---
+events:
+  selectors:
+    - 'task in entities'
+    - extension != '.json'
+aslcontext:
+  selectors:
+    - suffix == 'asl'
+    - matches(extension, '\.nii(\.gz)?$')
+m0scan:
+  selectors:
+    - suffix == 'asl'
+    - matches(extension, '\.nii(\.gz)?$')
+magnitude:
+  selectors:
+    - suffix == 'fieldmap'
+    - matches(extension, '\.nii(\.gz)?$')
+magnitude1:
+  selectors:
+    - matches(suffix, 'phase(diff|1)$')
+    - matches(extension, '\.nii(\.gz)?$')
+bval:
+  selectors:
+    - suffix == 'dwi'
+    - matches(extension, '\.nii(\.gz)?$')
+bvec:
+  selectors:
+    - suffix == 'dwi'
+    - matches(extension, '\.nii(\.gz)?$')
+channels:
+  selectors:
+    - intersects([suffix], ['eeg', 'ieeg', 'meg', 'nirs', 'motion', 'optodes'])
+    - extension != '.json'
+coordsystem:
+  selectors:
+    - intersects([suffix], ['eeg', 'ieeg', 'meg', 'nirs', 'motion', 'electrodes', 'optodes'])
+    - extension != '.json'
