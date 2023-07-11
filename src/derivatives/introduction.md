@@ -26,7 +26,7 @@ sub-01/anat/sub-01_T1w.nii.gz
 derivatives/sub-01/anat/sub-01_desc-defaced_T1w.nii.gz
 ```
 
-## Derivatives storage and folders structure
+## Derivatives storage and directory structure
 
 Placement and naming conventions for derived datasets are addressed in
 [Storage of derived datasets][storage], and dataset-level metadata is included
