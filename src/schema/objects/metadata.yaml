@@ -500,8 +500,8 @@ ContrastBolusIngredient:
     - CARBON DIOXIDE
     - BARIUM
     - XENON
-    - unknown
-    - none
+    - UNKNOWN
+    - NONE
 DCOffsetCorrection:
   name: DCOffsetCorrection
   display_name: DC Offset Correction
