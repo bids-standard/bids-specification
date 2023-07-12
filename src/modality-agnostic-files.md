@@ -181,6 +181,11 @@ To avoid inconsistency, metadata present in `CITATION.cff` SHOULD NOT be
 be included in `dataset_description.json`, with the exception of `Name` and
 `DatasetDOI`, to ensure that `CITATION.cff`-unaware tools can generate
 references to the dataset.
+In particular, if `CITATION.cff` is present,
+the `"Authors"` field of `dataset_description.json` MUST be omitted,
+and the `"HowToAcknowledge"`, `"License"` and `"ReferencesAndLinks"` SHOULD be omitted
+in favor of the `CITATION.cff` fields `message`/`preferred-citation`, `license` and
+`references`.
 
 ### `CHANGES`
 

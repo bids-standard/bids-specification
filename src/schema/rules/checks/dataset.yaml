@@ -74,3 +74,18 @@ SingleSourceAuthors:
     - path == 'CITATION.cff'
   checks:
     - '!("Authors" in dataset.dataset_description)'
+
+SingleSourceCitationFields:
+  issue:
+    code: SINGLE_SOURCE_CITATION_FIELDS
+    level: warning
+    message: |
+      CITATION.cff file found. The "HowToAckowledge", "License",
+      and "ReferencesAndLinks" fields of dataset_description.json
+      should be removed to avoid inconsistency.
+  selectors:
+    - path == 'CITATION.cff'
+  checks:
+    - '!("HowToAcknowledge" in dataset.dataset_description)'
+    - '!("License" in dataset.dataset_description)'
+    - '!("ReferencesAndLinks" in dataset.dataset_description)'
