@@ -14,15 +14,15 @@ The following extract from "The Future of BIDS" section of the WiP draft of the 
 
 > Another direction for future efforts is further integration with other related standards.  Whereas the NIfTi file format has become standard within the MRI research community, DICOM has grown into the industry standard for a wide range of imaging modalities (such as physiology, etc.), while addressing the many shortcomings that had originally turned the neuroimaging research community towards simpler formats. As a result, many standardization efforts have been duplicated. As DICOM is the industry standard and more data will be arriving in DICOMs, coordination with developments in DICOM could help to ensure more rapid adoption of new imaging sequences and even modalities into the BIDS standard, which provides an umbrella organization at the study level.
 
-I strongly believe that BIDS should seriously consider "native" DICOM support for imaging files for the reasons outlined above. 
+I strongly believe that BIDS should seriously consider "native" DICOM support for imaging files for the reasons outlined above.
 Moreover, the adoption of the DICOM file format would bridge the gap between research and clinical communities.
 Importantly, to prevent isolated development within BIDS, it is crucial to introduce support for a data format that is widely used in a vast domain of clinical research and is actively being developed.
 
 ### Current State & Prior Work
- 
+
 Ongoing projects related to DICOM and BIDS ecosystems include:
 
-- Numerous working groups (WGs), similar to our BEPs, supporting new data modalities: https://www.dicomstandard.org/activity/wgs . 
+- Numerous working groups (WGs), similar to our BEPs, supporting new data modalities: https://www.dicomstandard.org/activity/wgs .
 We have contacted WG-16 (#1515)  and identified potential work items (#1516 and so on).
 - DICOM is transitioning from "free text" to existing dictionaries and ontologies for various fields, e.g. SNOMED CT for Body Part ([table_CID_8134](https://dicom.nema.org/medical/dicom/current/output/chtml/part16/sect_CID_8134.html#table_CID_8134)
 and [chapter_L](https://dicom.nema.org/medical/dicom/current/output/chtml/part16/chapter_L.html)).
@@ -33,13 +33,13 @@ and [chapter_L](https://dicom.nema.org/medical/dicom/current/output/chtml/part16
 - Projects such as the http://chrisproject.org on the border of clinical and research communities provide infrastructure centered around data digestion from PACS.
 - ... Please contribute as suggestions ...
 
-As part of the https://github.com/matthew-brett/czi-nibabel grant work, @matthew-brett led a series of journal club meetings in late 2021 to review different possible file formats for imaging data. 
+As part of the https://github.com/matthew-brett/czi-nibabel grant work, @matthew-brett led a series of journal club meetings in late 2021 to review different possible file formats for imaging data.
 
 @matthew-brett - do you have recordings/notes from those sessions? I don't recall DICOM being considered.
 
 ### Summary of Proposed Developments
 
-Develop a BEP to allow `.dcm` to be an accepted file format for MRI and other data types (the BEP work would decide which specifically). 
+Develop a BEP to allow `.dcm` to be an accepted file format for MRI and other data types (the BEP work would decide which specifically).
 
 #### Cons: Potential Issues and Solutions
 
