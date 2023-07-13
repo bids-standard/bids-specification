@@ -275,6 +275,6 @@ in the accompanying JSON sidecar as follows (based on the example of the previou
         "ScreenSize": [0.472, 0.295],
         "HeadStabilization": "none"
     },
-    "VisualsAids": "lenses"
+    "VisionCorrection": "lenses"
 }
 ```
