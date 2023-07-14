@@ -1,0 +1,14 @@
+# Rules for MEG data that cannot be defined in tables
+---
+MEGElectrodesRecommended:
+  issue:
+    code: MEG_EEG_ELECTRODES_RECOMMENDED
+    message: |
+      A nonzero EEGChannelCount for MEG datasets indicates the presence of EEG
+      channels. A corresponding `electrodes.tsv` file should be be added.
+    level: warning
+  selectors:
+    - suffix == "meg"
+    - sidecar.EEGChannelCount > 0
+  checks:
+    - type(associations.electrodes) != 'null'
