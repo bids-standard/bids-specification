@@ -1,3 +1,12 @@
+.PHONY:  tools/contributors.tsv
+
+validate_citation_cff: CITATION.cff
+	cffconvert --validate
+
+update_contributors:
+	python tools/add_contributors.py
+	python tools/print_contributors.py
+	yarn all-contributors generate
 
 runprettier:
 	prettier --write "src/schema/**/*.yaml"
