@@ -2776,7 +2776,9 @@
             "bug",
             "talk"
         ],
-        "name": "Teon L. Brooks"
+        "email": "teon.brooks@gmail.com",
+        "name": "Teon L. Brooks",
+        "orcid": "0000-0001-7344-3230"
     },
     "nicholst": {
         "affiliation": "University of Oxford, Big Data Institute, Oxford, OX3 7LF, UK",
