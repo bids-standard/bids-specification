@@ -2,6 +2,15 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[FIX] Update links to BIDS examples [#1545](https://github.com/bids-standard/bids-specification/pull/1545) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[FIX] match subject label in folder and filename in func example [#1536](https://github.com/bids-standard/bids-specification/pull/1536) ([Remi-Gau](https://github.com/Remi-Gau))
+-   FIX: Trail MEG directory formats with `/` [#1534](https://github.com/bids-standard/bids-specification/pull/1534) ([effigies](https://github.com/effigies))
+-   \[ENH] Permit CITATION.cff as structured alternative to some dataset_description fields [#1525](https://github.com/bids-standard/bids-specification/pull/1525) ([effigies](https://github.com/effigies))
+-   \[FIX] Add missing column description in physio example [#1514](https://github.com/bids-standard/bids-specification/pull/1514) ([sappelhoff](https://github.com/sappelhoff))
+-   \[ENH] Clarify that data files must be uniquely identified by entities/suffix [#1508](https://github.com/bids-standard/bids-specification/pull/1508) ([sappelhoff](https://github.com/sappelhoff))
+-   DOC: Auto-generate full API docs [#1505](https://github.com/bids-standard/bids-specification/pull/1505) ([effigies](https://github.com/effigies))
+-   \[INFRA] Publish schema tools API docs to additional ReadTheDocs site [#1491](https://github.com/bids-standard/bids-specification/pull/1491) ([bendhouseart](https://github.com/bendhouseart))
+-   \[FIX] Remove references to unspecified aslcontext.json [#1485](https://github.com/bids-standard/bids-specification/pull/1485) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[FIX] Revert index (entity format) definition to be a non-negative number, permitting zero [#1482](https://github.com/bids-standard/bids-specification/pull/1482) ([TheChymera](https://github.com/TheChymera))
 -   ENH: Add version list to schema.meta and a warning on unknown BIDSVersion [#1472](https://github.com/bids-standard/bids-specification/pull/1472) ([effigies](https://github.com/effigies))
 -   \[FIX] Clean up qMRI RB1COR notes [#1465](https://github.com/bids-standard/bids-specification/pull/1465) ([lukeje](https://github.com/lukeje))
@@ -33,9 +42,12 @@
 -   \[ENH] Recommend gzip header fields be set to empty values [#1349](https://github.com/bids-standard/bids-specification/pull/1349) ([kousu](https://github.com/kousu))
 -   \[FIX] clarify TriggerChannelCount and TRIG type [#1342](https://github.com/bids-standard/bids-specification/pull/1342) ([sappelhoff](https://github.com/sappelhoff))
 -   \[ENH] Add qMRI fieldmap filename templates [#1336](https://github.com/bids-standard/bids-specification/pull/1336) ([Remi-Gau](https://github.com/Remi-Gau))
+-   ENH: Introduce GIFTI formats in derivatives [#1333](https://github.com/bids-standard/bids-specification/pull/1333) ([effigies](https://github.com/effigies))
 -   \[ENH] Add ParallelReductionFactorOutOfPlane to MRI metadata [#1221](https://github.com/bids-standard/bids-specification/pull/1221) ([lukeje](https://github.com/lukeje))
 -   \[ENH]\[SCHEMA] Adding an OPTIONAL \_task-\<label> to structural MRI acquisitions [#1185](https://github.com/bids-standard/bids-specification/pull/1185) ([melanieganz](https://github.com/melanieganz))
+-   \[INFRA] use tributors to list contributors and CITATION.cff for referencing [#1115](https://github.com/bids-standard/bids-specification/pull/1115) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[ENH] Extend BIDS for Motion data (BEP029) [#981](https://github.com/bids-standard/bids-specification/pull/981) ([JuliusWelzel](https://github.com/JuliusWelzel))
+-   \[SCHEMA] Add full object definitions for valid values in schema [#919](https://github.com/bids-standard/bids-specification/pull/919) ([tsalo](https://github.com/tsalo))
 
 ## [v1.8.0](https://github.com/bids-standard/bids-specification/tree/v1.8.0) (2022-10-29)
 
