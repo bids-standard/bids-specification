@@ -12,6 +12,14 @@ CHANGES:
     [CPAN Changelog convention](https://metacpan.org/pod/release/HAARG/CPAN-Changes-0.400002/lib/\
     CPAN/Changes/Spec.pod).
     The `CHANGES` file MUST be either in ASCII or UTF-8 encoding.
+CITATION:
+  display_name: CITATION.cff
+  file_type: regular
+  description: |
+    A description of the citation information for the dataset, following the
+    [Citation File Format](https://citation-file-format.github.io/) specification.
+    This file permits more detailed and structured descriptions than
+    [dataset_description.json](SPEC_ROOT/glossary.md#dataset_description-files).
 LICENSE:
   display_name: License
   file_type: regular
