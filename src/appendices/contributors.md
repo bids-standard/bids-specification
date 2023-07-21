@@ -142,7 +142,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Fidel Alfaro Almagro                                 | 💬📖💡🔌                               |
 | Filip Szczepankiewicz                                | 📖                                     |
 | Filippo Maria Castelli                               | 📖🔣                                   |
-| Franco Pestilli                                      | 📖💻🎨💡🤔👀🔧📋🔍🚇                   |
+| Franco Pestilli                                      | 📖💻🎨💡🤔👀🔧📋🔍🚇📢                   |
 | Franklin W. Feingold                                 | 📋📝✅💬🤔🎨📢👀🚇🖋️📆💻               |
 | François Tadel                                       | 📖🔌💡                                 |
 | Gaia Rizzo                                           | 📖                                     |
