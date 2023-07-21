@@ -718,7 +718,7 @@ either make a change to the
 part of a pull request or you can edit this
 [page](https://github.com/bids-standard/bids-specification/wiki/Recent-Contributors)
 of the specification WIKI.
-The WIKI is then synced with the specification with evert new release of the specifications.
+The WIKI is then synced with the specification with every new release of the specifications.
 
 ## Thank you!
 
