@@ -384,7 +384,8 @@ reference_frame__motion:
   description: |
     Specification of a reference frame in which the motion data are to be interpreted.
     The value MUST match any of used key-value pair in the `*_channels.json` file in the motion directory.
-    It is RECOMMENDED to use a meanigful combination of `RotationRule`, `RotationOrder` and `SpatialAxis` for the specification.
+    It is RECOMMENDED to use a meanigful combination of `RotationRule`, `RotationOrder`
+    and `SpatialAxis` for the specification.
     If a channel is not to be interpreted in a reference frame use `n/a`.
   anyOf:
     - type: string
