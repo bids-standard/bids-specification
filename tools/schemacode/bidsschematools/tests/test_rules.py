@@ -1,131 +1,117 @@
-"""Simple validation tests on schema rules."""
-import warnings
-from collections.abc import Mapping
+from bidsschematools import rules
 
-import pytest
+from ..types import Namespace
 
 
-def _dict_key_lookup(_dict, key, path=[]):
-    """Look up any uses of a key in a nested dictionary.
-
-    Adapted from https://stackoverflow.com/a/60377584/2589328.
-    """
-    results = []
-    if isinstance(_dict, Mapping):
-        if key in _dict:
-            results.append((path + [key], _dict[key]))
-
-        for k, v in _dict.items():
-            results.extend(_dict_key_lookup(v, key, path=path + [k]))
-
-    elif isinstance(_dict, list):
-        for index, item in enumerate(_dict):
-            results.extend(_dict_key_lookup(item, key, path=path + [index]))
-
-    return results
-
-
-@pytest.mark.validate_schema
-def test_rule_objects(schema_obj):
-    """Ensure that all objects referenced in the schema rules are defined in
-    its object portion.
-
-    This test currently fails because rules files reference object keys for some object types,
-    including entities, columns, and metadata fields,
-    but reference "name" or "value" elements of the object definitions for other object types,
-    including suffixes and extensions.
-    In the case of datatypes, the key and "value" field are always the same.
-
-    Some other object types, such as associated_data, common_principles, formats, modalities,
-    and top_level_files, are not checked in the rules at all.
-
-    Additionally, this test only checks rules that fit the keys.
-    """
-    OBJECT_TYPE_MAPPER = {
-        "metadata": "fields",  # metadata in objects is referred to as fields in rules
+def test_entity_rule(schema_obj):
+    # Simple
+    rule = Namespace.build(
+        {
+            "datatypes": ["anat"],
+            "entities": {"subject": "required", "session": "optional"},
+            "suffixes": ["T1w"],
+            "extensions": [".nii"],
+        }
+    )
+    assert rules._entity_rule(rule, schema_obj) == {
+        "regex": (
+            r"sub-(?P<subject>[0-9a-zA-Z]+)/"
+            r"(?:ses-(?P<session>[0-9a-zA-Z]+)/)?"
+            r"(?P<datatype>anat)/"
+            r"sub-(?P=subject)_"
+            r"(?:ses-(?P=session)_)?"
+            r"(?P<suffix>T1w)"
+            r"(?P<extension>\.nii)"
+        ),
+        "mandatory": False,
     }
 
-    not_found = []  # A list of undefined, but referenced, objects
-    for object_type in schema_obj.objects:
-        # "files" is both an object name and a grouping of rules
-        # The next line would be a false positive hit
-        if object_type == "files":
-            continue
-        # Find all uses of a given object type in the schema rules
-        type_instances_in_rules = _dict_key_lookup(
-            schema_obj.rules,
-            OBJECT_TYPE_MAPPER.get(object_type, object_type),
-        )
-        if not type_instances_in_rules:
-            continue
-
-        for type_instance in type_instances_in_rules:
-            path, instance = type_instance
-            is_list = True
-            if isinstance(instance, Mapping):
-                instance = list(instance)
-                is_list = False
-
-            for i_use, use in enumerate(instance):
-                if use == "derivatives":
-                    # Skip derivatives dirs, because the dir is treated as a "use" instead.
-                    continue
-                elif "[]" in use:
-                    # Rules may reference metadata fields with lists.
-                    # This test can't handle this yet, so skip.
-                    continue
-                elif "{}" in use:
-                    # Rules may reference sub-dictionaries in metadata fields.
-                    # This test can't handle this yet, so skip.
-                    continue
-
-                if object_type in ["extensions", "suffixes"]:
-                    # Some object types are referenced via their "value" fields in the rules
-                    object_values = [
-                        schema_obj["objects"][object_type][k]["value"]
-                        for k in schema_obj["objects"][object_type].keys()
-                    ]
-                else:
-                    # But other object types are referenced via their keys
-                    object_values = list(schema_obj["objects"][object_type].keys())
-
-                # Build a list of items mentioned in rules, but not found in objects.
-                if use not in object_values:
-                    temp_path = path[:]
-                    if is_list:
-                        temp_path[-1] += f"[{i_use}]"
-
-                    not_found.append((temp_path, use))
-
-    if not_found:
-        not_found_string = "\n".join([f"{'.'.join(path)} == {val}" for path, val in not_found])
-        raise ValueError(not_found_string)
+    # Sidecar entities are optional
+    rule = Namespace.build(
+        {
+            "datatypes": ["anat", ""],
+            "entities": {"subject": "optional", "session": "optional"},
+            "suffixes": ["T1w"],
+            "extensions": [".json"],
+        }
+    )
+    assert rules._entity_rule(rule, schema_obj) == {
+        "regex": (
+            r"(?:sub-(?P<subject>[0-9a-zA-Z]+)/)?"
+            r"(?:ses-(?P<session>[0-9a-zA-Z]+)/)?"
+            r"(?:(?P<datatype>anat)/)?"
+            r"(?:sub-(?P=subject)_)?"
+            r"(?:ses-(?P=session)_)?"
+            r"(?P<suffix>T1w)"
+            r"(?P<extension>\.json)"
+        ),
+        "mandatory": False,
+    }
 
 
-@pytest.mark.validate_schema
-def test_entity_order(schema_obj):
-    """Check the order of the entities of the suffix group of each datatype
-    and lists those that are out of order.
-    """
-    status_ok = True
+def test_split_inheritance_rules():
+    rule = {
+        "datatypes": ["anat"],
+        "entities": {"subject": "required", "session": "optional"},
+        "suffixes": ["T1w"],
+        "extensions": [".nii", ".json"],
+    }
 
-    entities_order = schema_obj.rules.entities
+    main, sidecar = rules._split_inheritance_rules(rule)
+    assert main == {
+        "datatypes": ["anat"],
+        "entities": {"subject": "required", "session": "optional"},
+        "suffixes": ["T1w"],
+        "extensions": [".nii"],
+    }
+    assert sidecar == {
+        "datatypes": ["", "anat"],
+        "entities": {"subject": "optional", "session": "optional"},
+        "suffixes": ["T1w"],
+        "extensions": [".json"],
+    }
 
-    for key, group in schema_obj.rules.files.items(level=2):
-        print(f"Checking {key}")
-        entities = list(group.get("entities", ()))
-        correct_order = sorted(entities, key=lambda x: entities_order.index(x))
+    # Can't split again
+    (main2,) = rules._split_inheritance_rules(main)
+    assert main2 == {
+        "datatypes": ["anat"],
+        "entities": {"subject": "required", "session": "optional"},
+        "suffixes": ["T1w"],
+        "extensions": [".nii"],
+    }
 
-        if entities != correct_order:
-            status_ok = False
-            warnings.warn(
-                f"""\n\nfilename rule {key} has entities out-of-order:
-                - got: {entities}
-                - should be: {correct_order}
-                """
-            )
 
-    if not status_ok:
-        raise RuntimeError(
-            "Some suffix groups have their entities out of order. See warnings above."
-        )
+def test_stem_rule():
+    rule = Namespace.build({"stem": "README", "level": "required", "extensions": ["", ".md"]})
+    assert rules._stem_rule(rule) == {
+        "regex": r"README(?P<extension>|\.md)",
+        "mandatory": True,
+    }
+
+    rule = Namespace.build(
+        {"stem": "participants", "level": "optional", "extensions": [".tsv", ".json"]}
+    )
+    assert rules._stem_rule(rule) == {
+        "regex": r"participants(?P<extension>\.tsv|\.json)",
+        "mandatory": False,
+    }
+
+
+def test_path_rule():
+    rule = Namespace.build({"path": "dataset_description.json", "level": "required"})
+    assert rules._path_rule(rule) == {
+        "regex": r"dataset_description\.json",
+        "mandatory": True,
+    }
+
+    rule = Namespace.build({"path": "LICENSE", "level": "optional"})
+    assert rules._path_rule(rule) == {"regex": "LICENSE", "mandatory": False}
+
+
+def test_regexify_all():
+    schema_all, _ = rules.regexify_all()
+
+    # Check if expected keys are present in all entries
+    for entry in schema_all:
+        assert "regex" in entry
+        assert "mandatory" in entry

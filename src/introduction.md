@@ -8,22 +8,22 @@ obtained in neuroimaging experiments. Even two researchers working in the same
 lab can opt to arrange their data in a different way. Lack of consensus (or a
 standard) leads to misunderstandings and time wasted on rearranging data or
 rewriting scripts expecting certain structure. Here we describe a simple and
-easy-to-adopt way of organising neuroimaging and behavioral data. By using this
+easy-to-adopt way of organizing neuroimaging and behavioral data. By using this
 standard you will benefit in the following ways:
 
 -   It will be easy for another researcher to work on your data. To understand
-    the organisation of the files and their format you will only need to refer
+    the organization of the files and their format you will only need to refer
     them to this document. This is especially important if you are running your
     own lab and anticipate more than one person working on the same data over
     time. By using BIDS you will save time trying to understand and reuse data
     acquired by a graduate student or postdoc that has already left the lab.
 
 -   There are a growing number of data analysis software packages that can
-    understand data organised according to BIDS (see the
+    understand data organized according to BIDS (see the
     [up to date list](https://bids.neuroimaging.io/benefits.html)).
 
 -   Databases such as [OpenNeuro.org](https://openneuro.org/) accept datasets
-    organised according to BIDS.
+    organized according to BIDS.
     If you ever plan to share your data publicly (nowadays some journals require
     this) you can minimize the additional time and energy spent on publication,
     and speed up the curation process by using BIDS to structure and describe
@@ -165,6 +165,10 @@ For example:
     Scientific Data 9, 543 (2022). [doi:10.1038/s41597-022-01615-9](https://doi.org/10.1038/s41597-022-01615-9)
 
 #### NIRS
+
+-   (publication forthcoming)
+
+#### Motion
 
 -   (publication forthcoming)
 

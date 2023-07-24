@@ -72,7 +72,14 @@ def _make_entity_definition(entity, entity_info):
     text += f"**Format**: `{entity_info['name']}-<{entity_info.get('format', 'label')}>`"
     text += "\n\n"
     if "enum" in entity_info.keys():
-        text += f"**Allowed values**: `{'`, `'.join(entity_info['enum'])}`"
+        allowed_values = []
+        for value in entity_info["enum"]:
+            if isinstance(value, str):
+                allowed_values.append(value)
+            else:
+                allowed_values.append(value["name"])
+
+        text += f"**Allowed values**: `{'`, `'.join(allowed_values)}`"
         text += "\n\n"
 
     description = entity_info["description"]
@@ -88,7 +95,7 @@ def make_glossary(schema, src_path=None):
     schema : dict
         The schema object, which is a dictionary with nested dictionaries and
         lists stored within it.
-    src_path : str | None
+    src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
 
@@ -140,10 +147,14 @@ def make_glossary(schema, src_path=None):
     for obj_key in sorted(all_objects.keys()):
         obj = all_objects[obj_key]
         obj_marker = obj["key"]
-        obj_def = obj["definition"]
+        obj_def = obj.get("definition", None)
+        if obj_def is None:
+            raise ValueError(f"{obj_marker} has no definition.")
 
         # Clean up the text description
-        obj_desc = obj_def["description"]
+        obj_desc = obj_def.get("description", None)
+        if obj_desc is None:
+            raise ValueError(f"{obj_marker} has no description.")
         # A backslash before a newline means continue a string
         obj_desc = obj_desc.replace("\\\n", "")
         # Two newlines should be respected
@@ -163,21 +174,25 @@ def make_glossary(schema, src_path=None):
         elif obj["type"] == "format":
             text += f"**Regular expression**: `{obj_def['pattern']}`\n\n"
 
+        keys_to_drop = ["description", "display_name", "name", "value", "pattern"]
         if "enum" in obj_def.keys():
-            allowed_vals = [f"`{enum}`" for enum in obj_def["enum"]]
-            text += f"**Allowed values**: {', '.join(allowed_vals)}\n\n"
+            allowed_values = []
+            keys_to_drop.append("enum")
+            for value in obj_def["enum"]:
+                if isinstance(value, str):
+                    allowed_values.append(value)
+                else:
+                    allowed_values.append(value["name"])
+
+            text += f"**Allowed values**: `{'`, `'.join(allowed_values)}`\n\n"
 
         text += f"**Description**:\n{obj_desc}\n\n"
 
-        temp_obj_def = {
-            k: v
-            for k, v in obj_def.items()
-            if k not in ("description", "display_name", "name", "value", "enum", "pattern")
-        }
+        reduced_obj_def = {k: v for k, v in obj_def.items() if k not in keys_to_drop}
 
-        if temp_obj_def:
-            temp_obj_def = yaml.dump(temp_obj_def)
-            text += f"**Schema information**:\n```yaml\n{temp_obj_def}\n```"
+        if reduced_obj_def:
+            reduced_obj_def = yaml.dump(reduced_obj_def)
+            text += f"**Schema information**:\n```yaml\n{reduced_obj_def}\n```"
 
     # Spec internal links need to be replaced
     text = text.replace("SPEC_ROOT", utils.get_relpath(src_path))
@@ -198,9 +213,18 @@ def _add_entity(filename_template, entity_pattern, requirement_level):
 def _format_entity(entity, lt, gt):
     fmt = entity.get("format")
     if "enum" in entity:
-        fmt = "|".join(entity["enum"])
+        allowed_values = []
+        for value in entity["enum"]:
+            if isinstance(value, str):
+                allowed_values.append(value)
+            else:
+                allowed_values.append(value["name"])
+
+        fmt = "|".join(allowed_values)
+
     if fmt is None:
         raise ValueError(f"entity missing format or enum fields: {entity}")
+
     return f"{entity['name']}-{lt}{fmt}{gt}"
 
 
@@ -229,7 +253,7 @@ def make_filename_template(
     schema : dict
         The schema object, which is a dictionary with nested dictionaries and
         lists stored within it.
-    src_path : str | None
+    src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
     n_dupes_to_combine : int
@@ -241,7 +265,10 @@ def make_filename_template(
         If False, the filename template will use HTML and include hyperlinks.
         This works on the website.
         Default is False.
-    kwargs : dict
+
+    Other Parameters
+    ----------------
+    **kwargs : dict
         Keyword arguments used to filter the schema.
         Example kwargs that may be used include: "suffixes", "datatypes",
         "extensions".
@@ -327,10 +354,11 @@ def make_filename_template(
                         heading=entity["name"],
                         pdf_format=pdf_format,
                     )
+                    fmt = entity.get("format", "label")
                     entity["format"] = utils._link_with_html(
                         entity.get("format", "label"),
-                        html_path=f"{ENTITIES_PATH}.html",
-                        heading=entity.get("format", "label"),
+                        html_path=f"{GLOSSARY_PATH}.html",
+                        heading=f"{fmt}-common_principles",
                         pdf_format=pdf_format,
                     )
                     pattern = _format_entity(entity, lt, gt)
@@ -410,7 +438,21 @@ def make_filename_template(
 
 
 def append_filename_template_legend(text, pdf_format=False):
-    """Append a legend to filename templates."""
+    """Append a legend to filename templates.
+
+    Parameters
+    ----------
+    text : str
+        The text to append the legend to.
+
+    pdf_format : bool
+        Whether to format the legend for PDF output.
+
+    Returns
+    -------
+    str :
+        The text with the legend appended.
+    """
     if pdf_format:
         info_str = ""
     else:
@@ -456,7 +498,7 @@ def define_common_principles(schema, src_path=None):
     ----------
     schema : dict
         The BIDS schema.
-    src_path : str | None
+    src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
 
@@ -489,7 +531,7 @@ def define_allowed_top_directories(schema, src_path=None) -> str:
     ----------
     schema : dict
         The BIDS schema.
-    src_path : str | None
+    src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
 
@@ -506,3 +548,34 @@ def define_allowed_top_directories(schema, src_path=None) -> str:
             string += f"- `{dirname}`: {definition.description}"
 
     return string.replace("SPEC_ROOT", utils.get_relpath(src_path))
+
+
+def render_text(schema, key: str, src_path=None):
+    """
+
+    Parameters
+    ----------
+    schema : dict
+        The BIDS schema.
+
+    object : str
+        The object to render the description for:
+        possible values correspond to the keys in schema["objects"].
+
+    key : str
+        The key of the object to render the description for:
+        possible values correspond to the keys in schema["objects"][object]
+
+    src_path : str or None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
+
+    Returns
+    -------
+    desc : str
+        Description of the object.
+    """
+    text = schema.get(key)
+    if not isinstance(text, str):
+        raise ValueError(f"{key} does not refer to a text field")
+    return text.replace("SPEC_ROOT", utils.get_relpath(src_path))

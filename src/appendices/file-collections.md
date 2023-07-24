@@ -1,6 +1,8 @@
 # File collections
 
-Here, some concrete use-cases of [entity-linked file collections](../common-principles.md#file-name-structure) are listed using descriptive tables, organized by modality.
+Here, some concrete use-cases of
+[entity-linked file collections](../common-principles.md#entity-linked-file-collections)
+are listed using descriptive tables, organized by modality.
 
 The tables in this appendix catalog applications where the use of
 a file collection is REQUIRED.
@@ -25,7 +27,7 @@ included in this appendix:
 <!--
 This block generates a filename templates.
 The inputs for this macro can be found in the directory
-  src/schema/rules/datatypes
+  src/schema/rules/files/raw
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
@@ -60,7 +62,7 @@ and a guide for using macros can be found at
 <!--
 This block generates a filename templates.
 The inputs for this macro can be found in the directory
-  src/schema/rules/datatypes
+  src/schema/rules/files/raw
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->

@@ -1,1 +1,5 @@
 requests
+emoji
+rich
+ruamel.yaml
+cffconvert
