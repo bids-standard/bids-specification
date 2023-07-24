@@ -1,6 +1,8 @@
 """Tests for the bidsschematools package."""
 import os
 
+import pytest
+
 from bidsschematools.render import text
 
 
@@ -65,12 +67,13 @@ def test_make_glossary(schema_obj, schema_dir):
 def test_make_filename_template(schema_obj, schema_dir):
     """
     Test whether:
-        * the base hierarchy structure of mandatory subject and optional session is
-        returned. This should be robust with respect to schema format.
-        * each directory contains at least one possible pattern.
-        This should be robust with respect to schema format.
-        * all files under the datatype rules subdirectory have corresponding entries.
-        This may need to be updated for schema hierarchy changes.
+
+    * The base hierarchy structure of mandatory subject and optional session is
+      returned. This should be robust with respect to schema format.
+    * Each directory contains at least one possible pattern.
+      This should be robust with respect to schema format.
+    * All files under the datatype rules subdirectory have corresponding entries.
+      This may need to be updated for schema hierarchy changes.
     """
     filename_template = text.make_filename_template("raw", schema_obj, pdf_format=True)
 
@@ -130,3 +133,17 @@ def test_define_allowed_top_directories(schema_obj):
     """smoke test for allowed top directories."""
     test_str = text.define_allowed_top_directories(schema_obj)
     assert isinstance(test_str, str)
+
+
+def test_render_text(schema_obj):
+    test_str = text.render_text(
+        schema_obj, key="objects.files.dataset_description.description", src_path=None
+    )
+    assert (
+        test_str == "The file `dataset_description.json` is a JSON file describing the dataset.\n"
+    )
+
+
+def test_render_text_errors(schema_obj):
+    with pytest.raises(ValueError, match="does not refer to a text field"):
+        text.render_text(schema_obj, key="dataset_description", src_path=None)

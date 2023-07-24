@@ -8,7 +8,7 @@ on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
 Microscopy datasets formatted using this specification are available on the
-[BIDS examples repository](https://github.com/bids-standard/bids-examples#microscopy-datasets)
+[BIDS examples repository](https://bids-standard.github.io/bids-examples/#microscopy)
 and can be used for practical guidance when curating a new dataset.
 
 Further Microscopy datasets are available:
@@ -272,18 +272,6 @@ for details.
 
 Microscopy data MUST be described by metadata fields, stored in sidecar JSON files.
 
-#### Device Hardware
-
-<!-- This block generates a metadata table.
-These tables are defined in
-  src/schema/rules/sidecars
-The definitions of the fields specified in these tables may be found in
-  src/schema/objects/metadata.yaml
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_sidecar_table("micr.MicroscopyDeviceHardware") }}
-
 #### Image Acquisition
 
 <!-- This block generates a metadata table.
@@ -370,6 +358,31 @@ In this example, there is no scaling and `chunk-01` is at the origin.
         "ChunkTransformationMatrixAxis": ["X", "Y"]
 }
 ```
+
+#### Hardware information
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("micr.MicroscopyHardware") }}
+
+#### Institution information
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+
+{{ MACROS___make_sidecar_table("micr.MicroscopyInstitutionInformation") }}
 
 #### Example of sidecar JSON file (`*_<suffix>.json`)
 ```JSON

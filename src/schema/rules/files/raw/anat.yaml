@@ -44,7 +44,6 @@ parametric:
     - T1rho
     - MWFmap
     - MTVmap
-    - PDT2map
     - Chimap
     - S0map
     - M0map

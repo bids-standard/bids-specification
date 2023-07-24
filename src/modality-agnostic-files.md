@@ -11,7 +11,12 @@ Templates:
 
 ### `dataset_description.json`
 
-The file `dataset_description.json` is a JSON file describing the dataset.
+<!-- This block generates a description.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___render_text("objects.files.dataset_description.description") }}
+
 Every dataset MUST include this file with the following fields:
 
 <!-- This block generates a metadata table.
@@ -156,27 +161,39 @@ Example:
 
 ### `README`
 
-A REQUIRED text file, `README`, SHOULD describe the dataset in more detail.
-The `README` file MUST be either in ASCII or UTF-8 encoding and MAY have one of the extensions:
-`.md` ([Markdown](https://www.markdownguide.org/)),
-`.rst` ([reStructuredText](https://docutils.sourceforge.io/rst.html)),
-or `.txt`.
-A BIDS dataset MUST NOT contain more than one `README` file (with or without extension)
-at its root directory.
-BIDS does not make any recommendations with regards to the
-[Markdown flavor](https://www.markdownguide.org/extended-syntax/#lightweight-markup-languages)
-and does not validate the syntax of Markdown and reStructuredText.
-The `README` file SHOULD be structured such that its contents can be easily understood
-even if the used format is not rendered.
-A guideline for creating a good `README` file can be found in the
-[bids-starter-kit](https://github.com/bids-standard/bids-starter-kit/blob/master/templates/README).
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___render_text("objects.files.README.description") }}
+
+### `CITATION.cff`
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___render_text("objects.files.CITATION.description") }}
+
+For most redundant fields between `CITATION.cff` and `dataset_description.json`,
+the `CITATION.cff` SHOULD take precedence.
+To avoid inconsistency, metadata present in `CITATION.cff` SHOULD NOT be
+be included in `dataset_description.json`, with the exception of `Name` and
+`DatasetDOI`, to ensure that `CITATION.cff`-unaware tools can generate
+references to the dataset.
+In particular, if `CITATION.cff` is present,
+the `"Authors"` field of `dataset_description.json` MUST be omitted,
+and the `"HowToAcknowledge"`, `"License"` and `"ReferencesAndLinks"` SHOULD be omitted
+in favor of the `CITATION.cff` fields `message`/`preferred-citation`, `license` and
+`references`.
 
 ### `CHANGES`
 
-Version history of the dataset (describing changes, updates and corrections) MAY
-be provided in the form of a `CHANGES` text file. This file MUST follow the
-[CPAN Changelog convention](https://metacpan.org/pod/release/HAARG/CPAN-Changes-0.400002/lib/CPAN/Changes/Spec.pod).
-The `CHANGES` file MUST be either in ASCII or UTF-8 encoding.
+<!-- This block generates a description.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___render_text("objects.files.CHANGES.description") }}
 
 Example:
 
@@ -190,10 +207,11 @@ Example:
 
 ### `LICENSE`
 
-A `LICENSE` file MAY be provided in addition to the short specification of the
-used license in the `dataset_description.json` `"License"` field.
-The `"License"` field and `LICENSE` file MUST correspond.
-The `LICENSE` file MUST be either in ASCII or UTF-8 encoding.
+<!-- This block generates a description.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___render_text("objects.files.LICENSE.description") }}
 
 ## Participants file
 
@@ -204,23 +222,15 @@ participants.tsv
 participants.json
 ```
 
-The purpose of this RECOMMENDED file is to describe properties of participants
-such as age, sex, handedness, species and strain.
-If this file exists, it MUST contain the column `participant_id`,
-which MUST consist of `sub-<label>` values identifying one row for each participant,
-followed by a list of optional columns describing participants.
-Each participant MUST be described by one and only one row.
+<!-- This block generates a description.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___render_text("objects.files.participants.description") }}
 
-The RECOMMENDED `species` column SHOULD be a binomial species name from the
-[NCBI Taxonomy](https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi)
-(for examples `homo sapiens`, `mus musculus`, `rattus norvegicus`).
-For backwards compatibility, if `species` is absent, the participant is assumed to be
-`homo sapiens`.
-
-Commonly used *optional* columns in `participants.tsv` files are `age`, `sex`,
-`handedness`, `strain`, and `strain_rrid`. We RECOMMEND to make use
-of these columns, and in case that you do use them, we RECOMMEND to use the
-following values for them:
+We RECOMMEND to make use of these columns, and
+in case that you do use them, we RECOMMEND to use the following values
+for them:
 
 <!-- This block generates a columns table.
 The definitions of these fields can be found in
@@ -293,9 +303,11 @@ samples.tsv
 samples.json
 ```
 
-The purpose of this file is to describe properties of samples, indicated by the `sample` entity.
-This file is REQUIRED if `sample-<label>` is present in any filename within the dataset.
-Each sample MUST be described by one and only one row.
+<!-- This block generates a description.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___render_text("objects.files.samples.description") }}
 
 <!-- This block generates a columns table.
 The definitions of these fields can be found in
@@ -351,7 +363,7 @@ individual files separate from `participants.tsv`.
 
 Each of the measurement files MUST be kept in a `/phenotype` directory placed
 at the root of the BIDS dataset and MUST end with the `.tsv` extension.
-File names SHOULD be chosen to reflect the contents of the file.
+Filenames SHOULD be chosen to reflect the contents of the file.
 For example, the "Adult ADHD Clinical Diagnostic Scale" could be saved in a file
 called `/phenotype/acds_adult.tsv`.
 

@@ -6,8 +6,10 @@ iEEGChannels:
     - extension == ".tsv"
   initial_columns:
     - name__channels
-    - type__ieeg_channels
+    - type__channels
     - units
+    - low_cutoff
+    - high_cutoff
   columns:
     name__channels:
       level: required
@@ -15,7 +17,7 @@ iEEGChannels:
         When a corresponding electrode is specified in `_electrodes.tsv`,
         the name of that electrode MAY be specified here and the reference electrode
         name MAY be provided in the `reference` column.
-    type__ieeg_channels: required
+    type__channels: required
     units: required
     low_cutoff: required
     high_cutoff: required
@@ -42,6 +44,7 @@ iEEGElectrodes:
     - x
     - y
     - z
+    - size
   columns:
     name__electrodes: required
     x: required

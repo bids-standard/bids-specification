@@ -6,16 +6,23 @@
 
 ---
 # Device Hardware
-MicroscopyDeviceHardware:
+MicroscopyHardware:
   selectors:
     - modality == "micr"
     - datatype == "micr"
+    - suffix != "photo"
   fields:
     Manufacturer: recommended
     ManufacturersModelName: recommended
     DeviceSerialNumber: recommended
     StationName: recommended
     SoftwareVersions: recommended
+
+MicroscopyInstitutionInformation:
+  selectors:
+    - modality == "micr"
+    - datatype == "micr"
+  fields:
     InstitutionName: recommended
     InstitutionAddress: recommended
     InstitutionalDepartmentName: recommended
@@ -25,6 +32,7 @@ MicroscopyImageAcquisition:
   selectors:
     - modality == "micr"
     - datatype == "micr"
+    - suffix != "photo"
   fields:
     PixelSize: required
     PixelSizeUnits: required
@@ -39,6 +47,7 @@ MicroscopySample:
   selectors:
     - modality == "micr"
     - datatype == "micr"
+    - suffix != "photo"
   fields:
     BodyPart:
       level: recommended
@@ -64,6 +73,7 @@ MicroscopyChunkTransformations:
   selectors:
     - modality == "micr"
     - datatype == "micr"
+    - suffix != "photo"
     - '"chunk" in entities'
   fields:
     ChunkTransformationMatrix:
@@ -74,6 +84,7 @@ MicroscopyChunkTransformationsMatrixAxis:
   selectors:
     - modality == "micr"
     - datatype == "micr"
+    - suffix != "photo"
     - '"chunk" in entities'
     - '"ChunkTransformationMatrix" in sidecar'
   fields:

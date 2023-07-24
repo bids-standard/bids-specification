@@ -41,6 +41,49 @@ representing acquisition parameters (`echo`, `flip`, `inv`, `mt`) or file parts 
 
 If a qMRI file collection is intended for creating structural quantitative maps (for example, `T1map`),
 files belonging to that collection are stored in the `anat` subdirectory.
+
+List of currently supported collections:
+
+<!--
+This block generates a suffix table.
+The definitions of these fields can be found in
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_suffix_table(
+      [
+         "MESE",
+         "MEGRE",
+         "VFA",
+         "IRT1",
+         "MP2RAGE",
+         "MPM",
+         "MTS",
+         "MTR",
+      ]
+   )
+}}
+
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the directory
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filename_template("raw", datatypes=["anat"], suffixes=[
+         "MESE",
+         "MEGRE",
+         "VFA",
+         "IRT1",
+         "MP2RAGE",
+         "MPM",
+         "MTS",
+         "MTR",
+      ])
+}}
+
 Below is an example file collection for `MP2RAGE`:
 
 <!-- This block generates a file tree.
@@ -152,7 +195,7 @@ It is RECOMMENDED to share them along with the vendor outputs, whenever possible
 ### Example datasets
 
 You can find example file collections and qMRI maps organized according to BIDS
-in the [BIDS examples](https://github.com/bids-standard/bids-examples#qmri-datasets).
+in the [BIDS examples](https://bids-standard.github.io/bids-examples/#qmri).
 
 ## Metadata requirements for qMRI data
 
@@ -192,6 +235,28 @@ Explanation of the table:
     for details.
 
 #### Field maps
+
+<!--
+This block generates a suffix table.
+The definitions of these fields can be found in
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_suffix_table(
+      [
+        "TB1DAM",
+        "TB1EPI",
+        "TB1AFI",
+        "TB1TFL",
+        "TB1RFM",
+        "RB1COR",
+        "TB1SRGE",
+        "TB1map",
+        "RB1map",
+      ]
+   )
+}}
 
 <!--
 This block generates a filename templates.
@@ -641,9 +706,12 @@ The example above applies to the `TB1RFM` suffix as well.
 
 #### `RB1COR` specific notes
 
-This method generates a sensitivity map by combining two low resolution images
-collected by two transmit coils (the body and the head coil) upon subsequent scans
-with identical acquisition parameters.
+This method generates a receive sensitivity map by combining two low resolution images
+collected sequentially by two different RF coils in receive mode (the body and the head coil)
+with otherwise identical acquisition parameters.
+To correct for dynamic changes in the receive sensitivity over time due to, for example,
+subject motion, separate receive sensitivity maps may be acquired for each anatomical
+acquisition in a file collection.
 
 To properly identify constituents of this particular method, values of the `acq`
 entity SHOULD begin with either `body` or `head` and MAY be followed by freeform

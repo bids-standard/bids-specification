@@ -132,8 +132,8 @@ hemisphere:
   type: string
   format: label
   enum:
-    - 'L'
-    - 'R'
+    - $ref: objects.enums.left_hemisphere.value
+    - $ref: objects.enums.right_hemisphere.value
 inversion:
   name: inv
   display_name: Inversion Time
@@ -184,8 +184,8 @@ mtransfer:
   type: string
   format: label
   enum:
-    - 'on'
-    - 'off'
+    - $ref: objects.enums.on__mtransfer.value
+    - $ref: objects.enums.off__mtransfer.value
 part:
   name: part
   display_name: Part
@@ -207,10 +207,10 @@ part:
   type: string
   format: label
   enum:
-    - mag
-    - phase
-    - real
-    - imag
+    - $ref: objects.enums.magnitude.value
+    - $ref: objects.enums.phase.value
+    - $ref: objects.enums.real.value
+    - $ref: objects.enums.imaginary.value
 processing:
   name: proc
   display_name: Processed (on device)
@@ -334,7 +334,7 @@ split:
 
     Instead of a simple renaming, files should be read in and saved under their
     new names with dedicated tools like [MNE-Python](https://mne.tools/),
-    which will ensure that not only the file names, but also the internal file pointers, will be updated.
+    which will ensure that not only the filenames, but also the internal file pointers, will be updated.
 
     It is RECOMMENDED that `.fif` files with multiple parts use the `split-<index>` entity to indicate each part.
     If there are multiple parts of a recording and the optional `scans.tsv` is provided,
@@ -403,5 +403,19 @@ tracer:
     Therefore, if the `trc-<label>` entity is present in a filename,
     `"TracerName"` MUST be defined in the associated metadata.
     Please note that the `<label>` does not need to match the actual value of the field.
+  type: string
+  format: label
+tracksys:
+  name: tracksys
+  display_name: Tracking system
+  description: |
+    The `tracksys-<label>` entity can be used as a key-value pair
+    to label *_motion.tsv and *_motion.json files.
+    It can also be used to label *_channel.tsv or *_events.tsv files
+    when they belong to a specific tracking system.
+
+    This entity corresponds to the `"TrackingSystemName"` metadata field in a *_motion.json file.
+    `tracksys-<label>` entity is a concise string whereas `"TrackingSystemName"`
+    may be longer and more human readable.
   type: string
   format: label

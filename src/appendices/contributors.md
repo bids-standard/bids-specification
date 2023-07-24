@@ -36,282 +36,326 @@ The following individuals have contributed to the Brain Imaging Data Structure
 ecosystem (in alphabetical order).
 If you contributed to the BIDS ecosystem and your name is not listed, please add it.
 
--   Eric Achten 📖🔣📓
--   Azeez Adebimpe 📖
--   Rémi Adon 📖
--   Fidel Alfaro Almagro 💬📖💡🔌
--   David Alsop 📖
--   Stefan Appelhoff 📖💬🤔🐛💡💻👀⚠️📢✅🔧🔌📝🚧🔣
--   Yoni Ashar 📖
--   Tal Pal Attia 📖
--   Tibor Auer 💬📖💡🔧📢🐛🤔
--   Sylvain Baillet 📖🔍
--   Shashank Bansal 📖
--   Arshitha Basavaraj 📖🚇💻
--   Ben Beasley 💻
--   Leandro Beltrachini 📖
--   Chris Benjamin 📖
--   Timo Berg 📖
--   Étienne Bergeron 🔣💻
--   Giacomo Bertazzoli 📖
--   Suyash Bhogawar 📖💡⚠️🔧💬
--   Stephan Bickel 📖
--   Ulrike Bingel 📖
--   Ethan Blackwood 👀📖
--   David Boas 📖
--   Elizabeth Bock 📖💡
--   Hugo Boniface 📖
--   Marta Bortoletto 📖
--   Kristofer Bouchard 📖
--   Mathieu Boudreau 💬🤔📢
--   Marie-Hélène Bourget 📖🔣💻🤔
--   Eric Bridgeford 📖🔧
--   Teon L. Brooks 📖💻⚠️💬👀🤔🔧🐛📢
--   Martina Bulgari 📖
--   Christian Büchel 📖
--   Vince D. Calhoun 📖
--   Giulio Castegnaro 📖
--   Marco Castellaro 💬🐛💻📖💡⚠️📢🚇
--   Filippo Maria Castelli 📖🔣
--   Michael Chappell 📖🔣📆
--   Gang Chen 📖
--   William Clarke 📖
--   Patricia Clement 💬🐛💻📖🔣💡📋🤔📆⚠️📢
--   Helena Cockx 📖
--   Alexander L. Cohen 🐛💻📖💬
--   Julien Cohen-Adad 📖🔣🤔
--   R. Cameron Craddock 📖📢
--   Martin Craig 🔣
--   Sasha D'Ambrosio 📖
--   Samir Das 📖
--   Olivier David 📖
--   Orrin Devinsky 📖
--   Gilles de Hollander 📖
--   Alejandro de la Vega 🐛💻⚠️
--   Arnaud Delorme 📖💡
--   John Detre 📖
--   Benjamin Dichter 📖
--   Erin W. Dickie 📖🤔👀📢💬
--   Timo Dickscheid 📖
--   Dejan Draschkow 📖
--   Eugene P. Duff 📖
--   Elizabeth DuPre 📖💡🔍🤔💬
--   Joke Durnez 📖🔧💻
--   Eric Earl 📖💬🐛🚧🔧🤔
--   Cyrus Eierud 💻
--   Anders Eklund 📖📢💻
--   Sara Elgayar 📖
--   Oscar Esteban 📖🔧🤔💬💻
--   Franklin W. Feingold 📋📝✅💬🤔🎨📢👀🚇🖋📆
--   Guillaume Flandin 📖💻
--   Adeen Flinker 📖
--   Alexandru Foias 📖🔣
--   Brett L. Foster 📖
--   Ana Fouto 📓
--   Benjamin Gagl 📖
--   Chris Gahnström 📖
--   Anthony Galassi 📖
--   Giuseppe Gallitto 📖
--   Melanie Ganz-Benjaminsen 📖🔣💻🤔📆🔍📢
--   Samuel Garcia 🤔👀📖
--   Remi Gau 📖💻💬📢🐛💻🚇👀🔧🤔
--   James Gholam 📖
--   Satrajit S. Ghosh 📖💻
--   Ashley G. Gillman 📖
--   Greydon Gilmore 📖
--   Tristan Glatard 📖💻
--   Mathias Goncalves 💻🔧📢
--   Krzysztof J. Gorgolewski 📖💻💬🤔🔍📢📝💡🔌
--   Rohan Goyal 💻
--   Alexandre Gramfort 📖💡
--   Klara Gregorova 📖
--   Jeffrey S. Grethe 💬🐛✅📢
--   Iris Groen 📖
--   David Groppe 📖
--   Sören Grothkopp 📖
--   Aysegul Gunduz 📖
--   Giacomo Guidali 📖
--   Matthias Günther 📖
--   Yaroslav O. Halchenko 📖📢🔧💬🐛
--   Liberty Hamilton 📖
--   Tom Hampshire 📖
--   Daniel A. Handwerker 📖
--   Michael Hanke 📖🤔🔧🐛📢
--   Nell Hardcastle 💻 🤔 🚇 💬 👀
--   Michael P. Harms 📖⚠️🔧
--   Soichi Hayashi 📖🔧🐛
--   Richard N. Henson 📖
--   Peer Herholz 💬📖👀🔧✅📢
--   Dora Hermes 📖💻✅🔍🤔
--   Luis Hernandez-Garcia 📖📓
--   Katja Heuer 🔧
--   Dorien Huijser 📖
--   Alexandre Hutton 📖
--   Richard Höchenberger 📖
--   Chris Holdgraf 📖🤔
--   Christopher J. Honey 📖
--   Andrew Hoopes 📖
--   Christian Horea 📖
--   Jean-Christophe Houde 📖
--   Vittorio Iacovella 📖
--   Maria de la Iglesia 📖
--   Ilkay Isik 📖
--   Hamish Innes-Brown 📖
--   International Neuroinformatics Coordinating Facility 💵📋
--   Andrew Jahn 📓
--   Andrew Janke 📖💻
--   Mainak Jas 📖💻
--   Sein Jeung 📖
--   Alexander Jones 💻🐛
--   Tamás Józsa 📓
--   Jakub Kaczmarzyk 📖🔧🚇
--   Lee Kamentsky 📖
--   Agah Karakuzu 💬📖🔣🤔
--   David Keator 📖
--   James Kent 💬💻
--   Ali Khan 📖
--   Gregory Kiar 📖💻🎨🔧
--   Balint Kincses 📖
--   Thomas Kirk 📖
--   Robert Knight 📖
--   Joost Kuijer 📖
--   Jean-Philippe Lachaux 📖
--   Marc Lalancette 📖
--   Pamela LaMontagne 📖💡
--   Kevin Larcher 💬
--   Jonathan C. Lau 📖
--   Laura and John Arnold Foundation 💵
--   Alexander von Lautz 📖
--   Alberto Lazari 📖
--   Kangjoo Lee 📖
--   Christopher Lee-Messer 📖
--   Jon Haitz Legarreta 💻📖
--   Dan Levitas 📖
--   Adam Li 📖💻
--   Xiangrui Li 📖💻
--   Ilona Lipp 📖
--   Vladimir Litvak 📖
--   Hanzhang Lu 📖
--   Robert Luke 📖
--   Brian N. Lundstrom 📖
--   Dan Lurie 🤔📖🔧🔌💻💬
--   Duncan Macleod 🚇
--   Eleonora Marcantoni 📖
--   Christopher J. Markiewicz 💬🐛💻📖🎨💡🤔🔌👀🔧📢🔣📋🚧
--   Camille Maumet 📖
--   Giacomo Mazzamuto 📖🔣
--   David McAlpine 📖
--   Manuel Mercier 📖🤔
--   Mark Mikkelsen 📖
--   Kai J. Miller 📖
--   Carlo Miniussi 📖
--   Markus Morawski 📖
--   Clara Moreau 📖
--   Jeremy Moreau 📖💡
--   Zachary Michael 📖
--   Ezequiel Mikulan 📖💻
--   Michael P. Milham 💡🔍
--   Jeanette Mumford 📖
--   Athanasia Monika Mowinckel 📖
--   Henk Mutsaerts 💬🐛💻📖💡📋🤔📆📢📓
--   Manjari Narayan 📖
--   National Institute of Mental Health 💵
--   Mikael Naveau 🐛
--   B. Nolan Nichols 📖
--   Thomas E. Nichols 📖📢🔧👀🚧
--   Dylan Nielson 📖💻🔧
--   Aki Nikolaidis 📖
--   Gustav Nilsonne 📖
--   Guiomar Niso 🤔🎨🔍👀📋📝🔧🐛💻🔣✅💬📖💡📢
--   Gregory Noack 💻 ⚠️
--   Martin Noergaard 📖🔣💻🤔📢
--   Michael P. Notter 💬📝✅📢📖
--   Jeffrey G. Ojemann 📖
--   Thomas Okell 📖
--   Aaron Oliver-Taylor 📖
--   Hernando Ombao 📖
--   Robert Oostenveld 📖🔧📢💡✅⚠️🤔💬🐛📝💻🖋🔣🎨📋🚇👀📓📹
--   Dimitri Papadopoulos Orfanos 📖💡🤔💬
--   Felipe Orihuela-Espina 📖
--   Eduard Ort 📖
--   Patrick Park 📖💡💬
--   Maurice Pasternak 📓
--   Chloé Pasturel 📖
--   Dianne Patterson 📖
--   Mateusz Pawlik 🤔 📖 🚧 👀 🐛
--   John Pellman 📖
--   Cyril Pernet 💬📝📖🎨💡📋🤔📢
--   Franco Pestilli 📖💻🎨💡🤔👀🔧📋🔍🚇
--   Jan Petr 💬🐛💻📖🔣💡📋🤔📆⚠️📢
--   Natalia Petridou 📖
--   Dmitry Petrov 📖💻
--   Christophe Phillips 📖
--   Gio Piantoni 📖
--   Andrea Pigorini 📖
--   Russell A. Poldrack 📖🔍📢
--   Jean-Baptiste Poline 📖📢🤔🎨
--   Luca Pollonini 📖
--   Wouter V. Potters 📖
--   Nader Pouratian 📖
--   Pradeep Reddy Raamana 💻🔧
--   Vasudev Raguram 💻🎨📖🔧
--   Nick F. Ramsey 📖
--   Travis Riddle 📖🔧🐛
--   Pierre Rioux 📖
--   Petra Ritter 📖
--   Kay Robbins 💻📖🐛
--   Alex Rockhill 📖🔧
--   Ariel Rokem 📖
--   Chris Rorden 📖💻
--   Jose Manuel Saborit 📖
--   Taylor Salo 💬📖🔌
--   Matt Sanderson 📖💻
--   Gunnar Schaefer 📖
--   Michael Schirner 📖
--   Jan-Mathijs Schoffelen 📖
--   Graham Searle 📖
--   Parul Sethi 📖🔧⚠️💻
--   Maureen J Shader 📖
--   Robert E. Smith 💻📖
--   Vanessa Sochat 📖
--   Anibal Sólon 🐛
--   Tamas Spisak 📖
--   Julia Sprenger 📖
--   Isla Staden 📖
--   Arjen Stolk 📖
--   Nicole C. Swann 📖
--   Filip Szczepankiewicz 📖
--   Martin Szinte 📖
--   François Tadel 📖🔌💡
--   Sylvain Takerkart 📖
--   Bertrand Thirion 📖
--   David Thomas 📖🔣
--   Roberto Toro 🔧
--   Sébastien Tourbier 🤔👀📢🐛💻📖
--   Paule-Joanne Toussaint 📖
--   Nicholas Traut 📖🔧💻
--   William Triplett 📖
--   Jessica A. Turner 📖
--   Pieter Vandemaele 📖💻
--   Max A. van den Boom 💻👀📖🐛
--   Wietske van der Zwaag 🔣💬
--   Matthias Van Osch 📖
--   Gaël Varoquaux 📖
--   Jaap von der Aar 📖
--   Sjoerd Vos 📖
--   Bradley Voytek 📖
--   Tor Wager 📖
--   Adina S. Wagner 🎨
--   Lennart Walger 📖
--   Brian A. Wandell 📖
--   Hao Ting Wang 📖🐛
--   Yuan Wang 💻
--   Julius Welzel 📖
--   Joseph Wexler 📖💡
--   Kirstie Whitaker 📖💡🔍🤔📢💬
--   Martin Wilson 📖
--   Jonathan Winawer 📖
--   Lennart Wittkuhn 📖
--   Joseph Woods 📖
--   Tal Yarkoni 💻📖🤔🔍🔌👀📢🐛🎨
--   Lyuba Zehl 📖
+<!-- THE SECTION BELOW IS AUTOMATICALLY GENERATED -->
+
+| name                                                 | contributions                          |
+| ---------------------------------------------------- | -------------------------------------- |
+| Aaron Oliver-Taylor                                  | 📖                                     |
+| Adam Li                                              | 📖💻                                   |
+| Adam Thomas                                          | 📖                                     |
+| Adeen Flinker                                        | 📖                                     |
+| Adina S. Wagner                                      | 🎨💻                                   |
+| Agah Karakuzu                                        | 💬📖🔣🤔💻                             |
+| Aki Nikolaidis                                       | 📖                                     |
+| Alberto Lazari                                       | 📖                                     |
+| Alejandro de la Vega                                 | 🐛💻⚠️                                 |
+| Alessio Giacomel                                     | 📖                                     |
+| Alex Rockhill                                        | 📖🔧💻                                 |
+| Alexander Jones                                      | 💻🐛                                   |
+| Alexander L. Cohen                                   | 🐛💻📖💬                               |
+| Alexander von Lautz                                  | 📖                                     |
+| Alexandre Gramfort                                   | 📖💡                                   |
+| Alexandre Hutton                                     | 📖                                     |
+| Alexandre Routier                                    | 📖                                     |
+| Alexandru Foias                                      | 📖🔣                                   |
+| Ali Khan                                             | 📖                                     |
+| Ana Fouto                                            | 📓                                     |
+| Anders Eklund                                        | 📖📢💻                                 |
+| Andrea Pigorini                                      | 📖                                     |
+| Andrew Hoopes                                        | 📖                                     |
+| Andrew Jahn                                          | 📓                                     |
+| Andrew Janke                                         | 📖💻                                   |
+| Anibal Sólon                                         | 💻🐛                                   |
+| Anthony Galassi                                      | 📖💻                                   |
+| Ariel Rokem                                          | 📖💻                                   |
+| Arjen Stolk                                          | 📖                                     |
+| Arnaud Delorme                                       | 📖💡🤔                                 |
+| Arnaud Marcoux                                       | 📖                                     |
+| Arshitha Basavaraj                                   | 📖🚇💻                                 |
+| Ashley G. Gillman                                    | 📖                                     |
+| Athanasia Monika Mowinckel                           | 📖                                     |
+| Aysegul Gunduz                                       | 📖                                     |
+| Azeez Adebimpe                                       | 📖                                     |
+| B. Nolan Nichols                                     | 📖                                     |
+| Balint Kincses                                       | 📖                                     |
+| Benjamin Beasley                                     | 📖                                     |
+| Benjamin Dichter                                     | 📖                                     |
+| Benjamin Gagl                                        | 📖                                     |
+| Bertrand Thirion                                     | 📖                                     |
+| Bradley Voytek                                       | 📖                                     |
+| Brett L. Foster                                      | 📖                                     |
+| Brian A. Wandell                                     | 📖                                     |
+| Brian N. Lundstrom                                   | 📖                                     |
+| Camille Maumet                                       | 📖                                     |
+| Carlo Miniussi                                       | 📖                                     |
+| Chloé Pasturel                                       | 📖                                     |
+| Chris Benjamin                                       | 📖                                     |
+| Chris Gahnström                                      | 📖                                     |
+| Chris Holdgraf                                       | 📖🤔💻                                 |
+| Chris J. Gorgolewski                                 | 📖💻💬🤔🔍📢📝💡🔌                     |
+| Chris Rorden                                         | 📖💻                                   |
+| Christian Büchel                                     | 📖                                     |
+| Christian Horea                                      | 💻📖                                   |
+| Christine Rogers                                     | 🔣📖🤔🚇🔧                             |
+| Christophe Phillips                                  | 📖                                     |
+| Christopher J. Honey                                 | 📖                                     |
+| Christopher J. Markiewicz                            | 💬🐛💻📖🎨💡🤔🔌👀🔧📢🔣📋🚧           |
+| Christopher Lee-Messer                               | 📖                                     |
+| Clara Moreau                                         | 📖                                     |
+| Clint Hansen                                         | 📖🤔                                   |
+| Cyril Pernet                                         | 💬📝📖🎨💡📋🤔📢                       |
+| Cyrus Eierud                                         | 📖                                     |
+| D. Sturgeon                                          | 💻                                     |
+| Dan Levitas                                          | 📖                                     |
+| Dan Lurie                                            | 🤔📖🔧🔌💻💬                           |
+| Daniel A. Handwerker                                 | 📖                                     |
+| David Alsop                                          | 📖                                     |
+| David Boas                                           | 📖                                     |
+| David Groppe                                         | 📖                                     |
+| David Keator                                         | 📖                                     |
+| David McAlpine                                       | 📖                                     |
+| David Thomas                                         | 📖🔣                                   |
+| Dejan Draschkow                                      | 📖                                     |
+| Dianne Patterson                                     | 📖                                     |
+| Dimitri Papadopoulos Orfanos                         | 📖💡🤔💬💻                             |
+| Dmitry Petrov                                        | 📖💻                                   |
+| Dora Hermes                                          | 📖💻✅🔍🤔                              |
+| Dorien Huijser                                       | 📖                                     |
+| Douglas N. Greve                                     | 📖                                     |
+| Duncan Macleod                                       | 📖🚇                                   |
+| Dung Truong                                          | 📖💻🔧🤔                               |
+| Dylan Nielson                                        | 📖💻🔧                                 |
+| Eduard Ort                                           | 📖💻                                   |
+| Eleonora Marcantoni                                  | 📖                                     |
+| Elizabeth Bock                                       | 📖💡                                   |
+| Elizabeth DuPre                                      | 📖💡🔍🤔💬💻                           |
+| Elke Warmerdam                                       | 🔣📖                                   |
+| Erdal Karaca                                         | 💻                                     |
+| Eric A. Earl                                         | 📖💬🐛🚧🔧🤔💻                         |
+| Eric Achten                                          | 📖🔣📓                                 |
+| Eric Bridgeford                                      | 📖🔧                                   |
+| Erin W. Dickie                                       | 📖🤔👀📢💬💻                           |
+| Ethan Blackwood                                      | 👀📖                                   |
+| Eugene P. Duff                                       | 📖                                     |
+| Ezequiel Mikulan                                     | 📖💻                                   |
+| Felipe Orihuela-Espina                               | 📖                                     |
+| Fidel Alfaro Almagro                                 | 💬📖💡🔌                               |
+| Filip Szczepankiewicz                                | 📖                                     |
+| Filippo Maria Castelli                               | 📖🔣                                   |
+| Franco Pestilli                                      | 📖💻🎨💡🤔👀🔧📋🔍🚇                   |
+| Franklin W. Feingold                                 | 📋📝✅💬🤔🎨📢👀🚇🖋️📆💻               |
+| François Tadel                                       | 📖🔌💡                                 |
+| Gaia Rizzo                                           | 📖                                     |
+| Gang Chen                                            | 📖                                     |
+| Gaël Varoquaux                                       | 📖                                     |
+| Ghislain Vaillant                                    | 💻                                     |
+| Giacomo Bertazzoli                                   | 📖                                     |
+| Giacomo Guidali                                      | 📖                                     |
+| Giacomo Mazzamuto                                    | 📖🔣                                   |
+| Gilles de Hollander                                  | 📖                                     |
+| Gio Piantoni                                         | 📖                                     |
+| Gitte M. Knudsen                                     | 📖                                     |
+| Giulio Castegnaro                                    | 📖                                     |
+| Giuseppe Gallitto                                    | 📖                                     |
+| Graham Searle                                        | 📖                                     |
+| Granville J. Matheson                                | 📖                                     |
+| Gregory Kiar                                         | 📖💻🎨🔧                               |
+| Gregory Noack                                        | 📖💻⚠️                                 |
+| Greydon Gilmore                                      | 📖💻                                   |
+| Guillaume Flandin                                    | 📖💻                                   |
+| Gunnar Schaefer                                      | 📖                                     |
+| Gustav Nilsonne                                      | 📖                                     |
+| Hamish Innes-Brown                                   | 📖                                     |
+| Hanne D. Hansen                                      | 📖                                     |
+| Hanzhang Lu                                          | 📖                                     |
+| Hao-Ting Wang                                        | 📖🐛                                   |
+| Helena Cockx                                         | 📖🤔💬                                 |
+| Henk Mutsaerts                                       | 💬🐛💻📖💡📋🤔📆📢📓                   |
+| Hernando Ombao                                       | 📖                                     |
+| Hugo Boniface                                        | 📖💻                                   |
+| Ilkay Isik                                           | 📖                                     |
+| Ilona Lipp                                           | 📖                                     |
+| International Neuroinformatics Coordinating Facility | 💵📋                                   |
+| Iris Groen                                           | 📖                                     |
+| Isla Staden                                          | 📖                                     |
+| Jaap von der Aar                                     | 📖                                     |
+| Jakub Kaczmarzyk                                     | 📖🔧🚇                                 |
+| James Gholam                                         | 📖                                     |
+| James Kent                                           | 💬💻                                   |
+| Jan Mathijs Schoffelen                               | 📖                                     |
+| Jan Petr                                             | 💬🐛💻📖🔣💡📋🤔📆⚠️📢                 |
+| Jan-Mathijs Schoffelen                               | 📖                                     |
+| Jean-Baptiste Poline                                 | 📖📢🤔🎨💻                             |
+| Jean-Christophe Houde                                | 📖💻                                   |
+| Jean-Dominique Gallezot                              | 📖                                     |
+| Jean-Philippe Lachaux                                | 📖                                     |
+| Jeanette Mumford                                     | 📖                                     |
+| Jeffrey G. Ojemann                                   | 📖                                     |
+| Jeffrey S. Grethe                                    | 💬🐛✅📢💻                              |
+| JegouA                                               | 💻                                     |
+| Jelle Dalenberg                                      | 📖                                     |
+| Jeremy Moreau                                        | 📖💡                                   |
+| Jessica A. Turner                                    | 📖                                     |
+| Jochem Rieger                                        | 📖                                     |
+| John Detre                                           | 📖                                     |
+| John Pellman                                         | 📖                                     |
+| John T. Wodder                                       | 💻                                     |
+| Joke Durnez                                          | 📖🔧💻                                 |
+| Jon Haitz Legarreta Gorroño                          | 💻📖                                   |
+| Jonathan C. Lau                                      | 📖                                     |
+| Jonathan Winawer                                     | 📖                                     |
+| Joost Kuijer                                         | 📖                                     |
+| Jose Manuel Saborit                                  | 📖                                     |
+| Joseph Wexler                                        | 📖💡                                   |
+| Joseph Woods                                         | 📖                                     |
+| Julia Guiomar Niso Galán                             | 🤔🎨🔍👀📋📝🔧🐛💻🔣✅💬📖💡📢          |
+| Julia Sprenger                                       | 📖                                     |
+| Julien Cohen-Adad                                    | 📖🔣🤔                                 |
+| Julius Welzel                                        | 📖💡🐛💻🔣🤔💬📓                       |
+| Kai J. Miller                                        | 📖                                     |
+| Kangjoo Lee                                          | 📖                                     |
+| Katja Heuer                                          | 🔧                                     |
+| Kay Robbins                                          | 💻📖🐛                                 |
+| Kevin Larcher                                        | 💬                                     |
+| Kimberly Ray                                         | 📖📋🤔📆                               |
+| Kirstie Whitaker                                     | 📖💡🔍🤔📢💬💻                         |
+| Klara Gregorova                                      | 📖                                     |
+| Klaus Gramann                                        | 📖🤔                                   |
+| Kris Thielemans                                      | 📖                                     |
+| Kristofer Bouchard                                   | 📖                                     |
+| Kurt Schilling                                       | 📖                                     |
+| Laura and John Arnold Foundation                     | 💵                                     |
+| Leandro Beltrachini                                  | 📖                                     |
+| Lee Kamentsky                                        | 📖                                     |
+| Lennart Walger                                       | 📖                                     |
+| Lennart Wittkuhn                                     | 📖                                     |
+| Liberty Hamilton                                     | 📖                                     |
+| Luca Pollonini                                       | 📖                                     |
+| Luis Hernandez-Garcia                                | 📖📓                                   |
+| Luke J. Edwards                                      | 📖💬                                   |
+| Lyuba Zehl                                           | 📖                                     |
+| Mainak Jas                                           | 📖💻                                   |
+| Manjari Narayan                                      | 📖                                     |
+| Manuel Mercier                                       | 📖🤔                                   |
+| Maqsood Yaqub                                        | 📖                                     |
+| Marc Lalancette                                      | 📖💻                                   |
+| Marco Castellaro                                     | 💬🐛💻📖💡⚠️📢🚇                       |
+| Maria de la Iglesia                                  | 📖                                     |
+| Marie-Hélène Bourget                                 | 📖🔣💻🤔                               |
+| Mark Mikkelsen                                       | 📖                                     |
+| Markus Morawski                                      | 📖                                     |
+| Marta Bortoletto                                     | 📖                                     |
+| Martin Craig                                         | 🔣                                     |
+| Martin Noergaard                                     | 📖🔣💻🤔📢                             |
+| Martin Szinte                                        | 📖                                     |
+| Martin Wilson                                        | 📖                                     |
+| Martina Bulgari                                      | 📖                                     |
+| Mateusz Pawlik                                       | 📖🐛🤔🚧👀                             |
+| Mathias Goncalves                                    | 💻🔧📢                                 |
+| Mathieu Boudreau                                     | 💬🤔📢                                 |
+| Matt Sanderson                                       | 📖💻                                   |
+| Matteo Tonietto                                      | 📖                                     |
+| Matthias Günther                                     | 📖                                     |
+| Matthias Van Osch                                    | 📖                                     |
+| Maureen J Shader                                     | 📖                                     |
+| Maurice Pasternak                                    | 📓                                     |
+| Max A. van den Boom                                  | 💻👀📖🐛                               |
+| Melanie Ganz-Benjaminsen                             | 📖🔣💻🤔📆🔍📢                         |
+| Michael Chappell                                     | 📖🔣📆                                 |
+| Michael Hanke                                        | 📖🤔🔧🐛📢                             |
+| Michael P. Harms                                     | 📖⚠️🔧                                 |
+| Michael P. Milham                                    | 💡🔍                                   |
+| Michael P. Notter                                    | 💬📝✅📢📖                              |
+| Michael Schirner                                     | 📖                                     |
+| Mikaël Naveau                                        | 🐛                                     |
+| Nader Pouratian                                      | 📖                                     |
+| Natalia Petridou                                     | 📖                                     |
+| National Institute of Mental Health                  | 💵                                     |
+| Nell Hardcastle                                      | 💻📖🤔🚇👀💬                           |
+| Nicholas Traut                                       | 📖🔧💻                                 |
+| Nick F. Ramsey                                       | 📖                                     |
+| Nicole C. Swann                                      | 📖                                     |
+| Nima Bigdely Shamlo                                  | 📖                                     |
+| Olivier David                                        | 📖                                     |
+| Orrin Devinsky                                       | 📖                                     |
+| Oscar Esteban                                        | 📖🔧🤔💬💻                             |
+| Pamela LaMontagne                                    | 📖💡                                   |
+| Parul Sethi                                          | 📖🔧⚠️💻                               |
+| Patricia Clement                                     | 💬🐛💻📖🔣💡📋🤔📆⚠️📢                 |
+| Patrick Park                                         | 📖💡💬💻                               |
+| Paule-Joanne Toussaint                               | 📖                                     |
+| Peer Herholz                                         | 💬📖👀🔧✅📢                            |
+| Petra Ritter                                         | 📖                                     |
+| Pierre Rioux                                         | 📖                                     |
+| Pieter Vandemaele                                    | 📖💻                                   |
+| Pradeep Reddy Raamana                                | 💻🔧                                   |
+| R. Cameron Craddock                                  | 📖📢                                   |
+| Remi Gau                                             | 📖💻💬📢🐛💻🚇👀🔧🤔                   |
+| Richard Höchenberger                                 | 📖💻                                   |
+| Richard N. Henson                                    | 📖                                     |
+| Robert B. Innis                                      | 📖                                     |
+| Robert E. Smith                                      | 💻📖                                   |
+| Robert Knight                                        | 📖                                     |
+| Robert Luke                                          | 💻                                     |
+| Robert Oostenveld                                    | 📖🔧📢💡✅⚠️🤔💬🐛📝💻🖋️🔣🎨📋🚇👀📓📹 |
+| Roberto Toro                                         | 🔧                                     |
+| Rohan Goyal                                          | 📖                                     |
+| Ross W. Blair                                        | 💻                                     |
+| Russell A. Poldrack                                  | 📖🔍📢                                 |
+| Rémi Adon                                            | 📖                                     |
+| Samir Das                                            | 📖                                     |
+| Samuel Garcia                                        | 🤔👀📖                                 |
+| Samuel Nastase                                       | 💻                                     |
+| Sara Elgayar                                         | 📖                                     |
+| Sasha D'Ambrosio                                     | 📖                                     |
+| Satrajit S. Ghosh                                    | 📖💻                                   |
+| Scott Makeig                                         | 📖                                     |
+| Sein Jeung                                           | 📖💡🐛💻🔣🤔💬🔧📓                     |
+| Shashank Bansal                                      | 📖                                     |
+| Sjoerd B. Vos                                        | 📖                                     |
+| Soichi Hayashi                                       | 📖🔧🐛                                 |
+| Stefan Appelhoff                                     | 📖💬🤔🐛💡💻👀⚠️📢✅🔧🔌📝🚧🔣          |
+| Stephan Bickel                                       | 📖                                     |
+| Suyash Bhogawar                                      | 📖💡⚠️🔧💬                             |
+| Sylvain Baillet                                      | 📖🔍                                   |
+| Sylvain Takerkart                                    | 📖                                     |
+| Sébastien Tourbier                                   | 🤔👀📢🐛💻📖                           |
+| Sören Grothkopp                                      | 📖🔣📓                                 |
+| Tal Pal Attia                                        | 📖                                     |
+| Tal Yarkoni                                          | 💻📖🤔🔍🔌👀📢🐛🎨                     |
+| Tamas Spisak                                         | 📖                                     |
+| Tamás Józsa                                          | 📓                                     |
+| Taylor Salo                                          | 💬📖🔌💻                               |
+| Teon L. Brooks                                       | 📖💻⚠️💬👀🤔🔧🐛📢                     |
+| Thomas E. Nichols                                    | 📖📢🔧👀🚧💻                           |
+| Thomas Funck                                         | 📖                                     |
+| Thomas Kirk                                          | 📖                                     |
+| Thomas Okell                                         | 📖                                     |
+| Tibor Auer                                           | 💬📖💡🔧📢🐛🤔                         |
+| Timo Dickscheid                                      | 📖                                     |
+| Timotheus Berg                                       | 📖🤔📓                                 |
+| Tobey Betthauser                                     | 📖                                     |
+| Tobias Bengfort                                      | 💻                                     |
+| Tom Hampshire                                        | 📖                                     |
+| Tor Wager                                            | 📖                                     |
+| Travis Riddle                                        | 📖🔧🐛                                 |
+| Tristan Glatard                                      | 📖💻                                   |
+| Ulrike Bingel                                        | 📖                                     |
+| Vanessa Sochat                                       | 📖                                     |
+| Vasudev Raguram                                      | 💻🎨📖🔧                               |
+| Vince D. Calhoun                                     | 📖                                     |
+| Vittorio Iacovella                                   | 📖                                     |
+| Vladimir Litvak                                      | 📖                                     |
+| Wietske van der Zwaag                                | 🔣💬                                   |
+| William Clarke                                       | 📖                                     |
+| William Triplett                                     | 📖                                     |
+| Wouter V. Potters                                    | 💻📖                                   |
+| Xiangrui Li                                          | 📖💻                                   |
+| Yaroslav O. Halchenko                                | 📖📢🔧💬🐛💻                           |
+| Yoni Ashar                                           | 📖                                     |
+| Yuan Wang                                            | 💻                                     |
+| Zachary Michael                                      | 📖                                     |
+| ezemikulan                                           | 💻                                     |
+| josator2                                             | 💻                                     |
+| monkeyman192                                         | 💻                                     |
+| Étienne Bergeron                                     | 🔣💻                                   |

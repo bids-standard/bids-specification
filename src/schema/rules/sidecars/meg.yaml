@@ -8,27 +8,12 @@
 # Magnetoencephalography
 
 # Sidecar JSON (*_meg.json)
-MEGGeneric:
+MEGHardware:
   selectors:
     - modality == "meg"
     - datatype == "meg"
     - suffix == "meg"
   fields:
-    TaskName:
-      level: required
-      description_addendum: |
-        A recommended convention is to name resting state task using labels
-        beginning with `rest`.
-
-MEGRecommended:
-  selectors:
-    - modality == "meg"
-    - datatype == "meg"
-    - suffix == "meg"
-  fields:
-    InstitutionName: recommended
-    InstitutionAddress: recommended
-    InstitutionalDepartmentName: recommended
     Manufacturer:
       level: recommended
       description_addendum: |
@@ -43,6 +28,19 @@ MEGRecommended:
         See the [MEG Systems Appendix](SPEC_ROOT/appendices/meg-systems.md) for
         preferred names.
     SoftwareVersions: recommended
+    DeviceSerialNumber: recommended
+
+MEGTaskInformation:
+  selectors:
+    - modality == "meg"
+    - datatype == "meg"
+    - suffix == "meg"
+  fields:
+    TaskName:
+      level: required
+      description_addendum: |
+        A recommended convention is to name resting state task using labels
+        beginning with `rest`.
     TaskDescription: recommended
     Instructions:
       level: recommended
@@ -51,7 +49,16 @@ MEGRecommended:
         distinguishing between eyes open and eyes closed paradigms.
     CogAtlasID: recommended
     CogPOID: recommended
-    DeviceSerialNumber: recommended
+
+MEGInstitutionInformation:
+  selectors:
+    - modality == "ieeg"
+    - datatype == "ieeg"
+    - suffix == "ieeg"
+  fields:
+    InstitutionName: recommended
+    InstitutionAddress: recommended
+    InstitutionalDepartmentName: recommended
 
 # Specific MEG fields MUST be present
 MEGRequired:
@@ -72,7 +79,7 @@ MEGRequired:
     DigitizedHeadPoints: required
 
 # Specific MEG fields SHOULD be present
-MEGMoreRecommended:
+MEGRecommended:
   selectors:
     - modality == "meg"
     - datatype == "meg"

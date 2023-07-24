@@ -6,15 +6,23 @@ Please see [Citing BIDS](../introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
-Several [example NIRS datasets](https://github.com/bids-standard/bids-examples#nirs-datasets)
+Several [example NIRS datasets](https://bids-standard.github.io/bids-examples/#nirs)
 have been formatted using this specification and can be used for practical guidance when curating a new dataset.
 
 ## NIRS recording data
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the directory
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+
 {{ MACROS___make_filename_template(
    "raw",
    datatypes=["nirs"],
-   suffixes=["nirs", "events", "channels", "optodes", "coordsystem", "physio", "stim"])
+   suffixes=["nirs", "events", "physio", "stim"])
 }}
 
 Only the *Shared Near Infrared Spectroscopy Format* ([SNIRF](https://github.com/fNIRS/snirf))
@@ -109,7 +117,7 @@ was used:
 Closely spaced or short-separation source-detector pairs are often included in NIRS measurements to
 obtain a measure of systemic, rather than neural, activity. These source-detector
 pairs are referred to as *short channels*. There is variation in how manufacturers
-implement these short channels, some use specialised sources or detectors,
+implement these short channels, some use specialized sources or detectors,
 and the placement mechanisms vary.
 It is beyond the scope of the BIDS specification to define what constitutes a short channel,
 and detailed characteristics of channels may be stored within the SNIRF file
@@ -120,19 +128,82 @@ is stored in the field `ShortChannelCount`.
 If the field `ShortChannelCount` is populated, then the optional column `short_channel`
 may be used in `*_channels.tsv` to describe which channels were specified as short.
 
-Generic fields: For consistency between studies and institutions,
-we encourage users to extract the values of these fields from the actual raw data.
-Whenever possible, please avoid using ad hoc wording.
+For consistency between studies and institutions, we encourage users to extract
+the values of these fields from the actual raw data. Whenever possible, please
+avoid using ad hoc wording.
 
-{{ MACROS___make_sidecar_table("nirs.NirsBase") }}
+Specific NIRS fields that are REQUIRED or may be REQUIRED depending on other
+metadata values:
 
-Specific NIRS fields that are REQUIRED or may be REQUIRED depending on other metadata values:
-
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_sidecar_table("nirs.NirsRequired") }}
 
 Specific NIRS fields that SHOULD be present:
 
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_sidecar_table("nirs.NirsRecommend") }}
+
+#### Generic information
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("nirs.NirsBase") }}
+
+#### Hardware information
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("nirs.NirsHardware") }}
+
+#### Institution information
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("nirs.NirsInstitutionInformation") }}
+
+#### Task information
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("nirs.NirsTaskInformation") }}
 
 #### Example `*_nirs.json`
 
@@ -160,6 +231,14 @@ Specific NIRS fields that SHOULD be present:
 ```
 
 ## Channels description (`*_channels.tsv`)
+
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the directory
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 
 {{ MACROS___make_filename_template(
    "raw",
@@ -197,27 +276,27 @@ and a guide for using macros can be found at
 All NIRS channels types MUST correspond to a [valid SNIRF data type](https://github.com/fNIRS/snirf/blob/master/snirf_specification.md#appendix).
 Additional channels that are recorded simultaneously with the NIRS
 device and stored in the same data file SHOULD be included as well.
-However, additional channels that are  simultaneously recorded with a different device
+However, additional channels that are simultaneously recorded with a different device
 SHOULD be stored according to their appropriate modality specification.
 For example, motion data that was simultaneously recorded with a different device should be specified
-according to BEP029 and not according to the NIRS data type.
+according to the [Motion](../modality-specific-files/motion.md) and not according to the NIRS data type.
 Whereas, if the motion data was acquired in with the NIRS device itself, it should be included here with the NIRS data.
 Any of the channel types defined in other BIDS specification MAY be used here as well such as `ACCEL` or `MAGN`.
 As several of these data types are commonly acquired using NIRS devices they are included as an example at the base of the table.
 Note that upper-case is REQUIRED.
 
-| **Keyword**                 | **Description**                                                                                                                                                              |
-| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| NIRSCWAMPLITUDE             | Continuous wave amplitude measurements. Equivalent to dataType 001 in SNIRF.                                                                                                 |
-| NIRSCWFLUORESCENSEAMPLITUDE | Continuous wave fluorescence amplitude measurements. Equivalent to dataType 051 in SNIRF.                                                                                    |
-| NIRSCWOPTICALDENSITY        | Continuous wave change in optical density measurements. Equivalent to dataTypeLabel dOD in SNIRF.                                                                            |
-| NIRSCWHBO                   | Continuous wave oxygenated hemoglobin (oxyhemoglobin) concentration measurements. Equivalent to dataTypeLabel HbO in SNIRF.                                                  |
-| NIRSCWHBR                   | Continuous wave deoxygenated hemoglobin (deoxyhemoglobin) concentration measurements. Equivalent to dataTypeLabel HbR in SNIRF.                                              |
-| NIRSCWMUA                   | Continuous wave optical absorption  measurements. Equivalent to dataTypeLabel mua in SNIRF.                                                                                  |
-| ACCEL                       | Accelerometer channel, one channel for each orientation. An extra column `component` for the axis of the orientation MUST be added to the `*_channels.tsv` file (x, y or z). |
-| GYRO                        | Gyrometer channel, one channel for each orientation. An extra column `component` for the axis of the orientation MUST be added to the `*_channels.tsv` file (x, y or z).     |
-| MAGN                        | Magnetomenter channel, one channel for each orientation. An extra column `component` for the axis of the orientation MUST be added to the `*_channels.tsv` file (x, y or z). |
-| MISC                        | Miscellaneous                                                                                                                                                                |
+| **Keyword**                 | **Description**                                                                                                                                            |
+| --------------------------- | -----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| NIRSCWAMPLITUDE             | Continuous wave amplitude measurements. Equivalent to dataType 001 in SNIRF.                                                                               |
+| NIRSCWFLUORESCENSEAMPLITUDE | Continuous wave fluorescence amplitude measurements. Equivalent to dataType 051 in SNIRF.                                                                  |
+| NIRSCWOPTICALDENSITY        | Continuous wave change in optical density measurements. Equivalent to dataTypeLabel dOD in SNIRF.                                                          |
+| NIRSCWHBO                   | Continuous wave oxygenated hemoglobin (oxyhemoglobin) concentration measurements. Equivalent to dataTypeLabel HbO in SNIRF.                                |
+| NIRSCWHBR                   | Continuous wave deoxygenated hemoglobin (deoxyhemoglobin) concentration measurements. Equivalent to dataTypeLabel HbR in SNIRF.                            |
+| NIRSCWMUA                   | Continuous wave optical absorption  measurements. Equivalent to dataTypeLabel mua in SNIRF.                                                                |
+| ACCEL                       | Accelerometer channel, one channel for each spatial axis. An extra column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z). |
+| GYRO                        | Gyrometer channel, one channel for each spatial axis. An extra column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z).     |
+| MAGN                        | Magnetomenter channel, one channel for each spatial axis. An extra column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z). |
+| MISC                        | Miscellaneous                                                                                                                                              |
 
 ### Example `*_channels.tsv`
 
@@ -231,6 +310,14 @@ S3-D4        NIRSCWAMPLITUDE        VisS2       VisD4         760               
 ```
 
 ## Optode description (`*_optodes.tsv`)
+
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the directory
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 
 {{ MACROS___make_filename_template(
    "raw",
@@ -269,6 +356,14 @@ VisD4   detector     0.0322     0.2214    0.2299     0.02          0.22         
 
 ## Coordinate System JSON (`*_coordsystem.json`)
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the directory
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+
 {{ MACROS___make_filename_template(
    "raw",
    datatypes=["nirs"],
@@ -289,17 +384,53 @@ In this case, only x and y are specified and z is `"n/a"`.
 
 General fields:
 
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+
 {{ MACROS___make_sidecar_table("nirs.CoordsystemGeneral") }}
 
 Fields relating to the NIRS optode positions:
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 
 {{ MACROS___make_sidecar_table(["nirs.CoordinateSystem", "nirs.CoordinateSystemDescriptionRec"]) }}
 
 Fields relating to the position of fiducials measured during an NIRS session/run:
 
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+
 {{ MACROS___make_sidecar_table(["nirs.Fiducials", "nirs.FiducialsCoordinateSystemDescriptionRec"]) }}
 
 Fields relating to the position of anatomical landmarks measured during an NIRS session/run:
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 
 {{ MACROS___make_sidecar_table(["nirs.AnatomicalLandmark", "nirs.AnatomicalLandmarkCoordinateSystemDescriptionRec"]) }}
 
@@ -310,6 +441,6 @@ Fields relating to the position of anatomical landmarks measured during an NIRS 
   "NIRSCoordinateSystem": "Other",
   "NIRSCoordinateUnits": "mm",
   "NIRSCoordinateSystemDescription": "RAS orientation: Origin halfway between LPA and RPA, positive x-axis towards RPA, positive y-axis orthogonal to x-axis through Nasion, z-axis orthogonal to xy-plane, pointing in superior direction.",
-  "FiducialsDescription": "Optodes and fiducials were digitized with Polhemus, fiducials were recorded as the centre of vitamin E capsules sticked on the left/right pre-auricular and on the nasion, these are also visible on the T1w MRI"
+  "FiducialsDescription": "Optodes and fiducials were digitized with Polhemus, fiducials were recorded as the center of vitamin E capsules sticked on the left/right pre-auricular and on the nasion, these are also visible on the T1w MRI"
 }
 ```

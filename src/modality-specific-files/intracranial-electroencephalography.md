@@ -6,7 +6,7 @@ Please see [Citing BIDS](../introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
-Several [example iEEG datasets](https://github.com/bids-standard/bids-examples#ieeg-datasets)
+Several [example iEEG datasets](https://bids-standard.github.io/bids-examples/#ieeg)
 have been formatted using this specification
 and can be used for practical guidance when curating a new dataset.
 
@@ -94,39 +94,11 @@ electrode and the location of the ground electrode MAY be specified.
 
 ### Sidecar JSON (`*_ieeg.json`)
 
-For consistency between studies and institutions, we encourage users to extract
-the values of metadata fields from the actual raw data. Whenever possible,
-please avoid using ad hoc wording.
-
-Generic fields MUST be present:
-
-<!-- This block generates a metadata table.
-These tables are defined in
-  src/schema/rules/sidecars
-The definitions of the fields specified in these tables may be found in
-  src/schema/objects/metadata.yaml
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_sidecar_table("ieeg.iEEGGeneric") }}
-
-Note that the `TaskName` field does not have to be a "behavioral task" that subjects perform, but can reflect some information about the conditions present when the data was acquired (for example, `"rest"`, `"sleep"`, or `"seizure"`).
-
-SHOULD be present: For consistency between studies and institutions, we
-encourage users to extract the values of these fields from the actual raw data.
+For consistency between studies and institutions,
+we encourage users to extract the values of metadata fields from the actual raw data.
 Whenever possible, please avoid using ad hoc wording.
 
-<!-- This block generates a metadata table.
-These tables are defined in
-  src/schema/rules/sidecars
-The definitions of the fields specified in these tables may be found in
-  src/schema/objects/metadata.yaml
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_sidecar_table("ieeg.iEEGRecommended") }}
-
-Specific iEEG fields MUST be present:
+Those fields MUST be present:
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -138,7 +110,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("ieeg.iEEGRequired") }}
 
-Specific iEEG fields SHOULD be present:
+Those fields SHOULD be present:
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -148,9 +120,9 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("ieeg.iEEGMoreRecommended") }}
+{{ MACROS___make_sidecar_table("ieeg.iEEGRecommended") }}
 
-Specific iEEG fields MAY be present:
+These fields MAY be present:
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -165,6 +137,44 @@ A guide for using macros can be found at
 Note that the date and time information SHOULD be stored in the study key file
 ([`scans.tsv`](../modality-agnostic-files.md#scans-file)).
 Date time information MUST be expressed as indicated in [Units](../common-principles.md#units)
+
+#### Hardware information
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("ieeg.iEEGHardware") }}
+
+#### Task information
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("ieeg.iEEGTaskInformation") }}
+
+Note that the `TaskName` field does not have to be a "behavioral task" that subjects perform, but can reflect some information about the conditions present when the data was acquired (for example, `"rest"`, `"sleep"`, or `"seizure"`).
+
+#### Institution information
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("ieeg.iEEGInstitutionInformation") }}
 
 #### Example `*_ieeg.json`
 
@@ -430,7 +440,7 @@ data.
 }
 ```
 
-## Photos of the electrode positions (`*_photo.jpg`)
+## Photos of the electrode positions (`*_photo.<extension>`)
 
 <!--
 This block generates a filename templates.
@@ -451,18 +461,18 @@ or entirely omitted prior to sharing, depending on obtained consent.
 If there are photos of the electrodes, the [`acq-<label>`](../appendices/entities.md#acq) entity should be specified
 with:
 
--   `*_photo.jpg` in case of an operative photo
+-   `*_photo.<extension>` in case of an operative photo
 
--   `*_acq-xray#_photo.jpg` in case of an x-ray picture
+-   `*_acq-xray#_photo.<extension>` in case of an x-ray picture
 
--   `*_acq-drawing#_photo.jpg` in case of a drawing or sketch of electrode
+-   `*_acq-drawing#_photo.<extension>` in case of a drawing or sketch of electrode
     placements
 
--   `*_acq-render#_photo.jpg` in case of a rendering
+-   `*_acq-render#_photo.<extension>` in case of a rendering
 
 The [`ses-<label>`](../appendices/entities.md#ses) entity may be used to specify when the photo was taken.
 
-### Example `*_photo.jpg`
+### Example `*_photo.<extension>`
 
 Example of the operative photo of ECoG electrodes (here is an annotated example in
 which electrodes and vasculature are marked, taken from Hermes et al.,
