@@ -1,7 +1,7 @@
-"""Update the table of contributors in the specification appendice.
+"""Update the table of contributors in the specification appendix.
 
 
-Takes the content from ".all-contributorsrc"
+Takes the content from the `.all-contributorsrc` file
 to update the table of contributors names and contribution.
 
 """

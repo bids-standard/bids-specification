@@ -75,19 +75,26 @@ It will be generated once the GitHub release has been completed.
 
 #### 2.2 Update the contributors list
 
-Synchronize the [Contributors appendix](https://github.com/bids-standard/bids-specification/blob/master/src/appendices/contributors.md)
-with the [Contributors wiki page](https://github.com/bids-standard/bids-specification/wiki/Contributors)
-to ensure all contributors are duly credited.
-Be sure not to remove credits if both have been edited.
+We want to ensure that all contributors are duly credited.
 
+To synchronize the
+[Contributors appendix](https://github.com/bids-standard/bids-specification/blob/master/src/appendices/contributors.md)
+with the
+[Contributors wiki page](https://github.com/bids-standard/bids-specification/wiki/Contributors),
+please follow these steps:
+
+- be sure not to remove credits if both the contributors appendix AND
+  the contributors wiki page have been edited (or the `.tributors` or `.all-contributorsrc` files)
 - add new contributors info to the `tools/new_contributors.tsv` file.
 - make sure that you have installed
   - all the python packages listed in `tools/requirements.txt`
   - the [allcontributors](https://allcontributors.org/docs/en/cli/installation) package
 - run:
+
 ```bash
 make update_contributors
 ```
+
 - you may need to fix some errors in the contributions names in case of crash
 - make sure to review the changes and not commit them blindly
 - commit the changes
