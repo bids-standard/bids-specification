@@ -3,6 +3,7 @@
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
 -   \[FIX] Update links to BIDS examples [#1545](https://github.com/bids-standard/bids-specification/pull/1545) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[ENH] Clarify meaning of raw vs derivative datasets [#1537](https://github.com/bids-standard/bids-specification/pull/1537) ([CPernet](https://github.com/CPernet))
 -   \[FIX] match subject label in folder and filename in func example [#1536](https://github.com/bids-standard/bids-specification/pull/1536) ([Remi-Gau](https://github.com/Remi-Gau))
 -   FIX: Trail MEG directory formats with `/` [#1534](https://github.com/bids-standard/bids-specification/pull/1534) ([effigies](https://github.com/effigies))
 -   \[ENH] Permit CITATION.cff as structured alternative to some dataset_description fields [#1525](https://github.com/bids-standard/bids-specification/pull/1525) ([effigies](https://github.com/effigies))
