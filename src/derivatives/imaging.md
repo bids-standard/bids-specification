@@ -268,7 +268,7 @@ Template:
 <pipeline_name>/
     sub-<label>/
         anat|func|dwi/
-            <source_entities>[_space-<space>][_atlas-<label>][_res-<label>][_den-<label>]_dseg.nii.gz
+            <source_entities>[_space-<space>][_atlas-<label>][_res-<label>][_den-<label>][_desc-<label>]_dseg.nii.gz
 ```
 
 Example:
@@ -333,7 +333,7 @@ Template:
 <pipeline_name>/
     sub-<label>/
         func|anat|dwi/
-            <source_entities>[_space-<space>][_atlas-<label>][_res-<label>][_den-<label>][_label-<label>]_probseg.nii.gz
+            <source_entities>[_space-<space>][_atlas-<label>][_res-<label>][_den-<label>][_label-<label>][_desc-<label>]_probseg.nii.gz
 ```
 
 Example:
@@ -407,7 +407,7 @@ Template:
 <pipeline_name>/
     sub-<label>/
         anat/
-            <source_entities>[_hemi-{L|R}][_space-<space>][_atlas-<label>][_res-<label>][_den-<label>]_dseg.{label.gii|dlabel.nii}
+            <source_entities>[_hemi-{L|R}][_space-<space>][_atlas-<label>][_res-<label>][_den-<label>][_desc-<label>]_dseg.{label.gii|dlabel.nii}
 ```
 
 The [`hemi-<label>`](../appendices/entities.md#hemi) entity is REQUIRED for GIFTI files storing information about
