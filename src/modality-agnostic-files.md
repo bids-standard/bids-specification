@@ -5,7 +5,8 @@
 Templates:
 
 -   `dataset_description.json`
--   `README`
+-   `README[.md|.rst|.txt]`
+-   `CITATION.cff`
 -   `CHANGES`
 -   `LICENSE`
 
