@@ -53,7 +53,7 @@ A guide for using macros can be found at
                 "sub-control01_ses-postdrug_phasediff.json": "",
                 "sub-control01_ses-postdrug_magnitude1.nii.gz": "",
                 }
-            }
+            },
         "sub-control01_sessions.tsv": "",
         },
     "participants.tsv": "",
