@@ -231,7 +231,7 @@ PDw:
     In spin-echo sequences, this contrast is achieved at short echo and long
     repetition times.
     In gradient-echo sequences, it is achieved at a short echo time together with
-    a long repetition time, a small flip angle, or both. 
+    a long repetition time, a small flip angle, or both.
   unit: arbitrary
 PLI:
   value: PLI
