@@ -54,6 +54,7 @@ A guide for using macros can be found at
                 "sub-control01_ses-postdrug_magnitude1.nii.gz": "",
                 }
             }
+        "sub-control01_sessions.tsv": "",
         },
     "participants.tsv": "",
     "dataset_description.json": "",
@@ -61,6 +62,19 @@ A guide for using macros can be found at
     "CHANGES": "",
     }
 ) }}
+
+`sub-control01_sessions.tsv` content:
+
+```Text
+session_id	acq_time	systolic_blood_pressure
+ses-predrug	2009-06-15T13:45:30	120
+ses-postdrug	2009-06-16T13:45:30	100
+```
+
+See this [example dataset](https://github.com/bids-standard/bids-examples/tree/master/7t_trt)
+that has been formatted
+using this specification and can be used
+for practical guidance when curating a new longitudinal dataset.
 
 ## Multi-site or multi-center studies
 
