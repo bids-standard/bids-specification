@@ -12,7 +12,7 @@ and can be used for practical guidance when curating a new dataset.
 -   [`multimodal MEG and MRI`](https://github.com/bids-standard/bids-examples/tree/master/ds000117)
 
 Further datasets are available from
-the [BIDS examples repository](https://github.com/bids-standard/bids-examples).
+the [BIDS examples repository](https://bids-standard.github.io/bids-examples/#meg).
 
 ## MEG recording data
 

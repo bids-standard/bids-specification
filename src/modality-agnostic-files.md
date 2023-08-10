@@ -5,7 +5,8 @@
 Templates:
 
 -   `dataset_description.json`
--   `README`
+-   `README[.md|.rst|.txt]`
+-   `CITATION.cff`
 -   `CHANGES`
 -   `LICENSE`
 
@@ -166,6 +167,26 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___render_text("objects.files.README.description") }}
+
+### `CITATION.cff`
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___render_text("objects.files.CITATION.description") }}
+
+For most redundant fields between `CITATION.cff` and `dataset_description.json`,
+the `CITATION.cff` SHOULD take precedence.
+To avoid inconsistency, metadata present in `CITATION.cff` SHOULD NOT be
+be included in `dataset_description.json`, with the exception of `Name` and
+`DatasetDOI`, to ensure that `CITATION.cff`-unaware tools can generate
+references to the dataset.
+In particular, if `CITATION.cff` is present,
+the `"Authors"` field of `dataset_description.json` MUST be omitted,
+and the `"HowToAcknowledge"`, `"License"` and `"ReferencesAndLinks"` SHOULD be omitted
+in favor of the `CITATION.cff` fields `message`/`preferred-citation`, `license` and
+`references`.
 
 ### `CHANGES`
 

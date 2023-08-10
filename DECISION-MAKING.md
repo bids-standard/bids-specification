@@ -29,6 +29,8 @@ Current and past members of the steering group can be found
 | Anthony Galassi  ([@bendhouseart](https://github.com/bendhouseart))       | 3h/week         | PET, Community development            | Sep 2021 |
 | Eric Earl ([@ericearl](https://github.com/ericearl))                      | 2h/week         |                                       | Dec 2021 |
 | Christine Rogers ([@christinerogers](https://github.com/christinerogers)) | 2h/mo           | Interoperability, EEG and multi-modal | Apr 2023 |
+| Nell Hardcastle ([@nellh](https://github.com/nellh))                      | 2h/week         |                                       | Jul 2023 |
+| Kimberly Ray ([@KimberlyLRay](https://github.com/KimberlyLRay))                      | 1h/week         |                                       | Nov 2022 |
 
 In addition to the [BIDS Governance](https://bids.neuroimaging.io/governance.html#bids-maintainers-group)
 classification of a maintainer, maintainers may declare a limited scope of responsibility.
