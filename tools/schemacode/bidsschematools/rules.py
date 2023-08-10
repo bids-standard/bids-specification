@@ -136,9 +136,18 @@ def _split_inheritance_rules(rule: Mapping) -> ty.List[Mapping]:
 
     Implements the inheritance principle for file naming.
     """
-    heritable_exts = {".tsv", ".json", ".bval", ".bvec"}
-    rule_exts = {ext for group in rule["extensions"] for ext in group}
 
+    extensions = []
+    for x in rule["extensions"]:
+        if isinstance(x[0], str):
+            extensions.append(x[0])
+        if isinstance(x[0], list):
+            extensions.extend(iter(x[0]))
+    extensions = [extensions]
+
+    rule_exts = {ext for group in extensions for ext in group}
+
+    heritable_exts = {".tsv", ".json", ".bval", ".bvec"}
     main_exts = rule_exts - heritable_exts
     # If a rule only has TSV or JSON files, entities can be
     # made required
