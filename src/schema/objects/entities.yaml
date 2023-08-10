@@ -25,16 +25,6 @@ acquisition:
     remains at the discretion of the researcher.
   type: string
   format: label
-atlas:
-  name: atlas
-  display_name: Atlas
-  description: |
-    The `atlas-<label>` key/value pair corresponds to a custom label the user
-    MAY use to distinguish a different atlas used for similar type of data.
-
-    This entity is only applicable to derivative data.
-  type: string
-  format: label
 ceagent:
   name: ce
   display_name: Contrast Enhancing Agent
@@ -284,6 +274,15 @@ sample:
     A sample pertaining to a subject such as tissue, primary cell or cell-free sample.
     The `sample-<label>` entity is used to distinguish between different samples from the same subject.
     The label MUST be unique per subject and is RECOMMENDED to be unique throughout the dataset.
+  type: string
+  format: label
+seg:
+  name: seg
+  display_name: segmentation
+  description: |
+    The `seg-<label>` key/value pair corresponds to a custom label the user
+    MAY use to distinguish different segmentations.
+    This entity is only applicable to derivative data.
   type: string
   format: label
 session:
