@@ -23,22 +23,6 @@ meg:
     processing: optional
     split: optional
 
-headpoints:
-  suffixes:
-    - digitizer
-  extensions:
-    - .txt
-  datatypes:
-    - meg
-  entities:
-    subject: required
-    session: optional
-    task: required
-    acquisition: optional
-    run: optional
-    processing: optional
-    split: optional
-
 calibration:
   suffixes:
     - meg

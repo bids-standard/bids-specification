@@ -551,10 +551,6 @@ defacemask:
   description: |
     A binary mask that was used to remove facial features from an anatomical MRI
     image.
-digitizer:
-  value: digitizer
-  display_name: Digitizer
-  description: Digitized positions of the head points.
 dseg:
   value: dseg
   display_name: Discrete Segmentation
