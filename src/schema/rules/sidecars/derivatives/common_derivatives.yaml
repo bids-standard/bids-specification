@@ -55,16 +55,6 @@ SegmentationCommon:
   fields:
     Manual: optional
 
-SegmentationCommonAtlas:
-  selectors:
-    - dataset.dataset_description.DatasetType == "derivative"
-    - 'intersects([suffix], ["dseg", "probseg"])'
-    - '"atlas" in entities'
-  fields:
-    Atlas:
-      level: recommended
-      level_addendum: if `atlas` is present
-
 # Derivatives -> Imaging data types
 ImageDerivatives:
   selectors:
