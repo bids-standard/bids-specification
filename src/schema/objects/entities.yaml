@@ -51,9 +51,12 @@ chunk:
   name: chunk
   display_name: Chunk
   description: |
-    The `chunk-<index>` key/value pair is used to distinguish between different regions,
-    2D images or 3D volumes files,
-    of the same physical sample with different fields of view acquired in the same imaging experiment.
+    The `chunk-<index>` entity is used to distinguish between different regions, 2D images (for example Microscopy),
+    3D volumes files, or 4D volumes files (for example DWI) of the same physical sample with different fields of
+    view acquired in the same imaging experiment.
+
+    In case of MRI data, this entity is used to distinguish between different anatomical regions, for example brain
+    and spinal cord.
   type: string
   format: index
 density:
