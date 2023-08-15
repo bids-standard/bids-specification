@@ -276,9 +276,9 @@ sample:
     The label MUST be unique per subject and is RECOMMENDED to be unique throughout the dataset.
   type: string
   format: label
-seg:
+segmentation:
   name: seg
-  display_name: segmentation
+  display_name: Segmentation
   description: |
     The `seg-<label>` key/value pair corresponds to a custom label the user
     MAY use to distinguish different segmentations.
