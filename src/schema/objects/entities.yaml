@@ -282,6 +282,7 @@ segmentation:
   description: |
     The `seg-<label>` key/value pair corresponds to a custom label the user
     MAY use to distinguish different segmentations.
+
     This entity is only applicable to derivative data.
   type: string
   format: label
