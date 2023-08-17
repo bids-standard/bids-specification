@@ -272,7 +272,9 @@ in the accompanying JSON sidecar as follows (based on the example of the previou
         "ScreenDistance": 1.8,
         "ScreenRefreshRate": 60,
         "ScreenResolution": [1920, 1200],
-        "ScreenSize": [0.472, 0.295]
-    }
+        "ScreenSize": [0.472, 0.295],
+        "HeadStabilization": "none"
+    },
+    "VisionCorrection": "lenses"
 }
 ```
