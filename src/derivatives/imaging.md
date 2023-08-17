@@ -249,7 +249,6 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table([
        "derivatives.common_derivatives.SegmentationCommon",
-       "derivatives.common_derivatives.SegmentationCommonAtlas",
        "derivatives.common_derivatives.ImageDerivativeResEntity",
        "derivatives.common_derivatives.ImageDerivativeDenEntity",
    ]) }}
