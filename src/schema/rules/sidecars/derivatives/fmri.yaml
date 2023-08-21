@@ -2,7 +2,7 @@
 FunctionalMapFields:
   selectors:
     - dataset.dataset_description.DatasetType == "derivative"
-    - intersects([suffix], ["boldmap", "cbfmap"])
+    - intersects([suffix], ["boldmap", "cbvmap"])
     - intersects([extension], [".nii", ".nii.gz", ".func.gii", ".dscalar.nii"])
   fields:
     SoftwareFilters:
