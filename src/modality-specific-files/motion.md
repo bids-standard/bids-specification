@@ -139,8 +139,9 @@ The REQUIRED columns are channel `name`, `component`, `type`, `tracked_point` an
 Any number of additional columns MAY be added to provide additional information about the channels.
 The `*_tracksys-<label>_channels.tsv` file SHOULD give additional information about individual recorded channel,
 some of which my not be found summarized in `*_motion.json`.
-To store information about specific coordinate system information for a channel, we RECOMMEND to use the `reference_frame` column.
-A detailed description about the reference frame in which the data is to be interpreted, is described [here](./motion.md#reference-frame-description-_channelsjson).
+To store information about reference frames for a channel, the `reference_frame` column SHOULD
+be used
+(see [Reference frame description (`*_channels.json`)](#reference-frame-description-_channelsjson)).
 
 The columns of the channels description table stored in `*_channels.tsv` are:
 
