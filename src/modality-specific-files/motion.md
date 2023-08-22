@@ -204,18 +204,16 @@ t2_gyro_z   z           GYRO   RightWrist      rad/s    global
 
 A reference frame specifies the origin and orientation of the spatial axes with respect to which motion data is to be interpreted.
 In case the information is available, sharing this can immensely boost the usability of shared data.
-It is RECOMMENDED that the `*_channels.json` file contains information about the reference frames used for motion channels.
-When shared, it SHOULD be stored in field `reference_frame`.
-The defined levels are specified as user-defined keywords, which MUST match a value in the `reference_frame` colunm in the matching `*_channels.tsv` file.
-Nested under each level of `reference_frame` are three RECOMMENDED fields, namely `RotationRule`, `RotationOrder` and `SpatialAxes`.
-Field `RotationOrder` specifies the sequence in which the elemental 3D extrinsic rotations are applied around the three distinct axes.
-The value MUST be one of: "XYZ", "XZY", "YXZ", "YZX", "ZXY", "ZYX", or "n/a".
-Field `RotationRule` indicates whether rotations are applied clockwise around an axis when seen from the positive direction (left-hand rule) or counter-clockwise (right-hand rule). The value MUST be one of: "left-hand", "right-hand", or "n/a".
-Lastly, field `SpatialAxis` refers to the coordinate system in which the motion data are to be interpreted, if the recorded data can be mapped to a fixed reference frame.
-A sequence of characters A/P (anterior-posterior, indicating forward-backward), L/R (left-right), and S/I (superior-inferior, indicating up-down).
-The position of a character in the sequence determines which of the X,Y,Z axes it maps to. For example, "ARS" for X-anterior, Y-right, Z-superior.
-For 1D or 2D cases, only specify the used axes and use the character "_" for unused axes ("A_R" when the Y axis is not used, for instance).
-If non of these principals apply, a free-form field `ReferenceFrameDescription` MAY be used for the definition.
+The description of the `reference_frame` column SHOULD use the `"Levels"`
+field to describe the named field using [objects][object] with following fields.
+
+| Key name      | Requirement Level                                      | Data type  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|---------------|--------------------------------------------------------|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| RotationOrder | RECOMMENDED                                            | [string][] | The sequence in which the extrinsic rotations are applied around the three axes. One of `"XYZ"`, `"XZY"`, `"YXZ"`, `"YZX"`, `"ZXY"`, or `"ZYX"`.                                                                                                                                                                                                                                                                                                                   |
+| RotationRule  | RECOMMENDED                                            | [string][] | The direction of rotation around each axis. One of `"left-hand"` or `"right-hand"`.                                                                                                                                                                                                                                                                                                                                                                                |
+| SpatialAxes   | RECOMMENDED                                            | [string][] | The coordinate system in which the motion data are to be interpreted. A sequence of characters from the set `{'A', 'P', 'L', 'R', 'S', 'I', '_'}` indicating the direction of each axis. For example `"ARS"` indicates positive values in the X, Y, Z axes are respectively anterior, right, and superior of the origin, while `"PLI"` indicates positive values are posterior, left, and inferior of the origin. The `"_"` character may be used for unused axes. |
+| Description   | OPTIONAL, but RECOMMENDED if no other keys are present | [string][] | A description of the `reference_frame`                                                                                                                                                                                                                                                                                                                                                                                                                             |
+
 
 ### Example of `*_channels.json`
 
@@ -235,3 +233,9 @@ If non of these principals apply, a free-form field `ReferenceFrameDescription` 
   }
 }
 ```
+
+<!-- Link Definitions -->
+
+[object]: https://www.json.org/json-en.html
+
+[string]: https://www.w3schools.com/js/js_json_datatypes.asp
