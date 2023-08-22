@@ -220,23 +220,18 @@ If non of these principals apply, a free-form field `ReferenceFrameDescription` 
 ### Example of `*_channels.json`
 
 ```json
-"reference_frame": {
-        "Levels": {
-            "global": {
-                "ReferenceFrameDescription": "n/a",
-                "SpatialAxes": "ALS",
-                "RotationOrder": "ZXY",
-                "RotationRule": "right-hand"
-            },
-            "local": {
-                "ReferenceFrameDescription": "Joint angles are described following the ISB-based coordinate system,
-                                                with a local reference frame attached to the body segment.
-                                                See Wu and Cavanagh (1995), Wu et al. (2002), Wu et al. (2005),
-                                                and the Xsens MVN Awinda user manual for more information.",
-                "SpatialAxes": "n/a",
-                "RotationOrder": "n/a",
-                "RotationRule": "n/a"
-            }
-        }
+{
+  "reference_frame": {
+    "Levels": {
+      "global": {
+        "SpatialAxes": "ALS",
+        "RotationOrder": "ZXY",
+        "RotationRule": "right-hand"
+      },
+      "local": {
+        "ReferenceFrameDescription": "Joint angles are described following [...]"
+      }
     }
+  }
+}
 ```
