@@ -228,7 +228,7 @@ field to describe the named field using [objects][object] with following fields.
         "RotationRule": "right-hand"
       },
       "local": {
-        "ReferenceFrameDescription": "Joint angles are described following [...]"
+        "Description": "Joint angles are described following [...]"
       }
     }
   }
