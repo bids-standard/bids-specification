@@ -377,16 +377,13 @@ reference__ieeg:
     - type: string
       enum:
         - n/a
-# reference frame column for channels.tsv files for motion data
-reference_frame__motion:
-  name: reference
+reference_frame:
+  name: reference_frame
   display_name: Reference frame
   description: |
     Specification of a reference frame in which the motion data are to be interpreted.
-    The value MUST match any of used key-value pair in the `*_channels.json` file in the motion directory.
-    It is RECOMMENDED to use a meanigful combination of `RotationRule`, `RotationOrder`
-    and `SpatialAxis` for the specification.
-    If a channel is not to be interpreted in a reference frame use `n/a`.
+    The description of the levels in `*_channels.json` SHOULD use `RotationRule`,
+    `RotationOrder` and `SpatialAxis` for the specification.
   anyOf:
     - type: string
     - type: string

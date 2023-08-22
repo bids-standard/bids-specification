@@ -13,11 +13,11 @@ motionChannels:
   columns:
     name__channels: required
     component: required
-    reference_frame__motion: recommended
     type__channels: required
     tracked_point__channels: required
     units__motion: required
     placement__motion: recommended
+    reference_frame: recommended
     description: optional
     sampling_frequency: optional
     status: optional
