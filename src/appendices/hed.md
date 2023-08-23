@@ -146,7 +146,7 @@ Partnered library schemas were introduced in HED specification version 3.2.0 and
 
 ##### Unpartnered library schemas example
 
-The following `dataset_description.json` file specifies that the [HED8.1.0.xml](https://github.com/hed-standard/hed-schemas/blob/main/standard_schema/hedxml/HED8.1.0.xml) standard schema should be used along with the HED-SCDORE library schema for clinical neurological annotation located at [HED_score_1.0.0.xml](https://github.com/hed-standard/hed-schemas/blob/main/library_schemas/score/hedxml/HED_score_1.0.0.xml). 
+The following `dataset_description.json` file specifies that the [HED8.1.0.xml](https://github.com/hed-standard/hed-schemas/blob/main/standard_schema/hedxml/HED8.1.0.xml) standard schema should be used along with the HED-SCDORE library schema for clinical neurological annotation located at [HED_score_1.0.0.xml](https://github.com/hed-standard/hed-schemas/blob/main/library_schemas/score/hedxml/HED_score_1.0.0.xml).
 
 ```JSON
 {
@@ -201,4 +201,3 @@ The corresponding anotations in the dataset uses tags from the HED-SCORE library
 ```Text
 Data-feature, Eye-blink-artifact, Seizure-PNES
 ```
-
