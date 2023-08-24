@@ -14,7 +14,7 @@ Blood:
       level_addendum: required if `MetaboliteAvail` is `true`
     metabolite_polar_fraction:
       level: optional
-      level_addendum: required if `MetaboliteAvail` is `true`
+      level_addendum: recommended if `MetaboliteAvail` is `true`
     hplc_recovery_fractions:
       level: optional
       level_addendum: required if `MetaboliteRecoveryCorrectionApplied` is `true`
