@@ -6,12 +6,15 @@
 
 ---
 # Magnetoencephalography
+#
+# Note: "task" in entities identifies MEG data files and excludes calibration/crosstalk scans
 
 # Sidecar JSON (*_meg.json)
 MEGHardware:
   selectors:
     - modality == "meg"
     - datatype == "meg"
+    - '"task" in entities'
     - suffix == "meg"
   fields:
     Manufacturer:
@@ -34,6 +37,7 @@ MEGTaskInformation:
   selectors:
     - modality == "meg"
     - datatype == "meg"
+    - '"task" in entities'
     - suffix == "meg"
   fields:
     TaskName:
@@ -54,6 +58,7 @@ MEGInstitutionInformation:
   selectors:
     - modality == "meg"
     - datatype == "meg"
+    - '"task" in entities'
     - suffix == "meg"
   fields:
     InstitutionName: recommended
@@ -65,6 +70,7 @@ MEGRequired:
   selectors:
     - modality == "meg"
     - datatype == "meg"
+    - '"task" in entities'
     - suffix == "meg"
   fields:
     SamplingFrequency:
@@ -83,6 +89,7 @@ MEGRecommended:
   selectors:
     - modality == "meg"
     - datatype == "meg"
+    - '"task" in entities'
     - suffix == "meg"
   fields:
     MEGChannelCount: recommended
