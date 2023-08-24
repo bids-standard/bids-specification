@@ -42,7 +42,7 @@ ShortChannelCountReq:
   selectors:
     - suffix == "nirs"
   checks:
-    - sidecar.ShortChannelCount == count(associations.channels.short_channel, true)
+    - sidecar.ShortChannelCount == count(associations.channels.short_channel, "true")
 
 Component:
   selectors:
