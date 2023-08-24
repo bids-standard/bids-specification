@@ -47,7 +47,10 @@ LOG_LEVEL = "DEBUG"  # 'DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'
 UPDATE_AVATARS = False
 GH_USERNAME = "Remi-Gau"
 TOKEN_FILE = None
-RICH_STACKTRACE = False  # XXX: what is this?
+# if you not want traceback from rich
+# https://rich.readthedocs.io/en/stable/traceback.html
+# set this to False
+RICH_STACKTRACE = False
 
 # Set to True to use some of the dummy data in the `new_contributors.tsv`
 TEST = True
