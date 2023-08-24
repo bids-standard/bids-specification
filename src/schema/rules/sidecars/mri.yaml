@@ -37,14 +37,6 @@ MRIHardware:
     CoilCombinationMethod: recommended
     NumberTransmitCoilActiveElements: optional
 
-MRISample:
-  selectors:
-    - modality == "mri"
-  fields:
-    BodyPart: optional
-    BodyPartDetails: optional
-    BodyPartDetailsOntology: optional
-
 MRIScannerHardwareASL:
   selectors:
     - datatype == "perf"
