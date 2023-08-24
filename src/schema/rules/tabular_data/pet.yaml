@@ -27,7 +27,6 @@ BloodPlasma:
     - datatype == "pet"
     - suffix == "blood"
     - extension == ".tsv"
-    - '"PlasmaAvail" in sidecar'
     - sidecar.PlasmaAvail == true
   columns:
     plasma_radioactivity: required
@@ -37,7 +36,6 @@ BloodMetabolite:
     - datatype == "pet"
     - suffix == "blood"
     - extension == ".tsv"
-    - '"MetaboliteAvail" in sidecar'
     - sidecar.MetaboliteAvail == true
   columns:
     metabolite_parent_fraction: required
@@ -48,7 +46,6 @@ BloodMetaboliteCorrection:
     - datatype == "pet"
     - suffix == "blood"
     - extension == ".tsv"
-    - '"MetaboliteRecoveryCorrectionApplied" in sidecar'
     - sidecar.MetaboliteRecoveryCorrectionApplied == true
   columns:
     hplc_recovery_fractions: required
@@ -58,7 +55,6 @@ BloodWholeBlood:
     - datatype == "pet"
     - suffix == "blood"
     - extension == ".tsv"
-    - '"WholeBloodAvail" in sidecar'
     - sidecar.WholeBloodAvail == true
   columns:
     whole_blood_radioactivity: required
