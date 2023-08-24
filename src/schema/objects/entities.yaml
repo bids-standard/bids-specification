@@ -199,7 +199,7 @@ part:
     `part-real`/`part-imag` pairs of files.
 
     Phase images MAY be in radians or in arbitrary units.
-    The sidecar JSON file MUST include the units of the `phase` image.
+    The sidecar JSON file MUST include the `"Units"` of the `phase` image.
     The possible options are `"rad"` or `"arbitrary"`.
 
     When there is only a magnitude image of a given type, the `part` entity MAY be
