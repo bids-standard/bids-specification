@@ -77,7 +77,6 @@ PETMRISequenceSpecifics:
 
 ASLMRISequenceSpecifics:
   selectors:
-    - modality == "mri"
     - datatype == "perf"
     - suffix == "asl"
   fields:
@@ -198,7 +197,6 @@ MRITimingParameters:
 
 SliceTimingASL:
   selectors:
-    - modality == "mri"
     - datatype == "perf"
     - intersects([suffix], ["asl", "m0scan"])
     - sidecar.MRAcquisitionType == "2D"
