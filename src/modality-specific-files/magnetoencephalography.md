@@ -89,16 +89,17 @@ which some installations impose to be run on raw data prior to analysis.
 Such processing steps are needed for example because of active shielding software corrections
 that have to be performed to before the MEG data can actually be exploited.
 
-### Recording EEG simultaneously with MEG
+### Recording (i)EEG simultaneously with MEG
 
-Note that if EEG is recorded with a separate amplifier,
+Note that if (i)EEG is recorded with a separate amplifier,
 it SHOULD be stored separately under a new `/eeg` data type
-(see [the EEG specification](electroencephalography.md)).
+(see the [EEG](electroencephalography.md) and
+[iEEG](intracranial-electroencephalography.md) specifications).
 
-If however EEG is recorded simultaneously **with the same MEG system**,
+If however (i)EEG is recorded simultaneously **with the same MEG system**,
 it MAY be stored under the `/meg` data type.
 In that case, it SHOULD have the same sampling frequency as MEG (see `SamplingFrequency` field below).
-Furthermore, EEG sensor coordinates SHOULD be recorded in an
+Furthermore, (i)EEG sensor coordinates MAY be recorded in an
 [`electrodes.tsv`](electroencephalography.md#electrodes-description-_electrodestsv)
 file using MEG-specific coordinate systems
 (see [Coordinate System JSON](#coordinate-system-json-_coordsystemjson) below and
