@@ -715,7 +715,7 @@ of the BIDS specification.
 
 If you have made any type of contributions to BIDS,
 we encourage you to enter or update your information in the
-[Contributors wiki page](https://github.com/bids-standard/bids-specification/wiki/Contributors)
+[Contributors wiki page](https://github.com/bids-standard/bids-specification/wiki/Recent-Contributors)
 according to the instructions listed there.
 
 ## Thank you!

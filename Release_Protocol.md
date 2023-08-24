@@ -80,7 +80,7 @@ We want to ensure that all contributors are duly credited.
 To synchronize the
 [Contributors appendix](https://github.com/bids-standard/bids-specification/blob/master/src/appendices/contributors.md)
 with the
-[Contributors wiki page](https://github.com/bids-standard/bids-specification/wiki/Contributors),
+[Contributors wiki page](https://github.com/bids-standard/bids-specification/wiki/Recent-Contributors),
 please follow these steps:
 
 - be sure not to remove credits if both the contributors appendix AND

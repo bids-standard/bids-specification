@@ -326,7 +326,7 @@ def update_tributors(
     return tributors
 
 
-"""ALlCONTRIB"""
+"""ALLCONTRIB"""
 
 
 def load_allcontrib(allcontrib_file: Path) -> None:

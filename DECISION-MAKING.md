@@ -57,7 +57,7 @@ Contributors are listed in the
 [Contributors appendix](https://bids-specification.readthedocs.io/en/stable/appendices/contributors.html)
 of the BIDS specification.
 Contributors who have not yet entered their name into this list are encouraged to edit the
-[Contributors wiki page](https://github.com/bids-standard/bids-specification/wiki/Contributors)
+[Contributors wiki page](https://github.com/bids-standard/bids-specification/wiki/Recent-Contributors)
 according to the instructions listed there.
 
 ### Other groups
