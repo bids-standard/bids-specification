@@ -2281,7 +2281,7 @@ NumberOfTransients:
   name: NumberOfTransients
   display_name: Number Of Transients
   description: |
-    The number of single applications of the pulse sequence recorded during an MRS acquisiton.
+    The number of single applications of the pulse sequence recorded during an MRS acquisition.
   type: integer
 NumberOfVolumesDiscardedByScanner:
   name: NumberOfVolumesDiscardedByScanner
