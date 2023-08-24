@@ -2,7 +2,6 @@
 
 This is done once the duplicate src directory is processed.
 """
-import os
 import subprocess
 import yaml
 from pathlib import Path

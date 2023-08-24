@@ -6,7 +6,7 @@
 
 ---
 # MRI Common metadata fields
-MRIScannerHardware:
+MRIHardware:
   selectors:
     - modality == "mri"
   fields:
@@ -85,6 +85,7 @@ ASLMRISequenceSpecifics:
   selectors:
     - modality == "mri"
     - datatype == "perf"
+    - suffix == "asl"
   fields:
     MRAcquisitionType: required
 

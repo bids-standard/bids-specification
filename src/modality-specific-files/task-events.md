@@ -57,7 +57,7 @@ For example in an EEG experiment with devices operating at 1000 Hz sampling freq
 dataset curators SHOULD specify **at least** 3 figures after the decimal point.
 
 An arbitrary number of additional columns can be added. Those allow describing
-other properties of events that could be later referenced in modelling and
+other properties of events that could be later referenced in modeling and
 hypothesis extensions of BIDS.
 Note that the `trial_type` and any additional columns in a TSV file
 SHOULD be documented in an accompanying JSON sidecar file.
@@ -153,7 +153,7 @@ but they should be stored in the `/stimuli` directory.
 
 References to existing databases can also be encoded using additional columns.
 The following example includes references to the
-[Karolinska Directed Emotional Faces (KDEF) database](https://www.emotionlab.se/resources/kdef).
+[Karolinska Directed Emotional Faces (KDEF) database](https://www.kdef.se/).
 
 Example:
 
@@ -272,7 +272,9 @@ in the accompanying JSON sidecar as follows (based on the example of the previou
         "ScreenDistance": 1.8,
         "ScreenRefreshRate": 60,
         "ScreenResolution": [1920, 1200],
-        "ScreenSize": [0.472, 0.295]
-    }
+        "ScreenSize": [0.472, 0.295],
+        "HeadStabilization": "none"
+    },
+    "VisionCorrection": "lenses"
 }
 ```

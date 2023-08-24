@@ -27,6 +27,7 @@ nonparametric:
     ceagent: optional
     reconstruction: optional
     run: optional
+    echo: optional
     part: optional
 
 parametric:
@@ -44,7 +45,6 @@ parametric:
     - T1rho
     - MWFmap
     - MTVmap
-    - PDT2map
     - Chimap
     - S0map
     - M0map

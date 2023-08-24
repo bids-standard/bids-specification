@@ -28,6 +28,10 @@ micr:
   display_name: Microscopy
   description: |
     Data acquired with a microscope.
+motion:
+  display_name: Motion
+  description: |
+    Data acquired with Motion-Capture systems.
 nirs:
   display_name: Near-Infrared Spectroscopy
   description: Data acquired with NIRS.

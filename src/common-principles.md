@@ -1,13 +1,26 @@
 # Common principles
 
+## Language
+
+The BIDS specification is written in American English.
+
 ## Definitions
 
 The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
 interpreted as described in [[RFC2119](https://www.ietf.org/rfc/rfc2119.txt)].
 
-Throughout this specification we use a list of terms and abbreviations. To avoid
-misunderstanding we clarify them here.
+Based on these keywords, we define three requirement levels for specifying data or metadata:
+REQUIRED, RECOMMENDED, and OPTIONAL.
+The guiding principles for when particular data is placed under a given requirement level
+can be loosely described as below:
+
+* REQUIRED: Data cannot be be interpreted without this information (or the ambiguity is unacceptably high)
+* RECOMMENDED: Interpretation/utility would be dramatically improved with this information
+* OPTIONAL: Users and/or tools might find it useful to have this information
+
+Throughout this specification we use a list of terms and abbreviations.
+To avoid misunderstanding we clarify them here.
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -176,12 +189,41 @@ This convention is mainly intended for but not limited to MRI modalities.
 
 ### Case collision intolerance
 
-File name components are case sensitive,
+Filename components are case sensitive,
 but collisions MUST be avoided when casing is ignored.
 For example, a dataset cannot contain both `sub-s1` and `sub-S1`,
 as the labels would collide on a case-insensitive filesystem.
 Additionally, because the suffix `eeg` is defined,
 then the suffix `EEG` will not be added to future versions of the standard.
+
+## Uniqueness of data files
+
+Data files MUST be uniquely identified by BIDS path components
+(entities, datatype, suffix).
+If multiple extensions are permissible (for example, `.nii` and `.nii.gz`),
+there MUST only be one such file with the same entities, datatype and suffix.
+This limitation does not apply to metadata files,
+such as JSON sidecar files or format-specific metadata files.
+
+Note that duplicating files to make the same data available in multiple formats
+is not permitted.
+For example, if the files `sub-01_ses-01_sample-A_photo.jpg` and
+`sub-01_ses-01_sample-A_photo.tif` contain a representation of the same data,
+then the dataset MUST NOT contain both images.
+If the files contain different images,
+other entities MUST be used to distinguish the two.
+
+## Filesystem structure & Filenames richness versus distinctness
+
+BIDS provides a rich filesystem structure and rich filenames by using entities, but it is important to keep in mind that files also have to be readable.
+They have to be readable by machines, and this implies that filenames cannot be longer than 255 characters.
+They also have to be readable by humans, and this implies minimizing length.
+A useful way to think about filenaming is distinctness: what is the minimal information needed to distinguish files?
+A simple illustration is given by using the [`ses-`](./glossary.md#session-entities) and [`run-`](./appendices/entities.md#run) entities.
+A T1 weighted MRI image could, in principle, be called `sub-X_ses-1_run-1_T1w.nii`.
+When there is only 1 session, and only 1 run, this is not needed as `ses-` and `run-` do not increase distinctiveness.
+Here, it is recommended to use the shorter version `sub-X_T1w.nii`.
+In some cases, this principle is enforced in the BIDS validator.
 
 ## Source vs. raw vs. derived data
 
@@ -363,7 +405,7 @@ In particular, if a BIDS dataset contains a `derivatives/` subdirectory,
 the contents of that directory may be a heterogeneous mix of BIDS Derivatives
 datasets and non-compliant derivatives.
 
-## File Formation specification
+## File format specification
 
 ### Imaging files
 
@@ -684,7 +726,7 @@ for naming of participants, sessions, acquisition schemes.
 Note that they MUST consist only of allowed characters as described in
 [Definitions](common-principles.md#definitions) above.
 In `<index>`es we RECOMMEND using zero padding (for example, `01` instead of `1`
-if you have more than nine subjects) to make alphabetical sorting more intuitive.
+if some participants have two-digit labels) to make alphabetical sorting more intuitive.
 Note that zero padding SHOULD NOT be used to merely maintain uniqueness
 of `<index>`es.
 
