@@ -28,6 +28,7 @@ BloodPlasma:
     - suffix == "blood"
     - extension == ".tsv"
     - '"PlasmaAvail" in sidecar'
+    - sidecar.PlasmaAvail == true
   columns:
     plasma_radioactivity: required
 
