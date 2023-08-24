@@ -3,8 +3,7 @@ PhasePartUnits:
   issue:
     code: PHASE_UNITS
     message: |
-      Phase images (with the `part-phase` entity) must have units
-      "rad" or "arbitrary".
+      Phase images (with the `part-phase` entity) must have units "rad" or "arbitrary".
     level: error
   selectors:
     - modality == "mri"
@@ -18,7 +17,7 @@ EchoTimeGreaterThan:
   issue:
     code: ECHO_TIME_GREATER_THAN
     message: |
-      'EchoTime' is greater than 1 are you sure it's expressed in seconds?
+      'EchoTime' is greater than 1. Are you sure it's expressed in seconds?
     level: warning
   selectors:
     - modality == "MRI"
@@ -31,7 +30,7 @@ TotalReadoutTimeGreaterThan:
   issue:
     code: TOTAL_READOUT_TIME_GREATER_THAN
     message: |
-      'TotalReadoutTime' is greater than 10 are you sure it's expressed in seconds?
+      'TotalReadoutTime' is greater than 10. Are you sure it's expressed in seconds?
     level: warning
   selectors:
     - modality == "MRI"
@@ -64,7 +63,7 @@ SliceTimingElements:
   issue:
     code: SLICETIMING_ELEMENTS
     message: |
-      The number of elements in the SliceTiming array should match the 'k'
+      The number of elements in the 'SliceTiming' array should match the 'k'
       dimension of the corresponding NIfTI volume.
     level: warning
   selectors:
@@ -79,7 +78,7 @@ EESGreaterThanTRT:
   issue:
     code: EFFECTIVEECHOSPACING_LARGER_THAN_TOTALREADOUTTIME
     message: |
-      EffectiveEchoSpacing should always be smaller than TotalReadoutTime.
+      'EffectiveEchoSpacing' should always be smaller than 'TotalReadoutTime'.
     level: error
   selectors:
     - modality == "MRI"
