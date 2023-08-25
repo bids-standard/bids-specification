@@ -16,14 +16,6 @@ MRIAnatomyCommonMetadataFields:
     RepetitionTimeExcitation: optional
     RepetitionTimePreparation: optional
 
-PhaseEntityUnits:
-  selectors:
-    - modality == "mri"
-    - datatype == "anat"
-    - entities.part == "phase"
-  fields:
-    Units: required
-
 PhaseSuffixUnits:
   selectors:
     - modality == "mri"
