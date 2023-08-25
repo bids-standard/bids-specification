@@ -6,14 +6,6 @@
 
 ---
 # Fieldmap data
-MRIFieldmapB0FieldIdentifier:
-  selectors:
-    - datatype == "fmap"
-    - match(extension, '\.nii(\.gz)?$')
-    - '!("IntendedFor" in sidecar)'
-  fields:
-    B0FieldIdentifier: recommended
-
 MRIFieldmapIntendedFor:
   selectors:
     - datatype == "fmap"
@@ -24,6 +16,14 @@ MRIFieldmapIntendedFor:
       description_addendum: |
         This field is optional, and in case the fieldmaps do not correspond
         to any particular scans, it does not have to be filled.
+
+MRIFieldmapB0FieldIdentifier:
+  selectors:
+    - datatype == "fmap"
+    - match(extension, '\.nii(\.gz)?$')
+    - '!("IntendedFor" in sidecar)'
+  fields:
+    B0FieldIdentifier: recommended
 
 # Case 1: Phase-difference map and at least one magnitude image
 MRIFieldmapPhaseDifferencePhasediff:
