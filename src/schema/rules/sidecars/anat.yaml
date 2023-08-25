@@ -16,14 +16,6 @@ MRIAnatomyCommonMetadataFields:
     RepetitionTimeExcitation: optional
     RepetitionTimePreparation: optional
 
-PhaseSuffixUnits:
-  selectors:
-    - datatype == "anat"
-    - suffix == "phase"
-    - match(extension, "^\.nii(\.gz)?$")
-  fields:
-    Units: required
-
 TaskMetadata:
   selectors:
     - datatype == "anat"
