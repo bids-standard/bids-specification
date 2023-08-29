@@ -187,7 +187,6 @@ MRITimingParameters:
           should only be used when the volume timing is critical for interpretation
           of the data, such as in ASL or variable echo time fMRI sequences.
     InversionTime: recommended
-    SliceEncodingDirection: recommended
     DwellTime: recommended
 
 SliceTimingMRI:
@@ -200,6 +199,7 @@ SliceTimingMRI:
       level_addendum: |
         required for sparse sequences that do not have the `DelayTime` field set,
         and Arterial Spin Labeling with `MRAcquisitionType` set on `2D`.
+    SliceEncodingDirection: recommended
 
 SliceTimingASL:
   selectors:
