@@ -513,6 +513,28 @@ Example:
 }
 ```
 
+Each level can be described with a string as in the example above,
+or with an object containing the fields `Description` and `TermURL`
+like in the example below.
+
+```JSON
+{
+    "sex": {
+        "Description": "sex of the participant as reported by the participant",
+        "Levels": {
+            "M": {
+                "Description":"male",
+                "TermURL": "TODO"
+            },
+            "F": {
+                "Description":"female",
+                "TermURL": "TODO"
+            },
+        }
+    }
+}
+```
+
 ### Key-value files (dictionaries)
 
 JavaScript Object Notation (JSON) files MUST be used for storing key-value
