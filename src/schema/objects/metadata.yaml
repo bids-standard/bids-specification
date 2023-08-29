@@ -404,8 +404,6 @@ ChunkTransformationMatrix:
     scaling along the second and third axis respectively).
     Note that non-spatial dimensions like time and channel are not included in the
     transformation matrix.
-    In case of MRI data, the ChunkTransformationMatrix corresponds to the NIFTI [qform matrix]
-    (https://nifti.nimh.nih.gov/nifti-1/documentation/nifti1fields/nifti1fields_pages/qsform.html)
   anyOf:
     - type: array
       minItems: 3
