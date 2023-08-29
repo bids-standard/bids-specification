@@ -523,12 +523,12 @@ like in the example below.
         "Description": "sex of the participant as reported by the participant",
         "Levels": {
             "M": {
-                "Description":"male",
-                "TermURL": "TODO"
+                "Description": "Male",
+                "TermURL": "https://www.ncbi.nlm.nih.gov/mesh/68008297"
             },
             "F": {
-                "Description":"female",
-                "TermURL": "TODO"
+                "Description": "Female",
+                "TermURL": "https://www.ncbi.nlm.nih.gov/mesh/68005260"
             },
         }
     }
