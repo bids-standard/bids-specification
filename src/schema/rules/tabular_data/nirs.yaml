@@ -25,6 +25,8 @@ nirsChannels:
       level: optional
       level_addendum: required if `type` is `ACCEL`, `GYRO` or `MAGN`
     wavelength_actual: optional
+    low_cutoff: optional
+    high_cutoff: optional
     description: optional
     wavelength_emission_actual: optional
     short_channel: optional
