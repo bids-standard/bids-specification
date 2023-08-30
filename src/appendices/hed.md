@@ -191,7 +191,7 @@ HED also allows you to use one or more specialized vocabularies along with or in
 the standard vocabulary. These specialized vocabularies are developed by
 communities of users and are available in the GitHub
 [hed-schemas](https://github.com/hed-standard/hed-schemas) repository.
-Library schema are specified in the form `<library-name<_>library-version>`.
+Library schema is specified in the form `<library-name<_>library-version>`.
 
 #### Partnered library schemas
 
@@ -261,7 +261,7 @@ Eye-blink-artifact, Seizure-PNES
 The following `dataset_description.json` file specifies that
 the HED-SCORE library schema
 [version 1.1.0](https://github.com/hed-standard/hed-schemas/blob/main/library_schemas/score/hedwiki/HED_score_1.1.0.mediawiki) is used.
-This particular library schema version is partnered with standard schema version
+This particular library schema version is partnered with the standard schema version
 [8.2.0](https://github.com/hed-standard/hed-schemas/blob/main/standard_schema/hedxml/HED8.2.0.xml).
 
 ```JSON
@@ -271,7 +271,7 @@ This particular library schema version is partnered with standard schema version
   "HEDVersion": "score_1.1.0"
 }
 ```
-The corresponding anotations in the dataset uses tags from the
+The corresponding annotations in the dataset use tags from the
 HED-SCORE library schema (`Eye-blink-artifact` and `Seizure-PNES`) and from the standard HED (`Data-feature`)
 as follows:
 
