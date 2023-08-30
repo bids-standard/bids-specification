@@ -197,7 +197,7 @@ Library schema are specified in the form `<library-name<_>library-version>`.
 
 Partnered library schemas were introduced in HED specification version 3.2.0
 and are supported by HED standard schema versions ≥ 8.2.0.
-A partnered library schema version is tied to a specific version of
+A partnered library schema is tied to a specific version of
 the HED standard schema as specified in its header. A given library schema
 version is either partnered or standalone.
 
