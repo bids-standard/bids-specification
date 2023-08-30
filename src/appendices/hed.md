@@ -204,15 +204,15 @@ version is either partnered or standalone.
 **Note:** Whether a particular library schema version is partnered or
 unpartnered is fixed when the library is released and cannot be changed.
 For example,
-[HED-SCDORE version 1.0.0](https://github.com/hed-standard/hed-schemas/blob/main/library_schemas/score/hedwiki/HED_score_1.0.0.mediawiki)
-is unpartnered, but [HED-SCDORE version 1.1.0](https://github.com/hed-standard/hed-schemas/blob/main/library_schemas/score/hedwiki/HED_score_1.1.0.mediawiki)
+[HED-SCORE version 1.0.0](https://github.com/hed-standard/hed-schemas/blob/main/library_schemas/score/hedwiki/HED_score_1.0.0.mediawiki)
+is unpartnered, but [HED-SCORE version 1.1.0](https://github.com/hed-standard/hed-schemas/blob/main/library_schemas/score/hedwiki/HED_score_1.1.0.mediawiki)
 is partnered with standard schema version 8.2.0.
 
 ##### Unpartnered library schemas example
 
 The following `dataset_description.json` file specifies that the
 [HED8.1.0.xml](https://github.com/hed-standard/hed-schemas/blob/main/standard_schema/hedxml/HED8.1.0.xml)
-standard schema should be used along with the HED-SCDORE library schema
+standard schema should be used along with the HED-SCORE library schema
 for clinical neurological annotation located at
 [HED_score_1.0.0.xml](https://github.com/hed-standard/hed-schemas/blob/main/library_schemas/score/hedxml/HED_score_1.0.0.xml).
 
@@ -230,7 +230,7 @@ Any number of prefixed schemas may be used in addition to a non-prefixed one.
 
 The following HED annotation from this dataset uses the `sc:` prefix with
 `Eye-blink-artifact` and `Seizure-PNES` because these terms are from the
-HED-SCDORE library schema, while `Data-feature` is from the standard HED schema.
+HED-SCORE library schema, while `Data-feature` is from the standard HED schema.
 
 ```Text
 Data-feature, sc:Eye-blink-artifact, sc:Seizure-PNES
@@ -239,7 +239,7 @@ Data-feature, sc:Eye-blink-artifact, sc:Seizure-PNES
 ##### Single unpartnered library schema example
 
 If only one schema is being used for annotation, the prefix can be omitted entirely.
-The following `dataset_description.json` indicates that only the HED-SCDORE library schema version
+The following `dataset_description.json` indicates that only the HED-SCORE library schema version
 1.0.0 will be used for HED annotation in this dataset.
 
 ```JSON
@@ -250,7 +250,7 @@ The following `dataset_description.json` indicates that only the HED-SCDORE libr
 }
 ```
 
-The corresponding anotations in the dataset do not have a prefix:
+The corresponding annotations in the dataset do not have a prefix:
 
 ```Text
 Eye-blink-artifact, Seizure-PNES
