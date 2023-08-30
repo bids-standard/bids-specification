@@ -72,7 +72,7 @@ The `duration` column is also annotated as a value column.
 
 ```JSON
 {
-  "Duration": {
+  "duration": {
     "LongName": "Image duration",
     "Description": "Duration of the image presentations",
     "Units": "s",
