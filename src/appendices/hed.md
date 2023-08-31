@@ -112,9 +112,8 @@ of that row as described in the next section.
 `events.tsv` file with onset `1.2` (the first row) is:
 
 ```Text
-Duration/0.6 s, Sensory-event, Visual-presentation, (Square, Blue),
-(Delay/1.435 ms, Agent-action, (Experiment-participant, (Press, Mouse-button))),
-Pathname/images/red_square.jpg
+(Duration/0.6 s, Sensory-event, Visual-presentation, ((Square, Blue), Pathname/images/blue_square.jpg)),
+(Delay/1.435 ms, Agent-action, (Experiment-participant, (Press, Mouse-button)))
 ```
 
 ### Annotation using the `HED` column
