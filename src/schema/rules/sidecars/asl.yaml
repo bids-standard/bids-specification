@@ -8,6 +8,7 @@
 # Fields described in text, but not in tables
 MRIASLTextOnly:
   selectors:
+    - modality == "mri"
     - datatype == "perf"
     - intersects([suffix], ["asl", "m0scan"])
   fields:
@@ -16,6 +17,7 @@ MRIASLTextOnly:
 # Common metadata fields applicable to both (P)CASL and PASL
 MRIASLCommonMetadataFields:
   selectors:
+    - modality == "mri"
     - datatype == "perf"
     - suffix == "asl"
   fields:
@@ -34,6 +36,7 @@ MRIASLCommonMetadataFields:
 
 MRIASLCommonMetadataFieldsM0TypeRec:
   selectors:
+    - modality == "mri"
     - datatype == "perf"
     - suffix == "asl"
     - sidecar.M0Type != "Estimate"
@@ -44,6 +47,7 @@ MRIASLCommonMetadataFieldsM0TypeRec:
 
 MRIASLCommonMetadataFieldsM0TypeReq:
   selectors:
+    - modality == "mri"
     - datatype == "perf"
     - suffix == "asl"
     - sidecar.M0Type == "Estimate"
@@ -60,6 +64,7 @@ MRIASLCommonMetadataFieldsM0TypeReq:
 
 MRIASLCommonMetadataFieldsBackgroundSuppressionOpt:
   selectors:
+    - modality == "mri"
     - datatype == "perf"
     - suffix == "asl"
     - sidecar.BackgroundSuppression == false
@@ -73,6 +78,7 @@ MRIASLCommonMetadataFieldsBackgroundSuppressionOpt:
 
 MRIASLCommonMetadataFieldsBackgroundSuppressionReq:
   selectors:
+    - modality == "mri"
     - datatype == "perf"
     - suffix == "asl"
     - sidecar.BackgroundSuppression == true
@@ -82,6 +88,7 @@ MRIASLCommonMetadataFieldsBackgroundSuppressionReq:
 
 MRIASLCommonMetadataFieldsVascularCrushingOpt:
   selectors:
+    - modality == "mri"
     - datatype == "perf"
     - suffix == "asl"
     - sidecar.VascularCrushing == false
@@ -92,6 +99,7 @@ MRIASLCommonMetadataFieldsVascularCrushingOpt:
 
 MRIASLCommonMetadataFieldsVascularCrushingRec:
   selectors:
+    - modality == "mri"
     - datatype == "perf"
     - suffix == "asl"
     - sidecar.VascularCrushing == true
@@ -100,6 +108,7 @@ MRIASLCommonMetadataFieldsVascularCrushingRec:
 
 MRIASLCaslPcaslSpecific:
   selectors:
+    - modality == "mri"
     - datatype == "perf"
     - suffix == "asl"
     - intersects([sidecar.ArterialSpinLabelingType], ["CASL", "PCASL"])
@@ -114,6 +123,7 @@ MRIASLCaslPcaslSpecific:
 
 MRIASLPcaslSpecific:
   selectors:
+    - modality == "mri"
     - datatype == "perf"
     - suffix == "asl"
     - sidecar.ArterialSpinLabelingType == "PCASL"
@@ -124,6 +134,7 @@ MRIASLPcaslSpecific:
 
 MRIASLCaslSpecific:
   selectors:
+    - modality == "mri"
     - datatype == "perf"
     - suffix == "asl"
     - sidecar.ArterialSpinLabelingType == "CASL"
@@ -134,6 +145,7 @@ MRIASLCaslSpecific:
 
 MRIASLPaslSpecific:
   selectors:
+    - modality == "mri"
     - datatype == "perf"
     - suffix == "asl"
     - sidecar.ArterialSpinLabelingType == "PASL"
@@ -144,6 +156,7 @@ MRIASLPaslSpecific:
 
 MRIASLPASLSpecificBolusCutOffFlagFalse:
   selectors:
+    - modality == "mri"
     - datatype == "perf"
     - suffix == "asl"
     - sidecar.ArterialSpinLabelingType == "PASL"
@@ -158,6 +171,7 @@ MRIASLPASLSpecificBolusCutOffFlagFalse:
 
 MRIASLPaslSpecificBolusCutOffFlagTrue:
   selectors:
+    - modality == "mri"
     - datatype == "perf"
     - suffix == "asl"
     - sidecar.ArterialSpinLabelingType == "PASL"
@@ -191,6 +205,7 @@ MRIASLPaslSpecificBolusCutOffFlagTrue:
 # m0scan metadata fields
 MRIASLM0Scan:
   selectors:
+    - modality == "mri"
     - datatype == "perf"
     - suffix == "m0scan"
   fields:

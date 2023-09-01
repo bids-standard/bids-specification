@@ -4,7 +4,7 @@ NiftiDimension:
   issue:
     code: NIFTI_DIMENSION
     message: |
-      NIfTI file's header field for dimension information is blank or too short.
+      NIfTI file's header field for dimension information blank or too short.
     level: warning
   selectors:
     - type(nifti_header) != "null"
@@ -17,7 +17,7 @@ NiftiUnit:
   issue:
     code: NIFTI_UNIT
     message: |
-      NIfTI file's header field for unit information for x, y, z, and t dimensions is empty or too short.
+      NIfTI file's header field for unit information for x, y, z, and t dimensions empty or too short
     level: warning
   selectors:
     - type(nifti_header) != "null"
@@ -30,7 +30,7 @@ NiftiPixdim:
   issue:
     code: NIFTI_PIXDIM
     message: |
-      NIfTI file's header field for pixel dimension information is empty or too short.
+      NIfTI file's header field for pixel dimension information empty or too short.
     level: warning
   selectors:
     - type(nifti_header) != "null"

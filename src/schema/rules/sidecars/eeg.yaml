@@ -7,6 +7,7 @@
 ---
 EEGHardware:
   selectors:
+    - modality == "eeg"
     - datatype == "eeg"
     - suffix == "eeg"
   fields:
@@ -17,6 +18,7 @@ EEGHardware:
 
 EEGTaskInformation:
   selectors:
+    - modality == "eeg"
     - datatype == "eeg"
     - suffix == "eeg"
   fields:
@@ -36,6 +38,7 @@ EEGTaskInformation:
 
 EEGInstitutionInformation:
   selectors:
+    - modality == "eeg"
     - datatype == "eeg"
     - suffix == "eeg"
   fields:
@@ -45,6 +48,7 @@ EEGInstitutionInformation:
 
 EEGRequired:
   selectors:
+    - modality == "eeg"
     - datatype == "eeg"
     - suffix == "eeg"
   fields:
@@ -59,6 +63,7 @@ EEGRequired:
 
 EEGRecommended:
   selectors:
+    - modality == "eeg"
     - datatype == "eeg"
     - suffix == "eeg"
   fields:
@@ -82,6 +87,7 @@ EEGRecommended:
 # General fields
 EEGCoordsystemGeneral:
   selectors:
+    - modality == "eeg"
     - datatype == "eeg"
     - suffix == "coordsystem"
   fields:
@@ -94,6 +100,7 @@ EEGCoordsystemGeneral:
 # Fields relating to the EEG electrode positions
 EEGCoordsystemPositions:
   selectors:
+    - modality == "eeg"
     - datatype == "eeg"
     - suffix == "coordsystem"
   fields:
@@ -105,6 +112,7 @@ EEGCoordsystemPositions:
 
 EEGCoordsystemOther:
   selectors:
+    - modality == "eeg"
     - datatype == "eeg"
     - suffix == "coordsystem"
     - '"EEGCoordinateSystem" in sidecar'
@@ -115,6 +123,7 @@ EEGCoordsystemOther:
 # Fields relating to the position of fiducials measured during an EEG session/run
 EEGCoordsystemFiducials:
   selectors:
+    - modality == "eeg"
     - datatype == "eeg"
     - suffix == "coordsystem"
   fields:
@@ -128,6 +137,7 @@ EEGCoordsystemFiducials:
 
 EEGCoordsystemOtherFiducialCoordinateSystem:
   selectors:
+    - modality == "eeg"
     - datatype == "eeg"
     - suffix == "coordsystem"
     - sidecar.FiducialsCoordinateSystem == "Other"
@@ -137,6 +147,7 @@ EEGCoordsystemOtherFiducialCoordinateSystem:
 # Fields relating to the position of anatomical landmark measured during an EEG session/run
 EEGCoordsystemLandmark:
   selectors:
+    - modality == "eeg"
     - datatype == "eeg"
     - suffix == "coordsystem"
   fields:
@@ -148,6 +159,7 @@ EEGCoordsystemLandmark:
 
 EEGCoordsystemLandmarkDescriptionRec:
   selectors:
+    - modality == "eeg"
     - datatype == "eeg"
     - suffix == "coordsystem"
     - sidecar.AnatomicalLandmarkCoordinateSystem != "Other"
@@ -158,6 +170,7 @@ EEGCoordsystemLandmarkDescriptionRec:
 
 EEGCoordsystemLandmarkDescriptionReq:
   selectors:
+    - modality == "eeg"
     - datatype == "eeg"
     - suffix == "coordsystem"
     - sidecar.AnatomicalLandmarkCoordinateSystem == "Other"

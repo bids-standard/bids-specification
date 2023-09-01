@@ -2,7 +2,7 @@
 # PET common metadata fields
 PETHardware:
   selectors:
-    - datatype == "pet"
+    - modality == "pet"
     - suffix == "pet"
   fields:
     Manufacturer:
@@ -22,7 +22,7 @@ PETHardware:
 
 PETInstitutionInformation:
   selectors:
-    - datatype == "pet"
+    - modality == "pet"
     - suffix == "pet"
   fields:
     InstitutionName:
@@ -37,7 +37,7 @@ PETInstitutionInformation:
 
 PETRadioChemistry:
   selectors:
-    - datatype == "pet"
+    - modality == "pet"
     - suffix == "pet"
   fields:
     TracerName:
@@ -86,7 +86,7 @@ PETRadioChemistry:
 # PET Infusion conditionally required entities
 EntitiesBolusMetadata:
   selectors:
-    - datatype == "pet"
+    - modality == "pet"
     - suffix == "pet"
     - sidecar.ModeOfAdministration == 'bolus-infusion'
   fields:
@@ -98,7 +98,7 @@ EntitiesBolusMetadata:
 
 PETPharmaceuticals:
   selectors:
-    - datatype == "pet"
+    - modality == "pet"
     - suffix == "pet"
   fields:
     PharmaceuticalName:
@@ -118,7 +118,7 @@ PETPharmaceuticals:
 
 PETTime:
   selectors:
-    - datatype == "pet"
+    - modality == "pet"
     - suffix == "pet"
   fields:
     TimeZero: required
@@ -139,7 +139,7 @@ PETTime:
 
 PETReconstruction:
   selectors:
-    - datatype == "pet"
+    - modality == "pet"
     - suffix == "pet"
   fields:
     AcquisitionMode: required
@@ -188,7 +188,7 @@ PETReconstruction:
 # set required reconstruction fields to optional when "none" is provided as a parameter label
 EntitiesReconMethodMetadata:
   selectors:
-    - datatype == "pet"
+    - modality == "pet"
     - suffix == "pet"
     - '!intersects(sidecar.ReconMethodParameterLabels, ["none"])'
   fields:
@@ -198,7 +198,7 @@ EntitiesReconMethodMetadata:
 # set required recon filter fields to optional when FilterType is "None"
 EntitiesReconFilterMetadata:
   selectors:
-    - datatype == "pet"
+    - modality == "pet"
     - suffix == "pet"
     - '!intersects(sidecar.ReconFilterType, ["none"])'
   fields:
@@ -206,7 +206,7 @@ EntitiesReconFilterMetadata:
 
 BloodRecording:
   selectors:
-    - datatype == "pet"
+    - modality == "pet"
     - suffix == "blood"
   fields:
     PlasmaAvail: required
@@ -222,7 +222,7 @@ BloodRecording:
 
 BloodPlasmaFreeFraction:
   selectors:
-    - datatype == "pet"
+    - modality == "pet"
     - suffix == "blood"
     - sidecar.PlasmaAvail == true
   fields:
@@ -235,7 +235,7 @@ BloodPlasmaFreeFraction:
 
 BloodMetaboliteMethod:
   selectors:
-    - datatype == "pet"
+    - modality == "pet"
     - suffix == "blood"
     - sidecar.MetaboliteAvail == true
   fields:
@@ -249,7 +249,7 @@ BloodMetaboliteMethod:
 # PET task information
 PETTask:
   selectors:
-    - datatype == "pet"
+    - modality == "pet"
     - '"task" in entities'
   fields:
     TaskName:

@@ -5,10 +5,10 @@ PhaseSuffixDeprecated:
     code: PHASE_SUFFIX_DEPRECATED
     message: |
       DEPRECATED. Phase information associated with magnitude information stored in BOLD contrast.
-      This suffix should be replaced by the 'part-phase' entity in conjunction with the 'bold' suffix.
-      For backwards compatibility, 'phase' is considered equivalent to 'part-phase_bold'.
-      When the 'phase' suffix is not used, each file shares the same name with the exception of the
-      'part-<mag|phase>' or 'part-<real|imag>' key/value.
+      This suffix should be replaced by the part-phase in conjunction with the bold suffix.
+      For backwards compatibility, _phase is considered equivalent to _part-phase_bold.
+      When the _phase suffix is not used, each file shares the same name with the exception of the
+      part-<mag|phase> or part-<real|imag> key/value.
     level: warning
   selectors:
     - datatype == "func"
@@ -20,7 +20,7 @@ RepetitionTimeGreaterThan:
   issue:
     code: REPETITION_TIME_GREATER_THAN
     message: |
-      'RepetitionTime' is greater than 100. Are you sure it's expressed in seconds?
+      'RepetitionTime' is greater than 100 are you sure it's expressed in seconds?
     level: warning
   selectors:
     - suffix == "bold"
@@ -47,7 +47,7 @@ BoldNot4d:
   issue:
     code: BOLD_NOT_4D
     message: |
-      BOLD scans must be 4 dimensional.
+      Bold scans must be 4 dimensional.
     level: error
   selectors:
     - suffix == "bold"
@@ -60,8 +60,8 @@ SliceTimingGreaterThanRepetitionTime:
   issue:
     code: SLICETIMING_VALUES_GREATER_THAN_REPETITION_TIME
     message: |
-      'SliceTiming' contains invalid value(s) greater than 'RepetitionTime'.
-      'SliceTiming' values should be in seconds, not milliseconds (common mistake).
+      SliceTiming values contains invalid value as it is greater than RepetitionTime.
+      SliceTiming values should be in seconds not milliseconds (common mistake).
     level: error
   selectors:
     - suffix == "bold"

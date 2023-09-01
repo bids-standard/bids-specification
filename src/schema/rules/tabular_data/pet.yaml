@@ -1,7 +1,7 @@
 ---
 Blood:
   selectors:
-    - datatype == "pet"
+    - modality == "pet"
     - suffix == "blood"
     - extension == ".tsv"
   columns:
@@ -14,7 +14,7 @@ Blood:
       level_addendum: required if `MetaboliteAvail` is `true`
     metabolite_polar_fraction:
       level: optional
-      level_addendum: recommended if `MetaboliteAvail` is `true`
+      level_addendum: required if `MetaboliteAvail` is `true`
     hplc_recovery_fractions:
       level: optional
       level_addendum: required if `MetaboliteRecoveryCorrectionApplied` is `true`
@@ -24,18 +24,19 @@ Blood:
 
 BloodPlasma:
   selectors:
-    - datatype == "pet"
+    - modality == "pet"
     - suffix == "blood"
     - extension == ".tsv"
-    - sidecar.PlasmaAvail == true
+    - '"PlasmaAvail" in sidecar'
   columns:
     plasma_radioactivity: required
 
 BloodMetabolite:
   selectors:
-    - datatype == "pet"
+    - modality == "pet"
     - suffix == "blood"
     - extension == ".tsv"
+    - '"MetaboliteAvail" in sidecar'
     - sidecar.MetaboliteAvail == true
   columns:
     metabolite_parent_fraction: required
@@ -43,18 +44,20 @@ BloodMetabolite:
 
 BloodMetaboliteCorrection:
   selectors:
-    - datatype == "pet"
+    - modality == "pet"
     - suffix == "blood"
     - extension == ".tsv"
+    - '"MetaboliteRecoveryCorrectionApplied" in sidecar'
     - sidecar.MetaboliteRecoveryCorrectionApplied == true
   columns:
     hplc_recovery_fractions: required
 
 BloodWholeBlood:
   selectors:
-    - datatype == "pet"
+    - modality == "pet"
     - suffix == "blood"
     - extension == ".tsv"
+    - '"WholeBloodAvail" in sidecar'
     - sidecar.WholeBloodAvail == true
   columns:
     whole_blood_radioactivity: required

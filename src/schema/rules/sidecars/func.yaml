@@ -77,12 +77,3 @@ MRIFuncTaskInformation:
     TaskDescription: recommended
     CogAtlasID: recommended
     CogPOID: recommended
-
-# Should now be `part-phase_bold.nii`, but still require units
-PhaseSuffixUnits:
-  selectors:
-    - datatype == "func"
-    - suffix == "phase"
-    - match(extension, "^\.nii(\.gz)?$")
-  fields:
-    Units: required

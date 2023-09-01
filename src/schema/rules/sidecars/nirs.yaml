@@ -29,6 +29,7 @@ AnatomicalLandmark:
 
 CoordsystemGeneral:
   selectors:
+    - modality == "nirs"
     - datatype == "nirs"
     - suffix == "coordsystem"
   fields:
@@ -159,7 +160,7 @@ NirsRequired:
 
 NirsRecommend:
   selectors:
-    - datatype == "nirs"
+    - modality == "nirs"
     - suffix == "nirs"
   fields:
     CapManufacturer:

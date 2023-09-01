@@ -7,6 +7,7 @@
 ---
 iEEGHardware:
   selectors:
+    - modality == "ieeg"
     - datatype == "ieeg"
     - suffix == "ieeg"
   fields:
@@ -19,6 +20,7 @@ iEEGHardware:
 
 iEEGTaskInformation:
   selectors:
+    - modality == "ieeg"
     - datatype == "ieeg"
     - suffix == "ieeg"
   fields:
@@ -38,6 +40,7 @@ iEEGTaskInformation:
 
 iEEGInstitutionInformation:
   selectors:
+    - modality == "ieeg"
     - datatype == "ieeg"
     - suffix == "ieeg"
   fields:
@@ -48,6 +51,7 @@ iEEGInstitutionInformation:
 # Specific iEEG fields MUST be present
 iEEGRequired:
   selectors:
+    - modality == "ieeg"
     - datatype == "ieeg"
     - suffix == "ieeg"
   fields:
@@ -63,6 +67,7 @@ iEEGRequired:
 # Specific iEEG fields SHOULD be present
 iEEGRecommended:
   selectors:
+    - modality == "ieeg"
     - datatype == "ieeg"
     - suffix == "ieeg"
   fields:
@@ -89,6 +94,7 @@ iEEGRecommended:
 # Specific iEEG fields MAY be present
 iEEGOptional:
   selectors:
+    - modality == "ieeg"
     - datatype == "ieeg"
     - suffix == "ieeg"
   fields:
@@ -98,6 +104,7 @@ iEEGOptional:
 # General fields
 iEEGCoordsystemGeneral:
   selectors:
+    - modality == "ieeg"
     - datatype == "ieeg"
     - suffix == "coordsystem"
   fields:
@@ -119,6 +126,7 @@ iEEGCoordsystemGeneral:
 # Fields relating to the iEEG electrode positions
 iEEGCoordsystemPositions:
   selectors:
+    - modality == "ieeg"
     - datatype == "ieeg"
     - suffix == "coordsystem"
   fields:
@@ -132,6 +140,7 @@ iEEGCoordsystemPositions:
 
 iEEGCoordsystemOther:
   selectors:
+    - modality == "ieeg"
     - datatype == "ieeg"
     - suffix == "coordsystem"
     - '"iEEGCoordinateSystem" in sidecar'
