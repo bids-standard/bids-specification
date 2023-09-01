@@ -47,7 +47,7 @@ the required `onset` and `duration` columns.
 ```Text
 onset  duration  trial_type  response_time stim_file
 1.2    0.6       go          1.435         images/red_square.jpg
-5.6    0.6       stop        1.739         images/blue_square.jpg
+5.6    0.6       stop        n/a         images/blue_square.jpg
 ```
 
 The `trial_type` column in the above example contains a limited number of distinct
@@ -82,12 +82,12 @@ The `duration` column is also annotated as a value column.
     "LongName": "Event category",
     "Description": "Indicator of type of action that is expected",
     "Levels": {
-      "go": "A blue square is displayed to indicate starting",
-      "stop": "A red square is displayed to indicate stopping"
+      "go": "A red square is displayed to indicate starting",
+      "stop": "A blue square is displayed to indicate stopping"
     },
     "HED": {
-          "go": "Sensory-event, Visual-presentation, (Square, Blue)",
-          "stop": "Sensory-event, Visual-presentation, (Square, Red)"
+          "go": "Sensory-event, Visual-presentation, (Square, Red)",
+          "stop": "Sensory-event, Visual-presentation, (Square, Blue)"
        }
    },
    "response_time": {
@@ -112,8 +112,11 @@ of that row as described in the next section.
 `events.tsv` file with onset `1.2` (the first row) is:
 
 ```Text
-(Duration/0.6 s, Sensory-event, Visual-presentation, ((Square, Blue), Pathname/images/blue_square.jpg)),
-(Delay/1.435 ms, Agent-action, (Experiment-participant, (Press, Mouse-button)))
+(Duration/0.6 s, Sensory-event, Visual-presentation,
+((Square, Red), (Computer-screen, Center-of))),
+(Delay/1.435 ms, Agent-action, (Experiment-participant,
+(Press, Mouse-button))),
+Pathname/images/red_square.jpg
 ```
 
 ### Annotation using the `HED` column
