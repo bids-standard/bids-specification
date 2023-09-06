@@ -514,7 +514,8 @@ Example:
 ```
 
 Each level can be described with a string as in the example above,
-or with an object containing the fields `Description` and `TermURL`
+or with an object containing the fields [`Description`](../glossary.md#description-metadata)
+and [`TermURL`](../glossary.md#termurl-metadata)
 like in the example below.
 
 ```JSON
