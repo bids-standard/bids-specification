@@ -83,7 +83,6 @@ PETMRISequenceSpecifics:
 
 ASLMRISequenceSpecifics:
   selectors:
-    - modality == "mri"
     - datatype == "perf"
     - suffix == "asl"
   fields:
@@ -152,6 +151,7 @@ PhaseEncodingDirectionRec:
         acquired with opposing phase encoding directions are present
         (see [Case 4: Multiple phase encoded
         directions](#case-4-multiple-phase-encoded-directions-pepolar))
+
 PhaseEncodingDirectionReq:
   selectors:
     - modality == "mri"
@@ -210,7 +210,6 @@ MRITimingParameters:
 
 SliceTimingASL:
   selectors:
-    - modality == "mri"
     - datatype == "perf"
     - intersects([suffix], ["asl", "m0scan"])
     - sidecar.MRAcquisitionType == "2D"
