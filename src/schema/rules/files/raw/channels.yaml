@@ -72,6 +72,15 @@ electrodes:
     acquisition: optional
     space: optional
 
+# MEG has an additional entity available
+electrodes__meg:
+  $ref: rules.files.raw.channels.electrodes
+  datatypes:
+    - meg
+  entities:
+    $ref: rules.files.raw.channels.electrodes.entities
+    processing: optional
+
 optodes:
   suffixes:
     - optodes

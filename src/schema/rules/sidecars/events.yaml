@@ -11,6 +11,7 @@ StimulusPresentation:
     - suffix == "events"
   fields:
     StimulusPresentation: recommended
+    VisionCorrection: optional
 
 StimulusPresentation_for_eyetracking:
   selectors:
