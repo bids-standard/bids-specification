@@ -7,7 +7,6 @@
 ---
 motionHardware:
   selectors:
-    - modality == "motion"
     - datatype == "motion"
     - suffix == "motion"
   fields:
@@ -18,7 +17,6 @@ motionHardware:
 
 motionInstitutionInformation:
   selectors:
-    - modality == "motion"
     - datatype == "motion"
     - suffix == "motion"
   fields:
@@ -28,7 +26,6 @@ motionInstitutionInformation:
 
 motionTaskInformation:
   selectors:
-    - modality == "motion"
     - datatype == "motion"
     - suffix == "motion"
   fields:
@@ -42,7 +39,6 @@ motionTaskInformation:
 
 motionRequired:
   selectors:
-    - modality == "motion"
     - datatype == "motion"
     - suffix == "motion"
   fields:
@@ -56,7 +52,6 @@ motionRequired:
 
 motionRecommended:
   selectors:
-    - modality == "motion"
     - datatype == "motion"
     - suffix == "motion"
   fields:

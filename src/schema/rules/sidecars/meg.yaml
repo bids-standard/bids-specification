@@ -6,12 +6,14 @@
 
 ---
 # Magnetoencephalography
+#
+# Note: "task" in entities identifies MEG data files and excludes calibration/crosstalk scans
 
 # Sidecar JSON (*_meg.json)
 MEGHardware:
   selectors:
-    - modality == "meg"
     - datatype == "meg"
+    - '"task" in entities'
     - suffix == "meg"
   fields:
     Manufacturer:
@@ -32,8 +34,8 @@ MEGHardware:
 
 MEGTaskInformation:
   selectors:
-    - modality == "meg"
     - datatype == "meg"
+    - '"task" in entities'
     - suffix == "meg"
   fields:
     TaskName:
@@ -52,9 +54,9 @@ MEGTaskInformation:
 
 MEGInstitutionInformation:
   selectors:
-    - modality == "ieeg"
-    - datatype == "ieeg"
-    - suffix == "ieeg"
+    - datatype == "meg"
+    - '"task" in entities'
+    - suffix == "meg"
   fields:
     InstitutionName: recommended
     InstitutionAddress: recommended
@@ -63,8 +65,8 @@ MEGInstitutionInformation:
 # Specific MEG fields MUST be present
 MEGRequired:
   selectors:
-    - modality == "meg"
     - datatype == "meg"
+    - '"task" in entities'
     - suffix == "meg"
   fields:
     SamplingFrequency:
@@ -81,8 +83,8 @@ MEGRequired:
 # Specific MEG fields SHOULD be present
 MEGRecommended:
   selectors:
-    - modality == "meg"
     - datatype == "meg"
+    - '"task" in entities'
     - suffix == "meg"
   fields:
     MEGChannelCount: recommended
@@ -109,7 +111,6 @@ MEGRecommended:
 # NOTE: I'm not sure if "EEG is present" is enough to indicate simultaneous EEG/MEG.
 MEGwithEEG:
   selectors:
-    - modality == "meg"
     - datatype == "meg"
     - suffix == "meg"
     - intersects(dataset.modalities, ["eeg"])
@@ -122,7 +123,6 @@ MEGwithEEG:
 # MEG and EEG sensors
 MEGCoordsystemWithEEG:
   selectors:
-    - modality == "meg"
     - datatype == "meg"
     - suffix == "coordsystem"
   fields:
@@ -148,7 +148,6 @@ MEGCoordsystemWithEEG:
 # NOTE: The JSON isn't really a sidecar, so "sidecar.MEGCoordinateSystem" is misleading.
 MEGCoordsystemWithEEGMEGCoordinateSystem:
   selectors:
-    - modality == "meg"
     - datatype == "meg"
     - suffix == "coordsystem"
     - '"MEGCoordinateSystem" in sidecar'
@@ -159,7 +158,6 @@ MEGCoordsystemWithEEGMEGCoordinateSystem:
 # NOTE: Not sure if this requires simult. EEG
 MEGCoordsystemWithEEGEEGCoordinateSystem:
   selectors:
-    - modality == "meg"
     - datatype == "meg"
     - suffix == "coordsystem"
     - '"EEGCoordinateSystem" in sidecar'
@@ -170,7 +168,6 @@ MEGCoordsystemWithEEGEEGCoordinateSystem:
 # Head localization coils
 MEGCoordsystemHeadLocalizationCoils:
   selectors:
-    - modality == "meg"
     - datatype == "meg"
     - suffix == "coordsystem"
   fields:
@@ -183,7 +180,6 @@ MEGCoordsystemHeadLocalizationCoils:
 
 MEGCoordsystemHeadLocalizationCoilsHeadCoilCoordinateSystem:
   selectors:
-    - modality == "meg"
     - datatype == "meg"
     - suffix == "coordsystem"
     - '"HeadCoilCoordinateSystem" in sidecar'
@@ -194,7 +190,6 @@ MEGCoordsystemHeadLocalizationCoilsHeadCoilCoordinateSystem:
 # Digitized head points
 MEGCoordsystemDigitizedHeadPoints:
   selectors:
-    - modality == "meg"
     - datatype == "meg"
     - suffix == "coordsystem"
   fields:
@@ -207,7 +202,6 @@ MEGCoordsystemDigitizedHeadPoints:
 
 MEGCoordsystemDigitizedHeadPointsDigitizedHeadPointsCoordinateSystem:
   selectors:
-    - modality == "meg"
     - datatype == "meg"
     - suffix == "coordsystem"
     - '"DigitizedHeadPointsCoordinateSystem" in sidecar'
@@ -218,7 +212,6 @@ MEGCoordsystemDigitizedHeadPointsDigitizedHeadPointsCoordinateSystem:
 # Anatomical MRI
 MEGCoordsystemAnatomicalMRI:
   selectors:
-    - modality == "meg"
     - datatype == "meg"
     - suffix == "coordsystem"
     - intersects(dataset.datatypes, ["anat"])
@@ -233,7 +226,6 @@ MEGCoordsystemAnatomicalMRI:
 # Anatomical landmarks
 MEGCoordsystemAnatomicalLandmarks:
   selectors:
-    - modality == "meg"
     - datatype == "meg"
     - suffix == "coordsystem"
   fields:
@@ -249,7 +241,6 @@ MEGCoordsystemAnatomicalLandmarks:
 
 MEGCoordsystemAnatomicalLandmarksAnatomicalLandmarkCoordinateSystem:
   selectors:
-    - modality == "meg"
     - datatype == "meg"
     - suffix == "coordsystem"
     - '"AnatomicalLandmarkCoordinateSystem" in sidecar'
@@ -260,7 +251,6 @@ MEGCoordsystemAnatomicalLandmarksAnatomicalLandmarkCoordinateSystem:
 # Fiducials information
 MEGCoordsystemFiducialsInformation:
   selectors:
-    - modality == "meg"
     - datatype == "meg"
     - suffix == "coordsystem"
   fields:

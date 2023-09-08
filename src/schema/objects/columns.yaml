@@ -37,6 +37,9 @@ age:
   display_name: Subject age
   description: |
     Numeric value in years (float or integer value).
+
+    It is recommended to tag participant ages that are 89 or higher as 89+,
+    for privacy purposes.
   type: number
   unit: year
 cardiac:
