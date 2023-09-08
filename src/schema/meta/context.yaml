@@ -231,6 +231,19 @@ context:
         comment:
           description: 'Comment'
           type: string
+    data:
+      # This is currently only used for checking bval/bvec shape
+      # This may need to be reconsidered if we start checking data contents
+      # or >2D shapes
+      description: 'Metadata about the data array held in a file'
+      type: object
+      properties:
+        n_rows:
+          description: 'Number of rows in aslcontext.tsv'
+          type: integer
+        n_cols:
+          description: 'Number of rows in aslcontext.tsv'
+          type: integer
     nifti_header:
       name: 'NIfTI Header'
       description: 'Parsed contents of NIfTI header referenced elsewhere in schema.'
