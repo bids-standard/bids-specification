@@ -26,7 +26,7 @@ jobs:
         os: ["ubuntu-latest"]
         python-version: ["3.11"]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
@@ -64,7 +64,7 @@ jobs:
             python-version: 3
     name: ${{ matrix.os }} with Python ${{ matrix.python-version }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: "Set up Python"
         uses: actions/setup-python@v4
@@ -129,7 +129,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Validate schema
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set Up Python environment
         uses: actions/setup-python@v4
@@ -157,7 +157,7 @@ jobs:
     needs: [test, validate_schema]
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Download artifacts
         uses: actions/download-artifact@v3
