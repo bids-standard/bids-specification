@@ -209,7 +209,7 @@ For example,
 is unpartnered, but [HED-SCORE version 1.1.0](https://github.com/hed-standard/hed-schemas/blob/main/library_schemas/score/hedwiki/HED_score_1.1.0.mediawiki)
 is partnered with standard schema version 8.2.0.
 
-##### Unpartnered library schemas example
+##### Unpartnered library schema example
 
 The following `dataset_description.json` file specifies that the
 [HED8.1.0.xml](https://github.com/hed-standard/hed-schemas/blob/main/standard_schema/hedxml/HED8.1.0.xml)
