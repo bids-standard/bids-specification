@@ -104,6 +104,7 @@ multiecho:
     run: optional
     echo: required
     part: optional
+    chunk: optional
 
 multiflip:
   suffixes:
