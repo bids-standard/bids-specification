@@ -1,7 +1,7 @@
 [![Validation](https://github.com/bids-standard/bids-specification/actions/workflows/validation.yml/badge.svg)](https://github.com/bids-standard/bids-specification/actions/workflows/validation.yml)
 [![CircleCI](https://circleci.com/gh/bids-standard/bids-specification.svg?style=shield)](https://circleci.com/gh/bids-standard/bids-specification)
-[![@BIDSstandard](http://img.shields.io/twitter/follow/bidsstandard.svg?style=social)](https://twitter.com/BIDSstandard)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109520103085644521?domain=https%3A%2F%2Ffosstodon.org%2F)](https://fosstodon.org/@bidsstandard)
+[![@BIDSstandard](http://img.shields.io/twitter/follow/bidsstandard.svg?style=social)](https://twitter.com/BIDSstandard)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3686061.svg)](https://doi.org/10.5281/zenodo.3686061)
 
 <img src="./BIDS_logo/BIDS_logo_white_transparent_background_crop.png#gh-dark-mode-only" alt="bids-logo" width="600"/>
