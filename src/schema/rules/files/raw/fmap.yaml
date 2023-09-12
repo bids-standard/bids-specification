@@ -19,6 +19,7 @@ fieldmaps:
     session: optional
     acquisition: optional
     run: optional
+    chunk: optional
 
 pepolar:
   suffixes:
@@ -37,6 +38,7 @@ pepolar:
     ceagent: optional
     direction: required
     run: optional
+    chunk: optional
 
 TB1DAM:
   suffixes:
@@ -57,6 +59,7 @@ TB1DAM:
     flip: required
     inversion: optional
     part: optional
+    chunk: optional
 
 TB1EPI:
   suffixes:
@@ -78,6 +81,7 @@ TB1EPI:
     flip: required
     inversion: optional
     part: optional
+    chunk: optional
 
 RFFieldMaps:
   suffixes:
@@ -102,6 +106,7 @@ RFFieldMaps:
     flip: optional
     inversion: optional
     part: optional
+    chunk: optional
 
 TB1SRGE:
   suffixes:
@@ -123,6 +128,7 @@ TB1SRGE:
     flip: required
     inversion: required
     part: optional
+    chunk: optional
 
 parametric:
   suffixes:
@@ -141,3 +147,4 @@ parametric:
     ceagent: optional
     reconstruction: optional
     run: optional
+    chunk: optional
