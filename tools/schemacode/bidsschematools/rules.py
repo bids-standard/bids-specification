@@ -118,8 +118,10 @@ def _entity_rule(rule: Mapping, schema: bst.types.Namespace):
     suffix_regex = f"(?P<suffix>{'|'.join(suffixes)})"
 
     # If we move to referring to extensions by keys in the object table:
-    # extensions = [schema.objects.extensions[ext].value for ext in rule["extensions"]]
-    extensions = rule["extensions"]
+    # extensions = [
+    #     schema.objects.extensions[ext].value for group in rule["extensions"] for ext in group
+    # ]
+    extensions = [ext for group in rule["extensions"] for ext in group]
     ext_match = "|".join(_sanitize_extension(ext) for ext in extensions)
     ext_regex = f"(?P<extension>{ext_match})"
 
@@ -134,9 +136,18 @@ def _split_inheritance_rules(rule: Mapping) -> ty.List[Mapping]:
 
     Implements the inheritance principle for file naming.
     """
-    heritable_exts = {".tsv", ".json", ".bval", ".bvec"}
-    rule_exts = set(rule["extensions"])
 
+    extensions = []
+    for x in rule["extensions"]:
+        if isinstance(x[0], str):
+            extensions.append(x[0])
+        if isinstance(x[0], list):
+            extensions.extend(iter(x[0]))
+    extensions = [extensions]
+
+    rule_exts = {ext for group in extensions for ext in group}
+
+    heritable_exts = {".tsv", ".json", ".bval", ".bvec"}
     main_exts = rule_exts - heritable_exts
     # If a rule only has TSV or JSON files, entities can be
     # made required
@@ -153,11 +164,11 @@ def _split_inheritance_rules(rule: Mapping) -> ty.List[Mapping]:
     sidecar_dtypes = [""] + rule.get("datatypes", [])
     sidecar_entities = {ent: "optional" for ent in rule["entities"]}
 
-    main_rule = {**rule, **{"extensions": list(main_exts)}}
+    main_rule = {**rule, **{"extensions": [list(main_exts)]}}
     sidecar_rule = {
         **rule,
         **{
-            "extensions": list(sidecar_exts),
+            "extensions": [list(sidecar_exts)],
             "datatypes": sidecar_dtypes,
             "entities": sidecar_entities,
         },
@@ -174,7 +185,7 @@ def _sanitize_extension(ext: str) -> str:
 
 def _stem_rule(rule: bst.types.Namespace):
     stem_regex = re.escape(rule.stem)
-    ext_match = "|".join(_sanitize_extension(ext) for ext in rule.extensions)
+    ext_match = "|".join(_sanitize_extension(ext) for group in rule.extensions for ext in group)
     ext_regex = f"(?P<extension>{ext_match})"
 
     return {"regex": stem_regex + ext_regex, "mandatory": rule.level == "required"}
