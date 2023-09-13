@@ -189,7 +189,7 @@ part:
     `part-real`/`part-imag` pairs of files.
 
     Phase images MAY be in radians or in arbitrary units.
-    The sidecar JSON file MUST include the units of the `phase` image.
+    The sidecar JSON file MUST include the `"Units"` of the `phase` image.
     The possible options are `"rad"` or `"arbitrary"`.
 
     When there is only a magnitude image of a given type, the `part` entity MAY be
@@ -356,7 +356,7 @@ stain:
     although the label may be different.
 
     Descriptions of antibodies SHOULD also be indicated in the `"SamplePrimaryAntibodies"`
-    and/or `"SampleSecondaryAntobodies"` metadata fields, as appropriate.
+    and/or `"SampleSecondaryAntibodies"` metadata fields, as appropriate.
   type: string
   format: label
 subject:

@@ -3365,9 +3365,10 @@ TermURL:
   name: TermURL
   display_name: TermURL
   description: |
-    URL pointing to a formal definition of this type of data in an ontology
-    available on the web.
+    URL pointing to a formal definition of this type of data in an ontology available on the web.
+    For example: https://www.ncbi.nlm.nih.gov/mesh/68008297 for "male".
   type: string
+  format: uri
 TimeZero:
   name: TimeZero
   display_name: Time Zero

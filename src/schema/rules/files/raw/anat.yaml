@@ -27,6 +27,7 @@ nonparametric:
     ceagent: optional
     reconstruction: optional
     run: optional
+    echo: optional
     part: optional
 
 parametric:
