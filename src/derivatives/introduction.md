@@ -93,10 +93,7 @@ in [Derived dataset and pipeline description][derived-dataset-description].
 
 ## File format specification
 
-Derived data may be resampled into structures that are not well-handled by the
-raw data formats.
-In this section, we describe standard formats that SHOULD be adhered to when
-appropriate, and the extensions they should have.
+In general, derivatives data formats follow those for raw data, for instance, 4D NIfTI fMRI leads to 3D NIfTI, EEG raw data in .edf leads to EEG averaged data in .edf. It is however not always possible, and in such cases, data should be exported to .tsv files when possible or in an alternative format. In this section, we describe standard formats that SHOULD be adhered to when appropriate and the extensions they should have.
 
 ### GIFTI Surface Data Format
 
@@ -122,6 +119,12 @@ or combinations of data arrays.
 
 Unless otherwise stated, bare `.gii` extensions SHOULD NOT be used
 for GIFTI files.
+
+### Multidimensional arrays: HDF5 and Zarr
+
+For multidimensional arrays, HDF5 and Zarr are recommended (both read/write in Python, Matlab, R, etc.). HDF5 and Zarr container format files (note: .zarr is typically a folder) should contain the data only (with the field ‘data’). The idea is to treat these as a virtual directory tree one level deep containing BIDS paths at the level of the multidimensional file (.zarr root or .h5 file). BIDS path rules are applied as though these paths exist within the dataset. Information related to .zarr/.h5-file that is possible to leave into a json sidecar should be extracted into the json sidecar as much as possible to be easily readable even if one doesn't have the software to read .zarr/.h5 files.
+
+
 
 <!-- Link Definitions -->
 
