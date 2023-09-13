@@ -252,16 +252,16 @@ A guide for using macros can be found at
 All REQUIRED metadata fields coming from a derivative file’s source file(s) MUST
 be propagated to the JSON description of the derivative unless the processing
 makes them invalid (for example, if a source 4D image is averaged to create a single
-static volume, a `RepetitionTime` property would no longer be relevant). This creates 
-a trail of the computational steps performed. Because many steps can occur until clean 
-data and because it is NOT mandatory to save every file or step, the simpler `desc-preproc` 
+static volume, a `RepetitionTime` property would no longer be relevant). This creates
+a trail of the computational steps performed. Because many steps can occur until clean
+data and because it is NOT mandatory to save every file or step, the simpler `desc-preproc`
 and `desc-proc` are available.
 
 ## descriptions.tsv
 
-To keep a record of what has been done to the data, a `descriptions.tsv` file can be used, containing at least two columns: `desc_id` and `description`. This file can be located at the root derivatives level or at the subject level (inheritance principle).  
+To keep a record of what has been done to the data, a `descriptions.tsv` file can be used, containing at least two columns: `desc_id` and `description`. This file can be located at the root derivatives level or at the subject level (inheritance principle).
 
-`desc_id` contains all labels used in the [`desc entity`](https://bids-specification.readthedocs.io/en/stable/appendices/entities.html#desc), while `description` is a human-readable description of what was computed. Note that while it is helpful to document how files are generated, we see this as 'light provenance' (see [provenance BEP28](https://github.com/bids-standard/BEP028_BIDSprov) for full computational reproducibility).  
+`desc_id` contains all labels used in the [`desc entity`](https://bids-specification.readthedocs.io/en/stable/appendices/entities.html#desc), while `description` is a human-readable description of what was computed. Note that while it is helpful to document how files are generated, we see this as 'light provenance' (see [provenance BEP28](https://github.com/bids-standard/BEP028_BIDSprov) for full computational reproducibility).
 
 {{ MACROS___make_filetree_example(
    {
@@ -280,7 +280,7 @@ To keep a record of what has been done to the data, a `descriptions.tsv` file ca
                 },
             },
           },
-  "derivatives/": {      
+  "derivatives/": {
          descriptions.tsv
         "sub-001": {
             "eeg": {
