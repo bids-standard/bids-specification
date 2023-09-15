@@ -252,10 +252,13 @@ A guide for using macros can be found at
 All REQUIRED metadata fields coming from a derivative file’s source file(s) MUST
 be propagated to the JSON description of the derivative unless the processing
 makes them invalid (for example, if a source 4D image is averaged to create a single
-static volume, a `RepetitionTime` property would no longer be relevant). This creates
-a trail of the computational steps performed. Because many steps can occur until clean
-data and because it is NOT mandatory to save every file or step, the simpler `desc-preproc`
-and `desc-proc` are available.
+static volume, a `RepetitionTime` property would no longer be relevant). As each file 
+includes what was computed by increment, a trail of the computational steps performed
+is created. Because many steps can occur until the fully clean data are obtained and 
+because it is NOT mandatory to save every file or step, the simpler `desc-preproc`
+and `desc-proc` are available. It becomes however important to document what such 
+pre-processing or processing are, and record the order of computational steps. This 
+can be in the json file or alternatively described in a descriptions.tsv file.
 
 ## descriptions.tsv
 
@@ -284,10 +287,10 @@ To keep a record of what has been done to the data, a `descriptions.tsv` file ca
          descriptions.tsv
         "sub-001": {
             "eeg": {
-                "sub-001_task-listening_desc-filt_eeg.edf": "",
-                "sub-001_task-listening_desc-filt_eeg.json": "",
-                "sub-001_task-listening_desc-filt+ds_eeg.edf": "",
-                "sub-001_task-listening_desc-filt+ds_eeg.json": "",
+                "sub-001_task-listening_desc-Filt_eeg.edf": "",
+                "sub-001_task-listening_desc-Filt_eeg.json": "",
+                "sub-001_task-listening_desc-FiltDs_eeg.edf": "",
+                "sub-001_task-listening_desc-FiltDs_eeg.json": "",
                 "sub-001_task-listening_desc-preproc_eeg.edf": "",
                 "sub-001_task-listening_desc-preproc_eeg.json": "",                },
             },
@@ -299,8 +302,8 @@ To keep a record of what has been done to the data, a `descriptions.tsv` file ca
 
 | desc_id          | description                                                                                               |
 |------------------|-----------------------------------------------------------------------------------------------------------|
-| filt             |  low-pass filtered at 30Hz                                                                                |
-| filt+ds          | low-pass filtered at 30Hz,downsampled to 250Hz                                                            |
+| Filt             |  low-pass filtered at 30Hz                                                                                |
+| FiltDs           | low-pass filtered at 30Hz,downsampled to 250Hz                                                            |
 | preproc          | low-pass filtered at 30Hz, downsampled to 250Hz and rereferenced to a common average reference            |
 
 
