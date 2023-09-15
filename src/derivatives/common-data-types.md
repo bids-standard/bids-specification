@@ -252,12 +252,12 @@ A guide for using macros can be found at
 All REQUIRED metadata fields coming from a derivative file’s source file(s) MUST
 be propagated to the JSON description of the derivative unless the processing
 makes them invalid (for example, if a source 4D image is averaged to create a single
-static volume, a `RepetitionTime` property would no longer be relevant). As each file 
+static volume, a `RepetitionTime` property would no longer be relevant). As each file
 includes what was computed by increment, a trail of the computational steps performed
-is created. Because many steps can occur until the fully clean data are obtained and 
+is created. Because many steps can occur until the fully clean data are obtained and
 because it is NOT mandatory to save every file or step, the simpler `desc-preproc`
-and `desc-proc` are available. It becomes however important to document what such 
-pre-processing or processing are, and record the order of computational steps. This 
+and `desc-proc` are available. It becomes however important to document what such
+pre-processing or processing are, and record the order of computational steps. This
 can be in the json file or alternatively described in a descriptions.tsv file.
 
 ## descriptions.tsv
