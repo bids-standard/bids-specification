@@ -264,7 +264,7 @@ can be in the json file or alternatively described in a descriptions.tsv file.
 
 To keep a record of what has been done to the data, a `descriptions.tsv` file can be used, containing at least two columns: `desc_id` and `description`. This file can be located at the root derivatives level or at the subject level (inheritance principle).
 
-`desc_id` contains all labels used in the [`desc entity`](https://bids-specification.readthedocs.io/en/stable/appendices/entities.html#desc), while `description` is a human-readable description of what was computed. Note that while it is helpful to document how files are generated, we see this as 'light provenance' (see [provenance BEP28](https://github.com/bids-standard/BEP028_BIDSprov) for full computational reproducibility).
+`desc_id` contains all labels used in the [`desc entity`](https://bids-specification.readthedocs.io/en/stable/appendices/entities.html#desc), while `description` is a human-readable description of what was computed. Note that while it is helpful to document how files are generated, we see this as 'light provenance', i.e. it is not aimed at providing full computational reproducibility.
 
 {{ MACROS___make_filetree_example(
    {
