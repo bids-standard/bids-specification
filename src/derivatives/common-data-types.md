@@ -301,10 +301,10 @@ To keep a record of what has been done to the data, a `descriptions.tsv` file ca
 `descriptions.tsv`
 
 | desc_id          | description                                                                                               |
-|------------------|-----------------------------------------------------------------------------------------------------------|
-| Filt             |  low-pass filtered at 30Hz                                                                                |
+|------------------|-----------------------------------------------------------------------------------------------|
+| Filt             | low-pass filtered at 30Hz                                                                                |
 | FiltDs           | low-pass filtered at 30Hz,downsampled to 250Hz                                                            |
-| preproc          | low-pass filtered at 30Hz, downsampled to 250Hz and rereferenced to a common average reference            |
+| preproc          | low-pass filtered at 30Hz, downsampled to 250Hz and rereferenced to a common average reference |
 
 
 <!-- Link Definitions -->
