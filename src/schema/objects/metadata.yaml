@@ -177,12 +177,6 @@ AssociatedEmptyRoom:
       format: dataset_relative
     - type: string
       format: bids_uri
-Atlas:
-  name: Atlas
-  display_name: Atlas
-  description: |
-    Which atlas (if any) was used to generate the mask.
-  type: string
 AttenuationCorrection:
   name: AttenuationCorrection
   display_name: Attenuation Correction
