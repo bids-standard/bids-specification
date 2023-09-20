@@ -51,7 +51,7 @@ theme:
     logo: images/logo.png
     features:
       - navigation.sections
-copyright: Copyright &copy; 2018-2022, BIDS Contributors - <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+copyright: Copyright &copy; 2018-2023, BIDS Contributors - <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
 extra:
     generator: false
     social:
