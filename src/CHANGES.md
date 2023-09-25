@@ -2,6 +2,7 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   FIX: Do not require notch frequencies to be parsed as numbers, accommodating multiples [#1605](https://github.com/bids-standard/bids-specification/pull/1605) ([effigies](https://github.com/effigies))
 -   \[ENH] Allow Levels field of column descriptions to be objects with TermURLs for each level [#1603](https://github.com/bids-standard/bids-specification/pull/1603) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[ENH] Add optional low_cutoff and high_cutoff columns for fnirs channels.tsv [#1597](https://github.com/bids-standard/bids-specification/pull/1597) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[SCHEMA]\[ENH] Remove atlas entity and replace it with seg in prep of BEP038 [#1579](https://github.com/bids-standard/bids-specification/pull/1579) ([melanieganz](https://github.com/melanieganz))

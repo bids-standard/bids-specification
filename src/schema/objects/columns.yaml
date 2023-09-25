@@ -302,13 +302,11 @@ notch:
   display_name: Notch frequencies
   description: |
     Frequencies used for the notch filter applied to the channel, in Hz.
-    If no notch filter applied, use `n/a`.
-  anyOf:
-    - type: number
-      unit: Hz
-    - type: string
-      enum:
-        - n/a
+    If notch filters are applied at multiple frequencies,
+    these frequencies MAY be specified as a list,
+    for example, `[60, 120, 180]`.
+    If no notch filter was applied, use `n/a`.
+  type: string
 onset:
   name: onset
   display_name: Event onset
