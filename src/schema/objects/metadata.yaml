@@ -453,7 +453,7 @@ CogPOID:
   display_name: Cognitive Paradigm Ontology ID
   description: |
     [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
-    of the corresponding [CogPO](https://www.cogpo.org/) term.
+    of the corresponding [CogPO](http://www.cogpo.org/) term.
   type: string
   format: uri
 CoilCombinationMethod:
