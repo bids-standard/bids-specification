@@ -1,6 +1,6 @@
 site_name: Brain Imaging Data Structure v1.9.0-dev
 site_url: https://bids-specification.readthedocs.io/en/stable/
-rep_url: https://github.com/bids-standard/bids-specification
+repo_url: https://github.com/bids-standard/bids-specification
 nav:
     - The BIDS Specification:
       - Introduction: introduction.md
