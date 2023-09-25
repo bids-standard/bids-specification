@@ -51,16 +51,45 @@ theme:
     logo: images/logo.png
     features:
       - navigation.sections
+      - content.action.edit
+    icon:
+      repo: fontawesome/brands/github
+      edit: material/pencil
+    palette:
+      # Palette toggle for automatic mode
+    - media: (prefers-color-scheme)
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+      # Palette toggle for light mode
+    - media: '(prefers-color-scheme: light)'
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+      # Palette toggle for dark mode
+    - media: '(prefers-color-scheme: dark)'
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+
+edit_uri: edit/master/src/
+
 copyright: Copyright &copy; 2018-2022, BIDS Contributors - <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+
 extra:
     generator: false
     social:
-      - icon: fontawesome/brands/twitter
-        link: https://twitter.com/BIDSstandard/
       - icon: fontawesome/brands/github
         link: https://github.com/bids-standard/bids-specification/
+      - icon: fontawesome/brands/twitter
+        link: https://twitter.com/BIDSstandard/
+      - icon: fontawesome/brands/mastodon
+        link: https://fosstodon.org/@bidsstandard
       - icon: fontawesome/brands/google
         link: https://groups.google.com/g/bids-discussion
+
 extra_javascript:
     - js/jquery-3.6.0.min.js
 markdown_extensions:
