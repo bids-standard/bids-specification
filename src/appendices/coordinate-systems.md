@@ -86,7 +86,7 @@ of restricted keywords for MEG, EEG, or iEEG, please open a new issue on the
 
 Note that the short descriptions below may not capture all details.
 For detailed descriptions of the coordinate systems below, please see the
-[FieldTrip webpage](https://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined).
+[FieldTrip webpage](https://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined/).
 
 ### Commonly used anatomical landmarks in MEG, EEG, and iEEG research
 
