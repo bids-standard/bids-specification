@@ -47,7 +47,7 @@ tiled format, or vice-versa.
 
 Microscopy raw data MUST be stored in one of the following formats:
 
--   [Portable Network Graphics](http://www.libpng.org/pub/png/) (`.png`)
+-   [Portable Network Graphics](https://www.libpng.org/pub/png/) (`.png`)
 
 -   [Tag Image File Format](https://en.wikipedia.org/wiki/TIFF) (`.tif`)
 

@@ -208,7 +208,7 @@ png:
   value: .png
   display_name: Portable Network Graphics
   description: |
-    A [Portable Network Graphics](http://www.libpng.org/pub/png/) file.
+    A [Portable Network Graphics](https://www.libpng.org/pub/png/) file.
 pos:
   value: .pos
   display_name: Head Point Position
