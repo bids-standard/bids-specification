@@ -77,7 +77,7 @@ theme:
 
 edit_uri: https://github.com/bids-standard/bids-specification/edit/master/src/
 
-copyright: Copyright &copy; 2018-2022, BIDS Contributors - <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+copyright: Copyright &copy; BIDS Contributors - <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
 
 extra:
     generator: false
