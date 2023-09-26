@@ -20,15 +20,15 @@ You should have a remote, which we will call `upstream`, for the
 repository:
 
 ```Shell
-$ git remote get-url upstream
+git remote get-url upstream
 git@github.com:bids-standard/bids-specification.git
 ```
 
 If you do not, add it with:
 
 ```Shell
-$ cd bids-specification
-$ git remote add upstream git@github.com:bids-standard/bids-specification.git
+cd bids-specification
+git remote add upstream git@github.com:bids-standard/bids-specification.git
 ```
 
 Fetch the current repository state and create a new `rel/<version>` branch based on
@@ -36,11 +36,15 @@ Fetch the current repository state and create a new `rel/<version>` branch based
 For example, if releasing version `1.2.0`:
 
 ```Shell
-$ git fetch upstream
-$ git checkout -b rel/1.2.0 upstream/master
+git fetch upstream
+git checkout -b rel/1.2.0 upstream/master
 ```
 
 ### 2. Update the version, contributors list, previous version URLs, and the Changelog
+
+#### 2.1 Update the version
+
+Update the version in CITATION.cff.
 
 Change the "Unreleased" heading in
 [src/CHANGES.md](https://github.com/bids-standard/bids-specification/blob/master/src/CHANGES.md)
@@ -64,27 +68,45 @@ In the figure below, we update `v1.2.0-dev` to `v1.2.0`.
 
 Additionally, implement the same change in the version name perform above in the `src/schema/BIDS_VERSION` file.
 
-Note: this will make our continuous integration ([CircleCI](https://circleci.com/)) fail. This fails because the URL of the new ReadTheDocs rendering has not been generated at this time. It will be generated once the GitHub release has been completed.
+Note:
+this will make our continuous integration ([CircleCI](https://circleci.com/)) fail.
+This fails because the URL of the new ReadTheDocs rendering has not been generated at this time.
+It will be generated once the GitHub release has been completed.
 
-Synchronize the [Contributors appendix](https://github.com/bids-standard/bids-specification/blob/master/src/99-appendices/01-contributors.md)
+#### 2.2 Update the contributors list
+
+Synchronize the [Contributors appendix](https://github.com/bids-standard/bids-specification/blob/master/src/appendices/contributors.md)
 with the [Contributors wiki page](https://github.com/bids-standard/bids-specification/wiki/Contributors)
 to ensure all contributors are duly credited.
 Be sure not to remove credits if both have been edited.
+
+- add new contributors info to the `tools/new_contributors.tsv` file.
+- make sure that you have installed
+  - all the python packages listed in `tools/requirements.txt`
+  - the [allcontributors](https://allcontributors.org/docs/en/cli/installation) package
+- run:
+```bash
+make update_contributors
+```
+- you may need to fix some errors in the contributions names in case of crash
+- make sure to review the changes and not commit them blindly
+- commit the changes
+
+#### 2.3 Update the previous version URLs
 
 Please change the previous version links from GitHub to ReadTheDocs.
 In the figure below, we update v1.2.2.
 ![github-to-rtd](release_images/GitHub_to_RTD_spec_rendering.png "github-to-rtd")
 
-Remove `REL:` entries in [src/CHANGES.md](https://github.com/bids-standard/bids-specification/blob/master/src/CHANGES.md).
-
-```Diff
-- REL: v1.2.2 #405 (franklin-feingold)
-```
+#### 2.4 Update the Changelog
 
 Review `src/CHANGES.md` to ensure that the document produces a changelog that is useful to a
 reader of the specification.
 For example, several small PRs fixing typos might be merged into a single line-item, or less
 important changes might be moved down the list to ensure that large changes are more prominent.
+You can also make use of the `exclude-from-changelog` label.
+Adding this label to PRs in the GitHub web interface will prevent the changelog generator from
+considering this item for inclusion in the changelog.
 
 ### 3. Commit changes and push to upstream
 
@@ -92,14 +114,17 @@ By pushing `rel/` branches to the main repository, the chances of continuous int
 discrepancies is reduced.
 
 ```Shell
-$ git add src/CHANGES.md mkdocs.yml src/99-appendices/01-contributors.md
-$ git commit -m 'REL: v1.2.0'
-$ git push -u upstream rel/1.2.0
+git add src/CHANGES.md mkdocs.yml src/appendices/contributors.md src/schema/BIDS_VERSION
+git commit -m 'REL: v1.2.0'
+git push -u upstream rel/1.2.0
 ```
 
 ### 4. Open a pull request against the master branch
 
-Important note: The pull request title **must** be named "REL: vX.Y.Z" (for example, "REL: v1.2.0").
+**Important notes:**
+
+1. The pull request title **must** be named "REL: vX.Y.Z" (for example, "REL: v1.2.0")
+1. The pull request **must** get a GitHub label called `exclude-from-changelog`
 
 **This will open a period of discussion for 5 business days regarding if we are ready to release.**
 
@@ -118,10 +143,10 @@ probably wait.
 If `master` is updated, it should be merged into the `rel/<version>` branch:
 
 ```Shell
-$ git fetch upstream
-$ git checkout rel/1.2.0
-$ git merge upstream/master
-$ git push rel/1.2.0
+git fetch upstream
+git checkout rel/1.2.0
+git merge upstream/master
+git push rel/1.2.0
 ```
 
 ### 5. Set release date and merge
@@ -145,12 +170,13 @@ Upon each commit to the `master` branch, CircleCI builds a PDF version of the
 specification (see `.circleci/config.yml` and the `pdf_build_src` directory).
 
 So after merging the new "stable" version into `master`, wait for the CircleCI
-jobs to finish and then check the built PDF using this link:
+jobs to finish and then check the built PDF using the following steps:
 
-`https://circleci.com/api/v1.1/project/github/bids-standard/bids-specification/latest/artifacts/0/bids-spec.pdf?branch=master`
-
-Download the PDF and hold it ready for upload to our Zenodo archive. See the
-*Uploading the stable PDF to Zenodo* step below.
+1. Go to the [list of recent commits](https://github.com/bids-standard/bids-specification/commits/master)
+1. Click on the "CI checks" for the most recent commit (should be a green checkmark)
+1. From the list of CI checks, click on the one called: `Check the rendered PDF version here!`
+1. Download the PDF and check that the date and version on the first page are as expected
+1. Hold the PDF ready for upload to our Zenodo archive (see the *Uploading the stable PDF to Zenodo* step below)
 
 ### 7. Tag the release
 
@@ -160,9 +186,9 @@ To do this, `fetch` the current state of `upstream` (see step 1), tag `upstream/
 `push` the tag to `upstream`.
 
 ```Shell
-$ git fetch upstream
-$ git tag -a -m "v1.2.0 (2019-03-04)" v1.2.0 upstream/master
-$ git push upstream v1.2.0
+git fetch upstream
+git tag -a -m "v1.2.0 (2019-03-04)" v1.2.0 upstream/master
+git push upstream v1.2.0
 ```
 
 There are four components to the tag command:
@@ -212,6 +238,8 @@ For example, after the 1.3.0 release, either `1.3.1-dev` or `1.4.0-dev` would be
 on the expected next version.
 
 Additionally, the same version name set above in `mkdocs.yaml` should be set in the `src/schema/BIDS_VERSION` schema version file.
+
+Similarly update the version in CITATION.cff with a `dev` suffix.
 
 ### 10. Uploading the stable PDF to Zenodo
 

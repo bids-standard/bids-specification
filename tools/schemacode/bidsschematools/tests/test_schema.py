@@ -4,17 +4,14 @@ from collections.abc import Mapping
 
 import pytest
 
-from bidsschematools import __bids_version__, schema
+from bidsschematools import __bids_version__, schema, types
+
+from ..data import load_resource
 
 
 def test__get_bids_version(tmp_path):
     # Is the version being read in correctly?
-    schema_path = os.path.join(
-        os.path.abspath(os.path.dirname(__file__)),
-        os.pardir,
-        "data",
-        "schema",
-    )
+    schema_path = str(load_resource("schema"))
     bids_version = schema._get_bids_version(schema_path)
     assert bids_version == __bids_version__
 
@@ -40,6 +37,9 @@ def test_load_schema(schema_dir):
     # Otherwise the function should return a dictionary
     schema_obj = schema.load_schema(schema_dir)
     assert isinstance(schema_obj, Mapping)
+
+    # Check that it is fully dereferenced
+    assert "$ref" not in str(schema_obj)
 
 
 def test_object_definitions(schema_obj):
@@ -186,7 +186,7 @@ def test_dereferencing():
             "Property2": "value4",
         },
     }
-    dereffed = schema.dereference_mapping(orig, orig.copy())
+    dereffed = schema.dereference(orig)
     assert dereffed == {
         "ReferencedObject": {
             "Property1": "value1",
@@ -220,9 +220,8 @@ def test_dereferencing():
         },
     }
 
-    sch = schema.Namespace.build(orig)
-    expanded = schema.expand(orig)
-    dereffed = schema.dereference_mapping(sch, expanded)
+    sch = types.Namespace.build(orig)
+    dereffed = schema.dereference(sch)
     assert dereffed == {
         "raw": {
             "func": {
@@ -278,9 +277,8 @@ def test_dereferencing():
         },
     }
 
-    sch = schema.Namespace.build(orig)
-    expanded = schema.expand(orig)
-    dereffed = schema.dereference_mapping(sch, expanded)
+    sch = types.Namespace.build(orig)
+    dereffed = schema.dereference(sch)
     assert dereffed == {
         "_DERIV_ENTS": {
             "space": "optional",
@@ -309,5 +307,38 @@ def test_dereferencing():
                     "desc": "optional",
                 },
             }
+        },
+    }
+
+    orig = {
+        "objects": {
+            "enums": {
+                "left": {"value": "L"},
+                "right": {"value": "R"},
+            },
+            "entities.hemisphere": {
+                "name": "hemi",
+                "enum": [
+                    {"$ref": "objects.enums.left.value"},
+                    {"$ref": "objects.enums.right.value"},
+                ],
+            },
+        },
+    }
+
+    sch = types.Namespace.build(orig)
+    dereffed = schema.dereference(sch)
+    assert dereffed == {
+        "objects": {
+            "enums": {
+                "left": {"value": "L"},
+                "right": {"value": "R"},
+            },
+            "entities": {
+                "hemisphere": {
+                    "name": "hemi",
+                    "enum": ["L", "R"],
+                },
+            },
         },
     }

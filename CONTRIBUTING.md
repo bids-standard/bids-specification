@@ -157,6 +157,8 @@ Some others need to fixed manually:
   to some readers and try to replace them by common English equivalents such as
   `"for example"`, `"that is"`, `"and so on"`.
 
+The BIDS specification is written in American English.
+
 #### Soft rules
 
 We follow certain "soft rules" in the way we format the specification in Markdown.
@@ -310,8 +312,8 @@ The third command ensures to install the BIDS schema code as an "editable" insta
 so that if you make changes to the schema files,
 these are automatically reflected in the sourcecode.
 
-Note that if you need to work on the some of the Python code 
-that is used to render the specification, 
+Note that if you need to work on the some of the Python code
+that is used to render the specification,
 you will probably have to also run:
 
 ```bash
@@ -708,15 +710,15 @@ BIDS follows the
 specification, so we welcome and recognize all contributions from documentation
 to testing to code development.
 You can see a list of current contributors in the
-[BIDS specification](https://github.com/bids-standard/bids-specification/blob/master/src/99-appendices/01-contributors.md).
+[BIDS specification](https://github.com/bids-standard/bids-specification/blob/master/src/appendices/contributors.md).
 
 If you have made any type of contributions to the BIDS specifications, you can
 either make a change to the
-[contributors document](./src/99-appendices/01-contributors.md) and commit as
+[contributors document](./src/appendices/contributors.md) and commit as
 part of a pull request or you can edit this
 [page](https://github.com/bids-standard/bids-specification/wiki/Recent-Contributors)
 of the specification WIKI.
-The WIKI is then synced with the specification with evert new release of the specifications.
+The WIKI is then synced with the specification with every new release of the specifications.
 
 ## Thank you!
 

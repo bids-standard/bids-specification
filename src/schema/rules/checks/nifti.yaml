@@ -1,0 +1,51 @@
+---
+# 40
+NiftiDimension:
+  issue:
+    code: NIFTI_DIMENSION
+    message: |
+      NIfTI file's header field for dimension information is blank or too short.
+    level: warning
+  selectors:
+    - type(nifti_header) != "null"
+  checks:
+    - length(nifti_header.shape) > 0
+    - min(nifti_header.shape) > 0
+
+# 41
+NiftiUnit:
+  issue:
+    code: NIFTI_UNIT
+    message: |
+      NIfTI file's header field for unit information for x, y, z, and t dimensions is empty or too short.
+    level: warning
+  selectors:
+    - type(nifti_header) != "null"
+  checks:
+    - nifti_header.xyzt_units.xyz != 'unknown'
+    - nifti_header.dim[0] < 4 || nifti_header.xyzt_units.t != 'unknown'
+
+# 42
+NiftiPixdim:
+  issue:
+    code: NIFTI_PIXDIM
+    message: |
+      NIfTI file's header field for pixel dimension information is empty or too short.
+    level: warning
+  selectors:
+    - type(nifti_header) != "null"
+  checks:
+    - min(nifti_header.voxel_sizes) > 0
+
+# 60
+XformCodes0:
+  issue:
+    code: SFORM_AND_QFORM_IN_IMAGE_HEADER_ARE_ZERO
+    message: |
+      sform_code and qform_code in the image header are 0.
+      The image/file will be considered invalid or assumed to be in LAS orientation.
+    level: warning
+  selectors:
+    - nifti_header != null
+  checks:
+    - nifti_header.qform_code != 0 || nifti_header.sform_code != 0

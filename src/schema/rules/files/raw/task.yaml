@@ -1,0 +1,121 @@
+---
+events:
+  suffixes:
+    - events
+  extensions:
+    - .tsv
+    - .json
+  datatypes:
+    - beh
+    - eeg
+    - ieeg
+    - meg
+    - nirs
+  entities:
+    subject: required
+    session: optional
+    task: required
+    acquisition: optional
+    run: optional
+
+timeseries:
+  suffixes:
+    - physio
+    - stim
+  extensions:
+    - .tsv.gz
+    - .json
+  datatypes:
+    - beh
+    - eeg
+    - ieeg
+    - nirs
+  entities:
+    subject: required
+    session: optional
+    task: required
+    acquisition: optional
+    run: optional
+    recording: optional
+
+# Specializations
+# In these rules, we use $ref to retrieve most of an object, and then override
+
+events__mri:
+  $ref: rules.files.raw.task.events
+  datatypes:
+    - func
+  entities:
+    $ref: rules.files.raw.task.events.entities
+    ceagent: optional
+    reconstruction: optional
+    direction: optional
+
+events__motion:
+  $ref: rules.files.raw.task.events
+  datatypes:
+    - motion
+  entities:
+    $ref: rules.files.raw.task.events.entities
+    tracksys: optional
+
+events__pet:
+  $ref: rules.files.raw.task.events
+  datatypes:
+    - pet
+  entities:
+    # Most events allow acquisition, PET doesn't
+    subject: required
+    session: optional
+    task: required
+    tracer: optional
+    reconstruction: optional
+    run: optional
+
+timeseries__mri:
+  $ref: rules.files.raw.task.timeseries
+  datatypes:
+    - dwi
+    - perf
+  entities:
+    $ref: rules.files.raw.task.timeseries.entities
+    reconstruction: optional
+    direction: optional
+
+timeseries__func:
+  $ref: rules.files.raw.task.timeseries
+  datatypes:
+    - func
+  entities:
+    $ref: rules.files.raw.task.timeseries__mri.entities
+    ceagent: optional
+
+timeseries__meg:
+  $ref: rules.files.raw.task.timeseries
+  datatypes:
+    - meg
+  entities:
+    $ref: rules.files.raw.task.timeseries.entities
+    processing: optional
+
+timeseries__motion:
+  $ref: rules.files.raw.task.timeseries
+  datatypes:
+    - motion
+  entities:
+    $ref: rules.files.raw.task.timeseries.entities
+    tracksys: optional
+
+timeseries__pet:
+  $ref: rules.files.raw.task.timeseries
+  datatypes:
+    - pet
+  entities:
+    # Most timeseries allow acquisition, PET doesn't
+    subject: required
+    session: optional
+    task: required
+    tracer: optional
+    reconstruction: optional
+    run: optional
+    recording: optional

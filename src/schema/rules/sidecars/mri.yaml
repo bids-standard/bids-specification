@@ -6,7 +6,7 @@
 
 ---
 # MRI Common metadata fields
-MRIScannerHardware:
+MRIHardware:
   selectors:
     - modality == "mri"
   fields:
@@ -54,7 +54,7 @@ MRISequenceSpecifics:
     SequenceName: recommended
     PulseSequenceDetails: recommended
     NonlinearGradientCorrection: |
-      recommended, but required if [PET](./09-positron-emission-tomography.md) data are present
+      recommended, but required if [PET](./positron-emission-tomography.md) data are present
     MRAcquisitionType: recommended, but required for Arterial Spin Labeling
     MTState: recommended
     MTOffsetFrequency: optional
@@ -77,8 +77,8 @@ PETMRISequenceSpecifics:
 
 ASLMRISequenceSpecifics:
   selectors:
-    - modality == "mri"
     - datatype == "perf"
+    - suffix == "asl"
   fields:
     MRAcquisitionType: required
 
@@ -117,6 +117,7 @@ MRISpatialEncoding:
   fields:
     NumberShots: recommended
     ParallelReductionFactorInPlane: recommended
+    ParallelReductionFactorOutOfPlane: recommended
     ParallelAcquisitionTechnique: recommended
     PartialFourier: recommended
     PartialFourierDirection: recommended
@@ -144,6 +145,7 @@ PhaseEncodingDirectionRec:
         acquired with opposing phase encoding directions are present
         (see [Case 4: Multiple phase encoded
         directions](#case-4-multiple-phase-encoded-directions-pepolar))
+
 PhaseEncodingDirectionReq:
   selectors:
     - modality == "mri"
@@ -185,17 +187,22 @@ MRITimingParameters:
           should only be used when the volume timing is critical for interpretation
           of the data, such as in ASL or variable echo time fMRI sequences.
     InversionTime: recommended
+    DwellTime: recommended
+
+SliceTimingMRI:
+  selectors:
+    - modality == "mri"
+    - sidecar.MRAcquisitionType == "2D"
+  fields:
     SliceTiming:
       level: recommended
       level_addendum: |
         required for sparse sequences that do not have the `DelayTime` field set,
         and Arterial Spin Labeling with `MRAcquisitionType` set on `2D`.
     SliceEncodingDirection: recommended
-    DwellTime: recommended
 
 SliceTimingASL:
   selectors:
-    - modality == "mri"
     - datatype == "perf"
     - intersects([suffix], ["asl", "m0scan"])
     - sidecar.MRAcquisitionType == "2D"
@@ -206,7 +213,7 @@ SliceTimingASL:
       issue:
         code: SLICE_TIMING_NOT_DEFINED_2D_ASL
         message: |
-          You should define `SliceTiming` for this file, because `SequenceType` is sets
+          You should define `SliceTiming` for this file, because `SequenceType` is set
           to a 2D sequence. `SliceTiming` is the time at which each slice was
           acquired within each volume (frame) of the acquisition. Slice timing
           is not slice order -- rather, it is a list of times containing the

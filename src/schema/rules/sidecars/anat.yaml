@@ -9,25 +9,25 @@
 
 MRIAnatomyCommonMetadataFields:
   selectors:
-    - modality == "mri"
     - datatype == "anat"
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     ContrastBolusIngredient: optional
     RepetitionTimeExcitation: optional
     RepetitionTimePreparation: optional
 
-PhaseEntityUnits:
+TaskMetadata:
   selectors:
-    - modality == "mri"
     - datatype == "anat"
-    - entities.part == "phase"
+    - entity.task != null
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
-    Units: required
-
-PhaseSuffixUnits:
-  selectors:
-    - modality == "mri"
-    - datatype == "anat"
-    - suffix == "phase"
-  fields:
-    Units: required
+    TaskName:
+      level: recommended
+      level_addendum: if `task` entity is present
+    TaskDescription:
+      level: recommended
+      level_addendum: if `task` entity is present
+    Instructions:
+      level: recommended
+      level_addendum: if `task` entity is present

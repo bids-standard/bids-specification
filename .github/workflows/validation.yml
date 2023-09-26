@@ -1,0 +1,98 @@
+---
+name: Validation
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Check for common misspellings
+  codespell:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: codespell-project/actions-codespell@master
+
+  # Markdown formatting
+  remark:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+      - name: Install dependencies
+        run: npm install `cat npm-requirements.txt`
+      - name: Run style checks
+        run: npx remark src/**/*.md --frail --rc-path .remarkrc
+
+  # YAML
+  yamllint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3
+      - name: Install dependencies
+        run: pip install yamllint
+      - name: Lint yml files in src/schema
+        run: yamllint -f standard src/schema/ -c .yamllint.yml
+
+  # Python best practices
+  python-style:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3
+      - run: python -m pip install --upgrade flake8 black isort[colors]
+      - run: black --diff --color --check tools/schemacode
+      - run: isort --diff --color --check tools/schemacode
+      - run: flake8
+        working-directory: tools/schemacode
+
+  # Avoid Latin phrases to improve readability
+  latin-phrases:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r tools/requirements.txt
+      - name: Run Python script to check for Latin phrases - Master
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: |
+          python no-bad-latin.py
+        working-directory: tools
+      - name: Run Python script to check for Latin phrases - Pull Request
+        if: github.event.pull_request
+        run: |
+          python no-bad-latin.py
+        working-directory: tools
+
+  # Validate CITATION.cff
+  validate_cff:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v4
+      with:
+        python-version: 3
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip setuptools
+        pip3 install cffconvert
+    - name: Validate CITATION.cff
+      run: make validate_citation_cff

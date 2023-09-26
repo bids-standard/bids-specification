@@ -10,8 +10,8 @@
 # Required fields
 MRIFuncRequired:
   selectors:
-    - modality == "mri"
     - datatype == "func"
+    - suffix == "bold"
     - match(extension, "^\.nii(\.gz)?$")
   fields:
     TaskName:
@@ -22,8 +22,8 @@ MRIFuncRequired:
 
 MRIFuncRepetitionTime:
   selectors:
-    - modality == "mri"
     - datatype == "func"
+    - suffix == "bold"
     - '!("VolumeTiming" in sidecar)'
     - match(extension, "^\.nii(\.gz)?$")
   fields:
@@ -33,8 +33,8 @@ MRIFuncRepetitionTime:
 
 MRIFuncVolumeTiming:
   selectors:
-    - modality == "mri"
     - datatype == "func"
+    - suffix == "bold"
     - '!("RepetitionTime" in sidecar)'
     - match(extension, "^\.nii(\.gz)?$")
   fields:
@@ -45,8 +45,8 @@ MRIFuncVolumeTiming:
 # Timing Parameters
 MRIFuncTimingParameters:
   selectors:
-    - modality == "mri"
     - datatype == "func"
+    - suffix == "bold"
   fields:
     NumberOfVolumesDiscardedByScanner: recommended
     NumberOfVolumesDiscardedByUser: recommended
@@ -63,62 +63,11 @@ MRIFuncTimingParameters:
           The field 'VolumeTiming' requires 'AcquisitionDuration' or 'SliceTiming' to be defined.
     DelayAfterTrigger: recommended
 
-# The mutual exclusion table, spread across 5 definitions
-# NOTE: This introduces a prohibited level
-MRIFuncTimingParametersMutualExclusion1:
-  selectors:
-    - modality == "mri"
-    - datatype == "func"
-    - '"RepetitionTime" in sidecar'
-  fields:
-    AcquisitionDuration: prohibited
-    VolumeTiming: prohibited
-
-MRIFuncTimingParametersMutualExclusion2:
-  selectors:
-    - modality == "mri"
-    - datatype == "func"
-    - '"SliceTiming" in sidecar'
-    - '"VolumeTiming" in sidecar'
-  fields:
-    RepetitionTime: prohibited
-    DelayTime: prohibited
-
-MRIFuncTimingParametersMutualExclusion3:
-  selectors:
-    - modality == "mri"
-    - datatype == "func"
-    - '"AcquisitionDuration" in sidecar'
-    - '"VolumeTiming" in sidecar'
-  fields:
-    RepetitionTime: prohibited
-    DelayTime: prohibited
-
-MRIFuncTimingParametersMutualExclusion4:
-  selectors:
-    - modality == "mri"
-    - datatype == "func"
-    - '"RepetitionTime" in sidecar'
-    - '"SliceTiming" in sidecar'
-  fields:
-    AcquisitionDuration: prohibited
-    VolumeTiming: prohibited
-
-MRIFuncTimingParametersMutualExclusion5:
-  selectors:
-    - modality == "mri"
-    - datatype == "func"
-    - '"RepetitionTime" in sidecar'
-    - '"DelayTime" in sidecar'
-  fields:
-    AcquisitionDuration: prohibited
-    VolumeTiming: prohibited
-
 # fMRI task information
 MRIFuncTaskInformation:
   selectors:
-    - modality == "mri"
     - datatype == "func"
+    - suffix == "bold"
   fields:
     Instructions:
       level: recommended
@@ -128,3 +77,12 @@ MRIFuncTaskInformation:
     TaskDescription: recommended
     CogAtlasID: recommended
     CogPOID: recommended
+
+# Should now be `part-phase_bold.nii`, but still require units
+PhaseSuffixUnits:
+  selectors:
+    - datatype == "func"
+    - suffix == "phase"
+    - match(extension, "^\.nii(\.gz)?$")
+  fields:
+    Units: required
