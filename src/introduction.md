@@ -178,4 +178,4 @@ BIDS has also a
 [Research Resource Identifier (RRID)](https://force11.org/group/resource-identification-initiative),
 which you can also include in your citations in addition to relevant publications (see above):
 
--   [`RRID:SCR_016124`](https://scicrunch.org/resolver/SCR_016124)
+-   [`RRID:SCR_016124`](https://scicrunch.org/resources/data/record/nlx_144509-1/SCR_016124/resolver?q=SCR_016124)
