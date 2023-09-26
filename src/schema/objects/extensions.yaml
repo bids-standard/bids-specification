@@ -175,8 +175,10 @@ OMEZARR:
   description: |
     An OME-NGFF file.
 
-    OME-NGFF is a [Zarr](https://zarr.readthedocs.io/en/stable/)-based format, organizing data arrays in nested directories.
-    This format was developed by the Open Microscopy Environment to provide data stream access to very large data.
+    OME-NGFF is a [Zarr](https://zarr.readthedocs.io/en/stable/)-based format,
+    organizing data arrays in nested directories.
+    This format was developed by the Open Microscopy Environment
+    to provide data stream access to very large data.
 nii:
   value: .nii
   display_name: NIfTI
