@@ -356,7 +356,7 @@ the two marker measurements occur before and after the raw data acquisition,
 `pre` and `post` are used to differentiate the two situations.
 
 More about the KIT/Yokogawa/Ricoh data organization at:
-[https://www.fieldtriptoolbox.org/getting_started/yokogawa](https://www.fieldtriptoolbox.org/getting_started/yokogawa)
+[https://www.fieldtriptoolbox.org/getting_started/yokogawa](https://www.fieldtriptoolbox.org/getting_started/yokogawa/)
 
 ## KRISS
 
