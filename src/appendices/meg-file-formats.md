@@ -58,7 +58,7 @@ A guide for using macros can be found at
 ) }}
 
 To learn more about CTF’s data organization:
-[https://www.fieldtriptoolbox.org/getting_started/ctf](https://www.fieldtriptoolbox.org/getting_started/ctf)
+[https://www.fieldtriptoolbox.org/getting_started/ctf](https://www.fieldtriptoolbox.org/getting_started/ctf/)
 
 ## Neuromag/Elekta/MEGIN
 
@@ -235,8 +235,8 @@ A guide for using macros can be found at
 
 More information can be found under the following links:
 
--   [Neuromag/Elekta/MEGIN data organization](https://www.fieldtriptoolbox.org/getting_started/neuromag)
--   [BabyMEG](https://www.fieldtriptoolbox.org/getting_started/babysquid)
+-   [Neuromag/Elekta/MEGIN data organization](https://www.fieldtriptoolbox.org/getting_started/neuromag/)
+-   [BabyMEG](https://www.fieldtriptoolbox.org/getting_started/babysquid/)
 
 ### Recording dates in `.fif` files
 
@@ -302,7 +302,7 @@ A guide for using macros can be found at
 ) }}
 
 More about the 4D neuroimaging/BTi data organization at:
-[https://www.fieldtriptoolbox.org/getting_started/bti](https://www.fieldtriptoolbox.org/getting_started/bti)
+[https://www.fieldtriptoolbox.org/getting_started/bti](https://www.fieldtriptoolbox.org/getting_started/bti/)
 
 ## KIT/Yokogawa/Ricoh
 
