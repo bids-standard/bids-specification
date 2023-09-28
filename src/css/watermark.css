@@ -9,16 +9,17 @@
     background-color: #ff0000;
 }
 
-:root {
-    --md-background-image: url(../images/draft_watermark.png);
-    --md-background-image--light: url(../images/draft_watermark.png);
-    --md-background-image--dark: url(../images/draft_watermark_dark.png);
-}
-
 .md-main__inner {
-    background-image: var(--md-background-image);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: contain, cover;
     background-position: center;
+}
+
+[data-md-color-scheme=default] .md-main__inner {
+    background-image: url(../images/draft_watermark.png);
+}
+
+[data-md-color-scheme=slate] .md-main__inner {
+    background-image: url(../images/draft_watermark_dark.png);
 }
