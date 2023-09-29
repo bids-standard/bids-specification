@@ -408,12 +408,12 @@ A guide for using macros can be found at
 {{ MACROS___make_sidecar_table("meg.MEGCoordsystemFiducialsInformation") }}
 
 For more information on the definition of anatomical landmarks, please visit:
-[https://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined](https://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined)
+    [How are the Left and Right Pre-Auricular (LPA and RPA) points defined? - FieldTrip Toolbox](https://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined/)
 
 For more information on typical coordinate systems for MEG-MRI coregistration:
-[https://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined](https://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined),
+    [How are the different head and MRI coordinate systems defined? - FieldTrip Toolbox](https://www.fieldtriptoolbox.org/faq/coordsys/)
 or:
-[https://neuroimage.usc.edu/brainstorm/CoordinateSystems](https://neuroimage.usc.edu/brainstorm/CoordinateSystems)
+[Coordinate Systems - Brainstorm toolbox](https://neuroimage.usc.edu/brainstorm/CoordinateSystems)
 
 ## Landmark photos (`*_photo.<extension>`)
 

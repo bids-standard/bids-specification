@@ -14,7 +14,7 @@ Individual terms are comma-separated and may be grouped using parentheses to ind
 association.
 See [https://www.hedtags.org/display_hed.html](https://www.hedtags.org/display_hed.html)
 to view the HED schema and the
-[HED resources](https://www.hed-resources.org) site for additional information.
+[HED resources](https://www.hed-resources.org/en/latest/) site for additional information.
 
 Starting with HED version 8.0.0, HED allows users to annotate using individual
 terms or partial paths in the HED vocabulary (for example `Red` or `Visual-presentation`)
