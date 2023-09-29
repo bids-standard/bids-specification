@@ -299,13 +299,11 @@ notch:
   display_name: Notch frequencies
   description: |
     Frequencies used for the notch filter applied to the channel, in Hz.
-    If no notch filter applied, use `n/a`.
-  anyOf:
-    - type: number
-      unit: Hz
-    - type: string
-      enum:
-        - n/a
+    If notch filters are applied at multiple frequencies,
+    these frequencies MAY be specified as a list,
+    for example, `[60, 120, 180]`.
+    If no notch filter was applied, use `n/a`.
+  type: string
 onset:
   name: onset
   display_name: Event onset
@@ -567,7 +565,7 @@ strain_rrid:
   display_name: Strain RRID
   description: |
     For species different from `homo sapiens`, research resource identifier
-    ([RRID](https://scicrunch.org/resources/Organisms/search))
+    ([RRID](https://scicrunch.org/resources/data/source/nlx_154697-1/search))
     of the strain of the species, for example: `RRID:IMSR_JAX:000664`.
   type: string
   format: rrid

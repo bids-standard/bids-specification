@@ -25,16 +25,6 @@ acquisition:
     remains at the discretion of the researcher.
   type: string
   format: label
-atlas:
-  name: atlas
-  display_name: Atlas
-  description: |
-    The `atlas-<label>` key/value pair corresponds to a custom label the user
-    MAY use to distinguish a different atlas used for similar type of data.
-
-    This entity is only applicable to derivative data.
-  type: string
-  format: label
 ceagent:
   name: ce
   display_name: Contrast Enhancing Agent
@@ -51,9 +41,12 @@ chunk:
   name: chunk
   display_name: Chunk
   description: |
-    The `chunk-<index>` key/value pair is used to distinguish between different regions,
-    2D images or 3D volumes files,
-    of the same physical sample with different fields of view acquired in the same imaging experiment.
+    The `chunk-<index>` key/value pair is used to distinguish between images of
+    the same physical sample with different fields of view acquired in the same
+    imaging experiment.
+    This entity applies to collections of 2D images, 3D volumes or 4D volume series
+    (for example, diffusion weighted images), and may be used to indicate different
+    anatomical structures or regions of the same structure.
   type: string
   format: index
 density:
@@ -284,6 +277,16 @@ sample:
     A sample pertaining to a subject such as tissue, primary cell or cell-free sample.
     The `sample-<label>` entity is used to distinguish between different samples from the same subject.
     The label MUST be unique per subject and is RECOMMENDED to be unique throughout the dataset.
+  type: string
+  format: label
+segmentation:
+  name: seg
+  display_name: Segmentation
+  description: |
+    The `seg-<label>` key/value pair corresponds to a custom label the user
+    MAY use to distinguish different segmentations.
+
+    This entity is only applicable to derivative data.
   type: string
   format: label
 session:

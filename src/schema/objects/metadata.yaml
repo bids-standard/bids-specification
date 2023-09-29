@@ -177,12 +177,6 @@ AssociatedEmptyRoom:
       format: dataset_relative
     - type: string
       format: bids_uri
-Atlas:
-  name: Atlas
-  display_name: Atlas
-  description: |
-    Which atlas (if any) was used to generate the mask.
-  type: string
 AttenuationCorrection:
   name: AttenuationCorrection
   display_name: Attenuation Correction
@@ -391,7 +385,7 @@ CellType:
   description: |
     Describes the type of cell analyzed.
     Values SHOULD come from the
-    [cell ontology](http://obofoundry.org/ontology/cl.html).
+    [cell ontology](https://obofoundry.org/ontology/cl.html).
   type: string
 ChunkTransformationMatrix:
   name: ChunkTransformationMatrix
@@ -3371,9 +3365,10 @@ TermURL:
   name: TermURL
   display_name: TermURL
   description: |
-    URL pointing to a formal definition of this type of data in an ontology
-    available on the web.
+    URL pointing to a formal definition of this type of data in an ontology available on the web.
+    For example: https://www.ncbi.nlm.nih.gov/mesh/68008297 for "male".
   type: string
+  format: uri
 TimeZero:
   name: TimeZero
   display_name: Time Zero

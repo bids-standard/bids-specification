@@ -42,7 +42,7 @@ nav:
         - Cross modality correspondence: appendices/cross-modality-correspondence.md
       - Changelog: CHANGES.md
     - The BIDS Starter Kit:
-      - Website: https://bids-standard.github.io/bids-starter-kit
+      - Website: https://bids-standard.github.io/bids-starter-kit/
       - Tutorials: https://bids-standard.github.io/bids-starter-kit/tutorials/tutorials.html
       - GitHub repository: https://github.com/bids-standard/bids-starter-kit
 theme:
@@ -51,7 +51,7 @@ theme:
     logo: images/logo.png
     features:
       - navigation.sections
-copyright: Copyright &copy; 2018-2022, BIDS Contributors - <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+copyright: Copyright &copy; BIDS Contributors - <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
 extra:
     generator: false
     social:
