@@ -57,8 +57,8 @@ A guide for using macros can be found at
    }
 ) }}
 
-To learn more about CTF’s data organization:
-[https://www.fieldtriptoolbox.org/getting_started/ctf](https://www.fieldtriptoolbox.org/getting_started/ctf/)
+To learn more about CTF’s data organization
+on the relevant [FieldTrip webpage](https://www.fieldtriptoolbox.org/getting_started/ctf/)
 
 ## Neuromag/Elekta/MEGIN
 
@@ -301,8 +301,8 @@ A guide for using macros can be found at
    }
 ) }}
 
-More about the 4D neuroimaging/BTi data organization at:
-[https://www.fieldtriptoolbox.org/getting_started/bti](https://www.fieldtriptoolbox.org/getting_started/bti/)
+More about the 4D neuroimaging/BTi data organization
+on the relevant [FieldTrip webpage](https://www.fieldtriptoolbox.org/getting_started/bti/)
 
 ## KIT/Yokogawa/Ricoh
 
@@ -355,8 +355,8 @@ While the acquisition entity can take any value, it is RECOMMENDED that if
 the two marker measurements occur before and after the raw data acquisition,
 `pre` and `post` are used to differentiate the two situations.
 
-More about the KIT/Yokogawa/Ricoh data organization at:
-[https://www.fieldtriptoolbox.org/getting_started/yokogawa](https://www.fieldtriptoolbox.org/getting_started/yokogawa/)
+More about the KIT/Yokogawa/Ricoh data organization
+on the relevant [FieldTrip webpage](https://www.fieldtriptoolbox.org/getting_started/yokogawa/)
 
 ## KRISS
 

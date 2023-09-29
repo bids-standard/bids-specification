@@ -413,7 +413,7 @@ For more information on the definition of anatomical landmarks, please visit:
 For more information on typical coordinate systems for MEG-MRI coregistration:
     [How are the different head and MRI coordinate systems defined? - FieldTrip Toolbox](https://www.fieldtriptoolbox.org/faq/coordsys/)
 or:
-[https://neuroimage.usc.edu/brainstorm/CoordinateSystems](https://neuroimage.usc.edu/brainstorm/CoordinateSystems)
+[Coordinate Systems - Brainstorm toolbox](https://neuroimage.usc.edu/brainstorm/CoordinateSystems)
 
 ## Landmark photos (`*_photo.<extension>`)
 
