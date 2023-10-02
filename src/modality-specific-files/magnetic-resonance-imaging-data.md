@@ -9,7 +9,7 @@ MRI acquisition parameters are divided into several categories based on
 ([article](https://doi.org/10.15200/winn.143191.17127)) by Ben Inglis.
 
 When adding additional metadata please use the CamelCase version of
-[DICOM ontology terms](https://scicrunch.org/scicrunch/interlex/dashboard)
+[DICOM ontology terms](https://dicom.nema.org/medical/dicom/current/output/chtml/part16/chapter_d.html)
 whenever possible. See also
 [recommendations on JSON files](../common-principles.md#keyvalue-files-dictionaries).
 
