@@ -112,8 +112,8 @@ of that row, as described in the next section.
 `events.tsv` file with onset `1.2` (the first row) is:
 
 ```Text
-(Duration/0.6 s, Sensory-event, Visual-presentation,
-((Square, Red), (Computer-screen, Center-of))),
+Duration/0.6 s, Sensory-event, Visual-presentation,
+((Square, Red), (Computer-screen, Center-of)),
 (Delay/1.435 ms, Agent-action, (Experiment-participant,
 (Press, Mouse-button))),
 Pathname/images/red_square.jpg
@@ -188,19 +188,23 @@ if you are using HED annotations.
 
 ### Using HED library schemas
 
-HED also allows you to use one or more specialized vocabulary along with or instead of
-the standard vocabulary. These specialized vocabularies are developed by
-communities of users and are available in the GitHub
-[hed-schemas](https://github.com/hed-standard/hed-schemas) repository.
+HED also allows you to use one or more specialized vocabularies
+along with or instead of the standard vocabulary.
+These specialized vocabularies are developed by communities of users
+and are available in the
+[hed-schemas](https://github.com/hed-standard/hed-schemas) GitHub repository.
 A library schema is specified in the form `<library-name<_>library-version>`.
 
 #### Partnered library schemas
 
+A partnered schema is one whose vocabulary trees are merged with
+its standard schema partner when the schema is released.
+Thus, the two vocabularies appear as one vocabulary to the annotator.
 Partnered library schemas were introduced in HED specification version 3.2.0
 and are supported by HED standard schema versions ≥ 8.2.0.
-A partnered library schema is tied to a specific version of
-the HED standard schema as specified in its header. A given library schema
-version is either partnered or standalone.
+Each partnered library schema is tied to a specific version of
+the HED standard schema as specified in its header.
+A given library schema version is either partnered or standalone.
 
 **Note:** Whether a particular library schema version is partnered or
 unpartnered is fixed when the library is released and cannot be changed.
@@ -224,7 +228,7 @@ for clinical neurological annotation located at
   "HEDVersion": ["8.1.0", "sc:score_1.0.0"]
 }
 ```
-The `sc:` is a user-chosen prefix used to distinguish the sources
+The `sc:` is a user-chosen prefix used to distinguish the source schemas
 of the terms in the HED annotation.
 The prefixes MUST be alphanumeric.
 Any number of prefixed schemas may be used in addition to a non-prefixed one.
