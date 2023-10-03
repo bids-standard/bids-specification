@@ -49,9 +49,12 @@ theme:
     name: material
     favicon: images/favicon.png
     logo: images/logo.png
+    custom_dir: src/overrides
     features:
       - navigation.sections
+
 copyright: Copyright &copy; BIDS Contributors - <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+
 extra:
     generator: false
     social:
