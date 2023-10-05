@@ -208,7 +208,7 @@ AverageCalibrationError:
   display_name: Average Calibration Error
   description: |
     Average calibration error in visual degree.
-  type: number
+  type: array of arrays
   unit: degree
 B0FieldIdentifier:
   name: B0FieldIdentifier
@@ -371,23 +371,12 @@ BrainLocation:
     which can also tie up with laminar fMRI.
   type: string
 CalibrationCount:
-  name: CalibrationType
-  display_name: Calibration Type
+  name: CalibrationCount
+  display_name: Calibration Count
   description: |
     Provide here the number of calibration performed per run.
   type: number
   minimum: 0
-CalibrationList:
-  name: CalibrationList
-  display_name: Calibration List
-  description: |
-    List of lists including information for each calibration.
-    This list includes the calibration type, recorded eye,
-    maximal calibration error, average calibration error,
-    and time relative to the first event of the event file.
-  type: array
-  items:
-    type: array
 CalibrationPosition:
   name: CalibrationPosition
   display_name: Calibration Position
@@ -2086,7 +2075,7 @@ MaximalCalibrationError:
   display_name: Maximal Calibration Error
   description: |
     Maximal calibration error in degree.
-  type: number
+  type: array of arrays
   unit: degree
 MeasurementToolMetadata:
   name: MeasurementToolMetadata
