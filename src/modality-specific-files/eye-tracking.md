@@ -210,4 +210,4 @@ Content of `sub-01_task-VisualSearch_events.json`:
     (SR research), from 20 participants keeping their gaze steady at the
     screen center.
 
-    [BIDS dataset](https://openneuro.org/datasets/ds004158/versions/1.0.1)
+    [BIDS dataset]([https://openneuro.org/datasets/ds004158/versions/2.0.1]
