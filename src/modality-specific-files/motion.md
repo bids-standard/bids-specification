@@ -215,7 +215,7 @@ Lastly, field `SpatialAxis` refers to the coordinate system in which the motion 
 A sequence of characters A/P (anterior-posterior, indicating forward-backward), L/R (left-right), and S/I (superior-inferior, indicating up-down).
 The position of a character in the sequence determines which of the X,Y,Z axes it maps to. For example, "ARS" for X-anterior, Y-right, Z-superior.
 For 1D or 2D cases, only specify the used axes and use the character "_" for unused axes ("A_R" when the Y axis is not used, for instance).
-If non of these principals apply, a free-form field `ReferenceFrameDescription` MAY be used for the definition.
+If non of these principals apply, a free-form field `Description` MAY be used for the definition.
 
 ### Example of `*_channels.json`
 
@@ -223,13 +223,13 @@ If non of these principals apply, a free-form field `ReferenceFrameDescription` 
 "reference_frame": {
         "Levels": {
             "global": {
-                "ReferenceFrameDescription": "n/a",
+                "Description": "n/a",
                 "SpatialAxes": "ALS",
                 "RotationOrder": "ZXY",
                 "RotationRule": "right-hand"
             },
             "local": {
-                "ReferenceFrameDescription": "Joint angles are described following the ISB-based coordinate system,
+                "Description": "Joint angles are described following the ISB-based coordinate system,
                                                 with a local reference frame attached to the body segment.
                                                 See Wu and Cavanagh (1995), Wu et al. (2002), Wu et al. (2005),
                                                 and the Xsens MVN Awinda user manual for more information.",
