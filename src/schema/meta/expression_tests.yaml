@@ -61,9 +61,9 @@
 - expression: '"VolumeTiming" in null'
   result: false
 - expression: exists(null, "bids-uri")
-  result: false
+  result: 0
 - expression: exists([], null)
-  result: false
+  result: 0
 
 # General expressions
 - expression: 1 + 2
