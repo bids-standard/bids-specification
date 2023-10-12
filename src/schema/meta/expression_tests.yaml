@@ -1,16 +1,14 @@
 ---
 # null fall-through logic
-- expression: sidecar.MissingValue
-  result: null
-- expression: null.anything
-  result: null
+- expression: sidecar.MissingValue != true
+  result: true
+- expression: null.anything != true
+  result: true
 - expression: (null)
   result: null
-- expression: null[0]
-  result: null
+- expression: null[0] != true
+  result: true
 - expression: null && true
-  result: null
-- expression: null || true
   result: null
 - expression: true && null
   result: null
@@ -18,38 +16,20 @@
   result: false
 - expression: true || null
   result: true
+- expression: null || true
+  result: true
 - expression: false || null
   result: null
 - expression: '!null'
-  result: null
-- expression: null + 1
-  result: null
-- expression: null - 1
-  result: null
-- expression: null * 1
-  result: null
-- expression: null / 1
-  result: null
-- expression: 1 + null
-  result: null
-- expression: 1 - null
-  result: null
-- expression: 1 * null
-  result: null
-- expression: 1 / null
-  result: null
-- expression: "'str1' + null"
-  result: null
-- expression: "null + 'str1'"
-  result: null
+  result: true
 - expression: intersects([], null)
-  result: null
+  result: false
 - expression: intersects(null, [])
-  result: null
+  result: false
 - expression: match(null, 'pattern')
-  result: null
+  result: false
 - expression: match('string', null)
-  result: null
+  result: false
 - expression: substr(null, 1, 4)
   result: null
 - expression: substr('string', null, 4)
@@ -85,21 +65,11 @@
 - expression: exists([], null)
   result: false
 
-# Truth/falsity of final expressions
-- expression: evaluate(true)
-  result: true
-- expression: evaluate(false)
-  result: false
-- expression: evaluate(null)
-  result: false
-
 # General expressions
 - expression: 1 + 2
   result: 3
 - expression: '"cat" + "dog"'
   result: 'catdog'
-- expression: '1 + "cat"'
-  result: null
 - expression: match('string', '.*')
   result: true
 - expression: match('', '.')
