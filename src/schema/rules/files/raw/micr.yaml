@@ -25,6 +25,7 @@ microscopy:
     - .png
     - .tif
     - .json
+    - .nwb
   datatypes:
     - micr
   entities:
