@@ -1,13 +1,13 @@
 ---
 # null fall-through logic
-- expression: sidecar.MissingValue != true
-  result: true
-- expression: null.anything != true
-  result: true
+- expression: sidecar.MissingValue
+  result: null
+- expression: null.anything
+  result: null
 - expression: (null)
   result: null
-- expression: null[0] != true
-  result: true
+- expression: null[0]
+  result: null
 - expression: null && true
   result: null
 - expression: true && null
@@ -27,7 +27,7 @@
 - expression: intersects(null, [])
   result: false
 - expression: match(null, 'pattern')
-  result: false
+  result: null
 - expression: match('string', null)
   result: false
 - expression: substr(null, 1, 4)
@@ -59,11 +59,13 @@
 - expression: null == 1
   result: false
 - expression: '"VolumeTiming" in null'
-  result: false
+  result: null
 - expression: exists(null, "bids-uri")
   result: 0
 - expression: exists([], null)
   result: 0
+- expression: true || sidecar.MissingValue
+  result: true
 
 # General expressions
 - expression: 1 + 2
