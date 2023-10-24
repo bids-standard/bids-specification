@@ -3263,7 +3263,7 @@ SpoilingRFPhaseIncrement:
     which is applied to the phase of the excitation pulse at each TR period for
     achieving RF spoiling.
   type: number
-  unit: degrees
+  unit: degree
 SpoilingState:
   name: SpoilingState
   display_name: Spoiling State
