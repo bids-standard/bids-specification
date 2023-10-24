@@ -43,6 +43,7 @@ EEGInstitutionInformation:
     InstitutionAddress: recommended
     InstitutionalDepartmentName: recommended
 
+# Specific EEG fields MUST be present
 EEGRequired:
   selectors:
     - datatype == "eeg"
@@ -57,6 +58,7 @@ EEGRequired:
     PowerLineFrequency: required
     SoftwareFilters: required
 
+# Specific EEG fields SHOULD be present
 EEGRecommended:
   selectors:
     - datatype == "eeg"
@@ -78,6 +80,15 @@ EEGRecommended:
     EEGPlacementScheme: recommended
     HardwareFilters: recommended
     SubjectArtefactDescription: recommended
+
+# Specific EEG fields MAY be present
+EEGOptional:
+  selectors:
+    - datatype == "eeg"
+    - suffix == "eeg"
+  fields:
+    ElectricalStimulation: optional
+    ElectricalStimulationParameters: optional
 
 # General fields
 EEGCoordsystemGeneral:
