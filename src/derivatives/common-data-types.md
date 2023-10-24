@@ -252,19 +252,28 @@ A guide for using macros can be found at
 All REQUIRED metadata fields coming from a derivative file’s source file(s) MUST
 be propagated to the JSON description of the derivative unless the processing
 makes them invalid (for example, if a source 4D image is averaged to create a single
-static volume, a `RepetitionTime` property would no longer be relevant). As each file
-includes what was computed by increment, a trail of the computational steps performed
-is created. Because many steps can occur until the fully clean data are obtained and
-because it is OPTIONAL to save every file or step, the simpler `desc-preproc`
-and `desc-proc` are available. It becomes however important to document what such
-pre-processing or processing are, and record the order of computational steps. This
-can be done in the JSON sidecar files or alternatively described in a `descriptions.tsv` file.
+static volume, a `RepetitionTime` property would no longer be relevant).
+As each file includes what was computed by increment,
+a trail of the computational steps performed is created.
+Because many steps can occur until the fully clean data are obtained,
+and because it is OPTIONAL to save every file or step,
+the simpler `desc-preproc` and `desc-proc` are available.
+It becomes however important to document what such pre-processing or processing are,
+and record the order of computational steps.
+This can be done in the JSON sidecar files or alternatively described in a `descriptions.tsv` file.
 
 ## descriptions.tsv
 
-To keep a record of what has been done to the data, a `descriptions.tsv` file can be used, containing at least two columns: `desc_id` and `description`. This file MAY be located at the root of the derivative dataset, or at the subject or session level ([Inheritance Principle](../common-principles.md#the-inheritance-principle))).
+To keep a record of what has been done to the data, a `descriptions.tsv` file can be used,
+containing at least two columns: `desc_id` and `description`.
+This file MAY be located at the root of the derivative dataset,
+or at the subject or session level
+([Inheritance Principle](../common-principles.md#the-inheritance-principle))).
 
-`desc_id` contains all labels used in the [`desc entity`](../appendices/entities.md#desc), while `description` is a human-readable description of what was computed. Note that while it is helpful to document how files are generated, we see this as 'light provenance', i.e. it is not aimed at providing full computational reproducibility.
+`desc_id` contains all labels used in the [`desc entity`](../appendices/entities.md#desc),
+while `description` is a human-readable description of what was computed.
+Note that while it is helpful to document how files are generated, we see this as *light provenance*,
+that is, it is not aimed at providing full computational reproducibility.
 
 {{ MACROS___make_filetree_example(
    {
@@ -300,11 +309,11 @@ To keep a record of what has been done to the data, a `descriptions.tsv` file ca
 
 `descriptions.tsv`
 
-| desc_id          | description                                                                                    |
-|------------------|------------------------------------------------------------------------------------------------|
-| Filt             | low-pass filtered at 30Hz                                                                      |
-| FiltDs           | low-pass filtered at 30Hz,downsampled to 250Hz                                                 |
-| preproc          | low-pass filtered at 30Hz, downsampled to 250Hz and rereferenced to a common average reference |
+| desc_id | description                                                                                    |
+|---------|------------------------------------------------------------------------------------------------|
+| Filt    | low-pass filtered at 30Hz                                                                      |
+| FiltDs  | low-pass filtered at 30Hz,downsampled to 250Hz                                                 |
+| preproc | low-pass filtered at 30Hz, downsampled to 250Hz and rereferenced to a common average reference |
 
 <!-- Link Definitions -->
 
