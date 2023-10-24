@@ -255,16 +255,16 @@ makes them invalid (for example, if a source 4D image is averaged to create a si
 static volume, a `RepetitionTime` property would no longer be relevant). As each file
 includes what was computed by increment, a trail of the computational steps performed
 is created. Because many steps can occur until the fully clean data are obtained and
-because it is NOT mandatory to save every file or step, the simpler `desc-preproc`
+because it is OPTIONAL to save every file or step, the simpler `desc-preproc`
 and `desc-proc` are available. It becomes however important to document what such
 pre-processing or processing are, and record the order of computational steps. This
-can be in the json file or alternatively described in a descriptions.tsv file.
+can be done in the JSON sidecar files or alternatively described in a `descriptions.tsv` file.
 
 ## descriptions.tsv
 
-To keep a record of what has been done to the data, a `descriptions.tsv` file can be used, containing at least two columns: `desc_id` and `description`. This file can be located at the root derivatives level or at the subject level (inheritance principle).
+To keep a record of what has been done to the data, a `descriptions.tsv` file can be used, containing at least two columns: `desc_id` and `description`. This file MAY be located at the root of the derivative dataset, or at the subject or session level ([Inheritance Principle](../common-principles.md#the-inheritance-principle))).
 
-`desc_id` contains all labels used in the [`desc entity`](https://bids-specification.readthedocs.io/en/stable/appendices/entities.html#desc), while `description` is a human-readable description of what was computed. Note that while it is helpful to document how files are generated, we see this as 'light provenance', i.e. it is not aimed at providing full computational reproducibility.
+`desc_id` contains all labels used in the [`desc entity`](../appendices/entities.md#desc), while `description` is a human-readable description of what was computed. Note that while it is helpful to document how files are generated, we see this as 'light provenance', i.e. it is not aimed at providing full computational reproducibility.
 
 {{ MACROS___make_filetree_example(
    {
