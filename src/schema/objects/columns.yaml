@@ -383,7 +383,7 @@ reference_frame:
   description: |
     Specification of a reference frame in which the motion data are to be interpreted.
     The description of the levels in `*_channels.json` SHOULD use `RotationRule`,
-    `RotationOrder` and `SpatialAxis` for the specification.
+    `RotationOrder`, and `SpatialAxis`, and MAY use `Description` for the specification.
   anyOf:
     - type: string
     - type: string
