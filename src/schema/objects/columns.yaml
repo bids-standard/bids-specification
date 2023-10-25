@@ -378,6 +378,18 @@ reference__ieeg:
     - type: string
       enum:
         - n/a
+reference_frame:
+  name: reference_frame
+  display_name: Reference frame
+  description: |
+    Specification of a reference frame in which the motion data are to be interpreted.
+    The description of the levels in `*_channels.json` SHOULD use `RotationRule`,
+    `RotationOrder`, and `SpatialAxis`, and MAY use `Description` for the specification.
+  anyOf:
+    - type: string
+    - type: string
+      enum:
+        - n/a
 respiratory:
   name: respiratory
   display_name: Respiratory measurement
