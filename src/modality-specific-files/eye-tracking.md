@@ -181,7 +181,7 @@ Content of `sub-01_task-VisualSearch_events.json`:
        "ScreenDistance": 60,
        "ScreenRefreshRate": 60,
        "ScreenResolution": [1024, 768],
-       "ScreenSize": [38.6, 29]
+       "ScreenSize": [0.386, 0.29]
    }
 }
 ```
