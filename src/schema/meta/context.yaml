@@ -300,6 +300,7 @@ context:
               name: 'XYZ Units'
               description: 'String representing the unit of voxel spacing.'
               type: string
+              # TODO: Add definitions for these values.
               enum:
                 - 'unknown'
                 - 'meter'
@@ -309,6 +310,7 @@ context:
               name: 'Time Unit'
               description: 'String representing the unit of inter-volume intervals.'
               type: string
+              # TODO: Add definitions for these values.
               enum:
                 - 'unknown'
                 - 'sec'

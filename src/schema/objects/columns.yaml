@@ -63,6 +63,7 @@ component:
     For example, `x`,`y`,`z` for position channels,
     or `quat_x`, `quat_y`, `quat_z`, `quat_w` for quaternion orientation channels.
   type: string
+  # TODO: Add definitions for these values.
   enum:
     - x
     - y
@@ -162,6 +163,7 @@ handedness:
     For "ambidextrous", use one of these values: `ambidextrous`, `a`, `A`, `AMBIDEXTROUS`,
     `Ambidextrous`.
   type: string
+  # TODO: Add definitions for these values.
   enum:
     - left
     - l
@@ -424,6 +426,7 @@ sample_type:
     Biosample type defined by
     [ENCODE Biosample Type](https://www.encodeproject.org/profiles/biosample_type).
   type: string
+  # TODO: Add definitions for these values.
   enum:
     - cell line
     - in vitro differentiated cells
@@ -461,6 +464,7 @@ sex:
 
     For "other", use one of these values: `other`, `o`, `O`, `OTHER`, `Other`.
   type: string
+  # TODO: Add definitions for these values.
   enum:
     - male
     - m
@@ -543,6 +547,7 @@ status:
     If quality is unknown, then a value of `n/a` may be used.
     Description of noise type SHOULD be provided in `[status_description]`.
   type: string
+  # TODO: Add definitions for these values.
   enum:
     - good
     - bad
@@ -685,6 +690,7 @@ type__optodes:
   description: |
     The type of the optode.
   type: string
+  # TODO: Add definitions for these values.
   enum:
     - source
     - detector
@@ -730,6 +736,7 @@ volume_type:
     The `*_aslcontext.tsv` table consists of a single column of labels identifying
     the `volume_type` of each volume in the corresponding `*_asl.nii[.gz]` file.
   type: string
+  # TODO: Add definitions for these values.
   enum:
     - control
     - label

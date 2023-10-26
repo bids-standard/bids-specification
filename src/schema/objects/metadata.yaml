@@ -98,6 +98,7 @@ AnatomicalLandmarkCoordinateUnits:
   description: |
     Units of the coordinates of `"AnatomicalLandmarkCoordinateSystem"`.
   type: string
+  # TODO: Add definitions for these values.
   enum:
     - m
     - mm
@@ -363,6 +364,7 @@ CASLType:
   description: |
     Describes if a separate coil is used for labeling.
   type: string
+  # TODO: Add definitions for these values.
   enum:
     - single-coil
     - double-coil
@@ -488,6 +490,7 @@ ContrastBolusIngredient:
     Active ingredient of agent.
     Corresponds to DICOM Tag 0018, 1048 `Contrast/Bolus Ingredient`.
   type: string
+  # TODO: Add definitions for these values.
   enum:
     - IODINE
     - GADOLINIUM
@@ -534,6 +537,7 @@ DatasetType:
     The interpretation of the dataset.
     For backwards compatibility, the default value is `"raw"`.
   type: string
+  # TODO: Add definitions for these values.
   enum:
     - raw
     - derivative
@@ -609,6 +613,7 @@ DetectorType:
     - type: string
       format: unit
     - type: string
+      # TODO: Add definitions for these values.
       enum:
         - mixed
 DeviceSerialNumber:
@@ -673,6 +678,7 @@ DigitizedHeadPointsCoordinateUnits:
   description: |
     Units of the coordinates of `"DigitizedHeadPointsCoordinateSystem"`.
   type: string
+  # TODO: Add definitions for these values.
   enum:
     - m
     - mm
@@ -774,6 +780,7 @@ EEGCoordinateUnits:
   description: |
     Units of the coordinates of `EEGCoordinateSystem`.
   type: string
+  # TODO: Add definitions for these values.
   enum:
     - m
     - mm
@@ -982,6 +989,7 @@ FiducialsCoordinateUnits:
     Units in which the coordinates that are  listed in the field
     `"FiducialsCoordinateSystem"` are represented.
   type: string
+  # TODO: Add definitions for these values.
   enum:
     - m
     - mm
@@ -1280,6 +1288,7 @@ HeadCoilCoordinateUnits:
   description: |
     Units of the coordinates of `HeadCoilCoordinateSystem`.
   type: string
+  # TODO: Add definitions for these values.
   enum:
     - m
     - mm
@@ -1803,6 +1812,7 @@ MEGCoordinateUnits:
   description: |
     Units of the coordinates of `"MEGCoordinateSystem"`.
   type: string
+  # TODO: Add definitions for these values.
   enum:
     - m
     - mm
@@ -2143,6 +2153,7 @@ NIRSCoordinateUnits:
   description: |
     Units of the coordinates of `NIRSCoordinateSystem`.
   type: string
+  # TODO: Add definitions for these values.
   enum:
     - m
     - mm
@@ -2398,6 +2409,7 @@ PixelSizeUnits:
     Unit format of the specified `"PixelSize"`. MUST be one of: `"mm"` (millimeter), `"um"`
     (micrometer) or `"nm"` (nanometer).
   type: string
+  # TODO: Add definitions for these values.
   enum:
     - mm
     - um
@@ -2714,6 +2726,7 @@ RotationOrder:
   description: |
     Specify the sequence in which the elemental 3D extrinsic rotations are applied around the three distinct axes.
   type: string
+  # TODO: Add definitions for these values.
   enum:
     - XYZ
     - XZY
@@ -2730,6 +2743,7 @@ RotationRule:
     clockwise around an axis when seen from the positive direction (left-hand rule) or
     counter-clockwise (right-hand rule). Must be one of: "left-hand", "right-hand".
   type: string
+  # TODO: Add definitions for these values.
   enum:
     - left-hand
     - right-hand
@@ -2754,6 +2768,7 @@ SampleEnvironment:
     Environment in which the sample was imaged. MUST be one of: `"in vivo"`, `"ex vivo"`
     or `"in vitro"`.
   type: string
+  # TODO: Add definitions for these values.
   enum:
     - in vivo
     - ex vivo
@@ -3638,6 +3653,7 @@ iEEGCoordinateUnits:
     Units of the `*_electrodes.tsv`.
     MUST be `"pixels"` if `iEEGCoordinateSystem` is `Pixels`.
   type: string
+  # TODO: Add definitions for these values.
   enum:
     - m
     - mm
