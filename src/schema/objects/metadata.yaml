@@ -574,7 +574,7 @@ Delimiter:
   name: Delimiter
   display_name: Delimiter
   description: |
-    If a column may be interpreted as a list of values, the character that
+    If rows in a column may be interpreted as a lists of values, the character that
     separates one value from the next.
   type: string
 Density:
