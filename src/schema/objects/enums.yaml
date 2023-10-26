@@ -322,6 +322,22 @@ ChietiItab:
   display_name: Chieti ITAB
   description: |
     RAS orientation and the origin between the ears.
+calibration:
+  value: calibration
+  display_name: calibration
+  description: |
+    The fine-calibration file, is produced by the MaxFilter software and the work of
+    Neuromag/Elekta/MEGIN engineers during maintenance of the MEG acquisition system.
+    It is specific to the site of recording and may change in the process of regular system maintenance.
+    it is usually shared with a crosstalk file.
+crosstalk:
+  value: crosstalk
+  display_name: crosstalk
+  description: |
+    The crosstalk file, is produced by the MaxFilter software and the work of
+    Neuromag/Elekta/MEGIN engineers during maintenance of the MEG acquisition system.
+    It is specific to the site of recording and may change in the process of regular system maintenance.
+    it is usually shared with a fine-calibration file.
 individual:
   value: individual
   display_name: individual
