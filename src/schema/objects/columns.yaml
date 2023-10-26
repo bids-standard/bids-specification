@@ -690,10 +690,9 @@ type__optodes:
   description: |
     The type of the optode.
   type: string
-  # TODO: Add definitions for these values.
   enum:
-    - source
-    - detector
+    - $ref: objects.enums.source
+    - $ref: objects.enums.detector
     - n/a
 units:
   name: units

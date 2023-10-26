@@ -1103,3 +1103,13 @@ NIRSCWMUA:
     - fnirs
   description: |
     Continuous wave optical absorption measurements. Equivalent to dataTypeLabel mua in SNIRF.
+source:
+  value: source
+  display_name: source
+  description: |
+    A light emitting device, sometimes called a transmitter.
+detector:
+  value: detector
+  display_name: detector
+  description: |
+    A photoelectric transducer, sometimes called a receiver.
