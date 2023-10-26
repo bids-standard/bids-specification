@@ -31,7 +31,6 @@ EyeTrackingRecommended:
   fields:
     AverageCalibrationError: recommended
     CalibrationCount: recommended
-    CalibrationList: recommended
     CalibrationPosition: recommended
     CalibrationType: recommended
     CalibrationUnit: recommended
