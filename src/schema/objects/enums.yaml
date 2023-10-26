@@ -1155,7 +1155,7 @@ quat_w:
     The quaternion w dimension of the coordinate system.
 unknown:
   value: 'unknown'
-  display_name: 'unknown'
+  display_name: unknown
   description: |
     An unknown unit.
 pixels:
