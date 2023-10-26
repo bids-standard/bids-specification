@@ -98,7 +98,7 @@ AnatomicalLandmarkCoordinateUnits:
   description: |
     Units of the coordinates of `"AnatomicalLandmarkCoordinateSystem"`.
   type: string
-  # TODO: Add definitions for these values.
+  # TODO: Add definitions for these values. (perhaps don't specify)
   enum:
     - m
     - mm
@@ -677,7 +677,7 @@ DigitizedHeadPointsCoordinateUnits:
   description: |
     Units of the coordinates of `"DigitizedHeadPointsCoordinateSystem"`.
   type: string
-  # TODO: Add definitions for these values.
+  # TODO: Add definitions for these values. (perhaps don't specify)
   enum:
     - m
     - mm
@@ -779,7 +779,7 @@ EEGCoordinateUnits:
   description: |
     Units of the coordinates of `EEGCoordinateSystem`.
   type: string
-  # TODO: Add definitions for these values.
+  # TODO: Add definitions for these values. (perhaps don't specify)
   enum:
     - m
     - mm
@@ -988,7 +988,7 @@ FiducialsCoordinateUnits:
     Units in which the coordinates that are  listed in the field
     `"FiducialsCoordinateSystem"` are represented.
   type: string
-  # TODO: Add definitions for these values.
+  # TODO: Add definitions for these values. (perhaps don't specify)
   enum:
     - m
     - mm
@@ -1287,7 +1287,7 @@ HeadCoilCoordinateUnits:
   description: |
     Units of the coordinates of `HeadCoilCoordinateSystem`.
   type: string
-  # TODO: Add definitions for these values.
+  # TODO: Add definitions for these values. (perhaps don't specify)
   enum:
     - m
     - mm
@@ -1811,7 +1811,7 @@ MEGCoordinateUnits:
   description: |
     Units of the coordinates of `"MEGCoordinateSystem"`.
   type: string
-  # TODO: Add definitions for these values.
+  # TODO: Add definitions for these values. (perhaps don't specify)
   enum:
     - m
     - mm
@@ -2152,7 +2152,7 @@ NIRSCoordinateUnits:
   description: |
     Units of the coordinates of `NIRSCoordinateSystem`.
   type: string
-  # TODO: Add definitions for these values.
+  # TODO: Add definitions for these values. (perhaps don't specify)
   enum:
     - m
     - mm
@@ -2408,7 +2408,7 @@ PixelSizeUnits:
     Unit format of the specified `"PixelSize"`. MUST be one of: `"mm"` (millimeter), `"um"`
     (micrometer) or `"nm"` (nanometer).
   type: string
-  # TODO: Add definitions for these values.
+  # TODO: Add definitions for these values. (perhaps don't specify)
   enum:
     - mm
     - um
@@ -3652,12 +3652,12 @@ iEEGCoordinateUnits:
     Units of the `*_electrodes.tsv`.
     MUST be `"pixels"` if `iEEGCoordinateSystem` is `Pixels`.
   type: string
-  # TODO: Add definitions for these values.
+  # TODO: Add definitions for these values. (perhaps don't specify)
   enum:
     - m
     - mm
     - cm
-    - pixels
+    - $ref: objects.enums.pixels.value
     - n/a
 iEEGElectrodeGroups:
   name: iEEGElectrodeGroups

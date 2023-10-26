@@ -162,7 +162,7 @@ handedness:
     For "ambidextrous", use one of these values: `ambidextrous`, `a`, `A`, `AMBIDEXTROUS`,
     `Ambidextrous`.
   type: string
-  # TODO: Add definitions for these values.
+  # TODO: Add definitions for these values. (perhaps don't specify)
   enum:
     - left
     - l
@@ -463,7 +463,7 @@ sex:
 
     For "other", use one of these values: `other`, `o`, `O`, `OTHER`, `Other`.
   type: string
-  # TODO: Add definitions for these values.
+  # TODO: Add definitions for these values. (perhaps don't specify)
   enum:
     - male
     - m

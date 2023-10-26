@@ -1153,3 +1153,13 @@ quat_w:
   display_name: quat_w
   description: |
     The quaternion w dimension of the coordinate system.
+unknown:
+  value: 'unknown'
+  display_name: 'unknown'
+  description: |
+    An unknown unit.
+pixels:
+  value: pixels
+  display_name: pixels
+  description: |
+    A dimension specified in pixels.
