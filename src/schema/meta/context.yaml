@@ -300,9 +300,9 @@ context:
               name: 'XYZ Units'
               description: 'String representing the unit of voxel spacing.'
               type: string
-              # TODO: Add definitions for these values. (perhaps don't specify)
               enum:
                 - $ref: objects.enums.unknown.value
+                # TODO: Add definitions for these values. (perhaps don't specify)
                 - 'meter'
                 - 'mm'
                 - 'um'
@@ -310,9 +310,9 @@ context:
               name: 'Time Unit'
               description: 'String representing the unit of inter-volume intervals.'
               type: string
-              # TODO: Add definitions for these values. (perhaps don't specify)
               enum:
                 - $ref: objects.enums.unknown.value
+                # TODO: Add definitions for these values. (perhaps don't specify)
                 - 'sec'
                 - 'msec'
                 - 'usec'
