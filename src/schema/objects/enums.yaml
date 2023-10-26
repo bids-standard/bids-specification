@@ -1113,3 +1113,43 @@ detector:
   display_name: detector
   description: |
     A photoelectric transducer, sometimes called a receiver.
+mixed:
+  value: mixed
+  display_name: mixed
+  description: |
+    Mixed detector types were used for this NIRS recording, specify in `optodes.tsv`.
+x:
+  value: x
+  display_name: x
+  description: |
+    The x dimension of the coordinate system.
+y:
+  value: y
+  display_name: y
+  description: |
+    The y dimension of the coordinate system.
+z:
+  value: z
+  display_name: z
+  description: |
+    The z dimension of the coordinate system.
+quat_x:
+  value: quat_x
+  display_name: quat_x
+  description: |
+    The quaternion x dimension of the coordinate system.
+quat_y:
+  value: quat_y
+  display_name: quat_y
+  description: |
+    The quaternion y dimension of the coordinate system.
+quat_z:
+  value: quat_z
+  display_name: quat_z
+  description: |
+    The quaternion z dimension of the coordinate system.
+quat_w:
+  value: quat_w
+  display_name: quat_w
+  description: |
+    The quaternion w dimension of the coordinate system.

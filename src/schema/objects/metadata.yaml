@@ -613,9 +613,8 @@ DetectorType:
     - type: string
       format: unit
     - type: string
-      # TODO: Add definitions for these values.
       enum:
-        - mixed
+        - $ref: objects.enums.mixed.value
 DeviceSerialNumber:
   name: DeviceSerialNumber
   display_name: Device Serial Number

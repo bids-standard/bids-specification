@@ -63,15 +63,14 @@ component:
     For example, `x`,`y`,`z` for position channels,
     or `quat_x`, `quat_y`, `quat_z`, `quat_w` for quaternion orientation channels.
   type: string
-  # TODO: Add definitions for these values.
   enum:
-    - x
-    - y
-    - z
-    - quat_x
-    - quat_y
-    - quat_z
-    - quat_w
+    - $ref: objects.enums.x.value
+    - $ref: objects.enums.y.value
+    - $ref: objects.enums.z.value
+    - $ref: objects.enums.quat_x.value
+    - $ref: objects.enums.quat_y.value
+    - $ref: objects.enums.quat_z.value
+    - $ref: objects.enums.quat_w.value
     - n/a
 detector__channels:
   name: detector
