@@ -9,8 +9,8 @@ CHANGES:
     Version history of the dataset (describing changes, updates and corrections) MAY be provided in
     the form of a `CHANGES` text file.
     This file MUST follow the
-    [CPAN Changelog convention](https://metacpan.org/pod/release/HAARG/CPAN-Changes-0.400002/lib/\
-    CPAN/Changes/Spec.pod).
+    [CPAN Changelog convention](https://metacpan.org/release/HAARG/CPAN-Changes-0.400002/view\
+    /lib/CPAN/Changes/Spec.pod).
     The `CHANGES` file MUST be either in ASCII or UTF-8 encoding.
 CITATION:
   display_name: CITATION.cff

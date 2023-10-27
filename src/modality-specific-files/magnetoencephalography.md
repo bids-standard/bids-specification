@@ -89,17 +89,20 @@ which some installations impose to be run on raw data prior to analysis.
 Such processing steps are needed for example because of active shielding software corrections
 that have to be performed to before the MEG data can actually be exploited.
 
-### Recording EEG simultaneously with MEG
+### Recording (i)EEG simultaneously with MEG
 
-Note that if EEG is recorded with a separate amplifier,
+Note that if (i)EEG is recorded with a separate amplifier,
 it SHOULD be stored separately under a new `/eeg` data type
-(see [the EEG specification](electroencephalography.md)).
+(see the [EEG](electroencephalography.md) and
+[iEEG](intracranial-electroencephalography.md) specifications).
 
-If however EEG is recorded simultaneously **with the same MEG system**,
+If however (i)EEG is recorded simultaneously **with the same MEG system**,
 it MAY be stored under the `/meg` data type.
 In that case, it SHOULD have the same sampling frequency as MEG (see `SamplingFrequency` field below).
-Furthermore, the EEG sensor coordinates SHOULD be specified using MEG-specific coordinate
-systems (see [coordinates section](#coordinate-system-json-_coordsystemjson) below and
+Furthermore, (i)EEG sensor coordinates MAY be recorded in an
+[`electrodes.tsv`](electroencephalography.md#electrodes-description-_electrodestsv)
+file using MEG-specific coordinate systems
+(see [Coordinate System JSON](#coordinate-system-json-_coordsystemjson) below and
 the [Coordinate Systems Appendix](../appendices/coordinate-systems.md)).
 
 ### Sidecar JSON (`*_meg.json`)
@@ -405,12 +408,12 @@ A guide for using macros can be found at
 {{ MACROS___make_sidecar_table("meg.MEGCoordsystemFiducialsInformation") }}
 
 For more information on the definition of anatomical landmarks, please visit:
-[http://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined](http://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined)
+    [How are the Left and Right Pre-Auricular (LPA and RPA) points defined? - FieldTrip Toolbox](https://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined/)
 
 For more information on typical coordinate systems for MEG-MRI coregistration:
-[http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined](http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined),
+    [How are the different head and MRI coordinate systems defined? - FieldTrip Toolbox](https://www.fieldtriptoolbox.org/faq/coordsys/)
 or:
-[http://neuroimage.usc.edu/brainstorm/CoordinateSystems](http://neuroimage.usc.edu/brainstorm/CoordinateSystems)
+[Coordinate Systems - Brainstorm toolbox](https://neuroimage.usc.edu/brainstorm/CoordinateSystems)
 
 ## Landmark photos (`*_photo.<extension>`)
 

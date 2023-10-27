@@ -37,6 +37,9 @@ age:
   display_name: Subject age
   description: |
     Numeric value in years (float or integer value).
+
+    It is recommended to tag participant ages that are 89 or higher as 89+,
+    for privacy purposes.
   type: number
   unit: year
 cardiac:
@@ -299,13 +302,11 @@ notch:
   display_name: Notch frequencies
   description: |
     Frequencies used for the notch filter applied to the channel, in Hz.
-    If no notch filter applied, use `n/a`.
-  anyOf:
-    - type: number
-      unit: Hz
-    - type: string
-      enum:
-        - n/a
+    If notch filters are applied at multiple frequencies,
+    these frequencies MAY be specified as a list,
+    for example, `[60, 120, 180]`.
+    If no notch filter was applied, use `n/a`.
+  type: string
 onset:
   name: onset
   display_name: Event onset
@@ -372,6 +373,18 @@ reference__ieeg:
   description: |
     Specification of the reference (for example, `mastoid`, `ElectrodeName01`, `intracranial`, `CAR`, `other`, `n/a`).
     If the channel is not an electrode channel (for example, a microphone channel) use `n/a`.
+  anyOf:
+    - type: string
+    - type: string
+      enum:
+        - n/a
+reference_frame:
+  name: reference_frame
+  display_name: Reference frame
+  description: |
+    Specification of a reference frame in which the motion data are to be interpreted.
+    The description of the levels in `*_channels.json` SHOULD use `RotationRule`,
+    `RotationOrder`, and `SpatialAxis`, and MAY use `Description` for the specification.
   anyOf:
     - type: string
     - type: string
@@ -567,7 +580,7 @@ strain_rrid:
   display_name: Strain RRID
   description: |
     For species different from `homo sapiens`, research resource identifier
-    ([RRID](https://scicrunch.org/resources/Organisms/search))
+    ([RRID](https://scicrunch.org/resources/data/source/nlx_154697-1/search))
     of the strain of the species, for example: `RRID:IMSR_JAX:000664`.
   type: string
   format: rrid

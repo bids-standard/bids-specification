@@ -29,7 +29,7 @@ There are two main ways to obtain a quantitative map:
     [hMRI toolbox](https://github.com/hMRI-group/hMRI-toolbox),
     [mrQ](https://github.com/mezera/mrQ),
     [PyQMRI](https://github.com/IMTtugraz/PyQMRI),
-    [qmap](https://www.medphysics.wisc.edu/~samsonov/qmap/doc/qmap.html),
+    [qmap](https://web.archive.org/web/20220201201633/https://www.medphysics.wisc.edu/~samsonov/qmap/doc/qmap.html),
     [qMRLab](https://github.com/qmrlab/qmrlab),
     and [QUIT](https://github.com/spinicist/QUIT).
 

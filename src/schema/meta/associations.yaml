@@ -24,7 +24,7 @@ events:
 aslcontext:
   selectors:
     - suffix == 'asl'
-    - matches(extension, '\.nii(\.gz)?$')
+    - match(extension, '\.nii(\.gz)?$')
   target:
     suffix: aslcontext
     extension: .tsv
@@ -33,7 +33,7 @@ aslcontext:
 m0scan:
   selectors:
     - suffix == 'asl'
-    - matches(extension, '\.nii(\.gz)?$')
+    - match(extension, '\.nii(\.gz)?$')
   target:
     suffix: m0scan
     extension: [.nii, .nii.gz]
@@ -42,7 +42,7 @@ m0scan:
 magnitude:
   selectors:
     - suffix == 'fieldmap'
-    - matches(extension, '\.nii(\.gz)?$')
+    - match(extension, '\.nii(\.gz)?$')
   target:
     suffix: magnitude
     extension: [.nii, .nii.gz]
@@ -50,8 +50,8 @@ magnitude:
 
 magnitude1:
   selectors:
-    - matches(suffix, 'phase(diff|1)$')
-    - matches(extension, '\.nii(\.gz)?$')
+    - match(suffix, 'phase(diff|1)$')
+    - match(extension, '\.nii(\.gz)?$')
   target:
     suffix: magnitude1
     extension: [.nii, .nii.gz]
@@ -60,7 +60,7 @@ magnitude1:
 bval:
   selectors:
     - suffix == 'dwi'
-    - matches(extension, '\.nii(\.gz)?$')
+    - match(extension, '\.nii(\.gz)?$')
   target:
     extension: .bval
   inherit: true
@@ -68,7 +68,7 @@ bval:
 bvec:
   selectors:
     - suffix == 'dwi'
-    - matches(extension, '\.nii(\.gz)?$')
+    - match(extension, '\.nii(\.gz)?$')
   target:
     extension: .bvec
   inherit: true

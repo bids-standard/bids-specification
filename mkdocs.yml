@@ -1,114 +1,145 @@
 site_name: Brain Imaging Data Structure v1.9.0-dev
 site_url: https://bids-specification.readthedocs.io/en/stable/
+repo_url: https://github.com/bids-standard/bids-specification
 nav:
-    - The BIDS Specification:
+  - The BIDS Specification:
       - Introduction: introduction.md
       - Common principles: common-principles.md
       - Modality agnostic files: modality-agnostic-files.md
       - Modality specific files:
-        - Magnetic Resonance Imaging: modality-specific-files/magnetic-resonance-imaging-data.md
-        - Magnetoencephalography: modality-specific-files/magnetoencephalography.md
-        - Electroencephalography: modality-specific-files/electroencephalography.md
-        - Intracranial Electroencephalography: modality-specific-files/intracranial-electroencephalography.md
-        - Task events: modality-specific-files/task-events.md
-        - Physiological and other continuous recordings: modality-specific-files/physiological-and-other-continuous-recordings.md
-        - Behavioral experiments (with no neural recordings): modality-specific-files/behavioral-experiments.md
-        - Genetic Descriptor: modality-specific-files/genetic-descriptor.md
-        - Positron Emission Tomography: modality-specific-files/positron-emission-tomography.md
-        - Microscopy: modality-specific-files/microscopy.md
-        - Near-Infrared Spectroscopy: modality-specific-files/near-infrared-spectroscopy.md
-        - Motion: modality-specific-files/motion.md
+          - Magnetic Resonance Imaging: modality-specific-files/magnetic-resonance-imaging-data.md
+          - Magnetoencephalography: modality-specific-files/magnetoencephalography.md
+          - Electroencephalography: modality-specific-files/electroencephalography.md
+          - Intracranial Electroencephalography: modality-specific-files/intracranial-electroencephalography.md
+          - Task events: modality-specific-files/task-events.md
+          - Physiological and other continuous recordings: modality-specific-files/physiological-and-other-continuous-recordings.md
+          - Behavioral experiments (with no neural recordings): modality-specific-files/behavioral-experiments.md
+          - Genetic Descriptor: modality-specific-files/genetic-descriptor.md
+          - Positron Emission Tomography: modality-specific-files/positron-emission-tomography.md
+          - Microscopy: modality-specific-files/microscopy.md
+          - Near-Infrared Spectroscopy: modality-specific-files/near-infrared-spectroscopy.md
+          - Motion: modality-specific-files/motion.md
       - Derivatives:
-        - BIDS Derivatives: derivatives/introduction.md
-        - Common data types and metadata: derivatives/common-data-types.md
-        - Imaging data types: derivatives/imaging.md
+          - BIDS Derivatives: derivatives/introduction.md
+          - Common data types and metadata: derivatives/common-data-types.md
+          - Imaging data types: derivatives/imaging.md
       - Longitudinal and multi-site studies: longitudinal-and-multi-site-studies.md
       - Glossary: glossary.md
       - BIDS Extension Proposals: extensions.md
       - Appendix:
-        - Contributors: appendices/contributors.md
-        - Licenses: appendices/licenses.md
-        - Entity table: appendices/entity-table.md
-        - Entities: appendices/entities.md
-        - File collections: appendices/file-collections.md
-        - Units: appendices/units.md
-        - Hierarchical Event Descriptors: appendices/hed.md
-        - MEG file formats: appendices/meg-file-formats.md
-        - MEG systems: appendices/meg-systems.md
-        - Coordinate systems: appendices/coordinate-systems.md
-        - Quantitative MRI: appendices/qmri.md
-        - Arterial Spin Labeling: appendices/arterial-spin-labeling.md
-        - Cross modality correspondence: appendices/cross-modality-correspondence.md
+          - Schema: appendices/schema.md
+          - Contributors: appendices/contributors.md
+          - Licenses: appendices/licenses.md
+          - Entity table: appendices/entity-table.md
+          - Entities: appendices/entities.md
+          - File collections: appendices/file-collections.md
+          - Units: appendices/units.md
+          - Hierarchical Event Descriptors: appendices/hed.md
+          - MEG file formats: appendices/meg-file-formats.md
+          - MEG systems: appendices/meg-systems.md
+          - Coordinate systems: appendices/coordinate-systems.md
+          - Quantitative MRI: appendices/qmri.md
+          - Arterial Spin Labeling: appendices/arterial-spin-labeling.md
+          - Cross modality correspondence: appendices/cross-modality-correspondence.md
       - Changelog: CHANGES.md
-    - The BIDS Starter Kit:
-      - Website: https://bids-standard.github.io/bids-starter-kit
+  - The BIDS Starter Kit:
+      - Website: https://bids-standard.github.io/bids-starter-kit/
       - Tutorials: https://bids-standard.github.io/bids-starter-kit/tutorials/tutorials.html
       - GitHub repository: https://github.com/bids-standard/bids-starter-kit
 theme:
-    name: material
-    favicon: images/favicon.png
-    logo: images/logo.png
-    features:
-      - navigation.sections
-copyright: Copyright &copy; 2018-2022, BIDS Contributors - <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+  name: material
+  favicon: images/favicon.png
+  logo: images/logo.png
+  features:
+    - navigation.sections
+    - content.action.edit
+  icon:
+    repo: fontawesome/brands/github
+    edit: material/pencil
+  palette:
+    # Palette toggle for automatic mode
+    - media: (prefers-color-scheme)
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+      # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+      # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+
+edit_uri: https://github.com/bids-standard/bids-specification/edit/master/src/
+
+copyright: Copyright &copy; BIDS Contributors - <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+
 extra:
-    generator: false
-    social:
-      - icon: fontawesome/brands/twitter
-        link: https://twitter.com/BIDSstandard/
-      - icon: fontawesome/brands/github
-        link: https://github.com/bids-standard/bids-specification/
-      - icon: fontawesome/brands/google
-        link: https://groups.google.com/g/bids-discussion
+  generator: false
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/bids-standard/bids-specification/
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/BIDSstandard/
+    - icon: fontawesome/brands/mastodon
+      link: https://fosstodon.org/@bidsstandard
+    - icon: fontawesome/brands/google
+      link: https://groups.google.com/g/bids-discussion
+
 extra_javascript:
-    - js/jquery-3.6.0.min.js
+  - js/jquery-3.6.0.min.js
 markdown_extensions:
-    - toc:
-        anchorlink: true
-    - pymdownx.superfences
+  - toc:
+      anchorlink: true
+  - pymdownx.superfences
 plugins:
-    - search
-    - branchcustomization:
-        update_config:
-         - branch: /(?!^master$)/
-           +extra_css:
-             - css/watermark.css
-    - macros:
-        module_name: tools/mkdocs_macros_bids/main
-    - redirects:
-        redirect_maps:
-            '01-introduction.md': 'introduction.md'
-            '02-common-principles.md': 'common-principles.md'
-            '03-modality-agnostic-files.md': 'modality-agnostic-files.md'
-            '04-modality-specific-files/01-magnetic-resonance-imaging-data.md': 'modality-specific-files/magnetic-resonance-imaging-data.md'
-            '04-modality-specific-files/02-magnetoencephalography.md': 'modality-specific-files/magnetoencephalography.md'
-            '04-modality-specific-files/03-electroencephalography.md': 'modality-specific-files/electroencephalography.md'
-            '04-modality-specific-files/04-intracranial-electroencephalography.md': 'modality-specific-files/intracranial-electroencephalography.md'
-            '04-modality-specific-files/05-task-events.md': 'modality-specific-files/task-events.md'
-            '04-modality-specific-files/06-physiological-and-other-continuous-recordings.md': 'modality-specific-files/physiological-and-other-continuous-recordings.md'
-            '04-modality-specific-files/07-behavioral-experiments.md': 'modality-specific-files/behavioral-experiments.md'
-            '04-modality-specific-files/08-genetic-descriptor.md': 'modality-specific-files/genetic-descriptor.md'
-            '04-modality-specific-files/09-positron-emission-tomography.md': 'modality-specific-files/positron-emission-tomography.md'
-            '04-modality-specific-files/10-microscopy.md': 'modality-specific-files/microscopy.md'
-            '04-modality-specific-files/11-near-infrared-spectroscopy.md': 'modality-specific-files/near-infrared-spectroscopy.md'
-            '05-derivatives/01-introduction.md': 'derivatives/introduction.md'
-            '05-derivatives/02-common-data-types.md': 'derivatives/common-data-types.md'
-            '05-derivatives/03-imaging.md': 'derivatives/imaging.md'
-            '06-longitudinal-and-multi-site-studies.md': 'longitudinal-and-multi-site-studies.md'
-            '07-extensions.md': 'extensions.md'
-            '99-appendices/14-glossary.md': 'glossary.md'
-            '99-appendices/01-contributors.md': 'appendices/contributors.md'
-            '99-appendices/02-licenses.md': 'appendices/licenses.md'
-            '99-appendices/03-hed.md': 'appendices/hed.md'
-            '99-appendices/04-entity-table.md': 'appendices/entity-table.md'
-            '99-appendices/05-units.md': 'appendices/units.md'
-            '99-appendices/06-meg-file-formats.md': 'appendices/meg-file-formats.md'
-            '99-appendices/07-meg-systems.md': 'appendices/meg-systems.md'
-            '99-appendices/08-coordinate-systems.md': 'appendices/coordinate-systems.md'
-            '99-appendices/09-entities.md': 'appendices/entities.md'
-            '99-appendices/10-file-collections.md': 'appendices/file-collections.md'
-            '99-appendices/11-qmri.md': 'appendices/qmri.md'
-            '99-appendices/12-arterial-spin-labeling.md': 'appendices/arterial-spin-labeling.md'
-            '99-appendices/13-cross-modality-correspondence.md': 'appendices/cross-modality-correspondence.md'
-docs_dir: 'src'
+  - search
+  - branchcustomization:
+      update_config:
+        - branch: /(?!^master$)/
+          +extra_css:
+            - css/watermark.css
+  - macros:
+      module_name: tools/mkdocs_macros_bids/main
+  - redirects:
+      redirect_maps:
+        "01-introduction.md": "introduction.md"
+        "02-common-principles.md": "common-principles.md"
+        "03-modality-agnostic-files.md": "modality-agnostic-files.md"
+        "04-modality-specific-files/01-magnetic-resonance-imaging-data.md": "modality-specific-files/magnetic-resonance-imaging-data.md"
+        "04-modality-specific-files/02-magnetoencephalography.md": "modality-specific-files/magnetoencephalography.md"
+        "04-modality-specific-files/03-electroencephalography.md": "modality-specific-files/electroencephalography.md"
+        "04-modality-specific-files/04-intracranial-electroencephalography.md": "modality-specific-files/intracranial-electroencephalography.md"
+        "04-modality-specific-files/05-task-events.md": "modality-specific-files/task-events.md"
+        "04-modality-specific-files/06-physiological-and-other-continuous-recordings.md": "modality-specific-files/physiological-and-other-continuous-recordings.md"
+        "04-modality-specific-files/07-behavioral-experiments.md": "modality-specific-files/behavioral-experiments.md"
+        "04-modality-specific-files/08-genetic-descriptor.md": "modality-specific-files/genetic-descriptor.md"
+        "04-modality-specific-files/09-positron-emission-tomography.md": "modality-specific-files/positron-emission-tomography.md"
+        "04-modality-specific-files/10-microscopy.md": "modality-specific-files/microscopy.md"
+        "04-modality-specific-files/11-near-infrared-spectroscopy.md": "modality-specific-files/near-infrared-spectroscopy.md"
+        "05-derivatives/01-introduction.md": "derivatives/introduction.md"
+        "05-derivatives/02-common-data-types.md": "derivatives/common-data-types.md"
+        "05-derivatives/03-imaging.md": "derivatives/imaging.md"
+        "06-longitudinal-and-multi-site-studies.md": "longitudinal-and-multi-site-studies.md"
+        "07-extensions.md": "extensions.md"
+        "99-appendices/14-glossary.md": "glossary.md"
+        "99-appendices/01-contributors.md": "appendices/contributors.md"
+        "99-appendices/02-licenses.md": "appendices/licenses.md"
+        "99-appendices/03-hed.md": "appendices/hed.md"
+        "99-appendices/04-entity-table.md": "appendices/entity-table.md"
+        "99-appendices/05-units.md": "appendices/units.md"
+        "99-appendices/06-meg-file-formats.md": "appendices/meg-file-formats.md"
+        "99-appendices/07-meg-systems.md": "appendices/meg-systems.md"
+        "99-appendices/08-coordinate-systems.md": "appendices/coordinate-systems.md"
+        "99-appendices/09-entities.md": "appendices/entities.md"
+        "99-appendices/10-file-collections.md": "appendices/file-collections.md"
+        "99-appendices/11-qmri.md": "appendices/qmri.md"
+        "99-appendices/12-arterial-spin-labeling.md": "appendices/arterial-spin-labeling.md"
+        "99-appendices/13-cross-modality-correspondence.md": "appendices/cross-modality-correspondence.md"
+docs_dir: "src"
 use_directory_urls: false

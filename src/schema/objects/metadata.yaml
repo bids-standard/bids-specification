@@ -177,12 +177,6 @@ AssociatedEmptyRoom:
       format: dataset_relative
     - type: string
       format: bids_uri
-Atlas:
-  name: Atlas
-  display_name: Atlas
-  description: |
-    Which atlas (if any) was used to generate the mask.
-  type: string
 AttenuationCorrection:
   name: AttenuationCorrection
   display_name: Attenuation Correction
@@ -391,7 +385,7 @@ CellType:
   description: |
     Describes the type of cell analyzed.
     Values SHOULD come from the
-    [cell ontology](http://obofoundry.org/ontology/cl.html).
+    [cell ontology](https://obofoundry.org/ontology/cl.html).
   type: string
 ChunkTransformationMatrix:
   name: ChunkTransformationMatrix
@@ -500,6 +494,8 @@ ContrastBolusIngredient:
     - CARBON DIOXIDE
     - BARIUM
     - XENON
+    - UNKNOWN
+    - NONE
 DCOffsetCorrection:
   name: DCOffsetCorrection
   display_name: DC Offset Correction
@@ -1326,6 +1322,14 @@ HeadCoilFrequency:
       items:
         type: number
         unit: Hz
+HeadStabilization:
+  name: HeadStabilization
+  display_name: Head stabilization
+  description: |
+    Head restraint method used during the experiment
+    to prevent rotation and/or translation of the head.
+    Example: "chin-rest", "head-rest", "bite-bar", "chin-rest and head-rest", "none"
+  type: string
 HowToAcknowledge:
   name: HowToAcknowledge
   display_name: How To Acknowledge
@@ -3259,7 +3263,7 @@ SpoilingRFPhaseIncrement:
     which is applied to the phase of the excitation pulse at each TR period for
     achieving RF spoiling.
   type: number
-  unit: degrees
+  unit: degree
 SpoilingState:
   name: SpoilingState
   display_name: Spoiling State
@@ -3311,6 +3315,7 @@ StimulusPresentation:
     - SoftwareRRID
     - SoftwareVersion
     - Code
+    - HeadStabilization
   properties:
     OperatingSystem:
       $ref: objects.metadata.OperatingSystem
@@ -3360,9 +3365,10 @@ TermURL:
   name: TermURL
   display_name: TermURL
   description: |
-    URL pointing to a formal definition of this type of data in an ontology
-    available on the web.
+    URL pointing to a formal definition of this type of data in an ontology available on the web.
+    For example: https://www.ncbi.nlm.nih.gov/mesh/68008297 for "male".
   type: string
+  format: uri
 TimeZero:
   name: TimeZero
   display_name: Time Zero
@@ -3543,6 +3549,13 @@ VELChannelCount:
     Number of linear velocity channels.
   type: integer
   minimum: 0
+VisionCorrection:
+  name: VisionCorrection
+  display_name: Vision correction
+  description: |
+    Equipment used to correct participant vision during an experiment.
+    Example: "spectacles", "lenses", "none".
+  type: string
 VolumeTiming:
   name: VolumeTiming
   display_name: Volume Timing
