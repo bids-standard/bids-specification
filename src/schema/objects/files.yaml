@@ -104,7 +104,7 @@ derivatives:
     for more information.
 phenotype:
   display_name: Phenotype
-  file_type: directory    
+  file_type: directory
   description: |
     A directory where to store participant level measurements (for
     example responses from multiple questionnaires) split into
