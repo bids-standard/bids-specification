@@ -228,10 +228,8 @@ PDw:
     In arbitrary units (arbitrary).
     The contrast of these images is mainly determined by spatial variations in
     the spin density (1H) of the imaged specimen.
-    In spin-echo sequences, this contrast is achieved at short echo and long
-    repetition times.
-    In gradient-echo sequences, it is achieved at a short echo time together with
-    a long repetition time, a small flip angle, or both.
+    This contrast is achieved at short echo times and long repetition times;
+    for gradient echo, this weighting is also possible with a short TR (TR<<T1) and a small flip angle.
   unit: arbitrary
 PLI:
   value: PLI
