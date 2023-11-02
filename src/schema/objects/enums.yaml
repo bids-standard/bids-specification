@@ -1350,6 +1350,11 @@ breast_milk:
   display_name: breast milk
   description: |
     The origin of a sample: breast milk
+bile:
+  value: bile
+  display_name: Bile
+  description: |
+    The origin of a sample: bile
 amniotic_fluid:
   value: amniotic fluid
   display_name: amniotic fluid
