@@ -1342,9 +1342,9 @@ brain:
     The origin of a sample: brain
 csf:
   value: csf
-  display_name: csf
+  display_name: CSF
   description: |
-    cerebrospinal fluid (e.g., the origin of a sample or tissue)
+    The origin of a sample: cerebrospinal fluid
 breast_milk:
   value: breast milk
   display_name: breast milk
