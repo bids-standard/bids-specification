@@ -688,8 +688,8 @@ type__optodes:
     The type of the optode.
   type: string
   enum:
-    - $ref: objects.enums.source
-    - $ref: objects.enums.detector
+    - $ref: objects.enums.source.value
+    - $ref: objects.enums.detector.value
     - n/a
 units:
   name: units
