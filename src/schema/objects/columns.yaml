@@ -53,9 +53,12 @@ channel:
   display_name: Channel
   description: |
     Channel(s) associated with an event.
-    If multiple channels are specified, separate with commas (`,`) or a
-    delimiter specified in the `"Delimiter"` field describing the `channel`
-    column.
+    If multiple channels are specified, they MUST be separated by a delimiter
+    specified in the `"Delimiter"` field describing the `channel` column.
+    For example, channels separated with a comma (`,`) require the `events.json`
+    file to contain `"channel": {"Delimiter": ","}`.
+    In the absence of a delimiter, tools MUST interpret any character as being part
+    of a channel name.
   type: string
 color:
   name: color
