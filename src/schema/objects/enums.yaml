@@ -1344,7 +1344,7 @@ csf:
   value: csf
   display_name: CSF
   description: |
-    The origin of a sample: cerebrospinal fluid
+    Cerebrospinal fluid (for example, the origin of a sample or tissue)
 breast_milk:
   value: breast milk
   display_name: breast milk
