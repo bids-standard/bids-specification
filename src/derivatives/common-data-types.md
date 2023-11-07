@@ -264,36 +264,53 @@ This can be done in the JSON sidecar files or alternatively described in a `desc
 
 ## descriptions.tsv
 
-To keep a record of what has been done to the data, a `descriptions.tsv` file can be used,
-containing at least two columns: `desc_id` and `description`.
+To keep a record of processing steps applied to the data, a `descriptions.tsv` file can be used.
+The `descriptions.tsv` file MUST contain at least the following two columns:
+
+-  `desc_id`
+-  `description`
+
 This file MAY be located at the root of the derivative dataset,
 or at the subject or session level
-([Inheritance Principle](../common-principles.md#the-inheritance-principle))).
+([Inheritance Principle](../common-principles.md#the-inheritance-principle)).
 
-`desc_id` contains all labels used in the [`desc entity`](../appendices/entities.md#desc),
-while `description` is a human-readable description of what was computed.
-Note that while it is helpful to document how files are generated, we see this as *light provenance*,
-that is, it is not aimed at providing full computational reproducibility.
+The `desc_id` column contains the labels used with the [`desc entity`](../appendices/entities.md#desc),
+within the particular nesting that the `description.tsv` file is placed.
+For example, if the `descriptions.tsv` file is placed at the root of the derivative dataset,
+its `desc_id` column SHOULD contain all labels of the [`desc entity`](../appendices/entities.md#desc)
+used across the entire derivative dataset.
 
+The `description` column contains human-readable descriptions of the processing steps.
+
+The use of `description.tsv` files together with the [`desc entity`](../appendices/entities.md#desc)
+are helpful to document how files are generated, even if their use may not be sufficient
+to provide full computational reproducibility.
+
+### Example use of a `descriptions.tsv` file
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
-   {
+    {
     "raw/": {
-         CHANGES
-         README
-         channels.tsv
-         dataset_description.tsv
-         participants.tsv
-          "sub-001": {
-            "eeg": {
-                "sub-001_task-listening_events.tsv": "",
-                "sub-001_task-listening_events.json": "",
-                "sub-001_task-listening_eeg.edf": "",
-                "sub-001_task-listening_eeg.json": "",
+        "CHANGES": "",
+        "README": "",
+        "channels.tsv": "",
+        "dataset_description.tsv": "",
+        "participants.tsv": "",
+            "sub-001": {
+                "eeg": {
+                    "sub-001_task-listening_events.tsv": "",
+                    "sub-001_task-listening_events.json": "",
+                    "sub-001_task-listening_eeg.edf": "",
+                    "sub-001_task-listening_eeg.json": "",
+                    },
                 },
             },
-          },
-  "derivatives/": {
-         descriptions.tsv
+    "derivatives/": {
+        "descriptions.tsv": "",
         "sub-001": {
             "eeg": {
                 "sub-001_task-listening_desc-Filt_eeg.edf": "",
@@ -301,19 +318,20 @@ that is, it is not aimed at providing full computational reproducibility.
                 "sub-001_task-listening_desc-FiltDs_eeg.edf": "",
                 "sub-001_task-listening_desc-FiltDs_eeg.json": "",
                 "sub-001_task-listening_desc-preproc_eeg.edf": "",
-                "sub-001_task-listening_desc-preproc_eeg.json": "",                },
+                "sub-001_task-listening_desc-preproc_eeg.json": "",
+                },
             },
         }
-   }
+    }
 ) }}
 
-`descriptions.tsv`
+Contents of the `descriptions.tsv` file:
 
-| desc_id | description                                                                                    |
-|---------|------------------------------------------------------------------------------------------------|
-| Filt    | low-pass filtered at 30Hz                                                                      |
-| FiltDs  | low-pass filtered at 30Hz,downsampled to 250Hz                                                 |
-| preproc | low-pass filtered at 30Hz, downsampled to 250Hz and rereferenced to a common average reference |
+| desc_id | description                                                                                     |
+|---------|-------------------------------------------------------------------------------------------------|
+| Filt    | low-pass filtered at 30Hz                                                                       |
+| FiltDs  | low-pass filtered at 30Hz, downsampled to 250Hz                                                 |
+| preproc | low-pass filtered at 30Hz, downsampled to 250Hz, and rereferenced to a common average reference |
 
 <!-- Link Definitions -->
 
