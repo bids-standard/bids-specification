@@ -64,13 +64,13 @@ component:
     or `quat_x`, `quat_y`, `quat_z`, `quat_w` for quaternion orientation channels.
   type: string
   enum:
-    - x
-    - y
-    - z
-    - quat_x
-    - quat_y
-    - quat_z
-    - quat_w
+    - $ref: objects.enums.x.value
+    - $ref: objects.enums.y.value
+    - $ref: objects.enums.z.value
+    - $ref: objects.enums.quat_x.value
+    - $ref: objects.enums.quat_y.value
+    - $ref: objects.enums.quat_z.value
+    - $ref: objects.enums.quat_w.value
     - n/a
 detector__channels:
   name: detector
@@ -162,6 +162,7 @@ handedness:
     For "ambidextrous", use one of these values: `ambidextrous`, `a`, `A`, `AMBIDEXTROUS`,
     `Ambidextrous`.
   type: string
+  # TODO: Add definitions for these values. (perhaps don't specify)
   enum:
     - left
     - l
@@ -425,15 +426,15 @@ sample_type:
     [ENCODE Biosample Type](https://www.encodeproject.org/profiles/biosample_type).
   type: string
   enum:
-    - cell line
-    - in vitro differentiated cells
-    - primary cell
-    - cell-free sample
-    - cloning host
-    - tissue
-    - whole organisms
-    - organoid
-    - technical sample
+    - $ref: objects.enums.cell_line.value
+    - $ref: objects.enums.in_vitro_differentiated_cells.value
+    - $ref: objects.enums.primary_cell.value
+    - $ref: objects.enums.cell_free_sample.value
+    - $ref: objects.enums.cloning_host.value
+    - $ref: objects.enums.tissue.value
+    - $ref: objects.enums.whole_organisms.value
+    - $ref: objects.enums.organoid.value
+    - $ref: objects.enums.technical_sample.value
 sampling_frequency:
   name: sampling_frequency
   display_name: Channel sampling frequency
@@ -461,6 +462,7 @@ sex:
 
     For "other", use one of these values: `other`, `o`, `O`, `OTHER`, `Other`.
   type: string
+  # TODO: Add definitions for these values. (perhaps don't specify)
   enum:
     - male
     - m
@@ -544,8 +546,8 @@ status:
     Description of noise type SHOULD be provided in `[status_description]`.
   type: string
   enum:
-    - good
-    - bad
+    - $ref: objects.enums.good.value
+    - $ref: objects.enums.bad.value
     - n/a
 status_description:
   name: status_description
@@ -686,8 +688,8 @@ type__optodes:
     The type of the optode.
   type: string
   enum:
-    - source
-    - detector
+    - $ref: objects.enums.source.value
+    - $ref: objects.enums.detector.value
     - n/a
 units:
   name: units
@@ -731,11 +733,11 @@ volume_type:
     the `volume_type` of each volume in the corresponding `*_asl.nii[.gz]` file.
   type: string
   enum:
-    - control
-    - label
-    - m0scan
-    - deltam
-    - cbf
+    - $ref: objects.enums.control.value
+    - $ref: objects.enums.label.value
+    - $ref: objects.enums.m0scan.value
+    - $ref: objects.enums.deltam.value
+    - $ref: objects.enums.cbf.value
 wavelength_nominal:
   name: wavelength_nominal
   display_name: Wavelength nominal

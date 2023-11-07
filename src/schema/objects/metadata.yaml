@@ -98,6 +98,7 @@ AnatomicalLandmarkCoordinateUnits:
   description: |
     Units of the coordinates of `"AnatomicalLandmarkCoordinateSystem"`.
   type: string
+  # TODO: Add definitions for these values. (perhaps don't specify)
   enum:
     - m
     - mm
@@ -364,8 +365,8 @@ CASLType:
     Describes if a separate coil is used for labeling.
   type: string
   enum:
-    - single-coil
-    - double-coil
+    - $ref: objects.enums.single_coil.value
+    - $ref: objects.enums.double_coil.value
 CapManufacturer:
   name: CapManufacturer
   display_name: Cap Manufacturer
@@ -489,11 +490,12 @@ ContrastBolusIngredient:
     Corresponds to DICOM Tag 0018, 1048 `Contrast/Bolus Ingredient`.
   type: string
   enum:
-    - IODINE
-    - GADOLINIUM
-    - CARBON DIOXIDE
-    - BARIUM
-    - XENON
+    - $ref: objects.enums.IODINE.value
+    - $ref: objects.enums.GADOLINIUM.value
+    - $ref: objects.enums.CARBON_DIOXIDE.value
+    - $ref: objects.enums.BARIUM.value
+    - $ref: objects.enums.XENON.value
+    # TODO: Add definitions for these values. (perhaps don't specify)
     - UNKNOWN
     - NONE
 DCOffsetCorrection:
@@ -535,8 +537,8 @@ DatasetType:
     For backwards compatibility, the default value is `"raw"`.
   type: string
   enum:
-    - raw
-    - derivative
+    - $ref: objects.enums.raw.value
+    - $ref: objects.enums.derivative.value
 DecayCorrectionFactor:
   name: DecayCorrectionFactor
   display_name: Decay Correction Factor
@@ -610,7 +612,7 @@ DetectorType:
       format: unit
     - type: string
       enum:
-        - mixed
+        - $ref: objects.enums.mixed.value
 DeviceSerialNumber:
   name: DeviceSerialNumber
   display_name: Device Serial Number
@@ -673,6 +675,7 @@ DigitizedHeadPointsCoordinateUnits:
   description: |
     Units of the coordinates of `"DigitizedHeadPointsCoordinateSystem"`.
   type: string
+  # TODO: Add definitions for these values. (perhaps don't specify)
   enum:
     - m
     - mm
@@ -774,6 +777,7 @@ EEGCoordinateUnits:
   description: |
     Units of the coordinates of `EEGCoordinateSystem`.
   type: string
+  # TODO: Add definitions for these values. (perhaps don't specify)
   enum:
     - m
     - mm
@@ -982,6 +986,7 @@ FiducialsCoordinateUnits:
     Units in which the coordinates that are  listed in the field
     `"FiducialsCoordinateSystem"` are represented.
   type: string
+  # TODO: Add definitions for these values. (perhaps don't specify)
   enum:
     - m
     - mm
@@ -1280,6 +1285,7 @@ HeadCoilCoordinateUnits:
   description: |
     Units of the coordinates of `HeadCoilCoordinateSystem`.
   type: string
+  # TODO: Add definitions for these values. (perhaps don't specify)
   enum:
     - m
     - mm
@@ -1811,6 +1817,7 @@ MEGCoordinateUnits:
   description: |
     Units of the coordinates of `"MEGCoordinateSystem"`.
   type: string
+  # TODO: Add definitions for these values. (perhaps don't specify)
   enum:
     - m
     - mm
@@ -2151,6 +2158,7 @@ NIRSCoordinateUnits:
   description: |
     Units of the coordinates of `NIRSCoordinateSystem`.
   type: string
+  # TODO: Add definitions for these values. (perhaps don't specify)
   enum:
     - m
     - mm
@@ -2259,10 +2267,9 @@ PCASLType:
   description: |
     The type of gradient pulses used in the `control` condition.
   type: string
-  # TODO: Add definitions for these values.
   enum:
-    - balanced
-    - unbalanced
+    - $ref: objects.enums.balanced.value
+    - $ref: objects.enums.unbalanced.value
 ParallelAcquisitionTechnique:
   name: ParallelAcquisitionTechnique
   display_name: Parallel Acquisition Technique
@@ -2406,6 +2413,7 @@ PixelSizeUnits:
     Unit format of the specified `"PixelSize"`. MUST be one of: `"mm"` (millimeter), `"um"`
     (micrometer) or `"nm"` (nanometer).
   type: string
+  # TODO: Add definitions for these values. (perhaps don't specify)
   enum:
     - mm
     - um
@@ -2722,6 +2730,7 @@ RotationOrder:
   description: |
     Specify the sequence in which the elemental 3D extrinsic rotations are applied around the three distinct axes.
   type: string
+  # TODO: Add definitions for these values. (perhaps don't specify)
   enum:
     - XYZ
     - XZY
@@ -2739,8 +2748,8 @@ RotationRule:
     counter-clockwise (right-hand rule). Must be one of: "left-hand", "right-hand".
   type: string
   enum:
-    - left-hand
-    - right-hand
+    - $ref: objects.enums.left_hand.value
+    - $ref: objects.enums.right_hand.value
     - n/a
 SEEGChannelCount:
   name: SEEGChannelCount
@@ -2763,9 +2772,9 @@ SampleEnvironment:
     or `"in vitro"`.
   type: string
   enum:
-    - in vivo
-    - ex vivo
-    - in vitro
+    - $ref: objects.enums.in_vivo.value
+    - $ref: objects.enums.ex_vivo.value
+    - $ref: objects.enums.in_vitro.value
 SampleExtractionInstitution:
   name: SampleExtractionInstitution
   display_name: Sample Extraction Institution
@@ -2794,16 +2803,15 @@ SampleOrigin:
   description: |
     Describes from which tissue the genetic information was extracted.
   type: string
-  # TODO: Add definitions for these values.
   enum:
-    - blood
-    - saliva
-    - brain
-    - csf
-    - breast milk
-    - bile
-    - amniotic fluid
-    - other biospecimen
+    - $ref: objects.enums.blood.value
+    - $ref: objects.enums.saliva.value
+    - $ref: objects.enums.brain.value
+    - $ref: objects.enums.csf.value
+    - $ref: objects.enums.breast_milk.value
+    - $ref: objects.enums.bile.value
+    - $ref: objects.enums.amniotic_fluid.value
+    - $ref: objects.enums.other_biospecimen.value
 SamplePrimaryAntibody:
   name: SamplePrimaryAntibody
   display_name: Sample Primary Antibody
@@ -3285,11 +3293,10 @@ SpoilingType:
   description: |
     Specifies which spoiling method(s) are used by a spoiled sequence.
   type: string
-  # TODO: Add definitions for these values.
   enum:
-    - RF
-    - GRADIENT
-    - COMBINED
+    - $ref: objects.enums.RF.value
+    - $ref: objects.enums.GRADIENT.value
+    - $ref: objects.enums.COMBINED.value
 StartTime:
   name: StartTime
   display_name: Start Time
@@ -3401,14 +3408,13 @@ TissueOrigin:
   description: |
     Describes the type of tissue analyzed for `"SampleOrigin"` `brain`.
   type: string
-  # TODO: Add definitions for these values.
   enum:
-    - gray matter
-    - white matter
-    - csf
-    - meninges
-    - macrovascular
-    - microvascular
+    - $ref: objects.enums.gray_matter.value
+    - $ref: objects.enums.white_matter.value
+    - $ref: objects.enums.csf.value
+    - $ref: objects.enums.meninges.value
+    - $ref: objects.enums.macrovascular.value
+    - $ref: objects.enums.microvascular.value
 TotalAcquiredPairs:
   name: TotalAcquiredPairs
   display_name: Total Acquired Pairs
@@ -3647,10 +3653,11 @@ iEEGCoordinateUnits:
     MUST be `"pixels"` if `iEEGCoordinateSystem` is `Pixels`.
   type: string
   enum:
+    - $ref: objects.enums.pixels.value
+    # TODO: Add definitions for these values. (perhaps don't specify)
     - m
     - mm
     - cm
-    - pixels
     - n/a
 iEEGElectrodeGroups:
   name: iEEGElectrodeGroups
