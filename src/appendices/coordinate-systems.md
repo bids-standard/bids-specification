@@ -221,7 +221,7 @@ However, their use is [DEPRECATED][deprecated].
 
 | **Coordinate System**               | **Description**                                                                                                                                          | **RECOMMENDED alternative identifier** |
 | ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| fsaverage\[3\|4\|5\|6\|sym\]        | Images were sampled to the FreeSurfer surface reconstructed from the subject’s T1w image, and registered to an fsaverage template                        | fsaverage\[Sym\]                       |
+| fsaverage\[3\|4\|5\|6\|sym\]        | Images were sampled to the FreeSurfer surface reconstructed from the subject's T1w image, and registered to an fsaverage template                        | fsaverage\[Sym\]                       |
 | UNCInfant\[0\|1\|2\]V\[21\|22\|23\] | Infant Brain Atlases from Neonates to 1- and 2-year-olds. [https://www.nitrc.org/projects/pediatricatlas](https://www.nitrc.org/projects/pediatricatlas) | UNCInfant                              |
 
 ### Nonstandard coordinate system identifiers

@@ -57,7 +57,7 @@ A guide for using macros can be found at
    }
 ) }}
 
-To learn more about CTF’s data organization
+To learn more about CTF's data organization
 on the relevant [FieldTrip webpage](https://www.fieldtriptoolbox.org/getting_started/ctf/)
 
 ## Neuromag/Elekta/MEGIN
@@ -408,7 +408,7 @@ header that contains detailed information about the data acquisition system,
 followed by binary data. The associated binary header file contains part of the
 information from the ASCII header, specifically the one needed to process data,
 plus other information on offline preprocessing performed after data acquisition
-(for example, sensor position relative to subject’s head, head markers, stimulus
+(for example, sensor position relative to subject's head, head markers, stimulus
 information).
 
 Example:

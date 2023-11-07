@@ -442,7 +442,7 @@ and a guide for using macros can be found at
 {{ MACROS___make_filename_template("raw", datatypes=["meg"], suffixes=["photo"]) }}
 
 Photos of the anatomical landmarks and/or head localization coils on the
-subject’s head are RECOMMENDED. If the coils are not placed at the location of
+subject's head are RECOMMENDED. If the coils are not placed at the location of
 actual anatomical landmarks, these latter may be marked with a piece of felt-tip
 taped to the skin. Please note that the photos may need to be cropped or blurred
 to conceal identifying features prior to sharing, depending on the terms of the
@@ -476,7 +476,7 @@ The 3-D locations of points that describe the head shape and/or EEG
 electrode locations can be digitized and stored in separate files. The
 [`acq-<label>`](../appendices/entities.md#acq) entity can be used when more than one type of digitization in done for
 a session, for example when the head points are in a separate file from the EEG
-locations. These files are stored in the specific format of the 3-D digitizer’s
+locations. These files are stored in the specific format of the 3-D digitizer's
 manufacturer (see the [MEG File Formats Appendix](../appendices/meg-file-formats.md)).
 
 For example:

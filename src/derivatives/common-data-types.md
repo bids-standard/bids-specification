@@ -249,7 +249,7 @@ A guide for using macros can be found at
    }
 ) }}
 
-All REQUIRED metadata fields coming from a derivative file’s source file(s) MUST
+All REQUIRED metadata fields coming from a derivative file's source file(s) MUST
 be propagated to the JSON description of the derivative unless the processing
 makes them invalid (for example, if a source 4D image is averaged to create a single
 static volume, a `RepetitionTime` property would no longer be relevant).
