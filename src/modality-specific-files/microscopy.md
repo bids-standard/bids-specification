@@ -37,7 +37,7 @@ by the [Open Microscopy Environment](https://www.openmicroscopy.org/) for whole-
 the [OME-TIFF file specifications](https://docs.openmicroscopy.org/ome-model/6.1.2/ome-tiff/file-structure.html).
 The OME-TIFF file allows for multi-page TIFF files to store multiple image planes and supports
 multi-resolution pyramidal tiled images. An OME-XML data block is also embedded inside the
-file’s header. Further, OME-ZARR (sometimes referred to as OME-NGFF or NGFF) has been developed to provide improved
+file's header. Further, OME-ZARR (sometimes referred to as OME-NGFF or NGFF) has been developed to provide improved
 access and storage for large data via chunked and compressed N-dimensional arrays.
 
 The BIDS standard accepts microscopy data in a number of file formats to accommodate datasets
