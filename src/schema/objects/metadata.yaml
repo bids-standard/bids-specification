@@ -1712,7 +1712,15 @@ Levels:
     descriptions (values).
   type: object
   additionalProperties:
-    type: string
+    anyOf:
+      - type: string
+      - type: object
+        properties:
+          TermURL:
+            type: string
+            format: uri
+          Description:
+            type: string
 License:
   name: License
   display_name: License
