@@ -259,17 +259,17 @@ static volume, a `RepetitionTime` property would no longer be relevant).
 To keep a record of processing steps applied to the data, a `descriptions.tsv` file MAY be used.
 The `descriptions.tsv` file MUST contain at least the following two columns:
 
--   `desc_id`
+-   `label`
 -   `description`
 
 This file MAY be located at the root of the derivative dataset,
 or at the subject or session level
 ([Inheritance Principle](../common-principles.md#the-inheritance-principle)).
 
-The `desc_id` column contains the labels used with the [`desc entity`](../appendices/entities.md#desc),
+The `label` column contains the labels used with the [`desc entity`](../appendices/entities.md#desc),
 within the particular nesting that the `description.tsv` file is placed.
 For example, if the `descriptions.tsv` file is placed at the root of the derivative dataset,
-its `desc_id` column SHOULD contain all labels of the [`desc entity`](../appendices/entities.md#desc)
+its `label` column SHOULD contain all labels of the [`desc entity`](../appendices/entities.md#desc)
 used across the entire derivative dataset.
 
 The `description` column contains human-readable descriptions of the processing steps.
@@ -319,7 +319,7 @@ A guide for using macros can be found at
 
 Contents of the `descriptions.tsv` file:
 
-| desc_id | description                                                                                     |
+| label   | description                                                                                     |
 |---------|-------------------------------------------------------------------------------------------------|
 | Filt    | low-pass filtered at 30Hz                                                                       |
 | FiltDs  | low-pass filtered at 30Hz, downsampled to 250Hz                                                 |
