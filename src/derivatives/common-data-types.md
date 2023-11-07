@@ -253,22 +253,14 @@ All REQUIRED metadata fields coming from a derivative file’s source file(s) MU
 be propagated to the JSON description of the derivative unless the processing
 makes them invalid (for example, if a source 4D image is averaged to create a single
 static volume, a `RepetitionTime` property would no longer be relevant).
-As each file includes what was computed by increment,
-a trail of the computational steps performed is created.
-Because many steps can occur until the fully clean data are obtained,
-and because it is OPTIONAL to save every file or step,
-the simpler `desc-preproc` and `desc-proc` are available.
-It becomes however important to document what such pre-processing or processing are,
-and record the order of computational steps.
-This can be done in the JSON sidecar files or alternatively described in a `descriptions.tsv` file.
 
 ## descriptions.tsv
 
-To keep a record of processing steps applied to the data, a `descriptions.tsv` file can be used.
+To keep a record of processing steps applied to the data, a `descriptions.tsv` file MAY be used.
 The `descriptions.tsv` file MUST contain at least the following two columns:
 
--  `desc_id`
--  `description`
+-   `desc_id`
+-   `description`
 
 This file MAY be located at the root of the derivative dataset,
 or at the subject or session level
