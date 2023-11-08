@@ -267,14 +267,14 @@ or at the subject or session level
 ([Inheritance Principle](../common-principles.md#the-inheritance-principle)).
 
 The `label` column contains the labels used with the [`desc entity`](../appendices/entities.md#desc),
-within the particular nesting that the `description.tsv` file is placed.
+within the particular nesting that the `descriptions.tsv` file is placed.
 For example, if the `descriptions.tsv` file is placed at the root of the derivative dataset,
 its `label` column SHOULD contain all labels of the [`desc entity`](../appendices/entities.md#desc)
 used across the entire derivative dataset.
 
 The `description` column contains human-readable descriptions of the processing steps.
 
-The use of `description.tsv` files together with the [`desc entity`](../appendices/entities.md#desc)
+The use of `descriptions.tsv` files together with the [`desc entity`](../appendices/entities.md#desc)
 are helpful to document how files are generated, even if their use may not be sufficient
 to provide full computational reproducibility.
 
@@ -290,7 +290,7 @@ A guide for using macros can be found at
         "CHANGES": "",
         "README": "",
         "channels.tsv": "",
-        "dataset_description.tsv": "",
+        "dataset_description.json": "",
         "participants.tsv": "",
             "sub-001": {
                 "eeg": {
