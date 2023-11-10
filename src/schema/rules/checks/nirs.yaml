@@ -23,24 +23,28 @@ NIRSChannelCount:
 ACCELChannelCountReq:
   selectors:
     - suffix == "nirs"
+    - count(associations.channels.type, "ACCEL") > 0
   checks:
     - sidecar.ACCELChannelCount == count(associations.channels.type, "ACCEL")
 
 GYROChannelCountReq:
   selectors:
     - suffix == "nirs"
+    - count(associations.channels.type, "GYRO") > 0
   checks:
     - sidecar.GYROChannelCount == count(associations.channels.type, "GYRO")
 
 MAGNChannelCountReq:
   selectors:
     - suffix == "nirs"
+    - count(associations.channels.type, "MAGN") > 0
   checks:
     - sidecar.MAGNChannelCount == count(associations.channels.type, "MAGN")
 
 ShortChannelCountReq:
   selectors:
     - suffix == "nirs"
+    - '"ShortChannelCount" in sidecar'
   checks:
     - sidecar.ShortChannelCount == count(associations.channels.short_channel, "true")
 
