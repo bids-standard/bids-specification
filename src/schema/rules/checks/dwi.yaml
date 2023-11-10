@@ -41,7 +41,7 @@ DWIBvecRows:
     - suffix == "dwi"
     - '"bvec" in associations'
   checks:
-    - associations.bvec.n_rows == 1
+    - associations.bvec.n_rows == 3
 
 # 32
 DWIMissingBvec:
