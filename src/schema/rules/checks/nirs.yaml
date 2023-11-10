@@ -53,11 +53,15 @@ Component:
   checks:
     - columns.component != null
 
-RequiredChannels:
+RecommendedChannels:
+  issue:
+    code: NIRS_RECOMMENDED_CHANNELS
+    message: |
+      NIRS files SHOULD have an associated channels.tsv file.
+    level: warning
   selectors:
-    - datatype == "nirs"
-    - suffix == "optodes"
-    - extension == ".tsv"
+    - suffix == "nirs"
+    - extension == ".snirf"
   checks:
     - associations.channels != null
 
