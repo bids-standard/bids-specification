@@ -194,6 +194,13 @@
         },
         {
             "contributions": [
+                "tool"
+            ],
+            "login": "alizee_wickenheiser",
+            "name": "Alizee Wickenheiser"
+        },
+        {
+            "contributions": [
                 "userTesting"
             ],
             "login": "ana_fouto",
@@ -442,6 +449,14 @@
             ],
             "login": "carlo_miniussi",
             "name": "Carlo Miniussi"
+        },
+        {
+            "contributions": [
+                "data",
+                "tool"
+            ],
+            "login": "cecile_madjar",
+            "name": "Cecile Madjar"
         },
         {
             "contributions": [
@@ -1463,6 +1478,13 @@
         },
         {
             "contributions": [
+                "tool"
+            ],
+            "login": "jefferson_casimir",
+            "name": "Jefferson Casimir"
+        },
+        {
+            "contributions": [
                 "doc"
             ],
             "login": "jeffrey_g_ojemann",
@@ -1798,6 +1820,13 @@
             "login": "schillkg",
             "name": "Kurt Schilling",
             "profile": "https://github.com/schillkg"
+        },
+        {
+            "contributions": [
+                "tool"
+            ],
+            "login": "laetitia_fesselier",
+            "name": "Laetitia Fesselier"
         },
         {
             "contributions": [
@@ -2729,6 +2758,17 @@
             "name": "Stephan Bickel"
         },
         {
+            "contributions": [
+                "bug",
+                "code",
+                "question",
+                "tool",
+                "userTesting"
+            ],
+            "login": "smeisler",
+            "name": "Steven Meisler"
+        },
+        {
             "avatar_url": "https://avatars.githubusercontent.com/u/11152799?v=4",
             "contributions": [
                 "doc",
@@ -2986,6 +3026,14 @@
             "login": "glatard",
             "name": "Tristan Glatard",
             "profile": "https://github.com/glatard"
+        },
+        {
+            "contributions": [
+                "data",
+                "tool"
+            ],
+            "login": "tyler_collins",
+            "name": "Tyler Collins"
         },
         {
             "contributions": [
