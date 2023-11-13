@@ -247,7 +247,7 @@ Similarly update the version in CITATION.cff with a `dev` suffix.
 ### 10. Uploading the stable PDF to Zenodo
 
 1. In a previous step you have secured a PDF version of the BIDS specification and the corresponding `CITATION.cff` file.
-1. Follow the steps descibed here: https://github.com/bids-standard/bids-specification-pdf-releases#release-instructions
+1. Follow the steps described here: https://github.com/bids-standard/bids-specification-pdf-releases#release-instructions
 
 ### 11. Sharing news of the release
 
