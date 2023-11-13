@@ -572,6 +572,13 @@ DelayTime:
     This field is mutually exclusive with `"VolumeTiming"`.
   type: number
   unit: s
+Delimiter:
+  name: Delimiter
+  display_name: Delimiter
+  description: |
+    If rows in a column may be interpreted as a lists of values, the character that
+    separates one value from the next.
+  type: string
 Density:
   name: Density
   display_name: Density

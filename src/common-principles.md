@@ -483,6 +483,7 @@ and a guide for using macros can be found at
         ),
         "Levels": "RECOMMENDED",
         "Units": "RECOMMENDED",
+        "Delimiter": "OPTIONAL",
         "TermURL": "RECOMMENDED",
         "HED": "OPTIONAL",
    }
