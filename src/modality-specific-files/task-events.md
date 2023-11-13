@@ -106,7 +106,7 @@ In the accompanying JSON sidecar, the `trial_type` column might look as follows:
     },
     "annots": {
         "LongName": "Annotations",
-        "Description": "Hierarchical Event Descriptors (HED) annotations",
+        "Description": "Annotations associated with channels indicated in the channel column.",
         "Levels": {
             "musc": "Muscle artifact. A very common, high frequency, sharp artifact that corresponds with agitation/nervousness in a patient."
         },
