@@ -357,7 +357,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | William Triplett                                     | 📖                                     |
 | Wouter V. Potters                                    | 💻📖                                   |
 | Xiangrui Li                                          | 📖💻                                   |
-| Yaroslav O. Halchenko                                | 📖📢🔧💬🐛💻                           |
+| Yaroslav O. Halchenko                                | 📖📢🔧💬🐛💻🔣🔍🤔🔌👀📓🚇             |
 | Yoni Ashar                                           | 📖                                     |
 | Yuan Wang                                            | 💻                                     |
 | Zachary Michael                                      | 📖                                     |

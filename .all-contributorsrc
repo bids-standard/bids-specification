@@ -3140,7 +3140,14 @@
                 "tool",
                 "question",
                 "bug",
-                "code"
+                "code",
+                "data",
+                "fundingFinding",
+                "ideas",
+                "plugin",
+                "review",
+                "userTesting",
+                "infra"
             ],
             "login": "yarikoptic",
             "name": "Yaroslav O. Halchenko",

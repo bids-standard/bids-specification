@@ -3063,7 +3063,14 @@
             "tool",
             "question",
             "bug",
-            "code"
+            "code",
+            "data",
+            "fundingFinding",
+            "ideas",
+            "plugin",
+            "review",
+            "userTesting",
+            "infra"
         ],
         "email": "debian@onerussian.com",
         "name": "Yaroslav O. Halchenko",
