@@ -17,7 +17,7 @@ repository-code: https://github.com/bids-standard/bids-specification
 message: Please cite it as below.
 
 identifiers:
-  - description: bids-specification
+  - description: PDFs of the BIDS specification for versions 1.0.0 to 1.8.0
     type: doi
     value: 10.5281/zenodo.3686061
 
