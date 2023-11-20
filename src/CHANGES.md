@@ -1,6 +1,6 @@
 # Changelog
 
-## [v1.9.0](https://bids-specification.readthedocs.io/en/v1.9.0) (2023-11-18)
+## [v1.9.0](https://bids-specification.readthedocs.io/en/v1.9.0) (2023-11-20)
 
 -   \[ENH] add `ElectricalStimulation` and `\*Parameters` metadata to MEEG jsons [#1638](https://github.com/bids-standard/bids-specification/pull/1638) ([sappelhoff](https://github.com/sappelhoff))
 -   Fix years and degrees Units and unit to be singular to match the rest [#1631](https://github.com/bids-standard/bids-specification/pull/1631) ([yarikoptic](https://github.com/yarikoptic))
