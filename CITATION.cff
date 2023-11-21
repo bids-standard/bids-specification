@@ -2,7 +2,7 @@
 
 cff-version: 1.2.0
 
-title: bids-specification
+title: The Brain Imaging Data Structure (BIDS) Specification
 
 abstract: >-
   The Brain Imaging Data Structure (BIDS) is a simple and intuitive way to organize and describe data.
