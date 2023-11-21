@@ -1,21 +1,24 @@
 # Changelog
 
-## [v1.9.0](https://bids-specification.readthedocs.io/en/v1.9.0) (2023-11-20)
+## [v1.9.0](https://github.com/bids-standard/bids-specification/tree/v1.9.0) (2023-11-20)
 
+-   \[FIX] mention phenotype dir in folder structure [#1644](https://github.com/bids-standard/bids-specification/pull/1644) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[ENH] add `ElectricalStimulation` and `\*Parameters` metadata to MEEG jsons [#1638](https://github.com/bids-standard/bids-specification/pull/1638) ([sappelhoff](https://github.com/sappelhoff))
--   Fix years and degrees Units and unit to be singular to match the rest [#1631](https://github.com/bids-standard/bids-specification/pull/1631) ([yarikoptic](https://github.com/yarikoptic))
+-   \[FIX] years and degrees Units and unit to be singular to match the rest [#1631](https://github.com/bids-standard/bids-specification/pull/1631) ([yarikoptic](https://github.com/yarikoptic))
 -   \[FIX] Hierarchical Event Descriptors (HED) page update [#1623](https://github.com/bids-standard/bids-specification/pull/1623) ([effigies](https://github.com/effigies))
--   FIX: Do not require notch frequencies to be parsed as numbers, accommodating multiples [#1605](https://github.com/bids-standard/bids-specification/pull/1605) ([effigies](https://github.com/effigies))
+-   \[ENH] Add `descriptions.tsv` file relating to the `desc-\<label\>` entity [#1613](https://github.com/bids-standard/bids-specification/pull/1613) ([CPernet](https://github.com/CPernet))
+-   \[FIX] Do not require notch frequencies to be parsed as numbers, accommodating multiples [#1605](https://github.com/bids-standard/bids-specification/pull/1605) ([effigies](https://github.com/effigies))
 -   \[ENH] Allow Levels field of column descriptions to be objects with TermURLs for each level [#1603](https://github.com/bids-standard/bids-specification/pull/1603) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[ENH] Add optional low_cutoff and high_cutoff columns for fnirs channels.tsv [#1597](https://github.com/bids-standard/bids-specification/pull/1597) ([Remi-Gau](https://github.com/Remi-Gau))
--   Recommend SliceTiming if MRAcquisitionType is "2D" [#1594](https://github.com/bids-standard/bids-specification/pull/1594) ([tsalo](https://github.com/tsalo))
+-   \[FIX] Recommend SliceTiming if MRAcquisitionType is "2D" [#1594](https://github.com/bids-standard/bids-specification/pull/1594) ([tsalo](https://github.com/tsalo))
 -   \[ENH] Add Level objects to channels.json for motion [#1591](https://github.com/bids-standard/bids-specification/pull/1591) ([effigies](https://github.com/effigies))
 -   \[ENH] Add "chunk" entity to MRI datatype [#1586](https://github.com/bids-standard/bids-specification/pull/1586) ([valosekj](https://github.com/valosekj))
 -   \[SCHEMA]\[ENH] Remove atlas entity and replace it with seg in prep of BEP038 [#1579](https://github.com/bids-standard/bids-specification/pull/1579) ([melanieganz](https://github.com/melanieganz))
+-   \[FIX] Correct PDw suffix description [#1578](https://github.com/bids-standard/bids-specification/pull/1578) ([jeremie-fouquet](https://github.com/jeremie-fouquet))
 -   \[FIX] improve longitudinal example [#1576](https://github.com/bids-standard/bids-specification/pull/1576) ([Remi-Gau](https://github.com/Remi-Gau))
--   Adds Kim Ray as maintainer. [#1571](https://github.com/bids-standard/bids-specification/pull/1571) ([arokem](https://github.com/arokem))
+-   \[INFRA] Adds Kim Ray as maintainer. [#1571](https://github.com/bids-standard/bids-specification/pull/1571) ([arokem](https://github.com/arokem))
 -   \[ENH] Allow for "echo" entity to be used with T1w and other nonparametric anatomical suffixes [#1570](https://github.com/bids-standard/bids-specification/pull/1570) ([yarikoptic](https://github.com/yarikoptic))
--   Update `templates` in modality-agnostic-files [#1564](https://github.com/bids-standard/bids-specification/pull/1564) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] Update `templates` in modality-agnostic-files [#1564](https://github.com/bids-standard/bids-specification/pull/1564) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Clarify that electrodes.tsv is optional for MEG, for use with simultaneous (i)EEG [#1555](https://github.com/bids-standard/bids-specification/pull/1555) ([effigies](https://github.com/effigies))
 -   \[ENH] Allow UNKNOWN and NONE ContrastBolusIngredients [#1547](https://github.com/bids-standard/bids-specification/pull/1547) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[FIX] Update links to BIDS examples [#1545](https://github.com/bids-standard/bids-specification/pull/1545) ([Remi-Gau](https://github.com/Remi-Gau))
@@ -23,20 +26,19 @@
 -   \[ENH] add "visual correction" and "head stabilization" metadata [#1539](https://github.com/bids-standard/bids-specification/pull/1539) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[ENH] Clarify meaning of raw vs derivative datasets [#1537](https://github.com/bids-standard/bids-specification/pull/1537) ([CPernet](https://github.com/CPernet))
 -   \[FIX] match subject label in folder and filename in func example [#1536](https://github.com/bids-standard/bids-specification/pull/1536) ([Remi-Gau](https://github.com/Remi-Gau))
--   FIX: Trail MEG directory formats with `/` [#1534](https://github.com/bids-standard/bids-specification/pull/1534) ([effigies](https://github.com/effigies))
+-   \[FIX] Trail MEG directory formats with `/` [#1534](https://github.com/bids-standard/bids-specification/pull/1534) ([effigies](https://github.com/effigies))
 -   \[ENH] Permit CITATION.cff as structured alternative to some dataset_description fields [#1525](https://github.com/bids-standard/bids-specification/pull/1525) ([effigies](https://github.com/effigies))
 -   \[FIX] Add missing column description in physio example [#1514](https://github.com/bids-standard/bids-specification/pull/1514) ([sappelhoff](https://github.com/sappelhoff))
 -   \[ENH] Clarify that data files must be uniquely identified by entities/suffix [#1508](https://github.com/bids-standard/bids-specification/pull/1508) ([sappelhoff](https://github.com/sappelhoff))
--   DOC: Auto-generate full API docs [#1505](https://github.com/bids-standard/bids-specification/pull/1505) ([effigies](https://github.com/effigies))
 -   \[INFRA] Publish schema tools API docs to additional ReadTheDocs site [#1491](https://github.com/bids-standard/bids-specification/pull/1491) ([bendhouseart](https://github.com/bendhouseart))
 -   \[FIX] Remove references to unspecified aslcontext.json [#1485](https://github.com/bids-standard/bids-specification/pull/1485) ([Remi-Gau](https://github.com/Remi-Gau))
+-   ENH: Define channel column for events and Delimiter field for column descriptions [#1483](https://github.com/bids-standard/bids-specification/pull/1483) ([effigies](https://github.com/effigies))
 -   \[FIX] Revert index (entity format) definition to be a non-negative number, permitting zero [#1482](https://github.com/bids-standard/bids-specification/pull/1482) ([TheChymera](https://github.com/TheChymera))
--   ENH: Add version list to schema.meta and a warning on unknown BIDSVersion [#1472](https://github.com/bids-standard/bids-specification/pull/1472) ([effigies](https://github.com/effigies))
 -   \[FIX] Clean up qMRI RB1COR notes [#1465](https://github.com/bids-standard/bids-specification/pull/1465) ([lukeje](https://github.com/lukeje))
 -   \[ENH] Allow fractional seconds in StartTime [#1459](https://github.com/bids-standard/bids-specification/pull/1459) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] consistently list filename templates; `ext` --> `extension`; `\_photo.jpg` --> `\_photo.\<extension\>` [#1458](https://github.com/bids-standard/bids-specification/pull/1458) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Demote `sample` and `value` columns in `events.tsv` from OPTIONAL to arbitrary [#1457](https://github.com/bids-standard/bids-specification/pull/1457) ([sappelhoff](https://github.com/sappelhoff))
--   ENH: Clarify shape of PDT2 images and recommend acq entity for split PDw/T2w images [#1448](https://github.com/bids-standard/bids-specification/pull/1448) ([effigies](https://github.com/effigies))
+-   \[ENH] Clarify shape of PDT2 images and recommend acq entity for split PDw/T2w images [#1448](https://github.com/bids-standard/bids-specification/pull/1448) ([effigies](https://github.com/effigies))
 -   \[ENH] clarify guiding principles for requirement levels [#1444](https://github.com/bids-standard/bids-specification/pull/1444) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Clarify that dataset_description.Genetics object is required for genetics data [#1442](https://github.com/bids-standard/bids-specification/pull/1442) ([sappelhoff](https://github.com/sappelhoff))
 -   \[ENH] Clarify that BIDS specification is in American English [#1439](https://github.com/bids-standard/bids-specification/pull/1439) ([yarikoptic](https://github.com/yarikoptic))
@@ -45,30 +47,27 @@
 -   \[FIX] Rename `channels.tsv` column: `orientation\_component` to `component` [#1417](https://github.com/bids-standard/bids-specification/pull/1417) ([sjeung](https://github.com/sjeung))
 -   \[ENH] Some missing docstrings for bidsschematools [#1413](https://github.com/bids-standard/bids-specification/pull/1413) ([anibalsolon](https://github.com/anibalsolon))
 -   \[FIX] fixing some minor issues introduced recently [#1411](https://github.com/bids-standard/bids-specification/pull/1411) ([yarikoptic](https://github.com/yarikoptic))
--   SCHEMA: Implement some fairly easy rules [#1410](https://github.com/bids-standard/bids-specification/pull/1410) ([effigies](https://github.com/effigies))
--   \[REF] refactor institution and task tables [#1397](https://github.com/bids-standard/bids-specification/pull/1397) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[ENH] Add paragraph about richness versus distinctness in filenames [#1392](https://github.com/bids-standard/bids-specification/pull/1392) ([CPernet](https://github.com/CPernet))
 -   \[FIX] Updated HED score library version [#1390](https://github.com/bids-standard/bids-specification/pull/1390) ([VisLab](https://github.com/VisLab))
 -   \[FIX] Updated links and fixed typos in hed appendix [#1383](https://github.com/bids-standard/bids-specification/pull/1383) ([VisLab](https://github.com/VisLab))
 -   \[ENH] add screen parameters metadata [#1369](https://github.com/bids-standard/bids-specification/pull/1369) ([Remi-Gau](https://github.com/Remi-Gau))
--   RF: allow for any "recording" file to be listed in \_scans.tsv not just "neural recording" [#1368](https://github.com/bids-standard/bids-specification/pull/1368) ([yarikoptic](https://github.com/yarikoptic))
+-   \[MISC] allow for any "recording" file to be listed in \_scans.tsv not just "neural recording" [#1368](https://github.com/bids-standard/bids-specification/pull/1368) ([yarikoptic](https://github.com/yarikoptic))
 -   \[FIX] wrong usage of DOI in SourceDatasets example [#1361](https://github.com/bids-standard/bids-specification/pull/1361) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] make references to Neuromag/Elekta/MEGIN consistent [#1359](https://github.com/bids-standard/bids-specification/pull/1359) ([sappelhoff](https://github.com/sappelhoff))
--   \[DOC] link to steering group section on bids website [#1358](https://github.com/bids-standard/bids-specification/pull/1358) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[ENH] Add reference for ASL BEP [#1357](https://github.com/bids-standard/bids-specification/pull/1357) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[FIX] remove redundant entity definitions in behavioral page [#1356](https://github.com/bids-standard/bids-specification/pull/1356) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[FIX] add missing processing entity for MEG physio files and render physio filename templates for fNIRS [#1355](https://github.com/bids-standard/bids-specification/pull/1355) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[ENH] Recommend gzip header fields be set to empty values [#1349](https://github.com/bids-standard/bids-specification/pull/1349) ([kousu](https://github.com/kousu))
 -   \[FIX] clarify TriggerChannelCount and TRIG type [#1342](https://github.com/bids-standard/bids-specification/pull/1342) ([sappelhoff](https://github.com/sappelhoff))
 -   \[ENH] Add qMRI fieldmap filename templates [#1336](https://github.com/bids-standard/bids-specification/pull/1336) ([Remi-Gau](https://github.com/Remi-Gau))
--   ENH: Introduce GIFTI formats in derivatives [#1333](https://github.com/bids-standard/bids-specification/pull/1333) ([effigies](https://github.com/effigies))
+-   \[ENH] Introduce GIFTI formats in derivatives [#1333](https://github.com/bids-standard/bids-specification/pull/1333) ([effigies](https://github.com/effigies))
 -   \[ENH] Add ParallelReductionFactorOutOfPlane to MRI metadata [#1221](https://github.com/bids-standard/bids-specification/pull/1221) ([lukeje](https://github.com/lukeje))
--   \[ENH]\[SCHEMA] Adding an OPTIONAL \_task-\<label> to structural MRI acquisitions [#1185](https://github.com/bids-standard/bids-specification/pull/1185) ([melanieganz](https://github.com/melanieganz))
+-   \[ENH]\[SCHEMA] Adding an OPTIONAL `\_task-\<label\>` to structural MRI acquisitions [#1185](https://github.com/bids-standard/bids-specification/pull/1185) ([melanieganz](https://github.com/melanieganz))
 -   \[INFRA] use tributors to list contributors and CITATION.cff for referencing [#1115](https://github.com/bids-standard/bids-specification/pull/1115) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[ENH] Extend BIDS for Motion data (BEP029) [#981](https://github.com/bids-standard/bids-specification/pull/981) ([JuliusWelzel](https://github.com/JuliusWelzel))
 -   \[SCHEMA] Add full object definitions for valid values in schema [#919](https://github.com/bids-standard/bids-specification/pull/919) ([tsalo](https://github.com/tsalo))
 
-## [v1.8.0](https://bids-specification.readthedocs.io/en/v1.8.0) (2022-10-29)
+## [v1.8.0](https://github.com/bids-standard/bids-specification/tree/v1.8.0) (2022-10-29)
 
 -   \[FIX] Drop the functional and f for NIRS [#1325](https://github.com/bids-standard/bids-specification/pull/1325) ([rob-luke](https://github.com/rob-luke))
 -   \[FIX]\[SCHEMA] Add conditionals for PET ReconMethod\* and ReconFilter [#1299](https://github.com/bids-standard/bids-specification/pull/1299) ([bendhouseart](https://github.com/bendhouseart))
@@ -115,7 +114,7 @@
 -   \[ENH] BEP030: Functional Near-Infrared Spectroscopy [#802](https://github.com/bids-standard/bids-specification/pull/802) ([rob-luke](https://github.com/rob-luke))
 -   \[FIX] Clarify run entity to accommodate multiple imaging modalities [#760](https://github.com/bids-standard/bids-specification/pull/760) ([yarikoptic](https://github.com/yarikoptic))
 
-## [v1.7.0](https://bids-specification.readthedocs.io/en/v1.7.0) (2022-02-15)
+## [v1.7.0](https://github.com/bids-standard/bids-specification/tree/v1.7.0) (2022-02-15)
 
 -   \[FIX] Use wikipedia for TIFF URL, adobe's page is 404ing now [#1007](https://github.com/bids-standard/bids-specification/pull/1007) ([yarikoptic](https://github.com/yarikoptic))
 -   \[FIX] update highlighting of examples, JSON keys and values, and TSV headers or values in the schema [#998](https://github.com/bids-standard/bids-specification/pull/998) ([Remi-Gau](https://github.com/Remi-Gau))
@@ -207,7 +206,7 @@
 -   \[FIX] Correct iEEG example that contained double suffixes [#463](https://github.com/bids-standard/bids-specification/pull/463) ([yarikoptic](https://github.com/yarikoptic))
 -   \[ENH] introduce GeneratedBy to "core" BIDS [#440](https://github.com/bids-standard/bids-specification/pull/440) ([yarikoptic](https://github.com/yarikoptic))
 
-## [v1.6.0](https://bids-specification.readthedocs.io/en/v1.6.0) (2021-04-22)
+## [v1.6.0](https://github.com/bids-standard/bids-specification/tree/v1.6.0) (2021-04-22)
 
 -   \[FIX] Typos discovered by codespell [#784](https://github.com/bids-standard/bids-specification/pull/784) ([yarikoptic](https://github.com/yarikoptic))
 -   \[FIX] Rename "Unit" metadata to "Units" for consistency with existing fields [#773](https://github.com/bids-standard/bids-specification/pull/773) ([effigies](https://github.com/effigies))
@@ -226,7 +225,7 @@
 -   \[MISC] refactor stimuli mentioning sections in the events page [#697](https://github.com/bids-standard/bids-specification/pull/697) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[ENH] Bep 009: Positron Emission Tomography [#633](https://github.com/bids-standard/bids-specification/pull/633) ([melanieganz](https://github.com/melanieganz))
 
-## [v1.5.0](https://bids-specification.readthedocs.io/en/v1.5.0) (2021-02-23)
+## [v1.5.0](https://github.com/bids-standard/bids-specification/tree/v1.5.0) (2021-02-23)
 
 -   \[MISC] Updated TotalAcquiredVolumes into TotalAcquiredPairs [#742](https://github.com/bids-standard/bids-specification/pull/742) ([effigies](https://github.com/effigies))
 -   \[SCHEMA] Update qMRI fieldmap schema [#728](https://github.com/bids-standard/bids-specification/pull/728) ([effigies](https://github.com/effigies))
@@ -264,7 +263,7 @@
 -   \[SCHEMA] Render schema elements in text [#610](https://github.com/bids-standard/bids-specification/pull/610) ([tsalo](https://github.com/tsalo))
 -   \[ENH] Add part entity for complex-valued data [#424](https://github.com/bids-standard/bids-specification/pull/424) ([tsalo](https://github.com/tsalo))
 
-## [v1.4.1](https://bids-specification.readthedocs.io/en/v1.4.1) (2020-10-13)
+## [v1.4.1](https://github.com/bids-standard/bids-specification/tree/v1.4.1) (2020-10-13)
 
 -   \[INFRA] minor robustness enhancements to pdf build shell script  [#642](https://github.com/bids-standard/bids-specification/pull/642) ([yarikoptic](https://github.com/yarikoptic))
 -   \[FIX] consistent CoordinateSystem fields for ephys [#641](https://github.com/bids-standard/bids-specification/pull/641) ([sappelhoff](https://github.com/sappelhoff))
@@ -323,7 +322,7 @@
 -   \[INFRA] Convert entity table to yaml [#475](https://github.com/bids-standard/bids-specification/pull/475) ([tsalo](https://github.com/tsalo))
 -   \[FIX] Recommend SI units formatting to adhere to CMIXF-12 [#411](https://github.com/bids-standard/bids-specification/pull/411) ([sappelhoff](https://github.com/sappelhoff))
 
-## [v1.4.0](https://bids-specification.readthedocs.io/en/v1.4.0) (2020-06-11)
+## [v1.4.0](https://github.com/bids-standard/bids-specification/tree/v1.4.0) (2020-06-11)
 
 -   \[FIX] Clarify language on unsetting a key/value pair [#495](https://github.com/bids-standard/bids-specification/pull/495) ([nicholst](https://github.com/nicholst))
 -   \[ENH] optionally allow LICENSE file [#483](https://github.com/bids-standard/bids-specification/pull/483) ([sappelhoff](https://github.com/sappelhoff))
@@ -343,7 +342,7 @@
 -   \[ENH] BEP 003: Common Derivatives [#265](https://github.com/bids-standard/bids-specification/pull/265) ([effigies](https://github.com/effigies))
 -   \[ENH] Add Glossary of terms/abbreviations used in the specification [#152](https://github.com/bids-standard/bids-specification/pull/152) ([yarikoptic](https://github.com/yarikoptic))
 
-## [v1.3.0](https://bids-specification.readthedocs.io/en/v1.3.0) (2020-04-14)
+## [v1.3.0](https://github.com/bids-standard/bids-specification/tree/v1.3.0) (2020-04-14)
 
 -   \[INFRA] add zenodo badge to README [#447](https://github.com/bids-standard/bids-specification/pull/447) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] Added contributors from VisLab [#444](https://github.com/bids-standard/bids-specification/pull/444) ([VisLab](https://github.com/VisLab))
@@ -362,7 +361,7 @@
 -   \[ENH] Add OPTIONAL EthicsApprovals field to dataset description [#412](https://github.com/bids-standard/bids-specification/pull/412) ([effigies](https://github.com/effigies))
 -   \[ENH] BEP 018 - Genetic Information [#395](https://github.com/bids-standard/bids-specification/pull/395) ([effigies](https://github.com/effigies))
 
-## [v1.2.2](https://bids-specification.readthedocs.io/en/v1.2.2) (2020-02-12)
+## [v1.2.2](https://github.com/bids-standard/bids-specification/tree/v1.2.2) (2020-02-12)
 
 -   \[FIX] improve wording on data dictionaries [#410](https://github.com/bids-standard/bids-specification/pull/410) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] update contributions by CPernet [#409](https://github.com/bids-standard/bids-specification/pull/409) ([CPernet](https://github.com/CPernet))
@@ -400,7 +399,7 @@
 -   \[ENH] Added discontinuous datatype for EEG and iEEG [#286](https://github.com/bids-standard/bids-specification/pull/286) ([wouterpotters](https://github.com/wouterpotters))
 -   \[FIX] Clarify paragraph about custom data types [#264](https://github.com/bids-standard/bids-specification/pull/264) ([effigies](https://github.com/effigies))
 
-## [v1.2.1](https://bids-specification.readthedocs.io/en/v1.2.1) (2019-08-14)
+## [v1.2.1](https://github.com/bids-standard/bids-specification/tree/v1.2.1) (2019-08-14)
 
 -   \[FIX] repair link in anatomical MRI table [#297](https://github.com/bids-standard/bids-specification/pull/297) ([sappelhoff](https://github.com/sappelhoff))
 -   \[ENH] Clarify requirements in Release Protocol [#294](https://github.com/bids-standard/bids-specification/pull/294) ([franklin-feingold](https://github.com/franklin-feingold))
@@ -454,7 +453,7 @@
 -   \[FIX] Specify marker filenames for KIT data (MEG) [#62](https://github.com/bids-standard/bids-specification/pull/62) ([monkeyman192](https://github.com/monkeyman192))
 -   \[FIX] Remove father-level for meg filetypes other than BTi/4D data [#19](https://github.com/bids-standard/bids-specification/pull/19) ([teonbrooks](https://github.com/teonbrooks))
 
-## [v1.2.0](https://bids-specification.readthedocs.io/en/v1.2.0) (2019-03-04)
+## [v1.2.0](https://github.com/bids-standard/bids-specification/tree/v1.2.0) (2019-03-04)
 
 -   \[MISC] Adding Dimitri Papadopoulos Orfanos to the list of contributors [#157](https://github.com/bids-standard/bids-specification/pull/157) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
 -   \[FIX] use "specification" not "protocol" to refer to BIDS [#156](https://github.com/bids-standard/bids-specification/pull/156) ([yarikoptic](https://github.com/yarikoptic))
@@ -471,7 +470,7 @@
 -   \[MISC] Adding formal decision-making rules [#104](https://github.com/bids-standard/bids-specification/pull/104) ([chrisgorgo](https://github.com/chrisgorgo))
 -   \[FIX] number of small corrections to the specification [#98](https://github.com/bids-standard/bids-specification/pull/98) ([robertoostenveld](https://github.com/robertoostenveld))
 
-## [v1.1.2](https://bids-specification.readthedocs.io/en/v1.1.2) (2019-01-10)
+## [v1.1.2](https://github.com/bids-standard/bids-specification/tree/v1.1.2) (2019-01-10)
 
 -   \[ENH] Global fields in data dictionaries [#117](https://github.com/bids-standard/bids-specification/pull/117) ([chrisgorgo](https://github.com/chrisgorgo))
 -   \[MISC] Propose BEP026 MER [#116](https://github.com/bids-standard/bids-specification/pull/116) ([greydongilmore](https://github.com/greydongilmore))
