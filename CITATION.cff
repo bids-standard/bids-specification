@@ -19,7 +19,7 @@ message: >-
   HTML versions of the BIDS specification can be browsed following this link:
   https://bids-specification.rtfd.io
   PDF versions of the BIDS specification can be found in the Zenodo archives
-  listed under "identifiers" below in this file.
+  listed under "identifiers" below in the present `CITATION.cff` file.
 
 identifiers:
   - description: PDFs of the BIDS specification for versions 1.9.0 and above
