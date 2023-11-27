@@ -240,7 +240,7 @@ Please open a pull request and create a merge commit to `master` with the title 
 
 This should be the first commit in the new version.
 
-This will recent the URL that were [manually changed before in step 2.3](#2.3-update-the-previous-version-URLs)
+This will reset the URLs that were [manually changed before in step 2.3](#2.3-update-the-previous-version-URLs).
 
 This process is illustrated below.
 
