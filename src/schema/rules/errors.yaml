@@ -45,24 +45,6 @@ GzNotGzipped:
   selectors:
     - match(extension, '\.gz$')
 
-# BIDS Validator Original Issue Code #30
-BvalMultipleRows:
-  code: BVAL_MULTIPLE_ROWS
-  message: |
-    .bval files should contain exactly one row of volumes.
-  level: error
-  selectors:
-    - extension == ".bval"
-
-# BIDS Validator Original Issue Code #31
-BvecNumberRows:
-  code: BVEC_NUMBER_ROWS
-  message: |
-    .bvec files should contain exactly three rows of volumes.
-  level: error
-  selectors:
-    - extension == ".bvec"
-
 # BIDS Validator Original Issue Code #36
 NiftiTooSmall:
   code: NIFTI_TOO_SMALL

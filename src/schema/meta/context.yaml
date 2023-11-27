@@ -180,6 +180,9 @@ context:
             n_cols:
               description: 'Number of columns in bval file'
               type: integer
+            n_rows:
+              description: 'Number of rows in bval file'
+              type: integer
         bvec:
           description: 'B vector file'
           type: object
@@ -189,6 +192,9 @@ context:
               type: string
             n_cols:
               description: 'Number of columns in bvec file'
+              type: integer
+            n_rows:
+              description: 'Number of rows in bvec file'
               type: integer
         channels:
           description: 'Channels file'
@@ -295,7 +301,8 @@ context:
               description: 'String representing the unit of voxel spacing.'
               type: string
               enum:
-                - 'unknown'
+                - $ref: objects.enums.unknown.value
+                # TODO: Add definitions for these values. (perhaps don't specify)
                 - 'meter'
                 - 'mm'
                 - 'um'
@@ -304,7 +311,8 @@ context:
               description: 'String representing the unit of inter-volume intervals.'
               type: string
               enum:
-                - 'unknown'
+                - $ref: objects.enums.unknown.value
+                # TODO: Add definitions for these values. (perhaps don't specify)
                 - 'sec'
                 - 'msec'
                 - 'usec'
