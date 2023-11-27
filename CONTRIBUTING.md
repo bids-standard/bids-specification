@@ -698,6 +698,8 @@ the `master` branch of the specification via a "Merge commit"
 see the [GitHub help page](https://help.github.com/en/articles/about-merge-methods-on-github)
 for more information on merge methods).
 
+![merge-commit](release_images/merge_commit.png "merge-commit")
+
 Note that for pull requests starting with `REL:`, no changelog is generated.
 
 To exclude pull requests from showing up in the changelog, they have to be labeled with
