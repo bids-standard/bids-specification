@@ -393,7 +393,7 @@ include a `dataset_description.json` file at the root level (see
 [Dataset description][dataset-description]).
 Consequently, files should be organized to comply with BIDS to the full extent
 possible (that is, unless explicitly contradicted for derivatives).
-Any subject-specific derivatives should be housed within each subject’s directory;
+Any subject-specific derivatives should be housed within each subject's directory;
 if session-specific derivatives are generated, they should be deposited under a
 session subdirectory within the corresponding subject directory; and so on.
 
@@ -483,6 +483,7 @@ and a guide for using macros can be found at
         ),
         "Levels": "RECOMMENDED",
         "Units": "RECOMMENDED",
+        "Delimiter": "OPTIONAL",
         "TermURL": "RECOMMENDED",
         "HED": "OPTIONAL",
    }
@@ -510,6 +511,29 @@ Example:
     "Units": "kg/m^2",
     "TermURL": "https://purl.bioontology.org/ontology/SNOMEDCT/60621009"
   }
+}
+```
+
+Each level can be described with a string as in the example above,
+or with an object containing the fields [`Description`](./glossary.md#description-metadata)
+and [`TermURL`](./glossary.md#termurl-metadata)
+like in the example below.
+
+```JSON
+{
+    "sex": {
+        "Description": "sex of the participant as reported by the participant",
+        "Levels": {
+            "M": {
+                "Description": "Male",
+                "TermURL": "https://www.ncbi.nlm.nih.gov/mesh/68008297"
+            },
+            "F": {
+                "Description": "Female",
+                "TermURL": "https://www.ncbi.nlm.nih.gov/mesh/68005260"
+            },
+        }
+    }
 }
 ```
 
