@@ -163,7 +163,7 @@ The BIDS specification is written in American English.
 
 We follow certain "soft rules" in the way we format the specification in Markdown.
 
-These rules are sometimes for internal consistency in terms of styling and aesthetics,
+These rules are sometimes for internal consistency in terms of styling and esthetics,
 but several of them are also there because they help the workflow of
 tracking changes, reviewing them on GitHub, and making code suggestions.
 

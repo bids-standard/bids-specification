@@ -89,17 +89,20 @@ which some installations impose to be run on raw data prior to analysis.
 Such processing steps are needed for example because of active shielding software corrections
 that have to be performed to before the MEG data can actually be exploited.
 
-### Recording EEG simultaneously with MEG
+### Recording (i)EEG simultaneously with MEG
 
-Note that if EEG is recorded with a separate amplifier,
+Note that if (i)EEG is recorded with a separate amplifier,
 it SHOULD be stored separately under a new `/eeg` data type
-(see [the EEG specification](electroencephalography.md)).
+(see the [EEG](electroencephalography.md) and
+[iEEG](intracranial-electroencephalography.md) specifications).
 
-If however EEG is recorded simultaneously **with the same MEG system**,
+If however (i)EEG is recorded simultaneously **with the same MEG system**,
 it MAY be stored under the `/meg` data type.
 In that case, it SHOULD have the same sampling frequency as MEG (see `SamplingFrequency` field below).
-Furthermore, the EEG sensor coordinates SHOULD be specified using MEG-specific coordinate
-systems (see [coordinates section](#coordinate-system-json-_coordsystemjson) below and
+Furthermore, (i)EEG sensor coordinates MAY be recorded in an
+[`electrodes.tsv`](electroencephalography.md#electrodes-description-_electrodestsv)
+file using MEG-specific coordinate systems
+(see [Coordinate System JSON](#coordinate-system-json-_coordsystemjson) below and
 the [Coordinate Systems Appendix](../appendices/coordinate-systems.md)).
 
 ### Sidecar JSON (`*_meg.json`)
@@ -131,6 +134,18 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_sidecar_table("meg.MEGRecommended") }}
+
+These fields MAY be present:
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("meg.MEGOptional") }}
 
 #### Hardware information
 
@@ -405,12 +420,12 @@ A guide for using macros can be found at
 {{ MACROS___make_sidecar_table("meg.MEGCoordsystemFiducialsInformation") }}
 
 For more information on the definition of anatomical landmarks, please visit:
-[http://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined](http://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined)
+    [How are the Left and Right Pre-Auricular (LPA and RPA) points defined? - FieldTrip Toolbox](https://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined/)
 
 For more information on typical coordinate systems for MEG-MRI coregistration:
-[http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined](http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined),
+    [How are the different head and MRI coordinate systems defined? - FieldTrip Toolbox](https://www.fieldtriptoolbox.org/faq/coordsys/)
 or:
-[http://neuroimage.usc.edu/brainstorm/CoordinateSystems](http://neuroimage.usc.edu/brainstorm/CoordinateSystems)
+[Coordinate Systems - Brainstorm toolbox](https://neuroimage.usc.edu/brainstorm/CoordinateSystems)
 
 ## Landmark photos (`*_photo.<extension>`)
 
@@ -427,7 +442,7 @@ and a guide for using macros can be found at
 {{ MACROS___make_filename_template("raw", datatypes=["meg"], suffixes=["photo"]) }}
 
 Photos of the anatomical landmarks and/or head localization coils on the
-subject’s head are RECOMMENDED. If the coils are not placed at the location of
+subject's head are RECOMMENDED. If the coils are not placed at the location of
 actual anatomical landmarks, these latter may be marked with a piece of felt-tip
 taped to the skin. Please note that the photos may need to be cropped or blurred
 to conceal identifying features prior to sharing, depending on the terms of the
@@ -461,7 +476,7 @@ The 3-D locations of points that describe the head shape and/or EEG
 electrode locations can be digitized and stored in separate files. The
 [`acq-<label>`](../appendices/entities.md#acq) entity can be used when more than one type of digitization in done for
 a session, for example when the head points are in a separate file from the EEG
-locations. These files are stored in the specific format of the 3-D digitizer’s
+locations. These files are stored in the specific format of the 3-D digitizer's
 manufacturer (see the [MEG File Formats Appendix](../appendices/meg-file-formats.md)).
 
 For example:

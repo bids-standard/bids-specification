@@ -4,7 +4,8 @@ PixelSizeInconsistent:
   issue:
     code: PIXEL_SIZE_INCONSISTENT
     message: |
-      PixelSize need to be consistent with PhysicalSizeX, PhysicalSizeY and PhysicalSizeZ OME metadata fields
+      'PixelSize' need to be consistent with the 'PhysicalSizeX', 'PhysicalSizeY' and 'PhysicalSizeZ'
+      OME metadata fields.
     level: error
   selectors:
     - ome != null

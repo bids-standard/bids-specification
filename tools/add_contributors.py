@@ -115,6 +115,7 @@ def emoji_map(reverse=False) -> dict[str, str]:
         "tutorial": ":check_mark_button:",
         "maintenance": ":construction:",
         "financial": ":dollar_banknote:",
+        "infra": ":metro:",
     }
 
 
