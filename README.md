@@ -30,9 +30,8 @@ BIDS currently supports the following data modalities with more to come in the f
 - PET
 - microscopy
 - NIRS
-- MRS
 - motion
-
+- MRS
 
 # Formatting your data with BIDS
 

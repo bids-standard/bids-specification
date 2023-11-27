@@ -365,4 +365,3 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | josator2                                             | 💻                                     |
 | monkeyman192                                         | 💻                                     |
 | Étienne Bergeron                                     | 🔣💻                                   |
-

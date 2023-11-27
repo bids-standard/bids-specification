@@ -168,11 +168,11 @@ For example:
 
 -   (publication forthcoming)
 
-
-#### MRS
-
 #### Motion
 
+-   (publication forthcoming)
+
+#### MRS
 
 -   (publication forthcoming)
 
