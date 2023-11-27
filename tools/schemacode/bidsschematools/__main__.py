@@ -36,46 +36,26 @@ def export(ctx, schema, output):
 @cli.command()
 @click.argument("in_paths", nargs=-1, required=True)
 @click.option("--schema")
-@click.option("--dummy_paths", is_flag=True)
-@click.option("--bids_reference_root")
-@click.option("--schema_path")
-@click.option("--bids_version")
-@click.option("--report_path", is_flag=True)
-@click.option("--suppress_errors", is_flag=True)
-@click.option("accept_non_bids_dir", is_flag=True)
+@click.option("--report", is_flag=False, flag_value=True, default=False)
 @click.pass_context
 def validate(
     ctx,
     schema,
     in_paths,
-    dummy_paths,
-    bids_reference_root,
-    schema_path,
-    bids_version,
-    report_path,
-    suppress_errors,
-    accept_non_bids_dir,
+    report,
 ):
     """Validate BIDS Schema"""
     logger = logging.getLogger("bidsschematools")
-    if schema:
-        schema_path = schema
     validation_result = validate_bids(
         in_paths,
-        dummy_paths,
-        bids_reference_root,
-        schema_path,
-        bids_version,
-        report_path,
-        suppress_errors,
-        accept_non_bids_dir,
+        schema_path=schema,
+        report_path=report,
     )
     logger.debug("Printing out path_tracking in validation_result dictionary")
     if validation_result["path_tracking"]:
         print(validation_result["path_tracking"])
 
-    # print validation_result["path_tracking"] if not empty
-    # return 0 = success, non-zero = fail use Click exception handling
+    sys.exit(bool(validation_result["path_tracking"]))
 
 
 if __name__ == "__main__":
