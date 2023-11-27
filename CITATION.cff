@@ -2,10 +2,10 @@
 
 cff-version: 1.2.0
 
-title: bids-specification
+title: The Brain Imaging Data Structure (BIDS) Specification
 
-abstract: The Brain Imaging Data Structure (BIDS) is a simple and intuitive way to
-  organize and describe data.
+abstract: >-
+  The Brain Imaging Data Structure (BIDS) is a simple and intuitive way to organize and describe data.
 
 version: 1.10.0-dev
 
@@ -13,9 +13,18 @@ license: CC-BY-4.0
 
 repository-code: https://github.com/bids-standard/bids-specification
 
-message: Please cite it as below.
+message: >-
+  To cite the BIDS specification, please follow the instructions here:
+  https://bids-specification.rtfd.io/en/latest/introduction.html#citing-bids
+  HTML versions of the BIDS specification can be browsed following this link:
+  https://bids-specification.rtfd.io
+  PDF versions of the BIDS specification can be found in the Zenodo archives
+  listed under "identifiers" below in the present `CITATION.cff` file.
 
 identifiers:
+  - description: PDFs of the BIDS specification for versions 1.9.0 and above
+    type: doi
+    value: 10.5281/zenodo.10175845
   - description: PDFs of the BIDS specification for versions 1.0.0 to 1.8.0
     type: doi
     value: 10.5281/zenodo.3686061
