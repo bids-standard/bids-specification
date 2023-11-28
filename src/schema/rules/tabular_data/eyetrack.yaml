@@ -6,7 +6,7 @@ EyeTracking:
   extension:
     - '.tsv.gz'
   columns:
-    eye_timestamp: required
+    timestamp: required
     eye1_x_coordinate: required
     eye1_y_coordinate: required
     eye1_pupil_size: optional
