@@ -174,7 +174,7 @@ eye2_pupil_size:
     Pupil size of the second recorded eye.
     If the two eyes are recorded, it MUST be the right eye pupil size.
   type: integer
-eye_timestamp:
+et_timestamp:
   name: timestamp
   display_name: Eye-tracking sample timestamp
   description: |
