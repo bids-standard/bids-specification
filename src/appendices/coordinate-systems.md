@@ -113,6 +113,7 @@ Restricted keywords for the `<CoordSysType>CoordinateSystem` field in the
 -   `KitYokogawa`: ALS orientation and the origin between the ears
 -   `ChietiItab`: RAS orientation and the origin between the ears
 -   Any keyword from the list of [Standard template identifiers](#standard-template-identifiers): RAS orientation and the origin at the center of the gradient coil for template NifTI images
+-   The use of `ElektaNeuromag` is [DEPRECATED][deprecated]. Dataset curators SHOULD use `NeuromagElektaMEGIN` instead.
 
 In the case that MEG was recorded simultaneously with EEG,
 the restricted keywords for
@@ -146,7 +147,7 @@ the restricted keywords for
 can also be applied to EEG:
 
 -   `CTF`
--   `ElektaNeuromag`
+-   `NeuromagElektaMEGIN`
 -   `4DBti`
 -   `KitYokogawa`
 -   `ChietiItab`

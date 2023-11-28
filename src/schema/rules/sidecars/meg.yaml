@@ -22,6 +22,8 @@ MEGHardware:
         For MEG scanners, this must be one of:
         `"CTF"`, `"Neuromag/Elekta/MEGIN"`, `"BTi/4D"`, `"KIT/Yokogawa"`,
         `"ITAB"`, `"KRISS"`, `"Other"`.
+        The use of `"Elekta/Neuromag"` is DEPRECATED. Dataset curators SHOULD
+        use `"Neuromag/Elekta/MEGIN"` instead.
         See the [MEG Systems Appendix](SPEC_ROOT/appendices/meg-systems.md) for
         preferred names.
     ManufacturersModelName:

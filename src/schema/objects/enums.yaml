@@ -21,6 +21,7 @@ _MEGCoordSys:
   enum:
     - $ref: objects.enums.CTF.value
     - $ref: objects.enums.ElektaNeuromag.value
+    - $ref: objects.enums.NeuromagElektaMEGIN.value
     - $ref: objects.enums.4DBti.value
     - $ref: objects.enums.KitYokogawa.value
     - $ref: objects.enums.ChietiItab.value
@@ -305,6 +306,12 @@ CTF:
 ElektaNeuromag:
   value: ElektaNeuromag
   display_name: Elekta Neuromag
+  description: |
+    RAS orientation and the origin between the ears.
+    DEPRECATED. Dataset curators SHOULD use `NeuromagElektaMEGIN` instead.
+NeuromagElektaMEGIN:
+  value: NeuromagElektaMEGIN
+  display_name: Neuromag Elekta MEGIN
   description: |
     RAS orientation and the origin between the ears.
 4DBti:
