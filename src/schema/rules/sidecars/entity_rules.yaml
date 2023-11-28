@@ -19,12 +19,6 @@ EntitiesCeMetadata:
   fields:
     ContrastBolusIngredient: optional
 
-EntitiesTrcMetadata:
-  selectors:
-    - '"trc" in entities'
-  fields:
-    TracerName: required
-
 EntitiesStainMetadata:
   selectors:
     - '"stain" in entities'

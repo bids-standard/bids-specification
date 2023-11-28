@@ -100,9 +100,9 @@ fdt:
   value: .fdt
   display_name: EEGLAB FDT
   description: |
-    An [EEGLAB](https://sccn.ucsd.edu/eeglab) file.
+    An [EEGLAB](https://sccn.ucsd.edu/eeglab/index.php) file.
 
-    The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab).
+    The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab/index.php).
     Each recording consists of a `.set` file with an optional `.fdt` file.
 fif:
   value: .fif
@@ -175,8 +175,10 @@ OMEZARR:
   description: |
     An OME-NGFF file.
 
-    OME-NGFF is a [Zarr](https://zarr.readthedocs.io)-based format, organizing data arrays in nested directories.
-    This format was developed by the Open Microscopy Environment to provide data stream access to very large data.
+    OME-NGFF is a [Zarr](https://zarr.readthedocs.io/en/stable/)-based format,
+    organizing data arrays in nested directories.
+    This format was developed by the Open Microscopy Environment
+    to provide data stream access to very large data.
 nii:
   value: .nii
   display_name: NIfTI
@@ -191,7 +193,7 @@ nwb:
   value: .nwb
   display_name: Neurodata Without Borders Format
   description: |
-    A [Neurodata Without Borders](https://nwb-schema.readthedocs.io) file.
+    A [Neurodata Without Borders](https://nwb-schema.readthedocs.io/en/latest/) file.
 
     Each recording consists of a single `.nwb` file.
 OMEBigTiff:
@@ -233,9 +235,9 @@ set:
   value: .set
   display_name: EEGLAB SET
   description: |
-    An [EEGLAB](https://sccn.ucsd.edu/eeglab) file.
+    An [EEGLAB](https://sccn.ucsd.edu/eeglab/index.php) file.
 
-    The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab).
+    The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab/index.php).
     Each recording consists of a `.set` file with an optional `.fdt` file.
 snirf:
   value: .snirf

@@ -75,19 +75,26 @@ It will be generated once the GitHub release has been completed.
 
 #### 2.2 Update the contributors list
 
-Synchronize the [Contributors appendix](https://github.com/bids-standard/bids-specification/blob/master/src/appendices/contributors.md)
-with the [Contributors wiki page](https://github.com/bids-standard/bids-specification/wiki/Contributors)
-to ensure all contributors are duly credited.
-Be sure not to remove credits if both have been edited.
+We want to ensure that all contributors are duly credited.
 
+To synchronize the
+[Contributors appendix](https://github.com/bids-standard/bids-specification/blob/master/src/appendices/contributors.md)
+with the
+[Contributors wiki page](https://github.com/bids-standard/bids-specification/wiki/Recent-Contributors),
+please follow these steps:
+
+- be sure not to remove credits if both the contributors appendix AND
+  the contributors wiki page have been edited (or the `.tributors` or `.all-contributorsrc` files)
 - add new contributors info to the `tools/new_contributors.tsv` file.
 - make sure that you have installed
   - all the python packages listed in `tools/requirements.txt`
   - the [allcontributors](https://allcontributors.org/docs/en/cli/installation) package
 - run:
+
 ```bash
 make update_contributors
 ```
+
 - you may need to fix some errors in the contributions names in case of crash
 - make sure to review the changes and not commit them blindly
 - commit the changes
@@ -164,7 +171,7 @@ For example:
 
 Verify that the pull request title matches "REL: vX.Y.Z" and merge the pull request.
 
-### 6. Get the built PDF
+### 6. Get the built PDF and `CITATION.cff` file
 
 Upon each commit to the `master` branch, CircleCI builds a PDF version of the
 specification (see `.circleci/config.yml` and the `pdf_build_src` directory).
@@ -177,6 +184,9 @@ jobs to finish and then check the built PDF using the following steps:
 1. From the list of CI checks, click on the one called: `Check the rendered PDF version here!`
 1. Download the PDF and check that the date and version on the first page are as expected
 1. Hold the PDF ready for upload to our Zenodo archive (see the *Uploading the stable PDF to Zenodo* step below)
+
+Furthermore, **copy the `CITATION.cff`** file in its current state from the root of the repository
+and hold it ready for facilitating the upload of the PDF to our Zenodo archive.
 
 ### 7. Tag the release
 
@@ -243,20 +253,8 @@ Similarly update the version in CITATION.cff with a `dev` suffix.
 
 ### 10. Uploading the stable PDF to Zenodo
 
-1. Open a private browser window
-1. Log into https://github.com with the `bids-maintenance` user (credentials
-   are available from the BIDS maintainer group)
-1. Open a new tab at https://zenodo.org and "log in via GitHub", you'll then
-   be on the `bids-maintenance` Zenodo account
-1. Navigate to the [archive of our BIDS specification PDFs](https://doi.org/10.5281/zenodo.3686061)
-1. Click on "add new version"
-1. For a new version, upload the new PDF, naming it consistently with the other
-   PDFs: `BIDS-Specification-vX.X.X.pdf` (replace `X.X.X` with the new version)
-1. Remove all other files from the upload
-1. Edit the following fields:
-    1. publication date
-    1. version
-1. Double check that everything is in order, then save and publish
+1. In a previous step you have secured a PDF version of the BIDS specification and the corresponding `CITATION.cff` file.
+1. Follow the steps described here: https://github.com/bids-standard/bids-specification-pdf-releases#release-instructions
 
 ### 11. Sharing news of the release
 

@@ -5,7 +5,8 @@
 Templates:
 
 -   `dataset_description.json`
--   `README`
+-   `README[.md|.rst|.txt]`
+-   `CITATION.cff`
 -   `CHANGES`
 -   `LICENSE`
 
@@ -268,7 +269,7 @@ to date of birth.
 {
     "age": {
         "Description": "age of the participant",
-        "Units": "years"
+        "Units": "year"
     },
     "sex": {
         "Description": "sex of the participant as reported by the participant",
