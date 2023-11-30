@@ -169,7 +169,6 @@ For example:
 
 #### NIRS
 
-
 -   Luke, R., Oostenveld, R., Cockx, H., Niso, G., Shader, M., Orihuela-Espina, F.,
     Innes-Brown, H., Tucker, S., Boas, D., Gau, R., Salo, T., Appelhoff, S., Markiewicz, C
     McAlpine, D., BIDS maintainers, Pollonini, L. (2023).
