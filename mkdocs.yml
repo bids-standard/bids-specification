@@ -6,7 +6,7 @@ nav:
       - Introduction: introduction.md
       - Common principles: common-principles.md
       - Modality agnostic files: modality-agnostic-files.md
-      - Modality agnostic files:
+      - Modality specific files:
           - Magnetic Resonance Imaging: modality-specific-files/magnetic-resonance-imaging-data.md
           - Magnetoencephalography: modality-specific-files/magnetoencephalography.md
           - Electroencephalography: modality-specific-files/electroencephalography.md
