@@ -2105,7 +2105,6 @@ MaximalCalibrationError:
         items:
           type: number
   unit: degree
-  unit: degree
 MeasurementToolMetadata:
   name: MeasurementToolMetadata
   display_name: Measurement Tool Metadata
