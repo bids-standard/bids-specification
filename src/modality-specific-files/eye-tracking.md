@@ -103,8 +103,8 @@ are REQUIRED as they are considered essential in eye-tracking data analysis:
 #### Recommended fields
 
 Although not REQUIRED for the validity of your dataset, the following fields
-are important and should be well documented. In particular, we highly
-RECOMMEND to carefully document the calibration metadata.
+are important and should be well documented.
+In particular, we highly RECOMMEND to document the calibration metadata carefully.
 
 <!-- This block generates a metadata table.
 These tables are defined in
