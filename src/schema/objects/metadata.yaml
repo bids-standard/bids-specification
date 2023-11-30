@@ -202,7 +202,8 @@ AverageCalibrationError:
   name: AverageCalibrationError
   display_name: Average Calibration Error
   description: |
-    Average calibration error in visual degree.
+    Average calibration error in visual degree. If both eyes recorded, first array
+    corresponds to the left eye and the second to the right eye.
   anyOf:
     - type: array
       items:
@@ -2096,7 +2097,8 @@ MaximalCalibrationError:
   name: MaximalCalibrationError
   display_name: Maximal Calibration Error
   description: |
-    Maximal calibration error in degree.
+    Maximal calibration error in degree. If both eyes recorded, first array
+    corresponds to the left eye and the second to the right eye.
   anyOf:
     - type: array
       items:
