@@ -138,7 +138,8 @@ For example:
 -   Clara Moreau, Martineau Jean-Louis, Ross Blair, Christopher Markiewicz, Jessica Turner,
     Vince Calhoun, Thomas Nichols, Cyril Pernet (2020).
     **The genetics-BIDS extension: Easing the search for genetic data associated with human brain imaging**.
-    GigaScience, 9 (10). [doi:10.1093/gigascience/giaa104](https://doi.org/10.1093/gigascience/giaa104)
+    GigaScience, 9 (10).
+    [doi:10.1093/gigascience/giaa104](https://doi.org/10.1093/gigascience/giaa104)
 
 #### Microscopy
 
@@ -152,17 +153,19 @@ For example:
 #### qMRI
 
 -   Karakuzu, A., Appelhoff, S., Auer, T., Boudreau M., Feingold F., Khan A.R., Lazari A., Markiewicz C.J.,
-    Mulder M., Phillips C., Salo T., Stikov N., Whitaker K. and de Hollander G.,
-    **qMRI-BIDS: An extension to the brain imaging data structure for quantitative magnetic resonance imaging data.**
-    Scientific Data 9, 517 (2022). [doi:10.1038/s41597-022-01571-4](https://doi.org/10.1038/s41597-022-01571-4)
+    Mulder M., Phillips C., Salo T., Stikov N., Whitaker K. and de Hollander G. (2022).
+    **qMRI-BIDS: An extension to the brain imaging data structure for quantitative magnetic resonance imaging data**.
+    Scientific Data 9, (517).
+    [doi:10.1038/s41597-022-01571-4](https://doi.org/10.1038/s41597-022-01571-4)
 
 #### ASL
 
 -   Clement P., Castellaro M., Okell T. W., Thomas D. L., Vandemaele P., Elgayar S., Oliver-Taylor A.,
     Kirk T., Woods J. G., Vos S. B., Kuijer J. P. A., Achten E., van Osch M. J. P., BIDS maintainers,
     Detre J. A., Lu H., Alsop D. C., Chappell M. A., Hernandez-Garcia L., Petr J. & Mutsaerts H. J. M. M.
-    **ASL-BIDS, the brain imaging data structure extension for arterial spin labeling.**
-    Scientific Data 9, 543 (2022). [doi:10.1038/s41597-022-01615-9](https://doi.org/10.1038/s41597-022-01615-9)
+    **ASL-BIDS, the brain imaging data structure extension for arterial spin labeling**.
+    Scientific Data 9, 543 (2022).
+    [doi:10.1038/s41597-022-01615-9](https://doi.org/10.1038/s41597-022-01615-9)
 
 #### NIRS
 
@@ -170,7 +173,11 @@ For example:
 
 #### Motion
 
--   (publication forthcoming)
+-    Jeung, S., Cockx, H., Appelhoff, S., Berg, T., Gramann, K., Grothkopp, S., Warmerdam, E., Hansen, C.,
+     Oostenveld, R., BIDS maintainers, Welzel, J. (2023).
+     **Motion-BIDS: extending the Brain Imaging Data Structure specification to organize motion data for reproducible research.**
+     PsyArXiv.
+     [doi:10.31234/osf.io/w6z79](https://doi.org/10.31234/osf.io/w6z79)
 
 ### Research Resource Identifier (RRID)
 
