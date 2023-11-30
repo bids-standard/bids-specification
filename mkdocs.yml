@@ -120,7 +120,7 @@ markdown_extensions:
         "04-modality-specific-files/09-positron-emission-tomography.md": "modality-specific-files/positron-emission-tomography.md"
         "04-modality-specific-files/10-microscopy.md": "modality-specific-files/microscopy.md"
         "04-modality-specific-files/11-near-infrared-spectroscopy.md": "modality-specific-files/near-infrared-spectroscopy.md"
-        '04-modality-specific-files/12-eye-tracking.md': 'modality-specific-files/eye-tracking.md'        
+        '04-modality-specific-files/12-eye-tracking.md': 'modality-specific-files/eye-tracking.md'
         "05-derivatives/01-introduction.md": "derivatives/introduction.md"
         "05-derivatives/02-common-data-types.md": "derivatives/common-data-types.md"
         "05-derivatives/03-imaging.md": "derivatives/imaging.md"
