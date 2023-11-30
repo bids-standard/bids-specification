@@ -6,7 +6,7 @@ EyeTracking:
   extension:
     - '.tsv.gz'
   columns:
-    timestamp: required
+    et_timestamp: required
     eye1_x_coordinate: required
     eye1_y_coordinate: required
     eye1_pupil_size: optional
@@ -14,5 +14,5 @@ EyeTracking:
     eye2_y_coordinate: optional
     eye2_pupil_size: optional
   initial_columns:
-    - eye_timestamp
+    - et_timestamp
   additional_columns: allowed_if_defined
