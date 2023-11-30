@@ -208,7 +208,13 @@ AverageCalibrationError:
   display_name: Average Calibration Error
   description: |
     Average calibration error in visual degree.
-  type: array of arrays
+  anyOf:
+    - type: array
+      items:
+        type: array
+        minItems: 1
+        items:
+          type: number
   unit: degree
 B0FieldIdentifier:
   name: B0FieldIdentifier
@@ -2075,7 +2081,14 @@ MaximalCalibrationError:
   display_name: Maximal Calibration Error
   description: |
     Maximal calibration error in degree.
-  type: array of arrays
+  anyOf:
+    - type: array
+      items:
+        type: array
+        minItems: 1
+        items:
+          type: number
+  unit: degree
   unit: degree
 MeasurementToolMetadata:
   name: MeasurementToolMetadata
