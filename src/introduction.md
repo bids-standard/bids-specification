@@ -172,6 +172,10 @@ For example:
 
 -   (publication forthcoming)
 
+#### Eye-tracking
+
+-   (publication forthcoming)
+
 ### Research Resource Identifier (RRID)
 
 BIDS has also a
