@@ -48,6 +48,18 @@ cardiac:
   description: |
     continuous pulse measurement
   type: number
+channel:
+  name: channel
+  display_name: Channel
+  description: |
+    Channel(s) associated with an event.
+    If multiple channels are specified, they MUST be separated by a delimiter
+    specified in the `"Delimiter"` field describing the `channel` column.
+    For example, channels separated with a comma (`,`) require the `events.json`
+    file to contain `"channel": {"Delimiter": ","}`.
+    In the absence of a delimiter, tools MUST interpret any character as being part
+    of a channel name.
+  type: string
 color:
   name: color
   display_name: Color label
@@ -64,13 +76,13 @@ component:
     or `quat_x`, `quat_y`, `quat_z`, `quat_w` for quaternion orientation channels.
   type: string
   enum:
-    - x
-    - y
-    - z
-    - quat_x
-    - quat_y
-    - quat_z
-    - quat_w
+    - $ref: objects.enums.x.value
+    - $ref: objects.enums.y.value
+    - $ref: objects.enums.z.value
+    - $ref: objects.enums.quat_x.value
+    - $ref: objects.enums.quat_y.value
+    - $ref: objects.enums.quat_z.value
+    - $ref: objects.enums.quat_w.value
     - n/a
 detector__channels:
   name: detector
@@ -211,6 +223,7 @@ handedness:
     For "ambidextrous", use one of these values: `ambidextrous`, `a`, `A`, `AMBIDEXTROUS`,
     `Ambidextrous`.
   type: string
+  # TODO: Add definitions for these values. (perhaps don't specify)
   enum:
     - left
     - l
@@ -351,13 +364,11 @@ notch:
   display_name: Notch frequencies
   description: |
     Frequencies used for the notch filter applied to the channel, in Hz.
-    If no notch filter applied, use `n/a`.
-  anyOf:
-    - type: number
-      unit: Hz
-    - type: string
-      enum:
-        - n/a
+    If notch filters are applied at multiple frequencies,
+    these frequencies MAY be specified as a list,
+    for example, `[60, 120, 180]`.
+    If no notch filter was applied, use `n/a`.
+  type: string
 onset:
   name: onset
   display_name: Event onset
@@ -429,6 +440,18 @@ reference__ieeg:
     - type: string
       enum:
         - n/a
+reference_frame:
+  name: reference_frame
+  display_name: Reference frame
+  description: |
+    Specification of a reference frame in which the motion data are to be interpreted.
+    The description of the levels in `*_channels.json` SHOULD use `RotationRule`,
+    `RotationOrder`, and `SpatialAxis`, and MAY use `Description` for the specification.
+  anyOf:
+    - type: string
+    - type: string
+      enum:
+        - n/a
 respiratory:
   name: respiratory
   display_name: Respiratory measurement
@@ -464,15 +487,15 @@ sample_type:
     [ENCODE Biosample Type](https://www.encodeproject.org/profiles/biosample_type).
   type: string
   enum:
-    - cell line
-    - in vitro differentiated cells
-    - primary cell
-    - cell-free sample
-    - cloning host
-    - tissue
-    - whole organisms
-    - organoid
-    - technical sample
+    - $ref: objects.enums.cell_line.value
+    - $ref: objects.enums.in_vitro_differentiated_cells.value
+    - $ref: objects.enums.primary_cell.value
+    - $ref: objects.enums.cell_free_sample.value
+    - $ref: objects.enums.cloning_host.value
+    - $ref: objects.enums.tissue.value
+    - $ref: objects.enums.whole_organisms.value
+    - $ref: objects.enums.organoid.value
+    - $ref: objects.enums.technical_sample.value
 sampling_frequency:
   name: sampling_frequency
   display_name: Channel sampling frequency
@@ -500,6 +523,7 @@ sex:
 
     For "other", use one of these values: `other`, `o`, `O`, `OTHER`, `Other`.
   type: string
+  # TODO: Add definitions for these values. (perhaps don't specify)
   enum:
     - male
     - m
@@ -583,8 +607,8 @@ status:
     Description of noise type SHOULD be provided in `[status_description]`.
   type: string
   enum:
-    - good
-    - bad
+    - $ref: objects.enums.good.value
+    - $ref: objects.enums.bad.value
     - n/a
 status_description:
   name: status_description
@@ -619,7 +643,7 @@ strain_rrid:
   display_name: Strain RRID
   description: |
     For species different from `homo sapiens`, research resource identifier
-    ([RRID](https://scicrunch.org/resources/Organisms/search))
+    ([RRID](https://scicrunch.org/resources/data/source/nlx_154697-1/search))
     of the strain of the species, for example: `RRID:IMSR_JAX:000664`.
   type: string
   format: rrid
@@ -725,8 +749,8 @@ type__optodes:
     The type of the optode.
   type: string
   enum:
-    - source
-    - detector
+    - $ref: objects.enums.source.value
+    - $ref: objects.enums.detector.value
     - n/a
 units:
   name: units
@@ -770,11 +794,11 @@ volume_type:
     the `volume_type` of each volume in the corresponding `*_asl.nii[.gz]` file.
   type: string
   enum:
-    - control
-    - label
-    - m0scan
-    - deltam
-    - cbf
+    - $ref: objects.enums.control.value
+    - $ref: objects.enums.label.value
+    - $ref: objects.enums.m0scan.value
+    - $ref: objects.enums.deltam.value
+    - $ref: objects.enums.cbf.value
 wavelength_nominal:
   name: wavelength_nominal
   display_name: Wavelength nominal

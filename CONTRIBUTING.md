@@ -163,7 +163,7 @@ The BIDS specification is written in American English.
 
 We follow certain "soft rules" in the way we format the specification in Markdown.
 
-These rules are sometimes for internal consistency in terms of styling and aesthetics,
+These rules are sometimes for internal consistency in terms of styling and esthetics,
 but several of them are also there because they help the workflow of
 tracking changes, reviewing them on GitHub, and making code suggestions.
 
@@ -709,16 +709,14 @@ BIDS follows the
 [all-contributors](https://github.com/kentcdodds/all-contributors)
 specification, so we welcome and recognize all contributions from documentation
 to testing to code development.
-You can see a list of current contributors in the
-[BIDS specification](https://github.com/bids-standard/bids-specification/blob/master/src/appendices/contributors.md).
+You can see a list of contributors in the
+[contributors appendix](https://bids-specification.readthedocs.io/en/stable/appendices/contributors.html)
+of the BIDS specification.
 
-If you have made any type of contributions to the BIDS specifications, you can
-either make a change to the
-[contributors document](./src/appendices/contributors.md) and commit as
-part of a pull request or you can edit this
-[page](https://github.com/bids-standard/bids-specification/wiki/Recent-Contributors)
-of the specification WIKI.
-The WIKI is then synced with the specification with every new release of the specifications.
+If you have made any type of contributions to BIDS,
+we encourage you to enter or update your information in the
+[Contributors wiki page](https://github.com/bids-standard/bids-specification/wiki/Recent-Contributors)
+according to the instructions listed there.
 
 ## Thank you!
 

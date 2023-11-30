@@ -25,9 +25,10 @@ DWIBvalRows:
       '.bval' files should contain exactly one row of values.
     level: error
   selectors:
-    - extension == ".bval"
+    - suffix == "dwi"
+    - '"bval" in associations'
   checks:
-    - data.n_rows == 1
+    - associations.bval.n_rows == 1
 
 # 31
 DWIBvecRows:
@@ -37,9 +38,10 @@ DWIBvecRows:
       '.bvec' files should contain exactly three rows of values.
     level: error
   selectors:
-    - extension == ".bvec"
+    - suffix == "dwi"
+    - '"bvec" in associations'
   checks:
-    - data.n_rows == 3
+    - associations.bvec.n_rows == 3
 
 # 32
 DWIMissingBvec:

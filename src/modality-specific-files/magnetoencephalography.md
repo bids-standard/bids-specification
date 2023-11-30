@@ -135,6 +135,18 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("meg.MEGRecommended") }}
 
+These fields MAY be present:
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("meg.MEGOptional") }}
+
 #### Hardware information
 
 <!-- This block generates a metadata table.
@@ -408,12 +420,12 @@ A guide for using macros can be found at
 {{ MACROS___make_sidecar_table("meg.MEGCoordsystemFiducialsInformation") }}
 
 For more information on the definition of anatomical landmarks, please visit:
-[http://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined](http://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined)
+    [How are the Left and Right Pre-Auricular (LPA and RPA) points defined? - FieldTrip Toolbox](https://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined/)
 
 For more information on typical coordinate systems for MEG-MRI coregistration:
-[http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined](http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined),
+    [How are the different head and MRI coordinate systems defined? - FieldTrip Toolbox](https://www.fieldtriptoolbox.org/faq/coordsys/)
 or:
-[http://neuroimage.usc.edu/brainstorm/CoordinateSystems](http://neuroimage.usc.edu/brainstorm/CoordinateSystems)
+[Coordinate Systems - Brainstorm toolbox](https://neuroimage.usc.edu/brainstorm/CoordinateSystems)
 
 ## Landmark photos (`*_photo.<extension>`)
 
@@ -430,7 +442,7 @@ and a guide for using macros can be found at
 {{ MACROS___make_filename_template("raw", datatypes=["meg"], suffixes=["photo"]) }}
 
 Photos of the anatomical landmarks and/or head localization coils on the
-subject’s head are RECOMMENDED. If the coils are not placed at the location of
+subject's head are RECOMMENDED. If the coils are not placed at the location of
 actual anatomical landmarks, these latter may be marked with a piece of felt-tip
 taped to the skin. Please note that the photos may need to be cropped or blurred
 to conceal identifying features prior to sharing, depending on the terms of the
@@ -464,7 +476,7 @@ The 3-D locations of points that describe the head shape and/or EEG
 electrode locations can be digitized and stored in separate files. The
 [`acq-<label>`](../appendices/entities.md#acq) entity can be used when more than one type of digitization in done for
 a session, for example when the head points are in a separate file from the EEG
-locations. These files are stored in the specific format of the 3-D digitizer’s
+locations. These files are stored in the specific format of the 3-D digitizer's
 manufacturer (see the [MEG File Formats Appendix](../appendices/meg-file-formats.md)).
 
 For example:

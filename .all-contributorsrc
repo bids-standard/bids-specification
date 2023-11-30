@@ -194,6 +194,13 @@
         },
         {
             "contributions": [
+                "tool"
+            ],
+            "login": "alizee_wickenheiser",
+            "name": "Alizee Wickenheiser"
+        },
+        {
+            "contributions": [
                 "userTesting"
             ],
             "login": "ana_fouto",
@@ -442,6 +449,14 @@
             ],
             "login": "carlo_miniussi",
             "name": "Carlo Miniussi"
+        },
+        {
+            "contributions": [
+                "data",
+                "tool"
+            ],
+            "login": "cecile_madjar",
+            "name": "Cecile Madjar"
         },
         {
             "contributions": [
@@ -1002,7 +1017,8 @@
                 "tool",
                 "eventOrganizing",
                 "fundingFinding",
-                "infra"
+                "infra",
+                "talk"
             ],
             "login": "francopestilli",
             "name": "Franco Pestilli",
@@ -1463,6 +1479,13 @@
         },
         {
             "contributions": [
+                "tool"
+            ],
+            "login": "jefferson_casimir",
+            "name": "Jefferson Casimir"
+        },
+        {
+            "contributions": [
                 "doc"
             ],
             "login": "jeffrey_g_ojemann",
@@ -1798,6 +1821,13 @@
             "login": "schillkg",
             "name": "Kurt Schilling",
             "profile": "https://github.com/schillkg"
+        },
+        {
+            "contributions": [
+                "tool"
+            ],
+            "login": "laetitia_fesselier",
+            "name": "Laetitia Fesselier"
         },
         {
             "contributions": [
@@ -2729,6 +2759,17 @@
             "name": "Stephan Bickel"
         },
         {
+            "contributions": [
+                "bug",
+                "code",
+                "question",
+                "tool",
+                "userTesting"
+            ],
+            "login": "smeisler",
+            "name": "Steven Meisler"
+        },
+        {
             "avatar_url": "https://avatars.githubusercontent.com/u/11152799?v=4",
             "contributions": [
                 "doc",
@@ -2989,6 +3030,14 @@
         },
         {
             "contributions": [
+                "data",
+                "tool"
+            ],
+            "login": "tyler_collins",
+            "name": "Tyler Collins"
+        },
+        {
+            "contributions": [
                 "doc"
             ],
             "login": "ulrike_bingel",
@@ -3091,7 +3140,14 @@
                 "tool",
                 "question",
                 "bug",
-                "code"
+                "code",
+                "data",
+                "fundingFinding",
+                "ideas",
+                "plugin",
+                "review",
+                "userTesting",
+                "infra"
             ],
             "login": "yarikoptic",
             "name": "Yaroslav O. Halchenko",
