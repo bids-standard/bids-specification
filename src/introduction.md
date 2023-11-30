@@ -162,14 +162,20 @@ For example:
 
 -   Clement P., Castellaro M., Okell T. W., Thomas D. L., Vandemaele P., Elgayar S., Oliver-Taylor A.,
     Kirk T., Woods J. G., Vos S. B., Kuijer J. P. A., Achten E., van Osch M. J. P., BIDS maintainers,
-    Detre J. A., Lu H., Alsop D. C., Chappell M. A., Hernandez-Garcia L., Petr J. & Mutsaerts H. J. M. M.
+    Detre J. A., Lu H., Alsop D. C., Chappell M. A., Hernandez-Garcia L., Petr J. & Mutsaerts H. J. M. M. (2022)
     **ASL-BIDS, the brain imaging data structure extension for arterial spin labeling**.
-    Scientific Data 9, 543 (2022).
+    Scientific Data 9, (543).
     [doi:10.1038/s41597-022-01615-9](https://doi.org/10.1038/s41597-022-01615-9)
 
 #### NIRS
 
--   (publication forthcoming)
+
+-   Luke, R., Oostenveld, R., Cockx, H., Niso, G., Shader, M., Orihuela-Espina, F.,
+    Innes-Brown, H., Tucker, S., Boas, D., Gau, R., Salo, T., Appelhoff, S., Markiewicz, C
+    McAlpine, D., BIDS maintainers, Pollonini, L. (2023).
+    **fNIRS-BIDS, the Brain Imaging Data Structure Extended to Functional Near-Infrared Spectroscopy**.
+    PsyArXiv.
+    [doi:10.31219/osf.io/7nmcp](https://doi.org/10.31219/osf.io/7nmcp)
 
 #### Motion
 
