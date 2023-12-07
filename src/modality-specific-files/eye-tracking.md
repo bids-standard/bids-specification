@@ -164,7 +164,7 @@ Content of `sub-01_task-visualSearch_eyetrack.json`:
     "SampleCoordinateUnits": "pixel",
     "SampleCoordinateSystem": "gaze-on-screen",
     "EnvironmentCoordinates": "top-left",
-    "RecordedEye": "Both",
+    "RecordedEye": "both",
     "ScreenAOIDefinition": ["square",
                             [100, 150, 300, 350]]
 }
