@@ -25,6 +25,7 @@ BIDS_SELECTION = [
     "qmri_tb1tfl",  # fmap, _TB1TFL
     "qmri_vfa",  # derivatives
     "ds000248",  # .bidsignore
+    "fnirs_automaticity",  # phenotypic
 ]
 # Errors are described in the README of the respective datasets:
 # https://github.com/bids-standard/bids-error-examples
