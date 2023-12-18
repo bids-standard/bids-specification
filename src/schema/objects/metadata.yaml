@@ -59,7 +59,7 @@ AnalyticalApproach:
   name: AnalyticalApproach
   display_name: Analytical Approach
   description: |
-    Methodology or methodologies used to analyse the `"GeneticLevel"`.
+    Methodology or methodologies used to analyze the `"GeneticLevel"`.
     Values MUST be taken from the
     [database of Genotypes and Phenotypes
     (dbGaP)](https://www.ncbi.nlm.nih.gov/gap/advanced)
@@ -80,10 +80,10 @@ AnatomicalLandmarkCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `"AnatomicalLandmarkCoordinateSystemDescription"`.
   anyOf:
-    - $ref: objects.metadata._MEGCoordSys
-    - $ref: objects.metadata._EEGCoordSys
-    - $ref: objects.metadata._StandardTemplateCoordSys
-    - $ref: objects.metadata._StandardTemplateDeprecatedCoordSys
+    - $ref: objects.enums._MEGCoordSys
+    - $ref: objects.enums._EEGCoordSys
+    - $ref: objects.enums._StandardTemplateCoordSys
+    - $ref: objects.enums._StandardTemplateDeprecatedCoordSys
 AnatomicalLandmarkCoordinateSystemDescription:
   name: AnatomicalLandmarkCoordinateSystemDescription
   display_name: Anatomical Landmark Coordinate System Description
@@ -98,6 +98,7 @@ AnatomicalLandmarkCoordinateUnits:
   description: |
     Units of the coordinates of `"AnatomicalLandmarkCoordinateSystem"`.
   type: string
+  # TODO: Add definitions for these values. (perhaps don't specify)
   enum:
     - m
     - mm
@@ -140,8 +141,8 @@ AnatomicalLandmarkCoordinates__mri:
       type: number
     minItems: 3
     maxItems: 3
-ANGACCChannelCount:
-  name: ANGACCChannelCount
+ANGACCELChannelCount:
+  name: ANGACCELChannelCount
   display_name: Angular acceleration channel count
   description: |
     Number of angular acceleration channels.
@@ -154,9 +155,9 @@ ArterialSpinLabelingType:
     The arterial spin labeling type.
   type: string
   enum:
-    - CASL
-    - PCASL
-    - PASL
+    - $ref: objects.enums.CASL.value
+    - $ref: objects.enums.PCASL.value
+    - $ref: objects.enums.PASL.value
 AssociatedEmptyRoom:
   name: AssociatedEmptyRoom
   display_name: Associated Empty Room
@@ -177,12 +178,6 @@ AssociatedEmptyRoom:
       format: dataset_relative
     - type: string
       format: bids_uri
-Atlas:
-  name: Atlas
-  display_name: Atlas
-  description: |
-    Which atlas (if any) was used to generate the mask.
-  type: string
 AttenuationCorrection:
   name: AttenuationCorrection
   display_name: Attenuation Correction
@@ -370,8 +365,8 @@ CASLType:
     Describes if a separate coil is used for labeling.
   type: string
   enum:
-    - single-coil
-    - double-coil
+    - $ref: objects.enums.single_coil.value
+    - $ref: objects.enums.double_coil.value
 CapManufacturer:
   name: CapManufacturer
   display_name: Cap Manufacturer
@@ -391,7 +386,7 @@ CellType:
   description: |
     Describes the type of cell analyzed.
     Values SHOULD come from the
-    [cell ontology](http://obofoundry.org/ontology/cl.html).
+    [cell ontology](https://obofoundry.org/ontology/cl.html).
   type: string
 ChunkTransformationMatrix:
   name: ChunkTransformationMatrix
@@ -495,11 +490,14 @@ ContrastBolusIngredient:
     Corresponds to DICOM Tag 0018, 1048 `Contrast/Bolus Ingredient`.
   type: string
   enum:
-    - IODINE
-    - GADOLINIUM
-    - CARBON DIOXIDE
-    - BARIUM
-    - XENON
+    - $ref: objects.enums.IODINE.value
+    - $ref: objects.enums.GADOLINIUM.value
+    - $ref: objects.enums.CARBON_DIOXIDE.value
+    - $ref: objects.enums.BARIUM.value
+    - $ref: objects.enums.XENON.value
+    # TODO: Add definitions for these values. (perhaps don't specify)
+    - UNKNOWN
+    - NONE
 DCOffsetCorrection:
   name: DCOffsetCorrection
   display_name: DC Offset Correction
@@ -539,8 +537,8 @@ DatasetType:
     For backwards compatibility, the default value is `"raw"`.
   type: string
   enum:
-    - raw
-    - derivative
+    - $ref: objects.enums.raw.value
+    - $ref: objects.enums.derivative.value
 DecayCorrectionFactor:
   name: DecayCorrectionFactor
   display_name: Decay Correction Factor
@@ -574,6 +572,13 @@ DelayTime:
     This field is mutually exclusive with `"VolumeTiming"`.
   type: number
   unit: s
+Delimiter:
+  name: Delimiter
+  display_name: Delimiter
+  description: |
+    If rows in a column may be interpreted as a lists of values, the character that
+    separates one value from the next.
+  type: string
 Density:
   name: Density
   display_name: Density
@@ -614,7 +619,7 @@ DetectorType:
       format: unit
     - type: string
       enum:
-        - mixed
+        - $ref: objects.enums.mixed.value
 DeviceSerialNumber:
   name: DeviceSerialNumber
   display_name: Device Serial Number
@@ -659,10 +664,10 @@ DigitizedHeadPointsCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `"DigitizedHeadPointsCoordinateSystemDescription"`.
   anyOf:
-    - $ref: objects.metadata._MEGCoordSys
-    - $ref: objects.metadata._EEGCoordSys
-    - $ref: objects.metadata._StandardTemplateCoordSys
-    - $ref: objects.metadata._StandardTemplateDeprecatedCoordSys
+    - $ref: objects.enums._MEGCoordSys
+    - $ref: objects.enums._EEGCoordSys
+    - $ref: objects.enums._StandardTemplateCoordSys
+    - $ref: objects.enums._StandardTemplateDeprecatedCoordSys
 DigitizedHeadPointsCoordinateSystemDescription:
   name: DigitizedHeadPointsCoordinateSystemDescription
   display_name: Digitized Head Points Coordinate System Description
@@ -677,6 +682,7 @@ DigitizedHeadPointsCoordinateUnits:
   description: |
     Units of the coordinates of `"DigitizedHeadPointsCoordinateSystem"`.
   type: string
+  # TODO: Add definitions for these values. (perhaps don't specify)
   enum:
     - m
     - mm
@@ -760,10 +766,10 @@ EEGCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `EEGCoordinateSystemDescription`.
   anyOf:
-    - $ref: objects.metadata._MEGCoordSys
-    - $ref: objects.metadata._EEGCoordSys
-    - $ref: objects.metadata._StandardTemplateCoordSys
-    - $ref: objects.metadata._StandardTemplateDeprecatedCoordSys
+    - $ref: objects.enums._MEGCoordSys
+    - $ref: objects.enums._EEGCoordSys
+    - $ref: objects.enums._StandardTemplateCoordSys
+    - $ref: objects.enums._StandardTemplateDeprecatedCoordSys
 EEGCoordinateSystemDescription:
   name: EEGCoordinateSystemDescription
   display_name: EEG Coordinate System Description
@@ -778,6 +784,7 @@ EEGCoordinateUnits:
   description: |
     Units of the coordinates of `EEGCoordinateSystem`.
   type: string
+  # TODO: Add definitions for these values. (perhaps don't specify)
   enum:
     - m
     - mm
@@ -905,7 +912,7 @@ ElectricalStimulationParameters:
   display_name: Electrical Stimulation Parameters
   description: |
     Free form description of stimulation parameters, such as frequency or shape.
-    Specific onsets can be specified in the events.tsv file.
+    Specific onsets can be specified in the `events.tsv` file.
     Specific shapes can be described here in freeform text.
   type: string
 ElectrodeManufacturer:
@@ -967,10 +974,10 @@ FiducialsCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `"FiducialsCoordinateSystemDescription"`.
   anyOf:
-    - $ref: objects.metadata._MEGCoordSys
-    - $ref: objects.metadata._EEGCoordSys
-    - $ref: objects.metadata._StandardTemplateCoordSys
-    - $ref: objects.metadata._StandardTemplateDeprecatedCoordSys
+    - $ref: objects.enums._MEGCoordSys
+    - $ref: objects.enums._EEGCoordSys
+    - $ref: objects.enums._StandardTemplateCoordSys
+    - $ref: objects.enums._StandardTemplateDeprecatedCoordSys
 FiducialsCoordinateSystemDescription:
   name: FiducialsCoordinateSystemDescription
   display_name: Fiducials Coordinate System Description
@@ -986,6 +993,7 @@ FiducialsCoordinateUnits:
     Units in which the coordinates that are  listed in the field
     `"FiducialsCoordinateSystem"` are represented.
   type: string
+  # TODO: Add definitions for these values. (perhaps don't specify)
   enum:
     - m
     - mm
@@ -1133,30 +1141,35 @@ GeneticLevel:
     Describes the level of analysis.
     Values MUST be one of `"Genetic"`, `"Genomic"`, `"Epigenomic"`,
     `"Transcriptomic"`, `"Metabolomic"`, or `"Proteomic"`.
+
+    For more information on these levels, see
+    [Multi-omics approaches to disease](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-017-1215-1)
+    by Hasin et al. 2017.
   anyOf:
-    - $ref: objects.metadata._GeneticLevelEnum
+    - $ref: objects.enums._GeneticLevelEnum
     - type: array
       items:
-        $ref: objects.metadata._GeneticLevelEnum
+        $ref: objects.enums._GeneticLevelEnum
 Genetics:
   name: Genetics
   display_name: Genetics
   description: |
     An object containing information about the genetics descriptor.
   type: object
+  required_fields: [Dataset]
   properties:
-    Database:
-      name: Database
-      description: |
-        [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
-        of database where the dataset is hosted.
-      type: string
-      format: uri
     Dataset:
       name: Dataset
       description: |
         [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
         where data can be retrieved.
+      type: string
+      format: uri
+    Database:
+      name: Database
+      description: |
+        [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
+        of database where the dataset is hosted.
       type: string
       format: uri
     Descriptors:
@@ -1262,10 +1275,10 @@ HeadCoilCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `HeadCoilCoordinateSystemDescription`.
   anyOf:
-    - $ref: objects.metadata._MEGCoordSys
-    - $ref: objects.metadata._EEGCoordSys
-    - $ref: objects.metadata._StandardTemplateCoordSys
-    - $ref: objects.metadata._StandardTemplateDeprecatedCoordSys
+    - $ref: objects.enums._MEGCoordSys
+    - $ref: objects.enums._EEGCoordSys
+    - $ref: objects.enums._StandardTemplateCoordSys
+    - $ref: objects.enums._StandardTemplateDeprecatedCoordSys
 HeadCoilCoordinateSystemDescription:
   name: HeadCoilCoordinateSystemDescription
   display_name: Head Coil Coordinate System Description
@@ -1279,6 +1292,7 @@ HeadCoilCoordinateUnits:
   description: |
     Units of the coordinates of `HeadCoilCoordinateSystem`.
   type: string
+  # TODO: Add definitions for these values. (perhaps don't specify)
   enum:
     - m
     - mm
@@ -1321,6 +1335,14 @@ HeadCoilFrequency:
       items:
         type: number
         unit: Hz
+HeadStabilization:
+  name: HeadStabilization
+  display_name: Head stabilization
+  description: |
+    Head restraint method used during the experiment
+    to prevent rotation and/or translation of the head.
+    Example: "chin-rest", "head-rest", "bite-bar", "chin-rest and head-rest", "none"
+  type: string
 HowToAcknowledge:
   name: HowToAcknowledge
   display_name: How To Acknowledge
@@ -1612,7 +1634,7 @@ LabelingLocationDescription:
     `LabelingOrientation` or `LabelingDistance`.
     May include a link to an anonymized screenshot of the planning of the
     labeling slab/plane with respect to the imaging slab or slices
-    `*_asllabeling.jpg`.
+    `*_asllabeling.*`.
     Based on DICOM macro C.8.13.5.14.
   type: string
 LabelingOrientation:
@@ -1703,7 +1725,15 @@ Levels:
     descriptions (values).
   type: object
   additionalProperties:
-    type: string
+    anyOf:
+      - type: string
+      - type: object
+        properties:
+          TermURL:
+            type: string
+            format: uri
+          Description:
+            type: string
 License:
   name: License
   display_name: License
@@ -1747,10 +1777,10 @@ M0Type:
     `"Absent"` means that no specific M0 information is present.
   type: string
   enum:
-    - Separate
-    - Included
-    - Estimate
-    - Absent
+    - $ref: objects.enums.Separate.value
+    - $ref: objects.enums.Included.value
+    - $ref: objects.enums.Estimate.value
+    - $ref: objects.enums.Absent.value
 MAGNChannelCount:
   name: MAGNChannelCount
   display_name: Magnetometer Channel Count
@@ -1776,10 +1806,10 @@ MEGCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `"MEGCoordinateSystemDescription"`.
   anyOf:
-    - $ref: objects.metadata._MEGCoordSys
-    - $ref: objects.metadata._EEGCoordSys
-    - $ref: objects.metadata._StandardTemplateCoordSys
-    - $ref: objects.metadata._StandardTemplateDeprecatedCoordSys
+    - $ref: objects.enums._MEGCoordSys
+    - $ref: objects.enums._EEGCoordSys
+    - $ref: objects.enums._StandardTemplateCoordSys
+    - $ref: objects.enums._StandardTemplateDeprecatedCoordSys
 MEGCoordinateSystemDescription:
   name: MEGCoordinateSystemDescription
   display_name: MEG Coordinate System Description
@@ -1794,6 +1824,7 @@ MEGCoordinateUnits:
   description: |
     Units of the coordinates of `"MEGCoordinateSystem"`.
   type: string
+  # TODO: Add definitions for these values. (perhaps don't specify)
   enum:
     - m
     - mm
@@ -1830,8 +1861,8 @@ MRAcquisitionType:
     Corresponds to DICOM Tag 0018, 0023 `MR Acquisition Type`.
   type: string
   enum:
-    - 2D
-    - 3D
+    - $ref: objects.enums.TwoD.value
+    - $ref: objects.enums.ThreeD.value
 MRTransmitCoilSequence:
   name: MRTransmitCoilSequence
   display_name: MR Transmit Coil Sequence
@@ -1877,13 +1908,13 @@ MTPulseShape:
     The value `"SINCGAUSS"` refers to a sinc pulse with a Gaussian window.
   type: string
   enum:
-    - HARD
-    - GAUSSIAN
-    - GAUSSHANN
-    - SINC
-    - SINCHANN
-    - SINCGAUSS
-    - FERMI
+    - $ref: objects.enums.HARD.value
+    - $ref: objects.enums.GAUSSIAN.value
+    - $ref: objects.enums.GAUSSHANN.value
+    - $ref: objects.enums.SINC.value
+    - $ref: objects.enums.SINCHANN.value
+    - $ref: objects.enums.SINCGAUSS.value
+    - $ref: objects.enums.FERMI.value
 MTState:
   name: MTState
   display_name: MT State
@@ -2116,10 +2147,10 @@ NIRSCoordinateSystem:
     If `"Other"`, a definition of the coordinate system MUST be
     provided in `NIRSCoordinateSystemDescription`.
   anyOf:
-    - $ref: objects.metadata._MEGCoordSys
-    - $ref: objects.metadata._EEGCoordSys
-    - $ref: objects.metadata._StandardTemplateCoordSys
-    - $ref: objects.metadata._StandardTemplateDeprecatedCoordSys
+    - $ref: objects.enums._MEGCoordSys
+    - $ref: objects.enums._EEGCoordSys
+    - $ref: objects.enums._StandardTemplateCoordSys
+    - $ref: objects.enums._StandardTemplateDeprecatedCoordSys
 NIRSCoordinateSystemDescription:
   name: NIRSCoordinateSystemDescription
   display_name: NIRS Coordinate System Description
@@ -2134,6 +2165,7 @@ NIRSCoordinateUnits:
   description: |
     Units of the coordinates of `NIRSCoordinateSystem`.
   type: string
+  # TODO: Add definitions for these values. (perhaps don't specify)
   enum:
     - m
     - mm
@@ -2243,8 +2275,8 @@ PCASLType:
     The type of gradient pulses used in the `control` condition.
   type: string
   enum:
-    - balanced
-    - unbalanced
+    - $ref: objects.enums.balanced.value
+    - $ref: objects.enums.unbalanced.value
 ParallelAcquisitionTechnique:
   name: ParallelAcquisitionTechnique
   display_name: Parallel Acquisition Technique
@@ -2352,12 +2384,12 @@ PhaseEncodingDirection:
     `InPlanePhaseEncodingDirection` which can have `ROW` or `COL` values.
   type: string
   enum:
-    - i
-    - j
-    - k
-    - i-
-    - j-
-    - k-
+    - $ref: objects.enums.i.value
+    - $ref: objects.enums.iMinus.value
+    - $ref: objects.enums.j.value
+    - $ref: objects.enums.jMinus.value
+    - $ref: objects.enums.k.value
+    - $ref: objects.enums.kMinus.value
 PhotoDescription:
   name: PhotoDescription
   display_name: Photo Description
@@ -2388,6 +2420,7 @@ PixelSizeUnits:
     Unit format of the specified `"PixelSize"`. MUST be one of: `"mm"` (millimeter), `"um"`
     (micrometer) or `"nm"` (nanometer).
   type: string
+  # TODO: Add definitions for these values. (perhaps don't specify)
   enum:
     - mm
     - um
@@ -2607,9 +2640,9 @@ RecordingType:
     interest (for example, stimulus presentations or subject responses).
   type: string
   enum:
-    - continuous
-    - epoched
-    - discontinuous
+    - $ref: objects.enums.continuous.value
+    - $ref: objects.enums.epoched.value
+    - $ref: objects.enums.discontinuous.value
 ReferencesAndLinks:
   name: ReferencesAndLinks
   display_name: References And Links
@@ -2704,6 +2737,7 @@ RotationOrder:
   description: |
     Specify the sequence in which the elemental 3D extrinsic rotations are applied around the three distinct axes.
   type: string
+  # TODO: Add definitions for these values. (perhaps don't specify)
   enum:
     - XYZ
     - XZY
@@ -2721,8 +2755,8 @@ RotationRule:
     counter-clockwise (right-hand rule). Must be one of: "left-hand", "right-hand".
   type: string
   enum:
-    - left-hand
-    - right-hand
+    - $ref: objects.enums.left_hand.value
+    - $ref: objects.enums.right_hand.value
     - n/a
 SEEGChannelCount:
   name: SEEGChannelCount
@@ -2745,9 +2779,9 @@ SampleEnvironment:
     or `"in vitro"`.
   type: string
   enum:
-    - in vivo
-    - ex vivo
-    - in vitro
+    - $ref: objects.enums.in_vivo.value
+    - $ref: objects.enums.ex_vivo.value
+    - $ref: objects.enums.in_vitro.value
 SampleExtractionInstitution:
   name: SampleExtractionInstitution
   display_name: Sample Extraction Institution
@@ -2777,20 +2811,20 @@ SampleOrigin:
     Describes from which tissue the genetic information was extracted.
   type: string
   enum:
-    - blood
-    - saliva
-    - brain
-    - csf
-    - breast milk
-    - bile
-    - amniotic fluid
-    - other biospecimen
+    - $ref: objects.enums.blood.value
+    - $ref: objects.enums.saliva.value
+    - $ref: objects.enums.brain.value
+    - $ref: objects.enums.csf.value
+    - $ref: objects.enums.breast_milk.value
+    - $ref: objects.enums.bile.value
+    - $ref: objects.enums.amniotic_fluid.value
+    - $ref: objects.enums.other_biospecimen.value
 SamplePrimaryAntibody:
   name: SamplePrimaryAntibody
   display_name: Sample Primary Antibody
   description: |
     Description(s) of the primary antibody used for immunostaining.
-    Either an [RRID](https://scicrunch.org/resources) or the name, supplier and catalogue
+    Either an [RRID](https://scicrunch.org/resources) or the name, supplier and catalog
     number of a commercial antibody.
     For non-commercial antibodies either an [RRID](https://scicrunch.org/resources) or the
     host-animal and immunogen used (for examples: `"RRID:AB_2122563"` or
@@ -2806,7 +2840,7 @@ SampleSecondaryAntibody:
   display_name: Sample Secondary Antibody
   description: |
     Description(s) of the secondary antibody used for immunostaining.
-    Either an [RRID](https://scicrunch.org/resources) or the name, supplier and catalogue
+    Either an [RRID](https://scicrunch.org/resources) or the name, supplier and catalog
     number of a commercial antibody.
     For non-commercial antibodies either an [RRID](https://scicrunch.org/resources) or the
     host-animal and immunogen used (for examples: `"RRID:AB_228322"` or
@@ -3023,12 +3057,12 @@ SliceEncodingDirection:
     slice index as defined by the NIfTI header.
   type: string
   enum:
-    - i
-    - j
-    - k
-    - i-
-    - j-
-    - k-
+    - $ref: objects.enums.i.value
+    - $ref: objects.enums.iMinus.value
+    - $ref: objects.enums.j.value
+    - $ref: objects.enums.jMinus.value
+    - $ref: objects.enums.k.value
+    - $ref: objects.enums.kMinus.value
 SliceThickness:
   name: SliceThickness
   display_name: Slice Thickness
@@ -3179,7 +3213,7 @@ SpatialReference:
   anyOf:
     - type: string
       enum:
-        - orig
+        - $ref: objects.enums.orig.value
     - type: string
       format: uri
     - type: string
@@ -3189,7 +3223,7 @@ SpatialReference:
         anyOf:
           - type: string
             enum:
-              - orig
+              - $ref: objects.enums.orig.value
           - type: string
             format: uri
           - type: string
@@ -3252,7 +3286,7 @@ SpoilingRFPhaseIncrement:
     which is applied to the phase of the excitation pulse at each TR period for
     achieving RF spoiling.
   type: number
-  unit: degrees
+  unit: degree
 SpoilingState:
   name: SpoilingState
   display_name: Spoiling State
@@ -3267,15 +3301,17 @@ SpoilingType:
     Specifies which spoiling method(s) are used by a spoiled sequence.
   type: string
   enum:
-    - RF
-    - GRADIENT
-    - COMBINED
+    - $ref: objects.enums.RF.value
+    - $ref: objects.enums.GRADIENT.value
+    - $ref: objects.enums.COMBINED.value
 StartTime:
   name: StartTime
   display_name: Start Time
   description: |
     Start time in seconds in relation to the start of acquisition of the first
     data sample in the corresponding (neural) dataset (negative values are allowed).
+    This data MAY be specified with sub-second precision using the syntax `s[.000000]`,
+    where `s` reflects whole seconds, and `.000000` reflects OPTIONAL fractional seconds.
   type: number
   unit: s
 StationName:
@@ -3301,6 +3337,7 @@ StimulusPresentation:
     - SoftwareRRID
     - SoftwareVersion
     - Code
+    - HeadStabilization
   properties:
     OperatingSystem:
       $ref: objects.metadata.OperatingSystem
@@ -3322,9 +3359,9 @@ StimulusPresentation:
       $ref: objects.metadata.Code
 SubjectArtefactDescription:
   name: SubjectArtefactDescription
-  display_name: Subject Artefact Description
+  display_name: Subject Artifact Description
   description: |
-    Freeform description of the observed subject artefact and its possible cause
+    Freeform description of the observed subject artifact and its possible cause
     (for example, `"Vagus Nerve Stimulator"`, `"non-removable implant"`).
     If this field is set to `"n/a"`, it will be interpreted as absence of major
     source of artifacts except cardiac and blinks.
@@ -3341,7 +3378,7 @@ TaskName:
   description: |
     Name of the task.
     No two tasks should have the same name.
-    The task label included in the file name is derived from this `"TaskName"` field
+    The task label included in the filename is derived from this `"TaskName"` field
     by removing all non-alphanumeric characters (that is, all except those matching `[0-9a-zA-Z]`).
     For example `"TaskName"` `"faces n-back"` or `"head nodding"` will correspond to task labels
     `facesnback` and `headnodding`, respectively.
@@ -3350,9 +3387,10 @@ TermURL:
   name: TermURL
   display_name: TermURL
   description: |
-    URL pointing to a formal definition of this type of data in an ontology
-    available on the web.
+    URL pointing to a formal definition of this type of data in an ontology available on the web.
+    For example: https://www.ncbi.nlm.nih.gov/mesh/68008297 for "male".
   type: string
+  format: uri
 TimeZero:
   name: TimeZero
   display_name: Time Zero
@@ -3378,12 +3416,12 @@ TissueOrigin:
     Describes the type of tissue analyzed for `"SampleOrigin"` `brain`.
   type: string
   enum:
-    - gray matter
-    - white matter
-    - csf
-    - meninges
-    - macrovascular
-    - microvascular
+    - $ref: objects.enums.gray_matter.value
+    - $ref: objects.enums.white_matter.value
+    - $ref: objects.enums.csf.value
+    - $ref: objects.enums.meninges.value
+    - $ref: objects.enums.macrovascular.value
+    - $ref: objects.enums.microvascular.value
 TotalAcquiredPairs:
   name: TotalAcquiredPairs
   display_name: Total Acquired Pairs
@@ -3433,7 +3471,7 @@ TracerRadionuclide:
   name: TracerRadionuclide
   display_name: Tracer Radionuclide
   description: |
-    Radioisotope labelling tracer (for example, `"C11"`).
+    Radioisotope labeling tracer (for example, `"C11"`).
   type: string
 TracerSNOMED:
   name: TracerSNOMED
@@ -3469,7 +3507,7 @@ TrackingSystemName:
   display_name: Tracking System Name
   description: |
     A human-readable name of the tracking system to complement `"tracksys"` label
-    of the corresponding *_motion.tsv file name.
+    of the corresponding *_motion.tsv filename.
   type: string
 TubingType:
   name: TubingType
@@ -3489,10 +3527,10 @@ Type:
     The value `"ROI"` refers to a region of interest mask.
   type: string
   enum:
-    - Brain
-    - Lesion
-    - Face
-    - ROI
+    - $ref: objects.enums.Brain.value
+    - $ref: objects.enums.Lesion.value
+    - $ref: objects.enums.Face.value
+    - $ref: objects.enums.ROI.value
 Units:
   name: Units
   display_name: Units
@@ -3532,6 +3570,13 @@ VELChannelCount:
     Number of linear velocity channels.
   type: integer
   minimum: 0
+VisionCorrection:
+  name: VisionCorrection
+  display_name: Vision correction
+  description: |
+    Equipment used to correct participant vision during an experiment.
+    Example: "spectacles", "lenses", "none".
+  type: string
 VolumeTiming:
   name: VolumeTiming
   display_name: Volume Timing
@@ -3565,94 +3610,6 @@ WithdrawalRate:
     The unit of the specified withdrawal rate should be in `"mL/s"`.
   type: number
   unit: mL/s
-_CoordUnits:
-  type: string
-  enum:
-    - m
-    - mm
-    - cm
-    - n/a
-_EEGCoordSys:
-  type: string
-  enum:
-    - CapTrak
-    - EEGLAB
-    - EEGLAB-HJ
-    - Other
-_GeneticLevelEnum:
-  type: string
-  enum:
-    - Genetic
-    - Genomic
-    - Epigenomic
-    - Transcriptomic
-    - Metabolomic
-    - Proteomic
-_LandmarkCoordinates:
-  type: object
-  additionalProperties:
-    type: array
-    items:
-      type: number
-    minItems: 3
-    maxItems: 3
-_MEGCoordSys:
-  type: string
-  enum:
-    - CTF
-    - ElektaNeuromag
-    - 4DBti
-    - KitYokogawa
-    - ChietiItab
-    - Other
-_StandardTemplateCoordSys:
-  type: string
-  enum:
-    - ICBM452AirSpace
-    - ICBM452Warp5Space
-    - IXI549Space
-    - fsaverage
-    - fsaverageSym
-    - fsLR
-    - MNIColin27
-    - MNI152Lin
-    - MNI152NLin2009aSym
-    - MNI152NLin2009bSym
-    - MNI152NLin2009cSym
-    - MNI152NLin2009aAsym
-    - MNI152NLin2009bAsym
-    - MNI152NLin2009cAsym
-    - MNI152NLin6Sym
-    - MNI152NLin6ASym
-    - MNI305
-    - NIHPD
-    - OASIS30AntsOASISAnts
-    - OASIS30Atropos
-    - Talairach
-    - UNCInfant
-_StandardTemplateDeprecatedCoordSys:
-  type: string
-  enum:
-    - fsaverage3
-    - fsaverage4
-    - fsaverage5
-    - fsaverage6
-    - fsaveragesym
-    - UNCInfant0V21
-    - UNCInfant1V21
-    - UNCInfant2V21
-    - UNCInfant0V22
-    - UNCInfant1V22
-    - UNCInfant2V22
-    - UNCInfant0V23
-    - UNCInfant1V23
-    - UNCInfant2V23
-_iEEGCoordSys:
-  type: string
-  enum:
-    - Pixels
-    - ACPC
-    - Other
 iEEGCoordinateProcessingDescription:
   name: iEEGCoordinateProcessingDescription
   display_name: iEEG Coordinate Processing Description
@@ -3684,9 +3641,9 @@ iEEGCoordinateSystem:
     [2D coordinate systems](SPEC_ROOT/modality-specific-files/intracranial\
     -electroencephalography.md#allowed-2d-coordinate-systems).
   anyOf:
-    - $ref: objects.metadata._iEEGCoordSys
-    - $ref: objects.metadata._StandardTemplateCoordSys
-    - $ref: objects.metadata._StandardTemplateDeprecatedCoordSys
+    - $ref: objects.enums._iEEGCoordSys
+    - $ref: objects.enums._StandardTemplateCoordSys
+    - $ref: objects.enums._StandardTemplateDeprecatedCoordSys
 iEEGCoordinateSystemDescription:
   name: iEEGCoordinateSystemDescription
   display_name: iEEG Coordinate System Description
@@ -3703,10 +3660,11 @@ iEEGCoordinateUnits:
     MUST be `"pixels"` if `iEEGCoordinateSystem` is `Pixels`.
   type: string
   enum:
+    - $ref: objects.enums.pixels.value
+    # TODO: Add definitions for these values. (perhaps don't specify)
     - m
     - mm
     - cm
-    - pixels
     - n/a
 iEEGElectrodeGroups:
   name: iEEGElectrodeGroups

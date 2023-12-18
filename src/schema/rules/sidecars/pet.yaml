@@ -1,8 +1,8 @@
 ---
 # PET common metadata fields
-PETScannerHardware:
+PETHardware:
   selectors:
-    - modality == "pet"
+    - datatype == "pet"
     - suffix == "pet"
   fields:
     Manufacturer:
@@ -16,6 +16,15 @@ PETScannerHardware:
       description_addendum: |
         SI unit for radioactivity (Becquerel) should be used (for example, "Bq/mL").
         Corresponds to DICOM Tag 0054, 1001 `Units`.
+    BodyPart:
+      level: recommended
+      description_addendum: Corresponds to DICOM Tag 0018, 0015 `Body Part Examined`.
+
+PETInstitutionInformation:
+  selectors:
+    - datatype == "pet"
+    - suffix == "pet"
+  fields:
     InstitutionName:
       level: recommended
       description_addendum: Corresponds to DICOM Tag 0008, 0080 `InstitutionName`.
@@ -25,13 +34,10 @@ PETScannerHardware:
     InstitutionalDepartmentName:
       level: recommended
       description_addendum: Corresponds to DICOM Tag 0008, 1040 `Institutional Department Name`.
-    BodyPart:
-      level: recommended
-      description_addendum: Corresponds to DICOM Tag 0018, 0015 `Body Part Examined`.
 
 PETRadioChemistry:
   selectors:
-    - modality == "pet"
+    - datatype == "pet"
     - suffix == "pet"
   fields:
     TracerName:
@@ -80,7 +86,7 @@ PETRadioChemistry:
 # PET Infusion conditionally required entities
 EntitiesBolusMetadata:
   selectors:
-    - modality == "pet"
+    - datatype == "pet"
     - suffix == "pet"
     - sidecar.ModeOfAdministration == 'bolus-infusion'
   fields:
@@ -92,7 +98,7 @@ EntitiesBolusMetadata:
 
 PETPharmaceuticals:
   selectors:
-    - modality == "pet"
+    - datatype == "pet"
     - suffix == "pet"
   fields:
     PharmaceuticalName:
@@ -112,7 +118,7 @@ PETPharmaceuticals:
 
 PETTime:
   selectors:
-    - modality == "pet"
+    - datatype == "pet"
     - suffix == "pet"
   fields:
     TimeZero: required
@@ -133,7 +139,7 @@ PETTime:
 
 PETReconstruction:
   selectors:
-    - modality == "pet"
+    - datatype == "pet"
     - suffix == "pet"
   fields:
     AcquisitionMode: required
@@ -182,7 +188,7 @@ PETReconstruction:
 # set required reconstruction fields to optional when "none" is provided as a parameter label
 EntitiesReconMethodMetadata:
   selectors:
-    - modality == "pet"
+    - datatype == "pet"
     - suffix == "pet"
     - '!intersects(sidecar.ReconMethodParameterLabels, ["none"])'
   fields:
@@ -192,7 +198,7 @@ EntitiesReconMethodMetadata:
 # set required recon filter fields to optional when FilterType is "None"
 EntitiesReconFilterMetadata:
   selectors:
-    - modality == "pet"
+    - datatype == "pet"
     - suffix == "pet"
     - '!intersects(sidecar.ReconFilterType, ["none"])'
   fields:
@@ -200,7 +206,7 @@ EntitiesReconFilterMetadata:
 
 BloodRecording:
   selectors:
-    - modality == "pet"
+    - datatype == "pet"
     - suffix == "blood"
   fields:
     PlasmaAvail: required
@@ -216,7 +222,7 @@ BloodRecording:
 
 BloodPlasmaFreeFraction:
   selectors:
-    - modality == "pet"
+    - datatype == "pet"
     - suffix == "blood"
     - sidecar.PlasmaAvail == true
   fields:
@@ -229,7 +235,7 @@ BloodPlasmaFreeFraction:
 
 BloodMetaboliteMethod:
   selectors:
-    - modality == "pet"
+    - datatype == "pet"
     - suffix == "blood"
     - sidecar.MetaboliteAvail == true
   fields:
@@ -243,7 +249,7 @@ BloodMetaboliteMethod:
 # PET task information
 PETTask:
   selectors:
-    - modality == "pet"
+    - datatype == "pet"
     - '"task" in entities'
   fields:
     TaskName:

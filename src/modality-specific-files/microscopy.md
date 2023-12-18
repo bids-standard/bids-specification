@@ -8,7 +8,7 @@ on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
 Microscopy datasets formatted using this specification are available on the
-[BIDS examples repository](https://github.com/bids-standard/bids-examples#microscopy-datasets)
+[BIDS examples repository](https://bids-standard.github.io/bids-examples/#microscopy)
 and can be used for practical guidance when curating a new dataset.
 
 Further Microscopy datasets are available:
@@ -37,7 +37,7 @@ by the [Open Microscopy Environment](https://www.openmicroscopy.org/) for whole-
 the [OME-TIFF file specifications](https://docs.openmicroscopy.org/ome-model/6.1.2/ome-tiff/file-structure.html).
 The OME-TIFF file allows for multi-page TIFF files to store multiple image planes and supports
 multi-resolution pyramidal tiled images. An OME-XML data block is also embedded inside the
-file’s header. Further, OME-ZARR (sometimes referred to as OME-NGFF or NGFF) has been developed to provide improved
+file's header. Further, OME-ZARR (sometimes referred to as OME-NGFF or NGFF) has been developed to provide improved
 access and storage for large data via chunked and compressed N-dimensional arrays.
 
 The BIDS standard accepts microscopy data in a number of file formats to accommodate datasets
@@ -272,18 +272,6 @@ for details.
 
 Microscopy data MUST be described by metadata fields, stored in sidecar JSON files.
 
-#### Device Hardware
-
-<!-- This block generates a metadata table.
-These tables are defined in
-  src/schema/rules/sidecars
-The definitions of the fields specified in these tables may be found in
-  src/schema/objects/metadata.yaml
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_sidecar_table("micr.MicroscopyDeviceHardware") }}
-
 #### Image Acquisition
 
 <!-- This block generates a metadata table.
@@ -371,6 +359,31 @@ In this example, there is no scaling and `chunk-01` is at the origin.
 }
 ```
 
+#### Hardware information
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("micr.MicroscopyHardware") }}
+
+#### Institution information
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+
+{{ MACROS___make_sidecar_table("micr.MicroscopyInstitutionInformation") }}
+
 #### Example of sidecar JSON file (`*_<suffix>.json`)
 ```JSON
 {
@@ -421,7 +434,7 @@ sub-02 mus musculus C57BL/6J RRID:IMSR_JAX:000664
         "Description": "name of the strain of the species"
     },
     "strain_rrid": {
-        "Description": "research resource identifier (RRID) of the strain (https://scicrunch.org/resources/Organisms/search)"
+        "Description": "research resource identifier (RRID) of the strain (https://scicrunch.org/resources/data/source/nlx_154697-1/search)"
     }
 }
 ```

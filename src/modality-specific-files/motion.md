@@ -3,7 +3,7 @@
 For information on how to cite this extension when referencing it in the context of the academic literature, please read [Citing BIDS](../introduction.md#citing-bids).
 
 Motion datasets formatted using this specification are available on the
-[BIDS examples repository](https://github.com/bids-standard/bids-examples#motion-datasets)
+[BIDS examples repository](https://bids-standard.github.io/bids-examples/#motion)
 and can be used as helpful guidance when curating new datasets.
 
 ## Motion recording data
@@ -11,7 +11,7 @@ and can be used as helpful guidance when curating new datasets.
 {{ MACROS___make_filename_template(
 "raw",
 datatypes=["motion"],
-suffixes=["motion", "channels", "events"])
+suffixes=["motion", "events", "physio", "stim"])
 }}
 
 A wide variety of motion capture systems are used in human research, resulting in different proprietary data formats.
@@ -50,11 +50,11 @@ can be stored in the [`/sourcedata` directory](../common-principles.md#source-vs
 The original data format MAY hold more metadata than currently specified in the `*_motion.json` file.
 
 When multiple tracking systems are used to record motion or motion capture is used alongside the recording of other BIDS modalities and recordings should be interpreted together,
-it is adviced to provide a possibility to synchronize recordings.
-The prefered way to do so is to use the acquisition time of the first data point of recordings and
+it is advised to provide a possibility to synchronize recordings.
+The preferred way to do so is to use the acquisition time of the first data point of recordings and
 to store this information in the `acq_time` column of the [`*_scans.tsv`](../modality-agnostic-files.md#scans-file) file.
-The Note that the [BIDS date time format](../common-principles.md#units) allows optional fractional seconds, which SHOULD be used to maximize the precision of the syncronization.
-Only if the precision of the synchronization is not high enough, the `*_events.tsv` file SHOULD be used to syncronize recordings.
+The Note that the [BIDS date time format](../common-principles.md#units) allows optional fractional seconds, which SHOULD be used to maximize the precision of the synchronization.
+Only if the precision of the synchronization is not high enough, the `*_events.tsv` file SHOULD be used to synchronize recordings.
 In this file, the start- and stop time of the recording of a system are specified in relation to a system to synchronize with.
 If more than two systems are to be synchronized, it is up to the user to indntify the "main" system.
 
@@ -62,8 +62,9 @@ In case a tracking system provides time information with every recorded sample,
 these time information MAY be stored in form of latencies to recording onset (first sample) in the `*_motion.tsv` file.
 If a system has uneven sampling rate behavior, the `LATENCY` channel can be used to share these information.
 
-To store events alongside motion data when there are multiple tracking systems simulatenously in use, it is RECOMMENDED to designate a tracking system to the events file.
-Such an events file name SHOULD include the `tracksys` key and looks like `sub-<label>[_ses-<label>]_task-<label>[_acq-<label>]_tracksys-<label>[_run-<index>]_events.tsv`.
+To store events alongside motion data when there are multiple tracking systems simultaneously in use, it is RECOMMENDED to designate a tracking system to the events file.
+Such an events filename SHOULD include the `tracksys` key and looks like
+`sub-<label>[_ses-<label>]_task-<label>[_tracksys-<label>][_acq-<label>][_run-<index>]_events.tsv`.
 Event latencies can then be related to motion samples of multiple tracking systems also by using `acq_time` column entries in the `*_scans.tsv`.
 The same principle applies when the events file is saved alongside a simultaneously recorded non-motion data (for example EEG).
 
@@ -77,7 +78,7 @@ The same principle applies when the events file is saved alongside a simultaneou
 
 {{ MACROS___make_sidecar_table("motion.motionHardware") }}
 
-#### Insitution information
+#### Institution information
 
 {{ MACROS___make_sidecar_table("motion.motionInstitutionInformation") }}
 
@@ -104,9 +105,6 @@ Motion specific fields SHOULD be present:
  "InstitutionName": "Fictive Institution",
  "MotionChannelCount": 18,
  "RecordingDuration": 4667.641106,
- "RotationRule": "right-hand",
- "RotationOrder": "ZXY",
- "SpatialAxes": "FRU",
  "SubjectArtefactDescription": "n/a",
  "TrackedPointsCount" : 2,
  "ACCELChannelCount": 6,
@@ -141,6 +139,9 @@ The REQUIRED columns are channel `name`, `component`, `type`, `tracked_point` an
 Any number of additional columns MAY be added to provide additional information about the channels.
 The `*_tracksys-<label>_channels.tsv` file SHOULD give additional information about individual recorded channel,
 some of which my not be found summarized in `*_motion.json`.
+To store information about reference frames for a channel, the `reference_frame` column SHOULD
+be used
+(see [Reference frame description (`*_channels.json`)](#reference-frame-description-_channelsjson)).
 
 The columns of the channels description table stored in `*_channels.tsv` are:
 
@@ -168,35 +169,73 @@ the axial components that corresponds to the three spatial axes MUST be specifie
 Restricted keyword list for column `type` in alphabetic order.
 Note that upper-case is REQUIRED:
 
-| **Keyword** | **Description**                                                                                                                                                                                                              | **Modalities to be shared with**                                    |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| ACCEL       | Accelerometer channel, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).                                                                           | [fNIRS](./near-infrared-spectroscopy.md#near-infrared-spectroscopy) |
-| ANGACC      | Angular acceleration channel, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).                                                                    | NONE                                                                |
-| ANGVEL      | Angular velocity channel, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).                                                                        | None                                                                |
-| GYRO        | Gyrometer channel, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).                                                                               | [fNIRS](./near-infrared-spectroscopy.md#near-infrared-spectroscopy) |
-| JNTANG      | Joint angle channel between two fixed axis belonging to two bodyparts. Angle SHOULD be defined between proximal and distal bodypart in `deg`.                                                                                | NONE                                                                |
-| LATENCY     | Latency of samples in seconds from recording onset. MUST be in form of `ss[.000000]` , where [.000000] is an optional subsecond resolution between 1 and 6 decimal points.                                                   | ALL                                                                 |
-| MAGN        | Magnetic field strength, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z).                                                                          | [fNIRS](./near-infrared-spectroscopy.md#near-infrared-spectroscopy) |
-| MISC        | Miscellaneous channels.                                                                                                                                                                                                      | ALL                                                                 |
-| ORNT        | Orientation channel, one channel for each spatial axis or quaternion component. Column `component` for the axis or quaternion label MUST be added to the `*_channels.tsv` file (x, y, z, quat_x, quat_y, quat_z, or quat_w). | [fNIRS](./near-infrared-spectroscopy.md#near-infrared-spectroscopy) |
-| POS         | Position in space, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z).                                                                                | NONE                                                                |
-| VEL         | Velocity, one channel for each spatial axis. Column `component` for the axis MUST be added to the `*_channels.tsv` file (x, y or z).                                                                                         | NONE                                                                |
+| **Keyword** | **Description**                                                                                                                                                                                                                          |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ACCEL       | Accelerometer channel, one channel for each spatial axis. Column component for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).                                                                                         |
+| ANGACCEL    | Angular acceleration channel, one channel for each spatial axis. Column component for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).                                                                                  |
+| GYRO        | Gyrometer channel, one channel for each spatial axis. Column component for the axis MUST be added to the `*_channels.tsv` file (x, y, or z).                                                                                             |
+| JNTANG      | Joint angle channel between two fixed axis belonging to two bodyparts. Angle SHOULD be defined between proximal and distal bodypart in deg.                                                                                              |
+| LATENCY     | Latency of samples in seconds from recording onset (see `acq_time` column of the respective `*_scans.tsv` file). MUST be in form of `s[.000000]`, where `s` reflects whole seconds, and `.000000` reflects OPTIONAL fractional seconds.  |
+| MAGN        | Magnetic field strength, one channel for each spatial axis. Column component for the axis MUST be added to the `*_channels.tsv` file (x, y or z).                                                                                        |
+| MISC        | Miscellaneous channels.                                                                                                                                                                                                                  |
+| ORNT        | Orientation channel, one channel for each spatial axis or quaternion component. Column component for the axis or quaternion label MUST be added to the `*_channels.tsv` file (`x`, `y`, `z`, `quat_x`, `quat_y`, `quat_z`, or `quat_w`). |
+| POS         | Position in space, one channel for each spatial axis. Column component for the axis MUST be added to the `*_channels.tsv` file (x, y or z).                                                                                              |
+| VEL         | Velocity, one channel for each spatial axis. Column component for the axis MUST be added to the `*_channels.tsv` file (x, y or z).                                                                                                       |
 
 ### Example `*_channels.tsv`
 
 ```Text
-name        component   type   tracked_point   units
-t1_acc_x    x           ACCEL  LeftFoot        m/s^2
-t1_acc_y    y           ACCEL  LeftFoot        m/s^2
-t1_acc_z    z           ACCEL  LeftFoot        m/s^2
-t1_gyro_x   x           GYRO   LeftFoot        rad/s
-t1_gyro_y   y           GYRO   LeftFoot        rad/s
-t1_gyro_z   z           GYRO   LeftFoot        rad/s
+name        component   type   tracked_point   units    reference_frame
+t1_acc_x    x           ACCEL  LeftFoot        m/s^2    global
+t1_acc_y    y           ACCEL  LeftFoot        m/s^2    global
+t1_acc_z    z           ACCEL  LeftFoot        m/s^2    global
+t1_gyro_x   x           GYRO   LeftFoot        rad/s    global
+t1_gyro_y   y           GYRO   LeftFoot        rad/s    global
+t1_gyro_z   z           GYRO   LeftFoot        rad/s    global
 …
-t2_acc_x    x           ACCEL  RightWrist      m/s^2
-t2_acc_y    y           ACCEL  RightWrist      m/s^2
-t2_acc_z    z           ACCEL  RightWrist      m/s^2
-t2_gyro_x   x           GYRO   RightWrist      rad/s
-t2_gyro_y   y           GYRO   RightWrist      rad/s
-t2_gyro_z   z           GYRO   RightWrist      rad/s
+t2_acc_x    x           ACCEL  RightWrist      m/s^2    global
+t2_acc_y    y           ACCEL  RightWrist      m/s^2    global
+t2_acc_z    z           ACCEL  RightWrist      m/s^2    global
+t2_gyro_x   x           GYRO   RightWrist      rad/s    global
+t2_gyro_y   y           GYRO   RightWrist      rad/s    global
+t2_gyro_z   z           GYRO   RightWrist      rad/s    global
 ```
+
+## Reference frame description (`*_channels.json`)
+
+A reference frame specifies the origin and orientation of the spatial axes with respect to which motion data is to be interpreted.
+In case the information is available, sharing this can immensely boost the usability of shared data.
+The description of the `reference_frame` column SHOULD use the `"Levels"`
+field to describe the named field using [objects][object] with following fields.
+
+| Key name      | Requirement Level                                      | Data type  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|---------------|--------------------------------------------------------|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| RotationOrder | RECOMMENDED                                            | [string][] | The sequence in which the extrinsic rotations are applied around the three axes. One of `"XYZ"`, `"XZY"`, `"YXZ"`, `"YZX"`, `"ZXY"`, or `"ZYX"`.                                                                                                                                                                                                                                                                                                                   |
+| RotationRule  | RECOMMENDED                                            | [string][] | The direction of rotation around each axis. One of `"left-hand"` or `"right-hand"`.                                                                                                                                                                                                                                                                                                                                                                                |
+| SpatialAxes   | RECOMMENDED                                            | [string][] | The coordinate system in which the motion data are to be interpreted. A sequence of characters from the set `{'A', 'P', 'L', 'R', 'S', 'I', '_'}` indicating the direction of each axis. For example `"ARS"` indicates positive values in the X, Y, Z axes are respectively anterior, right, and superior of the origin, while `"PLI"` indicates positive values are posterior, left, and inferior of the origin. The `"_"` character may be used for unused axes. |
+| Description   | OPTIONAL, but RECOMMENDED if no other keys are present | [string][] | A description of the `reference_frame`                                                                                                                                                                                                                                                                                                                                                                                                                             |
+
+### Example of `*_channels.json`
+
+```json
+{
+  "reference_frame": {
+    "Levels": {
+      "global": {
+        "SpatialAxes": "ALS",
+        "RotationOrder": "ZXY",
+        "RotationRule": "right-hand"
+      },
+      "local": {
+        "Description": "Joint angles are described following [...]"
+      }
+    }
+  }
+}
+```
+
+<!-- Link Definitions -->
+
+[object]: https://www.json.org/json-en.html
+
+[string]: https://www.w3schools.com/js/js_json_datatypes.asp

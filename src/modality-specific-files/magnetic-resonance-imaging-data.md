@@ -6,12 +6,10 @@ MR Data described in the following sections share the following RECOMMENDED meta
 fields (stored in sidecar JSON files).
 MRI acquisition parameters are divided into several categories based on
 "A checklist for fMRI acquisition methods reporting in the literature"
-([article](https://winnower-production.s3.amazonaws.com/papers/977/v4/pdf/977-a-checklist-for-fmri-acquisition-methods-reporting-in-the-literature.pdf),
-[checklist](https://winnower-production.s3.amazonaws.com/papers/977/assets/993e199d-6bc3-4418-be3a-f620af1188b7-Parameter_Reporting_V1p3.pdf))
-by Ben Inglis.
+([article](https://doi.org/10.15200/winn.143191.17127)) by Ben Inglis.
 
 When adding additional metadata please use the CamelCase version of
-[DICOM ontology terms](https://scicrunch.org/scicrunch/interlex/dashboard)
+[DICOM ontology terms](https://dicom.nema.org/medical/dicom/current/output/chtml/part16/chapter_d.html)
 whenever possible. See also
 [recommendations on JSON files](../common-principles.md#keyvalue-files-dictionaries).
 
@@ -83,8 +81,9 @@ A guide for using macros can be found at
 "BandwidthPerPixelPhaseEncode" in DICOM Tag 0019, 1028 and ReconMatrixPE is
 the size of the actual reconstructed data in the phase direction (which is NOT
 reflected in a single DICOM Tag for all possible aforementioned scan
-manipulations). See [here](https://lcni.uoregon.edu/kb-articles/kb-0003) and
-[here](https://github.com/neurolabusc/dcm_qa/tree/master/In/TotalReadoutTime)
+manipulations). See
+[Acquiring and using field maps - LCNI](https://lcni.uoregon.edu/wiki/acquiring-and-using-field-maps/)
+and [TotalReadoutTime - dcm\_qa](https://github.com/neurolabusc/dcm_qa/tree/master/In/TotalReadoutTime).
 
 <sup>3</sup>We use the time between the center of the first "effective" echo
 and the center of the last "effective" echo, sometimes called the "FSL definition".
@@ -99,7 +98,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("mri.MRITimingParameters") }}
+{{ MACROS___make_sidecar_table(["mri.MRITimingParameters", "mri.SliceTimingMRI"]) }}
 
 ### RF & Contrast
 
@@ -291,7 +290,6 @@ and a guide for using macros can be found at
          "T1rho",
          "MWFmap",
          "MTVmap",
-         "PDT2map",
          "Chimap",
          "TB1map",
          "RB1map",
@@ -323,7 +321,6 @@ and a guide for using macros can be found at
          "T1rho",
          "MWFmap",
          "MTVmap",
-         "PDT2map",
          "Chimap",
          "TB1map",
          "RB1map",
@@ -597,7 +594,7 @@ A guide for using macros can be found at
    {
    "sub-01": {
       "func": {
-         "sub-control01_task-nback_bold.json": "",
+         "sub-01_task-nback_bold.json": "",
          },
       }
    }
@@ -855,7 +852,7 @@ JSON example:
 
 ## Arterial Spin Labeling perfusion data
 
-Several [example ASL datasets](https://github.com/bids-standard/bids-examples#asl-datasets)
+Several [example ASL datasets](https://bids-standard.github.io/bids-examples/#asl)
 have been formatted using this specification
 and can be used for practical guidance when curating a new dataset.
 
@@ -897,12 +894,22 @@ If the `deltam` is not available,
 When `cbf` is stored within the `*_asl.nii[.gz]`,
 its units need to be specified in the `*_asl.json` as well.
 Note that the raw images, including the `m0scan`, may also be used for quality control.
-See the [ASL Appendix](../appendices/arterial-spin-labeling.md#_aslcontexttsv-three-possible-cases) for examples of the three possible cases, in order of decreasing preference.
+See the [ASL Appendix](../appendices/arterial-spin-labeling.md#_aslcontexttsv-three-possible-cases)
+for examples of the three possible cases, in order of decreasing preference.
 
 ### Scaling
 
-The `*_asl.nii.gz` and `*_m0scan.nii.gz` should contain appropriately scaled data, and no additional scaling factors are allowed other than the scale slope in the respective
+The `*_asl.nii.gz` and `*_m0scan.nii.gz` should contain appropriately scaled data,
+and no additional scaling factors are allowed other than the scale slope in the respective
 NIfTI headers.
+
+### `*_asllabeling.*`
+
+An anonymized screenshot of the planning of the labeling slab/plane
+with respect to the imaging slab or slices.
+This screenshot is based on DICOM macro C.8.13.5.14.
+
+See [`LabelingLocationDescription`](../glossary.md#labelinglocationdescription-metadata) for more details.
 
 ### M0
 
@@ -910,7 +917,8 @@ The `m0scan` can either be stored inside the 4D ASL time-series NIfTI file
 or as a separate NIfTI file,
 depending on whether it was acquired within the ASL time-series or as a separate scan.
 These and other M0 options are specified in the REQUIRED `M0Type` field of the `*_asl.json` file.
-It can also be stored under `fmap/sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<label>[_run-<index>]_m0scan.nii[.gz]`,
+It can also be stored under
+`fmap/sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<label>[_run-<index>]_m0scan.nii[.gz]`,
 when the [pepolar approach](#case-4-multiple-phase-encoded-directions-pepolar) is used.
 
 ### `*_asl.json` file
@@ -921,7 +929,8 @@ Additionally, some common metadata fields are REQUIRED for the `*_asl.json`:
 `MagneticFieldStrength`, `MRAcquisitionType`, `EchoTime`,
 `SliceTiming` in case `MRAcquisitionType` is defined as 2D,
 `RepetitionTimePreparation`, and `FlipAngle` in case `LookLocker` is `true`.
-See the [ASL Appendix](../appendices/arterial-spin-labeling.md#summary-image-of-the-most-common-asl-sequences) for more information on the most common ASL sequences.
+See the [ASL Appendix](../appendices/arterial-spin-labeling.md#summary-image-of-the-most-common-asl-sequences)
+for more information on the most common ASL sequences.
 
 #### Common metadata fields applicable to both (P)CASL and PASL
 
@@ -955,7 +964,9 @@ A guide for using macros can be found at
 
 #### PASL-specific metadata fields
 
-These fields can only be used when `ArterialSpinLabelingType` is `PASL`. See the [ASL Appendix](../appendices/arterial-spin-labeling.md#pasl-sequence) for more information on the PASL sequence and the BolusCutOff fields.
+These fields can only be used when `ArterialSpinLabelingType` is `PASL`.
+See the [ASL Appendix](../appendices/arterial-spin-labeling.md#pasl-sequence)
+for more information on the PASL sequence and the BolusCutOff fields.
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -1084,7 +1095,7 @@ For example:
 
 #### Case 1: Phase-difference map and at least one magnitude image
 
-[Example datasets](https://github.com/bids-standard/bids-examples)
+[Example datasets](https://bids-standard.github.io/bids-examples/#dataset-index)
 containing that type of fieldmap can be found here:
 
 -   [`7t_trt`](https://github.com/bids-standard/bids-examples/tree/master/7t_trt)
@@ -1235,7 +1246,7 @@ The [`dir-<label>`](../appendices/entities.md#dir) entity is REQUIRED
 for these files.
 This entity MUST be used in addition to
 the REQUIRED `PhaseEncodingDirection` metadata field
-(see [File name structure](../common-principles.md#file-name-structure)).
+(see [Filename structure](../common-principles.md#filenames)).
 
 Required fields:
 

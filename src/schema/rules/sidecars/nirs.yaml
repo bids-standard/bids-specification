@@ -29,7 +29,6 @@ AnatomicalLandmark:
 
 CoordsystemGeneral:
   selectors:
-    - modality == "nirs"
     - datatype == "nirs"
     - suffix == "coordsystem"
   fields:
@@ -93,26 +92,45 @@ FiducialsCoordinateSystemDescriptionReq:
   fields:
     FiducialsCoordinateSystemDescription: required
 
+NirsHardware:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "nirs"
+  fields:
+    Manufacturer: recommended
+    ManufacturersModelName: recommended
+    SoftwareVersions: recommended
+    DeviceSerialNumber: recommended
+
 NirsBase:
   selectors:
     - datatype == "nirs"
     - suffix == "nirs"
   fields:
-    TaskName: required
-    InstitutionName: recommended
-    InstitutionAddress: recommended
-    Manufacturer: recommended
-    ManufacturersModelName: recommended
-    SoftwareVersions: recommended
-    TaskDescription: recommended
-    Instructions: recommended
-    CogAtlasID: recommended
-    CogPOID: recommended
-    DeviceSerialNumber: recommended
     RecordingDuration: recommended
     HeadCircumference: recommended
     HardwareFilters: recommended
     SubjectArtefactDescription: recommended
+
+NirsTaskInformation:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "nirs"
+  fields:
+    TaskName: required
+    TaskDescription: recommended
+    Instructions: recommended
+    CogAtlasID: recommended
+    CogPOID: recommended
+
+NirsInstitutionInformation:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "nirs"
+  fields:
+    InstitutionName: recommended
+    InstitutionAddress: recommended
+    InstitutionalDepartmentName: recommended
 
 NirsRequired:
   selectors:
@@ -131,7 +149,7 @@ NirsRequired:
     # Following counts required conditions enforced in checks
     ACCELChannelCount:
       level: optional
-      level_addendum: required if any channel type is ACC
+      level_addendum: required if any channel type is ACCEL
     GYROChannelCount:
       level: optional
       level_addendum: required if any channel type is GYRO
@@ -141,7 +159,7 @@ NirsRequired:
 
 NirsRecommend:
   selectors:
-    - modality == "nirs"
+    - datatype == "nirs"
     - suffix == "nirs"
   fields:
     CapManufacturer:

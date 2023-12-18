@@ -43,10 +43,50 @@ SamplesTSVMissing:
   issue:
     code: SAMPLES_TSV_MISSING
     message: |
-      The compulsory file /samples.tsv is missing. See Modality agnostic files section of the BIDS specification.
+      The compulsory file '/samples.tsv' is missing.
+      See 'Modality agnostic files' section of the BIDS specification.
     level: error
   selectors:
     - path == 'dataset_description.json'
     - '"micr" in dataset.modalities'
   checks:
     - "'samples.tsv' in dataset.files"
+
+UnknownVersion:
+  issue:
+    code: UNKNOWN_BIDS_VERSION
+    message: |
+      The BIDSVersion field of 'dataset_description.json' does not match a known release.
+      The BIDS Schema used for validation may be out of date.
+    level: warning
+  selectors:
+    - path == 'dataset_description.json'
+  checks:
+    - intersects([json.BIDSVersion], schema.meta.versions)
+
+SingleSourceAuthors:
+  issue:
+    code: AUTHORS_AND_CITATION_FILE_MUTUALLY_EXCLUSIVE
+    level: error
+    message: |
+      'CITATION.cff' file found. The "Authors" field of 'dataset_description.json'
+      must be removed to avoid inconsistency.
+  selectors:
+    - path == 'CITATION.cff'
+  checks:
+    - '!("Authors" in dataset.dataset_description)'
+
+SingleSourceCitationFields:
+  issue:
+    code: SINGLE_SOURCE_CITATION_FIELDS
+    level: warning
+    message: |
+      CITATION.cff file found.
+      The "HowToAckowledge", "License", and "ReferencesAndLinks" fields of
+      'dataset_description.json' should be removed to avoid inconsistency.
+  selectors:
+    - path == 'CITATION.cff'
+  checks:
+    - '!("HowToAcknowledge" in dataset.dataset_description)'
+    - '!("License" in dataset.dataset_description)'
+    - '!("ReferencesAndLinks" in dataset.dataset_description)'

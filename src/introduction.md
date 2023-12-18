@@ -8,22 +8,22 @@ obtained in neuroimaging experiments. Even two researchers working in the same
 lab can opt to arrange their data in a different way. Lack of consensus (or a
 standard) leads to misunderstandings and time wasted on rearranging data or
 rewriting scripts expecting certain structure. Here we describe a simple and
-easy-to-adopt way of organising neuroimaging and behavioral data. By using this
+easy-to-adopt way of organizing neuroimaging and behavioral data. By using this
 standard you will benefit in the following ways:
 
 -   It will be easy for another researcher to work on your data. To understand
-    the organisation of the files and their format you will only need to refer
+    the organization of the files and their format you will only need to refer
     them to this document. This is especially important if you are running your
     own lab and anticipate more than one person working on the same data over
     time. By using BIDS you will save time trying to understand and reuse data
     acquired by a graduate student or postdoc that has already left the lab.
 
 -   There are a growing number of data analysis software packages that can
-    understand data organised according to BIDS (see the
+    understand data organized according to BIDS (see the
     [up to date list](https://bids.neuroimaging.io/benefits.html)).
 
 -   Databases such as [OpenNeuro.org](https://openneuro.org/) accept datasets
-    organised according to BIDS.
+    organized according to BIDS.
     If you ever plan to share your data publicly (nowadays some journals require
     this) you can minimize the additional time and energy spent on publication,
     and speed up the curation process by using BIDS to structure and describe
@@ -138,7 +138,8 @@ For example:
 -   Clara Moreau, Martineau Jean-Louis, Ross Blair, Christopher Markiewicz, Jessica Turner,
     Vince Calhoun, Thomas Nichols, Cyril Pernet (2020).
     **The genetics-BIDS extension: Easing the search for genetic data associated with human brain imaging**.
-    GigaScience, 9 (10). [doi:10.1093/gigascience/giaa104](https://doi.org/10.1093/gigascience/giaa104)
+    GigaScience, 9 (10).
+    [doi:10.1093/gigascience/giaa104](https://doi.org/10.1093/gigascience/giaa104)
 
 #### Microscopy
 
@@ -152,30 +153,41 @@ For example:
 #### qMRI
 
 -   Karakuzu, A., Appelhoff, S., Auer, T., Boudreau M., Feingold F., Khan A.R., Lazari A., Markiewicz C.J.,
-    Mulder M., Phillips C., Salo T., Stikov N., Whitaker K. and de Hollander G.,
-    **qMRI-BIDS: An extension to the brain imaging data structure for quantitative magnetic resonance imaging data.**
-    Scientific Data 9, 517 (2022). [doi:10.1038/s41597-022-01571-4](https://doi.org/10.1038/s41597-022-01571-4)
+    Mulder M., Phillips C., Salo T., Stikov N., Whitaker K. and de Hollander G. (2022).
+    **qMRI-BIDS: An extension to the brain imaging data structure for quantitative magnetic resonance imaging data**.
+    Scientific Data 9, (517).
+    [doi:10.1038/s41597-022-01571-4](https://doi.org/10.1038/s41597-022-01571-4)
 
 #### ASL
 
 -   Clement P., Castellaro M., Okell T. W., Thomas D. L., Vandemaele P., Elgayar S., Oliver-Taylor A.,
     Kirk T., Woods J. G., Vos S. B., Kuijer J. P. A., Achten E., van Osch M. J. P., BIDS maintainers,
-    Detre J. A., Lu H., Alsop D. C., Chappell M. A., Hernandez-Garcia L., Petr J. & Mutsaerts H. J. M. M.
-    **ASL-BIDS, the brain imaging data structure extension for arterial spin labeling.**
-    Scientific Data 9, 543 (2022). [doi:10.1038/s41597-022-01615-9](https://doi.org/10.1038/s41597-022-01615-9)
+    Detre J. A., Lu H., Alsop D. C., Chappell M. A., Hernandez-Garcia L., Petr J. & Mutsaerts H. J. M. M. (2022)
+    **ASL-BIDS, the brain imaging data structure extension for arterial spin labeling**.
+    Scientific Data 9, (543).
+    [doi:10.1038/s41597-022-01615-9](https://doi.org/10.1038/s41597-022-01615-9)
 
 #### NIRS
 
--   (publication forthcoming)
+-   Luke, R., Oostenveld, R., Cockx, H., Niso, G., Shader, M., Orihuela-Espina, F.,
+    Innes-Brown, H., Tucker, S., Boas, D., Gau, R., Salo, T., Appelhoff, S., Markiewicz, C
+    McAlpine, D., BIDS maintainers, Pollonini, L. (2023).
+    **fNIRS-BIDS, the Brain Imaging Data Structure Extended to Functional Near-Infrared Spectroscopy**.
+    PsyArXiv.
+    [doi:10.31219/osf.io/7nmcp](https://doi.org/10.31219/osf.io/7nmcp)
 
 #### Motion
 
--   (publication forthcoming)
+-    Jeung, S., Cockx, H., Appelhoff, S., Berg, T., Gramann, K., Grothkopp, S., Warmerdam, E., Hansen, C.,
+     Oostenveld, R., BIDS maintainers, Welzel, J. (2023).
+     **Motion-BIDS: extending the Brain Imaging Data Structure specification to organize motion data for reproducible research**.
+     PsyArXiv.
+     [doi:10.31234/osf.io/w6z79](https://doi.org/10.31234/osf.io/w6z79)
 
 ### Research Resource Identifier (RRID)
 
 BIDS has also a
-[Research Resource Identifier (RRID)](https://www.force11.org/group/resource-identification-initiative),
+[Research Resource Identifier (RRID)](https://force11.org/group/resource-identification-initiative),
 which you can also include in your citations in addition to relevant publications (see above):
 
--   [`RRID:SCR_016124`](https://scicrunch.org/resources/Any/search?q=SCR_016124&l=SCR_016124)
+-   [`RRID:SCR_016124`](https://scicrunch.org/resources/data/record/nlx_144509-1/SCR_016124/resolver?q=SCR_016124)

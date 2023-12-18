@@ -19,11 +19,12 @@ and can be used for practical guidance when curating a new dataset.
 
 ## Dataset Description
 
-Genetic descriptors are encoded as an additional, OPTIONAL entry in the
+If information on associated genetic data is supplied as part of a BIDS dataset,
+these "genetic descriptors" are encoded as an additional, REQUIRED entry in the
 [`dataset_description.json`](../modality-agnostic-files.md#dataset_descriptionjson)
 file.
 
-Datasets linked to a genetic database entry include the following REQUIRED or OPTIONAL
+Datasets linked to a genetic database entry include the following REQUIRED and OPTIONAL
 keys in the `Genetics` sub-[object][] of `dataset_description.json`:
 
 <!-- This block generates a table describing subfields within a metadata field.
@@ -82,12 +83,13 @@ Template:
 genetic_info.json
 ```
 
-The `genetic_info.json` file describes the genetic information available in the
-`participants.tsv` file and/or the genetic database described in
-`dataset_description.json`.
-Datasets containing the `Genetics` field in `dataset_description.json` or the
-`genetic_id` column in `participants.tsv` MUST include this file with the following
-fields:
+The following fields are defined for genetic_info.json:
+
+<!-- This block generates a description.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___render_text("objects.files.genetic_info.description") }}
 
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in

@@ -4,9 +4,8 @@
 index:
   display_name: Index
   description: |
-    Non-negative, non-zero integers, optionally prefixed with leading zeros for sortability.
-    An index may not be all zeros.
-  pattern: '[0-9]*[1-9]+[0-9]*'
+    Non-negative, optionally prefixed with leading zeros for better visual homogeneity and sorting.
+  pattern: '[0-9]+'
 label:
   display_name: Label
   description: |

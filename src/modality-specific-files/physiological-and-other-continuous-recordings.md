@@ -9,7 +9,7 @@ specified using two files:
 
 1.  a JSON file for storing metadata fields (see below)
 
-[Example datasets](https://github.com/bids-standard/bids-examples)
+[Example datasets](https://bids-standard.github.io/bids-examples/#dataset-index)
 with physiological data have been formatted using this specification
 and can be used for practical guidance when curating a new dataset:
 
@@ -118,7 +118,7 @@ A guide for using macros can be found at
 {
     "SamplingFrequency": 100.0,
     "StartTime": -22.345,
-    "Columns": ["cardiac", "respiratory"],
+    "Columns": ["cardiac", "respiratory", "trigger"],
     "Manufacturer": "Brain Research Equipment ltd.",
     "cardiac": {
         "Description": "continuous pulse measurement",
@@ -127,6 +127,9 @@ A guide for using macros can be found at
     "respiratory": {
         "Description": "continuous measurements by respiration belt",
         "Units": "mV"
+        },
+    "trigger": {
+        "Description": "continuous measurement of the scanner trigger signal"
         }
 }
 ```
