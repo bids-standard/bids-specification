@@ -44,7 +44,7 @@ jobs:
         run: python -m build tools/schemacode
       - name: "Check distribution metadata"
         run: twine check tools/schemacode/dist/*
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: dist
           path: tools/schemacode/dist/
@@ -91,7 +91,7 @@ jobs:
               --cov-append --cov-report=xml --cov=bidsschematools --doctest-modules
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: unit_${{ matrix.os }}_${{ matrix.python-version }}
           path: coverage.xml
@@ -146,7 +146,7 @@ jobs:
         run: python -m pytest --pyargs bidsschematools -m "validate_schema" --cov-append --cov-report=xml --cov=bidsschematools
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: schema_validation
           path: coverage.xml
