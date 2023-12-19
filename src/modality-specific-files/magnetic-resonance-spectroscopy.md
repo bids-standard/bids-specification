@@ -21,9 +21,9 @@ and a guide for using macros can be found at
 -->
 
 {{ MACROS___make_filename_template("raw", datatypes=["mrs"], suffixes=["svs", "mrsi", "ref", "unloc"]) }}
-
+MRS is a noninvasive technique to detect biochemical changes in the brain. It is conducted using conventional MRI systems.
 Each manufacturer has its own file format (sometimes multiple formats) for exporting MRS data from
-the scanner console for offline processing.
+the MRI scanner console for offline processing.
 GE exports a P-file (`*.7`) that stores unprocessed, un-coil-combined data with metadata embedded
 in a proprietary data header.
 Philips has multiple export formats, the most common being the SDAT/SPAR format.
@@ -65,8 +65,10 @@ Note that NIfTI-MRS is not designed to store data that has not been spatially re
 | ---------------------------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Single-voxel spectroscopy                | svs          | MRS acquisitions where the detected MR signal is spatially localized to a single volume.                                                                                              |
 | Magnetic resonance spectroscopic imaging | mrsi         | MRS acquisitions where additional imaging gradients are used to detect the MR signal from 1, 2, or 3 spatial dimensions.                                                              |
-| Concentration or calibration reference   | ref          | A separate MRS acquisition acquired to detect a signal to serve as a concentration reference for absolute quantification or for preprocessing (for example, eddy-current correction). |
-| Unlocalized spectroscopy                 | unloc        | MRS acquisitions run without localization. This includes signals detected using coil sensitivity only.                                                                                |
+| Unlocalized spectroscopy                 | unloc        | MRS acquisitions run without localization. This includes signals detected using coil sensitivity only.
+|
+| Concentration or calibration reference   | ref          | A separate MRS acquisition acquired to detect a signal to serve as a concentration reference for absolute quantification or for preprocessing (for example, eddy-current correction). 
+|
 
 A major distinction between MRS acquisitions is whether the acquisition technique probes spectral
 information from a single volume (single-voxel spectroscopy, SVS) or encodes this information along
