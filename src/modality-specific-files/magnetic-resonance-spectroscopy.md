@@ -23,7 +23,7 @@ and a guide for using macros can be found at
 {{ MACROS___make_filename_template("raw", datatypes=["mrs"], suffixes=["svs", "mrsi", "ref", "unloc"]) }}
 MRS is a noninvasive technique to detect biochemical changes in the brain. It is conducted using conventional MRI systems.
 Each manufacturer has its own file format (sometimes multiple formats) for exporting MRS data from
-the scanner console for offline processing.
+the MRI scanner console for offline processing.
 GE exports a P-file (`*.7`) that stores unprocessed, un-coil-combined data with metadata embedded
 in a proprietary data header.
 Philips has multiple export formats, the most common being the SDAT/SPAR format.
