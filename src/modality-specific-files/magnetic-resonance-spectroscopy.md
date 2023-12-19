@@ -65,8 +65,10 @@ Note that NIfTI-MRS is not designed to store data that has not been spatially re
 | ---------------------------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Single-voxel spectroscopy                | svs          | MRS acquisitions where the detected MR signal is spatially localized to a single volume.                                                                                              |
 | Magnetic resonance spectroscopic imaging | mrsi         | MRS acquisitions where additional imaging gradients are used to detect the MR signal from 1, 2, or 3 spatial dimensions.                                                              |
-| Concentration or calibration reference   | ref          | A separate MRS acquisition acquired to detect a signal to serve as a concentration reference for absolute quantification or for preprocessing (for example, eddy-current correction). |
-| Unlocalized spectroscopy                 | unloc        | MRS acquisitions run without localization. This includes signals detected using coil sensitivity only.                                                                                |
+| Unlocalized spectroscopy                 | unloc        | MRS acquisitions run without localization. This includes signals detected using coil sensitivity only.
+|
+| Concentration or calibration reference   | ref          | A separate MRS acquisition acquired to detect a signal to serve as a concentration reference for absolute quantification or for preprocessing (for example, eddy-current correction). 
+|
 
 A major distinction between MRS acquisitions is whether the acquisition technique probes spectral
 information from a single volume (single-voxel spectroscopy, SVS) or encodes this information along
