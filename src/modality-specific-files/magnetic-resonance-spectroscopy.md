@@ -189,4 +189,3 @@ MAY be present:
    "ReferenceSignal": "bids::sub-01/mrs/sub-01_acq-press_ref.nii.gz",
    "AnatomicalImage": "bids::sub-01/anat/sub-01_T1w.nii.gz"
 }
-```
