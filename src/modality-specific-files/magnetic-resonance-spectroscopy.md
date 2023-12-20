@@ -77,8 +77,8 @@ To avoid confusion, the suffixes `svs` and `mrsi` MUST be used to distinguish th
 For cases where localization is not used, the suffix `unloc` MUST be used.
 
 Furthermore, it is common to acquire an additional MRS dataset that may serve as a reference for
-scaling metabolite signal levels (for example, to obtain concentrations) and/or for preprocessing steps such as
-eddy-current correction, RF coil combination, phasing, and frequency calibration.
+scaling metabolite signal levels (for example, to obtain concentrations) and/or for preprocessing steps (such as
+eddy-current correction, RF coil combination, phasing, and frequency calibration).
 This could be either an external reference (for example, a phantom or a synthetic signal) or, more typically,
 an internal tissue water reference.
 For such datasets, the suffix `ref` MUST be used.
