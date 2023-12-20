@@ -91,8 +91,7 @@ two references to be used for concentration scaling and eddy-current correction,
 Given the large variety of MRS sequences, there will be times when providing sufficient detail of
 acquisition parameters in filenames is helpful or necessary to distinguish datasets in a given study.
 
-The following labels for the most commonly used in vivo MRS sequences/techniques are OPTIONAL to use
-when using the `acq-<label>` entity in the filename.
+Here we present a set of `<labels>` when using the `acq-<label>` entity in the filename. These are based on the most commonly used in vivo MRS sequences/techniques, and are OPTIONAL to use.
 Users are free to choose any label they wish as long as they are consistent across participants
 and sessions and use only legal label characters.
 If used, the chosen label SHOULD also be described in the `PulseSequenceType` field in the sidecar JSON file.
