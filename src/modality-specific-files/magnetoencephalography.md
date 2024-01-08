@@ -546,7 +546,7 @@ A guide for using macros can be found at
 
 ### Example 2
 
-One empty-room recording per participant's session, stored within the session directory.
+One empty-room recording per each participant's session, stored within the session directory.
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
