@@ -509,13 +509,13 @@ It is RECOMMENDED to explicitly specify which empty-room recording should be use
 Empty-room recordings may be collected once per day, where a single empty-room recording may be shared between multiple subjects and/or sessions (see [Example 1](#example-1)).
 Empty-room recordings can also be collected for each individual experimental session (see [Example 2](#example-2)).
 
-In the case of empty-room recordings being associated with multiple subjects and/or sessions, it is RECOMMENDED to store the empty-room recording inside a subject directory named `sub-emptyroom`.
+In the case of empty-room recordings being associated with multiple subjects and/or sessions (see [Example 1](#example-1)), it is RECOMMENDED to store the empty-room recording inside a subject directory named `sub-emptyroom`.
 If a [`session-<label>`](../appendices/entities.md#ses) entity is present, its label SHOULD be the date of the empty-room recording in the format `YYYYMMDD`, that is `ses-YYYYMMDD`.
 The `scans.tsv` file containing the date and time of the acquisition SHOULD also be included.
 The rationale is that this naming scheme will allow users to easily retrieve the empty-room recording that best matches a particular experimental session, based on date and time of the recording.
 It should be possible to query empty-room recordings just like usual subject recordings, hence all metadata sidecar files (such as the `channels.tsv`) file SHOULD be present as well.
 
-In the case of empty-room recordings being collected for the individual experimental session, it is recommended to store the empty-room recording along with that subject and session.
+In the case of empty-room recordings being collected for the individual experimental session (see [Example 2](#example-2)), it is RECOMMENDED to store the empty-room recording along with that subject and session.
 
 In either case, the label for the [`task-<label>`](../appendices/entities.md#task) entity in the empty-room recording SHOULD be set to `noise`.
 
