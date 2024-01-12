@@ -93,7 +93,11 @@ in [Derived dataset and pipeline description][derived-dataset-description].
 
 ## File format specification
 
-In general, derivatives data formats follow those for raw data, for instance, 4D NIfTI fMRI leads to 3D NIfTI, EEG raw data in .edf leads to EEG averaged data in .edf. It is however not always possible, and in such cases, data should be exported to .tsv files when possible or in an alternative format. In this section, we describe standard formats that SHOULD be adhered to when appropriate and the extensions they should have.
+Generally derivative data formats SHOULD be the same as for raw data.
+For instance raw EEG data stored in the `.edf` data format SHOULD also be stored in the same format when averaged.
+However, derived data may be resampled into structures that are not well-handled by the raw data formats.
+For such scenarios, in this section we describe standard formats that SHOULD be adhered to when appropriate,
+and the extensions they should have.
 
 ### GIFTI Surface Data Format
 
@@ -122,9 +126,17 @@ for GIFTI files.
 
 ### Multidimensional arrays: HDF5 and Zarr
 
-For multidimensional arrays, HDF5 and Zarr are recommended (both read/write in Python, Matlab, R, etc.). HDF5 and Zarr container format files (note: .zarr is typically a folder) should contain the data only (with the field ‘data’). The idea is to treat these as a virtual directory tree one level deep containing BIDS paths at the level of the multidimensional file (.zarr root or .h5 file). BIDS path rules are applied as though these paths exist within the dataset. Information related to .zarr/.h5-file that is possible to leave into a json sidecar should be extracted into the json sidecar as much as possible to be easily readable even if one doesn't have the software to read .zarr/.h5 files.
+For multidimensional arrays, the following file formats are RECOMMENDED:
 
+-   [HDF5](https://www.hdfgroup.org/solutions/hdf5/)
+-   [Zarr](https://zarr.dev/)
 
+HDF5 and Zarr container format files (note that `.zarr` is typically a directory) should contain the data only (with the field `data`).
+This `data` field should be treated as a "virtual directory tree" with a depth one level,
+containing BIDS paths at the level of the multidimensional file
+(that is, the `.zarr` directory root or the `.h5` file).
+BIDS path rules MUST be applied as though these paths existed within the dataset.
+Metadata about the multidimensional array SHOULD be documented in the associated JSON sidecar file.
 
 <!-- Link Definitions -->
 
