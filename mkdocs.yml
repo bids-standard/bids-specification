@@ -23,6 +23,7 @@ nav:
           - BIDS Derivatives: derivatives/introduction.md
           - Common data types and metadata: derivatives/common-data-types.md
           - Imaging data types: derivatives/imaging.md
+          - Electrophysiology data types: derivatives/ephys.md
       - Longitudinal and multi-site studies: longitudinal-and-multi-site-studies.md
       - Glossary: glossary.md
       - BIDS Extension Proposals: extensions.md
