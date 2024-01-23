@@ -25,6 +25,15 @@ acquisition:
     remains at the discretion of the researcher.
   type: string
   format: label
+atlas:
+  name: atlas
+  display_name: Atlas
+  description: |
+  The definition of atlas per Merriam-Webster is ‘a bound collection of maps (i.e. labeled brain regions or quantitative aspects) and metadata (tables, or textual matter). 
+
+  Within BIDS atlases are broadly defined as a mapping between locations in a spatial coordinate systems and descriptions associated with those locations. By analogy with geographical atlases, brain atlases can map brain locations to either discrete labels like a map of countries does, or to continuous quantities like a topographic map does.
+
+  This comprises all possible types of atlases, specifically deterministic, probabilistic, and mask/voxel-based ones, and quantitative maps from various modalities including but not limited to: structural features (e.g. myelination, cytoarchitecture), functional features (e.g. resting-state networks, localizers) and such based on multimodal data integration (e.g. gene expression, receptors). Furthermore, it covers both volume/voxel and surface/vertex data, as well as gray and white matter atlases.
 ceagent:
   name: ce
   display_name: Contrast Enhancing Agent
