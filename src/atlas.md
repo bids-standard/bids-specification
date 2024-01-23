@@ -2,7 +2,7 @@
 
 In the following we describe how an [atlas](schema/objects/entities.yaml#atlas) can be shared within BIDS. We describe a broad set of atlases and use cases thereof. 
 
-More specifically, this entails providing and referring to existing atlas datasets, describing atlases that were newly derived within an analysis, and providing information for derivatives that were obtained through them. The first would comprise (publicly) available atlases, for example, Destrieux et al. [doi.org/10.1016/j.neuroimage.2010.06.010](https://doi.org/10.1016/j.neuroimage.2010.06.010), AAL [doi.org/10.1006/nimg.2001.0978](https://doi.org/10.1006/nimg.2001.0978), Yeo [doi.org/10.1152/jn.00338.2011](https://doi.org/10.1152/jn.00338.2011) and JHU DTI-based white-matter atlases [eBook ISBN: 9780080456164](https://shop.elsevier.com/books/mri-atlas-of-human-white-matter/mori/978-0-444-51741-8) [doi.org/10.1016/j.neuroimage.2007.07.053](https://doi.org/10.1016/j.neuroimage.2007.07.053), while the second would include atlases obtained through analyses within a dataset at hand, for example, resting-state networks and functional localizers. Importantly, the latter can also be utilized as existing atlases if made available. The third would entail referencing an atlas and its properties used to derive e.g. parcellated time series or a connectivity matrix. 
+More specifically, this entails providing and referring to existing atlas datasets, describing atlases that were newly derived within an analysis, and providing information for derivatives that were obtained through them. The first would comprise (publicly) available atlases, for example, Destrieux et al. [doi.org/10.1016/j.neuroimage.2010.06.010](https://doi.org/10.1016/j.neuroimage.2010.06.010), AAL [doi.org/10.1006/nimg.2001.0978](https://doi.org/10.1006/nimg.2001.0978), Yeo [doi.org/10.1152/jn.00338.2011](https://doi.org/10.1152/jn.00338.2011) and JHU DTI-based white-matter atlases [eBook ISBN: 9780080456164](https://shop.elsevier.com/books/mri-atlas-of-human-white-matter/mori/978-0-444-51741-8) and [doi.org/10.1016/j.neuroimage.2007.07.053](https://doi.org/10.1016/j.neuroimage.2007.07.053), while the second would include atlases obtained through analyses within a dataset at hand, for example, resting-state networks and functional localizers. Importantly, the latter can also be utilized as existing atlases if made available. The third would entail referencing an atlas and its properties used to derive e.g. parcellated time series or a connectivity matrix. 
 
 ## Atlas as new DatasetType
 Here we introduce an additional value to the DatasetType field of dataset_description.json. If a dataset declares its DatasetType to be [atlas](schema/objects/entities.yaml#atlas), the top-level directories MUST be `atlas-` instead of `sub-`. This will allow sharing existing atlases as stand-alone datasets, validating them via the BIDS validator and enabling their integration as sub-datasets of other BIDS datasets.
@@ -23,7 +23,7 @@ The first option refers to atlases that were not altered, e.g. via spatial trans
 <dataset>/atlas/ 
 ```
 
-using the  BIDS validator. Importantly, only this case uses the “atlas-” identifier, following the same directory structure as “sub”, i.e., one dedicated directory for each atlas within a given dataset. 
+using the  BIDS validator. Importantly, only this case uses the [atlas](schema/objects/entities.yaml#atlas) identifier, following the same directory structure as [atlas](schema/objects/entities.yaml#sub), i.e., one dedicated directory for each atlas within a given dataset. 
 The default way of storage of the non-altered atlas at the root directory looks like this:
 
 ```Text
@@ -35,11 +35,11 @@ The default way of storage of the non-altered atlas at the root directory looks 
 
 ### Representing the atlas at the subject level
 
-Besides this default and required storage of the non-altered atlas at the root directory, the second use case provides three options to store atlases that were either altered, applied, or derived within a given dataset. While option 1 also uses the “atlas” identifier, options 2 and 3 use the “seg” identifier, as outlined in the next paragraphs.
+Besides this default and required storage of the non-altered atlas at the root directory, the second use case provides three cases to store atlases that were either altered, applied, or derived within a given dataset. While case 1 also uses the [atlas](schema/objects/entities.yaml#atlas) identifier, case 2 and 3 use the [seg](schema/objects/entities.yaml#seg) identifier, as outlined in the next paragraphs.
 
 #### Case 1
 
-First, a given atlas underwent modifications before its utilization, specifically spatial transformations to a template space and is used in this form within a given pipeline. In this case, the respective BIDS-Atlas files will be stored at both the BIDS root level and the given pipeline directory under “derivatives”. Files stored at the BIDS root level will follow the structure outlined in option 1, while files stored at the pipeline level will follow the respective naming conventions. For example, if an atlas was spatially transformed to a certain MNI template, then the BIDS-Atlas files will be stored within the respective pipeline directory and the corresponding space-<label> identifier will be adapted accordingly. 
+First, a given atlas underwent modifications before its utilization, specifically spatial transformations to a template space and is used in this form within a given pipeline. In this case, the respective BIDS-Atlas files will be stored at both the BIDS root level and the given pipeline directory under `derivatives`. Files stored at the BIDS root level will follow the structure outlined in option 1, while files stored at the pipeline level will follow the respective naming conventions. For example, if an atlas was spatially transformed to a certain MNI template, then the BIDS-Atlas files will be stored within the respective pipeline directory and the corresponding [space](schema/objects/entities.yaml#space)-<label> identifier will be adapted accordingly. 
 
 ```Text
 <dataset>/atlas/atlas-<label>/
@@ -56,7 +56,7 @@ First, a given atlas underwent modifications before its utilization, specificall
 
 #### Case 2 
 
-Second, a given atlas underwent modifications before its utilization, specifically spatial transformations to an individual subject space and is used in this form. In this case, the respective BIDS-Atlas files will be stored at both the BIDS root level and at the given subject level under “derivatives”. Files stored at the BIDS root level will follow the structure outlined in option 1, while files stored at the subject level will be placed within the modality directory of the space the atlas was spatially transformed to and follow the subject-related naming conventions. For example, if an atlas was spatially transformed to the anatomical space of a given subject, then the BIDS-Atlas files will be stored within the respective subject’s anat directory and their file names will be prepended with the subject identifier. Additionally, instead of “atlas”, the “seg” identifier will be used to support a broader scope and more data modalities.  
+Second, a given atlas underwent modifications before its utilization, specifically spatial transformations to an individual subject space and is used in this form. In this case, the respective BIDS-Atlas files will be stored at both the BIDS root level and at the given subject level under `derivatives`. Files stored at the BIDS root level will follow the structure outlined in option 1, while files stored at the subject level will be placed within the modality directory of the space the atlas was spatially transformed to and follow the subject-related naming conventions. For example, if an atlas was spatially transformed to the anatomical space of a given subject, then the BIDS-Atlas files will be stored within the respective subject’s anat directory and their file names will be prepended with the subject identifier. Additionally, instead of [atlas](schema/objects/entities.yaml#atlas), the [seg](schema/objects/entities.yaml#seg) identifier will be used to support a broader scope and more data modalities.  
 
 ```Text
 <dataset>/atlas/atlas-<label>/
@@ -74,7 +74,9 @@ Second, a given atlas underwent modifications before its utilization, specifical
 
 #### Case 3
 
-Third, a given atlas was derived from the corresponding subject’s data and thus is subject-specific. In this case, the respective BIDS-Atlas files are only stored at the subject level within the modality directory of the data the atlas was derived from. If a subject-specific atlas was spatially transformed from the space of the modality it was derived into the space of a different modality, then the BIDS-Atlas files would be stored in both respective modality directories. For example, if an atlas was derived from data in anat and shared/utilized as is, then the BIDS-Atlas files would only be stored in the anat directory. If the atlas was spatially transformed to the functional space of the respective subject, then the BIDS-Atlas files would be stored in both directories, anat and func. As in the prior use case, the “atlas” identifier will be replaced with “seg”. Note, if an atlas is defined at the single subject level, you should specify a [Image-based Coordinate System](/appendices/coordinate-systems.md).
+Third, a given atlas was derived from the corresponding subject’s data and thus is subject-specific. In this case, the `atlas` directory at the root of the dataset does not exist. The subject specific atlas filenames are the same as in case 2 at the subject level within the modality directory of the data the atlas was derived from. The only addition is a `*_coordsystem.json` file that specifies the [Image-based Coordinate System](/appendices/coordinate-systems.md) of the suject-specific atlas. 
+
+If a subject-specific atlas was spatially transformed from the space of the modality it was derived into the space of a different modality, then the BIDS-Atlas files would be stored in both respective modality directories. For example, if an atlas was derived from data in anat and shared/utilized as is, then the BIDS-Atlas files would only be stored in the anat directory. If the atlas was spatially transformed to the functional space of the respective subject, then the BIDS-Atlas files would be stored in both directories, anat and func. As in the prior use case, the [atlas](schema/objects/entities.yaml#atlas) identifier will be replaced with the [seg](schema/objects/entities.yaml#seg) identifier.
 
 ```Text
 <dataset>/derivatives/
@@ -90,9 +92,9 @@ Third, a given atlas was derived from the corresponding subject’s data and thu
 
 The `[probseg|dseg|mask].[nii|dlabel.nii|label.gii][.gz]` file represents the location and extent of the nodes/parcels/regions within the atlas. Different file types are supported based on the modality and atlas at hand. In more detail, this encompasses the following three options:
 
-1.	_dseg: Each node is labeled with a unique integer corresponding to its row/index in the tsv sidecar.
-2.	_probseg: Each node is represented along an additional dimension of the file (e.g., a 4D nifti file where each volume represents a node) and its position in that dimension corresponds to its row/index in the tsv sidecar.
-3.	_mask: Either each voxel represents a node or the entire mask is a single node. How the mask should be interpreted is determined by other specifications. Based on these options, an atlas can take the following forms in the here proposed specification (non-exhaustive list):
+1. [_dseg](schema/objects/suffixes.yaml#dseg): Each node is labeled with a unique integer corresponding to its row/index in the tsv sidecar.
+2. [_probseg](schema/objects/suffixes.yaml#probseg): Each node is represented along an additional dimension of the file (e.g., a 4D nifti file where each volume represents a node) and its position in that dimension corresponds to its row/index in the tsv sidecar.
+3. [_mask](schema/objects/suffixes.yaml#mask): Either each voxel represents a node or the entire mask is a single node. How the mask should be interpreted is determined by other specifications. Based on these options, an atlas can take the following forms in the here proposed specification (non-exhaustive list):
 a.	A 3D nifti file with unique integers defining nodes
 b.	A 4D binary nifti file with spatially overlapping nodes in each volume (along the 4th dimension)
 c.	A 4D nifti file with overlapping nodes with continuous values for each voxel within a volume
@@ -104,11 +106,11 @@ atlas-HarvardOxford_res-2_probseg.nii.gz
 atlas-HarvardOxford_res-2_desc-HeschlGyrus_mask.nii.gz
 ```
 
-General Recommendations: This specification relies on the inheritance principle whereby files deeper in the hierarchy inherit from the top-level files. If you have atlas files that are transformed to subject-specific space for each subject, then excluding the space entity at the top level is a good way to ensure the file inherits information about the original atlas. Additionally, the “desc” label should be avoided as an inherited file may need to use the desc label to contain information related or unrelated to the atlas.
+General Recommendations: This specification relies on the inheritance principle whereby files deeper in the hierarchy inherit from the top-level files. If you have atlas files that are transformed to subject-specific space for each subject, then excluding the space entity at the top level is a good way to ensure the file inherits information about the original atlas. Additionally, the [desc](schema/objects/entities.yaml#desc) label should be avoided as an inherited file. One may need to use the [desc](schema/objects/entities.yaml#desc) label to contain information related or unrelated to the atlas.
 
  The `[probseg|dseg|mask|channels].tsv` file indexes and labels each node/parcel/region within the atlas. This file resembles the typical Look Up Table (LUT) often shared with atlases. This file will be essential for downstream workflows that generate matrices, as the index/label fields will be used to reference the original anatomy the index/labels are derived from. Additional fields can be added with their respective definition/description in the sidecar json file.
 
-insert missing table from word document here
+insert missing table 1 from Google doc here
   
 Example:
 ```Text
@@ -119,35 +121,33 @@ index	label	network_label	hemisphere	…
 
 The `[probseg|dseg|mask].json` file provides metadata to uniquely identify, describe and characterize the atlas, as well as give proper attribution to the creators. Additionally, SpatialReference serves the important purpose of unambiguously identifying the space the atlas is labeled in.
 
-insert missing table from word document here
+insert missing table 2 from Google doc here
 
 Example:
 
 ```JSON
 {
-  	"Name": "FSL's MNI ICBM 152 non-linear 6th Generation Asymmetric Average 
-   Brain Stereotaxic Registration Model",
+  	"Name": "FSL's MNI ICBM 152 non-linear 6th Generation Asymmetric Average Brain Stereotaxic Registration Model",
  	"Authors": [
- “David Kennedy”,
- “Christian Haselgrove”,
- “Bruce Fischl”,
- “Janis Breeze”,
- “Jean Frazie”, 
- “Larry Seidman”,
- “Jill Goldstein”
- 		],
+		"David Kennedy",
+		"Christian Haselgrove",
+		"Bruce Fischl",
+		"Janis Breeze",
+		"Jean Frazie", 
+		"Larry Seidman",
+		"Jill Goldstein"
+				],
  	"BIDSVersion": "1.1.0",
  	"Curators": "FSL team",
-“SpatialReference”:   
-“https://templateflow.s3.amazonaws.com/tpl-MNI152NLin6Asym_res-02_T1w.nii.gz”,
+	"SpatialReference": "https://templateflow.s3.amazonaws.com/tpl-MNI152NLin6Asym_res-02_T1w.nii.gz",
  	"Space": "MNI152NLin6Asym",
-“Resolution”: “Matched with original template resolution (2x2x3 mm^3)”, 
+	"Resolution": "Matched with original template resolution (2x2x3 mm^3)", 
  	"License": "See LICENSE file",
-"RRID": "SCR_002823",
+	"RRID": "SCR_002823",
   	"ReferencesAndLinks": [
-  "https://doi.org/10.1016/j.neuroimage.2012.01.024",
-  "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases”
-     ],
+	"https://doi.org/10.1016/j.neuroimage.2012.01.024",
+	"https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases"
+		],
   	"Species": "Human"
 }
 ```
@@ -173,28 +173,26 @@ Example content of the `atlas-HarvardOxford_res-2_dseg.json` file:
 ```JSON
 {
  	"Authors": [
- “David Kennedy”,
- “Christian Haselgrove”,
- “Bruce Fischl”,
- “Janis Breeze”,
- “Jean Frazie”, 
- “Larry Seidman”,
- “Jill Goldstein”
- 		],
+		"David Kennedy",
+		"Christian Haselgrove",
+		"Bruce Fischl",
+		"Janis Breeze",
+		"Jean Frazie", 
+		"Larry Seidman",
+		"Jill Goldstein"
+				],
  	"BIDSVersion": "1.1.0",
  	"Curators": "FSL team",
-“SpatialReference”:   
-“https://templateflow.s3.amazonaws.com/tpl-MNI152NLin6Asym_res-02_T1w.nii.gz”,
+	"SpatialReference": "https://templateflow.s3.amazonaws.com/tpl-MNI152NLin6Asym_res-02_T1w.nii.gz",
  	"Space": "MNI152NLin6Asym",
-“Resolution”: “Matched with original template resolution (2x2x3 mm^3)”, 
+"	Resolution": "Matched with original template resolution (2x2x3 mm^3)", 
  	"License": "See LICENSE file",
-  	"Name": "FSL's MNI ICBM 152 non-linear 6th Generation Asymmetric Average 
-   Brain Stereotaxic Registration Model",
-"RRID": "SCR_002823",
+  	"Name": "FSL's MNI ICBM 152 non-linear 6th Generation Asymmetric Average Brain Stereotaxic Registration Model",
+	"RRID": "SCR_002823",
   	"ReferencesAndLinks": [
-  "https://doi.org/10.1016/j.neuroimage.2012.01.024",
-  "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases”
-     ],
+	"https://doi.org/10.1016/j.neuroimage.2012.01.024",
+	"https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases"
+		],
   	"Species": "Human"
 }
 ```
@@ -202,7 +200,6 @@ Example content of the `atlas-HarvardOxford_res-2_dseg.json` file:
 Next, the content of the tsv files describing the indices and corresponding labels present in the atlas at hand. 
 
 Example content of the `atlas-HarvardOxford_res-2_dseg.tsv` file:
-
 
 ```Text
 index	label	hemisphere
@@ -265,12 +262,11 @@ Example content of the `sub-01_space-T1w_seg-HarvardOxford_res-2_dseg.json` file
 ```JSON
 {
  	"BIDSVersion": "1.1.0",
-“SpatialReference”: “sub-01/anat/sub-01_T1w.nii.gz”,
+	"SpatialReference": "sub-01/anat/sub-01_T1w.nii.gz",
  	"Space": "T1w",
-“Resolution”: “Matched with original resolution in subject T1w space 
-  (1x1x1 mm^3)”, 
-	“Sources”: [],
-“transformation”:
+	"Resolution": "Matched with original resolution in subject T1w space (1x1x1 mm^3)", 
+	"Sources": [],
+	"transformation":
 }
 ```
 
@@ -301,22 +297,21 @@ The json file accompanying the functionally derived atlas should include the fol
 Example content of the `sub-01_task-rest_atlas.json` file contains top-level metadata about the atlas:
 
 ```JSON
+
+"Atlas": 
 {
-  "Atlas": {
-    "Russome": {
-“Atlasfile”: “/link/to/russome/file”, 
-“Extra”: “individualized surface parcellation”
-},
-    “FS_aseg”: {
-“Atlasfile”: “/link/to/aseg/file”, 
-“Extra”: “freesurfer aseg”
-}
-}
+	"Russome": 
+	{
+	"Atlasfile": "/link/to/russome/file", 
+	"Extra": "individualized surface parcellation"
+	},
+	"FS_aseg": {
+	"Atlasfile": "/link/to/aseg/file", 
+	"Extra": "freesurfer aseg"
+	}
+} 
+
 ```
-
-## Atlas utilization in electrophysiology data
-
-Some atlases in development include the Open MNI iEEG Atlas (https://mni-open-ieegatlas.research.mcgill.ca/) led by Birgit Frauscher and Jean Gotman of at McGill University with technical implementation led by Alan Evans’ group led by Christine Rogers [citation].  106 subjects’s signal data from 17__ channels in non-epileptogenic areas of (“normal”) tissue was mapped to a MICCAI 2012 standardized atlas template [citation]. Additional intracranial EEG atlas development is in progress across 10 sites in 6 countries.   
 
 ## Quantitative atlas examples 
 
@@ -370,4 +365,4 @@ bids/atlas/
 		atlas-ps13_space-MNI305Lin_res-2_stat-std_meas-VT_mimap.tsv
 ```
 
-Note that there is no image file present in a regional qunatitative atlas. The json file accompanying the quantitative atlas should include the information as in 4.1.
+Note that there is no image file present in a regional qunatitative atlas. The json file accompanying the quantitative atlas should include the information as in [Single existing atlas in template space](#_Single_existing_atlas_in_template_space).
