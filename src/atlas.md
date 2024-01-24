@@ -15,7 +15,7 @@ The usage of [_desc-](schema/objects/entities.yaml#desc) is currently discourage
 ## Directory Structure
 BIDS-Atlas focuses on the utilization of atlases while also allowing their sharing. Thus, atlases are either stored within a dedicated `atlas` directory at the BIDS root directory (comparable to the `code` directory), such files are the non-altered/original atlases. In the second case, they are stored within the directory of a given subject’s derivatives representing the altered/derived/applied atlases. 
 
-### Representing the atlas at the dataset level
+### Representing an atlas as a dataset
 
 The first option refers to atlases that were not altered, e.g. via spatial transformations and/or resampling or applied to data and thus their initial inclusion/utilization in a given dataset. If there is only this form of atlases (i.e., the tool used), they are always shared at the root folder and everything else is under derivatives. This allows validating any  
 
@@ -33,9 +33,8 @@ The default way of storage of the non-altered atlas at the root directory looks 
 	atlas-<label>_space-<label>_desc-<label>_[dseg|probseg|mask].json
 ```
 
-### Representing the atlas at the subject level
-
-Besides this default and required storage of the non-altered atlas at the root directory, the second use case provides three cases to store atlases that were either altered, applied, or derived within a given dataset. While case 1 also uses the [atlas](schema/objects/entities.yaml#atlas) identifier, case 2 and 3 use the [seg](schema/objects/entities.yaml#seg) identifier, as outlined in the next paragraphs.
+### Representing an atlas within a dataset
+Besides this default and required storage of the non-altered atlas at the root directory, the second use case provides three cases to store atlases that were either altered, applied, or derived within a given dataset. While case 1  uses the [atlas](schema/objects/entities.yaml#atlas) identifier, case 2 and 3 use the [seg](schema/objects/entities.yaml#seg) identifier. The difference between the use of [atlas](schema/objects/entities.yaml#atlas) and [seg](schema/objects/entities.yaml#seg) identifier is that in the first case an existing atlas is changed, e.g. transformed, but still remains an atlas. In the other case, the atlas is used to define a segmentation, e.g. the AAL atlas is used to define a cortical parcellation, that then is applied to a subjects other content, e.g. a cortical thickness or bindign poentatial map.
 
 #### Case 1
 
@@ -56,7 +55,7 @@ First, a given atlas underwent modifications before its utilization, specificall
 
 #### Case 2 
 
-Second, a given atlas underwent modifications before its utilization, specifically spatial transformations to an individual subject space and is used in this form. In this case, the respective BIDS-Atlas files will be stored at both the BIDS root level and at the given subject level under `derivatives`. Files stored at the BIDS root level will follow the structure outlined in option 1, while files stored at the subject level will be placed within the modality directory of the space the atlas was spatially transformed to and follow the subject-related naming conventions. For example, if an atlas was spatially transformed to the anatomical space of a given subject, then the BIDS-Atlas files will be stored within the respective subject’s anat directory and their file names will be prepended with the subject identifier. Additionally, instead of [atlas](schema/objects/entities.yaml#atlas), the [seg](schema/objects/entities.yaml#seg) identifier will be used to support a broader scope and more data modalities.  
+Second, a given atlas underwent modifications before its utilization, specifically spatial transformations to an individual subject space and is used in this form. In this case, the respective BIDS-Atlas files will be stored at both the BIDS root level and at the given subject level under `derivatives`. Files stored at the BIDS root level will follow the structure outlined in option 1. Files stored at the subject level now use the [seg](schema/objects/entities.yaml#seg) entity with it's value refering to the atlas use on a given file. 
 
 ```Text
 <dataset>/atlas/atlas-<label>/
@@ -66,7 +65,7 @@ Second, a given atlas underwent modifications before its utilization, specifical
 
 <dataset>/derivatives/
 	sub-01/
-		anat/
+		func/
 		sub-01_space-<label>_seg-<label>_[dseg|probseg|mask].[nii|dscalar.nii|dlabel.nii|label.gii|tsv][.gz]
 		sub-01_space-<label>_seg-<label>_desc-<label>_[dseg|probseg|mask].tsv
 		sub-01_space-<label>_seg-<label>_desc-<label>_[dseg|probseg|mask].json
@@ -74,19 +73,17 @@ Second, a given atlas underwent modifications before its utilization, specifical
 
 #### Case 3
 
-Third, a given atlas was derived from the corresponding subject’s data and thus is subject-specific. In this case, the `atlas` directory at the root of the dataset does not exist. The subject specific atlas filenames are the same as in case 2 at the subject level within the modality directory of the data the atlas was derived from. The only addition is a `*_coordsystem.json` file that specifies the [Image-based Coordinate System](/appendices/coordinate-systems.md) of the suject-specific atlas. 
-
-If a subject-specific atlas was spatially transformed from the space of the modality it was derived into the space of a different modality, then the BIDS-Atlas files would be stored in both respective modality directories. For example, if an atlas was derived from data in anat and shared/utilized as is, then the BIDS-Atlas files would only be stored in the anat directory. If the atlas was spatially transformed to the functional space of the respective subject, then the BIDS-Atlas files would be stored in both directories, anat and func. As in the prior use case, the [atlas](schema/objects/entities.yaml#atlas) identifier will be replaced with the [seg](schema/objects/entities.yaml#seg) identifier.
+Third, a given atlas was derived from the corresponding subject’s data and thus is subject-specific. In this case, the `atlas` directory at the root of the dataset does not exist. The subject specific atlas filenames are the same as in case 2 at the subject level within the modality directory of the data the atlas was derived from. Optionally, a `*_coordsystem.json` file that specifies the [Image-based Coordinate System](/appendices/coordinate-systems.md) of the suject-specific atlas can be used for e.g. an histological atlas/segnmentation. Unlike As in the prior use case, the [atlas](schema/objects/entities.yaml#atlas) identifier will be replaced with the [seg](schema/objects/entities.yaml#seg) identifier.
 
 ```Text
 <dataset>/derivatives/
 	sub-01/
 		anat/		
-			sub-01_space-<label>_seg_<label>_[dseg|probseg|mask].[nii|dscalar.nii|dlabel.nii|label.gii|tsv][.gz]
-			sub-01_space-<label>_seg-<label>_desc-<label>_[dseg|probseg|mask].tsv
-			sub-01_space-<label>_seg-<label>_desc-<label>_[dseg|probseg|mask].json
-			sub-01_space-<label>_seg-<label>_desc-<label>_coordsystem.json
-```
+			sub-01_atlas-<label>_[dseg|probseg|mask].[nii|dscalar.nii|dlabel.nii|label.gii|tsv][.gz][.ome-tiff|.png]
+			sub-01_atlas-<label>_desc-<label>_[dseg|probseg|mask].tsv
+			sub-01_atlas-<label>_desc-<label>_[dseg|probseg|mask].json
+			sub-01_atlas-<label>_desc-<label>_coordsystem.json
+
 
 ### Representing locations in an atlas file
 
@@ -110,18 +107,184 @@ General Recommendations: This specification relies on the inheritance principle 
 
  The `[probseg|dseg|mask|channels].tsv` file indexes and labels each node/parcel/region within the atlas. This file resembles the typical Look Up Table (LUT) often shared with atlases. This file will be essential for downstream workflows that generate matrices, as the index/label fields will be used to reference the original anatomy the index/labels are derived from. Additional fields can be added with their respective definition/description in the sidecar json file.
 
-insert missing table 1 from Google doc here
+<table>
+  <tr>
+   <td>index (or placeholder in fragment in reference)
+   </td>
+   <td>REQUIRED. (Integer) The number associated with the node/parcel/region (right/left hemispheres may be different).
+   </td>
+  </tr>
+  <tr>
+   <td>label
+   </td>
+   <td>RECOMMENDED. The node name
+   </td>
+  </tr>
+  <tr>
+   <td>network_id
+   </td>
+   <td>OPTIONAL. Network ID the node/parcel belongs to
+   </td>
+  </tr>
+  <tr>
+   <td>network_label
+   </td>
+   <td>OPTIONAL. Label of Network (e.g. Dorsal Attention Network)
+   </td>
+  </tr>
+  <tr>
+   <td>CoordinateReportStrategy
+   </td>
+   <td>OPTIONAL (RECOMMENDED if x, y, z keys are specified).  The strategy used to assess and report x, y and z coordinates of a given node/parcel/region. For example, “CenterOfMass”. 
+   </td>
+  </tr>
+  <tr>
+   <td>x
+   </td>
+   <td>OPTIONAL. The x-coordinate of the node in the spatial reference space (See SpatialReference in the .json file)
+   </td>
+  </tr>
+  <tr>
+   <td>y
+   </td>
+   <td>OPTIONAL. The y-coordinate of the node in the spatial reference space (See SpatialReference in the .json file)
+   </td>
+  </tr>
+  <tr>
+   <td>z
+   </td>
+   <td>OPTIONAL. The z-coordinate of the node in the spatial reference space (See SpatialReference in the .json file)
+   </td>
+  </tr>
+  <tr>
+   <td>hemisphere
+   </td>
+   <td>OPTIONAL. MUST BE ONE OF: “left”, “right”, “bilateral”. Indicate whether the node/parcel/region is in the left or right hemispheres, or is available bilaterally.
+   </td>
+  </tr>
+  <tr>
+   <td>color
+   </td>
+   <td>OPTIONAL. RGB color to use for the node.
+   </td>
+  </tr>
+  <tr>
+   <td>seed
+   </td>
+   <td>OPTIONAL. Seed vertex/channel of the node/region
+   </td>
+  </tr>
+  <tr>
+   <td>region
+   </td>
+   <td>OPTIONAL. “XY”, where X can be L:left, R:right, B:bilateral, and Y can be F:frontal, T:temporal, P:parietal, O:occipital
+   </td>
+  </tr>
+</table>
   
 Example:
 ```Text
-index	label	network_label	hemisphere	…
-1	Heschl’ Gyrus	Somatomotor	left	…
-2	Heschl’ Gyrus	Somatomotor	right	…
+index	label	network_label	hemisphere
+1	Heschl’ Gyrus	Somatomotor	left
+2	Heschl’ Gyrus	Somatomotor	right
 ```
 
 The `[probseg|dseg|mask].json` file provides metadata to uniquely identify, describe and characterize the atlas, as well as give proper attribution to the creators. Additionally, SpatialReference serves the important purpose of unambiguously identifying the space the atlas is labeled in.
 
-insert missing table 2 from Google doc here
+<table>
+  <tr>
+   <td>Name
+   </td>
+   <td>REQUIRED. Name of the atlas
+   </td>
+  </tr>
+  <tr>
+   <td>Description
+   </td>
+   <td>RECOMMENDED. Longform description of the atlas
+   </td>
+  </tr>
+  <tr>
+   <td>SpatialReference
+   </td>
+   <td>RECOMMENDED. Point to an existing atlas in a template space (url or relative file path where this file is located).
+   </td>
+  </tr>
+  <tr>
+   <td>Resolution
+   </td>
+   <td>RECOMMENDED. Resolution atlas is provided in.
+   </td>
+  </tr>
+  <tr>
+   <td>Dimensions
+   </td>
+   <td>RECOMMENDED. Dimensions of the atlas, MUST be 3 (for deterministic atlases) or 4 (for probabilistic atlases).
+   </td>
+  </tr>
+  <tr>
+   <td>4thDimension
+   </td>
+   <td>OPTIONAL. RECOMMENDED if probabilistic atlas. Should indicate what the 4th dimension entails/refers to. MUST be “Indices” or   .
+   </td>
+  </tr>
+  <tr>
+   <td>CoordinateReportStrategy
+   </td>
+   <td>OPTIONAL. MUST BE ONE OF: “peak”, “center_of_mass”, “other”. Indicate the method of coordinate reporting in statistically significant clusters. Could be the “peak” statistical coordinate in the cluster or the “center_of_mass” of the cluster. RECOMMENDED if x, y ,z values are set in the .tsv file. 
+   </td>
+  </tr>
+  <tr>
+   <td>Authors
+   </td>
+   <td>RECOMMENDED. List of the authors involved in the creation of the atlas
+   </td>
+  </tr>
+  <tr>
+   <td>Curators
+   </td>
+   <td>RECOMMENDED. List of curators who helped make the atlas accessible in a database or dataset
+   </td>
+  </tr>
+  <tr>
+   <td>Funding
+   </td>
+   <td>RECOMMENDED. The funding source(s) involved in the atlas creation
+   </td>
+  </tr>
+  <tr>
+   <td>License
+   </td>
+   <td>RECOMMENDED. The license agreement for using the atlas.
+   </td>
+  </tr>
+  <tr>
+   <td>ReferencesAndLinks
+   </td>
+   <td>RECOMMENDED. A list of relevant references and links pertaining to the atlas.
+   </td>
+  </tr>
+  <tr>
+   <td>Species
+   </td>
+   <td>RECOMMENDED. The species the atlas was derived from. For example, could be Human, Macaque, Rat, Mouse, etc.
+   </td>
+  </tr>
+  <tr>
+   <td>DerivedFrom
+   </td>
+   <td>RECOMMENDED. Indicate what data modality the atlas was derived from, e.g. "cytoarchitecture", "resting-state", "task".
+   </td>
+  </tr>
+  <tr>
+   <td>LevelType
+   </td>
+   <td>RECOMMENDED. Indicate what analysis level the atlas was derived from, e.g. "group", "individual".
+   </td>
+  </tr>
+</table>
+
+
 
 Example:
 
@@ -341,28 +504,28 @@ bids/atlas/atlas-ps13/
 
 ### Case 2: regional analysis (voxels/vertices are averaged per regions from dseg/probseg)
 
-Example directory content for a quantitative atlas that provides values for certain ROIs only:
+Example directory content for a quantitative atlas that provides values for certain ROIs only, in this case defined by the AAL atlas:
 
 ```Text
 bids/atlas/
 	atlas-mni305/
 		atlas-aparc.DKTatlas+aseg.mgz
-		atlas-aparc.DKTatlas+aseg.tsv
+		atlas-aparc.DKTatlas+aseg.tsv 
 		atlas-RB_all_2008-03-26.probseg.gca
 		atlas-RB_all_2008-03-26.probseg.tsv
 	atlas-ps13/
-	  	atlas-ps13_space-fsaverage_hemi-L_stat-mean_meas-VT_mimap.json
-        atlas-ps13_space-fsaverage-hemi-L_stat-mean_meas-VT_mimap.tsv
-        atlas-ps13_space-fsaverage-hemi-L_stat-std_meas-VT_mimap.json
-       	atlas-ps13_space-fsaverage-hemi-L_stat-std_meas-VT_mimap.tsv
-       	atlas-ps13_space-fsaverage-hemi-R_stat-mean_meas-VT_mimap.json
-       	atlas-ps13_space-fsaverage-hemi-R_stat-mean_meas-VT_mimap.tsv
-		atlas-ps13_space-fsaverage-hemi-R_stat-std_meas-VT_mimap.json
-		atlas-ps13_space-fsaverage-hemi-R_stat-std_meas-VT_mimap.tsv
-		atlas-ps13_space-MNI305Lin_res-2_stat-mean_meas-VT_mimap.json
-		atlas-ps13_space-MNI305Lin_res-2_stat-mean_meas-VT_mimap.tsv
-		atlas-ps13_space-MNI305Lin_res-2_stat-std_meas-VT_mimap.json
-		atlas-ps13_space-MNI305Lin_res-2_stat-std_meas-VT_mimap.tsv
+	  	atlas-ps13_space-fsaverage_hemi-L_stat-mean_meas-VT_seg-AAL_mimap.json
+        atlas-ps13_space-fsaverage-hemi-L_stat-mean_meas-VT_seg-AAL_mimap.tsv
+        atlas-ps13_space-fsaverage-hemi-L_stat-std_meas-VT_seg-AAL_mimap.json
+       	atlas-ps13_space-fsaverage-hemi-L_stat-std_meas-VT_seg-AAL_mimap.tsv
+       	atlas-ps13_space-fsaverage-hemi-R_stat-mean_meas-VT_seg-AAL_mimap.json
+       	atlas-ps13_space-fsaverage-hemi-R_stat-mean_meas-VT_seg-AAL_mimap.tsv
+		atlas-ps13_space-fsaverage-hemi-R_stat-std_meas-VT_seg-AAL_mimap.json
+		atlas-ps13_space-fsaverage-hemi-R_stat-std_meas-VT_seg-AAL_mimap.tsv
+		atlas-ps13_space-MNI305Lin_res-2_stat-mean_meas-VT_seg-AAL_mimap.json
+		atlas-ps13_space-MNI305Lin_res-2_stat-mean_meas-VT_seg-AAL_mimap.tsv
+		atlas-ps13_space-MNI305Lin_res-2_stat-std_meas-VT_seg-AAL_mimap.json
+		atlas-ps13_space-MNI305Lin_res-2_stat-std_meas-VT_seg-AAL_mimap.tsv
 ```
 
 Note that there is no image file present in a regional qunatitative atlas. The json file accompanying the quantitative atlas should include the information as in [Single existing atlas in template space](#_Single_existing_atlas_in_template_space).
