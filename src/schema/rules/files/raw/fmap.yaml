@@ -38,6 +38,7 @@ pepolar:
     ceagent: optional
     direction: required
     run: optional
+    part: optional
     chunk: optional
 
 TB1DAM:
