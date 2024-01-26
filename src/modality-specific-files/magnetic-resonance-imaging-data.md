@@ -339,7 +339,6 @@ and a guide for using macros can be found at
    )
 }}
 
-
 For any other details on the organization of parametric maps, their
 recommended metadata fields, and the application specific entity or
 metadata requirement levels of [file collections](../appendices/file-collections.md) that can generate
