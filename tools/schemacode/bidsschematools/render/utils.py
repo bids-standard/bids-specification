@@ -1,4 +1,5 @@
 """Utility functions for specification rendering tools."""
+
 import math
 import posixpath
 

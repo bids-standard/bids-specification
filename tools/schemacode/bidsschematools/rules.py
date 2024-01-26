@@ -3,6 +3,7 @@
 This module is currently limited to constructing filename rules from
 ``schema.rules.files``.
 """
+
 import re
 import typing as ty
 from collections.abc import Mapping
