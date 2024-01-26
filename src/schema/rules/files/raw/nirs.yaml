@@ -12,4 +12,5 @@ nirs:
     session: optional
     task: required
     acquisition: optional
+    processing: optional
     run: optional

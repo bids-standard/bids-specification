@@ -56,6 +56,7 @@ TB1DAM:
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    processing: optional
     run: optional
     flip: required
     inversion: optional
@@ -77,6 +78,7 @@ TB1EPI:
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    processing: optional
     run: optional
     echo: required
     flip: required
@@ -102,6 +104,7 @@ RFFieldMaps:
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    processing: optional
     run: optional
     echo: optional
     flip: optional
@@ -124,6 +127,7 @@ TB1SRGE:
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    processing: optional
     run: optional
     echo: optional
     flip: required
@@ -147,5 +151,6 @@ parametric:
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    processing: optional
     run: optional
     chunk: optional

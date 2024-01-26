@@ -14,6 +14,7 @@ asl:
     session: optional
     acquisition: optional
     reconstruction: optional
+    processing: optional
     direction: optional
     run: optional
 
@@ -29,6 +30,7 @@ aslcontext:
     session: optional
     acquisition: optional
     reconstruction: optional
+    processing: optional
     direction: optional
     run: optional
 
@@ -46,4 +48,5 @@ asllabeling:
     session: optional
     acquisition: optional
     reconstruction: optional
+    processing: optional
     run: optional

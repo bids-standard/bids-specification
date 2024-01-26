@@ -14,6 +14,7 @@ pet:
     task: optional
     tracer: optional
     reconstruction: optional
+    processing: optional
     run: optional
 
 blood:
@@ -30,5 +31,6 @@ blood:
     task: optional
     tracer: optional
     reconstruction: optional
+    processing: optional
     run: optional
     recording: required

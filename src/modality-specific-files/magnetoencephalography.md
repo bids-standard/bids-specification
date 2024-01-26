@@ -80,9 +80,8 @@ For example: `sub-01_task-nback_markers.sqd`
 Please refer to the [MEG File Formats Appendix](../appendices/meg-file-formats.md)
 for general information on how to deal with such manufacturer specifics and to see more examples.
 
-The [`proc-<label>`](../appendices/entities.md#proc) entity is analogous to the
-[`rec-<label>`](../appendices/entities.md#rec) entity for MRI,
-and denotes a variant of a file that was a result of particular processing performed on the device.
+The [`proc-<label>`](../appendices/entities.md#proc) entity
+denotes a variant of a file that was a result of particular processing performed on the device.
 This is useful for files produced in particular by Neuromag/Elekta/MEGIN's MaxFilter
 (for example, sss, tsss, trans, quat, mc),
 which some installations impose to be run on raw data prior to analysis.

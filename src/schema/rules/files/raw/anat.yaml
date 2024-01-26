@@ -26,6 +26,7 @@ nonparametric:
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    processing: optional
     run: optional
     echo: optional
     part: optional
@@ -62,6 +63,7 @@ parametric:
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    processing: optional
     run: optional
     chunk: optional
 
@@ -81,6 +83,7 @@ defacemask:
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    processing: optional
     run: optional
     modality: optional
     chunk: optional
@@ -102,6 +105,7 @@ multiecho:
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    processing: optional
     run: optional
     echo: required
     part: optional
@@ -123,6 +127,7 @@ multiflip:
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    processing: optional
     run: optional
     echo: optional
     flip: required
@@ -145,6 +150,7 @@ multiinversion:
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    processing: optional
     run: optional
     inversion: required
     part: optional
@@ -166,6 +172,7 @@ mp2rage:
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    processing: optional
     run: optional
     echo: optional
     flip: optional
@@ -190,6 +197,7 @@ vfamt:
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    processing: optional
     run: optional
     echo: optional
     flip: required
@@ -213,6 +221,7 @@ mtr:
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    processing: optional
     run: optional
     mtransfer: required
     part: optional
