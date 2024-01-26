@@ -1,4 +1,5 @@
 """Tests for the bidsschematools package."""
+
 import os
 from collections.abc import Mapping
 
