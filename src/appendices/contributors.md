@@ -54,6 +54,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Alexander Jones                                      | 💻🐛                                   |
 | Alexander L. Cohen                                   | 🐛💻📖💬                               |
 | Alexander von Lautz                                  | 📖                                     |
+| Alexandre D'Astous                                   | 📖                                     |
 | Alexandre Gramfort                                   | 📖💡                                   |
 | Alexandre Hutton                                     | 📖                                     |
 | Alexandre Routier                                    | 📖                                     |
