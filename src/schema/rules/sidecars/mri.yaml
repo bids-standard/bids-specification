@@ -34,6 +34,7 @@ MRIHardware:
     MRTransmitCoilSequence: recommended
     MatrixCoilMode: recommended
     CoilCombinationMethod: recommended
+    TablePosition: recommended
 
 MRIScannerHardwareASL:
   selectors:
