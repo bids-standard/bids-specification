@@ -46,3 +46,51 @@ raw:
         value: datatype
         level: optional
         opaque: false
+
+alt-raw:
+  root:
+    subdirs:
+      - code
+      - derivatives
+      - phenotype
+      - sourcedata
+      - stimuli
+      - subject
+  code:
+    name: code
+    level: optional
+    opaque: true
+  derivatives:
+    name: derivatives
+    level: optional
+    opaque: true
+  phenotype:
+    name: phenotype
+    level: optional
+    opaque: false
+  sourcedata:
+    name: sourcedata
+    level: optional
+    opaque: true
+  stimuli:
+    name: stimuli
+    level: optional
+    opaque: true
+  subject:
+    entity: subject
+    level: required
+    opaque: false
+    subdirs:
+      - oneOf:
+        - session
+        - datatype
+  session:
+    entity: session
+    level: optional
+    opaque: false
+    subdirs:
+      - datatype
+  datatype:
+    value: datatype
+    level: required
+    opaque: false
