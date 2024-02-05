@@ -267,7 +267,16 @@ Similarly update the version in CITATION.cff with a `dev` suffix.
 1. In a previous step you have secured a PDF version of the BIDS specification and the corresponding `CITATION.cff` file.
 1. Follow the steps described here: https://github.com/bids-standard/bids-specification-pdf-releases#release-instructions
 
-### 11. Sharing news of the release
+### 11. Update the BIDS website data
+
+Update the following files in the BIDS website repository (https://github.com/bids-standard/bids-website) if applicable:
+
+- `tools/timeline.csv`
+- `_data/beps.yml`
+- `_data/beps_completed.yml`
+- `_data/beps_other.yml`
+
+### 12. Sharing news of the release
 
 Please share news of the release on the [identified platforms](https://docs.google.com/spreadsheets/d/16SAGK3zG93WM2EWuoZDcRIC7ygPc5b7PDNGpFyC3obA/edit#gid=0).
 Please use our previous release posts as a guide.
