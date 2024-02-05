@@ -1,4 +1,5 @@
 """Functions for rendering elements of the schema in the specification text."""
+
 from bidsschematools.render.tables import (
     make_columns_table,
     make_entity_table,
