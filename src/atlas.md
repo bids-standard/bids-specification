@@ -184,7 +184,7 @@ Additional fields can be added with their respective definition/description in t
   <tr>
    <td>coordinate_report_strategy
    </td>
-   <td>OPTIONAL (RECOMMENDED if x, y, z keys are specified).  The strategy used to assess and report x, y and z coordinates of a given node/parcel/region. For example, “CenterOfMass”.
+   <td>OPTIONAL (RECOMMENDED if x, y, z keys are specified).  The strategy used to assess and report x, y and z coordinates of a given node/parcel/region. For example, "CenterOfMass".
    </td>
   </tr>
   <tr>
@@ -208,7 +208,7 @@ Additional fields can be added with their respective definition/description in t
   <tr>
    <td>hemisphere
    </td>
-   <td>OPTIONAL. MUST BE ONE OF: “left”, “right”, “bilateral”. Indicate whether the node/parcel/region is in the left or right hemispheres, or is available bilaterally.
+   <td>OPTIONAL. MUST BE ONE OF: "left", "right", "bilateral". Indicate whether the node/parcel/region is in the left or right hemispheres, or is available bilaterally.
    </td>
   </tr>
   <tr>
@@ -226,7 +226,7 @@ Additional fields can be added with their respective definition/description in t
   <tr>
    <td>region
    </td>
-   <td>OPTIONAL. “XY”, where X can be L:left, R:right, B:bilateral, and Y can be F:frontal, T:temporal, P:parietal, O:occipital
+   <td>OPTIONAL. "XY", where X can be L:left, R:right, B:bilateral, and Y can be F:frontal, T:temporal, P:parietal, O:occipital
    </td>
   </tr>
 </table>
@@ -275,13 +275,13 @@ Additionally, SpatialReference serves the important purpose of unambiguously ide
   <tr>
    <td>4thDimension
    </td>
-   <td>OPTIONAL. RECOMMENDED if probabilistic atlas. Should indicate what the 4th dimension entails/refers to. MUST be “Indices” or   .
+   <td>OPTIONAL. RECOMMENDED if probabilistic atlas. Should indicate what the 4th dimension entails/refers to. MUST be "Indices" or   .
    </td>
   </tr>
   <tr>
    <td>CoordinateReportStrategy
    </td>
-   <td>OPTIONAL. MUST BE ONE OF: “peak”, “center_of_mass”, “other”. Indicate the method of coordinate reporting in statistically significant clusters. Could be the “peak” statistical coordinate in the cluster or the “center_of_mass” of the cluster. RECOMMENDED if x, y ,z values are set in the .tsv file.
+   <td>OPTIONAL. MUST BE ONE OF: "peak", "center_of_mass", "other". Indicate the method of coordinate reporting in statistically significant clusters. Could be the "peak" statistical coordinate in the cluster or the "center_of_mass" of the cluster. RECOMMENDED if x, y ,z values are set in the .tsv file.
    </td>
   </tr>
   <tr>
