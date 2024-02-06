@@ -25,7 +25,7 @@ BIDS-Atlas focuses on the utilization of atlases while also allowing their shari
 
 ### Representing an atlas as a dataset
 
-The first option refers to atlases that were not altered, e.g. via spatial transformations and/or resampling or applied to data and thus their initial inclusion/utilization in a given dataset. If there is only this form of atlases (i.e., the tool used), they are always shared at the root folder and everything else is under derivatives. This allows validating any
+The first option refers to atlases that were not altered, e.g. via spatial transformations and/or resampling or applied to data and thus their initial inclusion/utilization in a given dataset. If there is only this form of atlases (i.e., the tool used), they are always shared at the root directory and everything else is under derivatives. This allows validating any
 
 ```Text
 <dataset>/atlas/
@@ -98,11 +98,11 @@ Third, a given atlas was derived from the corresponding subject’s data and thu
 The `[probseg|dseg|mask].[nii|dlabel.nii|label.gii][.gz]` file represents the location and extent of the nodes/parcels/regions within the atlas. Different file types are supported based on the modality and atlas at hand. In more detail, this encompasses the following three options:
 
 1. [_dseg](schema/objects/suffixes.yaml#dseg): Each node is labeled with a unique integer corresponding to its row/index in the tsv sidecar.
-2. [_probseg](schema/objects/suffixes.yaml#probseg): Each node is represented along an additional dimension of the file (e.g., a 4D nifti file where each volume represents a node) and its position in that dimension corresponds to its row/index in the tsv sidecar.
+2. [_probseg](schema/objects/suffixes.yaml#probseg): Each node is represented along an additional dimension of the file (e.g., a 4D NIfTI file where each volume represents a node) and its position in that dimension corresponds to its row/index in the tsv sidecar.
 3. [_mask](schema/objects/suffixes.yaml#mask): Either each voxel represents a node or the entire mask is a single node. How the mask should be interpreted is determined by other specifications. Based on these options, an atlas can take the following forms in the here proposed specification (non-exhaustive list):
-a.  A 3D nifti file with unique integers defining nodes
-b.  A 4D binary nifti file with spatially overlapping nodes in each volume (along the 4th dimension)
-c.  A 4D nifti file with overlapping nodes with continuous values for each voxel within a volume
+a.  A 3D NIfTI file with unique integers defining nodes
+b.  A 4D binary NIfTI file with spatially overlapping nodes in each volume (along the 4th dimension)
+c.  A 4D NIfTI file with overlapping nodes with continuous values for each voxel within a volume
 
 Examples:
 ```Text
@@ -215,7 +215,7 @@ The `[probseg|dseg|mask].json` file provides metadata to uniquely identify, desc
   <tr>
    <td>SpatialReference
    </td>
-   <td>RECOMMENDED. Point to an existing atlas in a template space (url or relative file path where this file is located).
+   <td>RECOMMENDED. Point to an existing atlas in a template space (URL or relative file path where this file is located).
    </td>
   </tr>
   <tr>
@@ -486,13 +486,13 @@ Example content of the `sub-01_task-rest_atlas.json` file contains top-level met
 
 ## Quantitative atlas examples
 
-The example below is for PET imaging, but this applies to any quantitative mapping (PET or QMRI). Compared to anatomical atlases, quantitative atlases give reference values to be compared with. Such values can be derived voxel/vertex wise (see case 1) or per region of interest (ROI) (see case 2). In the latter case, ROIs are generally derived from an anatomical atlas.
+The example below is for PET imaging, but this applies to any quantitative mapping (PET or qMRI). Compared to anatomical atlases, quantitative atlases give reference values to be compared with. Such values can be derived voxel/vertex wise (see case 1) or per region of interest (ROI) (see case 2). In the latter case, ROIs are generally derived from an anatomical atlas.
 
-We created a Molecular Imaging Brain Atlases (MIBA) from 16 subjects who underwent a [11C]PS13 PET scan, a radioligand that quantifies cyclooxygenase-1 (see [source data](https://openneuro.org/datasets/ds004332/versions/1.0.2)). Our atlas consists of mean and standard deviations of PS13 target distribution volumes (VT) computed across the 16 subjects at each voxel, in standard MRI spaces. We also project these distribution volumes onto the freesurfer cortical surfaces and include these as well.  The goal is to allow researchers with MRI-only data to correlate their results to the distribution volume of PS13. The dataset can be found [here](https://openneuro.org/datasets/ds004401/versions/1.1.0).
+We created a Molecular Imaging Brain Atlases (MIBA) from 16 subjects who underwent a [11C]PS13 PET scan, a radioligand that quantifies cyclooxygenase-1 (see [source data](https://openneuro.org/datasets/ds004332/versions/1.0.2)). Our atlas consists of mean and standard deviations of PS13 target distribution volumes (VT) computed across the 16 subjects at each voxel, in standard MRI spaces. We also project these distribution volumes onto the FreeSurfer cortical surfaces and include these as well.  The goal is to allow researchers with MRI-only data to correlate their results to the distribution volume of PS13. The dataset can be found [here](https://openneuro.org/datasets/ds004401/versions/1.1.0).
 
 ### Case 1: voxel/vertex wise analysis
 
-Example directory content for a quantitative atlas that provides values at all voxels and/or verteces:
+Example directory content for a quantitative atlas that provides values at all voxels and/or vertices:
 
 ```Text
 bids/atlas/atlas-ps13/
@@ -536,4 +536,4 @@ bids/atlas/
     atlas-ps13_space-MNI305Lin_res-2_stat-std_meas-VT_seg-AAL_mimap.tsv
 ```
 
-Note that there is no image file present in a regional qunatitative atlas. The json file accompanying the quantitative atlas should include the information as in [Single existing atlas in template space](#_Single_existing_atlas_in_template_space).
+Note that there is no image file present in a regional quantitative atlas. The json file accompanying the quantitative atlas should include the information as in [Single existing atlas in template space](#_Single_existing_atlas_in_template_space).
