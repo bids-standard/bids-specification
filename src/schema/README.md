@@ -175,7 +175,7 @@ references (the cases in which they are used will be presented later):
         description: optional
     ```
     Here, the derivative datatype rule starts by copying the raw datatype rule
-    `rules.files.deriv.anat.nonparametric`.
+    `rules.files.raw.anat.nonparametric`.
     It then *overrides* the `entities` portion of that rule with a new object.
     To *extend* the original `entities`, it again begins
     by referencing `rules.files.raw.anat.nonparametric.entities`,
