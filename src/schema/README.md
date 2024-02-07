@@ -165,20 +165,20 @@ references (the cases in which they are used will be presented later):
     and the references inside `GeneticLevel.anyOf` indicate that there may be a single
     such value or a list of values.
 
-1.  In `rules.datatypes.derivatives.common_derivatives`:
+1.  In [`rules.files.deriv.preprocessed_data`](./rules/files/deriv/preprocessed_data.yaml):
     ```YAML
     anat_nonparametric_common:
-      $ref: rules.datatypes.anat.nonparametric
+      $ref: rules.files.raw.anat.nonparametric
       entities:
-        $ref: rules.datatypes.anat.nonparametric.entities
+        $ref: rules.files.raw.anat.nonparametric.entities
         space: optional
         description: optional
     ```
     Here, the derivative datatype rule starts by copying the raw datatype rule
-    `rules.datatypes.anat.nonparametric`.
+    `rules.files.deriv.anat.nonparametric`.
     It then *overrides* the `entities` portion of that rule with a new object.
     To *extend* the original `entities`, it again begins
-    by referencing `rules.datatypes.anat.nonparametric.entities`,
+    by referencing `rules.files.raw.anat.nonparametric.entities`,
     and adding the new entities `space` and `description`.
 
 ### Expressions
