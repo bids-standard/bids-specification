@@ -231,7 +231,10 @@ which (currently) contains at the top level:
 -   `associations`: associated files, discovered by the inheritance principle
 -   `columns`: the columns in the current TSV file
 -   `json`: the contents of the current JSON file
+-   `gzip`: the contents of the current file GZIP header
 -   `nifti_header`: selected contents of the current NIfTI file's header
+-   `ome`: the contents of the current OME-XML metadata
+-   `tiff`: the contents of the current TIFF file's header
 
 Some of these are strings, while others are nested objects.
 These are to be populated by an *interpreter* of the schema,
