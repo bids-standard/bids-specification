@@ -9,8 +9,8 @@ grep -oE '(://)?([-_A-Za-z]+\.)+[-_A-Za-z]+' README.md \
     | grep -e '^\(meta\|objects\|rules\)' \
     | grep -v 'objects.metadata.OtherObjectName' \
     | sort | uniq | \
-    while read p; do 
-        # filepath=${path//.//}; 
+    while read p; do
+        # filepath=${path//.//};
         #echo "$filepath"
         #ls -ld "$filepath"* || echo "nope"
         #echo -n "$path: "
