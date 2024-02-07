@@ -136,18 +136,20 @@ with the object being referenced.
 The following two prototypical examples are presented to clarify the semantics of
 references (the cases in which they are used will be presented later):
 
-1.  In `objects.metadata`:
+1.  In `objects.enums`:
     ```YAML
     _GeneticLevelEnum:
       type: string
       enum:
-        - Genetic
-        - Genomic
-        - Epigenomic
-        - Transcriptomic
-        - Metabolomic
-        - Proteomic
-
+        - $ref: objects.enums.Genetic.value
+        - $ref: objects.enums.Genomic.value
+        - $ref: objects.enums.Epigenomic.value
+        - $ref: objects.enums.Transcriptomic.value
+        - $ref: objects.enums.Metabolomic.value
+        - $ref: objects.enums.Proteomic.value
+    ```
+    and in `objects.metadata`:
+    ```YAML
     GeneticLevel:
       name: GeneticLevel
       display_name: Genetic Level
@@ -156,13 +158,13 @@ references (the cases in which they are used will be presented later):
         Values MUST be one of `"Genetic"`, `"Genomic"`, `"Epigenomic"`,
         `"Transcriptomic"`, `"Metabolomic"`, or `"Proteomic"`.
       anyOf:
-        - $ref: objects.metadata._GeneticLevelEnum
+        - $ref: objects.enums._GeneticLevelEnum
         - type: array
           items:
-            $ref: objects.metadata._GeneticLevelEnum
+            $ref: objects.enums._GeneticLevelEnum
     ```
     Here `_GeneticLevelEnum` is used to describe the valid values of `GeneticLevel`,
-    and the references inside `GeneticLevel.anyOf` indicate that there may be a single
+    (which are in turn references to individual values), and the references inside `GeneticLevel.anyOf` indicate that there may be a single
     such value or a list of values.
 
 1.  In [`rules.files.deriv.preprocessed_data`](./rules/files/deriv/preprocessed_data.yaml):
