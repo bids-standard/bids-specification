@@ -18,9 +18,11 @@ from .validator import _bidsignore_check
 
 @click.group()
 @click.option("-v", "--verbose", count=True)
-def cli(verbose):
+@click.option("-q", "--quiet", count=True)
+def cli(verbose, quiet):
     """BIDS Schema Tools"""
-    logging.getLogger("bidsschematools").setLevel(logging.INFO - verbose * 10)
+    verbose = verbose - quiet
+    logging.getLogger("bidsschematools").setLevel(logging.WARNING - verbose * 10)
 
 
 @cli.command()
