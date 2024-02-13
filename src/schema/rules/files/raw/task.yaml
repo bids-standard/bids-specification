@@ -41,7 +41,7 @@ timeseries:
 timeseries__mri_no_task:
   suffixes:
     - physio
-    # - stim # no task --> no stimuli
+    - stim
   extensions:
     - .tsv.gz
     - .json
