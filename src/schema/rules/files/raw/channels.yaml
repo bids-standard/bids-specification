@@ -16,6 +16,16 @@ channels:
     acquisition: optional
     run: optional
 
+# ephys has one removed
+# TODO: see if to be added for consistency etc.
+channels__ephys:
+  $ref: rules.files.raw.channels.channels
+  datatypes:
+    - meg
+  entities:
+    $ref: rules.files.raw.channels.channels.entities
+    acquisition:
+
 # MEG has an additional entity available
 channels__meg:
   $ref: rules.files.raw.channels.channels

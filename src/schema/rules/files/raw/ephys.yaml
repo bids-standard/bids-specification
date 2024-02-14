@@ -1,0 +1,18 @@
+---
+ephys:
+  suffixes:
+    - ephys
+  extensions:
+    - .nwb
+    # possible future: serialization in .zarr format to accompany .ome.zarr
+    # - .nwb.zarr
+    - .nix
+  datatypes:
+    - ephys
+  entities:
+    subject: required
+    session: optional
+    sample: optional
+    task: optional
+    run: optional
+    split: optional
