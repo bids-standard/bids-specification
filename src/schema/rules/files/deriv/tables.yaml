@@ -1,0 +1,7 @@
+---
+descriptions:
+  level: optional
+  stem: descriptions
+  extensions:
+    - .tsv
+    - .json

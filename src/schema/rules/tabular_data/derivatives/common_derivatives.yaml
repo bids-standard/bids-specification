@@ -10,3 +10,12 @@ SegmentationLookup:
     color: optional
     mapping: optional
   index_columns: [index]
+
+Descriptions:
+  selectors:
+    - path == "descriptions.tsv"
+  columns:
+    desc_id: required
+    description: required
+  index_columns: [desc_id, description]
+  additional_columns: allowed
