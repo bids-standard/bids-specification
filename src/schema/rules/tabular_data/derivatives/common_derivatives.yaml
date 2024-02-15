@@ -16,6 +16,6 @@ Descriptions:
     - path == "descriptions.tsv"
   columns:
     desc_id: required
-    description: required
-  index_columns: [desc_id, description]
+    description__descriptions: required
+  index_columns: [desc_id]
   additional_columns: allowed
