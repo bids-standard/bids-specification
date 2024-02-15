@@ -13,7 +13,11 @@ SegmentationLookup:
 
 Descriptions:
   selectors:
-    - path == "descriptions.tsv"
+    - suffix == "descriptions"
+    - extension == ".tsv"
+  initial_columns:
+    - desc_id
+    - description__descriptions
   columns:
     desc_id: required
     description__descriptions: required

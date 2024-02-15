@@ -1,7 +1,11 @@
 ---
 descriptions:
   level: optional
-  stem: descriptions
+  suffixes:
+    - sessions
   extensions:
     - .tsv
     - .json
+  entities:
+    subject: optional
+    session: optional
