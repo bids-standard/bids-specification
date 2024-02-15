@@ -259,10 +259,10 @@ static volume, a `RepetitionTime` property would no longer be relevant).
 Template:
 
 ```Text
-sub-<label>/
+[sub-<label>/]
     [ses-<label>/]
-        sub-<label>[_ses-<label>]_descriptions.tsv
-        sub-<label>[_ses-<label>]_descriptions.json
+        [sub-<label>_][ses-<label>_]descriptions.tsv
+        [sub-<label>_][ses-<label>_]descriptions.json
 ```
 
 Optional: Yes
