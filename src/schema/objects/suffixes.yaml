@@ -549,8 +549,8 @@ defacemask:
   description: |
     A binary mask that was used to remove facial features from an anatomical MRI
     image.
-descriptionts:
-  value: descriptionts
+descriptions:
+  value: descriptions
   display_name: Description Entity Definitions
   description: |
     A TSV file describing labels found for the `desc` entity in a Derivatives dataset.

@@ -256,6 +256,17 @@ static volume, a `RepetitionTime` property would no longer be relevant).
 
 ## descriptions.tsv
 
+Template:
+
+```Text
+sub-<label>/
+    [ses-<label>/]
+        sub-<label>[_ses-<label>]_descriptions.tsv
+        sub-<label>[_ses-<label>]_descriptions.json
+```
+
+Optional: Yes
+
 To keep a record of processing steps applied to the data, a `descriptions.tsv` file MAY be used.
 The `descriptions.tsv` file consists of one row for each unique `desc-<label>`
 entity used in the dataset and a set of REQUIRED and OPTIONAL columns:

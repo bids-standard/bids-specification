@@ -2,7 +2,7 @@
 descriptions:
   level: optional
   suffixes:
-    - sessions
+    - descriptions
   extensions:
     - .tsv
     - .json
