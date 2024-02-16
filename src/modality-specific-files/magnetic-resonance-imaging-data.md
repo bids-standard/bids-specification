@@ -9,7 +9,7 @@ MRI acquisition parameters are divided into several categories based on
 ([article](https://doi.org/10.15200/winn.143191.17127)) by Ben Inglis.
 
 When adding additional metadata please use the CamelCase version of
-[DICOM ontology terms](https://scicrunch.org/scicrunch/interlex/dashboard)
+[DICOM ontology terms](https://dicom.nema.org/medical/dicom/current/output/chtml/part16/chapter_d.html)
 whenever possible. See also
 [recommendations on JSON files](../common-principles.md#keyvalue-files-dictionaries).
 
@@ -98,7 +98,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("mri.MRITimingParameters") }}
+{{ MACROS___make_sidecar_table(["mri.MRITimingParameters", "mri.SliceTimingMRI"]) }}
 
 ### RF & Contrast
 

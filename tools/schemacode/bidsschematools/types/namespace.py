@@ -4,6 +4,7 @@ The purpose of the :class:`~Namespace` type is to make a directory of
 YAML files available as a single dictionary and allow attribute (``.``)
 lookups.
 """
+
 import json
 import typing as ty
 from collections.abc import ItemsView, KeysView, Mapping, MutableMapping, ValuesView

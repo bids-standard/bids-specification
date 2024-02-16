@@ -23,24 +23,28 @@ NIRSChannelCount:
 ACCELChannelCountReq:
   selectors:
     - suffix == "nirs"
+    - count(associations.channels.type, "ACCEL") > 0
   checks:
     - sidecar.ACCELChannelCount == count(associations.channels.type, "ACCEL")
 
 GYROChannelCountReq:
   selectors:
     - suffix == "nirs"
+    - count(associations.channels.type, "GYRO") > 0
   checks:
     - sidecar.GYROChannelCount == count(associations.channels.type, "GYRO")
 
 MAGNChannelCountReq:
   selectors:
     - suffix == "nirs"
+    - count(associations.channels.type, "MAGN") > 0
   checks:
     - sidecar.MAGNChannelCount == count(associations.channels.type, "MAGN")
 
 ShortChannelCountReq:
   selectors:
     - suffix == "nirs"
+    - '"ShortChannelCount" in sidecar'
   checks:
     - sidecar.ShortChannelCount == count(associations.channels.short_channel, "true")
 
@@ -53,11 +57,15 @@ Component:
   checks:
     - columns.component != null
 
-RequiredChannels:
+RecommendedChannels:
+  issue:
+    code: NIRS_RECOMMENDED_CHANNELS
+    message: |
+      NIRS files SHOULD have an associated channels.tsv file.
+    level: warning
   selectors:
-    - datatype == "nirs"
-    - suffix == "optodes"
-    - extension == ".tsv"
+    - suffix == "nirs"
+    - extension == ".snirf"
   checks:
     - associations.channels != null
 

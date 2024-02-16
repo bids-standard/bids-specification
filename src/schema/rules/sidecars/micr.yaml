@@ -50,7 +50,7 @@ MicroscopySample:
       level: recommended
       description_addendum: |
         From [DICOM Body Part
-        Examined](http://dicom.nema.org/medical/dicom/current/output/chtml/part16/chapter_L.html#chapter_L)
+        Examined](https://dicom.nema.org/medical/dicom/current/output/chtml/part16/chapter_L.html#chapter_L)
         (for example `"BRAIN"`).
     BodyPartDetails: recommended
     BodyPartDetailsOntology: optional

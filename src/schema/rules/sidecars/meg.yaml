@@ -107,6 +107,15 @@ MEGRecommended:
     AssociatedEmptyRoom: recommended
     HardwareFilters: recommended
 
+# Specific MEG fields MAY be present
+MEGOptional:
+  selectors:
+    - datatype == "meg"
+    - suffix == "meg"
+  fields:
+    ElectricalStimulation: optional
+    ElectricalStimulationParameters: optional
+
 # Specific EEG fields
 # NOTE: I'm not sure if "EEG is present" is enough to indicate simultaneous EEG/MEG.
 MEGwithEEG:
