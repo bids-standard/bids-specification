@@ -7,7 +7,7 @@
 # Naming conventions may take three forms:
 #   - name: The directory name has exactly this value.
 #   - entity: The directory name takes the form of {key}-{value} for the specified entity
-#   - value: The directory name takes the form of {value} for the specified term (e.g., datatype)
+#   - value: The directory name takes the form of {value} for the specified term (like datatype)
 #
 # The requirement level indicates whether a directory MUST (required) or MAY (optional) exist.
 #
@@ -51,8 +51,8 @@ raw:
     opaque: false
     subdirs:
       - oneOf:
-        - session
-        - datatype
+          - session
+          - datatype
   session:
     entity: session
     level: optional
