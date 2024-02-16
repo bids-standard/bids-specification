@@ -84,7 +84,7 @@ def test_split_inheritance_rules():
 def test_stem_rule():
     rule = Namespace.build({"stem": "README", "level": "required", "extensions": ["", ".md"]})
     assert rules._stem_rule(rule) == {
-        "regex": r"README(?P<extension>|\.md)",
+        "regex": r"(?s:README)(?P<extension>|\.md)\Z",
         "mandatory": True,
     }
 
@@ -92,7 +92,21 @@ def test_stem_rule():
         {"stem": "participants", "level": "optional", "extensions": [".tsv", ".json"]}
     )
     assert rules._stem_rule(rule) == {
-        "regex": r"participants(?P<extension>\.tsv|\.json)",
+        "regex": r"(?s:participants)(?P<extension>\.tsv|\.json)\Z",
+        "mandatory": False,
+    }
+
+    # Wildcard stem, with datatype
+    rule = Namespace.build(
+        {
+            "stem": "*",
+            "datatypes": ["phenotype"],
+            "level": "optional",
+            "extensions": [".tsv", ".json"],
+        }
+    )
+    assert rules._stem_rule(rule) == {
+        "regex": r"(?P<datatype>phenotype)/(?s:.*)(?P<extension>\.tsv|\.json)\Z",
         "mandatory": False,
     }
 
