@@ -17,9 +17,12 @@ Descriptions:
     - extension == ".tsv"
   initial_columns:
     - desc_id
-    - description__descriptions
+    - description__entities
   columns:
     desc_id: required
-    description__descriptions: required
+    description__entities:
+      level: required
+      description_addendum: |
+        The corresponding label column is `desc_id`.
   index_columns: [desc_id]
   additional_columns: allowed

@@ -137,11 +137,11 @@ description__optode:
   description: |
     Free-form text description of the optode, or other information of interest.
   type: string
-description__descriptions:
+description__entities:
   name: description
   display_name: Description
   description: |
-    Free-form text description of the desc entity's label (defined in `desc_id`).
+    Free-form text description of the entity's label (defined in `<entity>_id` column).
   type: string
 dimension:
   name: dimension
