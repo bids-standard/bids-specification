@@ -303,9 +303,9 @@ processing a [file collection](../common-principles.md#entity-linked-file-collec
 Please visit the [file collections appendix](../appendices/file-collections.md) to see the
 list of suffixes available for quantitative MRI (qMRI) applications associated
 with these maps
-(for example [MPM](../glossary.md#mpm-suffixes),
+(for example, [MPM](../glossary.md#mpm-suffixes),
 [MP2RAGE](../glossary.md#mp2rage-suffixes),
-[MTR](../glossary.md#mtransfer-entities)).
+and [MTR](../glossary.md#mtransfer-entities)).
 
 Currently supported parametric maps include:
 
