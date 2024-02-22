@@ -126,8 +126,3 @@ stimuli:
     A directory to store any stimulus files used during an experiment.
     See the [relevant section](SPEC_ROOT/modality-specific-files/task-events.md#stimuli-directory)
     for more information.
-descriptions:
-  display_name: Descriptions Definitions
-  file_type: regular
-  description: |
-    A TSV file describing labels found for the `desc` entity in a Derivatives dataset.
