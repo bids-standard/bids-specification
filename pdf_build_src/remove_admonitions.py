@@ -1,13 +1,15 @@
 """Script to remove all mkdocs admonition from the markdown files in a directory."""
+
 from __future__ import annotations
 from pathlib import Path
-from rich import print
 import shutil
 
 INDENT = "    "
 
 
-def remove_admonitions(input_folder: str | Path, output_folder: str | Path, indent: str = None):
+def remove_admonitions(
+    input_folder: str | Path, output_folder: str | Path, indent: str = None
+):
 
     if indent is None:
         indent = INDENT

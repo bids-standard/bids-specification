@@ -587,9 +587,9 @@ def edit_titlepage():
         data = file.readlines()
 
     data[-1] = (
-        fr"\textsc{{\large {version_number}}}"
+        rf"\textsc{{\large {version_number}}}"
         r"\\[0.5cm]"
-        fr"{{\large {build_date}}}"
+        rf"{{\large {build_date}}}"
         r"\\[2cm]"
         r"\vfill"
         r"\end{titlepage}"
@@ -688,8 +688,9 @@ if __name__ == "__main__":
     process_macros(duplicated_src_dir_path)
 
     # remove mkdocs admonition
-    remove_admonitions(input_folder=duplicated_src_dir_path,
-                       output_folder=duplicated_src_dir_path)
+    remove_admonitions(
+        input_folder=duplicated_src_dir_path, output_folder=duplicated_src_dir_path
+    )
 
     # copy BIDS_logo to images directory of the src_copy directory
     copy_bids_logo()
