@@ -12,10 +12,12 @@ A genetic descriptor links a BIDS dataset to associated genetic data,
 potentially in a separate repository,
 with details of where to find the genetic data and the type of data available.
 
-The following example dataset with genetics data have been formatted using this specification
-and can be used for practical guidance when curating a new dataset.
+!!! example "Example datasets"
 
--   [`UK biobank`](https://github.com/bids-standard/bids-examples/tree/master/genetics_ukbb)
+    The following example dataset with genetics data have been formatted using this specification
+    and can be used for practical guidance when curating a new dataset.
+
+    -   [`UK biobank`](https://github.com/bids-standard/bids-examples/tree/master/genetics_ukbb)
 
 ## Dataset Description
 

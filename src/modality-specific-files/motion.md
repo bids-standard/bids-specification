@@ -2,9 +2,11 @@
 
 For information on how to cite this extension when referencing it in the context of the academic literature, please read [Citing BIDS](../introduction.md#citing-bids).
 
-Motion datasets formatted using this specification are available on the
-[BIDS examples repository](https://bids-standard.github.io/bids-examples/#motion)
-and can be used as helpful guidance when curating new datasets.
+!!! example "Example datasets"
+
+    Motion datasets formatted using this specification are available on the
+    [BIDS examples repository](https://bids-standard.github.io/bids-examples/#motion)
+    and can be used as helpful guidance when curating new datasets.
 
 ## Motion recording data
 
