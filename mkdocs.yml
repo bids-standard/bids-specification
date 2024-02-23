@@ -97,6 +97,8 @@ markdown_extensions:
   - toc:
       anchorlink: true
   - pymdownx.superfences
+  - admonition
+  - pymdownx.details
 plugins:
   - search
   - branchcustomization:
