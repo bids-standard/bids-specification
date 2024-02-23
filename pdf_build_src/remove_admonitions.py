@@ -1,8 +1,12 @@
-"""Script to remove all mkdocs admonition from the markdown files in a directory."""
+"""Script to remove all mkdocs admonition from the markdown files in a directory.
+
+See the pdf_build_src/tests/data/input directory to see what admonitions look like.
+"""
 
 from __future__ import annotations
-from pathlib import Path
+
 import shutil
+from pathlib import Path
 
 INDENT = "    "
 
@@ -51,6 +55,7 @@ def remove_admonitions(
 
 
 if __name__ == "__main__":
+    """If run as a script this will just run the main function on test data."""
     input_folder = Path(__file__).parent / "tests" / "data" / "input"
     output_folder = Path(__file__).parent / "tests" / "data" / "output"
     shutil.rmtree(output_folder)
