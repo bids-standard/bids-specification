@@ -9,7 +9,7 @@ def test_remove_admonitions(tmp_path):
 
     remove_admonitions(input_folder, tmp_path)
 
-    generated_files = [x for x in tmp_path.glob("**/*.md")]
+    generated_files = list(tmp_path.glob("**/*.md"))
 
     for file in generated_files:
 

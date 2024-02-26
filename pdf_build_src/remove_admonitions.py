@@ -10,6 +10,8 @@ from pathlib import Path
 
 INDENT = "    "
 
+ADMONITION_DELIMITERS = ["!!!", "???", "???+"]
+
 
 def remove_admonitions(
     input_folder: str | Path, output_folder: str | Path, indent: str = None
@@ -35,7 +37,7 @@ def remove_admonitions(
             counter = 0
             for line in content:
 
-                if line.startswith("!!!"):
+                if any(line.startswith(x) for x in ADMONITION_DELIMITERS):
                     is_admonition = True
                     counter = 0
                     continue

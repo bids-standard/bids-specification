@@ -13,3 +13,15 @@ For example the following admonition should be removed by `pdf_build_src/remove_
 
 The `expected` directory should contain the documents
 as they should look like after processing.
+
+[Mkdocs admonitions](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#inline-blocks-inline-end)
+come in different type. In aaddtion of the classical admonitions show above you have also:
+
+??? note "Collapsible admonitions"
+
+    Collapsible admonitions start with 3 questions marks (`???`).
+
+???+ note "Expanded collapsible admonitions"
+
+    Collapsible admonitions that will be shown as expanded
+    start with 3 questions marks and a plus sign (`???+`).
