@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build_docs:
     docker:
-      - image: cimg/python:3.8
+      - image: cimg/python:3.12-node
     steps:
       # checkout code to default ~/project
       - checkout
@@ -21,14 +21,15 @@ jobs:
       - persist_to_workspace:
           # the mkdocs build outputs are in ~/project/site
           root: ~/project
-          paths: site
+          paths:
+            - site
       - store_artifacts:
           path: ~/project/site/
           destination: dev_docs
 
   check_links:
     docker:
-      - image: cimg/python:3.8
+      - image: cimg/python:3.12
     steps:
       # checkout code to default ~/project
       - checkout
@@ -131,7 +132,8 @@ jobs:
       - persist_to_workspace:
           # raw generated changelog in ~/changelog_build/CHANGES.md
           root: ~/.
-          paths: changelog_build
+          paths:
+            - changelog_build
 
   # Lint and fix the auto generated changes.md file
   lint_generated_changelog:
@@ -164,7 +166,8 @@ jobs:
       - persist_to_workspace:
           # linted and fixed changelog in ~/changelog_build/CHANGES.md
           root: ~/.
-          paths: changelog_build
+          paths:
+            - changelog_build
 
   # Push built changelog to repo
   commit_generated_changelog:
@@ -178,7 +181,7 @@ jobs:
       - attach_workspace:
           # fixed+linted changelog in ~/changelog_build/CHANGES.md
           at: ~/.
-      - deploy:
+      - run:
           name: Changelog deployment
           # $CHANGE_TOKEN is generated via the GitHub web UI, and then securely stored within CircleCI web UI
           command: |
@@ -197,7 +200,6 @@ jobs:
             fi
 
 workflows:
-  version: 2
   search_build:
     jobs:
       - build_docs

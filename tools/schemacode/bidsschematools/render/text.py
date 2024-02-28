@@ -1,4 +1,5 @@
 """Functions for rendering portions of the schema as text."""
+
 import logging
 import os
 

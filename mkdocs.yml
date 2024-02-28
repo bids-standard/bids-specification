@@ -1,4 +1,4 @@
-site_name: Brain Imaging Data Structure v1.10.0-dev
+site_name: Brain Imaging Data Structure 1.10.0-dev
 site_url: https://bids-specification.readthedocs.io/en/stable/
 repo_url: https://github.com/bids-standard/bids-specification
 nav:
