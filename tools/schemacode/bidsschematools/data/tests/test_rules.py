@@ -1,4 +1,5 @@
 """Simple validation tests on schema rules."""
+
 import warnings
 from collections.abc import Mapping
 

@@ -27,7 +27,7 @@ jobs:
         python-version: ["3.11"]
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
       - name: "Install build dependencies"
@@ -44,7 +44,7 @@ jobs:
         run: python -m build tools/schemacode
       - name: "Check distribution metadata"
         run: twine check tools/schemacode/dist/*
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: dist
           path: tools/schemacode/dist/
@@ -67,7 +67,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: "Set up Python"
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
           allow-prereleases: true
@@ -76,7 +76,7 @@ jobs:
         run: python -c "import sys; print(sys.version)"
 
       - name: "Fetch packages"
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: dist
           path: dist/
@@ -91,7 +91,7 @@ jobs:
               --cov-append --cov-report=xml --cov=bidsschematools --doctest-modules
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: unit_${{ matrix.os }}_${{ matrix.python-version }}
           path: coverage.xml
@@ -108,7 +108,7 @@ jobs:
         python-version: ["3.11"]
     steps:
       - name: "Fetch packages"
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: dist
           path: dist/
@@ -133,7 +133,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Set Up Python environment
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
@@ -146,7 +146,7 @@ jobs:
         run: python -m pytest --pyargs bidsschematools -m "validate_schema" --cov-append --cov-report=xml --cov=bidsschematools
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: schema_validation
           path: coverage.xml
@@ -161,10 +161,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
 
       - name: Upload to CodeCov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}  # not required but might help API rate limits
           fail_ci_if_error: true
