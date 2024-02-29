@@ -312,7 +312,7 @@ A guide for using macros can be found at
 where the decompressed contents of `sub-01_task-nback_physio.tsv.gz`
 are:
 
-```{.text linenums="0"}
+```{.text linenums="1"}
 10.1
 10.0
 9.5
@@ -406,7 +406,7 @@ column called `"timestamp"`:
 The decompressed contents of `sub-01_task-nback_physio.tsv.gz`
 are now:
 
-```{.text linenums="0"}
+```{.text linenums="1"}
 10.1    13894432329
 10.0    13894432330
 9.5    13894432331
