@@ -19,7 +19,52 @@ Physio:
   selectors:
     - suffix == "physio"
   fields:
+    DeviceSerialNumber: recommended
     Manufacturer: recommended
     ManufacturersModelName: recommended
+    PhysioType: recommended
     SoftwareVersions: recommended
-    DeviceSerialNumber: recommended
+
+PhysioTypeRecommended:
+  selectors:
+    - suffix == "physio"
+  fields:
+    PhysioType: recommended
+
+PhysioTypeRequired:
+  selectors:
+    - suffix == "physio"
+  fields:
+    PhysioType: required
+
+PhysioEvents:
+  selectors:
+    - suffix == "physioevents"
+  fields:
+    Columns: required
+    Description: recommended
+    ForeignIndexColumn: recommended
+
+# Eye-tracking
+EyeTrack:
+  selectors:
+    - suffix == "physio"
+  fields:
+    EnvironmentCoordinates: required
+    RecordedEye: required
+    SampleCoordinateUnits: required
+    SampleCoordinateSystem: required
+    AverageCalibrationError: recommended
+    CalibrationCount: recommended
+    CalibrationPosition: recommended
+    CalibrationType: recommended
+    CalibrationUnit: recommended
+    EyeCameraSettings: recommended
+    EyeTrackerDistance: recommended
+    EyeTrackingMethod: recommended
+    FeatureDetectionSettings: recommended
+    GazeMappingSettings: recommended
+    MaximalCalibrationError: recommended
+    PupilFitMethod: recommended
+    RawDataFilters: recommended
+    ScreenAOIDefinition: recommended

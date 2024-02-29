@@ -1162,6 +1162,15 @@ FlipAngle:
         unit: degree
         exclusiveMinimum: 0
         maximum: 360
+ForeignIndexColumn:
+  name: ForeignIndexColumn
+  display_name: Column Name of a Foreign Index
+  description: |
+    An existing column name in an associated compressed TSV file
+    that serves as sampling index for the data in the present
+    compressed TSV file.
+    For example, `"timestamp"`.
+  type: string
 FrameDuration:
   name: FrameDuration
   display_name: Frame Duration
@@ -2529,6 +2538,16 @@ PhotoDescription:
   description: |
     Description of the photo.
   type: string
+PhysioType:
+  name: PhysioType
+  display_name: Physiological Recording Type
+  description: |
+    Defines the specific type of physiological recording.
+    For backwards compatibility, the default value is `"generic"`.
+  type: string
+  enum:
+    - $ref: objects.enums.PhysioTypeGeneric.value
+    - $ref: objects.enums.PhysioTypeEyetrack.value
 PixelSize:
   name: PixelSize
   display_name: Pixel Size
