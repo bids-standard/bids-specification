@@ -1,3 +1,4 @@
+import json
 import logging
 import os
 import re
@@ -69,14 +70,30 @@ def pre_receive_hook(schema, input_, output):
             lines = fobj.readlines()
 
     split = lines.index("0001\n")
-    ignore = [line.rstrip() for line in lines[:split]]
+    preamble = [line.rstrip() for line in lines[:split]]
     filenames = [line.rstrip() for line in lines[split + 1 :]]
+    try:
+        split = preamble.index("0000")
+    except ValueError:
+        description = {}
+        ignore = preamble
+    else:
+        description = json.loads("".join(preamble[:split]))
+        ignore = preamble[split + 1 :]
+
+    dataset_type = description.get("DatasetType", "raw")
 
     schema = load_schema(schema)
     all_rules = chain.from_iterable(
         regexify_filename_rules(group, schema, level=2)
         for group in (schema.rules.files.common, schema.rules.files.raw)
     )
+    if dataset_type == "derivative":
+        all_rules = chain(
+            all_rules,
+            regexify_filename_rules(schema.rules.files.derivatives, schema, level=2),
+        )
+
     regexes = [rule["regex"] for rule in all_rules]
     # XXX Hack for phenotype files - this can be removed once we
     # have a schema definition for them
