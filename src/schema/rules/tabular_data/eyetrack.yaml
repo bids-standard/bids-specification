@@ -1,18 +1,15 @@
 ---
 EyeTracking:
   selectors:
-    - datatype == "eyetrack"
     - suffix == "eyetrack"
   extension:
     - '.tsv.gz'
   columns:
-    et_timestamp: required
-    eye1_x_coordinate: required
-    eye1_y_coordinate: required
-    eye1_pupil_size: optional
-    eye2_x_coordinate: optional
-    eye2_y_coordinate: optional
-    eye2_pupil_size: optional
+    x_coordinate: required
+    y_coordinate: required
+    et_timestamp: recommended
+    pupil_size: optional
   initial_columns:
-    - et_timestamp
+    - x_coordinate
+    - y_coordinate
   additional_columns: allowed_if_defined

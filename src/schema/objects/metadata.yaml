@@ -204,13 +204,7 @@ AverageCalibrationError:
   description: |
     Average calibration error in visual degree. If both eyes recorded, first array
     corresponds to the left eye and the second to the right eye.
-  anyOf:
-    - type: array
-      items:
-        type: array
-        minItems: 1
-        items:
-          type: number
+  type: number
   unit: degree
 B0FieldIdentifier:
   name: B0FieldIdentifier
@@ -376,14 +370,14 @@ CalibrationCount:
   name: CalibrationCount
   display_name: Calibration Count
   description: |
-    Provide here the number of calibration performed per run.
-  type: number
+    The number of calibrations corresponding to this run.
+  type: integer
   minimum: 0
 CalibrationPosition:
   name: CalibrationPosition
   display_name: Calibration Position
   description: |
-    Provide a list of X/Y coordinates in the `CalibrationUnit`.
+    A list of `[x, y]` coordinates in the `CalibrationUnit`.
     For example, using 5 positions calibration presented on an HD screen,
     it could be `[[960,50],[960,540],[960,1030],[50,540],[1870,540]]`.
   anyOf:
@@ -398,7 +392,7 @@ CalibrationType:
   name: CalibrationType
   display_name: Calibration Type
   description: |
-    Description of the calibration procedure.
+    The type of the calibration procedure executed last.
     For example the `"H3"` for horizontal calibration with 3 positions
     or `"HV9"` for horizontal and vertical calibration with 9 positions,
     or one point calibration.
@@ -1029,7 +1023,7 @@ EventIdentifier:
   name: EventIdentifier
   display_name: Event Identifier
   description: |
-    The message sent to the eye tracker which disambiguates the belonging
+    The message sent to the eye-tracker which disambiguates the belonging
     of the sample to a certain event, condition or group.
     This can be a unique trial identifier, or in the case of
     continuous presentation (for example video) the annotated event of interest.
@@ -1048,7 +1042,7 @@ EyeTrackerDistance:
   name: EyeTrackerDistance
   display_name: Eye-Tracker Distance
   description: |
-    Distance (in meter) between the eye-tracker and the participant eye(s).
+    Distance (in meters) between the eye-tracker and the participant eye(s).
   type: number
   unit: m
 EyeTrackingMethod:
@@ -1060,14 +1054,15 @@ EyeTrackingMethod:
     "DPI" for Dual-Purkinje Imaging system, "SSC" for scleral search coils;
     "EOG" for electro-oculogram; "Limbus" for trackers estimating limbus borders
     between the iris and sclera; or other.
-    See details here: https://doi.org/10.3758/s13428-021-01762-8
+    See details here:
+    [10.3758/s13428-021-01762-8](https://doi.org/10.3758/s13428-021-01762-8)
   type: string
 FeatureDetectionSettings:
   name: FeatureDetectionSettings
   display_name: Feature Detection Settings
   description: |
-    A place to store arbitrary information related to feature detection.
-    For example Minimum/maximum pupil size.
+    Description of feature detection settings.
+    For example, minimum/maximum pupil size.
   type: object
   items:
     type: object
@@ -1162,6 +1157,15 @@ FlipAngle:
         unit: degree
         exclusiveMinimum: 0
         maximum: 360
+ForeignIndexColumn:
+  name: ForeignIndexColumn
+  display_name: Column Name of a Foreign Index
+  description: |
+    An existing column name in an associated compressed TSV file
+    that serves as sampling index for the data in the present
+    compressed TSV file.
+    For example, `"timestamp"`.
+  type: string
 FrameDuration:
   name: FrameDuration
   display_name: Frame Duration
@@ -1194,9 +1198,8 @@ GazeMappingSettings:
   name: GazeMappingSettings
   display_name: Gaze Mapping Settings
   description: |
-    A place to store arbitrary information related to gaze mapping.
-    For example, if there was a threshold on pupil confidence required for gaze mapping,
-    one could store that information here.
+    Description of gaze-mapping settings.
+    For example, threshold on pupil confidence required for gaze mapping.
   type: object
   items:
     type: object
@@ -2097,15 +2100,8 @@ MaximalCalibrationError:
   name: MaximalCalibrationError
   display_name: Maximal Calibration Error
   description: |
-    Maximal calibration error in degree. If both eyes recorded, first array
-    corresponds to the left eye and the second to the right eye.
-  anyOf:
-    - type: array
-      items:
-        type: array
-        minItems: 1
-        items:
-          type: number
+    Maximal calibration error in degrees.
+  type: number
   unit: degree
 MeasurementToolMetadata:
   name: MeasurementToolMetadata
@@ -2529,6 +2525,16 @@ PhotoDescription:
   description: |
     Description of the photo.
   type: string
+PhysioType:
+  name: PhysioType
+  display_name: Physiological Recording Type
+  description: |
+    Defines the specific type of physiological recording.
+    For backwards compatibility, the default value is `"generic"`.
+  type: string
+  enum:
+    - $ref: objects.enums.PhysioTypeGeneric.value
+    - $ref: objects.enums.PhysioTypeEyetrack.value
 PixelSize:
   name: PixelSize
   display_name: Pixel Size
@@ -2681,7 +2687,6 @@ RawDataFilters:
   display_name: Raw Data Filters
   description: |
     Filter settings applied to eye-movement raw data.
-    For example Eyelink trackers typically automatically filter the raw data.
   type: string
 RawSources:
   name: RawSources
@@ -2777,12 +2782,14 @@ RecordedEye:
   name: RecordedEye
   display_name: Recorded Eye
   description: |
-    Specification for which eye was tracked.
+    Indicates the eye tracked, for example, `"left"` or `"right"`.
+    It SHOULD be set to `"merged"` for recordings combining both eyes
+    typically generated by binocular eye-trackers.
   type: string
   enum:
     - left
     - right
-    - both
+    - merged
 RecordingDuration:
   name: RecordingDuration
   display_name: Recording Duration
@@ -2926,17 +2933,17 @@ SEEGChannelCount:
   minimum: 0
 SampleCoordinateSystem:
   name: SampleCoordinateSystem
-  display_name: SampleCoordinateSystem
+  display_name: Coordinate System of the Gaze Position
   description: |
-    Coordinate system of the sampled gaze position data. Generally eye-tracker
-    are set to use `"gaze-on-screen"` coordinate system but you may use
+    Coordinate system of the gaze position recordings.
+    Generally eye-tracker are set to use `"gaze-on-screen"` coordinate system but you may use
     `"eye-in-head"` or `"gaze-in-world"` or other alternatives of your choice.
     If you use the standard `"gaze-on-screen"`, it is RECOMMENDED to use this
     exact label.
   type: string
 SampleCoordinateUnits:
-  name: SampleCoordinateUnit
-  display_name: Sample Coordinate Unit
+  name: SampleCoordinateUnits
+  display_name: Sample Coordinate Units
   description: |
     Unit of individual samples (`"pixel"`, `"mm"` or `"cm"`) .
   type: string
