@@ -22,7 +22,6 @@ Physio:
     DeviceSerialNumber: recommended
     Manufacturer: recommended
     ManufacturersModelName: recommended
-    PhysioType: recommended
     SoftwareVersions: recommended
 
 PhysioTypeRecommended:
