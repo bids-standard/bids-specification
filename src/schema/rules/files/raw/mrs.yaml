@@ -41,9 +41,9 @@ mrsi:
     nucleus: optional
     volume: optional
 
-reference:
+unlocalized:
   suffixes:
-    - ref
+    - unloc
   extensions:
     - .nii.gz
     - .nii
@@ -62,9 +62,9 @@ reference:
     nucleus: optional
     volume: optional
 
-unlocalized:
+reference:
   suffixes:
-    - unloc
+    - ref
   extensions:
     - .nii.gz
     - .nii
