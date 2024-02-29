@@ -92,6 +92,8 @@ extra:
       link: https://groups.google.com/g/bids-discussion
     - icon: fontawesome/brands/instagram
       link: https://www.instagram.com/bidsstandard/
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/channel/UCxZUcYfd_nvIVWAbzRB1tlw
 
 extra_javascript:
   - js/jquery-3.6.0.min.js
