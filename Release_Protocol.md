@@ -280,4 +280,3 @@ Update the following files in the BIDS website repository (https://github.com/bi
 
 Please share news of the release on the [identified platforms](https://docs.google.com/spreadsheets/d/16SAGK3zG93WM2EWuoZDcRIC7ygPc5b7PDNGpFyC3obA/edit#gid=0).
 Please use our previous release posts as a guide.
-
