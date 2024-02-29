@@ -23,6 +23,16 @@ MRSScannerHardware:
     ReceiveCoilActiveElements: recommended
     NumberReceiveCoilActiveElements: recommended
 
+MRSSample:
+  selectors:
+    - modality == "mrs"
+  fields:
+    BodyPart:
+      level: recommended
+      description_addendum: Corresponds to DICOM Tag 0018, 0015 `Body Part Examined`.
+    BodyPartDetails: recommended
+    BodyPartDetailsOntology: optional
+
 MRSSequenceSpecifics:
   selectors:
     - modality == "mrs"
@@ -60,8 +70,6 @@ MRSRecommendedFields:
     AcquisitionVoxelSize: recommended
     MatrixSize: recommended for MRSI
     VolumeAffineMatrix: recommended for MRSI
-    BodyPart: recommended
-    BodyPartDetails: recommended
     EditTarget: recommended for edited data
     EditPulse: recommended for edited data
     EditCondition: recommended for edited data
