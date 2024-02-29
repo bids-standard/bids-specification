@@ -169,7 +169,7 @@ et_timestamp:
   name: timestamp
   display_name: Eye-tracking recording timestamp
   description: |
-    Timestamp issued by the eye-tracker indexing the continuous recordings corresponding to 
+    Timestamp issued by the eye-tracker indexing the continuous recordings corresponding to
     the sampled eye.
   type: number
 filename:
