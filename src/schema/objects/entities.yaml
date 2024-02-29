@@ -425,12 +425,13 @@ volume:
   description: |
     The `voi-<label>` entity can be used to distinguish acquisitions localized to different regions.
     The label SHOULD be the name of the body region or part scanned.
-    If used, the entities `"BodyPart"` and `"BodyPartDetails"` MUST also be defined in the JSON file.
+    If used, the fields `"BodyPart"` and `"BodyPartDetails"` MUST be defined in the JSON file.
+    `BodyPartDetailsOntology` is OPTIONAL to also include.
   type: string
   format: label
 tracksys:
   name: tracksys
-  display_name: Tracking system
+  display_name: Tracking System
   description: |
     The `tracksys-<label>` entity can be used as a key-value pair
     to label *_motion.tsv and *_motion.json files.
