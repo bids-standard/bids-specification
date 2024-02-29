@@ -22,7 +22,7 @@ and a guide for using macros can be found at
 {{ MACROS___make_filename_template(
    "raw",
    datatypes=["nirs"],
-   suffixes=["nirs", "events", "channels", "optodes", "coordsystem", "physio", "stim", "eyetrack"])
+   suffixes=["nirs", "events", "physio", "stim", "eyetrack"])
 }}
 
 Only the *Shared Near Infrared Spectroscopy Format* ([SNIRF](https://github.com/fNIRS/snirf))
