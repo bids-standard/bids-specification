@@ -23,12 +23,12 @@ sub-<label>/[ses-<label>/]
 Continuous physiological recordings SHOULD use `_physio.<tsv.gz|json>`
 pairs, for example:
 
-- pulse measurement,
-- electrocardiogram,
-- respiratory movement measured with a respiration belt,
-- gas concentration,
-- eye tracking,
-- head-motion parameters estimated by the MRI scanner.
+-  pulse measurement,
+-  electrocardiogram,
+-  respiratory movement measured with a respiration belt,
+-  gas concentration,
+-  eye tracking,
+-  head-motion parameters estimated by the MRI scanner.
 
 Continuous signals related to the stimulus SHOULD use the `_stim` suffix.
 
@@ -129,7 +129,8 @@ A guide for using macros can be found at
    }
 ) }}
 
-(after decompression)
+In this example, the contents of `sub-01_task-nback_physio.tsv.gz`
+after decompression are:
 
 ```Text
 34    110    0
@@ -138,8 +139,8 @@ A guide for using macros can be found at
 ```
 
 Example of `<matches>_physio.json` including cardiac and respiratory
-recordings at a sampling frequency of 100 Hz, with a column including the
-scanner's trigger signal:
+recordings at a sampling frequency of 100 Hz, with the last column
+containing the scanner's trigger signal:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -191,18 +192,6 @@ and `<matches>_recording-respiratory_physio.<tsv.gz|json>`.
 In such cases, the [`recording-<label>`](../appendices/entities.md#recording)
 entity MUST be used to distinguish these files.
 
-**General column naming recommendation**.
-To store pulse or breathing measurements, or the scanner trigger signal, the
-following naming conventions MAY be used for the column names:
-
-<!-- This block generates a columns table.
-The definitions of these fields can be found in
-  src/schema/rules/tabular_data/*.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_columns_table("physio.PhysioColumns") }}
-
 Metadata sidecar files (`<matches>_physio.json`) MAY define the field
 `PhysioType` to indicate a specific type of recording.
 The default value of `PhysioType` is `"generic"`, and MUST be assumed
@@ -241,6 +230,18 @@ is equivalent to:
 }
 ```
 
+**General column naming recommendation**.
+To store pulse or breathing measurements, or the scanner trigger signal, the
+following naming conventions MAY be used for the column names:
+
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/rules/tabular_data/*.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_columns_table("physio.PhysioColumns") }}
+
 ## Metadata fields for `<matches>_<stim>.json` files
 
 The following table specifies metadata fields for the
@@ -259,7 +260,7 @@ A guide for using macros can be found at
 As before, additional metadata MAY be included in these
 [TSV files](../common-principles.md#tabular-files).
 
-## Discontinuous data
+## Physiology "events": organizing discontinuous data
 
 Discontinuous data associated with continuous recordings
 stored in `<matches>_physio.tsv.gz` files MAY be specified
@@ -344,7 +345,10 @@ are:
 10.1
 ```
 
-and the `ForeignIndexColumn` is not defined in the
+Please note that the above code block has the line numbers enabled,
+but those line numbers are not part of the contents of the file.
+Since there is no explicit column to index the recording,
+the `ForeignIndexColumn` SHOULD NOT defined in the
 `sub-01_task-nback_physioevents.json` file:
 
 ```JSON
@@ -354,8 +358,8 @@ and the `ForeignIndexColumn` is not defined in the
 }
 ```
 
-then, the decompressed contents of the corresponding
-TSV file, `sub-01_task-nback_physioevents.tsv.gz` may be:
+An example of the decompressed contents of the corresponding
+TSV file, `sub-01_task-nback_physioevents.tsv.gz` is:
 
 ```TSV
 -4   "Ready"
