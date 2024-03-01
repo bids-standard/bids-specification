@@ -23,12 +23,12 @@ sub-<label>/[ses-<label>/]
 Continuous physiological recordings SHOULD use `_physio.<tsv.gz|json>`
 pairs, for example:
 
--  pulse measurement,
--  electrocardiogram,
--  respiratory movement measured with a respiration belt,
--  gas concentration,
--  eye tracking,
--  head-motion parameters estimated by the MRI scanner.
+-   pulse measurement,
+-   electrocardiogram,
+-   respiratory movement measured with a respiration belt,
+-   gas concentration,
+-   eye tracking,
+-   head-motion parameters estimated by the MRI scanner.
 
 Continuous signals related to the stimulus SHOULD use the `_stim` suffix.
 
