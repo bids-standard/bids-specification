@@ -1161,9 +1161,8 @@ ForeignIndexColumn:
   name: ForeignIndexColumn
   display_name: Column Name of a Foreign Index
   description: |
-    An existing column name in an associated compressed TSV file
-    that serves as sampling index for the data in the present
-    compressed TSV file.
+    An existing column name in an corresponding TSV file that indexes
+    the `"onset"` column of the present TSV file.
     For example, `"timestamp"`.
   type: string
 FrameDuration:
