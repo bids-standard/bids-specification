@@ -2827,10 +2827,10 @@ RepetitionTime:
     and the beginning of acquisition of the volume following it (TR).
     When used in the context of functional acquisitions this parameter best
     corresponds to
-    [DICOM Tag 0020, 0110](http://dicomlookup.com/lookup.asp?sw=Tnumber&q=(0020,0110)):
+    [DICOM Tag 0020, 0110](http://dicomlookup.com/dicomtags/(0020,0110)):
     the "time delta between images in a
     dynamic of functional set of images" but may also be found in
-    [DICOM Tag 0018, 0080](http://dicomlookup.com/lookup.asp?sw=Tnumber&q=(0018,0080)):
+    [DICOM Tag 0018, 0080](http://dicomlookup.com/dicomtags/(0018,0080)):
     "the period of time in msec between the beginning
     of a pulse sequence and the beginning of the succeeding
     (essentially identical) pulse sequence".
@@ -2847,7 +2847,7 @@ RepetitionTimeExcitation:
   display_name: Repetition Time Excitation
   description: |
     The interval, in seconds, between two successive excitations.
-    [DICOM Tag 0018, 0080](http://dicomlookup.com/lookup.asp?sw=Tnumber&q=(0018,0080))
+    [DICOM Tag 0018, 0080](http://dicomlookup.com/dicomtags/(0018,0080))
     best refers to this parameter.
     This field may be used together with the `"RepetitionTimePreparation"` for
     certain use cases, such as

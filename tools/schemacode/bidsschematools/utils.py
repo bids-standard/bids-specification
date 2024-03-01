@@ -1,4 +1,5 @@
 """Utility functions for the bids-specification schema."""
+
 import logging
 
 from . import data

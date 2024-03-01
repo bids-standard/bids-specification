@@ -1,4 +1,5 @@
 """Functions used by the macros mkdocs plugin."""
+
 import os
 import sys
 

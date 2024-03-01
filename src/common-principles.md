@@ -430,7 +430,8 @@ Tabular data MUST be saved as tab delimited values (`.tsv`) files, that is, CSV
 files where commas are replaced by tabs. Tabs MUST be true tab characters and
 MUST NOT be a series of space characters. Each TSV file MUST start with a header
 line listing the names of all columns (with the exception of
-[physiological and other continuous recordings](modality-specific-files/physiological-and-other-continuous-recordings.md)).
+[physiological and other continuous recordings](modality-specific-files/physiological-and-other-continuous-recordings.md)
+as well as [motion recording data](modality-specific-files/motion.md)).
 It is RECOMMENDED that the column names in the header of the TSV file are
 written in [`snake_case`](https://en.wikipedia.org/wiki/Snake_case) with the
 first letter in lower case (for example, `variable_name`, not `Variable_name`).

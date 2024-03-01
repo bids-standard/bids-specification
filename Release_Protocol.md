@@ -8,10 +8,14 @@ The protocol assumes that you have a [fork](https://help.github.com/en/articles/
 of the bids-standard/bids-specification repository and have [cloned](https://help.github.com/en/articles/cloning-a-repository)
 your fork locally to a directory called `bids-specification`.
 
-NOTE: Before you start a release, you have to ensure that the automatically generated changelog is
-**up to date**. See the relevant [section in CONTRIBUTING.md](CONTRIBUTING.md#how-is-the-changelog-generated)
-for further information. In practice this means ensuring that the most recently merged pull request was
-merged into the `master` branch using the "Merge commit" option.
+### 0. Cleaning up the changelog
+
+Before you start a release, you have to ensure that the automatically generated changelog is **up to date**.
+See the relevant [section in CONTRIBUTING.md](CONTRIBUTING.md#how-is-the-changelog-generated) for further information.
+In practice this means ensuring that the most recently merged pull request
+was merged into the `master` branch using the "Merge commit" option.
+
+![merge-commit](release_images/merge_commit.png.png "merge-commit")
 
 ### 1. Fetch the latest version of the [master branch of the BIDS-specification](https://github.com/bids-standard/bids-specification/tree/master)
 
@@ -48,13 +52,13 @@ Update the version in CITATION.cff.
 
 Change the "Unreleased" heading in
 [src/CHANGES.md](https://github.com/bids-standard/bids-specification/blob/master/src/CHANGES.md)
-to `v<version>`, and link to the target ReadTheDocs URL.
+to `<version>`, and link to the target ReadTheDocs URL.
 If the target release date is known, include the date in YYYY-MM-DD in parentheses after
 the link.
 
 ```Diff
 - ## Unreleased
-+ ## [v1.2.0](https://bids-specification.readthedocs.io/en/v1.2.0/) (2019-03-04)
++ ## [1.2.0](https://bids-specification.readthedocs.io/en/1.2.0/) (2019-03-04)
 ```
 
 The date can be changed or added later, so accurate prediction is not necessary.
@@ -63,7 +67,7 @@ Remove the `-dev` from the version in
 [mkdocs.yml](https://github.com/bids-standard/bids-specification/blob/master/mkdocs.yml)
 configuration, so the title will be correct for the released specification.
 If the version preceding the `-dev` is not the target version, update the version as well.
-In the figure below, we update `v1.2.0-dev` to `v1.2.0`.
+In the figure below, we update `1.2.0-dev` to `1.2.0`.
 ![dev-to-stable](release_images/site_name_release_1.2dev-1.2.png "dev-to-stable")
 
 Additionally, implement the same change in the version name perform above in the `src/schema/BIDS_VERSION` file.
@@ -101,8 +105,9 @@ make update_contributors
 
 #### 2.3 Update the previous version URLs
 
-Please change the previous version links from GitHub to ReadTheDocs.
-In the figure below, we update v1.2.2.
+In `src/CHANGES.md`,
+please change the previous version links from GitHub to ReadTheDocs.
+In the figure below, we update 1.2.2.
 ![github-to-rtd](release_images/GitHub_to_RTD_spec_rendering.png "github-to-rtd")
 
 #### 2.4 Update the Changelog
@@ -122,7 +127,7 @@ discrepancies is reduced.
 
 ```Shell
 git add src/CHANGES.md mkdocs.yml src/appendices/contributors.md src/schema/BIDS_VERSION
-git commit -m 'REL: v1.2.0'
+git commit -m 'REL: 1.2.0'
 git push -u upstream rel/1.2.0
 ```
 
@@ -130,7 +135,7 @@ git push -u upstream rel/1.2.0
 
 **Important notes:**
 
-1. The pull request title **must** be named "REL: vX.Y.Z" (for example, "REL: v1.2.0")
+1. The pull request title **must** be named "REL: X.Y.Z" (for example, "REL: 1.2.0")
 1. The pull request **must** get a GitHub label called `exclude-from-changelog`
 
 **This will open a period of discussion for 5 business days regarding if we are ready to release.**
@@ -165,11 +170,11 @@ The date should be placed after the link to the versioned URL.
 For example:
 
 ```Diff
-- ## [v1.2.0](https://bids-specification.readthedocs.io/en/v1.2.0/)
-+ ## [v1.2.0](https://bids-specification.readthedocs.io/en/v1.2.0/) (2019-03-04)
+- ## [1.2.0](https://bids-specification.readthedocs.io/en/1.2.0/)
++ ## [1.2.0](https://bids-specification.readthedocs.io/en/1.2.0/) (2019-03-04)
 ```
 
-Verify that the pull request title matches "REL: vX.Y.Z" and merge the pull request.
+Verify that the pull request title matches "REL: X.Y.Z" and merge the pull request.
 
 ### 6. Get the built PDF and `CITATION.cff` file
 
@@ -197,8 +202,8 @@ To do this, `fetch` the current state of `upstream` (see step 1), tag `upstream/
 
 ```Shell
 git fetch upstream
-git tag -a -m "v1.2.0 (2019-03-04)" v1.2.0 upstream/master
-git push upstream v1.2.0
+git tag -a -m "1.2.0 (2019-03-04)" 1.2.0 upstream/master
+git push upstream 1.2.0
 ```
 
 There are four components to the tag command:
@@ -223,7 +228,7 @@ Click [Draft a new release](https://github.com/bids-standard/bids-specification/
 
 ![GH-release-2](release_images/GH-release_2.png "GH-release-2")
 
-Set the tag version and release title to "vX.Y.Z", and paste the current changelog as the
+Set the tag version and release title to "X.Y.Z", and paste the current changelog as the
 description:
 
 ![GH-release-3](release_images/GH-release_3.png "GH-release-3")
@@ -236,8 +241,14 @@ for `stable` and the most recent tag.
 
 ### 9. Edit the mkdocs.yml file site_name to set a new development version
 
-Please commit to `master` with the title `REL: <version>-dev`.
+Please open a pull request and create a merge commit to `master` with the title `REL: <version>-dev`.
+
+![merge-commit](release_images/merge_commit.png.png "merge-commit")
+
 This should be the first commit in the new version.
+
+This will reset the URLs that were [manually changed before in step 2.3](#2.3-update-the-previous-version-URLs).
+
 This process is illustrated below.
 
 ![stable-to-dev](release_images/site_name_release_1.2-1.3dev.png "stable-to-dev")
@@ -256,7 +267,16 @@ Similarly update the version in CITATION.cff with a `dev` suffix.
 1. In a previous step you have secured a PDF version of the BIDS specification and the corresponding `CITATION.cff` file.
 1. Follow the steps described here: https://github.com/bids-standard/bids-specification-pdf-releases#release-instructions
 
-### 11. Sharing news of the release
+### 11. Update the BIDS website data
+
+Update the following files in the BIDS website repository (https://github.com/bids-standard/bids-website) if applicable:
+
+- `tools/timeline.csv`
+- `_data/beps.yml`
+- `_data/beps_completed.yml`
+- `_data/beps_other.yml`
+
+### 12. Sharing news of the release
 
 Please share news of the release on the [identified platforms](https://docs.google.com/spreadsheets/d/16SAGK3zG93WM2EWuoZDcRIC7ygPc5b7PDNGpFyC3obA/edit#gid=0).
 Please use our previous release posts as a guide.

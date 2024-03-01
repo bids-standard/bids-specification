@@ -13,7 +13,7 @@ repos:
       - id: check-added-large-files
       - id: check-case-conflict
   - repo: https://github.com/psf/black
-    rev: 23.11.0
+    rev: 24.2.0
     hooks:
       - id: black
         files: ^tools/(?!schemacode)
@@ -23,7 +23,7 @@ repos:
         files: tools/schemacode
         args: ["--config", "tools/schemacode/pyproject.toml", "--verbose"]
   - repo: https://github.com/pyCQA/isort
-    rev: 5.12.0
+    rev: 5.13.2
     hooks:
       - id: isort
         files: ^tools/(?!schemacode)
@@ -33,14 +33,15 @@ repos:
         files: tools/schemacode
         args: ["--settings-file", "tools/schemacode/pyproject.toml"]
   - repo: https://github.com/pyCQA/flake8
-    rev: 6.1.0
+    rev: 7.0.0
     hooks:
       - id: flake8
         args: [--config=tools/schemacode/setup.cfg]
   - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v3.1.0
+    rev: v4.0.0-alpha.8
     hooks:
       - id: prettier
+        entry: env PRETTIER_LEGACY_CLI=1 prettier # temporary fix for https://github.com/prettier/prettier/issues/15742
         files: src/schema/.*/.*\.yaml
   - repo: https://github.com/codespell-project/codespell
     rev: v2.2.6
@@ -48,7 +49,7 @@ repos:
       - id: codespell
         args: ["--config=.codespellrc", "--dictionary=-", "--dictionary=.codespell_dict"]
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.7.1
+    rev: v1.8.0
     hooks:
       - id: mypy
         # Sync with project.optional-dependencies.typing
