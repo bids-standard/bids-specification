@@ -306,7 +306,7 @@ implicitly or explicitly indexed.
 **Implicit indexing of `<matches>_physioevents.tsv.gz` files**.
 When `ForeignIndexColumn` is not provided, a column with
 name `"foreign_index"` SHOULD be defined.
-The `"foreign_index"` column corresponds to the zero-based row number
+The `"foreign_index"` column corresponds to the one-based row number
 of the associated `<matches>_physio.tsv.gz` file.
 The `"foreign_index"` column accepts negative values to register
 events occurred before the recording(s) in the corresponding
@@ -362,21 +362,21 @@ An example of the decompressed contents of the corresponding
 TSV file, `sub-01_task-nback_physioevents.tsv.gz` is:
 
 ```TSV
--4   "Ready"
-2    "Synchronous recalibration triggered"
-5    "External message received: new block"
+-3   "Ready"
+3    "Synchronous recalibration triggered"
+6    "External message received: new block"
 ```
 
-In this case, the first column lists the indexes (zero-based row index)
-in the `sub-01_task-nback_physio.tsv.gz`.
-The first entry, with `foreign_index` set to 2 maps to the third line of the
+In this case, the first column lists the indexes (one-based row number)
+from the `sub-01_task-nback_physio.tsv.gz`.
+The first entry, with `foreign_index` set to 3 maps to the third line of the
 `sub-01_task-nback_physio.tsv.gz`, indicating that the message
 *Synchronous recalibration triggered* was logged at the same time the recording
 registered the value `9.5`.
 Likewise, the second message was logged when the recording later registered a
-value of `10.2`.
+value of `10.2` (row number 5 of `sub-01_task-nback_physio.tsv.gz`).
 As negative indexes are allowed, the first *Ready* message occurred four sampling
-cycles before the first recorded measurement.
+cycles before the first recorded measurement (line number 1).
 For example, if `SamplingFrequency` in `sub-01_task-nback_physio.json`
 is set to 100 Hz and `StartTime` is -22.345 s, then the *Ready* message was recorded
 0.04 s before the first sample, therefore at -22.305 s of experiment time.
