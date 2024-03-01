@@ -260,7 +260,7 @@ A guide for using macros can be found at
 As before, additional metadata MAY be included in these
 [TSV files](../common-principles.md#tabular-files).
 
-## Physiology "events": organizing discontinuous data
+## Physiology "events"
 
 Discontinuous data associated with continuous recordings
 stored in `<matches>_physio.tsv.gz` files MAY be specified
@@ -286,6 +286,18 @@ The [`recording-<label>`](../appendices/entities.md#recording)
 entity is OPTIONAL, but MUST be matched with an existing
 `<matches>[_recording-<label>]_physio.tsv.gz` file.
 
+Physiology "events" files `<matches>_recording-<label>_physioevents.tsv.gz`
+MUST follow specific column specifications:
+
+<!--
+This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/rules/tabular_data/eyetrack.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_columns_table("physio.PhysioEventsColumns") }}
+
 The following table specifies metadata fields for the
 `<matches>[_recording-<label>]_physioevents.json` file.
 
@@ -304,11 +316,10 @@ The `ForeignIndexColumn` metadata specifies whether
 implicitly or explicitly indexed.
 
 **Implicit indexing of `<matches>_physioevents.tsv.gz` files**.
-When `ForeignIndexColumn` is not provided, a column with
-name `"foreign_index"` SHOULD be defined.
-The `"foreign_index"` column corresponds to the one-based row number
-of the associated `<matches>_physio.tsv.gz` file.
-The `"foreign_index"` column accepts negative values to register
+When `ForeignIndexColumn` is not provided, the `"onset"` column
+corresponds to the one-based row number of the associated
+`<matches>_physio.tsv.gz` file.
+The `"onset"` column accepts negative values to register
 events occurred before the recording(s) in the corresponding
 `<matches>_physio.tsv.gz` file started.
 
@@ -353,7 +364,7 @@ the `ForeignIndexColumn` SHOULD NOT defined in the
 
 ```JSON
 {
-    "Columns": ["foreign_index", "message"],
+    "Columns": ["onset", "message"],
     "Description": "Messages logged by the measurement device"
 }
 ```
@@ -369,7 +380,7 @@ TSV file, `sub-01_task-nback_physioevents.tsv.gz` is:
 
 In this case, the first column lists the indexes (one-based row number)
 from the `sub-01_task-nback_physio.tsv.gz`.
-The first entry, with `foreign_index` set to 3 maps to the third line of the
+The first entry, with `"onset"` set to 3 maps to the third line of the
 `sub-01_task-nback_physio.tsv.gz`, indicating that the message
 *Synchronous recalibration triggered* was logged at the same time the recording
 registered the value `9.5`.
@@ -383,13 +394,11 @@ is set to 100 Hz and `StartTime` is -22.345 s, then the *Ready* message was reco
 
 **Explicit indexing of `<matches>_physioevents.tsv.gz` files (RECOMMENDED)**.
 When the `ForeignIndexColumn` defines a value such as `"timestamp"`,
-that specific column name MUST be present in both
-the `<matches>_physioevents.tsv.gz` and its corresponding
-`<matches>_physio.tsv.gz`.
-In that case, all values of the `"timestamp"` column of the
-`<matches>_physioevents.tsv.gz` file MUST exist within the
-`"timestamp"` column of the corresponding
-`<matches>_physio.tsv.gz` file.
+that specific column name MUST be present the `<matches>_physio.tsv.gz` file.
+In that case, all values of the `"onset"` column of the
+`<matches>_physioevents.tsv.gz` are indexed by the index established by
+the `ForeignIndexColumn` of the corresponding `<matches>_physio.tsv.gz` file
+(that is, `"timestamp"` in this example).
 
 For example, let us consider the previous structure:
 
@@ -447,7 +456,7 @@ the `ForeignIndexColumn` for indexing:
 
 ```JSON
 {
-    "Columns": ["timestamp", "message"],
+    "Columns": ["onset", "message"],
     "Description": "Messages logged by the measurement device",
     "ForeignIndexColumn": "timestamp"
 }
@@ -591,7 +600,7 @@ could read:
 ```JSON
 {
     "DeviceSerialNumber": "17535483",
-    "Columns": ["x_coordinate", "y_coordinate", "timestamp", "blink"],
+    "Columns": ["timestamp", "x_coordinate", "y_coordinate", "pupil_size"],
     "EnvironmentCoordinates": "top-left",
     "Manufacturer": "SR-Research",
     "ManufacturersModelName": "EYELINK II CL v4.56 Aug 18 2010",
@@ -604,8 +613,9 @@ could read:
         "square",
         [100, 150, 300, 350]
     ],
-    "blink": {
-      "Description": "Continuous recording of eyeblinks calculated by the eyetracking device (one indicates the eye is closed)."
+    "pupil_size": {
+        "Description": "Pupil area of the recorded eye as calculated by the eye-tracker in arbitrary units (see EyeLink's documentation for conversion).",
+        "Units": "a.u."
     }
 }
 ```
@@ -632,36 +642,69 @@ specification, the decompressed content of the
 `sub-01_task-visualSearch_recording-eye1_physio.tsv.gz` can be:
 
 ```TSV
-503    265    8506498    n/a
-510    235    8506499    n/a
-601    238    8506500    n/a
-550    243    8506501    n/a
-534    241    8506502    1
-520    237    8506503    1
-522    248    8506504    1
-520    250    8506505    n/a
+7186799 416.29    267.39    4612.0
+7186800 416.29    268.10    4623.0
+7186801 416.20    269.00    4623.0
+7186802 415.89    269.60    4613.0
+7186803 415.70    269.20    4603.0
+7186804 415.60    266.79    4591.0
+7186805 415.79    264.60    4589.0
+7186806 416.10    263.89    4587.0
+7186807 416.29    265.20    4587.0
+7186808 416.39    266.50    4588.0
+7186809 416.50    266.79    4594.0
+7186810 416.50    267.20    4599.0
+7186811 416.10    268.00    4609.0
+7186812 415.70    268.29    4612.0
+7186813 416.00    268.60    4605.0
 ```
 
 Example `sub-01_task-visualSearch_recording-eye1_physioevents.tsv.gz` corresponding
 to the above eye-tracking recording, after decompressing:
 
 ```TSV
-8478059 "NO Reply is disabled for function eyelink_cal_result"
-8499586 "RECCFG CR 1000 2 0 R"
-8499586 "ELCLCFG TOWER"
-8506500 "First task trigger"
+7184392 n/a    n/a         n/a    "NO Reply is disabled for function eyelink_cal_result"
+7184392 n/a    n/a         n/a    "RECCFG CR 1000 2 0 R"
+7184392 n/a    n/a         n/a    "ELCLCFG TOWER"
+7186771 n/a    n/a         n/a    "First task trigger"
+7186806 72     fixation    0      n/a
+7186879 231    saccade     1      n/a
+7187111 6186   fixation    0      n/a
+7193298 216    saccade     1      n/a
+7193515 1286   fixation    0      n/a
+7194802 24     saccade     0      n/a
+7194827 2403   fixation    0      n/a
+7197231 17     saccade     0      n/a
+7197249 1640   fixation    0      n/a
+7198890 6      saccade     0      n/a
+7198897 1105   fixation    0      n/a
+7200003 233    saccade     1      n/a
+7200237 184    fixation    0      n/a
+7200422 15     saccade     0      n/a
+7200438 264    fixation    0      n/a
 ```
 
-where the first three rows are logged by the eye-tracker and the last row shows
+where the first three rows are logged by the eye-tracker and the fourth row shows
 a *message* asynchronously received by the eye-tracker.
+The remainder of the rows contain a subset of parameters registered by the device,
+derived from applying a model to identify saccades and blinks.
 The corresponding `sub-01_task-visualSearch_recording-eye1_physioevents.json` sidecar
 would read:
 
 ```JSON
 {
-    "Columns": ["timestamp", "message"],
+    "Columns": ["onset", "duration", "trial_type", "blink", "message"],
     "Description": "Messages logged by the measurement device",
-    "ForeignIndexColumn": "timestamp"
+    "ForeignIndexColumn": "timestamp",
+    "blink": {
+      "Description": "One indicates if the eye was closed, zero if open."
+    },
+    "message": {
+      "Description": "String messages logged by the eye-tracker."
+    },
+    "trial_type": {
+      "Description": "Event type as identified by the eye-tracker's model (either 'n/a' if not applicabble, 'fixation', or 'saccade')."
+    }
 }
 ```
 
