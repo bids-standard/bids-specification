@@ -1939,16 +1939,7 @@ MRAcquisitionType:
     Corresponds to DICOM Tag 0018, 0023 `MR Acquisition Type`.
   type: string
   enum:
-    - $ref: objects.enums.TwoD.value
-    - $ref: objects.enums.ThreeD.value
-MRAcquisitionType__mrs:
-  name: MRAcquisitionType
-  display_name: MR Acquisition Type
-  description: |
-    Type of sequence readout.
-  type: string
-  enum:
-    - 1D
+    - $ref: objects.enums.OneD.value
     - $ref: objects.enums.TwoD.value
     - $ref: objects.enums.ThreeD.value
 MRTransmitCoilSequence:

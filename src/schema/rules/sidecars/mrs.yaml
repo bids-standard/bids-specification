@@ -44,7 +44,7 @@ MRSSequenceSpecifics:
     ScanningSequence__mrs: recommended
     SequenceName: recommended
     PulseSequenceDetails: recommended
-    MRAcquisitionType__mrs: recommended for MRSI
+    MRAcquisitionType: recommended for MRSI
 
 MRSRequiredFields:
   selectors:
