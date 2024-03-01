@@ -246,7 +246,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Marco Castellaro                                     | 💬🐛💻📖💡⚠️📢🚇                       |
 | Maria de la Iglesia                                  | 📖                                     |
 | Marie-Hélène Bourget                                 | 📖🔣💻🤔                               |
-| Mark Mikkelsen                                       | 📖                                     |
+| Mark Mikkelsen                                       | 📖💻                                     |
 | Markus Morawski                                      | 📖                                     |
 | Marta Bortoletto                                     | 📖                                     |
 | Martin Craig                                         | 🔣                                     |
