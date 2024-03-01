@@ -81,26 +81,42 @@ def pre_receive_hook(schema, input_, output):
 
     This is intended to be used in a git pre-receive hook.
     """
+    logger = logging.getLogger("bidsschematools")
+    schema = load_schema(schema)
+
     # Slurp inputs for now; we can think about streaming later
     if input_ == "-":
-        lines = sys.stdin.readlines()
+        stream = sys.stdin
     else:
-        with open(input_) as fobj:
-            lines = fobj.readlines()
+        stream = open(input_)
 
-    split = lines.index("0001\n")
-    preamble = [line.rstrip() for line in lines[:split]]
-    filenames = [line.rstrip() for line in lines[split + 1 :]]
-    try:
-        split = preamble.index("0000")
-    except ValueError:
-        description = {}
-        ignore = preamble
+    first_line = next(stream)
+    if first_line == "bids-hook-v2\n":
+        # V2 format: header line, description JSON, followed by legacy format
+        description_str = next(stream)
+        fail = False
+        try:
+            description: dict = json.loads(description_str)
+        except json.JSONDecodeError:
+            fail = True
+        if fail or not isinstance(description, dict):
+            logger.critical("Protocol error: invalid JSON in description")
+            logger.critical(
+                "Dataset description must be one JSON object, written to a single line"
+            )
+            logger.critical("Received: %s", description_str)
+            stream.close()
+            sys.exit(2)
     else:
-        description = json.loads("".join(preamble[:split]))
-        ignore = preamble[split + 1 :]
+        # Legacy: ignore patterns, followed by "0001", followed by filenames
+        stream = chain([first_line], stream)
+        description = {}
 
     dataset_type = description.get("DatasetType", "raw")
+    logger.info("Dataset type: %s", dataset_type)
+
+    ignore = [line.strip() for line in stream if line != "0001\n"]
+    logger.info("Ignore patterns found: %d", len(ignore))
 
     schema = load_schema(schema)
     all_rules = chain.from_iterable(
@@ -116,19 +132,32 @@ def pre_receive_hook(schema, input_, output):
     regexes = [rule["regex"] for rule in all_rules]
     # XXX Hack for phenotype files - this can be removed once we
     # have a schema definition for them
-    regexes.append(r"phenotype/.*\.tsv")
+    regexes.append(r"phenotype/.*\.(tsv|json)")
 
     output = sys.stdout if output == "-" else open(output, "w")
 
     rc = 0
+    any_files = False
+    valid_files = 0
     with output:
-        for filename in filenames:
+        for filename in stream:
+            if not any_files:
+                logger.debug("Validating files, first file: %s", filename)
+                any_files = True
+            filename = filename.strip()
             if any(_bidsignore_check(pattern, filename, "") for pattern in ignore):
                 continue
             if not any(re.match(regex, filename) for regex in regexes):
-                output.write(f"{filename}\n")
+                print(filename, file=output)
                 rc = 1
+            else:
+                valid_files += 1
 
+    if valid_files == 0:
+        logger.error("No files to validate")
+        rc = 2
+
+    stream.close()
     sys.exit(rc)
 
 
