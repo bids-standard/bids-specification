@@ -39,7 +39,7 @@ A guide for editing it can be found at
    "sub-<label>": {
       "<datatype>": {
          "<matches>_eyetrack.json": "",
-         "<matches>_eyetrack.tsv[.gz]": "",
+         "<matches>_eyetrack.tsv.gz": "",
          },
       }
    }
