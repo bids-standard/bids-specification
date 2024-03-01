@@ -206,3 +206,7 @@ MAY be present:
    "AnatomicalImage": "bids::sub-01/anat/sub-01_T1w.nii.gz"
 }
 ```
+
+## Combining MRS with anatomical MRI
+
+For combining MRS with anatomical MRI data, see the MRS-MRI correspondence in the [Cross modality correspondence](../appendices/cross-modality-correspondence.html) section of the Appendix.
