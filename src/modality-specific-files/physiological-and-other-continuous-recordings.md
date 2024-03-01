@@ -679,7 +679,7 @@ and can be used for practical guidance when curating a new dataset:
     embedded target words and invisible boundary (see
     [Gagl, 2016](https://peerj.com/articles/2467/)).
 
-    [BIDS dataset](https://zenodo.org/record/1228659)
+    [BIDS dataset](https://zenodo.org/records/1228659)
 
 -   Combined behavior and eye-tracking position and pupil data, measured with
     an Eyelink (SR Research), from 26 participants performing a
