@@ -9,13 +9,6 @@ specified using two files:
 
 1.  a JSON file for storing metadata fields (see below)
 
-[Example datasets](https://bids-standard.github.io/bids-examples/#dataset-index)
-with physiological data have been formatted using this specification
-and can be used for practical guidance when curating a new dataset:
-
--   [`7t_trt`](https://github.com/bids-standard/bids-examples/tree/master/7t_trt)
--   [`ds210`](https://github.com/bids-standard/bids-examples/tree/master/ds210)
-
 Template:
 
 ```Text
@@ -30,23 +23,49 @@ sub-<label>/[ses-<label>/]
 Continuous physiological recordings SHOULD use `_physio.<tsv.gz|json>`
 pairs, for example:
 
-  - pulse measurement,
-  - electrocardiogram,
-  - respiratory movement measured with a respiration belt,
-  - gas concentration,
-  - eye tracking,
-  - head-motion parameters estimated by the MRI scanner.
+- pulse measurement,
+- electrocardiogram,
+- respiratory movement measured with a respiration belt,
+- gas concentration,
+- eye tracking,
+- head-motion parameters estimated by the MRI scanner.
 
 Continuous signals related to the stimulus SHOULD use the `_stim` suffix.
 
 For the template directory name, `<datatype>` can correspond to any data
 recording modality, for example `func`, `anat`, `dwi`, `meg`, `eeg`, `ieeg`,
 or `beh`.
+If the same continuous recording has been used for all subjects (for example in
+the case where they all watched the same movie), one file placed in the
+root directory (for example, `<root>/task-movie_stim.<tsv.gz|json>`) MAY be used
+and will apply to all `<matches>_task-movie_<matches>_<suffix>.<ext>` files.
 
-In the template filenames, the `<matches>` part corresponds to task filename
-before the suffix.
-For example for the file `sub-01_task-nback_run-1_bold.nii.gz`,
+In the template filenames, the `<matches>` part corresponds to those entities
+before the suffix that identify the reference run.
+For example, for the file `sub-01_task-nback_run-1_bold.nii.gz`,
 `<matches>` would correspond to `sub-01_task-nback_run-1`.
+
+For multi-echo data, a single `_physio.<tsv.gz|json>` file without the
+[`echo-<index>`](../appendices/entities.md#echo) entity applies to all echos of
+a particular run.
+For example:
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "func": {
+        "sub-01_task-nback_run-1_physio.tsv.gz": "",
+        "sub-01_task-nback_run-1_echo-1_bold.nii.gz": "",
+        "sub-01_task-nback_run-1_echo-2_bold.nii.gz": "",
+        "sub-01_task-nback_run-1_echo-3_bold.nii.gz": "",
+         },
+      },
+   }
+) }}
 
 Note that when supplying a `<matches>_<physio|stim>.tsv.gz` file,
 an accompanying `<matches>_<physio|stim>.json` MUST be supplied as well.
@@ -58,8 +77,18 @@ electrocardiography recordings in a certain sampling frequency, and
 `sub-01_task-bart_recording-respiratory_physio.tsv.gz` to contain respiratory
 measurements in a different sampling frequency.
 
+**Example datasets**.
+[Example datasets](https://bids-standard.github.io/bids-examples/#dataset-index)
+with physiological data have been formatted using this specification
+and can be used for practical guidance when curating a new dataset:
+
+-   [`7t_trt`](https://github.com/bids-standard/bids-examples/tree/master/7t_trt)
+-   [`ds210`](https://github.com/bids-standard/bids-examples/tree/master/ds210)
+
+## Metadata fields for `<matches>_<physio>.json` files
+
 The following table specifies metadata fields for the
-`<matches>_<physio|stim>.json` file.
+`<matches>_<physio>.json` file.
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -162,32 +191,6 @@ and `<matches>_recording-respiratory_physio.<tsv.gz|json>`.
 In such cases, the [`recording-<label>`](../appendices/entities.md#recording)
 entity MUST be used to distinguish these files.
 
-If the same continuous recording has been used for all subjects (for example in
-the case where they all watched the same movie), one file placed in the
-root directory (for example, `<root>/task-movie_stim.<tsv.gz|json>`) MAY be used.
-
-For multi-echo data, a single `_physio.<tsv.gz|json>` file without the
-[`echo-<index>`](../appendices/entities.md#echo) entity applies to all echos of
-a particular run.
-For example:
-
-<!-- This block generates a file tree.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filetree_example(
-   {
-   "sub-01": {
-      "func": {
-        "sub-01_task-cuedSGT_run-1_physio.tsv.gz": "",
-        "sub-01_task-cuedSGT_run-1_echo-1_bold.nii.gz": "",
-        "sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz": "",
-        "sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz": "",
-         },
-      },
-   }
-) }}
-
 **General column naming recommendation**.
 To store pulse or breathing measurements, or the scanner trigger signal, the
 following naming conventions MAY be used for the column names:
@@ -237,6 +240,24 @@ is equivalent to:
     }
 }
 ```
+
+## Metadata fields for `<matches>_<stim>.json` files
+
+The following table specifies metadata fields for the
+`<matches>_<stim>.json` file.
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table(["continuous.Continuous"]) }}
+
+As before, additional metadata MAY be included in these
+[TSV files](../common-principles.md#tabular-files).
 
 ## Discontinuous data
 
@@ -639,3 +660,32 @@ would read:
     "ForeignIndexColumn": "timestamp"
 }
 ```
+
+<!--
+1. Datasets will be updated later to adapt to the agreed format.
+2. We aim at adding a last example converting published dataset from openeuro.
+-->
+**Example Datasets**.
+[Example datasets](https://bids-standard.github.io/bids-examples/#dataset-index)
+with eye-tracking data have been formatted using this specification
+and can be used for practical guidance when curating a new dataset:
+
+-   Combined behavior and eye-tracking fixation and saccade data,
+    measured with an Eyelink (SR Research), from 8 particpants reading 320
+    embedded target words and invisible boundary (see
+    [Gagl, 2016](https://peerj.com/articles/2467/)).
+
+    [BIDS dataset](https://zenodo.org/record/1228659)
+
+-   Combined behavior and eye-tracking position and pupil data, measured with
+    an Eyelink (SR Research), from 26 participants performing a
+    binocular rivalry task (see
+    [Brascamp et.al, 2021](https://doi.org/10.7554/eLife.66161)).
+
+    [BIDS dataset](https://doi.org/10.5061/dryad.41ns1rncp)
+
+-   Combined resting-state fMRI and eye-tracking data, measured with an Eyelink
+    (SR research), from 20 participants keeping their gaze steady at the
+    screen center.
+
+    [BIDS dataset](https://openneuro.org/datasets/ds004158/versions/2.0.1)
