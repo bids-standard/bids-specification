@@ -36,17 +36,45 @@ Continuous signals related to the stimulus SHOULD use the `_stim` suffix.
 For the template directory name, `<datatype>` can correspond to any data
 recording modality, for example `func`, `anat`, `dwi`, `meg`, `eeg`, `ieeg`,
 or `beh`.
-If the same continuous recording has been used for all subjects (for example in
-the case where they all watched the same movie), one file placed in the
-root directory (for example, `<root>/task-movie_stim.<tsv.gz|json>`) MAY be used
-and will apply to all `<matches>_task-movie_<matches>_<suffix>.<ext>` files.
-
 In the template filenames, the `<matches>` part corresponds to those entities
 before the suffix that identify the reference run.
 For example, for the file `sub-01_task-nback_run-1_bold.nii.gz`,
 `<matches>` would correspond to `sub-01_task-nback_run-1`.
+Note that when supplying a `<matches>_<physio|stim>.tsv.gz` file,
+an accompanying `<matches>_<physio|stim>.json` MUST be supplied as well.
 
-For multi-echo data, a single `_physio.<tsv.gz|json>` file without the
+If the same continuous recording has been used for all subjects (for example in
+the case where they all watched the same movie), one file placed in the
+root directory (for example, `<root>/task-movie_stim.<tsv.gz|json>`) MAY be used
+and will apply to all `<matches>_task-movie_<matches>_<suffix>.<ext>` files.
+In the following example, the two `task-nback_stim.<json|tsv.gz>` apply
+to all the `task-nback` runs across the two available subjects:
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "func": {
+        "sub-01_task-nback_run-1_bold.nii.gz": "",
+        "sub-01_task-nback_run-2_bold.nii.gz": "",
+         },
+      },
+   },
+   "sub-02": {
+      "func": {
+        "sub-02_task-nback_run-1_bold.nii.gz": "",
+        "sub-02_task-nback_run-2_bold.nii.gz": "",
+         },
+      },
+   },
+   "task-nback_stim.json": "",
+   "task-nback_stim.tsv.gz": "",
+) }}
+
+For multi-echo data, a single `_<physio|stim>.<tsv.gz|json>` file without the
 [`echo-<index>`](../appendices/entities.md#echo) entity applies to all echos of
 a particular run.
 For example:
@@ -59,24 +87,43 @@ A guide for using macros can be found at
    {
    "sub-01": {
       "func": {
-        "sub-01_task-nback_run-1_physio.tsv.gz": "",
         "sub-01_task-nback_run-1_echo-1_bold.nii.gz": "",
         "sub-01_task-nback_run-1_echo-2_bold.nii.gz": "",
         "sub-01_task-nback_run-1_echo-3_bold.nii.gz": "",
+        "sub-01_task-nback_run-1_physio.tsv.gz": "",
+        "sub-01_task-nback_run-1_stim.tsv.gz": "",
          },
       },
    }
 ) }}
 
-Note that when supplying a `<matches>_<physio|stim>.tsv.gz` file,
-an accompanying `<matches>_<physio|stim>.json` MUST be supplied as well.
-
+**Storing different recordings**.
 The [`recording-<label>`](../appendices/entities.md#recording)
 entity MAY be used to distinguish between several recording files.
-For example, `sub-01_task-bart_recording-cardio_physio.tsv.gz` to contain
-electrocardiography recordings in a certain sampling frequency, and
-`sub-01_task-bart_recording-respiratory_physio.tsv.gz` to contain respiratory
-measurements in a different sampling frequency.
+Recordings with different metadata such as sampling frequencies
+or recording device MUST be stored in separate files with different
+[`recording-<label>`](../appendices/entities.md#recording) entities.
+For example, given a multi-echo acquisition corresponding to a breath-holding
+task (`task-bht`) for which pulse and respiratory movement were
+sampled at different frequencies, recordings are separated as follows:
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+   "sub-01": {
+      "func": {
+        "sub-01_task-bht_echo-1_bold.nii.gz": "",
+        "sub-01_task-bht_echo-2_bold.nii.gz": "",
+        "sub-01_task-bht_echo-3_bold.nii.gz": "",
+        "sub-01_task-bht_recording-cardiac_physio.json": "",
+        "sub-01_task-bht_recording-cardiac_physio.tsv.gz": "",
+        "sub-01_task-bht_recording-respiratory_physio.json": "",
+        "sub-01_task-bht_recording-respiratory_physio.tsv.gz": "",
+      },
+    },
+}) }}
 
 **Example datasets**.
 [Example datasets](https://bids-standard.github.io/bids-examples/#dataset-index)
