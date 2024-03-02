@@ -20,15 +20,16 @@ sub-<label>/[ses-<label>/]
         <matches>[_recording-<label>]_stim.json
 ```
 
-Continuous physiological recordings SHOULD use `_physio.<tsv.gz|json>`
-pairs, for example:
+Continuous physiological recordings, such as pulse measurement,
+electrocardiogram, respiratory movement measured with a respiration belt,
+gas concentration, eye-tracking, or head-motion parameters estimated
+by the MRI scanner, SHOULD use `_physio.<tsv.gz|json>` pairs.
+The following recordings MAY be encoded with specific data columns
+and metadata fields, as described in section
+[Specific Physiological Signal Types](#specific-physiological-signal-types)
+below, and its subsections:
 
--   pulse measurement,
--   electrocardiogram,
--   respiratory movement measured with a respiration belt,
--   gas concentration,
--   eye tracking,
--   head-motion parameters estimated by the MRI scanner.
+-   eye-tracking ([subsection Eye-tracking](#eye-tracking)).
 
 Continuous signals related to the stimulus SHOULD use the `_stim` suffix.
 
