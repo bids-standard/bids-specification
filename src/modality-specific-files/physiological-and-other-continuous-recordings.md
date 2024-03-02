@@ -396,7 +396,7 @@ are:
 Please note that the above code block has the line numbers enabled,
 but those line numbers are not part of the contents of the file.
 Since there is no explicit column to index the recording,
-the `ForeignIndexColumn` SHOULD NOT defined in the
+the `ForeignIndexColumn` SHOULD NOT be defined in the
 `sub-01_task-nback_physioevents.json` file:
 
 ```JSON
@@ -410,24 +410,24 @@ An example of the decompressed contents of the corresponding
 TSV file, `sub-01_task-nback_physioevents.tsv.gz` is:
 
 ```TSV
--3   "Ready"
+-3   Ready
 3    "Synchronous recalibration triggered"
 6    "External message received: new block"
 ```
 
 In this case, the first column lists the indexes (one-based row number)
 from the `sub-01_task-nback_physio.tsv.gz`.
-The first entry, with `"onset"` set to 3 maps to the third line of the
+The first entry, with `"onset"` set to 3, maps to the third line of the
 `sub-01_task-nback_physio.tsv.gz`, indicating that the message
-*Synchronous recalibration triggered* was logged at the same time the recording
-registered the value `9.5`.
+*Synchronous recalibration triggered* was logged at the same time the
+sample with value `9.5` was registered.
 Likewise, the second message was logged when the recording later registered a
 value of `10.2` (row number 5 of `sub-01_task-nback_physio.tsv.gz`).
 As negative indexes are allowed, the first *Ready* message occurred four sampling
 cycles before the first recorded measurement (line number 1).
 For example, if `SamplingFrequency` in `sub-01_task-nback_physio.json`
 is set to 100 Hz and `StartTime` is -22.345 s, then the *Ready* message was recorded
-0.04 s before the first sample, therefore at -22.305 s of experiment time.
+0.04 s before the first sample, therefore at -22.305 s.
 
 **Explicit indexing of `<matches>_physioevents.tsv.gz` files (RECOMMENDED)**.
 When the `ForeignIndexColumn` defines a value such as `"timestamp"`,
@@ -478,9 +478,9 @@ are now:
 ```{.text linenums="1"}
 10.1    13894432329
 10.0    13894432330
-9.5    13894432331
-9.2    13894432332
-9.0    13894432333
+9.5     13894432331
+9.2     13894432332
+9.0     13894432333
 10.2    13894432334
 10.3    13894432335
 10.1    13894432336
@@ -501,7 +501,7 @@ The decompressed contents of the corresponding TSV file,
 `sub-01_task-nback_physioevents.tsv.gz` could read now:
 
 ```TSV
-13894432325    "Ready"
+13894432325    Ready
 13894432331    "Synchronous recalibration triggered"
 13894432334    "External message received: new block"
 ```
@@ -673,46 +673,46 @@ specification, the decompressed content of the
 `sub-01_task-visualSearch_recording-eye1_physio.tsv.gz` can be:
 
 ```TSV
-7186799 416.29    267.39    4612.0
-7186800 416.29    268.10    4623.0
-7186801 416.20    269.00    4623.0
-7186802 415.89    269.60    4613.0
-7186803 415.70    269.20    4603.0
-7186804 415.60    266.79    4591.0
-7186805 415.79    264.60    4589.0
-7186806 416.10    263.89    4587.0
-7186807 416.29    265.20    4587.0
-7186808 416.39    266.50    4588.0
-7186809 416.50    266.79    4594.0
-7186810 416.50    267.20    4599.0
-7186811 416.10    268.00    4609.0
-7186812 415.70    268.29    4612.0
-7186813 416.00    268.60    4605.0
+7186799    416.29    267.39    4612.0
+7186800    416.29    268.10    4623.0
+7186801    416.20    269.00    4623.0
+7186802    415.89    269.60    4613.0
+7186803    415.70    269.20    4603.0
+7186804    415.60    266.79    4591.0
+7186805    415.79    264.60    4589.0
+7186806    416.10    263.89    4587.0
+7186807    416.29    265.20    4587.0
+7186808    416.39    266.50    4588.0
+7186809    416.50    266.79    4594.0
+7186810    416.50    267.20    4599.0
+7186811    416.10    268.00    4609.0
+7186812    415.70    268.29    4612.0
+7186813    416.00    268.60    4605.0
 ```
 
 Example `sub-01_task-visualSearch_recording-eye1_physioevents.tsv.gz` corresponding
 to the above eye-tracking recording, after decompressing:
 
 ```TSV
-7184392 n/a    n/a         n/a    "NO Reply is disabled for function eyelink_cal_result"
-7184392 n/a    n/a         n/a    "RECCFG CR 1000 2 0 R"
-7184392 n/a    n/a         n/a    "ELCLCFG TOWER"
-7186771 n/a    n/a         n/a    "First task trigger"
-7186806 72     fixation    0      n/a
-7186879 231    saccade     1      n/a
-7187111 6186   fixation    0      n/a
-7193298 216    saccade     1      n/a
-7193515 1286   fixation    0      n/a
-7194802 24     saccade     0      n/a
-7194827 2403   fixation    0      n/a
-7197231 17     saccade     0      n/a
-7197249 1640   fixation    0      n/a
-7198890 6      saccade     0      n/a
-7198897 1105   fixation    0      n/a
-7200003 233    saccade     1      n/a
-7200237 184    fixation    0      n/a
-7200422 15     saccade     0      n/a
-7200438 264    fixation    0      n/a
+7184392    n/a    n/a         n/a    "NO Reply is disabled for function eyelink_cal_result"
+7184392    n/a    n/a         n/a    "RECCFG CR 1000 2 0 R"
+7184392    n/a    n/a         n/a    "ELCLCFG TOWER"
+7186771    n/a    n/a         n/a    "First task trigger"
+7186806    72     fixation    0      n/a
+7186879    231    saccade     1      n/a
+7187111    6186   fixation    0      n/a
+7193298    216    saccade     1      n/a
+7193515    1286   fixation    0      n/a
+7194802    24     saccade     0      n/a
+7194827    2403   fixation    0      n/a
+7197231    17     saccade     0      n/a
+7197249    1640   fixation    0      n/a
+7198890    6      saccade     0      n/a
+7198897    1105   fixation    0      n/a
+7200003    233    saccade     1      n/a
+7200237    184    fixation    0      n/a
+7200422    15     saccade     0      n/a
+7200438    264    fixation    0      n/a
 ```
 
 where the first three rows are logged by the eye-tracker and the fourth row shows
