@@ -54,25 +54,22 @@ to all the `task-nback` runs across the two available subjects:
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filetree_example(
-   {
-   "sub-01": {
-      "func": {
-        "sub-01_task-nback_run-1_bold.nii.gz": "",
-        "sub-01_task-nback_run-2_bold.nii.gz": "",
-         },
-      },
-   },
-   "sub-02": {
-      "func": {
-        "sub-02_task-nback_run-1_bold.nii.gz": "",
-        "sub-02_task-nback_run-2_bold.nii.gz": "",
-         },
-      },
-   },
-   "task-nback_stim.json": "",
-   "task-nback_stim.tsv.gz": "",
-) }}
+{{ MACROS___make_filetree_example({
+  "sub-01": {
+    "func": {
+      "sub-01_task-nback_run-1_bold.nii.gz": "",
+      "sub-01_task-nback_run-2_bold.nii.gz": "",
+    },
+  },
+  "sub-02": {
+    "func": {
+      "sub-02_task-nback_run-1_bold.nii.gz": "",
+      "sub-02_task-nback_run-2_bold.nii.gz": "",
+    },
+  },
+  "task-nback_stim.json": "",
+  "task-nback_stim.tsv.gz": "",
+}) }}
 
 For multi-echo data, a single `_<physio|stim>.<tsv.gz|json>` file without the
 [`echo-<index>`](../appendices/entities.md#echo) entity applies to all echos of
@@ -83,19 +80,17 @@ For example:
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filetree_example(
-   {
-   "sub-01": {
-      "func": {
-        "sub-01_task-nback_run-1_echo-1_bold.nii.gz": "",
-        "sub-01_task-nback_run-1_echo-2_bold.nii.gz": "",
-        "sub-01_task-nback_run-1_echo-3_bold.nii.gz": "",
-        "sub-01_task-nback_run-1_physio.tsv.gz": "",
-        "sub-01_task-nback_run-1_stim.tsv.gz": "",
-         },
-      },
-   }
-) }}
+{{ MACROS___make_filetree_example({
+  "sub-01": {
+    "func": {
+      "sub-01_task-nback_run-1_echo-1_bold.nii.gz": "",
+      "sub-01_task-nback_run-1_echo-2_bold.nii.gz": "",
+      "sub-01_task-nback_run-1_echo-3_bold.nii.gz": "",
+      "sub-01_task-nback_run-1_physio.tsv.gz": "",
+      "sub-01_task-nback_run-1_stim.tsv.gz": "",
+    },
+  },
+}) }}
 
 **Storing different recordings**.
 The [`recording-<label>`](../appendices/entities.md#recording)
@@ -112,17 +107,17 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_filetree_example({
-   "sub-01": {
-      "func": {
-        "sub-01_task-bht_echo-1_bold.nii.gz": "",
-        "sub-01_task-bht_echo-2_bold.nii.gz": "",
-        "sub-01_task-bht_echo-3_bold.nii.gz": "",
-        "sub-01_task-bht_recording-cardiac_physio.json": "",
-        "sub-01_task-bht_recording-cardiac_physio.tsv.gz": "",
-        "sub-01_task-bht_recording-respiratory_physio.json": "",
-        "sub-01_task-bht_recording-respiratory_physio.tsv.gz": "",
-      },
+  "sub-01": {
+    "func": {
+      "sub-01_task-bht_echo-1_bold.nii.gz": "",
+      "sub-01_task-bht_echo-2_bold.nii.gz": "",
+      "sub-01_task-bht_echo-3_bold.nii.gz": "",
+      "sub-01_task-bht_recording-cardiac_physio.json": "",
+      "sub-01_task-bht_recording-cardiac_physio.tsv.gz": "",
+      "sub-01_task-bht_recording-respiratory_physio.json": "",
+      "sub-01_task-bht_recording-respiratory_physio.tsv.gz": "",
     },
+  },
 }) }}
 
 **Example datasets**.
@@ -167,15 +162,13 @@ Example `<matches>_physio.tsv.gz`:
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filetree_example(
-   {
-   "sub-01": {
-      "func": {
-         "sub-01_task-nback_physio.tsv.gz": "",
-         },
-      },
-   }
-) }}
+{{ MACROS___make_filetree_example({
+  "sub-01": {
+    "func": {
+      "sub-01_task-nback_physio.tsv.gz": "",
+    },
+  },
+}) }}
 
 In this example, the contents of `sub-01_task-nback_physio.tsv.gz`
 after decompression are:
@@ -194,15 +187,13 @@ containing the scanner's trigger signal:
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filetree_example(
-   {
-   "sub-01": {
-      "func": {
-         "sub-01_task-nback_physio.json": "",
-         },
-      },
-   }
-) }}
+{{ MACROS___make_filetree_example({
+  "sub-01": {
+    "func": {
+      "sub-01_task-nback_physio.json": "",
+    },
+  },
+}) }}
 
 ```JSON
 {
@@ -377,18 +368,16 @@ For example, considering the following structure:
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filetree_example(
-   {
-   "sub-01": {
-      "func": {
-         "sub-01_task-nback_physio.json": "",
-         "sub-01_task-nback_physio.tsv.gz": "",
-         "sub-01_task-nback_physioevents.json": "",
-         "sub-01_task-nback_physioevents.tsv.gz": "",
-         },
-      },
-   }
-) }}
+{{ MACROS___make_filetree_example({
+  "sub-01": {
+    "func": {
+      "sub-01_task-nback_physio.json": "",
+      "sub-01_task-nback_physio.tsv.gz": "",
+      "sub-01_task-nback_physioevents.json": "",
+      "sub-01_task-nback_physioevents.tsv.gz": "",
+    },
+  },
+}) }}
 
 where the decompressed contents of `sub-01_task-nback_physio.tsv.gz`
 are:
@@ -454,18 +443,16 @@ For example, let us consider the previous structure:
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filetree_example(
-   {
-   "sub-01": {
-      "func": {
-         "sub-01_task-nback_physio.json": "",
-         "sub-01_task-nback_physio.tsv.gz": "",
-         "sub-01_task-nback_physioevents.json": "",
-         "sub-01_task-nback_physioevents.tsv.gz": "",
-         },
-      },
-   }
-) }}
+{{ MACROS___make_filetree_example({
+  "sub-01": {
+    "func": {
+      "sub-01_task-nback_physio.json": "",
+      "sub-01_task-nback_physio.tsv.gz": "",
+      "sub-01_task-nback_physioevents.json": "",
+      "sub-01_task-nback_physioevents.tsv.gz": "",
+    },
+  },
+}) }}
 
 However, the `sub-01_task-nback_physio.json` will define now an extra
 column called `"timestamp"`:
@@ -545,30 +532,28 @@ is:
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filetree_example(
-   {
-   "sub-01": {
-      "func": {
-         "sub-01_task-visualSearch_bold.json": "",
-         "sub-01_task-visualSearch_bold.nii.gz": "",
-         "sub-01_task-visualSearch_events.json": "",
-         "sub-01_task-visualSearch_events.tsv": "",
-         "sub-01_task-visualSearch_recording-eye1_physio.json": "",
-         "sub-01_task-visualSearch_recording-eye1_physio.tsv.gz": "",
-         "sub-01_task-visualSearch_recording-eye1_physioevents.json": "",
-         "sub-01_task-visualSearch_recording-eye1_physioevents.tsv.gz": "",
-         "sub-01_task-visualSearch_recording-eye2_physio.json": "",
-         "sub-01_task-visualSearch_recording-eye2_physio.tsv.gz": "",
-         "sub-01_task-visualSearch_recording-eye2_physioevents.json": "",
-         "sub-01_task-visualSearch_recording-eye2_physioevents.tsv.gz": "",
-         "sub-01_task-visualSearch_recording-eye3_physio.json": "",
-         "sub-01_task-visualSearch_recording-eye3_physio.tsv.gz": "",
-         "sub-01_task-visualSearch_recording-eye3_physioevents.json": "",
-         "sub-01_task-visualSearch_recording-eye3_physioevents.tsv.gz": ""
-         },
-      },
-   }
-) }}
+{{ MACROS___make_filetree_example({
+  "sub-01": {
+    "func": {
+      "sub-01_task-visualSearch_bold.json": "",
+      "sub-01_task-visualSearch_bold.nii.gz": "",
+      "sub-01_task-visualSearch_events.json": "",
+      "sub-01_task-visualSearch_events.tsv": "",
+      "sub-01_task-visualSearch_recording-eye1_physio.json": "",
+      "sub-01_task-visualSearch_recording-eye1_physio.tsv.gz": "",
+      "sub-01_task-visualSearch_recording-eye1_physioevents.json": "",
+      "sub-01_task-visualSearch_recording-eye1_physioevents.tsv.gz": "",
+      "sub-01_task-visualSearch_recording-eye2_physio.json": "",
+      "sub-01_task-visualSearch_recording-eye2_physio.tsv.gz": "",
+      "sub-01_task-visualSearch_recording-eye2_physioevents.json": "",
+      "sub-01_task-visualSearch_recording-eye2_physioevents.tsv.gz": "",
+      "sub-01_task-visualSearch_recording-eye3_physio.json": "",
+      "sub-01_task-visualSearch_recording-eye3_physio.tsv.gz": "",
+      "sub-01_task-visualSearch_recording-eye3_physioevents.json": "",
+      "sub-01_task-visualSearch_recording-eye3_physioevents.tsv.gz": ""
+    },
+  },
+}) }}
 
 The labels `"eye1"`, `"eye2"`, and `"eye3"` for the
 [`recording-<label>`](../appendices/entities.md#recording) entity
@@ -579,22 +564,20 @@ The above example is simplified for a monocular eye-tracker as follows:
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filetree_example(
-   {
-   "sub-01": {
-      "func": {
-         "sub-01_task-visualSearch_bold.json": "",
-         "sub-01_task-visualSearch_bold.nii.gz": "",
-         "sub-01_task-visualSearch_events.json": "",
-         "sub-01_task-visualSearch_events.tsv": "",
-         "sub-01_task-visualSearch_recording-eye1_physio.json": "",
-         "sub-01_task-visualSearch_recording-eye1_physio.tsv.gz": "",
-         "sub-01_task-visualSearch_recording-eye1_physioevents.json": "",
-         "sub-01_task-visualSearch_recording-eye1_physioevents.tsv.gz": ""
-         },
-      },
-   }
-) }}
+{{ MACROS___make_filetree_example({
+  "sub-01": {
+    "func": {
+      "sub-01_task-visualSearch_bold.json": "",
+      "sub-01_task-visualSearch_bold.nii.gz": "",
+      "sub-01_task-visualSearch_events.json": "",
+      "sub-01_task-visualSearch_events.tsv": "",
+      "sub-01_task-visualSearch_recording-eye1_physio.json": "",
+      "sub-01_task-visualSearch_recording-eye1_physio.tsv.gz": "",
+      "sub-01_task-visualSearch_recording-eye1_physioevents.json": "",
+      "sub-01_task-visualSearch_recording-eye1_physioevents.tsv.gz": ""
+    },
+  },
+}) }}
 
 The following table specifies metadata fields for the
 `<matches>_recording-<label>_physio.json` file:
