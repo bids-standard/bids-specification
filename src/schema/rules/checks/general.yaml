@@ -1,0 +1,25 @@
+---
+# BIDS Validator Original Issue Code #74
+# Was DUPLICATE_NIFTI_FILES, but applies generally
+DuplicateFiles:
+  issue:
+    code: DUPLICATE_FILES
+    message: |
+      File exists with and without `.gz` extension.
+    level: error
+  selectors:
+    - match(extension, '\.gz$')
+  checks:
+    - exists(substr(path, 0, length(path) - 3), "dataset") == 0
+
+ReadmeFileSmall:
+  issue:
+    code: README_FILE_SMALL
+    message: |
+      The recommended file '/README' is very small.
+      Please consider expanding it with additional information about the dataset.
+    level: warning
+  selectors:
+    - match(path, '^README')
+  checks:
+    - size > 150

@@ -1,0 +1,151 @@
+---
+fieldmaps:
+  suffixes:
+    - phasediff
+    - phase1
+    - phase2
+    - magnitude1
+    - magnitude2
+    - magnitude
+    - fieldmap
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  datatypes:
+    - fmap
+  entities:
+    subject: required
+    session: optional
+    acquisition: optional
+    run: optional
+    chunk: optional
+
+pepolar:
+  suffixes:
+    - epi
+    - m0scan
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  datatypes:
+    - fmap
+  entities:
+    subject: required
+    session: optional
+    acquisition: optional
+    ceagent: optional
+    direction: required
+    run: optional
+    part: optional
+    chunk: optional
+
+TB1DAM:
+  suffixes:
+    - TB1DAM
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  datatypes:
+    - fmap
+  entities:
+    subject: required
+    session: optional
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
+    run: optional
+    flip: required
+    inversion: optional
+    part: optional
+    chunk: optional
+
+TB1EPI:
+  suffixes:
+    - TB1EPI
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  datatypes:
+    - fmap
+  entities:
+    subject: required
+    session: optional
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
+    run: optional
+    echo: required
+    flip: required
+    inversion: optional
+    part: optional
+    chunk: optional
+
+RFFieldMaps:
+  suffixes:
+    - TB1AFI
+    - TB1TFL
+    - TB1RFM
+    - RB1COR
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  datatypes:
+    - fmap
+  entities:
+    subject: required
+    session: optional
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
+    run: optional
+    echo: optional
+    flip: optional
+    inversion: optional
+    part: optional
+    chunk: optional
+
+TB1SRGE:
+  suffixes:
+    - TB1SRGE
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  datatypes:
+    - fmap
+  entities:
+    subject: required
+    session: optional
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
+    run: optional
+    echo: optional
+    flip: required
+    inversion: required
+    part: optional
+    chunk: optional
+
+parametric:
+  suffixes:
+    - TB1map
+    - RB1map
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  datatypes:
+    - fmap
+  entities:
+    subject: required
+    session: optional
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
+    run: optional
+    chunk: optional

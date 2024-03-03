@@ -1,0 +1,116 @@
+---
+# null fall-through logic
+- expression: sidecar.MissingValue
+  result: null
+- expression: null.anything
+  result: null
+- expression: (null)
+  result: null
+- expression: null[0]
+  result: null
+- expression: null && true
+  result: null
+- expression: true && null
+  result: null
+- expression: false && null
+  result: false
+- expression: true || null
+  result: true
+- expression: null || true
+  result: true
+- expression: false || null
+  result: null
+- expression: '!null'
+  result: true
+- expression: intersects([], null)
+  result: false
+- expression: intersects(null, [])
+  result: false
+- expression: match(null, 'pattern')
+  result: null
+- expression: match('string', null)
+  result: false
+- expression: substr(null, 1, 4)
+  result: null
+- expression: substr('string', null, 4)
+  result: null
+- expression: substr('string', 1, null)
+  result: null
+- expression: min(null)
+  result: null
+- expression: max(null)
+  result: null
+- expression: length(null)
+  result: null
+- expression: type(null)
+  result: 'null'
+- expression: null == false
+  result: false
+- expression: null == true
+  result: false
+- expression: null != false
+  result: true
+- expression: null != true
+  result: true
+- expression: null != 1.5
+  result: true
+- expression: null == null
+  result: true
+- expression: null == 1
+  result: false
+- expression: '"VolumeTiming" in null'
+  result: null
+- expression: exists(null, "bids-uri")
+  result: 0
+- expression: exists([], null)
+  result: 0
+- expression: true || sidecar.MissingValue
+  result: true
+
+# General expressions
+- expression: 1 + 2
+  result: 3
+- expression: '"cat" + "dog"'
+  result: 'catdog'
+- expression: match('string', '.*')
+  result: true
+- expression: match('', '.')
+  result: false
+- expression: substr('string', 1, 4)
+  result: 'tri'
+- expression: substr('string', 0, 20)
+  result: 'string'
+- expression: type(1)
+  result: 'number'
+- expression: type([])
+  result: 'array'
+- expression: type({})
+  result: 'object'
+- expression: type(true)
+  result: 'boolean'
+- expression: intersects([1], [1, 2])
+  result: true
+- expression: intersects([1], [])
+  result: false
+- expression: length([1, 2, 3])
+  result: 3
+- expression: length([])
+  result: 0
+- expression: count([1, 2, 3], 1)
+  result: 1
+- expression: index(["i", "j", "k"], "i")
+  result: 0
+- expression: index(["i", "j", "k"], "j")
+  result: 1
+- expression: index(["i", "j", "k"], "x")
+  result: null
+- expression: sorted([3, 2, 1])
+  result: [1, 2, 3]
+- expression: min([-1, "n/a", 1])
+  result: -1
+- expression: max([-1, "n/a", 1])
+  result: 1
+- expression: '[3, 2, 1][0]'
+  result: 3
+- expression: '"string"[0]'
+  result: 's'

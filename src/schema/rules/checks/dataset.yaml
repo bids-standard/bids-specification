@@ -1,0 +1,92 @@
+# Rules for datasets
+# For now use `path == dataset_description.json` to ensure something only happens once
+---
+# 45
+SubjectFolders:
+  issue:
+    code: SUBJECT_FOLDERS
+    message: |
+      There are no subject directories (labeled "sub-*") in the root of this dataset.
+    level: error
+  selectors:
+    - path == 'dataset_description.json'
+  checks:
+    - length(dataset.subjects.sub_dirs) > 0
+
+# 49
+ParticipantIDMismtach:
+  issue:
+    code: PARTICIPANT_ID_MISMATCH
+    message: |
+      Participant labels found in this dataset did not match the values in participant_id column
+      found in the participants.tsv file.
+    level: error
+  selectors:
+    - path == 'participants.tsv'
+  checks:
+    - sorted(columns.participant_label) == sorted(dataset.subjects.sub_dirs)
+
+# 51
+PhenotypeSubjectsMissing:
+  issue:
+    code: PHENOTYPE_SUBJECTS_MISSING
+    message: |
+      A phenotype/ .tsv file lists subjects that were not found in the dataset.
+    level: error
+  selectors:
+    - path == 'dataset_description.json'
+  checks:
+    - sorted(dataset.subjects.phenotype) == sorted(dataset.subjects.sub_dirs)
+
+# 214
+SamplesTSVMissing:
+  issue:
+    code: SAMPLES_TSV_MISSING
+    message: |
+      The compulsory file '/samples.tsv' is missing.
+      See 'Modality agnostic files' section of the BIDS specification.
+    level: error
+  selectors:
+    - path == 'dataset_description.json'
+    - '"micr" in dataset.modalities'
+  checks:
+    - "'samples.tsv' in dataset.files"
+
+UnknownVersion:
+  issue:
+    code: UNKNOWN_BIDS_VERSION
+    message: |
+      The BIDSVersion field of 'dataset_description.json' does not match a known release.
+      The BIDS Schema used for validation may be out of date.
+    level: warning
+  selectors:
+    - path == 'dataset_description.json'
+  checks:
+    - intersects([json.BIDSVersion], schema.meta.versions)
+
+SingleSourceAuthors:
+  issue:
+    code: AUTHORS_AND_CITATION_FILE_MUTUALLY_EXCLUSIVE
+    level: error
+    message: |
+      'CITATION.cff' file found. The "Authors" field of 'dataset_description.json'
+      must be removed to avoid inconsistency.
+  selectors:
+    - path == 'CITATION.cff'
+  checks:
+    - '!("Authors" in dataset.dataset_description)'
+
+SingleSourceCitationFields:
+  issue:
+    code: SINGLE_SOURCE_CITATION_FIELDS
+    level: warning
+    message: |
+      CITATION.cff file found.
+      The "HowToAckowledge", "License", and "ReferencesAndLinks" fields of
+      'dataset_description.json' should be removed to avoid inconsistency.
+  selectors:
+    - path == 'CITATION.cff'
+  checks:
+    - '!("HowToAcknowledge" in dataset.dataset_description)'
+    - '!("License" in dataset.dataset_description)'
+    - '!("ReferencesAndLinks" in dataset.dataset_description)'

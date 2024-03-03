@@ -1,0 +1,95 @@
+---
+channels:
+  suffixes:
+    - channels
+  extensions:
+    - .json
+    - .tsv
+  datatypes:
+    - eeg
+    - ieeg
+    - nirs
+  entities:
+    subject: required
+    session: optional
+    task: required
+    acquisition: optional
+    run: optional
+
+# MEG has an additional entity available
+channels__meg:
+  $ref: rules.files.raw.channels.channels
+  datatypes:
+    - meg
+  entities:
+    $ref: rules.files.raw.channels.channels.entities
+    processing: optional
+
+# motion has an additional entity available
+channels__motion:
+  $ref: rules.files.raw.channels.channels
+  datatypes:
+    - motion
+  entities:
+    $ref: rules.files.raw.channels.channels.entities
+    tracksys: required
+
+coordsystem:
+  suffixes:
+    - coordsystem
+  extensions:
+    - .json
+  datatypes:
+    - meg
+    - nirs
+  entities:
+    subject: required
+    session: optional
+    acquisition: optional
+
+# (i)EEG has a space entity
+coordsystem__eeg:
+  $ref: rules.files.raw.channels.coordsystem
+  datatypes:
+    - eeg
+    - ieeg
+  entities:
+    $ref: rules.files.raw.channels.coordsystem.entities
+    space: optional
+
+electrodes:
+  suffixes:
+    - electrodes
+  extensions:
+    - .json
+    - .tsv
+  datatypes:
+    - eeg
+    - ieeg
+  entities:
+    subject: required
+    session: optional
+    acquisition: optional
+    space: optional
+
+# MEG has an additional entity available
+electrodes__meg:
+  $ref: rules.files.raw.channels.electrodes
+  datatypes:
+    - meg
+  entities:
+    $ref: rules.files.raw.channels.electrodes.entities
+    processing: optional
+
+optodes:
+  suffixes:
+    - optodes
+  extensions:
+    - .tsv
+    - .json
+  datatypes:
+    - nirs
+  entities:
+    subject: required
+    session: optional
+    acquisition: optional

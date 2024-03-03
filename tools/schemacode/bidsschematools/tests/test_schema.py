@@ -1,19 +1,46 @@
 """Tests for the bidsschematools package."""
+
+import os
+from collections.abc import Mapping
+
 import pytest
 
-from bidsschematools import schema
+from bidsschematools import __bids_version__, schema, types
+
+from ..data import load_resource
+
+
+def test__get_bids_version(tmp_path):
+    # Is the version being read in correctly?
+    schema_path = str(load_resource("schema"))
+    bids_version = schema._get_bids_version(schema_path)
+    assert bids_version == __bids_version__
+
+    # Does fallback to unknown development version work?
+    expected_version = "1.2.3-dev"
+    schema_path = os.path.join(tmp_path, "whatever", expected_version)
+    bids_version = schema._get_bids_version(schema_path)
+    assert bids_version == expected_version
+
+    # Does fallback to path quoting work?
+    schema_path = os.path.join(tmp_path, "whatever", "undocumented_schema_dir")
+    bids_version = schema._get_bids_version(schema_path)
+    assert bids_version == schema_path
 
 
 def test_load_schema(schema_dir):
     """Smoke test for bidsschematools.schema.load_schema."""
     # Pointing to a nonexistent directory should raise a ValueError
     bad_path = "/path/to/nowhere"
-    with pytest.raises(ValueError):
+    with pytest.raises(FileNotFoundError):
         schema.load_schema(bad_path)
 
     # Otherwise the function should return a dictionary
     schema_obj = schema.load_schema(schema_dir)
-    assert isinstance(schema_obj, dict)
+    assert isinstance(schema_obj, Mapping)
+
+    # Check that it is fully dereferenced
+    assert "$ref" not in str(schema_obj)
 
 
 def test_object_definitions(schema_obj):
@@ -147,3 +174,172 @@ def test_formats(schema_obj):
             assert not bool(
                 search.fullmatch(test_string)
             ), f"'{test_string}' should not be a valid match for the pattern '{search.pattern}'"
+
+
+def test_dereferencing():
+    orig = {
+        "ReferencedObject": {
+            "Property1": "value1",
+            "Property2": "value2",
+        },
+        "ReferencingObject": {
+            "$ref": "ReferencedObject",
+            "Property2": "value4",
+        },
+    }
+    dereffed = schema.dereference(orig)
+    assert dereffed == {
+        "ReferencedObject": {
+            "Property1": "value1",
+            "Property2": "value2",
+        },
+        "ReferencingObject": {
+            "Property1": "value1",
+            "Property2": "value4",
+        },
+    }
+
+    orig = {
+        "raw.func": {
+            "suffix": ["bold", "cbv"],
+            "extensions": [".nii", ".nii.gz"],
+            "datatype": ["func"],
+            "entities": {
+                "subject": "required",
+                "session": "optional",
+                "task": "required",
+                "dir": "optional",
+            },
+        },
+        "derived.func": {
+            "$ref": "raw.func",
+            "entities": {
+                "$ref": "raw.func.entities",
+                "space": "optional",
+                "desc": "optional",
+            },
+        },
+    }
+
+    sch = types.Namespace.build(orig)
+    dereffed = schema.dereference(sch)
+    assert dereffed == {
+        "raw": {
+            "func": {
+                "suffix": ["bold", "cbv"],
+                "extensions": [".nii", ".nii.gz"],
+                "datatype": ["func"],
+                "entities": {
+                    "subject": "required",
+                    "session": "optional",
+                    "task": "required",
+                    "dir": "optional",
+                },
+            }
+        },
+        "derived": {
+            "func": {
+                "suffix": ["bold", "cbv"],
+                "extensions": [".nii", ".nii.gz"],
+                "datatype": ["func"],
+                "entities": {
+                    "subject": "required",
+                    "session": "optional",
+                    "task": "required",
+                    "dir": "optional",
+                    "space": "optional",
+                    "desc": "optional",
+                },
+            }
+        },
+    }
+
+    orig = {
+        "_DERIV_ENTS": {
+            "space": "optional",
+            "desc": "optional",
+        },
+        "raw.func": {
+            "suffix": ["bold", "cbv"],
+            "extensions": [".nii", ".nii.gz"],
+            "datatype": ["func"],
+            "entities": {
+                "subject": "required",
+                "session": "optional",
+                "task": "required",
+                "dir": "optional",
+            },
+        },
+        "derived.func": {
+            "$ref": "raw.func",
+            "entities": {
+                "$ref": "_DERIV_ENTS",
+            },
+        },
+    }
+
+    sch = types.Namespace.build(orig)
+    dereffed = schema.dereference(sch)
+    assert dereffed == {
+        "_DERIV_ENTS": {
+            "space": "optional",
+            "desc": "optional",
+        },
+        "raw": {
+            "func": {
+                "suffix": ["bold", "cbv"],
+                "extensions": [".nii", ".nii.gz"],
+                "datatype": ["func"],
+                "entities": {
+                    "subject": "required",
+                    "session": "optional",
+                    "task": "required",
+                    "dir": "optional",
+                },
+            }
+        },
+        "derived": {
+            "func": {
+                "suffix": ["bold", "cbv"],
+                "extensions": [".nii", ".nii.gz"],
+                "datatype": ["func"],
+                "entities": {
+                    "space": "optional",
+                    "desc": "optional",
+                },
+            }
+        },
+    }
+
+    orig = {
+        "objects": {
+            "enums": {
+                "left": {"value": "L"},
+                "right": {"value": "R"},
+            },
+            "entities.hemisphere": {
+                "name": "hemi",
+                "enum": [
+                    {"$ref": "objects.enums.left.value"},
+                    {"$ref": "objects.enums.right.value"},
+                ],
+            },
+        },
+    }
+
+    sch = types.Namespace.build(orig)
+    dereffed = schema.dereference(sch)
+    assert dereffed == {
+        "objects": {
+            "enums": {
+                "left": {"value": "L"},
+                "right": {"value": "R"},
+            },
+            "entities": {
+                "hemisphere": {
+                    "name": "hemi",
+                    "enum": ["L", "R"],
+                },
+            },
+        },
+    }

@@ -1,0 +1,30 @@
+---
+photo:
+  suffixes:
+    - photo
+  extensions:
+    - .jpg
+    - .png
+    - .tif
+  datatypes:
+    - eeg
+    - ieeg
+    - meg
+    - nirs
+  entities:
+    subject: required
+    session: optional
+    acquisition: optional
+
+photo__micr:
+  $ref: rules.files.raw.photo.photo
+  extensions:
+    - .jpg
+    - .png
+    - .tif
+    - .json
+  datatypes:
+    - micr
+  entities:
+    $ref: rules.files.raw.photo.photo.entities
+    sample: required

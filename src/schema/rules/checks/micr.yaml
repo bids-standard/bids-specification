@@ -1,0 +1,38 @@
+---
+# 221
+PixelSizeInconsistent:
+  issue:
+    code: PIXEL_SIZE_INCONSISTENT
+    message: |
+      'PixelSize' need to be consistent with the 'PhysicalSizeX', 'PhysicalSizeY' and 'PhysicalSizeZ'
+      OME metadata fields.
+    level: error
+  selectors:
+    - ome != null
+    - sidecar.PixelSize != null
+    - sidecar.PixelSizeUnit != null
+  checks:
+    - |
+      ome.PhysicalSizeX * 10 ** (-3 * index(["mm", "um", "nm"], ome.PhysicalSizeXUnit))
+      == sidecar.PixelSize[0] * 10 ** (-3 * index(["mm", "um", "nm"], sidecar.PixelSizeUnit))
+    - |
+      ome.PhysicalSizeY * 10 ** (-3 * index(["mm", "um", "nm"], ome.PhysicalSizeYUnit))
+      == sidecar.PixelSize[1] * 10 ** (-3 * index(["mm", "um", "nm"], sidecar.PixelSizeUnit))
+    - |
+      ome.PhysicalSizeZ * 10 ** (-3 * index(["mm", "um", "nm"], ome.PhysicalSizeZUnit))
+      == sidecar.PixelSize[2] * 10 ** (-3 * index(["mm", "um", "nm"], sidecar.PixelSizeUnit))
+
+# 227
+InconsistentTiffExtension:
+  issue:
+    code: INCONSISTENT_TIFF_EXTENSION
+    message: |
+      Inconsistent TIFF file type and extension
+    level: error
+  selectors:
+    - tiff != null
+    - intersects([extension], ['.ome.tif', '.ome.btf'])
+  checks:
+    - tiff.version == 42 || tiff.version == 43
+    - (extension == '.ome.tif') == (tiff.version == 42)
+    - (extension == '.ome.btf') == (tiff.version == 43)

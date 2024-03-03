@@ -4,31 +4,30 @@
 # Assumptions: never need disjunction of selectors
 # Assumptions: top-to-bottom overrides is sufficient logic
 
-
 ---
 # Anatomy imaging data
 
 MRIAnatomyCommonMetadataFields:
-    selectors:
-    - modality == "MRI"
+  selectors:
     - datatype == "anat"
-    fields:
-        ContrastBolusIngredient: OPTIONAL
-        RepetitionTimeExcitation: OPTIONAL
-        RepetitionTimePreparation: OPTIONAL
+    - match(extension, "^\.nii(\.gz)?$")
+  fields:
+    ContrastBolusIngredient: optional
+    RepetitionTimeExcitation: optional
+    RepetitionTimePreparation: optional
 
-PhaseEntityUnits:
-    selectors:
-    - modality == "MRI"
+TaskMetadata:
+  selectors:
     - datatype == "anat"
-    - entities.part == "phase"
-    fields:
-        Unit: REQUIRED
-
-PhaseSuffixUnits:
-    selectors:
-    - modality == "MRI"
-    - datatype == "anat"
-    - suffix == "phase"
-    fields:
-        Unit: REQUIRED
+    - entity.task != null
+    - match(extension, "^\.nii(\.gz)?$")
+  fields:
+    TaskName:
+      level: recommended
+      level_addendum: if `task` entity is present
+    TaskDescription:
+      level: recommended
+      level_addendum: if `task` entity is present
+    Instructions:
+      level: recommended
+      level_addendum: if `task` entity is present

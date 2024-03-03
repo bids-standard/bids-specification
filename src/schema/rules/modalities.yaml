@@ -2,26 +2,32 @@
 # This file defines which data types fall under each modality.
 mri:
   datatypes:
-  - anat
-  - dwi
-  - fmap
-  - func
-  - perf
+    - anat
+    - dwi
+    - fmap
+    - func
+    - perf
 eeg:
   datatypes:
-  - eeg
+    - eeg
 ieeg:
   datatypes:
-  - ieeg
+    - ieeg
 meg:
   datatypes:
-  - meg
+    - meg
 beh:
   datatypes:
-  - beh
+    - beh
 pet:
   datatypes:
-  - pet
+    - pet
 micr:
   datatypes:
-  - micr
+    - micr
+motion:
+  datatypes:
+    - motion
+nirs:
+  datatypes:
+    - nirs

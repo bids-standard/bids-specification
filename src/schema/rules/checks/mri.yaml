@@ -1,0 +1,129 @@
+---
+PhasePartUnits:
+  issue:
+    code: PHASE_UNITS
+    message: |
+      Phase images (with the `part-phase` entity) must have units "rad" or "arbitrary".
+    level: error
+  selectors:
+    - modality == "mri"
+    - entities.part == "phase"
+    - '"Units" in sidecar'
+  checks:
+    - intersects([sidecar.Units], ["rad", "arbitrary"])
+
+# 3
+EchoTimeGreaterThan:
+  issue:
+    code: ECHO_TIME_GREATER_THAN
+    message: |
+      'EchoTime' is greater than 1. Are you sure it's expressed in seconds?
+    level: warning
+  selectors:
+    - modality == "mri"
+    - sidecar.EchoTime
+  checks:
+    - sidecar.EchoTime <= 1
+
+# 5
+TotalReadoutTimeGreaterThan:
+  issue:
+    code: TOTAL_READOUT_TIME_GREATER_THAN
+    message: |
+      'TotalReadoutTime' is greater than 10. Are you sure it's expressed in seconds?
+    level: warning
+  selectors:
+    - modality == "mri"
+    - sidecar.TotalReadoutTime
+  checks:
+    - sidecar.TotalReadoutTime <= 10
+
+# 76
+EffectiveEchoSpacingTooLarge:
+  issue:
+    code: EFFECTIVEECHOSPACING_TOO_LARGE
+    message: |
+      Abnormally high value of 'EffectiveEchoSpacing'.
+    level: error
+  selectors:
+    - modality == "mri"
+    - type(sidecar.RepetitionTime) != "null"
+    - type(sidecar.EffectiveEchoSpacing) != "null"
+    - type(sidecar.PhaseEncodingDirection) != "null"
+    - type(nifti_header) != "null"
+  checks:
+    - |
+      sidecar.RepetitionTime >= (
+        sidecar.EffectiveEchoSpacing
+        * nifti_header.dim[index(["i", "j", "k"], sidecar.PhaseEncodingDirection[0])]
+      )
+
+# 87
+SliceTimingElements:
+  issue:
+    code: SLICETIMING_ELEMENTS
+    message: |
+      The number of elements in the 'SliceTiming' array should match the 'k'
+      dimension of the corresponding NIfTI volume.
+    level: warning
+  selectors:
+    - modality == "mri"
+    - type(sidecar.SliceTiming) != "null"
+    - type(nifti_header) != "null"
+  checks:
+    - length(sidecar.SliceTiming) == nifti_header.dim[3]
+
+# 93
+EESGreaterThanTRT:
+  issue:
+    code: EFFECTIVEECHOSPACING_LARGER_THAN_TOTALREADOUTTIME
+    message: |
+      'EffectiveEchoSpacing' should always be smaller than 'TotalReadoutTime'.
+    level: error
+  selectors:
+    - modality == "mri"
+    - sidecar.EffectiveEchoSpacing != null
+    - sidecar.TotalReadoutTime != null
+  checks:
+    - sidecar.EffectiveEchoSpacing < sidecar.TotalReadoutTime
+
+# 188
+VolumeTimingNotMonotonicallyIncreasing:
+  issue:
+    code: VOLUME_TIMING_NOT_MONOTONICALLY_INCREASING
+    message: |
+      'VolumeTiming' is not monotonically increasing.
+    level: error
+  selectors:
+    - modality == "mri"
+    - sidecar.VolumeTiming != null
+  checks:
+    - sorted(sidecar.VolumeTiming) == sidecar.VolumeTiming
+
+# 192
+BolusCutOffDelayTimeNotMonotonicallyIncreasing:
+  issue:
+    code: BOLUS_CUT_OFF_DELAY_TIME_NOT_MONOTONICALLY_INCREASING
+    message: |
+      'BolusCutOffDelayTime' is not monotonically increasing.
+    level: error
+  selectors:
+    - modality == "mri"
+    - sidecar.BolusCutoffDelayTime != null
+  checks:
+    - sorted(sidecar.BolusCutoffDelayTime) == sidecar.BolusCutoffDelayTime
+
+# 201
+RepetitionTimePreparationNotConsistent:
+  issue:
+    code: REPETITIONTIME_PREPARATION_NOT_CONSISTENT
+    message: |
+      The number of values for 'RepetitionTimePreparation' for this file does
+      not match the 4th dimension of the NIfTI header.
+    level: error
+  selectors:
+    - modality == "mri"
+    - type(sidecar.RepetitionTimePreparation) == "array"
+    - type(nifti_header) != "null"
+  checks:
+    - length(sidecar.RepetitionTimePreparation) == nifti_header.dim[4]

@@ -3,241 +3,30 @@ import shutil
 
 import pytest
 
+from bidsschematools.conftest import BIDS_ERROR_SELECTION, BIDS_SELECTION
+from bidsschematools.validator import select_schema_path, validate_bids
 
-def test__add_entity():
-    from bidsschematools.validator import _add_entity
-
-    # Test empty input and directory creation and required entity
-    regex_entities = ""
-    entity = "subject"
-    entity_shorthand = "sub"
-    variable_field = "([a-zA-Z0-9]*?)"
-    requirement_level = "required"
-
-    _regex_entities = _add_entity(
-        regex_entities,
-        entity,
-        entity_shorthand,
-        variable_field,
-        requirement_level,
-    )
-
-    assert _regex_entities == "sub-(?P=subject)"
-
-    # Test append input and optional entity
-    regex_entities = (
-        "sub-(?P=subject)(|_ses-(?P=session))"
-        "(|_task-(?P<task>([a-zA-Z0-9]*?)))(|_trc-(?P<tracer>([a-zA-Z0-9]*?)))"
-        "(|_rec-(?P<reconstruction>([a-zA-Z0-9]*?)))"
-        "(|_run-(?P<run>([a-zA-Z0-9]*?)))"
-    )
-    entity = "recording"
-    entity_shorthand = "recording"
-    variable_field = "([a-zA-Z0-9]*?)"
-    requirement_level = "optional"
-
-    _regex_entities = _add_entity(
-        regex_entities,
-        entity,
-        entity_shorthand,
-        variable_field,
-        requirement_level,
-    )
-
-    assert (
-        _regex_entities == "sub-(?P=subject)(|_ses-(?P=session))"
-        "(|_task-(?P<task>([a-zA-Z0-9]*?)))(|_trc-(?P<tracer>([a-zA-Z0-9]*?)))"
-        "(|_rec-(?P<reconstruction>([a-zA-Z0-9]*?)))"
-        "(|_run-(?P<run>([a-zA-Z0-9]*?)))"
-        "(|_recording-(?P<recording>([a-zA-Z0-9]*?)))"
-    )
+from ..data import load_resource
+from .data import load_test_data
 
 
-def test__add_extensions():
-    from bidsschematools.validator import _add_extensions
-
-    # Test single extension
-    regex_string = (
-        "sub-(?P=subject)(|_ses-(?P=session))"
-        "_sample-(?P<sample>([a-zA-Z0-9]*?))"
-        "(|_acq-(?P<acquisition>([a-zA-Z0-9]*?)))_photo"
-    )
-    variant = {
-        "suffixes": ["photo"],
-        "extensions": [".jpg"],
-        "entities": {
-            "subject": "required",
-            "session": "optional",
-            "sample": "required",
-            "acquisition": "optional",
-        },
-    }
-    _regex_string = _add_extensions(regex_string, variant)
-
-    assert (
-        _regex_string == "sub-(?P=subject)(|_ses-(?P=session))"
-        "_sample-(?P<sample>([a-zA-Z0-9]*?))"
-        "(|_acq-(?P<acquisition>([a-zA-Z0-9]*?)))_photo\\.jpg"
-    )
-
-    # Test multiple extensions
-    regex_string = (
-        "sub-(?P=subject)(|_ses-(?P=session))"
-        "_sample-(?P<sample>([a-zA-Z0-9]*?))"
-        "(|_acq-(?P<acquisition>([a-zA-Z0-9]*?)))_photo"
-    )
-    variant = {
-        "suffixes": ["photo"],
-        "extensions": [".jpg", ".png", ".tif"],
-        "entities": {
-            "subject": "required",
-            "session": "optional",
-            "sample": "required",
-            "acquisition": "optional",
-        },
-    }
-    _regex_string = _add_extensions(regex_string, variant)
-
-    assert (
-        _regex_string == "sub-(?P=subject)(|_ses-(?P=session))"
-        "_sample-(?P<sample>([a-zA-Z0-9]*?))"
-        "(|_acq-(?P<acquisition>([a-zA-Z0-9]*?)))"
-        "_photo(\\.jpg|\\.png|\\.tif)"
-    )
-
-
-def test__add_subdirs():
-    from bidsschematools.validator import _add_subdirs
-
-    regex_string = "sub-(?P=subject)_sessions\\.(tsv|json)"
-    variant = {
-        "suffixes": ["sessions"],
-        "extensions": [".tsv", ".json"],
-        "entities": {"subject": "required"},
-    }
-    datatype = "tabular_metadata"
-    entity_definitions = {
-        "acquisition": {
-            "display_name": "Acquisition",
-            "name": "acq",
-            "type": "string",
-            "format": "label",
-        },
-        "session": {
-            "display_name": "Session",
-            "name": "ses",
-            "type": "string",
-            "format": "label",
-        },
-        "subject": {
-            "display_name": "Subject",
-            "name": "sub",
-            "type": "string",
-            "format": "label",
-        },
-    }
-    formats = {
-        "label": {
-            "pattern": "[0-9a-zA-Z]+",
-        }
-    }
-    modality_datatypes = [
-        "anat",
-        "dwi",
-        "fmap",
-        "func",
-        "perf",
-        "eeg",
-        "ieeg",
-        "meg",
-        "beh",
-        "pet",
-        "micr",
+def test_inheritance_examples():
+    correct_inheritance = [
+        "/lala/sub-01/ses-test/sub-01_ses-test_task-sometask_bold.json",
+        "/lala/sub-01/sub-01_task-sometask_bold.json",
+        "/lala/task-sometask_bold.json",
     ]
-    _regex_string = _add_subdirs(
-        regex_string, variant, datatype, entity_definitions, formats, modality_datatypes
+    incorrect_inheritance = [
+        "/lala/sub-01/sub-01_ses-test_task-sometask_bold.json",
+        "/lala/ses-test_task-sometask.json",
+    ]
+
+    result = validate_bids(
+        correct_inheritance + incorrect_inheritance,
+        dummy_paths=True,
     )
 
-    assert (
-        _regex_string == "/sub-(?P<subject>([0-9a-zA-Z]+))/sub-(?P=subject)"
-        "_sessions\\.(tsv|json)"
-    )
-
-
-def test__add_suffixes():
-    from bidsschematools.validator import _add_suffixes
-
-    # Test single expansion
-    regex_entities = "sub-(?P=subject)"
-    variant = {
-        "suffixes": ["sessions"],
-        "extensions": [
-            ".tsv",
-            ".json",
-        ],
-        "entities": {"subject": "required"},
-    }
-    regex_string = "sub-(?P=subject)_sessions"
-
-    _regex_string = _add_suffixes(regex_entities, variant)
-
-    assert _regex_string == regex_string
-
-    # Test multiple expansions
-    regex_entities = (
-        "sub-(?P=subject)(|_ses-(?P=session))"
-        "(|_acq-(?P<acquisition>([a-zA-Z0-9]*?)))"
-        "(|_rec-(?P<reconstruction>([a-zA-Z0-9]*?)))"
-        "(|_dir-(?P<direction>([a-zA-Z0-9]*?)))(|_run-(?P<run>([a-zA-Z0-9]*?)))"
-        "(|_recording-(?P<recording>([a-zA-Z0-9]*?)))"
-    )
-    variant = {
-        "suffixes": [
-            "physio",
-            "stim",
-        ],
-        "extensions": [
-            ".tsv.gz",
-            ".json",
-        ],
-        "entities": {
-            "subject": "required",
-            "session": "optional",
-            "acquisition": "optional",
-            "reconstruction": "optional",
-            "direction": "optional",
-            "run": "optional",
-            "recording": "optional",
-        },
-    }
-    regex_string = (
-        "sub-(?P=subject)(|_ses-(?P=session))"
-        "(|_acq-(?P<acquisition>([a-zA-Z0-9]*?)))"
-        "(|_rec-(?P<reconstruction>([a-zA-Z0-9]*?)))"
-        "(|_dir-(?P<direction>([a-zA-Z0-9]*?)))(|_run-(?P<run>([a-zA-Z0-9]*?)))"
-        "(|_recording-(?P<recording>([a-zA-Z0-9]*?)))"
-        "_(physio|stim)"
-    )
-
-    _regex_string = _add_suffixes(regex_entities, variant)
-
-    assert _regex_string == regex_string
-
-
-def test_load_all():
-    from bidsschematools.validator import load_all
-
-    # schema_path = "/usr/share/bids-schema/1.7.0/"
-    schema_path = os.path.join(
-        os.path.abspath(os.path.dirname(__file__)),
-        "../data/schema",
-    )
-    schema_all, _ = load_all(schema_path)
-
-    # Check if expected keys are present in all entries
-    for entry in schema_all:
-        assert "regex" in list(entry.keys())
-        assert "mandatory" in list(entry.keys())
+    assert result["path_tracking"] == incorrect_inheritance
 
 
 def test_write_report(tmp_path):
@@ -247,12 +36,12 @@ def test_write_report(tmp_path):
 
     validation_result["schema_tracking"] = [
         {
-            "regex": ".*?/sub-(?P<subject>([a-zA-Z0-9]*?))/"
-            "(|ses-(?P<session>([a-zA-Z0-9]*?))/)anat/sub-(?P=subject)"
-            "(|_ses-(?P=session))(|_acq-(?P<acquisition>([a-zA-Z0-9]*?)))"
-            "(|_ce-(?P<ceagent>([a-zA-Z0-9]*?)))"
-            "(|_rec-(?P<reconstruction>([a-zA-Z0-9]*?)))"
-            "(|_run-(?P<run>([a-zA-Z0-9]*?)))"
+            "regex": ".*?/sub-(?P<subject>[0-9a-zA-Z]+)/"
+            "(|ses-(?P<session>[0-9a-zA-Z]+)/)anat/sub-(?P=subject)"
+            "(|_ses-(?P=session))(|_acq-(?P<acquisition>[0-9a-zA-Z]+))"
+            "(|_ce-(?P<ceagent>[0-9a-zA-Z]+))"
+            "(|_rec-(?P<reconstruction>[0-9a-zA-Z]+))"
+            "(|_run-(?P<run>[0-9a-zA-Z]+))"
             "(|_part-(?P<part>(mag|phase|real|imag)))"
             "_(T1w|T2w|PDw|T2starw|FLAIR|inplaneT1|inplaneT2|PDT2|angio|T2star)"
             "\\.(nii.gz|nii|json)$",
@@ -261,12 +50,12 @@ def test_write_report(tmp_path):
     ]
     validation_result["schema_listing"] = [
         {
-            "regex": ".*?/sub-(?P<subject>([a-zA-Z0-9]*?))/"
-            "(|ses-(?P<session>([a-zA-Z0-9]*?))/)anat/sub-(?P=subject)"
-            "(|_ses-(?P=session))(|_acq-(?P<acquisition>([a-zA-Z0-9]*?)))"
-            "(|_ce-(?P<ceagent>([a-zA-Z0-9]*?)))"
-            "(|_rec-(?P<reconstruction>([a-zA-Z0-9]*?)))"
-            "(|_run-(?P<run>([a-zA-Z0-9]*?)))"
+            "regex": ".*?/sub-(?P<subject>[0-9a-zA-Z]+)/"
+            "(|ses-(?P<session>[0-9a-zA-Z]+)/)anat/sub-(?P=subject)"
+            "(|_ses-(?P=session))(|_acq-(?P<acquisition>[0-9a-zA-Z]+))"
+            "(|_ce-(?P<ceagent>[0-9a-zA-Z]+))"
+            "(|_rec-(?P<reconstruction>[0-9a-zA-Z]+))"
+            "(|_run-(?P<run>[0-9a-zA-Z]+))"
             "(|_part-(?P<part>(mag|phase|real|imag)))"
             "_(T1w|T2w|PDw|T2starw|FLAIR|inplaneT1|inplaneT2|PDT2|angio|T2star)"
             "\\.(nii.gz|nii|json)$",
@@ -282,88 +71,73 @@ def test_write_report(tmp_path):
         "rawdata/sub-EXC022/anat/sub-EXC022_ses-MRI_flip-1_VFA.nii.gz"
     ]
 
-    report_path = os.path.join(
-        tmp_path,
-        "output_bids_validator_xs_write.log",
-    )
-    expected_report_path = os.path.join(
-        os.path.abspath(os.path.dirname(__file__)),
-        "data/expected_bids_validator_xs_write.log",
-    )
-    write_report(validation_result, report_path=report_path)
-    with open(report_path, "r") as f:
-        report_text = f.read()
-    with open(expected_report_path, "r") as f:
-        expected_report_text = f.read()
-    assert report_text == expected_report_text
+    report_path = tmp_path / "output_bids_validator_xs_write.log"
+    write_report(validation_result, report_path=str(report_path))
+
+    expected_report_path = load_test_data("expected_bids_validator_xs_write.log")
+    assert report_path.read_text() == expected_report_path.read_text()
 
 
 @pytest.mark.skipif(
     os.environ.get("SCHEMACODE_TESTS_NONETWORK") is not None,
     reason="no network",
 )
-def test_bids_datasets(bids_examples, tmp_path):
-    from bidsschematools.validator import validate_bids
-
-    whitelist = [
-        "asl003",
-        "eeg_cbm",
-        "hcp_example_bids",
-        "micr_SEM",
-        "micr_SPIM",
-        "pet001",
-        "pet003",
-        "qmri_tb1tfl",
-        "qmri_vfa/derivatives/qMRLab",
-    ]
-    schema_path = "{module_path}/data/schema/"
-
+@pytest.mark.parametrize("dataset", BIDS_SELECTION)
+def test_bids_datasets(bids_examples, tmp_path, dataset):
     # Validate per dataset:
-    for i in os.listdir(bids_examples):
-        if i in whitelist:
-            result = validate_bids(
-                os.path.join(bids_examples, i),
-                schema_version=schema_path,
-                report_path=True,
-                debug=True,
-            )
-            # Have all files been validated?
-            assert len(result["path_tracking"]) == 0
-
-    # Create input for file list based validation
-    selected_dir = os.path.join(bids_examples, whitelist[0])
-    selected_paths = []
-    for root, dirs, files in os.walk(selected_dir, topdown=False):
-        for f in files:
-            selected_path = os.path.join(root, f)
-            selected_paths.append(selected_path)
-    # Do version fallback and terminal debug output work?
-    result = validate_bids(selected_paths, schema_version=None, debug=True)
-    # Does default log path specification work?
-    result = validate_bids(selected_paths, schema_version=schema_path, report_path=True)
-
-    # Does custom log path specification work?
+    target = os.path.join(bids_examples, dataset)
     result = validate_bids(
-        selected_paths,
-        schema_version=schema_path,
-        debug=True,
-        report_path=os.path.join(tmp_path, "test_bids.log"),
+        target,
     )
     # Have all files been validated?
     assert len(result["path_tracking"]) == 0
 
 
+@pytest.mark.skipif(
+    os.environ.get("SCHEMACODE_TESTS_NONETWORK") is not None,
+    reason="no network",
+)
+def test_validate_bids(bids_examples, tmp_path):
+    # Create input for file list based validation
+    selected_dir = os.path.join(bids_examples, BIDS_SELECTION[0])
+    selected_paths = []
+    for root, dirs, files in os.walk(selected_dir, topdown=False):
+        for f in files:
+            selected_path = os.path.join(root, f)
+            selected_paths.append(selected_path)
+    # Does version fallback work?
+    result = validate_bids(selected_paths, schema_path=False)
+    # Does default log path specification work?
+    result = validate_bids(selected_paths, report_path=True)
+
+    # Does custom log path specification work?
+    result = validate_bids(
+        selected_paths,
+        report_path=os.path.join(tmp_path, "test_bids.log"),
+    )
+    # Have all files been validated?
+    assert len(result["path_tracking"]) == 0
+
+    # Is the schema version recorded correctly?
+    schema_path = load_resource("schema")
+    with open(os.path.join(schema_path, "BIDS_VERSION")) as f:
+        expected_version = f.readline().rstrip()
+    assert result["bids_version"] == expected_version
+
+
+@pytest.mark.skipif(
+    os.environ.get("SCHEMACODE_TESTS_NONETWORK") is not None,
+    reason="no network",
+)
 def test_broken_json_dataset(bids_examples, tmp_path):
-    from bidsschematools.validator import validate_bids
+    """Perhaps this can be integrated into
+    https://github.com/bids-standard/bids-error-examples ."""
 
     dataset = "asl003"
     dataset_path = os.path.join(bids_examples, dataset)
     dataset_json = os.path.join(dataset_path, "dataset_description.json")
 
-    broken_json = os.path.join(
-        os.path.abspath(os.path.dirname(__file__)),
-        "data/broken_dataset_description.json",
-    )
+    broken_json = load_test_data("broken_dataset_description.json")
     shutil.copyfile(broken_json, dataset_json)
 
     # No assert, will simply raise JSON reader error if not catching it properly.
@@ -371,3 +145,107 @@ def test_broken_json_dataset(bids_examples, tmp_path):
         dataset_path,
         report_path=True,
     )
+
+
+@pytest.mark.skipif(
+    os.environ.get("SCHEMACODE_TESTS_NONETWORK") is not None,
+    reason="no network",
+)
+def test_exclude_files(bids_examples, tmp_path):
+    from bidsschematools.validator import validate_bids
+
+    dataset = "asl003"
+    dataset_reference = os.path.join(bids_examples, dataset)
+    tmp_path = str(tmp_path)
+    shutil.copytree(dataset_reference, tmp_path, dirs_exist_ok=True)
+
+    # Create non-BIDS non-dotfile
+    archive_file_name = "dandiset.yaml"
+    archive_file_path = os.path.join(tmp_path, archive_file_name)
+    with open(archive_file_path, "w") as f:
+        f.write(" \n")
+
+    # Does it fail, as it should (more like a failsafe assertion)
+    result = validate_bids(tmp_path)
+    assert len(result["path_tracking"]) == 1
+
+    # Does the parameter work?
+    result = validate_bids(tmp_path, exclude_files=[archive_file_name])
+    assert len(result["path_tracking"]) == 0
+
+
+@pytest.mark.skipif(
+    os.environ.get("SCHEMACODE_TESTS_NONETWORK") is not None,
+    reason="no network",
+)
+def test_accept_non_bids_dir(bids_examples, tmp_path):
+    from bidsschematools.validator import validate_bids
+
+    dataset = "asl003"
+    dataset_reference = os.path.join(bids_examples, dataset)
+    tmp_path = str(tmp_path)
+    shutil.copytree(dataset_reference, tmp_path, dirs_exist_ok=True)
+
+    # remove `dataset_description.json`
+    os.remove(os.path.join(tmp_path, "dataset_description.json"))
+
+    # Does it fail, as it should (more like a failsafe assertion)
+    with pytest.raises(
+        ValueError,
+        match="None of the files in the input list are part of a BIDS dataset. Aborting.",
+    ):
+        _ = validate_bids(tmp_path)
+
+    # Does the parameter work?
+    result = validate_bids(tmp_path, accept_non_bids_dir=True)
+    assert len(result["path_tracking"]) == 0
+
+
+@pytest.mark.skipif(
+    os.environ.get("SCHEMACODE_TESTS_NONETWORK") is not None,
+    reason="no network",
+)
+@pytest.mark.parametrize("dataset", BIDS_ERROR_SELECTION)
+def test_error_datasets(bids_error_examples, dataset):
+    target = os.path.join(bids_error_examples, dataset)
+    result = validate_bids(
+        target,
+        report_path=True,
+    )
+    # Are there non-validated files?
+    assert len(result["path_tracking"]) != 0
+
+
+def test_gitdir(bids_examples, tmp_path):
+    """Maybe better handled in example data?"""
+
+    selected_dir = os.path.join(bids_examples, BIDS_SELECTION[0])
+    tmp_path = str(tmp_path)
+    shutil.copytree(selected_dir, tmp_path, dirs_exist_ok=True)
+
+    os.makedirs(os.path.join(tmp_path, ".git"))
+    with open(os.path.join(tmp_path, ".git", "config"), "w") as temp_file:
+        temp_file.write("")
+    result = validate_bids(tmp_path)
+    assert len(result["path_tracking"]) == 0
+
+
+def test_select_schema_path(bids_examples, tmp_path):
+    dataset = "asl003"
+    dataset_path = os.path.join(bids_examples, dataset)
+
+    # Does fallback to None work without any `raise`?
+    schema_path = select_schema_path(dataset_path)
+    assert schema_path is None
+
+
+def test_bids_schema_versioncheck(monkeypatch):
+    """Test incompatible version."""
+    import bidsschematools as bst
+
+    from ..utils import get_bundled_schema_path
+
+    schema_dir = get_bundled_schema_path()
+    assert bst.validator._bids_schema_versioncheck(schema_dir)
+    monkeypatch.setattr(bst, "__version__", "99.99.99")
+    assert not bst.validator._bids_schema_versioncheck(schema_dir)

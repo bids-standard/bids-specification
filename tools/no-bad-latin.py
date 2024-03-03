@@ -1,14 +1,16 @@
 #!/usr/bin/env python
 #
-# Detect Latin abbreviations that can be difficult for screenreaders and non-native English speakers
+# Detect Latin abbreviations that can be difficult for screenreaders
+# and non-native English speakers
 #
 # This script initially adopted from The Turing Way from in October 2020.
 # doi:10.5281/zenodo.3233853
 # https://github.com/alan-turing-institute/the-turing-way/blob/af98c94/tests/no-bad-latin.py
 
+import argparse
 import os
 import re
-import argparse
+
 from pull_files import filter_files
 
 ABSOLUTE_HERE = os.path.dirname(os.path.dirname(__file__))
@@ -75,10 +77,10 @@ def construct_error_message(files_dict):
     """
     error_message = ["Bad latin found in the following files:\n"]
 
-    for file in files_dict.keys():
-        error_message.append(
-            f"{file}:\t{files_dict[file]['latin_type']}\tfound in line\t[{files_dict[file]['line']}]\n"
-        )
+    error_message.extend(
+        f"{file}:\t{info['latin_type']}\tfound in line\t[{info['line']}]\n"
+        for file, info in files_dict.items()
+    )
 
     return "\n".join(error_message)
 
@@ -97,19 +99,18 @@ def read_and_check_files(files):
                   containing the offending line.
     """
     failing_files = {}
-    bad_latin = [
-        "i.e.", "i.e ", " ie ",
-        "e.g.", "e.g ",
-        "e.t.c.", " etc", "et cetera"
-    ]
+    bad_latin = ["i.e.", "i.e ", " ie ", "e.g.", "e.g ", "e.t.c.", " etc", "et cetera"]
 
     for filename in files:
         if os.path.basename(filename) in IGNORE_LIST:
             pass
         else:
             try:
-                with open(os.path.join(ABSOLUTE_HERE, filename),
-                          encoding="utf8", errors="ignore") as f:
+                with open(
+                    os.path.join(ABSOLUTE_HERE, filename),
+                    encoding="utf8",
+                    errors="ignore",
+                ) as f:
                     text = f.read()
                     text = remove_comments(text)
 

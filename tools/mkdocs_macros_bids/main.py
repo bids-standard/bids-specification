@@ -4,6 +4,7 @@ MarkDown format for the specification text.
 Functions decorated in "define_env()" are callable throughout the
 specification and are run/rendered with the mkdocs plugin "macros".
 """
+
 import os
 import sys
 
@@ -38,6 +39,12 @@ def define_env(env):
     env.macro(macros.make_glossary, "MACROS___make_glossary")
     env.macro(macros.make_suffix_table, "MACROS___make_suffix_table")
     env.macro(macros.make_metadata_table, "MACROS___make_metadata_table")
+    env.macro(macros.make_sidecar_table, "MACROS___make_sidecar_table")
     env.macro(macros.make_subobject_table, "MACROS___make_subobject_table")
     env.macro(macros.make_columns_table, "MACROS___make_columns_table")
     env.macro(macros.make_filetree_example, "MACROS___make_filetree_example")
+    env.macro(macros.define_common_principles, "MACROS___define_common_principles")
+    env.macro(
+        macros.define_allowed_top_directories, "MACROS___define_allowed_top_directories"
+    )
+    env.macro(macros.render_text, "MACROS___render_text")

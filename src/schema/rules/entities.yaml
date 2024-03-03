@@ -5,6 +5,7 @@
 - session
 - sample
 - task
+- tracksys
 - acquisition
 - ceagent
 - tracer
@@ -24,7 +25,7 @@
 - split
 - recording
 - chunk
-- atlas
+- segmentation
 - resolution
 - density
 - label

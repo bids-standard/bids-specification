@@ -24,3 +24,15 @@ exclude = '''
 [tool.isort]
 profile = "black"
 multi_line_output = 3
+
+[tool.pytest.ini_options]
+markers = [
+  "validate_schema: tests that validate the schema itself",
+]
+
+[tool.coverage.run]
+parallel = true
+omit = [
+  "*/*/tests/*",
+  "**/tests/*"
+]

@@ -14,31 +14,23 @@ BIDS governance.
 
 ### Steering Group
 
-| Name                                                                         |
-|------------------------------------------------------------------------------|
-| Guiomar Niso ([@guiomar](https://github.com/guiomar))                        |
-| Melanie Ganz ([@melanieganz](https://github.com/melanieganz))                |
-| Robert Oostenveld ([@robertoostenveld](https://github.com/robertoostenveld)) |
-| Russell Poldrack ([@poldrack](https://github.com/poldrack))                  |
-| Ariel Rokem ([@arokem](https://github.com/arokem))            |
-
-#### Past steering group members
-
-| Name                                                                         |
-|------------------------------------------------------------------------------|
-| Kirstie Whitaker ([@KirstieJane](https://github.com/KirstieJane))            |
+Current and past members of the steering group can be found
+[here](https://bids.neuroimaging.io/governance.html#bids-steering-group).
 
 ### Maintainers Group
 
-| Name                                                                           | Time commitment | Scope                      |
-|--------------------------------------------------------------------------------|-----------------|----------------------------|
-| Stefan Appelhoff ([@sappelhoff](https://github.com/sappelhoff))                | 5h/week         | Lead Maintainer            |
-| Chris Markiewicz ([@effigies](https://github.com/effigies))                    | 5h/week         |                            |
-| Franklin Feingold ([@franklin-feingold](https://github.com/franklin-feingold)) | 5h/week         | Community development      |
-| Taylor Salo ([@tsalo](https://github.com/tsalo))                               | 3h/week         | MRI                        |
-| Remi Gau ([@Remi-Gau](https://github.com/Remi-Gau))                            | 3h/week         | Community development, MRI |
-| Anthony Galassi  ([@bendhouseart](https://github.com/bendhouseart))            | 3h/week         | PET, Community development |
-| Eric Earl ([@ericearl](https://github.com/ericearl))                           | 2h/week         |                            |
+| Name                                                                      | Time commitment | Scope                                 | Joined   |
+|---------------------------------------------------------------------------|-----------------|---------------------------------------|----------|
+| Stefan Appelhoff ([@sappelhoff](https://github.com/sappelhoff))           | 5h/week         | Lead Maintainer                       | Mar 2020 |
+| Chris Markiewicz ([@effigies](https://github.com/effigies))               | 5h/week         |                                       | Mar 2020 |
+| Ross Blair ([@rwblair](https://github.com/rwblair))                       |                 | Maintainer of the bids-validator      | Mar 2020 |
+| Taylor Salo ([@tsalo](https://github.com/tsalo))                          | 3h/week         | MRI                                   | Sep 2020 |
+| Remi Gau ([@Remi-Gau](https://github.com/Remi-Gau))                       | 3h/week         | Community development, MRI            | Oct 2020 |
+| Anthony Galassi  ([@bendhouseart](https://github.com/bendhouseart))       | 3h/week         | PET, Community development            | Sep 2021 |
+| Eric Earl ([@ericearl](https://github.com/ericearl))                      | 2h/week         |                                       | Dec 2021 |
+| Christine Rogers ([@christinerogers](https://github.com/christinerogers)) | 2h/mo           | Interoperability, EEG and multi-modal | Apr 2023 |
+| Nell Hardcastle ([@nellh](https://github.com/nellh))                      | 2h/week         |                                       | Jul 2023 |
+| Kimberly Ray ([@KimberlyLRay](https://github.com/KimberlyLRay))                      | 1h/week         |                                       | Nov 2022 |
 
 In addition to the [BIDS Governance](https://bids.neuroimaging.io/governance.html#bids-maintainers-group)
 classification of a maintainer, maintainers may declare a limited scope of responsibility.
@@ -48,6 +40,12 @@ One or more scopes can be chosen by the maintainer and agreed upon by the Mainta
 A maintainer is primarily responsible for issues within their chosen scope(s), although
 contributions elsewhere are welcome, as well.
 
+#### Past maintainers group members
+
+| Name                                                                           | Duration            |
+|--------------------------------------------------------------------------------|---------------------|
+| Franklin Feingold ([@franklin-feingold](https://github.com/franklin-feingold)) | Mar 2020 - Jul 2022 |
+
 ### BEP Leads Group
 
 Leaders of BIDS Extension Proposals are listed in the
@@ -55,11 +53,12 @@ Leaders of BIDS Extension Proposals are listed in the
 
 ### Contributors Group
 
-Contributors are listed in [Appendix I](https://bids-specification.readthedocs.io/en/stable/99-appendices/01-contributors.html)
-of the BIDS specification. Contributors who have not yet entered their name
-into this list are encouraged to edit the [Contributors WIKI page](https://github.com/bids-standard/bids-specification/wiki/Contributors)
-with their name, using the emojis listed in the WIKI to indicate their
-contributions.
+Contributors are listed in the
+[Contributors appendix](https://bids-specification.readthedocs.io/en/stable/appendices/contributors.html)
+of the BIDS specification.
+Contributors who have not yet entered their name into this list are encouraged to edit the
+[Contributors wiki page](https://github.com/bids-standard/bids-specification/wiki/Recent-Contributors)
+according to the instructions listed there.
 
 ### Other groups
 
@@ -93,7 +92,7 @@ and heavily depends on [GitHub Pull Request Review system](https://help.github.c
    others) or proposal to release a new version needs to be done via a Pull
    Request (PR) to the Repository.
 1. Anyone can open a PR (this action is not limited to Contributors).
-1. PRs adding new Contributors must also add their GitHub names to the
+1. PRs adding new Contributors may also add their GitHub names to the
    [CODEOWNERS](./CODEOWNERS) file.
 1. A PR is eligible to be merged if and only if these conditions are met:
    1. The last commit is at least 5 working days old to allow the community to
@@ -151,8 +150,3 @@ and heavily depends on [GitHub Pull Request Review system](https://help.github.c
    merged so if you think the PR needs your attention, please review it
    promptly or request more time via Request changes.
 1. Releases are triggered the same way as any other change - via a PR.
-1. PRs MUST be merged using the "Create a merge commit" option in GitHub (by using
-   the "merge pull request" option). This is necessary for our automatic
-   changelog generator to do its work reliably. See the [GitHub help page](https://help.github.com/en/articles/about-merge-methods-on-github)
-   for information on merge methods. See the changelog generator implementation
-   in our [circleci configuration file](./.circleci/config.yml).
