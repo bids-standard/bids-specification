@@ -1,5 +1,31 @@
 # Magnetic Resonance Imaging
 
+## Data format
+
+All MRI imaging data MUST be stored using the [NIfTI-1 or NIFTI-2](https://nifti.nimh.nih.gov/)
+file format (.nii). The ANALYZE-7.5 file format (.hdr/.img), despite
+being very similar to NIFTI-1, is not allowed. Imaging data SHOULD be
+converted to the NIfTI format using a tool that provides as much of
+the NIfTI header information (such as orientation and slice timing
+information) as possible.
+
+We RECOMMEND to use [dcm2niix](https://github.com/rordenlab/dcm2niix)
+to convert source DICOM images to NIFTI-2 file format, as it extracts 
+large number of BIDS compatible metadata. As alternative, [dicm2nii](https://www.mathworks.com/matlabcentral/fileexchange/42997-xiangruili-dicm2nii) and
+[spm_dicom_convert](https://github.com/neurodebian/spm12/blob/master/spm_dicom_convert.m)
+from [spm package](https://github.com/neurodebian/spm12/tree/master) can be used for convertion.
+
+Multi-volume acquisitions (e.g., 2D slices of anatomical MRI or 3D volumes
+of functional MRI) MUST be concatenated into single image (3D or 4D, respectively).
+This can be performed either by [concat_images](https://nipy.org/nibabel/reference/nibabel.funcs.html)
+of Nibabel package.
+
+Due to the important size of MRI imaging data, we RECOMMEND using compressed NIfTI files
+by [gzip](https://www.gzip.org/) algorithm (.nii.gz).
+If using compressed files, the gzip header SHOULD lack source filenames and timestamps.
+This can be achieved by using `--no-name` option of gzip, or by first renaming original file
+to BIDS standard and then compressing.
+
 ## Common metadata fields
 
 MR Data described in the following sections share the following RECOMMENDED metadata

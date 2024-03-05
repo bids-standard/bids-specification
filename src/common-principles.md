@@ -409,20 +409,22 @@ datasets and non-compliant derivatives.
 
 ### Imaging files
 
-All imaging data MUST be stored using the NIfTI file format. We RECOMMEND using
-compressed NIfTI files (.nii.gz), either version 1.0 or 2.0. If using compressed files,
-the gzip header SHOULD lack source filenames and timestamps. Imaging data SHOULD
-be converted to the NIfTI format using a tool that provides as much of the NIfTI
-header information (such as orientation and slice timing information) as
-possible. Since the NIfTI standard offers limited support for the various image
-acquisition parameters available in DICOM files, we RECOMMEND that users provide
-additional meta information extracted from DICOM files in a sidecar JSON file
-(with the same filename as the `.nii[.gz]` file, but with a `.json` extension).
-Extraction of BIDS compatible metadata can be performed using [dcm2niix](https://github.com/rordenlab/dcm2niix)
-and [dicm2nii](https://www.mathworks.com/matlabcentral/fileexchange/42997-xiangruili-dicm2nii)
-DICOM to NIfTI converters. The [BIDS-validator](https://github.com/bids-standard/bids-validator)
-will check for conflicts between the JSON file and the data recorded in the
-NIfTI header.
+All imaging data MUST be stored using BIDS-compatible file format, specified 
+in the respective section. The conversion from original imaging data format
+to BIDS-compatible one must be performed using a tool that conserves as much
+of original metadata, as possible, at exception of information relative to
+the participant identity, which should not be present in the converted image.
+
+We RECOMMEND that the imaging file will be accompanied with a additional meta
+information extracted from source image and/or external sources in a sidecar
+JSON file. If present, sidecar JSON filename MUST be same as as the imaging
+file, but with a `.json` extension).
+
+In some cases BIDS authorize to store compressed imaging files. In such cases
+the compression must be performed using gzip algorithm, and have extension .gz,
+for example `sub-123_T1w,nii.gz`. The zip header SHOULD lack source filenames
+and timestamps, this can be achieved by using `---name` option of gzip, or
+first renaming file, and then compressing it.
 
 ### Tabular files
 
