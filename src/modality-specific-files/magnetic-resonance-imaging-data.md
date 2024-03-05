@@ -10,12 +10,12 @@ the NIfTI header information (such as orientation and slice timing
 information) as possible.
 
 We RECOMMEND to use [dcm2niix](https://github.com/rordenlab/dcm2niix)
-to convert source DICOM images to NIFTI-2 file format, as it extracts 
+to convert source DICOM images to NIFTI-2 file format, as it extracts
 large number of BIDS compatible metadata. As alternative, [dicm2nii](https://www.mathworks.com/matlabcentral/fileexchange/42997-xiangruili-dicm2nii) and
 [spm_dicom_convert](https://github.com/neurodebian/spm12/blob/master/spm_dicom_convert.m)
-from [spm package](https://github.com/neurodebian/spm12/tree/master) can be used for convertion.
+from [spm package](https://github.com/neurodebian/spm12/tree/master) can be used for conversion.
 
-Multi-volume acquisitions (e.g., 2D slices of anatomical MRI or 3D volumes
+Multi-volume acquisitions (for example, 2D slices of anatomical MRI or 3D volumes
 of functional MRI) MUST be concatenated into single image (3D or 4D, respectively).
 This can be performed either by [concat_images](https://nipy.org/nibabel/reference/nibabel.funcs.html)
 of Nibabel package.
