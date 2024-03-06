@@ -14,5 +14,6 @@ ephys:
     session: optional
     sample: optional
     task: optional
+    acquisition: optional
     run: optional
     split: optional

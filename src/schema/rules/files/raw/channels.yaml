@@ -16,15 +16,14 @@ channels:
     acquisition: optional
     run: optional
 
-# ephys has one removed
-# TODO: see if to be added for consistency etc.
+# ephys has an additional 'sample' entity
 channels__ephys:
   $ref: rules.files.raw.channels.channels
   datatypes:
-    - meg
+    - ephys
   entities:
     $ref: rules.files.raw.channels.channels.entities
-    acquisition:
+    sample: optional
 
 # MEG has an additional entity available
 channels__meg:
@@ -65,6 +64,17 @@ coordsystem__eeg:
     - ieeg
   entities:
     $ref: rules.files.raw.channels.coordsystem.entities
+    space: optional
+
+# ephys has sample AND space entities
+coordsystem__ephys:
+  $ref: rules.files.raw.channels.coordsystem
+  datatypes:
+    - ephys
+    - iephys
+  entities:
+    $ref: rules.files.raw.channels.coordsystem.entities
+    sample: optional
     space: optional
 
 electrodes:
