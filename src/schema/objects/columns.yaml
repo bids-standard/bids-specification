@@ -42,6 +42,38 @@ age:
     for privacy purposes.
   type: number
   unit: year
+alpha_rotation:
+  name: alpha_rotation
+  display_name: Alpha rotation
+  description: |
+    Euler angle to match probe extension dimensions (width, height, depth) to global x, y, z coordinates.
+  unit:
+    degree
+associated_brain_region:
+  name: associated_brain_region
+  display_name: Associated brain region
+  description: |
+    A textual indication on the location of the probe, preferably species-independent terms as obtained e.g. from Uberon.
+  type: string
+associated_brain_region_id:
+  name: associated_uberon_brain_region_id
+  display_name: Associated brain region identifier
+  description: |
+    An identifier of the associated brain region based on the Uberon ontology for  anatomical structures in animals. E.g. “UBERON:0010415”
+  type: number
+associated_brain_region_quality_type:
+  name: associated_brain_region_quality_type
+  display_name: Associated brain region quality type
+  description: |
+     The method used to identify the associated brain region (estimated|proof) depending on anatomical pictures proofing the location or indirect estimation of the location.
+  type: string
+beta_rotation:
+  name: beta_rotation
+  display_name: Beta rotation
+  description: |
+    Euler angle to match probe extension dimensions (width, height, depth) to global x, y, z coordinates.
+  unit:
+    degree
 cardiac:
   name: cardiac
   display_name: Cardiac measurement
@@ -84,6 +116,19 @@ component:
     - $ref: objects.enums.quat_z.value
     - $ref: objects.enums.quat_w.value
     - n/a
+contact_count:
+  name: contact_count
+  display_name: Contact count
+  description: |
+    Number of miscellaneous analog contacts for auxiliary signals.
+  type: number
+depth__probes:
+  name: height
+  display_name: Height
+  description: |
+    Physical height of the probe.
+  type: number
+  unit: mm
 detector__channels:
   name: detector
   display_name: Detector Name
@@ -115,6 +160,12 @@ description:
   display_name: Description
   description: |
     Brief free-text description of the channel, or other information of interest.
+  type: string
+device_serial_number:
+  name: device_serial_number
+  display_name: Device serial number
+  description: |
+    The serial number of the probe (provided by the manufacturer).
   type: string
 description__optode:
   name: description
@@ -151,6 +202,13 @@ filename:
     Relative paths to files.
   type: string
   format: participant_relative
+gamma_rotation:
+  name: gamma_rotation
+  display_name: Gamma rotation
+  description: |
+    Euler angle to match probe extension dimensions (width, height, depth) to global x, y, z coordinates.
+  unit:
+    degree
 group__channel:
   name: group
   display_name: Channel group
@@ -192,6 +250,13 @@ handedness:
     - AMBIDEXTROUS
     - Ambidextrous
     - n/a
+height__probes:
+  name: height
+  display_name: Height
+  description: |
+    Physical height of the probe.
+  type: number
+  unit: mm
 hemisphere:
   name: hemisphere
   display_name: Electrode hemisphere
@@ -266,6 +331,12 @@ material:
   display_name: Electrode material
   description: |
     Material of the electrode (for example, `Tin`, `Ag/AgCl`, `Gold`).
+  type: string
+material__probes:
+  name: material__probes
+  display_name: Material
+  description: |
+    A textual description of the base material of the probe.
   type: string
 metabolite_parent_fraction:
   name: metabolite_parent_fraction
@@ -391,6 +462,12 @@ reference__ieeg:
     - type: string
       enum:
         - n/a
+reference_atlas:
+  name: reference_atlas
+  display_name: Reference atlas
+  description: |
+    Name of reference atlas used for associated brain region identification, preferrably an ebrains supported atlas.
+  type: string
 reference_frame:
   name: reference_frame
   display_name: Reference frame
@@ -703,6 +780,12 @@ type__optodes:
     - $ref: objects.enums.source.value
     - $ref: objects.enums.detector.value
     - n/a
+type__probes:
+  name: type
+  display_name: Type
+  description: |
+    The type of the probe.
+  type: string
 units:
   name: units
   display_name: Units
@@ -785,6 +868,13 @@ whole_blood_radioactivity:
     Radioactivity in whole blood samples,
     in unit of radioactivity measurements in whole blood samples (for example, `kBq/mL`).
   type: number
+width__probes:
+  name: width
+  display_name: Width
+  description: |
+    Physical width of the probe.
+  type: number
+  unit: mm
 x:
   name: x
   display_name: X position
@@ -855,6 +945,16 @@ template_y:
   display_name: Y template position
   description: |
     Assumed or ideal position along the y axis.
+  anyOf:
+    - type: number
+    - type: string
+      enum:
+        - n/a
+template_z:
+  name: template_z
+  display_name: Z template position
+  description: |
+    Assumed or ideal position along the z axis.
   anyOf:
     - type: number
     - type: string
