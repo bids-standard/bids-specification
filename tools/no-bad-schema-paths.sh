@@ -2,6 +2,8 @@
 
 set -eu -o pipefail
 
+schema_json=$(readlink -f "$1")
+
 cd `readlink -f "$0" | xargs dirname`/../src/schema
 
 grep -oE '(://)?([-_A-Za-z]+\.)+[-_A-Za-z]+' README.md \
@@ -14,7 +16,7 @@ grep -oE '(://)?([-_A-Za-z]+\.)+[-_A-Za-z]+' README.md \
         #echo "$filepath"
         #ls -ld "$filepath"* || echo "nope"
         #echo -n "$path: "
-        v=$(jq ".$p" < ../../../bids-schema/versions/master/schema.json | grep -v '^null$' || :)
+        v=$(jq ".$p" < "$schema_json" | grep -v '^null$' || :)
         if [ -z "$v" ]; then
             echo "$p: not reachable"
         fi
