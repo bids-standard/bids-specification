@@ -7,6 +7,7 @@ build:
   jobs:
     pre_build:
       - bst -v export --output src/schema.json
+      - sudo apt install jq
       - tools/no-bad-schema-paths.sh src/schema.json  # README.md might need fixing
 
 mkdocs:
