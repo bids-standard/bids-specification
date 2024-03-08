@@ -38,3 +38,22 @@ sbref:
     run: optional
     part: optional
     chunk: optional
+
+isotropic:
+  suffixes:
+    - ADC
+    - TRACE
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  datatypes:
+    - dwi
+  entities:
+    subject: required
+    session: optional
+    acquisition: optional
+    reconstruction: optional
+    direction: optional
+    run: optional
+    chunk: optional
