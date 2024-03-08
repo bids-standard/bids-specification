@@ -409,22 +409,25 @@ datasets and non-compliant derivatives.
 
 ### Imaging files
 
-All imaging data MUST be stored using BIDS-compatible file format, specified 
-in the respective section. The conversion from original imaging data format
-to BIDS-compatible one, if it is required, must be performed using a tool that conserves as much
-of original metadata, as possible, at exception of information relative to
-the participant identity, which should not be present in the converted image.
+All imaging data MUST be stored using BIDS-compatible file format, specified
+in the respective section.
+The conversion from original imaging data format to BIDS-compatible one, if it
+is required, must be performed using a tool that conserves as much of original
+metadata, as possible, at exception of information relative to the participant
+identity, which should not be present in the converted image.
 
 We RECOMMEND that the imaging file will be accompanied with a additional meta
 information extracted from source image and/or external sources in a sidecar
-JSON file. If present, sidecar JSON filename MUST be same as as the imaging
-file, but with a `.json` extension).
+JSON file.
+If present, sidecar JSON filename MUST be same as as the imaging file, but
+with a `.json` extension.
 
 In some cases BIDS authorize to store compressed imaging files. In such cases
-the compression must be performed using gzip algorithm, and have extension .gz,
-for example `sub-123_T1w.nii.gz`. The zip header SHOULD lack source filenames
-and timestamps, this can be achieved by using `---name` option of gzip, or
-first renaming file, and then compressing it.
+the compression must be performed using gzip algorithm, and have extension
+`.gz`, for example `sub-123_T1w.nii.gz`.
+The zip header SHOULD lack source filenames and timestamps, this can be
+achieved by using `---name` option of gzip, or first renaming file, and then
+compressing it.
 
 ### Tabular files
 
