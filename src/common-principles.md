@@ -411,7 +411,7 @@ datasets and non-compliant derivatives.
 
 All imaging data MUST be stored using BIDS-compatible file format, specified 
 in the respective section. The conversion from original imaging data format
-to BIDS-compatible one must be performed using a tool that conserves as much
+to BIDS-compatible one, if it is required, must be performed using a tool that conserves as much
 of original metadata, as possible, at exception of information relative to
 the participant identity, which should not be present in the converted image.
 
@@ -422,7 +422,7 @@ file, but with a `.json` extension).
 
 In some cases BIDS authorize to store compressed imaging files. In such cases
 the compression must be performed using gzip algorithm, and have extension .gz,
-for example `sub-123_T1w,nii.gz`. The zip header SHOULD lack source filenames
+for example `sub-123_T1w.nii.gz`. The zip header SHOULD lack source filenames
 and timestamps, this can be achieved by using `---name` option of gzip, or
 first renaming file, and then compressing it.
 

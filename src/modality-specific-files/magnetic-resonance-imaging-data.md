@@ -18,7 +18,7 @@ from [spm package](https://github.com/neurodebian/spm12/tree/master) can be used
 Multi-volume acquisitions (for example, 2D slices of anatomical MRI or 3D volumes
 of functional MRI) MUST be concatenated into single image (3D or 4D, respectively).
 This can be performed either by [concat_images](https://nipy.org/nibabel/reference/nibabel.funcs.html)
-of Nibabel package.
+of the Nibabel package.
 
 Due to the important size of MRI imaging data, we RECOMMEND using compressed NIfTI files
 by [gzip](https://www.gzip.org/) algorithm (.nii.gz).
