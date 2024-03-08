@@ -35,6 +35,16 @@ MRIHardware:
     MatrixCoilMode: recommended
     CoilCombinationMethod: recommended
 
+MRISample:
+  selectors:
+    - modality == "mri"
+  fields:
+    BodyPart:
+      level: optional
+      description_addendum: Corresponds to DICOM Tag 0018, 0015 `Body Part Examined`.
+    BodyPartDetails: optional
+    BodyPartDetailsOntology: optional
+
 MRIScannerHardwareASL:
   selectors:
     - datatype == "perf"
