@@ -3214,14 +3214,6 @@
             ],
             "login": "étienne_bergeron",
             "name": "Étienne Bergeron"
-        },
-        {
-            "contributions": [
-                "code"
-            ],
-            "login": "nbeliy",
-            "name": "Nikita Beliy"
-            "profile": "https://github.com/nbeliy"
         }
     ],
     "contributorsPerLine": 7
