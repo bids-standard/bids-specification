@@ -1,6 +1,6 @@
 # Genetic Descriptor
 
-Support genetic descriptors was developed as a
+Support for genetic descriptors was developed as a
 [BIDS Extension Proposal](../extensions.md#bids-extension-proposals).
 Please see [Citing BIDS](../introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
