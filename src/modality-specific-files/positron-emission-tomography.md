@@ -60,6 +60,21 @@ In this example, tracer injection coincides with scan start.
 
 ## PET recording data
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the directory
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filename_template(
+   "raw",
+   datatypes=["pet"],
+   suffixes=["pet", "events", "physio", "stim"])
+}}
+
+### PET data format
+
 All PET imaging data MUST be stored using the
 [NIfTI-1 or NIFTI-2](https://nifti.nimh.nih.gov/) file format (`.nii`).
 The ANALYZE-7.5 file format (`.hdr`/`.img`), despite being very similar to NIFTI-1,
@@ -92,18 +107,7 @@ If using compressed files, the gzip header SHOULD lack source filenames and time
 This can be achieved by using `--no-name` option of gzip, or by first renaming
 original file to BIDS standard and then compressing.
 
-<!--
-This block generates a filename templates.
-The inputs for this macro can be found in the directory
-  src/schema/rules/files/raw
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filename_template(
-   "raw",
-   datatypes=["pet"],
-   suffixes=["pet", "events", "physio", "stim"])
-}}
+### PET file naming
 
 PET data MUST be stored in the `pet` directory with `_pet` suffix.
 
