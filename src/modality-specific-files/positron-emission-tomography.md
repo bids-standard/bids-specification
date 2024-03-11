@@ -60,6 +60,38 @@ In this example, tracer injection coincides with scan start.
 
 ## PET recording data
 
+All PET imaging data MUST be stored using the
+[NIfTI-1 or NIFTI-2](https://nifti.nimh.nih.gov/) file format (`.nii`).
+The ANALYZE-7.5 file format (`.hdr`/`.img`), despite being very similar to NIFTI-1,
+is not allowed.
+Imaging data SHOULD be converted to the NIfTI format using a tool that provides
+as much of the NIfTI header information (such as orientation and slice timing
+information) as possible.
+
+We RECOMMEND to use [dcm2niix](https://github.com/rordenlab/dcm2niix),
+version v1.0.20220720 or later to convert source DICOM images to NIFTI-2 file format,
+as it extracts a number of PET-specific metadata in BIDS compatible format.
+As alternative,
+[dicm2nii](https://www.mathworks.com/matlabcentral/fileexchange/42997-xiangruili-dicm2nii)
+and
+[spm_dicom_convert](https://github.com/neurodebian/spm12/blob/master/spm_dicom_convert.m)
+from
+[spm12 package](https://github.com/neurodebian/spm12/tree/master) can be used
+for conversion.
+
+Dynamic (multi-volume) PET imaging data SHOULD be stored in 4D,
+in chronological order (the order they were acquired in).
+The concatenation of volumes can be performed by
+[concat_images](https://nipy.org/nibabel/reference/nibabel.funcs.html) of
+the Nibabel package or by
+[spm_file_merge](https://github.com/spm/spm12/blob/main/spm_file_merge.m).
+
+Due to the important size of PET imaging data, we RECOMMEND using compressed
+NIfTI files by [gzip](https://www.gzip.org/) algorithm (`.nii.gz`).
+If using compressed files, the gzip header SHOULD lack source filenames and timestamps.
+This can be achieved by using `--no-name` option of gzip, or by first renaming
+original file to BIDS standard and then compressing.
+
 <!--
 This block generates a filename templates.
 The inputs for this macro can be found in the directory
@@ -73,10 +105,7 @@ and a guide for using macros can be found at
    suffixes=["pet", "events", "physio", "stim"])
 }}
 
-PET data MUST be stored in the `pet` directory.
-PET imaging data SHOULD be stored in 4D (or 3D, if only one volume was acquired)
-NIfTI files with the `_pet` suffix.
-Volumes MUST be stored in chronological order (the order they were acquired in).
+PET data MUST be stored in the `pet` directory with `_pet` suffix.
 
 The OPTIONAL [`task-<label>`](../appendices/entities.md#task) is used to
 indicate a task subjects were asked to perform in the scanner.
@@ -129,8 +158,10 @@ the same [`task-<label>`](../appendices/entities.md#task) entity SHOULD be used.
 For further details, see
 [Task (including resting state) imaging data](./magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data).
 
+<!--
 In addition to the imaging data (`*.nii`) a `_pet.json` sidecar file MUST be provided.
 The included metadata are divided into sections described below.
+-->
 
 ### PET metadata
 
