@@ -1,36 +1,20 @@
+import argparse
 import logging
-import os
 
-import click
+from argh import add_commands, dispatch  # type: ignore
 
-from .schema import export_schema, load_schema
-
-
-@click.group()
-@click.option("-v", "--verbose", count=True)
-def cli(verbose):
-    """BIDS Schema Tools"""
-    logging.getLogger("bidsschematools").setLevel(logging.INFO - verbose * 10)
+from .schema import export
+from .validator import validate_bids
 
 
-@cli.command()
-@click.option("--schema")
-@click.option("--output", default="-")
-@click.pass_context
-def export(ctx, schema, output):
-    """Export BIDS schema to JSON document"""
-    logger = logging.getLogger("bidsschematools")
-    schema = load_schema(schema)
-    text = export_schema(schema)
-    if output == "-":
-        logger.debug("Writing to stdout")
-        print(text)
-    else:
-        output = os.path.abspath(output)
-        logger.debug(f"Writing to {output}")
-        with open(output, "w") as fobj:
-            fobj.write(text)
-
-
-if __name__ == "__main__":
-    cli()
+def cli():
+    parser = argparse.ArgumentParser(
+        description="BIDS Schema Tools Interface",
+        formatter_class=argparse.RawTextHelpFormatter,
+    )
+    parser.add_argument("--verbose", "-v", action="count", default=0)
+    validate_bids.__name__ = "validate"
+    add_commands(parser, [export, validate_bids])
+    args = parser.parse_args()
+    logging.getLogger("bidsschematools").setLevel(logging.WARNING - args.verbose * 10)
+    dispatch(parser)
