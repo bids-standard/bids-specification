@@ -3370,10 +3370,10 @@ TablePosition:
   name: TablePosition
   display_name: Table Position
   description: |
-    The x, y and z coordinates of the table relative to an implementation
-    specific reference point. The array MUST contain three numeric values
-    corresponding to x, y, and z axis of the coordinate system in that exact
-    order.
+    The table position, relative to an implementation-specific reference point,
+    often the isocenter. Values must be an array of three distances in
+    millimeters, respectively right, anterior and superior (RAS+) of the image
+    affine.
   type: array
   minItems: 3
   maxItems: 3
