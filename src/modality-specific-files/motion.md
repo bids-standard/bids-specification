@@ -42,7 +42,10 @@ each of which is accompanied by `*_tracksys-<label>_motion.json` and `*_tracksys
 Between `tracksys-<label>` entity and `*_motion.tsv`, `*_motion.json`, or `*_channels.tsv` suffixes, optional [`acq-<label>`](../appendices/entities.md#acq) or [`run-<index>`](../appendices/entities.md#run) entity MAY be inserted.
 
 One column in the `*_tracksys-<label>_motion.tsv` file represents one data channel.
-The ordering of columns MUST match the order of rows in the `*_channels.tsv` file for unambiguous assignment.
+Motion files MUST NOT have a header row;
+the ordering of columns is given by the order of rows in the associated `*_channels.tsv` file.
+The number of columns in `_motion.tsv` files MUST equal the number of rows
+in the associated `_channels.tsv` file.
 All relevant metadata about a tracking systems is stored in accompanying sidecar `*_tracksys-<label>_motion.json` file.
 
 The source data from each tracking system in their original format, if different from `.tsv`,

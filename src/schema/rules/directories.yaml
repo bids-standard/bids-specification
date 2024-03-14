@@ -1,0 +1,112 @@
+---
+# This file defines layouts of directories.
+#
+# A layout defines a collection of directory specifiers.
+# Each specifier has a naming convention, requirement level, opacity, and subdirectories.
+#
+# Naming conventions may take three forms:
+#   - name: The directory name has exactly this value.
+#   - entity: The directory name takes the form of {key}-{value} for the specified entity
+#   - value: The directory name takes the form of {value} for the specified term (like datatype)
+#
+# The requirement level indicates whether a directory MUST (required) or MAY (optional) exist.
+#
+# The opaque field indicates whether the contents of the directory are specified.
+#
+# The special "root" specifier describes the root of the dataset and only defines subdirectories.
+# No naming convention applies, and the requirement level and opacity would be superfluous.
+#
+raw:
+  root:
+    subdirs:
+      - code
+      - derivatives
+      - phenotype
+      - sourcedata
+      - stimuli
+      - subject
+  code:
+    name: code
+    level: optional
+    opaque: true
+  derivatives:
+    name: derivatives
+    level: optional
+    opaque: true
+  phenotype:
+    name: phenotype
+    level: optional
+    opaque: false
+  sourcedata:
+    name: sourcedata
+    level: optional
+    opaque: true
+  stimuli:
+    name: stimuli
+    level: optional
+    opaque: true
+  subject:
+    entity: subject
+    level: required
+    opaque: false
+    subdirs:
+      - oneOf:
+          - session
+          - datatype
+  session:
+    entity: session
+    level: optional
+    opaque: false
+    subdirs:
+      - datatype
+  datatype:
+    value: datatype
+    level: required
+    opaque: false
+
+derivative:
+  root:
+    subdirs:
+      - code
+      - derivatives
+      - phenotype
+      - sourcedata
+      - stimuli
+      - subject
+  code:
+    name: code
+    level: optional
+    opaque: true
+  derivatives:
+    name: derivatives
+    level: optional
+    opaque: true
+  phenotype:
+    name: phenotype
+    level: optional
+    opaque: false
+  sourcedata:
+    name: sourcedata
+    level: optional
+    opaque: true
+  stimuli:
+    name: stimuli
+    level: optional
+    opaque: true
+  subject:
+    entity: subject
+    level: optional
+    opaque: false
+    subdirs:
+      - session
+      - datatype
+  session:
+    entity: session
+    level: optional
+    opaque: false
+    subdirs:
+      - datatype
+  datatype:
+    value: datatype
+    level: optional
+    opaque: false
