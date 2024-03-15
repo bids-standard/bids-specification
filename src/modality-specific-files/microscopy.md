@@ -7,14 +7,16 @@ Please see [Citing BIDS](../introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
-Microscopy datasets formatted using this specification are available on the
-[BIDS examples repository](https://bids-standard.github.io/bids-examples/#microscopy)
-and can be used for practical guidance when curating a new dataset.
+!!! example "Example datasets"
 
-Further Microscopy datasets are available:
+      Microscopy datasets formatted using this specification are available on the
+      [BIDS examples repository](https://bids-standard.github.io/bids-examples/#microscopy)
+      and can be used for practical guidance when curating a new dataset.
 
--   In PNG format:  [`data_axondeepseg_sem`](https://doi.org/10.5281/zenodo.5498378)
--   In OME-TIFF format: [`Broca's Area Light-Sheet Microscopy`](https://doi.org/10.5281/zenodo.5517223)
+      Further Microscopy datasets are available:
+
+      -   In PNG format:  [`data_axondeepseg_sem`](https://doi.org/10.5281/zenodo.5498378)
+      -   In OME-TIFF format: [`Broca's Area Light-Sheet Microscopy`](https://doi.org/10.5281/zenodo.5517223)
 
 ## Microscopy imaging data
 

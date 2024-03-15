@@ -17,6 +17,8 @@ from datetime import datetime
 
 import numpy as np
 
+from remove_admonitions import remove_admonitions
+
 sys.path.append("../tools/")
 # functions from module macros are called by eval() later on
 from mkdocs_macros_bids import macros  # noqa: F401
@@ -585,9 +587,9 @@ def edit_titlepage():
         data = file.readlines()
 
     data[-1] = (
-        fr"\textsc{{\large {version_number}}}"
+        rf"\textsc{{\large {version_number}}}"
         r"\\[0.5cm]"
-        fr"{{\large {build_date}}}"
+        rf"{{\large {build_date}}}"
         r"\\[2cm]"
         r"\vfill"
         r"\end{titlepage}"
@@ -679,33 +681,38 @@ if __name__ == "__main__":
 
     duplicated_src_dir_path = "src_copy/src"
 
-    # Step 1: make a copy of the src directory in the current directory
+    # make a copy of the src directory in the current directory
     copy_src()
 
-    # Step 2: run mkdocs macros embedded in markdown files
+    # run mkdocs macros embedded in markdown files
     process_macros(duplicated_src_dir_path)
 
-    # Step 3: copy BIDS_logo to images directory of the src_copy directory
+    # remove mkdocs admonition
+    remove_admonitions(
+        input_folder=duplicated_src_dir_path, output_folder=duplicated_src_dir_path
+    )
+
+    # copy BIDS_logo to images directory of the src_copy directory
     copy_bids_logo()
 
-    # Step 4: copy images from subdirectories of src_copy directory
+    # copy images from subdirectories of src_copy directory
     copy_images(duplicated_src_dir_path)
     subprocess.call("mv src_copy/src/images/images/* src_copy/src/images/", shell=True)
 
-    # Step 5: extract the latest version number, date and title
+    # extract the latest version number, date and title
     extract_header_string()
     add_header()
 
     edit_titlepage()
 
-    # Step 6: modify changelog to be a level 1 heading to facilitate section
+    # modify changelog to be a level 1 heading to facilitate section
     # separation
     modify_changelog()
 
-    # Step 7: remove all internal links
+    # remove all internal links
     assert_no_multiline_links(duplicated_src_dir_path)
     remove_internal_links_inline(duplicated_src_dir_path)
     remove_internal_links_reference(duplicated_src_dir_path)
 
-    # Step 8: correct number of dashes and fences alignment for rendering tables in PDF
+    # correct number of dashes and fences alignment for rendering tables in PDF
     correct_tables(duplicated_src_dir_path)
