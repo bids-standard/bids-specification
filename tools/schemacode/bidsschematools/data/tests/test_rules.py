@@ -100,7 +100,7 @@ def test_rule_objects(schema_obj):
 
     if not_found:
         not_found_string = "\n".join([f"{'.'.join(path)} == {val}" for path, val in not_found])
-        raise AssertionError(f"Undefined objects found in rules: {not_found_string}"
+        raise AssertionError(f"Undefined objects found in rules: {not_found_string}")
 
 
 @pytest.mark.validate_schema
