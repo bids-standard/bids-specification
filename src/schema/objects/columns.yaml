@@ -466,7 +466,7 @@ reference_atlas:
   name: reference_atlas
   display_name: Reference atlas
   description: |
-    Name of reference atlas used for associated brain region identification, preferrably an ebrains supported atlas.
+    Name of reference atlas used for associated brain region identification, preferably an ebrains supported atlas.
   type: string
 reference_frame:
   name: reference_frame
