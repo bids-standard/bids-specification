@@ -83,8 +83,7 @@ def test_rule_objects(schema_obj):
                 if object_type in ["extensions", "suffixes"]:
                     # Some object types are referenced via their "value" fields in the rules
                     object_values = [
-                        value["value"]
-                        for value in schema_obj["objects"][object_type].values()
+                        value["value"] for value in schema_obj["objects"][object_type].values()
                     ]
                 else:
                     # But other object types are referenced via their keys
