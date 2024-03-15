@@ -29,12 +29,8 @@ def _dict_key_lookup(_dict, key, path=[]):
 @pytest.mark.validate_schema
 def test_rule_objects(schema_obj):
     """Ensure that all objects referenced in the schema rules are defined in
-    its object portion.
+    their object portion.
 
-    This test currently fails because rules files reference object keys for some object types,
-    including entities, columns, and metadata fields,
-    but reference "name" or "value" elements of the object definitions for other object types,
-    including suffixes and extensions.
     In the case of datatypes, the key and "value" field are always the same.
 
     Some other object types, such as associated_data, common_principles, formats, modalities,
