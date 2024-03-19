@@ -115,7 +115,9 @@ rawdata:
   display_name: Raw data
   file_type: directory
   description: |
-    A directory where to store raw (unprocessed or minimally processed due to file format conversion) data that have been curated into BIDS from a non-BIDS source.
+    A directory where to store raw (unprocessed or minimally processed due to 
+    file format conversion) data that have been curated into BIDS from a 
+    non-BIDS source.
     See the [relevant section](SPEC_ROOT/common-principles.md#source-vs-raw-vs-derived-data)
     for more information.
 sourcedata:
