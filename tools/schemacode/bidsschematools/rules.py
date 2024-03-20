@@ -4,6 +4,7 @@ This module is currently limited to constructing filename rules from
 ``schema.rules.files``.
 """
 
+import fnmatch
 import re
 import typing as ty
 from collections.abc import Mapping
@@ -170,11 +171,16 @@ def _sanitize_extension(ext: str) -> str:
 
 
 def _stem_rule(rule: bst.types.Namespace):
-    stem_regex = re.escape(rule.stem)
-    ext_match = "|".join(_sanitize_extension(ext) for ext in rule.extensions)
-    ext_regex = f"(?P<extension>{ext_match})"
+    # translate includes a trailing \Z (end of string) but we expect extensions
+    stem_regex = fnmatch.translate(rule.stem)[:-2]
 
-    return {"regex": stem_regex + ext_regex, "mandatory": rule.level == "required"}
+    dtypes = set(rule.get("datatypes", ()))
+    dir_regex = f"(?P<datatype>{'|'.join(dtypes)})/" if dtypes else ""
+
+    ext_match = "|".join(_sanitize_extension(ext) for ext in rule.extensions)
+    ext_regex = rf"(?P<extension>{ext_match})\Z"
+
+    return {"regex": dir_regex + stem_regex + ext_regex, "mandatory": rule.level == "required"}
 
 
 def _path_rule(rule: bst.types.Namespace):
