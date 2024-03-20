@@ -9,12 +9,14 @@ specified using two files:
 
 1.  a JSON file for storing metadata fields (see below)
 
-[Example datasets](https://bids-standard.github.io/bids-examples/#dataset-index)
-with physiological data have been formatted using this specification
-and can be used for practical guidance when curating a new dataset:
+!!! example "Example datasets"
 
--   [`7t_trt`](https://github.com/bids-standard/bids-examples/tree/master/7t_trt)
--   [`ds210`](https://github.com/bids-standard/bids-examples/tree/master/ds210)
+      [Example datasets](https://bids-standard.github.io/bids-examples/#dataset-index)
+      with physiological data have been formatted using this specification
+      and can be used for practical guidance when curating a new dataset:
+
+      -   [`7t_trt`](https://github.com/bids-standard/bids-examples/tree/master/7t_trt)
+      -   [`ds210`](https://github.com/bids-standard/bids-examples/tree/master/ds210)
 
 Template:
 
