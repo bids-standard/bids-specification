@@ -58,7 +58,7 @@ When multiple tracking systems are used to record motion or motion capture is us
 it is advised to provide a possibility to synchronize recordings.
 The preferred way to do so is to use the acquisition time of the first data point of recordings and
 to store this information in the `acq_time` column of the [`*_scans.tsv`](../modality-agnostic-files.md#scans-file) file.
-The Note that the [BIDS date time format](../common-principles.md#units) allows optional fractional seconds, which SHOULD be used to maximize the precision of the synchronization.
+Note that the [BIDS date time format](../common-principles.md#units) allows optional fractional seconds, which SHOULD be used to maximize the precision of the synchronization.
 Only if the precision of the synchronization is not high enough, the `*_events.tsv` file SHOULD be used to synchronize recordings.
 In this file, the start- and stop time of the recording of a system are specified in relation to a system to synchronize with.
 If more than two systems are to be synchronized, it is up to the user to identify the "main" system.
