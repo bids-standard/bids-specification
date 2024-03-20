@@ -289,6 +289,13 @@ A guide for using macros can be found at
 In this example, where `sourcedata` and `derivatives` are not nested inside
 `rawdata`, **only the `rawdata` subdirectory** needs to be a BIDS-compliant
 dataset.
+
+!!! note
+
+    Note that rawdata here is an arbitrarily-chosen name.
+    BIDS specifies the contents of a dataset,
+    not the names of directories containing datasets.
+
 The subdirectories of `derivatives` MAY be BIDS-compliant derivatives datasets
 (see [Non-compliant derivatives](#non-compliant-derivatives) for further discussion).
 This specification does not prescribe anything about the contents of `sourcedata`
