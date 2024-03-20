@@ -61,7 +61,7 @@ to store this information in the `acq_time` column of the [`*_scans.tsv`](../mod
 The Note that the [BIDS date time format](../common-principles.md#units) allows optional fractional seconds, which SHOULD be used to maximize the precision of the synchronization.
 Only if the precision of the synchronization is not high enough, the `*_events.tsv` file SHOULD be used to synchronize recordings.
 In this file, the start- and stop time of the recording of a system are specified in relation to a system to synchronize with.
-If more than two systems are to be synchronized, it is up to the user to indntify the "main" system.
+If more than two systems are to be synchronized, it is up to the user to identify the "main" system.
 
 In case a tracking system provides time information with every recorded sample,
 these time information MAY be stored in form of latencies to recording onset (first sample) in the `*_motion.tsv` file.
