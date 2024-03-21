@@ -44,8 +44,6 @@ these RECOMMENDED formats, particularly because there are conversion scripts
 available in most commonly used programming languages to convert data into the
 RECOMMENDED formats.
 
-The original data format is especially valuable in case conversion elicits
-the loss of crucial metadata specific to manufacturers and specific EEG systems.
 We encourage users to provide additional meta information extracted from the
 manufacturer specific data files in the sidecar JSON file.
 
