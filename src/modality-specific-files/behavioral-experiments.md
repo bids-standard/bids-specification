@@ -28,7 +28,7 @@ as for tasks performed during MRI, electrophysiological or other neural recordin
 Additionally, events files
 that do not include the mandatory `onset` and `duration` columns
 MAY be included,
-but SHOULD be labeled `_beh.tsv` rather than `_events.tsv`.
+but MUST be labeled `_beh.tsv` rather than `_events.tsv`.
 
 ## Sidecar JSON (`*_beh.json`)
 
@@ -39,7 +39,7 @@ In addition to the metadata that is either:
 -   REQUIRED for some data that can be found in the `beh` directory
     (for example `SamplingFrequency` and `StartTime` for `*_<physio|stim>.tsv.gz` files),
 
-It is RECOMMENDED to add the following metadata to the JSON files of this directory.
+it is RECOMMENDED to add the following metadata to the JSON files of this directory.
 
 ### Task information
 
