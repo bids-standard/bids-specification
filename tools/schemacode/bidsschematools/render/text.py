@@ -248,7 +248,7 @@ def make_filename_template(
 
     Parameters
     ----------
-    dstype : "raw" or "deriv"
+    dstype : "raw" or "deriv" or "atlas"
         The type of files being rendered; determines if rules are found in rules.files.raw
         or rules.files.deriv
     schema : dict
