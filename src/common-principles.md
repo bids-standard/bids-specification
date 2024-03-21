@@ -101,7 +101,7 @@ instead of specified with an `n/a` value, or included as an empty file
 
 BIDS does not prescribe a particular naming scheme for directories containing individual BIDS datasets.
 However, it is RECOMMENDED to use a short descriptive name that reflects the content of the dataset, avoid spaces in the name, and use hyphens to separate words.
-BIDS datasets embedded within a larger BIDS dataset MAY follow some convention (see e.g. [Storage of derived datasets](#storage-of-derived-datasets)).
+BIDS datasets embedded within a larger BIDS dataset MAY follow some convention (see for example [Storage of derived datasets](#storage-of-derived-datasets)).
 
 ## Filesystem structure
 
