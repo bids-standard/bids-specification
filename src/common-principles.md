@@ -97,6 +97,12 @@ and/or files (like `events.tsv`) are fully omitted *when they are unavailable or
 instead of specified with an `n/a` value, or included as an empty file
 (for example an empty `events.tsv` file with only the headers included).
 
+## Dataset naming
+
+BIDS does not prescribe a particular naming scheme for directories containing individual BIDS datasets.
+However, it is RECOMMENDED to use a short descriptive name that reflects the content of the dataset, avoid spaces in the name, and use hyphens to separate words.
+BIDS datasets embedded within a larger BIDS dataset MAY follow some convention (see e.g. [Storage of derived datasets](#storage-of-derived-datasets)).
+
 ## Filesystem structure
 
 Data for each subject are placed in subdirectories named "`sub-<label>`",
