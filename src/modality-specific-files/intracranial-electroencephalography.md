@@ -53,7 +53,7 @@ packages. Other formats that may be considered in the future should have a clear
 added advantage over the existing formats and should have wide adoption in the
 BIDS community.
 
-We also encourage users to provide additional meta information extracted
+We encourage users to provide additional meta information extracted
 from the manufacturer-specific data files in the sidecar JSON file.
 
 Note the RecordingType, which depends on whether the data stream on disk is interrupted or not.
