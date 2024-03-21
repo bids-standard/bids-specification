@@ -379,6 +379,7 @@ Derivatives can be stored/distributed in two ways:
             "sub-01": {},
             "sub-02": {},
             "...": "",
+            "dataset_description.json": "",
             }
         }
     ) }}
