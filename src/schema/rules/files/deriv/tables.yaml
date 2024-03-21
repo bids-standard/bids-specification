@@ -1,0 +1,11 @@
+---
+descriptions:
+  level: optional
+  suffixes:
+    - descriptions
+  extensions:
+    - .tsv
+    - .json
+  entities:
+    subject: optional
+    session: optional
