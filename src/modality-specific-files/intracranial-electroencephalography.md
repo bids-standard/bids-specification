@@ -53,8 +53,8 @@ packages. Other formats that may be considered in the future should have a clear
 added advantage over the existing formats and should have wide adoption in the
 BIDS community.
 
-We encourage users to provide additional meta information extracted
-from the manufacturer-specific data files in the sidecar JSON file.
+We encourage users to provide additional metadata extracted from the
+manufacturer-specific data files in the sidecar JSON file.
 
 Note the RecordingType, which depends on whether the data stream on disk is interrupted or not.
 Continuous data is by definition 1 segment without interruption.

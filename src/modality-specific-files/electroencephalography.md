@@ -44,8 +44,8 @@ these RECOMMENDED formats, particularly because there are conversion scripts
 available in most commonly used programming languages to convert data into the
 RECOMMENDED formats.
 
-We encourage users to provide additional meta information extracted from the
-manufacturer specific data files in the sidecar JSON file.
+We encourage users to provide additional metadata extracted from the
+manufacturer-specific data files in the sidecar JSON file.
 
 Note the `RecordingType`, which depends on whether the data stream on disk
 is interrupted or not.
