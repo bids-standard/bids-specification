@@ -528,7 +528,7 @@ the recording of gaze position and/or pupil size.
 Eye-tracking data MUST be stored following the general specifications
 for `"generic"` physiological recordings.
 However, it is REQUIRED that recordings corresponding to each eye
-(and/or *cyclopean* or averaged signals for binocular eye-trackers providing 
+(and/or *cyclopean* or averaged signals for binocular eye-trackers providing
 a third recording) are split into files with different
 [`recording-<label>`](../appendices/entities.md#recording).
 Therefore, the [`recording-<label>`](../appendices/entities.md#recording)
