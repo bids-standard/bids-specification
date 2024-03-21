@@ -242,7 +242,7 @@ Similar rules apply to source data, which is defined as data
 before harmonization, reconstruction, and/or file format conversion
 (for example, E-Prime event logs or DICOM files).
 Retaining the source data is especially valuable
-in a case when conversion elicits the loss of crucial metadata
+in a case when conversion fails to preserve crucial metadata
 unique to specific acquisition setup.
 Storing actual source files with the data is preferred over links
 to external source repositories to maximize long term preservation,
