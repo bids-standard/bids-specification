@@ -19,6 +19,8 @@ with details of where to find the genetic data and the type of data available.
 
     -   [`UK biobank`](https://github.com/bids-standard/bids-examples/tree/master/genetics_ukbb)
 
+[`UK biobank`](https://github.com/bids-standard/bids-examples/tree/master/genetics_ukbb)
+
 ## Dataset Description
 
 If information on associated genetic data is supplied as part of a BIDS dataset,
@@ -29,15 +31,13 @@ file.
 Datasets linked to a genetic database entry include the following REQUIRED and OPTIONAL
 keys in the `Genetics` sub-[object][] of `dataset_description.json`:
 
-!!! note "THIS IS A TEST"
-
-    <!-- This block generates a table describing subfields within a metadata field.
-    The definitions of these fields can be found in
-      src/schema/objects/metadata.yaml
-    and a guide for using macros can be found at
-    https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
-    -->
-    {{ MACROS___make_subobject_table("metadata.Genetics") }}
+<!-- This block generates a table describing subfields within a metadata field.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_subobject_table("metadata.Genetics") }}
 
 Example:
 
