@@ -25,6 +25,11 @@ raw:
       - sourcedata
       - stimuli
       - subject
+      - atlas
+  atlas:
+    name: atlas
+    level: optional
+    opaque: false
   code:
     name: code
     level: optional
@@ -108,5 +113,14 @@ derivative:
       - datatype
   datatype:
     value: datatype
+    level: optional
+    opaque: false
+
+atlas:
+  root:
+    subdirs:
+      - atlas
+  atlas:
+    entity: atlas
     level: optional
     opaque: false

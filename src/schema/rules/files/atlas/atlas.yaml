@@ -1,0 +1,16 @@
+---
+atlas:
+  suffixes:
+    - dseg
+    - probseg
+    - mask
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  entities:
+    atlas: required
+    space: optional
+    resolution: optional
+    density: optional
+    description: optional

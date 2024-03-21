@@ -31,3 +31,5 @@ motion:
 nirs:
   datatypes:
     - nirs
+atlas:
+  datatypes: none
