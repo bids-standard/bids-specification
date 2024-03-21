@@ -268,40 +268,38 @@ A guide for using macros can be found at
 {{ MACROS___make_filetree_example(
     {
     "my_dataset-1": {
-            "sourcedata": "",
-            "...": "",
-            "rawdata": {
+        "sourcedata": {
+            "dicoms": {},
+            "raw": {
                 "dataset_description.json": "",
-                "participants.tsv": "",
                 "sub-01": {},
                 "sub-02": {},
                 "...": "",
             },
-            "derivatives": {
-                "pipeline_1": {},
-                "pipeline_2": {},
-                "...": "",
-            },
-        }
+            "..." : "",
+        },
+        "derivatives": {
+            "pipeline_1": {},
+            "pipeline_2": {},
+            "...": "",
+        },
+        "dataset_description.json": "",
+        "...": "",
     }
+   }
 ) }}
 
-In this example, where `sourcedata` and `derivatives` are not nested inside
-`rawdata`, **only the `rawdata` subdirectory** needs to be a BIDS-compliant
-dataset.
+In this example, `sourcedata/dicoms` is not nested inside
+`sourcedata/raw`, **and only the `sourcedata/raw` subdirectory** is a BIDS-compliant dataset among `sourcedata/` subfolders.
 The subdirectories of `derivatives` MAY be BIDS-compliant derivatives datasets
 (see [Non-compliant derivatives](#non-compliant-derivatives) for further discussion).
-This specification does not prescribe anything about the contents of `sourcedata`
-directories in the above example - nor does it prescribe the `sourcedata`,
-`derivatives`, or `rawdata` directory names.
-The above example is just a convention that can be useful for organizing raw,
-source, and derived data while maintaining BIDS compliance of the raw data
-directory. When using this convention it is RECOMMENDED to set the `SourceDatasets`
+The above example is a fully compliant BIDS dataset, providing a convention useful for organizing source, raw BIDS, and derived BIDS data while maintaining overall BIDS compliance.
+When using this convention it is RECOMMENDED to set the `SourceDatasets`
 field in `dataset_description.json` of each subdirectory of `derivatives` to:
 
 ```JSON
 {
-  "SourceDatasets": [ {"URL": "../../rawdata/"} ]
+  "SourceDatasets": [ {"URL": "../../sourcedata/raw/"} ]
 }
 ```
 
