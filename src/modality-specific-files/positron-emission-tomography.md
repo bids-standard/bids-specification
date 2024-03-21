@@ -83,23 +83,8 @@ Imaging data SHOULD be converted to the NIfTI format using a tool that provides
 as much of the NIfTI header information (such as orientation and slice timing
 information) as possible.
 
-We RECOMMEND to use [dcm2niix](https://github.com/rordenlab/dcm2niix),
-version v1.0.20220720 or later to convert source DICOM images to NIFTI-2 file format,
-as it extracts a number of PET-specific metadata in BIDS compatible format.
-As alternative,
-[dicm2nii](https://www.mathworks.com/matlabcentral/fileexchange/42997-xiangruili-dicm2nii)
-and
-[spm_dicom_convert](https://github.com/neurodebian/spm12/blob/master/spm_dicom_convert.m)
-from
-[spm12 package](https://github.com/neurodebian/spm12/tree/master) can be used
-for conversion.
-
 Dynamic (multi-volume) PET imaging data SHOULD be stored in 4D,
 in chronological order (the order they were acquired in).
-The concatenation of volumes can be performed by
-[concat_images](https://nipy.org/nibabel/reference/nibabel.funcs.html) of
-the Nibabel package or by
-[spm_file_merge](https://github.com/spm/spm12/blob/main/spm_file_merge.m).
 
 Due to the important size of PET imaging data, we RECOMMEND using compressed
 NIfTI files by [gzip](https://www.gzip.org/) algorithm (`.nii.gz`).
