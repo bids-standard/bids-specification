@@ -7,14 +7,16 @@ Please see [Citing BIDS](../introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
-Microscopy datasets formatted using this specification are available on the
-[BIDS examples repository](https://bids-standard.github.io/bids-examples/#microscopy)
-and can be used for practical guidance when curating a new dataset.
+!!! example "Example datasets"
 
-Further Microscopy datasets are available:
+      Microscopy datasets formatted using this specification are available on the
+      [BIDS examples repository](https://bids-standard.github.io/bids-examples/#microscopy)
+      and can be used for practical guidance when curating a new dataset.
 
--   In PNG format:  [`data_axondeepseg_sem`](https://doi.org/10.5281/zenodo.5498378)
--   In OME-TIFF format: [`Broca's Area Light-Sheet Microscopy`](https://doi.org/10.5281/zenodo.5517223)
+      Further Microscopy datasets are available:
+
+      -   In PNG format:  [`data_axondeepseg_sem`](https://doi.org/10.5281/zenodo.5498378)
+      -   In OME-TIFF format: [`Broca's Area Light-Sheet Microscopy`](https://doi.org/10.5281/zenodo.5517223)
 
 ## Microscopy imaging data
 
@@ -26,7 +28,7 @@ and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_filename_template("raw", datatypes=["micr"], suffixes=["TEM", "SEM", "uCT", "BF", "DF",
-"PC", "DIC", "FLUO", "CONF", "PLI", "CARS", "2PE", "MPE", "SR", "NLO", "OCT", "SPIM"], n_dupes_to_combine=4) }}
+"PC", "DIC", "FLUO", "CONF", "PLI", "CARS", "2PE", "MPE", "SR", "NLO", "OCT", "SPIM", "hipCT"], n_dupes_to_combine=4) }}
 
 Microscopy data MUST be stored in the `micr` directory.
 
@@ -89,6 +91,7 @@ and a guide for using macros can be found at
          "NLO",
          "OCT",
          "SPIM",
+         "hipCT",
       ]
    )
 }}

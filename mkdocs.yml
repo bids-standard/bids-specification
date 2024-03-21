@@ -85,12 +85,16 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/bids-standard/bids-specification/
-    - icon: fontawesome/brands/twitter
-      link: https://twitter.com/BIDSstandard/
+    - icon: fontawesome/brands/x-twitter
+      link: https://x.com/BIDSstandard/
     - icon: fontawesome/brands/mastodon
       link: https://fosstodon.org/@bidsstandard
     - icon: fontawesome/brands/google
       link: https://groups.google.com/g/bids-discussion
+    - icon: fontawesome/brands/instagram
+      link: https://www.instagram.com/bidsstandard/
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/channel/UCxZUcYfd_nvIVWAbzRB1tlw
 
 extra_javascript:
   - js/jquery-3.6.0.min.js
@@ -98,6 +102,8 @@ markdown_extensions:
   - toc:
       anchorlink: true
   - pymdownx.superfences
+  - admonition
+  - pymdownx.details
 plugins:
   - search
   - branchcustomization:
