@@ -257,7 +257,7 @@ The keyword for the heading must be one of the following:
 - example
 - quote
 
-Do note put [macros](#using-macros) in admonitions,
+Do not put [macros](#using-macros) in admonitions,
 as this will likely not give the output you expect.
 
 ## Using macros
