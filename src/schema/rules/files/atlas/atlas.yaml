@@ -22,7 +22,6 @@ surface:
     - mask
   extensions:
     - .label.gii
-    - .label.gii.gz
     - .tsv
     - .json
   entities:
