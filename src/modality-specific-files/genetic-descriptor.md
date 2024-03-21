@@ -33,7 +33,7 @@ keys in the `Genetics` sub-[object][] of `dataset_description.json`:
 The definitions of these fields can be found in
   src/schema/objects/metadata.yaml
 and a guide for using macros can be found at
-https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_subobject_table("metadata.Genetics") }}
 
