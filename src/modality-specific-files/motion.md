@@ -50,10 +50,6 @@ The number of columns in `_motion.tsv` files MUST equal the number of rows
 in the associated `_channels.tsv` file.
 All relevant metadata about a tracking systems is stored in accompanying sidecar `*_tracksys-<label>_motion.json` file.
 
-The source data from each tracking system in their original format, if different from `.tsv`,
-can be stored in the [`/sourcedata` directory](../common-principles.md#source-vs-raw-vs-derived-data).
-The original data format MAY hold more metadata than currently specified in the `*_motion.json` file.
-
 When multiple tracking systems are used to record motion or motion capture is used alongside the recording of other BIDS modalities and recordings should be interpreted together,
 it is advised to provide a possibility to synchronize recordings.
 The preferred way to do so is to use the acquisition time of the first data point of recordings and
