@@ -18,6 +18,7 @@ with details of where to find the genetic data and the type of data available.
     and can be used for practical guidance when curating a new dataset.
 
     -   [`UK biobank`](https://github.com/bids-standard/bids-examples/tree/master/genetics_ukbb)
+    -   [UK biobank](https://github.com/bids-standard/bids-examples/tree/master/genetics_ukbb)
 
 [`UK biobank`](https://github.com/bids-standard/bids-examples/tree/master/genetics_ukbb)
 
