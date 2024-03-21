@@ -65,6 +65,8 @@ For example:
 > Brain Imaging Data Structure (Gorgolewski, K., Auer, T., Calhoun, V. et al., 2016)
 > with the extension for EEG data (Pernet, C.R., Appelhoff, S., Gorgolewski, K.J. et al., 2019).
 
+<!-- AUTOMATICALLY GENERATED CONTENT STARTS -->
+
 ### Original publication
 
 -   Gorgolewski, K.J., Auer, T., Calhoun, V.D., Craddock, R.C., Das, S., Duff,
@@ -183,6 +185,8 @@ For example:
      **Motion-BIDS: extending the Brain Imaging Data Structure specification to organize motion data for reproducible research**.
      PsyArXiv.
      [doi:10.31234/osf.io/w6z79](https://doi.org/10.31234/osf.io/w6z79)
+
+<!-- AUTOMATICALLY GENERATED CONTENT ENDS -->
 
 ### Research Resource Identifier (RRID)
 
