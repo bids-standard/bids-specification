@@ -24,7 +24,7 @@ Continuous physiological recordings, such as pulse measurement,
 electrocardiogram, respiratory movement measured with a respiration belt,
 gas concentration, eye-tracking, or head-motion parameters estimated
 by the MRI scanner, SHOULD use `_physio.<tsv.gz|json>` pairs.
-The following recordings MAY be encoded with specific data columns
+We recommend to encode the following recordings with specific data columns
 and metadata fields, as described in section
 [Specific Physiological Signal Types](#specific-physiological-signal-types)
 below, and its subsections:
@@ -410,7 +410,7 @@ An example of the decompressed contents of the corresponding
 TSV file, `sub-01_task-nback_physioevents.tsv.gz` is:
 
 ```TSV
--3   Ready
+-3   "Ready"
 3    "Synchronous recalibration triggered"
 6    "External message received: new block"
 ```
@@ -501,7 +501,7 @@ The decompressed contents of the corresponding TSV file,
 `sub-01_task-nback_physioevents.tsv.gz` could read now:
 
 ```TSV
-13894432325    Ready
+13894432325    "Ready"
 13894432331    "Synchronous recalibration triggered"
 13894432334    "External message received: new block"
 ```
@@ -519,14 +519,14 @@ the recording of gaze position and/or pupil size.
 Eye-tracking data MUST be stored following the general specifications
 for `"generic"` physiological recordings.
 However, it is REQUIRED that recordings corresponding to each eye
-(and *merged* signals for binocular eye-trackers providing a third
-recording) are split into files with different
+(and/or *cyclopean* or averaged signals for binocular eye-trackers providing 
+a third recording) are split into files with different
 [`recording-<label>`](../appendices/entities.md#recording).
 Therefore, the [`recording-<label>`](../appendices/entities.md#recording)
 is REQUIRED with eye-tracking data.
 
 For example, for a binocular eye-tracker producing three signals
-(left and right eyes, plus a *merged* recording), the file structure
+(left and right eyes, plus a *cyclopean* recording), the file structure
 is:
 <!-- This block generates a file tree.
 A guide for using macros can be found at
