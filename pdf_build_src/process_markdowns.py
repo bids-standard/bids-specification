@@ -684,13 +684,13 @@ if __name__ == "__main__":
     # make a copy of the src directory in the current directory
     copy_src()
 
-    # run mkdocs macros embedded in markdown files
-    process_macros(duplicated_src_dir_path)
-
     # remove mkdocs admonition
     remove_admonitions(
         input_folder=duplicated_src_dir_path, output_folder=duplicated_src_dir_path
     )
+
+    # run mkdocs macros embedded in markdown files
+    process_macros(duplicated_src_dir_path)
 
     # copy BIDS_logo to images directory of the src_copy directory
     copy_bids_logo()
