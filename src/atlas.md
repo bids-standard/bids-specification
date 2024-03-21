@@ -81,6 +81,8 @@ such files are the non-altered/original atlases or within a given directory unde
 In the second case, atlases are altered,
 derived or applied and thus multiple use cases have to be distinguished as indicated further below.
 
+{{ MACROS___make_filename_template("atlas", suffixes=["dseg", "probseg", "mask"]) }}
+
 ### Representing an atlas as a dataset
 
 The first option refers to atlases that were not altered, for example,

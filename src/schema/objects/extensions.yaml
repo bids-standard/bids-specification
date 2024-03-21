@@ -79,7 +79,15 @@ dlabelnii:
   description: |
     A CIFTI-2 dense label file.
 
-    This extension may only be used in derivative datasets.
+    This extension may only be used in derivative or atlas datasets.
+dscalarnii:
+  value: .dscalar.nii
+  display_name: CIFTI-2 Dense Scalar File
+  description: |
+    A CIFTI-2 dense scalar file.
+
+    This extension may only be used in derivative or atlas datasets.
+
 edf:
   value: .edf
   display_name: European Data Format
@@ -142,7 +150,7 @@ labelgii:
   description: |
     A GIFTI label/annotation file.
 
-    This extension may only be used in derivative datasets.
+    This extension may only be used in derivative or atlas datasets.
 md:
   value: .md
   display_name: Markdown
