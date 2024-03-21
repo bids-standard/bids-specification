@@ -1,5 +1,11 @@
 # Behavioral experiments (with no neural recordings)
 
+!!! example "Example datasets"
+
+    Datasets containing behavioral data can be found
+    in the [BIDS examples repository](https://bids-standard.github.io/bids-examples/#behavioral)
+    and can be used as helpful guidance when curating new datasets.
+
 <!--
 This block generates a filename templates.
 The inputs for this macro can be found in the directory
@@ -9,17 +15,20 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_filename_template("raw", datatypes=["beh"]) }}
 
-In addition to logs from behavioral experiments performed alongside imaging data
-acquisitions, one can also include data from experiments performed with no neural
-recordings.
-The results of those experiments can be stored in the `beh` directory using the same
-formats for event timing (`_events.tsv`), metadata (`_events.json`),
+In addition to logs from behavioral experiments
+performed alongside imaging data acquisitions,
+one MAY also include data from experiments
+performed with no neural recordings.
+The results of those experiments MAY be stored in the `beh` directory
+using the same formats for event timing (`_events.tsv`),
+metadata (`_events.json`),
 physiological (`_physio.tsv.gz`, `_physio.json`)
 and other continuous recordings (`_stim.tsv.gz`, `_stim.json`)
 as for tasks performed during MRI, electrophysiological or other neural recordings.
-Additionally, events files that do not include the mandatory `onset` and
-`duration` columns can still be included, but should be labeled `_beh.tsv`
-rather than `_events.tsv`.
+Additionally, events files
+that do not include the mandatory `onset` and `duration` columns
+MAY be included,
+but SHOULD be labeled `_beh.tsv` rather than `_events.tsv`.
 
 ## Sidecar JSON (`*_beh.json`)
 
@@ -30,7 +39,7 @@ In addition to the metadata that is either:
 -   REQUIRED for some data that can be found in the `beh` directory
     (for example `SamplingFrequency` and `StartTime` for `*_<physio|stim>.tsv.gz` files),
 
-it is RECOMMENDED to add the following metadata to the JSON files of this directory.
+It is RECOMMENDED to add the following metadata to the JSON files of this directory.
 
 ### Task information
 
