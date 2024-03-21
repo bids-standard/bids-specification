@@ -32,4 +32,4 @@ nirs:
   datatypes:
     - nirs
 atlas:
-  datatypes: none
+  datatypes: []
