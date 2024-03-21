@@ -9,6 +9,7 @@ volumetric:
     - .nii.gz
     - .tsv
     - .json
+  datatypes: []
   entities:
     atlas: required
     space: optional
@@ -24,6 +25,7 @@ surface:
     - .label.gii
     - .tsv
     - .json
+  datatypes: []
   entities:
     atlas: required
     space: optional
@@ -37,6 +39,7 @@ cifti_probseg:
     - .dscalar.nii
     - .tsv
     - .json
+  datatypes: []
   entities:
     atlas: required
     space: optional
@@ -52,6 +55,7 @@ cifti_dseg:
     - .dlabel.nii
     - .tsv
     - .json
+  datatypes: []
   entities:
     atlas: required
     space: optional
