@@ -22,7 +22,6 @@ timeseries:
   suffixes:
     - physio
     - stim
-    - eyetrack
   extensions:
     - .tsv.gz
     - .json

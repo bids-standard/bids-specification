@@ -72,7 +72,7 @@ and a guide for using macros can be found at
 {{ MACROS___make_filename_template(
    "raw",
    datatypes=["pet"],
-   suffixes=["pet", "events", "physio", "stim", "eyetrack"])
+   suffixes=["pet", "events", "physio", "stim"])
 }}
 
 PET data MUST be stored in the `pet` directory.

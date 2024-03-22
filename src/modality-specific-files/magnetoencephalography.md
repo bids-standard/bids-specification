@@ -28,7 +28,7 @@ and a guide for using macros can be found at
 {{ MACROS___make_filename_template(
    "raw",
    datatypes=["meg"],
-   suffixes=["meg", "markers", "events", "physio", "stim", "eyetrack"])
+   suffixes=["meg", "markers", "events", "physio", "stim"])
 }}
 
 Unprocessed MEG data MUST be stored in the native file format of the MEG

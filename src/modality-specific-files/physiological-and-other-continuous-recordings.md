@@ -624,7 +624,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_columns_table("eyetrack.EyeTracking") }}
+{{ MACROS___make_columns_table("physio.PhysioEyeTracking") }}
 
 Eye-tracking files `<matches>_recording-<label>_physio.tsv.gz` MAY be annotated
 with a corresponding `<matches>_recording-<label>_physioevents.tsv.gz` file.

@@ -24,7 +24,7 @@ and a guide for using macros can be found at
 {{ MACROS___make_filename_template(
    "raw",
    datatypes=["eeg"],
-   suffixes=["eeg", "events", "physio", "stim", "eyetrack"])
+   suffixes=["eeg", "events", "physio", "stim"])
 }}
 
 The EEG community uses a variety of formats for storing raw data, and there is
