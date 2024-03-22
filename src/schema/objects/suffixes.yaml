@@ -678,7 +678,7 @@ noRF:
 
     These noise scans are acquired by disabling the radio frequency excitation,
     while maintaining all other parameters from the associated scan.
-    These can be aquired using some other sequence with RF excitation removed
+    These can be acquired using some other sequence with RF excitation removed
     or as part of sequences that turns off RF at the beginning or end of a run.
     For example a `bold` scan where a few volumes are acquired with RF off.
     There is no consistent DICOM denotation for these scans so separating and
