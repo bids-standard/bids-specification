@@ -21,6 +21,7 @@ PhysioEyeTracking:
   initial_columns:
     - x_coordinate
     - y_coordinate
+  additional_columns: allowed
 
 PhysioEventsColumns:
   selectors:
