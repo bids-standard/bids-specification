@@ -2788,7 +2788,7 @@ RecordedEye:
   enum:
     - left
     - right
-    - merged
+    - cyclopean
 RecordingDuration:
   name: RecordingDuration
   display_name: Recording Duration
