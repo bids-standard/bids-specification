@@ -683,6 +683,9 @@ noRF:
     For example a `bold` scan where a few volumes are acquired with RF off.
     There is no consistent DICOM denotation for these scans.
 
+    If multiple sequences with different suffixes but otherwise the same entities have `noRF`
+    sequences, disambiguate using modality entity, e.g. `mod-T1w_noRF.nii` and `mod-T2w_noRF.nii`.
+    
     `noRF` are typically used to estimate properties of the scanner and
     sequence that are independent from the object being imaged.
 optodes:
