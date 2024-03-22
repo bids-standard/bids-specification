@@ -6,8 +6,10 @@ Please see [Citing BIDS](../introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
-Several [example NIRS datasets](https://bids-standard.github.io/bids-examples/#nirs)
-have been formatted using this specification and can be used for practical guidance when curating a new dataset.
+!!! example "Example datasets"
+
+    Several [example NIRS datasets](https://bids-standard.github.io/bids-examples/#nirs)
+    have been formatted using this specification and can be used for practical guidance when curating a new dataset.
 
 ## NIRS recording data
 
@@ -22,7 +24,7 @@ and a guide for using macros can be found at
 {{ MACROS___make_filename_template(
    "raw",
    datatypes=["nirs"],
-   suffixes=["nirs", "events", "physio", "stim"])
+   suffixes=["nirs", "events", "channels", "optodes", "coordsystem", "physio", "stim"])
 }}
 
 Only the *Shared Near Infrared Spectroscopy Format* ([SNIRF](https://github.com/fNIRS/snirf))
