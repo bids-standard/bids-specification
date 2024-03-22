@@ -3372,8 +3372,8 @@ TablePosition:
   description: |
     The table position, relative to an implementation-specific reference point,
     often the isocenter. Values must be an array of three distances in
-    millimeters, respectively right, anterior and superior (RAS+) of the image
-    affine.
+    millimeters, respectively right, anterior and superior (RAS+) where the
+    origin is defined by the image affine.
   type: array
   minItems: 3
   maxItems: 3
