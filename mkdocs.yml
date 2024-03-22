@@ -103,6 +103,7 @@ markdown_extensions:
   - pymdownx.superfences
   - admonition
   - pymdownx.details
+  - footnotes
 plugins:
   - search
   - branchcustomization:
@@ -112,6 +113,10 @@ plugins:
             - css/watermark.css
   - macros:
       module_name: tools/mkdocs_macros_bids/main
+  - bibtex:
+      bib_file: "src/references.bib"
+      cite_inline: True
+      csl_file: src/apa-6th-edition.csl
   - redirects:
       redirect_maps:
         "01-introduction.md": "introduction.md"

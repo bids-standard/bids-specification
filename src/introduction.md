@@ -67,6 +67,8 @@ For example:
 
 <!-- AUTOMATICALLY GENERATED CONTENT STARTS -->
 
+
+
 ### Original publication
 
 -   Gorgolewski, K.J., Auer, T., Calhoun, V.D., Craddock, R.C., Das, S., Duff,
@@ -78,6 +80,8 @@ For example:
     **a format for organizing and describing outputs of neuroimaging experiments**.
     Scientific Data, 3 (160044).
     [doi:10.1038/sdata.2016.44](https://doi.org/10.1038/sdata.2016.44)
+
+[@gorgolewski_brain_2016]
 
 ### Datatype specific publications
 
