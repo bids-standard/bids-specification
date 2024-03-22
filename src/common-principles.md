@@ -278,10 +278,11 @@ A guide for using macros can be found at
         "sourcedata": {
             "dicoms": {},
             "raw": {
-                "dataset_description.json": "",
                 "sub-01": {},
                 "sub-02": {},
                 "...": "",
+                "dataset_description.json": "",
+				"...": "",
             },
             "..." : "",
         },
