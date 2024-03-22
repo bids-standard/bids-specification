@@ -129,14 +129,6 @@ A guide for using macros can be found at
   },
 }) }}
 
-**Example datasets**.
-[Example datasets](https://bids-standard.github.io/bids-examples/#dataset-index)
-with physiological data have been formatted using this specification
-and can be used for practical guidance when curating a new dataset:
-
--   [`7t_trt`](https://github.com/bids-standard/bids-examples/tree/master/7t_trt)
--   [`ds210`](https://github.com/bids-standard/bids-examples/tree/master/ds210)
-
 ## Metadata fields for `<matches>_<physio>.json` files
 
 The following table specifies metadata fields for the
@@ -519,6 +511,36 @@ The decompressed contents of the corresponding TSV file,
 
 ### Eye-tracking
 
+<!--
+1. Datasets will be updated later to adapt to the agreed format.
+2. We aim at adding a last example converting published dataset from openeuro.
+-->
+!!! example "Example datasets"
+
+    [Example datasets](https://bids-standard.github.io/bids-examples/#dataset-index)
+    with eye-tracking data have been formatted using this specification
+    and can be used for practical guidance when curating a new dataset:
+
+    -   Combined behavior and eye-tracking fixation and saccade data,
+        measured with an Eyelink (SR Research), from 8 particpants reading 320
+        embedded target words and invisible boundary (see
+        [Gagl, 2016](https://peerj.com/articles/2467/)).
+
+        [BIDS dataset](https://zenodo.org/records/1228659)
+
+    -   Combined behavior and eye-tracking position and pupil data, measured with
+        an Eyelink (SR Research), from 26 participants performing a
+        binocular rivalry task (see
+        [Brascamp et.al, 2021](https://doi.org/10.7554/eLife.66161)).
+
+        [BIDS dataset](https://doi.org/10.5061/dryad.41ns1rncp)
+
+    -   Combined resting-state fMRI and eye-tracking data, measured with an Eyelink
+        (SR research), from 20 participants keeping their gaze steady at the
+        screen center.
+
+        [BIDS dataset](https://openneuro.org/datasets/ds004158/versions/2.0.1)
+
 Setting `PhysioType` to the keyword `"eyetrack"` specifies that
 the physiological recordings in the `<matches>_physio.tsv.gz` have
 been acquired with an *eye-tracker*.
@@ -747,32 +769,3 @@ would read:
     }
 }
 ```
-
-<!--
-1. Datasets will be updated later to adapt to the agreed format.
-2. We aim at adding a last example converting published dataset from openeuro.
--->
-**Example Datasets**.
-[Example datasets](https://bids-standard.github.io/bids-examples/#dataset-index)
-with eye-tracking data have been formatted using this specification
-and can be used for practical guidance when curating a new dataset:
-
--   Combined behavior and eye-tracking fixation and saccade data,
-    measured with an Eyelink (SR Research), from 8 particpants reading 320
-    embedded target words and invisible boundary (see
-    [Gagl, 2016](https://peerj.com/articles/2467/)).
-
-    [BIDS dataset](https://zenodo.org/records/1228659)
-
--   Combined behavior and eye-tracking position and pupil data, measured with
-    an Eyelink (SR Research), from 26 participants performing a
-    binocular rivalry task (see
-    [Brascamp et.al, 2021](https://doi.org/10.7554/eLife.66161)).
-
-    [BIDS dataset](https://doi.org/10.5061/dryad.41ns1rncp)
-
--   Combined resting-state fMRI and eye-tracking data, measured with an Eyelink
-    (SR research), from 20 participants keeping their gaze steady at the
-    screen center.
-
-    [BIDS dataset](https://openneuro.org/datasets/ds004158/versions/2.0.1)
