@@ -75,9 +75,30 @@ def export_metaschema(ctx, output):
 def pre_receive_hook(schema, input_, output):
     """Validate filenames from a list of files against the BIDS schema
 
-    The input should be a list of ignore patterns followed by a line containing
-    "0001" and then a list of filenames. The output will be a list of filenames
-    that do not match the schema.
+    The expected input takes the following form:
+
+    ```
+    bids-hook-v2
+    {"Name": "My dataset", "BIDSVersion": "1.9.0", "DatasetType": "raw"}
+    ignore-pattern1
+    ...
+    ignore-patternN
+    0001
+    .datalad/config
+    .gitattributes
+    CHANGES
+    README
+    dataset_description.json
+    participants.tsv
+    sub-01/anat/sub-01_T1w.nii.gz
+    ...
+    ```
+
+    The header identifies the protocol version. For protocol ``bids-hook-v2``,
+    the second line MUST be the dataset_description.json file, with any newlines removed.
+    The following lines, up to the line containing "0001", are ignore patterns
+    from the .bidsignore file. The lines following "0001" are the filenames to
+    be validated.
 
     This is intended to be used in a git pre-receive hook.
     """
