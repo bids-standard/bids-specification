@@ -3,6 +3,7 @@ SubjectRelativeIntendedFor:
   selectors:
     - datatype != "ieeg"
     - type(sidecar.IntendedFor) != "null"
+    - length(sidecar.IntendedFor) > 0
   checks:
     - exists(sidecar.IntendedFor, "bids-uri") || exists(sidecar.IntendedFor, "subject")
 
@@ -10,6 +11,7 @@ DatasetRelativeIntendedFor:
   selectors:
     - datatype == "ieeg"
     - type(sidecar.IntendedFor) != "null"
+    - length(sidecar.IntendedFor) > 0
   checks:
     - exists(sidecar.IntendedFor, "bids-uri") || exists(sidecar.IntendedFor, "dataset")
 
@@ -17,21 +19,15 @@ AssociatedEmptyRoom:
   selectors:
     - suffix == "meg"
     - type(sidecar.AssociatedEmptyRoom) != "null"
+    - length(sidecar.AssociatedEmptyRoom) > 0
   checks:
     - exists(sidecar.AssociatedEmptyRoom, "bids-uri") || exists(sidecar.AssociatedEmptyRoom, "dataset")
-
-Stimuli:
-  selectors:
-    - suffix == "events"
-    - extension == ".tsv"
-    - type(columns.stim_file) != "null"
-  checks:
-    - exists(columns.stim_file, "stimuli")
 
 Sources:
   selectors:
     - dataset.dataset_description.DatasetType == "derivatives"
     - type(sidecar.Sources) != "null"
+    - length(sidecar.Sources) > 0
   checks:
     - exists(sidecar.Sources, "bids-uri") || exists(sidecar.Sources, "dataset")
 
