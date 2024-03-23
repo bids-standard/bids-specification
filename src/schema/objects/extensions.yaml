@@ -189,6 +189,11 @@ niigz:
   display_name: Compressed NIfTI
   description: |
     A compressed Neuroimaging Informatics Technology Initiative (NIfTI) data file.
+nix:
+  value: .nix
+  display_name: Neuroscience Information Exchange Format
+  description: |
+    A [Neuroscience Information Exchange](https://nixio.readthedocs.io) file.
 nwb:
   value: .nwb
   display_name: Neurodata Without Borders Format
