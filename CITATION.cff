@@ -28,6 +28,46 @@ identifiers:
   - description: PDFs of the BIDS specification for versions 1.0.0 to 1.8.0
     type: doi
     value: 10.5281/zenodo.3686061
+  # papers to inject in the how to cite section
+  # ### Original publication
+  - description: Original publication
+    type: doi
+    value: 10.1038/sdata.2016.44
+  # ### Datatype specific publications
+  - description: EEG
+    type: doi
+    value: 10.1038/s41597-019-0104-8
+  - description: iEEG
+    type: doi
+    value: 10.1038/s41597-019-0105-7
+  - description: MEG
+    type: doi
+    value: 10.1038/sdata.2018.110
+  - description: PET
+    type: doi
+    value: 10.1038/s41597-022-01164-1
+  - description: PET guidelines
+    type: doi
+    value: 10.1177/0271678X20905433
+  - description: Genetics
+    type: doi
+    value: 10.1093/gigascience/giaa104
+  - description: Microscopy
+    type: doi
+    value: 10.3389/fnins.2022.871228
+  - description: qMRI
+    type: doi
+    value: 10.1038/s41597-022-01571-4
+  - description: ASL
+    type: doi
+    value: 10.1038/s41597-022-01615-9
+  - description: NIRS
+    type: doi
+    value: 10.31219/osf.io/7nmcp
+  - description: Motion
+    type: doi
+    value: 10.31234/osf.io/w6z79
+
 
 keywords:
   - brain imaging data structure
