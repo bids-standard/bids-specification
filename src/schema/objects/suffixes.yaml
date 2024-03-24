@@ -732,6 +732,12 @@ physio:
   display_name: Physiological recording
   description: |
     Physiological recordings such as cardiac and respiratory signals.
+physioevents:
+  value: physioevents
+  display_name: Physiological events and asynchronous data
+  description: |
+    Event timing information corresponding to physiological recordings and other
+    asynchronous data such as messages.
 probseg:
   value: probseg
   display_name: Probabilistic Segmentation

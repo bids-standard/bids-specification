@@ -1,14 +1,5 @@
 # Physiological and other continuous recordings
 
-Physiological recordings such as cardiac and respiratory signals and other
-continuous measures (such as parameters of a film or audio stimuli) MAY be
-specified using two files:
-
-1.  a [gzip](https://datatracker.ietf.org/doc/html/rfc1952)
-    compressed TSV file with data (without header line)
-
-1.  a JSON file for storing metadata fields (see below)
-
 !!! example "Example datasets"
 
       [Example datasets](https://bids-standard.github.io/bids-examples/#dataset-index)
@@ -18,69 +9,76 @@ specified using two files:
       -   [`7t_trt`](https://github.com/bids-standard/bids-examples/tree/master/7t_trt)
       -   [`ds210`](https://github.com/bids-standard/bids-examples/tree/master/ds210)
 
-Template:
+## General specifications
 
-```Text
-sub-<label>/[ses-<label>/]
-    <datatype>/
-        <matches>[_recording-<label>]_physio.tsv.gz
-        <matches>[_recording-<label>]_physio.json
-        <matches>[_recording-<label>]_stim.tsv.gz
-        <matches>[_recording-<label>]_stim.json
-```
+Continuous (that is, regularly sampled over time at a fixed frequency)
+physiological recordings such as cardiac and respiratory signals,
+asynchronous events corresponding to those signals, and other
+continuous measures (such as parameters of a film or audio stimuli)
+MAY be stored as tabular data in header-less
+[compressed tab-delineated (TSVGZ) files](../glossary.md#tsvgz-extensions).
+TSVGZ are formatted as TSV and MUST be compressed with
+[gzip](https://datatracker.ietf.org/doc/html/rfc1952).
+TSVGZ files MUST be accompanied by a JSON file with the same name as their
+corresponding tabular file but with a `.json` extension.
+Additional [metadata corresponding to TSVGZ files](../common-principles.md#tabular-files)
+MAY be included as prescribed by the common principles.
+For example, indicating units for recorded time series.
 
-Continuous physiological recordings, such as pulse measurement,
-electrocardiogram, respiratory movement measured with a respiration belt,
-gas concentration, eye-tracking, or head-motion parameters estimated
-by the MRI scanner, SHOULD use `_physio.<tsv.gz|json>` pairs.
-We recommend to encode the following recordings with specific data columns
-and metadata fields, as described in section
-[Specific Physiological Signal Types](#specific-physiological-signal-types)
-below, and its subsections:
+??? warning "Columns of TSVGZ files MUST be defined in the corresponding JSON sidecar and the tabular content MUST NOT include a header line."
 
--   eye-tracking ([subsection Eye-tracking](#eye-tracking)).
+    In contrast to plain-text TSV files in BIDS, TSVGZ files MUST NOT
+    include a header line.
+    Column names MUST be specified in the JSON file following the
+    [`Columns` metadata](../glossary.md#columns-metadata) specifications.
+    As for all [tabular data structures](../common-principles.md#tabular-files),
+    column names MUST NOT be blank (that is, an empty string),
+    and MUST NOT be duplicated within a single JSON file describing a headerless
+    TSV file.
 
-Continuous signals related to the stimulus SHOULD use the `_stim` suffix.
+    TSVGZ are headerless to improve compatibility with existing software
+    (for example, FSL, PNM), and to facilitate the support for other file formats
+    in the future.
 
-For the template directory name, `<datatype>` can correspond to any data
-recording modality, for example `func`, `anat`, `dwi`, `meg`, `eeg`, `ieeg`,
-or `beh`.
+Summary template:
+
+<div class="highlight">
+<pre><code><a href="../appendices/entities.html#sub">sub-&lt;label&gt;</a>/
+    [<a href="../appendices/entities.html#ses">ses-&lt;label&gt;</a>/]
+        &lt;<a href="../glossary.html#data_type-common_principles">datatype</a>&gt;/
+            &lt;matches&gt;[_<a href="../appendices/entities.html#recording">recording</a>-&lt;<a href="../glossary.html#label-common_principles">label</a>&gt;]_&lt;<a href="../glossary.html#physio-suffixes">physio</a>|<a href="../glossary.html#physioevents-suffixes">physioevents</a>|<a href="../glossary.html#stim-suffixes">stim</a>&gt;<a href="../glossary.html#json-extensions">.json</a>
+            &lt;matches&gt;[_<a href="../appendices/entities.html#recording">recording</a>-&lt;<a href="../glossary.html#label-common_principles">label</a>&gt;]_&lt;<a href="../glossary.html#physio-suffixes">physio</a>|<a href="../glossary.html#physioevents-suffixes">physioevents</a>|<a href="../glossary.html#stim-suffixes">stim</a>&gt;<a href="../glossary.html#tsvgz-extensions">.tsv.gz</a>
+</code></pre></div>
+
+For the template directory name, `<datatype>` can correspond the following
+[data types](../glossary.md#data_type-common_principles):
+`beh`, `dwi`, `eeg`, `func`, `ieeg`, `meg`, `motion`, `nirs`, `perf`, or `pet`.
 In the template filenames, the `<matches>` part corresponds to those entities
 before the suffix that identify the reference run.
 For example, for the file `sub-01_task-nback_run-1_bold.nii.gz`,
 `<matches>` would correspond to `sub-01_task-nback_run-1`.
-Note that when supplying a `<matches>_<physio|stim>.tsv.gz` file,
-an accompanying `<matches>_<physio|stim>.json` MUST be supplied as well.
+Note that when supplying a `<matches>_<physio|physioevents|stim>.tsv.gz` file,
+an accompanying `<matches>_<physio|physioevents|stim>.json` MUST be supplied as well.
 
-If the same continuous recording has been used for all subjects (for example in
-the case where they all watched the same movie), one file placed in the
-root directory (for example, `<root>/task-movie_stim.<tsv.gz|json>`) MAY be used
-and will apply to all `<matches>_task-movie_<matches>_<suffix>.<ext>` files.
-In the following example, the two `task-nback_stim.<json|tsv.gz>` apply
-to all the `task-nback` runs across the two available subjects:
-
-<!-- This block generates a file tree.
-A guide for using macros can be found at
+<details class="tip">
+<summary>Expanded filename template</summary>
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the directory
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filetree_example({
-  "sub-01": {
-    "func": {
-      "sub-01_task-nback_run-1_bold.nii.gz": "",
-      "sub-01_task-nback_run-2_bold.nii.gz": "",
-    },
-  },
-  "sub-02": {
-    "func": {
-      "sub-02_task-nback_run-1_bold.nii.gz": "",
-      "sub-02_task-nback_run-2_bold.nii.gz": "",
-    },
-  },
-  "task-nback_stim.json": "",
-  "task-nback_stim.tsv.gz": "",
-}) }}
+{{ MACROS___make_filename_template(
+       "raw",
+       datatypes=["beh", "dwi", "eeg", "func", "ieeg", "meg", "motion", "nirs", "perf", "pet"],
+       suffixes=["physio", "physioevents", "stim"],
+       title="The above summary template is expanded for the acceptable data types as follows:",
+   )
+}}
+</details>
 
-For multi-echo data, a single `_<physio|stim>.<tsv.gz|json>` file without the
+For multi-echo data, a single `_<physio>.<tsv.gz|json>` file without the
 [`echo-<index>`](../appendices/entities.md#echo) entity applies to all echos of
 a particular run.
 For example:
@@ -100,6 +98,33 @@ A guide for using macros can be found at
     },
   },
 }) }}
+
+
+The specification is distributed in the following sections corresponding to
+the three different data variants introduced above:
+[continuous physiological recordings](#continuous-physiological-recordings),
+[events corresponding to the physiological recordings](#physiology-events), and
+[stimulation data](#stimulation-data).
+Finally, the remainder of the document describes
+[specific types of continuous recordings](#specific-physiological-signal-types)
+such as [eye-tracking](#eye-tracking).
+
+## Continuous physiological recordings
+
+Continuous physiological recordings, such as pulse monitoring,
+electrocardiogram, respiratory movement measured with a respiration belt,
+gas concentration, eye-tracking, or head-motion parameters estimated
+by the MRI scanner, SHOULD use `_physio.<tsv.gz|json>` pairs.
+
+Template:
+
+<div class="highlight">
+<pre><code><a href="../appendices/entities.html#sub">sub-&lt;label&gt;</a>/
+    [<a href="../appendices/entities.html#ses">ses-&lt;label&gt;</a>/]
+        &lt;<a href="../glossary.html#data_type-common_principles">datatype</a>&gt;/
+            &lt;matches&gt;[_<a href="../appendices/entities.html#recording">recording</a>-&lt;<a href="../glossary.html#label-common_principles">label</a>&gt;]_<a href="../glossary.html#physio-suffixes">physio</a><a href="../glossary.html#json-extensions">.json</a>
+            &lt;matches&gt;[_<a href="../appendices/entities.html#recording">recording</a>-&lt;<a href="../glossary.html#label-common_principles">label</a>&gt;]_<a href="../glossary.html#physio-suffixes">physio</a><a href="../glossary.html#tsvgz-extensions">.tsv.gz</a>
+</code></pre></div>
 
 **Storing different recordings**.
 The [`recording-<label>`](../appendices/entities.md#recording)
@@ -129,10 +154,37 @@ A guide for using macros can be found at
   },
 }) }}
 
-## Metadata fields for `<matches>_<physio>.json` files
+**Metadata fields for `<matches>_<physio>.json` files**.
+General metadata fields include `SamplingFrequency`, `StartTime`, `Columns`,
+and `Manufacturer`, in addition to individual column descriptions.
+Each individual column in the TSV file MAY be documented as its own field in the JSON file
+(identical to the practice in other TSV+JSON file pairs).
 
-The following table specifies metadata fields for the
-`<matches>_<physio>.json` file.
+!!! warning "Recordings with different key metadata MUST be split into separate files"
+
+When key metadata such as sampling frequencies, manufacturers varies between recordings,
+tabular data MUST be split into separate files.
+In such cases, the [`recording-<label>`](../appendices/entities.md#recording)
+entity MUST be used to distinguish these files.
+
+Metadata sidecar files (`<matches>_physio.json`) MAY define the field
+`PhysioType` to indicate a specific type of recording.
+The default value of `PhysioType` is `"generic"`, and MUST be assumed
+if the `PhysioType` metadata is not defined.
+Specific recording types (that is, when `PhysioType` takes a valid value other than `"generic"`)
+have separate prescriptions for columns in the TSVGZ files and corresponding metadata
+specifications.
+
+!!! tip "Using specific recording types is RECOMMENDED when available"
+
+    The allowed physiological recording types encoded by `PhysioType` and
+    their corresponding metadata specifications are described in subsection
+    [Specific physiological signal types](#specific-physiological-signal-types)
+    below, and its subsections:
+
+    -   eye-tracking ([subsection Eye-tracking](#eye-tracking)).
+
+The following table specifies metadata fields for `"generic"` recordings:
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -144,21 +196,20 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table(["continuous.Continuous", "continuous.Physio", "continuous.PhysioTypeRecommended"]) }}
 
-Additional metadata may be included as in
-[any TSV file](../common-principles.md#tabular-files) to specify, for
-example, the units of the recorded time series.
-Please note that, in contrast to other TSV files in BIDS, the TSV files specified
-for physiological and other continuous recordings MUST NOT include a header
-line.
-Instead, the name of columns MUST be specified in the JSON file (see `Columns` field).
-This is to improve compatibility with existing software (for example, FSL, PNM)
-as well as to make support for other file formats possible in the future.
-As in any TSV file, column names MUST NOT be blank (that is, an empty string),
-and MUST NOT be duplicated within a single JSON file describing a headerless
-TSV file.
+**Column naming recommendations for `"generic"` recordings.**
+To store pulse or breathing measurements, or the scanner trigger signal,
+the following naming conventions MAY be used for the column names:
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/rules/tabular_data/*.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_columns_table("physio.PhysioColumns") }}
 
-Example `<matches>_physio.tsv.gz`:
-
+**Examples**.
+Let's encode cardiac and respiratory recordings, as well as a trigger signal,
+the three of them sampled at 100.0 Hz by the same device during a behavioral task:
 <!-- This block generates a file tree.
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
@@ -166,6 +217,7 @@ A guide for using macros can be found at
 {{ MACROS___make_filetree_example({
   "sub-01": {
     "func": {
+      "sub-01_task-nback_physio.json": "",
       "sub-01_task-nback_physio.tsv.gz": "",
     },
   },
@@ -180,9 +232,65 @@ after decompression are:
 23    100    1
 ```
 
-Example of `<matches>_physio.json` including cardiac and respiratory
-recordings at a sampling frequency of 100 Hz, with the last column
-containing the scanner's trigger signal:
+and the header-less TSVGZ contents are described with the following
+metadata `sub-01_task-nback_physio.json` where the `Columns` field defines
+the names corresponding to the three columns above:
+
+```JSON
+{
+    "Columns": ["cardiac", "respiratory", "trigger"],
+    "Manufacturer": "Brain Research Equipment ltd.",
+    "PhysioType": "generic",
+    "SamplingFrequency": 100.0,
+    "StartTime": -22.345,
+    "cardiac": {
+      "Description": "continuous pulse measurement",
+      "Units": "mV"
+    },
+    "respiratory": {
+      "Description": "continuous measurements by respiration belt",
+      "Units": "mV"
+    },
+    "trigger": {
+      "Description": "continuous measurement of the scanner trigger signal",
+      "Units": "V"
+    }
+}
+```
+
+The example shows the three REQUIRED metadata entries `Columns`, `SamplingFrequency`,
+and `StartTime`.
+Columns are further described following the specifications for
+[tabular files](../common-principles.md#tabular-files),
+indicating `Description` and `Units` fields.
+Other fields, such as `TermURL`, `LongName`, MAY be included.
+
+The `PhysioType` can be omitted as the recordings are `"generic"`:
+
+```JSON
+{
+    "Columns": ["cardiac", "respiratory", "trigger"],
+    "Manufacturer": "Brain Research Equipment ltd.",
+    "SamplingFrequency": 100.0,
+    "StartTime": -22.345,
+    "cardiac": {
+      "Description": "continuous pulse measurement",
+      "Units": "mV"
+    },
+    "respiratory": {
+      "Description": "continuous measurements by respiration belt",
+      "Units": "mV"
+    },
+    "trigger": {
+      "Description": "continuous measurement of the scanner trigger signal"
+    }
+}
+```
+
+If the `"cardiac"` and `"respiratory"` signals above were acquired at different
+sampling frequencies, then the recordings MUST be separated into two files
+disambiguated by the [`recording-<label>`](../appendices/entities.md#recording)
+entity:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -191,134 +299,29 @@ A guide for using macros can be found at
 {{ MACROS___make_filetree_example({
   "sub-01": {
     "func": {
-      "sub-01_task-nback_physio.json": "",
+      "sub-01_task-nback_recording-cardiac_physio.json": "",
+      "sub-01_task-nback_recording-cardiac_physio.tsv.gz": "",
+      "sub-01_task-nback_recording-respiratory_physio.json": "",
+      "sub-01_task-nback_recording-respiratory_physio.tsv.gz": "",
     },
   },
 }) }}
-
-```JSON
-{
-    "SamplingFrequency": 100.0,
-    "StartTime": -22.345,
-    "Columns": ["cardiac", "respiratory", "trigger"],
-    "Manufacturer": "Brain Research Equipment ltd.",
-    "cardiac": {
-        "Description": "continuous pulse measurement",
-        "Units": "mV"
-        },
-    "respiratory": {
-        "Description": "continuous measurements by respiration belt",
-        "Units": "mV"
-        },
-    "trigger": {
-        "Description": "continuous measurement of the scanner trigger signal"
-        }
-}
-```
-
-General metadata fields include `SamplingFrequency`, `StartTime`, `Columns`,
-and `Manufacturer`, in addition to individual column descriptions.
-Each individual column in the TSV file MAY be documented as its own field in the JSON file
-(identical to the practice in other TSV+JSON file pairs).
-Here, only the `Description` and `Units` fields are shown, but any other of the
-[defined fields](../common-principles.md#tabular-files) such as `TermURL`, `LongName`,
-and so on, MAY be included.
-In this example, the `"cardiac"` and `"respiratory"` time series are produced by devices from
-the same manufacturer and follow the same sampling frequency.
-To specify different sampling frequencies, starting times, manufacturers,
-or any other nonuniform metadata value, the time series MUST be split into
-separate files like `<matches>_recording-cardiac_physio.<tsv.gz|json>`
-and `<matches>_recording-respiratory_physio.<tsv.gz|json>`.
-In such cases, the [`recording-<label>`](../appendices/entities.md#recording)
-entity MUST be used to distinguish these files.
-
-Metadata sidecar files (`<matches>_physio.json`) MAY define the field
-`PhysioType` to indicate a specific type of recording.
-The default value of `PhysioType` is `"generic"`, and MUST be assumed
-if the `PhysioType` metadata is not defined.
-The allowed physiological recording types encoded by `PhysioType` and
-their corresponding metadata specifications are in subsection
-[Specific physiological signal types](#specific-physiological-signal-types)
-below.
-
-For example, the following metadata file:
-
-```JSON
-{
-    "SamplingFrequency": 100.0,
-    "StartTime": -22.345,
-    "Columns": ["cardiac"],
-    "cardiac": {
-        "Description": "continuous pulse measurement",
-        "Units": "mV"
-    }
-}
-```
-
-is equivalent to:
-
-```JSON
-{
-    "PhysioType": "generic",
-    "SamplingFrequency": 100.0,
-    "StartTime": -22.345,
-    "Columns": ["cardiac"],
-    "cardiac": {
-        "Description": "continuous pulse measurement",
-        "Units": "mV"
-    }
-}
-```
-
-**General column naming recommendation**.
-To store pulse or breathing measurements, or the scanner trigger signal, the
-following naming conventions MAY be used for the column names:
-
-<!-- This block generates a columns table.
-The definitions of these fields can be found in
-  src/schema/rules/tabular_data/*.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_columns_table("physio.PhysioColumns") }}
-
-## Metadata fields for `<matches>_<stim>.json` files
-
-The following table specifies metadata fields for the
-`<matches>_<stim>.json` file.
-
-<!-- This block generates a metadata table.
-These tables are defined in
-  src/schema/rules/sidecars
-The definitions of the fields specified in these tables may be found in
-  src/schema/objects/metadata.yaml
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_sidecar_table(["continuous.Continuous"]) }}
-
-As before, additional metadata MAY be included in these
-[TSV files](../common-principles.md#tabular-files).
 
 ## Physiology "events"
 
 Discontinuous data associated with continuous recordings
 stored in `<matches>_physio.tsv.gz` files MAY be specified
-with two files:
-
-1.  a [gzip](https://datatracker.ietf.org/doc/html/rfc1952)
-    compressed TSV file with data (without header line)
-
-1.  a JSON file for storing metadata fields (see below)
+following the summary template pattern above.
 
 Template:
 
-```Text
-sub-<label>/[ses-<label>/]
-    <datatype>/
-        <matches>[_recording-<label>]_physioevents.tsv.gz
-        <matches>[_recording-<label>]_physioevents.json
-```
+<div class="highlight">
+<pre><code><a href="../appendices/entities.html#sub">sub-&lt;label&gt;</a>/
+    [<a href="../appendices/entities.html#ses">ses-&lt;label&gt;</a>/]
+        &lt;<a href="../glossary.html#data_type-common_principles">datatype</a>&gt;/
+            &lt;matches&gt;[_<a href="../appendices/entities.html#recording">recording</a>-&lt;<a href="../glossary.html#label-common_principles">label</a>&gt;]_<a href="../glossary.html#physioevents-suffixes">physioevents</a><a href="../glossary.html#json-extensions">.json</a>
+            &lt;matches&gt;[_<a href="../appendices/entities.html#recording">recording</a>-&lt;<a href="../glossary.html#label-common_principles">label</a>&gt;]_<a href="../glossary.html#physioevents-suffixes">physioevents</a><a href="../glossary.html#tsvgz-extensions">.tsv.gz</a>
+</code></pre></div>
 
 Placeholders such as `<datatype>` and `<matches>` are defined
 as above for the template of continuous recordings.
@@ -507,6 +510,64 @@ The decompressed contents of the corresponding TSV file,
 13894432334    "External message received: new block"
 ```
 
+## Stimulation data
+
+Continuous signals related to the stimulus SHOULD use the `_stim` suffix.
+
+Template:
+
+```Text
+sub-<label>/[ses-<label>/]
+    <datatype>/
+        <matches>[_recording-<label>]_stim.tsv.gz
+        <matches>[_recording-<label>]_stim.json
+```
+
+If the same continuous recording has been used for all subjects (for example in
+the case where they all watched the same movie), one file placed in the
+root directory (for example, `<root>/task-movie_stim.<tsv.gz|json>`) MAY be used
+and will apply to all `<matches>_task-movie_<matches>_<suffix>.<ext>` files.
+In the following example, the two `task-nback_stim.<json|tsv.gz>` apply
+to all the `task-nback` runs across the two available subjects:
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+  "sub-01": {
+    "func": {
+      "sub-01_task-nback_run-1_bold.nii.gz": "",
+      "sub-01_task-nback_run-2_bold.nii.gz": "",
+    },
+  },
+  "sub-02": {
+    "func": {
+      "sub-02_task-nback_run-1_bold.nii.gz": "",
+      "sub-02_task-nback_run-2_bold.nii.gz": "",
+    },
+  },
+  "task-nback_stim.json": "",
+  "task-nback_stim.tsv.gz": "",
+}) }}
+
+**Metadata fields for `<matches>_<stim>.json` files**.
+The following table specifies metadata fields for the
+`<matches>_<stim>.json` file.
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table(["continuous.Continuous"]) }}
+
+As before, additional metadata MAY be included in these
+[TSV files](../common-principles.md#tabular-files).
+
 ## Specific physiological signal types
 
 ### Eye-tracking
@@ -556,9 +617,29 @@ a third recording) are split into files with different
 Therefore, the [`recording-<label>`](../appendices/entities.md#recording)
 is REQUIRED with eye-tracking data.
 
-For example, for a binocular eye-tracker producing three signals
-(left and right eyes, plus a *cyclopean* recording), the file structure
-is:
+For example, the recordings produced by a monocular eye-tracker during a
+visual search task may display the following structure:
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+  "sub-01": {
+    "func": {
+      "sub-01_task-visualSearch_bold.json": "",
+      "sub-01_task-visualSearch_bold.nii.gz": "",
+      "sub-01_task-visualSearch_events.json": "",
+      "sub-01_task-visualSearch_events.tsv": "",
+      "sub-01_task-visualSearch_recording-eye1_physio.json": "",
+      "sub-01_task-visualSearch_recording-eye1_physio.tsv.gz": "",
+      "sub-01_task-visualSearch_recording-eye1_physioevents.json": "",
+      "sub-01_task-visualSearch_recording-eye1_physioevents.tsv.gz": ""
+    },
+  },
+}) }}
+
+The above example is extended to a binocular eye-tracker producing three signals
+(left and right eyes, plus a *cyclopean* recording), as follows:
 <!-- This block generates a file tree.
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
@@ -589,26 +670,6 @@ A guide for using macros can be found at
 The labels `"eye1"`, `"eye2"`, and `"eye3"` for the
 [`recording-<label>`](../appendices/entities.md#recording) entity
 are RECOMMENDED.
-
-The above example is simplified for a monocular eye-tracker as follows:
-<!-- This block generates a file tree.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filetree_example({
-  "sub-01": {
-    "func": {
-      "sub-01_task-visualSearch_bold.json": "",
-      "sub-01_task-visualSearch_bold.nii.gz": "",
-      "sub-01_task-visualSearch_events.json": "",
-      "sub-01_task-visualSearch_events.tsv": "",
-      "sub-01_task-visualSearch_recording-eye1_physio.json": "",
-      "sub-01_task-visualSearch_recording-eye1_physio.tsv.gz": "",
-      "sub-01_task-visualSearch_recording-eye1_physioevents.json": "",
-      "sub-01_task-visualSearch_recording-eye1_physioevents.tsv.gz": ""
-    },
-  },
-}) }}
 
 The following table specifies metadata fields for the
 `<matches>_recording-<label>_physio.json` file:

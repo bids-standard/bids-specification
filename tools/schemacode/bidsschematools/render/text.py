@@ -292,6 +292,8 @@ def make_filename_template(
     else:
         lt, gt = "&lt;", "&gt;"
 
+    title = kwargs.pop("title", "Template:")
+
     schema = Namespace(filter_schema(schema.to_dict(), **kwargs))
     suffix_key_table = value_key_table(schema.objects.suffixes)
     ext_key_table = value_key_table(schema.objects.extensions)
@@ -423,14 +425,13 @@ def make_filename_template(
                 for extension in sorted(extensions)
             )
 
-    paragraph = "\n".join(lines)
     if pdf_format:
-        codeblock = f"Template:\n```Text\n{paragraph}\n```"
+        lines = [title, "```Text"] + lines + ["```"]
     else:
-        codeblock = (
-            f'Template:\n<div class="highlight"><pre><code>{paragraph}\n</code></pre></div>'
-        )
+        lines[0] = f'<div class="highlight"><pre><code>{lines[0]}'
+        lines = [f"<p>{title}</p>"] + lines + ["</code></pre></div>"]
 
+    codeblock = "\n".join(lines)
     codeblock = codeblock.expandtabs(4)
     codeblock = append_filename_template_legend(codeblock, pdf_format)
     codeblock = codeblock.replace("SPEC_ROOT", utils.get_relpath(src_path))
