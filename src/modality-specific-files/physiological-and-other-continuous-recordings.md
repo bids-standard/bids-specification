@@ -99,7 +99,6 @@ A guide for using macros can be found at
   },
 }) }}
 
-
 The specification is distributed in the following sections corresponding to
 the three different data variants introduced above:
 [continuous physiological recordings](#continuous-physiological-recordings),
