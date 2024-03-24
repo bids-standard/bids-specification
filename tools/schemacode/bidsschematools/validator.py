@@ -594,7 +594,7 @@ def validate_bids(
     ::
 
         from bidsschematools import validator
-        bids_paths = '~/.data2/datalad/000026/rawdata'
+        bids_paths = '~/.data2/datalad/000026/noncompliant'
         validator.validate_bids(bids_paths)
 
     Notes
