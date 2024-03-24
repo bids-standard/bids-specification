@@ -3366,6 +3366,20 @@ SubjectArtefactDescription:
     If this field is set to `"n/a"`, it will be interpreted as absence of major
     source of artifacts except cardiac and blinks.
   type: string
+TablePosition:
+  name: TablePosition
+  display_name: Table Position
+  description: |
+    The table position, relative to an implementation-specific reference point,
+    often the isocenter. Values must be an array of three distances in
+    millimeters, respectively right, anterior and superior (RAS+) where the
+    origin is defined by the image affine.
+  type: array
+  minItems: 3
+  maxItems: 3
+  items:
+    type: number
+    unit: mm
 TaskDescription:
   name: TaskDescription
   display_name: Task Description
