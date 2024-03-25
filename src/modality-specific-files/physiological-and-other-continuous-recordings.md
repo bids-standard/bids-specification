@@ -25,7 +25,7 @@ Additional [metadata corresponding to TSVGZ files](../common-principles.md#tabul
 MAY be included as prescribed by the common principles.
 For example, indicating units for recorded time series.
 
-??? warning "Columns of TSVGZ files MUST be defined in the corresponding JSON sidecar and the tabular content MUST NOT include a header line."
+???+ warning "Columns of TSVGZ files MUST be defined in the corresponding JSON sidecar and the tabular content MUST NOT include a header line."
 
     In contrast to plain-text TSV files in BIDS, TSVGZ files MUST NOT
     include a header line.
