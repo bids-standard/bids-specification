@@ -35,8 +35,10 @@ before the suffix.
 For example for the file `sub-control01_task-nback_run-1_bold.nii.gz`,
 `<matches>` would correspond to `sub-control01_task-nback_run-1`.
 
-!!! warning "TSVGZ files MUST NOT include a header line (as established by the [common-principles](../common-principles.md#compressed-tabular-files))"
+!!! note "TSVGZ headers are specified in metadata files."
 
+    TSVGZ files MUST NOT include a header line,
+    as established by the [common-principles](../common-principles.md#compressed-tabular-files)).
     As a result, when supplying a `*_<physio|stim>.tsv.gz` file, an accompanying
     `*_<physio|stim>.json` MUST be supplied as well.
 

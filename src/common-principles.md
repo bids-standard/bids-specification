@@ -467,8 +467,10 @@ onset   duration    response_time   trial_type        trial_extra
 200     20.0        127.34e-1       ⌂ (UTF-8 char)    n/a
 ```
 
-!!! warning "The TSV examples in this document (like the one above this note) are occasionally formatted using space characters instead of tabs to improve human readability."
+!!! warning "TSV example formatting"
 
+    The TSV examples in this document (like the one above this note) are occasionally
+    formatted using space characters instead of tabs to improve human readability.
     Directly copying and then pasting these examples from the specification
     for use in new BIDS datasets can lead to errors and is discouraged.
 
@@ -566,16 +568,15 @@ Rules for formatting plain-text tabular files apply to TSVGZ files with three ex
 1.  TSVGZ files MUST be accompanied by a JSON file with the same name as their
     corresponding tabular file but with a `.json` extension.
 
-???+ warning "Columns of TSVGZ files MUST be defined in the corresponding JSON sidecar and the tabular content MUST NOT include a header line."
 
-    In contrast to plain-text TSV files, compressed tabular files files
-    MUST NOT include a header line.
-    Column names MUST be specified in the JSON file following the
-    [`Columns` metadata](glossary.md#columns-metadata) specifications
-    provided with plain-text tabular data.
-    Similarly, specific column metadata stored with dictionaries such as
-    the `sex` column in the example above MUST be specified following the
-    plain-text tabular metadata prescriptions.
+!!! note "Column definitions in compressed tabular files"
+
+    In contrast to plain-text TSV files,
+    compressed tabular files files MUST NOT include a header line.
+    Column names MUST be provided in the JSON file with the
+    [`Columns`](glossary.md#columns-metadata) field.
+    Each column MAY additionally be described with a column description,
+    as described in [Tabular files](#tabular-files).
 
     TSVGZ are header-less to improve compatibility with existing software
     (for example, FSL, or PNM), and to facilitate the support for other file formats
