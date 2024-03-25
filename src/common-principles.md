@@ -445,7 +445,7 @@ with two exceptions:
     [JSON object](https://www.json.org/json-en.html) described below; and
 1.  [motion recording data](modality-specific-files/motion.md),
     which use plain-text TSV and columns are defined as described
-    in its corresponding of the specifications.
+    in its corresponding section of the specifications.
 
 It is RECOMMENDED that the column names in the header of the TSV file are
 written in [`snake_case`](https://en.wikipedia.org/wiki/Snake_case) with the
