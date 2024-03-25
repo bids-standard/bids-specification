@@ -430,36 +430,41 @@ NIfTI header.
 
 ### Tabular files
 
-Tabular data MUST be saved as tab delimited values (`.tsv`) files, that is, CSV
-files where commas are replaced by tabs. Tabs MUST be true tab characters and
-MUST NOT be a series of space characters. Each TSV file MUST start with a header
-line listing the names of all columns (with the exception of
-[physiological and other continuous recordings](modality-specific-files/physiological-and-other-continuous-recordings.md)
-as well as [motion recording data](modality-specific-files/motion.md)).
+Tabular data MUST be saved as plain-text, tab-delimited values (`.tsv`) files,
+that is, CSV files where commas are replaced by tab characters.
+Tabs MUST be true tab characters and MUST NOT be a series of space characters.
+Tabular data containing large numbers of rows MAY be saved as
+[compressed tabular files (with extension `.tsv.gz`)](#compressed-tabular-files)
+as prescribed below.
+Each TSV file MUST start with a header line listing the names of all columns
+with the exception of [compressed tabular files](#compressed-tabular-files)
+where column names are defined in a sidecar metadata
+[JSON object](https://www.json.org/json-en.html) described below.
+
 It is RECOMMENDED that the column names in the header of the TSV file are
 written in [`snake_case`](https://en.wikipedia.org/wiki/Snake_case) with the
 first letter in lower case (for example, `variable_name`, not `Variable_name`).
-As for all other data in the TSV files, column names MUST be separated with tabs.
+Column names defined in the header MUST be separated with tabs as for the data contents.
 Furthermore, column names MUST NOT be blank (that is, an empty string) and MUST NOT
 be duplicated within a single TSV file.
-String values containing tabs MUST be escaped using double
-quotes. Missing and non-applicable values MUST be coded as `n/a`. Numerical
-values MUST employ the dot (`.`) as decimal separator and MAY be specified
+String values containing tabs MUST be escaped using double quotes.
+Missing and non-applicable values MUST be coded as `n/a`.
+Numerical values MUST employ the dot (`.`) as decimal separator and MAY be specified
 in scientific notation, using `e` or `E` to separate the significand from the
-exponent. TSV files MUST be in UTF-8 encoding.
+exponent.
+TSV files MUST be in UTF-8 encoding.
 
 Example:
 
 ```Text
 onset	duration	response_time	correct	stop_trial	go_trial
-200	200	0	n/a	n/a	n/a
+200     200         0               n/a     n/a         n/a
 ```
 
-**Note**: The TSV examples in this document (like the one above this note)
-are occasionally formatted using space characters instead of tabs to improve
-human readability.
-Directly copying and then pasting these examples from the specification
-for use in new BIDS datasets can lead to errors and is discouraged.
+!!! warning "The TSV examples in this document (like the one above this note) are occasionally formatted using space characters instead of tabs to improve human readability."
+
+    Directly copying and then pasting these examples from the specification
+    for use in new BIDS datasets can lead to errors and is discouraged.
 
 Tabular files MAY be optionally accompanied by a simple data dictionary
 in the form of a JSON [object](https://www.json.org/json-en.html)
@@ -536,7 +541,7 @@ like in the example below.
             "F": {
                 "Description": "Female",
                 "TermURL": "https://www.ncbi.nlm.nih.gov/mesh/68005260"
-            },
+            }
         }
     }
 }
