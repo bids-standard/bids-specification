@@ -430,16 +430,22 @@ NIfTI header.
 
 ### Tabular files
 
-Tabular data MUST be saved as plain-text, tab-delimited values (`.tsv`) files,
+Tabular data MUST be saved as plain-text, tab-delimited values (TSV) files
+(with [extension `.tsv`](glossary.md#tsv-extensions)),
 that is, CSV files where commas are replaced by tab characters.
 Tabs MUST be true tab characters and MUST NOT be a series of space characters.
 Tabular data containing large numbers of rows MAY be saved as
 [compressed tabular files (with extension `.tsv.gz`)](#compressed-tabular-files)
 as prescribed below.
 Each TSV file MUST start with a header line listing the names of all columns
-with the exception of [compressed tabular files](#compressed-tabular-files)
-where column names are defined in a sidecar metadata
-[JSON object](https://www.json.org/json-en.html) described below.
+with two exceptions:
+
+1.  [compressed tabular files](#compressed-tabular-files),
+    for which column names are defined in a sidecar metadata
+    [JSON object](https://www.json.org/json-en.html) described below; and
+1.  [motion recording data](modality-specific-files/motion.md),
+    which use plain-text TSV and columns are defined as described
+    in its corresponding of the specifications.
 
 It is RECOMMENDED that the column names in the header of the TSV file are
 written in [`snake_case`](https://en.wikipedia.org/wiki/Snake_case) with the
