@@ -261,6 +261,16 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_subobject_table("metadata.StimulusPresentation") }}
 
+!!! warning "Some metadata of the `StimulusPresentation` object become REQUIRED with the presence of [eye-tracking data](physiological-and-other-continuous-recordings.md#eye-tracking)"
+
+    The following fields pertaining to `<matches>_events.json` of tasks that were acquired
+    with the simultaneous recording of eye-tracking escalate to REQUIRED as they are considered
+    essential in eye-tracking data analysis:
+
+    -   `ScreenSize`,
+    -   `ScreenResolution`,
+    -   `ScreenDistance`.
+
 The operating system description SHOULD include the following attributes:
 
 -   type (for example, Windows, macOS, Linux)
