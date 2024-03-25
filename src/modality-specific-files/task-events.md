@@ -42,6 +42,8 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_columns_table("task.TaskEvents") }}
 
+The content of  `events.tsv` files SHOULD be sorted by values in the `onset` column.
+
 Note for MRI data:
 If any acquired scans have been discarded before forming the imaging data file,
 ensure that an `onset` of 0 corresponds to the time the first image was stored.

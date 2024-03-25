@@ -27,3 +27,16 @@ StimulusFileMissing:
     - columns.stim_file != null
   checks:
     - exists(columns.stim_file, "stimuli") == length(columns.stim_file) - count(columns.stim_file, "n/a")
+
+SortedOnsets:
+  issue:
+    code: EVENT_ONSET_ORDER
+    message: |
+      The onset column in events.tsv files should be sorted.
+    level: warning
+  selectors:
+    - suffix == "events"
+    - extension == ".tsv"
+  checks:
+    # n/a values will likely cause false alarms if encountered. Consider alternatives.
+    - sorted(columns.onset) == columns.onset
