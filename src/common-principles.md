@@ -464,7 +464,8 @@ Example:
 
 ```Text
 onset   duration    response_time   trial_type        trial_extra
-200     20.0        127.34e-1       ⌂ (UTF-8 char)    n/a
+200     20.0        15.8            word              中国人
+240     5.0         17.34e-1        visual            n/a
 ```
 
 !!! warning "TSV example formatting"
