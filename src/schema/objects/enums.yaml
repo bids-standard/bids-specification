@@ -1405,3 +1405,13 @@ microvascular:
   display_name: microvascular
   description: |
     The origin of a tissue: microvascular
+PhysioTypeGeneric:
+  value: generic
+  display_name: Generic Physiological Recording
+  description: |
+    Unspecified physiological recording.
+PhysioTypeEyetrack:
+  value: eyetrack
+  display_name: Eye-tracking recording
+  description: |
+    A specific physiological recording type: eye-tracking.
