@@ -2,12 +2,9 @@
 
 Physiological recordings such as cardiac and respiratory signals and other
 continuous measures (such as parameters of a film or audio stimuli) MAY be
-specified using two files:
-
-1.  a [gzip](https://datatracker.ietf.org/doc/html/rfc1952)
-    compressed TSV file with data (without header line)
-
-1.  a JSON file for storing metadata fields (see below)
+specified using a [compressed tabular file](../common-principles.md#compressed-tabular-files)
+([TSVGZ file](../glossary.md#tsvgz-extensions)) and a corresponding
+JSON file for storing metadata fields (see below).
 
 !!! example "Example datasets"
 
@@ -38,8 +35,10 @@ before the suffix.
 For example for the file `sub-control01_task-nback_run-1_bold.nii.gz`,
 `<matches>` would correspond to `sub-control01_task-nback_run-1`.
 
-Note that when supplying a `*_<physio|stim>.tsv.gz` file, an accompanying
-`*_<physio|stim>.json` MUST be supplied as well.
+!!! warning "TSVGZ files SHOULD NOT include a header line (as established by the [common-principles](../common-principles.md#compressed-tabular-files))"
+
+    As a result, when supplying a `*_<physio|stim>.tsv.gz` file, an accompanying
+    `*_<physio|stim>.json` MUST be supplied as well.
 
 The [`recording-<label>`](../appendices/entities.md#recording)
 entity MAY be used to distinguish between several recording files.
@@ -66,15 +65,6 @@ A guide for using macros can be found at
 Additional metadata may be included as in
 [any TSV file](../common-principles.md#tabular-files) to specify, for
 example, the units of the recorded time series.
-Please note that, in contrast to other TSV files in BIDS, the TSV files specified
-for physiological and other continuous recordings *do not* include a header
-line.
-Instead the name of columns are specified in the JSON file (see `Columns` field).
-This is to improve compatibility with existing software (for example, FSL, PNM)
-as well as to make support for other file formats possible in the future.
-As in any TSV file, column names MUST NOT be blank (that is, an empty string),
-and MUST NOT be duplicated within a single JSON file describing a headerless
-TSV file.
 
 Example `*_physio.tsv.gz`:
 

@@ -542,6 +542,32 @@ like in the example below.
 }
 ```
 
+### Compressed tabular files
+
+Large tabular information such as physiological recordings MAY be stored with
+[compressed tab-delineated (TSVGZ) files](glossary.md#tsvgz-extensions).
+Rules for formatting plain-text tabular files apply to TSVGZ files with three exceptions:
+
+1.  The contents of TSVGZ files SHOULD be compressed with
+    [gzip](https://datatracker.ietf.org/doc/html/rfc1952).
+1.  Compressed tabular files SHOULD NOT contain a header in the first row
+    indicating the column names.
+1.  TSVGZ files SHOULD be accompanied by a JSON file with the same name as their
+    corresponding tabular file but with a `.json` extension.
+
+???+ warning "Columns of TSVGZ files MUST be defined in the corresponding JSON sidecar and the tabular content MUST NOT include a header line."
+
+    In contrast to plain-text TSV files, compressed tabular files files
+    MUST NOT include a header line.
+    Column names MUST be specified in the JSON file following the
+    [`Columns` metadata](glossary.md#columns-metadata) specifications.
+    As plain-text tabular data, column names MUST NOT be blank (that is, an empty string),
+    and MUST NOT be duplicated within a single JSON file describing a TSVGZ file.
+
+    TSVGZ are header-less to improve compatibility with existing software
+    (for example, FSL, or PNM), and to facilitate the support for other file formats
+    in the future.
+
 ### Key-value files (dictionaries)
 
 JavaScript Object Notation (JSON) files MUST be used for storing key-value
