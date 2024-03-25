@@ -38,4 +38,5 @@ SortedOnsets:
     - suffix == "events"
     - extension == ".tsv"
   checks:
+    # n/a values will likely cause false alarms if encountered. Consider alternatives.
     - sorted(columns.onset) == columns.onset
