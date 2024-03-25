@@ -571,9 +571,11 @@ Rules for formatting plain-text tabular files apply to TSVGZ files with three ex
     In contrast to plain-text TSV files, compressed tabular files files
     MUST NOT include a header line.
     Column names MUST be specified in the JSON file following the
-    [`Columns` metadata](glossary.md#columns-metadata) specifications.
-    As plain-text tabular data, column names MUST NOT be blank (that is, an empty string),
-    and MUST NOT be duplicated within a single JSON file describing a TSVGZ file.
+    [`Columns` metadata](glossary.md#columns-metadata) specifications
+    provided with plain-text tabular data.
+    Similarly, specific column metadata stored with dictionaries such as
+    the `sex` column in the example above MUST be specified following the
+    plain-text tabular metadata prescriptions.
 
     TSVGZ are header-less to improve compatibility with existing software
     (for example, FSL, or PNM), and to facilitate the support for other file formats
