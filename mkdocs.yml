@@ -24,6 +24,7 @@ nav:
           - Common data types and metadata: derivatives/common-data-types.md
           - Imaging data types: derivatives/imaging.md
       - Longitudinal and multi-site studies: longitudinal-and-multi-site-studies.md
+      - Atlases: atlas.md
       - Glossary: glossary.md
       - BIDS Extension Proposals: extensions.md
       - Appendix:
