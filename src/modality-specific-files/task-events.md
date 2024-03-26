@@ -337,8 +337,7 @@ sub-<label>/[ses-<label>/]
 ```
 
 For the template directory name, `<datatype>` can correspond to any data
-recording modality, for example `func`, `anat`, `dwi`, `meg`, `eeg`, `ieeg`,
-or `beh`.
+recording modality.
 
 In the template filenames, the `<matches>` part corresponds to task filename
 before the suffix.
