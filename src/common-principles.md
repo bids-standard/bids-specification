@@ -468,7 +468,7 @@ onset   duration    response_time   trial_type        trial_extra
 240     5.0         17.34e-1        visual            n/a
 ```
 
-!!! warning "TSV example formatting"
+!!! warning "Attention"
 
     The TSV examples in this document (like the one above this note) are occasionally
     formatted using space characters instead of tabs to improve human readability.
@@ -570,7 +570,7 @@ Rules for formatting plain-text tabular files apply to TSVGZ files with three ex
     corresponding tabular file but with a `.json` extension.
 
 
-!!! note "Column definitions in compressed tabular files"
+!!! warning "Attention"
 
     In contrast to plain-text TSV files,
     compressed tabular files files MUST NOT include a header line.
