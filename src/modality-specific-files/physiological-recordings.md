@@ -34,11 +34,10 @@ For example for the file `sub-control01_task-nback_run-1_bold.nii.gz`,
 
 !!! warning "Caution"
 
-    TSVGZ files MUST NOT include a header line, as established by the
+    `<matches>_physio.tsv.gz` files MUST NOT include a header line, as established by the
     [common-principles](../common-principles.md#compressed-tabular-files).
-
     As a result, when supplying a `<matches>_physio.tsv.gz` file, an accompanying
-    `<matches>_physio.json` MUST be supplied as well.
+    `<matches>_physio.json` MUST be present to indicate the column names.
 
 The [`recording-<label>`](../appendices/entities.md#recording)
 entity MAY be used to distinguish between several recording files.
