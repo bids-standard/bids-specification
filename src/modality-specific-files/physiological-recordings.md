@@ -46,7 +46,7 @@ the eyetracking data in a certain sampling frequency, and
 `sub-01_task-bart_recording-breathing_physio.tsv.gz` to contain respiratory
 measurements in a different sampling frequency.
 
-Physiological recordings (including eyetracking) SHOULD use the `_physio`.
+Physiological recordings (including eyetracking) SHOULD use the `_physio` suffix.
 
 The following table specifies metadata fields for the `*_physio.json` file.
 
