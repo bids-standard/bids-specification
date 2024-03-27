@@ -434,9 +434,13 @@ Tabular data MUST be saved as plain-text, tab-delimited values (TSV) files
 (with [extension `.tsv`](glossary.md#tsv-extensions)),
 that is, CSV files where commas are replaced by tab characters.
 Tabs MUST be true tab characters and MUST NOT be a series of space characters.
-Tabular data containing large numbers of rows MAY be saved as
-[compressed tabular files (with extension `.tsv.gz`)](#compressed-tabular-files)
-as prescribed below.
+Tabular data such as continuous physiology recordings typically containing
+large numbers of rows MAY be saved as
+[compressed tabular files (with extension `.tsv.gz`)](#compressed-tabular-files),
+which are introduced below.
+Plain-text TSV and compressed TSV are not interchangeable, that is, each section
+of the specification prescribes which one SHOULD be used for the data type at
+hand.
 Each TSV file MUST start with a header line listing the names of all columns
 with two exceptions:
 
@@ -558,8 +562,9 @@ like in the example below.
 
 ### Compressed tabular files
 
-Large tabular information such as physiological recordings MAY be stored with
-[compressed tab-delineated (TSVGZ) files](glossary.md#tsvgz-extensions).
+Large tabular information, such as physiological recordings, SHOULD be stored with
+[compressed tab-delineated (TSVGZ) files](glossary.md#tsvgz-extensions) when
+so established by the specifications.
 Rules for formatting plain-text tabular files apply to TSVGZ files with three exceptions:
 
 1.  The contents of TSVGZ files MUST be compressed with
