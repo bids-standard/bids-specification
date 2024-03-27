@@ -344,8 +344,10 @@ before the suffix.
 For example for the file `sub-control01_task-nback_run-1_bold.nii.gz`,
 `<matches>` would correspond to `sub-control01_task-nback_run-1`.
 
-!!! warning "TSVGZ files SHOULD NOT include a header line (as established by the [common-principles](../common-principles.md#compressed-tabular-files))"
+!!! warning "Caution"
 
+    TSVGZ files SHOULD NOT include a header line (as established by the [common-principles](../common-principles.md#compressed-tabular-files))
+    
     As a result, when supplying a `<matches>[_recording-<label>]_stim.tsv.gz` file,
     an accompanying `<matches>[_recording-<label>]_stim.json` MUST be supplied as well.
 
