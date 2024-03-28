@@ -28,9 +28,9 @@ MRSSample:
     - modality == "mrs"
   fields:
     BodyPart:
-      level: recommended
+      level: optional
       description_addendum: Corresponds to DICOM Tag 0018, 0015 `Body Part Examined`.
-    BodyPartDetails: recommended
+    BodyPartDetails: optional
     BodyPartDetailsOntology: optional
 
 MRSSequenceSpecifics:
