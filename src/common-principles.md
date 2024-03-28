@@ -573,7 +573,6 @@ Rules for formatting plain-text tabular files apply to TSVGZ files with three ex
     indicating the column names.
 1.  TSVGZ files MUST have an associated JSON file that defines the columns in the tabular file.
 
-
 !!! warning "Attention"
 
     In contrast to plain-text TSV files,
