@@ -184,6 +184,10 @@ For example:
      PsyArXiv.
      [doi:10.31234/osf.io/w6z79](https://doi.org/10.31234/osf.io/w6z79)
 
+#### MRS
+
+-   (publication forthcoming)
+
 ### Research Resource Identifier (RRID)
 
 BIDS has also a

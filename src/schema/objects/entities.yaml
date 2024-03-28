@@ -179,6 +179,17 @@ mtransfer:
   enum:
     - $ref: objects.enums.on__mtransfer.value
     - $ref: objects.enums.off__mtransfer.value
+nucleus:
+  name: nuc
+  display_name: Nucleus
+  description: |
+    The `nuc-<label>` entity can be used to distinguish acquisitions tuned
+    to detect different nuclei.
+    The label is the name of the nucleus or nuclei, which corresponds to DICOM Tag `0018, 9100`.
+    If present in the filename, `"ResonantNucleus"` MUST also be included in
+    the associated metadata.
+  type: string
+  format: label
 part:
   name: part
   display_name: Part
@@ -408,9 +419,19 @@ tracer:
     Please note that the `<label>` does not need to match the actual value of the field.
   type: string
   format: label
+volume:
+  name: voi
+  display_name: Volume of Interest
+  description: |
+    The `voi-<label>` entity can be used to distinguish acquisitions localized to different regions.
+    The label SHOULD be the name of the body region or part scanned.
+    If used, the fields `"BodyPart"` and `"BodyPartDetails"` MUST be defined in the JSON file.
+    `BodyPartDetailsOntology` is OPTIONAL to also include.
+  type: string
+  format: label
 tracksys:
   name: tracksys
-  display_name: Tracking system
+  display_name: Tracking System
   description: |
     The `tracksys-<label>` entity can be used as a key-value pair
     to label *_motion.tsv and *_motion.json files.
