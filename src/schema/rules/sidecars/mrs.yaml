@@ -81,13 +81,6 @@ MRSRecommendedFields:
     ReferenceSignal: recommended if MRS reference data are present
     AnatomicalImage: recommended if anatomical MRI data are present
 
-NumberOfTransientsRecommended:
-  selectors:
-    - datatype == "mrs"
-    - intersects([suffix], ["svs", "unloc"])
-  fields:
-    NumberOfTransients: recommended
-
 MRSOptionalFields:
   selectors:
     - modality == "mrs"
