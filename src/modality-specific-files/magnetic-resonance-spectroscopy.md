@@ -211,4 +211,4 @@ MAY be present:
 
 ## Combining MRS with anatomical MRI
 
-For combining MRS with anatomical MRI data, see the MRS-MRI correspondence in the [Cross modality correspondence](../appendices/cross-modality-correspondence.html) section of the Appendix.
+For combining MRS data with anatomical MRI data, see [MRS-MRI correspondence](../appendices/cross-modality-correspondence.md#mrs-mri-correspondence) in the Appendix.
