@@ -571,8 +571,7 @@ Rules for formatting plain-text tabular files apply to TSVGZ files with three ex
     [gzip](https://datatracker.ietf.org/doc/html/rfc1952).
 1.  Compressed tabular files MUST NOT contain a header in the first row
     indicating the column names.
-1.  TSVGZ files MUST be accompanied by a JSON file with the same name as their
-    corresponding tabular file but with a `.json` extension.
+1.  TSVGZ files MUST have an associated JSON file that defines the columns in the tabular file.
 
 
 !!! warning "Attention"
