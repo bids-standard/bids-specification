@@ -64,7 +64,7 @@ unlocalized:
 
 reference:
   suffixes:
-    - ref
+    - mrsref
   extensions:
     - .nii.gz
     - .nii

@@ -22,7 +22,7 @@ and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 
-{{ MACROS___make_filename_template("raw", datatypes=["mrs"], suffixes=["svs", "mrsi", "ref", "unloc"]) }}
+{{ MACROS___make_filename_template("raw", datatypes=["mrs"], suffixes=["svs", "mrsi", "unloc", "mrsref"]) }}
 
 MRS is a spectroscopic technique based on the phenomenon of nuclear magnetic resonance
 that allows for the noninvasive detection and quantification of molecules in biochemical samples, such as brain tissue.
@@ -72,7 +72,7 @@ These files are considered source data and, if present, MUST be stored in the
 | Single-voxel spectroscopy                | svs          | MRS acquisitions where the detected MR signal is spatially localized to a single volume.                                                                                              |
 | Magnetic resonance spectroscopic imaging | mrsi         | MRS acquisitions where additional imaging gradients are used to detect the MR signal from 1, 2, or 3 spatial dimensions.                                                              |
 | Unlocalized spectroscopy                 | unloc        | MRS acquisitions run without localization. This includes signals detected using coil sensitivity only.                                                                                |
-| Concentration or calibration reference   | ref          | A separate MRS acquisition acquired to detect a signal to serve as a concentration reference for absolute quantification or for preprocessing (for example, eddy-current correction). |
+| Concentration or calibration reference   | mrsref       | An MRS acquisition collected to serve as a concentration reference for absolute quantification or as a calibration reference for preprocessing (for example, eddy-current correction). |
 
 A major distinction between MRS acquisitions is whether the acquisition technique probes spectral
 information from a single volume (single-voxel spectroscopy, SVS) or encodes this information along
@@ -85,9 +85,9 @@ scaling metabolite signal levels (for example, to obtain concentrations) and/or 
 eddy-current correction, RF coil combination, phasing, and frequency calibration).
 This could be either an external reference (for example, a phantom or a synthetic signal) or, more typically,
 an internal tissue water reference.
-For such datasets, the suffix `ref` MUST be used.
+For such datasets, the suffix `mrsref` MUST be used.
 Should multiple references exist for a given dataset, the user MAY use the `acq-<label>` entity to distinguish the files.
-For example, `sub-01_acq-conc_ref.nii.gz` and `sub-01_acq-ecc_ref.nii.gz` could be used to name
+For example, `sub-01_acq-conc_mrsref.nii.gz` and `sub-01_acq-ecc_mrsref.nii.gz` could be used to name
 two references to be used for concentration scaling and eddy-current correction, respectively.
 
 ### MRS sequences
@@ -188,24 +188,24 @@ MAY be present:
 
 ```JSON
 {
-   "InstitutionName": "Weill Cornell Medicine",
-   "InstitutionAddress": "1300 York Avenue, New York, NY 10065, USA",
-   "Manufacturer": "GE",
-   "ManufacturersModelName": "Discovery MR750",
-   "MagneticFieldStrength": 3,
-   "PulseSequenceType": "PRESS",
-   "ResonantNucleus": "1H",
-   "SpectrometerFrequency": 127.771,
-   "SpectralWidth": 2000,
-   "EchoTime": 0.035,
-   "NumberOfSpectralPoints": 2048,
-   "NumberOfTransients": 64,
-   "RepetitionTime": 2,
-   "AcquisitionVoxelSize": [40, 20, 30],
-   "BodyPart": "BRAIN",
-   "BodyPartDetails": "Anterior cingulate cortex",
-   "ReferenceSignal": "bids::sub-01/mrs/sub-01_acq-press_ref.nii.gz",
-   "AnatomicalImage": "bids::sub-01/anat/sub-01_T1w.nii.gz"
+  "InstitutionName": "Weill Cornell Medicine",
+  "InstitutionAddress": "1300 York Avenue, New York, NY 10065, USA",
+  "Manufacturer": "GE",
+  "ManufacturersModelName": "Discovery MR750",
+  "MagneticFieldStrength": 3,
+  "PulseSequenceType": "PRESS",
+  "ResonantNucleus": "1H",
+  "SpectrometerFrequency": 127.771,
+  "SpectralWidth": 2000,
+  "EchoTime": 0.035,
+  "NumberOfSpectralPoints": 2048,
+  "NumberOfTransients": 64,
+  "RepetitionTime": 2,
+  "AcquisitionVoxelSize": [40, 20, 30],
+  "BodyPart": "BRAIN",
+  "BodyPartDetails": "Anterior cingulate cortex",
+  "ReferenceSignal": "bids::sub-01/mrs/sub-01_acq-press_mrsref.nii.gz",
+  "AnatomicalImage": "bids::sub-01/anat/sub-01_T1w.nii.gz"
 }
 ```
 

@@ -666,17 +666,23 @@ meg:
   description: |
     Unprocessed MEG data stored in the native file format of the MEG instrument
     with which the data was collected.
+motion:
+  value: motion
+  display_name: Motion
+  description: |
+    Data recorded from a tracking system store.
 mrsi:
   value: mrsi
   display_name: Magnetic resonance spectroscopy imaging
   description: |
     MRS acquisitions where additional imaging gradients are used
     to detect the MR signal from 1, 2, or 3 spatial dimensions.
-motion:
-  value: motion
-  display_name: Motion
+mrsref:
+  value: mrsref
+  display_name: MRS reference acquisition
   description: |
-    Data recorded from a tracking system store.
+    An MRS acquisition collected to serve as a concentration reference for absolute quantification
+    or as a calibration reference for preprocessing (for example, eddy-current correction).
 nirs:
   value: nirs
   display_name: Near Infrared Spectroscopy
@@ -745,13 +751,6 @@ probseg:
     A probabilistic segmentation.
 
     This suffix may only be used in derivative datasets.
-ref:
-  value: ref
-  display_name: MRS
-  description: |
-    An MRS acquisition acquired to detect a signal to serve
-    as a concentration reference for absolute quantification
-    or for preprocessing (for example, eddy-current correction).
 sbref:
   value: sbref
   display_name: Single-band reference image
