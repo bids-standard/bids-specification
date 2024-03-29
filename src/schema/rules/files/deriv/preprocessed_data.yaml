@@ -107,7 +107,7 @@ fmap_pepolar_common:
 fmap_pepolar_m0scan:
   $ref: rules.files.raw.fmap.pepolar_m0scan
   entities:
-    $ref: rules.files.raw.fmap.pepolar_m0scan.entities
+    $ref: rules.files.raw.fmap.pepolar.entities
     space: optional
     description: optional
 
