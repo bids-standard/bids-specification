@@ -1253,7 +1253,7 @@ The phase-encoding polarity (PEpolar) technique combines two or more Spin Echo
 EPI scans with different phase encoding directions to estimate the distortion
 map corresponding to the nonuniformities of the *B<sub>0</sub>* field.
 These `*_epi.nii[.gz]` - or `*_m0scan.nii[.gz]` for arterial spin labeling perfusion data - files can be 3D or 4D --
-in the latter case, all timepoints share the same scanning parameters. 
+in the latter case, all timepoints share the same scanning parameters.
 Some 4D scans intended for correcting DWIs may have accompanying `*_epi.bval` and `*_epi.bvec` files.
 Examples of software tools using these kinds of images are FSL TOPUP and
 AFNI `3dqwarp`.
