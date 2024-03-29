@@ -24,7 +24,6 @@ fieldmaps:
 pepolar:
   suffixes:
     - epi
-    - m0scan
   extensions:
     - .nii.gz
     - .nii
@@ -40,6 +39,17 @@ pepolar:
     run: optional
     part: optional
     chunk: optional
+
+pepolar_m0scan:
+  $ref: rules.files.raw.fmap.pepolar
+  suffixes:
+    - m0scan
+
+pepolar_dwi:
+  $ref: rules.files.raw.fmap.pepolar
+  extensions:
+    - .bval
+    - .bvec
 
 TB1DAM:
   suffixes:
