@@ -228,10 +228,8 @@ PDw:
     In arbitrary units (arbitrary).
     The contrast of these images is mainly determined by spatial variations in
     the spin density (1H) of the imaged specimen.
-    In spin-echo sequences this contrast is achieved at short repetition and long
-    echo times.
-    In a gradient-echo acquisition, PD weighting dominates the contrast at long
-    repetition and short echo times, and at small flip angles.
+    This contrast is achieved at short echo times and long repetition times;
+    for gradient echo, this weighting is also possible with a short TR (TR<<T1) and a small flip angle.
   unit: arbitrary
 PLI:
   value: PLI
@@ -597,6 +595,11 @@ headshape:
   description: |
     The 3-D locations of points that describe the head shape and/or electrode
     locations can be digitized and stored in separate files.
+hipCT:
+  value: hipCT
+  display_name: HiP-CT
+  description: |
+    Hierarchical Phase-Contrast Tomography imaging data
 ieeg:
   value: ieeg
   display_name: Intracranial Electroencephalography

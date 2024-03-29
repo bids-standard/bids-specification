@@ -7,14 +7,16 @@ Please see [Citing BIDS](../introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
-Microscopy datasets formatted using this specification are available on the
-[BIDS examples repository](https://github.com/bids-standard/bids-examples#microscopy-datasets)
-and can be used for practical guidance when curating a new dataset.
+!!! example "Example datasets"
 
-Further Microscopy datasets are available:
+      Microscopy datasets formatted using this specification are available on the
+      [BIDS examples repository](https://bids-standard.github.io/bids-examples/#microscopy)
+      and can be used for practical guidance when curating a new dataset.
 
--   In PNG format:  [`data_axondeepseg_sem`](https://doi.org/10.5281/zenodo.5498378)
--   In OME-TIFF format: [`Broca's Area Light-Sheet Microscopy`](https://doi.org/10.5281/zenodo.5517223)
+      Further Microscopy datasets are available:
+
+      -   In PNG format:  [`data_axondeepseg_sem`](https://doi.org/10.5281/zenodo.5498378)
+      -   In OME-TIFF format: [`Broca's Area Light-Sheet Microscopy`](https://doi.org/10.5281/zenodo.5517223)
 
 ## Microscopy imaging data
 
@@ -26,7 +28,7 @@ and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_filename_template("raw", datatypes=["micr"], suffixes=["TEM", "SEM", "uCT", "BF", "DF",
-"PC", "DIC", "FLUO", "CONF", "PLI", "CARS", "2PE", "MPE", "SR", "NLO", "OCT", "SPIM"], n_dupes_to_combine=4) }}
+"PC", "DIC", "FLUO", "CONF", "PLI", "CARS", "2PE", "MPE", "SR", "NLO", "OCT", "SPIM", "hipCT"], n_dupes_to_combine=4) }}
 
 Microscopy data MUST be stored in the `micr` directory.
 
@@ -37,7 +39,7 @@ by the [Open Microscopy Environment](https://www.openmicroscopy.org/) for whole-
 the [OME-TIFF file specifications](https://docs.openmicroscopy.org/ome-model/6.1.2/ome-tiff/file-structure.html).
 The OME-TIFF file allows for multi-page TIFF files to store multiple image planes and supports
 multi-resolution pyramidal tiled images. An OME-XML data block is also embedded inside the
-file’s header. Further, OME-ZARR (sometimes referred to as OME-NGFF or NGFF) has been developed to provide improved
+file's header. Further, OME-ZARR (sometimes referred to as OME-NGFF or NGFF) has been developed to provide improved
 access and storage for large data via chunked and compressed N-dimensional arrays.
 
 The BIDS standard accepts microscopy data in a number of file formats to accommodate datasets
@@ -56,9 +58,6 @@ Microscopy raw data MUST be stored in one of the following formats:
     [BigTIFF](https://www.awaresystems.be/imaging/tiff/bigtiff.html) files)
 
 -   [OME-ZARR/NGFF](https://ngff.openmicroscopy.org/latest/) (`.ome.zarr` directories)
-
-If different from PNG, TIFF, OME-TIFF, or OME-ZARR, the original unprocessed data in the native format MAY be
-stored in the [`/sourcedata` directory](../common-principles.md#source-vs-raw-vs-derived-data).
 
 ### Modality suffixes
 Microscopy data currently support the following imaging modalities:
@@ -89,6 +88,7 @@ and a guide for using macros can be found at
          "NLO",
          "OCT",
          "SPIM",
+         "hipCT",
       ]
    )
 }}
@@ -434,7 +434,7 @@ sub-02 mus musculus C57BL/6J RRID:IMSR_JAX:000664
         "Description": "name of the strain of the species"
     },
     "strain_rrid": {
-        "Description": "research resource identifier (RRID) of the strain (https://scicrunch.org/resources/Organisms/search)"
+        "Description": "research resource identifier (RRID) of the strain (https://scicrunch.org/resources/data/source/nlx_154697-1/search)"
     }
 }
 ```

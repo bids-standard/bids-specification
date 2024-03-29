@@ -6,9 +6,11 @@ Please see [Citing BIDS](../introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
-Several [example iEEG datasets](https://github.com/bids-standard/bids-examples#ieeg-datasets)
-have been formatted using this specification
-and can be used for practical guidance when curating a new dataset.
+!!! example "Example datasets"
+
+    Several [example iEEG datasets](https://bids-standard.github.io/bids-examples/#ieeg)
+    have been formatted using this specification
+    and can be used for practical guidance when curating a new dataset.
 
 ## iEEG recording data
 
@@ -29,13 +31,13 @@ The iEEG community uses a variety of formats for storing raw data, and there is
 no single standard that all researchers agree on. For BIDS, iEEG data MUST be
 stored in one of the following formats:
 
-| **Format**                                                     | **Extension(s)**         | **Description**                                                                                                                                                            |
-| -------------------------------------------------------------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [European data format](https://www.edfplus.info/)              | `.edf`                   | Each recording consists of a `.edf` single file. [`edf+`](https://www.edfplus.info/specs/edfplus.html) files are permitted. The capital `.EDF` extension MUST NOT be used. |
-| [BrainVision Core Data Format][bvformat]                       | `.vhdr`, `.vmrk`, `.eeg` | Each recording consists of a  `.vhdr`, `.vmrk`, `.eeg` file triplet.                                                                                                       |
-| [EEGLAB](https://sccn.ucsd.edu/eeglab)                         | `.set`, `.fdt`           | The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab). Each recording consists of a `.set` file with an OPTIONAL `.fdt` file.                       |
-| [Neurodata Without Borders](https://nwb-schema.readthedocs.io) | `.nwb`                   | Each recording consists of a single `.nwb` file.                                                                                                                           |
-| [MEF3](https://osf.io/e3sf9/)                                  | `.mefd`                  | Each recording consists of a `.mefd` directory.                                                                                                                            |
+| **Format**                                                                | **Extension(s)**         | **Description**                                                                                                                                                            |
+| ------------------------------------------------------------------------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [European data format](https://www.edfplus.info/)                         | `.edf`                   | Each recording consists of a `.edf` single file. [`edf+`](https://www.edfplus.info/specs/edfplus.html) files are permitted. The capital `.EDF` extension MUST NOT be used. |
+| [BrainVision Core Data Format][bvformat]                                  | `.vhdr`, `.vmrk`, `.eeg` | Each recording consists of a  `.vhdr`, `.vmrk`, `.eeg` file triplet.                                                                                                       |
+| [EEGLAB](https://sccn.ucsd.edu/eeglab/index.php)                          | `.set`, `.fdt`           | The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab/index.php). Each recording consists of a `.set` file with an OPTIONAL `.fdt` file.             |
+| [Neurodata Without Borders](https://nwb-schema.readthedocs.io/en/latest/) | `.nwb`                   | Each recording consists of a single `.nwb` file.                                                                                                                           |
+| [MEF3](https://osf.io/e3sf9/)                                             | `.mefd`                  | Each recording consists of a `.mefd` directory.                                                                                                                            |
 
 It is RECOMMENDED to use the European data format, or the BrainVision data
 format. It is furthermore discouraged to use the other accepted formats over
@@ -51,12 +53,8 @@ packages. Other formats that may be considered in the future should have a clear
 added advantage over the existing formats and should have wide adoption in the
 BIDS community.
 
-The data format in which the data was originally stored is especially valuable
-in case conversion elicits the loss of crucial metadata specific to
-manufacturers and specific iEEG systems. We also encourage users to provide
-additional meta information extracted from the manufacturer-specific data files
-in the sidecar JSON file. Other relevant files MAY be included alongside the
-original iEEG data in the [`/sourcedata` directory](../common-principles.md#source-vs-raw-vs-derived-data).
+We encourage users to provide additional metadata extracted from the
+manufacturer-specific data files in the sidecar JSON file.
 
 Note the RecordingType, which depends on whether the data stream on disk is interrupted or not.
 Continuous data is by definition 1 segment without interruption.

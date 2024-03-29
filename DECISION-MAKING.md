@@ -29,6 +29,8 @@ Current and past members of the steering group can be found
 | Anthony Galassi  ([@bendhouseart](https://github.com/bendhouseart))       | 3h/week         | PET, Community development            | Sep 2021 |
 | Eric Earl ([@ericearl](https://github.com/ericearl))                      | 2h/week         |                                       | Dec 2021 |
 | Christine Rogers ([@christinerogers](https://github.com/christinerogers)) | 2h/mo           | Interoperability, EEG and multi-modal | Apr 2023 |
+| Nell Hardcastle ([@nellh](https://github.com/nellh))                      | 2h/week         |                                       | Jul 2023 |
+| Kimberly Ray ([@KimberlyLRay](https://github.com/KimberlyLRay))                      | 1h/week         |                                       | Nov 2022 |
 
 In addition to the [BIDS Governance](https://bids.neuroimaging.io/governance.html#bids-maintainers-group)
 classification of a maintainer, maintainers may declare a limited scope of responsibility.
@@ -51,11 +53,12 @@ Leaders of BIDS Extension Proposals are listed in the
 
 ### Contributors Group
 
-Contributors are listed in the [Contributors appendix](https://bids-specification.readthedocs.io/en/stable/appendices/contributors.html)
-of the BIDS specification. Contributors who have not yet entered their name
-into this list are encouraged to edit the [Contributors WIKI page](https://github.com/bids-standard/bids-specification/wiki/Contributors)
-with their name, using the emojis listed in the WIKI to indicate their
-contributions.
+Contributors are listed in the
+[Contributors appendix](https://bids-specification.readthedocs.io/en/stable/appendices/contributors.html)
+of the BIDS specification.
+Contributors who have not yet entered their name into this list are encouraged to edit the
+[Contributors wiki page](https://github.com/bids-standard/bids-specification/wiki/Recent-Contributors)
+according to the instructions listed there.
 
 ### Other groups
 

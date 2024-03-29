@@ -238,10 +238,14 @@ distinguish partial results from the raw data and share the latter.
 See [Storage of derived datasets](#storage-of-derived-datasets) for more on
 organizing derivatives.
 
-Similar rules apply to source data, which is defined as data before
-harmonization, reconstruction, and/or file format conversion (for example, E-Prime event logs or DICOM files).
-Storing actual source files with the data is preferred over links to
-external source repositories to maximize long term preservation,
+Similar rules apply to source data, which is defined as data
+before harmonization, reconstruction, and/or file format conversion
+(for example, E-Prime event logs or DICOM files).
+Retaining the source data is especially valuable
+in a case when conversion fails to preserve crucial metadata
+unique to specific acquisition setup.
+Storing actual source files with the data is preferred over links
+to external source repositories to maximize long term preservation,
 which would suffer if an external repository would not be available anymore.
 This specification currently does not go into the details of
 recommending a particular naming scheme for including different types of
@@ -393,7 +397,7 @@ include a `dataset_description.json` file at the root level (see
 [Dataset description][dataset-description]).
 Consequently, files should be organized to comply with BIDS to the full extent
 possible (that is, unless explicitly contradicted for derivatives).
-Any subject-specific derivatives should be housed within each subject’s directory;
+Any subject-specific derivatives should be housed within each subject's directory;
 if session-specific derivatives are generated, they should be deposited under a
 session subdirectory within the corresponding subject directory; and so on.
 
@@ -430,7 +434,8 @@ Tabular data MUST be saved as tab delimited values (`.tsv`) files, that is, CSV
 files where commas are replaced by tabs. Tabs MUST be true tab characters and
 MUST NOT be a series of space characters. Each TSV file MUST start with a header
 line listing the names of all columns (with the exception of
-[physiological and other continuous recordings](modality-specific-files/physiological-and-other-continuous-recordings.md)).
+[physiological and other continuous recordings](modality-specific-files/physiological-and-other-continuous-recordings.md)
+as well as [motion recording data](modality-specific-files/motion.md)).
 It is RECOMMENDED that the column names in the header of the TSV file are
 written in [`snake_case`](https://en.wikipedia.org/wiki/Snake_case) with the
 first letter in lower case (for example, `variable_name`, not `Variable_name`).
@@ -483,6 +488,7 @@ and a guide for using macros can be found at
         ),
         "Levels": "RECOMMENDED",
         "Units": "RECOMMENDED",
+        "Delimiter": "OPTIONAL",
         "TermURL": "RECOMMENDED",
         "HED": "OPTIONAL",
    }
@@ -510,6 +516,29 @@ Example:
     "Units": "kg/m^2",
     "TermURL": "https://purl.bioontology.org/ontology/SNOMEDCT/60621009"
   }
+}
+```
+
+Each level can be described with a string as in the example above,
+or with an object containing the fields [`Description`](./glossary.md#description-metadata)
+and [`TermURL`](./glossary.md#termurl-metadata)
+like in the example below.
+
+```JSON
+{
+    "sex": {
+        "Description": "sex of the participant as reported by the participant",
+        "Levels": {
+            "M": {
+                "Description": "Male",
+                "TermURL": "https://www.ncbi.nlm.nih.gov/mesh/68008297"
+            },
+            "F": {
+                "Description": "Female",
+                "TermURL": "https://www.ncbi.nlm.nih.gov/mesh/68005260"
+            },
+        }
+    }
 }
 ```
 

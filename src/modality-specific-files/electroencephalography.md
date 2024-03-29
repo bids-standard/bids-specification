@@ -6,9 +6,11 @@ Please see [Citing BIDS](../introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
-Several [example EEG datasets](https://github.com/bids-standard/bids-examples#eeg-datasets)
-have been formatted using this specification
-and can be used for practical guidance when curating a new dataset.
+!!! example "Example datasets"
+
+    Several [example EEG datasets](https://bids-standard.github.io/bids-examples/#eeg)
+    have been formatted using this specification
+    and can be used for practical guidance when curating a new dataset.
 
 ## EEG recording data
 
@@ -33,21 +35,17 @@ stored in one of the following formats:
 | ------------------------------------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [European data format](https://www.edfplus.info/) | `.edf`                   | Each recording consists of a single `.edf` file. [`edf+`](https://www.edfplus.info/specs/edfplus.html) files are permitted. The capital `.EDF` extension MUST NOT be used.                           |
 | [BrainVision Core Data Format][bvformat]          | `.vhdr`, `.vmrk`, `.eeg` | Each recording consists of a  `.vhdr`, `.vmrk`, `.eeg` file triplet.                                                                                                                                 |
-| [EEGLAB](https://sccn.ucsd.edu/eeglab)            | `.set`, `.fdt`           | The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab). Each recording consists of a `.set` file with an OPTIONAL `.fdt` file.                                                 |
+| [EEGLAB](https://sccn.ucsd.edu/eeglab/index.php)  | `.set`, `.fdt`           | The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab/index.php). Each recording consists of a `.set` file with an OPTIONAL `.fdt` file.                                       |
 | [Biosemi](https://www.biosemi.com/)               | `.bdf`                   | Each recording consists of a single `.bdf` file. [`bdf+`](https://www.teuniz.net/edfbrowser/bdfplus%20format%20description.html) files are permitted. The capital `.BDF` extension MUST NOT be used. |
 
 It is RECOMMENDED to use the European data format, or the BrainVision data
 format. It is furthermore discouraged to use the other accepted formats over
 these RECOMMENDED formats, particularly because there are conversion scripts
 available in most commonly used programming languages to convert data into the
-RECOMMENDED formats. The data in their original format, if different from the
-supported formats, can be stored in the [`/sourcedata` directory](../common-principles.md#source-vs-raw-vs-derived-data).
+RECOMMENDED formats.
 
-The original data format is especially valuable in case conversion elicits the
-loss of crucial metadata specific to manufacturers and specific EEG systems. We
-also encourage users to provide additional meta information extracted from the
-manufacturer specific data files in the sidecar JSON file. Other relevant files
-MAY be included alongside the original EEG data in `/sourcedata`.
+We encourage users to provide additional metadata extracted from the
+manufacturer-specific data files in the sidecar JSON file.
 
 Note the `RecordingType`, which depends on whether the data stream on disk
 is interrupted or not.
@@ -112,6 +110,18 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_sidecar_table("eeg.EEGRecommended") }}
+
+These fields MAY be present:
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("eeg.EEGOptional") }}
 
 #### Hardware information
 
@@ -359,10 +369,10 @@ triangulate the position of other LED-lit electrodes on a research subject's
 head.
 
 -   For more information on the definition of anatomical landmarks, please visit:
-    [https://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined](https://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined)
+    [How are the Left and Right Pre-Auricular (LPA and RPA) points defined? - FieldTrip Toolbox](https://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined/)
 
 -   For more information on coordinate systems for coregistration, please visit:
-    [https://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined](https://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined)
+    [How are the different head and MRI coordinate systems defined? - FieldTrip Toolbox](https://www.fieldtriptoolbox.org/faq/coordsys/)
 
 General fields:
 

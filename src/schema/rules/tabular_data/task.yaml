@@ -10,6 +10,11 @@ TaskEvents:
     response_time: optional
     HED: optional
     stim_file: optional
+    channel:
+      level: optional
+      description_addendum: |
+        Note that this column only applies to data types where
+        channels are specified, such as EEG, iEEG, MEG or NIRS.
   additional_columns: allowed
   initial_columns:
     - onset

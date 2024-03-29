@@ -6,8 +6,10 @@ Please see [Citing BIDS](../introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
-Several [example NIRS datasets](https://github.com/bids-standard/bids-examples#nirs-datasets)
-have been formatted using this specification and can be used for practical guidance when curating a new dataset.
+!!! example "Example datasets"
+
+    Several [example NIRS datasets](https://bids-standard.github.io/bids-examples/#nirs)
+    have been formatted using this specification and can be used for practical guidance when curating a new dataset.
 
 ## NIRS recording data
 
@@ -22,7 +24,7 @@ and a guide for using macros can be found at
 {{ MACROS___make_filename_template(
    "raw",
    datatypes=["nirs"],
-   suffixes=["nirs", "events", "physio", "stim"])
+   suffixes=["nirs", "events", "channels", "optodes", "coordsystem", "physio", "stim"])
 }}
 
 Only the *Shared Near Infrared Spectroscopy Format* ([SNIRF](https://github.com/fNIRS/snirf))
@@ -33,15 +35,6 @@ only a single run. A limited set of fields from the SNIRF specification are
 replicated  in the BIDS specification. This redundancy allows the data to be
 easily parsed by humans and machines that do not have a SNIRF reader at hand,
 which improves findability and tooling development.
-
-Raw NIRS data in the native format, if different from SNIRF, can also
-be stored in the [`/sourcedata`](../common-principles.md#source-vs-raw-vs-derived-data)
-directory along with code to convert the data to
-SNIRF in the [`/code`](../common-principles.md#storage-of-derived-datasets) directory.
-The unprocessed raw data should be stored in
-the manufacturer's format before any additional processing or conversion is applied.
-Retaining the native file format is especially valuable in a case when conversion elicits the
-loss of crucial metadata unique to specific manufacturers and NIRS systems.
 
 ### Terminology
 
