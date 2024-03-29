@@ -43,13 +43,23 @@ pepolar:
     chunk: optional
 
 pepolar_m0scan:
-  $ref: rules.files.raw.fmap.pepolar
   suffixes:
     - m0scan
   extensions:
     - .nii.gz
     - .nii
     - .json
+  datatypes:
+    - fmap
+  entities:
+    subject: required
+    session: optional
+    acquisition: optional
+    ceagent: optional
+    direction: required
+    run: optional
+    part: optional
+    chunk: optional
 
 TB1DAM:
   suffixes:
