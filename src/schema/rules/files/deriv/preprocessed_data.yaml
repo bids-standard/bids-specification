@@ -111,13 +111,6 @@ fmap_pepolar_m0scan:
     space: optional
     description: optional
 
-fmap_pepolar_dwi:
-  $ref: rules.files.raw.fmap.pepolar_dwi
-  entities:
-    $ref: rules.files.raw.fmap.pepolar_dwi.entities
-    space: optional
-    description: optional
-
 fmap_TB1DAM_common:
   $ref: rules.files.raw.fmap.TB1DAM
   entities:
