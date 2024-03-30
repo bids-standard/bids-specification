@@ -432,7 +432,7 @@ NIfTI header.
 
 Tabular data MUST be saved as plain-text, tab-delimited values (TSV) files
 (with [extension `.tsv`](glossary.md#tsv-extensions)),
-that is, CSV files where commas are replaced by tab characters.
+that is, [CSV files](https://en.wikipedia.org/wiki/Comma-separated_values) where commas are replaced by tab characters.
 Tabs MUST be true tab characters and MUST NOT be a series of space characters.
 Tabular data such as continuous physiology recordings typically containing
 large numbers of rows MAY be saved as
