@@ -324,6 +324,11 @@ in the accompanying JSON sidecar as follows (based on the example of the previou
 
       -   [*Trial timing for multivariate pattern analysis*][ds000238]
 
+      <!-- Link Definitions -->
+      [ds000238]: https://openneuro.org/datasets/ds000238/versions/00002
+      [bids-examples]: https://bids-standard.github.io/bids-examples/#dataset-index
+      [synthetic-example]: https://github.com/bids-standard/bids-examples/tree/master/synthetic
+
 Signals related to stimuli (such as parameters of a film or audio stimuli) that are
 evenly recorded at a constant sampling frequency MUST be specified using a
 [compressed tabular file](../common-principles.md#compressed-tabular-files)
@@ -398,8 +403,3 @@ A guide for using macros can be found at
 Additional metadata may be included as in
 [any TSV file](../common-principles.md#tabular-files) to specify, for
 example, the units of the recorded time series for each column.
-
-<!-- Link Definitions -->
-[ds000238]: https://openneuro.org/datasets/ds000238/versions/00002
-[bids-examples]: https://bids-standard.github.io/bids-examples/#dataset-index
-[synthetic-example]: https://github.com/bids-standard/bids-examples/tree/master/synthetic
