@@ -323,15 +323,18 @@ in the accompanying JSON sidecar as follows (based on the example of the previou
       -   [*Trial timing for multivariate pattern analysis*][ds000238]
 
 Signals related to stimuli (such as parameters of a film or audio stimuli) that are
-evenly recorded at a constant sampling frequency MUST be stored as follows.
+evenly recorded at a constant sampling frequency MUST be specified using a
+[compressed tabular file](../common-principles.md#compressed-tabular-files)
+([TSV.GZ file](../glossary.md#tsvgz-extensions)) and a corresponding
+JSON file for storing metadata fields (see below).
 
 Template:
 
 ```Text
 sub-<label>/[ses-<label>/]
     <datatype>/
-        <matches>[_recording-<label>]_stim.tsv.gz
-        <matches>[_recording-<label>]_stim.json
+        <matches>_stim.tsv.gz
+        <matches>_stim.json
 ```
 
 For the template directory name, `<datatype>` can correspond to any data
@@ -344,16 +347,10 @@ For example for the file `sub-control01_task-nback_run-1_bold.nii.gz`,
 
 !!! warning "Caution"
 
-    `<matches>[_recording-<label>]_stim.tsv.gz` files MUST NOT include a header line,
+    `<matches>_stim.tsv.gz` files MUST NOT include a header line,
     as established by the [common-principles](../common-principles.md#compressed-tabular-files).
-    As a result, when supplying a `<matches>[_recording-<label>]_stim.tsv.gz` file,
-    an accompanying `<matches>[_recording-<label>]_stim.json` MUST be present to indicate
-    the column names.
-
-The [`recording-<label>`](../appendices/entities.md#recording)
-entity MAY be used to distinguish between several recording files,
-as prescribed by the specifications for
-[physiological recordings](physiological-recordings.md).
+    As a result, when supplying a `<matches>_stim.tsv.gz` file, an accompanying
+    `<matches>_stim.json` MUST be present to indicate the column names.
 
 If the same continuous recording has been used for all subjects (for example in
 the case where they all watched the same movie), one file placed in the
@@ -384,7 +381,7 @@ A guide for using macros can be found at
 }) }}
 
 The following table specifies metadata fields for the
-`<matches>[_recording-<label>]_stim.json` file.
+`<matches>_stim.json` file.
 
 <!-- This block generates a metadata table.
 These tables are defined in

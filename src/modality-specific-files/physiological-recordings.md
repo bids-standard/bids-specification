@@ -2,7 +2,7 @@
 
 Physiological recordings such as cardiac and respiratory signals MAY be
 specified using a [compressed tabular file](../common-principles.md#compressed-tabular-files)
-([TSVGZ file](../glossary.md#tsvgz-extensions)) and a corresponding
+([TSV.GZ file](../glossary.md#tsvgz-extensions)) and a corresponding
 JSON file for storing metadata fields (see below).
 
 !!! example "Example datasets"
