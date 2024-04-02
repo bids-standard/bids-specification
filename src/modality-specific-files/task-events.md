@@ -314,11 +314,13 @@ in the accompanying JSON sidecar as follows (based on the example of the previou
 
 !!! example "Example datasets"
 
-      At the time of writing, there are no [example datasets][bids-examples] showcasing
-      stimulus-related signals.
-      However, the following datasets shared on [OpenNeuro](https://openneuro.org)
-      include these type of signals and may be used (with caution, because they are not
-      "official" examples) as a reference when curating a new dataset:
+      The following [BIDS-Examples][] showcase stimulus-related signals:
+
+      -   ["synthetic" example dataset][synthetic-example].
+
+      The following examples include these type of signals and may be used
+      (with caution, because they are not "official" examples)
+      as a reference when curating a new dataset:
 
       -   [*Trial timing for multivariate pattern analysis*][ds000238]
 
@@ -400,3 +402,4 @@ example, the units of the recorded time series for each column.
 <!-- Link Definitions -->
 [ds000238]: https://openneuro.org/datasets/ds000238/versions/00002
 [bids-examples]: https://bids-standard.github.io/bids-examples/#dataset-index
+[synthetic-example]: https://github.com/bids-standard/bids-examples/tree/master/synthetic
