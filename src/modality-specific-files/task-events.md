@@ -314,15 +314,13 @@ in the accompanying JSON sidecar as follows (based on the example of the previou
 
 !!! example "Example datasets"
 
-      At the time of writing, there are no
-      [example datasets](https://bids-standard.github.io/bids-examples/#dataset-index)
-      showcasing stimulus-related signals.
+      At the time of writing, there are no [example datasets][bids-examples] showcasing
+      stimulus-related signals.
       However, the following datasets shared on [OpenNeuro](https://openneuro.org)
       include these type of signals and may be used (with caution, because they are not
       "official" examples) as a reference when curating a new dataset:
 
-      -   [*Trial timing for multivariate pattern
-          analysis*](https://openneuro.org/datasets/ds000238/versions/00002)
+      -   [*Trial timing for multivariate pattern analysis*][ds000238]
 
 Signals related to stimuli (such as parameters of a film or audio stimuli) that are
 evenly recorded at a constant sampling frequency SHOULD be stored as follows.
@@ -401,3 +399,7 @@ A guide for using macros can be found at
 Additional metadata may be included as in
 [any TSV file](../common-principles.md#tabular-files) to specify, for
 example, the units of the recorded time series for each column.
+
+<!-- Link Definitions -->
+[ds000238]: https://openneuro.org/datasets/ds000238/versions/00002
+[bids-examples]: https://bids-standard.github.io/bids-examples/#dataset-index
