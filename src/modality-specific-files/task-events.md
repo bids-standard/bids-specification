@@ -124,7 +124,7 @@ Note that in the example above:
 
 1.  The `channel` column contains a list of values that are separated
     by a delimiter (`|`), as is declared in the `Delimiter` metadata
-    field of the `events.json file.
+    field of the `events.json` file.
     Thus, the channels related to the event in the third row of the example
     are called `F,1`, `F,2`, and `Cz`.
 
