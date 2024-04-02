@@ -323,7 +323,7 @@ in the accompanying JSON sidecar as follows (based on the example of the previou
       -   [*Trial timing for multivariate pattern analysis*][ds000238]
 
 Signals related to stimuli (such as parameters of a film or audio stimuli) that are
-evenly recorded at a constant sampling frequency SHOULD be stored as follows.
+evenly recorded at a constant sampling frequency MUST be stored as follows.
 
 Template:
 

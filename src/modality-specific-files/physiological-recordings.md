@@ -46,9 +46,9 @@ the eyetracking data in a certain sampling frequency, and
 `sub-01_task-bart_recording-breathing_physio.tsv.gz` to contain respiratory
 measurements in a different sampling frequency.
 
-Physiological recordings (including eyetracking) SHOULD use the `_physio` suffix.
+Physiological recordings (including eyetracking) MUST use the `_physio` suffix.
 
-The following table specifies metadata fields for the `*_physio.json` file.
+The following tables specifiy metadata fields for the `*_physio.json` file.
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -169,7 +169,7 @@ stored in separate files
 entity MAY be used to distinguish these files).
 
 For motion parameters acquired from MRI scanner side motion correction, the
-`_physio` suffix SHOULD be used.
+`_physio` suffix MUST be used.
 
 For multi-echo data, a given `physio.tsv` file is applicable to all echos of
 a particular run.
