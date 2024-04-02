@@ -314,20 +314,12 @@ in the accompanying JSON sidecar as follows (based on the example of the previou
 
 !!! example "Example datasets"
 
-      The following [BIDS-Examples][] showcase stimulus-related signals:
+      The following [BIDS-Examples](https://bids-standard.github.io/bids-examples/#dataset-index)
+      showcase stimulus-related signals and may be used as a reference
+      when curating a new dataset:
 
-      -   ["synthetic" example dataset][synthetic-example].
+      -   ["synthetic" example dataset](https://github.com/bids-standard/bids-examples/tree/master/synthetic).
 
-      The following examples include these type of signals and may be used
-      (with caution, because they are not "official" examples)
-      as a reference when curating a new dataset:
-
-      -   [*Trial timing for multivariate pattern analysis*][ds000238]
-
-      <!-- Link Definitions -->
-      [ds000238]: https://openneuro.org/datasets/ds000238/versions/00002
-      [bids-examples]: https://bids-standard.github.io/bids-examples/#dataset-index
-      [synthetic-example]: https://github.com/bids-standard/bids-examples/tree/master/synthetic
 
 Signals related to stimuli (such as parameters of a film or audio stimuli) that are
 evenly recorded at a constant sampling frequency MUST be specified using a
