@@ -48,7 +48,7 @@ measurements in a different sampling frequency.
 
 Physiological recordings (including eyetracking) MUST use the `_physio` suffix.
 
-The following tables specifiy metadata fields for the `*_physio.json` file.
+The following tables specify metadata fields for the `*_physio.json` file.
 
 <!-- This block generates a metadata table.
 These tables are defined in
