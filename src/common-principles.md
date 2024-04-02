@@ -578,7 +578,7 @@ Rules for formatting plain-text tabular files apply to TSVGZ files with three ex
     In contrast to plain-text TSV files,
     compressed tabular files files MUST NOT include a header line.
     Column names MUST be provided in the JSON file with the
-    [`Columns`](glossary.md#columns-metadata) field.
+    [`Columns`][meta-columns] field.
     Each column MAY additionally be described with a column description,
     as described in [Tabular files](#tabular-files).
 
@@ -1075,5 +1075,6 @@ to suppress warnings or provide interpretations of your filenames.
 [dataset-description]: modality-agnostic-files.md#dataset-description
 [dataset_description.json]: modality-agnostic-files.md#dataset_descriptionjson
 [derived-dataset-description]: modality-agnostic-files.md#derived-dataset-and-pipeline-description
+[meta-columns]: glossary.md#columns-metadata
 [deprecated]: #definitions
 [uris]: #uniform-resource-indicator
