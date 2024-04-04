@@ -257,7 +257,6 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Mateusz Pawlik                                       | 📖🐛🤔🚧👀                             |
 | Mathias Goncalves                                    | 💻🔧📢                                 |
 | Mathieu Boudreau                                     | 💬🤔📢                                 |
-| Matt Cieslak                                         | 📖                                     |
 | Matt Sanderson                                       | 📖💻                                   |
 | Matteo Tonietto                                      | 📖                                     |
 | Matthias Günther                                     | 📖                                     |
