@@ -294,7 +294,7 @@ index	label	network_label	hemisphere
 ```
 
 The `[probseg|dseg|mask].json` file provides metadata to uniquely identify, describe and characterize the atlas, as well as give proper attribution to the creators.
-Additionally, SpatialReference serves the important purpose of unambiguously identifying the space the atlas is labeled in.
+Additionally, SpatialReference serves the important purpose of unambiguously identifying the template/space the atlas is labeled in.
 
 <table>
   <tr>
@@ -312,7 +312,7 @@ Additionally, SpatialReference serves the important purpose of unambiguously ide
   <tr>
    <td>SpatialReference
    </td>
-   <td>RECOMMENDED. Point to an existing atlas in a template space (URL or relative file path where this file is located).
+   <td>RECOMMENDED. Point to an existing template space (URL or relative file path where this file is located).
    </td>
   </tr>
   <tr>
@@ -395,7 +395,7 @@ Example:
 
 ```JSON
 {
-  "Name": "FSL's MNI ICBM 152 non-linear 6th Generation Asymmetric Average Brain Stereotaxic Registration Model",
+  "Name": "HarvardOxford cort maxprob thr25 2mm",
   "Authors": [
     "David Kennedy",
     "Christian Haselgrove",
@@ -408,7 +408,6 @@ Example:
   "BIDSVersion": "1.1.0",
   "Curators": "FSL team",
   "SpatialReference": "https://templateflow.s3.amazonaws.com/tpl-MNI152NLin6Asym_res-02_T1w.nii.gz",
-  "Space": "MNI152NLin6Asym",
   "Resolution": "Matched with original template resolution (2x2x3 mm^3)",
   "License": "See LICENSE file",
   "RRID": "SCR_002823",
@@ -445,6 +444,7 @@ Example content of the `atlas-HarvardOxford_res-2_dseg.json` file:
 
 ```JSON
 {
+  "Name": "HarvardOxford cort maxprob thr25 2mm",,
   "Authors": [
     "David Kennedy",
     "Christian Haselgrove",
@@ -457,10 +457,8 @@ Example content of the `atlas-HarvardOxford_res-2_dseg.json` file:
   "BIDSVersion": "1.1.0",
   "Curators": "FSL team",
   "SpatialReference": "https://templateflow.s3.amazonaws.com/tpl-MNI152NLin6Asym_res-02_T1w.nii.gz",
-  "Space": "MNI152NLin6Asym",
   "Resolution": "Matched with original template resolution (2x2x3 mm^3)",
   "License": "See LICENSE file",
-    "Name": "FSL's MNI ICBM 152 non-linear 6th Generation Asymmetric Average Brain Stereotaxic Registration Model",
   "RRID": "SCR_002823",
   "ReferencesAndLinks": [
     "https://doi.org/10.1016/j.neuroimage.2012.01.024",
@@ -550,10 +548,9 @@ Example content of the `sub-01_space-T1w_seg-HarvardOxford_res-2_dseg.json` file
 {
   "BIDSVersion": "1.1.0",
   "SpatialReference": "sub-01/anat/sub-01_T1w.nii.gz",
-  "Space": "T1w",
   "Resolution": "Matched with original resolution in subject T1w space (1x1x1 mm^3)",
   "Sources": [],
-  "transformation":
+  "transformation": ["TBD"]
 }
 ```
 
@@ -588,23 +585,38 @@ bids/derivatives/pipeline-<name>/
 
 The json file accompanying the functionally derived atlas should include the following information.
 
-Example content of the `sub-01_task-rest_atlas.json` file contains top-level metadata about the atlas:
+Example content of the `atlas-FreeSurferASEG_dseg.json` file contains top-level metadata about the atlas:
 
 ```JSON
 
-"Atlas":
 {
-  "Russome":
-  {
-    "Atlasfile": "/link/to/russome/file",
-    "Extra": "individualized surface parcellation"
-  },
-  "FS_aseg": {
-    "Atlasfile": "/link/to/aseg/file",
-    "Extra": "freesurfer aseg"
-  }
+  "Name": "FreeSurferASEG",,
+  "Authors": [
+    "Bruce Fischl",
+    "David H. Salat",
+    "Evelina Busa",
+    "Marilyn Albert",
+    "Megan Dieterich",
+    "Christian Haselgrove",
+    "Andre van der Kouwe",
+    "Ron Killiany",
+    "David Kennedy",
+    "Shuna Klaveness",
+    "Albert Montillo",
+    "Nikos Makris",
+    "Bruce Rosen",
+    "Anders M. Dale",
+  ],
+  "BIDSVersion": "1.1.0",
+  "SpatialReference": "link to template (unclear)",
+  "Resolution": "Matched with original template resolution (2x2x3 mm^3)",
+  "License": "See LICENSE file",
+  "ReferencesAndLinks": [
+    "https://surfer.nmr.mgh.harvard.edu/fswiki/FreeSurferVersion3",
+    "https://surfer.nmr.mgh.harvard.edu/ftp/articles/fischl02-labeling.pdf",
+  ],
+  "Species": "Human"
 }
-
 ```
 
 ## Quantitative atlas examples
