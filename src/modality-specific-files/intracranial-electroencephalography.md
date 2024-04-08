@@ -53,12 +53,8 @@ packages. Other formats that may be considered in the future should have a clear
 added advantage over the existing formats and should have wide adoption in the
 BIDS community.
 
-The data format in which the data was originally stored is especially valuable
-in case conversion elicits the loss of crucial metadata specific to
-manufacturers and specific iEEG systems. We also encourage users to provide
-additional meta information extracted from the manufacturer-specific data files
-in the sidecar JSON file. Other relevant files MAY be included alongside the
-original iEEG data in the [`/sourcedata` directory](../common-principles.md#source-vs-raw-vs-derived-data).
+We encourage users to provide additional metadata extracted from the
+manufacturer-specific data files in the sidecar JSON file.
 
 Note the RecordingType, which depends on whether the data stream on disk is interrupted or not.
 Continuous data is by definition 1 segment without interruption.

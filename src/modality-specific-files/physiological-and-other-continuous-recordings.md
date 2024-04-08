@@ -1,13 +1,12 @@
 # Physiological and other continuous recordings
 
+## Physiological recordings
+
 Physiological recordings such as cardiac and respiratory signals and other
 continuous measures (such as parameters of a film or audio stimuli) MAY be
-specified using two files:
-
-1.  a [gzip](https://datatracker.ietf.org/doc/html/rfc1952)
-    compressed TSV file with data (without header line)
-
-1.  a JSON file for storing metadata fields (see below)
+specified using a [compressed tabular file](../common-principles.md#compressed-tabular-files)
+([TSVGZ file](../glossary.md#tsvgz-extensions)) and a corresponding
+JSON file for storing metadata fields (see below).
 
 !!! example "Example datasets"
 
@@ -38,8 +37,12 @@ before the suffix.
 For example for the file `sub-control01_task-nback_run-1_bold.nii.gz`,
 `<matches>` would correspond to `sub-control01_task-nback_run-1`.
 
-Note that when supplying a `*_<physio|stim>.tsv.gz` file, an accompanying
-`*_<physio|stim>.json` MUST be supplied as well.
+!!! note "TSVGZ headers are specified in metadata files."
+
+    TSVGZ files MUST NOT include a header line,
+    as established by the [common-principles](../common-principles.md#compressed-tabular-files).
+    As a result, when supplying a `*_<physio|stim>.tsv.gz` file, an accompanying
+    `*_<physio|stim>.json` MUST be supplied as well.
 
 The [`recording-<label>`](../appendices/entities.md#recording)
 entity MAY be used to distinguish between several recording files.
@@ -51,7 +54,7 @@ measurements in a different sampling frequency.
 Physiological recordings (including eyetracking) SHOULD use the `_physio`
 suffix, and signals related to the stimulus SHOULD use `_stim` suffix.
 
-The following table specifies metadata fields for the `*_<physio|stim>.json` file.
+The following tables specify metadata fields for the `*_<physio|stim>.json` file.
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -61,20 +64,23 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table(["continuous.Continuous", "continuous.Physio"]) }}
+{{ MACROS___make_sidecar_table(["continuous.Continuous"]) }}
+
+## Hardware information
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table(["continuous.PhysioHardware"]) }}
 
 Additional metadata may be included as in
 [any TSV file](../common-principles.md#tabular-files) to specify, for
 example, the units of the recorded time series.
-Please note that, in contrast to other TSV files in BIDS, the TSV files specified
-for physiological and other continuous recordings *do not* include a header
-line.
-Instead the name of columns are specified in the JSON file (see `Columns` field).
-This is to improve compatibility with existing software (for example, FSL, PNM)
-as well as to make support for other file formats possible in the future.
-As in any TSV file, column names MUST NOT be blank (that is, an empty string),
-and MUST NOT be duplicated within a single JSON file describing a headerless
-TSV file.
 
 Example `*_physio.tsv.gz`:
 
