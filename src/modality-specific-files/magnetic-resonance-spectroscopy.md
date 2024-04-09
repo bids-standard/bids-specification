@@ -17,11 +17,10 @@ context of the academic literature.
 <!--
 This block generates filename templates.
 The inputs for this macro can be found in the directory
-  src/schema/rules/files
+  src/schema/rules/files/raw
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-
 {{ MACROS___make_filename_template("raw", datatypes=["mrs"], suffixes=["svs", "mrsi", "unloc", "mrsref"]) }}
 
 MRS is a spectroscopic technique based on the phenomenon of nuclear magnetic resonance
@@ -152,11 +151,18 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-
 {{ MACROS___make_sidecar_table("mrs.MRSScannerHardware") }}
 
 #### Sequence specifics
 
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_sidecar_table("mrs.MRSSequenceSpecifics") }}
 
 #### Tissue description
@@ -175,14 +181,38 @@ A guide for using macros can be found at
 
 Metadata fields that MUST be present:
 
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_sidecar_table("mrs.MRSRequiredFields") }}
 
 SHOULD be present:
 
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_sidecar_table("mrs.MRSRecommendedFields") }}
 
 MAY be present:
 
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_sidecar_table("mrs.MRSOptionalFields") }}
 
 ### Example `*_svs.json`
