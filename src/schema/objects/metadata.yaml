@@ -241,7 +241,8 @@ B0ShimmingTechnique:
   name: B0ShimmingTechnique
   display_name: B0 Shimming Technique
   description: |
-    The technique used to shim the *B<sub>0</sub>* field (for example, `"Dynamic shim updating"` or `"FASTMAP"`).
+    The technique used to shim the *B<sub>0</sub>* field (for example, `"Dynamic shim updating"`
+    or `"FASTMAP"`).
   type: string
 B1ShimmingTechnique:
   name: B1ShimmingTechnique
