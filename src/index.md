@@ -15,3 +15,11 @@ Alternatively, to get started please read [the introduction to the specification
 
 For an overview of the BIDS ecosystem, visit the [BIDS homepage](https://bids.neuroimaging.io).
 The entire specification can also be [downloaded as PDF](https://doi.org/10.5281/zenodo.3686061).
+
+::: note
+FOO barr
+:::
+
+::: warning
+FOO barr
+:::
