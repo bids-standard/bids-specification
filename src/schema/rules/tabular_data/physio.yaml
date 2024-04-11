@@ -14,11 +14,12 @@ PhysioEyeTracking:
   extension:
     - '.tsv.gz'
   columns:
+    et_timestamp: recommended
     x_coordinate: required
     y_coordinate: required
-    et_timestamp: recommended
     pupil_size: optional
   initial_columns:
+    - et_timestamp
     - x_coordinate
     - y_coordinate
   additional_columns: allowed

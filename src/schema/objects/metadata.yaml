@@ -240,6 +240,20 @@ B0FieldSource:
     - type: array
       items:
         type: string
+B0ShimmingTechnique:
+  name: B0ShimmingTechnique
+  display_name: B0 Shimming Technique
+  description: |
+    The technique used to shim the *B<sub>0</sub>* field (for example, `"Dynamic shim updating"`
+    or `"FASTMAP"`).
+  type: string
+B1ShimmingTechnique:
+  name: B1ShimmingTechnique
+  display_name: B1 Shimming Technique
+  description: |
+    The technique used to shim the *B<sub>1</sub>* field (for example, `"Simple phase align"`
+    or `"Pre-saturated TurboFLASH"`).
+  type: string
 BIDSVersion:
   name: BIDSVersion
   display_name: BIDS Version
@@ -2342,6 +2356,12 @@ NumberOfVolumesDiscardedByUser:
     `"NumberOfVolumesDiscardedByUser"` field.
   type: integer
   minimum: 0
+NumberReceiveCoilActiveElements:
+  name: NumberReceiveCoilActiveElements
+  display_name: Number of Receive Coil Active Elements
+  description: |
+    The number of active RF elements used by the receive coil.
+  type: integer
 NumberShots:
   name: NumberShots
   display_name: Number Shots
@@ -2361,6 +2381,12 @@ NumberShots:
     - type: array
       items:
         type: number
+NumberTransmitCoilActiveElements:
+  name: NumberTransmitCoilActiveElements
+  display_name: Number of Transmit Coil Active Elements
+  description: |
+    The number of active RF elements used by the transmit coil.
+  type: integer
 NumericalAperture:
   name: NumericalAperture
   display_name: Numerical Aperture
@@ -3808,6 +3834,18 @@ VolumeTiming:
   items:
     type: number
     unit: s
+WaterSuppression:
+  name: WaterSuppression
+  display_name: Water Suppression
+  description: |
+    Boolean indicating whether water suppression was used prior to acquisition.
+  type: boolean
+WaterSuppressionTechnique:
+  name: WaterSuppressionTechnique
+  display_name: Water Suppression Technique
+  description: |
+    The name of the pulse sequence used for water suppression (for example, `"CHESS"`, `"VAPOR"`).
+  type: string
 WholeBloodAvail:
   name: WholeBloodAvail
   display_name: Whole Blood Avail
