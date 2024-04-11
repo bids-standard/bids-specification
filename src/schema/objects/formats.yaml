@@ -22,12 +22,12 @@ integer:
   display_name: Integer
   description: |
     An integer which may be positive or negative.
-  pattern: '[+-]?\d+'
+  pattern: ' *[+-]?\d+ *'
 number:
   display_name: Number
   description: |
     A number which may be an integer or float, positive or negative.
-  pattern: '[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)([eE][+-]?[0-9]+)?'
+  pattern: ' *[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)([eE][+-]?[0-9]+)? *'
 string:
   display_name: String
   description: |

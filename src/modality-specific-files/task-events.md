@@ -42,6 +42,8 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_columns_table("task.TaskEvents") }}
 
+The content of  `events.tsv` files SHOULD be sorted by values in the `onset` column.
+
 Note for MRI data:
 If any acquired scans have been discarded before forming the imaging data file,
 ensure that an `onset` of 0 corresponds to the time the first image was stored.
@@ -82,9 +84,10 @@ A guide for using macros can be found at
 Example of the content of the TSV file:
 
 ```Text
-onset	duration	trial_type	response_time	stim_file
-1.23	0.65	start	1.435	images/red_square.jpg
-5.65	0.65	stop	1.739	images/blue_square.jpg
+onset	duration	trial_type	response_time	stim_file	channel	annots
+1.23	0.65	start	1.435	images/red_square.jpg	n/a	n/a
+5.65	0.65	stop	1.739	images/blue_square.jpg	n/a	n/a
+12.1	2.35	n/a	n/a	n/a	F,1|F,2|Cz	musc
 ```
 
 In the accompanying JSON sidecar, the `trial_type` column might look as follows:
@@ -98,12 +101,49 @@ In the accompanying JSON sidecar, the `trial_type` column might look as follows:
             "start": "A red square is displayed to indicate starting",
             "stop": "A blue square is displayed to indicate stopping"
         }
+    },
+    "channel": {
+        "Description": "Channel(s) associated with the event",
+        "Delimiter": "|"
+    },
+    "annots": {
+        "LongName": "Annotations",
+        "Description": "Annotations associated with channels indicated in the channel column.",
+        "Levels": {
+            "musc": "Muscle artifact. A very common, high frequency, sharp artifact that corresponds with agitation/nervousness in a patient."
+        },
+        "HED": {
+            "musc": "EMG-artifact"
+        }
     }
 }
 ```
 
-Note that all other columns SHOULD also be described but are omitted for the
-sake of brevity.
+Note that in the example above:
+
+1.  Only a subset of columns are described for the sake of brevity.
+    In a real dataset, all other columns SHOULD also be described.
+
+1.  The `channel` column contains a list of values that are separated
+    by a delimiter (`|`), as is declared in the `Delimiter` metadata
+    field of the `events.json file.
+    Thus, the channels related to the event in the third row of the example
+    are called `F,1`, `F,2`, and `Cz`.
+
+1.  The example contains a column called `annots`.
+    This column is not defined in BIDS, and constitutes additional, arbitrary
+    (that is, unofficial) metadata.
+    In the present case, it is used to describe artifacts in the data,
+    in reference to the `channel` column.
+    The `annots` column is making
+    use of the powerful HED system for documenting events, see below.
+
+Events MAY also be documented in machine-actionable form
+using HED (Hierarchical Event Descriptor) tags.
+This type of documentation is particularly useful for datasets likely to be used
+in event-related analyses.
+See [Hierarchical Event Descriptors](../appendices/hed.md)
+for additional information and examples.
 
 For multi-echo files, the `events.tsv` file is applicable to all echos of
 a particular run:
@@ -124,13 +164,6 @@ A guide for using macros can be found at
       },
    }
 ) }}
-
-Note: Events can also be documented in machine-actionable form
-using HED (Hierarchical Event Descriptor) tags.
-This type of documentation is particularly useful for datasets likely to be used
-in event-related analyses.
-See [Hierarchical Event Descriptors](../appendices/hed.md)
-for additional information and examples.
 
 ## Stimuli
 

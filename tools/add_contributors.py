@@ -1,15 +1,19 @@
-"""Add new contributors listed in new_contributors.tsv to .tributors file
+"""Add new contributors listed in `new_contributors.tsv` to `.tributors` file.
 
-The tributor file is then used to update
-- the CITATION.cff file
-- the .all-contributorsrc file
-- TODO: the table of contributors in the appendix of the spec
+The `.tributors` file is then used to update:
 
-Contrary to the typical .tributors file,
+- the `CITATION.cff` file
+- the `.all-contributorsrc` file
+
+To update the table of contributors in the appendix of the spec,
+run `print_contributors.py`
+
+Contrary to the typical `.tributors` file,
 the one here also centralizes the contributions
-that would otherwise be listed in the .all-contributorsrc file.
+that would otherwise be listed in the `.all-contributorsrc` file.
 
-This can also be used to update all files if new_contributors.tsv is empty.
+This script may also be run to update all files listed above
+if `new_contributors.tsv` is empty.
 """
 
 # TODO: handle the following cases
@@ -39,13 +43,16 @@ INPUT_FILE = Path(__file__).parent / "new_contributors.tsv"
 LOG_LEVEL = "DEBUG"  # 'DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'
 
 # Set to True to update the avatars
-# update with your github username and path to a file with github token
+# update with your GitHub username and path to a file with GitHub token
 UPDATE_AVATARS = False
 GH_USERNAME = "Remi-Gau"
 TOKEN_FILE = None
+# if you not want traceback from rich
+# https://rich.readthedocs.io/en/stable/traceback.html
+# set this to False
 RICH_STACKTRACE = False
 
-# Set to True to use some of the dummy data in the "new_contributors.tsv"
+# Set to True to use some of the dummy data in the `new_contributors.tsv`
 TEST = True
 
 
@@ -108,13 +115,14 @@ def emoji_map(reverse=False) -> dict[str, str]:
         "tutorial": ":check_mark_button:",
         "maintenance": ":construction:",
         "financial": ":dollar_banknote:",
+        "infra": ":metro:",
     }
 
 
 def return_this_contributor(
     df: pd.DataFrame, name: str, contribution_needed=True
 ) -> dict[str, Optional[str]]:
-    """Get and validate the data for a given contributor from a panda dataframe"""
+    """Get and validate the data for a given contributor."""
     name = name.strip()
 
     mask = df.name == name
@@ -239,20 +247,20 @@ def update_key(
 
 
 def load_tributors(tributors_file: Path) -> dict:
-    """Load .tributors file."""
+    """Load `.tributors` file."""
     with open(tributors_file, "r", encoding="utf8") as tributors_file:
         return json.load(tributors_file)
 
 
 def write_tributors(tributors_file: Path, tributors: dict[str, dict]) -> None:
-    """Write .tributors file."""
+    """Write `.tributors` file."""
     tributors = sort_tributors(tributors)
     with open(tributors_file, "w", encoding="utf8") as output_file:
         json.dump(tributors, output_file, indent=4, ensure_ascii=False)
 
 
 def return_missing_from_tributors(tributors_file: Path, names: list[str]) -> list[str]:
-    """Return list of names that are in the input file but not in the .tributors file."""
+    """Return list of names present in input file but not in `.tributors` file."""
     tributors = load_tributors(tributors_file)
     tributors_names = [tributors[x]["name"] for x in tributors]
     for i, name in enumerate(names):
@@ -262,7 +270,7 @@ def return_missing_from_tributors(tributors_file: Path, names: list[str]) -> lis
 
 
 def sort_tributors(tributors: dict[str, dict]) -> dict[str, dict]:
-    """Sort tributors alphabetically by name of contributor."""
+    """Sort `.tributors` alphabetically by name of contributor."""
     for key in tributors:
         tributors[key] = dict(OrderedDict(sorted(tributors[key].items())))
     return dict(sorted(tributors.items(), key=lambda item: item[1]["name"]))
@@ -271,7 +279,7 @@ def sort_tributors(tributors: dict[str, dict]) -> dict[str, dict]:
 def add_to_tributors(
     tributors: dict[str, dict], this_contributor: dict[str, str]
 ) -> dict[str, dict]:
-    """Add contributor to .tributors"""
+    """Add contributor to `.tributors`."""
     name = this_contributor.get("name")
 
     tributors_names = [tributors[x]["name"] for x in tributors]
@@ -322,24 +330,24 @@ def update_tributors(
     return tributors
 
 
-"""ALCONTRIB"""
+"""ALLCONTRIB"""
 
 
 def load_allcontrib(allcontrib_file: Path) -> None:
-    """Load .all-contributorsrc file."""
+    """Load `.all-contributorsrc` file."""
     with open(allcontrib_file, "r", encoding="utf8") as input_file:
         return json.load(input_file)
 
 
 def write_allcontrib(allcontrib_file: Path, allcontrib: dict) -> None:
-    """Write .all-contributorsrc file."""
+    """Write `.all-contributorsrc` file."""
     allcontrib = sort_all_contrib(allcontrib)
     with open(allcontrib_file, "w", encoding="utf8") as output_file:
         json.dump(allcontrib, output_file, indent=4, ensure_ascii=False)
 
 
 def sort_all_contrib(allcontrib: dict) -> dict:
-    """Sort .all-contributorsrc file alphabetically by name of contributor."""
+    """Sort `.all-contributorsrc` file alphabetically by name of contributor."""
     for i, contrib in enumerate(allcontrib["contributors"]):
         allcontrib["contributors"][i] = dict(OrderedDict(sorted(contrib.items())))
     allcontrib["contributors"] = sorted(
@@ -349,7 +357,7 @@ def sort_all_contrib(allcontrib: dict) -> dict:
 
 
 def update_allcontrib(allcontrib: dict, this_contributor: dict[str, str]) -> dict:
-    """Add a contributor if not in .all-contributorsrc, or update if already in."""
+    """Add contributor if not already in `.all-contributorsrc`, else update."""
     allcontrib_names = [x["name"] for x in allcontrib["contributors"]]
 
     if this_contributor["name"] not in allcontrib_names:
@@ -378,7 +386,7 @@ def update_allcontrib(allcontrib: dict, this_contributor: dict[str, str]) -> dic
 
 
 def get_gh_avatar(gh_username: str, auth_username: str, auth_token: str) -> str:
-    """Return url of github avatar."""
+    """Return URL of GitHub avatar."""
     avatar_url = None
 
     if gh_username is None:
@@ -412,23 +420,23 @@ def rename_keys_for_allcontrib(this_contributor: dict[str, str]) -> dict[str, st
     return renamed
 
 
-"""CITATION.CFF"""
+"""CITATION.cff"""
 
 
 def load_citation(citation_file: Path) -> dict:
-    """Load CITATION.CFF file."""
+    """Load `CITATION.cff` file."""
     with open(citation_file, "r", encoding="utf8") as input_file:
         return yaml.load(input_file)
 
 
 def write_citation(citation_file: Path, citation: dict) -> None:
-    """Write CITATION.CFF file."""
+    """Write `CITATION.cff` file."""
     with open(citation_file, "w", encoding="utf8") as output_file:
         return yaml.dump(citation, output_file)
 
 
 def return_author_list_for_cff(tributors_file: Path) -> list[dict[str, str]]:
-    """Create an dict to be used for the authors in the CITATION.CFF file."""
+    """Create an dict to be used for the authors in the `CITATION.cff` file."""
     tributors = load_tributors(tributors_file)
 
     author_list = []

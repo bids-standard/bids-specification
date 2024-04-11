@@ -2,6 +2,7 @@
 
 .. autofunction:: load_resource
 """
+
 import atexit
 import os
 from contextlib import ExitStack

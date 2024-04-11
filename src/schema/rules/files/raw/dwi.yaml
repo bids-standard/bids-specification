@@ -18,6 +18,7 @@ dwi:
     direction: optional
     run: optional
     part: optional
+    chunk: optional
 
 sbref:
   suffixes:
@@ -36,3 +37,4 @@ sbref:
     direction: optional
     run: optional
     part: optional
+    chunk: optional

@@ -38,32 +38,12 @@ MaskDerivatives:
     Sources: recommended
     RawSources: deprecated
 
-MaskDerivativesAtlas:
-  selectors:
-    - dataset.dataset_description.DatasetType == "derivative"
-    - suffix == "mask"
-    - '"label" in entities'
-  fields:
-    Atlas:
-      level: recommended
-      level_addendum: if `label` entity is defined
-
 SegmentationCommon:
   selectors:
     - dataset.dataset_description.DatasetType == "derivative"
     - 'intersects([suffix], ["dseg", "probseg"])'
   fields:
     Manual: optional
-
-SegmentationCommonAtlas:
-  selectors:
-    - dataset.dataset_description.DatasetType == "derivative"
-    - 'intersects([suffix], ["dseg", "probseg"])'
-    - '"atlas" in entities'
-  fields:
-    Atlas:
-      level: recommended
-      level_addendum: if `atlas` is present
 
 # Derivatives -> Imaging data types
 ImageDerivatives:
