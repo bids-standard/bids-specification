@@ -10,7 +10,7 @@ from pathlib import Path
 
 INDENT = "    "
 
-ADMONITION_DELIMITERS = ["!!!", "???", "???+"]
+ADMONITION_DELIMITERS = ["???+", "!!!", "???"]
 
 
 def remove_admonitions(
@@ -34,18 +34,29 @@ def remove_admonitions(
         with open(output_file, "w", encoding="utf8") as f:
 
             is_admonition = False
-            counter = 0
+            # counter = 0
             for line in content:
 
                 if any(line.startswith(x) for x in ADMONITION_DELIMITERS):
                     is_admonition = True
-                    counter = 0
+                    # counter = 0
+                    line = line.replace("\n", "")
+                    line = line.replace('"', "")
+                    for x in ADMONITION_DELIMITERS:
+                        line = line.replace(x, "", 1)
+                    line = line.lstrip()
+                    words = line.split(" ")
+                    print(words)
+                    words[0] = f"{words[0].capitalize()}:"
+                    line = "**" + " ".join(words) + "**\n"
+                    f.write(line)
+                    print(line)
                     continue
 
-                # skip first line after admonition
-                if is_admonition and counter == 0:
-                    counter += 1
-                    continue
+                # # skip first line after admonition
+                # if is_admonition and counter == 0:
+                #     counter += 1
+                #     continue
 
                 if line != "\n" and not line.startswith(indent):
                     is_admonition = False
