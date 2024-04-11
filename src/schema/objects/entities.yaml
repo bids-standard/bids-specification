@@ -410,7 +410,7 @@ tracer:
   format: label
 tracksys:
   name: tracksys
-  display_name: Tracking System
+  display_name: Tracking system
   description: |
     The `tracksys-<label>` entity can be used as a key-value pair
     to label *_motion.tsv and *_motion.json files.
