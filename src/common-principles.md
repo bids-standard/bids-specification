@@ -309,6 +309,11 @@ field in `dataset_description.json` of each subdirectory of `derivatives` to:
 }
 ```
 
+!!! warning "non-anonymised data in `sourcedata`"
+
+    Source files requiring anonymization MAY be stored in this subfolder.
+    However, be aware that this could make it harder to share the dataset.
+
 ### Storage of derived datasets
 
 Derivatives can be stored/distributed in two ways:
