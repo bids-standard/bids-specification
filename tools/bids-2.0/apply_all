@@ -1,0 +1,5 @@
+#!/bin/bash
+
+path="$(dirname "$0")"
+
+"$path/rename_participants_to_subjects"
