@@ -561,6 +561,36 @@ DecayCorrectionFactor:
   type: array
   items:
     type: number
+DeIdentificationMethod:
+  name: DeIdentificationMethod
+  display_name: DeIdentification Method
+  description: |
+    A description of the mechanism or method used to remove the Patient's identity.
+    Corresponds to DICOM Tag 0012, 0063 `De-identification Method`.
+  type: string
+DeIdentificationMethodCodeSequence:
+  name: DeIdentificationMethodCodeSequence
+  display_name: DeIdentification Method Code Sequence
+  description: |
+    A description of the mechanism or method used to remove the Patient's identity.
+    Corresponds to DICOM Tag 0012, 0064 `De-identification Method Code Sequence`.
+  type: array
+  items:
+    type: object
+    recommended_fields:
+      - CodeValue
+      - CodeMeaning
+      - CodingSchemeDesignator
+      - CodingSchemeVersion
+    properties:
+      CodeValue:
+        type: string
+      CodeMeaning:
+        type: string
+      CodingSchemeDesignator:
+        type: string
+      CodingSchemeVersion:
+        type: string
 DelayAfterTrigger:
   name: DelayAfterTrigger
   display_name: Delay After Trigger
