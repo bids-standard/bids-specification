@@ -34,11 +34,20 @@ def export(ctx, schema, output):
 
 
 @cli.command()
-@click.argument("dataset_path", type=click.Path(dir_okay=True, file_okay=False))
+@click.argument("dataset_paths", type=click.Path(dir_okay=True, file_okay=False), nargs=-1)
 @click.pass_context
-def migrate_dataset(ctx, dataset_path):
-    """Migrate BIDS 1.x dataset to BIDS 2.0"""
-    migrate_dataset_(dataset_path)
+def migrate_datasets(ctx, dataset_paths):
+    """Migrate BIDS 1.x dataset to BIDS 2.0
+
+    Example of running in bids-examples to apply to all and review the diff
+
+    \b
+    git clean -dfx && git reset --hard \\
+      && { /bin/ls */dataset_description.json | sed -e 's,/.*,,g' | xargs bst migrate-datasets } \\
+      && git add . && git diff --cached
+    """
+    for dataset_path in dataset_paths:
+        migrate_dataset_(dataset_path)
 
 
 if __name__ == "__main__":
