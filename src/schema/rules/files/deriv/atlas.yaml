@@ -1,0 +1,64 @@
+---
+volumetric:
+  suffixes:
+    - dseg
+    - probseg
+    - mask
+  extensions:
+    - .nii
+    - .nii.gz
+    - .tsv
+    - .json
+  datatypes: []
+  entities:
+    atlas: required
+    space: optional
+    resolution: optional
+    description: optional
+
+surface:
+  suffixes:
+    - dseg
+    - probseg
+    - mask
+  extensions:
+    - .label.gii
+    - .tsv
+    - .json
+  datatypes: []
+  entities:
+    atlas: required
+    space: optional
+    density: optional
+    description: optional
+
+cifti_probseg:
+  suffixes:
+    - probseg
+  extensions:
+    - .dscalar.nii
+    - .tsv
+    - .json
+  datatypes: []
+  entities:
+    atlas: required
+    space: optional
+    resolution: optional
+    density: optional
+    description: optional
+
+cifti_dseg:
+  suffixes:
+    - dseg
+    - mask
+  extensions:
+    - .dlabel.nii
+    - .tsv
+    - .json
+  datatypes: []
+  entities:
+    atlas: required
+    space: optional
+    resolution: optional
+    density: optional
+    description: optional
