@@ -14,17 +14,17 @@ SubjectFolders:
     - length(dataset.subjects.sub_dirs) > 0
 
 # 49
-ParticipantIDMismtach:
+SubjectIDMismtach:
   issue:
     code: PARTICIPANT_ID_MISMATCH
     message: |
-      Participant labels found in this dataset did not match the values in participant_id column
-      found in the participants.tsv file.
+      Subject labels found in this dataset did not match the values in subject_id column
+      found in the subjects.tsv file.
     level: error
   selectors:
-    - path == 'participants.tsv'
+    - path == 'subjects.tsv'
   checks:
-    - sorted(columns.participant_label) == sorted(dataset.subjects.sub_dirs)
+    - sorted(columns.subject_label) == sorted(dataset.subjects.sub_dirs)
 
 # 51
 PhenotypeSubjectsMissing:

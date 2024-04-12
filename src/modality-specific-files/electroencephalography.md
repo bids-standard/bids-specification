@@ -353,7 +353,7 @@ anatomical landmarks respectively:
 
 -   **Fiducials** are objects with a well defined location used to facilitate the
     localization of electrodes and co-registration with other geometric data
-    such as the participant's own T1 weighted magnetic resonance head image, a
+    such as the subject's own T1 weighted magnetic resonance head image, a
     T1 weighted template head image, or a spherical head model. Commonly used
     fiducials are vitamin-E pills, which show clearly in an MRI, or reflective
     spheres that are localized with an infrared optical tracking system.
@@ -461,7 +461,7 @@ and a guide for using macros can be found at
 Photos of the anatomical landmarks and/or fiducials are OPTIONAL.
 Please note that the photos may need to be cropped or blurred to conceal
 identifying features prior to sharing, depending on the terms of the consent
-given by the participant.
+given by the subject.
 
 The [`acq-<label>`](../appendices/entities.md#acq) entity can be used to
 indicate acquisition of different photos of

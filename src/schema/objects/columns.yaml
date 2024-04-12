@@ -38,7 +38,7 @@ age:
   description: |
     Numeric value in years (float or integer value).
 
-    It is recommended to tag participant ages that are 89 or higher as 89+,
+    It is recommended to tag subject ages that are 89 or higher as 89+,
     for privacy purposes.
   type: number
   unit: year
@@ -150,7 +150,7 @@ filename:
   description: |
     Relative paths to files.
   type: string
-  format: participant_relative
+  format: subject_relative
 group__channel:
   name: group
   display_name: Channel group
@@ -348,12 +348,12 @@ pathology:
     The pathology may be specified in either `samples.tsv` or
     `sessions.tsv`, depending on whether the pathology changes over time.
   type: string
-participant_id:
-  name: participant_id
-  display_name: Participant ID
+subject_id:
+  name: subject_id
+  display_name: Subject ID
   description: |
-    A participant identifier of the form `sub-<label>`,
-    matching a participant entity found in the dataset.
+    A subject identifier of the form `sub-<label>`,
+    matching a subject entity found in the dataset.
   type: string
   pattern: ^sub-[0-9a-zA-Z]+$
 placement__motion:
@@ -361,7 +361,7 @@ placement__motion:
   display_name: Placement
   description: |
     Placement of the tracked point on the body (for example,
-    participant, avatar centroid, torso, left arm).
+    subject, avatar centroid, torso, left arm).
     It can refer to an external vocabulary for describing body parts.
   type: string
 plasma_radioactivity:
@@ -545,7 +545,7 @@ species:
     The `species` column SHOULD be a binomial species name from the
     [NCBI Taxonomy](https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi)
     (for example, `homo sapiens`, `mus musculus`, `rattus norvegicus`).
-    For backwards compatibility, if `species` is absent, the participant is assumed to be
+    For backwards compatibility, if `species` is absent, the subject is assumed to be
     `homo sapiens`.
   type: string
 status:

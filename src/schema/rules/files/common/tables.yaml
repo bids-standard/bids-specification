@@ -1,7 +1,7 @@
 ---
-participants:
+subjects:
   level: optional
-  stem: participants
+  stem: subjects
   extensions:
     - .tsv
     - .json

@@ -2,7 +2,7 @@
 
 The purpose of this file is to describe timing and other properties of events
 recorded during a run.
-Events are, for example, stimuli presented to the participant or participant responses
+Events are, for example, stimuli presented to the subject or subject responses
 (see [Definitions](../common-principles.md#definitions)).
 A single event file MAY include any combination of stimulus, response, and other events.
 Events MAY overlap in time.
@@ -25,7 +25,7 @@ Where `<matches>` corresponds to task filename. For example:
 
 Each task events file REQUIRES a corresponding task data file.
 It is also possible to have a single `events.tsv` file describing events
-for all participants and runs (see
+for all subjects and runs (see
 [Inheritance Principle](../common-principles.md#the-inheritance-principle)).
 As with all other tabular data, `events.tsv` files MAY be accompanied by a JSON
 file describing the columns in detail (see

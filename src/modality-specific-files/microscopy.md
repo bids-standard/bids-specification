@@ -409,22 +409,22 @@ For Microscopy data, the [Samples file](../modality-agnostic-files.md#samples-fi
 
 Additional optional columns MAY be used to describe other samples' attributes.
 
-## Recommended Participants data
+## Recommended Subjects data
 
 For Microscopy data, we RECOMMEND to make use of the columns `species`, `strain` and
-`strain_rrid` in the [Participants file](../modality-agnostic-files.md#participants-file)
+`strain_rrid` in the [Subjects file](../modality-agnostic-files.md#subjects-file)
 when applicable.
 
 Additional optional columns MAY be used to describe other subjects' attributes.
 
-`participants.tsv` example:
+`subjects.tsv` example:
 ```Text
-participant_id species strain strain_rrid
+subject_id species strain strain_rrid
 sub-01 mus musculus C57BL/6J RRID:IMSR_JAX:000664
 sub-02 mus musculus C57BL/6J RRID:IMSR_JAX:000664
 ```
 
-`participants.json` example:
+`subjects.json` example:
 ```JSON
 {
     "species": {

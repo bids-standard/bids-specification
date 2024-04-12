@@ -56,29 +56,29 @@ genetic_info:
   file_type: regular
   description: |
     The `genetic_info.json` file describes the genetic information available in the
-    `participants.tsv` file and/or the genetic database described in
+    `subjects.tsv` file and/or the genetic database described in
     `dataset_description.json`.
 
     Datasets containing the `Genetics` field in `dataset_description.json` or the
-    `genetic_id` column in `participants.tsv` MUST include this file.
-participants:
-  display_name: Participant Information
+    `genetic_id` column in `subjects.tsv` MUST include this file.
+subjects:
+  display_name: Subject Information
   file_type: regular
   description: |
-    The purpose of this RECOMMENDED file is to describe properties of participants
+    The purpose of this RECOMMENDED file is to describe properties of subjects
     such as age, sex, handedness, species and strain.
-    If this file exists, it MUST contain the column `participant_id`,
-    which MUST consist of `sub-<label>` values identifying one row for each participant,
-    followed by a list of optional columns describing participants.
-    Each participant MUST be described by one and only one row.
+    If this file exists, it MUST contain the column `subject_id`,
+    which MUST consist of `sub-<label>` values identifying one row for each subject,
+    followed by a list of optional columns describing subjects.
+    Each subject MUST be described by one and only one row.
 
-    Commonly used *optional* columns in `participants.tsv` files are `age`, `sex`,
+    Commonly used *optional* columns in `subjects.tsv` files are `age`, `sex`,
     `handedness`, `strain`, and `strain_rrid`.
 
     The RECOMMENDED `species` column SHOULD be a binomial species name from the
     [NCBI Taxonomy](https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi)
     (for examples `homo sapiens`, `mus musculus`, `rattus norvegicus`).
-    For backwards compatibility, if `species` is absent, the participant is assumed to be
+    For backwards compatibility, if `species` is absent, the subject is assumed to be
     `homo sapiens`.
 samples:
   display_name: Sample Information
@@ -106,9 +106,9 @@ phenotype:
   display_name: Phenotype
   file_type: directory
   description: |
-    A directory where to store participant level measurements (for
+    A directory where to store subject level measurements (for
     example responses from multiple questionnaires) split into
-    individual files separate from `participants.tsv`.
+    individual files separate from `subjects.tsv`.
     See the [relevant section](SPEC_ROOT/modality-agnostic-files.md#phenotypic-and-assessment-data)
     for more information.
 sourcedata:

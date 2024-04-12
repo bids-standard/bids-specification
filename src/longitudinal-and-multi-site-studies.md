@@ -56,7 +56,7 @@ A guide for using macros can be found at
             },
         "sub-control01_sessions.tsv": "",
         },
-    "participants.tsv": "",
+    "subjects.tsv": "",
     "dataset_description.json": "",
     "README": "",
     "CHANGES": "",
@@ -86,7 +86,7 @@ There are however ways to model your data without any loss in terms of metadata.
 ### Option 1: Treat each site/center as a separate dataset
 
 The simplest way of dealing with multiple sites is to treat data from each site
-as a separate and independent BIDS dataset with a separate participants.tsv and
+as a separate and independent BIDS dataset with a separate subjects.tsv and
 other metadata files. This way you can feed each dataset individually to BIDS
 Apps and everything should just work.
 
@@ -94,7 +94,7 @@ Apps and everything should just work.
 
 Alternatively you can combine data from all sites into one dataset. To identify
 which site each subjects comes from you can add a `site` column in the
-`participants.tsv` file indicating the source site. This solution allows you to
+`subjects.tsv` file indicating the source site. This solution allows you to
 analyze all of the subjects together in one dataset. One caveat is that subjects
 from all sites will have to have unique labels. To enforce that and improve
 readability you can use a subject label prefix identifying the site. For example

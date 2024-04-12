@@ -54,24 +54,24 @@ Example:
 }
 ```
 
-## Subject naming and Participants file
+## Subject naming and Subjects file
 
-If the same participants have different identifiers in the genetic and imaging datasets,
-the column `genetic_id` SHOULD be added to the `participants.tsv` file to associate
-the BIDS participant with a subject in the `Genetics.Dataset` referred to in the
+If the same subjects have different identifiers in the genetic and imaging datasets,
+the column `genetic_id` SHOULD be added to the `subjects.tsv` file to associate
+the BIDS subject with a subject in the `Genetics.Dataset` referred to in the
 `dataset_description.json` file.
 
 Information about the presence/absence of specific genetic markers MAY be duplicated
-in the `participants.tsv` file by adding optional columns (like `idh_mutation` in the
+in the `subjects.tsv` file by adding optional columns (like `idh_mutation` in the
 example below).
 Note that optional columns MUST be further described in an accompanying
-`participants.json` file as described in
+`subjects.json` file as described in
 [Tabular files](../common-principles.md#tabular-files).
 
-`participants.tsv` example:
+`subjects.tsv` example:
 
 ```Text
-participant_id	age	sex	group	genetic_id	idh_mutation
+subject_id	age	sex	group	genetic_id	idh_mutation
 sub-control01	34	M	control	124587	yes
 sub-control02	12	F	control	548936	yes
 sub-patient01	33	F	patient	489634	no
@@ -112,12 +112,12 @@ and a guide for using macros can be found at
 
 To ensure dataset description consistency, we recommend following [Multi-omics approaches to disease](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-017-1215-1) by Hasin et al. 2017 to determine the `GeneticLevel:`
 
--   `Genetic`: data report on a single genetic location (typically directly in the `participants.tsv` file)
--   `Genomic`:  data link to participants' genome (multiple genetic locations)
--   `Epigenomic`: data link to participants' characterization of reversible modifications of DNA
--   `Transcriptomic`: data link to participants RNA levels
--   `Metabolomic`: data link to participants' products of cellular metabolic functions
--   `Proteomic`: data link to participants peptides and proteins quantification
+-   `Genetic`: data report on a single genetic location (typically directly in the `subjects.tsv` file)
+-   `Genomic`:  data link to subjects' genome (multiple genetic locations)
+-   `Epigenomic`: data link to subjects' characterization of reversible modifications of DNA
+-   `Transcriptomic`: data link to subjects RNA levels
+-   `Metabolomic`: data link to subjects' products of cellular metabolic functions
+-   `Proteomic`: data link to subjects peptides and proteins quantification
 
 `genetic_info.json` example:
 

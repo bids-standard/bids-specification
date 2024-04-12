@@ -316,7 +316,7 @@ name type units description
 VEOG VEOG V vertical EOG
 FDI EMG V left first dorsal interosseous
 UDIO001 TRIG V analog trigger signal
-UADC001 AUDIO V envelope of audio signal presented to participant
+UADC001 AUDIO V envelope of audio signal presented to subject
 ```
 
 ## Coordinate System JSON (`*_coordsystem.json`)
@@ -404,7 +404,7 @@ For example: `"sub-01/ses-mri/anat/sub-01_ses-mri_acq-mprage_T1w.json"`
 In principle, these locations are those of absolute anatomical markers. However,
 the marking of NAS, LPA and RPA is more ambiguous than that of for example, AC and PC.
 This may result in some variability in their 3-D digitization from session to
-session, even for the same participant. The solution would be to use only one
+session, even for the same subject. The solution would be to use only one
 T1w file and populate the `AnatomicalLandmarkCoordinates` field with
 session-specific labels for example, "NAS-session1": `[127,213,139]`,"NAS-session2":
 `[123,220,142]`.
@@ -448,7 +448,7 @@ subject's head are RECOMMENDED. If the coils are not placed at the location of
 actual anatomical landmarks, these latter may be marked with a piece of felt-tip
 taped to the skin. Please note that the photos may need to be cropped or blurred
 to conceal identifying features prior to sharing, depending on the terms of the
-consent given by the participant.
+consent given by the subject.
 
 The [`acq-<label>`](../appendices/entities.md#acq) entity can be used to indicate acquisition of different photos of
 the same face (or other body part in different angles to show, for example, the
@@ -547,7 +547,7 @@ A guide for using macros can be found at
 
 ### Example 2
 
-One empty-room recording per each participant's session, stored within the session directory.
+One empty-room recording per each subject's session, stored within the session directory.
 
 In the case of empty-room recordings being collected for the individual experimental session,
 it is RECOMMENDED to store the empty-room recording along with that subject and session.

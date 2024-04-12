@@ -82,15 +82,15 @@ file_relative:
     It simply ensures that the value is a string with any characters that may appear in a valid path,
     without starting with "/" (an absolute path).
   pattern: '(?!/)[0-9a-zA-Z/\_\-\.]+'
-participant_relative:
-  display_name: Path relative to the participant directory
+subject_relative:
+  display_name: Path relative to the subject directory
   description: |
-    A path to a file, relative to the participant's directory in the dataset.
+    A path to a file, relative to the subject's directory in the dataset.
 
     The validation for this format is minimal.
     It simply ensures that the value is a string with any characters that may appear in a valid path,
     without starting with "/" (an absolute path) or "sub/"
-    (a relative path starting with the participant directory, rather than relative to that directory).
+    (a relative path starting with the subject directory, rather than relative to that directory).
   pattern: '(?!/)(?!sub-)[0-9a-zA-Z/\_\-\.]+'
 rrid:
   display_name: Research resource identifier

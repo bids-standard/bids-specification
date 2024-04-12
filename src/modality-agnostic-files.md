@@ -214,20 +214,20 @@ A guide for using macros can be found at
 -->
 {{ MACROS___render_text("objects.files.LICENSE.description") }}
 
-## Participants file
+## Subjects file
 
 Template:
 
 ```Text
-participants.tsv
-participants.json
+subjects.tsv
+subjects.json
 ```
 
 <!-- This block generates a description.
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___render_text("objects.files.participants.description") }}
+{{ MACROS___render_text("objects.files.subjects.description") }}
 
 We RECOMMEND to make use of these columns, and
 in case that you do use them, we RECOMMEND to use the following values
@@ -239,22 +239,22 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_columns_table("modality_agnostic.Participants") }}
+{{ MACROS___make_columns_table("modality_agnostic.Subjects") }}
 
 Throughout BIDS you can indicate missing values with `n/a` (for "not
 available").
 
-`participants.tsv` example:
+`subjects.tsv` example:
 
 ```Text
-participant_id age sex handedness group
+subject_id age sex handedness group
 sub-01 34 M right read
 sub-02 12 F right write
 sub-03 33 F n/a read
 ```
 
-It is RECOMMENDED to accompany each `participants.tsv` file with a sidecar
-`participants.json` file to describe the TSV column names and properties of their values (see also
+It is RECOMMENDED to accompany each `subjects.tsv` file with a sidecar
+`subjects.json` file to describe the TSV column names and properties of their values (see also
 the [section on tabular files](common-principles.md#tabular-files)).
 Such sidecar files are needed to interpret the data, especially so when
 optional columns are defined beyond `age`, `sex`, `handedness`, `species`, `strain`,
@@ -263,33 +263,33 @@ age unit is needed (for example, gestational weeks).
 If no `units` is provided for age, it will be assumed to be in years relative
 to date of birth.
 
-`participants.json` example:
+`subjects.json` example:
 
 ```JSON
 {
     "age": {
-        "Description": "age of the participant",
+        "Description": "age of the subject",
         "Units": "year"
     },
     "sex": {
-        "Description": "sex of the participant as reported by the participant",
+        "Description": "sex of the subject as reported by the participant",
         "Levels": {
             "M": "male",
             "F": "female"
         }
     },
     "handedness": {
-        "Description": "handedness of the participant as reported by the participant",
+        "Description": "handedness of the subject as reported by the participant",
         "Levels": {
             "left": "left",
             "right": "right"
         }
     },
     "group": {
-        "Description": "experimental group the participant belonged to",
+        "Description": "experimental group the subject belonged to",
         "Levels": {
-            "read": "participants who read an inspirational text before the experiment",
-            "write": "participants who wrote an inspirational text before the experiment"
+            "read": "subjects who read an inspirational text before the experiment",
+            "write": "subjects who wrote an inspirational text before the experiment"
         }
     }
 }
@@ -321,7 +321,7 @@ and a guide for using macros can be found at
 `samples.tsv` example:
 
 ```Text
-sample_id participant_id sample_type derived_from
+sample_id subject_id sample_type derived_from
 sample-01 sub-01 tissue n/a
 sample-02 sub-01 tissue sample-01
 sample-03 sub-01 tissue sample-01
@@ -358,9 +358,9 @@ phenotype/
 
 Optional: Yes
 
-If the dataset includes multiple sets of participant level measurements (for
+If the dataset includes multiple sets of subject level measurements (for
 example responses from multiple questionnaires) they can be split into
-individual files separate from `participants.tsv`.
+individual files separate from `subjects.tsv`.
 
 Each of the measurement files MUST be kept in a `/phenotype` directory placed
 at the root of the BIDS dataset and MUST end with the `.tsv` extension.
@@ -369,8 +369,8 @@ For example, the "Adult ADHD Clinical Diagnostic Scale" could be saved in a file
 called `/phenotype/acds_adult.tsv`.
 
 The files can include an arbitrary set of columns, but one of them MUST be
-`participant_id` and the entries of that column MUST correspond to the subjects
-in the BIDS dataset and `participants.tsv` file.
+`subject_id` and the entries of that column MUST correspond to the subjects
+in the BIDS dataset and `subjects.tsv` file.
 
 As with all other tabular data, the additional phenotypic information files
 MAY be accompanied by a JSON file describing the columns in detail
@@ -423,7 +423,7 @@ columns.
 
 In addition to the keys available to describe columns in all tabular files
 (`LongName`, `Description`, `Levels`, `Units`, and `TermURL`) the
-`participants.json` file as well as phenotypic files can also include column
+`subjects.json` file as well as phenotypic files can also include column
 descriptions with a `Derivative` field that, when set to true, indicates that
 values in the corresponding column is a transformation of values from other
 columns (for example a summary score based on a subset of items in a
@@ -507,10 +507,10 @@ Optional: Yes
 
 In case of multiple sessions there is an option of adding additional
 `sessions.tsv` files describing variables changing between sessions.
-In such case one file per participant SHOULD be added.
+In such case one file per subject SHOULD be added.
 These files MUST include a `session_id` column and describe each session by one and only one row.
-Column names in `sessions.tsv` files MUST be different from group level participant key column names in the
-[`participants.tsv` file](./modality-agnostic-files.md#participants-file).
+Column names in `sessions.tsv` files MUST be different from group level subject key column names in the
+[`subjects.tsv` file](./modality-agnostic-files.md#subjects-file).
 
 <!-- This block generates a columns table.
 The definitions of these fields can be found in

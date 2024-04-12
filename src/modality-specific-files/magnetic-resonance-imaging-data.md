@@ -359,7 +359,7 @@ them, visit the [qMRI appendix](../appendices/qmri.md).
 ### Defacing masks
 
 If the structural images included in the dataset were defaced (to protect
-identity of participants) one MAY provide the binary mask that was used to
+identity of subjects) one MAY provide the binary mask that was used to
 remove facial features in the form of `_defacemask` files.
 In such cases, the OPTIONAL [`mod-<label>`](../appendices/entities.md#mod)
 entity corresponds to modality suffix,
@@ -646,7 +646,7 @@ A guide for using macros can be found at
     -   [`ds114`](https://github.com/bids-standard/bids-examples/tree/master/ds114)
     -   [`ds000117`](https://github.com/bids-standard/bids-examples/tree/master/ds000117)
 
-Diffusion-weighted imaging data acquired for a participant.
+Diffusion-weighted imaging data acquired for a subject.
 Currently supported image types include:
 
 <!--

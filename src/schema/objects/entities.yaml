@@ -373,7 +373,7 @@ task:
   name: task
   display_name: Task
   description: |
-    A set of structured activities performed by the participant.
+    A set of structured activities performed by the subject.
     Tasks are usually accompanied by stimuli and responses, and can greatly vary in complexity.
 
     In the context of brain scanning, a task is always tied to one data acquisition.
@@ -381,7 +381,7 @@ task:
     (with different sets of instructions) they will be considered one (combined) task.
 
     While tasks may be repeated across multiple acquisitions,
-    a given task may have different sets of stimuli (for example, randomized order) and participant responses
+    a given task may have different sets of stimuli (for example, randomized order) and subject responses
     across subjects, sessions, and runs.
 
     The `task-<label>` MUST be consistent across subjects and sessions.

@@ -54,13 +54,13 @@ context:
               type: array
               items:
                 type: string
-            participant_id:
-              description: 'The participant_id column of participants.tsv'
+            subject_id:
+              description: 'The subject_id column of subjects.tsv'
               type: array
               items:
                 type: string
             phenotype:
-              description: 'The union of participant_id columns in phenotype files'
+              description: 'The union of subject_id columns in phenotype files'
               type: array
               items:
                 type: string

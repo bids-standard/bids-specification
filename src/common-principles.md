@@ -102,8 +102,8 @@ instead of specified with an `n/a` value, or included as an empty file
 Data for each subject are placed in subdirectories named "`sub-<label>`",
 where string "`<label>`" is substituted with the unique identification
 label of each subject.
-Additional information on each participant MAY be provided in a
-[participants file](modality-agnostic-files.md#participants-file)
+Additional information on each subject MAY be provided in a
+[subjects file](modality-agnostic-files.md#subjects-file)
 in the root directory of the dataset.
 
 If data for the subject were acquired across multiple sessions, then within
@@ -276,7 +276,7 @@ A guide for using macros can be found at
             "...": "",
             "rawdata": {
                 "dataset_description.json": "",
-                "participants.tsv": "",
+                "subjects.tsv": "",
                 "sub-01": {},
                 "sub-02": {},
                 "...": "",
@@ -521,7 +521,7 @@ Example:
 {
   "test": {
     "LongName": "Education level",
-    "Description": "Education level, self-rated by participant",
+    "Description": "Education level, self-rated by subject",
     "Levels": {
       "1": "Finished primary school",
       "2": "Finished secondary school",
@@ -545,7 +545,7 @@ like in the example below.
 ```JSON
 {
     "sex": {
-        "Description": "sex of the participant as reported by the participant",
+        "Description": "sex of the subject as reported by the participant",
         "Levels": {
             "M": {
                 "Description": "Male",
@@ -662,10 +662,10 @@ for more information.
 
 Corollaries:
 
-1.  As per rule 3, metadata files applicable only to a specific participant / session
-    MUST be defined in or below the directory corresponding to that participant / session;
-    similarly, a metadata file that is applicable to multiple participants / sessions
-    MUST NOT be placed within a directory corresponding to only one such participant / session.
+1.  As per rule 3, metadata files applicable only to a specific subject / session
+    MUST be defined in or below the directory corresponding to that subject / session;
+    similarly, a metadata file that is applicable to multiple subjects / sessions
+    MUST NOT be placed within a directory corresponding to only one such subject / session.
 
 1.  It is permissible for a single metadata file to be applicable to multiple data
     files at that level of the hierarchy or below. Where such metadata content is consistent
@@ -792,14 +792,14 @@ A guide for using macros can be found at
     }
 ) }}
 
-## Participant names and other labels
+## Subject names and other labels
 
 BIDS allows for custom user-defined `<label>`s and `<index>`es for example,
-for naming of participants, sessions, acquisition schemes.
+for naming of subjects, sessions, acquisition schemes.
 Note that they MUST consist only of allowed characters as described in
 [Definitions](common-principles.md#definitions) above.
 In `<index>`es we RECOMMEND using zero padding (for example, `01` instead of `1`
-if some participants have two-digit labels) to make alphabetical sorting more intuitive.
+if some subjects have two-digit labels) to make alphabetical sorting more intuitive.
 Note that zero padding SHOULD NOT be used to merely maintain uniqueness
 of `<index>`es.
 
@@ -1046,7 +1046,7 @@ A guide for using macros can be found at
         },
     "derivatives": {},
     "README": "",
-    "participants.tsv": "",
+    "subjects.tsv": "",
     "dataset_description.json": "",
     "CHANGES": "",
     }

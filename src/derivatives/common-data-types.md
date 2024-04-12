@@ -291,7 +291,7 @@ A guide for using macros can be found at
         "README": "",
         "channels.tsv": "",
         "dataset_description.json": "",
-        "participants.tsv": "",
+        "subjects.tsv": "",
             "sub-001": {
                 "eeg": {
                     "sub-001_task-listening_events.tsv": "",
