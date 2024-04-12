@@ -1,0 +1,90 @@
+name: validate_datasets
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: ['**']
+  create:
+    branches: [master]
+    tags: ['**']
+  schedule:
+    - cron: "0 4 * * 1"
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [ubuntu-latest, macos-latest, windows-latest]
+        bids-validator: [master, stable]
+
+    runs-on: ${{ matrix.platform }}
+
+    env:
+      TZ: Europe/Berlin
+      FORCE_COLOR: 1
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 18
+
+    - name: Install BIDS validator (stable)
+      if: "matrix.bids-validator == 'stable'"
+      run: |
+        npm install -g bids-validator
+
+    - name: Install BIDS validator (master)
+      if: "matrix.bids-validator == 'master'"
+      run: |
+        pushd ..
+        # Get npm 7+
+        npm install -g npm
+        git clone --depth 1 https://github.com/bids-standard/bids-validator
+        cd bids-validator
+        # Generate the full development node_modules
+        npm clean-install
+        # Build & bundle the bids-validator CLI package
+        npm -w bids-validator run build
+        # Generate a package to install globally
+        npm -w bids-validator pack
+        # Install the package globally
+        bash -c "npm install -g bids-validator-*.tgz"
+        popd
+
+    - name: Display versions and environment information
+      run: |
+        echo $TZ
+        date
+        echo "npm"; npm --version
+        echo "node"; node --version
+        echo "bids-validator"; bids-validator --version
+
+    - name: Check that no large files are present
+      if: "matrix.bids-validator == 'stable'"
+      run: |
+        echo "Checking for big files ..."
+        found=`find . -not -path "./.git*" -type f -size +500k`
+        if [ "$found" == "" ]
+        then
+            echo "No big files present, great!"
+        else
+            echo "Found big files:"
+            echo "$found"
+            exit 1;
+        fi
+      shell: bash
+
+    - name: Validate all BIDS datasets using bids-validator
+      run: |
+        cat ./run_tests.sh
+        bash ./run_tests.sh
+      shell: bash
