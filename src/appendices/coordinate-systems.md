@@ -233,10 +233,10 @@ described in [Common file level metadata fields][common file level metadata fiel
 
 In the case of multiple study templates, additional names may need to be defined.
 
-| **Coordinate System** | **Description**                                                                                                                                                                                                                                                        |
-| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Coordinate System** | **Description**                                                                                                                                                                                                                                                |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | individual            | Subject specific anatomical space (for example derived from T1w and/or T2w images). This coordinate system requires specifying an additional, subject-specific file to be fully defined. In context of surfaces this space has been referred to as `fsnative`. |
-| study                 | Custom space defined using a group/study-specific template. This coordinate system requires specifying an additional file to be fully defined.                                                                                                                         |
+| study                 | Custom space defined using a group/study-specific template. This coordinate system requires specifying an additional file to be fully defined.                                                                                                                 |
 
 ### Non-template coordinate system identifiers
 
