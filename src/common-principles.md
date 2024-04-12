@@ -422,13 +422,6 @@ JSON file.
 If present, sidecar JSON filename MUST be same as as the imaging file, but
 with a `.json` extension.
 
-In some cases BIDS authorize to store compressed imaging files. In such cases
-the compression must be performed using gzip algorithm, and have extension
-`.gz`, for example `sub-123_T1w.nii.gz`.
-The zip header SHOULD lack source filenames and timestamps, this can be
-achieved by using `---name` option of gzip, or first renaming file, and then
-compressing it.
-
 ### Tabular files
 
 Tabular data MUST be saved as tab delimited values (`.tsv`) files, that is, CSV
