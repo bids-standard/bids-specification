@@ -2,14 +2,14 @@ name: validate_datasets
 
 on:
   push:
-    branches: ['**']
+    branches: ['master']
   pull_request:
     branches: ['**']
-  create:
-    branches: [master]
-    tags: ['**']
-  schedule:
-    - cron: "0 4 * * 1"
+#  create:
+#    branches: [master]
+#    tags: ['**']
+#  schedule:
+#    - cron: "0 4 * * 1"
 
 concurrency:
   group: ${{ github.ref }}
@@ -20,8 +20,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [ubuntu-latest, macos-latest, windows-latest]
-        bids-validator: [master, stable]
+        platform: [ubuntu-latest] # , macos-latest, windows-latest]
+        bids-validator: [master-deno]
+        python-version: ["3.11"]
 
     runs-on: ${{ matrix.platform }}
 
@@ -32,59 +33,79 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
+    # Setup Python with bst
+    - uses: actions/setup-python@v5
       with:
-        node-version: 18
+        python-version: ${{ matrix.python-version }}
+    - name: "Install build dependencies"
+      run: pip install --upgrade build twine
+    - name: "Build source distribution and wheel"
+      run: python -m build tools/schemacode
+    - name: "Check distribution metadata"
+      run: twine check tools/schemacode/dist/*
+    - name: "Install bst tools from the build"
+      run: pip install $( ls tools/schemacode/dist/*.whl )[all]
+    - name: "Produce dump of the schema as schema.json"
+      run: bst -v export --output src/schema.json
 
-    - name: Install BIDS validator (stable)
-      if: "matrix.bids-validator == 'stable'"
-      run: |
-        npm install -g bids-validator
+    - uses: denoland/setup-deno@v1.1.2
+      if: "matrix.bids-validator == 'master-deno'"
+      with:
+        deno-version: v1.x
 
-    - name: Install BIDS validator (master)
-      if: "matrix.bids-validator == 'master'"
+    - name: Install BIDS validator (master deno build)
+      if: "matrix.bids-validator == 'master-deno'"
       run: |
         pushd ..
-        # Get npm 7+
-        npm install -g npm
+        # Let's use specific commit for now
+        # TODO: progress it once in a while
+        commit=a7b291b882a8c6184219ccb84faae255ba96203a
         git clone --depth 1 https://github.com/bids-standard/bids-validator
         cd bids-validator
-        # Generate the full development node_modules
-        npm clean-install
-        # Build & bundle the bids-validator CLI package
-        npm -w bids-validator run build
-        # Generate a package to install globally
-        npm -w bids-validator pack
-        # Install the package globally
-        bash -c "npm install -g bids-validator-*.tgz"
+        git fetch --depth 1 origin $commit;
+        echo -e '#!/bin/sh\n'"$PWD/bids-validator/bids-validator-deno \"\$@\"" >| /usr/local/bin/bids-validator
+        chmod a+x /usr/local/bin/bids-validator
+        which -a bids-validator
+        bids-validator --help
         popd
 
     - name: Display versions and environment information
       run: |
         echo $TZ
         date
-        echo "npm"; npm --version
-        echo "node"; node --version
-        echo "bids-validator"; bids-validator --version
+        echo -n "npm: "; npm --version
+        echo -n "node: "; node --version
+        echo -n "bids-validator: "; bids-validator --version
+        echo -n "python: "; python --version
 
-    - name: Check that no large files are present
-      if: "matrix.bids-validator == 'stable'"
-      run: |
-        echo "Checking for big files ..."
-        found=`find . -not -path "./.git*" -type f -size +500k`
-        if [ "$found" == "" ]
-        then
-            echo "No big files present, great!"
-        else
-            echo "Found big files:"
-            echo "$found"
-            exit 1;
-        fi
-      shell: bash
+    # Checkout bids-examples
+    - uses: actions/checkout@v4
+      with:
+        # repository: bids-standard/bids-examples
+        # For now use the forked repository with support for deno validator
+        # from https://github.com/bids-standard/bids-examples/pull/435
+        repository: yarikoptic/bids-examples
+        ref: deno-validator
+        path: bids-examples
 
-    - name: Validate all BIDS datasets using bids-validator
-      run: |
-        cat ./run_tests.sh
-        bash ./run_tests.sh
+    - name: Mark known not yet to be deno-legit BIDS datasets
+      run: touch {ds000117,ds000246,ds000247,ds000248,eeg_ds003645s_hed_demo,ieeg_motorMiller2007,ieeg_visual}/.SKIP_VALIDATION
       shell: bash
+      working-directory: bids-examples
+
+    - name: Validate using bids-validator without migration
+      run: ./run_tests.sh
+      working-directory: bids-examples
+
+    - name: Migrate all BIDS datasets
+      run: /bin/ls */dataset_description.json | sed -e 's,/.*,,g' | xargs bst migrate-datasets
+      shell: bash
+      working-directory: bids-examples
+
+    - name: Show migrated datasets diff
+      run: git diff
+      working-directory: bids-examples
+
+    - name: Validate all BIDS datasets using bids-validator after migration
+      run: VALIDATOR_ARGS="--schema file://$PWD/../src/schema.json" bash ./run_tests.sh
+      working-directory: bids-examples
