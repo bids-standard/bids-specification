@@ -7,7 +7,7 @@
 
 set -eu -o pipefail
 
-pathspec=( ':(exclude)src/CHANGES.md' ':(exclude)src/appendices/licenses.md' ':(exclude)CODE_OF_CONDUCT.md' ':(exclude)tools/bids-2.0/*' )
+pathspec=( ':(exclude)src/CHANGES.md' ':(exclude)src/appendices/licenses.md' ':(exclude)CODE_OF_CONDUCT.md' ':(exclude)tools/bids-2.0/*' ':(exclude)tools/schemacode/bidsschematools/migrations.py' )
 
 # Plural -- no need really for a separate invocation since plural is just singular + s
 # git grep -l participants -- "${pathspec[@]}" | xargs sed -i -e 's,participants,subjects,g'
