@@ -3,6 +3,7 @@ import os
 
 import click
 
+from .dataset import migrate_dataset as migrate_dataset_
 from .schema import export_schema, load_schema
 
 
@@ -30,6 +31,14 @@ def export(ctx, schema, output):
         logger.debug(f"Writing to {output}")
         with open(output, "w") as fobj:
             fobj.write(text)
+
+
+@cli.command()
+@click.argument("dataset_path", type=click.Path(dir_okay=True, file_okay=False))
+@click.pass_context
+def migrate_dataset(ctx, dataset_path):
+    """Migrate BIDS 1.x dataset to BIDS 2.0"""
+    migrate_dataset_(dataset_path)
 
 
 if __name__ == "__main__":
