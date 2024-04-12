@@ -309,10 +309,26 @@ field in `dataset_description.json` of each subdirectory of `derivatives` to:
 }
 ```
 
-!!! warning "non-anonymised data in `sourcedata`"
+!!! danger "Caution"
 
-    Source files requiring anonymization MAY be stored in this subfolder.
-    However, be aware that this could make it harder to share the dataset.
+    Sharing source data may help amend errors and missing data discovered
+    only with the reuse of the raw dataset in practice.
+    Therefore, from an Open Science perspective, it is RECOMMENDED to share
+    the source data whenever it is possible.
+    
+    However, more stringent sharing limitations may apply to
+    the source data than those applicable to the raw data.
+    For example, human data almost always requires anonymization before they
+    can be redistributed, or the subjects' consent form did not explicitly
+    stated that the source files would be shared after anonymization.
+    Further examples in which sharing source data may not be possible
+    include original data formats that are not redistributable as per the
+    acquisition device's license.
+    
+    As for raw data, all regulatory, ethical, and legal aspects SHOULD
+    be carefully considered before sharing data through the `sourcedata/` folder
+    mechanism.
+    In the case of source data, these aspects are likely more stringent.
 
 ### Storage of derived datasets
 
