@@ -3,7 +3,7 @@ import os
 
 import click
 
-from .dataset import migrate_dataset as migrate_dataset_
+from .migrations import migrate_dataset as migrate_dataset_
 from .schema import export_schema, load_schema
 
 

@@ -106,7 +106,7 @@ bids_examples_pristine = get_gitrepo_fixture(
 def bids_examples(bids_examples_pristine):
     """Migrates examples to BIDS 2.0 before giving it back to tests"""
 
-    from bidsschematools.dataset import migrate_dataset
+    from bidsschematools.migrations import migrate_dataset
 
     # TODO: potentially make it recursive in finding derivatives,
     #       as e.g. we have in ./ieeg_epilepsy_ecog/derivatives/freesurfer/participants.tsv
