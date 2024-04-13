@@ -41,7 +41,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_columns_table("task.TaskEvents") }}
+{{ MACROS___make_columns_table("task.Events") }}
 
 The content of  `events.tsv` files SHOULD be sorted by values in the `onset` column.
 

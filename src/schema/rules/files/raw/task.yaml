@@ -1,23 +1,4 @@
 ---
-events:
-  suffixes:
-    - events
-  extensions:
-    - .tsv
-    - .json
-  datatypes:
-    - beh
-    - eeg
-    - ieeg
-    - meg
-    - nirs
-  entities:
-    subject: required
-    session: optional
-    task: required
-    acquisition: optional
-    run: optional
-
 timeseries:
   suffixes:
     - physio
@@ -61,25 +42,25 @@ timeseries__mri_no_task:
 # In these rules, we use $ref to retrieve most of an object, and then override
 
 events__mri:
-  $ref: rules.files.raw.task.events
+  $ref: rules.files.raw.events.events
   datatypes:
     - func
   entities:
-    $ref: rules.files.raw.task.events.entities
+    $ref: rules.files.raw.events.events.entities
     ceagent: optional
     reconstruction: optional
     direction: optional
 
 events__motion:
-  $ref: rules.files.raw.task.events
+  $ref: rules.files.raw.events.events
   datatypes:
     - motion
   entities:
-    $ref: rules.files.raw.task.events.entities
+    $ref: rules.files.raw.events.events.entities
     tracksys: optional
 
 events__pet:
-  $ref: rules.files.raw.task.events
+  $ref: rules.files.raw.events.events
   datatypes:
     - pet
   entities:
