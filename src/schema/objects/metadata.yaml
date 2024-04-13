@@ -37,7 +37,7 @@ AcquisitionVoxelSize:
   display_name: Acquisition Voxel Size
   description: |
     An array of numbers with a length of 3, in millimeters.
-    This parameter denotes the original acquisition voxel size,
+    This field denotes the original acquisition voxel size,
     excluding any inter-slice gaps and before any interpolation or resampling
     within reconstruction or image processing.
     Any point spread function effects, for example due to T2-blurring,
@@ -2641,9 +2641,7 @@ PulseSequencePulses:
   display_name: Pulse Sequence Pulses
   description: |
     The list of pulses used in the pulse sequence.
-    If this parameter is specified, the array MUST correspond to the array of timings in
-    `"PulseSequenceTiming"`.
-    That is, the length of both arrays MUST be equal.
+    If this field is specified, the array size MUST equal the array size of `"PulseSequenceTiming"`.
     The strings MAY be of the format `<pulse_name>_R<time-bandwidth_product>`.
     For example, a sLASER sequence may be described as such:
     `["P10_R6", "HS4_R25", "HS4_R25", "HS4_R25", "HS4_R25"]`.
@@ -2655,7 +2653,8 @@ PulseSequenceTiming:
   display_name: Pulse Sequence Timing
   description: |
     The time when each RF pulse of the pulse sequence was played out relative to
-    the beginning of the pulse sequence, specified in seconds.
+    the beginning of the pulse sequence (that is, the top of the excitation RF pulse),
+    specified in seconds.
   type: array
   items:
     type: number
