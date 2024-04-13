@@ -16,9 +16,9 @@ which is a recommended reading in conjunction with this guide.
 As a BIDS maintainer you may get the chance to:
 
 * Learn to work as a team
-* Bring your expertise to the BIDS maintainers group and cover technical blind spot it may have
+* Bring your expertise to the BIDS maintainers group and cover technical blind spots it may have
 * Improving your technical writing skills (for example documentation)
-* Learn to work with continuous integration and development
+* Learn to work with continuous integration and deployment
 * Advise and participate in the development of BIDS extensions that are most commonly associated with a publication
 
 ## Responsibilities
@@ -30,7 +30,7 @@ As a BIDS maintainer you may get the chance to:
 * Maintainers direct other BIDS contributors in reviewing PRs,
   writing clarifications to the specification, or other contributions.
   Maintainers “dispatch” work teams.
-* Maintainers ensure that all contributions maintain a friendly and welcoming tone
+* Maintainers ensure that all contributors maintain a friendly and welcoming tone
   to encourage productive conversations.
 * If no work team is suitable or available,
   the final responsibility of getting the work done lies with the maintainers.
