@@ -8,16 +8,16 @@ acquisition:
   display_name: Acquisition
   description: |
     The `acq-<label>` entity corresponds to a custom label the user MAY use to distinguish
-    a different set of parameters used for acquiring the same modality.
+    a different set of parameters used for acquiring the same kind of data.
 
-    For example, this should be used when a study includes two T1w images -
+    For example, this should be used when an MRI study includes two T1w images -
     one full brain low resolution and one restricted field of view but high resolution.
     In such case two files could have the following names:
     `sub-01_acq-highres_T1w.nii.gz` and `sub-01_acq-lowres_T1w.nii.gz`;
     however, the user is free to choose any other label than `highres` and `lowres` as long
     as they are consistent across subjects and sessions.
 
-    In case different sequences are used to record the same modality
+    In case different sequences are used to record the same MRI contrast
     (for example, `RARE` and `FLASH` for T1w)
     this field can also be used to make that distinction.
     The level of detail at which the distinction is made
@@ -154,9 +154,9 @@ label:
   format: label
 modality:
   name: mod
-  display_name: Corresponding Modality
+  display_name: Corresponding MRI Contrast
   description: |
-    The `mod-<label>` entity corresponds to modality label for defacing
+    The `mod-<label>` entity corresponds to the MRI contrast (in a loose terms - MRI modality) label for defacing
     masks, for example, T1w, inplaneT1, referenced by a defacemask image.
     For example, `sub-01_mod-T1w_defacemask.nii.gz`.
   type: string
