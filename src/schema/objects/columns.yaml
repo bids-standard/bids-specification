@@ -37,6 +37,9 @@ age:
   display_name: Subject age
   description: |
     Numeric value in years (float or integer value).
+
+    It is recommended to tag participant ages that are 89 or higher as 89+,
+    for privacy purposes.
   type: number
   unit: year
 cardiac:
@@ -45,6 +48,18 @@ cardiac:
   description: |
     continuous pulse measurement
   type: number
+channel:
+  name: channel
+  display_name: Channel
+  description: |
+    Channel(s) associated with an event.
+    If multiple channels are specified, they MUST be separated by a delimiter
+    specified in the `"Delimiter"` field describing the `channel` column.
+    For example, channels separated with a comma (`,`) require the `events.json`
+    file to contain `"channel": {"Delimiter": ","}`.
+    In the absence of a delimiter, tools MUST interpret any character as being part
+    of a channel name.
+  type: string
 color:
   name: color
   display_name: Color label
@@ -61,13 +76,13 @@ component:
     or `quat_x`, `quat_y`, `quat_z`, `quat_w` for quaternion orientation channels.
   type: string
   enum:
-    - x
-    - y
-    - z
-    - quat_x
-    - quat_y
-    - quat_z
-    - quat_w
+    - $ref: objects.enums.x.value
+    - $ref: objects.enums.y.value
+    - $ref: objects.enums.z.value
+    - $ref: objects.enums.quat_x.value
+    - $ref: objects.enums.quat_y.value
+    - $ref: objects.enums.quat_z.value
+    - $ref: objects.enums.quat_w.value
     - n/a
 detector__channels:
   name: detector
@@ -159,6 +174,7 @@ handedness:
     For "ambidextrous", use one of these values: `ambidextrous`, `a`, `A`, `AMBIDEXTROUS`,
     `Ambidextrous`.
   type: string
+  # TODO: Add definitions for these values. (perhaps don't specify)
   enum:
     - left
     - l
@@ -183,8 +199,8 @@ hemisphere:
     The hemisphere in which the electrode is placed.
   type: string
   enum:
-    - L
-    - R
+    - $ref: objects.enums.left_hemisphere.value
+    - $ref: objects.enums.right_hemisphere.value
 high_cutoff:
   name: high_cutoff
   display_name: High cutoff
@@ -299,13 +315,11 @@ notch:
   display_name: Notch frequencies
   description: |
     Frequencies used for the notch filter applied to the channel, in Hz.
-    If no notch filter applied, use `n/a`.
-  anyOf:
-    - type: number
-      unit: Hz
-    - type: string
-      enum:
-        - n/a
+    If notch filters are applied at multiple frequencies,
+    these frequencies MAY be specified as a list,
+    for example, `[60, 120, 180]`.
+    If no notch filter was applied, use `n/a`.
+  type: string
 onset:
   name: onset
   display_name: Event onset
@@ -377,6 +391,18 @@ reference__ieeg:
     - type: string
       enum:
         - n/a
+reference_frame:
+  name: reference_frame
+  display_name: Reference frame
+  description: |
+    Specification of a reference frame in which the motion data are to be interpreted.
+    The description of the levels in `*_channels.json` SHOULD use `RotationRule`,
+    `RotationOrder`, and `SpatialAxes`, and MAY use `Description` for the specification.
+  anyOf:
+    - type: string
+    - type: string
+      enum:
+        - n/a
 respiratory:
   name: respiratory
   display_name: Respiratory measurement
@@ -396,16 +422,6 @@ response_time:
     - type: string
       enum:
         - n/a
-sample:
-  name: sample
-  display_name: Sample index
-  description: |
-    Onset of the event according to the sampling scheme of the recorded modality
-    (that is, referring to the raw data file that the `events.tsv` file accompanies).
-    When there are several sampling schemes present in the raw data file (as can be
-    the case for example for `.edf` files), this column is ambiguous and
-    SHOULD NOT be used.
-  type: integer
 sample_id:
   name: sample_id
   display_name: Sample ID
@@ -422,15 +438,15 @@ sample_type:
     [ENCODE Biosample Type](https://www.encodeproject.org/profiles/biosample_type).
   type: string
   enum:
-    - cell line
-    - in vitro differentiated cells
-    - primary cell
-    - cell-free sample
-    - cloning host
-    - tissue
-    - whole organisms
-    - organoid
-    - technical sample
+    - $ref: objects.enums.cell_line.value
+    - $ref: objects.enums.in_vitro_differentiated_cells.value
+    - $ref: objects.enums.primary_cell.value
+    - $ref: objects.enums.cell_free_sample.value
+    - $ref: objects.enums.cloning_host.value
+    - $ref: objects.enums.tissue.value
+    - $ref: objects.enums.whole_organisms.value
+    - $ref: objects.enums.organoid.value
+    - $ref: objects.enums.technical_sample.value
 sampling_frequency:
   name: sampling_frequency
   display_name: Channel sampling frequency
@@ -458,6 +474,7 @@ sex:
 
     For "other", use one of these values: `other`, `o`, `O`, `OTHER`, `Other`.
   type: string
+  # TODO: Add definitions for these values. (perhaps don't specify)
   enum:
     - male
     - m
@@ -541,8 +558,8 @@ status:
     Description of noise type SHOULD be provided in `[status_description]`.
   type: string
   enum:
-    - good
-    - bad
+    - $ref: objects.enums.good.value
+    - $ref: objects.enums.bad.value
     - n/a
 status_description:
   name: status_description
@@ -577,7 +594,7 @@ strain_rrid:
   display_name: Strain RRID
   description: |
     For species different from `homo sapiens`, research resource identifier
-    ([RRID](https://scicrunch.org/resources/Organisms/search))
+    ([RRID](https://scicrunch.org/resources/data/source/nlx_154697-1/search))
     of the strain of the species, for example: `RRID:IMSR_JAX:000664`.
   type: string
   format: rrid
@@ -613,7 +630,7 @@ trigger:
     continuous measurement of the scanner trigger signal
   type: number
 # type column in channels.tsv files
-type__eeg_channels:
+type__channels:
   name: type
   display_name: Channel type
   description: |
@@ -621,152 +638,54 @@ type__eeg_channels:
     Note that the type MUST be in upper-case.
   type: string
   enum:
-    - AUDIO
-    - EEG
-    - EOG
-    - ECG
-    - EMG
-    - EYEGAZE
-    - GSR
-    - HEOG
-    - MISC
-    - PPG
-    - PUPIL
-    - REF
-    - RESP
-    - SYSCLOCK
-    - TEMP
-    - TRIG
-    - VEOG
-type__meg_channels:
-  name: type
-  display_name: Channel type
-  description: |
-    Type of channel; MUST use the channel types listed below.
-    Note that the type MUST be in upper-case.
-  type: string
-  enum:
-    - MEGMAG
-    - MEGGRADAXIAL
-    - MEGGRADPLANAR
-    - MEGREFMAG
-    - MEGREFGRADAXIAL
-    - MEGREFGRADPLANAR
-    - MEGOTHER
-    - EEG
-    - ECOG
-    - SEEG
-    - DBS
-    - VEOG
-    - HEOG
-    - EOG
-    - ECG
-    - EMG
-    - TRIG
-    - AUDIO
-    - PD
-    - EYEGAZE
-    - PUPIL
-    - MISC
-    - SYSCLOCK
-    - ADC
-    - DAC
-    - HLU
-    - FITERR
-    - OTHER
-type__ieeg_channels:
-  name: type
-  display_name: Channel type
-  description: |
-    Type of channel; MUST use the channel types listed below.
-    Note that the type MUST be in upper-case.
-  type: string
-  enum:
-    - EEG
-    - ECOG
-    - SEEG
-    - DBS
-    - VEOG
-    - HEOG
-    - EOG
-    - ECG
-    - EMG
-    - TRIG
-    - AUDIO
-    - PD
-    - EYEGAZE
-    - PUPIL
-    - MISC
-    - SYSCLOCK
-    - ADC
-    - DAC
-    - REF
-    - OTHER
-type__nirs_channels:
-  name: type
-  display_name: Channel type
-  description: |
-    Type of channel; MUST use the channel types listed below.
-    Note that the type MUST be in upper-case.
-  type: string
-  enum:
-    - NIRSCWAMPLITUDE
-    - NIRSCWFLUORESCENSEAMPLITUDE
-    - NIRSCWOPTICALDENSITY
-    - NIRSCWHBO
-    - NIRSCWHBR
-    - NIRSCWMUA
-    - MEGMAG
-    - MEGGRADAXIAL
-    - MEGGRADPLANAR
-    - MEGREFMAG
-    - MEGREFGRADAXIAL
-    - MEGREFGRADPLANAR
-    - MEGOTHER
-    - EEG
-    - ECOG
-    - SEEG
-    - DBS
-    - VEOG
-    - HEOG
-    - EOG
-    - ECG
-    - EMG
-    - TRIG
-    - AUDIO
-    - PD
-    - EYEGAZE
-    - PUPIL
-    - MISC
-    - SYSCLOCK
-    - ADC
-    - DAC
-    - HLU
-    - FITERR
-    - ACCEL
-    - GYRO
-    - MAGN
-    - MISC
-    - OTHER
-type__motion_channels:
-  name: type
-  display_name: Channel type
-  description: |
-    Type of channel; MUST use the channel types listed below.
-    Note that the type MUST be in upper-case.
-  type: string
-  enum:
-    - ACCEL
-    - ANGACC
-    - ANGVEL
-    - GYRO
-    - JNTANG
-    - LATENCY
-    - MAGN
-    - MISC
-    - ORNT
-    - POS
-    - VEL
+    - $ref: objects.enums.ACCEL.value
+    - $ref: objects.enums.ADC.value
+    - $ref: objects.enums.ANGACCEL.value
+    - $ref: objects.enums.AUDIO.value
+    - $ref: objects.enums.DAC.value
+    - $ref: objects.enums.DBS.value
+    - $ref: objects.enums.ECG.value
+    - $ref: objects.enums.ECOG.value
+    - $ref: objects.enums.EEG.value
+    - $ref: objects.enums.EMG.value
+    - $ref: objects.enums.EOG.value
+    - $ref: objects.enums.EYEGAZE.value
+    - $ref: objects.enums.FITERR.value
+    - $ref: objects.enums.GSR.value
+    - $ref: objects.enums.GYRO.value
+    - $ref: objects.enums.HEOG.value
+    - $ref: objects.enums.HLU.value
+    - $ref: objects.enums.JNTANG.value
+    - $ref: objects.enums.LATENCY.value
+    - $ref: objects.enums.MAGN.value
+    - $ref: objects.enums.MEGGRADAXIAL.value
+    - $ref: objects.enums.MEGGRADPLANAR.value
+    - $ref: objects.enums.MEGMAG.value
+    - $ref: objects.enums.MEGOTHER.value
+    - $ref: objects.enums.MEGREFGRADAXIAL.value
+    - $ref: objects.enums.MEGREFGRADPLANAR.value
+    - $ref: objects.enums.MEGREFMAG.value
+    - $ref: objects.enums.MISC.value
+    - $ref: objects.enums.NIRSCWAMPLITUDE.value
+    - $ref: objects.enums.NIRSCWFLUORESCENSEAMPLITUDE.value
+    - $ref: objects.enums.NIRSCWHBO.value
+    - $ref: objects.enums.NIRSCWHBR.value
+    - $ref: objects.enums.NIRSCWMUA.value
+    - $ref: objects.enums.NIRSCWOPTICALDENSITY.value
+    - $ref: objects.enums.ORNT.value
+    - $ref: objects.enums.OTHER.value
+    - $ref: objects.enums.PD.value
+    - $ref: objects.enums.POS.value
+    - $ref: objects.enums.PPG.value
+    - $ref: objects.enums.PUPIL.value
+    - $ref: objects.enums.REF.value
+    - $ref: objects.enums.RESP.value
+    - $ref: objects.enums.SEEG.value
+    - $ref: objects.enums.SYSCLOCK.value
+    - $ref: objects.enums.TEMP.value
+    - $ref: objects.enums.TRIG.value
+    - $ref: objects.enums.VEL.value
+    - $ref: objects.enums.VEOG.value
 # type column for electrodes.tsv files
 type__electrodes:
   name: type
@@ -781,8 +700,8 @@ type__optodes:
     The type of the optode.
   type: string
   enum:
-    - source
-    - detector
+    - $ref: objects.enums.source.value
+    - $ref: objects.enums.detector.value
     - n/a
 units:
   name: units
@@ -818,15 +737,6 @@ units__motion:
     and [Common Principles](SPEC_ROOT/common-principles.md#units) pages.
   type: string
   format: unit
-value:
-  name: value
-  display_name: Marker value
-  description: |
-    Marker value associated with the event (for example, the value of a TTL
-    trigger that was recorded at the onset of the event).
-  anyOf:
-    - type: number
-    - type: string
 volume_type:
   name: volume_type
   display_name: ASL volume type
@@ -835,11 +745,11 @@ volume_type:
     the `volume_type` of each volume in the corresponding `*_asl.nii[.gz]` file.
   type: string
   enum:
-    - control
-    - label
-    - m0scan
-    - deltam
-    - cbf
+    - $ref: objects.enums.control.value
+    - $ref: objects.enums.label.value
+    - $ref: objects.enums.m0scan.value
+    - $ref: objects.enums.deltam.value
+    - $ref: objects.enums.cbf.value
 wavelength_nominal:
   name: wavelength_nominal
   display_name: Wavelength nominal

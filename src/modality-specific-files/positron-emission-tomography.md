@@ -6,11 +6,13 @@ Please see [Citing BIDS](../introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
-Several [example PET datasets](https://github.com/bids-standard/bids-examples#pet-datasets)
-have been formatted using this specification
-and can be used for practical guidance when curating a new dataset.
+!!! example "Example datasets"
 
-Further PET datasets are available from [OpenNeuro](https://openneuro.org).
+    Several [example PET datasets](https://bids-standard.github.io/bids-examples/#pet)
+    have been formatted using this specification
+    and can be used for practical guidance when curating a new dataset.
+
+    Further PET datasets are available from [OpenNeuro](https://openneuro.org).
 
 ## Terminology and conventions
 
@@ -139,18 +141,6 @@ These fields are derived from the recommendations in
 Knudsen et al. 2020, [doi:10.1177/0271678X20905433](https://doi.org/10.1177/0271678X20905433),
 which we divide into several categories:
 
-#### Scanner Hardware
-
-<!-- This block generates a metadata table.
-These tables are defined in
-  src/schema/rules/sidecars
-The definitions of the fields specified in these tables may be found in
-  src/schema/objects/metadata.yaml
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_sidecar_table("pet.PETScannerHardware") }}
-
 #### Radiochemistry
 
 <!-- This block generates a metadata table.
@@ -203,6 +193,43 @@ A guide for using macros can be found at
 
 All reconstruction-specific parameters that are not specified, but one wants to include, should go into the `ReconMethodParameterValues` field.
 
+#### Hardware information
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("pet.PETHardware") }}
+
+#### Institution information
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+
+{{ MACROS___make_sidecar_table("pet.PETInstitutionInformation") }}
+
+#### Tissue description
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("pet.PETSample") }}
+
 #### Task
 
 If the OPTIONAL [`task-<label>`](../appendices/entities.md#task) is used,
@@ -214,15 +241,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "CogPOID": "RECOMMENDED",
-      "CogAtlasID": "RECOMMENDED",
-      "TaskDescription": "RECOMMENDED",
-      "Instructions": ("RECOMMENDED", "This is especially important in context of resting state recordings and distinguishing between eyes open and eyes closed paradigms."),
-      "TaskName": ("RECOMMENDED", "If used to denote resting scans, a RECOMMENDED convention is to use labels beginning with `rest`."),
-   }
-) }}
+{{ MACROS___make_sidecar_table("pet.PETTask") }}
 
 #### Example (`*_pet.json`)
 

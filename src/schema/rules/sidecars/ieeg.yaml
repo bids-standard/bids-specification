@@ -5,9 +5,20 @@
 # Assumptions: top-to-bottom overrides is sufficient logic
 
 ---
-iEEGGeneric:
+iEEGHardware:
   selectors:
-    - modality == "ieeg"
+    - datatype == "ieeg"
+    - suffix == "ieeg"
+  fields:
+    Manufacturer:
+      level: recommended
+      description_addendum: For example, `"TDT"`, `"Blackrock"`.
+    ManufacturersModelName: recommended
+    SoftwareVersions: recommended
+    DeviceSerialNumber: recommended
+
+iEEGTaskInformation:
+  selectors:
     - datatype == "ieeg"
     - suffix == "ieeg"
   fields:
@@ -16,21 +27,6 @@ iEEGGeneric:
       description_addendum: |
         A recommended convention is to name resting state task using labels
         beginning with `rest`.
-
-iEEGRecommended:
-  selectors:
-    - modality == "ieeg"
-    - datatype == "ieeg"
-    - suffix == "ieeg"
-  fields:
-    InstitutionName: recommended
-    InstitutionAddress: recommended
-    InstitutionalDepartmentName: recommended
-    Manufacturer:
-      level: recommended
-      description_addendum: For example, `"TDT"`, `"Blackrock"`.
-    ManufacturersModelName: recommended
-    SoftwareVersions: recommended
     TaskDescription: recommended
     Instructions:
       level: recommended
@@ -39,12 +35,19 @@ iEEGRecommended:
         distinguishing between eyes open and eyes closed paradigms.
     CogAtlasID: recommended
     CogPOID: recommended
-    DeviceSerialNumber: recommended
+
+iEEGInstitutionInformation:
+  selectors:
+    - datatype == "ieeg"
+    - suffix == "ieeg"
+  fields:
+    InstitutionName: recommended
+    InstitutionAddress: recommended
+    InstitutionalDepartmentName: recommended
 
 # Specific iEEG fields MUST be present
 iEEGRequired:
   selectors:
-    - modality == "ieeg"
     - datatype == "ieeg"
     - suffix == "ieeg"
   fields:
@@ -58,9 +61,8 @@ iEEGRequired:
     SoftwareFilters: required
 
 # Specific iEEG fields SHOULD be present
-iEEGMoreRecommended:
+iEEGRecommended:
   selectors:
-    - modality == "ieeg"
     - datatype == "ieeg"
     - suffix == "ieeg"
   fields:
@@ -87,7 +89,6 @@ iEEGMoreRecommended:
 # Specific iEEG fields MAY be present
 iEEGOptional:
   selectors:
-    - modality == "ieeg"
     - datatype == "ieeg"
     - suffix == "ieeg"
   fields:
@@ -97,7 +98,6 @@ iEEGOptional:
 # General fields
 iEEGCoordsystemGeneral:
   selectors:
-    - modality == "ieeg"
     - datatype == "ieeg"
     - suffix == "coordsystem"
   fields:
@@ -119,7 +119,6 @@ iEEGCoordsystemGeneral:
 # Fields relating to the iEEG electrode positions
 iEEGCoordsystemPositions:
   selectors:
-    - modality == "ieeg"
     - datatype == "ieeg"
     - suffix == "coordsystem"
   fields:
@@ -133,7 +132,6 @@ iEEGCoordsystemPositions:
 
 iEEGCoordsystemOther:
   selectors:
-    - modality == "ieeg"
     - datatype == "ieeg"
     - suffix == "coordsystem"
     - '"iEEGCoordinateSystem" in sidecar'

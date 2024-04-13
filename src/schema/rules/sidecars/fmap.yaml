@@ -6,17 +6,10 @@
 
 ---
 # Fieldmap data
-MRIFieldmapB0FieldIdentifier:
-  selectors:
-    - modality == "mri"
-    - datatype == "fmap"
-  fields:
-    B0FieldIdentifier: recommended
-
 MRIFieldmapIntendedFor:
   selectors:
-    - modality == "mri"
     - datatype == "fmap"
+    - match(extension, '\.nii(\.gz)?$')
   fields:
     IntendedFor:
       level: optional
@@ -24,30 +17,22 @@ MRIFieldmapIntendedFor:
         This field is optional, and in case the fieldmaps do not correspond
         to any particular scans, it does not have to be filled.
 
+MRIFieldmapB0FieldIdentifier:
+  selectors:
+    - datatype == "fmap"
+    - match(extension, '\.nii(\.gz)?$')
+    - '!("IntendedFor" in sidecar)'
+  fields:
+    B0FieldIdentifier: recommended
+
 # Case 1: Phase-difference map and at least one magnitude image
 MRIFieldmapPhaseDifferencePhasediff:
   selectors:
-    - modality == "mri"
     - datatype == "fmap"
     - suffix == "phasediff"
+    - match(extension, '\.nii(\.gz)?$')
   fields:
     EchoTime1: required
-    EchoTime2: required
-
-MRIFieldmapPhaseDifferenceMagnitude1:
-  selectors:
-    - modality == "mri"
-    - datatype == "fmap"
-    - suffix == "magnitude1"
-  fields:
-    EchoTime1: required
-
-MRIFieldmapPhaseDifferenceMagnitude2:
-  selectors:
-    - modality == "mri"
-    - datatype == "fmap"
-    - suffix == "magnitude2"
-  fields:
     EchoTime2: required
 
 # Case 2: Two phase maps and two magnitude images
@@ -56,18 +41,18 @@ MRIFieldmapPhaseDifferenceMagnitude2:
 # but EchoTime1 if phasediff exists.
 MRIFieldmapTwoPhase:
   selectors:
-    - modality == "mri"
     - datatype == "fmap"
-    - intersects([suffix], ["phase1", "phase2", "magnitude1", "magnitude2"])
+    - intersects([suffix], ["phase1", "phase2"])
+    - match(extension, '\.nii(\.gz)?$')
   fields:
     EchoTime__fmap: required
 
 # Case 3: Direct field mapping
 MRIFieldmapDirectFieldMapping:
   selectors:
-    - modality == "mri"
     - datatype == "fmap"
-    - intersects([suffix], ["phase", "fieldmap"])
+    - suffix == "fieldmap"
+    - match(extension, '\.nii(\.gz)?$')
   fields:
     Units:
       level: required
@@ -78,9 +63,9 @@ MRIFieldmapDirectFieldMapping:
 # Case 4: Multiple phase encoded directions ("pepolar")
 MRIFieldmapPepolar:
   selectors:
-    - modality == "mri"
     - datatype == "fmap"
     - suffix == "epi"
+    - match(extension, '\.nii(\.gz)?$')
   fields:
     PhaseEncodingDirection: required
     TotalReadoutTime: required

@@ -6,7 +6,7 @@
 
 ---
 # Metadata for either beh or events files
-BEHTabularData:
+BEHTaskInformation:
   selectors:
     - intersects([suffix], ["beh", "events"])
   fields:
@@ -15,6 +15,11 @@ BEHTabularData:
     TaskDescription: recommended
     CogAtlasID: recommended
     CogPOID: recommended
+
+BEHInstitutionInformation:
+  selectors:
+    - intersects([suffix], ["beh", "events"])
+  fields:
     InstitutionName: recommended
     InstitutionAddress: recommended
     InstitutionalDepartmentName: recommended

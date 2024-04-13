@@ -1,3 +1,9 @@
+"""Utilities for implementing ``schema.rules``
+
+This module is currently limited to constructing filename rules from
+``schema.rules.files``.
+"""
+
 import re
 import typing as ty
 from collections.abc import Mapping
@@ -81,7 +87,14 @@ def _entity_rule(rule: Mapping, schema: bst.types.Namespace):
         entity = {**schema.objects.entities[ent], **ent_obj}
 
         if "enum" in entity:
-            pattern = "|".join(entity["enum"])
+            allowed_values = []
+            for value in entity["enum"]:
+                if isinstance(value, str):
+                    allowed_values.append(value)
+                else:
+                    allowed_values.append(value["name"])
+
+            pattern = "|".join(allowed_values)
         else:
             pattern = schema.objects.formats[entity["format"]].pattern
 
@@ -117,7 +130,7 @@ def _entity_rule(rule: Mapping, schema: bst.types.Namespace):
     }
 
 
-def _split_inheritance_rules(rule: Mapping) -> ty.List[Mapping]:
+def _split_inheritance_rules(rule: dict) -> ty.List[dict]:
     """Break composite rules into main and sidecar rules
 
     Implements the inheritance principle for file naming.
@@ -126,32 +139,28 @@ def _split_inheritance_rules(rule: Mapping) -> ty.List[Mapping]:
     rule_exts = set(rule["extensions"])
 
     main_exts = rule_exts - heritable_exts
-    # If a rule only has TSV or JSON files, entities can be
-    # made required
-    if not main_exts:
-        if ".tsv" in rule_exts:
-            main_exts = {".tsv"}
-        elif ".json" in rule_exts:
-            main_exts = {".json"}
-
     sidecar_exts = rule_exts - main_exts
     if not sidecar_exts:
         return [rule]
 
-    sidecar_dtypes = [""] + rule.get("datatypes", [])
-    sidecar_entities = {ent: "optional" for ent in rule["entities"]}
+    rules = []
 
-    main_rule = {**rule, **{"extensions": list(main_exts)}}
-    sidecar_rule = {
-        **rule,
-        **{
-            "extensions": list(sidecar_exts),
-            "datatypes": sidecar_dtypes,
-            "entities": sidecar_entities,
-        },
-    }
+    # Some rules only address metadata, such as events.tsv or coordsystem.json
+    if main_exts:
+        rules.append({**rule, **{"extensions": list(main_exts)}})
 
-    return [main_rule, sidecar_rule]
+    rules.append(
+        {
+            **rule,
+            **{
+                "extensions": list(sidecar_exts),
+                "datatypes": [""] + rule.get("datatypes", []),
+                "entities": {ent: "optional" for ent in rule["entities"]},
+            },
+        }
+    )
+
+    return rules
 
 
 def _sanitize_extension(ext: str) -> str:

@@ -1,3 +1,6 @@
+"""Parsing utilities for BIDS Schema expression language
+"""
+
 from functools import partial
 
 from pyparsing import (
@@ -13,39 +16,47 @@ from pyparsing import (
     quoted_string,
 )
 
-# EBNF-ish grammar
-#
-# # In order of binding (loosest to tightest)
-# orOp  :: '||'
-# andOp :: '&&'
-# notOp :: '!'
-# cmpOp :: '==' | '!=' | '<' | '<=' | '>' | '>=' | 'in'
-# addOp :: '+' | '-'
-# mulOp :: '*' | '/' | '%'
-# expOp :: '**'
-#
-# item    :: '(' test ')' | '[' [testList] '] | '{' '}' | NAME | NUMBER | STRING
-# trailer :: '(' [testList] ') | '[' testList ']' | '.' NAME
-# atom    :: item trailer*
-#
-# ## Alternative: (possibly with 'null' as additional literal)
-# ## This makes things like '1(a, b, c)' or '"string"[0]' syntax errors
-# # literal :: NUMBER | STRING
-# # item    :: '(' test ')' | '[' testList '] | NAME
-# # atom    :: literal | item trailer*
-#
-# factor :: atom [ expOp factor ]*
-# term   :: factor [ mulOp factor ]*
-# expr   :: term [ addOp term ]*
-#
-# comparison :: expr [ compOp expr ]*
-# notTest    :: not notTest | comparison
-# andTest    :: notTest [ '&&' andTest ]*
-# test       :: andTest [ '||' test ]*
-#
-# testList   :: test [ ',' test ]*
-#
-# expression :: ^ test $
+
+def parse(expression_string: str) -> "ASTNode":
+    """Convert a BIDS schema expression into an abstract syntax tree
+
+    EBNF-ish grammar::
+
+        # In order of binding (loosest to tightest)
+        orOp  :: '||'
+        andOp :: '&&'
+        notOp :: '!'
+        cmpOp :: '==' | '!=' | '<' | '<=' | '>' | '>=' | 'in'
+        addOp :: '+' | '-'
+        mulOp :: '*' | '/' | '%'
+        expOp :: '**'
+
+        item    :: '(' test ')' | '[' [testList] '] | '{' '}' | NAME | NUMBER | STRING
+        trailer :: '(' [testList] ') | '[' test ']' | '.' NAME
+        atom    :: item trailer*
+
+        factor :: atom [ expOp factor ]*
+        term   :: factor [ mulOp factor ]*
+        expr   :: term [ addOp term ]*
+
+        comparison :: expr [ compOp expr ]*
+        notTest    :: not notTest | comparison
+        andTest    :: notTest [ '&&' andTest ]*
+        test       :: andTest [ '||' test ]*
+
+        testList   :: test [ ',' test ]*
+
+        expression :: ^ test $
+    """
+    # Alternative: (possibly with 'null' as additional literal)
+    # This makes things like '1(a, b, c)' or '"string"[0]' syntax errors
+    #
+    # literal :: NUMBER | STRING
+    # item    :: '(' test ')' | '[' testList '] | NAME
+    # atom    :: literal | item trailer*
+
+    return expression.parse_string(expression_string)[0]
+
 
 orOp = Literal("||")
 andOp = Literal("&&")
@@ -112,8 +123,11 @@ class ASTNode:
     parentheses to make associations unambiguous.
     """
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"<{self.__class__.__name__}: {self.__dict__}>"
+
+    def __str__(self) -> str:
+        raise NotImplementedError
 
 
 class RightOp(ASTNode):
@@ -143,14 +157,14 @@ class BinOp(ASTNode):
     def maybe(cls, tokens):
         """Construct class if not degenerate
 
-        Right-associative: outer <<= inner + (op + outer)[...]
-        Left-associative: outer = inner + (op + inner)[...]
+        * Right-associative: ``outer <<= inner + (op + outer)[...]``
+        * Left-associative: ``outer = inner + (op + inner)[...]``
 
-        In the right-associative case, we get [inner, op, BinOp(outer)],
+        In the right-associative case, we get ``[inner, op, BinOp(outer)]``,
         so we loop once and are done.
 
-        In the left-associative case, we get [inner, op, inner, op, ...],
-        convert to [BinOp(inner, op, inner), op, inner, ...]
+        In the left-associative case, we get ``[inner, op, inner, op, ...]``,
+        convert to ``[BinOp(inner, op, inner), op, inner, ...]``
         """
         while len(tokens) >= 3:
             tokens = [cls(tokens[:3])] + tokens[3:]
