@@ -21,7 +21,8 @@ MRSScannerHardware:
     MagneticFieldStrength: recommended
     ReceiveCoilName: recommended
     ReceiveCoilActiveElements: recommended
-    NumberReceiveCoilActiveElements: recommended
+    NumberReceiveCoilActiveElements: optional
+    NumberTransmitCoilActiveElements: optional
 
 MRSSample:
   selectors:
@@ -45,6 +46,11 @@ MRSSequenceSpecifics:
     SequenceName: recommended
     PulseSequenceDetails: recommended
     MRAcquisitionType: recommended for MRSI
+    WaterSuppression: recommended
+    WaterSuppressionTechnique: optional
+    OuterVolumeSuppression: recommended
+    B0ShimmingTechnique: optional
+    B1ShimmingTechnique: optional
 
 MRSRequiredFields:
   selectors:
@@ -73,11 +79,7 @@ MRSRecommendedFields:
     EditTarget: recommended for edited data
     EditPulse: recommended for edited data
     EditCondition: recommended for edited data
-    WaterSuppression: recommended
-    WaterSuppressionTechnique: recommended
-    OuterVolumeSuppression: recommended
     EncodingTechnique: recommended for MRSI
-    B0ShimmingTechnique: recommended
     ReferenceSignal: recommended if MRS reference data are present
     AnatomicalImage: recommended if anatomical MRI data are present
 
@@ -91,8 +93,6 @@ MRSOptionalFields:
     ParallelReductionFactorInPlane: optional
     ParallelAcquisitionTechnique: optional
     MultibandAccelerationFactor: optional
-    NumberTransmitCoilActiveElements: optional
-    B1ShimmingTechnique: optional
     PulseSequenceTiming: optional
     PulseSequencePulses: optional
     ReceiveGain: optional
