@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "patternProperties": {
+    "^[a-zA-Z0-9]+$": {
+      "type": "object",
+      "properties": {
+        "selectors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "target": {
+          "type": "object",
+          "properties": {
+            "suffix": {
+              "type": "string"
+            },
+            "extension": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            }
+          },
+          "required": ["extension"]
+        },
+        "inherit": {
+          "type": "boolean"
+        }
+      },
+      "required": ["selectors", "target", "inherit"],
+      "additionalProperties": false
+    }
+  }
+}
