@@ -7,7 +7,7 @@ import yaml
 from jsonschema.exceptions import ValidationError
 from jsonschema.validators import validate
 
-schema_path = Path(__file__).resolve().parent.parent / "schema"
+schema_path = Path(__file__).resolve().parent.parent / "src" / "schema"
 
 
 def load_schema(schema_path: Union[str, Path]) -> Union[Dict[str, Any], str]:
