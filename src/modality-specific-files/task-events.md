@@ -131,8 +131,8 @@ In the accompanying JSON sidecar, the `trial_type` column might look as follows:
         In a real dataset, all other columns SHOULD also be described.
 
     1.  The `channel` column contains a list of values that are separated
-        by a delimiter (`|`), as is declared in the `Delimiter` metadata
-        field of the `events.json file.
+        by a delimiter (`|`), as is declared in the `Delimiter` metadata field
+        of the `events.json` file.
         Thus, the channels related to the event in the third row of the example
         are called `F,1`, `F,2`, and `Cz`.
 
