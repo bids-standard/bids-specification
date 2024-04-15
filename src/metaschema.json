@@ -387,7 +387,21 @@
           }
         },
         "files": {
-          "type": "object"
+          "type": "object",
+          "properties": {
+            "common": {
+              "type": "object",
+              "properties": {
+                "core": {"type": "object"},
+                "tables": {"type": "object"}
+              },
+              "required": ["core", "tables"],
+              "additionalProperties": false
+            },
+            "deriv": {"type": "object"},
+            "raw": {"type": "object"}
+          },
+          "required": ["common", "deriv", "raw"]
         },
         "sidecars": {
           "type": "object"
