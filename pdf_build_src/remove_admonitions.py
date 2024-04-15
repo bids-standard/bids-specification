@@ -47,7 +47,7 @@ def remove_admonitions(
                     counter += 1
                     continue
 
-                if not line.startswith(indent):
+                if line != "\n" and not line.startswith(indent):
                     is_admonition = False
 
                 if is_admonition:

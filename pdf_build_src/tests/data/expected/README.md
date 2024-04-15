@@ -19,3 +19,14 @@ Collapsible admonitions start with 3 questions marks (`???`).
 
 Collapsible admonitions that will be shown as expanded
 start with 3 questions marks and a plus sign (`???+`).
+
+
+
+Let's see
+
+-   [`UK biobank`](https://github.com/bids-standard/bids-examples/tree/master/genetics_ukbb)
+-   foo bar [`UK biobank`](https://github.com/bids-standard/bids-examples/tree/master/genetics_ukbb)
+
+More of the admonition
+
+And here we resume normal thing.
