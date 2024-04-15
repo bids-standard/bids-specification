@@ -1,76 +1,34 @@
-import glob
 import json
 from pathlib import Path
+from typing import Any, Dict, Union
 
-import jsonschema
 import yaml
-from jsonschema import Draft7Validator
 
-objects_schema_path = Path(__file__).resolve().parent / "schema" / "metaschema" / "objects.schema.yaml"
-schema_path = Path(__file__).resolve().parent / "schema"
+from jsonschema.exceptions import ValidationError
+from jsonschema.validators import validate
 
-with open(objects_schema_path, "r") as f:
-    objects_schema = yaml.safe_load(f)
-
-for rel_path, spec in objects_schema.items():
-
-    with open(schema_path / f"{rel_path}.yaml", "r") as f:
-        instance = yaml.safe_load(f)
-
-    # Validate keys
-    for key, fields in instance.items():
-        required_fields = spec.get("required", [])
-        all_fields = required_fields + spec.get("optional", [])
-
-        # Check if all required fields are present
-        missing_required = [field for field in required_fields if field not in fields]
-        if missing_required:
-            raise AssertionError(f"Missing required fields {missing_required} in {key}")
-
-        # Check if all fields are valid (either required or optional)
-        invalid_fields = [field for field in fields if field not in all_fields]
-        if invalid_fields:
-            raise AssertionError(f"Invalid fields {invalid_fields} in {key}")
-
-    # Validate values against json schema
-    instance_schema = {
-        "$schema": "http://json-schema.org/draft-07/schema#",
-        "type": "object",
-        "properties": instance,
-    }
-
-    jsonschema.validate(instance_schema, Draft7Validator.META_SCHEMA)
-    print(f"Schema {rel_path} is valid.")
+schema_path = Path(__file__).resolve().parent.parent / "schema"
 
 
-# validate associations
-with open(schema_path / "meta" / "associations.yaml", "r") as f:
-    associations = yaml.safe_load(f)
-
-with open(schema_path / "metaschema" / "associations.schema.json", "r") as f:
-    associations_schema = json.load(f)
-
-jsonschema.validate(associations, associations_schema)
-
-
-def validate_dir(dir, schema_path):
-    with open(schema_path, "r") as f:
-        schema = json.load(f)
-
-    for fpath in glob.glob(str(dir / "*.yaml")):
-        with open(fpath, "r") as f:
-            instance = yaml.safe_load(f)
-        jsonschema.validate(instance, schema)
+def load_schema(schema_path: Union[str, Path]) -> Union[Dict[str, Any], str]:
+    if Path(schema_path).is_dir():
+        return {f.stem: load_schema(f) for f in Path(schema_path).iterdir()}
+    elif Path(schema_path).is_file() and (str(schema_path).endswith(".yaml") or str(schema_path).endswith(".yml")):
+        with open(schema_path, "r") as f:
+            return yaml.safe_load(f)
+    else:
+        with open(schema_path, "r") as f:
+            return f.read()
 
 
-validate_dir(
-    schema_path / "rules" / "checks",
-    schema_path / "metaschema" / "checks.schema.json"
-)
+schema = load_schema(schema_path)
 
-validate_dir(
-    schema_path / "rules" / "files" / "raw",
-    schema_path / "metaschema" / "raw.schema.json",
-)
+with open("metaschema.json", "r") as f:
+    metaschema = json.load(f)
 
-
+try:
+    validate(instance=schema, schema=metaschema)
+except ValidationError as e:
+    with open("validation/error_log.txt", "w") as file:
+        file.write(str(e))
+        raise e
