@@ -346,13 +346,6 @@ and a guide for using macros can be found at
 
 {{ read_table('tables/ieeg_electrodes.tsv', sep = '\t') }}
 
-```Text
-name  x   y    z    size   manufacturer
-LT01  19  -39  -16  2.3    Integra
-LT02  23  -40  -19  2.3    Integra
-H01   27  -42  -21  5      AdTech
-```
-
 ## Coordinate System JSON (`*_coordsystem.json`)
 
 <!--

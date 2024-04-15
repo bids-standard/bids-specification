@@ -418,13 +418,11 @@ when applicable.
 Additional optional columns MAY be used to describe other subjects' attributes.
 
 `participants.tsv` example:
-```Text
-participant_id species strain strain_rrid
-sub-01 mus musculus C57BL/6J RRID:IMSR_JAX:000664
-sub-02 mus musculus C57BL/6J RRID:IMSR_JAX:000664
-```
+
+{{ read_table('tables/microscopy_participants.tsv', sep = '\t') }}
 
 `participants.json` example:
+
 ```JSON
 {
     "species": {
@@ -506,9 +504,11 @@ For example: `sub-01_ses-01_sample-01_acq-1_photo.json`
 
 Below is an example of a spinal cord SEM overview, modified from Zaimi et al., 2018.
 [doi:10.1038/s41598-018-22181-4](https://doi.org/10.1038/s41598-018-22181-4).
+
 ```Text
     sub-01_sample-01_photo.jpg
 ```
+
 ![SEM overview](images/microscopy_sem_overview.jpg "SEM overview")
 
 <!-- Link Definitions -->
