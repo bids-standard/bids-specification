@@ -353,7 +353,38 @@
       "type": "object",
       "properties": {
         "checks": {
-          "type": "object"
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z0-9_]+$": {
+              "type": "object",
+              "patternProperties": {
+                "^[a-zA-Z0-9_]+$": {
+                  "type": "object",
+                  "properties": {
+                    "issues": {
+                      "type": "object",
+                      "properties": {
+                        "code": {"type": "string"},
+                        "message": {"type": "string"},
+                        "level": {"enum": ["error", "warning"]}
+                      },
+                      "required": ["code", "message", "level"],
+                      "additionalProperties": false
+                    },
+                    "selectors": {
+                      "type": "array",
+                      "items": {"type": "string"}
+                    },
+                    "checks": {
+                      "type": "array",
+                      "items": {"type": "string"}
+                    }
+                  },
+                  "required": ["checks", "selectors"]
+                }
+              }
+            }
+          }
         },
         "files": {
           "type": "object"
