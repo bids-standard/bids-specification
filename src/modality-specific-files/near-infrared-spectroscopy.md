@@ -332,7 +332,6 @@ The columns of the optodes description table stored in `*_optodes.tsv` are:
 
 {{ read_table('tables/nirs_optodes.tsv', sep = '\t') }}
 
-
 ## Coordinate System JSON (`*_coordsystem.json`)
 
 <!--

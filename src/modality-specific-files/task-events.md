@@ -83,12 +83,7 @@ A guide for using macros can be found at
 
 Example of the content of the TSV file:
 
-```Text
-onset	duration	trial_type	response_time	stim_file	channel	annots
-1.23	0.65	start	1.435	images/red_square.jpg	n/a	n/a
-5.65	0.65	stop	1.739	images/blue_square.jpg	n/a	n/a
-12.1	2.35	n/a	n/a	n/a	F,1|F,2|Cz	musc
-```
+{{ read_table('tables/task_events_1.tsv', sep = '\t') }}
 
 In the accompanying JSON sidecar, the `trial_type` column might look as follows:
 
@@ -207,12 +202,7 @@ A guide for using macros can be found at
 
 Example of the content of the TSV file:
 
-```Text
-onset duration  trial_type  identifier  database  response_time
-1.2 0.6 afraid  AF01AFAF  kdef  1.435
-5.6 0.6 angry AM01AFAN  kdef  1.739
-5.6 0.6 sad AF01ANSA  kdef  1.739
-```
+{{ read_table('tables/task_events_2.tsv', sep = '\t') }}
 
 The `trial_type` and `identifier` columns from the `events.tsv` files might be described
 in the accompanying JSON sidecar as follows:
