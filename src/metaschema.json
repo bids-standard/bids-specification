@@ -392,8 +392,40 @@
             "common": {
               "type": "object",
               "properties": {
-                "core": {"type": "object"},
-                "tables": {"type": "object"}
+                "core": {
+                  "type": "object",
+                  "patternProperties": {
+                    "^[a-zA-Z0-9_]+$": {
+                      "type": "object",
+                      "properties": {
+                        "level": {"type": "string"},
+                        "path": {"type": "string"},
+                        "extensions": {"type": "array"},
+                        "stem": {"type": "string"}
+                      },
+                      "required": ["level"],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "tables": {
+                  "type": "object",
+                  "patternProperties": {
+                    "^[a-zA-Z0-9_]+$": {
+                      "type": "object",
+                      "properties": {
+                        "level": {"type": "string"},
+                        "path": {"type": "string"},
+                        "extensions": {"type": "array"},
+                        "stem": {"type": "string"},
+                        "entities": {"type": "object"},
+                        "suffixes": {"type": "array"}
+                      },
+                      "required": ["level", "extensions"],
+                      "additionalProperties": false
+                    }
+                  }
+                }
               },
               "required": ["core", "tables"],
               "additionalProperties": false
