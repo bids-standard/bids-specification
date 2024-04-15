@@ -274,13 +274,7 @@ Examples of free-form text for field `description`
 
 See also the corresponding [`electrodes.tsv` example](#example-electrodestsv).
 
-```Text
-name     type  units  description                     reference     status  status_description
-VEOG     VEOG  uV     left eye                        VEOG-, VEOG+  good    n/a
-FDI      EMG   uV     left first dorsal interosseous  FDI-, FDI+    good    n/a
-Cz       EEG   uV     n/a                             REF           bad     high frequency noise
-UADC001  MISC  n/a    envelope of audio signal        n/a           good    n/a
-```
+{{ read_table('tables/eeg_channels.tsv', sep = '\t') }}
 
 ## Electrodes description (`*_electrodes.tsv`)
 
@@ -312,16 +306,7 @@ and a guide for using macros can be found at
 
 See also the corresponding [`electrodes.tsv` example](#example-channelstsv).
 
-```Text
-name   x        y	       z        type     material
-VEOG+  n/a      n/a      n/a      cup      Ag/AgCl
-VEOG-  n/a      n/a      n/a      cup      Ag/AgCl
-FDI+   n/a      n/a      n/a      cup      Ag/AgCl
-FDI-   n/a      n/a      n/a      cup      Ag/AgCl
-GND    -0.0707  0.0000   -0.0707  clip-on  Ag/AgCl
-Cz     0.0000   0.0714   0.0699   cup      Ag/AgCl
-REF    -0.0742  -0.0200  -0.0100  cup      Ag/AgCl
-```
+{{ read_table('tables/eeg_electrodes.tsv', sep = '\t') }}
 
 The [`acq-<label>`](../appendices/entities.md#acq) entity can be used to
 indicate acquisition of the same data. For
