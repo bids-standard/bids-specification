@@ -65,11 +65,7 @@ A guide for using macros can be found at
 
 `sub-control01_sessions.tsv` content:
 
-```Text
-session_id	acq_time	systolic_blood_pressure
-ses-predrug	2009-06-15T13:45:30	120
-ses-postdrug	2009-06-16T13:45:30	100
-```
+{{ read_csv('tables/longitudinal_sessions.tsv') }}
 
 See this [example dataset](https://github.com/bids-standard/bids-examples/tree/master/7t_trt)
 that has been formatted
