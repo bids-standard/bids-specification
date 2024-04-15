@@ -99,7 +99,6 @@ extra_javascript:
   - js/jquery-3.6.0.min.js
 markdown_extensions:
   - tables
-  - table-reader
   - toc:
       anchorlink: true
   - pymdownx.superfences
@@ -107,6 +106,7 @@ markdown_extensions:
   - pymdownx.details
 plugins:
   - search
+  - table-reader
   - branchcustomization:
       update_config:
         - branch: /(?!^master$)/

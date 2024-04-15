@@ -65,7 +65,7 @@ A guide for using macros can be found at
 
 `sub-control01_sessions.tsv` content:
 
-{{ read_csv('tables/longitudinal_sessions.tsv') }}
+{{ read_table('tables/longitudinal_sessions.tsv', sep = '\t') }}
 
 See this [example dataset](https://github.com/bids-standard/bids-examples/tree/master/7t_trt)
 that has been formatted
