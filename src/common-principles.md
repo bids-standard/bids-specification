@@ -316,18 +316,19 @@ field in `dataset_description.json` of each subdirectory of `derivatives` to:
     Therefore, from an Open Science perspective, it is RECOMMENDED to share
     the source data whenever it is possible.
 
-    However, more stringent sharing limitations may apply to
-    the source data than those applicable to the raw data.
-    For example, human data almost always requires anonymization before they
-    can be redistributed, or the subjects' consent form did not explicitly
-    stated that the source files would be shared after anonymization.
+    However, more stringent sharing limitations may apply to the source data
+    than those applicable to the raw data.
+    For example, human data almost always requires anonymization
+    before they can be redistributed,
+    or the subjects' consent form did not explicitly state that the source files
+    would be shared after anonymization.
     Further examples in which sharing source data may not be possible
-    include original data formats that are not redistributable as per the
-    acquisition device's license.
+    include original data formats that are not redistributable
+    as per the acquisition device's license.
 
     As for raw data, all regulatory, ethical, and legal aspects SHOULD
-    be carefully considered before sharing data through the `sourcedata/` folder
-    mechanism.
+    be carefully considered before sharing data
+    through the `sourcedata/` directory mechanism.
     In the case of source data, these aspects are likely more stringent.
 
 ### Storage of derived datasets
