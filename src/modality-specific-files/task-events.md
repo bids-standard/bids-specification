@@ -137,12 +137,12 @@ In the accompanying JSON sidecar, the `trial_type` column might look as follows:
         are called `F,1`, `F,2`, and `Cz`.
 
     1.  The example contains a column called `annots`.
-        This column is not defined in BIDS, and constitutes additional, arbitrary
-        (that is, unofficial) metadata.
+        This column is not defined in BIDS, and constitutes additional,
+        arbitrary (that is, unofficial) metadata.
         In the present case, it is used to describe artifacts in the data,
         in reference to the `channel` column.
-        The `annots` column is making
-        use of the powerful HED system for documenting events, see below.
+        The `annots` column is making use of the powerful HED system
+        for documenting events, see below.
 
 Events MAY also be documented in machine-actionable form
 using HED (Hierarchical Event Descriptor) tags.
