@@ -422,7 +422,7 @@ possible. Since the NIfTI standard offers limited support for the various image
 acquisition parameters available in DICOM files, we RECOMMEND that users provide
 additional meta information extracted from DICOM files in a sidecar JSON file
 (with the same filename as the `.nii[.gz]` file, but with a `.json` extension).
-Many of such metadata entries are explicitly formalized in BIDS and could be found listed in the [Glossary](./glossary.md).
+Many of such metadata entries are explicitly formalized in BIDS and can be found listed in the [Glossary](./glossary.md).
 Whenever formalizing a new metadata entry within BIDS, the name SHOULD correspond to the original DICOM Tag whenever the value is taken *as is* without any further harmonization.
 The description of the term in the schema then SHOULD describe such correspondence as "Corresponds to DICOM Tag ID1, ID2 `DICOM Tag Name`.".
 If value is harmonized, the description SHOULD describe such correspondence as "Based on DICOM Tag ID1, ID2 `DICOM Tag Name`.".
