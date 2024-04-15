@@ -29,6 +29,6 @@ with open("metaschema.json", "r") as f:
 try:
     validate(instance=schema, schema=metaschema)
 except ValidationError as e:
-    with open("validation/error_log.txt", "w") as file:
+    with open("error_log.txt", "w") as file:
         file.write(str(e))
         raise e

@@ -222,22 +222,128 @@
           }
         },
         "extensions": {
-          "type": "object"
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z0-9_]+$": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "string"
+                },
+                "display_name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "required": ["display_name", "description", "value"],
+              "additionalProperties": false
+            }
+          }
         },
         "files": {
-          "type": "object"
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z0-9_]+$": {
+              "type": "object",
+              "properties": {
+                "display_name": {
+                  "type": "string"
+                },
+                "file_type": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "required": ["display_name", "file_type", "description"],
+              "additionalProperties": false
+            }
+          }
         },
         "formats": {
-          "type": "object"
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z0-9_]+$": {
+              "type": "object",
+              "properties": {
+                "display_name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "pattern": {
+                  "format": "regex"
+                }
+              },
+              "required": ["display_name", "description", "pattern"],
+              "additionalProperties": false
+            }
+          }
         },
         "metadata": {
-          "type": "object"
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z0-9_]+$": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "display_name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                }
+              },
+              "required": ["name","display_name", "description"]
+            }
+          }
         },
         "modalities": {
-          "type": "object"
+          "type": "object",
+          "patternProperties": {
+            "^[a-z]+$": {
+              "type": "object",
+              "properties": {
+                "display_name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "required": ["display_name", "description"],
+              "additionalProperties": false
+            }
+          }
         },
         "suffixes": {
-          "type": "object"
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z0-9_]+$": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "string"
+                },
+                "display_name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "required": ["value", "display_name", "description"]
+            }
+          }
         }
       },
         "required": ["columns", "common_principles", "datatypes", "entities", "enums", "extensions", "files", "formats", "metadata", "modalities", "suffixes"],
