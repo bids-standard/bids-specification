@@ -274,7 +274,7 @@ Examples of free-form text for field `description`
 
 See also the corresponding [`electrodes.tsv` example](#example-electrodestsv).
 
-{{ read_table('tables/eeg_channels.tsv', sep = '\t') }}
+{{ read_table('../tables/eeg_channels.tsv', sep = '\t') }}
 
 ## Electrodes description (`*_electrodes.tsv`)
 
@@ -306,7 +306,7 @@ and a guide for using macros can be found at
 
 See also the corresponding [`electrodes.tsv` example](#example-channelstsv).
 
-{{ read_table('tables/eeg_electrodes.tsv', sep = '\t') }}
+{{ read_table('../tables/eeg_electrodes.tsv', sep = '\t') }}
 
 The [`acq-<label>`](../appendices/entities.md#acq) entity can be used to
 indicate acquisition of the same data. For

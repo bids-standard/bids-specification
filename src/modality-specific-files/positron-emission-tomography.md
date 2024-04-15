@@ -293,14 +293,14 @@ If recorded once per participant, these data SHOULD be included in the
 
 For example:
 
-{{ read_table('tables/pet_participants.tsv', sep = '\t') }}
+{{ read_table('../tables/pet_participants.tsv', sep = '\t') }}
 
 If multiple measurements are made, these data SHOULD be included in the
 [Sessions file](../modality-agnostic-files.md#sessions-file).
 
 For example:
 
-{{ read_table('tables/pet_sessions.tsv', sep = '\t') }}
+{{ read_table('../tables/pet_sessions.tsv', sep = '\t') }}
 
 ## Blood recording data
 

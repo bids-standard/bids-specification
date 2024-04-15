@@ -26,7 +26,7 @@ and the exact volume_type series should be specified in the `*_aslcontext.tsv`.
 
 Example of `*_aslcontext.tsv`:
 
-{{ read_table('tables/asl_context_case_1.tsv', sep = '\t') }}
+{{ read_table('../tables/asl_context_case_1.tsv', sep = '\t') }}
 
 ### Case 2: `*_asl.nii[.gz]` consists of volume_types `deltam` (scanner does not export `control` or `label` volumes)
 
@@ -37,7 +37,7 @@ In this case, the `deltam` should be included in the `*_asl.nii[.gz]` and specif
 
 Example of `*_aslcontext.tsv`:
 
-{{ read_table('tables/asl_context_case_2.tsv', sep = '\t') }}
+{{ read_table('../tables/asl_context_case_2.tsv', sep = '\t') }}
 
 ### Case 3: `*_asl.nii[.gz]` consists of volume_type `cbf` (scanner does not export `control`, `label`, or `deltaM` volumes)
 
@@ -47,7 +47,7 @@ the `cbf` should be included in the `*_asl.nii[.gz]` and specified in the `*_asl
 
 Example of `*_aslcontext.tsv`:
 
-{{ read_table('tables/asl_context_case_3.tsv', sep = '\t') }}
+{{ read_table('../tables/asl_context_case_3.tsv', sep = '\t') }}
 
 ## Summary Image of the most common ASL sequences
 

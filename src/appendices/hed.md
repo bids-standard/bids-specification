@@ -44,7 +44,7 @@ meanings in associated JSON sidecar files (`events.json`).
 (`trial_type`, `response_time`, and `stim_file`) in addition to
 the required `onset` and `duration` columns.
 
-{{ read_table('tables/hed_events.tsv', sep = '\t') }}
+{{ read_table('../tables/hed_events.tsv', sep = '\t') }}
 
 The `trial_type` column in the above example contains a limited number of distinct
 values (`go` and `stop`).

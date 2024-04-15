@@ -293,7 +293,7 @@ Note that upper-case is REQUIRED.
 
 ### Example `*_channels.tsv`
 
-{{ read_table('tables/nirs_channels.tsv', sep = '\t') }}
+{{ read_table('../tables/nirs_channels.tsv', sep = '\t') }}
 
 ## Optode description (`*_optodes.tsv`)
 
@@ -330,7 +330,7 @@ The columns of the optodes description table stored in `*_optodes.tsv` are:
 
 ### Example `*_optodes.tsv`
 
-{{ read_table('tables/nirs_optodes.tsv', sep = '\t') }}
+{{ read_table('../tables/nirs_optodes.tsv', sep = '\t') }}
 
 ## Coordinate System JSON (`*_coordsystem.json`)
 

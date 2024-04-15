@@ -185,7 +185,7 @@ Note that upper-case is REQUIRED:
 
 ### Example `*_channels.tsv`
 
-{{ read_table('tables/motion_channels.tsv', sep = '\t') }}
+{{ read_table('../tables/motion_channels.tsv', sep = '\t') }}
 
 ## Reference frame description (`*_channels.json`)
 

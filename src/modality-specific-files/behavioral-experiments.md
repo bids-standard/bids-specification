@@ -59,7 +59,7 @@ A guide for using macros can be found at
 
 ## Example `_beh.tsv`
 
-{{ read_table('tables/behavioral_beh.tsv', sep = '\t') }}
+{{ read_table('../tables/behavioral_beh.tsv', sep = '\t') }}
 
 In the accompanying JSON sidecar, the `trial` column might be documented as follows:
 

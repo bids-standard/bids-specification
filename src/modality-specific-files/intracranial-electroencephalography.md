@@ -275,7 +275,7 @@ Examples of free-form text for field `description`:
 
 ### Example `*_channels.tsv`
 
-{{ read_table('tables/ieeg_channels.tsv', sep = '\t') }}
+{{ read_table('../tables/ieeg_channels.tsv', sep = '\t') }}
 
 ## Electrode description (`*_electrodes.tsv`)
 
@@ -344,7 +344,7 @@ and a guide for using macros can be found at
 
 ### Example `*_electrodes.tsv`
 
-{{ read_table('tables/ieeg_electrodes.tsv', sep = '\t') }}
+{{ read_table('../tables/ieeg_electrodes.tsv', sep = '\t') }}
 
 ## Coordinate System JSON (`*_coordsystem.json`)
 
@@ -509,7 +509,7 @@ For example: `/stimuli/electrical_stimulation_functions/biphasic.tsv`
 
 ### Example `*_events.tsv`
 
-{{ read_table('tables/ieeg_events.tsv', sep = '\t') }}
+{{ read_table('../tables/ieeg_events.tsv', sep = '\t') }}
 
 <!-- Link Definitions -->
 

@@ -83,7 +83,7 @@ A guide for using macros can be found at
 
 Example of the content of the TSV file:
 
-{{ read_table('tables/task_events_1.tsv', sep = '\t') }}
+{{ read_table('../tables/task_events_1.tsv', sep = '\t') }}
 
 In the accompanying JSON sidecar, the `trial_type` column might look as follows:
 
@@ -202,7 +202,7 @@ A guide for using macros can be found at
 
 Example of the content of the TSV file:
 
-{{ read_table('tables/task_events_2.tsv', sep = '\t') }}
+{{ read_table('../tables/task_events_2.tsv', sep = '\t') }}
 
 The `trial_type` and `identifier` columns from the `events.tsv` files might be described
 in the accompanying JSON sidecar as follows:

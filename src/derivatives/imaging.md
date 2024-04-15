@@ -524,12 +524,12 @@ and a guide for using macros can be found at
 
 An example, custom `dseg.tsv` that defines three labels:
 
-{{ read_table('tables/derivatives_imaging_dseg_1.tsv', sep = '\t') }}
+{{ read_table('../tables/derivatives_imaging_dseg_1.tsv', sep = '\t') }}
 
 The following example `dseg.tsv` defines regions that are not part of the
 standard BIDS labels:
 
-{{ read_table('tables/derivatives_imaging_dseg_2.tsv', sep = '\t') }}
+{{ read_table('../tables/derivatives_imaging_dseg_2.tsv', sep = '\t') }}
 
 <!-- Link Definitions -->
 

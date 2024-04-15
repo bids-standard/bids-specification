@@ -70,7 +70,7 @@ Note that optional columns MUST be further described in an accompanying
 
 `participants.tsv` example:
 
-{{ read_table('tables/genetics_participants.tsv', sep = '\t') }}
+{{ read_table('../tables/genetic_participants.tsv', sep = '\t') }}
 
 ## Genetic Information
 

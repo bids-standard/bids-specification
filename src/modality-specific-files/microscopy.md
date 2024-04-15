@@ -419,7 +419,7 @@ Additional optional columns MAY be used to describe other subjects' attributes.
 
 `participants.tsv` example:
 
-{{ read_table('tables/microscopy_participants.tsv', sep = '\t') }}
+{{ read_table('../tables/microscopy_participants.tsv', sep = '\t') }}
 
 `participants.json` example:
 
