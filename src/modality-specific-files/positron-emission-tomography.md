@@ -293,23 +293,14 @@ If recorded once per participant, these data SHOULD be included in the
 
 For example:
 
-```Text
-participant_id body_weight
-sub-01 58
-sub-02 96
-sub-03 72
-```
+{{ read_table('tables/pet_participants.tsv', sep = '\t') }}
 
 If multiple measurements are made, these data SHOULD be included in the
 [Sessions file](../modality-agnostic-files.md#sessions-file).
 
 For example:
 
-```Text
-session_id body_weight
-ses-01 58
-ses-02 59
-```
+{{ read_table('tables/pet_sessions.tsv', sep = '\t') }}
 
 ## Blood recording data
 
