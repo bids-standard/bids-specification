@@ -5,8 +5,11 @@
 dataset_description:
   level: required
   path: dataset_description.json
+CITATION:
+  level: optional
+  path: CITATION.cff
 README:
-  level: required
+  level: recommended
   stem: README
   extensions:
     - ''

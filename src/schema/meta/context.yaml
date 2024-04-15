@@ -92,6 +92,9 @@ context:
     path:
       description: 'Path of the current file'
       type: string
+    size:
+      description: 'Length of the current file in bytes'
+      type: int
     entities:
       description: 'Entities parsed from the current filename'
       type: object
@@ -177,6 +180,9 @@ context:
             n_cols:
               description: 'Number of columns in bval file'
               type: integer
+            n_rows:
+              description: 'Number of rows in bval file'
+              type: integer
         bvec:
           description: 'B vector file'
           type: object
@@ -186,6 +192,9 @@ context:
               type: string
             n_cols:
               description: 'Number of columns in bvec file'
+              type: integer
+            n_rows:
+              description: 'Number of rows in bvec file'
               type: integer
         channels:
           description: 'Channels file'
@@ -215,6 +224,19 @@ context:
     json:
       description: 'Contents of the current JSON file'
       type: object
+    gzip:
+      description: 'Parsed contents of gzip header'
+      type: object
+      properties:
+        timestamp:
+          description: 'Modification time, unix timestamp'
+          type: number
+        filename:
+          description: 'Filename'
+          type: string
+        comment:
+          description: 'Comment'
+          type: string
     nifti_header:
       name: 'NIfTI Header'
       description: 'Parsed contents of NIfTI header referenced elsewhere in schema.'
@@ -253,6 +275,22 @@ context:
           maxItems: 8
           items:
             type: number
+        shape:
+          name: 'Data shape'
+          description: 'Data array shape, equal to dim[1:dim[0] + 1]'
+          type: array
+          minItems: 0
+          maxItems: 7
+          items:
+            type: integer
+        voxel_sizes:
+          name: 'Voxel sizes'
+          description: 'Voxel sizes, equal to pixdim[1:dim[0] + 1]'
+          type: array
+          minItems: 0
+          maxItems: 7
+          items:
+            type: number
         xyzt_units:
           name: 'XYZT Units'
           description: 'Units of pixdim[1..4]'
@@ -263,7 +301,8 @@ context:
               description: 'String representing the unit of voxel spacing.'
               type: string
               enum:
-                - 'unknown'
+                - $ref: objects.enums.unknown.value
+                # TODO: Add definitions for these values. (perhaps don't specify)
                 - 'meter'
                 - 'mm'
                 - 'um'
@@ -272,7 +311,8 @@ context:
               description: 'String representing the unit of inter-volume intervals.'
               type: string
               enum:
-                - 'unknown'
+                - $ref: objects.enums.unknown.value
+                # TODO: Add definitions for these values. (perhaps don't specify)
                 - 'sec'
                 - 'msec'
                 - 'usec'
@@ -284,3 +324,41 @@ context:
           name: 'sform code'
           description: 'Use of the affine fields.'
           type: integer
+    ome:
+      name: 'Open Microscopy Environment fields'
+      description: 'Parsed contents of OME-XML header, which may be found in OME-TIFF or OME-ZARR files'
+      type: object
+      properties:
+        PhysicalSizeX:
+          name: 'PhysicalSizeX'
+          description: 'Pixels / @PhysicalSizeX'
+          type: float
+        PhysicalSizeY:
+          name: 'PhysicalSizeY'
+          description: 'Pixels / @PhysicalSizeY'
+          type: float
+        PhysicalSizeZ:
+          name: 'PhysicalSizeZ'
+          description: 'Pixels / @PhysicalSizeZ'
+          type: float
+        PhysicalSizeXUnit:
+          name: 'PhysicalSizeXUnit'
+          description: 'Pixels / @PhysicalSizeXUnit'
+          type: string
+        PhysicalSizeYUnit:
+          name: 'PhysicalSizeYUnit'
+          description: 'Pixels / @PhysicalSizeYUnit'
+          type: string
+        PhysicalSizeZUnit:
+          name: 'PhysicalSizeZUnit'
+          description: 'Pixels / @PhysicalSizeZUnit'
+          type: string
+    tiff:
+      name: 'TIFF'
+      description: 'TIFF file format metadata'
+      type: object
+      properties:
+        version:
+          name: 'Version'
+          description: 'TIFF file format version (the second 2-byte block)'
+          type: int

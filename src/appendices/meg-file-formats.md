@@ -23,7 +23,7 @@ directory.
 
 ```Text
 [sub-<label>[_ses-<label>]_headshape.pos]
-sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg.ds>
+sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg.ds/
 ```
 
 CTF's data storage is therefore via directories containing multiple files. The
@@ -57,8 +57,8 @@ A guide for using macros can be found at
    }
 ) }}
 
-To learn more about CTF’s data organization:
-[https://www.fieldtriptoolbox.org/getting_started/ctf](https://www.fieldtriptoolbox.org/getting_started/ctf)
+To learn more about CTF's data organization
+on the relevant [FieldTrip webpage](https://www.fieldtriptoolbox.org/getting_started/ctf/)
 
 ## Neuromag/Elekta/MEGIN
 
@@ -212,7 +212,7 @@ entity to indicate each part.
 If there are multiple parts of a recording and the optional `scans.tsv` is provided,
 remember to list all files separately in `scans.tsv` and that the entries
 for the `acq_time` column in `scans.tsv` MUST all be identical, as described in
-[Scans file](../03-modality-agnostic-files.md#scans-file).
+[Scans file](../modality-agnostic-files.md#scans-file).
 
 Example:
 
@@ -235,8 +235,8 @@ A guide for using macros can be found at
 
 More information can be found under the following links:
 
--   [Neuromag/Elekta/MEGIN data organization](https://www.fieldtriptoolbox.org/getting_started/neuromag)
--   [BabyMEG](https://www.fieldtriptoolbox.org/getting_started/babysquid)
+-   [Neuromag/Elekta/MEGIN data organization](https://www.fieldtriptoolbox.org/getting_started/neuromag/)
+-   [BabyMEG](https://www.fieldtriptoolbox.org/getting_started/babysquid/)
 
 ### Recording dates in `.fif` files
 
@@ -255,7 +255,7 @@ containing multiple files without extensions.
 
 ```Text
 [sub-<label>[_ses-<label>]_headshape.pos]
-sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg>
+sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg/
 ```
 
 One SHOULD rename/create a parent run-specific directory and keep the original
@@ -301,8 +301,8 @@ A guide for using macros can be found at
    }
 ) }}
 
-More about the 4D neuroimaging/BTi data organization at:
-[https://www.fieldtriptoolbox.org/getting_started/bti](https://www.fieldtriptoolbox.org/getting_started/bti)
+More about the 4D neuroimaging/BTi data organization
+on the relevant [FieldTrip webpage](https://www.fieldtriptoolbox.org/getting_started/bti/)
 
 ## KIT/Yokogawa/Ricoh
 
@@ -355,8 +355,8 @@ While the acquisition entity can take any value, it is RECOMMENDED that if
 the two marker measurements occur before and after the raw data acquisition,
 `pre` and `post` are used to differentiate the two situations.
 
-More about the KIT/Yokogawa/Ricoh data organization at:
-[https://www.fieldtriptoolbox.org/getting_started/yokogawa](https://www.fieldtriptoolbox.org/getting_started/yokogawa)
+More about the KIT/Yokogawa/Ricoh data organization
+on the relevant [FieldTrip webpage](https://www.fieldtriptoolbox.org/getting_started/yokogawa/)
 
 ## KRISS
 
@@ -408,7 +408,7 @@ header that contains detailed information about the data acquisition system,
 followed by binary data. The associated binary header file contains part of the
 information from the ASCII header, specifically the one needed to process data,
 plus other information on offline preprocessing performed after data acquisition
-(for example, sensor position relative to subject’s head, head markers, stimulus
+(for example, sensor position relative to subject's head, head markers, stimulus
 information).
 
 Example:
@@ -438,7 +438,7 @@ A guide for using macros can be found at
 ## Aalto MEG–MRI
 
 For stand-alone MEG data, the Aalto hybrid device uses the standard `.fif` data
-format and follows the conventions of Elekta/Neuromag as described
+format and follows the conventions of Neuromag/Elekta/MEGIN as described
 [above](#neuromagelektamegin). The `.fif` files may
 contain unreconstructed MRI data. The inclusion of MRI data and information for
 accurate reconstruction will be fully standardized at a later stage.

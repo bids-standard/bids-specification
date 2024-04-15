@@ -6,14 +6,14 @@ nirsChannels:
     - extension == ".tsv"
   initial_columns:
     - name__channels
-    - type__nirs_channels
+    - type__channels
     - source__channels
     - detector__channels
     - wavelength_nominal
     - units__nirs
   columns:
     name__channels: required
-    type__nirs_channels: required
+    type__channels: required
     source__channels: required
     detector__channels: required
     wavelength_nominal: required
@@ -21,10 +21,12 @@ nirsChannels:
     sampling_frequency:
       level: optional
       level_addendum: required if `SamplingFrequency` is `n/a` in `_nirs.json`
-    orientation_component:
+    component:
       level: optional
       level_addendum: required if `type` is `ACCEL`, `GYRO` or `MAGN`
     wavelength_actual: optional
+    low_cutoff: optional
+    high_cutoff: optional
     description: optional
     wavelength_emission_actual: optional
     short_channel: optional

@@ -1,4 +1,5 @@
 """Schema loading- and processing-related functions."""
+
 import logging
 import os
 import re
@@ -19,17 +20,24 @@ class BIDSSchemaError(Exception):
     """Errors indicating invalid values in the schema itself"""
 
 
-def _get_entry_name(path):
-    if path.suffix == ".yaml":
-        return path.name[:-5]  # no .yaml
-    else:
-        return path.name
+def _get_schema_version(schema_dir):
+    """
+    Determine schema version for given schema directory, based on file specification.
+    """
+
+    schema_version_path = os.path.join(schema_dir, "SCHEMA_VERSION")
+    with open(schema_version_path) as f:
+        schema_version = f.readline().rstrip()
+    return schema_version
 
 
-def _get_bids_version(bids_schema_dir):
-    """Determine schema version, with directory name, file specification, and string fallback."""
+def _get_bids_version(schema_dir):
+    """
+    Determine BIDS version for given schema directory, with directory name, file specification,
+    and string fallback.
+    """
 
-    bids_version_path = os.path.join(bids_schema_dir, "BIDS_VERSION")
+    bids_version_path = os.path.join(schema_dir, "BIDS_VERSION")
     try:
         with open(bids_version_path) as f:
             bids_version = f.readline().rstrip()
@@ -37,18 +45,28 @@ def _get_bids_version(bids_schema_dir):
     except FileNotFoundError:
         # Maybe the directory encodes the version, as in:
         # https://github.com/bids-standard/bids-schema
-        _, bids_version = os.path.split(bids_schema_dir)
+        _, bids_version = os.path.split(schema_dir)
         if not re.match(r"^.*?[0-9]*?\.[0-9]*?\.[0-9]*?.*?$", bids_version):
             # Then we don't know, really.
-            bids_version = bids_schema_dir
+            bids_version = schema_dir
     return bids_version
 
 
 def _find(obj, predicate):
-    """Find objects in an arbitrary object that satisfy a predicate
+    """Find objects in an arbitrary object that satisfy a predicate.
 
     Note that this does not cut branches, so every iterable sub-object
     will be fully searched.
+
+    Parameters
+    ----------
+    obj : object
+    predicate : function
+
+    Returns
+    -------
+    generator
+        A generator of entries in ``obj`` that satisfy the predicate.
     """
     try:
         if predicate(obj):
@@ -67,17 +85,61 @@ def _find(obj, predicate):
 
 
 def dereference(namespace, inplace=True):
-    """Replace references in namespace with the contents of the referred object"""
+    """Replace references in namespace with the contents of the referred object.
+
+    Parameters
+    ----------
+    namespace : Namespace
+        Namespace for which to dereference.
+
+    inplace : bool, optional
+        Whether to modify the namespace in place or create a copy, by default True.
+
+    Returns
+    -------
+    namespace : Namespace
+        Dereferenced namespace
+    """
     if not inplace:
         namespace = deepcopy(namespace)
+
     for struct in _find(namespace, lambda obj: "$ref" in obj):
-        target = struct.pop("$ref")
-        struct.update({**namespace[target], **struct})
+        target = namespace.get(struct["$ref"])
+        if isinstance(target, Mapping):
+            struct.pop("$ref")
+            struct.update({**target, **struct})
+
+    # At this point, any remaining refs are one-off objects in lists
+    for struct in _find(namespace, lambda obj: any("$ref" in sub for sub in obj)):
+        for i, item in enumerate(struct):
+            try:
+                target = item.pop("$ref")
+            except (AttributeError, KeyError):
+                pass
+            else:
+                struct[i] = namespace.get(target)
+
     return namespace
 
 
 def flatten_enums(namespace, inplace=True):
-    """Replace enum collections with a single enum
+    """Replace enum collections with a single enum, merging enums contents.
+
+    The function helps reducing the complexity of the schema by assuming
+    that the values in the conditions (anyOf) are mutually exclusive.
+
+    Parameters
+    ----------
+    schema : dict
+        Schema in dictionary form to be flattened.
+
+    Returns
+    -------
+    schema : dict
+        Schema with flattened enums.
+
+    Examples
+    --------
 
     >>> struct = {
     ...   "anyOf": [
@@ -107,7 +169,7 @@ def load_schema(schema_path=None):
 
     This function allows the schema, like BIDS itself, to be specified in
     a hierarchy of directories and files.
-    File names (minus extensions) and directory names become keys
+    Filenames (minus extensions) and directory names become keys
     in the associative array (dict) of entries composed from content
     of files and entire directories.
 
@@ -121,9 +183,14 @@ def load_schema(schema_path=None):
     -------
     dict
         Schema in dictionary form.
+
+    Notes
+    -----
+    This function is cached, so it will only be called once per schema path.
     """
     if schema_path is None:
-        schema_path = utils.get_schema_path()
+        schema_path = utils.get_bundled_schema_path()
+        lgr.info("No schema path specified, defaulting to the bundled schema, `%s`.", schema_path)
     schema = Namespace.from_directory(schema_path)
     if not schema.objects:
         raise ValueError(f"objects subdirectory path not found in {schema_path}")
@@ -133,10 +200,25 @@ def load_schema(schema_path=None):
     dereference(schema)
     flatten_enums(schema)
 
+    schema["bids_version"] = _get_bids_version(schema_path)
+    schema["schema_version"] = _get_schema_version(schema_path)
+
     return schema
 
 
 def export_schema(schema):
+    """Export the schema to JSON format.
+
+    Parameters
+    ----------
+    schema : dict
+        The schema object, in dictionary form.
+
+    Returns
+    -------
+    json : str
+        The schema serialized as a JSON string.
+    """
     versioned = Namespace.build({"schema_version": __version__, "bids_version": __bids_version__})
     versioned.update(schema)
     return versioned.to_json()
@@ -150,7 +232,10 @@ def filter_schema(schema, **kwargs):
     schema : dict
         The schema object, which is a dictionary with nested dictionaries and
         lists stored within it.
-    kwargs : dict
+
+    Other Parameters
+    ----------------
+    **kwargs : dict
         Keyword arguments used to filter the schema.
         Example kwargs that may be used include: "suffixes", "datatypes",
         "extensions".

@@ -21,6 +21,7 @@ func:
     run: optional
     echo: optional
     part: optional
+    chunk: optional
 
 phase:
   suffixes:
@@ -41,3 +42,4 @@ phase:
     direction: optional
     run: optional
     echo: optional
+    chunk: optional

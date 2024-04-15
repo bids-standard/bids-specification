@@ -1,6 +1,22 @@
 ---
 # This file describes rules for broad "standard" errors in the specification.
 
+# BIDS Validator Original Issue Code #0
+InternalError:
+  code: INTERNAL_ERROR
+  message: |
+    Internal error. SOME VALIDATION STEPS MAY NOT HAVE OCCURRED.
+  level: error
+
+# BIDS Validator Original Issue Code #1
+NotIncluded:
+  code: NOT_INCLUDED
+  message: |
+    Files with such naming scheme are not part of BIDS specification. This error is
+    most commonly caused by typos in filenames that make them not BIDS compatible.
+    Please consult the specification and make sure your files are named correctly.
+  level: error
+
 # BIDS Validator Original Issue Code #26
 NiftiHeaderUnreadable:
   code: NIFTI_HEADER_UNREADABLE
@@ -28,24 +44,6 @@ GzNotGzipped:
   level: error
   selectors:
     - match(extension, '\.gz$')
-
-# BIDS Validator Original Issue Code #30
-BvalMultipleRows:
-  code: BVAL_MULTIPLE_ROWS
-  message: |
-    .bval files should contain exactly one row of volumes.
-  level: error
-  selectors:
-    - extension == ".bval"
-
-# BIDS Validator Original Issue Code #31
-BvecNumberRows:
-  code: BVEC_NUMBER_ROWS
-  message: |
-    .bvec files should contain exactly three rows of volumes.
-  level: error
-  selectors:
-    - extension == ".bvec"
 
 # BIDS Validator Original Issue Code #36
 NiftiTooSmall:
@@ -118,7 +116,7 @@ WrongNewLine:
   selectors:
     - extension == ".tsv"
 
-# BIDS Validator Original Issue Code #74
+# BIDS Validator Original Issue Code #88
 MalformedBvec:
   code: MALFORMED_BVEC
   message: |
@@ -127,7 +125,7 @@ MalformedBvec:
   selectors:
     - extension == ".bvec"
 
-# BIDS Validator Original Issue Code #88
+# BIDS Validator Original Issue Code #89
 MalformedBval:
   code: MALFORMED_BVAL
   message: |
@@ -136,7 +134,7 @@ MalformedBval:
   selectors:
     - extension == ".bval"
 
-# BIDS Validator Original Issue Code #89
+# BIDS Validator Original Issue Code #90
 SidecarWithoutDatafile:
   code: SIDECAR_WITHOUT_DATAFILE
   message: |
@@ -145,7 +143,7 @@ SidecarWithoutDatafile:
   selectors:
     - extension == ".json"
 
-# BIDS Validator Original Issue Code #90
+# BIDS Validator Original Issue Code #97
 MissingSession:
   code: MISSING_SESSION
   message: |

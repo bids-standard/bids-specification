@@ -29,7 +29,6 @@ timeseries:
     - beh
     - eeg
     - ieeg
-    - meg
     - nirs
   entities:
     subject: required
@@ -37,6 +36,25 @@ timeseries:
     task: required
     acquisition: optional
     run: optional
+    recording: optional
+
+timeseries__mri_no_task:
+  suffixes:
+    - physio
+    - stim
+  extensions:
+    - .tsv.gz
+    - .json
+  datatypes:
+    - dwi
+    - perf
+  entities:
+    subject: required
+    session: optional
+    acquisition: optional
+    run: optional
+    reconstruction: optional
+    direction: optional
     recording: optional
 
 # Specializations
@@ -52,6 +70,14 @@ events__mri:
     reconstruction: optional
     direction: optional
 
+events__motion:
+  $ref: rules.files.raw.task.events
+  datatypes:
+    - motion
+  entities:
+    $ref: rules.files.raw.task.events.entities
+    tracksys: optional
+
 events__pet:
   $ref: rules.files.raw.task.events
   datatypes:
@@ -65,23 +91,31 @@ events__pet:
     reconstruction: optional
     run: optional
 
-timeseries__mri:
-  $ref: rules.files.raw.task.timeseries
-  datatypes:
-    - dwi
-    - perf
-  entities:
-    $ref: rules.files.raw.task.timeseries.entities
-    reconstruction: optional
-    direction: optional
-
 timeseries__func:
   $ref: rules.files.raw.task.timeseries
   datatypes:
     - func
   entities:
-    $ref: rules.files.raw.task.timeseries__mri.entities
+    $ref: rules.files.raw.task.timeseries.entities
     ceagent: optional
+    reconstruction: optional
+    direction: optional
+
+timeseries__meg:
+  $ref: rules.files.raw.task.timeseries
+  datatypes:
+    - meg
+  entities:
+    $ref: rules.files.raw.task.timeseries.entities
+    processing: optional
+
+timeseries__motion:
+  $ref: rules.files.raw.task.timeseries
+  datatypes:
+    - motion
+  entities:
+    $ref: rules.files.raw.task.timeseries.entities
+    tracksys: optional
 
 timeseries__pet:
   $ref: rules.files.raw.task.timeseries

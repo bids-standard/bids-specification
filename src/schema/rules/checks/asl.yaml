@@ -15,12 +15,13 @@ ASLLabelingDurationNiftiLength:
       an array of numbers must be specified, for which any `m0scan` in the timeseries has a `LabelingDuration` of
       zero.
       In case an array of numbers is provided, its length should be equal to the number of volumes specified in
-      `*_aslcontext.tsv`. Corresponds to DICOM Tag 0018,9258 `ASL Pulse Train Duration`.
+      the associated `aslcontext.tsv`. Corresponds to DICOM Tag 0018,9258 `ASL Pulse Train Duration`.
     level: error
   selectors:
     - suffix == "asl"
     - '"LabelingDuration" in sidecar'
     - type(sidecar.LabelingDuration) == 'array'
+    - type(nifti_header) != "null"
   checks:
     - length(sidecar.LabelingDuration) == nifti_header.dim[4]
 
@@ -29,12 +30,13 @@ ASLContextConsistent:
   issue:
     code: ASLCONTEXT_TSV_NOT_CONSISTENT
     message: |
-      The number of volumes in the '*_aslcontext.tsv' for this file does not match the number of
+      The number of volumes in the 'aslcontext.tsv' for this file does not match the number of
       values in the NIfTI header.
     level: error
   selectors:
     - suffix == "asl"
-    - '"aslcontext" in associations'
+    - type(associations.aslcontext) != "null"
+    - type(nifti_header) != "null"
   checks:
     - nifti_header.dim[4] == associations.aslcontext.n_rows
 
@@ -56,6 +58,7 @@ ASLFlipAngleNiftiLength:
     - suffix == "asl"
     - '"FlipAngle" in sidecar'
     - type(sidecar.FlipAngle) == 'array'
+    - type(nifti_header) != "null"
   checks:
     - length(sidecar.FlipAngle) == nifti_header.dim[4]
 
@@ -65,7 +68,7 @@ ASLFlipAngleASLContextLength:
     code: FLIP_ANGLE_NOT_MATCHING_ASLCONTEXT_TSV
     message: |
       The number of values for 'FlipAngle' for this file does not match the number of volumes in the
-      'sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv'.
+      associated 'aslcontext.tsv'.
       'FlipAngle' is the flip angle (FA) for the acquisition, specified in degrees.
       Corresponds to: DICOM Tag 0018, 1314 `Flip Angle`.
       The data type number may apply to files from any MRI modality concerned with a single value for this field,
@@ -75,11 +78,10 @@ ASLFlipAngleASLContextLength:
     level: error
   selectors:
     - suffix == "asl"
-    - '"aslcontext" in associations'
-    - '"FlipAngle" in sidecar'
+    - type(associations.aslcontext) != "null"
     - type(sidecar.FlipAngle) == 'array'
   checks:
-    - length(sidecar.FlipAngle) == aslcontext.n_rows
+    - length(sidecar.FlipAngle) == associations.aslcontext.n_rows
 
 # 173
 ASLPostLabelingDelayNiftiLength:
@@ -100,8 +102,9 @@ ASLPostLabelingDelayNiftiLength:
     level: error
   selectors:
     - suffix == "asl"
-    - '"aslcontext" in associations'
+    - type(associations.aslcontext) != "null"
     - type(sidecar.PostLabelingDelay) == 'array'
+    - type(nifti_header) != "null"
   checks:
     - length(sidecar.PostLabelingDelay) == nifti_header.dim[4]
 
@@ -111,7 +114,7 @@ ASLPostLabelingDelayASLContextLength:
     code: POST_LABELING_DELAY_NOT_MATCHING_ASLCONTEXT_TSV
     message: |
       The number of values for 'PostLabelingDelay' for this file does not match the number of volumes
-      in the 'sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv'.
+      in the associated 'aslcontext.tsv'.
       'PostLabelingDelay' is the time, in seconds, after the end of the labeling (for (P)CASL) or
       middle of the labeling pulse (for PASL) until the middle of the excitation pulse applied to
       the imaging slab (for 3D acquisition) or first slice (for 2D acquisition).
@@ -124,10 +127,10 @@ ASLPostLabelingDelayASLContextLength:
     level: error
   selectors:
     - suffix == "asl"
-    - '"aslcontext" in associations'
+    - type(associations.aslcontext) != "null"
     - type(sidecar.PostLabelingDelay) == 'array'
   checks:
-    - length(sidecar.PostLabelingDelay) == aslcontext.n_rows
+    - length(sidecar.PostLabelingDelay) == associations.aslcontext.n_rows
 
 # 175
 ASLLabelingDurationASLContextLength:
@@ -135,7 +138,7 @@ ASLLabelingDurationASLContextLength:
     code: LABELLING_DURATION_NOT_MATCHING_ASLCONTEXT_TSV
     message: |
       The number of values for 'LabelingDuration' for this file does not match the number of volumes
-      in the 'sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv'.
+      in the associated 'aslcontext.tsv'.
       'LabelingDuration' is the total duration of the labeling pulse train, in seconds,
       corresponding to the temporal width of the labeling bolus for `(P)CASL`.
       In case all control-label volumes (or deltam or CBF) have the same `LabelingDuration`,
@@ -144,16 +147,15 @@ ASLLabelingDurationASLContextLength:
       an array of numbers must be specified, for which any `m0scan` in the timeseries has a
       `LabelingDuration` of zero.
       In case an array of numbers is provided, its length should be equal to the number of volumes
-      specified in `*_aslcontext.tsv`.
+      specified in the associated `aslcontext.tsv`.
       Corresponds to DICOM Tag 0018,9258 `ASL Pulse Train Duration`.
     level: error
   selectors:
     - suffix == "asl"
-    - '"aslcontext" in associations'
-    - '"LabelingDuration" in sidecar'
+    - type(associations.aslcontext) != "null"
     - type(sidecar.LabelingDuration) == 'array'
   checks:
-    - length(sidecar.LabelingDuration) == aslcontext.n_rows
+    - length(sidecar.LabelingDuration) == associations.aslcontext.n_rows
 
 # 177
 ASLRepetitionTimePreparationASLContextLength:
@@ -161,7 +163,7 @@ ASLRepetitionTimePreparationASLContextLength:
     code: REPETITIONTIMEPREPARATION_NOT_MATCHING_ASLCONTEXT_TSV
     message: |
       The number of values of 'RepetitionTimePreparation' for this file does not match the number of
-      volumes in the 'sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv'.
+      volumes in the associated 'aslcontext.tsv'.
       'RepetitionTimePreparation' is the interval, in seconds, that it takes a preparation pulse block to
       re-appear at the beginning of the succeeding (essentially identical) pulse sequence block.
       The data type number may apply to files from any MRI modality concerned with a single value for this field.
@@ -170,11 +172,10 @@ ASLRepetitionTimePreparationASLContextLength:
     level: error
   selectors:
     - suffix == "asl"
-    - '"aslcontext" in associations'
-    - '"RepetitionTimePreparation" in sidecar'
+    - type(associations.aslcontext) != "null"
     - type(sidecar.RepetitionTimePreparation) == 'array'
   checks:
-    - length(sidecar.RepetitionTimePreparation) == aslcontext.n_rows
+    - length(sidecar.RepetitionTimePreparation) == associations.aslcontext.n_rows
 
 # 180
 ASLBackgroundSuppressionNumberPulses:
@@ -200,16 +201,53 @@ ASLTotalAcquiredVolumesASLContextLength:
     code: TOTAL_ACQUIRED_VOLUMES_NOT_CONSISTENT
     message: |
       The number of values for 'TotalAcquiredVolumes' for this file does not match number of
-      volumes in the 'sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv'.
+      volumes in the associated 'aslcontext.tsv'.
       'TotalAcquiredVolumes' is the original number of 3D volumes acquired for each volume defined in the
-      'sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv'.
+      associated 'aslcontext.tsv'.
     level: warning
   selectors:
     - suffix == "asl"
-    - '"aslcontext" in associations'
+    - type(associations.aslcontext) != "null"
     - '"TotalAcquiredVolumes" in sidecar'
   checks:
     - aslcontext.n_rows == sidecar.TotalAcquiredVolumes
+
+# 184
+PostLabelingDelayGreater:
+  issue:
+    code: POST_LABELING_DELAY_GREATER
+    message: |
+      'PostLabelingDelay' is greater than 10. Are you sure it's expressed in seconds?
+    level: warning
+  selectors:
+    - suffix == "asl"
+    - sidecar.PostLabelingDelay != null
+  checks:
+    - sidecar.PostLabelingDelay <= 10
+
+# 186
+BolusCutOffDelayTimeGreater:
+  issue:
+    code: BOLUS_CUT_OFF_DELAY_TIME_GREATER
+    message: |
+      'BolusCutOffDelayTime' is greater than 10. Are you sure it's expressed in seconds?
+    level: warning
+  selectors:
+    - sidecar.BolusCutOffDelayTime != null
+  checks:
+    - sidecar.BolusCutOffDelayTime <= 10
+
+# 187
+LabelingDurationGreater:
+  issue:
+    code: LABELING_DURATION_GREATER
+    message: |
+      'LabelingDuration' is greater than 10. Are you sure it's expressed in seconds?
+    level: warning
+  selectors:
+    - sidecar.LabelingDuration != null
+  checks:
+    - sidecar.LabelingDuration <= 10
 
 # 196
 ASLEchoTimeASLContextLength:
@@ -217,30 +255,31 @@ ASLEchoTimeASLContextLength:
     code: ECHO_TIME_NOT_CONSISTENT
     message: |
       The number of values for 'EchoTime' for this file does not match number of volumes in the
-      'sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv'.
+      associated 'aslcontext.tsv'.
       'EchoTime' is the echo time (TE) for the acquisition, specified in seconds.
     level: warning
   selectors:
     - suffix == "asl"
-    - '"aslcontext" in associations'
-    - '"EchoTime" in sidecar'
+    - type(associations.aslcontext) != "null"
     - type(sidecar.EchoTime) == 'array'
   checks:
-    - length(sidecar.EchoTime) == aslcontext.n_rows
+    - length(sidecar.EchoTime) == associations.aslcontext.n_rows
+
+## 197 ECHO_TIME_ELEMENTS duplicates 165 and 196 (length(sidecar.EchoTime) == nifti_header.dim[4])
 
 # 198
 ASLM0TypeAbsentScan:
   issue:
     code: M0Type_SET_INCORRECTLY_TO_ABSENT
     message: |
-      You defined M0Type as 'absent' while including a separate '*_m0scan.nii[.gz]' and
-      '*_m0scan.json', or defining the 'M0Estimate' field.
+      You defined M0Type as 'absent' while including a separate 'm0scan.nii[.gz]' and
+      'm0scan.json', or defining the 'M0Estimate' field.
       This is not allowed, please check that this field are filled correctly.
     level: error
   selectors:
     - suffix == "asl"
-    - '"aslcontext" in associations'
-    - '"m0scan" in associations'
+    - type(associations.aslcontext) != "null"
+    - type(associations.m0scan) != "null"
     - '"M0Type" in sidecar'
   checks:
     - sidecar.M0Type != "absent"
@@ -250,13 +289,14 @@ ASLM0TypeAbsentASLContext:
   issue:
     code: M0Type_SET_INCORRECTLY_TO_ABSENT_IN_ASLCONTEXT
     message: |
-      You defined M0Type as 'absent' while including an m0scan volume within the '*_aslcontext.tsv'.
+      You defined M0Type as 'absent' while including an m0scan volume within the associated
+      'aslcontext.tsv'.
       This is not allowed, please check that this field are filled correctly.
     level: error
   selectors:
     - suffix == "asl"
-    - '"aslcontext" in associations'
-    - intersects(aslcontext.volume_type, ["m0scan"])
+    - type(associations.aslcontext) != "null"
+    - intersects(associations.aslcontext.volume_type, ["m0scan"])
     - '"M0Type" in sidecar'
   checks:
     - sidecar.M0Type != "absent"
@@ -267,12 +307,12 @@ ASLM0TypeIncorrect:
     code: M0Type_SET_INCORRECTLY
     message: |
       M0Type was not defined correctly.
-      If 'M0Type' is equal to 'separate', the dataset should include a *_m0scan.nii[.gz] and *_m0scan.json file.
+      If 'M0Type' is equal to 'separate', the dataset should include an associated
+      'm0scan.nii[.gz]' and 'm0scan.json' file.
     level: error
   selectors:
     - suffix == "asl"
-    - '"aslcontext" in associations'
-    - '"M0Type" in sidecar'
+    - type(associations.aslcontext) != "null"
     - sidecar.M0Type == "separate"
   checks:
-    - '"m0scan" in associations'
+    - type(associations.m0scan) != "null"

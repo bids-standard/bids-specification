@@ -22,11 +22,14 @@ nonparametric:
   entities:
     subject: required
     session: optional
+    task: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
     run: optional
+    echo: optional
     part: optional
+    chunk: optional
 
 parametric:
   suffixes:
@@ -43,7 +46,6 @@ parametric:
     - T1rho
     - MWFmap
     - MTVmap
-    - PDT2map
     - Chimap
     - S0map
     - M0map
@@ -56,10 +58,12 @@ parametric:
   entities:
     subject: required
     session: optional
+    task: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
     run: optional
+    chunk: optional
 
 defacemask:
   suffixes:
@@ -73,11 +77,13 @@ defacemask:
   entities:
     subject: required
     session: optional
+    task: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
     run: optional
     modality: optional
+    chunk: optional
 
 multiecho:
   suffixes:
@@ -92,12 +98,14 @@ multiecho:
   entities:
     subject: required
     session: optional
+    task: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
     run: optional
     echo: required
     part: optional
+    chunk: optional
 
 multiflip:
   suffixes:
@@ -111,6 +119,7 @@ multiflip:
   entities:
     subject: required
     session: optional
+    task: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
@@ -118,6 +127,7 @@ multiflip:
     echo: optional
     flip: required
     part: optional
+    chunk: optional
 
 multiinversion:
   suffixes:
@@ -131,12 +141,14 @@ multiinversion:
   entities:
     subject: required
     session: optional
+    task: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
     run: optional
     inversion: required
     part: optional
+    chunk: optional
 
 mp2rage:
   suffixes:
@@ -150,6 +162,7 @@ mp2rage:
   entities:
     subject: required
     session: optional
+    task: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
@@ -158,6 +171,7 @@ mp2rage:
     flip: optional
     inversion: required
     part: optional
+    chunk: optional
 
 vfamt:
   suffixes:
@@ -172,6 +186,7 @@ vfamt:
   entities:
     subject: required
     session: optional
+    task: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
@@ -180,6 +195,7 @@ vfamt:
     flip: required
     mtransfer: required
     part: optional
+    chunk: optional
 
 mtr:
   suffixes:
@@ -193,9 +209,11 @@ mtr:
   entities:
     subject: required
     session: optional
+    task: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
     run: optional
     mtransfer: required
     part: optional
+    chunk: optional

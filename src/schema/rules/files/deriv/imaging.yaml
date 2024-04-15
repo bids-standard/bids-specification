@@ -39,8 +39,6 @@ anat_parametric_mask:
   $ref: rules.files.raw.anat.parametric
   suffixes:
     - mask
-  extensions:
-    - .nii.gz
   entities:
     $ref: rules.files.raw.anat.parametric.entities
     space: optional
@@ -53,8 +51,6 @@ anat_nonparametric_mask:
   $ref: rules.files.raw.anat.nonparametric
   suffixes:
     - mask
-  extensions:
-    - .nii.gz
   entities:
     $ref: rules.files.raw.anat.nonparametric.entities
     space: optional
@@ -67,8 +63,6 @@ dwi_mask:
   $ref: rules.files.raw.dwi.dwi
   suffixes:
     - mask
-  extensions:
-    - .nii.gz
   entities:
     $ref: rules.files.raw.dwi.dwi.entities
     space: optional
@@ -81,8 +75,6 @@ func_mask:
   $ref: rules.files.raw.func.func
   suffixes:
     - mask
-  extensions:
-    - .nii.gz
   entities:
     $ref: rules.files.raw.func.func.entities
     space: optional
@@ -95,34 +87,38 @@ anat_parametric_discrete_segmentation:
   $ref: rules.files.raw.anat.parametric
   suffixes:
     - dseg
-  extensions:
-    - .nii.gz
   entities:
     $ref: rules.files.raw.anat.parametric.entities
     space: optional
     resolution: optional
     density: optional
     description: optional
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+    - .tsv
 
 anat_nonparametric_discrete_segmentation:
   $ref: rules.files.raw.anat.nonparametric
   suffixes:
     - dseg
-  extensions:
-    - .nii.gz
   entities:
     $ref: rules.files.raw.anat.nonparametric.entities
     space: optional
     resolution: optional
     density: optional
     description: optional
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+    - .tsv
 
 func_discrete_segmentation:
   $ref: rules.files.raw.func.func
   suffixes:
     - dseg
-  extensions:
-    - .nii.gz
   entities:
     $ref: rules.files.raw.func.func.entities
     space: optional
@@ -134,8 +130,6 @@ dwi_discrete_segmentation:
   $ref: rules.files.raw.dwi.dwi
   suffixes:
     - dseg
-  extensions:
-    - .nii.gz
   entities:
     $ref: rules.files.raw.dwi.dwi.entities
     space: optional
@@ -147,8 +141,6 @@ anat_parametric_probabilistic_segmentation:
   $ref: rules.files.raw.anat.parametric
   suffixes:
     - probseg
-  extensions:
-    - .nii.gz
   entities:
     $ref: rules.files.raw.anat.parametric.entities
     space: optional
@@ -161,8 +153,6 @@ anat_nonparametric_probabilistic_segmentation:
   $ref: rules.files.raw.anat.nonparametric
   suffixes:
     - probseg
-  extensions:
-    - .nii.gz
   entities:
     $ref: rules.files.raw.anat.nonparametric.entities
     space: optional
@@ -175,8 +165,6 @@ func_probabilistic_segmentation:
   $ref: rules.files.raw.func.func
   suffixes:
     - probseg
-  extensions:
-    - .nii.gz
   entities:
     $ref: rules.files.raw.func.func.entities
     space: optional
@@ -189,8 +177,6 @@ dwi_probabilistic_segmentation:
   $ref: rules.files.raw.dwi.dwi
   suffixes:
     - probseg
-  extensions:
-    - .nii.gz
   entities:
     $ref: rules.files.raw.dwi.dwi.entities
     space: optional
@@ -206,6 +192,8 @@ anat_parametic_discrete_surface:
   extensions:
     - .label.gii
     - .dlabel.nii
+    - .json
+    - .tsv
   entities:
     $ref: rules.files.raw.anat.parametric.entities
     hemisphere: optional
@@ -221,6 +209,8 @@ anat_nonparametic_discrete_surface:
   extensions:
     - .label.gii
     - .dlabel.nii
+    - .json
+    - .tsv
   entities:
     $ref: rules.files.raw.anat.nonparametric.entities
     hemisphere: optional

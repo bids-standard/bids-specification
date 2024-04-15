@@ -1,4 +1,10 @@
-"""Namespace types"""
+"""Namespace types
+
+The purpose of the :class:`~Namespace` type is to make a directory of
+YAML files available as a single dictionary and allow attribute (``.``)
+lookups.
+"""
+
 import json
 import typing as ty
 from collections.abc import ItemsView, KeysView, Mapping, MutableMapping, ValuesView
@@ -18,6 +24,16 @@ def _expand_dots(entry: ty.Tuple[str, ty.Any]) -> ty.Tuple[str, ty.Any]:
 
 def expand(element):
     """Expand a dict, recursively, to replace dots in keys with recursive dictionaries
+
+    Parameters
+    ----------
+    element : dict
+        The dictionary to expand
+
+    Returns
+    -------
+    dict :
+        The expanded dictionary
 
     Examples
     --------

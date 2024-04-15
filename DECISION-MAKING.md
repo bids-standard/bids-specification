@@ -14,31 +14,23 @@ BIDS governance.
 
 ### Steering Group
 
-| Name                                                                         |
-|------------------------------------------------------------------------------|
-| Guiomar Niso ([@guiomar](https://github.com/guiomar))                        |
-| Melanie Ganz ([@melanieganz](https://github.com/melanieganz))                |
-| Robert Oostenveld ([@robertoostenveld](https://github.com/robertoostenveld)) |
-| Russell Poldrack ([@poldrack](https://github.com/poldrack))                  |
-| Ariel Rokem ([@arokem](https://github.com/arokem))            |
-
-#### Past steering group members
-
-| Name                                                                         |
-|------------------------------------------------------------------------------|
-| Kirstie Whitaker ([@KirstieJane](https://github.com/KirstieJane))            |
+Current and past members of the steering group can be found
+[here](https://bids.neuroimaging.io/governance.html#bids-steering-group).
 
 ### Maintainers Group
 
-| Name                                                                           | Time commitment | Scope                            |
-|--------------------------------------------------------------------------------|-----------------|----------------------------------|
-| Stefan Appelhoff ([@sappelhoff](https://github.com/sappelhoff))                | 5h/week         | Lead Maintainer                  |
-| Chris Markiewicz ([@effigies](https://github.com/effigies))                    | 5h/week         |                                  |
-| Taylor Salo ([@tsalo](https://github.com/tsalo))                               | 3h/week         | MRI                              |
-| Remi Gau ([@Remi-Gau](https://github.com/Remi-Gau))                            | 3h/week         | Community development, MRI       |
-| Anthony Galassi  ([@bendhouseart](https://github.com/bendhouseart))            | 3h/week         | PET, Community development       |
-| Eric Earl ([@ericearl](https://github.com/ericearl))                           | 2h/week         |                                  |
-| Ross Blair ([@rwblair](https://github.com/rwblair))                            |                 | Maintainer of the bids-validator |
+| Name                                                                      | Time commitment | Scope                                 | Joined   |
+|---------------------------------------------------------------------------|-----------------|---------------------------------------|----------|
+| Stefan Appelhoff ([@sappelhoff](https://github.com/sappelhoff))           | 5h/week         | Lead Maintainer                       | Mar 2020 |
+| Chris Markiewicz ([@effigies](https://github.com/effigies))               | 5h/week         |                                       | Mar 2020 |
+| Ross Blair ([@rwblair](https://github.com/rwblair))                       |                 | Maintainer of the bids-validator      | Mar 2020 |
+| Taylor Salo ([@tsalo](https://github.com/tsalo))                          | 3h/week         | MRI                                   | Sep 2020 |
+| Remi Gau ([@Remi-Gau](https://github.com/Remi-Gau))                       | 3h/week         | Community development, MRI            | Oct 2020 |
+| Anthony Galassi  ([@bendhouseart](https://github.com/bendhouseart))       | 3h/week         | PET, Community development            | Sep 2021 |
+| Eric Earl ([@ericearl](https://github.com/ericearl))                      | 2h/week         |                                       | Dec 2021 |
+| Christine Rogers ([@christinerogers](https://github.com/christinerogers)) | 2h/mo           | Interoperability, EEG and multi-modal | Apr 2023 |
+| Nell Hardcastle ([@nellh](https://github.com/nellh))                      | 2h/week         |                                       | Jul 2023 |
+| Kimberly Ray ([@KimberlyLRay](https://github.com/KimberlyLRay))                      | 1h/week         |                                       | Nov 2022 |
 
 In addition to the [BIDS Governance](https://bids.neuroimaging.io/governance.html#bids-maintainers-group)
 classification of a maintainer, maintainers may declare a limited scope of responsibility.
@@ -50,9 +42,9 @@ contributions elsewhere are welcome, as well.
 
 #### Past maintainers group members
 
-| Name                                                                           |
-|--------------------------------------------------------------------------------|
-| Franklin Feingold ([@franklin-feingold](https://github.com/franklin-feingold)) |
+| Name                                                                           | Duration            |
+|--------------------------------------------------------------------------------|---------------------|
+| Franklin Feingold ([@franklin-feingold](https://github.com/franklin-feingold)) | Mar 2020 - Jul 2022 |
 
 ### BEP Leads Group
 
@@ -61,11 +53,12 @@ Leaders of BIDS Extension Proposals are listed in the
 
 ### Contributors Group
 
-Contributors are listed in the [Contributors appendix](https://bids-specification.readthedocs.io/en/stable/appendices/contributors.html)
-of the BIDS specification. Contributors who have not yet entered their name
-into this list are encouraged to edit the [Contributors WIKI page](https://github.com/bids-standard/bids-specification/wiki/Contributors)
-with their name, using the emojis listed in the WIKI to indicate their
-contributions.
+Contributors are listed in the
+[Contributors appendix](https://bids-specification.readthedocs.io/en/stable/appendices/contributors.html)
+of the BIDS specification.
+Contributors who have not yet entered their name into this list are encouraged to edit the
+[Contributors wiki page](https://github.com/bids-standard/bids-specification/wiki/Recent-Contributors)
+according to the instructions listed there.
 
 ### Other groups
 

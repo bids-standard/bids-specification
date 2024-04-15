@@ -3,116 +3,14 @@ import shutil
 
 import pytest
 
-from .. import validator
-from ..types import Namespace
-from .conftest import BIDS_ERROR_SELECTION, BIDS_SELECTION
+from bidsschematools.conftest import BIDS_ERROR_SELECTION, BIDS_SELECTION
+from bidsschematools.validator import select_schema_path, validate_bids
 
-
-def test_path_rule():
-    rule = Namespace.build({"path": "dataset_description.json", "level": "required"})
-    assert validator._path_rule(rule) == {"regex": r"dataset_description\.json", "mandatory": True}
-
-    rule = Namespace.build({"path": "LICENSE", "level": "optional"})
-    assert validator._path_rule(rule) == {"regex": "LICENSE", "mandatory": False}
-
-
-def test_stem_rule():
-    rule = Namespace.build({"stem": "README", "level": "required", "extensions": ["", ".md"]})
-    assert validator._stem_rule(rule) == {
-        "regex": r"README(?P<extension>|\.md)",
-        "mandatory": True,
-    }
-
-    rule = Namespace.build(
-        {"stem": "participants", "level": "optional", "extensions": [".tsv", ".json"]}
-    )
-    assert validator._stem_rule(rule) == {
-        "regex": r"participants(?P<extension>\.tsv|\.json)",
-        "mandatory": False,
-    }
-
-
-def test_entity_rule(schema_obj):
-    # Simple
-    rule = Namespace.build(
-        {
-            "datatypes": ["anat"],
-            "entities": {"subject": "required", "session": "optional"},
-            "suffixes": ["T1w"],
-            "extensions": [".nii"],
-        }
-    )
-    assert validator._entity_rule(rule, schema_obj) == {
-        "regex": (
-            r"sub-(?P<subject>[0-9a-zA-Z]+)/"
-            r"(?:ses-(?P<session>[0-9a-zA-Z]+)/)?"
-            r"(?P<datatype>anat)/"
-            r"sub-(?P=subject)_"
-            r"(?:ses-(?P=session)_)?"
-            r"(?P<suffix>T1w)"
-            r"(?P<extension>\.nii)"
-        ),
-        "mandatory": False,
-    }
-
-    # Sidecar entities are optional
-    rule = Namespace.build(
-        {
-            "datatypes": ["anat", ""],
-            "entities": {"subject": "optional", "session": "optional"},
-            "suffixes": ["T1w"],
-            "extensions": [".json"],
-        }
-    )
-    assert validator._entity_rule(rule, schema_obj) == {
-        "regex": (
-            r"(?:sub-(?P<subject>[0-9a-zA-Z]+)/)?"
-            r"(?:ses-(?P<session>[0-9a-zA-Z]+)/)?"
-            r"(?:(?P<datatype>anat)/)?"
-            r"(?:sub-(?P=subject)_)?"
-            r"(?:ses-(?P=session)_)?"
-            r"(?P<suffix>T1w)"
-            r"(?P<extension>\.json)"
-        ),
-        "mandatory": False,
-    }
-
-
-def test_split_inheritance_rules():
-    rule = {
-        "datatypes": ["anat"],
-        "entities": {"subject": "required", "session": "optional"},
-        "suffixes": ["T1w"],
-        "extensions": [".nii", ".json"],
-    }
-
-    main, sidecar = validator.split_inheritance_rules(rule)
-    assert main == {
-        "datatypes": ["anat"],
-        "entities": {"subject": "required", "session": "optional"},
-        "suffixes": ["T1w"],
-        "extensions": [".nii"],
-    }
-    assert sidecar == {
-        "datatypes": ["", "anat"],
-        "entities": {"subject": "optional", "session": "optional"},
-        "suffixes": ["T1w"],
-        "extensions": [".json"],
-    }
-
-    # Can't split again
-    (main2,) = validator.split_inheritance_rules(main)
-    assert main2 == {
-        "datatypes": ["anat"],
-        "entities": {"subject": "required", "session": "optional"},
-        "suffixes": ["T1w"],
-        "extensions": [".nii"],
-    }
+from ..data import load_resource
+from .data import load_test_data
 
 
 def test_inheritance_examples():
-    from bidsschematools.validator import validate_bids
-
     correct_inheritance = [
         "/lala/sub-01/ses-test/sub-01_ses-test_task-sometask_bold.json",
         "/lala/sub-01/sub-01_task-sometask_bold.json",
@@ -125,28 +23,10 @@ def test_inheritance_examples():
 
     result = validate_bids(
         correct_inheritance + incorrect_inheritance,
-        accept_dummy_paths=True,
+        dummy_paths=True,
     )
 
     assert result["path_tracking"] == incorrect_inheritance
-
-
-def test_load_all():
-    from bidsschematools.validator import load_all
-
-    # schema_path = "/usr/share/bids-schema/1.7.0/"
-    schema_path = os.path.join(
-        os.path.abspath(os.path.dirname(__file__)),
-        os.pardir,
-        "data",
-        "schema",
-    )
-    schema_all, _ = load_all(schema_path)
-
-    # Check if expected keys are present in all entries
-    for entry in schema_all:
-        assert "regex" in list(entry.keys())
-        assert "mandatory" in list(entry.keys())
 
 
 def test_write_report(tmp_path):
@@ -191,20 +71,11 @@ def test_write_report(tmp_path):
         "rawdata/sub-EXC022/anat/sub-EXC022_ses-MRI_flip-1_VFA.nii.gz"
     ]
 
-    report_path = os.path.join(
-        tmp_path,
-        "output_bids_validator_xs_write.log",
-    )
-    expected_report_path = os.path.join(
-        os.path.abspath(os.path.dirname(__file__)),
-        "data/expected_bids_validator_xs_write.log",
-    )
-    write_report(validation_result, report_path=report_path)
-    with open(report_path, "r") as f:
-        report_text = f.read()
-    with open(expected_report_path, "r") as f:
-        expected_report_text = f.read()
-    assert report_text == expected_report_text
+    report_path = tmp_path / "output_bids_validator_xs_write.log"
+    write_report(validation_result, report_path=str(report_path))
+
+    expected_report_path = load_test_data("expected_bids_validator_xs_write.log")
+    assert report_path.read_text() == expected_report_path.read_text()
 
 
 @pytest.mark.skipif(
@@ -213,15 +84,10 @@ def test_write_report(tmp_path):
 )
 @pytest.mark.parametrize("dataset", BIDS_SELECTION)
 def test_bids_datasets(bids_examples, tmp_path, dataset):
-    from bidsschematools.validator import validate_bids
-
-    schema_path = "{module_path}/data/schema/"
-
     # Validate per dataset:
     target = os.path.join(bids_examples, dataset)
     result = validate_bids(
         target,
-        schema_version=schema_path,
     )
     # Have all files been validated?
     assert len(result["path_tracking"]) == 0
@@ -232,10 +98,6 @@ def test_bids_datasets(bids_examples, tmp_path, dataset):
     reason="no network",
 )
 def test_validate_bids(bids_examples, tmp_path):
-    from bidsschematools.validator import validate_bids
-
-    schema_path = "{module_path}/data/schema/"
-
     # Create input for file list based validation
     selected_dir = os.path.join(bids_examples, BIDS_SELECTION[0])
     selected_paths = []
@@ -243,27 +105,21 @@ def test_validate_bids(bids_examples, tmp_path):
         for f in files:
             selected_path = os.path.join(root, f)
             selected_paths.append(selected_path)
-    # Do version fallback work?
-    result = validate_bids(selected_paths, schema_version=None)
+    # Does version fallback work?
+    result = validate_bids(selected_paths, schema_path=False)
     # Does default log path specification work?
-    result = validate_bids(selected_paths, schema_version=schema_path, report_path=True)
+    result = validate_bids(selected_paths, report_path=True)
 
     # Does custom log path specification work?
     result = validate_bids(
         selected_paths,
-        schema_version=schema_path,
         report_path=os.path.join(tmp_path, "test_bids.log"),
     )
     # Have all files been validated?
     assert len(result["path_tracking"]) == 0
 
     # Is the schema version recorded correctly?
-    schema_path = os.path.join(
-        os.path.abspath(os.path.dirname(__file__)),
-        os.pardir,
-        "data",
-        "schema",
-    )
+    schema_path = load_resource("schema")
     with open(os.path.join(schema_path, "BIDS_VERSION")) as f:
         expected_version = f.readline().rstrip()
     assert result["bids_version"] == expected_version
@@ -276,16 +132,12 @@ def test_validate_bids(bids_examples, tmp_path):
 def test_broken_json_dataset(bids_examples, tmp_path):
     """Perhaps this can be integrated into
     https://github.com/bids-standard/bids-error-examples ."""
-    from bidsschematools.validator import validate_bids
 
     dataset = "asl003"
     dataset_path = os.path.join(bids_examples, dataset)
     dataset_json = os.path.join(dataset_path, "dataset_description.json")
 
-    broken_json = os.path.join(
-        os.path.abspath(os.path.dirname(__file__)),
-        "data/broken_dataset_description.json",
-    )
+    broken_json = load_test_data("broken_dataset_description.json")
     shutil.copyfile(broken_json, dataset_json)
 
     # No assert, will simply raise JSON reader error if not catching it properly.
@@ -299,17 +151,101 @@ def test_broken_json_dataset(bids_examples, tmp_path):
     os.environ.get("SCHEMACODE_TESTS_NONETWORK") is not None,
     reason="no network",
 )
-@pytest.mark.parametrize("dataset", BIDS_ERROR_SELECTION)
-def test_error_datasets(bids_error_examples, dataset):
+def test_exclude_files(bids_examples, tmp_path):
     from bidsschematools.validator import validate_bids
 
-    schema_path = "{module_path}/data/schema/"
+    dataset = "asl003"
+    dataset_reference = os.path.join(bids_examples, dataset)
+    tmp_path = str(tmp_path)
+    shutil.copytree(dataset_reference, tmp_path, dirs_exist_ok=True)
 
+    # Create non-BIDS non-dotfile
+    archive_file_name = "dandiset.yaml"
+    archive_file_path = os.path.join(tmp_path, archive_file_name)
+    with open(archive_file_path, "w") as f:
+        f.write(" \n")
+
+    # Does it fail, as it should (more like a failsafe assertion)
+    result = validate_bids(tmp_path)
+    assert len(result["path_tracking"]) == 1
+
+    # Does the parameter work?
+    result = validate_bids(tmp_path, exclude_files=[archive_file_name])
+    assert len(result["path_tracking"]) == 0
+
+
+@pytest.mark.skipif(
+    os.environ.get("SCHEMACODE_TESTS_NONETWORK") is not None,
+    reason="no network",
+)
+def test_accept_non_bids_dir(bids_examples, tmp_path):
+    from bidsschematools.validator import validate_bids
+
+    dataset = "asl003"
+    dataset_reference = os.path.join(bids_examples, dataset)
+    tmp_path = str(tmp_path)
+    shutil.copytree(dataset_reference, tmp_path, dirs_exist_ok=True)
+
+    # remove `dataset_description.json`
+    os.remove(os.path.join(tmp_path, "dataset_description.json"))
+
+    # Does it fail, as it should (more like a failsafe assertion)
+    with pytest.raises(
+        ValueError,
+        match="None of the files in the input list are part of a BIDS dataset. Aborting.",
+    ):
+        _ = validate_bids(tmp_path)
+
+    # Does the parameter work?
+    result = validate_bids(tmp_path, accept_non_bids_dir=True)
+    assert len(result["path_tracking"]) == 0
+
+
+@pytest.mark.skipif(
+    os.environ.get("SCHEMACODE_TESTS_NONETWORK") is not None,
+    reason="no network",
+)
+@pytest.mark.parametrize("dataset", BIDS_ERROR_SELECTION)
+def test_error_datasets(bids_error_examples, dataset):
     target = os.path.join(bids_error_examples, dataset)
     result = validate_bids(
         target,
-        schema_version=schema_path,
         report_path=True,
     )
     # Are there non-validated files?
     assert len(result["path_tracking"]) != 0
+
+
+def test_gitdir(bids_examples, tmp_path):
+    """Maybe better handled in example data?"""
+
+    selected_dir = os.path.join(bids_examples, BIDS_SELECTION[0])
+    tmp_path = str(tmp_path)
+    shutil.copytree(selected_dir, tmp_path, dirs_exist_ok=True)
+
+    os.makedirs(os.path.join(tmp_path, ".git"))
+    with open(os.path.join(tmp_path, ".git", "config"), "w") as temp_file:
+        temp_file.write("")
+    result = validate_bids(tmp_path)
+    assert len(result["path_tracking"]) == 0
+
+
+def test_select_schema_path(bids_examples, tmp_path):
+    dataset = "asl003"
+    dataset_path = os.path.join(bids_examples, dataset)
+
+    # Does fallback to None work without any `raise`?
+    schema_path = select_schema_path(dataset_path)
+    assert schema_path is None
+
+
+def test_bids_schema_versioncheck(monkeypatch):
+    """Test incompatible version."""
+    import bidsschematools as bst
+
+    from ..utils import get_bundled_schema_path
+
+    schema_dir = get_bundled_schema_path()
+    assert bst.validator._bids_schema_versioncheck(schema_dir)
+    monkeypatch.setattr(bst, "__version__", "99.99.99")
+    assert not bst.validator._bids_schema_versioncheck(schema_dir)
