@@ -350,8 +350,40 @@
         "additionalProperties": false
     },
     "rules": {
-        "type": "object"
-      },
+      "type": "object",
+      "properties": {
+        "checks": {
+          "type": "object"
+        },
+        "files": {
+          "type": "object"
+        },
+        "sidecars": {
+          "type": "object"
+        },
+        "tabular_data": {
+          "type": "object"
+        },
+        "common_principles": {
+          "type": "array"
+        },
+        "data_metadata": {
+          "type": "object"
+        },
+        "directories": {
+          "type": "object"
+        },
+        "entities": {
+          "type": "array"
+        },
+        "errors": {
+          "type": "object"
+        },
+        "modalities": {
+          "type": "object"
+        }
+      }
+    },
     "BIDS_VERSION": {
       "type": "string"
     },
