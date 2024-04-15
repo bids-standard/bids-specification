@@ -1,0 +1,4 @@
+participant_id	age	sex	handedness	group
+sub-01	34	M	right	read
+sub-02	12	F	right	write
+sub-03	33	F	n/a	read
