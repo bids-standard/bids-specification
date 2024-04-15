@@ -1,7 +1,7 @@
 ---
 hide:
-  - navigation
-  - toc
+- navigation
+- toc
 ---
 
 # Entity table
