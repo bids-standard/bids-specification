@@ -70,12 +70,7 @@ Note that optional columns MUST be further described in an accompanying
 
 `participants.tsv` example:
 
-```Text
-participant_id	age	sex	group	genetic_id	idh_mutation
-sub-control01	34	M	control	124587	yes
-sub-control02	12	F	control	548936	yes
-sub-patient01	33	F	patient	489634	no
-```
+{{ read_table('tables/genetics_participants.tsv', sep = '\t') }}
 
 ## Genetic Information
 
