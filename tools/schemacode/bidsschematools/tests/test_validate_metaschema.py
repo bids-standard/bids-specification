@@ -6,8 +6,8 @@ from jsonschema.exceptions import ValidationError
 from bidsschematools.validate_schema import (
     dereference_schema,
     load_schema,
+    schema_path,
     validate_schema,
-    schema_path
 )
 
 
