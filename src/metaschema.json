@@ -47,7 +47,8 @@
               "required": ["target"],
               "additionalProperties": false
             }
-          }
+          },
+          "additionalProperties": false
         },
         "context": {
           "type": "object"
@@ -121,7 +122,8 @@
               "required": ["name", "display_name"],
               "additionalProperties": false
             }
-          }
+          },
+          "additionalProperties": false
         },
         "common_principles": {
          "type": "object",
@@ -138,7 +140,8 @@
              },
              "required": ["display_name", "description"],
              "additionalProperties": false
-           }
+           },
+           "additionalProperties": false
          }
         },
         "datatypes": {
@@ -160,7 +163,8 @@
               "required": ["value", "display_name", "description"],
               "additionalProperties": false
             }
-          }
+          },
+          "additionalProperties": false
         },
         "entities": {
           "type": "object",
@@ -190,12 +194,13 @@
               "required": ["name", "display_name", "description", "type", "format"],
               "additionalProperties": false
             }
-          }
+          },
+          "additionalProperties": false
         },
         "enums": {
           "type": "object",
           "patternProperties": {
-            "^[a-zA-Z0-9_]+$": {
+            "^[a-zA-Z0-9_-]+$": {
               "type": "object",
               "properties": {
                 "type": {
@@ -219,7 +224,8 @@
               },
               "additionalProperties": false
             }
-          }
+          },
+          "additionalProperties": false
         },
         "extensions": {
           "type": "object",
@@ -240,7 +246,8 @@
               "required": ["display_name", "description", "value"],
               "additionalProperties": false
             }
-          }
+          },
+          "additionalProperties": false
         },
         "files": {
           "type": "object",
@@ -261,7 +268,8 @@
               "required": ["display_name", "file_type", "description"],
               "additionalProperties": false
             }
-          }
+          },
+          "additionalProperties": false
         },
         "formats": {
           "type": "object",
@@ -282,7 +290,8 @@
               "required": ["display_name", "description", "pattern"],
               "additionalProperties": false
             }
-          }
+          },
+          "additionalProperties": false
         },
         "metadata": {
           "type": "object",
@@ -305,7 +314,8 @@
               },
               "required": ["name","display_name", "description"]
             }
-          }
+          },
+          "additionalProperties": false
         },
         "modalities": {
           "type": "object",
@@ -323,7 +333,8 @@
               "required": ["display_name", "description"],
               "additionalProperties": false
             }
-          }
+          },
+          "additionalProperties": false
         },
         "suffixes": {
           "type": "object",
@@ -342,7 +353,8 @@
                 }
               },
               "required": ["value", "display_name", "description"]
-            }
+            },
+            "additionalProperties": false
           }
         }
       },
@@ -384,7 +396,8 @@
                 }
               }
             }
-          }
+          },
+          "additionalProperties": false
         },
         "files": {
           "type": "object",
@@ -406,7 +419,8 @@
                       "required": ["level"],
                       "additionalProperties": false
                     }
-                  }
+                  },
+                  "additionalProperties": false
                 },
                 "tables": {
                   "type": "object",
@@ -418,13 +432,14 @@
                         "path": {"type": "string"},
                         "extensions": {"type": "array"},
                         "stem": {"type": "string"},
-                        "entities": {"type": "object"},
+                        "entities": {"$ref": "#/definitions/entities"},
                         "suffixes": {"type": "array"}
                       },
                       "required": ["level", "extensions"],
                       "additionalProperties": false
                     }
-                  }
+                  },
+                  "additionalProperties": false
                 }
               },
               "required": ["core", "tables"],
@@ -440,31 +455,15 @@
                       "type": "object",
                       "properties": {
                         "entities": {
-                          "type": "object",
-                          "patternProperties": {
-                            "^[a-z]+$": {
-                              "anyOf": [
-                                {"enum": ["optional", "required"]},
-                                {
-                                  "type": "object",
-                                  "properties": {
-                                    "level": {"enum": ["optional", "required"]},
-                                    "enum": {
-                                      "type": "array",
-                                      "items": {"type": "string"}
-                                    }
-                                  },
-                                  "required": ["level", "enum"]
-                                }
-                              ]
-                            }
-                          }
+                          "$ref": "#/definitions/entities"
                         }
                       }
-                    }
+                    },
+                    "additionalProperties": false
                   }
                 }
-              }
+              },
+              "additionalProperties": false
             },
             "raw": {
               "type": "object",
@@ -485,23 +484,43 @@
                         },
                         "datatypes": {
                           "type": "array",
-                          "items": {"type": "string"}
+                          "items": {"pattern": "^[a-z]+$"}
                         },
-                        "entities": {
-                          "type": "object"
-                        }
+                        "entities": {"$ref": "#/definitions/entities"}
                       }
                     }
-                  }
+                  },
+                  "additionalProperties": false
                 }
-              }
+              },
+              "additionalProperties": false
             }
           },
           "required": ["common", "deriv", "raw"],
           "additionalProperties": false
         },
         "sidecars": {
-          "type": "object"
+          "type": "object",
+          "patternProperties": {
+            "^derivatives$": {},
+            "^(?!derivatives$)[a-z_]+$": {
+              "type": "object",
+              "patternProperties": {
+                "^[a-zA-Z0-9_]+$": {
+                  "type": "object",
+                  "properties": {
+                    "selectors": {},
+                    "fields": {}
+                  },
+                  "required": ["selectors", "fields"],
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            },
+            "additionalProperties": false
+          },
+          "additionalProperties": false
         },
         "tabular_data": {
           "type": "object"
@@ -537,5 +556,29 @@
     }
   },
   "required": ["meta", "objects", "rules", "BIDS_VERSION", "SCHEMA_VERSION"],
-  "additionalProperties": false
+  "additionalProperties": false,
+  "definitions": {
+    "entities": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-z]+$": {
+          "anyOf": [
+            {"enum": ["optional", "required"]},
+            {
+              "type": "object",
+              "properties": {
+                "level": {"enum": ["optional", "required"]},
+                "enum": {
+                  "type": "array",
+                  "items": {"type": "string"}
+                }
+              },
+              "required": ["level", "enum"]
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  }
 }

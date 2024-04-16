@@ -26,7 +26,6 @@ def derefence_schema(obj):
         out = dict()
         for k, v in obj.items():
             if k == "$ref":
-                #print(v)
                 address = v.split(".")
                 here = schema
                 for part in address:
@@ -49,6 +48,8 @@ schema = derefence_schema(schema)
 with open("metaschema.json", "r") as f:
     metaschema = json.load(f)
 
+# validate is put in this try/except clause because the error is sometimes too long to
+# print in the terminal
 try:
     validate(instance=schema, schema=metaschema)
 except ValidationError as e:
