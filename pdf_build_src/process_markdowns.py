@@ -329,7 +329,7 @@ def read_table_from_tsv(input_file: Path, output_file : Path | None = None):
             assert table_to_read.exists(), f"This file does not exist\n:{table_to_read}"
 
             df = pd.read_csv(table_to_read, sep="\t")
-            df_as_md = df.to_markdown()
+            df_as_md = df.to_markdown(index=False)
             f.write(df_as_md)
             f.write("\n")
 
