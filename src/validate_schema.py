@@ -11,6 +11,7 @@ schema_path = Path(__file__).resolve().parent.parent / "src" / "schema"
 
 
 def load_schema(schema_path: Union[str, Path]) -> Union[Dict[str, Any], str]:
+    """Load a schema from a file or directory"""
     if Path(schema_path).is_dir():
         return {f.stem: load_schema(f) for f in Path(schema_path).iterdir()}
     elif Path(schema_path).is_file() and (str(schema_path).endswith(".yaml") or str(schema_path).endswith(".yml")):
@@ -22,6 +23,7 @@ def load_schema(schema_path: Union[str, Path]) -> Union[Dict[str, Any], str]:
 
 
 def derefence_schema(obj):
+    """Derefence a schema by replacing $ref with the actual schema it points to"""
     if isinstance(obj, dict):
         out = dict()
         for k, v in obj.items():
