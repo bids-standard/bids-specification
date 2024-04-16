@@ -50,4 +50,3 @@ def test_invalid_value():
         validate_schema(schema)
 
     assert "invalid" in str(e.value)
-
