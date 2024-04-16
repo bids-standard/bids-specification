@@ -3,7 +3,6 @@ from pathlib import Path
 from typing import Any, Dict, Union
 
 import yaml
-
 from jsonschema.exceptions import ValidationError
 from jsonschema.validators import validate
 
