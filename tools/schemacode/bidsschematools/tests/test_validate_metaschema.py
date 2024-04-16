@@ -3,7 +3,7 @@ from pathlib import Path
 import pytest
 from jsonschema.exceptions import ValidationError
 from tools.schemacode.bidsschematools.validate_schema import (
-    derefence_schema,
+    dereference_schema,
     load_schema,
     validate_schema,
 )
@@ -19,7 +19,7 @@ def test_load_schema():
 def test_derefence_schema():
     """Test that a valid schema does not raise an error."""
     schema = load_schema(schema_path)
-    derefence_schema(schema)
+    dereference_schema(schema)
 
 
 def test_valid_schema():
@@ -35,7 +35,7 @@ def test_broken_reference():
         "$ref"
     ] = "broken.reference"
     with pytest.raises(KeyError) as e:
-        derefence_schema(schema)
+        dereference_schema(schema)
 
     assert "'broken'" in str(e.value)
 

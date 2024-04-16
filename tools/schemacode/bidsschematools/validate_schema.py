@@ -50,7 +50,7 @@ def dereference_schema(schema):
 
 
 def validate_schema(schema: dict):
-    schema = derefence_schema(schema)
+    schema = dereference_schema(schema)
     with open("metaschema.json", "r") as f:
         metaschema = json.load(f)
 
