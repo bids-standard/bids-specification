@@ -23,7 +23,7 @@ def load_schema(schema_path: Union[str, Path]) -> Union[Dict[str, Any], str]:
             return f.read()
 
 
-def derefence_schema(schema):
+def dereference_schema(schema):
     """Dereference a schema by replacing $ref with the actual schema it points to"""
 
     def _dereference_obj(obj):
