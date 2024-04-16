@@ -14,7 +14,9 @@ def load_schema(schema_path: Union[str, Path]) -> Union[Dict[str, Any], str]:
     """Load a schema from a file or directory"""
     if Path(schema_path).is_dir():
         return {f.stem: load_schema(f) for f in Path(schema_path).iterdir()}
-    elif Path(schema_path).is_file() and (str(schema_path).endswith(".yaml") or str(schema_path).endswith(".yml")):
+    elif Path(schema_path).is_file() and (
+        str(schema_path).endswith(".yaml") or str(schema_path).endswith(".yml")
+    ):
         with open(schema_path, "r") as f:
             return yaml.safe_load(f)
     else:
