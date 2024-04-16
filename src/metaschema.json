@@ -439,20 +439,26 @@
                     "^[a-zA-Z0-9_]+$": {
                       "type": "object",
                       "properties": {
-                        "$ref": {"type": "string"},
                         "entities": {
                           "type": "object",
-                          "properties": {
-                            "$ref": {"type": "string"},
-                            "space": {"enum": ["optional"]},
-                            "resolution": {"enum": ["optional"]},
-                            "density": {"enum": ["optional"]},
-                            "description": {"enum": ["optional"]},
-                            "label": {"enum": ["optional"]},
-                            "hemisphere": {"enum": ["optional"]}
-                          },
-                          "required": ["$ref", "space", "description"],
-                          "additionalProperties": false
+                          "patternProperties": {
+                            "^[a-z]+$": {
+                              "anyOf": [
+                                {"enum": ["optional", "required"]},
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "level": {"enum": ["optional", "required"]},
+                                    "enum": {
+                                      "type": "array",
+                                      "items": {"type": "string"}
+                                    }
+                                  },
+                                  "required": ["level", "enum"]
+                                }
+                              ]
+                            }
+                          }
                         }
                       }
                     }
@@ -460,9 +466,36 @@
                 }
               }
             },
-            "raw": {"type": "object"}
+            "raw": {
+              "type": "object",
+              "patternProperties": {
+                "^[a-z]+$": {
+                  "type": "object",
+                  "patternProperties": {
+                    "^[a-zA-Z0-9_]+$": {
+                      "type": "object",
+                      "properties": {
+                        "suffixes": {
+                          "type": "array"
+                        },
+                        "extensions": {
+                          "type": "array"
+                        },
+                        "datatypes": {
+                          "type": "array"
+                        },
+                        "entities": {
+                          "type": "object"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           },
-          "required": ["common", "deriv", "raw"]
+          "required": ["common", "deriv", "raw"],
+          "additionalProperties": false
         },
         "sidecars": {
           "type": "object"

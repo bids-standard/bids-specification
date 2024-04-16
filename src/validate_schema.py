@@ -21,7 +21,30 @@ def load_schema(schema_path: Union[str, Path]) -> Union[Dict[str, Any], str]:
             return f.read()
 
 
+def derefence_schema(obj):
+    if isinstance(obj, dict):
+        out = dict()
+        for k, v in obj.items():
+            if k == "$ref":
+                #print(v)
+                address = v.split(".")
+                here = schema
+                for part in address:
+                    here = here[part]
+                if isinstance(here, dict):
+                    out.update(derefence_schema(here))
+                else:
+                    return derefence_schema(here)
+            else:
+                out[k] = derefence_schema(v)
+        return out
+    if isinstance(obj, list):
+        return [derefence_schema(x) for x in obj]
+    return obj
+
+
 schema = load_schema(schema_path)
+schema = derefence_schema(schema)
 
 with open("metaschema.json", "r") as f:
     metaschema = json.load(f)
