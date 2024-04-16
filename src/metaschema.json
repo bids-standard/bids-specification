@@ -518,7 +518,25 @@
           "additionalProperties": false
         },
         "tabular_data": {
-          "type": "object"
+          "type": "object",
+          "patternProperties": {
+            "^derivatives$": {
+              "type": "object",
+              "properties": {
+                "common_derivatives": {
+                  "$ref": "#/definitions/tabular_data"
+                }
+              },
+              "required": [
+                "common_derivatives"
+              ],
+              "additionalProperties": false
+            },
+            "^(?!derivatives$)[a-z_]+$": {
+              "$ref": "#/definitions/tabular_data"
+            }
+          },
+          "additionalProperties": false
         },
         "common_principles": {
           "type": "array"
@@ -612,6 +630,52 @@
         }
       },
       "additionalProperties": false
+    },
+    "tabular_data": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-zA-Z0-9_]+$": {
+          "type": "object",
+          "properties": {
+            "selectors": {
+              "type": "array",
+              "items": {"type": "string"}
+            },
+            "columns": {
+              "type": "object",
+              "patternProperties": {
+                "^[a-zA-Z0-9_]+$": {
+                  "anyOf": [
+                    {"enum": ["recommended", "optional", "required", "DEPRECATED"]},
+                    {
+                      "type":  "object",
+                      "properties": {
+                        "level": {"enum": ["recommended", "optional", "required", "DEPRECATED"]},
+                        "level_addendum": {"type": "string"},
+                        "description_addendum": {"type": "string"}
+                      },
+                      "required": ["level"],
+                      "additionalProperties": false
+                    },
+                    {"pattern": "recommended.*"}
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "additional_columns": {
+              "type": "string"
+            },
+            "index_columns": {"type": "array", "items": {"type": "string"}},
+            "initial_columns": {
+              "type": "array",
+              "items": {"type": "string"}
+            }
+          },
+          "required": ["selectors", "columns"],
+          "additionalProperties": false
+        }
+      }
     }
   }
 }
