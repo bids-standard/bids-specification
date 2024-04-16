@@ -476,13 +476,16 @@
                       "type": "object",
                       "properties": {
                         "suffixes": {
-                          "type": "array"
+                          "type": "array",
+                          "items": {"type": "string"}
                         },
                         "extensions": {
-                          "type": "array"
+                          "type": "array",
+                          "items": {"pattern": "^[./][a-z.]+|"}
                         },
                         "datatypes": {
-                          "type": "array"
+                          "type": "array",
+                          "items": {"type": "string"}
                         },
                         "entities": {
                           "type": "object"
