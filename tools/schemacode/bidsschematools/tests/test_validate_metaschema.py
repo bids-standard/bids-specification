@@ -2,6 +2,7 @@ from pathlib import Path
 
 import pytest
 from jsonschema.exceptions import ValidationError
+
 from bidsschematools.validate_schema import (
     dereference_schema,
     load_schema,
