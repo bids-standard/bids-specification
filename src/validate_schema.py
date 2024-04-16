@@ -23,7 +23,7 @@ def load_schema(schema_path: Union[str, Path]) -> Union[Dict[str, Any], str]:
 
 
 def derefence_schema(obj):
-    """Derefence a schema by replacing $ref with the actual schema it points to"""
+    """Dereference a schema by replacing $ref with the actual schema it points to"""
     if isinstance(obj, dict):
         out = dict()
         for k, v in obj.items():
