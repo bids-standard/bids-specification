@@ -13,9 +13,11 @@ import posixpath
 import re
 import subprocess
 import sys
+from pathlib import Path
 from datetime import datetime
 
 import numpy as np
+import pandas as pd
 
 from remove_admonitions import remove_admonitions
 
@@ -297,6 +299,41 @@ def modify_changelog():
 
     with open("src_copy/src/CHANGES.md", "w") as file:
         file.writelines(data)
+
+
+def read_table_from_tsv(input_file: Path, output_file : Path | None = None):
+    """Inject table in markdown document from a tsv file.
+
+    :param input_file: path to input markdown file
+
+    :param output_file: path to output markdown file
+                        defaults to writing to the input file if None is passed.
+    """
+
+    if output_file is None:
+        output_file = input_file
+
+    with open(input_file, "r", encoding="utf8") as f:
+        content = f.readlines()
+
+    with open(output_file, "w", encoding="utf8") as f:
+
+        for line in content:
+
+            if not line.startswith("{{ read_table('"):
+                f.write(line)
+                continue
+
+            table = line.split("(")[1].split(",")[0].replace("'", '').replace('"', '')
+            table_to_read = input_file.parent / table
+            assert table_to_read.exists(), f"This file does not exist\n:{table_to_read}"
+
+            df = pd.read_csv(table_to_read, sep="\t")
+            df_as_md = df.to_markdown()
+            f.write(df_as_md)
+            f.write("\n")
+
+            continue
 
 
 def correct_table(table, offset=[0.0, 0.0], debug=False):
@@ -636,6 +673,9 @@ def process_macros(duplicated_src_dir_path):
                 continue
 
             filename = os.path.join(root, name)
+
+            read_table_from_tsv(Path(filename))
+
             with open(filename, "r") as fo:
                 contents = fo.read()
 

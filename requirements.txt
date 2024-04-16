@@ -6,4 +6,5 @@ mkdocs-macros-plugin
 mkdocs-redirects
 mkdocs-table-reader-plugin
 numpy
+pandas
 tools/schemacode/[render]
