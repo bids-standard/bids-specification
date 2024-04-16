@@ -502,44 +502,16 @@
         "sidecars": {
           "type": "object",
           "patternProperties": {
-            "^derivatives$": {},
-            "^(?!derivatives$)[a-z_]+$": {
+            "^derivatives$": {
               "type": "object",
-              "patternProperties": {
-                "^[a-zA-Z0-9_]+$": {
-                  "type": "object",
-                  "properties": {
-                    "selectors": {
-                      "type": "array",
-                      "items": {"type": "string"}
-                    },
-                    "fields": {
-                      "type": "object",
-                      "patternProperties": {
-                        "^[a-zA-Z0-9_]+$": {
-                          "anyOf": [
-                            {"enum": ["recommended", "optional", "required", "DEPRECATED"]},
-                            {
-                              "type":  "object",
-                              "properties": {
-                                "level": {"enum": ["recommended", "optional", "required", "DEPRECATED"]},
-                                "level_addendum": {"type": "string"}
-                              },
-                              "required": ["level", "level_addendum"],
-                              "additionalProperties": false
-                            },
-                            {"pattern": "recommended.*"}
-                          ]
-                        }
-                      },
-                      "additionalProperties": false
-                    }
-                  },
-                  "required": ["selectors", "fields"],
-                  "additionalProperties": false
-                }
+              "properties": {
+                "common_derivatives": {"$ref": "#/definitions/sidecar"}
               },
+              "required": ["common_derivatives"],
               "additionalProperties": false
+            },
+            "^(?!derivatives$)[a-z_]+$": {
+              "$ref": "#/definitions/sidecar"
             },
             "additionalProperties": false
           },
@@ -599,6 +571,44 @@
               "required": ["level", "enum"]
             }
           ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "sidecar": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-zA-Z0-9_]+$": {
+          "type": "object",
+          "properties": {
+            "selectors": {
+              "type": "array",
+              "items": {"type": "string"}
+            },
+            "fields": {
+              "type": "object",
+              "patternProperties": {
+                "^[a-zA-Z0-9_]+$": {
+                  "anyOf": [
+                    {"enum": ["recommended", "optional", "required", "DEPRECATED"]},
+                    {
+                      "type":  "object",
+                      "properties": {
+                        "level": {"enum": ["recommended", "optional", "required", "DEPRECATED"]},
+                        "level_addendum": {"type": "string"}
+                      },
+                      "required": ["level", "level_addendum"],
+                      "additionalProperties": false
+                    },
+                    {"pattern": "recommended.*"}
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": ["selectors", "fields"],
+          "additionalProperties": false
         }
       },
       "additionalProperties": false
