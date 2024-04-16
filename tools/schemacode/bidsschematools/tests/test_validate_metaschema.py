@@ -7,9 +7,8 @@ from bidsschematools.validate_schema import (
     dereference_schema,
     load_schema,
     validate_schema,
+    schema_path
 )
-
-schema_path = Path(__file__).resolve().parents[4] / "src" / "schema"
 
 
 def test_load_schema():
