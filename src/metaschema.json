@@ -95,7 +95,7 @@
                   "type": "string"
                 },
                 "type": {
-                  "type": "string"
+                  "$ref": "http://json-schema.org/draft-07/schema#/properties/type"
                 },
                 "format": {
                   "type": "string"
@@ -110,7 +110,7 @@
                   "type": "array"
                 },
                 "anyOf": {
-                  "type": "array"
+                  "$ref": "http://json-schema.org/draft-07/schema#/properties/anyOf"
                 },
                 "maximum": {
                   "type": "number"
@@ -182,7 +182,7 @@
                   "type": "string"
                 },
                 "type": {
-                  "type": "string"
+                  "$ref": "http://json-schema.org/draft-07/schema#/properties/type"
                 },
                 "format": {
                   "type": "string"
@@ -204,7 +204,7 @@
               "type": "object",
               "properties": {
                 "type": {
-                  "type": "string"
+                  "$ref": "http://json-schema.org/draft-07/schema#/properties/type"
                 },
                 "enum": {
                   "type": "array"
@@ -309,7 +309,7 @@
                   "type": "string"
                 },
                 "type": {
-                  "type": "string"
+                  "$ref": "http://json-schema.org/draft-07/schema#/properties/type"
                 }
               },
               "required": ["name","display_name", "description"]
