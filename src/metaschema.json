@@ -539,24 +539,70 @@
           "additionalProperties": false
         },
         "common_principles": {
-          "type": "array"
+          "type": "array",
+          "items": {"type": "string"}
         },
-        "data_metadata": {
+        "dataset_metadata": {
           "type": "object"
         },
         "directories": {
           "type": "object"
         },
         "entities": {
-          "type": "array"
+          "type": "array",
+          "items": {"type": "string"}
         },
         "errors": {
-          "type": "object"
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z0-9_]+$": {
+              "type": "object",
+              "properties": {
+                "code": {"type": "string"},
+                "message": {"type": "string"},
+                "level": {"enum": ["error", "warning"]},
+                "selectors": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": ["message", "level"],
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
         },
         "modalities": {
-          "type": "object"
+          "type": "object",
+          "patternProperties": {
+            "^[a-z]+$": {
+              "type": "object",
+              "properties": {
+                "datatypes": {
+                  "type": "array",
+                  "items": {"pattern": "^[a-z]+$"}
+                }
+              },
+              "required": ["datatypes"],
+              "additionalProperties": false
+            }
+          }
         }
-      }
+      },
+      "required": [
+          "entities",
+          "files",
+          "sidecars",
+          "tabular_data",
+          "common_principles",
+          "dataset_metadata",
+          "directories",
+          "errors",
+          "modalities"
+      ],
+      "additionalProperties": false
     },
     "BIDS_VERSION": {
       "type": "string"
