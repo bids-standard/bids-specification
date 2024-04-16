@@ -607,6 +607,11 @@ headshape:
   description: |
     The 3-D locations of points that describe the head shape and/or electrode
     locations can be digitized and stored in separate files.
+hipCT:
+  value: hipCT
+  display_name: HiP-CT
+  description: |
+    Hierarchical Phase-Contrast Tomography imaging data
 ieeg:
   value: ieeg
   display_name: Intracranial Electroencephalography

@@ -6,9 +6,11 @@ Please see [Citing BIDS](../introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
-Several [example EEG datasets](https://bids-standard.github.io/bids-examples/#eeg)
-have been formatted using this specification
-and can be used for practical guidance when curating a new dataset.
+!!! example "Example datasets"
+
+    Several [example EEG datasets](https://bids-standard.github.io/bids-examples/#eeg)
+    have been formatted using this specification
+    and can be used for practical guidance when curating a new dataset.
 
 ## EEG recording data
 
@@ -40,14 +42,10 @@ It is RECOMMENDED to use the European data format, or the BrainVision data
 format. It is furthermore discouraged to use the other accepted formats over
 these RECOMMENDED formats, particularly because there are conversion scripts
 available in most commonly used programming languages to convert data into the
-RECOMMENDED formats. The data in their original format, if different from the
-supported formats, can be stored in the [`/sourcedata` directory](../common-principles.md#source-vs-raw-vs-derived-data).
+RECOMMENDED formats.
 
-The original data format is especially valuable in case conversion elicits the
-loss of crucial metadata specific to manufacturers and specific EEG systems. We
-also encourage users to provide additional meta information extracted from the
-manufacturer specific data files in the sidecar JSON file. Other relevant files
-MAY be included alongside the original EEG data in `/sourcedata`.
+We encourage users to provide additional metadata extracted from the
+manufacturer-specific data files in the sidecar JSON file.
 
 Note the `RecordingType`, which depends on whether the data stream on disk
 is interrupted or not.

@@ -35,6 +35,17 @@ PETInstitutionInformation:
       level: recommended
       description_addendum: Corresponds to DICOM Tag 0008, 1040 `Institutional Department Name`.
 
+PETSample:
+  selectors:
+    - modality == "pet"
+    - suffix == "pet"
+  fields:
+    BodyPart:
+      level: optional
+      description_addendum: Corresponds to DICOM Tag 0018, 0015 `Body Part Examined`.
+    BodyPartDetails: optional
+    BodyPartDetailsOntology: optional
+
 PETRadioChemistry:
   selectors:
     - datatype == "pet"

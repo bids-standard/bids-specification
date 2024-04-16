@@ -2,6 +2,7 @@
 
 This is done once the duplicate src directory is processed.
 """
+
 import subprocess
 import yaml
 from pathlib import Path
@@ -11,9 +12,7 @@ HERE = Path(__file__).absolute()
 
 def _find(path, filename):
     return next(
-        parent / filename
-        for parent in path.parents
-        if Path.is_file(parent / filename)
+        parent / filename for parent in path.parents if Path.is_file(parent / filename)
     )
 
 

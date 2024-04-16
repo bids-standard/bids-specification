@@ -10,6 +10,7 @@
     ["lint-maximum-heading-length", false],
     ["lint-no-shortcut-reference-link", false],
     ["lint-no-trailing-spaces"],
+    ["remark-lint-code-block-style", false],
     ["lint-no-undefined-references", false]
   ]
 }

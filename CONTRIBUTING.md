@@ -226,6 +226,37 @@ That would look like this:
 |--------------|----------------------------------------------------------|
 | Manufacturer | Manufacturer of the equipment, for example (`"Siemens"`) |
 
+
+#### MkDocs admonitions
+
+It is possible to use [Mkdocs admonitions](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#inline-blocks-inline-end)
+to highlight certain aspect of the specification.
+
+Admonitions are written like this:
+
+````
+!!! note "displayed heading is preceded by a keyword and 3 `!`"
+
+    Body of the admonition
+    can be written on several lines,
+    but must be always preceded by 4 spaces.
+````
+
+The keyword for the heading must be one of the following:
+
+- note
+- abstract
+- info
+- tip
+- success
+- question
+- warning
+- failure: octicons
+- danger
+- bug
+- example
+- quote
+
 ## Using macros
 
 We use [mkdocs-macros](https://mkdocs-macros-plugin.readthedocs.io/en/latest/)

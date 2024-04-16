@@ -162,6 +162,18 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("mri.MRIEchoPlanarImagingAndB0Mapping") }}
 
+#### Tissue description
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("mri.MRISample") }}
+
 ## Anatomy imaging data
 
 Anatomy MRI sequences measure static, structural features of the brain.
@@ -623,14 +635,16 @@ A guide for using macros can be found at
 
 ## Diffusion imaging data
 
-Several [example datasets](https://github.com/bids-standard/bids-examples)
-contain diffusion imaging data formatted using this specification
-and that can be used for practical guidance when curating a new dataset:
+!!! example "Example datasets"
 
--   [`genetics_ukbb`](https://github.com/bids-standard/bids-examples/tree/master/genetics_ukbb)
--   [`eeg_rest_fmri`](https://github.com/bids-standard/bids-examples/tree/master/eeg_rest_fmri)
--   [`ds114`](https://github.com/bids-standard/bids-examples/tree/master/ds114)
--   [`ds000117`](https://github.com/bids-standard/bids-examples/tree/master/ds000117)
+    Several [example datasets](https://github.com/bids-standard/bids-examples)
+    contain diffusion imaging data formatted using this specification
+    and that can be used for practical guidance when curating a new dataset:
+
+    -   [`genetics_ukbb`](https://github.com/bids-standard/bids-examples/tree/master/genetics_ukbb)
+    -   [`eeg_rest_fmri`](https://github.com/bids-standard/bids-examples/tree/master/eeg_rest_fmri)
+    -   [`ds114`](https://github.com/bids-standard/bids-examples/tree/master/ds114)
+    -   [`ds000117`](https://github.com/bids-standard/bids-examples/tree/master/ds000117)
 
 Diffusion-weighted imaging data acquired for a participant.
 Currently supported image types include:
@@ -856,9 +870,11 @@ JSON example:
 
 ## Arterial Spin Labeling perfusion data
 
-Several [example ASL datasets](https://bids-standard.github.io/bids-examples/#asl)
-have been formatted using this specification
-and can be used for practical guidance when curating a new dataset.
+!!! example "Example datasets"
+
+    Several [example ASL datasets](https://bids-standard.github.io/bids-examples/#asl)
+    have been formatted using this specification
+    and can be used for practical guidance when curating a new dataset.
 
 <!--
 This block generates a filename templates.
@@ -1099,12 +1115,14 @@ For example:
 
 #### Case 1: Phase-difference map and at least one magnitude image
 
-[Example datasets](https://bids-standard.github.io/bids-examples/#dataset-index)
-containing that type of fieldmap can be found here:
+!!! example "Example datasets"
 
--   [`7t_trt`](https://github.com/bids-standard/bids-examples/tree/master/7t_trt)
--   [`genetics_ukbb`](https://github.com/bids-standard/bids-examples/tree/master/genetics_ukbb)
--   [`ds000117`](https://github.com/bids-standard/bids-examples/tree/master/ds000117)
+    [Example datasets](https://bids-standard.github.io/bids-examples/#dataset-index)
+    containing that type of fieldmap can be found here:
+
+    -   [`7t_trt`](https://github.com/bids-standard/bids-examples/tree/master/7t_trt)
+    -   [`genetics_ukbb`](https://github.com/bids-standard/bids-examples/tree/master/genetics_ukbb)
+    -   [`ds000117`](https://github.com/bids-standard/bids-examples/tree/master/ds000117)
 
 <!--
 This block generates a filename templates.
@@ -1224,10 +1242,12 @@ for details on the `IntendedFor` field.
 
 #### Case 4: Multiple phase encoded directions ("pepolar")
 
-An [example dataset](https://github.com/bids-standard/bids-examples)
-containing that type of fieldmap can be found here:
+!!! example "Example datasets"
 
--   [`ieeg_visual_multimodal`](https://github.com/bids-standard/bids-examples/tree/master/ieeg_visual_multimodal)
+    An [example dataset](https://github.com/bids-standard/bids-examples)
+    containing that type of fieldmap can be found here:
+
+    -   [`ieeg_visual_multimodal`](https://github.com/bids-standard/bids-examples/tree/master/ieeg_visual_multimodal)
 
 The phase-encoding polarity (PEpolar) technique combines two or more Spin Echo
 EPI scans with different phase encoding directions to estimate the distortion
