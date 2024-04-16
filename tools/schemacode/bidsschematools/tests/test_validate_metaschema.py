@@ -3,9 +3,9 @@ from pathlib import Path
 import pytest
 from jsonschema.exceptions import ValidationError
 
-from .validate_schema import load_schema, derefence_schema, validate_schema
+from tools.schemacode.bidsschematools.validate_schema import load_schema, derefence_schema, validate_schema
 
-schema_path = Path(__file__).resolve().parent.parent / "schema"
+schema_path = Path(__file__).resolve().parents[4] / "src" / "schema"
 
 
 def test_load_schema():
