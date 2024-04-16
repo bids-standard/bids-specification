@@ -509,8 +509,31 @@
                 "^[a-zA-Z0-9_]+$": {
                   "type": "object",
                   "properties": {
-                    "selectors": {},
-                    "fields": {}
+                    "selectors": {
+                      "type": "array",
+                      "items": {"type": "string"}
+                    },
+                    "fields": {
+                      "type": "object",
+                      "patternProperties": {
+                        "^[a-zA-Z0-9_]+$": {
+                          "anyOf": [
+                            {"enum": ["recommended", "optional", "required", "DEPRECATED"]},
+                            {
+                              "type":  "object",
+                              "properties": {
+                                "level": {"enum": ["recommended", "optional", "required", "DEPRECATED"]},
+                                "level_addendum": {"type": "string"}
+                              },
+                              "required": ["level", "level_addendum"],
+                              "additionalProperties": false
+                            },
+                            {"pattern": "recommended.*"}
+                          ]
+                        }
+                      },
+                      "additionalProperties": false
+                    }
                   },
                   "required": ["selectors", "fields"],
                   "additionalProperties": false
