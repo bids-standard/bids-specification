@@ -49,7 +49,7 @@ def derefence_schema(obj):
 schema = load_schema(schema_path)
 schema = derefence_schema(schema)
 
-with open("metaschema.json", "r") as f:
+with open("schema/metaschema.json", "r") as f:
     metaschema = json.load(f)
 
 # validate is put in this try/except clause because the error is sometimes too long to
