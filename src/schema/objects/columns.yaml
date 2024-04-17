@@ -36,11 +36,16 @@ age:
   name: age
   display_name: Subject age
   description: |
-    Numeric value in years (float or integer value).
+    Numeric value (float or integer value), by default in Years.
 
     It is recommended to tag participant ages that are 89 or higher as 89+,
     for privacy purposes.
-  type: number
+    If age is in not in years, Units field should specify the unit.
+  anyOf:
+    - type: number
+    - type: string
+      enum:
+        - 89+
   unit: year
 cardiac:
   name: cardiac
