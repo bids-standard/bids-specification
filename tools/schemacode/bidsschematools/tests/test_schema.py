@@ -356,4 +356,3 @@ def test_namespace_to_dict():
             raise ValueError("Namespace object found in dict")
 
     check_for_namespaces(schema.load_schema().to_dict())
-
