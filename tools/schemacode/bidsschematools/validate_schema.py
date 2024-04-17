@@ -6,8 +6,8 @@ import yaml
 from jsonschema.exceptions import ValidationError
 from jsonschema.validators import validate
 
-#schema_path = Path(__file__).resolve().parents[3] / "src" / "schema"
 schema_path = Path("src") / "schema"
+metaschema_path = Path("src") / "metaschema.json"
 
 
 def load_schema(schema_path: Union[str, Path]) -> Union[Dict[str, Any], str]:
@@ -52,7 +52,7 @@ def dereference_schema(schema: dict):
 
 def validate_schema(schema: dict):
     schema = dereference_schema(schema)
-    with open("metaschema.json", "r") as f:
+    with open(metaschema_path, "r") as f:
         metaschema = json.load(f)
 
     # validate is put in this try/except clause because the error is sometimes too long to
