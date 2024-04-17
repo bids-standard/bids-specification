@@ -4,7 +4,6 @@ from pathlib import Path
 from jsonschema.exceptions import ValidationError
 from jsonschema.validators import validate
 
-
 metaschema_path = Path("src") / "metaschema.json"
 
 
