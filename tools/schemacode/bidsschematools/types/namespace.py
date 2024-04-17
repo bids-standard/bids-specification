@@ -168,12 +168,17 @@ class Namespace(MutableMapping):
         self._properties = dict(*args, **kwargs)
 
     def to_dict(self) -> dict:
-        ret = {}
-        for key, val in self._properties.items():
-            if isinstance(val, Namespace):
-                val = val.to_dict()
-            ret[key] = val
-        return ret
+
+        def _to_dict(obj):
+            if isinstance(obj, Namespace):
+                return {k: _to_dict(v) for k, v in obj._properties.items()}
+            if isinstance(obj, list):
+                return [_to_dict(v) for v in obj]
+            if isinstance(obj, dict):
+                return {k: _to_dict(v) for k, v in obj.items()}
+            return obj
+
+        return _to_dict(self)
 
     def __deepcopy__(self, memo):
         return self.build(self.to_dict())
