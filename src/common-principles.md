@@ -100,7 +100,7 @@ instead of specified with an `n/a` value, or included as an empty file
 ## Dataset naming
 
 BIDS does not prescribe a particular naming scheme for directories containing individual BIDS datasets.
-However, it is RECOMMENDED to use a short descriptive name that reflects the content of the dataset, avoid spaces in the name, and use hyphens to separate words.
+However, it is recommended to use a short descriptive name that reflects the content of the dataset, avoid spaces in the name, and use hyphens or underscores to separate words.
 BIDS datasets embedded within a larger BIDS dataset MAY follow some convention (see for example [Storage of derived datasets](#storage-of-derived-datasets)).
 
 ## Filesystem structure
@@ -256,7 +256,7 @@ However, in the case that these data are to be included:
 
 1.  These data MUST be kept in separate `sourcedata` directory.
     BIDS does not prescribe a particular naming scheme for source data.
-    But it is RECOMMENDED for it to follow BIDS naming convention where possible.
+    But it is recommended for it to follow BIDS naming convention where possible.
     For example: `sourcedata/sub-01/ses-pre/func/sub-01_ses-pre_task-rest_bold.dicom.tgz` or
     `sourcedata/sub-01/ses-pre/func/MyEvent.sce`.
 
