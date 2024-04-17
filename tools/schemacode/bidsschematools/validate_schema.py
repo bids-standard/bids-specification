@@ -6,7 +6,7 @@ import yaml
 from jsonschema.exceptions import ValidationError
 from jsonschema.validators import validate
 
-#schema_path = Path(__file__).resolve().parents[3] / "src" / "schema"
+# schema_path = Path(__file__).resolve().parents[3] / "src" / "schema"
 schema_path = Path("src") / "schema"
 
 
