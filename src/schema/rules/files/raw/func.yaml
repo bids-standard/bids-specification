@@ -4,7 +4,6 @@ func:
     - bold
     - cbv
     - sbref
-    - noRF
   extensions:
     - .nii.gz
     - .nii
@@ -23,6 +22,14 @@ func:
     echo: optional
     part: optional
     chunk: optional
+
+norf:
+  $ref: rules.files.raw.func.func
+  suffixes:
+    - noRF
+  entities:
+    $ref: rules.files.raw.func.func.entities
+    modality: optional
 
 phase:
   suffixes:

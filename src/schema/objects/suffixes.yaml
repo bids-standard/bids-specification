@@ -702,7 +702,7 @@ noRF:
 
     If multiple sequences with different suffixes but otherwise the same entities have `noRF`
     sequences, they SHOULD be disambiguated using the modality entity
-    (for example, `mod-T1w_noRF.nii.gz` and `mod-T2w_noRF.nii`).
+    (for example, `mod-bold_noRF.nii.gz` and `mod-cbv_noRF.nii`).
 
     `noRF` are typically used to estimate properties of the scanner and
     sequence that are independent from the object being imaged.
