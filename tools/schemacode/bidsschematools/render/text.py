@@ -559,10 +559,6 @@ def render_text(schema, key: str, src_path=None):
     schema : dict
         The BIDS schema.
 
-    object : str
-        The object to render the description for:
-        possible values correspond to the keys in schema["objects"].
-
     key : str
         The key of the object to render the description for:
         possible values correspond to the keys in schema["objects"][object]
