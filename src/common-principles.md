@@ -274,7 +274,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example(
     {
-    "my_dataset-1": {
+    "my_project-1": {
         "sourcedata": {
             "dicoms": {},
             "raw": {
@@ -290,9 +290,7 @@ A guide for using macros can be found at
             "pipeline_1": {},
             "pipeline_2": {},
             "...": "",
-        },
-        "dataset_description.json": "",
-        "...": "",
+        }
     }
    }
 ) }}
@@ -301,7 +299,7 @@ In this example, `sourcedata/dicoms` is not nested inside
 `sourcedata/raw`, **and only the `sourcedata/raw` subdirectory** is a BIDS-compliant dataset among `sourcedata/` subfolders.
 The subdirectories of `derivatives` MAY be BIDS-compliant derivatives datasets
 (see [Non-compliant derivatives](#non-compliant-derivatives) for further discussion).
-The above example is a fully compliant BIDS dataset, providing a convention useful for organizing source, raw BIDS, and derived BIDS data while maintaining overall BIDS compliance.
+The above example is just a convention useful for organizing source, raw BIDS, and derived BIDS data while maintaining BIDS compliance of the raw data directory.
 When using this convention it is RECOMMENDED to set the `SourceDatasets`
 field in `dataset_description.json` of each subdirectory of `derivatives` to:
 
