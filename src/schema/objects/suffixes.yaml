@@ -737,6 +737,11 @@ probe:
   display_name: A recording probe
   description: |
     A probe with one or more recording contacts.
+probes:
+  value: probes
+  display_name: Implanted physical devices
+  description: |
+    Physical devices used for recording ephys data, whether chronically or acutely implanted.
 probseg:
   value: probseg
   display_name: Probabilistic Segmentation

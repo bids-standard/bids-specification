@@ -17,3 +17,19 @@ ephys:
     acquisition: optional
     run: optional
     split: optional
+
+probes:
+  suffixes:
+    - probes
+  extensions:
+    - .tsv
+  datatypes:
+    - ephys
+  entities:
+    subject: required
+    session: optional
+    sample: optional
+    task: optional
+    acquisition: optional
+    run: optional
+    split: optional
