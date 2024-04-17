@@ -614,7 +614,7 @@
       "type": "string"
     }
   },
-  "required": ["meta", "objects", "rules", "BIDS_VERSION", "SCHEMA_VERSION"],
+  "required": ["meta", "objects", "rules", "bids_version", "schema_version"],
   "additionalProperties": false,
   "definitions": {
     "entities": {
