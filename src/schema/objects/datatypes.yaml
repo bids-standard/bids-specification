@@ -20,6 +20,10 @@ eeg:
   value: eeg
   display_name: Electroencephalography
   description: Electroencephalography
+ephys:
+  value: ephys
+  display_name: Electrophysiology
+  description: Data acquired using microelectrodes.
 fmap:
   value: fmap
   display_name: Field maps
