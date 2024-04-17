@@ -604,10 +604,10 @@
       ],
       "additionalProperties": false
     },
-    "BIDS_VERSION": {
+    "bids_version": {
       "type": "string"
     },
-    "SCHEMA_VERSION": {
+    "schema_version": {
       "type": "string"
     },
     "README": {
