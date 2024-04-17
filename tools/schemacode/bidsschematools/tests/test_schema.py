@@ -343,3 +343,17 @@ def test_dereferencing():
             },
         },
     }
+
+
+def test_namespace_to_dict():
+
+    def check_for_namespaces(obj):
+        if isinstance(obj, dict):
+            [check_for_namespaces(val) for val in obj.values()]
+        elif isinstance(obj, list):
+            [check_for_namespaces(val) for val in obj]
+        elif isinstance(obj, types.Namespace):
+            raise ValueError("Namespace object found in dict")
+
+    check_for_namespaces(schema.load_schema().to_dict())
+
