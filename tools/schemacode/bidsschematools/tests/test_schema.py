@@ -4,8 +4,9 @@ import os
 from collections.abc import Mapping
 
 import pytest
-from bidsschematools import __bids_version__, schema, types
 from jsonschema.exceptions import ValidationError
+
+from bidsschematools import __bids_version__, schema, types
 
 from ..data import load_resource
 

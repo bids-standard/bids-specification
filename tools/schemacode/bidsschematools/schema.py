@@ -296,10 +296,9 @@ def validate_schema(schema: Namespace):
         validate(instance=schema.to_dict(), schema=metaschema)
     except ValidationError as e:
         with tempfile.NamedTemporaryFile(
-                prefix="schema_error_", suffix=".txt", delete=False, mode="w+"
+            prefix="schema_error_", suffix=".txt", delete=False, mode="w+"
         ) as file:
             file.write(str(e))
             # ValidationError does not have an add_note method yet
             # e.add_note(f"See {file.name} for full error log.")
             raise e
-
