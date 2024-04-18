@@ -50,16 +50,15 @@ Sources:
   checks:
     - exists(sidecar.Sources, "bids-uri") + exists(sidecar.Sources, "dataset") == length(sidecar.Sources)
 
-SpatialReferencesString:
-  selectors:
-    - dataset.dataset_description.DatasetType == "derivatives"
-    - type(sidecar.SpatialReference.URI) == "string"
-  checks:
-    - exists(sidecar.SpatialReference.URI, "bids-uri") + exists(sidecar.SpatialReference.URI, "dataset") == 1
-
-SpatialReferencesArray:
-  selectors:
-    - dataset.dataset_description.DatasetType == "derivatives"
-    - type(sidecar.SpatialReference.URI) == "array"
-  checks:
-    - exists(sidecar.SpatialReference.URI, "bids-uri") + exists(sidecar.SpatialReference.URI, "dataset") == length(sidecar.SpatialReference.URI)
+## Verifying the existence of SpatialReferences is out-of-scope for schema validation
+## The ability to use any URI leaves this field too open-ended for effective validation, and the
+## object of key/URI pairs is worse.
+##
+## 2024.04.18 CJM & RWB
+#
+# SpatialReferencesString:
+#   selectors:
+#     - dataset.dataset_description.DatasetType == "derivatives"
+#     - type(sidecar.SpatialReference) == "string"
+#   checks:
+#     - exists(sidecar.SpatialReference, "bids-uri") + exists(sidecar.SpatialReference, "dataset") == 1
