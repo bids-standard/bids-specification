@@ -1,15 +1,12 @@
 import json
-from pathlib import Path
+from importlib.resources import files
 
 from jsonschema.exceptions import ValidationError
 from jsonschema.validators import validate
 
-metaschema_path = Path("src") / "metaschema.json"
-
 
 def validate_schema(schema):
-    with open(metaschema_path, "r") as f:
-        metaschema = json.load(f)
+    metaschema = json.loads(files("bidsschematools.data").joinpath("metaschema.json").read_text())
 
     # validate is put in this try/except clause because the error is sometimes too long to
     # print in the terminal
