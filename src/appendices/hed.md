@@ -44,10 +44,10 @@ meanings in associated JSON sidecar files (`events.json`).
 (`trial_type`, `response_time`, and `stim_file`) in addition to
 the required `onset` and `duration` columns.
 
-```Text
-onset  duration  trial_type  response_time stim_file
-1.2    0.6       go          1.435         images/red_square.jpg
-5.6    0.6       stop        n/a           images/blue_square.jpg
+```tsv
+onset	duration	trial_type	response_time	stim_file
+1.2	0.6	go	1.435	images/red_square.jpg
+5.6	0.6	stop	n/a	images/blue_square.jpg
 ```
 
 The `trial_type` column in the above example contains a limited number of distinct

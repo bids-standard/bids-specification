@@ -274,12 +274,12 @@ Examples of free-form text for field `description`
 
 See also the corresponding [`electrodes.tsv` example](#example-_electrodestsv).
 
-```Text
-name     type  units  description                     reference     status  status_description
-VEOG     VEOG  uV     left eye                        VEOG-, VEOG+  good    n/a
-FDI      EMG   uV     left first dorsal interosseous  FDI-, FDI+    good    n/a
-Cz       EEG   uV     n/a                             REF           bad     high frequency noise
-UADC001  MISC  n/a    envelope of audio signal        n/a           good    n/a
+```tsv
+name	type	units	description	reference	status	status_description
+VEOG	VEOG	uV	left eye	VEOG-, VEOG+	good	n/a
+FDI	EMG	uV	left first dorsal interosseous	FDI-, FDI+	good	n/a
+Cz	EEG	uV	n/a	REF	bad	high frequency noise
+UADC001	MISC	n/a	envelope of audio signal	n/a	good	n/a
 ```
 
 ## Electrodes description (`*_electrodes.tsv`)
@@ -318,15 +318,15 @@ If electrodes are repositioned, it is RECOMMENDED to use multiple sessions to in
 
 See also the corresponding [`channels.tsv` example](#example-_channelstsv).
 
-```Text
-name   x        y	       z        type     material
-VEOG+  n/a      n/a      n/a      cup      Ag/AgCl
-VEOG-  n/a      n/a      n/a      cup      Ag/AgCl
-FDI+   n/a      n/a      n/a      cup      Ag/AgCl
-FDI-   n/a      n/a      n/a      cup      Ag/AgCl
-GND    -0.0707  0.0000   -0.0707  clip-on  Ag/AgCl
-Cz     0.0000   0.0714   0.0699   cup      Ag/AgCl
-REF    -0.0742  -0.0200  -0.0100  cup      Ag/AgCl
+```tsv
+name	x	y	z	type	material
+VEOG+	n/a	n/a	n/a	cup	Ag/AgCl
+VEOG-	n/a	n/a	n/a	cup	Ag/AgCl
+FDI+	n/a	n/a	n/a	cup	Ag/AgCl
+FDI-	n/a	n/a	n/a	cup	Ag/AgCl
+GND	-0.0707	0.0000	-0.0707	clip-on	Ag/AgCl
+Cz	0.0000	0.0714	0.0699	cup	Ag/AgCl
+REF	-0.0742	-0.0200	-0.0100	cup	Ag/AgCl
 ```
 
 The [`acq-<label>`](../appendices/entities.md#acq) entity can be used to
