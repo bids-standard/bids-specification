@@ -43,6 +43,12 @@ repos:
       - id: prettier
         entry: env PRETTIER_LEGACY_CLI=1 prettier # temporary fix for https://github.com/prettier/prettier/issues/15742
         files: src/schema/.*/.*\.yaml
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.35.1
+    hooks:
+      - id: yamllint
+        args: [-f=standard, -c=.yamllint.yml]
+        files: src/schema/.*/.*\.yaml
   - repo: https://github.com/codespell-project/codespell
     rev: v2.2.6
     hooks:
