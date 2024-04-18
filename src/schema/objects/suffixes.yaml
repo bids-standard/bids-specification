@@ -573,7 +573,7 @@ electrodes:
     File that gives the location of (i)EEG electrodes.
 ephys:
   value: ephys
-  display_name: Electrophysiology
+  display_name: Microelectrode Electrophysiology
   description: |
     Extra- or intracellular microelectrode recording data.
 epi:
