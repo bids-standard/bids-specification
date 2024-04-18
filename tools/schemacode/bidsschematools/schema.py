@@ -130,7 +130,7 @@ def flatten_enums(namespace, inplace=True):
 
     Parameters
     ----------
-    schema : dict
+    namespace : dict
         Schema in dictionary form to be flattened.
 
     Returns
