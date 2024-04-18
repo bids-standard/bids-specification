@@ -71,7 +71,6 @@ coordsystem__ephys:
   $ref: rules.files.raw.channels.coordsystem
   datatypes:
     - ephys
-      # TODO - iephys
   entities:
     $ref: rules.files.raw.channels.coordsystem.entities
     sample: optional
