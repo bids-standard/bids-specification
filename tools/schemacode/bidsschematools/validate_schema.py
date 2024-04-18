@@ -1,8 +1,7 @@
 import json
 from importlib.resources import files
 
-from jsonschema.exceptions import ValidationError
-from jsonschema.validators import validate
+from jsonschema import ValidationError, validate
 
 
 def validate_schema(schema):
