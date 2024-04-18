@@ -1,39 +1,65 @@
 ---
-SubjectRelativeIntendedFor:
+SubjectRelativeIntendedForString:
   selectors:
     - datatype != "ieeg"
-    - type(sidecar.IntendedFor) != "null"
-    - length(sidecar.IntendedFor) > 0
+    - type(sidecar.IntendedFor) == "string"
   checks:
-    - exists(sidecar.IntendedFor, "bids-uri") || exists(sidecar.IntendedFor, "subject")
+    - exists(sidecar.IntendedFor, "bids-uri") + exists(sidecar.IntendedFor, "subject") == 1
 
-DatasetRelativeIntendedFor:
+SubjectRelativeIntendedForArray:
+  selectors:
+    - datatype != "ieeg"
+    - type(sidecar.IntendedFor) == "array"
+  checks:
+    - exists(sidecar.IntendedFor, "bids-uri") + exists(sidecar.IntendedFor, "subject") == length(sidecar.IntendedFor)
+
+DatasetRelativeIntendedForString:
   selectors:
     - datatype == "ieeg"
-    - type(sidecar.IntendedFor) != "null"
-    - length(sidecar.IntendedFor) > 0
+    - type(sidecar.IntendedFor) == "string"
   checks:
-    - exists(sidecar.IntendedFor, "bids-uri") || exists(sidecar.IntendedFor, "dataset")
+    - exists(sidecar.IntendedFor, "bids-uri") + exists(sidecar.IntendedFor, "dataset") == 1
 
-AssociatedEmptyRoom:
+DatasetRelativeIntendedForArray:
   selectors:
-    - suffix == "meg"
-    - type(sidecar.AssociatedEmptyRoom) != "null"
-    - length(sidecar.AssociatedEmptyRoom) > 0
+    - datatype == "ieeg"
+    - type(sidecar.IntendedFor) == "array"
   checks:
-    - exists(sidecar.AssociatedEmptyRoom, "bids-uri") || exists(sidecar.AssociatedEmptyRoom, "dataset")
+    - exists(sidecar.IntendedFor, "bids-uri") + exists(sidecar.IntendedFor, "dataset") == length(sidecar.IntendedFor)
+
+AssociatedEmptyRoomString:
+  selectors:
+    - datatype == "meg"
+    - type(sidecar.AssociatedEmptyRoom) == "string"
+  checks:
+    - exists(sidecar.AssociatedEmptyRoom, "bids-uri") + exists(sidecar.AssociatedEmptyRoom, "dataset") == 1
+
+AssociatedEmptyRoomArray:
+  selectors:
+    - datatype == "meg"
+    - type(sidecar.AssociatedEmptyRoom) == "array"
+  checks:
+    - |
+      exists(sidecar.AssociatedEmptyRoom, "bids-uri") + exists(sidecar.AssociatedEmptyRoom, "dataset")
+      == length(sidecar.AssociatedEmptyRoom)
 
 Sources:
   selectors:
     - dataset.dataset_description.DatasetType == "derivatives"
     - type(sidecar.Sources) != "null"
-    - length(sidecar.Sources) > 0
   checks:
-    - exists(sidecar.Sources, "bids-uri") || exists(sidecar.Sources, "dataset")
+    - exists(sidecar.Sources, "bids-uri") + exists(sidecar.Sources, "dataset") == length(sidecar.Sources)
 
-SpatialReferences:
+SpatialReferencesString:
   selectors:
     - dataset.dataset_description.DatasetType == "derivatives"
-    - type(sidecar.SpatialReference.URI) != "null"
+    - type(sidecar.SpatialReference.URI) == "string"
   checks:
-    - exists(sidecar.SpatialReference.URI, "bids-uri") || exists(sidecar.SpatialReference.URI, "dataset")
+    - exists(sidecar.SpatialReference.URI, "bids-uri") + exists(sidecar.SpatialReference.URI, "dataset") == 1
+
+SpatialReferencesArray:
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivatives"
+    - type(sidecar.SpatialReference.URI) == "array"
+  checks:
+    - exists(sidecar.SpatialReference.URI, "bids-uri") + exists(sidecar.SpatialReference.URI, "dataset") == length(sidecar.SpatialReference.URI)
