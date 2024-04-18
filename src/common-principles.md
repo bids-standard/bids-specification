@@ -255,8 +255,8 @@ source data (such as the raw event logs or parameter files, before conversion to
 However, in the case that these data are to be included:
 
 1.  These data MUST be kept in separate `sourcedata` directory.
-    BIDS does not prescribe a particular naming scheme for source data.
-    But it is recommended for it to follow BIDS naming convention where possible.
+    BIDS does not prescribe a particular naming scheme for source data,
+    but it is recommended for it to follow BIDS naming convention where possible.
     For example: `sourcedata/sub-01/ses-pre/func/sub-01_ses-pre_task-rest_bold.dicom.tgz` or
     `sourcedata/sub-01/ses-pre/func/MyEvent.sce`.
 
