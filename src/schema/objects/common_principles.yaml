@@ -47,7 +47,7 @@ dataset:
     A set of neuroimaging and behavioral data acquired for a purpose of a particular study.
     A dataset consists of data acquired from one or more subjects, possibly from multiple sessions.
 deprecated:
-  display_name: DEPRECATED
+  display_name: deprecated
   description: |
     A "deprecated" entity or metadata field SHOULD NOT be used in the generation of new datasets.
     It remains in the standard in order to preserve the interpretability of existing datasets.

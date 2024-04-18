@@ -654,11 +654,11 @@
               "patternProperties": {
                 "^[a-zA-Z0-9_]+$": {
                   "anyOf": [
-                    {"enum": ["recommended", "optional", "required", "DEPRECATED"]},
+                    {"enum": ["recommended", "optional", "required", "deprecated"]},
                     {
                       "type":  "object",
                       "properties": {
-                        "level": {"enum": ["recommended", "optional", "required", "DEPRECATED"]},
+                        "level": {"enum": ["recommended", "optional", "required", "deprecated"]},
                         "level_addendum": {"type": "string"}
                       },
                       "required": ["level", "level_addendum"],
@@ -692,11 +692,11 @@
               "patternProperties": {
                 "^[a-zA-Z0-9_]+$": {
                   "anyOf": [
-                    {"enum": ["recommended", "optional", "required", "DEPRECATED"]},
+                    {"enum": ["recommended", "optional", "required", "deprecated"]},
                     {
                       "type":  "object",
                       "properties": {
-                        "level": {"enum": ["recommended", "optional", "required", "DEPRECATED"]},
+                        "level": {"enum": ["recommended", "optional", "required", "deprecated"]},
                         "level_addendum": {"type": "string"},
                         "description_addendum": {"type": "string"}
                       },

@@ -7,7 +7,7 @@ CommonDerivativeFields:
       level: recommended
       description_addendum: This describes the nature of the file.
     Sources: optional
-    RawSources: DEPRECATED
+    RawSources: deprecated
 
 SpatialReferenceEntity:
   selectors:
@@ -36,7 +36,7 @@ MaskDerivatives:
   fields:
     Type: recommended
     Sources: recommended
-    RawSources: DEPRECATED
+    RawSources: deprecated
 
 SegmentationCommon:
   selectors:
