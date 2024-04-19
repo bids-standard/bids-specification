@@ -563,7 +563,7 @@ like in the example below.
 ### Compressed tabular files
 
 Large tabular information, such as physiological recordings, MUST be stored with
-[compressed tab-delineated (TSV.GZ) files](glossary.md#tsvgz-extensions) when
+[compressed tab-delineated (TSV.GZ) files](glossary.md#tsv_gz-extensions) when
 so established by the specifications.
 Rules for formatting plain-text tabular files apply to TSVGZ files with three exceptions:
 
