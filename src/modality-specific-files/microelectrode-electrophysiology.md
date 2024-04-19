@@ -27,17 +27,17 @@ The native file format is used in case conversion elicits the loss of crucial me
 Metadata should be included alongside the data in the `.json` and `.tsv` files.
 The current list of allowed data file formats:
 
-| **Format**                                                               | **Extension(s)** | **Description**                                                                                                                                                                                           |
----------------------------------------------------------------------------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [Neuroscience Information Exchange Format](https://nixio.readthedocs.io) | `.nix`           | A generic and open  framework with an hdf5 backend and a defined interface to many ephys formats via the [Neo library](https://neo.readthedocs.io). The `.nix` file has to contain a valid Neo structure. |
-| [Neurodata Without Borders](http://nwb.org)                              | `.nwb`           | BRAIN Initiative Data Standard based on an hdf5 backend ...                                                                                                                                               |
+| **Format**                                                                          | **Extension(s)** | **Description**                                                                                                                                                                                                      |
+--------------------------------------------------------------------------------------|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [Neuroscience Information Exchange Format](https://nixio.readthedocs.io/en/latest/) | `.nix`           | A generic and open  framework with an hdf5 backend and a defined interface to many ephys formats via the [Neo library](https://neo.readthedocs.io/en/latest/). The `.nix` file has to contain a valid Neo structure. |
+| [Neurodata Without Borders](https://www.nwb.org)                                    | `.nwb`           | BRAIN Initiative Data Standard based on an hdf5 backend ...                                                                                                                                                          |
 
 Both of these formats can also store essential metadata of the datasets.
 Some of these need to be duplicated in BIDS `.tsv` and `.json` sidecar files.
 Even though the duplication requires additional effort to ensure the consistency of the data, it provides a number of advantages:
 -   Making the dataset easier for humans to scan as essential information is easily accessible without loading the data files
 -   The dataset follows the BIDS standard and can benefit from tools building on top of this standard, starting with [bids-validator](https://github.com/bids-standard/bids-validator).
--   It simplifies the separation of data and basic metadata, for example to publish a dataset in a light-weight fashion with access to the data files on request (as implemented by [DataLad](https://datalad.org)).
+-   It simplifies the separation of data and basic metadata, for example to publish a dataset in a light-weight fashion with access to the data files on request (as implemented by [DataLad](https://www.datalad.org)).
 
 ##
 
