@@ -53,19 +53,22 @@ associated_brain_region:
   name: associated_brain_region
   display_name: Associated brain region
   description: |
-    A textual indication on the location of the probe, preferably species-independent terms as obtained e.g. from Uberon.
+    A textual indication on the location of the probe,
+    preferably species-independent terms as obtained, for example from Uberon.
   type: string
 associated_brain_region_id:
   name: associated_uberon_brain_region_id
   display_name: Associated brain region identifier
   description: |
-    An identifier of the associated brain region based on the Uberon ontology for  anatomical structures in animals. E.g. “UBERON:0010415”
+    An identifier of the associated brain region based on the Uberon ontology
+    for anatomical structures in animals, for example “UBERON:0010415”
   type: number
 associated_brain_region_quality_type:
   name: associated_brain_region_quality_type
   display_name: Associated brain region quality type
   description: |
-     The method used to identify the associated brain region (estimated|proof) depending on anatomical pictures proofing the location or indirect estimation of the location.
+     The method used to identify the associated brain region (estimated|proof)
+     depending on anatomical pictures proofing the location or indirect estimation of the location.
   type: string
 beta_rotation:
   name: beta_rotation
@@ -966,16 +969,6 @@ template_y:
   display_name: Y template position
   description: |
     Assumed or ideal position along the y axis.
-  anyOf:
-    - type: number
-    - type: string
-      enum:
-        - n/a
-template_z:
-  name: template_z
-  display_name: Z template position
-  description: |
-    Assumed or ideal position along the z axis.
   anyOf:
     - type: number
     - type: string
