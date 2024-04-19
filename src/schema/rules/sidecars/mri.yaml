@@ -25,7 +25,7 @@ MRIHardware:
     SoftwareVersions:
       level: recommended
       description_addendum: Corresponds to DICOM Tag 0018, 1020 `Software Versions`.
-    HardcopyDeviceSoftwareVersion: DEPRECATED
+    HardcopyDeviceSoftwareVersion: deprecated
     MagneticFieldStrength:
       level: recommended, but required for Arterial Spin Labeling
     ReceiveCoilName: recommended

@@ -68,5 +68,6 @@ repos:
           - pytest
           - types-PyYAML
           - types-tabulate
+          - types-jsonschema
         args: ["tools/schemacode/bidsschematools"]
         pass_filenames: false

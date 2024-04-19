@@ -1023,3 +1023,11 @@ be found at <https://bids-specification.readthedocs.io/en/latest/schema.json>.
 The JSON version of the schema contains `schema_version` and `bids_version` keys
 that identify the state of both the schema and the specification at the time it was
 compiled.
+
+## Metaschema
+
+The `metaschema.json` file is a meta-schema that uses the JSON Schema language to
+formalize the allowable directories, files, fields and values of the BIDS schema,
+ensuring consistency across the entire schema directory. Validation of the schema is
+incorporated into the CI, so any changes that are inconsistent will be flagged before
+inclusion.
