@@ -79,9 +79,11 @@ AnatomicalImage:
     Contains one or more [BIDS URIs](SPEC_ROOT/common-principles.md#bids-uri).
   anyOf:
     - type: string
+      format: bids_uri
     - type: array
       items:
         type: string
+        format: bids_uri
 AnatomicalLandmarkCoordinateSystem:
   name: AnatomicalLandmarkCoordinateSystem
   display_name: Anatomical Landmark Coordinate System
@@ -421,6 +423,7 @@ ChemicalShiftOffset:
     The chemical shift at the center of `SpectralWidth` corresponding to 0 Hz,
     specified in ppm (for example, `4.65`).
   type: number
+  unit: ppm
 ChemicalShiftReference:
   name: ChemicalShiftReference
   display_name: Chemical Shift Reference
@@ -428,6 +431,7 @@ ChemicalShiftReference:
     The chemical shift at the transmitter frequency, specified in ppm (for example, `2.68`).
     Corresponds to DICOM Tag 0018, 9053 `Chemical Shift Reference`.
   type: number
+  unit: ppm
 ChunkTransformationMatrix:
   name: ChunkTransformationMatrix
   display_name: Chunk Transformation Matrix
@@ -2059,7 +2063,7 @@ MatrixSize:
   maxItems: 3
   items:
     type: integer
-    exclusiveMinimum: 1
+    minimum: 1
 MaxMovement:
   name: MaxMovement
   display_name: Max Movement
@@ -2658,6 +2662,7 @@ PulseSequenceTiming:
   type: array
   items:
     type: number
+    unit: s
 PulseSequenceType:
   name: PulseSequenceType
   display_name: Pulse Sequence Type
@@ -2718,9 +2723,11 @@ ReceiveGain:
     The gain of the receive coil.
   anyOf:
     - type: number
+      unit: dB
     - type: array
       items:
         type: number
+        unit: dB
 ReconFilterSize:
   name: ReconFilterSize
   display_name: Recon Filter Size
@@ -2818,9 +2825,11 @@ ReferenceSignal:
     Contains one or more [BIDS URIs](SPEC_ROOT/common-principles.md#bids-uri).
   anyOf:
     - type: string
+      format: bids_uri
     - type: array
       items:
         type: string
+        format: bids_uri
 RepetitionTime:
   name: RepetitionTime
   display_name: Repetition Time
@@ -2853,12 +2862,12 @@ RepetitionTime__mrs:
     may differ over the scan, an array of numbers can be used.
   anyOf:
     - type: number
-      minimum: 0
+      exclusiveMinimum: 0
       unit: s
     - type: array
       items:
         type: number
-        minimum: 0
+        exclusiveMinimum: 0
         unit: s
 RepetitionTimeExcitation:
   name: RepetitionTimeExcitation
@@ -3475,6 +3484,7 @@ SpectralWidth:
     The spectral bandwidth of the MR signal that is sampled, specified in Hz.
     Corresponds to DICOM Tag 0018, 9052 `Spectral Width`.
   type: number
+  unit: Hz
 SpectrometerFrequency:
   name: SpectrometerFrequency
   display_name: Spectrometer Frequency
@@ -3486,9 +3496,11 @@ SpectrometerFrequency:
     an array can be used: `[127.731, 32.125]`.
   anyOf:
     - type: number
+      unit: MHz
     - type: array
       items:
         type: number
+        unit: MHz
 SpoilingGradientDuration:
   name: SpoilingGradientDuration
   display_name: Spoiling Gradient Duration
@@ -3804,10 +3816,14 @@ VolumeAffineMatrix:
     For example: `[[30, 0, 0, -30], [0, 30, -2.27, -72.67], [0, 2.27, 29.91, 5.47],
     [0, 0, 0, 1]]`.
   type: array
-  minItems: 16
-  maxItems: 16
+  minItems: 4
+  maxItems: 4
   items:
-    type: number
+    type: array
+    minItems: 4
+    maxItems: 4
+    items:
+      type: number
 VELChannelCount:
   name: VELChannelCount
   display_name: Velocity Channel Count

@@ -45,7 +45,7 @@ MRSSequenceSpecifics:
     ScanningSequence__mrs: recommended
     SequenceName: recommended
     PulseSequenceDetails: recommended
-    MRAcquisitionType: recommended for MRSI
+    MRAcquisitionType: optional, but recommended for MRSI
     WaterSuppression: recommended
     WaterSuppressionTechnique: optional
     OuterVolumeSuppression: recommended
@@ -81,7 +81,7 @@ MRSRecommendedFields:
     EditCondition: recommended for edited data
     EncodingTechnique: recommended for MRSI
     ReferenceSignal: recommended if MRS reference data are present
-    AnatomicalImage: recommended if anatomical MRI data are present
+    AnatomicalImage: optional, but recommended if anatomical MRI data are present
 
 MRSOptionalFields:
   selectors:
