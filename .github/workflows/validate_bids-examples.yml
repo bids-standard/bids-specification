@@ -103,8 +103,12 @@ jobs:
       working-directory: bids-examples
 
     - name: Show migrated datasets diff
-      run: git diff
+      run: git diff HEAD
       working-directory: bids-examples
+
+    # TODO: commit as a merge from current state of bids-examples
+    # and prior bids-2.0 branch there, but overloading with new updated
+    # state and recording commit hash of bids-specification used.
 
     - name: Validate all BIDS datasets using bids-validator after migration
       run: VALIDATOR_ARGS="--schema file://$PWD/../src/schema.json" bash ./run_tests.sh
