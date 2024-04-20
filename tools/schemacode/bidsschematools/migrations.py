@@ -42,8 +42,11 @@ def migrate_participants(dataset_path: Path):
             os.rename(old_file, new_file)
             lgr.info(f"   - renamed {old_file} to {new_file}")
             if ext == ".tsv":
-                migrated = new_file.read_text().replace("participant_id", "subject_id", 1)
-                new_file.write_text(migrated)
+                # Do manual .decode() and .encode() to avoid changing line endings
+                migrated = (
+                    new_file.read_bytes().decode().replace("participant_id", "subject_id", 1)
+                )
+                new_file.write_bytes(migrated.encode())
                 lgr.info(f"   - migrated content in {new_file}")
 
 
