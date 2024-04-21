@@ -13,7 +13,7 @@ repos:
       - id: check-added-large-files
       - id: check-case-conflict
   - repo: https://github.com/psf/black
-    rev: 24.3.0
+    rev: 24.4.0
     hooks:
       - id: black
         files: ^tools/(?!schemacode)
@@ -43,6 +43,12 @@ repos:
       - id: prettier
         entry: env PRETTIER_LEGACY_CLI=1 prettier # temporary fix for https://github.com/prettier/prettier/issues/15742
         files: src/schema/.*/.*\.yaml
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.35.1
+    hooks:
+      - id: yamllint
+        args: [-f=standard, -c=.yamllint.yml]
+        files: src/schema/.*/.*\.yaml
   - repo: https://github.com/codespell-project/codespell
     rev: v2.2.6
     hooks:
@@ -62,5 +68,6 @@ repos:
           - pytest
           - types-PyYAML
           - types-tabulate
+          - types-jsonschema
         args: ["tools/schemacode/bidsschematools"]
         pass_filenames: false
