@@ -4,6 +4,7 @@ MarkDown format for the specification text.
 Functions decorated in "define_env()" are callable throughout the
 specification and are run/rendered with the mkdocs plugin "macros".
 """
+
 import os
 import sys
 

@@ -136,18 +136,20 @@ with the object being referenced.
 The following two prototypical examples are presented to clarify the semantics of
 references (the cases in which they are used will be presented later):
 
-1.  In `objects.metadata`:
+1.  In `objects.enums`:
     ```YAML
     _GeneticLevelEnum:
       type: string
       enum:
-        - Genetic
-        - Genomic
-        - Epigenomic
-        - Transcriptomic
-        - Metabolomic
-        - Proteomic
-
+        - $ref: objects.enums.Genetic.value
+        - $ref: objects.enums.Genomic.value
+        - $ref: objects.enums.Epigenomic.value
+        - $ref: objects.enums.Transcriptomic.value
+        - $ref: objects.enums.Metabolomic.value
+        - $ref: objects.enums.Proteomic.value
+    ```
+    and in `objects.metadata`:
+    ```YAML
     GeneticLevel:
       name: GeneticLevel
       display_name: Genetic Level
@@ -156,29 +158,29 @@ references (the cases in which they are used will be presented later):
         Values MUST be one of `"Genetic"`, `"Genomic"`, `"Epigenomic"`,
         `"Transcriptomic"`, `"Metabolomic"`, or `"Proteomic"`.
       anyOf:
-        - $ref: objects.metadata._GeneticLevelEnum
+        - $ref: objects.enums._GeneticLevelEnum
         - type: array
           items:
-            $ref: objects.metadata._GeneticLevelEnum
+            $ref: objects.enums._GeneticLevelEnum
     ```
     Here `_GeneticLevelEnum` is used to describe the valid values of `GeneticLevel`,
-    and the references inside `GeneticLevel.anyOf` indicate that there may be a single
+    (which are in turn references to individual values), and the references inside `GeneticLevel.anyOf` indicate that there may be a single
     such value or a list of values.
 
-1.  In `rules.datatypes.derivatives.common_derivatives`:
+1.  In [`rules.files.deriv.preprocessed_data`](./rules/files/deriv/preprocessed_data.yaml):
     ```YAML
     anat_nonparametric_common:
-      $ref: rules.datatypes.anat.nonparametric
+      $ref: rules.files.raw.anat.nonparametric
       entities:
-        $ref: rules.datatypes.anat.nonparametric.entities
+        $ref: rules.files.raw.anat.nonparametric.entities
         space: optional
         description: optional
     ```
     Here, the derivative datatype rule starts by copying the raw datatype rule
-    `rules.datatypes.anat.nonparametric`.
+    `rules.files.raw.anat.nonparametric`.
     It then *overrides* the `entities` portion of that rule with a new object.
     To *extend* the original `entities`, it again begins
-    by referencing `rules.datatypes.anat.nonparametric.entities`,
+    by referencing `rules.files.raw.anat.nonparametric.entities`,
     and adding the new entities `space` and `description`.
 
 ### Expressions
@@ -229,7 +231,10 @@ which (currently) contains at the top level:
 -   `associations`: associated files, discovered by the inheritance principle
 -   `columns`: the columns in the current TSV file
 -   `json`: the contents of the current JSON file
+-   `gzip`: the contents of the current file GZIP header
 -   `nifti_header`: selected contents of the current NIfTI file's header
+-   `ome`: the contents of the current OME-XML metadata
+-   `tiff`: the contents of the current TIFF file's header
 
 Some of these are strings, while others are nested objects.
 These are to be populated by an *interpreter* of the schema,
@@ -1018,3 +1023,11 @@ be found at <https://bids-specification.readthedocs.io/en/latest/schema.json>.
 The JSON version of the schema contains `schema_version` and `bids_version` keys
 that identify the state of both the schema and the specification at the time it was
 compiled.
+
+## Metaschema
+
+The `metaschema.json` file is a meta-schema that uses the JSON Schema language to
+formalize the allowable directories, files, fields and values of the BIDS schema,
+ensuring consistency across the entire schema directory. Validation of the schema is
+incorporated into the CI, so any changes that are inconsistent will be flagged before
+inclusion.

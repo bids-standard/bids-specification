@@ -278,5 +278,5 @@ Update the following files in the BIDS website repository (https://github.com/bi
 
 ### 12. Sharing news of the release
 
-Please share news of the release on the [identified platforms](https://docs.google.com/spreadsheets/d/16SAGK3zG93WM2EWuoZDcRIC7ygPc5b7PDNGpFyC3obA/edit#gid=0).
+Please share news of the release on the [identified platforms](https://github.com/bids-standard/bids-specification?tab=readme-ov-file#BIDS-communication-channels).
 Please use our previous release posts as a guide.

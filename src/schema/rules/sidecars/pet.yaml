@@ -35,6 +35,17 @@ PETInstitutionInformation:
       level: recommended
       description_addendum: Corresponds to DICOM Tag 0008, 1040 `Institutional Department Name`.
 
+PETSample:
+  selectors:
+    - modality == "pet"
+    - suffix == "pet"
+  fields:
+    BodyPart:
+      level: optional
+      description_addendum: Corresponds to DICOM Tag 0018, 0015 `Body Part Examined`.
+    BodyPartDetails: optional
+    BodyPartDetailsOntology: optional
+
 PETRadioChemistry:
   selectors:
     - datatype == "pet"
@@ -103,10 +114,10 @@ PETPharmaceuticals:
   fields:
     PharmaceuticalName:
       level: recommended
-      description_addendum: Corresponds to DICOM Tag (0008,0034) `Intervention Drug Name`.
+      description_addendum: Corresponds to DICOM Tag 0008, 0034 `Intervention Drug Name`.
     PharmaceuticalDoseAmount:
       level: recommended
-      description_addendum: Corresponds to DICOM Tag (0008,0028) `Intervention Drug Dose`.
+      description_addendum: Corresponds to DICOM Tag 0008, 0028 `Intervention Drug Dose`.
     PharmaceuticalDoseUnits: recommended
     PharmaceuticalDoseRegimen: recommended
     PharmaceuticalDoseTime:
@@ -125,17 +136,17 @@ PETTime:
     ScanStart: required
     InjectionStart:
       level: required
-      description_addendum: Corresponds to DICOM Tag (0018,1072) `Radiopharmaceutical Start Time`.
+      description_addendum: Corresponds to DICOM Tag 0018, 1072 `Radiopharmaceutical Start Time`.
     FrameTimesStart: required
     FrameDuration: required
     InjectionEnd:
       level: recommended
       description_addendum: |
-        Corresponds to DICOM Tag (0018,1073) `Radiopharmaceutical Stop Time`
+        Corresponds to DICOM Tag 0018, 1073 `Radiopharmaceutical Stop Time`
         converted to seconds relative to TimeZero.
     ScanDate:
       level: deprecated
-      description_addendum: Corresponds to DICOM Tag (0008,0022) `Acquisition Date`.
+      description_addendum: Corresponds to DICOM Tag 0008, 0022 `Acquisition Date`.
 
 PETReconstruction:
   selectors:
@@ -147,40 +158,40 @@ PETReconstruction:
     ImageDecayCorrectionTime: required
     ReconMethodName:
       level: required
-      description_addendum: This partly matches the DICOM Tag (0054,1103) `Reconstruction Method`.
+      description_addendum: This partly matches the DICOM Tag 0054, 1103 `Reconstruction Method`.
     ReconMethodParameterLabels:
       level: required
-      description_addendum: This partly matches the DICOM Tag (0054,1103) `Reconstruction Method`.
+      description_addendum: This partly matches the DICOM Tag 0054, 1103 `Reconstruction Method`.
     ReconMethodParameterUnits:
       level: recommended
       level_addendum: required if `ReconMethodParameterLabels` does not contain `"none"`
-      description_addendum: This partly matches the DICOM Tag (0054,1103) `Reconstruction Method`.
+      description_addendum: This partly matches the DICOM Tag 0054, 1103 `Reconstruction Method`.
     ReconMethodParameterValues:
       level: recommended
       level_addendum: required if `ReconMethodParameterLabels` does not contain `"none"`
-      description_addendum: This partly matches the DICOM Tag (0054,1103) `Reconstruction Method`.
+      description_addendum: This partly matches the DICOM Tag 0054, 1103 `Reconstruction Method`.
     ReconFilterType:
       level: required
-      description_addendum: This partly matches the DICOM Tag (0018,1210) `Convolution Kernel`.
+      description_addendum: This partly matches the DICOM Tag 0018, 1210 `Convolution Kernel`.
     ReconFilterSize:
       level: recommended
       level_addendum: required if `ReconFilterType` is not `"none"`
-      description_addendum: This partly matches the DICOM Tag (0018,1210) `Convolution Kernel`.
+      description_addendum: This partly matches the DICOM Tag 0018, 1210 `Convolution Kernel`.
     AttenuationCorrection:
       level: required
-      description_addendum: This corresponds to DICOM Tag (0054,1101) `Attenuation Correction Method`.
+      description_addendum: This corresponds to DICOM Tag 0054, 1101 `Attenuation Correction Method`.
     ReconMethodImplementationVersion: recommended
     AttenuationCorrectionMethodReference: recommended
     ScaleFactor: recommended
     ScatterFraction:
       level: recommended
-      description_addendum: Corresponds to DICOM Tag (0054,1323) `Scatter Fraction Factor`.
+      description_addendum: Corresponds to DICOM Tag 0054, 1323 `Scatter Fraction Factor`.
     DecayCorrectionFactor:
       level: recommended
-      description_addendum: Corresponds to DICOM Tag (0054,1321) `Decay Factor`.
+      description_addendum: Corresponds to DICOM Tag 0054, 1321 `Decay Factor`.
     DoseCalibrationFactor:
       level: recommended
-      description_addendum: Corresponds to DICOM Tag (0054,1322) `Dose Calibration Factor`.
+      description_addendum: Corresponds to DICOM Tag 0054, 1322 `Dose Calibration Factor`.
     PromptRate: recommended
     SinglesRate: recommended
     RandomRate: recommended

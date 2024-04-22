@@ -1,4 +1,5 @@
 """Simple validation tests on schema rules."""
+
 import warnings
 from collections.abc import Mapping
 
@@ -28,12 +29,8 @@ def _dict_key_lookup(_dict, key, path=[]):
 @pytest.mark.validate_schema
 def test_rule_objects(schema_obj):
     """Ensure that all objects referenced in the schema rules are defined in
-    its object portion.
+    their object portion.
 
-    This test currently fails because rules files reference object keys for some object types,
-    including entities, columns, and metadata fields,
-    but reference "name" or "value" elements of the object definitions for other object types,
-    including suffixes and extensions.
     In the case of datatypes, the key and "value" field are always the same.
 
     Some other object types, such as associated_data, common_principles, formats, modalities,
@@ -82,8 +79,7 @@ def test_rule_objects(schema_obj):
                 if object_type in ["extensions", "suffixes"]:
                     # Some object types are referenced via their "value" fields in the rules
                     object_values = [
-                        schema_obj["objects"][object_type][k]["value"]
-                        for k in schema_obj["objects"][object_type].keys()
+                        value["value"] for value in schema_obj["objects"][object_type].values()
                     ]
                 else:
                     # But other object types are referenced via their keys
@@ -99,7 +95,7 @@ def test_rule_objects(schema_obj):
 
     if not_found:
         not_found_string = "\n".join([f"{'.'.join(path)} == {val}" for path, val in not_found])
-        raise ValueError(not_found_string)
+        raise AssertionError(f"Undefined objects found in rules: {not_found_string}")
 
 
 @pytest.mark.validate_schema

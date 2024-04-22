@@ -2,11 +2,14 @@ version: 2
 
 build:
   os: ubuntu-22.04
+  apt_packages:
+    - jq
   tools:
     python: "3.11"
   jobs:
     pre_build:
       - bst -v export --output src/schema.json
+      - tools/no-bad-schema-paths.sh src/schema.json  # README.md might need fixing
 
 mkdocs:
   configuration: mkdocs.yml

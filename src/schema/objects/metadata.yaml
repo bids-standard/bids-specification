@@ -232,6 +232,20 @@ B0FieldSource:
     - type: array
       items:
         type: string
+B0ShimmingTechnique:
+  name: B0ShimmingTechnique
+  display_name: B0 Shimming Technique
+  description: |
+    The technique used to shim the *B<sub>0</sub>* field (for example, `"Dynamic shim updating"`
+    or `"FASTMAP"`).
+  type: string
+B1ShimmingTechnique:
+  name: B1ShimmingTechnique
+  display_name: B1 Shimming Technique
+  description: |
+    The technique used to shim the *B<sub>1</sub>* field (for example, `"Simple phase align"`
+    or `"Pre-saturated TurboFLASH"`).
+  type: string
 BIDSVersion:
   name: BIDSVersion
   display_name: BIDS Version
@@ -2214,6 +2228,12 @@ NumberOfVolumesDiscardedByUser:
     `"NumberOfVolumesDiscardedByUser"` field.
   type: integer
   minimum: 0
+NumberReceiveCoilActiveElements:
+  name: NumberReceiveCoilActiveElements
+  display_name: Number of Receive Coil Active Elements
+  description: |
+    The number of active RF elements used by the receive coil.
+  type: integer
 NumberShots:
   name: NumberShots
   display_name: Number Shots
@@ -2233,6 +2253,12 @@ NumberShots:
     - type: array
       items:
         type: number
+NumberTransmitCoilActiveElements:
+  name: NumberTransmitCoilActiveElements
+  display_name: Number of Transmit Coil Active Elements
+  description: |
+    The number of active RF elements used by the transmit coil.
+  type: integer
 NumericalAperture:
   name: NumericalAperture
   display_name: Numerical Aperture
@@ -2661,10 +2687,10 @@ RepetitionTime:
     and the beginning of acquisition of the volume following it (TR).
     When used in the context of functional acquisitions this parameter best
     corresponds to
-    [DICOM Tag 0020, 0110](http://dicomlookup.com/lookup.asp?sw=Tnumber&q=(0020,0110)):
+    [DICOM Tag 0020, 0110](http://dicomlookup.com/dicomtags/(0020,0110)):
     the "time delta between images in a
     dynamic of functional set of images" but may also be found in
-    [DICOM Tag 0018, 0080](http://dicomlookup.com/lookup.asp?sw=Tnumber&q=(0018,0080)):
+    [DICOM Tag 0018, 0080](http://dicomlookup.com/dicomtags/(0018,0080)):
     "the period of time in msec between the beginning
     of a pulse sequence and the beginning of the succeeding
     (essentially identical) pulse sequence".
@@ -2681,7 +2707,7 @@ RepetitionTimeExcitation:
   display_name: Repetition Time Excitation
   description: |
     The interval, in seconds, between two successive excitations.
-    [DICOM Tag 0018, 0080](http://dicomlookup.com/lookup.asp?sw=Tnumber&q=(0018,0080))
+    [DICOM Tag 0018, 0080](http://dicomlookup.com/dicomtags/(0018,0080))
     best refers to this parameter.
     This field may be used together with the `"RepetitionTimePreparation"` for
     certain use cases, such as
@@ -3594,6 +3620,18 @@ VolumeTiming:
   items:
     type: number
     unit: s
+WaterSuppression:
+  name: WaterSuppression
+  display_name: Water Suppression
+  description: |
+    Boolean indicating whether water suppression was used prior to acquisition.
+  type: boolean
+WaterSuppressionTechnique:
+  name: WaterSuppressionTechnique
+  display_name: Water Suppression Technique
+  description: |
+    The name of the pulse sequence used for water suppression (for example, `"CHESS"`, `"VAPOR"`).
+  type: string
 WholeBloodAvail:
   name: WholeBloodAvail
   display_name: Whole Blood Avail
