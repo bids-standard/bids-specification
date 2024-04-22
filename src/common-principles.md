@@ -318,10 +318,10 @@ field in `dataset_description.json` of each subdirectory of `derivatives` to:
 
     However, more stringent sharing limitations may apply to the source data
     than those applicable to the raw data.
-    For example, human data almost always requires anonymization
+    For example, human data almost always requires deidentification
     before they can be redistributed,
     or the subjects' consent form did not explicitly state that the source files
-    would be shared after anonymization.
+    would be shared after deidentification.
     Further examples in which sharing source data may not be possible
     include original data formats that are not redistributable
     as per the acquisition device's license.
