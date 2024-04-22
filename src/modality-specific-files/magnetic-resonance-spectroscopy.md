@@ -28,7 +28,7 @@ that allows for the noninvasive detection and quantification of molecules in bio
 It can be conducted in humans using conventional MRI systems.
 
 Due to the diversity in manufacturers' MRS data file formats, source data MUST be converted into the
-[NIfTI-MRS format](https://wtclarke.github.io/mrs_nifti_standard/) (`*.nii[.gz]`).
+[NIfTI-MRS format](https://wtclarke.github.io/mrs_nifti_standard/) (`*.nii[.gz]`) ([doi:10.1002/mrm.29418](https://doi.org/10.1002/mrm.29418)).
 This format is based on the NIfTI framework and is designed to accommodate the nuances of raw MRS data.
 All necessary information to parse this `*.nii[.gz]` file (for example, spectrometer frequency, echo time,
 repetition time, and so on) are stored in a JSON header extension.
