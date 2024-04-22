@@ -66,11 +66,11 @@ All of these files are considered source data and, if present, MUST be stored in
 
 ### Single-voxel spectroscopy and MRS imaging
 
-| **Name**                                 | **`suffix`** | **Description**                                                                                                                                                                       |
-| ---------------------------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Single-voxel spectroscopy                | svs          | MRS acquisitions where the detected MR signal is spatially localized to a single volume.                                                                                              |
-| Magnetic resonance spectroscopic imaging | mrsi         | MRS acquisitions where additional imaging gradients are used to detect the MR signal from 1, 2, or 3 spatial dimensions.                                                              |
-| Unlocalized spectroscopy                 | unloc        | MRS acquisitions run without localization. This includes signals detected using coil sensitivity only.                                                                                |
+| **Name**                                 | **`suffix`** | **Description**                                                                                                                                                                        |
+| ---------------------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Single-voxel spectroscopy                | svs          | MRS acquisitions where the detected MR signal is spatially localized to a single volume.                                                                                               |
+| Magnetic resonance spectroscopic imaging | mrsi         | MRS acquisitions where additional imaging gradients are used to detect the MR signal from 1, 2, or 3 spatial dimensions.                                                               |
+| Unlocalized spectroscopy                 | unloc        | MRS acquisitions run without localization. This includes signals detected using coil sensitivity only.                                                                                 |
 | Concentration or calibration reference   | mrsref       | An MRS acquisition collected to serve as a concentration reference for absolute quantification or as a calibration reference for preprocessing (for example, eddy-current correction). |
 
 A major distinction between MRS acquisitions is whether the acquisition technique probes spectral
