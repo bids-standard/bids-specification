@@ -287,4 +287,3 @@ DeidentificationMethod:
     DeidentificationMethodCodeSequence:
       level: optional
       description_addendum: Corresponds to DICOM Tag 0012, 0064 `De-identification Method Code Sequence`.
-
