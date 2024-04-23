@@ -401,8 +401,8 @@ def make_filename_template(
 
             ext_headings = []
             for extension in extensions:
-                # The glossary indexes by the extension identifier (niigz instead of .nii.gz),
-                # but the rules reference the actual suffix string (.nii.gz instead of niigz),
+                # The glossary indexes by the extension identifier (nii_gz instead of .nii.gz),
+                # but the rules reference the actual suffix string (.nii.gz instead of nii_gz),
                 # so we need to look it up.
                 key = ext_key_table.get(extension)
                 if key:
@@ -558,10 +558,6 @@ def render_text(schema, key: str, src_path=None):
     ----------
     schema : dict
         The BIDS schema.
-
-    object : str
-        The object to render the description for:
-        possible values correspond to the keys in schema["objects"].
 
     key : str
         The key of the object to render the description for:

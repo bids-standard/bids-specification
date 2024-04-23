@@ -208,7 +208,7 @@ def make_metadata_table(field_info, src_path=None):
 
     Parameters
     ----------
-    field_names : dict
+    field_info : dict
         A list of the field names.
         Field names correspond to filenames in the "metadata" directory of the
         schema.
