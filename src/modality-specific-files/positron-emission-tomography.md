@@ -480,3 +480,4 @@ and a guide for using macros can be found at
 {{ MACROS___make_filename_template("raw", datatypes=["anat"], suffixes=[
          "defacemask",
       ])
+}}
