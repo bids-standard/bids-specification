@@ -319,3 +319,16 @@ MRIInstitutionInformation:
     InstitutionalDepartmentName:
       level: recommended
       description_addendum: Corresponds to DICOM Tag 0008, 1040 `Institutional Department Name`.
+
+DeidentificationMethod:
+  selectors:
+    - intersects([modality], ["mri", "pet"])
+  fields:
+    DeidentificationMethod:
+      level: optional
+      description_addendum: Corresponds to DICOM Tag 0012, 0063 `De-identification Method`.
+    DeidentificationMethodCodeSequence:
+      level: optional
+      description_addendum: Corresponds to DICOM Tag 0012, 0064 `De-identification Method Code Sequence`.
+
+

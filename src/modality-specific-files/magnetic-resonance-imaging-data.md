@@ -356,6 +356,32 @@ recommended metadata fields, and the application specific entity or
 metadata requirement levels of [file collections](../appendices/file-collections.md) that can generate
 them, visit the [qMRI appendix](../appendices/qmri.md).
 
+### Deidentification information
+
+Describes the mechanism or method used to modify or remove metadata
+and/or pixel data to protect the patient or participant's identity.
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("mri.DeidentificationMethod") }}
+
+Each object in the `DeidentificationMethodCodeSequence` array includes the following RECOMMENDED keys:
+
+<!-- This block generates a table describing subfields within a metadata field.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_subobject_table("metadata.DeidentificationMethodCodeSequence.items") }}
+
+
 ### Defacing masks
 
 If the structural images included in the dataset were defaced (to protect
