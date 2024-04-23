@@ -1,0 +1,86 @@
+---
+meg:
+  suffixes:
+    - meg
+  extensions:
+    - / # corresponds to BTi/4D data
+    - .ds/
+    - .json
+    - .fif
+    - .sqd
+    - .con
+    - .raw
+    - .ave
+    - .mrk
+    - .kdf
+    - .mhd
+    - .trg
+    - .chn
+  datatypes:
+    - meg
+  entities:
+    subject: required
+    session: optional
+    task: required
+    acquisition: optional
+    run: optional
+    processing: optional
+    split: optional
+
+calibration:
+  suffixes:
+    - meg
+  extensions:
+    - .dat
+  datatypes:
+    - meg
+  entities:
+    subject: required
+    session: optional
+    acquisition:
+      level: required
+      enum:
+        - $ref: objects.enums.calibration.value
+
+crosstalk:
+  suffixes:
+    - meg
+  extensions:
+    - .fif
+  datatypes:
+    - meg
+  entities:
+    subject: required
+    session: optional
+    acquisition:
+      level: required
+      enum:
+        - $ref: objects.enums.crosstalk.value
+
+headshape:
+  suffixes:
+    - headshape
+  extensions:
+    - .*
+    - .pos
+  datatypes:
+    - meg
+  entities:
+    subject: required
+    session: optional
+    acquisition: optional
+
+markers:
+  suffixes:
+    - markers
+  extensions:
+    - .sqd
+    - .mrk
+  datatypes:
+    - meg
+  entities:
+    subject: required
+    session: optional
+    task: optional
+    acquisition: optional
+    space: optional

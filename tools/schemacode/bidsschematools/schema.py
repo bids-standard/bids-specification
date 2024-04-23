@@ -1,16 +1,14 @@
 """Schema loading- and processing-related functions."""
-import json
+
 import logging
 import os
 import re
-from collections.abc import Mapping
+from collections.abc import Iterable, Mapping
 from copy import deepcopy
 from functools import lru_cache
-from pathlib import Path
-
-import yaml
 
 from . import __bids_version__, __version__, utils
+from .types import Namespace
 
 lgr = utils.get_logger()
 # Basic settings for output, for now just basic
@@ -22,17 +20,24 @@ class BIDSSchemaError(Exception):
     """Errors indicating invalid values in the schema itself"""
 
 
-def _get_entry_name(path):
-    if path.suffix == ".yaml":
-        return path.name[:-5]  # no .yaml
-    else:
-        return path.name
+def _get_schema_version(schema_dir):
+    """
+    Determine schema version for given schema directory, based on file specification.
+    """
+
+    schema_version_path = os.path.join(schema_dir, "SCHEMA_VERSION")
+    with open(schema_version_path) as f:
+        schema_version = f.readline().rstrip()
+    return schema_version
 
 
-def _get_bids_version(bids_schema_dir):
-    """Determine schema version, with directory name, file specification, and string fallback."""
+def _get_bids_version(schema_dir):
+    """
+    Determine BIDS version for given schema directory, with directory name, file specification,
+    and string fallback.
+    """
 
-    bids_version_path = os.path.join(bids_schema_dir, "BIDS_VERSION")
+    bids_version_path = os.path.join(schema_dir, "BIDS_VERSION")
     try:
         with open(bids_version_path) as f:
             bids_version = f.readline().rstrip()
@@ -40,163 +45,122 @@ def _get_bids_version(bids_schema_dir):
     except FileNotFoundError:
         # Maybe the directory encodes the version, as in:
         # https://github.com/bids-standard/bids-schema
-        _, bids_version = os.path.split(bids_schema_dir)
+        _, bids_version = os.path.split(schema_dir)
         if not re.match(r"^.*?[0-9]*?\.[0-9]*?\.[0-9]*?.*?$", bids_version):
             # Then we don't know, really.
-            bids_version = bids_schema_dir
+            bids_version = schema_dir
     return bids_version
 
 
-def _expand_dots(entry):
-    # Helper function for expand
-    key, val = entry
-    if "." in key:
-        init, post = key.split(".", 1)
-        return init, dict([_expand_dots((post, val))])
-    return key, expand(val)
+def _find(obj, predicate):
+    """Find objects in an arbitrary object that satisfy a predicate.
 
+    Note that this does not cut branches, so every iterable sub-object
+    will be fully searched.
 
-def expand(element):
-    """Expand a dict, recursively, to replace dots in keys with recursive dictionaries
+    Parameters
+    ----------
+    obj : object
+    predicate : function
 
-    Examples
-    --------
-    >>> expand({"a": 1, "b.c": 2, "d": [{"e": 3, "f.g": 4}]})
-    {'a': 1, 'b': {'c': 2}, 'd': [{'e': 3, 'f': {'g': 4}}]}
+    Returns
+    -------
+    generator
+        A generator of entries in ``obj`` that satisfy the predicate.
     """
-    if isinstance(element, dict):
-        return {key: val for key, val in map(_expand_dots, element.items())}
-    elif isinstance(element, list):
-        return [expand(el) for el in element]
-    return element
+    try:
+        if predicate(obj):
+            yield obj
+    except Exception:
+        pass
+
+    iterable = ()
+    if isinstance(obj, Mapping):
+        iterable = obj.values()
+    elif not isinstance(obj, str) and isinstance(obj, Iterable):
+        iterable = obj
+
+    for item in iterable:
+        yield from _find(item, predicate)
 
 
-class Namespace(Mapping):
-    """Provides recursive attribute style access to a dict-like structure
+def dereference(namespace, inplace=True):
+    """Replace references in namespace with the contents of the referred object.
 
-    Examples
-    --------
-    >>> ns = Namespace.build({"a": 1, "b.c": "val"})
-    >>> ns.a
-    1
-    >>> ns["a"]
-    1
-    >>> ns.b
-    <Namespace {'c': 'val'}>
-    >>> ns["b"]
-    <Namespace {'c': 'val'}>
-    >>> ns.b.c
-    'val'
-    >>> ns["b.c"]
-    'val'
-    >>> ns["b"]["c"]
-    'val'
-    >>> ns.b["c"]
-    'val'
-    >>> ns["b"].c
-    'val'
+    Parameters
+    ----------
+    namespace : Namespace
+        Namespace for which to dereference.
+
+    inplace : bool, optional
+        Whether to modify the namespace in place or create a copy, by default True.
+
+    Returns
+    -------
+    namespace : Namespace
+        Dereferenced namespace
     """
+    if not inplace:
+        namespace = deepcopy(namespace)
 
-    def __init__(self, *args, **kwargs):
-        self._properties = dict(*args, **kwargs)
-
-    def to_dict(self):
-        ret = {}
-        for key, val in self._properties.items():
-            if isinstance(val, Namespace):
-                val = val.to_dict()
-            ret[key] = val
-        return ret
-
-    def __deepcopy__(self, memo):
-        return self.build(self.to_dict())
-
-    @classmethod
-    def build(cls, mapping):
-        """Expand mapping recursively and return as namespace"""
-        return cls(expand(mapping))
-
-    def __getattribute__(self, key):
-        # Return actual properties first
-        err = None
-        try:
-            return super().__getattribute__(key)
-        except AttributeError as e:
-            err = e
-
-        # Utilize __getitem__ but keep original error on failure
-        try:
-            return self[key]
-        except KeyError:
-            raise err
-
-    def __getitem__(self, key):
-        key, dot, subkey = key.partition(".")
-        val = self._properties[key]
-        if isinstance(val, dict):
-            val = self.__class__(val)
-        if dot:
-            # Recursive step
-            val = val[subkey]
-        return val
-
-    def __repr__(self):
-        return f"<Namespace {self._properties}>"
-
-    def __len__(self):
-        return len(self._properties)
-
-    def __iter__(self):
-        return iter(self._properties)
-
-    @classmethod
-    def from_directory(cls, path, fmt="yaml"):
-        mapping = {}
-        fullpath = Path(path)
-        if fmt == "yaml":
-            for subpath in sorted(fullpath.iterdir()):
-                if subpath.is_dir():
-                    submapping = cls.from_directory(subpath)
-                    if submapping:
-                        mapping[subpath.name] = submapping
-                elif subpath.name.endswith("yaml"):
-                    mapping[subpath.stem] = yaml.safe_load(subpath.read_text())
-            return cls.build(mapping)
-        raise NotImplementedError(f"Unknown format: {fmt}")
-
-
-def dereference_mapping(schema, struct):
-    """Recursively search a dictionary-like object for $ref keys.
-
-    Each $ref key is replaced with the contents of the referenced field in the overall
-    dictionary-like object.
-    """
-    if isinstance(struct, Mapping):
-        struct = dict(struct)
-        if "$ref" in struct:
-            ref_field = struct["$ref"]
-            template = schema[ref_field]
+    for struct in _find(namespace, lambda obj: "$ref" in obj):
+        target = namespace.get(struct["$ref"])
+        if isinstance(target, Mapping):
             struct.pop("$ref")
-            # Result is template object with local overrides
-            struct = {**template, **struct}
+            struct.update({**target, **struct})
 
-        struct = {key: dereference_mapping(schema, val) for key, val in struct.items()}
+    # At this point, any remaining refs are one-off objects in lists
+    for struct in _find(namespace, lambda obj: any("$ref" in sub for sub in obj)):
+        for i, item in enumerate(struct):
+            try:
+                target = item.pop("$ref")
+            except (AttributeError, KeyError):
+                pass
+            else:
+                struct[i] = namespace.get(target)
 
-        # For the rare case of multiple sets of valid values (enums) from multiple references,
-        # anyOf is used. Here we try to flatten our anyOf of enums into a single enum list.
-        if "anyOf" in struct.keys():
-            if all("enum" in obj for obj in struct["anyOf"]):
-                all_enum = [v["enum"] for v in struct["anyOf"]]
-                all_enum = [item for sublist in all_enum for item in sublist]
+    return namespace
 
-                struct.pop("anyOf")
-                struct["type"] = "string"
-                struct["enum"] = all_enum
 
-    elif isinstance(struct, list):
-        struct = [dereference_mapping(schema, item) for item in struct]
+def flatten_enums(namespace, inplace=True):
+    """Replace enum collections with a single enum, merging enums contents.
 
-    return struct
+    The function helps reducing the complexity of the schema by assuming
+    that the values in the conditions (anyOf) are mutually exclusive.
+
+    Parameters
+    ----------
+    schema : dict
+        Schema in dictionary form to be flattened.
+
+    Returns
+    -------
+    schema : dict
+        Schema with flattened enums.
+
+    Examples
+    --------
+
+    >>> struct = {
+    ...   "anyOf": [
+    ...      {"type": "string", "enum": ["A", "B", "C"]},
+    ...      {"type": "string", "enum": ["D", "E", "F"]},
+    ...   ]
+    ... }
+    >>> flatten_enums(struct)
+    {'type': 'string', 'enum': ['A', 'B', 'C', 'D', 'E', 'F']}
+    """
+    if not inplace:
+        namespace = deepcopy(namespace)
+    for struct in _find(namespace, lambda obj: "anyOf" in obj):
+        try:
+            all_enum = [val for item in struct["anyOf"] for val in item["enum"]]
+        except KeyError:
+            continue
+
+        del struct["anyOf"]
+        struct.update({"type": "string", "enum": all_enum})
+    return namespace
 
 
 @lru_cache()
@@ -205,7 +169,7 @@ def load_schema(schema_path=None):
 
     This function allows the schema, like BIDS itself, to be specified in
     a hierarchy of directories and files.
-    File names (minus extensions) and directory names become keys
+    Filenames (minus extensions) and directory names become keys
     in the associative array (dict) of entries composed from content
     of files and entire directories.
 
@@ -219,24 +183,45 @@ def load_schema(schema_path=None):
     -------
     dict
         Schema in dictionary form.
+
+    Notes
+    -----
+    This function is cached, so it will only be called once per schema path.
     """
     if schema_path is None:
-        schema_path = utils.get_schema_path()
-    schema = Namespace.from_directory(Path(schema_path))
+        schema_path = utils.get_bundled_schema_path()
+        lgr.info("No schema path specified, defaulting to the bundled schema, `%s`.", schema_path)
+    schema = Namespace.from_directory(schema_path)
     if not schema.objects:
         raise ValueError(f"objects subdirectory path not found in {schema_path}")
     if not schema.rules:
         raise ValueError(f"rules subdirectory path not found in {schema_path}")
 
-    dereferenced = dereference_mapping(schema, schema)
-    return Namespace.build(dereferenced)
+    dereference(schema)
+    flatten_enums(schema)
+
+    schema["bids_version"] = _get_bids_version(schema_path)
+    schema["schema_version"] = _get_schema_version(schema_path)
+
+    return schema
 
 
 def export_schema(schema):
-    schema_dict = schema.to_dict()
-    schema_dict["schema_version"] = __version__
-    schema_dict["bids_version"] = __bids_version__
-    return json.dumps(schema_dict)
+    """Export the schema to JSON format.
+
+    Parameters
+    ----------
+    schema : dict
+        The schema object, in dictionary form.
+
+    Returns
+    -------
+    json : str
+        The schema serialized as a JSON string.
+    """
+    versioned = Namespace.build({"schema_version": __version__, "bids_version": __bids_version__})
+    versioned.update(schema)
+    return versioned.to_json()
 
 
 def filter_schema(schema, **kwargs):
@@ -247,7 +232,10 @@ def filter_schema(schema, **kwargs):
     schema : dict
         The schema object, which is a dictionary with nested dictionaries and
         lists stored within it.
-    kwargs : dict
+
+    Other Parameters
+    ----------------
+    **kwargs : dict
         Keyword arguments used to filter the schema.
         Example kwargs that may be used include: "suffixes", "datatypes",
         "extensions".

@@ -1,0 +1,105 @@
+---
+NASamplingFreq:
+  selectors:
+    - suffix == "nirs"
+    - samplingFrequency == "n/a"
+  checks:
+    - associations.channels.sampling_frequency != null
+
+NIRSChannelCount:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "nirs"
+  checks:
+    - |
+      sidecar.NIRSChannelCount
+      == count(associations.channels.type, "NIRSCWAMPLITUDE")
+      +  count(associations.channels.type, "NIRSCWFLUORESCENSEAMPLITUDE")
+      +  count(associations.channels.type, "NIRSCWOPTICALDENSITY")
+      +  count(associations.channels.type, "NIRSCWHBO")
+      +  count(associations.channels.type, "NIRSCWHBR")
+      +  count(associations.channels.type, "NIRSCWMUA")
+
+ACCELChannelCountReq:
+  selectors:
+    - suffix == "nirs"
+    - count(associations.channels.type, "ACCEL") > 0
+  checks:
+    - sidecar.ACCELChannelCount == count(associations.channels.type, "ACCEL")
+
+GYROChannelCountReq:
+  selectors:
+    - suffix == "nirs"
+    - count(associations.channels.type, "GYRO") > 0
+  checks:
+    - sidecar.GYROChannelCount == count(associations.channels.type, "GYRO")
+
+MAGNChannelCountReq:
+  selectors:
+    - suffix == "nirs"
+    - count(associations.channels.type, "MAGN") > 0
+  checks:
+    - sidecar.MAGNChannelCount == count(associations.channels.type, "MAGN")
+
+ShortChannelCountReq:
+  selectors:
+    - suffix == "nirs"
+    - '"ShortChannelCount" in sidecar'
+  checks:
+    - sidecar.ShortChannelCount == count(associations.channels.short_channel, "true")
+
+Component:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "channels"
+    - extension == ".tsv"
+    - intersects(columns.type, ["ACCEL", "GYRO", "MAGN"])
+  checks:
+    - columns.component != null
+
+RecommendedChannels:
+  issue:
+    code: NIRS_RECOMMENDED_CHANNELS
+    message: |
+      NIRS files SHOULD have an associated channels.tsv file.
+    level: warning
+  selectors:
+    - suffix == "nirs"
+    - extension == ".snirf"
+  checks:
+    - associations.channels != null
+
+RequiredTemplateX:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "optodes"
+    - extension == ".tsv"
+    - intersects(columns.x, ["n/a"])
+  checks:
+    - columns.template_x != null
+
+RequiredTemplateY:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "optodes"
+    - extension == ".tsv"
+    - intersects(columns.y, ["n/a"])
+  checks:
+    - columns.template_y != null
+
+RequiredTemplateZ:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "optodes"
+    - extension == ".tsv"
+    - intersects(columns.z, ["n/a"])
+  checks:
+    - columns.template_z != null
+
+RequiredCoordsystem:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "optodes"
+    - extension == ".tsv"
+  checks:
+    - associations.coordsystem != null

@@ -5,19 +5,15 @@
 # Request for Review) please add your GitHub username next to the file you want to
 # monitor below.
 
-# Add your GitHub name below to get notified about proposed releases
-/src/CHANGES.md @chrisgorgo @sappelhoff @CPernet
-
 # Individual sections
-/src/01-common-principles.md @chrisgorgo @DimitriPapadopoulos
-/src/04-modality-specific-files/01-magnetic-resonance-imaging-data.md @chrisgorgo
-/src/04-modality-specific-files/03-electroencephalography.md @sappelhoff @ezemikulan
-/src/04-modality-specific-files/04-intracranial-electroencephalography.md @ezemikulan
-/src/05-derivatives/03-imaging.md @effigies
-/src/05-derivatives/04-structural-derivatives.md @edickie @ahoopes
-/src/05-derivatives/05-functional-derivatives.md @effigies
-/src/05-derivatives/06-diffusion-derivatives.md @francopestilli @oesteban @Lestropie
-/src/appendices/meg-file-formats.md @monkeyman192
+/src/common-principles.md @chrisgorgo @DimitriPapadopoulos
+/src/modality-specific-files/magnetic-resonance-imaging-data.md @chrisgorgo
+/src/modality-specific-files/electroencephalography.md @sappelhoff @ezemikulan
+/src/modality-specific-files/intracranial-electroencephalography.md @ezemikulan
+/src/derivatives/imaging.md @effigies
+/src/derivatives/structural-derivatives.md @edickie @ahoopes
+/src/derivatives/functional-derivatives.md @effigies
+/src/derivatives/diffusion-derivatives.md @francopestilli @oesteban @Lestropie
 
 # The schema
 /src/schema/ @tsalo @erdalkaraca

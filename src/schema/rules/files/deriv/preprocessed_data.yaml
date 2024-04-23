@@ -1,0 +1,224 @@
+---
+anat_nonparametric_common:
+  $ref: rules.files.raw.anat.nonparametric
+  entities:
+    $ref: rules.files.raw.anat.nonparametric.entities
+    space: optional
+    description: optional
+
+anat_parametric_common:
+  $ref: rules.files.raw.anat.parametric
+  entities:
+    $ref: rules.files.raw.anat.parametric.entities
+    space: optional
+    description: optional
+
+anat_defacemask_common:
+  $ref: rules.files.raw.anat.defacemask
+  entities:
+    $ref: rules.files.raw.anat.defacemask.entities
+    space: optional
+    description: optional
+
+anat_multiecho_common:
+  $ref: rules.files.raw.anat.multiecho
+  entities:
+    $ref: rules.files.raw.anat.multiecho.entities
+    space: optional
+    description: optional
+
+anat_multiflip_common:
+  $ref: rules.files.raw.anat.multiflip
+  entities:
+    $ref: rules.files.raw.anat.multiflip.entities
+    space: optional
+    description: optional
+
+anat_multiinversion_common:
+  $ref: rules.files.raw.anat.multiinversion
+  entities:
+    $ref: rules.files.raw.anat.multiinversion.entities
+    space: optional
+    description: optional
+
+anat_mp2rage_common:
+  $ref: rules.files.raw.anat.mp2rage
+  entities:
+    $ref: rules.files.raw.anat.mp2rage.entities
+    space: optional
+    description: optional
+
+anat_vfamt_common:
+  $ref: rules.files.raw.anat.vfamt
+  entities:
+    $ref: rules.files.raw.anat.vfamt.entities
+    space: optional
+    description: optional
+
+anat_mtr_common:
+  $ref: rules.files.raw.anat.mtr
+  entities:
+    $ref: rules.files.raw.anat.mtr.entities
+    space: optional
+    description: optional
+
+beh_noncontinuous_common:
+  $ref: rules.files.raw.beh.noncontinuous
+  entities:
+    $ref: rules.files.raw.beh.noncontinuous.entities
+    space: optional
+    description: optional
+
+dwi_dwi_common:
+  $ref: rules.files.raw.dwi.dwi
+  entities:
+    $ref: rules.files.raw.dwi.dwi.entities
+    space: optional
+    description: optional
+
+dwi_sbref_common:
+  $ref: rules.files.raw.dwi.sbref
+  entities:
+    $ref: rules.files.raw.dwi.sbref.entities
+    space: optional
+    description: optional
+
+eeg_eeg_common:
+  $ref: rules.files.raw.eeg.eeg
+  entities:
+    $ref: rules.files.raw.eeg.eeg.entities
+    space: optional
+    description: optional
+
+fmap_fieldmaps_common:
+  $ref: rules.files.raw.fmap.fieldmaps
+  entities:
+    $ref: rules.files.raw.fmap.fieldmaps.entities
+    space: optional
+    description: optional
+
+fmap_pepolar_common:
+  $ref: rules.files.raw.fmap.pepolar
+  entities:
+    $ref: rules.files.raw.fmap.pepolar.entities
+    space: optional
+    description: optional
+
+fmap_TB1DAM_common:
+  $ref: rules.files.raw.fmap.TB1DAM
+  entities:
+    $ref: rules.files.raw.fmap.TB1DAM.entities
+    space: optional
+    description: optional
+
+fmap_TB1EPI_common:
+  $ref: rules.files.raw.fmap.TB1EPI
+  entities:
+    $ref: rules.files.raw.fmap.TB1EPI.entities
+    space: optional
+    description: optional
+
+fmap_RFFieldMaps_common:
+  $ref: rules.files.raw.fmap.RFFieldMaps
+  entities:
+    $ref: rules.files.raw.fmap.RFFieldMaps.entities
+    space: optional
+    description: optional
+
+fmap_TB1SRGE_common:
+  $ref: rules.files.raw.fmap.TB1SRGE
+  entities:
+    $ref: rules.files.raw.fmap.TB1SRGE.entities
+    space: optional
+    description: optional
+
+fmap_parametric_common:
+  $ref: rules.files.raw.fmap.parametric
+  entities:
+    $ref: rules.files.raw.fmap.parametric.entities
+    space: optional
+    description: optional
+
+func_func_common:
+  $ref: rules.files.raw.func.func
+  entities:
+    $ref: rules.files.raw.func.func.entities
+    space: optional
+    description: optional
+
+func_phase_common:
+  $ref: rules.files.raw.func.phase
+  entities:
+    $ref: rules.files.raw.func.phase.entities
+    space: optional
+    description: optional
+
+ieeg_ieeg_common:
+  $ref: rules.files.raw.ieeg.ieeg
+  entities:
+    $ref: rules.files.raw.ieeg.ieeg.entities
+    space: optional
+    description: optional
+
+meg_meg_common:
+  $ref: rules.files.raw.meg.meg
+  entities:
+    $ref: rules.files.raw.meg.meg.entities
+    space: optional
+    description: optional
+
+meg_calibration_common:
+  $ref: rules.files.raw.meg.calibration
+  entities:
+    $ref: rules.files.raw.meg.calibration.entities
+    space: optional
+    description: optional
+
+meg_crosstalk_common:
+  $ref: rules.files.raw.meg.crosstalk
+  entities:
+    $ref: rules.files.raw.meg.crosstalk.entities
+    space: optional
+    description: optional
+
+meg_headshape_common:
+  $ref: rules.files.raw.meg.headshape
+  entities:
+    $ref: rules.files.raw.meg.headshape.entities
+    space: optional
+    description: optional
+
+meg_markers_common:
+  $ref: rules.files.raw.meg.markers
+  entities:
+    $ref: rules.files.raw.meg.markers.entities
+    space: optional
+    description: optional
+
+micr_microscopy_common:
+  $ref: rules.files.raw.micr.microscopy
+  entities:
+    $ref: rules.files.raw.micr.microscopy.entities
+    space: optional
+    description: optional
+
+perf_asl_common:
+  $ref: rules.files.raw.perf.asl
+  entities:
+    $ref: rules.files.raw.perf.asl.entities
+    space: optional
+    description: optional
+
+pet_pet_common:
+  $ref: rules.files.raw.pet.pet
+  entities:
+    $ref: rules.files.raw.pet.pet.entities
+    space: optional
+    description: optional
+
+pet_blood_common:
+  $ref: rules.files.raw.pet.blood
+  entities:
+    $ref: rules.files.raw.pet.blood.entities
+    space: optional
+    description: optional

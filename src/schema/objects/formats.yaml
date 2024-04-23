@@ -4,9 +4,8 @@
 index:
   display_name: Index
   description: |
-    Non-negative, non-zero integers, optionally prefixed with leading zeros for sortability.
-    An index may not be all zeros.
-  pattern: '[0-9]*[1-9]+[0-9]*'
+    Non-negative, optionally prefixed with leading zeros for better visual homogeneity and sorting.
+  pattern: '[0-9]+'
 label:
   display_name: Label
   description: |
@@ -23,12 +22,12 @@ integer:
   display_name: Integer
   description: |
     An integer which may be positive or negative.
-  pattern: '[+-]?\d+'
+  pattern: ' *[+-]?\d+ *'
 number:
   display_name: Number
   description: |
     A number which may be an integer or float, positive or negative.
-  pattern: '[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)([eE][+-]?[0-9]+)?'
+  pattern: ' *[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)([eE][+-]?[0-9]+)? *'
 string:
   display_name: String
   description: |
@@ -118,7 +117,7 @@ unit:
   description: |
     A unit.
     SI units in CMIXF formatting are RECOMMENDED
-    (see [Units](SPEC_ROOT/02-common-principles.md#units)).
+    (see [Units](SPEC_ROOT/common-principles.md#units)).
 
     Currently this matches any string.
 

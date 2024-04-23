@@ -1,0 +1,49 @@
+---
+asl:
+  suffixes:
+    - asl
+    - m0scan
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  datatypes:
+    - perf
+  entities:
+    subject: required
+    session: optional
+    acquisition: optional
+    reconstruction: optional
+    direction: optional
+    run: optional
+
+aslcontext:
+  suffixes:
+    - aslcontext
+  extensions:
+    - .tsv
+  datatypes:
+    - perf
+  entities:
+    subject: required
+    session: optional
+    acquisition: optional
+    reconstruction: optional
+    direction: optional
+    run: optional
+
+asllabeling:
+  suffixes:
+    - asllabeling
+  extensions:
+    - .jpg
+    - .png
+    - .tif
+  datatypes:
+    - perf
+  entities:
+    subject: required
+    session: optional
+    acquisition: optional
+    reconstruction: optional
+    run: optional

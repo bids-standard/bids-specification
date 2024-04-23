@@ -1,0 +1,52 @@
+---
+# This file is for warnings that are not specified by BIDS, but are frequently indicative
+# of an issue with a dataset.
+
+### Dataset level
+
+# 102
+TooFewAuthors:
+  issue:
+    code: TOO_FEW_AUTHORS
+    message: |
+      The 'Authors' field of 'dataset_description.json' should contain an array of values -
+      with one author per value.
+      This was triggered based on the presence of only one author field.
+      Please ignore if all contributors are already properly listed.
+    level: warning
+  selectors:
+    - path == '/dataset_description.json'
+  checks:
+    - length(json.Authors) > 1
+
+### Functional files
+
+# 85
+SuspiciouslyLongBOLDDesign:
+  issue:
+    code: SUSPICIOUSLY_LONG_EVENT_DESIGN
+    message: |
+      The onset of the last event is after the total duration of the corresponding scan.
+      This design is suspiciously long.
+    level: warning
+  selectors:
+    - suffix == "bold"
+    - associations.events != null
+    - type(nifti_header) != "null"
+  checks:
+    - max(associations.events.onset) < nifti_header.pixdim[4] * nifti_header.dim[4]
+
+# 86
+SuspiciouslyShortBOLDDesign:
+  issue:
+    code: SUSPICIOUSLY_SHORT_EVENT_DESIGN
+    message: |
+      The onset of the last event is less than half the total duration of the corresponding scan.
+      This design is suspiciously short.
+    level: warning
+  selectors:
+    - suffix == "bold"
+    - associations.events != null
+    - type(nifti_header) != "null"
+  checks:
+    - max(associations.events.onset) > nifti_header.pixdim[4] * nifti_header.dim[4] / 2

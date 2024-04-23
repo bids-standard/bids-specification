@@ -6,12 +6,13 @@ DWIVolumeCount:
     code: VOLUME_COUNT_MISMATCH
     message: |
       The number of volumes in this scan does not match the number of volumes in the
-      corresponding .bvec and .bval files.
+      associated '.bvec' and '.bval' files.
     level: error
   selectors:
     - suffix == "dwi"
     - '"bval" in associations'
     - '"bvec" in associations'
+    - type(nifti_header) != "null"
   checks:
     - associations.bval.n_cols == nifti_header.dim[4]
     - associations.bvec.n_cols == nifti_header.dim[4]
@@ -21,34 +22,37 @@ DWIBvalRows:
   issue:
     code: BVAL_MULTIPLE_ROWS
     message: |
-      '.bval' files should contain exactly one row of volumes.
+      '.bval' files should contain exactly one row of values.
     level: error
   selectors:
-    - extension == "bval"
+    - suffix == "dwi"
+    - '"bval" in associations'
   checks:
-    - data.n_rows == 1
+    - associations.bval.n_rows == 1
 
 # 31
 DWIBvecRows:
   issue:
     code: BVEC_NUMBER_ROWS
     message: |
-      '.bvec' files should contain exactly three rows of volumes.
+      '.bvec' files should contain exactly three rows of values.
     level: error
   selectors:
-    - extension == "bvec"
+    - suffix == "dwi"
+    - '"bvec" in associations'
   checks:
-    - data.n_rows == 3
+    - associations.bvec.n_rows == 3
 
 # 32
 DWIMissingBvec:
   issue:
     code: DWI_MISSING_BVEC
     message: |
-      DWI scans must have a corresponding .bvec file.
+      DWI scans must have a corresponding '.bvec' file.
     level: error
   selectors:
     - suffix == "dwi"
+    - match(extension, '^\.nii(\.gz)?$')
   checks:
     - '"bvec" in associations'
 
@@ -57,9 +61,10 @@ DWIMissingBval:
   issue:
     code: DWI_MISSING_BVAL
     message: |
-      DWI scans must have a corresponding .bval file.
+      DWI scans must have a corresponding '.bval' file.
     level: error
   selectors:
     - suffix == "dwi"
+    - match(extension, '^\.nii(\.gz)?$')
   checks:
     - '"bval" in associations'

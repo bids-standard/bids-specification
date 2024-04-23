@@ -25,16 +25,6 @@ acquisition:
     remains at the discretion of the researcher.
   type: string
   format: label
-atlas:
-  name: atlas
-  display_name: Atlas
-  description: |
-    The `atlas-<label>` key/value pair corresponds to a custom label the user
-    MAY use to distinguish a different atlas used for similar type of data.
-
-    This entity is only applicable to derivative data.
-  type: string
-  format: label
 ceagent:
   name: ce
   display_name: Contrast Enhancing Agent
@@ -51,9 +41,12 @@ chunk:
   name: chunk
   display_name: Chunk
   description: |
-    The `chunk-<index>` key/value pair is used to distinguish between different regions,
-    2D images or 3D volumes files,
-    of the same physical sample with different fields of view acquired in the same imaging experiment.
+    The `chunk-<index>` key/value pair is used to distinguish between images of
+    the same physical sample with different fields of view acquired in the same
+    imaging experiment.
+    This entity applies to collections of 2D images, 3D volumes or 4D volume series
+    (for example, diffusion weighted images), and may be used to indicate different
+    anatomical structures or regions of the same structure.
   type: string
   format: index
 density:
@@ -132,8 +125,8 @@ hemisphere:
   type: string
   format: label
   enum:
-    - 'L'
-    - 'R'
+    - $ref: objects.enums.left_hemisphere.value
+    - $ref: objects.enums.right_hemisphere.value
 inversion:
   name: inv
   display_name: Inversion Time
@@ -182,9 +175,10 @@ mtransfer:
     Allowed label values for this entity are `on` and `off`,
     for images acquired in presence and absence of an MT pulse, respectively.
   type: string
+  format: label
   enum:
-    - 'on'
-    - 'off'
+    - $ref: objects.enums.on__mtransfer.value
+    - $ref: objects.enums.off__mtransfer.value
 part:
   name: part
   display_name: Part
@@ -198,17 +192,18 @@ part:
     `part-real`/`part-imag` pairs of files.
 
     Phase images MAY be in radians or in arbitrary units.
-    The sidecar JSON file MUST include the units of the `phase` image.
+    The sidecar JSON file MUST include the `"Units"` of the `phase` image.
     The possible options are `"rad"` or `"arbitrary"`.
 
     When there is only a magnitude image of a given type, the `part` entity MAY be
     omitted.
   type: string
+  format: label
   enum:
-    - mag
-    - phase
-    - real
-    - imag
+    - $ref: objects.enums.magnitude.value
+    - $ref: objects.enums.phase.value
+    - $ref: objects.enums.real.value
+    - $ref: objects.enums.imaginary.value
 processing:
   name: proc
   display_name: Processed (on device)
@@ -216,8 +211,8 @@ processing:
     The proc label is analogous to rec for MR and denotes a variant of
     a file that was a result of particular processing performed on the device.
 
-    This is useful for files produced in particular by Elekta's MaxFilter
-    (for example, `sss`, `tsss`, `trans`, `quat` or `mc`),
+    This is useful for files produced in particular by Neuromag/Elekta/MEGIN's
+    MaxFilter (for example, `sss`, `tsss`, `trans`, `quat` or `mc`),
     which some installations impose to be run on raw data because of active
     shielding software corrections before the MEG data can actually be
     exploited.
@@ -284,6 +279,16 @@ sample:
     The label MUST be unique per subject and is RECOMMENDED to be unique throughout the dataset.
   type: string
   format: label
+segmentation:
+  name: seg
+  display_name: Segmentation
+  description: |
+    The `seg-<label>` key/value pair corresponds to a custom label the user
+    MAY use to distinguish different segmentations.
+
+    This entity is only applicable to derivative data.
+  type: string
+  format: label
 session:
   name: ses
   display_name: Session
@@ -332,13 +337,13 @@ split:
 
     Instead of a simple renaming, files should be read in and saved under their
     new names with dedicated tools like [MNE-Python](https://mne.tools/),
-    which will ensure that not only the file names, but also the internal file pointers, will be updated.
+    which will ensure that not only the filenames, but also the internal file pointers, will be updated.
 
     It is RECOMMENDED that `.fif` files with multiple parts use the `split-<index>` entity to indicate each part.
     If there are multiple parts of a recording and the optional `scans.tsv` is provided,
     all files MUST be listed separately in `scans.tsv` and
     the entries for the `acq_time` column in `scans.tsv` MUST all be identical,
-    as described in [Scans file](SPEC_ROOT/03-modality-agnostic-files.md#scans-file).
+    as described in [Scans file](SPEC_ROOT/modality-agnostic-files.md#scans-file).
   type: string
   format: index
 stain:
@@ -354,7 +359,7 @@ stain:
     although the label may be different.
 
     Descriptions of antibodies SHOULD also be indicated in the `"SamplePrimaryAntibodies"`
-    and/or `"SampleSecondaryAntobodies"` metadata fields, as appropriate.
+    and/or `"SampleSecondaryAntibodies"` metadata fields, as appropriate.
   type: string
   format: label
 subject:
@@ -382,7 +387,7 @@ task:
     The `task-<label>` MUST be consistent across subjects and sessions.
 
     Files with the `task-<label>` entity SHOULD have an associated
-    [events file](SPEC_ROOT/04-modality-specific-files/05-task-events.md#task-events),
+    [events file](SPEC_ROOT/modality-specific-files/task-events.md#task-events),
     as well as certain metadata fields in the associated JSON file.
 
     For the purpose of this specification we consider the so-called "resting state" a task,
@@ -401,5 +406,19 @@ tracer:
     Therefore, if the `trc-<label>` entity is present in a filename,
     `"TracerName"` MUST be defined in the associated metadata.
     Please note that the `<label>` does not need to match the actual value of the field.
+  type: string
+  format: label
+tracksys:
+  name: tracksys
+  display_name: Tracking system
+  description: |
+    The `tracksys-<label>` entity can be used as a key-value pair
+    to label *_motion.tsv and *_motion.json files.
+    It can also be used to label *_channel.tsv or *_events.tsv files
+    when they belong to a specific tracking system.
+
+    This entity corresponds to the `"TrackingSystemName"` metadata field in a *_motion.json file.
+    `tracksys-<label>` entity is a concise string whereas `"TrackingSystemName"`
+    may be longer and more human readable.
   type: string
   format: label

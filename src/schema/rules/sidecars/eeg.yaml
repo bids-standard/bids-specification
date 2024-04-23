@@ -5,9 +5,18 @@
 # Assumptions: top-to-bottom overrides is sufficient logic
 
 ---
-EEGGeneric:
+EEGHardware:
   selectors:
-    - modality == "eeg"
+    - datatype == "eeg"
+    - suffix == "eeg"
+  fields:
+    Manufacturer: recommended
+    ManufacturersModelName: recommended
+    SoftwareVersions: recommended
+    DeviceSerialNumber: recommended
+
+EEGTaskInformation:
+  selectors:
     - datatype == "eeg"
     - suffix == "eeg"
   fields:
@@ -16,19 +25,6 @@ EEGGeneric:
       description_addendum: |
         A recommended convention is to name resting state task using labels
         beginning with `rest`.
-
-EEGRecommended:
-  selectors:
-    - modality == "eeg"
-    - datatype == "eeg"
-    - suffix == "eeg"
-  fields:
-    InstitutionName: recommended
-    InstitutionAddress: recommended
-    InstitutionalDepartmentName: recommended
-    Manufacturer: recommended
-    ManufacturersModelName: recommended
-    SoftwareVersions: recommended
     TaskDescription: recommended
     Instructions:
       level: recommended
@@ -37,11 +33,19 @@ EEGRecommended:
         distinguishing between eyes open and eyes closed paradigms.
     CogAtlasID: recommended
     CogPOID: recommended
-    DeviceSerialNumber: recommended
 
+EEGInstitutionInformation:
+  selectors:
+    - datatype == "eeg"
+    - suffix == "eeg"
+  fields:
+    InstitutionName: recommended
+    InstitutionAddress: recommended
+    InstitutionalDepartmentName: recommended
+
+# Specific EEG fields MUST be present
 EEGRequired:
   selectors:
-    - modality == "eeg"
     - datatype == "eeg"
     - suffix == "eeg"
   fields:
@@ -54,9 +58,9 @@ EEGRequired:
     PowerLineFrequency: required
     SoftwareFilters: required
 
-EEGMoreRecommended:
+# Specific EEG fields SHOULD be present
+EEGRecommended:
   selectors:
-    - modality == "eeg"
     - datatype == "eeg"
     - suffix == "eeg"
   fields:
@@ -66,7 +70,7 @@ EEGMoreRecommended:
     ECGChannelCount: recommended
     EMGChannelCount: recommended
     EOGChannelCount: recommended
-    MiscChannelCount: recommended
+    MISCChannelCount: recommended
     TriggerChannelCount: recommended
     RecordingDuration: recommended
     RecordingType: recommended
@@ -77,10 +81,18 @@ EEGMoreRecommended:
     HardwareFilters: recommended
     SubjectArtefactDescription: recommended
 
+# Specific EEG fields MAY be present
+EEGOptional:
+  selectors:
+    - datatype == "eeg"
+    - suffix == "eeg"
+  fields:
+    ElectricalStimulation: optional
+    ElectricalStimulationParameters: optional
+
 # General fields
 EEGCoordsystemGeneral:
   selectors:
-    - modality == "eeg"
     - datatype == "eeg"
     - suffix == "coordsystem"
   fields:
@@ -93,7 +105,6 @@ EEGCoordsystemGeneral:
 # Fields relating to the EEG electrode positions
 EEGCoordsystemPositions:
   selectors:
-    - modality == "eeg"
     - datatype == "eeg"
     - suffix == "coordsystem"
   fields:
@@ -105,7 +116,6 @@ EEGCoordsystemPositions:
 
 EEGCoordsystemOther:
   selectors:
-    - modality == "eeg"
     - datatype == "eeg"
     - suffix == "coordsystem"
     - '"EEGCoordinateSystem" in sidecar'
@@ -116,7 +126,6 @@ EEGCoordsystemOther:
 # Fields relating to the position of fiducials measured during an EEG session/run
 EEGCoordsystemFiducials:
   selectors:
-    - modality == "eeg"
     - datatype == "eeg"
     - suffix == "coordsystem"
   fields:
@@ -130,7 +139,6 @@ EEGCoordsystemFiducials:
 
 EEGCoordsystemOtherFiducialCoordinateSystem:
   selectors:
-    - modality == "eeg"
     - datatype == "eeg"
     - suffix == "coordsystem"
     - sidecar.FiducialsCoordinateSystem == "Other"
@@ -140,7 +148,6 @@ EEGCoordsystemOtherFiducialCoordinateSystem:
 # Fields relating to the position of anatomical landmark measured during an EEG session/run
 EEGCoordsystemLandmark:
   selectors:
-    - modality == "eeg"
     - datatype == "eeg"
     - suffix == "coordsystem"
   fields:
@@ -152,7 +159,6 @@ EEGCoordsystemLandmark:
 
 EEGCoordsystemLandmarkDescriptionRec:
   selectors:
-    - modality == "eeg"
     - datatype == "eeg"
     - suffix == "coordsystem"
     - sidecar.AnatomicalLandmarkCoordinateSystem != "Other"
@@ -163,7 +169,6 @@ EEGCoordsystemLandmarkDescriptionRec:
 
 EEGCoordsystemLandmarkDescriptionReq:
   selectors:
-    - modality == "eeg"
     - datatype == "eeg"
     - suffix == "coordsystem"
     - sidecar.AnatomicalLandmarkCoordinateSystem == "Other"

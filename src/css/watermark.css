@@ -10,9 +10,16 @@
 }
 
 .md-main__inner {
-    background-image: url(../images/draft_watermark.png);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: contain, cover;
     background-position: center;
+}
+
+[data-md-color-scheme=default] .md-main__inner {
+    background-image: url(../images/draft_watermark.png);
+}
+
+[data-md-color-scheme=slate] .md-main__inner {
+    background-image: url(../images/draft_watermark_dark.png);
 }

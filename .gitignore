@@ -7,6 +7,7 @@ venvs
 pdf_build_src/bids-spec.pdf
 pdf_build_src/bids-spec_pandoc_log.json
 pdf_build_src/src_copy
+pdf_build_src/tests/data/output
 
 # JS/NPM
 package-lock.json
@@ -141,6 +142,9 @@ venv.bak/
 
 # mkdocs documentation
 /site
+
+# schema docs documentation
+tools/schemacode/build/*
 
 # mypy
 .mypy_cache/

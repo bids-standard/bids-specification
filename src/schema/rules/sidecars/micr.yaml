@@ -6,16 +6,22 @@
 
 ---
 # Device Hardware
-MicroscopyDeviceHardware:
+MicroscopyHardware:
   selectors:
-    - modality == "micr"
     - datatype == "micr"
+    - suffix != "photo"
   fields:
     Manufacturer: recommended
     ManufacturersModelName: recommended
     DeviceSerialNumber: recommended
     StationName: recommended
     SoftwareVersions: recommended
+
+MicroscopyInstitutionInformation:
+  selectors:
+    - datatype == "micr"
+    - suffix != "photo"
+  fields:
     InstitutionName: recommended
     InstitutionAddress: recommended
     InstitutionalDepartmentName: recommended
@@ -23,8 +29,8 @@ MicroscopyDeviceHardware:
 # Image Acquisition
 MicroscopyImageAcquisition:
   selectors:
-    - modality == "micr"
     - datatype == "micr"
+    - suffix != "photo"
   fields:
     PixelSize: required
     PixelSizeUnits: required
@@ -37,14 +43,14 @@ MicroscopyImageAcquisition:
 # Sample
 MicroscopySample:
   selectors:
-    - modality == "micr"
     - datatype == "micr"
+    - suffix != "photo"
   fields:
     BodyPart:
       level: recommended
       description_addendum: |
         From [DICOM Body Part
-        Examined](http://dicom.nema.org/medical/dicom/current/output/chtml/part16/chapter_L.html#chapter_L)
+        Examined](https://dicom.nema.org/medical/dicom/current/output/chtml/part16/chapter_L.html#chapter_L)
         (for example `"BRAIN"`).
     BodyPartDetails: recommended
     BodyPartDetailsOntology: optional
@@ -62,8 +68,8 @@ MicroscopySample:
 # Chunk Transformations
 MicroscopyChunkTransformations:
   selectors:
-    - modality == "micr"
     - datatype == "micr"
+    - suffix != "photo"
     - '"chunk" in entities'
   fields:
     ChunkTransformationMatrix:
@@ -72,8 +78,8 @@ MicroscopyChunkTransformations:
 
 MicroscopyChunkTransformationsMatrixAxis:
   selectors:
-    - modality == "micr"
     - datatype == "micr"
+    - suffix != "photo"
     - '"chunk" in entities'
     - '"ChunkTransformationMatrix" in sidecar'
   fields:
@@ -83,7 +89,7 @@ MicroscopyChunkTransformationsMatrixAxis:
 
 Photo:
   selectors:
-    - modality == "micr"
+    - datatype == "micr"
     - suffix == "photo"
   fields:
     PhotoDescription: optional

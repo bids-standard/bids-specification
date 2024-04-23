@@ -1,0 +1,16 @@
+---
+# Non-continuous data
+noncontinuous:
+  suffixes:
+    - beh
+  extensions:
+    - .tsv
+    - .json
+  datatypes:
+    - beh
+  entities:
+    subject: required
+    session: optional
+    task: required
+    acquisition: optional
+    run: optional

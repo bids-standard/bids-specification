@@ -1,7 +1,8 @@
 # Entity table
 
-This section compiles the entities (key-value pairs within file names) described throughout this
-specification, and establishes a common order within a filename.
+This section compiles the entities (key-value pairs within filenames)
+described throughout this specification,
+and establishes a common order within a filename.
 For example, if a file has an acquisition and reconstruction label, the
 acquisition entity must precede the reconstruction entity.
 REQUIRED and OPTIONAL entities for a given file type are denoted;
@@ -10,7 +11,7 @@ Entity formats indicate whether the value is alphanumeric
 (`<label>`) or numeric (`<index>`).
 
 A general introduction to entities is given in the section on
-[filename structure](../02-common-principles.md#file-name-structure),
+[filename structure](../common-principles.md#filenames),
 while entity definitions are in the [Entities Appendix](entities.md).
 
 <!--

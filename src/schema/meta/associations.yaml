@@ -1,0 +1,92 @@
+# These rules indicate whether an association (defined in meta.context.context.associations)
+# applies to a given file. These are hints to allow implementations to avoid unnecessary
+# directory and file reads.
+#
+# Structure:
+#
+# - "selectors" is a sequence of expressions that apply to a file that may have an association.
+#   If matched, a tool MUST attempt to find the associated file.
+# - "target" contains a set of path components that may be used to search for the associated file.
+#   These override the path components of the original file and MUST match for the associated file.
+#   A list of values, such as extensions, indicates multiple possible matches.
+# - "inherit" is a boolean indicating whether the associated file may be found at a shallower level
+#   of the hierarchy.
+---
+events:
+  selectors:
+    - 'task in entities'
+    - extension != '.json'
+  target:
+    suffix: events
+    extension: .tsv
+  inherit: true
+
+aslcontext:
+  selectors:
+    - suffix == 'asl'
+    - match(extension, '\.nii(\.gz)?$')
+  target:
+    suffix: aslcontext
+    extension: .tsv
+  inherit: true
+
+m0scan:
+  selectors:
+    - suffix == 'asl'
+    - match(extension, '\.nii(\.gz)?$')
+  target:
+    suffix: m0scan
+    extension: [.nii, .nii.gz]
+  inherit: false
+
+magnitude:
+  selectors:
+    - suffix == 'fieldmap'
+    - match(extension, '\.nii(\.gz)?$')
+  target:
+    suffix: magnitude
+    extension: [.nii, .nii.gz]
+  inherit: false
+
+magnitude1:
+  selectors:
+    - match(suffix, 'phase(diff|1)$')
+    - match(extension, '\.nii(\.gz)?$')
+  target:
+    suffix: magnitude1
+    extension: [.nii, .nii.gz]
+  inherit: false
+
+bval:
+  selectors:
+    - suffix == 'dwi'
+    - match(extension, '\.nii(\.gz)?$')
+  target:
+    extension: .bval
+  inherit: true
+
+bvec:
+  selectors:
+    - suffix == 'dwi'
+    - match(extension, '\.nii(\.gz)?$')
+  target:
+    extension: .bvec
+  inherit: true
+
+channels:
+  selectors:
+    - intersects([suffix], ['eeg', 'ieeg', 'meg', 'nirs', 'motion', 'optodes'])
+    - extension != '.json'
+  target:
+    suffix: channels
+    extension: .tsv
+  inherit: true
+
+coordsystem:
+  selectors:
+    - intersects([suffix], ['eeg', 'ieeg', 'meg', 'nirs', 'motion', 'electrodes', 'optodes'])
+    - extension != '.json'
+  target:
+    suffix: coordsystem
+    extension: .json
+  inherit: true
