@@ -699,6 +699,25 @@ nirs:
   value: nirs
   display_name: Near Infrared Spectroscopy
   description: Data associated with a Shared Near Infrared Spectroscopy Format file.
+noRF:
+  value: noRF
+  display_name: No Radio Frequency Excitation Scan
+  description: |
+    An MR noise scan often acquired alongside another MR scan.
+
+    These noise scans are acquired by disabling the radio frequency excitation,
+    while maintaining all other parameters from the associated scan.
+    These can be acquired using some other sequence with RF excitation removed
+    or as part of sequences that turns off RF at the beginning or end of a run.
+    For example a `bold` scan where a few volumes are acquired with RF off.
+    There is no consistent DICOM denotation for these scans.
+
+    If multiple sequences with different suffixes but otherwise the same entities have `noRF`
+    sequences, they SHOULD be disambiguated using the modality entity
+    (for example, `mod-bold_noRF.nii.gz` and `mod-cbv_noRF.nii`).
+
+    `noRF` are typically used to estimate properties of the scanner and
+    sequence that are independent from the object being imaged.
 optodes:
   value: optodes
   display_name: Optodes

@@ -183,6 +183,11 @@ context:
             n_rows:
               description: 'Number of rows in bval file'
               type: integer
+            values:
+              description: 'B-values contained in bval file'
+              type: array
+              items:
+                type: number
         bvec:
           description: 'B vector file'
           type: object
