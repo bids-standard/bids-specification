@@ -50,11 +50,11 @@ MagnitudeFileWithTooManyDimensions:
   checks:
     - nifti_header.dim[0] == 3
 
-EPIWithBValsHasHighBVals:
+EPISmallBVals:
   issue:
-    code: EPI_WITH_BVALS_HAS_HIGH_BVALS
+    code: EPI_WITH_BVALS_NEEDS_SMALL_BVALS
     message: |
-      EPI field maps with b-values should not include high b-values (in essence, b-values > 100).
+      EPI field maps with b-values should include small (b<100) values.
     level: error
   selectors:
     - datatype == "fmap"
