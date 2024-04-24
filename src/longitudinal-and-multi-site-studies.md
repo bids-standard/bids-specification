@@ -80,7 +80,7 @@ for practical guidance when curating a new longitudinal dataset.
 
 This version of the BIDS specification does not explicitly cover studies with
 data coming from multiple sites or multiple centers (such extension is planned
-in [BIDS `2.0`](https://github.com/bids-standard/bids-2-devel).
+in [BIDS `2.0`](https://github.com/bids-standard/bids-2-devel/issues/11)).
 There are however ways to model your data without any loss in terms of metadata.
 
 ### Option 1: Treat each site/center as a separate dataset
