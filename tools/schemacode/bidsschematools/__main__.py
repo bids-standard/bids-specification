@@ -1,16 +1,16 @@
 import logging
 import os
 
-import click
+from clize import run
 
 from .schema import export_schema, load_schema
 
 
-@click.group()
-@click.option("-v", "--verbose", count=True)
-def cli(verbose):
-    """BIDS Schema Tools"""
-    logging.getLogger("bidsschematools").setLevel(logging.INFO - verbose * 10)
+def cli():
+    run({
+        'validate': ,
+        ''
+        })
 
 
 @cli.command()
