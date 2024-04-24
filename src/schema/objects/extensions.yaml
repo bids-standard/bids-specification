@@ -184,7 +184,7 @@ nii:
   display_name: NIfTI
   description: |
     A Neuroimaging Informatics Technology Initiative (NIfTI) data file.
-niigz:
+nii_gz:
   value: .nii.gz
   display_name: Compressed NIfTI
   description: |
@@ -274,7 +274,7 @@ tsv:
   display_name: Tab-Delimited
   description: |
     A tab-delimited file.
-tsvgz:
+tsv_gz:
   value: .tsv.gz
   display_name: Compressed Tab-Delimited
   description: |

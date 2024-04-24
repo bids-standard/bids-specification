@@ -211,7 +211,7 @@ but also by which metadata fields are provided in accompanying json files.
 |----------------------|------------------------------------------------------------------------------------------------------------------------------|----------------------------|
 | VFA                  | `FlipAngle`, `PulseSequenceType`, `RepetitionTimeExcitation`                                                                 | `SpoilingRFPhaseIncrement` |
 | IRT1                 | `InversionTime`                                                                                                              |                            |
-| MP2RAGE<sup>\*</sup> | `FlipAngle`, `InversionTime`, `RepetitionTimeExcitation`, `RepetitionTimePreperation`, `NumberShots`,`MagneticFieldStrength` | `EchoTime`                 |
+| MP2RAGE<sup>\*</sup> | `FlipAngle`, `InversionTime`, `RepetitionTimeExcitation`, `RepetitionTimePreparation`, `NumberShots`,`MagneticFieldStrength` | `EchoTime`                 |
 | MESE                 | `EchoTime`                                                                                                                   |                            |
 | MEGRE                | `EchoTime`                                                                                                                   |                            |
 | MTR                  | `MTState`                                                                                                                    |                            |

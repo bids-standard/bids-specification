@@ -309,6 +309,28 @@ field in `dataset_description.json` of each subdirectory of `derivatives` to:
 }
 ```
 
+!!! danger "Caution"
+
+    Sharing source data may help amend errors and missing data discovered
+    only with the reuse of the raw dataset in practice.
+    Therefore, from an Open Science perspective, it is RECOMMENDED to share
+    the source data whenever it is possible.
+
+    However, more stringent sharing limitations may apply to the source data
+    than those applicable to the raw data.
+    For example, human data almost always requires deidentification
+    before they can be redistributed,
+    or the subjects' consent form did not explicitly state that the source files
+    would be shared after deidentification.
+    Further examples in which sharing source data may not be possible
+    include original data formats that are not redistributable
+    as per the acquisition device's license.
+
+    As for raw data, all regulatory, ethical, and legal aspects SHOULD
+    be carefully considered before sharing data
+    through the `sourcedata/` directory mechanism.
+    In the case of source data, these aspects are likely more stringent.
+
 ### Storage of derived datasets
 
 Derivatives can be stored/distributed in two ways:
@@ -563,7 +585,7 @@ like in the example below.
 ### Compressed tabular files
 
 Large tabular information, such as physiological recordings, MUST be stored with
-[compressed tab-delineated (TSV.GZ) files](glossary.md#tsvgz-extensions) when
+[compressed tab-delineated (TSV.GZ) files](glossary.md#tsv_gz-extensions) when
 so established by the specifications.
 Rules for formatting plain-text tabular files apply to TSVGZ files with three exceptions:
 
