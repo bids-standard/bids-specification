@@ -8,10 +8,13 @@ from .validator import validate_bids
 
 
 def cli():
-    run({
-        'validate': validate_bids,
-        'export': export,
-        })
+    run(
+        {
+            "validate": validate_bids,
+            "export": export,
+        }
+    )
+
 
 if __name__ == "__main__":
     cli()

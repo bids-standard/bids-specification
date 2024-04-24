@@ -82,6 +82,7 @@ def get_gitrepo_fixture(url, whitelist):
 def schema_dir():
     """Path to the schema housed in the bids-specification repo."""
     from .utils import get_bundled_schema_path
+
     bids_schema = get_bundled_schema_path()
     return bids_schema
 

@@ -215,6 +215,7 @@ def load_schema(schema_path=None):
 
     return schema
 
+
 def export(output, schema_path=None):
     """
     Export BIDS schema to JSON document.
@@ -242,6 +243,7 @@ def export(output, schema_path=None):
         logger.debug(f"Writing to {output}")
         with open(output, "w") as fobj:
             fobj.write(text)
+
 
 def filter_schema(schema, **kwargs):
     """Filter the schema based on a set of keyword arguments.
