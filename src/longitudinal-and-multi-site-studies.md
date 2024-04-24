@@ -92,11 +92,21 @@ Apps and everything should just work.
 
 ### Option 2: Combining sites/centers into one dataset
 
-Alternatively you can combine data from all sites into one dataset. To identify
-which site each subjects comes from you can add a `site` column in the
+Alternatively you can combine data from all sites into one dataset.
+This can be done in two ways:
+
+
+#### Option 2.a: Collate sites at subject level
+
+To identify which site each subjects comes from you can add a `site` column in the
 `participants.tsv` file indicating the source site. This solution allows you to
-analyze all of the subjects together in one dataset. One caveat is that subjects
+analyze all subjects together in one dataset. One caveat is that subjects
 from all sites will have to have unique labels. To enforce that and improve
 readability you can use a subject label prefix identifying the site. For example
 `sub-NUY001`, `sub-MIT002`, `sub-MPG002` and so on. Remember that hyphens and
 underscores are not allowed in subject labels.
+
+#### Option 2.b: Use different sessions for different sites
+
+In case of studies such as "Traveling Human Phantom" it is possible to incorporate site within session label.
+For example `sub-human1/ses-NUY`, `sub-human1/ses-MIT`, `sub-phantom1/ses-NUY`, `sub-phantom1/ses-MIT` and so on.
