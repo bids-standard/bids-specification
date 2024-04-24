@@ -1,0 +1,727 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "associations": {
+          "type": "object",
+          "patternProperties":
+          {
+            "^[a-zA-Z0-9_]+$": {
+              "type": "object",
+              "properties": {
+                "selectors": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "target": {
+                  "type": "object",
+                  "properties": {
+                    "suffix": {
+                      "type": "string"
+                    },
+                    "extension": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        }, {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": ["extension"],
+                  "additionalProperties": false
+                },
+                "inherit": {
+                  "type": "boolean"
+                }
+              },
+              "required": ["target"],
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "context": {
+          "type": "object"
+        },
+        "expression_tests": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "expression": {
+                "type": "string"
+              },
+              "result": {}
+            },
+            "required": ["expression", "result"],
+            "additionalProperties": false
+          }
+        },
+        "versions": {
+          "type": "array",
+          "items": {
+            "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+          }
+        }
+      },
+      "required": ["associations", "context", "expression_tests", "versions"]
+    },
+    "objects": {
+      "type": "object",
+      "properties": {
+        "columns": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z0-9_]+$": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "display_name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "type": {
+                  "$ref": "http://json-schema.org/draft-07/schema#/properties/type"
+                },
+                "format": {
+                  "type": "string"
+                },
+                "pattern": {
+                  "type": "string"
+                },
+                "unit": {
+                  "type": "string"
+                },
+                "enum": {
+                  "type": "array"
+                },
+                "anyOf": {
+                  "$ref": "http://json-schema.org/draft-07/schema#/properties/anyOf"
+                },
+                "maximum": {
+                  "type": "number"
+                },
+                "minimum": {
+                  "type": "number"
+                }
+              },
+              "required": ["name", "display_name"],
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "common_principles": {
+         "type": "object",
+         "patternProperties": {
+           "^[a-zA-Z0-9_]+$": {
+             "type": "object",
+             "properties": {
+               "display_name": {
+                 "type": "string"
+               },
+               "description": {
+                 "type": "string"
+               }
+             },
+             "required": ["display_name", "description"],
+             "additionalProperties": false
+           },
+           "additionalProperties": false
+         }
+        },
+        "datatypes": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z0-9_]+$": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "string"
+                },
+                "display_name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "required": ["value", "display_name", "description"],
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "entities": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z0-9_]+$": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "display_name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "type": {
+                  "$ref": "http://json-schema.org/draft-07/schema#/properties/type"
+                },
+                "format": {
+                  "type": "string"
+                },
+                "enum": {
+                  "type": "array"
+                }
+              },
+              "required": ["name", "display_name", "description", "type", "format"],
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "enums": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z0-9_-]+$": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "$ref": "http://json-schema.org/draft-07/schema#/properties/type"
+                },
+                "enum": {
+                  "type": "array"
+                },
+                "value": {
+                  "type": "string"
+                },
+                "display_name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "tags": {
+                  "type": "array"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "extensions": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z0-9_]+$": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "string"
+                },
+                "display_name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "required": ["display_name", "description", "value"],
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "files": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z0-9_]+$": {
+              "type": "object",
+              "properties": {
+                "display_name": {
+                  "type": "string"
+                },
+                "file_type": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "required": ["display_name", "file_type", "description"],
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "formats": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z0-9_]+$": {
+              "type": "object",
+              "properties": {
+                "display_name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "pattern": {
+                  "format": "regex"
+                }
+              },
+              "required": ["display_name", "description", "pattern"],
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "metadata": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z0-9_]+$": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "display_name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "type": {
+                  "$ref": "http://json-schema.org/draft-07/schema#/properties/type"
+                }
+              },
+              "required": ["name","display_name", "description"]
+            }
+          },
+          "additionalProperties": false
+        },
+        "modalities": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-z]+$": {
+              "type": "object",
+              "properties": {
+                "display_name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "required": ["display_name", "description"],
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "suffixes": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z0-9_]+$": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "string"
+                },
+                "display_name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "required": ["value", "display_name", "description"]
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+        "required": ["columns", "common_principles", "datatypes", "entities", "enums", "extensions", "files", "formats", "metadata", "modalities", "suffixes"],
+        "additionalProperties": false
+    },
+    "rules": {
+      "type": "object",
+      "properties": {
+        "checks": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z0-9_]+$": {
+              "type": "object",
+              "patternProperties": {
+                "^[a-zA-Z0-9_]+$": {
+                  "type": "object",
+                  "properties": {
+                    "issues": {
+                      "type": "object",
+                      "properties": {
+                        "code": {"type": "string"},
+                        "message": {"type": "string"},
+                        "level": {"enum": ["error", "warning"]}
+                      },
+                      "required": ["code", "message", "level"],
+                      "additionalProperties": false
+                    },
+                    "selectors": {
+                      "type": "array",
+                      "items": {"type": "string"}
+                    },
+                    "checks": {
+                      "type": "array",
+                      "items": {"type": "string"}
+                    }
+                  },
+                  "required": ["checks", "selectors"]
+                }
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "files": {
+          "type": "object",
+          "properties": {
+            "common": {
+              "type": "object",
+              "properties": {
+                "core": {
+                  "type": "object",
+                  "patternProperties": {
+                    "^[a-zA-Z0-9_]+$": {
+                      "type": "object",
+                      "properties": {
+                        "level": {"type": "string"},
+                        "path": {"type": "string"},
+                        "extensions": {"type": "array"},
+                        "stem": {"type": "string"}
+                      },
+                      "required": ["level"],
+                      "additionalProperties": false
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "tables": {
+                  "type": "object",
+                  "patternProperties": {
+                    "^[a-zA-Z0-9_]+$": {
+                      "type": "object",
+                      "properties": {
+                        "level": {"type": "string"},
+                        "path": {"type": "string"},
+                        "extensions": {"type": "array"},
+                        "stem": {"type": "string"},
+                        "entities": {"$ref": "#/definitions/entities"},
+                        "suffixes": {"type": "array"}
+                      },
+                      "required": ["level", "extensions"],
+                      "additionalProperties": false
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "required": ["core", "tables"],
+              "additionalProperties": false
+            },
+            "deriv": {
+              "type": "object",
+              "patternProperties": {
+                "^[a-zA-Z0-9_]+$": {
+                  "type": "object",
+                  "patternProperties": {
+                    "^[a-zA-Z0-9_]+$": {
+                      "type": "object",
+                      "properties": {
+                        "entities": {
+                          "$ref": "#/definitions/entities"
+                        }
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "additionalProperties": false
+            },
+            "raw": {
+              "type": "object",
+              "patternProperties": {
+                "^[a-z]+$": {
+                  "type": "object",
+                  "patternProperties": {
+                    "^[a-zA-Z0-9_]+$": {
+                      "type": "object",
+                      "properties": {
+                        "suffixes": {
+                          "type": "array",
+                          "items": {"type": "string"}
+                        },
+                        "extensions": {
+                          "type": "array",
+                          "items": {"pattern": "^[./][a-z.]+|"}
+                        },
+                        "datatypes": {
+                          "type": "array",
+                          "items": {"pattern": "^[a-z]+$"}
+                        },
+                        "entities": {"$ref": "#/definitions/entities"}
+                      }
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": ["common", "deriv", "raw"],
+          "additionalProperties": false
+        },
+        "sidecars": {
+          "type": "object",
+          "patternProperties": {
+            "^derivatives$": {
+              "type": "object",
+              "properties": {
+                "common_derivatives": {"$ref": "#/definitions/sidecar"}
+              },
+              "required": ["common_derivatives"],
+              "additionalProperties": false
+            },
+            "^(?!derivatives$)[a-z_]+$": {
+              "$ref": "#/definitions/sidecar"
+            },
+            "additionalProperties": false
+          },
+          "additionalProperties": false
+        },
+        "tabular_data": {
+          "type": "object",
+          "patternProperties": {
+            "^derivatives$": {
+              "type": "object",
+              "properties": {
+                "common_derivatives": {
+                  "$ref": "#/definitions/tabular_data"
+                }
+              },
+              "required": [
+                "common_derivatives"
+              ],
+              "additionalProperties": false
+            },
+            "^(?!derivatives$)[a-z_]+$": {
+              "$ref": "#/definitions/tabular_data"
+            }
+          },
+          "additionalProperties": false
+        },
+        "common_principles": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "dataset_metadata": {
+          "type": "object"
+        },
+        "directories": {
+          "type": "object"
+        },
+        "entities": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "errors": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z0-9_]+$": {
+              "type": "object",
+              "properties": {
+                "code": {"type": "string"},
+                "message": {"type": "string"},
+                "level": {"enum": ["error", "warning"]},
+                "selectors": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": ["message", "level"],
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "modalities": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-z]+$": {
+              "type": "object",
+              "properties": {
+                "datatypes": {
+                  "type": "array",
+                  "items": {"pattern": "^[a-z]+$"}
+                }
+              },
+              "required": ["datatypes"],
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      "required": [
+          "entities",
+          "files",
+          "sidecars",
+          "tabular_data",
+          "common_principles",
+          "dataset_metadata",
+          "directories",
+          "errors",
+          "modalities"
+      ],
+      "additionalProperties": false
+    },
+    "bids_version": {
+      "type": "string"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "README": {
+      "type": "string"
+    }
+  },
+  "required": ["meta", "objects", "rules", "bids_version", "schema_version"],
+  "additionalProperties": false,
+  "definitions": {
+    "entities": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-z]+$": {
+          "anyOf": [
+            {"enum": ["optional", "required"]},
+            {
+              "type": "object",
+              "properties": {
+                "level": {"enum": ["optional", "required"]},
+                "enum": {
+                  "type": "array",
+                  "items": {"type": "string"}
+                }
+              },
+              "required": ["level", "enum"]
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "sidecar": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-zA-Z0-9_]+$": {
+          "type": "object",
+          "properties": {
+            "selectors": {
+              "type": "array",
+              "items": {"type": "string"}
+            },
+            "fields": {
+              "type": "object",
+              "patternProperties": {
+                "^[a-zA-Z0-9_]+$": {
+                  "anyOf": [
+                    {"enum": ["recommended", "optional", "required", "deprecated"]},
+                    {
+                      "type":  "object",
+                      "properties": {
+                        "level": {"enum": ["recommended", "optional", "required", "deprecated"]},
+                        "level_addendum": {"type": "string"}
+                      },
+                      "required": ["level", "level_addendum"],
+                      "additionalProperties": false
+                    },
+                    {"pattern": "recommended.*"}
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": ["selectors", "fields"],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "tabular_data": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-zA-Z0-9_]+$": {
+          "type": "object",
+          "properties": {
+            "selectors": {
+              "type": "array",
+              "items": {"type": "string"}
+            },
+            "columns": {
+              "type": "object",
+              "patternProperties": {
+                "^[a-zA-Z0-9_]+$": {
+                  "anyOf": [
+                    {"enum": ["recommended", "optional", "required", "deprecated"]},
+                    {
+                      "type":  "object",
+                      "properties": {
+                        "level": {"enum": ["recommended", "optional", "required", "deprecated"]},
+                        "level_addendum": {"type": "string"},
+                        "description_addendum": {"type": "string"}
+                      },
+                      "required": ["level"],
+                      "additionalProperties": false
+                    },
+                    {"pattern": "recommended.*"}
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "additional_columns": {
+              "type": "string"
+            },
+            "index_columns": {"type": "array", "items": {"type": "string"}},
+            "initial_columns": {
+              "type": "array",
+              "items": {"type": "string"}
+            }
+          },
+          "required": ["selectors", "columns"],
+          "additionalProperties": false
+        }
+      }
+    }
+  }
+}

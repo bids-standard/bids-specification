@@ -133,9 +133,9 @@ def _get_directory_suffixes(my_schema):
 
 def _get_paths(
     bids_paths,
-    pseudofile_suffixes=[],
+    pseudofile_suffixes=None,
     dummy_paths=False,
-    exclude_files=[],
+    exclude_files=None,
 ):
     """
     Get all paths from a list of directories, excluding hidden subdirectories from distribution.
@@ -165,6 +165,11 @@ def _get_paths(
         non-critical however, since the topdown `os.walk` makes sure top-level files are detected
         first.
     """
+
+    if exclude_files is None:
+        exclude_files = []
+    if pseudofile_suffixes is None:
+        pseudofile_suffixes = []
 
     path_list = []
     bidsignore_list = []
@@ -387,7 +392,7 @@ def validate_all(
 
     Parameters
     ----------
-    bids_paths : list or str
+    paths_list : list or str
         A string pointing to a BIDS directory for which paths should be validated, or a list
         of strings pointing to individual files or subdirectories which *all* reside within
         one and only one BIDS directory root (i.e. nested datasets should be validated
@@ -548,7 +553,7 @@ def validate_bids(
     report_path=False,
     suppress_errors=False,
     accept_non_bids_dir=False,
-    exclude_files=[],
+    exclude_files=None,
 ):
     """
     Validate paths according to BIDS schema.
@@ -603,6 +608,9 @@ def validate_bids(
         as simple as pattern parsing and multiplying patterns to which inheritance applies.
         https://github.com/bids-standard/bids-specification/pull/969#issuecomment-1132119492
     """
+
+    if exclude_files is None:
+        exclude_files = []
 
     if isinstance(in_paths, str):
         in_paths = [in_paths]

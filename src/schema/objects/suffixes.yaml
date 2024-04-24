@@ -549,6 +549,18 @@ defacemask:
   description: |
     A binary mask that was used to remove facial features from an anatomical MRI
     image.
+descriptions:
+  value: descriptions
+  display_name: Description Entity Definitions
+  description: |
+    A TSV file describing labels found for the `desc` entity in a Derivatives dataset.
+
+    This file MAY be located at the root of the derivative dataset,
+    or at the subject or session level.
+
+    The use of `descriptions.tsv` files together with the desc entity are helpful to
+    document how files are generated,
+    even if their use may not be sufficient to provide full computational reproducibility.
 dseg:
   value: dseg
   display_name: Discrete Segmentation
