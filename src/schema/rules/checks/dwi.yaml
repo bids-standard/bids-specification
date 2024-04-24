@@ -9,7 +9,7 @@ DWIVolumeCount:
       associated '.bvec' and '.bval' files.
     level: error
   selectors:
-    - suffix == "dwi"
+    - intersects([suffix], ["dwi", "epi"])
     - '"bval" in associations'
     - '"bvec" in associations'
     - type(nifti_header) != "null"
@@ -25,7 +25,7 @@ DWIBvalRows:
       '.bval' files should contain exactly one row of values.
     level: error
   selectors:
-    - suffix == "dwi"
+    - intersects([suffix], ["dwi", "epi"])
     - '"bval" in associations'
   checks:
     - associations.bval.n_rows == 1
@@ -38,7 +38,7 @@ DWIBvecRows:
       '.bvec' files should contain exactly three rows of values.
     level: error
   selectors:
-    - suffix == "dwi"
+    - intersects([suffix], ["dwi", "epi"])
     - '"bvec" in associations'
   checks:
     - associations.bvec.n_rows == 3
