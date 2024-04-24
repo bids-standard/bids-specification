@@ -162,7 +162,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("mri.MRIEchoPlanarImagingAndB0Mapping") }}
 
-#### Tissue description
+### Tissue description
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -174,7 +174,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("mri.MRISample") }}
 
-## Deidentification information
+### Deidentification information
 
 Describes the mechanism or method used to modify or remove metadata
 and/or pixel data to protect the patient or participant's identity.
