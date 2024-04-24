@@ -276,14 +276,3 @@ PETTask:
     TaskDescription: recommended
     CogAtlasID: recommended
     CogPOID: recommended
-
-DeidentificationMethod:
-  selectors:
-    - intersects([modality], ["mri", "pet"])
-  fields:
-    DeidentificationMethod:
-      level: optional
-      description_addendum: Corresponds to DICOM Tag 0012, 0063 `De-identification Method`.
-    DeidentificationMethodCodeSequence:
-      level: optional
-      description_addendum: Corresponds to DICOM Tag 0012, 0064 `De-identification Method Code Sequence`.

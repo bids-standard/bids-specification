@@ -434,7 +434,7 @@ time plasma_radioactivity whole_blood_radioactivity metabolite_parent_fraction m
 7193    19.71    15.70    0.02    0.559
 ```
 
-### Deidentification information
+## Deidentification information
 
 Describes the mechanism or method used to modify or remove metadata
 and/or pixel data to protect the patient or participant's identity.
@@ -459,25 +459,3 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_subobject_table("metadata.DeidentificationMethodCodeSequence.items") }}
 
-
-### Defacing masks
-
-If the structural images included in the dataset were defaced (to protect
-identity of participants) one MAY provide the binary mask that was used to
-remove facial features in the form of `_defacemask` files.
-In such cases, the OPTIONAL [`mod-<label>`](../appendices/entities.md#mod)
-entity corresponds to modality suffix,
-such as `T1w` or `inplaneT1`, referenced by the defacemask image.
-For example, `sub-01_mod-T1w_defacemask.nii.gz`.
-
-<!--
-This block generates a filename templates.
-The inputs for this macro can be found in the directory
-  src/schema/rules/files/raw
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filename_template("raw", datatypes=["anat"], suffixes=[
-         "defacemask",
-      ])
-}}
