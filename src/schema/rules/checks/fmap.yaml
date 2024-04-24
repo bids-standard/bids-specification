@@ -54,7 +54,7 @@ EPIWithBValsHasHighBVals:
   issue:
     code: EPI_WITH_BVALS_HAS_HIGH_BVALS
     message: |
-      EPI field maps with b-values should not include high b-values (i.e., b-values > 100).
+      EPI field maps with b-values should not include high b-values (in essence, b-values > 100).
     level: error
   selectors:
     - datatype == "fmap"
