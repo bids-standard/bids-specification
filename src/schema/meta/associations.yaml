@@ -59,7 +59,7 @@ magnitude1:
 
 bval:
   selectors:
-    - suffix == 'dwi'
+    - intersects([suffix], ['dwi', 'epi'])
     - match(extension, '\.nii(\.gz)?$')
   target:
     extension: .bval
@@ -67,7 +67,7 @@ bval:
 
 bvec:
   selectors:
-    - suffix == 'dwi'
+    - intersects([suffix], ['dwi', 'epi'])
     - match(extension, '\.nii(\.gz)?$')
   target:
     extension: .bvec

@@ -49,3 +49,16 @@ MagnitudeFileWithTooManyDimensions:
     - nifti_header != null
   checks:
     - nifti_header.dim[0] == 3
+
+EPIWithBValsHasHighBVals:
+  issue:
+    code: EPI_WITH_BVALS_HAS_HIGH_BVALS
+    message: |
+      EPI field maps with b-values should not include high b-values (i.e., b-values > 100).
+    level: error
+  selectors:
+    - datatype == "fmap"
+    - suffix == "epi"
+    - '"bval" in associations'
+  checks:
+    - max(associations.bval.rows[0]) > 100
