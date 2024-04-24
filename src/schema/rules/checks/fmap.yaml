@@ -61,4 +61,4 @@ EPISmallBVals:
     - suffix == "epi"
     - '"bval" in associations'
   checks:
-    - max(associations.bval.rows[0]) > 100
+    - min(associations.bval.rows[0]) > 100
