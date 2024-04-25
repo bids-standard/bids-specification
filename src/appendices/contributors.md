@@ -37,6 +37,7 @@ ecosystem (in alphabetical order).
 If you contributed to the BIDS ecosystem and your name is not listed, please add it.
 
 <!-- THE SECTION BELOW IS AUTOMATICALLY GENERATED -->
+<!--lint ignore -->
 
 | name                                                 | contributions                          |
 | ---------------------------------------------------- | -------------------------------------- |
