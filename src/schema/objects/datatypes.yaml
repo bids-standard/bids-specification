@@ -11,6 +11,11 @@ beh:
   display_name: Behavioral Data
   description: |
     Behavioral data.
+cephys:
+  value: cephys
+  display_name: Cellular Electrophysiology
+  description: |
+    Electrophysiological data acquired at cellular level.
 dwi:
   value: dwi
   display_name: Diffusion-Weighted Imaging
@@ -20,10 +25,6 @@ eeg:
   value: eeg
   display_name: Electroencephalography
   description: Electroencephalography
-ephys:
-  value: ephys
-  display_name: Electrophysiology
-  description: Data acquired using microelectrodes.
 fmap:
   value: fmap
   display_name: Field maps

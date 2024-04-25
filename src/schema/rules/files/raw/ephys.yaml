@@ -1,14 +1,15 @@
 ---
-ephys:
+cephys:
   suffixes:
-    - ephys
+    - ecephys
+    - icephys
   extensions:
     - .nwb
     # possible future: serialization in .zarr format to accompany .ome.zarr
     # - .nwb.zarr
     - .nix
   datatypes:
-    - ephys
+    - cephys
   entities:
     subject: required
     session: optional
@@ -24,7 +25,7 @@ probes:
   extensions:
     - .tsv
   datatypes:
-    - ephys
+    - cephys
   entities:
     subject: required
     session: optional
