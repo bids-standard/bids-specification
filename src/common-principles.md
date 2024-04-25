@@ -97,6 +97,12 @@ and/or files (like `events.tsv`) are fully omitted *when they are unavailable or
 instead of specified with an `n/a` value, or included as an empty file
 (for example an empty `events.tsv` file with only the headers included).
 
+## Dataset naming
+
+BIDS does not prescribe a particular naming scheme for directories containing individual BIDS datasets.
+However, it is recommended to use a short descriptive name that reflects the content of the dataset, avoid spaces in the name, and use hyphens or underscores to separate words.
+BIDS datasets embedded within a larger BIDS dataset MAY follow some convention (see for example [Storage of derived datasets](#storage-of-derived-datasets)).
+
 ## Filesystem structure
 
 Data for each subject are placed in subdirectories named "`sub-<label>`",
@@ -252,9 +258,10 @@ recommending a particular naming scheme for including different types of
 source data (such as the raw event logs or parameter files, before conversion to BIDS).
 However, in the case that these data are to be included:
 
-1.  These data MUST be kept in separate `sourcedata` directory with a similar
-    directory structure as presented below for the BIDS-managed data. For example:
-    `sourcedata/sub-01/ses-pre/func/sub-01_ses-pre_task-rest_bold.dicom.tgz` or
+1.  These data MUST be kept in separate `sourcedata` directory.
+    BIDS does not prescribe a particular naming scheme for source data,
+    but it is recommended for it to follow BIDS naming convention where possible.
+    For example: `sourcedata/sub-01/ses-pre/func/sub-01_ses-pre_task-rest_bold.dicom.tgz` or
     `sourcedata/sub-01/ses-pre/func/MyEvent.sce`.
 
 1.  A README file SHOULD be found at the root of the `sourcedata` directory or the
@@ -271,41 +278,38 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example(
     {
-    "my_dataset-1": {
-            "sourcedata": "",
-            "...": "",
-            "rawdata": {
-                "dataset_description.json": "",
-                "participants.tsv": "",
+    "my_project-1": {
+        "sourcedata": {
+            "dicoms": {},
+            "raw": {
                 "sub-01": {},
                 "sub-02": {},
                 "...": "",
+                "dataset_description.json": "",
+				"...": "",
             },
-            "derivatives": {
-                "pipeline_1": {},
-                "pipeline_2": {},
-                "...": "",
-            },
+            "..." : "",
+        },
+        "derivatives": {
+            "pipeline_1": {},
+            "pipeline_2": {},
+            "...": "",
         }
     }
+   }
 ) }}
 
-In this example, where `sourcedata` and `derivatives` are not nested inside
-`rawdata`, **only the `rawdata` subdirectory** needs to be a BIDS-compliant
-dataset.
+In this example, `sourcedata/dicoms` is not nested inside
+`sourcedata/raw`, **and only the `sourcedata/raw` subdirectory** is a BIDS-compliant dataset among `sourcedata/` subfolders.
 The subdirectories of `derivatives` MAY be BIDS-compliant derivatives datasets
 (see [Non-compliant derivatives](#non-compliant-derivatives) for further discussion).
-This specification does not prescribe anything about the contents of `sourcedata`
-directories in the above example - nor does it prescribe the `sourcedata`,
-`derivatives`, or `rawdata` directory names.
-The above example is just a convention that can be useful for organizing raw,
-source, and derived data while maintaining BIDS compliance of the raw data
-directory. When using this convention it is RECOMMENDED to set the `SourceDatasets`
+The above example is just a convention useful for organizing source, raw BIDS, and derived BIDS data while maintaining BIDS compliance of the raw data directory.
+When using this convention it is RECOMMENDED to set the `SourceDatasets`
 field in `dataset_description.json` of each subdirectory of `derivatives` to:
 
 ```JSON
 {
-  "SourceDatasets": [ {"URL": "../../rawdata/"} ]
+  "SourceDatasets": [ {"URL": "../../sourcedata/raw/"} ]
 }
 ```
 
@@ -406,6 +410,7 @@ Derivatives can be stored/distributed in two ways:
             "sub-01": {},
             "sub-02": {},
             "...": "",
+            "dataset_description.json": "",
             }
         }
     ) }}
