@@ -246,6 +246,14 @@ B1ShimmingTechnique:
     The technique used to shim the *B<sub>1</sub>* field (for example, `"Simple phase align"`
     or `"Pre-saturated TurboFLASH"`).
   type: string
+BIDSEntitiesLayout:
+  name: BIDSEntitiesLayout
+  display_name: BIDS Entities Layout
+  description: |
+    The specification of the hierarchy of directories and leading entities
+    in the filenames of BIDS files.
+    TODO: expand on type etc. Formalization is WiP within docs...
+  type: object
 BIDSVersion:
   name: BIDSVersion
   display_name: BIDS Version
