@@ -346,6 +346,7 @@ Dictionary `"ResponseFunction"` has the following reserved keywords:
     Dimensions of NIfTI image "`sub-01_model-tensor_param-fa_dwimap.nii.gz`": *I*x*J*x*K* ([scalar](#encoding-scalar))
 
     Contents of file `sub-01_model-tensor_param-diffusivity_dwimap.json`:
+
     ```JSON
     {
         "Description": "Diffusion Coefficient, encoded as a tensor representation",
@@ -368,6 +369,7 @@ Dictionary `"ResponseFunction"` has the following reserved keywords:
     ```
 
     Contents of file `sub-01_model-tensor_param-s0_dwimap.json`:
+
     ```JSON
     {
         "Description": "Estimated signal intensity with no diffusion weighting, ie. S0",
@@ -382,6 +384,7 @@ Dictionary `"ResponseFunction"` has the following reserved keywords:
     ```
 
     Contents of file `sub-01_model-tensor_param-fa_dwimap.json`:
+
     ```JSON
     {
         "Description": "Fractional Anisotropy",
@@ -500,7 +503,7 @@ Dictionary `"ResponseFunction"` has the following reserved keywords:
             "Type": "sh"
         },
         "ResponseFunction": {
-            "Coefficients": [ [ 544.90770181 ],
+            "Coefficients": [ [ 3544.90770181 ],
                               [ 134.441453035 ],
                               [ 32.0826839826 ],
                               [ 29.3674604452 ] ],
@@ -636,6 +639,7 @@ Dictionary `"ResponseFunction"` has the following reserved keywords:
             "Type": "unit3vector"
         }
     }
+    ```
 
     Contents of JSON file "`sub-01_model-bs_desc-mean_param-vf_dwimap.json`":
 
@@ -659,6 +663,7 @@ Dictionary `"ResponseFunction"` has the following reserved keywords:
             "Type": "scalar"
         }
     }
+    ```
 
     Contents of JSON file "`sub-01_model-bs_desc-mean_param-vfsum_dwimap.json`":
 
@@ -679,6 +684,7 @@ Dictionary `"ResponseFunction"` has the following reserved keywords:
             }
         }
     }
+    ```
 
     Contents of JSON file "`sub-01_model-bs_desc-mean_param-diffusivity_dwimap.json`":
 
@@ -700,6 +706,7 @@ Dictionary `"ResponseFunction"` has the following reserved keywords:
         },
         "Units": "mm^2/s"
     }
+    ```
 
     Contents of JSON file "`sub-01_model-bs_desc-mean_param-dstd_dwimap.json`":
 
