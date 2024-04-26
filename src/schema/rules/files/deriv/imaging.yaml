@@ -26,6 +26,15 @@ dwi_volumetric:
     density: optional
     description: optional
 
+dwi_isotropic:
+  $ref: rules.files.raw.dwi.isotropic
+  entities:
+    $ref: rules.files.raw.dwi.isotropic.entities
+    space: optional
+    resolution: optional
+    density: optional
+    description: optional
+
 func_volumetric:
   $ref: rules.files.raw.func.func
   entities:

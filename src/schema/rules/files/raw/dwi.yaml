@@ -39,6 +39,7 @@ sbref:
     part: optional
     chunk: optional
 
+# Common scanner-generated derivatives need raw names
 isotropic:
   suffixes:
     - ADC
