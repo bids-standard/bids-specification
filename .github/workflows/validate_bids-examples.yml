@@ -33,6 +33,35 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: "Apply patches for BIDS-2.0"
+      run: |
+        set -o pipefail
+        tools/bids-2.0/apply_all 2>&1 | tee /tmp/patch.log
+
+    - name: "Show differences after patching"
+      run: |
+        git add .
+        git diff --cached
+
+    - name: "Commit and push patched version online for possible introspection"
+      # Run only on a non-merge commit for the PR
+      if: >
+        github.repository == 'bids-standard/bids-specification' &&
+        github.event.pull_request.head.ref == 'bids-2.0' &&
+        github.event.pull_request.merge_commit_sha != github.sha
+      run: |
+        set -x
+        commit=$(git rev-parse HEAD)
+        branch=${GITHUB_HEAD_REF}-patched
+        git config --global user.email "github-ci@example.com"
+        git config --global user.name "BIDS 2.0 GitHub CI"
+        git checkout -b "$branch"
+        {
+          echo -e "Applied patches for ${GITHUB_HEAD_REF} to ${commit}\n";
+          cat /tmp/patch.log;
+        } | git commit -F -
+        git push -f origin "$branch"
+
     # Setup Python with bst
     - uses: actions/setup-python@v5
       with:
