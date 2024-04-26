@@ -129,7 +129,7 @@ see [parameter metadata](#parameter-metadata).
         and reference frame for angles:
 
         1.  Distance from origin,
-            encoding some parameter of interest.
+            encoding some non-negative parameter of interest.
 
         1.  Inclination / polar angle in radians,
             relative to the zenith direction being the positive direction of the *third* reference axis
@@ -163,9 +163,8 @@ see [parameter metadata](#parameter-metadata).
 
     1.  Value per orientation
 
-        The *norm* of the 3-vector encodes some parameter of interest,
+        The *norm* of the 3-vector encodes some non-negative parameter of interest,
         while its normalized form encodes an orientation on the unit sphere.
-        Note that only non-negative parameters may be encoded in this form.
 
     1.  Orientations only
 
@@ -279,13 +278,13 @@ Dictionary `"Model["Parameters"]"` has the following reserved keywords that may 
 The following table defines reserved fields relevant to individual model parameters.
 Some fields are applicable only to specific [orientation encoding types](#orientation-encoding-types).
 
-| **Key name**        | Relevant [orientation encoding types](#orientation-encoding-types)                              | **Description**                                                                                                                                                                                                                       |
-| ------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| BootstrapAxis       | Any                                                                                             | OPTIONAL. Integer. If multiple realisations of a given parameter are stored in a NIfTI image, this field nominates the image axis (indexed from zero) along which those multiple realisations are stored.                             |
-| Description         | Any                                                                                             | OPTIONAL. String. Text description of what model parameter is encoded in the corresponding data file.                                                                                                                                 |
-| NonNegativity       | All except [spherical coordinates](#encoding-spherical) and [unit 3-vectors](#encoding-3vector) | OPTIONAL. String. Options are: { `regularized`, `constrained` }. Specifies whether, during model fitting, the parameter was regularised to not take extreme negative values, or was explicitly forbidden from taking negative values. |
-| OrientationEncoding | Any                                                                                             | REQUIRED if dimensionality of NIfTI image is greater than three. Dictionary. Provides information requisite to the interpretation of orientation information encoded in each voxel; more details below.                               |
-| ResponseFunction    | [Spherical harmonics](#encoding-sh)                                                             | OPTIONAL. Dictionary. Specifies a response function that was utilised by a deconvolution algorithm; more details below.                                                                                                               |
+| **Key name**        | Relevant [orientation encoding types](#orientation-encoding-types)                         | **Description**                                                                                                                                                                                                                       |
+| ------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| BootstrapAxis       | Any                                                                                        | OPTIONAL. Integer. If multiple realisations of a given parameter are stored in a NIfTI image, this field nominates the image axis (indexed from zero) along which those multiple realisations are stored.                             |
+| Description         | Any                                                                                        | OPTIONAL. String. Text description of what model parameter is encoded in the corresponding data file.                                                                                                                                 |
+| NonNegativity       | All except [spherical coordinates](#encoding-spherical) and [3-vectors](#encoding-3vector) | OPTIONAL. String. Options are: { `regularized`, `constrained` }. Specifies whether, during model fitting, the parameter was regularised to not take extreme negative values, or was explicitly forbidden from taking negative values. |
+| OrientationEncoding | Any                                                                                        | REQUIRED if dimensionality of NIfTI image is greater than three. Dictionary. Provides information requisite to the interpretation of orientation information encoded in each voxel; more details below.                               |
+| ResponseFunction    | [Spherical harmonics](#encoding-sh)                                                        | OPTIONAL. Dictionary. Specifies a response function that was utilised by a deconvolution algorithm; more details below.                                                                                                               |
 
 Dictionary `"OrientationEncoding"` has the following reserved keywords:
 
