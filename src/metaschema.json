@@ -409,15 +409,10 @@
                   "type": "object",
                   "patternProperties": {
                     "^[a-zA-Z0-9_]+$": {
-                      "type": "object",
-                      "properties": {
-                        "level": {"type": "string"},
-                        "path": {"type": "string"},
-                        "extensions": {"type": "array"},
-                        "stem": {"type": "string"}
-                      },
-                      "required": ["level"],
-                      "additionalProperties": false
+                      "anyOf": [
+                        { "$ref": "#/definitions/pathRule" },
+                        { "$ref": "#/definitions/stemRule" }
+                      ]
                     }
                   },
                   "additionalProperties": false
@@ -426,17 +421,10 @@
                   "type": "object",
                   "patternProperties": {
                     "^[a-zA-Z0-9_]+$": {
-                      "type": "object",
-                      "properties": {
-                        "level": {"type": "string"},
-                        "path": {"type": "string"},
-                        "extensions": {"type": "array"},
-                        "stem": {"type": "string"},
-                        "entities": {"$ref": "#/definitions/entities"},
-                        "suffixes": {"type": "array"}
-                      },
-                      "required": ["level", "extensions"],
-                      "additionalProperties": false
+                      "anyOf": [
+                        { "$ref": "#/definitions/stemRule" },
+                        { "$ref": "#/definitions/suffixRule" }
+                      ]
                     }
                   },
                   "additionalProperties": false
@@ -471,24 +459,7 @@
                 "^[a-z]+$": {
                   "type": "object",
                   "patternProperties": {
-                    "^[a-zA-Z0-9_]+$": {
-                      "type": "object",
-                      "properties": {
-                        "suffixes": {
-                          "type": "array",
-                          "items": {"type": "string"}
-                        },
-                        "extensions": {
-                          "type": "array",
-                          "items": {"pattern": "^[./][a-z.]+|"}
-                        },
-                        "datatypes": {
-                          "type": "array",
-                          "items": {"pattern": "^[a-z]+$"}
-                        },
-                        "entities": {"$ref": "#/definitions/entities"}
-                      }
-                    }
+                    "^[a-zA-Z0-9_]+$": { "$ref": "#/definitions/suffixRule" }
                   },
                   "additionalProperties": false
                 }
@@ -722,6 +693,43 @@
           "additionalProperties": false
         }
       }
+    },
+    "pathRule": {
+      "type": "object",
+      "properties": {
+        "level": { "enum": ["optional", "required"] },
+        "path": { "type": "string" }
+      },
+      "required": ["level", "path"],
+      "additionalProperties": false
+    },
+    "stemRule": {
+      "type": "object",
+      "properties": {
+        "level": { "enum": ["optional", "recommended", "required"] },
+        "stem": { "type": "string" },
+        "extensions": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["level", "stem", "extensions"],
+      "additionalProperties": false
+    },
+    "suffixRule": {
+      "type": "object",
+      "properties": {
+        "level": { "enum": ["optional", "recommended", "required"] },
+        "datatypes": {
+          "type": "array",
+          "items": { "pattern": "^[a-z]+$" }
+        },
+        "suffixes": {
+          "type": "array",
+          "items": { "pattern": "^[a-zA-Z0-9]+$" }
+        },
+        "extensions": { "type": "array", "items": { "type": "string" } },
+        "entities": { "$ref": "#/definitions/entities" }
+      },
+      "required": ["suffixes", "extensions", "entities"],
+      "additionalProperties": false
     }
   }
 }
