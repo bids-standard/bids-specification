@@ -31,340 +31,804 @@ Template:
 
 ## Diffusion models
 
-Diffusion MRI can be modeled using various paradigms to extract more
-informative representations of the diffusion process and the underlying
-biological structure. A wide range of such models are available, each of
-which has its own unique requirements with respect to:
+Diffusion MRI can be modeled using various paradigms
+to extract more informative representations of the diffusion process
+and the underlying biological structure.
+There are two key attributes of diffusion models
+that warrant explicit mention due to their consequence in how they are represented:
 
--   The [input](#paramdef-input) parameters required in order to
-    define / constrain the way in which the model will be fit to the
-    empirical image data;
+-   The encoding of *anisotropic* information;
+    that is, quantities for which the value depends on the orientation in which it is sampled.
+    Much of the detail in diffusion derivatives is therefore dedicated
+    to the definition of how such data are serialised into corresponding NIfTI images,
+    and how corresponding metadata is used to facilitate correct interpretation of those data.
 
--   The appropriate [data representations](#data-representations) utilized to
-    store information parameterised [by](#paramdef-fit) or
-    [from](#paramdef-derived) the model onto the filesystem;
+-   A diffusion model may represent the contents of each image voxel as the sum of *multiple compartments*;
+    further, each of these different compartments may have different intrinsic properties,
+    such as units or anisotropy (as above).
+    An individual model fit may therefore yield data for its different parameters
+    distributed across multiple NIfTI images,
+    and each image may require unique metadata fields to facilitate interpretation.
 
--   The requirements for encapsulation and complete representation of
-    derived [orientation information](#orientation-specification), which is
-    a key strength of diffusion MRI but presents unique challenges for
-    correct interpretation.
-
-### Parameter terminology
-
-Throughout this document, the term "parameter" is used to refer to
-multiple distinct sources of information. The distinction between
-these uses is defined thus:
-
-1.  <a name="paramdef-input">*Input*</a> parameter:
-
-    Value or non-numerical setting that influences the conformation
-    of the diffusion model to the empirical diffusion-weighted data.
-
-1.  <a name="paramdef-fit">Model *fit*</a> parameter:
-
-    Value that is the direct result of fitting the diffusion model to the
-    empirical diffusion-weighted data.
-
-1.  <a name="paramdef-derived">Model-*derived*</a> parameter:
-
-    Value that can be calculated directly from previously estimated
-    *model parameters*, without necessitating reference to
-    the empirical diffusion-weighted data.
-
-For example, consider a diffusion tensor model fit: the number of
-iterations in the optimization algorithm would be an *input* parameter;
-the six unique diffusion tensor coefficients would be the *model fit*
-parameters; the Fractional Anisotropy (FA) would be a *model-derived*
-parameter (as it is calculated from the diffusion tensor coefficients
-rather than the image data).
-
-### File names
+### Basic filesystem structure
 
 ```Text
 <pipeline_name>/
     sub-<participant_label>/
         dwi/
-            <source_keywords>[_space-<space>]_model-<label>_param-<param1>_model.nii[.gz]
-            <source_keywords>[_space-<space>]_model-<label>_param-<param1>_model.json
-            <source_keywords>[_space-<space>]_model-<label>_param-<param2>_model.nii[.gz]
-            <source_keywords>[_space-<space>]_model-<label>_param-<param2>_model.json
-            <source_keywords>[_space-<space>]_model-<label>_model.json
-
-            [<source_keywords>[_space-<space>]_model-<label>_param-<parama>_mdp.nii[.gz]]
-            [<source_keywords>[_space-<space>]_model-<label>_param-<parama>_mdp.json]
-            [<source_keywords>[_space-<space>]_model-<label>_param-<paramb>_mdp.nii[.gz]]
-            [<source_keywords>[_space-<space>]_model-<label>_param-<paramb>_mdp.json]
+            <source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label1>_dwimap.nii[.gz]
+            <source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label1>_dwimap.json
+            <source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label2>_dwimap.nii[.gz]
+            <source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label2>_dwimap.json
+            <source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label3>_dwimap.nii[.gz]
+            <source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label3>_dwimap.json
 ```
 
--   Files "`<source_keywords>[_space-<space>]_model-<label>_param-<param*>_model.nii[.gz]`"
-    provide data corresponding to the various requisite [model fit parameters](#paramdef-fit).
+-   Files "`<source_keywords>_model-<label>_param-<label*>_dwimap.nii[.gz]`"
+    provide image data encoding the different parameters that may be estimated by the model.
+    If the image is a three-dimensional volume,
+    then in the absence of any metadata indicating to the contrary,
+    the image should be interpreted as yielding a single scalar parameter per voxel.
+    If the image is of a higher dimensionality,
+    then relevant metadata fields MUST be specified in the corresponding sidecar JSON file
+    indicating how data across dimensions beyond the three spatial dimensions
+    should be interpreted.
 
-    In cases where *all* [model fit parameters](#paramdef-fit) are contained within a single image
-    file, entity "`_param-`" MUST NOT be included; e.g.:
-        ```Text
-        <pipeline_name>/
-            sub-<participant_label>/
-                dwi/
-                    <source_keywords>[_space-<space>]_model-<label>_model.nii[.gz]
-                    <source_keywords>[_space-<space>]_model-<label>_model.json
-        ```
+-   Files "`<source_keywords>_model-<label>_param-<label*>_dwimap.json`"
+    MUST provide information about the model,
+    and SHOULD provide information about how it was fit to the empirical image data.
+    In circumstances where the dimensionality of the corresponding NIfTI image is greater than three,
+    they MUST also specify requisite metadata fields regarding
+    how data across dimensions beyond the three spatial dimensions are to be interpreted.
 
--   File "`<source_keywords>[_space-<space>]_model-<label>_model.json`"
-    provides basic model information and [input parameters](#paramdef-input).
+In cases where a pipeline yields only a single parameter from a model,
+entity "`_param-<label>`" MUST NOT be included; e.g.:
+```Text
+<pipeline_name>/
+    sub-<participant_label>/
+        dwi/
+            <source_keywords>[_space-<space>]_model-<label>_dwimap.nii[.gz]
+            <source_keywords>[_space-<space>]_model-<label>_dwimap.json
+```
 
--   OPTIONAL images "`<source_keywords>[_space-<space>]_model-<label>_param-<parama>_mdp.nii[.gz]`"
-    may be defined, in order to provide additional [model-derived parameters](#paramdef-derived).
+### Orientation encoding types
 
--   OPTIONAL files "`<source_keywords>[_space-<space>]_model-<label>_param-<param*>_mdp.json`"
-    may be defined to provide information or parameters only relevant to
-    each relevant [model-derived parameter](#paramdef-derived).
+There are many mathematical bases that may be used
+in the encoding of parameters that vary as a function of orientation.
+A list of such functions supported by the specification is enuerated below,
+accompanied by requisite information specific to each representation.
 
-### Data representations
+For image data that encode orientation information,
+there are fields that MUST be specified in the sidecar JSON file
+in order to ensure appropriate interpretation of that information;
+see [parameter metadata](#parameter-metadata).
 
-There are multiple techniques by which data that relate to the anisotropic
-nature of either the diffusion process or underlying tissue may be
-arranged and/or encoded into NIfTI image data. A list of known techniques
-is enumerated below, accompanied by requisite information specific to the
-reading / writing of each representation.
+1.  <a name="encoding-scalar">*Scalar image*</a>:
 
-For data that encode orientation information, there are fields that MUST
-be specified in the sidecar JSON file in order to ensure appropriate
-interpretation of that information; see [orientation specification](#orientation-specification)).
+    Image data that do not encode orientation information
+    are referred to henceforth here as "scalar" parameters.
 
-1.  <a name="data-scalar">*Scalars*</a>:
+1.  <a name="encoding-dec">*Directionally-Encoded Colors (DEC)*</a>:
 
-    Any parameter image (whether [model fit](#paramdef-fit) or
-    [model-derived](#paramdef-derived)) where a solitary numerical value is
-    defined in each 3D image voxel is referred to here as a "scalar" image.
+    An image with three volumes,
+    intended to be interpreted as red, green and blue color intensities for visualization.
+    Image data MUST NOT contain negative values.
 
-1.  <a name="data-dec">*Directionally-Encoded colors (DEC)*</a>:
+1.  <a name="encoding-spherical">*Spherical coordinates*</a>:
 
-    4D image with three volumes, intended to be interpreted as red, green
-    and blue color intensities for visualization
-    \[[Pajevic1999](#pajevic1999)\]. Image data MUST NOT contain negative
-    values.
-
-1.  <a name="data-tensor">*Rank-2 tensor*</a>:
-
-    4D image encoding coefficients of a rank-2 tensor.
-    If `"AntipodalSymmetry"` is `True` (or omitted),
-    then the image MUST contain six volumes, in the order:
-    *D<sub>xx</sub>*, *D<sub>xy</sub>*, *D<sub>xz</sub>*, *D<sub>yy</sub>*, *D<sub>yz</sub>*, *D<sub>zz</sub>.
-    If `"AntipodalSymmetry"` is `False`,
-    then the image MUST contain nine volumes, in the order:
-    *D<sub>xx</sub>*, *D<sub>xy</sub>*, *D<sub>xz</sub>*, *D<sub>yx</sub>*, *D<sub>yy</sub>*, *D<sub>yz</sub>, *D<sub>zx</sub>*, *D<sub>zy</sub>*, *D<sub>zz</sub>.
-    (If `"ReferenceAxes"` is `"ijk"`, then the interpretation of the coefficients
-    above should be substituted accordingly)
-
-1.  <a name="data-spherical">*Spherical coordinates*</a>:
-
-    4D image where data across volumes within each voxel encode one or
-    more discrete orientations using angles on the 2-sphere, optionally
-    exploiting the distance from origin to encode the value of some parameter.
+    An image where data across volumes within each voxel encode
+    one or more discrete orientations using angles on the 2-sphere,
+    optionally encoding some parameter as the distance from origin.
 
     This may take one of two forms:
 
     1.  Value per direction
 
-        Each consecutive triplet of image volumes encodes a spherical
-        coordinate, using ISO convention for both the order of parameters
+        Each consecutive triplet of image volumes encodes a 3-tuple spherical coordinate,
+        using ISO convention for both the order of parameters
         and reference frame for angles:
 
-        1.  Distance from origin; value of embedded parameter MUST be
-            indicated in "`_param-*`" entity;
+        1.  Distance from origin,
+            encoding some parameter of interest.
 
-        1.  Inclination / polar angle, in radians, relative to the zenith
-            direction being the positive direction of the *third* reference
-            axis (see [orientation specification](#orientation-specification));
+        1.  Inclination / polar angle in radians,
+            relative to the zenith direction being the positive direction of the *third* reference axis
+            (see [parameter metadata](#parameter-metadata));
 
-        1.  Azimuth angle, in radians, orthogonal to the zenith direction,
+        1.  Azimuth angle, in radians,
+            orthogonal to the zenith direction,
             with value of 0.0 corresponding to the *first* reference axis
-            (see [orientation specification](#orientation-specification)),
-            increasing according to the right-hand rule about the zenith
-            direction.
+            (see [parameter metadata](#parameter-metadata)),
+            increasing according to the right-hand rule about the zenith direction.
 
-        Number of image volumes is equal to (3x*N*), where *N* is the maximum
-        number of discrete orientations in any voxel in the image.
+        Number of image volumes is equal to (3x*N*),
+        where *N* is the maximum number of discrete orientations in any voxel in the image.
 
-    1.  Directions only
+    1.  Orientations only
 
-        Each consecutive pair of image volumes encodes inclination /
-        azimuth pairs, with order & convention identical to that above
-        (equivalent to spherical coordinate with assumed unity distance from
-        origin).
+        Each consecutive pair of image volumes encodes an inclination / azimuth pair,
+        with order & convention identical to that above
+        (equivalent to spherical coordinate with assumed unity distance from origin).
 
         Number of image volumes is equal to (2x*N*), where *N* is the maximum
         number of discrete orientations in any voxel in the image.
 
-1.  <a name="data-3vector">*3-Vectors*</a>:
+1.  <a name="encoding-3vector">*3-Vectors*</a>:
 
-    4D image where data across volumes within each voxel encode one or
-    more discrete orientations using triplets of axis dot products.
+    An image where data across volumes within each voxel encode
+    one or more discrete orientations
+    using triplets of axis dot products.
 
-    This representation may be used in one of two ways:
+    This may take one of two forms:
 
-    1.  Value per direction
+    1.  Value per orientation
 
-        Each 3-vector, once explicitly normalized, provides a direction
-        on the unit sphere; the *norm* of each 3-vector additionally encodes
-        the magnitude of some model or model-derived parameter, the nature of
-        which MUST be indicated in the "`_param-*`" entity.
+        The *norm* of the 3-vector encodes some parameter of interest,
+        while its normalized form encodes an orientation on the unit sphere.
+        Note that only non-negative parameters may be encoded in this form.
 
-    1.  Directions only
+    1.  Orientations only
 
         Each triplet of values encodes an orientation on the unit sphere
-        (i.e. the 3-vector data are normalized); no quantitative value is
-        associated with each triplet.
+        (i.e. the vector norm MUST be 1.0);
+        no quantitative value is associated with each orientation.
 
-    Number of image volumes is equal to (3x*N*), where *N* is the maximum
-    number of discrete orientations in any voxel in the image.
+    Number of image volumes is equal to (3x*N*),
+    where *N* is the maximum number of discrete orientations in any voxel in the image.
 
-1.  <a name="data-sh">*Spherical Harmonics (SH)*</a>:
+1.  <a name="encoding-tensor">*Tensor*</a>:
 
-    4D image where data across volumes within each voxel represent a
-    continuous function spanning the 2-sphere as coefficient values using a
-    spherical harmonics basis.
+    An image where volumes encode coefficients of a tensor.
+
+    -   For *Rank 2* tensors:
+
+        If antipodal symmetry is set (or implicitly assumed),
+        then the image MUST contain six volumes, in the order:
+        *D<sub>11</sub>*, *D<sub>12</sub>*, *D<sub>13</sub>*, *D<sub>22</sub>*, *D<sub>23</sub>*, *D<sub>33</sub>,
+        where *1*, *2* and *3* index the three spatial dimensions according to their reference
+        (see field `"OrientationEncoding"["Reference"]` in [parameter metadata](#parameter-metadata)).
+        If the data are not antipodally symmetric,
+        then the image MUST contain nine volumes, in the order:
+        *D<sub>11</sub>*, *D<sub>12</sub>*, *D<sub>13</sub>*, *D<sub>21</sub>*, *D<sub>22</sub>*, *D<sub>23</sub>, *D<sub>31</sub>*, *D<sub>32</sub>*, *D<sub>33</sub>,
+        with subscripts indexing row then column.
+
+1.  <a name="encoding-sh">*Spherical Harmonics (SH)*</a>:
+
+    Image where data across volumes within each voxel encode
+    a continuous function spanning the 2-sphere
+    using coefficients within a spherical harmonics basis.
 
     Number of image volumes depends on the spherical harmonic basis employed,
-    and the maximal spherical harmonic degree *l<sub>max</sub>* (see
-    [spherical harmonics bases](#spherical-harmonics-bases)).
+    and the maximal spherical harmonic degree *l<sub>max</sub>*
+    (see [spherical harmonics bases](#spherical-harmonics-bases)).
 
-1.  <a name="data-amp">*Amplitudes*</a>:
+1.  <a name="encoding-amp">*Amplitudes*</a>:
 
-    4D image where data across volumes within each voxel represent
+    Image where data across volumes within each voxel encode
     amplitudes of a discrete function spanning the 2-sphere.
 
-    Number of image volumes corresponds to the number of discrete directions
+    Number of image volumes corresponds to the number of discrete orientations
     on the unit sphere along which samples for the spherical function in
-    each voxel are provided; these directions MUST themselves be provided
-    in the associated sidecar JSON file (see [orientation specification](#orientation-specification)).
+    each voxel are provided;
+    these orientations MUST themselves be provided in the associated sidecar JSON file
+    (see [parameter metadata](#parameter-metadata)).
 
-1.  <a name="data-param">*Parameter vectors*</a>:
+### Bootstrap encoding
 
-    4D image containing, for every image voxel, data corresponding to some
-    set of model parameters, the names and order of which are defined within
-    the [model fit parameters](#paramdef-fit) section below.
+For some models,
+it is common to export not only the best fit of the model to the empirical data,
+but multiple reaslisations of that fit taking into account image noise,
+typically through some form of bootstrapping procedure.
+Where this occurs,
+the image data for each parameter possess an additional dimension,
+along which those multiple realisations are stored.
 
-### Model parameters
+For some models,
+it is common to explicitly store *both* the multiple realisations of the model
+*and* either the parameters corresponding to the maximum *a posteriori* fit
+or the mean of each parameter computed across those realisations.
+In these circumstances,
+it is RECOMMENDED to use the same label for the "`_model-`" entity,
+and use the "`_desc-`" entity to disambiguate between these two versions
+at the filesystem level.
 
-The following models are codified within the specification. The model label
-should be included in the "`_model-`" entity in the filename for storage
-of both model and model-derived parameters. Some models necessitate reserved
-keywords for "`_param-`" fields, which are listed below.
+### Metadata fields
 
-| Model label | Full Name                                                                                                                                       | [Data representation](#data-representations)                                                                                                                                                                                                                                                                                                                                                                        |
-| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `bs`        | Ball-and-Stick(s) model \[[Behrens2003](#behrens2003)\],\[[Behrens2007](#behrens2007)\],\[[Jbabdi2012](#jbabdi2012)\]                           | One [spherical coordinates](#data-spherical) image with parameter name "`sticks`", providing both fibre volume fractions and orientations using polar angles;<br>Optional scalar images with parameter names {"`bzero`", "`dmean`", "`dstd`"} providing the model-estimated *b*=0 signal intensity, mean stick diffusivity, and standard deviation of stick diffusivities respectively                              |
-| `csd`       | Constrained Spherical Deconvolution \[[Tournier2007](#tournier2007)\],\[[Descoteaux2009](#descoteaux2009)\],\[[Jeurissen2014](#jeurissen2014)\] | [Spherical harmonics](#data-sh) image<br>If a multi-tissue decomposition is performed, provide one individual 4D image per tissue, with "`_param-<param>`" entity being an abbreviation of the tissue estimated by that particular ODF                                                                                                                                                                        |
-| `tensor`    | Diffusion Tensor \[[Basser1994](#basser1994)\]                                                                                                  | Single [tensor image](#data-tensor) with no `param` entity <br>OR<br>Tensor coefficients as [tensor image](#data-tensor) image with `param` entity ``tensor``;<br>Estimated *b*=0 intensity as [scalar image](#data-scalar) with `param` entity "`bzero`" |
+#### Model vs. parameter metadata
 
-The JSON sidecar for the intrinsic diffusion model parameters may contain
-the following key/value pairs irrespective of the particular model:
+For a NIfTI image that encodes some parameter of some model,
+there are are range of metadata fields that may be relevant.
+These can be broadly separated into two categories:
 
-| **Key name**     | **Description**                                                                                                                                                                              |
-| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Gradients        | OPTIONAL. List of 3-vectors. Subset of gradients utilized to fit the model, as a list of three-elements lists. If not present, all gradients were used.                                      |
-| Shells           | OPTIONAL. List of floats. Shells that were utilized to fit the model, as a list of b-values. If the key is not present, it should be assumed that all shells were used during model fitting. |
-| Mask             | OPTIONAL. String. Name of image that was used as a binary mask to specify those voxels for which the model was fit.                                                                          |
-| ModelDescription | OPTIONAL. String. Extended information to describe the model.                                                                                                                                |
-| ModelURL         | OPTIONAL. String. URL to the implementation of the specific model utilized.                                                                                                                  |
-| Parameters       | OPTIONAL. Dictionary. [Input](#paramdef-input) model parameters that are constant across the image (see examples below).                                                                     |
+1.  Metadata that apply to *the model as a whole*
+    are not specific to any individual parameter estimated by that model.
+    It is therefore RECOMMENDED that any such metadata
+    be *equivalent* across all sidecar JSON files for all parameters of that model.
 
-#### Model bootstrapping
+1.  Metadata that apply *only to that specific parameter*
+    may include attributes such as units and orientation encoding
+    essential for correct interpretation of that parameter image *only*.
+    it is therefore possible that these metadata fields may *differ*
+    across the multiple parameters estimated by that model.
 
-Results of model bootstrapping can be provided by concatenating multiple
-realisations of model intrinsic parameters along an additional image axis.
+#### Model metadata
 
-The corresponding sidecar JSON file may include dictionary field
-"`BootstrapParameters`", describing those input parameters specific to
-the determination and export of multiple realisations of the model fit
-in each image voxel.
+At the root of the metadata dictionary,
+REQUIRED field `"Model"` defines a dictionary that contains relevant information
+about what the model is and how it was fit to empirical image data.
+The following table defines reserved fields within the `"Model"` sub-dictionary.
 
-### Input model parameters
+| **Key name**        | **Description**                                                                                                                 |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| BootstrapParameters | OPTIONAL. Dictionary. Parameters relating to the generation of multiple realisations of the model fit using bootstrapping.      |
+| Description         | OPTIONAL. String. Extended text-based information to describe the model.                                                        |
+| Parameters          | OPTIONAL. Dictionary. Parameters that influenced the process of fitting the model to empirical image data (see examples below). |
+| URL                 | OPTIONAL. String. URL to the specific implementation of the model utilized.                                                     |
 
-Parameters that may / must be stored within the JSON sidecar "`Parameters`"
-field depends on the particular model used.
+Dictionary `"Model["Parameters"]"` has the following reserved keywords that may be applicable to a broad range of models:
 
-"`Parameters`" fields that may be applicable to multiple models:
+| **Key name**           | **Description**                                                                                                                                                                                                                                                                                               |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| FitMethod              | OPTIONAL. String. The optimization procedure used to fit the intrinsic model parameters to the empirical diffusion-weighted signal. Resrved values are: "`ols`" (Ordinary Least Squares); "`wls`" (Weighted Least Squares); "`iwls`" (Iterative Weighted Least Squares); "`nlls`" (Non-Linear Least Squares). |
+| Iterations             | OPTIONAL. Integer. The number of iterations used for any form of model fitting procedure where the number of iterations is a fixed input parameter.                                                                                                                                                           |
+| OutlierRejectionMethod | OPTIONAL. String. Text describing any form of rejection of outlier values that was performed during fitting of the model.                                                                                                                                                                                     |
+| Samples                | OPTIONAL. Integer. The number of realisations of a diffusion model from which statistical summaries (e.g. mean, standard deviation) of those parameters were computed.                                                                                                                                        |
 
-| **Key name**     | **Description**                                                                                                                                                                                                                                                                                        |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| FitMethod        | OPTIONAL. String. The optimization procedure used to fit the intrinsic model parameters to the empirical diffusion-weighted signal. Options are: "`ols`" (Ordinary Least Squares); "`wls`" (Weighted Least Squares); "`iwls`" (Iterative Weighted Least Squares); "`nlls`" (Non-Linear Least Squares). |
-| Iterations       | OPTIONAL. Integer. The number of iterations used for any form of model fitting procedure where the number of iterations is a fixed input parameter.                                                                                                                                                    |
-| OutlierRejection | OPTIONAL. Boolean. Value indicating whether or not rejection of outlier values was performed during fitting of the intrinsic model parameters.                                                                                                                                                         |
-| Samples          | OPTIONAL. Integer. The number of realisations of a diffusion model from which statistical summaries (e.g. mean, standard deviation) of those parameters are provided.                                                                                                                                  |
+#### Parameter metadata
 
-Reserved keywords for models built into the specification are as follows:
+The following table defines reserved fields relevant to individual model parameters.
+Some fields are applicable only to specific [orientation encoding types](#orientation-encoding-types).
 
--   `bs` :
+| **Key name**        | Relevant [orientation encoding types](#orientation-encoding-types)                              | **Description**                                                                                                                                                                                                                       |
+| ------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| BootstrapAxis       | Any                                                                                             | OPTIONAL. Integer. If multiple realisations of a given parameter are stored in a NIfTI image, this field nominates the image axis (indexed from zero) along which those multiple realisations are stored.                             |
+| Description         | Any                                                                                             | OPTIONAL. String. Text description of what model parameter is encoded in the corresponding data file.                                                                                                                                 |
+| NonNegativity       | All except [spherical coordinates](#encoding-spherical) and [unit 3-vectors](#encoding-3vector) | OPTIONAL. String. Options are: { `regularized`, `constrained` }. Specifies whether, during model fitting, the parameter was regularised to not take extreme negative values, or was explicitly forbidden from taking negative values. |
+| OrientationEncoding | Any                                                                                             | REQUIRED if dimensionality of NIfTI image is greater than three. Dictionary. Provides information requisite to the interpretation of orientation information encoded in each voxel; more details below.                               |
+| ResponseFunction    | [Spherical harmonics](#encoding-sh)                                                             | OPTIONAL. Dictionary. Specifies a response function that was utilised by a deconvolution algorithm; more details below.                                                                                                               |
 
-    -   `ARDFudgeFactor`: Float. Weight applied to Automatic Relevance Determination (ARD).
-    -   `Fibers`: Integer. Number of discrete fibres to fit in each voxel.
-    -   `ModelBall`: String. Model used to describe the "ball" component in the model.
-    -   `ModelSticks`: String. Model used to describe the "stick" component in the model.
+Dictionary `"OrientationEncoding"` has the following reserved keywords:
 
--   `csd`:
+| **Key name**            | Relevant [orientation encoding types](#orientation-encoding-types)                                                                                                         | **Description**                                                                                                                                                                                                                                                                                                                                                                                                              |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| AmplitudesDirections    | [Amplitudes](#encoding-amp)                                                                                                                                                | REQUIRED for `"Type": "amplitudes"`; MUST NOT be specified otherwise. List of lists of floats. Data are either [spherical coordinates (directions only)](#encoding-spherical) or [3-vectors](#encoding-3vector) with unit norm. Defines the dense directional basis set on which samples of a spherical function within each voxel are provided. The length of the list must be equal to the number of volumes in the image. |
+| AntipodalSymmetry       | [spherical coordinates](#encoding-spherical), [3-vectors](#encoding-3vector), [tensor](#encoding-tensor), [amplitudes](#encoding-amp), [spherical harmonics](#encoding-sh) | OPTIONAL. Boolean. Indicates whether orientation information should be interpreted as being antipodally symmetric. Assumed to be True if omitted.                                                                                                                                                                                                                                                                            |
+| EncodingAxis            | All except [scalar](#encoding-scalar)                                                                                                                                      | REQUIRED. Integer. Indicates the image axis (indexed from zero) along which image intensities should be interpreted as corresponding to orientation encoding.                                                                                                                                                                                                                                                                |
+| FillValue               | [Scalar](#encoding-scalar), [spherical coordinates](#encoding-spherical), [3-vectors](#encoding-3vector)                                                                   | OPTIONAL. Float; allowed values: { 0.0, NaN }. Value stored in image when the number of discrete orientations in a given voxel is fewer than the maximal number for that image.                                                                                                                                                                                                                                              |
+| Reference               | All except [scalar](#encoding-scalar)                                                                                                                                      | REQUIRED. String; allowed values: { `ijk`, `xyz` }. Indicates whether the NIfTI image axes, or scanner-space axes, are used as reference axes for orientation information.                                                                                                                                                                                                                                                   |
+| SphericalHarmonicBasis  | [Spherical harmonics](#encoding-sh)                                                                                                                                        | REQUIRED for `"Type": "sh"`; MUST NOT be specified otherwise. String. Options are: { `mrtrix3`, `descoteaux` }. Details are provided in the [spherical harmonics bases](#spherical-harmonics-bases) section.                                                                                                                                                                                                                 |
+| SphericalHarmonicDegree | [Spherical harmonics](#encoding-sh)                                                                                                                                        | OPTIONAL for `"Type": "sh"`; MUST NOT be specified otherwise. Integer. The maximal spherical harmonic order *l<sub>max</sub>*; the number of volumes in the associated NIfTI image must correspond to this value as per the relationship described in [spherical harmonics bases](#spherical-harmonics-bases) section.                                                                                                       |
+| TensorRank              | [Tensor](#encoding-tensor)                                                                                                                                                 | REQUIRED for `"Type": "tensor"; MUST NOT be specified otherwise. Integer. Rank of tensor reporesentation. Specification currently only supports a value of 2.                                                                                                                                                                                                                                                                |
+| Type                    | Any                                                                                                                                                                        | REQUIRED. String. Specifies the type of orientation information (if any) encoded in the NIfTI image. Permitted values: { `scalar`, `dec`, `unitspherical`, `spherical`, `unit3vector`, `3vector`, `tensor`, `sh`, `amplitudes` }.                                                                                                                                                                                            |
 
-    -   `NonNegativityConstraint`: String. Options are: { `soft`, `hard` }. Specifies whether the ODF was estimated using regularization ("`soft`") or prevention ("`hard`") of negative values.
+Dictionary `"ResponseFunction"` has the following reserved keywords:
 
-    -   `ResponseFunctionZSH`: Two options:
+| **Key name** | **Description**                                                                                                                                                                            |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Coefficients | REQUIRED. Either a list of floats, or a list of lists of floats, depending on the mathematical form of the response function and possibly the data to which it applies; see further below. |
+| Type         | REQUIRED. String. Options are: { `eigen`, `zsh` }. The mathematical form in which the response function coefficients are provided; see further below.                                      |
 
-        -   Vector of floating-point values, where values correspond to the response function coefficient for each consecutive even zonal spherical harmonic degree starting from zero (in this case field "`Shells`" should contain a single integer value);
-        -   Matrix of floating-point values: 1 row per unique *b*-value as listed in "`Shells`"; 1 column per even zonal spherical harmonic degree starting from zero; if there are a different number of non-zero zonal spherical harmonic coefficients for different *b*-values, these must be padded with zeroes such that all rows contain the same number of columns.
+-   If `"ResponseFunction"["Type"]: "eigen"`,
+    then a list of 4 floating-point values must be specified;
+    these are interpreted as three ordered eigenvalues of a rank 2 tensor,
+    followed by a reference *b*=0 intensity.
 
-    -   `ResponseFunctionTensor`: Vector of 4 floating-point values: three tensor eigenvalues, then reference *b*=0 intensity
+-   If `"ResponseFunction"["Type"]": "zsh`",
+    then the values provided can be one of the following:
 
-    -   `SphericalHarmonicBasis`: String. Options are: { `MRtrix3` }. Details are provided in the [spherical harmonics bases](#spherical-harmonics-bases) section.
+    -   List of floating-point values.
+        Values correspond to the response function coefficient for each consecutive even zonal spherical harmonic degree starting from zero.
 
-    -   `SphericalHarmonicDegree`: Integer. The maximal spherical harmonic order *l<sub>max</sub>*; the number of volumes in the associated NIfTI image must correspond to this value as per the relationship described in [spherical harmonics bases](#spherical-harmonics-bases) section.
+    -   List of lists of floating-point values.
+        One list per unique *b*-value.
+        Each individual list contains a coefficient per even zonal spherical harmonic degree starting from zero.
+        If the response function utilised has a different number of non-zero zonal spherical harmonic coefficients for different *b*-values,
+        these must be padded with zeroes such that all lists contain the same number of floating-point values.
 
-    -   `Tissue`: String. A more verbose description for the tissue estimated via this specific ODF.
+### Demonstrative examples
 
--   `tensor` :
+-   A basic Diffusion Tensor fit:
 
-    -   `RESTORESigma`: Float
+    ```Text
+    my_diffusion_pipeline/
+        sub-01/
+            dwi/
+                sub-01_model-tensor_param-diffusivity_dwimap.nii.gz
+                sub-01_model-tensor_param-diffusivity_dwimap.json
+                sub-01_model-tensor_param-s0_dwimap.nii.gz
+                sub-01_model-tensor_param-s0_dwimap.json
+                sub-01_model-tensor_param-fa_dwimap.nii.gz
+                sub-01_model-tensor_param-fa_dwimap.json
+    ```
 
-### Model-derived parameters
+    Dimensions of NIfTI image "`sub-01_model-tensor_param-diffusivity_dwimap.nii.gz`": *I*x*J*x*K*x6 ([symmetric rank 2 tensor image](#encoding-tensor))
+    Dimensions of NIfTI image "`sub-01_model-tensor_param-s0_dwimap.nii.gz`": *I*x*J*x*K* ([scalar](#encoding-scalar))
+    Dimensions of NIfTI image "`sub-01_model-tensor_param-fa_dwimap.nii.gz`": *I*x*J*x*K* ([scalar](#encoding-scalar))
 
-| `<parameter>` value | Description                                                            | [Data representation](#data-representations) | Possible Model sources | Unit or scale                                                  |
-| ------------------- | ---------------------------------------------------------------------- | -------------------------------------------- | ---------------------- | -------------------------------------------------------------- |
-| `ad`                | Axial Diffusivity (also called parallel diffusivity)                   | [Scalar](#data-scalar)                       | { `tensor` }           | \mu m<sup>2</sup>.ms<sup>-1</sup> <sup>[1](#diffusivity)</sup> |
-| `afdtotal`          | Total Apparent Fibre Density (AFD) \[[Calamante2015](#calamante2015)\] | [Scalar](#data-scalar)                       | { `csd` }              | Unitless                                                       |
-| `cl`                | Tensor linearity \[[Westin1997](#westin1997)\]                         | [Scalar](#data-scalar)                       | { `tensor` }           |                                                                |
-| `cp`                | Tensor planarity \[[Westin1997](#westin1997)\]                         | [Scalar](#data-scalar)                       | { `tensor` }           |                                                                |
-| `cs`                | Tensor sphericity \[[Westin1997](#westin1997)\]                        | [Scalar](#data-scalar)                       | { `tensor` }           |                                                                |
-| `evec`              | Eigenvector(s)                                                         | [3-vectors](#data-3vector)                   | { `tensor` }           | \mu m<sup>2</sup>.ms<sup>-1</sup> <sup>[1](#diffusivity)</sup> |
-| `fa`                | Fractional Anisotropy \[[Basser1996](#basser1996)\]                    | [Scalar](#data-scalar)                       | { `tensor` }           | Proportion \[0.0-1.0\]                                         |
-| `fsum`              | Sum of partial volume fractions of stick components                    | [Scalar](#data-scalar)                       | { `bs` }               | Volume fraction \[0.0-1.0\]                                    |
-| `gfa`               | Generalized Fractional Anisotropy \[[Tuch2004](#tuch2004)\]            | [Scalar](#data-scalar)                       | { `csd` }              | Proportion \[0.0-1.0\]                                         |
-| `md`                | Mean diffusivity (also called apparent diffusion coefficient, ADC)     | [Scalar](#data-scalar)                       | { `tensor` }           | \mu m<sup>2</sup>.ms<sup>-1</sup> <sup>[1](#diffusivity)</sup> |
-| `mode`              | Mode of the tensor                                                     | [Scalar](#data-scalar)                       | { `tensor` }           |                                                                |
-| `peak`              | Direction(s) and amplitude(s) of ODF maximum (maxima)                  | [3-vectors](#data-3vector)                   | { `csd` }              | Same units as ODF                                              |
-| `rd`                | Radial Diffusivity (also called perpendicular diffusivity)             | [Scalar](#data-scalar)                       | { `tensor` }           | \mu m<sup>2</sup>.ms<sup>-1</sup> <sup>[1](#diffusivity)</sup> |
+    Contents of file `sub-01_model-tensor_param-diffusivity_dwimap.json`:
+    ```JSON
+    {
+        "Description": "Diffusion Coefficient, encoded as a tensor representation",
+        "Model": {
+            "Description": "Diffusion Tensor",
+            "Parameters": {
+                "FitMethod": "ols",
+                "OutlierRejectionMethod": "None"
+            }
+        },
+        "OrientationEncoding": {
+            "AntipodalSymmetry": true,
+            "EncodingAxis": 3,
+            "Reference": "xyz",
+            "TensorRank": 2,
+            "Type": "tensor"
+        },
+        "Units": "mm^2/s"
+    }
+    ```
 
-While not explicitly included in the table above, *any* [scalar](#data-scalar)
-[model-derived parameter](paramdef-derived) can theoretically be combined
-with a separate source of orientation information from the diffusion model
-in order to produce a [directionally-encoded color](#data-dec),
-[spherical coordinates](#data-spherical) or [3-vectors](#data-3vector) image.
+    Contents of file `sub-01_model-tensor_param-s0_dwimap.json`:
+    ```JSON
+    {
+        "Description": "Estimated signal intensity with no diffusion weighting, ie. S0",
+        "Model": {
+            "Description": "Diffusion Tensor",
+            "Parameters": {
+                "FitMethod": "ols",
+                "OutlierRejectionmethod": "None"
+            }
+        }
+    }
+    ```
 
-### Orientation specification
+    Contents of file `sub-01_model-tensor_param-fa_dwimap.json`:
+    ```JSON
+    {
+        "Description": "Fractional Anisotropy",
+        "Model": {
+            "Description": "Diffusion Tensor",
+            "Parameters": {
+                "FitMethod": "ols",
+                "OutlierRejectionmethod": "None"
+            }
+        }
+    }
+    ```
 
-| **Key name**                | **Relevant [data representations](#data-representations)**                                                                                                       | **Description**                                                                                                                                                                                                                                           |
-| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `AntipodalSymmetry`         | [Tensor](#data_tensor), [Spherical coordinates](#data-spherical), [3-vectors](#data-3vector), [spherical harmonics](#data-sh), [amplitudes](#data-amp), [parameter vectors](#data-param) | OPTIONAL. Boolean. Indicates whether orientation information should be interpreted as being antipodally symmetric. Assumed to be True if omitted.                                                                                                         |
-| `Directions`                | [Amplitudes](#data-amp)                                                                                                                                          | REQUIRED. List. Data are either [spherical coordinates (directions only)](#data-spherical) or [3-vectors](#data-3vector) with unit norm. Defines the dense directional basis set on which samples of a spherical function within each voxel are provided. |
-| `FillValue`                 | [Spherical coordinates](#data-spherical), [3-vectors](#data-3vector)                                                                                             | OPTIONAL. Float; allowed values: { 0.0, NaN }. Value stored in image when number of discrete orientations in a voxel is fewer than the maximal number for that image.                                                                                     |
-| `OrientationRepresentation` | All except [scalar](#data-scalar)                                                                                                                                | REQUIRED. String; allowed values: { `dec`, `unitspherical`, `spherical`, `unit3vector`, `3vector`, `sh`, `amp`, `param` }. The [data representation](#data-representations) used to encode orientation information within the NIfTI image.                |
-| `ReferenceAxes`             | All except [scalar](#data-scalar)                                                                                                                                | REQUIRED. String; allowed values: { `ijk`, `xyz` }. Indicates whether the NIfTI image axes, or scanner-space axes, are used as reference axes for orientation information.                                                                                |
-| `SphericalHarmonicBasis`    | [Spherical harmonics](#data-sh)                                                                                                                                  | REQUIRED. String; allowed values: { `MRtrix3` }. Basis by which to define the interpretation of image values across volumes as spherical harmonics coefficients.                                                                                          |
-| `SphericalHarmonicDegree`   | [Spherical harmonics](#data-sh)                                                                                                                                  | REQUIRED. Integer. Maximal degree of the spherical harmonic basis employed.                                                                                                                                                                               |
+    Notes:
 
-If `AntipodalSymmetry` is True, then no constraints are imposed with respect
-to the domain on the 2-sphere in which orientations may be specified;
-for instance, 3-vectors { 0.57735, 0.57735, 0.57735 } and
-{ -0.57735, -0.57735, -0.57735 } are both permissible and equivalent to one
-another.
+    -   "The diffusion tensor" intrinsically is a mathematical model of how
+        the diffusivity is estimated to vary as a function of orientation.
+        As such, within this model,
+        it is not the *parameter* that is a tensor;
+        rather, it is the *diffusivity* that is the estimated parameter,
+        and the *way in which the anisotropy of that parameter is encoded* is a tensor.
+
+    -   Metadata fields relevant to the interpretation of the anisotropy of the tensor
+        are *not relevant* to the scalar measures
+        "`s0`" (estimated signal intensity with no diffusion weighting)
+        or "`fa`" (Fractional Anisotropy).
+        Those fields therefore MUST be omitted from the corresponding sidecar JSONs.
+
+-   A multi-shell, multi-tissue Constrained Spherical Deconvolution fit:
+
+    ```Text
+    my_diffusion_pipeline/
+        sub-01/
+            dwi/
+                sub-01_model-csd_param-wm_dwimap.nii.gz
+                sub-01_model-csd_param-wm_dwimap.json
+                sub-01_model-csd_param-gm_dwimap.nii.gz
+                sub-01_model-csd_param-gm_dwimap.json
+                sub-01_model-csd_param-csf_dwimap.nii.gz
+                sub-01_model-csd_param-csf_dwimap.json
+    ```
+
+    Dimensions of NIfTI image "`sub-01_model-csd_param-wm_model.nii.gz`": *I*x*J*x*K*x45 ([spherical harmonics](#encoding-sh))
+    Dimensions of NIfTI image "`sub-01_model-csd_param-gm_model.nii.gz`": *I*x*J*x*K*x1 ([spherical harmonics](#encoding-sh))
+    Dimensions of NIfTI image "`sub-01_model-csd_param-csf_model.nii.gz`": *I*x*J*x*K*x1 ([spherical harmonics](#encoding-sh))
+
+    Contents of JSON file "`sub-01_model-csd_param-wm_model.json`":
+
+    ```JSON
+    {
+        "Model": {
+            "Description": "Multi-Shell Multi-Tissue (MSMT) Constrained Spherical Deconvolution (CSD)",
+            "URL": "https://mrtrix.readthedocs.io/en/latest/constrained_spherical_deconvolution/multi_shell_multi_tissue_csd.html",
+        },
+        "Description": "White matter",
+        "NonNegativity": "constrained",
+        "OrientationEncoding": {
+            "EncodingAxis": 3,
+            "Reference": "xyz",
+            "SphericalHarmonicBasis": "MRtrix3",
+            "SphericalHarmonicDegree": 8,
+            "Type": "sh",
+        },
+        "ResponseFunction": {
+            "Coefficients": [ [ 600.2 0.0 0.0 0.0 0.0 0.0 ],
+                              [ 296.3 -115.2 24.7 -4.4 -0.5 1.8 ],
+                              [ 199.8 -111.3 41.8 -10.2 2.1 -0.7 ],
+                              [ 158.3 -98.7 48.4 -17.1 4.5 -1.4 ] ],
+            "Type": "zsh"
+        }
+    }
+    ```
+
+    Contents of JSON file "`sub-01_model-csd_param-gm_dwimap.json`":
+
+    ```JSON
+    {
+        "Model": {
+            "Description": "Multi-Shell Multi-Tissue (MSMT) Constrained Spherical Deconvolution (CSD)",
+            "URL": "https://mrtrix.readthedocs.io/en/latest/constrained_spherical_deconvolution/multi_shell_multi_tissue_csd.html",
+        },
+        "Description": "Gray matter",
+        "NonNegativity": "constrained",
+        "OrientationEncoding": {
+            "EncodingAxis": 3,
+            "Reference": "xyz",
+            "SphericalHarmonicBasis": "MRtrix3",
+            "SphericalHarmonicDegree": 0,
+            "Type": "sh",
+        },
+        "ResponseFunction": {
+            "Coefficients": [ [ 1041.0 ],
+                              [ 436.6 ],
+                              [ 224.9 ],
+                              [ 128.8 ] ],
+            "Type": "zsh"
+        }
+    }
+    ```
+
+    Contents of JSON file "`sub-01_model-csd_param-csf_dwimap.json`":
+
+    ```JSON
+    {
+        "Model": {
+            "Description": "Multi-Shell Multi-Tissue (MSMT) Constrained Spherical Deconvolution (CSD)",
+            "URL": "https://mrtrix.readthedocs.io/en/latest/constrained_spherical_deconvolution/multi_shell_multi_tissue_csd.html",
+        },
+        "Description": "Cerebro-spinal fluid",
+        "NonNegativity": "constrained",
+        "OrientationEncoding": {
+            "EncodingAxis": 3,
+            "Reference": "xyz",
+            "SphericalHarmonicBasis": "MRtrix3",
+            "SphericalHarmonicDegree": 0,
+            "Type": "sh"
+        },
+        "ResponseFunction": {
+            "Coefficients": [ [ 544.90770181 ],
+                              [ 134.441453035 ],
+                              [ 32.0826839826 ],
+                              [ 29.3674604452 ] ],
+            "Type": "zsh"
+        }
+    }
+    ```
+
+    Notes:
+
+    -   In this example,
+        the gray matter and CSF compartments are specified in the spherical harmonics basis
+        with maximal spherical harmonic degrees of zero,
+        even though each image only contains a single volume
+        and could therefore be interpreted as simply scalar parameters.
+        This is recommended in this instance
+        given that the spherical harmonic basis imposes a $\sqrt(4\pi)$ scaling
+        that should be taken into account if comparing the values of these parameters
+        with the *l*=0 term of the white matter ODF.
+
+    -   The response functions for GM and CSF have a maximal zonal spherical harmonic degree of zero,
+        such that only one coefficient is required for each unique *b*-value shell.
+        It is however nevertheless vital that these data be provided as a list of lists of floats,
+        where the length of each list is one;
+        storing these values as a list of floats would be erroneously interpreted
+        as coefficients of different zonal spherical harmonic degrees for a single *b*-value shell.
+
+-   An FSL `bedpostx` Ball-And-Sticks fit
+    (including both mean parameters and bootstrap realisations):
+
+    ```Text
+    my_diffusion_pipeline/
+        sub-01/
+            dwi/
+                sub-01_model-bs_desc-mean_param-s0_dwimap.nii.gz
+                sub-01_model-bs_desc-mean_param-s0_dwimap.json
+                sub-01_model-bs_desc-mean_param-polar_dwimap.nii.gz
+                sub-01_model-bs_desc-mean_param-polar_dwimap.json
+                sub-01_model-bs_desc-mean_param-vector_dwimap.nii.gz
+                sub-01_model-bs_desc-mean_param-vector_dwimap.json
+                sub-01_model-bs_desc-mean_param-vf_dwimap.nii.gz
+                sub-01_model-bs_desc-mean_param-vf_dwimap.json
+                sub-01_model-bs_desc-mean_param-vfsum_dwimap.nii.gz
+                sub-01_model-bs_desc-mean_param-vfsum_dwimap.json
+                sub-01_model-bs_desc-mean_param-diffusivity_dwimap.nii.gz
+                sub-01_model-bs_desc-mean_param-diffusivity_dwimap.json
+                sub-01_model-bs_desc-mean_param-dstd_dwimap.nii.gz
+                sub-01_model-bs_desc-mean_param-dstd_dwimap.json
+                sub-01_model-bs_desc-merged_param-polar_dwimap.nii.gz
+                sub-01_model-bs_desc-merged_param-polar_dwimap.json
+                sub-01_model-bs_desc-merged_param-vf_dwimap.nii.gz
+                sub-01_model-bs_desc-merged_param-vf_dwimap.json
+    ```
+
+    Dimensions of NIfTI image "`sub-01_model-bs_desc-mean_param-s0_dwimap.nii.gz`": *I*x*J*x*K* ([scalar](#encoding-scalar))
+    Dimensions of NIfTI image "`sub-01_model-bs_desc-mean_param-polar_dwimap.nii.gz`": *I*x*J*x*K*x(*2*x*N*) ([spherical coordinates](#encoding-spherical), orientations only; *N* orientations per voxel)
+    Dimensions of NIfTI image "`sub-01_model-bs_desc-mean_param-vector_dwimap.nii.gz`": *I*x*J*x*K*x(*3*x*N*) ([3-vectors](#encoding-3vectors), unit norm; *N* orientations per voxel)
+    Dimensions of NIfTI image "`sub-01_model-bs_desc-mean_param-vf_dwimap.nii.gz`": *I*x*J*x*K*x*N* ([scalar](#encoding-scalar); *N* values per voxel)
+    Dimensions of NIfTI image "`sub-01_model-bs_desc-mean_param-vfsum_dwimap.nii.gz`": *I*x*J*x*K* ([scalar](#encoding-scalar))
+    Dimensions of NIfTI image "`sub-01_model-bs_desc-mean_param-diffusivity_dwimap.nii.gz`": *I*x*J*x*K* ([scalar](#encoding-scalar))
+    Dimensions of NIfTI image "`sub-01_model-bs_desc-mean_param-dstd_dwimap.nii.gz`": *I*x*J*x*K* ([scalar](#encoding-scalar))
+    Dimensions of NIfTI image "`sub-01_model-bs_desc-merged_param-polar_dwimap.nii.gz`": *I*x*J*x*K*x(*2*x*N*)x*R* ([spherical coordinates](#encoding-spherical), orientations only; *N* orientations per voxel; *R* bootstrap realisations)
+    Dimensions of NIfTI image "`sub-01_model-bs_desc-merged_param-vf_dwimap.nii.gz`": *I*x*J*x*K*x*N*x*R* ([scalar](#encoding-scalar); *N* values per voxel; *R* bootstrap realisations)
+
+    Contents of JSON file "`sub-01_model-bs_desc-mean_param-s0_dwimap.json`":
+
+    ```JSON
+    {
+        "Description": "Estimated signal intensity with no diffusion weighting, ie. S0; mean across bootstrap realisations",
+        "Model": {
+            "Description": "Ball-And-Sticks model using FSL bedpostx",
+            "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
+            "Parameters": {
+                "ARDFudgeFactor": 1.0,
+                "Fibers": 3
+            },
+            "BootstrapParameters": {
+                "Burnin": 1000,
+                "Jumps": 1250,
+                "SampleEvery": 25
+            }
+        }
+    }
+    ```
+
+    Contents of JSON file "`sub-01_model-bs_desc-mean_param-polar_dwimap.json`":
+
+    ```JSON
+    {
+        "Description": "Fibre orientations encoded using polar angles; mean across bootstrap realisations",
+        "Model": {
+            "Description": "Ball-And-Sticks model using FSL bedpostx",
+            "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
+            "Parameters": {
+                "ARDFudgeFactor": 1.0,
+                "Fibers": 3
+            },
+            "BootstrapParameters": {
+                "Burnin": 1000,
+                "Jumps": 1250,
+                "SampleEvery": 25
+            }
+        },
+        "OrientationEncoding": {
+            "EncodingAxis": 3,
+            "Reference": "ijk",
+            "Type": "unitspherical"
+        }
+    }
+    ```
+
+    Contents of JSON file "`sub-01_model-bs_desc-mean_param-vector_dwimap.json`":
+
+    ```JSON
+    {
+        "Description": "Fibre orientations encoded using 3-vectors; mean across bootstrap realisations",
+        "Model": {
+            "Description": "Ball-And-Sticks model using FSL bedpostx",
+            "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
+            "Parameters": {
+                "ARDFudgeFactor": 1.0,
+                "Fibers": 3
+            },
+            "BootstrapParameters": {
+                "Burnin": 1000,
+                "Jumps": 1250,
+                "SampleEvery": 25
+            }
+        },
+        "OrientationEncoding": {
+            "EncodingAxis": 3,
+            "Reference": "ijk",
+            "Type": "unit3vector"
+        }
+    }
+
+    Contents of JSON file "`sub-01_model-bs_desc-mean_param-vf_dwimap.json`":
+
+    ```JSON
+    {
+        "Description": "Volume fractions of stick components; mean across bootstrap realisations",
+        "Model": {
+            "Description": "Ball-And-Sticks model using FSL bedpostx",
+            "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
+            "Parameters": {
+                "ARDFudgeFactor": 1.0,
+                "Fibers": 3
+            },
+            "BootstrapParameters": {
+                "Burnin": 1000,
+                "Jumps": 1250,
+                "SampleEvery": 25
+            }
+        },
+        "OrientationEncoding": {
+            "Type": "scalar"
+        }
+    }
+
+    Contents of JSON file "`sub-01_model-bs_desc-mean_param-vfsum_dwimap.json`":
+
+    ```JSON
+    {
+        "Description": "Sum of volume fractions of stick components; mean across bootstrap realisations",
+        "Model": {
+            "Description": "Ball-And-Sticks model using FSL bedpostx",
+            "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
+            "Parameters": {
+                "ARDFudgeFactor": 1.0,
+                "Fibers": 3
+            },
+            "BootstrapParameters": {
+                "Burnin": 1000,
+                "Jumps": 1250,
+                "SampleEvery": 25
+            }
+        }
+    }
+
+    Contents of JSON file "`sub-01_model-bs_desc-mean_param-diffusivity_dwimap.json`":
+
+    ```JSON
+    {
+        "Description": "Diffusivity; mean across bootstrap realisations",
+        "Model": {
+            "Description": "Ball-And-Sticks model using FSL bedpostx",
+            "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
+            "Parameters": {
+                "ARDFudgeFactor": 1.0,
+                "Fibers": 3
+            },
+            "BootstrapParameters": {
+                "Burnin": 1000,
+                "Jumps": 1250,
+                "SampleEvery": 25
+            }
+        },
+        "Units": "mm^2/s"
+    }
+
+    Contents of JSON file "`sub-01_model-bs_desc-mean_param-dstd_dwimap.json`":
+
+    ```JSON
+    {
+        "Description": "Diffusivity variance parameter; mean across bootstrap realisations",
+        "Model": {
+            "Description": "Ball-And-Sticks model using FSL bedpostx",
+            "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
+            "Parameters": {
+                "ARDFudgeFactor": 1.0,
+                "Fibers": 3
+            },
+            "BootstrapParameters": {
+                "Burnin": 1000,
+                "Jumps": 1250,
+                "SampleEvery": 25
+            }
+        },
+        "Units": "TODO"
+    }
+
+    Contents of JSON file "`sub-01_model-bs_desc-merged_param-polar_dwimap.json`":
+
+    ```JSON
+    {
+        "BootstrapAxis": 4,
+        "Description": "Fibre orientations encoded using polar angles; concatenated bootstrap realisations",
+        "Model": {
+            "Description": "Ball-And-Sticks model using FSL bedpostx",
+            "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
+            "Parameters": {
+                "ARDFudgeFactor": 1.0,
+                "Fibers": 3
+            },
+            "BootstrapParameters": {
+                "Burnin": 1000,
+                "Jumps": 1250,
+                "SampleEvery": 25
+            }
+        },
+        "OrientationEncoding": {
+            "EncodingAxis": 3,
+            "ReferenceAxes": "ijk",
+            "Type": "unitspherical"
+        }
+    }
+
+    Contents of JSON file "`sub-01_model-bs_desc-merged_param-vf_dwimap.json`":
+
+    ```JSON
+    {
+        "BootstrapAxis": 4,
+        "Description": "Volume fractions of stick components; concatenated bootstrap realisations",
+        "Model": {
+            "Description": "Ball-And-Sticks model using FSL bedpostx",
+            "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
+            "Parameters": {
+                "ARDFudgeFactor": 1.0,
+                "Fibers": 3
+            },
+            "BootstrapParameters": {
+                "Burnin": 1000,
+                "Jumps": 1250,
+                "SampleEvery": 25
+            }
+        },
+        "OrientationEncoding": {
+            "Type": "scalar"
+        }
+    }
+
+    Notes:
+
+    -   Here the descriptors "`merged`" and "`mean`" have been utilised
+        to distinguish between the comprehensive set of all bootstrap realisations
+        and the computed mean statistics of parameters across all realisations respectively,
+        as this is the terminology utilised by the FSL software itself.
+        These labels are not however a part of the specification.
+
+    -   Care must be taken for images of greater than three dimensions
+        where additional dimensions do *not* encode anisotropy information:
+
+        -   In image `"*_desc-mean*_param-vf_*"`,
+            the fourth image axis encodes scalar information across stick components.
+            Since this is *not* coefficients in some orientation encoding,
+            but the image possesses more than three axes,
+            field `"OrientationEncoding"["Type"]` MUST be specified as `"scalar"`.
+
+        -   Image `"*_param-vfsum_*"`is a three-dimensional image,
+            and therefore the fact that it encodes a scalar parameter
+            can be robustly inferred without reference to metadata information.
+
+        -   In image `"sub-01_model-bs_desc-merged_param-vf_dwimap.json"`,
+            there are two extra image dimensions beyond the three spatial dimensions:
+            the fourth image axis encodes across the multiple stick components per voxel,
+            and the fifth axis encodes realisations across bootstraps.
+            it is therefore necessary to explicitly specify
+            that the parameter being encoded in the data,
+            being the volume fractions of individual stick components,
+            do not have any anisotropy,
+            and therefore field `"OrientationEncoding"["Type"]` MUST be specified as `"scalar"`.
+
+    -   TODO CONFIRM WHETHER WE WANT TO ENFORCE THIS OR INCLUDE EXPLICIT METADATA FIELDS
+        THAT INDICATE THE AXIS / AXES OF DIRECTION ENCODING VS. BOOTSTRAP REALISATIONS
+
+    -   TODO DISCUSS
+        The example presented here is not necessarily a unique solution
+        for the storage of the outcomes of the FSL `bedpostx` command as BIDS Derivatives:
+
+        -   WOULD SPLITTING STICK COMPONENTS ACROSS NIFTIS
+            REQUIRE A NEW ENTITY BY WHICH TO INDEX THEM?
+            OR JUST GIVE THEM EG. `_param-spherical1`, `_param-spherical2`?
+
+        -   While the FSL `bedpostx` command yields the fibre orientation for each individual stick
+            as polar angles within separate NIfTI images,
+            for BIDS it is RECOMMENDED that such orientation information be encoded
+            either as [spherical coordinates](#encoding-spherical) or [3-vectors](#encoding-3vector).
+
+        -   Given that it is possible to encode a scalar parameter
+            into either [spherical coordinates](#encoding-spherical) or [3-vectors](#encoding-3vector) encodings,
+            it is possible to store an image that encodes,
+            for each stick component,
+            both volume fraction and orientation.
+            It is however RECOMMENDED to encode this information in separate files,
+            given that in the more general case there may be multiple scalar parameters
+            individually attributed to each component.
+
+### Appendix
 
 #### Spherical Harmonics
 
@@ -391,11 +855,11 @@ another.
 
     -   Utilized basis functions:
 
-        -   `MRtrix3`
+        -   `mrtrix3`
 
         ![MRtrix3 SH basis functions](https://latex.codecogs.com/gif.latex?Y_{lm}(\theta,\phi)=\begin{Bmatrix}&space;0&\text{if&space;}l\text{&space;is&space;odd},\\&space;\sqrt{2}\times\text{Im}\left[Y_l^{-m}(\theta,\phi)\right]&\text{if&space;}m<0,\\&space;Y_l^0(\theta,\phi)&\text{if&space;}m=0,\\&space;\sqrt{2}\times\text{Re}\left[Y_l^m(\theta,\phi)\right]&\text{if&space;}m>0\\&space;\end{Bmatrix})
 
-        -   `Descoteaux`
+        -   `descoteaux`
 
         ![Descoteaux SH basis functions](https://latex.codecogs.com/gif.latex?Y_{lm}(\theta,\phi)=\begin{Bmatrix}&space;0&\text{if&space;}l\text{&space;is&space;odd},\\&space;\sqrt{2}\times\text{Re}\left[Y_l^{-m}(\theta,\phi)\right]&\text{if&space;}m<0,\\&space;Y_l^0(\theta,\phi)&\text{if&space;}m=0,\\&space;\sqrt{2}\times\text{Im}\left[Y_l^m(\theta,\phi)\right]&\text{if&space;}m>0\\&space;\end{Bmatrix})
 
@@ -421,9 +885,9 @@ another.
 
         *N* = ((*l<sub>max</sub>*+1) x (*l<sub>max</sub>*+2)) / 2
 
-        | ***l<sub>max</sub>*** | 0 | 2 | 4  | 6  | 8  | ...  |
-        | --------------------- |--:|--:|--: |--: |--: | :--: |
-        | ***N***               | 1 | 6 | 15 | 28 | 45 | ...  |
+        | ***l<sub>max</sub>*** | 0 | 2 | 4  | 6  | 8  | 10 | ...  |
+        | --------------------- |--:|--:|--: |--: |--: |--: | :--: |
+        | ***N***               | 1 | 6 | 15 | 28 | 45 | 66 | ...  |
 
     -   Relationship between maximal degree of *zonal* spherical harmonic
         function (spherical harmonics function where all *m* != 0 terms are
@@ -432,190 +896,6 @@ another.
 
         *N* = 1 + (*l<sub>max</sub>* / 2)
 
-        | ***l<sub>max</sub>*** | 0 | 2 | 4 | 6 | 8 | ...  |
-        | --------------------- |--:|--:|--:|--:|--:| :--: |
-        | ***N***               | 1 | 2 | 3 | 4 | 5 | ...  |
-
-
-## Demonstrative examples
-
--   A basic Diffusion Tensor fit:
-
-    ```Text
-    my_diffusion_pipeline/
-        sub-01/
-            dwi/
-                sub-01_model-tensor_param-tensor_model.nii.gz
-                sub-01_model-tensor_param-bzero_model.nii.gz
-                sub-01_model-tensor_param-fa_mdp.nii.gz
-                sub-01_model-tensor_model.json
-    ```
-
-    Dimensions of NIfTI image "`sub-01_model-tensor_param-tensor_model.nii.gz`": *I*x*J*x*K*x6 ([tensor image](#data-tensor))
-    Dimensions of NIfTI image "`sub-01_model-tensor_param-bzero_model.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
-    Dimensions of NIfTI image "`sub-01_model-tensor_param-fa_mdp.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
-
-    Contents of JSON file:
-
-    ```JSON
-    {
-        "ModelDescription": "Diffusion Tensor",
-        "OrientationRepresentation": "param",
-        "ReferenceAxes": "xyz",
-        "Parameters": {
-            "FitMethod": "ols",
-            "OutlierRejection": false
-        }
-    }
-    ```
-
--   A multi-shell, multi-tissue Constrained Spherical Deconvolution fit:
-
-    ```Text
-    my_diffusion_pipeline/
-        sub-01/
-            dwi/
-                sub-01_model-csd_param-wm_model.nii.gz
-                sub-01_model-csd_param-wm_model.json
-                sub-01_model-csd_param-gm_model.nii.gz
-                sub-01_model-csd_param-gm_model.json
-                sub-01_model-csd_param-csf_model.nii.gz
-                sub-01_model-csd_param-csf_model.json
-                sub-01_model-csd_model.json
-    ```
-
-    Dimensions of NIfTI image "`sub-01_model-csd_param-wm_model.nii.gz`": *I*x*J*x*K*x45 ([spherical harmonics](#data-sh))
-    Dimensions of NIfTI image "`sub-01_model-csd_param-gm_model.nii.gz`": *I*x*J*x*K*x1 ([spherical harmonics](#data-sh))
-    Dimensions of NIfTI image "`sub-01_model-csd_param-csf_model.nii.gz`": *I*x*J*x*K*x1 ([spherical harmonics](#data-sh))
-
-    Contents of file "`sub-01_model-csd_model.json`" (common to all [model fit parameters](#paramdef-fit)):
-
-    ```JSON
-    {
-        "ModelDescription": "Multi-Shell Multi-Tissue (MSMT) Constrained Spherical Deconvolution (CSD)",
-        "ModelURL": "https://mrtrix.readthedocs.io/en/latest/constrained_spherical_deconvolution/multi_shell_multi_tissue_csd.html",
-        "Shells": [ 0, 1000, 2000, 3000 ],
-        "Parameters": {
-            "SphericalHarmonicBasis": "MRtrix3",
-            "NonNegativityConstraint": "hard"
-        }
-    }
-    ```
-
-    Contents of JSON file "`sub-01_model-csd_param-wm_model.json`":
-
-    ```JSON
-    {
-        "OrientationRepresentation": "sh",
-        "ReferenceAxes": "xyz",
-        "ResponseFunctionZSH": [ [ 600.2 0.0 0.0 0.0 0.0 0.0 ],
-                                 [ 296.3 -115.2 24.7 -4.4 -0.5 1.8 ],
-                                 [ 199.8 -111.3 41.8 -10.2 2.1 -0.7 ],
-                                 [ 158.3 -98.7 48.4 -17.1 4.5 -1.4 ] ],
-        "SphericalHarmonicDegree": 8,
-        "Tissue": "White matter"
-    }
-    ```
-
-    Contents of JSON file "`sub-01_model-csd_param_gm_model.json`":
-
-    ```JSON
-    {
-        "OrientationRepresentation": "sh",
-        "ReferenceAxes": "xyz",
-        "ResponseFunctionZSH": [ [ 1041.0 ],
-                                 [ 436.6 ],
-                                 [ 224.9 ],
-                                 [ 128.8 ] ],
-        "SphericalHarmonicDegree": 0,
-        "Tissue": "Gray matter"
-    }
-    ```
-
--   An FSL `bedpostx` Ball-And-Sticks fit (including both mean parameters and
-    bootstrap realisations):
-
-    ```Text
-    my_diffusion_pipeline/
-        sub-01/
-            dwi/
-                sub-01_model-bs_param-bzero_model.nii.gz
-                sub-01_model-bs_param-bzero_model.json
-                sub-01_model-bs_param-md_mdp.nii.gz
-                sub-01_model-bs_param-md_mdp.json
-                sub-01_model-bs_param-stdd_mdp.nii.gz
-                sub-01_model-bs_param-stdd_mdp.json
-                sub-01_model-bs_param-sticks_mdp.nii.gz
-                sub-01_model-bs_param-sticks_mdp.json
-                sub-01_model-bs_param-sticks_model.nii.gz
-                sub-01_model-bs_param-sticks_model.json
-                sub-01_model-bs_model.json
-    ```
-
-    Dimensions of NIfTI image "`sub-01_model-bs_param-bzero_model.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
-    Dimensions of NIfTI image "`sub-01_model-bs_param-ms_mdp.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
-    Dimensions of NIfTI image "`sub-01_model-bs_param-stdd_mdp.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
-    Dimensions of NIfTI image "`sub-01_model-bs_param-sticks_mdp.nii.gz`": *I*x*J*x*K*x9 ([spherical coordinates](#data-spherical), distance from origin encodes fibre volume fraction)
-    Dimensions of NIfTI image "`sub-01_model-bs_param-sticks_model.nii.gz`": *I*x*J*x*K*x9x50 ([spherical coordinates](#data-spherical), distance from origin encodes fibre volume fraction; 50 bootstrap realisations)
-
-    Contents of JSON files "`sub-01_model-bs_param-sticks_mdp.json`"
-    and "`sub-01_model-bs_param-sticks_model.json`" (contents of two
-    files are identical):
-
-    ```JSON
-    {
-        "OrientationRepresentation": "spherical",
-        "ReferenceAxes": "ijk"
-    }
-    ```
-
-    Contents of JSON file "`sub-01_model-bs_model.json`":
-
-    ```JSON
-    {
-        "ModelDescription": "Ball-And-Sticks model using FSL bedpostx",
-        "ModelURL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
-        "Parameters": {
-            "ARDFudgeFactor": 1.0,
-            "Fibers": 3,
-            "Samples": 50
-        },
-        "BootstrapParameters": {
-            "Burnin": 1000,
-            "Jumps": 1250,
-            "SampleEvery": 25
-        }
-    }
-    ```
-
----
-
-<a name="diffusivity"><sup>1</sup></a>: For example, for free water in body
-temperature, the diffusivity in units of \mu m<sup>2</sup>.ms<sup>-1</sup>
-should be approximately 3.0.
-
----
-
-<a name="basser1994">\[Basser1994\]</a>: Basser et al. 1994
-
-<a name="basser1996">\[Basser1996\]</a>: Basser et al. 1996
-
-<a name="behrens2003">\[Behrens2003\]</a> Behrens et al. 2003
-
-<a name="behrens2007">\[Behrens2007\]</a> Behrens et al. 2007
-
-<a name="calamante2015">\[Calamante2015\]</a>: Calamante et al. 2015
-
-<a name="descoteaux2009">\[Descoteaux2009\]</a>: Descoteaux et al. 2009
-
-<a name="jbabdi2012">\[Jbabdi2012\]</a> Jbabdi et al. 2012
-
-<a name="jeurissen2014">\[Jeurissen2014\]</a>: Jeurissen et al. 2014
-
-<a name="pajevic1999">\[Pajevic1999\]</a>: Pajevic et al 1999
-
-<a name="tournier2007">\[Tournier2007\]</a>: Tournier et al. 2007
-
-<a name="tuch2004">\[Tuch2004\]</a>: Tuch 2004
-
-<a name="westin1997">\[Westin1997\]</a>: Westin 1997
+        | ***l<sub>max</sub>*** | 0 | 2 | 4 | 6 | 8 | 10 | ...  |
+        | --------------------- |--:|--:|--:|--:|--:|--: | :--: |
+        | ***N***               | 1 | 2 | 3 | 4 | 5 | 6  | ...  |
