@@ -7,8 +7,7 @@
       "properties": {
         "associations": {
           "type": "object",
-          "patternProperties":
-          {
+          "patternProperties": {
             "^[a-zA-Z0-9_]+$": {
               "type": "object",
               "properties": {
@@ -28,7 +27,8 @@
                       "anyOf": [
                         {
                           "type": "string"
-                        }, {
+                        },
+                        {
                           "type": "array",
                           "items": {
                             "type": "string"
@@ -126,23 +126,23 @@
           "additionalProperties": false
         },
         "common_principles": {
-         "type": "object",
-         "patternProperties": {
-           "^[a-zA-Z0-9_]+$": {
-             "type": "object",
-             "properties": {
-               "display_name": {
-                 "type": "string"
-               },
-               "description": {
-                 "type": "string"
-               }
-             },
-             "required": ["display_name", "description"],
-             "additionalProperties": false
-           },
-           "additionalProperties": false
-         }
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z0-9_]+$": {
+              "type": "object",
+              "properties": {
+                "display_name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "required": ["display_name", "description"],
+              "additionalProperties": false
+            },
+            "additionalProperties": false
+          }
         },
         "datatypes": {
           "type": "object",
@@ -191,7 +191,13 @@
                   "type": "array"
                 }
               },
-              "required": ["name", "display_name", "description", "type", "format"],
+              "required": [
+                "name",
+                "display_name",
+                "description",
+                "type",
+                "format"
+              ],
               "additionalProperties": false
             }
           },
@@ -312,7 +318,7 @@
                   "$ref": "http://json-schema.org/draft-07/schema#/properties/type"
                 }
               },
-              "required": ["name","display_name", "description"]
+              "required": ["name", "display_name", "description"]
             }
           },
           "additionalProperties": false
@@ -358,8 +364,20 @@
           }
         }
       },
-        "required": ["columns", "common_principles", "datatypes", "entities", "enums", "extensions", "files", "formats", "metadata", "modalities", "suffixes"],
-        "additionalProperties": false
+      "required": [
+        "columns",
+        "common_principles",
+        "datatypes",
+        "entities",
+        "enums",
+        "extensions",
+        "files",
+        "formats",
+        "metadata",
+        "modalities",
+        "suffixes"
+      ],
+      "additionalProperties": false
     },
     "rules": {
       "type": "object",
@@ -376,20 +394,20 @@
                     "issues": {
                       "type": "object",
                       "properties": {
-                        "code": {"type": "string"},
-                        "message": {"type": "string"},
-                        "level": {"enum": ["error", "warning"]}
+                        "code": { "type": "string" },
+                        "message": { "type": "string" },
+                        "level": { "enum": ["error", "warning"] }
                       },
                       "required": ["code", "message", "level"],
                       "additionalProperties": false
                     },
                     "selectors": {
                       "type": "array",
-                      "items": {"type": "string"}
+                      "items": { "type": "string" }
                     },
                     "checks": {
                       "type": "array",
-                      "items": {"type": "string"}
+                      "items": { "type": "string" }
                     }
                   },
                   "required": ["checks", "selectors"]
@@ -409,15 +427,10 @@
                   "type": "object",
                   "patternProperties": {
                     "^[a-zA-Z0-9_]+$": {
-                      "type": "object",
-                      "properties": {
-                        "level": {"type": "string"},
-                        "path": {"type": "string"},
-                        "extensions": {"type": "array"},
-                        "stem": {"type": "string"}
-                      },
-                      "required": ["level"],
-                      "additionalProperties": false
+                      "anyOf": [
+                        { "$ref": "#/definitions/pathRule" },
+                        { "$ref": "#/definitions/stemRule" }
+                      ]
                     }
                   },
                   "additionalProperties": false
@@ -426,17 +439,10 @@
                   "type": "object",
                   "patternProperties": {
                     "^[a-zA-Z0-9_]+$": {
-                      "type": "object",
-                      "properties": {
-                        "level": {"type": "string"},
-                        "path": {"type": "string"},
-                        "extensions": {"type": "array"},
-                        "stem": {"type": "string"},
-                        "entities": {"$ref": "#/definitions/entities"},
-                        "suffixes": {"type": "array"}
-                      },
-                      "required": ["level", "extensions"],
-                      "additionalProperties": false
+                      "anyOf": [
+                        { "$ref": "#/definitions/stemRule" },
+                        { "$ref": "#/definitions/suffixRule" }
+                      ]
                     }
                   },
                   "additionalProperties": false
@@ -471,24 +477,7 @@
                 "^[a-z]+$": {
                   "type": "object",
                   "patternProperties": {
-                    "^[a-zA-Z0-9_]+$": {
-                      "type": "object",
-                      "properties": {
-                        "suffixes": {
-                          "type": "array",
-                          "items": {"type": "string"}
-                        },
-                        "extensions": {
-                          "type": "array",
-                          "items": {"pattern": "^[./][a-z.]+|"}
-                        },
-                        "datatypes": {
-                          "type": "array",
-                          "items": {"pattern": "^[a-z]+$"}
-                        },
-                        "entities": {"$ref": "#/definitions/entities"}
-                      }
-                    }
+                    "^[a-zA-Z0-9_]+$": { "$ref": "#/definitions/suffixRule" }
                   },
                   "additionalProperties": false
                 }
@@ -505,7 +494,7 @@
             "^derivatives$": {
               "type": "object",
               "properties": {
-                "common_derivatives": {"$ref": "#/definitions/sidecar"}
+                "common_derivatives": { "$ref": "#/definitions/sidecar" }
               },
               "required": ["common_derivatives"],
               "additionalProperties": false
@@ -527,9 +516,7 @@
                   "$ref": "#/definitions/tabular_data"
                 }
               },
-              "required": [
-                "common_derivatives"
-              ],
+              "required": ["common_derivatives"],
               "additionalProperties": false
             },
             "^(?!derivatives$)[a-z_]+$": {
@@ -540,7 +527,7 @@
         },
         "common_principles": {
           "type": "array",
-          "items": {"type": "string"}
+          "items": { "type": "string" }
         },
         "dataset_metadata": {
           "type": "object"
@@ -550,7 +537,7 @@
         },
         "entities": {
           "type": "array",
-          "items": {"type": "string"}
+          "items": { "type": "string" }
         },
         "errors": {
           "type": "object",
@@ -558,9 +545,9 @@
             "^[a-zA-Z0-9_]+$": {
               "type": "object",
               "properties": {
-                "code": {"type": "string"},
-                "message": {"type": "string"},
-                "level": {"enum": ["error", "warning"]},
+                "code": { "type": "string" },
+                "message": { "type": "string" },
+                "level": { "enum": ["error", "warning"] },
                 "selectors": {
                   "type": "array",
                   "items": {
@@ -582,7 +569,7 @@
               "properties": {
                 "datatypes": {
                   "type": "array",
-                  "items": {"pattern": "^[a-z]+$"}
+                  "items": { "pattern": "^[a-z]+$" }
                 }
               },
               "required": ["datatypes"],
@@ -592,15 +579,15 @@
         }
       },
       "required": [
-          "entities",
-          "files",
-          "sidecars",
-          "tabular_data",
-          "common_principles",
-          "dataset_metadata",
-          "directories",
-          "errors",
-          "modalities"
+        "entities",
+        "files",
+        "sidecars",
+        "tabular_data",
+        "common_principles",
+        "dataset_metadata",
+        "directories",
+        "errors",
+        "modalities"
       ],
       "additionalProperties": false
     },
@@ -622,14 +609,14 @@
       "patternProperties": {
         "^[a-z]+$": {
           "anyOf": [
-            {"enum": ["optional", "required"]},
+            { "enum": ["optional", "required"] },
             {
               "type": "object",
               "properties": {
-                "level": {"enum": ["optional", "required"]},
+                "level": { "enum": ["optional", "required"] },
                 "enum": {
                   "type": "array",
-                  "items": {"type": "string"}
+                  "items": { "type": "string" }
                 }
               },
               "required": ["level", "enum"]
@@ -647,24 +634,38 @@
           "properties": {
             "selectors": {
               "type": "array",
-              "items": {"type": "string"}
+              "items": { "type": "string" }
             },
             "fields": {
               "type": "object",
               "patternProperties": {
                 "^[a-zA-Z0-9_]+$": {
                   "anyOf": [
-                    {"enum": ["recommended", "optional", "required", "deprecated"]},
                     {
-                      "type":  "object",
+                      "enum": [
+                        "recommended",
+                        "optional",
+                        "required",
+                        "deprecated"
+                      ]
+                    },
+                    {
+                      "type": "object",
                       "properties": {
-                        "level": {"enum": ["recommended", "optional", "required", "deprecated"]},
-                        "level_addendum": {"type": "string"}
+                        "level": {
+                          "enum": [
+                            "recommended",
+                            "optional",
+                            "required",
+                            "deprecated"
+                          ]
+                        },
+                        "level_addendum": { "type": "string" }
                       },
                       "required": ["level", "level_addendum"],
                       "additionalProperties": false
                     },
-                    {"pattern": "recommended.*"}
+                    { "pattern": "recommended.*" }
                   ]
                 }
               },
@@ -685,25 +686,39 @@
           "properties": {
             "selectors": {
               "type": "array",
-              "items": {"type": "string"}
+              "items": { "type": "string" }
             },
             "columns": {
               "type": "object",
               "patternProperties": {
                 "^[a-zA-Z0-9_]+$": {
                   "anyOf": [
-                    {"enum": ["recommended", "optional", "required", "deprecated"]},
                     {
-                      "type":  "object",
+                      "enum": [
+                        "recommended",
+                        "optional",
+                        "required",
+                        "deprecated"
+                      ]
+                    },
+                    {
+                      "type": "object",
                       "properties": {
-                        "level": {"enum": ["recommended", "optional", "required", "deprecated"]},
-                        "level_addendum": {"type": "string"},
-                        "description_addendum": {"type": "string"}
+                        "level": {
+                          "enum": [
+                            "recommended",
+                            "optional",
+                            "required",
+                            "deprecated"
+                          ]
+                        },
+                        "level_addendum": { "type": "string" },
+                        "description_addendum": { "type": "string" }
                       },
                       "required": ["level"],
                       "additionalProperties": false
                     },
-                    {"pattern": "recommended.*"}
+                    { "pattern": "recommended.*" }
                   ]
                 }
               },
@@ -712,16 +727,53 @@
             "additional_columns": {
               "type": "string"
             },
-            "index_columns": {"type": "array", "items": {"type": "string"}},
+            "index_columns": { "type": "array", "items": { "type": "string" } },
             "initial_columns": {
               "type": "array",
-              "items": {"type": "string"}
+              "items": { "type": "string" }
             }
           },
           "required": ["selectors", "columns"],
           "additionalProperties": false
         }
       }
+    },
+    "pathRule": {
+      "type": "object",
+      "properties": {
+        "level": { "enum": ["optional", "required"] },
+        "path": { "type": "string" }
+      },
+      "required": ["level", "path"],
+      "additionalProperties": false
+    },
+    "stemRule": {
+      "type": "object",
+      "properties": {
+        "level": { "enum": ["optional", "recommended", "required"] },
+        "stem": { "type": "string" },
+        "extensions": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["level", "stem", "extensions"],
+      "additionalProperties": false
+    },
+    "suffixRule": {
+      "type": "object",
+      "properties": {
+        "level": { "enum": ["optional", "recommended", "required"] },
+        "datatypes": {
+          "type": "array",
+          "items": { "pattern": "^[a-z]+$" }
+        },
+        "suffixes": {
+          "type": "array",
+          "items": { "pattern": "^[a-zA-Z0-9]+$" }
+        },
+        "extensions": { "type": "array", "items": { "type": "string" } },
+        "entities": { "$ref": "#/definitions/entities" }
+      },
+      "required": ["suffixes", "extensions", "entities"],
+      "additionalProperties": false
     }
   }
 }
