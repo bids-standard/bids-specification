@@ -656,7 +656,18 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_suffix_table(["dwi", "sbref", "ADC", "TRACE"]) }}
+{{ MACROS___make_suffix_table(["dwi", "sbref"]) }}
+
+Additionally, the following suffixes are used for scanner-generated derivatives:
+
+<!--
+This block generates a suffix table.
+The definitions of these fields can be found in
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_suffix_table(["ADC", "TRACE"]) }}
 
 <!--
 This block generates a filename templates.
