@@ -1,5 +1,29 @@
 #!/bin/bash
 
-path="$(dirname "$0")"
+set -eu
 
-"$path/rename_participants_to_subjects"
+# hardcoding for now - relative path from the top
+rpath=tools/bids-2.0
+
+path="$(dirname "$0")"
+cd "$path/../.."  # go to the top of bids-specification
+
+apply_until=${1:-}
+
+# harmonize appearance
+if [ -n "$apply_until" ] ; then
+    apply_until=$(printf "%02d" "$apply_until")
+fi
+
+/bin/ls "$rpath"/patches/[0-9]* | sort -n | while read p; do
+    if [ "${p##*.}" == "patch" ]; then
+        echo "I: apply $p"
+        patch -p1 < $p
+    elif [ -x "$p" ] ; then
+        echo "I: run $p"
+        $p
+    else
+        echo "E: Do not know how to handle patch $p" >&2
+        exit 1
+    fi
+done
