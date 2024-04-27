@@ -1,0 +1,144 @@
+name: validate_datasets
+
+on:
+  push:
+    branches: ['master']
+  pull_request:
+    branches: ['**']
+#  create:
+#    branches: [master]
+#    tags: ['**']
+#  schedule:
+#    - cron: "0 4 * * 1"
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [ubuntu-latest] # , macos-latest, windows-latest]
+        bids-validator: [master-deno]
+        python-version: ["3.11"]
+
+    runs-on: ${{ matrix.platform }}
+
+    env:
+      TZ: Europe/Berlin
+      FORCE_COLOR: 1
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: "Apply patches for BIDS-2.0"
+      run: |
+        set -o pipefail
+        tools/bids-2.0/apply_all 2>&1 | tee /tmp/patch.log
+
+    - name: "Show differences after patching"
+      run: |
+        git add .
+        git diff --cached
+
+    - name: "Commit and push patched version online for possible introspection"
+      # Run only on a non-merge commit for the PR
+      if: >
+        github.repository == 'bids-standard/bids-specification' &&
+        github.event.pull_request.head.ref == 'bids-2.0' &&
+        github.event.pull_request.merge_commit_sha != github.sha
+      run: |
+        set -x
+        commit=$(git rev-parse HEAD)
+        branch=${GITHUB_HEAD_REF}-patched
+        git config --global user.email "github-ci@example.com"
+        git config --global user.name "BIDS 2.0 GitHub CI"
+        git checkout -b "$branch"
+        {
+          echo -e "Applied patches for ${GITHUB_HEAD_REF} to ${commit}\n";
+          cat /tmp/patch.log;
+        } | git commit -F -
+        git push -f origin "$branch"
+
+    # Setup Python with bst
+    - uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: "Install build dependencies"
+      run: pip install --upgrade build twine
+    - name: "Build source distribution and wheel"
+      run: python -m build tools/schemacode
+    - name: "Check distribution metadata"
+      run: twine check tools/schemacode/dist/*
+    - name: "Install bst tools from the build"
+      run: pip install $( ls tools/schemacode/dist/*.whl )[all]
+    - name: "Produce dump of the schema as schema.json"
+      run: bst -v export --output src/schema.json
+
+    - uses: denoland/setup-deno@v1.1.2
+      if: "matrix.bids-validator == 'master-deno'"
+      with:
+        deno-version: v1.x
+
+    - name: Install BIDS validator (master deno build)
+      if: "matrix.bids-validator == 'master-deno'"
+      run: |
+        pushd ..
+        # Let's use specific commit for now
+        # TODO: progress it once in a while
+        commit=a7b291b882a8c6184219ccb84faae255ba96203a
+        git clone --depth 1 https://github.com/bids-standard/bids-validator
+        cd bids-validator
+        git fetch --depth 1 origin $commit;
+        echo -e '#!/bin/sh\n'"$PWD/bids-validator/bids-validator-deno \"\$@\"" >| /usr/local/bin/bids-validator
+        chmod a+x /usr/local/bin/bids-validator
+        which -a bids-validator
+        bids-validator --help
+        popd
+
+    - name: Display versions and environment information
+      run: |
+        echo $TZ
+        date
+        echo -n "npm: "; npm --version
+        echo -n "node: "; node --version
+        echo -n "bids-validator: "; bids-validator --version
+        echo -n "python: "; python --version
+
+    # Checkout bids-examples
+    - uses: actions/checkout@v4
+      with:
+        # repository: bids-standard/bids-examples
+        # For now use the forked repository with support for deno validator
+        # from https://github.com/bids-standard/bids-examples/pull/435
+        repository: yarikoptic/bids-examples
+        ref: deno-validator
+        path: bids-examples
+
+    - name: Mark known not yet to be deno-legit BIDS datasets
+      run: touch {ds000117,ds000246,ds000247,ds000248,eeg_ds003645s_hed_demo,ieeg_motorMiller2007,ieeg_visual}/.SKIP_VALIDATION
+      shell: bash
+      working-directory: bids-examples
+
+    - name: Validate using bids-validator without migration
+      run: ./run_tests.sh
+      working-directory: bids-examples
+
+    - name: Migrate all BIDS datasets
+      run: /bin/ls */dataset_description.json | sed -e 's,/.*,,g' | xargs bst migrate-datasets
+      shell: bash
+      working-directory: bids-examples
+
+    - name: Show migrated datasets diff
+      run: git diff HEAD
+      working-directory: bids-examples
+
+    # TODO: commit as a merge from current state of bids-examples
+    # and prior bids-2.0 branch there, but overloading with new updated
+    # state and recording commit hash of bids-specification used.
+
+    - name: Validate all BIDS datasets using bids-validator after migration
+      run: VALIDATOR_ARGS="--schema file://$PWD/../src/schema.json" bash ./run_tests.sh
+      working-directory: bids-examples

@@ -1,5 +1,6 @@
 import logging
 import tempfile
+from pathlib import Path
 from subprocess import run
 
 try:
@@ -95,10 +96,27 @@ def schema_obj():
     return schema.load_schema()
 
 
-bids_examples = get_gitrepo_fixture(
+bids_examples_pristine = get_gitrepo_fixture(
     "https://github.com/bids-standard/bids-examples",
     whitelist=BIDS_SELECTION,
 )
+
+
+@pytest.fixture(scope="session")
+def bids_examples(bids_examples_pristine):
+    """Migrates examples to BIDS 2.0 before giving it back to tests"""
+
+    from bidsschematools.migrations import migrate_dataset
+
+    # TODO: potentially make it recursive in finding derivatives,
+    #       as e.g. we have in ./ieeg_epilepsy_ecog/derivatives/freesurfer/participants.tsv
+    for item in Path(bids_examples_pristine).iterdir():
+        if item.is_dir() and (item / "dataset_description.json").exists():
+            migrate_dataset(item)
+
+    return bids_examples_pristine
+
+
 bids_error_examples = get_gitrepo_fixture(
     "https://github.com/bids-standard/bids-error-examples",
     whitelist=BIDS_ERROR_SELECTION,
