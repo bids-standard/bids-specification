@@ -144,11 +144,11 @@ subject:
   display_name: Subject
   description: |
     A person or animal participating in the study.
-    Used interchangeably with term **Participant**.
+    Used interchangeably with term **Subject**.
 task:
   display_name: Task
   description: |
-    A set of structured activities performed by the participant.
+    A set of structured activities performed by the subject.
     Tasks are usually accompanied by stimuli and responses, and can greatly vary in complexity.
     For the purpose of this specification we consider the so-called "resting state" a task.
     In the context of brain scanning, a task is always tied to one data acquisition.

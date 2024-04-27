@@ -89,10 +89,10 @@ def test_stem_rule():
     }
 
     rule = Namespace.build(
-        {"stem": "participants", "level": "optional", "extensions": [".tsv", ".json"]}
+        {"stem": "subjects", "level": "optional", "extensions": [".tsv", ".json"]}
     )
     assert rules._stem_rule(rule) == {
-        "regex": r"participants(?P<extension>\.tsv|\.json)",
+        "regex": r"subjects(?P<extension>\.tsv|\.json)",
         "mandatory": False,
     }
 

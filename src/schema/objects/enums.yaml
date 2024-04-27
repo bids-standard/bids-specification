@@ -271,32 +271,32 @@ Genetic:
   value: Genetic
   display_name: Genetic
   description: |
-    Data report on a single genetic location (typically directly in the `participants.tsv` file).
+    Data report on a single genetic location (typically directly in the `subjects.tsv` file).
 Genomic:
   value: Genomic
   display_name: Genomic
   description: |
-    Data link to participants' genome (multiple genetic locations).
+    Data link to subjects' genome (multiple genetic locations).
 Epigenomic:
   value: Epigenomic
   display_name: Epigenomic
   description: |
-    Data link to participants' characterization of reversible modifications of DNA.
+    Data link to subjects' characterization of reversible modifications of DNA.
 Transcriptomic:
   value: Transcriptomic
   display_name: Transcriptomic
   description: |
-    Data link to participants RNA levels.
+    Data link to subjects RNA levels.
 Metabolomic:
   value: Metabolomic
   display_name: Metabolomic
   description: |
-    Data link to participants' products of cellular metabolic functions.
+    Data link to subjects' products of cellular metabolic functions.
 Proteomic:
   value: Proteomic
   display_name: Proteomic
   description: |
-    Data link to participants peptides and proteins quantification.
+    Data link to subjects peptides and proteins quantification.
 CTF:
   value: CTF
   display_name: CTF
@@ -342,8 +342,8 @@ individual:
   value: individual
   display_name: individual
   description: |
-    Participant specific anatomical space (for example derived from T1w and/or T2w images).
-    This coordinate system requires specifying an additional, participant-specific file to be fully defined.
+    Subject specific anatomical space (for example derived from T1w and/or T2w images).
+    This coordinate system requires specifying an additional, subject-specific file to be fully defined.
     In context of surfaces this space has been referred to as `fsnative`.
 
     In order for this space to be interpretable, `SpatialReference` metadata MUST be provided.

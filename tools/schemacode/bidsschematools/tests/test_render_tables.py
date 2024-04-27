@@ -120,13 +120,13 @@ def test_make_columns_table(schema_obj):
     # mri.MRISpatialEncoding selected for having some level and description addenda
     rendered_table = tables.make_columns_table(
         schema_obj,
-        "modality_agnostic.Participants",
+        "modality_agnostic.Subjects",
     ).split("\n")
 
     assert rendered_table[0].startswith("| **Column name**")
     assert rendered_table[1].startswith("|----------------")
 
-    fields = schema_obj.rules.tabular_data.modality_agnostic.Participants.columns
+    fields = schema_obj.rules.tabular_data.modality_agnostic.Subjects.columns
     assert len(rendered_table) == len(fields) + 3  # header + orientation + add. cols. row
 
     for field, render_row in zip(fields, rendered_table[2:-1]):

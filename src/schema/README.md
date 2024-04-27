@@ -243,7 +243,7 @@ and provide the *namespace* in which expressions are evaluated.
 The following operators should be defined by an interpreter:
 
 | Operator    | Definition                                                    | Example                                       |
-| ----------- | ------------------------------------------------------------- | --------------------------------------------- |
+| ----------- | ------------------------------------------------------------- |-----------------------------------------------|
 | `==`        | equality                                                      | `suffix == "T1w"`                             |
 | `!=`        | inequality                                                    | `entities.task != "rest"`                     |
 | `<`/`>`     | less-than / greater-than                                      | `sidecar.EchoTime < 0.5`                      |
@@ -253,7 +253,7 @@ The following operators should be defined by an interpreter:
 | `&&`        | conjunction, true if both RHS and LHS are true                | `"Units" in sidecar && sidecar.Units == "mm"` |
 | `\|\|`      | disjunction, true if either RHS or LHS is true                | `a < mn \|\| a > mx`                          |
 | `.`         | object query, returns value of subfield                       | `sidecar.Units`                               |
-| `[]`        | array/string index, returns value of Nth element (0-indexed)  | `columns.participant_label[0]`                |
+| `[]`        | array/string index, returns value of Nth element (0-indexed)  | `columns.subject_label[0]`                    |
 | `+`         | numeric addition / string concatenation                       | `x + 1`, `stem + "suffix"`                    |
 | `-`/`*`/`/` | numeric operators (division coerces to float)                 | `length(array) - 2`, `x * 2`, `1 / 2 == 0.5`  |
 
@@ -661,7 +661,7 @@ Here, `README` and `README.md` are both valid, while only `dataset_description.j
 #### Tabular metadata files
 
 `rules.files.common.tables` describes TSV files and their associated metadata,
-including `participants.tsv`, `samples.tsv`, `*_sessions.tsv` and `*_scans.tsv`.
+including `subjects.tsv`, `samples.tsv`, `*_sessions.tsv` and `*_scans.tsv`.
 The first two use the `stem` field, while the latter two specify the entities used
 to construct the filename.
 
@@ -677,9 +677,9 @@ The valid fields are:
 For example:
 
 ```YAML
-participants:
+subjects:
   level: optional
-  stem: participants
+  stem: subjects
   extensions:
     - .tsv
     - .json

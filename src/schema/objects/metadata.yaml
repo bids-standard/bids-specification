@@ -204,7 +204,7 @@ B0FieldIdentifier:
   description: |
     The presence of this key states that this particular 3D or 4D image MAY be
     used for fieldmap estimation purposes.
-    Each `"B0FieldIdentifier"` MUST be a unique string within one participant's tree,
+    Each `"B0FieldIdentifier"` MUST be a unique string within one subject's tree,
     shared only by the images meant to be used as inputs for the estimation of a
     particular instance of the *B<sub>0</sub> field* estimation.
     It is RECOMMENDED to derive this identifier from DICOM Tags, for example,
@@ -220,7 +220,7 @@ B0FieldSource:
   display_name: B0 Field Source
   description: |
     At least one existing `"B0FieldIdentifier"` defined by images in the
-    participant's tree.
+    subject's tree.
     This field states the *B<sub>0</sub> field* estimation designated by the
     `"B0FieldIdentifier"` that may be used to correct the dataset for distortions
     caused by B<sub>0</sub> inhomogeneities.
@@ -292,11 +292,11 @@ BasedOn:
     to distinguish sources from different datasets.
   anyOf:
     - type: string
-      format: participant_relative
+      format: subject_relative
     - type: array
       items:
         type: string
-        format: participant_relative
+        format: subject_relative
 BloodDensity:
   name: BloodDensity
   display_name: Blood Density
@@ -1274,7 +1274,7 @@ HeadCircumference:
   name: HeadCircumference
   display_name: Head Circumference
   description: |
-    Circumference of the participant's head, expressed in cm (for example, `58`).
+    Circumference of the subject's head, expressed in cm (for example, `58`).
   type: number
   exclusiveMinimum: 0
   unit: cm
@@ -1533,7 +1533,7 @@ Instructions:
   name: Instructions
   display_name: Instructions
   description: |
-    Text of the instructions given to participants before the recording.
+    Text of the instructions given to subjects before the recording.
   type: string
 IntendedFor:
   name: IntendedFor
@@ -1541,20 +1541,20 @@ IntendedFor:
   description: |
     The paths to files for which the associated file is intended to be used.
     Contains one or more [BIDS URIs](SPEC_ROOT/common-principles.md#bids-uri).
-    Using forward-slash separated paths relative to the participant subdirectory is
+    Using forward-slash separated paths relative to the subject subdirectory is
     [DEPRECATED](SPEC_ROOT/common-principles.md#definitions).
   anyOf:
     - type: string
       format: bids_uri
     - type: string
-      format: participant_relative
+      format: subject_relative
     - type: array
       items:
         anyOf:
           - type: string
             format: bids_uri
           - type: string
-            format: participant_relative
+            format: subject_relative
 IntendedFor__ds_relative:
   name: IntendedFor
   display_name: Intended For
@@ -2090,7 +2090,7 @@ MultipartID:
   name: MultipartID
   display_name: MultipartID
   description: |
-    A unique (per participant) label tagging DWI runs that are part of a
+    A unique (per subject) label tagging DWI runs that are part of a
     multipart scan.
   type: string
 Name:
@@ -2980,7 +2980,7 @@ ScreenDistance:
   name: ScreenDistance
   display_name: Screen Distance
   description: |
-    Distance between the participant's eye and the screen. If no screen was used, use `n/a`.
+    Distance between the subject's eye and the screen. If no screen was used, use `n/a`.
   anyOf:
     - type: number
       unit: m
@@ -3600,7 +3600,7 @@ VisionCorrection:
   name: VisionCorrection
   display_name: Vision correction
   description: |
-    Equipment used to correct participant vision during an experiment.
+    Equipment used to correct subject vision during an experiment.
     Example: "spectacles", "lenses", "none".
   type: string
 VolumeTiming:

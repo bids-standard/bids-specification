@@ -286,15 +286,15 @@ and a guide for using macros can be found at
 
 Knudsen et al. 2020
 ([doi:10.1177/0271678X20905433](https://doi.org/10.1177/0271678X20905433))
-recommends recording participant body weight.
-If recorded once per participant, these data SHOULD be included in the
-[Participants file](../modality-agnostic-files.md#participants-file) or as
+recommends recording subject body weight.
+If recorded once per subject, these data SHOULD be included in the
+[Subjects file](../modality-agnostic-files.md#subjects-file) or as
 [Phenotypic and assessment data](../modality-agnostic-files.md#phenotypic-and-assessment-data).
 
 For example:
 
 ```Text
-participant_id body_weight
+subject_id body_weight
 sub-01 58
 sub-02 96
 sub-03 72

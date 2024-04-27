@@ -19,11 +19,11 @@ CheckAge89:
     code: AGE_89
     message: |
       As per section 164.514(C) of "The De-identification Standard" under HIPAA guidelines,
-      participants with age 89 or higher should be tagged as 89+. More information can be found at
+      subjects with age 89 or higher should be tagged as 89+. More information can be found at
       https://www.hhs.gov/hipaa/for-professionals/privacy/special-topics/de-identification/#standard.
     level: warning
   selectors:
-    - path == 'participants.tsv'
+    - path == 'subjects.tsv'
     - columns.age != null
   checks:
     - max(columns.age) < 89

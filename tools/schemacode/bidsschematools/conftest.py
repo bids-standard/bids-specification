@@ -109,7 +109,7 @@ def bids_examples(bids_examples_pristine):
     from bidsschematools.migrations import migrate_dataset
 
     # TODO: potentially make it recursive in finding derivatives,
-    #       as e.g. we have in ./ieeg_epilepsy_ecog/derivatives/freesurfer/participants.tsv
+    #       as e.g. we have in ./ieeg_epilepsy_ecog/derivatives/freesurfer/subjects.tsv
     for item in Path(bids_examples_pristine).iterdir():
         if item.is_dir() and (item / "dataset_description.json").exists():
             migrate_dataset(item)

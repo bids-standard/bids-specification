@@ -1,21 +1,21 @@
 ---
-Participants:
+Subjects:
   selectors:
-    - path == "participants.tsv"
+    - path == "subjects.tsv"
   initial_columns:
-    - participant_id
+    - subject_id
   columns:
-    participant_id:
+    subject_id:
       level: required
       description_addendum: |
-        There MUST be exactly one row for each participant.
+        There MUST be exactly one row for each subject.
     species: recommended
     age: recommended
     sex: recommended
     handedness: recommended
     strain: recommended
     strain_rrid: recommended
-  index_columns: [participant_id]
+  index_columns: [subject_id]
   additional_columns: allowed
 
 Samples:
@@ -23,11 +23,11 @@ Samples:
     - path == "samples.tsv"
   columns:
     sample_id: required
-    participant_id: required
+    subject_id: required
     sample_type: required
     pathology: recommended
     derived_from: recommended
-  index_columns: [sample_id, participant_id]
+  index_columns: [sample_id, subject_id]
   additional_columns: allowed
 
 Scans:

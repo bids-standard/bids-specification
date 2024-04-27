@@ -101,7 +101,7 @@ def test_formats(schema_obj):
         ],
         "stimuli_relative": ["any/arbitrary/path/file.txt"],
         "dataset_relative": ["any/arbitrary/path/file.txt"],
-        "participant_relative": ["any/arbitrary/path/file.txt"],
+        "subject_relative": ["any/arbitrary/path/file.txt"],
         "rrid": ["RRID:SCR_017398"],
         "uri": ["foo://example.com:8042/over/there?name=ferret#nose"],
         "bids_uri": [
@@ -155,7 +155,7 @@ def test_formats(schema_obj):
         "dataset_relative": [
             "/path/with/starting/slash/file.txt",
         ],
-        "participant_relative": [
+        "subject_relative": [
             "/path/with/starting/slash/file.txt",
             "sub-01/path/file.txt",
         ],

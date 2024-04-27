@@ -32,14 +32,14 @@
 ## 1.0.1-rc1
 
 -   Added T1 Rho maps: [4.1 Anatomy imaging data](modality-specific-files/magnetic-resonance-imaging-data.md#anatomy-imaging-data).
--   Added support for phenotypic information split into multiple files: [3.2 Participant key file](modality-agnostic-files.md#participants-file).
+-   Added support for phenotypic information split into multiple files: [3.2 Subject key file](modality-agnostic-files.md#subjects-file).
 -   Added recommendations for multi site datasets.
 -   Added `SoftwareVersions`.
 -   Added `run-<run_index>` to the phase encoding maps. Improved the description.
 -   Added `InversionTime` metadata key.
 -   Clarification on the source vs raw language.
 -   Added `trial_type` column to the event files.
--   Added missing `sub-<participant_label>` in behavioral data filenames.
+-   Added missing `sub-<subject_label>` in behavioral data filenames.
 -   Added ability to store stimuli files.
 -   Clarified the language describing allowed subject labels.
 -   Added quantitative proton density maps.

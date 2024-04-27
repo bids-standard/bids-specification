@@ -800,10 +800,10 @@ sessions:
   description: |
     In case of multiple sessions there is an option of adding additional sessions.tsv files
     describing variables changing between sessions.
-    In such case one file per participant SHOULD be added.
+    In such case one file per subject SHOULD be added.
     These files MUST include a session_id column and describe each session by one and only one row.
-    Column names in sessions.tsv files MUST be different from group level participant key column
-    names in the participants.tsv file.
+    Column names in sessions.tsv files MUST be different from group level subject key column
+    names in the subjects.tsv file.
 stim:
   value: stim
   display_name: Continuous recording
