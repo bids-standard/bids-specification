@@ -661,7 +661,7 @@ and be placed on the filesystem in such a way that those files
 are deemed to be *applicable* to each relevant data file individually,
 but *not* be erroneously associated with other data files
 to which the metadata contained within are not applicable.
-The Inheritance Principle defines a systematized set of rules by which
+The Inheritance Principle defines a systematized set of rules
 to determine which metadata files to associate with which data files.
 Further, due to the prospect of an individual data file having
 multiple metadata files applicable to it,
