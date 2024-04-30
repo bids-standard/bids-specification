@@ -19,7 +19,7 @@ acq_time__scans:
     Acquisition time refers to when the first data point in each run was acquired.
     Furthermore, if this header is provided, the acquisition times of all files
     from the same recording MUST be identical.
-    Datetime format and their anonymization are described in
+    Datetime format and their deidentification are described in
     [Units](SPEC_ROOT/common-principles.md#units).
   type: string
   format: datetime
@@ -28,7 +28,7 @@ acq_time__sessions:
   display_name: Session acquisition time
   description: |
     Acquisition time refers to when the first data point of the first run was acquired.
-    Datetime format and their anonymization are described in
+    Datetime format and their deidentification are described in
     [Units](SPEC_ROOT/common-principles.md#units).
   type: string
   format: datetime
