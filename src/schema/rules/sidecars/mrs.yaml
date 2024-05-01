@@ -76,9 +76,6 @@ MRSRecommendedFields:
     AcquisitionVoxelSize: recommended
     MatrixSize: recommended for MRSI
     VolumeAffineMatrix: recommended for MRSI
-    EditTarget: recommended for edited data
-    EditPulse: recommended for edited data
-    EditCondition: recommended for edited data
     EncodingTechnique: recommended for MRSI
     ReferenceSignal: recommended if MRS reference data are present
     AnatomicalImage: optional, but recommended if anatomical MRI data are present
@@ -89,6 +86,9 @@ MRSOptionalFields:
   fields:
     ChemicalShiftOffset: optional
     ChemicalShiftReference: optional
+    EditTarget: optional
+    EditPulse: optional
+    EditCondition: optional
     EchoAcquisition: optional
     ParallelReductionFactorInPlane: optional
     ParallelAcquisitionTechnique: optional
