@@ -95,7 +95,7 @@ entity "`_param-<label>`" MUST NOT be included; e.g.:
 
 There are many mathematical bases that may be used
 in the encoding of parameters that vary as a function of orientation.
-A list of such functions supported by the specification is enuerated below,
+A list of such functions supported by the specification is enumerated below,
 accompanied by requisite information specific to each representation.
 
 For image data that encode orientation information,
@@ -169,7 +169,7 @@ see [parameter metadata](#parameter-metadata).
     1.  Orientations only
 
         Each triplet of values encodes an orientation on the unit sphere
-        (i.e. the vector norm MUST be 1.0);
+        (that is, the vector norm MUST be 1.0);
         no quantitative value is associated with each orientation.
 
     Number of image volumes is equal to (3x*N*),
@@ -216,7 +216,7 @@ see [parameter metadata](#parameter-metadata).
 
 For some models,
 it is common to export not only the best fit of the model to the empirical data,
-but multiple reaslisations of that fit taking into account image noise,
+but multiple realizations of that fit taking into account image noise,
 typically through some form of bootstrapping procedure.
 Where this occurs,
 the image data for each parameter possess an additional dimension,
