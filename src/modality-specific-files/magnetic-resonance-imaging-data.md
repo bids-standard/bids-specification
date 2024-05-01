@@ -705,37 +705,44 @@ within the `[*_]dwi.bval` and `[*_]dwi.bvec` files) MAY change across DWI runs.
 
 **Gradient orientation file formats**.
 The `[*_]dwi.bval` and `[*_]dwi.bvec` files MUST follow the
-[FSL format](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT/UserGuide#DTIFIT):
-The `[*_]dwi.bvec` file contains 3 rows with *N* space-delimited floating-point numbers
-(corresponding to the *N* volumes in the corresponding NIfTI file.)
-The first row contains the *x* elements, the second row contains the *y* elements and
-the third row contains the *z* elements of a unit vector in the direction of the applied
-diffusion gradient, where the *i*-th elements in each row correspond together to
-the *i*-th volume, with `[0,0,0]` for *non-diffusion-weighted* (also called *b*=0 or *low-b*)
-volumes.
-Following the FSL format for the `[*_]dwi.bvec` specification, the coordinate system of
-the *b* vectors MUST be defined with respect to the coordinate system defined by
-the header of the corresponding `_dwi` NIfTI file and not the scanner's device
-coordinate system (see [Coordinate systems](../appendices/coordinate-systems.md)).
-The most relevant limitation imposed by this choice is that the gradient information cannot
-be directly stored in this format if the scanner generates *b*-vectors in *scanner coordinates*.
+[FSL format](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT/UserGuide#DTIFIT).
 
-Example of `[*_]dwi.bvec` file, with *N*=6, with two *b*=0 volumes in the beginning:
+The `[*_]dwi.bvec` file contains 3 rows with *N* space-delimited floating-point numbers,
+corresponding to the *N* volumes in the corresponding NIfTI file.
+Across these three rows,
+each column encodes three elements of a 3-vector for the corresponding image volume;
+each vector MUST be either of unit norm,
+or optionally the vector `[0.0,0.0,0.0]`
+for *non-diffusion-weighted* (also called *b*=0 or *low-b*) volumes.
+These values are to be interpreted as cosine values with respect to the image axis orientations
+as defined by the corresponding NIfTI image header transformation.
+Note that unlike DICOM convention,
+these orientations are *not* defined with respect to the scanner device's coordinate system
+(see [Coordinate systems](../appendices/coordinate-systems.md)).
+Further, if the rotation component of the NIfTI image header transformation
+possesses a positive determinant (a "right-handed" coordinate system),
+then the sign of the first element of each 3-vector must be inverted
+to be interpreted as cosines with respect to the first image axis orientation.
 
-```Text
-0 0 0.021828 -0.015425 -0.70918 -0.2465
-0 0 0.80242 0.22098 -0.00063106 0.1043
-0 0 -0.59636 0.97516 -0.70503 -0.96351
-```
+The `[*_]dwi.bval` file contains the *b*-values (in s/mm<sup>2</sup>)
+corresponding to the volumes in the relevant NIfTI file,
+with 0 designating *b*=0 volumes; space-delimited.
 
-The `[*_]dwi.bval` file contains the *b*-values (in s/mm<sup>2</sup>) corresponding to the
-volumes in the relevant NIfTI file), with 0 designating *b*=0 volumes, space-delimited.
+Examples of `[*_]dwi.bvec` and `[*_]dwi.bval` files,
+corresponding to a NIfTI image with 6 volumes
+with the first two volumes having no diffusion sensitization:
 
-Example of `[*_]dwi.bval` file, corresponding to the previous `[*_]dwi.bvec` example:
+-   `[*_]dwi.bvec`:
+    ```Text
+    0 0 0.021828 -0.015425 -0.70918 -0.2465
+    0 0 0.80242 0.22098 -0.00063106 0.1043
+    0 0 -0.59636 0.97516 -0.70503 -0.96351
+    ```
 
-```Text
-0 0 2000 2000 1000 1000
-```
+-   `[_]dwi.bval`:
+    ```Text
+    0 0 2000 2000 1000 1000
+    ```
 
 ### Multipart (split) DWI schemes
 
