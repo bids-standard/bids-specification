@@ -947,10 +947,22 @@ EditPulse:
     For example:
     `{"ON": {"FrequencyOffset": 1.9, "PulseDuration": 16},
     "OFF": {"FrequencyOffset": 7.5, "PulseDuration": 16}}`.
-  anyOf:
-    - type: object
-      additionalProperties:
-        type: object
+  type: object
+  additionalProperties:
+    type: object
+    recommended_fields: [FrequencyOffset, PulseDuration]
+    properties:
+      FrequencyOffset:
+        anyOf:
+          - type: number
+            unit: ppm
+          - type: array
+            items:
+              type: number
+              unit: ppm
+      PulseDuration:
+        type: number
+        unit: ms
 EditTarget:
   name: EditTarget
   display_name: Editing Target
