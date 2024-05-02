@@ -66,9 +66,6 @@ MRSRecommendedFields:
     - modality == "mrs"
   fields:
     NumberOfSpectralPoints: recommended
-    NumberOfTransients:
-      level: optional
-      level_addendum: recommended for SVS and unloc
     RepetitionTime__mrs: recommended
     MixingTime: recommended
     InversionTime: recommended for inversion recovery data
@@ -78,7 +75,27 @@ MRSRecommendedFields:
     VolumeAffineMatrix: recommended for MRSI
     EncodingTechnique: recommended for MRSI
     ReferenceSignal: recommended if MRS reference data are present
-    AnatomicalImage: optional, but recommended if anatomical MRI data are present
+
+MRSRecommendedFieldsAnatomicalImage:
+  selectors:
+    - modality == "mrs"
+    - '"anat" in dataset.datatypes'
+  fields:
+    AnatomicalImage: recommended
+
+MRSRecommendedFieldsNumTransients:
+  selectors:
+    - modality == "mrs"
+    - intersects([suffix], ["svs", "unloc"])
+  fields:
+    NumberOfTransients: recommended
+
+MRSIRecommendedFields:
+  selectors:
+    - modality == "mrs"
+    - suffix == "mrsi"
+  fields:
+    MRAcquisitionType: recommended
 
 MRSOptionalFields:
   selectors:
