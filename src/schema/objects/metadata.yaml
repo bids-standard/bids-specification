@@ -250,14 +250,14 @@ B0ShimmingTechnique:
   name: B0ShimmingTechnique
   display_name: B0 Shimming Technique
   description: |
-    The technique used to shim the *B<sub>0</sub>* field (for example, `"Dynamic shim updating"`
+    The technique used to shim the *B*<sub>0</sub> field (for example, `"Dynamic shim updating"`
     or `"FASTMAP"`).
   type: string
 B1ShimmingTechnique:
   name: B1ShimmingTechnique
   display_name: B1 Shimming Technique
   description: |
-    The technique used to shim the *B<sub>1</sub>* field (for example, `"Simple phase align"`
+    The technique used to shim the *B*<sub>1</sub> field (for example, `"Simple phase align"`
     or `"Pre-saturated TurboFLASH"`).
   type: string
 BIDSVersion:
