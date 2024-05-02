@@ -177,7 +177,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("mrs.MRSSample") }}
 
-### MRS-specific fields
+### MRS-relevant fields
 
 Metadata fields that MUST be present:
 
