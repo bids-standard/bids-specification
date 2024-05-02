@@ -48,7 +48,7 @@ MRSSequenceSpecifics:
     MRAcquisitionType: optional, but recommended for MRSI
     WaterSuppression: recommended
     WaterSuppressionTechnique: optional
-    OuterVolumeSuppression: recommended
+    OuterVolumeSuppression: optional
     B0ShimmingTechnique: optional
     B1ShimmingTechnique: optional
 
