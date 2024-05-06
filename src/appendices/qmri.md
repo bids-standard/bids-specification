@@ -550,7 +550,7 @@ along with the `MP2RAGE` file collection
 and to be used as the primary input for quantifying a `T1map`.
 
 If an additional `UNIT1` image is calculated offline,
-then the output is to be stored in a derivative BIDS dataset with necessary provenance information.
+then the output MUST be stored in a derivative BIDS dataset with necessary provenance information.
 
 ##### `NumberShots` metadata field
 
