@@ -154,9 +154,9 @@ A guide for using macros can be found at
             "qMRI-software-name": {
                 "sub-01": {
                     "anat": {
-                        "sub-01_T1map.nii.gz": "T1 map stored as part a derivative dataset",
+                        "sub-01_T1map.nii.gz": " # --> T1 map stored as part a derivative dataset",
                         "sub-01_T1map.json": "",
-                        "sub-01_UNIT1.nii.gz": "UNI T1 stored as part a derivative dataset",
+                        "sub-01_UNIT1.nii.gz": " # --> UNI T1 stored as part a derivative dataset",
                         "sub-01_UNIT1.json": "",
                     },
                 },
@@ -193,9 +193,9 @@ A guide for using macros can be found at
                 "sub-01_inv-2_part-mag_MP2RAGE.nii.gz":"",
                 "sub-01_inv-2_part-phase_MP2RAGE.nii.gz":"",
                 "sub-01_inv-2_MP2RAGE.json":"",
-                "sub-01_T1map.nii.gz": "T1 map stored as part a raw dataset",
+                "sub-01_T1map.nii.gz": " # --> T1 map stored as part a raw dataset",
                 "sub-01_T1map.json": "",
-                "sub-01_UNIT1.nii.gz": "UNI T1 stored as part a raw dataset",
+                "sub-01_UNIT1.nii.gz": " # --> UNI T1 stored as part a raw dataset",
                 "sub-01_UNIT1.json": "",
             },
         },
