@@ -137,7 +137,7 @@ Please visit the [file collections appendix](./file-collections.md#magnetic-reso
 
 qMRI maps are stored differently depending on the process that generated them.
 Pre-generated qMRI maps MAY be stored as part of a raw BIDS dataset,
-where as it MAY be stored in a derivative BIDS dataset if it were post-generated.
+where as they MUST be stored in a derivative BIDS dataset if they were post-generated.
 
 See the example below of a `T1map` generated from an `MP2RAGE` file collection using either options.
 
