@@ -545,7 +545,7 @@ provided by the stock sequence. Instead, the `magnitude` and `phase` images are 
 see the relevant discussion at [qMRLab issue #255](https://github.com/qMRLab/qMRLab/issues/255).
 
 Therefore, the `UNIT1` image provided by the scanner
-MUST be stored under the `anat` in a raw BIDS dataset
+SHOULD be stored under the `anat` in a raw BIDS dataset
 along with the `MP2RAGE` file collection
 and to be used as the primary input for quantifying a `T1map`.
 
