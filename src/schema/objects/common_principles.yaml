@@ -46,6 +46,9 @@ dataset:
   description: |
     A set of neuroimaging and behavioral data acquired for a purpose of a particular study.
     A dataset consists of data acquired from one or more subjects, possibly from multiple sessions.
+derivative:
+  display_name: derivative dataset
+  description: If a dataset is derived from at least one other valid BIDS dataset, then it is a derivative dataset.
 deprecated:
   display_name: DEPRECATED
   description: |
@@ -97,6 +100,9 @@ modality:
     the technique is sufficiently uniform to define the modalities `eeg`, `meg` and `ieeg`.
     When applicable, the modality is indicated in the **suffix**.
     The modality may overlap with, but should not be confused with the **data type**.
+raw:
+  display_name: raw dataset
+  description: A raw BIDS dataset is data that have been curated into BIDS from a non-BIDS source.
 run:
   display_name: Run
   description: |

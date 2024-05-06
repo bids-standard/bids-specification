@@ -6,9 +6,7 @@ outputs in subsequent processing.
 Standardizing derivatives is motivated by use cases where formalized
 machine-readable access to processed data enables higher-level processing.
 
-The following sections cover additions to and divergences from "raw" BIDS.
-Raw data are data that have been curated into BIDS from a non-BIDS source.
-If a dataset is derived from at least one other valid BIDS dataset, then it is a derivative dataset.
+The following sections cover additions to and divergences from raw BIDS.
 
 Examples:
 
