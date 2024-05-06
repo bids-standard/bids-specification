@@ -126,7 +126,7 @@ def _entity_rule(rule: Mapping, schema: bst.types.Namespace):
     ext_regex = f"(?P<extension>{ext_match})"
 
     return {
-        "regex": "".join(dir_regex + entity_regex + [suffix_regex, ext_regex]),
+        "regex": "".join(dir_regex + entity_regex + [suffix_regex, ext_regex, r"\Z"]),
         "mandatory": False,
     }
 
@@ -172,7 +172,8 @@ def _sanitize_extension(ext: str) -> str:
 
 def _stem_rule(rule: bst.types.Namespace):
     # translate includes a trailing \Z (end of string) but we expect extensions
-    stem_regex = fnmatch.translate(rule.stem)[:-2]
+    stem_match = fnmatch.translate(rule.stem)[:-2]
+    stem_regex = f"(?P<stem>{stem_match})"
 
     dtypes = set(rule.get("datatypes", ()))
     dir_regex = f"(?P<datatype>{'|'.join(dtypes)})/" if dtypes else ""
@@ -184,7 +185,10 @@ def _stem_rule(rule: bst.types.Namespace):
 
 
 def _path_rule(rule: bst.types.Namespace):
-    return {"regex": re.escape(rule.path), "mandatory": rule.level == "required"}
+    path_match = re.escape(rule.path)
+    # Exact path matches may be files or opaque directories
+    # Consider using rules.directories to identify opaque directories
+    return {"regex": rf"(?P<path>{path_match})(?:/.*)?\Z", "mandatory": rule.level == "required"}
 
 
 def regexify_filename_rules(
