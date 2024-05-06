@@ -715,14 +715,16 @@ each vector MUST be either of unit norm,
 or optionally the vector `[0.0,0.0,0.0]`
 for *non-diffusion-weighted* (also called *b*=0 or *low-b*) volumes.
 These values are to be interpreted as cosine values with respect to the image axis orientations
-as defined by the corresponding NIfTI image header transformation.
-Note that unlike DICOM convention,
-these orientations are *not* defined with respect to the scanner device's coordinate system
+as defined by the corresponding NIfTI image header transformation;
+*unless* the image axes defined in the corresponding NIfTI image header
+form a right-handed coordinate system
+(that is, the 3x3 matrix of direction cosines has a positive determinant),
+in which case the sign of the first element of each 3-vector must be inverted
+for this interpretation to be valid.
+Note that this definition of orientations with respect to the NIfTI image axes
+is *not* equivalent to the DICOM convention,
+where orientations are instead defined with respect to the scanner device's coordinate system
 (see [Coordinate systems](../appendices/coordinate-systems.md)).
-Further, if the rotation component of the NIfTI image header transformation
-possesses a positive determinant (a "right-handed" coordinate system),
-then the sign of the first element of each 3-vector must be inverted
-to be interpreted as cosines with respect to the first image axis orientation.
 
 The `[*_]dwi.bval` file contains the *b*-values (in s/mm<sup>2</sup>)
 corresponding to the volumes in the relevant NIfTI file,
