@@ -1,12 +1,12 @@
 # BIDS Derivatives
 
-Derivatives are outputs of common processing pipelines, capturing data and
-meta-data sufficient for a researcher to understand and (critically) reuse those
-outputs in subsequent processing.
+[Derivatives datasets](../glossary.md#derivative-common_principles) are outputs of common processing pipelines,
+capturing data and meta-data sufficient for a researcher
+to understand and (critically) reuse those outputs in subsequent processing.
 Standardizing derivatives is motivated by use cases where formalized
 machine-readable access to processed data enables higher-level processing.
 
-The following sections cover additions to and divergences from raw BIDS.
+The following sections cover additions to and divergences from [raw BIDS datasets](../glossary.md#raw-common_principles).
 
 Examples:
 
