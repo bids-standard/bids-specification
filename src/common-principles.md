@@ -237,7 +237,7 @@ BIDS was originally designed to describe and apply consistent naming conventions
 to [raw datasets](./glossary.md#raw-common_principles) (unprocessed or minimally processed due to file format conversion).
 During analysis such data will be transformed and partial as well as final results
 will be saved.
-[Derivatives](../glossary.md#derivative-common_principles) of the raw data MUST be kept separate from the raw data.
+[Derivatives](./glossary.md#derivative-common_principles) of the raw data MUST be kept separate from the raw data.
 This way one can protect the raw data from accidental changes by file permissions.
 In addition it is easy to distinguish partial results from the raw data and share the latter.
 See [Storage of derived datasets](#storage-of-derived-datasets) for more on organizing derivatives.
