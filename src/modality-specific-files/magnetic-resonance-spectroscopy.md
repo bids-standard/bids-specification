@@ -202,10 +202,11 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_sidecar_table([
-  "mrs.MRSRecommendedFields",
   "mrs.MRSRecommendedFieldsNumTransients",
-  "mrs.MRSRecommendedFieldsAnatomicalImage",
-  "mrs.MRSIRecommendedFields"
+  "mrs.MRSRecommendedFields",
+  "mrs.MRSIRecommendedFields",
+  "mrs.MRSRecommendedFieldsRefSignal",
+  "mrs.MRSRecommendedFieldsAnatomicalImage"
   ])
 }}
 

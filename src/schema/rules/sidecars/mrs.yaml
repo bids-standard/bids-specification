@@ -45,7 +45,6 @@ MRSSequenceSpecifics:
     ScanningSequence__mrs: recommended
     SequenceName: recommended
     PulseSequenceDetails: recommended
-    MRAcquisitionType: optional, but recommended for MRSI
     WaterSuppression: recommended
     WaterSuppressionTechnique: optional
     OuterVolumeSuppression: optional
@@ -74,14 +73,15 @@ MRSRecommendedFields:
     MatrixSize: recommended for MRSI
     VolumeAffineMatrix: recommended for MRSI
     EncodingTechnique: recommended for MRSI
-    ReferenceSignal: recommended if MRS reference data are present
 
 MRSRecommendedFieldsAnatomicalImage:
   selectors:
     - modality == "mrs"
-    - '"anat" in dataset.datatypes'
+    - intersects(dataset.datatypes, ["anat"])
   fields:
-    AnatomicalImage: recommended
+    AnatomicalImage:
+      level: recommended
+      level_addendum: if anatomical MRI data are present
 
 MRSRecommendedFieldsNumTransients:
   selectors:
@@ -90,12 +90,23 @@ MRSRecommendedFieldsNumTransients:
   fields:
     NumberOfTransients: recommended
 
+MRSRecommendedFieldsRefSignal:
+  selectors:
+    - modality == "mrs"
+    - intersects([suffix], ["mrsref"])
+  fields:
+    ReferenceSignal:
+      level: recommended
+      level_addendum: if MRS reference data are present
+
 MRSIRecommendedFields:
   selectors:
     - modality == "mrs"
     - suffix == "mrsi"
   fields:
-    MRAcquisitionType: recommended
+    MRAcquisitionType:
+      level: recommended
+      level_addendum: for MRSI
 
 MRSOptionalFields:
   selectors:
