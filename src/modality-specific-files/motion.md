@@ -40,7 +40,7 @@ Note that it is not uncommon to have multiple tracking systems to record at the 
 Each tracking system MUST have its own `*_tracksys-<label>_motion.tsv` file, where `<label>` is a user-defined keyword to be used to identify each file belonging to a tracking system.
 This is especially helpful when more than one tracking system is used.
 Data from different tracking systems MUST be stored in different `*_tracksys-<label>_motion.tsv` files,
-each of which is accompanied by `*_tracksys-<label>_motion.json` and `*_tracksys-<label>_channels.tsv` files.
+each of which is accompanied by `*_tracksys-<label>_motion.json` (possibly in one of the parents folder, or possibly without tracksys-<label>, as long it complies with the BIDS inheritance framework) and `*_tracksys-<label>_channels.tsv` files.
 Between `tracksys-<label>` entity and `*_motion.tsv`, `*_motion.json`, or `*_channels.tsv` suffixes, optional [`acq-<label>`](../appendices/entities.md#acq) or [`run-<index>`](../appendices/entities.md#run) entity MAY be inserted.
 
 One column in the `*_tracksys-<label>_motion.tsv` file represents one data channel.
