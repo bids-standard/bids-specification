@@ -115,7 +115,6 @@ def emoji_map(reverse=False) -> dict[str, str]:
         "tutorial": ":check_mark_button:",
         "maintenance": ":construction:",
         "financial": ":dollar_banknote:",
-        "infra": ":metro:",
     }
 
 
@@ -333,7 +332,7 @@ def update_tributors(
 """ALLCONTRIB"""
 
 
-def load_allcontrib(allcontrib_file: Path) -> None:
+def load_allcontrib(allcontrib_file: Path) -> dict:
     """Load `.all-contributorsrc` file."""
     with open(allcontrib_file, "r", encoding="utf8") as input_file:
         return json.load(input_file)

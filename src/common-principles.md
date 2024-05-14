@@ -97,6 +97,12 @@ and/or files (like `events.tsv`) are fully omitted *when they are unavailable or
 instead of specified with an `n/a` value, or included as an empty file
 (for example an empty `events.tsv` file with only the headers included).
 
+## Dataset naming
+
+BIDS does not prescribe a particular naming scheme for directories containing individual BIDS datasets.
+However, it is recommended to use a short descriptive name that reflects the content of the dataset, avoid spaces in the name, and use hyphens or underscores to separate words.
+BIDS datasets embedded within a larger BIDS dataset MAY follow some convention (see for example [Storage of derived datasets](#storage-of-derived-datasets)).
+
 ## Filesystem structure
 
 Data for each subject are placed in subdirectories named "`sub-<label>`",
@@ -252,9 +258,10 @@ recommending a particular naming scheme for including different types of
 source data (such as the raw event logs or parameter files, before conversion to BIDS).
 However, in the case that these data are to be included:
 
-1.  These data MUST be kept in separate `sourcedata` directory with a similar
-    directory structure as presented below for the BIDS-managed data. For example:
-    `sourcedata/sub-01/ses-pre/func/sub-01_ses-pre_task-rest_bold.dicom.tgz` or
+1.  These data MUST be kept in separate `sourcedata` directory.
+    BIDS does not prescribe a particular naming scheme for source data,
+    but it is recommended for it to follow BIDS naming convention where possible.
+    For example: `sourcedata/sub-01/ses-pre/func/sub-01_ses-pre_task-rest_bold.dicom.tgz` or
     `sourcedata/sub-01/ses-pre/func/MyEvent.sce`.
 
 1.  A README file SHOULD be found at the root of the `sourcedata` directory or the
@@ -271,43 +278,62 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example(
     {
-    "my_dataset-1": {
-            "sourcedata": "",
-            "...": "",
-            "rawdata": {
-                "dataset_description.json": "",
-                "participants.tsv": "",
+    "my_project-1": {
+        "sourcedata": {
+            "dicoms": {},
+            "raw": {
                 "sub-01": {},
                 "sub-02": {},
                 "...": "",
+                "dataset_description.json": "",
+				"...": "",
             },
-            "derivatives": {
-                "pipeline_1": {},
-                "pipeline_2": {},
-                "...": "",
-            },
+            "..." : "",
+        },
+        "derivatives": {
+            "pipeline_1": {},
+            "pipeline_2": {},
+            "...": "",
         }
     }
+   }
 ) }}
 
-In this example, where `sourcedata` and `derivatives` are not nested inside
-`rawdata`, **only the `rawdata` subdirectory** needs to be a BIDS-compliant
-dataset.
+In this example, `sourcedata/dicoms` is not nested inside
+`sourcedata/raw`, **and only the `sourcedata/raw` subdirectory** is a BIDS-compliant dataset among `sourcedata/` subfolders.
 The subdirectories of `derivatives` MAY be BIDS-compliant derivatives datasets
 (see [Non-compliant derivatives](#non-compliant-derivatives) for further discussion).
-This specification does not prescribe anything about the contents of `sourcedata`
-directories in the above example - nor does it prescribe the `sourcedata`,
-`derivatives`, or `rawdata` directory names.
-The above example is just a convention that can be useful for organizing raw,
-source, and derived data while maintaining BIDS compliance of the raw data
-directory. When using this convention it is RECOMMENDED to set the `SourceDatasets`
+The above example is just a convention useful for organizing source, raw BIDS, and derived BIDS data while maintaining BIDS compliance of the raw data directory.
+When using this convention it is RECOMMENDED to set the `SourceDatasets`
 field in `dataset_description.json` of each subdirectory of `derivatives` to:
 
 ```JSON
 {
-  "SourceDatasets": [ {"URL": "../../rawdata/"} ]
+  "SourceDatasets": [ {"URL": "../../sourcedata/raw/"} ]
 }
 ```
+
+!!! danger "Caution"
+
+    Sharing source data may help amend errors and missing data discovered
+    only with the reuse of the raw dataset in practice.
+    Therefore, from an Open Science perspective, it is RECOMMENDED to share
+    the source data whenever it is possible.
+
+    However, more stringent sharing limitations may apply to the source data
+    than those applicable to the raw data.
+    For example, human data almost always requires deidentification
+    before they can be redistributed,
+    or the subjects' consent form did not explicitly state that the source files
+    would be shared after deidentification.
+    Further examples in which sharing source data may not be possible
+    include original data formats that are not redistributable
+    as per the acquisition device's license.
+
+    As for raw data, all regulatory, ethical, and legal aspects SHOULD
+    be carefully considered before sharing data
+    through the `sourcedata/` directory mechanism.
+    In the case of source data, these aspects are likely more stringent.
 
 ### Storage of derived datasets
 
@@ -384,6 +410,7 @@ Derivatives can be stored/distributed in two ways:
             "sub-01": {},
             "sub-02": {},
             "...": "",
+            "dataset_description.json": "",
             }
         }
     ) }}
@@ -430,36 +457,54 @@ NIfTI header.
 
 ### Tabular files
 
-Tabular data MUST be saved as tab delimited values (`.tsv`) files, that is, CSV
-files where commas are replaced by tabs. Tabs MUST be true tab characters and
-MUST NOT be a series of space characters. Each TSV file MUST start with a header
-line listing the names of all columns (with the exception of
-[physiological and other continuous recordings](modality-specific-files/physiological-and-other-continuous-recordings.md)
-as well as [motion recording data](modality-specific-files/motion.md)).
+Tabular data MUST be saved as plain-text, tab-delimited values (TSV) files
+(with [extension `.tsv`](glossary.md#tsv-extensions)),
+that is, [CSV files](https://en.wikipedia.org/wiki/Comma-separated_values) where commas are replaced by tab characters.
+Tabs MUST be true tab characters and MUST NOT be a series of space characters.
+Tabular data such as continuous physiology recordings typically containing
+large numbers of rows MAY be saved as
+[compressed tabular files (with extension `.tsv.gz`)](#compressed-tabular-files),
+which are introduced below.
+Plain-text TSV and compressed TSV are not interchangeable, that is, each section
+of the specification prescribes which one MUST be used for the data type at
+hand.
+Each TSV file MUST start with a header line listing the names of all columns
+with two exceptions:
+
+1.  [compressed tabular files](#compressed-tabular-files),
+    for which column names are defined in a sidecar metadata
+    [JSON object](https://www.json.org/json-en.html) described below; and
+1.  [motion recording data](modality-specific-files/motion.md),
+    which use plain-text TSV and columns are defined as described
+    in its corresponding section of the specifications.
+
 It is RECOMMENDED that the column names in the header of the TSV file are
 written in [`snake_case`](https://en.wikipedia.org/wiki/Snake_case) with the
 first letter in lower case (for example, `variable_name`, not `Variable_name`).
-As for all other data in the TSV files, column names MUST be separated with tabs.
+Column names defined in the header MUST be separated with tabs as for the data contents.
 Furthermore, column names MUST NOT be blank (that is, an empty string) and MUST NOT
 be duplicated within a single TSV file.
-String values containing tabs MUST be escaped using double
-quotes. Missing and non-applicable values MUST be coded as `n/a`. Numerical
-values MUST employ the dot (`.`) as decimal separator and MAY be specified
+String values containing tabs MUST be escaped using double quotes.
+Missing and non-applicable values MUST be coded as `n/a`.
+Numerical values MUST employ the dot (`.`) as decimal separator and MAY be specified
 in scientific notation, using `e` or `E` to separate the significand from the
-exponent. TSV files MUST be in UTF-8 encoding.
+exponent.
+TSV files MUST be in UTF-8 encoding.
 
 Example:
 
 ```Text
-onset	duration	response_time	correct	stop_trial	go_trial
-200	200	0	n/a	n/a	n/a
+onset   duration    response_time   trial_type        trial_extra
+200     20.0        15.8            word              中国人
+240     5.0         17.34e-1        visual            n/a
 ```
 
-**Note**: The TSV examples in this document (like the one above this note)
-are occasionally formatted using space characters instead of tabs to improve
-human readability.
-Directly copying and then pasting these examples from the specification
-for use in new BIDS datasets can lead to errors and is discouraged.
+!!! warning "Attention"
+
+    The TSV examples in this document (like the one above this note) are occasionally
+    formatted using space characters instead of tabs to improve human readability.
+    Directly copying and then pasting these examples from the specification
+    for use in new BIDS datasets can lead to errors and is discouraged.
 
 Tabular files MAY be optionally accompanied by a simple data dictionary
 in the form of a JSON [object](https://www.json.org/json-en.html)
@@ -536,11 +581,37 @@ like in the example below.
             "F": {
                 "Description": "Female",
                 "TermURL": "https://www.ncbi.nlm.nih.gov/mesh/68005260"
-            },
+            }
         }
     }
 }
 ```
+
+### Compressed tabular files
+
+Large tabular information, such as physiological recordings, MUST be stored with
+[compressed tab-delineated (TSV.GZ) files](glossary.md#tsv_gz-extensions) when
+so established by the specifications.
+Rules for formatting plain-text tabular files apply to TSVGZ files with three exceptions:
+
+1.  The contents of TSVGZ files MUST be compressed with
+    [gzip](https://datatracker.ietf.org/doc/html/rfc1952).
+1.  Compressed tabular files MUST NOT contain a header in the first row
+    indicating the column names.
+1.  TSVGZ files MUST have an associated JSON file that defines the columns in the tabular file.
+
+!!! warning "Attention"
+
+    In contrast to plain-text TSV files,
+    compressed tabular files files MUST NOT include a header line.
+    Column names MUST be provided in the JSON file with the
+    [`Columns`](glossary.md#columns-metadata) field.
+    Each column MAY additionally be described with a column description,
+    as described in [Tabular files](#tabular-files).
+
+    TSVGZ are header-less to improve compatibility with existing software
+    (for example, FSL, or PNM), and to facilitate the support for other file formats
+    in the future.
 
 ### Key-value files (dictionaries)
 
