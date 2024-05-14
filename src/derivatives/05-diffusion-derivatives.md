@@ -82,7 +82,7 @@ that warrant explicit mention due to their consequence in how they are represent
     how data across dimensions beyond the three spatial dimensions are to be interpreted.
 
 In cases where a pipeline yields only a single parameter from a model,
-entity "`_param-<label>`" MUST NOT be included; e.g.:
+entity "`_param-<label>`" MUST NOT be included; for example:
 ```Text
 <pipeline_name>/
     sub-<participant_label>/
@@ -271,7 +271,7 @@ Dictionary `"Model["Parameters"]"` has the following reserved keywords that may 
 | FitMethod              | OPTIONAL. String. The optimization procedure used to fit the intrinsic model parameters to the empirical diffusion-weighted signal. Reserved values are: "`ols`" (Ordinary Least Squares); "`wls`" (Weighted Least Squares); "`iwls`" (Iterative Weighted Least Squares); "`nlls`" (Non-Linear Least Squares). |
 | Iterations             | OPTIONAL. Integer. The number of iterations used for any form of model fitting procedure where the number of iterations is a fixed input parameter.                                                                                                                                                           |
 | OutlierRejectionMethod | OPTIONAL. String. Text describing any form of rejection of outlier values that was performed during fitting of the model.                                                                                                                                                                                     |
-| Samples                | OPTIONAL. Integer. The number of realisations of a diffusion model from which statistical summaries (e.g. mean, standard deviation) of those parameters were computed.                                                                                                                                        |
+| Samples                | OPTIONAL. Integer. The number of realisations of a diffusion model from which statistical summaries (such as mean, standard deviation) of those parameters were computed.                                                                                                                                        |
 
 #### Parameter metadata
 
@@ -897,7 +897,7 @@ Dictionary `"ResponseFunction"` has the following reserved keywords:
 
     -   Relationship between maximal degree of *zonal* spherical harmonic
         function (spherical harmonics function where all *m* != 0 terms are
-        assumed to be zero; used for e.g. response function definition) and
+        assumed to be zero; used for response function definition and similar) and
         number of coefficients *N*:
 
         *N* = 1 + (*l<sub>max</sub>* / 2)
