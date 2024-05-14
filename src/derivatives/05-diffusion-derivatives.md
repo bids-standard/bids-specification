@@ -891,9 +891,9 @@ Dictionary `"ResponseFunction"` has the following reserved keywords:
 
         *N* = ((*l<sub>max</sub>*+1) x (*l<sub>max</sub>*+2)) / 2
 
-        | ***l<sub>max</sub>*** | 0 | 2 | 4  | 6  | 8  | 10 | ...  |
+        | ***l<sub>max</sub>*** | 0 | 2 | 4  | 6  | 8  | 10 | ... |
         | --------------------- |--:|--:|--: |--: |--: |--: | :--: |
-        | ***N***               | 1 | 6 | 15 | 28 | 45 | 66 | ...  |
+        | ***N***               | 1 | 6 | 15 | 28 | 45 | 66 | ... |
 
     -   Relationship between maximal degree of *zonal* spherical harmonic
         function (spherical harmonics function where all *m* != 0 terms are
@@ -902,6 +902,6 @@ Dictionary `"ResponseFunction"` has the following reserved keywords:
 
         *N* = 1 + (*l<sub>max</sub>* / 2)
 
-        | ***l<sub>max</sub>*** | 0 | 2 | 4 | 6 | 8 | 10 | ...  |
+        | ***l<sub>max</sub>*** | 0 | 2 | 4 | 6 | 8 | 10 | ... |
         | --------------------- |--:|--:|--:|--:|--:|--: | :--: |
-        | ***N***               | 1 | 2 | 3 | 4 | 5 | 6  | ...  |
+        | ***N***               | 1 | 2 | 3 | 4 | 5 | 6  | ... |
