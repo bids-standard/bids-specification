@@ -275,8 +275,15 @@ Dictionary `"Model["Parameters"]"` has the following reserved keywords that may 
 
 #### Parameter metadata
 
-The following table defines reserved fields relevant to individual model parameters.
-Some fields are applicable only to specific [orientation encoding types](#orientation-encoding-types).
+The following tables define reserved fields relevant to individual model parameters.
+
+Some fields are relevant only to specific [orientation encoding types](#orientation-encoding-types):
+
+-   Where a field *is* relevant for the corresponding image,
+    designators OPTIONAL and REQUIRED within the "Description" column apply.
+
+-   Where a field is *not* relevant for the corresponding image,
+    that metadata field MUST NOT be specified.
 
 | **Key name**        | Relevant [orientation encoding types](#orientation-encoding-types)                         | **Description**                                                                                                                                                                                                                       |
 | ------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
