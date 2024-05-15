@@ -284,6 +284,7 @@ Some fields are applicable only to specific [orientation encoding types](#orient
 | Description         | Any                                                                                        | OPTIONAL. String. Text description of what model parameter is encoded in the corresponding data file.                                                                                                                                 |
 | NonNegativity       | All except [spherical coordinates](#encoding-spherical) and [3-vectors](#encoding-3vector) | OPTIONAL. String. Options are: { `regularized`, `constrained` }. Specifies whether, during model fitting, the parameter was regularised to not take extreme negative values, or was explicitly forbidden from taking negative values. |
 | OrientationEncoding | Any                                                                                        | REQUIRED if dimensionality of NIfTI image is greater than three. Dictionary. Provides information requisite to the interpretation of orientation information encoded in each voxel; more details below.                               |
+| ParameterURL        | Any                                                                                        | OPTIONAL. String. URL to documentation that describes the specific model parameter that is encoded within the data file.                                                                                                              |
 | ResponseFunction    | [Spherical harmonics](#encoding-sh)                                                        | OPTIONAL. Dictionary. Specifies a response function that was utilised by a deconvolution algorithm; more details below.                                                                                                               |
 
 Dictionary `"OrientationEncoding"` has the following reserved keywords:
@@ -393,7 +394,8 @@ Dictionary `"ResponseFunction"` has the following reserved keywords:
                 "FitMethod": "ols",
                 "OutlierRejectionmethod": "None"
             }
-        }
+        },
+        "ParameterURL": "https://doi.org/10.1002/nbm.1940080707"
     }
     ```
 
@@ -447,6 +449,7 @@ Dictionary `"ResponseFunction"` has the following reserved keywords:
             "SphericalHarmonicDegree": 8,
             "Type": "sh",
         },
+        "ParameterURL": "http://www.sciencedirect.com/science/article/pii/S1053811911012092",
         "ResponseFunction": {
             "Coefficients": [ [ 600.2 0.0 0.0 0.0 0.0 0.0 ],
                               [ 296.3 -115.2 24.7 -4.4 -0.5 1.8 ],
