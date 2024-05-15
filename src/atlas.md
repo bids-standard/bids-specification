@@ -876,7 +876,7 @@ this could differ from the original atlas, but will generally be the same.
 
 ### resampleAtlasToSubjects/sub-01/func/sub-01_space-T1w_seg-MyNewAtlas_dseg.tsv (Optional)
 
-For this subject, the resampling/transformation result in the elimination of the 
+For this subject, the resampling/transformation result in the elimination of the
 hippocampus, either because of a lesion or from the resolution of the space
 being resampled into.
 
@@ -921,7 +921,7 @@ from the original atlas for re-use.
 ```
 
 ### atlas-ExtendedAtlas/atlas-ExtendedAtlas_description.json (Required)
-  
+
 ```JSON
 {
   "Name": "ExtendedAtlas",
@@ -1115,4 +1115,3 @@ Then the atlas is resampled/transformed into each individual subject space.
 
 The `atlas-<label>_description.json` will typically be the same for all subjects if the
 process for generating the atlas is the same for all subjects.
-
