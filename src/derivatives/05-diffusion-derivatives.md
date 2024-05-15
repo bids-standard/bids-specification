@@ -40,7 +40,7 @@ that warrant explicit mention due to their consequence in how they are represent
 -   The encoding of *anisotropic* information;
     that is, quantities for which the value depends on the orientation in which it is sampled.
     Much of the detail in diffusion derivatives is therefore dedicated
-    to the definition of how such data are serialised into corresponding NIfTI images,
+    to the definition of how such data are serialized into corresponding NIfTI images,
     and how corresponding metadata is used to facilitate correct interpretation of those data.
 
 -   A diffusion model may represent the contents of each image voxel as the sum of *multiple compartments*;
@@ -82,7 +82,7 @@ that warrant explicit mention due to their consequence in how they are represent
     how data across dimensions beyond the three spatial dimensions are to be interpreted.
 
 In cases where a pipeline yields only a single parameter from a model,
-entity "`_param-<label>`" MUST NOT be included; e.g.:
+entity "`_param-<label>`" MUST NOT be included; for example:
 ```Text
 <pipeline_name>/
     sub-<participant_label>/
@@ -268,24 +268,31 @@ Dictionary `"Model["Parameters"]"` has the following reserved keywords that may 
 
 | **Key name**           | **Description**                                                                                                                                                                                                                                                                                               |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| FitMethod              | OPTIONAL. String. The optimization procedure used to fit the intrinsic model parameters to the empirical diffusion-weighted signal. Resrved values are: "`ols`" (Ordinary Least Squares); "`wls`" (Weighted Least Squares); "`iwls`" (Iterative Weighted Least Squares); "`nlls`" (Non-Linear Least Squares). |
+| FitMethod              | OPTIONAL. String. The optimization procedure used to fit the intrinsic model parameters to the empirical diffusion-weighted signal. Reserved values are: "`ols`" (Ordinary Least Squares); "`wls`" (Weighted Least Squares); "`iwls`" (Iterative Weighted Least Squares); "`nlls`" (Non-Linear Least Squares). |
 | Iterations             | OPTIONAL. Integer. The number of iterations used for any form of model fitting procedure where the number of iterations is a fixed input parameter.                                                                                                                                                           |
 | OutlierRejectionMethod | OPTIONAL. String. Text describing any form of rejection of outlier values that was performed during fitting of the model.                                                                                                                                                                                     |
-| Samples                | OPTIONAL. Integer. The number of realisations of a diffusion model from which statistical summaries (e.g. mean, standard deviation) of those parameters were computed.                                                                                                                                        |
+| Samples                | OPTIONAL. Integer. The number of realisations of a diffusion model from which statistical summaries (such as mean, standard deviation) of those parameters were computed.                                                                                                                                        |
 
 #### Parameter metadata
 
-The following table defines reserved fields relevant to individual model parameters.
-Some fields are applicable only to specific [orientation encoding types](#orientation-encoding-types).
+The following tables define reserved fields relevant to individual model parameters.
+
+Some fields are relevant only to specific [orientation encoding types](#orientation-encoding-types):
+
+-   Where a field *is* relevant for the corresponding image,
+    designators OPTIONAL and REQUIRED within the "Description" column apply.
+
+-   Where a field is *not* relevant for the corresponding image,
+    that metadata field MUST NOT be specified.
 
 | **Key name**        | Relevant [orientation encoding types](#orientation-encoding-types)                         | **Description**                                                                                                                                                                                                                       |
 | ------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | BootstrapAxis       | Any                                                                                        | OPTIONAL. Integer. If multiple realisations of a given parameter are stored in a NIfTI image, this field nominates the image axis (indexed from zero) along which those multiple realisations are stored.                             |
 | Description         | Any                                                                                        | OPTIONAL. String. Text description of what model parameter is encoded in the corresponding data file.                                                                                                                                 |
-| NonNegativity       | All except [spherical coordinates](#encoding-spherical) and [3-vectors](#encoding-3vector) | OPTIONAL. String. Options are: { `regularized`, `constrained` }. Specifies whether, during model fitting, the parameter was regularised to not take extreme negative values, or was explicitly forbidden from taking negative values. |
+| NonNegativity       | All except [spherical coordinates](#encoding-spherical) and [3-vectors](#encoding-3vector) | OPTIONAL. String. Options are: { `regularized`, `constrained` }. Specifies whether, during model fitting, the parameter was regularized to not take extreme negative values, or was explicitly forbidden from taking negative values. |
 | OrientationEncoding | Any                                                                                        | REQUIRED if dimensionality of NIfTI image is greater than three. Dictionary. Provides information requisite to the interpretation of orientation information encoded in each voxel; more details below.                               |
 | ParameterURL        | Any                                                                                        | OPTIONAL. String. URL to documentation that describes the specific model parameter that is encoded within the data file.                                                                                                              |
-| ResponseFunction    | [Spherical harmonics](#encoding-sh)                                                        | OPTIONAL. Dictionary. Specifies a response function that was utilised by a deconvolution algorithm; more details below.                                                                                                               |
+| ResponseFunction    | [Spherical harmonics](#encoding-sh)                                                        | OPTIONAL. Dictionary. Specifies a response function that was utilized by a deconvolution algorithm; more details below.                                                                                                               |
 
 Dictionary `"OrientationEncoding"` has the following reserved keywords:
 
@@ -322,7 +329,7 @@ Dictionary `"ResponseFunction"` has the following reserved keywords:
     -   List of lists of floating-point values.
         One list per unique *b*-value.
         Each individual list contains a coefficient per even zonal spherical harmonic degree starting from zero.
-        If the response function utilised has a different number of non-zero zonal spherical harmonic coefficients for different *b*-values,
+        If the response function utilized has a different number of non-zero zonal spherical harmonic coefficients for different *b*-values,
         these must be padded with zeroes such that all lists contain the same number of floating-point values.
 
 ### Demonstrative examples
@@ -783,10 +790,10 @@ Dictionary `"ResponseFunction"` has the following reserved keywords:
 
     Notes:
 
-    -   Here the descriptors "`merged`" and "`mean`" have been utilised
+    -   Here the descriptors "`merged`" and "`mean`" have been utilized
         to distinguish between the comprehensive set of all bootstrap realisations
         and the computed mean statistics of parameters across all realisations respectively,
-        as this is the terminology utilised by the FSL software itself.
+        as this is the terminology utilized by the FSL software itself.
         These labels are not however a part of the specification.
 
     -   Care must be taken for images of greater than three dimensions
@@ -894,17 +901,17 @@ Dictionary `"ResponseFunction"` has the following reserved keywords:
 
         *N* = ((*l<sub>max</sub>*+1) x (*l<sub>max</sub>*+2)) / 2
 
-        | ***l<sub>max</sub>*** | 0 | 2 | 4  | 6  | 8  | 10 | ...  |
+        | ***l<sub>max</sub>*** | 0 | 2 | 4  | 6  | 8  | 10 | ... |
         | --------------------- |--:|--:|--: |--: |--: |--: | :--: |
-        | ***N***               | 1 | 6 | 15 | 28 | 45 | 66 | ...  |
+        | ***N***               | 1 | 6 | 15 | 28 | 45 | 66 | ... |
 
     -   Relationship between maximal degree of *zonal* spherical harmonic
         function (spherical harmonics function where all *m* != 0 terms are
-        assumed to be zero; used for e.g. response function definition) and
+        assumed to be zero; used for response function definition and similar) and
         number of coefficients *N*:
 
         *N* = 1 + (*l<sub>max</sub>* / 2)
 
-        | ***l<sub>max</sub>*** | 0 | 2 | 4 | 6 | 8 | 10 | ...  |
+        | ***l<sub>max</sub>*** | 0 | 2 | 4 | 6 | 8 | 10 | ... |
         | --------------------- |--:|--:|--:|--:|--:|--: | :--: |
-        | ***N***               | 1 | 2 | 3 | 4 | 5 | 6  | ...  |
+        | ***N***               | 1 | 2 | 3 | 4 | 5 | 6  | ... |
