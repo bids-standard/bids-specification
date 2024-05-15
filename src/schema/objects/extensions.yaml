@@ -73,6 +73,13 @@ CTF:
   display_name: CTF MEG Dataset Directory
   description: |
     A directory for MEG data, typically containing a `.meg4` file for the data and a `.res4` file for the resources.
+dscalarnii:
+  value: .dscalar.nii
+  display_name: CIFTI-2 Dense Scalar File
+  description: |
+    A CIFTI-2 dense scalar file.
+
+    This extension may only be used in derivative datasets.
 dlabelnii:
   value: .dlabel.nii
   display_name: CIFTI-2 Dense Label File
