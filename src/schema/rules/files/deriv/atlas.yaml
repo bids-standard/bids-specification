@@ -23,6 +23,7 @@ surface:
     - mask
   extensions:
     - .label.gii
+    - .gii
     - .tsv
     - .json
   datatypes: []
