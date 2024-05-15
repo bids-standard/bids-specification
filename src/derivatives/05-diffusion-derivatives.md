@@ -856,7 +856,7 @@ Dictionary `"ResponseFunction"` has the following reserved keywords:
 
         for *maximum* spherical harmonic order *l<sub>max</sub>*.
 
-    -   Functions assumed to be real: conjugate symmetry is assumed, i.e.
+    -   Functions assumed to be real: conjugate symmetry is assumed, that is,
         *Y*(*l*,-*m*) = *Y*(*l*,*m*)\*, where \* denotes the complex
         conjugate.
 
