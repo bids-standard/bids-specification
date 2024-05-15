@@ -81,16 +81,6 @@ that warrant explicit mention due to their consequence in how they are represent
     they MUST also specify requisite metadata fields regarding
     how data across dimensions beyond the three spatial dimensions are to be interpreted.
 
-In cases where a pipeline yields only a single parameter from a model,
-entity "`_param-<label>`" MUST NOT be included; e.g.:
-```Text
-<pipeline_name>/
-    sub-<participant_label>/
-        dwi/
-            <source_keywords>[_space-<space>]_model-<label>_dwimap.nii[.gz]
-            <source_keywords>[_space-<space>]_model-<label>_dwimap.json
-```
-
 ### Orientation encoding types
 
 There are many mathematical bases that may be used
@@ -405,6 +395,10 @@ Dictionary `"ResponseFunction"` has the following reserved keywords:
         it is not the *parameter* that is a tensor;
         rather, it is the *diffusivity* that is the estimated parameter,
         and the *way in which the anisotropy of that parameter is encoded* is a tensor.
+
+    -   Even if image `sub-01_model-tensor_param-diffusivity_dwimap.nii.gz`
+        were to be the only image yielded by the pipeline,
+        it is nevertheless REQUIRED to include entity "`_param-`" in those file names.
 
     -   Metadata fields relevant to the interpretation of the anisotropy of the tensor
         are *not relevant* to the scalar measures
