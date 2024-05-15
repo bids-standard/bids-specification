@@ -237,8 +237,8 @@ high_cutoff:
     - type: string
       enum:
         - n/a
-hplc_recovery_fractions:
-  name: hplc_recovery_fractions
+hplc_recovery_fraction:
+  name: hplc_recovery_fraction
   display_name: HPLC recovery fractions
   description: |
     HPLC recovery fractions (the fraction of activity that gets loaded onto the HPLC).

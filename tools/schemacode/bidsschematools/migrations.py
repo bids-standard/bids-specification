@@ -58,6 +58,25 @@ def migrate_participants(dataset_path: Path):
                 lgr.info(f"   - migrated content in {new_file}")
 
 
+def migrate_tsv_columns(dataset_path: Path):
+    """
+    Rename some columns in .tsv (and corresponding sidecar .json)
+    """
+    # TODO: ideally here we would not provide file_glob
+    # but rather take schema and deduce which files could have
+    # the column... alternatively - consider all .tsv files and
+    # their .json files (note -- could be above and multiple given
+    # inheritance principle)
+    for col_from, col_to, file_glob in (
+        # https://github.com/bids-standard/bids-2-devel/issues/78
+        ("hplc_recovery_fraction", "hplc_recovery_fraction", "*_blood.*"),
+        # https://github.com/bids-standard/bids-2-devel/issues/15
+        ("units", "unit", "_channels.*"),  # dependency on migrate_participants
+        # ??? Any other columns to rename for some reason?
+    ):
+        raise NotImplementedError()
+
+
 def migrate_dataset(dataset_path):
     lgr.info(f"Migrating dataset at {dataset_path}")
     dataset_path = Path(dataset_path)
@@ -74,6 +93,7 @@ def migrate_dataset(dataset_path):
     for migration in [
         migrate_participants,
         migrate_version,
+        migrate_tsv_columns,  # depends on migrate_participants
     ]:
         lgr.info(f" - applying migration {migration.__name__}")
         migration(dataset_path)
