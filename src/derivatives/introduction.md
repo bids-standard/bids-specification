@@ -4,9 +4,30 @@ Derivatives are outputs of common processing pipelines, capturing data and
 meta-data sufficient for a researcher to understand and (critically) reuse those
 outputs in subsequent processing.
 Standardizing derivatives is motivated by use cases where formalized
-machine-readable access to processed data enables higher level processing.
+machine-readable access to processed data enables higher-level processing.
 
 The following sections cover additions to and divergences from "raw" BIDS.
+Raw data are data that have been curated into BIDS from a non-BIDS source.
+If a dataset is derived from at least one other valid BIDS dataset, then it is a derivative dataset.
+
+Examples:
+
+A defaced T1w image would typically be made during the curation process and is thus under raw
+
+```Text
+sourcedata/private/sub-01/anat/sub-01_T1w.nii.gz
+sub-01/anat/sub-01_T1w.nii.gz
+```
+
+A defaced T1w image could also, in theory, be derived from a BIDS dataset and would thus be under derivatives
+
+```Text
+sub-01/anat/sub-01_T1w.nii.gz
+derivatives/sub-01/anat/sub-01_desc-defaced_T1w.nii.gz
+```
+
+## Derivatives storage and directory structure
+
 Placement and naming conventions for derived datasets are addressed in
 [Storage of derived datasets][storage], and dataset-level metadata is included
 in [Derived dataset and pipeline description][derived-dataset-description].
@@ -18,13 +39,13 @@ in [Derived dataset and pipeline description][derived-dataset-description].
     pertinent fields is very valuable and thus encouraged. Moreover, for some
     types of files, there may be one or more required metadata fields, in which
     case at least one metadata file containing that field must be located
-    somewhere within the file’s hierarchy (per the
+    somewhere within the file's hierarchy (per the
     [Inheritance Principle](../common-principles.md#the-inheritance-principle)).
 
 -   When chaining derivative pipelines, any JSON fields that were specified as
     mandatory in the input files SHOULD be propagated forward in the output
-    file’s JSON provided they remain valid. Non-required JSON fields MAY be
-    propagated, and are highly useful, but it is the pipeline’s responsibility
+    file's JSON provided they remain valid. Non-required JSON fields MAY be
+    propagated, and are highly useful, but it is the pipeline's responsibility
     to ensure that the values are still relevant and appropriate to the type of
     output data.
 

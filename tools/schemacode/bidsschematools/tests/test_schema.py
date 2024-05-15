@@ -1,8 +1,10 @@
 """Tests for the bidsschematools package."""
+
 import os
 from collections.abc import Mapping
 
 import pytest
+from jsonschema.exceptions import ValidationError
 
 from bidsschematools import __bids_version__, schema, types
 
@@ -342,3 +344,43 @@ def test_dereferencing():
             },
         },
     }
+
+
+def test_namespace_to_dict():
+
+    def check_for_namespaces(obj):
+        if isinstance(obj, dict):
+            [check_for_namespaces(val) for val in obj.values()]
+        elif isinstance(obj, list):
+            [check_for_namespaces(val) for val in obj]
+        elif isinstance(obj, types.Namespace):
+            raise ValueError("Namespace object found in dict")
+
+    check_for_namespaces(schema.load_schema().to_dict())
+
+
+def test_valid_schema():
+    """Test that a valid schema does not raise an error."""
+    namespace = schema.load_schema()
+    schema.validate_schema(namespace)
+
+
+def test_add_legal_field():
+    """Test that adding a legal field does not raise an error."""
+    namespace = schema.load_schema()
+    namespace["rules"]["files"]["deriv"]["preprocessed_data"]["anat_nonparametric_common"][
+        "entities"
+    ]["density"] = "optional"
+    schema.validate_schema(namespace)
+
+
+def test_invalid_value():
+    """Test that an invalid value raises an error."""
+    namespace = schema.load_schema()
+    namespace["rules"]["files"]["deriv"]["preprocessed_data"]["anat_nonparametric_common"][
+        "entities"
+    ]["density"] = "invalid"
+    with pytest.raises(ValidationError) as e:
+        schema.validate_schema(namespace)
+    print(e.value)
+    assert "invalid" in str(e.value)

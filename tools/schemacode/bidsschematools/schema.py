@@ -1,10 +1,21 @@
 """Schema loading- and processing-related functions."""
+
+import json
 import logging
 import os
 import re
+import sys
+import tempfile
 from collections.abc import Iterable, Mapping
 from copy import deepcopy
 from functools import lru_cache
+
+from jsonschema import ValidationError, validate
+
+if sys.version_info < (3, 9):
+    from importlib_resources import files
+else:
+    from importlib.resources import files
 
 from . import __bids_version__, __version__, utils
 from .types import Namespace
@@ -129,7 +140,7 @@ def flatten_enums(namespace, inplace=True):
 
     Parameters
     ----------
-    schema : dict
+    namespace : dict
         Schema in dictionary form to be flattened.
 
     Returns
@@ -273,3 +284,21 @@ def filter_schema(schema, **kwargs):
             if isinstance(item, dict):
                 new_schema[i] = filter_schema(item, **kwargs)
     return new_schema
+
+
+def validate_schema(schema: Namespace):
+    """Validate a schema against the BIDS metaschema."""
+    metaschema = json.loads(files("bidsschematools.data").joinpath("metaschema.json").read_text())
+
+    # validate is put in this try/except clause because the error is sometimes too long to
+    # print in the terminal
+    try:
+        validate(instance=schema.to_dict(), schema=metaschema)
+    except ValidationError as e:
+        with tempfile.NamedTemporaryFile(
+            prefix="schema_error_", suffix=".txt", delete=False, mode="w+"
+        ) as file:
+            file.write(str(e))
+            # ValidationError does not have an add_note method yet
+            # e.add_note(f"See {file.name} for full error log.")
+            raise e

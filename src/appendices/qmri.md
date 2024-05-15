@@ -29,7 +29,7 @@ There are two main ways to obtain a quantitative map:
     [hMRI toolbox](https://github.com/hMRI-group/hMRI-toolbox),
     [mrQ](https://github.com/mezera/mrQ),
     [PyQMRI](https://github.com/IMTtugraz/PyQMRI),
-    [qmap](https://www.medphysics.wisc.edu/~samsonov/qmap/doc/qmap.html),
+    [qmap](https://web.archive.org/web/20220201201633/https://www.medphysics.wisc.edu/~samsonov/qmap/doc/qmap.html),
     [qMRLab](https://github.com/qmrlab/qmrlab),
     and [QUIT](https://github.com/spinicist/QUIT).
 
@@ -195,7 +195,7 @@ It is RECOMMENDED to share them along with the vendor outputs, whenever possible
 ### Example datasets
 
 You can find example file collections and qMRI maps organized according to BIDS
-in the [BIDS examples](https://github.com/bids-standard/bids-examples#qmri-datasets).
+in the [BIDS examples](https://bids-standard.github.io/bids-examples/#qmri).
 
 ## Metadata requirements for qMRI data
 
@@ -211,7 +211,7 @@ but also by which metadata fields are provided in accompanying json files.
 |----------------------|------------------------------------------------------------------------------------------------------------------------------|----------------------------|
 | VFA                  | `FlipAngle`, `PulseSequenceType`, `RepetitionTimeExcitation`                                                                 | `SpoilingRFPhaseIncrement` |
 | IRT1                 | `InversionTime`                                                                                                              |                            |
-| MP2RAGE<sup>\*</sup> | `FlipAngle`, `InversionTime`, `RepetitionTimeExcitation`, `RepetitionTimePreperation`, `NumberShots`,`MagneticFieldStrength` | `EchoTime`                 |
+| MP2RAGE<sup>\*</sup> | `FlipAngle`, `InversionTime`, `RepetitionTimeExcitation`, `RepetitionTimePreparation`, `NumberShots`,`MagneticFieldStrength` | `EchoTime`                 |
 | MESE                 | `EchoTime`                                                                                                                   |                            |
 | MEGRE                | `EchoTime`                                                                                                                   |                            |
 | MTR                  | `MTState`                                                                                                                    |                            |

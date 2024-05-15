@@ -11,3 +11,4 @@ StimulusPresentation:
     - suffix == "events"
   fields:
     StimulusPresentation: recommended
+    VisionCorrection: optional
