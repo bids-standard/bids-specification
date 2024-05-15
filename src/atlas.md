@@ -435,7 +435,7 @@ my_dataset/derivatives/atlas-HarvardOxford/
   atlas-HarvardOxford_res-3_dseg.nii.gz
 ```
 
-### Same Atlas projected into multiple Template spaces
+## Same Atlas projected into multiple Template spaces
 
 ```Text
 bids/
