@@ -15,7 +15,7 @@ Blood:
     metabolite_polar_fraction:
       level: optional
       level_addendum: recommended if `MetaboliteAvail` is `true`
-    hplc_recovery_fractions:
+    hplc_recovery_fraction:
       level: optional
       level_addendum: required if `MetaboliteRecoveryCorrectionApplied` is `true`
     whole_blood_radioactivity:
@@ -48,7 +48,7 @@ BloodMetaboliteCorrection:
     - extension == ".tsv"
     - sidecar.MetaboliteRecoveryCorrectionApplied == true
   columns:
-    hplc_recovery_fractions: required
+    hplc_recovery_fraction: required
 
 BloodWholeBlood:
   selectors:

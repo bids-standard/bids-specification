@@ -69,7 +69,7 @@ def migrate_tsv_columns(dataset_path: Path):
     # inheritance principle)
     for col_from, col_to, file_glob in (
         # https://github.com/bids-standard/bids-2-devel/issues/78
-        ("hplc_recovery_fractions", "hplc_recovery_fraction", "*_blood.*"),
+        ("hplc_recovery_fraction", "hplc_recovery_fraction", "*_blood.*"),
         # https://github.com/bids-standard/bids-2-devel/issues/15
         ("units", "unit", "_channels.*"),  # dependency on migrate_participants
         # ??? Any other columns to rename for some reason?
