@@ -334,534 +334,536 @@ Dictionary `"ResponseFunction"` has the following reserved keywords:
 
 ### Demonstrative examples
 
--   A basic Diffusion Tensor fit:
+#### A basic Diffusion Tensor fit
 
-    {{ MACROS___make_filetree_example(
-      {
-        "dti_pipeline": {
-          "sub-01": {
-            "dwi": {
-              "sub-01_model-tensor_param-diffusivity_dwimap.nii.gz": "",
-              "sub-01_model-tensor_param-diffusivity_dwimap.json": "",
-              "sub-01_model-tensor_param-s0_dwimap.nii.gz": "",
-              "sub-01_model-tensor_param-s0_dwimap.json": "",
-              "sub-01_model-tensor_param-fa_dwimap.nii.gz": "",
-              "sub-01_model-tensor_param-fa_dwimap.json": "",
-            },
-          },
-        },
-      }
-    ) }}
-
-    Dimensions of NIfTI image "`sub-01_model-tensor_param-diffusivity_dwimap.nii.gz`": *I*x*J*x*K*x6 ([symmetric rank 2 tensor image](#encoding-tensor))
-    Dimensions of NIfTI image "`sub-01_model-tensor_param-s0_dwimap.nii.gz`": *I*x*J*x*K* ([scalar](#encoding-scalar))
-    Dimensions of NIfTI image "`sub-01_model-tensor_param-fa_dwimap.nii.gz`": *I*x*J*x*K* ([scalar](#encoding-scalar))
-
-    Contents of file `sub-01_model-tensor_param-diffusivity_dwimap.json`:
-
-    ```JSON
+{{ MACROS___make_filetree_example(
     {
-        "Description": "Diffusion Coefficient, encoded as a tensor representation",
-        "Model": {
-            "Description": "Diffusion Tensor",
-            "Parameters": {
-                "FitMethod": "ols",
-                "OutlierRejectionMethod": "None"
-            }
+    "dti_pipeline": {
+        "sub-01": {
+        "dwi": {
+            "sub-01_model-tensor_param-diffusivity_dwimap.nii.gz": "",
+            "sub-01_model-tensor_param-diffusivity_dwimap.json": "",
+            "sub-01_model-tensor_param-s0_dwimap.nii.gz": "",
+            "sub-01_model-tensor_param-s0_dwimap.json": "",
+            "sub-01_model-tensor_param-fa_dwimap.nii.gz": "",
+            "sub-01_model-tensor_param-fa_dwimap.json": "",
         },
-        "OrientationEncoding": {
-            "AntipodalSymmetry": true,
-            "EncodingAxis": 3,
-            "Reference": "xyz",
-            "TensorRank": 2,
-            "Type": "tensor"
         },
-        "Units": "mm^2/s"
+    },
     }
-    ```
+) }}
 
-    Contents of file `sub-01_model-tensor_param-s0_dwimap.json`:
+Dimensions of NIfTI image "`sub-01_model-tensor_param-diffusivity_dwimap.nii.gz`": *I*x*J*x*K*x6 ([symmetric rank 2 tensor image](#encoding-tensor))
+Dimensions of NIfTI image "`sub-01_model-tensor_param-s0_dwimap.nii.gz`": *I*x*J*x*K* ([scalar](#encoding-scalar))
+Dimensions of NIfTI image "`sub-01_model-tensor_param-fa_dwimap.nii.gz`": *I*x*J*x*K* ([scalar](#encoding-scalar))
 
-    ```JSON
-    {
-        "Description": "Estimated signal intensity with no diffusion weighting, ie. S0",
-        "Model": {
-            "Description": "Diffusion Tensor",
-            "Parameters": {
-                "FitMethod": "ols",
-                "OutlierRejectionmethod": "None"
-            }
+Contents of file `sub-01_model-tensor_param-diffusivity_dwimap.json`:
+
+```JSON
+{
+    "Description": "Diffusion Coefficient, encoded as a tensor representation",
+    "Model": {
+        "Description": "Diffusion Tensor",
+        "Parameters": {
+            "FitMethod": "ols",
+            "OutlierRejectionMethod": "None"
+        }
+    },
+    "OrientationEncoding": {
+        "AntipodalSymmetry": true,
+        "EncodingAxis": 3,
+        "Reference": "xyz",
+        "TensorRank": 2,
+        "Type": "tensor"
+    },
+    "Units": "mm^2/s"
+}
+```
+
+Contents of file `sub-01_model-tensor_param-s0_dwimap.json`:
+
+```JSON
+{
+    "Description": "Estimated signal intensity with no diffusion weighting, ie. S0",
+    "Model": {
+        "Description": "Diffusion Tensor",
+        "Parameters": {
+            "FitMethod": "ols",
+            "OutlierRejectionmethod": "None"
         }
     }
-    ```
+}
+```
 
-    Contents of file `sub-01_model-tensor_param-fa_dwimap.json`:
+Contents of file `sub-01_model-tensor_param-fa_dwimap.json`:
 
-    ```JSON
+```JSON
+{
+    "Description": "Fractional Anisotropy",
+    "Model": {
+        "Description": "Diffusion Tensor",
+        "Parameters": {
+            "FitMethod": "ols",
+            "OutlierRejectionmethod": "None"
+        }
+    },
+    "ParameterURL": "https://doi.org/10.1002/nbm.1940080707"
+}
+```
+
+Notes:
+
+-   "The diffusion tensor" intrinsically is a mathematical model of how
+    the diffusivity is estimated to vary as a function of orientation.
+    As such, within this model,
+    it is not the *parameter* that is a tensor;
+    rather, it is the *diffusivity* that is the estimated parameter,
+    and the *way in which the anisotropy of that parameter is encoded* is a tensor.
+
+-   Even if image `sub-01_model-tensor_param-diffusivity_dwimap.nii.gz`
+    were to be the only image yielded by the pipeline,
+    it is nevertheless REQUIRED to include entity "`_param-`" in those file names.
+
+-   Metadata fields relevant to the interpretation of the anisotropy of the tensor
+    are *not relevant* to the scalar measures
+    "`s0`" (estimated signal intensity with no diffusion weighting)
+    or "`fa`" (Fractional Anisotropy).
+    Those fields therefore MUST be omitted from the corresponding sidecar JSONs.
+
+#### A multi-shell, multi-tissue Constrained Spherical Deconvolution fit
+
+{{ MACROS___make_filetree_example(
     {
-        "Description": "Fractional Anisotropy",
-        "Model": {
-            "Description": "Diffusion Tensor",
-            "Parameters": {
-                "FitMethod": "ols",
-                "OutlierRejectionmethod": "None"
-            }
+    "msmtcsd_pipeline": {
+        "sub-01": {
+        "dwi": {
+            "sub-01_model-csd_param-wm_dwimap.nii.gz": "",
+            "sub-01_model-csd_param-wm_dwimap.json": "",
+            "sub-01_model-csd_param-gm_dwimap.nii.gz": "",
+            "sub-01_model-csd_param-gm_dwimap.json": "",
+            "sub-01_model-csd_param-csf_dwimap.nii.gz": "",
+            "sub-01_model-csd_param-csf_dwimap.nii.gz": "",
         },
-        "ParameterURL": "https://doi.org/10.1002/nbm.1940080707"
+        },
+    },
     }
-    ```
+) }}
 
-    Notes:
+Dimensions of NIfTI image "`sub-01_model-csd_param-wm_model.nii.gz`": *I*x*J*x*K*x45 ([spherical harmonics](#encoding-sh))
+Dimensions of NIfTI image "`sub-01_model-csd_param-gm_model.nii.gz`": *I*x*J*x*K*x1 ([spherical harmonics](#encoding-sh))
+Dimensions of NIfTI image "`sub-01_model-csd_param-csf_model.nii.gz`": *I*x*J*x*K*x1 ([spherical harmonics](#encoding-sh))
 
-    -   "The diffusion tensor" intrinsically is a mathematical model of how
-        the diffusivity is estimated to vary as a function of orientation.
-        As such, within this model,
-        it is not the *parameter* that is a tensor;
-        rather, it is the *diffusivity* that is the estimated parameter,
-        and the *way in which the anisotropy of that parameter is encoded* is a tensor.
+Contents of JSON file "`sub-01_model-csd_param-wm_model.json`":
 
-    -   Even if image `sub-01_model-tensor_param-diffusivity_dwimap.nii.gz`
-        were to be the only image yielded by the pipeline,
-        it is nevertheless REQUIRED to include entity "`_param-`" in those file names.
+```JSON
+{
+    "Model": {
+        "Description": "Multi-Shell Multi-Tissue (MSMT) Constrained Spherical Deconvolution (CSD)",
+        "URL": "https://mrtrix.readthedocs.io/en/latest/constrained_spherical_deconvolution/multi_shell_multi_tissue_csd.html",
+    },
+    "Description": "White matter",
+    "NonNegativity": "constrained",
+    "OrientationEncoding": {
+        "EncodingAxis": 3,
+        "Reference": "xyz",
+        "SphericalHarmonicBasis": "MRtrix3",
+        "SphericalHarmonicDegree": 8,
+        "Type": "sh",
+    },
+    "ParameterURL": "http://www.sciencedirect.com/science/article/pii/S1053811911012092",
+    "ResponseFunction": {
+        "Coefficients": [ [ 600.2 0.0 0.0 0.0 0.0 0.0 ],
+                            [ 296.3 -115.2 24.7 -4.4 -0.5 1.8 ],
+                            [ 199.8 -111.3 41.8 -10.2 2.1 -0.7 ],
+                            [ 158.3 -98.7 48.4 -17.1 4.5 -1.4 ] ],
+        "Type": "zsh"
+    }
+}
+```
 
-    -   Metadata fields relevant to the interpretation of the anisotropy of the tensor
-        are *not relevant* to the scalar measures
-        "`s0`" (estimated signal intensity with no diffusion weighting)
-        or "`fa`" (Fractional Anisotropy).
-        Those fields therefore MUST be omitted from the corresponding sidecar JSONs.
+Contents of JSON file "`sub-01_model-csd_param-gm_dwimap.json`":
 
--   A multi-shell, multi-tissue Constrained Spherical Deconvolution fit:
+```JSON
+{
+    "Model": {
+        "Description": "Multi-Shell Multi-Tissue (MSMT) Constrained Spherical Deconvolution (CSD)",
+        "URL": "https://mrtrix.readthedocs.io/en/latest/constrained_spherical_deconvolution/multi_shell_multi_tissue_csd.html",
+    },
+    "Description": "Gray matter",
+    "NonNegativity": "constrained",
+    "OrientationEncoding": {
+        "EncodingAxis": 3,
+        "Reference": "xyz",
+        "SphericalHarmonicBasis": "MRtrix3",
+        "SphericalHarmonicDegree": 0,
+        "Type": "sh",
+    },
+    "ResponseFunction": {
+        "Coefficients": [ [ 1041.0 ],
+                            [ 436.6 ],
+                            [ 224.9 ],
+                            [ 128.8 ] ],
+        "Type": "zsh"
+    }
+}
+```
 
-    {{ MACROS___make_filetree_example(
-      {
-        "msmtcsd_pipeline": {
-          "sub-01": {
-            "dwi": {
-              "sub-01_model-csd_param-wm_dwimap.nii.gz": "",
-              "sub-01_model-csd_param-wm_dwimap.json": "",
-              "sub-01_model-csd_param-gm_dwimap.nii.gz": "",
-              "sub-01_model-csd_param-gm_dwimap.json": "",
-              "sub-01_model-csd_param-csf_dwimap.nii.gz": "",
-              "sub-01_model-csd_param-csf_dwimap.nii.gz": "",
-            },
-          },
-        },
-      }
-    ) }}
+Contents of JSON file "`sub-01_model-csd_param-csf_dwimap.json`":
 
-    Dimensions of NIfTI image "`sub-01_model-csd_param-wm_model.nii.gz`": *I*x*J*x*K*x45 ([spherical harmonics](#encoding-sh))
-    Dimensions of NIfTI image "`sub-01_model-csd_param-gm_model.nii.gz`": *I*x*J*x*K*x1 ([spherical harmonics](#encoding-sh))
-    Dimensions of NIfTI image "`sub-01_model-csd_param-csf_model.nii.gz`": *I*x*J*x*K*x1 ([spherical harmonics](#encoding-sh))
+```JSON
+{
+    "Model": {
+        "Description": "Multi-Shell Multi-Tissue (MSMT) Constrained Spherical Deconvolution (CSD)",
+        "URL": "https://mrtrix.readthedocs.io/en/latest/constrained_spherical_deconvolution/multi_shell_multi_tissue_csd.html",
+    },
+    "Description": "Cerebro-spinal fluid",
+    "NonNegativity": "constrained",
+    "OrientationEncoding": {
+        "EncodingAxis": 3,
+        "Reference": "xyz",
+        "SphericalHarmonicBasis": "MRtrix3",
+        "SphericalHarmonicDegree": 0,
+        "Type": "sh"
+    },
+    "ResponseFunction": {
+        "Coefficients": [ [ 3544.90770181 ],
+                            [ 134.441453035 ],
+                            [ 32.0826839826 ],
+                            [ 29.3674604452 ] ],
+        "Type": "zsh"
+    }
+}
+```
 
-    Contents of JSON file "`sub-01_model-csd_param-wm_model.json`":
+Notes:
 
-    ```JSON
+-   In this example,
+    the gray matter and CSF compartments are specified in the spherical harmonics basis
+    with maximal spherical harmonic degrees of zero,
+    even though each image only contains a single volume
+    and could therefore be interpreted as simply scalar parameters.
+    This is recommended in this instance
+    given that the spherical harmonic basis imposes a $\sqrt(4\pi)$ scaling
+    that should be taken into account if comparing the values of these parameters
+    with the *l*=0 term of the white matter ODF.
+
+-   The response functions for GM and CSF have a maximal zonal spherical harmonic degree of zero,
+    such that only one coefficient is required for each unique *b*-value shell.
+    It is however nevertheless vital that these data be provided as a list of lists of floats,
+    where the length of each list is one;
+    storing these values as a list of floats would be erroneously interpreted
+    as coefficients of different zonal spherical harmonic degrees for a single *b*-value shell.
+
+#### An FSL `bedpostx` Ball-And-Sticks fit
+
+This example includes both bootstrap realisations of the model fit,
+and the aggregated means of those parameters across realisations.
+
+{{ MACROS___make_filetree_example(
     {
-        "Model": {
-            "Description": "Multi-Shell Multi-Tissue (MSMT) Constrained Spherical Deconvolution (CSD)",
-            "URL": "https://mrtrix.readthedocs.io/en/latest/constrained_spherical_deconvolution/multi_shell_multi_tissue_csd.html",
+    "bedpostx_pipeline": {
+        "sub-01": {
+        "dwi": {
+            "sub-01_model-bs_desc-mean_param-s0_dwimap.nii.gz": "",
+            "sub-01_model-bs_desc-mean_param-s0_dwimap.json": "",
+            "sub-01_model-bs_desc-mean_param-polar_dwimap.nii.gz": "",
+            "sub-01_model-bs_desc-mean_param-polar_dwimap.json": "",
+            "sub-01_model-bs_desc-mean_param-vector_dwimap.nii.gz": "",
+            "sub-01_model-bs_desc-mean_param-vector_dwimap.json": "",
+            "sub-01_model-bs_desc-mean_param-vf_dwimap.nii.gz": "",
+            "sub-01_model-bs_desc-mean_param-vf_dwimap.json": "",
+            "sub-01_model-bs_desc-mean_param-vfsum_dwimap.nii.gz": "",
+            "sub-01_model-bs_desc-mean_param-vfsum_dwimap.json": "",
+            "sub-01_model-bs_desc-mean_param-diffusivity_dwimap.nii.gz": "",
+            "sub-01_model-bs_desc-mean_param-diffusivity_dwimap.json": "",
+            "sub-01_model-bs_desc-mean_param-dstd_dwimap.nii.gz": "",
+            "sub-01_model-bs_desc-mean_param-dstd_dwimap.json": "",
+            "sub-01_model-bs_desc-merged_param-polar_dwimap.nii.gz": "",
+            "sub-01_model-bs_desc-merged_param-polar_dwimap.json": "",
+            "sub-01_model-bs_desc-merged_param-vf_dwimap.nii.gz": "",
+            "sub-01_model-bs_desc-merged_param-vf_dwimap.json": "",
         },
-        "Description": "White matter",
-        "NonNegativity": "constrained",
-        "OrientationEncoding": {
-            "EncodingAxis": 3,
-            "Reference": "xyz",
-            "SphericalHarmonicBasis": "MRtrix3",
-            "SphericalHarmonicDegree": 8,
-            "Type": "sh",
         },
-        "ParameterURL": "http://www.sciencedirect.com/science/article/pii/S1053811911012092",
-        "ResponseFunction": {
-            "Coefficients": [ [ 600.2 0.0 0.0 0.0 0.0 0.0 ],
-                              [ 296.3 -115.2 24.7 -4.4 -0.5 1.8 ],
-                              [ 199.8 -111.3 41.8 -10.2 2.1 -0.7 ],
-                              [ 158.3 -98.7 48.4 -17.1 4.5 -1.4 ] ],
-            "Type": "zsh"
+    },
+    }
+) }}
+
+Dimensions of NIfTI image "`sub-01_model-bs_desc-mean_param-s0_dwimap.nii.gz`": *I*x*J*x*K* ([scalar](#encoding-scalar))
+Dimensions of NIfTI image "`sub-01_model-bs_desc-mean_param-polar_dwimap.nii.gz`": *I*x*J*x*K*x(*2*x*N*) ([spherical coordinates](#encoding-spherical), orientations only; *N* orientations per voxel)
+Dimensions of NIfTI image "`sub-01_model-bs_desc-mean_param-vector_dwimap.nii.gz`": *I*x*J*x*K*x(*3*x*N*) ([3-vectors](#encoding-3vectors), unit norm; *N* orientations per voxel)
+Dimensions of NIfTI image "`sub-01_model-bs_desc-mean_param-vf_dwimap.nii.gz`": *I*x*J*x*K*x*N* ([scalar](#encoding-scalar); *N* values per voxel)
+Dimensions of NIfTI image "`sub-01_model-bs_desc-mean_param-vfsum_dwimap.nii.gz`": *I*x*J*x*K* ([scalar](#encoding-scalar))
+Dimensions of NIfTI image "`sub-01_model-bs_desc-mean_param-diffusivity_dwimap.nii.gz`": *I*x*J*x*K* ([scalar](#encoding-scalar))
+Dimensions of NIfTI image "`sub-01_model-bs_desc-mean_param-dstd_dwimap.nii.gz`": *I*x*J*x*K* ([scalar](#encoding-scalar))
+Dimensions of NIfTI image "`sub-01_model-bs_desc-merged_param-polar_dwimap.nii.gz`": *I*x*J*x*K*x(*2*x*N*)x*R* ([spherical coordinates](#encoding-spherical), orientations only; *N* orientations per voxel; *R* bootstrap realisations)
+Dimensions of NIfTI image "`sub-01_model-bs_desc-merged_param-vf_dwimap.nii.gz`": *I*x*J*x*K*x*N*x*R* ([scalar](#encoding-scalar); *N* values per voxel; *R* bootstrap realisations)
+
+Contents of JSON file "`sub-01_model-bs_desc-mean_param-s0_dwimap.json`":
+
+```JSON
+{
+    "Description": "Estimated signal intensity with no diffusion weighting, ie. S0; mean across bootstrap realisations",
+    "Model": {
+        "Description": "Ball-And-Sticks model using FSL bedpostx",
+        "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
+        "Parameters": {
+            "ARDFudgeFactor": 1.0,
+            "Fibers": 3
+        },
+        "BootstrapParameters": {
+            "Burnin": 1000,
+            "Jumps": 1250,
+            "SampleEvery": 25
         }
     }
-    ```
+}
+```
 
-    Contents of JSON file "`sub-01_model-csd_param-gm_dwimap.json`":
+Contents of JSON file "`sub-01_model-bs_desc-mean_param-polar_dwimap.json`":
 
-    ```JSON
-    {
-        "Model": {
-            "Description": "Multi-Shell Multi-Tissue (MSMT) Constrained Spherical Deconvolution (CSD)",
-            "URL": "https://mrtrix.readthedocs.io/en/latest/constrained_spherical_deconvolution/multi_shell_multi_tissue_csd.html",
+```JSON
+{
+    "Description": "Fibre orientations encoded using polar angles; mean across bootstrap realisations",
+    "Model": {
+        "Description": "Ball-And-Sticks model using FSL bedpostx",
+        "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
+        "Parameters": {
+            "ARDFudgeFactor": 1.0,
+            "Fibers": 3
         },
-        "Description": "Gray matter",
-        "NonNegativity": "constrained",
-        "OrientationEncoding": {
-            "EncodingAxis": 3,
-            "Reference": "xyz",
-            "SphericalHarmonicBasis": "MRtrix3",
-            "SphericalHarmonicDegree": 0,
-            "Type": "sh",
+        "BootstrapParameters": {
+            "Burnin": 1000,
+            "Jumps": 1250,
+            "SampleEvery": 25
+        }
+    },
+    "OrientationEncoding": {
+        "EncodingAxis": 3,
+        "Reference": "ijk",
+        "Type": "unitspherical"
+    }
+}
+```
+
+Contents of JSON file "`sub-01_model-bs_desc-mean_param-vector_dwimap.json`":
+
+```JSON
+{
+    "Description": "Fibre orientations encoded using 3-vectors; mean across bootstrap realisations",
+    "Model": {
+        "Description": "Ball-And-Sticks model using FSL bedpostx",
+        "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
+        "Parameters": {
+            "ARDFudgeFactor": 1.0,
+            "Fibers": 3
         },
-        "ResponseFunction": {
-            "Coefficients": [ [ 1041.0 ],
-                              [ 436.6 ],
-                              [ 224.9 ],
-                              [ 128.8 ] ],
-            "Type": "zsh"
+        "BootstrapParameters": {
+            "Burnin": 1000,
+            "Jumps": 1250,
+            "SampleEvery": 25
+        }
+    },
+    "OrientationEncoding": {
+        "EncodingAxis": 3,
+        "Reference": "ijk",
+        "Type": "unit3vector"
+    }
+}
+```
+
+Contents of JSON file "`sub-01_model-bs_desc-mean_param-vf_dwimap.json`":
+
+```JSON
+{
+    "Description": "Volume fractions of stick components; mean across bootstrap realisations",
+    "Model": {
+        "Description": "Ball-And-Sticks model using FSL bedpostx",
+        "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
+        "Parameters": {
+            "ARDFudgeFactor": 1.0,
+            "Fibers": 3
+        },
+        "BootstrapParameters": {
+            "Burnin": 1000,
+            "Jumps": 1250,
+            "SampleEvery": 25
+        }
+    },
+    "OrientationEncoding": {
+        "Type": "scalar"
+    }
+}
+```
+
+Contents of JSON file "`sub-01_model-bs_desc-mean_param-vfsum_dwimap.json`":
+
+```JSON
+{
+    "Description": "Sum of volume fractions of stick components; mean across bootstrap realisations",
+    "Model": {
+        "Description": "Ball-And-Sticks model using FSL bedpostx",
+        "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
+        "Parameters": {
+            "ARDFudgeFactor": 1.0,
+            "Fibers": 3
+        },
+        "BootstrapParameters": {
+            "Burnin": 1000,
+            "Jumps": 1250,
+            "SampleEvery": 25
         }
     }
-    ```
+}
+```
 
-    Contents of JSON file "`sub-01_model-csd_param-csf_dwimap.json`":
+Contents of JSON file "`sub-01_model-bs_desc-mean_param-diffusivity_dwimap.json`":
 
-    ```JSON
-    {
-        "Model": {
-            "Description": "Multi-Shell Multi-Tissue (MSMT) Constrained Spherical Deconvolution (CSD)",
-            "URL": "https://mrtrix.readthedocs.io/en/latest/constrained_spherical_deconvolution/multi_shell_multi_tissue_csd.html",
+```JSON
+{
+    "Description": "Diffusivity; mean across bootstrap realisations",
+    "Model": {
+        "Description": "Ball-And-Sticks model using FSL bedpostx",
+        "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
+        "Parameters": {
+            "ARDFudgeFactor": 1.0,
+            "Fibers": 3
         },
-        "Description": "Cerebro-spinal fluid",
-        "NonNegativity": "constrained",
-        "OrientationEncoding": {
-            "EncodingAxis": 3,
-            "Reference": "xyz",
-            "SphericalHarmonicBasis": "MRtrix3",
-            "SphericalHarmonicDegree": 0,
-            "Type": "sh"
-        },
-        "ResponseFunction": {
-            "Coefficients": [ [ 3544.90770181 ],
-                              [ 134.441453035 ],
-                              [ 32.0826839826 ],
-                              [ 29.3674604452 ] ],
-            "Type": "zsh"
+        "BootstrapParameters": {
+            "Burnin": 1000,
+            "Jumps": 1250,
+            "SampleEvery": 25
         }
-    }
-    ```
+    },
+    "Units": "mm^2/s"
+}
+```
 
-    Notes:
+Contents of JSON file "`sub-01_model-bs_desc-mean_param-dstd_dwimap.json`":
 
-    -   In this example,
-        the gray matter and CSF compartments are specified in the spherical harmonics basis
-        with maximal spherical harmonic degrees of zero,
-        even though each image only contains a single volume
-        and could therefore be interpreted as simply scalar parameters.
-        This is recommended in this instance
-        given that the spherical harmonic basis imposes a $\sqrt(4\pi)$ scaling
-        that should be taken into account if comparing the values of these parameters
-        with the *l*=0 term of the white matter ODF.
-
-    -   The response functions for GM and CSF have a maximal zonal spherical harmonic degree of zero,
-        such that only one coefficient is required for each unique *b*-value shell.
-        It is however nevertheless vital that these data be provided as a list of lists of floats,
-        where the length of each list is one;
-        storing these values as a list of floats would be erroneously interpreted
-        as coefficients of different zonal spherical harmonic degrees for a single *b*-value shell.
-
--   An FSL `bedpostx` Ball-And-Sticks fit
-    (including both mean parameters and bootstrap realisations):
-
-    {{ MACROS___make_filetree_example(
-      {
-        "bedpostx_pipeline": {
-          "sub-01": {
-            "dwi": {
-              "sub-01_model-bs_desc-mean_param-s0_dwimap.nii.gz": "",
-              "sub-01_model-bs_desc-mean_param-s0_dwimap.json": "",
-              "sub-01_model-bs_desc-mean_param-polar_dwimap.nii.gz": "",
-              "sub-01_model-bs_desc-mean_param-polar_dwimap.json": "",
-              "sub-01_model-bs_desc-mean_param-vector_dwimap.nii.gz": "",
-              "sub-01_model-bs_desc-mean_param-vector_dwimap.json": "",
-              "sub-01_model-bs_desc-mean_param-vf_dwimap.nii.gz": "",
-              "sub-01_model-bs_desc-mean_param-vf_dwimap.json": "",
-              "sub-01_model-bs_desc-mean_param-vfsum_dwimap.nii.gz": "",
-              "sub-01_model-bs_desc-mean_param-vfsum_dwimap.json": "",
-              "sub-01_model-bs_desc-mean_param-diffusivity_dwimap.nii.gz": "",
-              "sub-01_model-bs_desc-mean_param-diffusivity_dwimap.json": "",
-              "sub-01_model-bs_desc-mean_param-dstd_dwimap.nii.gz": "",
-              "sub-01_model-bs_desc-mean_param-dstd_dwimap.json": "",
-              "sub-01_model-bs_desc-merged_param-polar_dwimap.nii.gz": "",
-              "sub-01_model-bs_desc-merged_param-polar_dwimap.json": "",
-              "sub-01_model-bs_desc-merged_param-vf_dwimap.nii.gz": "",
-              "sub-01_model-bs_desc-merged_param-vf_dwimap.json": "",
-            },
-          },
+```JSON
+{
+    "Description": "Diffusivity variance parameter; mean across bootstrap realisations",
+    "Model": {
+        "Description": "Ball-And-Sticks model using FSL bedpostx",
+        "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
+        "Parameters": {
+            "ARDFudgeFactor": 1.0,
+            "Fibers": 3
         },
-      }
-    ) }}
-
-    Dimensions of NIfTI image "`sub-01_model-bs_desc-mean_param-s0_dwimap.nii.gz`": *I*x*J*x*K* ([scalar](#encoding-scalar))
-    Dimensions of NIfTI image "`sub-01_model-bs_desc-mean_param-polar_dwimap.nii.gz`": *I*x*J*x*K*x(*2*x*N*) ([spherical coordinates](#encoding-spherical), orientations only; *N* orientations per voxel)
-    Dimensions of NIfTI image "`sub-01_model-bs_desc-mean_param-vector_dwimap.nii.gz`": *I*x*J*x*K*x(*3*x*N*) ([3-vectors](#encoding-3vectors), unit norm; *N* orientations per voxel)
-    Dimensions of NIfTI image "`sub-01_model-bs_desc-mean_param-vf_dwimap.nii.gz`": *I*x*J*x*K*x*N* ([scalar](#encoding-scalar); *N* values per voxel)
-    Dimensions of NIfTI image "`sub-01_model-bs_desc-mean_param-vfsum_dwimap.nii.gz`": *I*x*J*x*K* ([scalar](#encoding-scalar))
-    Dimensions of NIfTI image "`sub-01_model-bs_desc-mean_param-diffusivity_dwimap.nii.gz`": *I*x*J*x*K* ([scalar](#encoding-scalar))
-    Dimensions of NIfTI image "`sub-01_model-bs_desc-mean_param-dstd_dwimap.nii.gz`": *I*x*J*x*K* ([scalar](#encoding-scalar))
-    Dimensions of NIfTI image "`sub-01_model-bs_desc-merged_param-polar_dwimap.nii.gz`": *I*x*J*x*K*x(*2*x*N*)x*R* ([spherical coordinates](#encoding-spherical), orientations only; *N* orientations per voxel; *R* bootstrap realisations)
-    Dimensions of NIfTI image "`sub-01_model-bs_desc-merged_param-vf_dwimap.nii.gz`": *I*x*J*x*K*x*N*x*R* ([scalar](#encoding-scalar); *N* values per voxel; *R* bootstrap realisations)
-
-    Contents of JSON file "`sub-01_model-bs_desc-mean_param-s0_dwimap.json`":
-
-    ```JSON
-    {
-        "Description": "Estimated signal intensity with no diffusion weighting, ie. S0; mean across bootstrap realisations",
-        "Model": {
-            "Description": "Ball-And-Sticks model using FSL bedpostx",
-            "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
-            "Parameters": {
-                "ARDFudgeFactor": 1.0,
-                "Fibers": 3
-            },
-            "BootstrapParameters": {
-                "Burnin": 1000,
-                "Jumps": 1250,
-                "SampleEvery": 25
-            }
+        "BootstrapParameters": {
+            "Burnin": 1000,
+            "Jumps": 1250,
+            "SampleEvery": 25
         }
-    }
-    ```
+    },
+    "Units": "TODO"
+}
 
-    Contents of JSON file "`sub-01_model-bs_desc-mean_param-polar_dwimap.json`":
+Contents of JSON file "`sub-01_model-bs_desc-merged_param-polar_dwimap.json`":
 
-    ```JSON
-    {
-        "Description": "Fibre orientations encoded using polar angles; mean across bootstrap realisations",
-        "Model": {
-            "Description": "Ball-And-Sticks model using FSL bedpostx",
-            "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
-            "Parameters": {
-                "ARDFudgeFactor": 1.0,
-                "Fibers": 3
-            },
-            "BootstrapParameters": {
-                "Burnin": 1000,
-                "Jumps": 1250,
-                "SampleEvery": 25
-            }
+```JSON
+{
+    "BootstrapAxis": 4,
+    "Description": "Fibre orientations encoded using polar angles; concatenated bootstrap realisations",
+    "Model": {
+        "Description": "Ball-And-Sticks model using FSL bedpostx",
+        "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
+        "Parameters": {
+            "ARDFudgeFactor": 1.0,
+            "Fibers": 3
         },
-        "OrientationEncoding": {
-            "EncodingAxis": 3,
-            "Reference": "ijk",
-            "Type": "unitspherical"
+        "BootstrapParameters": {
+            "Burnin": 1000,
+            "Jumps": 1250,
+            "SampleEvery": 25
         }
+    },
+    "OrientationEncoding": {
+        "EncodingAxis": 3,
+        "ReferenceAxes": "ijk",
+        "Type": "unitspherical"
     }
-    ```
+}
 
-    Contents of JSON file "`sub-01_model-bs_desc-mean_param-vector_dwimap.json`":
+Contents of JSON file "`sub-01_model-bs_desc-merged_param-vf_dwimap.json`":
 
-    ```JSON
-    {
-        "Description": "Fibre orientations encoded using 3-vectors; mean across bootstrap realisations",
-        "Model": {
-            "Description": "Ball-And-Sticks model using FSL bedpostx",
-            "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
-            "Parameters": {
-                "ARDFudgeFactor": 1.0,
-                "Fibers": 3
-            },
-            "BootstrapParameters": {
-                "Burnin": 1000,
-                "Jumps": 1250,
-                "SampleEvery": 25
-            }
+```JSON
+{
+    "BootstrapAxis": 4,
+    "Description": "Volume fractions of stick components; concatenated bootstrap realisations",
+    "Model": {
+        "Description": "Ball-And-Sticks model using FSL bedpostx",
+        "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
+        "Parameters": {
+            "ARDFudgeFactor": 1.0,
+            "Fibers": 3
         },
-        "OrientationEncoding": {
-            "EncodingAxis": 3,
-            "Reference": "ijk",
-            "Type": "unit3vector"
+        "BootstrapParameters": {
+            "Burnin": 1000,
+            "Jumps": 1250,
+            "SampleEvery": 25
         }
+    },
+    "OrientationEncoding": {
+        "Type": "scalar"
     }
-    ```
+}
 
-    Contents of JSON file "`sub-01_model-bs_desc-mean_param-vf_dwimap.json`":
+Notes:
 
-    ```JSON
-    {
-        "Description": "Volume fractions of stick components; mean across bootstrap realisations",
-        "Model": {
-            "Description": "Ball-And-Sticks model using FSL bedpostx",
-            "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
-            "Parameters": {
-                "ARDFudgeFactor": 1.0,
-                "Fibers": 3
-            },
-            "BootstrapParameters": {
-                "Burnin": 1000,
-                "Jumps": 1250,
-                "SampleEvery": 25
-            }
-        },
-        "OrientationEncoding": {
-            "Type": "scalar"
-        }
-    }
-    ```
+-   Here the descriptors "`merged`" and "`mean`" have been utilized
+    to distinguish between the comprehensive set of all bootstrap realisations
+    and the computed mean statistics of parameters across all realisations respectively,
+    as this is the terminology utilized by the FSL software itself.
+    These labels are not however a part of the specification.
 
-    Contents of JSON file "`sub-01_model-bs_desc-mean_param-vfsum_dwimap.json`":
+-   Care must be taken for images of greater than three dimensions
+    where additional dimensions do *not* encode anisotropy information:
 
-    ```JSON
-    {
-        "Description": "Sum of volume fractions of stick components; mean across bootstrap realisations",
-        "Model": {
-            "Description": "Ball-And-Sticks model using FSL bedpostx",
-            "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
-            "Parameters": {
-                "ARDFudgeFactor": 1.0,
-                "Fibers": 3
-            },
-            "BootstrapParameters": {
-                "Burnin": 1000,
-                "Jumps": 1250,
-                "SampleEvery": 25
-            }
-        }
-    }
-    ```
+    -   In image `"*_desc-mean*_param-vf_*"`,
+        the fourth image axis encodes scalar information across stick components.
+        Since this is *not* coefficients in some orientation encoding,
+        but the image possesses more than three axes,
+        field `"OrientationEncoding"["Type"]` MUST be specified as `"scalar"`.
 
-    Contents of JSON file "`sub-01_model-bs_desc-mean_param-diffusivity_dwimap.json`":
+    -   Image `"*_param-vfsum_*"`is a three-dimensional image,
+        and therefore the fact that it encodes a scalar parameter
+        can be robustly inferred without reference to metadata information.
 
-    ```JSON
-    {
-        "Description": "Diffusivity; mean across bootstrap realisations",
-        "Model": {
-            "Description": "Ball-And-Sticks model using FSL bedpostx",
-            "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
-            "Parameters": {
-                "ARDFudgeFactor": 1.0,
-                "Fibers": 3
-            },
-            "BootstrapParameters": {
-                "Burnin": 1000,
-                "Jumps": 1250,
-                "SampleEvery": 25
-            }
-        },
-        "Units": "mm^2/s"
-    }
-    ```
+    -   In image `"sub-01_model-bs_desc-merged_param-vf_dwimap.json"`,
+        there are two extra image dimensions beyond the three spatial dimensions:
+        the fourth image axis encodes across the multiple stick components per voxel,
+        and the fifth axis encodes realisations across bootstraps.
+        it is therefore necessary to explicitly specify
+        that the parameter being encoded in the data,
+        being the volume fractions of individual stick components,
+        do not have any anisotropy,
+        and therefore field `"OrientationEncoding"["Type"]` MUST be specified as `"scalar"`.
 
-    Contents of JSON file "`sub-01_model-bs_desc-mean_param-dstd_dwimap.json`":
+-   TODO CONFIRM WHETHER WE WANT TO ENFORCE THIS OR INCLUDE EXPLICIT METADATA FIELDS
+    THAT INDICATE THE AXIS / AXES OF DIRECTION ENCODING VS. BOOTSTRAP REALISATIONS
 
-    ```JSON
-    {
-        "Description": "Diffusivity variance parameter; mean across bootstrap realisations",
-        "Model": {
-            "Description": "Ball-And-Sticks model using FSL bedpostx",
-            "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
-            "Parameters": {
-                "ARDFudgeFactor": 1.0,
-                "Fibers": 3
-            },
-            "BootstrapParameters": {
-                "Burnin": 1000,
-                "Jumps": 1250,
-                "SampleEvery": 25
-            }
-        },
-        "Units": "TODO"
-    }
+-   TODO DISCUSS
+    The example presented here is not necessarily a unique solution
+    for the storage of the outcomes of the FSL `bedpostx` command as BIDS Derivatives:
 
-    Contents of JSON file "`sub-01_model-bs_desc-merged_param-polar_dwimap.json`":
+    -   WOULD SPLITTING STICK COMPONENTS ACROSS NIFTIS
+        REQUIRE A NEW ENTITY BY WHICH TO INDEX THEM?
+        OR JUST GIVE THEM EG. `_param-spherical1`, `_param-spherical2`?
 
-    ```JSON
-    {
-        "BootstrapAxis": 4,
-        "Description": "Fibre orientations encoded using polar angles; concatenated bootstrap realisations",
-        "Model": {
-            "Description": "Ball-And-Sticks model using FSL bedpostx",
-            "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
-            "Parameters": {
-                "ARDFudgeFactor": 1.0,
-                "Fibers": 3
-            },
-            "BootstrapParameters": {
-                "Burnin": 1000,
-                "Jumps": 1250,
-                "SampleEvery": 25
-            }
-        },
-        "OrientationEncoding": {
-            "EncodingAxis": 3,
-            "ReferenceAxes": "ijk",
-            "Type": "unitspherical"
-        }
-    }
+    -   While the FSL `bedpostx` command yields the fibre orientation for each individual stick
+        as polar angles within separate NIfTI images,
+        for BIDS it is RECOMMENDED that such orientation information be encoded
+        either as [spherical coordinates](#encoding-spherical) or [3-vectors](#encoding-3vector).
 
-    Contents of JSON file "`sub-01_model-bs_desc-merged_param-vf_dwimap.json`":
-
-    ```JSON
-    {
-        "BootstrapAxis": 4,
-        "Description": "Volume fractions of stick components; concatenated bootstrap realisations",
-        "Model": {
-            "Description": "Ball-And-Sticks model using FSL bedpostx",
-            "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
-            "Parameters": {
-                "ARDFudgeFactor": 1.0,
-                "Fibers": 3
-            },
-            "BootstrapParameters": {
-                "Burnin": 1000,
-                "Jumps": 1250,
-                "SampleEvery": 25
-            }
-        },
-        "OrientationEncoding": {
-            "Type": "scalar"
-        }
-    }
-
-    Notes:
-
-    -   Here the descriptors "`merged`" and "`mean`" have been utilized
-        to distinguish between the comprehensive set of all bootstrap realisations
-        and the computed mean statistics of parameters across all realisations respectively,
-        as this is the terminology utilized by the FSL software itself.
-        These labels are not however a part of the specification.
-
-    -   Care must be taken for images of greater than three dimensions
-        where additional dimensions do *not* encode anisotropy information:
-
-        -   In image `"*_desc-mean*_param-vf_*"`,
-            the fourth image axis encodes scalar information across stick components.
-            Since this is *not* coefficients in some orientation encoding,
-            but the image possesses more than three axes,
-            field `"OrientationEncoding"["Type"]` MUST be specified as `"scalar"`.
-
-        -   Image `"*_param-vfsum_*"`is a three-dimensional image,
-            and therefore the fact that it encodes a scalar parameter
-            can be robustly inferred without reference to metadata information.
-
-        -   In image `"sub-01_model-bs_desc-merged_param-vf_dwimap.json"`,
-            there are two extra image dimensions beyond the three spatial dimensions:
-            the fourth image axis encodes across the multiple stick components per voxel,
-            and the fifth axis encodes realisations across bootstraps.
-            it is therefore necessary to explicitly specify
-            that the parameter being encoded in the data,
-            being the volume fractions of individual stick components,
-            do not have any anisotropy,
-            and therefore field `"OrientationEncoding"["Type"]` MUST be specified as `"scalar"`.
-
-    -   TODO CONFIRM WHETHER WE WANT TO ENFORCE THIS OR INCLUDE EXPLICIT METADATA FIELDS
-        THAT INDICATE THE AXIS / AXES OF DIRECTION ENCODING VS. BOOTSTRAP REALISATIONS
-
-    -   TODO DISCUSS
-        The example presented here is not necessarily a unique solution
-        for the storage of the outcomes of the FSL `bedpostx` command as BIDS Derivatives:
-
-        -   WOULD SPLITTING STICK COMPONENTS ACROSS NIFTIS
-            REQUIRE A NEW ENTITY BY WHICH TO INDEX THEM?
-            OR JUST GIVE THEM EG. `_param-spherical1`, `_param-spherical2`?
-
-        -   While the FSL `bedpostx` command yields the fibre orientation for each individual stick
-            as polar angles within separate NIfTI images,
-            for BIDS it is RECOMMENDED that such orientation information be encoded
-            either as [spherical coordinates](#encoding-spherical) or [3-vectors](#encoding-3vector).
-
-        -   Given that it is possible to encode a scalar parameter
-            into either [spherical coordinates](#encoding-spherical) or [3-vectors](#encoding-3vector) encodings,
-            it is possible to store an image that encodes,
-            for each stick component,
-            both volume fraction and orientation.
-            It is however RECOMMENDED to encode this information in separate files,
-            given that in the more general case there may be multiple scalar parameters
-            individually attributed to each component.
+    -   Given that it is possible to encode a scalar parameter
+        into either [spherical coordinates](#encoding-spherical) or [3-vectors](#encoding-3vector) encodings,
+        it is possible to store an image that encodes,
+        for each stick component,
+        both volume fraction and orientation.
+        It is however RECOMMENDED to encode this information in separate files,
+        given that in the more general case there may be multiple scalar parameters
+        individually attributed to each component.
 
 ### Appendix
 
