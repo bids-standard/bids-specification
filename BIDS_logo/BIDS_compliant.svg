@@ -3,7 +3,7 @@
    viewBox="0 0 779.06495 369.28157"
    version="1.1"
    id="svg86"
-   sodipodi:docname="BIDS_logo_black.svg"
+   sodipodi:docname="BIDS_compliant.svg"
    xml:space="preserve"
    width="779.06494"
    height="369.28159"
@@ -25,9 +25,9 @@
      inkscape:deskcolor="#ffffff"
      showgrid="false"
      inkscape:zoom="1.072697"
-     inkscape:cx="345.3911"
-     inkscape:cy="200.8955"
-     inkscape:current-layer="text2052" /><defs
+     inkscape:cx="321.61925"
+     inkscape:cy="257.76151"
+     inkscape:current-layer="g1986" /><defs
      id="defs4"><style
        id="style2">.cls-1{fill:#1a1a1a;}</style><filter
        style="color-interpolation-filters:sRGB"
@@ -241,10 +241,10 @@
        class="st0"
        d="m 630.02949,15.024887 c 16.18827,0 31.50774,3.68801 45.19596,10.266162 -5.60295,4.432714 -10.79809,8.688119 -15.63861,12.783947 -9.22005,-3.351132 -19.16707,-5.17741 -29.53962,-5.17741 -23.88346,0 -45.51511,9.681048 -61.15372,25.337393 -15.65635,15.656346 -25.3374,37.270262 -25.3374,61.153731 0,23.88346 9.68105,45.49738 25.3374,61.15372 15.65634,15.65635 37.27026,25.3374 61.15372,25.3374 23.88347,0 45.51512,-9.68105 61.15373,-25.3374 15.65635,-15.65634 25.3374,-37.27026 25.3374,-61.15372 0,-5.67388 -0.54966,-11.24137 -1.59578,-16.61382 4.48591,-5.85118 9.0782,-11.684632 13.77687,-17.464893 3.68802,10.673977 5.69161,22.145843 5.69161,34.078713 0,28.81264 -11.68464,54.91246 -30.56799,73.79582 -18.88337,18.88337 -44.98319,30.568 -73.79584,30.568 -28.81264,0 -54.91246,-11.68463 -73.79582,-30.568 -18.9011,-18.88336 -30.58573,-44.98318 -30.58573,-73.79582 0,-28.812647 11.68463,-54.912469 30.568,-73.79583 18.88336,-18.883363 44.98318,-30.567993 73.79582,-30.567993 z m -48.61801,87.218083 25.46151,-0.33689 1.8972,0.49646 c 5.14195,2.96106 9.98248,6.34765 14.50384,10.17752 3.26248,2.76601 6.38311,5.78026 9.34417,9.04273 9.13139,-14.69888 18.86563,-28.192059 29.14953,-40.603661 11.2591,-13.599566 23.20969,-25.940242 35.76314,-37.199335 l 2.48232,-0.957466 h 27.78425 l -5.60295,6.22353 c -17.21666,19.131594 -32.83754,38.9015 -46.95131,59.291982 -14.11376,20.40822 -26.73813,41.47248 -37.96177,63.15732 l -3.49298,6.73772 -3.20928,-6.86184 c -5.92211,-12.71302 -13.01445,-24.37993 -21.47207,-34.80567 -8.45762,-10.42575 -18.29824,-19.68125 -29.77011,-27.55375 z"
        id="path418"
-       style="fill:#ff0000;stroke-width:1.77309;filter:url(#filter464)"
+       style="fill:#00e900;stroke-width:1.77309;filter:url(#filter464);fill-opacity:1"
        inkscape:label="CheckMark" /><text
        xml:space="preserve"
-       style="font-size:85.3333px;line-height:125%;font-family:'Nanum Pen';-inkscape-font-specification:'Nanum Pen, Normal';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter1955)"
+       style="font-size:85.3333px;line-height:125%;font-family:'Nanum Pen';-inkscape-font-specification:'Nanum Pen, Normal';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#00e900;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter1955);fill-opacity:1"
        x="252.27783"
        y="338.51392"
        id="text520"
@@ -253,4 +253,4 @@
          id="tspan518"
          x="252.27783"
          y="338.51392"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:85.3333px;font-family:'Gillius ADF No2';-inkscape-font-specification:'Gillius ADF No2, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff0000;stroke:none">COMPLIANT</tspan></text></g></svg>
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:85.3333px;font-family:'Gillius ADF No2';-inkscape-font-specification:'Gillius ADF No2, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#00e900;stroke:none;fill-opacity:1">COMPLIANT</tspan></text></g></svg>
