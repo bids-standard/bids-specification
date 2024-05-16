@@ -52,8 +52,6 @@ jobs:
         name: automerge
         uses: "pascalgn/automerge-action@v0.16.3"
         if: steps.days_since_last_commit.outputs.days_since > 5 && ((github.event_name == 'pull_request' && github.event.action == 'labeled') || github.event_name == 'schedule')
-        permissions:
-          contents: write
         env:
         # TODO: temporarily disabled to see if all above works
         #  GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
