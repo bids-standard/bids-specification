@@ -1,0 +1,63 @@
+name: automerge
+on:
+  schedule:
+    - cron: '4 5 * * *'  # Runs at 04:05 (random) UTC every day
+  pull_request:
+    types:
+      - labeled
+      - unlabeled
+      - synchronize
+      - opened
+      - edited
+      - ready_for_review
+      - reopened
+      - unlocked
+  pull_request_review:
+    types:
+      - submitted
+      - dismissed
+  check_suite:
+    types:
+      - completed
+  status: {}
+jobs:
+  automerge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0  # Ensures all history is fetched
+
+      - name: Get date of the last commit
+        id: last_commit_date
+        run: |
+          LAST_COMMIT_DATE=$(git log -1 --format=%cI)
+          echo "Last commit date: $LAST_COMMIT_DATE"
+          echo "::set-output name=last_commit_date::$LAST_COMMIT_DATE"
+
+      - name: Calculate days since last commit
+        id: days_since_last_commit
+        run: |
+          from datetime import datetime
+          last_commit_date = "${{ steps.last_commit_date.outputs.last_commit_date }}"
+          last_commit_datetime = datetime.strptime(last_commit_date, "%Y-%m-%dT%H:%M:%S%z")
+          now = datetime.now(last_commit_datetime.tzinfo)
+          delta = now - last_commit_datetime
+          days_since = delta.days
+          echo "Days since last commit: $days_since"
+          echo "::set-output name=days_since::$days_since"
+
+      - id: automerge
+        name: automerge
+        uses: "pascalgn/automerge-action@v0.16.3"
+        if: steps.days_since_last_commit.outputs.days_since > 5 && ((github.event_name == 'pull_request' && github.event.action == 'labeled') || github.event_name == 'schedule')
+        permissions:
+          contents: write
+        env:
+        # TODO: temporarily disabled to see if all above works
+        #  GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          MERGE_LABELS: automerge
+          MERGE_METHOD_LABEL_REQUIRED: true
+          MERGE_COMMIT_MESSAGE: automatic
+          MERGE_REQUIRED_APPROVALS: 3
