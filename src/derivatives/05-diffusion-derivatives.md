@@ -19,15 +19,20 @@
 
 Template:
 
-```Text
-<pipeline_name>/
-    sub-<participant_label>/
-        dwi/
-            <source_keywords>[_space-<space>]_desc-preproc_dwi.nii[.gz]
-            <source_keywords>[_space-<space>]_desc-preproc_dwi.bvals
-            <source_keywords>[_space-<space>]_desc-preproc_dwi.bvecs
-            <source_keywords>[_space-<space>]_desc-preproc_dwi.json
-```
+{{ MACROS___make_filetree_example(
+  {
+    "<pipeline_name>": {
+      "sub-<participant_label>": {
+        "dwi": {
+          "<source_keywords>[_space-<space>]_desc-preproc_dwi.bval": "",
+          "<source_keywords>[_space-<space>]_desc-preproc_dwi.bvec": "",
+          "<source_keywords>[_space-<space>]_desc-preproc_dwi.json": "",
+          "<source_keywords>[_space-<space>]_desc-preproc_dwi.nii[.gz]": "",
+        },
+      },
+    },
+  }
+) }}
 
 ## Diffusion models
 
@@ -52,17 +57,22 @@ that warrant explicit mention due to their consequence in how they are represent
 
 ### Basic filesystem structure
 
-```Text
-<pipeline_name>/
-    sub-<participant_label>/
-        dwi/
-            <source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label1>_dwimap.nii[.gz]
-            <source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label1>_dwimap.json
-            <source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label2>_dwimap.nii[.gz]
-            <source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label2>_dwimap.json
-            <source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label3>_dwimap.nii[.gz]
-            <source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label3>_dwimap.json
-```
+{{ MACROS___make_filetree_example(
+  {
+    "<pipeline_name>": {
+      "sub-<participant_label>": {
+        "dwi": {
+          "<source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label1>_dwimap.nii[.gz]": "",
+          "<source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label1>_dwimap.json": "",
+          "<source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label2>_dwimap.nii[.gz]": "",
+          "<source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label2>_dwimap.json": "",
+          "<source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label3>_dwimap.nii[.gz]": "",
+          "<source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label3>_dwimap.json": "",
+        },
+      },
+    },
+  }
+) }}
 
 -   Files "`<source_keywords>_model-<label>_param-<label*>_dwimap.nii[.gz]`"
     provide image data encoding the different parameters that may be estimated by the model.
@@ -326,17 +336,22 @@ Dictionary `"ResponseFunction"` has the following reserved keywords:
 
 -   A basic Diffusion Tensor fit:
 
-    ```Text
-    my_diffusion_pipeline/
-        sub-01/
-            dwi/
-                sub-01_model-tensor_param-diffusivity_dwimap.nii.gz
-                sub-01_model-tensor_param-diffusivity_dwimap.json
-                sub-01_model-tensor_param-s0_dwimap.nii.gz
-                sub-01_model-tensor_param-s0_dwimap.json
-                sub-01_model-tensor_param-fa_dwimap.nii.gz
-                sub-01_model-tensor_param-fa_dwimap.json
-    ```
+    {{ MACROS___make_filetree_example(
+      {
+        "dti_pipeline": {
+          "sub-01": {
+            "dwi": {
+              "sub-01_model-tensor_param-diffusivity_dwimap.nii.gz": "",
+              "sub-01_model-tensor_param-diffusivity_dwimap.json": "",
+              "sub-01_model-tensor_param-s0_dwimap.nii.gz": "",
+              "sub-01_model-tensor_param-s0_dwimap.json": "",
+              "sub-01_model-tensor_param-fa_dwimap.nii.gz": "",
+              "sub-01_model-tensor_param-fa_dwimap.json": "",
+            },
+          },
+        },
+      }
+    ) }}
 
     Dimensions of NIfTI image "`sub-01_model-tensor_param-diffusivity_dwimap.nii.gz`": *I*x*J*x*K*x6 ([symmetric rank 2 tensor image](#encoding-tensor))
     Dimensions of NIfTI image "`sub-01_model-tensor_param-s0_dwimap.nii.gz`": *I*x*J*x*K* ([scalar](#encoding-scalar))
@@ -417,17 +432,22 @@ Dictionary `"ResponseFunction"` has the following reserved keywords:
 
 -   A multi-shell, multi-tissue Constrained Spherical Deconvolution fit:
 
-    ```Text
-    my_diffusion_pipeline/
-        sub-01/
-            dwi/
-                sub-01_model-csd_param-wm_dwimap.nii.gz
-                sub-01_model-csd_param-wm_dwimap.json
-                sub-01_model-csd_param-gm_dwimap.nii.gz
-                sub-01_model-csd_param-gm_dwimap.json
-                sub-01_model-csd_param-csf_dwimap.nii.gz
-                sub-01_model-csd_param-csf_dwimap.json
-    ```
+    {{ MACROS___make_filetree_example(
+      {
+        "msmtcsd_pipeline": {
+          "sub-01": {
+            "dwi": {
+              "sub-01_model-csd_param-wm_dwimap.nii.gz": "",
+              "sub-01_model-csd_param-wm_dwimap.json": "",
+              "sub-01_model-csd_param-gm_dwimap.nii.gz": "",
+              "sub-01_model-csd_param-gm_dwimap.json": "",
+              "sub-01_model-csd_param-csf_dwimap.nii.gz": "",
+              "sub-01_model-csd_param-csf_dwimap.nii.gz": "",
+            },
+          },
+        },
+      }
+    ) }}
 
     Dimensions of NIfTI image "`sub-01_model-csd_param-wm_model.nii.gz`": *I*x*J*x*K*x45 ([spherical harmonics](#encoding-sh))
     Dimensions of NIfTI image "`sub-01_model-csd_param-gm_model.nii.gz`": *I*x*J*x*K*x1 ([spherical harmonics](#encoding-sh))
@@ -537,29 +557,34 @@ Dictionary `"ResponseFunction"` has the following reserved keywords:
 -   An FSL `bedpostx` Ball-And-Sticks fit
     (including both mean parameters and bootstrap realisations):
 
-    ```Text
-    my_diffusion_pipeline/
-        sub-01/
-            dwi/
-                sub-01_model-bs_desc-mean_param-s0_dwimap.nii.gz
-                sub-01_model-bs_desc-mean_param-s0_dwimap.json
-                sub-01_model-bs_desc-mean_param-polar_dwimap.nii.gz
-                sub-01_model-bs_desc-mean_param-polar_dwimap.json
-                sub-01_model-bs_desc-mean_param-vector_dwimap.nii.gz
-                sub-01_model-bs_desc-mean_param-vector_dwimap.json
-                sub-01_model-bs_desc-mean_param-vf_dwimap.nii.gz
-                sub-01_model-bs_desc-mean_param-vf_dwimap.json
-                sub-01_model-bs_desc-mean_param-vfsum_dwimap.nii.gz
-                sub-01_model-bs_desc-mean_param-vfsum_dwimap.json
-                sub-01_model-bs_desc-mean_param-diffusivity_dwimap.nii.gz
-                sub-01_model-bs_desc-mean_param-diffusivity_dwimap.json
-                sub-01_model-bs_desc-mean_param-dstd_dwimap.nii.gz
-                sub-01_model-bs_desc-mean_param-dstd_dwimap.json
-                sub-01_model-bs_desc-merged_param-polar_dwimap.nii.gz
-                sub-01_model-bs_desc-merged_param-polar_dwimap.json
-                sub-01_model-bs_desc-merged_param-vf_dwimap.nii.gz
-                sub-01_model-bs_desc-merged_param-vf_dwimap.json
-    ```
+    {{ MACROS___make_filetree_example(
+      {
+        "bedpostx_pipeline": {
+          "sub-01": {
+            "dwi": {
+              "sub-01_model-bs_desc-mean_param-s0_dwimap.nii.gz": "",
+              "sub-01_model-bs_desc-mean_param-s0_dwimap.json": "",
+              "sub-01_model-bs_desc-mean_param-polar_dwimap.nii.gz": "",
+              "sub-01_model-bs_desc-mean_param-polar_dwimap.json": "",
+              "sub-01_model-bs_desc-mean_param-vector_dwimap.nii.gz": "",
+              "sub-01_model-bs_desc-mean_param-vector_dwimap.json": "",
+              "sub-01_model-bs_desc-mean_param-vf_dwimap.nii.gz": "",
+              "sub-01_model-bs_desc-mean_param-vf_dwimap.json": "",
+              "sub-01_model-bs_desc-mean_param-vfsum_dwimap.nii.gz": "",
+              "sub-01_model-bs_desc-mean_param-vfsum_dwimap.json": "",
+              "sub-01_model-bs_desc-mean_param-diffusivity_dwimap.nii.gz": "",
+              "sub-01_model-bs_desc-mean_param-diffusivity_dwimap.json": "",
+              "sub-01_model-bs_desc-mean_param-dstd_dwimap.nii.gz": "",
+              "sub-01_model-bs_desc-mean_param-dstd_dwimap.json": "",
+              "sub-01_model-bs_desc-merged_param-polar_dwimap.nii.gz": "",
+              "sub-01_model-bs_desc-merged_param-polar_dwimap.json": "",
+              "sub-01_model-bs_desc-merged_param-vf_dwimap.nii.gz": "",
+              "sub-01_model-bs_desc-merged_param-vf_dwimap.json": "",
+            },
+          },
+        },
+      }
+    ) }}
 
     Dimensions of NIfTI image "`sub-01_model-bs_desc-mean_param-s0_dwimap.nii.gz`": *I*x*J*x*K* ([scalar](#encoding-scalar))
     Dimensions of NIfTI image "`sub-01_model-bs_desc-mean_param-polar_dwimap.nii.gz`": *I*x*J*x*K*x(*2*x*N*) ([spherical coordinates](#encoding-spherical), orientations only; *N* orientations per voxel)
