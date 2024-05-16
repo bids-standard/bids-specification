@@ -45,7 +45,7 @@ bvec:
     (that is, the 3x3 matrix of direction cosines has a positive determinant),
     in which case the sign of the first element of each 3-vector must be inverted
     for this interpretation to be valid.
-    
+
     Note that this definition of orientations with respect to the NIfTI image axes
     is *not* equivalent to the DICOM convention,
     where orientations are instead defined with respect to the scanner device's coordinate system
