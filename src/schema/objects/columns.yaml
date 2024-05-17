@@ -720,6 +720,14 @@ strain_rrid:
     of the strain of the species, for example: `RRID:IMSR_JAX:000664`.
   type: string
   format: rrid
+# TODO: Clarify if column values can be arrays.
+surgery_date:
+  name: surgery_date
+  display_name: Surgery date
+  description: |
+    Date(s) of surgery. Datetime format and their anonymization are described in [Units](SPEC_ROOT/common-principles.md#units). The details of the surgery should be described in the sidecar json file.
+  type: string
+  format: datetime
 time:
   name: time
   display_name: Time
