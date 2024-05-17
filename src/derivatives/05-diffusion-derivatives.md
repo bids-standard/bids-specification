@@ -17,22 +17,15 @@
 -   As per [common data types](02-common-data-types.md) for derivative data, a
     JSON sidecar file is REQUIRED due to the REQUIRED `SkullStripped` field.
 
-Template:
-
-{{ MACROS___make_filetree_example(
-  {
-    "<pipeline_name>": {
-      "sub-<participant_label>": {
-        "dwi": {
-          "<source_keywords>[_space-<space>]_desc-preproc_dwi.bval": "",
-          "<source_keywords>[_space-<space>]_desc-preproc_dwi.bvec": "",
-          "<source_keywords>[_space-<space>]_desc-preproc_dwi.json": "",
-          "<source_keywords>[_space-<space>]_desc-preproc_dwi.nii[.gz]": "",
-        },
-      },
-    },
-  }
-) }}
+```Text
+<pipeline_name>/
+    sub-<participant_label>/
+        dwi/
+            <source_keywords>[_space-<space>]_desc-preproc_dwi.nii[.gz]
+            <source_keywords>[_space-<space>]_desc-preproc_dwi.bvals
+            <source_keywords>[_space-<space>]_desc-preproc_dwi.bvecs
+            <source_keywords>[_space-<space>]_desc-preproc_dwi.json
+```
 
 ## Diffusion models
 
@@ -57,22 +50,17 @@ that warrant explicit mention due to their consequence in how they are represent
 
 ### Basic filesystem structure
 
-{{ MACROS___make_filetree_example(
-  {
-    "<pipeline_name>": {
-      "sub-<participant_label>": {
-        "dwi": {
-          "<source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label1>_dwimap.nii[.gz]": "",
-          "<source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label1>_dwimap.json": "",
-          "<source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label2>_dwimap.nii[.gz]": "",
-          "<source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label2>_dwimap.json": "",
-          "<source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label3>_dwimap.nii[.gz]": "",
-          "<source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label3>_dwimap.json": "",
-        },
-      },
-    },
-  }
-) }}
+```Text
+<pipeline_name>/
+    sub-<participant_label>/
+        dwi/
+            <source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label1>_dwimap.nii[.gz]
+            <source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label1>_dwimap.json
+            <source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label2>_dwimap.nii[.gz]
+            <source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label2>_dwimap.json
+            <source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label3>_dwimap.nii[.gz]
+            <source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label3>_dwimap.json
+```
 
 -   Files "`<source_keywords>_model-<label>_param-<label*>_dwimap.nii[.gz]`"
     provide image data encoding the different parameters that may be estimated by the model.
