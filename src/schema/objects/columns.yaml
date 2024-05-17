@@ -69,6 +69,13 @@ associated_brain_region_quality_type:
     The method used to identify the associated brain region (estimated|proof)
     depending on anatomical pictures proofing the location or indirect estimation of the location.
   type: string
+birthdate:
+  name: birthdate
+  display_name: Birthdate
+  description: |
+    Day of birth of the participant. Datetime format and their anonymization are described in [Units](SPEC_ROOT/common-principles.md#units).
+  type: string
+  format: datetime
 beta_rotation:
   name: beta_rotation
   display_name: Beta rotation
