@@ -47,8 +47,7 @@ alpha_rotation:
   display_name: Alpha rotation
   description: |
     Euler angle to match probe extension dimensions (width, height, depth) to global x, y, z coordinates.
-  unit:
-    degree
+  unit: degree
 associated_brain_region:
   name: associated_brain_region
   display_name: Associated brain region
@@ -67,16 +66,15 @@ associated_brain_region_quality_type:
   name: associated_brain_region_quality_type
   display_name: Associated brain region quality type
   description: |
-     The method used to identify the associated brain region (estimated|proof)
-     depending on anatomical pictures proofing the location or indirect estimation of the location.
+    The method used to identify the associated brain region (estimated|proof)
+    depending on anatomical pictures proofing the location or indirect estimation of the location.
   type: string
 beta_rotation:
   name: beta_rotation
   display_name: Beta rotation
   description: |
     Euler angle to match probe extension dimensions (width, height, depth) to global x, y, z coordinates.
-  unit:
-    degree
+  unit: degree
 cardiac:
   name: cardiac
   display_name: Cardiac measurement
@@ -231,8 +229,7 @@ gamma_rotation:
   display_name: Gamma rotation
   description: |
     Euler angle to match probe extension dimensions (width, height, depth) to global x, y, z coordinates.
-  unit:
-    degree
+  unit: degree
 group__channel:
   name: group
   display_name: Channel group
