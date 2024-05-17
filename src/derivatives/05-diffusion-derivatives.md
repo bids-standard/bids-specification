@@ -324,6 +324,10 @@ Dictionary `"ResponseFunction"` has the following reserved keywords:
 
 #### A basic Diffusion Tensor fit
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
     {
     "dti_pipeline": {
@@ -420,6 +424,10 @@ Notes:
 
 #### A multi-shell, multi-tissue Constrained Spherical Deconvolution fit
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
     {
     "msmtcsd_pipeline": {
@@ -547,6 +555,10 @@ Notes:
 This example includes both bootstrap realisations of the model fit,
 and the aggregated means of those parameters across realisations.
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
     {
     "bedpostx_pipeline": {
