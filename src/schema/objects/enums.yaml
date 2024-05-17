@@ -1405,3 +1405,24 @@ microvascular:
   display_name: microvascular
   description: |
     The origin of a tissue: microvascular
+postnatal:
+  value: postnatal
+  display_name: postnatal
+  description: |
+    This is the actual time that has passed since a subject's birth, 
+    also known as “chronological age”. 
+    If age_type is omitted, age is assumed to be this type.
+fetal:
+  value: fetal
+  display_name: fetal
+  description: |
+    Also known as "embryonic age," this measures the age of a 
+    fetus or embryo from the time of conception. It's typically about two weeks 
+    less than the gestational age.
+gestational:
+  value: gestational
+  display_name: gestational
+  description: |
+    This measures the duration of pregnancy from the first day of the 
+    mother's last menstrual period to the current date. This should be included 
+    for experiments where some subjects have not been born.
