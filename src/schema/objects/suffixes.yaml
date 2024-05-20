@@ -763,7 +763,7 @@ probes:
   value: probes
   display_name: Implanted physical devices
   description: |
-    Physical devices used for recording cephys data, whether chronically or acutely implanted.
+    Physical devices used for recording microelectrode electrophysiology data, whether chronically or acutely implanted.
 probseg:
   value: probseg
   display_name: Probabilistic Segmentation

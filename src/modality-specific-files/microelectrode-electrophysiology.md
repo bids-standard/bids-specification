@@ -1,4 +1,4 @@
-# Cellular Electrophysiology
+# Microelectrode Electrophysiology
 
 Support for Microelectrode Electrophysiology was developed as a [BIDS Extension Proposal](../extensions.md#bids-extension-proposals) [BEP032: Animal electrophysiology (ephys)](https://bids.neuroimaging.io/bep032).
 
@@ -16,14 +16,14 @@ You can also reach the moderators of this BEP through our [main discussion forum
 Most core principles of the original BIDS and particulars of BIDS-iEEG specification are adopted
 for this modality as well, though some special considerations and additional fields were added.
 
-Several [example x datasets](https://bids-standard.github.io/bids-examples/#cephys)
+Several [example x datasets](https://bids-standard.github.io/bids-examples/#microephys)
 have been formatted using this specification and can be used for practical guidance when curating a new dataset.
 
 ## Primary data file formats
 
-Unprocessed `cephys` data must be stored in an [open file format](https://en.wikipedia.org/wiki/Open_format),
+Unprocessed microelectrode electrophysiology (`icephys` and `ecephys` modalities) data must be stored in an [open file format](https://en.wikipedia.org/wiki/Open_format),
 while the native format, if different, can be stored in an optional  `sourcedata/` directory.
-The native file format is used in case conversion elicits the loss of crucial metadata specific to manufacturers and specific `cephys` systems.
+The native file format is used in case conversion elicits the loss of crucial metadata specific to manufacturers and specific hardware systems.
 Metadata should be included alongside the data in the `.json` and `.tsv` files.
 The current list of allowed data file formats:
 
@@ -50,7 +50,7 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_filename_template(
    "raw",
-   datatypes=["cephys"],
+   datatypes=["ecephys", "icephys"],
    suffixes=["ecephys", "icephys", "events"]
 )
 }}

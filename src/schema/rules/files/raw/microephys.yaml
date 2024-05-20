@@ -1,5 +1,5 @@
 ---
-cephys:
+microephys:
   suffixes:
     - ecephys
     - icephys
@@ -9,7 +9,8 @@ cephys:
     # - .nwb.zarr
     - .nix
   datatypes:
-    - cephys
+    - ecephys
+    - icephys
   entities:
     subject: required
     session: optional
@@ -25,7 +26,8 @@ probes:
   extensions:
     - .tsv
   datatypes:
-    - cephys
+    - ecephys
+    - icephys
   entities:
     subject: required
     session: optional
