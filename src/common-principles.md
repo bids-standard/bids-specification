@@ -663,10 +663,8 @@ but *not* be erroneously associated with other data files
 to which the metadata contained within are not applicable.
 The Inheritance Principle defines a systematized set of rules
 to determine which metadata files to associate with which data files.
-Further, due to the prospect of an individual data file having
-multiple metadata files applicable to it,
-the Principle defines the *order of precedence* with which such
-metadata file contents should be considered.
+Further, because multiple metadata files may apply to an individual data file,
+the Principle defines the *order of precedence* of such metadata files contents.
 
 ### Rules
 
