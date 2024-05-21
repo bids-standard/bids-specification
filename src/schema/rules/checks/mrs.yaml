@@ -1,0 +1,14 @@
+---
+MRSNiftiConsistency:
+  issue:
+    code: MRS_NIFTI_CONSISTENCY
+    message: |
+      ResonantNucleus and/or SpectrometerFrequency fields are inconsistent
+      between the NIfTI-MRS header extension and the BIDS sidecar.
+    level: error
+  selectors:
+    - datatype == "mrs"
+    - nifti_header.mrs
+  checks:
+    - sidecar.ResonantNucleus == nifti_header.mrs.ResonantNucleus
+    - sidecar.SpectrometerFrequency == nifti_header.mrs.SpectrometerFrequency
