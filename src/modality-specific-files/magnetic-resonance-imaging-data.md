@@ -937,7 +937,7 @@ NIfTI headers.
 
 ### `*_asllabeling.*`
 
-An anonymized screenshot of the planning of the labeling slab/plane
+A deidentified screenshot of the planning of the labeling slab/plane
 with respect to the imaging slab or slices.
 This screenshot is based on DICOM macro C.8.13.5.14.
 
