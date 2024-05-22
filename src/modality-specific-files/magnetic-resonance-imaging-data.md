@@ -658,7 +658,7 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_suffix_table(["dwi", "sbref"]) }}
 
-Additionally, the following suffixes are used for scanner-generated derivatives:
+Additionally, the following suffixes are used for scanner-generated images:
 
 <!--
 This block generates a suffix table.
@@ -699,7 +699,7 @@ The user is free to choose any other label than `singleband` and
 Scanner-generated TRACE and ADC volumes MAY be included using the
 `TRACE` and `ADC` suffixes.
 If TRACE or ADC volume filenames match a diffusion series with all applicable entities,
-such volumes SHOULD be derived from that series.
+such volumes SHOULD be computed from that series.
 Otherwise, some entity, such as [`acq-<label>`](../appendices/entities.md#acq),
 SHOULD be used to indicate that the files are unrelated.
 
