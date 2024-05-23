@@ -9,7 +9,7 @@ SubjectFolders:
       There are no subject directories (labeled "sub-*") in the root of this dataset.
     level: error
   selectors:
-    - path == 'dataset_description.json'
+    - path == '/dataset_description.json'
   checks:
     - length(dataset.subjects.sub_dirs) > 0
 
@@ -22,7 +22,7 @@ ParticipantIDMismtach:
       found in the participants.tsv file.
     level: error
   selectors:
-    - path == 'participants.tsv'
+    - path == '/participants.tsv'
   checks:
     - sorted(columns.participant_label) == sorted(dataset.subjects.sub_dirs)
 
@@ -34,7 +34,7 @@ PhenotypeSubjectsMissing:
       A phenotype/ .tsv file lists subjects that were not found in the dataset.
     level: error
   selectors:
-    - path == 'dataset_description.json'
+    - path == '/dataset_description.json'
   checks:
     - sorted(dataset.subjects.phenotype) == sorted(dataset.subjects.sub_dirs)
 
@@ -47,7 +47,7 @@ SamplesTSVMissing:
       See 'Modality agnostic files' section of the BIDS specification.
     level: error
   selectors:
-    - path == 'dataset_description.json'
+    - path == '/dataset_description.json'
     - '"micr" in dataset.modalities'
   checks:
     - "'samples.tsv' in dataset.files"
@@ -60,7 +60,7 @@ UnknownVersion:
       The BIDS Schema used for validation may be out of date.
     level: warning
   selectors:
-    - path == 'dataset_description.json'
+    - path == '/dataset_description.json'
   checks:
     - intersects([json.BIDSVersion], schema.meta.versions)
 
@@ -72,7 +72,7 @@ SingleSourceAuthors:
       'CITATION.cff' file found. The "Authors" field of 'dataset_description.json'
       must be removed to avoid inconsistency.
   selectors:
-    - path == 'CITATION.cff'
+    - path == '/CITATION.cff'
   checks:
     - '!("Authors" in dataset.dataset_description)'
 
@@ -85,7 +85,7 @@ SingleSourceCitationFields:
       The "HowToAckowledge", "License", and "ReferencesAndLinks" fields of
       'dataset_description.json' should be removed to avoid inconsistency.
   selectors:
-    - path == 'CITATION.cff'
+    - path == '/CITATION.cff'
   checks:
     - '!("HowToAcknowledge" in dataset.dataset_description)'
     - '!("License" in dataset.dataset_description)'
