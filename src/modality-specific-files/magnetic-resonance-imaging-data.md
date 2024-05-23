@@ -696,8 +696,8 @@ In such a case, two files could have the following names:
 The user is free to choose any other label than `singleband` and
 `multiband`, as long as they are consistent across subjects and sessions.
 
-Scanner-generated TRACE and ADC volumes MAY be included using the
-`TRACE` and `ADC` suffixes.
+Scanner-generated TRACE, ADC and FA volumes MAY be included using the
+`TRACE`, `FA` and `ADC` suffixes.
 If TRACE or ADC volume filenames match a diffusion series with all applicable entities,
 such volumes SHOULD be computed from that series.
 Otherwise, some entity, such as [`acq-<label>`](../appendices/entities.md#acq),
