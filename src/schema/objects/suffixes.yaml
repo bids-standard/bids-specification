@@ -47,6 +47,11 @@ DF:
   display_name: Dark-field microscopy
   description: |
     Dark-field microscopy imaging data
+FA:
+  value: FA
+  display_name: Fractional Anisotropy image
+  description: |
+    Diffusion images reflecting the directionality of the diffusion tensor
 FLAIR:
   value: FLAIR
   display_name: Fluid attenuated inversion recovery image
