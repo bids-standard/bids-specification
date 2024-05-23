@@ -43,6 +43,7 @@ sbref:
 isotropic:
   suffixes:
     - ADC
+    - FA
     - TRACE
   extensions:
     - .nii.gz
