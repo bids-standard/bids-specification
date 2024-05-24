@@ -130,11 +130,14 @@ jobs:
               --enhancement-label "" \
               --bugs-label "" \
               --exclude-labels "exclude-from-changelog"
-            cat ~/changelog_build/CHANGES.md
       - run:
           name: append changelog from pre-GitHub times
           command: |
             cat ~/project/src/pregh-changes.md >> ~/changelog_build/CHANGES.md
+      - run:
+          name: print out complete changelog
+          command: |
+            cat ~/changelog_build/CHANGES.md
       - persist_to_workspace:
           # raw generated changelog in ~/changelog_build/CHANGES.md
           root: ~/.
