@@ -103,14 +103,16 @@ jobs:
       - checkout
       - run:
           name: Build changelog
-          # $CHANGE_TOKEN is generated via the GitHub web UI, and then securely stored within CircleCI web UI
+          # $CHANGELOG_GITHUB_TOKEN was generated via the GitHub web UI of the `bids-maintenance`
+          # GitHub user (see https://github.com/settings/tokens), and was then securely stored within
+          # CircleCI web UI.
           command: |
             mkdir ~/changelog_build
             github_changelog_generator \
               --exclude-tags-regex "^(?!v).*?$" \
               --user bids-standard \
               --project bids-specification \
-              --token ${CHANGE_TOKEN} \
+              --token ${CHANGELOG_GITHUB_TOKEN} \
               --output ~/changelog_build/CHANGES.md \
               --base ~/project/src/pregh-changes.md \
               --header-label "# Changelog" \
