@@ -98,8 +98,7 @@ jobs:
     docker:
       - image: ferrarimarco/github-changelog-generator:1.14.3
     steps:
-      - setup_remote_docker:
-          version: 18.06.0-ce
+      - setup_remote_docker
       # checkout code to default ~/project
       - checkout
       - run:
