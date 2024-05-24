@@ -185,6 +185,27 @@ group__channel:
 handedness:
   name: handedness
   display_name: Subject handedness
+  definition: {
+    "LongName": "Subject handedness",
+    "Description": "String value indicating one of \"left\", \"right\", or \"ambidextrous\".",
+    "Levels": {
+      "left": "Left-handed",
+      "l": "Left-handed",
+      "L": "Left-handed",
+      "LEFT": "Left-handed",
+      "Left": "Left-handed",
+      "right": "Right-handed",
+      "r": "Right-handed",
+      "R": "Right-handed",
+      "RIGHT": "Right-handed",
+      "Right": "Right-handed",
+      "ambidextrous": "Ambidextrous",
+      "a": "Ambidextrous",
+      "A": "Ambidextrous",
+      "AMBIDEXTROUS": "Ambidextrous",
+      "Ambidextrous": "Ambidextrous",
+    }
+  }
   description: |
     String value indicating one of "left", "right", "ambidextrous".
 
@@ -194,25 +215,6 @@ handedness:
 
     For "ambidextrous", use one of these values: `ambidextrous`, `a`, `A`, `AMBIDEXTROUS`,
     `Ambidextrous`.
-  type: string
-  # TODO: Add definitions for these values. (perhaps don't specify)
-  enum:
-    - left
-    - l
-    - L
-    - LEFT
-    - Left
-    - right
-    - r
-    - R
-    - RIGHT
-    - Right
-    - ambidextrous
-    - a
-    - A
-    - AMBIDEXTROUS
-    - Ambidextrous
-    - n/a
 hemisphere:
   name: hemisphere
   display_name: Electrode hemisphere
