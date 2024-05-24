@@ -194,16 +194,10 @@ workflows:
       - check_links:
           requires:
             - build_docs
-      - github_changelog_generator:
-          filters:
-            branches:
-              only: master
+      - github_changelog_generator
       - lint_generated_changelog:
           requires:
             - github_changelog_generator
-          filters:
-            branches:
-              only: master
       - commit_generated_changelog:
           requires:
             - lint_generated_changelog
