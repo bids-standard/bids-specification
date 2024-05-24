@@ -112,14 +112,14 @@ jobs:
           name: Build changelog
           # $CHANGELOG_GITHUB_TOKEN was generated via the GitHub web UI of the `bids-maintenance`
           # GitHub user (see https://github.com/settings/tokens), and was then securely stored within
-          # CircleCI web UI as an environment variable. This is being picked up automatically by the
-          # github_changelog_generator.
+          # CircleCI web UI as an environment variable.
           command: |
             mkdir ~/changelog_build
             github_changelog_generator \
               --exclude-tags-regex "^(?!v).*?$" \
               --user bids-standard \
               --project bids-specification \
+              --token ${CHANGELOG_GITHUB_TOKEN} \
               --output ~/changelog_build/CHANGES.md \
               --header-label "# Changelog" \
               --release-branch master \
