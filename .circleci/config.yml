@@ -108,6 +108,7 @@ jobs:
           # CircleCI web UI.
           command: |
             mkdir ~/changelog_build
+            github_changelog_generator --version
             github_changelog_generator \
               --exclude-tags-regex "^(?!v).*?$" \
               --user bids-standard \
