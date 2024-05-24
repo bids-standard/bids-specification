@@ -96,11 +96,18 @@ jobs:
   # Automatically generate a changelog since migration from Google Docs to GitHub
   github_changelog_generator:
     docker:
-      - image: ferrarimarco/github-changelog-generator:1.14.3
+      - image: cimg/ruby:3.2
     steps:
-      - setup_remote_docker
       # checkout code to default ~/project
       - checkout
+      - run:
+          name: install github_changelog_generator
+          command: |
+            gem install github_changelog_generator
+      - run:
+          name: check version
+          command: |
+            github_changelog_generator --version
       - run:
           name: Build changelog
           # $CHANGELOG_GITHUB_TOKEN was generated via the GitHub web UI of the `bids-maintenance`
@@ -108,14 +115,12 @@ jobs:
           # CircleCI web UI.
           command: |
             mkdir ~/changelog_build
-            github_changelog_generator --version
             github_changelog_generator \
               --exclude-tags-regex "^(?!v).*?$" \
               --user bids-standard \
               --project bids-specification \
               --token ${CHANGELOG_GITHUB_TOKEN} \
               --output ~/changelog_build/CHANGES.md \
-              --base ~/project/src/pregh-changes.md \
               --header-label "# Changelog" \
               --release-branch master \
               --no-issues \
@@ -126,6 +131,10 @@ jobs:
               --bugs-label "" \
               --exclude-labels "exclude-from-changelog"
             cat ~/changelog_build/CHANGES.md
+      - run:
+          name: append changelog from pre-GitHub times
+          command: |
+            cat ~/project/src/pregh-changes.md >> ~/changelog_build/CHANGES.md
       - persist_to_workspace:
           # raw generated changelog in ~/changelog_build/CHANGES.md
           root: ~/.
