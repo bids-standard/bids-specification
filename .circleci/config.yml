@@ -119,7 +119,7 @@ jobs:
               --exclude-tags-regex "^(?!v).*?$" \
               --user bids-standard \
               --project bids-specification \
-              --token ${CHANGELOG_GITHUB_TOKEN} \
+              --token ${CHANGE_TOKEN} \
               --output ~/changelog_build/CHANGES.md \
               --header-label "# Changelog" \
               --release-branch master \
