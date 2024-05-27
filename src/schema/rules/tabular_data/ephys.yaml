@@ -34,4 +34,35 @@ ephysProbes:
     material__probes: optional
   index_columns: [probe_id]
   additional_columns: allowed_if_defined
-    
+
+
+ephysElectrodes:
+  selectors:
+    - datatype == "ephys"
+    - suffix == "electrodes"
+    - extension == ".tsv"
+  initial_columns:
+    - electrode_id
+    - probe_id
+    - hemisphere
+    - x__electrodes
+    - y__electrodes
+    - z__electrodes
+  columns:
+    electrode_id: required
+    probe_id: required
+    hemisphere: recommended
+    x__electrodes: recommended
+    y__electrodes: recommended
+    z__electrodes: recommended
+    impedance: recommended
+    shank_id: optional
+    size: optional
+    electrode_shape: optional
+    material: optional
+    location: recommended
+    pipette_solution: optional
+    internal_pipette_diameter: optional
+    external_pipette_diameter: optional
+  index_columns: [electrode_id]
+  additional_columns: allowed_if_defined

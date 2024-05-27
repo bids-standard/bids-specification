@@ -240,6 +240,19 @@ electrode_count:
   description: |
     Number of miscellaneous analog electrodes for auxiliary signals (e.g. 2).
   type: number
+electrode_id:
+  name: electrode_id
+  display_name: Electrode ID
+  description: |
+    A unique identifier of the electrode.
+    (expected to match electrode_ids listed in `*_channels.tsv`).
+  type: string
+electrode_shape:
+  name: electrode_shape
+  display_name: Electrode shape
+  description: |
+    Description of the shape of the electrode (for example, `square`, `circle`).
+  type: string
 filename:
   name: filename
   display_name: Filename
@@ -356,6 +369,12 @@ index:
   description: |
     The label integer index.
   type: integer
+location:
+  name: location
+  display_name: Location
+  description: |
+    An indication on the location of the electrode (for example, `cortical layer 3`, `CA1`).
+  type: string
 low_cutoff:
   name: low_cutoff
   display_name: Low cutoff
@@ -489,6 +508,27 @@ participant_id:
     matching a participant entity found in the dataset.
   type: string
   pattern: ^sub-[0-9a-zA-Z]+$
+pipette_solution:
+  name: pipette_solution
+  display_name: Pipette solution
+  description: |
+    The solution used to fill the pipette. 
+    See also [openMINDS Pipette](https://github.com/openMetadataInitiative/openMINDS_ephys/blob/v1/schemas/device/pipetteUsage.schema.tpl.json).
+  type: string
+internal_pipette_diameter:
+  name: internal_pipette_diameter
+  display_name: Internal pipette diameter
+  description: |
+    The internal diameter of the pipette in micrometers.
+  type: number
+  unit: mm
+external_pipette_diameter:
+  name: external_pipette_diameter
+  display_name: External pipette diameter
+  description: |
+    The external diameter of the pipette in micrometers.
+  type: number
+  unit: mm
 placement__motion:
   name: placement
   display_name: Placement
@@ -639,6 +679,13 @@ sex:
     - OTHER
     - Other
     - n/a
+shank_id:
+  name: shank_id
+  display_name: Shank ID
+  description: |
+    A unique identifier to specify which shank of the probe the electrode is on. 
+    This is useful for spike sorting when the electrodes are on a multi-shank probe.
+  type: string
 short_channel:
   name: short_channel
   display_name: Short Channel
@@ -1027,6 +1074,27 @@ z__probes:
   display_name: Probe Z position
   description: |
     Probe position along the global coordinate system z-axis.
+  type: number
+x__electrodes:
+  name: x
+  display_name: Electrode X position
+  description: |
+    Recorded position along the local width-axis relative 
+    to the probe origin and rotation (see `_probes.tsv`)
+  type: number
+y__electrodes:
+  name: y
+  display_name: Electrode Y position
+  description: |
+    Recorded position along the local height-axis relative 
+    to the probe origin and rotation (see `_probes.tsv`)
+  type: number
+z__electrodes:
+  name: z
+  display_name: Electrode Z position
+  description: |
+    Recorded position along the local depth-axis relative 
+    to the probe origin and rotation (see `_probes.tsv`)
   type: number
 template_x:
   name: template_x
