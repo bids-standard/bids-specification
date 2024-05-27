@@ -512,7 +512,7 @@ pipette_solution:
   name: pipette_solution
   display_name: Pipette solution
   description: |
-    The solution used to fill the pipette. 
+    The solution used to fill the pipette.
     See also [openMINDS Pipette](https://github.com/openMetadataInitiative/openMINDS_ephys/blob/v1/schemas/device/pipetteUsage.schema.tpl.json).
   type: string
 internal_pipette_diameter:
@@ -683,7 +683,7 @@ shank_id:
   name: shank_id
   display_name: Shank ID
   description: |
-    A unique identifier to specify which shank of the probe the electrode is on. 
+    A unique identifier to specify which shank of the probe the electrode is on.
     This is useful for spike sorting when the electrodes are on a multi-shank probe.
   type: string
 short_channel:
@@ -1079,21 +1079,21 @@ x__electrodes:
   name: x
   display_name: Electrode X position
   description: |
-    Recorded position along the local width-axis relative 
+    Recorded position along the local width-axis relative
     to the probe origin and rotation (see `_probes.tsv`)
   type: number
 y__electrodes:
   name: y
   display_name: Electrode Y position
   description: |
-    Recorded position along the local height-axis relative 
+    Recorded position along the local height-axis relative
     to the probe origin and rotation (see `_probes.tsv`)
   type: number
 z__electrodes:
   name: z
   display_name: Electrode Z position
   description: |
-    Recorded position along the local depth-axis relative 
+    Recorded position along the local depth-axis relative
     to the probe origin and rotation (see `_probes.tsv`)
   type: number
 template_x:

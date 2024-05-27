@@ -34,4 +34,3 @@ ephysProbes:
     material__probes: optional
   index_columns: [probe_id]
   additional_columns: allowed_if_defined
-    
