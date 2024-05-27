@@ -1,0 +1,37 @@
+ephysProbes:
+  selectors:
+    - datatype == "ephys"
+    - suffix == "probes"
+    - extension == ".tsv"
+  initial_columns:
+    - probe_id
+    - type__probes
+    - x__probes
+    - y__probes
+    - z__probes
+  columns:
+    probe_id: required
+    type__probes: required
+    x__probes: recommended
+    y__probes: recommended
+    z__probes: recommended
+    manufacturer__probes: recommended
+    device_serial_number: recommended
+    electrode_count: optional
+    width__probes: optional
+    height__probes: optional
+    depth__probes: optional
+    dimension_unit: optional
+    alpha_rotation: recommended
+    beta_rotation: recommended
+    gamma_rotation: recommended
+    coordinate_reference_point: recommended
+    hemisphere__probes: recommended
+    associated_brain_region: recommended
+    associated_brain_region_id: recommended
+    associated_brain_region_quality_type: recommended
+    reference_atlas: recommended
+    material__probes: optional
+  index_columns: [probe_id]
+  additional_columns: allowed_if_defined
+    

@@ -123,13 +123,22 @@ contact_count:
   description: |
     Number of miscellaneous analog contacts for auxiliary signals.
   type: number
-depth__probes:
-  name: height
-  display_name: Height
+coordinate_reference_point:
+  name: coordinate_reference_point
+  display_name: Coordinate reference point
   description: |
-    Physical height of the probe.
+    Point of the probe that is described by the probe coordinates and 
+    on which the alpha, beta and gamma rotations are applied.
+  type: string
+depth__probes:
+  name: depth
+  display_name: Depth
+  description: |
+    Physical depth of the probe, e.g. 0.3. 
+    This dimension should be omitted or set to 0 for two-dimensional (shank-type) probes. 
+    This dimension corresponds to the z’axis of the Euler transformation defined by 
+    alpha, beta and gamma rotations values.
   type: number
-  unit: mm
 detector__channels:
   name: detector
   display_name: Detector Name
@@ -202,6 +211,14 @@ dimension:
     Size of the group (grid/strip/probe) that this electrode belongs to.
     Must be of form `[AxB]` with the smallest dimension first (for example, `[1x8]`).
   type: string
+# TODO: Add unit enums if everyone agrees to keep this column. 
+dimension_unit:
+  name: dimension_unit
+  display_name: Dimension unit
+  description: |
+    Units of the physical dimensions  'width', 'height' and 'depth' of the probe.
+    For example, `mm`.
+  type: string
 duration:
   name: duration
   display_name: Event duration
@@ -217,6 +234,12 @@ duration:
     - type: string
       enum:
         - n/a
+electrode_count:
+  name: electrode_count
+  display_name: Electrode count
+  description: |
+    Number of miscellaneous analog electrodes for auxiliary signals (e.g. 2).
+  type: number
 filename:
   name: filename
   display_name: Filename
@@ -275,14 +298,25 @@ height__probes:
   name: height
   display_name: Height
   description: |
-    Physical height of the probe.
+    Physical height of the probe, e.g. 5. 
+    This dimension corresponds to the y’axis of the Euler transformation defined by 
+    alpha, beta and gamma rotations values below.
   type: number
-  unit: mm
 hemisphere:
   name: hemisphere
   display_name: Electrode hemisphere
   description: |
     The hemisphere in which the electrode is placed.
+  type: string
+  enum:
+    - $ref: objects.enums.left_hemisphere.value
+    - $ref: objects.enums.right_hemisphere.value
+# TODO: Should the hemisphere details be unified for electrodes and probes or will it break other modality?
+hemisphere__probes:
+  name: hemisphere
+  display_name: Hemisphere
+  description: |
+    Hemisphere in which the probe is placed.
   type: string
   enum:
     - $ref: objects.enums.left_hemisphere.value
@@ -340,6 +374,13 @@ manufacturer:
   description: |
     The manufacturer for each electrode.
     Can be used if electrodes were manufactured by more than one company.
+  type: string
+# TODO: Should the manufacturer details be unified for electrodes and probes?
+manufacturer__probes:
+  name: manufacturer
+  display_name: Manufacturer
+  description: |
+    Manufacturer of the probes system  (e.g. 'openephys', 'alphaomega','blackrock').
   type: string
 mapping:
   name: mapping
@@ -463,6 +504,13 @@ plasma_radioactivity:
     Radioactivity in plasma, in unit of plasma radioactivity (for example, `kBq/mL`).
   type: number
 # reference column for channels.tsv files for EEG data
+probe_id:
+  name: probe_id
+  display_name: Probe ID
+  description: |
+    A unique identifier of the probe, can be identical with the `device_serial_number`.
+    (expected to match probe_ids listed in `*_eletrodes.tsv`).
+  type: string
 reference__eeg:
   name: reference
   display_name: Electrode reference
@@ -487,7 +535,8 @@ reference_atlas:
   name: reference_atlas
   display_name: Reference atlas
   description: |
-    Name of reference atlas used for associated brain region identification, preferably an ebrains supported atlas.
+    Name of reference atlas used for associated brain region identification, 
+    preferably an [ebrains supported atlas](https://ebrains.eu/services/atlases#services).
   type: string
 reference_frame:
   name: reference_frame
@@ -901,9 +950,10 @@ width__probes:
   name: width
   display_name: Width
   description: |
-    Physical width of the probe.
+    Physical width of the probe, e.g. 5. 
+    This dimension corresponds to the x’axis of the Euler transformation defined by 
+    alpha, beta and gamma rotations values.
   type: number
-  unit: mm
 x:
   name: x
   display_name: X position
@@ -959,6 +1009,25 @@ z__optodes:
     - type: string
       enum:
         - n/a
+#TODO: How are the units specified for the probe x, y and z fields? 
+x__probes:
+  name: x
+  display_name: Probe X position
+  description: |
+    Probe position along the global coordinate system x-axis.
+  type: number
+y__probes:
+  name: y
+  display_name: Probe Y position
+  description: |
+    Probe position along the global coordinate system y-axis.
+  type: number
+z__probes:
+  name: z
+  display_name: Probe Z position
+  description: |
+    Probe position along the global coordinate system z-axis.
+  type: number
 template_x:
   name: template_x
   display_name: X template position
