@@ -96,5 +96,4 @@ ephysChannels:
     - ground: optional
     - recording_mode: recommended
   index_columns: [channel_id]
-  additional_columns: allowed_if_defined  
-
+  additional_columns: allowed_if_defined
