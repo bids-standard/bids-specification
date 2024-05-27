@@ -46,8 +46,8 @@ colFA:
   value: colFA
   display_name: coloured Fractional Anisotropy image
   description: |
-    Diffusion images reflecting the directionality of the diffusion tensor color-coded in red for 
-    left-right oriented fibers, in blue for superior-inferior oriented fibers and green for 
+    Diffusion images reflecting the directionality of the diffusion tensor color-coded in red for
+    left-right oriented fibers, in blue for superior-inferior oriented fibers and green for
     anterior-posterior oriented fibers.
 DF:
   value: DF
