@@ -65,3 +65,36 @@ ephysElectrodes:
     external_pipette_diameter: optional
   index_columns: [electrode_id]
   additional_columns: allowed_if_defined
+
+ephysChannels:
+  selectors:
+    - datatype == "ephys"
+    - suffix == "channels"
+    - extension == ".tsv"
+  initial_columns:
+    - channel_id
+    - reference__ephys
+    - type__channels
+    - units__channels
+    - sampling_frequency
+  columns:
+    - channel_id: required
+    - reference__ephys: required
+    - type__channels: required
+    - units__channels: required
+    - sampling_frequency: optional
+    - channel_label: optional
+    - stream_id: optional
+    - description: optional
+    - hardware_filters: recommended
+    - software_filters: recommended
+    - status: optional
+    - status_description: optional
+    - gain: recommended
+    - time_offset: optional
+    - time_reference_channel: optional
+    - ground: optional
+    - recording_mode: recommended
+  index_columns: [channel_id]
+  additional_columns: allowed_if_defined  
+
