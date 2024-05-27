@@ -127,16 +127,16 @@ coordinate_reference_point:
   name: coordinate_reference_point
   display_name: Coordinate reference point
   description: |
-    Point of the probe that is described by the probe coordinates and 
+    Point of the probe that is described by the probe coordinates and
     on which the alpha, beta and gamma rotations are applied.
   type: string
 depth__probes:
   name: depth
   display_name: Depth
   description: |
-    Physical depth of the probe, e.g. 0.3. 
-    This dimension should be omitted or set to 0 for two-dimensional (shank-type) probes. 
-    This dimension corresponds to the z’axis of the Euler transformation defined by 
+    Physical depth of the probe, e.g. 0.3.
+    This dimension should be omitted or set to 0 for two-dimensional (shank-type) probes.
+    This dimension corresponds to the z’axis of the Euler transformation defined by
     alpha, beta and gamma rotations values.
   type: number
 detector__channels:
@@ -211,7 +211,7 @@ dimension:
     Size of the group (grid/strip/probe) that this electrode belongs to.
     Must be of form `[AxB]` with the smallest dimension first (for example, `[1x8]`).
   type: string
-# TODO: Add unit enums if everyone agrees to keep this column. 
+# TODO: Add unit enums if everyone agrees to keep this column.
 dimension_unit:
   name: dimension_unit
   display_name: Dimension unit
@@ -298,8 +298,8 @@ height__probes:
   name: height
   display_name: Height
   description: |
-    Physical height of the probe, e.g. 5. 
-    This dimension corresponds to the y’axis of the Euler transformation defined by 
+    Physical height of the probe, e.g. 5.
+    This dimension corresponds to the y’axis of the Euler transformation defined by
     alpha, beta and gamma rotations values below.
   type: number
 hemisphere:
@@ -535,7 +535,7 @@ reference_atlas:
   name: reference_atlas
   display_name: Reference atlas
   description: |
-    Name of reference atlas used for associated brain region identification, 
+    Name of reference atlas used for associated brain region identification,
     preferably an [ebrains supported atlas](https://ebrains.eu/services/atlases#services).
   type: string
 reference_frame:
@@ -950,8 +950,8 @@ width__probes:
   name: width
   display_name: Width
   description: |
-    Physical width of the probe, e.g. 5. 
-    This dimension corresponds to the x’axis of the Euler transformation defined by 
+    Physical width of the probe, e.g. 5.
+    This dimension corresponds to the x’axis of the Euler transformation defined by
     alpha, beta and gamma rotations values.
   type: number
 x:
@@ -1009,7 +1009,7 @@ z__optodes:
     - type: string
       enum:
         - n/a
-#TODO: How are the units specified for the probe x, y and z fields? 
+#TODO: How are the units specified for the probe x, y and z fields?
 x__probes:
   name: x
   display_name: Probe X position
