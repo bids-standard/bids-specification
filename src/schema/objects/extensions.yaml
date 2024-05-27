@@ -49,7 +49,7 @@ bvec:
     Note that this definition of orientations with respect to the NIfTI image axes
     is *not* equivalent to the DICOM convention,
     where orientations are instead defined with respect to the scanner device's coordinate system
-    (see [Coordinate systems](../appendices/coordinate-systems.md)).
+    (see [Coordinate systems](SPEC_ROOT/appendices/coordinate-systems.md)).
 chn:
   value: .chn
   display_name: KRISS CHN
