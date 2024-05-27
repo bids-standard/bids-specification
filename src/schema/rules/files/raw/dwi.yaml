@@ -43,6 +43,7 @@ sbref:
 ScannerDerivatives:
   suffixes:
     - ADC
+    - colFA
     - FA
     - TRACE
   extensions:
