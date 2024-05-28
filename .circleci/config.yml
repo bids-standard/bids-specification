@@ -174,8 +174,7 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - setup_remote_docker:
-          version: 17.11.0-ce
+      - setup_remote_docker
       # checkout code to default ~/project
       - checkout
       - attach_workspace:
