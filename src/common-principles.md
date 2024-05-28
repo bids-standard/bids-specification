@@ -658,6 +658,21 @@ for more information.
 
 ## The Inheritance Principle
 
+In some circumstances, there can be multiple data files for which
+all or a subset of the relevant metadata is precisely equivalent.
+Where this occurs,
+it may be preferable to define those metadata *only once*,
+and be placed on the filesystem in such a way that those files
+are deemed to be *applicable* to each relevant data file individually,
+but *not* be erroneously associated with other data files
+to which the metadata contained within are not applicable.
+The Inheritance Principle defines a systematized set of rules
+to determine which metadata files to associate with which data files.
+Further, because multiple metadata files may apply to an individual data file,
+the Principle defines the *order of precedence* of such metadata files contents.
+
+### Rules
+
 1.  Any metadata file (such as `.json`, `.bvec` or `.tsv`) MAY be defined at any directory level.
 
 1.  For a given data file, any metadata file is applicable to that data file if:
@@ -687,7 +702,7 @@ for more information.
         same key present in another metadata file at a lower level
         (though it is RECOMMENDED to minimize the extent of such overrides).
 
-Corollaries:
+### Corollaries
 
 1.  As per rule 3, metadata files applicable only to a specific participant / session
     MUST be defined in or below the directory corresponding to that participant / session;
@@ -703,6 +718,8 @@ Corollaries:
     only be overwritten by files lower in the filesystem hierarchy; the absence of
     a key-value in a later file does not imply the "unsetting" of that field
     (indeed removal of existing fields is not possible).
+
+### Examples
 
 Example 1: Demonstration of inheritance principle
 

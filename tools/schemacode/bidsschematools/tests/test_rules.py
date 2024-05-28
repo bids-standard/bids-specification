@@ -21,7 +21,7 @@ def test_entity_rule(schema_obj):
             r"sub-(?P=subject)_"
             r"(?:ses-(?P=session)_)?"
             r"(?P<suffix>T1w)"
-            r"(?P<extension>\.nii)"
+            r"(?P<extension>\.nii)\Z"
         ),
         "mandatory": False,
     }
@@ -43,7 +43,7 @@ def test_entity_rule(schema_obj):
             r"(?:sub-(?P=subject)_)?"
             r"(?:ses-(?P=session)_)?"
             r"(?P<suffix>T1w)"
-            r"(?P<extension>\.json)"
+            r"(?P<extension>\.json)\Z"
         ),
         "mandatory": False,
     }
@@ -84,7 +84,7 @@ def test_split_inheritance_rules():
 def test_stem_rule():
     rule = Namespace.build({"stem": "README", "level": "required", "extensions": ["", ".md"]})
     assert rules._stem_rule(rule) == {
-        "regex": r"README(?P<extension>|\.md)",
+        "regex": r"(?P<stem>(?s:README))(?P<extension>|\.md)\Z",
         "mandatory": True,
     }
 
@@ -92,7 +92,21 @@ def test_stem_rule():
         {"stem": "participants", "level": "optional", "extensions": [".tsv", ".json"]}
     )
     assert rules._stem_rule(rule) == {
-        "regex": r"participants(?P<extension>\.tsv|\.json)",
+        "regex": r"(?P<stem>(?s:participants))(?P<extension>\.tsv|\.json)\Z",
+        "mandatory": False,
+    }
+
+    # Wildcard stem, with datatype
+    rule = Namespace.build(
+        {
+            "stem": "*",
+            "datatypes": ["phenotype"],
+            "level": "optional",
+            "extensions": [".tsv", ".json"],
+        }
+    )
+    assert rules._stem_rule(rule) == {
+        "regex": r"(?P<datatype>phenotype)/(?P<stem>(?s:.*))(?P<extension>\.tsv|\.json)\Z",
         "mandatory": False,
     }
 
@@ -100,12 +114,12 @@ def test_stem_rule():
 def test_path_rule():
     rule = Namespace.build({"path": "dataset_description.json", "level": "required"})
     assert rules._path_rule(rule) == {
-        "regex": r"dataset_description\.json",
+        "regex": r"(?P<path>dataset_description\.json)(?:/.*)?\Z",
         "mandatory": True,
     }
 
     rule = Namespace.build({"path": "LICENSE", "level": "optional"})
-    assert rules._path_rule(rule) == {"regex": "LICENSE", "mandatory": False}
+    assert rules._path_rule(rule) == {"regex": r"(?P<path>LICENSE)(?:/.*)?\Z", "mandatory": False}
 
 
 def test_regexify_all():
