@@ -179,19 +179,7 @@ A guide for using macros can be found at
 
 ### MRS-relevant fields
 
-Metadata fields that MUST be present:
-
-<!-- This block generates a metadata table.
-These tables are defined in
-  src/schema/rules/sidecars
-The definitions of the fields specified in these tables may be found in
-  src/schema/objects/metadata.yaml
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_sidecar_table("mrs.MRSRequiredFields") }}
-
-SHOULD be present:
+Metadata fields that MUST, SHOULD or MAY be present:
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -202,25 +190,16 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_sidecar_table([
-  "mrs.MRSRecommendedFieldsNumTransients",
-  "mrs.MRSRecommendedFields",
+  "mrs.MRSRelevantFields",
+  "mrs.MRSRepetitionTime",
+  "mrs.MRSVolumeTiming",
+  "mrs.MRSConditionalNumTransients",
   "mrs.MRSIRecommendedFields",
-  "mrs.MRSRecommendedFieldsRefSignal",
-  "mrs.MRSRecommendedFieldsAnatomicalImage"
+  "mrs.MRSConditionalInversionTime",
+  "mrs.MRSConditionalAnatomicalImage",
+  "mrs.MRSOptionalFields",
   ])
 }}
-
-MAY be present:
-
-<!-- This block generates a metadata table.
-These tables are defined in
-  src/schema/rules/sidecars
-The definitions of the fields specified in these tables may be found in
-  src/schema/objects/metadata.yaml
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_sidecar_table("mrs.MRSOptionalFields") }}
 
 ### Example `*_svs.json`
 
