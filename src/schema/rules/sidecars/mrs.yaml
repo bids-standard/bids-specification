@@ -30,9 +30,20 @@ MRSSample:
   fields:
     BodyPart:
       level: optional
+      level_addendum: required if `voi` entity is present
       description_addendum: Corresponds to DICOM Tag 0018, 0015 `Body Part Examined`.
-    BodyPartDetails: optional
+    BodyPartDetails:
+      level: optional
+      level_addendum: required if `voi` entity is present
     BodyPartDetailsOntology: optional
+
+MRSSampleVOI:
+  selectors:
+    - modality == "mrs"
+    - '"volume" in entities'
+  fields:
+    BodyPart: required
+    BodyPartDetails: required
 
 MRSSequenceSpecifics:
   selectors:
