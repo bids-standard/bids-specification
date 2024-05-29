@@ -2944,11 +2944,9 @@ ResonantNucleus:
     For multi-nuclei experiments such as <sup>1</sup>H-[<sup>13</sup>C] MR,
     an array can be used: `["1H", "13C"]`.
     Corresponds to DICOM Tag 0018, 9100 `Resonant Nucleus`.
-  anyOf:
-    - type: string
-    - type: array
-      items:
-        type: string
+  type: array
+  items:
+    type: string
 RotationOrder:
   name: RotationOrder
   display_name: RotationOrder
