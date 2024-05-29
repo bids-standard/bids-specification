@@ -3504,13 +3504,10 @@ SpectrometerFrequency:
     to the resonant frequency of <sup>1</sup>H.
     For multi-nuclei experiments such as <sup>1</sup>H-[<sup>13</sup>C] MR at 3T,
     an array can be used: `[127.731, 32.125]`.
-  anyOf:
-    - type: number
-      unit: MHz
-    - type: array
-      items:
-        type: number
-        unit: MHz
+  type: array
+  items:
+    type: number
+    unit: MHz
 SpoilingGradientDuration:
   name: SpoilingGradientDuration
   display_name: Spoiling Gradient Duration
