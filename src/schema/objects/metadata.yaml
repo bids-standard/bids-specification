@@ -2399,7 +2399,7 @@ OtherAcquisitionParameters:
   type: string
 OuterVolumeSuppression:
   name: OuterVolumeSuppression
-  display_name: Other-Volume Suppression
+  display_name: Outer-Volume Suppression
   description: |
     Boolean indicating whether outer-volume suppression was used prior to acquisition.
   type: boolean
