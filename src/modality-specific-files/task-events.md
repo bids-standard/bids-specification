@@ -338,7 +338,7 @@ in the accompanying JSON sidecar as follows (based on the example of the previou
 Signals related to stimuli (such as parameters of a film or audio stimuli) that are
 evenly recorded at a constant sampling frequency MUST be specified using a
 [compressed tabular file](../common-principles.md#compressed-tabular-files)
-([TSV.GZ file](../glossary.md#tsvgz-extensions)) and a corresponding
+([TSV.GZ file](../glossary.md#tsv_gz-extensions)) and a corresponding
 JSON file for storing metadata fields (see below).
 
 Template:

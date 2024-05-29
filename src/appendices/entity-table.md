@@ -1,3 +1,8 @@
+---
+hide:
+-   toc
+---
+
 # Entity table
 
 This section compiles the entities (key-value pairs within filenames)

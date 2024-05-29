@@ -104,6 +104,13 @@ fmap_pepolar_common:
     space: optional
     description: optional
 
+fmap_pepolar_m0scan:
+  $ref: rules.files.raw.fmap.pepolar_m0scan
+  entities:
+    $ref: rules.files.raw.fmap.pepolar.entities
+    space: optional
+    description: optional
+
 fmap_TB1DAM_common:
   $ref: rules.files.raw.fmap.TB1DAM
   entities:
