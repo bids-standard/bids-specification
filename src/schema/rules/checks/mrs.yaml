@@ -8,7 +8,7 @@ MRSNiftiConsistency:
     level: error
   selectors:
     - datatype == "mrs"
-    - nifti_header.mrs
+    - type(nifti_header.mrs) != "null"
   checks:
     - sidecar.ResonantNucleus == nifti_header.mrs.ResonantNucleus
     - sidecar.SpectrometerFrequency == nifti_header.mrs.SpectrometerFrequency
@@ -21,7 +21,7 @@ MRSMatrixSize:
     level: error
   selectors:
     - datatype == "mrs"
-    - nifti_header
+    - type(nifti_header) != "null"
     - type(sidecar.MatrixSize) != "null"
   checks:
     - sidecar.MatrixSize[0] == nifti_header.dim[1]
