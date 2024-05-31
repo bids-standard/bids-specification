@@ -559,7 +559,7 @@ def correct_tables(root_path, debug=False):
                             for i, new_line in enumerate(content):
                                 if i == start_line:
                                     new_content.pop()
-                                if i >= start_line and i < end_line:
+                                if start_line <= i < end_line:
                                     new_content.append("|".join(table[count]) + " \n")
                                     count += 1
                                 elif i == end_line:

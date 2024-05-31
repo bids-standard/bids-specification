@@ -265,6 +265,7 @@ The following functions should be defined by an interpreter:
 | `exists(arg: str \| array, rule: str) -> int`   | Count of files in an array that exist in the dataset. String is array with length 1. Rules include `"bids-uri"`, `"dataset"`, `"subject"` and `"stimuli"`. | `exists(sidecar.IntendedFor, "subject")`               | True if all files in `IntendedFor` exist, relative to the subject directory.   |
 | `index(arg: array, val: any)`                   | Index of first element in an array equal to `val`, `null` if not found                                                                                     | `index(["i", "j", "k"], axis)`                         | The number, from 0-2 corresponding to the string `axis`                        |
 | `intersects(a: array, b: array) -> bool`        | `true` if arguments contain any shared elements                                                                                                            | `intersects(dataset.modalities, ["pet", "mri"])`       | True if either PET or MRI data is found in dataset                             |
+| `allequal(a: array, b: array) -> bool`          | `true` if arrays have the same length and paired elements are equal                                                                                        | `intersects(dataset.modalities, ["pet", "mri"])`       | True if either PET or MRI data is found in dataset                             |
 | `length(arg: array) -> int`                     | Number of elements in an array                                                                                                                             | `length(columns.onset) > 0`                            | True if there is at least one value in the onset column                        |
 | `match(arg: str, pattern: str) -> bool`         | `true` if `arg` matches the regular expression `pattern` (anywhere in string)                                                                              | `match(extension, ".gz$")`                             | True if the file extension ends with `.gz`                                     |
 | `max(arg: array) -> number`                     | The largest non-`n/a` value in an array                                                                                                                    | `max(columns.onset)`                                   | The time of the last onset in an events.tsv file                               |
@@ -294,6 +295,9 @@ Most operations involving `null` simply resolve to `null`:
 | `null / 1`                 | `null` |
 | `match(null, pattern)`     | `null` |
 | `intersects(list, null)`   | `null` |
+| `intersects(null, list)`   | `null` |
+| `allequal(list, null)`     | `null` |
+| `allequal(null, list)`     | `null` |
 | `substr(null, 0, 1)`       | `null` |
 | `substr(str, null, 1)`     | `null` |
 | `substr(str, 0, null)`     | `null` |
@@ -1023,3 +1027,11 @@ be found at <https://bids-specification.readthedocs.io/en/latest/schema.json>.
 The JSON version of the schema contains `schema_version` and `bids_version` keys
 that identify the state of both the schema and the specification at the time it was
 compiled.
+
+## Metaschema
+
+The `metaschema.json` file is a meta-schema that uses the JSON Schema language to
+formalize the allowable directories, files, fields and values of the BIDS schema,
+ensuring consistency across the entire schema directory. Validation of the schema is
+incorporated into the CI, so any changes that are inconsistent will be flagged before
+inclusion.

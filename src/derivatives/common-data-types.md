@@ -256,23 +256,32 @@ static volume, a `RepetitionTime` property would no longer be relevant).
 
 ## descriptions.tsv
 
-To keep a record of processing steps applied to the data, a `descriptions.tsv` file MAY be used.
-The `descriptions.tsv` file MUST contain at least the following two columns:
+Template:
 
--   `desc_id`
--   `description`
+```Text
+[sub-<label>/]
+    [ses-<label>/]
+        [sub-<label>_][ses-<label>_]descriptions.tsv
+        [sub-<label>_][ses-<label>_]descriptions.json
+```
+
+Optional: Yes
+
+To keep a record of processing steps applied to the data, a `descriptions.tsv` file MAY be used.
+The `descriptions.tsv` file consists of one row for each unique `desc-<label>`
+entity used in the dataset and a set of REQUIRED and OPTIONAL columns:
+
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/rules/tabular_data/*.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_columns_table("derivatives.common_derivatives.Descriptions") }}
 
 This file MAY be located at the root of the derivative dataset,
 or at the subject or session level
 ([Inheritance Principle](../common-principles.md#the-inheritance-principle)).
-
-The `desc_id` column contains the labels used with the [`desc entity`](../appendices/entities.md#desc),
-within the particular nesting that the `descriptions.tsv` file is placed.
-For example, if the `descriptions.tsv` file is placed at the root of the derivative dataset,
-its `desc_id` column SHOULD contain all labels of the [`desc entity`](../appendices/entities.md#desc)
-used across the entire derivative dataset.
-
-The `description` column contains human-readable descriptions of the processing steps.
 
 The use of `descriptions.tsv` files together with the [`desc entity`](../appendices/entities.md#desc)
 are helpful to document how files are generated, even if their use may not be sufficient

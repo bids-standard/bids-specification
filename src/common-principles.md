@@ -97,6 +97,12 @@ and/or files (like `events.tsv`) are fully omitted *when they are unavailable or
 instead of specified with an `n/a` value, or included as an empty file
 (for example an empty `events.tsv` file with only the headers included).
 
+## Dataset naming
+
+BIDS does not prescribe a particular naming scheme for directories containing individual BIDS datasets.
+However, it is recommended to use a short descriptive name that reflects the content of the dataset, avoid spaces in the name, and use hyphens or underscores to separate words.
+BIDS datasets embedded within a larger BIDS dataset MAY follow some convention (see for example [Storage of derived datasets](#storage-of-derived-datasets)).
+
 ## Filesystem structure
 
 Data for each subject are placed in subdirectories named "`sub-<label>`",
@@ -252,9 +258,10 @@ recommending a particular naming scheme for including different types of
 source data (such as the raw event logs or parameter files, before conversion to BIDS).
 However, in the case that these data are to be included:
 
-1.  These data MUST be kept in separate `sourcedata` directory with a similar
-    directory structure as presented below for the BIDS-managed data. For example:
-    `sourcedata/sub-01/ses-pre/func/sub-01_ses-pre_task-rest_bold.dicom.tgz` or
+1.  These data MUST be kept in separate `sourcedata` directory.
+    BIDS does not prescribe a particular naming scheme for source data,
+    but it is recommended for it to follow BIDS naming convention where possible.
+    For example: `sourcedata/sub-01/ses-pre/func/sub-01_ses-pre_task-rest_bold.dicom.tgz` or
     `sourcedata/sub-01/ses-pre/func/MyEvent.sce`.
 
 1.  A README file SHOULD be found at the root of the `sourcedata` directory or the
@@ -271,43 +278,62 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example(
     {
-    "my_dataset-1": {
-            "sourcedata": "",
-            "...": "",
-            "rawdata": {
-                "dataset_description.json": "",
-                "participants.tsv": "",
+    "my_project-1": {
+        "sourcedata": {
+            "dicoms": {},
+            "raw": {
                 "sub-01": {},
                 "sub-02": {},
                 "...": "",
+                "dataset_description.json": "",
+				"...": "",
             },
-            "derivatives": {
-                "pipeline_1": {},
-                "pipeline_2": {},
-                "...": "",
-            },
+            "..." : "",
+        },
+        "derivatives": {
+            "pipeline_1": {},
+            "pipeline_2": {},
+            "...": "",
         }
     }
+   }
 ) }}
 
-In this example, where `sourcedata` and `derivatives` are not nested inside
-`rawdata`, **only the `rawdata` subdirectory** needs to be a BIDS-compliant
-dataset.
+In this example, `sourcedata/dicoms` is not nested inside
+`sourcedata/raw`, **and only the `sourcedata/raw` subdirectory** is a BIDS-compliant dataset among `sourcedata/` subfolders.
 The subdirectories of `derivatives` MAY be BIDS-compliant derivatives datasets
 (see [Non-compliant derivatives](#non-compliant-derivatives) for further discussion).
-This specification does not prescribe anything about the contents of `sourcedata`
-directories in the above example - nor does it prescribe the `sourcedata`,
-`derivatives`, or `rawdata` directory names.
-The above example is just a convention that can be useful for organizing raw,
-source, and derived data while maintaining BIDS compliance of the raw data
-directory. When using this convention it is RECOMMENDED to set the `SourceDatasets`
+The above example is just a convention useful for organizing source, raw BIDS, and derived BIDS data while maintaining BIDS compliance of the raw data directory.
+When using this convention it is RECOMMENDED to set the `SourceDatasets`
 field in `dataset_description.json` of each subdirectory of `derivatives` to:
 
 ```JSON
 {
-  "SourceDatasets": [ {"URL": "../../rawdata/"} ]
+  "SourceDatasets": [ {"URL": "../../sourcedata/raw/"} ]
 }
 ```
+
+!!! danger "Caution"
+
+    Sharing source data may help amend errors and missing data discovered
+    only with the reuse of the raw dataset in practice.
+    Therefore, from an Open Science perspective, it is RECOMMENDED to share
+    the source data whenever it is possible.
+
+    However, more stringent sharing limitations may apply to the source data
+    than those applicable to the raw data.
+    For example, human data almost always requires deidentification
+    before they can be redistributed,
+    or the subjects' consent form did not explicitly state that the source files
+    would be shared after deidentification.
+    Further examples in which sharing source data may not be possible
+    include original data formats that are not redistributable
+    as per the acquisition device's license.
+
+    As for raw data, all regulatory, ethical, and legal aspects SHOULD
+    be carefully considered before sharing data
+    through the `sourcedata/` directory mechanism.
+    In the case of source data, these aspects are likely more stringent.
 
 ### Storage of derived datasets
 
@@ -384,6 +410,7 @@ Derivatives can be stored/distributed in two ways:
             "sub-01": {},
             "sub-02": {},
             "...": "",
+            "dataset_description.json": "",
             }
         }
     ) }}
@@ -563,7 +590,7 @@ like in the example below.
 ### Compressed tabular files
 
 Large tabular information, such as physiological recordings, MUST be stored with
-[compressed tab-delineated (TSV.GZ) files](glossary.md#tsvgz-extensions) when
+[compressed tab-delineated (TSV.GZ) files](glossary.md#tsv_gz-extensions) when
 so established by the specifications.
 Rules for formatting plain-text tabular files apply to TSVGZ files with three exceptions:
 
@@ -631,6 +658,21 @@ for more information.
 
 ## The Inheritance Principle
 
+In some circumstances, there can be multiple data files for which
+all or a subset of the relevant metadata is precisely equivalent.
+Where this occurs,
+it may be preferable to define those metadata *only once*,
+and be placed on the filesystem in such a way that those files
+are deemed to be *applicable* to each relevant data file individually,
+but *not* be erroneously associated with other data files
+to which the metadata contained within are not applicable.
+The Inheritance Principle defines a systematized set of rules
+to determine which metadata files to associate with which data files.
+Further, because multiple metadata files may apply to an individual data file,
+the Principle defines the *order of precedence* of such metadata files contents.
+
+### Rules
+
 1.  Any metadata file (such as `.json`, `.bvec` or `.tsv`) MAY be defined at any directory level.
 
 1.  For a given data file, any metadata file is applicable to that data file if:
@@ -660,7 +702,7 @@ for more information.
         same key present in another metadata file at a lower level
         (though it is RECOMMENDED to minimize the extent of such overrides).
 
-Corollaries:
+### Corollaries
 
 1.  As per rule 3, metadata files applicable only to a specific participant / session
     MUST be defined in or below the directory corresponding to that participant / session;
@@ -676,6 +718,8 @@ Corollaries:
     only be overwritten by files lower in the filesystem hierarchy; the absence of
     a key-value in a later file does not imply the "unsetting" of that field
     (indeed removal of existing fields is not possible).
+
+### Examples
 
 Example 1: Demonstration of inheritance principle
 
