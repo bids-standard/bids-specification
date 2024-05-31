@@ -21,24 +21,27 @@ Current and past members of the steering group can be found
 
 | Name                                                                      | Time commitment | Scope                                 | Joined   |
 |---------------------------------------------------------------------------|-----------------|---------------------------------------|----------|
-| Stefan Appelhoff ([@sappelhoff](https://github.com/sappelhoff))           | 5h/week         | Lead Maintainer                       | Mar 2020 |
+| Stefan Appelhoff ([@sappelhoff](https://github.com/sappelhoff))           | 1h/week         |                                       | Mar 2020 |
 | Chris Markiewicz ([@effigies](https://github.com/effigies))               | 5h/week         |                                       | Mar 2020 |
 | Ross Blair ([@rwblair](https://github.com/rwblair))                       |                 | Maintainer of the bids-validator      | Mar 2020 |
 | Taylor Salo ([@tsalo](https://github.com/tsalo))                          | 3h/week         | MRI                                   | Sep 2020 |
 | Remi Gau ([@Remi-Gau](https://github.com/Remi-Gau))                       | 3h/week         | Community development, MRI            | Oct 2020 |
 | Anthony Galassi  ([@bendhouseart](https://github.com/bendhouseart))       | 3h/week         | PET, Community development            | Sep 2021 |
 | Eric Earl ([@ericearl](https://github.com/ericearl))                      | 2h/week         |                                       | Dec 2021 |
-| Christine Rogers ([@christinerogers](https://github.com/christinerogers)) | 2h/mo           | Interoperability, EEG and multi-modal | Apr 2023 |
+| Christine Rogers ([@christinerogers](https://github.com/christinerogers)) | 2h/month        | Interoperability, EEG and multi-modal | Apr 2023 |
 | Nell Hardcastle ([@nellh](https://github.com/nellh))                      | 2h/week         |                                       | Jul 2023 |
-| Kimberly Ray ([@KimberlyLRay](https://github.com/KimberlyLRay))                      | 1h/week         |                                       | Nov 2022 |
+| Kimberly Ray ([@KimberlyLRay](https://github.com/KimberlyLRay))           | 1h/week         |                                       | Nov 2022 |
 
 In addition to the [BIDS Governance](https://bids.neuroimaging.io/governance.html#bids-maintainers-group)
 classification of a maintainer, maintainers may declare a limited scope of responsibility.
 Such a scope can range from maintaining a modality supported in the specification to nurturing a
 welcoming BIDS community.
-One or more scopes can be chosen by the maintainer and agreed upon by the Maintainers Group.
+Any number of scopes can be chosen by the maintainer and agreed upon by the Maintainers Group.
 A maintainer is primarily responsible for issues within their chosen scope(s), although
 contributions elsewhere are welcome, as well.
+
+The role of the "lead maintainer", that is, the BIDS maintainer currently representing the maintainers group,
+is rotating among current maintainers.
 
 #### Past maintainers group members
 
