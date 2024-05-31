@@ -1,0 +1,56 @@
+---
+name: GitHub_Changelog_Generator
+
+on:
+    push:
+      branches: ["**"]
+    pull_request:
+      branches: ["**"]
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    github_changelog_generator:
+        runs-on: ubuntu-latest
+        strategy:
+          fail-fast: false
+          matrix:
+            ruby-version: ["3.2"]
+        steps:
+        - uses: actions/checkout@v4
+        - name: Set up Ruby ${{ matrix.ruby-version }}
+          uses: ruby/setup-ruby@v1
+          with:
+            ruby-version: ${{ matrix.ruby-version }}
+        - name: Install dependencies
+          run: |
+            gem install github_changelog_generator
+        - name: Check version
+          run: |
+            github_changelog_generator --version
+        - name: Build changelog
+          run: |
+            mkdir ~/changelog_build
+            github_changelog_generator \
+                --exclude-tags-regex "^(?!v).*?$" \
+                --user bids-standard \
+                --project bids-specification \
+                --token ${{ secrets.GITHUB_TOKEN }} \
+                --output ~/changelog_build/CHANGES.md \
+                --header-label "# Changelog" \
+                --release-branch master \
+                --no-issues \
+                --no-filter-by-milestone \
+                --no-compare-link \
+                --pr-label "" \
+                --enhancement-label "" \
+                --bugs-label "" \
+                --exclude-labels "exclude-from-changelog"
+        - name: Append changelog from pre-GitHub times
+          run: |
+            cat ${{ github.workspace }}/${{ github.repository }}/src/pregh-changes.md >> ${{ github.workspace }}/changelog_build/CHANGES.md
+        - name: Print out complete changelog
+          run: |
+            cat ${{ github.workspace }}/changelog_build/CHANGES.md
