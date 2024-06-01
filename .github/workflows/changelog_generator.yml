@@ -2,28 +2,22 @@
 name: GitHub_Changelog_Generator
 
 on:
-    push:
-      branches: ["master"]
-    pull_request:
-      branches: ["master"]
+  push:
+    branches: ["master"]
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.number }}-${{ github.event.ref }}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
     github_changelog_generator:
         runs-on: ubuntu-latest
-        strategy:
-          fail-fast: false
-          matrix:
-            ruby-version: ["3.2"]
         steps:
         - uses: actions/checkout@v4
-        - name: Set up Ruby ${{ matrix.ruby-version }}
+        - name: Set up Ruby
           uses: ruby/setup-ruby@v1
           with:
-            ruby-version: ${{ matrix.ruby-version }}
+            ruby-version: '3.2'
         - name: Install dependencies
           run: |
             gem install github_changelog_generator
@@ -111,7 +105,6 @@ jobs:
             # added or changed files to the repository.
             contents: write
         needs: lint_generated_changelog
-        if: github.ref == 'refs/heads/master'
         runs-on: ubuntu-latest
         steps:
         - uses: actions/checkout@v4
