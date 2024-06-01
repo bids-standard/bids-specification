@@ -20,7 +20,7 @@ Current and past members of the steering group can be found
 ### Maintainers Group
 
 | Name                                                                      | Time commitment | Scope                                 | Joined   |
-|---------------------------------------------------------------------------|-----------------|---------------------------------------|----------|
+| ------------------------------------------------------------------------- | --------------- | ------------------------------------- | -------- |
 | Stefan Appelhoff ([@sappelhoff](https://github.com/sappelhoff))           | 1h/week         |                                       | Mar 2020 |
 | Chris Markiewicz ([@effigies](https://github.com/effigies))               | 5h/week         |                                       | Mar 2020 |
 | Ross Blair ([@rwblair](https://github.com/rwblair))                       |                 | Maintainer of the bids-validator      | Mar 2020 |
@@ -46,7 +46,7 @@ is rotating among current maintainers.
 #### Past maintainers group members
 
 | Name                                                                           | Duration            |
-|--------------------------------------------------------------------------------|---------------------|
+| ------------------------------------------------------------------------------ | ------------------- |
 | Franklin Feingold ([@franklin-feingold](https://github.com/franklin-feingold)) | Mar 2020 - Jul 2022 |
 
 ### BEP Leads Group

@@ -47,7 +47,7 @@ Examples for CMIXF-12 (including the five unicode symbols mentioned above):
 ## Unit table
 
 | **Unit name**  | **Unit symbol** | **Quantity name**                          |
-| ---------------| --------------- | ------------------------------------------ |
+| -------------- | --------------- | ------------------------------------------ |
 | meter          | m               | length                                     |
 | kilogram       | kg              | mass                                       |
 | liter          | L               | volume                                     |
@@ -84,7 +84,7 @@ Examples for CMIXF-12 (including the five unicode symbols mentioned above):
 ### Multiples
 
 | **Prefix name**                             | **Prefix symbol** | **Factor**      |
-| --------------------------------------------| ------------------| --------------- |
+| ------------------------------------------- | ----------------- | --------------- |
 | [deca](https://www.wikiwand.com/en/Deca-)   | da                | 10<sup>1</sup>  |
 | [hecto](https://www.wikiwand.com/en/Hecto-) | h                 | 10<sup>2</sup>  |
 | [kilo](https://www.wikiwand.com/en/Kilo-)   | k                 | 10<sup>3</sup>  |
