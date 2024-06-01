@@ -30,9 +30,20 @@ MRSSample:
   fields:
     BodyPart:
       level: optional
+      level_addendum: required if `voi` entity is present
       description_addendum: Corresponds to DICOM Tag 0018, 0015 `Body Part Examined`.
-    BodyPartDetails: optional
+    BodyPartDetails:
+      level: optional
+      level_addendum: required if `voi` entity is present
     BodyPartDetailsOntology: optional
+
+MRSSampleVOI:
+  selectors:
+    - modality == "mrs"
+    - '"volume" in entities'
+  fields:
+    BodyPart: required
+    BodyPartDetails: required
 
 MRSSequenceSpecifics:
   selectors:
@@ -65,16 +76,39 @@ MRSRecommendedFields:
     - modality == "mrs"
   fields:
     NumberOfSpectralPoints: recommended
-    RepetitionTime__mrs: recommended
     MixingTime: recommended
-    InversionTime: recommended for inversion recovery data
     FlipAngle: recommended
     AcquisitionVoxelSize: recommended
-    MatrixSize: recommended for MRSI
-    VolumeAffineMatrix: recommended for MRSI
-    EncodingTechnique: recommended for MRSI
+    ReferenceSignal: recommended
 
-MRSRecommendedFieldsAnatomicalImage:
+MRSRepetitionTime:
+  selectors:
+    - modality == "mrs"
+    - '!("VolumeTiming" in sidecar)'
+  fields:
+    RepetitionTime:
+      level: recommended
+      level_addendum: mutually exclusive with `VolumeTiming`
+
+MRSVolumeTiming:
+  selectors:
+    - modality == "mrs"
+    - '!("RepetitionTime" in sidecar)'
+  fields:
+    VolumeTiming:
+      level: recommended
+      level_addendum: mutually exclusive with `RepetitionTime`
+
+MRSConditionalInversionTime:
+  selectors:
+    - modality == "mrs"
+    - entities.inversion
+  fields:
+    InversionTime:
+      level: recommended
+      level_addendum: if `inv` entity is present
+
+MRSConditionalAnatomicalImage:
   selectors:
     - modality == "mrs"
     - intersects(dataset.datatypes, ["anat"])
@@ -83,21 +117,14 @@ MRSRecommendedFieldsAnatomicalImage:
       level: recommended
       level_addendum: if anatomical MRI data are present
 
-MRSRecommendedFieldsNumTransients:
+MRSConditionalNumTransients:
   selectors:
     - modality == "mrs"
     - intersects([suffix], ["svs", "unloc"])
   fields:
-    NumberOfTransients: recommended
-
-MRSRecommendedFieldsRefSignal:
-  selectors:
-    - modality == "mrs"
-    - intersects([suffix], ["mrsref"])
-  fields:
-    ReferenceSignal:
+    NumberOfTransients:
       level: recommended
-      level_addendum: if MRS reference data are present
+      level_addendum: for SVS and unlocalized acquisitions
 
 MRSIRecommendedFields:
   selectors:
@@ -105,6 +132,15 @@ MRSIRecommendedFields:
     - suffix == "mrsi"
   fields:
     MRAcquisitionType:
+      level: recommended
+      level_addendum: for MRSI
+    MatrixSize:
+      level: recommended
+      level_addendum: for MRSI
+    VolumeAffineMatrix:
+      level: recommended
+      level_addendum: for MRSI
+    EncodingTechnique:
       level: recommended
       level_addendum: for MRSI
 

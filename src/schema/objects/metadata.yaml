@@ -2865,22 +2865,6 @@ RepetitionTime:
   type: number
   exclusiveMinimum: 0
   unit: s
-RepetitionTime__mrs:
-  name: RepetitionTime
-  display_name: Repetition Time
-  description: |
-    The time between repetitions (TR), specified in seconds.
-    For dynamic acquisitions, such as cardiac-triggered acquisitions where the TR
-    may differ over the scan, an array of numbers can be used.
-  anyOf:
-    - type: number
-      exclusiveMinimum: 0
-      unit: s
-    - type: array
-      items:
-        type: number
-        exclusiveMinimum: 0
-        unit: s
 RepetitionTimeExcitation:
   name: RepetitionTimeExcitation
   display_name: Repetition Time Excitation
@@ -3851,12 +3835,10 @@ VolumeTiming:
   description: |
     The time at which each volume was acquired during the acquisition.
     It is described using a list of times referring to the onset of each volume
-    in the BOLD series.
-    The list must have the same length as the BOLD series,
+    in the series.
+    The list must have the same length as the series,
     and the values must be non-negative and monotonically increasing.
-    This field is mutually exclusive with `"RepetitionTime"` and `"DelayTime"`.
-    If defined, this requires acquisition time (TA) be defined via either
-    `"SliceTiming"` or `"AcquisitionDuration"` be defined.
+    This field is mutually exclusive with `"RepetitionTime"`.
   type: array
   minItems: 1
   items:
