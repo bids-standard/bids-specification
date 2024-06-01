@@ -573,11 +573,11 @@ sparse sequences.
 
 |          | **`RepetitionTime`** | **`SliceTiming`** | **`AcquisitionDuration`** | **`DelayTime`** | **`VolumeTiming`** |
 | -------- | -------------------- | ----------------- | ------------------------- | --------------- | ------------------ |
-| option A |     \[ X ]           |                   |         \[ ]              |                 |     \[ ]           |
-| option B |      \[ ]            |    \[ X ]         |                           |    \[ ]         |    \[ X ]          |
-| option C |      \[ ]            |                   |        \[ X ]             |    \[ ]         |    \[ X ]          |
-| option D |     \[ X ]           |    \[ X ]         |         \[ ]              |                 |     \[ ]           |
-| option E |     \[ X ]           |                   |         \[ ]              |   \[ X ]        |     \[ ]           |
+| option A | \[ X ]               |                   | \[ ]                      |                 | \[ ]               |
+| option B | \[ ]                 | \[ X ]            |                           | \[ ]            | \[ X ]             |
+| option C | \[ ]                 |                   | \[ X ]                    | \[ ]            | \[ X ]             |
+| option D | \[ X ]               | \[ X ]            | \[ ]                      |                 | \[ ]               |
+| option E | \[ X ]               |                   | \[ ]                      | \[ X ]          | \[ ]               |
 
 **Legend**
 
