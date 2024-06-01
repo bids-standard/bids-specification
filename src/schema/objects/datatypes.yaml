@@ -20,7 +20,7 @@ ecephys:
   value: ecephys
   display_name: Extracellular Electrophysiology
   description: |
-    Electrophysiological data acquired from an extracellular space
+    Electrophysiological data from an extracellular microelectrodes
 eeg:
   value: eeg
   display_name: Electroencephalography
