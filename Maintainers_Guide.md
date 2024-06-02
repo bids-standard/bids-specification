@@ -2,14 +2,50 @@
 
 The BIDS Maintainers are a key group of members that ensure that the BIDS infrastructure is kept up.
 The maintainers have wide-ranging responsibilities that enable BIDS to continue to grow and succeed.
-All maintainers are listed in the [DECISION-MAKING document](DECISION-MAKING.md#definitions),
-hosted at the bids-specification repository.
 As furthermore detailed in the DECISION-MAKING document,
 maintainers have a set of rights that go beyond those of a contributor.
 
 The following guide draws heavily on a related [blog post](https://matthewrocklin.com/blog/2019/05/18/maintainer)
 on “The Role of a Maintainer” by Matthew Rocklin,
 which is a recommended reading in conjunction with this guide.
+
+## Current BIDS Maintainers
+
+See also: [BIDS governance](https://bids.neuroimaging.io/governance.html#bids-maintainers-group)
+
+| Name                                                                      | Time commitment | Scope                                 | Joined   |
+| ------------------------------------------------------------------------- | --------------- | ------------------------------------- | -------- |
+| Stefan Appelhoff ([@sappelhoff](https://github.com/sappelhoff))           | 1h/week         |                                       | Mar 2020 |
+| Chris Markiewicz ([@effigies](https://github.com/effigies))               | 5h/week         |                                       | Mar 2020 |
+| Ross Blair ([@rwblair](https://github.com/rwblair))                       |                 | Maintainer of the bids-validator      | Mar 2020 |
+| Taylor Salo ([@tsalo](https://github.com/tsalo))                          | 3h/week         | MRI                                   | Sep 2020 |
+| Remi Gau ([@Remi-Gau](https://github.com/Remi-Gau))                       | 3h/week         | Community development, MRI            | Oct 2020 |
+| Anthony Galassi  ([@bendhouseart](https://github.com/bendhouseart))       | 3h/week         | PET, Community development            | Sep 2021 |
+| Eric Earl ([@ericearl](https://github.com/ericearl))                      | 2h/week         |                                       | Dec 2021 |
+| Christine Rogers ([@christinerogers](https://github.com/christinerogers)) | 2h/month        | Interoperability, EEG and multi-modal | Apr 2023 |
+| Nell Hardcastle ([@nellh](https://github.com/nellh))                      | 2h/week         |                                       | Jul 2023 |
+| Kimberly Ray ([@KimberlyLRay](https://github.com/KimberlyLRay))           | 1h/week         |                                       | Nov 2022 |
+
+In addition to the [BIDS Governance](https://bids.neuroimaging.io/governance.html#bids-maintainers-group)
+classification of a maintainer, maintainers may declare a limited scope of responsibility.
+Such a scope can range from maintaining a modality supported in the specification to nurturing a
+welcoming BIDS community.
+Any number of scopes can be chosen by the maintainer and agreed upon by the Maintainers Group.
+A maintainer is primarily responsible for issues within their chosen scope(s), although
+contributions elsewhere are welcome, as well.
+
+### Lead Maintainer
+
+The role of the "lead maintainer", that is, the BIDS maintainer currently representing the maintainers group,
+is rotating among current maintainers.
+
+## Past BIDS Maintainers
+
+See also: [BIDS governance](https://bids.neuroimaging.io/governance.html#bids-maintainers-group)
+
+| Name                                                                           | Duration            |
+| ------------------------------------------------------------------------------ | ------------------- |
+| Franklin Feingold ([@franklin-feingold](https://github.com/franklin-feingold)) | Mar 2020 - Jul 2022 |
 
 ## Why become a maintainer?
 

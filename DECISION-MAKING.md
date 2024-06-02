@@ -14,40 +14,15 @@ BIDS governance.
 
 ### Steering Group
 
-Current and past members of the steering group can be found
-[here](https://bids.neuroimaging.io/governance.html#bids-steering-group).
+Current and past members of the steering group can be found in the
+[BIDS governance](https://bids.neuroimaging.io/governance.html#bids-steering-group).
 
 ### Maintainers Group
 
-| Name                                                                      | Time commitment | Scope                                 | Joined   |
-| ------------------------------------------------------------------------- | --------------- | ------------------------------------- | -------- |
-| Stefan Appelhoff ([@sappelhoff](https://github.com/sappelhoff))           | 1h/week         |                                       | Mar 2020 |
-| Chris Markiewicz ([@effigies](https://github.com/effigies))               | 5h/week         |                                       | Mar 2020 |
-| Ross Blair ([@rwblair](https://github.com/rwblair))                       |                 | Maintainer of the bids-validator      | Mar 2020 |
-| Taylor Salo ([@tsalo](https://github.com/tsalo))                          | 3h/week         | MRI                                   | Sep 2020 |
-| Remi Gau ([@Remi-Gau](https://github.com/Remi-Gau))                       | 3h/week         | Community development, MRI            | Oct 2020 |
-| Anthony Galassi  ([@bendhouseart](https://github.com/bendhouseart))       | 3h/week         | PET, Community development            | Sep 2021 |
-| Eric Earl ([@ericearl](https://github.com/ericearl))                      | 2h/week         |                                       | Dec 2021 |
-| Christine Rogers ([@christinerogers](https://github.com/christinerogers)) | 2h/month        | Interoperability, EEG and multi-modal | Apr 2023 |
-| Nell Hardcastle ([@nellh](https://github.com/nellh))                      | 2h/week         |                                       | Jul 2023 |
-| Kimberly Ray ([@KimberlyLRay](https://github.com/KimberlyLRay))           | 1h/week         |                                       | Nov 2022 |
-
-In addition to the [BIDS Governance](https://bids.neuroimaging.io/governance.html#bids-maintainers-group)
-classification of a maintainer, maintainers may declare a limited scope of responsibility.
-Such a scope can range from maintaining a modality supported in the specification to nurturing a
-welcoming BIDS community.
-Any number of scopes can be chosen by the maintainer and agreed upon by the Maintainers Group.
-A maintainer is primarily responsible for issues within their chosen scope(s), although
-contributions elsewhere are welcome, as well.
-
-The role of the "lead maintainer", that is, the BIDS maintainer currently representing the maintainers group,
-is rotating among current maintainers.
-
-#### Past maintainers group members
-
-| Name                                                                           | Duration            |
-| ------------------------------------------------------------------------------ | ------------------- |
-| Franklin Feingold ([@franklin-feingold](https://github.com/franklin-feingold)) | Mar 2020 - Jul 2022 |
+Current and past members of the maintainers group can be found in the
+[BIDS governance](https://bids.neuroimaging.io/governance.html#bids-maintainers-group),
+and in the
+[Maintainers Guide](Maintainers_Guide.md).
 
 ### BEP Leads Group
 
@@ -65,8 +40,9 @@ according to the instructions listed there.
 
 ### Other groups
 
-The following groups not listed in detail. Please learn more about these groups
-from the [governance document](https://bids.neuroimaging.io/governance.html).
+The following groups not listed in detail.
+Please learn more about these groups from the
+[BIDS governance](https://bids.neuroimaging.io/governance.html).
 
 - BEP working groups
 - Advisory Group
@@ -82,8 +58,7 @@ following rules with the intention to:
 - Minimize the administrative burden.
 - Provide a path for when consensus cannot be made.
 - Grow the community.
-- Maximize the [bus factor](https://en.wikipedia.org/wiki/Bus_factor) of the
-  project.
+- Maximize the [bus factor](https://en.wikipedia.org/wiki/Bus_factor) of the project.
 
 The rules outlined below are inspired by the [lazy consensus system used in the Apache Foundation](https://www.apache.org/foundation/voting.html)
 and heavily depends on [GitHub Pull Request Review system](https://help.github.com/articles/about-pull-requests/).
