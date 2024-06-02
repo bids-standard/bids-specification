@@ -202,28 +202,28 @@ Don't do this:
 
 ```Markdown
 | **Key name** | **Description**                                          |
-|--------------|----------------------------------------------------------|
+| ------------ | -------------------------------------------------------- |
 | Manufacturer | Manufacturer of the equipment, for example (`Siemens`)   |
 ```
 
 That would look like this:
 
 | **Key name** | **Description**                                          |
-|--------------|----------------------------------------------------------|
+| ------------ | -------------------------------------------------------- |
 | Manufacturer | Manufacturer of the equipment, for example (`Siemens`)   |
 
 But do this instead:
 
 ```Markdown
 | **Key name** | **Description**                                          |
-|--------------|----------------------------------------------------------|
+| ------------ | -------------------------------------------------------- |
 | Manufacturer | Manufacturer of the equipment, for example (`"Siemens"`) |
 ```
 
 That would look like this:
 
 | **Key name** | **Description**                                          |
-|--------------|----------------------------------------------------------|
+| ------------ | -------------------------------------------------------- |
 | Manufacturer | Manufacturer of the equipment, for example (`"Siemens"`) |
 
 
