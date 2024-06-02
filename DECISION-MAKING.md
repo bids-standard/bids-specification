@@ -40,7 +40,7 @@ according to the instructions listed there.
 
 ### Other groups
 
-The following groups not listed in detail.
+The following groups are not described in detail.
 Please learn more about these groups from the
 [BIDS governance](https://bids.neuroimaging.io/governance.html).
 
