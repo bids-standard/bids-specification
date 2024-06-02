@@ -2,11 +2,11 @@
 
 The BIDS Maintainers are a key group of members that ensure that the BIDS infrastructure is kept up.
 The maintainers have wide-ranging responsibilities that enable BIDS to continue to grow and succeed.
-As furthermore detailed in the DECISION-MAKING document,
+As furthermore detailed in the [DECISION-MAKING document](DECISION-MAKING.md),
 maintainers have a set of rights that go beyond those of a contributor.
 
 The following guide draws heavily on a related [blog post](https://matthewrocklin.com/blog/2019/05/18/maintainer)
-on “The Role of a Maintainer” by Matthew Rocklin,
+on "The Role of a Maintainer" by Matthew Rocklin,
 which is a recommended reading in conjunction with this guide.
 
 ## Current BIDS Maintainers
@@ -65,22 +65,23 @@ As a BIDS maintainer you may get the chance to:
   and determine a reasonable and timely order for features to be added and issues to be resolved.
 * Maintainers direct other BIDS contributors in reviewing PRs,
   writing clarifications to the specification, or other contributions.
-  Maintainers “dispatch” work teams.
 * Maintainers ensure that all contributors maintain a friendly and welcoming tone
   to encourage productive conversations.
 * If no work team is suitable or available,
   the final responsibility of getting the work done lies with the maintainers.
-* The development of each BIDS extension proposal should be “followed”
+* The development of each BIDS extension proposal should be "followed"
   by at least one maintainer who acts as a preferential point of contact
   between the BIDS maintainers and the BEP leads.
 
 Apart from these abstract and general responsibilities,
 maintainers within the BIDS community also need to ensure that the following tasks get done:
 
-* Keeping the [Contributors wiki](https://github.com/bids-standard/bids-specification/wiki/Recent-Contributors) up to date
-  and assisting new contributors with adding their credits
-  and performing community inquiries to ensure contributors are credited in the [Contributors appendix](https://bids-specification.readthedocs.io/en/stable/appendices/contributors.html)
-    * Deciding what constitutes a contribution worth adding to the “Contributors list”
+* Keeping the
+  [Contributors wiki](https://github.com/bids-standard/bids-specification/wiki/Recent-Contributors)
+  up to date and assisting new contributors with adding their credits,
+  and performing community inquiries to ensure contributors are credited in the
+  [Contributors appendix](https://bids-specification.readthedocs.io/en/stable/appendices/contributors.html)
+    * Deciding what constitutes a contribution worth adding to the "Contributors list"
 * Preparing a monthly report to the BIDS Steering Group.
   The monthly report is in the form of milestones, issues addressed,
   and open issues raised in the past month and goals/plans for the next month.
@@ -103,24 +104,32 @@ Rather, the responsibilities are distributed amongst the entire group.
 * Additions to and departures from the group are negotiated collectively between the lead maintainer
   and the new/departing members, as they involve the redistribution of duties.
     * If a maintainer wishes to serve for a limited term, that can be arranged at the start. Otherwise, due notice is expected.
-    * See also “How to become a maintainer?” below
+    * See also "How to become a maintainer?" below
 
 ## How to become a maintainer?
 
-If you are interested in becoming a BIDS maintainer, please get in contact with an active BIDS maintainer (for example via email).
-In that initial email it would be great if you could outline previous experience with BIDS (if any)
+If you are interested in becoming a BIDS maintainer,
+please get in contact with an active BIDS maintainer
+(for example via opening a GitHub issue on bids-standard/bids-specification and tagging `@bids-standard/maintainers`).
+In that initial contact, it would be great if you could outline previous experience with BIDS (if any)
 and your motivation to become a maintainer, as well as particular interests for work that you would like to do.
 The BIDS maintainers will then invite you to one of the biweekly maintainers meetings (online)
-to discuss further steps and point you to the Onboarding documentation (things to do).
+to discuss further steps and point you to the onboarding documentation (things to do).
 
 We would be happy to hear from you!
 
-## Citation
+## Crediting BIDS maintainers in work submissions
 
-To cite the BIDS maintainers (as a consortium author),
-you can use the following OSF account: [https://osf.io/y48x9/](https://osf.io/y48x9/)
+If you prepare a submission of work related to BIDS, and would like to credit the BIDS maintainers
+in that submission, please get in touch.
+
+It is for example possible to include BIDS maintainers as a consortium author,
+through using the following OSF account: [https://osf.io/y48x9/](https://osf.io/y48x9/)
+
+We are furthermore preparing more guidelines on this topic, see this work in progress:
+https://docs.google.com/document/d/1yQdYOw7WMpkcFgT4tNalOjKuH34nhmRqg4luI4V9uhE/
 
 ## Notes
 
-As detailed in the [BIDS governance document](https://bids.neuroimaging.io/governance.html),
+As detailed in the [BIDS governance](https://bids.neuroimaging.io/governance.html),
 this guide is subject to change and to amendment by the BIDS Steering Group.
