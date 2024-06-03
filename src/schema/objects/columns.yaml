@@ -40,8 +40,11 @@ age:
 
     It is recommended to tag participant ages that are 89 or higher as 89+,
     for privacy purposes.
-  type: number
-  unit: year
+  definition: {
+    "LongName": "Subject age",
+    "Description": "Subject age in postnatal years",
+    "Units": "year",
+  }
 cardiac:
   name: cardiac
   display_name: Cardiac measurement
