@@ -224,15 +224,16 @@ def resolve_metadata_type(definition):
 
     elif "definition" in definition:
         json_def = definition["definition"]
-        if "Levels" in json_def:
-            keytypes = {type(k) for k in json_def["Levels"]}
-            type_map = {
-                str: "string",
-                int: "integer",
-                float: "number",
-            }
-            string = " or ".join([type_map[k] for k in keytypes])
+
+        if "Delimiter" in json_def:
+            # Delimiter indicates the value must be parsed. For BIDS purposes,
+            # this is a string, even if the parsed array is of numbers.
+            string = "string"
+        elif "Levels" in json_def:
+            # JSON keys are always strings.
+            string = "string"
         elif "Units" in json_def:
+            # Values with units are always (any exceptions?) numbers.
             string = "number"
         else:
             string = "string or number"
