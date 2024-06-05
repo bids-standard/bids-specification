@@ -1,5 +1,7 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
+ci:
+  skip: [shellcheck]
 exclude: 'tools/schemacode/bidsschematools/tests/data/broken_dataset_description.json'
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -50,7 +52,7 @@ repos:
         args: [-f=standard, -c=.yamllint.yml]
         files: src/schema/.*/.*\.yaml
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.2.6
+    rev: v2.3.0
     hooks:
       - id: codespell
         args: ["--config=.codespellrc", "--dictionary=-", "--dictionary=.codespell_dict"]
@@ -71,3 +73,7 @@ repos:
           - types-jsonschema
         args: ["tools/schemacode/bidsschematools"]
         pass_filenames: false
+  - repo: https://github.com/koalaman/shellcheck-precommit
+    rev: v0.10.0
+    hooks:
+      - id: shellcheck
