@@ -139,7 +139,7 @@ see [parameter metadata](#parameter-metadata).
             orthogonal to the zenith direction,
             with value of 0.0 corresponding to the *first* reference axis
             (see [parameter metadata](#parameter-metadata)),
-            increasing according to the right-hand rule about the zenith direction.
+            increasing toward the positive direction of the *second* reference axis.
 
         Number of image volumes is equal to (3x*N*),
         where *N* is the maximum number of discrete orientations in any voxel in the image.
@@ -616,7 +616,7 @@ Dictionary `"ResponseFunction"` has the following reserved keywords:
         },
         "OrientationEncoding": {
             "EncodingAxis": 3,
-            "Reference": "ijk",
+            "Reference": "bvec",
             "Type": "unitspherical"
         }
     }
@@ -757,7 +757,7 @@ Dictionary `"ResponseFunction"` has the following reserved keywords:
         },
         "OrientationEncoding": {
             "EncodingAxis": 3,
-            "ReferenceAxes": "ijk",
+            "ReferenceAxes": "bvec",
             "Type": "unitspherical"
         }
     }
