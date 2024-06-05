@@ -5,7 +5,8 @@ build:
   apt_packages:
     - jq
   tools:
-    python: "3.11"
+    python: "mambaforge-22.9"
+
   jobs:
     pre_build:
       - bst -v export --output src/schema.json
@@ -14,6 +15,9 @@ build:
 mkdocs:
   configuration: mkdocs.yml
   fail_on_warning: true
+
+conda:
+  environment: environment.yml
 
 python:
   install:
