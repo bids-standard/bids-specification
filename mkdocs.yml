@@ -1,4 +1,4 @@
-site_name: Brain Imaging Data Structure v1.10.0-dev
+site_name: Brain Imaging Data Structure 1.10.0-dev
 site_url: https://bids-specification.readthedocs.io/en/stable/
 repo_url: https://github.com/bids-standard/bids-specification
 nav:
@@ -12,7 +12,7 @@ nav:
           - Electroencephalography: modality-specific-files/electroencephalography.md
           - Intracranial Electroencephalography: modality-specific-files/intracranial-electroencephalography.md
           - Task events: modality-specific-files/task-events.md
-          - Physiological and other continuous recordings: modality-specific-files/physiological-and-other-continuous-recordings.md
+          - Physiological recordings: modality-specific-files/physiological-recordings.md
           - Behavioral experiments (with no neural recordings): modality-specific-files/behavioral-experiments.md
           - Genetic Descriptor: modality-specific-files/genetic-descriptor.md
           - Positron Emission Tomography: modality-specific-files/positron-emission-tomography.md
@@ -84,12 +84,16 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/bids-standard/bids-specification/
-    - icon: fontawesome/brands/twitter
-      link: https://twitter.com/BIDSstandard/
+    - icon: fontawesome/brands/x-twitter
+      link: https://x.com/BIDSstandard/
     - icon: fontawesome/brands/mastodon
       link: https://fosstodon.org/@bidsstandard
     - icon: fontawesome/brands/google
       link: https://groups.google.com/g/bids-discussion
+    - icon: fontawesome/brands/instagram
+      link: https://www.instagram.com/bidsstandard/
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/channel/UCxZUcYfd_nvIVWAbzRB1tlw
 
 extra_javascript:
   - js/jquery-3.6.0.min.js
@@ -97,6 +101,8 @@ markdown_extensions:
   - toc:
       anchorlink: true
   - pymdownx.superfences
+  - admonition
+  - pymdownx.details
 plugins:
   - search
   - branchcustomization:
@@ -116,7 +122,7 @@ plugins:
         "04-modality-specific-files/03-electroencephalography.md": "modality-specific-files/electroencephalography.md"
         "04-modality-specific-files/04-intracranial-electroencephalography.md": "modality-specific-files/intracranial-electroencephalography.md"
         "04-modality-specific-files/05-task-events.md": "modality-specific-files/task-events.md"
-        "04-modality-specific-files/06-physiological-and-other-continuous-recordings.md": "modality-specific-files/physiological-and-other-continuous-recordings.md"
+        "04-modality-specific-files/06-physiological-and-other-continuous-recordings.md": "modality-specific-files/physiological-recordings.md"
         "04-modality-specific-files/07-behavioral-experiments.md": "modality-specific-files/behavioral-experiments.md"
         "04-modality-specific-files/08-genetic-descriptor.md": "modality-specific-files/genetic-descriptor.md"
         "04-modality-specific-files/09-positron-emission-tomography.md": "modality-specific-files/positron-emission-tomography.md"

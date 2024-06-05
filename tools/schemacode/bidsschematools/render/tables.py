@@ -1,4 +1,5 @@
 """Functions for rendering portions of the schema as text."""
+
 from __future__ import annotations
 
 import logging
@@ -283,7 +284,7 @@ def make_entity_table(schema, tablefmt="github", src_path=None, **kwargs):
 
     Parameters
     ----------
-    schema_path : str
+    schema : str
         Directory containing schema, which is stored in yaml files.
     tablefmt : string, optional
         The target table format. The default is "github" (GitHub format).

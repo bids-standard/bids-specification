@@ -20,6 +20,6 @@ ReadmeFileSmall:
       Please consider expanding it with additional information about the dataset.
     level: warning
   selectors:
-    - match(path, '^README')
+    - match(path, '^/README')
   checks:
     - size > 150

@@ -25,15 +25,27 @@ MRIHardware:
     SoftwareVersions:
       level: recommended
       description_addendum: Corresponds to DICOM Tag 0018, 1020 `Software Versions`.
-    HardcopyDeviceSoftwareVersion: DEPRECATED
+    HardcopyDeviceSoftwareVersion: deprecated
     MagneticFieldStrength:
       level: recommended, but required for Arterial Spin Labeling
     ReceiveCoilName: recommended
     ReceiveCoilActiveElements: recommended
+    NumberReceiveCoilActiveElements: optional
     GradientSetType: recommended
     MRTransmitCoilSequence: recommended
     MatrixCoilMode: recommended
     CoilCombinationMethod: recommended
+    NumberTransmitCoilActiveElements: optional
+
+MRISample:
+  selectors:
+    - modality == "mri"
+  fields:
+    BodyPart:
+      level: optional
+      description_addendum: Corresponds to DICOM Tag 0018, 0015 `Body Part Examined`.
+    BodyPartDetails: optional
+    BodyPartDetailsOntology: optional
 
 MRIScannerHardwareASL:
   selectors:
@@ -67,6 +79,10 @@ MRISequenceSpecifics:
     SpoilingRFPhaseIncrement: optional
     SpoilingGradientMoment: optional
     SpoilingGradientDuration: optional
+    WaterSuppression: optional
+    WaterSuppressionTechnique: optional
+    B0ShimmingTechnique: optional
+    B1ShimmingTechnique: optional
 
 PETMRISequenceSpecifics:
   selectors:

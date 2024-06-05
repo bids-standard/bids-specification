@@ -6,9 +6,11 @@ Please see [Citing BIDS](../introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
-Several [example iEEG datasets](https://bids-standard.github.io/bids-examples/#ieeg)
-have been formatted using this specification
-and can be used for practical guidance when curating a new dataset.
+!!! example "Example datasets"
+
+    Several [example iEEG datasets](https://bids-standard.github.io/bids-examples/#ieeg)
+    have been formatted using this specification
+    and can be used for practical guidance when curating a new dataset.
 
 ## iEEG recording data
 
@@ -51,12 +53,8 @@ packages. Other formats that may be considered in the future should have a clear
 added advantage over the existing formats and should have wide adoption in the
 BIDS community.
 
-The data format in which the data was originally stored is especially valuable
-in case conversion elicits the loss of crucial metadata specific to
-manufacturers and specific iEEG systems. We also encourage users to provide
-additional meta information extracted from the manufacturer-specific data files
-in the sidecar JSON file. Other relevant files MAY be included alongside the
-original iEEG data in the [`/sourcedata` directory](../common-principles.md#source-vs-raw-vs-derived-data).
+We encourage users to provide additional metadata extracted from the
+manufacturer-specific data files in the sidecar JSON file.
 
 Note the RecordingType, which depends on whether the data stream on disk is interrupted or not.
 Continuous data is by definition 1 segment without interruption.
@@ -350,6 +348,12 @@ and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_columns_table("ieeg.iEEGElectrodes") }}
+
+`*_electrodes.tsv` files SHOULD NOT be duplicated for each data file,
+for example, during multiple runs of a task.
+The [inheritance principle](../common-principles.md#the-inheritance-principle) MUST
+be used to find the appropriate electrode positions for a given data file.
+If electrodes are repositioned, it is RECOMMENDED to use multiple sessions to indicate this.
 
 ### Example `*_electrodes.tsv`
 

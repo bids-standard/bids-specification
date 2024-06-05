@@ -202,29 +202,60 @@ Don't do this:
 
 ```Markdown
 | **Key name** | **Description**                                          |
-|--------------|----------------------------------------------------------|
+| ------------ | -------------------------------------------------------- |
 | Manufacturer | Manufacturer of the equipment, for example (`Siemens`)   |
 ```
 
 That would look like this:
 
 | **Key name** | **Description**                                          |
-|--------------|----------------------------------------------------------|
+| ------------ | -------------------------------------------------------- |
 | Manufacturer | Manufacturer of the equipment, for example (`Siemens`)   |
 
 But do this instead:
 
 ```Markdown
 | **Key name** | **Description**                                          |
-|--------------|----------------------------------------------------------|
+| ------------ | -------------------------------------------------------- |
 | Manufacturer | Manufacturer of the equipment, for example (`"Siemens"`) |
 ```
 
 That would look like this:
 
 | **Key name** | **Description**                                          |
-|--------------|----------------------------------------------------------|
+| ------------ | -------------------------------------------------------- |
 | Manufacturer | Manufacturer of the equipment, for example (`"Siemens"`) |
+
+
+#### MkDocs admonitions
+
+It is possible to use [Mkdocs admonitions](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#inline-blocks-inline-end)
+to highlight certain aspect of the specification.
+
+Admonitions are written like this:
+
+````
+!!! note "displayed heading is preceded by a keyword and 3 `!`"
+
+    Body of the admonition
+    can be written on several lines,
+    but must be always preceded by 4 spaces.
+````
+
+The keyword for the heading must be one of the following:
+
+- note
+- abstract
+- info
+- tip
+- success
+- question
+- warning
+- failure: octicons
+- danger
+- bug
+- example
+- quote
 
 ## Using macros
 
@@ -697,6 +728,8 @@ the `master` branch of the specification via a "Merge commit"
 (as opposed to "Squash and merge" or "Rebase and merge";
 see the [GitHub help page](https://help.github.com/en/articles/about-merge-methods-on-github)
 for more information on merge methods).
+
+![merge-commit](release_images/merge_commit.png "merge-commit")
 
 Note that for pull requests starting with `REL:`, no changelog is generated.
 

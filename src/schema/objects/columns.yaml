@@ -19,7 +19,7 @@ acq_time__scans:
     Acquisition time refers to when the first data point in each run was acquired.
     Furthermore, if this header is provided, the acquisition times of all files
     from the same recording MUST be identical.
-    Datetime format and their anonymization are described in
+    Datetime format and their deidentification are described in
     [Units](SPEC_ROOT/common-principles.md#units).
   type: string
   format: datetime
@@ -28,7 +28,7 @@ acq_time__sessions:
   display_name: Session acquisition time
   description: |
     Acquisition time refers to when the first data point of the first run was acquired.
-    Datetime format and their anonymization are described in
+    Datetime format and their deidentification are described in
     [Units](SPEC_ROOT/common-principles.md#units).
   type: string
   format: datetime
@@ -110,6 +110,21 @@ derived_from:
     for example a slice of tissue (`sample-02`) derived from a block of tissue (`sample-01`).
   type: string
   pattern: ^sample-[0-9a-zA-Z]+$
+desc_id:
+  name: desc_id
+  display_name: Description Label
+  description: |
+    A `desc-<label>` entity present in the derivatives dataset.
+
+    The `desc_id` column contains the labels used with the
+    [`desc` entity](SPEC_ROOT/appendices/entities.md#desc),
+    within the particular nesting that the `descriptions.tsv` file is placed.
+
+    For example, if the `descriptions.tsv` file is placed at the root of the derivative dataset,
+    its `desc_id` column SHOULD contain all labels of the `desc` entity)
+    used across the entire derivative dataset.
+  type: string
+  pattern: ^desc-[0-9a-zA-Z]+$
 description:
   name: description
   display_name: Description
@@ -121,6 +136,12 @@ description__optode:
   display_name: Description
   description: |
     Free-form text description of the optode, or other information of interest.
+  type: string
+description__entities:
+  name: description
+  display_name: Description
+  description: |
+    Free-form text description of the entity's label (defined in `<entity>_id` column).
   type: string
 dimension:
   name: dimension
@@ -397,7 +418,7 @@ reference_frame:
   description: |
     Specification of a reference frame in which the motion data are to be interpreted.
     The description of the levels in `*_channels.json` SHOULD use `RotationRule`,
-    `RotationOrder`, and `SpatialAxis`, and MAY use `Description` for the specification.
+    `RotationOrder`, and `SpatialAxes`, and MAY use `Description` for the specification.
   anyOf:
     - type: string
     - type: string
