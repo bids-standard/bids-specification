@@ -127,7 +127,7 @@ see [parameter metadata](#parameter-metadata).
             orthogonal to the zenith direction,
             with value of 0.0 corresponding to the *first* reference axis
             (see [parameter metadata](#parameter-metadata)),
-            increasing according to the right-hand rule about the zenith direction.
+            increasing toward the positive direction of the *second* reference axis.
 
         Number of image volumes is equal to (3x*N*),
         where *N* is the maximum number of discrete orientations in any voxel in the image.
@@ -290,11 +290,19 @@ Dictionary `"OrientationEncoding"` has the following reserved keywords:
 | AntipodalSymmetry       | [spherical coordinates](#encoding-spherical), [3-vectors](#encoding-3vector), [tensor](#encoding-tensor), [amplitudes](#encoding-amp), [spherical harmonics](#encoding-sh) | OPTIONAL. Boolean. Indicates whether orientation information should be interpreted as being antipodally symmetric. Assumed to be True if omitted.                                                                                                                                                                                                                                                                            |
 | EncodingAxis            | All except [scalar](#encoding-scalar)                                                                                                                                      | REQUIRED. Integer. Indicates the image axis (indexed from zero) along which image intensities should be interpreted as corresponding to orientation encoding.                                                                                                                                                                                                                                                                |
 | FillValue               | [Scalar](#encoding-scalar), [spherical coordinates](#encoding-spherical), [3-vectors](#encoding-3vector)                                                                   | OPTIONAL. Float; allowed values: { 0.0, NaN }. Value stored in image when the number of discrete orientations in a given voxel is fewer than the maximal number for that image.                                                                                                                                                                                                                                              |
-| Reference               | All except [scalar](#encoding-scalar)                                                                                                                                      | REQUIRED. String; allowed values: { `ijk`, `xyz` }. Indicates whether the NIfTI image axes, or scanner-space axes, are used as reference axes for orientation information.                                                                                                                                                                                                                                                   |
+| Reference               | All except [scalar](#encoding-scalar)                                                                                                                                      | REQUIRED. String; allowed values: { `bvec`, `ijk`, `xyz` }. Defines the reference coordinate system against which orientation information is encoded (more below).                                                                                                                                                                                                                                                           |
 | SphericalHarmonicBasis  | [Spherical harmonics](#encoding-sh)                                                                                                                                        | REQUIRED for `"Type": "sh"`; MUST NOT be specified otherwise. String. Options are: { `mrtrix3`, `descoteaux` }. Details are provided in the [spherical harmonics bases](#spherical-harmonics-bases) section.                                                                                                                                                                                                                 |
 | SphericalHarmonicDegree | [Spherical harmonics](#encoding-sh)                                                                                                                                        | OPTIONAL for `"Type": "sh"`; MUST NOT be specified otherwise. Integer. The maximal spherical harmonic order *l<sub>max</sub>*; the number of volumes in the associated NIfTI image must correspond to this value as per the relationship described in [spherical harmonics bases](#spherical-harmonics-bases) section.                                                                                                       |
 | TensorRank              | [Tensor](#encoding-tensor)                                                                                                                                                 | REQUIRED for `"Type": "tensor"; MUST NOT be specified otherwise. Integer. Rank of tensor reporesentation. Specification currently only supports a value of 2.                                                                                                                                                                                                                                                                |
 | Type                    | Any                                                                                                                                                                        | REQUIRED. String. Specifies the type of orientation information (if any) encoded in the NIfTI image. Permitted values: { `scalar`, `dec`, `unitspherical`, `spherical`, `unit3vector`, `3vector`, `tensor`, `sh`, `amplitudes` }.                                                                                                                                                                                            |
+
+Field `"OrientationEncoding"["Reference"]` MUST contain one of the following values:
+
+| **Value** | **Interpretation**                                                                                                                                                                                                                                                            |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| bvec      | The three spatial image axes; **unless** those axes form a right-handed coordinate system (that is, the 3x3 linear component of the NIfTI header transformation has a positive determinant), in which case the negative of the first axis orientation is the first reference. |
+| ijk       | The three spatial image axes define the orientation reference.                                                                                                                                                                                                                |
+| xyz       | The "real" / "scanner" space axes, which are independent of the NIfTI image header transform, define the orientation reference.                                                                                                                                               |
 
 Dictionary `"ResponseFunction"` has the following reserved keywords:
 
@@ -639,7 +647,7 @@ Contents of JSON file "`sub-01_model-bs_desc-mean_param-polar_dwimap.json`":
     },
     "OrientationEncoding": {
         "EncodingAxis": 3,
-        "Reference": "ijk",
+        "Reference": "bvec",
         "Type": "unitspherical"
     }
 }
@@ -665,7 +673,7 @@ Contents of JSON file "`sub-01_model-bs_desc-mean_param-vector_dwimap.json`":
     },
     "OrientationEncoding": {
         "EncodingAxis": 3,
-        "Reference": "ijk",
+        "Reference": "bvec",
         "Type": "unit3vector"
     }
 }
@@ -780,7 +788,7 @@ Contents of JSON file "`sub-01_model-bs_desc-merged_param-polar_dwimap.json`":
     },
     "OrientationEncoding": {
         "EncodingAxis": 3,
-        "ReferenceAxes": "ijk",
+        "ReferenceAxes": "bvec",
         "Type": "unitspherical"
     }
 }
