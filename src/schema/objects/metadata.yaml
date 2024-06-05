@@ -3398,12 +3398,11 @@ TablePosition:
   description: |
     The table position, relative to an implementation-specific reference point,
     often the isocenter. Values must be an array (1x3) of three distances in
-    millimeters in absolute coordinates (world coordinates). The
-    absolute coordinates are respectively right, anterior and superior (RAS+)
-    as if it was acquired in head first supine (HFS) orientation. In
-    other words, moving the table into the scanner will always increase the 3rd
-    value in the array, regardless of the patient positioning (feet
-    first for example). The origin is defined by the image affine.
+    millimeters in absolute coordinates (world coordinates). If an observer
+    stands in front of the scanner looking at it, a table moving to the left,
+    up or into the scanner (from the observer's point of view) will increase
+    the 1st, 2nd and 3rd value in the array respectively. The origin is defined
+    by the image affine.
   type: array
   minItems: 3
   maxItems: 3
