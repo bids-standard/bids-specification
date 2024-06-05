@@ -16,14 +16,15 @@ dwi:
   display_name: Diffusion-Weighted Imaging
   description: |
     Diffusion-weighted imaging (DWI).
+ecephys:
+  value: ecephys
+  display_name: Extracellular Electrophysiology
+  description: |
+    Electrophysiological data from extracellular microelectrodes
 eeg:
   value: eeg
   display_name: Electroencephalography
   description: Electroencephalography
-ephys:
-  value: ephys
-  display_name: Electrophysiology
-  description: Data acquired using microelectrodes.
 fmap:
   value: fmap
   display_name: Field maps
@@ -34,6 +35,11 @@ func:
   display_name: Task-Based Magnetic Resonance Imaging
   description: |
     Task (including resting state) imaging data
+icephys:
+  value: icephys
+  display_name: Intracellular Electrophysiology
+  description: |
+    Electrophysiological data acquired from intracellular or patch microelectrodes
 ieeg:
   value: ieeg
   display_name: Intracranial electroencephalography
