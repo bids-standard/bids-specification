@@ -751,6 +751,10 @@
       "type": "object",
       "properties": {
         "level": { "enum": ["optional", "recommended", "required"] },
+        "datatypes": {
+          "type": "array",
+          "items": { "pattern": "^[a-z]+$" }
+        },
         "stem": { "type": "string" },
         "extensions": { "type": "array", "items": { "type": "string" } }
       },

@@ -208,7 +208,7 @@ but also by which metadata fields are provided in accompanying json files.
 #### Anatomy imaging data
 
 | **File collection**  | **REQUIRED metadata**                                                                                                        | **OPTIONAL metadata**      |
-|----------------------|------------------------------------------------------------------------------------------------------------------------------|----------------------------|
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
 | VFA                  | `FlipAngle`, `PulseSequenceType`, `RepetitionTimeExcitation`                                                                 | `SpoilingRFPhaseIncrement` |
 | IRT1                 | `InversionTime`                                                                                                              |                            |
 | MP2RAGE<sup>\*</sup> | `FlipAngle`, `InversionTime`, `RepetitionTimeExcitation`, `RepetitionTimePreparation`, `NumberShots`,`MagneticFieldStrength` | `EchoTime`                 |
@@ -282,7 +282,7 @@ and a guide for using macros can be found at
 }}
 
 | **File collection**  | **REQUIRED metadata**                                                                                |
-|----------------------|------------------------------------------------------------------------------------------------------|
+| -------------------- | ---------------------------------------------------------------------------------------------------- |
 | TB1DAM               | `FlipAngle`                                                                                          |
 | TB1EPI               | `EchoTime`, `FlipAngle`, `TotalReadoutTime`, `MixingTime`                                            |
 | TB1AFI               | `RepetitionTime`                                                                                     |
@@ -447,7 +447,7 @@ This approach aims at:
 -   keeping an inheritance track of the qMRI methods described within the specification.
 
 | **File-collection suffix** | **If REQUIRED metadata == Value** | **OPTIONAL metadata (`entity`/`fixed`)** | **Derived application name (NOT a suffix)** |
-|----------------------------|-----------------------------------|------------------------------------------|---------------------------------------------|
+| -------------------------- | --------------------------------- | ---------------------------------------- | ------------------------------------------- |
 | VFA                        | `PulseSequenceType` == `SPGR`     |                                          | DESPOT1                                     |
 | VFA                        | `PulseSequenceType` == `SSFP`     | `SpoilingRFPhaseIncrement` (`fixed`)     | DESPOT2                                     |
 | MP2RAGE                    |                                   | `EchoTime` (`echo`)                      | MP2RAGE-ME                                  |
