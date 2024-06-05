@@ -29,7 +29,7 @@ There are two main ways to obtain a quantitative map:
     [hMRI toolbox](https://github.com/hMRI-group/hMRI-toolbox),
     [mrQ](https://github.com/mezera/mrQ),
     [PyQMRI](https://github.com/IMTtugraz/PyQMRI),
-    [qmap](https://www.medphysics.wisc.edu/~samsonov/qmap/doc/qmap.html),
+    [qmap](https://web.archive.org/web/20220201201633/https://www.medphysics.wisc.edu/~samsonov/qmap/doc/qmap.html),
     [qMRLab](https://github.com/qmrlab/qmrlab),
     and [QUIT](https://github.com/spinicist/QUIT).
 
@@ -208,10 +208,10 @@ but also by which metadata fields are provided in accompanying json files.
 #### Anatomy imaging data
 
 | **File collection**  | **REQUIRED metadata**                                                                                                        | **OPTIONAL metadata**      |
-|----------------------|------------------------------------------------------------------------------------------------------------------------------|----------------------------|
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
 | VFA                  | `FlipAngle`, `PulseSequenceType`, `RepetitionTimeExcitation`                                                                 | `SpoilingRFPhaseIncrement` |
 | IRT1                 | `InversionTime`                                                                                                              |                            |
-| MP2RAGE<sup>\*</sup> | `FlipAngle`, `InversionTime`, `RepetitionTimeExcitation`, `RepetitionTimePreperation`, `NumberShots`,`MagneticFieldStrength` | `EchoTime`                 |
+| MP2RAGE<sup>\*</sup> | `FlipAngle`, `InversionTime`, `RepetitionTimeExcitation`, `RepetitionTimePreparation`, `NumberShots`,`MagneticFieldStrength` | `EchoTime`                 |
 | MESE                 | `EchoTime`                                                                                                                   |                            |
 | MEGRE                | `EchoTime`                                                                                                                   |                            |
 | MTR                  | `MTState`                                                                                                                    |                            |
@@ -282,7 +282,7 @@ and a guide for using macros can be found at
 }}
 
 | **File collection**  | **REQUIRED metadata**                                                                                |
-|----------------------|------------------------------------------------------------------------------------------------------|
+| -------------------- | ---------------------------------------------------------------------------------------------------- |
 | TB1DAM               | `FlipAngle`                                                                                          |
 | TB1EPI               | `EchoTime`, `FlipAngle`, `TotalReadoutTime`, `MixingTime`                                            |
 | TB1AFI               | `RepetitionTime`                                                                                     |
@@ -447,7 +447,7 @@ This approach aims at:
 -   keeping an inheritance track of the qMRI methods described within the specification.
 
 | **File-collection suffix** | **If REQUIRED metadata == Value** | **OPTIONAL metadata (`entity`/`fixed`)** | **Derived application name (NOT a suffix)** |
-|----------------------------|-----------------------------------|------------------------------------------|---------------------------------------------|
+| -------------------------- | --------------------------------- | ---------------------------------------- | ------------------------------------------- |
 | VFA                        | `PulseSequenceType` == `SPGR`     |                                          | DESPOT1                                     |
 | VFA                        | `PulseSequenceType` == `SSFP`     | `SpoilingRFPhaseIncrement` (`fixed`)     | DESPOT2                                     |
 | MP2RAGE                    |                                   | `EchoTime` (`echo`)                      | MP2RAGE-ME                                  |

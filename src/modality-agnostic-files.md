@@ -5,7 +5,8 @@
 Templates:
 
 -   `dataset_description.json`
--   `README`
+-   `README[.md|.rst|.txt]`
+-   `CITATION.cff`
 -   `CHANGES`
 -   `LICENSE`
 
@@ -268,7 +269,7 @@ to date of birth.
 {
     "age": {
         "Description": "age of the participant",
-        "Units": "years"
+        "Units": "year"
     },
     "sex": {
         "Description": "sex of the participant as reported by the participant",
@@ -533,7 +534,7 @@ ses-followup	2009-06-17T13:45:30	110
 Template: `code/*`
 
 Source code of scripts that were used to prepare the dataset MAY be stored here.
-Examples include anonymization or defacing of the data, or
+Examples include deidentification or defacing of the data, or
 the conversion from the format of the source data to the BIDS format
 (see [source vs. raw vs. derived data](./common-principles.md#source-vs-raw-vs-derived-data)).
 Extra care should be taken to avoid including original IDs or
