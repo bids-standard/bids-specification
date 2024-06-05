@@ -20,7 +20,7 @@ ecephys:
   value: ecephys
   display_name: Extracellular Electrophysiology
   description: |
-    Electrophysiological data from an extracellular microelectrodes
+    Electrophysiological data from extracellular microelectrodes
 eeg:
   value: eeg
   display_name: Electroencephalography
@@ -39,7 +39,7 @@ icephys:
   value: icephys
   display_name: Intracellular Electrophysiology
   description: |
-    Electrophysiological data acquired from an individual cell
+    Electrophysiological data acquired from intracellular or patch microelectrodes
 ieeg:
   value: ieeg
   display_name: Intracranial electroencephalography

@@ -16,11 +16,12 @@ channels:
     acquisition: optional
     run: optional
 
-# cephys has an additional 'sample' entity
-channels__cephys:
+# microephys has an additional 'sample' entity
+channels__microephys:
   $ref: rules.files.raw.channels.channels
   datatypes:
-    - cephys
+    - icephys
+    - ecephys
   entities:
     $ref: rules.files.raw.channels.channels.entities
     sample: optional
@@ -66,11 +67,12 @@ coordsystem__eeg:
     $ref: rules.files.raw.channels.coordsystem.entities
     space: optional
 
-# cephys has sample AND space entities
-coordsystem__cephys:
+# microephys has sample AND space entities
+coordsystem__microephys:
   $ref: rules.files.raw.channels.coordsystem
   datatypes:
-    - cephys
+    - ecephys
+    - icephys
   entities:
     $ref: rules.files.raw.channels.coordsystem.entities
     sample: optional
