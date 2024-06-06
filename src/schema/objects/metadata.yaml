@@ -3561,7 +3561,7 @@ Units:
   name: Units
   display_name: Units
   description: |
-    Measurement units for the associated file.
+    Measurement units for the associated variable.
     SI units in CMIXF formatting are RECOMMENDED
     (see [Units](SPEC_ROOT/common-principles.md#units)).
   type: string
