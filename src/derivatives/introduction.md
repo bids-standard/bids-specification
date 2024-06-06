@@ -8,7 +8,7 @@ machine-readable access to processed data enables higher-level processing.
 
 The following sections cover additions to and divergences from [raw BIDS datasets](../glossary.md#raw-common_principles).
 
-[Raw BIDS datasets](../glossary.md#raw-common_principles) are data that have been curated into BIDS from a non-BIDS source.
+[Raw BIDS datasets](../glossary.md#raw-common_principles) are data that have been curated into BIDS from one or more non-BIDS sources.
 If a dataset is derived from at least one other valid BIDS dataset,
 then it is a [derivatives datasets](../glossary.md#derivative-common_principles).
 
