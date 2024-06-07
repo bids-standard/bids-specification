@@ -8,7 +8,7 @@ EEGChannelCountReq:
     level: warning
   selectors:
     - suffix == "eeg"
-    - type(sidecar.EEGChannelCount) != "null""
+    - type(sidecar.EEGChannelCount) != "null"
     - associations.channels.type
   checks:
     - sidecar.EEGChannelCount == count(associations.channels.type, "EEG")
@@ -21,7 +21,7 @@ ECGChannelCountReq:
     level: warning
   selectors:
     - suffix == "eeg"
-    - type(sidecar.ECGChannelCount) != "null""
+    - type(sidecar.ECGChannelCount) != "null"
     - associations.channels.type
   checks:
     - sidecar.ECGChannelCount == count(associations.channels.type, "ECG")
@@ -34,7 +34,7 @@ EMGChannelCountReq:
     level: warning
   selectors:
     - suffix == "eeg"
-    - type(sidecar.EMGChannelCount) != "null""
+    - type(sidecar.EMGChannelCount) != "null"
     - associations.channels.type
   checks:
     - sidecar.EMGChannelCount == count(associations.channels.type, "EMG")
@@ -47,7 +47,7 @@ EOGChannelCountReq:
     level: warning
   selectors:
     - suffix == "eeg"
-    - type(sidecar.EOGChannelCount) != "null""
+    - type(sidecar.EOGChannelCount) != "null"
     - associations.channels.type
   checks:
     - sidecar.EOGChannelCount == count(associations.channels.type, "EOG")
@@ -60,7 +60,7 @@ MiscChannelCountReq:
     level: warning
   selectors:
     - suffix == "eeg"
-    - type(sidecar.MiscChannelCount) != "null""
+    - type(sidecar.MiscChannelCount) != "null"
     - associations.channels.type
   checks:
     - sidecar.MiscChannelCount == count(associations.channels.type, "MISC")
@@ -73,7 +73,7 @@ TriggerChannelCountReq:
     level: warning
   selectors:
     - suffix == "eeg"
-    - type(sidecar.TriggerChannelCount) != "null""
+    - type(sidecar.TriggerChannelCount) != "null"
     - associations.channels.type
   checks:
     - sidecar.TriggerChannelCount == count(associations.channels.type, "TRIG")
