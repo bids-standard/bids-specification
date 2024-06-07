@@ -122,7 +122,18 @@
                   "type": "number"
                 }
               },
-              "required": ["name", "display_name", "description"],
+              "anyOf": [
+                { "required": ["name", "display_name", "description", "type"] },
+                {
+                  "required": [
+                    "name",
+                    "display_name",
+                    "description",
+                    "definition"
+                  ]
+                },
+                { "required": ["name", "display_name", "description", "anyOf"] }
+              ],
               "additionalProperties": false
             }
           },
