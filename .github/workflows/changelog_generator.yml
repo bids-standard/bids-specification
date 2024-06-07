@@ -101,10 +101,11 @@ jobs:
 
     commit_generated_changelog:
         permissions:
-            # Give the default GITHUB_TOKEN write permission to commit and push the
-            # added or changed files to the repository.
             contents: write
+            pull-requests: write
         needs: lint_generated_changelog
+        # Run only if the head commit message contains "[build changelog]""
+        if: contains(github.event.head_commit.message, '[build changelog]')
         runs-on: ubuntu-latest
         steps:
         - uses: actions/checkout@v4
@@ -113,18 +114,21 @@ jobs:
           with:
             name: changelog_post_lint
             path: ~/changelog_build
-        - name: Changelog deployment
+        - name: add changelog to git
           run: |
-            if (git log -1 --pretty=%s | grep Merge*) && (! git log -1 --pretty=%b | grep REL:) ; then
-              mv ~/changelog_build/CHANGES.md ${{ github.workspace }}/src/CHANGES.md
-              merge_message=$(git log -1 | grep Merge | grep "pull")
-              PR_number=$(echo $merge_message | cut -d ' ' -f 4)
-              git config credential.helper 'cache --timeout=120'
-              git config user.email "bids.maintenance@gmail.com"
-              git config user.name "bids-maintenance"
-              git add ${{ github.workspace }}/src/CHANGES.md
-              git commit -m "[DOC] Auto-generate changelog entry for PR ${PR_number}"
-              git push https://${{ secrets.GITHUB_TOKEN }}@github.com/bids-standard/bids-specification.git master
-            else
-              echo "Did not detect a "Merge commit" to master, or detected a Release ... doing nothing."
-            fi
+            mv ~/changelog_build/CHANGES.md ${{ github.workspace }}/src/CHANGES.md
+            git config credential.helper 'cache --timeout=120'
+            git config user.email "bids.maintenance@gmail.com"
+            git config user.name "bids-maintenance"
+            git add ${{ github.workspace }}/src/CHANGES.md
+            git commit -m "[DOC] Auto-generated changelog entry"
+        - name: Create Pull Request
+          uses: peter-evans/create-pull-request@v6
+          with:
+            token: ${{ secrets.GITHUB_TOKEN }}
+            branch: changelog_generator_update
+            delete-branch: true
+            title: '[DOC] Auto-generated changelog entry'
+            labels: |
+              exclude-from-changelog
+            draft: false
