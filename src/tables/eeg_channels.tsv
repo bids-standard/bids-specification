@@ -1,0 +1,5 @@
+name	type	units	description	reference	status	status_description
+VEOG	VEOG	uV	left eye	VEOG-, VEOG+	good	n/a
+FDI	EMG	 uV	left first dorsal interosseous	FDI-, FDI+	good	n/a
+Cz	EEG	 uV	n/a	REF	bad	high frequency noise
+UADC001	MISC	n/a	envelope of audio signal	n/a	good	n/a

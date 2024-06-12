@@ -4,5 +4,7 @@ pymdown-extensions>=7.0.0
 mkdocs-branchcustomization-plugin~=0.1.3
 mkdocs-macros-plugin
 mkdocs-redirects
+mkdocs-table-reader-plugin
 numpy
+pandas
 tools/schemacode/[render]
