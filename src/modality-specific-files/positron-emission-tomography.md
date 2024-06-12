@@ -75,10 +75,28 @@ and a guide for using macros can be found at
    suffixes=["pet", "events", "physio", "stim"])
 }}
 
-PET data MUST be stored in the `pet` directory.
-PET imaging data SHOULD be stored in 4D (or 3D, if only one volume was acquired)
-NIfTI files with the `_pet` suffix.
-Volumes MUST be stored in chronological order (the order they were acquired in).
+### PET data format
+
+All PET imaging data MUST be stored using the
+[NIfTI-1 or NIFTI-2](https://nifti.nimh.nih.gov/) file format (`.nii`).
+The ANALYZE-7.5 file format (`.hdr`/`.img`), despite being very similar to NIFTI-1,
+is not allowed.
+Imaging data SHOULD be converted to the NIfTI format using a tool that provides
+as much of the NIfTI header information (such as orientation and slice timing
+information) as possible.
+
+Dynamic (multi-volume) PET imaging data SHOULD be stored in 4D,
+in chronological order (the order they were acquired in).
+
+Due to the important size of PET imaging data, we RECOMMEND using compressed
+NIfTI files by [gzip](https://www.gzip.org/) algorithm (`.nii.gz`).
+If using compressed files, the gzip header SHOULD lack source filenames and timestamps.
+This can be achieved by using `--no-name` option of gzip, or by first renaming
+original file to BIDS standard and then compressing.
+
+### PET file naming
+
+PET data MUST be stored in the `pet` directory with `_pet` suffix.
 
 The OPTIONAL [`task-<label>`](../appendices/entities.md#task) is used to
 indicate a task subjects were asked to perform in the scanner.
@@ -131,8 +149,10 @@ the same [`task-<label>`](../appendices/entities.md#task) entity SHOULD be used.
 For further details, see
 [Task (including resting state) imaging data](./magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data).
 
+<!--
 In addition to the imaging data (`*.nii`) a `_pet.json` sidecar file MUST be provided.
 The included metadata are divided into sections described below.
+-->
 
 ### PET metadata
 
