@@ -82,9 +82,9 @@ def get_gitrepo_fixture(url, whitelist):
 @pytest.fixture(scope="session")
 def schema_dir():
     """Path to the schema housed in the bids-specification repo."""
-    from bidsschematools import utils
+    from .utils import get_bundled_schema_path
 
-    bids_schema = utils.get_bundled_schema_path()
+    bids_schema = get_bundled_schema_path()
     return bids_schema
 
 

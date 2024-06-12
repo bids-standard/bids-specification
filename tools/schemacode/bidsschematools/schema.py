@@ -17,12 +17,12 @@ if sys.version_info < (3, 9):
 else:
     from importlib.resources import files
 
-from . import __bids_version__, __version__, utils
 from .types import Namespace
+from .utils import get_bundled_schema_path, get_logger, set_logger_level
 
-lgr = utils.get_logger()
+lgr = get_logger()
 # Basic settings for output, for now just basic
-utils.set_logger_level(lgr, os.environ.get("BIDS_SCHEMA_LOG_LEVEL", logging.INFO))
+set_logger_level(lgr, os.environ.get("BIDS_SCHEMA_LOG_LEVEL", logging.INFO))
 logging.basicConfig(format="%(asctime)-15s [%(levelname)8s] %(message)s")
 
 
@@ -199,7 +199,7 @@ def load_schema(schema_path=None):
     This function is cached, so it will only be called once per schema path.
     """
     if schema_path is None:
-        schema_path = utils.get_bundled_schema_path()
+        schema_path = get_bundled_schema_path()
         lgr.info("No schema path specified, defaulting to the bundled schema, `%s`.", schema_path)
     schema = Namespace.from_directory(schema_path)
     if not schema.objects:
@@ -216,22 +216,33 @@ def load_schema(schema_path=None):
     return schema
 
 
-def export_schema(schema):
-    """Export the schema to JSON format.
-
+def export(output, schema_path=None):
+    """
+    Export BIDS schema to JSON document.
     Parameters
     ----------
-    schema : dict
-        The schema object, in dictionary form.
-
-    Returns
-    -------
-    json : str
-        The schema serialized as a JSON string.
+    output : str
+        A path which to write a JSON exported schema to, or `-` if the output is to be written
+        to stdout.
+    schema_path : str or None, optional
+        A path to the schema directory you wish to export to JSON.
+    Examples
+    --------
     """
-    versioned = Namespace.build({"schema_version": __version__, "bids_version": __bids_version__})
-    versioned.update(schema)
-    return versioned.to_json()
+    logger = logging.getLogger("bidsschematools")
+
+    if schema_path:
+        schema_path = os.path.abspath(os.path.expanduser(schema_path))
+    schema = load_schema(schema_path)
+    text = schema.to_json()
+    if output == "-":
+        logger.debug("Writing to stdout")
+        print(text)
+    else:
+        output = os.path.abspath(os.path.expanduser(output))
+        logger.debug(f"Writing to {output}")
+        with open(output, "w") as fobj:
+            fobj.write(text)
 
 
 def filter_schema(schema, **kwargs):
