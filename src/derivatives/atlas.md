@@ -1,7 +1,7 @@
 # Templates and atlases
 
 In the following we describe how the outcomes of analyses that produce new
-templates and [atlases](schema/objects/entities.yaml#atlas) are organized
+templates and [atlases](../glossary.md#atlas-entities) are organized
 as BIDS-Derivatives.
 These outcomes typically involve quantitative maps, feature maps, parcellations,
 segmentations, and other knowledge annotations such as landmarks defined with
@@ -17,20 +17,20 @@ these outcomes:
             <source_entities>[_space-<space>][_atlas-<label>][seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
 ```
 
-Template's [`suffix`](schema/objects/entities.yaml#suffix) will generally be existing BIDS raw modalities
+Template's [`suffix`](../glossary.md#suffix-common_principles) will generally be existing BIDS raw modalities
 such as `T1w`, while it will normally take `dseg`, `probseg`, or `mask` to encode atlased knowledge.
-In terms of [`extension`](schema/objects/entities.yaml#extension), `nii[.gz]`, `dscalar.nii[.gz]`,
+In terms of [`extension`](../glossary.md#extension-common_principles), `nii[.gz]`, `dscalar.nii[.gz]`,
 `dlabel.nii[.gz]`, `label.gii[.gz]`, `tsv`, or `json`.
 
-The [`atlas-` entity](schema/objects/entities.yaml#atlas) is REQUIRED to encode files belonging in
+The [`atlas-` entity](../glossary.md#atlas-entities) is REQUIRED to encode files belonging in
 the atlas identified by the label.
 Two entities MAY be employed along with `atlas-` to disentangle different realizations and scales
 of a single atlas:
 
--    [`seg-`](schema/objects/entities.yaml#seg) is REQUIRED when a single atlas has several different
+-    [`seg-`](../glossary.md#seg-entities) is REQUIRED when a single atlas has several different
      realizations (for instance, segmentations and parcellations created with different criteria) that
      need disambiguation.
--    [`scale-`](schema/objects/entities.yaml#scale) is REQUIRED to disambiguate different atlas 'scales',
+-    [`scale-`](../glossary.md#scale-entities) is REQUIRED to disambiguate different atlas 'scales',
      when the atlas has more than one 'brain unit' resolutions, typically relating to the area covered
      by regions.
 
@@ -107,7 +107,7 @@ As the authors of 'Colin27' indicate, it is aligned with MNI305:
 
 Therefore, this pipeline potentially could have produced outputs in the realigned T1w space
 before alignment to the MNI305 template.
-To disambiguate in this case, we employ the [`space-`](schema/objects/entities.yaml#space) entity:
+To disambiguate in this case, we employ the [`space-`](../glossary.md#space-entities) entity:
 
 ```Text
 colin27-pipeline/
@@ -229,7 +229,7 @@ MIAL67ThalamicNuclei-pipeline/
 
 ## Filenames of derivatives with atlases in their provenance
 
-Like for the [`space-` entity](schema/objects/entities.yaml#space), outputs derived from atlases
+Like for the [`space-` entity](../glossary.md#space-entities), outputs derived from atlases
 MUST employ `atlas-`, `seg-`, and `scale-` when necessary:
 
 ```Text
