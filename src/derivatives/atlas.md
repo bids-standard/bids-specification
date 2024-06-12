@@ -40,7 +40,7 @@ These three atlas-related entities are discussed later in section [#atlas-filena
 
 Early digital templates and atlases such as MNI's
 '[Colin 27 Average Brain, Stereotaxic Registration Model](https://www.mcgill.ca/bic/software/tools-data-analysis/anatomical-mri/atlases/colin-27)'
-([Holmes et al., 1998](https://doi.org/10.1097/00004728-199803000-00032)) were built by examinating single individuals.
+([Holmes et al., 1998](https://doi.org/10.1097/00004728-199803000-00032)) were built by examining single individuals.
 For example, the outputs of the pipeline that generated 'Colin27' would have been organized as follows:
 
 ```Text
@@ -201,7 +201,7 @@ where the derivatives of anatomical processing of the 67 subjects that were
 employed to generate the atlas co-exist with the template structure.
 
 The inheritance principle applies uniformly, allowing the segmentation
-metadata be stored only once at the root of the pipeline folder and
+metadata be stored only once at the root of the pipeline directory and
 apply to all the individual subject segmentations:
 
 ```Text
