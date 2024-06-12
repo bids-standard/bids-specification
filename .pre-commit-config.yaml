@@ -10,6 +10,7 @@ repos:
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: check-yaml
+        args: [--unsafe]
       - id: check-json
       - id: check-ast
       - id: check-added-large-files
@@ -71,6 +72,7 @@ repos:
           - types-PyYAML
           - types-tabulate
           - types-jsonschema
+          - types-Markdown
         args: ["tools/schemacode/bidsschematools"]
         pass_filenames: false
   - repo: https://github.com/koalaman/shellcheck-precommit

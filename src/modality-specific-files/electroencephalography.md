@@ -318,15 +318,15 @@ If electrodes are repositioned, it is RECOMMENDED to use multiple sessions to in
 
 See also the corresponding [`electrodes.tsv` example](#example-channelstsv).
 
-```Text
-name   x        y	       z        type     material
-VEOG+  n/a      n/a      n/a      cup      Ag/AgCl
-VEOG-  n/a      n/a      n/a      cup      Ag/AgCl
-FDI+   n/a      n/a      n/a      cup      Ag/AgCl
-FDI-   n/a      n/a      n/a      cup      Ag/AgCl
-GND    -0.0707  0.0000   -0.0707  clip-on  Ag/AgCl
-Cz     0.0000   0.0714   0.0699   cup      Ag/AgCl
-REF    -0.0742  -0.0200  -0.0100  cup      Ag/AgCl
+```tsv
+name	x	y		z	type	material
+VEOG+	n/a	n/a	n/a	cup	Ag/AgCl
+VEOG-	n/a	n/a	n/a	cup	Ag/AgCl
+FDI+	n/a	n/a	n/a	cup	Ag/AgCl
+FDI-	n/a	n/a	n/a	cup	Ag/AgCl
+GND	-0.0707	0.0000	-0.0707	clip-on	Ag/AgCl
+Cz	0.0000	0.0714	0.0699	cup	Ag/AgCl
+REF	-0.0742	-0.0200	-0.0100	cup	Ag/AgCl
 ```
 
 The [`acq-<label>`](../appendices/entities.md#acq) entity can be used to
