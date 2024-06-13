@@ -721,17 +721,12 @@ The decision-making rules are outlined in
 
 The changelog (see `src/CHANGES.md`) is generated automatically using
 [github-changelog-generator](https://github.com/github-changelog-generator/github-changelog-generator).
-You can see the workflow in the CircleCI configuration file (`.circleci/config.yml`).
+You can see the workflow in the following GitHub Actions configuration file: `.github/workflows/changelog_generator.yml`.
 
-As it stands, the changelog is generated whenever a pull request is integrated into
-the `master` branch of the specification via a "Merge commit"
-(as opposed to "Squash and merge" or "Rebase and merge";
-see the [GitHub help page](https://help.github.com/en/articles/about-merge-methods-on-github)
-for more information on merge methods).
-
-![merge-commit](release_images/merge_commit.png "merge-commit")
-
-Note that for pull requests starting with `REL:`, no changelog is generated.
+This workflow is triggered for every commit to `master` that contains string `[build changelog]` in its commit message.
+If you push several commits at once, you need to make sure that the "youngest commit" (the HEAD commit) contains that string.
+The workflow will then open a Pull Request to incorporate the updated changelog.
+Check the proposed changes and merge the Pull Request at will.
 
 To exclude pull requests from showing up in the changelog, they have to be labeled with
 the "exclude-from-changelog" label.
