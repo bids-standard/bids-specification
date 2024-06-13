@@ -2850,9 +2850,9 @@ SamplePrimaryAntibody:
   display_name: Sample Primary Antibody
   description: |
     Description(s) of the primary antibody used for immunostaining.
-    Either an [RRID](https://scicrunch.org/resources) or the name, supplier and catalog
+    Either an [RRID](https://rrid.site) or the name, supplier and catalog
     number of a commercial antibody.
-    For non-commercial antibodies either an [RRID](https://scicrunch.org/resources) or the
+    For non-commercial antibodies either an [RRID](https://rrid.site) or the
     host-animal and immunogen used (for examples: `"RRID:AB_2122563"` or
     `"Rabbit anti-Human HTR5A Polyclonal Antibody, Invitrogen, Catalog # PA1-2453"`).
     MAY be an array of strings if different antibodies are used in each channel of the file.
@@ -2866,9 +2866,9 @@ SampleSecondaryAntibody:
   display_name: Sample Secondary Antibody
   description: |
     Description(s) of the secondary antibody used for immunostaining.
-    Either an [RRID](https://scicrunch.org/resources) or the name, supplier and catalog
+    Either an [RRID](https://rrid.site) or the name, supplier and catalog
     number of a commercial antibody.
-    For non-commercial antibodies either an [RRID](https://scicrunch.org/resources) or the
+    For non-commercial antibodies either an [RRID](https://rrid.site) or the
     host-animal and immunogen used (for examples: `"RRID:AB_228322"` or
     `"Goat anti-Mouse IgM Secondary Antibody, Invitrogen, Catalog # 31172"`).
     MAY be an array of strings if different antibodies are used in each channel of the file.
@@ -3148,7 +3148,7 @@ SoftwareRRID:
   name: SoftwareRRID
   display_name: SoftwareRRID
   description: |
-    [Research Resource Identifier](https://scicrunch.org/resources) of the
+    [Research Resource Identifier](https://rrid.site) of the
     software that was used to present the stimuli.
     Examples: The RRID for Psychtoolbox is 'SCR_002881',
     and that of PsychoPy is 'SCR_006571'.

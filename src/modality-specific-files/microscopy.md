@@ -434,7 +434,7 @@ sub-02 mus musculus C57BL/6J RRID:IMSR_JAX:000664
         "Description": "name of the strain of the species"
     },
     "strain_rrid": {
-        "Description": "research resource identifier (RRID) of the strain (https://scicrunch.org/resources/data/source/nlx_154697-1/search)"
+        "Description": "research resource identifier (RRID) of the strain (https://rrid.site/data/source/nlx_154697-1/search)"
     }
 }
 ```
