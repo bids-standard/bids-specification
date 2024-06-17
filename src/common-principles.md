@@ -318,7 +318,7 @@ Original templates and atlases employed as primary data to the analysis MAY be s
 within the `sourcedata/atlases/`.
 Any artifacts deriving from atlases, or the creation of new templates and atlases MUST
 follow the [corresponding specification](derivatives/atlas.md) and stored under the
-`derivatives/` folder, and follow the general specifications for derivatives regarding
+`derivatives/` directory, and follow the general specifications for derivatives regarding
 storage and distribution, as described in the next section.
 
 ### Storage of derived datasets

@@ -231,7 +231,7 @@ MIAL67ThalamicNuclei-pipeline/
       └─ sub-67_T1w.nii.gz
 ```
 
-This folder structure can be generally applied when the atlas is derived into several
+This directory structure can be generally applied when the atlas is derived into several
 template spaces, for example:
 
 ```Text
