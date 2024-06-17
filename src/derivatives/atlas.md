@@ -43,30 +43,46 @@ Early digital templates and atlases such as MNI's
 ([Holmes et al., 1998](https://doi.org/10.1097/00004728-199803000-00032)) were built by examining single individuals.
 For example, the outputs of the pipeline that generated 'Colin27' would have been organized as follows:
 
-```Text
-colin27-pipeline/
-└─ sub-01/
-   └─ anat/
-      ├─ sub-01_label-brain_mask.nii.gz
-      ├─ sub-01_label-head_mask.nii.gz
-      ├─ sub-01_T1w.nii.gz
-      └─ sub-01_T1w.json
-```
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+   "colin27-pipeline": {
+      "sub-01": {
+         "anat": {
+            "sub-01_label-brain_mask.nii.gz": "",
+            "sub-01_label-head_mask.nii.gz": "",
+            "sub-01_T1w.nii.gz": "",
+            "sub-01_T1w.json": "",
+         },
+      },
+   }
+})
+}}
 
 In the presence of conflicting files, for example, when there are several resolutions,
 additional entities MUST be specified:
 
-```Text
-colin27-pipeline/
-└─ sub-01/
-   └─ anat/
-      ├─ sub-01_res-1_label-brain_mask.nii.gz
-      ├─ sub-01_res-1_label-head_mask.nii.gz
-      ├─ sub-01_res-1_T1w.nii.gz
-      ├─ sub-01_res-1_T1w.json
-      ├─ sub-01_res-2_T1w.nii.gz
-      └─ sub-01_res-2_T1w.json
-```
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+   "colin27-pipeline": {
+      "sub-01": {
+         "anat": {
+            "sub-01_res-1_label-brain_mask.nii.gz": "",
+            "sub-01_res-1_label-head_mask.nii.gz": "",
+            "sub-01_res-1_T1w.nii.gz": "",
+            "sub-01_res-1_T1w.json": "",
+            "sub-01_res-2_T1w.nii.gz": "",
+            "sub-01_res-2_T1w.json": "",
+         },
+      },
+   }
+})
+}}
 
 Often, templates are necessary to bring or project information from/to an atlas.
 Derivatives provenant from an atlas MUST be encoded with the
@@ -75,19 +91,27 @@ The following example shows how 'Colin27' could have encoded the Automated Anato
 atlas ([Tzourio-Mazoyer et al., 2002](https://doi.org/10.1006/nimg.2001.0978)), which was originally
 defined on the Colin27 space:
 
-```Text
-colin27-pipeline/
-└─ sub-01/
-   └─ anat/
-      ├─ sub-01_atlas-AAL_dseg.json
-      ├─ sub-01_atlas-AAL_dseg.nii.gz
-      ├─ sub-01_atlas-AAL_dseg.tsv
-      ├─ sub-01_atlas-AAL_probseg.nii.gz
-      ├─ sub-01_label-brain_mask.nii.gz
-      ├─ sub-01_label-head_mask.nii.gz
-      ├─ sub-01_T1w.nii.gz
-      └─ sub-01_T1w.json
-```
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+   "colin27-pipeline": {
+      "sub-01": {
+         "anat": {
+            "sub-01_atlas-AAL_dseg.json": "",
+            "sub-01_atlas-AAL_dseg.nii.gz": "",
+            "sub-01_atlas-AAL_dseg.tsv": "",
+            "sub-01_atlas-AAL_probseg.nii.gz": "",
+            "sub-01_label-brain_mask.nii.gz": "",
+            "sub-01_label-head_mask.nii.gz": "",
+            "sub-01_T1w.nii.gz": "",
+            "sub-01_T1w.json": "",
+         },
+      },
+   }
+})
+}}
 
 As [the authors of 'Colin27' indicate](https://www.mcgill.ca/bic/software/tools-data-analysis/anatomical-mri/atlases/colin-27),
 it is aligned with MNI305:
@@ -111,23 +135,31 @@ Therefore, this pipeline potentially could have produced outputs in the realigne
 before alignment to the MNI305 template.
 To disambiguate in this case, we employ the [`space-<label>` entity](../glossary.md#space-entities):
 
-```Text
-colin27-pipeline/
-└─ sub-01/
-   └─ anat/
-      ├─ sub-01_space-MNI305_atlas-AAL_dseg.json
-      ├─ sub-01_space-MNI305_atlas-AAL_dseg.nii.gz
-      ├─ sub-01_space-MNI305_atlas-AAL_dseg.tsv
-      ├─ sub-01_space-MNI305_atlas-AAL_probseg.nii.gz
-      ├─ sub-01_space-MNI305_label-brain_mask.nii.gz
-      ├─ sub-01_space-MNI305_label-head_mask.nii.gz
-      ├─ sub-01_space-MNI305_T1w.nii.gz
-      ├─ sub-01_space-MNI305_T1w.json
-      ├─ sub-01_space-T1w_label-brain_mask.nii.gz
-      ├─ sub-01_space-T1w_label-head_mask.nii.gz
-      ├─ sub-01_space-T1w_T1w.nii.gz
-      └─ sub-01_space-T1w_T1w.json
-```
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+   "colin27-pipeline": {
+      "sub-01": {
+         "anat": {
+            "sub-01_space-MNI305_atlas-AAL_dseg.json": "",
+            "sub-01_space-MNI305_atlas-AAL_dseg.nii.gz": "",
+            "sub-01_space-MNI305_atlas-AAL_dseg.tsv": "",
+            "sub-01_space-MNI305_atlas-AAL_probseg.nii.gz": "",
+            "sub-01_space-MNI305_label-brain_mask.nii.gz": "",
+            "sub-01_space-MNI305_label-head_mask.nii.gz": "",
+            "sub-01_space-MNI305_T1w.nii.gz": "",
+            "sub-01_space-MNI305_T1w.json": "",
+            "sub-01_space-T1w_label-brain_mask.nii.gz": "",
+            "sub-01_space-T1w_label-head_mask.nii.gz": "",
+            "sub-01_space-T1w_T1w.nii.gz": "",
+            "sub-01_space-T1w_T1w.json": "",
+         },
+      },
+   }
+})
+}}
 
 ## Multi-subject template and atlases and deriving an existing template/atlas
 
@@ -146,29 +178,37 @@ encoded through the [`tpl-<label>` entity](../glossary.md#template-entities).
 For the pipeline that generated the MNI152NLin2009cAsym, the outputs would look
 like the following example:
 
-```Text
-mni152nlin2009casym-pipeline/
-└─ tpl-MNI152NLin2009cAsym/
-   └─ anat/
-      ├─ tpl-MNI152NLin2009cAsym_res-1_label-brain_mask.nii.gz
-      ├─ tpl-MNI152NLin2009cAsym_res-1_label-eye_mask.nii.gz
-      ├─ tpl-MNI152NLin2009cAsym_res-1_label-face_mask.nii.gz
-      ├─ tpl-MNI152NLin2009cAsym_res-1_label-head_mask.nii.gz
-      ├─ tpl-MNI152NLin2009cAsym_res-1_label-CSF_probseg.nii.gz
-      ├─ tpl-MNI152NLin2009cAsym_res-1_label-GM_probseg.nii.gz
-      ├─ tpl-MNI152NLin2009cAsym_res-1_label-WM_probseg.nii.gz
-      ├─ tpl-MNI152NLin2009cAsym_res-1_T1w.nii.gz
-      ├─ tpl-MNI152NLin2009cAsym_res-1_T1w.json
-      ├─ tpl-MNI152NLin2009cAsym_res-2_label-brain_mask.nii.gz
-      ├─ tpl-MNI152NLin2009cAsym_res-2_label-eye_mask.nii.gz
-      ├─ tpl-MNI152NLin2009cAsym_res-2_label-face_mask.nii.gz
-      ├─ tpl-MNI152NLin2009cAsym_res-2_label-head_mask.nii.gz
-      ├─ tpl-MNI152NLin2009cAsym_res-2_label-CSF_probseg.nii.gz
-      ├─ tpl-MNI152NLin2009cAsym_res-2_label-GM_probseg.nii.gz
-      ├─ tpl-MNI152NLin2009cAsym_res-2_label-WM_probseg.nii.gz
-      ├─ tpl-MNI152NLin2009cAsym_res-2_T1w.nii.gz
-      └─ tpl-MNI152NLin2009cAsym_res-2_T1w.json
-```
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+   "mni152nlin2009casym-pipeline": {
+      "tpl-MNI152NLin2009cAsym": {
+         "anat": {
+            "tpl-MNI152NLin2009cAsym_res-1_label-brain_mask.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_res-1_label-eye_mask.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_res-1_label-face_mask.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_res-1_label-head_mask.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_res-1_label-CSF_probseg.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_res-1_label-GM_probseg.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_res-1_label-WM_probseg.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_res-1_T1w.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_res-1_T1w.json": "",
+            "tpl-MNI152NLin2009cAsym_res-2_label-brain_mask.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_res-2_label-eye_mask.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_res-2_label-face_mask.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_res-2_label-head_mask.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_res-2_label-CSF_probseg.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_res-2_label-GM_probseg.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_res-2_label-WM_probseg.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_res-2_T1w.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_res-2_T1w.json": "",
+         },
+      },
+   }
+})
+}}
 
 Since multi-subject templates and atlas involve the spatial normalization of
 subjects by means of image registration processes, it is RECOMMENDED to store
@@ -180,55 +220,79 @@ change in the future.
 As these are subject-wise results, they follow the standard derivatives conventions
 with a `sub-<label>` directory to house these derivatives:
 
-```Text
-mni152nlin2009casym-pipeline/
-├─ tpl-MNI152NLin2009cAsym/
-│  └─ anat/
-│     ├─ tpl-MNI152NLin2009cAsym_res-1_label-brain_mask.nii.gz
-│     ├─ ...
-│     └─ tpl-MNI152NLin2009cAsym_res-2_T1w.json
-├─ sub-001/
-│  └─ anat/
-│     ├─ sub-001_from-T1w_to-MNI152NLin2009cAsym_mode-image_xfm.h5
-│     ├─ sub-001_space-MNI152NLin2009cAsym_T1w.nii.gz
-│     └─ sub-001_T1w.nii.gz
-┇
-└─ sub-152/
-   └─ anat/
-      ├─ sub-152_from-T1w_to-MNI152NLin2009cAsym_mode-image_xfm.h5
-      ├─ sub-152_space-MNI152NLin2009cAsym_T1w.nii.gz
-      └─ sub-152_T1w.nii.gz
-```
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+   "mni152nlin2009casym-pipeline": {
+      "tpl-MNI152NLin2009cAsym": {
+         "anat": {
+            "tpl-MNI152NLin2009cAsym_res-1_label-brain_mask.nii.gz": "",
+            "...": "",
+            "tpl-MNI152NLin2009cAsym_res-2_T1w.json": "",
+         },
+      },
+      "sub-001": {
+         "anat": {
+            "sub-001_from-T1w_to-MNI152NLin2009cAsym_mode-image_xfm.h5": "",
+            "sub-001_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
+            "sub-001_T1w.nii.gz": "",
+         },
+      },
+      "...": "",
+      "sub-152": {
+         "anat": {
+            "sub-152_from-T1w_to-MNI152NLin2009cAsym_mode-image_xfm.h5": "",
+            "sub-152_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
+            "sub-152_T1w.nii.gz": "",
+         },
+      },
+   }
+})
+}}
 
 **Deriving from an existing template/atlas**.
 For example, the MIAL67ThalamicNuclei
 ([Najdenovska et al., 2018](https://doi.org/10.1038/sdata.2018.270))
 atlas-generation pipeline could display the following structure:
 
-```Text
-MIAL67ThalamicNuclei-pipeline/
-├─ tpl-MNI152NLin2009cAsym/
-│  └─ anat/
-│     ├─ tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_dseg.json
-│     ├─ tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_dseg.tsv
-│     ├─ tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz
-│     └─ tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz
-├─ sub-01/
-│  └─ anat/
-│     ├─ sub-01_label-ThalamicNuclei_dseg.json
-│     ├─ sub-01_label-ThalamicNuclei_dseg.tsv
-│     ├─ sub-01_label-ThalamicNuclei_dseg.nii.gz
-│     ├─ sub-01_space-MNI152NLin2009cAsym_T1w.nii.gz
-│     └─ sub-01_T1w.nii.gz
-┇
-└─ sub-67/
-   └─ anat/
-      ├─ sub-67_label-ThalamicNuclei_dseg.json
-      ├─ sub-67_label-ThalamicNuclei_dseg.tsv
-      ├─ sub-67_label-ThalamicNuclei_dseg.nii.gz
-      ├─ sub-67_space-MNI152NLin2009cAsym_T1w.nii.gz
-      └─ sub-67_T1w.nii.gz
-```
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+   "mial67thalamicnuclei-pipeline": {
+      "tpl-MNI152NLin2009cAsym": {
+         "anat": {
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_dseg.json": "",
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_dseg.tsv": "",
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz": "",
+         },
+      },
+      "sub-01": {
+         "anat": {
+            "sub-01_label-ThalamicNuclei_dseg.json": "",
+            "sub-01_label-ThalamicNuclei_dseg.tsv": "",
+            "sub-01_label-ThalamicNuclei_dseg.nii.gz": "",
+            "sub-01_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
+            "sub-01_T1w.nii.gz": "",
+         },
+      },
+      "...": "",
+      "sub-67": {
+         "anat": {
+            "sub-67_label-ThalamicNuclei_dseg.json": "",
+            "sub-67_label-ThalamicNuclei_dseg.tsv": "",
+            "sub-67_label-ThalamicNuclei_dseg.nii.gz": "",
+            "sub-67_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
+            "sub-67_T1w.nii.gz": "",
+         },
+      },
+   }
+})
+}}
 
 where the derivatives of anatomical processing of the 67 subjects that were
 employed to generate the atlas co-exist with the template structure.
@@ -237,128 +301,178 @@ The inheritance principle applies uniformly, allowing the segmentation
 metadata be stored only once at the root of the pipeline directory and
 apply to all the individual subject segmentations:
 
-```Text
-MIAL67ThalamicNuclei-pipeline/
-├─ label-ThalamicNuclei_dseg.json
-├─ label-ThalamicNuclei_dseg.tsv
-├─ tpl-MNI152NLin2009cAsym/
-│  └─ anat/
-│     ├─ tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_dseg.json
-│     ├─ tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_dseg.tsv
-│     ├─ tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz
-│     └─ tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz
-├─ sub-01
-│  └─ anat/
-│     ├─ sub-01_label-ThalamicNuclei_dseg.nii.gz
-│     ├─ sub-01_space-MNI152NLin2009cAsym_T1w.nii.gz
-│     └─ sub-01_T1w.nii.gz
-┇
-└─ sub-67
-   └─ anat/
-      ├─ sub-67_label-ThalamicNuclei_dseg.nii.gz
-      ├─ sub-67_space-MNI152NLin2009cAsym_T1w.nii.gz
-      └─ sub-67_T1w.nii.gz
-```
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+   "mial67thalamicnuclei-pipeline": {
+      "label-ThalamicNuclei_dseg.json": "",
+      "label-ThalamicNuclei_dseg.tsv": "",
+      "tpl-MNI152NLin2009cAsym": {
+         "anat": {
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_dseg.json": "",
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_dseg.tsv": "",
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz": "",
+         },
+      },
+      "sub-01": {
+         "anat": {
+            "sub-01_label-ThalamicNuclei_dseg.nii.gz": "",
+            "sub-01_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
+            "sub-01_T1w.nii.gz": "",
+         },
+      },
+      "...": "",
+      "sub-67": {
+         "anat": {
+            "sub-67_label-ThalamicNuclei_dseg.nii.gz": "",
+            "sub-67_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
+            "sub-67_T1w.nii.gz": "",
+         },
+      },
+   }
+})
+}}
 
 This directory structure can be generally applied when the atlas is derived into several
 template spaces, for example:
 
-```Text
-MIAL67ThalamicNuclei-pipeline/
-├─ atlas-MIAL67ThalamicNuclei_dseg.json
-├─ atlas-MIAL67ThalamicNuclei_dseg.tsv
-├─ label-ThalamicNuclei_dseg.json
-├─ label-ThalamicNuclei_dseg.tsv
-├─ tpl-MNI152NLin6Asym/
-│  └─ anat/
-│     ├─ tpl-MNI152NLin6Asym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz
-│     └─ tpl-MNI152NLin6Asym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz
-├─ tpl-MNI152NLin2009cAsym/
-│  └─ anat/
-│     ├─ tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz
-│     └─ tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz
-├─ sub-01
-│  └─ anat/
-│     ├─ sub-01_label-ThalamicNuclei_dseg.nii.gz
-│     ├─ sub-01_space-MNI152NLin2009cAsym_T1w.nii.gz
-│     └─ sub-01_T1w.nii.gz
-┇
-└─ sub-67
-   └─ anat/
-      ├─ sub-67_label-ThalamicNuclei_dseg.nii.gz
-      ├─ sub-67_space-MNI152NLin2009cAsym_T1w.nii.gz
-      └─ sub-67_T1w.nii.gz
-```
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+   "mial67thalamicnuclei-pipeline": {
+      "atlas-MIAL67ThalamicNuclei_dseg.json": "",
+      "atlas-MIAL67ThalamicNuclei_dseg.tsv": "",
+      "label-ThalamicNuclei_dseg.json": "",
+      "label-ThalamicNuclei_dseg.tsv": "",
+      "tpl-MNI152NLin2009cAsym": {
+         "anat": {
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz": "",
+         },
+      },
+      "tpl-MNI152NLin6Asym": {
+         "anat": {
+            "tpl-MNI152NLin6Asym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz": "",
+            "tpl-MNI152NLin6Asym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz": "",
+         },
+      },
+      "sub-01": {
+         "anat": {
+            "sub-01_label-ThalamicNuclei_dseg.nii.gz": "",
+            "sub-01_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
+            "sub-01_space-MNI152NLin6Asym_T1w.nii.gz": "",
+            "sub-01_T1w.nii.gz": "",
+         },
+      },
+      "...": "",
+      "sub-67": {
+         "anat": {
+            "sub-67_label-ThalamicNuclei_dseg.nii.gz": "",
+            "sub-67_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
+            "sub-67_space-MNI152NLin6Asym_T1w.nii.gz": "",
+            "sub-67_T1w.nii.gz": "",
+         },
+      },
+   }
+})
+}}
 
 In the case the pipeline generated atlas-based segmentations of the original subjects in
 their native T1w space (for example, to compare with the original segmentation given by
 `label-ThalamicNuclei`), the above example translates into:
 
-```Text
-MIAL67ThalamicNuclei-pipeline/
-├─ atlas-MIAL67ThalamicNuclei_dseg.json
-├─ atlas-MIAL67ThalamicNuclei_dseg.tsv
-├─ label-ThalamicNuclei_dseg.json
-├─ label-ThalamicNuclei_dseg.tsv
-├─ tpl-MNI152NLin6Asym/
-│  └─ anat/
-│     ├─ tpl-MNI152NLin6Asym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz
-│     └─ tpl-MNI152NLin6Asym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz
-├─ tpl-MNI152NLin2009cAsym/
-│  └─ anat/
-│     ├─ tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz
-│     └─ tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz
-├─ sub-01
-│  └─ anat/
-│     ├─ sub-01_atlas-MIAL67ThalamicNuclei_dseg.nii.gz
-│     ├─ sub-01_label-ThalamicNuclei_dseg.nii.gz
-│     ├─ sub-01_space-MNI152NLin2009cAsym_T1w.nii.gz
-│     └─ sub-01_T1w.nii.gz
-┇
-└─ sub-67
-   └─ anat/
-      ├─ sub-67_atlas-MIAL67ThalamicNuclei_dseg.nii.gz
-      ├─ sub-67_label-ThalamicNuclei_dseg.nii.gz
-      ├─ sub-67_space-MNI152NLin2009cAsym_T1w.nii.gz
-      └─ sub-67_T1w.nii.gz
-```
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+   "mial67thalamicnuclei-pipeline": {
+      "atlas-MIAL67ThalamicNuclei_dseg.json": "",
+      "atlas-MIAL67ThalamicNuclei_dseg.tsv": "",
+      "label-ThalamicNuclei_dseg.json": "",
+      "label-ThalamicNuclei_dseg.tsv": "",
+      "tpl-MNI152NLin2009cAsym": {
+         "anat": {
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz": "",
+         },
+      },
+      "sub-01": {
+         "anat": {
+            "sub-01_atlas-MIAL67ThalamicNuclei_dseg.nii.gz": "",
+            "sub-01_label-ThalamicNuclei_dseg.nii.gz": "",
+            "sub-01_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
+            "sub-01_T1w.nii.gz": "",
+         },
+      },
+      "...": "",
+      "sub-67": {
+         "anat": {
+            "sub-67_atlas-MIAL67ThalamicNuclei_dseg.nii.gz": "",
+            "sub-67_label-ThalamicNuclei_dseg.nii.gz": "",
+            "sub-67_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
+            "sub-67_T1w.nii.gz": "",
+         },
+      },
+   }
+})
+}}
 
 Without any loss in generality, we can store subjects' spatially normalizing
 transforms, as well as transforms between template spaces:
 
-```Text
-MIAL67ThalamicNuclei-pipeline/
-├─ atlas-MIAL67ThalamicNuclei_dseg.json
-├─ atlas-MIAL67ThalamicNuclei_dseg.tsv
-├─ label-ThalamicNuclei_dseg.json
-├─ label-ThalamicNuclei_dseg.tsv
-├─ tpl-MNI152NLin6Asym/
-│  └─ anat/
-│     ├─ tpl-MNI152NLin6Asym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz
-│     └─ tpl-MNI152NLin6Asym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz
-├─ tpl-MNI152NLin2009cAsym/
-│  └─ anat/
-│     ├─ tpl-MNI152NLin2009cAsym_from-MNI152NLin6Asym_mode-image_xfm.h5
-│     ├─ tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz
-│     └─ tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz
-├─ sub-01
-│  └─ anat/
-│     ├─ sub-01_atlas-MIAL67ThalamicNuclei_dseg.nii.gz
-│     ├─ sub-01_from-T1w_to-MNI152NLin2009cAsym_mode-image_xfm.h5
-│     ├─ sub-01_from-T1w_to-MNI152NLin6Asym_mode-image_xfm.h5
-│     ├─ sub-01_label-ThalamicNuclei_dseg.nii.gz
-│     ├─ sub-01_space-MNI152NLin2009cAsym_T1w.nii.gz
-│     └─ sub-01_T1w.nii.gz
-┇
-└─ sub-67
-   └─ anat/
-      ├─ sub-67_atlas-MIAL67ThalamicNuclei_dseg.nii.gz
-      ├─ sub-67_from-T1w_to-MNI152NLin2009cAsym_mode-image_xfm.h5
-      ├─ sub-67_from-T1w_to-MNI152NLin6Asym_mode-image_xfm.h5
-      ├─ sub-67_label-ThalamicNuclei_dseg.nii.gz
-      ├─ sub-67_space-MNI152NLin2009cAsym_T1w.nii.gz
-      └─ sub-67_T1w.nii.gz
-```
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+   "mial67thalamicnuclei-pipeline": {
+      "atlas-MIAL67ThalamicNuclei_dseg.json": "",
+      "atlas-MIAL67ThalamicNuclei_dseg.tsv": "",
+      "label-ThalamicNuclei_dseg.json": "",
+      "label-ThalamicNuclei_dseg.tsv": "",
+      "tpl-MNI152NLin2009cAsym": {
+         "anat": {
+            "tpl-MNI152NLin2009cAsym_from-MNI152NLin6Asym_mode-image_xfm.h5": "",
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz": "",
+         },
+      },
+      "tpl-MNI152NLin6Asym": {
+         "anat": {
+            "tpl-MNI152NLin6Asym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz": "",
+            "tpl-MNI152NLin6Asym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz": "",
+         },
+      },
+      "sub-01": {
+         "anat": {
+            "sub-01_from-T1w_to-MNI152NLin2009cAsym_mode-image_xfm.h5": "",
+            "sub-01_from-T1w_to-MNI152NLin6Asym_mode-image_xfm.h5": "",
+            "sub-01_label-ThalamicNuclei_dseg.nii.gz": "",
+            "sub-01_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
+            "sub-01_space-MNI152NLin6Asym_T1w.nii.gz": "",
+            "sub-01_T1w.nii.gz": "",
+         },
+      },
+      "...": "",
+      "sub-67": {
+         "anat": {
+            "sub-67_from-T1w_to-MNI152NLin2009cAsym_mode-image_xfm.h5": "",
+            "sub-67_from-T1w_to-MNI152NLin6Asym_mode-image_xfm.h5": "",
+            "sub-67_label-ThalamicNuclei_dseg.nii.gz": "",
+            "sub-67_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
+            "sub-67_space-MNI152NLin6Asym_T1w.nii.gz": "",
+            "sub-67_T1w.nii.gz": "",
+         },
+      },
+   }
+})
+}}
 
 The next subsection describes this latter use-case in further depth.
 
@@ -370,32 +484,44 @@ outputs derived from atlases MUST employ
 [`seg-<label>`](../glossary.md#segmentation-entities), and
 [`scale-<label>`](../glossary.md#scale-entities) when necessary:
 
-```Text
-bold-pipeline/
-├─ atlas-Schaefer2018_dseg.json
-├─ atlas-Schaefer2018_seg-7n_scale-100_dseg.tsv
-├─ atlas-Schaefer2018_seg-7n_scale-200_dseg.tsv
-├─ atlas-Schaefer2018_seg-7n_scale-300_dseg.tsv
-├─ atlas-Schaefer2018_seg-17n_scale-100_dseg.tsv
-├─ atlas-Schaefer2018_seg-17n_scale-200_dseg.tsv
-├─ atlas-Schaefer2018_seg-17n_scale-300_dseg.tsv
-├─ atlas-Schaefer2018_seg-kong17n_scale-100_dseg.tsv
-├─ atlas-Schaefer2018_seg-kong17n_scale-200_dseg.tsv
-├─ atlas-Schaefer2018_seg-kong17n_scale-300_dseg.tsv
-└─ sub-01/
-   ├─ anat/
-   │  ├─ sub-01_hemi-L_atlas-Schaefer2018_seg-7n_scale-100_den-164k_dseg.label.gii
-   │  ├─ sub-01_hemi-L_atlas-Schaefer2018_seg-7n_scale-200_den-164k_dseg.label.gii
-   │  ├─ sub-01_hemi-L_atlas-Schaefer2018_seg-7n_scale-300_den-164k_dseg.label.gii
-   │  ├─ sub-01_hemi-L_atlas-Schaefer2018_seg-17n_scale-100_den-164k_dseg.label.gii
-   │  ├─ sub-01_hemi-L_atlas-Schaefer2018_seg-17n_scale-200_den-164k_dseg.label.gii
-   │  ├─ sub-01_hemi-L_atlas-Schaefer2018_seg-17n_scale-300_den-164k_dseg.label.gii
-   │  ├─ sub-01_hemi-L_atlas-Schaefer2018_seg-kong17n_scale-100_den-164k_dseg.label.gii
-   │  ├─ sub-01_hemi-L_atlas-Schaefer2018_seg-kong17n_scale-200_den-164k_dseg.label.gii
-   │  └─ sub-01_hemi-L_atlas-Schaefer2018_seg-kong17n_scale-300_den-164k_dseg.label.gii
-   └─ func/
-      └─ sub-01_task-rest_hemi-L_den-164k_bold.func.gii
-```
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+   "bold-pipeline": {
+      "atlas-Schaefer2018_dseg.json": "",
+      "atlas-Schaefer2018_seg-7n_scale-100_dseg.tsv": "",
+      "atlas-Schaefer2018_seg-7n_scale-200_dseg.tsv": "",
+      "atlas-Schaefer2018_seg-7n_scale-300_dseg.tsv": "",
+      "atlas-Schaefer2018_seg-17n_scale-100_dseg.tsv": "",
+      "atlas-Schaefer2018_seg-17n_scale-200_dseg.tsv": "",
+      "atlas-Schaefer2018_seg-17n_scale-300_dseg.tsv": "",
+      "atlas-Schaefer2018_seg-kong17n_scale-100_dseg.tsv": "",
+      "atlas-Schaefer2018_seg-kong17n_scale-200_dseg.tsv": "",
+      "atlas-Schaefer2018_seg-kong17n_scale-300_dseg.tsv": "",
+      "sub-01": {
+         "anat": {
+            "sub-01_hemi-L_atlas-Schaefer2018_seg-7n_scale-100_den-164k_dseg.label.gii": "",
+            "sub-01_hemi-L_atlas-Schaefer2018_seg-7n_scale-200_den-164k_dseg.label.gii": "",
+            "sub-01_hemi-L_atlas-Schaefer2018_seg-7n_scale-300_den-164k_dseg.label.gii": "",
+            "sub-01_hemi-L_atlas-Schaefer2018_seg-17n_scale-100_den-164k_dseg.label.gii": "",
+            "sub-01_hemi-L_atlas-Schaefer2018_seg-17n_scale-200_den-164k_dseg.label.gii": "",
+            "sub-01_hemi-L_atlas-Schaefer2018_seg-17n_scale-300_den-164k_dseg.label.gii": "",
+            "sub-01_hemi-L_atlas-Schaefer2018_seg-kong17n_scale-100_den-164k_dseg.label.gii": "",
+            "sub-01_hemi-L_atlas-Schaefer2018_seg-kong17n_scale-200_den-164k_dseg.label.gii": "",
+            "sub-01_hemi-L_atlas-Schaefer2018_seg-kong17n_scale-300_den-164k_dseg.label.gii": "",
+            "...": "",
+            "sub-01_hemi-R_atlas-Schaefer2018_seg-kong17n_scale-300_den-164k_dseg.label.gii": "",
+         },
+         "bold": {
+            "sub-01_task-rest_hemi-L_den-164k_bold.func.gii": "",
+            "sub-01_task-rest_hemi-R_den-164k_bold.func.gii": "",
+         }
+      },
+   }
+})
+}}
 
 ## Tabular data
 
