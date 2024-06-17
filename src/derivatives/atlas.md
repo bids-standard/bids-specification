@@ -22,15 +22,15 @@ such as `T1w`, while it will normally take `dseg`, `probseg`, or `mask` to encod
 In terms of [`extension`](../glossary.md#extension-common_principles), `nii[.gz]`, `dscalar.nii[.gz]`,
 `dlabel.nii[.gz]`, `label.gii[.gz]`, `tsv`, or `json`.
 
-The [`atlas-` entity](../glossary.md#atlas-entities) is REQUIRED to encode files belonging in
+The [`atlas-<label>` entity](../glossary.md#atlas-entities) is REQUIRED to encode files belonging in
 the atlas identified by the label.
 Two entities MAY be employed along with `atlas-` to disentangle different realizations and scales
 of a single atlas:
 
--    [`seg-`](../glossary.md#segmentation-entities) is REQUIRED when a single atlas has several different
+-    [`seg-<label>`](../glossary.md#segmentation-entities) is REQUIRED when a single atlas has several different
      realizations (for instance, segmentations and parcellations created with different criteria) that
      need disambiguation.
--    [`scale-`](../glossary.md#scale-entities) is REQUIRED to disambiguate different atlas 'scales',
+-    [`scale-<label>`](../glossary.md#scale-entities) is REQUIRED to disambiguate different atlas 'scales',
      when the atlas has more than one 'brain unit' resolutions, typically relating to the area covered
      by regions.
 
@@ -70,7 +70,7 @@ colin27-pipeline/
 
 Often, templates are necessary to bring or project information from/to an atlas.
 Derivatives provenant from an atlas MUST be encoded with the
-[`atlas-<label>` entity](glossary.md#atlas-entities).
+[`atlas-<label>` entity](../glossary.md#atlas-entities).
 The following example shows how 'Colin27' could have encoded the Automated Anatomical Labeling (AAL)
 atlas ([Tzourio-Mazoyer et al., 2002](https://doi.org/10.1006/nimg.2001.0978)), which was originally
 defined on the Colin27 space:
@@ -89,7 +89,8 @@ colin27-pipeline/
       └─ sub-01_T1w.json
 ```
 
-As the authors of 'Colin27' indicate, it is aligned with MNI305:
+As [the authors of 'Colin27' indicate](https://www.mcgill.ca/bic/software/tools-data-analysis/anatomical-mri/atlases/colin-27),
+it is aligned with MNI305:
 
 > In 1998, a new atlas with much higher definition than MNI305s was created at the MNI.
 > One individual (CJH) was scanned 27 times and the images linearly registered to create
@@ -105,12 +106,10 @@ As the authors of 'Colin27' indicate, it is aligned with MNI305:
 > However, the high definition proved too attractive to the community and,
 > after non-linear mapping to fit the MNI305 space, it has been adopted
 > by many groups as a stereotaxic template.
->
-> (from https://www.mcgill.ca/bic/software/tools-data-analysis/anatomical-mri/atlases/colin-27)
 
 Therefore, this pipeline potentially could have produced outputs in the realigned T1w space
 before alignment to the MNI305 template.
-To disambiguate in this case, we employ the [`space-`](../glossary.md#space-entities) entity:
+To disambiguate in this case, we employ the [`space-<label>` entity](../glossary.md#space-entities):
 
 ```Text
 colin27-pipeline/
@@ -143,7 +142,7 @@ a higher-than-first-level analysis as it builds on a previous analysis.
 While at the subject level analysis it is the individual brain that establishes
 stereotaxy.
 At higher-than-first-level stereotaxy is supported by templates, which are
-encoded through the [`tpl-<label>` entity](glossary.md#template-entities).
+encoded through the [`tpl-<label>` entity](../glossary.md#template-entities).
 For the pipeline that generated the MNI152NLin2009cAsym, the outputs would look
 like the following example:
 

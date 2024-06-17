@@ -305,8 +305,8 @@ segmentation:
 
     For atlases, `seg-<label>` distinguish different realizations of a given
     segmentation or parcellation.
-    For example, for the [Yeo 2011 atlas](https://doi.org/10.1152/jn.00338.2011)
-    distributed within *FreeSurfer* with two different parcellations
+    For example, the [Yeo 2011 atlas](https://doi.org/10.1152/jn.00338.2011)
+    is distributed within *FreeSurfer* with two different parcellations
     (*7 networks* and *17 networks*).
 
     This entity is only applicable to derivative data.
