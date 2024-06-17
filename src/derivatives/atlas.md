@@ -27,7 +27,7 @@ the atlas identified by the label.
 Two entities MAY be employed along with `atlas-` to disentangle different realizations and scales
 of a single atlas:
 
--    [`seg-`](../glossary.md#seg-entities) is REQUIRED when a single atlas has several different
+-    [`seg-`](../glossary.md#segmentation-entities) is REQUIRED when a single atlas has several different
      realizations (for instance, segmentations and parcellations created with different criteria) that
      need disambiguation.
 -    [`scale-`](../glossary.md#scale-entities) is REQUIRED to disambiguate different atlas 'scales',
@@ -68,6 +68,9 @@ colin27-pipeline/
       └─ sub-01_res-2_T1w.json
 ```
 
+Often, templates are necessary to bring or project information from/to an atlas.
+Derivatives provenant from an atlas MUST be encoded with the
+[`atlas-<label>` entity](glossary.md#atlas-entities).
 The following example shows how 'Colin27' could have encoded the Automated Anatomical Labeling (AAL)
 atlas ([Tzourio-Mazoyer et al., 2002](https://doi.org/10.1006/nimg.2001.0978)), which was originally
 defined on the Colin27 space:
@@ -139,7 +142,8 @@ a higher-than-first-level analysis as it builds on a previous analysis.
 **Multi-subject templates and atlases**.
 While at the subject level analysis it is the individual brain that establishes
 stereotaxy.
-At higher-than-first-level stereotaxy is supported by templates.
+At higher-than-first-level stereotaxy is supported by templates, which are
+encoded through the [`tpl-<label>` entity](glossary.md#template-entities).
 For the pipeline that generated the MNI152NLin2009cAsym, the outputs would look
 like the following example:
 
