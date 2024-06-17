@@ -227,6 +227,71 @@ MIAL67ThalamicNuclei-pipeline/
       └─ sub-67_T1w.nii.gz
 ```
 
+This folder structure can be generally applied when the atlas is derived into several
+template spaces, for example:
+
+```Text
+MIAL67ThalamicNuclei-pipeline/
+├─ atlas-MIAL67ThalamicNuclei_dseg.json
+├─ atlas-MIAL67ThalamicNuclei_dseg.tsv
+├─ label-ThalamicNuclei_dseg.json
+├─ label-ThalamicNuclei_dseg.tsv
+├─ tpl-MNI152NLin6Asym/
+│  └─ anat/
+│     ├─ tpl-MNI152NLin6Asym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz
+│     └─ tpl-MNI152NLin6Asym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz
+├─ tpl-MNI152NLin2009cAsym/
+│  └─ anat/
+│     ├─ tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz
+│     └─ tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz
+├─ sub-01
+│  └─ anat/
+│     ├─ sub-01_label-ThalamicNuclei_dseg.nii.gz
+│     ├─ sub-01_space-MNI152NLin2009cAsym_T1w.nii.gz
+│     └─ sub-01_T1w.nii.gz
+┇
+└─ sub-67
+   └─ anat/
+      ├─ sub-67_label-ThalamicNuclei_dseg.nii.gz
+      ├─ sub-67_space-MNI152NLin2009cAsym_T1w.nii.gz
+      └─ sub-67_T1w.nii.gz
+```
+
+In the case the pipeline generated atlas-based segmentations of the original subjects in
+their native T1w space (for example, to compare with the original segmentation given by
+`label-ThalamicNuclei`), the above example translates into:
+
+```Text
+MIAL67ThalamicNuclei-pipeline/
+├─ atlas-MIAL67ThalamicNuclei_dseg.json
+├─ atlas-MIAL67ThalamicNuclei_dseg.tsv
+├─ label-ThalamicNuclei_dseg.json
+├─ label-ThalamicNuclei_dseg.tsv
+├─ tpl-MNI152NLin6Asym/
+│  └─ anat/
+│     ├─ tpl-MNI152NLin6Asym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz
+│     └─ tpl-MNI152NLin6Asym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz
+├─ tpl-MNI152NLin2009cAsym/
+│  └─ anat/
+│     ├─ tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz
+│     └─ tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz
+├─ sub-01
+│  └─ anat/
+│     ├─ sub-01_atlas-MIAL67ThalamicNuclei_dseg.nii.gz
+│     ├─ sub-01_label-ThalamicNuclei_dseg.nii.gz
+│     ├─ sub-01_space-MNI152NLin2009cAsym_T1w.nii.gz
+│     └─ sub-01_T1w.nii.gz
+┇
+└─ sub-67
+   └─ anat/
+      ├─ sub-67_atlas-MIAL67ThalamicNuclei_dseg.nii.gz
+      ├─ sub-67_label-ThalamicNuclei_dseg.nii.gz
+      ├─ sub-67_space-MNI152NLin2009cAsym_T1w.nii.gz
+      └─ sub-67_T1w.nii.gz
+```
+
+The next subsection describes this latter use-case in further depth.
+
 ## Filenames of derivatives with atlases in their provenance
 
 Like for the [`space-` entity](../glossary.md#space-entities), outputs derived from atlases
