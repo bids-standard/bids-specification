@@ -170,6 +170,36 @@ mni152nlin2009casym-pipeline/
       └─ tpl-MNI152NLin2009cAsym_res-2_T1w.json
 ```
 
+Since multi-subject templates and atlas involve the spatial normalization of
+subjects by means of image registration processes, it is RECOMMENDED to store
+the resulting transforms for each of the subjects employed to create the
+output.
+Please note that the specification for spatial transforms (BEP 014) is currently
+under development, and therefore, the specification of transforms files may
+change in the future.
+As these are subject-wise results, they follow the standard derivatives conventions
+with a `sub-<label>` directory to house these derivatives:
+
+```Text
+mni152nlin2009casym-pipeline/
+├─ tpl-MNI152NLin2009cAsym/
+│  └─ anat/
+│     ├─ tpl-MNI152NLin2009cAsym_res-1_label-brain_mask.nii.gz
+│     ├─ ...
+│     └─ tpl-MNI152NLin2009cAsym_res-2_T1w.json
+├─ sub-001/
+│  └─ anat/
+│     ├─ sub-001_from-T1w_to-MNI152NLin2009cAsym_mode-image_xfm.h5
+│     ├─ sub-001_space-MNI152NLin2009cAsym_T1w.nii.gz
+│     └─ sub-001_T1w.nii.gz
+┇
+└─ sub-152/
+   └─ anat/
+      ├─ sub-152_from-T1w_to-MNI152NLin2009cAsym_mode-image_xfm.h5
+      ├─ sub-152_space-MNI152NLin2009cAsym_T1w.nii.gz
+      └─ sub-152_T1w.nii.gz
+```
+
 **Deriving from an existing template/atlas**.
 For example, the MIAL67ThalamicNuclei
 ([Najdenovska et al., 2018](https://doi.org/10.1038/sdata.2018.270))
@@ -183,7 +213,7 @@ MIAL67ThalamicNuclei-pipeline/
 │     ├─ tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_dseg.tsv
 │     ├─ tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz
 │     └─ tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz
-├─ sub-01
+├─ sub-01/
 │  └─ anat/
 │     ├─ sub-01_label-ThalamicNuclei_dseg.json
 │     ├─ sub-01_label-ThalamicNuclei_dseg.tsv
@@ -191,7 +221,7 @@ MIAL67ThalamicNuclei-pipeline/
 │     ├─ sub-01_space-MNI152NLin2009cAsym_T1w.nii.gz
 │     └─ sub-01_T1w.nii.gz
 ┇
-└─ sub-67
+└─ sub-67/
    └─ anat/
       ├─ sub-67_label-ThalamicNuclei_dseg.json
       ├─ sub-67_label-ThalamicNuclei_dseg.tsv
@@ -288,6 +318,43 @@ MIAL67ThalamicNuclei-pipeline/
 └─ sub-67
    └─ anat/
       ├─ sub-67_atlas-MIAL67ThalamicNuclei_dseg.nii.gz
+      ├─ sub-67_label-ThalamicNuclei_dseg.nii.gz
+      ├─ sub-67_space-MNI152NLin2009cAsym_T1w.nii.gz
+      └─ sub-67_T1w.nii.gz
+```
+
+Without any loss in generality, we can store subjects' spatially normalizing
+transforms, as well as transforms between template spaces:
+
+```Text
+MIAL67ThalamicNuclei-pipeline/
+├─ atlas-MIAL67ThalamicNuclei_dseg.json
+├─ atlas-MIAL67ThalamicNuclei_dseg.tsv
+├─ label-ThalamicNuclei_dseg.json
+├─ label-ThalamicNuclei_dseg.tsv
+├─ tpl-MNI152NLin6Asym/
+│  └─ anat/
+│     ├─ tpl-MNI152NLin6Asym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz
+│     └─ tpl-MNI152NLin6Asym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz
+├─ tpl-MNI152NLin2009cAsym/
+│  └─ anat/
+│     ├─ tpl-MNI152NLin2009cAsym_from-MNI152NLin6Asym_mode-image_xfm.h5
+│     ├─ tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz
+│     └─ tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz
+├─ sub-01
+│  └─ anat/
+│     ├─ sub-01_atlas-MIAL67ThalamicNuclei_dseg.nii.gz
+│     ├─ sub-01_from-T1w_to-MNI152NLin2009cAsym_mode-image_xfm.h5
+│     ├─ sub-01_from-T1w_to-MNI152NLin6Asym_mode-image_xfm.h5
+│     ├─ sub-01_label-ThalamicNuclei_dseg.nii.gz
+│     ├─ sub-01_space-MNI152NLin2009cAsym_T1w.nii.gz
+│     └─ sub-01_T1w.nii.gz
+┇
+└─ sub-67
+   └─ anat/
+      ├─ sub-67_atlas-MIAL67ThalamicNuclei_dseg.nii.gz
+      ├─ sub-67_from-T1w_to-MNI152NLin2009cAsym_mode-image_xfm.h5
+      ├─ sub-67_from-T1w_to-MNI152NLin6Asym_mode-image_xfm.h5
       ├─ sub-67_label-ThalamicNuclei_dseg.nii.gz
       ├─ sub-67_space-MNI152NLin2009cAsym_T1w.nii.gz
       └─ sub-67_T1w.nii.gz
