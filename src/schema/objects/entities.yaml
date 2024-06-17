@@ -29,14 +29,7 @@ atlas:
   name: atlas
   display_name: Atlas
   description: |
-    The definition of atlas per Merriam-Webster is ‘a bound collection of maps (i.e. labeled brain regions
-    or quantitative aspects) and metadata (tables, or textual matter). Within BIDS, atlases are broadly
-    defined as a mapping between locations in a spatial coordinate systems and descriptions associated with
-    those locations. Atlases are often build from registering many subjects or maps to a template. By analogy
-    with geographical atlases, brain atlases can map brain locations to either discrete labels like a map
-    of countries does, or to continuous quantities like a topographic map does.
-
-    This comprises all possible types of atlases, specifically deterministic, probabilistic, and mask/voxel-based
+    Atlas comprises all possible types of atlases, specifically deterministic, probabilistic, and mask/voxel-based
     ones, and quantitative maps from various modalities including but not limited to structural features (e.g.
     myelination, cytoarchitecture), functional features (e.g. resting-state networks, localizers) and such based on
     multimodal data integration (e.g. gene expression, receptors). Furthermore, it covers both volume/voxel and
@@ -51,6 +44,14 @@ ceagent:
     This entity represents the `"ContrastBolusIngredient"` metadata field.
     Therefore, if the `ce-<label>` entity is present in a filename,
     `"ContrastBolusIngredient"` MAY also be added in the JSON file, with the same label.
+  type: string
+  format: label
+cohort:
+  name: cohort
+  display_name: Cohort
+  description: |
+    A subset of a defined template space, for instance, for a longitudinal template of brain development
+    where infants were participants were averaged at three, six, and twelve months old.
   type: string
   format: label
 chunk:
@@ -300,7 +301,33 @@ segmentation:
   display_name: Segmentation
   description: |
     The `seg-<label>` key/value pair corresponds to a custom label the user
-    MAY use to distinguish different segmentations.
+    MAY use to distinguish different segmentations or parcellations.
+
+    For atlases, `seg-<label>` distinguish different realizations of a given
+    segmentation or parcellation.
+    For example, for the [Yeo 2011 atlas](https://doi.org/10.1152/jn.00338.2011)
+    distributed within *FreeSurfer* with two different parcellations
+    (*7 networks* and *17 networks*).
+
+    This entity is only applicable to derivative data.
+  type: string
+  format: label
+scale:
+  name: scale
+  display_name: Scale
+  description: |
+    The `scale-<label>` key/value pair corresponds to a custom label the user
+    MAY use to distinguish segmentations that entail different levels of
+    *regional resolution* (scales), often indicated by the number of ROIs.
+    See ([Bijsterbosch et al., 2020](https://doi.org/10.1038/s41593-020-00726-z))
+    for further details on *regional resolution* or, as defined by the authors of
+    the manuscript, the *brain units*.
+
+    For example, the [Schaefer 2018 atlas](https://doi.org/10.1093/cercor/bhx179)
+    is distributed within *FreeSurfer* with ten different scales
+    (100, 200, 300, 400, 500, 600, 700, 800, 900, and 1000 regions) for each of
+    its three different parcellations (*7 networks*, *17 networks*, and
+    *Kong's variation of 17 networks*).
 
     This entity is only applicable to derivative data.
   type: string
@@ -410,6 +437,16 @@ task:
     although events files are not expected for resting state data.
     Additionally, a common convention in the specification is to include the word "rest" in
     the `task` label for resting state files (for example, `task-rest`).
+  type: string
+  format: label
+template:
+  name: tpl
+  display_name: Template
+  description: |
+    An standardized space of analysis specified or engendered by one or more average of features
+    with respect to which group-level and atlas-derived results are provided.
+    The `<label>` MAY be taken from one of the modality specific lists in the
+    [Coordinate Systems Appendix](SPEC_ROOT/appendices/coordinate-systems.md).
   type: string
   format: label
 tracer:

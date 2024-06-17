@@ -2,7 +2,9 @@
 # This file simply defines the order in which entities should appear within filenames.
 # Entity definitions appear in the `objects/entities.yaml` file.
 - subject
+- template
 - session
+- cohort
 - sample
 - task
 - tracksys
@@ -26,6 +28,7 @@
 - recording
 - chunk
 - segmentation
+- scale
 - resolution
 - density
 - label
