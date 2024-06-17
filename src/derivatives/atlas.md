@@ -1,7 +1,7 @@
 # Templates and atlases
 
 In the following we describe how the outcomes of analyses that produce new
-templates and [atlases](../glossary.md#atlas-entities) are organized
+[templates and atlases](../common-principles.md#definitions) are organized
 as BIDS-Derivatives.
 These outcomes typically involve quantitative maps, feature maps, parcellations,
 segmentations, and other knowledge annotations such as landmarks defined with
@@ -364,8 +364,11 @@ The next subsection describes this latter use-case in further depth.
 
 ## Filenames of derivatives with atlases in their provenance
 
-Like for the [`space-` entity](../glossary.md#space-entities), outputs derived from atlases
-MUST employ `atlas-`, `seg-`, and `scale-` when necessary:
+Like for the [`space-<label>` entity](../glossary.md#space-entities),
+outputs derived from atlases MUST employ
+[`atlas-<label>`](../glossary.md#atlas-entities),
+[`seg-<label>`](../glossary.md#segmentation-entities), and
+[`scale-<label>`](../glossary.md#scale-entities) when necessary:
 
 ```Text
 bold-pipeline/
