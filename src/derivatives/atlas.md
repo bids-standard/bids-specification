@@ -7,8 +7,8 @@ These outcomes typically involve quantitative maps, feature maps, parcellations,
 segmentations, and other knowledge annotations such as landmarks defined with
 respect to individual or template brains that are supported by spaces
 such as surfaces and regular grids (images).
-Templates and atlases follow BIDS raw and derivatives specifications to store
-these outcomes:
+For derivatives with atlases in their provenance corresponding to individual subjects,
+the organization follows the standards for BIDS raw and derivatives:
 
 ```Text
 <pipeline_name>/
@@ -17,7 +17,7 @@ these outcomes:
             <source_entities>[_space-<space>][_atlas-<label>][seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
 ```
 
-Template's [`suffix`](../glossary.md#suffix-common_principles) will generally be existing BIDS raw modalities
+where [`suffix`](../glossary.md#suffix-common_principles) will generally be existing BIDS raw modalities
 such as `T1w`, while it will normally take `dseg`, `probseg`, or `mask` to encode atlased knowledge.
 In terms of [`extension`](../glossary.md#extension-common_principles), `nii[.gz]`, `dscalar.nii[.gz]`,
 `dlabel.nii[.gz]`, `label.gii[.gz]`, `tsv`, or `json`.
@@ -34,7 +34,30 @@ of a single atlas:
      when the atlas has more than one 'brain unit' resolutions, typically relating to the area covered
      by regions.
 
-These three atlas-related entities are discussed later in section [#atlas-filenames-specifications].
+These three atlas-related entities are discussed later in section
+[Filenames of derivatives with atlases in their provenance](#filenames-of-derivatives-with-atlases-in-their-provenance).
+
+For derivatives of template- and altas-generating pipelines, the derivatives-specific
+[`tpl-<label>` entity](../glossary.md#template-entities) MAY be employed as follows:
+
+```Text
+<pipeline_name>/
+    tpl-<label>/
+        [<datatype>/]
+            <source_entities>[_space-<space>][_atlas-<label>][seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
+```
+
+Both subject-level and template-level results can coexist in a single pipeline folder:
+
+```Text
+<pipeline_name>/
+    sub-<label>/
+        <datatype>/
+            <source_entities>[_space-<space>][_atlas-<label>][seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
+    tpl-<label>/
+        [<datatype>/]
+            <source_entities>[_space-<space>][_atlas-<label>][seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
+```
 
 ## Single-subject templates and atlases
 
@@ -210,6 +233,7 @@ A guide for using macros can be found at
 })
 }}
 
+**Storing spatial transforms.**
 Since multi-subject templates and atlas involve the spatial normalization of
 subjects by means of image registration processes, it is RECOMMENDED to store
 the resulting transforms for each of the subjects employed to create the
@@ -226,13 +250,6 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example({
    "mni152nlin2009casym-pipeline": {
-      "tpl-MNI152NLin2009cAsym": {
-         "anat": {
-            "tpl-MNI152NLin2009cAsym_res-1_label-brain_mask.nii.gz": "",
-            "...": "",
-            "tpl-MNI152NLin2009cAsym_res-2_T1w.json": "",
-         },
-      },
       "sub-001": {
          "anat": {
             "sub-001_from-T1w_to-MNI152NLin2009cAsym_mode-image_xfm.h5": "",
@@ -246,6 +263,13 @@ A guide for using macros can be found at
             "sub-152_from-T1w_to-MNI152NLin2009cAsym_mode-image_xfm.h5": "",
             "sub-152_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
             "sub-152_T1w.nii.gz": "",
+         },
+      },
+      "tpl-MNI152NLin2009cAsym": {
+         "anat": {
+            "tpl-MNI152NLin2009cAsym_res-1_label-brain_mask.nii.gz": "",
+            "...": "",
+            "tpl-MNI152NLin2009cAsym_res-2_T1w.json": "",
          },
       },
    }
@@ -263,14 +287,6 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example({
    "mial67thalamicnuclei-pipeline": {
-      "tpl-MNI152NLin2009cAsym": {
-         "anat": {
-            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_dseg.json": "",
-            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_dseg.tsv": "",
-            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz": "",
-            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz": "",
-         },
-      },
       "sub-01": {
          "anat": {
             "sub-01_label-ThalamicNuclei_dseg.json": "",
@@ -288,6 +304,14 @@ A guide for using macros can be found at
             "sub-67_label-ThalamicNuclei_dseg.nii.gz": "",
             "sub-67_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
             "sub-67_T1w.nii.gz": "",
+         },
+      },
+      "tpl-MNI152NLin2009cAsym": {
+         "anat": {
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_dseg.json": "",
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_dseg.tsv": "",
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz": "",
          },
       },
    }
@@ -309,14 +333,6 @@ A guide for using macros can be found at
    "mial67thalamicnuclei-pipeline": {
       "label-ThalamicNuclei_dseg.json": "",
       "label-ThalamicNuclei_dseg.tsv": "",
-      "tpl-MNI152NLin2009cAsym": {
-         "anat": {
-            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_dseg.json": "",
-            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_dseg.tsv": "",
-            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz": "",
-            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz": "",
-         },
-      },
       "sub-01": {
          "anat": {
             "sub-01_label-ThalamicNuclei_dseg.nii.gz": "",
@@ -330,6 +346,14 @@ A guide for using macros can be found at
             "sub-67_label-ThalamicNuclei_dseg.nii.gz": "",
             "sub-67_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
             "sub-67_T1w.nii.gz": "",
+         },
+      },
+      "tpl-MNI152NLin2009cAsym": {
+         "anat": {
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_dseg.json": "",
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_dseg.tsv": "",
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz": "",
          },
       },
    }
@@ -349,18 +373,6 @@ A guide for using macros can be found at
       "atlas-MIAL67ThalamicNuclei_dseg.tsv": "",
       "label-ThalamicNuclei_dseg.json": "",
       "label-ThalamicNuclei_dseg.tsv": "",
-      "tpl-MNI152NLin2009cAsym": {
-         "anat": {
-            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz": "",
-            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz": "",
-         },
-      },
-      "tpl-MNI152NLin6Asym": {
-         "anat": {
-            "tpl-MNI152NLin6Asym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz": "",
-            "tpl-MNI152NLin6Asym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz": "",
-         },
-      },
       "sub-01": {
          "anat": {
             "sub-01_label-ThalamicNuclei_dseg.nii.gz": "",
@@ -376,6 +388,18 @@ A guide for using macros can be found at
             "sub-67_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
             "sub-67_space-MNI152NLin6Asym_T1w.nii.gz": "",
             "sub-67_T1w.nii.gz": "",
+         },
+      },
+      "tpl-MNI152NLin2009cAsym": {
+         "anat": {
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz": "",
+         },
+      },
+      "tpl-MNI152NLin6Asym": {
+         "anat": {
+            "tpl-MNI152NLin6Asym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz": "",
+            "tpl-MNI152NLin6Asym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz": "",
          },
       },
    }
@@ -396,12 +420,6 @@ A guide for using macros can be found at
       "atlas-MIAL67ThalamicNuclei_dseg.tsv": "",
       "label-ThalamicNuclei_dseg.json": "",
       "label-ThalamicNuclei_dseg.tsv": "",
-      "tpl-MNI152NLin2009cAsym": {
-         "anat": {
-            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz": "",
-            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz": "",
-         },
-      },
       "sub-01": {
          "anat": {
             "sub-01_atlas-MIAL67ThalamicNuclei_dseg.nii.gz": "",
@@ -417,6 +435,12 @@ A guide for using macros can be found at
             "sub-67_label-ThalamicNuclei_dseg.nii.gz": "",
             "sub-67_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
             "sub-67_T1w.nii.gz": "",
+         },
+      },
+      "tpl-MNI152NLin2009cAsym": {
+         "anat": {
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz": "",
          },
       },
    }
@@ -436,19 +460,6 @@ A guide for using macros can be found at
       "atlas-MIAL67ThalamicNuclei_dseg.tsv": "",
       "label-ThalamicNuclei_dseg.json": "",
       "label-ThalamicNuclei_dseg.tsv": "",
-      "tpl-MNI152NLin2009cAsym": {
-         "anat": {
-            "tpl-MNI152NLin2009cAsym_from-MNI152NLin6Asym_mode-image_xfm.h5": "",
-            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz": "",
-            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz": "",
-         },
-      },
-      "tpl-MNI152NLin6Asym": {
-         "anat": {
-            "tpl-MNI152NLin6Asym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz": "",
-            "tpl-MNI152NLin6Asym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz": "",
-         },
-      },
       "sub-01": {
          "anat": {
             "sub-01_from-T1w_to-MNI152NLin2009cAsym_mode-image_xfm.h5": "",
@@ -468,6 +479,19 @@ A guide for using macros can be found at
             "sub-67_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
             "sub-67_space-MNI152NLin6Asym_T1w.nii.gz": "",
             "sub-67_T1w.nii.gz": "",
+         },
+      },
+      "tpl-MNI152NLin2009cAsym": {
+         "anat": {
+            "tpl-MNI152NLin2009cAsym_from-MNI152NLin6Asym_mode-image_xfm.h5": "",
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz": "",
+         },
+      },
+      "tpl-MNI152NLin6Asym": {
+         "anat": {
+            "tpl-MNI152NLin6Asym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz": "",
+            "tpl-MNI152NLin6Asym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz": "",
          },
       },
    }
