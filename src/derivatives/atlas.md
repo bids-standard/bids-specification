@@ -59,13 +59,13 @@ knowledge.
 In terms of [`extension`](../glossary.md#extension-common_principles), `nii[.gz]`, `dscalar.nii[.gz]`,
 `dlabel.nii[.gz]`, `label.gii[.gz]`, `tsv`, or `json`.
 Please note that the [`<datatype>/` directory](../glossary.md#data_type-common_principles) is RECOMMENDED.
-The [`<datatype>/` directory](../glossary.md#data_type-common_principles) MAY be ommitted in the case
-only one data type (such as `anat/`) is stored under the `tpl-<label>` folder.
+The [`<datatype>/` directory](../glossary.md#data_type-common_principles) MAY be omitted in the case
+only one data type (such as `anat/`) is stored under the `tpl-<label>` directory.
 The [`cohort-<label>` directory and entity](../glossary.md#cohort-entities) MUST be specified for templates
 with several cohorts.
 The [`cohort-<label>` directory and entity](../glossary.md#cohort-entities) are dual in terms of usage to BIDS raw's
 [`session-<label>`](../glossary.md#session-entities).
-Both subject-level and template-level results can coexist in a single pipeline folder:
+Both subject-level and template-level results can coexist in a single pipeline directory:
 
 ```Text
 <pipeline_name>/
