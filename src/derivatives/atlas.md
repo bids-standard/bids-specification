@@ -54,6 +54,9 @@ where [`suffix`](../glossary.md#suffix-common_principles) will generally be exis
 knowledge.
 In terms of [`extension`](../glossary.md#extension-common_principles), `nii[.gz]`, `dscalar.nii[.gz]`,
 `dlabel.nii[.gz]`, `label.gii[.gz]`, `tsv`, or `json`.
+Please note that the [`<datatype>/` directory](../glossary.md#data_type-common_principles) is RECOMMENDED.
+The [`<datatype>/` directory](../glossary.md#data_type-common_principles) MAY be ommitted in the case
+only one data type (such as `anat/`) is stored under the `tpl-<label>` folder.
 Both subject-level and template-level results can coexist in a single pipeline folder:
 
 ```Text
@@ -326,7 +329,7 @@ A guide for using macros can be found at
 }}
 
 where the derivatives of anatomical processing of the 67 subjects that were
-employed to generate the atlas co-exist with the template structure.
+employed to generate the atlas coexist with the template structure.
 
 The inheritance principle applies uniformly, allowing the segmentation
 metadata be stored only once at the root of the pipeline directory and
