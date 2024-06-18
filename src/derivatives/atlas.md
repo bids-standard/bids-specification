@@ -252,6 +252,60 @@ A guide for using macros can be found at
 })
 }}
 
+**Multi-cohort templates and atlases.**
+In the case that the template- and/or atlas-generating pipeline derives
+several cohorts, the file structure must employ the
+[`cohort-<label>` directory and entity](../glossary.md#cohort-entities).
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+   "mnipediatricasym-pipeline": {
+      "tpl-MNIPediatricAsym": {
+         "cohort-1": {
+            "anat": {
+               "tpl-MNIPediatricAsym_cohort-1_res-1_PD.nii.gz": "",
+               "tpl-MNIPediatricAsym_cohort-1_res-1_T1w.nii.gz": "",
+               "tpl-MNIPediatricAsym_cohort-1_res-1_T2w.nii.gz": "",
+               "tpl-MNIPediatricAsym_cohort-1_res-1_desc-brain_mask.nii.gz": "",
+               "tpl-MNIPediatricAsym_cohort-1_res-1_label-CSF_probseg.nii.gz": "",
+               "tpl-MNIPediatricAsym_cohort-1_res-1_label-GM_probseg.nii.gz": "",
+               "tpl-MNIPediatricAsym_cohort-1_res-1_label-WM_probseg.nii.gz": "",
+               "tpl-MNIPediatricAsym_cohort-1_res-2_PD.nii.gz": "",
+               "tpl-MNIPediatricAsym_cohort-1_res-2_T1w.nii.gz": "",
+               "tpl-MNIPediatricAsym_cohort-1_res-2_T2w.nii.gz": "",
+               "tpl-MNIPediatricAsym_cohort-1_res-2_desc-brain_mask.nii.gz": "",
+               "tpl-MNIPediatricAsym_cohort-1_res-2_label-CSF_probseg.nii.gz": "",
+               "tpl-MNIPediatricAsym_cohort-1_res-2_label-GM_probseg.nii.gz": "",
+               "tpl-MNIPediatricAsym_cohort-1_res-2_label-WM_probseg.nii.gz": "",
+            },
+         },
+         "...": "",
+         "cohort-6": {
+            "anat": {
+               "tpl-MNIPediatricAsym_cohort-6_res-1_PD.nii.gz": "",
+               "tpl-MNIPediatricAsym_cohort-6_res-1_T1w.nii.gz": "",
+               "tpl-MNIPediatricAsym_cohort-6_res-1_T2w.nii.gz": "",
+               "tpl-MNIPediatricAsym_cohort-6_res-1_desc-brain_mask.nii.gz": "",
+               "tpl-MNIPediatricAsym_cohort-6_res-1_label-CSF_probseg.nii.gz": "",
+               "tpl-MNIPediatricAsym_cohort-6_res-1_label-GM_probseg.nii.gz": "",
+               "tpl-MNIPediatricAsym_cohort-6_res-1_label-WM_probseg.nii.gz": "",
+               "tpl-MNIPediatricAsym_cohort-6_res-2_PD.nii.gz": "",
+               "tpl-MNIPediatricAsym_cohort-6_res-2_T1w.nii.gz": "",
+               "tpl-MNIPediatricAsym_cohort-6_res-2_T2w.nii.gz": "",
+               "tpl-MNIPediatricAsym_cohort-6_res-2_desc-brain_mask.nii.gz": "",
+               "tpl-MNIPediatricAsym_cohort-6_res-2_label-CSF_probseg.nii.gz": "",
+               "tpl-MNIPediatricAsym_cohort-6_res-2_label-GM_probseg.nii.gz": "",
+               "tpl-MNIPediatricAsym_cohort-6_res-2_label-WM_probseg.nii.gz": "",
+            },
+         },
+      },
+   }
+})
+}}
+
 **Storing spatial transforms.**
 Since multi-subject templates and atlas involve the spatial normalization of
 subjects by means of image registration processes, it is RECOMMENDED to store
