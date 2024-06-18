@@ -35,7 +35,7 @@ repos:
         files: tools/schemacode
         args: ["--settings-file", "tools/schemacode/pyproject.toml"]
   - repo: https://github.com/pyCQA/flake8
-    rev: 7.0.0
+    rev: 7.1.0
     hooks:
       - id: flake8
         args: [--config=tools/schemacode/setup.cfg]
