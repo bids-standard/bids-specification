@@ -148,6 +148,14 @@ coordinate_reference_point:
     Point of the probe that is described by the probe coordinates and
     on which the alpha, beta and gamma rotations are applied.
   type: string
+data_entity_id:
+  name: data_entity_id
+  display_name: Data entity ID
+  description: |
+    The corresponding (UUID) identifier of the recording trace in the data file.
+    The same `data_entity_id` can be listed multiple times with different
+    `onset` & `duration` values to select a subset of a recording trace.
+  type: string
 depth__probes:
   name: depth
   display_name: Depth
@@ -252,6 +260,12 @@ duration:
     - type: string
       enum:
         - n/a
+duration_index:
+  name: duration_index
+  display_name: Duration index
+  description: |
+    Number of recording samples included in the event.
+  type: number
 electrode_count:
   name: electrode_count
   display_name: Electrode count
@@ -538,6 +552,12 @@ onset:
     acquired data point.
   type: number
   unit: s
+onset_index:
+  name: onset_index
+  display_name: Onset index
+  description: |
+    Index of the onset recording sample (0 based) within the data entity.
+  type: integer
 pathology:
   name: pathology
   display_name: Pathology
@@ -910,6 +930,16 @@ tracked_point__channels:
   description: |
     Label of the point that is being tracked, for example, label of a tracker
     or a marker (for example,`"LeftFoot"`, `"RightWrist"`).
+  type: string
+# TODO: Add relative links to `trial_type` column and events.tsv description.
+trial_id:
+  name: trial_id
+  display_name: Trial ID
+  description: |
+    If the data entity belongs to set of data_entities forming a trial,
+    they have to be linked to the same trial_id. This can be used to e.g. group stimulation and response records.
+    The optional `trial_type` events.tsv column can be used to provide the further information on the trial like
+    `electric stimulation`,`rest`, or `pharmaceutical stimulation`, etc.
   type: string
 trial_type:
   name: trial_type
