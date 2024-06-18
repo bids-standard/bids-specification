@@ -1,14 +1,31 @@
 # Templates and atlases
 
-In the following we describe how the outcomes of analyses that produce new
-[templates and atlases](../common-principles.md#definitions) are organized
+In the following, we describe how the outcomes of analyses that derive from or
+produce [templates and atlases](../common-principles.md#definitions) are organized
 as BIDS-Derivatives.
 These outcomes typically involve quantitative maps, feature maps, parcellations,
 segmentations, and other knowledge annotations such as landmarks defined with
 respect to individual or template brains that are supported by spaces
 such as surfaces and regular grids (images).
+
 For derivatives with atlases in their provenance corresponding to individual subjects,
-the organization follows the standards for BIDS raw and derivatives:
+the organization follows the standards for BIDS raw and derivatives.
+The following entities MAY be employed to specify template- and atlas-derived results:
+
+-    [`space-<label>`](../glossary.md#space-entities) is REQUIRED to disambiguate derivatives defined with
+     respect to different [coordinate systems](../appendices/coordinate-systems.md), following the general
+     BIDS-Derivatives specifications.
+-    [`atlas-<label>`](../glossary.md#atlas-entities) is REQUIRED to encode files pertaining
+     or derived from the atlas identified by the entity's label.
+-    [`seg-<label>`](../glossary.md#segmentation-entities) is REQUIRED when a single atlas has several different
+     realizations (for instance, segmentations and parcellations created with different criteria) that
+     need disambiguation.
+-    [`scale-<label>`](../glossary.md#scale-entities) is REQUIRED to disambiguate different atlas 'scales',
+     when the atlas has more than one 'brain unit' resolutions, typically relating to the area covered
+     by regions.
+
+The general filename pattern for subject derivatives with templates and atlases in their provenance
+follows the general BIDS-Derivatives pattern:
 
 ```Text
 <pipeline_name>/
@@ -17,27 +34,12 @@ the organization follows the standards for BIDS raw and derivatives:
             <source_entities>[_space-<space>][_atlas-<label>][seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
 ```
 
-where [`suffix`](../glossary.md#suffix-common_principles) will generally be existing BIDS raw modalities
-such as `T1w`, while it will normally take `dseg`, `probseg`, or `mask` to encode atlased knowledge.
-In terms of [`extension`](../glossary.md#extension-common_principles), `nii[.gz]`, `dscalar.nii[.gz]`,
-`dlabel.nii[.gz]`, `label.gii[.gz]`, `tsv`, or `json`.
-
-The [`atlas-<label>` entity](../glossary.md#atlas-entities) is REQUIRED to encode files belonging in
-the atlas identified by the label.
-Two entities MAY be employed along with `atlas-` to disentangle different realizations and scales
-of a single atlas:
-
--    [`seg-<label>`](../glossary.md#segmentation-entities) is REQUIRED when a single atlas has several different
-     realizations (for instance, segmentations and parcellations created with different criteria) that
-     need disambiguation.
--    [`scale-<label>`](../glossary.md#scale-entities) is REQUIRED to disambiguate different atlas 'scales',
-     when the atlas has more than one 'brain unit' resolutions, typically relating to the area covered
-     by regions.
-
-These three atlas-related entities are discussed later in section
+[`atlas-<label>`](../glossary.md#atlas-entities), [`seg-<label>`](../glossary.md#segmentation-entities),
+and [`scale-<label>`](../glossary.md#scale-entities) are discussed later in section
 [Filenames of derivatives with atlases in their provenance](#filenames-of-derivatives-with-atlases-in-their-provenance).
 
-For derivatives of template- and altas-generating pipelines, the derivatives-specific
+For derivatives of template- and altas-generating pipelines, which typically aggregate
+several sessions and/or subjects, the derivatives-specific
 [`tpl-<label>` entity](../glossary.md#template-entities) MAY be employed as follows:
 
 ```Text
@@ -47,6 +49,11 @@ For derivatives of template- and altas-generating pipelines, the derivatives-spe
             <source_entities>[_space-<space>][_atlas-<label>][seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
 ```
 
+where [`suffix`](../glossary.md#suffix-common_principles) will generally be existing BIDS raw modalities
+(such as `T1w`) for templates, while it will normally take `dseg`, `probseg`, or `mask` to encode atlased
+knowledge.
+In terms of [`extension`](../glossary.md#extension-common_principles), `nii[.gz]`, `dscalar.nii[.gz]`,
+`dlabel.nii[.gz]`, `label.gii[.gz]`, `tsv`, or `json`.
 Both subject-level and template-level results can coexist in a single pipeline folder:
 
 ```Text
