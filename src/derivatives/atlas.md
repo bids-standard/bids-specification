@@ -349,6 +349,129 @@ A guide for using macros can be found at
 })
 }}
 
+**The PS13 atlas example.**
+The [PS13 atlas](https://doi.org/10.18112/openneuro.ds004401.v1.3.0) is a
+molecular imaging brain atlas of Cyclooxygenase-1 (PET).
+The atlas is generated in two standard spaces: `MNI152Lin` and `fsaverage`:
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+   "ps13-pipeline": {
+      "tpl-fsaverage": {
+         "pet": {
+            "tpl-fsaverage_atlas-ps13_desc-nopvc_dseg.nii.gz": "",
+            "tpl-fsaverage_atlas-ps13_desc-pvc_dseg.nii.gz": "",
+            "tpl-fsaverage_atlas-ps13_dseg.json": "",
+            "tpl-fsaverage_atlas-ps13_dseg.tsv": "",
+            "tpl-fsaverage_desc-nopvc_mimap.json": "",
+            "tpl-fsaverage_desc-nopvc_mimap.nii.gz": "",
+            "tpl-fsaverage_desc-pvc_mimap.json": "",
+            "tpl-fsaverage_desc-pvc_mimap.nii.gz": "",
+            "tpl-fsaverage_hemi-L_den-164k_desc-nopvc_mimap.json": "",
+            "tpl-fsaverage_hemi-L_den-164k_desc-nopvc_mimap.shape.gii": "",
+            "tpl-fsaverage_hemi-L_den-164k_desc-pvc_mimap.json": "",
+            "tpl-fsaverage_hemi-L_den-164k_desc-pvc_mimap.shape.gii": "",
+            "tpl-fsaverage_hemi-L_den-164k_stat-std_desc-nopvc_mimap.json": "",
+            "tpl-fsaverage_hemi-L_den-164k_stat-std_desc-nopvc_mimap.shape.gii": "",
+            "tpl-fsaverage_hemi-L_den-164k_stat-std_desc-pvc_mimap.json": "",
+            "tpl-fsaverage_hemi-L_den-164k_stat-std_desc-pvc_mimap.shape.gii": "",
+            "tpl-fsaverage_hemi-R_den-164k_desc-nopvc_mimap.json": "",
+            "tpl-fsaverage_hemi-R_den-164k_desc-nopvc_mimap.shape.gii": "",
+            "tpl-fsaverage_hemi-R_den-164k_desc-pvc_mimap.json": "",
+            "tpl-fsaverage_hemi-R_den-164k_desc-pvc_mimap.shape.gii": "",
+            "tpl-fsaverage_hemi-R_den-164k_stat-std_desc-nopvc_mimap.json": "",
+            "tpl-fsaverage_hemi-R_den-164k_stat-std_desc-nopvc_mimap.shape.gii": "",
+            "tpl-fsaverage_hemi-R_den-164k_stat-std_desc-pvc_mimap.json": "",
+            "tpl-fsaverage_hemi-R_den-164k_stat-std_desc-pvc_mimap.shape.gii": "",
+            "tpl-fsaverage_stat-std_desc-nopvc_mimap.json": "",
+            "tpl-fsaverage_stat-std_desc-nopvc_mimap.nii.gz": "",
+            "tpl-fsaverage_stat-std_desc-pvc_mimap.json": "",
+            "tpl-fsaverage_stat-std_desc-pvc_mimap.nii.gz": "",
+         },
+      },
+      "tpl-MNI152Lin": {
+         "pet": {
+            "tpl-MNI152Lin_atlas-ps13_desc-nopvc_dseg.nii.gz": "",
+            "tpl-MNI152Lin_atlas-ps13_desc-pvc_dseg.nii.gz": "",
+            "tpl-MNI152Lin_atlas-ps13_dseg.json": "",
+            "tpl-MNI152Lin_atlas-ps13_dseg.tsv": "",
+            "tpl-MNI152Lin_res-1p5_desc-spmvbmNopvc_mimap.json": "",
+            "tpl-MNI152Lin_res-1p5_desc-spmvbmNopvc_mimap.nii.gz": "",
+            "tpl-MNI152Lin_res-1p5_desc-spmvbmPvc_mimap.json": "",
+            "tpl-MNI152Lin_res-1p5_desc-spmvbmPvc_mimap.nii.gz": "",
+            "tpl-MNI152Lin_res-1p5_stat-std_desc-spmvbmNopvc_mimap.json": "",
+            "tpl-MNI152Lin_res-1p5_stat-std_desc-spmvbmNopvc_mimap.nii.gz": "",
+            "tpl-MNI152Lin_res-1p5_stat-std_desc-spmvbmPvc_mimap.json": "",
+            "tpl-MNI152Lin_res-1p5_stat-std_desc-spmvbmPvc_mimap.nii.gz": "",
+            "tpl-MNI152Lin_res-2_desc-fnirtNopvc_mimap.json": "",
+            "tpl-MNI152Lin_res-2_desc-fnirtNopvc_mimap.nii.gz": "",
+            "tpl-MNI152Lin_res-2_desc-fnirtPvc_mimap.json": "",
+            "tpl-MNI152Lin_res-2_desc-fnirtPvc_mimap.nii.gz": "",
+            "tpl-MNI152Lin_res-2_desc-nopvc_mimap.json": "",
+            "tpl-MNI152Lin_res-2_desc-nopvc_mimap.nii.gz": "",
+            "tpl-MNI152Lin_res-2_desc-pvc_mimap.json": "",
+            "tpl-MNI152Lin_res-2_desc-pvc_mimap.nii.gz": "",
+            "tpl-MNI152Lin_res-2_stat-std_desc-fnirtNopvc_mimap.json": "",
+            "tpl-MNI152Lin_res-2_stat-std_desc-fnirtNopvc_mimap.nii.gz": "",
+            "tpl-MNI152Lin_res-2_stat-std_desc-fnirtPvc_mimap.json": "",
+            "tpl-MNI152Lin_res-2_stat-std_desc-fnirtPvc_mimap.nii.gz": "",
+            "tpl-MNI152Lin_res-2_stat-std_desc-nopvc_mimap.json": "",
+            "tpl-MNI152Lin_res-2_stat-std_desc-nopvc_mimap.nii.gz": "",
+            "tpl-MNI152Lin_res-2_stat-std_desc-pvc_mimap.json": "",
+            "tpl-MNI152Lin_res-2_stat-std_desc-pvc_mimap.nii.gz": "",
+         },
+      }
+   }
+})
+}}
+
+If the pipeline generates two different atlases for at least one template space
+in the output, then [`atlas-<label>`](../glossary.md#atlas-entities) is REQUIRED
+for the whole dataset.
+For example, let's imagine the PS13 atlas is revised in 2034, and based on the
+original pipeline and data, it generates now a new manual segmentation
+in the `MNI152Lin` space with some new regions defined.
+The new atlas can be structured as follows:
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+   "ps13rev2034-pipeline": {
+      "tpl-fsaverage": {
+         "pet": {
+            "tpl-fsaverage_atlas-ps13_desc-nopvc_dseg.nii.gz": "",
+            "tpl-fsaverage_atlas-ps13_desc-pvc_dseg.nii.gz": "",
+            "tpl-fsaverage_atlas-ps13_dseg.json": "",
+            "tpl-fsaverage_atlas-ps13_dseg.tsv": "",
+            "tpl-fsaverage_atlas-ps13_hemi-L_den-164k_desc-nopvc_mimap.json": "",
+            "...": "",
+            "tpl-fsaverage_atlas-ps13_stat-std_desc-pvc_mimap.nii.gz": "",
+         },
+      },
+      "tpl-MNI152Lin": {
+         "pet": {
+            "tpl-MNI152Lin_atlas-ps13_desc-nopvc_dseg.nii.gz": "",
+            "tpl-MNI152Lin_atlas-ps13_desc-pvc_dseg.nii.gz": "",
+            "tpl-MNI152Lin_atlas-ps13_dseg.json": "",
+            "tpl-MNI152Lin_atlas-ps13_dseg.tsv": "",
+            "tpl-MNI152Lin_atlas-ps13_res-1p5_desc-spmvbmNopvc_mimap.json": "",
+            "...": "",
+            "tpl-MNI152Lin_atlas-ps13_res-2_stat-std_desc-pvc_mimap.nii.gz": "",
+            "tpl-MNI152Lin_atlas-ps13rev2034_desc-nopvc_dseg.nii.gz": "",
+            "tpl-MNI152Lin_atlas-ps13rev2034_desc-pvc_dseg.nii.gz": "",
+            "tpl-MNI152Lin_atlas-ps13rev2034_dseg.json": "",
+            "tpl-MNI152Lin_atlas-ps13rev2034_dseg.tsv": "",
+         },
+      }
+   }
+})
+}}
+
 **Deriving from an existing template/atlas**.
 For example, the MIAL67ThalamicNuclei
 ([Najdenovska et al., 2018](https://doi.org/10.1038/sdata.2018.270))
