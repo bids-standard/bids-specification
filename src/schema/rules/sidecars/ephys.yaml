@@ -1,0 +1,47 @@
+#
+# Groups of related metadata fields
+#
+# Assumptions: never need disjunction of selectors
+# Assumptions: top-to-bottom overrides is sufficient logic
+
+---
+# Groups are defined as they appear in the proposal
+
+ephysInstitutionInformation:
+  selectors:
+    - datatype == "ephys"
+    - suffix == "ephys"
+  fields:
+    InstitutionName: recommended
+    InstitutionAddress: recommended
+    InstitutionalDepartmentName: recommended
+
+ephysSetup:
+  selectors:
+    - datatype == "ephys"
+    - suffix == "ephys"
+  fields:
+    PowerLineFrequency: required
+    Manufacturer:
+      level: recommended
+      description_addendum: For example, `"TDT"`, `"Blackrock"`.
+    ManufacturersModelName: recommended
+    ManufacturersModelVersion: recommended
+    RecordingSetupName: recommended
+    SamplingFrequency:
+      level: required
+      description_addendum: |
+         Internal (maximum) sampling frequency (in Hz)
+         of the recording (for example, "24000").
+    DeviceSerialNumber:
+      level: recommended
+      description_addendum: |
+         The serial number of the components of the setup,
+         recommended to add serial numbers and versions of
+         ALL components constituting the setup.
+    SoftwareName:
+      level: recommended
+      description_addendum: |
+         The name of the software suite used to
+         record the data.
+    SoftwareVersions: recommended
