@@ -15,6 +15,9 @@ Participants:
     handedness: recommended
     strain: recommended
     strain_rrid: recommended
+    birthdate: recommended
+    age_category: recommended
+    age_type: optional
   index_columns: [participant_id]
   additional_columns: allowed
 
