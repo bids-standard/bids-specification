@@ -293,7 +293,7 @@ gamma_rotation:
   description: |
     Euler angle to match probe extension dimensions (width, height, depth) to global x, y, z coordinates.
   unit: degree
-#TODO: Clarify if the optionality of the column be defined here or as an addendum in the rules.
+# TODO: Clarify if the optionality of the column be defined here or as an addendum in the rules.
 ground:
   name: ground
   display_name: Ground
@@ -560,7 +560,8 @@ pipette_solution:
   display_name: Pipette solution
   description: |
     The solution used to fill the pipette.
-    See also [openMINDS Pipette](https://github.com/openMetadataInitiative/openMINDS_ephys/blob/v1/schemas/device/pipetteUsage.schema.tpl.json).
+    See also [openMINDS Pipette]
+    (https://github.com/openMetadataInitiative/openMINDS_ephys/blob/v1/schemas/device/pipetteUsage.schema.tpl.json).
   type: string
 internal_pipette_diameter:
   name: internal_pipette_diameter
@@ -877,7 +878,9 @@ surgery_date:
   name: surgery_date
   display_name: Surgery date
   description: |
-    Date(s) of surgery. Datetime format and their anonymization are described in [Units](SPEC_ROOT/common-principles.md#units). The details of the surgery should be described in the sidecar json file.
+    Date(s) of surgery. Datetime format and their anonymization
+    are described in [Units](SPEC_ROOT/common-principles.md#units).
+    The details of the surgery should be described in the sidecar json file.
   type: string
   format: datetime
 time:
@@ -1159,7 +1162,7 @@ z__optodes:
     - type: string
       enum:
         - n/a
-#TODO: How are the units specified for the probe x, y and z fields?
+# TODO: How are the units specified for the probe x, y and z fields?
 x__probes:
   name: x
   display_name: Probe X position
