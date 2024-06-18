@@ -583,6 +583,11 @@ dwi:
   display_name: Diffusion-weighted image
   description: |
     Diffusion-weighted imaging contrast (specialized T2 weighting).
+ecephys:
+  value: ecephys
+  display_name: Extracellular Electrophysiology
+  description: |
+    Extracellular electrophysiological data.
 eeg:
   value: eeg
   display_name: Electroencephalography
@@ -622,6 +627,11 @@ hipCT:
   display_name: HiP-CT
   description: |
     Hierarchical Phase-Contrast Tomography imaging data
+icephys:
+  value: icephys
+  display_name: Inracellular Electrophysiology
+  description: |
+    Intracellular electrophysiological data.
 ieeg:
   value: ieeg
   display_name: Intracranial Electroencephalography
@@ -773,6 +783,16 @@ physio:
   display_name: Physiological recording
   description: |
     Physiological recordings such as cardiac and respiratory signals.
+probe:
+  value: probe
+  display_name: A recording probe
+  description: |
+    A probe with one or more recording contacts.
+probes:
+  value: probes
+  display_name: Implanted physical devices
+  description: |
+    Physical devices used for recording microelectrode electrophysiology data, whether chronically or acutely implanted.
 probseg:
   value: probseg
   display_name: Probabilistic Segmentation

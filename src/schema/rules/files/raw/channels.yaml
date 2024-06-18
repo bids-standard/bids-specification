@@ -16,6 +16,16 @@ channels:
     acquisition: optional
     run: optional
 
+# microephys has an additional 'sample' entity
+channels__microephys:
+  $ref: rules.files.raw.channels.channels
+  datatypes:
+    - icephys
+    - ecephys
+  entities:
+    $ref: rules.files.raw.channels.channels.entities
+    sample: optional
+
 # MEG has an additional entity available
 channels__meg:
   $ref: rules.files.raw.channels.channels
@@ -55,6 +65,17 @@ coordsystem__eeg:
     - ieeg
   entities:
     $ref: rules.files.raw.channels.coordsystem.entities
+    space: optional
+
+# microephys has sample AND space entities
+coordsystem__microephys:
+  $ref: rules.files.raw.channels.coordsystem
+  datatypes:
+    - ecephys
+    - icephys
+  entities:
+    $ref: rules.files.raw.channels.coordsystem.entities
+    sample: optional
     space: optional
 
 electrodes:

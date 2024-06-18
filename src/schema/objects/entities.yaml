@@ -331,12 +331,12 @@ split:
   display_name: Split
   description: |
     In the case of long data recordings that exceed a file size of 2Gb,
-    `.fif` files are conventionally split into multiple parts.
-    Each of these files has an internal pointer to the next file.
+    `.fif`, `.nwb`, `.nix` files are conventionally split into multiple parts.
+    Each of the `.fif` files has an internal pointer to the next file.
     This is important when renaming these split recordings to the BIDS convention.
 
     Instead of a simple renaming, files should be read in and saved under their
-    new names with dedicated tools like [MNE-Python](https://mne.tools/),
+    new names with dedicated tools like [MNE-Python](https://mne.tools/) for `.fif`,
     which will ensure that not only the filenames, but also the internal file pointers, will be updated.
 
     It is RECOMMENDED that `.fif` files with multiple parts use the `split-<index>` entity to indicate each part.
