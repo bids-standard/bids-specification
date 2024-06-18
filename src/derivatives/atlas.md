@@ -15,6 +15,8 @@ The following entities MAY be employed to specify template- and atlas-derived re
 -    [`space-<label>`](../glossary.md#space-entities) is REQUIRED to disambiguate derivatives defined with
      respect to different [coordinate systems](../appendices/coordinate-systems.md), following the general
      BIDS-Derivatives specifications.
+-    [`cohort-<label>`](../glossary.md#cohort-entities) is REQUIRED to disambiguate derivatives defined with
+     respect to different cohort instances of a single [space (coordinate system)](../appendices/coordinate-systems.md).
 -    [`atlas-<label>`](../glossary.md#atlas-entities) is REQUIRED to encode files pertaining
      or derived from the atlas identified by the entity's label.
 -    [`seg-<label>`](../glossary.md#segmentation-entities) is REQUIRED when a single atlas has several different
@@ -31,7 +33,7 @@ follows the general BIDS-Derivatives pattern:
 <pipeline_name>/
     sub-<label>/
         <datatype>/
-            <source_entities>[_space-<space>][_atlas-<label>][seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
+            <source_entities>[_space-<space>][_cohort-<label>][_atlas-<label>][seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
 ```
 
 [`atlas-<label>`](../glossary.md#atlas-entities), [`seg-<label>`](../glossary.md#segmentation-entities),
@@ -40,13 +42,15 @@ and [`scale-<label>`](../glossary.md#scale-entities) are discussed later in sect
 
 For derivatives of template- and altas-generating pipelines, which typically aggregate
 several sessions and/or subjects, the derivatives-specific
-[`tpl-<label>` entity](../glossary.md#template-entities) MAY be employed as follows:
+[`tpl-<label>` entity](../glossary.md#template-entities) is dual in terms of usage to BIDS raw's
+[`sub-<label>`](../glossary.md#subject-entities), and MAY be employed as follows:
 
 ```Text
 <pipeline_name>/
     tpl-<label>/
-        [<datatype>/]
-            <source_entities>[_space-<space>][_atlas-<label>][seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
+        [cohort-<label>/]
+           [<datatype>/]
+               <source_entities>[_cohort-<label>][_space-<space>][_atlas-<label>][seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
 ```
 
 where [`suffix`](../glossary.md#suffix-common_principles) will generally be existing BIDS raw modalities
@@ -57,16 +61,21 @@ In terms of [`extension`](../glossary.md#extension-common_principles), `nii[.gz]
 Please note that the [`<datatype>/` directory](../glossary.md#data_type-common_principles) is RECOMMENDED.
 The [`<datatype>/` directory](../glossary.md#data_type-common_principles) MAY be ommitted in the case
 only one data type (such as `anat/`) is stored under the `tpl-<label>` folder.
+The [`cohort-<label>` directory and entity](../glossary.md#cohort-entities) MUST be specified for templates
+with several cohorts.
+The [`cohort-<label>` directory and entity](../glossary.md#cohort-entities) are dual in terms of usage to BIDS raw's
+[`session-<label>`](../glossary.md#session-entities).
 Both subject-level and template-level results can coexist in a single pipeline folder:
 
 ```Text
 <pipeline_name>/
     sub-<label>/
         <datatype>/
-            <source_entities>[_space-<space>][_atlas-<label>][seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
+            <source_entities>[_space-<space>][_cohort-<label>][_atlas-<label>][seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
     tpl-<label>/
-        [<datatype>/]
-            <source_entities>[_space-<space>][_atlas-<label>][seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
+        [cohort-<label>/]
+           [<datatype>/]
+               <source_entities>[_cohort-<label>][_space-<space>][_atlas-<label>][seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
 ```
 
 ## Single-subject templates and atlases
