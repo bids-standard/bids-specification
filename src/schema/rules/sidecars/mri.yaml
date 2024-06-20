@@ -36,6 +36,7 @@ MRIHardware:
     MatrixCoilMode: recommended
     CoilCombinationMethod: recommended
     NumberTransmitCoilActiveElements: optional
+    TablePosition: recommended
 
 MRISample:
   selectors:
