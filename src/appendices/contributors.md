@@ -37,6 +37,7 @@ ecosystem (in alphabetical order).
 If you contributed to the BIDS ecosystem and your name is not listed, please add it.
 
 <!-- THE SECTION BELOW IS AUTOMATICALLY GENERATED -->
+<!--lint ignore -->
 
 | name                                                 | contributions                          |
 | ---------------------------------------------------- | -------------------------------------- |
@@ -122,7 +123,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Dianne Patterson                                     | 📖                                     |
 | Dimitri Papadopoulos Orfanos                         | 📖💡🤔💬💻                             |
 | Dmitry Petrov                                        | 📖💻                                   |
-| Dora Hermes                                          | 📖💻✅🔍🤔                              |
+| Dora Hermes                                          | 📖💻✅🔍🤔                             |
 | Dorien Huijser                                       | 📖                                     |
 | Douglas N. Greve                                     | 📖                                     |
 | Duncan Macleod                                       | 📖🚇                                   |
@@ -195,7 +196,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Jeanette Mumford                                     | 📖                                     |
 | Jefferson Casimir                                    | 🔧                                     |
 | Jeffrey G. Ojemann                                   | 📖                                     |
-| Jeffrey S. Grethe                                    | 💬🐛✅📢💻                              |
+| Jeffrey S. Grethe                                    | 💬🐛✅📢💻                             |
 | JegouA                                               | 💻                                     |
 | Jelle Dalenberg                                      | 📖                                     |
 | Jeremy Moreau                                        | 📖💡                                   |
@@ -212,7 +213,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Jose Manuel Saborit                                  | 📖                                     |
 | Joseph Wexler                                        | 📖💡                                   |
 | Joseph Woods                                         | 📖                                     |
-| Julia Guiomar Niso Galán                             | 🤔🎨🔍👀📋📝🔧🐛💻🔣✅💬📖💡📢          |
+| Julia Guiomar Niso Galán                             | 🤔🎨🔍👀📋📝🔧🐛💻🔣✅💬📖💡📢         |
 | Julia Sprenger                                       | 📖                                     |
 | Julien Cohen-Adad                                    | 📖🔣🤔                                 |
 | Julius Welzel                                        | 📖💡🐛💻🔣🤔💬📓                       |
@@ -270,7 +271,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Michael Hanke                                        | 📖🤔🔧🐛📢                             |
 | Michael P. Harms                                     | 📖⚠️🔧                                 |
 | Michael P. Milham                                    | 💡🔍                                   |
-| Michael P. Notter                                    | 💬📝✅📢📖                              |
+| Michael P. Notter                                    | 💬📝✅📢📖                             |
 | Michael Schirner                                     | 📖                                     |
 | Mikaël Naveau                                        | 🐛                                     |
 | Nader Pouratian                                      | 📖                                     |
@@ -289,7 +290,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Patricia Clement                                     | 💬🐛💻📖🔣💡📋🤔📆⚠️📢                 |
 | Patrick Park                                         | 📖💡💬💻                               |
 | Paule-Joanne Toussaint                               | 📖                                     |
-| Peer Herholz                                         | 💬📖👀🔧✅📢                            |
+| Peer Herholz                                         | 💬📖👀🔧✅📢                           |
 | Petra Ritter                                         | 📖                                     |
 | Pierre Rioux                                         | 📖                                     |
 | Pieter Vandemaele                                    | 📖💻                                   |
@@ -319,7 +320,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Shashank Bansal                                      | 📖                                     |
 | Sjoerd B. Vos                                        | 📖                                     |
 | Soichi Hayashi                                       | 📖🔧🐛                                 |
-| Stefan Appelhoff                                     | 📖💬🤔🐛💡💻👀⚠️📢✅🔧🔌📝🚧🔣          |
+| Stefan Appelhoff                                     | 📖💬🤔🐛💡💻👀⚠️📢✅🔧🔌📝🚧🔣         |
 | Stephan Bickel                                       | 📖                                     |
 | Steven Meisler                                       | 🐛💻💬🔧📓                             |
 | Suyash Bhogawar                                      | 📖💡⚠️🔧💬                             |
