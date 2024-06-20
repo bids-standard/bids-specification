@@ -351,7 +351,7 @@ Derivatives can be stored/distributed in two ways:
     it is anticipated that the same pipeline will output more than one variant
     (for example, `AFNI-blurring` and `AFNI-noblurring`).
     For the sake of consistency, the subdirectory name SHOULD be
-    the `GeneratedBy.Name` field in `data_description.json`,
+    the `GeneratedBy.Name` field in `dataset_description.json`,
     optionally followed by a hyphen and a suffix (see
     [Derived dataset and pipeline description][derived-dataset-description]).
 
