@@ -28,7 +28,7 @@ and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_filename_template("raw", datatypes=["micr"], suffixes=["TEM", "SEM", "uCT", "BF", "DF",
-"PC", "DIC", "FLUO", "CONF", "PLI", "CARS", "2PE", "MPE", "SR", "NLO", "OCT", "SPIM", "hipCT"], n_dupes_to_combine=4) }}
+"PC", "DIC", "FLUO", "CONF", "PLI", "CARS", "2PE", "MPE", "SR", "NLO", "OCT", "SPIM", "XPCT"], n_dupes_to_combine=4) }}
 
 Microscopy data MUST be stored in the `micr` directory.
 
@@ -88,7 +88,7 @@ and a guide for using macros can be found at
          "NLO",
          "OCT",
          "SPIM",
-         "hipCT",
+         "XPCT",
       ]
    )
 }}
