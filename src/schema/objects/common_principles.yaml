@@ -3,6 +3,22 @@
 # WARNING: The terms are presented here in alphabetical order!
 # The order in which these terms are presented in the specification is defined in `rules/common_principles.yaml`,
 # rather than this file (`objects/common_principles.yaml`).
+atlas:
+  display_name: Atlas
+  description: |
+    Knowledge about the brain, generally formalized with reference to a standard space (see the *Template* definition)
+    by means of spatiotemporal annotations such as landmarks, segmentations, parcellations, or probability maps.
+
+        The definition of atlas per Merriam-Webster is ‘a bound collection of maps (i.e. labeled brain regions
+        or quantitative aspects) and metadata (tables, or textual matter).
+        Within BIDS, atlases are broadly defined as a mapping between locations in a spatial coordinate systems
+        and descriptions associated with those locations.
+        Atlases are often built after *registering many subjects or maps into a space defined by a template*.
+        By analogy with geographical atlases, brain atlases can map brain locations to either discrete labels like a map
+        of countries does, or to continuous quantities like a topographic map does.
+
+        One prominent manuscript regarding the specific aspects of atlases, such as their *regional resolution*
+        is ([Bijsterbosch et al., 2020](https://doi.org/10.1038/s41593-020-00726-z)).
 data_acquisition:
   display_name: Data acquisition
   description: |
@@ -133,6 +149,12 @@ session:
     often in the case of some intervention between sessions (for example, training).
     In the [PET](SPEC_ROOT/modality-specific-files/positron-emission-tomography.md) context,
     a session may also indicate a group of related scans, taken in one or more visits.
+space:
+  display_name: Space
+  description: |
+    A reference [coordinate system](appendices/coordinate-systems.md) of analysis
+    engendered by the spatiotemporal distribution of neuroimaging features such as
+    those given by subjects' and templates' data.
 suffix:
   display_name: suffix
   description: |
@@ -154,3 +176,13 @@ task:
     In the context of brain scanning, a task is always tied to one data acquisition.
     Therefore, even if during one acquisition the subject performed multiple conceptually different behaviors
     (with different sets of instructions) they will be considered one (combined) task.
+template:
+  display_name: Template
+  description: |
+    An average feature map obtained by aggregation of subjects and/or sessions that allows the
+    spatial location of brain anatomy and function of the templated cohort.
+    Templates operationalize the concept of *standardized spatial frame of analysis*,
+    a common *Space* in which subjects' data can be spatially-normalized into for group inference.
+    Like subjects' feature maps generate a *native* spatial frame of reference for analyses,
+    templates engender a *generic* or *standard* space of analysis were subjects can be spatiotemporally
+    aligned into.

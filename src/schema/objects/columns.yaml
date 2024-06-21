@@ -236,6 +236,12 @@ index:
   description: |
     The label integer index.
   type: integer
+label:
+  name: label
+  display_name: label
+  description: |
+    The node name.
+  type: string
 low_cutoff:
   name: low_cutoff
   display_name: Low cutoff
@@ -309,6 +315,18 @@ name__segmentations:
   display_name: Label name
   description: |
     The unique label name.
+  type: string
+network_id:
+  name: network_id
+  display_name: Network ID
+  description: |
+    Network ID the node/parcel belongs to.
+  type: string
+network_label:
+  name: network_label
+  display_name: Network Label
+  description: |
+    Label of Network (for example, Dorsal Attention Network).
   type: string
 notch:
   name: notch
@@ -403,6 +421,13 @@ reference_frame:
     - type: string
       enum:
         - n/a
+region:
+  name: region
+  display_name: Region
+  description: |
+     "XY", where X can be L:left, R:right, B:bilateral, and Y can be F:frontal, T:temporal, P:parietal, O:occipital
+  type: string
+  pattern: ^[L|l|R|r|B|b][F|f|T|t|P|p|O|o]$
 respiratory:
   name: respiratory
   display_name: Respiratory measurement
@@ -462,6 +487,12 @@ session_id:
     matching a session found in the dataset.
   type: string
   pattern: ^ses-[0-9a-zA-Z]+$
+seed:
+  name: seed
+  display_name: Seed
+  description: |
+    Seed vertex/channel of the node/region.
+  type: string
 sex:
   name: sex
   display_name: Sex
