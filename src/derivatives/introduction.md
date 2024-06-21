@@ -93,10 +93,11 @@ in [Derived dataset and pipeline description][derived-dataset-description].
 
 ## File format specification
 
-Derived data may be resampled into structures that are not well-handled by the
-raw data formats.
-In this section, we describe standard formats that SHOULD be adhered to when
-appropriate, and the extensions they should have.
+Generally derivative data formats SHOULD be the same as for raw data.
+For instance raw EEG data stored in the `.edf` data format SHOULD also be stored in the same format when averaged.
+However, derived data may be resampled into structures that are not well-handled by the raw data formats.
+For such scenarios, in this section we describe standard formats that SHOULD be adhered to when appropriate,
+and the extensions they should have.
 
 ### GIFTI Surface Data Format
 
@@ -122,6 +123,20 @@ or combinations of data arrays.
 
 Unless otherwise stated, bare `.gii` extensions SHOULD NOT be used
 for GIFTI files.
+
+### Multidimensional arrays: HDF5 and Zarr
+
+For multidimensional arrays, the following file formats are RECOMMENDED:
+
+-   [HDF5](https://www.hdfgroup.org/solutions/hdf5/)
+-   [Zarr](https://zarr.dev/)
+
+HDF5 and Zarr container format files (note that `.zarr` is typically a directory) should contain the data only (with the field `data`).
+This `data` field should be treated as a "virtual directory tree" with a depth one level,
+containing BIDS paths at the level of the multidimensional file
+(that is, the `.zarr` directory root or the `.h5` file).
+BIDS path rules MUST be applied as though these paths existed within the dataset.
+Metadata about the multidimensional array SHOULD be documented in the associated JSON sidecar file.
 
 <!-- Link Definitions -->
 
