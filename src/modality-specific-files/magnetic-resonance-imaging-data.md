@@ -697,7 +697,7 @@ The user is free to choose any other label than `singleband` and
 `multiband`, as long as they are consistent across subjects and sessions.
 
 Scanner-generated TRACE, ADC and fractional anisotropy (FA and colFA) volumes MAY be included
-using the `TRACE`, `ADC`, `FA` and `colFA` suffixes, respectively
+using the `TRACE`, `ADC`, `FA` and `colFA` suffixes, respectively.
 If TRACE, ADC, FA, colFA volume filenames match a diffusion series with all applicable entities,
 such volumes SHOULD be computed from that series.
 Otherwise, some entity, such as [`acq-<label>`](../appendices/entities.md#acq),
