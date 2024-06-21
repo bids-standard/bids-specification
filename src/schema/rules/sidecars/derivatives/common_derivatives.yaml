@@ -41,9 +41,12 @@ MaskDerivatives:
 SegmentationCommon:
   selectors:
     - dataset.dataset_description.DatasetType == "derivative"
-    - 'intersects([suffix], ["dseg", "probseg"])'
+    - 'intersects([suffix], ["dseg", "probseg", "mask"])'
   fields:
+    SpatialReference: recommended
     Manual: optional
+    CoordinateReportStrategy: optional
+
 
 # Derivatives -> Imaging data types
 ImageDerivatives:
@@ -74,3 +77,19 @@ ImageDerivativeDenEntity:
     Density:
       level: required
       level_addendum: if `den` is present
+
+AtlasDescription:
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - 'intersects([suffix], ["dseg", "probseg", "mask"])'
+  fields:
+    Name: required
+    Description: recommended
+    Authors: recommended
+    Curators: recommended
+    Funding: recommended
+    License: recommended
+    ReferencesAndLinks: recommended
+    Species: recommended
+    DerivedFrom: recommended
+    LevelType: recommended

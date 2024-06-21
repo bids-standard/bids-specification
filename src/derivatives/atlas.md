@@ -745,86 +745,13 @@ A guide for using macros can be found at
 
 ## Tabular data
 
-The `[probseg|dseg|mask|channels].tsv` file indexes and labels each node/parcel/region within the atlas.
+The `[probseg|dseg|mask].tsv` file indexes and labels each node/parcel/region within the atlas.
 This file resembles the typical Look Up Table (LUT) often shared with atlases.
 This file will be essential for downstream workflows that generate matrices or other derived files within which node/parcel/region information is required,
 as the index/label fields will be used to reference the original anatomy the index/labels are derived from.
 Additional fields can be added with their respective definition/description in the sidecar json file.
 
-<table>
-  <tr>
-   <td>index (or placeholder in fragment in reference)
-   </td>
-   <td>REQUIRED. (Integer) The number associated with the node/parcel/region (right/left hemispheres may be different).
-   </td>
-  </tr>
-  <tr>
-   <td>label
-   </td>
-   <td>RECOMMENDED. The node name
-   </td>
-  </tr>
-  <tr>
-   <td>network_id
-   </td>
-   <td>OPTIONAL. Network ID the node/parcel belongs to
-   </td>
-  </tr>
-  <tr>
-   <td>network_label
-   </td>
-   <td>OPTIONAL. Label of Network (for example, Dorsal Attention Network)
-   </td>
-  </tr>
-  <tr>
-   <td>coordinate_report_strategy
-   </td>
-   <td>OPTIONAL (RECOMMENDED if x, y, z keys are specified).  The strategy used to assess and report x, y and z coordinates of a given node/parcel/region. For example, "CenterOfMass".
-   </td>
-  </tr>
-  <tr>
-   <td>x
-   </td>
-   <td>OPTIONAL. The x-coordinate of the node in the spatial reference space (See SpatialReference in the .json file)
-   </td>
-  </tr>
-  <tr>
-   <td>y
-   </td>
-   <td>OPTIONAL. The y-coordinate of the node in the spatial reference space (See SpatialReference in the .json file)
-   </td>
-  </tr>
-  <tr>
-   <td>z
-   </td>
-   <td>OPTIONAL. The z-coordinate of the node in the spatial reference space (See SpatialReference in the .json file)
-   </td>
-  </tr>
-  <tr>
-   <td>hemisphere
-   </td>
-   <td>OPTIONAL. MUST BE ONE OF: "left", "right", "bilateral". Indicate whether the node/parcel/region is in the left or right hemispheres, or is available bilaterally.
-   </td>
-  </tr>
-  <tr>
-   <td>color
-   </td>
-   <td>OPTIONAL. RGB color to use for the node.
-   </td>
-  </tr>
-  <tr>
-   <td>seed
-   </td>
-   <td>OPTIONAL. Seed vertex/channel of the node/region
-   </td>
-  </tr>
-  <tr>
-   <td>region
-   </td>
-   <td>OPTIONAL. "XY", where X can be L:left, R:right, B:bilateral, and Y can be F:frontal, T:temporal, P:parietal, O:occipital
-   </td>
-  </tr>
-</table>
+This is described in the [imaging derivatives](./imaging.md#common-image-derived-labels) section of the BIDS specification
 
 Example:
 ```Text
@@ -838,98 +765,17 @@ index	label	network_label	hemisphere
 The `atlas-<label>_description.json` file provides metadata to uniquely identify, describe and characterize the atlas, as well as give proper attribution to the creators.
 Additionally, SpatialReference serves the important purpose of unambiguously identifying the space the atlas is labeled in.
 
-<table>
-  <tr>
-   <td>Name
-   </td>
-   <td>REQUIRED. Name of the atlas
-   </td>
-  </tr>
-  <tr>
-   <td>Description
-   </td>
-   <td>RECOMMENDED. Longform description of the atlas
-   </td>
-  </tr>
-  <tr>
-   <td>SpatialReference
-   </td>
-   <td>RECOMMENDED. Point to an existing atlas in a template space (URL or relative file path where this file is located).
-   </td>
-  </tr>
-  <tr>
-   <td>Resolution
-   </td>
-   <td>RECOMMENDED. Resolution atlas is provided in.
-   </td>
-  </tr>
-  <tr>
-   <td>Dimensions
-   </td>
-   <td>RECOMMENDED. Dimensions of the atlas, MUST be 3 (for deterministic atlases) or 4 (for probabilistic atlases).
-   </td>
-  </tr>
-  <tr>
-   <td>4thDimension
-   </td>
-   <td>OPTIONAL. RECOMMENDED if probabilistic atlas. Should indicate what the 4th dimension entails/refers to. MUST be "Indices" or   .
-   </td>
-  </tr>
-  <tr>
-   <td>CoordinateReportStrategy
-   </td>
-   <td>OPTIONAL. MUST BE ONE OF: "peak", "center_of_mass", "other". Indicate the method of coordinate reporting in statistically significant clusters. Could be the "peak" statistical coordinate in the cluster or the "center_of_mass" of the cluster. RECOMMENDED if x, y ,z values are set in the .tsv file.
-   </td>
-  </tr>
-  <tr>
-   <td>Authors
-   </td>
-   <td>RECOMMENDED. List of the authors involved in the creation of the atlas
-   </td>
-  </tr>
-  <tr>
-   <td>Curators
-   </td>
-   <td>RECOMMENDED. List of curators who helped make the atlas accessible in a database or dataset
-   </td>
-  </tr>
-  <tr>
-   <td>Funding
-   </td>
-   <td>RECOMMENDED. The funding source(s) involved in the atlas creation
-   </td>
-  </tr>
-  <tr>
-   <td>License
-   </td>
-   <td>RECOMMENDED. The license agreement for using the atlas.
-   </td>
-  </tr>
-  <tr>
-   <td>ReferencesAndLinks
-   </td>
-   <td>RECOMMENDED. A list of relevant references and links pertaining to the atlas.
-   </td>
-  </tr>
-  <tr>
-   <td>Species
-   </td>
-   <td>RECOMMENDED. The species the atlas was derived from. For example, could be Human, Macaque, Rat, Mouse, etc.
-   </td>
-  </tr>
-  <tr>
-   <td>DerivedFrom
-   </td>
-   <td>RECOMMENDED. Indicate what data modality the atlas was derived from, for example, "cytoarchitecture", "resting-state", "task".
-   </td>
-  </tr>
-  <tr>
-   <td>LevelType
-   </td>
-   <td>RECOMMENDED. Indicate what analysis level the atlas was derived from, for example, "group", "individual".
-   </td>
-  </tr>
-</table>
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table([
+       "derivatives.common_derivatives.AtlasDescription",
+   ]) }}
 
 Example:
 
@@ -948,7 +794,6 @@ Example:
   "BIDSVersion": "1.1.0",
   "Curators": "FSL team",
   "SpatialReference": "https://templateflow.s3.amazonaws.com/tpl-MNI152NLin6Asym_res-02_T1w.nii.gz",
-  "Space": "MNI152NLin6Asym",
   "Resolution": "Matched with original template resolution (2x2x3 mm^3)",
   "License": "See LICENSE file",
   "RRID": "SCR_002823",

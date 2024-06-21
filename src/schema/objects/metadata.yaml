@@ -498,6 +498,26 @@ ContrastBolusIngredient:
     # TODO: Add definitions for these values. (perhaps don't specify)
     - UNKNOWN
     - NONE
+CoordinateReportStrategy:
+  name: CoordinateReportStrategy
+  display_name: CoordinateReportStrategy
+  description: |
+    Indicate the method of coordinate reporting in statistically significant clusters.
+    Could be the "peak" statistical coordinate in the cluster or the
+    "center_of_mass" of the cluster.
+  enum:
+    - peak
+    - center_of_mass
+    - other
+  type: string
+Curators:
+  name: Curators
+  display_name: Curators
+  description: |
+    List of curators who helped make the atlas accessible in a database or dataset.
+  type: array
+  items:
+    type: string
 DCOffsetCorrection:
   name: DCOffsetCorrection
   display_name: DC Offset Correction
@@ -599,6 +619,12 @@ Derivative:
     from other columns (for example a summary score based on a subset of items in a
     questionnaire).
   type: boolean
+DerivedFrom:
+  name: DerivedFrom
+  display_name: DerivedFrom
+  description: |
+    Indicate what data modality the atlas was derived from, for example, "cytoarchitecture", "resting-state", "task".
+  type: string
 Description:
   name: Description
   display_name: Description
@@ -1734,6 +1760,12 @@ Levels:
             format: uri
           Description:
             type: string
+LevelType:
+  name: LevelType
+  display_name: LevelType
+  description: |
+    Indicate what analysis level the atlas was derived from, for example, "group", "individual".
+  type: string
 License:
   name: License
   display_name: License
@@ -3228,6 +3260,12 @@ SpatialReference:
             format: uri
           - type: string
             format: dataset_relative
+Species:
+  name: Species
+  display_name: Species
+  description: |
+    The species the atlas was derived from. For example, could be Human, Macaque, Rat, Mouse, etc.
+  type: string
 SpecificRadioactivity:
   name: SpecificRadioactivity
   display_name: Specific Radioactivity
