@@ -835,7 +835,7 @@ index	label	network_label	hemisphere
 
 ## Atlas metadata
 
-The `[probseg|dseg|mask].json` file provides metadata to uniquely identify, describe and characterize the atlas, as well as give proper attribution to the creators.
+The `atlas-<label>_description.json` file provides metadata to uniquely identify, describe and characterize the atlas, as well as give proper attribution to the creators.
 Additionally, SpatialReference serves the important purpose of unambiguously identifying the space the atlas is labeled in.
 
 <table>
