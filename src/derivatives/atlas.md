@@ -50,7 +50,7 @@ several sessions and/or subjects, the derivatives-specific
     tpl-<label>/
         [cohort-<label>/]
            [<datatype>/]
-               <source_entities>[_cohort-<label>][_space-<space>][_atlas-<label>][seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
+               tpl-<label>_<source_entities>[_cohort-<label>][_atlas-<label>][seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
 ```
 
 where [`suffix`](../glossary.md#suffix-common_principles) will generally be existing BIDS raw modalities
