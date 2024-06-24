@@ -29,7 +29,7 @@ def get_logger(name=None):
     logging.Logger
         logger object.
     """
-    return logging.getLogger("bids-schema" + (".%s" % name if name else ""))
+    return logging.getLogger("bidsschematools" + (".%s" % name if name else ""))
 
 
 def set_logger_level(lgr, level):
