@@ -43,9 +43,10 @@ sbref:
 ScannerDerivatives:
   suffixes:
     - ADC
-    - colFA
     - FA
-    - TRACE
+    - colFA
+    - expADC
+    - trace
   extensions:
     - .nii.gz
     - .nii
