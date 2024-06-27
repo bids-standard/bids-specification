@@ -47,6 +47,12 @@ DF:
   display_name: Dark-field microscopy
   description: |
     Dark-field microscopy imaging data
+FA:
+  value: FA
+  display_name: Fractional Anisotropy image
+  description: |
+    Scanner-generated derivative parametric map
+    reflecting the anisotropy of the diffusion tensor
 FLAIR:
   value: FLAIR
   display_name: Fluid attenuated inversion recovery image
@@ -465,11 +471,6 @@ TEM:
   display_name: Transmission electron microscopy
   description: |
     Transmission electron microscopy imaging data
-TRACE:
-  value: TRACE
-  display_name: Trace diffusion weighted image
-  description: |
-    Diffusion images proportional to the trace of the diffusion tensor
 UNIT1:
   value: UNIT1
   display_name: Homogeneous (flat) T1-weighted MP2RAGE image
@@ -547,6 +548,15 @@ channels:
   display_name: Channels File
   description: |
     Channel information.
+colFA:
+  value: colFA
+  display_name: Colored Fractional Anisotropy image
+  description: |
+    Scanner-derived parametric map encoding both the anisotropy and principal direction of the diffusion tensor.
+    Image intensity is proportional to the Fractional Anisotropy (FA) measure;
+    image colour is determined by the principal eigenvector of the diffusion tensor,
+    where red encodes the magnitude of the left-right component of that orientation,
+    with green and blue similarly encoding the anterior-posterior and inferior-superior components respectively.
 coordsystem:
   value: coordsystem
   display_name: Coordinate System File
@@ -605,6 +615,12 @@ events:
   display_name: Events
   description: |
     Event timing information from a behavioral task.
+expADC:
+  value: expADC
+  display_name: Exponental ADC
+  description: |
+    Exponental ADC / Attenuation Coefficient / Attenuation Factor map,
+    as the ratio of trace-weighted to non-diffusion-weighted image intensity
 fieldmap:
   value: fieldmap
   display_name: Fieldmap
@@ -819,6 +835,11 @@ stim:
   display_name: Continuous recording
   description: |
     Continuous measures, such as parameters of a film or audio stimulus.
+trace:
+  value: trace
+  display_name: Trace-weighted diffusion image
+  description: |
+    Trace-weighted image, as the mean intensity of diffusion-weighted images
 uCT:
   value: uCT
   display_name: Micro-CT
