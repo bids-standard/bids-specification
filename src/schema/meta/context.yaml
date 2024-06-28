@@ -94,7 +94,7 @@ context:
       type: string
     size:
       description: 'Length of the current file in bytes'
-      type: int
+      type: integer
     entities:
       description: 'Entities parsed from the current filename'
       type: object
@@ -366,4 +366,4 @@ context:
         version:
           name: 'Version'
           description: 'TIFF file format version (the second 2-byte block)'
-          type: int
+          type: integer
