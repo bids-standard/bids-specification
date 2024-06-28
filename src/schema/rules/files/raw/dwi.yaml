@@ -42,10 +42,10 @@ sbref:
 # Common scanner-generated derivatives need raw names
 ScannerDerivatives:
   suffixes:
-    - ADC
-    - colFA
-    - FA
-    - TRACE
+    - adc
+    - colfa
+    - fa
+    - trace
   extensions:
     - .nii.gz
     - .nii
