@@ -615,7 +615,7 @@ strain_rrid:
   display_name: Strain RRID
   description: |
     For species different from `homo sapiens`, research resource identifier
-    ([RRID](https://scicrunch.org/resources/data/source/nlx_154697-1/search))
+    ([RRID](https://rrid.site/data/source/nlx_154697-1/search))
     of the strain of the species, for example: `RRID:IMSR_JAX:000664`.
   type: string
   format: rrid

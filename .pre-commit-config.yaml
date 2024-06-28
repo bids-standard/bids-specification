@@ -35,7 +35,7 @@ repos:
         files: tools/schemacode
         args: ["--settings-file", "tools/schemacode/pyproject.toml"]
   - repo: https://github.com/pyCQA/flake8
-    rev: 7.0.0
+    rev: 7.1.0
     hooks:
       - id: flake8
         args: [--config=tools/schemacode/setup.cfg]
@@ -52,7 +52,7 @@ repos:
         args: [-f=standard, -c=.yamllint.yml]
         files: src/schema/.*/.*\.yaml
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.2.6
+    rev: v2.3.0
     hooks:
       - id: codespell
         args: ["--config=.codespellrc", "--dictionary=-", "--dictionary=.codespell_dict"]
