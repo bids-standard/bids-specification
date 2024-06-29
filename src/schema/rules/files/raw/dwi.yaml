@@ -40,10 +40,12 @@ sbref:
     chunk: optional
 
 # Common scanner-generated derivatives need raw names
-isotropic:
+ScannerDerivatives:
   suffixes:
-    - ADC
-    - TRACE
+    - adc
+    - colfa
+    - fa
+    - trace
   extensions:
     - .nii.gz
     - .nii

@@ -6,8 +6,8 @@ TwoPE:
   display_name: 2-photon excitation microscopy
   description: |
     2-photon excitation microscopy imaging data
-ADC:
-  value: ADC
+adc:
+  value: adc
   display_name: Apparent diffusion coefficient (ADC)
   description:
     Apparent diffusion coefficient (ADC) map
@@ -42,11 +42,23 @@ DIC:
   display_name: Differential interference contrast microscopy
   description: |
     Differential interference contrast microscopy imaging data
+colfa:
+  value: colfa
+  display_name: Colored Fractional Anisotropy image
+  description: |
+    Diffusion images reflecting the directionality of the diffusion tensor color-coded in red for
+    left-right oriented fibers, in blue for superior-inferior oriented fibers and green for
+    anterior-posterior oriented fibers.
 DF:
   value: DF
   display_name: Dark-field microscopy
   description: |
     Dark-field microscopy imaging data
+fa:
+  value: fa
+  display_name: Fractional Anisotropy image
+  description: |
+    Diffusion images reflecting the directionality of the diffusion tensor
 FLAIR:
   value: FLAIR
   display_name: Fluid attenuated inversion recovery image
@@ -465,8 +477,8 @@ TEM:
   display_name: Transmission electron microscopy
   description: |
     Transmission electron microscopy imaging data
-TRACE:
-  value: TRACE
+trace:
+  value: trace
   display_name: Trace diffusion weighted image
   description: |
     Diffusion images proportional to the trace of the diffusion tensor
