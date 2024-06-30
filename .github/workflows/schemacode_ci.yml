@@ -27,6 +27,15 @@ jobs:
         python-version: ["3.11"]
     steps:
       - uses: actions/checkout@v4
+
+      - name: "Apply patches for BIDS-2.0"
+        run: tools/bids-2.0/apply_all
+
+      - name: "Show differences after patching"
+        run: |
+          git add .
+          git diff --cached
+
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
