@@ -120,6 +120,11 @@ Absent:
   display_name: Absent
   description: |
     No specific M0 information is present.
+OneD:
+  value: 1D
+  display_name: One-dimensional
+  description: |
+    One-dimensional MR acquisition.
 TwoD:
   value: 2D
   display_name: Two-dimensional
