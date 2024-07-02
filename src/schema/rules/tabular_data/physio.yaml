@@ -7,3 +7,31 @@ PhysioColumns:
     respiratory: optional
     trigger: optional
   additional_columns: allowed
+
+PhysioEyeTracking:
+  selectors:
+    - PhysioType == "eyetrack"
+  extension:
+    - '.tsv.gz'
+  columns:
+    et_timestamp: recommended
+    x_coordinate: required
+    y_coordinate: required
+    pupil_size: optional
+  initial_columns:
+    - et_timestamp
+    - x_coordinate
+    - y_coordinate
+  additional_columns: allowed
+
+PhysioEventsColumns:
+  selectors:
+    - suffix == "physioevents"
+  columns:
+    onset: required
+    duration: recommended
+    trial_type: optional
+    message: optional
+  additional_columns: allowed
+  initial_columns:
+    - onset
