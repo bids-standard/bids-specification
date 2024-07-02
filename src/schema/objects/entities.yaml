@@ -422,3 +422,22 @@ tracksys:
     may be longer and more human readable.
   type: string
   format: label
+stimulus:
+  name: stim
+  display_name: Stimulus
+  description: |
+    The `stim-<label>` entity can be used to distinguish stimulus files stored in the `stimuli/` directory.
+
+    This entity is only applicable to stimulus files.
+  type: string
+  format: label
+annotation:
+  name: annot
+  display_name: Annotation
+  description: |
+    The `annot-<label>` entity can be used to distinguish different annotations
+    of the stimlus data.
+
+    This entity is only applicable to stimulus files.
+  type: string
+  format: label

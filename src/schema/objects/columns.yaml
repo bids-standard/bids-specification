@@ -603,6 +603,14 @@ stim_file:
     For example `images/cat03.jpg` will be translated to `/stimuli/images/cat03.jpg`.
   type: string
   format: stimuli_relative
+stim_id:
+  name: stim_id
+  display_name: Stimulus ID
+  description: |
+    A stimulus identifier of the form `stim-<label>`,
+    matching a stimulus entity found in `stimuli/` directory.
+  type: string
+  pattern: ^stim-[0-9a-zA-Z]+$
 strain:
   name: strain
   display_name: Strain
