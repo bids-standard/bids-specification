@@ -17,7 +17,7 @@ ReadmeFileMissing:
   selectors:
     - path == '/dataset_description.json'
   checks:
-    - exists(["/README", "/README.txt", "/README.md", "/README.rst"], "dataset") > 0
+    - exists(["README", "README.txt", "README.md", "README.rst"], "dataset") > 0
 
 # 102
 TooFewAuthors:

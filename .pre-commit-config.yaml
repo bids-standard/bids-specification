@@ -35,7 +35,7 @@ repos:
         files: tools/schemacode
         args: ["--settings-file", "tools/schemacode/pyproject.toml"]
   - repo: https://github.com/pyCQA/flake8
-    rev: 7.0.0
+    rev: 7.1.0
     hooks:
       - id: flake8
         args: [--config=tools/schemacode/setup.cfg]
@@ -57,7 +57,7 @@ repos:
       - id: codespell
         args: ["--config=.codespellrc", "--dictionary=-", "--dictionary=.codespell_dict"]
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.10.0
+    rev: v1.10.1
     hooks:
       - id: mypy
         # Sync with project.optional-dependencies.typing

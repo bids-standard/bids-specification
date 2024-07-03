@@ -95,7 +95,7 @@ participant_relative:
 rrid:
   display_name: Research resource identifier
   description: |
-    A [research resource identifier](https://scicrunch.org/resources).
+    A [research resource identifier](https://rrid.site).
   pattern: 'RRID:.+_.+'
 stimuli_relative:
   display_name: Path relative to the stimuli directory
