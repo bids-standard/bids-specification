@@ -51,7 +51,13 @@
           "additionalProperties": false
         },
         "context": {
-          "type": "object"
+          "type": "object",
+          "properties": {
+            "context": {
+              "description": "The context object is itself JSON schema",
+              "$ref": "http://json-schema.org/draft-07/schema#"
+            }
+          }
         },
         "expression_tests": {
           "type": "array",
