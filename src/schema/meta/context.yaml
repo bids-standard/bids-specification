@@ -337,15 +337,15 @@ context:
         PhysicalSizeX:
           name: 'PhysicalSizeX'
           description: 'Pixels / @PhysicalSizeX'
-          type: float
+          type: number
         PhysicalSizeY:
           name: 'PhysicalSizeY'
           description: 'Pixels / @PhysicalSizeY'
-          type: float
+          type: number
         PhysicalSizeZ:
           name: 'PhysicalSizeZ'
           description: 'Pixels / @PhysicalSizeZ'
-          type: float
+          type: number
         PhysicalSizeXUnit:
           name: 'PhysicalSizeXUnit'
           description: 'Pixels / @PhysicalSizeXUnit'
