@@ -215,7 +215,7 @@ We see expressions may contain:
 -   Comparison operators such as `==` (equality) or `in` (subfield exists in field)
 -   Functions such as `intersects()`
 
-In fact, the full list of fields is defined in the `meta.context.context` object,
+In fact, the full list of fields is defined in the `meta.context` object,
 which (currently) contains at the top level:
 
 -   `schema`: access to the schema itself
