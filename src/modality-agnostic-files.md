@@ -486,7 +486,7 @@ All such included additional fields SHOULD be documented in an accompanying
 
 Example `_scans.tsv`:
 
-```Text
+```tsv
 filename	acq_time
 func/sub-control01_task-nback_bold.nii.gz	1877-06-15T13:45:30
 func/sub-control01_task-motor_bold.nii.gz	1877-06-15T13:55:33
@@ -522,7 +522,7 @@ and a guide for using macros can be found at
 
 `_sessions.tsv` example:
 
-```Text
+```tsv
 session_id	acq_time	systolic_blood_pressure
 ses-predrug	2009-06-15T13:45:30	120
 ses-postdrug	2009-06-16T13:45:30	100
