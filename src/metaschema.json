@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$schema": "https://json-schema.org/draft/2020-12/schema#",
   "type": "object",
   "properties": {
     "meta": {
@@ -52,7 +52,7 @@
         },
         "context": {
           "description": "The context object is itself JSON schema",
-          "$ref": "http://json-schema.org/draft-07/schema#"
+          "$ref": "https://json-schema.org/draft/2020-12/schema#"
         },
         "expression_tests": {
           "type": "array",
@@ -96,7 +96,7 @@
                   "type": "string"
                 },
                 "type": {
-                  "$ref": "http://json-schema.org/draft-07/schema#/properties/type"
+                  "$ref": "https://json-schema.org/draft/2020-12/meta/validation#/properties/type"
                 },
                 "format": {
                   "type": "string"
@@ -111,7 +111,7 @@
                   "type": "array"
                 },
                 "anyOf": {
-                  "$ref": "http://json-schema.org/draft-07/schema#/properties/anyOf"
+                  "$ref": "https://json-schema.org/draft/2020-12/meta/applicator#/properties/anyOf"
                 },
                 "maximum": {
                   "type": "number"
@@ -183,7 +183,7 @@
                   "type": "string"
                 },
                 "type": {
-                  "$ref": "http://json-schema.org/draft-07/schema#/properties/type"
+                  "$ref": "https://json-schema.org/draft/2020-12/meta/validation#/properties/type"
                 },
                 "format": {
                   "type": "string"
@@ -211,7 +211,7 @@
               "type": "object",
               "properties": {
                 "type": {
-                  "$ref": "http://json-schema.org/draft-07/schema#/properties/type"
+                  "$ref": "https://json-schema.org/draft/2020-12/meta/validation#/properties/type"
                 },
                 "enum": {
                   "type": "array"
@@ -316,7 +316,7 @@
                   "type": "string"
                 },
                 "type": {
-                  "$ref": "http://json-schema.org/draft-07/schema#/properties/type"
+                  "$ref": "https://json-schema.org/draft/2020-12/meta/validation#/properties/type"
                 }
               },
               "required": ["name", "display_name", "description"]
