@@ -98,9 +98,7 @@
                 "type": {
                   "$ref": "https://json-schema.org/draft/2020-12/meta/validation#/properties/type"
                 },
-                "format": {
-                  "type": "string"
-                },
+                "format": { "$ref": "#/definitions/formats" },
                 "pattern": {
                   "type": "string"
                 },
@@ -185,9 +183,7 @@
                 "type": {
                   "$ref": "https://json-schema.org/draft/2020-12/meta/validation#/properties/type"
                 },
-                "format": {
-                  "type": "string"
-                },
+                "format": { "$ref": "#/definitions/formats" },
                 "enum": {
                   "type": "array"
                 }
@@ -280,25 +276,22 @@
         },
         "formats": {
           "type": "object",
-          "patternProperties": {
-            "^[a-zA-Z0-9_]+$": {
-              "type": "object",
-              "properties": {
-                "display_name": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                },
-                "pattern": {
-                  "format": "regex"
-                }
+          "propertyNames": { "$ref": "#/definitions/formats" },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "display_name": {
+                "type": "string"
               },
-              "required": ["display_name", "description", "pattern"],
-              "additionalProperties": false
-            }
-          },
-          "additionalProperties": false
+              "description": {
+                "type": "string"
+              },
+              "pattern": {
+                "format": "regex"
+              }
+            },
+            "required": ["display_name", "description", "pattern"]
+          }
         },
         "metadata": {
           "type": "object",
@@ -605,6 +598,30 @@
   "required": ["meta", "objects", "rules", "bids_version", "schema_version"],
   "additionalProperties": false,
   "definitions": {
+    "formats": {
+      "$comment": "Formats whose patterns are defined in BIDS schema",
+      "type": "string",
+      "enum": [
+        "index",
+        "label",
+        "boolean",
+        "integer",
+        "number",
+        "string",
+        "hed_version",
+        "bids_uri",
+        "dataset_relative",
+        "date",
+        "datetime",
+        "file_relative",
+        "participant_relative",
+        "rrid",
+        "stimuli_relative",
+        "time",
+        "unit",
+        "uri"
+      ]
+    },
     "entities": {
       "type": "object",
       "patternProperties": {
