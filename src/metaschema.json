@@ -296,15 +296,9 @@
                 "^[a-zA-Z0-9_]+$": {
                   "type": "object",
                   "properties": {
-                    "issues": {
-                      "type": "object",
-                      "properties": {
-                        "code": { "type": "string" },
-                        "message": { "type": "string" },
-                        "level": { "enum": ["error", "warning"] }
-                      },
-                      "required": ["code", "message", "level"],
-                      "additionalProperties": false
+                    "issue": {
+                      "allOf": [{ "$ref": "#/definitions/ruleTypes/issue" }],
+                      "required": ["level"]
                     },
                     "selectors": {
                       "type": "array",
@@ -315,7 +309,8 @@
                       "items": { "type": "string" }
                     }
                   },
-                  "required": ["checks", "selectors"]
+                  "required": ["checks", "selectors"],
+                  "additionalProperties": false
                 }
               }
             }
@@ -533,6 +528,11 @@
           "unit",
           "uri"
         ]
+      },
+      "requirement_level": {
+        "$comment": "Requirement levels that may apply to terms",
+        "type": "string",
+        "enum": ["required", "recommended", "optional", "deprecated"]
       }
     },
     "termTypes": {
@@ -557,6 +557,35 @@
         "type": "object",
         "properties": { "value": { "type": "string" } },
         "required": ["value"]
+      }
+    },
+    "ruleTypes": {
+      "field": {
+        "anyOf": [
+          { "$ref": "#/definitions/enums/requirement_level" },
+          {
+            "type": "object",
+            "properties": {
+              "level": { "$ref": "#/definitions/enums/requirement_level" },
+              "level_addendum": { "type": "string" },
+              "description_addendum": { "type": "string" },
+              "issue": { "$ref": "#/definitions/ruleTypes/issue" }
+            },
+            "required": ["level"],
+            "additionalProperties": false
+          },
+          { "type": "string", "pattern": "recommended.*" }
+        ]
+      },
+      "issue": {
+        "type": "object",
+        "properties": {
+          "code": { "type": "string" },
+          "message": { "type": "string" },
+          "level": { "enum": ["error", "warning"] }
+        },
+        "required": ["code", "message"],
+        "additionalProperties": false
       }
     },
     "entities": {
@@ -595,33 +624,7 @@
               "type": "object",
               "patternProperties": {
                 "^[a-zA-Z0-9_]+$": {
-                  "anyOf": [
-                    {
-                      "enum": [
-                        "recommended",
-                        "optional",
-                        "required",
-                        "deprecated"
-                      ]
-                    },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "level": {
-                          "enum": [
-                            "recommended",
-                            "optional",
-                            "required",
-                            "deprecated"
-                          ]
-                        },
-                        "level_addendum": { "type": "string" }
-                      },
-                      "required": ["level", "level_addendum"],
-                      "additionalProperties": false
-                    },
-                    { "pattern": "recommended.*" }
-                  ]
+                  "$ref": "#/definitions/ruleTypes/field"
                 }
               },
               "additionalProperties": false
@@ -647,34 +650,7 @@
               "type": "object",
               "patternProperties": {
                 "^[a-zA-Z0-9_]+$": {
-                  "anyOf": [
-                    {
-                      "enum": [
-                        "recommended",
-                        "optional",
-                        "required",
-                        "deprecated"
-                      ]
-                    },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "level": {
-                          "enum": [
-                            "recommended",
-                            "optional",
-                            "required",
-                            "deprecated"
-                          ]
-                        },
-                        "level_addendum": { "type": "string" },
-                        "description_addendum": { "type": "string" }
-                      },
-                      "required": ["level"],
-                      "additionalProperties": false
-                    },
-                    { "pattern": "recommended.*" }
-                  ]
+                  "$ref": "#/definitions/ruleTypes/field"
                 }
               },
               "additionalProperties": false
