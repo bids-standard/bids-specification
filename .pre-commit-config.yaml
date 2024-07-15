@@ -71,6 +71,8 @@ repos:
           - types-PyYAML
           - types-tabulate
           - types-jsonschema
+          - jsonschema
+          - httpx
         args: ["tools/schemacode/bidsschematools"]
         pass_filenames: false
   - repo: https://github.com/koalaman/shellcheck-precommit
