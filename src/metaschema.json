@@ -583,28 +583,6 @@
         }
       }
     },
-    "entities": {
-      "type": "object",
-      "patternProperties": {
-        "^[a-z]+$": {
-          "anyOf": [
-            { "enum": ["optional", "required"] },
-            {
-              "type": "object",
-              "properties": {
-                "level": { "enum": ["optional", "required"] },
-                "enum": {
-                  "type": "array",
-                  "items": { "type": "string" }
-                }
-              },
-              "required": ["level", "enum"]
-            }
-          ]
-        }
-      },
-      "additionalProperties": false
-    },
     "sidecar": {
       "type": "object",
       "patternProperties": {
@@ -694,7 +672,28 @@
           "items": { "pattern": "^[a-zA-Z0-9]+$" }
         },
         "extensions": { "type": "array", "items": { "type": "string" } },
-        "entities": { "$ref": "#/definitions/entities" }
+        "entities": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-z]+$": {
+              "anyOf": [
+                { "enum": ["optional", "required"] },
+                {
+                  "type": "object",
+                  "properties": {
+                    "level": { "enum": ["optional", "required"] },
+                    "enum": {
+                      "type": "array",
+                      "items": { "type": "string" }
+                    }
+                  },
+                  "required": ["level", "enum"]
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
       },
       "required": ["suffixes", "extensions", "entities"],
       "additionalProperties": false
