@@ -12,10 +12,7 @@
               "type": "object",
               "properties": {
                 "selectors": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
+                  "$ref": "#/definitions/ruleTypes/expressionList"
                 },
                 "target": {
                   "type": "object",
@@ -301,12 +298,10 @@
                       "required": ["level"]
                     },
                     "selectors": {
-                      "type": "array",
-                      "items": { "type": "string" }
+                      "$ref": "#/definitions/ruleTypes/expressionList"
                     },
                     "checks": {
-                      "type": "array",
-                      "items": { "type": "string" }
+                      "$ref": "#/definitions/ruleTypes/expressionList"
                     }
                   },
                   "required": ["checks", "selectors"],
@@ -449,10 +444,7 @@
                 "message": { "type": "string" },
                 "level": { "enum": ["error", "warning"] },
                 "selectors": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
+                  "$ref": "#/definitions/ruleTypes/expressionList"
                 }
               },
               "required": ["message", "level"],
@@ -586,6 +578,12 @@
         },
         "required": ["code", "message"],
         "additionalProperties": false
+      },
+      "expressionList": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
       }
     },
     "entities": {
@@ -616,10 +614,7 @@
         "^[a-zA-Z0-9_]+$": {
           "type": "object",
           "properties": {
-            "selectors": {
-              "type": "array",
-              "items": { "type": "string" }
-            },
+            "selectors": { "$ref": "#/definitions/ruleTypes/expressionList" },
             "fields": {
               "type": "object",
               "patternProperties": {
@@ -642,10 +637,7 @@
         "^[a-zA-Z0-9_]+$": {
           "type": "object",
           "properties": {
-            "selectors": {
-              "type": "array",
-              "items": { "type": "string" }
-            },
+            "selectors": { "$ref": "#/definitions/ruleTypes/expressionList" },
             "columns": {
               "type": "object",
               "patternProperties": {
