@@ -349,18 +349,10 @@
             "deriv": {
               "type": "object",
               "patternProperties": {
-                "^[a-zA-Z0-9_]+$": {
+                "^[a-z_]+$": {
                   "type": "object",
                   "patternProperties": {
-                    "^[a-zA-Z0-9_]+$": {
-                      "type": "object",
-                      "properties": {
-                        "entities": {
-                          "$ref": "#/definitions/entities"
-                        }
-                      }
-                    },
-                    "additionalProperties": false
+                    "^[a-zA-Z0-9_]+$": { "$ref": "#/definitions/suffixRule" }
                   }
                 }
               },
