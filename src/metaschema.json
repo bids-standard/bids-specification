@@ -488,9 +488,6 @@
     },
     "schema_version": {
       "type": "string"
-    },
-    "README": {
-      "type": "string"
     }
   },
   "required": ["meta", "objects", "rules", "bids_version", "schema_version"],
