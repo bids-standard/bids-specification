@@ -83,3 +83,16 @@ microephysSupplementary:
     - suffix == ["ecephys", "icephys"]
   fields:
     SupplementarySignals: optional
+
+microephysSample:
+  selectors:
+    - datatype == ["ecephys", "icephys"]
+    - suffix == ["ecephys", "icephys"]
+  fields:
+    BodyPart: recommended
+    BodyPartDetails: recommended
+    BodyPartDetailsOntology: optional
+    SampleEnvironment: recommended
+    SampleEmbedding: optional
+    SampleThickness: optional
+    SampleExtractionProtocol: optional
