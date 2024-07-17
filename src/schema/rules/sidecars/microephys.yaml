@@ -16,7 +16,7 @@ microephysInstitutionInformation:
     InstitutionAddress: recommended
     InstitutionalDepartmentName: recommended
 
-ephysSetup:
+microephysSetup:
   selectors:
     - datatype == ["ecephys", "icephys"]
     - suffix == ["ecephys", "icephys"]
