@@ -96,3 +96,22 @@ microephysSample:
     SampleEmbedding: optional
     SampleThickness: optional
     SampleExtractionProtocol: optional
+
+microephysTaskInformation:
+  selectors:
+    - datatype == ["ecephys", "icephys"]
+    - suffix == ["ecephys", "icephys"]
+  fields:
+    TaskName:
+      level: recommended
+      description_addendum: |
+        A recommended convention is to name resting state task using labels
+        beginning with `rest`.
+    TaskDescription: recommended
+    Instructions:
+      level: recommended
+      description_addendum: |
+        This is especially important in context of resting state recordings and
+        distinguishing between eyes open and eyes closed paradigms.
+    CogAtlasID: recommended
+    CogPOID: recommended
