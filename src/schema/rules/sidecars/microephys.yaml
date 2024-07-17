@@ -54,6 +54,17 @@ microephysProcessing:
     SoftwareFilters: required
     HardwareFilters: recommended
 
+microephysPharmaceuticals:
+  selectors:
+    - datatype == ["ecephys", "icephys"]
+    - suffix == ["ecephys", "icephys"]
+  fields:
+    PharmaceuticalName: recommended
+    PharmaceuticalDoseAmount: recommended
+    PharmaceuticalDoseUnits: recommended
+    PharmaceuticalDoseRegimen: recommended
+    PharmaceuticalDoseTime: recommended
+
 # TODO: Check how to conditionally change level to required for photo if
 # MicroephysCoordinateSystem is Pixels
 microephysCoordsystemGeneral:
