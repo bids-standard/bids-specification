@@ -313,7 +313,7 @@ ground:
   display_name: Ground
   description: |
     Information on the ground. For example, 'chamber screw', 'head post', 'ear clip'.
-    Only should be used to optionally override the global ground in the `_ephys.json` file.
+    Only should be used to optionally override the global ground in the `_ecephys.json` or `_icephys.json` file.
   type: string
 group__channel:
   name: group
@@ -361,7 +361,7 @@ hardware_filters:
   display_name: Hardware filters
   description: |
     List of hardware (amplifier) filter keys applied.
-    Note that parameters should be defined in the general ephys sidecar .json file.
+    Note that parameters should be defined in the general microephys sidecar .json file.
     Indicate `n/a` in the absence of hardware filters applied.
   anyOf:
     - type: string
@@ -633,7 +633,7 @@ reference__eeg:
     This column is not needed when it is common to all channels.
     In that case the reference electrode(s) can be specified in `*_eeg.json` as `EEGReference`).
   type: string
-reference__ephys:
+reference__microephys:
   name: reference
   display_name: Reference
   description: |
@@ -802,7 +802,7 @@ software_filters__channels:
   description: |
     List of temporal and/or spatial software filters applied
     (for example, `SSS`, `SpatialCompensation`).
-    Note that parameters should be defined in the general ephys sidecar .json file.
+    Note that parameters should be defined in the general microephys sidecar .json file.
     Indicate `n/a` in the absence of software filters applied.
   anyOf:
     - type: string
@@ -957,7 +957,7 @@ trigger:
   description: |
     continuous measurement of the scanner trigger signal
   type: number
-# TODO: Populate enums that make sense for channels in the ephys datasets.
+# TODO: Populate enums that make sense for channels in the microephys datasets.
 # type column in channels.tsv files
 type__channels:
   name: type

@@ -7,10 +7,10 @@
 ---
 # Groups are defined as they appear in the proposal
 
-ephysInstitutionInformation:
+microephysInstitutionInformation:
   selectors:
-    - datatype == "ephys"
-    - suffix == "ephys"
+    - datatype == ["ecephys", "icephys"]
+    - suffix == ["ecephys", "icephys"]
   fields:
     InstitutionName: recommended
     InstitutionAddress: recommended
@@ -18,8 +18,8 @@ ephysInstitutionInformation:
 
 ephysSetup:
   selectors:
-    - datatype == "ephys"
-    - suffix == "ephys"
+    - datatype == ["ecephys", "icephys"]
+    - suffix == ["ecephys", "icephys"]
   fields:
     PowerLineFrequency: required
     Manufacturer:

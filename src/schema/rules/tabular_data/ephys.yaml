@@ -1,6 +1,6 @@
-ephysProbes:
+microephysProbes:
   selectors:
-    - datatype == "ephys"
+    - datatype == ["ecephys", "icephys"]
     - suffix == "probes"
     - extension == ".tsv"
   initial_columns:
@@ -35,9 +35,9 @@ ephysProbes:
   index_columns: [probe_id]
   additional_columns: allowed_if_defined
 
-ephysElectrodes:
+microephysElectrodes:
   selectors:
-    - datatype == "ephys"
+    - datatype == ["ecephys", "icephys"]
     - suffix == "electrodes"
     - extension == ".tsv"
   initial_columns:
@@ -66,20 +66,20 @@ ephysElectrodes:
   index_columns: [electrode_id]
   additional_columns: allowed_if_defined
 
-ephysChannels:
+microephysChannels:
   selectors:
-    - datatype == "ephys"
+    - datatype == ["ecephys", "icephys"]
     - suffix == "channels"
     - extension == ".tsv"
   initial_columns:
     - channel_id
-    - reference__ephys
+    - reference__microephys
     - type__channels
     - units__channels
     - sampling_frequency
   columns:
     - channel_id: required
-    - reference__ephys: required
+    - reference__microephys: required
     - type__channels: required
     - units__channels: required
     - sampling_frequency: optional
