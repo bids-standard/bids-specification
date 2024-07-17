@@ -45,3 +45,15 @@ microephysSetup:
          The name of the software suite used to
          record the data.
     SoftwareVersions: recommended
+
+# TODO: Check how to conditionally change level to required for photo if
+# MicroephysCoordinateSystem is Pixels
+microephysCoordsystemGeneral:
+  selectors:
+    - datatype == ["ecephys", "icephys"]
+    - suffix == "coordsystem"
+  fields:
+    MicroephysCoordinateSystem: required
+    MicroephysCoordinateSystemDescription: recommended
+    MicroephysCoordinateUnits: required
+    MicroephysCoordinateSystemPhoto: optional
