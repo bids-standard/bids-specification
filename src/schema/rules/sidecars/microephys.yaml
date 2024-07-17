@@ -76,3 +76,10 @@ microephysCoordsystemGeneral:
     MicroephysCoordinateSystemDescription: recommended
     MicroephysCoordinateUnits: required
     MicroephysCoordinateSystemPhoto: optional
+
+microephysSupplementary:
+  selectors:
+    - datatype == ["ecephys", "icephys"]
+    - suffix == ["ecephys", "icephys"]
+  fields:
+    SupplementarySignals: optional

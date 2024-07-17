@@ -3452,6 +3452,13 @@ SubjectArtefactDescription:
     If this field is set to `"n/a"`, it will be interpreted as absence of major
     source of artifacts except cardiac and blinks.
   type: string
+SupplementarySignals:
+  name: SupplementarySignals
+  display_name: Supplementary Signals
+  description: |
+    Description of the supplementary signal (additional modalities) recorded
+    in parallel and are also stored in the data file.
+  type: string
 TaskDescription:
   name: TaskDescription
   display_name: Task Description
