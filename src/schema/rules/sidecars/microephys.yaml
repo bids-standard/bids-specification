@@ -46,6 +46,14 @@ microephysSetup:
          record the data.
     SoftwareVersions: recommended
 
+microephysProcessing:
+  selectors:
+    - datatype == ["ecephys", "icephys"]
+    - suffix == ["ecephys", "icephys"]
+  fields:
+    SoftwareFilters: required
+    HardwareFilters: recommended
+
 # TODO: Check how to conditionally change level to required for photo if
 # MicroephysCoordinateSystem is Pixels
 microephysCoordsystemGeneral:
