@@ -110,6 +110,12 @@
   result: null
 - expression: sorted([3, 2, 1])
   result: [1, 2, 3]
+- expression: sorted([1, 2, 5, 10], "lexical")
+  result: [1, 10, 2, 5]
+- expression: sorted(["1", "2", "5", "10"])
+  result: ["1", "10", "2", "5"]
+- expression: sorted(["1", "2", "5", "10"], "numeric")
+  result: ["1", "2", "5", "10"]
 - expression: allequal(sorted([3, 2, 1]), [1, 2, 3])
   result: true
 # Regression test. Javascript will sort lexically by default.
