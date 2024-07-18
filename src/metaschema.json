@@ -199,6 +199,7 @@
             "allOf": [
               { "$ref": "#/definitions/generalTerm" },
               {
+                "type": "object",
                 "properties": {
                   "pattern": {
                     "$ref": "https://json-schema.org/draft/2020-12/meta/validation#/properties/pattern"
@@ -219,6 +220,7 @@
                 { "$ref": "#/definitions/generalTerm" },
                 { "$ref": "#/definitions/nameValueTerm" },
                 {
+                  "type": "object",
                   "properties": {
                     "recommended": {
                       "$ref": "https://json-schema.org/draft/2020-12/meta/validation#/properties/required"
@@ -250,6 +252,7 @@
                 { "$ref": "#/definitions/generalTerm" },
                 { "$ref": "#/definitions/valueTerm" },
                 {
+                  "type": "object",
                   "properties": {
                     "unit": { "type": "string" },
                     "anyOf": {
