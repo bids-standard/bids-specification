@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$schema": "https://json-schema.org/draft/2020-12/schema#",
   "type": "object",
   "properties": {
     "meta": {
@@ -52,7 +52,7 @@
         },
         "context": {
           "description": "The context object is itself JSON schema",
-          "$ref": "http://json-schema.org/draft-07/schema#"
+          "$ref": "https://json-schema.org/draft/2020-12/schema#"
         },
         "expression_tests": {
           "type": "array",
@@ -84,44 +84,19 @@
           "type": "object",
           "patternProperties": {
             "^[a-zA-Z0-9_]+$": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string"
-                },
-                "display_name": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                },
-                "type": {
-                  "$ref": "http://json-schema.org/draft-07/schema#/properties/type"
-                },
-                "format": {
-                  "type": "string"
-                },
-                "pattern": {
-                  "type": "string"
-                },
-                "unit": {
-                  "type": "string"
-                },
-                "enum": {
-                  "type": "array"
-                },
-                "anyOf": {
-                  "$ref": "http://json-schema.org/draft-07/schema#/properties/anyOf"
-                },
-                "maximum": {
-                  "type": "number"
-                },
-                "minimum": {
-                  "type": "number"
+              "allOf": [
+                { "$ref": "#/definitions/schemaTerm" },
+                { "$ref": "#/definitions/generalTerm" },
+                { "$ref": "#/definitions/nameValueTerm" },
+                {
+                  "type": "object",
+                  "properties": {
+                    "format": { "$ref": "#/definitions/formats" },
+                    "unit": { "type": "string" }
+                  }
                 }
-              },
-              "required": ["name", "display_name"],
-              "additionalProperties": false
+              ],
+              "unevaluatedProperties": false
             }
           },
           "additionalProperties": false
@@ -130,17 +105,8 @@
           "type": "object",
           "patternProperties": {
             "^[a-zA-Z0-9_]+$": {
-              "type": "object",
-              "properties": {
-                "display_name": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                }
-              },
-              "required": ["display_name", "description"],
-              "additionalProperties": false
+              "$ref": "#/definitions/generalTerm",
+              "unevaluatedProperties": false
             },
             "additionalProperties": false
           }
@@ -149,20 +115,11 @@
           "type": "object",
           "patternProperties": {
             "^[a-zA-Z0-9_]+$": {
-              "type": "object",
-              "properties": {
-                "value": {
-                  "type": "string"
-                },
-                "display_name": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                }
-              },
-              "required": ["value", "display_name", "description"],
-              "additionalProperties": false
+              "allOf": [
+                { "$ref": "#/definitions/generalTerm" },
+                { "$ref": "#/definitions/valueTerm" }
+              ],
+              "unevaluatedProperties": false
             }
           },
           "additionalProperties": false
@@ -171,35 +128,19 @@
           "type": "object",
           "patternProperties": {
             "^[a-zA-Z0-9_]+$": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string"
-                },
-                "display_name": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                },
-                "type": {
-                  "$ref": "http://json-schema.org/draft-07/schema#/properties/type"
-                },
-                "format": {
-                  "type": "string"
-                },
-                "enum": {
-                  "type": "array"
+              "allOf": [
+                { "$ref": "#/definitions/schemaTerm" },
+                { "$ref": "#/definitions/generalTerm" },
+                { "$ref": "#/definitions/nameValueTerm" },
+                {
+                  "type": "object",
+                  "properties": {
+                    "format": { "$ref": "#/definitions/formats" }
+                  },
+                  "required": ["format"]
                 }
-              },
-              "required": [
-                "name",
-                "display_name",
-                "description",
-                "type",
-                "format"
               ],
-              "additionalProperties": false
+              "unevaluatedProperties": false
             }
           },
           "additionalProperties": false
@@ -207,30 +148,18 @@
         "enums": {
           "type": "object",
           "patternProperties": {
-            "^[a-zA-Z0-9_-]+$": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "$ref": "http://json-schema.org/draft-07/schema#/properties/type"
-                },
-                "enum": {
-                  "type": "array"
-                },
-                "value": {
-                  "type": "string"
-                },
-                "display_name": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                },
-                "tags": {
-                  "type": "array"
-                }
-              },
-              "additionalProperties": false
-            }
+            "^[a-zA-Z0-9][a-zA-Z0-9_-]*$": {
+              "allOf": [
+                { "$ref": "#/definitions/generalTerm" },
+                { "$ref": "#/definitions/valueTerm" },
+                { "properties": { "tags": { "type": "array" } } }
+              ]
+            },
+            "^_[a-zA-Z0-9_-]+$": {
+              "$ref": "https://json-schema.org/draft/2020-12/schema#",
+              "required": ["type", "enum"]
+            },
+            "unevaluatedProperties": false
           },
           "additionalProperties": false
         },
@@ -238,20 +167,11 @@
           "type": "object",
           "patternProperties": {
             "^[a-zA-Z0-9_]+$": {
-              "type": "object",
-              "properties": {
-                "value": {
-                  "type": "string"
-                },
-                "display_name": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                }
-              },
-              "required": ["display_name", "description", "value"],
-              "additionalProperties": false
+              "allOf": [
+                { "$ref": "#/definitions/generalTerm" },
+                { "$ref": "#/definitions/valueTerm" }
+              ],
+              "unevaluatedProperties": false
             }
           },
           "additionalProperties": false
@@ -260,66 +180,56 @@
           "type": "object",
           "patternProperties": {
             "^[a-zA-Z0-9_]+$": {
-              "type": "object",
-              "properties": {
-                "display_name": {
-                  "type": "string"
-                },
-                "file_type": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
+              "allOf": [
+                { "$ref": "#/definitions/generalTerm" },
+                {
+                  "properties": { "file_type": { "type": "string" } },
+                  "required": ["file_type"]
                 }
-              },
-              "required": ["display_name", "file_type", "description"],
-              "additionalProperties": false
+              ],
+              "unevaluatedProperties": false
             }
           },
           "additionalProperties": false
         },
         "formats": {
           "type": "object",
-          "patternProperties": {
-            "^[a-zA-Z0-9_]+$": {
-              "type": "object",
-              "properties": {
-                "display_name": {
-                  "type": "string"
+          "propertyNames": { "$ref": "#/definitions/formats" },
+          "additionalProperties": {
+            "allOf": [
+              { "$ref": "#/definitions/generalTerm" },
+              {
+                "type": "object",
+                "properties": {
+                  "pattern": {
+                    "$ref": "https://json-schema.org/draft/2020-12/meta/validation#/properties/pattern"
+                  }
                 },
-                "description": {
-                  "type": "string"
-                },
-                "pattern": {
-                  "format": "regex"
-                }
-              },
-              "required": ["display_name", "description", "pattern"],
-              "additionalProperties": false
-            }
-          },
-          "additionalProperties": false
+                "required": ["pattern"]
+              }
+            ],
+            "unevaluatedProperties": false
+          }
         },
         "metadata": {
           "type": "object",
           "patternProperties": {
             "^[a-zA-Z0-9_]+$": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string"
-                },
-                "display_name": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                },
-                "type": {
-                  "$ref": "http://json-schema.org/draft-07/schema#/properties/type"
+              "allOf": [
+                { "$ref": "#/definitions/schemaTerm" },
+                { "$ref": "#/definitions/generalTerm" },
+                { "$ref": "#/definitions/nameValueTerm" },
+                {
+                  "type": "object",
+                  "properties": {
+                    "recommended": {
+                      "$ref": "https://json-schema.org/draft/2020-12/meta/validation#/properties/required"
+                    },
+                    "unit": { "type": "string" }
+                  }
                 }
-              },
-              "required": ["name", "display_name", "description"]
+              ],
+              "unevaluatedProperties": false
             }
           },
           "additionalProperties": false
@@ -328,17 +238,8 @@
           "type": "object",
           "patternProperties": {
             "^[a-z]+$": {
-              "type": "object",
-              "properties": {
-                "display_name": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                }
-              },
-              "required": ["display_name", "description"],
-              "additionalProperties": false
+              "$ref": "#/definitions/generalTerm",
+              "unevaluatedProperties": false
             }
           },
           "additionalProperties": false
@@ -347,19 +248,22 @@
           "type": "object",
           "patternProperties": {
             "^[a-zA-Z0-9_]+$": {
-              "type": "object",
-              "properties": {
-                "value": {
-                  "type": "string"
-                },
-                "display_name": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
+              "allOf": [
+                { "$ref": "#/definitions/generalTerm" },
+                { "$ref": "#/definitions/valueTerm" },
+                {
+                  "type": "object",
+                  "properties": {
+                    "unit": { "type": "string" },
+                    "anyOf": {
+                      "$ref": "https://json-schema.org/draft/2020-12/meta/applicator#/properties/anyOf"
+                    },
+                    "maxValue": { "type": "number" },
+                    "minValue": { "type": "number" }
+                  }
                 }
-              },
-              "required": ["value", "display_name", "description"]
+              ],
+              "unevaluatedProperties": false
             },
             "additionalProperties": false
           }
@@ -605,6 +509,52 @@
   "required": ["meta", "objects", "rules", "bids_version", "schema_version"],
   "additionalProperties": false,
   "definitions": {
+    "formats": {
+      "$comment": "Formats whose patterns are defined in BIDS schema",
+      "type": "string",
+      "enum": [
+        "index",
+        "label",
+        "boolean",
+        "integer",
+        "number",
+        "string",
+        "hed_version",
+        "bids_uri",
+        "dataset_relative",
+        "date",
+        "datetime",
+        "file_relative",
+        "participant_relative",
+        "rrid",
+        "stimuli_relative",
+        "time",
+        "unit",
+        "uri"
+      ]
+    },
+    "generalTerm": {
+      "type": "object",
+      "properties": {
+        "display_name": { "type": "string" },
+        "description": { "type": "string" }
+      },
+      "required": ["display_name", "description"]
+    },
+    "schemaTerm": {
+      "$ref": "https://json-schema.org/draft/2020-12/schema#",
+      "anyOf": [{ "required": ["type"] }, { "required": ["anyOf"] }]
+    },
+    "nameValueTerm": {
+      "type": "object",
+      "properties": { "name": { "type": "string" } },
+      "required": ["name"]
+    },
+    "valueTerm": {
+      "type": "object",
+      "properties": { "value": { "type": "string" } },
+      "required": ["value"]
+    },
     "entities": {
       "type": "object",
       "patternProperties": {
