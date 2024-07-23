@@ -51,8 +51,22 @@ and a guide for using macros can be found at
 {{ MACROS___make_filename_template(
    "raw",
    datatypes=["ecephys", "icephys"],
-   suffixes=["ecephys", "icephys", "events"]
+   suffixes=["ecephys", "icephys", "events", "channels", "electrodes","scans"]
 )
 }}
 
 <!-- Link Definitions -->
+
+{{ MACROS___make_filename_template(
+   "raw",
+   datatypes=["icephys"],
+   suffixes=["icephys", "events", "channels", "electrodes","scans"]
+)
+}}
+
+{{ MACROS___make_filename_template(
+   "raw",
+   datatypes=["ecephys"],
+   suffixes=["ecephys", "events", "channels", "electrodes","scans"]
+)
+}}
