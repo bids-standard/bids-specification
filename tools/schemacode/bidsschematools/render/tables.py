@@ -528,8 +528,8 @@ def make_subobject_table(
         The tabulated table as a Markdown string.
     """
     obj = schema.objects[object_name]
-    required_fields = set(obj.get("required_fields", ()))
-    recommended_fields = set(obj.get("recommended_fields", ()))
+    required_fields = set(obj.get("required", ()))
+    recommended_fields = set(obj.get("recommended", ()))
 
     field_info = {}
     for field in obj.properties:

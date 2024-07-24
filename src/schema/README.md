@@ -215,7 +215,7 @@ We see expressions may contain:
 -   Comparison operators such as `==` (equality) or `in` (subfield exists in field)
 -   Functions such as `intersects()`
 
-In fact, the full list of fields is defined in the `meta.context.context` object,
+In fact, the full list of fields is defined in the `meta.context` object,
 which (currently) contains at the top level:
 
 -   `schema`: access to the schema itself
@@ -270,7 +270,7 @@ The following functions should be defined by an interpreter:
 | `match(arg: str, pattern: str) -> bool`         | `true` if `arg` matches the regular expression `pattern` (anywhere in string)                                                                              | `match(extension, ".gz$")`                             | True if the file extension ends with `.gz`                                     |
 | `max(arg: array) -> number`                     | The largest non-`n/a` value in an array                                                                                                                    | `max(columns.onset)`                                   | The time of the last onset in an events.tsv file                               |
 | `min(arg: array) -> number`                     | The smallest non-`n/a` value in an array                                                                                                                   | `min(sidecar.SliceTiming) == 0`                        | A check that the onset of the first slice is 0s                                |
-| `sorted(arg: array) -> array`                   | The sorted values of the input array                                                                                                                       | `sorted(sidecar.VolumeTiming) == sidecar.VolumeTiming` | True if `sidecar.VolumeTiming` is sorted                                       |
+| `sorted(arg: array, method: str) -> array`      | The sorted values of the input array; defaults to type-determined sort. If method is "lexical", or "numeric" use lexical or numeric sort.                  | `sorted(sidecar.VolumeTiming) == sidecar.VolumeTiming` | True if `sidecar.VolumeTiming` is sorted                                       |
 | `substr(arg: str, start: int, end: int) -> str` | The portion of the input string spanning from start position to end position                                                                               | `substr(path, 0, length(path) - 3)`                    | `path` with the last three characters dropped                                  |
 | `type(arg: Any) -> str`                         | The name of the type, including `"array"`, `"object"`, `"null"`                                                                                            | `type(datatypes)`                                      | Returns `"array"`                                                              |
 
