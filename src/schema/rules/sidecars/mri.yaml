@@ -27,7 +27,8 @@ MRIHardware:
       description_addendum: Corresponds to DICOM Tag 0018, 1020 `Software Versions`.
     HardcopyDeviceSoftwareVersion: deprecated
     MagneticFieldStrength:
-      level: recommended, but required for Arterial Spin Labeling
+      level: recommended
+      level_addendum: required for Arterial Spin Labeling
     ReceiveCoilName: recommended
     ReceiveCoilActiveElements: recommended
     NumberReceiveCoilActiveElements: optional
@@ -170,14 +171,14 @@ PhaseEncodingDirectionReq:
     PhaseEncodingDirection:
       level: required
       issue:
-        name: PHASE_ENCODING_DIRECTION_MUST_DEFINE
-        issue: |
+        code: PHASE_ENCODING_DIRECTION_MUST_DEFINE
+        message: |
           You have to define 'PhaseEncodingDirection' for this file.
     TotalReadoutTime:
       level: required
       description_addendum: <sup>3</sup>
       issue:
-        name: TOTAL_READOUT_TIME_MUST_DEFINE
+        code: TOTAL_READOUT_TIME_MUST_DEFINE
         message: |
           You have to define 'TotalReadoutTime' for this file.
 
@@ -191,7 +192,7 @@ MRITimingParameters:
         required if corresponding fieldmap data is present,
         or the data comes from a multi-echo sequence or Arterial Spin Labeling.
       issue:
-        name: ECHO_TIME_NOT_DEFINED
+        code: ECHO_TIME_NOT_DEFINED
         message: |
           You must define 'EchoTime' for this file. 'EchoTime' is the echo time (TE)
           for the acquisition, specified in seconds. Corresponds to DICOM Tag
@@ -273,7 +274,7 @@ MRIFlipAngleLookLockerTrue:
     FlipAngle:
       level: required
       issue:
-        name: LOOK_LOCKER_FLIP_ANGLE_MISSING
+        code: LOOK_LOCKER_FLIP_ANGLE_MISSING
         message: |
           You should define 'FlipAngle' for this file, in
           case of a LookLocker acquisition. 'FlipAngle' is the
