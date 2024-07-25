@@ -44,7 +44,7 @@ MRIFuncVolumeTiming:
       description_addendum: |
         This field is mutually exclusive with `"DelayTime"`.
         If defined, this requires acquisition time (TA) be defined via either
-        `"SliceTiming"` or `"AcquisitionDuration"` be defined.
+        `"SliceTiming"` or `"AcquisitionDuration"`.
 
 # Timing Parameters
 MRIFuncTimingParameters:
