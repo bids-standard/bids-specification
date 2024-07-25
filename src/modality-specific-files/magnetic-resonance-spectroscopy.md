@@ -21,7 +21,7 @@ The inputs for this macro can be found in the directory
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filename_template("raw", datatypes=["mrs"], suffixes=["svs", "mrsi", "unloc", "mrsref"]) }}
+{{ MACROS___make_filename_template("raw", datatypes=["mrs"]) }}
 
 MRS is a spectroscopic technique based on the phenomenon of nuclear magnetic resonance
 that allows for the noninvasive detection and quantification of molecules in biochemical samples, such as brain tissue.

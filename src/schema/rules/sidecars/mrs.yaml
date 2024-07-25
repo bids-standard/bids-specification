@@ -9,6 +9,7 @@
 MRSScannerHardware:
   selectors:
     - modality == "mrs"
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     InstitutionName: recommended
     InstitutionAddress: recommended
@@ -27,6 +28,7 @@ MRSScannerHardware:
 MRSSample:
   selectors:
     - modality == "mrs"
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     BodyPart:
       level: optional
@@ -40,6 +42,7 @@ MRSSample:
 MRSSampleVOI:
   selectors:
     - modality == "mrs"
+    - match(extension, "^\.nii(\.gz)?$")
     - '"volume" in entities'
   fields:
     BodyPart: required
@@ -48,6 +51,7 @@ MRSSampleVOI:
 MRSSequenceSpecifics:
   selectors:
     - modality == "mrs"
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     PulseSequenceType:
       level: recommended
@@ -65,6 +69,7 @@ MRSSequenceSpecifics:
 MRSRequiredFields:
   selectors:
     - modality == "mrs"
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     ResonantNucleus: required
     SpectrometerFrequency: required
@@ -74,6 +79,7 @@ MRSRequiredFields:
 MRSRecommendedFields:
   selectors:
     - modality == "mrs"
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     NumberOfSpectralPoints: recommended
     MixingTime: recommended
@@ -84,6 +90,7 @@ MRSRecommendedFields:
 MRSRepetitionTime:
   selectors:
     - modality == "mrs"
+    - match(extension, "^\.nii(\.gz)?$")
     - '!("VolumeTiming" in sidecar)'
   fields:
     RepetitionTime:
@@ -93,6 +100,7 @@ MRSRepetitionTime:
 MRSVolumeTiming:
   selectors:
     - modality == "mrs"
+    - match(extension, "^\.nii(\.gz)?$")
     - '!("RepetitionTime" in sidecar)'
   fields:
     VolumeTiming:
@@ -102,6 +110,7 @@ MRSVolumeTiming:
 MRSConditionalInversionTime:
   selectors:
     - modality == "mrs"
+    - match(extension, "^\.nii(\.gz)?$")
     - entities.inversion
   fields:
     InversionTime:
@@ -111,6 +120,7 @@ MRSConditionalInversionTime:
 MRSConditionalAnatomicalImage:
   selectors:
     - modality == "mrs"
+    - match(extension, "^\.nii(\.gz)?$")
     - intersects(dataset.datatypes, ["anat"])
   fields:
     AnatomicalImage:
@@ -120,6 +130,7 @@ MRSConditionalAnatomicalImage:
 MRSConditionalNumTransients:
   selectors:
     - modality == "mrs"
+    - match(extension, "^\.nii(\.gz)?$")
     - intersects([suffix], ["svs", "unloc"])
   fields:
     NumberOfTransients:
@@ -129,6 +140,7 @@ MRSConditionalNumTransients:
 MRSIRecommendedFields:
   selectors:
     - modality == "mrs"
+    - match(extension, "^\.nii(\.gz)?$")
     - suffix == "mrsi"
   fields:
     MRAcquisitionType:
@@ -147,6 +159,7 @@ MRSIRecommendedFields:
 MRSOptionalFields:
   selectors:
     - modality == "mrs"
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     ChemicalShiftOffset: optional
     ChemicalShiftReference: optional
