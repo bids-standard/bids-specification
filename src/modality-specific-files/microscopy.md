@@ -55,7 +55,7 @@ Microscopy raw data MUST be stored in one of the following formats:
 
 -   [OME-TIFF](https://docs.openmicroscopy.org/ome-model/6.1.2/ome-tiff/specification.html#)
     (`.ome.tif` for standard TIFF files or `.ome.btf` for
-    [BigTIFF](https://www.awaresystems.be/imaging/tiff/bigtiff.html) files)
+    [BigTIFF](https://web.archive.org/web/20240706160214/https://www.awaresystems.be/imaging/tiff/bigtiff.html) files)
 
 -   [OME-ZARR/NGFF](https://ngff.openmicroscopy.org/latest/) (`.ome.zarr` directories)
 
