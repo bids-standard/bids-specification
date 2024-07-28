@@ -573,11 +573,11 @@ sparse sequences.
 
 |          | **`RepetitionTime`** | **`SliceTiming`** | **`AcquisitionDuration`** | **`DelayTime`** | **`VolumeTiming`** |
 | -------- | -------------------- | ----------------- | ------------------------- | --------------- | ------------------ |
-| option A |     \[ X ]           |                   |         \[ ]              |                 |     \[ ]           |
-| option B |      \[ ]            |    \[ X ]         |                           |    \[ ]         |    \[ X ]          |
-| option C |      \[ ]            |                   |        \[ X ]             |    \[ ]         |    \[ X ]          |
-| option D |     \[ X ]           |    \[ X ]         |         \[ ]              |                 |     \[ ]           |
-| option E |     \[ X ]           |                   |         \[ ]              |   \[ X ]        |     \[ ]           |
+| option A | \[ X ]               |                   | \[ ]                      |                 | \[ ]               |
+| option B | \[ ]                 | \[ X ]            |                           | \[ ]            | \[ X ]             |
+| option C | \[ ]                 |                   | \[ X ]                    | \[ ]            | \[ X ]             |
+| option D | \[ X ]               | \[ X ]            | \[ ]                      |                 | \[ ]               |
+| option E | \[ X ]               |                   | \[ ]                      | \[ X ]          | \[ ]               |
 
 **Legend**
 
@@ -1029,7 +1029,7 @@ imposed on the Dependent fields in column 3. See the [ASL Appendix](../appendice
 form of flowcharts.
 
 | **Source field**         | **Value**    | **Dependent field**  | **Requirements**                                 |
-|--------------------------|--------------|----------------------|--------------------------------------------------|
+| ------------------------ | ------------ | -------------------- | ------------------------------------------------ |
 | MRAcquisitionType        | 2D / 3D      | SliceTiming          | \[X\] / \[\]                                     |
 | LookLocker               | true         | FlipAngle            | \[X\]                                            |
 | ArterialSpinLabelingType | PCASL        | LabelingDuration     | \[X\]                                            |

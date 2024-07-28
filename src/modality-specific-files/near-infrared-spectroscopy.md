@@ -279,7 +279,7 @@ As several of these data types are commonly acquired using NIRS devices they are
 Note that upper-case is REQUIRED.
 
 | **Keyword**                 | **Description**                                                                                                                                            |
-| --------------------------- | -----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | NIRSCWAMPLITUDE             | Continuous wave amplitude measurements. Equivalent to dataType 001 in SNIRF.                                                                               |
 | NIRSCWFLUORESCENSEAMPLITUDE | Continuous wave fluorescence amplitude measurements. Equivalent to dataType 051 in SNIRF.                                                                  |
 | NIRSCWOPTICALDENSITY        | Continuous wave change in optical density measurements. Equivalent to dataTypeLabel dOD in SNIRF.                                                          |
