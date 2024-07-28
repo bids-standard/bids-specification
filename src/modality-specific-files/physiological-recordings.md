@@ -280,7 +280,8 @@ The `PhysioType` can be omitted as the recordings are `"generic"`:
       "Units": "mV"
     },
     "trigger": {
-      "Description": "continuous measurement of the scanner trigger signal"
+      "Description": "continuous measurement of the scanner trigger signal",
+      "Units": "V"
     }
 }
 ```
