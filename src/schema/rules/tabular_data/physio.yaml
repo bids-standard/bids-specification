@@ -11,8 +11,6 @@ PhysioColumns:
 PhysioEyeTracking:
   selectors:
     - PhysioType == "eyetrack"
-  extension:
-    - '.tsv.gz'
   columns:
     et_timestamp: recommended
     x_coordinate: required
