@@ -767,13 +767,21 @@ would read:
     "Description": "Messages logged by the measurement device",
     "ForeignIndexColumn": "timestamp",
     "blink": {
-      "Description": "One indicates if the eye was closed, zero if open."
+      "Description": "Gives status of the eye.",
+      "Levels": {
+          "0": "Indicates if the eye was open.",
+          "1": "Indicates if the eye was closed.",
+      },
     },
     "message": {
       "Description": "String messages logged by the eye-tracker."
     },
     "trial_type": {
-      "Description": "Event type as identified by the eye-tracker's model (either 'n/a' if not applicabble, 'fixation', or 'saccade')."
+      "Description": "Event type as identified by the eye-tracker's model.",
+      "Levels": {
+          "fixation": "Indicates a fixation.",
+          "saccade": "Indicates a saccade.",
+      },
     }
 }
 ```
