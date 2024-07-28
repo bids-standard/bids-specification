@@ -524,7 +524,7 @@ The decompressed contents of the corresponding TSV file,
     and can be used for practical guidance when curating a new dataset:
 
     -   Combined behavior and eye-tracking fixation and saccade data,
-        measured with an Eyelink (SR Research), from 8 particpants reading 320
+        measured with an Eyelink (SR Research), from 8 participants reading 320
         embedded target words and invisible boundary (see
         [Gagl, 2016](https://peerj.com/articles/2467/)).
 
