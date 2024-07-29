@@ -1,5 +1,7 @@
 [codespell]
 skip = *.js,*.svg,*.eps,.git,node_modules,env,venv,.mypy_cache,package-lock.json,CITATION.cff,tools/new_contributors.tsv,./tools/schemacode/docs/build
+# Ignore diff/git format-patch  headings which could include truncated lines
+ignore-regex = ^@@ -[0-9].*@@.*
 ignore-words-list = fo,te,als,Acknowledgements,acknowledgements,weill,bu,winn,manuel
 builtin = clear,rare,en-GB_to_en-US
 # this overloads default dictionaries and I have not yet figured out
