@@ -10,6 +10,7 @@ NIRSChannelCount:
   selectors:
     - datatype == "nirs"
     - suffix == "nirs"
+    - match(extension, '\.nii(\.gz)?$')
   checks:
     - |
       sidecar.NIRSChannelCount

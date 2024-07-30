@@ -9,6 +9,7 @@ EchoTime12DifferenceUnreasonable:
     level: error
   selectors:
     - suffix == "phasediff"
+    - match(extension, '\.nii(\.gz)?$')
   checks:
     - sidecar.EchoTime2 - sidecar.EchoTime1 >= 0.0001
     - sidecar.EchoTime2 - sidecar.EchoTime1 <= 0.01
