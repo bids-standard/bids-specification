@@ -296,7 +296,8 @@ MRISliceAcceleration:
 
 MRIAnatomicalLandmarks:
   selectors:
-    - modality == "mri"
+    - datatype == "anat"
+    - intersects(dataset.datatypes, ["meg"])
   fields:
     AnatomicalLandmarkCoordinates__mri: recommended
 
