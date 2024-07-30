@@ -13,6 +13,7 @@ EventsMissing:
     - '"task" in entities'
     - '!match(entities.task, "rest")'
     - suffix != "events"
+    - extension != ".json"
   checks:
     - '"events" in associations'
 

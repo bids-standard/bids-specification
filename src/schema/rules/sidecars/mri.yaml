@@ -296,15 +296,23 @@ MRISliceAcceleration:
 
 MRIAnatomicalLandmarks:
   selectors:
-    - modality == "mri"
+    - datatype == "anat"
+    - intersects(dataset.datatypes, ["meg"])
   fields:
     AnatomicalLandmarkCoordinates__mri: recommended
 
-MRIEchoPlanarImagingAndB0Mapping:
+MRIB0FieldIdentifier:
   selectors:
-    - modality == "mri"
+    - datatype == 'fmap'
+    - match(extension, '\.nii(\.gz)?$')
   fields:
     B0FieldIdentifier: recommended
+
+MRIEchoPlanarImagingAndB0FieldSource:
+  selectors:
+    - intersects(datatype, ['dwi', 'func', 'perf'])
+    - intersects(dataset.datatypes, ['fmap'])
+  fields:
     B0FieldSource: recommended
 
 MRIInstitutionInformation:
