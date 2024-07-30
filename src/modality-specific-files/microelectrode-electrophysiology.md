@@ -32,6 +32,13 @@ The current list of allowed data file formats:
 | [Neuroscience Information Exchange Format](https://nixio.readthedocs.io/en/latest/) | `.nix`           | A generic and open  framework with an hdf5 backend and a defined interface to many ephys formats via the [Neo library](https://neo.readthedocs.io/en/latest/). The `.nix` file has to contain a valid Neo structure. |
 | [Neurodata Without Borders](https://www.nwb.org)                                    | `.nwb`           | BRAIN Initiative Data Standard based on an hdf5 backend ...                                                                                                                                                          |
 
+{{ MACROS___make_suffix_table(
+      [
+         "nix",
+         "nwb"
+      ]
+)}}
+
 Both of these formats can also store essential metadata of the datasets.
 Some of these need to be duplicated in BIDS `.tsv` and `.json` sidecar files.
 Even though the duplication requires additional effort to ensure the consistency of the data, it provides a number of advantages:
@@ -60,13 +67,22 @@ and a guide for using macros can be found at
 {{ MACROS___make_filename_template(
    "raw",
    datatypes=["icephys"],
-   suffixes=["icephys", "events", "channels", "electrodes","scans"]
+   suffixes=["icephys", "events", "channels", "electrodes","scans","probes","coordsystem"]
 )
 }}
 
 {{ MACROS___make_filename_template(
    "raw",
    datatypes=["ecephys"],
-   suffixes=["ecephys", "events", "channels", "electrodes","scans"]
+   suffixes=["ecephys", "events", "channels", "electrodes","scans","probes","coordsystem"]
 )
 }}
+
+
+#  PARTICIPANT keyfiles
+## Participant information
+
+The participants.tsv file is located at the root of the data set directory. Its presence is RECOMMENDED in order to describe information about the individual subjects (animals) from which the data was recorded. It follows the [general BIDS specifications to describe participants](https://bids-specification.readthedocs.io/en/stable/03-modality-agnostic-files.html#participants-file). 
+
+On top of the existing columns that can be present in this file and that are described in the BIDS specifications (participant_id, species, strain, strain_rrid, sex, handedness and age), we propose to allow adding the following ones:
+
