@@ -326,7 +326,7 @@ A guide for using macros can be found at
 
 `dataset_description.json`:
 
-```text
+```json
 {
   "Name": "qMRLab Outputs",
   "BIDSVersion": "1.5.0",
@@ -395,7 +395,7 @@ sub-01_T1map.json
 
 sub-01_T1map.json:
 
-```text
+```json
 {
 
 <<Parameter injected by the software/pipeline>>

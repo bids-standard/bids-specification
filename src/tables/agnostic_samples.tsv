@@ -1,0 +1,6 @@
+sample_id	participant_id	sample_type	derived_from
+sample-01	sub-01	tissue	n/a
+sample-02	sub-01	tissue	sample-01
+sample-03	sub-01	tissue	sample-01
+sample-04	sub-02	tissue	n/a
+sample-05	sub-02	tissue	n/a
