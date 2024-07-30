@@ -82,7 +82,18 @@
           "patternProperties": {
             "^[a-zA-Z0-9_]+$": {
               "allOf": [
-                { "$ref": "#/definitions/termTypes/JSONSchema" },
+                {
+                  "anyOf": [
+                    { "$ref": "#/definitions/termTypes/JSONSchema" },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "definition": { "type": "object" }
+                      },
+                      "required": ["definition"]
+                    }
+                  ]
+                },
                 { "$ref": "#/definitions/termTypes/general" },
                 { "$ref": "#/definitions/termTypes/nameValue" },
                 {
