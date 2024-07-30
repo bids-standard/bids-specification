@@ -2,7 +2,7 @@
 NASamplingFreq:
   selectors:
     - suffix == "nirs"
-    - samplingFrequency == "n/a"
+    - sidecar.SamplingFrequency == "n/a"
   checks:
     - associations.channels.sampling_frequency != null
 
