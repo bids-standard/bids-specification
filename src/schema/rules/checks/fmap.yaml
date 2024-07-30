@@ -22,6 +22,7 @@ FmapFieldmapWithoutMagnitude:
     level: error
   selectors:
     - suffix == "fieldmap"
+    - match(extension, '\.nii(\.gz)?$')
   checks:
     - '"magnitude" in associations'
 
@@ -34,6 +35,7 @@ FmapPhasediffWithoutMagnitude:
     level: warning
   selectors:
     - suffix == "phasediff"
+    - match(extension, '\.nii(\.gz)?$')
   checks:
     - '"magnitude1" in associations'
 
