@@ -34,6 +34,18 @@ TooFewAuthors:
   checks:
     - length(json.Authors) > 1
 
+# 115
+EmptyDatasetName:
+  issue:
+    code: EMPTY_DATASET_NAME
+    message: |
+      The Name field of dataset_description.json is present but empty of visible characters.
+    level: warning
+  selectors:
+    - path == '/dataset_description.json'
+  checks:
+    - match(json.name, '\S')
+
 ### Functional files
 
 # 85
