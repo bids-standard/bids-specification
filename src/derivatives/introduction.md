@@ -1,30 +1,32 @@
 # BIDS Derivatives
 
-Derivatives are outputs of common processing pipelines, capturing data and
-meta-data sufficient for a researcher to understand and (critically) reuse those
-outputs in subsequent processing.
+[Derivatives datasets](../glossary.md#derivative-common_principles) are outputs of common processing pipelines,
+capturing data and meta-data sufficient for a researcher
+to understand and (critically) reuse those outputs in subsequent processing.
 Standardizing derivatives is motivated by use cases where formalized
 machine-readable access to processed data enables higher-level processing.
 
-The following sections cover additions to and divergences from "raw" BIDS.
-Raw data are data that have been curated into BIDS from a non-BIDS source.
-If a dataset is derived from at least one other valid BIDS dataset, then it is a derivative dataset.
+The following sections cover additions to and divergences from [raw BIDS datasets](../glossary.md#raw-common_principles).
 
-Examples:
+[Raw BIDS datasets](../glossary.md#raw-common_principles) are data that have been curated into BIDS from one or more non-BIDS sources.
+If a dataset is derived from at least one other valid BIDS dataset,
+then it is a [derivatives datasets](../glossary.md#derivative-common_principles).
 
-A defaced T1w image would typically be made during the curation process and is thus under raw
+!!! example
 
-```Text
-sourcedata/private/sub-01/anat/sub-01_T1w.nii.gz
-sub-01/anat/sub-01_T1w.nii.gz
-```
+    A defaced T1w image would typically be made during the curation process and is thus under raw
 
-A defaced T1w image could also, in theory, be derived from a BIDS dataset and would thus be under derivatives
+    ```Text
+    sourcedata/private/sub-01/anat/sub-01_T1w.nii.gz
+    sub-01/anat/sub-01_T1w.nii.gz
+    ```
 
-```Text
-sub-01/anat/sub-01_T1w.nii.gz
-derivatives/sub-01/anat/sub-01_desc-defaced_T1w.nii.gz
-```
+    A defaced T1w image could also, in theory, be derived from a BIDS dataset and would thus be under derivatives
+
+    ```Text
+    sub-01/anat/sub-01_T1w.nii.gz
+    derivatives/sub-01/anat/sub-01_desc-defaced_T1w.nii.gz
+    ```
 
 ## Derivatives storage and directory structure
 
