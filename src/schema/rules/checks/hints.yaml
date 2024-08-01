@@ -45,7 +45,7 @@ EmptyDatasetName:
     - path == '/dataset_description.json'
     - type(json.Name) != 'null'
   checks:
-    - match(json.Name, '\\S')
+    - match(json.Name, '\S')
 
 ### Functional files
 
