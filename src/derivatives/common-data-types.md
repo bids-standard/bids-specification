@@ -249,10 +249,90 @@ A guide for using macros can be found at
    }
 ) }}
 
-All REQUIRED metadata fields coming from a derivative file’s source file(s) MUST
+All REQUIRED metadata fields coming from a derivative file's source file(s) MUST
 be propagated to the JSON description of the derivative unless the processing
 makes them invalid (for example, if a source 4D image is averaged to create a single
 static volume, a `RepetitionTime` property would no longer be relevant).
+
+## descriptions.tsv
+
+Template:
+
+```Text
+[sub-<label>/]
+    [ses-<label>/]
+        [sub-<label>_][ses-<label>_]descriptions.tsv
+        [sub-<label>_][ses-<label>_]descriptions.json
+```
+
+Optional: Yes
+
+To keep a record of processing steps applied to the data, a `descriptions.tsv` file MAY be used.
+The `descriptions.tsv` file consists of one row for each unique `desc-<label>`
+entity used in the dataset and a set of REQUIRED and OPTIONAL columns:
+
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/rules/tabular_data/*.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_columns_table("derivatives.common_derivatives.Descriptions") }}
+
+This file MAY be located at the root of the derivative dataset,
+or at the subject or session level
+([Inheritance Principle](../common-principles.md#the-inheritance-principle)).
+
+The use of `descriptions.tsv` files together with the [`desc entity`](../appendices/entities.md#desc)
+are helpful to document how files are generated, even if their use may not be sufficient
+to provide full computational reproducibility.
+
+### Example use of a `descriptions.tsv` file
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+    {
+    "raw/": {
+        "CHANGES": "",
+        "README": "",
+        "channels.tsv": "",
+        "dataset_description.json": "",
+        "participants.tsv": "",
+            "sub-001": {
+                "eeg": {
+                    "sub-001_task-listening_events.tsv": "",
+                    "sub-001_task-listening_events.json": "",
+                    "sub-001_task-listening_eeg.edf": "",
+                    "sub-001_task-listening_eeg.json": "",
+                    },
+                },
+            },
+    "derivatives/": {
+        "descriptions.tsv": "",
+        "sub-001": {
+            "eeg": {
+                "sub-001_task-listening_desc-Filt_eeg.edf": "",
+                "sub-001_task-listening_desc-Filt_eeg.json": "",
+                "sub-001_task-listening_desc-FiltDs_eeg.edf": "",
+                "sub-001_task-listening_desc-FiltDs_eeg.json": "",
+                "sub-001_task-listening_desc-preproc_eeg.edf": "",
+                "sub-001_task-listening_desc-preproc_eeg.json": "",
+                },
+            },
+        }
+    }
+) }}
+
+Contents of the `descriptions.tsv` file:
+
+| desc_id | description                                                                                     |
+| ------- | ----------------------------------------------------------------------------------------------- |
+| Filt    | low-pass filtered at 30Hz                                                                       |
+| FiltDs  | low-pass filtered at 30Hz, downsampled to 250Hz                                                 |
+| preproc | low-pass filtered at 30Hz, downsampled to 250Hz, and rereferenced to a common average reference |
 
 <!-- Link Definitions -->
 

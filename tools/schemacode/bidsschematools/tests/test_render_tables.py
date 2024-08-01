@@ -1,4 +1,5 @@
 """Tests for the bidsschematools package."""
+
 from bidsschematools.render import tables
 
 

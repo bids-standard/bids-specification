@@ -10,8 +10,8 @@
 # Required fields
 MRIFuncRequired:
   selectors:
-    - modality == "mri"
     - datatype == "func"
+    - suffix == "bold"
     - match(extension, "^\.nii(\.gz)?$")
   fields:
     TaskName:
@@ -22,8 +22,8 @@ MRIFuncRequired:
 
 MRIFuncRepetitionTime:
   selectors:
-    - modality == "mri"
     - datatype == "func"
+    - suffix == "bold"
     - '!("VolumeTiming" in sidecar)'
     - match(extension, "^\.nii(\.gz)?$")
   fields:
@@ -33,8 +33,8 @@ MRIFuncRepetitionTime:
 
 MRIFuncVolumeTiming:
   selectors:
-    - modality == "mri"
     - datatype == "func"
+    - suffix == "bold"
     - '!("RepetitionTime" in sidecar)'
     - match(extension, "^\.nii(\.gz)?$")
   fields:
@@ -45,8 +45,8 @@ MRIFuncVolumeTiming:
 # Timing Parameters
 MRIFuncTimingParameters:
   selectors:
-    - modality == "mri"
     - datatype == "func"
+    - suffix == "bold"
   fields:
     NumberOfVolumesDiscardedByScanner: recommended
     NumberOfVolumesDiscardedByUser: recommended
@@ -57,17 +57,13 @@ MRIFuncTimingParameters:
         required for sequences that are described with the `VolumeTiming`
         field and that do not have the `SliceTiming` field set to allow for
         accurate calculation of "acquisition time"
-      issue:
-        name: VOLUME_TIMING_MISSING_ACQUISITION_DURATION
-        message: |
-          The field 'VolumeTiming' requires 'AcquisitionDuration' or 'SliceTiming' to be defined.
     DelayAfterTrigger: recommended
 
 # fMRI task information
 MRIFuncTaskInformation:
   selectors:
-    - modality == "mri"
     - datatype == "func"
+    - suffix == "bold"
   fields:
     Instructions:
       level: recommended
@@ -77,3 +73,12 @@ MRIFuncTaskInformation:
     TaskDescription: recommended
     CogAtlasID: recommended
     CogPOID: recommended
+
+# Should now be `part-phase_bold.nii`, but still require units
+PhaseSuffixUnits:
+  selectors:
+    - datatype == "func"
+    - suffix == "phase"
+    - match(extension, "^\.nii(\.gz)?$")
+  fields:
+    Units: required

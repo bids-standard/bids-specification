@@ -29,7 +29,6 @@ AnatomicalLandmark:
 
 CoordsystemGeneral:
   selectors:
-    - modality == "nirs"
     - datatype == "nirs"
     - suffix == "coordsystem"
   fields:
@@ -150,7 +149,7 @@ NirsRequired:
     # Following counts required conditions enforced in checks
     ACCELChannelCount:
       level: optional
-      level_addendum: required if any channel type is ACC
+      level_addendum: required if any channel type is ACCEL
     GYROChannelCount:
       level: optional
       level_addendum: required if any channel type is GYRO
@@ -160,7 +159,7 @@ NirsRequired:
 
 NirsRecommend:
   selectors:
-    - modality == "nirs"
+    - datatype == "nirs"
     - suffix == "nirs"
   fields:
     CapManufacturer:

@@ -1,0 +1,15 @@
+---
+ElectrodeSpecificity:
+  issue:
+    code: EXCESSIVE_ELECTRODE_SPECIFICITY
+    message: |
+      Run or acquisition entities detected in electrodes.tsv.
+      Electrode definitions should generally not vary within a session.
+      Consider creating a new session each time electrodes are reconfigured.
+    level: warning
+  selectors:
+    - suffix == 'electrodes'
+    - extension == '.tsv'
+  checks:
+    - '!("run" in entities)'
+    - '!("acquisition" in entities)'

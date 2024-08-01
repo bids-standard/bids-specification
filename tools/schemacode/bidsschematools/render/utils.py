@@ -1,4 +1,5 @@
 """Utility functions for specification rendering tools."""
+
 import math
 import posixpath
 
@@ -221,6 +222,21 @@ def resolve_metadata_type(definition):
 
         string = " or ".join(substrings)
 
+    elif "definition" in definition:
+        json_def = definition["definition"]
+
+        if "Delimiter" in json_def:
+            # Delimiter indicates the value must be parsed. For BIDS purposes,
+            # this is a string, even if the parsed array is of numbers.
+            string = "string"
+        elif "Levels" in json_def:
+            # JSON keys are always strings.
+            string = "string"
+        elif "Units" in json_def:
+            # Values with units are always (any exceptions?) numbers.
+            string = "number"
+        else:
+            string = "string or number"
     else:
         # This clause should only catch $refs.
         # The schema should be deferenced by this point, so $refs should not exist.
@@ -245,7 +261,15 @@ def describe_valid_values(definition):
     str : A sentence describing valid values for the object.
     """
     description = ""
-    if "anyOf" in definition.keys():
+    if "anyOf" in definition:
+        return description
+
+    if "definition" in definition:
+        levels = definition["definition"].get("Levels")
+        if levels:
+            description = (
+                f"Unless redefined in a sidecar file, must be one of: {', '.join(levels)}."
+            )
         return description
 
     if definition["type"] == "boolean":
