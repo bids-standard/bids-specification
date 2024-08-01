@@ -43,8 +43,9 @@ EmptyDatasetName:
     level: warning
   selectors:
     - path == '/dataset_description.json'
+    - type(json.Name) != 'null'
   checks:
-    - match(json.name, '\S')
+    - match(json.Name, '\S')
 
 ### Functional files
 
