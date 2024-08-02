@@ -212,6 +212,16 @@ properties:
             type: array
             items:
               type: string
+          short_channel:
+            description: 'Contents of the short_channel column'
+            type: array
+            items:
+              type: string
+          sampling_frequency:
+            description: 'Contents of the sampling_frequency column'
+            type: array
+            items:
+              type: string
       coordsystem:
         description: 'Coordinate system file'
         type: object
