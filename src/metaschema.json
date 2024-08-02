@@ -315,7 +315,7 @@
                       "$ref": "#/definitions/ruleTypes/expressionList"
                     }
                   },
-                  "required": ["checks", "selectors"],
+                  "required": ["checks", "selectors", "issue"],
                   "additionalProperties": false
                 }
               }
