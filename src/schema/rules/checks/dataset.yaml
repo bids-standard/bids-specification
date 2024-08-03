@@ -91,3 +91,15 @@ SingleSourceCitationFields:
     - '!("HowToAcknowledge" in dataset.dataset_description)'
     - '!("License" in dataset.dataset_description)'
     - '!("ReferencesAndLinks" in dataset.dataset_description)'
+
+ScansTSVScans:
+  issue:
+    code: SCANS_FILENAME_NOT_MATCH_DATASET
+    level: error
+    message: |
+      Filenames in scans.tsv file do not match what is present in the BIDS dataset.
+  selectors:
+    - suffix == 'scans'
+    - extension == '.tsv'
+  checks:
+    - exists(columns.filename, "file") == length(columns.filename)
