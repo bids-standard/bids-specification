@@ -13,6 +13,7 @@ EventsMissing:
     - '"task" in entities'
     - '!match(entities.task, "rest")'
     - suffix != "events"
+    - extension != ".json"
   checks:
     - '"events" in associations'
 
@@ -39,4 +40,4 @@ SortedOnsets:
     - extension == ".tsv"
   checks:
     # n/a values will likely cause false alarms if encountered. Consider alternatives.
-    - sorted(columns.onset) == columns.onset
+    - allequal(sorted(columns.onset, "numeric"), columns.onset)

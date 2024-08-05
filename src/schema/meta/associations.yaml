@@ -1,4 +1,4 @@
-# These rules indicate whether an association (defined in meta.context.context.associations)
+# These rules indicate whether an association (defined in meta.context.associations)
 # applies to a given file. These are hints to allow implementations to avoid unnecessary
 # directory and file reads.
 #

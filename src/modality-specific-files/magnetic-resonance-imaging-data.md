@@ -160,7 +160,11 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("mri.MRIEchoPlanarImagingAndB0Mapping") }}
+{{ MACROS___make_sidecar_table([
+     "mri.MRIB0FieldIdentifier",
+     "mri.MRIEchoPlanarImagingAndB0FieldSource",
+   ])
+}}
 
 #### Tissue description
 
@@ -573,11 +577,11 @@ sparse sequences.
 
 |          | **`RepetitionTime`** | **`SliceTiming`** | **`AcquisitionDuration`** | **`DelayTime`** | **`VolumeTiming`** |
 | -------- | -------------------- | ----------------- | ------------------------- | --------------- | ------------------ |
-| option A |     \[ X ]           |                   |         \[ ]              |                 |     \[ ]           |
-| option B |      \[ ]            |    \[ X ]         |                           |    \[ ]         |    \[ X ]          |
-| option C |      \[ ]            |                   |        \[ X ]             |    \[ ]         |    \[ X ]          |
-| option D |     \[ X ]           |    \[ X ]         |         \[ ]              |                 |     \[ ]           |
-| option E |     \[ X ]           |                   |         \[ ]              |   \[ X ]        |     \[ ]           |
+| option A | \[ X ]               |                   | \[ ]                      |                 | \[ ]               |
+| option B | \[ ]                 | \[ X ]            |                           | \[ ]            | \[ X ]             |
+| option C | \[ ]                 |                   | \[ X ]                    | \[ ]            | \[ X ]             |
+| option D | \[ X ]               | \[ X ]            | \[ ]                      |                 | \[ ]               |
+| option E | \[ X ]               |                   | \[ ]                      | \[ X ]          | \[ ]               |
 
 **Legend**
 
@@ -717,7 +721,7 @@ within the `[*_]dwi.bval` and `[*_]dwi.bvec` files) MAY change across DWI runs.
 
 **Gradient orientation file formats**.
 The `[*_]dwi.bval` and `[*_]dwi.bvec` files MUST follow the
-[FSL format](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT/UserGuide#DTIFIT):
+[FSL format](https://fsl.fmrib.ox.ac.uk/fsl/docs/#/diffusion/index?id=diffusion-data-in-fsl):
 The `[*_]dwi.bvec` file contains 3 rows with *N* space-delimited floating-point numbers
 (corresponding to the *N* volumes in the corresponding NIfTI file.)
 The first row contains the *x* elements, the second row contains the *y* elements and
@@ -1029,7 +1033,7 @@ imposed on the Dependent fields in column 3. See the [ASL Appendix](../appendice
 form of flowcharts.
 
 | **Source field**         | **Value**    | **Dependent field**  | **Requirements**                                 |
-|--------------------------|--------------|----------------------|--------------------------------------------------|
+| ------------------------ | ------------ | -------------------- | ------------------------------------------------ |
 | MRAcquisitionType        | 2D / 3D      | SliceTiming          | \[X\] / \[\]                                     |
 | LookLocker               | true         | FlipAngle            | \[X\]                                            |
 | ArterialSpinLabelingType | PCASL        | LabelingDuration     | \[X\]                                            |

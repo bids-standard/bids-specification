@@ -1,0 +1,79 @@
+---
+EEGChannelCountReq:
+  issue:
+    code: EEG_CHANNEL_COUNT_MISMATCH
+    message: |
+      The EEGChannelCount metadata does not match the number of channels
+      with type EEG in the associated channels.tsv file.
+    level: warning
+  selectors:
+    - suffix == "eeg"
+    - type(sidecar.EEGChannelCount) != "null"
+    - associations.channels.type
+  checks:
+    - sidecar.EEGChannelCount == count(associations.channels.type, "EEG")
+ECGChannelCountReq:
+  issue:
+    code: ECG_CHANNEL_COUNT_MISMATCH
+    message: |
+      The ECGChannelCount metadata does not match the number of channels
+      with type ECG in the associated channels.tsv file.
+    level: warning
+  selectors:
+    - suffix == "eeg"
+    - type(sidecar.ECGChannelCount) != "null"
+    - associations.channels.type
+  checks:
+    - sidecar.ECGChannelCount == count(associations.channels.type, "ECG")
+EMGChannelCountReq:
+  issue:
+    code: EMG_CHANNEL_COUNT_MISMATCH
+    message: |
+      The EMGChannelCount metadata does not match the number of channels
+      with type EMG in the associated channels.tsv file.
+    level: warning
+  selectors:
+    - suffix == "eeg"
+    - type(sidecar.EMGChannelCount) != "null"
+    - associations.channels.type
+  checks:
+    - sidecar.EMGChannelCount == count(associations.channels.type, "EMG")
+EOGChannelCountReq:
+  issue:
+    code: EOG_CHANNEL_COUNT_MISMATCH
+    message: |
+      The EOGChannelCount metadata does not match the number of channels
+      with type EOG in the associated channels.tsv file.
+    level: warning
+  selectors:
+    - suffix == "eeg"
+    - type(sidecar.EOGChannelCount) != "null"
+    - associations.channels.type
+  checks:
+    - sidecar.EOGChannelCount == count(associations.channels.type, "EOG")
+MiscChannelCountReq:
+  issue:
+    code: MISC_CHANNEL_COUNT_MISMATCH
+    message: |
+      The MiscChannelCount metadata does not match the number of channels
+      with type MISC in the associated channels.tsv file.
+    level: warning
+  selectors:
+    - suffix == "eeg"
+    - type(sidecar.MiscChannelCount) != "null"
+    - associations.channels.type
+  checks:
+    - sidecar.MiscChannelCount == count(associations.channels.type, "MISC")
+TriggerChannelCountReq:
+  issue:
+    code: TRIGGER_CHANNEL_COUNT_MISMATCH
+    message: |
+      The TriggerChannelCount metadata does not match the number of channels
+      with type TRIG in the associated channels.tsv file.
+    level: warning
+  selectors:
+    - suffix == "eeg"
+    - type(sidecar.TriggerChannelCount) != "null"
+    - associations.channels.type
+  checks:
+    - sidecar.TriggerChannelCount == count(associations.channels.type, "TRIG")

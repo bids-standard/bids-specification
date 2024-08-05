@@ -1,0 +1,53 @@
+AnatomicalLandmarkCoordinateSystemDeprecation:
+  issue:
+    code: ELEKTA_NEUROMAG_DEPRECATED
+    message: |
+        "ElektaNeuromag" as a coordinate system is deprecated.
+        Use "NeuromagElektaMEGIN" instead.
+    level: warning
+  selectors:
+    - sidecar.AnatomicalLandmarkCoordinateSystem
+  checks:
+    - sidecar.AnatomicalLandmarkCoordinateSystem != "ElektaNeuromag"
+
+DigitizedHeadPointsCoordinateSystemDeprecation:
+  $ref: rules.checks.deprecations.AnatomicalLandmarkCoordinateSystemDeprecation
+  selectors:
+    - sidecar.DigitizedHeadPointsCoordinateSystem
+  checks:
+    - sidecar.DigitizedHeadPointsCoordinateSystem != "ElektaNeuromag"
+
+EEGCoordinateSystemDeprecation:
+  $ref: rules.checks.deprecations.AnatomicalLandmarkCoordinateSystemDeprecation
+  selectors:
+    - sidecar.EEGCoordinateSystem
+  checks:
+    - sidecar.EEGCoordinateSystem != "ElektaNeuromag"
+
+FiducialsCoordinateSystemDeprecation:
+  $ref: rules.checks.deprecations.AnatomicalLandmarkCoordinateSystemDeprecation
+  selectors:
+    - sidecar.FiducialsCoordinateSystem
+  checks:
+    - sidecar.FiducialsCoordinateSystem != "ElektaNeuromag"
+
+HeadCoilCoordinateSystemDeprecation:
+  $ref: rules.checks.deprecations.AnatomicalLandmarkCoordinateSystemDeprecation
+  selectors:
+    - sidecar.HeadCoilCoordinateSystem
+  checks:
+    - sidecar.HeadCoilCoordinateSystem != "ElektaNeuromag"
+
+MEGCoordinateSystemDeprecation:
+  $ref: rules.checks.deprecations.AnatomicalLandmarkCoordinateSystemDeprecation
+  selectors:
+    - sidecar.MEGCoordinateSystem
+  checks:
+    - sidecar.MEGCoordinateSystem != "ElektaNeuromag"
+
+NIRSCoordinateSystemDeprecation:
+  $ref: rules.checks.deprecations.AnatomicalLandmarkCoordinateSystemDeprecation
+  selectors:
+    - sidecar.NIRSCoordinateSystem
+  checks:
+    - sidecar.NIRSCoordinateSystem != "ElektaNeuromag"
