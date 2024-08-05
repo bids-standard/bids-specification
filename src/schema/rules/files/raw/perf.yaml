@@ -47,3 +47,11 @@ asllabeling:
     acquisition: optional
     reconstruction: optional
     run: optional
+
+norf:
+  $ref: rules.files.raw.perf.func
+  suffixes:
+    - noRF
+  entities:
+    $ref: rules.files.raw.perf.func.entities
+    modality: optional
