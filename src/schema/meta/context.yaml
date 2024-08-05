@@ -18,6 +18,7 @@
 #
 ---
 type: object
+additionalProperties: false
 properties:
   schema:
     description: 'The BIDS specification schema'
@@ -25,6 +26,7 @@ properties:
   dataset:
     description: 'Properties and contents of the entire dataset'
     type: object
+    additionalProperties: false
     properties:
       dataset_description:
         description: 'Contents of /dataset_description.json'
@@ -44,6 +46,7 @@ properties:
       subjects:
         description: 'Collections of subjects in dataset'
         type: object
+        additionalProperties: false
         properties:
           sub_dirs:
             description: 'Subjects as determined by sub-*/ directories'
@@ -63,10 +66,12 @@ properties:
   subject:
     description: 'Properties and contents of the current subject'
     type: object
+    additionalProperties: false
     properties:
       sessions:
         description: 'Collections of sessions in subject'
         type: object
+        additionalProperties: false
         properties:
           ses_dirs:
             description: 'Sessions as determined by ses-*/ directories'
@@ -117,10 +122,12 @@ properties:
     description: |
       Associated files, indexed by suffix, selected according to the inheritance principle
     type: object
+    additionalProperties: false
     properties:
       events:
         description: 'Events file'
         type: object
+        additionalProperties: false
         properties:
           path:
             description: 'Path to associated events file'
@@ -133,6 +140,7 @@ properties:
       aslcontext:
         description: 'ASL context file'
         type: object
+        additionalProperties: false
         properties:
           path:
             description: 'Path to associated aslcontext file'
@@ -148,6 +156,7 @@ properties:
       m0scan:
         description: 'M0 scan file'
         type: object
+        additionalProperties: false
         properties:
           path:
             description: 'Path to associated M0 scan file'
@@ -155,6 +164,7 @@ properties:
       magnitude:
         description: 'Magnitude image file'
         type: object
+        additionalProperties: false
         properties:
           path:
             description: 'Path to associated magnitude file'
@@ -162,6 +172,7 @@ properties:
       magnitude1:
         description: 'Magnitude1 image file'
         type: object
+        additionalProperties: false
         properties:
           path:
             description: 'Path to associated magnitude1 file'
@@ -169,6 +180,7 @@ properties:
       bval:
         description: 'B value file'
         type: object
+        additionalProperties: false
         properties:
           path:
             description: 'Path to associated bval file'
@@ -187,6 +199,7 @@ properties:
       bvec:
         description: 'B vector file'
         type: object
+        additionalProperties: false
         properties:
           path:
             description: 'Path to associated bvec file'
@@ -200,6 +213,7 @@ properties:
       channels:
         description: 'Channels file'
         type: object
+        additionalProperties: false
         properties:
           path:
             description: 'Path to associated channels file'
@@ -222,6 +236,7 @@ properties:
       coordsystem:
         description: 'Coordinate system file'
         type: object
+        additionalProperties: false
         properties:
           path:
             description: 'Path to associated coordsystem file'
@@ -238,6 +253,7 @@ properties:
   gzip:
     description: 'Parsed contents of gzip header'
     type: object
+    additionalProperties: false
     properties:
       timestamp:
         description: 'Modification time, unix timestamp'
@@ -252,11 +268,13 @@ properties:
     name: 'NIfTI Header'
     description: 'Parsed contents of NIfTI header referenced elsewhere in schema.'
     type: object
+    additionalProperties: false
     properties:
       dim_info:
         name: 'Dimension Information'
         description: 'Metadata about dimensions data.'
         type: object
+        additionalProperties: false
         properties:
           freq:
             name: 'Frequency'
@@ -306,6 +324,7 @@ properties:
         name: 'XYZT Units'
         description: 'Units of pixdim[1..4]'
         type: object
+        additionalProperties: false
         properties:
           xyz:
             name: 'XYZ Units'
@@ -339,6 +358,7 @@ properties:
     name: 'Open Microscopy Environment fields'
     description: 'Parsed contents of OME-XML header, which may be found in OME-TIFF or OME-ZARR files'
     type: object
+    additionalProperties: false
     properties:
       PhysicalSizeX:
         name: 'PhysicalSizeX'
@@ -368,6 +388,7 @@ properties:
     name: 'TIFF'
     description: 'TIFF file format metadata'
     type: object
+    additionalProperties: false
     properties:
       version:
         name: 'Version'
