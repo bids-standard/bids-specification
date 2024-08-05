@@ -925,13 +925,13 @@ for more information on `control` and  `label`.
 
 | **volume_type** | **Definition**                                                                                                                                                                         |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| control         | The control image is acquired in the exact same way as the label image, except that the magnetization of the blood flowing into the imaging region has not been inverted.              |
-| label           | The label image is acquired in the exact same way as the control image, except that the blood magnetization flowing into the imaging region has been inverted.                         |
-| m0scan          | The M0 image is a calibration image, used to estimate the equilibrium magnetization of blood.                                                                                          |
-| deltam          | The deltaM image is a perfusion-weighted image, obtained by the subtraction of `control` - `label`.                                                                                    |
-| cbf             | The cerebral blood flow (CBF) image is produced by dividing the deltaM by the M0, quantified into `mL/100g/min` (See also [doi:10.1002/mrm.25197](https://doi.org/10.1002/mrm.25197)). |
-| noRF            | No radio frequency excitation (noRF) images are produced by disabling the radio frequency excitation, while maintaining all other parameters from the associated scan.                 |
-| n/a             | In some cases, there may be volume types that are not yet supported by BIDS, or which cannot be used by tools.                                                                         |
+| `control`       | The control image is acquired in the exact same way as the label image, except that the magnetization of the blood flowing into the imaging region has not been inverted.              |
+| `label`         | The label image is acquired in the exact same way as the control image, except that the blood magnetization flowing into the imaging region has been inverted.                         |
+| `m0scan`        | The M0 image is a calibration image, used to estimate the equilibrium magnetization of blood.                                                                                          |
+| `deltam`        | The deltaM image is a perfusion-weighted image, obtained by the subtraction of `control` - `label`.                                                                                    |
+| `cbf`           | The cerebral blood flow (CBF) image is produced by dividing the deltaM by the M0, quantified into `mL/100g/min` (See also [doi:10.1002/mrm.25197](https://doi.org/10.1002/mrm.25197)). |
+| `noRF`          | No radio frequency excitation (noRF) images are produced by disabling the radio frequency excitation, while maintaining all other parameters from the associated scan.                 |
+| `n/a`           | In some cases, there may be volume types that are not yet supported by BIDS, or which cannot be used by tools.                                                                         |
 
 If the `control` and `label` images are not available,
 their derivative `deltam` should be stored within the `*_asl.nii[.gz]`
