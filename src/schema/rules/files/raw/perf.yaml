@@ -16,6 +16,8 @@ asl:
     reconstruction: optional
     direction: optional
     run: optional
+    echo: optional
+    part: optional
 
 aslcontext:
   suffixes:
@@ -49,9 +51,9 @@ asllabeling:
     run: optional
 
 norf:
-  $ref: rules.files.raw.perf.func
+  $ref: rules.files.raw.perf.asl
   suffixes:
     - noRF
   entities:
-    $ref: rules.files.raw.perf.func.entities
+    $ref: rules.files.raw.perf.asl.entities
     modality: optional
