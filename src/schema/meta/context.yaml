@@ -52,12 +52,18 @@ properties:
       ignored:
         description: 'Set of ignored files'
         type: array
+        items:
+          type: string
       datatypes:
         description: 'Data types present in the dataset'
         type: array
+        items:
+          type: string
       modalities:
         description: 'Modalities present in the dataset'
         type: array
+        items:
+          type: string
       subjects:
         description: 'Collections of subjects in dataset'
         type: object
@@ -120,6 +126,8 @@ properties:
   entities:
     description: 'Entities parsed from the current filename'
     type: object
+    additionalProperties:
+      type: string
   datatype:
     description: 'Datatype of current file, for examples, anat'
     type: string
@@ -277,6 +285,8 @@ properties:
     type: object
     additionalProperties:
       type: array
+      items:
+        type: string
   json:
     description: 'Contents of the current JSON file'
     type: object
