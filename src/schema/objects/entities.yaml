@@ -436,7 +436,7 @@ annotation:
   display_name: Annotation
   description: |
     The `annot-<label>` entity can be used to distinguish different annotations
-    of the stimlus data.
+    of the stimulus data.
 
     This entity is only applicable to stimulus files.
   type: string
