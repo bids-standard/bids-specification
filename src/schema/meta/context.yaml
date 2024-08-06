@@ -21,7 +21,6 @@ type: object
 required:
   - schema
   - dataset
-  - subject
   - path
   - size
   - sidecar
