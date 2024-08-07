@@ -51,7 +51,7 @@ SamplesTSVMissing:
     - path == '/dataset_description.json'
     - '"micr" in dataset.modalities'
   checks:
-    - "'samples.tsv' in dataset.files"
+    - exists('samples.tsv', 'dataset')
 
 UnknownVersion:
   issue:

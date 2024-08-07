@@ -9,6 +9,7 @@ EchoTime12DifferenceUnreasonable:
     level: error
   selectors:
     - suffix == "phasediff"
+    - match(extension, '\.nii(\.gz)?$')
   checks:
     - sidecar.EchoTime2 - sidecar.EchoTime1 >= 0.0001
     - sidecar.EchoTime2 - sidecar.EchoTime1 <= 0.01
@@ -22,6 +23,7 @@ FmapFieldmapWithoutMagnitude:
     level: error
   selectors:
     - suffix == "fieldmap"
+    - match(extension, '\.nii(\.gz)?$')
   checks:
     - '"magnitude" in associations'
 
@@ -34,6 +36,7 @@ FmapPhasediffWithoutMagnitude:
     level: warning
   selectors:
     - suffix == "phasediff"
+    - match(extension, '\.nii(\.gz)?$')
   checks:
     - '"magnitude1" in associations'
 

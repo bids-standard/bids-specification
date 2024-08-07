@@ -205,7 +205,7 @@ MEGCoordsystemDigitizedHeadPoints:
     - datatype == "meg"
     - suffix == "coordsystem"
   fields:
-    DigitizedHeadPoints: optional
+    DigitizedHeadPoints__coordsystem: optional
     DigitizedHeadPointsCoordinateSystem: optional
     DigitizedHeadPointsCoordinateUnits: optional
     DigitizedHeadPointsCoordinateSystemDescription:

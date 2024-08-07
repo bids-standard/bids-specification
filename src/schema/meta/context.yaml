@@ -29,9 +29,6 @@ properties:
       dataset_description:
         description: 'Contents of /dataset_description.json'
         type: object
-      files:
-        description: 'List of all files in dataset'
-        type: array
       tree:
         description: 'Tree view of all files in dataset'
         type: object
