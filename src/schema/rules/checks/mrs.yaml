@@ -1,0 +1,29 @@
+---
+MRSNiftiConsistency:
+  issue:
+    code: MRS_NIFTI_CONSISTENCY
+    message: |
+      ResonantNucleus and/or SpectrometerFrequency fields are inconsistent
+      between the NIfTI-MRS header extension and the BIDS sidecar.
+    level: error
+  selectors:
+    - datatype == "mrs"
+    - type(nifti_header.mrs) != "null"
+  checks:
+    - sidecar.ResonantNucleus == nifti_header.mrs.ResonantNucleus
+    - sidecar.SpectrometerFrequency == nifti_header.mrs.SpectrometerFrequency
+
+MRSMatrixSize:
+  issue:
+    code: MRS_MATRIX_SIZE
+    message: |
+      MatrixSize metadata must match NIfTI header field `dim[1:4]`.
+    level: error
+  selectors:
+    - datatype == "mrs"
+    - type(nifti_header) != "null"
+    - type(sidecar.MatrixSize) != "null"
+  checks:
+    - sidecar.MatrixSize[0] == nifti_header.dim[1]
+    - sidecar.MatrixSize[1] == nifti_header.dim[2]
+    - sidecar.MatrixSize[2] == nifti_header.dim[3]

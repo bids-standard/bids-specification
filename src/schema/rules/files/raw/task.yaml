@@ -91,6 +91,16 @@ events__pet:
     reconstruction: optional
     run: optional
 
+events__mrs:
+  $ref: rules.files.raw.task.events
+  datatypes:
+    - mrs
+  entities:
+    $ref: rules.files.raw.task.events.entities
+    reconstruction: optional
+    nucleus: optional
+    volume: optional
+
 timeseries__func:
   $ref: rules.files.raw.task.timeseries
   datatypes:

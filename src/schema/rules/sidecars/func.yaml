@@ -41,6 +41,10 @@ MRIFuncVolumeTiming:
     VolumeTiming:
       level: required
       level_addendum: mutually exclusive with `RepetitionTime`
+      description_addendum: |
+        This field is mutually exclusive with `"DelayTime"`.
+        If defined, this requires acquisition time (TA) be defined via either
+        `"SliceTiming"` or `"AcquisitionDuration"`.
 
 # Timing Parameters
 MRIFuncTimingParameters:
