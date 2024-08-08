@@ -137,7 +137,11 @@ def dereference(namespace, inplace=True):
             except (AttributeError, KeyError):
                 pass
             else:
-                struct[i] = namespace.get(target)
+                value = namespace.get(target)
+                if isinstance(value, list):
+                    struct[i : i + 1] = value
+                else:
+                    struct[i] = value
 
     return namespace
 

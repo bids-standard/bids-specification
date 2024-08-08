@@ -102,7 +102,7 @@ def test_stem_rule():
             "stem": "*",
             "datatypes": ["phenotype"],
             "level": "optional",
-            "extensions": [".tsv", ".json"],
+            "extensions": [[".tsv"], [".json"]],
         }
     )
     assert rules._stem_rule(rule) == {
