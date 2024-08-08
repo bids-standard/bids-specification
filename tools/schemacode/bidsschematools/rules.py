@@ -3,6 +3,8 @@
 This module is currently limited to constructing filename rules from
 ``schema.rules.files``.
 """
+
+import fnmatch
 import re
 import typing as ty
 from collections.abc import Mapping
@@ -126,12 +128,12 @@ def _entity_rule(rule: Mapping, schema: bst.types.Namespace):
     ext_regex = f"(?P<extension>{ext_match})"
 
     return {
-        "regex": "".join(dir_regex + entity_regex + [suffix_regex, ext_regex]),
+        "regex": "".join(dir_regex + entity_regex + [suffix_regex, ext_regex, r"\Z"]),
         "mandatory": False,
     }
 
 
-def _split_inheritance_rules(rule: Mapping) -> ty.List[Mapping]:
+def _split_inheritance_rules(rule: dict) -> ty.List[dict]:
     """Break composite rules into main and sidecar rules
 
     Implements the inheritance principle for file naming.
@@ -149,32 +151,28 @@ def _split_inheritance_rules(rule: Mapping) -> ty.List[Mapping]:
 
     heritable_exts = {".tsv", ".json", ".bval", ".bvec"}
     main_exts = rule_exts - heritable_exts
-    # If a rule only has TSV or JSON files, entities can be
-    # made required
-    if not main_exts:
-        if ".tsv" in rule_exts:
-            main_exts = {".tsv"}
-        elif ".json" in rule_exts:
-            main_exts = {".json"}
-
     sidecar_exts = rule_exts - main_exts
     if not sidecar_exts:
         return [rule]
 
-    sidecar_dtypes = [""] + rule.get("datatypes", [])
-    sidecar_entities = {ent: "optional" for ent in rule["entities"]}
+    rules = []
 
-    main_rule = {**rule, **{"extensions": [list(main_exts)]}}
-    sidecar_rule = {
-        **rule,
-        **{
-            "extensions": [list(sidecar_exts)],
-            "datatypes": sidecar_dtypes,
-            "entities": sidecar_entities,
-        },
-    }
+    # Some rules only address metadata, such as events.tsv or coordsystem.json
+    if main_exts:
+        rules.append({**rule, **{"extensions": [list(main_exts)]}})
 
-    return [main_rule, sidecar_rule]
+    rules.append(
+        {
+            **rule,
+            **{
+                "extensions": [list(sidecar_exts)],
+                "datatypes": [""] + rule.get("datatypes", []),
+                "entities": {ent: "optional" for ent in rule["entities"]},
+            },
+        }
+    )
+
+    return rules
 
 
 def _sanitize_extension(ext: str) -> str:
@@ -184,15 +182,24 @@ def _sanitize_extension(ext: str) -> str:
 
 
 def _stem_rule(rule: bst.types.Namespace):
-    stem_regex = re.escape(rule.stem)
-    ext_match = "|".join(_sanitize_extension(ext) for group in rule.extensions for ext in group)
-    ext_regex = f"(?P<extension>{ext_match})"
+    # translate includes a trailing \Z (end of string) but we expect extensions
+    stem_match = fnmatch.translate(rule.stem)[:-2]
+    stem_regex = f"(?P<stem>{stem_match})"
 
-    return {"regex": stem_regex + ext_regex, "mandatory": rule.level == "required"}
+    dtypes = set(rule.get("datatypes", ()))
+    dir_regex = f"(?P<datatype>{'|'.join(dtypes)})/" if dtypes else ""
+
+    ext_match = "|".join(_sanitize_extension(ext) for group in rule.extensions for ext in group)
+    ext_regex = rf"(?P<extension>{ext_match})\Z"
+
+    return {"regex": dir_regex + stem_regex + ext_regex, "mandatory": rule.level == "required"}
 
 
 def _path_rule(rule: bst.types.Namespace):
-    return {"regex": re.escape(rule.path), "mandatory": rule.level == "required"}
+    path_match = re.escape(rule.path)
+    # Exact path matches may be files or opaque directories
+    # Consider using rules.directories to identify opaque directories
+    return {"regex": rf"(?P<path>{path_match})(?:/.*)?\Z", "mandatory": rule.level == "required"}
 
 
 def regexify_filename_rules(

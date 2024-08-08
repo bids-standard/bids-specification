@@ -34,7 +34,7 @@ derivative_description:
 dataset_description_with_genetics:
   selectors:
     - path == "/dataset_description.json"
-    - intersects(dataset.files, ["/genetic_info.json"])
+    - exists('genetic_info.json', 'dataset')
   fields:
     Genetics: required
 

@@ -1,7 +1,7 @@
 ---
 Participants:
   selectors:
-    - path == "participants.tsv"
+    - path == "/participants.tsv"
   initial_columns:
     - participant_id
   columns:
@@ -20,7 +20,7 @@ Participants:
 
 Samples:
   selectors:
-    - path == "samples.tsv"
+    - path == "/samples.tsv"
   columns:
     sample_id: required
     participant_id: required

@@ -136,18 +136,20 @@ with the object being referenced.
 The following two prototypical examples are presented to clarify the semantics of
 references (the cases in which they are used will be presented later):
 
-1.  In `objects.metadata`:
+1.  In `objects.enums`:
     ```YAML
     _GeneticLevelEnum:
       type: string
       enum:
-        - Genetic
-        - Genomic
-        - Epigenomic
-        - Transcriptomic
-        - Metabolomic
-        - Proteomic
-
+        - $ref: objects.enums.Genetic.value
+        - $ref: objects.enums.Genomic.value
+        - $ref: objects.enums.Epigenomic.value
+        - $ref: objects.enums.Transcriptomic.value
+        - $ref: objects.enums.Metabolomic.value
+        - $ref: objects.enums.Proteomic.value
+    ```
+    and in `objects.metadata`:
+    ```YAML
     GeneticLevel:
       name: GeneticLevel
       display_name: Genetic Level
@@ -156,29 +158,29 @@ references (the cases in which they are used will be presented later):
         Values MUST be one of `"Genetic"`, `"Genomic"`, `"Epigenomic"`,
         `"Transcriptomic"`, `"Metabolomic"`, or `"Proteomic"`.
       anyOf:
-        - $ref: objects.metadata._GeneticLevelEnum
+        - $ref: objects.enums._GeneticLevelEnum
         - type: array
           items:
-            $ref: objects.metadata._GeneticLevelEnum
+            $ref: objects.enums._GeneticLevelEnum
     ```
     Here `_GeneticLevelEnum` is used to describe the valid values of `GeneticLevel`,
-    and the references inside `GeneticLevel.anyOf` indicate that there may be a single
+    (which are in turn references to individual values), and the references inside `GeneticLevel.anyOf` indicate that there may be a single
     such value or a list of values.
 
-1.  In `rules.datatypes.derivatives.common_derivatives`:
+1.  In [`rules.files.deriv.preprocessed_data`](./rules/files/deriv/preprocessed_data.yaml):
     ```YAML
     anat_nonparametric_common:
-      $ref: rules.datatypes.anat.nonparametric
+      $ref: rules.files.raw.anat.nonparametric
       entities:
-        $ref: rules.datatypes.anat.nonparametric.entities
+        $ref: rules.files.raw.anat.nonparametric.entities
         space: optional
         description: optional
     ```
     Here, the derivative datatype rule starts by copying the raw datatype rule
-    `rules.datatypes.anat.nonparametric`.
+    `rules.files.raw.anat.nonparametric`.
     It then *overrides* the `entities` portion of that rule with a new object.
     To *extend* the original `entities`, it again begins
-    by referencing `rules.datatypes.anat.nonparametric.entities`,
+    by referencing `rules.files.raw.anat.nonparametric.entities`,
     and adding the new entities `space` and `description`.
 
 ### Expressions
@@ -213,7 +215,7 @@ We see expressions may contain:
 -   Comparison operators such as `==` (equality) or `in` (subfield exists in field)
 -   Functions such as `intersects()`
 
-In fact, the full list of fields is defined in the `meta.context.context` object,
+In fact, the full list of fields is defined in the `meta.context` object,
 which (currently) contains at the top level:
 
 -   `schema`: access to the schema itself
@@ -229,7 +231,10 @@ which (currently) contains at the top level:
 -   `associations`: associated files, discovered by the inheritance principle
 -   `columns`: the columns in the current TSV file
 -   `json`: the contents of the current JSON file
+-   `gzip`: the contents of the current file GZIP header
 -   `nifti_header`: selected contents of the current NIfTI file's header
+-   `ome`: the contents of the current OME-XML metadata
+-   `tiff`: the contents of the current TIFF file's header
 
 Some of these are strings, while others are nested objects.
 These are to be populated by an *interpreter* of the schema,
@@ -260,11 +265,12 @@ The following functions should be defined by an interpreter:
 | `exists(arg: str \| array, rule: str) -> int`   | Count of files in an array that exist in the dataset. String is array with length 1. Rules include `"bids-uri"`, `"dataset"`, `"subject"` and `"stimuli"`. | `exists(sidecar.IntendedFor, "subject")`               | True if all files in `IntendedFor` exist, relative to the subject directory.   |
 | `index(arg: array, val: any)`                   | Index of first element in an array equal to `val`, `null` if not found                                                                                     | `index(["i", "j", "k"], axis)`                         | The number, from 0-2 corresponding to the string `axis`                        |
 | `intersects(a: array, b: array) -> bool`        | `true` if arguments contain any shared elements                                                                                                            | `intersects(dataset.modalities, ["pet", "mri"])`       | True if either PET or MRI data is found in dataset                             |
+| `allequal(a: array, b: array) -> bool`          | `true` if arrays have the same length and paired elements are equal                                                                                        | `intersects(dataset.modalities, ["pet", "mri"])`       | True if either PET or MRI data is found in dataset                             |
 | `length(arg: array) -> int`                     | Number of elements in an array                                                                                                                             | `length(columns.onset) > 0`                            | True if there is at least one value in the onset column                        |
 | `match(arg: str, pattern: str) -> bool`         | `true` if `arg` matches the regular expression `pattern` (anywhere in string)                                                                              | `match(extension, ".gz$")`                             | True if the file extension ends with `.gz`                                     |
 | `max(arg: array) -> number`                     | The largest non-`n/a` value in an array                                                                                                                    | `max(columns.onset)`                                   | The time of the last onset in an events.tsv file                               |
 | `min(arg: array) -> number`                     | The smallest non-`n/a` value in an array                                                                                                                   | `min(sidecar.SliceTiming) == 0`                        | A check that the onset of the first slice is 0s                                |
-| `sorted(arg: array) -> array`                   | The sorted values of the input array                                                                                                                       | `sorted(sidecar.VolumeTiming) == sidecar.VolumeTiming` | True if `sidecar.VolumeTiming` is sorted                                       |
+| `sorted(arg: array, method: str) -> array`      | The sorted values of the input array; defaults to type-determined sort. If method is "lexical", or "numeric" use lexical or numeric sort.                  | `sorted(sidecar.VolumeTiming) == sidecar.VolumeTiming` | True if `sidecar.VolumeTiming` is sorted                                       |
 | `substr(arg: str, start: int, end: int) -> str` | The portion of the input string spanning from start position to end position                                                                               | `substr(path, 0, length(path) - 3)`                    | `path` with the last three characters dropped                                  |
 | `type(arg: Any) -> str`                         | The name of the type, including `"array"`, `"object"`, `"null"`                                                                                            | `type(datatypes)`                                      | Returns `"array"`                                                              |
 
@@ -289,6 +295,9 @@ Most operations involving `null` simply resolve to `null`:
 | `null / 1`                 | `null` |
 | `match(null, pattern)`     | `null` |
 | `intersects(list, null)`   | `null` |
+| `intersects(null, list)`   | `null` |
+| `allequal(list, null)`     | `null` |
+| `allequal(null, list)`     | `null` |
 | `substr(null, 0, 1)`       | `null` |
 | `substr(str, null, 1)`     | `null` |
 | `substr(str, 0, null)`     | `null` |
@@ -954,7 +963,7 @@ EventsMissing:
     level: warning # could be an error with the proper selectors, I think
   selectors:
     - '"task" in entities'
-    - '!matches(entities.task, "rest")'
+    - '!match(entities.task, "rest")'
     - suffix != "events"
   checks:
     - '"events" in associations'
@@ -1015,3 +1024,11 @@ be found at <https://bids-specification.readthedocs.io/en/latest/schema.json>.
 The JSON version of the schema contains `schema_version` and `bids_version` keys
 that identify the state of both the schema and the specification at the time it was
 compiled.
+
+## Metaschema
+
+The `metaschema.json` file is a meta-schema that uses the JSON Schema language to
+formalize the allowable directories, files, fields and values of the BIDS schema,
+ensuring consistency across the entire schema directory. Validation of the schema is
+incorporated into the CI, so any changes that are inconsistent will be flagged before
+inclusion.
