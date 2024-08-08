@@ -3,19 +3,15 @@ meg:
   suffixes:
     - meg
   extensions:
-    - / # corresponds to BTi/4D data
-    - .ds/
     - .json
-    - .fif
-    - .sqd
-    - .con
-    - .raw
-    - .ave
-    - .mrk
-    - .kdf
-    - .mhd
-    - .trg
+    # / corresponds to BTi/4D data
+    - [/, .ds/, .fif, .sqd, .con, .raw, .kdf]
+    - .ave # mentioned once in the appendix
+    # .raw and .raw.mhd work as a pair
+    - .raw.mhd
+    # .kdf with possible additional files .chn, .trg and _digitizer.txt (see other suffix group below)
     - .chn
+    - .trg
   datatypes:
     - meg
   entities:
@@ -61,8 +57,7 @@ headshape:
   suffixes:
     - headshape
   extensions:
-    - .*
-    - .pos
+    - [.*, .pos]
   datatypes:
     - meg
   entities:
@@ -74,8 +69,7 @@ markers:
   suffixes:
     - markers
   extensions:
-    - .sqd
-    - .mrk
+    - [.sqd, .mrk]
   datatypes:
     - meg
   entities:

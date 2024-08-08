@@ -56,12 +56,22 @@ def test_rule_objects(schema_obj):
         if not type_instances_in_rules:
             continue
 
+        if object_type in ["extensions", "suffixes"]:
+            # Some object types are referenced via their "value" fields in the rules
+            object_values = {obj.value for obj in schema_obj.objects[object_type].values()}
+        else:
+            # But other object types are referenced via their keys
+            object_values = schema_obj.objects[object_type].keys()
+
         for type_instance in type_instances_in_rules:
             path, instance = type_instance
             is_list = True
             if isinstance(instance, Mapping):
                 instance = list(instance)
                 is_list = False
+
+            if object_type == "extensions":
+                instance = [ext for group in instance for ext in group]
 
             for i_use, use in enumerate(instance):
                 if use == "derivatives":
@@ -75,15 +85,6 @@ def test_rule_objects(schema_obj):
                     # Rules may reference sub-dictionaries in metadata fields.
                     # This test can't handle this yet, so skip.
                     continue
-
-                if object_type in ["extensions", "suffixes"]:
-                    # Some object types are referenced via their "value" fields in the rules
-                    object_values = [
-                        value["value"] for value in schema_obj["objects"][object_type].values()
-                    ]
-                else:
-                    # But other object types are referenced via their keys
-                    object_values = list(schema_obj["objects"][object_type].keys())
 
                 # Build a list of items mentioned in rules, but not found in objects.
                 if use not in object_values:

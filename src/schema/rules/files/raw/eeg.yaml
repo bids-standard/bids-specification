@@ -4,13 +4,12 @@ eeg:
     - eeg
   extensions:
     - .json
-    - .edf
+    - [.bdf, .edf, .eeg, .set]
+    # .vhdr, .vmrk, .eeg must work as triplet
     - .vhdr
     - .vmrk
-    - .eeg
-    - .set
+    # .set file with an OPTIONAL .fdt
     - .fdt
-    - .bdf
   datatypes:
     - eeg
   entities:

@@ -657,7 +657,7 @@
           "items": { "pattern": "^[a-z]+$" }
         },
         "stem": { "type": "string" },
-        "extensions": { "type": "array", "items": { "type": "string" } }
+        "extensions": { "type": "array", "items": { "type": "array", "items": { "type": "string" } } }
       },
       "required": ["level", "stem", "extensions"],
       "additionalProperties": false
@@ -674,7 +674,7 @@
           "type": "array",
           "items": { "pattern": "^[a-zA-Z0-9]+$" }
         },
-        "extensions": { "type": "array", "items": { "type": "string" } },
+        "extensions": { "type": "array", "items": { "type": "array", "items": { "type": "string" } } },
         "entities": {
           "type": "object",
           "patternProperties": {

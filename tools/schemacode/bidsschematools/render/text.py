@@ -1,5 +1,7 @@
 """Functions for rendering portions of the schema as text."""
 
+from __future__ import annotations
+
 import logging
 import os
 
@@ -55,14 +57,14 @@ def make_entity_definitions(schema, src_path=None):
     text = ""
     for entity in entity_order:
         entity_info = entity_definitions[entity]
-        entity_text = _make_entity_definition(entity, entity_info)
+        entity_text = _make_entity_definition(entity_info)
         text += "\n" + entity_text
 
     text = text.replace("SPEC_ROOT", utils.get_relpath(src_path))
     return text
 
 
-def _make_entity_definition(entity, entity_info):
+def _make_entity_definition(entity_info):
     """Describe an entity."""
     entity_shorthand = entity_info["name"]
     text = ""
@@ -241,6 +243,7 @@ def make_filename_template(
     src_path=None,
     n_dupes_to_combine=6,
     pdf_format=False,
+    include_legend=True,
     **kwargs,
 ):
     """Create codeblocks containing example filename patterns for a given datatype.
@@ -253,21 +256,28 @@ def make_filename_template(
     dstype : "raw" or "deriv"
         The type of files being rendered; determines if rules are found in rules.files.raw
         or rules.files.deriv
+
     schema : dict
         The schema object, which is a dictionary with nested dictionaries and
         lists stored within it.
+
     src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
+
     n_dupes_to_combine : int
         The minimum number of suffixes/extensions to combine in the template as
         <suffix>/<extension>.
+
     pdf_format : bool, optional
         If True, the filename template will be compiled as a standard markdown code block,
         without any hyperlinks, so that the specification's PDF build will look right.
         If False, the filename template will use HTML and include hyperlinks.
         This works on the website.
         Default is False.
+
+    include_legend : bool, optional
+        If True, the filename template will include a legend below the codeblock.
 
     Other Parameters
     ----------------
@@ -289,10 +299,7 @@ def make_filename_template(
     if not schema:
         schema = load_schema()
 
-    if pdf_format:
-        lt, gt = "<", ">"
-    else:
-        lt, gt = "&lt;", "&gt;"
+    lt, gt = ("<", ">") if pdf_format else ("&lt;", "&gt;")
 
     schema = Namespace(filter_schema(schema.to_dict(), **kwargs))
     suffix_key_table = value_key_table(schema.objects.suffixes)
@@ -301,13 +308,13 @@ def make_filename_template(
     # Parent directories
     sub_string = utils._link_with_html(
         _format_entity(schema.objects.entities.subject, lt, gt),
-        html_path=ENTITIES_PATH + ".html",
+        html_path=f"{ENTITIES_PATH}.html",
         heading="sub",
         pdf_format=pdf_format,
     )
     ses_string = utils._link_with_html(
         _format_entity(schema.objects.entities.session, lt, gt),
-        html_path=ENTITIES_PATH + ".html",
+        html_path=f"{ENTITIES_PATH}.html",
         heading="ses",
         pdf_format=pdf_format,
     )
@@ -322,7 +329,7 @@ def make_filename_template(
     for datatype in sorted(file_groups):
         datatype_string = utils._link_with_html(
             datatype,
-            html_path=GLOSSARY_PATH + ".html",
+            html_path=f"{GLOSSARY_PATH}.html",
             heading=f"{datatype.lower()}-datatypes",
             pdf_format=pdf_format,
         )
@@ -393,37 +400,46 @@ def make_filename_template(
                 ]
 
             # Add extensions
-            extensions = [ext if ext != "*" else ".<extension>" for ext in group.extensions]
-            if len(extensions) >= n_dupes_to_combine:
-                # Combine exts when there are many, but keep JSON separate
-                if ".json" in extensions:
-                    extensions = [".<extension>", ".json"]
+            extensions = []
+            for x in group.extensions:
+                if isinstance(x[0], str):
+                    extensions.append(x[0])
+                if isinstance(x[0], list):
+                    extensions.extend(iter(x[0]))
+            extension_groups = [
+                (
+                    [".<extension>" if ext == "*" else ext]
+                    if isinstance(ext, str)
+                    else ([".<extension>"] if len(ext) >= n_dupes_to_combine else ext)
+                )
+                for ext in extensions
+            ]
+            for ext_group in sorted(extension_groups):
+                ext_headings = []
+                for extension in ext_group:
+                    # The glossary indexes by the extension identifier (niigz instead of .nii.gz),
+                    # but the rules reference the actual suffix string (.nii.gz instead of niigz),
+                    # so we need to look it up.
+                    key = ext_key_table.get(extension)
+                    if key:
+                        ext_headings.append(f"{key.lower()}-extensions")
+                    else:
+                        ext_headings.append("extension-common_principles")
+
+                extensions = utils.combine_extensions(
+                    ext_group,
+                    html_path=GLOSSARY_PATH + ".html",
+                    heading_lst=ext_headings,
+                    pdf_format=pdf_format,
+                )
+                if len(extensions) == 1:
+                    extension = extensions[0]
                 else:
-                    extensions = [".<extension>"]
+                    extension = f"{lt}{'|'.join(extensions)}{gt}"
 
-            ext_headings = []
-            for extension in extensions:
-                # The glossary indexes by the extension identifier (nii_gz instead of .nii.gz),
-                # but the rules reference the actual suffix string (.nii.gz instead of nii_gz),
-                # so we need to look it up.
-                key = ext_key_table.get(extension)
-                if key:
-                    ext_headings.append(f"{key.lower()}-extensions")
-                else:
-                    ext_headings.append("extension-common_principles")
-
-            extensions = utils.combine_extensions(
-                extensions,
-                html_path=GLOSSARY_PATH + ".html",
-                heading_lst=ext_headings,
-                pdf_format=pdf_format,
-            )
-
-            lines.extend(
-                f"\t\t\t{ent_string}_{suffix}{extension}"
-                for suffix in sorted(suffixes)
-                for extension in sorted(extensions)
-            )
+                lines.extend(
+                    f"\t\t\t{ent_string}_{suffix}{extension}" for suffix in sorted(suffixes)
+                )
 
     paragraph = "\n".join(lines)
     if pdf_format:
@@ -434,13 +450,14 @@ def make_filename_template(
         )
 
     codeblock = codeblock.expandtabs(4)
-    codeblock = append_filename_template_legend(codeblock, pdf_format)
+    if include_legend:
+        codeblock = _append_filename_template_legend(codeblock, pdf_format)
     codeblock = codeblock.replace("SPEC_ROOT", utils.get_relpath(src_path))
 
     return codeblock
 
 
-def append_filename_template_legend(text, pdf_format=False):
+def _append_filename_template_legend(text: str, pdf_format=False) -> str:
     """Append a legend to filename templates.
 
     Parameters
@@ -494,13 +511,14 @@ def append_filename_template_legend(text, pdf_format=False):
     return text
 
 
-def define_common_principles(schema, src_path=None):
+def define_common_principles(schema: Namespace, src_path: str | None = None) -> str:
     """Enumerate the common principles defined in the schema.
 
     Parameters
     ----------
-    schema : dict
+    schema :
         The BIDS schema.
+
     src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
@@ -527,13 +545,14 @@ def define_common_principles(schema, src_path=None):
     return string
 
 
-def define_allowed_top_directories(schema, src_path=None) -> str:
+def define_allowed_top_directories(schema: Namespace, src_path: str | None = None) -> str:
     """Create a list of allowed top-level directories with their descriptions.
 
     Parameters
     ----------
     schema : dict
         The BIDS schema.
+
     src_path : str or None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
