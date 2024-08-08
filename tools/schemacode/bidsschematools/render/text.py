@@ -407,9 +407,11 @@ def make_filename_template(
                 if isinstance(x[0], list):
                     extensions.extend(iter(x[0]))
             extension_groups = [
-                [".<extension>" if ext == "*" else ext]
-                if isinstance(ext, str)
-                else ([".<extension>"] if len(ext) >= n_dupes_to_combine else ext)
+                (
+                    [".<extension>" if ext == "*" else ext]
+                    if isinstance(ext, str)
+                    else ([".<extension>"] if len(ext) >= n_dupes_to_combine else ext)
+                )
                 for ext in extensions
             ]
             for ext_group in sorted(extension_groups):
