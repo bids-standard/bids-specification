@@ -671,7 +671,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_suffix_table(["ADC", "TRACE"]) }}
+{{ MACROS___make_suffix_table(["ADC", "expADC", "trace", "FA", "colFA"]) }}
 
 <!--
 This block generates a filename templates.
@@ -700,10 +700,10 @@ In such a case, two files could have the following names:
 The user is free to choose any other label than `singleband` and
 `multiband`, as long as they are consistent across subjects and sessions.
 
-Scanner-generated TRACE and ADC volumes MAY be included using the
-`TRACE` and `ADC` suffixes.
-If TRACE or ADC volume filenames match a diffusion series with all applicable entities,
-such volumes SHOULD be computed from that series.
+Scanner-generated trace-weighted, ADC, exponentiated ADC, and fractional anisotropy (FA and colFA) volumes
+MAY be included using the `trace`, `ADC`, `expADC`, `FA` and `colFA` suffixes, respectively.
+If trace, ADC, expADC, FA, or colFA volume filenames match a diffusion series with all applicable entities,
+such volumes SHOULD have been computed from that series.
 Otherwise, some entity, such as [`acq-<label>`](../appendices/entities.md#acq),
 SHOULD be used to indicate that the files are unrelated.
 
