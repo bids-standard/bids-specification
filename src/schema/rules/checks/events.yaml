@@ -13,7 +13,7 @@ EventsMissing:
     - datatype != "beh"
     - '"task" in entities'
     - '!match(entities.task, "rest")'
-    - '!(suffix in ["events", "beh"])'
+    - '!intersects([suffix], ["events", "beh"])'
     - extension != ".json"
   checks:
     - '"events" in associations'
