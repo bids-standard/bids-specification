@@ -292,9 +292,11 @@ RB1map:
   unit: arbitrary
 S0map:
   value: S0map
-  display_name: Observed signal amplitude (S0) image
+  display_name: Projected baseline signal amplitude (S0) image
   description: |
     In arbitrary units (arbitrary).
+    This represents a model-based estimate of signal intensity
+    in the absence of the contrast under investigation.
     For a multi-echo (typically fMRI) sequence, S0 maps index the baseline signal
     before exponential (T2-star) signal decay.
     In other words: the exponential of the intercept for a linear decay model
@@ -302,6 +304,11 @@ S0map:
     [the tedana documentation](https://tedana.readthedocs.io/en/latest/\
     approach.html#monoexponential-decay-model-fit).
     S0 maps are RECOMMENDED to use this suffix if derived from an ME-FMRI dataset.
+    For a diffusion-weighted sequence,
+    S0 maps represent the model-based estimate of the signal intensity
+    in the absence of any diffusion weighting;
+    in other words, the image intensity at *b*=0
+    as estimated by a diffusion model fit.
 SEM:
   value: SEM
   display_name: Scanning electron microscopy

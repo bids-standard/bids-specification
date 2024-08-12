@@ -44,6 +44,7 @@ ScannerDerivatives:
   suffixes:
     - ADC
     - FA
+    - S0map
     - colFA
     - expADC
     - trace
