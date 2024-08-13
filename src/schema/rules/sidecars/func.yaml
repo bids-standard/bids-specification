@@ -57,10 +57,6 @@ MRIFuncTimingParameters:
         required for sequences that are described with the `VolumeTiming`
         field and that do not have the `SliceTiming` field set to allow for
         accurate calculation of "acquisition time"
-      issue:
-        code: VOLUME_TIMING_MISSING_ACQUISITION_DURATION
-        message: |
-          The field 'VolumeTiming' requires 'AcquisitionDuration' or 'SliceTiming' to be defined.
     DelayAfterTrigger: recommended
 
 # fMRI task information

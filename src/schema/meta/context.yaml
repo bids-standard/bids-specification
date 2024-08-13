@@ -29,9 +29,6 @@ properties:
       dataset_description:
         description: 'Contents of /dataset_description.json'
         type: object
-      files:
-        description: 'List of all files in dataset'
-        type: array
       tree:
         description: 'Tree view of all files in dataset'
         type: object
@@ -209,6 +206,16 @@ properties:
             type: string
           type:
             description: 'Contents of the type column'
+            type: array
+            items:
+              type: string
+          short_channel:
+            description: 'Contents of the short_channel column'
+            type: array
+            items:
+              type: string
+          sampling_frequency:
+            description: 'Contents of the sampling_frequency column'
             type: array
             items:
               type: string
