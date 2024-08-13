@@ -37,7 +37,22 @@ MRIHardware:
     MatrixCoilMode: recommended
     CoilCombinationMethod: recommended
     NumberTransmitCoilActiveElements: optional
-    TablePosition: recommended
+    TablePosition:
+      level: optional
+      level_addendum: recommended if `chunk` entity is present
+
+MRIChunkPosition:
+  selectors:
+    - modality == "mri"
+    - entities.chunk
+    - match(extension, '\.nii(\.gz)?$')
+  fields:
+    TablePosition:
+      level: recommended
+      issue:
+        code: TABLE_POSITION_RECOMMENDED
+        message: |
+          TablePosition is RECOMMENDED if the chunk entity is present.
 
 MRISample:
   selectors:
