@@ -292,7 +292,7 @@ export interface Subjects {
      */
     phenotype?: string[];
     /**
-     * Subjects as determined by sub-*/ directories
+     * Subjects as determined by sub-* directories
      */
     sub_dirs: string[];
 }
@@ -454,7 +454,7 @@ export interface Sessions {
      */
     phenotype?: string[];
     /**
-     * Sessions as determined by ses-*/ directories
+     * Sessions as determined by ses-* directories
      */
     ses_dirs: string[];
     /**
