@@ -403,6 +403,12 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_json_table("json.ieeg.iEEGCoordsystemPositions") }}
 
+`*_coordsystem.json` files SHOULD NOT be duplicated for each data file,
+for example, across multiple tasks.
+The [inheritance principle](../common-principles.md#the-inheritance-principle) MUST
+be used to find the appropriate coordinate system description for a given data file.
+If electrodes are repositioned, it is RECOMMENDED to use multiple sessions to indicate this.
+
 ### Recommended 3D coordinate systems
 
 It is preferred that electrodes are localized in a 3D coordinate system (with

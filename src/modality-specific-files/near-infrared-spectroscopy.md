@@ -427,6 +427,12 @@ A guide for using macros can be found at
 
 {{ MACROS___make_json_table(["json.nirs.AnatomicalLandmark", "json.nirs.AnatomicalLandmarkCoordinateSystemDescriptionRec"]) }}
 
+`*_coordsystem.json` files SHOULD NOT be duplicated for each data file,
+for example, across multiple tasks.
+The [inheritance principle](../common-principles.md#the-inheritance-principle) MUST
+be used to find the appropriate coordinate system description for a given data file.
+If optodes are repositioned, it is RECOMMENDED to use multiple sessions to indicate this.
+
 ### Example `*_coordsystem.json`
 
 ```json

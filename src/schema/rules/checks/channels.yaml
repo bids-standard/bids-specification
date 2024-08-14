@@ -13,3 +13,17 @@ ElectrodeSpecificity:
   checks:
     - '!("run" in entities)'
     - '!("acquisition" in entities)'
+
+CoordsystemSpecificity:
+  issue:
+    code: EXCESSIVE_COORDSYSTEM_SPECIFICITY
+    message: |
+      Task entities detected in coordsystem.tsv.
+      Coordinate systems should generally not vary by task.
+      Consider removing the excess entity.
+    level: warning
+  selectors:
+    - suffix == 'coordsystem'
+    - extension == '.json'
+  checks:
+    - '!("task" in entities)'
