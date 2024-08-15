@@ -234,15 +234,13 @@ In some cases, this principle is enforced in the BIDS validator.
 ## Source vs. raw vs. derived data
 
 BIDS was originally designed to describe and apply consistent naming conventions
-to raw (unprocessed or minimally processed due to file format conversion) data.
+to [raw datasets](./glossary.md#raw-common_principles) (unprocessed or minimally processed due to file format conversion).
 During analysis such data will be transformed and partial as well as final results
 will be saved.
-Derivatives of the raw data (other than products of DICOM to NIfTI conversion)
-MUST be kept separate from the raw data. This way one can protect the raw data
-from accidental changes by file permissions. In addition it is easy to
-distinguish partial results from the raw data and share the latter.
-See [Storage of derived datasets](#storage-of-derived-datasets) for more on
-organizing derivatives.
+[Derivatives](./glossary.md#derivative-common_principles) of the raw data MUST be kept separate from the raw data.
+This way one can protect the raw data from accidental changes by file permissions.
+In addition it is easy to distinguish partial results from the raw data and share the latter.
+See [Storage of derived datasets](#storage-of-derived-datasets) for more on organizing derivatives.
 
 Similar rules apply to source data, which is defined as data
 before harmonization, reconstruction, and/or file format conversion
@@ -340,12 +338,10 @@ field in `dataset_description.json` of each subdirectory of `derivatives` to:
 Derivatives can be stored/distributed in two ways:
 
 1.  Under a `derivatives/` subdirectory in the root of the source BIDS dataset
-    directory to make a clear distinction between raw data and results of data
-    processing.
+    directory to make a clear distinction between raw data and results of data processing.
     A data processing pipeline will typically have a dedicated directory
     under which it stores all of its outputs.
-    Different components of a pipeline can, however, also be stored under different
-    subdirectories.
+    Different components of a pipeline can, however, also be stored under different subdirectories.
     There are few restrictions on the directory names;
     it is RECOMMENDED to use the format `<pipeline>-<variant>` in cases where
     it is anticipated that the same pipeline will output more than one variant
@@ -377,11 +373,10 @@ Derivatives can be stored/distributed in two ways:
     <dataset>/derivatives/spm-preproc/derivatives/spm-stats/sub-0001
     ```
 
-1.  As a standalone dataset independent of the source (raw or derived) BIDS
-    dataset.
-    This way of specifying derivatives is particularly useful when the source
-    dataset is provided with read-only access, for publishing derivatives as
-    independent bodies of work, or for describing derivatives that were created
+1.  As a standalone dataset independent of the source (raw or derived) BIDS dataset.
+    This way of specifying derivatives is particularly useful when the source dataset
+    is provided with read-only access, for publishing derivatives as independent bodies of work,
+    or for describing derivatives that were created
     from more than one source dataset.
     The `sourcedata/` subdirectory MAY be used to include the source dataset(s)
     that were used to generate the derivatives.
