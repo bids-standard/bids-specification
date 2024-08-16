@@ -9,6 +9,7 @@ EchoTime12DifferenceUnreasonable:
     level: error
   selectors:
     - suffix == "phasediff"
+    - match(extension, '\.nii(\.gz)?$')
   checks:
     - sidecar.EchoTime2 - sidecar.EchoTime1 >= 0.0001
     - sidecar.EchoTime2 - sidecar.EchoTime1 <= 0.01
@@ -22,6 +23,7 @@ FmapFieldmapWithoutMagnitude:
     level: error
   selectors:
     - suffix == "fieldmap"
+    - match(extension, '\.nii(\.gz)?$')
   checks:
     - '"magnitude" in associations'
 
@@ -34,6 +36,7 @@ FmapPhasediffWithoutMagnitude:
     level: warning
   selectors:
     - suffix == "phasediff"
+    - match(extension, '\.nii(\.gz)?$')
   checks:
     - '"magnitude1" in associations'
 
@@ -49,3 +52,16 @@ MagnitudeFileWithTooManyDimensions:
     - nifti_header != null
   checks:
     - nifti_header.dim[0] == 3
+
+EPISmallBVals:
+  issue:
+    code: EPI_WITH_BVALS_NEEDS_SMALL_BVALS
+    message: |
+      EPI field maps with b-values should include small (b<100) values.
+    level: error
+  selectors:
+    - datatype == "fmap"
+    - suffix == "epi"
+    - '"bval" in associations'
+  checks:
+    - min(associations.bval.values) < 100

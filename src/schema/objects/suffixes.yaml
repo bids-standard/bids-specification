@@ -6,6 +6,11 @@ TwoPE:
   display_name: 2-photon excitation microscopy
   description: |
     2-photon excitation microscopy imaging data
+ADC:
+  value: ADC
+  display_name: Apparent diffusion coefficient (ADC)
+  description:
+    Apparent diffusion coefficient (ADC) map
 BF:
   value: BF
   display_name: Bright-field microscopy
@@ -460,6 +465,11 @@ TEM:
   display_name: Transmission electron microscopy
   description: |
     Transmission electron microscopy imaging data
+TRACE:
+  value: TRACE
+  display_name: Trace diffusion weighted image
+  description: |
+    Diffusion images proportional to the trace of the diffusion tensor
 UNIT1:
   value: UNIT1
   display_name: Homogeneous (flat) T1-weighted MP2RAGE image
@@ -505,7 +515,7 @@ asllabeling:
   value: asllabeling
   display_name: ASL Labeling Screenshot
   description: |
-    An anonymized screenshot of the planning of the labeling slab/plane
+    A deidentified screenshot of the planning of the labeling slab/plane
     with respect to the imaging slab or slices.
     This screenshot is based on DICOM macro C.8.13.5.14.
 beh:
@@ -607,11 +617,11 @@ headshape:
   description: |
     The 3-D locations of points that describe the head shape and/or electrode
     locations can be digitized and stored in separate files.
-hipCT:
-  value: hipCT
-  display_name: HiP-CT
+XPCT:
+  value: XPCT
+  display_name: X-ray Phase-Contrast Tomography
   description: |
-    Hierarchical Phase-Contrast Tomography imaging data
+    X-ray phase-contrast tomography imaging data
 ieeg:
   value: ieeg
   display_name: Intracranial Electroencephalography
@@ -687,6 +697,25 @@ nirs:
   value: nirs
   display_name: Near Infrared Spectroscopy
   description: Data associated with a Shared Near Infrared Spectroscopy Format file.
+noRF:
+  value: noRF
+  display_name: No Radio Frequency Excitation Scan
+  description: |
+    An MR noise scan often acquired alongside another MR scan.
+
+    These noise scans are acquired by disabling the radio frequency excitation,
+    while maintaining all other parameters from the associated scan.
+    These can be acquired using some other sequence with RF excitation removed
+    or as part of sequences that turns off RF at the beginning or end of a run.
+    For example a `bold` scan where a few volumes are acquired with RF off.
+    There is no consistent DICOM denotation for these scans.
+
+    If multiple sequences with different suffixes but otherwise the same entities have `noRF`
+    sequences, they SHOULD be disambiguated using the modality entity
+    (for example, `mod-bold_noRF.nii.gz` and `mod-cbv_noRF.nii`).
+
+    `noRF` are typically used to estimate properties of the scanner and
+    sequence that are independent from the object being imaged.
 optodes:
   value: optodes
   display_name: Optodes

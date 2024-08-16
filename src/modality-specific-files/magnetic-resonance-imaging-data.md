@@ -160,7 +160,11 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("mri.MRIEchoPlanarImagingAndB0Mapping") }}
+{{ MACROS___make_sidecar_table([
+     "mri.MRIB0FieldIdentifier",
+     "mri.MRIEchoPlanarImagingAndB0FieldSource",
+   ])
+}}
 
 #### Tissue description
 
@@ -573,11 +577,11 @@ sparse sequences.
 
 |          | **`RepetitionTime`** | **`SliceTiming`** | **`AcquisitionDuration`** | **`DelayTime`** | **`VolumeTiming`** |
 | -------- | -------------------- | ----------------- | ------------------------- | --------------- | ------------------ |
-| option A |     \[ X ]           |                   |         \[ ]              |                 |     \[ ]           |
-| option B |      \[ ]            |    \[ X ]         |                           |    \[ ]         |    \[ X ]          |
-| option C |      \[ ]            |                   |        \[ X ]             |    \[ ]         |    \[ X ]          |
-| option D |     \[ X ]           |    \[ X ]         |         \[ ]              |                 |     \[ ]           |
-| option E |     \[ X ]           |                   |         \[ ]              |   \[ X ]        |     \[ ]           |
+| option A | \[ X ]               |                   | \[ ]                      |                 | \[ ]               |
+| option B | \[ ]                 | \[ X ]            |                           | \[ ]            | \[ X ]             |
+| option C | \[ ]                 |                   | \[ X ]                    | \[ ]            | \[ X ]             |
+| option D | \[ X ]               | \[ X ]            | \[ ]                      |                 | \[ ]               |
+| option E | \[ X ]               |                   | \[ ]                      | \[ X ]          | \[ ]               |
 
 **Legend**
 
@@ -656,13 +660,18 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_suffix_table(
-      [
-         "dwi",
-         "sbref",
-      ]
-   )
-}}
+{{ MACROS___make_suffix_table(["dwi", "sbref"]) }}
+
+Additionally, the following suffixes are used for scanner-generated images:
+
+<!--
+This block generates a suffix table.
+The definitions of these fields can be found in
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_suffix_table(["ADC", "TRACE"]) }}
 
 <!--
 This block generates a filename templates.
@@ -691,6 +700,13 @@ In such a case, two files could have the following names:
 The user is free to choose any other label than `singleband` and
 `multiband`, as long as they are consistent across subjects and sessions.
 
+Scanner-generated TRACE and ADC volumes MAY be included using the
+`TRACE` and `ADC` suffixes.
+If TRACE or ADC volume filenames match a diffusion series with all applicable entities,
+such volumes SHOULD be computed from that series.
+Otherwise, some entity, such as [`acq-<label>`](../appendices/entities.md#acq),
+SHOULD be used to indicate that the files are unrelated.
+
 ### REQUIRED gradient orientation information
 
 The REQUIRED gradient orientation information corresponding to a DWI acquisition
@@ -705,7 +721,7 @@ within the `[*_]dwi.bval` and `[*_]dwi.bvec` files) MAY change across DWI runs.
 
 **Gradient orientation file formats**.
 The `[*_]dwi.bval` and `[*_]dwi.bvec` files MUST follow the
-[FSL format](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT/UserGuide#DTIFIT).
+[FSL format](https://fsl.fmrib.ox.ac.uk/fsl/docs/#/diffusion/index?id=diffusion-data-in-fsl).
 
 The `[*_]dwi.bvec` file contains 3 rows with *N* space-delimited floating-point numbers,
 corresponding to the *N* volumes in the corresponding NIfTI file.
@@ -934,7 +950,7 @@ NIfTI headers.
 
 ### `*_asllabeling.*`
 
-An anonymized screenshot of the planning of the labeling slab/plane
+A deidentified screenshot of the planning of the labeling slab/plane
 with respect to the imaging slab or slices.
 This screenshot is based on DICOM macro C.8.13.5.14.
 
@@ -1026,7 +1042,7 @@ imposed on the Dependent fields in column 3. See the [ASL Appendix](../appendice
 form of flowcharts.
 
 | **Source field**         | **Value**    | **Dependent field**  | **Requirements**                                 |
-|--------------------------|--------------|----------------------|--------------------------------------------------|
+| ------------------------ | ------------ | -------------------- | ------------------------------------------------ |
 | MRAcquisitionType        | 2D / 3D      | SliceTiming          | \[X\] / \[\]                                     |
 | LookLocker               | true         | FlipAngle            | \[X\]                                            |
 | ArterialSpinLabelingType | PCASL        | LabelingDuration     | \[X\]                                            |
@@ -1263,6 +1279,7 @@ EPI scans with different phase encoding directions to estimate the distortion
 map corresponding to the nonuniformities of the *B<sub>0</sub>* field.
 These `*_epi.nii[.gz]` - or `*_m0scan.nii[.gz]` for arterial spin labeling perfusion data - files can be 3D or 4D --
 in the latter case, all timepoints share the same scanning parameters.
+Some 4D scans intended for correcting DWIs may have accompanying `*_epi.bval` and `*_epi.bvec` files.
 Examples of software tools using these kinds of images are FSL TOPUP and
 AFNI `3dqwarp`.
 

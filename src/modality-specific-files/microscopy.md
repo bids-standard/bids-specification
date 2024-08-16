@@ -28,7 +28,7 @@ and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_filename_template("raw", datatypes=["micr"], suffixes=["TEM", "SEM", "uCT", "BF", "DF",
-"PC", "DIC", "FLUO", "CONF", "PLI", "CARS", "2PE", "MPE", "SR", "NLO", "OCT", "SPIM", "hipCT"], n_dupes_to_combine=4) }}
+"PC", "DIC", "FLUO", "CONF", "PLI", "CARS", "2PE", "MPE", "SR", "NLO", "OCT", "SPIM", "XPCT"], n_dupes_to_combine=4) }}
 
 Microscopy data MUST be stored in the `micr` directory.
 
@@ -55,7 +55,7 @@ Microscopy raw data MUST be stored in one of the following formats:
 
 -   [OME-TIFF](https://docs.openmicroscopy.org/ome-model/6.1.2/ome-tiff/specification.html#)
     (`.ome.tif` for standard TIFF files or `.ome.btf` for
-    [BigTIFF](https://www.awaresystems.be/imaging/tiff/bigtiff.html) files)
+    [BigTIFF](https://web.archive.org/web/20240706160214/https://www.awaresystems.be/imaging/tiff/bigtiff.html) files)
 
 -   [OME-ZARR/NGFF](https://ngff.openmicroscopy.org/latest/) (`.ome.zarr` directories)
 
@@ -88,7 +88,7 @@ and a guide for using macros can be found at
          "NLO",
          "OCT",
          "SPIM",
-         "hipCT",
+         "XPCT",
       ]
    )
 }}
@@ -434,7 +434,7 @@ sub-02 mus musculus C57BL/6J RRID:IMSR_JAX:000664
         "Description": "name of the strain of the species"
     },
     "strain_rrid": {
-        "Description": "research resource identifier (RRID) of the strain (https://scicrunch.org/resources/data/source/nlx_154697-1/search)"
+        "Description": "research resource identifier (RRID) of the strain (https://rrid.site/data/source/nlx_154697-1/search)"
     }
 }
 ```

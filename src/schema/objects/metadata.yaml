@@ -1104,8 +1104,8 @@ GeneratedBy:
   minItems: 1
   items:
     type: object
-    required_fields: [Name]
-    recommended_fields: [Version]
+    required: [Name]
+    recommended: [Version]
     properties:
       Name:
         name: Name
@@ -1136,7 +1136,7 @@ GeneratedBy:
           used to produce the dataset. Valid keys in this object include `Type`, `Tag` and
           [`URI`][uri] with [string][] values.
         type: object
-        recommended_fields:
+        recommended:
           - Type
           - Tag
           - URI
@@ -1170,7 +1170,7 @@ Genetics:
   description: |
     An object containing information about the genetics descriptor.
   type: object
-  required_fields: [Dataset]
+  required: [Dataset]
   properties:
     Dataset:
       name: Dataset
@@ -1646,7 +1646,7 @@ LabelingLocationDescription:
     Description of the location of the labeling plane (`"CASL"` or `"PCASL"`) or
     the labeling slab (`"PASL"`) that cannot be captured by fields
     `LabelingOrientation` or `LabelingDistance`.
-    May include a link to an anonymized screenshot of the planning of the
+    May include a link to a deidentified screenshot of the planning of the
     labeling slab/plane with respect to the imaging slab or slices
     `*_asllabeling.*`.
     Based on DICOM macro C.8.13.5.14.
@@ -2850,9 +2850,9 @@ SamplePrimaryAntibody:
   display_name: Sample Primary Antibody
   description: |
     Description(s) of the primary antibody used for immunostaining.
-    Either an [RRID](https://scicrunch.org/resources) or the name, supplier and catalog
+    Either an [RRID](https://rrid.site) or the name, supplier and catalog
     number of a commercial antibody.
-    For non-commercial antibodies either an [RRID](https://scicrunch.org/resources) or the
+    For non-commercial antibodies either an [RRID](https://rrid.site) or the
     host-animal and immunogen used (for examples: `"RRID:AB_2122563"` or
     `"Rabbit anti-Human HTR5A Polyclonal Antibody, Invitrogen, Catalog # PA1-2453"`).
     MAY be an array of strings if different antibodies are used in each channel of the file.
@@ -2866,9 +2866,9 @@ SampleSecondaryAntibody:
   display_name: Sample Secondary Antibody
   description: |
     Description(s) of the secondary antibody used for immunostaining.
-    Either an [RRID](https://scicrunch.org/resources) or the name, supplier and catalog
+    Either an [RRID](https://rrid.site) or the name, supplier and catalog
     number of a commercial antibody.
-    For non-commercial antibodies either an [RRID](https://scicrunch.org/resources) or the
+    For non-commercial antibodies either an [RRID](https://rrid.site) or the
     host-animal and immunogen used (for examples: `"RRID:AB_228322"` or
     `"Goat anti-Mouse IgM Secondary Antibody, Invitrogen, Catalog # 31172"`).
     MAY be an array of strings if different antibodies are used in each channel of the file.
@@ -3148,7 +3148,7 @@ SoftwareRRID:
   name: SoftwareRRID
   display_name: SoftwareRRID
   description: |
-    [Research Resource Identifier](https://scicrunch.org/resources) of the
+    [Research Resource Identifier](https://rrid.site) of the
     software that was used to present the stimuli.
     Examples: The RRID for Psychtoolbox is 'SCR_002881',
     and that of PsychoPy is 'SCR_006571'.
@@ -3353,7 +3353,7 @@ StimulusPresentation:
     Object containing key-value pairs related to the software used to present
     the stimuli during the experiment.
   type: object
-  recommended_fields:
+  recommended:
     - OperatingSystem
     - ScreenDistance
     - ScreenRefreshRate
@@ -3561,7 +3561,7 @@ Units:
   name: Units
   display_name: Units
   description: |
-    Measurement units for the associated file.
+    Measurement units for the associated variable.
     SI units in CMIXF formatting are RECOMMENDED
     (see [Units](SPEC_ROOT/common-principles.md#units)).
   type: string

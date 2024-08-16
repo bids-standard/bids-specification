@@ -26,6 +26,10 @@
   result: false
 - expression: intersects(null, [])
   result: false
+- expression: allequal([], null)
+  result: false
+- expression: allequal(null, [])
+  result: false
 - expression: match(null, 'pattern')
   result: null
 - expression: match('string', null)
@@ -106,6 +110,21 @@
   result: null
 - expression: sorted([3, 2, 1])
   result: [1, 2, 3]
+- expression: sorted([1, 2, 5, 10], "lexical")
+  result: [1, 10, 2, 5]
+- expression: sorted(["1", "2", "5", "10"])
+  result: ["1", "10", "2", "5"]
+- expression: sorted(["1", "2", "5", "10"], "numeric")
+  result: ["1", "2", "5", "10"]
+- expression: sorted(["1", "2", "n/a"], "numeric")
+  result: ["1", "2", "n/a"]
+- expression: sorted(["n/a", "2", "1"], "numeric")
+  result: ["n/a", "1", "2"]
+- expression: allequal(sorted([3, 2, 1]), [1, 2, 3])
+  result: true
+# Regression test. Javascript will sort lexically by default.
+- expression: sorted([9, 81, 729, 6561])
+  result: [9, 81, 729, 6561]
 - expression: min([-1, "n/a", 1])
   result: -1
 - expression: max([-1, "n/a", 1])
