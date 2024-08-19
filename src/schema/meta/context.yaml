@@ -292,7 +292,7 @@ properties:
   gzip:
     description: 'Parsed contents of gzip header'
     type: object
-    required: [timestamp, filename]
+    required: [timestamp]
     additionalProperties: false
     properties:
       timestamp:
