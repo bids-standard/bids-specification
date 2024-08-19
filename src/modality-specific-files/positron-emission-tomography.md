@@ -177,7 +177,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("pet.PETTime") }}
 
-We refer to the common principles for the standards for describing dates and timestamps, including possibilities for anonymization (see [Units](../common-principles.md#units)).
+We refer to the common principles for the standards for describing dates and timestamps, including possibilities for deidentification (see [Units](../common-principles.md#units)).
 
 #### Reconstruction
 
