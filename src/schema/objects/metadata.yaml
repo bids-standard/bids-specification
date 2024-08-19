@@ -567,7 +567,9 @@ DeidentificationMethod:
   description: |
     A description of the mechanism or method used to remove the Patient's identity.
     Corresponds to DICOM Tag 0012, 0063 `De-identification Method`.
-  type: string
+  type: array
+  items:
+    type: string
 DeidentificationMethodCodeSequence:
   name: DeidentificationMethodCodeSequence
   display_name: Deidentification Method Code Sequence
