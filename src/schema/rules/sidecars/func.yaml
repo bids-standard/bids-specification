@@ -47,6 +47,7 @@ MRIFuncTimingParameters:
   selectors:
     - datatype == "func"
     - suffix == "bold"
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     NumberOfVolumesDiscardedByScanner: recommended
     NumberOfVolumesDiscardedByUser: recommended
@@ -64,6 +65,7 @@ MRIFuncTaskInformation:
   selectors:
     - datatype == "func"
     - suffix == "bold"
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     Instructions:
       level: recommended
