@@ -386,19 +386,25 @@
           "required": ["common", "deriv", "raw"],
           "additionalProperties": false
         },
+        "json": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/json"
+          }
+        },
         "sidecars": {
           "type": "object",
           "patternProperties": {
             "^derivatives$": {
               "type": "object",
               "properties": {
-                "common_derivatives": { "$ref": "#/definitions/sidecar" }
+                "common_derivatives": { "$ref": "#/definitions/json" }
               },
               "required": ["common_derivatives"],
               "additionalProperties": false
             },
             "^(?!derivatives$)[a-z_]+$": {
-              "$ref": "#/definitions/sidecar"
+              "$ref": "#/definitions/json"
             },
             "additionalProperties": false
           },
@@ -476,6 +482,7 @@
       "required": [
         "entities",
         "files",
+	"json",
         "sidecars",
         "tabular_data",
         "common_principles",
@@ -586,7 +593,7 @@
         }
       }
     },
-    "sidecar": {
+    "json": {
       "type": "object",
       "patternProperties": {
         "^[a-zA-Z0-9_]+$": {
