@@ -9,6 +9,7 @@
 MRIHardware:
   selectors:
     - modality == "mri"
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     Manufacturer:
       level: recommended
@@ -57,6 +58,7 @@ MRIChunkPosition:
 MRISample:
   selectors:
     - modality == "mri"
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     BodyPart:
       level: optional
@@ -69,12 +71,14 @@ MRIScannerHardwareASL:
     - datatype == "perf"
     - suffix == "asl"
     - intersects([suffix], ["asl", "m0scan"])
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     MagneticFieldStrength: required
 
 MRISequenceSpecifics:
   selectors:
     - modality == "mri"
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     PulseSequenceType: recommended
     ScanningSequence: recommended
@@ -105,6 +109,7 @@ PETMRISequenceSpecifics:
   selectors:
     - modality == "mri"
     - intersects(dataset.modalities, ["pet"])
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     NonlinearGradientCorrection: required
 
@@ -112,6 +117,7 @@ ASLMRISequenceSpecifics:
   selectors:
     - datatype == "perf"
     - suffix == "asl"
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     MRAcquisitionType: required
 
@@ -147,6 +153,7 @@ SpoilingGradient:
 MRISpatialEncoding:
   selectors:
     - modality == "mri"
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     NumberShots: recommended
     ParallelReductionFactorInPlane: recommended
@@ -164,6 +171,7 @@ PhaseEncodingDirectionRec:
   selectors:
     - modality == "mri"
     - suffix != "epi"
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     PhaseEncodingDirection:
       level: recommended
@@ -201,26 +209,23 @@ PhaseEncodingDirectionReq:
 MRITimingParameters:
   selectors:
     - modality == "mri"
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     EchoTime:
       level: recommended
       level_addendum: |
         required if corresponding fieldmap data is present,
         or the data comes from a multi-echo sequence or Arterial Spin Labeling.
-      issue:
-        code: ECHO_TIME_NOT_DEFINED
-        message: |
-          You must define 'EchoTime' for this file. 'EchoTime' is the echo time (TE)
-          for the acquisition, specified in seconds. Corresponds to DICOM Tag
-          0018, 0081 Echo Time (please note that the DICOM term is in milliseconds
-          not seconds). The data type number may apply to files from any MRI modality
-          concerned with a single value for this field, or to the files in a file
-          collection where the value of this field is iterated using the echo entity.
-          The data type array provides a value for each volume in a 4D dataset and
-          should only be used when the volume timing is critical for interpretation
-          of the data, such as in ASL or variable echo time fMRI sequences.
     InversionTime: recommended
     DwellTime: recommended
+
+EchoTimeRequiredASL:
+  selectors:
+    - modality == "mri"
+    - datatype == "perf"
+    - match(extension, "^\.nii(\.gz)?$")
+  fields:
+    EchoTime: required
 
 SliceTimingMRI:
   selectors:
@@ -240,7 +245,6 @@ SliceTimingASL:
     - intersects([suffix], ["asl", "m0scan"])
     - sidecar.MRAcquisitionType == "2D"
   fields:
-    EchoTime: required
     SliceTiming:
       level: required
       issue:
@@ -260,16 +264,10 @@ SliceTimingASL:
           final entry in the `SliceTiming` list is the time of acquisition of slice 0.
           Without this parameter slice time correction will not be possible.
 
-# This is technically for sparse sequences only, but I don't know how to encode that.
-# SliceTimingSparse:
-#    selectors:
-#    - modality == "mri"
-#    fields:
-#        SliceTiming: required
-
 MRIRFandContrast:
   selectors:
     - modality == "mri"
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     NegativeContrast: optional
 
@@ -307,6 +305,7 @@ MRIFlipAngleLookLockerTrue:
 MRISliceAcceleration:
   selectors:
     - modality == "mri"
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     MultibandAccelerationFactor: recommended
 
@@ -314,6 +313,7 @@ MRIAnatomicalLandmarks:
   selectors:
     - datatype == "anat"
     - intersects(dataset.datatypes, ["meg"])
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     AnatomicalLandmarkCoordinates__mri: recommended
 
@@ -328,12 +328,14 @@ MRIEchoPlanarImagingAndB0FieldSource:
   selectors:
     - intersects(datatype, ['dwi', 'func', 'perf'])
     - intersects(dataset.datatypes, ['fmap'])
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     B0FieldSource: recommended
 
 MRIInstitutionInformation:
   selectors:
     - modality == "mri"
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     InstitutionName:
       level: recommended

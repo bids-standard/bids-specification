@@ -10,12 +10,14 @@
 EntitiesTaskMetadata:
   selectors:
     - '"task" in entities'
+    - suffix != 'events'
   fields:
     TaskName: recommended
 
 EntitiesCeMetadata:
   selectors:
     - '"ce" in entities'
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     ContrastBolusIngredient: optional
 
@@ -30,24 +32,28 @@ EntitiesStainMetadata:
 EntitiesEchoMetadata:
   selectors:
     - '"echo" in entities'
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     EchoTime: required
 
 EntitiesFlipMetadata:
   selectors:
     - '"flip" in entities'
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     FlipAngle: required
 
 EntitiesInvMetadata:
   selectors:
     - '"inv" in entities'
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     InversionTime: required
 
 EntitiesMTMetadata:
   selectors:
     - '"mt" in entities'
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     MTState: required
 

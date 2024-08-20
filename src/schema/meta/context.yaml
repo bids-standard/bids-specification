@@ -155,7 +155,7 @@ properties:
       events:
         description: 'Events file'
         type: object
-        required: [path, onset]
+        required: [path]
         additionalProperties: false
         properties:
           path:
@@ -169,7 +169,7 @@ properties:
       aslcontext:
         description: 'ASL context file'
         type: object
-        required: [path, n_rows, volume_type]
+        required: [path, n_rows]
         additionalProperties: false
         properties:
           path:
@@ -248,7 +248,7 @@ properties:
       channels:
         description: 'Channels file'
         type: object
-        required: [path, type]
+        required: [path]
         additionalProperties: false
         properties:
           path:
@@ -292,7 +292,7 @@ properties:
   gzip:
     description: 'Parsed contents of gzip header'
     type: object
-    required: [timestamp, filename]
+    required: [timestamp]
     additionalProperties: false
     properties:
       timestamp:
