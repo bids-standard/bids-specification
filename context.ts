@@ -130,7 +130,7 @@ export interface Aslcontext {
     /**
      * Contents of the volume_type column
      */
-    volume_type: string[];
+    volume_type?: string[];
 }
 
 /**
@@ -192,7 +192,7 @@ export interface Channels {
     /**
      * Contents of the type column
      */
-    type: string[];
+    type?: string[];
 }
 
 /**
@@ -212,7 +212,7 @@ export interface Events {
     /**
      * Contents of the onset column
      */
-    onset: string[];
+    onset?: string[];
     /**
      * Path to associated events file
      */
@@ -308,7 +308,7 @@ export interface Gzip {
     /**
      * Filename
      */
-    filename: string;
+    filename?: string;
     /**
      * Modification time, unix timestamp
      */
