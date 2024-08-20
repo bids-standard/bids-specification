@@ -68,6 +68,7 @@
         "versions": {
           "type": "array",
           "items": {
+            "type": "string",
             "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
           }
         }
@@ -470,7 +471,7 @@
               "properties": {
                 "datatypes": {
                   "type": "array",
-                  "items": { "pattern": "^[a-z]+$" }
+                  "items": { "type": "string", "pattern": "^[a-z]+$" }
                 }
               },
               "required": ["datatypes"],
@@ -661,7 +662,7 @@
         "level": { "enum": ["optional", "recommended", "required"] },
         "datatypes": {
           "type": "array",
-          "items": { "pattern": "^[a-z]+$" }
+          "items": { "type": "string", "pattern": "^[a-z]+$" }
         },
         "stem": { "type": "string" },
         "extensions": { "type": "array", "items": { "type": "string" } }
@@ -675,11 +676,11 @@
         "level": { "enum": ["optional", "recommended", "required"] },
         "datatypes": {
           "type": "array",
-          "items": { "pattern": "^[a-z]+$" }
+          "items": { "type": "string", "pattern": "^[a-z]+$" }
         },
         "suffixes": {
           "type": "array",
-          "items": { "pattern": "^[a-zA-Z0-9]+$" }
+          "items": { "type": "string", "pattern": "^[a-zA-Z0-9]+$" }
         },
         "extensions": { "type": "array", "items": { "type": "string" } },
         "entities": {
