@@ -769,9 +769,7 @@ export interface Metaschema {
        * via the `patternProperty` "^[a-z]+$".
        */
       [k: string]: {
-        datatypes: {
-          [k: string]: unknown;
-        }[];
+        datatypes: string[];
       };
     };
   };
