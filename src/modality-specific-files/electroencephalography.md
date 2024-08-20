@@ -390,7 +390,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("eeg.EEGCoordsystemGeneral") }}
+{{ MACROS___make_json_table("json.eeg.EEGCoordsystemGeneral") }}
 
 Fields relating to the EEG electrode positions:
 
@@ -402,7 +402,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("eeg.EEGCoordsystemPositions") }}
+{{ MACROS___make_json_table("json.eeg.EEGCoordsystemPositions") }}
 
 Fields relating to the position of fiducials measured during an EEG session/run:
 
@@ -414,7 +414,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("eeg.EEGCoordsystemFiducials") }}
+{{ MACROS___make_json_table("json.eeg.EEGCoordsystemFiducials") }}
 
 Fields relating to the position of anatomical landmark measured during an EEG session/run:
 
@@ -426,7 +426,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table(["eeg.EEGCoordsystemLandmark", "eeg.EEGCoordsystemLandmarkDescriptionRec"]) }}
+{{ MACROS___make_json_table(["json.eeg.EEGCoordsystemLandmark", "json.eeg.EEGCoordsystemLandmarkDescriptionRec"]) }}
 
 If the position of anatomical landmarks is measured using the same system or
 device used to measure electrode positions, and if thereby the anatomical

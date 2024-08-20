@@ -386,7 +386,7 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 
-{{ MACROS___make_sidecar_table("nirs.CoordsystemGeneral") }}
+{{ MACROS___make_json_table("json.nirs.CoordsystemGeneral") }}
 
 Fields relating to the NIRS optode positions:
 
@@ -399,7 +399,7 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 
-{{ MACROS___make_sidecar_table(["nirs.CoordinateSystem", "nirs.CoordinateSystemDescriptionRec"]) }}
+{{ MACROS___make_json_table(["json.nirs.CoordinateSystem", "json.nirs.CoordinateSystemDescriptionRec"]) }}
 
 Fields relating to the position of fiducials measured during an NIRS session/run:
 
@@ -412,7 +412,7 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 
-{{ MACROS___make_sidecar_table(["nirs.Fiducials", "nirs.FiducialsCoordinateSystemDescriptionRec"]) }}
+{{ MACROS___make_json_table(["json.nirs.Fiducials", "json.nirs.FiducialsCoordinateSystemDescriptionRec"]) }}
 
 Fields relating to the position of anatomical landmarks measured during an NIRS session/run:
 
@@ -425,7 +425,7 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 
-{{ MACROS___make_sidecar_table(["nirs.AnatomicalLandmark", "nirs.AnatomicalLandmarkCoordinateSystemDescriptionRec"]) }}
+{{ MACROS___make_json_table(["json.nirs.AnatomicalLandmark", "json.nirs.AnatomicalLandmarkCoordinateSystemDescriptionRec"]) }}
 
 ### Example `*_coordsystem.json`
 

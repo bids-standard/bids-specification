@@ -40,14 +40,20 @@ age:
 
     It is recommended to tag participant ages that are 89 or higher as 89+,
     for privacy purposes.
-  type: number
-  unit: year
+  definition: {
+    "LongName": "Subject age",
+    "Description": "Subject age in postnatal years",
+    "Units": "year",
+  }
 cardiac:
   name: cardiac
   display_name: Cardiac measurement
   description: |
     continuous pulse measurement
-  type: number
+  definition: {
+    "Description": "continuous pulse measurement",
+    "Units": "mV"
+  }
 channel:
   name: channel
   display_name: Channel
@@ -185,6 +191,27 @@ group__channel:
 handedness:
   name: handedness
   display_name: Subject handedness
+  definition: {
+    "LongName": "Subject handedness",
+    "Description": "String value indicating one of \"left\", \"right\", or \"ambidextrous\".",
+    "Levels": {
+      "left": "Left-handed",
+      "l": "Left-handed",
+      "L": "Left-handed",
+      "LEFT": "Left-handed",
+      "Left": "Left-handed",
+      "right": "Right-handed",
+      "r": "Right-handed",
+      "R": "Right-handed",
+      "RIGHT": "Right-handed",
+      "Right": "Right-handed",
+      "ambidextrous": "Ambidextrous",
+      "a": "Ambidextrous",
+      "A": "Ambidextrous",
+      "AMBIDEXTROUS": "Ambidextrous",
+      "Ambidextrous": "Ambidextrous",
+    }
+  }
   description: |
     String value indicating one of "left", "right", "ambidextrous".
 
@@ -194,25 +221,6 @@ handedness:
 
     For "ambidextrous", use one of these values: `ambidextrous`, `a`, `A`, `AMBIDEXTROUS`,
     `Ambidextrous`.
-  type: string
-  # TODO: Add definitions for these values. (perhaps don't specify)
-  enum:
-    - left
-    - l
-    - L
-    - LEFT
-    - Left
-    - right
-    - r
-    - R
-    - RIGHT
-    - Right
-    - ambidextrous
-    - a
-    - A
-    - AMBIDEXTROUS
-    - Ambidextrous
-    - n/a
 hemisphere:
   name: hemisphere
   display_name: Electrode hemisphere
@@ -368,7 +376,9 @@ pathology:
     When different from `healthy`, pathology SHOULD be specified.
     The pathology may be specified in either `samples.tsv` or
     `sessions.tsv`, depending on whether the pathology changes over time.
-  type: string
+  definition: {
+    "Description": "Description of the pathology of the sample or type of control."
+  }
 participant_id:
   name: participant_id
   display_name: Participant ID
@@ -429,7 +439,10 @@ respiratory:
   display_name: Respiratory measurement
   description: |
     continuous breathing measurement
-  type: number
+  definition: {
+    "Description": "continuous measurements by respiration belt",
+    "Units": "mV"
+  }
 response_time:
   name: response_time
   display_name: Response time
@@ -494,25 +507,27 @@ sex:
     For "female", use one of these values: `female`, `f`, `F`, `FEMALE`, `Female`.
 
     For "other", use one of these values: `other`, `o`, `O`, `OTHER`, `Other`.
-  type: string
-  # TODO: Add definitions for these values. (perhaps don't specify)
-  enum:
-    - male
-    - m
-    - M
-    - MALE
-    - Male
-    - female
-    - f
-    - F
-    - FEMALE
-    - Female
-    - other
-    - o
-    - O
-    - OTHER
-    - Other
-    - n/a
+  definition: {
+    "LongName": "sex",
+    "Description": "String value indicating phenotypical sex.",
+    "Levels": {
+      "F": "Female",
+      "FEMALE": "Female",
+      "Female": "Female",
+      "f": "Female",
+      "female": "Female",
+      "M": "Male",
+      "MALE": "Male",
+      "Male": "Male",
+      "m": "Male",
+      "male": "Male",
+      "O": "Other",
+      "OTHER": "Other",
+      "Other": "Other",
+      "o": "Other",
+      "other": "Other",
+    }
+  }
 short_channel:
   name: short_channel
   display_name: Short Channel
@@ -568,7 +583,10 @@ species:
     (for example, `homo sapiens`, `mus musculus`, `rattus norvegicus`).
     For backwards compatibility, if `species` is absent, the participant is assumed to be
     `homo sapiens`.
-  type: string
+  definition: {
+    "Description":
+      "binomial species name from the NCBI Taxonomy (https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi)"
+  }
 status:
   name: status
   display_name: Channel status
@@ -609,13 +627,15 @@ strain:
   description: |
     For species different from `homo sapiens`, string value indicating
     the strain of the species, for example: `C57BL/6J`.
-  type: string
+  definition: {
+    "Description": "name of the strain of the species"
+  }
 strain_rrid:
   name: strain_rrid
   display_name: Strain RRID
   description: |
     For species different from `homo sapiens`, research resource identifier
-    ([RRID](https://scicrunch.org/resources/data/source/nlx_154697-1/search))
+    ([RRID](https://rrid.site/data/source/nlx_154697-1/search))
     of the strain of the species, for example: `RRID:IMSR_JAX:000664`.
   type: string
   format: rrid
@@ -649,7 +669,10 @@ trigger:
   display_name: Trigger
   description: |
     continuous measurement of the scanner trigger signal
-  type: number
+  definition: {
+    "Description": "continuous measurement of the scanner trigger signal",
+    "Units": "arbitrary"
+  }
 # type column in channels.tsv files
 type__channels:
   name: type
