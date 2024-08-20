@@ -555,9 +555,7 @@ export interface Metaschema {
       expression: string;
       result: unknown;
     }[];
-    versions: {
-      [k: string]: unknown;
-    }[];
+    versions: string[];
     [k: string]: unknown;
   };
   objects: {
@@ -818,9 +816,7 @@ export interface PathRule {
 }
 export interface StemRule {
   level: "optional" | "recommended" | "required";
-  datatypes?: {
-    [k: string]: unknown;
-  }[];
+  datatypes?: string[];
   stem: string;
   extensions: string[];
 }
@@ -833,12 +829,8 @@ export interface StemRule {
  */
 export interface SuffixRule {
   level?: "optional" | "recommended" | "required";
-  datatypes?: {
-    [k: string]: unknown;
-  }[];
-  suffixes: {
-    [k: string]: unknown;
-  }[];
+  datatypes?: string[];
+  suffixes: string[];
   extensions: string[];
   entities: {
     /**
