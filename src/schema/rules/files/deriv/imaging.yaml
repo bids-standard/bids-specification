@@ -4,7 +4,7 @@ anat_parametric_volumetric:
   entities:
     $ref: rules.files.raw.anat.parametric.entities
     space: optional
-		volspace: optional
+    volspace: optional
     resolution: optional
     density: optional
     description: optional
@@ -14,7 +14,7 @@ anat_nonparametric_volumetric:
   entities:
     $ref: rules.files.raw.anat.nonparametric.entities
     space: optional
-		volspace: optional
+    volspace: optional
     resolution: optional
     density: optional
     description: optional
@@ -24,7 +24,7 @@ dwi_volumetric:
   entities:
     $ref: rules.files.raw.dwi.dwi.entities
     space: optional
-		volspace: optional
+    volspace: optional
     resolution: optional
     density: optional
     description: optional
@@ -34,7 +34,7 @@ dwi_isotropic:
   entities:
     $ref: rules.files.raw.dwi.isotropic.entities
     space: optional
-		volspace: optional
+    volspace: optional
     resolution: optional
     density: optional
     description: optional
@@ -44,7 +44,7 @@ func_volumetric:
   entities:
     $ref: rules.files.raw.func.func.entities
     space: optional
-		volspace: optional
+    volspace: optional
     resolution: optional
     density: optional
     description: optional
@@ -56,7 +56,7 @@ anat_parametric_mask:
   entities:
     $ref: rules.files.raw.anat.parametric.entities
     space: optional
-		volspace: optional
+    volspace: optional
     resolution: optional
     density: optional
     label: optional
@@ -69,7 +69,7 @@ anat_nonparametric_mask:
   entities:
     $ref: rules.files.raw.anat.nonparametric.entities
     space: optional
-		volspace: optional
+    volspace: optional
     resolution: optional
     density: optional
     label: optional
@@ -82,7 +82,7 @@ dwi_mask:
   entities:
     $ref: rules.files.raw.dwi.dwi.entities
     space: optional
-		volspace: optional
+    volspace: optional
     resolution: optional
     density: optional
     label: optional
@@ -95,7 +95,7 @@ func_mask:
   entities:
     $ref: rules.files.raw.func.func.entities
     space: optional
-		volspace: optional
+    volspace: optional
     resolution: optional
     density: optional
     label: optional
@@ -108,7 +108,7 @@ anat_parametric_discrete_segmentation:
   entities:
     $ref: rules.files.raw.anat.parametric.entities
     space: optional
-		volspace: optional
+    volspace: optional
     resolution: optional
     density: optional
     description: optional
@@ -125,7 +125,7 @@ anat_nonparametric_discrete_segmentation:
   entities:
     $ref: rules.files.raw.anat.nonparametric.entities
     space: optional
-		volspace: optional
+    volspace: optional
     resolution: optional
     density: optional
     description: optional
@@ -142,7 +142,7 @@ func_discrete_segmentation:
   entities:
     $ref: rules.files.raw.func.func.entities
     space: optional
-		volspace: optional
+    volspace: optional
     resolution: optional
     density: optional
     description: optional
@@ -154,7 +154,7 @@ dwi_discrete_segmentation:
   entities:
     $ref: rules.files.raw.dwi.dwi.entities
     space: optional
-		volspace: optional
+    volspace: optional
     resolution: optional
     density: optional
     description: optional
@@ -166,7 +166,7 @@ anat_parametric_probabilistic_segmentation:
   entities:
     $ref: rules.files.raw.anat.parametric.entities
     space: optional
-		volspace: optional
+    volspace: optional
     resolution: optional
     density: optional
     label: optional
@@ -179,7 +179,7 @@ anat_nonparametric_probabilistic_segmentation:
   entities:
     $ref: rules.files.raw.anat.nonparametric.entities
     space: optional
-		volspace: optional
+    volspace: optional
     resolution: optional
     density: optional
     label: optional
@@ -192,7 +192,7 @@ func_probabilistic_segmentation:
   entities:
     $ref: rules.files.raw.func.func.entities
     space: optional
-		volspace: optional
+    volspace: optional
     resolution: optional
     density: optional
     label: optional
@@ -205,7 +205,7 @@ dwi_probabilistic_segmentation:
   entities:
     $ref: rules.files.raw.dwi.dwi.entities
     space: optional
-		volspace: optional
+    volspace: optional
     resolution: optional
     density: optional
     label: optional
@@ -224,7 +224,7 @@ anat_parametic_discrete_surface:
     $ref: rules.files.raw.anat.parametric.entities
     hemisphere: optional
     space: optional
-		volspace: optional
+    volspace: optional
     resolution: optional
     density: optional
     description: optional
@@ -242,7 +242,7 @@ anat_nonparametic_discrete_surface:
     $ref: rules.files.raw.anat.nonparametric.entities
     hemisphere: optional
     space: optional
-		volspace: optional
+    volspace: optional
     resolution: optional
     density: optional
     description: optional
