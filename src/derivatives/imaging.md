@@ -11,7 +11,7 @@ Template:
 <pipeline_name>/
     sub-<label>/
         <datatype>/
-            <source_entities>[_space-<space>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
+            <source_entities>[_space-<space>][_volspace-<space>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
 ```
 
 Volumetric preprocessing does not modify the number of dimensions, and so
@@ -113,11 +113,11 @@ A guide for using macros can be found at
     "pipeline1": {
         "sub-001": {
             "func": {
-                "sub-001_task-rest_run-1_space-fsLR_res-1_den-10k_bold.dtseries.nii": "",
-                "sub-001_task-rest_run-1_space-fsLR_res-1_den-41k_bold.dtseries.nii": "",
-                "sub-001_task-rest_run-1_space-fsLR_res-2_den-10k_bold.dtseries.nii": "",
-                "sub-001_task-rest_run-1_space-fsLR_res-2_den-41k_bold.dtseries.nii": "",
-                "sub-001_task-rest_run-1_space-fsLR_bold.json": "",
+                "sub-001_task-rest_run-1_space-fsLR_volspace-MNI152NLin6Asym_res-1_den-10k_bold.dtseries.nii": "",
+                "sub-001_task-rest_run-1_space-fsLR_volspace-MNI152NLin6Asym_res-1_den-41k_bold.dtseries.nii": "",
+                "sub-001_task-rest_run-1_space-fsLR_volspace-MNI152NLin6Asym_res-2_den-10k_bold.dtseries.nii": "",
+                "sub-001_task-rest_run-1_space-fsLR_volspace-MNI152NLin6Asym_res-2_den-41k_bold.dtseries.nii": "",
+                "sub-001_task-rest_run-1_space-fsLR_volspace-MNI152NLin6Asym_bold.json": "",
                 },
             },
         }
@@ -265,7 +265,7 @@ Template:
 <pipeline_name>/
     sub-<label>/
         anat|func|dwi/
-            <source_entities>[_space-<space>][_seg-<label>][_res-<label>][_den-<label>]_dseg.nii.gz
+            <source_entities>[_space-<space>][_seg-<label>][_res-<label>]_dseg.nii.gz
 ```
 
 Example:
@@ -329,7 +329,7 @@ Template:
 <pipeline_name>/
     sub-<label>/
         func|anat|dwi/
-            <source_entities>[_space-<space>][_seg-<label>][_res-<label>][_den-<label>][_label-<label>]_probseg.nii.gz
+            <source_entities>[_space-<space>][_seg-<label>][_res-<label>][_label-<label>]_probseg.nii.gz
 ```
 
 Example:
@@ -403,7 +403,8 @@ Template:
 <pipeline_name>/
     sub-<label>/
         anat/
-            <source_entities>[_hemi-{L|R}][_space-<space>][_seg-<label>][_res-<label>][_den-<label>]_dseg.{label.gii|dlabel.nii}
+            <source_entities>[_hemi-{L|R}][_space-<space>][_seg-<label>][_den-<label>]_dseg.{label.gii}
+            <source_entities>[_hemi-{L|R}][_space-<space>][_volspace-<space>][_seg-<label>][_res-<label>][_den-<label>]_dseg.{dlabel.nii}
 ```
 
 The [`hemi-<label>`](../appendices/entities.md#hemi) entity is REQUIRED for GIFTI files storing information about

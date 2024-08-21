@@ -422,3 +422,12 @@ tracksys:
     may be longer and more human readable.
   type: string
   format: label
+volspace:
+  name: volspace
+  display_name: Volumetric Space
+  description: |
+    The `volspace-<label>` entity can be used to indicate the spatial reference to which
+    the volumetric component of a combined surface-volume file (for example, a CIFTI file)
+    has been aligned.
+    The `<label>` MUST be taken from one of the modality specific lists in the
+    [Coordinate Systems Appendix](SPEC_ROOT/appendices/coordinate-systems.md).
