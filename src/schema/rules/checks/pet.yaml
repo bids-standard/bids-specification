@@ -1,3 +1,4 @@
+---
 # Rules for PET data that are not defined in tables.
 ---
 
@@ -14,4 +15,3 @@ PETFrameConsistency:
     - sidecar.FrameDuration
   checks:
     - length(sidecar.FrameDuration) == nifti_header.dim[4]
-    
