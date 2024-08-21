@@ -3690,7 +3690,7 @@ WaterSuppressionTechnique:
     The name of the pulse sequence used for water suppression (for example, `"CHESS"`, `"VAPOR"`).
   type: string
 Weighted:
-  name: Weighted 
+  name: Weighted
   display_name: Weighted Matrix
   description: Todo
   type: boolean

@@ -18,7 +18,7 @@ Relmat:
     MeasurePoint: optional
     MeasureUnits: optional
     NodeIndicesFile: optional
-    Serialization: 
+    Serialization:
       level: optional
       level_addendum: required if `StorageFormat` is "UpperTriangular" or "LowerTriangular"
     Sources: optional
