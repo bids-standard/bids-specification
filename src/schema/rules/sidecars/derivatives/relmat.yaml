@@ -1,6 +1,6 @@
 Relmat:
   selectors:
-    - suffix == 'relmat'
+    - suffix == "relmat"
   fields:
     Directed: required
     RelationshipMeasure: required

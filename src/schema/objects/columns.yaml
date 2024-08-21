@@ -344,6 +344,16 @@ name__segmentations:
   description: |
     The unique label name.
   type: string
+node_file:
+  name: node_file
+  display_name: Node Filename
+  description: Todo
+  type: uri
+node_index:
+  name: node_index
+  display_name: Node Index
+  description: Todo
+  type: number
 notch:
   name: notch
   display_name: Notch frequencies
