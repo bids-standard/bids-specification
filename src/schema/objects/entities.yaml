@@ -431,3 +431,5 @@ volspace:
     has been aligned.
     The `<label>` MUST be taken from one of the modality specific lists in the
     [Coordinate Systems Appendix](SPEC_ROOT/appendices/coordinate-systems.md).
+  type: string
+  format: label
