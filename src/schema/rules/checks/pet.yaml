@@ -1,6 +1,5 @@
 ---
 # Rules for PET data that are not defined in tables.
----
 
 PETFrameConsistency:
   issue:
