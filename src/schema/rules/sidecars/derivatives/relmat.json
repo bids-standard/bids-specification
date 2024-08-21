@@ -1,0 +1,24 @@
+Relmat:
+  selectors:
+    - suffix == 'relmat'
+  fields:
+    Directed: required
+    RelationshipMeasure: required
+    Software: required
+    ValidDiagonal: required
+    Weighted: required
+    Axes: recommended
+    NodeFiles: recommended
+    NonNegative: recommended
+    AdditionalMatrixDimensions: optional
+    AdditionalMatrixDimensionDescription: optional
+    AdditionalMatrixDimensionsUnits: optional
+    Description: optional
+    MeasureDescription: optional
+    MeasurePoint: optional
+    MeasureUnits: optional
+    NodeIndicesFile: optional
+    Serialization: 
+      level: optional
+      level_addendum: required if `StorageFormat` is "UpperTriangular" or "LowerTriangular"
+    Sources: optional

@@ -1,0 +1,14 @@
+---
+NodeIndices:
+  selectors:
+    suffix == "nodeindices"
+  columns:
+    matrix_index: required
+    node_file: required
+    node_index: required
+  additional_columns: allowed
+  initial_columns:
+    - matrix_index
+    - node_file
+    - node_index
+  index_columns: [matrix_index]

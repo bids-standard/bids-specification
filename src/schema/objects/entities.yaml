@@ -152,6 +152,15 @@ label:
     This entity is only applicable to derivative data.
   type: string
   format: label
+measure:
+  name: meas
+  display_name: Measure
+  description: |
+    Todo
+
+    This entity is only applicable to derivative data.
+  type: string
+  format: label
 modality:
   name: mod
   display_name: Corresponding Modality
