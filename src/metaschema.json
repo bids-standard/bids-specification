@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$schema": "https://json-schema.org/draft/2020-12/schema#",
   "type": "object",
   "properties": {
     "meta": {
@@ -12,10 +12,7 @@
               "type": "object",
               "properties": {
                 "selectors": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
+                  "$ref": "#/definitions/ruleTypes/expressionList"
                 },
                 "target": {
                   "type": "object",
@@ -51,7 +48,8 @@
           "additionalProperties": false
         },
         "context": {
-          "type": "object"
+          "description": "The context object is itself JSON schema",
+          "$ref": "https://json-schema.org/draft/2020-12/schema#"
         },
         "expression_tests": {
           "type": "array",
@@ -70,6 +68,7 @@
         "versions": {
           "type": "array",
           "items": {
+            "type": "string",
             "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
           }
         }
@@ -83,44 +82,30 @@
           "type": "object",
           "patternProperties": {
             "^[a-zA-Z0-9_]+$": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string"
+              "allOf": [
+                {
+                  "anyOf": [
+                    { "$ref": "#/definitions/termTypes/JSONSchema" },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "definition": { "type": "object" }
+                      },
+                      "required": ["definition"]
+                    }
+                  ]
                 },
-                "display_name": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                },
-                "type": {
-                  "$ref": "http://json-schema.org/draft-07/schema#/properties/type"
-                },
-                "format": {
-                  "type": "string"
-                },
-                "pattern": {
-                  "type": "string"
-                },
-                "unit": {
-                  "type": "string"
-                },
-                "enum": {
-                  "type": "array"
-                },
-                "anyOf": {
-                  "$ref": "http://json-schema.org/draft-07/schema#/properties/anyOf"
-                },
-                "maximum": {
-                  "type": "number"
-                },
-                "minimum": {
-                  "type": "number"
+                { "$ref": "#/definitions/termTypes/general" },
+                { "$ref": "#/definitions/termTypes/nameValue" },
+                {
+                  "type": "object",
+                  "properties": {
+                    "format": { "$ref": "#/definitions/enums/formats" },
+                    "unit": { "type": "string" }
+                  }
                 }
-              },
-              "required": ["name", "display_name"],
-              "additionalProperties": false
+              ],
+              "unevaluatedProperties": false
             }
           },
           "additionalProperties": false
@@ -129,17 +114,8 @@
           "type": "object",
           "patternProperties": {
             "^[a-zA-Z0-9_]+$": {
-              "type": "object",
-              "properties": {
-                "display_name": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                }
-              },
-              "required": ["display_name", "description"],
-              "additionalProperties": false
+              "$ref": "#/definitions/termTypes/general",
+              "unevaluatedProperties": false
             },
             "additionalProperties": false
           }
@@ -148,20 +124,11 @@
           "type": "object",
           "patternProperties": {
             "^[a-zA-Z0-9_]+$": {
-              "type": "object",
-              "properties": {
-                "value": {
-                  "type": "string"
-                },
-                "display_name": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                }
-              },
-              "required": ["value", "display_name", "description"],
-              "additionalProperties": false
+              "allOf": [
+                { "$ref": "#/definitions/termTypes/general" },
+                { "$ref": "#/definitions/termTypes/value" }
+              ],
+              "unevaluatedProperties": false
             }
           },
           "additionalProperties": false
@@ -170,35 +137,19 @@
           "type": "object",
           "patternProperties": {
             "^[a-zA-Z0-9_]+$": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string"
-                },
-                "display_name": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                },
-                "type": {
-                  "$ref": "http://json-schema.org/draft-07/schema#/properties/type"
-                },
-                "format": {
-                  "type": "string"
-                },
-                "enum": {
-                  "type": "array"
+              "allOf": [
+                { "$ref": "#/definitions/termTypes/JSONSchema" },
+                { "$ref": "#/definitions/termTypes/general" },
+                { "$ref": "#/definitions/termTypes/nameValue" },
+                {
+                  "type": "object",
+                  "properties": {
+                    "format": { "$ref": "#/definitions/enums/formats" }
+                  },
+                  "required": ["format"]
                 }
-              },
-              "required": [
-                "name",
-                "display_name",
-                "description",
-                "type",
-                "format"
               ],
-              "additionalProperties": false
+              "unevaluatedProperties": false
             }
           },
           "additionalProperties": false
@@ -206,30 +157,18 @@
         "enums": {
           "type": "object",
           "patternProperties": {
-            "^[a-zA-Z0-9_-]+$": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "$ref": "http://json-schema.org/draft-07/schema#/properties/type"
-                },
-                "enum": {
-                  "type": "array"
-                },
-                "value": {
-                  "type": "string"
-                },
-                "display_name": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                },
-                "tags": {
-                  "type": "array"
-                }
-              },
-              "additionalProperties": false
-            }
+            "^[a-zA-Z0-9][a-zA-Z0-9_-]*$": {
+              "allOf": [
+                { "$ref": "#/definitions/termTypes/general" },
+                { "$ref": "#/definitions/termTypes/value" },
+                { "properties": { "tags": { "type": "array" } } }
+              ]
+            },
+            "^_[a-zA-Z0-9_-]+$": {
+              "$ref": "https://json-schema.org/draft/2020-12/schema#",
+              "required": ["type", "enum"]
+            },
+            "unevaluatedProperties": false
           },
           "additionalProperties": false
         },
@@ -237,20 +176,11 @@
           "type": "object",
           "patternProperties": {
             "^[a-zA-Z0-9_]+$": {
-              "type": "object",
-              "properties": {
-                "value": {
-                  "type": "string"
-                },
-                "display_name": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                }
-              },
-              "required": ["display_name", "description", "value"],
-              "additionalProperties": false
+              "allOf": [
+                { "$ref": "#/definitions/termTypes/general" },
+                { "$ref": "#/definitions/termTypes/value" }
+              ],
+              "unevaluatedProperties": false
             }
           },
           "additionalProperties": false
@@ -259,66 +189,56 @@
           "type": "object",
           "patternProperties": {
             "^[a-zA-Z0-9_]+$": {
-              "type": "object",
-              "properties": {
-                "display_name": {
-                  "type": "string"
-                },
-                "file_type": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
+              "allOf": [
+                { "$ref": "#/definitions/termTypes/general" },
+                {
+                  "properties": { "file_type": { "type": "string" } },
+                  "required": ["file_type"]
                 }
-              },
-              "required": ["display_name", "file_type", "description"],
-              "additionalProperties": false
+              ],
+              "unevaluatedProperties": false
             }
           },
           "additionalProperties": false
         },
         "formats": {
           "type": "object",
-          "patternProperties": {
-            "^[a-zA-Z0-9_]+$": {
-              "type": "object",
-              "properties": {
-                "display_name": {
-                  "type": "string"
+          "propertyNames": { "$ref": "#/definitions/enums/formats" },
+          "additionalProperties": {
+            "allOf": [
+              { "$ref": "#/definitions/termTypes/general" },
+              {
+                "type": "object",
+                "properties": {
+                  "pattern": {
+                    "$ref": "https://json-schema.org/draft/2020-12/meta/validation#/properties/pattern"
+                  }
                 },
-                "description": {
-                  "type": "string"
-                },
-                "pattern": {
-                  "format": "regex"
-                }
-              },
-              "required": ["display_name", "description", "pattern"],
-              "additionalProperties": false
-            }
-          },
-          "additionalProperties": false
+                "required": ["pattern"]
+              }
+            ],
+            "unevaluatedProperties": false
+          }
         },
         "metadata": {
           "type": "object",
           "patternProperties": {
             "^[a-zA-Z0-9_]+$": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string"
-                },
-                "display_name": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                },
-                "type": {
-                  "$ref": "http://json-schema.org/draft-07/schema#/properties/type"
+              "allOf": [
+                { "$ref": "#/definitions/termTypes/JSONSchema" },
+                { "$ref": "#/definitions/termTypes/general" },
+                { "$ref": "#/definitions/termTypes/nameValue" },
+                {
+                  "type": "object",
+                  "properties": {
+                    "recommended": {
+                      "$ref": "https://json-schema.org/draft/2020-12/meta/validation#/properties/required"
+                    },
+                    "unit": { "type": "string" }
+                  }
                 }
-              },
-              "required": ["name", "display_name", "description"]
+              ],
+              "unevaluatedProperties": false
             }
           },
           "additionalProperties": false
@@ -327,17 +247,8 @@
           "type": "object",
           "patternProperties": {
             "^[a-z]+$": {
-              "type": "object",
-              "properties": {
-                "display_name": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                }
-              },
-              "required": ["display_name", "description"],
-              "additionalProperties": false
+              "$ref": "#/definitions/termTypes/general",
+              "unevaluatedProperties": false
             }
           },
           "additionalProperties": false
@@ -346,19 +257,22 @@
           "type": "object",
           "patternProperties": {
             "^[a-zA-Z0-9_]+$": {
-              "type": "object",
-              "properties": {
-                "value": {
-                  "type": "string"
-                },
-                "display_name": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
+              "allOf": [
+                { "$ref": "#/definitions/termTypes/general" },
+                { "$ref": "#/definitions/termTypes/value" },
+                {
+                  "type": "object",
+                  "properties": {
+                    "unit": { "type": "string" },
+                    "anyOf": {
+                      "$ref": "https://json-schema.org/draft/2020-12/meta/applicator#/properties/anyOf"
+                    },
+                    "maxValue": { "type": "number" },
+                    "minValue": { "type": "number" }
+                  }
                 }
-              },
-              "required": ["value", "display_name", "description"]
+              ],
+              "unevaluatedProperties": false
             },
             "additionalProperties": false
           }
@@ -391,26 +305,19 @@
                 "^[a-zA-Z0-9_]+$": {
                   "type": "object",
                   "properties": {
-                    "issues": {
-                      "type": "object",
-                      "properties": {
-                        "code": { "type": "string" },
-                        "message": { "type": "string" },
-                        "level": { "enum": ["error", "warning"] }
-                      },
-                      "required": ["code", "message", "level"],
-                      "additionalProperties": false
+                    "issue": {
+                      "allOf": [{ "$ref": "#/definitions/ruleTypes/issue" }],
+                      "required": ["level"]
                     },
                     "selectors": {
-                      "type": "array",
-                      "items": { "type": "string" }
+                      "$ref": "#/definitions/ruleTypes/expressionList"
                     },
                     "checks": {
-                      "type": "array",
-                      "items": { "type": "string" }
+                      "$ref": "#/definitions/ruleTypes/expressionList"
                     }
                   },
-                  "required": ["checks", "selectors"]
+                  "required": ["checks", "selectors", "issue"],
+                  "additionalProperties": false
                 }
               }
             }
@@ -454,18 +361,10 @@
             "deriv": {
               "type": "object",
               "patternProperties": {
-                "^[a-zA-Z0-9_]+$": {
+                "^[a-z_]+$": {
                   "type": "object",
                   "patternProperties": {
-                    "^[a-zA-Z0-9_]+$": {
-                      "type": "object",
-                      "properties": {
-                        "entities": {
-                          "$ref": "#/definitions/entities"
-                        }
-                      }
-                    },
-                    "additionalProperties": false
+                    "^[a-zA-Z0-9_]+$": { "$ref": "#/definitions/suffixRule" }
                   }
                 }
               },
@@ -488,19 +387,25 @@
           "required": ["common", "deriv", "raw"],
           "additionalProperties": false
         },
+        "json": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/json"
+          }
+        },
         "sidecars": {
           "type": "object",
           "patternProperties": {
             "^derivatives$": {
               "type": "object",
               "properties": {
-                "common_derivatives": { "$ref": "#/definitions/sidecar" }
+                "common_derivatives": { "$ref": "#/definitions/json" }
               },
               "required": ["common_derivatives"],
               "additionalProperties": false
             },
             "^(?!derivatives$)[a-z_]+$": {
-              "$ref": "#/definitions/sidecar"
+              "$ref": "#/definitions/json"
             },
             "additionalProperties": false
           },
@@ -549,10 +454,7 @@
                 "message": { "type": "string" },
                 "level": { "enum": ["error", "warning"] },
                 "selectors": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
+                  "$ref": "#/definitions/ruleTypes/expressionList"
                 }
               },
               "required": ["message", "level"],
@@ -569,7 +471,7 @@
               "properties": {
                 "datatypes": {
                   "type": "array",
-                  "items": { "pattern": "^[a-z]+$" }
+                  "items": { "type": "string", "pattern": "^[a-z]+$" }
                 }
               },
               "required": ["datatypes"],
@@ -581,6 +483,7 @@
       "required": [
         "entities",
         "files",
+	"json",
         "sidecars",
         "tabular_data",
         "common_principles",
@@ -596,77 +499,113 @@
     },
     "schema_version": {
       "type": "string"
-    },
-    "README": {
-      "type": "string"
     }
   },
   "required": ["meta", "objects", "rules", "bids_version", "schema_version"],
   "additionalProperties": false,
   "definitions": {
-    "entities": {
-      "type": "object",
-      "patternProperties": {
-        "^[a-z]+$": {
-          "anyOf": [
-            { "enum": ["optional", "required"] },
-            {
-              "type": "object",
-              "properties": {
-                "level": { "enum": ["optional", "required"] },
-                "enum": {
-                  "type": "array",
-                  "items": { "type": "string" }
-                }
-              },
-              "required": ["level", "enum"]
-            }
-          ]
-        }
+    "enums": {
+      "formats": {
+        "$comment": "Formats whose patterns are defined in BIDS schema",
+        "type": "string",
+        "enum": [
+          "index",
+          "label",
+          "boolean",
+          "integer",
+          "number",
+          "string",
+          "hed_version",
+          "bids_uri",
+          "dataset_relative",
+          "date",
+          "datetime",
+          "file_relative",
+          "participant_relative",
+          "rrid",
+          "stimuli_relative",
+          "time",
+          "unit",
+          "uri"
+        ]
       },
-      "additionalProperties": false
+      "requirement_level": {
+        "$comment": "Requirement levels that may apply to terms",
+        "type": "string",
+        "enum": ["required", "recommended", "optional", "deprecated"]
+      }
     },
-    "sidecar": {
+    "termTypes": {
+      "general": {
+        "type": "object",
+        "properties": {
+          "display_name": { "type": "string" },
+          "description": { "type": "string" }
+        },
+        "required": ["display_name", "description"]
+      },
+      "JSONSchema": {
+        "$ref": "https://json-schema.org/draft/2020-12/schema#",
+        "anyOf": [{ "required": ["type"] }, { "required": ["anyOf"] }]
+      },
+      "nameValue": {
+        "type": "object",
+        "properties": { "name": { "type": "string" } },
+        "required": ["name"]
+      },
+      "value": {
+        "type": "object",
+        "properties": { "value": { "type": "string" } },
+        "required": ["value"]
+      }
+    },
+    "ruleTypes": {
+      "field": {
+        "anyOf": [
+          { "$ref": "#/definitions/enums/requirement_level" },
+          {
+            "type": "object",
+            "properties": {
+              "level": { "$ref": "#/definitions/enums/requirement_level" },
+              "level_addendum": { "type": "string" },
+              "description_addendum": { "type": "string" },
+              "issue": { "$ref": "#/definitions/ruleTypes/issue" }
+            },
+            "required": ["level"],
+            "additionalProperties": false
+          },
+          { "type": "string", "pattern": "recommended.*" }
+        ]
+      },
+      "issue": {
+        "type": "object",
+        "properties": {
+          "code": { "type": "string" },
+          "message": { "type": "string" },
+          "level": { "enum": ["error", "warning"] }
+        },
+        "required": ["code", "message"],
+        "additionalProperties": false
+      },
+      "expressionList": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "json": {
       "type": "object",
       "patternProperties": {
         "^[a-zA-Z0-9_]+$": {
           "type": "object",
           "properties": {
-            "selectors": {
-              "type": "array",
-              "items": { "type": "string" }
-            },
+            "selectors": { "$ref": "#/definitions/ruleTypes/expressionList" },
             "fields": {
               "type": "object",
               "patternProperties": {
                 "^[a-zA-Z0-9_]+$": {
-                  "anyOf": [
-                    {
-                      "enum": [
-                        "recommended",
-                        "optional",
-                        "required",
-                        "deprecated"
-                      ]
-                    },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "level": {
-                          "enum": [
-                            "recommended",
-                            "optional",
-                            "required",
-                            "deprecated"
-                          ]
-                        },
-                        "level_addendum": { "type": "string" }
-                      },
-                      "required": ["level", "level_addendum"],
-                      "additionalProperties": false
-                    },
-                    { "pattern": "recommended.*" }
-                  ]
+                  "$ref": "#/definitions/ruleTypes/field"
                 }
               },
               "additionalProperties": false
@@ -684,42 +623,12 @@
         "^[a-zA-Z0-9_]+$": {
           "type": "object",
           "properties": {
-            "selectors": {
-              "type": "array",
-              "items": { "type": "string" }
-            },
+            "selectors": { "$ref": "#/definitions/ruleTypes/expressionList" },
             "columns": {
               "type": "object",
               "patternProperties": {
                 "^[a-zA-Z0-9_]+$": {
-                  "anyOf": [
-                    {
-                      "enum": [
-                        "recommended",
-                        "optional",
-                        "required",
-                        "deprecated"
-                      ]
-                    },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "level": {
-                          "enum": [
-                            "recommended",
-                            "optional",
-                            "required",
-                            "deprecated"
-                          ]
-                        },
-                        "level_addendum": { "type": "string" },
-                        "description_addendum": { "type": "string" }
-                      },
-                      "required": ["level"],
-                      "additionalProperties": false
-                    },
-                    { "pattern": "recommended.*" }
-                  ]
+                  "$ref": "#/definitions/ruleTypes/field"
                 }
               },
               "additionalProperties": false
@@ -751,6 +660,10 @@
       "type": "object",
       "properties": {
         "level": { "enum": ["optional", "recommended", "required"] },
+        "datatypes": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^[a-z]+$" }
+        },
         "stem": { "type": "string" },
         "extensions": { "type": "array", "items": { "type": "string" } }
       },
@@ -763,14 +676,35 @@
         "level": { "enum": ["optional", "recommended", "required"] },
         "datatypes": {
           "type": "array",
-          "items": { "pattern": "^[a-z]+$" }
+          "items": { "type": "string", "pattern": "^[a-z]+$" }
         },
         "suffixes": {
           "type": "array",
-          "items": { "pattern": "^[a-zA-Z0-9]+$" }
+          "items": { "type": "string", "pattern": "^[a-zA-Z0-9]+$" }
         },
         "extensions": { "type": "array", "items": { "type": "string" } },
-        "entities": { "$ref": "#/definitions/entities" }
+        "entities": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-z]+$": {
+              "anyOf": [
+                { "enum": ["optional", "required"] },
+                {
+                  "type": "object",
+                  "properties": {
+                    "level": { "enum": ["optional", "required"] },
+                    "enum": {
+                      "type": "array",
+                      "items": { "type": "string" }
+                    }
+                  },
+                  "required": ["level", "enum"]
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
       },
       "required": ["suffixes", "extensions", "entities"],
       "additionalProperties": false

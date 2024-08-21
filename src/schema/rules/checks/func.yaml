@@ -40,7 +40,9 @@ RepetitionTimeMismatch:
     - type(sidecar.RepetitionTime) != "null"
     - type(nifti_header) != "null"
   checks:
-    - sidecar.RepetitionTime == nifti_header.pixdim[4]
+    # Implement millisecond rounding via AND
+    - sidecar.RepetitionTime - nifti_header.pixdim[4] < 0.001
+    - sidecar.RepetitionTime - nifti_header.pixdim[4] > -0.001
 
 # 54
 BoldNot4d:
@@ -127,3 +129,14 @@ SliceTimingAcquisitionDurationMutex:
   checks:
     - type(sidecar.AcquisitionDuration) == "null"
     - type(sidecar.DelayTime) == "null"
+
+VolumeTimingMissingAcquisitionDuration:
+  issue:
+    code: VOLUME_TIMING_MISSING_ACQUISITION_DURATION
+    message: |
+      The field 'VolumeTiming' requires 'AcquisitionDuration' or 'SliceTiming' to be defined.
+    level: error
+  selectors:
+    - type(sidecar.VolumeTiming) != "null"
+  checks:
+    - '"SliceTiming" in sidecar || "AcquisitionDuration" in sidecar'

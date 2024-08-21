@@ -175,17 +175,19 @@ def make_glossary(schema, src_path=None):
         elif obj["type"] == "format":
             text += f"**Regular expression**: `{obj_def['pattern']}`\n\n"
 
-        keys_to_drop = ["description", "display_name", "name", "value", "pattern"]
-        if "enum" in obj_def.keys():
-            allowed_values = []
-            keys_to_drop.append("enum")
-            for value in obj_def["enum"]:
-                if isinstance(value, str):
-                    allowed_values.append(value)
-                else:
-                    allowed_values.append(value["name"])
-
-            text += f"**Allowed values**: `{'`, `'.join(allowed_values)}`\n\n"
+        keys_to_drop = [
+            "description",
+            "display_name",
+            "name",
+            "value",
+            "pattern",
+            "enum",
+            "definition",
+        ]
+        levels = list(obj_def.get("enum", []) or obj_def.get("definition", {}).get("Levels", {}))
+        if levels:
+            levels = [level["name"] if isinstance(level, dict) else level for level in levels]
+            text += f"**Allowed values**: `{'`, `'.join(levels)}`\n\n"
 
         text += f"**Description**:\n{obj_desc}\n\n"
 
