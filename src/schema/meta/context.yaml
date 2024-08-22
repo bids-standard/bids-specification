@@ -18,6 +18,14 @@
 #
 ---
 type: object
+required:
+  - schema
+  - dataset
+  - path
+  - size
+  - sidecar
+  - associations
+additionalProperties: false
 properties:
   schema:
     description: 'The BIDS specification schema'
@@ -25,6 +33,14 @@ properties:
   dataset:
     description: 'Properties and contents of the entire dataset'
     type: object
+    required:
+      - dataset_description
+      - tree
+      - ignored
+      - datatypes
+      - modalities
+      - subjects
+    additionalProperties: false
     properties:
       dataset_description:
         description: 'Contents of /dataset_description.json'
@@ -35,15 +51,24 @@ properties:
       ignored:
         description: 'Set of ignored files'
         type: array
+        items:
+          type: string
       datatypes:
         description: 'Data types present in the dataset'
         type: array
+        items:
+          type: string
       modalities:
         description: 'Modalities present in the dataset'
         type: array
+        items:
+          type: string
       subjects:
         description: 'Collections of subjects in dataset'
         type: object
+        required:
+          - sub_dirs
+        additionalProperties: false
         properties:
           sub_dirs:
             description: 'Subjects as determined by sub-*/ directories'
@@ -63,10 +88,16 @@ properties:
   subject:
     description: 'Properties and contents of the current subject'
     type: object
+    required:
+      - sessions
+    additionalProperties: false
     properties:
       sessions:
         description: 'Collections of sessions in subject'
         type: object
+        required:
+          - ses_dirs
+        additionalProperties: false
         properties:
           ses_dirs:
             description: 'Sessions as determined by ses-*/ directories'
@@ -94,6 +125,8 @@ properties:
   entities:
     description: 'Entities parsed from the current filename'
     type: object
+    additionalProperties:
+      type: string
   datatype:
     description: 'Datatype of current file, for examples, anat'
     type: string
@@ -117,10 +150,13 @@ properties:
     description: |
       Associated files, indexed by suffix, selected according to the inheritance principle
     type: object
+    additionalProperties: false
     properties:
       events:
         description: 'Events file'
         type: object
+        required: [path]
+        additionalProperties: false
         properties:
           path:
             description: 'Path to associated events file'
@@ -133,6 +169,8 @@ properties:
       aslcontext:
         description: 'ASL context file'
         type: object
+        required: [path, n_rows]
+        additionalProperties: false
         properties:
           path:
             description: 'Path to associated aslcontext file'
@@ -148,6 +186,8 @@ properties:
       m0scan:
         description: 'M0 scan file'
         type: object
+        required: [path]
+        additionalProperties: false
         properties:
           path:
             description: 'Path to associated M0 scan file'
@@ -155,6 +195,8 @@ properties:
       magnitude:
         description: 'Magnitude image file'
         type: object
+        required: [path]
+        additionalProperties: false
         properties:
           path:
             description: 'Path to associated magnitude file'
@@ -162,6 +204,8 @@ properties:
       magnitude1:
         description: 'Magnitude1 image file'
         type: object
+        required: [path]
+        additionalProperties: false
         properties:
           path:
             description: 'Path to associated magnitude1 file'
@@ -169,6 +213,8 @@ properties:
       bval:
         description: 'B value file'
         type: object
+        required: [path, n_cols, n_rows, values]
+        additionalProperties: false
         properties:
           path:
             description: 'Path to associated bval file'
@@ -187,6 +233,8 @@ properties:
       bvec:
         description: 'B vector file'
         type: object
+        required: [path, n_cols, n_rows]
+        additionalProperties: false
         properties:
           path:
             description: 'Path to associated bvec file'
@@ -200,6 +248,8 @@ properties:
       channels:
         description: 'Channels file'
         type: object
+        required: [path]
+        additionalProperties: false
         properties:
           path:
             description: 'Path to associated channels file'
@@ -209,9 +259,21 @@ properties:
             type: array
             items:
               type: string
+          short_channel:
+            description: 'Contents of the short_channel column'
+            type: array
+            items:
+              type: string
+          sampling_frequency:
+            description: 'Contents of the sampling_frequency column'
+            type: array
+            items:
+              type: string
       coordsystem:
         description: 'Coordinate system file'
         type: object
+        required: [path]
+        additionalProperties: false
         properties:
           path:
             description: 'Path to associated coordsystem file'
@@ -222,12 +284,16 @@ properties:
     type: object
     additionalProperties:
       type: array
+      items:
+        type: string
   json:
     description: 'Contents of the current JSON file'
     type: object
   gzip:
     description: 'Parsed contents of gzip header'
     type: object
+    required: [timestamp]
+    additionalProperties: false
     properties:
       timestamp:
         description: 'Modification time, unix timestamp'
@@ -242,11 +308,23 @@ properties:
     name: 'NIfTI Header'
     description: 'Parsed contents of NIfTI header referenced elsewhere in schema.'
     type: object
+    required:
+      - dim_info
+      - dim
+      - pixdim
+      - shape
+      - voxel_sizes
+      - xyzt_units
+      - qform_code
+      - sform_code
+    additionalProperties: false
     properties:
       dim_info:
         name: 'Dimension Information'
         description: 'Metadata about dimensions data.'
         type: object
+        required: [freq, phase, slice]
+        additionalProperties: false
         properties:
           freq:
             name: 'Frequency'
@@ -296,6 +374,8 @@ properties:
         name: 'XYZT Units'
         description: 'Units of pixdim[1..4]'
         type: object
+        required: [xyz, t]
+        additionalProperties: false
         properties:
           xyz:
             name: 'XYZ Units'
@@ -333,6 +413,7 @@ properties:
     name: 'Open Microscopy Environment fields'
     description: 'Parsed contents of OME-XML header, which may be found in OME-TIFF or OME-ZARR files'
     type: object
+    additionalProperties: false
     properties:
       PhysicalSizeX:
         name: 'PhysicalSizeX'
@@ -362,6 +443,9 @@ properties:
     name: 'TIFF'
     description: 'TIFF file format metadata'
     type: object
+    required:
+      - version
+    additionalProperties: false
     properties:
       version:
         name: 'Version'

@@ -10,9 +10,10 @@ EventsMissing:
     level: warning # could be an error with the proper selectors, I think
   selectors:
     - dataset.dataset_description.DatasetType == "raw"
+    - datatype != "beh"
     - '"task" in entities'
     - '!match(entities.task, "rest")'
-    - suffix != "events"
+    - '!intersects([suffix], ["events", "beh"])'
     - extension != ".json"
   checks:
     - '"events" in associations'
