@@ -69,6 +69,16 @@ def _format_entity(entity, name, pattern, level, directory=False):
     if directory and entity not in DIR_ENTITIES:
         return ""
 
+    # For a directory entity appearing in a filename, match the value
+    # found in the directory name
+    # Note that this makes it impossible to do something like
+    # /ses-1_dwi.json instead of /sub-??/ses-1/sub-??_ses-1_dwi.json
+    # We'll assume this is a negligible use case.
+    # It is possible to create such a regular expression, but doing it
+    # in a piecewise fashion is difficult.
+    if not directory and entity in DIR_ENTITIES:
+        return rf"(?({entity}){name}-(?P={entity})_)"
+
     label = _capture_regex(entity, pattern, not directory and entity in DIR_ENTITIES)
     post = "/" if directory else "_"
 

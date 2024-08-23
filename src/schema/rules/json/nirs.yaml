@@ -1,0 +1,93 @@
+---
+CoordinateSystem:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "coordsystem"
+  fields:
+    NIRSCoordinateSystem: required
+    NIRSCoordinateUnits: required
+    NIRSCoordinateProcessingDescription: recommended
+
+Fiducials:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "coordsystem"
+  fields:
+    FiducialsDescription: optional
+    FiducialsCoordinates: recommended
+    FiducialsCoordinateUnits: recommended
+    FiducialsCoordinateSystem: recommended
+
+AnatomicalLandmark:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "coordsystem"
+  fields:
+    AnatomicalLandmarkCoordinates: recommended
+    AnatomicalLandmarkCoordinateSystem: recommended
+    AnatomicalLandmarkCoordinateUnits: recommended
+
+CoordsystemGeneral:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "coordsystem"
+  fields:
+    IntendedFor:
+      level: optional
+      description_addendum: |
+        This identifies the MRI or CT scan associated with the optodes,
+        landmarks, and fiducials.
+
+CoordinateSystemDescriptionRec:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "coordsystem"
+    - json.NIRSCoordinateSystem != "other"
+  fields:
+    NIRSCoordinateSystemDescription:
+      level: recommended
+      level_addendum: required if NIRSCoordinateSystem is "other"
+
+CoordinateSystemDescriptionReq:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "coordsystem"
+    - json.NIRSCoordinateSystem == "other"
+  fields:
+    NIRSCoordinateSystemDescription: required
+
+AnatomicalLandmarkCoordinateSystemDescriptionRec:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "coordsystem"
+    - json.AnatomicalLandmarkCoordinateSystem != "other"
+  fields:
+    AnatomicalLandmarkCoordinateSystemDescription:
+      level: recommended
+      level_addendum: required if NIRSCoordinateSystem is "other"
+
+AnatomicalLandmarkCoordinateSystemDescriptionReq:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "coordsystem"
+    - json.AnatomicalLandmarkCoordinateSystem == "other"
+  fields:
+    AnatomicalLandmarkCoordinateSystemDescription: required
+
+FiducialsCoordinateSystemDescriptionRec:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "coordsystem"
+    - json.FiducialsCoordinateSystem != "other"
+  fields:
+    FiducialsCoordinateSystemDescription:
+      level: recommended
+      level_addendum: required if FiducialsCoordinateSystem is "other"
+
+FiducialsCoordinateSystemDescriptionReq:
+  selectors:
+    - datatype == "nirs"
+    - suffix == "coordsystem"
+    - json.FiducialsCoordinateSystem == "other"
+  fields:
+    FiducialsCoordinateSystemDescription: required
