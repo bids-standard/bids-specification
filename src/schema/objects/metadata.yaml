@@ -198,6 +198,13 @@ Authors:
   type: array
   items:
     type: string
+Axes:
+  name: Axes
+  display_name: Axes
+  description: Todo
+  type: array
+  items:
+    type: object
 B0FieldIdentifier:
   name: B0FieldIdentifier
   display_name: B0 Field Identifier
@@ -709,6 +716,11 @@ DigitizedLandmarks:
     `true` or `false` value indicating whether anatomical landmark points
     (fiducials) are contained within this recording.
   type: boolean
+Directed:
+  name: Directed
+  display_name: Directed Graph
+  type: boolean
+  description: todo
 DispersionConstant:
   name: DispersionConstant
   display_name: Dispersion Constant
@@ -2192,12 +2204,24 @@ NIRSCoordinateProcessingDescription:
     Has any post-processing (such as projection) been done on the optode
     positions (for example, `"surface_projection"`, `"n/a"`).
   type: string
+NodeFiles:
+  name: NodeFiles
+  display_name: Node Files
+  descripiton: Todo
+  type: array
+  items:
+    type uri
 NonlinearGradientCorrection:
   name: NonlinearGradientCorrection
   display_name: Nonlinear Gradient Correction
   description: |
     Boolean stating if the image saved has been corrected for gradient
     nonlinearities by the scanner sequence.
+  type: boolean
+NonNegative:
+  name: NonNegative
+  display_name: Non Negative
+  description: Todo
   type: boolean
 NumberOfVolumesDiscardedByScanner:
   name: NumberOfVolumesDiscardedByScanner
@@ -2679,6 +2703,11 @@ ReferencesAndLinks:
   items:
     type: string
   type: array
+RelationshipMeasure:
+  name: RelationshipMeasure
+  display_name: Relationship Measure
+  descrption: Todo
+  type: string
 RepetitionTime:
   name: RepetitionTime
   display_name: Repetition Time
@@ -3120,6 +3149,12 @@ SliceTiming:
     type: number
     minimum: 0
     unit: s
+Software:
+  name: Software
+  display_name: Software
+  description: todo
+  type: string
+  format: uri
 SoftwareFilters:
   name: SoftwareFilters
   display_name: Software Filters
@@ -3583,6 +3618,11 @@ Units:
     (see [Units](SPEC_ROOT/common-principles.md#units)).
   type: string
   format: unit
+ValidDiagonal:
+  name: ValidDiagonal
+  display_name: Valid Diagonal
+  description: Todo
+  type: boolean
 VascularCrushing:
   name: VascularCrushing
   display_name: Vascular Crushing
@@ -3649,6 +3689,11 @@ WaterSuppressionTechnique:
   description: |
     The name of the pulse sequence used for water suppression (for example, `"CHESS"`, `"VAPOR"`).
   type: string
+Weighted:
+  name: Weighted
+  display_name: Weighted Matrix
+  description: Todo
+  type: boolean
 WholeBloodAvail:
   name: WholeBloodAvail
   display_name: Whole Blood Avail

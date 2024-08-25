@@ -68,16 +68,28 @@ con:
     Raw continuous data from a KIT/Yokogawa/Ricoh MEG system.
 
     Successor to the `.sqd` extension for raw continuous data.
-dat:
-  value: .dat
-  display_name: MEG Fine-Calibration Format
-  description: |
-    A fine-calibration file used for Neuromag/Elekta/MEGIN MEG recording hardware.
 CTF:
   value: .ds/
   display_name: CTF MEG Dataset Directory
   description: |
     A directory for MEG data, typically containing a `.meg4` file for the data and a `.res4` file for the resources.
+dat:
+  value: .dat
+  display_name: MEG Fine-Calibration Format
+  description: |
+    A fine-calibration file used for Neuromag/Elekta/MEGIN MEG recording hardware.
+dense_h5:
+  value: .dense.h5
+  display_name: Dense H5
+  description: Todo
+dense_tsv:
+  value: .dense.tsv
+  display_name: Dense TSV
+  description: Todo
+dense_zarr:
+  value: .dense.zarr
+  display_name: Dense Zarr
+  description: Todo
 dlabelnii:
   value: .dlabel.nii
   display_name: CIFTI-2 Dense Label File
@@ -249,6 +261,18 @@ snirf:
   display_name: Shared Near Infrared Spectroscopy Format
   description: |
     HDF5 file organized according to the [SNIRF specification](https://github.com/fNIRS/snirf)
+sparse_h5:
+  value: .sparse.h5
+  display_name: Sparse H5
+  description: Todo
+sparse_tsv:
+  value: .sparse.tsv
+  display_name: Sparse TSV
+  description: Todo
+sparse_zarr:
+  value: .sparse.zarr
+  display_name: Sparse Zarr
+  description: Todo
 sqd:
   value: .sqd
   display_name: SQD
@@ -307,6 +331,10 @@ vmrk:
     A text marker file in the
     [BrainVision Core Data Format](https://www.brainproducts.com/support-resources/brainvision-core-data-format-1-0/).
     These files come in three-file sets, including a `.vhdr`, a `.vmrk`, and a `.eeg` file.
+zarr:
+  value: .zarr
+  display_name: zarr
+  description: Todo
 Any:
   value: .*
   display_name: Any Extension

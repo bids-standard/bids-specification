@@ -1,0 +1,30 @@
+---
+relmat:
+  entities:
+    measure: optional
+  datatypes:
+    - any
+  extensions:
+    - .json
+    - .tsv
+    - .h5
+    - .zarr
+    - .sparse.tsv
+    - .sparse.h5
+    - .sparse.zarr
+    - .dense.tsv
+    - .dense.h5
+    - .dense.zarr
+  suffixes:
+    - relmat
+
+nodeindicies:
+  entities:
+    measure: optional
+  suffixes:
+    - nodeindicies
+  datatypes:
+    - any
+  extensions:
+    - .json
+    - .tsv

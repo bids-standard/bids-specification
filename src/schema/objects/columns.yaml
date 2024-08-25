@@ -279,6 +279,11 @@ material:
   description: |
     Material of the electrode (for example, `Tin`, `Ag/AgCl`, `Gold`).
   type: string
+matrix_index:
+  name: index
+  display_name: Matrix Index
+  description: Todo
+  type: integer
 metabolite_parent_fraction:
   name: metabolite_parent_fraction
   display_name: Metabolite parent fraction
@@ -322,6 +327,16 @@ name__segmentations:
   description: |
     The unique label name.
   type: string
+node_file:
+  name: node_file
+  display_name: Node Filename
+  description: Todo
+  type: uri
+node_index:
+  name: node_index
+  display_name: Node Index
+  description: Todo
+  type: number
 notch:
   name: notch
   display_name: Notch frequencies

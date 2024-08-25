@@ -697,6 +697,10 @@ nirs:
   value: nirs
   display_name: Near Infrared Spectroscopy
   description: Data associated with a Shared Near Infrared Spectroscopy Format file.
+nodeindices:
+  value: nodeindices
+  display_name: Node Indices
+  description: Todo
 noRF:
   value: noRF
   display_name: No Radio Frequency Excitation Scan
@@ -780,6 +784,10 @@ probseg:
     A probabilistic segmentation.
 
     This suffix may only be used in derivative datasets.
+relmat:
+  value: relmat
+  display_name: Relationship Matrix
+  description: Todo
 sbref:
   value: sbref
   display_name: Single-band reference image
