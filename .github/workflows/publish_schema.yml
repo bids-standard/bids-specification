@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - "master"
-      - "jsr/*"
     tags:
       - "schema-*"
 
@@ -21,6 +20,10 @@ env:
   GIT_AUTHOR_EMAIL: bids.maintenance@gmail.com
   GIT_COMMITTER_NAME: BIDS CI
   GIT_COMMITTER_EMAIL: bids.maintenance@gmail.com
+
+permissions:
+  contents: write
+  id-token: write
 
 jobs:
   publish:
@@ -80,8 +83,9 @@ jobs:
             jq ".version = \"$VERSION\"" jsr.json > tmp.json && mv tmp.json jsr.json
             git add jsr.json schema.json context.ts metaschema.ts
             git commit -m "Update schema JSR distribution"
+            git push
           fi
       - name: Publish to JSR
         if: success()
         run: |
-          npx jsr publish --dry-run
+          npx jsr publish
