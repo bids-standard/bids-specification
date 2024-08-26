@@ -328,6 +328,10 @@ export interface NiftiHeader {
      */
     dim_info: DimInfo;
     /**
+     * NIfTI-MRS JSON fields
+     */
+    mrs?: { [key: string]: any };
+    /**
      * Grid spacings (unit per dimension).
      */
     pixdim: number[];

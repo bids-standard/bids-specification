@@ -534,7 +534,7 @@ export type CoreAndValidationSpecificationsMetaSchema2 = CoreVocabularyMetaSchem
     | boolean
   );
 
-export interface Metaschema {
+export interface Schema {
   meta: {
     associations: {
       /**
