@@ -71,7 +71,7 @@ properties:
         additionalProperties: false
         properties:
           sub_dirs:
-            description: 'Subjects as determined by sub-*/ directories'
+            description: 'Subjects as determined by sub-* directories'
             type: array
             items:
               type: string
@@ -100,7 +100,7 @@ properties:
         additionalProperties: false
         properties:
           ses_dirs:
-            description: 'Sessions as determined by ses-*/ directories'
+            description: 'Sessions as determined by ses-* directories'
             type: array
             items:
               type: string
