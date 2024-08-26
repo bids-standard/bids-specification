@@ -37,7 +37,7 @@ AcquisitionVoxelSize:
   display_name: Acquisition Voxel Size
   description: |
     An array of numbers with a length of 3, in millimeters.
-    This parameter denotes the original acquisition voxel size,
+    This field denotes the original acquisition voxel size,
     excluding any inter-slice gaps and before any interpolation or resampling
     within reconstruction or image processing.
     Any point spread function effects, for example due to T2-blurring,
@@ -70,6 +70,20 @@ AnalyticalApproach:
     - type: array
       items:
         type: string
+AnatomicalImage:
+  name: AnatomicalImage
+  display_name: Anatomical Image
+  description: |
+    The path(s) to the anatomical MR image file(s), if present,
+    to which the associated MRS data file corresponds.
+    Contains one or more [BIDS URIs](SPEC_ROOT/common-principles.md#bids-uri).
+  anyOf:
+    - type: string
+      format: bids_uri
+    - type: array
+      items:
+        type: string
+        format: bids_uri
 AnatomicalLandmarkCoordinateSystem:
   name: AnatomicalLandmarkCoordinateSystem
   display_name: Anatomical Landmark Coordinate System
@@ -236,14 +250,14 @@ B0ShimmingTechnique:
   name: B0ShimmingTechnique
   display_name: B0 Shimming Technique
   description: |
-    The technique used to shim the *B<sub>0</sub>* field (for example, `"Dynamic shim updating"`
+    The technique used to shim the *B*<sub>0</sub> field (for example, `"Dynamic shim updating"`
     or `"FASTMAP"`).
   type: string
 B1ShimmingTechnique:
   name: B1ShimmingTechnique
   display_name: B1 Shimming Technique
   description: |
-    The technique used to shim the *B<sub>1</sub>* field (for example, `"Simple phase align"`
+    The technique used to shim the *B*<sub>1</sub> field (for example, `"Simple phase align"`
     or `"Pre-saturated TurboFLASH"`).
   type: string
 BIDSVersion:
@@ -402,6 +416,22 @@ CellType:
     Values SHOULD come from the
     [cell ontology](https://obofoundry.org/ontology/cl.html).
   type: string
+ChemicalShiftOffset:
+  name: ChemicalShiftOffset
+  display_name: Chemical Shift Offset
+  description: |
+    The chemical shift at the center of `SpectralWidth` corresponding to 0 Hz,
+    specified in ppm (for example, `4.65`).
+  type: number
+  unit: ppm
+ChemicalShiftReference:
+  name: ChemicalShiftReference
+  display_name: Chemical Shift Reference
+  description: |
+    The chemical shift at the transmitter frequency, specified in ppm (for example, `2.68`).
+    Corresponds to DICOM Tag 0018, 9053 `Chemical Shift Reference`.
+  type: number
+  unit: ppm
 ChunkTransformationMatrix:
   name: ChunkTransformationMatrix
   display_name: Chunk Transformation Matrix
@@ -844,6 +874,13 @@ EOGChannelCount:
     Number of EOG channels.
   type: integer
   minimum: 0
+EchoAcquisition:
+  name: EchoAcquisition
+  display_name: Echo Acquisition
+  description: |
+    How the detected echo was acquired when the analog-to-digital converter was turned on.
+    For example, `"Half echo"`, `"Full echo"`.
+  type: string
 EchoTime:
   name: EchoTime
   display_name: Echo Time
@@ -856,12 +893,6 @@ EchoTime:
     [file collection](SPEC_ROOT/appendices/file-collections.md)
     where the value of this field is iterated using the
     [`echo` entity](SPEC_ROOT/appendices/entities.md#echo).
-    The data type array provides a value for each volume in a 4D dataset and
-    should only be used when the volume timing is critical for interpretation
-    of the data, such as in
-    [ASL](SPEC_ROOT/modality-specific-files/magnetic-resonance-imaging-data.md#\
-    arterial-spin-labeling-perfusion-data)
-    or variable echo time fMRI sequences.
   anyOf:
     - type: number
       unit: s
@@ -896,6 +927,55 @@ EchoTime__fmap:
   type: number
   unit: s
   exclusiveMinimum: 0
+EditCondition:
+  name: EditCondition
+  display_name: Editing Condition
+  description: |
+    If spectral editing was applied, this lists the application order of `"EditPulse"`.
+    For example, `["ON", "OFF"]` for a MEGA-edited experiment or
+    `["A", "B", "C", "D"]` for a HERMES-edited experiment.
+  anyOf:
+    - type: string
+    - type: array
+      items:
+        type: string
+EditPulse:
+  name: EditPulse
+  display_name: Editing Pulse
+  description: |
+    If spectral editing was applied, this details the editing parameters.
+    For example:
+    `{"ON": {"FrequencyOffset": 1.9, "PulseDuration": 16},
+    "OFF": {"FrequencyOffset": 7.5, "PulseDuration": 16}}`.
+  type: object
+  additionalProperties:
+    type: object
+    recommended_fields: [FrequencyOffset, PulseDuration]
+    properties:
+      FrequencyOffset:
+        anyOf:
+          - type: number
+            unit: ppm
+          - type: array
+            items:
+              type: number
+              unit: ppm
+      PulseDuration:
+        type: number
+        unit: ms
+EditTarget:
+  name: EditTarget
+  display_name: Editing Target
+  description: |
+    If spectral editing was applied, this describes the metabolites that were selectively targeted
+    (for example, `"GABA"` or `"Lac"`).
+    If multiple metabolites were targeted (for example, in a HERMES acquisition),
+    an array can be used: `["GABA", "GSH"]`.
+  anyOf:
+    - type: string
+    - type: array
+      items:
+        type: string
 EffectiveEchoSpacing:
   name: EffectiveEchoSpacing
   display_name: Effective Echo Spacing
@@ -944,6 +1024,14 @@ ElectrodeManufacturersModelName:
   description: |
     If different electrode types are used,
     please use the corresponding table in the `_electrodes.tsv` file.
+  type: string
+EncodingTechnique:
+  name: EncodingTechnique
+  display_name: Encoding Technique
+  description: |
+    The encoding technique used during readout.
+    For example, `"Cartesian"`, `"EPSI"`, `"Spiral"`,
+    or `"Density-weighted concentric ring trajectory"`.
   type: string
 EpochLength:
   name: EpochLength
@@ -1050,12 +1138,6 @@ FlipAngle:
     [file collection](SPEC_ROOT/appendices/file-collections.md)
     where the value of this field is iterated using the
     [`flip` entity](SPEC_ROOT/appendices/entities.md#flip).
-    The data type array provides a value for each volume in a 4D dataset and
-    should only be used when the volume timing is critical for interpretation of
-    the data, such as in
-    [ASL](SPEC_ROOT/modality-specific-files/magnetic-resonance-imaging-data.md#\
-    arterial-spin-labeling-perfusion-data)
-    or variable flip angle fMRI sequences.
   anyOf:
     - type: number
       unit: degree
@@ -1875,6 +1957,7 @@ MRAcquisitionType:
     Corresponds to DICOM Tag 0018, 0023 `MR Acquisition Type`.
   type: string
   enum:
+    - $ref: objects.enums.OneD.value
     - $ref: objects.enums.TwoD.value
     - $ref: objects.enums.ThreeD.value
 MRTransmitCoilSequence:
@@ -1980,6 +2063,19 @@ MatrixCoilMode:
     There are typically different default modes when using un-accelerated or
     accelerated (for example, `"GRAPPA"`, `"SENSE"`) imaging.
   type: string
+MatrixSize:
+  name: MatrixSize
+  display_name: Matrix Size
+  description: |
+    An array of integers with a length of 3 denoting the matrix size of the acquisition slab.
+    This should be specified as, for example, `[32, 32, 1]` for a 2D acquisition
+    or `[32, 1, 1]` for a 1D acquisition.
+  type: array
+  minItems: 3
+  maxItems: 3
+  items:
+    type: integer
+    minimum: 1
 MaxMovement:
   name: MaxMovement
   display_name: Max Movement
@@ -2044,7 +2140,8 @@ MixingTime:
   name: MixingTime
   display_name: Mixing Time
   description: |
-    In the context of a stimulated- and spin-echo 3D EPI sequence for B1+ mapping,
+    In the context of a stimulated- and spin-echo 3D EPI sequence for B1+ mapping
+    or a stimulated-echo MRS sequence,
     corresponds to the interval between spin- and stimulated-echo pulses.
     In the context of a diffusion-weighted double spin-echo sequence,
     corresponds to the interval between two successive diffusion sensitizing
@@ -2199,6 +2296,19 @@ NonlinearGradientCorrection:
     Boolean stating if the image saved has been corrected for gradient
     nonlinearities by the scanner sequence.
   type: boolean
+NumberOfSpectralPoints:
+  name: NumberOfSpectralPoints
+  display_name: Number Of Spectral Points
+  description: |
+    The number of complex data points in each recorded transient of the detected time-domain MR
+    signal, equivalent to the number of points in a single spectrum.
+  type: integer
+NumberOfTransients:
+  name: NumberOfTransients
+  display_name: Number Of Transients
+  description: |
+    The number of single applications of the pulse sequence recorded during an MRS acquisition.
+  type: integer
 NumberOfVolumesDiscardedByScanner:
   name: NumberOfVolumesDiscardedByScanner
   display_name: Number Of Volumes Discarded By Scanner
@@ -2287,6 +2397,12 @@ OtherAcquisitionParameters:
   description: |
     Description of other relevant image acquisition parameters.
   type: string
+OuterVolumeSuppression:
+  name: OuterVolumeSuppression
+  display_name: Outer-Volume Suppression
+  description: |
+    Boolean indicating whether outer-volume suppression was used prior to acquisition.
+  type: boolean
 PASLType:
   name: PASLType
   display_name: PASL Type
@@ -2536,13 +2652,34 @@ PulseSequenceDetails:
     `"Siemens WIP ### version #.##,"` or
     `"Sequence written by X using a version compiled on MM/DD/YYYY"`).
   type: string
+PulseSequencePulses:
+  name: PulseSequencePulses
+  display_name: Pulse Sequence Pulses
+  description: |
+    The list of pulses used in the pulse sequence.
+    If this field is specified, the array size MUST equal the array size of `"PulseSequenceTiming"`.
+    The strings MAY be of the format `<pulse_name>_R<time-bandwidth_product>`.
+    For example, a sLASER sequence may be described as such:
+    `["P10_R6", "HS4_R25", "HS4_R25", "HS4_R25", "HS4_R25"]`.
+  type: array
+  items:
+    type: string
+PulseSequenceTiming:
+  name: PulseSequenceTiming
+  display_name: Pulse Sequence Timing
+  description: |
+    The time when each RF pulse of the pulse sequence was played out relative to
+    the beginning of the pulse sequence (that is, the top of the excitation RF pulse),
+    specified in seconds.
+  type: array
+  items:
+    type: number
+    unit: s
 PulseSequenceType:
   name: PulseSequenceType
   display_name: Pulse Sequence Type
   description: |
-    A general description of the pulse sequence used for the scan
-    (for example, `"MPRAGE"`, `"Gradient Echo EPI"`, `"Spin Echo EPI"`,
-    `"Multiband gradient echo EPI"`).
+    A general description of the pulse sequence used for the scan.
   type: string
 Purity:
   name: Purity
@@ -2591,6 +2728,18 @@ ReceiveCoilName:
     in which case this field can be derived from an appropriate
     private DICOM field.
   type: string
+ReceiveGain:
+  name: ReceiveGain
+  display_name: Receive Gain
+  description: |
+    The gain of the receive coil.
+  anyOf:
+    - type: number
+      unit: dB
+    - type: array
+      items:
+        type: number
+        unit: dB
 ReconFilterSize:
   name: ReconFilterSize
   display_name: Recon Filter Size
@@ -2679,6 +2828,20 @@ ReferencesAndLinks:
   items:
     type: string
   type: array
+ReferenceSignal:
+  name: ReferenceSignal
+  display_name: Reference Signal
+  description: |
+    The path(s) to the MRS reference file(s), if present, to which the associated
+    MRS data file corresponds.
+    Contains one or more [BIDS URIs](SPEC_ROOT/common-principles.md#bids-uri).
+  anyOf:
+    - type: string
+      format: bids_uri
+    - type: array
+      items:
+        type: string
+        format: bids_uri
 RepetitionTime:
   name: RepetitionTime
   display_name: Repetition Time
@@ -2757,6 +2920,17 @@ Resolution:
     - type: object
       additionalProperties:
         type: string
+ResonantNucleus:
+  name: ResonantNucleus
+  display_name: Resonant Nucleus
+  description: |
+    The isotope of interest of an MR experiment (for example, `"1H"`, `"13C"`, `"31P"`).
+    For multi-nuclei experiments such as <sup>1</sup>H-[<sup>13</sup>C] MR,
+    an array can be used: `["1H", "13C"]`.
+    Corresponds to DICOM Tag 0018, 9100 `Resonant Nucleus`.
+  type: array
+  items:
+    type: string
 RotationOrder:
   name: RotationOrder
   display_name: RotationOrder
@@ -2966,6 +3140,16 @@ ScanningSequence:
     - type: array
       items:
         type: string
+ScanningSequence__mrs:
+  name: ScanningSequence
+  display_name: Scanning Sequence
+  description: |
+    Description of the type of data acquired.
+  type: string
+  enum:
+    - SVS
+    - MRSI
+    - Unlocalized MRS
 ScatterFraction:
   name: ScatterFraction
   display_name: Scatter Fraction
@@ -3287,6 +3471,27 @@ SpecificRadioactivityUnits:
     - type: string
       enum:
         - n/a
+SpectralWidth:
+  name: SpectralWidth
+  display_name: Spectral Width
+  description: |
+    The spectral bandwidth of the MR signal that is sampled, specified in Hz.
+    Corresponds to DICOM Tag 0018, 9052 `Spectral Width`.
+  type: number
+  unit: Hz
+SpectrometerFrequency:
+  name: SpectrometerFrequency
+  display_name: Spectrometer Frequency
+  description: |
+    The frequency of the spectrometer, specified in MHz.
+    For example, this could be `127.764` for a 3T scanner tuned
+    to the resonant frequency of <sup>1</sup>H.
+    For multi-nuclei experiments such as <sup>1</sup>H-[<sup>13</sup>C] MR at 3T,
+    an array can be used: `[127.731, 32.125]`.
+  type: array
+  items:
+    type: number
+    unit: MHz
 SpoilingGradientDuration:
   name: SpoilingGradientDuration
   display_name: Spoiling Gradient Duration
@@ -3606,6 +3811,27 @@ VascularCrushingVENC:
       items:
         type: number
         unit: cm/s
+VolumeAffineMatrix:
+  name: VolumeAffineMatrix
+  display_name: Volume Affine Matrix
+  description: |
+    A 4-by-4 matrix using identical conventions and coordinate system to
+    the *{qs}form* NIfTI affine matrix to define the orientation,
+    position, and size of an additional VOI.
+    This VOI defines a spatial region in addition to the primary method of localization
+    (encoded in the NIfTI header *{qs}form*).
+    Typically not defined for data stored with a single spatial voxel or FID-MRSI.
+    For example: `[[30, 0, 0, -30], [0, 30, -2.27, -72.67], [0, 2.27, 29.91, 5.47],
+    [0, 0, 0, 1]]`.
+  type: array
+  minItems: 4
+  maxItems: 4
+  items:
+    type: array
+    minItems: 4
+    maxItems: 4
+    items:
+      type: number
 VELChannelCount:
   name: VELChannelCount
   display_name: Velocity Channel Count
@@ -3626,12 +3852,10 @@ VolumeTiming:
   description: |
     The time at which each volume was acquired during the acquisition.
     It is described using a list of times referring to the onset of each volume
-    in the BOLD series.
-    The list must have the same length as the BOLD series,
+    in the series.
+    The list must have the same length as the series,
     and the values must be non-negative and monotonically increasing.
-    This field is mutually exclusive with `"RepetitionTime"` and `"DelayTime"`.
-    If defined, this requires acquisition time (TA) be defined via either
-    `"SliceTiming"` or `"AcquisitionDuration"` be defined.
+    This field is mutually exclusive with `"RepetitionTime"`.
   type: array
   minItems: 1
   items:

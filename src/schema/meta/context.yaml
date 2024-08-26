@@ -405,6 +405,10 @@ properties:
         name: 'sform code'
         description: 'Use of the affine fields.'
         type: integer
+      mrs:
+        name: 'NIfTI-MRS extension'
+        description: 'NIfTI-MRS JSON fields'
+        type: object
   ome:
     name: 'Open Microscopy Environment fields'
     description: 'Parsed contents of OME-XML header, which may be found in OME-TIFF or OME-ZARR files'
