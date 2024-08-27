@@ -101,7 +101,7 @@ RepetitionTimeAcquisitionDurationMutex:
       (RepetitionTime - AcquisitionDuration).
     level: error
   selectors:
-    - type(sidecar.AcquistionDuration) != "null"
+    - type(sidecar.AcquisitionDuration) != "null"
   checks:
     - type(sidecar.RepetitionTime) == "null"
 
