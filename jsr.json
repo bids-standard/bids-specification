@@ -5,6 +5,8 @@
     ".": "./mod.ts",
     "./context": "./context.ts",
     "./schema": "./schema.json",
-    "./metaschema": "./metaschema.ts"
+    "./metaschema": "./metaschema.ts",
+    "./citation": "./citation/mod.ts",
+    "./citation/schema": "./citation/schema.json"
   }
 }
