@@ -1,6 +1,6 @@
 # Changelog
 
-## [v1.10.0](https://github.com/bids-standard/bids-specification/tree/v1.10.0) (2024-09-06)
+## [v1.10.0](https://bids-specification.readthedocs.io/en/v1.10.0) (2024-09-06)
 
 -   \[ENH] BEP022 - Magnetic Resonance Spectroscopy [1377](https://github.com/bids-standard/bids-specification/pull/1377) ([markmikkelsen](https://github.com/markmikkelsen))
 -   \[ENH] MRI: Improve definition of bvec file [1811](https://github.com/bids-standard/bids-specification/pull/1811) ([Lestropie](https://github.com/Lestropie))
@@ -38,7 +38,7 @@
 -   \[INFRA] Introduce metaschema [1787](https://github.com/bids-standard/bids-specification/pull/1787) ([bendichter](https://github.com/bendichter))
 -   \[MISC] Restructure MEG empty room example texts [1677](https://github.com/bids-standard/bids-specification/pull/1677) ([guiomar](https://github.com/guiomar))
 
-## [v1.9.0](https://github.com/bids-standard/bids-specification/tree/v1.9.0) (2023-11-20)
+## [v1.9.0](https://bids-specification.readthedocs.io/en/v1.9.0) (2023-11-20)
 
 -   \[ENH] Add `descriptions.tsv` file relating to the `desc-<label>` entity [#1613](https://github.com/bids-standard/bids-specification/pull/1613) ([CPernet](https://github.com/CPernet))
 -   \[INFRA] Publish schema tools API docs to additional ReadTheDocs site [#1491](https://github.com/bids-standard/bids-specification/pull/1491) ([bendhouseart](https://github.com/bendhouseart))
@@ -105,7 +105,7 @@
 -   \[INFRA] use tributors to list contributors and CITATION.cff for referencing [#1115](https://github.com/bids-standard/bids-specification/pull/1115) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[SCHEMA] Add full object definitions for valid values in schema [#919](https://github.com/bids-standard/bids-specification/pull/919) ([tsalo](https://github.com/tsalo))
 
-## [v1.8.0](https://github.com/bids-standard/bids-specification/tree/v1.8.0) (2022-10-29)
+## [v1.8.0](https://bids-specification.readthedocs.io/en/v1.8.0) (2022-10-29)
 
 -   \[ENH] allow for .png and .tif in eeg/ieeg/meg as allowed for micr [#1049](https://github.com/bids-standard/bids-specification/pull/1049) ([yarikoptic](https://github.com/yarikoptic))
 -   \[ENH] Add BIDS URIs and deprecate relative paths, RawSources and (possibly unused) BasedOn [#918](https://github.com/bids-standard/bids-specification/pull/918) ([effigies](https://github.com/effigies))
@@ -167,7 +167,7 @@
 -   \[ENH] BEP030: Functional Near-Infrared Spectroscopy [#802](https://github.com/bids-standard/bids-specification/pull/802) ([rob-luke](https://github.com/rob-luke))
 -   \[FIX] Clarify run entity to accommodate multiple imaging modalities [#760](https://github.com/bids-standard/bids-specification/pull/760) ([yarikoptic](https://github.com/yarikoptic))
 
-## [v1.7.0](https://github.com/bids-standard/bids-specification/tree/v1.7.0) (2022-02-15)
+## [v1.7.0](https://bids-specification.readthedocs.io/en/v1.7.0) (2022-02-15)
 
 -   \[ENH] add metadata to PET calibration factor: "DoseCalibrationFactor" [#825](https://github.com/bids-standard/bids-specification/pull/825) ([CPernet](https://github.com/CPernet))
 -   \[FIX] Use wikipedia for TIFF URL, adobe's page is 404ing now [#1007](https://github.com/bids-standard/bids-specification/pull/1007) ([yarikoptic](https://github.com/yarikoptic))
@@ -260,7 +260,7 @@
 -   \[FIX] Correct iEEG example that contained double suffixes [#463](https://github.com/bids-standard/bids-specification/pull/463) ([yarikoptic](https://github.com/yarikoptic))
 -   \[ENH] introduce GeneratedBy to "core" BIDS [#440](https://github.com/bids-standard/bids-specification/pull/440) ([yarikoptic](https://github.com/yarikoptic))
 
-## [v1.6.0](https://github.com/bids-standard/bids-specification/tree/v1.6.0) (2021-04-22)
+## [v1.6.0](https://bids-specification.readthedocs.io/en/v1.6.0) (2021-04-22)
 
 -   \[ENH] Bep 009: Positron Emission Tomography [#633](https://github.com/bids-standard/bids-specification/pull/633) ([melanieganz](https://github.com/melanieganz))
 -   \[FIX] Typos discovered by codespell [#784](https://github.com/bids-standard/bids-specification/pull/784) ([yarikoptic](https://github.com/yarikoptic))
@@ -278,7 +278,7 @@
 -   \[FIX] 1) Clarify appropriate labels for space entity, 2) Clarify channels+electrodes do not have to match [#734](https://github.com/bids-standard/bids-specification/pull/734) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] refactor stimuli mentioning sections in the events page [#697](https://github.com/bids-standard/bids-specification/pull/697) ([Remi-Gau](https://github.com/Remi-Gau))
 
-## [v1.5.0](https://github.com/bids-standard/bids-specification/tree/v1.5.0) (2021-02-23)
+## [v1.5.0](https://bids-specification.readthedocs.io/en/v1.5.0) (2021-02-23)
 
 -   \[ENH] Add "multipart DWI" acquisitions and refactor DWI specifications [#624](https://github.com/bids-standard/bids-specification/pull/624) ([oesteban](https://github.com/oesteban))
 -   \[MISC] Updated TotalAcquiredVolumes into TotalAcquiredPairs [#742](https://github.com/bids-standard/bids-specification/pull/742) ([effigies](https://github.com/effigies))
@@ -316,7 +316,7 @@
 -   \[SCHEMA] Render schema elements in text [#610](https://github.com/bids-standard/bids-specification/pull/610) ([tsalo](https://github.com/tsalo))
 -   \[ENH] Add part entity for complex-valued data [#424](https://github.com/bids-standard/bids-specification/pull/424) ([tsalo](https://github.com/tsalo))
 
-## [v1.4.1](https://github.com/bids-standard/bids-specification/tree/v1.4.1) (2020-10-13)
+## [v1.4.1](https://bids-specification.readthedocs.io/en/v1.4.1) (2020-10-13)
 
 -   \[ENH] Extend date time information to include optional UTC syntax, warn about FIF requirements [#546](https://github.com/bids-standard/bids-specification/pull/546) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] minor robustness enhancements to pdf build shell script  [#642](https://github.com/bids-standard/bids-specification/pull/642) ([yarikoptic](https://github.com/yarikoptic))
@@ -376,7 +376,7 @@
 -   \[INFRA] Convert entity table to yaml [#475](https://github.com/bids-standard/bids-specification/pull/475) ([tsalo](https://github.com/tsalo))
 -   \[FIX] Recommend SI units formatting to adhere to CMIXF-12 [#411](https://github.com/bids-standard/bids-specification/pull/411) ([sappelhoff](https://github.com/sappelhoff))
 
-## [v1.4.0](https://github.com/bids-standard/bids-specification/tree/v1.4.0) (2020-06-11)
+## [v1.4.0](https://bids-specification.readthedocs.io/en/v1.4.0) (2020-06-11)
 
 -   \[ENH] Derived (processed) MR data [#109](https://github.com/bids-standard/bids-specification/pull/109) ([chrisgorgo](https://github.com/chrisgorgo))
 -   \[FIX] Clarify language on unsetting a key/value pair [#495](https://github.com/bids-standard/bids-specification/pull/495) ([nicholst](https://github.com/nicholst))
@@ -408,7 +408,7 @@
 -   \[ENH] Various proposed changes to diffusion derivatives [#205](https://github.com/bids-standard/bids-specification/pull/205) ([Lestropie](https://github.com/Lestropie))
 -   \[ENH] Add Glossary of terms/abbreviations used in the specification [#152](https://github.com/bids-standard/bids-specification/pull/152) ([yarikoptic](https://github.com/yarikoptic))
 
-## [v1.3.0](https://github.com/bids-standard/bids-specification/tree/v1.3.0) (2020-04-14)
+## [v1.3.0](https://bids-specification.readthedocs.io/en/v1.3.0) (2020-04-14)
 
 -   \[MISC] Added contributors from VisLab [#444](https://github.com/bids-standard/bids-specification/pull/444) ([VisLab](https://github.com/VisLab))
 -   \[FIX] Clarify  snake\_case+CamelCase in TSV+JSON [#442](https://github.com/bids-standard/bids-specification/pull/442) ([sappelhoff](https://github.com/sappelhoff))
@@ -429,7 +429,7 @@
 -   \[ENH] BEP 018 - Genetic Information [#395](https://github.com/bids-standard/bids-specification/pull/395) ([effigies](https://github.com/effigies))
 -   \[FIX] consistent units description between EEG/MEG/iEEG. Clarify (derived) SI units + prefixes [#391](https://github.com/bids-standard/bids-specification/pull/391) ([sappelhoff](https://github.com/sappelhoff))
 
-## [v1.2.2](https://github.com/bids-standard/bids-specification/tree/v1.2.2) (2020-02-12)
+## [v1.2.2](https://bids-specification.readthedocs.io/en/v1.2.2) (2020-02-12)
 
 -   \[FIX] Normalization of template-generated standard spaces [#306](https://github.com/bids-standard/bids-specification/pull/306) ([oesteban](https://github.com/oesteban))
 -   \[MISC] update contributions by CPernet [#409](https://github.com/bids-standard/bids-specification/pull/409) ([CPernet](https://github.com/CPernet))
@@ -465,7 +465,7 @@
 -   \[ENH] Added discontinuous datatype for EEG and iEEG [#286](https://github.com/bids-standard/bids-specification/pull/286) ([wouterpotters](https://github.com/wouterpotters))
 -   \[FIX] Clarify paragraph about custom data types [#264](https://github.com/bids-standard/bids-specification/pull/264) ([effigies](https://github.com/effigies))
 
-## [v1.2.1](https://github.com/bids-standard/bids-specification/tree/v1.2.1) (2019-08-14)
+## [v1.2.1](https://bids-specification.readthedocs.io/en/v1.2.1) (2019-08-14)
 
 -   \[INFRA] Add clarification on merge methods to DECISION\_MAKING [#217](https://github.com/bids-standard/bids-specification/pull/217) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] repair link in anatomical MRI table [#297](https://github.com/bids-standard/bids-specification/pull/297) ([sappelhoff](https://github.com/sappelhoff))
@@ -523,7 +523,7 @@
 -   \[FIX] Specify marker filenames for KIT data (MEG) [#62](https://github.com/bids-standard/bids-specification/pull/62) ([monkeyman192](https://github.com/monkeyman192))
 -   \[FIX] Remove father-level for meg filetypes other than BTi/4D data [#19](https://github.com/bids-standard/bids-specification/pull/19) ([teonbrooks](https://github.com/teonbrooks))
 
-## [v1.2.0](https://github.com/bids-standard/bids-specification/tree/v1.2.0) (2019-03-04)
+## [v1.2.0](https://bids-specification.readthedocs.io/en/v1.2.0) (2019-03-04)
 
 -   \[ENH] Merge bep006 and bep010 [#108](https://github.com/bids-standard/bids-specification/pull/108) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] Update Pipfile.lock [#144](https://github.com/bids-standard/bids-specification/pull/144) ([franklin-feingold](https://github.com/franklin-feingold))
@@ -536,7 +536,7 @@
 -   \[MISC] Adding formal decision-making rules [#104](https://github.com/bids-standard/bids-specification/pull/104) ([chrisgorgo](https://github.com/chrisgorgo))
 -   \[FIX] number of small corrections to the specification [#98](https://github.com/bids-standard/bids-specification/pull/98) ([robertoostenveld](https://github.com/robertoostenveld))
 
-## [v1.1.2](https://github.com/bids-standard/bids-specification/tree/v1.1.2) (2019-01-10)
+## [v1.1.2](https://bids-specification.readthedocs.io/en/v1.1.2) (2019-01-10)
 
 -   \[ENH] Global fields in data dictionaries [#117](https://github.com/bids-standard/bids-specification/pull/117) ([chrisgorgo](https://github.com/chrisgorgo))
 -   \[ENH] First(?) good practice recommendation. No excessive overrides in Inheritance principle [#99](https://github.com/bids-standard/bids-specification/pull/99) ([yarikoptic](https://github.com/yarikoptic))
