@@ -1,0 +1,16 @@
+---
+# Rules for PET data that are not defined in tables.
+
+PETFrameConsistency:
+  issue:
+    code: PET_FRAME_CONSISTENCY
+    message: |
+      The number of frames in this scan does not match the number of frames (as defined by FrameDuration) in the
+      associated '.json' file.
+    level: error
+  selectors:
+    - suffix == 'pet'
+    - type(nifti_header) != "null"
+    - sidecar.FrameDuration
+  checks:
+    - length(sidecar.FrameDuration) == nifti_header.dim[4]

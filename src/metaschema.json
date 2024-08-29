@@ -68,6 +68,7 @@
         "versions": {
           "type": "array",
           "items": {
+            "type": "string",
             "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
           }
         }
@@ -315,7 +316,7 @@
                       "$ref": "#/definitions/ruleTypes/expressionList"
                     }
                   },
-                  "required": ["checks", "selectors"],
+                  "required": ["checks", "selectors", "issue"],
                   "additionalProperties": false
                 }
               }
@@ -386,19 +387,25 @@
           "required": ["common", "deriv", "raw"],
           "additionalProperties": false
         },
+        "json": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/json"
+          }
+        },
         "sidecars": {
           "type": "object",
           "patternProperties": {
             "^derivatives$": {
               "type": "object",
               "properties": {
-                "common_derivatives": { "$ref": "#/definitions/sidecar" }
+                "common_derivatives": { "$ref": "#/definitions/json" }
               },
               "required": ["common_derivatives"],
               "additionalProperties": false
             },
             "^(?!derivatives$)[a-z_]+$": {
-              "$ref": "#/definitions/sidecar"
+              "$ref": "#/definitions/json"
             },
             "additionalProperties": false
           },
@@ -464,7 +471,7 @@
               "properties": {
                 "datatypes": {
                   "type": "array",
-                  "items": { "pattern": "^[a-z]+$" }
+                  "items": { "type": "string", "pattern": "^[a-z]+$" }
                 }
               },
               "required": ["datatypes"],
@@ -476,6 +483,7 @@
       "required": [
         "entities",
         "files",
+	"json",
         "sidecars",
         "tabular_data",
         "common_principles",
@@ -586,7 +594,7 @@
         }
       }
     },
-    "sidecar": {
+    "json": {
       "type": "object",
       "patternProperties": {
         "^[a-zA-Z0-9_]+$": {
@@ -654,7 +662,7 @@
         "level": { "enum": ["optional", "recommended", "required"] },
         "datatypes": {
           "type": "array",
-          "items": { "pattern": "^[a-z]+$" }
+          "items": { "type": "string", "pattern": "^[a-z]+$" }
         },
         "stem": { "type": "string" },
         "extensions": { "type": "array", "items": { "type": "string" } }
@@ -668,11 +676,11 @@
         "level": { "enum": ["optional", "recommended", "required"] },
         "datatypes": {
           "type": "array",
-          "items": { "pattern": "^[a-z]+$" }
+          "items": { "type": "string", "pattern": "^[a-z]+$" }
         },
         "suffixes": {
           "type": "array",
-          "items": { "pattern": "^[a-zA-Z0-9]+$" }
+          "items": { "type": "string", "pattern": "^[a-zA-Z0-9]+$" }
         },
         "extensions": { "type": "array", "items": { "type": "string" } },
         "entities": {
