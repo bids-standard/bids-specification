@@ -297,8 +297,10 @@ S0map:
     In arbitrary units (arbitrary).
     This represents a model-based estimate of signal intensity
     in the absence of the contrast under investigation.
-    For a multi-echo (typically fMRI) sequence, S0 maps index the baseline signal
-    before exponential (T2-star) signal decay.
+    For a multi-echo sequence
+    (for example, multi-echo spin echo T2 relaxometry or multi-echo fMRI),
+    S0 maps index the baseline signal at a hypothetical echo time of zero
+    (that is, in the absence of any T2 or T2-star decay).
     In other words: the exponential of the intercept for a linear decay model
     across log-transformed echos. For more information, please see, for example,
     [the tedana documentation](https://tedana.readthedocs.io/en/latest/\
