@@ -50,11 +50,13 @@ The `*.sdat` file contains either each coil-combined transient stored separately
 or all transients summed into a signal average.
 The `*.spar` file is a plaintext file describing acquisition parameters.
 It is also possible to export raw data as `*.data`/`*.list` or DICOM files.
-Siemens scanners allow data export in four formats: i) a proprietary DICOM-structured file known as IMA (`*.ima`);
-ii) a conventional DICOM MR Spectroscopy Storage format (`*.dcm`); iii) RDA (`*.rda`),
-a proprietary file format with a text-formatted header followed by the binary data points;
-and iv) TWIX (`*.dat`), a proprietary file format designed for storing unreconstructed, unprocessed MRS data
-from each individual coil element.
+Siemens scanners allow data export in four formats:
+
+1.  a proprietary DICOM-structured file known as IMA (`*.ima`);
+1.  a conventional DICOM MR Spectroscopy Storage format (`*.dcm`);
+1.  RDA (`*.rda`), a proprietary file format with a text-formatted header followed by the binary data points;
+1.  TWIX (`*.dat`), a proprietary file format designed for storing unreconstructed, unprocessed MRS data from each individual coil element.
+
 The IMA, DICOM MRS, and RDA formats are typically used to export reconstructed and processed data;
 however, the sequence designer may choose to also allow the export of un-averaged transients
 or data from individual coil elements.
@@ -152,6 +154,18 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_sidecar_table("mrs.MRSScannerHardware") }}
+
+#### Institution information
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("mrs.MRSInstitutionInformation") }}
 
 #### Sequence specifics
 
