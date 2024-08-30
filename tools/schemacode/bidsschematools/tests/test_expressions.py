@@ -119,13 +119,13 @@ def test_valid_sidecar_field(schema_obj):
                     assert (
                         name.split(".", 1)[1] in field_names
                     ), f"Bad field in selector: {name} ({key})"
-        for selector in rule.get("checks", []):
-            ast = expression.parse_string(selector)[0]
+        for check in rule.get("checks", []):
+            ast = expression.parse_string(check)[0]
             for name in find_names(ast):
                 if name.startswith(("json.", "sidecar.")):
                     assert (
                         name.split(".", 1)[1] in field_names
-                    ), f"Bad field in selector: {name} ({key})"
+                    ), f"Bad field in check: {name} ({key})"
 
 
 def test_test_valid_sidecar_field():
