@@ -8,9 +8,8 @@ context of the academic literature.
 
 !!! example "Example datasets"
 
-    Several [example MRS datasets](https://github.com/bids-standard/bids-examples/pull/425) have
-    been formatted using this specification and can be used for practical guidance when curating a new
-    dataset.
+    Several [example MRS datasets](https://github.com/bids-standard/bids-examples?tab=readme-ov-file#mrs) have
+    been formatted using this specification and can be used for practical guidance when curating a new dataset.
 
 ## MRS data
 
