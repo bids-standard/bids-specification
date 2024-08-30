@@ -6,14 +6,20 @@
 
 ---
 # MRS Common metadata fields
+MRSInstitutionInformation:
+  selectors:
+    - modality == "mrs"
+    - match(extension, "^\.nii(\.gz)?$")
+  fields:
+    InstitutionAddress: recommended
+    InstitutionName: recommended
+    InstitutionalDepartmentName: recommended
+
 MRSScannerHardware:
   selectors:
     - modality == "mrs"
     - match(extension, "^\.nii(\.gz)?$")
   fields:
-    InstitutionName: recommended
-    InstitutionAddress: recommended
-    InstitutionalDepartmentName: recommended
     Manufacturer: recommended
     ManufacturersModelName: recommended
     DeviceSerialNumber: recommended
