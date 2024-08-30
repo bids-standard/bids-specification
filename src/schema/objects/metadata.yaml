@@ -2614,12 +2614,12 @@ PostLabelingDelay:
     `InversionTime`.
   anyOf:
     - type: number
-      exclusiveMinimum: 0
+      minimum: 0
       unit: s
     - type: array
       items:
         type: number
-        exclusiveMinimum: 0
+        minimum: 0
         unit: s
 PowerLineFrequency:
   name: PowerLineFrequency
