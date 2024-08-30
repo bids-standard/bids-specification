@@ -1,7 +1,16 @@
 import pytest
 from pyparsing.exceptions import ParseException
 
-from ..expressions import Array, ASTNode, BinOp, Function, Property, expression
+from ..expressions import (
+    Array,
+    ASTNode,
+    BinOp,
+    Element,
+    Function,
+    Property,
+    RightOp,
+    expression,
+)
 
 
 def test_schema_expressions(schema_obj):
@@ -97,13 +106,29 @@ def check_fields(schema_obj, rules, keys):
         for rule in rules[key]:
             ast = expression.parse_string(rule)[0]
             if isinstance(ast, BinOp):
-                for half in [ast.lh, ast.rh]:
-                    if isinstance(half, Function):
-                        check_function(schema_obj, half)
+                check_binop(schema_obj, ast)
             elif isinstance(ast, Function):
                 check_function(schema_obj, ast)
             elif isinstance(ast, Property):
                 check_property(schema_obj, ast)
+            elif isinstance(ast, RightOp):
+                check_half(schema_obj, ast.rh)
+
+
+def check_binop(schema_obj, binop):
+    for half in [binop.lh, binop.rh]:
+        check_half(schema_obj, half)
+
+
+def check_half(schema_obj, half):
+    if isinstance(half, BinOp):
+        check_binop(schema_obj, half)
+    elif isinstance(half, Function):
+        check_function(schema_obj, half)
+    elif isinstance(half, Property):
+        check_property(schema_obj, half)
+    elif isinstance(half, Element):
+        check_property(schema_obj, half.name)
 
 
 def check_function(schema_obj, function):
@@ -117,11 +142,9 @@ def check_function(schema_obj, function):
 
 
 def check_array(schema_obj, array):
-    (
-        check_property(schema_obj, element)
-        for element in array.elements
-        if isinstance(element, Property)
-    )
+    for element in array.elements:
+        if isinstance(element, Property):
+            check_property(schema_obj, element)
 
 
 def check_property(schema_obj, property):

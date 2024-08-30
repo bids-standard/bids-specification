@@ -10,17 +10,17 @@ PixelSizeInconsistent:
   selectors:
     - ome != null
     - sidecar.PixelSize != null
-    - sidecar.PixelSizeUnit != null
+    - sidecar.PixelSizeUnits != null
   checks:
     - |
       ome.PhysicalSizeX * 10 ** (-3 * index(["mm", "um", "nm"], ome.PhysicalSizeXUnit))
-      == sidecar.PixelSize[0] * 10 ** (-3 * index(["mm", "um", "nm"], sidecar.PixelSizeUnit))
+      == sidecar.PixelSize[0] * 10 ** (-3 * index(["mm", "um", "nm"], sidecar.PixelSizeUnits))
     - |
       ome.PhysicalSizeY * 10 ** (-3 * index(["mm", "um", "nm"], ome.PhysicalSizeYUnit))
-      == sidecar.PixelSize[1] * 10 ** (-3 * index(["mm", "um", "nm"], sidecar.PixelSizeUnit))
+      == sidecar.PixelSize[1] * 10 ** (-3 * index(["mm", "um", "nm"], sidecar.PixelSizeUnits))
     - |
       ome.PhysicalSizeZ * 10 ** (-3 * index(["mm", "um", "nm"], ome.PhysicalSizeZUnit))
-      == sidecar.PixelSize[2] * 10 ** (-3 * index(["mm", "um", "nm"], sidecar.PixelSizeUnit))
+      == sidecar.PixelSize[2] * 10 ** (-3 * index(["mm", "um", "nm"], sidecar.PixelSizeUnits))
 
 # 227
 InconsistentTiffExtension:
