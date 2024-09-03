@@ -2,12 +2,13 @@
 
 ## [v1.10.0](https://bids-specification.readthedocs.io/en/v1.10.0) (2024-09-06)
 
+-   \[ENH] Add metadata fields for DeIdentificationMethod/CodeSequence for MRI and PET [1772](https://github.com/bids-standard/bids-specification/pull/1772) ([CGSchwarzMayo](https://github.com/CGSchwarzMayo))
+-   \[ENH] Apply derivative definition to qMRI appendix [1813](https://github.com/bids-standard/bids-specification/pull/1813) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[ENH] BEP022 - Magnetic Resonance Spectroscopy [1377](https://github.com/bids-standard/bids-specification/pull/1377) ([markmikkelsen](https://github.com/markmikkelsen))
 -   \[ENH] MRI: Improve definition of bvec file [1811](https://github.com/bids-standard/bids-specification/pull/1811) ([Lestropie](https://github.com/Lestropie))
 -   \[ENH] Add TablePosition tag to MRI [1690](https://github.com/bids-standard/bids-specification/pull/1690) ([po09i](https://github.com/po09i))
 -   \[ENH] Add explicit wording on DICOM terms correspondence [1450](https://github.com/bids-standard/bids-specification/pull/1450) ([yarikoptic](https://github.com/yarikoptic))
 -   \[ENH] Generalize Units definition to apply to any variable, including TSV columns [1849](https://github.com/bids-standard/bids-specification/pull/1849) ([yarikoptic](https://github.com/yarikoptic))
--   \[ENH] Specify the naming of scanner-generated TRACE and ADC volumes [1725](https://github.com/bids-standard/bids-specification/pull/1725) ([effigies](https://github.com/effigies))
 -   \[ENH] Add use of session entity as example of encoding multi-site studies in a single dataset [1803](https://github.com/bids-standard/bids-specification/pull/1803) ([yarikoptic](https://github.com/yarikoptic))
 -   \[ENH] Describe Inheritance Principle in Common Principles [1807](https://github.com/bids-standard/bids-specification/pull/1807) ([Lestropie](https://github.com/Lestropie))
 -   \[ENH] Use deidentification consistently in place of anonymization [1799](https://github.com/bids-standard/bids-specification/pull/1799) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
