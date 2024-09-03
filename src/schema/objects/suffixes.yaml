@@ -6,11 +6,6 @@ TwoPE:
   display_name: 2-photon excitation microscopy
   description: |
     2-photon excitation microscopy imaging data
-ADC:
-  value: ADC
-  display_name: Apparent diffusion coefficient (ADC)
-  description:
-    Apparent diffusion coefficient (ADC) map
 BF:
   value: BF
   display_name: Bright-field microscopy
@@ -465,11 +460,6 @@ TEM:
   display_name: Transmission electron microscopy
   description: |
     Transmission electron microscopy imaging data
-TRACE:
-  value: TRACE
-  display_name: Trace diffusion weighted image
-  description: |
-    Diffusion images proportional to the trace of the diffusion tensor
 UNIT1:
   value: UNIT1
   display_name: Homogeneous (flat) T1-weighted MP2RAGE image
