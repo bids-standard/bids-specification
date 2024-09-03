@@ -69,7 +69,7 @@ class _TreeGenerator:
 
         # We are dealing with a directory
         else:
-            self._tree.append(f"{prefix}{connector} {entry}{os.sep}")
+            self._tree.append(f"{prefix}{connector} {entry.rstrip(os.sep)}{os.sep}")
             prefix += (
                 self.PIPE_PREFIX if index != entries_count - 1 else self.SPACE_PREFIX
             )
