@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - "master"
-    tags:
-      - "schema-*"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
