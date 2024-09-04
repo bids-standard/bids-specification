@@ -82,6 +82,15 @@ channels:
     extension: .tsv
   inherit: true
 
+electrodes:
+  selectors:
+    - intersects([suffix], ['eeg', 'ieeg', 'meg'])
+    - extension != '.json'
+  target:
+    suffix: electrodes
+    extension: .tsv
+  inherit: true
+
 coordsystem:
   selectors:
     - intersects([suffix], ['eeg', 'ieeg', 'meg', 'nirs', 'motion', 'electrodes', 'optodes'])
