@@ -34,7 +34,7 @@ and a guide for using macros can be found at
       "DatasetLinks": "REQUIRED if [BIDS URIs][] are used",
       "DatasetType": "RECOMMENDED",
       "License": "RECOMMENDED",
-      "Authors": "RECOMMENDED",
+      "Authors": "RECOMMENDED if CITATION.cff is not present",
       "Acknowledgements": "OPTIONAL",
       "HowToAcknowledge": "OPTIONAL",
       "Funding": "OPTIONAL",
