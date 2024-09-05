@@ -1,7 +1,21 @@
+from collections.abc import Mapping
+from functools import singledispatch
+from typing import Union
+
 import pytest
 from pyparsing.exceptions import ParseException
 
-from ..expressions import ASTNode, expression
+from ..expressions import (
+    Array,
+    ASTNode,
+    BinOp,
+    Element,
+    Function,
+    Property,
+    RightOp,
+    expression,
+)
+from ..types import Namespace
 
 
 def test_schema_expressions(schema_obj):
@@ -77,3 +91,95 @@ def test_checks(schema_obj):
 def test_expected_failures(expr):
     with pytest.raises(ParseException):
         expression.parse_string(expr)
+
+
+def walk_schema(schema_obj, predicate):
+    for key, value in schema_obj.items():
+        if predicate(key, value):
+            yield key, value
+        if isinstance(value, Mapping):
+            for subkey, value in walk_schema(value, predicate):
+                yield f"{key}.{subkey}", value
+
+
+def test_valid_sidecar_field(schema_obj):
+    """Check sidecar fields actually exist in the metadata listed in the schema.
+
+    Test failures are usually due to typos.
+    """
+    field_names = {field.name for key, field in schema_obj.objects.metadata.items()}
+
+    for key, rule in walk_schema(
+        schema_obj.rules, lambda k, v: isinstance(v, Mapping) and v.get("selectors")
+    ):
+        for selector in rule["selectors"]:
+            ast = expression.parse_string(selector)[0]
+            for name in find_names(ast):
+                if name.startswith(("json.", "sidecar.")):
+                    assert (
+                        name.split(".", 1)[1] in field_names
+                    ), f"Bad field in selector: {name} ({key})"
+        for check in rule.get("checks", []):
+            ast = expression.parse_string(check)[0]
+            for name in find_names(ast):
+                if name.startswith(("json.", "sidecar.")):
+                    assert (
+                        name.split(".", 1)[1] in field_names
+                    ), f"Bad field in check: {name} ({key})"
+
+
+def test_test_valid_sidecar_field():
+    schema_obj = Namespace.build(
+        {
+            "objects": {
+                "metadata": {
+                    "a": {"name": "a"},
+                }
+            },
+            "rules": {"myruleA": {"selectors": ["sidecar.a"], "checks": ["json.a == sidecar.a"]}},
+        }
+    )
+    test_valid_sidecar_field(schema_obj)
+
+    schema_obj.objects.metadata.a["name"] = "b"
+    with pytest.raises(AssertionError):
+        test_valid_sidecar_field(schema_obj)
+
+
+@singledispatch
+def find_names(node: Union[ASTNode, str]):
+    # Walk AST nodes
+    if isinstance(node, BinOp):
+        yield from find_names(node.lh)
+        yield from find_names(node.rh)
+    elif isinstance(node, RightOp):
+        yield from find_names(node.rh)
+    elif isinstance(node, Array):
+        for element in node.elements:
+            yield from find_names(element)
+    elif isinstance(node, Element):
+        yield from find_names(node.name)
+        yield from find_names(node.index)
+    elif isinstance(node, (int, float)):
+        return
+    else:
+        raise TypeError(f"Unexpected node type: {node!r}")
+
+
+@find_names.register
+def find_function_names(node: Function):
+    yield node.name
+    for arg in node.args:
+        yield from find_names(arg)
+
+
+@find_names.register
+def find_property_name(node: Property):
+    # Properties are left-associative, so expand the left side
+    yield f"{next(find_names(node.name))}.{node.field}"
+
+
+@find_names.register
+def find_identifiers(node: str):
+    if not node.startswith(('"', "'")):
+        yield node

@@ -89,18 +89,13 @@ component:
     - $ref: objects.enums.quat_y.value
     - $ref: objects.enums.quat_z.value
     - $ref: objects.enums.quat_w.value
-    - n/a
 detector__channels:
   name: detector
   display_name: Detector Name
   description: |
     Name of the detector as specified in the `*_optodes.tsv` file.
     `n/a` for channels that do not contain NIRS signals (for example, acceleration).
-  anyOf:
-    - type: string
-    - type: string
-      enum:
-        - n/a
+  type: string
 detector_type:
   name: detector_type
   display_name: Detector Type
@@ -164,13 +159,9 @@ duration:
     Must always be either zero or positive (or `n/a` if unavailable).
     A "duration" value of zero implies that the delta function or event is so
     short as to be effectively modeled as an impulse.
-  anyOf:
-    - type: number
-      unit: s
-      minimum: 0
-    - type: string
-      enum:
-        - n/a
+  type: number
+  unit: s
+  minimum: 0    
 x_coordinate:
   name: x_coordinate
   display_name: Gaze x-coordinate
@@ -266,13 +257,9 @@ high_cutoff:
     If no low-pass filter applied, use `n/a`.
     Note that hardware anti-aliasing in A/D conversion of all MEG/EEG electronics
     applies a low-pass filter; specify its frequency here if applicable.
-  anyOf:
-    - type: number
-      unit: Hz
-      minimum: 0
-    - type: string
-      enum:
-        - n/a
+  type: number
+  unit: Hz
+  minimum: 0
 hplc_recovery_fractions:
   name: hplc_recovery_fractions
   display_name: HPLC recovery fractions
@@ -299,12 +286,8 @@ low_cutoff:
   description: |
     Frequencies used for the high-pass filter applied to the channel in Hz.
     If no high-pass filter applied, use `n/a`.
-  anyOf:
-    - type: number
-      unit: Hz
-    - type: string
-      enum:
-        - n/a
+  type: number
+  unit: Hz
 manufacturer:
   name: manufacturer
   display_name: Manufacturer
@@ -452,11 +435,7 @@ reference__ieeg:
   description: |
     Specification of the reference (for example, `mastoid`, `ElectrodeName01`, `intracranial`, `CAR`, `other`, `n/a`).
     If the channel is not an electrode channel (for example, a microphone channel) use `n/a`.
-  anyOf:
-    - type: string
-    - type: string
-      enum:
-        - n/a
+  type: string
 reference_frame:
   name: reference_frame
   display_name: Reference frame
@@ -464,11 +443,7 @@ reference_frame:
     Specification of a reference frame in which the motion data are to be interpreted.
     The description of the levels in `*_channels.json` SHOULD use `RotationRule`,
     `RotationOrder`, and `SpatialAxes`, and MAY use `Description` for the specification.
-  anyOf:
-    - type: string
-    - type: string
-      enum:
-        - n/a
+  type: string
 respiratory:
   name: respiratory
   display_name: Respiratory measurement
@@ -485,12 +460,8 @@ response_time:
     Response time measured in seconds.
     A negative response time can be used to represent preemptive responses and
     `n/a` denotes a missed response.
-  anyOf:
-    - type: number
-      unit: s
-    - type: string
-      enum:
-        - n/a
+  type: number
+  unit: s
 sample_id:
   name: sample_id
   display_name: Sample ID
@@ -586,22 +557,14 @@ software_filters:
     (for example, `SSS`, `SpatialCompensation`).
     Note that parameters should be defined in the general MEG sidecar .json file.
     Indicate `n/a` in the absence of software filters applied.
-  anyOf:
-    - type: string
-    - type: string
-      enum:
-        - n/a
+  type: string
 source__channels:
   name: source
   display_name: Source name
   description: |
     Name of the source as specified in the `*_optodes.tsv` file.
     `n/a` for channels that do not contain fNIRS signals (for example, acceleration).
-  anyOf:
-    - type: string
-    - type: string
-      enum:
-        - n/a
+  type: string
 source__optodes:
   name: source_type
   display_name: Source type
@@ -634,7 +597,6 @@ status:
   enum:
     - $ref: objects.enums.good.value
     - $ref: objects.enums.bad.value
-    - n/a
 status_description:
   name: status_description
   display_name: Channel status description
@@ -781,7 +743,6 @@ type__optodes:
   enum:
     - $ref: objects.enums.source.value
     - $ref: objects.enums.detector.value
-    - n/a
 units:
   name: units
   display_name: Units
@@ -836,11 +797,7 @@ wavelength_nominal:
     Specified wavelength of light in nm.
     `n/a` for channels that do not contain raw NIRS signals (for example, acceleration).
     This field is equivalent to `/nirs(i)/probe/wavelengths` in the SNIRF specification.
-  anyOf:
-    - type: number
-    - type: string
-      enum:
-        - n/a
+  type: number
 wavelength_actual:
   name: wavelength_actual
   display_name: Wavelength actual
@@ -881,71 +838,43 @@ z:
   display_name: Z position
   description: |
     Recorded position along the z-axis.
-  anyOf:
-    - type: number
-    - type: string
-      enum:
-        - n/a
+  type: number
 x__optodes:
   name: x
   display_name: X position
   description: |
     Recorded position along the x-axis.
     `"n/a"` if not available.
-  anyOf:
-    - type: number
-    - type: string
-      enum:
-        - n/a
+  type: number
 y__optodes:
   name: y
   display_name: Y position
   description: |
     Recorded position along the y-axis.
     `"n/a"` if not available.
-  anyOf:
-    - type: number
-    - type: string
-      enum:
-        - n/a
+  type: number
 z__optodes:
   name: z
   display_name: Z position
   description: |
     Recorded position along the z-axis.
     `"n/a"` if not available.
-  anyOf:
-    - type: number
-    - type: string
-      enum:
-        - n/a
+  type: number
 template_x:
   name: template_x
   display_name: X template position
   description: |
     Assumed or ideal position along the x axis.
-  anyOf:
-    - type: number
-    - type: string
-      enum:
-        - n/a
+  type: number
 template_y:
   name: template_y
   display_name: Y template position
   description: |
     Assumed or ideal position along the y axis.
-  anyOf:
-    - type: number
-    - type: string
-      enum:
-        - n/a
+  type: number
 template_z:
   name: template_z
   display_name: Z template position
   description: |
     Assumed or ideal position along the z axis.
-  anyOf:
-    - type: number
-    - type: string
-      enum:
-        - n/a
+  type: number

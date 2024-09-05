@@ -6,11 +6,6 @@ TwoPE:
   display_name: 2-photon excitation microscopy
   description: |
     2-photon excitation microscopy imaging data
-ADC:
-  value: ADC
-  display_name: Apparent diffusion coefficient (ADC)
-  description:
-    Apparent diffusion coefficient (ADC) map
 BF:
   value: BF
   display_name: Bright-field microscopy
@@ -465,11 +460,6 @@ TEM:
   display_name: Transmission electron microscopy
   description: |
     Transmission electron microscopy imaging data
-TRACE:
-  value: TRACE
-  display_name: Trace diffusion weighted image
-  description: |
-    Diffusion images proportional to the trace of the diffusion tensor
 UNIT1:
   value: UNIT1
   display_name: Homogeneous (flat) T1-weighted MP2RAGE image
@@ -693,6 +683,18 @@ motion:
   display_name: Motion
   description: |
     Data recorded from a tracking system store.
+mrsi:
+  value: mrsi
+  display_name: Magnetic resonance spectroscopy imaging
+  description: |
+    MRS acquisitions where additional imaging gradients are used
+    to detect the MR signal from 1, 2, or 3 spatial dimensions.
+mrsref:
+  value: mrsref
+  display_name: MRS reference acquisition
+  description: |
+    An MRS acquisition collected to serve as a concentration reference for absolute quantification
+    or as a calibration reference for preprocessing (for example, eddy-current correction).
 nirs:
   value: nirs
   display_name: Near Infrared Spectroscopy
@@ -825,8 +827,19 @@ stim:
   display_name: Continuous recording
   description: |
     Continuous measures, such as parameters of a film or audio stimulus.
+svs:
+  value: svs
+  display_name: Single-voxel spectroscopy
+  description: |
+    MRS acquisitions where the detected MR signal is spatially localized to a single volume.
 uCT:
   value: uCT
   display_name: Micro-CT
   description: |
     Micro-CT imaging data
+unloc:
+  value: unloc
+  display_name: Unlocalized spectroscopy
+  description: |
+    MRS acquisitions run without localization.
+    This includes signals detected using coil sensitivity only.

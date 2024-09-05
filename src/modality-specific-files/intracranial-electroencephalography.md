@@ -389,7 +389,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("ieeg.iEEGCoordsystemGeneral") }}
+{{ MACROS___make_json_table("json.ieeg.iEEGCoordsystemGeneral") }}
 
 Fields relating to the iEEG electrode positions:
 
@@ -401,7 +401,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("ieeg.iEEGCoordsystemPositions") }}
+{{ MACROS___make_json_table("json.ieeg.iEEGCoordsystemPositions") }}
 
 ### Recommended 3D coordinate systems
 
