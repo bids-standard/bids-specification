@@ -161,7 +161,7 @@ duration:
     short as to be effectively modeled as an impulse.
   type: number
   unit: s
-  minimum: 0    
+  minimum: 0
 x_coordinate:
   name: x_coordinate
   display_name: Gaze x-coordinate

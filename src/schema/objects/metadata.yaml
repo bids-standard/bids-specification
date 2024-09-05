@@ -1130,7 +1130,7 @@ EnvironmentCoordinates:
     Coordinates origin (or zero), for gaze-on-screen coordinates,
     this can be for example: `"top-left"` or `"center"`.
     For virtual reality this could be, amongst others, spherical coordinates.
-  type: string    
+  type: string
 EncodingTechnique:
   name: EncodingTechnique
   display_name: Encoding Technique
