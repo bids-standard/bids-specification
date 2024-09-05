@@ -1138,6 +1138,7 @@ EncodingTechnique:
     The encoding technique used during readout.
     For example, `"Cartesian"`, `"EPSI"`, `"Spiral"`,
     or `"Density-weighted concentric ring trajectory"`.
+  type: string
 EpochLength:
   name: EpochLength
   display_name: Epoch Length
