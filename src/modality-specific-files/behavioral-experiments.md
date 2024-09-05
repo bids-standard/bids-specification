@@ -30,6 +30,16 @@ that do not include the mandatory `onset` and `duration` columns
 MAY be included,
 but MUST be labeled `_beh.tsv` rather than `_events.tsv`.
 
+The following OPTIONAL columns are pre-defined for behavioral data files:
+
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/rules/tabular_data/*.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_columns_table("task.Behavioral") }}
+
 ## Sidecar JSON (`*_beh.json`)
 
 In addition to the metadata that is either:
