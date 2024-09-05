@@ -755,6 +755,7 @@ volume_type:
     - $ref: objects.enums.m0scan.value
     - $ref: objects.enums.deltam.value
     - $ref: objects.enums.cbf.value
+    - $ref: objects.enums.noRF.value
 wavelength_nominal:
   name: wavelength_nominal
   display_name: Wavelength nominal
