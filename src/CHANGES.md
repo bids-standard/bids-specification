@@ -2,6 +2,8 @@
 
 ## [v1.10.0](https://bids-specification.readthedocs.io/en/v1.10.0) (2024-09-06)
 
+-   \[ENH] Add noRF and n/a ASL volume types [1884](https://github.com/bids-standard/bids-specification/pull/1884) ([tsalo](https://github.com/tsalo))
+-   \[ENH] Provide baseline definition for behavioral files [1907](https://github.com/bids-standard/bids-specification/pull/1907) ([effigies](https://github.com/effigies))
 -   \[ENH] Add metadata fields for DeIdentificationMethod/CodeSequence for MRI and PET [1772](https://github.com/bids-standard/bids-specification/pull/1772) ([CGSchwarzMayo](https://github.com/CGSchwarzMayo))
 -   \[ENH] Apply derivative definition to qMRI appendix [1813](https://github.com/bids-standard/bids-specification/pull/1813) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[ENH] BEP022 - Magnetic Resonance Spectroscopy [1377](https://github.com/bids-standard/bids-specification/pull/1377) ([markmikkelsen](https://github.com/markmikkelsen))
