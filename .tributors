@@ -244,6 +244,16 @@
         "name": "Anthony Galassi",
         "orcid": "0000-0001-6550-4574"
     },
+    "arianna_sala": {
+        "affiliation": "université de Liège, Belgium",
+        "blog": "https://www.coma.uliege.be/people/arianna-sala/",
+        "contributions": [
+            "doc"
+        ],
+        "email": "arianna.sala@uliege.be",
+        "name": "Arianna Sala",
+        "orcid": "0000-0001-8121-0891"
+    },
     "arokem": {
         "affiliation": "University of Washington, Psychology, Seattle, WA, 98107, United States of America",
         "blog": "https://arokem.org/",
@@ -348,10 +358,17 @@
         "publish_email": true
     },
     "benjamin_dichter": {
+        "affiliation": "CatalystNeuro",
+        "blog": "https://bendichter.com/",
         "contributions": [
-            "doc"
+            "doc",
+            "code",
+            "test"
         ],
-        "name": "Benjamin Dichter"
+        "email": "ben.dichter@catalystneuro.com",
+        "github": "bendichter",
+        "name": "Benjamin Dichter",
+        "orcid": "0000-0001-5725-6910"
     },
     "benjamin_gagl": {
         "affiliation": "University of Vienna",
@@ -1941,12 +1958,16 @@
         "name": "Marie-Hélène Bourget"
     },
     "markmikkelsen": {
-        "affiliation": "Weill Cornell Medicine, Department of Radiology, New York, NY, 10021, USA",
-        "blog": "https://vivo.weill.cornell.edu/display/cwid-mam4041",
+        "affiliation": "Weill Cornell Medicine",
+        "blog": "https://mikkelsenlab.weill.cornell.edu/",
         "contributions": [
-            "doc"
+            "doc",
+            "code",
+            "data",
+            "review"
         ],
         "email": "mam4041@med.cornell.edu",
+        "github": "markmikkelsen",
         "name": "Mark Mikkelsen",
         "orcid": "0000-0002-0349-3782",
         "publish_email": true
@@ -2240,6 +2261,16 @@
             "doc"
         ],
         "name": "Nicole C. Swann"
+    },
+    "nbeliy": {
+        "affiliation": "University of Liege (Liege, Belgium)",
+        "contributions": [
+            "doc"
+        ],
+        "email": "nikita.beliy@uliege.be",
+        "github": "nbeliy",
+        "name": "Nikita Beliy",
+        "orcid": "0009-0002-0830-3279"
     },
     "nima_bigdely_shamlo": {
         "contributions": [
@@ -2555,6 +2586,16 @@
             "doc"
         ],
         "name": "Samuel Garcia"
+    },
+    "SamGuay": {
+        "affiliation": "Université de Montréal, Montreal, Québec, CA",
+        "contributions": [
+            "doc"
+        ],
+        "email": "samuel.guay@umontreal.ca",
+        "github": "SamGuay",
+        "name": "Samuel Guay",
+        "orcid": "0000-0001-6990-839X"
     },
     "snastase": {
         "affiliation": "Princeton University",
@@ -3004,6 +3045,14 @@
         ],
         "name": "Vittorio Iacovella",
         "orcid": "0000-0002-0853-1573"
+    },
+    "viviana_siless": {
+        "affiliation": "Business School, Universidad Torcuato di Tella",
+        "contributions": [
+            "doc"
+        ],
+        "email": "viviana.siless@utdt.edu",
+        "name": "Viviana Siless"
     },
     "vladimir_litvak": {
         "affiliation": "UCL Queen Square Institute of Neurology",

@@ -47,6 +47,10 @@ motion:
   value: motion
   display_name: Motion
   description: Motion data from a tracking system
+mrs:
+  value: mrs
+  display_name: Magnetic Resonance Spectroscopy
+  description: Magnetic resonance spectroscopy data
 perf:
   value: perf
   display_name: Perfusion imaging

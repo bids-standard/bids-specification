@@ -98,7 +98,7 @@ VolumeTimingNotMonotonicallyIncreasing:
     - modality == "mri"
     - sidecar.VolumeTiming != null
   checks:
-    - sorted(sidecar.VolumeTiming) == sidecar.VolumeTiming
+    - allequal(sorted(sidecar.VolumeTiming), sidecar.VolumeTiming)
 
 # 192
 BolusCutOffDelayTimeNotMonotonicallyIncreasing:
@@ -109,9 +109,9 @@ BolusCutOffDelayTimeNotMonotonicallyIncreasing:
     level: error
   selectors:
     - modality == "mri"
-    - sidecar.BolusCutoffDelayTime != null
+    - sidecar.BolusCutOffDelayTime != null
   checks:
-    - sorted(sidecar.BolusCutoffDelayTime) == sidecar.BolusCutoffDelayTime
+    - allequal(sorted(sidecar.BolusCutOffDelayTime), sidecar.BolusCutOffDelayTime)
 
 # 201
 RepetitionTimePreparationNotConsistent:

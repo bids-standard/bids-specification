@@ -69,3 +69,13 @@ MRIFieldmapPepolar:
   fields:
     PhaseEncodingDirection: required
     TotalReadoutTime: required
+
+TB1EPI:
+  selectors:
+    - datatype == "fmap"
+    - suffix == "TB1EPI"
+  fields:
+    EchoTime: required
+    FlipAngle: required
+    TotalReadoutTime: required
+    MixingTime: required

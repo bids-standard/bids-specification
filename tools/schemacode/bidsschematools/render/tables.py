@@ -74,8 +74,8 @@ def _make_object_table(
         "columns": "column",
     }.get(table_type)
 
-    for element in subschema.keys():
-        field_name = subschema[element]["name"]
+    for element, field in subschema.items():
+        field_name = field["name"]
         # NOTE: Link to the glossary entry,
         # except for subobjects (if table_type) and
         # "additional columns" (field_name.startswith("**"))
@@ -90,19 +90,19 @@ def _make_object_table(
             "[DEPRECATED](SPEC_ROOT/common-principles.md#definitions)",
         )
 
-        type_string = utils.resolve_metadata_type(subschema[element])
+        type_string = utils.resolve_metadata_type(field)
 
         description = utils.normalize_requirements(
-            subschema[element]["description"] + " " + description_addendum
+            f"{field['description']} {description_addendum}".strip()
         )
 
         # Append a list of valid values, if provided, to the description.
         # If there are a lot of valid values, this will add a link to the description linking to
         # the associated glossary entry.
-        if (
-            "enum" in subschema[element].keys()
-            and len(subschema[element]["enum"]) >= n_values_to_combine
-        ):
+        levels = subschema[element].get("enum", []) or subschema[element].get(
+            "definition", {}
+        ).get("Levels", [])
+        if len(levels) >= n_values_to_combine:
             glossary_entry = f"{GLOSSARY_PATH}.md#objects.{table_type}.{element}"
             valid_values_str = (
                 f"For a list of valid values for this {element_type}, see the "
@@ -173,7 +173,7 @@ def _make_table_from_rule(
     elements: dict[str, str | dict[str, str]] = {}
     for table in table_name:
         if table_type == "metadata":
-            table_schema = schema.rules.sidecars[table]
+            table_schema = schema.rules[table]
             new_elements = table_schema.fields
         elif table_type == "columns":
             table_schema = schema.rules.tabular_data[table]
@@ -407,7 +407,7 @@ def make_suffix_table(schema, suffixes, src_path=None, tablefmt="github"):
     return table_str
 
 
-def make_sidecar_table(
+def make_json_table(
     schema: Namespace,
     table_name: ty.Union[str, ty.List[str]],
     src_path: ty.Optional[str] = None,
@@ -436,6 +436,45 @@ def make_sidecar_table(
         schema=schema,
         table_type="metadata",
         table_name=table_name,
+        src_path=src_path,
+        tablefmt=tablefmt,
+    )
+
+    return table_str
+
+
+def make_sidecar_table(
+    schema: Namespace,
+    table_name: ty.Union[str, ty.List[str]],
+    src_path: ty.Optional[str] = None,
+    tablefmt: str = "github",
+):
+    """Produce metadata table (markdown) based on requested fields.
+
+    Parameters
+    ----------
+    schema : Namespace
+        The BIDS schema.
+    table_name : str or list of str
+        Qualified name(s) in schema.rules.sidecars
+    src_path : str or None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
+    tablefmt : string, optional
+        The target table format. The default is "github" (GitHub format).
+
+    Returns
+    -------
+    table_str : str
+        The tabulated table as a Markdown string.
+    """
+    table_str = _make_table_from_rule(
+        schema=schema,
+        table_type="metadata",
+        table_name=[
+            f"sidecars.{table}"
+            for table in ([table_name] if isinstance(table_name, str) else table_name)
+        ],
         src_path=src_path,
         tablefmt=tablefmt,
     )
@@ -528,8 +567,8 @@ def make_subobject_table(
         The tabulated table as a Markdown string.
     """
     obj = schema.objects[object_name]
-    required_fields = set(obj.get("required_fields", ()))
-    recommended_fields = set(obj.get("recommended_fields", ()))
+    required_fields = set(obj.get("required", ()))
+    recommended_fields = set(obj.get("recommended", ()))
 
     field_info = {}
     for field in obj.properties:

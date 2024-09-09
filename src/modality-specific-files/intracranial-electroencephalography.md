@@ -349,6 +349,12 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_columns_table("ieeg.iEEGElectrodes") }}
 
+`*_electrodes.tsv` files SHOULD NOT be duplicated for each data file,
+for example, during multiple runs of a task.
+The [inheritance principle](../common-principles.md#the-inheritance-principle) MUST
+be used to find the appropriate electrode positions for a given data file.
+If electrodes are repositioned, it is RECOMMENDED to use multiple sessions to indicate this.
+
 ### Example `*_electrodes.tsv`
 
 ```Text
@@ -383,7 +389,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("ieeg.iEEGCoordsystemGeneral") }}
+{{ MACROS___make_json_table("json.ieeg.iEEGCoordsystemGeneral") }}
 
 Fields relating to the iEEG electrode positions:
 
@@ -395,7 +401,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("ieeg.iEEGCoordsystemPositions") }}
+{{ MACROS___make_json_table("json.ieeg.iEEGCoordsystemPositions") }}
 
 ### Recommended 3D coordinate systems
 
