@@ -141,13 +141,13 @@ Metadata about the multidimensional array SHOULD be documented in the associated
 Example of preprocessed data (here relmat indicates a 3D relational matrix in 4D node*node*time*frequency band):
 ```Text
 └─ derivatives//
-   ├─ descriptions.tsv 
+   ├─ descriptions.tsv
    └─ sub-001/
       └─ eeg/
          ├─ sub-001_task-listening_desc-preproc_eeg.edf
          ├─ sub-001_task-listening_desc-preproc_eeg.json
-         ├─ sub-001_task-listening_meas-crosscoherence_relamt.hd5 
-         └─ sub-001_task-listening_meas-crosscoherence_relamt.jon 
+         ├─ sub-001_task-listening_meas-crosscoherence_relamt.hd5
+         └─ sub-001_task-listening_meas-crosscoherence_relamt.jon
 ```
 
 <!-- Link Definitions -->
