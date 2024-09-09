@@ -138,6 +138,18 @@ containing BIDS paths at the level of the multidimensional file
 BIDS path rules MUST be applied as though these paths existed within the dataset.
 Metadata about the multidimensional array SHOULD be documented in the associated JSON sidecar file.
 
+Example of preprocessed data (here relmat indicates a 3D relational matrix in 4D node*node*time*frequency band):
+```Text
+└─ derivatives//
+   ├─ descriptions.tsv 
+   └─ sub-001/
+      └─ eeg/
+         ├─ sub-001_task-listening_desc-preproc_eeg.edf
+         ├─ sub-001_task-listening_desc-preproc_eeg.json
+         ├─ sub-001_task-listening_meas-crosscoherence_relamt.hd5 
+         └─ sub-001_task-listening_meas-crosscoherence_relamt.jon 
+```
+
 <!-- Link Definitions -->
 
 [definitions]: ../common-principles.md#definitions
