@@ -94,7 +94,7 @@ microephysSample:
     BodyPartDetailsOntology: optional
     SampleEnvironment: recommended
     SampleEmbedding: optional
-    SampleThickness: optional
+    SliceThickness: optional
     SampleExtractionProtocol: optional
 
 microephysTaskInformation:
