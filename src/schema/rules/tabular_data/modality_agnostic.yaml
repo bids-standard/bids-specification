@@ -18,6 +18,28 @@ Participants:
   index_columns: [participant_id]
   additional_columns: allowed
 
+Participants_micro:
+  selectors:
+    - path == "participants.tsv"
+  initial_columns:
+    - participant_id
+  columns:
+    participant_id:
+      level: required
+      description_addendum: |
+        There MUST be exactly one row for each participant.
+    species: recommended
+    age: recommended
+    sex: recommended
+    handedness: recommended
+    strain: recommended
+    strain_rrid: recommended
+    birthdate: recommended
+    surgery_date: recommended
+    age_category: recommended
+    age_type: optional
+  index_columns: [participant_id]
+
 Samples:
   selectors:
     - path == "samples.tsv"
