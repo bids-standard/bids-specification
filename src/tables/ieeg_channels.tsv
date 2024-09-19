@@ -1,0 +1,6 @@
+name	type	units	low_cutoff	high_cutoff	reference	status	status_description
+LT01	ECOG	uV	300	0.11	good	n/a
+LT02	ECOG	uV	300	0.11	bad 	broken
+H01	SEEG	uV	300	0.11	bad 	line_noise
+ECG1	ECG	uV	n/a	0.11	good	n/a
+TR1	TRIG	n/a	n/a	n/a	good	n/a

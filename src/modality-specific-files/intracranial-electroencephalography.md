@@ -275,14 +275,7 @@ Examples of free-form text for field `description`:
 
 ### Example `*_channels.tsv`
 
-```Text
-name  type  units low_cutoff  high_cutoff status  status_description
-LT01  ECOG  uV    300         0.11        good    n/a
-LT02  ECOG  uV    300         0.11        bad     broken
-H01   SEEG  uV    300         0.11        bad     line_noise
-ECG1  ECG   uV    n/a         0.11        good    n/a
-TR1   TRIG  n/a   n/a         n/a         good    n/a
-```
+{{ read_table('../tables/ieeg_channels.tsv', sep = '\t') }}
 
 ## Electrode description (`*_electrodes.tsv`)
 
@@ -357,12 +350,7 @@ If electrodes are repositioned, it is RECOMMENDED to use multiple sessions to in
 
 ### Example `*_electrodes.tsv`
 
-```Text
-name  x   y    z    size   manufacturer
-LT01  19  -39  -16  2.3    Integra
-LT02  23  -40  -19  2.3    Integra
-H01   27  -42  -21  5      AdTech
-```
+{{ read_table('../tables/ieeg_electrodes.tsv', sep = '\t') }}
 
 ## Coordinate System JSON (`*_coordsystem.json`)
 
@@ -527,14 +515,7 @@ For example: `/stimuli/electrical_stimulation_functions/biphasic.tsv`
 
 ### Example `*_events.tsv`
 
-```Text
-onset duration trial_type             electrical_stimulation_type electrical_stimulation_site electrical_stimulation_current
-1.2   0.001    electrical_stimulation biphasic                    LT01-LT02                   0.005
-1.3   0.001    electrical_stimulation biphasic                    LT01-LT02                   0.005
-2.2   0.001    electrical_stimulation biphasic                    LT02-LT03                   0.005
-4.2   1        electrical_stimulation complex                     LT02-LT03                   n/a
-15.2  3        auditory_stimulus      n/a                         n/a                         n/a
-```
+{{ read_table('../tables/ieeg_events.tsv', sep = '\t') }}
 
 <!-- Link Definitions -->
 

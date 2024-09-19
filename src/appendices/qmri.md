@@ -413,7 +413,7 @@ sub-01_T1map.json
 
 sub-01_T1map.json:
 
-```text
+```json
 {
 
 <<Parameter injected by the software/pipeline>>
