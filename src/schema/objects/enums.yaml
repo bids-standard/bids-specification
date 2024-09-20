@@ -405,34 +405,44 @@ fsaverage:
   value: fsaverage
   display_name: fsaverage
   description: |
-    The `fsaverage` is a **dual template** providing both volumetric and surface coordinates references.
-    The volumetric template corresponds to a FreeSurfer variant of `MNI305` space.
-    The `fsaverage` atlas also defines a surface reference system (formerly described as fsaverage[3|4|5|6|sym]).
+    The `fsaverage` is a surface reference system
+    (formerly described as fsaverage\[3\|4\|5\|6\|sym\]).
+    Additionally, by convention,
+    `fsaverage` is used as shorthand for a **dual template** providing both volumetric and
+    surface coordinates references,
+    where the surface template is `fsaverage` and the volumetric template corresponds to a
+    FreeSurfer variant of `MNI305` space.
 
     Used by Freesurfer.
 fsaverageSym:
   value: fsaverageSym
   display_name: fsaverageSym
   description: |
-    The `fsaverage` is a **dual template** providing both volumetric and surface coordinates references.
-    The volumetric template corresponds to a FreeSurfer variant of `MNI305` space.
-    The `fsaverageSym` atlas also defines a symmetric surface reference system
+    The `fsaverageSym` is a symmetric surface reference system
     (formerly described as `fsaveragesym`).
+    Additionally, by convention,
+    `fsaverageSym` is used as shorthand for a **dual template** providing both volumetric and
+    surface coordinates references,
+    where the surface template is `fsaverageSym` and the volumetric template corresponds to a
+    FreeSurfer variant of `MNI305` space.
 
     Used by Freesurfer.
 fsLR:
   value: fsLR
   display_name: fsLR
   description: |
-    The `fsLR` is a **dual template** providing both volumetric and surface coordinates references.
-    The volumetric template corresponds to `MNI152NLin6Asym`.
+    The `fsLR` is a surface template.
+    Additionally, by convention,
+    `fsLR` is used as shorthand for a **dual template** providing both volumetric and surface
+    coordinates references,
+    where the surface template is `fsLR` and the volumetric template corresponds to `MNI152NLin6Asym`.
     Surface templates are given at several sampling densities:
     164k (used by HCP pipelines for 3T and 7T anatomical analysis),
     59k (used by HCP pipelines for 7T MRI bold and DWI analysis),
     32k (used by HCP pipelines for 3T MRI bold and DWI analysis), or
     4k (used by HCP pipelines for MEG analysis) fsaverage_LR surface reconstructed from the T1w image.
 
-    Used by Freesurfer.
+    Used by Freesurfer and Connectome Workbench.
 MNIColin27:
   value: MNIColin27
   display_name: MNIColin27
