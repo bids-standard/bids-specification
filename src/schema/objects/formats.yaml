@@ -9,8 +9,12 @@ index:
 label:
   display_name: Label
   description: |
-    Freeform labels without special characters.
-    Plus signs (+) are allowed, typically used to separate labels.
+    Free-form labels with alphanumeric and plus (+) characters.
+
+    Plus signs MAY be used to concatenate multiple applicable labels,
+    but no relationship is established by a partial match.
+    In particular, the inheritance principle does not connect files
+    containing "ent-X+Y" and "ent-X" or "ent-Y".
   pattern: '[0-9a-zA-Z+]+'
 # Metadata types
 boolean:
