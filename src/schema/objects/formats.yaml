@@ -10,7 +10,8 @@ label:
   display_name: Label
   description: |
     Freeform labels without special characters.
-  pattern: '[0-9a-zA-Z]+'
+    Plus signs (+) are allowed, typically used to separate labels.
+  pattern: '[0-9a-zA-Z+]+'
 # Metadata types
 boolean:
   display_name: Boolean
