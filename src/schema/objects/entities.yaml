@@ -76,7 +76,7 @@ direction:
   name: dir
   display_name: Phase-Encoding Direction
   description: |
-    The `dir-<label>` entity can be set to an arbitrary alphanumeric label
+    The `dir-<label>` entity can be set to an arbitrary legitimate label
     (for example, `dir-LR` or `dir-AP`)
     to distinguish different phase-encoding directions.
 
