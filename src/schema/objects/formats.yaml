@@ -67,7 +67,7 @@ dataset_relative:
     The validation for this format is minimal.
     It simply ensures that the value is a string with any characters that may appear in a valid path,
     without starting with "/" (an absolute path).
-  pattern: '(?!/)[0-9a-zA-Z/\_\-\.]+'
+  pattern: '(?!/)[0-9a-zA-Z+/\_\-\.]+'
 date:
   display_name: Date
   description: |
@@ -89,7 +89,7 @@ file_relative:
     The validation for this format is minimal.
     It simply ensures that the value is a string with any characters that may appear in a valid path,
     without starting with "/" (an absolute path).
-  pattern: '(?!/)[0-9a-zA-Z/\_\-\.]+'
+  pattern: '(?!/)[0-9a-zA-Z+/\_\-\.]+'
 participant_relative:
   display_name: Path relative to the participant directory
   description: |
@@ -99,7 +99,7 @@ participant_relative:
     It simply ensures that the value is a string with any characters that may appear in a valid path,
     without starting with "/" (an absolute path) or "sub/"
     (a relative path starting with the participant directory, rather than relative to that directory).
-  pattern: '(?!/)(?!sub-)[0-9a-zA-Z/\_\-\.]+'
+  pattern: '(?!/)(?!sub-)[0-9a-zA-Z+/\_\-\.]+'
 rrid:
   display_name: Research resource identifier
   description: |
@@ -114,7 +114,7 @@ stimuli_relative:
     It simply ensures that the value is a string with any characters that may appear in a valid path,
     without starting with "/" (an absolute path) or "stimuli/"
     (a relative path starting with the stimuli directory, rather than relative to that directory).
-  pattern: '(?!/)(?!stimuli/)[0-9a-zA-Z/\_\-\.]+'
+  pattern: '(?!/)(?!stimuli/)[0-9a-zA-Z+/\_\-\.]+'
 time:
   display_name: Time
   description: |
