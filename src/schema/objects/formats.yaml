@@ -14,7 +14,10 @@ label:
     Plus signs MAY be used to concatenate multiple applicable labels,
     but no relationship is established by a partial match.
     In particular, the inheritance principle does not connect files
-    containing "ent-X+Y" and "ent-X" or "ent-Y".
+    containing entities such as `<name>-x+y` with either `<name>-x` or `<name>-y`.
+    For example, metadata stored in a file at the root of the dataset with name `/acq-6p_T2w.json`
+    does not apply to files with partially matching "acquisition" entity values
+    such as `/sub-1/anat/sub-1_acq-6p+s2_T2w.nii`.
   pattern: '[0-9a-zA-Z+]+'
 # Metadata types
 boolean:
