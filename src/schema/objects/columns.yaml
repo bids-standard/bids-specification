@@ -110,7 +110,7 @@ derived_from:
     `sample-<label>` entity from which a sample is derived,
     for example a slice of tissue (`sample-02`) derived from a block of tissue (`sample-01`).
   type: string
-  pattern: ^sample-[0-9a-zA-Z]+$
+  pattern: ^sample-[0-9a-zA-Z+]+$
 desc_id:
   name: desc_id
   display_name: Description Label
@@ -125,7 +125,7 @@ desc_id:
     its `desc_id` column SHOULD contain all labels of the `desc` entity)
     used across the entire derivative dataset.
   type: string
-  pattern: ^desc-[0-9a-zA-Z]+$
+  pattern: ^desc-[0-9a-zA-Z+]+$
 description:
   name: description
   display_name: Description
@@ -369,7 +369,7 @@ participant_id:
     A participant identifier of the form `sub-<label>`,
     matching a participant entity found in the dataset.
   type: string
-  pattern: ^sub-[0-9a-zA-Z]+$
+  pattern: ^sub-[0-9a-zA-Z+]+$
 placement__motion:
   name: placement
   display_name: Placement
@@ -434,7 +434,7 @@ sample_id:
     A sample identifier of the form `sample-<label>`,
     matching a sample entity found in the dataset.
   type: string
-  pattern: ^sample-[0-9a-zA-Z]+$
+  pattern: ^sample-[0-9a-zA-Z+]+$
 sample_type:
   name: sample_type
   display_name: Sample type
@@ -466,7 +466,7 @@ session_id:
     A session identifier of the form `ses-<label>`,
     matching a session found in the dataset.
   type: string
-  pattern: ^ses-[0-9a-zA-Z]+$
+  pattern: ^ses-[0-9a-zA-Z+]+$
 sex:
   name: sex
   display_name: Sex
