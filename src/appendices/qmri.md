@@ -133,10 +133,13 @@ A guide for using macros can be found at
 
 Please visit the [file collections appendix](./file-collections.md#magnetic-resonance-imaging) to see the list of currently supported qMRI applications.
 
-### Quantitative maps are derivatives
+### Outputs are quantitative maps
 
-Regardless of how they are obtained (pre- or post-generated), qMRI maps are stored in the `derivatives` directory.
-For example a `T1map` can be generated from an `MP2RAGE` file collection using either options.
+qMRI maps are stored differently depending on the process that generated them.
+Pre-generated qMRI maps MAY be stored as part of a raw BIDS dataset,
+whereas they MUST be stored in a derivative BIDS dataset if they were post-generated.
+
+See the example below of a `T1map` generated from an `MP2RAGE` file collection using either option.
 
 If the map is post-generated:
 
@@ -151,15 +154,25 @@ A guide for using macros can be found at
             "qMRI-software-name": {
                 "sub-01": {
                     "anat": {
-                        "sub-01_T1map.nii.gz": "",
+                        "sub-01_T1map.nii.gz": " # --> T1 map in a derivative dataset",
                         "sub-01_T1map.json": "",
-                        "sub-01_UNIT1.nii.gz": "",
+                        "sub-01_UNIT1.nii.gz": " # --> UNI T1 in a derivative dataset",
                         "sub-01_UNIT1.json": "",
-                        },
                     },
                 },
             },
         },
+        "sub-01": {
+            "anat": {
+                "sub-01_inv-1_part-mag_MP2RAGE.nii.gz":"",
+                "sub-01_inv-1_part-phase_MP2RAGE.nii.gz":"",
+                "sub-01_inv-1_MP2RAGE.json":"",
+                "sub-01_inv-2_part-mag_MP2RAGE.nii.gz":"",
+                "sub-01_inv-2_part-phase_MP2RAGE.nii.gz":"",
+                "sub-01_inv-2_MP2RAGE.json":"",
+            },
+        },
+    },
    }
 ) }}
 
@@ -172,25 +185,30 @@ A guide for using macros can be found at
 {{ MACROS___make_filetree_example(
    {
     "ds-example": {
-        "derivatives": {
-            "Siemens": {
-                "sub-01": {
-                    "anat": {
-                        "sub-01_T1map.nii.gz": "",
-                        "sub-01_T1map.json": "",
-                        "sub-01_UNIT1.nii.gz": "",
-                        "sub-01_UNIT1.json": "",
-                        },
-                    },
-                },
+        "sub-01": {
+            "anat": {
+                "sub-01_inv-1_part-mag_MP2RAGE.nii.gz":"",
+                "sub-01_inv-1_part-phase_MP2RAGE.nii.gz":"",
+                "sub-01_inv-1_MP2RAGE.json":"",
+                "sub-01_inv-2_part-mag_MP2RAGE.nii.gz":"",
+                "sub-01_inv-2_part-phase_MP2RAGE.nii.gz":"",
+                "sub-01_inv-2_MP2RAGE.json":"",
+                "sub-01_T1map.nii.gz": " # --> T1 map in a raw dataset",
+                "sub-01_T1map.json": "",
+                "sub-01_UNIT1.nii.gz": " # --> UNI T1 in a raw dataset",
+                "sub-01_UNIT1.json": "",
             },
         },
+    }
    }
 ) }}
 
-Note: Even though the process from which pre-generated qMRI maps are obtained (vendor pipelines) is not known,
-vendors generally allow exporting of the corresponding input data.
-It is RECOMMENDED to share them along with the vendor outputs, whenever possible for a qMRI method supported by BIDS.
+!!! note "Sharing of vendor outputs"
+
+    Even though the process from which pre-generated qMRI maps are obtained (vendor pipelines) is not known,
+    vendors generally allow exporting of the corresponding input data.
+    It is RECOMMENDED to share them along with the vendor outputs,
+    whenever possible for a qMRI method supported by BIDS.
 
 ### Example datasets
 
@@ -326,7 +344,7 @@ A guide for using macros can be found at
 
 `dataset_description.json`:
 
-```text
+```json
 {
   "Name": "qMRLab Outputs",
   "BIDSVersion": "1.5.0",
@@ -526,12 +544,13 @@ as an input to offline calculation of a `T1map` using a dictionary lookup approa
 provided by the stock sequence. Instead, the `magnitude` and `phase` images are exported. Please
 see the relevant discussion at [qMRLab issue #255](https://github.com/qMRLab/qMRLab/issues/255).
 
-Therefore, the `UNIT1` image provided by the scanner is RECOMMENDED to be stored under the `anat`
-raw dataset directory along with the `MP2RAGE` file collection and to be used as the primary input
-for quantifying a `T1map`.
+Therefore, the `UNIT1` image provided by the scanner
+SHOULD be stored under the `anat` in a raw BIDS dataset
+along with the `MP2RAGE` file collection
+and to be used as the primary input for quantifying a `T1map`.
 
-If an additional `UNIT1` image is calculated offline, then the output is to be stored in the
-`derivatives` directory with necessary provenance information.
+If an additional `UNIT1` image is calculated offline,
+then the output MUST be stored in a derivative BIDS dataset with necessary provenance information.
 
 ##### `NumberShots` metadata field
 

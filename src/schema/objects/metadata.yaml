@@ -591,6 +591,55 @@ DecayCorrectionFactor:
   type: array
   items:
     type: number
+DeidentificationMethod:
+  name: DeidentificationMethod
+  display_name: Deidentification Method
+  description: |
+    A description of the mechanism or method used to remove the Patient's identity.
+    Corresponds to DICOM Tag 0012, 0063 `De-identification Method`.
+  type: array
+  items:
+    type: string
+DeidentificationMethodCodeSequence:
+  name: DeidentificationMethodCodeSequence
+  display_name: Deidentification Method Code Sequence
+  description: |
+    A sequence of code objects describing the mechanism or method use to remove the Patient's identity.
+    Corresponds to DICOM Tag 0012, 0064 `De-identification Method Code Sequence`.
+  type: array
+  items:
+    type: object
+    recommended_fields:
+      - CodeValue
+      - CodeMeaning
+      - CodingSchemeDesignator
+      - CodingSchemeVersion
+    properties:
+      CodeValue:
+        name: CodeValue
+        type: string
+        description: |
+          An identifier that is unambiguous within the Coding Scheme
+          denoted by Coding Scheme Designator and Coding Scheme Version.
+          Corresponds to DICOM Tag 0008, 0100 `Code Value`.
+      CodeMeaning:
+        name: CodeMeaning
+        type: string
+        description: |
+          Text that has meaning to a human and conveys the meaning of the term
+          Corresponds to DICOM Tag 0008, 0104 `Code Meaning`.
+      CodingSchemeDesignator:
+        name: CodingSchemeDesignator
+        type: string
+        description: |
+          The identifier of the coding scheme in which the coded entry is defined.
+          Corresponds to DICOM Tag 0008, 0102 `Coding Scheme Designator`.
+      CodingSchemeVersion:
+        name: CodingSchemeVersion
+        type: string
+        description: |
+          An identifier of the version of the coding scheme if necessary to resolve ambiguity.
+          Corresponds to DICOM Tag 0008, 0103 `Coding Scheme Version`.
 DelayAfterTrigger:
   name: DelayAfterTrigger
   display_name: Delay After Trigger
@@ -2614,12 +2663,12 @@ PostLabelingDelay:
     `InversionTime`.
   anyOf:
     - type: number
-      exclusiveMinimum: 0
+      minimum: 0
       unit: s
     - type: array
       items:
         type: number
-        exclusiveMinimum: 0
+        minimum: 0
         unit: s
 PowerLineFrequency:
   name: PowerLineFrequency

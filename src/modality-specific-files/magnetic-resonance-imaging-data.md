@@ -166,7 +166,7 @@ A guide for using macros can be found at
    ])
 }}
 
-#### Tissue description
+### Tissue description
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -177,6 +177,31 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_sidecar_table("mri.MRISample") }}
+
+### Deidentification information
+
+Describes the mechanism or method used to modify or remove metadata
+and/or pixel data to protect the patient or participant's identity.
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("mri.DeidentificationMethod") }}
+
+Each object in the `DeidentificationMethodCodeSequence` array includes the following RECOMMENDED keys:
+
+<!-- This block generates a table describing subfields within a metadata field.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_subobject_table("metadata.DeidentificationMethodCodeSequence.items") }}
 
 ## Anatomy imaging data
 
@@ -660,18 +685,13 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_suffix_table(["dwi", "sbref"]) }}
-
-Additionally, the following suffixes are used for scanner-generated images:
-
-<!--
-This block generates a suffix table.
-The definitions of these fields can be found in
-  src/schema/rules/files/raw
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_suffix_table(["ADC", "TRACE"]) }}
+{{ MACROS___make_suffix_table(
+      [
+         "dwi",
+         "sbref",
+      ]
+   )
+}}
 
 <!--
 This block generates a filename templates.
@@ -699,13 +719,6 @@ In such a case, two files could have the following names:
 `sub-01_acq-singleband_dwi.nii.gz` and `sub-01_acq-multiband_dwi.nii.gz`.
 The user is free to choose any other label than `singleband` and
 `multiband`, as long as they are consistent across subjects and sessions.
-
-Scanner-generated TRACE and ADC volumes MAY be included using the
-`TRACE` and `ADC` suffixes.
-If TRACE or ADC volume filenames match a diffusion series with all applicable entities,
-such volumes SHOULD be computed from that series.
-Otherwise, some entity, such as [`acq-<label>`](../appendices/entities.md#acq),
-SHOULD be used to indicate that the files are unrelated.
 
 ### REQUIRED gradient orientation information
 
@@ -925,11 +938,13 @@ for more information on `control` and  `label`.
 
 | **volume_type** | **Definition**                                                                                                                                                                         |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| control         | The control image is acquired in the exact same way as the label image, except that the magnetization of the blood flowing into the imaging region has not been inverted.              |
-| label           | The label image is acquired in the exact same way as the control image, except that the blood magnetization flowing into the imaging region has been inverted.                         |
-| m0scan          | The M0 image is a calibration image, used to estimate the equilibrium magnetization of blood.                                                                                          |
-| deltam          | The deltaM image is a perfusion-weighted image, obtained by the subtraction of `control` - `label`.                                                                                    |
-| cbf             | The cerebral blood flow (CBF) image is produced by dividing the deltaM by the M0, quantified into `mL/100g/min` (See also [doi:10.1002/mrm.25197](https://doi.org/10.1002/mrm.25197)). |
+| `control`       | The control image is acquired in the exact same way as the label image, except that the magnetization of the blood flowing into the imaging region has not been inverted.              |
+| `label`         | The label image is acquired in the exact same way as the control image, except that the blood magnetization flowing into the imaging region has been inverted.                         |
+| `m0scan`        | The M0 image is a calibration image, used to estimate the equilibrium magnetization of blood.                                                                                          |
+| `deltam`        | The deltaM image is a perfusion-weighted image, obtained by the subtraction of `control` - `label`.                                                                                    |
+| `cbf`           | The cerebral blood flow (CBF) image is produced by dividing the deltaM by the M0, quantified into `mL/100g/min` (See also [doi:10.1002/mrm.25197](https://doi.org/10.1002/mrm.25197)). |
+| `noRF`          | No radio frequency excitation (noRF) images are produced by disabling the radio frequency excitation, while maintaining all other parameters from the associated scan.                 |
+| `n/a`           | In some cases, there may be volume types that are not yet supported by BIDS, or which cannot be used by tools.                                                                         |
 
 If the `control` and `label` images are not available,
 their derivative `deltam` should be stored within the `*_asl.nii[.gz]`
