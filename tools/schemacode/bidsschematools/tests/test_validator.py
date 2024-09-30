@@ -91,7 +91,7 @@ def test_write_report(tmp_path):
             "(|_ses-(?P=session))(|_acq-(?P<acquisition>[0-9a-zA-Z+]+))"
             "(|_ce-(?P<ceagent>[0-9a-zA-Z+]+))"
             "(|_rec-(?P<reconstruction>[0-9a-zA-Z+]+))"
-            "(|_run-(?P<run>[0-9a-zA-Z+]+))"
+            "(|_run-(?P<run>[0-9]+))"
             "(|_part-(?P<part>(mag|phase|real|imag)))"
             "_(T1w|T2w|PDw|T2starw|FLAIR|inplaneT1|inplaneT2|PDT2|angio|T2star)"
             "\\.(nii.gz|nii|json)$",
