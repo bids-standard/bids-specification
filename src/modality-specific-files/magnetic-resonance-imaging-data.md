@@ -685,13 +685,18 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_suffix_table(
-      [
-         "dwi",
-         "sbref",
-      ]
-   )
-}}
+{{ MACROS___make_suffix_table(["dwi", "sbref"]) }}
+
+Additionally, the following suffixes are used for scanner-generated images:
+
+<!--
+This block generates a suffix table.
+The definitions of these fields can be found in
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_suffix_table(["ADC", "expADC", "trace", "FA", "colFA", "S0map"]) }}
 
 <!--
 This block generates a filename templates.
@@ -719,6 +724,15 @@ In such a case, two files could have the following names:
 `sub-01_acq-singleband_dwi.nii.gz` and `sub-01_acq-multiband_dwi.nii.gz`.
 The user is free to choose any other label than `singleband` and
 `multiband`, as long as they are consistent across subjects and sessions.
+
+Scanner-generated derivative images,
+such as trace-weighted, ADC, exponentiated ADC,
+fractional anisotropy (FA and colFA), and estimated unweighted signal intensity,
+MAY be included using the `trace`, `ADC`, `expADC`, `FA`, `colFA` and `S0map` suffixes, respectively.
+If trace, ADC, expADC, FA, colFA, or S0 volume filenames match a diffusion series with all applicable entities,
+such volumes SHOULD have been computed from that series.
+Otherwise, some entity, such as [`acq-<label>`](../appendices/entities.md#acq),
+SHOULD be used to indicate that the files are unrelated.
 
 ### REQUIRED gradient orientation information
 
