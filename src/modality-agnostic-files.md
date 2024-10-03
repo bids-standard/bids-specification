@@ -267,6 +267,9 @@ to date of birth.
 
 ```JSON
 {
+    "participant_id": {
+        "ContextURI": "http://thelab.example.com/term/subject/"
+    },
     "age": {
         "Description": "age of the participant",
         "Units": "year"
@@ -422,7 +425,7 @@ about the questionnaire and `adhd_b` and `adhd_c_dx` correspond to individual
 columns.
 
 In addition to the keys available to describe columns in all tabular files
-(`LongName`, `Description`, `Levels`, `Units`, and `TermURL`) the
+(`LongName`, `Description`, `Levels`, `Units`, `TermURL`, and `ContextURI`) the
 `participants.json` file as well as phenotypic files can also include column
 descriptions with a `Derivative` field that, when set to true, indicates that
 values in the corresponding column is a transformation of values from other

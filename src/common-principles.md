@@ -540,6 +540,7 @@ and a guide for using macros can be found at
         "Units": "RECOMMENDED",
         "Delimiter": "OPTIONAL",
         "TermURL": "RECOMMENDED",
+        "ContextURI": "RECOMMENDED",
         "HED": "OPTIONAL",
    }
 ) }}
@@ -591,6 +592,20 @@ like in the example below.
     }
 }
 ```
+
+The `ContextURI` can be used to provide a URL to a controlled vocabulary or ontology, or simply to provide a URL to a page that provides more context for the values in the column.
+It is to be used, so if combined with the value in that value (`<label>` or `<index>`), it would establish a unique identifier for the entity to be used across BIDS datasets.
+In the example below it would establish that `participant_id` is shared across datasets of the center, which would allow to differentiate center's subjects apart from subject ids used by other datasets used in the lab.
+
+```JSON
+{
+    "participant_id": {
+        "Description": "Unique identifier used for study subjects in the lab across studies",
+        "ContextURI": "https://thelab.example.com/term/subject/"
+    }
+}
+```
+
 
 ### Compressed tabular files
 
