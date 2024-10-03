@@ -466,7 +466,7 @@ column called `"timestamp"`:
 {
     "SamplingFrequency": 100.0,
     "StartTime": -22.345,
-    "Columns": ["cardiac", "timestamp"],
+    "Columns": ["timestamp", "cardiac"],
     "cardiac": {
         "Description": "continuous pulse measurement",
         "Units": "mV"
