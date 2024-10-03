@@ -109,7 +109,7 @@ BolusCutOffDelayTimeNotMonotonicallyIncreasing:
     level: error
   selectors:
     - modality == "mri"
-    - sidecar.BolusCutOffDelayTime != null
+    - type(sidecar.BolusCutOffDelayTime) == 'array'
   checks:
     - allequal(sorted(sidecar.BolusCutOffDelayTime), sidecar.BolusCutOffDelayTime)
 
