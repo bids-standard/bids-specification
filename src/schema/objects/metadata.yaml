@@ -1194,8 +1194,19 @@ EyeTrackerDistance:
   display_name: Eye-Tracker Distance
   description: |
     Distance (in meters) between the eye-tracker and the participant eye(s).
-  type: number
-  unit: m
+    Distance can either be expressed as a single numeric value indicating the shortest distance 
+    between the participant's eye and the eye-tracker's camera, or a three-coordinates array 
+    indicating the X, Y, Z distances between the participant's eye and the eye-tracker's
+    camera.
+  anyOf:
+    - type: number
+      unit: m
+    - type: array
+      items:
+        type: number
+        unit: m
+      minItems: 3
+      maxItems: 3
 EyeTrackingMethod:
   name: EyeTrackingMethod
   display_name: Eye-Tracking Method
@@ -3410,11 +3421,19 @@ ScreenDistance:
   display_name: Screen Distance
   description: |
     Distance between the participant's eye and the screen. If no screen was used, use `n/a`.
-    `ScreenDistance` is REQUIRED when the experiment included simultaneous eye-tracking
-    recordings.
+    `ScreenDistance` is REQUIRED and MUST NOT be `n/a` when the experiment included simultaneous
+    eye-tracking recordings.
+    Distance can either be expressed as a single numeric value indicating the shortest distance between
+    the participant's eye and the screen, or a three-coordinates array indicating the X, Y, Z distances
+    between the participant's eye and the center of the screen.
   anyOf:
     - type: number
       unit: m
+    - type: array
+      items:
+        type: number
+      minItems: 3
+      maxItems: 3
     - type: string
       enum:
         - n/a
