@@ -439,6 +439,8 @@ In that case, all values of the `"onset"` column of the
 `<matches>_physioevents.tsv.gz` are indexed by the index established by
 the `ForeignIndexColumn` of the corresponding `<matches>_physio.tsv.gz` file
 (that is, `"timestamp"` in this example).
+It is RECOMMENDED to specify metadata such as `Units` or `Origin`
+corresponding to the column defined by `ForeignIndexColumn`.
 
 For example, let us consider the previous structure:
 
@@ -470,7 +472,9 @@ column called `"timestamp"`:
         "Units": "mV"
     },
     "timestamp": {
-        "Description": "a continuously increasing identifier of the sampling time registered by the device"
+        "Description": "a continuously increasing identifier of the sampling time registered by the device",
+        "Units": "ms",
+        "Origin": "System startup"
     }
 }
 ```
@@ -686,6 +690,11 @@ could read:
     "pupil_size": {
         "Description": "Pupil area of the recorded eye as calculated by the eye-tracker in arbitrary units (see EyeLink's documentation for conversion).",
         "Units": "a.u."
+    },
+    "timestamp": {
+        "Description": "a continuously increasing identifier of the sampling time registered by the device",
+        "Units": "ms",
+        "Origin": "System startup"
     }
 }
 ```
