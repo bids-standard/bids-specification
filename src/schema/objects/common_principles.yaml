@@ -86,7 +86,8 @@ index:
 label:
   display_name: label
   description: |
-    An alphanumeric value, possibly prefixed with arbitrary number of 0s for consistent indentation,
+    An alphanumeric (and possibly including `+` character(s)) value, possibly prefixed with arbitrary
+    number of 0s for consistent indentation,
     for example, it is `rest` in `task-rest` following `task-<label>` specification.
     Note that labels MUST not collide when casing is ignored
     (see [Case collision intolerance](SPEC_ROOT/common-principles.md#case-collision-intolerance)).
