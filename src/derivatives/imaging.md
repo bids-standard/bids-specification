@@ -293,9 +293,11 @@ In this case, the mask suffix MUST be used,
 the [`label` entity](../appendices/entities.md#label)) SHOULD be used
 to specify the masked structure
 (see [Common image-derived labels](#common-image-derived-labels)),
-and the [`seg` entity](../appendices/entities.md#segmentation) SHOULD be defined.
+and the [`seg` entity](../appendices/entities.md#segmentation) specifying
+what segmentation generated the mask SHOULD be defined.
 
-For example:
+For example, we can specify the gray-matter mask corresponding to the
+results of a brain tissue segmentation algorithm as:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -306,8 +308,8 @@ A guide for using macros can be found at
     "pipeline": {
         "sub-001": {
             "anat": {
-                "sub-001_space-orig_seg-Desikan_label-GM_mask.nii.gz": "",
-                "sub-001_space-orig_seg-Desikan_label-GM_mask.json": "",
+                "sub-001_space-orig_seg-tissue_label-GM_mask.nii.gz": "",
+                "sub-001_space-orig_seg-tissue_label-GM_mask.json": "",
                 },
             },
         }
