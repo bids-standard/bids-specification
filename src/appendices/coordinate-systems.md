@@ -224,6 +224,13 @@ However, their use is [DEPRECATED][deprecated].
 | fsaverage\[3\|4\|5\|6\|sym\]        | Images were sampled to the FreeSurfer surface reconstructed from the subject's T1w image, and registered to an fsaverage template                        | fsaverage\[Sym\]                       |
 | UNCInfant\[0\|1\|2\]V\[21\|22\|23\] | Infant Brain Atlases from Neonates to 1- and 2-year-olds. [https://www.nitrc.org/projects/pediatricatlas](https://www.nitrc.org/projects/pediatricatlas) | UNCInfant                              |
 
+!!! note "Important"
+
+    Please note that the template identifiers starting with `MNI` (for example `MNI305`)
+    are typically referred to with the umbrella term of *MNI Space*.
+    The [Common Principles](../common-principles.md#definitions) deliver a more precise definitions
+    of template, space, and atlas.
+
 ### Nonstandard coordinate system identifiers
 
 The following template identifiers are RECOMMENDED for individual- and study-specific reference
