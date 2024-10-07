@@ -14,7 +14,7 @@ atlas:
         To further differentiate the concept of *atlas* and *template* throughout the specification, *template* will
         designate a standardized stereotaxy frame where some feature or features are mapped through spatial normalization
         and then possibly averaged.
-        Conversely, *atlas* will designate a specific methodology or algorithm to create meaningful partitions 
+        Conversely, *atlas* will designate a specific methodology or algorithm to create meaningful partitions
         and other knowledge annotations about the brain such as landmarks, with reference to a
         *template* instantiating a *space*.
 data_acquisition:

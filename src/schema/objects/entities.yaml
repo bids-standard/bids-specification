@@ -303,7 +303,7 @@ segmentation:
     The `seg-<label>` key/value pair corresponds to a custom label the user
     MAY use to distinguish specific partitions of the data space
     (segmentations or parcellations).
-    
+
     Segmentations and parcellations MAY or MAY NOT be associated with
     [atlases](SPEC_ROOT/common-principles.md#definitions),
     Therefore, `seg-<label>` SHOULD NOT be used to designate
