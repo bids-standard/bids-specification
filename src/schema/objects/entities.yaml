@@ -301,13 +301,21 @@ segmentation:
   display_name: Segmentation
   description: |
     The `seg-<label>` key/value pair corresponds to a custom label the user
-    MAY use to distinguish different segmentations or parcellations.
-
-    For atlases, `seg-<label>` distinguish different realizations of a given
-    segmentation or parcellation.
+    MAY use to distinguish specific partitions of the data space
+    (segmentations or parcellations).
+    
+    Segmentations and parcellations MAY or MAY NOT be associated with
+    [atlases](SPEC_ROOT/common-principles.md#definitions),
+    Therefore, `seg-<label>` SHOULD NOT be used to designate
+    [atlases](SPEC_ROOT/common-principles.md#definitions),
+    please refer to the [template and atlas section](SPEC_ROOT/derivatives/atlas.md)
+    for detailed specifications on their combined use.
+    When a segmentation *is a realization* of an atlas' segmentation or parcellation,
+    `seg-<label>` SHOULD be employed to distinguish them.
     For example, the [Yeo 2011 atlas](https://doi.org/10.1152/jn.00338.2011)
-    is distributed within *FreeSurfer* with two different parcellations
-    (*7 networks* and *17 networks*).
+    is distributed within *FreeSurfer* with two different parcellations:
+    the *7 networks* MAY be described with `seg-7n`, for instance, and
+    the *17 networks* MAY correspondingly be described with `seg-17n`.
 
     This entity is only applicable to derivative data.
   type: string
