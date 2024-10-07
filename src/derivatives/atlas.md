@@ -126,83 +126,6 @@ A guide for using macros can be found at
 })
 }}
 
-Often, templates are necessary to bring or project information from/to an atlas.
-Derivatives provenant from an atlas MUST be encoded with the
-[`atlas-<label>` entity](../glossary.md#atlas-entities).
-The following example shows how 'Colin27' could have encoded the Automated Anatomical Labeling (AAL)
-atlas ([Tzourio-Mazoyer et al., 2002](https://doi.org/10.1006/nimg.2001.0978)), which was originally
-defined on the Colin27 space:
-
-<!-- This block generates a file tree.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filetree_example({
-   "colin27-pipeline": {
-      "sub-01": {
-         "anat": {
-            "sub-01_atlas-AAL_dseg.json": "",
-            "sub-01_atlas-AAL_dseg.nii.gz": "",
-            "sub-01_atlas-AAL_dseg.tsv": "",
-            "sub-01_atlas-AAL_probseg.nii.gz": "",
-            "sub-01_label-brain_mask.nii.gz": "",
-            "sub-01_label-head_mask.nii.gz": "",
-            "sub-01_T1w.nii.gz": "",
-            "sub-01_T1w.json": "",
-         },
-      },
-   }
-})
-}}
-
-As [the authors of 'Colin27' indicate](https://www.mcgill.ca/bic/software/tools-data-analysis/anatomical-mri/atlases/colin-27),
-it is aligned with MNI305:
-
-> In 1998, a new atlas with much higher definition than MNI305s was created at the MNI.
-> One individual (CJH) was scanned 27 times and the images linearly registered to create
-> an average with high SNR and structure definition (Holmes et al., 1998).
-> This average was linearly registered to the average 305.
-> Ironically, this dataset was not originally intended for use as a stereotaxic template
-> but as the sub-strate for an ROI parcellation scheme to be used with
-> ANIMAL non-linear spatial normalization (Collins et al., 1995),
-> i.e. it was intended for the purpose of segmentation, NOT stereotaxy.
-> As a single brain atlas, it did not capture anatomical variability and was, to some degree,
-> a reversion to the Talairach approach.
->
-> However, the high definition proved too attractive to the community and,
-> after non-linear mapping to fit the MNI305 space, it has been adopted
-> by many groups as a stereotaxic template.
-
-Therefore, this pipeline potentially could have produced outputs in the realigned T1w space
-before alignment to the MNI305 template.
-To disambiguate in this case, we employ the [`space-<label>` entity](../glossary.md#space-entities):
-
-<!-- This block generates a file tree.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filetree_example({
-   "colin27-pipeline": {
-      "sub-01": {
-         "anat": {
-            "sub-01_space-MNI305_atlas-AAL_dseg.json": "",
-            "sub-01_space-MNI305_atlas-AAL_dseg.nii.gz": "",
-            "sub-01_space-MNI305_atlas-AAL_dseg.tsv": "",
-            "sub-01_space-MNI305_atlas-AAL_probseg.nii.gz": "",
-            "sub-01_space-MNI305_label-brain_mask.nii.gz": "",
-            "sub-01_space-MNI305_label-head_mask.nii.gz": "",
-            "sub-01_space-MNI305_T1w.nii.gz": "",
-            "sub-01_space-MNI305_T1w.json": "",
-            "sub-01_space-T1w_label-brain_mask.nii.gz": "",
-            "sub-01_space-T1w_label-head_mask.nii.gz": "",
-            "sub-01_space-T1w_T1w.nii.gz": "",
-            "sub-01_space-T1w_T1w.json": "",
-         },
-      },
-   }
-})
-}}
-
 ## Multi-subject template and atlases and deriving an existing template/atlas
 
 Atlasing multiple individual brains is a higher-than-first-level analysis,
@@ -212,7 +135,7 @@ and distill the sample-pooled knowledge and feature maps.
 Similarly, deriving from an existing template and atlases is also
 a higher-than-first-level analysis as it builds on a previous analysis.
 
-**Multi-subject templates and atlases**.
+**Multi-subject templates**.
 While at the subject level analysis it is the individual brain that establishes
 stereotaxy.
 At higher-than-first-level stereotaxy is supported by templates, which are
@@ -252,8 +175,8 @@ A guide for using macros can be found at
 })
 }}
 
-**Multi-cohort templates and atlases.**
-In the case that the template- and/or atlas-generating pipeline derives
+**Multi-cohort templates.**
+In the case that the template-generating pipeline derives
 several cohorts, the file structure must employ the
 [`cohort-<label>` directory and entity](../glossary.md#cohort-entities).
 
@@ -349,10 +272,88 @@ A guide for using macros can be found at
 })
 }}
 
-**The PS13 atlas example.**
-The [PS13 atlas](https://doi.org/10.18112/openneuro.ds004401.v1.3.0) is a
-molecular imaging brain atlas of Cyclooxygenase-1 (PET).
-The atlas is generated in two standard spaces: `MNI152Lin` and `fsaverage`:
+**Defining atlases referenced to a pre-existing template.**
+Once a standard space is instantiated by a reference template,
+atlasing knowledge MAY be specified employing the
+[`atlas-<label>` entity](../glossary.md#atlas-entities).
+
+The following example shows how 'Colin27' could have encoded the Automated Anatomical Labeling (AAL)
+atlas ([Tzourio-Mazoyer et al., 2002](https://doi.org/10.1006/nimg.2001.0978)), which was originally
+defined on the Colin27 space:
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+   "colin27-pipeline": {
+      "sub-01": {
+         "anat": {
+            "sub-01_atlas-AAL_dseg.json": "",
+            "sub-01_atlas-AAL_dseg.nii.gz": "",
+            "sub-01_atlas-AAL_dseg.tsv": "",
+            "sub-01_atlas-AAL_probseg.nii.gz": "",
+            "sub-01_label-brain_mask.nii.gz": "",
+            "sub-01_label-head_mask.nii.gz": "",
+            "sub-01_T1w.nii.gz": "",
+            "sub-01_T1w.json": "",
+         },
+      },
+   }
+})
+}}
+
+As [the authors of 'Colin27' indicate](https://www.mcgill.ca/bic/software/tools-data-analysis/anatomical-mri/atlases/colin-27),
+it is aligned with MNI305:
+
+> In 1998, a new atlas with much higher definition than MNI305s was created at the MNI.
+> One individual (CJH) was scanned 27 times and the images linearly registered to create
+> an average with high SNR and structure definition (Holmes et al., 1998).
+> This average was linearly registered to the average 305.
+> Ironically, this dataset was not originally intended for use as a stereotaxic template
+> but as the sub-strate for an ROI parcellation scheme to be used with
+> ANIMAL non-linear spatial normalization (Collins et al., 1995),
+> i.e. it was intended for the purpose of segmentation, NOT stereotaxy.
+> As a single brain atlas, it did not capture anatomical variability and was, to some degree,
+> a reversion to the Talairach approach.
+>
+> However, the high definition proved too attractive to the community and,
+> after non-linear mapping to fit the MNI305 space, it has been adopted
+> by many groups as a stereotaxic template.
+
+Therefore, this pipeline potentially could have produced outputs in the realigned T1w space
+before alignment to the MNI305 template.
+To disambiguate in this case, we employ the [`space-<label>` entity](../glossary.md#space-entities):
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+   "colin27-pipeline": {
+      "sub-01": {
+         "anat": {
+            "sub-01_space-MNI305_atlas-AAL_dseg.json": "",
+            "sub-01_space-MNI305_atlas-AAL_dseg.nii.gz": "",
+            "sub-01_space-MNI305_atlas-AAL_dseg.tsv": "",
+            "sub-01_space-MNI305_atlas-AAL_probseg.nii.gz": "",
+            "sub-01_space-MNI305_label-brain_mask.nii.gz": "",
+            "sub-01_space-MNI305_label-head_mask.nii.gz": "",
+            "sub-01_space-MNI305_T1w.nii.gz": "",
+            "sub-01_space-MNI305_T1w.json": "",
+            "sub-01_space-T1w_label-brain_mask.nii.gz": "",
+            "sub-01_space-T1w_label-head_mask.nii.gz": "",
+            "sub-01_space-T1w_T1w.nii.gz": "",
+            "sub-01_space-T1w_T1w.json": "",
+         },
+      },
+   }
+})
+}}
+
+For example, the [PS13 atlas](https://doi.org/10.18112/openneuro.ds004401.v1.3.0),
+a molecular imaging brain atlas of Cyclooxygenase-1 (PET),
+was generated in two standard spaces: `MNI152Lin` and `fsaverage`:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -471,6 +472,141 @@ A guide for using macros can be found at
    }
 })
 }}
+
+**Producing a new template AND atlas.**
+Atlasing is often performed with reference to a *custom* standard space.
+In this case, a feature template map is generated from all the participant(s)
+in the study, and the atlas' artifacts are produced with reference to that
+template.
+
+Either by generating the template space with aligning to a pre-existing template,
+or by estimating a transform between templates by means of image registration,
+a new template definition MUST be employed if the new template generates
+a new [*space*](../common-principles.md#definitions).
+For example, let's imagine that PS13 first generated a template nuclear imaging
+map and after that, a corresponding [*atlas*](../common-principles.md#definitions)
+was defined.
+In that case, the [`atlas-<label>`](../glossary.md#atlas-entities) SHOULD be omitted
+except several atlases need specification:
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+   "ps13-pipeline": {
+      "tpl-PS13": {
+         "pet": {
+            "tpl-PS13_desc-nopvc_dseg.nii.gz": "",
+            "tpl-PS13_desc-pvc_dseg.nii.gz": "",
+            "tpl-PS13_dseg.json": "",
+            "tpl-PS13_dseg.tsv": "",
+            "tpl-PS13_stat-std_desc-fnirtNopvc_mimap.json": "",
+            "tpl-PS13_stat-std_desc-fnirtNopvc_mimap.nii.gz": "",
+            "tpl-PS13_stat-std_desc-fnirtPvc_mimap.json": "",
+            "tpl-PS13_stat-std_desc-fnirtPvc_mimap.nii.gz": "",
+            "tpl-PS13_stat-std_desc-nopvc_mimap.json": "",
+            "tpl-PS13_stat-std_desc-nopvc_mimap.nii.gz": "",
+            "tpl-PS13_stat-std_desc-pvc_mimap.json": "",
+            "tpl-PS13_stat-std_desc-pvc_mimap.nii.gz": "",
+         },
+      },
+   }
+})
+}}
+
+Let's complete the above example by adding two new atlases to the existing
+template and (*default*) atlas:
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+   "ps13-with-atlases-pipeline": {
+      "tpl-PS13": {
+         "pet": {
+            "tpl-PS13_atlas-Economo1916_desc-nopvc_dseg.nii.gz": "",
+            "tpl-PS13_atlas-Economo1916_desc-pvc_dseg.nii.gz": "",
+            "tpl-PS13_atlas-Economo1916_dseg.json": "",
+            "tpl-PS13_atlas-Economo1916_dseg.tsv": "",
+            "tpl-PS13_atlas-RamonCajal1908_desc-nopvc_dseg.nii.gz": "",
+            "tpl-PS13_atlas-RamonCajal1908_desc-pvc_dseg.nii.gz": "",
+            "tpl-PS13_atlas-RamonCajal1908_dseg.json": "",
+            "tpl-PS13_atlas-RamonCajal1908_dseg.tsv": "",
+            "tpl-PS13_desc-nopvc_dseg.nii.gz": "",
+            "tpl-PS13_desc-pvc_dseg.nii.gz": "",
+            "tpl-PS13_dseg.json": "",
+            "tpl-PS13_dseg.tsv": "",
+            "tpl-PS13_stat-std_desc-fnirtNopvc_mimap.json": "",
+            "tpl-PS13_stat-std_desc-fnirtNopvc_mimap.nii.gz": "",
+            "tpl-PS13_stat-std_desc-fnirtPvc_mimap.json": "",
+            "tpl-PS13_stat-std_desc-fnirtPvc_mimap.nii.gz": "",
+            "tpl-PS13_stat-std_desc-nopvc_mimap.json": "",
+            "tpl-PS13_stat-std_desc-nopvc_mimap.nii.gz": "",
+            "tpl-PS13_stat-std_desc-pvc_mimap.json": "",
+            "tpl-PS13_stat-std_desc-pvc_mimap.nii.gz": "",
+         },
+      },
+   }
+})
+}}
+
+where the `atlas-RamonCajal1908` and `atlas-Economo1916` hypothetically define
+two different atlases (please note that, often, atlases are named after
+the first author and indicating a year of a reference communication).
+The original *default* or *implicit* atlas' artifacts such as
+the `tpl-PS13_desc-nopvc_dseg.nii.gz` segmentation,
+which were originally generated with the PS13 template,
+MAY take an [`atlas-<label>`](../glossary.md#atlas-entities) if they
+need to be differentiated from the original template and atlas dataset.
+However, it is RECOMMENDED that these *default* or *implicit* atlases employed
+in the *custom* space they were generated only define
+[`atlas-<label>`](../glossary.md#atlas-entities)
+if it is necessary to disambiguate two or more atlases.
+
+A further example of these template-and-atlas specifications
+is the *Spatially Unbiased Infratentorial Template (SUIT)*
+([Diedrichsen, 2006](https://doi.org/10.1016/j.neuroimage.2006.05.056)):
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+   "suit-pipeline": {
+      "tpl-SUIT": {
+         "anat": {
+            "CHANGES": "",
+            "LICENSE": "",
+            "README.md": "",
+            "dataset_description.json": "",
+            "tpl-SUIT_T1w.nii.gz": "",
+            "tpl-SUIT_atlas-Buckner2011_dseg.json": "",
+            "tpl-SUIT_atlas-Buckner2011_seg-17n_dseg.label.gii": "",
+            "tpl-SUIT_atlas-Buckner2011_seg-17n_dseg.nii.gz": "",
+            "tpl-SUIT_atlas-Buckner2011_seg-17n_dseg.tsv": "",
+            "tpl-SUIT_atlas-Buckner2011_seg-17n_stat-confidence_probseg.nii.gz": "",
+            "tpl-SUIT_atlas-Buckner2011_seg-7n_dseg.label.gii": "",
+            "tpl-SUIT_atlas-Buckner2011_seg-7n_dseg.nii.gz": "",
+            "tpl-SUIT_atlas-Buckner2011_seg-7n_dseg.tsv": "",
+            "tpl-SUIT_atlas-Buckner2011_seg-7n_stat-confidence_probseg.nii.gz": "",
+            "tpl-SUIT_atlas-Diedrichsen2009_dseg.json": "",
+            "tpl-SUIT_atlas-Diedrichsen2009_dseg.label.gii": "",
+            "tpl-SUIT_atlas-Diedrichsen2009_dseg.nii.gz": "",
+            "tpl-SUIT_atlas-Diedrichsen2009_dseg.tsv": "",
+            "tpl-SUIT_atlas-Diedrichsen2009_probseg.nii.gz": "",
+            "tpl-SUIT_flat.surf.gii": "",
+            "tpl-SUIT_sulc.shape.gii": "",
+         },
+      },
+   }
+})
+}}
+
+In this case, a new T1w template of the cerebellum was created, and two different
+atlases (`Diedrichsen2009`, and `Buckner2011`) were generated with respect to
+the T1w template.
 
 **Deriving from an existing template/atlas**.
 For example, the MIAL67ThalamicNuclei
