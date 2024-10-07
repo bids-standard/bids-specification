@@ -12,7 +12,7 @@ def test_entity_rule(schema_obj):
             "datatypes": ["anat"],
             "entities": {"subject": "required", "session": "optional"},
             "suffixes": ["T1w"],
-            "extensions": [".nii"],
+            "extensions": [[".nii"]],
         }
     )
     nii_rule = rules._entity_rule(rule, schema_obj)
@@ -44,7 +44,7 @@ def test_entity_rule(schema_obj):
             "datatypes": ["anat", ""],
             "entities": {"subject": "optional", "session": "optional"},
             "suffixes": ["T1w"],
-            "extensions": [".json"],
+            "extensions": [[".json"]],
         }
     )
     json_rule = rules._entity_rule(rule, schema_obj)
@@ -79,7 +79,7 @@ def test_split_inheritance_rules():
         "datatypes": ["anat"],
         "entities": {"subject": "required", "session": "optional"},
         "suffixes": ["T1w"],
-        "extensions": [".nii", ".json"],
+        "extensions": [[".nii"], [".json"]],
     }
 
     main, sidecar = rules._split_inheritance_rules(rule)
@@ -87,13 +87,13 @@ def test_split_inheritance_rules():
         "datatypes": ["anat"],
         "entities": {"subject": "required", "session": "optional"},
         "suffixes": ["T1w"],
-        "extensions": [".nii"],
+        "extensions": [[".nii"]],
     }
     assert sidecar == {
         "datatypes": ["", "anat"],
         "entities": {"subject": "optional", "session": "optional"},
         "suffixes": ["T1w"],
-        "extensions": [".json"],
+        "extensions": [[".json"]],
     }
 
     # Can't split again
@@ -102,19 +102,19 @@ def test_split_inheritance_rules():
         "datatypes": ["anat"],
         "entities": {"subject": "required", "session": "optional"},
         "suffixes": ["T1w"],
-        "extensions": [".nii"],
+        "extensions": [[".nii"]],
     }
 
 
 def test_stem_rule():
-    rule = Namespace.build({"stem": "README", "level": "required", "extensions": ["", ".md"]})
+    rule = Namespace.build({"stem": "README", "level": "required", "extensions": [["", ".md"]]})
     assert rules._stem_rule(rule) == {
         "regex": r"(?P<stem>(?s:README))(?P<extension>|\.md)\Z",
         "mandatory": True,
     }
 
     rule = Namespace.build(
-        {"stem": "participants", "level": "optional", "extensions": [".tsv", ".json"]}
+        {"stem": "participants", "level": "optional", "extensions": [[".tsv"], [".json"]]}
     )
     assert rules._stem_rule(rule) == {
         "regex": r"(?P<stem>(?s:participants))(?P<extension>\.tsv|\.json)\Z",
@@ -127,7 +127,7 @@ def test_stem_rule():
             "stem": "*",
             "datatypes": ["phenotype"],
             "level": "optional",
-            "extensions": [".tsv", ".json"],
+            "extensions": [[".tsv"], [".json"]],
         }
     )
     assert rules._stem_rule(rule) == {

@@ -4,8 +4,7 @@ asl:
     - asl
     - m0scan
   extensions:
-    - .nii.gz
-    - .nii
+    - [.nii.gz, .nii]
     - .json
   datatypes:
     - perf
