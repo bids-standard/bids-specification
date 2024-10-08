@@ -3,7 +3,7 @@ build-backend = "hatchling.build"
 requires = ["hatchling"]
 
 [project]
-authors = [{name = "Nilearn developers"}]
+authors = [{name = "bids-standard developers"}]
 classifiers = [
     "Development Status :: 4 - Beta",
     "License :: OSI Approved :: MIT License",
