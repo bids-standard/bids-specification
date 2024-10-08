@@ -84,6 +84,17 @@ omit = [
 ]
 parallel = true
 
+[tool.hatch.build.targets.sdist]
+include = [
+    "bidsschematools/**/*.py",
+    "bidsschematools/data/metaschema.json",
+    "bidsschematools/data/schema/BIDS_VERSION",
+    "bidsschematools/data/schema/SCHEMA_VERSION",
+    "bidsschematools/data/schema/**/*.yaml",
+    "bidsschematools/tests/data/**/*",
+    "bidsschematools/tests/data/**/.bidsignore"
+]
+
 [tool.isort]
 multi_line_output = 3
 profile = "black"
