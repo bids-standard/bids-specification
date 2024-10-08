@@ -1,11 +1,65 @@
 [build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
+build-backend = "hatchling.build"
+requires = ["hatchling"]
+
+[project]
+authors = [{name = "Nilearn developers"}]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: MIT License",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13"
+]
+dependencies = [
+    "click",
+    "pyyaml",
+    "importlib_resources; python_version < '3.9'",
+    "jsonschema"
+]
+description = " Python tools for working with the BIDS schema."
+license = {text = "MIT"}
+maintainers = [{name = "bids-standard developers", email = " bids.maintenance@gmail.com"}]
+name = "bidsschematools"
+readme = "README.md"
+requires-python = ">=3.9"
+version = "0.11.4-dev"  # file:bidsschematools/data/schema/SCHEMA_VERSION
+
+[project.optional-dependencies]
+all = [
+    "bidsschematools[doc,render,tests,expressions]"
+]
+doc = [
+    "sphinx>=1.5.3",
+    "sphinx_rtd_theme"
+]
+expressions = ["pyparsing"]
+render = [
+    "tabulate",
+    "pandas",
+    "markdown-it-py"
+]
+tests = [
+    "codecov",
+    "coverage[toml]",
+    "flake8",
+    "flake8-black",
+    "flake8-isort",
+    "pytest",
+    "pytest-cov"
+]
+
+[project.scripts]
+bst = "bidsschematools.__main__:cli"
+
+[project.urls]
+Homepage = "https://github.com/bids-standard/bids-specification"
 
 [tool.black]
-line-length = 99
-target-version = ['py39']
-include = '\.pyi?$'
 exclude = '''
 (
   /(
@@ -20,19 +74,27 @@ exclude = '''
   )/
 )
 '''
-
-[tool.isort]
-profile = "black"
-multi_line_output = 3
-
-[tool.pytest.ini_options]
-markers = [
-  "validate_schema: tests that validate the schema itself",
-]
+include = '\.pyi?$'
+line-length = 99
+target-version = ['py39']
 
 [tool.coverage.run]
-parallel = true
 omit = [
-  "*/*/tests/*",
-  "**/tests/*"
+    "*/*/tests/*",
+    "**/tests/*"
 ]
+parallel = true
+
+[tool.isort]
+multi_line_output = 3
+profile = "black"
+
+[tool.pytest.ini_options]
+addopts = "-ra --strict-markers"
+log_cli = true
+log_cli_level = "INFO"
+markers = [
+    "validate_schema: tests that validate the schema itself"
+]
+minversion = "6.0"
+xfail_strict = true
