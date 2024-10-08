@@ -18,7 +18,6 @@ classifiers = [
 dependencies = [
     "click",
     "pyyaml",
-    "importlib_resources; python_version < '3.9'",
     "jsonschema"
 ]
 description = " Python tools for working with the BIDS schema."
@@ -49,7 +48,7 @@ tests = [
     "flake8",
     "flake8-black",
     "flake8-isort",
-    "pytest",
+    "pytest>6",
     "pytest-cov"
 ]
 
@@ -90,7 +89,7 @@ multi_line_output = 3
 profile = "black"
 
 [tool.pytest.ini_options]
-addopts = "-ra --strict-markers"
+addopts = "-ra --strict-markers --strict-config"
 log_cli = true
 log_cli_level = "INFO"
 markers = [
