@@ -1,6 +1,0 @@
-include bidsschematools/data/metaschema.json
-include bidsschematools/data/schema/BIDS_VERSION
-include bidsschematools/data/schema/SCHEMA_VERSION
-recursive-include bidsschematools/data/schema *.yaml
-recursive-include bidsschematools/tests/data
-recursive-include bidsschematools/tests/data/ .bidsignore
