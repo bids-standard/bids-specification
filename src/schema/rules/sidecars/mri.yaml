@@ -195,8 +195,9 @@ PhaseEncodingDirectionRec:
 
 PhaseEncodingDirectionReq:
   selectors:
-    - modality == "mri"
+    - datatype == "fmap"
     - suffix == "epi"
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     PhaseEncodingDirection:
       level: required
@@ -244,6 +245,7 @@ SliceTimingMRI:
   selectors:
     - modality == "mri"
     - sidecar.MRAcquisitionType == "2D"
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     SliceTiming:
       level: recommended
@@ -257,6 +259,7 @@ SliceTimingASL:
     - datatype == "perf"
     - intersects([suffix], ["asl", "m0scan"])
     - sidecar.MRAcquisitionType == "2D"
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     SliceTiming:
       level: required
@@ -288,6 +291,7 @@ MRIFlipAngleLookLockerFalse:
   selectors:
     - modality == "mri"
     - sidecar.LookLocker != true
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     FlipAngle:
       level: recommended
@@ -304,6 +308,7 @@ MRIFlipAngleLookLockerTrue:
   selectors:
     - modality == "mri"
     - sidecar.LookLocker == true
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     FlipAngle:
       level: required
@@ -377,6 +382,7 @@ MRIInstitutionInformation:
 DeidentificationMethod:
   selectors:
     - intersects([modality], ["mri", "pet"])
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     DeidentificationMethod:
       level: optional
