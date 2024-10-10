@@ -70,6 +70,7 @@ electrodes:
   entities:
     subject: required
     session: optional
+    task: optional
     acquisition: optional
     run: optional
     space: optional

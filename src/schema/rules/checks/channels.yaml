@@ -3,27 +3,32 @@ ElectrodeSpecificity:
   issue:
     code: EXCESSIVE_ELECTRODE_SPECIFICITY
     message: |
-      Run or acquisition entities detected in electrodes.tsv.
+      Task, acquisition or run entities detected in electrodes.tsv.
       Electrode definitions should generally not vary within a session.
-      Consider creating a new session each time electrodes are reconfigured.
+      Consider removing the excess entity/entities or create a new
+      session each time electrodes are reconfigured.
     level: warning
   selectors:
     - suffix == 'electrodes'
     - extension == '.tsv'
   checks:
-    - '!("run" in entities)'
+    - '!("task" in entities)'
     - '!("acquisition" in entities)'
+    - '!("run" in entities)'
 
 CoordsystemSpecificity:
   issue:
     code: EXCESSIVE_COORDSYSTEM_SPECIFICITY
     message: |
-      Task entities detected in coordsystem.tsv.
-      Coordinate systems should generally not vary by task.
-      Consider removing the excess entity.
+      Task, acquisition or run entities detected in coordsystem.tsv.
+      Coordinate systems should generally not vary within a session.
+      Consider removing the excess entity/entities or create new
+      sessions when multiple coordinate systems are appropriate.
     level: warning
   selectors:
     - suffix == 'coordsystem'
     - extension == '.json'
   checks:
     - '!("task" in entities)'
+    - '!("acquisition" in entities)'
+    - '!("run" in entities)'
