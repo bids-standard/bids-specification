@@ -748,7 +748,7 @@ the Principle defines the *order of precedence* of such metadata files contents.
             },
         "task-rest_bold.json": "",
         }
-    ) }}
+    ) | indent(4) }}
 
     Contents of file `task-rest_bold.json`:
 
@@ -803,7 +803,7 @@ the Principle defines the *order of precedence* of such metadata files contents.
                 }
             }
         }
-    ) }}
+    ) | indent(4) }}
 
 
 !!! example "Example 3: Modification of filesystem structure from Example 2 to satisfy inheritance principle requirements"
@@ -828,7 +828,7 @@ the Principle defines the *order of precedence* of such metadata files contents.
                 }
             }
         }
-    ) }}
+    ) | indent(4) }}
 
 !!! example "Example 4: Single metadata file applying to multiple data files (corollary 2)"
 
@@ -847,7 +847,7 @@ the Principle defines the *order of precedence* of such metadata files contents.
                 }
             }
         }
-    ) }}
+    ) | indent(4) }}
 
 ## Participant names and other labels
 
