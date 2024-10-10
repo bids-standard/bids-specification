@@ -429,6 +429,11 @@ For more information on typical coordinate systems for MEG-MRI coregistration:
 or:
 [Coordinate Systems - Brainstorm toolbox](https://neuroimage.usc.edu/brainstorm/CoordinateSystems)
 
+`*_coordsystem.json` files SHOULD NOT be duplicated for each data file,
+for example, across multiple tasks.
+The [inheritance principle](../common-principles.md#the-inheritance-principle) MUST
+be used to find the appropriate coordinate system description for a given data file.
+
 ## Landmark photos (`*_photo.<extension>`)
 
 Photos of the anatomical landmarks and/or head localization coils
