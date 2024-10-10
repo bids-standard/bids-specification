@@ -112,4 +112,4 @@ bidsschematools = [
 ]
 
 [tool.setuptools.packages.find]
-where = ["bidsschematools"]
+include = ["bidsschematools*"]
