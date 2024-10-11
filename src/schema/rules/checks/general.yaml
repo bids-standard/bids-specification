@@ -23,3 +23,15 @@ ReadmeFileSmall:
     - match(path, '^/README')
   checks:
     - size > 150
+
+DuplicateReadmes:
+  issue:
+    code: MULTIPLE_README_FILES
+    message: |
+      There are multiple '/README' files (with different extensions) in this BIDS
+      dataset. Only one '/README' file should exist.
+    level: error
+  selectors:
+    - match(path, '^/README.*')
+  checks:
+    - exists(["README", "README.md", "README.rst", "README.txt"], "dataset") == 1
