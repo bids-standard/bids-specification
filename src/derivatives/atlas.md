@@ -12,11 +12,15 @@ For derivatives with atlases in their provenance corresponding to individual sub
 the organization follows the standards for BIDS raw and derivatives.
 The following entities MAY be employed to specify template- and atlas-derived results:
 
+-    [`tpl-<label>`](../glossary.md#template-entities) is REQUIRED to specify derivatives defining
+     a [template](../common-principles.md).
 -    [`space-<label>`](../glossary.md#space-entities) is REQUIRED to disambiguate derivatives defined with
      respect to different [coordinate systems](../appendices/coordinate-systems.md), following the general
      BIDS-Derivatives specifications.
 -    [`cohort-<label>`](../glossary.md#cohort-entities) is REQUIRED to disambiguate derivatives defined with
      respect to different cohort instances of a single [space (coordinate system)](../appendices/coordinate-systems.md).
+     Please note that [`cohort-<label>`](../glossary.md#cohort-entities) MUST NOT be used if neither
+     [`tpl-<label>`](../glossary.md#template-entities) nor [`space-<label>`](../glossary.md#space-entities) are used.
 -    [`atlas-<label>`](../glossary.md#atlas-entities) is REQUIRED to encode files pertaining
      or derived from the atlas identified by the entity's label.
 -    [`seg-<label>`](../glossary.md#segmentation-entities) is REQUIRED when a single atlas has several different
