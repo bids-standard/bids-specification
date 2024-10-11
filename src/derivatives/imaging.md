@@ -153,7 +153,7 @@ Template:
 
 A binary (1 - inside, 0 - outside) mask in the space defined by the [`space` entity](../appendices/entities.md#space).
 If no transformation has taken place, the value of `space` SHOULD be set to `orig`.
-If the mask is an ROI mask derived from an atlas segmentation,
+If the mask is an ROI mask derived from a discrete or probabilistic segmentation,
 then the [`label` entity](../appendices/entities.md#label) SHOULD be used to specify the masked structure
 (see [Common image-derived labels](#common-image-derived-labels)).
 
@@ -184,8 +184,8 @@ A guide for using macros can be found at
     "func_loc": {
         "sub-001": {
             "func": {
-                "sub-001_task-rest_run-1_space-MNI305_desc-PFC_mask.nii.gz": "",
-                "sub-001_task-rest_run-1_space-MNI305_desc-PFC_mask.json": "",
+                "sub-001_task-rest_run-1_space-MNI305_label-PFC_mask.nii.gz": "",
+                "sub-001_task-rest_run-1_space-MNI305_label-PFC_mask.json": "",
                 },
             },
         }
@@ -201,8 +201,8 @@ A guide for using macros can be found at
     "manual_masks": {
         "sub-001": {
             "anat": {
-                "sub-001_desc-tumor_mask.nii.gz": "",
-                "sub-001_desc-tumor_mask.json": "",
+                "sub-001_label-tumor_mask.nii.gz": "",
+                "sub-001_label-tumor_mask.json": "",
                 },
             },
         }
@@ -211,12 +211,12 @@ A guide for using macros can be found at
 
 ## Segmentations
 
-A *segmentation* is a labeling of regions of an image such that each location
-(for example, a voxel or a surface vertex) is identified with a label or a
-combination of labels.
-Labeled regions may include anatomical structures (such as tissue class,
-Brodmann area or white matter tract), discontiguous, functionally-defined
-networks, tumors or lesions.
+A *segmentation* is a spatiotemporal partition of images and surfaces,
+such that each location and/or timepoint (for example, a voxel or a surface vertex)
+is identified with one label (discrete) or a combination of labels (probabilistic).
+Labeled regions may include anatomical structures (for example, tissue classes,
+white matter tracts, Thalamic nuclei, cortical areas),
+functionally-defined networks, tumors or lesions.
 
 A *discrete segmentation* represents each region with a unique integer
 label.
@@ -227,10 +227,13 @@ structure may be concatenated in a single file.
 Segmentations may be defined in a volume (labeled voxels), a surface (labeled
 vertices) or a combined volume/surface space.
 
-If the segmentation can be generated in different ways,
-for example, following an atlas segmentation,
-the [`seg` entity](../appendices/entities.md#segmentation) MAY be used to
-distinguish the name of the segmentation used.
+If different segmentations coexist within the same folder of the BIDS
+structure, the [`seg-<label>` entity](../appendices/entities.md#segmentation)
+SHOULD be used for disambiguation.
+
+The [`seg-<label>` entity](../appendices/entities.md#segmentation) MAY be used in combination
+with the [`atlas-<label>` entity](../appendices/entities.md#segmentation)
+as indicated by the [Templates and Atlases section](atlas.md).
 
 The following section describes discrete and probabilistic segmentations of
 volumes, followed by discrete segmentations of surface/combined spaces.
@@ -254,8 +257,7 @@ A guide for using macros can be found at
 
 ### Discrete Segmentations
 
-Discrete segmentations of brain tissue represent multiple anatomical structures
-(such as tissue class or Brodmann area) with a unique integer label in a 3D volume.
+Discrete segmentations of brain tissue represent regions with unique integer labels.
 See [Common image-derived labels](#common-image-derived-labels) for a description
 of how integer values map to anatomical structures.
 
@@ -264,11 +266,12 @@ Template:
 ```Text
 <pipeline_name>/
     sub-<label>/
-        anat|func|dwi/
+        <data_type>/
             <source_entities>[_space-<space>][_seg-<label>][_res-<label>][_den-<label>]_dseg.nii.gz
 ```
 
-Example:
+For example, we can specify the results of a classic brain tissue segmentation algorithm
+of a T1w image based on a Gaussian mixture model as:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -279,25 +282,19 @@ A guide for using macros can be found at
     "pipeline": {
         "sub-001": {
             "anat": {
-                "sub-001_space-orig_dseg.nii.gz": "",
-                "sub-001_space-orig_dseg.json": "",
+                "sub-001_dseg.nii.gz": "",
+                "sub-001_dseg.json": "",
                 },
             },
         }
    }
 ) }}
 
-A segmentation can be used to generate a binary mask that functions as a
-discrete "label" for a single structure.
-In this case, the mask suffix MUST be used,
-the [`label` entity](../appendices/entities.md#label)) SHOULD be used
-to specify the masked structure
-(see [Common image-derived labels](#common-image-derived-labels)),
-and the [`seg` entity](../appendices/entities.md#segmentation) specifying
-what segmentation generated the mask SHOULD be defined.
-
-For example, we can specify the gray-matter mask corresponding to the
-results of a brain tissue segmentation algorithm as:
+When several segmentations coexist at the same BIDS hierarchy point,
+[`seg-<label>` entity](../appendices/entities.md#segmentation) SHOULD
+be used for disambiguation.
+For example, if the brain tissue segmentation above will be stored next
+to segmentations of the eyes:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -308,13 +305,49 @@ A guide for using macros can be found at
     "pipeline": {
         "sub-001": {
             "anat": {
-                "sub-001_space-orig_seg-tissue_label-GM_mask.nii.gz": "",
-                "sub-001_space-orig_seg-tissue_label-GM_mask.json": "",
+                "sub-001_seg-braintissues_dseg.nii.gz": "",
+                "sub-001_seg-braintissues_dseg.json": "",
+                "sub-001_seg-eyes_dseg.nii.gz": "",
+                "sub-001_seg-eyes_dseg.json": "",
                 },
             },
         }
    }
 ) }}
+
+Often, segmentations are *atlas-based*, meaning, the partition of the space is
+projected from prior knowledge in the form of an [atlas](../common-principles.md).
+In such cases, [`seg-<label>`](../appendices/entities.md#segmentation) MAY be used in combination
+with the [`atlas-<label>` entity](../appendices/entities.md#segmentation).
+Extending on our previous example, when the brain tissue and the eye
+segmentations are stored with the results of *FreeSurfer*'s automatic subcortical
+segmentation ("aseg") using the `Destrieux2009` atlas:
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline": {
+        "sub-001": {
+            "anat": {
+                "sub-001_atlas-Destrieux2009_seg-aseg_dseg.nii.gz": "",
+                "sub-001_atlas-Destrieux2009_seg-aseg_dseg.json": "",
+                "sub-001_atlas-Destrieux2009_seg-aseg+aparc_dseg.nii.gz": "",
+                "sub-001_atlas-Destrieux2009_seg-aseg+aparc_dseg.json": "",
+                "sub-001_seg-braintissues_dseg.nii.gz": "",
+                "sub-001_seg-braintissues_dseg.json": "",
+                "sub-001_seg-eyes_dseg.nii.gz": "",
+                "sub-001_seg-eyes_dseg.json": "",
+                },
+            },
+        }
+   }
+) }}
+
+For further details on the [`atlas-<label>` entity](../appendices/entities.md#segmentation)
+specifications, check the [Templates and Atlases section](atlas.md).
 
 ### Probabilistic Segmentations
 
