@@ -66,7 +66,7 @@ repos:
     rev: v2.14.0
     hooks:
       - id: pretty-format-toml
-        args: [--autofix, --indent, '4']
+        args: [--autofix, --indent, '4', --no-sort]
   - repo: https://github.com/codespell-project/codespell
     rev: v2.3.0
     hooks:

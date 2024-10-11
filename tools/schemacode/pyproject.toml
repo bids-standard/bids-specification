@@ -59,6 +59,22 @@ bst = "bidsschematools.__main__:cli"
 [project.urls]
 Homepage = "https://github.com/bids-standard/bids-specification"
 
+[tool.setuptools.dynamic]
+version = {file = "bidsschematools/data/schema/SCHEMA_VERSION"}
+
+[tool.setuptools.package-data]
+bidsschematools = [
+    "data/metaschema.json",
+    "data/schema/BIDS_VERSION",
+    "data/schema/SCHEMA_VERSIO",
+    "data/schema/**/*.yaml",
+    "tests/data/**/*",
+    "tests/data/**/.bidsignore"
+]
+
+[tool.setuptools.packages.find]
+include = ["bidsschematools*"]
+
 [tool.black]
 line-length = 99
 include = '\.pyi?$'
@@ -97,19 +113,3 @@ markers = [
 ]
 minversion = "6.0"
 xfail_strict = true
-
-[tool.setuptools.dynamic]
-version = {file = "bidsschematools/data/schema/SCHEMA_VERSION"}
-
-[tool.setuptools.package-data]
-bidsschematools = [
-    "data/metaschema.json",
-    "data/schema/BIDS_VERSION",
-    "data/schema/SCHEMA_VERSIO",
-    "data/schema/**/*.yaml",
-    "tests/data/**/*",
-    "tests/data/**/.bidsignore"
-]
-
-[tool.setuptools.packages.find]
-include = ["bidsschematools*"]
