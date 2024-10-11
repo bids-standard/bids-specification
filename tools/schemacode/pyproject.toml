@@ -3,7 +3,18 @@ build-backend = "setuptools.build_meta"
 requires = ["setuptools"]
 
 [project]
+name = "bidsschematools"
+description = " Python tools for working with the BIDS schema."
 authors = [{name = "bids-standard developers"}]
+maintainers = [{name = "bids-standard developers", email = " bids.maintenance@gmail.com"}]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "click",
+    "pyyaml",
+    "jsonschema"
+]
 classifiers = [
     "Development Status :: 4 - Beta",
     "License :: OSI Approved :: MIT License",
@@ -15,27 +26,9 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13"
 ]
-dependencies = [
-    "click",
-    "pyyaml",
-    "jsonschema"
-]
-description = " Python tools for working with the BIDS schema."
 dynamic = ["version"]
-license = {text = "MIT"}
-maintainers = [{name = "bids-standard developers", email = " bids.maintenance@gmail.com"}]
-name = "bidsschematools"
-readme = "README.md"
-requires-python = ">=3.9"
 
 [project.optional-dependencies]
-all = [
-    "bidsschematools[doc,render,tests,expressions]"
-]
-doc = [
-    "sphinx>=1.5.3",
-    "sphinx_rtd_theme"
-]
 expressions = ["pyparsing"]
 render = [
     "tabulate",
@@ -43,6 +36,7 @@ render = [
     "markdown-it-py"
 ]
 tests = [
+    "bidsschematools[expressions,render]",
     "codecov",
     "coverage[toml]",
     "flake8",
@@ -50,6 +44,13 @@ tests = [
     "flake8-isort",
     "pytest>6",
     "pytest-cov"
+]
+doc = [
+    "sphinx>=1.5.3",
+    "sphinx_rtd_theme"
+]
+all = [
+    "bidsschematools[doc,tests]"
 ]
 
 [project.scripts]
@@ -59,6 +60,8 @@ bst = "bidsschematools.__main__:cli"
 Homepage = "https://github.com/bids-standard/bids-specification"
 
 [tool.black]
+line-length = 99
+include = '\.pyi?$'
 exclude = '''
 (
   /(
@@ -73,9 +76,6 @@ exclude = '''
   )/
 )
 '''
-include = '\.pyi?$'
-line-length = 99
-target-version = ['py39']
 
 [tool.coverage.run]
 omit = [
