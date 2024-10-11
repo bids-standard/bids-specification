@@ -25,7 +25,7 @@ ReadmeFileSmall:
     - size > 150
 
 DuplicateReadmes:
-  issues:
+  issue:
     code: MULTIPLE_README_FILES
     message: |
       There are multiple '/README' files (with different extensions) in this BIDS
