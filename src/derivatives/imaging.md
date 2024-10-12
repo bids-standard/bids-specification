@@ -227,7 +227,7 @@ structure may be concatenated in a single file.
 Segmentations may be defined in a volume (labeled voxels), a surface (labeled
 vertices) or a combined volume/surface space.
 
-If different segmentations coexist within the same folder of the BIDS
+If different segmentations coexist within the same directory of the BIDS
 structure, the [`seg-<label>` entity](../appendices/entities.md#segmentation)
 SHOULD be used for disambiguation.
 
