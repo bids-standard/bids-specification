@@ -427,7 +427,7 @@ region:
   description: |
      "XY", where X can be L:left, R:right, B:bilateral, and Y can be F:frontal, T:temporal, P:parietal, O:occipital
   type: string
-  pattern: ^[L|l|R|r|B|b][F|f|T|t|P|p|O|o]$
+  pattern: ^[LRB][FTPO]$
 respiratory:
   name: respiratory
   display_name: Respiratory measurement
