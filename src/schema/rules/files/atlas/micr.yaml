@@ -28,7 +28,7 @@ microscopy:
   datatypes:
     - micr
   entities:
-    $ref: rules.files.raw.common.baseline.entities
+    $ref: rules.files.atlas.common.baseline.entities
     sample: required
     acquisition: optional
     stain: optional

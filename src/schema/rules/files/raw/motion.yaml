@@ -8,8 +8,7 @@ motion:
   datatypes:
     - motion
   entities:
-    subject: required
-    session: optional
+    $ref: rules.files.raw.common.baseline.entities
     task: required
     tracksys: required
     acquisition: optional

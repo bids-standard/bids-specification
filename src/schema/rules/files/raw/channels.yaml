@@ -10,8 +10,7 @@ channels:
     - ieeg
     - nirs
   entities:
-    subject: required
-    session: optional
+    $ref: rules.files.raw.common.baseline.entities
     task: required
     acquisition: optional
     run: optional
@@ -43,8 +42,7 @@ coordsystem:
     - meg
     - nirs
   entities:
-    subject: required
-    session: optional
+    $ref: rules.files.raw.common.baseline.entities
     acquisition: optional
 
 # (i)EEG has a space entity
@@ -67,8 +65,7 @@ electrodes:
     - eeg
     - ieeg
   entities:
-    subject: required
-    session: optional
+    $ref: rules.files.raw.common.baseline.entities
     acquisition: optional
     space: optional
 
@@ -90,6 +87,5 @@ optodes:
   datatypes:
     - nirs
   entities:
-    subject: required
-    session: optional
+    $ref: rules.files.raw.common.baseline.entities
     acquisition: optional

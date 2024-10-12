@@ -12,7 +12,7 @@ photo:
     - meg
     - nirs
   entities:
-    $ref: rules.files.raw.common.baseline.entities
+    $ref: rules.files.common.baseline.entities
     acquisition: optional
 
 photo__micr:

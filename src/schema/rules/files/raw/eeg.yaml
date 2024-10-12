@@ -14,8 +14,7 @@ eeg:
   datatypes:
     - eeg
   entities:
-    subject: required
-    session: optional
+    $ref: rules.files.raw.common.baseline.entities
     task: required
     acquisition: optional
     run: optional
