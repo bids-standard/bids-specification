@@ -89,9 +89,13 @@ anat_parametric_discrete_segmentation:
     - dseg
   entities:
     $ref: rules.files.raw.anat.parametric.entities
+    cohort: optional
     space: optional
+    atlas: optional
+    segmentation: option
     resolution: optional
     density: optional
+    scale: optional
     description: optional
   extensions:
     - .nii.gz
@@ -105,9 +109,13 @@ anat_nonparametric_discrete_segmentation:
     - dseg
   entities:
     $ref: rules.files.raw.anat.nonparametric.entities
+    cohort: optional
     space: optional
+    atlas: optional
+    segmentation: option
     resolution: optional
     density: optional
+    scale: optional
     description: optional
   extensions:
     - .nii.gz
@@ -121,9 +129,13 @@ func_discrete_segmentation:
     - dseg
   entities:
     $ref: rules.files.raw.func.func.entities
+    cohort: optional
     space: optional
+    atlas: optional
+    segmentation: option
     resolution: optional
     density: optional
+    scale: optional
     description: optional
 
 dwi_discrete_segmentation:
@@ -132,9 +144,13 @@ dwi_discrete_segmentation:
     - dseg
   entities:
     $ref: rules.files.raw.dwi.dwi.entities
+    cohort: optional
     space: optional
+    atlas: optional
+    segmentation: option
     resolution: optional
     density: optional
+    scale: optional
     description: optional
 
 anat_parametric_probabilistic_segmentation:
@@ -143,9 +159,13 @@ anat_parametric_probabilistic_segmentation:
     - probseg
   entities:
     $ref: rules.files.raw.anat.parametric.entities
+    cohort: optional
     space: optional
+    atlas: optional
+    segmentation: option
     resolution: optional
     density: optional
+    scale: optional
     label: optional
     description: optional
 
@@ -155,9 +175,13 @@ anat_nonparametric_probabilistic_segmentation:
     - probseg
   entities:
     $ref: rules.files.raw.anat.nonparametric.entities
+    cohort: optional
     space: optional
+    atlas: optional
+    segmentation: option
     resolution: optional
     density: optional
+    scale: optional
     label: optional
     description: optional
 
@@ -167,9 +191,13 @@ func_probabilistic_segmentation:
     - probseg
   entities:
     $ref: rules.files.raw.func.func.entities
+    cohort: optional
     space: optional
+    atlas: optional
+    segmentation: option
     resolution: optional
     density: optional
+    scale: optional
     label: optional
     description: optional
 
@@ -179,9 +207,13 @@ dwi_probabilistic_segmentation:
     - probseg
   entities:
     $ref: rules.files.raw.dwi.dwi.entities
+    cohort: optional
     space: optional
+    atlas: optional
+    segmentation: option
     resolution: optional
     density: optional
+    scale: optional
     label: optional
     description: optional
 
@@ -197,9 +229,13 @@ anat_parametic_discrete_surface:
   entities:
     $ref: rules.files.raw.anat.parametric.entities
     hemisphere: optional
+    cohort: optional
     space: optional
+    atlas: optional
+    segmentation: option
     resolution: optional
     density: optional
+    scale: optional
     description: optional
 
 anat_nonparametic_discrete_surface:
@@ -214,7 +250,11 @@ anat_nonparametic_discrete_surface:
   entities:
     $ref: rules.files.raw.anat.nonparametric.entities
     hemisphere: optional
+    cohort: optional
     space: optional
+    atlas: optional
+    segmentation: option
     resolution: optional
     density: optional
+    scale: optional
     description: optional
