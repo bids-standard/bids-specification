@@ -625,9 +625,9 @@ A guide for using macros can be found at
    "mial67thalamicnuclei-pipeline": {
       "sub-01": {
          "anat": {
-            "sub-01_label-ThalamicNuclei_dseg.json": "",
-            "sub-01_label-ThalamicNuclei_dseg.tsv": "",
-            "sub-01_label-ThalamicNuclei_dseg.nii.gz": "",
+            "sub-01_seg-ThalamicNuclei_dseg.json": "",
+            "sub-01_seg-ThalamicNuclei_dseg.tsv": "",
+            "sub-01_seg-ThalamicNuclei_dseg.nii.gz": "",
             "sub-01_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
             "sub-01_T1w.nii.gz": "",
          },
@@ -635,9 +635,9 @@ A guide for using macros can be found at
       "...": "",
       "sub-67": {
          "anat": {
-            "sub-67_label-ThalamicNuclei_dseg.json": "",
-            "sub-67_label-ThalamicNuclei_dseg.tsv": "",
-            "sub-67_label-ThalamicNuclei_dseg.nii.gz": "",
+            "sub-67_seg-ThalamicNuclei_dseg.json": "",
+            "sub-67_seg-ThalamicNuclei_dseg.tsv": "",
+            "sub-67_seg-ThalamicNuclei_dseg.nii.gz": "",
             "sub-67_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
             "sub-67_T1w.nii.gz": "",
          },
@@ -667,11 +667,11 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example({
    "mial67thalamicnuclei-pipeline": {
-      "label-ThalamicNuclei_dseg.json": "",
-      "label-ThalamicNuclei_dseg.tsv": "",
+      "seg-ThalamicNuclei_dseg.json": "",
+      "seg-ThalamicNuclei_dseg.tsv": "",
       "sub-01": {
          "anat": {
-            "sub-01_label-ThalamicNuclei_dseg.nii.gz": "",
+            "sub-01_seg-ThalamicNuclei_dseg.nii.gz": "",
             "sub-01_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
             "sub-01_T1w.nii.gz": "",
          },
@@ -679,7 +679,7 @@ A guide for using macros can be found at
       "...": "",
       "sub-67": {
          "anat": {
-            "sub-67_label-ThalamicNuclei_dseg.nii.gz": "",
+            "sub-67_seg-ThalamicNuclei_dseg.nii.gz": "",
             "sub-67_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
             "sub-67_T1w.nii.gz": "",
          },
@@ -707,11 +707,11 @@ A guide for using macros can be found at
    "mial67thalamicnuclei-pipeline": {
       "atlas-MIAL67ThalamicNuclei_dseg.json": "",
       "atlas-MIAL67ThalamicNuclei_dseg.tsv": "",
-      "label-ThalamicNuclei_dseg.json": "",
-      "label-ThalamicNuclei_dseg.tsv": "",
+      "seg-ThalamicNuclei_dseg.json": "",
+      "seg-ThalamicNuclei_dseg.tsv": "",
       "sub-01": {
          "anat": {
-            "sub-01_label-ThalamicNuclei_dseg.nii.gz": "",
+            "sub-01_seg-ThalamicNuclei_dseg.nii.gz": "",
             "sub-01_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
             "sub-01_space-MNI152NLin6Asym_T1w.nii.gz": "",
             "sub-01_T1w.nii.gz": "",
@@ -720,7 +720,7 @@ A guide for using macros can be found at
       "...": "",
       "sub-67": {
          "anat": {
-            "sub-67_label-ThalamicNuclei_dseg.nii.gz": "",
+            "sub-67_seg-ThalamicNuclei_dseg.nii.gz": "",
             "sub-67_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
             "sub-67_space-MNI152NLin6Asym_T1w.nii.gz": "",
             "sub-67_T1w.nii.gz": "",
@@ -744,7 +744,7 @@ A guide for using macros can be found at
 
 In the case the pipeline generated atlas-based segmentations of the original subjects in
 their native T1w space (for example, to compare with the original segmentation given by
-`label-ThalamicNuclei`), the above example translates into:
+`seg-ThalamicNuclei`), the above example translates into:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -754,12 +754,12 @@ A guide for using macros can be found at
    "mial67thalamicnuclei-pipeline": {
       "atlas-MIAL67ThalamicNuclei_dseg.json": "",
       "atlas-MIAL67ThalamicNuclei_dseg.tsv": "",
-      "label-ThalamicNuclei_dseg.json": "",
-      "label-ThalamicNuclei_dseg.tsv": "",
+      "seg-ThalamicNuclei_dseg.json": "",
+      "seg-ThalamicNuclei_dseg.tsv": "",
       "sub-01": {
          "anat": {
             "sub-01_atlas-MIAL67ThalamicNuclei_dseg.nii.gz": "",
-            "sub-01_label-ThalamicNuclei_dseg.nii.gz": "",
+            "sub-01_seg-ThalamicNuclei_dseg.nii.gz": "",
             "sub-01_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
             "sub-01_T1w.nii.gz": "",
          },
@@ -768,7 +768,7 @@ A guide for using macros can be found at
       "sub-67": {
          "anat": {
             "sub-67_atlas-MIAL67ThalamicNuclei_dseg.nii.gz": "",
-            "sub-67_label-ThalamicNuclei_dseg.nii.gz": "",
+            "sub-67_seg-ThalamicNuclei_dseg.nii.gz": "",
             "sub-67_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
             "sub-67_T1w.nii.gz": "",
          },
@@ -794,13 +794,13 @@ A guide for using macros can be found at
    "mial67thalamicnuclei-pipeline": {
       "atlas-MIAL67ThalamicNuclei_dseg.json": "",
       "atlas-MIAL67ThalamicNuclei_dseg.tsv": "",
-      "label-ThalamicNuclei_dseg.json": "",
-      "label-ThalamicNuclei_dseg.tsv": "",
+      "seg-ThalamicNuclei_dseg.json": "",
+      "seg-ThalamicNuclei_dseg.tsv": "",
       "sub-01": {
          "anat": {
             "sub-01_from-T1w_to-MNI152NLin2009cAsym_mode-image_xfm.h5": "",
             "sub-01_from-T1w_to-MNI152NLin6Asym_mode-image_xfm.h5": "",
-            "sub-01_label-ThalamicNuclei_dseg.nii.gz": "",
+            "sub-01_seg-ThalamicNuclei_dseg.nii.gz": "",
             "sub-01_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
             "sub-01_space-MNI152NLin6Asym_T1w.nii.gz": "",
             "sub-01_T1w.nii.gz": "",
@@ -811,7 +811,7 @@ A guide for using macros can be found at
          "anat": {
             "sub-67_from-T1w_to-MNI152NLin2009cAsym_mode-image_xfm.h5": "",
             "sub-67_from-T1w_to-MNI152NLin6Asym_mode-image_xfm.h5": "",
-            "sub-67_label-ThalamicNuclei_dseg.nii.gz": "",
+            "sub-67_seg-ThalamicNuclei_dseg.nii.gz": "",
             "sub-67_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
             "sub-67_space-MNI152NLin6Asym_T1w.nii.gz": "",
             "sub-67_T1w.nii.gz": "",
