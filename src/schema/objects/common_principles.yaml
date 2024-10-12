@@ -183,4 +183,5 @@ template:
     Like subjects' feature maps generate a *native* spatial frame of reference for analyses,
     templates engender a *generic* or *standard* space of analysis were subjects can be spatiotemporally
     aligned into.
-    In other words, *templates* are specific feature maps that instantiate an abstract *space*.
+    In other words, *templates* (that is, specific feature maps) are *authoritative definitions* of *spaces*
+    in that they instantiate the abstract concept of *space*.
