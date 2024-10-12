@@ -93,9 +93,9 @@ anat_parametric_discrete_segmentation:
     space: optional
     atlas: optional
     segmentation: option
+    scale: optional
     resolution: optional
     density: optional
-    scale: optional
     description: optional
   extensions:
     - .nii.gz
@@ -113,9 +113,9 @@ anat_nonparametric_discrete_segmentation:
     space: optional
     atlas: optional
     segmentation: option
+    scale: optional
     resolution: optional
     density: optional
-    scale: optional
     description: optional
   extensions:
     - .nii.gz
@@ -133,9 +133,9 @@ func_discrete_segmentation:
     space: optional
     atlas: optional
     segmentation: option
+    scale: optional
     resolution: optional
     density: optional
-    scale: optional
     description: optional
 
 dwi_discrete_segmentation:
@@ -148,9 +148,9 @@ dwi_discrete_segmentation:
     space: optional
     atlas: optional
     segmentation: option
+    scale: optional
     resolution: optional
     density: optional
-    scale: optional
     description: optional
 
 anat_parametric_probabilistic_segmentation:
@@ -163,9 +163,9 @@ anat_parametric_probabilistic_segmentation:
     space: optional
     atlas: optional
     segmentation: option
+    scale: optional
     resolution: optional
     density: optional
-    scale: optional
     label: optional
     description: optional
 
@@ -179,9 +179,9 @@ anat_nonparametric_probabilistic_segmentation:
     space: optional
     atlas: optional
     segmentation: option
+    scale: optional
     resolution: optional
     density: optional
-    scale: optional
     label: optional
     description: optional
 
@@ -195,9 +195,9 @@ func_probabilistic_segmentation:
     space: optional
     atlas: optional
     segmentation: option
+    scale: optional
     resolution: optional
     density: optional
-    scale: optional
     label: optional
     description: optional
 
@@ -211,9 +211,9 @@ dwi_probabilistic_segmentation:
     space: optional
     atlas: optional
     segmentation: option
+    scale: optional
     resolution: optional
     density: optional
-    scale: optional
     label: optional
     description: optional
 
@@ -233,9 +233,9 @@ anat_parametic_discrete_surface:
     space: optional
     atlas: optional
     segmentation: option
+    scale: optional
     resolution: optional
     density: optional
-    scale: optional
     description: optional
 
 anat_nonparametic_discrete_surface:
@@ -254,7 +254,7 @@ anat_nonparametic_discrete_surface:
     space: optional
     atlas: optional
     segmentation: option
+    scale: optional
     resolution: optional
     density: optional
-    scale: optional
     description: optional
