@@ -12,8 +12,7 @@ events:
     - meg
     - nirs
   entities:
-    subject: required
-    session: optional
+    $ref: rules.files.raw.common.baseline.entities
     task: required
     acquisition: optional
     run: optional
@@ -31,8 +30,7 @@ timeseries:
     - ieeg
     - nirs
   entities:
-    subject: required
-    session: optional
+    $ref: rules.files.raw.common.baseline.entities
     task: required
     acquisition: optional
     run: optional
@@ -49,8 +47,7 @@ timeseries__mri_no_task:
     - dwi
     - perf
   entities:
-    subject: required
-    session: optional
+    $ref: rules.files.raw.common.baseline.entities
     acquisition: optional
     run: optional
     reconstruction: optional
@@ -84,8 +81,7 @@ events__pet:
     - pet
   entities:
     # Most events allow acquisition, PET doesn't
-    subject: required
-    session: optional
+    $ref: rules.files.raw.common.baseline.entities
     task: required
     tracer: optional
     reconstruction: optional
@@ -123,8 +119,7 @@ timeseries__pet:
     - pet
   entities:
     # Most timeseries allow acquisition, PET doesn't
-    subject: required
-    session: optional
+    $ref: rules.files.raw.common.baseline.entities
     task: required
     tracer: optional
     reconstruction: optional

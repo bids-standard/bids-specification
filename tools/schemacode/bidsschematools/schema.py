@@ -198,6 +198,7 @@ def load_schema(schema_path=None):
         raise ValueError(f"rules subdirectory path not found in {schema_path}")
 
     dereference(schema)
+    dereference(schema)
     flatten_enums(schema)
 
     schema["bids_version"] = _get_bids_version(schema_path)

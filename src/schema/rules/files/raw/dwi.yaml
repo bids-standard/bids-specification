@@ -11,8 +11,7 @@ dwi:
   datatypes:
     - dwi
   entities:
-    subject: required
-    session: optional
+    $ref: rules.files.raw.common.baseline.entities
     acquisition: optional
     reconstruction: optional
     direction: optional
@@ -30,8 +29,7 @@ sbref:
   datatypes:
     - dwi
   entities:
-    subject: required
-    session: optional
+    $ref: rules.files.raw.common.baseline.entities
     acquisition: optional
     reconstruction: optional
     direction: optional

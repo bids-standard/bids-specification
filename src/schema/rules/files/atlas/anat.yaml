@@ -20,7 +20,7 @@ nonparametric:
   datatypes:
     - anat
   entities:
-    $ref: rules.files.raw.common.baseline.entities
+    $ref: rules.files.atlas.common.baseline.entities
     task: optional
     acquisition: optional
     ceagent: optional
@@ -55,7 +55,7 @@ parametric:
   datatypes:
     - anat
   entities:
-    $ref: rules.files.raw.common.baseline.entities
+    $ref: rules.files.atlas.common.baseline.entities
     task: optional
     acquisition: optional
     ceagent: optional
@@ -73,7 +73,7 @@ defacemask:
   datatypes:
     - anat
   entities:
-    $ref: rules.files.raw.common.baseline.entities
+    $ref: rules.files.atlas.common.baseline.entities
     task: optional
     acquisition: optional
     ceagent: optional
@@ -93,7 +93,7 @@ multiecho:
   datatypes:
     - anat
   entities:
-    $ref: rules.files.raw.common.baseline.entities
+    $ref: rules.files.atlas.common.baseline.entities
     task: optional
     acquisition: optional
     ceagent: optional
@@ -113,7 +113,7 @@ multiflip:
   datatypes:
     - anat
   entities:
-    $ref: rules.files.raw.common.baseline.entities
+    $ref: rules.files.atlas.common.baseline.entities
     task: optional
     acquisition: optional
     ceagent: optional
@@ -134,7 +134,7 @@ multiinversion:
   datatypes:
     - anat
   entities:
-    $ref: rules.files.raw.common.baseline.entities
+    $ref: rules.files.atlas.common.baseline.entities
     task: optional
     acquisition: optional
     ceagent: optional
@@ -154,7 +154,7 @@ mp2rage:
   datatypes:
     - anat
   entities:
-    $ref: rules.files.raw.common.baseline.entities
+    $ref: rules.files.atlas.common.baseline.entities
     task: optional
     acquisition: optional
     ceagent: optional
@@ -177,7 +177,7 @@ vfamt:
   datatypes:
     - anat
   entities:
-    $ref: rules.files.raw.common.baseline.entities
+    $ref: rules.files.atlas.common.baseline.entities
     task: optional
     acquisition: optional
     ceagent: optional
@@ -199,7 +199,7 @@ mtr:
   datatypes:
     - anat
   entities:
-    $ref: rules.files.raw.common.baseline.entities
+    $ref: rules.files.atlas.common.baseline.entities
     task: optional
     acquisition: optional
     ceagent: optional
