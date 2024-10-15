@@ -49,7 +49,7 @@ Each entity has the following attributes:
     1.  *Index*: A non-negative integer, potentially zero-padded for
         consistent width.
 
-    1.  *Label*: An alphanumeric string.
+    1.  *Label*: An alphanumeric (and possibly including `+` character(s)) string.
         Note that labels MUST not collide when casing is ignored
         (see [Case collision intolerance](#case-collision-intolerance)).
 
@@ -1106,7 +1106,7 @@ A guide for using macros can be found at
 Additional files and directories containing raw data MAY be added as needed for
 special cases.
 All non-standard file entities SHOULD conform to BIDS-style naming conventions, including
-alphabetic entities and suffixes and alphanumeric labels/indices.
+alphabetic entities and suffixes and alphanumeric (and possibly including `+` character(s)) labels/indices.
 Non-standard suffixes SHOULD reflect the nature of the data, and existing
 entities SHOULD be used when appropriate.
 For example, an ASSET calibration scan might be named
