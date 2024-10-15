@@ -7,7 +7,7 @@ SubjectFolders:
     code: SUBJECT_FOLDERS
     message: |
       There are no subject directories (labeled "sub-*") in the root of this dataset.
-    level: error
+    level: warning
   selectors:
     - path == '/dataset_description.json'
   checks:
