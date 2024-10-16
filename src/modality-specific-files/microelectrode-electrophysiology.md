@@ -75,7 +75,9 @@ and a guide for using macros can be found at
 #  PARTICIPANT keyfiles
 ## Participant information
 
-The participants.tsv file is located at the root of the data set directory. Its presence is RECOMMENDED in order to describe information about the individual subjects (animals) from which the data was recorded. It follows the [general BIDS specifications to describe participants](https://bids-specification.readthedocs.io/en/stable/03-modality-agnostic-files.html#participants-file).
+The participants.tsv file is located at the root of the data set directory.
+Its presence is RECOMMENDED in order to describe information about the individual subjects (animals) from which the data was recorded.
+It follows the [general BIDS specifications to describe participants](https://bids-specification.readthedocs.io/en/stable/03-modality-agnostic-files.html#participants-file).
 
 On top of the existing columns that can be present in this file and that are described in the BIDS specifications (participant_id, species, strain, strain_rrid, sex, handedness and age), we propose to allow adding the following ones:
 
