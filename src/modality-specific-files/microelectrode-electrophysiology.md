@@ -77,7 +77,7 @@ and a guide for using macros can be found at
 #  PARTICIPANT keyfiles
 ## Participant information
 
-The participants.tsv file is located at the root of the data set directory. Its presence is RECOMMENDED in order to describe information about the individual subjects (animals) from which the data was recorded. It follows the [general BIDS specifications to describe participants](https://bids-specification.readthedocs.io/en/stable/03-modality-agnostic-files.html#participants-file).
+The participants.tsv file is located at the root of the data set directory. Its presence is RECOMMENDED in order to describe information about the individual subjects (animals) from which the data was recorded. It follows the [general BIDS specifications to describe participants](https://bids-specification.readthedocs.io/en/stable/03-modality-agnostic-files.html#participants-file). 
 
 On top of the existing columns that can be present in this file and that are described in the BIDS specifications (participant_id, species, strain, strain_rrid, sex, handedness and age), we propose to allow adding the following ones:
 
@@ -102,12 +102,16 @@ This file provides metadata on the global coordinate system in which the electro
 
 Fields relating to the ephys probe and electrode  positions:
 
+{{ MACROS___make_metadata_table(
+   {
+        "MicroephysCoordinateSystem":"REQUIRED",
+        "MicroephysCoordinateUnits":"REQUIRED",
+        "MicroephysCoordinateSystemDescription":"RECOMMENDED",
+        "MicroephysCoordinateSystemPhoto":"OPTIONAL",
+        "MEGCoordinateSystem":"REQUIRED",
+   }
+) }}
 
-
-* `MicroephysCoordinateSystem`: REQUIRED - Defines the coordinate system for the ephys probes. See the[ Coordinate Systems Appendix](https://bids-specification.readthedocs.io/en/stable/appendices/coordinate-systems.html) for a list of restricted keywords for coordinate systems. If `"Other"`, provide definition of the coordinate system in `ephysCoordinateSystemDescription`. If positions correspond to pixel indices in a 2D image (of either a volume-rendering, surface-rendering, operative photo, or operative drawing), this MUST be `"Pixels"`. For more information, see the section on[ 2D coordinate systems](https://bids-specification.readthedocs.io/en/stable/04-modality-specific-files/04-intracranial-electroencephalography.html#allowed-2d-coordinate-systems). For a list of valid values for this field, see the[ associated glossary entry](https://bids-specification.readthedocs.io/en/stable/glossary.html#objects.metadata.iEEGCoordinateSystem).
-* `MicroephysCoordinateUnits`: REQUIRED - Units of the `MicroephysCoordinateSystem`. MUST be `"pixels"` if `MicroephysCoordinateSystem` is `Pixels`. Must be one of: `"m"`, `"mm"`, `"cm"`, `"pixels"`, `"n/a"`. Unless specified explicitly in the sidecar file in the `ephysCoordinateUnits` field, the units are assumed to be mm.
-* `MicroephysCoordinateSystemDescription`: RECOMMENDED, but REQUIRED if ephysCoordinateSystem is “Other”.
-* `MicroephysCoordinateSystemPhoto`: OPTIONAL, but REQUIRED if ephysCoordinateSystem is “Pixels” - The reference to the reference photo used as coordinate system. See optional `_photo.jpg` files below.
 
 
 ### **Allowed 2D coordinate systems**
@@ -119,7 +123,7 @@ If electrodes are localized in 2D space (only x and y are specified and z is `"n
 
 These can include photos of the electrodes on the brain surface, photos of anatomical features or landmarks (such as sulcal structure), and fiducials. Photos can also include an X-ray picture, a flatbed scan of a schematic drawing made during surgery, or screenshots of a brain rendering with electrode positions. The photos may need to be cropped and/or blurred to conceal identifying features or entirely omitted prior to sharing, depending on obtained consent.
 
-If there are photos of the electrodes, the [acq-<label>] (https://bids-specification.readthedocs.io/en/stable/appendices/entities.html#acq) entity should be specified with:
+If there are photos of the electrodes, the [acq-<label>](https://bids-specification.readthedocs.io/en/stable/appendices/entities.html#acq) entity should be specified with:
 
 
 
@@ -141,37 +145,10 @@ The optional[ space-<label>](https://bids-specification.readthedocs.io/en/stable
 
 Probes are physical devices used for recording animal ephys data. They can be permanently implanted (chronic recordings) or inserted just for the recording (acute recordings). The probe positions and properties are stored in a .tsv file. This file contains the probe id, the type of recording (acute/chronic) and the probe coordinates.
 
+{{ MACROS___make_columns_table("microephys.microephysProbes") }}
 
-
-* `probe_id`: REQUIRED - A unique identifier of the probe, can be identical with the device_serial_number (expected to match probe_ids listed in electrodes.tsv)
-* `type`: REQUIRED - The type of the probe
-*
-* coordinate_space: RECOMMENDED - The name of the reference space used for the coordinate definition, can be one of the following terms: ‘anatomical’ , ‘recording chamber’, ‘sample’, ‘other’. In case of ‘anatomical’ the ‘anatomical_axes_orientation’ is REQUIRED
-* placement_picture: OPTIONAL - Path to a photograph showing the placement of the probe
-* `x:` RECOMMENDED - probe  position along the global x-axis.` `
-* `y:` RECOMMENDED - probe  position along the global y-axis.
-* `z:` RECOMMENDED - probe  position along the global z-axis.
-* xyz_position_unit: RECOMMENDED - units used for x,y and z values
-* `manufacturer:` RECOMMENDED - Manufacturer of the probes system  (e.g. "openephys”, “alphaomega",”blackrock”)
-* `device_serial_number:` RECOMMENDED - The serial number of the probe (provided by the manufacturer).
-* `electrode_count`: OPTIONAL - Number of miscellaneous analog electrodes for auxiliary signals (e.g. 2).
-* `width`: OPTIONAL Physical width of the probe, e.g. 5. This dimension corresponds to the x’ axis of the Euler transformation defined by alpha, beta and gamma rotations values below.
-* `height`: OPTIONAL - Physical height of the probe, e.g. 5. This dimension corresponds to the y’ axis of the Euler transformation defined by alpha, beta and gamma rotations values below.
-* `depth`: OPTIONAL - Physical depth of the probe, e.g. 0.3. This dimension should be omitted or set to 0 for two-dimensional (shank-type) probes. This dimension corresponds to the z’ axis of the Euler transformation defined by alpha, beta and gamma rotations values below.
-* `dimension_unit`: OPTIONAL - Units of the physical dimensions  ‘width’, ‘height’ and `depth` of the probe, e.g. ‘mm’
-* `alpha_rotation`: RECOMMENDED - Euler angle in degree to match probe extension dimensions (width, height, depth) to global x, y, z coordinates.
-* `beta_rotation`: RECOMMENDED - Euler angle in degree to match probe extension dimensions (width, height, depth) to global x, y, z coordinates.
-* `gamma_rotation`: RECOMMENDED - Euler angle in degree to match probe extension dimensions (width, height, depth) to global x, y, z coordinates.
-* `coordinate_reference_point`: RECOMMENDED - Point of the probe that is described by the probe coordinates and on which the alpha, beta and gamma rotations are applied
-* `hemisphere: RECOMMENDED - `Which brain hemisphere was the probe  located
-* `associated_brain_region`: RECOMMENDED - A textual  indication on the location of the probe. We recommend to use species-independent terms based on Uberon ([https://obophenotype.github.io/uberon](https://obophenotype.github.io/uberon/))
-* `associated_brain_region_id`: RECOMMENDED An identifier of the associated brain region based on the Uberon ([https://obophenotype.github.io/uberon](https://obophenotype.github.io/uberon/)) ontology for  anatomical structures in animals. E.g. ‘UBERON:0010415’
-* `associated_brain_region_quality_type`: RECOMMENDED The method used to identify the associated brain region (estimated|proof) depending on anatomical pictures proofing the location or indirect estimation of the location.
-* `reference_atlas`: RECOMMENDED  reference atlas used for associated brain region, we recommend using an ebrains supported atlas if compatible ([https://ebrains.eu/services/atlases#services](https://ebrains.eu/services/atlases#services))
-* `material`: OPTIONAL - A textual description of the base material of the probe.
 
 Example of * _probes.tsv:
-
 
 
 |probe_id|hemisphere|x|y|z|type|material|location|
@@ -182,36 +159,15 @@ Example of * _probes.tsv:
 |p021|left|-9.94|-1.19|-2.86|utah-array|iridium-oxide|V3|
 
 
-
-
 ### Electrodes  (*_electrodes.tsv)
 
 electrodes describe the points of electrodes to the tissue used for recording electrophysiological signals. The electrode positions and properties are stored in a .tsv file (amplifier information is in channels.tsv). This file contains the electrode name, the electrode coordinates in 3 columns (xyz) and the id of the probe it’s located on.  The coordinates are the relative coordinates on the probe.
 
 
+{{ MACROS___make_columns_table("microephys.microephysElectrodes") }}
 
-* `electrode_id:`  REQUIRED - ID of the electrode (expected to match channel.tsv)
-* `probe_id`: REQUIRED - Id of the probe the electrode is on
-* `hemisphere:`  RECOMMENDED - Which brain hemisphere was the electrode located. Must be one of “L” or “R”.
-* x: RECOMMENDED - recorded position along the local width-axis relative to the probe origin and rotation (see probes.tsv)
-* `y:` RECOMMENDED - recorded position along the local height-axis relative to the probe origin and rotation (see probes.tsv)`. `
-* `z:` RECOMMENDED - recorded position along the local depth-axis relative to the probe origin and rotation (see probes.tsv).` `
-* `physical_unit`: RECOMMENDED - units used for x, y and z coordinates as well as electrode size, internal_pipette_diameter and external_pipette_diameter
-* `impedance:`  RECOMMENDED - Impedance of the electrode or pipette (pipette_resistance). This can be a single value or a list of two values indicating a value range.
-* impedance_unit: RECOMMENDED - The unit of the impedance. If not specified it’s assumed to be in kOhm
-* `shank_id`: OPTIONAL - Id to specify which shank of the probe the electrode is on.
-* `electrode_size:` OPTIONAL - size of the electrode, e.g. non-insulated surface area or length of non-insulated cable in the unit of `physical_unit`^2
-* electrode_shape: OPTIONAL - description of the shape of the electrode, e.g. square, circle,
-* `material:` OPTIONAL - material of the electrode surface for solid electrodes, pipette material for hollow electrodes, e.g. Tin, Ag/AgCl, Gold, glass
-* `location`: RECOMMENDED - An indication on the location of the electrode (e.g. cortical layer 3, CA1, etc)
-* insulation: RECOMMENDED- Material used for insulation around the electrode
-* `pipette_solution` : OPTIONAL - Solution used to fill the pipette, see also [openMINDS pipette](https://github.com/openMetadataInitiative/openMINDS_ephys/blob/v1/schemas/device/pipetteUsage.schema.tpl.json)
-* `internal_pipette_diameter`: OPTIONAL - internal diameter of the pipette, see also [openMINDS pipette](https://github.com/HumanBrainProject/openMINDS_ephys/blob/v1/schemas/device/pipette.schema.tpl.json), Value has to be provided in the `physical_units`
-* `external_pipette_diameter`: OPTIONAL - external diameter of the pipette, see also [openMINDS pipette](https://github.com/HumanBrainProject/openMINDS_ephys/blob/v1/schemas/device/pipette.schema.tpl.json). Value has to be  provided  in the `physical_units`
-* Do we want a field about target or histological brain area?
 
 Example of * _electrodes.tsv:
-
 
 
 |electrode_id|probe_id|impedance|x|y|z|material|location|
@@ -220,3 +176,34 @@ Example of * _electrodes.tsv:
 |e234		|p023		|1.5		|-11.64|	0.51|-4.20|iridium-oxide|	V2|
 |e934		|p021		|3.5		|-12.11|	-3.12|-2.54|iridium-oxide|	V4|
 |e234		|p021		|7.0		|-9.94|	-1.19|-2.86|iridium-oxide|	V3|
+
+### Channels  (*_channels.tsv)
+
+Channels are virtual sources of recorded signals. These might be of neuronal origin (e.g. online filtered LFP signals) or generated by the recording setup (e.g. synchronization signals, behavioral signals, …). The channel properties are stored in a .tsv file. This file contains the channel_id, the electrode_id (in case of neuronal signals), the amplifier information, …
+
+For more information about the distinction between electrodes and channels, see [the corresponding section in iEEG](https://bids-specification.readthedocs.io/en/stable/modality-specific-files/intracranial-electroencephalography.html#terminology-electrodes-vs-channels).
+
+Columns in the `*_channel.tsv` file are:
+
+{{ MACROS___make_columns_table("microephys.microephysChannels") }}
+
+
+Example of * _channels.tsv:
+
+
+|channel_id|electrode_id|gain|type|units|sampling_frequency|status|
+|----------|------------|----|----|-----|------------------|------|
+|c0123   |con0123		|30	|EXT		|mV	|30000			|good|
+|c234|con234		|30	|EXT		|mV	|30000|			good|
+|c934		|con934 		|50	|EXT		|mV	|30000|			bad|
+|c234		|-|		1|	SYNC|	       V|	1000|			good|
+
+
+Note: In many datasets multiple sets of identifiers are used for probes, electrodes and channels. We RECOMMEND to include alternative sets of identifiers, e.g. identifiers that enumerate electrodes according to their spatial arrangement, as additional custom columns in the .tsv file. 
+
+**Recommended Channel Type Values**
+
+For the `type` column we recommend to use the following terms (modified from https://bids-specification.readthedocs.io/en/stable/04-modality-specific-files/04-intracranial-electroencephalography.html#channelselectrode-description-_channelselectrodestsv)
+
+
+
