@@ -1,3 +1,4 @@
+---
 microephysProbes:
   selectors:
     - datatype == ["ecephys", "icephys"]
