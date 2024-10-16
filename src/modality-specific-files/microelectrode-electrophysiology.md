@@ -85,7 +85,7 @@ On top of the existing columns that can be present in this file and that are des
 
 ##  EPHYS specific files
 
-The following **metadata files are required for a ** given animal-ephys session:
+The following **metadata files are required for a** given animal-ephys session:
 
 
 
