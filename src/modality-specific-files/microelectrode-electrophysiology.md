@@ -123,8 +123,6 @@ These can include photos of the electrodes on the brain surface, photos of anato
 
 If there are photos of the electrodes, the [acq-<label>](https://bids-specification.readthedocs.io/en/stable/appendices/entities.html#acq) entity should be specified with:
 
-
-
 * `*_photo.jpg` in case of an operative photo
 * `*_acq-xray#_photo.<extension>` in case of an x-ray picture
 * `*_acq-drawing#_photo.<extension>` in case of a drawing or sketch of electrode placements
