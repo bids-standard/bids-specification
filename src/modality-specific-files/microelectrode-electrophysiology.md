@@ -77,7 +77,7 @@ and a guide for using macros can be found at
 #  PARTICIPANT keyfiles
 ## Participant information
 
-The participants.tsv file is located at the root of the data set directory. Its presence is RECOMMENDED in order to describe information about the individual subjects (animals) from which the data was recorded. It follows the [general BIDS specifications to describe participants](https://bids-specification.readthedocs.io/en/stable/03-modality-agnostic-files.html#participants-file). 
+The participants.tsv file is located at the root of the data set directory. Its presence is RECOMMENDED in order to describe information about the individual subjects (animals) from which the data was recorded. It follows the [general BIDS specifications to describe participants](https://bids-specification.readthedocs.io/en/stable/03-modality-agnostic-files.html#participants-file).
 
 On top of the existing columns that can be present in this file and that are described in the BIDS specifications (participant_id, species, strain, strain_rrid, sex, handedness and age), we propose to allow adding the following ones:
 
@@ -199,11 +199,8 @@ Example of * _channels.tsv:
 |c234		|-|		1|	SYNC|	       V|	1000|			good|
 
 
-Note: In many datasets multiple sets of identifiers are used for probes, electrodes and channels. We RECOMMEND to include alternative sets of identifiers, e.g. identifiers that enumerate electrodes according to their spatial arrangement, as additional custom columns in the .tsv file. 
+Note: In many datasets multiple sets of identifiers are used for probes, electrodes and channels. We RECOMMEND to include alternative sets of identifiers, e.g. identifiers that enumerate electrodes according to their spatial arrangement, as additional custom columns in the .tsv file.
 
 **Recommended Channel Type Values**
 
 For the `type` column we recommend to use the following terms (modified from https://bids-specification.readthedocs.io/en/stable/04-modality-specific-files/04-intracranial-electroencephalography.html#channelselectrode-description-_channelselectrodestsv)
-
-
-
