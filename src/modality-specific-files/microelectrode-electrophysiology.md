@@ -77,7 +77,7 @@ and a guide for using macros can be found at
 #  PARTICIPANT keyfiles
 ## Participant information
 
-The participants.tsv file is located at the root of the data set directory. Its presence is RECOMMENDED in order to describe information about the individual subjects (animals) from which the data was recorded. It follows the [general BIDS specifications to describe participants](https://bids-specification.readthedocs.io/en/stable/03-modality-agnostic-files.html#participants-file). 
+The participants.tsv file is located at the root of the data set directory. Its presence is RECOMMENDED in order to describe information about the individual subjects (animals) from which the data was recorded. It follows the [general BIDS specifications to describe participants](https://bids-specification.readthedocs.io/en/stable/03-modality-agnostic-files.html#participants-file).
 
 On top of the existing columns that can be present in this file and that are described in the BIDS specifications (participant_id, species, strain, strain_rrid, sex, handedness and age), we propose to allow adding the following ones:
 
@@ -145,16 +145,16 @@ Probes are physical devices used for recording animal ephys data. They can be pe
 
 * `probe_id`: REQUIRED - A unique identifier of the probe, can be identical with the device_serial_number (expected to match probe_ids listed in electrodes.tsv)
 * `type`: REQUIRED - The type of the probe
-* 
+*
 * coordinate_space: RECOMMENDED - The name of the reference space used for the coordinate definition, can be one of the following terms: ‘anatomical’ , ‘recording chamber’, ‘sample’, ‘other’. In case of ‘anatomical’ the ‘anatomical_axes_orientation’ is REQUIRED
 * placement_picture: OPTIONAL - Path to a photograph showing the placement of the probe
 * `x:` RECOMMENDED - probe  position along the global x-axis.` `
 * `y:` RECOMMENDED - probe  position along the global y-axis.
 * `z:` RECOMMENDED - probe  position along the global z-axis.
 * xyz_position_unit: RECOMMENDED - units used for x,y and z values
-* `manufacturer:` RECOMMENDED - Manufacturer of the probes system  (e.g. "openephys”, “alphaomega",”blackrock”) 
-* `device_serial_number:` RECOMMENDED - The serial number of the probe (provided by the manufacturer). 
-* `electrode_count`: OPTIONAL - Number of miscellaneous analog electrodes for auxiliary signals (e.g. 2). 
+* `manufacturer:` RECOMMENDED - Manufacturer of the probes system  (e.g. "openephys”, “alphaomega",”blackrock”)
+* `device_serial_number:` RECOMMENDED - The serial number of the probe (provided by the manufacturer).
+* `electrode_count`: OPTIONAL - Number of miscellaneous analog electrodes for auxiliary signals (e.g. 2).
 * `width`: OPTIONAL Physical width of the probe, e.g. 5. This dimension corresponds to the x’ axis of the Euler transformation defined by alpha, beta and gamma rotations values below.
 * `height`: OPTIONAL - Physical height of the probe, e.g. 5. This dimension corresponds to the y’ axis of the Euler transformation defined by alpha, beta and gamma rotations values below.
 * `depth`: OPTIONAL - Physical depth of the probe, e.g. 0.3. This dimension should be omitted or set to 0 for two-dimensional (shank-type) probes. This dimension corresponds to the z’ axis of the Euler transformation defined by alpha, beta and gamma rotations values below.
@@ -165,7 +165,7 @@ Probes are physical devices used for recording animal ephys data. They can be pe
 * `coordinate_reference_point`: RECOMMENDED - Point of the probe that is described by the probe coordinates and on which the alpha, beta and gamma rotations are applied
 * `hemisphere: RECOMMENDED - `Which brain hemisphere was the probe  located
 * `associated_brain_region`: RECOMMENDED - A textual  indication on the location of the probe. We recommend to use species-independent terms based on Uberon ([https://obophenotype.github.io/uberon](https://obophenotype.github.io/uberon/))
-* `associated_brain_region_id`: RECOMMENDED An identifier of the associated brain region based on the Uberon ([https://obophenotype.github.io/uberon](https://obophenotype.github.io/uberon/)) ontology for  anatomical structures in animals. E.g. ‘UBERON:0010415’ 
+* `associated_brain_region_id`: RECOMMENDED An identifier of the associated brain region based on the Uberon ([https://obophenotype.github.io/uberon](https://obophenotype.github.io/uberon/)) ontology for  anatomical structures in animals. E.g. ‘UBERON:0010415’
 * `associated_brain_region_quality_type`: RECOMMENDED The method used to identify the associated brain region (estimated|proof) depending on anatomical pictures proofing the location or indirect estimation of the location.
 * `reference_atlas`: RECOMMENDED  reference atlas used for associated brain region, we recommend using an ebrains supported atlas if compatible ([https://ebrains.eu/services/atlases#services](https://ebrains.eu/services/atlases#services))
 * `material`: OPTIONAL - A textual description of the base material of the probe.
@@ -206,8 +206,8 @@ electrodes describe the points of electrodes to the tissue used for recording el
 * `location`: RECOMMENDED - An indication on the location of the electrode (e.g. cortical layer 3, CA1, etc)
 * insulation: RECOMMENDED- Material used for insulation around the electrode
 * `pipette_solution` : OPTIONAL - Solution used to fill the pipette, see also [openMINDS pipette](https://github.com/openMetadataInitiative/openMINDS_ephys/blob/v1/schemas/device/pipetteUsage.schema.tpl.json)
-* `internal_pipette_diameter`: OPTIONAL - internal diameter of the pipette, see also [openMINDS pipette](https://github.com/HumanBrainProject/openMINDS_ephys/blob/v1/schemas/device/pipette.schema.tpl.json), Value has to be provided in the `physical_units` 
-* `external_pipette_diameter`: OPTIONAL - external diameter of the pipette, see also [openMINDS pipette](https://github.com/HumanBrainProject/openMINDS_ephys/blob/v1/schemas/device/pipette.schema.tpl.json). Value has to be  provided  in the `physical_units` 
+* `internal_pipette_diameter`: OPTIONAL - internal diameter of the pipette, see also [openMINDS pipette](https://github.com/HumanBrainProject/openMINDS_ephys/blob/v1/schemas/device/pipette.schema.tpl.json), Value has to be provided in the `physical_units`
+* `external_pipette_diameter`: OPTIONAL - external diameter of the pipette, see also [openMINDS pipette](https://github.com/HumanBrainProject/openMINDS_ephys/blob/v1/schemas/device/pipette.schema.tpl.json). Value has to be  provided  in the `physical_units`
 * Do we want a field about target or histological brain area?
 
 Example of * _electrodes.tsv:
@@ -220,4 +220,3 @@ Example of * _electrodes.tsv:
 |e234		|p023		|1.5		|-11.64|	0.51|-4.20|iridium-oxide|	V2|
 |e934		|p021		|3.5		|-12.11|	-3.12|-2.54|iridium-oxide|	V4|
 |e234		|p021		|7.0		|-9.94|	-1.19|-2.86|iridium-oxide|	V3|
-
