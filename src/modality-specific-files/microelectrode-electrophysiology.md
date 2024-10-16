@@ -32,8 +32,6 @@ The current list of allowed data file formats:
 | [Neuroscience Information Exchange Format](https://nixio.readthedocs.io/en/latest/) | `.nix`           | A generic and open  framework with an hdf5 backend and a defined interface to many ephys formats via the [Neo library](https://neo.readthedocs.io/en/latest/). The `.nix` file has to contain a valid Neo structure. |
 | [Neurodata Without Borders](https://www.nwb.org)                                    | `.nwb`           | BRAIN Initiative Data Standard based on an hdf5 backend ...                                                                                                                                                          |
 
-
-
 Both of these formats can also store essential metadata of the datasets.
 Some of these need to be duplicated in BIDS `.tsv` and `.json` sidecar files.
 Even though the duplication requires additional effort to ensure the consistency of the data, it provides a number of advantages:
