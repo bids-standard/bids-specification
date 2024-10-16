@@ -51,7 +51,7 @@ and a guide for using macros can be found at
 {{ MACROS___make_filename_template(
    "raw",
    datatypes=["ecephys", "icephys"],
-   suffixes=["ecephys", "icephys", "events", "channels", "electrodes","scans"]
+   suffixes=["ecephys", "icephys", "events", "channels", "electrodes", "scans"]
 )
 }}
 
