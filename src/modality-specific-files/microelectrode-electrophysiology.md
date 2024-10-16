@@ -144,7 +144,7 @@ Probes are physical devices used for recording animal ephys data. They can be pe
 {{ MACROS___make_columns_table("microephys.microephysProbes") }}
 
 
-Example of * _probes.tsv:
+Example of `_probes.tsv`:
 
 
 |probe_id|hemisphere|x|y|z|type|material|location|
