@@ -42,24 +42,13 @@ age:
     for privacy purposes.
   type: number
   unit: year
-age_category:
-  name: age_category
-  display_name: Subject age category
-  description: |
-    For non-numeric description of the age (e.g. developmental stage) a string can be provided. We RECOMMEND to use the UBERON life cycle stage to specify it.
-  type: string
-age_type:
-  name: age_category
-  display_name: Subject age category
-  description: |
-    This field should be included for experiments where some subjects have not been born.
-  type: string
 alpha_rotation:
   name: alpha_rotation
   display_name: Alpha rotation
   description: |
     Euler angle to match probe extension dimensions (width, height, depth) to global x, y, z coordinates.
-  unit: degree
+  unit:
+    degree
 associated_brain_region:
   name: associated_brain_region
   display_name: Associated brain region
@@ -78,21 +67,16 @@ associated_brain_region_quality_type:
   name: associated_brain_region_quality_type
   display_name: Associated brain region quality type
   description: |
-    The method used to identify the associated brain region (estimated|proof)
-    depending on anatomical pictures proofing the location or indirect estimation of the location.
-  type: string
-birthdate:
-  name: birthdate
-  display_name: Birthdate
-  description: |
-    day of birth of the participant YYYY-MM-DDT00:00:00  format, see ISO8601 wikipedia
+     The method used to identify the associated brain region (estimated|proof)
+     depending on anatomical pictures proofing the location or indirect estimation of the location.
   type: string
 beta_rotation:
   name: beta_rotation
   display_name: Beta rotation
   description: |
     Euler angle to match probe extension dimensions (width, height, depth) to global x, y, z coordinates.
-  unit: degree
+  unit:
+    degree
 cardiac:
   name: cardiac
   display_name: Cardiac measurement
@@ -247,7 +231,8 @@ gamma_rotation:
   display_name: Gamma rotation
   description: |
     Euler angle to match probe extension dimensions (width, height, depth) to global x, y, z coordinates.
-  unit: degree
+  unit:
+    degree
 group__channel:
   name: group
   display_name: Channel group
@@ -622,7 +607,7 @@ size:
   description: |
     Surface area of the electrode, units MUST be in `mm^2`.
   type: number
-  unit: "mm^2"
+  unit: 'mm^2'
 software_filters:
   name: software_filters
   display_name: Software filters
@@ -714,12 +699,6 @@ strain_rrid:
     of the strain of the species, for example: `RRID:IMSR_JAX:000664`.
   type: string
   format: rrid
-surgery_date:
-  name: surgery_date
-  display_name: Surgery Date
-  description: |
-    date(s) of surgery in YYYY-MM-DDT00:00:00 format, see ISO8601 wikipedia. The details of the surgery should be described in the sidecar json file.
-  type: string
 time:
   name: time
   display_name: Time
