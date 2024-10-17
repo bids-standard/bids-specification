@@ -43,13 +43,13 @@ def test_make_glossary(schema_obj, schema_dir):
     """
     # Test consistency
     object_files = []
-    for root, dirs, files in os.walk(schema_dir, topdown=False):
+    for root, _, files in os.walk(schema_dir, topdown=False):
         if "objects" in root:
             for object_file in files:
                 object_base, _ = os.path.splitext(object_file)
                 object_files.append(object_base)
     rule_files = []
-    for root, dirs, files in os.walk(schema_dir, topdown=False):
+    for root, _, files in os.walk(schema_dir, topdown=False):
         if "rules" in root:
             for rule_file in files:
                 rule_base, _ = os.path.splitext(rule_file)
@@ -60,12 +60,12 @@ def test_make_glossary(schema_obj, schema_dir):
     for line in glossary.split("\n"):
         if line.startswith('<a name="objects.'):
             # Are all objects objects?
-            assert any([line.startswith(f'<a name="objects.{i}') for i in object_files])
+            assert any(line.startswith(f'<a name="objects.{i}') for i in object_files)
             # Are rules loaded incorrectly?
-            assert not any([line.startswith(f'<a name="objects.{i}') for i in rules_only])
+            assert not any(line.startswith(f'<a name="objects.{i}') for i in rules_only)
 
 
-def test_make_filename_template(schema_obj, schema_dir):
+def test_make_filename_template(schema_obj):
     """
     Test whether:
 
@@ -110,6 +110,38 @@ sub-<label>/
     assert datatype_bases_found == datatype_count
 
 
+def test_make_filename_template_mutually_exclusive_extensions():
+    """Extensions that are mutually exclusive appear on a single line.
+
+    In this case mrk and sqd for MEG data.
+    """
+    filename_template = text.make_filename_template(
+        "raw",
+        datatypes=["meg"],
+        suffixes=["markers"],
+        pdf_format=True,
+        include_legend=False,
+    )
+    print(filename_template)
+    assert "legend" not in filename_template
+    nb_lines = len(filename_template.split("\n"))
+    assert nb_lines == 7
+
+
+def test_make_filename_template_mutually_combine_extensions_when_too_many():
+    """Combine extensions on a single line, there are too many extensions."""
+    filename_template = text.make_filename_template(
+        "raw",
+        datatypes=["meg"],
+        suffixes=["meg"],
+        pdf_format=True,
+        include_legend=False,
+    )
+    print(filename_template)
+    nb_lines = len(filename_template.split("\n"))
+    assert nb_lines == 14
+
+
 def test_define_common_principles(schema_obj):
     """Ensure that define_common_principles returns a string."""
     common_principles_str = text.define_common_principles(schema_obj)
@@ -121,11 +153,11 @@ def test_define_common_principles(schema_obj):
 
 def test_append_filename_template_legend():
     """Check contents of generated string."""
-    test_str = text.append_filename_template_legend("", pdf_format=False)
+    test_str = text._append_filename_template_legend("", pdf_format=False)
     assert isinstance(test_str, str)
     assert "follow the links" in test_str
 
-    test_str = text.append_filename_template_legend("", pdf_format=True)
+    test_str = text._append_filename_template_legend("", pdf_format=True)
     assert isinstance(test_str, str)
     assert "follow the links" not in test_str
 

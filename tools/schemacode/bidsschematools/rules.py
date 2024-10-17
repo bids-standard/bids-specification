@@ -130,8 +130,10 @@ def _entity_rule(rule: Mapping, schema: bst.types.Namespace):
     suffix_regex = f"(?P<suffix>{'|'.join(suffixes)})"
 
     # If we move to referring to extensions by keys in the object table:
-    # extensions = [schema.objects.extensions[ext].value for ext in rule["extensions"]]
-    extensions = rule["extensions"]
+    # extensions = [
+    #     schema.objects.extensions[ext].value for group in rule["extensions"] for ext in group
+    # ]
+    extensions = [ext for group in rule["extensions"] for ext in group]
     ext_match = "|".join(_sanitize_extension(ext) for ext in extensions)
     ext_regex = f"(?P<extension>{ext_match})"
 
@@ -146,9 +148,10 @@ def _split_inheritance_rules(rule: dict) -> ty.List[dict]:
 
     Implements the inheritance principle for file naming.
     """
-    heritable_exts = {".tsv", ".json", ".bval", ".bvec"}
-    rule_exts = set(rule["extensions"])
 
+    rule_exts = set(sum(rule["extensions"], []))
+
+    heritable_exts = {".tsv", ".json", ".bval", ".bvec"}
     main_exts = rule_exts - heritable_exts
     sidecar_exts = rule_exts - main_exts
     if not sidecar_exts:
@@ -158,13 +161,13 @@ def _split_inheritance_rules(rule: dict) -> ty.List[dict]:
 
     # Some rules only address metadata, such as events.tsv or coordsystem.json
     if main_exts:
-        rules.append({**rule, **{"extensions": list(main_exts)}})
+        rules.append({**rule, **{"extensions": [list(main_exts)]}})
 
     rules.append(
         {
             **rule,
             **{
-                "extensions": list(sidecar_exts),
+                "extensions": [list(sidecar_exts)],
                 "datatypes": [""] + rule.get("datatypes", []),
                 "entities": {ent: "optional" for ent in rule["entities"]},
             },
@@ -188,7 +191,7 @@ def _stem_rule(rule: bst.types.Namespace):
     dtypes = set(rule.get("datatypes", ()))
     dir_regex = f"(?P<datatype>{'|'.join(dtypes)})/" if dtypes else ""
 
-    ext_match = "|".join(_sanitize_extension(ext) for ext in rule.extensions)
+    ext_match = "|".join(_sanitize_extension(ext) for group in rule.extensions for ext in group)
     ext_regex = rf"(?P<extension>{ext_match})\Z"
 
     return {"regex": dir_regex + stem_regex + ext_regex, "mandatory": rule.level == "required"}

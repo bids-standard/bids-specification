@@ -9,8 +9,7 @@ fieldmaps:
     - magnitude
     - fieldmap
   extensions:
-    - .nii.gz
-    - .nii
+    - [.nii.gz, .nii]
     - .json
   datatypes:
     - fmap
@@ -46,8 +45,7 @@ pepolar_m0scan:
   suffixes:
     - m0scan
   extensions:
-    - .nii.gz
-    - .nii
+    - [.nii.gz, .nii]
     - .json
   datatypes:
     - fmap
@@ -65,8 +63,7 @@ TB1DAM:
   suffixes:
     - TB1DAM
   extensions:
-    - .nii.gz
-    - .nii
+    - [.nii.gz, .nii]
     - .json
   datatypes:
     - fmap
@@ -86,8 +83,7 @@ TB1EPI:
   suffixes:
     - TB1EPI
   extensions:
-    - .nii.gz
-    - .nii
+    - [.nii.gz, .nii]
     - .json
   datatypes:
     - fmap
@@ -111,8 +107,7 @@ RFFieldMaps:
     - TB1RFM
     - RB1COR
   extensions:
-    - .nii.gz
-    - .nii
+    - [.nii.gz, .nii]
     - .json
   datatypes:
     - fmap
@@ -133,8 +128,7 @@ TB1SRGE:
   suffixes:
     - TB1SRGE
   extensions:
-    - .nii.gz
-    - .nii
+    - [.nii.gz, .nii]
     - .json
   datatypes:
     - fmap
@@ -156,8 +150,7 @@ parametric:
     - TB1map
     - RB1map
   extensions:
-    - .nii.gz
-    - .nii
+    - [.nii.gz, .nii]
     - .json
   datatypes:
     - fmap

@@ -103,8 +103,7 @@ anat_parametric_discrete_segmentation:
     density: optional
     description: optional
   extensions:
-    - .nii.gz
-    - .nii
+    - [.nii.gz, .nii]
     - .json
     - .tsv
 
@@ -119,8 +118,7 @@ anat_nonparametric_discrete_segmentation:
     density: optional
     description: optional
   extensions:
-    - .nii.gz
-    - .nii
+    - [.nii.gz, .nii]
     - .json
     - .tsv
 
@@ -199,8 +197,7 @@ anat_parametic_discrete_surface:
   suffixes:
     - dseg
   extensions:
-    - .label.gii
-    - .dlabel.nii
+    - [.label.gii, .dlabel.nii]
     - .json
     - .tsv
   entities:
@@ -216,8 +213,7 @@ anat_nonparametic_discrete_surface:
   suffixes:
     - dseg
   extensions:
-    - .label.gii
-    - .dlabel.nii
+    - [.label.gii, .dlabel.nii]
     - .json
     - .tsv
   entities:

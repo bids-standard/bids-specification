@@ -14,8 +14,7 @@ nonparametric:
     - FLASH # deprecated
     - PD # deprecated
   extensions:
-    - .nii.gz
-    - .nii
+    - [.nii.gz, .nii]
     - .json
   datatypes:
     - anat
@@ -50,8 +49,7 @@ parametric:
     - S0map
     - M0map
   extensions:
-    - .nii.gz
-    - .nii
+    - [.nii.gz, .nii]
     - .json
   datatypes:
     - anat
@@ -69,8 +67,7 @@ defacemask:
   suffixes:
     - defacemask
   extensions:
-    - .nii.gz
-    - .nii
+    - [.nii.gz, .nii]
     - .json
   datatypes:
     - anat
@@ -90,8 +87,7 @@ multiecho:
     - MESE
     - MEGRE
   extensions:
-    - .nii.gz
-    - .nii
+    - [.nii.gz, .nii]
     - .json
   datatypes:
     - anat
@@ -111,8 +107,7 @@ multiflip:
   suffixes:
     - VFA
   extensions:
-    - .nii.gz
-    - .nii
+    - [.nii.gz, .nii]
     - .json
   datatypes:
     - anat
@@ -133,8 +128,7 @@ multiinversion:
   suffixes:
     - IRT1
   extensions:
-    - .nii.gz
-    - .nii
+    - [.nii.gz, .nii]
     - .json
   datatypes:
     - anat
@@ -154,8 +148,7 @@ mp2rage:
   suffixes:
     - MP2RAGE
   extensions:
-    - .nii.gz
-    - .nii
+    - [.nii.gz, .nii]
     - .json
   datatypes:
     - anat
@@ -178,8 +171,7 @@ vfamt:
     - MPM
     - MTS
   extensions:
-    - .nii.gz
-    - .nii
+    - [.nii.gz, .nii]
     - .json
   datatypes:
     - anat
@@ -201,8 +193,7 @@ mtr:
   suffixes:
     - MTR
   extensions:
-    - .nii.gz
-    - .nii
+    - [.nii.gz, .nii]
     - .json
   datatypes:
     - anat

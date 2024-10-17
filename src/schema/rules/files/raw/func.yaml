@@ -5,8 +5,7 @@ func:
     - cbv
     - sbref
   extensions:
-    - .nii.gz
-    - .nii
+    - [.nii.gz, .nii]
     - .json
   datatypes:
     - func
@@ -35,8 +34,7 @@ phase:
   suffixes:
     - phase # deprecated
   extensions:
-    - .nii.gz
-    - .nii
+    - [.nii.gz, .nii]
     - .json
   datatypes:
     - func
