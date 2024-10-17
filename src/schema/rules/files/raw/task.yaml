@@ -46,6 +46,7 @@ timeseries__mri_no_task:
     - .tsv.gz
     - .json
   datatypes:
+    - anat
     - dwi
     - perf
   entities:
@@ -100,6 +101,24 @@ events__mrs:
     reconstruction: optional
     nucleus: optional
     volume: optional
+
+timeseries__anat:
+  $ref: rules.files.raw.task.timeseries
+  datatypes:
+    - anat
+  entities:
+    $ref: rules.files.raw.task.timeseries.entities
+    subject: required
+    session: optional
+    task: optional
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
+    run: optional
+    echo: optional
+    part: optional
+    chunk: optional
+
 
 timeseries__func:
   $ref: rules.files.raw.task.timeseries
