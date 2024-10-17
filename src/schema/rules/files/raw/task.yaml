@@ -113,7 +113,6 @@ timeseries__anat:
     part: optional
     chunk: optional
 
-
 timeseries__func:
   $ref: rules.files.raw.task.timeseries
   datatypes:
