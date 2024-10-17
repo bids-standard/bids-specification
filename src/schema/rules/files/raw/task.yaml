@@ -110,7 +110,6 @@ timeseries__anat:
     $ref: rules.files.raw.task.timeseries.entities
     ceagent: optional
     reconstruction: optional
-    run: optional
     echo: optional
     part: optional
     chunk: optional
