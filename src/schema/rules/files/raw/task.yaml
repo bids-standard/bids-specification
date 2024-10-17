@@ -46,7 +46,6 @@ timeseries__mri_no_task:
     - .tsv.gz
     - .json
   datatypes:
-    - anat
     - dwi
     - perf
   entities:
