@@ -211,13 +211,15 @@ there MUST only be one such file with the same entities, datatype and suffix.
 This limitation does not apply to metadata files,
 such as JSON sidecar files or format-specific metadata files.
 
-Note that duplicating files to make the same data available in multiple formats
-is not permitted.
-For example, if the files `sub-01_ses-01_sample-A_photo.jpg` and
-`sub-01_ses-01_sample-A_photo.tif` contain a representation of the same data,
-then the dataset MUST NOT contain both images.
-If the files contain different images,
-other entities MUST be used to distinguish the two.
+!!! note
+
+    Duplicating files to make the same data available in multiple formats
+    is not permitted.
+    For example, if the files `sub-01_ses-01_sample-A_photo.jpg` and
+    `sub-01_ses-01_sample-A_photo.tif` contain a representation of the same data,
+    then the dataset MUST NOT contain both images.
+    If the files contain different images,
+    other entities MUST be used to distinguish the two.
 
 ## Filesystem structure & Filenames richness versus distinctness
 
@@ -544,8 +546,11 @@ and a guide for using macros can be found at
    }
 ) }}
 
-Please note that while both `Units` and `Levels` are RECOMMENDED, typically only one
-of these two fields would be specified for describing a single TSV file column.
+!!! note
+
+    While both `Units` and `Levels` are RECOMMENDED,
+    typically only one of these two fields would be specified
+    for describing a single TSV file column.
 
 Example:
 
@@ -726,120 +731,123 @@ the Principle defines the *order of precedence* of such metadata files contents.
 
 ### Examples
 
-Example 1: Demonstration of inheritance principle
+!!! example "Example 1: Demonstration of inheritance principle"
 
-<!-- This block generates a file tree.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filetree_example(
-    {
-    "sub-01": {
-        "func": {
-            "sub-01_task-rest_acq-default_bold.nii.gz": "",
-            "sub-01_task-rest_acq-longtr_bold.nii.gz": "",
-            "sub-01_task-rest_acq-longtr_bold.json": "",
-            }
-        },
-    "task-rest_bold.json": "",
-    }
-) }}
-
-Contents of file `task-rest_bold.json`:
-
-```JSON
-{
-    "EchoTime": 0.040,
-    "RepetitionTime": 1.0
-}
-```
-
-Contents of file `sub-01/func/sub-01_task-rest_acq-longtr_bold.json`:
-
-```JSON
-{
-    "RepetitionTime": 3.0
-}
-```
-
-When reading image `sub-01/func/sub-01_task-rest_acq-default_bold.nii.gz`, only
-metadata file `task-rest_bold.json` is read; file
-`sub-01/func/sub-01_task-rest_acq-longtr_bold.json` is inapplicable as it contains
-entity "`acq-longtr`" that is absent from the image path (rule 2.c). When reading image
-`sub-01/func/sub-01_task-rest_acq-longtr_bold.nii.gz`, metadata file
-`task-rest_bold.json` at the top level is read first, followed by file
-`sub-01/func/sub-01_task-rest_acq-longtr_bold.json` at the bottom level (rule 5.b);
-the value for field "`RepetitionTime`" is therefore overridden to the value `3.0`.
-The value for field "`EchoTime`" remains applicable to that image, and is not unset by its
-absence in the metadata file at the lower level (rule 5.b; corollary 3).
-
-Example 2: Impermissible use of multiple metadata files at one directory level (rule 4)
-
-<!-- This block generates a file tree.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filetree_example(
-    {
-    "sub-01": {
-        "ses-test":{
-            "anat": {
-                "sub-01_ses-test_T1w.nii.gz": "",
-                },
+    <!-- This block generates a file tree.
+    A guide for using macros can be found at
+    https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+    -->
+    {{ MACROS___make_filetree_example(
+        {
+        "sub-01": {
             "func": {
-                "sub-01_ses-test_task-overtverbgeneration_run-1_bold.nii.gz": "",
-                "sub-01_ses-test_task-overtverbgeneration_run-2_bold.nii.gz": "",
+                "sub-01_task-rest_acq-default_bold.nii.gz": "",
+                "sub-01_task-rest_acq-longtr_bold.nii.gz": "",
+                "sub-01_task-rest_acq-longtr_bold.json": "",
+                }
+            },
+        "task-rest_bold.json": "",
+        }
+    ) | indent(4) }}
+
+    Contents of file `task-rest_bold.json`:
+
+    ```JSON
+    {
+        "EchoTime": 0.040,
+        "RepetitionTime": 1.0
+    }
+    ```
+
+    Contents of file `sub-01/func/sub-01_task-rest_acq-longtr_bold.json`:
+
+    ```JSON
+    {
+        "RepetitionTime": 3.0
+    }
+    ```
+
+    When reading image `sub-01/func/sub-01_task-rest_acq-default_bold.nii.gz`,
+    only metadata file `task-rest_bold.json` is read;
+    file `sub-01/func/sub-01_task-rest_acq-longtr_bold.json` is inapplicable
+    as it contains entity "`acq-longtr`"
+    that is absent from the image path (rule 2.c).
+    When reading image `sub-01/func/sub-01_task-rest_acq-longtr_bold.nii.gz`,
+    metadata file `task-rest_bold.json` at the top level is read first,
+    followed by file `sub-01/func/sub-01_task-rest_acq-longtr_bold.json`
+    at the bottom level (rule 5.b);
+    the value for field "`RepetitionTime`" is therefore overridden to the value `3.0`.
+    The value for field "`EchoTime`" remains applicable to that image,
+    and is not unset by its absence in the metadata file at the lower level (rule 5.b; corollary 3).
+
+
+!!! example "Example 2: Impermissible use of multiple metadata files at one directory level (rule 4)"
+
+    <!-- This block generates a file tree.
+    A guide for using macros can be found at
+    https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+    -->
+    {{ MACROS___make_filetree_example(
+        {
+        "sub-01": {
+            "ses-test":{
+                "anat": {
+                    "sub-01_ses-test_T1w.nii.gz": "",
+                    },
+                "func": {
+                    "sub-01_ses-test_task-overtverbgeneration_run-1_bold.nii.gz": "",
+                    "sub-01_ses-test_task-overtverbgeneration_run-2_bold.nii.gz": "",
+                    "sub-01_ses-test_task-overtverbgeneration_bold.json": "",
+                    "sub-01_ses-test_task-overtverbgeneration_run-2_bold.json": "",
+                    }
+                }
+            }
+        }
+    ) | indent(4) }}
+
+
+!!! example "Example 3: Modification of filesystem structure from Example 2 to satisfy inheritance principle requirements"
+
+    <!-- This block generates a file tree.
+    A guide for using macros can be found at
+    https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+    -->
+    {{ MACROS___make_filetree_example(
+        {
+        "sub-01": {
+            "ses-test":{
                 "sub-01_ses-test_task-overtverbgeneration_bold.json": "",
-                "sub-01_ses-test_task-overtverbgeneration_run-2_bold.json": "",
+                "anat": {
+                    "sub-01_ses-test_T1w.nii.gz": "",
+                    },
+                "func": {
+                    "sub-01_ses-test_task-overtverbgeneration_run-1_bold.nii.gz": "",
+                    "sub-01_ses-test_task-overtverbgeneration_run-2_bold.nii.gz": "",
+                    "sub-01_ses-test_task-overtverbgeneration_run-2_bold.json": "",
+                    }
                 }
             }
         }
-    }
-) }}
+    ) | indent(4) }}
 
-Example 3: Modification of filesystem structure from Example 2 to satisfy inheritance
-principle requirements
+!!! example "Example 4: Single metadata file applying to multiple data files (corollary 2)"
 
-<!-- This block generates a file tree.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filetree_example(
-    {
-    "sub-01": {
-        "ses-test":{
-            "sub-01_ses-test_task-overtverbgeneration_bold.json": "",
-            "anat": {
-                "sub-01_ses-test_T1w.nii.gz": "",
-                },
+    <!-- This block generates a file tree.
+    A guide for using macros can be found at
+    https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+    -->
+    {{ MACROS___make_filetree_example(
+        {
+        "sub-01": {
+            "anat": {},
             "func": {
-                "sub-01_ses-test_task-overtverbgeneration_run-1_bold.nii.gz": "",
-                "sub-01_ses-test_task-overtverbgeneration_run-2_bold.nii.gz": "",
-                "sub-01_ses-test_task-overtverbgeneration_run-2_bold.json": "",
+                "sub-01_task-xyz_acq-test1_run-1_bold.nii.gz": "",
+                "sub-01_task-xyz_acq-test1_run-2_bold.nii.gz": "",
+                "sub-01_task-xyz_acq-test1_bold.json": "",
                 }
             }
         }
-    }
-) }}
-
-Example 4: Single metadata file applying to multiple data files (corollary 2)
-
-<!-- This block generates a file tree.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filetree_example(
-    {
-    "sub-01": {
-        "anat": {},
-        "func": {
-            "sub-01_task-xyz_acq-test1_run-1_bold.nii.gz": "",
-            "sub-01_task-xyz_acq-test1_run-2_bold.nii.gz": "",
-            "sub-01_task-xyz_acq-test1_bold.json": "",
-            }
-        }
-    }
-) }}
+    ) | indent(4) }}
 
 ## Participant names and other labels
 
@@ -1037,18 +1045,20 @@ Describing dates and timestamps:
     within each subject to maintain the interval information.
     For example: `1867-06-15T13:45:30`
 
--   WARNING: The Neuromag/Elekta/MEGIN file format for MEG (`.fif`) does *not*
+-   Age SHOULD be given as the number of years since birth at the time of
+    scanning (or first scan in case of multi session datasets). Using higher
+    accuracy (weeks) should in general be avoided due to privacy protection,
+    unless when appropriate given the study goals, for example, when scanning babies.
+
+!!! warning "dates and Neuromag/Elekta/MEGIN file format"
+
+    The Neuromag/Elekta/MEGIN file format for MEG (`.fif`) does *not*
     support recording dates earlier than `1902` roughly.
     Some analysis software packages (for example, MNE-Python) handle their data as `.fif`
     internally and will break if recording dates are specified prior to `1902`,
     even if the original data format is not `.fif`.
     See the [MEG File Formats Appendix](./appendices/meg-file-formats.md#recording-dates-in-fif-files)
     for more information.
-
--   Age SHOULD be given as the number of years since birth at the time of
-    scanning (or first scan in case of multi session datasets). Using higher
-    accuracy (weeks) should in general be avoided due to privacy protection,
-    unless when appropriate given the study goals, for example, when scanning babies.
 
 ## Directory structure
 
