@@ -1659,6 +1659,16 @@
         "orcid": "0000-0002-9986-7477",
         "publish_email": true
     },
+    "julia-pfarr": {
+        "contributions": [
+            "code",
+            "doc"
+        ],
+        "email": "pfarr@staff.uni-marburg.de",
+        "github": "julia-pfarr",
+        "name": "Julia-Katharina Pfarr",
+        "orcid": "0000-0003-1450-6005"
+    },
     "jcohenadad": {
         "affiliation": "Polytechnique Montreal, Department of Electrical Engineering, Montreal, QC, Canada",
         "blog": "https://www.neuro.polymtl.ca",

@@ -1701,6 +1701,14 @@
             "profile": "https://github.com/juliasprenger"
         },
         {
+            "contributions": [
+                "code",
+                "doc"
+            ],
+            "login": "julia-pfarr",
+            "name": "Julia-Katharina Pfarr"
+        },
+        {
             "avatar_url": "https://avatars.githubusercontent.com/u/2482071?v=4",
             "contributions": [
                 "doc",

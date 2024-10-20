@@ -216,6 +216,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Joseph Woods                                         | 📖                                     |
 | Julia Guiomar Niso Galán                             | 🤔🎨🔍👀📋📝🔧🐛💻🔣✅💬📖💡📢         |
 | Julia Sprenger                                       | 📖                                     |
+| Julia-Katharina Pfarr                                | 💻📖                                   |
 | Julien Cohen-Adad                                    | 📖🔣🤔                                 |
 | Julius Welzel                                        | 📖💡🐛💻🔣🤔💬📓                       |
 | Kai J. Miller                                        | 📖                                     |
