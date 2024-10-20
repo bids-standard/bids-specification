@@ -2156,6 +2156,13 @@
         },
         {
             "contributions": [
+                "doc"
+            ],
+            "login": "mathieu_guay-paquet",
+            "name": "Mathieu Guay-Paquet"
+        },
+        {
+            "contributions": [
                 "doc",
                 "code"
             ],

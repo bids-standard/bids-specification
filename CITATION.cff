@@ -967,6 +967,9 @@ authors:
     website: https://github.com/mathieuboudreau
     orcid: https://orcid.org/0000-0002-7726-4456
     affiliation: Polytechnique Montréal
+  - given-names: Mathieu
+    family-names: Guay-Paquet
+    email: mathieu.guay-paquet@polymtl.ca
   - given-names: Matt
     family-names: Sanderson
   - given-names: Matteo

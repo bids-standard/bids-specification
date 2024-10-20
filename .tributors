@@ -2130,6 +2130,13 @@
         "name": "Mathieu Boudreau",
         "orcid": "0000-0002-7726-4456"
     },
+    "mathieu_guay-paquet": {
+        "contributions": [
+            "doc"
+        ],
+        "email": "mathieu.guay-paquet@polymtl.ca",
+        "name": "Mathieu Guay-Paquet"
+    },
     "matt_sanderson": {
         "contributions": [
             "doc",
