@@ -67,6 +67,9 @@ authors:
     website: https://agahkarakuzu.github.io
     orcid: https://orcid.org/0000-0001-7283-271X
     email: agahkarakuzu@gmail.com
+  - given-names: Agnese
+    family-names: Zazio
+    email: agnese.zazio@cognitiveneuroscience.it
   - given-names: Aki
     family-names: Nikolaidis
     website: https://github.com/AkiNikolaidis
@@ -119,6 +122,9 @@ authors:
     family-names: Wickenheiser
     affiliation: LORIS, MCIN, Montreal Neurological Institute, McGill University
     email: alizee.wickenheiser@mcin.ca
+  - given-names: Amber
+    family-names: Hopkins
+    email: arhopkins@ucla.edu
   - given-names: Ana
     family-names: Fouto
   - given-names: Anders
@@ -354,6 +360,9 @@ authors:
     orcid: https://orcid.org/0000-0003-1354-4835
     affiliation: University of Oxford
     email: dejan.draschow@psy.ox.ac.uk
+  - given-names: Desmond
+    family-names: Oathes
+    email: oathes@pennmedicine.upenn.edu
   - given-names: Dianne
     family-names: Patterson
     website: https://profiles.arizona.edu/person/dkp
@@ -772,6 +781,9 @@ authors:
     orcid: https://orcid.org/0000-0003-3662-9532
     affiliation: Polytechnique Montreal, Department of Electrical Engineering, Montreal,
       QC, Canada
+  - given-names: Julio
+    family-names: C Hernandez Pavon
+    email: julio.hpavon@gmail.com
   - given-names: Julius
     family-names: Welzel
     website: https://github.com/JuliusWelzel
@@ -881,6 +893,9 @@ authors:
     website: http://jasmainak.github.io/
     orcid: https://orcid.org/0000-0002-3199-9027
     email: mainakjas@gmail.com
+  - given-names: Mana
+    family-names: Biabani
+    email: mana.biabani@monash.edu
   - given-names: Manjari
     family-names: Narayan
   - given-names: Manuel
@@ -905,6 +920,9 @@ authors:
     affiliation: University of Padova, Department of Information Engineering, Padova,
       Italy
     email: marco.castellaro@gmail.com
+  - given-names: Maria
+    family-names: Ermolova
+    email: ermolova.mary@gmail.com
   - given-names: Maria
     family-names: de la Iglesia
     website: https://bimcv.cipf.es
@@ -1043,6 +1061,9 @@ authors:
     orcid: https://orcid.org/0000-0002-0783-0387
     affiliation: High Field Dpt, Center for Image Sciences, University Medical Center
       Utrecht, 3584 CX Utrecht, NL
+  - given-names: Natalie
+    family-names: Rotstein
+    email: NRotstein@mednet.ucla.edu
   - given-names: National
     family-names: Institute of Mental Health
   - given-names: Nell
@@ -1050,11 +1071,17 @@ authors:
     website: https://github.com/nellh
     orcid: https://orcid.org/0000-0002-3837-0707
   - given-names: Nicholas
+    family-names: Holmes
+    email: npholmes@neurobiography.info
+  - given-names: Nicholas
     family-names: Traut
   - given-names: Nick F.
     family-names: Ramsey
   - given-names: Nicole C.
     family-names: Swann
+  - given-names: Nigel
+    family-names: Rogasch
+    email: nigel.rogasch@adelaide.edu.au
   - given-names: Nikita
     family-names: Beliy
     orcid: https://orcid.org/0009-0002-0830-3279
@@ -1168,6 +1195,9 @@ authors:
     affiliation: Radboud University, Donders Institute, Nijmegen, 6525 EN, The Netherlands
     email: r.oostenveld@donders.ru.nl
   - given-names: Roberto
+    family-names: Guidotti
+    email: r.guidotti@unich.it
+  - given-names: Roberto
     family-names: Toro
     website: https://github.com/r03ert0
   - given-names: Rohan
@@ -1246,6 +1276,9 @@ authors:
     email: shirazi@ieee.org
   - given-names: Shashank
     family-names: Bansal
+  - given-names: Silvia
+    family-names: Isabella
+    email: silvia.l.isabella@gmail.com
   - given-names: Sjoerd B.
     family-names: Vos
     website: https://research-repository.uwa.edu.au/en/persons/sjoerd-vos
@@ -1263,6 +1296,9 @@ authors:
     orcid: https://orcid.org/0000-0001-8002-0877
     affiliation: Max Planck Institute for Human Development
     email: stefan.appelhoff@mailbox.org
+  - given-names: Stefanie
+    family-names: De Smet
+    email: Stefanie.DeSmet@UGent.be
   - given-names: Stephan
     family-names: Bickel
   - given-names: Steven
@@ -1311,6 +1347,9 @@ authors:
   - given-names: Tamás
     family-names: Józsa
   - given-names: Taylor
+    family-names: Khuhn
+    email: TKuhn@mednet.ucla.edu
+  - given-names: Taylor
     family-names: Salo
     website: https://tsalo.github.io
     orcid: https://orcid.org/0000-0001-9813-3167
@@ -1350,6 +1389,9 @@ authors:
     affiliation: University of Surrey, School of Psychology, Guildford, GU2 7XH, United
       Kingdom
     email: tibor.auer@gmail.com
+  - given-names: Til
+    family-names: Ole Bergman
+    email: tobergmann@uni-mainz.de
   - given-names: Timo
     family-names: Dickscheid
     website: https://go.fzj.de/dickscheid
@@ -1397,6 +1439,9 @@ authors:
     orcid: https://orcid.org/0000-0002-4387-3819
   - given-names: Vasudev
     family-names: Raguram
+  - given-names: Victor
+    family-names: Hugo Souza
+    email: victor.souza@aalto.fi
   - given-names: Vince D.
     family-names: Calhoun
     website: http://trendscenter.org
@@ -1444,6 +1489,9 @@ authors:
     family-names: Wang
   - given-names: Zachary
     family-names: Michael
+  - given-names: Zhi-De
+    family-names: Deng
+    email: zhi-de.deng@nih.gov
   - given-names: ezemikulan
     website: https://github.com/ezemikulan
   - given-names: josator2

@@ -62,6 +62,13 @@
         "name": "Agah Karakuzu",
         "orcid": "0000-0001-7283-271X"
     },
+    "agnese_zazio": {
+        "contributions": [
+            "doc"
+        ],
+        "email": "agnese.zazio@cognitiveneuroscience.it",
+        "name": "Agnese Zazio"
+    },
     "AkiNikolaidis": {
         "blog": "https://github.com/AkiNikolaidis",
         "contributions": [
@@ -181,6 +188,13 @@
         ],
         "email": "alizee.wickenheiser@mcin.ca",
         "name": "Alizee Wickenheiser"
+    },
+    "amber_hopkins": {
+        "contributions": [
+            "doc"
+        ],
+        "email": "arhopkins@ucla.edu",
+        "name": "Amber Hopkins"
     },
     "ana_fouto": {
         "contributions": [
@@ -723,6 +737,13 @@
         "email": "dejan.draschow@psy.ox.ac.uk",
         "name": "Dejan Draschkow",
         "orcid": "0000-0003-1354-4835"
+    },
+    "desmond_oathes": {
+        "contributions": [
+            "doc"
+        ],
+        "email": "oathes@pennmedicine.upenn.edu",
+        "name": "Desmond Oathes"
     },
     "dkp": {
         "affiliation": "University of Arizona, RII, Tucson Arizona 85721 USA",
@@ -1703,6 +1724,13 @@
         "orcid": "0000-0003-3662-9532",
         "publish_email": false
     },
+    "julio_c_hernandez_pavon": {
+        "contributions": [
+            "doc"
+        ],
+        "email": "julio.hpavon@gmail.com",
+        "name": "Julio C Hernandez Pavon"
+    },
     "JuliusWelzel": {
         "affiliation": "Kiel University",
         "blog": "https://github.com/JuliusWelzel",
@@ -1940,6 +1968,13 @@
         "name": "Mainak Jas",
         "orcid": "0000-0002-3199-9027"
     },
+    "mana_biabani": {
+        "contributions": [
+            "doc"
+        ],
+        "email": "mana.biabani@monash.edu",
+        "name": "Mana Biabani"
+    },
     "manjari_narayan": {
         "contributions": [
             "doc"
@@ -1993,6 +2028,13 @@
         "name": "Marco Castellaro",
         "orcid": "0000-0002-1203-2670",
         "publish_email": true
+    },
+    "maria_ermolova": {
+        "contributions": [
+            "doc"
+        ],
+        "email": "ermolova.mary@gmail.com",
+        "name": "Maria Ermolova"
     },
     "maigva": {
         "affiliation": "FISABIO, Join Unit Biomedical Imagin, Valencia, Valencia, 46006, Spain",
@@ -2319,6 +2361,13 @@
         "orcid": "0000-0002-0783-0387",
         "publish_email": false
     },
+    "natalie_rotstein": {
+        "contributions": [
+            "doc"
+        ],
+        "email": "NRotstein@mednet.ucla.edu",
+        "name": "Natalie Rotstein"
+    },
     "national_institute_of_mental_health": {
         "contributions": [
             "financial"
@@ -2337,6 +2386,13 @@
         ],
         "name": "Nell Hardcastle",
         "orcid": "0000-0002-3837-0707"
+    },
+    "nicholas_holmes": {
+        "contributions": [
+            "doc"
+        ],
+        "email": "npholmes@neurobiography.info",
+        "name": "Nicholas Holmes"
     },
     "nicholas_traut": {
         "contributions": [
@@ -2357,6 +2413,13 @@
             "doc"
         ],
         "name": "Nicole C. Swann"
+    },
+    "nigel_rogasch": {
+        "contributions": [
+            "doc"
+        ],
+        "email": "nigel.rogasch@adelaide.edu.au",
+        "name": "Nigel Rogasch"
     },
     "nbeliy": {
         "affiliation": "University of Liege (Liege, Belgium)",
@@ -2628,6 +2691,13 @@
         "orcid": "0000-0002-1974-1293",
         "publish_email": true
     },
+    "roberto_guidotti": {
+        "contributions": [
+            "doc"
+        ],
+        "email": "r.guidotti@unich.it",
+        "name": "Roberto Guidotti"
+    },
     "r03ert0": {
         "blog": "https://github.com/r03ert0",
         "contributions": [
@@ -2803,6 +2873,13 @@
         ],
         "name": "Shashank Bansal"
     },
+    "silvia_isabella": {
+        "contributions": [
+            "doc"
+        ],
+        "email": "silvia.l.isabella@gmail.com",
+        "name": "Silvia Isabella"
+    },
     "sjoerdvos": {
         "affiliation": "University of Western Australia;Centre for Microscopy, Characterisation, and Analysis;Perth;WA;6009;Australia",
         "blog": "https://research-repository.uwa.edu.au/en/persons/sjoerd-vos",
@@ -2847,6 +2924,13 @@
         "email": "stefan.appelhoff@mailbox.org",
         "name": "Stefan Appelhoff",
         "orcid": "0000-0001-8002-0877"
+    },
+    "stefanie_de_smet": {
+        "contributions": [
+            "doc"
+        ],
+        "email": "Stefanie.DeSmet@UGent.be",
+        "name": "Stefanie De Smet"
     },
     "stephan_bickel": {
         "contributions": [
@@ -2967,6 +3051,13 @@
         ],
         "name": "Tamás Józsa"
     },
+    "taylor_khuhn": {
+        "contributions": [
+            "doc"
+        ],
+        "email": "TKuhn@mednet.ucla.edu",
+        "name": "Taylor Khuhn"
+    },
     "tsalo": {
         "affiliation": "University of Pennsylvania, Department of Psychiatry, Philadelphia, Pennsylvania, 19104, United States",
         "bio": "I am a Psychology Ph.D. student at FIU working with @angielaird in the @NBCLab. I am interested in performing reproducible, transparent research with fMRI.",
@@ -3063,6 +3154,13 @@
         "name": "Tibor Auer",
         "orcid": "0000-0001-5153-1424",
         "publish_email": true
+    },
+    "til_ole_bergman": {
+        "contributions": [
+            "doc"
+        ],
+        "email": "tobergmann@uni-mainz.de",
+        "name": "Til Ole Bergman"
     },
     "dickscheid": {
         "affiliation": "Forschungszentrum Jülich, Institute of Neuroscience and Medicine (INM-1),  Jülich, 52428, Germany",
@@ -3169,6 +3267,13 @@
             "tool"
         ],
         "name": "Vasudev Raguram"
+    },
+    "victor_hugo_souza": {
+        "contributions": [
+            "doc"
+        ],
+        "email": "victor.souza@aalto.fi",
+        "name": "Victor Hugo Souza"
     },
     "vdcalhoun": {
         "affiliation": "Tri-institutional Center for Translational Research in Neuroimaging and Data Science (TReNDS), Georgia State, Georgia Tech, and Emory, Atlanta, GA 30030",
@@ -3285,6 +3390,13 @@
             "doc"
         ],
         "name": "Zachary Michael"
+    },
+    "zhi-de_deng": {
+        "contributions": [
+            "doc"
+        ],
+        "email": "zhi-de.deng@nih.gov",
+        "name": "Zhi-De Deng"
     },
     "ezemikulan": {
         "blog": "https://github.com/ezemikulan",
