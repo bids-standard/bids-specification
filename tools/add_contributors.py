@@ -46,7 +46,7 @@ LOG_LEVEL = "DEBUG"  # 'DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'
 # update with your GitHub username and path to a file with GitHub token
 UPDATE_AVATARS = False
 GH_USERNAME = "Remi-Gau"
-TOKEN_FILE = None
+TOKEN_FILE = "/home/remi/Documents/tokens/gh_user.txt"
 # if you not want traceback from rich
 # https://rich.readthedocs.io/en/stable/traceback.html
 # set this to False
@@ -374,7 +374,10 @@ def update_allcontrib(allcontrib: dict, this_contributor: dict[str, str]) -> dic
                 value=value,
             )
 
-        if allcontrib["contributors"][index_allcontrib][key] != value:
+        if (
+            key not in allcontrib["contributors"][index_allcontrib]
+            or allcontrib["contributors"][index_allcontrib][key] != value
+        ):
             allcontrib["contributors"][index_allcontrib] = update_key(
                 contributor=allcontrib["contributors"][index_allcontrib],
                 key=key,
@@ -396,6 +399,9 @@ def get_gh_avatar(gh_username: str, auth_username: str, auth_token: str) -> str:
     response = requests.get(url, auth=(auth_username, auth_token))
     if response.status_code == 200:
         avatar_url = response.json()["avatar_url"]
+        log.info(f" got avatar: {avatar_url}\n")
+    else:
+        log.error(" FAIL\n")
 
     return avatar_url
 
@@ -548,11 +554,11 @@ def main():
         this_contributor["login"] = github_username
         this_contributor = rename_keys_for_allcontrib(this_contributor)
 
-        if UPDATE_AVATARS:
-            avatar_url = get_gh_avatar(
-                this_contributor["github_username"], GH_USERNAME, token
-            )
-            this_contributor["avatar_url"] = avatar_url
+        if UPDATE_AVATARS and "avatar_url" not in this_contributor:
+            if avatar_url := get_gh_avatar(
+                this_contributor["login"], GH_USERNAME, token
+            ):
+                this_contributor["avatar_url"] = avatar_url
 
         allcontrib = update_allcontrib(allcontrib, this_contributor)
 
