@@ -1398,6 +1398,17 @@
         "name": "Jean-Baptiste Poline",
         "orcid": "0000-0002-9794-749X"
     },
+    "JCMariani": {
+        "affiliation": "Italian Institute of Technology, Rovereto, Trentino, Italy",
+        "blog": "https://jcmariani.github.io/",
+        "contributions": [
+            "doc",
+            "ideas"
+        ],
+        "email": "jean-charles.mariani@cri-paris.org",
+        "github": "JCMariani",
+        "name": "Jean-Charles Mariani"
+    },
     "jchoude": {
         "affiliation": "Université de Sherbrooke",
         "blog": "http://scil.dinf.usherbrooke.ca/jchoude",
@@ -2207,6 +2218,15 @@
         "orcid": "0000-0002-4685-0057",
         "publish_email": false
     },
+    "monique2208": {
+        "affiliation": "Paris Lodron Universität Salzburg",
+        "contributions": [
+            "doc"
+        ],
+        "github": "monique2208",
+        "name": "Monique Denissen",
+        "orcid": "0000-0002-7120-1075"
+    },
     "nader_pouratian": {
         "contributions": [
             "doc"
@@ -2579,6 +2599,17 @@
         ],
         "name": "Samir Das"
     },
+    "sdiebolt": {
+        "blog": "https://samuel.diebolt.io/",
+        "contributions": [
+            "doc",
+            "ideas"
+        ],
+        "email": "samuel.diebolt@iconeus.com",
+        "github": "sdiebolt",
+        "name": "Samuel Diebolt",
+        "orcid": "0000-0002-9788-7263"
+    },
     "samuel_garcia": {
         "contributions": [
             "ideas",
@@ -2666,6 +2697,18 @@
         "name": "Sein Jeung",
         "orcid": "0000-0002-0247-087X",
         "publish_email": true
+    },
+    "neuromechanist": {
+        "affiliation": "Swartz Center for Computational Neuroscience, Institute for Neural Computation, University of California San Diego",
+        "blog": "http://neuromechanist.github.io/",
+        "contributions": [
+            "doc",
+            "ideas"
+        ],
+        "email": "shirazi@ieee.org",
+        "github": "neuromechanist",
+        "name": "Seyed Yahya Shirazi",
+        "orcid": "0000-0001-5557-259X"
     },
     "shashank_bansal": {
         "contributions": [
@@ -2868,6 +2911,17 @@
         "email": "teon.brooks@gmail.com",
         "name": "Teon L. Brooks",
         "orcid": "0000-0001-7344-3230"
+    },
+    "thomas_deffieux": {
+        "affiliation": "INSERM, France",
+        "blog": "https://www.physicsformedicine.espci.fr/deffieux-thomas/",
+        "contributions": [
+            "doc",
+            "ideas"
+        ],
+        "email": "thomas.deffieux@inserm.fr",
+        "name": "Thomas Deffieux",
+        "orcid": "0000-0001-9114-2028"
     },
     "nicholst": {
         "affiliation": "University of Oxford, Big Data Institute, Oxford, OX3 7LF, UK",

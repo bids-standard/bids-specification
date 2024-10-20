@@ -627,6 +627,11 @@ authors:
     family-names: Poline
     website: https://github.com/jbpoline
     orcid: https://orcid.org/0000-0002-9794-749X
+  - given-names: Jean-Charles
+    family-names: Mariani
+    website: https://jcmariani.github.io/
+    affiliation: Italian Institute of Technology, Rovereto, Trentino, Italy
+    email: jean-charles.mariani@cri-paris.org
   - given-names: Jean-Christophe
     family-names: Houde
     website: http://scil.dinf.usherbrooke.ca/jchoude
@@ -983,6 +988,10 @@ authors:
     website: https://www.cyceron.fr
     orcid: https://orcid.org/0000-0002-4685-0057
     affiliation: UAR3408-US50 CYCERON, Caen, 14000, France
+  - given-names: Monique
+    family-names: Denissen
+    orcid: https://orcid.org/0000-0002-7120-1075
+    affiliation: Paris Lodron Universität Salzburg
   - given-names: Nader
     family-names: Pouratian
     orcid: https://orcid.org/0000-0002-0426-3241
@@ -1136,6 +1145,11 @@ authors:
     family-names: Das
     website: https://github.com/samirdas
   - given-names: Samuel
+    family-names: Diebolt
+    website: https://samuel.diebolt.io/
+    orcid: https://orcid.org/0000-0002-9788-7263
+    email: samuel.diebolt@iconeus.com
+  - given-names: Samuel
     family-names: Garcia
   - given-names: Samuel
     family-names: Guay
@@ -1176,6 +1190,13 @@ authors:
     orcid: https://orcid.org/0000-0002-0247-087X
     affiliation: Technical University Berlin
     email: seinjeung@gmail.com
+  - given-names: Seyed
+    family-names: Yahya Shirazi
+    website: http://neuromechanist.github.io/
+    orcid: https://orcid.org/0000-0001-5557-259X
+    affiliation: Swartz Center for Computational Neuroscience, Institute for Neural
+      Computation, University of California San Diego
+    email: shirazi@ieee.org
   - given-names: Shashank
     family-names: Bansal
   - given-names: Sjoerd B.
@@ -1254,6 +1275,12 @@ authors:
     website: https://teonbrooks.com
     orcid: https://orcid.org/0000-0001-7344-3230
     email: teon.brooks@gmail.com
+  - given-names: Thomas
+    family-names: Deffieux
+    website: https://www.physicsformedicine.espci.fr/deffieux-thomas/
+    orcid: https://orcid.org/0000-0001-9114-2028
+    affiliation: INSERM, France
+    email: thomas.deffieux@inserm.fr
   - given-names: Thomas E.
     family-names: Nichols
     website: http://nisox.org

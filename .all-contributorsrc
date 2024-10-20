@@ -1454,6 +1454,15 @@
             "profile": "https://github.com/jbpoline"
         },
         {
+            "contributions": [
+                "doc",
+                "ideas"
+            ],
+            "login": "JCMariani",
+            "name": "Jean-Charles Mariani",
+            "profile": "https://jcmariani.github.io/"
+        },
+        {
             "avatar_url": [
                 "https://avatars.githubusercontent.com/u/2151032?v=4"
             ],
@@ -2261,6 +2270,13 @@
             "contributions": [
                 "doc"
             ],
+            "login": "monique2208",
+            "name": "Monique Denissen"
+        },
+        {
+            "contributions": [
+                "doc"
+            ],
             "login": "nader_pouratian",
             "name": "Nader Pouratian"
         },
@@ -2650,6 +2666,15 @@
         },
         {
             "contributions": [
+                "doc",
+                "ideas"
+            ],
+            "login": "sdiebolt",
+            "name": "Samuel Diebolt",
+            "profile": "https://samuel.diebolt.io/"
+        },
+        {
+            "contributions": [
                 "ideas",
                 "review",
                 "doc"
@@ -2726,6 +2751,15 @@
             "login": "sjeung",
             "name": "Sein Jeung",
             "profile": "https://github.com/sjeung"
+        },
+        {
+            "contributions": [
+                "doc",
+                "ideas"
+            ],
+            "login": "neuromechanist",
+            "name": "Seyed Yahya Shirazi",
+            "profile": "http://neuromechanist.github.io/"
         },
         {
             "contributions": [
@@ -2928,6 +2962,15 @@
             "login": "teonbrooks",
             "name": "Teon L. Brooks",
             "profile": "https://teonbrooks.com"
+        },
+        {
+            "contributions": [
+                "doc",
+                "ideas"
+            ],
+            "login": "thomas_deffieux",
+            "name": "Thomas Deffieux",
+            "profile": "https://www.physicsformedicine.espci.fr/deffieux-thomas/"
         },
         {
             "avatar_url": [
