@@ -125,9 +125,11 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Dmitry Petrov                                        | 📖💻                                   |
 | Dora Hermes                                          | 📖💻✅🔍🤔                             |
 | Dorien Huijser                                       | 📖                                     |
+| Dorota Jarecka                                       | 💻📖                                   |
 | Douglas N. Greve                                     | 📖                                     |
 | Duncan Macleod                                       | 📖🚇                                   |
 | Dung Truong                                          | 📖💻🔧🤔                               |
+| Dustin Moraczewski                                   | 📖                                     |
 | Dylan Nielson                                        | 📖💻🔧                                 |
 | Eduard Ort                                           | 📖💻                                   |
 | Eleonora Marcantoni                                  | 📖                                     |
@@ -271,6 +273,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Maurice Pasternak                                    | 📓                                     |
 | Max A. van den Boom                                  | 💻👀📖🐛                               |
 | Melanie Ganz-Benjaminsen                             | 📖🔣💻🤔📆🔍📢                         |
+| Melissa Kline                                        | 📖                                     |
 | Michael Chappell                                     | 📖🔣📆                                 |
 | Michael Hanke                                        | 📖🤔🔧🐛📢                             |
 | Michael P. Harms                                     | 📖⚠️🔧                                 |

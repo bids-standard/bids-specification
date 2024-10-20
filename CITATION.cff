@@ -374,6 +374,9 @@ authors:
     website: https://github.com/DorienHuijser
     orcid: https://orcid.org/0000-0003-3282-8083
     affiliation: Utrecht University
+  - given-names: Dorota
+    family-names: Jarecka
+    email: djarecka@mit.edu
   - given-names: Douglas N.
     family-names: Greve
     website: https://github.com/dngreve
@@ -384,6 +387,9 @@ authors:
     website: https://github.com/dungscout96
     affiliation: Swartz Center for Computational Neuroscience
     email: dutruong@ucsd.edu
+  - given-names: Dustin
+    family-names: Moraczewski
+    email: dustin.moraczewski@nih.gov
   - given-names: Dylan
     family-names: Nielson
     website: https://github.com/Shotgunosine
@@ -993,6 +999,9 @@ authors:
     affiliation: University of Copenhagen, Department of Computer Science, Copenhagen,
       2100, Denmark
     email: melanie.ganz@nru.dk
+  - given-names: Melissa
+    family-names: Kline
+    email: mekline@mit.edu
   - given-names: Michael
     family-names: Chappell
   - given-names: Michael

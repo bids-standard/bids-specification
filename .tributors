@@ -774,6 +774,14 @@
         "name": "Dorien Huijser",
         "orcid": "0000-0003-3282-8083"
     },
+    "dorota_jarecka": {
+        "contributions": [
+            "code",
+            "doc"
+        ],
+        "email": "djarecka@mit.edu",
+        "name": "Dorota Jarecka"
+    },
     "dngreve": {
         "blog": "https://github.com/dngreve",
         "contributions": [
@@ -800,6 +808,13 @@
         "email": "dutruong@ucsd.edu",
         "github": "dungscout96",
         "name": "Dung Truong"
+    },
+    "dustin_moraczewski": {
+        "contributions": [
+            "doc"
+        ],
+        "email": "dustin.moraczewski@nih.gov",
+        "name": "Dustin Moraczewski"
     },
     "Shotgunosine": {
         "blog": "https://github.com/Shotgunosine",
@@ -2192,6 +2207,13 @@
         "email": "melanie.ganz@nru.dk",
         "name": "Melanie Ganz-Benjaminsen",
         "orcid": "0000-0002-9120-8098"
+    },
+    "melissa_kline": {
+        "contributions": [
+            "doc"
+        ],
+        "email": "mekline@mit.edu",
+        "name": "Melissa Kline"
     },
     "michael_chappell": {
         "contributions": [
