@@ -158,6 +158,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Giacomo Mazzamuto                                    | 📖🔣                                   |
 | Gilles de Hollander                                  | 📖                                     |
 | Gio Piantoni                                         | 📖                                     |
+| Giovanna Nordio                                      | 📖                                     |
 | Gitte M. Knudsen                                     | 📖                                     |
 | Giulio Castegnaro                                    | 📖                                     |
 | Giuseppe Gallitto                                    | 📖                                     |
@@ -265,6 +266,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Matteo Tonietto                                      | 📖                                     |
 | Matthias Günther                                     | 📖                                     |
 | Matthias Van Osch                                    | 📖                                     |
+| Mattia Veronese                                      | 📖                                     |
 | Maureen J Shader                                     | 📖                                     |
 | Maurice Pasternak                                    | 📓                                     |
 | Max A. van den Boom                                  | 💻👀📖🐛                               |
@@ -277,6 +279,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Michael Schirner                                     | 📖                                     |
 | Mikaël Naveau                                        | 🐛                                     |
 | Monique Denissen                                     | 📖                                     |
+| Murat Bilgel                                         | 📖                                     |
 | Nader Pouratian                                      | 📖                                     |
 | Natalia Petridou                                     | 📖                                     |
 | National Institute of Mental Health                  | 💵                                     |

@@ -508,6 +508,9 @@ authors:
     website: https://github.com/Gilles86
   - given-names: Gio
     family-names: Piantoni
+  - given-names: Giovanna
+    family-names: Nordio
+    email: giovanna.nordio@kcl.ac.uk
   - given-names: Gitte M.
     family-names: Knudsen
   - given-names: Giulio
@@ -970,6 +973,9 @@ authors:
     family-names: Günther
   - given-names: Matthias
     family-names: Van Osch
+  - given-names: Mattia
+    family-names: Veronese
+    email: mattia.veronese@unipd.it
   - given-names: Maureen
     family-names: J Shader
   - given-names: Maurice
@@ -1014,6 +1020,9 @@ authors:
     family-names: Denissen
     orcid: https://orcid.org/0000-0002-7120-1075
     affiliation: Paris Lodron Universität Salzburg
+  - given-names: Murat
+    family-names: Bilgel
+    email: murat.bilgel@nih.gov
   - given-names: Nader
     family-names: Pouratian
     orcid: https://orcid.org/0000-0002-0426-3241
