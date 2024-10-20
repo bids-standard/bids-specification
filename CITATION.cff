@@ -143,6 +143,7 @@ authors:
     family-names: Galassi
     website: https://github.com/bendhouseart
     orcid: https://orcid.org/0000-0001-6550-4574
+    email: anthony.galassi@nih.gov
   - given-names: Arianna
     family-names: Sala
     website: https://www.coma.uliege.be/people/arianna-sala/
@@ -191,6 +192,7 @@ authors:
     family-names: Nolan Nichols
   - given-names: Balint
     family-names: Kincses
+    email: balint.kincses@uk-essen.de
   - given-names: Benjamin
     family-names: Beasley
     website: https://github.com/musicinmybrain
@@ -225,10 +227,12 @@ authors:
     website: https://camillemaumet.com/
     orcid: https://orcid.org/0000-0002-6290-553X
     affiliation: Inria, Univ Rennes, CNRS, Inserm, Rennes, 35042, France
+    email: camille.maumet@inria.fr
   - given-names: Carlo
     family-names: Miniussi
     orcid: https://orcid.org/0000-0002-5436-4745
     affiliation: University of Trento
+    email: carlo.miniussi@unitn.it
   - given-names: Cecile
     family-names: Madjar
     affiliation: LORIS, MCIN, Montreal Neurological Institute, McGill University
@@ -363,6 +367,7 @@ authors:
   - given-names: Dora
     family-names: Hermes
     website: https://github.com/dorahermes
+    email: dorahermes@gmail.com
   - given-names: Dorien
     family-names: Huijser
     website: https://github.com/DorienHuijser
@@ -443,6 +448,7 @@ authors:
     family-names: Szczepankiewicz
     orcid: https://orcid.org/0000-0002-5251-587X
     affiliation: Lund University
+    email: filip.szczepankiewicz@med.lu.se
   - given-names: Filippo
     family-names: Maria Castelli
     website: https://github.com/filippocastelli
@@ -453,6 +459,7 @@ authors:
   - given-names: Franco
     family-names: Pestilli
     website: https://liberalarts.utexas.edu/psychology/faculty/fp4834
+    email: pestilli@utexas.edu
   - given-names: Franklin W.
     family-names: Feingold
     website: https://github.com/franklin-feingold
@@ -484,6 +491,7 @@ authors:
     family-names: Bertazzoli
     orcid: https://orcid.org/0000-0003-1624-2576
     affiliation: Centro San Giovanni di Dio Fatebenefratelli
+    email: giacomo.bertazzoli@unitn.it
   - given-names: Giacomo
     family-names: Guidali
     orcid: https://orcid.org/0000-0002-3741-0404
@@ -507,8 +515,10 @@ authors:
     family-names: Gallitto
     orcid: https://orcid.org/0000-0001-5185-0206
     affiliation: Essen University Hospital
+    email: giuseppe.gallitto@uk-essen.de
   - given-names: Graham
     family-names: Searle
+    email: Graham.Searle@invicro.co.uk
   - given-names: Granville J.
     family-names: Matheson
     website: http://www.granvillematheson.com
@@ -579,6 +589,7 @@ authors:
   - given-names: Hugo
     family-names: Boniface
     website: https://github.com/Hboni
+    email: hugoboniface@gmail.com
   - given-names: Ilkay
     family-names: Isik
     website: https://github.com/ilkayisik
@@ -605,9 +616,11 @@ authors:
   - given-names: James
     family-names: Gholam
     orcid: https://orcid.org/0000-0003-4513-2341
+    email: GholamJA@cardiff.ac.uk
   - given-names: James
     family-names: Kent
     website: https://github.com/jdkent
+    email: jamesdkent21@gmail.com
   - given-names: Jan
     family-names: Mathijs Schoffelen
     website: https://github.com/schoffelen
@@ -732,6 +745,7 @@ authors:
     website: http://guiomarniso.com
     orcid: https://orcid.org/0000-0001-5872-8924
     affiliation: Indiana University
+    email: guiomar.niso@ctb.upm.es
   - given-names: Julia
     family-names: Sprenger
     website: https://github.com/juliasprenger
@@ -852,6 +866,7 @@ authors:
     family-names: Jas
     website: http://jasmainak.github.io/
     orcid: https://orcid.org/0000-0002-3199-9027
+    email: mainakjas@gmail.com
   - given-names: Manjari
     family-names: Narayan
   - given-names: Manuel
@@ -900,6 +915,7 @@ authors:
     family-names: Bortoletto
     orcid: https://orcid.org/0000-0002-8489-8043
     affiliation: IRCCS Centro S Giovanni di Dio Fatebenefratelli
+    email: marta.bortoletto@cognitiveneuroscience.it
   - given-names: Martin
     family-names: Craig
   - given-names: Martin
@@ -965,6 +981,7 @@ authors:
     orcid: https://orcid.org/0000-0002-9120-8098
     affiliation: University of Copenhagen, Department of Computer Science, Copenhagen,
       2100, Denmark
+    email: melanie.ganz@nru.dk
   - given-names: Michael
     family-names: Chappell
   - given-names: Michael
@@ -1269,7 +1286,7 @@ authors:
     orcid: https://orcid.org/0000-0001-9813-3167
     affiliation: University of Pennsylvania, Department of Psychiatry, Philadelphia,
       Pennsylvania, 19104, United States
-    email: tsalo006@fiu.edu
+    email: tsalo90@gmail.com
   - given-names: Teon L.
     family-names: Brooks
     website: https://teonbrooks.com
@@ -1360,6 +1377,7 @@ authors:
   - given-names: Vittorio
     family-names: Iacovella
     orcid: https://orcid.org/0000-0002-0853-1573
+    email: vittorio.iacovella@unitn.it
   - given-names: Viviana
     family-names: Siless
     affiliation: Business School, Universidad Torcuato di Tella

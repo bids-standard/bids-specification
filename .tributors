@@ -241,6 +241,7 @@
             "doc",
             "code"
         ],
+        "email": "anthony.galassi@nih.gov",
         "name": "Anthony Galassi",
         "orcid": "0000-0001-6550-4574"
     },
@@ -347,6 +348,7 @@
         "contributions": [
             "doc"
         ],
+        "email": "balint.kincses@uk-essen.de",
         "name": "Balint Kincses"
     },
     "musicinmybrain": {
@@ -420,15 +422,16 @@
         "contributions": [
             "doc"
         ],
+        "email": "camille.maumet@inria.fr",
         "name": "Camille Maumet",
-        "orcid": "0000-0002-6290-553X",
-        "publish_email": false
+        "orcid": "0000-0002-6290-553X"
     },
     "carlo_miniussi": {
         "affiliation": "University of Trento",
         "contributions": [
             "doc"
         ],
+        "email": "carlo.miniussi@unitn.it",
         "name": "Carlo Miniussi",
         "orcid": "0000-0002-5436-4745"
     },
@@ -717,6 +720,7 @@
         "contributions": [
             "doc"
         ],
+        "eamil": "dejan.draschow@psy.ox.ac.uk",
         "name": "Dejan Draschkow",
         "orcid": "0000-0003-1354-4835"
     },
@@ -758,6 +762,7 @@
             "fundingFinding",
             "ideas"
         ],
+        "email": "dorahermes@gmail.com",
         "name": "Dora Hermes"
     },
     "DorienHuijser": {
@@ -959,6 +964,7 @@
         "contributions": [
             "doc"
         ],
+        "email": "filip.szczepankiewicz@med.lu.se",
         "name": "Filip Szczepankiewicz",
         "orcid": "0000-0002-5251-587X"
     },
@@ -990,6 +996,7 @@
             "infra",
             "talk"
         ],
+        "email": "pestilli@utexas.edu",
         "name": "Franco Pestilli"
     },
     "franklin-feingold": {
@@ -1063,6 +1070,7 @@
         "contributions": [
             "doc"
         ],
+        "email": "giacomo.bertazzoli@unitn.it",
         "name": "Giacomo Bertazzoli",
         "orcid": "0000-0003-1624-2576"
     },
@@ -1116,6 +1124,7 @@
         "contributions": [
             "doc"
         ],
+        "email": "giuseppe.gallitto@uk-essen.de",
         "name": "Giuseppe Gallitto",
         "orcid": "0000-0001-5185-0206"
     },
@@ -1123,6 +1132,7 @@
         "contributions": [
             "doc"
         ],
+        "email": "Graham.Searle@invicro.co.uk",
         "name": "Graham Searle"
     },
     "mathesong": {
@@ -1277,6 +1287,7 @@
             "doc",
             "code"
         ],
+        "email": "hugoboniface@gmail.com",
         "name": "Hugo Boniface"
     },
     "ilkayisik": {
@@ -1337,6 +1348,7 @@
         "contributions": [
             "doc"
         ],
+        "email": "GholamJA@cardiff.ac.uk",
         "name": "James Gholam",
         "orcid": "0000-0003-4513-2341"
     },
@@ -1346,6 +1358,7 @@
             "question",
             "code"
         ],
+        "email": "jamesdkent21@gmail.com",
         "name": "James Kent"
     },
     "schoffelen": {
@@ -1631,6 +1644,7 @@
             "example",
             "talk"
         ],
+        "email": "guiomar.niso@ctb.upm.es",
         "name": "Julia Guiomar Niso Galán",
         "orcid": "0000-0001-5872-8924"
     },
@@ -1890,6 +1904,7 @@
             "doc",
             "code"
         ],
+        "email": "mainakjas@gmail.com",
         "name": "Mainak Jas",
         "orcid": "0000-0002-3199-9027"
     },
@@ -1996,6 +2011,7 @@
         "contributions": [
             "doc"
         ],
+        "email": "marta.bortoletto@cognitiveneuroscience.it",
         "name": "Marta Bortoletto",
         "orcid": "0000-0002-8489-8043"
     },
@@ -2149,9 +2165,9 @@
             "fundingFinding",
             "talk"
         ],
+        "email": "melanie.ganz@nru.dk",
         "name": "Melanie Ganz-Benjaminsen",
-        "orcid": "0000-0002-9120-8098",
-        "publish_email": false
+        "orcid": "0000-0002-9120-8098"
     },
     "michael_chappell": {
         "contributions": [
@@ -2890,7 +2906,7 @@
             "plugin",
             "code"
         ],
-        "email": "tsalo006@fiu.edu",
+        "email": "tsalo90@gmail.com",
         "name": "Taylor Salo",
         "orcid": "0000-0001-9813-3167",
         "publish_email": true
@@ -3097,6 +3113,7 @@
         "contributions": [
             "doc"
         ],
+        "email": "vittorio.iacovella@unitn.it",
         "name": "Vittorio Iacovella",
         "orcid": "0000-0002-0853-1573"
     },
