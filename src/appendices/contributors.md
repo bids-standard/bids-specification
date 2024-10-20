@@ -321,6 +321,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Sasha D'Ambrosio                                     | 📖                                     |
 | Satrajit S. Ghosh                                    | 📖💻                                   |
 | Scott Makeig                                         | 📖                                     |
+| Sebastian Urchs                                      | 💻📖🤔                                 |
 | Sein Jeung                                           | 📖💡🐛💻🔣🤔💬🔧📓                     |
 | Seyed Yahya Shirazi                                  | 📖🤔                                   |
 | Shashank Bansal                                      | 📖                                     |

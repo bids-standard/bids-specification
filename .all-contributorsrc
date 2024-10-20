@@ -2736,6 +2736,15 @@
             "profile": "https://sccn.ucsd.edu/~scott"
         },
         {
+            "contributions": [
+                "code",
+                "doc",
+                "ideas"
+            ],
+            "login": "surchs",
+            "name": "Sebastian Urchs"
+        },
+        {
             "avatar_url": "https://avatars.githubusercontent.com/u/28531404?v=4",
             "contributions": [
                 "doc",

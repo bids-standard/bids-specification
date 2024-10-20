@@ -2694,6 +2694,17 @@
         "orcid": "0000-0002-9048-8438",
         "publish_email": true
     },
+    "surchs": {
+        "affiliation": "origami lab, McGill university, Montreal, Québec, Canada",
+        "contributions": [
+            "code",
+            "doc",
+            "ideas"
+        ],
+        "email": "sebastian.urchs@gmail.com",
+        "github": "surchs",
+        "name": "Sebastian Urchs"
+    },
     "sjeung": {
         "affiliation": "Technical University Berlin",
         "blog": "https://github.com/sjeung",

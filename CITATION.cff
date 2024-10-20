@@ -1201,6 +1201,10 @@ authors:
     affiliation: Institute for Neural Computation, University of California San Diego,
       La Jolla, CA 92-93-0955, USA
     email: smakeig@gmail.com
+  - given-names: Sebastian
+    family-names: Urchs
+    affiliation: origami lab, McGill university, Montreal, Québec, Canada
+    email: sebastian.urchs@gmail.com
   - given-names: Sein
     family-names: Jeung
     website: https://github.com/sjeung
