@@ -339,7 +339,7 @@ onset:
     Onset (in seconds) of the event, measured from the beginning of the acquisition
     of the first data point stored in the corresponding task data file.
     Negative onsets are allowed, to account for events that occur prior to the first
-    stored data point.
+    stored data point. A `n/a` value indicates the onset time is unknown or unavailable.
     For example, in case there is an in-scanner training phase that begins before
     the scanning sequence has started events from this sequence should have
     negative onset time counting down to the beginning of the acquisition of the
