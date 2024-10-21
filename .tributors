@@ -795,12 +795,15 @@
         "name": "Dorien Huijser",
         "orcid": "0000-0003-3282-8083"
     },
-    "dorota_jarecka": {
+    "djarecka": {
+        "affiliation": "MIT, Cambridge, USA",
+        "blog": "https://www.linkedin.com/in/djarecka",
         "contributions": [
             "code",
             "doc"
         ],
         "email": "djarecka@mit.edu",
+        "github": "djarecka",
         "name": "Dorota Jarecka"
     },
     "dngreve": {
@@ -2172,13 +2175,6 @@
         "name": "Mathieu Boudreau",
         "orcid": "0000-0002-7726-4456"
     },
-    "mathieu_guay-paquet": {
-        "contributions": [
-            "doc"
-        ],
-        "email": "mathieu.guay-paquet@polymtl.ca",
-        "name": "Mathieu Guay-Paquet"
-    },
     "matt_sanderson": {
         "contributions": [
             "doc",
@@ -2257,12 +2253,15 @@
         "name": "Melanie Ganz-Benjaminsen",
         "orcid": "0000-0002-9120-8098"
     },
-    "melissa_kline": {
+    "mekline": {
+        "affiliation": "MIT, Cambridge, USA",
+        "blog": "http://www.melissaklinestruhl.com/",
         "contributions": [
             "doc"
         ],
         "email": "mekline@mit.edu",
-        "name": "Melissa Kline"
+        "github": "mekline",
+        "name": "Melissa kline"
     },
     "michael_chappell": {
         "contributions": [
@@ -3155,12 +3154,13 @@
         "orcid": "0000-0001-5153-1424",
         "publish_email": true
     },
-    "til_ole_bergman": {
+    "til_ole_bergmann": {
+        "affiliation": "ohannes-Gutenberg University Medical Center, Mainz Germany",
         "contributions": [
             "doc"
         ],
         "email": "tobergmann@uni-mainz.de",
-        "name": "Til Ole Bergman"
+        "name": "Til Ole Bergmann"
     },
     "dickscheid": {
         "affiliation": "Forschungszentrum Jülich, Institute of Neuroscience and Medicine (INM-1),  Jülich, 52428, Germany",
@@ -3411,6 +3411,15 @@
             "code"
         ],
         "name": "josator2"
+    },
+    "mguaypaq": {
+        "affiliation": "Montreal, Quebec, Canada",
+        "contributions": [
+            "doc"
+        ],
+        "email": "mathieu.guay-paquet@polymtl.ca",
+        "github": "mguaypaq",
+        "name": "mathieu_guay-paquet"
     },
     "monkeyman192": {
         "blog": "https://github.com/monkeyman192",

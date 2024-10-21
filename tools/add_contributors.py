@@ -78,6 +78,7 @@ log = logger(log_level=LOG_LEVEL)
 
 yaml = ruamel.yaml.YAML()
 yaml.indent(mapping=2, sequence=4, offset=2)
+yaml.width = 4096
 
 
 def root_dir() -> Path:
@@ -510,9 +511,15 @@ def main():
 
     # sanity checks to make sure no contributor was added manually
     assert len(tributors_names) == len(set(tributors_names))
-    assert len(allcontrib_names) == len(set(allcontrib_names))
-    assert len(tributors_names) == len(allcontrib_names)
-    assert len(tributors_names) == len(citation["authors"])
+    assert len(allcontrib_names) == len(set(allcontrib_names)), print(
+        f"{allcontrib_names=}, {len(set(allcontrib_names))=}"
+    )
+    assert len(tributors_names) == len(allcontrib_names), print(
+        f"{len(tributors_names)=}, {len(allcontrib_names)=}"
+    )
+    assert len(tributors_names) == len(citation["authors"]), print(
+        f"{len(tributors_names)=}, {len(citation['authors'])=}"
+    )
 
     new_contrib_names = df.name.to_list()
 

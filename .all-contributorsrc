@@ -798,8 +798,9 @@
                 "code",
                 "doc"
             ],
-            "login": "dorota_jarecka",
-            "name": "Dorota Jarecka"
+            "login": "djarecka",
+            "name": "Dorota Jarecka",
+            "profile": "https://www.linkedin.com/in/djarecka"
         },
         {
             "avatar_url": "https://avatars.githubusercontent.com/u/26312022?v=4",
@@ -2123,13 +2124,6 @@
         },
         {
             "contributions": [
-                "doc"
-            ],
-            "login": "mathieu_guay-paquet",
-            "name": "Mathieu Guay-Paquet"
-        },
-        {
-            "contributions": [
                 "doc",
                 "code"
             ],
@@ -2211,8 +2205,9 @@
             "contributions": [
                 "doc"
             ],
-            "login": "melissa_kline",
-            "name": "Melissa Kline"
+            "login": "mekline",
+            "name": "Melissa kline",
+            "profile": "http://www.melissaklinestruhl.com/"
         },
         {
             "contributions": [
@@ -3086,8 +3081,8 @@
             "contributions": [
                 "doc"
             ],
-            "login": "til_ole_bergman",
-            "name": "Til Ole Bergman"
+            "login": "til_ole_bergmann",
+            "name": "Til Ole Bergmann"
         },
         {
             "avatar_url": "https://avatars.githubusercontent.com/u/1436846?v=4",
@@ -3340,6 +3335,13 @@
             "login": "josator2",
             "name": "josator2",
             "profile": "https://github.com/josator2"
+        },
+        {
+            "contributions": [
+                "doc"
+            ],
+            "login": "mguaypaq",
+            "name": "mathieu_guay-paquet"
         },
         {
             "avatar_url": "https://avatars.githubusercontent.com/u/8000597?v=4",
