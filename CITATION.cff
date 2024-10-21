@@ -52,13 +52,17 @@ authors:
     family-names: Flinker
     website: http://flinkerlab.org
     orcid: https://orcid.org/0000-0003-1247-1283
-    affiliation: New York University, Department of Neurology, New York City, New York, 10016, USA
+    affiliation:
+      New York University, Department of Neurology, New York City, New York,
+      10016, USA
     email: adeen@nyu.edu
   - given-names: Adina S.
     family-names: Wagner
     website: https://www.adina-wagner.com
     orcid: https://orcid.org/0000-0003-2917-3450
-    affiliation: Institute of Neuroscience and Medicine (INM-7), Research Center Juelich, Juelich, 52428, Germany
+    affiliation:
+      Institute of Neuroscience and Medicine (INM-7), Research Center Juelich,
+      Juelich, 52428, Germany
     email: adina.wagner@t-online.de
   - given-names: Agah
     family-names: Karakuzu
@@ -93,7 +97,9 @@ authors:
     family-names: Cohen
     website: https://bchcohenlab.com
     orcid: https://orcid.org/0000-0001-6557-5866
-    affiliation: Boston Children's Hospital, Department of Neurology, Boston, MA, 02115, USA
+    affiliation:
+      Boston Children's Hospital, Department of Neurology, Boston, MA, 02115,
+      USA
     email: alexander.cohen2@childrens.harvard.edu
   - given-names: Alexander
     family-names: von Lautz
@@ -162,7 +168,9 @@ authors:
     family-names: Rokem
     website: https://arokem.org/
     orcid: https://orcid.org/0000-0003-0679-1985
-    affiliation: University of Washington, Psychology, Seattle, WA, 98107, United States of America
+    affiliation:
+      University of Washington, Psychology, Seattle, WA, 98107, United States of
+      America
     email: arokem@uw.edu
   - given-names: Arjen
     family-names: Stolk
@@ -225,7 +233,8 @@ authors:
     family-names: Voytek
     website: https://www.voyteklab.com/
     orcid: https://orcid.org/0000-0003-1640-2525
-    affiliation: UC San Diego, Cognitive Science and Data Science, La Jolla, CA, 92093, USA
+    affiliation:
+      UC San Diego, Cognitive Science and Data Science, La Jolla, CA, 92093, USA
   - given-names: Brent
     family-names: McPherson
     orcid: https://orcid.org/0000-0001-8378-8136
@@ -272,7 +281,9 @@ authors:
     family-names: Rorden
     website: https://www.mricro.com
     orcid: https://orcid.org/0000-0002-7554-6142
-    affiliation: University of South Carolina, Department of Psychology, Columbia, SC, 29016, USA
+    affiliation:
+      University of South Carolina, Department of Psychology, Columbia, SC,
+      29016, USA
     email: crorden6@gmail.com
   - given-names: Christian
     family-names: Büchel
@@ -285,19 +296,24 @@ authors:
   - given-names: Christine
     family-names: Rogers
     orcid: https://orcid.org/0000-0002-9893-8448
-    affiliation: McGill Centre for Integrative Neuroscience, Montreal Neurological Institute
+    affiliation:
+      McGill Centre for Integrative Neuroscience, Montreal Neurological
+      Institute
     email: christine.rogers@mcgill.ca
   - given-names: Christophe
     family-names: Phillips
     website: https://www.uliege.be/cms/c_9054334/en/directory/?uid=U016440
     orcid: https://orcid.org/0000-0002-4990-425X
-    affiliation: University of Liège, GIGA CRC in vivo imaging, Liège, 4000, Belgium
+    affiliation:
+      University of Liège, GIGA CRC in vivo imaging, Liège, 4000, Belgium
     email: c.phillips@uliege.be
   - given-names: Christopher J.
     family-names: Honey
     website: https://www.honeylab.org
     orcid: https://orcid.org/0000-0002-0745-5089
-    affiliation: Johns Hopkins University, Psychological and Brain Sciences, Baltimore, MD, 21218, United States
+    affiliation:
+      Johns Hopkins University, Psychological and Brain Sciences, Baltimore, MD,
+      21218, United States
   - given-names: Christopher J.
     family-names: Markiewicz
     website: https://github.com/effigies
@@ -314,7 +330,9 @@ authors:
     family-names: Pernet
     website: https://cpernet.github.io/
     orcid: https://orcid.org/0000-0003-4010-4632
-    affiliation: Neurobiology Research Unit,  Copenhagen University Hospital Rigshospitalet, DK-2100 Copenhagen, Denmark
+    affiliation:
+      Neurobiology Research Unit,  Copenhagen University Hospital
+      Rigshospitalet, DK-2100 Copenhagen, Denmark
     email: wamcyril@gmail.com
   - given-names: Cyrus
     family-names: Eierud
@@ -329,7 +347,9 @@ authors:
     family-names: Levitas
     website: https://github.com/dlevitas
     orcid: https://orcid.org/0000-0003-2279-7447
-    affiliation: Indiana University, Psychological & Brain Sciences, Bloomington, IN, 47405, USA
+    affiliation:
+      Indiana University, Psychological & Brain Sciences, Bloomington, IN,
+      47405, USA
     email: dlevitas@iu.edu
   - given-names: Dan
     family-names: Lurie
@@ -348,7 +368,8 @@ authors:
     family-names: Groppe
     website: https://github.com/dmgroppe
     orcid: https://orcid.org/0000-0002-3282-2514
-    affiliation: Persyst Development Corporation, R&D, Toronto, ON M4K 1W8 Canada
+    affiliation:
+      Persyst Development Corporation, R&D, Toronto, ON M4K 1W8 Canada
     email: david.m.groppe@gmail.com
   - given-names: David
     family-names: Keator
@@ -413,18 +434,22 @@ authors:
     family-names: Ort
     website: https://github.com/eort
     orcid: https://orcid.org/0000-0001-5546-3561
-    affiliation: Heinrich-Heine-University, Department of Experimental Psychology, Dusseldorf, 40224, Germany
+    affiliation:
+      Heinrich-Heine-University, Department of Experimental Psychology,
+      Dusseldorf, 40224, Germany
   - given-names: Eleonora
     family-names: Marcantoni
     orcid: https://orcid.org/0000-0003-1137-4983
-    affiliation: IRCCS Istituto Centro San Giovanni di Dio Fatebenefratelli di Brescia
+    affiliation:
+      IRCCS Istituto Centro San Giovanni di Dio Fatebenefratelli di Brescia
   - given-names: Elizabeth
     family-names: Bock
   - given-names: Elizabeth
     family-names: DuPre
     website: https://elizabeth-dupre.com
     orcid: https://orcid.org/0000-0003-1358-196X
-    affiliation: Stanford University, Department of Psychology, Stanford, CA, 94063, USA
+    affiliation:
+      Stanford University, Department of Psychology, Stanford, CA, 94063, USA
   - given-names: Elke
     family-names: Warmerdam
     affiliation: Saarland University
@@ -473,7 +498,9 @@ authors:
     family-names: Maria Castelli
     website: https://github.com/filippocastelli
     orcid: https://orcid.org/0000-0001-8170-8905
-    affiliation: University of Florence, European Laboratory for NonLinear Spectroscopy, Sesto Fiorentino, (FI), 50019, Italy
+    affiliation:
+      University of Florence, European Laboratory for NonLinear Spectroscopy,
+      Sesto Fiorentino, (FI), 50019, Italy
     email: castelli@lens.unifi.it
   - given-names: Franco
     family-names: Pestilli
@@ -490,12 +517,16 @@ authors:
     family-names: Rizzo
     website: http://fair.dei.unipd.it/gaia-rizzo/
     orcid: https://orcid.org/0000-0001-7272-8576
-    affiliation: Invicro, Burlington Danes Building, Imperial College London, Hammersmith Hospital, Du Cane Road, London, W12 0NN, UK
+    affiliation:
+      Invicro, Burlington Danes Building, Imperial College London, Hammersmith
+      Hospital, Du Cane Road, London, W12 0NN, UK
   - given-names: Gang
     family-names: Chen
     website: https://github.com/afni-gangc
     orcid: https://orcid.org/0000-0002-2960-089X
-    affiliation: National Institutes of Health, Scientific and Statistical Computing Core, NIMH, Bethesda, MD 20892, USA
+    affiliation:
+      National Institutes of Health, Scientific and Statistical Computing Core,
+      NIMH, Bethesda, MD 20892, USA
     email: gangchen@mail.nih.gov
   - given-names: Gaël
     family-names: Varoquaux
@@ -567,7 +598,9 @@ authors:
     family-names: Nilsonne
     website: https://nilsonne.net/about/
     orcid: https://orcid.org/0000-0001-5273-0150
-    affiliation: Karolinska Institutet, Department of Clinical Neuroscience, Stockholm, 17177, Sweden
+    affiliation:
+      Karolinska Institutet, Department of Clinical Neuroscience, Stockholm,
+      17177, Sweden
     email: gustav.nilsonne@ki.se
   - given-names: Hamish
     family-names: Innes-Brown
@@ -577,7 +610,9 @@ authors:
   - given-names: Hanne D.
     family-names: Hansen
     orcid: https://orcid.org/0000-0001-5564-7627
-    affiliation: Copenhagen University Hospital, Neurobiology Research Unit, Section 8057, Blegdamsvej 9, 2100 Copenhagen, Denmark
+    affiliation:
+      Copenhagen University Hospital, Neurobiology Research Unit, Section 8057,
+      Blegdamsvej 9, 2100 Copenhagen, Denmark
     email: hanne.d.hansen@nru.dk
   - given-names: Hanzhang
     family-names: Lu
@@ -599,7 +634,9 @@ authors:
     family-names: Mutsaerts
     website: http://www.ExploreASL.org
     orcid: https://orcid.org/0000-0003-0894-0307
-    affiliation: Amsterdam University Medical Centers, Radiology and Nuclear Department, Amsterdam, 1013 EG, The Netherlands
+    affiliation:
+      Amsterdam University Medical Centers, Radiology and Nuclear Department,
+      Amsterdam, 1013 EG, The Netherlands
     email: h.j.mutsaerts@amsterdamumc.nl
   - given-names: Hernando
     family-names: Ombao
@@ -647,7 +684,9 @@ authors:
     family-names: Mathijs Schoffelen
     website: https://github.com/schoffelen
     orcid: https://orcid.org/0000-0003-0923-6610
-    affiliation: Radboud University Nijmegen, Donders Institute, Nijmegen, 6500 HB, The Netherlands
+    affiliation:
+      Radboud University Nijmegen, Donders Institute, Nijmegen, 6500 HB, The
+      Netherlands
     email: jm.schoffelen@gmail.com
   - given-names: Jan
     family-names: Petr
@@ -675,7 +714,9 @@ authors:
   - given-names: Jean-Dominique
     family-names: Gallezot
     orcid: https://orcid.org/0000-0003-0399-8374
-    affiliation: Yale School of Medicine, Department of Radiology and Biomedical Imaging, New Haven, CT, 06511, USA
+    affiliation:
+      Yale School of Medicine, Department of Radiology and Biomedical Imaging,
+      New Haven, CT, 06511, USA
     email: jean-dominique.gallezot@yale.edu
   - given-names: Jean-Philippe
     family-names: Lachaux
@@ -700,7 +741,10 @@ authors:
     family-names: Dalenberg
     website: https://github.com/jrdalenberg
     orcid: https://orcid.org/0000-0001-8580-5358
-    affiliation: University of Groningen, University Medical Center Groningen, Department of Neurology, Movement Disorders Groningen, Hanzeplein 1, 9713 GZ, Groningen
+    affiliation:
+      University of Groningen, University Medical Center Groningen, Department
+      of Neurology, Movement Disorders Groningen, Hanzeplein 1, 9713 GZ,
+      Groningen
     email: j.r.dalenberg@umcg.nl
   - given-names: Jeremy
     family-names: Moreau
@@ -731,7 +775,9 @@ authors:
     family-names: Haitz Legarreta Gorroño
     website: https://github.com/jhlegarreta
     orcid: https://orcid.org/0000-0002-9661-1396
-    affiliation: Université de Sherbrooke, Department of Computer Science, Sherbrooke, (Québec), J1K 2R1, Canada
+    affiliation:
+      Université de Sherbrooke, Department of Computer Science, Sherbrooke,
+      (Québec), J1K 2R1, Canada
     email: jon.haitz.legarreta@gmail.com
   - given-names: Jonathan C.
     family-names: Lau
@@ -742,7 +788,9 @@ authors:
     family-names: Kuijer
     website: https://github.com/wadqc
     orcid: https://orcid.org/0000-0002-4181-0427
-    affiliation: Amsterdam University Medical Centers, Radiology and Nuclear Medicine, Amsterdam, 1081 HV, The Netherlands
+    affiliation:
+      Amsterdam University Medical Centers, Radiology and Nuclear Medicine,
+      Amsterdam, 1081 HV, The Netherlands
     email: jpa.kuijer@amsterdamumc.nl
   - given-names: Jose
     family-names: Manuel Saborit
@@ -754,7 +802,9 @@ authors:
     family-names: Woods
     website: https://www.ndcn.ox.ac.uk/team/joseph-woods
     orcid: https://orcid.org/0000-0002-0329-824X
-    affiliation: University of Oxford, Nuffield Department of Clinical Neuroscience, Oxford, UK
+    affiliation:
+      University of Oxford, Nuffield Department of Clinical Neuroscience,
+      Oxford, UK
     email: joseph.woods@ndcn.ox.ac.uk
   - given-names: Julia
     family-names: Guiomar Niso Galán
@@ -766,7 +816,8 @@ authors:
     family-names: Sprenger
     website: https://github.com/juliasprenger
     orcid: https://orcid.org/0000-0002-9986-7477
-    affiliation: Institute de Neuroscience de la Timone, CNRS, Marseille, 13005, France
+    affiliation:
+      Institute de Neuroscience de la Timone, CNRS, Marseille, 13005, France
     email: julia.sprenger@univ-amu.fr
   - given-names: Julia-Katharina
     family-names: Pfarr
@@ -776,7 +827,9 @@ authors:
     family-names: Cohen-Adad
     website: https://www.neuro.polymtl.ca
     orcid: https://orcid.org/0000-0003-3662-9532
-    affiliation: Polytechnique Montreal, Department of Electrical Engineering, Montreal, QC, Canada
+    affiliation:
+      Polytechnique Montreal, Department of Electrical Engineering, Montreal,
+      QC, Canada
   - given-names: Julio
     family-names: C Hernandez Pavon
     email: julio.hpavon@gmail.com
@@ -802,7 +855,9 @@ authors:
     family-names: Robbins
     website: http://www.cs.utsa.edu/~krobbins
     orcid: https://orcid.org/0000-0002-7147-5797
-    affiliation: University of Texas at San Antonio Department of Computer Science San Antonio, TX 78249 USA
+    affiliation:
+      University of Texas at San Antonio Department of Computer Science San
+      Antonio, TX 78249 USA
     email: kay.robbins@utsa.edu
   - given-names: Kevin
     family-names: Larcher
@@ -846,7 +901,9 @@ authors:
   - given-names: Leandro
     family-names: Beltrachini
     orcid: https://orcid.org/0000-0003-4602-1416
-    affiliation: Cardiff University, Cardiff University Brain Research Imaging Centre (CUBRIC), UK
+    affiliation:
+      Cardiff University, Cardiff University Brain Research Imaging Centre
+      (CUBRIC), UK
     email: BeltrachiniL@cardiff.ac.uk
   - given-names: Lee
     family-names: Kamentsky
@@ -868,7 +925,9 @@ authors:
     family-names: Pollonini
     website: https://polloninilab.com
     orcid: https://orcid.org/0000-0003-2955-6355
-    affiliation: University of Houston, Dept. of Engineering Technology, Houston TX 77204, USA
+    affiliation:
+      University of Houston, Dept. of Engineering Technology, Houston TX 77204,
+      USA
     email: lpollonini@uh.edu
   - given-names: Luis
     family-names: Hernandez-Garcia
@@ -894,7 +953,9 @@ authors:
   - given-names: Manuel
     family-names: Mercier
     orcid: https://orcid.org/0000-0001-6358-4734
-    affiliation: Dynamics of Cognitive Processes Group Institut de Neurosciences des Systèmes, INS - UMR 1106 Inserm Aix-Marseille Université, France
+    affiliation:
+      Dynamics of Cognitive Processes Group Institut de Neurosciences des
+      Systèmes, INS - UMR 1106 Inserm Aix-Marseille Université, France
   - given-names: Maqsood
     family-names: Yaqub
     orcid: https://orcid.org/0000-0003-2122-740X
@@ -903,12 +964,15 @@ authors:
     family-names: Lalancette
     website: https://github.com/Moo-Marc
     orcid: https://orcid.org/0000-0003-1161-3972
-    affiliation: Montreal Neurological Institute-Hospital, McConnell Brain Imaging Center, Montreal, Quebec, H2A
+    affiliation:
+      Montreal Neurological Institute-Hospital, McConnell Brain Imaging Center,
+      Montreal, Quebec, H2A
   - given-names: Marco
     family-names: Castellaro
     website: https://github.com/marcocastellaro
     orcid: https://orcid.org/0000-0002-1203-2670
-    affiliation: University of Padova, Department of Information Engineering, Padova, Italy
+    affiliation:
+      University of Padova, Department of Information Engineering, Padova, Italy
     email: marco.castellaro@gmail.com
   - given-names: Maria
     family-names: Ermolova
@@ -917,7 +981,8 @@ authors:
     family-names: de la Iglesia
     website: https://bimcv.cipf.es
     orcid: https://orcid.org/0000-0003-4505-8399
-    affiliation: FISABIO, Join Unit Biomedical Imagin, Valencia, Valencia, 46006, Spain
+    affiliation:
+      FISABIO, Join Unit Biomedical Imagin, Valencia, Valencia, 46006, Spain
     email: delaiglesia_mar@gva.es
   - given-names: Marie-Hélène
     family-names: Bourget
@@ -949,7 +1014,8 @@ authors:
     family-names: Szinte
     website: http://www.martinszinte.net
     orcid: https://orcid.org/0000-0003-2040-4005
-    affiliation: CNRS, Institut des Neurosciences de la Timone, Marseille, 13008, France
+    affiliation:
+      CNRS, Institut des Neurosciences de la Timone, Marseille, 13008, France
     email: mail@martinszinte.net
   - given-names: Martin
     family-names: Wilson
@@ -965,7 +1031,8 @@ authors:
     family-names: Goncalves
     website: https://github.com/mgxd
     orcid: https://orcid.org/0000-0002-7252-7771
-    affiliation: Psychology Department, Stanford University, Palo Alto, CA, 94305, USA
+    affiliation:
+      Psychology Department, Stanford University, Palo Alto, CA, 94305, USA
     email: mathiasg@stanford.edu
   - given-names: Mathieu
     family-names: Boudreau
@@ -981,7 +1048,9 @@ authors:
     family-names: Tonietto
     website: https://github.com/matteotonietto
     orcid: https://orcid.org/0000-0001-9591-5710
-    affiliation: Hoffmann-La Roche Ltd, Research and Early Development,  Basel, 4070, Switzerland
+    affiliation:
+      Hoffmann-La Roche Ltd, Research and Early Development,  Basel, 4070,
+      Switzerland
   - given-names: Matthias
     family-names: Günther
   - given-names: Matthias
@@ -1003,7 +1072,9 @@ authors:
     family-names: Ganz-Benjaminsen
     website: https://sites.google.com/view/melanieganz/home
     orcid: https://orcid.org/0000-0002-9120-8098
-    affiliation: University of Copenhagen, Department of Computer Science, Copenhagen, 2100, Denmark
+    affiliation:
+      University of Copenhagen, Department of Computer Science, Copenhagen,
+      2100, Denmark
     email: melanie.ganz@nru.dk
   - given-names: Melissa
     family-names: kline
@@ -1025,7 +1096,9 @@ authors:
     family-names: Schirner
     website: https://www.brainsimulation.org
     orcid: https://orcid.org/0000-0001-8227-8476
-    affiliation: Charité—Universitätsmedizin Berlin, Department of Neurology, Berlin, 10115, Germany
+    affiliation:
+      Charité—Universitätsmedizin Berlin, Department of Neurology, Berlin,
+      10115, Germany
     email: michael.schirner@charite.de
   - given-names: Michelle
     family-names: Wang
@@ -1055,7 +1128,9 @@ authors:
   - given-names: Natalia
     family-names: Petridou
     orcid: https://orcid.org/0000-0002-0783-0387
-    affiliation: High Field Dpt, Center for Image Sciences, University Medical Center Utrecht, 3584 CX Utrecht, NL
+    affiliation:
+      High Field Dpt, Center for Image Sciences, University Medical Center
+      Utrecht, 3584 CX Utrecht, NL
   - given-names: Natalie
     family-names: Rotstein
     email: NRotstein@mednet.ucla.edu
@@ -1101,7 +1176,9 @@ authors:
     family-names: Esteban
     website: http://www.axonlab.org
     orcid: https://orcid.org/0000-0001-8435-6191
-    affiliation: Department of Radiology, Lausanne University Hospital, Lausanne, CH-1011, Switzerland
+    affiliation:
+      Department of Radiology, Lausanne University Hospital, Lausanne, CH-1011,
+      Switzerland
     email: phd@oscaresteban.es
   - given-names: Pamela
     family-names: LaMontagne
@@ -1113,7 +1190,9 @@ authors:
     family-names: Clement
     website: https://github.com/patsycle
     orcid: https://orcid.org/0000-0001-8546-0134
-    affiliation: Department of Medical Imaging / Department of Medical Sciences,  Ghent University Hospital / Ghent University, Ghent, Belgium
+    affiliation:
+      Department of Medical Imaging / Department of Medical Sciences,  Ghent
+      University Hospital / Ghent University, Ghent, Belgium
     email: patricia.clement@ugent.be
   - given-names: Patrick
     family-names: Park
@@ -1126,13 +1205,18 @@ authors:
     family-names: Herholz
     website: https://peerherholz.github.io/
     orcid: https://orcid.org/0000-0002-9840-6257
-    affiliation: NeuroDataScience - ORIGAMI lab, McConnell Brain Imaging Centre, Montreal Neurological Institute and Hospital, McGill University, Montreal, Québec, Canada
+    affiliation:
+      NeuroDataScience - ORIGAMI lab, McConnell Brain Imaging Centre, Montreal
+      Neurological Institute and Hospital, McGill University, Montreal, Québec,
+      Canada
     email: herholz.peer@gmail.com
   - given-names: Petra
     family-names: Ritter
     website: https://www.brainsimulation.org
     orcid: https://orcid.org/0000-0002-4643-4782
-    affiliation: Charité University Medicine Berlin,  Berlin Institute of Health, Berlin, 10115, Germany
+    affiliation:
+      Charité University Medicine Berlin,  Berlin Institute of Health, Berlin,
+      10115, Germany
     email: petra.ritter@charite.de
   - given-names: Pierre
     family-names: Rioux
@@ -1170,13 +1254,16 @@ authors:
     family-names: Innis
     website: https://www.nimh.nih.gov/research/research-conducted-at-nimh/research-areas/clinics-and-labs/mib/molecular-imaging-branch-mib
     orcid: https://orcid.org/0000-0003-1238-7209
-    affiliation: NIMH Intramural Research Program, Bethesda, MD 20850 USA, MD 20892  USA
+    affiliation:
+      NIMH Intramural Research Program, Bethesda, MD 20850 USA, MD 20892  USA
     email: robert.innis@nih.gov
   - given-names: Robert E.
     family-names: Smith
     website: http://www.mrtrix.org
     orcid: https://orcid.org/0000-0003-3636-4642
-    affiliation: The Florey Institute of Neuroscience and Mental Health, Epilepsy Neuroinformatics Laboratory, Heidelberg, Victoria, 3084, Australia
+    affiliation:
+      The Florey Institute of Neuroscience and Mental Health, Epilepsy
+      Neuroinformatics Laboratory, Heidelberg, Victoria, 3084, Australia
     email: robert.smith@florey.edu.au
   - given-names: Robert
     family-names: Knight
@@ -1187,7 +1274,8 @@ authors:
     family-names: Oostenveld
     website: https://robertoostenveld.nl
     orcid: https://orcid.org/0000-0002-1974-1293
-    affiliation: Radboud University, Donders Institute, Nijmegen, 6525 EN, The Netherlands
+    affiliation:
+      Radboud University, Donders Institute, Nijmegen, 6525 EN, The Netherlands
     email: r.oostenveld@donders.ru.nl
   - given-names: Roberto
     family-names: Guidotti
@@ -1235,25 +1323,30 @@ authors:
   - given-names: Sasha
     family-names: D'Ambrosio
     orcid: https://orcid.org/0000-0002-6600-6419
-    affiliation: University of Milan, Department of Biomedical and Clinical Sciences, Milan, 20137, Italy
+    affiliation:
+      University of Milan, Department of Biomedical and Clinical Sciences,
+      Milan, 20137, Italy
     email: sasha.dambrosio@unimi.it
   - given-names: Satrajit S.
     family-names: Ghosh
     website: https://satra.cogitatum.org
     orcid: https://orcid.org/0000-0002-5312-6729
-    affiliation: MIT, McGovern Institute for Brain Research, Cambridge, MA 02139, USA
+    affiliation:
+      MIT, McGovern Institute for Brain Research, Cambridge, MA 02139, USA
     email: satra@mit.edu
   - given-names: Scott
     family-names: Makeig
     website: https://sccn.ucsd.edu/~scott
     orcid: https://orcid.org/0000-0002-9048-8438
-    affiliation: Institute for Neural Computation, University of California San Diego, La Jolla, CA 92-93-0955, USA
+    affiliation:
+      Institute for Neural Computation, University of California San Diego, La
+      Jolla, CA 92-93-0955, USA
     email: smakeig@gmail.com
   - given-names: Sebastian
     family-names: Urchs
     orcid: https://orcid.org/0000-0001-5504-8579
     affiliation: origami lab, McGill university, Montreal, Québec, Canada
-    email: sebastian.urchs@gmail.com
+    email: sebastian.urchs@mcgill.ca
   - given-names: Sein
     family-names: Jeung
     website: https://github.com/sjeung
@@ -1264,7 +1357,9 @@ authors:
     family-names: Yahya Shirazi
     website: http://neuromechanist.github.io/
     orcid: https://orcid.org/0000-0001-5557-259X
-    affiliation: Swartz Center for Computational Neuroscience, Institute for Neural Computation, University of California San Diego
+    affiliation:
+      Swartz Center for Computational Neuroscience, Institute for Neural
+      Computation, University of California San Diego
     email: shirazi@ieee.org
   - given-names: Shashank
     family-names: Bansal
@@ -1275,7 +1370,9 @@ authors:
     family-names: Vos
     website: https://research-repository.uwa.edu.au/en/persons/sjoerd-vos
     orcid: https://orcid.org/0000-0002-8502-4487
-    affiliation: University of Western Australia;Centre for Microscopy, Characterisation, and Analysis;Perth;WA;6009;Australia
+    affiliation:
+      University of Western Australia;Centre for Microscopy, Characterisation,
+      and Analysis;Perth;WA;6009;Australia
   - given-names: Soichi
     family-names: Hayashi
     website: https://github.com/soichih
@@ -1295,7 +1392,9 @@ authors:
   - given-names: Steven
     family-names: Meisler
     orcid: https://orcid.org/0000-0002-8888-1572
-    affiliation: Program in Speech and Hearing Bioscience and Technology, Harvard University
+    affiliation:
+      Program in Speech and Hearing Bioscience and Technology, Harvard
+      University
     email: smeisler@g.harvard.edu
   - given-names: Suyash
     family-names: Bhogawar
@@ -1307,13 +1406,16 @@ authors:
     family-names: Takerkart
     website: https://github.com/SylvainTakerkart
     orcid: https://orcid.org/0000-0001-8410-0962
-    affiliation: CNRS, Institut de Neurosciences de la Timone (INT), Marseille, France
+    affiliation:
+      CNRS, Institut de Neurosciences de la Timone (INT), Marseille, France
     email: sylvain.takerkart@univ-amu.fr
   - given-names: Sébastien
     family-names: Tourbier
     website: https://github.com/sebastientourbier
     orcid: https://orcid.org/0000-0002-4441-899X
-    affiliation: Lausanne University Hospital (CHUV), Department of Clinical Neurosciences (DNC), Lausanne, 1007, Switzerland
+    affiliation:
+      Lausanne University Hospital (CHUV), Department of Clinical Neurosciences
+      (DNC), Lausanne, 1007, Switzerland
     email: sebastien.tourbier1@gmail.com
   - given-names: Sören
     family-names: Grothkopp
@@ -1330,7 +1432,10 @@ authors:
     family-names: Spisak
     website: https://pni-lab.github.io/
     orcid: https://orcid.org/0000-0002-2942-0821
-    affiliation: University Hospital Essen, Center for Translational and Behavioral Neuroscience, Department of Diagnostic and Interventional Radiology and Neuroradiology
+    affiliation:
+      University Hospital Essen, Center for Translational and Behavioral
+      Neuroscience, Department of Diagnostic and Interventional Radiology and
+      Neuroradiology
     email: tamas.spisak@uk-essen.de
   - given-names: Tamás
     family-names: Józsa
@@ -1341,7 +1446,9 @@ authors:
     family-names: Salo
     website: https://tsalo.github.io
     orcid: https://orcid.org/0000-0001-9813-3167
-    affiliation: University of Pennsylvania, Department of Psychiatry, Philadelphia, Pennsylvania, 19104, United States
+    affiliation:
+      University of Pennsylvania, Department of Psychiatry, Philadelphia,
+      Pennsylvania, 19104, United States
     email: tsalo90@gmail.com
   - given-names: Teon L.
     family-names: Brooks
@@ -1373,7 +1480,9 @@ authors:
     family-names: Auer
     website: https://tiborauer.github.io
     orcid: https://orcid.org/0000-0001-5153-1424
-    affiliation: University of Surrey, School of Psychology, Guildford, GU2 7XH, United Kingdom
+    affiliation:
+      University of Surrey, School of Psychology, Guildford, GU2 7XH, United
+      Kingdom
     email: tibor.auer@gmail.com
   - given-names: Til
     family-names: Ole Bergmann
@@ -1383,7 +1492,9 @@ authors:
     family-names: Dickscheid
     website: https://go.fzj.de/dickscheid
     orcid: https://orcid.org/0000-0002-9051-3701
-    affiliation: Forschungszentrum Jülich, Institute of Neuroscience and Medicine (INM-1),  Jülich, 52428, Germany
+    affiliation:
+      Forschungszentrum Jülich, Institute of Neuroscience and Medicine
+      (INM-1),  Jülich, 52428, Germany
     email: t.dickscheid@fz-juelich.de
   - given-names: Timotheus
     family-names: Berg
@@ -1414,7 +1525,8 @@ authors:
     orcid: https://orcid.org/0000-0003-2620-5883
   - given-names: Tyler
     family-names: Collins
-    affiliation: BrockU, LORIS, MCIN, Montreal Neurological Institute, McGill University
+    affiliation:
+      BrockU, LORIS, MCIN, Montreal Neurological Institute, McGill University
     email: tyler.collins@mcin.ca
   - given-names: Ulrike
     family-names: Bingel
@@ -1431,7 +1543,10 @@ authors:
   - given-names: Vince D.
     family-names: Calhoun
     website: http://trendscenter.org
-    affiliation: Tri-institutional Center for Translational Research in Neuroimaging and Data Science (TReNDS), Georgia State, Georgia Tech, and Emory, Atlanta, GA 30030
+    affiliation:
+      Tri-institutional Center for Translational Research in Neuroimaging and
+      Data Science (TReNDS), Georgia State, Georgia Tech, and Emory, Atlanta, GA
+      30030
     email: vcalhoun@gsu.edu
   - given-names: Vittorio
     family-names: Iacovella
