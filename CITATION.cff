@@ -119,6 +119,11 @@ authors:
     family-names: Wickenheiser
     affiliation: LORIS, MCIN, Montreal Neurological Institute, McGill University
     email: alizee.wickenheiser@mcin.ca
+  - given-names: Alyssa
+    family-names: Dai
+    orcid: https://orcid.org/0000-0003-0174-6800
+    affiliation: origami lab, McGill university, Montreal, Québec, Canada
+    email: alyssa.ydai@gmail.com
   - given-names: Amber
     family-names: Hopkins
     email: arhopkins@ucla.edu
@@ -161,6 +166,10 @@ authors:
     email: arokem@uw.edu
   - given-names: Arjen
     family-names: Stolk
+  - given-names: Arman
+    family-names: Jahanpour
+    affiliation: origami lab, McGill university, Montreal, Québec, Canada
+    email: armanjahanpour7@gmail.com
   - given-names: Arnaud
     family-names: Delorme
     website: https://www.arnauddelorme.com
@@ -217,6 +226,11 @@ authors:
     website: https://www.voyteklab.com/
     orcid: https://orcid.org/0000-0003-1640-2525
     affiliation: UC San Diego, Cognitive Science and Data Science, La Jolla, CA, 92093, USA
+  - given-names: Brent
+    family-names: McPherson
+    orcid: https://orcid.org/0000-0001-8378-8136
+    affiliation: origami lab, McGill university, Montreal, Québec, Canada
+    email: bcmcpher@gmail.com
   - given-names: Brett L.
     family-names: Foster
   - given-names: Brian A.
@@ -612,6 +626,11 @@ authors:
     orcid: https://orcid.org/0000-0002-0795-1154
   - given-names: Jaap
     family-names: von der Aar
+  - given-names: Jacob
+    family-names: Sanz-Robinson
+    orcid: https://orcid.org/0000-0002-7611-5598
+    affiliation: origami lab, McGill university, Montreal, Québec, Canada
+    email: jacob.sanz-robinson@mail.mcgill.ca
   - given-names: Jakub
     family-names: Kaczmarzyk
     website: https://github.com/kaczmarj
@@ -953,6 +972,9 @@ authors:
     website: https://github.com/mathieuboudreau
     orcid: https://orcid.org/0000-0002-7726-4456
     affiliation: Polytechnique Montréal
+  - given-names: Mathieu
+    family-names: Dugré
+    affiliation: Concordia university, Montreal, Québec, Canada
   - given-names: Matt
     family-names: Sanderson
   - given-names: Matteo
@@ -1005,11 +1027,21 @@ authors:
     orcid: https://orcid.org/0000-0001-8227-8476
     affiliation: Charité—Universitätsmedizin Berlin, Department of Neurology, Berlin, 10115, Germany
     email: michael.schirner@charite.de
+  - given-names: Michelle
+    family-names: Wang
+    orcid: https://orcid.org/0000-0002-3432-6899
+    affiliation: origami lab, McGill university, Montreal, Québec, Canada
+    email: michelle.wang6@mail.mcgill.ca
   - given-names: Mikaël
     family-names: Naveau
     website: https://www.cyceron.fr
     orcid: https://orcid.org/0000-0002-4685-0057
     affiliation: UAR3408-US50 CYCERON, Caen, 14000, France
+  - given-names: Mohammad
+    family-names: Torabi
+    orcid: https://orcid.org/0000-0002-4429-8481
+    affiliation: origami lab, McGill university, Montreal, Québec, Canada
+    email: mohammad.torabi@mail.mcgill.ca
   - given-names: Monique
     family-names: Denissen
     orcid: https://orcid.org/0000-0002-7120-1075
@@ -1045,6 +1077,12 @@ authors:
   - given-names: Nigel
     family-names: Rogasch
     email: nigel.rogasch@adelaide.edu.au
+  - given-names: Nikhil
+    family-names: Bhagwat
+    website: https://nikhil153.github.io/
+    orcid: https://orcid.org/0000-0001-6073-7141
+    affiliation: origami lab, McGill university, Montreal, Québec, Canada
+    email: nikhil.bhagwat@mcgill.ca
   - given-names: Nikita
     family-names: Beliy
     orcid: https://orcid.org/0009-0002-0830-3279
@@ -1213,6 +1251,7 @@ authors:
     email: smakeig@gmail.com
   - given-names: Sebastian
     family-names: Urchs
+    orcid: https://orcid.org/0000-0001-5504-8579
     affiliation: origami lab, McGill university, Montreal, Québec, Canada
     email: sebastian.urchs@gmail.com
   - given-names: Sein

@@ -200,6 +200,13 @@
         },
         {
             "contributions": [
+                "code"
+            ],
+            "login": "alyssadai",
+            "name": "Alyssa Dai"
+        },
+        {
+            "contributions": [
                 "doc"
             ],
             "login": "amber_hopkins",
@@ -298,6 +305,13 @@
             ],
             "login": "arjen_stolk",
             "name": "Arjen Stolk"
+        },
+        {
+            "contributions": [
+                "code"
+            ],
+            "login": "rmanaem",
+            "name": "Arman Jahanpour"
         },
         {
             "avatar_url": "https://avatars.githubusercontent.com/u/1872705?v=4",
@@ -419,6 +433,13 @@
             "login": "voytek",
             "name": "Bradley Voytek",
             "profile": "https://www.voyteklab.com/"
+        },
+        {
+            "contributions": [
+                "code"
+            ],
+            "login": "bcmcpher",
+            "name": "Brent McPherson"
         },
         {
             "contributions": [
@@ -1369,6 +1390,13 @@
             "name": "Jaap von der Aar"
         },
         {
+            "contributions": [
+                "code"
+            ],
+            "login": "jacobsanz97",
+            "name": "Jacob Sanz-Robinson"
+        },
+        {
             "avatar_url": "https://avatars.githubusercontent.com/u/17690870?v=4",
             "contributions": [
                 "doc",
@@ -2124,6 +2152,13 @@
         },
         {
             "contributions": [
+                "code"
+            ],
+            "login": "mathdugre",
+            "name": "Mathieu Dugré"
+        },
+        {
+            "contributions": [
                 "doc",
                 "code"
             ],
@@ -2269,6 +2304,13 @@
             "profile": "https://www.brainsimulation.org"
         },
         {
+            "contributions": [
+                "code"
+            ],
+            "login": "michellewang",
+            "name": "Michelle Wang"
+        },
+        {
             "avatar_url": "https://avatars.githubusercontent.com/u/1488318?v=4",
             "contributions": [
                 "bug"
@@ -2276,6 +2318,13 @@
             "login": "naveau",
             "name": "Mikaël Naveau",
             "profile": "https://www.cyceron.fr"
+        },
+        {
+            "contributions": [
+                "code"
+            ],
+            "login": "mtorabi59",
+            "name": "Mohammad Torabi"
         },
         {
             "avatar_url": "https://avatars.githubusercontent.com/u/15329571?v=4",
@@ -2370,6 +2419,14 @@
             ],
             "login": "nigel_rogasch",
             "name": "Nigel Rogasch"
+        },
+        {
+            "contributions": [
+                "code"
+            ],
+            "login": "nikhil153",
+            "name": "Nikhil Bhagwat",
+            "profile": "https://nikhil153.github.io/"
         },
         {
             "avatar_url": "https://avatars.githubusercontent.com/u/44231332?v=4",

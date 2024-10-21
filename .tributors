@@ -189,6 +189,16 @@
         "email": "alizee.wickenheiser@mcin.ca",
         "name": "Alizee Wickenheiser"
     },
+    "alyssadai": {
+        "affiliation": "origami lab, McGill university, Montreal, Québec, Canada",
+        "contributions": [
+            "code"
+        ],
+        "email": "alyssa.ydai@gmail.com",
+        "github": "alyssadai",
+        "name": "Alyssa Dai",
+        "orcid": "0000-0003-0174-6800"
+    },
     "amber_hopkins": {
         "contributions": [
             "doc"
@@ -286,6 +296,15 @@
             "doc"
         ],
         "name": "Arjen Stolk"
+    },
+    "rmanaem": {
+        "affiliation": "origami lab, McGill university, Montreal, Québec, Canada",
+        "contributions": [
+            "code"
+        ],
+        "email": "armanjahanpour7@gmail.com",
+        "github": "rmanaem",
+        "name": "Arman Jahanpour"
     },
     "arnodelorme": {
         "affiliation": "Swartz Center for Computational Neuroscience",
@@ -411,6 +430,16 @@
         "name": "Bradley Voytek",
         "orcid": "0000-0003-1640-2525",
         "publish_email": false
+    },
+    "bcmcpher": {
+        "affiliation": "origami lab, McGill university, Montreal, Québec, Canada",
+        "contributions": [
+            "code"
+        ],
+        "email": "bcmcpher@gmail.com",
+        "github": "bcmcpher",
+        "name": "Brent McPherson",
+        "orcid": "0000-0001-8378-8136"
     },
     "brett_l_foster": {
         "contributions": [
@@ -1380,6 +1409,16 @@
         ],
         "name": "Jaap von der Aar"
     },
+    "jacobsanz97": {
+        "affiliation": "origami lab, McGill university, Montreal, Québec, Canada",
+        "contributions": [
+            "code"
+        ],
+        "email": "jacob.sanz-robinson@mail.mcgill.ca",
+        "github": "jacobsanz97",
+        "name": "Jacob Sanz-Robinson",
+        "orcid": "0000-0002-7611-5598"
+    },
     "kaczmarj": {
         "blog": "https://github.com/kaczmarj",
         "contributions": [
@@ -2175,6 +2214,14 @@
         "name": "Mathieu Boudreau",
         "orcid": "0000-0002-7726-4456"
     },
+    "mathdugre": {
+        "affiliation": "Concordia university, Montreal, Québec, Canada",
+        "contributions": [
+            "code"
+        ],
+        "github": "mathdugre",
+        "name": "Mathieu Dugré"
+    },
     "matt_sanderson": {
         "contributions": [
             "doc",
@@ -2318,6 +2365,16 @@
         "orcid": "0000-0001-8227-8476",
         "publish_email": true
     },
+    "michellewang": {
+        "affiliation": "origami lab, McGill university, Montreal, Québec, Canada",
+        "contributions": [
+            "code"
+        ],
+        "email": "michelle.wang6@mail.mcgill.ca",
+        "github": "michellewang",
+        "name": "Michelle Wang",
+        "orcid": "0000-0002-3432-6899"
+    },
     "naveau": {
         "affiliation": "UAR3408-US50 CYCERON, Caen, 14000, France",
         "blog": "https://www.cyceron.fr",
@@ -2327,6 +2384,16 @@
         "name": "Mikaël Naveau",
         "orcid": "0000-0002-4685-0057",
         "publish_email": false
+    },
+    "mtorabi59": {
+        "affiliation": "origami lab, McGill university, Montreal, Québec, Canada",
+        "contributions": [
+            "code"
+        ],
+        "email": "mohammad.torabi@mail.mcgill.ca",
+        "github": "mtorabi59",
+        "name": "Mohammad Torabi",
+        "orcid": "0000-0002-4429-8481"
     },
     "monique2208": {
         "affiliation": "Paris Lodron Universität Salzburg",
@@ -2419,6 +2486,17 @@
         ],
         "email": "nigel.rogasch@adelaide.edu.au",
         "name": "Nigel Rogasch"
+    },
+    "nikhil153": {
+        "affiliation": "origami lab, McGill university, Montreal, Québec, Canada",
+        "blog": "https://nikhil153.github.io/",
+        "contributions": [
+            "code"
+        ],
+        "email": "nikhil.bhagwat@mcgill.ca",
+        "github": "nikhil153",
+        "name": "Nikhil Bhagwat",
+        "orcid": "0000-0001-6073-7141"
     },
     "nbeliy": {
         "affiliation": "University of Liege (Liege, Belgium)",
@@ -2832,7 +2910,8 @@
         ],
         "email": "sebastian.urchs@gmail.com",
         "github": "surchs",
-        "name": "Sebastian Urchs"
+        "name": "Sebastian Urchs",
+        "orcid": "0000-0001-5504-8579"
     },
     "sjeung": {
         "affiliation": "Technical University Berlin",
