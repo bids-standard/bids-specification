@@ -6,7 +6,16 @@ SegmentationLookup:
   columns:
     index: required
     name__segmentations: required
+    label: recommended
     abbreviation: optional
     color: optional
+    hemisphere: optional
     mapping: optional
+    network_id: optional
+    network_label: optional
+    region: optional
+    seed: optional
+    x: optional
+    y: optional
+    z: optional
   index_columns: [index]
