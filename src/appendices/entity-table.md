@@ -12,7 +12,7 @@ For example, if a file has an acquisition and reconstruction label, the
 acquisition entity must precede the reconstruction entity.
 REQUIRED and OPTIONAL entities for a given file type are denoted;
 empty cells imply that entities MUST NOT be specified.
-Entity formats indicate whether the value is alphanumeric
+Entity formats indicate whether the value is alphanumeric (potentially including `+` character(s))
 (`<label>`) or numeric (`<index>`).
 
 A general introduction to entities is given in the section on
