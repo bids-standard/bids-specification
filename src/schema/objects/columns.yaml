@@ -349,6 +349,8 @@ onset:
     (for example, "dummy volumes" in BOLD fMRI),
     a time of 0 corresponds to the first stored data point and not the first
     acquired data point.
+
+    A value of `n/a` value indicates the onset time is unknown or unavailable.
   type: number
   unit: s
 pathology:
