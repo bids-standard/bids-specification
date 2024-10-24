@@ -519,6 +519,15 @@ Columns:
   type: array
   items:
     type: string
+ContextURI:
+  name: ContextURI
+  display_name: Context URI
+  description: |
+    URI establishing the context for the values of this data.
+    For example, https://thelab.example.com/term/subject/ if used for "participant_id"
+    could be used to non-ambigously link participant data acquisitions across datasets.
+  type: string
+  format: uri
 ContinuousHeadLocalization:
   name: ContinuousHeadLocalization
   display_name: Continuous Head Localization
