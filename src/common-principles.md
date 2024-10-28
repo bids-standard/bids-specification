@@ -308,7 +308,7 @@ Derivatives can be stored/distributed in two ways:
     it is anticipated that the same pipeline will output more than one variant
     (for example, `AFNI-blurring` and `AFNI-noblurring`).
     For the sake of consistency, the subdirectory name SHOULD be
-    the `GeneratedBy.Name` field in `data_description.json`,
+    the `GeneratedBy.Name` field in `dataset_description.json`,
     optionally followed by a hyphen and a suffix (see
     [Derived dataset and pipeline description][derived-dataset-description]).
 
@@ -743,9 +743,11 @@ A guide for using macros can be found at
             "sub-01_task-rest_acq-default_bold.nii.gz": "",
             "sub-01_task-rest_acq-longtr_bold.nii.gz": "",
             "sub-01_task-rest_acq-longtr_bold.json": "",
-            }
+            },
+        "sub-01_scans.tsv": "",
         },
     "task-rest_bold.json": "",
+    "scans.json": ""
     }
 ) }}
 
@@ -776,6 +778,10 @@ entity "`acq-longtr`" that is absent from the image path (rule 2.c). When readin
 the value for field "`RepetitionTime`" is therefore overridden to the value `3.0`.
 The value for field "`EchoTime`" remains applicable to that image, and is not unset by its
 absence in the metadata file at the lower level (rule 5.b; corollary 3).
+
+A single `scans.json`, without any entity in the filename at the top level,
+is applicable to describe columns of the `sub-01_scans.tsv`
+and any other `_scans.tsv` potentially present in the dataset for other subjects.
 
 Example 2: Impermissible use of multiple metadata files at one directory level (rule 4)
 

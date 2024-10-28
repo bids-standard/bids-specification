@@ -267,10 +267,14 @@ Similarly update the version in CITATION.cff with a `dev` suffix.
 
 Update the following files in the BIDS website repository (https://github.com/bids-standard/bids-website) if applicable:
 
-- `tools/timeline.csv`
-- `_data/beps.yml`
-- `_data/beps_completed.yml`
-- `_data/beps_other.yml`
+- `data/timeline.csv`
+- `data/beps/beps.yml`
+- `data/beps/beps_completed.yml`
+- `data/beps/beps_other.yml`
+
+If the release relates to the merge of a BEP, add the BEP leads to the BIDS advisory group:
+
+- `data/people/advisory.yml`
 
 ### 12. Sharing news of the release
 

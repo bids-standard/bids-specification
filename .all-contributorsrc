@@ -275,6 +275,14 @@
             "profile": "https://github.com/bendhouseart"
         },
         {
+            "contributions": [
+                "doc"
+            ],
+            "login": "arianna_sala",
+            "name": "Arianna Sala",
+            "profile": "https://www.coma.uliege.be/people/arianna-sala/"
+        },
+        {
             "avatar_url": [
                 "https://avatars.githubusercontent.com/u/118582?v=4"
             ],
@@ -383,10 +391,13 @@
         },
         {
             "contributions": [
-                "doc"
+                "doc",
+                "code",
+                "test"
             ],
             "login": "benjamin_dichter",
-            "name": "Benjamin Dichter"
+            "name": "Benjamin Dichter",
+            "profile": "https://bendichter.com/"
         },
         {
             "contributions": [
@@ -1999,11 +2010,14 @@
         {
             "avatar_url": "https://avatars.githubusercontent.com/u/6051303?v=4",
             "contributions": [
-                "doc"
+                "doc",
+                "code",
+                "data",
+                "review"
             ],
             "login": "markmikkelsen",
             "name": "Mark Mikkelsen",
-            "profile": "https://vivo.weill.cornell.edu/display/cwid-mam4041"
+            "profile": "https://mikkelsenlab.weill.cornell.edu/"
         },
         {
             "contributions": [
@@ -2302,6 +2316,13 @@
             ],
             "login": "nicole_c_swann",
             "name": "Nicole C. Swann"
+        },
+        {
+            "contributions": [
+                "doc"
+            ],
+            "login": "nbeliy",
+            "name": "Nikita Beliy"
         },
         {
             "contributions": [
@@ -2635,6 +2656,13 @@
             ],
             "login": "samuel_garcia",
             "name": "Samuel Garcia"
+        },
+        {
+            "contributions": [
+                "doc"
+            ],
+            "login": "SamGuay",
+            "name": "Samuel Guay"
         },
         {
             "avatar_url": [
@@ -3078,6 +3106,13 @@
             ],
             "login": "viacovella",
             "name": "Vittorio Iacovella"
+        },
+        {
+            "contributions": [
+                "doc"
+            ],
+            "login": "viviana_siless",
+            "name": "Viviana Siless"
         },
         {
             "contributions": [

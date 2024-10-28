@@ -1,11 +1,7 @@
 import logging
 import tempfile
+from importlib.resources import as_file, files
 from subprocess import run
-
-try:
-    from importlib.resources import as_file, files
-except ImportError:  # PY<3.9
-    from importlib_resources import as_file, files
 
 import pytest
 

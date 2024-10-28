@@ -26,10 +26,10 @@ dwi_volumetric:
     density: optional
     description: optional
 
-dwi_isotropic:
-  $ref: rules.files.raw.dwi.isotropic
+dwi_scannerderivatives:
+  $ref: rules.files.raw.dwi.ScannerDerivatives
   entities:
-    $ref: rules.files.raw.dwi.isotropic.entities
+    $ref: rules.files.raw.dwi.ScannerDerivatives.entities
     space: optional
     resolution: optional
     density: optional

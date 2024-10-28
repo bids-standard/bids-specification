@@ -1,10 +1,6 @@
 import os
 import shutil
-
-try:
-    from importlib.resources import files
-except ImportError:  # PY<3.9
-    from importlib_resources import files
+from importlib.resources import files
 
 import pytest
 

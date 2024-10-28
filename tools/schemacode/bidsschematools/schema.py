@@ -164,7 +164,10 @@ def flatten_enums(namespace, inplace=True):
         namespace = deepcopy(namespace)
     for struct in _find(namespace, lambda obj: "anyOf" in obj):
         try:
-            all_enum = [val for item in struct["anyOf"] for val in item["enum"]]
+            # Deduplicate because JSON schema validators may not like duplicates
+            # Long run, we should get rid of this function and have the rendering
+            # code handle anyOfs
+            all_enum = list(dict.fromkeys(val for item in struct["anyOf"] for val in item["enum"]))
         except KeyError:
             continue
 

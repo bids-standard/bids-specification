@@ -10,9 +10,12 @@ EventsMissing:
     level: warning # could be an error with the proper selectors, I think
   selectors:
     - dataset.dataset_description.DatasetType == "raw"
+    - datatype != "beh"
     - '"task" in entities'
     - '!match(entities.task, "rest")'
-    - suffix != "events"
+    - '!intersects([suffix], ["events", "beh"])'
+    - extension != ".json"
+    - (datatype != "meg" || entities.subject != "emptyroom")
   checks:
     - '"events" in associations'
 
@@ -39,4 +42,4 @@ SortedOnsets:
     - extension == ".tsv"
   checks:
     # n/a values will likely cause false alarms if encountered. Consider alternatives.
-    - allequal(sorted(columns.onset), columns.onset)
+    - allequal(sorted(columns.onset, "numeric"), columns.onset)
