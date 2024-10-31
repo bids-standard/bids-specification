@@ -20,9 +20,8 @@ AcquisitionDuration:
   name: AcquisitionDuration
   display_name: Acquisition Duration
   description: |
-    Duration (in seconds) of volume acquisition.
+    Duration (in seconds) of scan acquisition, including all volumes for multi-volume scans.
     Corresponds to [DICOM Tag 0018, 9073](https://dicomlookup.com/dicomtags/(0018,9073)) `Acquisition Duration`.
-    This field is mutually exclusive with `"RepetitionTime"`.
   type: number
   exclusiveMinimum: 0
   unit: s
