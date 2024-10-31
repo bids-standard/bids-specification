@@ -44,7 +44,7 @@ MRIFuncVolumeTiming:
       description_addendum: |
         This field is mutually exclusive with `"DelayTime"`.
         If defined, this requires acquisition time (TA) be defined via either
-        `"SliceTiming"` or `"AcquisitionDuration"`.
+        `"SliceTiming"` or `"FrameAcquisitionDuration"`.
 
 # Timing Parameters
 MRIFuncTimingParameters:
@@ -56,8 +56,8 @@ MRIFuncTimingParameters:
     NumberOfVolumesDiscardedByScanner: recommended
     NumberOfVolumesDiscardedByUser: recommended
     DelayTime: recommended
-    AcquisitionDuration:
-      level: recommended
+    FrameAcquisitionDuration:
+      level: optional
       level_addendum: |
         required for sequences that are described with the `VolumeTiming`
         field and that do not have the `SliceTiming` field set to allow for
