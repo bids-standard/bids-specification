@@ -1197,6 +1197,15 @@ FlipAngle:
         unit: degree
         exclusiveMinimum: 0
         maximum: 360
+FrameAcquisitionDuration:
+  name: AcquisitionDuration
+  display_name: Acquisition Duration
+  description: |
+    Duration (in seconds) of volume acquisition.
+    Corresponds to DICOM Tag 0018, 9220 `Frame Acquisition Duration`.
+  type: number
+  exclusiveMinimum: 0
+  unit: s
 FrameDuration:
   name: FrameDuration
   display_name: Frame Duration
