@@ -95,6 +95,9 @@ extra:
       link: https://www.instagram.com/bidsstandard/
     - icon: fontawesome/brands/youtube
       link: https://www.youtube.com/channel/UCxZUcYfd_nvIVWAbzRB1tlw
+  analytics:
+    provider: google
+    property: G-SBWH6YNMPX
 
 extra_javascript:
   - js/jquery-3.6.0.min.js
