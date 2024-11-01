@@ -239,6 +239,7 @@ MRITimingParameters:
         or variable echo time fMRI sequences.
     InversionTime: recommended
     DwellTime: recommended
+    AcquisitionDuration: optional
 
 EchoTimeRequiredASL:
   selectors:
