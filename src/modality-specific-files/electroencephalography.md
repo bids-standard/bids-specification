@@ -6,9 +6,11 @@ Please see [Citing BIDS](../introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
-Several [example EEG datasets](https://bids-standard.github.io/bids-examples/#eeg)
-have been formatted using this specification
-and can be used for practical guidance when curating a new dataset.
+!!! example "Example datasets"
+
+    Several [example EEG datasets](https://bids-standard.github.io/bids-examples/#eeg)
+    have been formatted using this specification
+    and can be used for practical guidance when curating a new dataset.
 
 ## EEG recording data
 
@@ -40,14 +42,10 @@ It is RECOMMENDED to use the European data format, or the BrainVision data
 format. It is furthermore discouraged to use the other accepted formats over
 these RECOMMENDED formats, particularly because there are conversion scripts
 available in most commonly used programming languages to convert data into the
-RECOMMENDED formats. The data in their original format, if different from the
-supported formats, can be stored in the [`/sourcedata` directory](../common-principles.md#source-vs-raw-vs-derived-data).
+RECOMMENDED formats.
 
-The original data format is especially valuable in case conversion elicits the
-loss of crucial metadata specific to manufacturers and specific EEG systems. We
-also encourage users to provide additional meta information extracted from the
-manufacturer specific data files in the sidecar JSON file. Other relevant files
-MAY be included alongside the original EEG data in `/sourcedata`.
+We encourage users to provide additional metadata extracted from the
+manufacturer-specific data files in the sidecar JSON file.
 
 Note the `RecordingType`, which depends on whether the data stream on disk
 is interrupted or not.
@@ -310,6 +308,12 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_columns_table("eeg.EEGElectrodes") }}
 
+`*_electrodes.tsv` files SHOULD NOT be duplicated for each data file,
+for example, during multiple runs of a task.
+The [inheritance principle](../common-principles.md#the-inheritance-principle) MUST
+be used to find the appropriate electrode positions for a given data file.
+If electrodes are repositioned, it is RECOMMENDED to use multiple sessions to indicate this.
+
 ### Example `*_electrodes.tsv`
 
 See also the corresponding [`electrodes.tsv` example](#example-channelstsv).
@@ -386,7 +390,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("eeg.EEGCoordsystemGeneral") }}
+{{ MACROS___make_json_table("json.eeg.EEGCoordsystemGeneral") }}
 
 Fields relating to the EEG electrode positions:
 
@@ -398,7 +402,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("eeg.EEGCoordsystemPositions") }}
+{{ MACROS___make_json_table("json.eeg.EEGCoordsystemPositions") }}
 
 Fields relating to the position of fiducials measured during an EEG session/run:
 
@@ -410,7 +414,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("eeg.EEGCoordsystemFiducials") }}
+{{ MACROS___make_json_table("json.eeg.EEGCoordsystemFiducials") }}
 
 Fields relating to the position of anatomical landmark measured during an EEG session/run:
 
@@ -422,7 +426,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table(["eeg.EEGCoordsystemLandmark", "eeg.EEGCoordsystemLandmarkDescriptionRec"]) }}
+{{ MACROS___make_json_table(["json.eeg.EEGCoordsystemLandmark", "json.eeg.EEGCoordsystemLandmarkDescriptionRec"]) }}
 
 If the position of anatomical landmarks is measured using the same system or
 device used to measure electrode positions, and if thereby the anatomical
@@ -434,6 +438,12 @@ Anatomical landmarks or fiducials measured on an anatomical MRI  that match the
 landmarks or fiducials during an EEG session/run, must be stored separately in
 the corresponding `*_T1w.json` or `*_T2w.json` file and should be expressed in
 voxels (starting from `[0, 0, 0]`).
+
+`*_coordsystem.json` files SHOULD NOT be duplicated for each data file,
+for example, across multiple tasks.
+The [inheritance principle](../common-principles.md#the-inheritance-principle) MUST
+be used to find the appropriate coordinate system description for a given data file.
+If electrodes are repositioned, it is RECOMMENDED to use multiple sessions to indicate this.
 
 ### Example `*_coordsystem.json`
 

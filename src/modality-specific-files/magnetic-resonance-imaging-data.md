@@ -160,9 +160,13 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("mri.MRIEchoPlanarImagingAndB0Mapping") }}
+{{ MACROS___make_sidecar_table([
+     "mri.MRIB0FieldIdentifier",
+     "mri.MRIEchoPlanarImagingAndB0FieldSource",
+   ])
+}}
 
-#### Tissue description
+### Tissue description
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -173,6 +177,31 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_sidecar_table("mri.MRISample") }}
+
+### Deidentification information
+
+Describes the mechanism or method used to modify or remove metadata
+and/or pixel data to protect the patient or participant's identity.
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("mri.DeidentificationMethod") }}
+
+Each object in the `DeidentificationMethodCodeSequence` array includes the following RECOMMENDED keys:
+
+<!-- This block generates a table describing subfields within a metadata field.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_subobject_table("metadata.DeidentificationMethodCodeSequence.items") }}
 
 ## Anatomy imaging data
 
@@ -573,11 +602,11 @@ sparse sequences.
 
 |          | **`RepetitionTime`** | **`SliceTiming`** | **`AcquisitionDuration`** | **`DelayTime`** | **`VolumeTiming`** |
 | -------- | -------------------- | ----------------- | ------------------------- | --------------- | ------------------ |
-| option A |     \[ X ]           |                   |         \[ ]              |                 |     \[ ]           |
-| option B |      \[ ]            |    \[ X ]         |                           |    \[ ]         |    \[ X ]          |
-| option C |      \[ ]            |                   |        \[ X ]             |    \[ ]         |    \[ X ]          |
-| option D |     \[ X ]           |    \[ X ]         |         \[ ]              |                 |     \[ ]           |
-| option E |     \[ X ]           |                   |         \[ ]              |   \[ X ]        |     \[ ]           |
+| option A | \[ X ]               |                   | \[ ]                      |                 | \[ ]               |
+| option B | \[ ]                 | \[ X ]            |                           | \[ ]            | \[ X ]             |
+| option C | \[ ]                 |                   | \[ X ]                    | \[ ]            | \[ X ]             |
+| option D | \[ X ]               | \[ X ]            | \[ ]                      |                 | \[ ]               |
+| option E | \[ X ]               |                   | \[ ]                      | \[ X ]          | \[ ]               |
 
 **Legend**
 
@@ -635,14 +664,16 @@ A guide for using macros can be found at
 
 ## Diffusion imaging data
 
-Several [example datasets](https://github.com/bids-standard/bids-examples)
-contain diffusion imaging data formatted using this specification
-and that can be used for practical guidance when curating a new dataset:
+!!! example "Example datasets"
 
--   [`genetics_ukbb`](https://github.com/bids-standard/bids-examples/tree/master/genetics_ukbb)
--   [`eeg_rest_fmri`](https://github.com/bids-standard/bids-examples/tree/master/eeg_rest_fmri)
--   [`ds114`](https://github.com/bids-standard/bids-examples/tree/master/ds114)
--   [`ds000117`](https://github.com/bids-standard/bids-examples/tree/master/ds000117)
+    Several [example datasets](https://github.com/bids-standard/bids-examples)
+    contain diffusion imaging data formatted using this specification
+    and that can be used for practical guidance when curating a new dataset:
+
+    -   [`genetics_ukbb`](https://github.com/bids-standard/bids-examples/tree/master/genetics_ukbb)
+    -   [`eeg_rest_fmri`](https://github.com/bids-standard/bids-examples/tree/master/eeg_rest_fmri)
+    -   [`ds114`](https://github.com/bids-standard/bids-examples/tree/master/ds114)
+    -   [`ds000117`](https://github.com/bids-standard/bids-examples/tree/master/ds000117)
 
 Diffusion-weighted imaging data acquired for a participant.
 Currently supported image types include:
@@ -654,13 +685,18 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_suffix_table(
-      [
-         "dwi",
-         "sbref",
-      ]
-   )
-}}
+{{ MACROS___make_suffix_table(["dwi", "sbref"]) }}
+
+Additionally, the following suffixes are used for scanner-generated images:
+
+<!--
+This block generates a suffix table.
+The definitions of these fields can be found in
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_suffix_table(["ADC", "expADC", "trace", "FA", "colFA", "S0map"]) }}
 
 <!--
 This block generates a filename templates.
@@ -689,6 +725,15 @@ In such a case, two files could have the following names:
 The user is free to choose any other label than `singleband` and
 `multiband`, as long as they are consistent across subjects and sessions.
 
+Scanner-generated derivative images,
+such as trace-weighted, ADC, exponentiated ADC,
+fractional anisotropy (FA and colFA), and estimated unweighted signal intensity,
+MAY be included using the `trace`, `ADC`, `expADC`, `FA`, `colFA` and `S0map` suffixes, respectively.
+If trace, ADC, expADC, FA, colFA, or S0 volume filenames match a diffusion series with all applicable entities,
+such volumes SHOULD have been computed from that series.
+Otherwise, some entity, such as [`acq-<label>`](../appendices/entities.md#acq),
+SHOULD be used to indicate that the files are unrelated.
+
 ### REQUIRED gradient orientation information
 
 The REQUIRED gradient orientation information corresponding to a DWI acquisition
@@ -703,37 +748,46 @@ within the `[*_]dwi.bval` and `[*_]dwi.bvec` files) MAY change across DWI runs.
 
 **Gradient orientation file formats**.
 The `[*_]dwi.bval` and `[*_]dwi.bvec` files MUST follow the
-[FSL format](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT/UserGuide#DTIFIT):
-The `[*_]dwi.bvec` file contains 3 rows with *N* space-delimited floating-point numbers
-(corresponding to the *N* volumes in the corresponding NIfTI file.)
-The first row contains the *x* elements, the second row contains the *y* elements and
-the third row contains the *z* elements of a unit vector in the direction of the applied
-diffusion gradient, where the *i*-th elements in each row correspond together to
-the *i*-th volume, with `[0,0,0]` for *non-diffusion-weighted* (also called *b*=0 or *low-b*)
-volumes.
-Following the FSL format for the `[*_]dwi.bvec` specification, the coordinate system of
-the *b* vectors MUST be defined with respect to the coordinate system defined by
-the header of the corresponding `_dwi` NIfTI file and not the scanner's device
-coordinate system (see [Coordinate systems](../appendices/coordinate-systems.md)).
-The most relevant limitation imposed by this choice is that the gradient information cannot
-be directly stored in this format if the scanner generates *b*-vectors in *scanner coordinates*.
+[FSL format](https://fsl.fmrib.ox.ac.uk/fsl/docs/#/diffusion/index?id=diffusion-data-in-fsl).
 
-Example of `[*_]dwi.bvec` file, with *N*=6, with two *b*=0 volumes in the beginning:
+The `[*_]dwi.bvec` file contains 3 rows with *N* space-delimited floating-point numbers,
+corresponding to the *N* volumes in the corresponding NIfTI file.
+Across these three rows,
+each column encodes three elements of a 3-vector for the corresponding image volume;
+each vector MUST be either of unit norm,
+or optionally the vector `[0.0,0.0,0.0]`
+for *non-diffusion-weighted* (also called *b*=0 or *low-b*) volumes.
+These values are to be interpreted as cosine values with respect to the image axis orientations
+as defined by the corresponding NIfTI image header transformation;
+*unless* the image axes defined in the corresponding NIfTI image header
+form a right-handed coordinate system
+(that is, the 3x3 matrix of direction cosines has a positive determinant),
+in which case the sign of the first element of each 3-vector must be inverted
+for this interpretation to be valid.
+Note that this definition of orientations with respect to the NIfTI image axes
+is *not* equivalent to the DICOM convention,
+where orientations are instead defined with respect to the scanner device's coordinate system
+(see [Coordinate systems](../appendices/coordinate-systems.md)).
 
-```Text
-0 0 0.021828 -0.015425 -0.70918 -0.2465
-0 0 0.80242 0.22098 -0.00063106 0.1043
-0 0 -0.59636 0.97516 -0.70503 -0.96351
-```
+The `[*_]dwi.bval` file contains the *b*-values (in s/mm<sup>2</sup>)
+corresponding to the volumes in the relevant NIfTI file,
+with 0 designating *b*=0 volumes; space-delimited.
 
-The `[*_]dwi.bval` file contains the *b*-values (in s/mm<sup>2</sup>) corresponding to the
-volumes in the relevant NIfTI file), with 0 designating *b*=0 volumes, space-delimited.
+Examples of `[*_]dwi.bvec` and `[*_]dwi.bval` files,
+corresponding to a NIfTI image with 6 volumes
+with the first two volumes having no diffusion sensitization:
 
-Example of `[*_]dwi.bval` file, corresponding to the previous `[*_]dwi.bvec` example:
+-   `[*_]dwi.bvec`:
+    ```Text
+    0 0 0.021828 -0.015425 -0.70918 -0.2465
+    0 0 0.80242 0.22098 -0.00063106 0.1043
+    0 0 -0.59636 0.97516 -0.70503 -0.96351
+    ```
 
-```Text
-0 0 2000 2000 1000 1000
-```
+-   `[_]dwi.bval`:
+    ```Text
+    0 0 2000 2000 1000 1000
+    ```
 
 ### Multipart (split) DWI schemes
 
@@ -868,9 +922,11 @@ JSON example:
 
 ## Arterial Spin Labeling perfusion data
 
-Several [example ASL datasets](https://bids-standard.github.io/bids-examples/#asl)
-have been formatted using this specification
-and can be used for practical guidance when curating a new dataset.
+!!! example "Example datasets"
+
+    Several [example ASL datasets](https://bids-standard.github.io/bids-examples/#asl)
+    have been formatted using this specification
+    and can be used for practical guidance when curating a new dataset.
 
 <!--
 This block generates a filename templates.
@@ -896,11 +952,13 @@ for more information on `control` and  `label`.
 
 | **volume_type** | **Definition**                                                                                                                                                                         |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| control         | The control image is acquired in the exact same way as the label image, except that the magnetization of the blood flowing into the imaging region has not been inverted.              |
-| label           | The label image is acquired in the exact same way as the control image, except that the blood magnetization flowing into the imaging region has been inverted.                         |
-| m0scan          | The M0 image is a calibration image, used to estimate the equilibrium magnetization of blood.                                                                                          |
-| deltam          | The deltaM image is a perfusion-weighted image, obtained by the subtraction of `control` - `label`.                                                                                    |
-| cbf             | The cerebral blood flow (CBF) image is produced by dividing the deltaM by the M0, quantified into `mL/100g/min` (See also [doi:10.1002/mrm.25197](https://doi.org/10.1002/mrm.25197)). |
+| `control`       | The control image is acquired in the exact same way as the label image, except that the magnetization of the blood flowing into the imaging region has not been inverted.              |
+| `label`         | The label image is acquired in the exact same way as the control image, except that the blood magnetization flowing into the imaging region has been inverted.                         |
+| `m0scan`        | The M0 image is a calibration image, used to estimate the equilibrium magnetization of blood.                                                                                          |
+| `deltam`        | The deltaM image is a perfusion-weighted image, obtained by the subtraction of `control` - `label`.                                                                                    |
+| `cbf`           | The cerebral blood flow (CBF) image is produced by dividing the deltaM by the M0, quantified into `mL/100g/min` (See also [doi:10.1002/mrm.25197](https://doi.org/10.1002/mrm.25197)). |
+| `noRF`          | No radio frequency excitation (noRF) images are produced by disabling the radio frequency excitation, while maintaining all other parameters from the associated scan.                 |
+| `n/a`           | In some cases, there may be volume types that are not yet supported by BIDS, or which cannot be used by tools.                                                                         |
 
 If the `control` and `label` images are not available,
 their derivative `deltam` should be stored within the `*_asl.nii[.gz]`
@@ -921,7 +979,7 @@ NIfTI headers.
 
 ### `*_asllabeling.*`
 
-An anonymized screenshot of the planning of the labeling slab/plane
+A deidentified screenshot of the planning of the labeling slab/plane
 with respect to the imaging slab or slices.
 This screenshot is based on DICOM macro C.8.13.5.14.
 
@@ -1013,7 +1071,7 @@ imposed on the Dependent fields in column 3. See the [ASL Appendix](../appendice
 form of flowcharts.
 
 | **Source field**         | **Value**    | **Dependent field**  | **Requirements**                                 |
-|--------------------------|--------------|----------------------|--------------------------------------------------|
+| ------------------------ | ------------ | -------------------- | ------------------------------------------------ |
 | MRAcquisitionType        | 2D / 3D      | SliceTiming          | \[X\] / \[\]                                     |
 | LookLocker               | true         | FlipAngle            | \[X\]                                            |
 | ArterialSpinLabelingType | PCASL        | LabelingDuration     | \[X\]                                            |
@@ -1111,12 +1169,14 @@ For example:
 
 #### Case 1: Phase-difference map and at least one magnitude image
 
-[Example datasets](https://bids-standard.github.io/bids-examples/#dataset-index)
-containing that type of fieldmap can be found here:
+!!! example "Example datasets"
 
--   [`7t_trt`](https://github.com/bids-standard/bids-examples/tree/master/7t_trt)
--   [`genetics_ukbb`](https://github.com/bids-standard/bids-examples/tree/master/genetics_ukbb)
--   [`ds000117`](https://github.com/bids-standard/bids-examples/tree/master/ds000117)
+    [Example datasets](https://bids-standard.github.io/bids-examples/#dataset-index)
+    containing that type of fieldmap can be found here:
+
+    -   [`7t_trt`](https://github.com/bids-standard/bids-examples/tree/master/7t_trt)
+    -   [`genetics_ukbb`](https://github.com/bids-standard/bids-examples/tree/master/genetics_ukbb)
+    -   [`ds000117`](https://github.com/bids-standard/bids-examples/tree/master/ds000117)
 
 <!--
 This block generates a filename templates.
@@ -1236,16 +1296,19 @@ for details on the `IntendedFor` field.
 
 #### Case 4: Multiple phase encoded directions ("pepolar")
 
-An [example dataset](https://github.com/bids-standard/bids-examples)
-containing that type of fieldmap can be found here:
+!!! example "Example datasets"
 
--   [`ieeg_visual_multimodal`](https://github.com/bids-standard/bids-examples/tree/master/ieeg_visual_multimodal)
+    An [example dataset](https://github.com/bids-standard/bids-examples)
+    containing that type of fieldmap can be found here:
+
+    -   [`ieeg_visual_multimodal`](https://github.com/bids-standard/bids-examples/tree/master/ieeg_visual_multimodal)
 
 The phase-encoding polarity (PEpolar) technique combines two or more Spin Echo
 EPI scans with different phase encoding directions to estimate the distortion
 map corresponding to the nonuniformities of the *B<sub>0</sub>* field.
 These `*_epi.nii[.gz]` - or `*_m0scan.nii[.gz]` for arterial spin labeling perfusion data - files can be 3D or 4D --
 in the latter case, all timepoints share the same scanning parameters.
+Some 4D scans intended for correcting DWIs may have accompanying `*_epi.bval` and `*_epi.bvec` files.
 Examples of software tools using these kinds of images are FSL TOPUP and
 AFNI `3dqwarp`.
 

@@ -29,12 +29,8 @@ def _dict_key_lookup(_dict, key, path=[]):
 @pytest.mark.validate_schema
 def test_rule_objects(schema_obj):
     """Ensure that all objects referenced in the schema rules are defined in
-    its object portion.
+    their object portion.
 
-    This test currently fails because rules files reference object keys for some object types,
-    including entities, columns, and metadata fields,
-    but reference "name" or "value" elements of the object definitions for other object types,
-    including suffixes and extensions.
     In the case of datatypes, the key and "value" field are always the same.
 
     Some other object types, such as associated_data, common_principles, formats, modalities,
@@ -68,6 +64,7 @@ def test_rule_objects(schema_obj):
                 is_list = False
 
             for i_use, use in enumerate(instance):
+                assert isinstance(use, str)
                 if use == "derivatives":
                     # Skip derivatives dirs, because the dir is treated as a "use" instead.
                     continue
@@ -83,15 +80,31 @@ def test_rule_objects(schema_obj):
                 if object_type in ["extensions", "suffixes"]:
                     # Some object types are referenced via their "value" fields in the rules
                     object_values = [
-                        schema_obj["objects"][object_type][k]["value"]
-                        for k in schema_obj["objects"][object_type].keys()
+                        value["value"] for value in schema_obj["objects"][object_type].values()
                     ]
-                else:
+                elif object_type in [
+                    "columns",
+                    "common_principles",
+                    "datatypes",
+                    "entities",
+                    "enums",
+                    "files",
+                    "formats",
+                    "metadata",
+                    "modalities",
+                ]:
                     # But other object types are referenced via their keys
                     object_values = list(schema_obj["objects"][object_type].keys())
+                else:
+                    raise AssertionError(f"Object type {object_type} not implemented.")
 
                 # Build a list of items mentioned in rules, but not found in objects.
                 if use not in object_values:
+                    if (use, object_type) == ("phenotype", "datatypes"):
+                        # Special case: phenotype is a top-level directory
+                        # that acts like a datatype, but we don't want to
+                        # define it that way in the glossary, currently.
+                        continue
                     temp_path = path[:]
                     if is_list:
                         temp_path[-1] += f"[{i_use}]"
@@ -100,7 +113,7 @@ def test_rule_objects(schema_obj):
 
     if not_found:
         not_found_string = "\n".join([f"{'.'.join(path)} == {val}" for path, val in not_found])
-        raise ValueError(not_found_string)
+        raise AssertionError(f"Undefined objects found in rules: {not_found_string}")
 
 
 @pytest.mark.validate_schema

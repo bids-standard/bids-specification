@@ -196,21 +196,21 @@ ASLBackgroundSuppressionNumberPulses:
     - length(sidecar.BackgroundSuppressionPulseTime) == sidecar.BackgroundSuppressionNumberPulses
 
 # 181
-ASLTotalAcquiredVolumesASLContextLength:
+ASLTotalAcquiredPairsASLContextLength:
   issue:
     code: TOTAL_ACQUIRED_VOLUMES_NOT_CONSISTENT
     message: |
-      The number of values for 'TotalAcquiredVolumes' for this file does not match number of
+      The number of values for 'TotalAcquiredPairs' for this file does not match number of
       volumes in the associated 'aslcontext.tsv'.
-      'TotalAcquiredVolumes' is the original number of 3D volumes acquired for each volume defined in the
+      'TotalAcquiredPairs' is the original number of 3D volumes acquired for each volume defined in the
       associated 'aslcontext.tsv'.
     level: warning
   selectors:
     - suffix == "asl"
     - type(associations.aslcontext) != "null"
-    - '"TotalAcquiredVolumes" in sidecar'
+    - '"TotalAcquiredPairs" in sidecar'
   checks:
-    - aslcontext.n_rows == sidecar.TotalAcquiredVolumes
+    - aslcontext.n_rows == sidecar.TotalAcquiredPairs
 
 # 184
 PostLabelingDelayGreater:

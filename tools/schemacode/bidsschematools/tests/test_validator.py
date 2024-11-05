@@ -29,6 +29,42 @@ def test_inheritance_examples():
     assert result["path_tracking"] == incorrect_inheritance
 
 
+def test_regression_examples():
+    """Tests that failed on pybids when switching to bst-regex-based validation"""
+    examples = [
+        "/sub-01/ses-ses/sub-01_dwi.bval",  # redundant dir /ses-ses/
+        "/sub-01/01_dwi.bvec",  # missed subject suffix
+        "/sub-01/sub_dwi.json",  # missed subject id
+        "/sub-01/sub-01_23_run-01_dwi.bval",  # wrong _23_
+        "/sub-01/sub-01_run-01_dwi.vec",  # wrong extension
+        "/sub-01/sub-01_run-01_dwi.jsn",  # wrong extension
+        "/sub-01/sub-01_acq_dwi.bval",  # missed suffix value
+        "/sub-01/sub-01_acq-23-singleband_dwi.bvec",  # redundant -23-
+        "/sub-01/anat/sub-01_acq-singleband_dwi.json",  # redundant /anat/
+        "/sub-01/sub-01_recrod-record_acq-singleband_run-01_dwi.bval",  # redundant record-record_
+        "/sub_01/sub-01_acq-singleband_run-01_dwi.bvec",  # wrong /sub_01/
+        "/sub-01/sub-01_acq-singleband__run-01_dwi.json",  # wrong __
+        "/sub-01/ses-test/sub-01_ses_test_dwi.bval",  # wrong ses_test
+        "/sub-01/ses-test/sb-01_ses-test_dwi.bvec",  # wrong sb-01
+        "/sub-01/ses-test/sub-01_ses-test_dw.json",  # wrong modality
+        "/sub-01/ses-test/sub-01_ses-test_run-01_dwi.val",  # wrong extension
+        "/sub-01/ses-test/sub-01_run-01_dwi.bvec",  # missed session in the filename
+        # This validator adds a .*/ to the regex, so this will be a false negative
+        # If I cared about this validator, I would dig into it, but it doesn't seem worth it.
+        # -cjm 2024.08.14
+        # "/sub-01/ses-test/ses-test_run-01_dwi.json",  # missed subject in the filename
+        "/sub-01/ses-test/sub-01_ses-test_acq-singleband.bval",  # missed modality
+        "/sub-01/ses-test/sub-01_ses-test_acq-singleband_dwi",  # missed extension
+        "/ses-test/sub-01/sub-01_ses-test_acq-singleband_dwi.json",  # wrong dirs order
+        "/sub-01/ses-test/sub-02_ses-test_acq-singleband_run-01_dwi.bval",  # wrong sub id
+        "/sub-01/sub-01_ses-test_acq-singleband_run-01_dwi.bvec",  # ses dir missed
+        "/ses-test/sub-01_ses-test_acq-singleband_run-01_dwi.json",  # sub id dir missed
+    ]
+
+    result = validate_bids(examples, dummy_paths=True)
+    assert result["path_tracking"] == examples
+
+
 def test_write_report(tmp_path):
     from bidsschematools.validator import write_report
 
@@ -64,11 +100,11 @@ def test_write_report(tmp_path):
     ]
     validation_result["path_tracking"] = [
         "/home/chymera/.data2/datalad/000026/"
-        "rawdata/sub-EXC022/anat/sub-EXC022_ses-MRI_flip-1_VFA.nii.gz"
+        "noncompliant/sub-EXC022/anat/sub-EXC022_ses-MRI_flip-1_VFA.nii.gz"
     ]
     validation_result["path_listing"] = [
         "/home/chymera/.data2/datalad/000026/"
-        "rawdata/sub-EXC022/anat/sub-EXC022_ses-MRI_flip-1_VFA.nii.gz"
+        "noncompliant/sub-EXC022/anat/sub-EXC022_ses-MRI_flip-1_VFA.nii.gz"
     ]
 
     report_path = tmp_path / "output_bids_validator_xs_write.log"

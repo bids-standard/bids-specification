@@ -79,7 +79,7 @@ For (P)CASL, specifying the `LabelingDuration` and the `PostLabelingDelay` is re
 The `LabelingDuration` is defined as the total duration of the labeling pulse train in seconds.
 `PostLabelingDelay` is the time in seconds after the end of the labeling until the middle of the excitation pulse applied
 to the imaging slab (for 3D acquisition) or first slice (for 2D acquisition).
-Additionally, the `BackgroundSuppressionPulseTime`'s is required in case `BackgroundSuppression` was applied.
+Additionally, the `BackgroundSuppressionPulseTime` is RECOMMENDED if `BackgroundSuppression` was applied.
 This an array of numbers containing the timing in seconds of the background suppression pulses
 with respect to the start of the labeling.
 In the case of `PCASL`, the recommended `PCASLType` field defines the type of the gradient pulses
