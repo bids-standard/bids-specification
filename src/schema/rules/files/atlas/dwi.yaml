@@ -11,7 +11,7 @@ dwi:
   datatypes:
     - dwi
   entities:
-    $ref: meta.templates.raw_base_entities
+    $ref: meta.templates.atlas_base_entities
     acquisition: optional
     reconstruction: optional
     direction: optional
@@ -29,34 +29,10 @@ sbref:
   datatypes:
     - dwi
   entities:
-    $ref: meta.templates.raw_base_entities
+    $ref: meta.templates.atlas_base_entities
     acquisition: optional
     reconstruction: optional
     direction: optional
     run: optional
     part: optional
-    chunk: optional
-
-# Common scanner-generated derivatives need raw names
-ScannerDerivatives:
-  suffixes:
-    - ADC
-    - FA
-    - S0map
-    - colFA
-    - expADC
-    - trace
-  extensions:
-    - .nii.gz
-    - .nii
-    - .json
-  datatypes:
-    - dwi
-  entities:
-    subject: required
-    session: optional
-    acquisition: optional
-    reconstruction: optional
-    direction: optional
-    run: optional
     chunk: optional

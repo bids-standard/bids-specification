@@ -11,7 +11,7 @@ func:
   datatypes:
     - func
   entities:
-    $ref: meta.templates.raw_base_entities
+    $ref: meta.templates.atlas_base_entities
     task: required
     acquisition: optional
     ceagent: optional
@@ -21,14 +21,6 @@ func:
     echo: optional
     part: optional
     chunk: optional
-
-norf:
-  $ref: rules.files.raw.func.func
-  suffixes:
-    - noRF
-  entities:
-    $ref: rules.files.raw.func.func.entities
-    modality: optional
 
 phase:
   suffixes:
@@ -40,7 +32,7 @@ phase:
   datatypes:
     - func
   entities:
-    $ref: meta.templates.raw_base_entities
+    $ref: meta.templates.atlas_base_entities
     task: required
     acquisition: optional
     ceagent: optional

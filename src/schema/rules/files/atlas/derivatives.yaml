@@ -1,55 +1,46 @@
 ---
 anat_parametric_volumetric:
-  $ref: rules.files.raw.anat.parametric
+  $ref: rules.files.atlas.anat.parametric
   entities:
-    $ref: rules.files.raw.anat.parametric.entities
+    $ref: rules.files.atlas.anat.parametric.entities
     space: optional
     resolution: optional
     density: optional
     description: optional
 
 anat_nonparametric_volumetric:
-  $ref: rules.files.raw.anat.nonparametric
+  $ref: rules.files.atlas.anat.nonparametric
   entities:
-    $ref: rules.files.raw.anat.nonparametric.entities
+    $ref: rules.files.atlas.anat.nonparametric.entities
     space: optional
     resolution: optional
     density: optional
     description: optional
 
 dwi_volumetric:
-  $ref: rules.files.raw.dwi.dwi
+  $ref: rules.files.atlas.dwi.dwi
   entities:
-    $ref: rules.files.raw.dwi.dwi.entities
-    space: optional
-    resolution: optional
-    density: optional
-    description: optional
-
-dwi_scannerderivatives:
-  $ref: rules.files.raw.dwi.ScannerDerivatives
-  entities:
-    $ref: rules.files.raw.dwi.ScannerDerivatives.entities
+    $ref: rules.files.atlas.dwi.dwi.entities
     space: optional
     resolution: optional
     density: optional
     description: optional
 
 func_volumetric:
-  $ref: rules.files.raw.func.func
+  $ref: rules.files.atlas.func.func
   entities:
-    $ref: rules.files.raw.func.func.entities
+    $ref: rules.files.atlas.func.func.entities
     space: optional
     resolution: optional
     density: optional
     description: optional
 
 anat_parametric_mask:
-  $ref: rules.files.raw.anat.parametric
+  $ref: rules.files.atlas.anat.parametric
   suffixes:
     - mask
   entities:
-    $ref: rules.files.raw.anat.parametric.entities
+    $ref: rules.files.atlas.anat.parametric.entities
     space: optional
     resolution: optional
     density: optional
@@ -57,11 +48,11 @@ anat_parametric_mask:
     description: optional
 
 anat_nonparametric_mask:
-  $ref: rules.files.raw.anat.nonparametric
+  $ref: rules.files.atlas.anat.nonparametric
   suffixes:
     - mask
   entities:
-    $ref: rules.files.raw.anat.nonparametric.entities
+    $ref: rules.files.atlas.anat.nonparametric.entities
     space: optional
     resolution: optional
     density: optional
@@ -69,11 +60,11 @@ anat_nonparametric_mask:
     description: optional
 
 dwi_mask:
-  $ref: rules.files.raw.dwi.dwi
+  $ref: rules.files.atlas.dwi.dwi
   suffixes:
     - mask
   entities:
-    $ref: rules.files.raw.dwi.dwi.entities
+    $ref: rules.files.atlas.dwi.dwi.entities
     space: optional
     resolution: optional
     density: optional
@@ -81,11 +72,11 @@ dwi_mask:
     description: optional
 
 func_mask:
-  $ref: rules.files.raw.func.func
+  $ref: rules.files.atlas.func.func
   suffixes:
     - mask
   entities:
-    $ref: rules.files.raw.func.func.entities
+    $ref: rules.files.atlas.func.func.entities
     space: optional
     resolution: optional
     density: optional
@@ -93,11 +84,11 @@ func_mask:
     description: optional
 
 anat_parametric_discrete_segmentation:
-  $ref: rules.files.raw.anat.parametric
+  $ref: rules.files.atlas.anat.parametric
   suffixes:
     - dseg
   entities:
-    $ref: rules.files.raw.anat.parametric.entities
+    $ref: rules.files.atlas.anat.parametric.entities
     cohort: optional
     space: optional
     atlas: optional
@@ -113,11 +104,11 @@ anat_parametric_discrete_segmentation:
     - .tsv
 
 anat_nonparametric_discrete_segmentation:
-  $ref: rules.files.raw.anat.nonparametric
+  $ref: rules.files.atlas.anat.nonparametric
   suffixes:
     - dseg
   entities:
-    $ref: rules.files.raw.anat.nonparametric.entities
+    $ref: rules.files.atlas.anat.nonparametric.entities
     cohort: optional
     space: optional
     atlas: optional
@@ -133,11 +124,11 @@ anat_nonparametric_discrete_segmentation:
     - .tsv
 
 func_discrete_segmentation:
-  $ref: rules.files.raw.func.func
+  $ref: rules.files.atlas.func.func
   suffixes:
     - dseg
   entities:
-    $ref: rules.files.raw.func.func.entities
+    $ref: rules.files.atlas.func.func.entities
     cohort: optional
     space: optional
     atlas: optional
@@ -148,11 +139,11 @@ func_discrete_segmentation:
     description: optional
 
 dwi_discrete_segmentation:
-  $ref: rules.files.raw.dwi.dwi
+  $ref: rules.files.atlas.dwi.dwi
   suffixes:
     - dseg
   entities:
-    $ref: rules.files.raw.dwi.dwi.entities
+    $ref: rules.files.atlas.dwi.dwi.entities
     cohort: optional
     space: optional
     atlas: optional
@@ -163,11 +154,11 @@ dwi_discrete_segmentation:
     description: optional
 
 anat_parametric_probabilistic_segmentation:
-  $ref: rules.files.raw.anat.parametric
+  $ref: rules.files.atlas.anat.parametric
   suffixes:
     - probseg
   entities:
-    $ref: rules.files.raw.anat.parametric.entities
+    $ref: rules.files.atlas.anat.parametric.entities
     cohort: optional
     space: optional
     atlas: optional
@@ -179,11 +170,11 @@ anat_parametric_probabilistic_segmentation:
     description: optional
 
 anat_nonparametric_probabilistic_segmentation:
-  $ref: rules.files.raw.anat.nonparametric
+  $ref: rules.files.atlas.anat.nonparametric
   suffixes:
     - probseg
   entities:
-    $ref: rules.files.raw.anat.nonparametric.entities
+    $ref: rules.files.atlas.anat.nonparametric.entities
     cohort: optional
     space: optional
     atlas: optional
@@ -195,11 +186,11 @@ anat_nonparametric_probabilistic_segmentation:
     description: optional
 
 func_probabilistic_segmentation:
-  $ref: rules.files.raw.func.func
+  $ref: rules.files.atlas.func.func
   suffixes:
     - probseg
   entities:
-    $ref: rules.files.raw.func.func.entities
+    $ref: rules.files.atlas.func.func.entities
     cohort: optional
     space: optional
     atlas: optional
@@ -211,11 +202,11 @@ func_probabilistic_segmentation:
     description: optional
 
 dwi_probabilistic_segmentation:
-  $ref: rules.files.raw.dwi.dwi
+  $ref: rules.files.atlas.dwi.dwi
   suffixes:
     - probseg
   entities:
-    $ref: rules.files.raw.dwi.dwi.entities
+    $ref: rules.files.atlas.dwi.dwi.entities
     cohort: optional
     space: optional
     atlas: optional
@@ -227,7 +218,7 @@ dwi_probabilistic_segmentation:
     description: optional
 
 anat_parametic_discrete_surface:
-  $ref: rules.files.raw.anat.parametric
+  $ref: rules.files.atlas.anat.parametric
   suffixes:
     - dseg
   extensions:
@@ -236,7 +227,7 @@ anat_parametic_discrete_surface:
     - .json
     - .tsv
   entities:
-    $ref: rules.files.raw.anat.parametric.entities
+    $ref: rules.files.atlas.anat.parametric.entities
     hemisphere: optional
     cohort: optional
     space: optional
@@ -248,7 +239,7 @@ anat_parametic_discrete_surface:
     description: optional
 
 anat_nonparametic_discrete_surface:
-  $ref: rules.files.raw.anat.nonparametric
+  $ref: rules.files.atlas.anat.nonparametric
   suffixes:
     - dseg
   extensions:
@@ -257,7 +248,7 @@ anat_nonparametic_discrete_surface:
     - .json
     - .tsv
   entities:
-    $ref: rules.files.raw.anat.nonparametric.entities
+    $ref: rules.files.atlas.anat.nonparametric.entities
     hemisphere: optional
     cohort: optional
     space: optional

@@ -9,8 +9,7 @@ noncontinuous:
   datatypes:
     - beh
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw_base_entities
     task: required
     acquisition: optional
     run: optional

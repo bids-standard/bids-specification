@@ -8,8 +8,7 @@ motion:
   datatypes:
     - motion
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw_base_entities
     task: required
     tracksys: required
     acquisition: optional

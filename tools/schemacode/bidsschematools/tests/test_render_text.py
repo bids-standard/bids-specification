@@ -60,9 +60,9 @@ def test_make_glossary(schema_obj, schema_dir):
     for line in glossary.split("\n"):
         if line.startswith('<a name="objects.'):
             # Are all objects objects?
-            assert any([line.startswith(f'<a name="objects.{i}') for i in object_files])
+            assert any([line.startswith(f'<a name="objects.{i}.') for i in object_files])
             # Are rules loaded incorrectly?
-            assert not any([line.startswith(f'<a name="objects.{i}') for i in rules_only])
+            assert not any([line.startswith(f'<a name="objects.{i}.') for i in rules_only])
 
 
 def test_make_filename_template(schema_obj, schema_dir):

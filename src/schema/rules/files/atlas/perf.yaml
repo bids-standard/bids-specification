@@ -10,13 +10,11 @@ asl:
   datatypes:
     - perf
   entities:
-    $ref: meta.templates.raw_base_entities
+    $ref: meta.templates.atlas_base_entities
     acquisition: optional
     reconstruction: optional
     direction: optional
     run: optional
-    echo: optional
-    part: optional
 
 aslcontext:
   suffixes:
@@ -26,7 +24,7 @@ aslcontext:
   datatypes:
     - perf
   entities:
-    $ref: meta.templates.raw_base_entities
+    $ref: meta.templates.atlas_base_entities
     acquisition: optional
     reconstruction: optional
     direction: optional
@@ -42,15 +40,7 @@ asllabeling:
   datatypes:
     - perf
   entities:
-    $ref: meta.templates.raw_base_entities
+    $ref: meta.templates.atlas_base_entities
     acquisition: optional
     reconstruction: optional
     run: optional
-
-norf:
-  $ref: rules.files.raw.perf.asl
-  suffixes:
-    - noRF
-  entities:
-    $ref: rules.files.raw.perf.asl.entities
-    modality: optional
