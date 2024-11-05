@@ -269,6 +269,15 @@ properties:
             type: array
             items:
               type: string
+      electrodes:
+        description: 'Electrodes file'
+        type: object
+        required: [path]
+        additionalProperties: false
+        properties:
+          path:
+            description: 'Path to associated electrodes file'
+            type: string
       coordsystem:
         description: 'Coordinate system file'
         type: object
