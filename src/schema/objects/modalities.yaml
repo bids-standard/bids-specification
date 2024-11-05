@@ -35,3 +35,6 @@ motion:
 nirs:
   display_name: Near-Infrared Spectroscopy
   description: Data acquired with NIRS.
+mrs:
+  display_name: Magnetic Resonance Spectroscopy
+  description: Data acquired with MRS.

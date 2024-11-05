@@ -6,16 +6,18 @@
 atlas:
   display_name: Atlas
   description: |
-    Knowledge about the brain, generally formalized with reference to a standard space (see the *Template* definition above)
-    by means of spatiotemporal annotations such as landmarks, segmentations, parcellations, or probability maps.
-    One prominent manuscript regarding the specific aspects of atlases, such as their *regional resolution*,
+    Knowledge about the brain, generally formalized with reference to a standard space
+    (see the *Template* definition above) by means of spatiotemporal annotations
+    such as landmarks, segmentations, parcellations, or probability maps.
+    One prominent manuscript regarding the specific aspects of atlases,
+    such as their *regional resolution*,
     is [Bijsterbosch et al. (2020)](https://doi.org/10.1038/s41593-020-00726-z).
 
-        To further differentiate the concept of *atlas* and *template* throughout the specification, *template* will
-        designate a standardized stereotaxy frame where some feature or features are mapped through spatial normalization
-        and then possibly averaged.
-        Conversely, *atlas* will designate a specific methodology or algorithm to create meaningful knowledge annotations
-        about the brain such as landmarks or segmentations.
+    To further differentiate the concept of *atlas* and *template* throughout the specification,
+    *template* will designate a standardized stereotaxy frame where
+    some feature or features are mapped through spatial normalization and then possibly averaged.
+    Conversely, *atlas* will designate a specific methodology or algorithm to
+    create meaningful knowledge annotations about the brain such as landmarks or segmentations.
 data_acquisition:
   display_name: Data acquisition
   description: |
@@ -54,6 +56,9 @@ data_type:
         12. `nirs` (near infrared spectroscopy)
 
         13. `motion` (motion)
+
+        14. `mrs` (magnetic resonance spectroscopy)
+
 dataset:
   display_name: Dataset
   description: |

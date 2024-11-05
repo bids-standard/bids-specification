@@ -1,5 +1,11 @@
 # Behavioral experiments (with no neural recordings)
 
+!!! example "Example datasets"
+
+    Datasets containing behavioral data can be found
+    in the [BIDS examples repository](https://bids-standard.github.io/bids-examples/#behavioral)
+    and can be used as helpful guidance when curating new datasets.
+
 <!--
 This block generates a filename templates.
 The inputs for this macro can be found in the directory
@@ -9,17 +15,30 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_filename_template("raw", datatypes=["beh"]) }}
 
-In addition to logs from behavioral experiments performed alongside imaging data
-acquisitions, one can also include data from experiments performed with no neural
-recordings.
-The results of those experiments can be stored in the `beh` directory using the same
-formats for event timing (`_events.tsv`), metadata (`_events.json`),
+In addition to logs from behavioral experiments
+performed alongside imaging data acquisitions,
+one MAY also include data from experiments
+performed with no neural recordings.
+The results of those experiments MAY be stored in the `beh` directory
+using the same formats for event timing (`_events.tsv`),
+metadata (`_events.json`),
 physiological (`_physio.tsv.gz`, `_physio.json`)
 and other continuous recordings (`_stim.tsv.gz`, `_stim.json`)
 as for tasks performed during MRI, electrophysiological or other neural recordings.
-Additionally, events files that do not include the mandatory `onset` and
-`duration` columns can still be included, but should be labeled `_beh.tsv`
-rather than `_events.tsv`.
+Additionally, events files
+that do not include the mandatory `onset` and `duration` columns
+MAY be included,
+but MUST be labeled `_beh.tsv` rather than `_events.tsv`.
+
+The following OPTIONAL columns are pre-defined for behavioral data files:
+
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/rules/tabular_data/*.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_columns_table("task.Behavioral") }}
 
 ## Sidecar JSON (`*_beh.json`)
 

@@ -1,0 +1,181 @@
+#
+# Groups of related metadata fields
+#
+# Assumptions: never need disjunction of selectors
+# Assumptions: top-to-bottom overrides is sufficient logic
+
+---
+# MRS Common metadata fields
+MRSInstitutionInformation:
+  selectors:
+    - modality == "mrs"
+    - match(extension, "^\.nii(\.gz)?$")
+  fields:
+    InstitutionAddress: recommended
+    InstitutionName: recommended
+    InstitutionalDepartmentName: recommended
+
+MRSScannerHardware:
+  selectors:
+    - modality == "mrs"
+    - match(extension, "^\.nii(\.gz)?$")
+  fields:
+    Manufacturer: recommended
+    ManufacturersModelName: recommended
+    DeviceSerialNumber: recommended
+    StationName: recommended
+    SoftwareVersions: recommended
+    MagneticFieldStrength: recommended
+    ReceiveCoilName: recommended
+    ReceiveCoilActiveElements: recommended
+    NumberReceiveCoilActiveElements: optional
+    NumberTransmitCoilActiveElements: optional
+
+MRSSample:
+  selectors:
+    - modality == "mrs"
+    - match(extension, "^\.nii(\.gz)?$")
+  fields:
+    BodyPart:
+      level: optional
+      level_addendum: required if `voi` entity is present
+      description_addendum: Corresponds to DICOM Tag 0018, 0015 `Body Part Examined`.
+    BodyPartDetails:
+      level: optional
+      level_addendum: required if `voi` entity is present
+    BodyPartDetailsOntology: optional
+
+MRSSampleVOI:
+  selectors:
+    - modality == "mrs"
+    - match(extension, "^\.nii(\.gz)?$")
+    - '"volume" in entities'
+  fields:
+    BodyPart: required
+    BodyPartDetails: required
+
+MRSSequenceSpecifics:
+  selectors:
+    - modality == "mrs"
+    - match(extension, "^\.nii(\.gz)?$")
+  fields:
+    PulseSequenceType:
+      level: recommended
+      description_addendum: |
+        For example, `"sLASER"`, `"MEGA-PRESS"`, `"EPSI"`, `"Metabolite-cycled MRSI"`.
+    ScanningSequence__mrs: recommended
+    SequenceName: recommended
+    PulseSequenceDetails: recommended
+    WaterSuppression: recommended
+    WaterSuppressionTechnique: optional
+    OuterVolumeSuppression: optional
+    B0ShimmingTechnique: optional
+    B1ShimmingTechnique: optional
+
+MRSRequiredFields:
+  selectors:
+    - modality == "mrs"
+    - match(extension, "^\.nii(\.gz)?$")
+  fields:
+    ResonantNucleus: required
+    SpectrometerFrequency: required
+    SpectralWidth: required
+    EchoTime: required
+
+MRSRecommendedFields:
+  selectors:
+    - modality == "mrs"
+    - match(extension, "^\.nii(\.gz)?$")
+  fields:
+    NumberOfSpectralPoints: recommended
+    MixingTime: recommended
+    FlipAngle: recommended
+    AcquisitionVoxelSize: recommended
+    ReferenceSignal: recommended
+
+MRSRepetitionTime:
+  selectors:
+    - modality == "mrs"
+    - match(extension, "^\.nii(\.gz)?$")
+    - '!("VolumeTiming" in sidecar)'
+  fields:
+    RepetitionTime:
+      level: recommended
+      level_addendum: mutually exclusive with `VolumeTiming`
+
+MRSVolumeTiming:
+  selectors:
+    - modality == "mrs"
+    - match(extension, "^\.nii(\.gz)?$")
+    - '!("RepetitionTime" in sidecar)'
+  fields:
+    VolumeTiming:
+      level: recommended
+      level_addendum: mutually exclusive with `RepetitionTime`
+
+MRSConditionalInversionTime:
+  selectors:
+    - modality == "mrs"
+    - match(extension, "^\.nii(\.gz)?$")
+    - entities.inversion
+  fields:
+    InversionTime:
+      level: recommended
+      level_addendum: if `inv` entity is present
+
+MRSConditionalAnatomicalImage:
+  selectors:
+    - modality == "mrs"
+    - match(extension, "^\.nii(\.gz)?$")
+    - intersects(dataset.datatypes, ["anat"])
+  fields:
+    AnatomicalImage:
+      level: recommended
+      level_addendum: if anatomical MRI data are present
+
+MRSConditionalNumTransients:
+  selectors:
+    - modality == "mrs"
+    - match(extension, "^\.nii(\.gz)?$")
+    - intersects([suffix], ["svs", "unloc"])
+  fields:
+    NumberOfTransients:
+      level: recommended
+      level_addendum: for SVS and unlocalized acquisitions
+
+MRSIRecommendedFields:
+  selectors:
+    - modality == "mrs"
+    - match(extension, "^\.nii(\.gz)?$")
+    - suffix == "mrsi"
+  fields:
+    MRAcquisitionType:
+      level: recommended
+      level_addendum: for MRSI
+    MatrixSize:
+      level: recommended
+      level_addendum: for MRSI
+    VolumeAffineMatrix:
+      level: recommended
+      level_addendum: for MRSI
+    EncodingTechnique:
+      level: recommended
+      level_addendum: for MRSI
+
+MRSOptionalFields:
+  selectors:
+    - modality == "mrs"
+    - match(extension, "^\.nii(\.gz)?$")
+  fields:
+    ChemicalShiftOffset: optional
+    ChemicalShiftReference: optional
+    EditTarget: optional
+    EditPulse: optional
+    EditCondition: optional
+    EchoAcquisition: optional
+    ParallelReductionFactorInPlane: optional
+    ParallelAcquisitionTechnique: optional
+    MultibandAccelerationFactor: optional
+    PulseSequenceTiming: optional
+    PulseSequencePulses: optional
+    ReceiveGain: optional

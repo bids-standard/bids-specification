@@ -43,6 +43,7 @@ coordsystem:
     - nirs
   entities:
     $ref: rules.files.raw.common.baseline.entities
+    task: optional
     acquisition: optional
 
 # (i)EEG has a space entity
@@ -66,7 +67,9 @@ electrodes:
     - ieeg
   entities:
     $ref: rules.files.raw.common.baseline.entities
+    task: optional
     acquisition: optional
+    run: optional
     space: optional
 
 # MEG has an additional entity available

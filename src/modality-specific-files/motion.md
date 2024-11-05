@@ -2,9 +2,11 @@
 
 For information on how to cite this extension when referencing it in the context of the academic literature, please read [Citing BIDS](../introduction.md#citing-bids).
 
-Motion datasets formatted using this specification are available on the
-[BIDS examples repository](https://bids-standard.github.io/bids-examples/#motion)
-and can be used as helpful guidance when curating new datasets.
+!!! example "Example datasets"
+
+    Motion datasets formatted using this specification are available on the
+    [BIDS examples repository](https://bids-standard.github.io/bids-examples/#motion)
+    and can be used as helpful guidance when curating new datasets.
 
 ## Motion recording data
 
@@ -48,18 +50,14 @@ The number of columns in `_motion.tsv` files MUST equal the number of rows
 in the associated `_channels.tsv` file.
 All relevant metadata about a tracking systems is stored in accompanying sidecar `*_tracksys-<label>_motion.json` file.
 
-The source data from each tracking system in their original format, if different from `.tsv`,
-can be stored in the [`/sourcedata` directory](../common-principles.md#source-vs-raw-vs-derived-data).
-The original data format MAY hold more metadata than currently specified in the `*_motion.json` file.
-
 When multiple tracking systems are used to record motion or motion capture is used alongside the recording of other BIDS modalities and recordings should be interpreted together,
 it is advised to provide a possibility to synchronize recordings.
 The preferred way to do so is to use the acquisition time of the first data point of recordings and
 to store this information in the `acq_time` column of the [`*_scans.tsv`](../modality-agnostic-files.md#scans-file) file.
-The Note that the [BIDS date time format](../common-principles.md#units) allows optional fractional seconds, which SHOULD be used to maximize the precision of the synchronization.
+Note that the [BIDS date time format](../common-principles.md#units) allows optional fractional seconds, which SHOULD be used to maximize the precision of the synchronization.
 Only if the precision of the synchronization is not high enough, the `*_events.tsv` file SHOULD be used to synchronize recordings.
 In this file, the start- and stop time of the recording of a system are specified in relation to a system to synchronize with.
-If more than two systems are to be synchronized, it is up to the user to indntify the "main" system.
+If more than two systems are to be synchronized, it is up to the user to identify the "main" system.
 
 In case a tracking system provides time information with every recorded sample,
 these time information MAY be stored in form of latencies to recording onset (first sample) in the `*_motion.tsv` file.
@@ -212,7 +210,7 @@ The description of the `reference_frame` column SHOULD use the `"Levels"`
 field to describe the named field using [objects][object] with following fields.
 
 | Key name      | Requirement Level                                      | Data type  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-|---------------|--------------------------------------------------------|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------- | ------------------------------------------------------ | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | RotationOrder | RECOMMENDED                                            | [string][] | The sequence in which the extrinsic rotations are applied around the three axes. One of `"XYZ"`, `"XZY"`, `"YXZ"`, `"YZX"`, `"ZXY"`, or `"ZYX"`.                                                                                                                                                                                                                                                                                                                   |
 | RotationRule  | RECOMMENDED                                            | [string][] | The direction of rotation around each axis. One of `"left-hand"` or `"right-hand"`.                                                                                                                                                                                                                                                                                                                                                                                |
 | SpatialAxes   | RECOMMENDED                                            | [string][] | The coordinate system in which the motion data are to be interpreted. A sequence of characters from the set `{'A', 'P', 'L', 'R', 'S', 'I', '_'}` indicating the direction of each axis. For example `"ARS"` indicates positive values in the X, Y, Z axes are respectively anterior, right, and superior of the origin, while `"PLI"` indicates positive values are posterior, left, and inferior of the origin. The `"_"` character may be used for unused axes. |
