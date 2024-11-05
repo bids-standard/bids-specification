@@ -361,6 +361,18 @@
               "required": ["core", "tables"],
               "additionalProperties": false
             },
+            "atlas": {
+              "type": "object",
+              "patternProperties": {
+                "^[a-z_]+$": {
+                  "type": "object",
+                  "patternProperties": {
+                    "^[a-zA-Z0-9_]+$": { "$ref": "#/definitions/suffixRule" }
+                  }
+                }
+              },
+              "additionalProperties": false
+            },
             "deriv": {
               "type": "object",
               "patternProperties": {

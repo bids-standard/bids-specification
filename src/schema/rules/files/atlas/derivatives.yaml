@@ -92,7 +92,7 @@ anat_parametric_discrete_segmentation:
     cohort: optional
     space: optional
     atlas: optional
-    segmentation: option
+    segmentation: optional
     scale: optional
     resolution: optional
     density: optional
@@ -112,7 +112,7 @@ anat_nonparametric_discrete_segmentation:
     cohort: optional
     space: optional
     atlas: optional
-    segmentation: option
+    segmentation: optional
     scale: optional
     resolution: optional
     density: optional
@@ -132,7 +132,7 @@ func_discrete_segmentation:
     cohort: optional
     space: optional
     atlas: optional
-    segmentation: option
+    segmentation: optional
     scale: optional
     resolution: optional
     density: optional
@@ -147,7 +147,7 @@ dwi_discrete_segmentation:
     cohort: optional
     space: optional
     atlas: optional
-    segmentation: option
+    segmentation: optional
     scale: optional
     resolution: optional
     density: optional
@@ -162,7 +162,7 @@ anat_parametric_probabilistic_segmentation:
     cohort: optional
     space: optional
     atlas: optional
-    segmentation: option
+    segmentation: optional
     scale: optional
     resolution: optional
     density: optional
@@ -178,7 +178,7 @@ anat_nonparametric_probabilistic_segmentation:
     cohort: optional
     space: optional
     atlas: optional
-    segmentation: option
+    segmentation: optional
     scale: optional
     resolution: optional
     density: optional
@@ -194,7 +194,7 @@ func_probabilistic_segmentation:
     cohort: optional
     space: optional
     atlas: optional
-    segmentation: option
+    segmentation: optional
     scale: optional
     resolution: optional
     density: optional
@@ -210,7 +210,7 @@ dwi_probabilistic_segmentation:
     cohort: optional
     space: optional
     atlas: optional
-    segmentation: option
+    segmentation: optional
     scale: optional
     resolution: optional
     density: optional
@@ -232,7 +232,7 @@ anat_parametic_discrete_surface:
     cohort: optional
     space: optional
     atlas: optional
-    segmentation: option
+    segmentation: optional
     scale: optional
     resolution: optional
     density: optional
@@ -253,7 +253,7 @@ anat_nonparametic_discrete_surface:
     cohort: optional
     space: optional
     atlas: optional
-    segmentation: option
+    segmentation: optional
     scale: optional
     resolution: optional
     density: optional
