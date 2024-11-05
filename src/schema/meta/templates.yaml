@@ -1,0 +1,30 @@
+---
+# This section is unstructured, for inclusion in rules by reference
+
+# Entities that apply to most raw files
+# Include e.g.,
+#
+# filerule:
+#   entities:
+#     $ref: meta.templates.raw_base_entities
+#     task: optional
+#     ...
+#   datatypes:
+#     ...
+raw_base_entities:
+  subject: required
+  session: optional
+
+# Entities that apply to most atlas files
+# Include e.g.,
+#
+# filerule:
+#   entities:
+#     $ref: meta.templates.atlas_base_entities
+#     task: optional
+#     ...
+#   datatypes:
+#     ...
+atlas_base_entities:
+  template: required
+  cohort: optional

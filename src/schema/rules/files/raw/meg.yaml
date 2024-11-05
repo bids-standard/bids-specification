@@ -19,7 +19,7 @@ meg:
   datatypes:
     - meg
   entities:
-    $ref: rules.files.raw.common.baseline.entities
+    $ref: meta.templates.raw_base_entities
     task: required
     acquisition: optional
     run: optional
@@ -34,7 +34,7 @@ calibration:
   datatypes:
     - meg
   entities:
-    $ref: rules.files.raw.common.baseline.entities
+    $ref: meta.templates.raw_base_entities
     acquisition:
       level: required
       enum:
@@ -48,7 +48,7 @@ crosstalk:
   datatypes:
     - meg
   entities:
-    $ref: rules.files.raw.common.baseline.entities
+    $ref: meta.templates.raw_base_entities
     acquisition:
       level: required
       enum:
@@ -63,7 +63,7 @@ headshape:
   datatypes:
     - meg
   entities:
-    $ref: rules.files.raw.common.baseline.entities
+    $ref: meta.templates.raw_base_entities
     acquisition: optional
 
 markers:
@@ -75,7 +75,7 @@ markers:
   datatypes:
     - meg
   entities:
-    $ref: rules.files.raw.common.baseline.entities
+    $ref: meta.templates.raw_base_entities
     task: optional
     acquisition: optional
     space: optional

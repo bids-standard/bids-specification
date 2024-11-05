@@ -1,5 +1,0 @@
----
-baseline:
-  entities:
-    subject: required
-    session: optional

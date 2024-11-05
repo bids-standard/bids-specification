@@ -11,7 +11,7 @@ func:
   datatypes:
     - func
   entities:
-    $ref: rules.files.atlas.common.baseline.entities
+    $ref: meta.templates.atlas_base_entities
     task: required
     acquisition: optional
     ceagent: optional
@@ -32,7 +32,7 @@ phase:
   datatypes:
     - func
   entities:
-    $ref: rules.files.atlas.common.baseline.entities
+    $ref: meta.templates.atlas_base_entities
     task: required
     acquisition: optional
     ceagent: optional

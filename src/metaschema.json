@@ -65,6 +65,9 @@
             "additionalProperties": false
           }
         },
+        "templates": {
+          "type": "object"
+        },
         "versions": {
           "type": "array",
           "items": {

@@ -9,7 +9,7 @@ pet:
   datatypes:
     - pet
   entities:
-    $ref: rules.files.atlas.common.baseline.entities
+    $ref: meta.templates.atlas_base_entities
     task: optional
     tracer: optional
     reconstruction: optional
@@ -24,7 +24,7 @@ blood:
   datatypes:
     - pet
   entities:
-    $ref: rules.files.atlas.common.baseline.entities
+    $ref: meta.templates.atlas_base_entities
     task: optional
     tracer: optional
     reconstruction: optional

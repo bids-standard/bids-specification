@@ -11,7 +11,7 @@ func:
   datatypes:
     - func
   entities:
-    $ref: rules.files.raw.common.baseline.entities
+    $ref: meta.templates.raw_base_entities
     task: required
     acquisition: optional
     ceagent: optional
@@ -40,7 +40,7 @@ phase:
   datatypes:
     - func
   entities:
-    $ref: rules.files.raw.common.baseline.entities
+    $ref: meta.templates.raw_base_entities
     task: required
     acquisition: optional
     ceagent: optional

@@ -8,7 +8,7 @@ nirs:
   datatypes:
     - nirs
   entities:
-    $ref: rules.files.raw.common.baseline.entities
+    $ref: meta.templates.raw_base_entities
     task: required
     acquisition: optional
     run: optional

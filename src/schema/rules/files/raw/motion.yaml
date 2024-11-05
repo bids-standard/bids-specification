@@ -8,7 +8,7 @@ motion:
   datatypes:
     - motion
   entities:
-    $ref: rules.files.raw.common.baseline.entities
+    $ref: meta.templates.raw_base_entities
     task: required
     tracksys: required
     acquisition: optional

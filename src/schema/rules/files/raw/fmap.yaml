@@ -15,7 +15,7 @@ fieldmaps:
   datatypes:
     - fmap
   entities:
-    $ref: rules.files.raw.common.baseline.entities
+    $ref: meta.templates.raw_base_entities
     acquisition: optional
     run: optional
     chunk: optional
@@ -51,7 +51,7 @@ pepolar_m0scan:
   datatypes:
     - fmap
   entities:
-    $ref: rules.files.raw.common.baseline.entities
+    $ref: meta.templates.raw_base_entities
     acquisition: optional
     ceagent: optional
     direction: required
@@ -69,7 +69,7 @@ TB1DAM:
   datatypes:
     - fmap
   entities:
-    $ref: rules.files.raw.common.baseline.entities
+    $ref: meta.templates.raw_base_entities
     acquisition: optional
     ceagent: optional
     reconstruction: optional
@@ -89,7 +89,7 @@ TB1EPI:
   datatypes:
     - fmap
   entities:
-    $ref: rules.files.raw.common.baseline.entities
+    $ref: meta.templates.raw_base_entities
     acquisition: optional
     ceagent: optional
     reconstruction: optional
@@ -113,7 +113,7 @@ RFFieldMaps:
   datatypes:
     - fmap
   entities:
-    $ref: rules.files.raw.common.baseline.entities
+    $ref: meta.templates.raw_base_entities
     acquisition: optional
     ceagent: optional
     reconstruction: optional
@@ -134,7 +134,7 @@ TB1SRGE:
   datatypes:
     - fmap
   entities:
-    $ref: rules.files.raw.common.baseline.entities
+    $ref: meta.templates.raw_base_entities
     acquisition: optional
     ceagent: optional
     reconstruction: optional
@@ -156,7 +156,7 @@ parametric:
   datatypes:
     - fmap
   entities:
-    $ref: rules.files.raw.common.baseline.entities
+    $ref: meta.templates.raw_base_entities
     acquisition: optional
     ceagent: optional
     reconstruction: optional

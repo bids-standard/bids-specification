@@ -1,5 +1,0 @@
----
-baseline:
-  entities:
-    template: required
-    cohort: optional

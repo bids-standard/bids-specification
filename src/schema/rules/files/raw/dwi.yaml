@@ -11,7 +11,7 @@ dwi:
   datatypes:
     - dwi
   entities:
-    $ref: rules.files.raw.common.baseline.entities
+    $ref: meta.templates.raw_base_entities
     acquisition: optional
     reconstruction: optional
     direction: optional
@@ -29,7 +29,7 @@ sbref:
   datatypes:
     - dwi
   entities:
-    $ref: rules.files.raw.common.baseline.entities
+    $ref: meta.templates.raw_base_entities
     acquisition: optional
     reconstruction: optional
     direction: optional

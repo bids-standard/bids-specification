@@ -10,7 +10,7 @@ asl:
   datatypes:
     - perf
   entities:
-    $ref: rules.files.raw.common.baseline.entities
+    $ref: meta.templates.raw_base_entities
     acquisition: optional
     reconstruction: optional
     direction: optional
@@ -26,7 +26,7 @@ aslcontext:
   datatypes:
     - perf
   entities:
-    $ref: rules.files.raw.common.baseline.entities
+    $ref: meta.templates.raw_base_entities
     acquisition: optional
     reconstruction: optional
     direction: optional
@@ -42,7 +42,7 @@ asllabeling:
   datatypes:
     - perf
   entities:
-    $ref: rules.files.raw.common.baseline.entities
+    $ref: meta.templates.raw_base_entities
     acquisition: optional
     reconstruction: optional
     run: optional
