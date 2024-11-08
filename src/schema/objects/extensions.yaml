@@ -153,6 +153,14 @@ md:
   display_name: Markdown
   description: |
     A Markdown file.
+medd:
+  value: .medd/
+  display_name: Multiscale Electrophysiology Data Format
+  description: |
+    A directory in the [MED](https://medformat.org/) format.
+    Successor to the MEF 3.0 format.
+
+    Each recording consists of a `.medd` directory.
 mefd:
   value: .mefd/
   display_name: Multiscale Electrophysiology File Format Version 3.0
