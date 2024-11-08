@@ -35,6 +35,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: 3
+      - run: env
+      - run: git status
       - name: Determine master/maintenance branch
         id: branch
         run: |
