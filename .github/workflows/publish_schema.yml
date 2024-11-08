@@ -95,7 +95,8 @@ jobs:
           else
             echo release=false | tee -a $GITHUB_OUTPUT
           fi
-          echo version=$VERSION | tee -a $GITHUB_ENV
+          echo VERSION=$VERSION | tee -a $GITHUB_ENV
+          echo version=$VERSION | tee -a $GITHUB_OUTPUT
         env:
           REF: ${{ github.ref }}
       - name: Bump version (${{ steps.version.outputs.version }}) if changed
