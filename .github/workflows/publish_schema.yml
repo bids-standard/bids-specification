@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - "master"
+      - "maint/*"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -34,13 +35,25 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: 3
+      - name: Determine master/maintenance branch
+        id: branch
+        run: |
+          if [[ "$GITHUB_REF" = "master" ]]; then
+            echo "branch=jsr-dist" | tee -a $GITHUB_OUTPUT
+            echo "mode=dev" | tee -a $GITHUB_OUTPUT
+          else
+            echo "branch=jsr-maint" | tee -a $GITHUB_OUTPUT
+            echo "mode=maint" | tee -a $GITHUB_OUTPUT
+          fi
       - name: Install bidsschematools
         run: |
           pip install --upgrade tools/schemacode
           git clean -fxd tools/schemacode
-      - name: Checkout jsr-dist
+      - name: Checkout ${{ steps.branch.outputs.branch }}
         run: |
-          git checkout -t origin/jsr-dist
+          git checkout -t origin/$JSR_BRANCH
+        env:
+          JSR_BRANCH: ${{ steps.branch.outputs.branch }}
       - name: Regenerate schema
         run: bst export > schema.json
       - name: Regenerate context types
@@ -54,13 +67,20 @@ jobs:
           bst export-metaschema > /tmp/schema.json
           npx --package=json-schema-to-typescript json2ts --unknownAny /tmp/schema.json > metaschema.ts
       - name: Determine next version
+        id: version
         run: |
           BASE=$( jq -r .schema_version schema.json )
-          if [[ "$BASE" =~ ^[0-9]*.[0-9]*.[0-9]*$ ]]; then
+          if [[ "$BASE" =~ ^[0-9]*\.[0-9]*\.[0-9]*$ ]]; then
             # Release, so unconditionally update version
             VERSION=$BASE
             jq ".version = \"$VERSION\"" jsr.json > tmp.json && mv tmp.json jsr.json
-          else
+            echo release=true | tee -a $GITHUB_OUTPUT
+          elif [[ "$BASE" =~ ^[0-9]*\.[0-9]*\.[0-9]*\.post[0-9]*$ ]]; then
+            # Post-release, so replace .post with + for JSR semver
+            VERSION=${BASE/.post/+}
+            jq ".version = \"$VERSION\"" jsr.json > tmp.json && mv tmp.json jsr.json
+            echo release=true | tee -a $GITHUB_OUTPUT
+          elif [[ "$GITHUB_REF" = "master" ]]; then
             DENOVER=$( jq -r .version jsr.json )
             # Get the reference of the latest commit to touch the schema directory
             HASH=$( git log -n 1 --pretty=%h $REF -- src/schema )
@@ -71,19 +91,24 @@ jobs:
               SERIAL=1
             fi
             VERSION="$BASE.$SERIAL+$HASH"
+            echo release=true | tee -a $GITHUB_OUTPUT
+          else
+            echo release=false | tee -a $GITHUB_OUTPUT
           fi
           echo VERSION=$VERSION | tee -a $GITHUB_ENV
+          echo version=$VERSION | tee -a $GITHUB_OUTPUT
         env:
           REF: ${{ github.ref }}
-      - name: Check for changes, set version and commit
+      - name: Bump version (${{ steps.version.outputs.version }}) if changed
+        if: steps.version.outputs.release == 'true'
         run: |
           if ! git diff -s --exit-code; then
             jq ".version = \"$VERSION\"" jsr.json > tmp.json && mv tmp.json jsr.json
             git add jsr.json schema.json context.ts metaschema.ts
-            git commit -m "Update schema JSR distribution"
+            git commit -m "Update schema JSR distribution ($VERSION)"
             git push
           fi
       - name: Publish to JSR
-        if: success()
+        if: success() && steps.version.outputs.release == 'true'
         run: |
           npx jsr publish
