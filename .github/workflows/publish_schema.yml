@@ -35,10 +35,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: 3
+      - run: env
+      - run: git status
       - name: Determine master/maintenance branch
         id: branch
         run: |
-          if [[ "$GITHUB_REF" = "master" ]]; then
+          if [[ "$GITHUB_REF_NAME" = "master" ]]; then
             echo "branch=jsr-dist" | tee -a $GITHUB_OUTPUT
             echo "mode=dev" | tee -a $GITHUB_OUTPUT
           else
@@ -80,10 +82,10 @@ jobs:
             VERSION=${BASE/.post/+}
             jq ".version = \"$VERSION\"" jsr.json > tmp.json && mv tmp.json jsr.json
             echo release=true | tee -a $GITHUB_OUTPUT
-          elif [[ "$GITHUB_REF" = "master" ]]; then
+          elif [[ "$GITHUB_REF_NAME" = "master" ]]; then
             DENOVER=$( jq -r .version jsr.json )
             # Get the reference of the latest commit to touch the schema directory
-            HASH=$( git log -n 1 --pretty=%h $REF -- src/schema )
+            HASH=$( git log -n 1 --pretty=%h $GITHUB_REF -- src/schema )
             if [[ $DENOVER =~ ^"$BASE".[0-9] ]]; then
               PREFIX=${DENOVER%+*}
               let SERIAL=1+${PREFIX#$BASE.}
@@ -97,8 +99,6 @@ jobs:
           fi
           echo VERSION=$VERSION | tee -a $GITHUB_ENV
           echo version=$VERSION | tee -a $GITHUB_OUTPUT
-        env:
-          REF: ${{ github.ref }}
       - name: Bump version (${{ steps.version.outputs.version }}) if changed
         if: steps.version.outputs.release == 'true'
         run: |
