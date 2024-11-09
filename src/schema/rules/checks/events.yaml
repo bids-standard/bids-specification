@@ -15,7 +15,7 @@ EventsMissing:
     - '!match(entities.task, "rest")'
     - '!intersects([suffix], ["events", "beh"])'
     - extension != ".json"
-    - (datatype != "meg" || entities.subject != "emptyroom")
+    - datatype != "meg" || entities.subject != "emptyroom" && entities.task != "noise"
   checks:
     - '"events" in associations'
 
