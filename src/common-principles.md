@@ -387,7 +387,7 @@ Derivatives can be stored/distributed in two ways:
     that were used to generate the derivatives.
     Likewise, any code used to generate the derivatives from the source data
     MAY be included in the `code/` subdirectory.
-    Logs from running the code or other commands could be stored under `logs/` subdirectory.
+    Logs from running the code or other commands MAY be stored under `logs/` subdirectory.
 
     Example of a derivative dataset including the raw dataset as source:
 
