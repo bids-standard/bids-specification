@@ -53,14 +53,14 @@ Deno.test('generateTypes() supports generic array type', () => {
 Deno.test('generateTypes() supports typed array type', () => {
   const file = createSourceFile('test.ts')
   file.statements = generateTypes({
-    sub_dirs: {
+    dirs: {
       description: 'Subjects as determined by sub-*/ directories',
       type: 'array',
       items: { type: 'string' },
     },
   })
 
-  assertEquals(print(file), 'sub_dirs: string[];\n')
+  assertEquals(print(file), 'dirs: string[];\n')
 })
 
 // Object without defined properties
@@ -134,7 +134,7 @@ Deno.test('generateTypes() supports object trees', () => {
           description: 'Collections of subjects in dataset',
           type: 'object',
           properties: {
-            sub_dirs: {
+            dirs: {
               description: 'Subjects as determined by sub-*/ directories',
               type: 'array',
               items: { type: 'string' },
@@ -148,7 +148,7 @@ Deno.test('generateTypes() supports object trees', () => {
   assertEquals(
     print(file),
     `export interface DatasetSubjects {
-    sub_dirs: string[];
+    dirs: string[];
 }
 export interface Dataset {
     dataset_description: object;
