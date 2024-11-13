@@ -136,10 +136,13 @@ def pre_receive_hook(schema, input_, output):
     dataset_type = description.get("DatasetType", "raw")
     logger.info("Dataset type: %s", dataset_type)
 
-    ignore = [line.strip() for line in stream if line != "0001\n"]
+    ignore = []
+    for line in stream:
+        if line == "0001\n":
+            break
+        ignore.append(line.strip())
     logger.info("Ignore patterns found: %d", len(ignore))
 
-    schema = load_schema(schema)
     all_rules = chain.from_iterable(
         regexify_filename_rules(group, schema, level=2)
         for group in (schema.rules.files.common, schema.rules.files.raw)
