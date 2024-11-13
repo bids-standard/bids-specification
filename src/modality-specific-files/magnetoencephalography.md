@@ -343,7 +343,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("meg.MEGCoordsystemWithEEG") }}
+{{ MACROS___make_json_table("json.meg.MEGCoordsystemWithEEG") }}
 
 Head localization coils:
 
@@ -355,7 +355,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("meg.MEGCoordsystemHeadLocalizationCoils") }}
+{{ MACROS___make_json_table("json.meg.MEGCoordsystemHeadLocalizationCoils") }}
 
 Digitized head points:
 
@@ -367,7 +367,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("meg.MEGCoordsystemDigitizedHeadPoints") }}
+{{ MACROS___make_json_table("json.meg.MEGCoordsystemDigitizedHeadPoints") }}
 
 Anatomical MRI:
 
@@ -379,7 +379,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("meg.MEGCoordsystemAnatomicalMRI") }}
+{{ MACROS___make_json_table("json.meg.MEGCoordsystemAnatomicalMRI") }}
 
 Anatomical landmarks:
 
@@ -391,7 +391,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("meg.MEGCoordsystemAnatomicalLandmarks") }}
+{{ MACROS___make_json_table("json.meg.MEGCoordsystemAnatomicalLandmarks") }}
 
 It is also RECOMMENDED that the MRI voxel coordinates of the actual anatomical
 landmarks for co-registration of MEG with structural MRI are stored in the
@@ -419,7 +419,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("meg.MEGCoordsystemFiducialsInformation") }}
+{{ MACROS___make_json_table("json.meg.MEGCoordsystemFiducialsInformation") }}
 
 For more information on the definition of anatomical landmarks, please visit:
     [How are the Left and Right Pre-Auricular (LPA and RPA) points defined? - FieldTrip Toolbox](https://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined/)
@@ -428,6 +428,11 @@ For more information on typical coordinate systems for MEG-MRI coregistration:
     [How are the different head and MRI coordinate systems defined? - FieldTrip Toolbox](https://www.fieldtriptoolbox.org/faq/coordsys/)
 or:
 [Coordinate Systems - Brainstorm toolbox](https://neuroimage.usc.edu/brainstorm/CoordinateSystems)
+
+`*_coordsystem.json` files SHOULD NOT be duplicated for each data file,
+for example, across multiple tasks.
+The [inheritance principle](../common-principles.md#the-inheritance-principle) MUST
+be used to find the appropriate coordinate system description for a given data file.
 
 ## Landmark photos (`*_photo.<extension>`)
 

@@ -1,43 +1,106 @@
 ---
-SubjectRelativeIntendedFor:
+SubjectRelativeIntendedForString:
+  issue:
+    code: INTENDED_FOR
+    message: |
+      'IntendedFor' field needs to point to an existing file.
+      Files must be subject-relative paths or BIDS URIs.
+    level: error
   selectors:
     - datatype != "ieeg"
-    - type(sidecar.IntendedFor) != "null"
+    - type(sidecar.IntendedFor) == "string"
   checks:
-    - exists(sidecar.IntendedFor, "bids-uri") || exists(sidecar.IntendedFor, "subject")
+    - exists(sidecar.IntendedFor, "bids-uri") + exists(sidecar.IntendedFor, "subject") == 1
 
-DatasetRelativeIntendedFor:
+SubjectRelativeIntendedForArray:
+  issue:
+    code: INTENDED_FOR
+    message: |
+      'IntendedFor' field needs to point to an existing file.
+      Files must be subject-relative paths or BIDS URIs.
+    level: error
+  selectors:
+    - datatype != "ieeg"
+    - type(sidecar.IntendedFor) == "array"
+  checks:
+    - exists(sidecar.IntendedFor, "bids-uri") + exists(sidecar.IntendedFor, "subject") == length(sidecar.IntendedFor)
+
+DatasetRelativeIntendedForString:
+  issue:
+    code: INTENDED_FOR
+    message: |
+      'IntendedFor' field needs to point to an existing file.
+      Files must be dataset-relative paths or BIDS URIs.
+    level: error
   selectors:
     - datatype == "ieeg"
-    - type(sidecar.IntendedFor) != "null"
+    - type(sidecar.IntendedFor) == "string"
   checks:
-    - exists(sidecar.IntendedFor, "bids-uri") || exists(sidecar.IntendedFor, "dataset")
+    - exists(sidecar.IntendedFor, "bids-uri") + exists(sidecar.IntendedFor, "dataset") == 1
 
-AssociatedEmptyRoom:
+DatasetRelativeIntendedForArray:
+  issue:
+    code: INTENDED_FOR
+    message: |
+      'IntendedFor' field needs to point to an existing file.
+      Files must be dataset-relative paths or BIDS URIs.
+    level: error
   selectors:
-    - suffix == "meg"
-    - type(sidecar.AssociatedEmptyRoom) != "null"
+    - datatype == "ieeg"
+    - type(sidecar.IntendedFor) == "array"
   checks:
-    - exists(sidecar.AssociatedEmptyRoom, "bids-uri") || exists(sidecar.AssociatedEmptyRoom, "dataset")
+    - exists(sidecar.IntendedFor, "bids-uri") + exists(sidecar.IntendedFor, "dataset") == length(sidecar.IntendedFor)
 
-Stimuli:
+AssociatedEmptyRoomString:
+  issue:
+    code: ASSOCIATED_EMPTY_ROOM
+    message: |
+      'AssociatedEmptyRoom' field needs to point to an existing file.
+      Files must be dataset-relative paths or BIDS URIs.
+    level: error
   selectors:
-    - suffix == "events"
-    - extension == ".tsv"
-    - type(columns.stim_file) != "null"
+    - datatype == "meg"
+    - type(sidecar.AssociatedEmptyRoom) == "string"
   checks:
-    - exists(columns.stim_file, "stimuli")
+    - exists(sidecar.AssociatedEmptyRoom, "bids-uri") + exists(sidecar.AssociatedEmptyRoom, "dataset") == 1
+
+AssociatedEmptyRoomArray:
+  issue:
+    code: ASSOCIATED_EMPTY_ROOM
+    message: |
+      'AssociatedEmptyRoom' field needs to point to an existing file.
+      Files must be dataset-relative paths or BIDS URIs.
+    level: error
+  selectors:
+    - datatype == "meg"
+    - type(sidecar.AssociatedEmptyRoom) == "array"
+  checks:
+    - |
+      exists(sidecar.AssociatedEmptyRoom, "bids-uri") + exists(sidecar.AssociatedEmptyRoom, "dataset")
+      == length(sidecar.AssociatedEmptyRoom)
 
 Sources:
+  issue:
+    code: SOURCE_FILE_EXIST
+    message: |
+      'Sources' field needs to point to existing files.
+      Files must be dataset-relative paths or BIDS URIs.
+    level: error
   selectors:
     - dataset.dataset_description.DatasetType == "derivatives"
     - type(sidecar.Sources) != "null"
   checks:
-    - exists(sidecar.Sources, "bids-uri") || exists(sidecar.Sources, "dataset")
+    - exists(sidecar.Sources, "bids-uri") + exists(sidecar.Sources, "dataset") == length(sidecar.Sources)
 
-SpatialReferences:
-  selectors:
-    - dataset.dataset_description.DatasetType == "derivatives"
-    - type(sidecar.SpatialReference.URI) != "null"
-  checks:
-    - exists(sidecar.SpatialReference.URI, "bids-uri") || exists(sidecar.SpatialReference.URI, "dataset")
+## Verifying the existence of SpatialReferences is out-of-scope for schema validation
+## The ability to use any URI leaves this field too open-ended for effective validation, and the
+## object of key/URI pairs is worse.
+##
+## 2024.04.18 CJM & RWB
+#
+# SpatialReferencesString:
+#   selectors:
+#     - dataset.dataset_description.DatasetType == "derivatives"
+#     - type(sidecar.SpatialReference) == "string"
+#   checks:
+#     - exists(sidecar.SpatialReference, "bids-uri") + exists(sidecar.SpatialReference, "dataset") == 1

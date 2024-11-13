@@ -64,6 +64,7 @@ def test_rule_objects(schema_obj):
                 is_list = False
 
             for i_use, use in enumerate(instance):
+                assert isinstance(use, str)
                 if use == "derivatives":
                     # Skip derivatives dirs, because the dir is treated as a "use" instead.
                     continue
@@ -81,12 +82,29 @@ def test_rule_objects(schema_obj):
                     object_values = [
                         value["value"] for value in schema_obj["objects"][object_type].values()
                     ]
-                else:
+                elif object_type in [
+                    "columns",
+                    "common_principles",
+                    "datatypes",
+                    "entities",
+                    "enums",
+                    "files",
+                    "formats",
+                    "metadata",
+                    "modalities",
+                ]:
                     # But other object types are referenced via their keys
                     object_values = list(schema_obj["objects"][object_type].keys())
+                else:
+                    raise AssertionError(f"Object type {object_type} not implemented.")
 
                 # Build a list of items mentioned in rules, but not found in objects.
                 if use not in object_values:
+                    if (use, object_type) == ("phenotype", "datatypes"):
+                        # Special case: phenotype is a top-level directory
+                        # that acts like a datatype, but we don't want to
+                        # define it that way in the glossary, currently.
+                        continue
                     temp_path = path[:]
                     if is_list:
                         temp_path[-1] += f"[{i_use}]"

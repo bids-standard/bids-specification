@@ -208,7 +208,7 @@ def make_metadata_table(field_info, src_path=None):
 
     Parameters
     ----------
-    field_names : dict
+    field_info : dict
         A list of the field names.
         Field names correspond to filenames in the "metadata" directory of the
         schema.
@@ -230,6 +230,31 @@ def make_metadata_table(field_info, src_path=None):
 
     schema_obj = schema.load_schema()
     table = render.make_metadata_table(schema_obj, field_info, src_path=src_path)
+    return table
+
+
+def make_json_table(table_name, src_path=None):
+    """Generate a markdown table of metadata field information.
+
+    Parameters
+    ----------
+    table_name : str or list of str
+        Qualified name(s) in schema.rules.sidecars
+    src_path : str or None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
+
+    Returns
+    -------
+    table : str
+        A Markdown-format table containing the corresponding table for
+        the requested fields.
+    """
+    if src_path is None:
+        src_path = _get_source_path()
+
+    schema_obj = schema.load_schema()
+    table = render.make_json_table(schema_obj, table_name, src_path=src_path)
     return table
 
 

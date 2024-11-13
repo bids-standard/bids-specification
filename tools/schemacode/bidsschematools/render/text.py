@@ -175,17 +175,19 @@ def make_glossary(schema, src_path=None):
         elif obj["type"] == "format":
             text += f"**Regular expression**: `{obj_def['pattern']}`\n\n"
 
-        keys_to_drop = ["description", "display_name", "name", "value", "pattern"]
-        if "enum" in obj_def.keys():
-            allowed_values = []
-            keys_to_drop.append("enum")
-            for value in obj_def["enum"]:
-                if isinstance(value, str):
-                    allowed_values.append(value)
-                else:
-                    allowed_values.append(value["name"])
-
-            text += f"**Allowed values**: `{'`, `'.join(allowed_values)}`\n\n"
+        keys_to_drop = [
+            "description",
+            "display_name",
+            "name",
+            "value",
+            "pattern",
+            "enum",
+            "definition",
+        ]
+        levels = list(obj_def.get("enum", []) or obj_def.get("definition", {}).get("Levels", {}))
+        if levels:
+            levels = [level["name"] if isinstance(level, dict) else level for level in levels]
+            text += f"**Allowed values**: `{'`, `'.join(levels)}`\n\n"
 
         text += f"**Description**:\n{obj_desc}\n\n"
 
@@ -401,8 +403,8 @@ def make_filename_template(
 
             ext_headings = []
             for extension in extensions:
-                # The glossary indexes by the extension identifier (niigz instead of .nii.gz),
-                # but the rules reference the actual suffix string (.nii.gz instead of niigz),
+                # The glossary indexes by the extension identifier (nii_gz instead of .nii.gz),
+                # but the rules reference the actual suffix string (.nii.gz instead of nii_gz),
                 # so we need to look it up.
                 key = ext_key_table.get(extension)
                 if key:
@@ -558,10 +560,6 @@ def render_text(schema, key: str, src_path=None):
     ----------
     schema : dict
         The BIDS schema.
-
-    object : str
-        The object to render the description for:
-        possible values correspond to the keys in schema["objects"].
 
     key : str
         The key of the object to render the description for:
