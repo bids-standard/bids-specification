@@ -4,10 +4,13 @@ on:
   push:
     branches:
       - "master"
+      - "maint/*"
     tags:
       - "schema-*"
   pull_request:
     branches:
+      - "master"
+      - "maint/*"
       - "*"
 
 concurrency:
