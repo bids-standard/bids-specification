@@ -2,7 +2,7 @@
 # See https://pre-commit.com/hooks.html for more hooks
 ci:
   skip: [shellcheck]
-exclude: 'tools/schemacode/bidsschematools/tests/data/broken_dataset_description.json'
+exclude: 'tools/schemacode/src/bidsschematools/tests/data/broken_dataset_description.json'
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.6.0
@@ -83,7 +83,7 @@ repos:
           - types-jsonschema
           - jsonschema
           - httpx
-        args: ["tools/schemacode/bidsschematools"]
+        args: ["tools/schemacode/src"]
         pass_filenames: false
   - repo: https://github.com/koalaman/shellcheck-precommit
     rev: v0.10.0
