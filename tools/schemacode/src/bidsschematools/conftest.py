@@ -1,11 +1,7 @@
 import logging
 import tempfile
+from pathlib import Path
 from subprocess import run
-
-try:
-    from importlib.resources import as_file, files
-except ImportError:  # PY<3.9
-    from importlib_resources import as_file, files
 
 import pytest
 
@@ -35,23 +31,37 @@ BIDS_ERROR_SELECTION = [
 ]
 
 
+@pytest.fixture(scope="session")
+def tests_data_dir():
+    try:
+        this_file = Path(__file__)
+    except NameError:
+        return None
+
+    data_dir = this_file.parent.parent.parent / "tests" / "data"
+
+    if data_dir.exists():
+        return data_dir
+
+
 def get_gitrepo_fixture(url, whitelist):
     @pytest.fixture(scope="session")
-    def fixture():
+    def fixture(tests_data_dir):
+        if tests_data_dir is None:
+            pytest.skip("No test data directory found; probably in an installed package")
         archive_name = url.rsplit("/", 1)[-1]
-        testdata_dir = files("bidsschematools.tests.data") / archive_name
-        if testdata_dir.is_dir():
+        archive_dir = tests_data_dir / archive_name
+        if archive_dir.is_dir():
             lgr.info(
-                f"Found static testdata archive under `{testdata_dir}`. "
+                f"Found static testdata archive under `{archive_dir}`. "
                 "Not downloading latest data from version control."
             )
-            with as_file(testdata_dir) as path:
-                yield path
+            yield archive_dir
         else:
             lgr.info(
                 "No static testdata available under `%s`. "
                 "Attempting to fetch live data from version control.",
-                testdata_dir,
+                archive_dir,
             )
             with tempfile.TemporaryDirectory() as path:
                 lgr.debug("Cloning %r into %r", url, path)
