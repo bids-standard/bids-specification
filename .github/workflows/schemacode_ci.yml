@@ -90,14 +90,15 @@ jobs:
 
       - name: "Run tests"
         run: |
-          python -m pytest -vs --pyargs bidsschematools -m "not validate_schema" \
-              --cov-append --cov-report=xml --cov=bidsschematools --doctest-modules
+          python -m pytest -vs --doctest-modules -m "not validate_schema" \
+              --cov-append --cov-report=xml --cov-report=term --cov=src/bidsschematools
+        working-directory: tools/schemacode
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: unit_${{ matrix.os }}_${{ matrix.python-version }}
-          path: coverage.xml
+          path: tools/schemacode/coverage.xml
         if: success()
 
   publish:
@@ -146,13 +147,16 @@ jobs:
           python -m pip install -e ./tools/schemacode[all]
 
       - name: Run schema validation tests
-        run: python -m pytest --pyargs bidsschematools -m "validate_schema" --cov-append --cov-report=xml --cov=bidsschematools
+        run: |
+          python -m pytest -vs --doctest-modules -m "not validate_schema" \
+              --cov-append --cov-report=xml --cov-report=term --cov=src/bidsschematools
+        working-directory: tools/schemacode
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: schema_validation
-          path: coverage.xml
+          path: tools/schemacode/coverage.xml
         if: success()
 
   upload_to_codecov:
