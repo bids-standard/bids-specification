@@ -39,7 +39,9 @@ jobs:
         run: pip install --upgrade tools/schemacode[all]
         if: ${{ startsWith(github.ref, 'refs/tags/schema-') }}
       - name: "Build archive on tag"
-        run: pytest tools/schemacode/bidsschematools -k make_archive
+        run: |
+          python -m pytest -k make_archive
+        working-directory: tools/schemacode
         env:
           BIDSSCHEMATOOLS_RELEASE: 1
         if: ${{ startsWith(github.ref, 'refs/tags/schema-') }}
