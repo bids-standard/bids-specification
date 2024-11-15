@@ -21,7 +21,7 @@ have been formatted using this specification and can be used for practical guida
 
 ## Primary data file formats
 
-Unprocessed microelectrode electrophysiology (`icephys` and `ecephys` modalities) data must be stored in an [open file format](https://en.wikipedia.org/wiki/Open_format),
+Unprocessed microelectrode electrophysiology (`microephys`) modality data (of `icephys` or `ecephys` datatypes) must be stored in an [open file format](https://en.wikipedia.org/wiki/Open_format),
 while the native format, if different, can be stored in an optional  `sourcedata/` directory.
 The native file format is used in case conversion elicits the loss of crucial metadata specific to manufacturers and specific acquisition systems.
 Metadata should be included alongside the data in the `.json` and `.tsv` files.
