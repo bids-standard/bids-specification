@@ -2,16 +2,18 @@ version: 2
 
 build:
   os: ubuntu-lts-latest
-  apt_packages:
-    - jq
   tools:
     python: latest
   jobs:
     # The *_create_environment and post_install steps replace RTD's virtual environment
     # steps with uv, a much faster alternative to virtualenv+pip.
     pre_create_environment:
-      - asdf plugin add uv
+      # Install jq and uv
+      - asdf plugin add jq https://github.com/lsanwick/asdf-jq.git
+      - asdf plugin add uv https://github.com/asdf-community/asdf-uv.git
+      - asdf install jq latest
       - asdf install uv latest
+      - asdf global jq latest
       - asdf global uv latest
       # Turn `python -m virtualenv` into `python -c pass`
       - truncate --size 0 $( dirname $( uv python find ) )/../lib/python3*/site-packages/virtualenv/__main__.py
