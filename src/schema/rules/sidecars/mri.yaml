@@ -13,19 +13,24 @@ MRIHardware:
   fields:
     Manufacturer:
       level: recommended
-      description_addendum: Corresponds to DICOM Tag 0008, 0070 `Manufacturer`.
+      description_addendum: |
+        Corresponds to [DICOM Tag 0008, 0070](https://dicomlookup.com/dicomtags/(0008,0070)) `Manufacturer`.
     ManufacturersModelName:
       level: recommended
-      description_addendum: Corresponds to DICOM Tag 0008, 1090 `Manufacturers Model Name`.
+      description_addendum: |
+        Corresponds to [DICOM Tag 0008, 1090](https://dicomlookup.com/dicomtags/(0008,1090)) `Manufacturers Model Name`.
     DeviceSerialNumber:
       level: recommended
-      description_addendum: Corresponds to DICOM Tag 0018, 1000 `DeviceSerialNumber`.
+      description_addendum: |
+        Corresponds to [DICOM Tag 0018, 1000](https://dicomlookup.com/dicomtags/(0018,1000)) `DeviceSerialNumber`.
     StationName:
       level: recommended
-      description_addendum: Corresponds to DICOM Tag 0008, 1010 `Station Name`.
+      description_addendum: |
+        Corresponds to [DICOM Tag 0008, 1010](https://dicomlookup.com/dicomtags/(0008,1010)) `Station Name`.
     SoftwareVersions:
       level: recommended
-      description_addendum: Corresponds to DICOM Tag 0018, 1020 `Software Versions`.
+      description_addendum: |
+        Corresponds to [DICOM Tag 0018, 1020](https://dicomlookup.com/dicomtags/(0018,1020)) `Software Versions`.
     HardcopyDeviceSoftwareVersion: deprecated
     MagneticFieldStrength:
       level: recommended
@@ -62,7 +67,8 @@ MRISample:
   fields:
     BodyPart:
       level: optional
-      description_addendum: Corresponds to DICOM Tag 0018, 0015 `Body Part Examined`.
+      description_addendum: |
+        Corresponds to [DICOM Tag 0018, 0015](https://dicomlookup.com/dicomtags/(0018,0015)) `Body Part Examined`.
     BodyPartDetails: optional
     BodyPartDetailsOntology: optional
 
@@ -87,7 +93,8 @@ MRISequenceSpecifics:
         echo EPI"`.
     ScanningSequence:
       level: recommended
-      description_addendum: Corresponds to DICOM Tag 0018, 0020 `Scanning Sequence`.
+      description_addendum: |
+        Corresponds to [DICOM Tag 0018, 0020](https://dicomlookup.com/dicomtags/(0018,0020)) `Scanning Sequence`.
     SequenceVariant: recommended
     ScanOptions: recommended
     SequenceName: recommended
@@ -325,7 +332,7 @@ MRIFlipAngleLookLockerTrue:
           You should define 'FlipAngle' for this file, in
           case of a LookLocker acquisition. 'FlipAngle' is the
           flip angle (FA) for the acquisition, specified in degrees.
-          Corresponds to: DICOM Tag 0018, 1314 `Flip Angle`. The data
+          Corresponds to: [DICOM Tag 0018, 1314](https://dicomlookup.com/dicomtags/(0018,1314)) `Flip Angle`. The data
           type number may apply to files from any MRI modality concerned
           with a single value for this field, or to the files in a file
           collection where the value of this field is iterated using the
@@ -371,13 +378,17 @@ MRIInstitutionInformation:
   fields:
     InstitutionName:
       level: recommended
-      description_addendum: Corresponds to DICOM Tag 0008, 0080 `InstitutionName`.
+      description_addendum: |
+        Corresponds to [DICOM Tag 0008, 0080](https://dicomlookup.com/dicomtags/(0008,0080)) `InstitutionName`.
     InstitutionAddress:
       level: recommended
-      description_addendum: Corresponds to DICOM Tag 0008, 0081 `InstitutionAddress`.
+      description_addendum: |
+        Corresponds to [DICOM Tag 0008, 0081](https://dicomlookup.com/dicomtags/(0008,0081)) `InstitutionAddress`.
     InstitutionalDepartmentName:
       level: recommended
-      description_addendum: Corresponds to DICOM Tag 0008, 1040 `Institutional Department Name`.
+      description_addendum: |
+        Corresponds to [DICOM Tag 0008, 1040](https://dicomlookup.com/dicomtags/(0008,1040))
+        `Institutional Department Name`.
 
 DeidentificationMethod:
   selectors:
@@ -386,7 +397,10 @@ DeidentificationMethod:
   fields:
     DeidentificationMethod:
       level: optional
-      description_addendum: Corresponds to DICOM Tag 0012, 0063 `De-identification Method`.
+      description_addendum: |
+        Corresponds to [DICOM Tag 0012, 0063](https://dicomlookup.com/dicomtags/(0012,0063)) `De-identification Method`.
     DeidentificationMethodCodeSequence:
       level: optional
-      description_addendum: Corresponds to DICOM Tag 0012, 0064 `De-identification Method Code Sequence`.
+      description_addendum: |
+        Corresponds to [DICOM Tag 0012, 0064](https://dicomlookup.com/dicomtags/(0012,0064))
+        `De-identification Method Code Sequence`.
