@@ -173,7 +173,7 @@ jobs:
         uses: actions/download-artifact@v4
 
       - name: Upload to CodeCov
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}  # not required but might help API rate limits
           fail_ci_if_error: true
