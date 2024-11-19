@@ -220,6 +220,7 @@ anat_parametric_discrete_surface:
     $ref: rules.files.raw.anat.parametric.entities
     hemisphere: optional
     space: optional
+    segmentation: optional
     resolution: optional
     density: optional
     description: optional
@@ -237,6 +238,7 @@ anat_nonparametric_discrete_surface:
     $ref: rules.files.raw.anat.nonparametric.entities
     hemisphere: optional
     space: optional
+    segmentation: optional
     resolution: optional
     density: optional
     description: optional

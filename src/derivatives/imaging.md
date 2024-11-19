@@ -412,7 +412,10 @@ Template:
     sub-<label>/
         [ses-<label>/]
             anat/
-                <source_entities>[_hemi-{L|R}][_space-<space>][_seg-<label>][_res-<label>][_den-<label>][_desc-<label>]_dseg.{label.gii|dlabel.nii}
+                <source_entities>[_hemi-{L|R}][_space-<space>][_seg-<label>][_res-<label>][_den-<label>][_desc-<label>]_dseg.json
+                <source_entities>[_hemi-{L|R}][_space-<space>][_seg-<label>][_den-<label>][_desc-<label>]_dseg.label.gii
+                <source_entities>[_hemi-{L|R}][_space-<space>][_seg-<label>][_res-<label>][_den-<label>][_desc-<label>]_dseg.dlabel.nii
+                <source_entities>[_hemi-{L|R}][_space-<space>][_seg-<label>][_res-<label>][_den-<label>][_desc-<label>]_dseg.tsv
 ```
 
 The [`hemi-<label>`](../appendices/entities.md#hemi) entity is REQUIRED for GIFTI files storing information about
