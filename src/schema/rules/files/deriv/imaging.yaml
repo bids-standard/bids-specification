@@ -99,7 +99,6 @@ anat_parametric_discrete_segmentation:
   entities:
     $ref: rules.files.raw.anat.parametric.entities
     space: optional
-    atlas: optional
     resolution: optional
     density: optional
     description: optional
@@ -116,7 +115,6 @@ anat_nonparametric_discrete_segmentation:
   entities:
     $ref: rules.files.raw.anat.nonparametric.entities
     space: optional
-    atlas: optional
     resolution: optional
     density: optional
     description: optional
@@ -133,7 +131,6 @@ func_discrete_segmentation:
   entities:
     $ref: rules.files.raw.func.func.entities
     space: optional
-    atlas: optional
     resolution: optional
     density: optional
     description: optional
@@ -145,7 +142,6 @@ dwi_discrete_segmentation:
   entities:
     $ref: rules.files.raw.dwi.dwi.entities
     space: optional
-    atlas: optional
     resolution: optional
     density: optional
     description: optional
@@ -157,7 +153,6 @@ anat_parametric_probabilistic_segmentation:
   entities:
     $ref: rules.files.raw.anat.parametric.entities
     space: optional
-    atlas: optional
     resolution: optional
     density: optional
     label: optional
@@ -170,7 +165,6 @@ anat_nonparametric_probabilistic_segmentation:
   entities:
     $ref: rules.files.raw.anat.nonparametric.entities
     space: optional
-    atlas: optional
     resolution: optional
     density: optional
     label: optional
@@ -183,7 +177,6 @@ func_probabilistic_segmentation:
   entities:
     $ref: rules.files.raw.func.func.entities
     space: optional
-    atlas: optional
     resolution: optional
     density: optional
     label: optional
@@ -196,7 +189,6 @@ dwi_probabilistic_segmentation:
   entities:
     $ref: rules.files.raw.dwi.dwi.entities
     space: optional
-    atlas: optional
     resolution: optional
     density: optional
     label: optional
@@ -215,7 +207,6 @@ anat_parametic_discrete_surface:
     $ref: rules.files.raw.anat.parametric.entities
     hemisphere: optional
     space: optional
-    atlas: optional
     resolution: optional
     density: optional
     description: optional
@@ -233,7 +224,6 @@ anat_nonparametic_discrete_surface:
     $ref: rules.files.raw.anat.nonparametric.entities
     hemisphere: optional
     space: optional
-    atlas: optional
     resolution: optional
     density: optional
     description: optional
