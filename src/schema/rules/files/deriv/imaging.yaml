@@ -207,7 +207,7 @@ dwi_probabilistic_segmentation:
     - .nii
     - .json
 
-anat_parametic_discrete_surface:
+anat_parametric_discrete_surface:
   $ref: rules.files.raw.anat.parametric
   suffixes:
     - dseg
@@ -224,7 +224,7 @@ anat_parametic_discrete_surface:
     density: optional
     description: optional
 
-anat_nonparametic_discrete_surface:
+anat_nonparametric_discrete_surface:
   $ref: rules.files.raw.anat.nonparametric
   suffixes:
     - dseg
