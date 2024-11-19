@@ -6,11 +6,13 @@ Please see [Citing BIDS](../introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
-Several [example PET datasets](https://bids-standard.github.io/bids-examples/#pet)
-have been formatted using this specification
-and can be used for practical guidance when curating a new dataset.
+!!! example "Example datasets"
 
-Further PET datasets are available from [OpenNeuro](https://openneuro.org).
+    Several [example PET datasets](https://bids-standard.github.io/bids-examples/#pet)
+    have been formatted using this specification
+    and can be used for practical guidance when curating a new dataset.
+
+    Further PET datasets are available from [OpenNeuro](https://openneuro.org).
 
 ## Terminology and conventions
 
@@ -175,7 +177,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("pet.PETTime") }}
 
-We refer to the common principles for the standards for describing dates and timestamps, including possibilities for anonymization (see [Units](../common-principles.md#units)).
+We refer to the common principles for the standards for describing dates and timestamps, including possibilities for deidentification (see [Units](../common-principles.md#units)).
 
 #### Reconstruction
 
@@ -215,6 +217,43 @@ A guide for using macros can be found at
 -->
 
 {{ MACROS___make_sidecar_table("pet.PETInstitutionInformation") }}
+
+#### Tissue description
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("pet.PETSample") }}
+
+#### Deidentification information
+
+Describes the mechanism or method used to modify or remove metadata
+and/or pixel data to protect the patient or participant's identity.
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("mri.DeidentificationMethod") }}
+
+Each object in the `DeidentificationMethodCodeSequence` array includes the following RECOMMENDED keys:
+
+<!-- This block generates a table describing subfields within a metadata field.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_subobject_table("metadata.DeidentificationMethodCodeSequence.items") }}
 
 #### Task
 

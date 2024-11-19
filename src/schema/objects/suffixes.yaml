@@ -6,6 +6,11 @@ TwoPE:
   display_name: 2-photon excitation microscopy
   description: |
     2-photon excitation microscopy imaging data
+ADC:
+  value: ADC
+  display_name: Apparent diffusion coefficient (ADC)
+  description:
+    Apparent diffusion coefficient (ADC) map
 BF:
   value: BF
   display_name: Bright-field microscopy
@@ -42,6 +47,12 @@ DF:
   display_name: Dark-field microscopy
   description: |
     Dark-field microscopy imaging data
+FA:
+  value: FA
+  display_name: Fractional Anisotropy image
+  description: |
+    Scanner-generated derivative parametric map
+    reflecting the anisotropy of the diffusion tensor
 FLAIR:
   value: FLAIR
   display_name: Fluid attenuated inversion recovery image
@@ -228,10 +239,8 @@ PDw:
     In arbitrary units (arbitrary).
     The contrast of these images is mainly determined by spatial variations in
     the spin density (1H) of the imaged specimen.
-    In spin-echo sequences this contrast is achieved at short repetition and long
-    echo times.
-    In a gradient-echo acquisition, PD weighting dominates the contrast at long
-    repetition and short echo times, and at small flip angles.
+    This contrast is achieved at short echo times and long repetition times;
+    for gradient echo, this weighting is also possible with a short TR (TR<<T1) and a small flip angle.
   unit: arbitrary
 PLI:
   value: PLI
@@ -283,16 +292,25 @@ RB1map:
   unit: arbitrary
 S0map:
   value: S0map
-  display_name: Observed signal amplitude (S0) image
+  display_name: Projected baseline signal amplitude (S0) image
   description: |
     In arbitrary units (arbitrary).
-    For a multi-echo (typically fMRI) sequence, S0 maps index the baseline signal
-    before exponential (T2-star) signal decay.
+    This represents a model-based estimate of signal intensity
+    in the absence of the contrast under investigation.
+    For a multi-echo sequence
+    (for example, multi-echo spin echo T2 relaxometry or multi-echo fMRI),
+    S0 maps index the baseline signal at a hypothetical echo time of zero
+    (that is, in the absence of any T2 or T2-star decay).
     In other words: the exponential of the intercept for a linear decay model
     across log-transformed echos. For more information, please see, for example,
     [the tedana documentation](https://tedana.readthedocs.io/en/latest/\
     approach.html#monoexponential-decay-model-fit).
     S0 maps are RECOMMENDED to use this suffix if derived from an ME-FMRI dataset.
+    For a diffusion-weighted sequence,
+    S0 maps represent the model-based estimate of the signal intensity
+    in the absence of any diffusion weighting;
+    in other words, the image intensity at *b*=0
+    as estimated by a diffusion model fit.
 SEM:
   value: SEM
   display_name: Scanning electron microscopy
@@ -507,7 +525,7 @@ asllabeling:
   value: asllabeling
   display_name: ASL Labeling Screenshot
   description: |
-    An anonymized screenshot of the planning of the labeling slab/plane
+    A deidentified screenshot of the planning of the labeling slab/plane
     with respect to the imaging slab or slices.
     This screenshot is based on DICOM macro C.8.13.5.14.
 beh:
@@ -539,6 +557,15 @@ channels:
   display_name: Channels File
   description: |
     Channel information.
+colFA:
+  value: colFA
+  display_name: Colored Fractional Anisotropy image
+  description: |
+    Scanner-derived parametric map encoding both the anisotropy and principal direction of the diffusion tensor.
+    Image intensity is proportional to the Fractional Anisotropy (FA) measure;
+    image color is determined by the principal eigenvector of the diffusion tensor,
+    where red encodes the magnitude of the left-right component of that orientation,
+    with green and blue similarly encoding the anterior-posterior and inferior-superior components respectively.
 coordsystem:
   value: coordsystem
   display_name: Coordinate System File
@@ -551,6 +578,18 @@ defacemask:
   description: |
     A binary mask that was used to remove facial features from an anatomical MRI
     image.
+descriptions:
+  value: descriptions
+  display_name: Description Entity Definitions
+  description: |
+    A TSV file describing labels found for the `desc` entity in a Derivatives dataset.
+
+    This file MAY be located at the root of the derivative dataset,
+    or at the subject or session level.
+
+    The use of `descriptions.tsv` files together with the desc entity are helpful to
+    document how files are generated,
+    even if their use may not be sufficient to provide full computational reproducibility.
 dseg:
   value: dseg
   display_name: Discrete Segmentation
@@ -585,6 +624,12 @@ events:
   display_name: Events
   description: |
     Event timing information from a behavioral task.
+expADC:
+  value: expADC
+  display_name: Exponental ADC
+  description: |
+    Exponental ADC / Attenuation Coefficient / Attenuation Factor map,
+    as the ratio of trace-weighted to non-diffusion-weighted image intensity
 fieldmap:
   value: fieldmap
   display_name: Fieldmap
@@ -597,6 +642,11 @@ headshape:
   description: |
     The 3-D locations of points that describe the head shape and/or electrode
     locations can be digitized and stored in separate files.
+XPCT:
+  value: XPCT
+  display_name: X-ray Phase-Contrast Tomography
+  description: |
+    X-ray phase-contrast tomography imaging data
 ieeg:
   value: ieeg
   display_name: Intracranial Electroencephalography
@@ -668,10 +718,41 @@ motion:
   display_name: Motion
   description: |
     Data recorded from a tracking system store.
+mrsi:
+  value: mrsi
+  display_name: Magnetic resonance spectroscopy imaging
+  description: |
+    MRS acquisitions where additional imaging gradients are used
+    to detect the MR signal from 1, 2, or 3 spatial dimensions.
+mrsref:
+  value: mrsref
+  display_name: MRS reference acquisition
+  description: |
+    An MRS acquisition collected to serve as a concentration reference for absolute quantification
+    or as a calibration reference for preprocessing (for example, eddy-current correction).
 nirs:
   value: nirs
   display_name: Near Infrared Spectroscopy
   description: Data associated with a Shared Near Infrared Spectroscopy Format file.
+noRF:
+  value: noRF
+  display_name: No Radio Frequency Excitation Scan
+  description: |
+    An MR noise scan often acquired alongside another MR scan.
+
+    These noise scans are acquired by disabling the radio frequency excitation,
+    while maintaining all other parameters from the associated scan.
+    These can be acquired using some other sequence with RF excitation removed
+    or as part of sequences that turns off RF at the beginning or end of a run.
+    For example a `bold` scan where a few volumes are acquired with RF off.
+    There is no consistent DICOM denotation for these scans.
+
+    If multiple sequences with different suffixes but otherwise the same entities have `noRF`
+    sequences, they SHOULD be disambiguated using the modality entity
+    (for example, `mod-bold_noRF.nii.gz` and `mod-cbv_noRF.nii`).
+
+    `noRF` are typically used to estimate properties of the scanner and
+    sequence that are independent from the object being imaged.
 optodes:
   value: optodes
   display_name: Optodes
@@ -775,8 +856,24 @@ stim:
   display_name: Continuous recording
   description: |
     Continuous measures, such as parameters of a film or audio stimulus.
+svs:
+  value: svs
+  display_name: Single-voxel spectroscopy
+  description: |
+    MRS acquisitions where the detected MR signal is spatially localized to a single volume.
+trace:
+  value: trace
+  display_name: Trace-weighted diffusion image
+  description: |
+    Trace-weighted image, as the mean intensity of diffusion-weighted images
 uCT:
   value: uCT
   display_name: Micro-CT
   description: |
     Micro-CT imaging data
+unloc:
+  value: unloc
+  display_name: Unlocalized spectroscopy
+  description: |
+    MRS acquisitions run without localization.
+    This includes signals detected using coil sensitivity only.

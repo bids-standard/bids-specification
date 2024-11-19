@@ -38,6 +38,25 @@ timeseries:
     run: optional
     recording: optional
 
+timeseries__mri_no_task:
+  suffixes:
+    - physio
+    - stim
+  extensions:
+    - .tsv.gz
+    - .json
+  datatypes:
+    - dwi
+    - perf
+  entities:
+    subject: required
+    session: optional
+    acquisition: optional
+    run: optional
+    reconstruction: optional
+    direction: optional
+    recording: optional
+
 # Specializations
 # In these rules, we use $ref to retrieve most of an object, and then override
 
@@ -72,23 +91,37 @@ events__pet:
     reconstruction: optional
     run: optional
 
-timeseries__mri:
+events__mrs:
+  $ref: rules.files.raw.task.events
+  datatypes:
+    - mrs
+  entities:
+    $ref: rules.files.raw.task.events.entities
+    reconstruction: optional
+    nucleus: optional
+    volume: optional
+
+timeseries__anat:
   $ref: rules.files.raw.task.timeseries
   datatypes:
-    - dwi
-    - perf
+    - anat
   entities:
     $ref: rules.files.raw.task.timeseries.entities
+    ceagent: optional
     reconstruction: optional
-    direction: optional
+    echo: optional
+    part: optional
+    chunk: optional
 
 timeseries__func:
   $ref: rules.files.raw.task.timeseries
   datatypes:
     - func
   entities:
-    $ref: rules.files.raw.task.timeseries__mri.entities
+    $ref: rules.files.raw.task.timeseries.entities
     ceagent: optional
+    reconstruction: optional
+    direction: optional
 
 timeseries__meg:
   $ref: rules.files.raw.task.timeseries

@@ -174,6 +174,14 @@
         ],
         "name": "Ali Khan"
     },
+    "alizee_wickenheiser": {
+        "affiliation": "LORIS, MCIN, Montreal Neurological Institute, McGill University",
+        "contributions": [
+            "tool"
+        ],
+        "email": "alizee.wickenheiser@mcin.ca",
+        "name": "Alizee Wickenheiser"
+    },
     "ana_fouto": {
         "contributions": [
             "userTesting"
@@ -235,6 +243,16 @@
         ],
         "name": "Anthony Galassi",
         "orcid": "0000-0001-6550-4574"
+    },
+    "arianna_sala": {
+        "affiliation": "université de Liège, Belgium",
+        "blog": "https://www.coma.uliege.be/people/arianna-sala/",
+        "contributions": [
+            "doc"
+        ],
+        "email": "arianna.sala@uliege.be",
+        "name": "Arianna Sala",
+        "orcid": "0000-0001-8121-0891"
     },
     "arokem": {
         "affiliation": "University of Washington, Psychology, Seattle, WA, 98107, United States of America",
@@ -340,10 +358,17 @@
         "publish_email": true
     },
     "benjamin_dichter": {
+        "affiliation": "CatalystNeuro",
+        "blog": "https://bendichter.com/",
         "contributions": [
-            "doc"
+            "doc",
+            "code",
+            "test"
         ],
-        "name": "Benjamin Dichter"
+        "email": "ben.dichter@catalystneuro.com",
+        "github": "bendichter",
+        "name": "Benjamin Dichter",
+        "orcid": "0000-0001-5725-6910"
     },
     "benjamin_gagl": {
         "affiliation": "University of Vienna",
@@ -406,6 +431,15 @@
         ],
         "name": "Carlo Miniussi",
         "orcid": "0000-0002-5436-4745"
+    },
+    "cecile_madjar": {
+        "affiliation": "LORIS, MCIN, Montreal Neurological Institute, McGill University",
+        "contributions": [
+            "data",
+            "tool"
+        ],
+        "email": "cecile.madjar@mcin.ca",
+        "name": "Cecile Madjar"
     },
     "chloé_pasturel": {
         "contributions": [
@@ -953,7 +987,8 @@
             "tool",
             "eventOrganizing",
             "fundingFinding",
-            "infra"
+            "infra",
+            "talk"
         ],
         "name": "Franco Pestilli"
     },
@@ -1401,6 +1436,14 @@
         "name": "Jeanette Mumford",
         "publish_email": false
     },
+    "jefferson_casimir": {
+        "affiliation": "LORIS, MCIN, Montreal Neurological Institute, McGill University",
+        "contributions": [
+            "tool"
+        ],
+        "email": "jefferson.casimir@mcin.ca",
+        "name": "Jefferson Casimir"
+    },
     "jeffrey_g_ojemann": {
         "contributions": [
             "doc"
@@ -1737,6 +1780,14 @@
         ],
         "name": "Kurt Schilling"
     },
+    "laetitia_fesselier": {
+        "affiliation": "LORIS, MCIN, Montreal Neurological Institute, McGill University",
+        "contributions": [
+            "tool"
+        ],
+        "email": "laetitia.fesselier@mcin.ca",
+        "name": "Laetitia Fesselier"
+    },
     "laura_and_john_arnold_foundation": {
         "contributions": [
             "financial"
@@ -1907,12 +1958,16 @@
         "name": "Marie-Hélène Bourget"
     },
     "markmikkelsen": {
-        "affiliation": "Weill Cornell Medicine, Department of Radiology, New York, NY, 10021, USA",
-        "blog": "https://vivo.weill.cornell.edu/display/cwid-mam4041",
+        "affiliation": "Weill Cornell Medicine",
+        "blog": "https://mikkelsenlab.weill.cornell.edu/",
         "contributions": [
-            "doc"
+            "doc",
+            "code",
+            "data",
+            "review"
         ],
         "email": "mam4041@med.cornell.edu",
+        "github": "markmikkelsen",
         "name": "Mark Mikkelsen",
         "orcid": "0000-0002-0349-3782",
         "publish_email": true
@@ -2206,6 +2261,16 @@
             "doc"
         ],
         "name": "Nicole C. Swann"
+    },
+    "nbeliy": {
+        "affiliation": "University of Liege (Liege, Belgium)",
+        "contributions": [
+            "doc"
+        ],
+        "email": "nikita.beliy@uliege.be",
+        "github": "nbeliy",
+        "name": "Nikita Beliy",
+        "orcid": "0009-0002-0830-3279"
     },
     "nima_bigdely_shamlo": {
         "contributions": [
@@ -2522,6 +2587,16 @@
         ],
         "name": "Samuel Garcia"
     },
+    "SamGuay": {
+        "affiliation": "Université de Montréal, Montreal, Québec, CA",
+        "contributions": [
+            "doc"
+        ],
+        "email": "samuel.guay@umontreal.ca",
+        "github": "SamGuay",
+        "name": "Samuel Guay",
+        "orcid": "0000-0001-6990-839X"
+    },
     "snastase": {
         "affiliation": "Princeton University",
         "blog": "https://snastase.github.io/",
@@ -2648,6 +2723,20 @@
             "doc"
         ],
         "name": "Stephan Bickel"
+    },
+    "smeisler": {
+        "affiliation": "Program in Speech and Hearing Bioscience and Technology, Harvard University",
+        "contributions": [
+            "bug",
+            "code",
+            "question",
+            "tool",
+            "userTesting"
+        ],
+        "email": "smeisler@g.harvard.edu",
+        "github": "smeisler",
+        "name": "Steven Meisler",
+        "orcid": "0000-0002-8888-1572"
     },
     "suyashdb": {
         "blog": "https://www.linkedin.com/in/suyashb/",
@@ -2907,6 +2996,15 @@
         "name": "Tristan Glatard",
         "orcid": "0000-0003-2620-5883"
     },
+    "tyler_collins": {
+        "affiliation": "BrockU, LORIS, MCIN, Montreal Neurological Institute, McGill University",
+        "contributions": [
+            "data",
+            "tool"
+        ],
+        "email": "tyler.collins@mcin.ca",
+        "name": "Tyler Collins"
+    },
     "ulrike_bingel": {
         "contributions": [
             "doc"
@@ -2947,6 +3045,14 @@
         ],
         "name": "Vittorio Iacovella",
         "orcid": "0000-0002-0853-1573"
+    },
+    "viviana_siless": {
+        "affiliation": "Business School, Universidad Torcuato di Tella",
+        "contributions": [
+            "doc"
+        ],
+        "email": "viviana.siless@utdt.edu",
+        "name": "Viviana Siless"
     },
     "vladimir_litvak": {
         "affiliation": "UCL Queen Square Institute of Neurology",
@@ -3006,7 +3112,14 @@
             "tool",
             "question",
             "bug",
-            "code"
+            "code",
+            "data",
+            "fundingFinding",
+            "ideas",
+            "plugin",
+            "review",
+            "userTesting",
+            "infra"
         ],
         "email": "debian@onerussian.com",
         "name": "Yaroslav O. Halchenko",

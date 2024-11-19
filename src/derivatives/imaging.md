@@ -155,10 +155,9 @@ Template:
 
 A binary (1 - inside, 0 - outside) mask in the space defined by the [`space` entity](../appendices/entities.md#space).
 If no transformation has taken place, the value of `space` SHOULD be set to `orig`.
-If the mask is an ROI mask derived from an atlas, then the [`label` entity](../appendices/entities.md#label)) SHOULD
-be used to specify the masked structure
-(see [Common image-derived labels](#common-image-derived-labels)),
-and the `Atlas` metadata SHOULD be defined.
+If the mask is an ROI mask derived from an atlas segmentation,
+then the [`label` entity](../appendices/entities.md#label) SHOULD be used to specify the masked structure
+(see [Common image-derived labels](#common-image-derived-labels)).
 
 JSON metadata fields:
 
@@ -172,7 +171,6 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table([
        "derivatives.common_derivatives.MaskDerivatives",
-       "derivatives.common_derivatives.MaskDerivativesAtlas",
        "derivatives.common_derivatives.ImageDerivativeResEntity",
        "derivatives.common_derivatives.ImageDerivativeDenEntity",
    ]) }}
@@ -231,10 +229,10 @@ structure may be concatenated in a single file.
 Segmentations may be defined in a volume (labeled voxels), a surface (labeled
 vertices) or a combined volume/surface space.
 
-If the segmentation can be derived from different atlases,
-the [`atlas` entity](../appendices/entities.md#atlas) MAY be used to
-distinguish the different segmentations.
-If so, the `Atlas` metadata SHOULD also be defined.
+If the segmentation can be generated in different ways,
+for example, following an atlas segmentation,
+the [`seg` entity](../appendices/entities.md#segmentation) MAY be used to
+distinguish the name of the segmentation used.
 
 The following section describes discrete and probabilistic segmentations of
 volumes, followed by discrete segmentations of surface/combined spaces.
@@ -252,7 +250,6 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table([
        "derivatives.common_derivatives.SegmentationCommon",
-       "derivatives.common_derivatives.SegmentationCommonAtlas",
        "derivatives.common_derivatives.ImageDerivativeResEntity",
        "derivatives.common_derivatives.ImageDerivativeDenEntity",
    ]) }}
@@ -271,7 +268,7 @@ Template:
     sub-<label>/
         [ses-<label>/]
             anat|func|dwi/
-                <source_entities>[_space-<space>][_atlas-<label>][_res-<label>][_den-<label>][_desc-<label>]_dseg.nii.gz
+                <source_entities>[_space-<space>][_seg-<label>][_res-<label>][_den-<label>][_desc-<label>]_dseg.nii.gz
 ```
 
 Example:
@@ -296,11 +293,10 @@ A guide for using macros can be found at
 A segmentation can be used to generate a binary mask that functions as a
 discrete "label" for a single structure.
 In this case, the mask suffix MUST be used,
-the [`label` entity](../appendices/entities.md#label)) SHOULD be used
+the [`label` entity](../appendices/entities.md#label) SHOULD be used
 to specify the masked structure
 (see [Common image-derived labels](#common-image-derived-labels)),
-the [`atlas` entity](../appendices/entities.md#atlas) and the
-`Atlas` metadata SHOULD be defined.
+and the [`seg` entity](../appendices/entities.md#segmentation) SHOULD be defined.
 
 For example:
 
@@ -313,8 +309,8 @@ A guide for using macros can be found at
     "pipeline": {
         "sub-001": {
             "anat": {
-                "sub-001_space-orig_atlas-Desikan_label-GM_mask.nii.gz": "",
-                "sub-001_space-orig_atlas-Desikan_label-GM_mask.json": "",
+                "sub-001_space-orig_seg-Desikan_label-GM_mask.nii.gz": "",
+                "sub-001_space-orig_seg-Desikan_label-GM_mask.json": "",
                 },
             },
         }
@@ -337,7 +333,7 @@ Template:
     sub-<label>/
         [ses-<label>/]
             func|anat|dwi/
-                <source_entities>[_space-<space>][_atlas-<label>][_res-<label>][_den-<label>][_label-<label>][_desc-<label>]_probseg.nii.gz
+                <source_entities>[_space-<space>][_seg-<label>][_res-<label>][_den-<label>][_label-<label>][_desc-<label>]_probseg.nii.gz
 ```
 
 Example:
@@ -412,7 +408,7 @@ Template:
     sub-<label>/
         [ses-<label>/]
             anat/
-                <source_entities>[_hemi-{L|R}][_space-<space>][_atlas-<label>][_res-<label>][_den-<label>][_desc-<label>]_dseg.{label.gii|dlabel.nii}
+                <source_entities>[_hemi-{L|R}][_space-<space>][_seg-<label>][_res-<label>][_den-<label>][_desc-<label>]_dseg.{label.gii|dlabel.nii}
 ```
 
 The [`hemi-<label>`](../appendices/entities.md#hemi) entity is REQUIRED for GIFTI files storing information about

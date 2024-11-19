@@ -1,15 +1,29 @@
 ---
 NASamplingFreq:
+  issue:
+    code: NIRS_SAMPLING_FREQUENCY
+    message: |
+      Sampling frequency must be defined in the sidecar, or else as a sampling_frequency
+      column of channels.tsv.
+    level: error
   selectors:
     - suffix == "nirs"
-    - samplingFrequency == "n/a"
+    - sidecar.SamplingFrequency == "n/a"
   checks:
     - associations.channels.sampling_frequency != null
 
 NIRSChannelCount:
+  issue:
+    code: NIRS_CHANNEL_COUNT
+    message: |
+      NIRSChannelCount metadata must equal the number of channels with type NIRS*,
+      as listed in channels.tsv.
+    level: error
   selectors:
     - datatype == "nirs"
     - suffix == "nirs"
+    - match(extension, '\.nii(\.gz)?$')
+    - type(sidecar.NIRSChannelCount) != 'null'
   checks:
     - |
       sidecar.NIRSChannelCount
@@ -21,74 +35,131 @@ NIRSChannelCount:
       +  count(associations.channels.type, "NIRSCWMUA")
 
 ACCELChannelCountReq:
+  issue:
+    code: ACCEL_CHANNEL_COUNT
+    message: |
+      ACCELChannelCount metadata must equal the number of channels with type ACCEL,
+      as listed in channels.tsv.
+    level: error
   selectors:
     - suffix == "nirs"
+    - count(associations.channels.type, "ACCEL") > 0
   checks:
     - sidecar.ACCELChannelCount == count(associations.channels.type, "ACCEL")
 
 GYROChannelCountReq:
+  issue:
+    code: GYRO_CHANNEL_COUNT
+    message: |
+      GYROChannelCount metadata must equal the number of channels with type GYRO,
+      as listed in channels.tsv.
+    level: error
   selectors:
     - suffix == "nirs"
+    - count(associations.channels.type, "GYRO") > 0
   checks:
     - sidecar.GYROChannelCount == count(associations.channels.type, "GYRO")
 
 MAGNChannelCountReq:
+  issue:
+    code: MAGN_CHANNEL_COUNT
+    message: |
+      MAGNChannelCount metadata must equal the number of channels with type MAGN,
+      as listed in channels.tsv.
+    level: error
   selectors:
     - suffix == "nirs"
+    - count(associations.channels.type, "MAGN") > 0
   checks:
     - sidecar.MAGNChannelCount == count(associations.channels.type, "MAGN")
 
 ShortChannelCountReq:
+  issue:
+    code: SHORT_CHANNEL_COUNT
+    message: |
+      ShortChannelCount metadata must equal the number of channels with the value `true`
+      in the `short_channel` column of channels.tsv.
+    level: error
   selectors:
     - suffix == "nirs"
+    - '"ShortChannelCount" in sidecar'
   checks:
-    - sidecar.ShortChannelCount == count(associations.channels.short_channel, true)
+    - sidecar.ShortChannelCount == count(associations.channels.short_channel, "true")
 
 Component:
+  issue:
+    code: COMPONENT_COLUMN_REQUIRED
+    message: |
+      ACCEL, GYRO, and MAGN columns require a `component` column in channels.tsv.
+    level: error
   selectors:
     - datatype == "nirs"
     - suffix == "channels"
     - extension == ".tsv"
-    - intersect(columns.type, ["ACCEL", "GYRO", "MAGN"])
+    - intersects(columns.type, ["ACCEL", "GYRO", "MAGN"])
   checks:
     - columns.component != null
 
-RequiredChannels:
+RecommendedChannels:
+  issue:
+    code: NIRS_RECOMMENDED_CHANNELS
+    message: |
+      NIRS files SHOULD have an associated channels.tsv file.
+    level: warning
   selectors:
-    - datatype == "nirs"
-    - suffix == "optodes"
-    - extension == ".tsv"
+    - suffix == "nirs"
+    - extension == ".snirf"
   checks:
     - associations.channels != null
 
 RequiredTemplateX:
+  issue:
+    code: REQUIRED_TEMPLATE_X
+    message: |
+      The `template_x` column MUST be defined if the `x` column is `n/a`.
+    level: error
   selectors:
     - datatype == "nirs"
     - suffix == "optodes"
     - extension == ".tsv"
-    - intersect(columns.x, ["n/a"])
+    - intersects(columns.x, ["n/a"])
   checks:
     - columns.template_x != null
 
 RequiredTemplateY:
+  issue:
+    code: REQUIRED_TEMPLATE_Y
+    message: |
+      The `template_y` column MUST be defined if the `y` column is `n/a`.
+    level: error
   selectors:
     - datatype == "nirs"
     - suffix == "optodes"
     - extension == ".tsv"
-    - intersect(columns.y, ["n/a"])
+    - intersects(columns.y, ["n/a"])
   checks:
     - columns.template_y != null
 
 RequiredTemplateZ:
+  issue:
+    code: REQUIRED_TEMPLATE_Z
+    message: |
+      The `template_z` column MUST be defined if the `z` column is `n/a`.
+    level: error
   selectors:
     - datatype == "nirs"
     - suffix == "optodes"
     - extension == ".tsv"
-    - intersect(columns.z, ["n/a"])
+    - intersects(columns.z, ["n/a"])
   checks:
     - columns.template_z != null
 
 RequiredCoordsystem:
+  issue:
+    code: REQUIRED_COORDSYSTEM
+    message: |
+      If an optodes.tsv file is provided, an associated coordsystem.json must also be present.
+    level: error
   selectors:
     - datatype == "nirs"
     - suffix == "optodes"

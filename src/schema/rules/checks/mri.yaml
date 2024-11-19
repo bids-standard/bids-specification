@@ -3,8 +3,7 @@ PhasePartUnits:
   issue:
     code: PHASE_UNITS
     message: |
-      Phase images (with the `part-phase` entity) must have units
-      "rad" or "arbitrary".
+      Phase images (with the `part-phase` entity) must have units "rad" or "arbitrary".
     level: error
   selectors:
     - modality == "mri"
@@ -18,10 +17,10 @@ EchoTimeGreaterThan:
   issue:
     code: ECHO_TIME_GREATER_THAN
     message: |
-      'EchoTime' is greater than 1 are you sure it's expressed in seconds?
+      'EchoTime' is greater than 1. Are you sure it's expressed in seconds?
     level: warning
   selectors:
-    - modality == "MRI"
+    - modality == "mri"
     - sidecar.EchoTime
   checks:
     - sidecar.EchoTime <= 1
@@ -31,10 +30,10 @@ TotalReadoutTimeGreaterThan:
   issue:
     code: TOTAL_READOUT_TIME_GREATER_THAN
     message: |
-      'TotalReadoutTime' is greater than 10 are you sure it's expressed in seconds?
+      'TotalReadoutTime' is greater than 10. Are you sure it's expressed in seconds?
     level: warning
   selectors:
-    - modality == "MRI"
+    - modality == "mri"
     - sidecar.TotalReadoutTime
   checks:
     - sidecar.TotalReadoutTime <= 10
@@ -47,7 +46,7 @@ EffectiveEchoSpacingTooLarge:
       Abnormally high value of 'EffectiveEchoSpacing'.
     level: error
   selectors:
-    - modality == "MRI"
+    - modality == "mri"
     - type(sidecar.RepetitionTime) != "null"
     - type(sidecar.EffectiveEchoSpacing) != "null"
     - type(sidecar.PhaseEncodingDirection) != "null"
@@ -64,25 +63,43 @@ SliceTimingElements:
   issue:
     code: SLICETIMING_ELEMENTS
     message: |
-      The number of elements in the SliceTiming array should match the 'k'
+      The number of elements in the 'SliceTiming' array should match the 'k'
       dimension of the corresponding NIfTI volume.
     level: warning
   selectors:
-    - modality == "MRI"
+    - modality == "mri"
     - type(sidecar.SliceTiming) != "null"
     - type(nifti_header) != "null"
+    - type(sidecar.SliceEncodingDirection) == 'null'
   checks:
     - length(sidecar.SliceTiming) == nifti_header.dim[3]
+
+SliceTimingElementsWithDirection:
+  issue:
+    code: SLICETIMING_ELEMENTS
+    message: |
+      The number of elements in the 'SliceTiming' array should match the dimension
+      of the corresponding NIfTI volume matching `SliceEncodingDirection`
+    level: warning
+  selectors:
+    - modality == "mri"
+    - type(sidecar.SliceTiming) != "null"
+    - type(nifti_header) != "null"
+    - sidecar.SliceEncodingDirection
+  checks:
+    - sidecar.SliceEncodingDirection[0] != "i" || length(sidecar.SliceTiming) == nifti_header.dim[1]
+    - sidecar.SliceEncodingDirection[0] != "j" || length(sidecar.SliceTiming) == nifti_header.dim[2]
+    - sidecar.SliceEncodingDirection[0] != "k" || length(sidecar.SliceTiming) == nifti_header.dim[3]
 
 # 93
 EESGreaterThanTRT:
   issue:
     code: EFFECTIVEECHOSPACING_LARGER_THAN_TOTALREADOUTTIME
     message: |
-      EffectiveEchoSpacing should always be smaller than TotalReadoutTime.
+      'EffectiveEchoSpacing' should always be smaller than 'TotalReadoutTime'.
     level: error
   selectors:
-    - modality == "MRI"
+    - modality == "mri"
     - sidecar.EffectiveEchoSpacing != null
     - sidecar.TotalReadoutTime != null
   checks:
@@ -96,10 +113,10 @@ VolumeTimingNotMonotonicallyIncreasing:
       'VolumeTiming' is not monotonically increasing.
     level: error
   selectors:
-    - modality == "MRI"
+    - modality == "mri"
     - sidecar.VolumeTiming != null
   checks:
-    - sorted(sidecar.VolumeTiming) == sidecar.VolumeTiming
+    - allequal(sorted(sidecar.VolumeTiming), sidecar.VolumeTiming)
 
 # 192
 BolusCutOffDelayTimeNotMonotonicallyIncreasing:
@@ -109,10 +126,10 @@ BolusCutOffDelayTimeNotMonotonicallyIncreasing:
       'BolusCutOffDelayTime' is not monotonically increasing.
     level: error
   selectors:
-    - modality == "MRI"
-    - sidecar.BolusCutoffDelayTime != null
+    - modality == "mri"
+    - type(sidecar.BolusCutOffDelayTime) == 'array'
   checks:
-    - sorted(sidecar.BolusCutoffDelayTime) == sidecar.BolusCutoffDelayTime
+    - allequal(sorted(sidecar.BolusCutOffDelayTime), sidecar.BolusCutOffDelayTime)
 
 # 201
 RepetitionTimePreparationNotConsistent:
@@ -123,7 +140,7 @@ RepetitionTimePreparationNotConsistent:
       not match the 4th dimension of the NIfTI header.
     level: error
   selectors:
-    - modality == "MRI"
+    - modality == "mri"
     - type(sidecar.RepetitionTimePreparation) == "array"
     - type(nifti_header) != "null"
   checks:

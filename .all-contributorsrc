@@ -194,6 +194,13 @@
         },
         {
             "contributions": [
+                "tool"
+            ],
+            "login": "alizee_wickenheiser",
+            "name": "Alizee Wickenheiser"
+        },
+        {
+            "contributions": [
                 "userTesting"
             ],
             "login": "ana_fouto",
@@ -266,6 +273,14 @@
             "login": "bendhouseart",
             "name": "Anthony Galassi",
             "profile": "https://github.com/bendhouseart"
+        },
+        {
+            "contributions": [
+                "doc"
+            ],
+            "login": "arianna_sala",
+            "name": "Arianna Sala",
+            "profile": "https://www.coma.uliege.be/people/arianna-sala/"
         },
         {
             "avatar_url": [
@@ -376,10 +391,13 @@
         },
         {
             "contributions": [
-                "doc"
+                "doc",
+                "code",
+                "test"
             ],
             "login": "benjamin_dichter",
-            "name": "Benjamin Dichter"
+            "name": "Benjamin Dichter",
+            "profile": "https://bendichter.com/"
         },
         {
             "contributions": [
@@ -442,6 +460,14 @@
             ],
             "login": "carlo_miniussi",
             "name": "Carlo Miniussi"
+        },
+        {
+            "contributions": [
+                "data",
+                "tool"
+            ],
+            "login": "cecile_madjar",
+            "name": "Cecile Madjar"
         },
         {
             "contributions": [
@@ -1002,7 +1028,8 @@
                 "tool",
                 "eventOrganizing",
                 "fundingFinding",
-                "infra"
+                "infra",
+                "talk"
             ],
             "login": "francopestilli",
             "name": "Franco Pestilli",
@@ -1463,6 +1490,13 @@
         },
         {
             "contributions": [
+                "tool"
+            ],
+            "login": "jefferson_casimir",
+            "name": "Jefferson Casimir"
+        },
+        {
+            "contributions": [
                 "doc"
             ],
             "login": "jeffrey_g_ojemann",
@@ -1801,6 +1835,13 @@
         },
         {
             "contributions": [
+                "tool"
+            ],
+            "login": "laetitia_fesselier",
+            "name": "Laetitia Fesselier"
+        },
+        {
+            "contributions": [
                 "financial"
             ],
             "login": "laura_and_john_arnold_foundation",
@@ -1969,11 +2010,14 @@
         {
             "avatar_url": "https://avatars.githubusercontent.com/u/6051303?v=4",
             "contributions": [
-                "doc"
+                "doc",
+                "code",
+                "data",
+                "review"
             ],
             "login": "markmikkelsen",
             "name": "Mark Mikkelsen",
-            "profile": "https://vivo.weill.cornell.edu/display/cwid-mam4041"
+            "profile": "https://mikkelsenlab.weill.cornell.edu/"
         },
         {
             "contributions": [
@@ -2272,6 +2316,13 @@
             ],
             "login": "nicole_c_swann",
             "name": "Nicole C. Swann"
+        },
+        {
+            "contributions": [
+                "doc"
+            ],
+            "login": "nbeliy",
+            "name": "Nikita Beliy"
         },
         {
             "contributions": [
@@ -2607,6 +2658,13 @@
             "name": "Samuel Garcia"
         },
         {
+            "contributions": [
+                "doc"
+            ],
+            "login": "SamGuay",
+            "name": "Samuel Guay"
+        },
+        {
             "avatar_url": [
                 "https://avatars.githubusercontent.com/u/3496566?v=4"
             ],
@@ -2727,6 +2785,17 @@
             ],
             "login": "stephan_bickel",
             "name": "Stephan Bickel"
+        },
+        {
+            "contributions": [
+                "bug",
+                "code",
+                "question",
+                "tool",
+                "userTesting"
+            ],
+            "login": "smeisler",
+            "name": "Steven Meisler"
         },
         {
             "avatar_url": "https://avatars.githubusercontent.com/u/11152799?v=4",
@@ -2989,6 +3058,14 @@
         },
         {
             "contributions": [
+                "data",
+                "tool"
+            ],
+            "login": "tyler_collins",
+            "name": "Tyler Collins"
+        },
+        {
+            "contributions": [
                 "doc"
             ],
             "login": "ulrike_bingel",
@@ -3029,6 +3106,13 @@
             ],
             "login": "viacovella",
             "name": "Vittorio Iacovella"
+        },
+        {
+            "contributions": [
+                "doc"
+            ],
+            "login": "viviana_siless",
+            "name": "Viviana Siless"
         },
         {
             "contributions": [
@@ -3091,7 +3175,14 @@
                 "tool",
                 "question",
                 "bug",
-                "code"
+                "code",
+                "data",
+                "fundingFinding",
+                "ideas",
+                "plugin",
+                "review",
+                "userTesting",
+                "infra"
             ],
             "login": "yarikoptic",
             "name": "Yaroslav O. Halchenko",

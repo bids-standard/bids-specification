@@ -5,14 +5,17 @@ EventsMissing:
   issue:
     code: EVENTS_TSV_MISSING
     message: |
-      Task scans should have a corresponding events.tsv file.
+      Task scans should have a corresponding 'events.tsv' file.
       If this is a resting state scan you can ignore this warning or rename the task to include the word "rest".
     level: warning # could be an error with the proper selectors, I think
   selectors:
     - dataset.dataset_description.DatasetType == "raw"
+    - datatype != "beh"
     - '"task" in entities'
     - '!match(entities.task, "rest")'
-    - suffix != "events"
+    - '!intersects([suffix], ["events", "beh"])'
+    - extension != ".json"
+    - datatype != "meg" || entities.subject != "emptyroom" && entities.task != "noise"
   checks:
     - '"events" in associations'
 
@@ -23,7 +26,20 @@ StimulusFileMissing:
       A stimulus file was declared but not found in the dataset.
     level: error
   selectors:
-    - suffix == "events"
+    - intersects([suffix], ["events", "beh"])
     - columns.stim_file != null
   checks:
-    - exists(columns.stim_file, "stimuli") == length(columns.stim_file)
+    - exists(columns.stim_file, "stimuli") == length(columns.stim_file) - count(columns.stim_file, "n/a")
+
+SortedOnsets:
+  issue:
+    code: EVENT_ONSET_ORDER
+    message: |
+      The onset column in events.tsv files should be sorted.
+    level: warning
+  selectors:
+    - suffix == "events"
+    - extension == ".tsv"
+  checks:
+    # n/a values will likely cause false alarms if encountered. Consider alternatives.
+    - allequal(sorted(columns.onset, "numeric"), columns.onset)

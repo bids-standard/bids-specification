@@ -41,6 +41,9 @@ data_type:
         12. `nirs` (near infrared spectroscopy)
 
         13. `motion` (motion)
+
+        14. `mrs` (magnetic resonance spectroscopy)
+
 dataset:
   display_name: Dataset
   description: |

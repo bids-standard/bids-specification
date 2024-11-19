@@ -45,6 +45,7 @@ coordsystem:
   entities:
     subject: required
     session: optional
+    task: optional
     acquisition: optional
 
 # (i)EEG has a space entity
@@ -69,8 +70,19 @@ electrodes:
   entities:
     subject: required
     session: optional
+    task: optional
     acquisition: optional
+    run: optional
     space: optional
+
+# MEG has an additional entity available
+electrodes__meg:
+  $ref: rules.files.raw.channels.electrodes
+  datatypes:
+    - meg
+  entities:
+    $ref: rules.files.raw.channels.electrodes.entities
+    processing: optional
 
 optodes:
   suffixes:

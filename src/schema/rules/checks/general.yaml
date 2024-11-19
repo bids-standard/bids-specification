@@ -5,7 +5,7 @@ DuplicateFiles:
   issue:
     code: DUPLICATE_FILES
     message: |
-      File exists with and without `.gz` extension
+      File exists with and without `.gz` extension.
     level: error
   selectors:
     - match(extension, '\.gz$')
@@ -16,10 +16,22 @@ ReadmeFileSmall:
   issue:
     code: README_FILE_SMALL
     message: |
-      The recommended file /README is very small. Please consider expanding it
-      with additional information about the dataset.
+      The recommended file '/README' is very small.
+      Please consider expanding it with additional information about the dataset.
     level: warning
   selectors:
-    - match(path, '^README')
+    - match(path, '^/README')
   checks:
     - size > 150
+
+DuplicateReadmes:
+  issue:
+    code: MULTIPLE_README_FILES
+    message: |
+      There are multiple '/README' files (with different extensions) in this BIDS
+      dataset. Only one '/README' file should exist.
+    level: error
+  selectors:
+    - match(path, '^/README.*')
+  checks:
+    - exists(["README", "README.md", "README.rst", "README.txt"], "dataset") == 1

@@ -7,7 +7,6 @@
 ---
 EEGHardware:
   selectors:
-    - modality == "eeg"
     - datatype == "eeg"
     - suffix == "eeg"
   fields:
@@ -18,7 +17,6 @@ EEGHardware:
 
 EEGTaskInformation:
   selectors:
-    - modality == "eeg"
     - datatype == "eeg"
     - suffix == "eeg"
   fields:
@@ -38,7 +36,6 @@ EEGTaskInformation:
 
 EEGInstitutionInformation:
   selectors:
-    - modality == "eeg"
     - datatype == "eeg"
     - suffix == "eeg"
   fields:
@@ -46,9 +43,9 @@ EEGInstitutionInformation:
     InstitutionAddress: recommended
     InstitutionalDepartmentName: recommended
 
+# Specific EEG fields MUST be present
 EEGRequired:
   selectors:
-    - modality == "eeg"
     - datatype == "eeg"
     - suffix == "eeg"
   fields:
@@ -61,9 +58,9 @@ EEGRequired:
     PowerLineFrequency: required
     SoftwareFilters: required
 
+# Specific EEG fields SHOULD be present
 EEGRecommended:
   selectors:
-    - modality == "eeg"
     - datatype == "eeg"
     - suffix == "eeg"
   fields:
@@ -84,95 +81,11 @@ EEGRecommended:
     HardwareFilters: recommended
     SubjectArtefactDescription: recommended
 
-# General fields
-EEGCoordsystemGeneral:
+# Specific EEG fields MAY be present
+EEGOptional:
   selectors:
-    - modality == "eeg"
     - datatype == "eeg"
-    - suffix == "coordsystem"
+    - suffix == "eeg"
   fields:
-    IntendedFor:
-      level: optional
-      description_addendum: |
-        This identifies the MRI or CT scan associated with the electrodes,
-        landmarks, and fiducials.
-
-# Fields relating to the EEG electrode positions
-EEGCoordsystemPositions:
-  selectors:
-    - modality == "eeg"
-    - datatype == "eeg"
-    - suffix == "coordsystem"
-  fields:
-    EEGCoordinateSystem: required
-    EEGCoordinateUnits: required
-    EEGCoordinateSystemDescription:
-      level: recommended
-      level_addendum: required if `EEGCoordinateSystem` is `"Other"`
-
-EEGCoordsystemOther:
-  selectors:
-    - modality == "eeg"
-    - datatype == "eeg"
-    - suffix == "coordsystem"
-    - '"EEGCoordinateSystem" in sidecar'
-    - sidecar.EEGCoordinateSystem == "Other"
-  fields:
-    EEGCoordinateSystemDescription: required
-
-# Fields relating to the position of fiducials measured during an EEG session/run
-EEGCoordsystemFiducials:
-  selectors:
-    - modality == "eeg"
-    - datatype == "eeg"
-    - suffix == "coordsystem"
-  fields:
-    FiducialsDescription: optional
-    FiducialsCoordinates: recommended
-    FiducialsCoordinateSystem: recommended
-    FiducialsCoordinateUnits: recommended
-    FiducialsCoordinateSystemDescription:
-      level: recommended
-      level_addendum: required if `FiducialsCoordinateSystem` is `"Other"`
-
-EEGCoordsystemOtherFiducialCoordinateSystem:
-  selectors:
-    - modality == "eeg"
-    - datatype == "eeg"
-    - suffix == "coordsystem"
-    - sidecar.FiducialsCoordinateSystem == "Other"
-  fields:
-    FiducialsCoordinateSystemDescription: required
-
-# Fields relating to the position of anatomical landmark measured during an EEG session/run
-EEGCoordsystemLandmark:
-  selectors:
-    - modality == "eeg"
-    - datatype == "eeg"
-    - suffix == "coordsystem"
-  fields:
-    AnatomicalLandmarkCoordinates: recommended
-    AnatomicalLandmarkCoordinateSystem:
-      level: recommended
-      description_addendum: Preferably the same as the `EEGCoordinateSystem`.
-    AnatomicalLandmarkCoordinateUnits: recommended
-
-EEGCoordsystemLandmarkDescriptionRec:
-  selectors:
-    - modality == "eeg"
-    - datatype == "eeg"
-    - suffix == "coordsystem"
-    - sidecar.AnatomicalLandmarkCoordinateSystem != "Other"
-  fields:
-    AnatomicalLandmarkCoordinateSystemDescription:
-      level: recommended
-      level_addendum: required if `AnatomicalLandmarkCoordinateSystem` is `"Other"`
-
-EEGCoordsystemLandmarkDescriptionReq:
-  selectors:
-    - modality == "eeg"
-    - datatype == "eeg"
-    - suffix == "coordsystem"
-    - sidecar.AnatomicalLandmarkCoordinateSystem == "Other"
-  fields:
-    AnatomicalLandmarkCoordinateSystemDescription: required
+    ElectricalStimulation: optional
+    ElectricalStimulationParameters: optional
