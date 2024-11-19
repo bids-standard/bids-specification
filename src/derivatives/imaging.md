@@ -336,7 +336,8 @@ Template:
     sub-<label>/
         [ses-<label>/]
             func|anat|dwi/
-                <source_entities>[_space-<space>][_seg-<label>][_res-<label>][_den-<label>][_label-<label>][_desc-<label>]_probseg.nii.gz
+                <source_entities>[_space-<space>][_seg-<label>][_res-<label>][_label-<label>][_desc-<label>]_probseg.json
+                <source_entities>[_space-<space>][_seg-<label>][_res-<label>][_label-<label>][_desc-<label>]_probseg.nii[.gz]
 ```
 
 Example:

@@ -162,8 +162,8 @@ anat_parametric_probabilistic_segmentation:
   entities:
     $ref: rules.files.raw.anat.parametric.entities
     space: optional
+    segmentation: optional
     resolution: optional
-    density: optional
     label: optional
     description: optional
 
@@ -174,8 +174,8 @@ anat_nonparametric_probabilistic_segmentation:
   entities:
     $ref: rules.files.raw.anat.nonparametric.entities
     space: optional
+    segmentation: optional
     resolution: optional
-    density: optional
     label: optional
     description: optional
 
@@ -186,8 +186,8 @@ func_probabilistic_segmentation:
   entities:
     $ref: rules.files.raw.func.func.entities
     space: optional
+    segmentation: optional
     resolution: optional
-    density: optional
     label: optional
     description: optional
 
@@ -198,10 +198,14 @@ dwi_probabilistic_segmentation:
   entities:
     $ref: rules.files.raw.dwi.dwi.entities
     space: optional
+    segmentation: optional
     resolution: optional
-    density: optional
     label: optional
     description: optional
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
 
 anat_parametic_discrete_surface:
   $ref: rules.files.raw.anat.parametric
