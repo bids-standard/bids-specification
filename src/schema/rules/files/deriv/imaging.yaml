@@ -99,8 +99,8 @@ anat_parametric_discrete_segmentation:
   entities:
     $ref: rules.files.raw.anat.parametric.entities
     space: optional
+    segmentation: optional
     resolution: optional
-    density: optional
     description: optional
   extensions:
     - .nii.gz
@@ -115,8 +115,8 @@ anat_nonparametric_discrete_segmentation:
   entities:
     $ref: rules.files.raw.anat.nonparametric.entities
     space: optional
+    segmentation: optional
     resolution: optional
-    density: optional
     description: optional
   extensions:
     - .nii.gz
@@ -131,9 +131,14 @@ func_discrete_segmentation:
   entities:
     $ref: rules.files.raw.func.func.entities
     space: optional
+    segmentation: optional
     resolution: optional
-    density: optional
     description: optional
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+    - .tsv
 
 dwi_discrete_segmentation:
   $ref: rules.files.raw.dwi.dwi
@@ -143,8 +148,12 @@ dwi_discrete_segmentation:
     $ref: rules.files.raw.dwi.dwi.entities
     space: optional
     resolution: optional
-    density: optional
     description: optional
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+    - .tsv
 
 anat_parametric_probabilistic_segmentation:
   $ref: rules.files.raw.anat.parametric

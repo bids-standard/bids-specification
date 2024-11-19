@@ -269,7 +269,9 @@ Template:
     sub-<label>/
         [ses-<label>/]
             anat|func|dwi/
-                <source_entities>[_space-<space>][_seg-<label>][_res-<label>][_den-<label>][_desc-<label>]_dseg.nii.gz
+                <source_entities>[_space-<space>][_seg-<label>][_res-<label>][_desc-<label>]_dseg.json
+                <source_entities>[_space-<space>][_seg-<label>][_res-<label>][_desc-<label>]_dseg.nii[.gz]
+                <source_entities>[_space-<space>][_seg-<label>][_res-<label>][_desc-<label>]_dseg.tsv
 ```
 
 Example:
