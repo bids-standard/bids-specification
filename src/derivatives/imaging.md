@@ -150,7 +150,8 @@ Template:
     sub-<label>/
         [ses-<label>/]
             anat|func|dwi/
-                <source_entities>[_space-<space>][_res-<label>][_den-<label>][_label-<label>][_desc-<label>]_mask.nii.gz
+                <source_entities>[_space-<space>][_res-<label>][_label-<label>][_desc-<label>]_mask.json
+                <source_entities>[_space-<space>][_res-<label>][_label-<label>][_desc-<label>]_mask.nii[.gz]
 ```
 
 A binary (1 - inside, 0 - outside) mask in the space defined by the [`space` entity](../appendices/entities.md#space).

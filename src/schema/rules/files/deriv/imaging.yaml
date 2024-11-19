@@ -52,7 +52,6 @@ anat_parametric_mask:
     $ref: rules.files.raw.anat.parametric.entities
     space: optional
     resolution: optional
-    density: optional
     label: optional
     description: optional
 
@@ -64,7 +63,6 @@ anat_nonparametric_mask:
     $ref: rules.files.raw.anat.nonparametric.entities
     space: optional
     resolution: optional
-    density: optional
     label: optional
     description: optional
 
@@ -72,11 +70,14 @@ dwi_mask:
   $ref: rules.files.raw.dwi.dwi
   suffixes:
     - mask
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
   entities:
     $ref: rules.files.raw.dwi.dwi.entities
     space: optional
     resolution: optional
-    density: optional
     label: optional
     description: optional
 
@@ -88,7 +89,6 @@ func_mask:
     $ref: rules.files.raw.func.func.entities
     space: optional
     resolution: optional
-    density: optional
     label: optional
     description: optional
 
