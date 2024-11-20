@@ -9,12 +9,12 @@ SubjectFolders:
       There are no subject directories (labeled "sub-*") in the root of this dataset.
     level: error
   selectors:
-    - path == 'dataset_description.json'
+    - path == '/dataset_description.json'
   checks:
     - length(dataset.subjects.sub_dirs) > 0
 
 # 49
-ParticipantIDMismtach:
+ParticipantIDMismatch:
   issue:
     code: PARTICIPANT_ID_MISMATCH
     message: |
@@ -22,9 +22,9 @@ ParticipantIDMismtach:
       found in the participants.tsv file.
     level: error
   selectors:
-    - path == 'participants.tsv'
+    - path == '/participants.tsv'
   checks:
-    - sorted(columns.participant_label) == sorted(dataset.subjects.sub_dirs)
+    - allequal(sorted(columns.participant_id), sorted(dataset.subjects.sub_dirs))
 
 # 51
 PhenotypeSubjectsMissing:
@@ -34,9 +34,10 @@ PhenotypeSubjectsMissing:
       A phenotype/ .tsv file lists subjects that were not found in the dataset.
     level: error
   selectors:
-    - path == 'dataset_description.json'
+    - path == '/dataset_description.json'
+    - type(dataset.subjects.phenotype) != 'null'
   checks:
-    - sorted(dataset.subjects.phenotype) == sorted(dataset.subjects.sub_dirs)
+    - allequal(sorted(dataset.subjects.phenotype), sorted(dataset.subjects.sub_dirs))
 
 # 214
 SamplesTSVMissing:
@@ -47,10 +48,10 @@ SamplesTSVMissing:
       See 'Modality agnostic files' section of the BIDS specification.
     level: error
   selectors:
-    - path == 'dataset_description.json'
+    - path == '/dataset_description.json'
     - '"micr" in dataset.modalities'
   checks:
-    - "'samples.tsv' in dataset.files"
+    - exists('samples.tsv', 'dataset')
 
 UnknownVersion:
   issue:
@@ -60,7 +61,7 @@ UnknownVersion:
       The BIDS Schema used for validation may be out of date.
     level: warning
   selectors:
-    - path == 'dataset_description.json'
+    - path == '/dataset_description.json'
   checks:
     - intersects([json.BIDSVersion], schema.meta.versions)
 
@@ -72,7 +73,7 @@ SingleSourceAuthors:
       'CITATION.cff' file found. The "Authors" field of 'dataset_description.json'
       must be removed to avoid inconsistency.
   selectors:
-    - path == 'CITATION.cff'
+    - path == '/CITATION.cff'
   checks:
     - '!("Authors" in dataset.dataset_description)'
 
@@ -85,8 +86,20 @@ SingleSourceCitationFields:
       The "HowToAckowledge", "License", and "ReferencesAndLinks" fields of
       'dataset_description.json' should be removed to avoid inconsistency.
   selectors:
-    - path == 'CITATION.cff'
+    - path == '/CITATION.cff'
   checks:
     - '!("HowToAcknowledge" in dataset.dataset_description)'
     - '!("License" in dataset.dataset_description)'
     - '!("ReferencesAndLinks" in dataset.dataset_description)'
+
+ScansTSVScans:
+  issue:
+    code: SCANS_FILENAME_NOT_MATCH_DATASET
+    level: error
+    message: |
+      Filenames in scans.tsv file do not match what is present in the BIDS dataset.
+  selectors:
+    - suffix == 'scans'
+    - extension == '.tsv'
+  checks:
+    - exists(columns.filename, "file") == length(columns.filename)

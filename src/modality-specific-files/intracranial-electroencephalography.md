@@ -38,6 +38,7 @@ stored in one of the following formats:
 | [EEGLAB](https://sccn.ucsd.edu/eeglab/index.php)                          | `.set`, `.fdt`           | The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab/index.php). Each recording consists of a `.set` file with an OPTIONAL `.fdt` file.             |
 | [Neurodata Without Borders](https://nwb-schema.readthedocs.io/en/latest/) | `.nwb`                   | Each recording consists of a single `.nwb` file.                                                                                                                           |
 | [MEF3](https://osf.io/e3sf9/)                                             | `.mefd`                  | Each recording consists of a `.mefd` directory.                                                                                                                            |
+| [MED](https://medformat.org/)                                             | `.medd`                  | Each recording consists of a `.medd` directory.                                                                                                                            |
 
 It is RECOMMENDED to use the European data format, or the BrainVision data
 format. It is furthermore discouraged to use the other accepted formats over
@@ -349,6 +350,12 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_columns_table("ieeg.iEEGElectrodes") }}
 
+`*_electrodes.tsv` files SHOULD NOT be duplicated for each data file,
+for example, during multiple runs of a task.
+The [inheritance principle](../common-principles.md#the-inheritance-principle) MUST
+be used to find the appropriate electrode positions for a given data file.
+If electrodes are repositioned, it is RECOMMENDED to use multiple sessions to indicate this.
+
 ### Example `*_electrodes.tsv`
 
 ```Text
@@ -383,7 +390,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("ieeg.iEEGCoordsystemGeneral") }}
+{{ MACROS___make_json_table("json.ieeg.iEEGCoordsystemGeneral") }}
 
 Fields relating to the iEEG electrode positions:
 
@@ -395,7 +402,13 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("ieeg.iEEGCoordsystemPositions") }}
+{{ MACROS___make_json_table("json.ieeg.iEEGCoordsystemPositions") }}
+
+`*_coordsystem.json` files SHOULD NOT be duplicated for each data file,
+for example, across multiple tasks.
+The [inheritance principle](../common-principles.md#the-inheritance-principle) MUST
+be used to find the appropriate coordinate system description for a given data file.
+If electrodes are repositioned, it is RECOMMENDED to use multiple sessions to indicate this.
 
 ### Recommended 3D coordinate systems
 

@@ -1,4 +1,4 @@
-site_name: Brain Imaging Data Structure 1.10.0-dev
+site_name: Brain Imaging Data Structure 1.10.1-dev
 site_url: https://bids-specification.readthedocs.io/en/stable/
 repo_url: https://github.com/bids-standard/bids-specification
 nav:
@@ -19,6 +19,7 @@ nav:
           - Microscopy: modality-specific-files/microscopy.md
           - Near-Infrared Spectroscopy: modality-specific-files/near-infrared-spectroscopy.md
           - Motion: modality-specific-files/motion.md
+          - Magnetic Resonance Spectroscopy: modality-specific-files/magnetic-resonance-spectroscopy.md
           - Microelectrode Electrophysiology: modality-specific-files/microelectrode-electrophysiology.md
       - Derivatives:
           - BIDS Derivatives: derivatives/introduction.md
@@ -95,6 +96,9 @@ extra:
       link: https://www.instagram.com/bidsstandard/
     - icon: fontawesome/brands/youtube
       link: https://www.youtube.com/channel/UCxZUcYfd_nvIVWAbzRB1tlw
+  analytics:
+    provider: google
+    property: G-SBWH6YNMPX
 
 extra_javascript:
   - js/jquery-3.6.0.min.js

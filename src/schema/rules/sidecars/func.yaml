@@ -41,12 +41,17 @@ MRIFuncVolumeTiming:
     VolumeTiming:
       level: required
       level_addendum: mutually exclusive with `RepetitionTime`
+      description_addendum: |
+        This field is mutually exclusive with `"DelayTime"`.
+        If defined, this requires acquisition time (TA) be defined via either
+        `"SliceTiming"` or `"AcquisitionDuration"`.
 
 # Timing Parameters
 MRIFuncTimingParameters:
   selectors:
     - datatype == "func"
     - suffix == "bold"
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     NumberOfVolumesDiscardedByScanner: recommended
     NumberOfVolumesDiscardedByUser: recommended
@@ -57,10 +62,6 @@ MRIFuncTimingParameters:
         required for sequences that are described with the `VolumeTiming`
         field and that do not have the `SliceTiming` field set to allow for
         accurate calculation of "acquisition time"
-      issue:
-        name: VOLUME_TIMING_MISSING_ACQUISITION_DURATION
-        message: |
-          The field 'VolumeTiming' requires 'AcquisitionDuration' or 'SliceTiming' to be defined.
     DelayAfterTrigger: recommended
 
 # fMRI task information
@@ -68,6 +69,7 @@ MRIFuncTaskInformation:
   selectors:
     - datatype == "func"
     - suffix == "bold"
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     Instructions:
       level: recommended

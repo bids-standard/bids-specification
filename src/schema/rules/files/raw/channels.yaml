@@ -55,6 +55,7 @@ coordsystem:
   entities:
     subject: required
     session: optional
+    task: optional
     acquisition: optional
 
 # (i)EEG has a space entity
@@ -90,7 +91,9 @@ electrodes:
   entities:
     subject: required
     session: optional
+    task: optional
     acquisition: optional
+    run: optional
     space: optional
 
 # MEG has an additional entity available

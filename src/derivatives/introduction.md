@@ -108,7 +108,7 @@ The following extension table is reproduced in part from Section 9.0 of the
 or combinations of data arrays.
 
 | Intent      | Extension     |
-|-------------|---------------|
+| ----------- | ------------- |
 | Coordinates | `.coord.gii`  |
 | Functional  | `.func.gii`   |
 | Labels      | `.label.gii`  |

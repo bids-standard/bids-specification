@@ -35,3 +35,6 @@ microephys:
   datatypes:
     - ecephys
     - icephys
+mrs:
+  datatypes:
+    - mrs
