@@ -211,6 +211,7 @@ The `*_ephy.json` file can be used to store any ephys-specific metadata for the 
 
 ### Data origin metadata
 
+
 {{ MACROS___make_metadata_table(
    {
         "InstitutionName":"RECOMMENDED",
@@ -219,7 +220,9 @@ The `*_ephy.json` file can be used to store any ephys-specific metadata for the 
    }
 ) }}
 
+
 ### Setup metadata
+
 
 {{ MACROS___make_metadata_table(
    {
@@ -236,7 +239,9 @@ The `*_ephy.json` file can be used to store any ephys-specific metadata for the 
    }
 ) }}
 
+
 ### Processing metadata
+
 
 {{ MACROS___make_metadata_table(
    {
@@ -244,6 +249,7 @@ The `*_ephy.json` file can be used to store any ephys-specific metadata for the 
         "HardwareFilters":"RECOMMENDED",
    }
 ) }}
+
 
 ### Additional recording procedure
 
@@ -265,6 +271,7 @@ Furthermore additional information can be stored about the recording procedure. 
    }
 ) }}
 
+
 ### Probes
 
 It is RECOMMENDED to use the following structure to provide more metadata for each probe:
@@ -279,3 +286,201 @@ It is RECOMMENDED to use the following structure to provide more metadata for ea
 
 
 whereas "<my_probe_id>" has to exist also in the probes.tsv file and “<list of contour points>” is a list of x,y(,z) tuples providing the contour of the probe in the same reference frame as the electrode coordinates (see electrodes.tsv). In case of different units used than in the electrodes.tsv the key “Unit” can be used here to provide the spatial unit of the coordinate points.
+
+
+### Task (*see also  iEEG.json*)
+
+If the OPTIONAL[ task-<label>](https://bids-specification.readthedocs.io/en/stable/appendices/entities.html#task) is used, the following metadata SHOULD be used.
+
+{{ MACROS___make_metadata_table(
+   {
+        "TaskName":"RECOMMENDED",
+        "TaskDescription":"RECOMMENDED",
+        "Instructions":"RECOMMENDED",
+        "CogAtlasID":"RECOMMENDED",
+        "CogPOID":"RECOMMENDED",
+   }
+) }}
+
+
+### Example of * _ephys.json:
+
+
+```
+{
+"PowerLineFrequency": 50,
+"Manufacturer": "OpenEphys",
+"ManufacturerModelName": "OpenEphys Starter Kit",
+"ManufacturerModelVersion":"OEPS-9031",
+"SamplingFrequency": 30000,
+"SamplingFrequencyUnit": "Hz",
+"Location": "Institut de Neurosciences de la Timone, Faculté de Médecine, 27, boulevard Jean Moulin, 13005 Marseille - France",
+" Software": "Cerebus",
+"SoftwareVersion": "1.5.1",
+"Creator": "John Doe",
+"Maintainer": "John Doe jr.",
+"Procedure": {
+   "Pharmaceuticals": {
+       "isoflurane": {
+           "PharmaceuticalName": "isoflurane",
+           "PharmaceuticalDoseAmount": 50,
+           "PharmaceuticalDoseUnit": "ug/kg/min"
+       },
+       "ketamine": {
+           "PharmaceuticalName": "ketamine",
+           "PharmaceuticalDoseAmount": 0.1,
+           "PharmaceuticalDoseUnit": "ug/kg/min"
+       }
+   },
+  "Sample": {
+    "BodyPart": "BRAIN",
+    "BodyPartDetails": "Motor Cortex"
+   },
+"ProbeContours": {
+    "p021": {
+        "Contour": [[0, 0, 0], [0, 10, 0], [1, 11, 0], [2, 10, 0], [2, 0, 0]],
+        "Unit": "mm" 
+      }
+   },
+"TaskName": "Reach-to-Grasp",
+"TaskDescription": "A task that involves the reaching of an object and holding it for a specific time"
+}
+}
+```
+
+## Recording Events (*_events.tsv)
+
+The *_events.tsv and corresponding *_events.json sidecar files are OPTIONAL and can be used to indicate time points of recording events. Each task events file REQUIRES a corresponding task data file.  These events can be internal recording system events, task-related events, or events triggered by the experimentalist (e.g. manual reward). Note that these events must share a common clock with the corresponding ephys recording data. For more details see the [Task Events documentation](https://bids-specification.readthedocs.io/en/stable/04-modality-specific-files/05-task-events.html). Note that this file can also be used to describe stimulation performed during the recording. For this please follow the [iEEG stimulation  documentation ](https://bids-specification.readthedocs.io/en/stable/04-modality-specific-files/04-intracranial-electroencephalography.html#electrical-stimulation).
+
+
+
+
+## Multi-part recordings
+
+Two different procedures are supported to handle multi-part recordings. In short, the two options are:  i) each recording is stored in an independent data file, and the corresponding metadata is described in the *_scans.tsv file; or ii) several recordings are stored in a single data file, and the corresponding metadata is described in the *_events.tsv file. These two options are made available to support different usages and habits of the experimenters, as well as to benefit from the capability of the supported data formats (NWB and NIX). They are described in the following subsections, and made explicit through some of the example data sets provided with the BEP 
+
+
+### Multiple tasks / runs in separate files (*_scans.tsv)
+
+The *_scans.tsv should be used to provide information about multiple parts of an acquisition session (e.g. recording start times in case the recording was paused and restarted) when the data from each of these different recordings is stored in separate files.  Each data file  should have a name that contains a `_task-XX` and/or `_run-XX` suffix, and should be described by at most one row is the `*_scans.tsv` file. See also the  [BIDS Scans specification](https://bids-specification.readthedocs.io/en/stable/03-modality-agnostic-files.html#scans-file). Relative paths to files should be used under a compulsory “filename” header. If acquisition time is included it should be with the  “acq_time” header. Datetime should be expressed in the following format 2009-06-15T13:45:30 (year, month, day, hour (24h), minute, second; this is equivalent to the RFC3339 “date-time” format, time zone is always assumed as local time).  The run and task keywords and the corresponding `*_scans.tsv` file is OPTIONAL and can be ignored if the dataset consists of only one continuous recording and a single / no task.
+
+Optional: Yes
+
+
+Example of * _scans.tsv:
+
+
+```
+filename						acq_time
+ephys/sub-P001_task-pull_run-01_ephys.nix	2018-07-15T09:45:30
+ephys/sub-P001_task-pull_run-02_ephys.nix	2018-07-15T13:24:00
+ephys/sub-P001_task-push_run-01_ephys.nix	2018-07-15T14:24:00
+ephys/sub-P001_task-push_run-02_ephys.nix	2018-07-15T15:24:00
+```
+
+
+It is recommended to accompany the  `*_scans.tsv` file with a corresponding `*_scans.json` sidecar file, as described in the [BIDS specifications](https://bids-specification.readthedocs.io/en/stable/03-modality-agnostic-files.html#scans-file).
+
+
+### Multiple recordings in a single data file (*_events.tsv)
+
+The *_events.tsv should be used to provide information about multiple parts of an acquisition session when the data from each of these different recordings is stored in a single data file. In such a case, this file is REQUIRED. This allows benefiting from the capability of the supported data formats (NIX and NWB) to store multiple recordings in a single file, which can be convenient when these recordings share numerous characteristics (e.g for subsequent recordings obtained on a single cell in intracellular electrophysiology). In such case, the information about these recordings should be stored in columns added in the *_events.tsv file, which are listed now.
+
+Optional column names in `events.tsv` to support multiple recordings in a single data file:
+
+<!-- Macro for events-->
+
+
+# BIDS-animal-ephys examples
+
+
+## Examples of toy datasets
+
+
+#### Extracellular Electrophysiology
+
+This dataset contains data from a single subject (subject A), that was recorded on two days (2022-01-01 and 2022-01-02). On the first day it performed two tasks (nose-poke & rest), and on the second day only a rest task was performed. Detailed information about these tasks can be found in the `tasks.tsv` and `tasks.json` files. The electrophysiology data for each of the three recordings are stored in the corresponding session and ephys folders in the `nix` format. Metadata about the probes, their electrodes and the corresponding recording channels are stored in `tsv` format. Note that in this case, this information is shared between data files (see BIDS Inheritance Principle): in the first session, the probe, electrode and channel files apply to both data files of that session, as they do not contain a `task` entity in their name. For the nose-poke task, additional behavioral timestamps (events) were recorded and stored in an additional `events.tsv` file.
+
+
+```
+dataset_description.json
+tasks.tsv
+tasks.json
+participants.tsv
+sub-A/
+  	ses-20220101/
+    		ephys/
+        sub-A_ses-20220101_task-nosepoke_ephys.nix
+        sub-A_ses-20220101_task-nosepoke_ephys.json
+        sub-A_ses-20220101_task-nosepoke_events.tsv
+        sub-A_ses-20220101_task-rest_ephys.nix
+        sub-A_ses-20220101_task-rest_ephys.json
+        sub-A_ses-20220101_channels.tsv
+        sub-A_ses-20220101_electrodes.tsv
+        sub-A_ses-20220101_probes.tsv
+  	ses-20220102/
+    		ephys/
+        sub-A_ses-20220102_task-rest_ephys.nix
+        sub-A_ses-20220102_task-rest_ephys.json
+        sub-A_ses-20220102_channels.tsv
+        sub-A_ses-20220102_electrodes.tsv
+        sub-A_ses-20220102_probes.tsv
+```
+
+
+
+#### Intracellular Electrophysiology (Patch)
+
+This dataset contains intracellular data from slices acquired from two subjects (20220101-A and 20220101B). Details about the subjects and the sample generation are documented in the samples (tsv/json) files. Data of each subject is stored in separate subject folders (top level folders), each of which contains an ‘ephys’ subfolder. Note that there is no session-level folder in this case. Here, we choose the option of having “multiple tasks/runs in separate files” as described in 3.81., to demonstrate the high level of readability offered by the filenames in this case. 
+
+For the first subject only a single sample (a cell for patch-clamp terminology) was extracted (sample-cell001), on which two recordings (runs 1 and 2) were performed. Here, the `scans.tsv` file can be used to store information such as the starting recording times. The detailed information on the recording channel (e.g. also the recording mode used) is stored in the `channels.tsv` which, in this case, is common to all available recordings. The probes and electrodes files provide information on the pipette and solutions used for the recordings and are also shared for the two data files.
+
+For the second subject two samples (sample-cell003 and sample-cell004) were extracted and a single recording performed on each of them. Each recording was performed using a different probe (listed in the probes.tsv) having specific electrode and channel information. Therefore, each data file has a dedicated channel and electrode file with the same name as the data file.
+
+
+```
+samples.tsv
+samples.json
+participants.tsv
+dataset_description.json
+sub-20220101A/
+sub-20220101A_sample-cell001_scans.tsv
+    	ephys/
+        sub-20220101A_sample-cell001_run-1_ephys.nwb
+        sub-20220101A_sample-cell001_run-1_events.tsv
+        sub-20220101A_sample-cell001_run-2_ephys.nwb
+        sub-20220101A_sample-cell001_run-2_events.tsv
+        sub-20220101A_channels.tsv
+        sub-20220101A_electrodes.tsv
+        sub-20220101A_probes.tsv
+        sub-20220101A_ephys.json
+        sub-20220101A_events.json
+sub-20220101B/
+sub-20220101B_sample-cell001_scans.tsv
+    	ephys/
+        sub-20220101B_sample-cell002_ephys.nwb
+        sub-20220101B_sample-cell002_events.tsv
+        sub-20220101B_sample-cell002_channels.tsv
+        sub-20220101B_sample-cell002_electrodes.tsv
+        sub-20220101B_sample-cell003_ephys.nwb
+        sub-20220101B_sample-cell003_events.tsv
+        sub-20220101B_sample-cell003_channels.tsv
+        sub-20220101B_sample-cell003_electrodes.tsv
+        sub-20220101B_probes.tsv
+        sub-20220101B_ephys.json
+        sub-20220101B_events.json
+```
+
+
+This toy data set can be found in [this repository,](https://gin.g-node.org/NeuralEnsemble/BEP032-examples/src/master/toy-dataset_patchclamp_single-record-per-file) with the content of the metadata files. The other option available to organize such data consists in storing several recordings in a single data file (as described in 3.8.2); the same data set is presented using this latter option in [this other repository](https://gin.g-node.org/NeuralEnsemble/BEP032-examples/src/master/toy-dataset_patchclamp_multiple-records-per-file), so that both options can be compared for the same data set. 
+
+
+## Examples of real datasets
+
+Multiple datasets have been converted to follow this BEP proposal. These datasets typically have pruned data files to reduce the data file size, but are accompanied by the full set of metadata. A current version of these datasets can be found on GIN: [https://gin.g-node.org/NeuralEnsemble/BEP032-examples](https://gin.g-node.org/NeuralEnsemble/BEP032-examples)
+
+For a complete dataset including all data samples the ephys dataset published in [Brochier (2018)](https://doi.org/10.1038/sdata.2018.55) has been reorganized according to the current version of this BEP, using the NIX data format. The up-to-date version of the dataset can be found here: 
+
+[https://gin.g-node.org/sprenger/multielectrode_grasp/src/bep_animalephys](https://gin.g-node.org/sprenger/multielectrode_grasp/src/bep_animalephys)
+
+We will also publish another dataset using the NWB data format in the near future, and a dataset acquired 
