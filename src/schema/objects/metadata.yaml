@@ -1853,6 +1853,54 @@ MEGREFChannelCount:
     `MEGREFChannelCount` should be set to `0`.
   type: integer
   minimum: 0
+# TODO: Change if needs to be broken down into ecephys and icephys
+# TODO: Add links to the 2D coordinate system, Pixels and glossary entry.
+# TODO: Add enums for the valid values specific to microephys
+MicroephysCoordinateSystem:
+  name: MicroephysCoordinateSystem
+  display_name: Microephys Coordinate System
+  description: |
+    Defines the coordinate system for the microelectrode probes.
+    See the
+    [Coordinate Systems Appendix](SPEC_ROOT/appendices/coordinate-systems.md)
+    for a list of restricted keywords for coordinate systems.
+    If `"Other"`, provide definition of the coordinate system in
+    `"MicroephysCoordinateSystemDescription"`. If positions correspond to
+    pixel indices in a 2D image (of either a volume-rendering,
+    surface-rendering, operative photo, or operative drawing),
+    this MUST be "Pixels". For more information, see the section
+    on 2D coordinate systems.
+    For a list of valid values for this field, see the associated glossary entry.
+  anyOf:
+    # - $ref: objects.enums._MicroephysCoordSys
+    - $ref: objects.enums._StandardTemplateCoordSys
+MicroephysCoordinateSystemDescription:
+  name: MicroephysCoordinateSystemDescription
+  display_name: Microephys Coordinate System Description
+  description: |
+    Free-form text description of the coordinate system.
+    May also include a link to a documentation page or paper describing the
+    system in greater detail.
+  type: string
+MicroephysCoordinateUnits:
+  name: MicroephysCoordinateUnits
+  display_name: Microephys Coordinate Units
+  description: |
+    Units of the coordinates of `"MicroephysCoordinateSystem"`.
+  type: string
+# TODO: Clarify if units need to be used or enums, if units, define pixels
+  enum:
+    - m
+    - mm
+    - cm
+    - pixels
+MicroephysCoordinateSystemPhoto:
+  name: MicroephysCoordinateSystemPhoto
+  display_name: Microephys Coordinate System Photo
+  description: |
+    A link to a photo or drawing of the microelectrode probe system.
+  type: string
+  format: uri
 MISCChannelCount:
   name: MISCChannelCount
   display_name: Miscellaneous channel count
@@ -1969,6 +2017,12 @@ ManufacturersModelName:
   display_name: Manufacturers Model Name
   description: |
     Manufacturer's model name of the equipment that produced the measurements.
+  type: string
+ManufacturersModelVersion:
+  name: ManufacturersModelVersion
+  display_name: Manufacturers Model Version
+  description: |
+    Manufacturer's model version of the equipment that produced the measurements.
   type: string
 MatrixCoilMode:
   name: MatrixCoilMode
@@ -2657,6 +2711,12 @@ RecordingDuration:
     Length of the recording in seconds (for example, `3600`).
   type: number
   unit: s
+RecordingSetupName:
+  name: RecordingSetupName
+  display_name: Recording Setup Name
+  description: |
+    Custom name of the recording setup.
+  type: string
 RecordingType:
   name: RecordingType
   display_name: Recording Type
@@ -3391,6 +3451,13 @@ SubjectArtefactDescription:
     (for example, `"Vagus Nerve Stimulator"`, `"non-removable implant"`).
     If this field is set to `"n/a"`, it will be interpreted as absence of major
     source of artifacts except cardiac and blinks.
+  type: string
+SupplementarySignals:
+  name: SupplementarySignals
+  display_name: Supplementary Signals
+  description: |
+    Description of the supplementary signal (additional modalities) recorded
+    in parallel and are also stored in the data file.
   type: string
 TaskDescription:
   name: TaskDescription
