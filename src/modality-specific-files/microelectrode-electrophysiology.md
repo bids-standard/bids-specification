@@ -90,7 +90,7 @@ The following **metadata files are required for a** given animal-ephys session:
 As with all tsv-based metadata files in BIDS the probes, electrodes and channels tsv files can be accompanied by json sidecar files.
 
 
-## Coordinate System JSON (*_coordsystem.json) & Photos of electrode positions (`_photo.jpg)
+## Coordinate System JSON (`*_coordsystem.json`) & Photos of electrode positions (`_photo.jpg`)
 
 This file provides metadata on the global coordinate system in which the electrodes are placed. This file is RECOMMENDED, the listed required fields below have to be contained in case a `*_coordsystem.json` is provided. This system can be defined via reference pictures, anatomical landmarks, images of the brain or a reference atlas. For more details see the [BIDS Coordinate Systems specifications](https://bids-specification.readthedocs.io/en/stable/appendices/coordinate-systems.html).
 
@@ -106,12 +106,14 @@ Fields relating to the ephys probe and electrode  positions:
    }
 ) }}
 
-### **Allowed 2D coordinate systems**
+### Allowed 2D coordinate systems
 
-If electrodes are localized in 2D space (only x and y are specified and z is `"n/a"`), then the positions in this file MUST correspond to the locations expressed in pixels on the photo/drawing/rendering of the electrodes on the brain. In this case, `ephysCoordinateSystem` MUST be defined as `"Pixels"`, and `ephysCoordinateUnits` MUST be defined as `"pixels"` (note the difference in capitalization). Furthermore, the coordinates MUST be (row,column) pairs, with (0,0) corresponding to the upper left pixel and (N,0) corresponding to the lower left pixel.
+If electrodes are localized in 2D space (only x and y are specified and z is `"n/a"`), then the positions in this file MUST correspond to the locations expressed in pixels on the photo/drawing/rendering of the electrodes on the brain.
+In this case, `ephysCoordinateSystem` MUST be defined as `"Pixels"`, and `ephysCoordinateUnits` MUST be defined as `"pixels"` (note the difference in capitalization).
+Furthermore, the coordinates MUST be (row,column) pairs, with (0,0) corresponding to the upper left pixel and (N,0) corresponding to the lower left pixel.
 
 
-### **Photos of the electrode positions (*_photo.jpg)**
+### Photos of the electrode positions (`*_photo.jpg`)
 
 These can include photos of the electrodes on the brain surface, photos of anatomical features or landmarks (such as sulcal structure), and fiducials. Photos can also include an X-ray picture, a flatbed scan of a schematic drawing made during surgery, or screenshots of a brain rendering with electrode positions. The photos may need to be cropped and/or blurred to conceal identifying features or entirely omitted prior to sharing, depending on obtained consent.
 
