@@ -48,12 +48,6 @@ The inputs for this macro can be found in the directory
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filename_template(
-   "raw",
-   datatypes=["ecephys", "icephys"],
-   suffixes=["ecephys", "icephys", "events", "channels", "electrodes", "scans"]
-)
-}}
 
 <!-- Link Definitions -->
 
@@ -83,7 +77,7 @@ On top of the existing columns that can be present in this file and that are des
 
 {{ MACROS___make_columns_table("modality_agnostic.Participants_micro") }}
 
-##  EPHYS specific files
+#  EPHYS specific files
 
 The following **metadata files are required for a** given animal-ephys session:
 
@@ -96,7 +90,7 @@ The following **metadata files are required for a** given animal-ephys session:
 As with all tsv-based metadata files in BIDS the probes, electrodes and channels tsv files can be accompanied by json sidecar files.
 
 
-### Coordinate System JSON (*_coordsystem.json) & Photos of electrode positions (`_photo.jpg)
+## Coordinate System JSON (*_coordsystem.json) & Photos of electrode positions (`_photo.jpg)
 
 This file provides metadata on the global coordinate system in which the electrodes are placed. This file is RECOMMENDED, the listed required fields below have to be contained in case a `*_coordsystem.json` is provided. This system can be defined via reference pictures, anatomical landmarks, images of the brain or a reference atlas. For more details see the [BIDS Coordinate Systems specifications](https://bids-specification.readthedocs.io/en/stable/appendices/coordinate-systems.html).
 
@@ -117,7 +111,7 @@ Fields relating to the ephys probe and electrode  positions:
 If electrodes are localized in 2D space (only x and y are specified and z is `"n/a"`), then the positions in this file MUST correspond to the locations expressed in pixels on the photo/drawing/rendering of the electrodes on the brain. In this case, `ephysCoordinateSystem` MUST be defined as `"Pixels"`, and `ephysCoordinateUnits` MUST be defined as `"pixels"` (note the difference in capitalization). Furthermore, the coordinates MUST be (row,column) pairs, with (0,0) corresponding to the upper left pixel and (N,0) corresponding to the lower left pixel.
 
 
-## **Photos of the electrode positions (*_photo.jpg)**
+### **Photos of the electrode positions (*_photo.jpg)**
 
 These can include photos of the electrodes on the brain surface, photos of anatomical features or landmarks (such as sulcal structure), and fiducials. Photos can also include an X-ray picture, a flatbed scan of a schematic drawing made during surgery, or screenshots of a brain rendering with electrode positions. The photos may need to be cropped and/or blurred to conceal identifying features or entirely omitted prior to sharing, depending on obtained consent.
 
@@ -137,7 +131,7 @@ The[ ses-<label>](https://bids-specification.readthedocs.io/en/stable/appendices
 The optional[ space-<label>](https://bids-specification.readthedocs.io/en/stable/appendices/entities.html#space) entity (`*[_space-<label>]_coordsystem.json`) can be used to indicate how to interpret the electrode positions. The space `<label>` MUST be taken from one of the modality specific lists in the[ Coordinate Systems Appendix](https://bids-specification.readthedocs.io/en/stable/appendices/coordinate-systems.html). For example for iEEG data, the restricted keywords listed under[ iEEG Specific Coordinate Systems](https://bids-specification.readthedocs.io/en/stable/appendices/coordinate-systems.html#ieeg-specific-coordinate-systems) are acceptable for `<label>`.
 
 
-### Probes (*_probes.tsv)
+## Probes (*_probes.tsv)
 
 Probes are physical devices used for recording animal ephys data. They can be permanently implanted (chronic recordings) or inserted just for the recording (acute recordings). The probe positions and properties are stored in a .tsv file. This file contains the probe id, the type of recording (acute/chronic) and the probe coordinates.
 
@@ -147,15 +141,17 @@ Probes are physical devices used for recording animal ephys data. They can be pe
 Example of `_probes.tsv`:
 
 
-|probe_id|hemisphere|x|y|z|type|material|location|
-|--------|----------|-|-|-|----|--------|--------|
-|p023|left|-11.87|-1.30|-3.37|utah-array|iridium-oxide|V1|
-|p023|left|-11.64|0.51|-4.20|utah-array|iridium-oxide|V2|
-|p021|left|-12.11|-3.12|-2.54|utah-array|iridium-oxide|V4|
-|p021|left|-9.94|-1.19|-2.86|utah-array|iridium-oxide|V3|
+```
+probe_id	hemisphere	x	y	z	type		material	location
+p023		left		-11.87         -1.30	-3.37	utah-array	iridium-oxide	V1
+p023		left		-11.64	0.51	-4.20	utah-array	iridium-oxide	V2
+p021		left		-12.11	-3.12	-2.54	utah-array	iridium-oxide	V4
+p021		left		-9.94	-1.19	-2.86	utah-array	iridium-oxide	V3
+```
 
 
-### Electrodes  (*_electrodes.tsv)
+
+## Electrodes  (*_electrodes.tsv)
 
 electrodes describe the points of electrodes to the tissue used for recording electrophysiological signals. The electrode positions and properties are stored in a .tsv file (amplifier information is in channels.tsv). This file contains the electrode name, the electrode coordinates in 3 columns (xyz) and the id of the probe it’s located on.  The coordinates are the relative coordinates on the probe.
 
@@ -165,13 +161,13 @@ electrodes describe the points of electrodes to the tissue used for recording el
 
 Example of * _electrodes.tsv:
 
-
-|electrode_id|probe_id|impedance|x|y|z|material|location|
-|------------|--------|---------|-|-|-|--------|--------|
-|e0123	 	|p023		|1.1		|-11.87|	-1.30|-3.37|iridium-oxide|	V1|
-|e234		|p023		|1.5		|-11.64|	0.51|-4.20|iridium-oxide|	V2|
-|e934		|p021		|3.5		|-12.11|	-3.12|-2.54|iridium-oxide|	V4|
-|e234		|p021		|7.0		|-9.94|	-1.19|-2.86|iridium-oxide|	V3|
+```
+electrode_id	probe_id	impedance	x	y	z	material	location
+e0123	 	p023		1.1		-11.87	-1.30	-3.37	iridium-oxide	V1
+e234		p023		1.5		-11.64	0.51	-4.20	iridium-oxide	V2
+e934		p021		3.5		-12.11	-3.12	-2.54	iridium-oxide	V4
+e234		p021		7.0		-9.94	-1.19	-2.86	iridium-oxide	V3
+```
 
 ### Channels  (*_channels.tsv)
 
@@ -187,16 +183,99 @@ Columns in the `*_channel.tsv` file are:
 Example of * _channels.tsv:
 
 
-|channel_id|electrode_id|gain|type|units|sampling_frequency|status|
-|----------|------------|----|----|-----|------------------|------|
-|c0123   |con0123		|30	|EXT		|mV	|30000			|good|
-|c234|con234		|30	|EXT		|mV	|30000|			good|
-|c934		|con934 		|50	|EXT		|mV	|30000|			bad|
-|c234		|-|		1|	SYNC|	       V|	1000|			good|
-
+```
+channel_id	electrode_id 	gain	type		units	sampling_frequency	status
+c0123 		con0123		30	EXT		mV	30000			good
+c234		con234		30	EXT		mV	30000			good
+c934		con934 		50	EXT		mV	30000			bad
+c234		-		1	SYNC	       V	1000			good
+```
 
 Note: In many datasets multiple sets of identifiers are used for probes, electrodes and channels. We RECOMMEND to include alternative sets of identifiers, e.g. identifiers that enumerate electrodes according to their spatial arrangement, as additional custom columns in the .tsv file.
 
 **Recommended Channel Type Values**
 
 For the `type` column we recommend to use the following terms (modified from https://bids-specification.readthedocs.io/en/stable/04-modality-specific-files/04-intracranial-electroencephalography.html#channelselectrode-description-_channelselectrodestsv)
+
+
+<!--
+Don't forget the table-->
+
+## General ephys metadata (*_ephys.json)
+
+We propose to store all metadata that is not directly related to one of the other metadata files (probe/electrode/channel information)  into a single json  file: ***_ephys.json**
+
+There should be one such json file for each data file.
+
+The `*_ephy.json` file can be used to store any ephys-specific metadata for the dataset. We RECOMMEND to store all setup related metadata in a dedicated node of the json file called `Setup`. We RECOMMEND to use the following keys to describe the setup:
+
+### Data origin metadata
+
+{{ MACROS___make_metadata_table(
+   {
+        "InstitutionName":"RECOMMENDED",
+        "InstitutionAddress":"RECOMMENDED",
+        "InstitutionalDepartmentName":"RECOMMENDED",
+   }
+) }}
+
+### Setup metadata
+
+{{ MACROS___make_metadata_table(
+   {
+        "PowerLineFrequency":"REQUIRED",
+        "Manufacturer":"RECOMMENDED",
+        "ManufacturerModelName":"RECOMMENDED",
+        "ManufacturerModelVersion":"RECOMMENDED",
+        "RecordingSetup":"RECOMMENDED",
+        "Location":"RECOMMENDED",
+        "SamplingFrequency":"REQUIRED",
+        "DeviceSerialNumber":"RECOMMENDED",
+        "Software":"RECOMMENDED",
+        "SoftwareVersions":"RECOMMENDED",
+   }
+) }}
+
+### Processing metadata
+
+{{ MACROS___make_metadata_table(
+   {
+        "SoftwareFilters":"REQUIRED",
+        "HardwareFilters":"RECOMMENDED",
+   }
+) }}
+
+### Additional recording procedure
+
+Furthermore additional information can be stored about the recording procedure. We RECOMMEND to use a dedicated `Procedure` node with the following keys:
+
+<!--Ask reema how she have implemented it-->
+
+{{ MACROS___make_metadata_table(
+   {
+        "Pharmaceuticals":"OPTIONAL",
+        "SupplementarySignals":"OPTIONAL",
+        "BodyPart":"RECOMMENDED",
+        "BodyPartDetails":"RECOMMENDED",
+        "BodyPartOntology":"OPTIONAL",
+        "SampleEnvironment":"RECOMMENDED",
+        "SampleEmbedding":"OPTIONAL",
+        "SliceThickness":"OPTIONAL",
+        "SampleExtractionProtocol":"OPTIONAL",
+   }
+) }}
+
+### Probes
+
+It is RECOMMENDED to use the following structure to provide more metadata for each probe: 
+
+
+`ProbeContours`{“probe_infoid”: `{ \
+   "<my_probe_id>": { \
+      "Contour": <list of contour points>, \
+      "Unit": "<my spatial unit>" \
+   } \
+}` \
+
+
+whereas "<my_probe_id>" has to exist also in the probes.tsv file and “<list of contour points>” is a list of x,y(,z) tuples providing the contour of the probe in the same reference frame as the electrode coordinates (see electrodes.tsv). In case of different units used than in the electrodes.tsv the key “Unit” can be used here to provide the spatial unit of the coordinate points.
