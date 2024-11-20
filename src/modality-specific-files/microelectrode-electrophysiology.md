@@ -267,7 +267,7 @@ Furthermore additional information can be stored about the recording procedure. 
 
 ### Probes
 
-It is RECOMMENDED to use the following structure to provide more metadata for each probe: 
+It is RECOMMENDED to use the following structure to provide more metadata for each probe:
 
 
 `ProbeContours`{“probe_infoid”: `{ \
