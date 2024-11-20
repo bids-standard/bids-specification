@@ -339,7 +339,7 @@ If the OPTIONAL[ task-<label>](https://bids-specification.readthedocs.io/en/stab
 "ProbeContours": {
     "p021": {
         "Contour": [[0, 0, 0], [0, 10, 0], [1, 11, 0], [2, 10, 0], [2, 0, 0]],
-        "Unit": "mm" 
+        "Unit": "mm"
       }
    },
 "TaskName": "Reach-to-Grasp",
@@ -357,7 +357,7 @@ The *_events.tsv and corresponding *_events.json sidecar files are OPTIONAL and 
 
 ## Multi-part recordings
 
-Two different procedures are supported to handle multi-part recordings. In short, the two options are:  i) each recording is stored in an independent data file, and the corresponding metadata is described in the *_scans.tsv file; or ii) several recordings are stored in a single data file, and the corresponding metadata is described in the *_events.tsv file. These two options are made available to support different usages and habits of the experimenters, as well as to benefit from the capability of the supported data formats (NWB and NIX). They are described in the following subsections, and made explicit through some of the example data sets provided with the BEP 
+Two different procedures are supported to handle multi-part recordings. In short, the two options are:  i) each recording is stored in an independent data file, and the corresponding metadata is described in the *_scans.tsv file; or ii) several recordings are stored in a single data file, and the corresponding metadata is described in the *_events.tsv file. These two options are made available to support different usages and habits of the experimenters, as well as to benefit from the capability of the supported data formats (NWB and NIX). They are described in the following subsections, and made explicit through some of the example data sets provided with the BEP
 
 
 ### Multiple tasks / runs in separate files (*_scans.tsv)
@@ -431,7 +431,7 @@ sub-A/
 
 #### Intracellular Electrophysiology (Patch)
 
-This dataset contains intracellular data from slices acquired from two subjects (20220101-A and 20220101B). Details about the subjects and the sample generation are documented in the samples (tsv/json) files. Data of each subject is stored in separate subject folders (top level folders), each of which contains an ‘ephys’ subfolder. Note that there is no session-level folder in this case. Here, we choose the option of having “multiple tasks/runs in separate files” as described in 3.81., to demonstrate the high level of readability offered by the filenames in this case. 
+This dataset contains intracellular data from slices acquired from two subjects (20220101-A and 20220101B). Details about the subjects and the sample generation are documented in the samples (tsv/json) files. Data of each subject is stored in separate subject folders (top level folders), each of which contains an ‘ephys’ subfolder. Note that there is no session-level folder in this case. Here, we choose the option of having “multiple tasks/runs in separate files” as described in 3.81., to demonstrate the high level of readability offered by the filenames in this case.
 
 For the first subject only a single sample (a cell for patch-clamp terminology) was extracted (sample-cell001), on which two recordings (runs 1 and 2) were performed. Here, the `scans.tsv` file can be used to store information such as the starting recording times. The detailed information on the recording channel (e.g. also the recording mode used) is stored in the `channels.tsv` which, in this case, is common to all available recordings. The probes and electrodes files provide information on the pipette and solutions used for the recordings and are also shared for the two data files.
 
@@ -472,15 +472,15 @@ sub-20220101B_sample-cell001_scans.tsv
 ```
 
 
-This toy data set can be found in [this repository,](https://gin.g-node.org/NeuralEnsemble/BEP032-examples/src/master/toy-dataset_patchclamp_single-record-per-file) with the content of the metadata files. The other option available to organize such data consists in storing several recordings in a single data file (as described in 3.8.2); the same data set is presented using this latter option in [this other repository](https://gin.g-node.org/NeuralEnsemble/BEP032-examples/src/master/toy-dataset_patchclamp_multiple-records-per-file), so that both options can be compared for the same data set. 
+This toy data set can be found in [this repository,](https://gin.g-node.org/NeuralEnsemble/BEP032-examples/src/master/toy-dataset_patchclamp_single-record-per-file) with the content of the metadata files. The other option available to organize such data consists in storing several recordings in a single data file (as described in 3.8.2); the same data set is presented using this latter option in [this other repository](https://gin.g-node.org/NeuralEnsemble/BEP032-examples/src/master/toy-dataset_patchclamp_multiple-records-per-file), so that both options can be compared for the same data set.
 
 
 ## Examples of real datasets
 
 Multiple datasets have been converted to follow this BEP proposal. These datasets typically have pruned data files to reduce the data file size, but are accompanied by the full set of metadata. A current version of these datasets can be found on GIN: [https://gin.g-node.org/NeuralEnsemble/BEP032-examples](https://gin.g-node.org/NeuralEnsemble/BEP032-examples)
 
-For a complete dataset including all data samples the ephys dataset published in [Brochier (2018)](https://doi.org/10.1038/sdata.2018.55) has been reorganized according to the current version of this BEP, using the NIX data format. The up-to-date version of the dataset can be found here: 
+For a complete dataset including all data samples the ephys dataset published in [Brochier (2018)](https://doi.org/10.1038/sdata.2018.55) has been reorganized according to the current version of this BEP, using the NIX data format. The up-to-date version of the dataset can be found here:
 
 [https://gin.g-node.org/sprenger/multielectrode_grasp/src/bep_animalephys](https://gin.g-node.org/sprenger/multielectrode_grasp/src/bep_animalephys)
 
-We will also publish another dataset using the NWB data format in the near future, and a dataset acquired 
+We will also publish another dataset using the NWB data format in the near future, and a dataset acquired
