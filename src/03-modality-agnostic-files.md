@@ -404,10 +404,8 @@ suffer if an external repository would not be available anymore).
 
 Template:
 
-```Text
-- [Dataset level] prov.jsonld
-- [File level] sub-<label>/[ses-<label>/]sub-<label>[_ses-<label>]_<suffix>.prov
-```
+- **Dataset level**: `prov.jsonld`
+- **File level**: `sub-<label>/[ses-<label>/]sub-<label>[_ses-<label>]_<suffix>.jsonld`
 
 Optional: Yes
 
@@ -447,67 +445,85 @@ a collection of files or a specific file at any level_of the bids hierarchy.
 
 v. Provenance information SHOULD be anonymized/de-identified as necessary. 
 
-### Examples of provenance in BIDS. 
+### Examples 
 
- 1. The raw conversion from DICOM images or other instrument native formats 
+The conversion from DICOM images or other instrument native formats 
 to BIDS structure, details of stimulus presentation and cognitive paradigms, 
 and clinical and neuropsychiatric assessments, each come with their 
 own details of provenance.
-   ```
-    { "identifier": "sub-01/anat/..._T1.nii.gz",
-      "type": "NIfTIGZ",
-      "checksum": {"type": "sha512",
-                   "value": "21231221ab4534..."
-                  },
-      "derivedFrom": ["sourcedata/12345-1.dcm", "sourcedata/12345-2.dcm"],
-      "generatedBy": {"started": 2019-01-10T10:00:00"
-                      "associatedWith": {"type": "softwareAgent",
-                                         "name": "dcm2niix",
-                                         "version": "2.0.0"},
-                      "commandLine": "dcm2niix ..."
-                      }
-    }
+```JSON
+{
+  "identifier": "sub-01/anat/..._T1.nii.gz",
+  "type": "NIfTIGZ",
+  "checksum": {
+    "type": "sha512",
+    "value": "21231221ab4534..."
+  },
+  "derivedFrom": [
+    "sourcedata/12345-1.dcm",
+    "sourcedata/12345-2.dcm"
+  ],
+  "generatedBy": {
+    "started": "2019-01-10T10:00:00",
+    "associatedWith": {
+      "type": "softwareAgent",
+      "name": "dcm2niix",
+      "version": "2.0.0"
+    },
+    "commandLine": "dcm2niix ..."
+  }
+}
+```
 which inputs from the BIDS dataset were used together with what software was 
 run in what environment and with what parameters.
-   ```
-    { "identifier": "derivatives/freesurfer/sub-01/mri/orig/001.mgz",
-      "type": "MGZ",
-      "checksum": {"type": "sha512",
-                   "value": "121231221ab4534..."
-                  },
-      "derivedFrom": "sub-01/anat/..._T1.nii.gz",
-      "generatedBy": {"started": 2019-01-10T10:00:00"
-                      "associatedWith": {"type": "softwareAgent",
-                                         "name": "FreeSurfer",
-                                         "uri": "RRID:SCR_001847",
-                                         "version": "6.0.0"},
-                      "commandLine": "mri_convert ..."
-                      }
-    }
+```JSON
+{
+  "identifier": "derivatives/freesurfer/sub-01/mri/orig/001.mgz",
+  "type": "MGZ",
+  "checksum": {
+    "type": "sha512",
+    "value": "121231221ab4534..."
+  },
+  "derivedFrom": "sub-01/anat/..._T1.nii.gz",
+  "generatedBy": {
+    "started": "2019-01-10T10:00:00",
+    "associatedWith": {
+      "type": "softwareAgent",
+      "name": "FreeSurfer",
+      "uri": "RRID:SCR_001847",
+      "version": "6.0.0"
+    },
+    "commandLine": "mri_convert ..."
+  }
+}
+```
 involved in a study.
-   ```
-    {
-      "@context": "https://some/url/to/bids_context.jsonld",
-      "identifier": "http://example.org/ds00000X",
-      "generatedBy": {
-        "type": "Project",
-        "uri": "https://banda.mit.edu/",
-        "startedAt": "2016-09-01T10:00:00",
-        "wasAssociatedWith": { 
-          "type": "Organization",
-          "uri": "NIH",
-          "role": "Funding"},
-        },
-      "wasAttributedTo": { 
-         "type": "Person",
-         "name": "Prof. Smith",
-         "uri": "ORCID:0123",
-         "role": "PI"}
-       }
+```JSON
+{
+  "@context": "https://some/url/to/bids_context.jsonld",
+  "identifier": "http://example.org/ds00000X",
+  "generatedBy": {
+    "type": "Project",
+    "uri": "https://banda.mit.edu/",
+    "startedAt": "2016-09-01T10:00:00",
+    "wasAssociatedWith": {
+      "type": "Organization",
+      "uri": "NIH",
+      "role": "Funding"
     }
+  },
+  "wasAttributedTo": {
+    "type": "Person",
+    "name": "Prof. Smith",
+    "uri": "ORCID:0123",
+    "role": "PI"
+  }
+}
+```
 appropriate attribution to the original dataset generators as well as 
-future transformers.  
-5. For datasets and derivatives, provenance can also include details of 
+future transformers. 
+
+For datasets and derivatives, provenance can also include details of 
 why the data were collected in the first place covering hypotheses, claims, 
 and prior publications. Provenance can encode support for which claims were 
 supported by future analyses.
@@ -515,7 +531,7 @@ supported by future analyses.
 ### Justification for Separating Provenance from file JSON
 
 Provenance is information about a file, including any metadata that is relevant 
-to the file itself. Thus any BIDS data file and its associated JSON sidecar
+to the file itself. Thus, any BIDS data file and its associated JSON sidecar
 metadata together constitute a unique entity. As such, one may want to record 
 the provenance of the JSON file as much as the provenance of the BIDS file. 
 In addition, separating the provenance as a separate file for now, allows 
@@ -534,34 +550,40 @@ BIDS derived data. One option is to make use of
 In this example, with this `prov.jsonld` file we encode that the T1.mgz file 
 was generated by version 6 of the FreeSurfer software.
 
-```json
+```JSON
 {
   "@context": "https://some/url/to/bids_context.jsonld",
   "identifier": "http://example.org/ds00000X",
   "generatedAt": "2020-01-10T10:00:00",
   "generatedBy": {
-      "type": "Project",
-      "uri": "https://banda.mit.edu/",
-      "startedAt": "2016-09-01T10:00:00",
-      "wasAssociatedWith": { "type": "Organization",
-                             "uri": "NIH",
-                             "role": "Funding"
-                           }
-    },
+    "type": "Project",
+    "uri": "https://banda.mit.edu/",
+    "startedAt": "2016-09-01T10:00:00",
+    "wasAssociatedWith": {
+      "type": "Organization",
+      "uri": "NIH",
+      "role": "Funding"
+    }
+  },
   "records": [
-    { "identifier": "derivatives/freesurfer/sub-01/mri/orig/001.mgz",
+    {
+      "identifier": "derivatives/freesurfer/sub-01/mri/orig/001.mgz",
       "type": "MGZ",
-      "checksum": {"type": "sha512",
-                   "value": "121231221ab4534..."
-                  },
+      "checksum": {
+        "type": "sha512",
+        "value": "121231221ab4534..."
+      },
       "derivedFrom": "sub-01/anat/..._T1.nii.gz",
-      "generatedBy": {"started": 2019-01-10T10:00:00"
-                      "associatedWith": {"type": "softwareAgent",
-                                         "name": "FreeSurfer",
-                                         "uri": "RRID:SCR_001847",
-                                         "version": "6.0.0"},
-                      "commandLine": "mri_convert ..."
-                      }
+      "generatedBy": {
+        "started": "2019-01-10T10:00:00",
+        "associatedWith": {
+          "type": "softwareAgent",
+          "name": "FreeSurfer",
+          "uri": "RRID:SCR_001847",
+          "version": "6.0.0"
+        },
+        "commandLine": "mri_convert ..."
+      }
     }
   ]
 }
@@ -570,14 +592,13 @@ was generated by version 6 of the FreeSurfer software.
 **File level provenance.** This follows some of the same concepts at the dataset 
 level, but is specifically about the current file under consideration.
 
-```bash
+```Text
 sub-01/ 
     func/
         sub-01_task-xyz_acq-test1_run-1_bold.nii.gz
         sub-01_task-xyz_acq-test1_run-1_prov.jsonld
-...
 ```
-```json
+```JSON
 {
   "@context": "https://some/url/to/bids_context.jsonld",
   "generatedAt": "2020-01-10T10:00:00",
@@ -588,25 +609,26 @@ sub-01/
     "version": "1.3.0",
     "RRID": "RRID:SCR_017427",
     "label": "SPM",
-    "description": "If this is a custom script, treat this as a methods section",
+    "description": "If this is a custom script, treat this as a methods section"
   }
 }
 ```
 
-The NIDM extensions (nidash.org)  to the PROV model would allow one to 
+# TODO: check for better url than https://nidash.org which just says "Use your astrocytes!"
+The NIDM extensions ([nidash.org](https://nidash.org))  to the PROV model would allow one to 
 incorporate many aspects of the neuroimaging research workflow from data to 
 results. This includes capturing who performed data collection, 
 what software were used, what analyses were run, and what hardware and 
-software resources (e.g., operating system and dependencies) were used.
+software resources (for instance, operating system and dependencies) were used.
 
 ### BIDS JSON-LD context
 
 For most developers and users, the context will appear in the jsonld file as:
 
-```json
+```JSON
 {
 
-  "@context": "https://some/url/to/bids_context.jsonld",`
+  "@context": "https://some/url/to/bids_context.jsonld",
   ...
 }
 ```
@@ -615,7 +637,7 @@ Details of the context, will encode terminology that is consistent across BIDS
 and may itself involve separate context files. 
 so `"https://some/url/to/bids_context.jsonld"` could look like:
 
-```json
+```JSON
 {
 
   "@context": ["https://some/url/to/bids_common_context.jsonld",
@@ -636,7 +658,7 @@ vocabularies whenever possible.
 Example context: Common
 
 [https://some/url/to/bids_common_context.jsonld]()
-```json
+```JSON
 { 
   "@context": {
     "RepetitionTime": {
@@ -652,7 +674,7 @@ Example context: Common
 Example context: Provenance
 
 [https://some/url/to/bids_provenance_context.jsonld]()
-```json
+```JSON
 { 
   "@context": {
     "generatedAt": {
@@ -667,8 +689,9 @@ Example context: Provenance
       "@id": "http://www.w3.org/ns/prov#wasDerivedFrom",
       "@type": "@id"
     },
-    "RRID": {"@id": "https://schema.org/identifier", "@type": "@id"}
-    "sha512": {"@id": "http://id.loc.gov/vocabulary/preservation/cryptographicHashFunctions/sha512", "@type": "@id"}
+    "RRID": {"@id": "https://schema.org/identifier", "@type": "@id"},
+    "sha512": {"@id": "http://id.loc.gov/vocabulary/preservation/cryptographicHashFunctions/sha512",
+               "@type": "@id"}
   },
     ...
 }
