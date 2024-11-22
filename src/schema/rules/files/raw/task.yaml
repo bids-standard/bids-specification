@@ -37,6 +37,7 @@ timeseries:
     acquisition: optional
     run: optional
     recording: optional
+    modality: optional
 
 timeseries__mri_no_task:
   suffixes:
