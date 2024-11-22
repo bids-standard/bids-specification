@@ -112,6 +112,7 @@ timeseries__anat:
     echo: optional
     part: optional
     chunk: optional
+    task: optional
 
 timeseries__func:
   $ref: rules.files.raw.task.timeseries
