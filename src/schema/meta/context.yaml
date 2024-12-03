@@ -67,20 +67,20 @@ properties:
         description: 'Collections of subjects in dataset'
         type: object
         required:
-          - sub_dirs
+          - dirs
         additionalProperties: false
         properties:
-          sub_dirs:
+          dirs:
             description: 'Subjects as determined by sub-* directories'
             type: array
             items:
               type: string
-          participant_id:
+          ids:
             description: 'The participant_id column of participants.tsv'
             type: array
             items:
               type: string
-          phenotype:
+          ids_phenotype:
             description: 'The union of participant_id columns in phenotype files'
             type: array
             items:
@@ -96,20 +96,20 @@ properties:
         description: 'Collections of sessions in subject'
         type: object
         required:
-          - ses_dirs
+          - dirs
         additionalProperties: false
         properties:
-          ses_dirs:
+          dirs:
             description: 'Sessions as determined by ses-* directories'
             type: array
             items:
               type: string
-          session_id:
+          ids:
             description: 'The session_id column of sessions.tsv'
             type: array
             items:
               type: string
-          phenotype:
+          ids_phenotype:
             description: 'The union of session_id columns in phenotype files'
             type: array
             items:
