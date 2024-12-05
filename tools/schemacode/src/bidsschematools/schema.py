@@ -1,7 +1,6 @@
 """Schema loading- and processing-related functions."""
 
 import json
-import logging
 import os
 import re
 import sys

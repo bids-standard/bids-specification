@@ -1,14 +1,11 @@
 """Functions for rendering portions of the schema as text."""
 
-import logging
-import os
-
 import yaml
 from markdown_it import MarkdownIt
 
 from bidsschematools.render import utils
 from bidsschematools.schema import Namespace, filter_schema, load_schema
-from bidsschematools.utils import get_logger, set_logger_level
+from bidsschematools.utils import get_logger
 
 lgr = get_logger()
 

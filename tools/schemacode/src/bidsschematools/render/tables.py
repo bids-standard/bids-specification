@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import logging
-import os
 import typing as ty
 
 import pandas as pd
@@ -11,7 +9,7 @@ from tabulate import tabulate
 
 from bidsschematools.render import utils
 from bidsschematools.schema import BIDSSchemaError, Namespace, filter_schema
-from bidsschematools.utils import get_logger, set_logger_level
+from bidsschematools.utils import get_logger
 
 lgr = get_logger()
 
