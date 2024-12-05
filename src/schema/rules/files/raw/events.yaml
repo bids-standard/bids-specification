@@ -21,6 +21,14 @@ events:
 # Specializations
 # In these rules, we use $ref to retrieve most of an object, and then override
 
+events__emg:
+  $ref: rules.files.raw.events.events
+  datatypes:
+    - emg
+  entities:
+    $ref: rules.files.raw.events.events.entities
+    recording: optional
+
 events__mri:
   $ref: rules.files.raw.events.events
   datatypes:

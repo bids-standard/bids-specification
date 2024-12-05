@@ -611,7 +611,12 @@ electrodes:
   value: electrodes
   display_name: Electrodes
   description: |
-    File that gives the location of (i)EEG electrodes.
+    File that gives the location of (i)EEG or EMG electrodes.
+emg:
+  value: emg
+  display_name: Electromyography
+  description: |
+    Electromyography recording data.
 epi:
   value: epi
   display_name: EPI
