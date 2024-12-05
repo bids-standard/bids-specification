@@ -33,7 +33,7 @@ def get_logger(name=None):
     logger = logging.getLogger("bidsschematools" + (".%s" % name if name else ""))
     # Basic settings for output, for now just basic
     set_logger_level(logger, os.environ.get("BIDS_SCHEMA_LOG_LEVEL", logging.INFO))
-    format="%(asctime)-15s [%(levelname)8s] %(message)s"
+    format = "%(asctime)-15s [%(levelname)8s] %(message)s"
     if len(logger.handlers) == 0:
         # add a handler if there isn't one
         ch = logging.StreamHandler()
@@ -43,7 +43,6 @@ def get_logger(name=None):
         lh.setFormatter(logging.Formatter(format))
 
     return logger
-
 
 
 def set_logger_level(lgr, level):

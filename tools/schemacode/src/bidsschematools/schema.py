@@ -22,6 +22,7 @@ from .types import Namespace
 
 lgr = utils.get_logger()
 
+
 class BIDSSchemaError(Exception):
     """Errors indicating invalid values in the schema itself"""
 
