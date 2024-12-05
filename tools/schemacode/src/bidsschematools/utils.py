@@ -34,6 +34,11 @@ def get_logger(name=None):
     # Basic settings for output, for now just basic
     set_logger_level(logger, os.environ.get("BIDS_SCHEMA_LOG_LEVEL", logging.INFO))
     format="%(asctime)-15s [%(levelname)8s] %(message)s"
+    if len(logger.handlers) == 0:
+        # add a handler if there isn't one
+        ch = logging.StreamHandler()
+        logger.addHandler(ch)
+    # Set the formatter for the handlers
     for lh in logger.handlers:
         lh.setFormatter(logging.Formatter(format))
 
