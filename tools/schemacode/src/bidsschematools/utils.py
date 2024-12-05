@@ -1,6 +1,7 @@
 """Utility functions for the bids-specification schema."""
 
 import logging
+import os
 
 from . import data
 
@@ -29,7 +30,15 @@ def get_logger(name=None):
     logging.Logger
         logger object.
     """
-    return logging.getLogger("bidsschematools" + (".%s" % name if name else ""))
+    logger = logging.getLogger("bidsschematools" + (".%s" % name if name else ""))
+    # Basic settings for output, for now just basic
+    set_logger_level(logger, os.environ.get("BIDS_SCHEMA_LOG_LEVEL", logging.INFO))
+    format="%(asctime)-15s [%(levelname)8s] %(message)s"
+    for lh in logger.handlers:
+        lh.setFormatter(logging.Formatter(format))
+
+    return logger
+
 
 
 def set_logger_level(lgr, level):
