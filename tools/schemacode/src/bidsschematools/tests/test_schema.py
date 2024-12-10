@@ -85,8 +85,10 @@ def test_formats(schema_obj):
             "2022-01-05T13:16:30",
             "2022-01-05T13:16:30.5",  # subsecond resolution is allowed
             "2022-01-05T13:16:30.000005",  # up to 6 decimal points
-            "2022-01-05T13:16:30UTC",  # timezones are allowed
-            "2022-01-05T13:16:30.05UTC",
+            "2022-01-05T13:16:30Z",  # UTC indicator is allowed
+            "2022-01-05T13:16:30.05Z",
+            "2022-01-05T13:16:30+01:00",  # integral offsets are allowed
+            "2022-01-05T13:16:30-05:00",
         ],
         "time": [
             "13:16:30",
