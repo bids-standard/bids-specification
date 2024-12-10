@@ -85,8 +85,8 @@ def test_formats(schema_obj):
             "2022-01-05T13:16:30",
             "2022-01-05T13:16:30.5",  # subsecond resolution is allowed
             "2022-01-05T13:16:30.000005",  # up to 6 decimal points
-            "2022-01-05T13:16:30UTC",  # timezones are allowed
-            "2022-01-05T13:16:30.05UTC",
+            "2022-01-05T13:16:30Z",  # UTC indicator is allowed
+            "2022-01-05T13:16:30.05Z",
         ],
         "time": [
             "13:16:30",
@@ -133,7 +133,7 @@ def test_formats(schema_obj):
         ],
         "datetime": [
             "2022-01-05T13:16:30.1000005",  # too many decimal points
-            "2022-01-05T13:16:30U",  # time zone too short
+            "2022-01-05T13:16:30U",  # Only Z is permitted
             "2022-01-05T13:16:30UTCUTC",  # time zone too long
             "2022-01-05T34:10:10",  # invalid time
         ],
