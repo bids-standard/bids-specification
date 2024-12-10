@@ -202,6 +202,11 @@ as the labels would collide on a case-insensitive filesystem.
 Additionally, because the suffix `eeg` is defined,
 then the suffix `EEG` will not be added to future versions of the standard.
 
+### Dotfiles
+
+Files and directories starting with a dot (`.`) are reserved for system use and no valid recognized BIDS file or directory can start with a `.`.
+Any file or directory starting with a `.` present in a BIDS dataset is considered hidden and not subject to BIDS validation.
+
 ## Uniqueness of data files
 
 Data files MUST be uniquely identified by BIDS path components
