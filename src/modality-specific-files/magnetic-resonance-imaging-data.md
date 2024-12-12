@@ -11,7 +11,7 @@ MRI acquisition parameters are divided into several categories based on
 When adding additional metadata please use the CamelCase version of
 [DICOM ontology terms](https://dicom.nema.org/medical/dicom/current/output/chtml/part16/chapter_d.html)
 whenever possible. See also
-[recommendations on JSON files](../common-principles.md#keyvalue-files-dictionaries).
+[recommendations on JSON files](../common-principles.md#key-value-files-dictionaries).
 
 ### Hardware information
 
@@ -1354,6 +1354,6 @@ See [Using `IntendedFor` metadata](#using-intendedfor-metadata)
 for details on the `IntendedFor` field.
 
 As for other EPI sequences, these field mapping sequences may have any of the
-[in-plane spatial encoding](#in-plane-spatial-encoding) metadata keys.
+[in-plane spatial encoding](#in-and-out-of-plane-spatial-encoding) metadata keys.
 However, please note that `PhaseEncodingDirection` and `TotalReadoutTime` keys
 are REQUIRED for these field mapping sequences.
