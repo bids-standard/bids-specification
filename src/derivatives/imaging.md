@@ -229,7 +229,7 @@ vertices) or a combined volume/surface space.
 
 If the segmentation can be generated in different ways,
 for example, following an atlas segmentation,
-the [`seg` entity](../appendices/entities.md#segmentation) MAY be used to
+the [`seg` entity](../appendices/entities.md#seg) MAY be used to
 distinguish the name of the segmentation used.
 
 The following section describes discrete and probabilistic segmentations of
