@@ -1,5 +1,4 @@
-<!-- *[EEG]:  -->
-<!-- *[MEG]:  -->
+<!-- auto appended content  -->
 
 *[ASL]: Arterial Spin Labeling
 *[BEP]: BIDS Extension Proposal

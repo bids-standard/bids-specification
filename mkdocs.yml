@@ -113,6 +113,8 @@ extra_css:
   - css/tsv.css
   - css/dynamic-width.css
 markdown_extensions:
+  - abbr
+  - attr_list
   - toc:
       anchorlink: true
   - attr_list
