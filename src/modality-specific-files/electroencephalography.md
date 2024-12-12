@@ -316,7 +316,7 @@ If electrodes are repositioned, it is RECOMMENDED to use multiple sessions to in
 
 ### Example `*_electrodes.tsv`
 
-See also the corresponding [`electrodes.tsv` example](#example-_channelstsv).
+See also the corresponding [`channels.tsv` example](#example-_channelstsv).
 
 ```Text
 name   x        y	       z        type     material
