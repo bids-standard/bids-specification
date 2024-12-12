@@ -187,7 +187,7 @@ A guide for using macros can be found at
 
 #### Specific EEG fields
 
-If recorded with MEG, see [Recording EEG simultaneously with MEG](#recording-eeg-simultaneously-with-meg)
+If recorded with MEG, see [Recording EEG simultaneously with MEG](#recording-ieeg-simultaneously-with-meg)
 SHOULD be present:
 
 <!-- This block generates a metadata table.
