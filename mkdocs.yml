@@ -127,6 +127,9 @@ markdown_extensions:
           format: !!python/name:bidsschematools.render.tsv.fence
   - admonition
   - pymdownx.details
+  - pymdownx.snippets:
+      auto_append:
+        - includes/abbreviations.md
 plugins:
   - search
   - branchcustomization:
@@ -176,3 +179,6 @@ plugins:
         "modality-specific-files/task-events.md": "modality-agnostic-files/events.md"
 docs_dir: "src"
 use_directory_urls: false
+
+watch:
+  - includes
