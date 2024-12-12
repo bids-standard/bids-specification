@@ -12,3 +12,5 @@
 *[TSV]: Tab Separated Values
 *[URI]: Uniform Resource Identifier
 *[URL]: Uniform Resource Locator
+*[subject]: A person or animal participating in the study. Used interchangeably with term **Participant**.
+*[task]: A set of structured activities performed by the participant (see [glossary](https://bids-specification.readthedocs.io/en/latest/glossary.html#task-common_principles))
