@@ -293,7 +293,7 @@ In this case, the mask suffix MUST be used,
 the [`label` entity](../appendices/entities.md#label) SHOULD be used
 to specify the masked structure
 (see [Common image-derived labels](#common-image-derived-labels)),
-and the [`seg` entity](../appendices/entities.md#segmentation) SHOULD be defined.
+and the [`seg` entity](../appendices/entities.md#seg) SHOULD be defined.
 
 For example:
 
