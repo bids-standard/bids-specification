@@ -116,8 +116,6 @@ plugins:
             - css/watermark.css
   - macros:
       module_name: tools/mkdocs_macros_bids/main
-      # toggle to true if you are in CD/CI environment
-      on_error_fail: true
   - redirects:
       redirect_maps:
         "01-introduction.md": "introduction.md"
