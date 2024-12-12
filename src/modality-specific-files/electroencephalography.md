@@ -1,10 +1,9 @@
 # Electroencephalography
 
 Support for Electroencephalography (EEG) was developed as a
-[BIDS Extension Proposal](../extensions.md#bids-extension-proposals).
-Please see [Citing BIDS](../introduction.md#citing-bids)
-on how to appropriately credit this extension when referring to it in the
-context of the academic literature.
+[BIDS Extension Proposal](../extensions.md#bids-extension-proposals). Please see
+[Citing BIDS](../introduction.md#citing-bids) on how to appropriately credit
+this extension when referring to it in the context of the academic literature.
 
 !!! example "Example datasets"
 
@@ -21,6 +20,7 @@ The inputs for this macro can be found in the directory
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_filename_template(
    "raw",
    datatypes=["eeg"],
@@ -34,7 +34,7 @@ stored in one of the following formats:
 | **Format**                                        | **Extension(s)**         | **Description**                                                                                                                                                                                      |
 | ------------------------------------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [European data format](https://www.edfplus.info/) | `.edf`                   | Each recording consists of a single `.edf` file. [`edf+`](https://www.edfplus.info/specs/edfplus.html) files are permitted. The capital `.EDF` extension MUST NOT be used.                           |
-| [BrainVision Core Data Format][bvformat]          | `.vhdr`, `.vmrk`, `.eeg` | Each recording consists of a  `.vhdr`, `.vmrk`, `.eeg` file triplet.                                                                                                                                 |
+| [BrainVision Core Data Format][bvformat]          | `.vhdr`, `.vmrk`, `.eeg` | Each recording consists of a `.vhdr`, `.vmrk`, `.eeg` file triplet.                                                                                                                                  |
 | [EEGLAB](https://sccn.ucsd.edu/eeglab/index.php)  | `.set`, `.fdt`           | The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab/index.php). Each recording consists of a `.set` file with an OPTIONAL `.fdt` file.                                       |
 | [Biosemi](https://www.biosemi.com/)               | `.bdf`                   | Each recording consists of a single `.bdf` file. [`bdf+`](https://www.teuniz.net/edfbrowser/bdfplus%20format%20description.html) files are permitted. The capital `.BDF` extension MUST NOT be used. |
 
@@ -47,45 +47,43 @@ RECOMMENDED formats.
 We encourage users to provide additional metadata extracted from the
 manufacturer-specific data files in the sidecar JSON file.
 
-Note the `RecordingType`, which depends on whether the data stream on disk
-is interrupted or not.
-Continuous data is by definition 1 segment without interruption.
-Epoched data consists of multiple segments that all have the same length
-(for example, corresponding to trials) and that have gaps in between.
-Discontinuous data consists of multiple segments of different length,
-for example due to a pause in the acquisition.
+Note the `RecordingType`, which depends on whether the data stream on disk is
+interrupted or not. Continuous data is by definition 1 segment without
+interruption. Epoched data consists of multiple segments that all have the same
+length (for example, corresponding to trials) and that have gaps in between.
+Discontinuous data consists of multiple segments of different length, for
+example due to a pause in the acquisition.
 
 Note that for proper documentation of EEG recording metadata it is important to
 understand the difference between electrode and channel: An EEG electrode is
 attached to the skin, whereas a channel is the combination of the analog
 differential amplifier and analog-to-digital converter that result in a
-potential (voltage) difference that is stored in the EEG dataset. We employ
-the following short definitions:
+potential (voltage) difference that is stored in the EEG dataset. We employ the
+following short definitions:
 
--   Electrode = A single point of contact between the acquisition system and
-    the recording site (for example, scalp, neural tissue, ...). Multiple electrodes
-    can be organized as caps (for EEG), arrays, grids, leads, strips, probes,
-    shafts, and so on.
+- Electrode = A single point of contact between the acquisition system and the
+  recording site (for example, scalp, neural tissue, ...). Multiple electrodes
+  can be organized as caps (for EEG), arrays, grids, leads, strips, probes,
+  shafts, and so on.
 
--   Channel = A single analog-to-digital converter in the recording system that
-    regularly samples the value of a transducer, which results in the signal
-    being represented as a time series in the digitized data. This can be
-    connected to two electrodes (to measure the potential difference between
-    them), a magnetic field or magnetic gradient sensor, temperature sensor,
-    accelerometer, and so on.
+- Channel = A single analog-to-digital converter in the recording system that
+  regularly samples the value of a transducer, which results in the signal being
+  represented as a time series in the digitized data. This can be connected to
+  two electrodes (to measure the potential difference between them), a magnetic
+  field or magnetic gradient sensor, temperature sensor, accelerometer, and so
+  on.
 
-Although the *reference* and *ground* electrodes are often referred to as
-channels, they are in most common EEG systems not recorded by
-themselves. Therefore they are not represented as channels in the data.
-The type of referencing for all channels and optionally the location of
-the reference electrode and the location of the ground electrode MAY
-be specified.
+Although the _reference_ and _ground_ electrodes are often referred to as
+channels, they are in most common EEG systems not recorded by themselves.
+Therefore they are not represented as channels in the data. The type of
+referencing for all channels and optionally the location of the reference
+electrode and the location of the ground electrode MAY be specified.
 
 ### Sidecar JSON (`*_eeg.json`)
 
-For consistency between studies and institutions,
-we encourage users to extract the values of these fields from the actual raw data.
-Whenever possible, please avoid using ad hoc wording.
+For consistency between studies and institutions, we encourage users to extract
+the values of these fields from the actual raw data. Whenever possible, please
+avoid using ad hoc wording.
 
 Those fields MUST be present:
 
@@ -97,6 +95,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_sidecar_table("eeg.EEGRequired") }}
 
 Those fields SHOULD be present:
@@ -109,6 +108,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_sidecar_table("eeg.EEGRecommended") }}
 
 These fields MAY be present:
@@ -121,6 +121,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_sidecar_table("eeg.EEGOptional") }}
 
 #### Hardware information
@@ -133,6 +134,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_sidecar_table("eeg.EEGHardware") }}
 
 #### Task information
@@ -145,6 +147,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_sidecar_table("eeg.EEGTaskInformation") }}
 
 #### Institution information
@@ -157,6 +160,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_sidecar_table("eeg.EEGInstitutionInformation") }}
 
 #### Example `*_eeg.json`
@@ -200,8 +204,8 @@ A guide for using macros can be found at
 ```
 
 Note that the date and time information SHOULD be stored in the Study key file
-([`scans.tsv`](../modality-agnostic-files.md#scans-file)).
-Date time information MUST be expressed as indicated in [Units](../common-principles.md#units)
+([`scans.tsv`](../modality-agnostic-files.md#scans-file)). Date time information
+MUST be expressed as indicated in [Units](../common-principles.md#units)
 
 ## Channels description (`*_channels.tsv`)
 
@@ -212,20 +216,23 @@ The inputs for this macro can be found in the directory
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_filename_template("raw", datatypes=["eeg"], suffixes=["channels"]) }}
 
-This file is RECOMMENDED as it provides easily searchable information across BIDS datasets.
-For example for general curation, response to queries, or for batch analysis.
-To avoid confusion, the channels SHOULD be listed in the order they appear in the EEG data file.
-Any number of additional columns MAY be added to provide additional information about the channels.
+This file is RECOMMENDED as it provides easily searchable information across
+BIDS datasets. For example for general curation, response to queries, or for
+batch analysis. To avoid confusion, the channels SHOULD be listed in the order
+they appear in the EEG data file. Any number of additional columns MAY be added
+to provide additional information about the channels.
 
 Note that electrode positions SHOULD NOT be added to this file, but to
 [`*_electrodes.tsv`](./electroencephalography.md#electrodes-description-_electrodestsv).
-Furthermore, the entries in `*_electrodes.tsv` and `*_channels.tsv` do not have to match exactly,
-as for example in the case of recording a single `EOG` channel from a bipolar referencing scheme
-of two electrodes, or a data channel originating from an auxiliary, non-electrode device.
-That is, in most cases `*_electrodes.tsv` will have more entries than `*_channels.tsv`.
-See the examples for `*_channels.tsv` below, and for `*_electrodes.tsv` in
+Furthermore, the entries in `*_electrodes.tsv` and `*_channels.tsv` do not have
+to match exactly, as for example in the case of recording a single `EOG` channel
+from a bipolar referencing scheme of two electrodes, or a data channel
+originating from an auxiliary, non-electrode device. That is, in most cases
+`*_electrodes.tsv` will have more entries than `*_channels.tsv`. See the
+examples for `*_channels.tsv` below, and for `*_electrodes.tsv` in
 ["Electrodes description"](./electroencephalography.md#electrodes-description-_electrodestsv).
 
 The columns of the channels description table stored in `*_channels.tsv` are:
@@ -236,11 +243,12 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_columns_table("eeg.EEGChannels") }}
 
 Restricted keyword list for field `type` in alphabetic order (shared with the
-MEG and iEEG modality; however, only the types that are common in EEG data are listed here).
-Note that upper-case is REQUIRED:
+MEG and iEEG modality; however, only the types that are common in EEG data are
+listed here). Note that upper-case is REQUIRED:
 
 | **Keyword** | **Description**                                              |
 | ----------- | ------------------------------------------------------------ |
@@ -264,15 +272,15 @@ Note that upper-case is REQUIRED:
 
 Examples of free-form text for field `description`
 
--   n/a
--   stimulus
--   response
--   skin conductance
--   battery status
+- n/a
+- stimulus
+- response
+- skin conductance
+- battery status
 
 ### Example `*_channels.tsv`
 
-See also the corresponding [`electrodes.tsv` example](#example-electrodestsv).
+See also the corresponding [`electrodes.tsv` example](#example-_electrodestsv).
 
 ```Text
 name     type  units  description                     reference     status  status_description
@@ -291,14 +299,16 @@ The inputs for this macro can be found in the directory
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_filename_template("raw", datatypes=["eeg"], suffixes=["electrodes"]) }}
 
 File that gives the location of EEG electrodes. Note that coordinates are
 expected in cartesian coordinates according to the `EEGCoordinateSystem` and
-`EEGCoordinateUnits` fields in `*_coordsystem.json`. **If an
-`*_electrodes.tsv` file is specified, a [`*_coordsystem.json`](#coordinate-system-json-_coordsystemjson)
-file MUST be specified as well**. The order of the required columns in the
-`*_electrodes.tsv` file MUST be as listed below.
+`EEGCoordinateUnits` fields in `*_coordsystem.json`. **If an `*_electrodes.tsv`
+file is specified, a
+[`*_coordsystem.json`](#coordinate-system-json-_coordsystemjson) file MUST be
+specified as well**. The order of the required columns in the `*_electrodes.tsv`
+file MUST be as listed below.
 
 <!-- This block generates a columns table.
 The definitions of these fields can be found in
@@ -306,17 +316,19 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_columns_table("eeg.EEGElectrodes") }}
 
-`*_electrodes.tsv` files SHOULD NOT be duplicated for each data file,
-for example, during multiple runs of a task.
-The [inheritance principle](../common-principles.md#the-inheritance-principle) MUST
-be used to find the appropriate electrode positions for a given data file.
-If electrodes are repositioned, it is RECOMMENDED to use multiple sessions to indicate this.
+`*_electrodes.tsv` files SHOULD NOT be duplicated for each data file, for
+example, during multiple runs of a task. The
+[inheritance principle](../common-principles.md#the-inheritance-principle) MUST
+be used to find the appropriate electrode positions for a given data file. If
+electrodes are repositioned, it is RECOMMENDED to use multiple sessions to
+indicate this.
 
 ### Example `*_electrodes.tsv`
 
-See also the corresponding [`electrodes.tsv` example](#example-channelstsv).
+See also the corresponding [`electrodes.tsv` example](#example-_channelstsv).
 
 ```Text
 name   x        y	       z        type     material
@@ -330,10 +342,9 @@ REF    -0.0742  -0.0200  -0.0100  cup      Ag/AgCl
 ```
 
 The [`acq-<label>`](../appendices/entities.md#acq) entity can be used to
-indicate acquisition of the same data. For
-example, this could be the recording of electrode positions with a different
-electrode position recording device, or repeated digitization before and after
-the recording.
+indicate acquisition of the same data. For example, this could be the recording
+of electrode positions with a different electrode position recording device, or
+repeated digitization before and after the recording.
 
 ## Coordinate System JSON (`*_coordsystem.json`)
 
@@ -344,29 +355,31 @@ The inputs for this macro can be found in the directory
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_filename_template("raw", datatypes=["eeg"], suffixes=["coordsystem"]) }}
 
 A `*_coordsystem.json` file is used to specify the fiducials, the location of
 anatomical landmarks, and the coordinate system and units in which the position
-of electrodes and landmarks is expressed. **The `*_coordsystem.json` is
-REQUIRED if the optional `*_electrodes.tsv` is specified**. If a corresponding
-anatomical MRI is available, the locations of landmarks and fiducials according
-to that scan should also be stored in the [`*_T1w.json`](./magnetic-resonance-imaging-data.md)
-file which goes alongside the MRI data.
+of electrodes and landmarks is expressed. **The `*_coordsystem.json` is REQUIRED
+if the optional `*_electrodes.tsv` is specified**. If a corresponding anatomical
+MRI is available, the locations of landmarks and fiducials according to that
+scan should also be stored in the
+[`*_T1w.json`](./magnetic-resonance-imaging-data.md) file which goes alongside
+the MRI data.
 
 For disambiguation, we employ the following definitions for fiducials and
 anatomical landmarks respectively:
 
--   **Fiducials** are objects with a well defined location used to facilitate the
-    localization of electrodes and co-registration with other geometric data
-    such as the participant's own T1 weighted magnetic resonance head image, a
-    T1 weighted template head image, or a spherical head model. Commonly used
-    fiducials are vitamin-E pills, which show clearly in an MRI, or reflective
-    spheres that are localized with an infrared optical tracking system.
+- **Fiducials** are objects with a well defined location used to facilitate the
+  localization of electrodes and co-registration with other geometric data such
+  as the participant's own T1 weighted magnetic resonance head image, a T1
+  weighted template head image, or a spherical head model. Commonly used
+  fiducials are vitamin-E pills, which show clearly in an MRI, or reflective
+  spheres that are localized with an infrared optical tracking system.
 
--   **Anatomical landmarks** are locations on a research subject such as the nasion,
-    which is the intersection of the frontal bone and two nasal bones of the
-    human skull.
+- **Anatomical landmarks** are locations on a research subject such as the
+  nasion, which is the intersection of the frontal bone and two nasal bones of
+  the human skull.
 
 Fiducials are typically used in conjunction with anatomical landmarks. An
 example would be the placement of vitamin-E pills on top of anatomical
@@ -374,11 +387,11 @@ landmarks, or the placement of LEDs on the nasion and preauricular points to
 triangulate the position of other LED-lit electrodes on a research subject's
 head.
 
--   For more information on the definition of anatomical landmarks, please visit:
-    [How are the Left and Right Pre-Auricular (LPA and RPA) points defined? - FieldTrip Toolbox](https://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined/)
+- For more information on the definition of anatomical landmarks, please visit:
+  [How are the Left and Right Pre-Auricular (LPA and RPA) points defined? - FieldTrip Toolbox](https://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined/)
 
--   For more information on coordinate systems for coregistration, please visit:
-    [How are the different head and MRI coordinate systems defined? - FieldTrip Toolbox](https://www.fieldtriptoolbox.org/faq/coordsys/)
+- For more information on coordinate systems for coregistration, please visit:
+  [How are the different head and MRI coordinate systems defined? - FieldTrip Toolbox](https://www.fieldtriptoolbox.org/faq/coordsys/)
 
 General fields:
 
@@ -390,6 +403,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_json_table("json.eeg.EEGCoordsystemGeneral") }}
 
 Fields relating to the EEG electrode positions:
@@ -402,6 +416,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_json_table("json.eeg.EEGCoordsystemPositions") }}
 
 Fields relating to the position of fiducials measured during an EEG session/run:
@@ -414,9 +429,11 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_json_table("json.eeg.EEGCoordsystemFiducials") }}
 
-Fields relating to the position of anatomical landmark measured during an EEG session/run:
+Fields relating to the position of anatomical landmark measured during an EEG
+session/run:
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -426,6 +443,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_json_table(["json.eeg.EEGCoordsystemLandmark", "json.eeg.EEGCoordsystemLandmarkDescriptionRec"]) }}
 
 If the position of anatomical landmarks is measured using the same system or
@@ -434,16 +452,17 @@ landmarks are expressed in the same coordinates, the coordinates of the
 anatomical landmarks can be specified in `electrodes.tsv`. The same applies to
 the coordinates of the fiducials.
 
-Anatomical landmarks or fiducials measured on an anatomical MRI  that match the
+Anatomical landmarks or fiducials measured on an anatomical MRI that match the
 landmarks or fiducials during an EEG session/run, must be stored separately in
 the corresponding `*_T1w.json` or `*_T2w.json` file and should be expressed in
 voxels (starting from `[0, 0, 0]`).
 
-`*_coordsystem.json` files SHOULD NOT be duplicated for each data file,
-for example, across multiple tasks.
-The [inheritance principle](../common-principles.md#the-inheritance-principle) MUST
-be used to find the appropriate coordinate system description for a given data file.
-If electrodes are repositioned, it is RECOMMENDED to use multiple sessions to indicate this.
+`*_coordsystem.json` files SHOULD NOT be duplicated for each data file, for
+example, across multiple tasks. The
+[inheritance principle](../common-principles.md#the-inheritance-principle) MUST
+be used to find the appropriate coordinate system description for a given data
+file. If electrodes are repositioned, it is RECOMMENDED to use multiple sessions
+to indicate this.
 
 ### Example `*_coordsystem.json`
 
@@ -468,25 +487,27 @@ The inputs for this macro can be found in the directory
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_filename_template("raw", datatypes=["eeg"], suffixes=["photo"]) }}
 
-Photos of the anatomical landmarks and/or fiducials are OPTIONAL.
-Please note that the photos may need to be cropped or blurred to conceal
-identifying features prior to sharing, depending on the terms of the consent
-given by the participant.
+Photos of the anatomical landmarks and/or fiducials are OPTIONAL. Please note
+that the photos may need to be cropped or blurred to conceal identifying
+features prior to sharing, depending on the terms of the consent given by the
+participant.
 
 The [`acq-<label>`](../appendices/entities.md#acq) entity can be used to
-indicate acquisition of different photos of
-the same face (or other body part in different angles to show, for example, the
-location of the nasion (NAS) as opposed to the right periauricular point (RPA).
+indicate acquisition of different photos of the same face (or other body part in
+different angles to show, for example, the location of the nasion (NAS) as
+opposed to the right periauricular point (RPA).
 
 ### Example `*_photo.<extension>`
 
-Picture of a NAS fiducial placed between the eyebrows, rather than at the
-actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
+Picture of a NAS fiducial placed between the eyebrows, rather than at the actual
+anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
 
 ![placement of NAS fiducial](images/sub-0001_ses-001_acq-NAS_photo.jpg "placement of NAS fiducial")
 
 <!-- Link Definitions -->
 
-[bvformat]: https://www.brainproducts.com/support-resources/brainvision-core-data-format-1-0/
+[bvformat]:
+  https://www.brainproducts.com/support-resources/brainvision-core-data-format-1-0/

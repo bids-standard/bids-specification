@@ -14,20 +14,19 @@ Template:
             <source_entities>[_space-<space>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
 ```
 
-Volumetric preprocessing does not modify the number of dimensions, and so
-the specifications in [Preprocessed or cleaned data][common_preproc]
-apply.
-The use of surface meshes and volumetric measures sampled to those meshes is
+Volumetric preprocessing does not modify the number of dimensions, and so the
+specifications in [Preprocessed or cleaned data][common_preproc] apply. The use
+of surface meshes and volumetric measures sampled to those meshes is
 sufficiently similar in practice to treat them equivalently.
 
-When two or more instances of a given derivative are provided with resolution
-or surface sampling density being the only difference between them, then the
-[`res`](../appendices/entities.md#res) (for *resolution* of regularly sampled N-D data) and/or
-[`den`](../appendices/entities.md#den) (for *density* of non-parametric surfaces)
-entities SHOULD be used to avoid name conflicts.
-Note that only files combining both regularly sampled (for example, gridded)
-and surface sampled data (and their downstream derivatives) are allowed
-to present both [`res`](../appendices/entities.md#res) and
+When two or more instances of a given derivative are provided with resolution or
+surface sampling density being the only difference between them, then the
+[`res`](../appendices/entities.md#res) (for _resolution_ of regularly sampled
+N-D data) and/or [`den`](../appendices/entities.md#den) (for _density_ of
+non-parametric surfaces) entities SHOULD be used to avoid name conflicts. Note
+that only files combining both regularly sampled (for example, gridded) and
+surface sampled data (and their downstream derivatives) are allowed to present
+both [`res`](../appendices/entities.md#res) and
 [`den`](../appendices/entities.md#den) entities simultaneously.
 
 Examples:
@@ -36,6 +35,7 @@ Examples:
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_filetree_example(
    {
     "pipeline1": {
@@ -60,6 +60,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_sidecar_table([
        "derivatives.common_derivatives.ImageDerivatives",
        "derivatives.common_derivatives.ImageDerivativeResEntity",
@@ -79,8 +80,8 @@ Example JSON file corresponding to
 }
 ```
 
-This would be equivalent to having two JSON metadata files, one
-corresponding to `res-lo`
+This would be equivalent to having two JSON metadata files, one corresponding to
+`res-lo`
 (`pipeline1/sub-001/func/sub-001_task-rest_run-1_space-MNI305_res-lo_bold.json`):
 
 ```JSON
@@ -100,14 +101,15 @@ And one corresponding to `res-hi`
 }
 ```
 
-Example of CIFTI-2 files (a format that combines regularly sampled data
-and non-parametric surfaces) having both [`res`](../appendices/entities.md#res)
-and [`den`](../appendices/entities.md#den) entities:
+Example of CIFTI-2 files (a format that combines regularly sampled data and
+non-parametric surfaces) having both [`res`](../appendices/entities.md#res) and
+[`den`](../appendices/entities.md#den) entities:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_filetree_example(
    {
     "pipeline1": {
@@ -151,11 +153,13 @@ Template:
             <source_entities>[_space-<space>][_res-<label>][_den-<label>][_label-<label>][_desc-<label>]_mask.nii.gz
 ```
 
-A binary (1 - inside, 0 - outside) mask in the space defined by the [`space` entity](../appendices/entities.md#space).
-If no transformation has taken place, the value of `space` SHOULD be set to `orig`.
-If the mask is an ROI mask derived from an atlas segmentation,
-then the [`label` entity](../appendices/entities.md#label) SHOULD be used to specify the masked structure
-(see [Common image-derived labels](#common-image-derived-labels)).
+A binary (1 - inside, 0 - outside) mask in the space defined by the
+[`space` entity](../appendices/entities.md#space). If no transformation has
+taken place, the value of `space` SHOULD be set to `orig`. If the mask is an ROI
+mask derived from an atlas segmentation, then the
+[`label` entity](../appendices/entities.md#label) SHOULD be used to specify the
+masked structure (see
+[Common image-derived labels](#common-image-derived-labels)).
 
 JSON metadata fields:
 
@@ -167,6 +171,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_sidecar_table([
        "derivatives.common_derivatives.MaskDerivatives",
        "derivatives.common_derivatives.ImageDerivativeResEntity",
@@ -179,6 +184,7 @@ Examples:
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_filetree_example(
    {
     "func_loc": {
@@ -196,6 +202,7 @@ A guide for using macros can be found at
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_filetree_example(
    {
     "manual_masks": {
@@ -211,26 +218,23 @@ A guide for using macros can be found at
 
 ## Segmentations
 
-A *segmentation* is a labeling of regions of an image such that each location
+A _segmentation_ is a labeling of regions of an image such that each location
 (for example, a voxel or a surface vertex) is identified with a label or a
-combination of labels.
-Labeled regions may include anatomical structures (such as tissue class,
-Brodmann area or white matter tract), discontiguous, functionally-defined
-networks, tumors or lesions.
+combination of labels. Labeled regions may include anatomical structures (such
+as tissue class, Brodmann area or white matter tract), discontiguous,
+functionally-defined networks, tumors or lesions.
 
-A *discrete segmentation* represents each region with a unique integer
-label.
-A *probabilistic segmentation* represents each region as values between
-0 and 1 (inclusive) at each location in the image, and one volume/frame per
-structure may be concatenated in a single file.
+A _discrete segmentation_ represents each region with a unique integer label. A
+_probabilistic segmentation_ represents each region as values between 0 and 1
+(inclusive) at each location in the image, and one volume/frame per structure
+may be concatenated in a single file.
 
 Segmentations may be defined in a volume (labeled voxels), a surface (labeled
 vertices) or a combined volume/surface space.
 
-If the segmentation can be generated in different ways,
-for example, following an atlas segmentation,
-the [`seg` entity](../appendices/entities.md#segmentation) MAY be used to
-distinguish the name of the segmentation used.
+If the segmentation can be generated in different ways, for example, following
+an atlas segmentation, the [`seg` entity](../appendices/entities.md#seg) MAY be
+used to distinguish the name of the segmentation used.
 
 The following section describes discrete and probabilistic segmentations of
 volumes, followed by discrete segmentations of surface/combined spaces.
@@ -246,6 +250,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_sidecar_table([
        "derivatives.common_derivatives.SegmentationCommon",
        "derivatives.common_derivatives.ImageDerivativeResEntity",
@@ -255,9 +260,9 @@ A guide for using macros can be found at
 ### Discrete Segmentations
 
 Discrete segmentations of brain tissue represent multiple anatomical structures
-(such as tissue class or Brodmann area) with a unique integer label in a 3D volume.
-See [Common image-derived labels](#common-image-derived-labels) for a description
-of how integer values map to anatomical structures.
+(such as tissue class or Brodmann area) with a unique integer label in a 3D
+volume. See [Common image-derived labels](#common-image-derived-labels) for a
+description of how integer values map to anatomical structures.
 
 Template:
 
@@ -274,6 +279,7 @@ Example:
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_filetree_example(
    {
     "pipeline": {
@@ -288,12 +294,11 @@ A guide for using macros can be found at
 ) }}
 
 A segmentation can be used to generate a binary mask that functions as a
-discrete "label" for a single structure.
-In this case, the mask suffix MUST be used,
-the [`label` entity](../appendices/entities.md#label) SHOULD be used
-to specify the masked structure
-(see [Common image-derived labels](#common-image-derived-labels)),
-and the [`seg` entity](../appendices/entities.md#segmentation) SHOULD be defined.
+discrete "label" for a single structure. In this case, the mask suffix MUST be
+used, the [`label` entity](../appendices/entities.md#label) SHOULD be used to
+specify the masked structure (see
+[Common image-derived labels](#common-image-derived-labels)), and the
+[`seg` entity](../appendices/entities.md#seg) SHOULD be defined.
 
 For example:
 
@@ -301,6 +306,7 @@ For example:
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_filetree_example(
    {
     "pipeline": {
@@ -318,10 +324,9 @@ A guide for using macros can be found at
 
 Probabilistic segmentations of brain tissue represent a single anatomical
 structure with values ranging from 0 to 1 in individual 3D volumes or across
-multiple frames.
-If a single structure is included,
-the [`label` entity](../appendices/entities.md#label) SHOULD be used to specify
-the structure.
+multiple frames. If a single structure is included, the
+[`label` entity](../appendices/entities.md#label) SHOULD be used to specify the
+structure.
 
 Template:
 
@@ -338,6 +343,7 @@ Example:
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_filetree_example(
    {
     "pipeline": {
@@ -351,8 +357,8 @@ A guide for using macros can be found at
    }
 ) }}
 
-See [Common image-derived labels](#common-image-derived-labels)
-for reserved values for the [`label`](../appendices/entities.md#label) entity.
+See [Common image-derived labels](#common-image-derived-labels) for reserved
+values for the [`label`](../appendices/entities.md#label) entity.
 
 A 4D probabilistic segmentation, in which each frame corresponds to a different
 tissue class, must provide a label mapping in its JSON sidecar. For example:
@@ -361,6 +367,7 @@ tissue class, must provide a label mapping in its JSON sidecar. For example:
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_filetree_example(
    {
     "pipeline": {
@@ -392,7 +399,7 @@ Values of `label` SHOULD correspond to abbreviations defined in
 
 ### Discrete surface segmentations
 
-Discrete surface segmentations (sometimes called *parcellations*) of cortical
+Discrete surface segmentations (sometimes called _parcellations_) of cortical
 structures MUST be stored as GIFTI label files, with the extension `.label.gii`.
 For combined volume/surface spaces, discrete segmentations MUST be stored as
 CIFTI-2 dense label files, with the extension `.dlabel.nii`.
@@ -406,14 +413,15 @@ Template:
             <source_entities>[_hemi-{L|R}][_space-<space>][_seg-<label>][_res-<label>][_den-<label>]_dseg.{label.gii|dlabel.nii}
 ```
 
-The [`hemi-<label>`](../appendices/entities.md#hemi) entity is REQUIRED for GIFTI files storing information about
-a structure that is restricted to a hemibrain.
-For example:
+The [`hemi-<label>`](../appendices/entities.md#hemi) entity is REQUIRED for
+GIFTI files storing information about a structure that is restricted to a
+hemibrain. For example:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_filetree_example(
    {
     "pipeline": {
@@ -433,6 +441,7 @@ The REQUIRED extension for CIFTI parcellations is `.dlabel.nii`. For example:
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_filetree_example(
    {
     "pipeline": {
@@ -449,8 +458,8 @@ A guide for using macros can be found at
 ### Common image-derived labels
 
 BIDS supplies a standard, generic label-index mapping, defined in the table
-below, that contains common image-derived segmentations and can be used to map segmentations
-(and parcellations) between lookup tables.
+below, that contains common image-derived segmentations and can be used to map
+segmentations (and parcellations) between lookup tables.
 
 | **Integer value** | **Description**         | **Abbreviation (label)** |
 | ----------------- | ----------------------- | ------------------------ |
@@ -477,6 +486,7 @@ Example:
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_filetree_example(
    {
     "pipeline": {
@@ -490,8 +500,8 @@ A guide for using macros can be found at
    }
 ) }}
 
-Definitions can also be specified with a top-level `dseg.tsv`, which propagates to
-segmentations in relative subdirectories.
+Definitions can also be specified with a top-level `dseg.tsv`, which propagates
+to segmentations in relative subdirectories.
 
 Example:
 
@@ -499,6 +509,7 @@ Example:
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_filetree_example(
    {
     "pipeline": {
@@ -520,6 +531,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
+
 {{ MACROS___make_columns_table("derivatives.common_derivatives.SegmentationLookup") }}
 
 An example, custom `dseg.tsv` that defines three labels:
@@ -544,5 +556,4 @@ index   name                abbreviation
 <!-- Link Definitions -->
 
 [common_preproc]: common-data-types.md#preprocessed-or-cleaned-data
-
 [unspecified]: ../common-principles.md#unspecified-data
