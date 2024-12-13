@@ -1,12 +1,32 @@
 version: 2
 
 build:
-  os: ubuntu-22.04
-  apt_packages:
-    - jq
+  os: ubuntu-lts-latest
   tools:
-    python: "3.11"
+    python: latest
   jobs:
+    # The *_create_environment and post_install steps replace RTD's virtual environment
+    # steps with uv, a much faster alternative to virtualenv+pip.
+    pre_create_environment:
+      # Install jq and uv
+      - asdf plugin add jq https://github.com/lsanwick/asdf-jq.git
+      - asdf plugin add uv https://github.com/asdf-community/asdf-uv.git
+      - asdf install jq latest
+      - asdf install uv latest
+      - asdf global jq latest
+      - asdf global uv latest
+      # Turn `python -m virtualenv` into `python -c pass`
+      - truncate --size 0 $( dirname $( uv python find ) )/../lib/python3*/site-packages/virtualenv/__main__.py
+    post_create_environment:
+      - uv venv $READTHEDOCS_VIRTUALENV_PATH
+      # Turn `python -m pip` into `python -c pass`
+      - truncate --size 0 $( ls -d $READTHEDOCS_VIRTUALENV_PATH/lib/python3* )/site-packages/pip.py
+    # post_install replaces the top-level {python: {install: [{requirements: requirements.txt}]}}
+    post_install:
+      # Use a cache dir in the same mount to halve the install time
+      - VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH uv pip install --cache-dir $READTHEDOCS_VIRTUALENV_PATH/../../uv_cache -r requirements.txt
+    # Normal pre-build step to inject schema.json into the source directory
+    # so schema.json is hosted alongside the specification documents
     pre_build:
       - bst -v export --output src/schema.json
       - tools/no-bad-schema-paths.sh src/schema.json  # README.md might need fixing
@@ -14,7 +34,3 @@ build:
 mkdocs:
   configuration: mkdocs.yml
   fail_on_warning: true
-
-python:
-  install:
-    - requirements: requirements.txt
