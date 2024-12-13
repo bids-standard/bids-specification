@@ -15,7 +15,7 @@ EventsMissing:
     - '!match(entities.task, "rest")'
     - '!intersects([suffix], ["events", "beh"])'
     - extension != ".json"
-    - (datatype != "meg" || entities.subject != "emptyroom")
+    - datatype != "meg" || entities.subject != "emptyroom" && entities.task != "noise"
   checks:
     - '"events" in associations'
 
@@ -26,7 +26,7 @@ StimulusFileMissing:
       A stimulus file was declared but not found in the dataset.
     level: error
   selectors:
-    - suffix == "events"
+    - intersects([suffix], ["events", "beh"])
     - columns.stim_file != null
   checks:
     - exists(columns.stim_file, "stimuli") == length(columns.stim_file) - count(columns.stim_file, "n/a")

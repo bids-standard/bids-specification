@@ -1,19 +1,13 @@
 """Functions for rendering portions of the schema as text."""
 
-import logging
-import os
-
 import yaml
 from markdown_it import MarkdownIt
 
 from bidsschematools.render import utils
 from bidsschematools.schema import Namespace, filter_schema, load_schema
-from bidsschematools.utils import get_logger, set_logger_level
+from bidsschematools.utils import get_logger
 
 lgr = get_logger()
-# Basic settings for output, for now just basic
-set_logger_level(lgr, os.environ.get("BIDS_SCHEMA_LOG_LEVEL", logging.INFO))
-logging.basicConfig(format="%(asctime)-15s [%(levelname)8s] %(message)s")
 
 # Remember to add extension (.html or .md) to the paths when using them.
 ENTITIES_PATH = "SPEC_ROOT/appendices/entities"
