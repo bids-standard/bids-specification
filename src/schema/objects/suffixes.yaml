@@ -877,3 +877,50 @@ unloc:
   description: |
     MRS acquisitions run without localization.
     This includes signals detected using coil sensitivity only.
+audio:
+  value: audio
+  display_name: Audio stimulus file
+  description: |
+    Any data file used as an audio stimulus. Media files usually have an audio file type (such as wav, mp3, aac, ogg).
+    The JSON file associated with each media file should contain information such as License (RECOMMENDED), Copyright (RECOMMENDED), URL (OPTIONAL), and Description (OPTIONAL) to describe the origin and the nature of the media.
+    However, in the case of the imposed distribution restrictions of the stimulus, the media stimulus file may not be present with only JSON sidecar file containing the aforementioned pertinent metadata.
+  extensions:
+    - .wav
+    - .mp3
+    - .aac
+    - .ogg
+image:
+  value: image
+  display_name: Image stimulus file
+  description: |
+    Any data file used as an image stimulus. Media files usually have an image file type (such as jpg, png, svg).
+    The JSON file associated with each media file should contain information such as License (RECOMMENDED), Copyright (RECOMMENDED), URL (OPTIONAL), and Description (OPTIONAL) to describe the origin and the nature of the media.
+    However, in the case of the imposed distribution restrictions of the stimulus, the media stimulus file may not be present with only JSON sidecar file containing the aforementioned pertinent metadata.
+  extensions:
+    - .jpg
+    - .png
+    - .svg
+video:
+  value: video
+  display_name: Video stimulus file
+  description: |
+    Any data file used as a video stimulus. Media files usually have a video file type (such as mp4, avi, mkv, webm).
+    The JSON file associated with each media file should contain information such as License (RECOMMENDED), Copyright (RECOMMENDED), URL (OPTIONAL), and Description (OPTIONAL) to describe the origin and the nature of the media.
+    However, in the case of the imposed distribution restrictions of the stimulus, the media stimulus file may not be present with only JSON sidecar file containing the aforementioned pertinent metadata.
+  extensions:
+    - .mp4
+    - .avi
+    - .mkv
+    - .webm
+audiovideo:
+  value: audiovideo
+  display_name: Audiovideo stimulus file
+  description: |
+    Any data file used as an audiovideo stimulus. Media files usually have an audiovideo file type (such as mp4, avi, mkv, webm).
+    The JSON file associated with each media file should contain information such as License (RECOMMENDED), Copyright (RECOMMENDED), URL (OPTIONAL), and Description (OPTIONAL) to describe the origin and the nature of the media.
+    However, in the case of the imposed distribution restrictions of the stimulus, the media stimulus file may not be present with only JSON sidecar file containing the aforementioned pertinent metadata.
+  extensions:
+    - .mp4
+    - .avi
+    - .mkv
+    - .webm

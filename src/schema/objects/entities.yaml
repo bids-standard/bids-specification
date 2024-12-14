@@ -373,6 +373,18 @@ stain:
     and/or `"SampleSecondaryAntibodies"` metadata fields, as appropriate.
   type: string
   format: label
+stimulus:
+  name: stim
+  display_name: Stimulus
+  description: |
+    The `stim-<label>` entity can be used to distinguish different stimulus files or annotations.
+    The label is a unique identifier for the stimulus or annotation.
+
+    This entity represents the `"Stimulus"` metadata field.
+    Therefore, if the `stim-<label>` entity is present in a filename,
+    `"Stimulus"` MUST be defined in the associated metadata.
+  type: string
+  format: label
 subject:
   name: sub
   display_name: Subject
