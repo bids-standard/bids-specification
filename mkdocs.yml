@@ -102,11 +102,16 @@ extra:
 extra_javascript:
   - js/jquery-3.6.0.min.js
 markdown_extensions:
+  - abbr
+  - attr_list
   - toc:
       anchorlink: true
   - pymdownx.superfences
   - admonition
   - pymdownx.details
+  - pymdownx.snippets:
+      auto_append:
+        - includes/abbreviations.md
 plugins:
   - search
   - branchcustomization:
@@ -153,3 +158,6 @@ plugins:
         "99-appendices/13-cross-modality-correspondence.md": "appendices/cross-modality-correspondence.md"
 docs_dir: "src"
 use_directory_urls: false
+
+watch:
+  - includes
