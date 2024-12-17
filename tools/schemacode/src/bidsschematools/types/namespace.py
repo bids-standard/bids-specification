@@ -272,13 +272,13 @@ class Namespace(MutableMapping):
 def _read_yaml_dir(path: Path) -> dict:
     mapping = {}
     for subpath in sorted(path.iterdir()):
-        try:
-            if subpath.is_dir():
-                mapping[subpath.name] = _read_yaml_dir(subpath)
-            elif subpath.name.endswith("yaml"):
+        if subpath.is_dir():
+            mapping[subpath.name] = _read_yaml_dir(subpath)
+        elif subpath.name.endswith("yaml"):
+            try:
                 mapping[subpath.stem] = yaml.safe_load(subpath.read_text())
-        except Exception as e:
-            raise ValueError(f"There was an error reading the file: {subpath}") from e
+            except Exception as e:
+                raise ValueError(f"There was an error reading the file: {subpath}") from e
     return mapping
 
 
