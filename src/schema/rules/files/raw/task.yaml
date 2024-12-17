@@ -37,7 +37,6 @@ timeseries:
     acquisition: optional
     run: optional
     recording: optional
-    modality: optional
 
 timeseries__mri_no_task:
   suffixes:
@@ -113,6 +112,7 @@ timeseries__anat:
     echo: optional
     part: optional
     chunk: optional
+    modality: optional
 
 timeseries__func:
   $ref: rules.files.raw.task.timeseries
