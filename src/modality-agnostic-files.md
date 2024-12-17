@@ -246,11 +246,11 @@ available").
 
 `participants.tsv` example:
 
-```Text
-participant_id age sex handedness group
-sub-01 34 M right read
-sub-02 12 F right write
-sub-03 33 F n/a read
+```tsv
+participant_id	age	sex	handedness	group
+sub-01	34	M	right	read
+sub-02	12	F	right	write
+sub-03	33	F	n/a	read
 ```
 
 It is RECOMMENDED to accompany each `participants.tsv` file with a sidecar
@@ -320,13 +320,13 @@ and a guide for using macros can be found at
 
 `samples.tsv` example:
 
-```Text
-sample_id participant_id sample_type derived_from
-sample-01 sub-01 tissue n/a
-sample-02 sub-01 tissue sample-01
-sample-03 sub-01 tissue sample-01
-sample-04 sub-02 tissue n/a
-sample-05 sub-02 tissue n/a
+```tsv
+sample_id	participant_id	sample_type	derived_from
+sample-01	sub-01	tissue	n/a
+sample-02	sub-01	tissue	sample-01
+sample-03	sub-01	tissue	sample-01
+sample-04	sub-02	tissue	n/a
+sample-05	sub-02	tissue	n/a
 ```
 
 It is RECOMMENDED to accompany each `samples.tsv` file with a sidecar
