@@ -11,7 +11,7 @@ MRI acquisition parameters are divided into several categories based on
 When adding additional metadata please use the CamelCase version of
 [DICOM ontology terms](https://dicom.nema.org/medical/dicom/current/output/chtml/part16/chapter_d.html)
 whenever possible. See also
-[recommendations on JSON files](../common-principles.md#keyvalue-files-dictionaries).
+[recommendations on JSON files](../common-principles.md#key-value-files-dictionaries).
 
 ### Hardware information
 
@@ -78,7 +78,7 @@ A guide for using macros can be found at
 
 <sup>2</sup>Conveniently, for Siemens data, this value is easily obtained as
 `1 / (BWPPPE * ReconMatrixPE)`, where BWPPPE is the
-"BandwidthPerPixelPhaseEncode" in DICOM Tag 0019, 1028 and ReconMatrixPE is
+"BandwidthPerPixelPhaseEncode" in [DICOM Tag 0019, 1028](https://dicomlookup.com/dicomtags/(0019,1028)) and ReconMatrixPE is
 the size of the actual reconstructed data in the phase direction (which is NOT
 reflected in a single DICOM Tag for all possible aforementioned scan
 manipulations). See
@@ -944,7 +944,7 @@ accompanied by two ancillary files: `*_asl.json` and `*_aslcontext.tsv`.
 
 The `*_aslcontext.tsv` table consists of a single column of labels identifying the
 `volume_type` of each volume in the corresponding `*_asl.nii[.gz]` file.
-Volume types are defined in the following table, based on DICOM Tag 0018, 9257 `ASL Context`.
+Volume types are defined in the following table, based on [DICOM Tag 0018, 9257](https://dicomlookup.com/dicomtags/(0018,9257)) `ASL Context`.
 Note that the volume_types `control` and  `label` within BIDS only serve
 to specify the magnetization state of the blood and thus the ASL subtraction order.
 See the [ASL Appendix](../appendices/arterial-spin-labeling.md#which-image-is-control-and-which-is-label)
@@ -1354,6 +1354,6 @@ See [Using `IntendedFor` metadata](#using-intendedfor-metadata)
 for details on the `IntendedFor` field.
 
 As for other EPI sequences, these field mapping sequences may have any of the
-[in-plane spatial encoding](#in-plane-spatial-encoding) metadata keys.
+[in-plane spatial encoding](#in-and-out-of-plane-spatial-encoding) metadata keys.
 However, please note that `PhaseEncodingDirection` and `TotalReadoutTime` keys
 are REQUIRED for these field mapping sequences.

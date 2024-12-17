@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import logging
-import os
 import typing as ty
 
 import pandas as pd
@@ -11,12 +9,9 @@ from tabulate import tabulate
 
 from bidsschematools.render import utils
 from bidsschematools.schema import BIDSSchemaError, Namespace, filter_schema
-from bidsschematools.utils import get_logger, set_logger_level
+from bidsschematools.utils import get_logger
 
 lgr = get_logger()
-# Basic settings for output, for now just basic
-set_logger_level(lgr, os.environ.get("BIDS_SCHEMA_LOG_LEVEL", logging.INFO))
-logging.basicConfig(format="%(asctime)-15s [%(levelname)8s] %(message)s")
 
 # Remember to add extension (.html or .md) to the paths when using them.
 ENTITIES_PATH = "SPEC_ROOT/appendices/entities"

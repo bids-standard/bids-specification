@@ -272,7 +272,7 @@ Examples of free-form text for field `description`
 
 ### Example `*_channels.tsv`
 
-See also the corresponding [`electrodes.tsv` example](#example-electrodestsv).
+See also the corresponding [`electrodes.tsv` example](#example-_electrodestsv).
 
 ```Text
 name     type  units  description                     reference     status  status_description
@@ -316,7 +316,7 @@ If electrodes are repositioned, it is RECOMMENDED to use multiple sessions to in
 
 ### Example `*_electrodes.tsv`
 
-See also the corresponding [`electrodes.tsv` example](#example-channelstsv).
+See also the corresponding [`channels.tsv` example](#example-_channelstsv).
 
 ```Text
 name   x        y	       z        type     material
