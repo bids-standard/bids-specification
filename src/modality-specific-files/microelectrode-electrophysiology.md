@@ -28,9 +28,9 @@ Metadata should be included alongside the data in the `.json` and `.tsv` files.
 The current list of allowed data file formats:
 
 | **Format**                                                                          | **Extension(s)** | **Description**                                                                                                                                                                                                      |
---------------------------------------------------------------------------------------|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-------------------------------------------------------------------------------------|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [Neuroscience Information Exchange Format](https://nixio.readthedocs.io/en/latest/) | `.nix`           | A generic and open  framework with an hdf5 backend and a defined interface to many ephys formats via the [Neo library](https://neo.readthedocs.io/en/latest/). The `.nix` file has to contain a valid Neo structure. |
-| [Neurodata Without Borders](https://www.nwb.org)                                    | `.nwb`           | BRAIN Initiative Data Standard based on an hdf5 backend ...                                                                                                                                                          |
+| [Neurodata Without Borders](https://www.nwb.org)                                    | `.nwb`           | An open data standard for neurophysiology, including data from intracellular and extracellular electrophysiology experiments.                                                                                        |
 
 Both of these formats can also store essential metadata of the datasets.
 Some of these need to be duplicated in BIDS `.tsv` and `.json` sidecar files.
@@ -83,16 +83,16 @@ The following **metadata files are required for a** given animal-ephys session:
 
 
 
-1. <code>*[_ses-<session_label>]<strong>_probes.tsv</strong></code>: A REQUIRED probes .tsv file listing information on the device used to acquire the electrophysiology data (implant / probe specification, location, material, etc.)
-2. <code>*[_ses-<session_label>]<strong>_electrodes.tsv</strong></code>: A REQUIRED electrodes .tsv file listing information on the points of electrical contact to the tissue (impedance,  names, relative positions etc.)
-3. <code>*[_ses-<session_label>]<strong>_channels.tsv</strong></code>: A REQUIRED channels.tsv file listing information on the recorded signals (preprocessing, filtering, ids, etc)
+1. `[_ses-<session_label>]_probes.tsv`: A REQUIRED probes .tsv file listing information on the device used to acquire the electrophysiology data (implant / probe specification, location, material, etc.)
+2. `[_ses-<session_label>]_electrodes.tsv`: A REQUIRED electrodes .tsv file listing information on the points of electrical contact to the tissue (impedance,  names, relative positions etc.)
+3. `[_ses-<session_label>]_channels.tsv`: A REQUIRED channels.tsv file listing information on the recorded signals (preprocessing, filtering, ids, etc)
 
 As with all tsv-based metadata files in BIDS the probes, electrodes and channels tsv files can be accompanied by json sidecar files.
 
 
 ## Coordinate System JSON (`*_coordsystem.json`) & Photos of electrode positions (`_photo.jpg`)
 
-This file provides metadata on the global coordinate system in which the electrodes are placed. This file is RECOMMENDED, the listed required fields below have to be contained in case a `*_coordsystem.json` is provided. This system can be defined via reference pictures, anatomical landmarks, images of the brain or a reference atlas. For more details see the [BIDS Coordinate Systems specifications](https://bids-specification.readthedocs.io/en/stable/appendices/coordinate-systems.html).
+This file provides metadata on the global coordinate system in which the electrodes are placed. This file is RECOMMENDED, the listed required fields below have to be contained in case a `*_coordsystem.json` is provided. This system can be defined via reference pictures, anatomical landmarks, images of the brain or a reference atlas. For more details see the [BIDS Coordinate Systems specifications](../appendices/coordinate-systems.md).
 
 Fields relating to the ephys probe and electrode  positions:
 
@@ -117,7 +117,7 @@ Furthermore, the coordinates MUST be (row,column) pairs, with (0,0) correspondin
 
 These can include photos of the electrodes on the brain surface, photos of anatomical features or landmarks (such as sulcal structure), and fiducials. Photos can also include an X-ray picture, a flatbed scan of a schematic drawing made during surgery, or screenshots of a brain rendering with electrode positions. The photos may need to be cropped and/or blurred to conceal identifying features or entirely omitted prior to sharing, depending on obtained consent.
 
-If there are photos of the electrodes, the [acq-<label>](https://bids-specification.readthedocs.io/en/stable/appendices/entities.html#acq) entity should be specified with:
+If there are photos of the electrodes, the [`_acq-<label>`](../appendices/entities.md#acq) entity should be specified with:
 
 * `*_photo.jpg` in case of an operative photo
 * `*_acq-xray#_photo.<extension>` in case of an x-ray picture
@@ -126,36 +126,40 @@ If there are photos of the electrodes, the [acq-<label>](https://bids-specificat
 
 The file `<extension>` for photos MUST be either `.jpg`, `.png` or `.tif`.
 
-The[ ses-<label>](https://bids-specification.readthedocs.io/en/stable/appendices/entities.html#ses) entity may be used to specify when the photo was taken.
+The[` ses-<label>`](../appendices/entities.md#ses) entity may be used to specify when the photo was taken.
 
 ## **Multiple coordinate systems**
 
-The optional[ space-<label>](https://bids-specification.readthedocs.io/en/stable/appendices/entities.html#space) entity (`*[_space-<label>]_coordsystem.json`) can be used to indicate how to interpret the electrode positions. The space `<label>` MUST be taken from one of the modality specific lists in the[ Coordinate Systems Appendix](https://bids-specification.readthedocs.io/en/stable/appendices/coordinate-systems.html). For example for iEEG data, the restricted keywords listed under[ iEEG Specific Coordinate Systems](https://bids-specification.readthedocs.io/en/stable/appendices/coordinate-systems.html#ieeg-specific-coordinate-systems) are acceptable for `<label>`.
+The optional[` space-<label>`](../appendices/entities.md#space) entity (`*[_space-<label>]_coordsystem.json`) can be used to indicate how to interpret the electrode positions. The space `<label>` MUST be taken from one of the modality specific lists in the [Coordinate Systems Appendix](../appendices/coordinate-systems.md). For example for iEEG data, the restricted keywords listed under[ iEEG Specific Coordinate Systems](../coordinate-systems.md#ieeg-specific-coordinate-systems) are acceptable for `<label>`.
 
 
 ## Probes (*_probes.tsv)
 
-Probes are physical devices used for recording animal ephys data. They can be permanently implanted (chronic recordings) or inserted just for the recording (acute recordings). The probe positions and properties are stored in a .tsv file. This file contains the probe id, the type of recording (acute/chronic) and the probe coordinates.
+Probes are physical devices used for recording animal ephys data.
+They can be permanently implanted (chronic recordings) or inserted just for the recording (acute recordings).
+The probe positions and properties are stored in a `.tsv` file.
+This file contains the probe id, the type of recording (acute/chronic) and the probe coordinates.
 
 {{ MACROS___make_columns_table("microephys.microephysProbes") }}
 
 
 Example of `_probes.tsv`:
 
-
-```
+```Text
 probe_id	hemisphere	x	y	z	type		material	location
-p023		left		-11.87         -1.30	-3.37	utah-array	iridium-oxide	V1
+p023		left		-11.87	-1.30	-3.37	utah-array	iridium-oxide	V1
 p023		left		-11.64	0.51	-4.20	utah-array	iridium-oxide	V2
 p021		left		-12.11	-3.12	-2.54	utah-array	iridium-oxide	V4
 p021		left		-9.94	-1.19	-2.86	utah-array	iridium-oxide	V3
 ```
 
 
-
 ## Electrodes  (*_electrodes.tsv)
 
-electrodes describe the points of electrodes to the tissue used for recording electrophysiological signals. The electrode positions and properties are stored in a .tsv file (amplifier information is in channels.tsv). This file contains the electrode name, the electrode coordinates in 3 columns (xyz) and the id of the probe it’s located on.  The coordinates are the relative coordinates on the probe.
+Electrodes describe the points of electrodes to the tissue used for recording electrophysiological signals.
+The electrode positions and properties are stored in a .tsv file (amplifier information is in channels.tsv).
+This file contains the electrode name, the electrode coordinates in 3 columns (xyz) and the id of the probe it’s located on.
+The coordinates are the relative coordinates on the probe.
 
 
 {{ MACROS___make_columns_table("microephys.microephysElectrodes") }}
@@ -163,19 +167,22 @@ electrodes describe the points of electrodes to the tissue used for recording el
 
 Example of * _electrodes.tsv:
 
-```
-electrode_id	probe_id	impedance	x	y	z	material	location
-e0123	 	p023		1.1		-11.87	-1.30	-3.37	iridium-oxide	V1
-e234		p023		1.5		-11.64	0.51	-4.20	iridium-oxide	V2
-e934		p021		3.5		-12.11	-3.12	-2.54	iridium-oxide	V4
-e234		p021		7.0		-9.94	-1.19	-2.86	iridium-oxide	V3
+```Text
+probe_id	impedance	x	y	z	material	location
+e0123	p023	1.1	-11.87	-1.30	-3.37	iridium-oxide	V1
+e234	p023	1.5	-11.64	0.51	-4.20	iridium-oxide	V2
+e934	p021	3.5	-12.11	-3.12	-2.54	iridium-oxide	V4
+e234	p021	7.0	-9.94	-1.19	-2.86	iridium-oxide	V3
 ```
 
 ### Channels  (*_channels.tsv)
 
-Channels are virtual sources of recorded signals. These might be of neuronal origin (e.g. online filtered LFP signals) or generated by the recording setup (e.g. synchronization signals, behavioral signals, …). The channel properties are stored in a .tsv file. This file contains the channel_id, the electrode_id (in case of neuronal signals), the amplifier information, …
+Channels are virtual sources of recorded signals.
+These might be of neuronal origin (for example, online filtered LFP signals) or generated by the recording setup (for example, synchronization or behavioral signals).
+The channel properties are stored in a `.tsv` file.
+This file contains the channel_id, the electrode_id (in case of neuronal signals), the amplifier information, …
 
-For more information about the distinction between electrodes and channels, see [the corresponding section in iEEG](https://bids-specification.readthedocs.io/en/stable/modality-specific-files/intracranial-electroencephalography.html#terminology-electrodes-vs-channels).
+For more information about the distinction between electrodes and channels, see [the corresponding section in iEEG](./intracranial-electroencephalography.md#terminology-electrodes-vs-channels).
 
 Columns in the `*_channel.tsv` file are:
 
@@ -185,27 +192,27 @@ Columns in the `*_channel.tsv` file are:
 Example of * _channels.tsv:
 
 
-```
-channel_id	electrode_id 	gain	type		units	sampling_frequency	status
-c0123 		con0123		30	EXT		mV	30000			good
-c234		con234		30	EXT		mV	30000			good
-c934		con934 		50	EXT		mV	30000			bad
-c234		-		1	SYNC	       V	1000			good
+```Text
+channel_id	electrode_id	gain	type	units	sampling_frequency	status
+c0123	con0123	30	EXT	mV	30000	good
+c234	con234	30	EXT	mV	30000	good
+c934	con934	50	EXT	mV	30000	bad
+c234	n/a	1	SYNC	mV	1000	good
 ```
 
-Note: In many datasets multiple sets of identifiers are used for probes, electrodes and channels. We RECOMMEND to include alternative sets of identifiers, e.g. identifiers that enumerate electrodes according to their spatial arrangement, as additional custom columns in the .tsv file.
+Note: In many datasets multiple sets of identifiers are used for probes, electrodes and channels.
+We RECOMMEND to include alternative sets of identifiers, e.g. identifiers that enumerate electrodes according to their spatial arrangement, as additional custom columns in the .tsv file.
 
 **Recommended Channel Type Values**
 
-For the `type` column we recommend to use the following terms (modified from https://bids-specification.readthedocs.io/en/stable/04-modality-specific-files/04-intracranial-electroencephalography.html#channelselectrode-description-_channelselectrodestsv)
+For the `type` column we recommend to use the following terms (adopted from [iEEG](intracranial-electroencephalography.md#channelselectrode-description-_channelselectrodestsv))
 
 
-<!--
-Don't forget the table-->
+<!-- TODO Don't forget the table -->
 
 ## General ephys metadata (*_ephys.json)
 
-We propose to store all metadata that is not directly related to one of the other metadata files (probe/electrode/channel information)  into a single json  file: ***_ephys.json**
+We propose to store all metadata that is not directly related to one of the other metadata files (probe/electrode/channel information)  into a single json  file: `_ephys.json`
 
 There should be one such json file for each data file.
 
@@ -255,7 +262,8 @@ The `*_ephy.json` file can be used to store any ephys-specific metadata for the 
 
 ### Additional recording procedure
 
-Furthermore additional information can be stored about the recording procedure. We RECOMMEND to use a dedicated `Procedure` node with the following keys:
+Furthermore, additional information can be stored about the recording procedure.
+We RECOMMEND to use a dedicated `Procedure` node with the following keys:
 
 <!--Ask reema how she have implemented it-->
 
@@ -287,12 +295,13 @@ It is RECOMMENDED to use the following structure to provide more metadata for ea
 }` \
 
 
-whereas "<my_probe_id>" has to exist also in the probes.tsv file and “<list of contour points>” is a list of x,y(,z) tuples providing the contour of the probe in the same reference frame as the electrode coordinates (see electrodes.tsv). In case of different units used than in the electrodes.tsv the key “Unit” can be used here to provide the spatial unit of the coordinate points.
+whereas "<my_probe_id>" has to exist also in the probes.tsv file and “<list of contour points>” is a list of x,y(,z) tuples providing the contour of the probe in the same reference frame as the electrode coordinates (see electrodes.tsv).
+In case of different units used than in the electrodes.tsv the key “Unit” can be used here to provide the spatial unit of the coordinate points.
 
 
 ### Task (*see also  iEEG.json*)
 
-If the OPTIONAL[ task-<label>](https://bids-specification.readthedocs.io/en/stable/appendices/entities.html#task) is used, the following metadata SHOULD be used.
+If the OPTIONAL [` task-<label>`](../appendices/entities.md#task) is used, the following metadata SHOULD be used.
 
 {{ MACROS___make_metadata_table(
    {
@@ -352,7 +361,7 @@ If the OPTIONAL[ task-<label>](https://bids-specification.readthedocs.io/en/stab
 
 ## Recording Events (*_events.tsv)
 
-The *_events.tsv and corresponding *_events.json sidecar files are OPTIONAL and can be used to indicate time points of recording events. Each task events file REQUIRES a corresponding task data file.  These events can be internal recording system events, task-related events, or events triggered by the experimentalist (e.g. manual reward). Note that these events must share a common clock with the corresponding ephys recording data. For more details see the [Task Events documentation](https://bids-specification.readthedocs.io/en/stable/04-modality-specific-files/05-task-events.html). Note that this file can also be used to describe stimulation performed during the recording. For this please follow the [iEEG stimulation  documentation ](https://bids-specification.readthedocs.io/en/stable/04-modality-specific-files/04-intracranial-electroencephalography.html#electrical-stimulation).
+The `*_events.tsv` and corresponding `*_events.json` sidecar files are OPTIONAL and can be used to indicate time points of recording events. Each task events file REQUIRES a corresponding task data file.  These events can be internal recording system events, task-related events, or events triggered by the experimentalist (e.g. manual reward). Note that these events must share a common clock with the corresponding ephys recording data. For more details see the [Task Events documentation](https://bids-specification.readthedocs.io/en/stable/04-modality-specific-files/05-task-events.html). Note that this file can also be used to describe stimulation performed during the recording. For this please follow the [iEEG stimulation  documentation ](https://bids-specification.readthedocs.io/en/stable/04-modality-specific-files/04-intracranial-electroencephalography.html#electrical-stimulation).
 
 
 
@@ -364,7 +373,7 @@ Two different procedures are supported to handle multi-part recordings. In short
 
 ### Multiple tasks / runs in separate files (*_scans.tsv)
 
-The *_scans.tsv should be used to provide information about multiple parts of an acquisition session (e.g. recording start times in case the recording was paused and restarted) when the data from each of these different recordings is stored in separate files.  Each data file  should have a name that contains a `_task-XX` and/or `_run-XX` suffix, and should be described by at most one row is the `*_scans.tsv` file. See also the  [BIDS Scans specification](https://bids-specification.readthedocs.io/en/stable/03-modality-agnostic-files.html#scans-file). Relative paths to files should be used under a compulsory “filename” header. If acquisition time is included it should be with the  “acq_time” header. Datetime should be expressed in the following format 2009-06-15T13:45:30 (year, month, day, hour (24h), minute, second; this is equivalent to the RFC3339 “date-time” format, time zone is always assumed as local time).  The run and task keywords and the corresponding `*_scans.tsv` file is OPTIONAL and can be ignored if the dataset consists of only one continuous recording and a single / no task.
+The *_scans.tsv should be used to provide information about multiple parts of an acquisition session (e.g. recording start times in case the recording was paused and restarted) when the data from each of these different recordings is stored in separate files.  Each data file  should have a name that contains a `_task-XX` and/or `_run-XX` suffix, and should be described by at most one row is the `*_scans.tsv` file. See also the  [BIDS Scans specification](../modality-agnostic-files.md#scans-file). Relative paths to files should be used under a compulsory “filename” header. If acquisition time is included it should be with the  “acq_time” header. Datetime should be expressed in the following format 2009-06-15T13:45:30 (year, month, day, hour (24h), minute, second; this is equivalent to the RFC3339 “date-time” format, time zone is always assumed as local time).  The run and task keywords and the corresponding `*_scans.tsv` file is OPTIONAL and can be ignored if the dataset consists of only one continuous recording and a single / no task.
 
 Optional: Yes
 
@@ -372,8 +381,8 @@ Optional: Yes
 Example of * _scans.tsv:
 
 
-```
-filename						acq_time
+```Text
+filename	acq_time
 ephys/sub-P001_task-pull_run-01_ephys.nix	2018-07-15T09:45:30
 ephys/sub-P001_task-pull_run-02_ephys.nix	2018-07-15T13:24:00
 ephys/sub-P001_task-push_run-01_ephys.nix	2018-07-15T14:24:00
@@ -390,7 +399,7 @@ The *_events.tsv should be used to provide information about multiple parts of a
 
 Optional column names in `events.tsv` to support multiple recordings in a single data file:
 
-<!-- Macro for events-->
+<!-- TODO: Macro for events -->
 
 
 # BIDS-animal-ephys examples
@@ -401,8 +410,9 @@ Optional column names in `events.tsv` to support multiple recordings in a single
 
 #### Extracellular Electrophysiology
 
-This dataset contains data from a single subject (subject A), that was recorded on two days (2022-01-01 and 2022-01-02). On the first day it performed two tasks (nose-poke & rest), and on the second day only a rest task was performed. Detailed information about these tasks can be found in the `tasks.tsv` and `tasks.json` files. The electrophysiology data for each of the three recordings are stored in the corresponding session and ephys folders in the `nix` format. Metadata about the probes, their electrodes and the corresponding recording channels are stored in `tsv` format. Note that in this case, this information is shared between data files (see BIDS Inheritance Principle): in the first session, the probe, electrode and channel files apply to both data files of that session, as they do not contain a `task` entity in their name. For the nose-poke task, additional behavioral timestamps (events) were recorded and stored in an additional `events.tsv` file.
+This dataset contains data from a single subject (subject A), that was recorded on two days (2022-01-01 and 2022-01-02). On the first day it performed two tasks (nose-poke & rest), and on the second day only a rest task was performed. Detailed information about these tasks can be found in the `tasks.tsv` and `tasks.json` files. The electrophysiology data for each of the three recordings are stored in the corresponding session and ephys directories in the `nix` format. Metadata about the probes, their electrodes and the corresponding recording channels are stored in `tsv` format. Note that in this case, this information is shared between data files (see BIDS Inheritance Principle): in the first session, the probe, electrode and channel files apply to both data files of that session, as they do not contain a `task` entity in their name. For the nose-poke task, additional behavioral timestamps (events) were recorded and stored in an additional `events.tsv` file.
 
+<!-- TODO: Use macro for filetree -->
 
 ```
 dataset_description.json
@@ -433,12 +443,14 @@ sub-A/
 
 #### Intracellular Electrophysiology (Patch)
 
-This dataset contains intracellular data from slices acquired from two subjects (20220101-A and 20220101B). Details about the subjects and the sample generation are documented in the samples (tsv/json) files. Data of each subject is stored in separate subject folders (top level folders), each of which contains an ‘ephys’ subfolder. Note that there is no session-level folder in this case. Here, we choose the option of having “multiple tasks/runs in separate files” as described in 3.81., to demonstrate the high level of readability offered by the filenames in this case.
+This dataset contains intracellular data from slices acquired from two subjects (20220101-A and 20220101B). Details about the subjects and the sample generation are documented in the samples (tsv/json) files. Data of each subject is stored in separate subject directories (top level directories), each of which contains an ‘ephys’ subdirectory. Note that there is no session-level directory in this case. Here, we choose the option of having “multiple tasks/runs in separate files” as described in 3.81., to demonstrate the high level of readability offered by the filenames in this case.
 
 For the first subject only a single sample (a cell for patch-clamp terminology) was extracted (sample-cell001), on which two recordings (runs 1 and 2) were performed. Here, the `scans.tsv` file can be used to store information such as the starting recording times. The detailed information on the recording channel (e.g. also the recording mode used) is stored in the `channels.tsv` which, in this case, is common to all available recordings. The probes and electrodes files provide information on the pipette and solutions used for the recordings and are also shared for the two data files.
 
 For the second subject two samples (sample-cell003 and sample-cell004) were extracted and a single recording performed on each of them. Each recording was performed using a different probe (listed in the probes.tsv) having specific electrode and channel information. Therefore, each data file has a dedicated channel and electrode file with the same name as the data file.
 
+
+<!-- TODO: Use macro for filetree -->
 
 ```
 samples.tsv
