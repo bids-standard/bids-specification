@@ -372,6 +372,14 @@ participant_id:
     matching a participant entity found in the dataset.
   type: string
   pattern: ^sub-[0-9a-zA-Z]+$
+# TODO revisit whether example is sufficient
+placement__emg:
+  name: placement
+  display_name: Placement
+  description: |
+    Placement of the electrode(s) on the body (for example, "palmar side of lower arm").
+    It can refer to an external vocabulary for describing body parts.
+  type: string
 placement__motion:
   name: placement
   display_name: Placement
@@ -402,6 +410,13 @@ reference__ieeg:
   description: |
     Specification of the reference (for example, `mastoid`, `ElectrodeName01`, `intracranial`, `CAR`, `other`, `n/a`).
     If the channel is not an electrode channel (for example, a microphone channel) use `n/a`.
+  type: string
+# reference column for channels.tsv files for EMG data
+reference__emg:
+  name: reference
+  display_name: Electrode reference
+  description: |
+    Specification of the reference (for example, `styloid`, `ElectrodeName01`, `n/a`).
   type: string
 reference_frame:
   name: reference_frame

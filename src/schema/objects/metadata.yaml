@@ -916,6 +916,68 @@ EMGChannelCount:
     Number of EMG channels.
   type: integer
   minimum: 0
+EMGCoordinateSystem:
+  name: EMGCoordinateSystem
+  display_name: EMG Coordinate System
+  description: |
+    Defines the coordinate system for the EMG sensors.
+
+    See the
+    [Coordinate Systems Appendix](SPEC_ROOT/appendices/coordinate-systems.md)
+    for a list of restricted keywords for coordinate systems.
+    If `"Other"`, provide definition of the coordinate system in
+    `EMGCoordinateSystemDescription`.
+  anyOf:
+    - $ref: objects.enums._EMGCoordSys
+EMGCoordinateSystemDescription:
+  name: EMGCoordinateSystemDescription
+  display_name: EMG Coordinate System Description
+  description: |
+    Free-form text description of the coordinate system, typically defining the origin
+    and positive x,y,z axis directions, relative to skeletal landmarks.
+    May also include a link to a documentation page or paper describing the
+    system in greater detail.
+  type: string
+EMGCoordinateUnits:
+  name: EMGCoordinateUnits
+  display_name: EMG Coordinate Units
+  description: |
+    Units of the coordinates of `EMGCoordinateSystem`.
+  type: string
+  enum:
+    - m
+    - mm
+    - cm
+    - n/a
+EMGGround:
+  name: EMGGround
+  display_name: EMG Ground
+  description: |
+    Description of the location of the ground electrode
+    (for example, `"placed on right styloid process"`).
+  type: string
+# TODO do we want `EMGPlacementScheme`? It seems to make sense for things like SENIAM
+# but not when a defined coordinate system is used. That seems to suggest a rule that
+# the dataset must EITHER define EMGPlacementScheme OR define EMGCoordinateSystem, but
+# presumably not both?
+EMGPlacementScheme:
+  name: EMGPlacementScheme
+  display_name: EMG Placement Scheme
+  description: |
+    The name of a standardized placement system (for example, `"SENIAM 8"`).
+  type: string
+# TODO: so far this is just copy/paste from EEGReference
+EMGReference:
+  name: EMGReference
+  display_name: EMG Reference
+  description: |
+    General description of the reference scheme used and (when applicable) of
+    location of the reference electrode in the raw recordings
+    (for example, `"left mastoid"`, `"Cz"`, `"CMS"`).
+    If different channels have a different reference,
+    this field should have a general description and the channel specific
+    reference should be defined in the `channels.tsv` file.
+  type: string
 EOGChannelCount:
   name: EOGChannelCount
   display_name: EOG Channel Count
