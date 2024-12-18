@@ -284,21 +284,29 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_filename_template("raw", datatypes=["emg"], suffixes=["electrodes"]) }}
 
-File that gives the location of EMG electrodes.
-Descriptions of electrode location in `*_electrodes.tsv` files MUST reflect the process
-used by the researcher(s) when placing electrodes, electrode locations MUST NOT simply
-give the name of the targeted muscle.
-For example, EMG electrode sites may be chosen by visual reference to target muscles,
-by palpation of the skin to locate target muscles, by functional localization
-(temporary electrode placement at several sites during prescribed behavior,
-until a site yielding strong EMG signal is found), or by measured distances
-(either absolute or proportional) in a coordinate system defined by skeletal landmarks.
-Electrode location descriptions MAY refer to reference texts in regard to electrode placement,
-such as SENIAM.
-Measured coordinates are expected to conform to the `EMGCoordinateSystem` and
-`EMGCoordinateUnits` fields in `*_coordsystem.json`.
-**If measured coordinates are provided in an `*_electrodes.tsv` file, a
-[`*_coordsystem.json`](#coordinate-system-json-_coordsystemjson) file MUST be specified as well**.
+File that gives the measured location, size, and other properties of EMG electrodes.
+If an `*_electrodes.tsv` file is specified, a `*_coordsystem.json` file MUST be specified
+as well.
+
+When 3D electrode locations are digitized in situ, the origin, orientation, and measurement
+unit of the coordinate system MUST be recorded in cartesian coordinates according to the
+`EMGCoordinateSystem` and `EMGCoordinateUnits` fields in `*_coordsystem.json`,
+as described in the [Coordinate Systems Appendix](../appendices/coordinate-systems.md).
+In such cases, `EMGCoordinateSystem` SHOULD be specified as `Other` and the
+`EMGCoordinateSystemDescription` SHOULD contain a description of the origin of the 3D
+coordinate system.
+
+When accurate 3D locations are unavailable, 2D locations may be provided to define the
+geometry of an electrode grid or group, prior to anatomical placement.
+See the [`electrodes.tsv` example](#example-electrodestsv) section for an example.
+In such cases, `EMGCoordinateSystem` SHOULD be specified as `Other` and the
+`EMGCoordinateSystemDescription` SHOULD contain a description of the origin of the 2D
+coordinate system (for example, "origin at the center of the grid" or "origin at the
+center of the electrode in the lower-left corner of the grid, when oriented with the
+leads downward").
+In such cases, the description in the `EMGPlacementScheme` field of `*_emg.json` MAY
+refer to the origin of that 2D coordinate system in describing the placement of the grid.
+
 The order of the required columns in the `*_electrodes.tsv` file MUST be as listed below.
 
 <!-- This block generates a columns table.
@@ -309,9 +317,9 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_columns_table("emg.EMGElectrodes") }}
 
-The [`acq-<label>`](../appendices/entities.md#acq) entity SHOULD be used to indicate simultaneous
-acquisition of data from multiple EMG devices, in cases where the devices store data in separate
-data files.
+The [`acq-<label>`](../appendices/entities.md#acq) entity MUST be used to indicate
+simultaneous acquisition of data from multiple EMG devices, in cases where the devices
+store data in separate data files.
 For example:
 
 <!-- This block generates a file tree.
@@ -343,18 +351,16 @@ If electrodes are repositioned, it is RECOMMENDED to use multiple sessions to in
 
 ### Example `*_electrodes.tsv`
 
-See also the corresponding [`electrodes.tsv` example](#example-channelstsv).
+Example `*_electrodes.tsv` for a 2 by 2 grid of EMG electrodes with 2.5 mm electrode diameter
+and 10 mm inter-electrode distance.
 
-<!-- TODO not yet updated after copy/paste from EEG -->
+<!-- TODO should we demo other columns here too? Should we add ground/ref electrodes? -->
 ```Text
-name   x        y	       z        type     material
-VEOG+  n/a      n/a      n/a      cup      Ag/AgCl
-VEOG-  n/a      n/a      n/a      cup      Ag/AgCl
-FDI+   n/a      n/a      n/a      cup      Ag/AgCl
-FDI-   n/a      n/a      n/a      cup      Ag/AgCl
-GND    -0.0707  0.0000   -0.0707  clip-on  Ag/AgCl
-Cz     0.0000   0.0714   0.0699   cup      Ag/AgCl
-REF    -0.0742  -0.0200  -0.0100  cup      Ag/AgCl
+name  x     y     diameter
+001   0.0   0.0   2.5
+002   10.0  0.0   2.5
+003   0.0   10.0  2.5
+004   10.0  10.0  2.5
 ```
 
 ## Coordinate System JSON (`*_coordsystem.json`)
