@@ -159,16 +159,19 @@ The surgical coordinates of the probe can be described using AP, DV, LR, yaw, pi
 These measurements follow the convention of the Pinpoint software for surgical planning and are intended to describe the surgical plan:
 
 ### Translational Coordinates
+
 - `(0,0,0)` is assumed to be Bregma when working with rodents.
 - It may optionally be defined differently and **must** be defined for other species.
 - `x, y, z` represents posterior, ventral, and right directions, respectively, in micrometers (`µm`).
 
 ### Rotational Coordinates
+
 - `(0,0,0)` corresponds to the probe facing up with the tip pointing forward.
 - Rotations are measured in degrees, clockwise, and around the tip.
 - For multi-shank probes, the “tip” of the probe is defined as the end of the left shank when facing the electrodes.
 
 #### Rotation Definitions:
+
 - **Yaw**: Clockwise rotation when looking down.
 - **Pitch**: Rotation in the direction of the electrode face.
 - **Roll**: Clockwise rotation when looking down at the probe.
@@ -178,6 +181,7 @@ These measurements follow the convention of the Pinpoint software for surgical p
 The `ProbeInterface` library includes layouts for many common probes.
 
 The `ProbeInterface` model corresponding to your probe can be referenced using:
+
 - `probeinterface_manufacturer`
 - `probeinterface_model`
 
@@ -246,7 +250,7 @@ For more information about the distinction between electrodes and channels, see 
 Columns in the `*_channel.tsv` file are:
 
 
-{{ MACROS___make_columns_table("microephys.microephysCCChannelsss") }}
+{{ MACROS___make_columns_table("microephys.microephysChannels") }}
 
 
 Example of * _channels.tsv:
