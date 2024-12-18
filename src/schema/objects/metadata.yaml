@@ -956,15 +956,19 @@ EMGGround:
     Description of the location of the ground electrode
     (for example, `"placed on right styloid process"`).
   type: string
-# TODO do we want `EMGPlacementScheme`? It seems to make sense for things like SENIAM
-# but not when a defined coordinate system is used. That seems to suggest a rule that
-# the dataset must EITHER define EMGPlacementScheme OR define EMGCoordinateSystem, but
-# presumably not both?
-EMGPlacementScheme:
-  name: EMGPlacementScheme
-  display_name: EMG Placement Scheme
+EMGPlacement:
+  name: EMGPlacement
+  display_name: EMG Placement Procedure
   description: |
-    The name of a standardized placement system (for example, `"SENIAM 8"`).
+    The name of a standardized electrode placement procedure (for example, `"SENIAM 8"`)
+    or a description of the procedure used.
+    Descriptions SHOULD reflect the process used by the researcher(s) when placing electrodes,
+    and SHOULD NOT simply give the name of the targeted muscle (use `TargetMuscle` for that).
+    For example, EMG electrode sites may be chosen by visual reference to target muscles,
+    by palpation of the skin to locate target muscles, by functional localization
+    (temporary electrode placement at several sites during prescribed behavior,
+    until a site yielding strong EMG signal is found), or by measured distances
+    (either absolute or proportional) relative to skeletal landmarks.
   type: string
 # TODO: so far this is just copy/paste from EEGReference
 EMGReference:

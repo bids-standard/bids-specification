@@ -47,6 +47,7 @@ EMGRequired:
     - datatype == "emg"
     - suffix == "emg"
   fields:
+    EMGPlacement: required
     EMGReference: required
     SamplingFrequency:
       level: required
@@ -69,7 +70,6 @@ EMGRecommended:
     RecordingType: recommended
     EpochLength: recommended
     EMGGround: recommended
-    EMGPlacementScheme: recommended
     HardwareFilters: recommended
     SubjectArtefactDescription: recommended
 
