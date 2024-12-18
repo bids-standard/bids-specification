@@ -8,6 +8,9 @@ eeg:
   display_name: Electroencephalography
   description: |
     Data acquired with EEG.
+# TODO do we need to add separate modalities for sEMG, hdsEMG, iEMG? I think not:
+#      "hd" is probably not relevant to specify (users can infer it from electrodes.tsv /
+#      channels.tsv) and surface vs intramuscular can be captured by ElectrodeType.
 emg:
   display_name: Electromyography
   description: |

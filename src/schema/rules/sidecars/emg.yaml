@@ -14,6 +14,10 @@ EMGHardware:
     ManufacturersModelName: recommended
     SoftwareVersions: recommended
     DeviceSerialNumber: recommended
+# TODO?
+#   AmplifierType: recommended
+#   ElectrodeManufacturer: recommended
+#   ElectrodeManufacturersModelName: recommended
 
 EMGTaskInformation:
   selectors:
@@ -63,17 +67,23 @@ EMGRecommended:
     - datatype == "emg"
     - suffix == "emg"
   fields:
-    TargetMuscle: recommended
+    ElectrodeMaterial: recommended
+    ElectrodeType: recommended
     EMGChannelCount: recommended
-    TriggerChannelCount: recommended
+    EMGGround: recommended
+    EpochLength: recommended
+    HardwareFilters: recommended
     RecordingDuration: recommended
     RecordingType: recommended
-    EpochLength: recommended
-    EMGGround: recommended
-    HardwareFilters: recommended
     SubjectArtefactDescription: recommended
+    TargetMuscle: recommended
+    TriggerChannelCount: recommended
 
 # Specific EMG fields MAY be present
+# TODO: InterElectrodeDistance: in channels.tsv probably, only for bipolar channels
+#       ElectrodeGroup: not sure this is still needed given our use of `acq`
+#       ElectrodeOrientation: incorporate into EMGPlacement?
+#       SkinPreparation: abrasive gel, alcohol wipe, etc.
 EMGOptional:
   selectors:
     - datatype == "emg"
