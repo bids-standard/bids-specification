@@ -311,12 +311,12 @@ Examples of free text for field `description`:
 
 ### Example `*_channels.tsv`
 
-```Text
-name type units description
-VEOG VEOG V vertical EOG
-FDI EMG V left first dorsal interosseous
-UDIO001 TRIG V analog trigger signal
-UADC001 AUDIO V envelope of audio signal presented to participant
+```tsv
+name	type	units	description
+VEOG	VEOG	V	vertical EOG
+FDI	EMG	V	left first dorsal interosseous
+UDIO001	TRIG	V	analog trigger signal
+UADC001	AUDIO	V	envelope of audio signal presented to participant
 ```
 
 ## Coordinate System JSON (`*_coordsystem.json`)
