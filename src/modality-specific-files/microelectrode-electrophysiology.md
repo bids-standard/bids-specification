@@ -1,7 +1,6 @@
 # Microelectrode Electrophysiology
 
 Support for Microelectrode Electrophysiology was developed as a [BIDS Extension Proposal](../extensions.md#bids-extension-proposals) [BEP032: Animal electrophysiology (ephys)](https://bids.neuroimaging.io/bep032).
-
 Please see [Citing BIDS](../introduction.md#citing-bids) on how to appropriately credit this extension
 when referring to it in the context of the academic literature.
 
@@ -10,18 +9,17 @@ that was initiated in 2020 to develop a set of specifications and tools
 that would allow the standardization of a directory structure for experimental data recorded
 with animal models in neuroscience, and its associated metadata.
 
-Please consider joining this working group if you would like to contribute to this effort.
-You can also reach the moderators of this BEP through our [main discussion forum](https://github.com/INCF/neuroscience-data-structure/issues), where you can participate in existing discussions or raise new questions / issues.
-
 Most core principles of the original BIDS and particulars of BIDS-iEEG specification are adopted
 for this modality as well, though some special considerations and additional fields were added.
 
-Several [example Microelectrode Electrophysiology datasets](https://bids-standard.github.io/bids-examples/#microephys)
-have been formatted using this specification and can be used for practical guidance when curating a new dataset.
+!!! example "Example datasets"
+
+    Several [example Microelectrode Electrophysiology datasets](https://bids-standard.github.io/bids-examples/#microephys)
+    have been formatted using this specification and can be used for practical guidance when curating a new dataset.
 
 ## Primary data file formats
 
-Unprocessed microelectrode electrophysiology (`microephys`) modality data (of `icephys` or `ecephys` datatypes) must be stored in an [open file format](https://en.wikipedia.org/wiki/Open_format),
+Microelectrode electrophysiology (`microephys`) modality data (of `icephys` or `ecephys` datatypes) must be stored in an [open file format](https://en.wikipedia.org/wiki/Open_format),
 while the native format, if different, can be stored in an optional  `sourcedata/` directory.
 The native file format is used in case conversion elicits the loss of crucial metadata specific to manufacturers and specific acquisition systems.
 Metadata should be included alongside the data in the `.json` and `.tsv` files.
@@ -35,9 +33,9 @@ The current list of allowed data file formats:
 Both of these formats can also store essential metadata of the datasets.
 Some of these need to be duplicated in BIDS `.tsv` and `.json` sidecar files.
 Even though the duplication requires additional effort to ensure the consistency of the data, it provides a number of advantages:
--   Making the dataset easier for humans to scan as essential information is easily accessible without loading the data files
--   The dataset follows the BIDS standard and can benefit from tools building on top of this standard, starting with [bids-validator](https://github.com/bids-standard/bids-validator).
--   It simplifies the separation of data and basic metadata, for example to publish a dataset in a light-weight fashion with access to the data files on request (as implemented by [DataLad](https://www.datalad.org)).
+- Making the dataset easier for humans to scan as essential information is easily accessible without loading the data files
+- The dataset follows the BIDS standard and can benefit from tools building on top of this standard, starting with [bids-validator](https://github.com/bids-standard/bids-validator).
+- It simplifies the separation of data and basic metadata, for example to publish a dataset in a light-weight fashion with access to the data files on request (as implemented by [DataLad](https://www.datalad.org)).
 
 ##
 
@@ -69,23 +67,21 @@ and a guide for using macros can be found at
 #  PARTICIPANT keyfiles
 ## Participant information
 
-The participants.tsv file is located at the root of the data set directory.
+The `participants.tsv` file is located at the root of the data set directory.
 Its presence is RECOMMENDED in order to describe information about the individual subjects (animals) from which the data was recorded.
-It follows the [general BIDS specifications to describe participants](https://bids-specification.readthedocs.io/en/stable/03-modality-agnostic-files.html#participants-file).
+It follows the [general BIDS specifications to describe participants](../modality-agnostic-files.md#participants-file).
 
-On top of the existing columns that can be present in this file and that are described in the BIDS specifications (participant_id, species, strain, strain_rrid, sex, handedness and age), we propose to allow adding the following ones:
+On top of the existing columns that can be present in this file and that are described in the BIDS specifications (`participant_id`, `species`, `strain`, `strain_rrid`, `sex`, `handedness`, and `age`), we propose to allow adding the following ones:
 
 {{ MACROS___make_columns_table("modality_agnostic.Participants_micro") }}
 
 #  EPHYS specific files
 
-The following **metadata files are required for a** given animal-ephys session:
+The following metadata files are REQUIRED for a given animal ephys session:
 
-
-
-1. `[_ses-<session_label>]_probes.tsv`: A REQUIRED probes .tsv file listing information on the device used to acquire the electrophysiology data (implant / probe specification, location, material, etc.)
-2. `[_ses-<session_label>]_electrodes.tsv`: A REQUIRED electrodes .tsv file listing information on the points of electrical contact to the tissue (impedance,  names, relative positions etc.)
-3. `[_ses-<session_label>]_channels.tsv`: A REQUIRED channels.tsv file listing information on the recorded signals (preprocessing, filtering, ids, etc)
+1. `[_ses-<session_label>]_probes.tsv`: A REQUIRED file listing information on the device used to acquire the electrophysiology data, such as implant or probe specification, location, material, and others.
+2. `[_ses-<session_label>]_electrodes.tsv`: A REQUIRED file listing information on the points of electrical contact to the tissue, such as impedance, names, relative positions, and others.
+3. `[_ses-<session_label>]_channels.tsv`: A REQUIRED file listing information on the recorded signals, such as preprocessing, filtering, ids, and others.
 
 As with all tsv-based metadata files in BIDS the probes, electrodes and channels tsv files can be accompanied by json sidecar files.
 
