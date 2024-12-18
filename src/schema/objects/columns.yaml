@@ -416,7 +416,7 @@ reference__emg:
   name: reference
   display_name: Electrode reference
   description: |
-    Specification of the reference (for example, `styloid`, `ElectrodeName01`, `n/a`).
+    Specification of the reference (for example, `ulnar styloid process`, `ElectrodeName01`, `n/a`).
   type: string
 reference_frame:
   name: reference_frame

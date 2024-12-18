@@ -187,7 +187,7 @@ A guide for using macros can be found at
   "RecordingType":"continuous",
   "SamplingFrequency":1000,
   "SoftwareFilters":"n/a",
-  "TaskDescription":"jumping with stiff arms",
+  "TaskDescription":"jumping with stationary arms",
   "TaskName":"jumping",
 }
 ```
