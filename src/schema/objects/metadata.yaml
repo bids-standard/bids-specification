@@ -918,6 +918,70 @@ EMGChannelCount:
     Number of EMG channels.
   type: integer
   minimum: 0
+EMGCoordinateSystem:
+  name: EMGCoordinateSystem
+  display_name: EMG Coordinate System
+  description: |
+    Defines the coordinate system for the EMG sensors.
+
+    See the
+    [Coordinate Systems Appendix](SPEC_ROOT/appendices/coordinate-systems.md)
+    for a list of restricted keywords for coordinate systems.
+    If `"Other"`, provide definition of the coordinate system in
+    `EMGCoordinateSystemDescription`.
+  anyOf:
+    - $ref: objects.enums._EMGCoordSys
+EMGCoordinateSystemDescription:
+  name: EMGCoordinateSystemDescription
+  display_name: EMG Coordinate System Description
+  description: |
+    Free-form text description of the coordinate system, typically defining the origin
+    and positive x,y,z axis directions, relative to skeletal landmarks.
+    May also include a link to a documentation page or paper describing the
+    system in greater detail.
+  type: string
+EMGCoordinateUnits:
+  name: EMGCoordinateUnits
+  display_name: EMG Coordinate Units
+  description: |
+    Units of the coordinates of `EMGCoordinateSystem`.
+  type: string
+  enum:
+    - m
+    - mm
+    - cm
+    - n/a
+EMGGround:
+  name: EMGGround
+  display_name: EMG Ground
+  description: |
+    Description of the location of the ground electrode
+    (for example, `"right radial styloid process"`).
+  type: string
+EMGPlacement:
+  name: EMGPlacement
+  display_name: EMG Placement Procedure
+  description: |
+    The name of a standardized electrode placement procedure (for example, `"SENIAM 8"`)
+    or a description of the procedure used.
+    Descriptions SHOULD reflect the process used by the researcher(s) when placing electrodes,
+    and SHOULD NOT simply give the name of the targeted muscle (use `TargetMuscle` for that).
+    For example, EMG electrode sites may be chosen by visual reference to target muscles,
+    by palpation of the skin to locate target muscles, by functional localization
+    (temporary electrode placement at several sites during prescribed behavior,
+    until a site yielding strong EMG signal is found), or by measured distances
+    (either absolute or proportional) relative to skeletal landmarks.
+  type: string
+EMGReference:
+  name: EMGReference
+  display_name: EMG Reference
+  description: |
+    Description of the reference scheme used and (when applicable) of location of the
+    reference electrode in the raw recordings (for example, `"left ulnar styloid process"`).
+    For bipolar channels, specify `EMGReference` as "bipolar".
+    If different channels have different references, this field should contain a general
+    description and the channel specific reference should be defined in the `channels.tsv` file.
+  type: string
 EOGChannelCount:
   name: EOGChannelCount
   display_name: EOG Channel Count
