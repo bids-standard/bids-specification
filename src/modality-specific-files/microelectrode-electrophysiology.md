@@ -195,11 +195,11 @@ at the location:
 Example of `_probes.tsv`:
 
 ```Text
-probe_id	hemisphere	x	y	z	type		material	location
-p023		left		-11.87	-1.30	-3.37	utah-array	iridium-oxide	V1
-p023		left		-11.64	0.51	-4.20	utah-array	iridium-oxide	V2
-p021		left		-12.11	-3.12	-2.54	utah-array	iridium-oxide	V4
-p021		left		-9.94	-1.19	-2.86	utah-array	iridium-oxide	V3
+probe_id	hemisphere	x	y	z	type	material	location
+p023	left	-11.87	-1.30	-3.37	utah-array	iridium-oxide	V1
+p023	left	-11.64	0.51	-4.20	utah-array	iridium-oxide	V2
+p021	left	-12.11	-3.12	-2.54	utah-array	iridium-oxide	V4
+p021	left	-9.94	-1.19	-2.86	utah-array	iridium-oxide	V3
 ```
 
 

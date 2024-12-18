@@ -23,9 +23,9 @@ microephysProbes:
     height__probes: optional
     depth__probes: optional
     dimension_unit: optional
-    alpha_rotation: recommended
-    beta_rotation: recommended
-    gamma_rotation: recommended
+    yaw: recommended
+    pitch: recommended
+    roll: recommended
     coordinate_reference_point: recommended
     hemisphere__probes: recommended
     associated_brain_region: recommended

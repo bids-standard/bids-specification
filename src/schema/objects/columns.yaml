@@ -45,11 +45,11 @@ age:
     "Description": "Subject age in postnatal years",
     "Units": "year",
   }
-alpha_rotation:
-  name: alpha_rotation
-  display_name: Alpha rotation
+roll:
+  name: roll
+  display_name: Roll rotation
   description: |
-    Euler angle to match probe extension dimensions (width, height, depth) to global x, y, z coordinates.
+    Clockwise rotation when looking down at the probe.
   unit: degree
 associated_brain_region:
   name: associated_brain_region
@@ -72,11 +72,10 @@ associated_brain_region_quality_type:
     The method used to identify the associated brain region (estimated|proof)
     depending on anatomical pictures proofing the location or indirect estimation of the location.
   type: string
-beta_rotation:
-  name: beta_rotation
-  display_name: Beta rotation
-  description: |
-    Euler angle to match probe extension dimensions (width, height, depth) to global x, y, z coordinates.
+pitch:
+  name: pitch
+  display_name: Pitch rotation
+  description: Rotation in the direction of the electrode face, in degrees.
   unit: degree
   type: number
 cardiac:
@@ -299,11 +298,10 @@ gain:
     to the signal stored in the data file.
     If no gain factor is provided it is assumed to be 1.
   type: number
-gamma_rotation:
-  name: gamma_rotation
-  display_name: Gamma rotation
-  description: |
-    Euler angle to match probe extension dimensions (width, height, depth) to global x, y, z coordinates.
+yaw:
+  name: yaw
+  display_name: Yaw rotation
+  description: Rotation clockwise when looking down.
   unit: degree
 # TODO: Clarify if the optionality of the column be defined here or as an addendum in the rules.
 ground:
