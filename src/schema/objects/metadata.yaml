@@ -970,17 +970,15 @@ EMGPlacement:
     until a site yielding strong EMG signal is found), or by measured distances
     (either absolute or proportional) relative to skeletal landmarks.
   type: string
-# TODO: so far this is just copy/paste from EEGReference
 EMGReference:
   name: EMGReference
   display_name: EMG Reference
   description: |
-    General description of the reference scheme used and (when applicable) of
-    location of the reference electrode in the raw recordings
-    (for example, `"left mastoid"`, `"Cz"`, `"CMS"`).
-    If different channels have a different reference,
-    this field should have a general description and the channel specific
-    reference should be defined in the `channels.tsv` file.
+    Description of the reference scheme used and (when applicable) of location of the
+    reference electrode in the raw recordings (for example, `"left ulnar styloid process"`).
+    For bipolar channels, specify `EMGReference` as "bipolar".
+    If different channels have different references, this field should contain a general
+    description and the channel specific reference should be defined in the `channels.tsv` file.
   type: string
 EOGChannelCount:
   name: EOGChannelCount
