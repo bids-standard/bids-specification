@@ -67,7 +67,7 @@ microephysElectrodes:
   index_columns: [electrode_id]
   additional_columns: allowed_if_defined
 
-microephysCCChannelsss:
+microephysChannelsss:
   selectors:
     - datatype == ["ecephys", "icephys"]
     - suffix == "channels"

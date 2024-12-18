@@ -78,6 +78,7 @@ beta_rotation:
   description: |
     Euler angle to match probe extension dimensions (width, height, depth) to global x, y, z coordinates.
   unit: degree
+  type: number
 cardiac:
   name: cardiac
   display_name: Cardiac measurement
