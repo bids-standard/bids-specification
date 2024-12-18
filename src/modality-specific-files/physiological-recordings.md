@@ -708,7 +708,7 @@ Content of `sub-01_task-VisualSearch_events.json`:
    "InstitutionName": "Stanford University",
    "InstitutionAddress": "450 Serra Mall, Stanford, CA 94305-2004, USA",
    "StimulusPresentation": {
-       "ScreenDistance": 60,
+       "ScreenDistance": 0.6,
        "ScreenRefreshRate": 60,
        "ScreenResolution": [1024, 768],
        "ScreenSize": [0.386, 0.29]
