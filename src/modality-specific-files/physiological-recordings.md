@@ -678,6 +678,7 @@ could read:
     "EnvironmentCoordinates": "top-left",
     "Manufacturer": "SR-Research",
     "ManufacturersModelName": "EYELINK II CL v4.56 Aug 18 2010",
+    "PhysioType": "eyetrack",
     "RecordedEye": "right",
     "SampleCoordinateSystem": "gaze-on-screen",
     "SampleCoordinateUnits": "pixel",
