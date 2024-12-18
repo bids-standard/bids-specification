@@ -494,8 +494,8 @@ first letter in lower case (for example, `variable_name`, not `Variable_name`).
 Column names defined in the header MUST be separated with tabs as for the data contents.
 Furthermore, column names MUST NOT be blank (that is, an empty string) and MUST NOT
 be duplicated within a single TSV file.
-String values containing tabs MUST be escaped using double quotes.
 Missing and non-applicable values MUST be coded as `n/a`.
+String values containing tabs MUST be escaped using double quotes.
 Numerical values MUST employ the dot (`.`) as decimal separator and MAY be specified
 in scientific notation, using `e` or `E` to separate the significand from the
 exponent.
