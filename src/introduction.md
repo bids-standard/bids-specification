@@ -188,6 +188,10 @@ For example:
 
 -   (publication forthcoming)
 
+#### EMG
+
+-   (publication forthcoming)
+
 ### Research Resource Identifier (RRID)
 
 BIDS has also a
