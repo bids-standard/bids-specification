@@ -303,7 +303,7 @@ and a guide for using macros can be found at
 | -------------------- | ---------------------------------------------------------------------------------------------------- |
 | TB1DAM               | `FlipAngle`                                                                                          |
 | TB1EPI               | `EchoTime`, `FlipAngle`, `TotalReadoutTime`, `MixingTime`                                            |
-| TB1AFI               | `RepetitionTime`                                                                                     |
+| TB1AFI               | `RepetitionTimeExcitation`                                                                           |
 | TB1TFL               |                                                                                                      |
 | TB1RFM               |                                                                                                      |
 | TB1SRGE<sup>\*</sup> | `FlipAngle`, `InversionTime`, `RepetitionTimeExcitation`, `RepetitionTimePreperation`, `NumberShots` |
