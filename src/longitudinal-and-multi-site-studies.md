@@ -65,7 +65,7 @@ A guide for using macros can be found at
 
 `sub-control01_sessions.tsv` content:
 
-```Text
+```tsv
 session_id	acq_time	systolic_blood_pressure
 ses-predrug	2009-06-15T13:45:30	120
 ses-postdrug	2009-06-16T13:45:30	100

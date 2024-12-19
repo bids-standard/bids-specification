@@ -87,7 +87,7 @@ A guide for using macros can be found at
 
 Example of the content of the TSV file:
 
-```Text
+```tsv
 onset	duration	trial_type	response_time	stim_file	channel	annots
 1.23	0.65	start	1.435	images/red_square.jpg	n/a	n/a
 5.65	0.65	stop	1.739	images/blue_square.jpg	n/a	n/a
