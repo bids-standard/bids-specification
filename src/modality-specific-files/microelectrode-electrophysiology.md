@@ -144,7 +144,7 @@ The [`ses-<label>`](../appendices/entities.md#ses) entity may be used to specify
 
 ## **Multiple coordinate systems**
 
-The optional[` space-<label>`](../appendices/entities.md#space) entity (`*[_space-<label>]_coordsystem.json`) can be used to indicate how to interpret the electrode positions. The space `<label>` MUST be taken from one of the modality specific lists in the [Coordinate Systems Appendix](../appendices/coordinate-systems.md). For example for iEEG data, the restricted keywords listed under[ iEEG Specific Coordinate Systems](../coordinate-systems.md#ieeg-specific-coordinate-systems) are acceptable for `<label>`.
+The optional[` space-<label>`](../appendices/entities.md#space) entity (`*[_space-<label>]_coordsystem.json`) can be used to indicate how to interpret the electrode positions. The space `<label>` MUST be taken from one of the modality specific lists in the [Coordinate Systems Appendix](../appendices/coordinate-systems.md). For example for iEEG data, the restricted keywords listed under [iEEG Specific Coordinate Systems](../appendices/coordinate-systems.md#ieeg-specific-coordinate-systems) are acceptable for `<label>`.
 
 
 ## Probes (*_probes.tsv)
@@ -363,13 +363,19 @@ We RECOMMEND to use a dedicated `Procedure` node with the following keys:
 
 <!--Ask reema how she have implemented it-->
 
+<!-- TODO: Yarik replaced Pharmaceuticals with PharmaceuticalName and others for now but we might look to define list of Pharmaceuticals of records with PharmaceuticalDoseAmount and PharmaceuticalDoseUnit -->
+
 {{ MACROS___make_metadata_table(
    {
-        "Pharmaceuticals":"OPTIONAL",
+        "PharmaceuticalName":"OPTIONAL",
+        "PharmaceuticalDoseAmount":"OPTIONAL",
+        "PharmaceuticalDoseRegimen":"OPTIONAL",
+        "PharmaceuticalDoseTime":"OPTIONAL",
+        "PharmaceuticalDoseUnit":"OPTIONAL",
         "SupplementarySignals":"OPTIONAL",
         "BodyPart":"RECOMMENDED",
         "BodyPartDetails":"RECOMMENDED",
-        "BodyPartOntology":"OPTIONAL",
+        "BodyPartDetailsOntology":"OPTIONAL",
         "SampleEnvironment":"RECOMMENDED",
         "SampleEmbedding":"OPTIONAL",
         "SliceThickness":"OPTIONAL",
@@ -383,7 +389,7 @@ We RECOMMEND to use a dedicated `Procedure` node with the following keys:
 It is RECOMMENDED to use the following structure to provide more metadata for each probe:
 
 ```JSON
-"ProbeContours":{
+"ProbeContours": {
    "probe_infoid": {
       "<my_probe_id>": {
          "Contour": <list of contour points>,
@@ -421,43 +427,49 @@ If the OPTIONAL [` task-<label>`](../appendices/entities.md#task) is used, the f
 
 ```JSON
 {
-"PowerLineFrequency": 50,
-"Manufacturer": "OpenEphys",
-"ManufacturerModelName": "OpenEphys Starter Kit",
-"ManufacturerModelVersion":"OEPS-9031",
-"SamplingFrequency": 30000,
-"SamplingFrequencyUnit": "Hz",
-"Location": "Institut de Neurosciences de la Timone, Faculté de Médecine, 27, boulevard Jean Moulin, 13005 Marseille - France",
-" Software": "Cerebus",
-"SoftwareVersion": "1.5.1",
-"Creator": "John Doe",
-"Maintainer": "John Doe jr.",
-"Procedure": {
-   "Pharmaceuticals": {
-       "isoflurane": {
-           "PharmaceuticalName": "isoflurane",
-           "PharmaceuticalDoseAmount": 50,
-           "PharmaceuticalDoseUnit": "ug/kg/min"
-       },
-       "ketamine": {
-           "PharmaceuticalName": "ketamine",
-           "PharmaceuticalDoseAmount": 0.1,
-           "PharmaceuticalDoseUnit": "ug/kg/min"
-       }
-   },
-  "Sample": {
-    "BodyPart": "BRAIN",
-    "BodyPartDetails": "Motor Cortex"
-   },
-"ProbeContours": {
-    "p021": {
-        "Contour": [[0, 0, 0], [0, 10, 0], [1, 11, 0], [2, 10, 0], [2, 0, 0]],
+  "PowerLineFrequency": 50,
+  "Manufacturer": "OpenEphys",
+  "ManufacturerModelName": "OpenEphys Starter Kit",
+  "ManufacturerModelVersion": "OEPS-9031",
+  "SamplingFrequency": 30000,
+  "SamplingFrequencyUnit": "Hz",
+  "Location": "Institut de Neurosciences de la Timone, Faculté de Médecine, 27, boulevard Jean Moulin, 13005 Marseille - France",
+  "Software": "Cerebus",
+  "SoftwareVersion": "1.5.1",
+  "Creator": "John Doe",
+  "Maintainer": "John Doe jr.",
+  "Procedure": {
+    "Pharmaceuticals": {
+      "isoflurane": {
+        "PharmaceuticalName": "isoflurane",
+        "PharmaceuticalDoseAmount": 50,
+        "PharmaceuticalDoseUnit": "ug/kg/min"
+      },
+      "ketamine": {
+        "PharmaceuticalName": "ketamine",
+        "PharmaceuticalDoseAmount": 0.1,
+        "PharmaceuticalDoseUnit": "ug/kg/min"
+      }
+    },
+    "Sample": {
+      "BodyPart": "BRAIN",
+      "BodyPartDetails": "Motor Cortex"
+    },
+    "ProbeContours": {
+      "p021": {
+        "Contour": [
+          [0, 0, 0],
+          [0, 10, 0],
+          [1, 11, 0],
+          [2, 10, 0],
+          [2, 0, 0]
+        ],
         "Unit": "mm"
       }
-   },
-"TaskName": "Reach-to-Grasp",
-"TaskDescription": "A task that involves the reaching of an object and holding it for a specific time"
-}
+    },
+    "TaskName": "Reach-to-Grasp",
+    "TaskDescription": "A task that involves the reaching of an object and holding it for a specific time"
+  }
 }
 ```
 
@@ -471,8 +483,6 @@ with the corresponding ephys recording data. For more details, see the
 Task Events documentation.
 Note that this file can also be used to describe stimulation performed during the recording. For this,
 please follow the iEEG stimulation documentation.
-
-
 
 
 ## Multi-part recordings
@@ -560,32 +570,39 @@ the probe, electrode and channel files apply to both data files of that session,
 contain a `task` entity in their name. For the nose-poke task, additional behavioral timestamps
 (events) were recorded and stored in an additional `events.tsv` file.
 
-<!-- TODO: Use macro for filetree -->
+{{ MACROS___make_filetree_example(
 
-```
-dataset_description.json
-tasks.tsv
-tasks.json
-participants.tsv
-sub-A/
-  	ses-20220101/
-    		ephys/
-        sub-A_ses-20220101_task-nosepoke_ephys.nix
-        sub-A_ses-20220101_task-nosepoke_ephys.json
-        sub-A_ses-20220101_task-nosepoke_events.tsv
-        sub-A_ses-20220101_task-rest_ephys.nix
-        sub-A_ses-20220101_task-rest_ephys.json
-        sub-A_ses-20220101_channels.tsv
-        sub-A_ses-20220101_electrodes.tsv
-        sub-A_ses-20220101_probes.tsv
-  	ses-20220102/
-    		ephys/
-        sub-A_ses-20220102_task-rest_ephys.nix
-        sub-A_ses-20220102_task-rest_ephys.json
-        sub-A_ses-20220102_channels.tsv
-        sub-A_ses-20220102_electrodes.tsv
-        sub-A_ses-20220102_probes.tsv
-```
+{
+  "dataset_description.json": "",
+  "tasks.tsv": "",
+  "tasks.json": "",
+  "participants.tsv": "",
+  "sub-A/": {
+    "ses-20220101/": {
+      "ephys/": {
+        "sub-A_ses-20220101_task-nosepoke_ephys.nix": "",
+        "sub-A_ses-20220101_task-nosepoke_ephys.json": "",
+        "sub-A_ses-20220101_task-nosepoke_events.tsv": "",
+        "sub-A_ses-20220101_task-rest_ephys.nix": "",
+        "sub-A_ses-20220101_task-rest_ephys.json": "",
+        "sub-A_ses-20220101_channels.tsv": "",
+        "sub-A_ses-20220101_electrodes.tsv": "",
+        "sub-A_ses-20220101_probes.tsv": ""
+      }
+    },
+    "ses-20220102/": {
+      "ephys/": {
+        "sub-A_ses-20220102_task-rest_ephys.nix": "",
+        "sub-A_ses-20220102_task-rest_ephys.json": "",
+        "sub-A_ses-20220102_channels.tsv": "",
+        "sub-A_ses-20220102_electrodes.tsv": "",
+        "sub-A_ses-20220102_probes.tsv": ""
+      }
+    }
+  }
+}
+
+) }}
 
 
 
@@ -598,40 +615,46 @@ For the first subject only a single sample (a cell for patch-clamp terminology) 
 For the second subject two samples (sample-cell003 and sample-cell004) were extracted and a single recording performed on each of them. Each recording was performed using a different probe (listed in the probes.tsv) having specific electrode and channel information. Therefore, each data file has a dedicated channel and electrode file with the same name as the data file.
 
 
-<!-- TODO: Use macro for filetree -->
+{{ MACROS___make_filetree_example(
 
-```
-samples.tsv
-samples.json
-participants.tsv
-dataset_description.json
-sub-20220101A/
-sub-20220101A_sample-cell001_scans.tsv
-    	ephys/
-        sub-20220101A_sample-cell001_run-1_ephys.nwb
-        sub-20220101A_sample-cell001_run-1_events.tsv
-        sub-20220101A_sample-cell001_run-2_ephys.nwb
-        sub-20220101A_sample-cell001_run-2_events.tsv
-        sub-20220101A_channels.tsv
-        sub-20220101A_electrodes.tsv
-        sub-20220101A_probes.tsv
-        sub-20220101A_ephys.json
-        sub-20220101A_events.json
-sub-20220101B/
-sub-20220101B_sample-cell001_scans.tsv
-    	ephys/
-        sub-20220101B_sample-cell002_ephys.nwb
-        sub-20220101B_sample-cell002_events.tsv
-        sub-20220101B_sample-cell002_channels.tsv
-        sub-20220101B_sample-cell002_electrodes.tsv
-        sub-20220101B_sample-cell003_ephys.nwb
-        sub-20220101B_sample-cell003_events.tsv
-        sub-20220101B_sample-cell003_channels.tsv
-        sub-20220101B_sample-cell003_electrodes.tsv
-        sub-20220101B_probes.tsv
-        sub-20220101B_ephys.json
-        sub-20220101B_events.json
-```
+{
+  "samples.tsv": "",
+  "samples.json": "",
+  "participants.tsv": "",
+  "dataset_description.json": "",
+  "sub-20220101A/": {
+    "sub-20220101A_sample-cell001_scans.tsv": "",
+    "ephys/": {
+      "sub-20220101A_sample-cell001_run-1_ephys.nwb": "",
+      "sub-20220101A_sample-cell001_run-1_events.tsv": "",
+      "sub-20220101A_sample-cell001_run-2_ephys.nwb": "",
+      "sub-20220101A_sample-cell001_run-2_events.tsv": "",
+      "sub-20220101A_channels.tsv": "",
+      "sub-20220101A_electrodes.tsv": "",
+      "sub-20220101A_probes.tsv": "",
+      "sub-20220101A_ephys.json": "",
+      "sub-20220101A_events.json": ""
+    }
+  },
+  "sub-20220101B/": {
+    "sub-20220101B_sample-cell001_scans.tsv": "",
+    "ephys/": {
+      "sub-20220101B_sample-cell002_ephys.nwb": "",
+      "sub-20220101B_sample-cell002_events.tsv": "",
+      "sub-20220101B_sample-cell002_channels.tsv": "",
+      "sub-20220101B_sample-cell002_electrodes.tsv": "",
+      "sub-20220101B_sample-cell003_ephys.nwb": "",
+      "sub-20220101B_sample-cell003_events.tsv": "",
+      "sub-20220101B_sample-cell003_channels.tsv": "",
+      "sub-20220101B_sample-cell003_electrodes.tsv": "",
+      "sub-20220101B_probes.tsv": "",
+      "sub-20220101B_ephys.json": "",
+      "sub-20220101B_events.json": ""
+    }
+  }
+}
+
+) }}
 
 
 This toy data set can be found in [this repository,](https://gin.g-node.org/NeuralEnsemble/BEP032-examples/src/master/toy-dataset_patchclamp_single-record-per-file) with the content of the metadata files. The other option available to organize such data consists in storing several recordings in a single data file (as described in 3.8.2); the same data set is presented using this latter option in [this other repository](https://gin.g-node.org/NeuralEnsemble/BEP032-examples/src/master/toy-dataset_patchclamp_multiple-records-per-file), so that both options can be compared for the same data set.
