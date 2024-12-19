@@ -454,15 +454,15 @@ In the accompanying JSON sidecar, the `stim_file` column might be described as f
 
 ### Referencing Stimulus Identifiers in `events.tsv`
 
-To reference stimulus identifiers in the `events.tsv` file, use the `stim_id` column. The values in the `stim_id` column should represent unique identifiers for the stimuli.
+To reference stimulus identifiers in the `events.tsv` file, use the `stim_id` column. The `stim_id` corresponds to the unique identifier of the stimulus files and their annotations stored under the `/stimuli` directory. This allows linking each event to multiple related files associated with that stimulus.
 
 Example `events.tsv` file:
 
 ```Text
-onset	duration	trial_type	response_time	stim_file	stim_id
-1.23	0.65	start	1.435	images/cat01.jpg	stim001
-5.65	0.65	stop	1.739	images/cat02.jpg	stim002
-12.1	2.35	n/a	n/a	videos/movie01.mp4	stim003
+onset	duration	trial_type	response_time	stim_id
+1.23	0.65	start	1.435	stim-face01
+5.65	0.65	stop	1.739	stim-face02
+12.1	2.35	n/a	n/a	stim-video01
 ```
 
 In the accompanying JSON sidecar, the `stim_id` column might be described as follows:
@@ -471,10 +471,27 @@ In the accompanying JSON sidecar, the `stim_id` column might be described as fol
 {
     "stim_id": {
         "LongName": "Stimulus identifier",
-        "Description": "Represents a unique identifier for the stimulus presented at the given onset time."
+        "Description": "Represents a unique identifier for the stimulus presented at the given onset time. Links to files and annotations in the /stimuli directory."
     }
 }
 ```
+
+The `stim_id` in the events file links to corresponding files:
+
+```Text
+stimuli/
+├── stim-face01_image.jpg
+├── stim-face01_image.json
+├── stim-face01_annotations.tsv
+├── stim-face02_image.jpg
+├── stim-face02_image.json
+├── stim-face02_annotations.tsv
+├── stim-face02_annotations.tsv
+├── stimuli.tsv
+└── stimuli.json
+```
+
+By using `stim_id`, multiple annotations and stimulus files associated with the same identifier can be efficiently linked to events in the `events.tsv` file. The `stim_id` is a unique identifier for the stimulus that can be used to reference the stimulus files, annotations, and metadata stored in `stimuli.tsv` and `stimuli.json`. For more information on the structure of stimulus files and annotations, refer to the [Stimuli](./stimuli.md) BIDS specifications.
 
 ### Advantages of Standardization
 
