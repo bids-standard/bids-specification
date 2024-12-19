@@ -265,7 +265,7 @@ c234	n/a	1	SYNC	mV	1000	good
 ```
 
 Note: In many datasets multiple sets of identifiers are used for probes, electrodes and channels.
-We RECOMMEND to include alternative sets of identifiers, e.g. identifiers that enumerate electrodes according to their spatial arrangement, as additional custom columns in the .tsv file.
+We RECOMMEND to include alternative sets of identifiers, for instance identifiers that enumerate electrodes according to their spatial arrangement, as additional custom columns in the `.tsv` file.
 
 **Recommended Channel Type Values**
 
@@ -611,7 +611,7 @@ contain a `task` entity in their name. For the nose-poke task, additional behavi
 
 This dataset contains intracellular data from slices acquired from two subjects (20220101-A and 20220101B). Details about the subjects and the sample generation are documented in the samples (tsv/json) files. Data of each subject is stored in separate subject directories (top level directories), each of which contains an ‘ephys’ subdirectory. Note that there is no session-level directory in this case. Here, we choose the option of having “multiple tasks/runs in separate files” as described in 3.81., to demonstrate the high level of readability offered by the filenames in this case.
 
-For the first subject only a single sample (a cell for patch-clamp terminology) was extracted (sample-cell001), on which two recordings (runs 1 and 2) were performed. Here, the `scans.tsv` file can be used to store information such as the starting recording times. The detailed information on the recording channel (e.g. also the recording mode used) is stored in the `channels.tsv` which, in this case, is common to all available recordings. The probes and electrodes files provide information on the pipette and solutions used for the recordings and are also shared for the two data files.
+For the first subject only a single sample (a cell for patch-clamp terminology) was extracted (sample-cell001), on which two recordings (runs 1 and 2) were performed. Here, the `scans.tsv` file can be used to store information such as the starting recording times. The detailed information on the recording channel (such as the recording mode used) is stored in the `channels.tsv` which, in this case, is common to all available recordings. The probes and electrodes files provide information on the pipette and solutions used for the recordings and are also shared for the two data files.
 
 For the second subject two samples (sample-cell003 and sample-cell004) were extracted and a single recording performed on each of them. Each recording was performed using a different probe (listed in the probes.tsv) having specific electrode and channel information. Therefore, each data file has a dedicated channel and electrode file with the same name as the data file.
 
