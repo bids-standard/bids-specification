@@ -194,7 +194,7 @@ at the location:
 
 Example of `_probes.tsv`:
 
-```Text
+```tsv
 probe_id	hemisphere	x	y	z	type	material	location
 p023	left	-11.87	-1.30	-3.37	utah-array	iridium-oxide	V1
 p023	left	-11.64	0.51	-4.20	utah-array	iridium-oxide	V2
@@ -223,7 +223,7 @@ The coordinates are relative to the position on the probe.
 
 Example of * _electrodes.tsv:
 
-```Text
+```tsv
 probe_id	impedance	x	y	z	material	location
 e0123	p023	1.1	-11.87	-1.30	-3.37	iridium-oxide	V1
 e234	p023	1.5	-11.64	0.51	-4.20	iridium-oxide	V2
@@ -256,7 +256,7 @@ Columns in the `*_channel.tsv` file are:
 Example of * _channels.tsv:
 
 
-```Text
+```tsv
 channel_id	electrode_id	gain	type	units	sampling_frequency	status
 c0123	con0123	30	EXT	mV	30000	good
 c234	con234	30	EXT	mV	30000	good
@@ -424,6 +424,7 @@ If the OPTIONAL [` task-<label>`](../appendices/entities.md#task) is used, the f
 
 ### Example of * _ephys.json:
 
+<!-- TODO: below there is Procedure.Pharmaceuticals which is not standardized since ATM there is only single pharmaceutical "allowed" and we have no "Procedure" -->
 
 ```JSON
 {
@@ -520,7 +521,7 @@ Optional: Yes
 Example of * _scans.tsv:
 
 
-```Text
+```tsv
 filename	acq_time
 ephys/sub-P001_task-pull_run-01_ephys.nix	2018-07-15T09:45:30
 ephys/sub-P001_task-pull_run-02_ephys.nix	2018-07-15T13:24:00
