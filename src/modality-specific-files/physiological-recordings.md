@@ -551,7 +551,7 @@ Setting `PhysioType` to the keyword `"eyetrack"` specifies that
 the physiological recordings in the `<matches>_physio.tsv.gz` have
 been acquired with an *eye-tracker*.
 In the following, *eye-tracker* refers to the apparatus allowing
-the recording of gaze position and/or pupil size.
+the recording of gaze position, and, optionally, pupil size.
 
 Eye-tracking data MUST be stored following the general specifications
 for `"generic"` physiological recordings.
