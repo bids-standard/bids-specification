@@ -51,6 +51,9 @@ roll:
   description: |
     Clockwise rotation when looking down at the probe.
   unit: degree
+  type: number
+  minimum: -180
+  maximum: 180
 associated_brain_region:
   name: associated_brain_region
   display_name: Associated brain region
@@ -78,6 +81,8 @@ pitch:
   description: Rotation in the direction of the electrode face, in degrees.
   unit: degree
   type: number
+  minimum: -90
+  maximum: 90
 cardiac:
   name: cardiac
   display_name: Cardiac measurement
@@ -303,6 +308,9 @@ yaw:
   display_name: Yaw rotation
   description: Rotation clockwise when looking down.
   unit: degree
+  type: number
+  minimum: -180
+  maximum: 180
 # TODO: Clarify if the optionality of the column be defined here or as an addendum in the rules.
 ground:
   name: ground
