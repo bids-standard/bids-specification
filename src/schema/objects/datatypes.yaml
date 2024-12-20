@@ -23,7 +23,7 @@ eeg:
 emg:
   value: emg
   display_name: Electromyography
-  description: Measurements of (neuro)muscular activity.
+  description: Measurements of muscular activity.
 fmap:
   value: fmap
   display_name: Field maps
