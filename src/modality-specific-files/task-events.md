@@ -269,15 +269,15 @@ and a guide for using macros can be found at
 
 The operating system description SHOULD include the following attributes:
 
--   type (for example, Windows, macOS, Linux)
--   distribution (if applicable, for example, Ubuntu, Debian, CentOS)
--   the version number (for example, 18.04.5)
+- type (for example, Windows, macOS, Linux)
+- distribution (if applicable, for example, Ubuntu, Debian, CentOS)
+- the version number (for example, 18.04.5)
 
 Examples:
 
--   Windows 10, Version 2004
--   macOS 10.15.6
--   Linux Ubuntu 18.04.5
+- Windows 10, Version 2004
+- macOS 10.15.6
+- Linux Ubuntu 18.04.5
 
 The amount of information supplied for the `OperatingSystem` SHOULD be sufficient
 to re-run the code under maximally similar conditions.

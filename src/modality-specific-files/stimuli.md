@@ -4,10 +4,10 @@ Stimulus files should be stored in the `/stimuli` directory under the root direc
 
 Standardizing stimulus files and their annotations within the BIDS specifications offers several advantages:
 
-1. **Consistency**: Ensures that stimulus files are stored and referenced consistently across different datasets.
-2. **Reusability**: Facilitates the reuse of stimulus files and annotations in other studies by providing a standardized structure.
-3. **Efficiency**: Reduces redundancy by avoiding the need to replicate annotations across subjects, modalities, tasks, and runs.
-4. **Flexibility**: Allows for easy modification of annotations by updating a single file, enabling the reuse of datasets with alternative annotations.
+1.  **Consistency**: Ensures that stimulus files are stored and referenced consistently across different datasets.
+2.  **Reusability**: Facilitates the reuse of stimulus files and annotations in other studies by providing a standardized structure.
+3.  **Efficiency**: Reduces redundancy by avoiding the need to replicate annotations across subjects, modalities, tasks, and runs.
+4.  **Flexibility**: Allows for easy modification of annotations by updating a single file, enabling the reuse of datasets with alternative annotations.
 
 To preserve backward compatibility with existing datasets (see the Legacy section below), the use of these specifications for `/stimuli` directory and the `stim_id` column in the `events.tsv` files is RECOMMENDED but not required. Researchers are encouraged to follow these guidelines to enhance the interoperability and reproducibility of their studies.
 
@@ -39,10 +39,10 @@ To reference stimulus identifiers in the `events.tsv` file, use the `stim_id` co
 Example `events.tsv` file:
 
 | onset | duration | trial_type | response_time | stim_id |
-|-------|----------|------------|---------------|----------|
-| 1.23 | 0.65 | start | 1.435 | stim-\<label\> |
-| 5.65 | 0.65 | stop | 1.739 | stim-\<label\> |
-| 12.1 | 2.35 | n/a | n/a | stim-\<label\> |
+|-------|----------|------------|---------------|---------|
+| 1.23  | 0.65     | start      | 1.435         | stim-\<label\> |
+| 5.65  | 0.65     | stop       | 1.739         | stim-\<label\> |
+| 12.1  | 2.35     | n/a        | n/a           | stim-\<label\> |
 
 In the accompanying JSON sidecar, the `stim_id` column might be described as follows:
 
@@ -50,7 +50,7 @@ In the accompanying JSON sidecar, the `stim_id` column might be described as fol
 {
     "stim_id": {
         "LongName": "Stimulus identifier",
-        "Description": "Represents a unique identifier for the stimulus presented at the given onset time.",
+        "Description": "Represents a unique identifier for the stimulus presented at the given onset time."
     }
 }
 ```
@@ -64,17 +64,16 @@ Stimulus files can be of various types including audio, image, video, and combin
 
 Then stimulus file names MUST start with `stim-` followed by a unique label, and an optional part label if the stimulus is divided into parts. `stim-` is the standard entity for the stimulus files, indicating that the files do not belong to a specific subject or participant but rather are likely to be used across subjects throughout the experiment. The suffix SHOULD describe the type of stimulus (such as audio, image, video, audiovideo) and the extension MUST indicate the file format. The JSON sidecar file MUST have the same name as the stimulus file but with a `.json` extension. Here are the allowed suffixes and extensions for the stimulus files:
 
-| Modality | Extensions | Description |
-|----------|------------|-------------|
-| `audio` | .wav, .mp3, .aac, .ogg | Audio-only stimulus files |
-| `image` | .jpg, .png, .svg | Static visual stimulus files |
-| `video` | .mp4, .avi, .mkv, .webm | Video-only stimulus files |
-| `audioVideo` | .mp4, .avi, .mkv, .webm | Combined audio-visual stimulus files |
+| Modality     | Extensions                | Description                        |
+|--------------|---------------------------|------------------------------------|
+| `audio`      | .wav, .mp3, .aac, .ogg    | Audio-only stimulus files          |
+| `image`      | .jpg, .png, .svg          | Static visual stimulus files       |
+| `video`      | .mp4, .avi, .mkv, .webm   | Video-only stimulus files          |
+| `audioVideo` | .mp4, .avi, .mkv, .webm   | Combined audio-visual stimulus files |
 <!-- | Tactile | .ros | Robot Operating System program files for tactile stimulation | -->
 
 If distribution restrictions prevent including the actual stimulus file, the JSON sidecar SHOULD still be present with appropriate metadata describing the stimulus.
 For the stimuli that can be described in a table format (such as image datasets), the `stimuli.tsv` and `stimuli.json` files can be used to provide information about the stimuli based on their `stim_id`, and the presence of the stimulus file and JSON sidecar is OPTIONAL.
-
 
 The following table describes the REQUIRED, RECOMMENDED, and OPTIONAL fields for the `stim-<label>.json` file:
 
@@ -106,12 +105,11 @@ and a guide for using macros can be found at
 
 This is an example of the `stimuli.tsv` file describing three images from the natural scene dataset (NSD):
 
-| stimulus_id | type | description | HED | NSD_id | COCO_id |
-|------------|------|-------------|-----|---------|----------|
+| stimulus_id  | type  | description | HED | NSD_id | COCO_id |
+|--------------|-------|-------------|-----|--------|---------|
 | stim-nsd02951 | image | an open market full of people and piles of vegetables | ((Item-count, High), Ingestible-object), (Background-view, ((Human, Body, Agent-trait/Adult), Outdoors, Furnishing, Natural-feature/Sky, Urban, Man-made-object)) | 2951 | 262145 |
 | stim-nsd02991 | image | a couple of people are cooking in a room | (Foreground-view, ((Item-count/1, (Human, Body, Agent-trait/Adult)), (Item-count/1, (Human, Body, (Face, Away-from), Male, Agent-trait/Adult)), ((Item-count, High), Furnishing))), (Background-view, (Ingestible-object, Furnishing, Room, Indoors, Man-made-object, Assistive-device)) | 2991 | 262239 |
 | stim-nsd03050 | image | a person standing on a surfboard riding a wave | (Foreground-view, ((Item-count/1, ((Human, Human-agent), Body, Male, Agent-trait/Adolescent)), (Play, (Item-count/1, Man-made-object)))), (Background-view, (Outdoors, Natural-feature/Ocean)) | 3050 | 262414 |
-
 
 ### Stimuli.json
 
