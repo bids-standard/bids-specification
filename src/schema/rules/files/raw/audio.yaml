@@ -1,0 +1,16 @@
+---
+suffixes:
+  audio:
+    extensions:
+      - .wav
+      - .WAV
+      - .mp3
+      - .MP3
+      - .ogg
+      - .OGG
+      - .m4a
+      - .M4A
+      - .flac
+      - .FLAC
+      - .acc
+      - .ACC

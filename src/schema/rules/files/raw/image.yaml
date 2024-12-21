@@ -1,0 +1,14 @@
+---
+suffixes:
+  image:
+    extensions:
+      - .jpg
+      - .JPG
+      - .jpeg
+      - .JPEG
+      - .png
+      - .PNG
+      - .gif
+      - .GIF
+      - .webp
+      - .WEBP
