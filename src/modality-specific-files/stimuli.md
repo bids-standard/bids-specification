@@ -4,14 +4,14 @@ Stimulus files should be stored in the `/stimuli` directory under the root direc
 
 Standardizing stimulus files and their annotations within the BIDS specifications offers several advantages:
 
-1. **Consistency**: Ensures that stimulus files are stored and referenced in a consistent manner across different datasets.
+1. **Consistency**: Ensures that stimulus files are stored and referenced consistently across different datasets.
 2. **Reusability**: Facilitates the reuse of stimulus files and annotations in other studies by providing a standardized structure.
 3. **Efficiency**: Reduces redundancy by avoiding the need to replicate annotations across subjects, modalities, tasks, and runs.
 4. **Flexibility**: Allows for easy modification of annotations by updating a single file, enabling the reuse of datasets with alternative annotations.
 
 To preserve backward compatibility with existing datasets (see the Legacy section below), the use of these specifications for `/stimuli` directory and the `stim_id` column in the `events.tsv` files is RECOMMENDED but not required. Researchers are encouraged to follow these guidelines to enhance the interoperability and reproducibility of their studies.
 
-Following these guidelines will help ensure that stimulus files and their annotations are stored and referenced in a consistent manner across different datasets, facilitating data sharing, reuse, and reproducibility.
+Following these guidelines will help ensure that stimulus files and their annotations are stored and referenced consistently across different datasets, facilitating data sharing, reuse, and reproducibility.
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -62,7 +62,7 @@ Stimulus files can be of various types including audio, image, video, and combin
 - Stimulus file: `stim-<label>[_part-<label>]_<suffix>.<extension>`
 - JSON sidecar file: `stim-<label>[_part-<label>]_<suffix>.json`
 
-Then stimulus file names MUST start with `stim-` followed by a unique label, and an optional part label if the stimulus is divided into parts. `stim-` is the standard entity for the stimulus files, indicating that the files do not belong to a specific subject or participant but rather are likely to be used across subjects throughout the experiment. The suffix SHOULD describe the type of stimulus (e.g., audio, image, video, audiovideo) and the extension MUST indicate the file format. The JSON sidecar file MUST have the same name as the stimulus file but with a `.json` extension. Here are the allowed suffixes and extensions for the stimulus files:
+Then stimulus file names MUST start with `stim-` followed by a unique label, and an optional part label if the stimulus is divided into parts. `stim-` is the standard entity for the stimulus files, indicating that the files do not belong to a specific subject or participant but rather are likely to be used across subjects throughout the experiment. The suffix SHOULD describe the type of stimulus (such as audio, image, video, audiovideo) and the extension MUST indicate the file format. The JSON sidecar file MUST have the same name as the stimulus file but with a `.json` extension. Here are the allowed suffixes and extensions for the stimulus files:
 
 | Modality | Extensions | Description |
 |----------|------------|-------------|
@@ -73,10 +73,10 @@ Then stimulus file names MUST start with `stim-` followed by a unique label, and
 <!-- | Tactile | .ros | Robot Operating System program files for tactile stimulation | -->
 
 If distribution restrictions prevent including the actual stimulus file, the JSON sidecar SHOULD still be present with appropriate metadata describing the stimulus.
-For the stimuli that can be descibed in a table format (such as image datasets), the `stimuli.tsv` and `stimuli.json` files can be used to provide information about the stimuli based on their `stim_id`, and the presence of the stimulus file and JSON sidecar is OPTIONAL.
+For the stimuli that can be described in a table format (such as image datasets), the `stimuli.tsv` and `stimuli.json` files can be used to provide information about the stimuli based on their `stim_id`, and the presence of the stimulus file and JSON sidecar is OPTIONAL.
 
 
-The following table describes the REQURIED, RECOMMENDED, and OPTIONAL fields for the `stim-<label>.json` file:
+The following table describes the REQUIRED, RECOMMENDED, and OPTIONAL fields for the `stim-<label>.json` file:
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -104,7 +104,7 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_columns_table("stimuli.Stimuli") }}
 
-This is an example of the `stimuli.tsv` file describing three images from the natural scence dataset (NSD):
+This is an example of the `stimuli.tsv` file describing three images from the natural scene dataset (NSD):
 
 | stimulus_id | type | description | HED | NSD_id | COCO_id |
 |------------|------|-------------|-----|---------|----------|
