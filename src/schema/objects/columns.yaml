@@ -589,7 +589,7 @@ stim_id:
   name: stim_id
   display_name: Stimulus identifier
   description: |
-    Represents a unique identifier for the stimulus presented at the given onset time.
+    Represents a unique identifier for the stimulus presented at the given onset time. The `stim_id` is inclusive of the stimulus file(s), annotations related to the stimulus, and the information about the stimulus present in the `stimuli.tsv` file.
   type: string
 strain:
   name: strain
