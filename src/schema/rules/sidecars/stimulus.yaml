@@ -1,0 +1,32 @@
+# Sidecar tables for stimuli.tsv/json, annotations.tsv/json, and stim-<label>.json
+
+Stimuli:
+  selectors:
+    - suffix == "stimuli"
+  fields:
+    onset: required
+    duration: required
+    trial_type: recommended
+    response_time: optional
+    stim_file: required
+    stim_id: required
+
+Annotations:
+  selectors:
+    - suffix == "annotations"
+  fields:
+    onset: required
+    duration: required
+    annotation_id: required
+    description: recommended
+    stim_file: optional
+    stim_id: optional
+
+Stimulus:
+  selectors:
+    - suffix == "stim"
+  fields:
+    License: recommended
+    Copyright: recommended
+    URL: optional
+    Description: optional
