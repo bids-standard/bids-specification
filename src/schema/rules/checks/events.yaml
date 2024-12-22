@@ -31,6 +31,18 @@ StimulusFileMissing:
   checks:
     - exists(columns.stim_file, "stimuli") == length(columns.stim_file) - count(columns.stim_file, "n/a")
 
+StimulusIDMissing:
+  issue:
+    code: STIMULUS_ID_MISSING
+    message: |
+      A stimulus identifier was declared but not found in the dataset.
+    level: error
+  selectors:
+    - intersects([suffix], ["events", "beh"])
+    - columns.stim_id != null
+  checks:
+    - exists(columns.stim_id, "stimuli") == length(columns.stim_id) - count(columns.stim_id, "n/a")
+
 SortedOnsets:
   issue:
     code: EVENT_ONSET_ORDER

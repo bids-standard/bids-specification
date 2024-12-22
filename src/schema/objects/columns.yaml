@@ -585,6 +585,15 @@ stim_file:
     For example `images/cat03.jpg` will be translated to `/stimuli/images/cat03.jpg`.
   type: string
   format: stimuli_relative
+stim_id:
+  name: stim_id
+  display_name: Stimulus identifier
+  description: |
+    Represents a unique identifier for the stimulus presented at the given onset
+    time. The `stim_id` is inclusive of the stimulus file(s), annotations
+    related to the stimulus, and the information about the stimulus present in
+    the `stimuli.tsv` file.
+  type: string
 strain:
   name: strain
   display_name: Strain

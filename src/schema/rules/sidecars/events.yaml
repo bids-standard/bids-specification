@@ -12,3 +12,5 @@ StimulusPresentation:
   fields:
     StimulusPresentation: recommended
     VisionCorrection: optional
+    stim_file: recommended
+    stim_id: recommended
