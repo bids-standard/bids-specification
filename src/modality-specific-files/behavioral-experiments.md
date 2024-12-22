@@ -78,7 +78,7 @@ A guide for using macros can be found at
 
 ## Example `_beh.tsv`
 
-```Text
+```tsv
 trial	response	response_time	stim_file
 congruent	red	1.435	images/word-red_color-red.jpg
 incongruent	red	1.739	images/word-red_color-blue.jpg

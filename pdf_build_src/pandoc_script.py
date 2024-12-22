@@ -39,7 +39,7 @@ def build_pdf(filename="bids-spec.pdf", logfile="bids-spec_pandoc_log.json"):
     fname_mkdocs_yml = _find(HERE, "mkdocs.yml")
 
     with open(fname_mkdocs_yml, "r") as stream:
-        mkdocs_yml = yaml.safe_load(stream)
+        mkdocs_yml = yaml.load(stream, yaml.Loader)
 
     sections = mkdocs_yml["nav"][0]["The BIDS Specification"]
 

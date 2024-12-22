@@ -26,7 +26,7 @@ and the exact volume_type series should be specified in the `*_aslcontext.tsv`.
 
 Example of `*_aslcontext.tsv`:
 
-```Text
+```tsv
 volume_type
 control
 label
@@ -44,7 +44,7 @@ In this case, the `deltam` should be included in the `*_asl.nii[.gz]` and specif
 
 Example of `*_aslcontext.tsv`:
 
-```Text
+```tsv
 volume_type
 deltam
 m0scan
@@ -58,7 +58,7 @@ the `cbf` should be included in the `*_asl.nii[.gz]` and specified in the `*_asl
 
 Example of `*_aslcontext.tsv`:
 
-```Text
+```tsv
 volume_type
 cbf
 m0scan
