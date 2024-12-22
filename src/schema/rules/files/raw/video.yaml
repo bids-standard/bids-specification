@@ -1,7 +1,8 @@
 ---
-suffixes:
-  video:
-    extensions:
+video:
+  suffixes:
+    - video
+  extensions:
       - .avi
       - .AVI
       - .mp4
@@ -10,3 +11,7 @@ suffixes:
       - .MOV
       - .mkv
       - .MKV
+  entities:
+    stimulus: required
+    part: optional
+    annotation: optional
