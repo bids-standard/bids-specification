@@ -1,5 +1,5 @@
 # Sidecar tables for stim-<label>_suffix.json, the stimuli.json and annotations.json do not need additional fields
-# as the fields have been already defined in the tabular data 
+# as the fields have been already defined in the tabular data
 
 Stimulus:
   selectors:
