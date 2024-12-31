@@ -269,15 +269,15 @@ and a guide for using macros can be found at
 
 The operating system description SHOULD include the following attributes:
 
--   type (for example, Windows, macOS, Linux)
--   distribution (if applicable, for example, Ubuntu, Debian, CentOS)
--   the version number (for example, 18.04.5)
+- type (for example, Windows, macOS, Linux)
+- distribution (if applicable, for example, Ubuntu, Debian, CentOS)
+- the version number (for example, 18.04.5)
 
 Examples:
 
--   Windows 10, Version 2004
--   macOS 10.15.6
--   Linux Ubuntu 18.04.5
+- Windows 10, Version 2004
+- macOS 10.15.6
+- Linux Ubuntu 18.04.5
 
 The amount of information supplied for the `OperatingSystem` SHOULD be sufficient
 to re-run the code under maximally similar conditions.
@@ -400,3 +400,106 @@ A guide for using macros can be found at
 Additional metadata may be included as in
 [any TSV file](../common-principles.md#tabular-files) to specify, for
 example, the units of the recorded time series for each column.
+
+## Standardization of Stimulus Files and Annotations
+
+To ensure consistency and facilitate reuse, the BIDS specifications provide guidelines for standardizing stimulus files and their annotations. This section outlines the recommended practices for storing and referencing stimulus files within a BIDS dataset.
+
+### Storing Stimulus Files
+
+Stimulus files should be stored in the `/stimuli` directory under the root directory of the dataset. The `/stimuli` directory can contain subdirectories to organize the stimulus files. There are no restrictions on the file formats of the stimulus files.
+
+Example directory structure:
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+  "stimuli": {
+    "images": {
+      "cat01.jpg": "",
+      "cat02.jpg": "",
+    },
+    "videos": {
+      "movie01.mp4": "",
+      "movie02.mp4": "",
+    },
+  },
+}) }}
+
+### Referencing Stimulus Files in `events.tsv`
+
+To reference stimulus files in the `events.tsv` file, use the `stim_file` column. The values in the `stim_file` column should represent the relative path to the stimulus file within the `/stimuli` directory.
+
+Example `events.tsv` file:
+
+```Text
+onset	duration	trial_type	response_time	stim_file
+1.23	0.65	start	1.435	images/cat01.jpg
+5.65	0.65	stop	1.739	images/cat02.jpg
+12.1	2.35	n/a	n/a	videos/movie01.mp4
+```
+
+In the accompanying JSON sidecar, the `stim_file` column might be described as follows:
+
+```JSON
+{
+    "stim_file": {
+        "LongName": "Stimulus file",
+        "Description": "Represents the location of the stimulus file (such as an image, video, or audio file) presented at the given onset time. The values correspond to a path relative to the /stimuli directory."
+    }
+}
+```
+
+### Referencing Stimulus Identifiers in `events.tsv`
+
+To reference stimulus identifiers in the `events.tsv` file, use the `stim_id` column. The `stim_id` corresponds to the unique identifier of the stimulus files and their annotations stored under the `/stimuli` directory. This allows linking each event to multiple related files associated with that stimulus.
+
+Example `events.tsv` file:
+
+```Text
+onset	duration	trial_type	response_time	stim_id
+1.23	0.65	start	1.435	stim-face01
+5.65	0.65	stop	1.739	stim-face02
+12.1	2.35	n/a	n/a	stim-video01
+```
+
+In the accompanying JSON sidecar, the `stim_id` column might be described as follows:
+
+```JSON
+{
+    "stim_id": {
+        "LongName": "Stimulus identifier",
+        "Description": "Represents a unique identifier for the stimulus presented at the given onset time. Links to files and annotations in the /stimuli directory."
+    }
+}
+```
+
+The `stim_id` in the events file links to corresponding files:
+
+```Text
+stimuli/
+├── stim-face01_image.jpg
+├── stim-face01_image.json
+├── stim-face01_annotations.tsv
+├── stim-face02_image.jpg
+├── stim-face02_image.json
+├── stim-face02_annotations.tsv
+├── stim-face02_annotations.tsv
+├── stimuli.tsv
+└── stimuli.json
+```
+
+By using `stim_id`, multiple annotations and stimulus files associated with the same identifier can be efficiently linked to events in the `events.tsv` file. The `stim_id` is a unique identifier for the stimulus that can be used to reference the stimulus files, annotations, and metadata stored in `stimuli.tsv` and `stimuli.json`. For more information on the structure of stimulus files and annotations, refer to the [Stimuli](./stimuli.md) BIDS specifications.
+
+### Advantages of Standardization
+
+Standardizing stimulus files and their annotations within the BIDS specifications offers several advantages:
+
+1. **Consistency**: Ensures that stimulus files are stored and referenced in a consistent manner across different datasets.
+2. **Reusability**: Facilitates the reuse of stimulus files and annotations in other studies by providing a standardized structure.
+3. **Efficiency**: Reduces redundancy by avoiding the need to replicate annotations across subjects, modalities, tasks, and runs.
+4. **Flexibility**: Allows for easy modification of annotations by updating a single file, enabling the reuse of datasets with alternative annotations.
+
+By following these guidelines, researchers can enhance the interoperability and reproducibility of their studies, making it easier to share and reuse data within the scientific community.
