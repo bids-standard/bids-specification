@@ -16,7 +16,7 @@ with references and insights from issues [\#751](https://github.com/bids-standar
 
 ## Available under the CC-BY 4.0 International license.
 
-Extension moderators/leads: [Seyed Yahya Shirazi](mailto:shirazi@ieee.org)  
+Extension moderators/leads: [Seyed Yahya Shirazi](mailto:shirazi@ieee.org)
 Contributors: Dora Hermes, Yaroslav O. Halchenko, Kay Robbins, Scott Makeig, Monique Denissen
 
 | This document contains a draft for BEP0X44. It is a community effort to define standards in data / metadata storage for Stimuli. This is a working document in draft stage and any comments are welcome.  This specification is an extension of BIDS, and general principles are shared. The specification should work for many different settings and facilitate the integration with other imaging methods. To see the original BIDS specification, see [this link](https://bids-specification.readthedocs.io). This document inherits all components of the original specification (e.g. how to store imaging data, events, stimuli and behavioral data), and should be seen as an extension of it, not a replacement. |
@@ -58,29 +58,29 @@ Current BIDS specifications provide an option to include stimulus files (e.g., s
 
 Following the BIDS convention of having a list of entities in the hierarchy (such as participants.tsv, scan.tsv, sessions.tsv, etc.), we propose having a similar `stimuli.tsv` that lists all the stimulus files in the `stimuli/` directory. For the annotation of the stimulus files, a straightforward solution is to include the annotations in the \`/stimuli\` folder with a distinction between annotations for **still (i.e., non-time-varying) stimulus files** (e.g., images, VR physical constructs, etc.) and annotations for **time-varying stimulus files** (i.e., movies, sounds, haptic feedback, etc.). A single-line annotation would be sufficient for the still stimulus files. However, a time-varying stimulus file could need separate annotations for every frame (i.e., the smallest temporal resolution of the stimulus file).
 
-Based on (1) the BIDS Common Principles for file names to “consist of a chain of entity instances and a suffix all separated by underscores,” (2) existing facilities to include Tabular files and Key-Value files with data files, (3) and an existing mechanism for summary tables (such as `participants.tsv` and `scans.tsv`), we propose a structure for the `stimuli/` directory to accommodate (i) stimulus files with multiple parts and tracks, (ii) annotation of both still and time-varying stimuli, and (ii) multiple annotations of the stimulus files. 
+Based on (1) the BIDS Common Principles for file names to “consist of a chain of entity instances and a suffix all separated by underscores,” (2) existing facilities to include Tabular files and Key-Value files with data files, (3) and an existing mechanism for summary tables (such as `participants.tsv` and `scans.tsv`), we propose a structure for the `stimuli/` directory to accommodate (i) stimulus files with multiple parts and tracks, (ii) annotation of both still and time-varying stimuli, and (ii) multiple annotations of the stimulus files.
 
 2. # **Terminology** {#terminology}
 
 BIDS contains “required”, “recommended” and “optional” fields. These are indicated throughout the document:
 
-* REQUIRED: essential to be BIDS compliant (i.e. MUST as per RFC2199)  
-* RECOMMENDED: gives a warning if not present (i.e. SHOULD as per RFC2199)  
+* REQUIRED: essential to be BIDS compliant (i.e. MUST as per RFC2199)
+* RECOMMENDED: gives a warning if not present (i.e. SHOULD as per RFC2199)
 * OPTIONAL: no warning if missing (i.e. MAY as per RFC2199)
 
 
 As in BIDS-Raw, the following apply:
 
-1) All specifications of paths need to use forward slashes.  
+1) All specifications of paths need to use forward slashes.
 2) The inheritance principle applies: any metadata file (.json, .tsv, etc.) may be defined at any directory level. The values from the top level are inherited by all lower levels unless they are overridden by a file at the lower level. For details see BIDS-Raw ([The Inheritance Principle](https://bids-specification.readthedocs.io/en/stable/02-common-principles.html#the-inheritance-principle)).
 
 ## **2.1 Entites and data types**
 
-We propose the following entities and data types to be added to BIDS to properly annotate the stimulus files.  
+We propose the following entities and data types to be added to BIDS to properly annotate the stimulus files.
 **stim- (entity):** The standard entity for the stimulus files, indicating that the files do not belong to a specific subject or participant but rather are likely to be used across subjects throughout the experiment. Subsequently, the `stimuli.tsv/json` (plural of stimulus) and `stimulus_id` will be generated for the stim-xxx stimulus files.
 
-**\_{audio, image, video, audiovideo} (suffix)**: Any data file (medium, plural: media) used as a stimulus. Media files usually have an audio-visual file type (such as png/jpg/mp4/mp3/mkv). The JSON file associated with each media file should contain information such as License (RECOMMENDED), Copyright (RECOMMENDED), URL (OPTIONAL), and Description (OPTIONAL) to describe the origin and the nature of the media. However, **in the case of the imposed distribution restrictions of the stimulus, the media stimulus file may not be present with only JSON sidecar file containing the aforementioned pertinent metadata.**  
-Other types of stimuli to consider (10%?):   
+**\_{audio, image, video, audiovideo} (suffix)**: Any data file (medium, plural: media) used as a stimulus. Media files usually have an audio-visual file type (such as png/jpg/mp4/mp3/mkv). The JSON file associated with each media file should contain information such as License (RECOMMENDED), Copyright (RECOMMENDED), URL (OPTIONAL), and Description (OPTIONAL) to describe the origin and the nature of the media. However, **in the case of the imposed distribution restrictions of the stimulus, the media stimulus file may not be present with only JSON sidecar file containing the aforementioned pertinent metadata.**
+Other types of stimuli to consider (10%?):
 \- \_ros(tactile?).ros \- Robot Operating System program file … simulink is another file format for the same.
 
 | modality | extension | extension specification source | license |
@@ -92,7 +92,7 @@ Other types of stimuli to consider (10%?):
 
 **annot- (entity):** Accommodates multiple annotations for a single (usually, but not necessarily, time-varying) stimulus id. Similar to `stimuli.tsv`, there can be one or multiple `annotations.tsv` files with `annotation_id`, providing a list of the annotations in the directory, or for a specific stimulus respectively (see 3.1).
 
-**part- (entity):** The `_part-` entity could be used to tell apart different, possibly overlapping, parts of a single stimulus, e.g. a long movie (e.g. `_part-1`, `_part-2`) or an audiobook (e.g. `_part-epilog`, `_part-chapter1`, …). Part is currently defined in BIDS specifications as “indicate which component of the complex representation of the MRI signal is represented in voxel data.” The definition should be expanded for all modalities, including stimuli. 
+**part- (entity):** The `_part-` entity could be used to tell apart different, possibly overlapping, parts of a single stimulus, e.g. a long movie (e.g. `_part-1`, `_part-2`) or an audiobook (e.g. `_part-epilog`, `_part-chapter1`, …). Part is currently defined in BIDS specifications as “indicate which component of the complex representation of the MRI signal is represented in voxel data.” The definition should be expanded for all modalities, including stimuli.
 
 **stim\_file (column in the *events.tsv):*** *Currently, it can only point to a stimulus file or a database.* The column name should be expanded to also  `stim_id`. The definition should be expanded to be either a specific file in the stimuli directory, a database, or a `stimulus_id`. In the latter case, all files sharing the `stimulus_id` will be in scope as well as the entry associated with the `stimulus_id` in `stimuli.tsv`.
 
@@ -106,7 +106,7 @@ Other types of stimuli to consider (10%?):
 
 └── stimuli.json
 
-**Note:** presence of stimuli.tsv file would mandate the bids-validator to validate the content of stimuli/ folder to follow BEP044 specification.  
+**Note:** presence of stimuli.tsv file would mandate the bids-validator to validate the content of stimuli/ folder to follow BEP044 specification.
 **Proposal:** make BEP044 layout of stimuli/ to be mandatory for BIDS 2.0 ([bids-2-devel/issues/83](https://github.com/bids-standard/bids-2-devel/issues/83)).
 
 If stimuli.tsv is present the stimulus files in this directory MUST follow this naming structure: *(If non-audio, image, or video files are stored here, what will the extension become?)*
@@ -119,9 +119,9 @@ If stimuli.tsv is present the stimulus files in this directory MUST follow this 
 
 Currently supported suffixes (see 2.1):
 
-- audio  
-- audiovideo  
-- image  
+- audio
+- audiovideo
+- image
 - video
 
 If annotations are added:
@@ -142,11 +142,11 @@ If annotations and their features are generic to all stimuli, a single common `a
 
 For still images or body of words (that are not time-varying), multiple annotations could be included in the `stimuli.tsv/json` in separate columns. NOTE: Image-type stimuli SHOULD NOT use `_annot-events.tsv/json`. Additional annotations can be added to `stimuli.tsv/json` or the `stim-<label>.json` sidecar.
 
-Sidecar metadata and extensions most likely to align with 
+Sidecar metadata and extensions most likely to align with
 
-- [https://github.com/bids-standard/bids-specification/issues/1771](https://github.com/bids-standard/bids-specification/issues/1771) RFC: BEP for audio/video capture of behaving subjects 
+- [https://github.com/bids-standard/bids-specification/issues/1771](https://github.com/bids-standard/bids-specification/issues/1771) RFC: BEP for audio/video capture of behaving subjects
 
-## 
+##
 
 ## **3.3. `stimuli.tsv/json`**
 
@@ -210,7 +210,7 @@ The example */stimuli* directory:
 
 └── \[stim-nsd03050\_image.json\]
 
-When optional columns in stimuli.tsv file are added as in the example below, these must be described in the stimuli.json 
+When optional columns in stimuli.tsv file are added as in the example below, these must be described in the stimuli.json
 
 | NSD\_id | OPTIONAL. Image ID in the Natural Scenes Dataset  [https://naturalscenesdataset.org/](https://naturalscenesdataset.org/)  |
 | :---- | :---- |
@@ -236,7 +236,7 @@ Imagine that, in a study, the three images listed above are shown to the subject
 
 ## **Example 2: Face presentation (still, not time-varying)**  {#example-2:-face-presentation-(still,-not-time-varying)}
 
-\[This is from the Wakeman-Hansen dataset (ds000117, ds003645), currently the most cited electrophysiology dataset on OpenNeuro\]. The example uses direct annotation of the stimulus images by HED in the stimuli.tsv file without the use of a stimuli.json file. 
+\[This is from the Wakeman-Hansen dataset (ds000117, ds003645), currently the most cited electrophysiology dataset on OpenNeuro\]. The example uses direct annotation of the stimulus images by HED in the stimuli.tsv file without the use of a stimuli.json file.
 
 **Example:** stimuli.tsv using direct HED annotation with no stimuli.json
 
@@ -271,10 +271,10 @@ An edited version of the main  sub\_002\_task-FacePerception\_run-1\_events.tsv 
 | 32.884 | n/a | show\_cross | cross.bmp |
 | 33.360 | n/a | show\_face | s005.bmp |
 
-Since the stim\_file column entries do not have extensions, they are interpreted as stimulus\_id values, and their annotations are looked up using the stimulus\_id column of stimuli.tsv. If the values in the stim\_file column of the main \_events.tsv file have an extension, tools may search for corresponding annotations in the optional filename column of stimuli.tsv.  
+Since the stim\_file column entries do not have extensions, they are interpreted as stimulus\_id values, and their annotations are looked up using the stimulus\_id column of stimuli.tsv. If the values in the stim\_file column of the main \_events.tsv file have an extension, tools may search for corresponding annotations in the optional filename column of stimuli.tsv.
 The above example annotated each of the images individually, resulting in duplication of annotations.  Users can also use the stimuli.json file and categorical columns with HED to reduce this redundancy. HED support of the stimuli.tsv/stimuli.json will be handled similarly to the annotation of the participants.tsv/participants.json.
 
-## 
+##
 
 ## **Example 3: Movie example (time-varying)** {#example-3:-movie-example-(time-varying)}
 
@@ -286,7 +286,7 @@ The example */stimuli* directory:
 
 ├── stimuli.tsv
 
-├── stimuli.json 
+├── stimuli.json
 
 ├── \[annotations.tsv\]
 
@@ -355,9 +355,9 @@ The example of stim-thepresent\_audiovideo.json would be:
 
 ## **Other examples (what are common use cases?)…** {#other-examples-(what-are-common-use-cases?)…}
 
-- Example 5: (long) Movie or audiobook split into parts.  
-  - Counter-example: since \_part in mri means something else, corresponding data file would **not** be 1-to-1 matching via \_task-forrest\_part-... and need to be ad-hoc like \_task-forrest1 or \_task-forrest\_run-1  
-  - This may be a good example: [https://github.com/psychoinformatics-de/studyforrest-data-annotations.git](https://github.com/psychoinformatics-de/studyforrest-data-annotations.git)   
+- Example 5: (long) Movie or audiobook split into parts.
+  - Counter-example: since \_part in mri means something else, corresponding data file would **not** be 1-to-1 matching via \_task-forrest\_part-... and need to be ad-hoc like \_task-forrest1 or \_task-forrest\_run-1
+  - This may be a good example: [https://github.com/psychoinformatics-de/studyforrest-data-annotations.git](https://github.com/psychoinformatics-de/studyforrest-data-annotations.git)
 - Example 6: Parts of the story randomized for investigation of temporal structuring
 
 # **Relation to  \`\*\_events.tsv\` and \`\*\_stim.tsv.gz\` files** {#relation-to-`*_events.tsv`-and-`*_stim.tsv.gz`-files}
