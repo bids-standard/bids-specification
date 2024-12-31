@@ -4,7 +4,7 @@
 
 Stimulus files MUST be stored in the `/stimuli` directory under the root directory of the dataset.
 The `/stimuli` directory can contain subdirectories to organize the stimulus files.
-Stimulus files MUST follow the BIDS naming conventions and SHOULD be referenced in the `events.tsv`
+Stimulus files MUST follow the BIDS naming conventions and are referenced in the `events.tsv`
 file using the `stim_id` column.
 
 The standardization of stimulus files and their annotations within BIDS offers several key benefits:
@@ -28,8 +28,8 @@ A guide for using macros can be found at
    "stimuli": {
     "stimuli.tsv": "",
     "stimuli.json": "",
-    "[stim-<label>[_part-<label>]<suffix>.<extension>]": "",
-    "[stim-<label>[_part-<label>]<suffix>.json]": "",
+    "[stim-<label>[_part-<label>]_<suffix>.<extension>]": "",
+    "[stim-<label>[_part-<label>]_<suffix>.json]": "",
     "[[stim-<label>_]annotations.tsv]": "",
     "[[stim-<label>_]annotations.json]": "",
     "[stim-<label>[_part-<label>]_annot-<label>_events.tsv]": "",
@@ -79,7 +79,7 @@ In some cases, such as observing the copyright of a stimulus file, the actual st
 
 ## Stimuli Description (`stimuli.tsv`)
 
-The `stimuli.tsv/json` files are used to provide information about the stimuli based on their `stim_id`. This file is similar in usage as `participants.tsv`, `scans.tsv` and `sessions.tsv`, which list descriptions about subjects, scans and sessions, respectively. The `stimluli.tsv/json` files MUST be placed in the `/stimuli` directory.
+The `stimuli.tsv` files are used to provide information about the stimuli based on their `stim_id`. This file is similar in usage as `participants.tsv`, `scans.tsv` and `sessions.tsv`, which list descriptions about subjects, scans and sessions, respectively. The `stimluli.tsv` files MUST be placed in the `/stimuli` directory.
 
 The `stimuli.tsv` file contains information about each stimulus, including stimulus ID, type, URL, and other relevant details. The following table describes the REQUIRED, RECOMMENDED, and OPTIONAL columns for the `stimuli.tsv` file:
 
@@ -102,7 +102,7 @@ stim-movie01  video    https://example.com/movies/movie01.mp4  n/a         Studi
 
 The `stimuli.json` file provides detailed descriptions of the columns in the `stimuli.tsv` file. There MAY be extra entries in the `stimuli.json` in addition to the columns in the `stimuli.tsv` to provide more details about the stimulus.
 
-In cases where the stimulus is not shared, the `stimuli.tsv` file can be used to provide metadata about the stimuli, including the license, copyright, URL, and description. This is simialr to the use of `stim-<label>_<suffix>.json` files for individual stimuli files. In the case of conflict between the metadata in the `stimuli.tsv` and `stim-<label>_<suffix>.json` files, the metadata in the `stim-<label>_<suffix>.json` file takes precedence.
+In cases where the stimulus is not shared, the `stimuli.tsv` file can be used to provide metadata about the stimuli, including the license, copyright, URL, and description. This is similar to the use of `stim-<label>_<suffix>.json` files for individual stimuli files. In the case of conflict between the metadata in the `stimuli.tsv` and `stim-<label>_<suffix>.json` files, the metadata in the `stim-<label>_<suffix>.json` file takes precedence.
 
 ## Stimulus Annotations
 Annotations of the still images or general description of the stimuli (such as frequency and duration of a beep sound) can be stored in the `stimuli.tsv` as an additional column or `stim-<label>_<suffix>.json` as described above. Here is an example of how annotations can be stored in the `stimuli.tsv` file for an image from the Natural Scene Dataset (NSD):
@@ -111,7 +111,7 @@ Annotations of the still images or general description of the stimuli (such as f
 |--------------|-------|-------------|-----|--------|---------|
 | stim-nsd02951 | image | an open market full of people and piles of vegetables | ((Item-count, High), Ingestible-object), (Background-view, ((Human, Body, Agent-trait/Adult), Outdoors, Furnishing, Natural-feature/Sky, Urban, Man-made-object)) | 2951 | 262145 |
 
-However, for time-varying stimuli, such as audio or video, it is RECOMMENDED to use specific annotations files in the form of `stim-<label>_annot-<label>_events.tsv/json` to store the annotations. These files have the same structure as the `events.tsv/json` files and are used to store annotations for the stimuli. There can be multiple annotation files for a single stimulus file, each with a unique annotation label. The annotation files MUST be stored in the `/stimuli` directory.
+However, for time-varying stimuli, such as audio or video, it is RECOMMENDED to use specific annotations files in the form of `stim-<label>_annot-<label>_events.tsv` to store the annotations. These files have the same structure as the `events.tsv` files and are used to store annotations for the stimuli. There can be multiple annotation files for a single stimulus file, each with a unique annotation label. The annotation files MUST be stored in the `/stimuli` directory.
 
 ## Annotation Description (`annotations.tsv`)
 
