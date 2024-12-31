@@ -1,0 +1,22 @@
+# Sidecar tables for stim-<label>_suffix.json, the stimuli.json and annotations.json do not need additional fields
+# as the fields have been already defined in the tabular data 
+
+Stimulus:
+  selectors:
+    - suffix == "audio"
+    - suffix == "video"
+    - suffix == "audiovideo"
+    - suffix == "image"
+  fields:
+    License:
+      recommended: true
+      description: License under which this stimulus is shared
+    Copyright:
+      recommended: true
+      description: Copyright information for this stimulus
+    URL:
+      optional: true
+      description: Location (origin) for the stimulus file
+    Description:
+      optional: true
+      description: Free-form description of the stimulus
