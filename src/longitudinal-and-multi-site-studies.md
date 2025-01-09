@@ -95,7 +95,6 @@ Apps and everything should just work.
 Alternatively you can combine data from all sites into one dataset.
 This can be done in two ways:
 
-
 #### Option 2.a: Collate sites at subject level
 
 To identify which site each subjects comes from you can add a `site` column in the

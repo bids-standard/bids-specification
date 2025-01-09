@@ -15,9 +15,9 @@ REQUIRED, RECOMMENDED, and OPTIONAL.
 The guiding principles for when particular data is placed under a given requirement level
 can be loosely described as below:
 
-* REQUIRED: Data cannot be be interpreted without this information (or the ambiguity is unacceptably high)
-* RECOMMENDED: Interpretation/utility would be dramatically improved with this information
-* OPTIONAL: Users and/or tools might find it useful to have this information
+-   REQUIRED: Data cannot be be interpreted without this information (or the ambiguity is unacceptably high)
+-   RECOMMENDED: Interpretation/utility would be dramatically improved with this information
+-   OPTIONAL: Users and/or tools might find it useful to have this information
 
 Throughout this specification we use a list of terms and abbreviations.
 To avoid misunderstanding we clarify them here.
@@ -484,6 +484,7 @@ with two exceptions:
 1.  [compressed tabular files](#compressed-tabular-files),
     for which column names are defined in a sidecar metadata
     [JSON object](https://www.json.org/json-en.html) described below; and
+
 1.  [motion recording data](modality-specific-files/motion.md),
     which use plain-text TSV and columns are defined as described
     in its corresponding section of the specifications.
@@ -606,8 +607,10 @@ Rules for formatting plain-text tabular files apply to TSVGZ files with three ex
 
 1.  The contents of TSVGZ files MUST be compressed with
     [gzip](https://datatracker.ietf.org/doc/html/rfc1952).
+
 1.  Compressed tabular files MUST NOT contain a header in the first row
     indicating the column names.
+
 1.  TSVGZ files MUST have an associated JSON file that defines the columns in the tabular file.
 
 !!! warning "Attention"
