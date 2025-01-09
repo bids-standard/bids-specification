@@ -63,7 +63,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("stimulus.Stimulus") }}
+{{ MACROS___make_sidecar_table("stimuli.Stimuli") }}
 
 In some cases, such as observing the copyright of a stimulus file, the actual stimulus file may not be shared. In such cases, the `stim-<label>_<suffix>.json` file SHOULD be used to provide metadata about the stimulus file, including the license, copyright, URL, and description.
 
