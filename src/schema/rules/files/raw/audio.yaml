@@ -1,5 +1,7 @@
 ---
 audio:
+  datatypes:
+    - stimuli
   suffixes:
     - audio
   extensions:

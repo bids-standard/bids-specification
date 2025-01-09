@@ -1,5 +1,7 @@
 ---
 video:
+  datatypes:
+    - stimuli
   suffixes:
     - video
   extensions:

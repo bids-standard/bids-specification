@@ -542,6 +542,11 @@ ContrastBolusIngredient:
     # TODO: Add definitions for these values. (perhaps don't specify)
     - UNKNOWN
     - NONE
+Copyright:
+  name: Copyright
+  display_name: Copyright
+  description: Copyright information
+  type: string
 DCOffsetCorrection:
   name: DCOffsetCorrection
   display_name: DC Offset Correction
@@ -1891,6 +1896,11 @@ License:
     (see [Licenses](SPEC_ROOT/appendices/licenses.md)).
     The corresponding full license text MAY be specified in an additional
     `LICENSE` file.
+  type: string
+StimulusLicense:
+  name: License
+  display_name: License
+  description: License under which this stimulus is shared.
   type: string
 LongName:
   name: LongName
@@ -3652,6 +3662,11 @@ SubjectArtefactDescription:
     (for example, `"Vagus Nerve Stimulator"`, `"non-removable implant"`).
     If this field is set to `"n/a"`, it will be interpreted as absence of major
     source of artifacts except cardiac and blinks.
+  type: string
+StimulusURL:
+  name: URL
+  display_name: URL
+  description: Location (origin) for the stimulus file.
   type: string
 TablePosition:
   name: TablePosition

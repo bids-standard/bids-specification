@@ -1,5 +1,7 @@
 ---
 image:
+  datatypes:
+    - stimuli
   suffixes:
     - image
   extensions:
