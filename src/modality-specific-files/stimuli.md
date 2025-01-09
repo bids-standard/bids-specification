@@ -9,10 +9,10 @@ file using the `stim_id` column.
 
 The standardization of stimulus files and their annotations within BIDS offers several key benefits:
 
-1. **Consistency**: Ensures uniform storage and referencing across datasets
-2. **Reusability**: Enables stimulus reuse across studies through standardized structure
-3. **Efficiency**: Minimizes redundancy by centralizing annotations
-4. **Flexibility**: Facilitates dataset reuse with alternative annotations
+1.  **Consistency**: Ensures uniform storage and referencing across datasets
+1.  **Reusability**: Enables stimulus reuse across studies through standardized structure
+1.  **Efficiency**: Minimizes redundancy by centralizing annotations
+1.  **Flexibility**: Facilitates dataset reuse with alternative annotations
 
 To preserve backward compatibility with existing datasets (see the Legacy section below), the use of these specifications for `/stimuli` directory and the `stim_id` column in the `events.tsv` files is RECOMMENDED but not required. Researchers are encouraged to follow these guidelines to enhance the interoperability and reproducibility of their studies.
 
@@ -43,15 +43,16 @@ Note: The presence of `stimuli.tsv` file indicates that the content of the `/sti
 
 The following table lists the supported stimulus file formats and their corresponding suffixes. The suffixes are used to identify the type of stimulus file and are appended to the `stim-<label>` prefix in the file name.
 
-| **suffix**  | **extensions**          | **description**                   |
-|-------------|-------------------------|-----------------------------------|
-| audio       | `.wav`, `.mp3`, `.aac`, `.ogg` | Audio-only stimulus files        |
-| image       | `.jpg`, `.png`, `.svg`  | Static visual stimulus files      |
-| video       | `.mp4`, `.avi`, `.mkv`, `.webm` | Video-only stimulus files        |
-| audiovideo  | `.mp4`, `.avi`, `.mkv`, `.webm` | Combined audio-visual files      |
+| suffix      | extensions                      | description                  |
+| ----------- | ------------------------------- | ---------------------------- |
+| audio       | `.wav`, `.mp3`, `.aac`, `.ogg`  | Audio-only stimulus files    |
+| image       | `.jpg`, `.png`, `.svg`          | Static visual stimulus files |
+| video       | `.mp4`, `.avi`, `.mkv`, `.webm` | Video-only stimulus files    |
+| audiovideo  | `.mp4`, `.avi`, `.mkv`, `.webm` | Combined audio-visual files  |
 
 ## Stimulus description (`stim-<label>_<suffix>.json`)
-The `stim-<label>_<suffix>.json` file provides metadata about the *singular* stimulus file.
+
+The `stim-<label>_<suffix>.json` file provides metadata about the _singular_ stimulus file.
 The following fields are defined to describe the stimulus file:
 
 <!-- This block generates a metadata table.
@@ -105,11 +106,12 @@ The `stimuli.json` file provides detailed descriptions of the columns in the `st
 In cases where the stimulus is not shared, the `stimuli.tsv` file can be used to provide metadata about the stimuli, including the license, copyright, URL, and description. This is similar to the use of `stim-<label>_<suffix>.json` files for individual stimuli files. In the case of conflict between the metadata in the `stimuli.tsv` and `stim-<label>_<suffix>.json` files, the metadata in the `stim-<label>_<suffix>.json` file takes precedence.
 
 ## Stimulus Annotations
+
 Annotations of the still images or general description of the stimuli (such as frequency and duration of a beep sound) can be stored in the `stimuli.tsv` as an additional column or `stim-<label>_<suffix>.json` as described above. Here is an example of how annotations can be stored in the `stimuli.tsv` file for an image from the Natural Scene Dataset (NSD):
 
-| stimulus_id  | type  | description | HED | NSD_id | COCO_id |
-|--------------|-------|-------------|-----|--------|---------|
-| stim-nsd02951 | image | an open market full of people and piles of vegetables | ((Item-count, High), Ingestible-object), (Background-view, ((Human, Body, Agent-trait/Adult), Outdoors, Furnishing, Natural-feature/Sky, Urban, Man-made-object)) | 2951 | 262145 |
+| stimulus_id   | type  | description                                           | HED                                                                                                                                                               | NSD_id | COCO_id |
+| ------------- | ----- | ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | ------- |
+| stim-nsd02951 | image | an open market full of people and piles of vegetables | ((Item-count, High), Ingestible-object), (Background-view, ((Human, Body, Agent-trait/Adult), Outdoors, Furnishing, Natural-feature/Sky, Urban, Man-made-object)) | 2951   | 262145  |
 
 However, for time-varying stimuli, such as audio or video, it is RECOMMENDED to use specific annotations files in the form of `stim-<label>_annot-<label>_events.tsv` to store the annotations. These files have the same structure as the `events.tsv` files and are used to store annotations for the stimuli. There can be multiple annotation files for a single stimulus file, each with a unique annotation label. The annotation files MUST be stored in the `/stimuli` directory.
 
@@ -141,8 +143,8 @@ To reference stimulus identifiers in the `events.tsv` file, use the `stim_id` co
 
 Example `events.tsv` file:
 
-| onset | duration | trial_type | response_time | stim_id |
-|-------|----------|------------|---------------|---------|
+| onset | duration | trial_type | response_time | stim_id        |
+| ----- | -------- | ---------- | ------------- | -------------- |
 | 1.23  | 0.65     | start      | 1.435         | `stim-<label>` |
 | 5.65  | 0.65     | stop       | 1.739         | `stim-<label>` |
 | 12.1  | 2.35     | n/a        | n/a           | `stim-<label>` |

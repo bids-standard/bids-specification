@@ -269,15 +269,15 @@ and a guide for using macros can be found at
 
 The operating system description SHOULD include the following attributes:
 
-- type (for example, Windows, macOS, Linux)
-- distribution (if applicable, for example, Ubuntu, Debian, CentOS)
-- the version number (for example, 18.04.5)
+-   type (for example, Windows, macOS, Linux)
+-   distribution (if applicable, for example, Ubuntu, Debian, CentOS)
+-   the version number (for example, 18.04.5)
 
 Examples:
 
-- Windows 10, Version 2004
-- macOS 10.15.6
-- Linux Ubuntu 18.04.5
+-   Windows 10, Version 2004
+-   macOS 10.15.6
+-   Linux Ubuntu 18.04.5
 
 The amount of information supplied for the `OperatingSystem` SHOULD be sufficient
 to re-run the code under maximally similar conditions.
@@ -497,9 +497,9 @@ By using `stim_id`, multiple annotations and stimulus files associated with the 
 
 Standardizing stimulus files and their annotations within the BIDS specifications offers several advantages:
 
-1. **Consistency**: Ensures that stimulus files are stored and referenced in a consistent manner across different datasets.
-2. **Reusability**: Facilitates the reuse of stimulus files and annotations in other studies by providing a standardized structure.
-3. **Efficiency**: Reduces redundancy by avoiding the need to replicate annotations across subjects, modalities, tasks, and runs.
-4. **Flexibility**: Allows for easy modification of annotations by updating a single file, enabling the reuse of datasets with alternative annotations.
+1.  **Consistency**: Ensures that stimulus files are stored and referenced in a consistent manner across different datasets.
+1.  **Reusability**: Facilitates the reuse of stimulus files and annotations in other studies by providing a standardized structure.
+1.  **Efficiency**: Reduces redundancy by avoiding the need to replicate annotations across subjects, modalities, tasks, and runs.
+1.  **Flexibility**: Allows for easy modification of annotations by updating a single file, enabling the reuse of datasets with alternative annotations.
 
 By following these guidelines, researchers can enhance the interoperability and reproducibility of their studies, making it easier to share and reuse data within the scientific community.
