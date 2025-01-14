@@ -3,6 +3,7 @@ ieeg:
   suffixes:
     - ieeg
   extensions:
+    - .medd/
     - .mefd/
     - .json
     - .edf

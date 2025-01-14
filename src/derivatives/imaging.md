@@ -229,7 +229,7 @@ vertices) or a combined volume/surface space.
 
 If the segmentation can be generated in different ways,
 for example, following an atlas segmentation,
-the [`seg` entity](../appendices/entities.md#segmentation) MAY be used to
+the [`seg` entity](../appendices/entities.md#seg) MAY be used to
 distinguish the name of the segmentation used.
 
 The following section describes discrete and probabilistic segmentations of
@@ -293,7 +293,7 @@ In this case, the mask suffix MUST be used,
 the [`label` entity](../appendices/entities.md#label) SHOULD be used
 to specify the masked structure
 (see [Common image-derived labels](#common-image-derived-labels)),
-and the [`seg` entity](../appendices/entities.md#segmentation) SHOULD be defined.
+and the [`seg` entity](../appendices/entities.md#seg) SHOULD be defined.
 
 For example:
 

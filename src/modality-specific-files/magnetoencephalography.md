@@ -187,7 +187,7 @@ A guide for using macros can be found at
 
 #### Specific EEG fields
 
-If recorded with MEG, see [Recording EEG simultaneously with MEG](#recording-eeg-simultaneously-with-meg)
+If recorded with MEG, see [Recording EEG simultaneously with MEG](#recording-ieeg-simultaneously-with-meg)
 SHOULD be present:
 
 <!-- This block generates a metadata table.
@@ -311,12 +311,12 @@ Examples of free text for field `description`:
 
 ### Example `*_channels.tsv`
 
-```Text
-name type units description
-VEOG VEOG V vertical EOG
-FDI EMG V left first dorsal interosseous
-UDIO001 TRIG V analog trigger signal
-UADC001 AUDIO V envelope of audio signal presented to participant
+```tsv
+name	type	units	description
+VEOG	VEOG	V	vertical EOG
+FDI	EMG	V	left first dorsal interosseous
+UDIO001	TRIG	V	analog trigger signal
+UADC001	AUDIO	V	envelope of audio signal presented to participant
 ```
 
 ## Coordinate System JSON (`*_coordsystem.json`)
@@ -428,6 +428,11 @@ For more information on typical coordinate systems for MEG-MRI coregistration:
     [How are the different head and MRI coordinate systems defined? - FieldTrip Toolbox](https://www.fieldtriptoolbox.org/faq/coordsys/)
 or:
 [Coordinate Systems - Brainstorm toolbox](https://neuroimage.usc.edu/brainstorm/CoordinateSystems)
+
+`*_coordsystem.json` files SHOULD NOT be duplicated for each data file,
+for example, across multiple tasks.
+The [inheritance principle](../common-principles.md#the-inheritance-principle) MUST
+be used to find the appropriate coordinate system description for a given data file.
 
 ## Landmark photos (`*_photo.<extension>`)
 

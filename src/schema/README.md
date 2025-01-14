@@ -999,6 +999,7 @@ EventsMissing:
 ### One-off rules
 
 -   `rules.modalities` - The keys in this file are the modalities, the values objects with the following field:
+
     | Field       | Description                           |
     | ----------- | ------------------------------------- |
     | `datatypes` | List of datatypes mapping to modality |

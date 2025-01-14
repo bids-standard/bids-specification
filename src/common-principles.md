@@ -202,6 +202,11 @@ as the labels would collide on a case-insensitive filesystem.
 Additionally, because the suffix `eeg` is defined,
 then the suffix `EEG` will not be added to future versions of the standard.
 
+### Dotfiles
+
+Files and directories starting with a dot (`.`) are reserved for system use and no valid recognized BIDS file or directory can start with a `.`.
+Any file or directory starting with a `.` present in a BIDS dataset is considered hidden and not subject to BIDS validation.
+
 ## Uniqueness of data files
 
 Data files MUST be uniquely identified by BIDS path components
@@ -489,8 +494,8 @@ first letter in lower case (for example, `variable_name`, not `Variable_name`).
 Column names defined in the header MUST be separated with tabs as for the data contents.
 Furthermore, column names MUST NOT be blank (that is, an empty string) and MUST NOT
 be duplicated within a single TSV file.
-String values containing tabs MUST be escaped using double quotes.
 Missing and non-applicable values MUST be coded as `n/a`.
+String values containing tabs MUST be escaped using double quotes.
 Numerical values MUST employ the dot (`.`) as decimal separator and MAY be specified
 in scientific notation, using `e` or `E` to separate the significand from the
 exponent.
@@ -739,9 +744,11 @@ A guide for using macros can be found at
             "sub-01_task-rest_acq-default_bold.nii.gz": "",
             "sub-01_task-rest_acq-longtr_bold.nii.gz": "",
             "sub-01_task-rest_acq-longtr_bold.json": "",
-            }
+            },
+        "sub-01_scans.tsv": "",
         },
     "task-rest_bold.json": "",
+    "scans.json": ""
     }
 ) }}
 
@@ -772,6 +779,10 @@ entity "`acq-longtr`" that is absent from the image path (rule 2.c). When readin
 the value for field "`RepetitionTime`" is therefore overridden to the value `3.0`.
 The value for field "`EchoTime`" remains applicable to that image, and is not unset by its
 absence in the metadata file at the lower level (rule 5.b; corollary 3).
+
+A single `scans.json`, without any entity in the filename at the top level,
+is applicable to describe columns of the `sub-01_scans.tsv`
+and any other `_scans.tsv` potentially present in the dataset for other subjects.
 
 Example 2: Impermissible use of multiple metadata files at one directory level (rule 4)
 

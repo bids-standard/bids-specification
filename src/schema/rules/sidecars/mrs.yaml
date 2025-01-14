@@ -39,7 +39,8 @@ MRSSample:
     BodyPart:
       level: optional
       level_addendum: required if `voi` entity is present
-      description_addendum: Corresponds to DICOM Tag 0018, 0015 `Body Part Examined`.
+      description_addendum: |
+        Corresponds to [DICOM Tag 0018, 0015](https://dicomlookup.com/dicomtags/(0018,0015)) `Body Part Examined`.
     BodyPartDetails:
       level: optional
       level_addendum: required if `voi` entity is present
