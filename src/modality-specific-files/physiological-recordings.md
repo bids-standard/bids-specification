@@ -699,17 +699,28 @@ could read:
         "square",
         [100, 150, 300, 350]
     ],
-    "pupil_size": {
-        "Description": "Pupil area of the recorded eye as calculated by the eye-tracker in arbitrary units (see EyeLink's documentation for conversion).",
-        "Units": "a.u."
-    },
     "timestamp": {
         "Description": "a continuously increasing identifier of the sampling time registered by the device",
         "Units": "ms",
         "Origin": "System startup"
+    },
+    "x_coordinate": {
+      "Description": "Gaze position x-coordinate of the recorded eye, in the coordinate units specified in the corresponding metadata sidecar.",
+      "Units": "pixels"
+    },
+    "y_coordinate": {
+      "Description": "Gaze position y-coordinate of the recorded eye, in the coordinate units specified in the corresponding metadata sidecar.",
+      "Units": "pixels"
+    },
+    "pupil_size": {
+        "Description": "Pupil area of the recorded eye as calculated by the eye-tracker in arbitrary units (see EyeLink's documentation for conversion).",
+        "Units": "a.u."
     }
 }
 ```
+
+Please note how the `Description` field of the `pupil_size` column states the specific type
+of pupil size recorded (pupil area in this example).
 
 Content of `sub-01_task-VisualSearch_events.json`:
 
