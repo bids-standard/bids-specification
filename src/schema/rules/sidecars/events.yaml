@@ -18,7 +18,8 @@ StimulusPresentation_for_eyetracking:
     - suffix == "events"
     - intersects([suffix], ["eyetrack"])
   fields:
-    StimulusPresentation.ScreenSize: required
-    StimulusPresentation.ScreenResolution: required
     StimulusPresentation.ScreenDistance: required
+    StimulusPresentation.ScreenOrigin: required
     StimulusPresentation.ScreenRefreshRate: recommended
+    StimulusPresentation.ScreenResolution: required
+    StimulusPresentation.ScreenSize: required

@@ -1,4 +1,4 @@
-#
+`#
 # Groups of related metadata fields
 #
 # Assumptions: never need disjunction of selectors
@@ -49,7 +49,6 @@ EyeTrack:
   selectors:
     - suffix == "physio"
   fields:
-    EnvironmentCoordinates: required
     RecordedEye: required
     SampleCoordinateUnits: required
     SampleCoordinateSystem: required

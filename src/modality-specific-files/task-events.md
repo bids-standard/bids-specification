@@ -276,9 +276,10 @@ and a guide for using macros can be found at
     with the simultaneous recording of eye-tracking escalate to REQUIRED as they are considered
     essential in eye-tracking data analysis:
 
-    -   `ScreenSize`,
-    -   `ScreenResolution`,
-    -   `ScreenDistance`.
+    -   `StimulusPresentation.ScreenDistance`,
+    -   `StimulusPresentation.ScreenOrigin`,
+    -   `StimulusPresentation.ScreenResolution`,
+    -   `StimulusPresentation.ScreenSize`.
 
 The operating system description SHOULD include the following attributes:
 

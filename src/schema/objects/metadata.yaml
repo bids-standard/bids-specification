@@ -1123,14 +1123,6 @@ ElectrodeManufacturersModelName:
     If different electrode types are used,
     please use the corresponding table in the `_electrodes.tsv` file.
   type: string
-EnvironmentCoordinates:
-  name: EnvironmentCoordinates
-  display_name: Environment Coordinates
-  description: |
-    Coordinates origin (or zero), for gaze-on-screen coordinates,
-    this can be for example: `"top-left"` or `"center"`.
-    For virtual reality this could be, amongst others, spherical coordinates.
-  type: string
 EncodingTechnique:
   name: EncodingTechnique
   display_name: Encoding Technique
@@ -3437,6 +3429,25 @@ ScreenDistance:
     - type: string
       enum:
         - n/a
+ScreenOrigin:
+  name: ScreenOrigin
+  display_name: Screen Coordinate System's Origin
+  description: |
+    Location of the spatial coordinates' origin for the visual stimuli presentation,
+    described by a list of two keywords such as ("top", "left") if the coordinates
+    refer to the top-left corner of the screen, or ("center", "center") if the position
+    (0, 0) is at the center or the screen's extent.
+  type: array
+  items:
+    type: string
+    maxItems: 2
+    minItems: 2
+    enum:
+      - "top"
+      - "botom"
+      - "left"
+      - "right"
+      - "center"
 ScreenRefreshRate:
   name: ScreenRefreshRate
   display_name: Screen Refresh Rate
@@ -3837,6 +3848,7 @@ StimulusPresentation:
   recommended:
     - OperatingSystem
     - ScreenDistance
+    - ScreenOrigin
     - ScreenRefreshRate
     - ScreenResolution
     - ScreenSize
@@ -3850,6 +3862,8 @@ StimulusPresentation:
       $ref: objects.metadata.OperatingSystem
     ScreenDistance:
       $ref: objects.metadata.ScreenDistance
+    ScreenOrigin:
+      $ref: objects.metadata.ScreenOrigin
     ScreenRefreshRate:
       $ref: objects.metadata.ScreenRefreshRate
     ScreenResolution:
