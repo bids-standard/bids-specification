@@ -3187,7 +3187,7 @@ SampleCoordinateSystem:
   display_name: Coordinate System of the Gaze Position
   description: |
     Coordinate system of the gaze position recordings.
-    Generally eye-tracker are set to use `"gaze-on-screen"` coordinate system but you may use
+    Generally eye-trackers are set to use `"gaze-on-screen"` coordinate system, but you may use
     `"eye-in-head"` or `"gaze-in-world"` or other alternatives of your choice.
     If you use the standard `"gaze-on-screen"`, it is RECOMMENDED to use this
     exact label.
