@@ -182,6 +182,9 @@ pupil_size:
   description: |
     Pupil size or area of the recorded eye, in the
     units specified in the corresponding metadata sidecar.
+    It is RECOMMENDED to indicate the particular type of pupil size that is
+    being recorded in the `Description` field of this column.
+    It is RECOMMENDED to specify the `Units` field corresponding to this column.
   type: number
 et_timestamp:
   name: timestamp
