@@ -1,10 +1,78 @@
 [build-system]
-requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
+requires = ["setuptools"]
+
+[project]
+name = "bidsschematools"
+description = " Python tools for working with the BIDS schema."
+authors = [{name = "bids-standard developers"}]
+maintainers = [{name = "bids-standard developers", email = " bids.maintenance@gmail.com"}]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "click",
+    "pyyaml",
+    "jsonschema"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: MIT License",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13"
+]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+expressions = ["pyparsing"]
+render = [
+    "tabulate",
+    "pandas",
+    "markdown-it-py"
+]
+tests = [
+    "bidsschematools[expressions,render]",
+    "codecov",
+    "coverage[toml]",
+    "flake8",
+    "flake8-black",
+    "flake8-isort",
+    "pytest>6",
+    "pytest-cov"
+]
+doc = [
+    "sphinx>=1.5.3",
+    "sphinx_rtd_theme"
+]
+all = [
+    "bidsschematools[doc,tests]"
+]
+
+[project.scripts]
+bst = "bidsschematools.__main__:cli"
+
+[project.urls]
+Homepage = "https://github.com/bids-standard/bids-specification"
+
+[tool.setuptools.dynamic]
+version = {file = "src/bidsschematools/data/schema/SCHEMA_VERSION"}
+
+[tool.setuptools.package-data]
+bidsschematools = [
+    "data/metaschema.json",
+    "data/schema/BIDS_VERSION",
+    "data/schema/SCHEMA_VERSION",
+    "data/schema/**/*.yaml",
+    "tests/data/*"
+]
 
 [tool.black]
 line-length = 99
-target-version = ['py37']
 include = '\.pyi?$'
 exclude = '''
 (
@@ -22,17 +90,24 @@ exclude = '''
 '''
 
 [tool.isort]
-profile = "black"
 multi_line_output = 3
+profile = "black"
 
 [tool.pytest.ini_options]
+addopts = "-ra --strict-markers --strict-config"
+log_cli = true
+log_cli_level = "INFO"
 markers = [
-  "validate_schema: tests that validate the schema itself",
+    "validate_schema: tests that validate the schema itself"
+]
+minversion = "6.0"
+xfail_strict = true
+
+[tool.coverage.paths]
+source = [
+    "src/bidsschematools",
+    "**/site-packages/bidsschematools"
 ]
 
 [tool.coverage.run]
 parallel = true
-omit = [
-  "*/*/tests/*",
-  "**/tests/*"
-]

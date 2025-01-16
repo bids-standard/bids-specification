@@ -185,21 +185,21 @@ Note that upper-case is REQUIRED:
 
 ### Example `*_channels.tsv`
 
-```Text
-name        component   type   tracked_point   units    reference_frame
-t1_acc_x    x           ACCEL  LeftFoot        m/s^2    global
-t1_acc_y    y           ACCEL  LeftFoot        m/s^2    global
-t1_acc_z    z           ACCEL  LeftFoot        m/s^2    global
-t1_gyro_x   x           GYRO   LeftFoot        rad/s    global
-t1_gyro_y   y           GYRO   LeftFoot        rad/s    global
-t1_gyro_z   z           GYRO   LeftFoot        rad/s    global
+```tsv
+name	component	type	tracked_point	units	reference_frame
+t1_acc_x	x	ACCEL	LeftFoot	m/s^2	global
+t1_acc_y	y	ACCEL	LeftFoot	m/s^2	global
+t1_acc_z	z	ACCEL	LeftFoot	m/s^2	global
+t1_gyro_x	x	GYRO	LeftFoot	rad/s	global
+t1_gyro_y	y	GYRO	LeftFoot	rad/s	global
+t1_gyro_z	z	GYRO	LeftFoot	rad/s	global
 …
-t2_acc_x    x           ACCEL  RightWrist      m/s^2    global
-t2_acc_y    y           ACCEL  RightWrist      m/s^2    global
-t2_acc_z    z           ACCEL  RightWrist      m/s^2    global
-t2_gyro_x   x           GYRO   RightWrist      rad/s    global
-t2_gyro_y   y           GYRO   RightWrist      rad/s    global
-t2_gyro_z   z           GYRO   RightWrist      rad/s    global
+t2_acc_x	x	ACCEL	RightWrist	m/s^2	global
+t2_acc_y	y	ACCEL	RightWrist	m/s^2	global
+t2_acc_z	z	ACCEL	RightWrist	m/s^2	global
+t2_gyro_x	x	GYRO	RightWrist	rad/s	global
+t2_gyro_y	y	GYRO	RightWrist	rad/s	global
+t2_gyro_z	z	GYRO	RightWrist	rad/s	global
 ```
 
 ## Reference frame description (`*_channels.json`)

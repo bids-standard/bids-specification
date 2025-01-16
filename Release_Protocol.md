@@ -116,6 +116,10 @@ You can also make use of the `exclude-from-changelog` label.
 Adding this label to PRs in the GitHub web interface will prevent the changelog generator from
 considering this item for inclusion in the changelog.
 
+#### 2.5 Update the schema
+
+Add the new version to `src/schema/meta/versions.yaml`.
+
 ### 3. Commit changes and push to upstream
 
 By pushing `rel/` branches to the main repository, the chances of continuous integration
@@ -267,10 +271,14 @@ Similarly update the version in CITATION.cff with a `dev` suffix.
 
 Update the following files in the BIDS website repository (https://github.com/bids-standard/bids-website) if applicable:
 
-- `tools/timeline.csv`
-- `_data/beps.yml`
-- `_data/beps_completed.yml`
-- `_data/beps_other.yml`
+- `data/timeline.csv`
+- `data/beps/beps.yml`
+- `data/beps/beps_completed.yml`
+- `data/beps/beps_other.yml`
+
+If the release relates to the merge of a BEP, add the BEP leads to the BIDS advisory group:
+
+- `data/people/advisory.yml`
 
 ### 12. Sharing news of the release
 

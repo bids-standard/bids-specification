@@ -19,3 +19,13 @@ TaskEvents:
   initial_columns:
     - onset
     - duration
+
+Behavioral:
+  selectors:
+    - suffix == "beh"
+  columns:
+    trial_type: optional
+    response_time: optional
+    HED: optional
+    stim_file: optional
+  additional_columns: allowed

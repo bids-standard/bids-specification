@@ -11,7 +11,7 @@ MRI acquisition parameters are divided into several categories based on
 When adding additional metadata please use the CamelCase version of
 [DICOM ontology terms](https://dicom.nema.org/medical/dicom/current/output/chtml/part16/chapter_d.html)
 whenever possible. See also
-[recommendations on JSON files](../common-principles.md#keyvalue-files-dictionaries).
+[recommendations on JSON files](../common-principles.md#key-value-files-dictionaries).
 
 ### Hardware information
 
@@ -78,7 +78,7 @@ A guide for using macros can be found at
 
 <sup>2</sup>Conveniently, for Siemens data, this value is easily obtained as
 `1 / (BWPPPE * ReconMatrixPE)`, where BWPPPE is the
-"BandwidthPerPixelPhaseEncode" in DICOM Tag 0019, 1028 and ReconMatrixPE is
+"BandwidthPerPixelPhaseEncode" in [DICOM Tag 0019, 1028](https://dicomlookup.com/dicomtags/(0019,1028)) and ReconMatrixPE is
 the size of the actual reconstructed data in the phase direction (which is NOT
 reflected in a single DICOM Tag for all possible aforementioned scan
 manipulations). See
@@ -685,13 +685,18 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_suffix_table(
-      [
-         "dwi",
-         "sbref",
-      ]
-   )
-}}
+{{ MACROS___make_suffix_table(["dwi", "sbref"]) }}
+
+Additionally, the following suffixes are used for scanner-generated images:
+
+<!--
+This block generates a suffix table.
+The definitions of these fields can be found in
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_suffix_table(["ADC", "expADC", "trace", "FA", "colFA", "S0map"]) }}
 
 <!--
 This block generates a filename templates.
@@ -719,6 +724,15 @@ In such a case, two files could have the following names:
 `sub-01_acq-singleband_dwi.nii.gz` and `sub-01_acq-multiband_dwi.nii.gz`.
 The user is free to choose any other label than `singleband` and
 `multiband`, as long as they are consistent across subjects and sessions.
+
+Scanner-generated derivative images,
+such as trace-weighted, ADC, exponentiated ADC,
+fractional anisotropy (FA and colFA), and estimated unweighted signal intensity,
+MAY be included using the `trace`, `ADC`, `expADC`, `FA`, `colFA` and `S0map` suffixes, respectively.
+If trace, ADC, expADC, FA, colFA, or S0 volume filenames match a diffusion series with all applicable entities,
+such volumes SHOULD have been computed from that series.
+Otherwise, some entity, such as [`acq-<label>`](../appendices/entities.md#acq),
+SHOULD be used to indicate that the files are unrelated.
 
 ### REQUIRED gradient orientation information
 
@@ -930,7 +944,7 @@ accompanied by two ancillary files: `*_asl.json` and `*_aslcontext.tsv`.
 
 The `*_aslcontext.tsv` table consists of a single column of labels identifying the
 `volume_type` of each volume in the corresponding `*_asl.nii[.gz]` file.
-Volume types are defined in the following table, based on DICOM Tag 0018, 9257 `ASL Context`.
+Volume types are defined in the following table, based on [DICOM Tag 0018, 9257](https://dicomlookup.com/dicomtags/(0018,9257)) `ASL Context`.
 Note that the volume_types `control` and  `label` within BIDS only serve
 to specify the magnetization state of the blood and thus the ASL subtraction order.
 See the [ASL Appendix](../appendices/arterial-spin-labeling.md#which-image-is-control-and-which-is-label)
@@ -938,11 +952,13 @@ for more information on `control` and  `label`.
 
 | **volume_type** | **Definition**                                                                                                                                                                         |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| control         | The control image is acquired in the exact same way as the label image, except that the magnetization of the blood flowing into the imaging region has not been inverted.              |
-| label           | The label image is acquired in the exact same way as the control image, except that the blood magnetization flowing into the imaging region has been inverted.                         |
-| m0scan          | The M0 image is a calibration image, used to estimate the equilibrium magnetization of blood.                                                                                          |
-| deltam          | The deltaM image is a perfusion-weighted image, obtained by the subtraction of `control` - `label`.                                                                                    |
-| cbf             | The cerebral blood flow (CBF) image is produced by dividing the deltaM by the M0, quantified into `mL/100g/min` (See also [doi:10.1002/mrm.25197](https://doi.org/10.1002/mrm.25197)). |
+| `control`       | The control image is acquired in the exact same way as the label image, except that the magnetization of the blood flowing into the imaging region has not been inverted.              |
+| `label`         | The label image is acquired in the exact same way as the control image, except that the blood magnetization flowing into the imaging region has been inverted.                         |
+| `m0scan`        | The M0 image is a calibration image, used to estimate the equilibrium magnetization of blood.                                                                                          |
+| `deltam`        | The deltaM image is a perfusion-weighted image, obtained by the subtraction of `control` - `label`.                                                                                    |
+| `cbf`           | The cerebral blood flow (CBF) image is produced by dividing the deltaM by the M0, quantified into `mL/100g/min` (See also [doi:10.1002/mrm.25197](https://doi.org/10.1002/mrm.25197)). |
+| `noRF`          | No radio frequency excitation (noRF) images are produced by disabling the radio frequency excitation, while maintaining all other parameters from the associated scan.                 |
+| `n/a`           | In some cases, there may be volume types that are not yet supported by BIDS, or which cannot be used by tools.                                                                         |
 
 If the `control` and `label` images are not available,
 their derivative `deltam` should be stored within the `*_asl.nii[.gz]`
@@ -1338,6 +1354,6 @@ See [Using `IntendedFor` metadata](#using-intendedfor-metadata)
 for details on the `IntendedFor` field.
 
 As for other EPI sequences, these field mapping sequences may have any of the
-[in-plane spatial encoding](#in-plane-spatial-encoding) metadata keys.
+[in-plane spatial encoding](#in-and-out-of-plane-spatial-encoding) metadata keys.
 However, please note that `PhaseEncodingDirection` and `TotalReadoutTime` keys
 are REQUIRED for these field mapping sequences.

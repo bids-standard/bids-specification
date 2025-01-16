@@ -387,6 +387,8 @@ onset:
     (for example, "dummy volumes" in BOLD fMRI),
     a time of 0 corresponds to the first stored data point and not the first
     acquired data point.
+
+    A value of `n/a` value indicates the onset time is unknown or unavailable.
   type: number
   unit: s
 pathology:
@@ -793,6 +795,7 @@ volume_type:
     - $ref: objects.enums.m0scan.value
     - $ref: objects.enums.deltam.value
     - $ref: objects.enums.cbf.value
+    - $ref: objects.enums.noRF.value
 wavelength_nominal:
   name: wavelength_nominal
   display_name: Wavelength nominal

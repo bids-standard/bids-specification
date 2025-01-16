@@ -1,4 +1,4 @@
-site_name: Brain Imaging Data Structure 1.10.0-dev
+site_name: Brain Imaging Data Structure 1.10.1-dev
 site_url: https://bids-specification.readthedocs.io/en/stable/
 repo_url: https://github.com/bids-standard/bids-specification
 nav:
@@ -95,13 +95,21 @@ extra:
       link: https://www.instagram.com/bidsstandard/
     - icon: fontawesome/brands/youtube
       link: https://www.youtube.com/channel/UCxZUcYfd_nvIVWAbzRB1tlw
+  analytics:
+    provider: google
+    property: G-SBWH6YNMPX
 
 extra_javascript:
   - js/jquery-3.6.0.min.js
 markdown_extensions:
   - toc:
       anchorlink: true
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      preserve_tabs: true
+      custom_fences:
+        - name: tsv
+          class: tsv
+          format: !!python/name:bidsschematools.render.tsv.fence
   - admonition
   - pymdownx.details
 plugins:
@@ -113,6 +121,7 @@ plugins:
             - css/watermark.css
   - macros:
       module_name: tools/mkdocs_macros_bids/main
+      on_error_fail: true
   - redirects:
       redirect_maps:
         "01-introduction.md": "introduction.md"

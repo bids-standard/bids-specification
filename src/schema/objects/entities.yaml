@@ -275,7 +275,7 @@ run:
     (only nonnegative integers are allowed as run indices).
 
     If different entities apply,
-    such as a different session indicated by [`ses-<label>`][SPEC_ROOT/appendices/entities.md#ses),
+    such as a different session indicated by [`ses-<label>`](SPEC_ROOT/appendices/entities.md#ses),
     or different acquisition parameters indicated by
     [`acq-<label>`](SPEC_ROOT/appendices/entities.md#acq),
     then `run` is not needed to distinguish the scans and MAY be omitted.

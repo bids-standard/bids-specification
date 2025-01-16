@@ -1,3 +1,7 @@
+---
+render_macros: false
+---
+
 # Using MkDocs macros in the BIDS specification
 
 We use [mkdocs-macros](https://mkdocs-macros-plugin.readthedocs.io/en/latest/)
@@ -8,23 +12,6 @@ in the specification.
 
 Below you will find answers to frequently asked questions regarding using macros
 in the BIDS specification.
-
-- [Using MkDocs macros in the BIDS specification](#using-mkdocs-macros-in-the-bids-specification)
-   - [What are macros and why use them?](#what-are-macros-and-why-use-them)
-   - [What kind of input information are required by macros?](#what-kind-of-input-information-are-required-by-macros)
-   - [What macros are available?](#what-macros-are-available)
-   - [When should I use a macro?](#when-should-i-use-a-macro)
-   - [Do I need learn how to program to use those macros?](#do-i-need-learn-how-to-program-to-use-those-macros)
-   - [Anything else I need to know if I need to insert a new macro call?](#anything-else-i-need-to-know-if-i-need-to-insert-a-new-macro-call)
-   - [How-To and Examples](#how-to-and-examples)
-      - [Writing directory content examples](#writing-directory-content-examples)
-      - [Generating tables](#generating-tables)
-         - [Modifying a term in the table](#modifying-a-term-in-the-table)
-         - [Why would you NOT want to modify the content of the yml file directly ?](#why-would-you-not-want-to-modify-the-content-of-the-yml-file-directly-)
-         - [Adding a new term to the table](#adding-a-new-term-to-the-table)
-         - [Should I create a macro if I need a new kind of table?](#should-i-create-a-macro-if-i-need-a-new-kind-of-table)
-   - [Why use macros at all?](#why-use-macros-at-all)
-   - [Links and references](#links-and-references)
 
 ## What are macros and why use them?
 
@@ -126,9 +113,6 @@ One nice thing for the people who will come after you (or yourself in 6 months
 when you get back to the document you just edited) is to leave a comment before
 the macro to quickly explain what it does and where to find more information
 about it.
-
-<!-- - [ ] TODO for maintainers: actually add those comments in the current
-      specification. -->
 
 It could for example look like this:
 
