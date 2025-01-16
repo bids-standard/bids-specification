@@ -60,6 +60,7 @@ jobs:
                 --ignore-url 'https://github.com/[^/]*' \
                 --ignore-url 'https://doi.org/.*' \
                 --ignore-url 'https://bids-specification.readthedocs.io/en/stable/.*' \
+                --ignore-url 'https://www.incf.org' \
                 ~/project/site/*html ~/project/site/*/*.html
             else
               echo "Release PR - do nothing"
