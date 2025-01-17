@@ -52,7 +52,6 @@ anat_parametric_mask:
     $ref: rules.files.raw.anat.parametric.entities
     space: optional
     resolution: optional
-    density: optional
     label: optional
     description: optional
 
@@ -64,7 +63,6 @@ anat_nonparametric_mask:
     $ref: rules.files.raw.anat.nonparametric.entities
     space: optional
     resolution: optional
-    density: optional
     label: optional
     description: optional
 
@@ -72,11 +70,14 @@ dwi_mask:
   $ref: rules.files.raw.dwi.dwi
   suffixes:
     - mask
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
   entities:
     $ref: rules.files.raw.dwi.dwi.entities
     space: optional
     resolution: optional
-    density: optional
     label: optional
     description: optional
 
@@ -88,7 +89,6 @@ func_mask:
     $ref: rules.files.raw.func.func.entities
     space: optional
     resolution: optional
-    density: optional
     label: optional
     description: optional
 
@@ -99,8 +99,8 @@ anat_parametric_discrete_segmentation:
   entities:
     $ref: rules.files.raw.anat.parametric.entities
     space: optional
+    segmentation: optional
     resolution: optional
-    density: optional
     description: optional
   extensions:
     - .nii.gz
@@ -115,8 +115,8 @@ anat_nonparametric_discrete_segmentation:
   entities:
     $ref: rules.files.raw.anat.nonparametric.entities
     space: optional
+    segmentation: optional
     resolution: optional
-    density: optional
     description: optional
   extensions:
     - .nii.gz
@@ -131,9 +131,14 @@ func_discrete_segmentation:
   entities:
     $ref: rules.files.raw.func.func.entities
     space: optional
+    segmentation: optional
     resolution: optional
-    density: optional
     description: optional
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+    - .tsv
 
 dwi_discrete_segmentation:
   $ref: rules.files.raw.dwi.dwi
@@ -143,8 +148,12 @@ dwi_discrete_segmentation:
     $ref: rules.files.raw.dwi.dwi.entities
     space: optional
     resolution: optional
-    density: optional
     description: optional
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+    - .tsv
 
 anat_parametric_probabilistic_segmentation:
   $ref: rules.files.raw.anat.parametric
@@ -153,8 +162,8 @@ anat_parametric_probabilistic_segmentation:
   entities:
     $ref: rules.files.raw.anat.parametric.entities
     space: optional
+    segmentation: optional
     resolution: optional
-    density: optional
     label: optional
     description: optional
 
@@ -165,8 +174,8 @@ anat_nonparametric_probabilistic_segmentation:
   entities:
     $ref: rules.files.raw.anat.nonparametric.entities
     space: optional
+    segmentation: optional
     resolution: optional
-    density: optional
     label: optional
     description: optional
 
@@ -177,8 +186,8 @@ func_probabilistic_segmentation:
   entities:
     $ref: rules.files.raw.func.func.entities
     space: optional
+    segmentation: optional
     resolution: optional
-    density: optional
     label: optional
     description: optional
 
@@ -189,12 +198,16 @@ dwi_probabilistic_segmentation:
   entities:
     $ref: rules.files.raw.dwi.dwi.entities
     space: optional
+    segmentation: optional
     resolution: optional
-    density: optional
     label: optional
     description: optional
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
 
-anat_parametic_discrete_surface:
+anat_parametric_discrete_surface:
   $ref: rules.files.raw.anat.parametric
   suffixes:
     - dseg
@@ -207,11 +220,12 @@ anat_parametic_discrete_surface:
     $ref: rules.files.raw.anat.parametric.entities
     hemisphere: optional
     space: optional
+    segmentation: optional
     resolution: optional
     density: optional
     description: optional
 
-anat_nonparametic_discrete_surface:
+anat_nonparametric_discrete_surface:
   $ref: rules.files.raw.anat.nonparametric
   suffixes:
     - dseg
@@ -224,6 +238,7 @@ anat_nonparametic_discrete_surface:
     $ref: rules.files.raw.anat.nonparametric.entities
     hemisphere: optional
     space: optional
+    segmentation: optional
     resolution: optional
     density: optional
     description: optional
