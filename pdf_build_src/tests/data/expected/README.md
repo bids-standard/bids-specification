@@ -4,6 +4,8 @@ This input directory contains data to use for testing the pdf build code of the 
 
 For example the following admonition should be removed by `pdf_build_src/remove_admonitions.py`.
 
+**Note:**
+
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 Nulla et euismod nulla.
 Curabitur feugiat, tortor non consequat finibus, justo purus auctor massa,
@@ -15,12 +17,18 @@ as they should look like after processing.
 [Mkdocs admonitions](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#inline-blocks-inline-end)
 come in different type. In aaddtion of the classical admonitions show above you have also:
 
+**Note: Collapsible admonitions**
+
 Collapsible admonitions start with 3 questions marks (`???`).
+
+**Note: Expanded collapsible admonitions**
 
 Collapsible admonitions that will be shown as expanded
 start with 3 questions marks and a plus sign (`???+`).
 
 
+
+**Example: non ordered list should be handle properly**
 
 Let's see
 
