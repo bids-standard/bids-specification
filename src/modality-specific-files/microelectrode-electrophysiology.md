@@ -65,7 +65,6 @@ and a guide for using macros can be found at
 }}
 
 
-#  PARTICIPANT keyfiles
 ## Participant information
 
 The `participants.tsv` file is located at the root of the data set directory.
@@ -75,7 +74,7 @@ It follows the [general BIDS specifications to describe participants](../modalit
 On top of the existing columns that can be present in this file and that are described in the BIDS specifications (`participant_id`, `species`, `strain`, `strain_rrid`, `sex`, `handedness`, and `age`), we propose to allow adding the following ones:
 
 
-#  EPHYS specific files
+##  EPHYS specific files
 
 The following metadata files are REQUIRED for a given animal ephys session:
 
@@ -95,17 +94,10 @@ The coordinate system can be defined using reference pictures, anatomical landma
 For more details, see the [BIDS Coordinate Systems specifications](../appendices/coordinate-systems.md).
 
 
-Fields relating to the ephys probe and electrode  positions:
+Fields relating to the ephys probe and electrode positions:
 
-{{ MACROS___make_metadata_table(
-   {
-        "MicroephysCoordinateSystem":"REQUIRED",
-        "MicroephysCoordinateUnits":"REQUIRED",
-        "MicroephysCoordinateSystemDescription":"RECOMMENDED",
-        "MicroephysCoordinateSystemPhoto":"OPTIONAL",
-        "MEGCoordinateSystem":"REQUIRED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("microephys.microephysCoordsystemGeneral") }}
+
 
 ### Allowed 2D coordinate systems
 
@@ -317,72 +309,39 @@ We recommend using the following keys to describe the setup:
 
 ### Data origin metadata
 
-
-{{ MACROS___make_metadata_table(
-   {
-        "InstitutionName":"RECOMMENDED",
-        "InstitutionAddress":"RECOMMENDED",
-        "InstitutionalDepartmentName":"RECOMMENDED",
-   }
-) }}
-
+{{ MACROS___make_sidecar_table("microephys.microephysInstitutionInformation") }}
 
 ### Setup metadata
 
-
-{{ MACROS___make_metadata_table(
-   {
-        "PowerLineFrequency":"REQUIRED",
-        "Manufacturer":"RECOMMENDED",
-        "ManufacturersModelName":"RECOMMENDED",
-        "ManufacturersModelVersion":"RECOMMENDED",
-        "RecordingSetupName":"RECOMMENDED",
-        "SamplingFrequency":"REQUIRED",
-        "DeviceSerialNumber":"RECOMMENDED",
-        "SoftwareName":"RECOMMENDED",
-        "SoftwareVersions":"RECOMMENDED",
-   }
-) }}
-
+{{ MACROS___make_sidecar_table("microephys.microephysSetup") }}
 
 ### Processing metadata
 
-
-{{ MACROS___make_metadata_table(
-   {
-        "SoftwareFilters":"REQUIRED",
-        "HardwareFilters":"RECOMMENDED",
-   }
-) }}
-
+{{ MACROS___make_sidecar_table("microephys.microephysProcessing") }}
 
 ### Additional recording procedure
 
 Furthermore, additional information can be stored about the recording procedure.
 We RECOMMEND to use a dedicated `Procedure` node with the following keys:
 
-<!--Ask reema how she have implemented it-->
+- `Pharmaceuticals`
+- `Sample`
+- `Supplementary`
 
 <!-- TODO: Yarik replaced Pharmaceuticals with PharmaceuticalName and others for now but we might look to define list of Pharmaceuticals of records with PharmaceuticalDoseAmount and PharmaceuticalDoseUnit -->
+#### Pharmaceuticals
 
-{{ MACROS___make_metadata_table(
-   {
-        "PharmaceuticalName":"OPTIONAL",
-        "PharmaceuticalDoseAmount":"OPTIONAL",
-        "PharmaceuticalDoseRegimen":"OPTIONAL",
-        "PharmaceuticalDoseTime":"OPTIONAL",
-        "PharmaceuticalDoseUnit":"OPTIONAL",
-        "SupplementarySignals":"OPTIONAL",
-        "BodyPart":"RECOMMENDED",
-        "BodyPartDetails":"RECOMMENDED",
-        "BodyPartDetailsOntology":"OPTIONAL",
-        "SampleEnvironment":"RECOMMENDED",
-        "SampleEmbedding":"OPTIONAL",
-        "SliceThickness":"OPTIONAL",
-        "SampleExtractionProtocol":"OPTIONAL",
-   }
-) }}
+For each pharmaceutical we RECOMMEND to use a dedicated node with the name of the Pharmaceuticals containing the following administration details:
 
+{{ MACROS___make_sidecar_table("microephys.microephysPharmaceuticals") }}
+
+#### Sample
+
+{{ MACROS___make_sidecar_table("microephys.microephysSample") }}
+
+#### Supplementary
+
+{{ MACROS___make_sidecar_table("microephys.microephysSupplementary") }}
 
 ### Probes
 
@@ -392,7 +351,7 @@ It is RECOMMENDED to use the following structure to provide more metadata for ea
 "ProbeContours": {
    "probe_infoid": {
       "<my_probe_id>": {
-         "Contour": <list of contour points>,
+         "Contour": "<list of contour points>",
          "Unit": "<my spatial unit>"
       }
    }
@@ -411,16 +370,7 @@ provide the spatial unit of the coordinate points.
 
 If the OPTIONAL [` task-<label>`](../appendices/entities.md#task) is used, the following metadata SHOULD be used.
 
-{{ MACROS___make_metadata_table(
-   {
-        "TaskName":"RECOMMENDED",
-        "TaskDescription":"RECOMMENDED",
-        "Instructions":"RECOMMENDED",
-        "CogAtlasID":"RECOMMENDED",
-        "CogPOID":"RECOMMENDED",
-   }
-) }}
-
+{{ MACROS___make_sidecar_table("microephys.microephysTaskInformation") }}
 
 ### Example of * _ephys.json:
 
