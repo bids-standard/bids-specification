@@ -439,10 +439,12 @@ please follow the iEEG stimulation documentation.
 ## Multi-part recordings
 
 Two different procedures are supported to handle multi-part recordings. In short, the two options are:
-i) each recording is stored in an independent data file, and the corresponding metadata is described
+
+1. each recording is stored in an independent data file, and the corresponding metadata is described
 in the `*_scans.tsv` file; or
-ii) several recordings are stored in a single data file, and the corresponding metadata is described
+2. several recordings are stored in a single data file, and the corresponding metadata is described
 in the `*_events.tsv` file.
+
 These two options are made available to support different usages and habits of the experimenters, as
 well as to benefit from the capability of the supported data formats (NWB and NIX).
 They are described in the following subsections, and made explicit through some of the example data sets.
@@ -500,7 +502,7 @@ Optional column names in `events.tsv` to support multiple recordings in a single
 <!-- TODO: Macro for events -->
 
 
-# BIDS-animal-ephys examples
+## BIDS-animal-ephys examples
 
 
 ## Examples of toy datasets
