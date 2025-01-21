@@ -4,7 +4,7 @@
 ![YouTube Channel Subscribers](https://img.shields.io/youtube/channel/subscribers/UCxZUcYfd_nvIVWAbzRB1tlw)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109520103085644521?domain=https%3A%2F%2Ffosstodon.org%2F)](https://fosstodon.org/@bidsstandard)
 [![@BIDSstandard](https://img.shields.io/twitter/follow/bidsstandard.svg?style=social)](https://x.com/BIDSstandard)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3686061.svg)](https://doi.org/10.5281/zenodo.3686061)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10175845.svg)](https://doi.org/10.5281/zenodo.10175845)
 
 <img src="./BIDS_logo/BIDS_logo_white_transparent_background_crop.png#gh-dark-mode-only" alt="bids-logo" width="600"/>
 <img src="./BIDS_logo/BIDS_logo_black_transparent_background_crop.png#gh-light-mode-only" alt="bids-logo" width="600"/>
