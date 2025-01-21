@@ -334,7 +334,7 @@ def select_schema_path(
 
     Notes
     -----
-    * This is a purely aspirational function, and is pre-empted by logic inside
+    * This is a purely aspirational function, and is preempted by logic inside
         `bst.validator.validate_bids()`, and further contingent on better schema stability and
         ongoing work in: https://github.com/bids-standard/bids-schema
     * The default `bids_reference_root` value is based on the FHS and ideally should be enforced.
