@@ -892,7 +892,7 @@ have the form `<scheme>:[//<authority>]<path>[?<query>][#<fragment>]`, as specif
 in [RFC 3986](https://tools.ietf.org/html/rfc3986).
 This applies to URLs and other common URIs, including Digital Object Identifiers (DOIs),
 which may be fully specified as `doi:<path>`,
-for example, [doi:10.5281/zenodo.3686061](https://doi.org/10.5281/zenodo.3686061).
+for example, [doi:10.5281/zenodo.10175845](https://doi.org/10.5281/zenodo.10175845).
 A given resource may have multiple URIs.
 When selecting URIs to add to dataset metadata, it is important to consider
 specificity and persistence.
