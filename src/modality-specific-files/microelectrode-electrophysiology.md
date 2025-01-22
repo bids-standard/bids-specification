@@ -24,7 +24,7 @@ while the native format, if different, can be stored in an optional  `sourcedata
 The native file format is used in case conversion elicits the loss of crucial metadata specific to manufacturers and specific acquisition systems.
 Metadata should be included alongside the data in the `.json` and `.tsv` files.
 The current list of allowed data file formats:
-
+<!-- We should define icephys and ecephys -->
 | **Format**                                                                          | **Extension(s)** | **Description**                                                                                                                                                                                                      |
 |-------------------------------------------------------------------------------------|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [Neuroscience Information Exchange Format](https://nixio.readthedocs.io/en/latest/) | `.nix`           | A generic and open  framework with an hdf5 backend and a defined interface to many ephys formats via the [Neo library](https://neo.readthedocs.io/en/latest/). The `.nix` file has to contain a valid Neo structure. |
@@ -38,8 +38,6 @@ Even though the duplication requires additional effort to ensure the consistency
 - It simplifies the separation of data and basic metadata, enabling, for example, the publication of a dataset in a lightweight fashion with access to the data files on request (as implemented by [DataLad](https://www.datalad.org)).
 
 
-##
-
 <!--
 This block generates a filename templates.
 The inputs for this macro can be found in the directory
@@ -49,14 +47,14 @@ and a guide for using macros can be found at
 -->
 
 <!-- Link Definitions -->
-
+### icephys
 {{ MACROS___make_filename_template(
    "raw",
    datatypes=["icephys"],
    suffixes=["icephys", "events", "channels", "electrodes","scans","probes","coordsystem"]
 )
 }}
-
+### ecephys
 {{ MACROS___make_filename_template(
    "raw",
    datatypes=["ecephys"],
@@ -65,7 +63,6 @@ and a guide for using macros can be found at
 }}
 
 
-#  PARTICIPANT keyfiles
 ## Participant information
 
 The `participants.tsv` file is located at the root of the data set directory.
@@ -75,7 +72,7 @@ It follows the [general BIDS specifications to describe participants](../modalit
 On top of the existing columns that can be present in this file and that are described in the BIDS specifications (`participant_id`, `species`, `strain`, `strain_rrid`, `sex`, `handedness`, and `age`), we propose to allow adding the following ones:
 
 
-#  EPHYS specific files
+##  EPHYS specific files
 
 The following metadata files are REQUIRED for a given animal ephys session:
 
@@ -95,17 +92,10 @@ The coordinate system can be defined using reference pictures, anatomical landma
 For more details, see the [BIDS Coordinate Systems specifications](../appendices/coordinate-systems.md).
 
 
-Fields relating to the ephys probe and electrode  positions:
+Fields relating to the ephys probe and electrode positions:
 
-{{ MACROS___make_metadata_table(
-   {
-        "MicroephysCoordinateSystem":"REQUIRED",
-        "MicroephysCoordinateUnits":"REQUIRED",
-        "MicroephysCoordinateSystemDescription":"RECOMMENDED",
-        "MicroephysCoordinateSystemPhoto":"OPTIONAL",
-        "MEGCoordinateSystem":"REQUIRED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("microephys.microephysCoordsystemGeneral") }}
+
 
 ### Allowed 2D coordinate systems
 
@@ -317,72 +307,39 @@ We recommend using the following keys to describe the setup:
 
 ### Data origin metadata
 
-
-{{ MACROS___make_metadata_table(
-   {
-        "InstitutionName":"RECOMMENDED",
-        "InstitutionAddress":"RECOMMENDED",
-        "InstitutionalDepartmentName":"RECOMMENDED",
-   }
-) }}
-
+{{ MACROS___make_sidecar_table("microephys.microephysInstitutionInformation") }}
 
 ### Setup metadata
 
-
-{{ MACROS___make_metadata_table(
-   {
-        "PowerLineFrequency":"REQUIRED",
-        "Manufacturer":"RECOMMENDED",
-        "ManufacturersModelName":"RECOMMENDED",
-        "ManufacturersModelVersion":"RECOMMENDED",
-        "RecordingSetupName":"RECOMMENDED",
-        "SamplingFrequency":"REQUIRED",
-        "DeviceSerialNumber":"RECOMMENDED",
-        "SoftwareName":"RECOMMENDED",
-        "SoftwareVersions":"RECOMMENDED",
-   }
-) }}
-
+{{ MACROS___make_sidecar_table("microephys.microephysSetup") }}
 
 ### Processing metadata
 
-
-{{ MACROS___make_metadata_table(
-   {
-        "SoftwareFilters":"REQUIRED",
-        "HardwareFilters":"RECOMMENDED",
-   }
-) }}
-
+{{ MACROS___make_sidecar_table("microephys.microephysProcessing") }}
 
 ### Additional recording procedure
 
 Furthermore, additional information can be stored about the recording procedure.
 We RECOMMEND to use a dedicated `Procedure` node with the following keys:
 
-<!--Ask reema how she have implemented it-->
+- `Pharmaceuticals`
+- `Sample`
+- `Supplementary`
 
 <!-- TODO: Yarik replaced Pharmaceuticals with PharmaceuticalName and others for now but we might look to define list of Pharmaceuticals of records with PharmaceuticalDoseAmount and PharmaceuticalDoseUnit -->
+#### Pharmaceuticals
 
-{{ MACROS___make_metadata_table(
-   {
-        "PharmaceuticalName":"OPTIONAL",
-        "PharmaceuticalDoseAmount":"OPTIONAL",
-        "PharmaceuticalDoseRegimen":"OPTIONAL",
-        "PharmaceuticalDoseTime":"OPTIONAL",
-        "PharmaceuticalDoseUnit":"OPTIONAL",
-        "SupplementarySignals":"OPTIONAL",
-        "BodyPart":"RECOMMENDED",
-        "BodyPartDetails":"RECOMMENDED",
-        "BodyPartDetailsOntology":"OPTIONAL",
-        "SampleEnvironment":"RECOMMENDED",
-        "SampleEmbedding":"OPTIONAL",
-        "SliceThickness":"OPTIONAL",
-        "SampleExtractionProtocol":"OPTIONAL",
-   }
-) }}
+For each pharmaceutical we RECOMMEND to use a dedicated node with the name of the Pharmaceuticals containing the following administration details:
 
+{{ MACROS___make_sidecar_table("microephys.microephysPharmaceuticals") }}
+
+#### Sample
+
+{{ MACROS___make_sidecar_table("microephys.microephysSample") }}
+
+#### Supplementary
+
+{{ MACROS___make_sidecar_table("microephys.microephysSupplementary") }}
 
 ### Probes
 
@@ -392,7 +349,7 @@ It is RECOMMENDED to use the following structure to provide more metadata for ea
 "ProbeContours": {
    "probe_infoid": {
       "<my_probe_id>": {
-         "Contour": <list of contour points>,
+         "Contour": "<list of contour points>",
          "Unit": "<my spatial unit>"
       }
    }
@@ -411,16 +368,7 @@ provide the spatial unit of the coordinate points.
 
 If the OPTIONAL [` task-<label>`](../appendices/entities.md#task) is used, the following metadata SHOULD be used.
 
-{{ MACROS___make_metadata_table(
-   {
-        "TaskName":"RECOMMENDED",
-        "TaskDescription":"RECOMMENDED",
-        "Instructions":"RECOMMENDED",
-        "CogAtlasID":"RECOMMENDED",
-        "CogPOID":"RECOMMENDED",
-   }
-) }}
-
+{{ MACROS___make_sidecar_table("microephys.microephysTaskInformation") }}
 
 ### Example of * _ephys.json:
 
@@ -489,10 +437,12 @@ please follow the iEEG stimulation documentation.
 ## Multi-part recordings
 
 Two different procedures are supported to handle multi-part recordings. In short, the two options are:
-i) each recording is stored in an independent data file, and the corresponding metadata is described
+
+1. each recording is stored in an independent data file, and the corresponding metadata is described
 in the `*_scans.tsv` file; or
-ii) several recordings are stored in a single data file, and the corresponding metadata is described
+2. several recordings are stored in a single data file, and the corresponding metadata is described
 in the `*_events.tsv` file.
+
 These two options are made available to support different usages and habits of the experimenters, as
 well as to benefit from the capability of the supported data formats (NWB and NIX).
 They are described in the following subsections, and made explicit through some of the example data sets.
@@ -550,7 +500,7 @@ Optional column names in `events.tsv` to support multiple recordings in a single
 <!-- TODO: Macro for events -->
 
 
-# BIDS-animal-ephys examples
+## BIDS-animal-ephys examples
 
 
 ## Examples of toy datasets
