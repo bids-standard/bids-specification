@@ -24,7 +24,7 @@ while the native format, if different, can be stored in an optional  `sourcedata
 The native file format is used in case conversion elicits the loss of crucial metadata specific to manufacturers and specific acquisition systems.
 Metadata should be included alongside the data in the `.json` and `.tsv` files.
 The current list of allowed data file formats:
-
+<!-- We should define icephys and ecephys -->
 | **Format**                                                                          | **Extension(s)** | **Description**                                                                                                                                                                                                      |
 |-------------------------------------------------------------------------------------|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [Neuroscience Information Exchange Format](https://nixio.readthedocs.io/en/latest/) | `.nix`           | A generic and open  framework with an hdf5 backend and a defined interface to many ephys formats via the [Neo library](https://neo.readthedocs.io/en/latest/). The `.nix` file has to contain a valid Neo structure. |
@@ -38,8 +38,6 @@ Even though the duplication requires additional effort to ensure the consistency
 - It simplifies the separation of data and basic metadata, enabling, for example, the publication of a dataset in a lightweight fashion with access to the data files on request (as implemented by [DataLad](https://www.datalad.org)).
 
 
-##
-
 <!--
 This block generates a filename templates.
 The inputs for this macro can be found in the directory
@@ -49,14 +47,14 @@ and a guide for using macros can be found at
 -->
 
 <!-- Link Definitions -->
-
+### icephys
 {{ MACROS___make_filename_template(
    "raw",
    datatypes=["icephys"],
    suffixes=["icephys", "events", "channels", "electrodes","scans","probes","coordsystem"]
 )
 }}
-
+### ecephys
 {{ MACROS___make_filename_template(
    "raw",
    datatypes=["ecephys"],
