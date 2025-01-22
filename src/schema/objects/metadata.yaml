@@ -956,8 +956,8 @@ EMGGround:
     Description of the location of the ground electrode
     (for example, `"right radial styloid process"`).
   type: string
-EMGPlacement:
-  name: EMGPlacement
+EMGPlacementScheme:
+  name: EMGPlacementScheme
   display_name: EMG Placement Procedure
   description: |
     The name of a standardized electrode placement procedure (for example, `"SENIAM 8"`)

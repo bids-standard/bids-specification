@@ -173,7 +173,7 @@ A guide for using macros can be found at
 {
   "EMGChannelCount":4,
   "EMGGround":"TODO",
-  "EMGPlacement":"midpoint between cubital fossa and radial styloid process",
+  "EMGPlacementScheme":"midpoint between cubital fossa and radial styloid process",
   "EMGReference":"TODO",
   "HardwareFilters":{"Highpass RC filter": {"Half amplitude cutoff (Hz)": 0.0159, "Roll-off": "6dBOctave"}},
   "InstitutionAddress":"9500 Gilman Drive 0559, La Jolla, CA 92093",
@@ -304,8 +304,8 @@ In such cases, `EMGCoordinateSystem` SHOULD be specified as `Other` and the
 coordinate system (for example, "origin at the center of the grid" or "origin at the
 center of the electrode in the lower-left corner of the grid, when oriented with the
 leads downward").
-In such cases, the description in the `EMGPlacement` field of `*_emg.json` MAY refer to
-the origin of that 2D coordinate system in describing the placement of the grid.
+In such cases, the description in the `EMGPlacementScheme` field of `*_emg.json` MAY
+refer to the origin of that 2D coordinate system in describing the placement of the grid.
 
 The order of the required columns in the `*_electrodes.tsv` file MUST be as listed below.
 

@@ -51,7 +51,7 @@ EMGRequired:
     - datatype == "emg"
     - suffix == "emg"
   fields:
-    EMGPlacement: required
+    EMGPlacementScheme: required
     EMGReference: required
     SamplingFrequency:
       level: required
@@ -82,7 +82,7 @@ EMGRecommended:
 # Specific EMG fields MAY be present
 # TODO: InterElectrodeDistance: in channels.tsv probably, only for bipolar channels
 #       ElectrodeGroup: not sure this is still needed given our use of `acq`
-#       ElectrodeOrientation: incorporate into EMGPlacement?
+#       ElectrodeOrientation: incorporate into EMGPlacementScheme?
 #       SkinPreparation: abrasive gel, alcohol wipe, etc.
 EMGOptional:
   selectors:
