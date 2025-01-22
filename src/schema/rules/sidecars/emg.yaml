@@ -83,7 +83,7 @@ EMGRecommended:
 # TODO: InterElectrodeDistance: in channels.tsv probably, only for bipolar channels
 #       ElectrodeGroup: not sure this is still needed given our use of `acq`
 #       ElectrodeOrientation: incorporate into EMGPlacementScheme?
-#       SkinPreparation: abrasive gel, alcohol wipe, etc.
+#       SkinPreparation: abrasive gel, alcohol wipe
 EMGOptional:
   selectors:
     - datatype == "emg"
