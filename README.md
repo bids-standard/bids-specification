@@ -20,7 +20,8 @@ In this repository, we develop the
 To organize your data in BIDS, all you need is neuro data, a computer, and the
 [BIDS specification](https://bids-specification.readthedocs.io/en/stable/).
 
-BIDS currently supports the following data modalities with more to come in the future:
+BIDS currently supports the following data modalities with
+[more to come in the future](https://bids.neuroimaging.io/get_involved.html#extending-the-bids-specification):
 
 - MRI
 - MEG
