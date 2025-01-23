@@ -216,7 +216,7 @@ AverageCalibrationError:
   name: AverageCalibrationError
   display_name: Average Calibration Error
   description: |
-    Average calibration error in degrees of visual angle. If both eyes recorded, 
+    Average calibration error in degrees of visual angle. If both eyes recorded,
     first array corresponds to the left eye and the second to the right eye.
   type: number
   unit: degree
