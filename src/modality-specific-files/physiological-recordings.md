@@ -604,7 +604,7 @@ The decompressed contents of the corresponding TSV file,
     and can be used for practical guidance when curating a new dataset:
 
     -   Combined fMRI and eye-tracking data in a resting-state task, measured with
-        an Eyelink (SR research). Human participant kept their gaze steady at the 
+        an Eyelink (SR research). Human participant kept their gaze steady at the
         screen center.
 
         [BIDS dataset](https://openneuro.org/datasets/ds004158/versions/2.0.1)
@@ -614,7 +614,7 @@ The decompressed contents of the corresponding TSV file,
         Published paper: https://doi.org/10.1523/ENEURO.0287-23.2023
 
         [BIDS dataset](https://github.com/julia-pfarr/natImSac_BIDSexample)
- 
+
 
 Setting `PhysioType` to the keyword `"eyetrack"` specifies that
 the physiological recordings in the `<matches>_physio.tsv.gz` have
