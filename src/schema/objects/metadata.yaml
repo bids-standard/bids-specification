@@ -523,7 +523,7 @@ ContinuousHeadLocalization:
   name: ContinuousHeadLocalization
   display_name: Continuous Head Localization
   description: |
-    `true` or `false` value indicating whether continuous head localisation
+    `true` or `false` value indicating whether continuous head localization
     was performed.
   type: boolean
 ContrastBolusIngredient:
@@ -1472,7 +1472,7 @@ HeadCoilFrequency:
   name: HeadCoilFrequency
   display_name: Head Coil Frequency
   description: |
-    List of frequencies (in Hz) used by the head localisation coils
+    List of frequencies (in Hz) used by the head localization coils
     ('HLC' in CTF systems, 'HPI' in Neuromag/Elekta/MEGIN, 'COH' in BTi/4D)
     that track the subject's head position in the MEG helmet
     (for example, `[293, 307, 314, 321]`).
@@ -2133,7 +2133,7 @@ MaxMovement:
   display_name: Max Movement
   description: |
     Maximum head movement (in mm) detected during the recording,
-    as measured by the head localisation coils (for example, `4.8`).
+    as measured by the head localization coils (for example, `4.8`).
   type: number
   unit: mm
 MeasurementToolMetadata:

@@ -545,9 +545,3 @@ code organization of these scripts at the moment.
 <!-- Link Definitions -->
 
 [bids uris]: ./common-principles.md#bids-uri
-
-[object]: https://www.json.org/json-en.html
-
-[string]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[uri]: ./common-principles.md#uniform-resource-indicator
