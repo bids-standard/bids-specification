@@ -603,25 +603,18 @@ The decompressed contents of the corresponding TSV file,
     with eye-tracking data have been formatted using this specification
     and can be used for practical guidance when curating a new dataset:
 
-    -   Combined behavior and eye-tracking fixation and saccade data,
-        measured with an Eyelink (SR Research), from 8 participants reading 320
-        embedded target words and invisible boundary (see
-        [Gagl, 2016](https://peerj.com/articles/2467/)).
-
-        [BIDS dataset](https://zenodo.org/records/1228659)
-
-    -   Combined behavior and eye-tracking position and pupil data, measured with
-        an Eyelink (SR Research), from 26 participants performing a
-        binocular rivalry task (see
-        [Brascamp et.al, 2021](https://doi.org/10.7554/eLife.66161)).
-
-        [BIDS dataset](https://doi.org/10.5061/dryad.41ns1rncp)
-
-    -   Combined resting-state fMRI and eye-tracking data, measured with an Eyelink
-        (SR research), from 20 participants keeping their gaze steady at the
+    -   Combined fMRI and eye-tracking data in a resting-state task, measured with
+        an Eyelink (SR research). Human participant kept their gaze steady at the 
         screen center.
 
         [BIDS dataset](https://openneuro.org/datasets/ds004158/versions/2.0.1)
+
+    -   Combined behavioral and eye-tracking data, measured with and Eyelink
+        (SR Research). Human participants freely viewed as set of natural images.
+        Published paper: https://doi.org/10.1523/ENEURO.0287-23.2023
+
+        [BIDS dataset](https://github.com/julia-pfarr/natImSac_BIDSexample)
+ 
 
 Setting `PhysioType` to the keyword `"eyetrack"` specifies that
 the physiological recordings in the `<matches>_physio.tsv.gz` have
