@@ -21,7 +21,12 @@ CHANGES:
   path: CHANGES
 LICENSE:
   level: optional
-  path: LICENSE
+  stem: LICENSE
+  extensions:
+    - ''
+    - .md
+    - .rst
+    - .txt
 genetic_info:
   level: optional
   path: genetic_info.json
