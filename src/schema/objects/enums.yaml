@@ -1082,6 +1082,77 @@ FITERR:
     - fnirs
   description: |
     Fit error signal from each head localization coil.
+LFP:
+  value: LFP
+  display_name: LFP
+  tags:
+    - microephys
+  description: |
+    Low-pass filtered extracellular voltage signal that represents local field potentials.
+HP:
+  value: HP
+  display_name: HP
+  tags:
+    - microephys
+  description: |
+    High-pass filtered extracellular voltage signal as used for spike sorting.
+MUA:
+  value: MUA
+  display_name: MUA
+  tags:
+    - microephys
+  description: |
+    High-pass filtered and rectified or thresholded extracellular voltage signal
+    that represents an estimate of multi-unit activity.
+BB:
+  value: BB
+  display_name: BB
+  tags:
+    - microephys
+  description: |
+    Unfiltered (broadband) extracellular voltage signal.
+SPIKES:
+  value: SPIKES
+  display_name: SPIKES
+  tags:
+    - microephys
+  description: |
+    Discrete signal indicating spike events as derived from spike detection or spike sorting.
+VM:
+  value: VM
+  display_name: VM
+  tags:
+    - microephys
+  description: |
+    Membrane voltage.
+IM:
+  value: IM
+  display_name: IM
+  tags:
+    - microephys
+  description: |
+    Membrane current.
+SYNC:
+  value: SYNC
+  display_name: SYNC
+  tags:
+    - microephys
+  description: |
+    Signal used for synchronization between different recording systems / channels.
+STIM:
+  value: STIM
+  display_name: STIM
+  tags:
+    - microephys
+  description: |
+    Electrical stimulation.
+BEH:
+  value: BEH
+  display_name: BEH
+  tags:
+    - microephys
+  description: |
+    Behavioral signal.
 OTHER:
   value: OTHER
   display_name: OTHER
