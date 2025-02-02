@@ -6,10 +6,11 @@ SubjectFolders:
   issue:
     code: SUBJECT_FOLDERS
     message: |
-      There are no subject directories (labeled "sub-*") in the root of this dataset.
+      There are no subject directories (labeled "sub-*") in the root of this raw BIDS dataset.
     level: error
   selectors:
     - path == '/dataset_description.json'
+    - dataset.dataset_description.DatasetType == "raw"
   checks:
     - length(dataset.subjects.sub_dirs) > 0
 
