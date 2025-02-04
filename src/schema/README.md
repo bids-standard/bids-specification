@@ -439,7 +439,7 @@ arrays or objects:
 | `properties`           | The object described has a given set of fields; the values of these fields may be constrained |
 | `additionalProperties` | The object described has constraints on its values, but not the names                         |
 
-### On re-used objects with different definitions
+### On reused objects with different definitions
 
 In a few cases, two objects with the same name appear multiple times in the specification.
 When this happens, it is preferred to find a common definition, and clarify it in the rules (see below).
