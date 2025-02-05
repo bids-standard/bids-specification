@@ -14,7 +14,7 @@ The standardization of stimulus files and their annotations within BIDS offers s
 1.  **Efficiency**: Minimizes redundancy by centralizing annotations
 1.  **Flexibility**: Facilitates dataset reuse with alternative annotations
 
-To preserve backward compatibility with existing datasets (see the Legacy section below), the use of these specifications for `/stimuli` directory and the `stim_id` column in the `events.tsv` files is RECOMMENDED but not required. Researchers are encouraged to follow these guidelines to enhance the interoperability and reproducibility of their studies.
+To preserve backward compatibility with existing datasets (see the Legacy section below), the use of these specifications for the `/stimuli` directory and the `stim_id` column in the `events.tsv` files is RECOMMENDED but not required. Researchers are encouraged to follow these guidelines to enhance the interoperability and reproducibility of their studies.
 
 Following these guidelines will help ensure that stimulus files and their annotations are stored and referenced consistently across different datasets, facilitating data sharing, reuse, and reproducibility.
 
@@ -37,7 +37,7 @@ A guide for using macros can be found at
     }
   }) }}
 
-Note: The presence of `stimuli.tsv` file indicates that the content of the `/stimuli` directory follows this BIDS specification for stimulus organization. This structure is planned to become mandatory in BIDS 2.0.
+Note: The presence of the `stimuli.tsv` file indicates that the content of the `/stimuli` directory follows this BIDS specification for stimulus organization. This structure is planned to become mandatory in BIDS 2.0.
 
 ### Stimulus File Formats
 
@@ -80,7 +80,7 @@ In some cases, such as observing the copyright of a stimulus file, the actual st
 
 ## Stimuli Description (`stimuli.tsv`)
 
-The `stimuli.tsv` files are used to provide information about the stimuli based on their `stim_id`. This file is similar in usage as `participants.tsv`, `scans.tsv` and `sessions.tsv`, which list descriptions about subjects, scans and sessions, respectively. The `stimluli.tsv` files MUST be placed in the `/stimuli` directory.
+The `stimuli.tsv` files are used to provide information about the stimuli based on their `stim_id`. This file is similar in usage as `participants.tsv`, `scans.tsv` and `sessions.tsv`, which list descriptions about subjects, scans and sessions, respectively. The `stimuli.tsv` files MUST be placed in the `/stimuli` directory.
 
 The `stimuli.tsv` file contains information about each stimulus, including stimulus ID, type, URL, and other relevant details. The following table describes the REQUIRED, RECOMMENDED, and OPTIONAL columns for the `stimuli.tsv` file:
 
@@ -139,7 +139,7 @@ face01_age   Age group annotation for face01 stimulus
 
 ## Referencing Stimulus Identifiers in `events.tsv`
 
-To reference stimulus identifiers in the `events.tsv` file, use the `stim_id` column. The values in the `stim_id` column should represent unique identifiers for the stimuli. Stimulus ID (`stim_id`) should correspond to the unique identifier of the stimulus file in the /stimuli directory and expands to all files (both stimulus and annotation files) that share the same stimulus ID.
+To reference stimulus identifiers in the `events.tsv` file, use the `stim_id` column. The values in the `stim_id` column should represent unique identifiers for the stimuli. Stimulus ID (`stim_id`) should correspond to the unique identifier of the stimulus file in the /stimuli directory and expand to all files (both stimulus and annotation files) that share the same stimulus ID.
 
 Example `events.tsv` file:
 
