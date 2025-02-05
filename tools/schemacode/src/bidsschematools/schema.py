@@ -90,6 +90,16 @@ def _find(obj, predicate):
         yield from _find(item, predicate)
 
 
+# Recursive dereference that maintains a top-level schema
+def _dereference(namespace, schema):
+    for struct in _find(namespace, lambda obj: "$ref" in obj):
+        target = schema.get(struct["$ref"])
+        if isinstance(target, Mapping):
+            struct.pop("$ref")
+            _dereference(target, schema)
+            struct.update({**target, **struct})
+
+
 def dereference(namespace, inplace=True):
     """Replace references in namespace with the contents of the referred object.
 
@@ -109,11 +119,7 @@ def dereference(namespace, inplace=True):
     if not inplace:
         namespace = deepcopy(namespace)
 
-    for struct in _find(namespace, lambda obj: "$ref" in obj):
-        target = namespace.get(struct["$ref"])
-        if isinstance(target, Mapping):
-            struct.pop("$ref")
-            struct.update({**target, **struct})
+    _dereference(namespace, namespace)
 
     # At this point, any remaining refs are one-off objects in lists
     for struct in _find(namespace, lambda obj: any("$ref" in sub for sub in obj)):
