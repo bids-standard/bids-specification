@@ -69,19 +69,19 @@ beh_noncontinuous_common:
     space: optional
     description: optional
 
-channels_channel_common:
+channels_channels_common:
   $ref: rules.files.raw.channels.channels
   entities:
     $ref: rrules.files.raw.channels.channels.entities
     description: optional
 
-channels_channel__meg_common:
+channels_channels__meg_common:
   $ref: rules.files.raw.channels.channels__meg
   entities:
     $ref: rrules.files.raw.channels.channels__meg.entities
     description: optional
 
-channels_channel__motion_common:
+channels_channels__motion_common:
   $ref: rules.files.raw.channels.channels__motion
   entities:
     $ref: rrules.files.raw.channels.channels__motion.entities
