@@ -94,7 +94,7 @@ channels_coordsystem_common:
     description: optional
 
 channels_coordsystem__eeg_common:
-  $ref: rules.files.raw.channels.coordsystem___eeg
+  $ref: rules.files.raw.channels.coordsystem__eeg
   entities:
     $ref: rules.files.raw.channels.coordsystem__eeg.entities
     description: optional
