@@ -90,6 +90,21 @@ def _find(obj, predicate):
         yield from _find(item, predicate)
 
 
+def _dereference(namespace, base_schema):
+    # In-place, recursively dereference objects
+    # This allows a referenced object to itself contain a reference
+    # A dependency graph could be constructed, but would likely be slower
+    # to build than to duplicate a couple dereferences
+    for struct in _find(namespace, lambda obj: "$ref" in obj):
+        target = base_schema.get(struct["$ref"])
+        if target is None:
+            raise ValueError(f"Reference {struct['$ref']} not found in schema.")
+        if isinstance(target, Mapping):
+            struct.pop("$ref")
+            _dereference(target, base_schema)
+            struct.update({**target, **struct})
+
+
 def dereference(namespace, inplace=True):
     """Replace references in namespace with the contents of the referred object.
 
@@ -109,11 +124,7 @@ def dereference(namespace, inplace=True):
     if not inplace:
         namespace = deepcopy(namespace)
 
-    for struct in _find(namespace, lambda obj: "$ref" in obj):
-        target = namespace.get(struct["$ref"])
-        if isinstance(target, Mapping):
-            struct.pop("$ref")
-            struct.update({**target, **struct})
+    _dereference(namespace, namespace)
 
     # At this point, any remaining refs are one-off objects in lists
     for struct in _find(namespace, lambda obj: any("$ref" in sub for sub in obj)):
