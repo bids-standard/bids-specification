@@ -90,13 +90,18 @@ def _find(obj, predicate):
         yield from _find(item, predicate)
 
 
-# Recursive dereference that maintains a top-level schema
-def _dereference(namespace, schema):
+def _dereference(namespace, base_schema):
+    # In-place, recursively dereference objects
+    # This allows a referenced object to itself contain a reference
+    # A dependency graph could be constructed, but would likely be slower
+    # to build than to duplicate a couple dereferences
     for struct in _find(namespace, lambda obj: "$ref" in obj):
-        target = schema.get(struct["$ref"])
+        target = base_schema.get(struct["$ref"])
+        if target is None:
+            raise ValueError(f"Reference {struct['$ref']} not found in schema.")
         if isinstance(target, Mapping):
             struct.pop("$ref")
-            _dereference(target, schema)
+            _dereference(target, base_schema)
             struct.update({**target, **struct})
 
 
