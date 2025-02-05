@@ -9,8 +9,16 @@ index:
 label:
   display_name: Label
   description: |
-    Freeform labels without special characters.
-  pattern: '[0-9a-zA-Z]+'
+    Free-form labels with alphanumeric and plus (+) characters.
+
+    Plus signs MAY be used to concatenate multiple applicable labels,
+    but no relationship is established by a partial match.
+    In particular, the inheritance principle does not connect files
+    containing entities such as `<name>-x+y` with either `<name>-x` or `<name>-y`.
+    For example, metadata stored in a file at the root of the dataset with name `/acq-6p_T2w.json`
+    does not apply to files with partially matching "acquisition" entity values
+    such as `/sub-1/anat/sub-1_acq-6p+s2_T2w.nii`.
+  pattern: '[0-9a-zA-Z+]+'
 # Metadata types
 boolean:
   display_name: Boolean
@@ -59,7 +67,7 @@ dataset_relative:
     The validation for this format is minimal.
     It simply ensures that the value is a string with any characters that may appear in a valid path,
     without starting with "/" (an absolute path).
-  pattern: '(?!/)[0-9a-zA-Z/\_\-\.]+'
+  pattern: '(?!/)[0-9a-zA-Z+/\_\-\.]+'
 date:
   display_name: Date
   description: |
@@ -90,7 +98,7 @@ file_relative:
     The validation for this format is minimal.
     It simply ensures that the value is a string with any characters that may appear in a valid path,
     without starting with "/" (an absolute path).
-  pattern: '(?!/)[0-9a-zA-Z/\_\-\.]+'
+  pattern: '(?!/)[0-9a-zA-Z+/\_\-\.]+'
 participant_relative:
   display_name: Path relative to the participant directory
   description: |
@@ -100,7 +108,7 @@ participant_relative:
     It simply ensures that the value is a string with any characters that may appear in a valid path,
     without starting with "/" (an absolute path) or "sub/"
     (a relative path starting with the participant directory, rather than relative to that directory).
-  pattern: '(?!/)(?!sub-)[0-9a-zA-Z/\_\-\.]+'
+  pattern: '(?!/)(?!sub-)[0-9a-zA-Z+/\_\-\.]+'
 rrid:
   display_name: Research resource identifier
   description: |
@@ -115,7 +123,7 @@ stimuli_relative:
     It simply ensures that the value is a string with any characters that may appear in a valid path,
     without starting with "/" (an absolute path) or "stimuli/"
     (a relative path starting with the stimuli directory, rather than relative to that directory).
-  pattern: '(?!/)(?!stimuli/)[0-9a-zA-Z/\_\-\.]+'
+  pattern: '(?!/)(?!stimuli/)[0-9a-zA-Z+/\_\-\.]+'
 time:
   display_name: Time
   description: |
