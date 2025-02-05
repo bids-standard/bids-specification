@@ -74,7 +74,7 @@ participants:
 
     The `participant_id` entries MUST be a superset of all subject directories
     and all `participant_id` entries found among phenotypic and assessment data
-    in the `phenotype/` folder.
+    in the `phenotype/` directory.
 
     Commonly used *optional* columns in `participants.tsv` files are `age`, `sex`,
     `handedness`, `strain`, and `strain_rrid`.
