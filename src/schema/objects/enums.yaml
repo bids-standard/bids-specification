@@ -763,6 +763,7 @@ MISC:
     - ieeg
     - fnirs
     - motion
+    - microephys
   description: |
     Miscellaneous channels.
 ORNT:
@@ -799,6 +800,7 @@ AUDIO:
     - meg
     - ieeg
     - fnirs
+    - microephys
   description: |
     Audio signal.
 EEG:
@@ -819,6 +821,7 @@ EOG:
     - meg
     - ieeg
     - fnirs
+    - microephys
   description: |
     Generic electrooculogram (eye), different from HEOG and VEOG.
 ECG:
@@ -829,6 +832,7 @@ ECG:
     - meg
     - ieeg
     - fnirs
+    - microephys
   description: |
     Electrocardiogram (heart).
 EMG:
@@ -839,6 +843,7 @@ EMG:
     - meg
     - ieeg
     - fnirs
+    - microephys
   description: |
     Electromyogram (muscle).
 EYEGAZE:
@@ -849,6 +854,7 @@ EYEGAZE:
     - meg
     - ieeg
     - fnirs
+    - microephys
   description: |
     Eye tracker gaze.
 GSR:
@@ -866,6 +872,7 @@ HEOG:
     - meg
     - ieeg
     - fnirs
+    - microephys
   description: |
     Horizontal EOG (eye).
 PPG:
@@ -883,6 +890,7 @@ PUPIL:
     - meg
     - ieeg
     - fnirs
+    - microephys
   description: |
     Eye tracker pupil diameter.
 REF:
@@ -891,6 +899,7 @@ REF:
   tags:
     - eeg
     - ieeg
+    - microephys
   description: |
     Reference channel.
 RESP:
@@ -908,6 +917,7 @@ SYSCLOCK:
     - meg
     - ieeg
     - fnirs
+    - microephys
   description: |
     System time showing elapsed time since trial started.
 TEMP:
@@ -925,6 +935,7 @@ TRIG:
     - meg
     - ieeg
     - fnirs
+    - microephys
   description: |
     Analog (TTL in Volt) or digital (binary TTL) trigger channel.
 VEOG:
@@ -935,6 +946,7 @@ VEOG:
     - meg
     - ieeg
     - fnirs
+    - microephys
   description: |
     Vertical EOG (eye).
 MEGMAG:
@@ -1001,6 +1013,7 @@ ECOG:
     - meg
     - ieeg
     - fnirs
+    - microephys
   description: |
     Electrode channel.
 SEEG:
@@ -1010,6 +1023,7 @@ SEEG:
     - meg
     - ieeg
     - fnirs
+    - microephys
   description: |
     Electrode channel.
 DBS:
@@ -1019,6 +1033,7 @@ DBS:
     - meg
     - ieeg
     - fnirs
+    - microephys
   description: |
     Electrode channel.
 PD:
@@ -1028,6 +1043,7 @@ PD:
     - meg
     - ieeg
     - fnirs
+    - microephys
   description: |
     Photodiode.
 ADC:
@@ -1037,6 +1053,7 @@ ADC:
     - meg
     - ieeg
     - fnirs
+    - microephys
   description: |
     Analog to Digital input.
 DAC:
@@ -1046,6 +1063,7 @@ DAC:
     - meg
     - ieeg
     - fnirs
+    - microephys
   description: |
     Digital to Analog output.
 HLU:
@@ -1064,12 +1082,84 @@ FITERR:
     - fnirs
   description: |
     Fit error signal from each head localization coil.
+LFP:
+  value: LFP
+  display_name: LFP
+  tags:
+    - microephys
+  description: |
+    Low-pass filtered extracellular voltage signal that represents local field potentials.
+HP:
+  value: HP
+  display_name: HP
+  tags:
+    - microephys
+  description: |
+    High-pass filtered extracellular voltage signal as used for spike sorting.
+MUA:
+  value: MUA
+  display_name: MUA
+  tags:
+    - microephys
+  description: |
+    High-pass filtered and rectified or thresholded extracellular voltage signal
+    that represents an estimate of multi-unit activity.
+BB:
+  value: BB
+  display_name: BB
+  tags:
+    - microephys
+  description: |
+    Unfiltered (broadband) extracellular voltage signal.
+SPIKES:
+  value: SPIKES
+  display_name: SPIKES
+  tags:
+    - microephys
+  description: |
+    Discrete signal indicating spike events as derived from spike detection or spike sorting.
+VM:
+  value: VM
+  display_name: VM
+  tags:
+    - microephys
+  description: |
+    Membrane voltage.
+IM:
+  value: IM
+  display_name: IM
+  tags:
+    - microephys
+  description: |
+    Membrane current.
+SYNC:
+  value: SYNC
+  display_name: SYNC
+  tags:
+    - microephys
+  description: |
+    Signal used for synchronization between different recording systems / channels.
+STIM:
+  value: STIM
+  display_name: STIM
+  tags:
+    - microephys
+  description: |
+    Electrical stimulation.
+BEH:
+  value: BEH
+  display_name: BEH
+  tags:
+    - microephys
+  description: |
+    Behavioral signal.
 OTHER:
   value: OTHER
   display_name: OTHER
   tags:
     - meg
     - fnirs
+    - microephys
   description: |
     Any other type of channel.
 NIRSCWAMPLITUDE:

@@ -953,7 +953,6 @@ trigger:
     "Description": "continuous measurement of the scanner trigger signal",
     "Units": "arbitrary"
   }
-# TODO: Populate enums that make sense for channels in the microephys datasets.
 # type column in channels.tsv files
 type__channels:
   name: type
@@ -967,6 +966,8 @@ type__channels:
     - $ref: objects.enums.ADC.value
     - $ref: objects.enums.ANGACCEL.value
     - $ref: objects.enums.AUDIO.value
+    - $ref: objects.enums.BB.value
+    - $ref: objects.enums.BEH.value
     - $ref: objects.enums.DAC.value
     - $ref: objects.enums.DBS.value
     - $ref: objects.enums.ECG.value
@@ -980,8 +981,11 @@ type__channels:
     - $ref: objects.enums.GYRO.value
     - $ref: objects.enums.HEOG.value
     - $ref: objects.enums.HLU.value
+    - $ref: objects.enums.HP.value
+    - $ref: objects.enums.IM.value
     - $ref: objects.enums.JNTANG.value
     - $ref: objects.enums.LATENCY.value
+    - $ref: objects.enums.LFP.value
     - $ref: objects.enums.MAGN.value
     - $ref: objects.enums.MEGGRADAXIAL.value
     - $ref: objects.enums.MEGGRADPLANAR.value
@@ -991,6 +995,7 @@ type__channels:
     - $ref: objects.enums.MEGREFGRADPLANAR.value
     - $ref: objects.enums.MEGREFMAG.value
     - $ref: objects.enums.MISC.value
+    - $ref: objects.enums.MUA.value
     - $ref: objects.enums.NIRSCWAMPLITUDE.value
     - $ref: objects.enums.NIRSCWFLUORESCENSEAMPLITUDE.value
     - $ref: objects.enums.NIRSCWHBO.value
@@ -1006,11 +1011,15 @@ type__channels:
     - $ref: objects.enums.REF.value
     - $ref: objects.enums.RESP.value
     - $ref: objects.enums.SEEG.value
+    - $ref: objects.enums.SPIKES.value
+    - $ref: objects.enums.STIM.value
+    - $ref: objects.enums.SYNC.value
     - $ref: objects.enums.SYSCLOCK.value
     - $ref: objects.enums.TEMP.value
     - $ref: objects.enums.TRIG.value
     - $ref: objects.enums.VEL.value
     - $ref: objects.enums.VEOG.value
+    - $ref: objects.enums.VM.value
 # type column for electrodes.tsv files
 type__electrodes:
   name: type
