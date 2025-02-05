@@ -76,6 +76,12 @@ dwi_dwi_common:
     space: optional
     description: optional
 
+channels_channel_common:
+  $ref: rules.files.raw.channels.channels
+  entities:
+    $ref: rrules.files.raw.channels.channels.entities
+    description: optional
+
 dwi_sbref_common:
   $ref: rules.files.raw.dwi.sbref
   entities:
