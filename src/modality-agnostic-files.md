@@ -8,7 +8,7 @@ Templates:
 -   `README[.md|.rst|.txt]`
 -   `CITATION.cff`
 -   `CHANGES`
--   `LICENSE`
+-   `LICENSE[.md|.rst|.txt]`
 
 ### `dataset_description.json`
 
