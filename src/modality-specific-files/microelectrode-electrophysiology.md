@@ -103,8 +103,8 @@ If electrodes are localized in 2D space (only `x` and `y` are specified, and `z`
 then the positions in this file MUST correspond to the locations expressed in pixels on the
 photo, drawing, or rendering of the electrodes on the brain.
 
-In this case, `ephysCoordinateSystem` MUST be defined as `"Pixels"`,
-and `ephysCoordinateUnits` MUST be defined as `"pixels"` (note the difference in capitalization).
+In this case, `MicroephysCoordinateSystem` MUST be defined as `"Pixels"`,
+and `MicroephysCoordinateUnits` MUST be defined as `"pixels"` (note the difference in capitalization).
 
 Furthermore, the coordinates MUST be `(row,column)` pairs,
 with `(0,0)` corresponding to the upper-left pixel and `(N,0)` corresponding to the lower-left pixel.
@@ -154,7 +154,7 @@ These measurements follow the convention of the Pinpoint software for surgical p
 - It may optionally be defined differently and **must** be defined for other species.
 - `x, y, z` represents posterior, ventral, and right directions, respectively, in micrometers (`µm`).
 
-### Rotational Coordinates
+### Rotation
 
 - `(0,0,0)` corresponds to the probe facing up with the tip pointing forward.
 - Rotations are measured in degrees, clockwise, and around the tip.
@@ -436,7 +436,7 @@ please follow the iEEG stimulation documentation.
 
 ## Multi-part recordings
 
-Two different procedures are supported to handle multi-part recordings. In short, the two options are:
+Two different procedures are supported to handle multi-part recordings. The two options are:
 
 1. each recording is stored in an independent data file, and the corresponding metadata is described
 in the `*_scans.tsv` file; or
@@ -500,10 +500,9 @@ Optional column names in `events.tsv` to support multiple recordings in a single
 <!-- TODO: Macro for events -->
 
 
-## BIDS-animal-ephys examples
+## Microelectrode Electrophysiology Examples
 
-
-## Examples of toy datasets
+### Toy datasets
 
 
 #### Extracellular Electrophysiology
