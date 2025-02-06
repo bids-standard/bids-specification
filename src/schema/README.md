@@ -399,6 +399,13 @@ These objects additionally have the field:
 | `type`   | The type (such as `string`, `integer`, `object`) of values the term describes                                                                                                                                   |
 | `format` | The format of the term (defined in `objects.formats`)                                                                                                                                                           |
 
+`objects.columns` additionally permit a `definition` field that may take any value permissible
+for the definition of a column in a JSON sidecar:
+
+| Field        | Description                                                                                                                                                                                                   |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `definition` | A JSON object that describes the column as in [Common principles - Tabular files][tabular files]. This is mutually exclusive with the `type` field, and is used for fields that have overridable definitions. |
+
 Value terms groups (`datatypes`, `suffixes`, `extensions`) define terms where a field
 can take on multiple values.
 For example, a file has one datatype, as compared to a collection of entities.
@@ -532,6 +539,7 @@ The convention can be summed up in the following rules:
     | `display_name` | Human-friendly name                                                 |
     | `description`  | Term definition                                                     |
     | `name`         | Name of column in TSV file (in `snake_case`)                        |
+    | `definition`   | JSON definition of a column, according to [Tabular files][]         |
     | `unit`         | Interpretation of numeric values                                    |
     | `type`         | Type of value                                                       |
     | `format`       | Permissible format of values, from definitions in `objects.formats` |
@@ -1052,3 +1060,5 @@ formalize the allowable directories, files, fields and values of the BIDS schema
 ensuring consistency across the entire schema directory. Validation of the schema is
 incorporated into the CI, so any changes that are inconsistent will be flagged before
 inclusion.
+
+[tabular files]: https://bids-specification.readthedocs.io/en/stable/common-principles.html#tabular-files
