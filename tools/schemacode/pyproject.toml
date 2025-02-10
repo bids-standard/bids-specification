@@ -40,7 +40,7 @@ source = [
 parallel = true
 
 [tool.bumpver]
-current_version = "1.0.2-dev"
+current_version = "1.0.2"
 version_pattern = "MAJOR.MINOR.PATCH[-TAG]"
 commit = false
 
