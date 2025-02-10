@@ -38,3 +38,11 @@ source = [
 
 [tool.coverage.run]
 parallel = true
+
+[tool.bumpver]
+current_version = "1.0.2-dev"
+version_pattern = "MAJOR.MINOR.PATCH[-TAG]"
+commit = false
+
+[tool.bumpver.file_patterns]
+"src/bidsschematools/data/schema/SCHEMA_VERSION" = ['{version}']
