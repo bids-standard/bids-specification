@@ -7,6 +7,15 @@ _EEGCoordSys:
     - $ref: objects.enums.EEGLAB.value
     - $ref: objects.enums.EEGLAB-HJ.value
     - $ref: objects.enums.Other.value
+# TODO: I think "Other" is all we want at this point, since SENIAM isn't a coordsystem
+#       and anything else will need to specify origin and axis directions relative to
+#       skeletal landmarks in `EMGCoordinateSystemDescription`. But we should probably
+#       still define this (single-element) enum now, so it's easier to add predefined
+#       coordinate systems later (since we know folks are working on publishing them).
+_EMGCoordSys:
+  type: string
+  enum:
+    - $ref: objects.enums.Other.value
 _GeneticLevelEnum:
   type: string
   enum:
