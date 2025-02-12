@@ -18,8 +18,8 @@ def test_entity_rule(schema_obj):
     nii_rule = rules._entity_rule(rule, schema_obj)
     assert nii_rule == {
         "regex": (
-            r"sub-(?P<subject>[0-9a-zA-Z]+)/"
-            r"(?:ses-(?P<session>[0-9a-zA-Z]+)/)?"
+            r"sub-(?P<subject>[0-9a-zA-Z+]+)/"
+            r"(?:ses-(?P<session>[0-9a-zA-Z+]+)/)?"
             r"(?P<datatype>anat)/"
             r"(?(subject)sub-(?P=subject)_)"
             r"(?(session)ses-(?P=session)_)"
@@ -50,8 +50,8 @@ def test_entity_rule(schema_obj):
     json_rule = rules._entity_rule(rule, schema_obj)
     assert json_rule == {
         "regex": (
-            r"(?:sub-(?P<subject>[0-9a-zA-Z]+)/)?"
-            r"(?:ses-(?P<session>[0-9a-zA-Z]+)/)?"
+            r"(?:sub-(?P<subject>[0-9a-zA-Z+]+)/)?"
+            r"(?:ses-(?P<session>[0-9a-zA-Z+]+)/)?"
             r"(?:(?P<datatype>anat)/)?"
             r"(?(subject)sub-(?P=subject)_)"
             r"(?(session)ses-(?P=session)_)"
