@@ -112,6 +112,13 @@ source = [
 [tool.coverage.run]
 parallel = true
 
+# Release process:
+# cd tools/schemacode
+# uvx bump-my-version bump pre_label --tag
+# [inspect result]
+# git push upstream <current-branch> --tags
+# uvx bump-my-version bump <patch|minor|major>
+# git push upstream <current-branch>
 [tool.bumpversion]
 current_version = "1.1.0-dev"
 parse = """(?x)
