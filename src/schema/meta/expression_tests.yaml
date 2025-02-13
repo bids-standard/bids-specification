@@ -93,7 +93,7 @@
 - expression: type(true)
   result: 'boolean'
 - expression: intersects([1], [1, 2])
-  result: true
+  result: [1]
 - expression: intersects([1], [])
   result: false
 - expression: length([1, 2, 3])
