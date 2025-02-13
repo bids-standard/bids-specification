@@ -102,6 +102,7 @@ markers = [
 ]
 minversion = "6.0"
 xfail_strict = true
+
 [tool.coverage]
 
 [tool.coverage.paths]
