@@ -75,6 +75,10 @@ participants:
     followed by a list of optional columns describing participants.
     Each participant MUST be described by one and only one row.
 
+    The `participant_id` entries MUST be a superset of all subject directories
+    and all `participant_id` entries found among phenotypic and assessment data
+    in the `phenotype/` directory.
+
     Commonly used *optional* columns in `participants.tsv` files are `age`, `sex`,
     `handedness`, `strain`, and `strain_rrid`.
 
