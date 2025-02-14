@@ -3,18 +3,13 @@
 import json
 import os
 import re
-import sys
 import tempfile
 from collections.abc import Iterable, Mapping
 from copy import deepcopy
 from functools import lru_cache
+from importlib.resources import files
 
 from jsonschema import ValidationError, validate
-
-if sys.version_info < (3, 9):
-    from importlib_resources import files
-else:
-    from importlib.resources import files
 
 from . import __bids_version__, __version__, utils
 from .types import Namespace
@@ -183,7 +178,7 @@ def flatten_enums(namespace, inplace=True):
     return namespace
 
 
-@lru_cache()
+@lru_cache
 def load_schema(schema_path=None):
     """Load the schema into a dictionary.
 
