@@ -1,7 +1,5 @@
 """Functions for rendering portions of the schema as text."""
 
-from warnings import warn
-
 import yaml
 from markdown_it import MarkdownIt
 
