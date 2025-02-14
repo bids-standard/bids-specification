@@ -442,7 +442,7 @@ def make_filename_template(
             if placeholders and len(group_lines) == 1:
                 continue
 
-            lines.extend(group_lines)
+        lines.extend(group_lines)
 
     paragraph = "\n".join(lines)
     if pdf_format:
