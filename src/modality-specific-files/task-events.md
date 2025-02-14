@@ -18,9 +18,6 @@ duration).
    )
 }}
 
-Where `<matches>` corresponds to task filename. For example:
-`sub-control01_task-nback`.
-
 Each task events file REQUIRES a corresponding task data file.
 It is also possible to have a single `events.tsv` file describing events
 for all participants and runs (see
