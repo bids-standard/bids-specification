@@ -243,6 +243,16 @@
           },
           "additionalProperties": false
         },
+        "metaentities": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z0-9_]+$": {
+              "$ref": "#/definitions/termTypes/general",
+              "unevaluatedProperties": false
+            },
+            "additionalProperties": false
+          }
+        },
         "modalities": {
           "type": "object",
           "patternProperties": {
@@ -288,6 +298,7 @@
         "files",
         "formats",
         "metadata",
+        "metaentities",
         "modalities",
         "suffixes"
       ],
@@ -430,6 +441,10 @@
           },
           "additionalProperties": false
         },
+        "metaentities": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
         "common_principles": {
           "type": "array",
           "items": { "type": "string" }
@@ -486,6 +501,7 @@
 	"json",
         "sidecars",
         "tabular_data",
+        "metaentities",
         "common_principles",
         "dataset_metadata",
         "directories",
