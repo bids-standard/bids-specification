@@ -2,6 +2,7 @@
 
 import yaml
 from markdown_it import MarkdownIt
+from warnings import warn
 
 from bidsschematools.render import utils
 from bidsschematools.schema import Namespace, filter_schema, load_schema
@@ -21,6 +22,7 @@ TYPE_CONVERTER = {
     "files": "files and directories",
     "formats": "format",
     "metadata": "metadata",
+    "metaentities": "meta-entity",
     "top_level_files": "top level file",
     "suffixes": "suffix",
 }
@@ -235,6 +237,7 @@ def make_filename_template(
     src_path=None,
     n_dupes_to_combine=6,
     pdf_format=False,
+    placeholders=False,
     **kwargs,
 ):
     """Create codeblocks containing example filename patterns for a given datatype.
@@ -262,6 +265,13 @@ def make_filename_template(
         If False, the filename template will use HTML and include hyperlinks.
         This works on the website.
         Default is False.
+    placeholders : bool, optional
+        If True, placeholder meta-entities will replace keyword-value entities in the
+        filename.
+        If `dstype` is `"raw"`, the placeholder meta-entity is `<matches>`.
+        If `dstype` is `"derivatives"`, the placeholder meta-entity is `<source_entities>`.
+        Default is False.
+    source_entities : bool
 
     Other Parameters
     ----------------
@@ -314,53 +324,68 @@ def make_filename_template(
             file_groups.setdefault(datatype, []).append(rule)
 
     for datatype in sorted(file_groups):
+        group_lines = []
         datatype_string = utils._link_with_html(
             datatype,
             html_path=GLOSSARY_PATH + ".html",
             heading=f"{datatype.lower()}-datatypes",
             pdf_format=pdf_format,
         )
-        lines.append(f"\t\t{datatype_string}/")
+        group_lines.append(f"\t\t{datatype_string}/")
+
+        if placeholders:
+            metaentity_name = "matches" if dstype == "raw" else "source_entities"
+            ent_string = (
+                lt
+                + utils._link_with_html(
+                    metaentity_name,
+                    html_path=GLOSSARY_PATH + ".html",
+                    heading=f"{metaentity_name}-metaentities",
+                    pdf_format=pdf_format,
+                )
+                + gt
+            )
 
         # Unique filename patterns
         for group in file_groups[datatype]:
-            ent_string = ""
-            for ent in schema.rules.entities:
-                if ent not in group.entities:
-                    continue
+            if not placeholders:
+                ent_string = ""
+                for ent in schema.rules.entities:
+                    if ent not in group.entities:
+                        continue
 
-                # Add level and any overrides to entity
-                ent_obj = group.entities[ent]
-                if isinstance(ent_obj, str):
-                    ent_obj = {"level": ent_obj}
-                entity = {**schema.objects.entities[ent], **ent_obj}
+                    # Add level and any overrides to entity
+                    ent_obj = group.entities[ent]
+                    if isinstance(ent_obj, str):
+                        ent_obj = {"level": ent_obj}
+                    entity = {**schema.objects.entities[ent], **ent_obj}
 
-                if "enum" in entity:
-                    # Link full entity
-                    pattern = utils._link_with_html(
-                        _format_entity(entity, lt, gt),
-                        html_path=f"{ENTITIES_PATH}.html",
-                        heading=entity["name"],
-                        pdf_format=pdf_format,
-                    )
-                else:
-                    # Link entity and format separately
-                    entity["name"] = utils._link_with_html(
-                        entity["name"],
-                        html_path=f"{ENTITIES_PATH}.html",
-                        heading=entity["name"],
-                        pdf_format=pdf_format,
-                    )
-                    fmt = entity.get("format", "label")
-                    entity["format"] = utils._link_with_html(
-                        entity.get("format", "label"),
-                        html_path=f"{GLOSSARY_PATH}.html",
-                        heading=f"{fmt}-common_principles",
-                        pdf_format=pdf_format,
-                    )
-                    pattern = _format_entity(entity, lt, gt)
+                    if "enum" in entity:
+                        # Link full entity
+                        pattern = utils._link_with_html(
+                            _format_entity(entity, lt, gt),
+                            html_path=f"{ENTITIES_PATH}.html",
+                            heading=entity["name"],
+                            pdf_format=pdf_format,
+                        )
+                    else:
+                        # Link entity and format separately
+                        entity["name"] = utils._link_with_html(
+                            entity["name"],
+                            html_path=f"{ENTITIES_PATH}.html",
+                            heading=entity["name"],
+                            pdf_format=pdf_format,
+                        )
+                        fmt = entity.get("format", "label")
+                        entity["format"] = utils._link_with_html(
+                            entity.get("format", "label"),
+                            html_path=f"{GLOSSARY_PATH}.html",
+                            heading=f"{fmt}-common_principles",
+                            pdf_format=pdf_format,
+                        )
+                        pattern = _format_entity(entity, lt, gt)
 
-                ent_string = _add_entity(ent_string, pattern, entity["level"])
+                    ent_string = _add_entity(ent_string, pattern, entity["level"])
 
             # In cases of large numbers of suffixes,
             # we use the "suffix" variable and expect a table later in the spec
@@ -413,11 +438,16 @@ def make_filename_template(
                 pdf_format=pdf_format,
             )
 
-            lines.extend(
+            group_lines.extend(
                 f"\t\t\t{ent_string}_{suffix}{extension}"
                 for suffix in sorted(suffixes)
                 for extension in sorted(extensions)
             )
+
+            if placeholders and len(group_lines) == 1:
+                continue
+
+            lines.extend(group_lines)
 
     paragraph = "\n".join(lines)
     if pdf_format:
@@ -459,6 +489,11 @@ def append_filename_template_legend(text, pdf_format=False):
   """
 
     legend = f"""{info_str}
+- `<matches>` is a placeholder to denote an arbitrary (and valid) sequence of entities
+  and labels at the beginning of the filename (only BIDS "raw").
+- `<source_entities>` is a placeholder to denote an arbitrary sequence of entities and labels
+  at the beginning of the filename matching a source file from which the file derives
+  (only BIDS-Derivatives).
 - Filename entities or directories between square brackets
   (for example, `[_ses-<label>]`) are OPTIONAL.
 - Some entities may only allow specific values,
