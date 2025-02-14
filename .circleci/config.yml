@@ -55,11 +55,12 @@ jobs:
               # failures for local file:/// -- yoh found no better way,
               linkchecker -t 1 --check-extern \
                 --ignore-url 'file:///.*' \
-                --ignore-url 'https://fonts.gstatic.com' \
-                --ignore-url 'https://github.com/bids-standard/bids-specification/(pull|tree)/.*' \
-                --ignore-url 'https://github.com/[^/]*' \
-                --ignore-url 'https://doi.org/.*' \
                 --ignore-url 'https://bids-specification.readthedocs.io/en/stable/.*' \
+                --ignore-url 'https://doi.org/.*' \
+                --ignore-url 'https://fonts.gstatic.com' \
+                --ignore-url 'https://github.com/[^/]*' \
+                --ignore-url 'https://github.com/bids-standard/bids-specification/(pull|tree)/.*' \
+                --ignore-url 'https://www.incf.org' \
                 ~/project/site/*html ~/project/site/*/*.html
             else
               echo "Release PR - do nothing"
