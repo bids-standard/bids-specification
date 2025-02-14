@@ -65,7 +65,8 @@ def test_make_glossary(schema_obj, schema_dir):
             assert not any([line.startswith(f'<a name="objects.{i}') for i in rules_only])
 
 
-def test_make_filename_template(schema_obj, schema_dir):
+@pytest.mark.parametrize("placeholders", [True, False])
+def test_make_filename_template(schema_obj, schema_dir, placeholders):
     """
     Test whether:
 
@@ -76,7 +77,9 @@ def test_make_filename_template(schema_obj, schema_dir):
     * All files under the datatype rules subdirectory have corresponding entries.
       This may need to be updated for schema hierarchy changes.
     """
-    filename_template = text.make_filename_template("raw", schema_obj, pdf_format=True)
+    filename_template = text.make_filename_template(
+        "raw", schema_obj, placeholders=placeholders, pdf_format=True
+    )
 
     # Test predefined substrings
     expected_template_part = """
@@ -96,7 +99,9 @@ sub-<label>/
     datatype_count = len(datatypes)
     datatype_bases = [f"        {i}/" for i in datatypes]
     datatype_level = False
-    datatype_file_start = "            sub-<label>"
+    datatype_file_start = (
+        "            sub-<label>" if not placeholders else "            <matches>_"
+    )
     datatype_bases_found = 0
     for line in filename_template.split("\n"):
         if datatype_level:
