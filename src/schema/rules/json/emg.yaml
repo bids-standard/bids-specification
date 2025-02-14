@@ -1,0 +1,69 @@
+#
+# Groups of related metadata fields
+#
+# Assumptions: never need disjunction of selectors
+# Assumptions: top-to-bottom overrides is sufficient logic
+
+---
+# General fields
+EMGCoordsystemGeneral:
+  selectors:
+    - datatype == "emg"
+    - suffix == "coordsystem"
+  fields:
+    IntendedFor:
+      level: optional
+      description_addendum: |
+        This identifies the origin and axes directions for coordinate systems
+        used to describe digitized EMG electrode locations.
+
+# Fields relating to the EMG electrode positions
+EMGCoordsystemPositions:
+  selectors:
+    - datatype == "emg"
+    - suffix == "coordsystem"
+  fields:
+    EMGCoordinateSystem: required
+    EMGCoordinateUnits: required
+    EMGCoordinateSystemDescription:
+      level: recommended
+      level_addendum: required if `EMGCoordinateSystem` is `"Other"`
+
+EMGCoordsystemOther:
+  selectors:
+    - datatype == "emg"
+    - suffix == "coordsystem"
+    - '"EMGCoordinateSystem" in json'
+    - json.EMGCoordinateSystem == "Other"
+  fields:
+    EMGCoordinateSystemDescription: required
+
+# Fields relating to the position of anatomical landmark measured during an EMG session/run
+EMGCoordsystemLandmark:
+  selectors:
+    - datatype == "emg"
+    - suffix == "coordsystem"
+  fields:
+    AnatomicalLandmarkCoordinates: recommended
+    AnatomicalLandmarkCoordinateSystem:
+      level: recommended
+      description_addendum: Preferably the same as the `EMGCoordinateSystem`.
+    AnatomicalLandmarkCoordinateUnits: recommended
+
+EMGCoordsystemLandmarkDescriptionRec:
+  selectors:
+    - datatype == "emg"
+    - suffix == "coordsystem"
+    - json.AnatomicalLandmarkCoordinateSystem != "Other"
+  fields:
+    AnatomicalLandmarkCoordinateSystemDescription:
+      level: recommended
+      level_addendum: required if `AnatomicalLandmarkCoordinateSystem` is `"Other"`
+
+EMGCoordsystemLandmarkDescriptionReq:
+  selectors:
+    - datatype == "emg"
+    - suffix == "coordsystem"
+    - json.AnatomicalLandmarkCoordinateSystem == "Other"
+  fields:
+    AnatomicalLandmarkCoordinateSystemDescription: required
