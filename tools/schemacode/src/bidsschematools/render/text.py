@@ -1,8 +1,9 @@
 """Functions for rendering portions of the schema as text."""
 
+from warnings import warn
+
 import yaml
 from markdown_it import MarkdownIt
-from warnings import warn
 
 from bidsschematools.render import utils
 from bidsschematools.schema import Namespace, filter_schema, load_schema
