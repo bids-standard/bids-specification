@@ -16,7 +16,7 @@ StimulusPresentation:
 StimulusPresentation_for_eyetracking:
   selectors:
     - suffix == "events"
-    - intersects([suffix], ["eyetrack"])
+    - associations.physio.sidecar.PhysioType == "eyetrack"
   fields:
     StimulusPresentation.ScreenDistance: required
     StimulusPresentation.ScreenOrigin: required
