@@ -25,7 +25,7 @@
 #         ```
 
 #         this indicates that the filename pattern `sub-<label>_[ses-<label>]_events.<extension>`
-#         can be placed under any of the valid `data_type` folders.
+#         can be placed under any of the valid `data_type` directories.
 
 matches:
   name: matches
