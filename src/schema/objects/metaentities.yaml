@@ -28,7 +28,6 @@
 #         can be placed under any of the valid `data_type` directories.
 
 matches:
-  name: matches
   display_name: matches
   description: |
     `matches` is used as a placeholder in BIDS filenames templates to denote that several files
@@ -45,7 +44,6 @@ matches:
     `<matches>` could correspond to `sub-control01_task-nback_run-1`.
 
 source_entities:
-  name: source_entities
   display_name: source entities
   description: |
     `source_entities` is used as a placeholder in BIDS derivatives filenames templates.
