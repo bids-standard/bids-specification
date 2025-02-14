@@ -233,6 +233,7 @@ def make_filename_template(
     n_dupes_to_combine=6,
     pdf_format=False,
     placeholders=False,
+    empty_dirs=None,
     **kwargs,
 ):
     """Create codeblocks containing example filename patterns for a given datatype.
@@ -263,10 +264,13 @@ def make_filename_template(
     placeholders : bool, optional
         If True, placeholder meta-entities will replace keyword-value entities in the
         filename.
-        If `dstype` is `"raw"`, the placeholder meta-entity is `<matches>`.
-        If `dstype` is `"derivatives"`, the placeholder meta-entity is `<source_entities>`.
+        If ``dstype`` is ``"raw"``, the placeholder meta-entity is ``<matches>``.
+        If ``dstype`` is ``"derivatives"``, the placeholder meta-entity is ``<source_entities>``.
         Default is False.
-    source_entities : bool
+    empty_dirs: bool, optional
+        If False, empty datatype directories are not included. If ``placeholders`` is True,
+        this option is set False.
+        Default is True.
 
     Other Parameters
     ----------------
@@ -318,6 +322,20 @@ def make_filename_template(
         for datatype in rule.datatypes:
             file_groups.setdefault(datatype, []).append(rule)
 
+    if placeholders:
+        empty_dirs = False if empty_dirs is None else empty_dirs
+        metaentity_name = "matches" if dstype == "raw" else "source_entities"
+        ent_string = (
+            lt
+            + utils._link_with_html(
+                metaentity_name,
+                html_path=GLOSSARY_PATH + ".html",
+                heading=f"{metaentity_name}-metaentities",
+                pdf_format=pdf_format,
+            )
+            + gt
+        )
+
     for datatype in sorted(file_groups):
         group_lines = []
         datatype_string = utils._link_with_html(
@@ -327,19 +345,6 @@ def make_filename_template(
             pdf_format=pdf_format,
         )
         group_lines.append(f"\t\t{datatype_string}/")
-
-        if placeholders:
-            metaentity_name = "matches" if dstype == "raw" else "source_entities"
-            ent_string = (
-                lt
-                + utils._link_with_html(
-                    metaentity_name,
-                    html_path=GLOSSARY_PATH + ".html",
-                    heading=f"{metaentity_name}-metaentities",
-                    pdf_format=pdf_format,
-                )
-                + gt
-            )
 
         # Unique filename patterns
         for group in file_groups[datatype]:
@@ -439,8 +444,9 @@ def make_filename_template(
                 for extension in sorted(extensions)
             )
 
-            if placeholders and len(group_lines) == 1:
-                continue
+        # If the datatype does not have any files, skip
+        if empty_dirs is False and len(group_lines) == 1:
+            continue
 
         lines.extend(group_lines)
 
