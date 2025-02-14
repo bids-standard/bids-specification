@@ -298,6 +298,7 @@
         "files",
         "formats",
         "metadata",
+        "metaentities",
         "modalities",
         "suffixes"
       ],
@@ -440,6 +441,10 @@
           },
           "additionalProperties": false
         },
+        "metaentities": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
         "common_principles": {
           "type": "array",
           "items": { "type": "string" }
@@ -496,6 +501,7 @@
 	"json",
         "sidecars",
         "tabular_data",
+        "metaentities",
         "common_principles",
         "dataset_metadata",
         "directories",
