@@ -34,15 +34,15 @@ matches:
     `matches` is used as a placeholder in BIDS filenames templates to denote that several files
     share exactly the same sequence of entities and labels in their basename.
 
-        For example, in the following filename template:
+    For example, in the following filename template:
 
-        ```
-        <matches>_bold.nii.gz
-        <matches>_events.tsv
-        <matches>_events.json
-        ```
+    ```Text
+    <matches>_bold.nii.gz
+    <matches>_events.tsv
+    <matches>_events.json
+    ```
 
-        `<matches>` could correspond to `sub-control01_task-nback_run-1`.
+    `<matches>` could correspond to `sub-control01_task-nback_run-1`.
 
 source_entities:
   name: source_entities
@@ -50,6 +50,6 @@ source_entities:
   description: |
     `source_entities` is used as a placeholder in BIDS derivatives filenames templates.
 
-        `source_entities` MUST be the entire source filename, with the omission of
-        the source suffix and extension.
-        One exception to this rule is filename entities that are no longer relevant.
+    `source_entities` MUST be the entire source filename, with the omission of
+    the source suffix and extension.
+    One exception to this rule is filename entities that are no longer relevant.
