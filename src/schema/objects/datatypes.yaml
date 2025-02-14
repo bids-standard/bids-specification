@@ -65,3 +65,7 @@ nirs:
   value: nirs
   display_name: Near-Infrared Spectroscopy
   description: Near-Infrared Spectroscopy data organized around the SNIRF format
+stimuli:
+  value: stimuli
+  display_name: Stimulus
+  description: Stimulus
