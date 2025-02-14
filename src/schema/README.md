@@ -369,7 +369,7 @@ The namespaces are:
 | --------------------------- | ----------------------------------------------------------------------------------- | ---------------- |
 | `objects.common_principles` | Terms that are used throughout BIDS                                                 | General terms    |
 | `objects.modalities`        | Broad categories of data represented in BIDS, roughly matching recording instrument | General terms    |
-| `objects.metaentities`      | Placeholders and wildcards to reduce verbosity of some templates in BIDS        | General terms    |
+| `objects.metaentities`      | Placeholders and wildcards to reduce verbosity of some templates in BIDS            | General terms    |
 | `objects.entities`          | Name-value pairs appearing in filenames                                             | Name/value terms |
 | `objects.metadata`          | Name-value pairs appearing in JSON files                                            | Name/value terms |
 | `objects.columns`           | Column headings and values appearing in TSV files                                   | Name/value terms |
