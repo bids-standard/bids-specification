@@ -27,7 +27,7 @@ The current list of allowed data file formats:
 <!-- We should define icephys and ecephys -->
 | **Format**                                                                          | **Extension(s)** | **Description**                                                                                                                                                                                                      |
 |-------------------------------------------------------------------------------------|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [Neuroscience Information Exchange Format](https://nixio.readthedocs.io/en/latest/) | `.nix`           | A generic and open  framework with an hdf5 backend and a defined interface to many ephys formats via the [Neo library](https://neo.readthedocs.io/en/latest/). The `.nix` file has to contain a valid Neo structure. |
+| [Neuroscience Information Exchange Format](https://nixio.readthedocs.io/en/latest/) | `.nix`           | A generic and open  framework with an hdf5 backend and a defined interface to many microephys formats via the [Neo library](https://neo.readthedocs.io/en/latest/). The `.nix` file has to contain a valid Neo structure. |
 | [Neurodata Without Borders](https://www.nwb.org)                                    | `.nwb`           | An open data standard for neurophysiology, including data from intracellular and extracellular electrophysiology experiments.                                                                                        |
 
 Both of these formats can also store essential metadata of the datasets.
@@ -92,7 +92,7 @@ The coordinate system can be defined using reference pictures, anatomical landma
 For more details, see the [BIDS Coordinate Systems specifications](../appendices/coordinate-systems.md).
 
 
-Fields relating to the ephys probe and electrode positions:
+Fields relating to the microephys probe and electrode positions:
 
 {{ MACROS___make_sidecar_table("microephys.microephysCoordsystemGeneral") }}
 
@@ -296,13 +296,13 @@ For the `type` column we recommend to use the following terms (adopted from [iEE
 | **OTHER**     | Any other type of channel                                               |
 
 
-## General ephys metadata (*_ephys.json)
+## General microephys metadata (*_{i,e}cephys.json)
 
 We propose to store all metadata that is not directly related to one of the other metadata files (probe/electrode/channel information) into a single JSON file: `_ephys.json`.
 
 There should be one such JSON file for each data file.
 
-The `*_ephys.json` file can be used to store any ephys-specific metadata for the dataset. We recommend storing all setup-related metadata in a dedicated node of the JSON file called `Setup`.
+The `*_ephys.json` file can be used to store any microephys-specific metadata for the dataset. We recommend storing all setup-related metadata in a dedicated node of the JSON file called `Setup`.
 We recommend using the following keys to describe the setup:
 
 ### Data origin metadata
@@ -428,7 +428,7 @@ The `*_events.tsv` and corresponding `*_events.json` sidecar files are OPTIONAL 
 indicate time points of recording events. Each task events file requires a corresponding task data
 file. These events can be internal recording system events, task-related events, or events triggered
 by the experimentalist (for example, manual reward). Note that these events must share a common clock
-with the corresponding ephys recording data. For more details, see the
+with the corresponding microephys recording data. For more details, see the
 Task Events documentation.
 Note that this file can also be used to describe stimulation performed during the recording. For this,
 please follow the iEEG stimulation documentation.
@@ -513,7 +513,7 @@ On the first day it performed two tasks (nose-poke & rest), and on the second da
 rest task was performed.
 Detailed information about these tasks can be found in the `tasks.tsv` and `tasks.json` files.
 The electrophysiology data for each of the three recordings are stored in the corresponding
-session and ephys directories in the `nix` format. Metadata about the probes, their electrodes
+session and microephys directories in the `nix` format. Metadata about the probes, their electrodes
 and the corresponding recording channels are stored in `tsv` format. Note that in this case,
 this information is shared between data files (see BIDS Inheritance Principle): in the first session,
 the probe, electrode and channel files apply to both data files of that session, as they do not
@@ -529,21 +529,21 @@ contain a `task` entity in their name. For the nose-poke task, additional behavi
   "participants.tsv": "",
   "sub-A/": {
     "ses-20220101/": {
-      "ephys/": {
-        "sub-A_ses-20220101_task-nosepoke_ephys.nix": "",
-        "sub-A_ses-20220101_task-nosepoke_ephys.json": "",
+      "ecephys/": {
+        "sub-A_ses-20220101_task-nosepoke_ecephys.nix": "",
+        "sub-A_ses-20220101_task-nosepoke_ecephys.json": "",
         "sub-A_ses-20220101_task-nosepoke_events.tsv": "",
-        "sub-A_ses-20220101_task-rest_ephys.nix": "",
-        "sub-A_ses-20220101_task-rest_ephys.json": "",
+        "sub-A_ses-20220101_task-rest_ecephys.nix": "",
+        "sub-A_ses-20220101_task-rest_ecephys.json": "",
         "sub-A_ses-20220101_channels.tsv": "",
         "sub-A_ses-20220101_electrodes.tsv": "",
         "sub-A_ses-20220101_probes.tsv": ""
       }
     },
     "ses-20220102/": {
-      "ephys/": {
-        "sub-A_ses-20220102_task-rest_ephys.nix": "",
-        "sub-A_ses-20220102_task-rest_ephys.json": "",
+      "ecephys/": {
+        "sub-A_ses-20220102_task-rest_ecephys.nix": "",
+        "sub-A_ses-20220102_task-rest_ecephys.json": "",
         "sub-A_ses-20220102_channels.tsv": "",
         "sub-A_ses-20220102_electrodes.tsv": "",
         "sub-A_ses-20220102_probes.tsv": ""
@@ -558,7 +558,7 @@ contain a `task` entity in their name. For the nose-poke task, additional behavi
 
 #### Intracellular Electrophysiology (Patch)
 
-This dataset contains intracellular data from slices acquired from two subjects (20220101-A and 20220101B). Details about the subjects and the sample generation are documented in the samples (tsv/json) files. Data of each subject is stored in separate subject directories (top level directories), each of which contains an ‘ephys’ subdirectory. Note that there is no session-level directory in this case. Here, we choose the option of having “multiple tasks/runs in separate files” as described in 3.81., to demonstrate the high level of readability offered by the filenames in this case.
+This dataset contains intracellular data from slices acquired from two subjects (20220101-A and 20220101B). Details about the subjects and the sample generation are documented in the samples (tsv/json) files. Data of each subject is stored in separate subject directories (top level directories), each of which contains an ‘icephys/’ subdirectory. Note that there is no session-level directory in this case. Here, we choose the option of having “multiple tasks/runs in separate files” as described in 3.81., to demonstrate the high level of readability offered by the filenames in this case.
 
 For the first subject only a single sample (a cell for patch-clamp terminology) was extracted (sample-cell001), on which two recordings (runs 1 and 2) were performed. Here, the `scans.tsv` file can be used to store information such as the starting recording times. The detailed information on the recording channel (such as the recording mode used) is stored in the `channels.tsv` which, in this case, is common to all available recordings. The probes and electrodes files provide information on the pipette and solutions used for the recordings and are also shared for the two data files.
 
@@ -574,31 +574,31 @@ For the second subject two samples (sample-cell003 and sample-cell004) were extr
   "dataset_description.json": "",
   "sub-20220101A/": {
     "sub-20220101A_sample-cell001_scans.tsv": "",
-    "ephys/": {
-      "sub-20220101A_sample-cell001_run-1_ephys.nwb": "",
+    "icephys/": {
+      "sub-20220101A_sample-cell001_run-1_icephys.nwb": "",
       "sub-20220101A_sample-cell001_run-1_events.tsv": "",
-      "sub-20220101A_sample-cell001_run-2_ephys.nwb": "",
+      "sub-20220101A_sample-cell001_run-2_icephys.nwb": "",
       "sub-20220101A_sample-cell001_run-2_events.tsv": "",
       "sub-20220101A_channels.tsv": "",
       "sub-20220101A_electrodes.tsv": "",
       "sub-20220101A_probes.tsv": "",
-      "sub-20220101A_ephys.json": "",
+      "sub-20220101A_icephys.json": "",
       "sub-20220101A_events.json": ""
     }
   },
   "sub-20220101B/": {
     "sub-20220101B_sample-cell001_scans.tsv": "",
-    "ephys/": {
-      "sub-20220101B_sample-cell002_ephys.nwb": "",
+    "icephys/": {
+      "sub-20220101B_sample-cell002_icephys.nwb": "",
       "sub-20220101B_sample-cell002_events.tsv": "",
       "sub-20220101B_sample-cell002_channels.tsv": "",
       "sub-20220101B_sample-cell002_electrodes.tsv": "",
-      "sub-20220101B_sample-cell003_ephys.nwb": "",
+      "sub-20220101B_sample-cell003_icephys.nwb": "",
       "sub-20220101B_sample-cell003_events.tsv": "",
       "sub-20220101B_sample-cell003_channels.tsv": "",
       "sub-20220101B_sample-cell003_electrodes.tsv": "",
       "sub-20220101B_probes.tsv": "",
-      "sub-20220101B_ephys.json": "",
+      "sub-20220101B_icephys.json": "",
       "sub-20220101B_events.json": ""
     }
   }
@@ -614,7 +614,7 @@ This toy data set can be found in [this repository,](https://gin.g-node.org/Neur
 
 Multiple datasets have been converted to follow this BEP proposal. These datasets typically have pruned data files to reduce the data file size, but are accompanied by the full set of metadata. A current version of these datasets can be found on GIN: [https://gin.g-node.org/NeuralEnsemble/BEP032-examples](https://gin.g-node.org/NeuralEnsemble/BEP032-examples)
 
-For a complete dataset including all data samples the ephys dataset published in [Brochier (2018)](https://doi.org/10.1038/sdata.2018.55) has been reorganized according to the current version of this BEP, using the NIX data format. The up-to-date version of the dataset can be found here:
+For a complete dataset including all data samples the extracellular microelectrode dataset published in [Brochier (2018)](https://doi.org/10.1038/sdata.2018.55) has been reorganized according to the current version of this BEP, using the NIX data format. The up-to-date version of the dataset can be found here:
 
 [https://gin.g-node.org/sprenger/multielectrode_grasp/src/bep_animalephys](https://gin.g-node.org/sprenger/multielectrode_grasp/src/bep_animalephys)
 
