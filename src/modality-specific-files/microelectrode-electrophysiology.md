@@ -74,7 +74,7 @@ On top of the existing columns that can be present in this file and that are des
 
 ##  EPHYS specific files
 
-The following metadata files are REQUIRED for a given animal ephys session:
+The following metadata files are REQUIRED for a given microephys session:
 
 1. `[_ses-<session_label>]_probes.tsv`: A REQUIRED file listing information on the device used to acquire the electrophysiology data, such as implant or probe specification, location, material, and others.
 2. `[_ses-<session_label>]_electrodes.tsv`: A REQUIRED file listing information on the points of electrical contact to the tissue, such as impedance, names, relative positions, and others.
@@ -85,7 +85,7 @@ As with all tsv-based metadata files in BIDS the probes, electrodes and channels
 
 ## Coordinate System JSON (`*_coordsystem.json`) & Photos of electrode positions (`_photo.jpg`)
 
-This file provides metadata on the global coordinate system in which the electrodes are placed.
+This file provides metadata on the coordinate system in which the electrodes are placed.
 This file is **RECOMMENDED**, and the listed required fields below must be included if a `*_coordsystem.json` file is provided.
 
 The coordinate system can be defined using reference pictures, anatomical landmarks, brain images, or a reference atlas.
@@ -139,7 +139,7 @@ The optional[` space-<label>`](../appendices/entities.md#space) entity (`*[_spac
 
 ## Probes (*_probes.tsv)
 
-Probes are physical devices used for recording animal electrophysiology (ephys) data.
+Probes are physical devices used for recording microephys data.
 They can be permanently implanted (chronic recordings) or inserted temporarily for the recording (acute recordings).
 
 The probe positions and properties are stored in a `.tsv` file.
@@ -201,7 +201,7 @@ The electrode positions and properties are stored in a `.tsv` file (amplifier in
 
 This file contains the following information:
 - The electrode name
-- The electrode coordinates in 3 columns (`xyz`)
+- The electrode coordinates in 3 columns (`xyz`) (use `n/a` for values if a dimension is absent)
 - The ID of the probe the electrode is located on
 
 The coordinates are relative to the position on the probe.
