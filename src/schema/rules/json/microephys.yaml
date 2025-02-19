@@ -1,0 +1,42 @@
+#
+# Groups of related metadata fields
+#
+# Assumptions: never need disjunction of selectors
+# Assumptions: top-to-bottom overrides is sufficient logic
+
+---
+
+microephysCoordsystemGeneral:
+  selectors:
+    - datatype == ["ecephys", "icephys"]
+    - suffix == ["coordsystem"]
+  fields:
+    IntendedFor:
+      level: optional
+      description_addendum: |
+        # TODO
+
+
+# Fields relating to the microephys electrode positions
+microephysCoordsystemPositions:
+  selectors:
+    - datatype == ["ecephys", "icephys"]
+    - suffix == ["coordsystem"]
+  fields:
+    MicroEphysCoordinateSystem: required
+    MicroEphysCoordinateUnits: required
+    MicroEphysCoordinateSystemDescription:
+      level: recommended
+      level_addendum: required if `MicroEphysCoordinateSystem` is `"Other"`
+    MicroEphysCoordinateSystemPhoto:
+      level: optional
+      level_addendum: required if `MicroEphysCoordinateUnits` is `"pixels"`
+
+microephysCoordsystemOther:
+  selectors:
+    - datatype == ["ecephys", "icephys"]
+    - suffix == ["coordsystem"]
+    - '"MicroEphysCoordinateSystem" in json'
+    - json.MicroEphysCoordinateSystem == "Other"
+  fields:
+    MicroEphysCoordinateSystemDescription: required
