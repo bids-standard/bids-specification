@@ -72,7 +72,7 @@ It follows the [general BIDS specifications to describe participants](../modalit
 On top of the existing columns that can be present in this file and that are described in the BIDS specifications (`participant_id`, `species`, `strain`, `strain_rrid`, `sex`, `handedness`, and `age`), we propose to allow adding the following ones:
 
 
-##  EPHYS specific files
+##  Microephys specific files
 
 The following metadata files are REQUIRED for a given microephys session:
 
