@@ -135,7 +135,7 @@ def test_formats(schema_obj):
         ],
         "datetime": [
             "2022-01-05T13:16:30.1000005",  # too many decimal points
-            "2022-01-05T13:16:30U",  # time zone too short
+            "2022-01-05T13:16:30U",  # Only Z is permitted
             "2022-01-05T13:16:30UTCUTC",  # time zone too long
             "2022-01-05T34:10:10",  # invalid time
         ],

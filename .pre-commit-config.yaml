@@ -17,7 +17,7 @@ repos:
       - id: check-added-large-files
       - id: check-case-conflict
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.30.0
+    rev: 0.31.1
     hooks:
       - id: check-dependabot
       - id: check-github-workflows
@@ -27,7 +27,7 @@ repos:
       - id: check-readthedocs
         files: readthedocs.yml
   - repo: https://github.com/psf/black
-    rev: 24.10.0
+    rev: 25.1.0
     hooks:
       - id: black
         files: ^tools/(?!schemacode)
@@ -37,7 +37,7 @@ repos:
         files: tools/schemacode
         args: ["--config", "tools/schemacode/pyproject.toml", "--verbose"]
   - repo: https://github.com/pyCQA/isort
-    rev: 5.13.2
+    rev: 6.0.0
     hooks:
       - id: isort
         files: ^tools/(?!schemacode)
@@ -69,12 +69,12 @@ repos:
       - id: pretty-format-toml
         args: [--autofix, --indent, '4', --no-sort]
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.3.0
+    rev: v2.4.1
     hooks:
       - id: codespell
         args: ["--config=.codespellrc", "--dictionary=-", "--dictionary=.codespell_dict"]
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.14.1
+    rev: v1.15.0
     hooks:
       - id: mypy
         # Sync with project.optional-dependencies.typing
