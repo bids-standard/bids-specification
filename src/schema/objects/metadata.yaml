@@ -3238,8 +3238,8 @@ ScreenResolution:
     - type: array
       items:
         type: integer
-        minItems: 2
-        maxItems: 2
+      minItems: 2
+      maxItems: 2
     - type: string
       enum:
         - n/a
@@ -3255,8 +3255,8 @@ ScreenSize:
       items:
         type: number
         unit: m
-        minItems: 2
-        maxItems: 2
+      minItems: 2
+      maxItems: 2
     - type: string
       enum:
         - n/a
