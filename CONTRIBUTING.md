@@ -9,7 +9,7 @@ If you have any questions that aren't discussed below, please let us know
 by [opening an issue](https://github.com/bids-standard/bids-specification/issues/new).
 
 If you are not familiar with Git and GitHub,
-check our [generic contributing guidelines](https://bids-website.readthedocs.io/en/latest/collaboration/bids_github/CONTRIBUTING.html).
+check our [generic contributing guidelines](https://bids.neuroimaging.io/collaboration/bids_github/CONTRIBUTING.html).
 
 If you want to contribute to the BIDS specification,
 make sure you also read the instructions below.
