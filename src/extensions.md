@@ -6,7 +6,7 @@ This is accomplished with BIDS Extension Proposals (BEPs),
 which are community-driven processes (see [BEP guidelines](https://bids-extensions.readthedocs.io/en/latest/)).
 
 On the [BIDS homepage](https://bids.neuroimaging.io/) you can find a
-[list of extension proposals](https://bids.neuroimaging.io/get_involved.html#extending-the-bids-specification)
+[list of extension proposals](https://bids.neuroimaging.io/extensions/index.html)
 that are currently being worked on.
 
 All changes that are **not** backwards compatible with the current BIDS
