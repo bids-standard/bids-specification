@@ -21,7 +21,7 @@ To organize your data in BIDS, all you need is neuro data, a computer, and the
 [BIDS specification](https://bids-specification.readthedocs.io/en/stable/).
 
 BIDS currently supports the following data modalities with
-[more to come in the future](https://bids.neuroimaging.io/get_involved.html#extending-the-bids-specification):
+[more to come in the future](https://bids.neuroimaging.io/extensions/index.html):
 
 - MRI
 - MEG
@@ -74,9 +74,9 @@ adhere to our [code of conduct](https://github.com/bids-standard/bids-specificat
     for reporting problems or making suggestions
   - The [NeuroStars Discourse forum](https://neurostars.org/tags/bids), for asking usage questions
   - The [BrainHack Mattermost](https://mattermost.brainhack.org), for instant messaging
-    (see also this [news item](https://bids.neuroimaging.io/2020/06/24/Join-the-BIDS-community-on-the-BrainHack-Mattermost.html))
+    (see also this [news item](https://bids.neuroimaging.io/blog/2020/06/24/Join%20the%20BIDS%20community%20on%20the%20BrainHack%20Mattermost.html))
   - The [Google group](https://groups.google.com/forum/#!forum/bids-discussion), for broader discussions and announcements surrounding BIDS
-  - The [BIDS website "news"](https://bids.neuroimaging.io/news.html), similar to the Google group, for broader discussions and announcements
+  - The [BIDS website "blog"](https://bids.neuroimaging.io/blog/index.html), similar to the Google group, for broader discussions and announcements
 
 ## Social media channels
 
