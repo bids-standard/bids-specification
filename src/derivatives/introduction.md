@@ -15,7 +15,7 @@ Examples:
 A defaced T1w image would typically be made during the curation process and is thus under raw
 
 ```Text
-sourcedata/private/sub-01/anat/sub-01_T1w.nii.gz
+sourcedata/defaced/sub-01/anat/sub-01_T1w.nii.gz
 sub-01/anat/sub-01_T1w.nii.gz
 ```
 
@@ -23,7 +23,7 @@ A defaced T1w image could also, in theory, be derived from a BIDS dataset and wo
 
 ```Text
 sub-01/anat/sub-01_T1w.nii.gz
-derivatives/sub-01/anat/sub-01_desc-defaced_T1w.nii.gz
+derivatives/defaced/sub-01/anat/sub-01_desc-defaced_T1w.nii.gz
 ```
 
 ## Derivatives storage and directory structure
