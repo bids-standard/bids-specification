@@ -16,7 +16,7 @@ EMGChannels:
     sampling_frequency: optional
     signal_electrode: recommended
     reference__emg: recommended
-    group__channel: recommended
+    group__emg: recommended
     target_muscle: recommended
     placement__emg: recommended
     interelectrode_distance: recommended
@@ -25,7 +25,7 @@ EMGChannels:
     notch: optional
     status: optional
     status_description: optional
-  index_columns: [name__channels, group__channel]
+  index_columns: [name__channels, group__emg]
   additional_columns: allowed_if_defined
 
 EMGElectrodes:
@@ -48,7 +48,7 @@ EMGElectrodes:
     type__electrodes: recommended
     material: recommended
     impedance: recommended
-    group__channel: recommended
+    group__emg: recommended
     placement__emg: optional
-  index_columns: [name__electrodes, group__channel]
+  index_columns: [name__electrodes, group__emg]
   additional_columns: allowed_if_defined

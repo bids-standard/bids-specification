@@ -36,24 +36,18 @@ languages and SHOULD be widely supported in multiple software packages.
 Other formats that may be considered in the future should have a clear added advantage
 over the existing formats and should have wide adoption in the BIDS community.
 
-We encourage users to provide additional metadata extracted from the
-manufacturer-specific data files in the sidecar JSON file.
-
-Note the `RecordingType`, which depends on whether the data stream on disk is interrupted or not.
-Continuous data is by definition 1 segment without interruption.
-Epoched data consists of multiple segments that all have the same length
-(for example, corresponding to trials) and that have gaps in between.
-Discontinuous data consists of multiple segments of different length,
-for example due to a pause in the acquisition.
+In cases where the allowed formats do not encode all relevant metadata present in the
+device manufacturer's native file format, we encourage users to provide the additional
+metadata in the sidecar JSON file.
 
 ### Terminology: Electrodes vs. Channels
 
 For proper documentation of EMG recording metadata it is important to understand the
-difference between electrode and channel: an EMG electrode is a single point of electrical
-contact with the body, whereas a channel is the combination of the analog differential
-amplifier and analog-to-digital converter that result in a potential (voltage) difference
-that is stored in the EMG dataset.
-We employ the following short definitions:
+difference between an electrode and a channel: an EMG electrode is a single point of
+electrical contact with the body, whereas a channel is the combination of the analog
+differential amplifier (which combines signals from two electrode sources) and the
+analog-to-digital converter, which results in a potential difference (voltage) that forms
+the actual data stored in the EMG dataset. We employ the following short definitions:
 
 -   Electrode = A single point of contact between the acquisition system and
     the recording site (whether on the skin surface or intramuscular).
@@ -67,17 +61,18 @@ We employ the following short definitions:
     them), a magnetic field or magnetic gradient sensor, temperature sensor,
     accelerometer, and so forth.
 
-This distinction is especially important for EMG because a common type of EMG device comprises
-two electrodes at a fixed distance, wired such that the electrode pair is necessarily converted
-to a single channel by the amplifier (in other words, one of the electrodes necessarily acts
-as the _reference_ for the other).
-In other devices, researchers may have control over which electrode(s) to use as the reference
-for each channel.
-Although the _reference_ and _ground_ electrodes are often referred to as channels,
-they are in most common EMG systems not recorded by themselves.
-Therefore they are not represented as channels in the data.
-The type of referencing for all channels and optionally the location of the reference
-electrode and the location of the ground electrode MAY be specified.
+This distinction is especially important for EMG because a common type of EMG device
+(often erroneously called a "bipolar electrode") comprises two electrodes at a fixed distance,
+wired such that the electrode pair is necessarily converted to a single channel by the amplifier
+(in other words, one of the electrodes necessarily acts as the _reference_ for the other).
+In other kinds of devices, researchers may have control over which electrode(s) to use as
+the reference for each channel.
+
+Note also that although the _reference_ and _ground_ electrodes are often referred to as
+channels, in most common EMG systems they are not recorded by themselves.
+Therefore they are usually not represented as channels in the data.
+<!-- The type of referencing for all channels and optionally the location of the reference
+electrode and the location of the ground electrode MAY be specified. -->
 
 ### Sidecar JSON (`*_emg.json`)
 
@@ -85,7 +80,7 @@ For consistency between studies and institutions,
 we encourage users to extract the values of metadata fields from the actual raw data.
 Whenever possible, please avoid using ad hoc wording.
 
-Those fields MUST be present:
+These fields MUST be present:
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -109,6 +104,13 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("emg.EMGRecommended") }}
 
+Note the `RecordingType`, which depends on whether the data stream on disk is interrupted or not.
+Continuous data is by definition 1 segment without interruption.
+Epoched data consists of multiple segments that all have the same length
+(for example, corresponding to trials) and that have gaps in between.
+Discontinuous data consists of multiple segments of different length,
+for example due to a pause in the acquisition.
+
 These fields MAY be present:
 
 <!-- This block generates a metadata table.
@@ -123,7 +125,7 @@ A guide for using macros can be found at
 
 Note that the date and time information SHOULD be stored in the study key file
 ([`scans.tsv`](../modality-agnostic-files.md#scans-file)).
-Date time information MUST be expressed as indicated in [Units](../common-principles.md#units)
+Date time information MUST be expressed as indicated in [Units](../common-principles.md#units).
 
 #### Hardware information
 
@@ -177,7 +179,8 @@ A guide for using macros can be found at
   "EMGReference":"4 reference electrodes built-in to device, placed near the midpoint between radial and ulnar styloid processes on the volar surface",
   "HardwareFilters":{"Highpass RC filter": {"Half amplitude cutoff (Hz)": 0.0159, "Roll-off": "6dBOctave"}},
   "InstitutionAddress":"9500 Gilman Drive 0559, La Jolla, CA 92093",
-  "InstitutionName":"Swartz Center for Computational Neuroscience",
+  "InstitutionalDepartmentName":"Swartz Center for Computational Neuroscience",
+  "InstitutionName":"University of California San Diego",
   "Instructions":"Jump straight upward as high as you can, while keeping your arms at your sides.",
   "Manufacturer":"Delsys",
   "ManufacturersModelName":"Trigno® Galileo",
@@ -206,9 +209,9 @@ A channel represents one time series recorded with the recording system.
 Although this information can often be extracted from the EMG recording,
 listing it in a simple `.tsv` document makes it easy to browse or search
 (for example, searching for recordings with a sampling frequency of >=1000 Hz).
-Hence, the `channels.tsv` file is RECOMMENDED.
+Hence, the `*_channels.tsv` file is RECOMMENDED.
 Channels SHOULD appear in the table in the same order they do in the EMG data file.
-Any number of additional columns MAY be provided to provide additional information about the channels.
+Additional columns MAY be included to provide additional information about the channels.
 Note that electrode positions SHOULD NOT be added to this file but to `*_electrodes.tsv`.
 
 The columns of the channels description table stored in `*_channels.tsv` are:

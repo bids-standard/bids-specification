@@ -998,12 +998,12 @@ EMGPlacementScheme:
     by *palpation* of the skin to locate target muscles, by *functional localization*
     (temporary electrode placement at several sites during prescribed behavior,
     until a site yielding strong EMG signal is found), or by *measured distances*
-    (either absolute or proportional) relative to skeletal landmarks.
-    In datasets involving multiple EMG recording units placed at different sites in which
-    different placement procedures were used for different sites, the procedures for each
-    site SHOULD be described in the `placement_scheme` column of `channels.tsv` instead,
-    and the value of `EMGPlacementScheme` SHOULD be a non-empty string such as
-    "channel-specific" or "see channels.tsv" or similar.
+    (either absolute or proportional) relative to anatomical landmarks.
+    In datasets involving multiple EMG recording units in which different placement
+    procedures were used for different sites, the procedures for each site SHOULD be
+    described in the `placement_scheme` column of `channels.tsv` instead, and the value
+    of `EMGPlacementScheme` SHOULD be a non-empty string such as "channel-specific" or
+    "see channels.tsv" or similar.
   type: string
 EMGReference:
   name: EMGReference
@@ -1012,12 +1012,14 @@ EMGReference:
     Description of the reference electrode location when the same reference was used for
     all channels (often called a "monopolar" recording).
     If different channels have different reference electrodes, this field should contain
-    a non-empty string such as "channel-specific" and each channel-specific reference
-    should be described in the `reference` column of `channels.tsv`.
+    a non-empty string such as "channel-specific" and each channel's reference SHOULD be
+    given in the `reference` column of `*_channels.tsv`.
     For bipolar recording devices (where a single sensor unit contains two rigidly
     separated contacts, and the paired contacts are not listed independently in
-    `electrodes.tsv`), the value of `reference` (in `channels.tsv`, for single channels)
-    or `EMGReference` (in `emg.json`, when all channels were bipolar) should be "bipolar".
+    `electrodes.tsv`), this field SHOULD be "bipolar".
+    If the data contains a mix of bipolar and non-bipolar channels, the entries in the
+    `reference` column of `*_channels.tsv` corresponding to bipolar channels SHOULD
+    likewise be "bipolar".
 
   type: string
 EOGChannelCount:

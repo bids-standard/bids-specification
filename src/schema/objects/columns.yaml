@@ -186,6 +186,15 @@ group__channel:
   anyOf:
     - type: string
     - type: number
+group__emg:
+  name: group
+  display_name: Channel group
+  description: |
+    Which group of channels this channel belongs to (typically this indicates channels
+    on the same grid, strip, or other device).
+  anyOf:
+    - type: string
+    - type: number
 handedness:
   name: handedness
   display_name: Subject handedness
@@ -234,7 +243,7 @@ high_cutoff:
   description: |
     Frequencies used for the low-pass filter applied to the channel in Hz.
     If no low-pass filter applied, use `n/a`.
-    Note that hardware anti-aliasing in A/D conversion of all MEG/EEG electronics
+    Note that hardware anti-aliasing in A/D conversion of all MEG/EEG/EMG electronics
     applies a low-pass filter; specify its frequency here if applicable.
   type: number
   unit: Hz
@@ -392,8 +401,8 @@ placement__emg:
   name: placement
   display_name: Placement Scheme
   description: |
-    Placement of the sensor(s) on the body (for example, "palmar side of lower arm").
-    It can refer to an external vocabulary for describing body parts.
+    The name of a standardized electrode placement procedure or a description of the procedure used.
+    See description of the `EMGPlacementScheme` field in `*_emg.json`, above.
   type: string
 placement__motion:
   name: placement
@@ -421,9 +430,12 @@ reference__eeg:
 # reference column for channels.tsv files for EMG data
 reference__emg:
   name: reference
-  display_name: Electrode reference
+  display_name: Reference electrode
   description: |
-    Specification of the reference (for example, `ulnar styloid process`, `ElectrodeName01`, `n/a`).
+    The reference for the given channel.
+    When the reference is an electrode in `*_electrodes.tsv`, use the name of that electrode.
+    For channels originating from bipolar devices, use `"bipolar"`.
+    For non-EMG channels (for example, trigger channels, microphones) use `"n/a"`.
   type: string
 # reference column for channels.tsv files for iEEG data
 reference__ieeg:
@@ -543,8 +555,8 @@ signal_electrode:
   name: signal_electrode
   display_name: Signal electrode
   description:
-    The name of the electrode from which the `reference` electrode is subtracted, to yield
-    the channel's data.
+    The name of the electrode from which the `reference` electrode's signal is subtracted
+    to yield the channel's data.
   type: string
 size:
   name: size
