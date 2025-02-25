@@ -16,7 +16,7 @@ this extension when referring to it in the context of the academic literature.
 {{ MACROS___make_filename_template(
 "raw",
 datatypes=["emg"],
-suffixes=["emg", "channels", "electrodes", "coordsystem"])
+suffixes=["emg", "events"])
 }}
 
 EMG device manufacturers use a variety of formats for storing raw data, and there is

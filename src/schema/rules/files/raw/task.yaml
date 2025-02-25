@@ -1,4 +1,24 @@
 ---
+events:
+  suffixes:
+    - events
+  extensions:
+    - .tsv
+    - .json
+  datatypes:
+    - beh
+    - eeg
+    - emg
+    - ieeg
+    - meg
+    - nirs
+  entities:
+    subject: required
+    session: optional
+    task: required
+    acquisition: optional
+    run: optional
+
 timeseries:
   suffixes:
     - physio
