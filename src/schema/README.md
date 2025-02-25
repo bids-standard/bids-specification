@@ -259,20 +259,20 @@ The following operators should be defined by an interpreter:
 
 The following functions should be defined by an interpreter:
 
-| Function                                        | Definition                                                                                                                                | Example                                                | Note                                                                           |
-| ----------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `count(arg: array, val: any) -> int`            | Number of elements in an array equal to `val`                                                                                             | `count(columns.type, "EEG")`                           | The number of times "EEG" appears in the column "type" of the current TSV file |
-| `exists(arg: str \| array, rule: str) -> int`   | Count of files in an array that exist in the dataset. String is array with length 1. See following section for the meanings of rules.     | `exists(sidecar.IntendedFor, "subject")`               | True if all files in `IntendedFor` exist, relative to the subject directory.   |
-| `index(arg: array, val: any) -> int`            | Index of first element in an array equal to `val`, `null` if not found                                                                    | `index(["i", "j", "k"], axis)`                         | The number, from 0-2 corresponding to the string `axis`                        |
-| `intersects(a: array, b: array) -> bool`        | `true` if arguments contain any shared elements                                                                                           | `intersects(dataset.modalities, ["pet", "mri"])`       | True if either PET or MRI data is found in dataset                             |
-| `allequal(a: array, b: array) -> bool`          | `true` if arrays have the same length and paired elements are equal                                                                       | `intersects(dataset.modalities, ["pet", "mri"])`       | True if either PET or MRI data is found in dataset                             |
-| `length(arg: array) -> int`                     | Number of elements in an array                                                                                                            | `length(columns.onset) > 0`                            | True if there is at least one value in the onset column                        |
-| `match(arg: str, pattern: str) -> bool`         | `true` if `arg` matches the regular expression `pattern` (anywhere in string)                                                             | `match(extension, ".gz$")`                             | True if the file extension ends with `.gz`                                     |
-| `max(arg: array) -> number`                     | The largest non-`n/a` value in an array                                                                                                   | `max(columns.onset)`                                   | The time of the last onset in an events.tsv file                               |
-| `min(arg: array) -> number`                     | The smallest non-`n/a` value in an array                                                                                                  | `min(sidecar.SliceTiming) == 0`                        | A check that the onset of the first slice is 0s                                |
-| `sorted(arg: array, method: str) -> array`      | The sorted values of the input array; defaults to type-determined sort. If method is "lexical", or "numeric" use lexical or numeric sort. | `sorted(sidecar.VolumeTiming) == sidecar.VolumeTiming` | True if `sidecar.VolumeTiming` is sorted                                       |
-| `substr(arg: str, start: int, end: int) -> str` | The portion of the input string spanning from start position to end position                                                              | `substr(path, 0, length(path) - 3)`                    | `path` with the last three characters dropped                                  |
-| `type(arg: Any) -> str`                         | The name of the type, including `"array"`, `"object"`, `"null"`                                                                           | `type(datatypes)`                                      | Returns `"array"`                                                              |
+| Function                                          | Definition                                                                                                                                | Example                                                | Note                                                                           |
+| ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `count(arg: array, val: any) -> int`              | Number of elements in an array equal to `val`                                                                                             | `count(columns.type, "EEG")`                           | The number of times "EEG" appears in the column "type" of the current TSV file |
+| `exists(arg: str \| array, rule: str) -> int`     | Count of files in an array that exist in the dataset. String is array with length 1. See following section for the meanings of rules.     | `exists(sidecar.IntendedFor, "subject")`               | True if all files in `IntendedFor` exist, relative to the subject directory.   |
+| `index(arg: array, val: any) -> int`              | Index of first element in an array equal to `val`, `null` if not found                                                                    | `index(["i", "j", "k"], axis)`                         | The number, from 0-2 corresponding to the string `axis`                        |
+| `intersects(a: array, b: array) -> array \| bool` | The intersection of arrays `a` and `b`, or `false` if there are no shared values.                                                         | `intersects(dataset.modalities, ["pet", "mri"])`       | Non-empty array if either PET or MRI data is found in dataset, otherwise false |
+| `allequal(a: array, b: array) -> bool`            | `true` if arrays have the same length and paired elements are equal                                                                       | `intersects(dataset.modalities, ["pet", "mri"])`       | True if either PET or MRI data is found in dataset                             |
+| `length(arg: array) -> int`                       | Number of elements in an array                                                                                                            | `length(columns.onset) > 0`                            | True if there is at least one value in the onset column                        |
+| `match(arg: str, pattern: str) -> bool`           | `true` if `arg` matches the regular expression `pattern` (anywhere in string)                                                             | `match(extension, ".gz$")`                             | True if the file extension ends with `.gz`                                     |
+| `max(arg: array) -> number`                       | The largest non-`n/a` value in an array                                                                                                   | `max(columns.onset)`                                   | The time of the last onset in an events.tsv file                               |
+| `min(arg: array) -> number`                       | The smallest non-`n/a` value in an array                                                                                                  | `min(sidecar.SliceTiming) == 0`                        | A check that the onset of the first slice is 0s                                |
+| `sorted(arg: array, method: str) -> array`        | The sorted values of the input array; defaults to type-determined sort. If method is "lexical", or "numeric" use lexical or numeric sort. | `sorted(sidecar.VolumeTiming) == sidecar.VolumeTiming` | True if `sidecar.VolumeTiming` is sorted                                       |
+| `substr(arg: str, start: int, end: int) -> str`   | The portion of the input string spanning from start position to end position                                                              | `substr(path, 0, length(path) - 3)`                    | `path` with the last three characters dropped                                  |
+| `type(arg: Any) -> str`                           | The name of the type, including `"array"`, `"object"`, `"null"`                                                                           | `type(datatypes)`                                      | Returns `"array"`                                                              |
 
 #### The `exists()` function
 
@@ -399,6 +399,13 @@ These objects additionally have the field:
 | `type`   | The type (such as `string`, `integer`, `object`) of values the term describes                                                                                                                                   |
 | `format` | The format of the term (defined in `objects.formats`)                                                                                                                                                           |
 
+`objects.columns` additionally permit a `definition` field that may take any value permissible
+for the definition of a column in a JSON sidecar:
+
+| Field        | Description                                                                                                                                                                                                   |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `definition` | A JSON object that describes the column as in [Common principles - Tabular files][tabular files]. This is mutually exclusive with the `type` field, and is used for fields that have overridable definitions. |
+
 Value terms groups (`datatypes`, `suffixes`, `extensions`) define terms where a field
 can take on multiple values.
 For example, a file has one datatype, as compared to a collection of entities.
@@ -439,7 +446,7 @@ arrays or objects:
 | `properties`           | The object described has a given set of fields; the values of these fields may be constrained |
 | `additionalProperties` | The object described has constraints on its values, but not the names                         |
 
-### On re-used objects with different definitions
+### On reused objects with different definitions
 
 In a few cases, two objects with the same name appear multiple times in the specification.
 When this happens, it is preferred to find a common definition, and clarify it in the rules (see below).
@@ -532,6 +539,7 @@ The convention can be summed up in the following rules:
     | `display_name` | Human-friendly name                                                 |
     | `description`  | Term definition                                                     |
     | `name`         | Name of column in TSV file (in `snake_case`)                        |
+    | `definition`   | JSON definition of a column, according to [Tabular files][]         |
     | `unit`         | Interpretation of numeric values                                    |
     | `type`         | Type of value                                                       |
     | `format`       | Permissible format of values, from definitions in `objects.formats` |
@@ -999,6 +1007,7 @@ EventsMissing:
 ### One-off rules
 
 -   `rules.modalities` - The keys in this file are the modalities, the values objects with the following field:
+
     | Field       | Description                           |
     | ----------- | ------------------------------------- |
     | `datatypes` | List of datatypes mapping to modality |
@@ -1051,3 +1060,5 @@ formalize the allowable directories, files, fields and values of the BIDS schema
 ensuring consistency across the entire schema directory. Validation of the schema is
 incorporated into the CI, so any changes that are inconsistent will be flagged before
 inclusion.
+
+[tabular files]: https://bids-specification.readthedocs.io/en/stable/common-principles.html#tabular-files

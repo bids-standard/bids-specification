@@ -8,7 +8,7 @@ Templates:
 -   `README[.md|.rst|.txt]`
 -   `CITATION.cff`
 -   `CHANGES`
--   `LICENSE`
+-   `LICENSE[.md|.rst|.txt]`
 
 ### `dataset_description.json`
 
@@ -246,11 +246,11 @@ available").
 
 `participants.tsv` example:
 
-```Text
-participant_id age sex handedness group
-sub-01 34 M right read
-sub-02 12 F right write
-sub-03 33 F n/a read
+```tsv
+participant_id	age	sex	handedness	group
+sub-01	34	M	right	read
+sub-02	12	F	right	write
+sub-03	33	F	n/a	read
 ```
 
 It is RECOMMENDED to accompany each `participants.tsv` file with a sidecar
@@ -320,13 +320,13 @@ and a guide for using macros can be found at
 
 `samples.tsv` example:
 
-```Text
-sample_id participant_id sample_type derived_from
-sample-01 sub-01 tissue n/a
-sample-02 sub-01 tissue sample-01
-sample-03 sub-01 tissue sample-01
-sample-04 sub-02 tissue n/a
-sample-05 sub-02 tissue n/a
+```tsv
+sample_id	participant_id	sample_type	derived_from
+sample-01	sub-01	tissue	n/a
+sample-02	sub-01	tissue	sample-01
+sample-03	sub-01	tissue	sample-01
+sample-04	sub-02	tissue	n/a
+sample-05	sub-02	tissue	n/a
 ```
 
 It is RECOMMENDED to accompany each `samples.tsv` file with a sidecar
@@ -486,7 +486,7 @@ All such included additional fields SHOULD be documented in an accompanying
 
 Example `_scans.tsv`:
 
-```Text
+```tsv
 filename	acq_time
 func/sub-control01_task-nback_bold.nii.gz	1877-06-15T13:45:30
 func/sub-control01_task-motor_bold.nii.gz	1877-06-15T13:55:33
@@ -522,7 +522,7 @@ and a guide for using macros can be found at
 
 `_sessions.tsv` example:
 
-```Text
+```tsv
 session_id	acq_time	systolic_blood_pressure
 ses-predrug	2009-06-15T13:45:30	120
 ses-postdrug	2009-06-16T13:45:30	100
@@ -545,9 +545,3 @@ code organization of these scripts at the moment.
 <!-- Link Definitions -->
 
 [bids uris]: ./common-principles.md#bids-uri
-
-[object]: https://www.json.org/json-en.html
-
-[string]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[uri]: ./common-principles.md#uniform-resource-indicator

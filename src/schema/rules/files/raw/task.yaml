@@ -101,6 +101,18 @@ events__mrs:
     nucleus: optional
     volume: optional
 
+timeseries__anat:
+  $ref: rules.files.raw.task.timeseries
+  datatypes:
+    - anat
+  entities:
+    $ref: rules.files.raw.task.timeseries.entities
+    ceagent: optional
+    reconstruction: optional
+    echo: optional
+    part: optional
+    chunk: optional
+
 timeseries__func:
   $ref: rules.files.raw.task.timeseries
   datatypes:

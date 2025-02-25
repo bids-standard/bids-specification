@@ -94,10 +94,10 @@ A guide for using macros can be found at
 
 (after decompression)
 
-```Text
-34    110    0
-44    112    0
-23    100    1
+```tsv
+34	110	0
+44	112	0
+23	100	1
 ```
 
 Example `*_physio.json`:

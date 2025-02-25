@@ -10,7 +10,7 @@
 EntitiesTaskMetadata:
   selectors:
     - '"task" in entities'
-    - suffix != 'events'
+    - '!intersects([suffix], ["events", "channels", "markers"])'
   fields:
     TaskName: recommended
 

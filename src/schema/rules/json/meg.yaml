@@ -20,7 +20,7 @@ MEGCoordsystemWithEEG:
       level: optional
       description_addendum: |
         See [Recording EEG simultaneously with MEG]
-        (/modality-specific-files/magnetoencephalography.html#recording-eeg-simultaneously-with-meg).
+        (/modality-specific-files/magnetoencephalography.html#recording-ieeg-simultaneously-with-meg).
         Preferably the same as the `MEGCoordinateSystem`.
     EEGCoordinateUnits: optional
     EEGCoordinateSystemDescription:
@@ -28,7 +28,7 @@ MEGCoordsystemWithEEG:
       level_addendum: required if `EEGCoordinateSystem` is `Other`
       description_addendum: |
         See [Recording EEG simultaneously with MEG]
-        (/modality-specific-files/magnetoencephalography.html#recording-eeg-simultaneously-with-meg).
+        (/modality-specific-files/magnetoencephalography.html#recording-ieeg-simultaneously-with-meg).
 
 MEGCoordsystemWithEEGMEGCoordinateSystem:
   selectors:
