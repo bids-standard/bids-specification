@@ -89,6 +89,13 @@ component:
     - $ref: objects.enums.quat_y.value
     - $ref: objects.enums.quat_z.value
     - $ref: objects.enums.quat_w.value
+coordinate_system:
+  name: coordinate_system
+  display_name: Coordinate System
+  description: |
+    Name of the coordinate system defined in `coordsystem.json` in which the electrode's
+    `x`, `y`, and (optionally) `z` coordinates are given.
+  type: string
 detector__channels:
   name: detector
   display_name: Detector Name
@@ -252,6 +259,15 @@ index:
   description: |
     The label integer index.
   type: integer
+interelectrode_distance:
+  name: interelectrode_distance
+  display_name: Interelectrode Distance
+  description: |
+    Distance between adjacent electrodes (in a pair or grid) that are rigidly attached to
+    the same sensor device, or between the `signal_electrode` and its `reference` when
+    each is independently placed.
+  type: number
+  unit: mm
 low_cutoff:
   name: low_cutoff
   display_name: Low cutoff
@@ -372,6 +388,13 @@ participant_id:
     matching a participant entity found in the dataset.
   type: string
   pattern: ^sub-[0-9a-zA-Z+]+$
+placement__emg:
+  name: placement
+  display_name: Placement Scheme
+  description: |
+    Placement of the sensor(s) on the body (for example, "palmar side of lower arm").
+    It can refer to an external vocabulary for describing body parts.
+  type: string
 placement__motion:
   name: placement
   display_name: Placement
@@ -394,6 +417,13 @@ reference__eeg:
     Name of the reference electrode(s).
     This column is not needed when it is common to all channels.
     In that case the reference electrode(s) can be specified in `*_eeg.json` as `EEGReference`).
+  type: string
+# reference column for channels.tsv files for EMG data
+reference__emg:
+  name: reference
+  display_name: Electrode reference
+  description: |
+    Specification of the reference (for example, `ulnar styloid process`, `ElectrodeName01`, `n/a`).
   type: string
 # reference column for channels.tsv files for iEEG data
 reference__ieeg:
@@ -509,6 +539,13 @@ short_channel:
     The total number of channels listed as short channels
     SHOULD be stored in `ShortChannelCount` in `*_nirs.json`.
   type: boolean
+signal_electrode:
+  name: signal_electrode
+  display_name: Signal electrode
+  description:
+    The name of the electrode from which the `reference` electrode is subtracted, to yield
+    the channel's data.
+  type: string
 size:
   name: size
   display_name: Electrode size
@@ -603,6 +640,14 @@ strain_rrid:
     of the strain of the species, for example: `RRID:IMSR_JAX:000664`.
   type: string
   format: rrid
+target_muscle:
+  name: target_muscle
+  display_name: Target muscle
+  description: |
+    Name of the muscle(s) from which the EMG signal in this channel is believed to originate.
+    When exact muscle is unknown (such as when using electrode grids that cover multiple muscles),
+    groups of muscles may be named instead (for example "flexors of the left forearm").
+  type: string
 time:
   name: time
   display_name: Time

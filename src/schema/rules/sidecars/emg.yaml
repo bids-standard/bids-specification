@@ -1,0 +1,94 @@
+#
+# Groups of related metadata fields
+#
+# Assumptions: never need disjunction of selectors
+# Assumptions: top-to-bottom overrides is sufficient logic
+
+---
+EMGHardware:
+  selectors:
+    - datatype == "emg"
+    - suffix == "emg"
+  fields:
+    Manufacturer: recommended
+    ManufacturersModelName: recommended
+    SoftwareVersions: recommended
+    DeviceSerialNumber: recommended
+# TODO?
+#   AmplifierType: recommended
+#   ElectrodeManufacturer: recommended
+#   ElectrodeManufacturersModelName: recommended
+
+EMGTaskInformation:
+  selectors:
+    - datatype == "emg"
+    - suffix == "emg"
+  fields:
+    TaskName:
+      level: required
+      description_addendum: |
+        A recommended convention is to name resting state task using labels
+        beginning with `rest`.
+    TaskDescription: recommended
+    Instructions:
+      level: recommended
+      description_addendum: |
+        This is especially important in context of resting state recordings, to distinguish
+        resting positions with different postures (for example, `"seated"`, `"reclined"`).
+
+EMGInstitutionInformation:
+  selectors:
+    - datatype == "emg"
+    - suffix == "emg"
+  fields:
+    InstitutionName: recommended
+    InstitutionAddress: recommended
+    InstitutionalDepartmentName: recommended
+
+# Specific EMG fields MUST be present
+EMGRequired:
+  selectors:
+    - datatype == "emg"
+    - suffix == "emg"
+  fields:
+    EMGPlacementScheme: required
+    EMGReference: required
+    SamplingFrequency:
+      level: required
+      description_addendum: |
+        The sampling frequency of data channels that deviate from the main sampling
+        frequency SHOULD be specified in the `channels.tsv` file.
+    PowerLineFrequency: required
+    SoftwareFilters: required
+
+# Specific EMG fields SHOULD be present
+EMGRecommended:
+  selectors:
+    - datatype == "emg"
+    - suffix == "emg"
+  fields:
+    ElectrodeMaterial: recommended
+    ElectrodeType: recommended
+    EMGChannelCount: recommended
+    EMGGround: recommended
+    EpochLength: recommended
+    HardwareFilters: recommended
+    InterelectrodeDistance: recommended
+    RecordingDuration: recommended
+    RecordingType: recommended
+    SubjectArtefactDescription: recommended
+    TriggerChannelCount: recommended
+
+# Specific EMG fields MAY be present
+# TODO: do we want/need any of these?
+#       ECGChannelCount: optional
+#       EOGChannelCount: optional
+#       MISCChannelCount: optional
+#       ElectricalStimulation: optional
+#       ElectricalStimulationParameters: optional
+EMGOptional:
+  selectors:
+    - datatype == "emg"
+    - suffix == "emg"
+  fields:
+    SkinPreparation: optional

@@ -9,6 +9,21 @@ ACCELChannelCount:
     Number of acceleration channels.
   type: integer
   minimum: 0
+AnchorCoordinates:
+  name: AnchorCoordinates
+  display_name: Anchor Coordinates
+  description: |
+    Coordinates of the `AnchorElectrode` in the parent (anatomical) coordinate system.
+    This should be an array of numbers of length 3, in the units given in
+    `EMGCoordinateSystemUnits` within the JSON object named in `ParentCoordinateSystem`.
+  type: array
+AnchorElectrode:
+  name: AnchorElectrode
+  display_name: Anchor Electrode
+  description: |
+    Name of the electrode in the child (device) coordinate system whose coordinates in
+    the parent (anatomical) coordinate system are given in `AnchorCoordinates`.
+  type: string
 Acknowledgements:
   name: Acknowledgements
   display_name: Acknowledgements
@@ -911,6 +926,18 @@ EEGReference:
     this field should have a general description and the channel specific
     reference should be defined in the `channels.tsv` file.
   type: string
+ElectrodeMaterial:
+  name: ElectrodeMaterial
+  display_name: Electrode Material
+  description: |
+    Material of the electrode (for example, `Tin`, `Ag/AgCl`, `Gold`).
+  type: string
+ElectrodeType:
+  name: ElectrodeType
+  display_name: Electrode type
+  description: |
+    Type of the electrode (for example, cup, ring, clip-on, wire, needle).
+  type: string
 EMGChannelCount:
   name: EMGChannelCount
   display_name: EMG Channel Count
@@ -918,6 +945,81 @@ EMGChannelCount:
     Number of EMG channels.
   type: integer
   minimum: 0
+EMGCoordinateSystem:
+  name: EMGCoordinateSystem
+  display_name: EMG Coordinate System
+  description: |
+    Defines the coordinate system for the EMG sensors.
+
+    See the
+    [Coordinate Systems Appendix](SPEC_ROOT/appendices/coordinate-systems.md)
+    for a list of restricted keywords for coordinate systems.
+    If `"Other"`, provide definition of the coordinate system in
+    `EMGCoordinateSystemDescription`.
+  anyOf:
+    - $ref: objects.enums._EMGCoordSys
+EMGCoordinateSystemDescription:
+  name: EMGCoordinateSystemDescription
+  display_name: EMG Coordinate System Description
+  description: |
+    Free-form text description of the coordinate system, typically defining the origin
+    and positive x,y,z axis directions, relative to skeletal landmarks.
+    May also include a link to a documentation page or paper describing the
+    system in greater detail.
+  type: string
+EMGCoordinateUnits:
+  name: EMGCoordinateUnits
+  display_name: EMG Coordinate Units
+  description: |
+    Units of the coordinates of `EMGCoordinateSystem`.
+  type: string
+  enum:
+    - m
+    - mm
+    - cm
+    - n/a
+EMGGround:
+  name: EMGGround
+  display_name: EMG Ground
+  description: |
+    Description of the location of the ground electrode
+    (for example, `"right radial styloid process"`).
+  type: string
+EMGPlacementScheme:
+  name: EMGPlacementScheme
+  display_name: EMG Placement Scheme
+  description: |
+    The name of a standardized electrode placement procedure (for example, `"SENIAM 8"`)
+    or a description of the procedure used.
+    Descriptions SHOULD NOT simply give the name of the targeted muscle (use the
+    `target_muscle` column in `channels.tsv` for that), but rather SHOULD reflect the
+    process used by the researcher(s) when placing electrodes.
+    For example, EMG electrode sites may be chosen by *visual reference* to target muscles,
+    by *palpation* of the skin to locate target muscles, by *functional localization*
+    (temporary electrode placement at several sites during prescribed behavior,
+    until a site yielding strong EMG signal is found), or by *measured distances*
+    (either absolute or proportional) relative to skeletal landmarks.
+    In datasets involving multiple EMG recording units placed at different sites in which
+    different placement procedures were used for different sites, the procedures for each
+    site SHOULD be described in the `placement_scheme` column of `channels.tsv` instead,
+    and the value of `EMGPlacementScheme` SHOULD be a non-empty string such as
+    "channel-specific" or "see channels.tsv" or similar.
+  type: string
+EMGReference:
+  name: EMGReference
+  display_name: EMG Reference
+  description: |
+    Description of the reference electrode location when the same reference was used for
+    all channels (often called a "monopolar" recording).
+    If different channels have different reference electrodes, this field should contain
+    a non-empty string such as "channel-specific" and each channel-specific reference
+    should be described in the `reference` column of `channels.tsv`.
+    For bipolar recording devices (where a single sensor unit contains two rigidly
+    separated contacts, and the paired contacts are not listed independently in
+    `electrodes.tsv`), the value of `reference` (in `channels.tsv`, for single channels)
+    or `EMGReference` (in `emg.json`, when all channels were bipolar) should be "bipolar".
+
+  type: string
 EOGChannelCount:
   name: EOGChannelCount
   display_name: EOG Channel Count
@@ -1709,6 +1811,13 @@ IntendedFor__ds_relative:
             format: bids_uri
           - type: string
             format: dataset_relative
+InterelectrodeDistance:
+  name: InterelectrodeDistance
+  display_name: Interelectrode Distance
+  description: |
+    Distance between pairs or grids of electrodes rigidly attached to the same sensor device.
+  type: number
+  unit: mm
 InversionTime:
   name: InversionTime
   display_name: Inversion Time
@@ -2503,6 +2612,13 @@ ParallelReductionFactorOutOfPlane:
     Corresponds to [DICOM Tag 0018, 9155](https://dicomlookup.com/dicomtags/(0018,9155))
     `Parallel Reduction Factor out-of-plane`.
   type: number
+ParentCoordinateSystem:
+  name: ParentCoordinateSystem
+  display_name: Parent Coordinate System
+  description: |
+    The name of a JSON mapping key that defines the parent (anatomical) coordinate system
+    in which this child (device) coordinate system is anchored.
+  type: string
 PartialFourier:
   name: PartialFourier
   display_name: Partial Fourier
@@ -3300,6 +3416,13 @@ SinglesRate:
   type: array
   items:
     type: number
+SkinPreparation:
+  name: SkinPreparation
+  display_name: Skin Preparation
+  description: |
+    How skin was prepared prior to sensor device placement, for example, `"alcohol wipe"`
+    or `"abrasive gel"`.
+  type: string
 SkullStripped:
   name: SkullStripped
   display_name: Skull Stripped
