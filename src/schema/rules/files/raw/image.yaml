@@ -1,0 +1,21 @@
+---
+image:
+  datatypes:
+    - stimuli
+  suffixes:
+    - image
+  extensions:
+    - .jpg
+    - .JPG
+    - .jpeg
+    - .JPEG
+    - .png
+    - .PNG
+    - .gif
+    - .GIF
+    - .webp
+    - .WEBP
+  entities:
+    stimulus: required
+    part: optional
+    annotation: optional
