@@ -23,10 +23,10 @@ EMG device manufacturers use a variety of formats for storing raw data, and ther
 no single standard that all researchers agree on. For BIDS, EMG data MUST be
 stored in one of the following formats:
 
-| **Format**                                        | **Extension(s)**         | **Description**                                                                                                                                                                                      |
-| ------------------------------------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [European data format](https://www.edfplus.info/) | `.edf`                   | Each recording consists of a single `.edf` file. [`edf+`](https://www.edfplus.info/specs/edfplus.html) files are permitted. The capital `.EDF` extension MUST NOT be used.                           |
-| [Biosemi data format](https://www.biosemi.com/faq/file_format.htm) | `.bdf`                   | Each recording consists of a single `.bdf` file. [`bdf+`](https://www.teuniz.net/edfbrowser/bdfplus%20format%20description.html) files are permitted. The capital `.BDF` extension MUST NOT be used.                           |
+| **Format**                                                         | **Extension(s)**         | **Description**                                                                                                                                                                                      |
+| ------------------------------------------------------------------ | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [European data format](https://www.edfplus.info/)                  | `.edf`                   | Each recording consists of a single `.edf` file. [`edf+`](https://www.edfplus.info/specs/edfplus.html) files are permitted. The capital `.EDF` extension MUST NOT be used.                           |
+| [Biosemi data format](https://www.biosemi.com/faq/file_format.htm) | `.bdf`                   | Each recording consists of a single `.bdf` file. [`bdf+`](https://www.teuniz.net/edfbrowser/bdfplus%20format%20description.html) files are permitted. The capital `.BDF` extension MUST NOT be used. |
 
 It is RECOMMENDED to use the BDF+ data format.
 Future versions of BIDS may extend this list of supported file formats.
@@ -407,7 +407,7 @@ In the absence of digitized electrode locations, specifying the position of elec
 large arrays may be simplified by defining multiple coordinate systems: a "child" coordinate
 system to specify the relative locations of each electrode within the device array,
 and a "parent" coordinate system defined in reference to anatomical landmarks.
-The two coordinate systems are linked by an "anchor" electrode whose coordinates in *both*
+The two coordinate systems are linked by an "anchor" electrode whose coordinates in _both_
 coordinate systems are given: its coordinates in the child (device) coordinate system are
 given in `*_electrodes.tsv` (along with the device-relative locations of all other electrodes
 in the array), and its coordinates in the parent (anatomical) coordinate system are given
