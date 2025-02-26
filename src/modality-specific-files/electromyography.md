@@ -83,6 +83,42 @@ Therefore they are usually not represented as channels in the data.
 <!-- The type of referencing for all channels and optionally the location of the reference
 electrode and the location of the ground electrode MAY be specified. -->
 
+### Describing sensor locations
+
+Each EMG-BIDS dataset should include sensor location information that is as accurate as
+possible given the measurement means available to the researcher(s).
+Below are examples ranging from most accurate to least accurate, which can serve as a
+guide to where sensor placement information should be stored in the dataset.
+
+1.  Electrode locations and anatomical landmarks are digitized with a Polhemus FasTrak.
+    3D coordinates for each electrode are given in `x,y,z` columns of `*_electrodes.tsv`,
+    and the coordinate system definition is given in `*_coordsystem.json`.
+2.  Electrode locations are measured relative to nearby anatomical landmarks using a flexible
+    measuring tape.
+    2D or 3D coordinates for each electrode are given in `x`, `y`, and (optionally) `z`
+    columns of `*_electrodes.tsv`, and the coordinate system definition in
+    `*_coordsystem.json` specifies the axis directions with reference to those anatomical
+    landmarks.
+3.  The arrangement of electrodes in a group or grid is measured (or known from the device
+    manufacturer), and is provided in `x,y,z` columns of `*_electrodes.tsv`, with a
+    device-internal "child" coordinate system provided in `*_coordsystem.json`.
+    An anatomically-defined "parent" coordinate system is also defined in the same file,
+    and the name and coordinates of one electrode (the "anchor" electrode) from each group
+    or grid is given in the parent coordinate system.
+    This allows the approximate anatomical locations of all electrodes to be calculated
+    by treating the device-internal coordinates as offsets from the anchor coordinate.
+4.  Individual electrode locations are chosen by visual inspection, palpation, or
+    functional localizers.
+    No measured coordinates are provided; placement information is given either in the
+    `EMGPlacementSchemeDescription` field of `*_emg.json` (when the placement approach is
+    the same for all sensors), or in the `placement` column of `*_channels.tsv` (when the
+    placement approach varied across sensors).
+
+More details on each of these scenarios is given below in the
+[Channels description](#channels-description-_channelstsv),
+[Electrodes description](#electrodes-description-_electrodestsv), and
+[Coordinate system](#coordinate-system-json-_coordsystemjson) sections.
+
 ### Sidecar JSON (`*_emg.json`)
 
 For consistency between studies and institutions,
