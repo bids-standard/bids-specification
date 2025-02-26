@@ -45,21 +45,3 @@ EMGCoordsystemAnchor:
     ParentCoordinateSystem: optional
     AnchorCoordinates: optional
     AnchorElectrode: optional
-
-EMGCoordsystemLandmarkDescriptionRec:
-  selectors:
-    - datatype == "emg"
-    - suffix == "coordsystem"
-    - json.AnatomicalLandmarkCoordinateSystem != "Other"
-  fields:
-    AnatomicalLandmarkCoordinateSystemDescription:
-      level: recommended
-      level_addendum: required if `AnatomicalLandmarkCoordinateSystem` is `"Other"`
-
-EMGCoordsystemLandmarkDescriptionReq:
-  selectors:
-    - datatype == "emg"
-    - suffix == "coordsystem"
-    - json.AnatomicalLandmarkCoordinateSystem == "Other"
-  fields:
-    AnatomicalLandmarkCoordinateSystemDescription: required
