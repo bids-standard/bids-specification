@@ -234,6 +234,7 @@ def make_filename_template(
     pdf_format=False,
     placeholders=False,
     empty_dirs=None,
+    show_entities=tuple(),
     **kwargs,
 ):
     """Create codeblocks containing example filename patterns for a given datatype.
@@ -271,6 +272,10 @@ def make_filename_template(
         If False, empty datatype directories are not included. If ``placeholders`` is True,
         this option is set False.
         Default is True.
+    show_entities: tuple, optional
+        If ``placeholders`` is ``False`` this argument is ignored.
+        When using placeholders, this argument can be set to a list or tuple of entity
+        names that will be "extracted" out of the placeholder.
 
     Other Parameters
     ----------------
@@ -325,9 +330,11 @@ def make_filename_template(
     if empty_dirs is None:
         empty_dirs = not placeholders
 
+    entity_list = schema.rules.entities
+    start_string = ""
     if placeholders:
         metaentity_name = "matches" if dstype == "raw" else "source_entities"
-        ent_string = (
+        start_string = (
             lt
             + utils._link_with_html(
                 metaentity_name,
@@ -337,6 +344,7 @@ def make_filename_template(
             )
             + gt
         )
+        entity_list = show_entities
 
     for datatype in sorted(file_groups):
         group_lines = []
@@ -350,44 +358,43 @@ def make_filename_template(
 
         # Unique filename patterns
         for group in file_groups[datatype]:
-            if not placeholders:
-                ent_string = ""
-                for ent in schema.rules.entities:
-                    if ent not in group.entities:
-                        continue
+            ent_string = start_string
+            for ent in entity_list:
+                if ent not in group.entities:
+                    continue
 
-                    # Add level and any overrides to entity
-                    ent_obj = group.entities[ent]
-                    if isinstance(ent_obj, str):
-                        ent_obj = {"level": ent_obj}
-                    entity = {**schema.objects.entities[ent], **ent_obj}
+                # Add level and any overrides to entity
+                ent_obj = group.entities[ent]
+                if isinstance(ent_obj, str):
+                    ent_obj = {"level": ent_obj}
+                entity = {**schema.objects.entities[ent], **ent_obj}
 
-                    if "enum" in entity:
-                        # Link full entity
-                        pattern = utils._link_with_html(
-                            _format_entity(entity, lt, gt),
-                            html_path=f"{ENTITIES_PATH}.html",
-                            heading=entity["name"],
-                            pdf_format=pdf_format,
-                        )
-                    else:
-                        # Link entity and format separately
-                        entity["name"] = utils._link_with_html(
-                            entity["name"],
-                            html_path=f"{ENTITIES_PATH}.html",
-                            heading=entity["name"],
-                            pdf_format=pdf_format,
-                        )
-                        fmt = entity.get("format", "label")
-                        entity["format"] = utils._link_with_html(
-                            entity.get("format", "label"),
-                            html_path=f"{GLOSSARY_PATH}.html",
-                            heading=f"{fmt}-common_principles",
-                            pdf_format=pdf_format,
-                        )
-                        pattern = _format_entity(entity, lt, gt)
+                if "enum" in entity:
+                    # Link full entity
+                    pattern = utils._link_with_html(
+                        _format_entity(entity, lt, gt),
+                        html_path=f"{ENTITIES_PATH}.html",
+                        heading=entity["name"],
+                        pdf_format=pdf_format,
+                    )
+                else:
+                    # Link entity and format separately
+                    entity["name"] = utils._link_with_html(
+                        entity["name"],
+                        html_path=f"{ENTITIES_PATH}.html",
+                        heading=entity["name"],
+                        pdf_format=pdf_format,
+                    )
+                    fmt = entity.get("format", "label")
+                    entity["format"] = utils._link_with_html(
+                        entity.get("format", "label"),
+                        html_path=f"{GLOSSARY_PATH}.html",
+                        heading=f"{fmt}-common_principles",
+                        pdf_format=pdf_format,
+                    )
+                    pattern = _format_entity(entity, lt, gt)
 
-                    ent_string = _add_entity(ent_string, pattern, entity["level"])
+                ent_string = _add_entity(ent_string, pattern, entity["level"])
 
             # In cases of large numbers of suffixes,
             # we use the "suffix" variable and expect a table later in the spec
