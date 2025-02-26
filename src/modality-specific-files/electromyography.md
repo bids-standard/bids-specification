@@ -36,6 +36,15 @@ languages and SHOULD be widely supported in multiple software packages.
 Other formats that may be considered in the future should have a clear added advantage
 over the existing formats and should have wide adoption in the BIDS community.
 
+The [`acq-<label>`](../appendices/entities.md#acq) entity MAY be used to indicate
+simultaneous acquisition of data from multiple EMG devices, in cases where the devices
+store data in separate data files.
+If separate devices are being used with separate sampling rates, start times, or other
+acquisition parameters, the `acq-<label>` entity MUST be used to distinguish between them.
+The synchronization of data from multiple devices SHOULD be described in the
+[Scans](../modality-agnostic-files.md#scans-file) (`scans.tsv`) file, using the
+`acq_time` entity.
+
 In cases where the allowed formats do not encode all relevant metadata present in the
 device manufacturer's native file format, we encourage users to provide the additional
 metadata in the sidecar JSON file.
