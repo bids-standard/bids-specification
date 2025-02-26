@@ -26,6 +26,16 @@ EMGCoordsystemOther:
   fields:
     EMGCoordinateSystemDescription: required
 
+# Fields relating to EMG placement
+EMGPlacementSchemeInfo:
+  selectors:
+    - datatype == "emg"
+    - suffix == "emg"
+    - '"EMGPlacementScheme" in json'
+    - json.EMGPlacementScheme == "Other"
+  fields:
+    EMGPlacementSchemeDescription: required
+
 # Fields relating to the linkage between child (device) and parent (anatomical) coordinate systems
 EMGCoordsystemAnchor:
   selectors:

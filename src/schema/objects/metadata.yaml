@@ -1090,17 +1090,17 @@ EMGPlacementScheme:
   description: |
     The way in which electrode placement locations were determined.
     If electrode locations are provided as coordinates in `*_electrodes.tsv` in reference
-    to a coordinate system defined in `*_coordsystem.json`, then specify `"measured"`.
-    If approach to placement varied across sensor devices, specify `"channel-specific"`
+    to a coordinate system defined in `*_coordsystem.json`, then specify `"Measured"`.
+    If approach to placement varied across sensor devices, specify `"ChannelSpecific"`
     and include placement details in the `placement` column of `*_channels.tsv`.
     If a standardized electrode placement procedure (for example, SENIAM 8) was followed,
-    or if an ad-hoc procedure was followed, specify `"other"` and provide details in
+    or if an ad-hoc procedure was followed, specify `"Other"` and provide details in
     `EMGPlacementSchemeDescription`.
   type: string
   enum:
-    - channel-specific
-    - measured
-    - other
+    - ChannelSpecific
+    - Measured
+    - Other
 EMGPlacementSchemeDescription:
   name: EMGPlacementSchemeDescription
   display_name: EMG Placement Scheme Description
