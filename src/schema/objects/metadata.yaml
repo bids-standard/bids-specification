@@ -1110,12 +1110,12 @@ EMGReference:
   description: |
     Description of the reference electrode location when the same reference was used for
     all channels (often called a "monopolar" recording).
-    If different channels have different reference electrodes, this field should contain
-    a non-empty string such as "channel-specific" and each channel's reference SHOULD be
-    given in the `reference` column of `*_channels.tsv`.
+    If different channels have different reference electrodes, this field SHOULD contain
+    the string `"channel-specific"` and each channel's reference SHOULD be given in the
+    `reference` column of `*_channels.tsv`.
     For bipolar recording devices (where a single sensor unit contains two rigidly
     separated contacts, and the paired contacts are not listed independently in
-    `electrodes.tsv`), this field SHOULD be "bipolar".
+    `*_electrodes.tsv`), this field SHOULD be "bipolar".
     If the data contains a mix of bipolar and non-bipolar channels, the entries in the
     `reference` column of `*_channels.tsv` corresponding to bipolar channels SHOULD
     likewise be "bipolar".
