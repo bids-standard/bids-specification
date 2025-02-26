@@ -1319,6 +1319,11 @@ derivative:
   display_name: derivative
   description: |
     A derived BIDS dataset.
+project:
+  value: project
+  display_name: project
+  description: |
+    A project BIDS dataset.
 balanced:
   value: balanced
   display_name: balanced
