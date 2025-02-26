@@ -49,6 +49,5 @@ EMGElectrodes:
     material: recommended
     impedance: recommended
     group__emg: recommended
-    placement__emg: optional
   index_columns: [name__electrodes, group__emg]
   additional_columns: allowed_if_defined
