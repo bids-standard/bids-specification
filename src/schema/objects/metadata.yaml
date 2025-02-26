@@ -989,21 +989,31 @@ EMGPlacementScheme:
   name: EMGPlacementScheme
   display_name: EMG Placement Scheme
   description: |
-    The name of a standardized electrode placement procedure (for example, `"SENIAM 8"`)
-    or a description of the procedure used.
+    The way in which electrode placement locations were determined.
+    If electrode locations are provided as coordinates in `*_electrodes.tsv` in reference
+    to a coordinate system defined in `*_coordsystem.json`, then specify `"measured"`.
+    If approach to placement varied across sensor devices, specify `"channel-specific"`
+    and include placement details in the `placement` column of `*_channels.tsv`.
+    If a standardized electrode placement procedure (for example, SENIAM 8) was followed,
+    or if an ad-hoc procedure was followed, specify `"other"` and provide details in
+    `EMGPlacementSchemeDescription`.
+  type: string
+  enum:
+    - channel-specific
+    - measured
+    - other
+EMGPlacementSchemeDescription:
+  name: EMGPlacementSchemeDescription
+  display_name: EMG Placement Scheme Description
+  description: |
+    Additional details of the approach to EMG sensor placement.
     Descriptions SHOULD NOT simply give the name of the targeted muscle (use the
-    `target_muscle` column in `channels.tsv` for that), but rather SHOULD reflect the
+    `target_muscle` column in `*_channels.tsv` for that), but rather SHOULD reflect the
     process used by the researcher(s) when placing electrodes.
-    For example, EMG electrode sites may be chosen by *visual reference* to target muscles,
-    by *palpation* of the skin to locate target muscles, by *functional localization*
-    (temporary electrode placement at several sites during prescribed behavior,
-    until a site yielding strong EMG signal is found), or by *measured distances*
-    (either absolute or proportional) relative to anatomical landmarks.
-    In datasets involving multiple EMG recording units in which different placement
-    procedures were used for different sites, the procedures for each site SHOULD be
-    described in the `placement_scheme` column of `channels.tsv` instead, and the value
-    of `EMGPlacementScheme` SHOULD be a non-empty string such as "channel-specific" or
-    "see channels.tsv" or similar.
+    For example, EMG electrode sites may be chosen by *visual reference* to target
+    muscles, by *palpation* of the skin to locate target muscles, or by *functional
+    localization* (temporary electrode placement at several sites during prescribed
+    behavior, until a site yielding strong EMG signal is found).
   type: string
 EMGReference:
   name: EMGReference

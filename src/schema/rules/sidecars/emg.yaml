@@ -71,6 +71,7 @@ EMGRecommended:
     ElectrodeType: recommended
     EMGChannelCount: recommended
     EMGGround: recommended
+    EMGPlacementSchemeDescription: recommended
     EpochLength: recommended
     HardwareFilters: recommended
     InterelectrodeDistance: recommended
