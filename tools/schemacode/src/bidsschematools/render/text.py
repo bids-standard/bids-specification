@@ -322,8 +322,10 @@ def make_filename_template(
         for datatype in rule.datatypes:
             file_groups.setdefault(datatype, []).append(rule)
 
+    if empty_dirs is None:
+        empty_dirs = not placeholders
+
     if placeholders:
-        empty_dirs = False if empty_dirs is None else empty_dirs
         metaentity_name = "matches" if dstype == "raw" else "source_entities"
         ent_string = (
             lt
@@ -445,7 +447,7 @@ def make_filename_template(
             )
 
         # If the datatype does not have any files, skip
-        if empty_dirs is False and len(group_lines) == 1:
+        if not empty_dirs and len(group_lines) == 1:
             continue
 
         lines.extend(group_lines)
