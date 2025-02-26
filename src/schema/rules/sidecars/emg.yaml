@@ -14,10 +14,9 @@ EMGHardware:
     ManufacturersModelName: recommended
     SoftwareVersions: recommended
     DeviceSerialNumber: recommended
-# TODO?
-#   AmplifierType: recommended
-#   ElectrodeManufacturer: recommended
-#   ElectrodeManufacturersModelName: recommended
+    AmplifierType: recommended
+    ElectrodeManufacturer: recommended
+    ElectrodeManufacturersModelName: recommended
 
 EMGTaskInformation:
   selectors:
@@ -81,12 +80,6 @@ EMGRecommended:
     TriggerChannelCount: recommended
 
 # Specific EMG fields MAY be present
-# TODO: do we want/need any of these?
-#       ECGChannelCount: optional
-#       EOGChannelCount: optional
-#       MISCChannelCount: optional
-#       ElectricalStimulation: optional
-#       ElectricalStimulationParameters: optional
 EMGOptional:
   selectors:
     - datatype == "emg"
