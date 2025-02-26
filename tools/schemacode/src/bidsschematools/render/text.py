@@ -61,7 +61,7 @@ def _make_entity_definition(entity, entity_info):
     """Describe an entity."""
     entity_shorthand = entity_info["name"]
     text = ""
-    text += "## {}".format(entity_shorthand)
+    text += f"## {entity_shorthand}"
     text += "\n\n"
     text += f"**Full name**: {entity_info['display_name']}"
     text += "\n\n"
