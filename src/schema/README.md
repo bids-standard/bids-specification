@@ -1011,6 +1011,9 @@ EventsMissing:
 -   `rules.common_principles` - This file contains a list of terms that appear in `objects.common_principles`
     that determines the order they appear in the specification
 
+-   `rules.metaentities` - This file contains a list of terms that appear in `objects.metaentities`
+    that determines the order they appear in the specification
+
 ### One-off rules
 
 -   `rules.modalities` - The keys in this file are the modalities, the values objects with the following field:
