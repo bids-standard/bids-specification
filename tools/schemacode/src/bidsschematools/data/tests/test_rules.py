@@ -91,6 +91,7 @@ def test_rule_objects(schema_obj):
                     "files",
                     "formats",
                     "metadata",
+                    "metaentities",
                     "modalities",
                 ]:
                     # But other object types are referenced via their keys
