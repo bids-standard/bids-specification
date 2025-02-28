@@ -19,6 +19,7 @@ EMGChannels:
     group__emg: recommended
     target_muscle: recommended
     placement__emg: recommended
+    placement_description: recommended
     interelectrode_distance: recommended
     low_cutoff: optional
     high_cutoff: optional
