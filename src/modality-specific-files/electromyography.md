@@ -93,12 +93,14 @@ guide to where sensor placement information should be stored in the dataset.
 1.  Electrode locations and anatomical landmarks are digitized with a Polhemus FasTrak.
     3D coordinates for each electrode are given in `x,y,z` columns of `*_electrodes.tsv`,
     and the coordinate system definition is given in `*_coordsystem.json`.
+
 2.  Electrode locations are measured relative to nearby anatomical landmarks using a flexible
     measuring tape.
     2D or 3D coordinates for each electrode are given in `x`, `y`, and (optionally) `z`
     columns of `*_electrodes.tsv`, and the coordinate system definition in
     `*_coordsystem.json` specifies the axis directions with reference to those anatomical
     landmarks.
+
 3.  The arrangement of electrodes in a group or grid is measured (or known from the device
     manufacturer), and is provided in `x,y,z` columns of `*_electrodes.tsv`, with a
     device-internal "child" coordinate system provided in `*_coordsystem.json`.
@@ -107,6 +109,7 @@ guide to where sensor placement information should be stored in the dataset.
     or grid is given in the parent coordinate system.
     This allows the approximate anatomical locations of all electrodes to be calculated
     by treating the device-internal coordinates as offsets from the anchor coordinate.
+
 4.  Individual electrode locations are chosen by visual inspection, palpation, or
     functional localizers.
     No measured coordinates are provided; placement information is given either in the
