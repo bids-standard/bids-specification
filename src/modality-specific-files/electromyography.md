@@ -119,6 +119,15 @@ More details on each of these scenarios is given below in the
 [Electrodes description](#electrodes-description-_electrodestsv), and
 [Coordinate system](#coordinate-system-json-_coordsystemjson) sections.
 
+A fifth scenario unique to EMG involves location information that is fairly accurate
+(as in scenarios (1) and (2) above) but it locates _bipolar sensor devices_ rather than
+_electrodes_.
+In this case, researchers SHOULD provide `*_electrodes.tsv` even though information about
+the individual electrode contacts is not available.
+Rather, each entry from `*_channels.tsv` should have a corresponding row in `*_electrodes.tsv`
+where the location information is given, and `*_coordsystem.json` should also be provided
+(as in scenarios (1) or (2) above).
+
 ### Sidecar JSON (`*_emg.json`)
 
 For consistency between studies and institutions,
