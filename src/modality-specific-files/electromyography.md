@@ -94,14 +94,14 @@ guide to where sensor placement information should be stored in the dataset.
     3D coordinates for each electrode are given in `x,y,z` columns of `*_electrodes.tsv`,
     and the coordinate system definition is given in `*_coordsystem.json`.
 
-2.  Electrode locations are measured relative to nearby anatomical landmarks using a flexible
+1.  Electrode locations are measured relative to nearby anatomical landmarks using a flexible
     measuring tape.
     2D or 3D coordinates for each electrode are given in `x`, `y`, and (optionally) `z`
     columns of `*_electrodes.tsv`, and the coordinate system definition in
     `*_coordsystem.json` specifies the axis directions with reference to those anatomical
     landmarks.
 
-3.  The arrangement of electrodes in a group or grid is measured (or known from the device
+1.  The arrangement of electrodes in a group or grid is measured (or known from the device
     manufacturer), and is provided in `x,y,z` columns of `*_electrodes.tsv`, with a
     device-internal "child" coordinate system provided in `*_coordsystem.json`.
     An anatomically-defined "parent" coordinate system is also defined in the same file,
@@ -110,7 +110,7 @@ guide to where sensor placement information should be stored in the dataset.
     This allows the approximate anatomical locations of all electrodes to be calculated
     by treating the device-internal coordinates as offsets from the anchor coordinate.
 
-4.  Individual electrode locations are chosen by visual inspection, palpation, or
+1.  Individual electrode locations are chosen by visual inspection, palpation, or
     functional localizers.
     No measured coordinates are provided; placement information is given either in the
     `EMGPlacementSchemeDescription` field of `*_emg.json` (when the placement approach is
@@ -348,7 +348,7 @@ Electrode locations may be specified in one of four ways:
     orientations of the 3D coordinate system, and the `coordinate_system` column in
     `*_electrodes.tsv` may be omitted.
 
-2.  **Measured coordinates in a single coordinate system defined by anatomical landmarks.**
+1.  **Measured coordinates in a single coordinate system defined by anatomical landmarks.**
     This approach is suitable for individual electrodes placed close together on a single
     body part.
     In this case the `*_coordsystem.json` file MUST contain fields `EMGCoordinateSystem`,
@@ -366,7 +366,7 @@ Electrode locations may be specified in one of four ways:
     Likewise it may be possible to omit both `z` and `y` if all electrodes are colinear
     along the anatomically defined `x` axis.
 
-3.  **Measured coordinates in multiple anatomically-defined coordinate systems.**
+1.  **Measured coordinates in multiple anatomically-defined coordinate systems.**
     This approach is suitable for individual electrodes placed on multiple body parts.
     In this case the `*_coordsystem.json` file MUST contain a separate, arbitrarily-named
     JSON object for each coordinate system, each of which MUST contain the fields
@@ -382,7 +382,7 @@ Electrode locations may be specified in one of four ways:
     As in (2) above, it may be possible to omit the `z` and `y` columns, depending on the
     details of the electrode placements.
 
-4.  **Measured coordinates in "nested" coordinate systems.**
+1.  **Measured coordinates in "nested" coordinate systems.**
     This approach is suitable for large electrode grids or similar devices.
     In this case, measured 2D locations in the `x` and `y` columns define the geometry
     of an electrode grid or group, relative to an arbitrary device-internal origin and
