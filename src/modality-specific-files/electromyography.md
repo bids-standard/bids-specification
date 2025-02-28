@@ -356,9 +356,9 @@ Electrode locations may be specified in one of four ways:
     For example, 4 electrodes all placed on the forearm (2 on the volar surface and 2 on
     the dorsal surface) could be located with coordinates in the following coordinate system:
 
-    - `x`: radial styloid process (RSP) → ulnar styloid process (USP);
-    - `y`: oleacranon process → cubital fossa;
-    - `z`: RSP-USP → lateral humerus epicondyle
+    -   `x`: radial styloid process (RSP) → ulnar styloid process (USP);
+    -   `y`: oleacranon process → cubital fossa;
+    -   `z`: RSP-USP → lateral humerus epicondyle
 
     It may be possible to omit the `z` column when all electrodes are on the same surface
     (in the above example, if all electrodes were on the volar surface and none were on
