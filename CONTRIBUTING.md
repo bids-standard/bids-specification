@@ -237,10 +237,10 @@ pip install -U pip
 pip install -r requirements.txt
 ```
 
-The first command ensures you are using an up to date version of `pip`,
+The first command ensures you are using an up-to-date version of `pip`,
 and the second command installs all dependencies.
 
-Note that if you need to work on the some of the Python code
+Note that if you need to work on some of the Python code
 that is used to render the specification,
 you will probably have to also run:
 
