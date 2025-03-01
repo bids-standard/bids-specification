@@ -52,11 +52,9 @@ def make_entity_definitions(schema, src_path=None):
     text = ""
     for entity in entity_order:
         entity_info = entity_definitions[entity]
-        entity_text = _make_entity_definition(entity_info)
-        text += "\n" + entity_text
+        text += _make_entity_definition(entity_info)
 
-    text = text.replace("SPEC_ROOT", utils.get_relpath(src_path))
-    return text
+    return text.replace("SPEC_ROOT", utils.get_relpath(src_path))
 
 
 def _make_entity_definition(entity_info):
@@ -504,21 +502,19 @@ def define_common_principles(schema, src_path=None):
     string : str
         The definitions of the common principles in a multiline string.
     """
-    string = ""
+    # reorder the principles according to the order
     common_principles = schema["objects"]["common_principles"]
     order = schema["rules"]["common_principles"]
-    for i_prin, principle in enumerate(order):
-        principle_name = common_principles[principle]["display_name"]
-        substring = (
-            f"{i_prin + 1}. **{principle_name}** - {common_principles[principle]['description']}"
-        )
-        string += substring
-        if i_prin < len(order) - 1:
-            string += "\n\n"
+    principles = []
+    for principle in order:
+        principles.append(common_principles.get(principle))
 
-    string = string.replace("SPEC_ROOT", utils.get_relpath(src_path))
+    with (Path(__file__).parent / "templates/common_principle.jinja").open("r") as f:
+        template_str = f.read()
+    template = Template(template_str)
+    text = template.render(principles=principles)
 
-    return string
+    return text.replace("SPEC_ROOT", src_path)
 
 
 def define_allowed_top_directories(schema, src_path=None) -> str:
