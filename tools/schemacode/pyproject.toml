@@ -33,7 +33,8 @@ expressions = ["pyparsing"]
 render = [
     "tabulate",
     "pandas",
-    "markdown-it-py"
+    "markdown-it-py",
+    "jinja2"
 ]
 tests = [
     "bidsschematools[expressions,render]",

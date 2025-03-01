@@ -1,6 +1,9 @@
 """Functions for rendering portions of the schema as text."""
 
+from pathlib import Path
+
 import yaml
+from jinja2 import Template
 from markdown_it import MarkdownIt
 
 from bidsschematools.render import utils
@@ -49,37 +52,34 @@ def make_entity_definitions(schema, src_path=None):
     text = ""
     for entity in entity_order:
         entity_info = entity_definitions[entity]
-        entity_text = _make_entity_definition(entity, entity_info)
+        entity_text = _make_entity_definition(entity_info)
         text += "\n" + entity_text
 
     text = text.replace("SPEC_ROOT", utils.get_relpath(src_path))
     return text
 
 
-def _make_entity_definition(entity, entity_info):
-    """Describe an entity."""
-    entity_shorthand = entity_info["name"]
-    text = ""
-    text += f"## {entity_shorthand}"
-    text += "\n\n"
-    text += f"**Full name**: {entity_info['display_name']}"
-    text += "\n\n"
-    text += f"**Format**: `{entity_info['name']}-<{entity_info.get('format', 'label')}>`"
-    text += "\n\n"
-    if "enum" in entity_info.keys():
-        allowed_values = []
+def _make_entity_definition(entity_info):
+    """Generate markdown description for an entity."""
+    # Prepare data for template rendering
+    entity_info.format = entity_info.get("format", "label")
+
+    # Prepare enum values if present
+    allowed_values = []
+    if "enum" in entity_info:
         for value in entity_info["enum"]:
             if isinstance(value, str):
                 allowed_values.append(value)
-            else:
+            elif isinstance(value, dict) and "name" in value:
                 allowed_values.append(value["name"])
+            else:
+                allowed_values.append(str(value))  # Fallback to string
+    entity_info.allowed_values = allowed_values
 
-        text += f"**Allowed values**: `{'`, `'.join(allowed_values)}`"
-        text += "\n\n"
-
-    description = entity_info["description"]
-    text += f"**Definition**: {description}"
-    return text
+    with (Path(__file__).parent / "templates/entity_definiiton.jinja").open("r") as f:
+        template_str = f.read()
+    template = Template(template_str)
+    return template.render(entity=entity_info)
 
 
 def make_glossary(schema, src_path=None):
