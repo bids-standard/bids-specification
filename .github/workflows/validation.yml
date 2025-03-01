@@ -27,10 +27,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Install dependencies
-        run: npm install `cat npm-requirements.txt`
       - name: Run style checks
-        run: npx remark src/**/*.md --frail --rc-path .remarkrc
+        run: make remark
 
   # YAML
   yamllint:
