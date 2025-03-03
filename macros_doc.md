@@ -162,7 +162,7 @@ To do this get this output, your macro call would look like this:
 ```
 
 When you have complex files and directory structure, we suggest you use this
-[Jupyter notebook](tools/filetree_example.ipynb) for sandboxing your example
+[Jupyter notebook](https://github.com/bids-standard/bids-specification/blob/master/tools/filetree_example.ipynb) for sandboxing your example
 before you insert the macro call into the markdown document.
 
 ### Generating tables
