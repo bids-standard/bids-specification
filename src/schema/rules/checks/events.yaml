@@ -46,13 +46,13 @@ SortedOnsets:
 
 NonNegativeOnsets:
   issue:
-    code: EVENT_ONSET_NONNEGATIVE
+    code: IMPLAUSIBLE_EVENT_ONSET
     message: |
-      The onsets should be positive.
-    level: error
+      Event onsets were found more than 60s before the start of recording, indicated by negative values.
+      If this is not a mistake, remove or consider an alternative method of representing these events.
+    level: warning
   selectors:
     - suffix == "events"
     - extension == ".tsv"
   checks:
-    # TODO: how to handle n/a values?
-    - min(columns.onset) < 0
+    - min(columns.onset) >= -60
