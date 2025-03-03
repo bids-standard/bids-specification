@@ -7,6 +7,10 @@ _EEGCoordSys:
     - $ref: objects.enums.EEGLAB.value
     - $ref: objects.enums.EEGLAB-HJ.value
     - $ref: objects.enums.Other.value
+_EMGCoordSys:
+  type: string
+  enum:
+    - $ref: objects.enums.Other.value
 _GeneticLevelEnum:
   type: string
   enum:

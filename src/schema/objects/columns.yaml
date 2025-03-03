@@ -89,6 +89,13 @@ component:
     - $ref: objects.enums.quat_y.value
     - $ref: objects.enums.quat_z.value
     - $ref: objects.enums.quat_w.value
+coordinate_system:
+  name: coordinate_system
+  display_name: Coordinate System
+  description: |
+    Name of the coordinate system defined in `coordsystem.json` in which the electrode's
+    `x`, `y`, and (optionally) `z` coordinates are given.
+  type: string
 detector__channels:
   name: detector
   display_name: Detector Name
@@ -179,6 +186,15 @@ group__channel:
   anyOf:
     - type: string
     - type: number
+group__emg:
+  name: group
+  display_name: Channel group
+  description: |
+    Which group of channels this channel belongs to (typically this indicates channels
+    on the same grid, strip, or other device).
+  anyOf:
+    - type: string
+    - type: number
 handedness:
   name: handedness
   display_name: Subject handedness
@@ -227,7 +243,7 @@ high_cutoff:
   description: |
     Frequencies used for the low-pass filter applied to the channel in Hz.
     If no low-pass filter applied, use `n/a`.
-    Note that hardware anti-aliasing in A/D conversion of all MEG/EEG electronics
+    Note that hardware anti-aliasing in A/D conversion of all MEG/EEG/EMG electronics
     applies a low-pass filter; specify its frequency here if applicable.
   type: number
   unit: Hz
@@ -252,6 +268,15 @@ index:
   description: |
     The label integer index.
   type: integer
+interelectrode_distance:
+  name: interelectrode_distance
+  display_name: Interelectrode Distance
+  description: |
+    Distance between adjacent electrodes (in a pair or grid) that are rigidly attached to
+    the same sensor device, or between the `signal_electrode` and its `reference` when
+    each is independently placed.
+  type: number
+  unit: mm
 low_cutoff:
   name: low_cutoff
   display_name: Low cutoff
@@ -372,6 +397,26 @@ participant_id:
     matching a participant entity found in the dataset.
   type: string
   pattern: ^sub-[0-9a-zA-Z+]+$
+placement__emg:
+  name: placement
+  display_name: Placement Scheme
+  description: |
+    The name of a standardized electrode placement procedure or a description of the procedure used.
+    See description of the `EMGPlacementScheme` field in `*_emg.json`.
+  type: string
+  enum:
+    - measured
+    - other
+placement_description:
+  name: placement description
+  display_name: Placement Scheme Description
+  description: |
+    Additional details of the approach to EMG sensor placement.
+    See description of the `EMGPlacementSchemeDescription` field in `*_emg.json`.
+  type: string
+  enum:
+    - measured
+    - other
 placement__motion:
   name: placement
   display_name: Placement
@@ -394,6 +439,16 @@ reference__eeg:
     Name of the reference electrode(s).
     This column is not needed when it is common to all channels.
     In that case the reference electrode(s) can be specified in `*_eeg.json` as `EEGReference`).
+  type: string
+# reference column for channels.tsv files for EMG data
+reference__emg:
+  name: reference
+  display_name: Reference electrode
+  description: |
+    The reference for the given channel.
+    When the reference is an electrode in `*_electrodes.tsv`, use the name of that electrode.
+    For channels originating from bipolar devices, use `"bipolar"`.
+    For non-EMG channels (for example, trigger channels, microphones) use `"n/a"`.
   type: string
 # reference column for channels.tsv files for iEEG data
 reference__ieeg:
@@ -509,6 +564,13 @@ short_channel:
     The total number of channels listed as short channels
     SHOULD be stored in `ShortChannelCount` in `*_nirs.json`.
   type: boolean
+signal_electrode:
+  name: signal_electrode
+  display_name: Signal electrode
+  description:
+    The name of the electrode from which the `reference` electrode's signal is subtracted
+    to yield the channel's data.
+  type: string
 size:
   name: size
   display_name: Electrode size
@@ -603,6 +665,14 @@ strain_rrid:
     of the strain of the species, for example: `RRID:IMSR_JAX:000664`.
   type: string
   format: rrid
+target_muscle:
+  name: target_muscle
+  display_name: Target muscle
+  description: |
+    Name of the muscle(s) from which the EMG signal in this channel is believed to originate.
+    When exact muscle is unknown (such as when using electrode grids that cover multiple muscles),
+    groups of muscles may be named instead (for example "flexors of the left forearm").
+  type: string
 time:
   name: time
   display_name: Time
