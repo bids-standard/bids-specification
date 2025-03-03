@@ -43,3 +43,16 @@ SortedOnsets:
   checks:
     # n/a values will likely cause false alarms if encountered. Consider alternatives.
     - allequal(sorted(columns.onset, "numeric"), columns.onset)
+
+NonNegativeOnsets:
+  issue:
+    code: EVENT_ONSET_NONNEGATIVE
+    message: |
+      The onsets should be positive.
+    level: error
+  selectors:
+    - suffix == "events"
+    - extension == ".tsv"
+  checks:
+    # TODO: how to handle n/a values?
+    - min(columns.onset) < 0
