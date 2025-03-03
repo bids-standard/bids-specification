@@ -172,11 +172,11 @@ the PET page.
 
 The HTML version of the this section is here:
 
-https://bids-specification.readthedocs.io/en/stable/04-modality-specific-files/09-positron-emission-tomography.html#reconstruction
+https://bids-specification.readthedocs.io/en/stable/modality-specific-files/positron-emission-tomography.html#reconstruction
 
 In the markdown document, it is here:
 
-https://github.com/bids-standard/bids-specification/blob/master/src/04-modality-specific-files/09-positron-emission-tomography.md#reconstruction
+https://github.com/bids-standard/bids-specification/blob/master/src/modality-specific-files/positron-emission-tomography.md#reconstruction
 
 GitHub's way of directly rendering markdown documents makes it a bit harder to
 read, so if you opened the markdown document in your code editor it would look
