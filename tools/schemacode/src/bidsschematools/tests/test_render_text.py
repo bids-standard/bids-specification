@@ -93,8 +93,7 @@ sub-<label>/
         for datatype in rule.datatypes
     }
 
-    datatype_count = len(datatypes)
-    datatype_bases = [f"        {i}/" for i in datatypes]
+    datatype_bases = [f"        {i}/" for i in datatypes if i != "stimuli"]
     datatype_level = False
     datatype_file_start = "            sub-<label>"
     datatype_bases_found = 0
@@ -107,7 +106,7 @@ sub-<label>/
             datatype_level = True
             datatype_bases_found += 1
     # Are all datatypes listed?
-    assert datatype_bases_found == datatype_count
+    assert datatype_bases_found == len(datatypes) - 1
 
 
 def test_define_common_principles(schema_obj):
