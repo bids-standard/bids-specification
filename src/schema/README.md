@@ -369,6 +369,7 @@ The namespaces are:
 | --------------------------- | ----------------------------------------------------------------------------------- | ---------------- |
 | `objects.common_principles` | Terms that are used throughout BIDS                                                 | General terms    |
 | `objects.modalities`        | Broad categories of data represented in BIDS, roughly matching recording instrument | General terms    |
+| `objects.metaentities`      | Placeholders and wildcards to reduce verbosity of some templates in BIDS            | General terms    |
 | `objects.entities`          | Name-value pairs appearing in filenames                                             | Name/value terms |
 | `objects.metadata`          | Name-value pairs appearing in JSON files                                            | Name/value terms |
 | `objects.columns`           | Column headings and values appearing in TSV files                                   | Name/value terms |
@@ -500,6 +501,12 @@ The convention can be summed up in the following rules:
     | `description`  | Term definition     |
 
 -   `objects.modalities`
+    | Field          | Description         |
+    | -------------- | ------------------- |
+    | `display_name` | Human-friendly name |
+    | `description`  | Term definition     |
+
+-   `objects.metaentities`
     | Field          | Description         |
     | -------------- | ------------------- |
     | `display_name` | Human-friendly name |
@@ -1002,6 +1009,9 @@ EventsMissing:
     simply defines the order in which entities, when present, MUST appear in filenames
 
 -   `rules.common_principles` - This file contains a list of terms that appear in `objects.common_principles`
+    that determines the order they appear in the specification
+
+-   `rules.metaentities` - This file contains a list of terms that appear in `objects.metaentities`
     that determines the order they appear in the specification
 
 ### One-off rules
