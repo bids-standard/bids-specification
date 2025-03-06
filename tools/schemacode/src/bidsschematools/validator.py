@@ -43,7 +43,7 @@ def _bids_schema_versioncheck(schema_dir, compatibility=VALIDATOR_SCHEMA_COMPATI
 
     schema_version_file = os.path.join(schema_dir, "SCHEMA_VERSION")
     try:
-        with open(schema_version_file, "r") as f:
+        with open(schema_version_file) as f:
             schema_version = f.readlines()[0].strip()
     except FileNotFoundError:
         lgr.warning(

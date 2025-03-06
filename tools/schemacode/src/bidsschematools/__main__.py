@@ -3,14 +3,10 @@ import logging
 import os
 import re
 import sys
+from importlib.resources import files
 from itertools import chain
 
 import click
-
-if sys.version_info < (3, 9):
-    from importlib_resources import files
-else:
-    from importlib.resources import files
 
 from .rules import regexify_filename_rules
 from .schema import export_schema, load_schema

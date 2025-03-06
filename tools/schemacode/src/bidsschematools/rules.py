@@ -64,7 +64,7 @@ def _optional_regex(regex, optional):
     return f"(?:{regex})?" if optional else regex
 
 
-@lru_cache()
+@lru_cache
 def _format_entity(entity, name, pattern, level, directory=False):
     if directory and entity not in DIR_ENTITIES:
         return ""
@@ -237,7 +237,7 @@ def regexify_filename_rules(
     return regex_schema
 
 
-@lru_cache()
+@lru_cache
 def regexify_all(schema_dir=None):
     """
     Create full path regexes for all BIDS specification files.
