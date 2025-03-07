@@ -15,7 +15,7 @@ Examples:
 A defaced T1w image would typically be made during the curation process and is thus under raw
 
 ```Text
-sourcedata/defaced/sub-01/anat/sub-01_T1w.nii.gz
+sourcedata/pre-deface/sub-01/anat/sub-01_T1w.nii.gz
 sub-01/anat/sub-01_T1w.nii.gz
 ```
 
