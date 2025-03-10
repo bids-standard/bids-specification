@@ -37,7 +37,7 @@ repos:
         files: tools/schemacode
         args: ["--config", "tools/schemacode/pyproject.toml", "--verbose"]
   - repo: https://github.com/pyCQA/isort
-    rev: 6.0.0
+    rev: 6.0.1
     hooks:
       - id: isort
         files: ^tools/(?!schemacode)
