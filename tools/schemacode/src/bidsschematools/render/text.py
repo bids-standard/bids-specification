@@ -148,12 +148,12 @@ def make_glossary(schema, src_path=None):
 
         obj_def = obj.get("definition", None)
         if obj_def is None:
-            raise ValueError(f"{obj["key"]} has no definition.")
+            raise ValueError(f"{obj['key']} has no definition.")
 
         # Clean up the text description
         obj_desc = obj_def.get("description", None)
         if obj_desc is None:
-            raise ValueError(f"{obj["key"]} has no description.")
+            raise ValueError(f"{obj['key']} has no description.")
         obj_desc = MarkdownIt().render(f"{obj_desc}")
 
         levels = list(obj_def.get("enum", []) or obj_def.get("definition", {}).get("Levels", {}))
