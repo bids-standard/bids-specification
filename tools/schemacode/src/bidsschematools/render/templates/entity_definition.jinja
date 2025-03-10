@@ -1,11 +1,10 @@
+
 ## {{ entity.name }}
 
 **Full name**: {{ entity.display_name }}
 
 **Format**: `{{ entity.name }}-<{{ entity.format }}>`
-
 {% if entity.allowed_values %}
 **Allowed values**: `{% for value in allowed_values %}{{ value }}{% if not loop.last %}, {% endif %}{% endfor %}`
 {% endif %}
-
-**Definition**: {{ description }}
+**Definition**: {{ entity.description }}

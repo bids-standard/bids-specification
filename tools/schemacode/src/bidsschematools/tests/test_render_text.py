@@ -34,6 +34,8 @@ def test_make_entity_definitions(schema_obj):
     for expected_format in expected_formats:
         assert expected_format in schema_text
 
+    assert "**Definition**: A person or animal participating in the study." in schema_text
+
 
 def test_make_glossary(schema_obj, schema_dir):
     """
