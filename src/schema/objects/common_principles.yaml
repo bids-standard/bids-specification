@@ -16,33 +16,33 @@ data_type:
     In raw datasets, the data type directory is nested inside subject and (optionally) session directories.
     BIDS defines the following data types:
 
-      1.  `func` (task based and resting state functional MRI)
+      -  `func` (task based and resting state functional MRI)
 
-      2.  `dwi` (diffusion weighted imaging)
+      -  `dwi` (diffusion weighted imaging)
 
-      3.  `fmap` (field inhomogeneity mapping data such as field maps)
+      -  `fmap` (field inhomogeneity mapping data such as field maps)
 
-      4.  `anat` (structural imaging such as T1, T2, PD, and so on)
+      -  `anat` (structural imaging such as T1, T2, PD, and so on)
 
-      5.  `perf` (perfusion)
+      -  `perf` (perfusion)
 
-      6.  `meg` (magnetoencephalography)
+      -  `meg` (magnetoencephalography)
 
-      7.  `eeg` (electroencephalography)
+      -  `eeg` (electroencephalography)
 
-      8.  `ieeg` (intracranial electroencephalography)
+      -  `ieeg` (intracranial electroencephalography)
 
-      9.  `beh` (behavioral)
+      -  `beh` (behavioral)
 
-      10. `pet` (positron emission tomography)
+      - `pet` (positron emission tomography)
 
-      11. `micr` (microscopy)
+      - `micr` (microscopy)
 
-      12. `nirs` (near infrared spectroscopy)
+      - `nirs` (near infrared spectroscopy)
 
-      13. `motion` (motion)
+      - `motion` (motion)
 
-      14. `mrs` (magnetic resonance spectroscopy)
+      - `mrs` (magnetic resonance spectroscopy)
 
 dataset:
   display_name: Dataset
