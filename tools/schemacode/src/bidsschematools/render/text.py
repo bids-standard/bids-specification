@@ -21,6 +21,7 @@ TYPE_CONVERTER = {
     "files": "files and directories",
     "formats": "format",
     "metadata": "metadata",
+    "metaentities": "meta-entity",
     "top_level_files": "top level file",
     "suffixes": "suffix",
 }
@@ -60,7 +61,7 @@ def _make_entity_definition(entity, entity_info):
     """Describe an entity."""
     entity_shorthand = entity_info["name"]
     text = ""
-    text += "## {}".format(entity_shorthand)
+    text += f"## {entity_shorthand}"
     text += "\n\n"
     text += f"**Full name**: {entity_info['display_name']}"
     text += "\n\n"
@@ -150,12 +151,6 @@ def make_glossary(schema, src_path=None):
         obj_desc = obj_def.get("description", None)
         if obj_desc is None:
             raise ValueError(f"{obj_marker} has no description.")
-        # A backslash before a newline means continue a string
-        obj_desc = obj_desc.replace("\\\n", "")
-        # Two newlines should be respected
-        obj_desc = obj_desc.replace("\n\n", "<br>")
-        # Otherwise a newline corresponds to a space
-        obj_desc = obj_desc.replace("\n", " ")
 
         text += f'\n<a name="{obj_marker}"></a>'
         text += f"\n## {obj_key}\n\n"
@@ -183,7 +178,9 @@ def make_glossary(schema, src_path=None):
             levels = [level["name"] if isinstance(level, dict) else level for level in levels]
             text += f"**Allowed values**: `{'`, `'.join(levels)}`\n\n"
 
-        text += f"**Description**:\n{obj_desc}\n\n"
+        # Convert description into markdown and append to text
+        obj_desc = MarkdownIt().render(f"**Description**:\n{obj_desc}")
+        text += f"{obj_desc}\n\n"
 
         reduced_obj_def = {k: v for k, v in obj_def.items() if k not in keys_to_drop}
 
@@ -235,6 +232,9 @@ def make_filename_template(
     src_path=None,
     n_dupes_to_combine=6,
     pdf_format=False,
+    placeholders=False,
+    empty_dirs=None,
+    show_entities=tuple(),
     **kwargs,
 ):
     """Create codeblocks containing example filename patterns for a given datatype.
@@ -262,6 +262,20 @@ def make_filename_template(
         If False, the filename template will use HTML and include hyperlinks.
         This works on the website.
         Default is False.
+    placeholders : bool, optional
+        If True, placeholder meta-entities will replace keyword-value entities in the
+        filename.
+        If ``dstype`` is ``"raw"``, the placeholder meta-entity is ``<matches>``.
+        If ``dstype`` is ``"derivatives"``, the placeholder meta-entity is ``<source_entities>``.
+        Default is False.
+    empty_dirs: bool, optional
+        If False, empty datatype directories are not included. If ``placeholders`` is True,
+        this option is set False.
+        Default is True.
+    show_entities: tuple, optional
+        If ``placeholders`` is ``False`` this argument is ignored.
+        When using placeholders, this argument can be set to a list or tuple of entity
+        names that will be "extracted" out of the placeholder.
 
     Other Parameters
     ----------------
@@ -288,8 +302,6 @@ def make_filename_template(
     else:
         lt, gt = "&lt;", "&gt;"
 
-    title = kwargs.pop("title", "Template:")
-
     schema = Namespace(filter_schema(schema.to_dict(), **kwargs))
     suffix_key_table = value_key_table(schema.objects.suffixes)
     ext_key_table = value_key_table(schema.objects.extensions)
@@ -315,19 +327,39 @@ def make_filename_template(
         for datatype in rule.datatypes:
             file_groups.setdefault(datatype, []).append(rule)
 
+    if empty_dirs is None:
+        empty_dirs = not placeholders
+
+    entity_list = schema.rules.entities
+    start_string = ""
+    if placeholders:
+        metaentity_name = "matches" if dstype == "raw" else "source_entities"
+        start_string = (
+            lt
+            + utils._link_with_html(
+                metaentity_name,
+                html_path=GLOSSARY_PATH + ".html",
+                heading=f"{metaentity_name}-metaentities",
+                pdf_format=pdf_format,
+            )
+            + gt
+        )
+        entity_list = show_entities
+
     for datatype in sorted(file_groups):
+        group_lines = []
         datatype_string = utils._link_with_html(
             datatype,
             html_path=GLOSSARY_PATH + ".html",
             heading=f"{datatype.lower()}-datatypes",
             pdf_format=pdf_format,
         )
-        lines.append(f"\t\t{datatype_string}/")
+        group_lines.append(f"\t\t{datatype_string}/")
 
         # Unique filename patterns
         for group in file_groups[datatype]:
-            ent_string = ""
-            for ent in schema.rules.entities:
+            ent_string = start_string
+            for ent in entity_list:
                 if ent not in group.entities:
                     continue
 
@@ -415,19 +447,26 @@ def make_filename_template(
                 pdf_format=pdf_format,
             )
 
-            lines.extend(
+            group_lines.extend(
                 f"\t\t\t{ent_string}_{suffix}{extension}"
                 for suffix in sorted(suffixes)
                 for extension in sorted(extensions)
             )
 
-    if pdf_format:
-        lines = [title, "```Text"] + lines + ["```"]
-    else:
-        lines[0] = f'<div class="highlight"><pre><code>{lines[0]}'
-        lines = [f"<p>{title}</p>"] + lines + ["</code></pre></div>"]
+        # If the datatype does not have any files, skip
+        if not empty_dirs and len(group_lines) == 1:
+            continue
 
-    codeblock = "\n".join(lines)
+        lines.extend(group_lines)
+
+    paragraph = "\n".join(lines)
+    if pdf_format:
+        codeblock = f"Template:\n```Text\n{paragraph}\n```"
+    else:
+        codeblock = (
+            f'Template:\n<div class="highlight"><pre><code>{paragraph}\n</code></pre></div>'
+        )
+
     codeblock = codeblock.expandtabs(4)
     codeblock = append_filename_template_legend(codeblock, pdf_format)
     codeblock = codeblock.replace("SPEC_ROOT", utils.get_relpath(src_path))
@@ -460,6 +499,11 @@ def append_filename_template_legend(text, pdf_format=False):
   """
 
     legend = f"""{info_str}
+- `<matches>` is a placeholder to denote an arbitrary (and valid) sequence of entities
+  and labels at the beginning of the filename (only BIDS "raw").
+- `<source_entities>` is a placeholder to denote an arbitrary sequence of entities and labels
+  at the beginning of the filename matching a source file from which the file derives
+  (only BIDS-Derivatives).
 - Filename entities or directories between square brackets
   (for example, `[_ses-<label>]`) are OPTIONAL.
 - Some entities may only allow specific values,

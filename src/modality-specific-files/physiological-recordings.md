@@ -19,48 +19,24 @@ asynchronous events corresponding to those signals MAY be specified using
 TSV.GZ files MUST be accompanied by a JSON file with the same name as their
 corresponding tabular file but with a `.json` extension.
 
+{{ MACROS___make_filename_template(
+       "raw",
+       placeholders=True,
+       show_entities=["recording"],
+       suffixes=["physio", "physioevents"]
+   )
+}}
+
+The [`recording-<label>`](../appendices/entities.md#recording)
+entity is OPTIONAL, and is [described below](#continuous-physiological-recordings).
+
 !!! warning "Caution"
 
     Columns of TSV.GZ files MUST be defined in the corresponding JSON sidecar
     and the tabular content MUST NOT include a header line.
 
-Summary template:
-
-<div class="highlight">
-<pre><code><a href="../appendices/entities.html#sub">sub-&lt;label&gt;</a>/
-    [<a href="../appendices/entities.html#ses">ses-&lt;label&gt;</a>/]
-        &lt;<a href="../glossary.html#data_type-common_principles">datatype</a>&gt;/
-            &lt;matches&gt;[_<a href="../appendices/entities.html#recording">recording</a>-&lt;<a href="../glossary.html#label-common_principles">label</a>&gt;]_&lt;<a href="../glossary.html#physio-suffixes">physio</a>|<a href="../glossary.html#physioevents-suffixes">physioevents</a>&gt;<a href="../glossary.html#json-extensions">.json</a>
-            &lt;matches&gt;[_<a href="../appendices/entities.html#recording">recording</a>-&lt;<a href="../glossary.html#label-common_principles">label</a>&gt;]_&lt;<a href="../glossary.html#physio-suffixes">physio</a>|<a href="../glossary.html#physioevents-suffixes">physioevents</a>&gt;<a href="../glossary.html#tsvgz-extensions">.tsv.gz</a>
-</code></pre></div>
-
-For the template directory name, `<datatype>` can correspond the following
-[data types](../glossary.md#data_type-common_principles):
-`beh`, `dwi`, `eeg`, `func`, `ieeg`, `meg`, `motion`, `nirs`, `perf`, or `pet`.
-In the template filenames, the `<matches>` part corresponds to those entities
-before the suffix that identify the reference run.
-For example, for the file `sub-01_task-nback_run-1_bold.nii.gz`,
-`<matches>` would correspond to `sub-01_task-nback_run-1`.
-Note that when supplying a `<matches>_<physio|physioevents>.tsv.gz` file,
-an accompanying `<matches>_<physio|physioevents>.json` MUST be supplied as well.
-
-<details class="tip">
-<summary>Expanded filename template</summary>
-<!--
-This block generates a filename templates.
-The inputs for this macro can be found in the directory
-  src/schema/rules/files/raw
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filename_template(
-       "raw",
-       datatypes=["beh", "dwi", "eeg", "func", "ieeg", "meg", "motion", "nirs", "perf", "pet"],
-       suffixes=["physio", "physioevents"],
-       title="The above summary template is expanded for the acceptable data types as follows:",
-   )
-}}
-</details>
+    As a consequence, when supplying a `<matches>_<physio|physioevents>.tsv.gz` file,
+    an accompanying `<matches>_<physio|physioevents>.json` MUST be supplied as well.
 
 For multi-echo data, a single `_<physio>.<tsv.gz|json>` file without the
 [`echo-<index>`](../appendices/entities.md#echo) entity applies to all echos of
@@ -95,16 +71,6 @@ Continuous physiological recordings, such as pulse monitoring,
 electrocardiogram, respiratory movement measured with a respiration belt,
 gas concentration, eye-tracking, or head-motion parameters estimated
 by the MRI scanner, MUST use `_physio.<tsv.gz|json>` pairs.
-
-Template:
-
-<div class="highlight">
-<pre><code><a href="../appendices/entities.html#sub">sub-&lt;label&gt;</a>/
-    [<a href="../appendices/entities.html#ses">ses-&lt;label&gt;</a>/]
-        &lt;<a href="../glossary.html#data_type-common_principles">datatype</a>&gt;/
-            &lt;matches&gt;[_<a href="../appendices/entities.html#recording">recording</a>-&lt;<a href="../glossary.html#label-common_principles">label</a>&gt;]_<a href="../glossary.html#physio-suffixes">physio</a><a href="../glossary.html#json-extensions">.json</a>
-            &lt;matches&gt;[_<a href="../appendices/entities.html#recording">recording</a>-&lt;<a href="../glossary.html#label-common_principles">label</a>&gt;]_<a href="../glossary.html#physio-suffixes">physio</a><a href="../glossary.html#tsvgz-extensions">.tsv.gz</a>
-</code></pre></div>
 
 **Storing different recordings**.
 The [`recording-<label>`](../appendices/entities.md#recording)
@@ -388,22 +354,6 @@ Discontinuous data associated with continuous recordings
 stored in `<matches>_physio.tsv.gz` files MAY be specified
 following the summary template pattern above.
 
-Template:
-
-<div class="highlight">
-<pre><code><a href="../appendices/entities.html#sub">sub-&lt;label&gt;</a>/
-    [<a href="../appendices/entities.html#ses">ses-&lt;label&gt;</a>/]
-        &lt;<a href="../glossary.html#data_type-common_principles">datatype</a>&gt;/
-            &lt;matches&gt;[_<a href="../appendices/entities.html#recording">recording</a>-&lt;<a href="../glossary.html#label-common_principles">label</a>&gt;]_<a href="../glossary.html#physioevents-suffixes">physioevents</a><a href="../glossary.html#json-extensions">.json</a>
-            &lt;matches&gt;[_<a href="../appendices/entities.html#recording">recording</a>-&lt;<a href="../glossary.html#label-common_principles">label</a>&gt;]_<a href="../glossary.html#physioevents-suffixes">physioevents</a><a href="../glossary.html#tsvgz-extensions">.tsv.gz</a>
-</code></pre></div>
-
-Placeholders such as `<datatype>` and `<matches>` are defined
-as above for the template of continuous recordings.
-The [`recording-<label>`](../appendices/entities.md#recording)
-entity is OPTIONAL, but MUST be matched with an existing
-`<matches>[_recording-<label>]_physio.tsv.gz` file.
-
 Physiology "events" files `<matches>_recording-<label>_physioevents.tsv.gz`
 MUST follow specific column specifications:
 
@@ -614,7 +564,6 @@ The decompressed contents of the corresponding TSV file,
         Published paper: https://doi.org/10.1523/ENEURO.0287-23.2023
 
         [BIDS dataset](https://github.com/julia-pfarr/natImSac_BIDSexample)
-
 
 Setting `PhysioType` to the keyword `"eyetrack"` specifies that
 the physiological recordings in the `<matches>_physio.tsv.gz` have
