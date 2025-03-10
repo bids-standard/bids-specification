@@ -69,7 +69,8 @@ bidsschematools = [
     "data/schema/BIDS_VERSION",
     "data/schema/SCHEMA_VERSION",
     "data/schema/**/*.yaml",
-    "tests/data/*"
+    "tests/data/*",
+    "render/templates/*"
 ]
 
 [tool.black]
