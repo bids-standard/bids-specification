@@ -74,7 +74,7 @@ def _make_entity_definition(entity_info):
                 allowed_values.append(str(value))  # Fallback to string
     entity_info.allowed_values = allowed_values
 
-    with (Path(__file__).parent / "templates/entity_definiton.jinja").open("r") as f:
+    with (Path(__file__).parent / "templates" / "entity_definition.jinja").open("r") as f:
         template_str = f.read()
     template = Template(template_str)
     return template.render(entity=entity_info)
@@ -509,7 +509,7 @@ def define_common_principles(schema, src_path=None):
     for principle in order:
         principles.append(common_principles.get(principle))
 
-    with (Path(__file__).parent / "templates/common_principle.jinja").open("r") as f:
+    with (Path(__file__).parent / "templates" / "common_principle.jinja").open("r") as f:
         template_str = f.read()
     template = Template(template_str)
     text = template.render(principles=principles)

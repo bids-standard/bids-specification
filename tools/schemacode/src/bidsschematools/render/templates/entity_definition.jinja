@@ -2,7 +2,7 @@
 
 **Full name**: {{ entity.display_name }}
 
-**Format**: `{{ entity.name }}-<{{ entity_info.format }}>`
+**Format**: `{{ entity.name }}-<{{ entity.format }}>`
 
 {% if entity.allowed_values %}
 **Allowed values**: `{% for value in allowed_values %}{{ value }}{% if not loop.last %}, {% endif %}{% endfor %}`
