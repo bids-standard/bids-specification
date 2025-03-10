@@ -74,7 +74,7 @@ def _make_entity_definition(entity_info):
                 allowed_values.append(str(value))  # Fallback to string
     entity_info.allowed_values = allowed_values
 
-    with (Path(__file__).parent / "templates/entity_definiiton.jinja").open("r") as f:
+    with (Path(__file__).parent / "templates/entity_definiton.jinja").open("r") as f:
         template_str = f.read()
     template = Template(template_str)
     return template.render(entity=entity_info)
@@ -514,7 +514,7 @@ def define_common_principles(schema, src_path=None):
     template = Template(template_str)
     text = template.render(principles=principles)
 
-    return text.replace("SPEC_ROOT", src_path)
+    return text.replace("SPEC_ROOT", utils.get_relpath(src_path))
 
 
 def define_allowed_top_directories(schema, src_path=None) -> str:
