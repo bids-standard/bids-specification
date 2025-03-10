@@ -45,13 +45,13 @@ def test_make_glossary(schema_obj, schema_dir):
     """
     # Test consistency
     object_files = []
-    for root, dirs, files in os.walk(schema_dir, topdown=False):
+    for root, _, files in os.walk(schema_dir, topdown=False):
         if "objects" in root:
             for object_file in files:
                 object_base, _ = os.path.splitext(object_file)
                 object_files.append(object_base)
     rule_files = []
-    for root, dirs, files in os.walk(schema_dir, topdown=False):
+    for root, _, files in os.walk(schema_dir, topdown=False):
         if "rules" in root:
             for rule_file in files:
                 rule_base, _ = os.path.splitext(rule_file)
@@ -59,6 +59,7 @@ def test_make_glossary(schema_obj, schema_dir):
     rules_only = list(filter(lambda a: a not in object_files, rule_files))
 
     glossary = text.make_glossary(schema_obj)
+
     for line in glossary.split("\n"):
         if line.startswith('<a name="objects.'):
             # Are all objects objects?

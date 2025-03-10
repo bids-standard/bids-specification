@@ -29,6 +29,8 @@ TYPE_CONVERTER = {
     "suffixes": "suffix",
 }
 
+TEMPLATE_DIR = Path(__file__).parent / "templates"
+
 
 def make_entity_definitions(schema, src_path=None):
     """Generate definitions and other relevant information for entities in the specification.
@@ -75,7 +77,7 @@ def _make_entity_definition(entity_info):
                 allowed_values.append(str(value))  # Fallback to string
     entity_info.allowed_values = allowed_values
 
-    with (Path(__file__).parent / "templates" / "entity_definition.jinja").open("r") as f:
+    with (TEMPLATE_DIR / "entity_definition.jinja").open("r") as f:
         template_str = f.read()
     template = Template(template_str)
     return template.render(entity=entity_info)
@@ -101,6 +103,9 @@ def make_glossary(schema, src_path=None):
     """
     all_objects = {}
     schema = schema.to_dict()
+
+    with (TEMPLATE_DIR / "glossary.jinja").open("r") as f:
+        template_str = f.read()
 
     for group, group_objects in schema["objects"].items():
         group_obj_keys = list(group_objects.keys())
@@ -140,27 +145,20 @@ def make_glossary(schema, src_path=None):
     text = ""
     for obj_key in sorted(all_objects.keys()):
         obj = all_objects[obj_key]
-        obj_marker = obj["key"]
+
         obj_def = obj.get("definition", None)
         if obj_def is None:
-            raise ValueError(f"{obj_marker} has no definition.")
+            raise ValueError(f"{obj["key"]} has no definition.")
 
         # Clean up the text description
         obj_desc = obj_def.get("description", None)
         if obj_desc is None:
-            raise ValueError(f"{obj_marker} has no description.")
+            raise ValueError(f"{obj["key"]} has no description.")
+        obj_desc = MarkdownIt().render(f"{obj_desc}")
 
-        text += f'\n<a name="{obj_marker}"></a>'
-        text += f"\n## {obj_key}\n\n"
-        text += f"**Name**: {obj_def['display_name']}\n\n"
-        text += f"**Type**: {obj['type'].title()}\n\n"
-
-        if obj["type"] == "suffix":
-            text += f"**Format**: `<entities>_{obj_def['value']}.<extension>`\n\n"
-        elif obj["type"] == "extension":
-            text += f"**Format**: `<entities>_<suffix>{obj_def['value']}`\n\n"
-        elif obj["type"] == "format":
-            text += f"**Regular expression**: `{obj_def['pattern']}`\n\n"
+        levels = list(obj_def.get("enum", []) or obj_def.get("definition", {}).get("Levels", {}))
+        if levels:
+            levels = [level["name"] if isinstance(level, dict) else level for level in levels]
 
         keys_to_drop = [
             "description",
@@ -171,20 +169,19 @@ def make_glossary(schema, src_path=None):
             "enum",
             "definition",
         ]
-        levels = list(obj_def.get("enum", []) or obj_def.get("definition", {}).get("Levels", {}))
-        if levels:
-            levels = [level["name"] if isinstance(level, dict) else level for level in levels]
-            text += f"**Allowed values**: `{'`, `'.join(levels)}`\n\n"
-
-        # Convert description into markdown and append to text
-        obj_desc = MarkdownIt().render(f"**Description**:\n{obj_desc}")
-        text += f"{obj_desc}\n\n"
-
         reduced_obj_def = {k: v for k, v in obj_def.items() if k not in keys_to_drop}
-
         if reduced_obj_def:
             reduced_obj_def = yaml.dump(reduced_obj_def)
-            text += f"**Schema information**:\n```yaml\n{reduced_obj_def}\n```"
+
+        template = Template(template_str)
+        text += template.render(
+            obj_key=obj_key,
+            obj=obj,
+            obj_def=obj_def,
+            obj_desc=obj_desc,
+            levels=levels,
+            reduced_obj_def=reduced_obj_def,
+        )
 
     # Spec internal links need to be replaced
     text = text.replace("SPEC_ROOT", utils.get_relpath(src_path))
@@ -554,7 +551,7 @@ def define_common_principles(schema, src_path=None):
     for principle in order:
         principles.append(common_principles.get(principle))
 
-    with (Path(__file__).parent / "templates" / "common_principle.jinja").open("r") as f:
+    with (TEMPLATE_DIR / "common_principle.jinja").open("r") as f:
         template_str = f.read()
     template = Template(template_str)
     text = template.render(principles=principles)
