@@ -70,8 +70,26 @@ SliceTimingElements:
     - modality == "mri"
     - type(sidecar.SliceTiming) != "null"
     - type(nifti_header) != "null"
+    - type(sidecar.SliceEncodingDirection) == 'null'
   checks:
     - length(sidecar.SliceTiming) == nifti_header.dim[3]
+
+SliceTimingElementsWithDirection:
+  issue:
+    code: SLICETIMING_ELEMENTS
+    message: |
+      The number of elements in the 'SliceTiming' array should match the dimension
+      of the corresponding NIfTI volume matching `SliceEncodingDirection`
+    level: warning
+  selectors:
+    - modality == "mri"
+    - type(sidecar.SliceTiming) != "null"
+    - type(nifti_header) != "null"
+    - sidecar.SliceEncodingDirection
+  checks:
+    - sidecar.SliceEncodingDirection[0] != "i" || length(sidecar.SliceTiming) == nifti_header.dim[1]
+    - sidecar.SliceEncodingDirection[0] != "j" || length(sidecar.SliceTiming) == nifti_header.dim[2]
+    - sidecar.SliceEncodingDirection[0] != "k" || length(sidecar.SliceTiming) == nifti_header.dim[3]
 
 # 93
 EESGreaterThanTRT:

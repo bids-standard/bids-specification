@@ -1,6 +1,5 @@
 import os
 import shutil
-from importlib.resources import files
 
 import pytest
 
@@ -13,7 +12,7 @@ def require_env(var):
 
 
 @require_env("BIDSSCHEMATOOLS_RELEASE")
-def test_make_archive(bids_examples, bids_error_examples):
+def test_make_archive(tests_data_dir, bids_examples, bids_error_examples):
     """
     ATTENTION! This is not a test!
     Create static testdata archive containing the bidsschematools data reference whitelist.
@@ -30,15 +29,10 @@ def test_make_archive(bids_examples, bids_error_examples):
     testdata archive creation is now inconspicuously posing as a test.
     """
 
-    testdata_dir = files("bidsschematools.tests.data")
     ignore_git = shutil.ignore_patterns(".git*")
-    shutil.copytree(bids_examples, testdata_dir / "bids-examples", ignore=ignore_git)
-    shutil.copytree(bids_error_examples, testdata_dir / "bids-error-examples", ignore=ignore_git)
-
-    # Keeping this for now, it would be really nice to have a separate archive someday.
-    # archive_name = f"bidsschematools-testdata-{__version__}"
-    # archive_path = f"/tmp/{archive_name}.tar.gz"
-
-    # with tarfile.open(archive_path, "w:gz") as tar:
-    #     tar.add(bids_examples, arcname=f"{archive_name}/bids-examples")
-    #     tar.add(bids_error_examples, arcname=f"{archive_name}/bids-error-examples")
+    target_examples = tests_data_dir / "bids-examples"
+    target_error_examples = tests_data_dir / "bids-error-examples"
+    if bids_examples != target_examples:
+        shutil.copytree(bids_examples, target_examples, ignore=ignore_git)
+    if bids_error_examples != target_error_examples:
+        shutil.copytree(bids_error_examples, target_error_examples, ignore=ignore_git)

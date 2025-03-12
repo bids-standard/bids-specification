@@ -69,6 +69,54 @@ beh_noncontinuous_common:
     space: optional
     description: optional
 
+channels_channels_common:
+  $ref: rules.files.raw.channels.channels
+  entities:
+    $ref: rules.files.raw.channels.channels.entities
+    description: optional
+
+channels_channels__meg_common:
+  $ref: rules.files.raw.channels.channels__meg
+  entities:
+    $ref: rules.files.raw.channels.channels__meg.entities
+    description: optional
+
+channels_channels__motion_common:
+  $ref: rules.files.raw.channels.channels__motion
+  entities:
+    $ref: rules.files.raw.channels.channels__motion.entities
+    description: optional
+
+channels_coordsystem_common:
+  $ref: rules.files.raw.channels.coordsystem
+  entities:
+    $ref: rules.files.raw.channels.coordsystem.entities
+    description: optional
+
+channels_coordsystem__eeg_common:
+  $ref: rules.files.raw.channels.coordsystem__eeg
+  entities:
+    $ref: rules.files.raw.channels.coordsystem__eeg.entities
+    description: optional
+
+channels_electrodes_common:
+  $ref: rules.files.raw.channels.electrodes
+  entities:
+    $ref: rules.files.raw.channels.electrodes.entities
+    description: optional
+
+channels_electrodes__meg_common:
+  $ref: rules.files.raw.channels.electrodes__meg
+  entities:
+    $ref: rules.files.raw.channels.electrodes__meg.entities
+    description: optional
+
+channels_electrodes_optodes_common:
+  $ref: rules.files.raw.channels.optodes
+  entities:
+    $ref: rules.files.raw.channels.optodes.entities
+    description: optional
+
 dwi_dwi_common:
   $ref: rules.files.raw.dwi.dwi
   entities:
@@ -228,4 +276,10 @@ pet_blood_common:
   entities:
     $ref: rules.files.raw.pet.blood.entities
     space: optional
+    description: optional
+
+task_events_common:
+  $ref: rules.files.raw.task.events
+  entities:
+    $ref: rules.files.raw.task.events.entities
     description: optional

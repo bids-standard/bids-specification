@@ -11,17 +11,12 @@ are supported (in contrast to "block" designs) - each "block of events" can be
 represented by an individual row in the `events.tsv` file (with a long
 duration).
 
-Template:
-
-```Text
-sub-<label>/[ses-<label>]
-    <data_type>/
-        <matches>_events.tsv
-        <matches>_events.json
-```
-
-Where `<matches>` corresponds to task filename. For example:
-`sub-control01_task-nback`.
+{{ MACROS___make_filename_template(
+       "raw",
+       placeholders=True,
+       suffixes=["events"]
+   )
+}}
 
 Each task events file REQUIRES a corresponding task data file.
 It is also possible to have a single `events.tsv` file describing events
@@ -87,7 +82,7 @@ A guide for using macros can be found at
 
 Example of the content of the TSV file:
 
-```Text
+```tsv
 onset	duration	trial_type	response_time	stim_file	channel	annots
 1.23	0.65	start	1.435	images/red_square.jpg	n/a	n/a
 5.65	0.65	stop	1.739	images/blue_square.jpg	n/a	n/a

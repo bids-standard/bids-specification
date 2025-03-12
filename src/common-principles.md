@@ -15,9 +15,9 @@ REQUIRED, RECOMMENDED, and OPTIONAL.
 The guiding principles for when particular data is placed under a given requirement level
 can be loosely described as below:
 
-* REQUIRED: Data cannot be be interpreted without this information (or the ambiguity is unacceptably high)
-* RECOMMENDED: Interpretation/utility would be dramatically improved with this information
-* OPTIONAL: Users and/or tools might find it useful to have this information
+-   REQUIRED: Data cannot be be interpreted without this information (or the ambiguity is unacceptably high)
+-   RECOMMENDED: Interpretation/utility would be dramatically improved with this information
+-   OPTIONAL: Users and/or tools might find it useful to have this information
 
 Throughout this specification we use a list of terms and abbreviations.
 To avoid misunderstanding we clarify them here.
@@ -49,7 +49,7 @@ Each entity has the following attributes:
     1.  *Index*: A non-negative integer, potentially zero-padded for
         consistent width.
 
-    1.  *Label*: An alphanumeric string.
+    1.  *Label*: An alphanumeric (and possibly including `+` character(s)) string.
         Note that labels MUST not collide when casing is ignored
         (see [Case collision intolerance](#case-collision-intolerance)).
 
@@ -201,6 +201,11 @@ For example, a dataset cannot contain both `sub-s1` and `sub-S1`,
 as the labels would collide on a case-insensitive filesystem.
 Additionally, because the suffix `eeg` is defined,
 then the suffix `EEG` will not be added to future versions of the standard.
+
+### Dotfiles
+
+Files and directories starting with a dot (`.`) are reserved for system use and no valid recognized BIDS file or directory can start with a `.`.
+Any file or directory starting with a `.` present in a BIDS dataset is considered hidden and not subject to BIDS validation.
 
 ## Uniqueness of data files
 
@@ -479,6 +484,7 @@ with two exceptions:
 1.  [compressed tabular files](#compressed-tabular-files),
     for which column names are defined in a sidecar metadata
     [JSON object](https://www.json.org/json-en.html) described below; and
+
 1.  [motion recording data](modality-specific-files/motion.md),
     which use plain-text TSV and columns are defined as described
     in its corresponding section of the specifications.
@@ -489,8 +495,8 @@ first letter in lower case (for example, `variable_name`, not `Variable_name`).
 Column names defined in the header MUST be separated with tabs as for the data contents.
 Furthermore, column names MUST NOT be blank (that is, an empty string) and MUST NOT
 be duplicated within a single TSV file.
-String values containing tabs MUST be escaped using double quotes.
 Missing and non-applicable values MUST be coded as `n/a`.
+String values containing tabs MUST be escaped using double quotes.
 Numerical values MUST employ the dot (`.`) as decimal separator and MAY be specified
 in scientific notation, using `e` or `E` to separate the significand from the
 exponent.
@@ -601,8 +607,10 @@ Rules for formatting plain-text tabular files apply to TSVGZ files with three ex
 
 1.  The contents of TSVGZ files MUST be compressed with
     [gzip](https://datatracker.ietf.org/doc/html/rfc1952).
+
 1.  Compressed tabular files MUST NOT contain a header in the first row
     indicating the column names.
+
 1.  TSVGZ files MUST have an associated JSON file that defines the columns in the tabular file.
 
 !!! warning "Attention"
@@ -884,7 +892,7 @@ have the form `<scheme>:[//<authority>]<path>[?<query>][#<fragment>]`, as specif
 in [RFC 3986](https://tools.ietf.org/html/rfc3986).
 This applies to URLs and other common URIs, including Digital Object Identifiers (DOIs),
 which may be fully specified as `doi:<path>`,
-for example, [doi:10.5281/zenodo.3686061](https://doi.org/10.5281/zenodo.3686061).
+for example, [doi:10.5281/zenodo.10175845](https://doi.org/10.5281/zenodo.10175845).
 A given resource may have multiple URIs.
 When selecting URIs to add to dataset metadata, it is important to consider
 specificity and persistence.
@@ -1112,7 +1120,7 @@ A guide for using macros can be found at
 Additional files and directories containing raw data MAY be added as needed for
 special cases.
 All non-standard file entities SHOULD conform to BIDS-style naming conventions, including
-alphabetic entities and suffixes and alphanumeric labels/indices.
+alphabetic entities and suffixes and alphanumeric (and possibly including `+` character(s)) labels/indices.
 Non-standard suffixes SHOULD reflect the nature of the data, and existing
 entities SHOULD be used when appropriate.
 For example, an ASSET calibration scan might be named

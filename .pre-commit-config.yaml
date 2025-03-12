@@ -2,7 +2,7 @@
 # See https://pre-commit.com/hooks.html for more hooks
 ci:
   skip: [shellcheck]
-exclude: 'tools/schemacode/bidsschematools/tests/data/broken_dataset_description.json'
+exclude: 'tools/schemacode/src/bidsschematools/tests/data/broken_dataset_description.json'
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
@@ -10,13 +10,14 @@ repos:
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: check-yaml
+        args: [--unsafe]
       - id: check-json
       - id: check-toml
       - id: check-ast
       - id: check-added-large-files
       - id: check-case-conflict
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.29.4
+    rev: 0.31.3
     hooks:
       - id: check-dependabot
       - id: check-github-workflows
@@ -26,7 +27,7 @@ repos:
       - id: check-readthedocs
         files: readthedocs.yml
   - repo: https://github.com/psf/black
-    rev: 24.10.0
+    rev: 25.1.0
     hooks:
       - id: black
         files: ^tools/(?!schemacode)
@@ -36,7 +37,7 @@ repos:
         files: tools/schemacode
         args: ["--config", "tools/schemacode/pyproject.toml", "--verbose"]
   - repo: https://github.com/pyCQA/isort
-    rev: 5.13.2
+    rev: 6.0.1
     hooks:
       - id: isort
         files: ^tools/(?!schemacode)
@@ -46,7 +47,7 @@ repos:
         files: tools/schemacode
         args: ["--settings-file", "tools/schemacode/pyproject.toml"]
   - repo: https://github.com/pyCQA/flake8
-    rev: 7.1.1
+    rev: 7.1.2
     hooks:
       - id: flake8
         args: [--config=tools/schemacode/.flake8]
@@ -68,12 +69,12 @@ repos:
       - id: pretty-format-toml
         args: [--autofix, --indent, '4', --no-sort]
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.3.0
+    rev: v2.4.1
     hooks:
       - id: codespell
         args: ["--config=.codespellrc", "--dictionary=-", "--dictionary=.codespell_dict"]
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.13.0
+    rev: v1.15.0
     hooks:
       - id: mypy
         # Sync with project.optional-dependencies.typing
@@ -89,7 +90,7 @@ repos:
           - types-jsonschema
           - jsonschema
           - httpx
-        args: ["tools/schemacode/bidsschematools"]
+        args: ["tools/schemacode/src"]
         pass_filenames: false
   - repo: https://github.com/koalaman/shellcheck-precommit
     rev: v0.10.0

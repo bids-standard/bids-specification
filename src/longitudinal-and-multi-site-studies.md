@@ -65,7 +65,7 @@ A guide for using macros can be found at
 
 `sub-control01_sessions.tsv` content:
 
-```Text
+```tsv
 session_id	acq_time	systolic_blood_pressure
 ses-predrug	2009-06-15T13:45:30	120
 ses-postdrug	2009-06-16T13:45:30	100
@@ -94,7 +94,6 @@ Apps and everything should just work.
 
 Alternatively you can combine data from all sites into one dataset.
 This can be done in two ways:
-
 
 #### Option 2.a: Collate sites at subject level
 

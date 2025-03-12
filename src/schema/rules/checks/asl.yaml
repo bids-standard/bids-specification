@@ -47,7 +47,7 @@ ASLFlipAngleNiftiLength:
     message: |
       The number of values for 'FlipAngle' for this file does not match the 4th dimension of the NIfTI header.
       'FlipAngle' is the flip angle (FA) for the acquisition, specified in degrees.
-      Corresponds to: DICOM Tag 0018, 1314 `Flip Angle`.
+      Corresponds to: [DICOM Tag 0018, 1314](https://dicomlookup.com/dicomtags/(0018,1314)) `Flip Angle`.
       The data type number may apply to files from any MRI modality concerned with a single value for this field,
       or to the files in a file collection where the value of this field is iterated using the flip entity.
       The data type array provides a value for each volume in a 4D dataset and should only be used when the
@@ -70,7 +70,7 @@ ASLFlipAngleASLContextLength:
       The number of values for 'FlipAngle' for this file does not match the number of volumes in the
       associated 'aslcontext.tsv'.
       'FlipAngle' is the flip angle (FA) for the acquisition, specified in degrees.
-      Corresponds to: DICOM Tag 0018, 1314 `Flip Angle`.
+      Corresponds to: [DICOM Tag 0018, 1314](https://dicomlookup.com/dicomtags/(0018,1314)) `Flip Angle`.
       The data type number may apply to files from any MRI modality concerned with a single value for this field,
       or to the files in a file collection where the value of this field is iterated using the flip entity.
       The data type array provides a value for each volume in a 4D dataset and should only be used when the volume

@@ -116,6 +116,10 @@ You can also make use of the `exclude-from-changelog` label.
 Adding this label to PRs in the GitHub web interface will prevent the changelog generator from
 considering this item for inclusion in the changelog.
 
+#### 2.5 Update the schema
+
+Add the new version to `src/schema/meta/versions.yaml`.
+
 ### 3. Commit changes and push to upstream
 
 By pushing `rel/` branches to the main repository, the chances of continuous integration

@@ -14,23 +14,13 @@ JSON file for storing metadata fields (see below).
       -   [`7t_trt`](https://github.com/bids-standard/bids-examples/tree/master/7t_trt)
       -   [`ds210`](https://github.com/bids-standard/bids-examples/tree/master/ds210)
 
-Template:
-
-```Text
-sub-<label>/[ses-<label>/]
-    <datatype>/
-        <matches>[_recording-<label>]_physio.tsv.gz
-        <matches>[_recording-<label>]_physio.json
-```
-
-For the template directory name, `<datatype>` can correspond to any data
-recording modality, for example `func`, `anat`, `dwi`, `meg`, `eeg`, `ieeg`,
-or `beh`.
-
-In the template filenames, the `<matches>` part corresponds to task filename
-before the suffix.
-For example for the file `sub-control01_task-nback_run-1_bold.nii.gz`,
-`<matches>` would correspond to `sub-control01_task-nback_run-1`.
+{{ MACROS___make_filename_template(
+       "raw",
+       placeholders=True,
+       show_entities=["recording"],
+       suffixes=["physio"]
+   )
+}}
 
 !!! warning "Caution"
 
@@ -94,10 +84,10 @@ A guide for using macros can be found at
 
 (after decompression)
 
-```Text
-34    110    0
-44    112    0
-23    100    1
+```tsv
+34	110	0
+44	112	0
+23	100	1
 ```
 
 Example `*_physio.json`:
