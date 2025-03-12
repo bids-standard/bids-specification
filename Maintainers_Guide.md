@@ -11,7 +11,7 @@ which is a recommended reading in conjunction with this guide.
 
 ## Current BIDS Maintainers
 
-See also: [BIDS governance](https://bids.neuroimaging.io/governance.html#bids-maintainers-group)
+See also: [BIDS governance](https://bids.neuroimaging.io/collaboration/governance.html#bids-maintainers-group)
 
 | Name                                                                      | Time commitment | Scope                                 | Joined   |
 | ------------------------------------------------------------------------- | --------------- | ------------------------------------- | -------- |
@@ -26,7 +26,7 @@ See also: [BIDS governance](https://bids.neuroimaging.io/governance.html#bids-ma
 | Nell Hardcastle ([@nellh](https://github.com/nellh))                      | 2h/week         |                                       | Jul 2023 |
 | Kimberly Ray ([@KimberlyLRay](https://github.com/KimberlyLRay))           | 1h/week         |                                       | Nov 2022 |
 
-In addition to the [BIDS Governance](https://bids.neuroimaging.io/governance.html#bids-maintainers-group)
+In addition to the [BIDS Governance](https://bids.neuroimaging.io/collaboration/governance.html#bids-maintainers-group)
 classification of a maintainer, maintainers may declare a limited scope of responsibility.
 Such a scope can range from maintaining a modality supported in the specification to nurturing a
 welcoming BIDS community.
@@ -41,7 +41,7 @@ is rotating among current maintainers.
 
 ## Past BIDS Maintainers
 
-See also: [BIDS governance](https://bids.neuroimaging.io/governance.html#bids-maintainers-group)
+See also: [BIDS governance](https://bids.neuroimaging.io/collaboration/governance.html#bids-maintainers-group)
 
 | Name                                                                           | Duration            |
 | ------------------------------------------------------------------------------ | ------------------- |
@@ -131,5 +131,5 @@ https://docs.google.com/document/d/1yQdYOw7WMpkcFgT4tNalOjKuH34nhmRqg4luI4V9uhE/
 
 ## Notes
 
-As detailed in the [BIDS governance](https://bids.neuroimaging.io/governance.html),
+As detailed in the [BIDS governance](https://bids.neuroimaging.io/collaboration/governance.html),
 this guide is subject to change and to amendment by the BIDS Steering Group.

@@ -228,7 +228,8 @@ Segmentations may be defined in a volume (labeled voxels), a surface (labeled
 vertices) or a combined volume/surface space.
 
 If different segmentations coexist within the same directory of the BIDS
-structure, the [`seg-<label>` entity](../appendices/entities.md#segmentation)
+structure (for example, if they were generated with two alternative tools),
+the [`seg-<label>` entity](../appendices/entities.md#segmentation)
 SHOULD be used for disambiguation.
 
 The [`seg-<label>` entity](../appendices/entities.md#segmentation) MAY be used in combination
