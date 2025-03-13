@@ -17,13 +17,18 @@ def get_bundled_schema_path():
     return str(data.load_resource("schema"))
 
 
-def get_logger(name=None):
+def get_logger(name=None, level=None):
     """Return a logger to use.
 
     Parameters
     ----------
     name : None or str, optional
         Name of the logger. Defaults to None.
+    level: None or int, optional
+        Level to set for the logger. Defaults to None.
+        BIDS_SCHEMA_LOG_LEVEL environment variable can
+        be used to set the level and will overwrite
+        this value.
 
     Returns
     -------
@@ -31,18 +36,29 @@ def get_logger(name=None):
         logger object.
     """
     logger = logging.getLogger("bidsschematools" + (".%s" % name if name else ""))
-    # Basic settings for output, for now just basic
-    set_logger_level(logger, os.environ.get("BIDS_SCHEMA_LOG_LEVEL", logging.INFO))
-    format = "%(asctime)-15s [%(levelname)8s] %(message)s"
-    if len(logger.handlers) == 0:
+    # If explicitly instructed via env var -- set log level
+    if log_level := os.environ.get("BIDS_SCHEMA_LOG_LEVEL", level):
+        set_logger_level(logger, log_level)
+    return logger
+
+
+def configure_logger(lgr):
+    """Configuring formatting and stream handler for the logger.
+
+    Should not be used when bidsschematools is used as a library.
+
+    Parameters
+    ----------
+    lgr: logging.Logger
+
+    """
+    if len(lgr.handlers) == 0:
         # add a handler if there isn't one
         ch = logging.StreamHandler()
-        logger.addHandler(ch)
+        lgr.addHandler(ch)
     # Set the formatter for the handlers
-    for lh in logger.handlers:
-        lh.setFormatter(logging.Formatter(format))
-
-    return logger
+    for lh in lgr.handlers:
+        lh.setFormatter(logging.Formatter("%(asctime)-15s [%(levelname)8s] %(message)s"))
 
 
 def set_logger_level(lgr, level):
