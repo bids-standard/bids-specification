@@ -1109,24 +1109,25 @@ EMGPlacementSchemeDescription:
     Descriptions SHOULD NOT simply give the name of the targeted muscle (use the
     `target_muscle` column in `*_channels.tsv` for that), but rather SHOULD reflect the
     process used by the researcher(s) when placing electrodes.
-    For example, EMG electrode sites may be chosen by *visual reference* to target
-    muscles, by *palpation* of the skin to locate target muscles, or by *functional
-    localization* (temporary electrode placement at several sites during prescribed
-    behavior, until a site yielding strong EMG signal is found).
+    For example, EMG electrode sites may be chosen by *measured distance* from anatomical
+    landmarks, by *visual reference* to (parts of) target muscles, by *palpation* of the
+    skin to locate target muscles, or by *functional localization* (temporary electrode
+    placement at several sites during prescribed behavior, until a site yielding strong
+    EMG signal is found).
   type: string
 EMGReference:
   name: EMGReference
   display_name: EMG Reference
   description: |
     Description of the approach to signal referencing.
-    If the same signal source is used for all channels (often called a "monopolar"
-    recording), specify the signal source (typically an electrode name).
+    If the same signal source is used as reference for all channels (often called a
+    "monopolar" recording), specify the signal source (typically an electrode name).
     If different channels have different reference electrodes, this field SHOULD contain
-    the string `"channel-specific"` and each channel's reference SHOULD be given in the
+    the string `"ChannelSpecific"` and each channel's reference SHOULD be given in the
     `reference` column of `*_channels.tsv`.
     For bipolar recording devices (where a single sensor unit contains two rigidly
     separated contacts, and the paired contacts are not listed independently in
-    `*_electrodes.tsv`), this field SHOULD be `"bipolar"`.
+    `*_electrodes.tsv`), this field SHOULD be `"Bipolar"`.
   type: string
 EOGChannelCount:
   name: EOGChannelCount
