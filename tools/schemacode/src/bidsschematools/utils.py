@@ -38,7 +38,7 @@ def get_logger(name=None, level=None):
     """
     logger = logging.getLogger("bidsschematools" + (".%s" % name if name else ""))
     # If explicitly instructed via env var -- set log level
-    if log_level := os.environ.get("BIDS_SCHEMA_LOG_LEVEL", level):
+    if log_level := os.getenv("BIDS_SCHEMA_LOG_LEVEL", level):
         set_logger_level(logger, log_level)
     return logger
 
