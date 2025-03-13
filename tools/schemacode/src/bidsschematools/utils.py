@@ -2,6 +2,7 @@
 
 import logging
 import os
+import sys
 
 from . import data
 
@@ -54,7 +55,7 @@ def configure_logger(lgr):
     """
     if len(lgr.handlers) == 0:
         # add a handler if there isn't one
-        ch = logging.StreamHandler()
+        ch = logging.StreamHandler(stream=sys.stderr)
         lgr.addHandler(ch)
     # Set the formatter for the handlers
     for lh in lgr.handlers:
