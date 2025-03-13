@@ -8,6 +8,10 @@ eeg:
   display_name: Electroencephalography
   description: |
     Data acquired with EEG.
+emg:
+  display_name: Electromyography
+  description: |
+    Data acquired with EMG.
 ieeg:
   display_name: Intracranial Electroencephalography
   description: |

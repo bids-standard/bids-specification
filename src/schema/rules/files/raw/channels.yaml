@@ -7,6 +7,7 @@ channels:
     - .tsv
   datatypes:
     - eeg
+    - emg
     - ieeg
     - nirs
   entities:
@@ -40,6 +41,7 @@ coordsystem:
   extensions:
     - .json
   datatypes:
+    - emg
     - meg
     - nirs
   entities:
@@ -65,23 +67,31 @@ electrodes:
     - .json
     - .tsv
   datatypes:
-    - eeg
-    - ieeg
+    - emg
   entities:
     subject: required
     session: optional
     task: optional
     acquisition: optional
     run: optional
+
+ # (i)EEG can also have `space` entity
+electrodes__eeg:
+  $ref: rules.files.raw.channels.electrodes
+  datatypes:
+    - eeg
+    - ieeg
+  entities:
+    $ref: rules.files.raw.channels.electrodes.entities
     space: optional
 
 # MEG has an additional entity available
 electrodes__meg:
-  $ref: rules.files.raw.channels.electrodes
+  $ref: rules.files.raw.channels.electrodes__eeg
   datatypes:
     - meg
   entities:
-    $ref: rules.files.raw.channels.electrodes.entities
+    $ref: rules.files.raw.channels.electrodes__eeg.entities
     processing: optional
 
 optodes:
