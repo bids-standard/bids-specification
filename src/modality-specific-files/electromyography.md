@@ -294,14 +294,9 @@ Note that upper-case is REQUIRED:
 | ECG         | ElectroCardioGram (heart)                                              |
 | EMG         | ElectroMyoGram (muscle)                                                |
 | TRIG        | Analog (TTL in Volt) or digital (binary TTL) trigger channel           |
-| EYEGAZE     | Eye Tracker gaze                                                       |
-| PUPIL       | Eye Tracker pupil diameter                                             |
 | MISC        | Miscellaneous                                                          |
 | SYSCLOCK    | System time showing elapsed time since trial started                   |
-| ADC         | Analog to Digital input                                                |
-| DAC         | Digital to Analog output                                               |
 | REF         | Reference channel                                                      |
-| OTHER       | Any other type of channel                                              |
 
 Examples of free-form text for field `description`:
 

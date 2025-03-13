@@ -769,6 +769,7 @@ MISC:
   display_name: MISC
   tags:
     - eeg
+    - emg
     - meg
     - ieeg
     - fnirs
@@ -789,6 +790,7 @@ POS:
   value: POS
   display_name: POS
   tags:
+    - emg
     - motion
   description: |
     Position in space, one channel for each spatial axis.
@@ -826,6 +828,7 @@ EOG:
   display_name: EOG
   tags:
     - eeg
+    - emg
     - meg
     - ieeg
     - fnirs
@@ -836,6 +839,7 @@ ECG:
   display_name: ECG
   tags:
     - eeg
+    - emg
     - meg
     - ieeg
     - fnirs
@@ -846,6 +850,7 @@ EMG:
   display_name: EMG
   tags:
     - eeg
+    - emg
     - meg
     - ieeg
     - fnirs
@@ -873,6 +878,7 @@ HEOG:
   display_name: HEOG
   tags:
     - eeg
+    - emg
     - meg
     - ieeg
     - fnirs
@@ -900,6 +906,7 @@ REF:
   display_name: REF
   tags:
     - eeg
+    - emg
     - ieeg
   description: |
     Reference channel.
@@ -915,6 +922,7 @@ SYSCLOCK:
   display_name: SYSCLOCK
   tags:
     - eeg
+    - emg
     - meg
     - ieeg
     - fnirs
@@ -932,6 +940,7 @@ TRIG:
   display_name: TRIG
   tags:
     - eeg
+    - emg
     - meg
     - ieeg
     - fnirs
@@ -942,6 +951,7 @@ VEOG:
   display_name: VEOG
   tags:
     - eeg
+    - emg
     - meg
     - ieeg
     - fnirs
