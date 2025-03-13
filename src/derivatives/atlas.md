@@ -1,150 +1,64 @@
 # Templates and atlases
 
-In the following, we describe how the outcomes of analyses that derive from or
-produce [templates and atlases](../common-principles.md#definitions) are organized
+In the following, we describe how the outcomes of analyses that produce
+[templates and atlases](../common-principles.md#definitions) are organized
 as BIDS-Derivatives.
-These outcomes typically involve quantitative maps, feature maps, parcellations,
-segmentations, and other knowledge annotations such as landmarks defined with
-respect to individual or template brains that are supported by spaces
-such as surfaces and regular grids (images).
 
-For derivatives with atlases in their provenance corresponding to individual subjects,
-the organization follows the standards for BIDS raw and derivatives.
-The following entities MAY be employed to specify template- and atlas-derived results:
+!!! note "Important"
 
--    [`tpl-<label>`](../glossary.md#template-entities) is REQUIRED to specify derivatives defining
-     a [template](../common-principles.md).
--    [`space-<label>`](../glossary.md#space-entities) is REQUIRED to disambiguate derivatives defined with
-     respect to different [coordinate systems](../appendices/coordinate-systems.md), following the general
-     BIDS-Derivatives specifications.
--    [`cohort-<label>`](../glossary.md#cohort-entities) is REQUIRED to disambiguate derivatives defined with
-     respect to different cohort instances of a single [space (coordinate system)](../appendices/coordinate-systems.md).
-     Please note that [`cohort-<label>`](../glossary.md#cohort-entities) MUST NOT be used if neither
-     [`tpl-<label>`](../glossary.md#template-entities) nor [`space-<label>`](../glossary.md#space-entities) are used.
--    [`atlas-<label>`](../glossary.md#atlas-entities) is REQUIRED to encode files pertaining
-     or derived from the atlas identified by the entity's label.
--    [`seg-<label>`](../glossary.md#segmentation-entities) is REQUIRED when a single atlas has several different
-     realizations (for instance, segmentations and parcellations created with different criteria) that
-     need disambiguation.
--    [`scale-<label>`](../glossary.md#scale-entities) is REQUIRED to disambiguate different atlas 'scales',
-     when the atlas has more than one 'brain unit' resolutions, typically relating to the area covered
-     by regions.
+    For outcomes of analyses corresponding to individual subjects
+    that derive from atlases and may refer to spaces other than the original
+    subject's space, please refer to the
+    [Derivatives from atlases](imaging.md#derivatives-from-atlases) subsection.
 
-The general filename pattern for subject derivatives with templates and atlases in their provenance
-follows the general BIDS-Derivatives pattern:
+## Derived templates
 
-```Text
-<pipeline_name>/
-    sub-<label>/
-        <datatype>/
-            <source_entities>[_space-<space>][_cohort-<label>][_atlas-<label>][seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
-```
+Many analyses include spatial standardization to pull individuals' data
+into a common spatial frame.
+For example, creating an atlas will most likely require the creation of a new template
+or the integration of existing ones to define a stereotactic space.
 
-[`atlas-<label>`](../glossary.md#atlas-entities), [`seg-<label>`](../glossary.md#segmentation-entities),
-and [`scale-<label>`](../glossary.md#scale-entities) are discussed later in section
-[Filenames of derivatives with atlases in their provenance](#filenames-of-derivatives-with-atlases-in-their-provenance).
-
-For derivatives of template- and altas-generating pipelines, which typically aggregate
+For derivatives of template-generating pipelines, which typically aggregate
 several sessions and/or subjects, the derivatives-specific
-[`tpl-<label>` entity](../glossary.md#template-entities) is dual in terms of usage to BIDS raw's
-[`sub-<label>`](../glossary.md#subject-entities), and MAY be employed as follows:
+[`tpl-<label>` entity](../glossary.md#template-entities) indicates that the
+spatial frame of analysis is not defined by a single brain image but an
+aggregation thereof.
+On that sense, the [`tpl-<label>` entity](../glossary.md#template-entities)
+would be dual in terms of usage to BIDS raw's [`sub-<label>`](../glossary.md#subject-entities).
+
+!!! tip "Recommendation"
+
+    The selected `<label>` in the [`tpl-<label>` entity](../glossary.md#template-entities)
+    is RECOMMENDED for the [`space-<label>` entity](../appendices/entities.md#space-entities)
+    in downstream derivatives from this particular template (see previous section
+    [Derivatives from atlases](imaging.md#derivatives-from-atlases)).
+
+Template:
 
 ```Text
 <pipeline_name>/
     tpl-<label>/
         [cohort-<label>/]
            [<datatype>/]
-               tpl-<label>_<source_entities>[_cohort-<label>][_atlas-<label>][seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
+               tpl-<label>_[cohort-<label>][_space-<label>][_atlas-<label>][seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
 ```
 
-where [`suffix`](../glossary.md#suffix-common_principles) will generally be existing BIDS raw modalities
-(such as `T1w`) for templates, while it will normally take `dseg`, `probseg`, or `mask` to encode atlased
-knowledge.
-In terms of [`extension`](../glossary.md#extension-common_principles), `nii[.gz]`, `dscalar.nii[.gz]`,
+where [`suffix`](../glossary.md#suffix-common_principles) SHOULD be an existing BIDS modality
+such as `T1w` or `PET`.
+[`extension`](../glossary.md#extension-common_principles), MAY take values such as `nii[.gz]`, `dscalar.nii[.gz]`,
 `dlabel.nii[.gz]`, `label.gii[.gz]`, `tsv`, or `json`.
+
 Please note that the [`<datatype>/` directory](../glossary.md#data_type-common_principles) is RECOMMENDED.
 The [`<datatype>/` directory](../glossary.md#data_type-common_principles) MAY be omitted in the case
 only one data type (such as `anat/`) is stored under the `tpl-<label>` directory.
+
 The [`cohort-<label>` directory and entity](../glossary.md#cohort-entities) MUST be specified for templates
 with several cohorts.
 The [`cohort-<label>` directory and entity](../glossary.md#cohort-entities) are dual in terms of usage to BIDS raw's
 [`session-<label>`](../glossary.md#session-entities).
-Both subject-level and template-level results can coexist in a single pipeline directory:
 
-```Text
-<pipeline_name>/
-    sub-<label>/
-        <datatype>/
-            <source_entities>[_space-<space>][_cohort-<label>][_atlas-<label>][seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
-    tpl-<label>/
-        [cohort-<label>/]
-           [<datatype>/]
-               <source_entities>[_cohort-<label>][_space-<space>][_atlas-<label>][seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
-```
-
-## Single-subject templates and atlases
-
-Early digital templates and atlases such as MNI's
-'[Colin 27 Average Brain, Stereotaxic Registration Model](https://www.mcgill.ca/bic/software/tools-data-analysis/anatomical-mri/atlases/colin-27)'
-([Holmes et al., 1998](https://doi.org/10.1097/00004728-199803000-00032)) were built by examining single individuals.
-For example, the outputs of the pipeline that generated 'Colin27' would have been organized as follows:
-
-<!-- This block generates a file tree.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filetree_example({
-   "colin27-pipeline": {
-      "sub-01": {
-         "anat": {
-            "sub-01_label-brain_mask.nii.gz": "",
-            "sub-01_label-head_mask.nii.gz": "",
-            "sub-01_T1w.nii.gz": "",
-            "sub-01_T1w.json": "",
-         },
-      },
-   }
-})
-}}
-
-In the presence of conflicting files, for example, when there are several resolutions,
-additional entities MUST be specified:
-
-<!-- This block generates a file tree.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filetree_example({
-   "colin27-pipeline": {
-      "sub-01": {
-         "anat": {
-            "sub-01_res-1_label-brain_mask.nii.gz": "",
-            "sub-01_res-1_label-head_mask.nii.gz": "",
-            "sub-01_res-1_T1w.nii.gz": "",
-            "sub-01_res-1_T1w.json": "",
-            "sub-01_res-2_T1w.nii.gz": "",
-            "sub-01_res-2_T1w.json": "",
-         },
-      },
-   }
-})
-}}
-
-## Multi-subject template and atlases and deriving an existing template/atlas
-
-Atlasing multiple individual brains is a higher-than-first-level analysis,
-as it requires first generating derivatives for the individuals (for example,
-a transformation to align them into a standardized space) and later aggregate
-and distill the sample-pooled knowledge and feature maps.
-Similarly, deriving from an existing template and atlases is also
-a higher-than-first-level analysis as it builds on a previous analysis.
-
-**Multi-subject templates**.
-While at the subject level analysis it is the individual brain that establishes
-stereotaxy.
-At higher-than-first-level stereotaxy is supported by templates, which are
-encoded through the [`tpl-<label>` entity](../glossary.md#template-entities).
-For the pipeline that generated the MNI152NLin2009cAsym, the outputs would look
+**Example: the `MNI152NLin2009cAsym` template**.
+For the pipeline that generated the MNI152NLin2009cAsym, the outputs could look
 like the following example:
 
 <!-- This block generates a file tree.
@@ -179,7 +93,7 @@ A guide for using macros can be found at
 })
 }}
 
-**Multi-cohort templates.**
+**Example: multi-cohort templates.**
 In the case that the template-generating pipeline derives
 several cohorts, the file structure must employ the
 [`cohort-<label>` directory and entity](../glossary.md#cohort-entities).
@@ -233,16 +147,11 @@ A guide for using macros can be found at
 })
 }}
 
-**Storing spatial transforms.**
-Since multi-subject templates and atlas involve the spatial normalization of
-subjects by means of image registration processes, it is RECOMMENDED to store
-the resulting transforms for each of the subjects employed to create the
-output.
-Please note that the specification for spatial transforms (BEP 014) is currently
-under development, and therefore, the specification of transforms files may
-change in the future.
-As these are subject-wise results, they follow the standard derivatives conventions
-with a `sub-<label>` directory to house these derivatives:
+**Subject-level and template derivatives**.
+Both subject-level and template-level results MAY coexist in a single pipeline directory.
+If the subject-level results based on which a template was generated are to be
+shared with the template, it is RECOMMENDED to store both families of results within the
+pipeline folder:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -276,302 +185,84 @@ A guide for using macros can be found at
 })
 }}
 
-**Defining atlases referenced to a pre-existing template.**
-Once a standard space is instantiated by a reference template,
-atlasing knowledge MAY be specified employing the
-[`atlas-<label>` entity](../glossary.md#atlas-entities).
+!!! warning "Warning"
 
-The following example shows how 'Colin27' could have encoded the Automated Anatomical Labeling (AAL)
-atlas ([Tzourio-Mazoyer et al., 2002](https://doi.org/10.1006/nimg.2001.0978)), which was originally
-defined on the Colin27 space:
+    Please note that the specification for spatial transforms (BEP 014) is currently
+    under development, and therefore, the specification of transforms files may
+    change in the future.
 
-<!-- This block generates a file tree.
+## Derived atlases
+
+### Atlas identification and metadata
+
+The `atlas-<label>_description.json` file provides metadata to uniquely identify,
+describe and characterize the atlas, as well as give proper attribution to the creators.
+Atlases MUST include `atlas-<label>_description.json` files
+corresponding to the atlas or atlases in the structure.
+
+!!! tip "Recommendation"
+
+    The selected `<label>` in the `atlas-<label>_description.json` file is RECOMMENDED
+    for the [`atlas-<label>` entity](../appendices/entities.md#atlas-entities)
+    in downstream derivatives from this particular atlas (see previous section
+    [Derivatives from atlases](imaging.md#derivatives-from-atlases)).
+
+Template:
+
+```Text
+<pipeline_name>/
+    tpl-<label>/
+        atlas-<label>_description.json
+        [cohort-<label>/]
+           [<datatype>/]
+               tpl-<label>_[cohort-<label>][_space-<label>][_atlas-<label>][seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
+```
+
+Atlas metadata fields:
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filetree_example({
-   "colin27-pipeline": {
-      "sub-01": {
-         "anat": {
-            "sub-01_atlas-AAL_dseg.json": "",
-            "sub-01_atlas-AAL_dseg.nii.gz": "",
-            "sub-01_atlas-AAL_dseg.tsv": "",
-            "sub-01_atlas-AAL_probseg.nii.gz": "",
-            "sub-01_label-brain_mask.nii.gz": "",
-            "sub-01_label-head_mask.nii.gz": "",
-            "sub-01_T1w.nii.gz": "",
-            "sub-01_T1w.json": "",
-         },
-      },
-   }
-})
-}}
+{{ MACROS___make_sidecar_table([
+       "derivatives.common_derivatives.AtlasDescription",
+   ]) }}
 
-As [the authors of 'Colin27' indicate](https://www.mcgill.ca/bic/software/tools-data-analysis/anatomical-mri/atlases/colin-27),
-it is aligned with MNI305:
+Additionally, `SpatialReference` serves the important purpose of unambiguously identifying
+the space the atlas is labeled in.
 
-> In 1998, a new atlas with much higher definition than MNI305s was created at the MNI.
-> One individual (CJH) was scanned 27 times and the images linearly registered to create
-> an average with high SNR and structure definition (Holmes et al., 1998).
-> This average was linearly registered to the average 305.
-> Ironically, this dataset was not originally intended for use as a stereotaxic template
-> but as the sub-strate for an ROI parcellation scheme to be used with
-> ANIMAL non-linear spatial normalization (Collins et al., 1995),
-> i.e. it was intended for the purpose of segmentation, NOT stereotaxy.
-> As a single brain atlas, it did not capture anatomical variability and was, to some degree,
-> a reversion to the Talairach approach.
->
-> However, the high definition proved too attractive to the community and,
-> after non-linear mapping to fit the MNI305 space, it has been adopted
-> by many groups as a stereotaxic template.
+Example `atlas-MyAtlas2025_description.json`:
 
-Therefore, this pipeline potentially could have produced outputs in the realigned T1w space
-before alignment to the MNI305 template.
-To disambiguate in this case, we employ the [`space-<label>` entity](../glossary.md#space-entities):
+```JSON
+{
+  "Name": "A new atlas of the human brain",
+  "Authors": [
+    "Jane Doe",
+    "John Doe"
+  ],
+  "SpatialReference": "https://templateflow.s3.amazonaws.com/tpl-MNI152NLin6Asym_res-02_T1w.nii.gz",
+  "License": "CC0",
+  "RRID": "SCR_002823",
+  "Species": "Human"
+}
+```
 
-<!-- This block generates a file tree.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filetree_example({
-   "colin27-pipeline": {
-      "sub-01": {
-         "anat": {
-            "sub-01_space-MNI305_atlas-AAL_dseg.json": "",
-            "sub-01_space-MNI305_atlas-AAL_dseg.nii.gz": "",
-            "sub-01_space-MNI305_atlas-AAL_dseg.tsv": "",
-            "sub-01_space-MNI305_atlas-AAL_probseg.nii.gz": "",
-            "sub-01_space-MNI305_label-brain_mask.nii.gz": "",
-            "sub-01_space-MNI305_label-head_mask.nii.gz": "",
-            "sub-01_space-MNI305_T1w.nii.gz": "",
-            "sub-01_space-MNI305_T1w.json": "",
-            "sub-01_space-T1w_label-brain_mask.nii.gz": "",
-            "sub-01_space-T1w_label-head_mask.nii.gz": "",
-            "sub-01_space-T1w_T1w.nii.gz": "",
-            "sub-01_space-T1w_T1w.json": "",
-         },
-      },
-   }
-})
-}}
+### Deriving templates and atlases
 
-For example, the [PS13 atlas](https://doi.org/10.18112/openneuro.ds004401.v1.3.0),
-a molecular imaging brain atlas of Cyclooxygenase-1 (PET),
-was generated in two standard spaces: `MNI152Lin` and `fsaverage`:
+A common use-case of brain templates is establishing stereotaxy for the creation
+of atlases.
+For example, the *Spatially Unbiased Infratentorial Template* (*SUIT*;
+[Diedrichsen, 2006](https://doi.org/10.1016/j.neuroimage.2006.05.056)),
+presents an *atlas template* of the human cerebellum and brainstem based
+on the anatomy of 20 young healthy individuals.
 
-<!-- This block generates a file tree.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filetree_example({
-   "ps13-pipeline": {
-      "tpl-fsaverage": {
-         "pet": {
-            "tpl-fsaverage_atlas-ps13_desc-nopvc_dseg.nii.gz": "",
-            "tpl-fsaverage_atlas-ps13_desc-pvc_dseg.nii.gz": "",
-            "tpl-fsaverage_atlas-ps13_dseg.json": "",
-            "tpl-fsaverage_atlas-ps13_dseg.tsv": "",
-            "tpl-fsaverage_desc-nopvc_pet.json": "",
-            "tpl-fsaverage_desc-nopvc_pet.nii.gz": "",
-            "tpl-fsaverage_desc-pvc_pet.json": "",
-            "tpl-fsaverage_desc-pvc_pet.nii.gz": "",
-            "tpl-fsaverage_hemi-L_den-164k_desc-nopvc_pet.json": "",
-            "tpl-fsaverage_hemi-L_den-164k_desc-nopvc_pet.shape.gii": "",
-            "tpl-fsaverage_hemi-L_den-164k_desc-pvc_pet.json": "",
-            "tpl-fsaverage_hemi-L_den-164k_desc-pvc_pet.shape.gii": "",
-            "tpl-fsaverage_hemi-L_den-164k_stat-std_desc-nopvc_pet.json": "",
-            "tpl-fsaverage_hemi-L_den-164k_stat-std_desc-nopvc_pet.shape.gii": "",
-            "tpl-fsaverage_hemi-L_den-164k_stat-std_desc-pvc_pet.json": "",
-            "tpl-fsaverage_hemi-L_den-164k_stat-std_desc-pvc_pet.shape.gii": "",
-            "tpl-fsaverage_hemi-R_den-164k_desc-nopvc_pet.json": "",
-            "tpl-fsaverage_hemi-R_den-164k_desc-nopvc_pet.shape.gii": "",
-            "tpl-fsaverage_hemi-R_den-164k_desc-pvc_pet.json": "",
-            "tpl-fsaverage_hemi-R_den-164k_desc-pvc_pet.shape.gii": "",
-            "tpl-fsaverage_hemi-R_den-164k_stat-std_desc-nopvc_pet.json": "",
-            "tpl-fsaverage_hemi-R_den-164k_stat-std_desc-nopvc_pet.shape.gii": "",
-            "tpl-fsaverage_hemi-R_den-164k_stat-std_desc-pvc_pet.json": "",
-            "tpl-fsaverage_hemi-R_den-164k_stat-std_desc-pvc_pet.shape.gii": "",
-            "tpl-fsaverage_stat-std_desc-nopvc_pet.json": "",
-            "tpl-fsaverage_stat-std_desc-nopvc_pet.nii.gz": "",
-            "tpl-fsaverage_stat-std_desc-pvc_pet.json": "",
-            "tpl-fsaverage_stat-std_desc-pvc_pet.nii.gz": "",
-         },
-      },
-      "tpl-MNI152Lin": {
-         "pet": {
-            "tpl-MNI152Lin_atlas-ps13_desc-nopvc_dseg.nii.gz": "",
-            "tpl-MNI152Lin_atlas-ps13_desc-pvc_dseg.nii.gz": "",
-            "tpl-MNI152Lin_atlas-ps13_dseg.json": "",
-            "tpl-MNI152Lin_atlas-ps13_dseg.tsv": "",
-            "tpl-MNI152Lin_res-1p5_desc-spmvbmNopvc_pet.json": "",
-            "tpl-MNI152Lin_res-1p5_desc-spmvbmNopvc_pet.nii.gz": "",
-            "tpl-MNI152Lin_res-1p5_desc-spmvbmPvc_pet.json": "",
-            "tpl-MNI152Lin_res-1p5_desc-spmvbmPvc_pet.nii.gz": "",
-            "tpl-MNI152Lin_res-1p5_stat-std_desc-spmvbmNopvc_pet.json": "",
-            "tpl-MNI152Lin_res-1p5_stat-std_desc-spmvbmNopvc_pet.nii.gz": "",
-            "tpl-MNI152Lin_res-1p5_stat-std_desc-spmvbmPvc_pet.json": "",
-            "tpl-MNI152Lin_res-1p5_stat-std_desc-spmvbmPvc_pet.nii.gz": "",
-            "tpl-MNI152Lin_res-2_desc-fnirtNopvc_pet.json": "",
-            "tpl-MNI152Lin_res-2_desc-fnirtNopvc_pet.nii.gz": "",
-            "tpl-MNI152Lin_res-2_desc-fnirtPvc_pet.json": "",
-            "tpl-MNI152Lin_res-2_desc-fnirtPvc_pet.nii.gz": "",
-            "tpl-MNI152Lin_res-2_desc-nopvc_pet.json": "",
-            "tpl-MNI152Lin_res-2_desc-nopvc_pet.nii.gz": "",
-            "tpl-MNI152Lin_res-2_desc-pvc_pet.json": "",
-            "tpl-MNI152Lin_res-2_desc-pvc_pet.nii.gz": "",
-            "tpl-MNI152Lin_res-2_stat-std_desc-fnirtNopvc_pet.json": "",
-            "tpl-MNI152Lin_res-2_stat-std_desc-fnirtNopvc_pet.nii.gz": "",
-            "tpl-MNI152Lin_res-2_stat-std_desc-fnirtPvc_pet.json": "",
-            "tpl-MNI152Lin_res-2_stat-std_desc-fnirtPvc_pet.nii.gz": "",
-            "tpl-MNI152Lin_res-2_stat-std_desc-nopvc_pet.json": "",
-            "tpl-MNI152Lin_res-2_stat-std_desc-nopvc_pet.nii.gz": "",
-            "tpl-MNI152Lin_res-2_stat-std_desc-pvc_pet.json": "",
-            "tpl-MNI152Lin_res-2_stat-std_desc-pvc_pet.nii.gz": "",
-         },
-      }
-   }
-})
-}}
-
-If the pipeline generates two different atlases for at least one template space
-in the output, then [`atlas-<label>`](../glossary.md#atlas-entities) is REQUIRED
-for the whole dataset.
-For example, let's imagine the PS13 atlas is revised in 2034, and based on the
-original pipeline and data, it generates now a new manual segmentation
-in the `MNI152Lin` space with some new regions defined.
-The new atlas can be structured as follows:
-
-<!-- This block generates a file tree.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filetree_example({
-   "ps13rev2034-pipeline": {
-      "tpl-fsaverage": {
-         "pet": {
-            "tpl-fsaverage_atlas-ps13_desc-nopvc_dseg.nii.gz": "",
-            "tpl-fsaverage_atlas-ps13_desc-pvc_dseg.nii.gz": "",
-            "tpl-fsaverage_atlas-ps13_dseg.json": "",
-            "tpl-fsaverage_atlas-ps13_dseg.tsv": "",
-            "tpl-fsaverage_atlas-ps13_hemi-L_den-164k_desc-nopvc_pet.json": "",
-            "...": "",
-            "tpl-fsaverage_atlas-ps13_stat-std_desc-pvc_pet.nii.gz": "",
-         },
-      },
-      "tpl-MNI152Lin": {
-         "pet": {
-            "tpl-MNI152Lin_atlas-ps13_desc-nopvc_dseg.nii.gz": "",
-            "tpl-MNI152Lin_atlas-ps13_desc-pvc_dseg.nii.gz": "",
-            "tpl-MNI152Lin_atlas-ps13_dseg.json": "",
-            "tpl-MNI152Lin_atlas-ps13_dseg.tsv": "",
-            "tpl-MNI152Lin_atlas-ps13_res-1p5_desc-spmvbmNopvc_pet.json": "",
-            "...": "",
-            "tpl-MNI152Lin_atlas-ps13_res-2_stat-std_desc-pvc_pet.nii.gz": "",
-            "tpl-MNI152Lin_atlas-ps13rev2034_desc-nopvc_dseg.nii.gz": "",
-            "tpl-MNI152Lin_atlas-ps13rev2034_desc-pvc_dseg.nii.gz": "",
-            "tpl-MNI152Lin_atlas-ps13rev2034_dseg.json": "",
-            "tpl-MNI152Lin_atlas-ps13rev2034_dseg.tsv": "",
-         },
-      }
-   }
-})
-}}
-
-**Producing a new template AND atlas.**
-Atlasing is often performed with reference to a *custom* standard space.
-In this case, a feature template map is generated from all the participant(s)
-in the study, and the atlas' artifacts are produced with reference to that
-template.
-
-Either by generating the template space with aligning to a pre-existing template,
-or by estimating a transform between templates by means of image registration,
-a new template definition MUST be employed if the new template generates
-a new [*space*](../common-principles.md#definitions).
-For example, let's imagine that PS13 first generated a template nuclear imaging
-map and after that, a corresponding [*atlas*](../common-principles.md#definitions)
-was defined.
-In that case, the [`atlas-<label>`](../glossary.md#atlas-entities) SHOULD be omitted
-except several atlases need specification:
-
-<!-- This block generates a file tree.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filetree_example({
-   "ps13-pipeline": {
-      "tpl-PS13": {
-         "pet": {
-            "tpl-PS13_desc-nopvc_dseg.nii.gz": "",
-            "tpl-PS13_desc-pvc_dseg.nii.gz": "",
-            "tpl-PS13_dseg.json": "",
-            "tpl-PS13_dseg.tsv": "",
-            "tpl-PS13_stat-std_desc-fnirtNopvc_pet.json": "",
-            "tpl-PS13_stat-std_desc-fnirtNopvc_pet.nii.gz": "",
-            "tpl-PS13_stat-std_desc-fnirtPvc_pet.json": "",
-            "tpl-PS13_stat-std_desc-fnirtPvc_pet.nii.gz": "",
-            "tpl-PS13_stat-std_desc-nopvc_pet.json": "",
-            "tpl-PS13_stat-std_desc-nopvc_pet.nii.gz": "",
-            "tpl-PS13_stat-std_desc-pvc_pet.json": "",
-            "tpl-PS13_stat-std_desc-pvc_pet.nii.gz": "",
-         },
-      },
-   }
-})
-}}
-
-Let's complete the above example by adding two new atlases to the existing
-template and (*default*) atlas:
-
-<!-- This block generates a file tree.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filetree_example({
-   "ps13-with-atlases-pipeline": {
-      "tpl-PS13": {
-         "pet": {
-            "tpl-PS13_atlas-Economo1916_desc-nopvc_dseg.nii.gz": "",
-            "tpl-PS13_atlas-Economo1916_desc-pvc_dseg.nii.gz": "",
-            "tpl-PS13_atlas-Economo1916_dseg.json": "",
-            "tpl-PS13_atlas-Economo1916_dseg.tsv": "",
-            "tpl-PS13_atlas-RamonCajal1908_desc-nopvc_dseg.nii.gz": "",
-            "tpl-PS13_atlas-RamonCajal1908_desc-pvc_dseg.nii.gz": "",
-            "tpl-PS13_atlas-RamonCajal1908_dseg.json": "",
-            "tpl-PS13_atlas-RamonCajal1908_dseg.tsv": "",
-            "tpl-PS13_desc-nopvc_dseg.nii.gz": "",
-            "tpl-PS13_desc-pvc_dseg.nii.gz": "",
-            "tpl-PS13_dseg.json": "",
-            "tpl-PS13_dseg.tsv": "",
-            "tpl-PS13_stat-std_desc-fnirtNopvc_pet.json": "",
-            "tpl-PS13_stat-std_desc-fnirtNopvc_pet.nii.gz": "",
-            "tpl-PS13_stat-std_desc-fnirtPvc_pet.json": "",
-            "tpl-PS13_stat-std_desc-fnirtPvc_pet.nii.gz": "",
-            "tpl-PS13_stat-std_desc-nopvc_pet.json": "",
-            "tpl-PS13_stat-std_desc-nopvc_pet.nii.gz": "",
-            "tpl-PS13_stat-std_desc-pvc_pet.json": "",
-            "tpl-PS13_stat-std_desc-pvc_pet.nii.gz": "",
-         },
-      },
-   }
-})
-}}
-
-where the `atlas-RamonCajal1908` and `atlas-Economo1916` hypothetically define
-two different atlases (please note that, often, atlases are named after
-the first author and indicating a year of a reference communication).
-The original *default* or *implicit* atlas' artifacts such as
-the `tpl-PS13_desc-nopvc_dseg.nii.gz` segmentation,
-which were originally generated with the PS13 template,
-MAY take an [`atlas-<label>`](../glossary.md#atlas-entities) if they
-need to be differentiated from the original template and atlas dataset.
-However, it is RECOMMENDED that these *default* or *implicit* atlases employed
-in the *custom* space they were generated only define
-[`atlas-<label>`](../glossary.md#atlas-entities)
-if it is necessary to disambiguate two or more atlases.
-
-A further example of these template-and-atlas specifications
-is the *Spatially Unbiased Infratentorial Template (SUIT)*
-([Diedrichsen, 2006](https://doi.org/10.1016/j.neuroimage.2006.05.056)):
+The authors first developed a template of the cerebellum and brainstem,
+which is spatially standardized *in MNI space*.
+This could be the organization of the template part:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -581,10 +272,77 @@ A guide for using macros can be found at
    "suit-pipeline": {
       "tpl-SUIT": {
          "anat": {
-            "CHANGES": "",
-            "LICENSE": "",
-            "README.md": "",
-            "dataset_description.json": "",
+            "tpl-SUIT_T1w.nii.gz": "",
+            "tpl-SUIT_flat.surf.gii": "",
+            "tpl-SUIT_sulc.shape.gii": "",
+         },
+      },
+   }
+})
+}}
+
+Once the standard space of analysis was prepared, a first atlas was
+developed in 2009, integrating some segmentations and parcellations:
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+   "suit-pipeline": {
+      "tpl-SUIT": {
+         "anat": {
+            "atlas-Dietrich2009_description.json": "",
+            "tpl-SUIT_T1w.nii.gz": "",
+            "tpl-SUIT_dseg.json": "",
+            "tpl-SUIT_dseg.label.gii": "",
+            "tpl-SUIT_dseg.nii.gz": "",
+            "tpl-SUIT_dseg.tsv": "",
+            "tpl-SUIT_probseg.nii.gz": "",
+            "tpl-SUIT_flat.surf.gii": "",
+            "tpl-SUIT_sulc.shape.gii": "",
+         },
+      },
+   }
+})
+}}
+
+where `atlas-Dietrich2009_description.json` could contain:
+
+```JSON
+{
+  "Name": "A probabilistic MR atlas of the human cerebellum",
+  "Authors": [
+    "Jörn Diedrichsen",
+    "Joshua H Balsters",
+    "Jonathan Flavell",
+    "Emma Cussans",
+    "Narender Ramnani"
+  ],
+  "SpatialReference": "https://templateflow.s3.amazonaws.com/tpl-MNI152Lin_res-01_T1w.nii.gz",
+  "License": "LICENSE file",
+  "ReferencesAndLinks": [
+     "https://doi.org/10.1016/j.neuroimage.2009.01.045",
+     "https://github.com/jdiedrichsen/suit"
+  ],
+  "Species": "Human"
+}
+```
+
+Finally, in 2011 a second atlas was developed integrating new segmentations.
+Now, to disambiguate between the two atlases,
+the [`atlas-<label>` entity](../appendices/entities.md#atlas-entities) MUST be used:
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+   "suit-pipeline": {
+      "tpl-SUIT": {
+         "anat": {
+            "atlas-Buckner2011_description.json": "",
+            "atlas-Dietrich2009_description.json": "",
             "tpl-SUIT_T1w.nii.gz": "",
             "tpl-SUIT_atlas-Buckner2011_dseg.json": "",
             "tpl-SUIT_atlas-Buckner2011_seg-17n_dseg.label.gii": "",
@@ -608,12 +366,9 @@ A guide for using macros can be found at
 })
 }}
 
-In this case, a new T1w template of the cerebellum was created, and two different
-atlases (`Diedrichsen2009`, and `Buckner2011`) were generated with respect to
-the T1w template.
+### Deriving an atlas from an existing template
 
-**Deriving from an existing template/atlas**.
-For example, the MIAL67ThalamicNuclei
+For example, the `MIAL67ThalamicNuclei`
 ([Najdenovska et al., 2018](https://doi.org/10.1038/sdata.2018.270))
 atlas-generation pipeline could display the following structure:
 
@@ -644,10 +399,11 @@ A guide for using macros can be found at
       },
       "tpl-MNI152NLin2009cAsym": {
          "anat": {
-            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_dseg.json": "",
-            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_dseg.tsv": "",
-            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz": "",
-            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz": "",
+            "atlas-MIAL67ThalamicNuclei_description.json": "",
+            "tpl-MNI152NLin2009cAsym_dseg.json": "",
+            "tpl-MNI152NLin2009cAsym_dseg.tsv": "",
+            "tpl-MNI152NLin2009cAsym_res-1_dseg.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_res-1_probseg.nii.gz": "",
          },
       },
    }
@@ -686,56 +442,11 @@ A guide for using macros can be found at
       },
       "tpl-MNI152NLin2009cAsym": {
          "anat": {
-            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_dseg.json": "",
-            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_dseg.tsv": "",
-            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz": "",
-            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz": "",
-         },
-      },
-   }
-})
-}}
-
-This directory structure can be generally applied when the atlas is derived into several
-template spaces, for example:
-
-<!-- This block generates a file tree.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filetree_example({
-   "mial67thalamicnuclei-pipeline": {
-      "atlas-MIAL67ThalamicNuclei_dseg.json": "",
-      "atlas-MIAL67ThalamicNuclei_dseg.tsv": "",
-      "seg-ThalamicNuclei_dseg.json": "",
-      "seg-ThalamicNuclei_dseg.tsv": "",
-      "sub-01": {
-         "anat": {
-            "sub-01_seg-ThalamicNuclei_dseg.nii.gz": "",
-            "sub-01_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
-            "sub-01_space-MNI152NLin6Asym_T1w.nii.gz": "",
-            "sub-01_T1w.nii.gz": "",
-         },
-      },
-      "...": "",
-      "sub-67": {
-         "anat": {
-            "sub-67_seg-ThalamicNuclei_dseg.nii.gz": "",
-            "sub-67_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
-            "sub-67_space-MNI152NLin6Asym_T1w.nii.gz": "",
-            "sub-67_T1w.nii.gz": "",
-         },
-      },
-      "tpl-MNI152NLin2009cAsym": {
-         "anat": {
-            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz": "",
-            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz": "",
-         },
-      },
-      "tpl-MNI152NLin6Asym": {
-         "anat": {
-            "tpl-MNI152NLin6Asym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz": "",
-            "tpl-MNI152NLin6Asym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz": "",
+            "atlas-MIAL67ThalamicNuclei_description.json": "",
+            "tpl-MNI152NLin2009cAsym_dseg.json": "",
+            "tpl-MNI152NLin2009cAsym_dseg.tsv": "",
+            "tpl-MNI152NLin2009cAsym_res-1_dseg.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_res-1_probseg.nii.gz": "",
          },
       },
    }
@@ -775,8 +486,59 @@ A guide for using macros can be found at
       },
       "tpl-MNI152NLin2009cAsym": {
          "anat": {
-            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz": "",
-            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz": "",
+            "atlas-MIAL67ThalamicNuclei_description.json": "",
+            "tpl-MNI152NLin2009cAsym_res-1_dseg.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_res-1_probseg.nii.gz": "",
+         },
+      },
+   }
+})
+}}
+
+### Deriving one atlas from two or more existing templates
+
+This directory structure can be generally applied when the atlas is derived into several
+template spaces, for example:
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+   "mial67thalamicnuclei-pipeline": {
+      "atlas-MIAL67ThalamicNuclei_dseg.json": "",
+      "atlas-MIAL67ThalamicNuclei_dseg.tsv": "",
+      "seg-ThalamicNuclei_dseg.json": "",
+      "seg-ThalamicNuclei_dseg.tsv": "",
+      "sub-01": {
+         "anat": {
+            "sub-01_seg-ThalamicNuclei_dseg.nii.gz": "",
+            "sub-01_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
+            "sub-01_space-MNI152NLin6Asym_T1w.nii.gz": "",
+            "sub-01_T1w.nii.gz": "",
+         },
+      },
+      "...": "",
+      "sub-67": {
+         "anat": {
+            "sub-67_seg-ThalamicNuclei_dseg.nii.gz": "",
+            "sub-67_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
+            "sub-67_space-MNI152NLin6Asym_T1w.nii.gz": "",
+            "sub-67_T1w.nii.gz": "",
+         },
+      },
+      "tpl-MNI152NLin2009cAsym": {
+         "anat": {
+            "atlas-MIAL67ThalamicNuclei_description.json": "",
+            "tpl-MNI152NLin2009cAsym_res-1_dseg.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_res-1_probseg.nii.gz": "",
+         },
+      },
+      "tpl-MNI152NLin6Asym": {
+         "anat": {
+            "atlas-MIAL67ThalamicNuclei_description.json": "",
+            "tpl-MNI152NLin6Asym_res-1_dseg.nii.gz": "",
+            "tpl-MNI152NLin6Asym_res-1_probseg.nii.gz": "",
          },
       },
    }
@@ -792,6 +554,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example({
    "mial67thalamicnuclei-pipeline": {
+      "atlas-MIAL67ThalamicNuclei_description.json": "",
       "atlas-MIAL67ThalamicNuclei_dseg.json": "",
       "atlas-MIAL67ThalamicNuclei_dseg.tsv": "",
       "seg-ThalamicNuclei_dseg.json": "",
@@ -820,127 +583,204 @@ A guide for using macros can be found at
       "tpl-MNI152NLin2009cAsym": {
          "anat": {
             "tpl-MNI152NLin2009cAsym_from-MNI152NLin6Asym_mode-image_xfm.h5": "",
-            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz": "",
-            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_res-1_dseg.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_res-1_probseg.nii.gz": "",
          },
       },
       "tpl-MNI152NLin6Asym": {
          "anat": {
-            "tpl-MNI152NLin6Asym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz": "",
-            "tpl-MNI152NLin6Asym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz": "",
+            "tpl-MNI152NLin6Asym_res-1_dseg.nii.gz": "",
+            "tpl-MNI152NLin6Asym_res-1_probseg.nii.gz": "",
          },
       },
    }
 })
 }}
 
-The next subsection describes this latter use-case in further depth.
-
-## Filenames of derivatives with atlases in their provenance
-
-Like for the [`space-<label>` entity](../glossary.md#space-entities),
-outputs derived from atlases MUST employ
-[`atlas-<label>`](../glossary.md#atlas-entities),
-[`seg-<label>`](../glossary.md#segmentation-entities), and
-[`scale-<label>`](../glossary.md#scale-entities) when necessary:
+**A more comprehensive example.**
+For example, the [PS13 atlas](https://doi.org/10.18112/openneuro.ds004401.v1.3.0),
+a molecular imaging brain atlas of Cyclooxygenase-1 (PET),
+was generated in two standard spaces: `MNI152Lin` and `fsaverage`:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_filetree_example({
-   "bold-pipeline": {
-      "atlas-Schaefer2018_dseg.json": "",
-      "atlas-Schaefer2018_seg-7n_scale-100_dseg.tsv": "",
-      "atlas-Schaefer2018_seg-7n_scale-200_dseg.tsv": "",
-      "atlas-Schaefer2018_seg-7n_scale-300_dseg.tsv": "",
-      "atlas-Schaefer2018_seg-17n_scale-100_dseg.tsv": "",
-      "atlas-Schaefer2018_seg-17n_scale-200_dseg.tsv": "",
-      "atlas-Schaefer2018_seg-17n_scale-300_dseg.tsv": "",
-      "atlas-Schaefer2018_seg-kong17n_scale-100_dseg.tsv": "",
-      "atlas-Schaefer2018_seg-kong17n_scale-200_dseg.tsv": "",
-      "atlas-Schaefer2018_seg-kong17n_scale-300_dseg.tsv": "",
-      "sub-01": {
-         "anat": {
-            "sub-01_hemi-L_atlas-Schaefer2018_seg-7n_scale-100_den-164k_dseg.label.gii": "",
-            "sub-01_hemi-L_atlas-Schaefer2018_seg-7n_scale-200_den-164k_dseg.label.gii": "",
-            "sub-01_hemi-L_atlas-Schaefer2018_seg-7n_scale-300_den-164k_dseg.label.gii": "",
-            "sub-01_hemi-L_atlas-Schaefer2018_seg-17n_scale-100_den-164k_dseg.label.gii": "",
-            "sub-01_hemi-L_atlas-Schaefer2018_seg-17n_scale-200_den-164k_dseg.label.gii": "",
-            "sub-01_hemi-L_atlas-Schaefer2018_seg-17n_scale-300_den-164k_dseg.label.gii": "",
-            "sub-01_hemi-L_atlas-Schaefer2018_seg-kong17n_scale-100_den-164k_dseg.label.gii": "",
-            "sub-01_hemi-L_atlas-Schaefer2018_seg-kong17n_scale-200_den-164k_dseg.label.gii": "",
-            "sub-01_hemi-L_atlas-Schaefer2018_seg-kong17n_scale-300_den-164k_dseg.label.gii": "",
-            "...": "",
-            "sub-01_hemi-R_atlas-Schaefer2018_seg-kong17n_scale-300_den-164k_dseg.label.gii": "",
+   "ps13-pipeline": {
+      "atlas-ps13_description.json": "",
+      "tpl-fsaverage": {
+         "pet": {
+            "tpl-fsaverage_desc-nopvc_pet.json": "",
+            "tpl-fsaverage_desc-nopvc_pet.nii.gz": "",
+            "tpl-fsaverage_desc-pvc_pet.json": "",
+            "tpl-fsaverage_desc-pvc_pet.nii.gz": "",
+            "tpl-fsaverage_dseg.json": "",
+            "tpl-fsaverage_dseg.tsv": "",
+            "tpl-fsaverage_hemi-L_den-164k_desc-nopvc_pet.json": "",
+            "tpl-fsaverage_hemi-L_den-164k_desc-nopvc_pet.shape.gii": "",
+            "tpl-fsaverage_hemi-L_den-164k_desc-pvc_pet.json": "",
+            "tpl-fsaverage_hemi-L_den-164k_desc-pvc_pet.shape.gii": "",
+            "tpl-fsaverage_hemi-L_den-164k_stat-std_desc-nopvc_pet.json": "",
+            "tpl-fsaverage_hemi-L_den-164k_stat-std_desc-nopvc_pet.shape.gii": "",
+            "tpl-fsaverage_hemi-L_den-164k_stat-std_desc-pvc_pet.json": "",
+            "tpl-fsaverage_hemi-L_den-164k_stat-std_desc-pvc_pet.shape.gii": "",
+            "tpl-fsaverage_hemi-R_den-164k_desc-nopvc_pet.json": "",
+            "tpl-fsaverage_hemi-R_den-164k_desc-nopvc_pet.shape.gii": "",
+            "tpl-fsaverage_hemi-R_den-164k_desc-pvc_pet.json": "",
+            "tpl-fsaverage_hemi-R_den-164k_desc-pvc_pet.shape.gii": "",
+            "tpl-fsaverage_hemi-R_den-164k_stat-std_desc-nopvc_pet.json": "",
+            "tpl-fsaverage_hemi-R_den-164k_stat-std_desc-nopvc_pet.shape.gii": "",
+            "tpl-fsaverage_hemi-R_den-164k_stat-std_desc-pvc_pet.json": "",
+            "tpl-fsaverage_hemi-R_den-164k_stat-std_desc-pvc_pet.shape.gii": "",
+            "tpl-fsaverage_seg-nopvc_dseg.nii.gz": "",
+            "tpl-fsaverage_seg-pvc_dseg.nii.gz": "",
+            "tpl-fsaverage_stat-std_desc-nopvc_pet.json": "",
+            "tpl-fsaverage_stat-std_desc-nopvc_pet.nii.gz": "",
+            "tpl-fsaverage_stat-std_desc-pvc_pet.json": "",
+            "tpl-fsaverage_stat-std_desc-pvc_pet.nii.gz": "",
          },
-         "bold": {
-            "sub-01_task-rest_hemi-L_den-164k_bold.func.gii": "",
-            "sub-01_task-rest_hemi-R_den-164k_bold.func.gii": "",
-         }
+      },
+      "tpl-MNI152Lin": {
+         "pet": {
+            "tpl-MNI152Lin_dseg.json": "",
+            "tpl-MNI152Lin_dseg.tsv": "",
+            "tpl-MNI152Lin_res-1p5_desc-spmvbmNopvc_pet.json": "",
+            "tpl-MNI152Lin_res-1p5_desc-spmvbmNopvc_pet.nii.gz": "",
+            "tpl-MNI152Lin_res-1p5_desc-spmvbmPvc_pet.json": "",
+            "tpl-MNI152Lin_res-1p5_desc-spmvbmPvc_pet.nii.gz": "",
+            "tpl-MNI152Lin_res-1p5_stat-std_desc-spmvbmNopvc_pet.json": "",
+            "tpl-MNI152Lin_res-1p5_stat-std_desc-spmvbmNopvc_pet.nii.gz": "",
+            "tpl-MNI152Lin_res-1p5_stat-std_desc-spmvbmPvc_pet.json": "",
+            "tpl-MNI152Lin_res-1p5_stat-std_desc-spmvbmPvc_pet.nii.gz": "",
+            "tpl-MNI152Lin_res-2_desc-fnirtNopvc_pet.json": "",
+            "tpl-MNI152Lin_res-2_desc-fnirtNopvc_pet.nii.gz": "",
+            "tpl-MNI152Lin_res-2_desc-fnirtPvc_pet.json": "",
+            "tpl-MNI152Lin_res-2_desc-fnirtPvc_pet.nii.gz": "",
+            "tpl-MNI152Lin_res-2_desc-nopvc_pet.json": "",
+            "tpl-MNI152Lin_res-2_desc-nopvc_pet.nii.gz": "",
+            "tpl-MNI152Lin_res-2_desc-pvc_pet.json": "",
+            "tpl-MNI152Lin_res-2_desc-pvc_pet.nii.gz": "",
+            "tpl-MNI152Lin_res-2_stat-std_desc-fnirtNopvc_pet.json": "",
+            "tpl-MNI152Lin_res-2_stat-std_desc-fnirtNopvc_pet.nii.gz": "",
+            "tpl-MNI152Lin_res-2_stat-std_desc-fnirtPvc_pet.json": "",
+            "tpl-MNI152Lin_res-2_stat-std_desc-fnirtPvc_pet.nii.gz": "",
+            "tpl-MNI152Lin_res-2_stat-std_desc-nopvc_pet.json": "",
+            "tpl-MNI152Lin_res-2_stat-std_desc-nopvc_pet.nii.gz": "",
+            "tpl-MNI152Lin_res-2_stat-std_desc-pvc_pet.json": "",
+            "tpl-MNI152Lin_res-2_stat-std_desc-pvc_pet.nii.gz": "",
+            "tpl-MNI152Lin_seg-nopvc_dseg.nii.gz": "",
+            "tpl-MNI152Lin_seg-pvc_dseg.nii.gz": "",
+         },
+      }
+   }
+})
+}}
+
+If the pipeline generates two different atlases for at least one template space
+in the output, then [`atlas-<label>`](../glossary.md#atlas-entities) is REQUIRED
+for disambiguation.
+For example, let's imagine the PS13 atlas is revised in 2034, and based on the
+original pipeline and data, it generates now a new manual segmentation
+in the `MNI152Lin` space with some new regions defined.
+The new atlas can be structured as follows:
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+   "ps13rev2034-pipeline": {
+      "atlas-ps13_description.json": "",
+      "tpl-fsaverage": {
+         "pet": {
+            "tpl-fsaverage_seg-nopvc_dseg.nii.gz": "",
+            "tpl-fsaverage_seg-pvc_dseg.nii.gz": "",
+            "tpl-fsaverage_dseg.json": "",
+            "tpl-fsaverage_dseg.tsv": "",
+            "tpl-fsaverage_hemi-L_den-164k_desc-nopvc_pet.json": "",
+            "...": "",
+            "tpl-fsaverage_stat-std_desc-pvc_pet.nii.gz": "",
+         },
+      },
+      "tpl-MNI152Lin": {
+         "pet": {
+            "atlas-ps13rev2034_description.json": "",
+            "tpl-MNI152Lin_atlas-ps13_seg-nopvc_dseg.nii.gz": "",
+            "tpl-MNI152Lin_atlas-ps13_seg-pvc_dseg.nii.gz": "",
+            "tpl-MNI152Lin_atlas-ps13_dseg.json": "",
+            "tpl-MNI152Lin_atlas-ps13_dseg.tsv": "",
+            "tpl-MNI152Lin_atlas-ps13_res-1p5_desc-spmvbmNopvc_pet.json": "",
+            "...": "",
+            "tpl-MNI152Lin_atlas-ps13_res-2_stat-std_desc-pvc_pet.nii.gz": "",
+            "tpl-MNI152Lin_atlas-ps13rev2034_seg-nopvc_dseg.nii.gz": "",
+            "tpl-MNI152Lin_atlas-ps13rev2034_seg-pvc_dseg.nii.gz": "",
+            "tpl-MNI152Lin_atlas-ps13rev2034_dseg.json": "",
+            "tpl-MNI152Lin_atlas-ps13rev2034_dseg.tsv": "",
+         },
+      }
+   }
+})
+}}
+
+## Single-subject templates and atlases
+
+Early digital templates and atlases such as MNI's
+'[Colin 27 Average Brain, Stereotaxic Registration Model](https://www.mcgill.ca/bic/software/tools-data-analysis/anatomical-mri/atlases/colin-27)'
+([Holmes et al., 1998](https://doi.org/10.1097/00004728-199803000-00032)) were built by examining single individuals.
+For example, the outputs of the pipeline that generated 'Colin27' would have been organized as follows:
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+   "colin27-pipeline": {
+      "sub-01": {
+         "ses-01": {
+            "anat": {
+               "sub-01_ses-01_label-brain_mask.nii.gz": "",
+               "sub-01_ses-01_label-head_mask.nii.gz": "",
+               "sub-01_ses-01_T1w.nii.gz": "",
+               "sub-01_ses-01_T1w.json": "",
+            },
+         },
+         "ses-02": {
+            "anat": {
+               "sub-01_ses-02_label-brain_mask.nii.gz": "",
+               "sub-01_ses-02_label-head_mask.nii.gz": "",
+               "sub-01_ses-02_T1w.nii.gz": "",
+               "sub-01_ses-02_T1w.json": "",
+            },
+         },
+         "...": "",
+         "ses-27": {
+            "anat": {
+               "sub-01_ses-27_label-brain_mask.nii.gz": "",
+               "sub-01_ses-27_label-head_mask.nii.gz": "",
+               "sub-01_ses-27_T1w.nii.gz": "",
+               "sub-01_ses-27_T1w.json": "",
+            },
+         },
+      },
+      "tpl-Colin27": {
+         "anat": {
+            "atlas-AAL_description.json": "",
+            "tpl-Colin27_atlas-AAL_dseg.json": "",
+            "tpl-Colin27_atlas-AAL_dseg.nii.gz": "",
+            "tpl-Colin27_atlas-AAL_dseg.tsv": "",
+            "tpl-Colin27_atlas-AAL_probseg.nii.gz": "",
+            "tpl-Colin27_label-brain_mask.nii.gz": "",
+            "tpl-Colin27_label-head_mask.nii.gz": "",
+            "tpl-Colin27_T1w.nii.gz": "",
+            "tpl-Colin27_T1w.json": "",
+         },
       },
    }
 })
 }}
 
-## Tabular data
-
-The `[probseg|dseg|mask].tsv` file indexes and labels each node/parcel/region within the atlas.
-This file resembles the typical Look Up Table (LUT) often shared with atlases.
-This file will be essential for downstream workflows that generate matrices or other derived files within which node/parcel/region information is required,
-as the index/label fields will be used to reference the original anatomy the index/labels are derived from.
-Additional fields can be added with their respective definition/description in the sidecar json file.
-
-This is described in the [imaging derivatives](./imaging.md#common-image-derived-labels) section of the BIDS specification
-
-Example:
-```Text
-index	label	network_label	hemisphere
-1	Heschl's Gyrus	Somatomotor	left
-2	Heschl's Gyrus	Somatomotor	right
-```
-
-## Atlas metadata
-
-The `atlas-<label>_description.json` file provides metadata to uniquely identify, describe and characterize the atlas, as well as give proper attribution to the creators.
-Additionally, SpatialReference serves the important purpose of unambiguously identifying the space the atlas is labeled in.
-
-<!-- This block generates a metadata table.
-These tables are defined in
-  src/schema/rules/sidecars
-The definitions of the fields specified in these tables may be found in
-  src/schema/objects/metadata.yaml
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_sidecar_table([
-       "derivatives.common_derivatives.AtlasDescription",
-   ]) }}
-
-Example:
-
-```JSON
-{
-  "Name": "FSL's MNI ICBM 152 non-linear 6th Generation Asymmetric Average Brain Stereotaxic Registration Model",
-  "Authors": [
-    "David Kennedy",
-    "Christian Haselgrove",
-    "Bruce Fischl",
-    "Janis Breeze",
-    "Jean Frazie",
-    "Larry Seidman",
-    "Jill Goldstein"
-  ],
-  "BIDSVersion": "1.1.0",
-  "Curators": "FSL team",
-  "SpatialReference": "https://templateflow.s3.amazonaws.com/tpl-MNI152NLin6Asym_res-02_T1w.nii.gz",
-  "Resolution": "Matched with original template resolution (2x2x3 mm^3)",
-  "License": "See LICENSE file",
-  "RRID": "SCR_002823",
-  "ReferencesAndLinks": [
-    "https://doi.org/10.1016/j.neuroimage.2012.01.024",
-    "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases"
-  ],
-  "Species": "Human"
-}
-```
+where the atlas *AAL* has been added to the structure.
+Note that names contain `atlas-AAL` even though no other atlases
+are present to disambiguate the two brain and head masks that
+are not derived from *AAL*.

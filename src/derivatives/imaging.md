@@ -316,40 +316,6 @@ A guide for using macros can be found at
    }
 ) }}
 
-Often, segmentations are *atlas-based*, meaning, the partition of the space is
-projected from prior knowledge in the form of an [atlas](../common-principles.md).
-In such cases, [`seg-<label>`](../appendices/entities.md#segmentation) MAY be used in combination
-with the [`atlas-<label>` entity](../appendices/entities.md#segmentation).
-Extending on our previous example, when the brain tissue and the eye
-segmentations are stored with the results of *FreeSurfer*'s automatic subcortical
-segmentation ("aseg") using the `Destrieux2009` atlas:
-
-<!-- This block generates a file tree.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filetree_example(
-   {
-    "pipeline": {
-        "sub-001": {
-            "anat": {
-                "sub-001_atlas-Destrieux2009_seg-aseg_dseg.nii.gz": "",
-                "sub-001_atlas-Destrieux2009_seg-aseg_dseg.json": "",
-                "sub-001_atlas-Destrieux2009_seg-aseg+aparc_dseg.nii.gz": "",
-                "sub-001_atlas-Destrieux2009_seg-aseg+aparc_dseg.json": "",
-                "sub-001_seg-braintissues_dseg.nii.gz": "",
-                "sub-001_seg-braintissues_dseg.json": "",
-                "sub-001_seg-eyes_dseg.nii.gz": "",
-                "sub-001_seg-eyes_dseg.json": "",
-                },
-            },
-        }
-   }
-) }}
-
-For further details on the [`atlas-<label>` entity](../appendices/entities.md#segmentation)
-specifications, check the [Templates and Atlases section](atlas.md).
-
 ### Probabilistic Segmentations
 
 Probabilistic segmentations of brain tissue represent a single anatomical
@@ -575,6 +541,260 @@ index   name                abbreviation
 137     pars opercularis    IFGop
 138     pars triangularis   IFGtr
 139     pars orbitalis      IFGor
+```
+
+## Derivatives from atlases
+
+Often, derivatives are *atlas-based*, meaning, a particular result has been
+projected from prior knowledge in the form of an [atlas](../common-principles.md).
+These derivatives follow the specifications above, with the additon of
+a set of entities that MAY be used to disambiguate the outputs.
+
+Template:
+
+```Text
+<pipeline_name>/
+    sub-<label>/
+        <datatype>/
+            <source_entities>[_space-<space>][_atlas-<label>][seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
+```
+
+-    [`space-<label>`](../glossary.md#space-entities) is REQUIRED to disambiguate derivatives defined with
+     respect to different [coordinate systems](../appendices/coordinate-systems.md), following the general
+     BIDS-Derivatives specifications.
+-    [`atlas-<label>`](../glossary.md#atlas-entities) is REQUIRED to encode files pertaining
+     or derived from the atlas identified by the entity's label.
+-    [`seg-<label>`](../glossary.md#segmentation-entities) is REQUIRED when a single atlas has several different
+     realizations (for instance, segmentations and parcellations created with different criteria) that
+     need disambiguation.
+-    [`scale-<label>`](../glossary.md#scale-entities) is REQUIRED to disambiguate different atlas 'scales',
+     when the atlas has more than one 'brain unit' or 'areal resolution', typically relating to the
+     number of regions defined and the area they covere.
+
+For example, derivatives from a single subject segmented with the Automated Anatomical Labeling (AAL)
+atlas ([Tzourio-Mazoyer et al., 2002](https://doi.org/10.1006/nimg.2001.0978)).
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+   "aals-pipeline": {
+      "sub-01": {
+         "anat": {
+            "sub-01_atlas-AAL_dseg.json": "",
+            "sub-01_atlas-AAL_dseg.nii.gz": "",
+            "sub-01_atlas-AAL_dseg.tsv": "",
+            "sub-01_atlas-AAL_probseg.nii.gz": "",
+            "sub-01_label-brain_mask.nii.gz": "",
+            "sub-01_label-head_mask.nii.gz": "",
+            "sub-01_T1w.nii.gz": "",
+            "sub-01_T1w.json": "",
+         },
+      },
+   }
+})
+}}
+
+Because the AAL atlas was originally defined in the standardized space of MNI305,
+it would be unsurprising to find the anatomical reference resampled into the standard
+space for validation, as well as the spatial transformation file:
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+   "aals-pipeline": {
+      "sub-001": {
+         "anat": {
+            "sub-001_atlas-AAL_dseg.json": "",
+            "sub-001_atlas-AAL_dseg.nii.gz": "",
+            "sub-001_atlas-AAL_dseg.tsv": "",
+            "sub-001_atlas-AAL_probseg.nii.gz": "",
+            "sub-001_from-T1w_to-MNI305_mode-image_xfm.h5": "",
+            "sub-001_label-brain_mask.nii.gz": "",
+            "sub-001_label-head_mask.nii.gz": "",
+            "sub-001_space-MNI305_T1w.nii.gz": "",
+            "sub-001_space-MNI305_T1w.json": "",
+            "sub-001_T1w.nii.gz": "",
+            "sub-001_T1w.json": "",
+         },
+      },
+   }
+})
+}}
+
+!!! warning "Warning"
+
+    Please note that the specification for spatial transforms (BEP 014) is currently under development,
+    and therefore, the specification of transforms files (`sub-01_from-T1w_to-MNI305_mode-image_xfm.h5`
+    in the example above) may change in the future.
+
+In the common case of segmentations and parcellations derived from an atlas,
+[`seg-<label>`](../appendices/entities.md#segmentation) MAY be used in combination
+with the [`atlas-<label>` entity](../appendices/entities.md#atlas-entities).
+Extending on our previous example, when the brain tissue and the eye
+segmentations are stored next to the results of *FreeSurfer*'s automatic subcortical
+segmentation ("aseg") using the `Destrieux2009` atlas:
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline": {
+        "sub-001": {
+            "anat": {
+                "sub-001_atlas-Destrieux2009_seg-aseg_dseg.nii.gz": "",
+                "sub-001_atlas-Destrieux2009_seg-aseg_dseg.json": "",
+                "sub-001_atlas-Destrieux2009_seg-aseg+aparc_dseg.nii.gz": "",
+                "sub-001_atlas-Destrieux2009_seg-aseg+aparc_dseg.json": "",
+                "sub-001_seg-braintissues_dseg.nii.gz": "",
+                "sub-001_seg-braintissues_dseg.json": "",
+                "sub-001_seg-eyes_dseg.nii.gz": "",
+                "sub-001_seg-eyes_dseg.json": "",
+                },
+            },
+        }
+   }
+) }}
+
+Derivatives from several atlases can coexist in a single directory:
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+   "aals-pipeline": {
+      "sub-001": {
+         "anat": {
+            "sub-001_atlas-AAL_dseg.json": "",
+            "sub-001_atlas-AAL_dseg.nii.gz": "",
+            "sub-001_atlas-AAL_dseg.tsv": "",
+            "sub-001_atlas-AAL_probseg.nii.gz": "",
+            "sub-001_atlas-Destrieux2009_seg-aseg+aparc_dseg.json": "",
+            "sub-001_atlas-Destrieux2009_seg-aseg+aparc_dseg.nii.gz": "",
+            "sub-001_atlas-Destrieux2009_seg-aseg_dseg.json": "",
+            "sub-001_atlas-Destrieux2009_seg-aseg_dseg.nii.gz": "",
+            "sub-001_from-T1w_to-MNI305_mode-image_xfm.h5": "",
+            "sub-001_label-brain_mask.nii.gz": "",
+            "sub-001_label-head_mask.nii.gz": "",
+            "sub-001_seg-braintissues_dseg.json": "",
+            "sub-001_seg-braintissues_dseg.nii.gz": "",
+            "sub-001_seg-eyes_dseg.json": "",
+            "sub-001_seg-eyes_dseg.nii.gz": "",
+            "sub-001_space-MNI305_T1w.json": "",
+            "sub-001_space-MNI305_T1w.nii.gz": "",
+            "sub-001_T1w.json": "",
+            "sub-001_T1w.nii.gz": "",
+         },
+      },
+   }
+})
+}}
+
+### Atlas tabular data
+
+Atlases are often distributed with a Look Up Table (LUT) that indexes and labels each
+node/parcel/region within the atlas.
+This file will be essential for downstream workflows that generate matrices or other derived files within
+which node/parcel/region information is required, as the index/label fields will be used to reference
+the original anatomy the index/labels are derived from.
+Atlas-derived results SHOULD encode this information with the `[probseg|dseg|mask].tsv` files following
+the prescriptions of the [Common image-derived labels](#common-image-derived-labels) section above.
+Additional fields can be added with their respective definition/description in the sidecar json file.
+
+Template:
+
+```Text
+<pipeline_name>/
+    sub-<label>/
+        <datatype>/
+            <source_entities>[_space-<space>][_atlas-<label>][seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.tsv
+```
+
+For example, the participant-level results using the Schaefer 2018 atlas
+could be structured as follows.
+Please note that, the `dseg.tsv` files have been moved to the root of the
+hierarchy following the common principles.
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+   "bold-pipeline": {
+      "atlas-Schaefer2018_dseg.json": "",
+      "atlas-Schaefer2018_seg-7n_scale-100_dseg.tsv": "",
+      "atlas-Schaefer2018_seg-7n_scale-200_dseg.tsv": "",
+      "atlas-Schaefer2018_seg-7n_scale-300_dseg.tsv": "",
+      "atlas-Schaefer2018_seg-17n_scale-100_dseg.tsv": "",
+      "atlas-Schaefer2018_seg-17n_scale-200_dseg.tsv": "",
+      "atlas-Schaefer2018_seg-17n_scale-300_dseg.tsv": "",
+      "atlas-Schaefer2018_seg-kong17n_scale-100_dseg.tsv": "",
+      "atlas-Schaefer2018_seg-kong17n_scale-200_dseg.tsv": "",
+      "atlas-Schaefer2018_seg-kong17n_scale-300_dseg.tsv": "",
+      "sub-01": {
+         "anat": {
+            "sub-01_hemi-L_atlas-Schaefer2018_seg-7n_scale-100_den-164k_dseg.label.gii": "",
+            "sub-01_hemi-L_atlas-Schaefer2018_seg-7n_scale-200_den-164k_dseg.label.gii": "",
+            "sub-01_hemi-L_atlas-Schaefer2018_seg-7n_scale-300_den-164k_dseg.label.gii": "",
+            "sub-01_hemi-L_atlas-Schaefer2018_seg-17n_scale-100_den-164k_dseg.label.gii": "",
+            "sub-01_hemi-L_atlas-Schaefer2018_seg-17n_scale-200_den-164k_dseg.label.gii": "",
+            "sub-01_hemi-L_atlas-Schaefer2018_seg-17n_scale-300_den-164k_dseg.label.gii": "",
+            "sub-01_hemi-L_atlas-Schaefer2018_seg-kong17n_scale-100_den-164k_dseg.label.gii": "",
+            "sub-01_hemi-L_atlas-Schaefer2018_seg-kong17n_scale-200_den-164k_dseg.label.gii": "",
+            "sub-01_hemi-L_atlas-Schaefer2018_seg-kong17n_scale-300_den-164k_dseg.label.gii": "",
+            "...": "",
+            "sub-01_hemi-R_atlas-Schaefer2018_seg-kong17n_scale-300_den-164k_dseg.label.gii": "",
+         },
+         "bold": {
+            "sub-01_task-rest_hemi-L_den-164k_bold.func.gii": "",
+            "sub-01_task-rest_hemi-R_den-164k_bold.func.gii": "",
+         }
+      },
+      "sub-02": {
+         "anat": {
+            "sub-02_hemi-L_atlas-Schaefer2018_seg-7n_scale-100_den-164k_dseg.label.gii": "",
+            "sub-02_hemi-L_atlas-Schaefer2018_seg-7n_scale-200_den-164k_dseg.label.gii": "",
+            "sub-02_hemi-L_atlas-Schaefer2018_seg-7n_scale-300_den-164k_dseg.label.gii": "",
+            "sub-02_hemi-L_atlas-Schaefer2018_seg-17n_scale-100_den-164k_dseg.label.gii": "",
+            "sub-02_hemi-L_atlas-Schaefer2018_seg-17n_scale-200_den-164k_dseg.label.gii": "",
+            "sub-02_hemi-L_atlas-Schaefer2018_seg-17n_scale-300_den-164k_dseg.label.gii": "",
+            "sub-02_hemi-L_atlas-Schaefer2018_seg-kong17n_scale-100_den-164k_dseg.label.gii": "",
+            "sub-02_hemi-L_atlas-Schaefer2018_seg-kong17n_scale-200_den-164k_dseg.label.gii": "",
+            "sub-02_hemi-L_atlas-Schaefer2018_seg-kong17n_scale-300_den-164k_dseg.label.gii": "",
+            "...": "",
+            "sub-02_hemi-R_atlas-Schaefer2018_seg-kong17n_scale-300_den-164k_dseg.label.gii": "",
+         },
+         "bold": {
+            "sub-02_task-rest_hemi-L_den-164k_bold.func.gii": "",
+            "sub-02_task-rest_hemi-R_den-164k_bold.func.gii": "",
+         }
+      },
+   }
+})
+}}
+
+**Example of contents**.
+For example, the file `atlas-Schaefer2018_seg-7n_scale-100_dseg.tsv` could look like:
+
+```Text
+index   name    color
+1   17Networks_LH_VisCent_ExStr_1   #781180
+2   17Networks_LH_VisCent_ExStr_2   #781181
+3   17Networks_LH_VisCent_ExStr_3   #781182
+4   17Networks_LH_VisCent_ExStr_4   #781183
+5   17Networks_LH_VisCent_ExStr_5   #781184
+
+...
+
+998 17Networks_RH_TempPar_20    #0d2afb
+999 17Networks_RH_TempPar_21    #0d2afc
+1000    17Networks_RH_TempPar_22    #0d2afd
 ```
 
 <!-- Link Definitions -->

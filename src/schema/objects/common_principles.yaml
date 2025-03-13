@@ -12,12 +12,6 @@ atlas:
     One prominent manuscript regarding the specific aspects of atlases,
     such as their *regional resolution*,
     is [Bijsterbosch et al. (2020)](https://doi.org/10.1038/s41593-020-00726-z).
-
-    To further differentiate the concept of *atlas* and *template* throughout the specification,
-    *template* will designate a standardized stereotaxy frame where
-    some feature or features are mapped through spatial normalization and then possibly averaged.
-    Conversely, *atlas* will designate a specific methodology or algorithm to
-    create meaningful knowledge annotations about the brain such as landmarks or segmentations.
 data_acquisition:
   display_name: Data acquisition
   description: |

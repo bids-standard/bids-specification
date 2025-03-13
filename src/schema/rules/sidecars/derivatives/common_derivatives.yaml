@@ -84,6 +84,7 @@ AtlasDescription:
     - 'intersects([suffix], ["dseg", "probseg", "mask"])'
   fields:
     Name: required
+    SpatialReference: required
     Description: recommended
     Authors: recommended
     Curators: recommended
