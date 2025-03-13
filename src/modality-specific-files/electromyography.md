@@ -232,7 +232,8 @@ A guide for using macros can be found at
 {
   "EMGChannelCount":4,
   "EMGGround":"n/a",
-  "EMGPlacementScheme":"midpoint between cubital fossa and radial styloid process",
+  "EMGPlacementScheme":"Other",
+  "EMGPlacementSchemeDescription":"midpoint between cubital fossa and radial styloid process",
   "EMGReference":"4 reference electrodes built-in to device, placed near the midpoint between radial and ulnar styloid processes on the volar surface",
   "HardwareFilters":{"Highpass RC filter": {"Half amplitude cutoff (Hz)": 0.0159, "Roll-off": "6dBOctave"}},
   "InstitutionAddress":"9500 Gilman Drive 0559, La Jolla, CA 92093",
@@ -247,7 +248,7 @@ A guide for using macros can be found at
   "SamplingFrequency":1000,
   "SoftwareFilters":"n/a",
   "TaskDescription":"jumping with stationary arms",
-  "TaskName":"jumping",
+  "TaskName":"jumping"
 }
 ```
 
