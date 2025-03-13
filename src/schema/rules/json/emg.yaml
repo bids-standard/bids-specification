@@ -34,7 +34,9 @@ EMGPlacementSchemeInfo:
     - '"EMGPlacementScheme" in json'
     - json.EMGPlacementScheme == "Other"
   fields:
-    EMGPlacementSchemeDescription: required
+    EMGPlacementSchemeDescription:
+      level: recommended
+      level_addendum: required if `EMGPlacementScheme` is `"Other"`
 
 # Fields relating to the linkage between child (device) and parent (anatomical) coordinate systems
 EMGCoordsystemAnchor:
