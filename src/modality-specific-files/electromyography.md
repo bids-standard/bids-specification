@@ -310,11 +310,11 @@ Examples of free-form text for field `description`:
 
 See also the corresponding [`electrodes.tsv` example](#example-electrodestsv).
 ```Text
-name  type  units  signal_electrode  reference  target_muscle
-emg1  EMG   V      E1                E2         anterior belly of the digastric
-emg2  EMG   V      E3                E4         levator angulis oris, zygomaticus major
-emg3  EMG   V      E5                E6         platysma
-emg4  EMG   V      E7                E8         obicularis oris
+name  type  units  signal_electrode  reference_electrode  target_muscle
+emg1  EMG   V      E1                E2                   anterior belly of the digastric
+emg2  EMG   V      E3                E4                   levator angulis oris, zygomaticus major
+emg3  EMG   V      E5                E6                   platysma
+emg4  EMG   V      E7                E8                   obicularis oris
 ```
 
 ## Electrodes description (`*_electrodes.tsv`)

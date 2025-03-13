@@ -274,8 +274,8 @@ interelectrode_distance:
   display_name: Interelectrode Distance
   description: |
     Distance between adjacent electrodes (in a pair or grid) that are rigidly attached to
-    the same sensor device, or between the `signal_electrode` and its `reference` when
-    each is independently placed.
+    the same sensor device, or between the `signal_electrode` and its `reference_electrode`
+    when each is independently placed.
   type: number
   unit: mm
 low_cutoff:
@@ -443,8 +443,8 @@ reference__eeg:
     In that case the reference electrode(s) can be specified in `*_eeg.json` as `EEGReference`).
   type: string
 # reference column for channels.tsv files for EMG data
-reference__emg:
-  name: reference
+reference_electrode:
+  name: reference electrode
   display_name: Reference electrode
   description: |
     The reference for the given channel.
@@ -572,7 +572,7 @@ signal_electrode:
   name: signal_electrode
   display_name: Signal electrode
   description:
-    The name of the electrode from which the `reference` electrode's signal is subtracted
+    The name of the electrode from which the `reference_electrode`'s signal is subtracted
     to yield the channel's data.
   type: string
 size:
