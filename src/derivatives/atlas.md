@@ -151,7 +151,7 @@ A guide for using macros can be found at
 Both subject-level and template-level results MAY coexist in a single pipeline directory.
 If the subject-level results based on which a template was generated are to be
 shared with the template, it is RECOMMENDED to store both families of results within the
-pipeline folder:
+pipeline directory:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at

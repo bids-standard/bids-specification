@@ -547,7 +547,7 @@ index   name                abbreviation
 
 Often, derivatives are *atlas-based*, meaning, a particular result has been
 projected from prior knowledge in the form of an [atlas](../common-principles.md).
-These derivatives follow the specifications above, with the additon of
+These derivatives follow the specifications above, with the addition of
 a set of entities that MAY be used to disambiguate the outputs.
 
 Template:
@@ -569,7 +569,7 @@ Template:
      need disambiguation.
 -    [`scale-<label>`](../glossary.md#scale-entities) is REQUIRED to disambiguate different atlas 'scales',
      when the atlas has more than one 'brain unit' or 'areal resolution', typically relating to the
-     number of regions defined and the area they covere.
+     number of regions defined and the area they cover.
 
 For example, derivatives from a single subject segmented with the Automated Anatomical Labeling (AAL)
 atlas ([Tzourio-Mazoyer et al., 2002](https://doi.org/10.1006/nimg.2001.0978)).
