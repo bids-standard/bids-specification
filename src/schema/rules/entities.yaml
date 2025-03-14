@@ -2,6 +2,7 @@
 # This file simply defines the order in which entities should appear within filenames.
 # Entity definitions appear in the `objects/entities.yaml` file.
 - subject
+- atlas
 - session
 - sample
 - task
