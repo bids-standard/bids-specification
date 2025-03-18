@@ -37,7 +37,7 @@ A guide for using macros can be found at
     }
   }) }}
 
-Note: The presence of the `stimuli.tsv` file indicates that the content of the `/stimuli` directory follows this BIDS specification for stimulus organization. This structure is planned to become mandatory in BIDS 2.0.
+Note: The presence of the `stimuli.tsv` file indicates that the content of the `/stimuli` directory follows this BIDS specification for stimulus organization.
 
 ### Stimulus File Formats
 
