@@ -882,8 +882,7 @@ audio:
   display_name: Audio stimulus file
   description: |
     Any data file used as an audio stimulus. Media files usually have an audio file type (such as wav, mp3, aac, ogg).
-    The JSON file associated with each media file should contain information such as License (RECOMMENDED), Copyright
-    (RECOMMENDED), URL (OPTIONAL), and Description (OPTIONAL) to describe the origin and the nature of the media.
+    The JSON file associated with each media file should contain information to describe the origin and the nature of the media.
     However, in the case of the imposed distribution restrictions of the stimulus, the media stimulus file may not be
     present with only JSON sidecar file containing the aforementioned pertinent metadata.
 image:
