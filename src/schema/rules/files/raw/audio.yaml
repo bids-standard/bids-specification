@@ -6,17 +6,11 @@ audio:
     - audio
   extensions:
     - .wav
-    - .WAV
     - .mp3
-    - .MP3
     - .ogg
-    - .OGG
     - .m4a
-    - .M4A
     - .flac
-    - .FLAC
     - .acc
-    - .ACC
   entities:
     stimulus: required
     part: optional
