@@ -58,16 +58,20 @@ raw:
       - oneOf:
           - session
           - datatype
+      - prov
   session:
     entity: session
     level: optional
     opaque: false
     subdirs:
       - datatype
+      - prov
   datatype:
     value: datatype
     level: required
     opaque: false
+    subdirs:
+      - prov
 
 derivative:
   root:
@@ -110,13 +114,17 @@ derivative:
     subdirs:
       - session
       - datatype
+      - prov
   session:
     entity: session
     level: optional
     opaque: false
     subdirs:
       - datatype
+      - prov
   datatype:
     value: datatype
     level: optional
     opaque: false
+    subdirs:
+      - prov
