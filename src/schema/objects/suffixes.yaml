@@ -502,6 +502,16 @@ VFA:
     Depending on the provided metadata fields and the sequence type,
     data may be eligible for DESPOT1, DESPOT2 and their variants
     ([Deoni et al. 2005](https://doi.org/10.1002/mrm.20314)).
+act:
+  value: act
+  display_name: Provenance Activity Records
+  description: |
+    Provenance Activity records for a group of provenance. Activities represent the transformations that have been applied to the data.
+all:
+  value: all
+  display_name: Provenance Records
+  description: |
+    All types of provenance records (Activity, Entity, Environment, Software) for a group of provenance.
 angio:
   value: angio
   display_name: Angiogram
@@ -528,6 +538,11 @@ asllabeling:
     A deidentified screenshot of the planning of the labeling slab/plane
     with respect to the imaging slab or slices.
     This screenshot is based on DICOM macro C.8.13.5.14.
+base:
+  value: base
+  display_name: Base for Provenance Records
+  description: |
+    Base fields for provenance records of a group of provenance.
 beh:
   value: beh
   display_name: Behavioral recording
@@ -612,6 +627,16 @@ electrodes:
   display_name: Electrodes
   description: |
     File that gives the location of (i)EEG electrodes.
+ent:
+  value: ent
+  display_name: Provenance Entity Records
+  description: |
+    Provenance Entity records for a group of provenance. Entities are inputs and outputs of Activities.
+env:
+  value: env
+  display_name: Provenance Environment Records
+  description: |
+    Provenance Environment records for a group of provenance. Environments specify the software environment in which the provenance record was obtained.
 epi:
   value: epi
   display_name: EPI
@@ -817,6 +842,11 @@ probseg:
     A probabilistic segmentation.
 
     This suffix may only be used in derivative datasets.
+soft:
+  value: soft
+  display_name: Provenance Software Records
+  description: |
+    Provenance Software records for a group of provenance. The Software specifies the software package with which transformations were applied to the data.
 sbref:
   value: sbref
   display_name: Single-band reference image
