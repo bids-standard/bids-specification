@@ -6,13 +6,9 @@ video:
     - video
   extensions:
     - .avi
-    - .AVI
     - .mp4
-    - .MP4
     - .mov
-    - .MOV
     - .mkv
-    - .MKV
   entities:
     stimulus: required
     part: optional
