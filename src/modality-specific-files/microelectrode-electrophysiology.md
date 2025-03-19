@@ -79,8 +79,8 @@ On top of the existing columns that can be present in this file and that are des
 The following metadata files are REQUIRED for a given microephys session:
 
 1.  `[_ses-<session_label>]_probes.tsv`: A REQUIRED file listing information on the device used to acquire the electrophysiology data, such as implant or probe specification, location, material, and others.
-2.  `[_ses-<session_label>]_electrodes.tsv`: A REQUIRED file listing information on the points of electrical contact to the tissue, such as impedance, names, relative positions, and others.
-3.  `[_ses-<session_label>]_channels.tsv`: A REQUIRED file listing information on the recorded signals, such as preprocessing, filtering, ids, and others.
+1.  `[_ses-<session_label>]_electrodes.tsv`: A REQUIRED file listing information on the points of electrical contact to the tissue, such as impedance, names, relative positions, and others.
+1.  `[_ses-<session_label>]_channels.tsv`: A REQUIRED file listing information on the recorded signals, such as preprocessing, filtering, ids, and others.
 
 As with all tsv-based metadata files in BIDS the probes, electrodes and channels tsv files can be accompanied by json sidecar files.
 
@@ -95,7 +95,6 @@ For more details, see the [BIDS Coordinate Systems specifications](../appendices
 Fields relating to the microephys probe and electrode positions:
 
 {{ MACROS___make_sidecar_table("microephys.microephysCoordsystemGeneral") }}
-
 
 ### Allowed 2D coordinate systems
 
@@ -157,7 +156,7 @@ These measurements follow the convention of the Pinpoint software for surgical p
 -   Rotations are measured in degrees, clockwise, and around the tip.
 -   For multi-shank probes, the "tip" of the probe is defined as the end of the left shank when facing the electrodes.
 
-#### Rotation Definitions:
+#### Rotation Definitions
 
 -   **Yaw**: Clockwise rotation when looking down.
 -   **Pitch**: Rotation in the direction of the electrode face.
@@ -176,9 +175,7 @@ The `ProbeInterface` model corresponding to your probe can be referenced using:
 If provided, these should point to a `ProbeInterface` model in the `ProbeInterface` library,
 at the location:
 
-
 {{ MACROS___make_columns_table("microephys.microephysProbes") }}
-
 
 Example of `_probes.tsv`:
 
@@ -203,7 +200,6 @@ This file contains the following information:
 -   The ID of the probe the electrode is located on
 
 The coordinates are relative to the position on the probe.
-
 
 {{ MACROS___make_columns_table("microephys.microephysElectrodes") }}
 Example of `*_electrodes.tsv`:
@@ -233,7 +229,6 @@ This file contains the following information:
 For more information about the distinction between electrodes and channels, see [the corresponding section in iEEG](./intracranial-electroencephalography.md#terminology-electrodes-vs-channels).
 
 Columns in the `*_channel.tsv` file are:
-
 
 {{ MACROS___make_columns_table("microephys.microephysChannels") }}
 Example of `*_channels.tsv`:
@@ -359,7 +354,7 @@ If the OPTIONAL [` task-<label>`](../appendices/entities.md#task) is used, the f
 
 {{ MACROS___make_sidecar_table("microephys.microephysTaskInformation") }}
 
-### Example of `*_ephys.json`:
+### Example of `*_ephys.json`
 
 <!-- TODO: below there is Procedure.Pharmaceuticals which is not standardized since ATM there is only single pharmaceutical "allowed" and we have no "Procedure" -->
 
@@ -426,10 +421,8 @@ please follow the iEEG stimulation documentation.
 
 Two different procedures are supported to handle multi-part recordings. The two options are:
 
-1.  each recording is stored in an independent data file, and the corresponding metadata is described
-   in the `*_scans.tsv` file; or
-2.  several recordings are stored in a single data file, and the corresponding metadata is described
-   in the `*_events.tsv` file.
+1.  each recording is stored in an independent data file, and the corresponding metadata is described in the `*_scans.tsv` file; or
+1.  several recordings are stored in a single data file, and the corresponding metadata is described in the `*_events.tsv` file.
 
 These two options are made available to support different usages and habits of the experimenters, as
 well as to benefit from the capability of the supported data formats (NWB and NIX).
@@ -542,7 +535,6 @@ For the first subject only a single sample (a cell for patch-clamp terminology) 
 
 For the second subject two samples (sample-cell003 and sample-cell004) were extracted and a single recording performed on each of them. Each recording was performed using a different probe (listed in the probes.tsv) having specific electrode and channel information. Therefore, each data file has a dedicated channel and electrode file with the same name as the data file.
 
-
 {{ MACROS___make_filetree_example(
 
 {
@@ -590,9 +582,9 @@ This toy data set can be found in [this repository,](https://gin.g-node.org/Neur
 
 Multiple datasets have been converted to follow this BEP proposal.
 These datasets typically have pruned data files to reduce the data file size, but are accompanied by the full set of metadata.
-A current version of these datasets can be found on GIN: https://gin.g-node.org/NeuralEnsemble/BEP032-examples .
+A current version of these datasets [can be found on GIN](https://gin.g-node.org/NeuralEnsemble/BEP032-examples) .
 
 For a complete dataset including all data samples the extracellular microelectrode dataset published in [Brochier (2018)](https://doi.org/10.1038/sdata.2018.55) has been reorganized according to the current version of this BEP, using the NIX data format.
-The up-to-date version of the dataset can be found on GIN: https://gin.g-node.org/sprenger/multielectrode_grasp/src/bep_animalephys .
+The up-to-date version of the dataset [can be found on GIN](https://gin.g-node.org/sprenger/multielectrode_grasp/src/bep_animalephys) .
 
 We will also publish another dataset using the NWB data format in the near future, and a dataset acquired
