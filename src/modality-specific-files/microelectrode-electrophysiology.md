@@ -24,19 +24,21 @@ while the native format, if different, can be stored in an optional  `sourcedata
 The native file format is used in case conversion elicits the loss of crucial metadata specific to manufacturers and specific acquisition systems.
 Metadata should be included alongside the data in the `.json` and `.tsv` files.
 The current list of allowed data file formats:
+
 <!-- We should define icephys and ecephys -->
-| **Format**                                                                          | **Extension(s)** | **Description**                                                                                                                                                                                                      |
-|-------------------------------------------------------------------------------------|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+| **Format**                                                                          | **Extension(s)** | **Description**                                                                                                                                                                                                           |
+| ----------------------------------------------------------------------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [Neuroscience Information Exchange Format](https://nixio.readthedocs.io/en/latest/) | `.nix`           | A generic and open  framework with an hdf5 backend and a defined interface to many microephys formats via the [Neo library](https://neo.readthedocs.io/en/latest/). The `.nix` file has to contain a valid Neo structure. |
-| [Neurodata Without Borders](https://www.nwb.org)                                    | `.nwb`           | An open data standard for neurophysiology, including data from intracellular and extracellular electrophysiology experiments.                                                                                        |
+| [Neurodata Without Borders](https://www.nwb.org)                                    | `.nwb`           | An open data standard for neurophysiology, including data from intracellular and extracellular electrophysiology experiments.                                                                                             |
 
 Both of these formats can also store essential metadata of the datasets.
 Some of this metadata needs to be duplicated in BIDS `.tsv` and `.json` sidecar files.
 Even though the duplication requires additional effort to ensure the consistency of the data, it provides several advantages:
-- It makes the dataset easier for humans to scan, as essential information is easily accessible without loading the data files.
-- The dataset adheres to the BIDS standard and can benefit from tools built on top of this standard, such as [bids-validator](https://github.com/bids-standard/bids-validator).
-- It simplifies the separation of data and basic metadata, enabling, for example, the publication of a dataset in a lightweight fashion with access to the data files on request (as implemented by [DataLad](https://www.datalad.org)).
 
+* It makes the dataset easier for humans to scan, as essential information is easily accessible without loading the data files.
+* The dataset adheres to the BIDS standard and can benefit from tools built on top of this standard, such as [bids-validator](https://github.com/bids-standard/bids-validator).
+* It simplifies the separation of data and basic metadata, enabling, for example, the publication of a dataset in a lightweight fashion with access to the data files on request (as implemented by [DataLad](https://www.datalad.org)).
 
 <!--
 This block generates a filename templates.
@@ -47,6 +49,7 @@ and a guide for using macros can be found at
 -->
 
 <!-- Link Definitions -->
+
 ### icephys
 {{ MACROS___make_filename_template(
    "raw",
@@ -54,6 +57,7 @@ and a guide for using macros can be found at
    suffixes=["icephys", "events", "channels", "electrodes","scans","probes","coordsystem"]
 )
 }}
+
 ### ecephys
 {{ MACROS___make_filename_template(
    "raw",
@@ -61,7 +65,6 @@ and a guide for using macros can be found at
    suffixes=["ecephys", "events", "channels", "electrodes","scans","probes","coordsystem"]
 )
 }}
-
 
 ## Participant information
 
@@ -71,8 +74,7 @@ It follows the [general BIDS specifications to describe participants](../modalit
 
 On top of the existing columns that can be present in this file and that are described in the BIDS specifications (`participant_id`, `species`, `strain`, `strain_rrid`, `sex`, `handedness`, and `age`), we propose to allow adding the following ones:
 
-
-##  Microephys specific files
+## Microephys specific files
 
 The following metadata files are REQUIRED for a given microephys session:
 
@@ -82,7 +84,6 @@ The following metadata files are REQUIRED for a given microephys session:
 
 As with all tsv-based metadata files in BIDS the probes, electrodes and channels tsv files can be accompanied by json sidecar files.
 
-
 ## Coordinate System JSON (`*_coordsystem.json`) & Photos of electrode positions (`_photo.jpg`)
 
 This file provides metadata on the coordinate system in which the electrodes are placed.
@@ -90,7 +91,6 @@ This file is **RECOMMENDED**, and the listed required fields below must be inclu
 
 The coordinate system can be defined using reference pictures, anatomical landmarks, brain images, or a reference atlas.
 For more details, see the [BIDS Coordinate Systems specifications](../appendices/coordinate-systems.md).
-
 
 Fields relating to the microephys probe and electrode positions:
 
@@ -109,7 +109,6 @@ and `MicroephysCoordinateUnits` MUST be defined as `"pixels"` (note the differen
 Furthermore, the coordinates MUST be `(row,column)` pairs,
 with `(0,0)` corresponding to the upper-left pixel and `(N,0)` corresponding to the lower-left pixel.
 
-
 ### Photos of the electrode positions (`*_photo.jpg`)
 
 These can include photos of the electrodes on the brain surface,
@@ -122,22 +121,20 @@ or entirely omitted prior to sharing, depending on the obtained consent.
 
 If there are photos of the electrodes, the [`_acq-<label>`](../appendices/entities.md#acq) entity should be specified with:
 
-- `*_photo.jpg` for an operative photo.
-- `*_acq-xray#_photo.<extension>` for an X-ray picture.
-- `*_acq-drawing#_photo.<extension>` for a drawing or sketch of electrode placements.
-- `*_acq-render#_photo.<extension>` for a rendering.
+* `*_photo.jpg` for an operative photo.
+* `*_acq-xray#_photo.<extension>` for an X-ray picture.
+* `*_acq-drawing#_photo.<extension>` for a drawing or sketch of electrode placements.
+* `*_acq-render#_photo.<extension>` for a rendering.
 
 The file `<extension>` for photos MUST be either `.jpg`, `.png`, or `.tif`.
 
 The [`ses-<label>`](../appendices/entities.md#ses) entity may be used to specify when the photo was taken.
 
-
 ## **Multiple coordinate systems**
 
 The optional[` space-<label>`](../appendices/entities.md#space) entity (`*[_space-<label>]_coordsystem.json`) can be used to indicate how to interpret the electrode positions. The space `<label>` MUST be taken from one of the modality specific lists in the [Coordinate Systems Appendix](../appendices/coordinate-systems.md). For example for iEEG data, the restricted keywords listed under [iEEG Specific Coordinate Systems](../appendices/coordinate-systems.md#ieeg-specific-coordinate-systems) are acceptable for `<label>`.
 
-
-## Probes (*_probes.tsv)
+## Probes (`*_probes.tsv`)
 
 Probes are physical devices used for recording microephys data.
 They can be permanently implanted (chronic recordings) or inserted temporarily for the recording (acute recordings).
@@ -150,30 +147,31 @@ These measurements follow the convention of the Pinpoint software for surgical p
 
 ### Translational Coordinates
 
-- `(0,0,0)` is assumed to be Bregma when working with rodents.
-- It may optionally be defined differently and **must** be defined for other species.
-- `x, y, z` represents posterior, ventral, and right directions, respectively, in micrometers (`µm`).
+* `(0,0,0)` is assumed to be Bregma when working with rodents.
+* It may optionally be defined differently and **must** be defined for other species.
+* `x, y, z` represents posterior, ventral, and right directions, respectively, in micrometers (`µm`).
 
 ### Rotation
 
-- `(0,0,0)` corresponds to the probe facing up with the tip pointing forward.
-- Rotations are measured in degrees, clockwise, and around the tip.
-- For multi-shank probes, the "tip" of the probe is defined as the end of the left shank when facing the electrodes.
+* `(0,0,0)` corresponds to the probe facing up with the tip pointing forward.
+* Rotations are measured in degrees, clockwise, and around the tip.
+* For multi-shank probes, the "tip" of the probe is defined as the end of the left shank when facing the electrodes.
 
 #### Rotation Definitions:
 
-- **Yaw**: Clockwise rotation when looking down.
-- **Pitch**: Rotation in the direction of the electrode face.
-- **Roll**: Clockwise rotation when looking down at the probe.
+* **Yaw**: Clockwise rotation when looking down.
+* **Pitch**: Rotation in the direction of the electrode face.
+* **Roll**: Clockwise rotation when looking down at the probe.
 
 ### ProbeInterface Library
+
 `ProbeInterface` is a library that defines a standard for specifying electrode layouts on probes.
 The `ProbeInterface` library includes layouts for many common probes.
 
 The `ProbeInterface` model corresponding to your probe can be referenced using:
 
-- `probeinterface_manufacturer`
-- `probeinterface_model`
+* `probeinterface_manufacturer`
+* `probeinterface_model`
 
 If provided, these should point to a `ProbeInterface` model in the `ProbeInterface` library,
 at the location:
@@ -192,26 +190,23 @@ p021	left	-12.11	-3.12	-2.54	utah-array	iridium-oxide	V4
 p021	left	-9.94	-1.19	-2.86	utah-array	iridium-oxide	V3
 ```
 
-
-## Electrodes  (*_electrodes.tsv)
+## Electrodes  (`*_electrodes.tsv`)
 
 Electrodes describe the points of contact between the electrodes and the tissue used for recording electrophysiological signals.
 
 The electrode positions and properties are stored in a `.tsv` file (amplifier information is in `channels.tsv`).
 
 This file contains the following information:
-- The electrode name
-- The electrode coordinates in 3 columns (`xyz`) (use `n/a` for values if a dimension is absent)
-- The ID of the probe the electrode is located on
+
+* The electrode name
+* The electrode coordinates in 3 columns (`xyz`) (use `n/a` for values if a dimension is absent)
+* The ID of the probe the electrode is located on
 
 The coordinates are relative to the position on the probe.
 
 
-
 {{ MACROS___make_columns_table("microephys.microephysElectrodes") }}
-
-
-Example of * _electrodes.tsv:
+Example of `*_electrodes.tsv`:
 
 ```tsv
 probe_id	impedance	x	y	z	material	location
@@ -221,7 +216,7 @@ e934	p021	3.5	-12.11	-3.12	-2.54	iridium-oxide	V4
 e234	p021	7.0	-9.94	-1.19	-2.86	iridium-oxide	V3
 ```
 
-### Channels  (*_channels.tsv)
+### Channels  (`*_channels.tsv`)
 
 Channels are virtual sources of recorded signals.
 These may be of neuronal origin (for example, online filtered LFP signals) or generated by the recording setup
@@ -230,10 +225,10 @@ These may be of neuronal origin (for example, online filtered LFP signals) or ge
 The channel properties are stored in a `.tsv` file.
 This file contains the following information:
 
-- `channel_id`
-- `electrode_id` (in the case of neuronal signals)
-- Amplifier information
-- …
+* `channel_id`
+* `electrode_id` (in the case of neuronal signals)
+* Amplifier information
+* …
 
 For more information about the distinction between electrodes and channels, see [the corresponding section in iEEG](./intracranial-electroencephalography.md#terminology-electrodes-vs-channels).
 
@@ -241,10 +236,7 @@ Columns in the `*_channel.tsv` file are:
 
 
 {{ MACROS___make_columns_table("microephys.microephysChannels") }}
-
-
-Example of * _channels.tsv:
-
+Example of `*_channels.tsv`:
 
 ```tsv
 channel_id	electrode_id	gain	type	units	sampling_frequency	status
@@ -261,42 +253,40 @@ We RECOMMEND to include alternative sets of identifiers, for instance identifier
 
 For the `type` column we recommend to use the following terms (adopted from [iEEG](intracranial-electroencephalography.md#channelselectrode-description-_channelselectrodestsv))
 
+| **Keyword**  | **Description**                                                                                                                 |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------- |
+| **LFP**      | Low-pass filtered extracellular voltage signal that represents local field potentials                                           |
+| **HP**       | High-pass filtered extracellular voltage signal as used for spike sorting                                                       |
+| **MUA**      | High-pass filtered and rectified or thresholded extracellular voltage signal that represents an estimate of multi-unit activity |
+| **BB**       | Unfiltered (broadband) extracellular voltage signal                                                                             |
+| **SPIKES**   | Discrete signal indicating spike events as derived from spike detection or spike sorting                                        |
+| **VM**       | Membrane voltage                                                                                                                |
+| **IM**       | Membrane current                                                                                                                |
+| **SYNC**     | Signal used for synchronization between different recording systems / channels                                                  |
+| **STIM**     | Electrical stimulation                                                                                                          |
+| **EEG**      | Electrode channel from electroencephalogram                                                                                     |
+| **ECOG**     | Electrode channel from electrocorticogram (intracranial)                                                                        |
+| **SEEG**     | Electrode channel from stereo-electroencephalogram (intracranial)                                                               |
+| **DBS**      | Electrode channel from deep brain stimulation electrode (intracranial)                                                          |
+| **VEOG**     | Vertical EOG (electrooculogram)                                                                                                 |
+| **HEOG**     | Horizontal EOG                                                                                                                  |
+| **EOG**      | Generic EOG channel if HEOG or VEOG information not available                                                                   |
+| **ECG**      | ElectroCardioGram (heart)                                                                                                       |
+| **EMG**      | ElectroMyoGram (muscle)                                                                                                         |
+| **TRIG**     | System Triggers                                                                                                                 |
+| **AUDIO**    | Audio signal                                                                                                                    |
+| **PD**       | Photodiode                                                                                                                      |
+| **EYEGAZE**  | Eye Tracker gaze                                                                                                                |
+| **PUPIL**    | Eye Tracker pupil diameter                                                                                                      |
+| **BEH**      | Behavioral signals                                                                                                              |
+| **MISC**     | Miscellaneous                                                                                                                   |
+| **SYSCLOCK** | System time showing elapsed time since trial started                                                                            |
+| **ADC**      | Analog to Digital input                                                                                                         |
+| **DAC**      | Digital to Analog output                                                                                                        |
+| **REF**      | Reference channel                                                                                                               |
+| **OTHER**    | Any other type of channel                                                                                                       |
 
-| **Keyword**   | **Description**                                                        |
-|---------------|------------------------------------------------------------------------|
-| **LFP**       | Low-pass filtered extracellular voltage signal that represents local field potentials |
-| **HP**        | High-pass filtered extracellular voltage signal as used for spike sorting |
-| **MUA**       | High-pass filtered and rectified or thresholded extracellular voltage signal that represents an estimate of multi-unit activity |
-| **BB**        | Unfiltered (broadband) extracellular voltage signal                    |
-| **SPIKES**    | Discrete signal indicating spike events as derived from spike detection or spike sorting |
-| **VM**        | Membrane voltage                                                       |
-| **IM**        | Membrane current                                                       |
-| **SYNC**      | Signal used for synchronization between different recording systems / channels |
-| **STIM**      | Electrical stimulation                                                  |
-| **EEG**       | Electrode channel from electroencephalogram                             |
-| **ECOG**      | Electrode channel from electrocorticogram (intracranial)                |
-| **SEEG**      | Electrode channel from stereo-electroencephalogram (intracranial)      |
-| **DBS**       | Electrode channel from deep brain stimulation electrode (intracranial) |
-| **VEOG**      | Vertical EOG (electrooculogram)                                         |
-| **HEOG**      | Horizontal EOG                                                          |
-| **EOG**       | Generic EOG channel if HEOG or VEOG information not available            |
-| **ECG**       | ElectroCardioGram (heart)                                               |
-| **EMG**       | ElectroMyoGram (muscle)                                                 |
-| **TRIG**      | System Triggers                                                         |
-| **AUDIO**     | Audio signal                                                            |
-| **PD**        | Photodiode                                                              |
-| **EYEGAZE**   | Eye Tracker gaze                                                        |
-| **PUPIL**     | Eye Tracker pupil diameter                                              |
-| **BEH**       | Behavioral signals                                                      |
-| **MISC**      | Miscellaneous                                                           |
-| **SYSCLOCK**  | System time showing elapsed time since trial started                    |
-| **ADC**       | Analog to Digital input                                                 |
-| **DAC**       | Digital to Analog output                                                 |
-| **REF**       | Reference channel                                                       |
-| **OTHER**     | Any other type of channel                                               |
-
-
-## General microephys metadata (*_{i,e}cephys.json)
+## General microephys metadata (\*\_{i,e}cephys.json)
 
 We propose to store all metadata that is not directly related to one of the other metadata files (probe/electrode/channel information) into a single JSON file: `_ephys.json`.
 
@@ -322,11 +312,12 @@ We recommend using the following keys to describe the setup:
 Furthermore, additional information can be stored about the recording procedure.
 We RECOMMEND to use a dedicated `Procedure` node with the following keys:
 
-- `Pharmaceuticals`
-- `Sample`
-- `Supplementary`
+* `Pharmaceuticals`
+* `Sample`
+* `Supplementary`
 
 <!-- TODO: Yarik replaced Pharmaceuticals with PharmaceuticalName and others for now but we might look to define list of Pharmaceuticals of records with PharmaceuticalDoseAmount and PharmaceuticalDoseUnit -->
+
 #### Pharmaceuticals
 
 For each pharmaceutical we RECOMMEND to use a dedicated node with the name of the Pharmaceuticals containing the following administration details:
@@ -356,13 +347,11 @@ It is RECOMMENDED to use the following structure to provide more metadata for ea
 }
 ```
 
-
 Whereas `<my_probe_id>` has to exist also in the `probes.tsv` file and `<list of contour points>` is
 a list of x, y(, z) tuples providing the contour of the probe in the same reference frame as the
 electrode coordinates (see `electrodes.tsv`).
 In case of different units used than in the `electrodes.tsv`, the key `Unit` can be used here to
 provide the spatial unit of the coordinate points.
-
 
 ### Task (*see also  iEEG.json*)
 
@@ -370,7 +359,7 @@ If the OPTIONAL [` task-<label>`](../appendices/entities.md#task) is used, the f
 
 {{ MACROS___make_sidecar_table("microephys.microephysTaskInformation") }}
 
-### Example of * _ephys.json:
+### Example of `*_ephys.json`:
 
 <!-- TODO: below there is Procedure.Pharmaceuticals which is not standardized since ATM there is only single pharmaceutical "allowed" and we have no "Procedure" -->
 
@@ -422,7 +411,7 @@ If the OPTIONAL [` task-<label>`](../appendices/entities.md#task) is used, the f
 }
 ```
 
-## Recording Events (*_events.tsv)
+## Recording Events (`*_events.tsv`)
 
 The `*_events.tsv` and corresponding `*_events.json` sidecar files are OPTIONAL and can be used to
 indicate time points of recording events. Each task events file requires a corresponding task data
@@ -433,22 +422,20 @@ Task Events documentation.
 Note that this file can also be used to describe stimulation performed during the recording. For this,
 please follow the iEEG stimulation documentation.
 
-
 ## Multi-part recordings
 
 Two different procedures are supported to handle multi-part recordings. The two options are:
 
 1. each recording is stored in an independent data file, and the corresponding metadata is described
-in the `*_scans.tsv` file; or
+   in the `*_scans.tsv` file; or
 2. several recordings are stored in a single data file, and the corresponding metadata is described
-in the `*_events.tsv` file.
+   in the `*_events.tsv` file.
 
 These two options are made available to support different usages and habits of the experimenters, as
 well as to benefit from the capability of the supported data formats (NWB and NIX).
 They are described in the following subsections, and made explicit through some of the example data sets.
 
-
-### Multiple tasks / runs in separate files (*_scans.tsv)
+### Multiple tasks / runs in separate files (`*_scans.tsv`)
 
 The `*_scans.tsv` should be used to provide information about multiple parts of an acquisition
 session (for example, recording start times in case the recording was paused and restarted)
@@ -457,19 +444,16 @@ Each data file should have a name that contains a `_task-XX` and/or `_run-XX` su
 should be described by at most one row in the `*_scans.tsv` file. See also the BIDS Scans
 specification.
 Relative paths to files should be used under a compulsory "filename" header.
-If acquisition time is included, it should be with the "acq_time" header. Datetime should
+If acquisition time is included, it should be with the `acq_time` header. Datetime should
 be expressed in the following format 2009-06-15T13:45:30 (year, month, day, hour (24h),
 minute, second; this is equivalent to the RFC3339 "date-time" format, time zone is always
 assumed as local time).
 The run and task keywords and the corresponding `*_scans.tsv` file are OPTIONAL and can be
 ignored if the dataset consists of only one continuous recording and a single or no task.
 
-
 Optional: Yes
 
-
-Example of * _scans.tsv:
-
+Example of a `*_scans.tsv`:
 
 ```tsv
 filename	acq_time
@@ -479,12 +463,10 @@ ephys/sub-P001_task-push_run-01_ephys.nix	2018-07-15T14:24:00
 ephys/sub-P001_task-push_run-02_ephys.nix	2018-07-15T15:24:00
 ```
 
-
 It is recommended to accompany the  `*_scans.tsv` file with a corresponding `*_scans.json`
 sidecar file, as described in the [BIDS specifications](https://bids-specification.readthedocs.io/en/stable/03-modality-agnostic-files.html#scans-file).
 
-
-### Multiple recordings in a single data file (*_events.tsv)
+### Multiple recordings in a single data file (`*_events.tsv`)
 
 The `*_events.tsv` should be used to provide information about multiple parts of an acquisition
 session when the data from each of these different recordings is stored in a single data file.
@@ -499,11 +481,9 @@ Optional column names in `events.tsv` to support multiple recordings in a single
 
 <!-- TODO: Macro for events -->
 
-
 ## Microelectrode Electrophysiology Examples
 
 ### Toy datasets
-
 
 #### Extracellular Electrophysiology
 
@@ -553,8 +533,6 @@ contain a `task` entity in their name. For the nose-poke task, additional behavi
 }
 
 ) }}
-
-
 
 #### Intracellular Electrophysiology (Patch)
 
@@ -606,16 +584,15 @@ For the second subject two samples (sample-cell003 and sample-cell004) were extr
 
 ) }}
 
-
 This toy data set can be found in [this repository,](https://gin.g-node.org/NeuralEnsemble/BEP032-examples/src/master/toy-dataset_patchclamp_single-record-per-file) with the content of the metadata files. The other option available to organize such data consists in storing several recordings in a single data file (as described in 3.8.2); the same data set is presented using this latter option in [this other repository](https://gin.g-node.org/NeuralEnsemble/BEP032-examples/src/master/toy-dataset_patchclamp_multiple-records-per-file), so that both options can be compared for the same data set.
-
 
 ## Examples of real datasets
 
-Multiple datasets have been converted to follow this BEP proposal. These datasets typically have pruned data files to reduce the data file size, but are accompanied by the full set of metadata. A current version of these datasets can be found on GIN: [https://gin.g-node.org/NeuralEnsemble/BEP032-examples](https://gin.g-node.org/NeuralEnsemble/BEP032-examples)
+Multiple datasets have been converted to follow this BEP proposal.
+These datasets typically have pruned data files to reduce the data file size, but are accompanied by the full set of metadata.
+A current version of these datasets can be found on GIN: https://gin.g-node.org/NeuralEnsemble/BEP032-examples .
 
-For a complete dataset including all data samples the extracellular microelectrode dataset published in [Brochier (2018)](https://doi.org/10.1038/sdata.2018.55) has been reorganized according to the current version of this BEP, using the NIX data format. The up-to-date version of the dataset can be found here:
-
-[https://gin.g-node.org/sprenger/multielectrode_grasp/src/bep_animalephys](https://gin.g-node.org/sprenger/multielectrode_grasp/src/bep_animalephys)
+For a complete dataset including all data samples the extracellular microelectrode dataset published in [Brochier (2018)](https://doi.org/10.1038/sdata.2018.55) has been reorganized according to the current version of this BEP, using the NIX data format.
+The up-to-date version of the dataset can be found on GIN: https://gin.g-node.org/sprenger/multielectrode_grasp/src/bep_animalephys .
 
 We will also publish another dataset using the NWB data format in the near future, and a dataset acquired
