@@ -27,7 +27,10 @@ LICENSE:
     A `LICENSE` file MAY be provided in addition to the short specification of the
     used license in the `dataset_description.json` `"License"` field.
     The `"License"` field and `LICENSE` file MUST correspond.
-    The `LICENSE` file MUST be either in ASCII or UTF-8 encoding.
+    The `LICENSE` file MUST be either in ASCII or UTF-8 encoding and MAY have one of the extensions:
+    `.md` ([Markdown](https://www.markdownguide.org/)),
+    `.rst` ([reStructuredText](https://docutils.sourceforge.io/rst.html)),
+    or `.txt`.
 README:
   display_name: README
   file_type: regular
@@ -71,6 +74,10 @@ participants:
     which MUST consist of `sub-<label>` values identifying one row for each participant,
     followed by a list of optional columns describing participants.
     Each participant MUST be described by one and only one row.
+
+    The `participant_id` entries MUST be a superset of all subject directories
+    and all `participant_id` entries found among phenotypic and assessment data
+    in the `phenotype/` directory.
 
     Commonly used *optional* columns in `participants.tsv` files are `age`, `sex`,
     `handedness`, `strain`, and `strain_rrid`.

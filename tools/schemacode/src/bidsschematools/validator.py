@@ -43,7 +43,7 @@ def _bids_schema_versioncheck(schema_dir, compatibility=VALIDATOR_SCHEMA_COMPATI
 
     schema_version_file = os.path.join(schema_dir, "SCHEMA_VERSION")
     try:
-        with open(schema_version_file, "r") as f:
+        with open(schema_version_file) as f:
             schema_version = f.readlines()[0].strip()
     except FileNotFoundError:
         lgr.warning(
@@ -334,7 +334,7 @@ def select_schema_path(
 
     Notes
     -----
-    * This is a purely aspirational function, and is pre-empted by logic inside
+    * This is a purely aspirational function, and is preempted by logic inside
         `bst.validator.validate_bids()`, and further contingent on better schema stability and
         ongoing work in: https://github.com/bids-standard/bids-schema
     * The default `bids_reference_root` value is based on the FHS and ideally should be enforced.
