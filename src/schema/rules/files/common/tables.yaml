@@ -5,12 +5,14 @@ participants:
   extensions:
     - .tsv
     - .json
+
 samples:
   level: optional
   stem: samples
   extensions:
     - .tsv
     - .json
+
 scans:
   level: optional
   suffixes:
@@ -21,6 +23,7 @@ scans:
   entities:
     subject: required
     session: optional # session is required if session is present in the dataset.
+
 sessions: # This file may only exist if session is present in the dataset.
   level: optional
   suffixes:
@@ -43,3 +46,31 @@ phenotype:
   extensions:
     - .tsv
     - .json
+
+# Provenance json files
+provenance:
+  level: optional
+  suffixes:
+    - act
+    - base
+    - ent
+    - env
+    - soft
+  extensions:
+    - .json
+  entities:
+    subject: optional
+    session: optional
+    prov: required
+
+# Provenance ld files
+provenanceld:
+  level: optional
+  suffixes:
+    - all
+  extensions:
+    - .jsonld
+  entities:
+    subject: optional
+    session: optional
+    prov: required
