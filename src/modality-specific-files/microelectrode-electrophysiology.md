@@ -158,7 +158,7 @@ These measurements follow the convention of the Pinpoint software for surgical p
 
 - `(0,0,0)` corresponds to the probe facing up with the tip pointing forward.
 - Rotations are measured in degrees, clockwise, and around the tip.
-- For multi-shank probes, the “tip” of the probe is defined as the end of the left shank when facing the electrodes.
+- For multi-shank probes, the "tip" of the probe is defined as the end of the left shank when facing the electrodes.
 
 #### Rotation Definitions:
 
@@ -456,10 +456,10 @@ when the data from each of these different recordings is stored in separate file
 Each data file should have a name that contains a `_task-XX` and/or `_run-XX` suffix, and
 should be described by at most one row in the `*_scans.tsv` file. See also the BIDS Scans
 specification.
-Relative paths to files should be used under a compulsory “filename” header.
-If acquisition time is included, it should be with the “acq_time” header. Datetime should
+Relative paths to files should be used under a compulsory "filename" header.
+If acquisition time is included, it should be with the "acq_time" header. Datetime should
 be expressed in the following format 2009-06-15T13:45:30 (year, month, day, hour (24h),
-minute, second; this is equivalent to the RFC3339 “date-time” format, time zone is always
+minute, second; this is equivalent to the RFC3339 "date-time" format, time zone is always
 assumed as local time).
 The run and task keywords and the corresponding `*_scans.tsv` file are OPTIONAL and can be
 ignored if the dataset consists of only one continuous recording and a single or no task.
@@ -558,7 +558,7 @@ contain a `task` entity in their name. For the nose-poke task, additional behavi
 
 #### Intracellular Electrophysiology (Patch)
 
-This dataset contains intracellular data from slices acquired from two subjects (20220101-A and 20220101B). Details about the subjects and the sample generation are documented in the samples (tsv/json) files. Data of each subject is stored in separate subject directories (top level directories), each of which contains an ‘icephys/’ subdirectory. Note that there is no session-level directory in this case. Here, we choose the option of having “multiple tasks/runs in separate files” as described in 3.81., to demonstrate the high level of readability offered by the filenames in this case.
+This dataset contains intracellular data from slices acquired from two subjects (20220101-A and 20220101B). Details about the subjects and the sample generation are documented in the samples (tsv/json) files. Data of each subject is stored in separate subject directories (top level directories), each of which contains an ‘icephys/’ subdirectory. Note that there is no session-level directory in this case. Here, we choose the option of having "multiple tasks/runs in separate files" as described in 3.81., to demonstrate the high level of readability offered by the filenames in this case.
 
 For the first subject only a single sample (a cell for patch-clamp terminology) was extracted (sample-cell001), on which two recordings (runs 1 and 2) were performed. Here, the `scans.tsv` file can be used to store information such as the starting recording times. The detailed information on the recording channel (such as the recording mode used) is stored in the `channels.tsv` which, in this case, is common to all available recordings. The probes and electrodes files provide information on the pipette and solutions used for the recordings and are also shared for the two data files.
 
