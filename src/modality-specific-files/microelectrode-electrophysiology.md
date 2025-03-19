@@ -36,9 +36,9 @@ Both of these formats can also store essential metadata of the datasets.
 Some of this metadata needs to be duplicated in BIDS `.tsv` and `.json` sidecar files.
 Even though the duplication requires additional effort to ensure the consistency of the data, it provides several advantages:
 
-* It makes the dataset easier for humans to scan, as essential information is easily accessible without loading the data files.
-* The dataset adheres to the BIDS standard and can benefit from tools built on top of this standard, such as [bids-validator](https://github.com/bids-standard/bids-validator).
-* It simplifies the separation of data and basic metadata, enabling, for example, the publication of a dataset in a lightweight fashion with access to the data files on request (as implemented by [DataLad](https://www.datalad.org)).
+- It makes the dataset easier for humans to scan, as essential information is easily accessible without loading the data files.
+- The dataset adheres to the BIDS standard and can benefit from tools built on top of this standard, such as [bids-validator](https://github.com/bids-standard/bids-validator).
+- It simplifies the separation of data and basic metadata, enabling, for example, the publication of a dataset in a lightweight fashion with access to the data files on request (as implemented by [DataLad](https://www.datalad.org)).
 
 <!--
 This block generates a filename templates.
@@ -121,10 +121,10 @@ or entirely omitted prior to sharing, depending on the obtained consent.
 
 If there are photos of the electrodes, the [`_acq-<label>`](../appendices/entities.md#acq) entity should be specified with:
 
-* `*_photo.jpg` for an operative photo.
-* `*_acq-xray#_photo.<extension>` for an X-ray picture.
-* `*_acq-drawing#_photo.<extension>` for a drawing or sketch of electrode placements.
-* `*_acq-render#_photo.<extension>` for a rendering.
+- `*_photo.jpg` for an operative photo.
+- `*_acq-xray#_photo.<extension>` for an X-ray picture.
+- `*_acq-drawing#_photo.<extension>` for a drawing or sketch of electrode placements.
+- `*_acq-render#_photo.<extension>` for a rendering.
 
 The file `<extension>` for photos MUST be either `.jpg`, `.png`, or `.tif`.
 
@@ -147,21 +147,21 @@ These measurements follow the convention of the Pinpoint software for surgical p
 
 ### Translational Coordinates
 
-* `(0,0,0)` is assumed to be Bregma when working with rodents.
-* It may optionally be defined differently and **must** be defined for other species.
-* `x, y, z` represents posterior, ventral, and right directions, respectively, in micrometers (`µm`).
+- `(0,0,0)` is assumed to be Bregma when working with rodents.
+- It may optionally be defined differently and **must** be defined for other species.
+- `x, y, z` represents posterior, ventral, and right directions, respectively, in micrometers (`µm`).
 
 ### Rotation
 
-* `(0,0,0)` corresponds to the probe facing up with the tip pointing forward.
-* Rotations are measured in degrees, clockwise, and around the tip.
-* For multi-shank probes, the "tip" of the probe is defined as the end of the left shank when facing the electrodes.
+- `(0,0,0)` corresponds to the probe facing up with the tip pointing forward.
+- Rotations are measured in degrees, clockwise, and around the tip.
+- For multi-shank probes, the "tip" of the probe is defined as the end of the left shank when facing the electrodes.
 
 #### Rotation Definitions:
 
-* **Yaw**: Clockwise rotation when looking down.
-* **Pitch**: Rotation in the direction of the electrode face.
-* **Roll**: Clockwise rotation when looking down at the probe.
+- **Yaw**: Clockwise rotation when looking down.
+- **Pitch**: Rotation in the direction of the electrode face.
+- **Roll**: Clockwise rotation when looking down at the probe.
 
 ### ProbeInterface Library
 
@@ -170,8 +170,8 @@ The `ProbeInterface` library includes layouts for many common probes.
 
 The `ProbeInterface` model corresponding to your probe can be referenced using:
 
-* `probeinterface_manufacturer`
-* `probeinterface_model`
+- `probeinterface_manufacturer`
+- `probeinterface_model`
 
 If provided, these should point to a `ProbeInterface` model in the `ProbeInterface` library,
 at the location:
@@ -198,9 +198,9 @@ The electrode positions and properties are stored in a `.tsv` file (amplifier in
 
 This file contains the following information:
 
-* The electrode name
-* The electrode coordinates in 3 columns (`xyz`) (use `n/a` for values if a dimension is absent)
-* The ID of the probe the electrode is located on
+- The electrode name
+- The electrode coordinates in 3 columns (`xyz`) (use `n/a` for values if a dimension is absent)
+- The ID of the probe the electrode is located on
 
 The coordinates are relative to the position on the probe.
 
@@ -225,10 +225,10 @@ These may be of neuronal origin (for example, online filtered LFP signals) or ge
 The channel properties are stored in a `.tsv` file.
 This file contains the following information:
 
-* `channel_id`
-* `electrode_id` (in the case of neuronal signals)
-* Amplifier information
-* …
+- `channel_id`
+- `electrode_id` (in the case of neuronal signals)
+- Amplifier information
+- …
 
 For more information about the distinction between electrodes and channels, see [the corresponding section in iEEG](./intracranial-electroencephalography.md#terminology-electrodes-vs-channels).
 
@@ -249,7 +249,7 @@ c234	n/a	1	SYNC	mV	1000	good
 Note: In many datasets multiple sets of identifiers are used for probes, electrodes and channels.
 We RECOMMEND to include alternative sets of identifiers, for instance identifiers that enumerate electrodes according to their spatial arrangement, as additional custom columns in the `.tsv` file.
 
-**Recommended Channel Type Values**
+-*Recommended Channel Type Values**
 
 For the `type` column we recommend to use the following terms (adopted from [iEEG](intracranial-electroencephalography.md#channelselectrode-description-_channelselectrodestsv))
 
@@ -312,9 +312,9 @@ We recommend using the following keys to describe the setup:
 Furthermore, additional information can be stored about the recording procedure.
 We RECOMMEND to use a dedicated `Procedure` node with the following keys:
 
-* `Pharmaceuticals`
-* `Sample`
-* `Supplementary`
+- `Pharmaceuticals`
+- `Sample`
+- `Supplementary`
 
 <!-- TODO: Yarik replaced Pharmaceuticals with PharmaceuticalName and others for now but we might look to define list of Pharmaceuticals of records with PharmaceuticalDoseAmount and PharmaceuticalDoseUnit -->
 
