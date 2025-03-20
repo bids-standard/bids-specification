@@ -149,9 +149,6 @@ def pre_receive_hook(schema, input_, output):
         )
 
     regexes = [rule["regex"] for rule in all_rules]
-    # XXX Hack for phenotype files - this can be removed once we
-    # have a schema definition for them
-    regexes.append(r"phenotype/.*\.(tsv|json)")
 
     output = sys.stdout if output == "-" else open(output, "w")
 
