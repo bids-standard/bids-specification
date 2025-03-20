@@ -811,10 +811,12 @@ export interface Issue {
   level?: "error" | "warning";
 }
 export interface PathRule {
+  selectors?: ExpressionList;
   level: "optional" | "required";
   path: string;
 }
 export interface StemRule {
+  selectors?: ExpressionList;
   level: "optional" | "recommended" | "required";
   datatypes?: string[];
   stem: string;
@@ -828,6 +830,7 @@ export interface StemRule {
  * via the `patternProperty` "^[a-zA-Z0-9_]+$".
  */
 export interface SuffixRule {
+  selectors?: ExpressionList;
   level?: "optional" | "recommended" | "required";
   datatypes?: string[];
   suffixes: string[];
