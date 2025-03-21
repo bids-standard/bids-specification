@@ -85,12 +85,13 @@ electrode and the location of the ground electrode MAY be specified. -->
 
 ### Describing sensor locations
 
-Each EMG-BIDS dataset should include sensor location information that is as accurate as
+Each EMG-BIDS dataset SHOULD include sensor location information that is as accurate as
 possible given the measurement means available to the researcher(s).
 Below are examples ranging from most accurate to least accurate, which can serve as a
 guide to where sensor placement information should be stored in the dataset.
 
-1.  Electrode locations and anatomical landmarks are digitized with a Polhemus FasTrak.
+1.  Electrode locations and anatomical landmarks are digitized with a 3D localizer device
+    such as Polhemus FasTrak or a 3D scanner.
     3D coordinates for each electrode are given in `x,y,z` columns of `*_electrodes.tsv`,
     and the coordinate system definition is given in `*_coordsystem.json`.
 
@@ -104,9 +105,9 @@ guide to where sensor placement information should be stored in the dataset.
 1.  The arrangement of electrodes in a group or grid is measured (or known from the device
     manufacturer), and is provided in `x,y,z` columns of `*_electrodes.tsv`, with a
     device-internal "child" coordinate system provided in `*_coordsystem.json`.
-    An anatomically-defined "parent" coordinate system is also defined in the same file,
-    and the name and coordinates of one electrode (the "anchor" electrode) from each group
-    or grid is given in the parent coordinate system.
+    An anatomically-defined "parent" coordinate system is also defined in the same
+    `*_coordsystem.json` file, and the name and coordinates of one electrode (the "anchor"
+    electrode) from each "child" group or grid is provided in the "parent" coordinate system.
     This allows the approximate anatomical locations of all electrodes to be calculated
     by treating the device-internal coordinates as offsets from the anchor coordinate.
 
