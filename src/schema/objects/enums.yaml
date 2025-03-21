@@ -750,6 +750,7 @@ LATENCY:
   value: LATENCY
   display_name: LATENCY
   tags:
+    - emg
     - motion
   description: |
     Latency of samples in seconds from recording onset.

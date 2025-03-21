@@ -263,7 +263,7 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_filename_template("raw", datatypes=["emg"], suffixes=["channels"]) }}
 
-A channel represents one time series recorded with the recording system.
+A channel is represented by one time series recorded with the recording system.
 Although this information can often be extracted from the EMG recording,
 listing it in a simple `.tsv` document makes it easy to browse or search
 (for example, searching for recordings with a sampling frequency of >=1000 Hz).
@@ -296,6 +296,7 @@ Note that upper-case is REQUIRED:
 | TRIG        | Analog (TTL in Volt) or digital (binary TTL) trigger channel           |
 | MISC        | Miscellaneous                                                          |
 | SYSCLOCK    | System time showing elapsed time since trial started                   |
+| LATENCY     | TODO description to be determined TODO                                 |
 | REF         | Reference channel                                                      |
 
 Examples of free-form text for field `description`:

@@ -17,6 +17,10 @@ AnchorCoordinates:
     This should be an array of numbers of length 3, in the units given in
     `EMGCoordinateSystemUnits` within the JSON object named in `ParentCoordinateSystem`.
   type: array
+  minItems: 1
+  maxItems: 3
+  items:
+    type: number
 AnchorElectrode:
   name: AnchorElectrode
   display_name: Anchor Electrode
