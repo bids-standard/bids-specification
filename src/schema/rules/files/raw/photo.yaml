@@ -8,6 +8,7 @@ photo:
     - .tif
   datatypes:
     - eeg
+    - emg
     - ieeg
     - meg
     - nirs

@@ -7,6 +7,10 @@ _EEGCoordSys:
     - $ref: objects.enums.EEGLAB.value
     - $ref: objects.enums.EEGLAB-HJ.value
     - $ref: objects.enums.Other.value
+_EMGCoordSys:
+  type: string
+  enum:
+    - $ref: objects.enums.Other.value
 _GeneticLevelEnum:
   type: string
   enum:
@@ -740,6 +744,7 @@ LATENCY:
   value: LATENCY
   display_name: LATENCY
   tags:
+    - emg
     - motion
   description: |
     Latency of samples in seconds from recording onset.
@@ -759,6 +764,7 @@ MISC:
   display_name: MISC
   tags:
     - eeg
+    - emg
     - meg
     - ieeg
     - fnirs
@@ -779,6 +785,7 @@ POS:
   value: POS
   display_name: POS
   tags:
+    - emg
     - motion
   description: |
     Position in space, one channel for each spatial axis.
@@ -816,6 +823,7 @@ EOG:
   display_name: EOG
   tags:
     - eeg
+    - emg
     - meg
     - ieeg
     - fnirs
@@ -826,6 +834,7 @@ ECG:
   display_name: ECG
   tags:
     - eeg
+    - emg
     - meg
     - ieeg
     - fnirs
@@ -836,6 +845,7 @@ EMG:
   display_name: EMG
   tags:
     - eeg
+    - emg
     - meg
     - ieeg
     - fnirs
@@ -863,6 +873,7 @@ HEOG:
   display_name: HEOG
   tags:
     - eeg
+    - emg
     - meg
     - ieeg
     - fnirs
@@ -890,6 +901,7 @@ REF:
   display_name: REF
   tags:
     - eeg
+    - emg
     - ieeg
   description: |
     Reference channel.
@@ -905,6 +917,7 @@ SYSCLOCK:
   display_name: SYSCLOCK
   tags:
     - eeg
+    - emg
     - meg
     - ieeg
     - fnirs
@@ -922,6 +935,7 @@ TRIG:
   display_name: TRIG
   tags:
     - eeg
+    - emg
     - meg
     - ieeg
     - fnirs
@@ -932,6 +946,7 @@ VEOG:
   display_name: VEOG
   tags:
     - eeg
+    - emg
     - meg
     - ieeg
     - fnirs
