@@ -401,7 +401,7 @@ placement__emg:
   name: placement
   display_name: Placement Scheme
   description: |
-    The name of a standardized electrode placement procedure or a description of the procedure used.
+    A description of the electrode placement procedure used.
     See description of the `EMGPlacementScheme` field in `*_emg.json`.
   type: string
   enum:
@@ -414,9 +414,6 @@ placement_description:
     Additional details of the approach to EMG sensor placement.
     See description of the `EMGPlacementSchemeDescription` field in `*_emg.json`.
   type: string
-  enum:
-    - measured
-    - other
 placement__motion:
   name: placement
   display_name: Placement
