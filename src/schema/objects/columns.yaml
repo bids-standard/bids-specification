@@ -410,7 +410,7 @@ placement__emg:
     - measured
     - other
 placement_description:
-  name: placement description
+  name: placement_description
   display_name: Placement Scheme Description
   description: |
     Additional details of the approach to EMG sensor placement.
@@ -444,7 +444,7 @@ reference__eeg:
   type: string
 # reference column for channels.tsv files for EMG data
 reference_electrode:
-  name: reference electrode
+  name: reference_electrode
   display_name: Reference electrode
   description: |
     The reference for the given channel.
@@ -571,9 +571,10 @@ short_channel:
 signal_electrode:
   name: signal_electrode
   display_name: Signal electrode
-  description:
+  description: |
     The name of the electrode from which the `reference_electrode`'s signal is subtracted
     to yield the channel's data.
+    For channels originating from bipolar devices, the `signal_electrode` MAY be the same as the channel `name`.
   type: string
 size:
   name: size
