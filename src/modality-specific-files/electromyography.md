@@ -287,18 +287,18 @@ Restricted keyword list for field type in alphabetic order (shared with the MEG
 and EEG modality; however, only types that are common in EMG data are listed here).
 Note that upper-case is REQUIRED:
 
-| **Keyword** | **Description**                                                        |
-| ----------- | ---------------------------------------------------------------------- |
-| VEOG        | Vertical EOG (electrooculogram)                                        |
-| HEOG        | Horizontal EOG                                                         |
-| EOG         | Generic EOG channel if HEOG or VEOG information not available          |
-| ECG         | ElectroCardioGram (heart)                                              |
-| EMG         | ElectroMyoGram (muscle)                                                |
-| TRIG        | Analog (TTL in Volt) or digital (binary TTL) trigger channel           |
-| MISC        | Miscellaneous                                                          |
-| SYSCLOCK    | System time showing elapsed time since trial started                   |
-| LATENCY     | TODO description to be determined TODO                                 |
-| REF         | Reference channel                                                      |
+| **Keyword** | **Description**                                                                                |
+| ----------- | ---------------------------------------------------------------------------------------------- |
+| VEOG        | Vertical EOG (electrooculogram)                                                                |
+| HEOG        | Horizontal EOG                                                                                 |
+| EOG         | Generic EOG channel if HEOG or VEOG information not available                                  |
+| ECG         | ElectroCardioGram (heart)                                                                      |
+| EMG         | ElectroMyoGram (muscle)                                                                        |
+| TRIG        | Analog (TTL in Volt) or digital (binary TTL) trigger channel                                   |
+| MISC        | Miscellaneous                                                                                  |
+| SYSCLOCK    | Elapsed time since trial/recording start, as provided by the recording device.                 |
+| LATENCY     | Latency of sample, in seconds from recording onset, typically from an _external_ clock source. |
+| REF         | Reference channel                                                                              |
 
 Examples of free-form text for field `description`:
 

@@ -750,6 +750,8 @@ LATENCY:
     Latency of samples in seconds from recording onset.
     MUST be in form of `ss[.000000]`,
     where `[.000000]` is an optional subsecond resolution between 1 and 6 decimal points.
+    Note that `LATENCY` channels typically contain timestamps from an _external_ clock
+    source, often with the intent of synchronizing data across multiple devices.
 MAGN:
   value: MAGN
   display_name: MAGN
@@ -922,7 +924,9 @@ SYSCLOCK:
     - ieeg
     - fnirs
   description: |
-    System time showing elapsed time since trial started.
+    Elapsed time since trial/recording start, as provided by the recording device.
+    For device-external timestamp signals, use `LATENCY`.
+    For TTL-based synchronization signals, use `TRIG`.
 TEMP:
   value: TEMP
   display_name: TEMP
