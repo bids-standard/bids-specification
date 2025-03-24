@@ -8,7 +8,7 @@ acquisition:
   display_name: Acquisition
   description: |
     The `acq-<label>` entity corresponds to a custom label the user MAY use to distinguish
-    a different set of parameters used for acquiring the same modality.
+    a different set of parameters or devices used for acquiring the same modality.
 
     For example, this should be used when a study includes two T1w images -
     one full brain low resolution and one restricted field of view but high resolution.
@@ -23,6 +23,10 @@ acquisition:
     The level of detail at which the distinction is made
     (for example, just between `RARE` and `FLASH`, or between `RARE`, `FLASH`, and `FLASHsubsampled`)
     remains at the discretion of the researcher.
+
+    For modalities where multiple recording devices may be in use simultaneously
+    (and may each record into different data files with different recording parameters),
+    the `acq-<label>` entity may also be used.
   type: string
   format: label
 ceagent:
