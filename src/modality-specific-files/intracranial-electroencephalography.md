@@ -495,11 +495,11 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example(
    {
-   "sub-01": {
-      "ses-0001": {
+   "sub-0001": {
+      "ses-01": {
          "ieeg": {
-            "sub-01_ses-0001_acq-photo1_photo.jpg": "",
-            "sub-01_ses-0001_acq-photo2_photo.jpg": "",
+            "sub-0001_ses-01_acq-photo1_photo.jpg": "",
+            "sub-0001_ses-01_acq-photo2_photo.jpg": "",
             "...": "",
             },
          },
