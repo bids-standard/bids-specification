@@ -115,8 +115,8 @@ guide to where sensor placement information should be stored in the dataset.
     functional localizers.
     No measured coordinates are provided; placement information is given either in the
     `EMGPlacementSchemeDescription` field of `*_emg.json` (when the placement approach is
-    the same for all sensors), or in the `placement` column of `*_channels.tsv` (when the
-    placement approach varied across sensors).
+    the same for all sensors), or in the `placement_scheme` column of `*_channels.tsv`
+    (when the placement approach varied across sensors).
 
 More details on each of these scenarios is given below in the
 [Channels description](#channels-description-_channelstsv),

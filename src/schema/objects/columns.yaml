@@ -397,8 +397,15 @@ participant_id:
     matching a participant entity found in the dataset.
   type: string
   pattern: ^sub-[0-9a-zA-Z+]+$
-placement__emg:
-  name: placement
+placement_description:
+  name: placement_description
+  display_name: Placement Scheme Description
+  description: |
+    Additional details of the approach to EMG sensor placement.
+    See description of the `EMGPlacementSchemeDescription` field in `*_emg.json`.
+  type: string
+placement_scheme:
+  name: placement_scheme
   display_name: Placement Scheme
   description: |
     A description of the electrode placement procedure used.
@@ -407,13 +414,6 @@ placement__emg:
   enum:
     - measured
     - other
-placement_description:
-  name: placement_description
-  display_name: Placement Scheme Description
-  description: |
-    Additional details of the approach to EMG sensor placement.
-    See description of the `EMGPlacementSchemeDescription` field in `*_emg.json`.
-  type: string
 placement__motion:
   name: placement
   display_name: Placement
