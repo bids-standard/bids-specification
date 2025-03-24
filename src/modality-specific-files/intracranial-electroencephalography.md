@@ -497,9 +497,11 @@ A guide for using macros can be found at
    {
    "sub-01": {
       "ses-0001": {
-         "sub-0001_ses-01_acq-photo1_photo.jpg": "",
-         "sub-0001_ses-01_acq-photo2_photo.jpg": "",
-         "...": "",
+         "ieeg": {
+            "sub-01_ses-0001_acq-photo1_photo.jpg": "",
+            "sub-01_ses-0001_acq-photo2_photo.jpg": "",
+            "...": "",
+            },
          },
       },
    }
@@ -509,7 +511,6 @@ A guide for using macros can be found at
 
 Below is an example of a volume rendering of the cortical surface with a
 superimposed subdural electrode implantation. This map is often provided by the
-
 EEG technician and provided to the epileptologists (for example, see Burneo JG et al.
 2014. [doi:10.1016/j.clineuro.2014.03.020](https://doi.org/10.1016/j.clineuro.2014.03.020)).
 
