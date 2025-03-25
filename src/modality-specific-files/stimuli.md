@@ -72,11 +72,15 @@ In some cases, such as observing the copyright of a stimulus file, the actual st
 ```JSON
 {
     "License": "CC-BY-4.0",
-    "Copyright": "Lab 2023",
+    "Copyright": "2023 Lab Name lab@university.edu",
     "URL": "https://example.com/stimuli/",
     "Description": "Collection of face images, tones, and movie clips used in the experiment"
 }
 ```
+
+The `License` field SHOULD provide the known identifiers, such as `PDL`, `CC0`, `CC-BY` from the [BIDS Licensees Appendix](https://bids-specification.readthedocs.io/en/stable/appendices/licenses.html), or common license lists such as [SPDX](https://spdx.org/licenses/) or [Creative Commons](https://creativecommons.org/licenses/).
+The `Copyright` filed SHOULD provide the year, copyright holder's name, and if available, the email address of the copyright holder.
+If the stimulus file is not shared, the `URL` field SHOULD provide a link to the stimulus file.
 
 ## Stimuli Description (`stimuli.tsv`)
 
