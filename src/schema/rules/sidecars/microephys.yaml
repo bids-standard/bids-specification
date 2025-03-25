@@ -65,18 +65,6 @@ microephysPharmaceuticals:
     PharmaceuticalDoseRegimen: recommended
     PharmaceuticalDoseTime: recommended
 
-# TODO: Check how to conditionally change level to required for photo if
-# MicroephysCoordinateSystem is Pixels
-microephysCoordsystemGeneral:
-  selectors:
-    - datatype == ["ecephys", "icephys"]
-    - suffix == "coordsystem"
-  fields:
-    MicroephysCoordinateSystem: required
-    MicroephysCoordinateSystemDescription: recommended
-    MicroephysCoordinateUnits: required
-    MicroephysCoordinateSystemPhoto: optional
-
 microephysSupplementary:
   selectors:
     - datatype == ["ecephys", "icephys"]
