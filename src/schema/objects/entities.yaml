@@ -194,12 +194,22 @@ part:
   name: part
   display_name: Part
   description: |
-    This entity is used to indicate which component of a complex
-    representation is being stored. For MRI data, it indicates which component
-    of the complex signal is represented in voxel data. For stimulus files, it can
-    be used to distinguish different parts of a single stimulus, such as chapters
-    in an audiobook or segments of a long movie (for example, `part-1`, `part-2`,
-    `part-epilog`, `part-chapter1`).
+    This entity is used to indicate which component of the complex
+    representation of the MRI signal is represented in voxel data.
+    The `part-<label>` entity is associated with the DICOM Tag
+    `0008, 9208`.
+    Allowed label values for this entity are `phase`, `mag`, `real` and `imag`,
+    which are typically used in `part-mag`/`part-phase` or
+    `part-real`/`part-imag` pairs of files.
+
+    Phase images MAY be in radians or in arbitrary units.
+    The sidecar JSON file MUST include the `"Units"` of the `phase` image.
+    The possible options are `"rad"` or `"arbitrary"`.
+
+    When there is only a magnitude image of a given type, the `part` entity MAY be
+    omitted.
+    
+    For stimulus files, ‍`part-<label>` can be used to distinguish different parts of a single stimulus, such as chapters in an audiobook or segments of a long movie (for example, `part-1`, `part-2`, `part-epilog`, `part-chapter1`).
   type: string
   format: label
   enum:
