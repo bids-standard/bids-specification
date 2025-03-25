@@ -46,7 +46,7 @@ The following table lists the supported stimulus file formats and their correspo
 | suffix      | extensions                      | description                  |
 | ----------- | ------------------------------- | ---------------------------- |
 | audio       | `.wav`, `.mp3`, `.aac`, `.ogg`  | Audio-only stimulus files    |
-| image       | `.jpg`, `.png`, `.svg`          | Static visual stimulus files |
+| image       | `.jpg`, `.png`, `.svg`, `.webp` | Static visual stimulus files |
 | video       | `.mp4`, `.avi`, `.mkv`, `.webm` | Video-only stimulus files    |
 | audiovideo  | `.mp4`, `.avi`, `.mkv`, `.webm` | Combined audio-visual files  |
 
