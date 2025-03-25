@@ -37,6 +37,7 @@ render = [
 ]
 tests = [
     "bidsschematools[expressions,render]",
+    "check-jsonschema",
     "codecov",
     "coverage[toml]",
     "flake8",
