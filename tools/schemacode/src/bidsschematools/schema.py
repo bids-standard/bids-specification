@@ -180,12 +180,12 @@ def flatten_enums(namespace, inplace=True):
 
 @lru_cache
 def load_schema(schema_path=None):
-    """Load the schema into a dictionary.
+    """Load the schema into a dict-like structure.
 
     This function allows the schema, like BIDS itself, to be specified in
     a hierarchy of directories and files.
     Filenames (minus extensions) and directory names become keys
-    in the associative array (dict) of entries composed from content
+    in the associative array (dict) of entries composed of content
     of files and entire directories.
 
     Parameters
@@ -196,8 +196,8 @@ def load_schema(schema_path=None):
 
     Returns
     -------
-    dict
-        Schema in dictionary form.
+    Namespace
+        Schema in a dict-like structure.
 
     Notes
     -----
