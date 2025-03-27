@@ -1,5 +1,3 @@
-.PHONY:  tools/contributors.tsv
-
 validate_citation_cff: CITATION.cff
 	cffconvert --validate
 
@@ -8,12 +6,13 @@ update_contributors:
 	python tools/print_contributors.py
 	yarn all-contributors generate
 
+.PHONY: runprettier
 runprettier:
 	prettier --write "src/schema/**/*.yaml"
 	python3 -m yamllint -f standard src/schema/ -c .yamllint.yml
 
+.PHONY: commitschema
 SCHEMA_CHANGES := $(shell git diff --name-only | grep src/schema/*.yaml)
-
 commitschema:
 	@echo SCHEMA_CHANGES $(SCHEMA_CHANGES)
 	git add src/schema/*.yaml && \
@@ -23,6 +22,9 @@ commitschema:
 
 formatschema: runprettier commitschema
 
-all:
+# check style of all markdown files
+node_modules: npm-requirements.txt
+	npm install `cat npm-requirements.txt`
 
-.PHONY: runprettier commitschema
+remark: node_modules
+	npx remark src/**/*.md --frail --rc-path .remarkrc
