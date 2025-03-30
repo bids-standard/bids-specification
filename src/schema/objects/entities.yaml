@@ -27,6 +27,9 @@ acquisition:
     For modalities where multiple recording devices may be in use simultaneously
     (and may each record into different data files with different recording parameters),
     the `acq-<label>` entity may also be used.
+    For example, an EMG dataset with simultaneous recordings from a bipolar sensor and an
+    electrode grid could have the following names:
+    `sub-01_acq-bipolar_emg.bdf` and `sub-01_acq-grid_emg.bdf`.
   type: string
   format: label
 ceagent:
