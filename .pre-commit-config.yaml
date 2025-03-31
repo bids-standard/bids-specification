@@ -17,7 +17,7 @@ repos:
       - id: check-added-large-files
       - id: check-case-conflict
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.31.3
+    rev: 0.32.1
     hooks:
       - id: check-dependabot
       - id: check-github-workflows
@@ -47,7 +47,7 @@ repos:
         files: tools/schemacode
         args: ["--settings-file", "tools/schemacode/pyproject.toml"]
   - repo: https://github.com/pyCQA/flake8
-    rev: 7.1.2
+    rev: 7.2.0
     hooks:
       - id: flake8
         args: [--config=tools/schemacode/.flake8]
