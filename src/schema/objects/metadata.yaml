@@ -3193,10 +3193,16 @@ SampleCoordinateSystem:
   description: |
     Coordinate system of the gaze position recordings.
     Generally eye-trackers are set to use `"gaze-on-screen"` coordinate system, but you may use
-    `"eye-in-head"` or `"gaze-in-world"` or other alternatives of your choice.
-    If you use the standard `"gaze-on-screen"`, it is RECOMMENDED to use this
-    exact label.
+    `"eye-in-head"` or `"gaze-in-world"`.
+    If none of the three default options properly describe the coordinate system, the
+    `"custom"` keyword MUST be employed and the coordinate system MUST be described
+    using additional metadata entries.
   type: string
+  enum:
+    - gaze-on-screen
+    - eye-in-head
+    - gaze-in-world
+    - custom
 SampleEmbedding:
   name: SampleEmbedding
   display_name: Sample Embedding
