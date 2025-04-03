@@ -3197,16 +3197,6 @@ SampleCoordinateSystem:
     If you use the standard `"gaze-on-screen"`, it is RECOMMENDED to use this
     exact label.
   type: string
-SampleCoordinateUnits:
-  name: SampleCoordinateUnits
-  display_name: Sample Coordinate Units
-  description: |
-    Unit of individual samples (`"pixel"`, `"mm"` or `"cm"`) .
-  type: string
-  enum:
-    - pixel
-    - mm
-    - cm
 SampleEmbedding:
   name: SampleEmbedding
   display_name: Sample Embedding

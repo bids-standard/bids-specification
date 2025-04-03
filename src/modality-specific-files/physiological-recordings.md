@@ -176,6 +176,27 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_columns_table("physio.PhysioColumns") }}
 
+Please note that the specification of columns such as `cardiac`, `respiratory`, and `trigger` above
+follow the general specifications for [tabular files](../common-principles.md#tabular-files):
+
+<!-- This table should be the same as that in the common-principles.md file,
+	   unless the specification wants to specifically deviate for physio at some point.
+-->
+{{ MACROS___make_metadata_table(
+   {
+        "LongName": "OPTIONAL",
+        "Description": (
+            "RECOMMENDED",
+            "The description of the column.",
+        ),
+        "Levels": "RECOMMENDED",
+        "Units": "RECOMMENDED",
+        "Delimiter": "OPTIONAL",
+        "TermURL": "RECOMMENDED",
+        "HED": "OPTIONAL",
+   }
+) }}
+
 **Examples**.
 Let's encode cardiac and respiratory recordings, as well as a trigger signal,
 the three of them sampled at 100.0 Hz by the same device during a behavioral task:
@@ -526,7 +547,7 @@ for the [`recording-<label>`](../appendices/entities.md#recording) entity.
     `RecordedEye` being `"right"`.
 
 Eye-tracking files `<matches>_recording-<label>_physio.tsv.gz` MUST follow
-specific column specifications:
+specific column prescriptions:
 
 <!--
 This block generates a columns table.
@@ -536,6 +557,21 @@ and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_columns_table("physio.PhysioEyeTracking") }}
+
+Please note that the specification of columns such as `timestamp`, `x_coordinate`, `y_coordinate`, and `pupil_size`
+follow the general specifications for [tabular files](../common-principles.md#tabular-files) and MAY define
+metadata fields such as [`LongName`](../glossary.md#objects.metadata.LongName),
+[`Description`](../glossary.md#objects.metadata.Description),
+[`Levels`](../glossary.md#objects.metadata.Levels), or
+[`TermURL`](../glossary.md#objects.metadata.TermURL).
+However, in the case of eye-tracking, the metadata entry [`Units`](../glossary.md#objects.metadata.Units),
+becomes REQUIRED for the colums `x_coordinate` and `y_coordinate`:
+
+{{ MACROS___make_metadata_table(
+   {
+        "Units": "REQUIRED",
+   }
+) }}
 
 The following table specifies metadata fields for the
 `<matches>_recording-<label>_physio.json` file:
@@ -554,6 +590,7 @@ A guide for using macros can be found at
     "continuous.PhysioTypeRequired",
     "continuous.EyeTrack"
 ]) }}
+
 
 Comprehensively documenting the calibration metadata is RECOMMENDED.
 
@@ -639,7 +676,6 @@ could read:
     "PhysioType": "eyetrack",
     "RecordedEye": "right",
     "SampleCoordinateSystem": "gaze-on-screen",
-    "SampleCoordinateUnits": "pixel",
     "SamplingFrequency": 1000,
     "SoftwareVersion": "SREB1.10.1630 WIN32 LID:F2AE011 Mod:2017.04.21 15:19 CEST",
     "ScreenAOIDefinition": [
@@ -652,12 +688,14 @@ could read:
         "Origin": "System startup"
     },
     "x_coordinate": {
+      "LongName": "Gaze position (x)",
       "Description": "Gaze position x-coordinate of the recorded eye, in the coordinate units specified in the corresponding metadata sidecar.",
-      "Units": "pixels"
+      "Units": "pixel"
     },
     "y_coordinate": {
+      "LongName": "Gaze position (y)",
       "Description": "Gaze position y-coordinate of the recorded eye, in the coordinate units specified in the corresponding metadata sidecar.",
-      "Units": "pixels"
+      "Units": "pixel"
     },
     "pupil_size": {
         "Description": "Pupil area of the recorded eye as calculated by the eye-tracker in arbitrary units (see EyeLink's documentation for conversion).",
@@ -665,9 +703,6 @@ could read:
     }
 }
 ```
-
-Please note how the `Description` field of the `pupil_size` column states the specific type
-of pupil size recorded (pupil area in this example).
 
 Content of `sub-01_task-VisualSearch_events.json`:
 

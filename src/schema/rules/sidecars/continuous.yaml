@@ -50,7 +50,6 @@ EyeTrack:
     - suffix == "physio"
   fields:
     RecordedEye: required
-    SampleCoordinateUnits: required
     SampleCoordinateSystem: required
     AverageCalibrationError: recommended
     CalibrationCount: recommended
