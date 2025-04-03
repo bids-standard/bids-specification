@@ -28,7 +28,7 @@ stored in one of the following formats:
 | [Biosemi data format](https://www.biosemi.com/faq/file_format.htm) | `.bdf`                   | Each recording consists of a single `.bdf` file. [`bdf+`](https://www.teuniz.net/edfbrowser/bdfplus%20format%20description.html) files are permitted. The capital `.BDF` extension MUST NOT be used. |
 | [European data format](https://www.edfplus.info/)                  | `.edf`                   | Each recording consists of a single `.edf` file. [`edf+`](https://www.edfplus.info/specs/edfplus.html) files are permitted. The capital `.EDF` extension MUST NOT be used.                           |
 
-EDF, EDF+, BDF, and BDF+ are all open data formats with broad support  in various programming languages for reading and writing the files. BDF and BDF+ formats store data samples using 3 bytes instead of 2 bytes as in EDF and EDF+ formats, allowing for greater resolution. EDF+/BDF+ accommodate more header metadata than EDF/BDF, and support storing event or annotation information in the file. Thus it is RECOMMENDED to use the BDF+ data format.
+EDF, EDF+, BDF, and BDF+ are all open data formats with broad support in various programming languages for reading and writing the files. BDF and BDF+ formats store data samples using 3 bytes instead of 2 bytes as in EDF and EDF+ formats, allowing for greater resolution. EDF+/BDF+ accommodate more header metadata than EDF/BDF, and support storing event or annotation information in the file. Thus it is RECOMMENDED to use the BDF+ data format.
 Future versions of BIDS may extend this list of supported file formats.
 File formats for future consideration MUST have open access documentation, MUST have
 open source implementation for both reading and writing in at least two programming
@@ -338,7 +338,7 @@ Electrode locations may be specified in one of four ways:
 
 1.  **Coordinates and landmarks digitized in situ.**
     When 3D electrode locations are digitized in situ, the origin, orientation, and measurement
-    unit of the coordinate system MUST be recorded in cartesian coordinates according to the
+    unit of the coordinate system MUST be recorded in Cartesian coordinates according to the
     `EMGCoordinateSystem` and `EMGCoordinateUnits` fields in `*_coordsystem.json`,
     as described in the [Coordinate Systems Appendix](../appendices/coordinate-systems.md).
     In such cases, `EMGCoordinateSystem` SHOULD be specified as `Other`, the
