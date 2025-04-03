@@ -416,7 +416,7 @@ physio_onset:
   description: |
     Onset of the event relative to the timeline defined by the corresponding
     physiological recording file.
-    
+
     Typically, it will correspond to a timestamp issued by the recording device.
   type: number
 placement__motion:
