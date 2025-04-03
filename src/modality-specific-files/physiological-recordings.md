@@ -164,78 +164,7 @@ Additional metadata may be included as in
 [any TSV file](../common-principles.md#tabular-files) to specify, for
 example, the units of the recorded time series.
 
-Example `*_physio.tsv.gz`:
-
-<!-- This block generates a file tree.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filetree_example(
-   {
-   "sub-control01": {
-      "func": {
-         "sub-control01_task-nback_physio.tsv.gz": "",
-         },
-      },
-   }
-) }}
-
-(after decompression)
-
-```tsv
-34	110	0
-44	112	0
-23	100	1
-```
-
-Example `*_physio.json`:
-
-<!-- This block generates a file tree.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filetree_example(
-   {
-   "sub-control01": {
-      "func": {
-         "sub-control01_task-nback_physio.json": "",
-         },
-      },
-   }
-) }}
-
-```JSON
-{
-    "SamplingFrequency": 100.0,
-    "StartTime": -22.345,
-    "Columns": ["cardiac", "respiratory", "trigger"],
-    "Manufacturer": "Brain Research Equipment ltd.",
-    "cardiac": {
-        "Description": "continuous pulse measurement",
-        "Units": "mV"
-        },
-    "respiratory": {
-        "Description": "continuous measurements by respiration belt",
-        "Units": "mV"
-        },
-    "trigger": {
-        "Description": "continuous measurement of the scanner trigger signal"
-        }
-}
-```
-
-Note how apart from the general metadata fields like `SamplingFrequency`, `StartTime`, `Columns`,
-and `Manufacturer`,
-each individual column in the TSV file may be documented as its own field in the JSON file
-(identical to the practice in other TSV+JSON file pairs).
-Here, only the `Description` and `Units` fields are shown, but you may use any other of the
-[defined fields](../common-principles.md#tabular-files) such as `TermURL`, `LongName`, and so on.
-In this example, the `"cardiac"` and `"respiratory"` time series are produced by devices from
-the same manufacturer and follow the same sampling frequency.
-To specify different sampling frequencies or manufacturers, the time series would have to be split
-into separate files like `*_recording-cardiac_physio.<tsv.gz|json>` and `*_recording-respiratory_physio.<tsv.gz|json>`.
-
-## Column naming recommendations for `"generic"` recordings
+**Column naming recommendations for `"generic"` recordings.**
 To store pulse or breathing measurements, or the scanner trigger signal,
 the following naming conventions SHOULD be used for the column names:
 
@@ -266,10 +195,10 @@ A guide for using macros can be found at
 In this example, the contents of `sub-01_task-nback_physio.tsv.gz`
 after decompression are:
 
-```Text
-34    110    0
-44    112    0
-23    100    1
+```tsv
+34	110	0
+44	112	0
+23	100	1
 ```
 
 and the header-less TSV.GZ contents are described with the following
@@ -411,7 +340,7 @@ A guide for using macros can be found at
 where the decompressed contents of `sub-01_task-nback_physio.tsv.gz`
 are:
 
-```{.text linenums="1"}
+```{.tsv linenums="1"}
 10.1
 10.0
 9.5
@@ -439,9 +368,9 @@ An example of the decompressed contents of the corresponding
 TSV file, `sub-01_task-nback_physioevents.tsv.gz` is:
 
 ```TSV
--3   "Ready"
-3    "Synchronous recalibration triggered"
-6    "External message received: new block"
+-3	Ready
+3	Synchronous recalibration triggered
+6	External message received: new block
 ```
 
 In this case, the first column lists the indexes (one-based row number)
@@ -509,14 +438,14 @@ The decompressed contents of `sub-01_task-nback_physio.tsv.gz`
 are now:
 
 ```{.text linenums="1"}
-10.1    13894432329
-10.0    13894432330
-9.5     13894432331
-9.2     13894432332
-9.0     13894432333
-10.2    13894432334
-10.3    13894432335
-10.1    13894432336
+10.1	13894432329
+10.0	13894432330
+9.5	13894432331
+9.2	13894432332
+9.0	13894432333
+10.2	13894432334
+10.3	13894432335
+10.1	13894432336
 ```
 
 Then, the `sub-01_task-nback_physioevents.json` MAY define
@@ -533,10 +462,10 @@ the `ForeignIndexColumn` for indexing:
 The decompressed contents of the corresponding TSV file,
 `sub-01_task-nback_physioevents.tsv.gz` could read now:
 
-```TSV
-13894432325    "Ready"
-13894432331    "Synchronous recalibration triggered"
-13894432334    "External message received: new block"
+```tsv
+13894432325	Ready
+13894432331	Synchronous recalibration triggered
+13894432334	External message received: new block
 ```
 
 ## Specific physiological signal types
