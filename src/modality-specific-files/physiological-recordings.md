@@ -310,7 +310,7 @@ MUST follow specific column specifications:
 <!--
 This block generates a columns table.
 The definitions of these fields can be found in
-  src/schema/rules/tabular_data/eyetrack.yaml
+  src/schema/rules/tabular_data/physio.yaml
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
@@ -361,7 +361,7 @@ A guide for using macros can be found at
 where the decompressed contents of `sub-01_task-nback_physio.tsv.gz`
 are:
 
-```{.tsv linenums="1"}
+```{.text linenums="1"}
 10.1
 10.0
 9.5
@@ -388,7 +388,7 @@ the `ForeignIndexColumn` SHOULD NOT be defined in the
 An example of the decompressed contents of the corresponding
 TSV file, `sub-01_task-nback_physioevents.tsv.gz` is:
 
-```TSV
+```{.text noheader="1"}
 -3	Ready
 3	Synchronous recalibration triggered
 6	External message received: new block
@@ -458,7 +458,7 @@ column called `"timestamp"`:
 The decompressed contents of `sub-01_task-nback_physio.tsv.gz`
 are now:
 
-```{.text linenums="1"}
+```{.text noheader="1" linenums="1"}
 10.1	13894432329
 10.0	13894432330
 9.5	13894432331

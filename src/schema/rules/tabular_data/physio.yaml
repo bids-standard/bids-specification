@@ -26,10 +26,10 @@ PhysioEventsColumns:
   selectors:
     - suffix == "physioevents"
   columns:
-    onset: required
+    physio_onset: required
     duration: recommended
     trial_type: optional
     message: optional
   additional_columns: allowed
   initial_columns:
-    - onset
+    - physio_onset

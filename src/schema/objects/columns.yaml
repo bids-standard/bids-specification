@@ -410,6 +410,15 @@ participant_id:
     matching a participant entity found in the dataset.
   type: string
   pattern: ^sub-[0-9a-zA-Z+]+$
+physio_onset:
+  name: onset
+  display_name: Onset of events in physiological recordings
+  description: |
+    Onset of the event relative to the timeline defined by the corresponding
+    physiological recording file.
+    
+    Typically, it will correspond to a timestamp issued by the recording device.
+  type: number
 placement__motion:
   name: placement
   display_name: Placement
