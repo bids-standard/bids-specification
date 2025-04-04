@@ -83,7 +83,12 @@ direction:
     This entity represents the `"PhaseEncodingDirection"` metadata field.
     Therefore, if the `dir-<label>` entity is present in a filename,
     `"PhaseEncodingDirection"` MUST be defined in the associated metadata.
-    Please note that the `<label>` does not need to match the actual value of the field.
+
+    If the `<label>` is `AP`, `PA`, `LR`, `RL`, `SI`, or `IS`,
+    then the `"PhaseEncodingDirection"` SHOULD correspond to the data
+    axis that most closely aligns with the cardinal direction and orientation.
+    For example, `dir-AP` for an image in RAS+ orientation SHOULD have
+    `"PhaseEncodingDirection": "j-"`.
   type: string
   format: label
 echo:
