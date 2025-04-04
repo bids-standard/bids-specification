@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 import io
-
 import re
+
 import pandas as pd
 from markdown_it import MarkdownIt
 from tabulate import tabulate
@@ -15,7 +15,7 @@ def fence(
     options: dict,
     md,
     classes=None,
-    id_value='',
+    id_value="",
     attrs: dict | None = None,
     **kwargs,
 ) -> str:
@@ -35,7 +35,7 @@ def fence(
             dtype=str,
             index_col=False,
             keep_default_na=False,
-            header=None if "noheader" in attrs else "infer"
+            header=None if "noheader" in attrs else "infer",
         )
         md_table = tabulate(
             df,
