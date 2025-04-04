@@ -13,7 +13,7 @@ requires-python = ">=3.9"
 dependencies = [
     "click",
     "pyyaml",
-    "jsonschema"
+    "jsonschema[format]"
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -37,6 +37,7 @@ render = [
 ]
 tests = [
     "bidsschematools[expressions,render]",
+    "check-jsonschema",
     "codecov",
     "coverage[toml]",
     "flake8",
