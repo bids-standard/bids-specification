@@ -82,6 +82,7 @@ repos:
           - click
           - markdown-it-py
           - importlib_resources
+          - jinja2
           - pandas-stubs
           - pyparsing
           - pytest
