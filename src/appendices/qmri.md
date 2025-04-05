@@ -219,7 +219,7 @@ in the [BIDS examples](https://bids-standard.github.io/bids-examples/#qmri).
 
 The table of required entities for qMRI file collections are provided in the [entity table](./entity-table.md).
 However, viability of a qMRI file collection is determined not only by the naming and organization of the input files,
-but also by which metadata fields are provided in accompanying json files.
+but also by which metadata fields are provided in accompanyingJSONfiles.
 
 ### Method-specific priority levels for qMRI file collections
 
@@ -380,10 +380,10 @@ a proper interpretation of qMRI maps may critically depend on some metadata fiel
 For example, without the information of `MagneticFieldStrength`, white-matter T1 values in a `T1map` become elusive.
 
 -   All the acquisition parameters that are constant across the files in a file collection are RECOMMENDED
-    to be added to the sidecar json of the qMRI maps.
+    to be added to the sidecarJSONof the qMRI maps.
 
 -   Relevant acquisition parameters that vary across files in a qMRI file collection are RECOMMENDED
-    to be added to the sidecar json of the qMRI map **in array form**.
+    to be added to the sidecarJSONof the qMRI map **in array form**.
 
 -   The JSON file accompanying a qMRI map which is obtained by using open-source software is RECOMMENDED
     to include additional metadata fields listed in the following table:
