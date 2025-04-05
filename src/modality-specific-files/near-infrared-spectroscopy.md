@@ -294,7 +294,7 @@ Note that upper-case is REQUIRED.
 ### Example `*_channels.tsv`
 
 ```tsv
-Name	type	source	detector	wavelength_nominal	units
+name	type	source	detector	wavelength_nominal	units
 S1-D1	NIRSCWAMPLITUDE	A1	Fz	760	V
 S1-D1	NIRSCWAMPLITUDE	A1	Fz	850	V
 S1-D2	NIRSCWAMPLITUDE	A1	Cz	760	V
