@@ -25,6 +25,7 @@ def fence(
     if language == "tsvgz" and "header" not in attrs:
         attrs["noheader"] = True
 
+    classes = classes or []
     classes.insert(0, "tsv-table")
     classes.insert(1, "index" if linenums else "noindex")
 
