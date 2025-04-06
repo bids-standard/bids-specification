@@ -14,7 +14,7 @@ def fence(
     css_class: str,
     options: dict,
     md,
-    classes=None,
+    classes: list[str],
     id_value="",
     attrs: dict | None = None,
     **kwargs,
