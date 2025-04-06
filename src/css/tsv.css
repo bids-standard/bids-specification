@@ -1,56 +1,58 @@
 .tsv-table {
-	font-feature-settings:"kern";
-	min-width: 100%;
-	border-collapse: collapse;
-	overflow: auto;
-	display: block;
+    font-feature-settings:"kern";
+    min-width: 100%;
+    border-collapse: collapse;
+    overflow: auto;
+    display: block;
 }
 
 .tsv-table th {
-	color: var(--md-code-fg-color);
-	font-family:var(--md-code-font-family);
-	font-weight: 800;
-	background-color: var(--md-code-bg-color);
-	border-top: 1px solid var(--md-default-fg-color--light);
-	font-size: 0.8em;
-	padding: 0 10px 0 10px;
+    color: var(--md-code-fg-color);
+    font-family:var(--md-code-font-family);
+    font-weight: 800;
+    background-color: var(--md-code-bg-color);
+    border-top: 1px solid var(--md-default-fg-color--light);
+    font-size: 0.8em;
+    padding: 0 10px 0 10px;
 }
 
 .tsv-table.index tr th:first-child {
-	background-color: var(--md-text-bg-color);
-	border-top: 0;
+    background-color: var(--md-text-bg-color);
+    border-top: 0;
+    user-select: none;
 }
 
 .tsv-table tr:last-child td {
-	border-bottom: 1px solid var(--md-default-fg-color--light);
+    border-bottom: 1px solid var(--md-default-fg-color--light);
 }
 
 .tsv-table tr:first-child td {
-	border-top: 1px solid var(--md-default-fg-color--light);
+    border-top: 1px solid var(--md-default-fg-color--light);
 }
 
 .tsv-table td {
-	font-family:var(--md-code-font-family);
-	font-size: 0.8em;
-	text-align: center;
-	vertical-align: middle;
-	color: var(--md-code-fg-color);
-	background-color: var(--md-code-bg-color);
-	padding: 0 10px 0 10px;
+    font-family:var(--md-code-font-family);
+    font-size: 0.8em;
+    text-align: center;
+    vertical-align: middle;
+    color: var(--md-code-fg-color);
+    background-color: var(--md-code-bg-color);
+    padding: 0 10px 0 10px;
 }
 
 .tsv-table.index td:first-child {
-	color:var(--md-default-fg-color--light);
-	font-family:var(--md-text-font-family);
-	font-size: 0.7em;
-	background-color: var(--md-text-bg-color);
-	padding-right: 15px;
-	text-align: right;
-	min-width: 25px;
-	width: 35px;
-	border-top: 0;
+    color:var(--md-default-fg-color--light);
+    font-family:var(--md-text-font-family);
+    font-size: 0.7em;
+    background-color: var(--md-text-bg-color);
+    padding-right: 15px;
+    text-align: right;
+    min-width: 25px;
+    width: 35px;
+    border-top: 0;
+    user-select: none;
 }
 
 .tsv-table.index tr:last-child td:first-child {
-	border-bottom: 0;
+    border-bottom: 0;
 }
