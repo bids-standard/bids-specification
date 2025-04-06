@@ -47,8 +47,7 @@ def fence(
         if "noheader" in attrs:
             html = re.sub("<thead>.+</thead>", "", html, flags=re.DOTALL)
 
-        if classes:
-            html = html.replace("<table>", f'<table class="{" ".join(classes)}">')
+        html = html.replace("<table>", f'<table class="{" ".join(classes)}">')
 
         # Remove newlines from HTML to prevent copy-paste from inserting spaces
         return html.replace("\n", "")
