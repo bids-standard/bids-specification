@@ -518,6 +518,9 @@ onset	duration	response_time	trial_type	trial_extra
     Those indexes are presented for visual reference and
     are not part of the tabular data file's content.
 
+    Directly copying and then pasting these examples from the specification
+    for use in new BIDS datasets can lead to errors and is discouraged.
+
 Tabular files MAY be optionally accompanied by a simple data dictionary
 in the form of a JSON [object](https://www.json.org/json-en.html)
 within a JSON file.
