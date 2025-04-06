@@ -28,6 +28,7 @@
 
 .tsv-table tr:first-child td {
     border-top: 1px solid var(--md-default-fg-color--light);
+    user-select: none;
 }
 
 .tsv-table td {
