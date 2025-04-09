@@ -6,10 +6,11 @@ import re
 import tempfile
 from collections.abc import Iterable, Mapping
 from copy import deepcopy
-from functools import lru_cache
+from functools import cache, lru_cache
 from importlib.resources import files
 
-from jsonschema import ValidationError, validate
+from jsonschema import ValidationError
+from jsonschema.protocols import Validator as JsonschemaValidator
 
 from . import __bids_version__, __version__, utils
 from .types import Namespace
@@ -98,6 +99,13 @@ def _dereference(namespace, base_schema):
             struct.pop("$ref")
             _dereference(target, base_schema)
             struct.update({**target, **struct})
+
+
+@cache
+def get_schema_validator() -> JsonschemaValidator:
+    """Get the jsonschema validator for validating BIDS schemas."""
+    metaschema = json.loads(files("bidsschematools.data").joinpath("metaschema.json").read_text())
+    return utils.jsonschema_validator(metaschema, check_format=True)
 
 
 def dereference(namespace, inplace=True):
@@ -293,12 +301,11 @@ def filter_schema(schema, **kwargs):
 
 def validate_schema(schema: Namespace):
     """Validate a schema against the BIDS metaschema."""
-    metaschema = json.loads(files("bidsschematools.data").joinpath("metaschema.json").read_text())
 
     # validate is put in this try/except clause because the error is sometimes too long to
     # print in the terminal
     try:
-        validate(instance=schema.to_dict(), schema=metaschema)
+        get_schema_validator().validate(instance=schema.to_dict())
     except ValidationError as e:
         with tempfile.NamedTemporaryFile(
             prefix="schema_error_", suffix=".txt", delete=False, mode="w+"
