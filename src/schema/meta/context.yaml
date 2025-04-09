@@ -278,6 +278,17 @@ properties:
           path:
             description: 'Path to associated coordsystem file'
             type: string
+      physio:
+        description: 'Physiological recording file'
+        type: object
+        required: [path]
+        properties:
+          path:
+            description: 'Path to associated physio file'
+            type: string
+          sidecar:
+            description: 'Sidecar metadata constructed via the inheritance principle'
+            type: object
   # The following properties are populated if the current file is of an appropriate type
   columns:
     description: 'TSV columns, indexed by column header, values are arrays with column contents'
