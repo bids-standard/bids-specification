@@ -37,12 +37,12 @@ def fence(
             header=None if "noheader" in attrs else "infer",
         )
         md_table = tabulate(
-            df,
+            df,  # type: ignore
             tablefmt="github",
             showindex=linenums,
             headers="keys",
             numalign="right",
-        )  # type: ignore
+        )
         html = MarkdownIt("commonmark").enable("table").render(md_table)
         if "noheader" in attrs:
             html = re.sub("<thead>.+</thead>", "", html, flags=re.DOTALL)
