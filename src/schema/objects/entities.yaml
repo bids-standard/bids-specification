@@ -229,6 +229,14 @@ processing:
     exploited.
   type: string
   format: label
+prov:
+  name: prov
+  display_name: Provenance group
+  description: |
+    A grouping of provenance records.
+    Defining multiple provenance records groups is appropriate when several processings have been performed on data.
+  type: string
+  format: label
 reconstruction:
   name: rec
   display_name: Reconstruction
