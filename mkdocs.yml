@@ -5,7 +5,11 @@ nav:
   - The BIDS Specification:
       - Introduction: introduction.md
       - Common principles: common-principles.md
-      - Modality agnostic files: modality-agnostic-files.md
+      - Modality agnostic files:
+          - Dataset description: modality-agnostic-files/dataset-description.md
+          - Data description: modality-agnostic-files/data-description.md
+          - Code: modality-agnostic-files/code.md
+          - Provenance: modality-agnostic-files/provenance.md
       - Modality specific files:
           - Magnetic Resonance Imaging: modality-specific-files/magnetic-resonance-imaging-data.md
           - Magnetoencephalography: modality-specific-files/magnetoencephalography.md
