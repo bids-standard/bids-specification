@@ -4,6 +4,7 @@
 # Provenance json files
 provenance:
   level: optional
+  path: prov/*
   suffixes:
     - act
     - base
@@ -13,18 +14,15 @@ provenance:
   extensions:
     - .json
   entities:
-    subject: optional
-    session: optional
     prov: required
 
 # Provenance ld files
 provenanceld:
   level: optional
+  path: prov/*
   suffixes:
     - all
   extensions:
     - .jsonld
   entities:
-    subject: optional
-    session: optional
     prov: required
