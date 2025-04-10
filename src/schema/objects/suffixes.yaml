@@ -506,12 +506,14 @@ act:
   value: act
   display_name: Provenance Activity Records
   description: |
-    Provenance Activity records for a group of provenance. Activities represent the transformations that have been applied to the data.
+    Provenance Activity records for a group of provenance.
+    Activities represent the transformations that have been applied to the data.
 all:
   value: all
   display_name: Provenance Records
   description: |
-    All types of provenance records (Activity, Entity, Environment, Software) for a group of provenance.
+    All types of provenance records (Activity, Entity, Environment, Software)
+    for a group of provenance.
 angio:
   value: angio
   display_name: Angiogram
@@ -631,12 +633,14 @@ ent:
   value: ent
   display_name: Provenance Entity Records
   description: |
-    Provenance Entity records for a group of provenance. Entities are inputs and outputs of Activities.
+    Provenance Entity records for a group of provenance.
+    Entities are inputs and outputs of Activities.
 env:
   value: env
   display_name: Provenance Environment Records
   description: |
-    Provenance Environment records for a group of provenance. Environments specify the software environment in which the provenance record was obtained.
+    Provenance Environment records for a group of provenance.
+    Environments specify the software environment in which the provenance record was obtained.
 epi:
   value: epi
   display_name: EPI
@@ -846,7 +850,8 @@ soft:
   value: soft
   display_name: Provenance Software Records
   description: |
-    Provenance Software records for a group of provenance. The Software specifies the software package with which transformations were applied to the data.
+    Provenance Software records for a group of provenance.
+    The Software specifies the software package with which transformations were applied to the data.
 sbref:
   value: sbref
   display_name: Single-band reference image
