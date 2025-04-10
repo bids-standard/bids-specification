@@ -19,16 +19,16 @@ But provenance comes up in other contexts as well, which might be addressed at a
 
 3. For datasets and derivatives, provenance can also include details of why the data were collected in the first place covering hypotheses, claims, and prior publications. Provenance can encode support for which claims were supported by future analyses.
 4. Provenance can involve information about people and institutions involved in a study.
-5. Provenance records can highlight reuse of datasets while providing appropriate attribution to the original dataset generators as well as future transformers.  
+5. Provenance records can highlight reuse of datasets while providing appropriate attribution to the original dataset generators as well as future transformers.
 
-Provenance can be captured using different mechanisms, but independent of encoding, always reflects transformations by either humans or software. The interpretability of provenance records requires a consistent vocabulary for provenance as well as an expectation for a consistent terminology for the objects being encoded. 
+Provenance can be captured using different mechanisms, but independent of encoding, always reflects transformations by either humans or software. The interpretability of provenance records requires a consistent vocabulary for provenance as well as an expectation for a consistent terminology for the objects being encoded.
 
 ## 1.3 Principles for encoding provenance in BIDS
 
 1. Provenance information SHOULD be included in a BIDS dataset when possible.
 2. If provenance records are included, these MUST be described using the conventions detailed by this specification.
-3. Provenance records MAY be used to reflect the provenance of a dataset, a collection of files or a specific file at any level of the BIDS hierarchy. 
-4. Provenance information SHOULD be anonymized/de-identified as necessary. 
+3. Provenance records MAY be used to reflect the provenance of a dataset, a collection of files or a specific file at any level of the BIDS hierarchy.
+4. Provenance information SHOULD be anonymized/de-identified as necessary.
 
 ### 1.4 Provenance format
 
@@ -39,7 +39,7 @@ Provenance records use the PROV model ontology [^2], augmented by terms curated 
 A skeleton for a BIDS-Prov JSON-LD file looks like this:
 ```
 {
-    "@context": "https://purl.org/nidash/bidsprov/context.json",  
+    "@context": "https://purl.org/nidash/bidsprov/context.json",
     "BIDSProvVersion": "0.0.1",
     "Records": {
         "Agent": [
@@ -355,7 +355,7 @@ Environment records are OPTIONAL. If included, each Environment record is a JSON
   <tr>
    <td><code>EnvVars</code>
    </td>
-   <td>OPTIONAL. Dict. A dictionary defining the environment variables as key-value pairs. 
+   <td>OPTIONAL. Dict. A dictionary defining the environment variables as key-value pairs.
    </td>
   </tr>
   <tr>
@@ -420,7 +420,7 @@ In the following example, two separated processings (`conversion` and `smoothing
       ├─ prov-smoothing_base.json
       ├─ prov-smoothing_soft.json
       ├─ prov-smoothing_ent.json
-      └─ ... 
+      └─ ...
 ```
 
 #### 3.1.3 Suffixes
@@ -521,7 +521,7 @@ Here is an example:
    │  │  └─ prov-dcm2niix_base.jsonld
    │  ├─ prov-preprocessing_base.json
    │  ├─ prov-preprocessing_soft.json
-   │  └─ ... 
+   │  └─ ...
    ├─ sub-001/
    ├─ sub-002/
    ├─ sub-003/
