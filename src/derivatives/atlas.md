@@ -805,6 +805,131 @@ A guide for using macros can be found at
 })
 }}
 
+### Deriving an atlas in a study-specific template space and generating conversions to pre-existing template references
+
+A usual scenario involves the generation of the atlas in a new, study-specific space
+and then provide resamplings of the template with reference to existing, widely used
+spaces such as MNI.
+
+In this case, all atlas' derivatives MUST be stored within a single `tpl-<label>/` folder
+For example, if the previous PS13 example had been generated that way, the previous
+example would be updated as follows:
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+   "ps13-pipeline": {
+      "atlas-ps13_description.json": "",
+      "tpl-ps13": {
+         "pet": {
+            "tpl-ps13_desc-nopvc_pet.json": "",
+            "tpl-ps13_desc-nopvc_pet.nii.gz": "",
+            "tpl-ps13_desc-pvc_pet.json": "",
+            "tpl-ps13_desc-pvc_pet.nii.gz": "",
+            "tpl-ps13_space-fsaverage_desc-nopvc_pet.json": "",
+            "tpl-ps13_space-fsaverage_desc-nopvc_pet.nii.gz": "",
+            "tpl-ps13_space-fsaverage_desc-pvc_pet.json": "",
+            "tpl-ps13_space-fsaverage_desc-pvc_pet.nii.gz": "",
+            "tpl-ps13_space-fsaverage_dseg.json": "",
+            "tpl-ps13_space-fsaverage_dseg.tsv": "",
+            "tpl-ps13_space-fsaverage_hemi-L_den-164k_desc-nopvc_pet.json": "",
+            "tpl-ps13_space-fsaverage_hemi-L_den-164k_desc-nopvc_pet.shape.gii": "",
+            "tpl-ps13_space-fsaverage_hemi-L_den-164k_desc-pvc_pet.json": "",
+            "tpl-ps13_space-fsaverage_hemi-L_den-164k_desc-pvc_pet.shape.gii": "",
+            "tpl-ps13_space-fsaverage_hemi-L_den-164k_stat-std_desc-nopvc_pet.json": "",
+            "tpl-ps13_space-fsaverage_hemi-L_den-164k_stat-std_desc-nopvc_pet.shape.gii": "",
+            "tpl-ps13_space-fsaverage_hemi-L_den-164k_stat-std_desc-pvc_pet.json": "",
+            "tpl-ps13_space-fsaverage_hemi-L_den-164k_stat-std_desc-pvc_pet.shape.gii": "",
+            "tpl-ps13_space-fsaverage_hemi-R_den-164k_desc-nopvc_pet.json": "",
+            "tpl-ps13_space-fsaverage_hemi-R_den-164k_desc-nopvc_pet.shape.gii": "",
+            "tpl-ps13_space-fsaverage_hemi-R_den-164k_desc-pvc_pet.json": "",
+            "tpl-ps13_space-fsaverage_hemi-R_den-164k_desc-pvc_pet.shape.gii": "",
+            "tpl-ps13_space-fsaverage_hemi-R_den-164k_stat-std_desc-nopvc_pet.json": "",
+            "tpl-ps13_space-fsaverage_hemi-R_den-164k_stat-std_desc-nopvc_pet.shape.gii": "",
+            "tpl-ps13_space-fsaverage_hemi-R_den-164k_stat-std_desc-pvc_pet.json": "",
+            "tpl-ps13_space-fsaverage_hemi-R_den-164k_stat-std_desc-pvc_pet.shape.gii": "",
+            "tpl-ps13_space-fsaverage_seg-nopvc_dseg.nii.gz": "",
+            "tpl-ps13_space-fsaverage_seg-pvc_dseg.nii.gz": "",
+            "tpl-ps13_space-fsaverage_stat-std_desc-nopvc_pet.json": "",
+            "tpl-ps13_space-fsaverage_stat-std_desc-nopvc_pet.nii.gz": "",
+            "tpl-ps13_space-fsaverage_stat-std_desc-pvc_pet.json": "",
+            "tpl-ps13_space-fsaverage_stat-std_desc-pvc_pet.nii.gz": "",
+            "tpl-ps13_space-MNI152Lin_dseg.json": "",
+            "tpl-ps13_space-MNI152Lin_dseg.tsv": "",
+            "tpl-ps13_space-MNI152Lin_res-1p5_desc-spmvbmNopvc_pet.json": "",
+            "tpl-ps13_space-MNI152Lin_res-1p5_desc-spmvbmNopvc_pet.nii.gz": "",
+            "tpl-ps13_space-MNI152Lin_res-1p5_desc-spmvbmPvc_pet.json": "",
+            "tpl-ps13_space-MNI152Lin_res-1p5_desc-spmvbmPvc_pet.nii.gz": "",
+            "tpl-ps13_space-MNI152Lin_res-1p5_stat-std_desc-spmvbmNopvc_pet.json": "",
+            "tpl-ps13_space-MNI152Lin_res-1p5_stat-std_desc-spmvbmNopvc_pet.nii.gz": "",
+            "tpl-ps13_space-MNI152Lin_res-1p5_stat-std_desc-spmvbmPvc_pet.json": "",
+            "tpl-ps13_space-MNI152Lin_res-1p5_stat-std_desc-spmvbmPvc_pet.nii.gz": "",
+            "tpl-ps13_space-MNI152Lin_res-2_desc-fnirtNopvc_pet.json": "",
+            "tpl-ps13_space-MNI152Lin_res-2_desc-fnirtNopvc_pet.nii.gz": "",
+            "tpl-ps13_space-MNI152Lin_res-2_desc-fnirtPvc_pet.json": "",
+            "tpl-ps13_space-MNI152Lin_res-2_desc-fnirtPvc_pet.nii.gz": "",
+            "tpl-ps13_space-MNI152Lin_res-2_desc-nopvc_pet.json": "",
+            "tpl-ps13_space-MNI152Lin_res-2_desc-nopvc_pet.nii.gz": "",
+            "tpl-ps13_space-MNI152Lin_res-2_desc-pvc_pet.json": "",
+            "tpl-ps13_space-MNI152Lin_res-2_desc-pvc_pet.nii.gz": "",
+            "tpl-ps13_space-MNI152Lin_res-2_stat-std_desc-fnirtNopvc_pet.json": "",
+            "tpl-ps13_space-MNI152Lin_res-2_stat-std_desc-fnirtNopvc_pet.nii.gz": "",
+            "tpl-ps13_space-MNI152Lin_res-2_stat-std_desc-fnirtPvc_pet.json": "",
+            "tpl-ps13_space-MNI152Lin_res-2_stat-std_desc-fnirtPvc_pet.nii.gz": "",
+            "tpl-ps13_space-MNI152Lin_res-2_stat-std_desc-nopvc_pet.json": "",
+            "tpl-ps13_space-MNI152Lin_res-2_stat-std_desc-nopvc_pet.nii.gz": "",
+            "tpl-ps13_space-MNI152Lin_res-2_stat-std_desc-pvc_pet.json": "",
+            "tpl-ps13_space-MNI152Lin_res-2_stat-std_desc-pvc_pet.nii.gz": "",
+            "tpl-ps13_space-MNI152Lin_seg-nopvc_dseg.nii.gz": "",
+            "tpl-ps13_space-MNI152Lin_seg-pvc_dseg.nii.gz": "",
+         },
+      }
+   }
+})
+}}
+
+where `tpl-ps13_desc-nopvc_pet.nii.gz` and `tpl-ps13_desc-pvc_pet.nii.gz` SHOULD NOT define
+a `space-<label>` and therefore MUST be defined in the space defined by `tpl-<label>`,
+that is, the study-specific template.
+This example can be further extended to the example in which a revision of the atlas
+is done later in time:
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+   "ps13-pipeline": {
+      "atlas-ps13_description.json": "",
+      "atlas-ps13rev2034_description.json": "",
+      "tpl-ps13": {
+         "pet": {
+            "tpl-ps13_space-fsaverage_atlas-ps13_seg-nopvc_dseg.nii.gz": "",
+            "tpl-ps13_space-fsaverage_atlas-ps13_seg-pvc_dseg.nii.gz": "",
+            "tpl-ps13_space-fsaverage_atlas-ps13_dseg.json": "",
+            "tpl-ps13_space-fsaverage_atlas-ps13_dseg.tsv": "",
+            "tpl-ps13_space-fsaverage_atlas-ps13_hemi-L_den-164k_desc-nopvc_pet.json": "",
+            "...": "",
+            "tpl-ps13_space-fsaverage_atlas-ps13_stat-std_desc-pvc_pet.nii.gz": "",
+            "tpl-ps13_space-MNI152Lin_atlas-ps13_seg-nopvc_dseg.nii.gz": "",
+            "tpl-ps13_space-MNI152Lin_atlas-ps13_seg-pvc_dseg.nii.gz": "",
+            "tpl-ps13_space-MNI152Lin_atlas-ps13_dseg.json": "",
+            "tpl-ps13_space-MNI152Lin_atlas-ps13_dseg.tsv": "",
+            "tpl-ps13_space-MNI152Lin_atlas-ps13_res-1p5_desc-spmvbmNopvc_pet.json": "",
+            "...": "",
+            "tpl-ps13_space-MNI152Lin_atlas-ps13_res-2_stat-std_desc-pvc_pet.nii.gz": "",
+            "tpl-ps13_space-MNI152Lin_atlas-ps13rev2034_seg-nopvc_dseg.nii.gz": "",
+            "tpl-ps13_space-MNI152Lin_atlas-ps13rev2034_seg-pvc_dseg.nii.gz": "",
+            "tpl-ps13_space-MNI152Lin_atlas-ps13rev2034_dseg.json": "",
+            "tpl-ps13_space-MNI152Lin_atlas-ps13rev2034_dseg.tsv": "",
+         },
+      }
+   }
+})
+}}
+
 ### Single-subject atlases
 
 Single-subject atlases regularly follow the previously described BIDS Derivatives
