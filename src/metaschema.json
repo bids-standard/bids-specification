@@ -425,9 +425,10 @@
             "^derivatives$": {
               "type": "object",
               "properties": {
-                "common_derivatives": { "$ref": "#/definitions/json" }
+                "common_derivatives": { "$ref": "#/definitions/json" },
+                "atlas": { "$ref": "#/definitions/json" }
               },
-              "required": ["common_derivatives"],
+              "required": ["common_derivatives", "atlas"],
               "additionalProperties": false
             },
             "^(?!derivatives$)[a-z_]+$": {

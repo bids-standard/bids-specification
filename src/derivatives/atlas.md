@@ -286,7 +286,7 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_sidecar_table([
-       "derivatives.common_derivatives.AtlasDescription",
+       "derivatives.atlas.AtlasDescription",
    ]) }}
 
 Additionally, `SpatialReference` serves the important purpose of unambiguously identifying
@@ -370,12 +370,13 @@ where `atlas-Dietrich2009_description.json` could contain:
 {
   "Name": "A probabilistic MR atlas of the human cerebellum",
   "Authors": [
-    "Jörn Diedrichsen",
-    "Joshua H Balsters",
-    "Jonathan Flavell",
-    "Emma Cussans",
-    "Narender Ramnani"
+     "Jörn Diedrichsen",
+     "Joshua H Balsters",
+     "Jonathan Flavell",
+     "Emma Cussans",
+     "Narender Ramnani"
   ],
+  "Sample Size": 20,
   "SpatialReference": "https://templateflow.s3.amazonaws.com/tpl-MNI152Lin_res-01_T1w.nii.gz",
   "License": "LICENSE file",
   "ReferencesAndLinks": [
@@ -422,6 +423,30 @@ A guide for using macros can be found at
    }
 })
 }}
+
+where `atlas-Dietrich2009_description.json` remains as above,
+and `atlas-Buckner2011_description.json` could contain:
+
+```JSON
+{
+  "Name": "Atlas of the human cerebellum estimated by intrinsic functional connectivity",
+  "Authors": [
+     "Randy L Buckner",
+     "Fenna M Krienen",
+     "Angela Castellanos",
+     "Julio C Diaz",
+     "B T Thomas Yeo"
+  ],
+  "Sample Size": 1000,
+  "SpatialReference": "https://templateflow.s3.amazonaws.com/tpl-MNI152Lin_res-01_T1w.nii.gz",
+  "License": "LICENSE file",
+  "ReferencesAndLinks": [
+     "https://doi.org/10.1152/jn.00339.2011",
+     "https://github.com/jdiedrichsen/suit"
+  ],
+  "Species": "Human"
+}
+```
 
 ### Deriving a new atlas referenced in an existing template
 

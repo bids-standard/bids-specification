@@ -192,6 +192,20 @@ AssociatedEmptyRoom:
       format: dataset_relative
     - type: string
       format: bids_uri
+AtlasName:
+  name: Name
+  display_name: Name
+  description: |
+    Name of the atlas.
+  type: string
+AtlasSampleSize:
+  name: SampleSize
+  display_name: Atlas' sample size
+  description: |
+      Number of items (typically, independent participants,
+      although it could also refer, for example, to sessions)
+      that employed to create the corresponding atlas.
+  type: number
 AttenuationCorrection:
   name: AttenuationCorrection
   display_name: Attenuation Correction
