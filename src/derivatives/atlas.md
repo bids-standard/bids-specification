@@ -44,12 +44,13 @@ Template:
 ```
 
 where [`suffix`](../glossary.md#suffix-common_principles) SHOULD be an existing BIDS modality
-such as `T1w` or `PET`.
-[`extension`](../glossary.md#extension-common_principles), MAY take values such as `nii[.gz]`, `dscalar.nii[.gz]`,
+such as `T1w` or `PET`; and
+[`extension`](../glossary.md#extension-common_principles) MAY take values such as `nii[.gz]`, `dscalar.nii[.gz]`,
 `dlabel.nii[.gz]`, `label.gii[.gz]`, `tsv`, or `json`.
 
 Please note that the [`<datatype>/` directory](../glossary.md#data_type-common_principles) is RECOMMENDED.
-The [`<datatype>/` directory](../glossary.md#data_type-common_principles) MAY be omitted in the case
+Like for the remainder of BIDS Derivatives,
+the [`<datatype>/` directory](../glossary.md#data_type-common_principles) MAY be omitted in the case
 only one data type (such as `anat/`) is stored under the `tpl-<label>` directory.
 
 The [`cohort-<label>` directory and entity](../glossary.md#cohort-entities) MUST be specified for templates
@@ -57,7 +58,8 @@ with several cohorts.
 The [`cohort-<label>` directory and entity](../glossary.md#cohort-entities) are dual in terms of usage to BIDS raw's
 [`session-<label>`](../glossary.md#session-entities).
 
-**Example: the `MNI152NLin2009cAsym` template**.
+### Example: the `MNI152NLin2009cAsym` template
+
 For the pipeline that generated the MNI152NLin2009cAsym, the outputs could look
 like the following example:
 
@@ -93,7 +95,8 @@ A guide for using macros can be found at
 })
 }}
 
-**Example: multi-cohort templates.**
+### Example: multi-cohort templates
+
 In the case that the template-generating pipeline derives
 several cohorts, the file structure must employ the
 [`cohort-<label>` directory and entity](../glossary.md#cohort-entities).
@@ -147,7 +150,8 @@ A guide for using macros can be found at
 })
 }}
 
-**Subject-level and template derivatives**.
+### Subject-level and template derivatives
+
 Both subject-level and template-level results MAY coexist in a single pipeline directory.
 If the subject-level results based on which a template was generated are to be
 shared with the template, it is RECOMMENDED to store both families of results within the
@@ -190,6 +194,59 @@ A guide for using macros can be found at
     Please note that the specification for spatial transforms (BEP 014) is currently
     under development, and therefore, the specification of transforms files may
     change in the future.
+
+### Single-subject templates
+
+Early digital templates and atlases such as MNI's
+'[Colin 27 Average Brain, Stereotaxic Registration Model](https://www.mcgill.ca/bic/software/tools-data-analysis/anatomical-mri/atlases/colin-27)'
+([Holmes et al., 1998](https://doi.org/10.1097/00004728-199803000-00032)) were built by examining single individuals.
+For example, the outputs of the pipeline that generated 'Colin27' would have been organized as follows:
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example({
+   "colin27-pipeline": {
+      "sub-01": {
+         "ses-01": {
+            "anat": {
+               "sub-01_ses-01_label-brain_mask.nii.gz": "",
+               "sub-01_ses-01_label-head_mask.nii.gz": "",
+               "sub-01_ses-01_T1w.nii.gz": "",
+               "sub-01_ses-01_T1w.json": "",
+            },
+         },
+         "ses-02": {
+            "anat": {
+               "sub-01_ses-02_label-brain_mask.nii.gz": "",
+               "sub-01_ses-02_label-head_mask.nii.gz": "",
+               "sub-01_ses-02_T1w.nii.gz": "",
+               "sub-01_ses-02_T1w.json": "",
+            },
+         },
+         "...": "",
+         "ses-27": {
+            "anat": {
+               "sub-01_ses-27_label-brain_mask.nii.gz": "",
+               "sub-01_ses-27_label-head_mask.nii.gz": "",
+               "sub-01_ses-27_T1w.nii.gz": "",
+               "sub-01_ses-27_T1w.json": "",
+            },
+         },
+      },
+      "tpl-Colin27": {
+         "anat": {
+            "tpl-Colin27_probseg.nii.gz": "",
+            "tpl-Colin27_label-brain_mask.nii.gz": "",
+            "tpl-Colin27_label-head_mask.nii.gz": "",
+            "tpl-Colin27_T1w.nii.gz": "",
+            "tpl-Colin27_T1w.json": "",
+         },
+      },
+   }
+})
+}}
 
 ## Derived atlases
 
@@ -366,7 +423,7 @@ A guide for using macros can be found at
 })
 }}
 
-### Deriving an atlas from an existing template
+### Deriving a new atlas referenced in an existing template
 
 For example, the `MIAL67ThalamicNuclei`
 ([Najdenovska et al., 2018](https://doi.org/10.1038/sdata.2018.270))
@@ -723,64 +780,7 @@ A guide for using macros can be found at
 })
 }}
 
-## Single-subject templates and atlases
+### Single-subject atlases
 
-Early digital templates and atlases such as MNI's
-'[Colin 27 Average Brain, Stereotaxic Registration Model](https://www.mcgill.ca/bic/software/tools-data-analysis/anatomical-mri/atlases/colin-27)'
-([Holmes et al., 1998](https://doi.org/10.1097/00004728-199803000-00032)) were built by examining single individuals.
-For example, the outputs of the pipeline that generated 'Colin27' would have been organized as follows:
-
-<!-- This block generates a file tree.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filetree_example({
-   "colin27-pipeline": {
-      "sub-01": {
-         "ses-01": {
-            "anat": {
-               "sub-01_ses-01_label-brain_mask.nii.gz": "",
-               "sub-01_ses-01_label-head_mask.nii.gz": "",
-               "sub-01_ses-01_T1w.nii.gz": "",
-               "sub-01_ses-01_T1w.json": "",
-            },
-         },
-         "ses-02": {
-            "anat": {
-               "sub-01_ses-02_label-brain_mask.nii.gz": "",
-               "sub-01_ses-02_label-head_mask.nii.gz": "",
-               "sub-01_ses-02_T1w.nii.gz": "",
-               "sub-01_ses-02_T1w.json": "",
-            },
-         },
-         "...": "",
-         "ses-27": {
-            "anat": {
-               "sub-01_ses-27_label-brain_mask.nii.gz": "",
-               "sub-01_ses-27_label-head_mask.nii.gz": "",
-               "sub-01_ses-27_T1w.nii.gz": "",
-               "sub-01_ses-27_T1w.json": "",
-            },
-         },
-      },
-      "tpl-Colin27": {
-         "anat": {
-            "atlas-AAL_description.json": "",
-            "tpl-Colin27_atlas-AAL_dseg.json": "",
-            "tpl-Colin27_atlas-AAL_dseg.nii.gz": "",
-            "tpl-Colin27_atlas-AAL_dseg.tsv": "",
-            "tpl-Colin27_atlas-AAL_probseg.nii.gz": "",
-            "tpl-Colin27_label-brain_mask.nii.gz": "",
-            "tpl-Colin27_label-head_mask.nii.gz": "",
-            "tpl-Colin27_T1w.nii.gz": "",
-            "tpl-Colin27_T1w.json": "",
-         },
-      },
-   }
-})
-}}
-
-where the atlas *AAL* has been added to the structure.
-Note that names contain `atlas-AAL` even though no other atlases
-are present to disambiguate the two brain and head masks that
-are not derived from *AAL*.
+Single-subject atlases regularly follow the previously described BIDS Derivatives
+and [single-subject template](#single-subject-templates) specifications.
