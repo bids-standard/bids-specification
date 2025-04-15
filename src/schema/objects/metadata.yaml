@@ -3544,7 +3544,7 @@ Species:
   name: Species
   display_name: Species
   description: |
-    The species the atlas was derived from. For example, could be Human, Macaque, Rat, Mouse, etc.
+    The species the atlas was derived from. For example, could be Human, Macaque, Rat, or Mouse.
   type: string
 SpecificRadioactivity:
   name: SpecificRadioactivity

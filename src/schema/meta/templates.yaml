@@ -2,7 +2,7 @@
 # This section is unstructured, for inclusion in rules by reference
 
 # Entities that apply to most raw files
-# Include e.g.,
+# Include thus:
 #
 # filerule:
 #   entities:
@@ -16,7 +16,7 @@ raw_base_entities:
   session: optional
 
 # Entities that apply to most atlas files
-# Include e.g.,
+# Include thus:
 #
 # filerule:
 #   entities:

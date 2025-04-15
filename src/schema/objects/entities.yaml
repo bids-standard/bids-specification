@@ -29,11 +29,13 @@ atlas:
   name: atlas
   display_name: Atlas
   description: |
-    Atlas comprises all possible types of atlases, specifically deterministic, probabilistic, and mask/voxel-based
-    ones, and quantitative maps from various modalities including but not limited to structural features (e.g.
-    myelination, cytoarchitecture), functional features (e.g. resting-state networks, localizers) and such based on
-    multimodal data integration (e.g. gene expression, receptors). Furthermore, it covers both volume/voxel and
-    surface/vertex data, as well as gray and white matter atlases.
+    Atlas comprises all possible types of atlases, specifically deterministic, probabilistic,
+    and mask/voxel-based ones, and quantitative maps from various modalities including but not
+    limited to structural features (such as myelination, cytoarchitecture),
+    functional features (such as resting-state networks, localizers) and such based on
+    multimodal data integration (such as gene expression, receptors).
+    Furthermore, it covers both volume/voxel and surface/vertex data,
+    as well as gray and white matter atlases.
   type: string
   format: label
 ceagent:
