@@ -41,9 +41,12 @@ MaskDerivatives:
 SegmentationCommon:
   selectors:
     - dataset.dataset_description.DatasetType == "derivative"
-    - 'intersects([suffix], ["dseg", "probseg"])'
+    - 'intersects([suffix], ["dseg", "probseg", "mask"])'
   fields:
+    SpatialReference: recommended
     Manual: optional
+    CoordinateReportStrategy: optional
+
 
 # Derivatives -> Imaging data types
 ImageDerivatives:

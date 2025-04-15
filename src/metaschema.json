@@ -65,6 +65,9 @@
             "additionalProperties": false
           }
         },
+        "templates": {
+          "type": "object"
+        },
         "versions": {
           "type": "array",
           "items": {
@@ -369,6 +372,18 @@
               "required": ["core", "tables"],
               "additionalProperties": false
             },
+            "atlas": {
+              "type": "object",
+              "patternProperties": {
+                "^[a-z_]+$": {
+                  "type": "object",
+                  "patternProperties": {
+                    "^[a-zA-Z0-9_]+$": { "$ref": "#/definitions/suffixRule" }
+                  }
+                }
+              },
+              "additionalProperties": false
+            },
             "deriv": {
               "type": "object",
               "patternProperties": {
@@ -410,9 +425,10 @@
             "^derivatives$": {
               "type": "object",
               "properties": {
-                "common_derivatives": { "$ref": "#/definitions/json" }
+                "common_derivatives": { "$ref": "#/definitions/json" },
+                "atlas": { "$ref": "#/definitions/json" }
               },
-              "required": ["common_derivatives"],
+              "required": ["common_derivatives", "atlas"],
               "additionalProperties": false
             },
             "^(?!derivatives$)[a-z_]+$": {

@@ -10,8 +10,7 @@ channels:
     - ieeg
     - nirs
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw_base_entities
     task: required
     acquisition: optional
     run: optional
@@ -43,8 +42,7 @@ coordsystem:
     - meg
     - nirs
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw_base_entities
     task: optional
     acquisition: optional
 
@@ -68,8 +66,7 @@ electrodes:
     - eeg
     - ieeg
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw_base_entities
     task: optional
     acquisition: optional
     run: optional
@@ -93,6 +90,5 @@ optodes:
   datatypes:
     - nirs
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw_base_entities
     acquisition: optional
