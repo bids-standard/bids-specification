@@ -20,16 +20,16 @@ or the integration of existing ones to define a stereotactic space.
 
 For derivatives of template-generating pipelines, which typically aggregate
 several sessions and/or subjects, the derivatives-specific
-[`tpl-<label>` entity](../glossary.md#template-entities) indicates that the
+[`tpl-<label>` entity](../appendices/entities.md#tpl) indicates that the
 spatial frame of analysis is not defined by a single brain image but an
 aggregation thereof.
-On that sense, the [`tpl-<label>` entity](../glossary.md#template-entities)
-would be dual in terms of usage to BIDS raw's [`sub-<label>`](../glossary.md#subject-entities).
+On that sense, the [`tpl-<label>` entity](../appendices/entities.md#tpl)
+would be dual in terms of usage to BIDS raw's [`sub-<label>`](../appendices/entities.md#sub).
 
 !!! tip "Recommendation"
 
-    The selected `<label>` in the [`tpl-<label>` entity](../glossary.md#template-entities)
-    is RECOMMENDED for the [`space-<label>` entity](../appendices/entities.md#space-entities)
+    The selected `<label>` in the [`tpl-<label>` entity](../appendices/entities.md#tpl)
+    is RECOMMENDED for the [`space-<label>` entity](../appendices/entities.md#space)
     in downstream derivatives from this particular template (see previous section
     [Derivatives from atlases](imaging.md#derivatives-from-atlases)).
 
@@ -51,17 +51,17 @@ such as `T1w` or `PET`; and
 Please note that the [`<datatype>/` directory](../glossary.md#data_type-common_principles) is RECOMMENDED.
 Like for the remainder of BIDS Derivatives,
 the [`<datatype>/` directory](../glossary.md#data_type-common_principles) MAY be omitted in the case
-only one data type (such as `anat/`) is stored under the `tpl-<label>` directory.
+only one data type (such as `anat/`) is stored under the `tpl-<label>/` directory.
 
-The [`cohort-<label>` directory and entity](../glossary.md#cohort-entities) MUST be specified for templates
+The [`cohort-<label>` directory and entity](../appendices/entities.md#cohort) MUST be specified for templates
 with several cohorts.
-The [`cohort-<label>` directory and entity](../glossary.md#cohort-entities) are dual in terms of usage to BIDS raw's
-[`session-<label>`](../glossary.md#session-entities).
+The [`cohort-<label>` directory and entity](../appendices/entities.md#cohort) are dual in terms of usage to BIDS raw's
+[`session-<label>`](../appendices/entities.md#ses).
 
 ### Example: the `MNI152NLin2009cAsym` template
 
-For the pipeline that generated the MNI152NLin2009cAsym, the outputs could look
-like the following example:
+For the pipeline that generated [`MNI152NLin2009cAsym`](../appendices/coordinate-systems.md#standard-template-identifiers),
+the outputs could look like the following example:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -99,7 +99,7 @@ A guide for using macros can be found at
 
 In the case that the template-generating pipeline derives
 several cohorts, the file structure must employ the
-[`cohort-<label>` directory and entity](../glossary.md#cohort-entities).
+[`cohort-<label>` directory and entity](../appendices/entities.md#cohort).
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -260,7 +260,7 @@ corresponding to the atlas or atlases in the structure.
 !!! tip "Recommendation"
 
     The selected `<label>` in the `atlas-<label>_description.json` file is RECOMMENDED
-    for the [`atlas-<label>` entity](../appendices/entities.md#atlas-entities)
+    for the [`atlas-<label>` entity](../appendices/entities.md#atlas)
     in downstream derivatives from this particular atlas (see previous section
     [Derivatives from atlases](imaging.md#derivatives-from-atlases)).
 
@@ -389,7 +389,7 @@ where `atlas-Dietrich2009_description.json` could contain:
 
 Finally, in 2011 a second atlas was developed integrating new segmentations.
 Now, to disambiguate between the two atlases,
-the [`atlas-<label>` entity](../appendices/entities.md#atlas-entities) MUST be used:
+the [`atlas-<label>` entity](../appendices/entities.md#atlas) MUST be used:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -682,7 +682,8 @@ A guide for using macros can be found at
 **A more comprehensive example.**
 For example, the [PS13 atlas](https://doi.org/10.18112/openneuro.ds004401.v1.3.0),
 a molecular imaging brain atlas of Cyclooxygenase-1 (PET),
-was generated in two standard spaces: `MNI152Lin` and `fsaverage`:
+was generated in [two standard spaces](../appendices/coordinate-systems.md#standard-template-identifiers)
+(`MNI152Lin` and `fsaverage`):
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -760,11 +761,12 @@ A guide for using macros can be found at
 }}
 
 If the pipeline generates two different atlases for at least one template space
-in the output, then [`atlas-<label>`](../glossary.md#atlas-entities) is REQUIRED
+in the output, then [`atlas-<label>`](../appendices/entities.md#atlas) is REQUIRED
 for disambiguation.
 For example, let's imagine the PS13 atlas is revised in 2034, and based on the
 original pipeline and data, it generates now a new manual segmentation
-in the `MNI152Lin` space with some new regions defined.
+in the [`MNI152Lin` space](../appendices/coordinate-systems.md#standard-template-identifiers)
+with some new regions defined.
 The new atlas can be structured as follows:
 
 <!-- This block generates a file tree.
@@ -808,10 +810,10 @@ A guide for using macros can be found at
 ### Deriving an atlas in a study-specific template space and generating conversions to pre-existing template references
 
 A usual scenario involves the generation of the atlas in a new, study-specific space
-and then provide resamplings of the template with reference to existing, widely used
-spaces such as MNI.
+and then provide resamplings of the template with reference to existing,
+[standard spaces](../appendices/coordinate-systems.md#standard-template-identifiers).
 
-In this case, all atlas' derivatives MUST be stored within a single `tpl-<label>/` folder
+In this case, all atlas' derivatives MUST be stored within a single `tpl-<label>/` directory
 For example, if the previous PS13 example had been generated that way, the previous
 example would be updated as follows:
 
@@ -891,7 +893,8 @@ A guide for using macros can be found at
 }}
 
 where `tpl-ps13_desc-nopvc_pet.nii.gz` and `tpl-ps13_desc-pvc_pet.nii.gz` SHOULD NOT define
-a `space-<label>` and therefore MUST be defined in the space defined by `tpl-<label>`,
+a [`space-<label>`](../appendices/entities.md#space) and therefore
+MUST be defined in the space defined by [`tpl-<label>` entity](../appendices/entities.md#tpl),
 that is, the study-specific template.
 This example can be further extended to the example in which a revision of the atlas
 is done later in time:

@@ -559,15 +559,15 @@ Template:
             <source_entities>[_space-<space>][_atlas-<label>][seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
 ```
 
--    [`space-<label>`](../glossary.md#space-entities) is REQUIRED to disambiguate derivatives defined with
+-    [`space-<label>`](../appendices/entities.md#space) is REQUIRED to disambiguate derivatives defined with
      respect to different [coordinate systems](../appendices/coordinate-systems.md), following the general
      BIDS-Derivatives specifications.
--    [`atlas-<label>`](../glossary.md#atlas-entities) is REQUIRED to encode files pertaining
+-    [`atlas-<label>`](../appendices/entities.md#atlas) is REQUIRED to encode files pertaining
      or derived from the atlas identified by the entity's label.
--    [`seg-<label>`](../glossary.md#segmentation-entities) is REQUIRED when a single atlas has several different
+-    [`seg-<label>`](../appendices/entities.md#seg) is REQUIRED when a single atlas has several different
      realizations (for instance, segmentations and parcellations created with different criteria) that
      need disambiguation.
--    [`scale-<label>`](../glossary.md#scale-entities) is REQUIRED to disambiguate different atlas 'scales',
+-    [`scale-<label>`](../appendices/entities.md#scale) is REQUIRED to disambiguate different atlas 'scales',
      when the atlas has more than one 'brain unit' or 'areal resolution', typically relating to the
      number of regions defined and the area they cover.
 
