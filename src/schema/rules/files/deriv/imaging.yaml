@@ -1,5 +1,7 @@
 ---
 anat_parametric_volumetric:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.anat.parametric
   entities:
     $ref: rules.files.raw.anat.parametric.entities
@@ -9,6 +11,8 @@ anat_parametric_volumetric:
     description: optional
 
 anat_nonparametric_volumetric:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.anat.nonparametric
   entities:
     $ref: rules.files.raw.anat.nonparametric.entities
@@ -18,6 +22,8 @@ anat_nonparametric_volumetric:
     description: optional
 
 dwi_volumetric:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.dwi.dwi
   entities:
     $ref: rules.files.raw.dwi.dwi.entities
@@ -36,6 +42,8 @@ dwi_scannerderivatives:
     description: optional
 
 func_volumetric:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.func.func
   entities:
     $ref: rules.files.raw.func.func.entities
@@ -45,6 +53,8 @@ func_volumetric:
     description: optional
 
 anat_parametric_mask:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.anat.parametric
   suffixes:
     - mask
@@ -57,6 +67,8 @@ anat_parametric_mask:
     description: optional
 
 anat_nonparametric_mask:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.anat.nonparametric
   suffixes:
     - mask
@@ -69,6 +81,8 @@ anat_nonparametric_mask:
     description: optional
 
 dwi_mask:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.dwi.dwi
   suffixes:
     - mask
@@ -81,6 +95,8 @@ dwi_mask:
     description: optional
 
 func_mask:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.func.func
   suffixes:
     - mask
@@ -93,6 +109,8 @@ func_mask:
     description: optional
 
 anat_parametric_discrete_segmentation:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.anat.parametric
   suffixes:
     - dseg
@@ -113,6 +131,8 @@ anat_parametric_discrete_segmentation:
     - .tsv
 
 anat_nonparametric_discrete_segmentation:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.anat.nonparametric
   suffixes:
     - dseg
@@ -133,6 +153,8 @@ anat_nonparametric_discrete_segmentation:
     - .tsv
 
 func_discrete_segmentation:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.func.func
   suffixes:
     - dseg
@@ -148,6 +170,8 @@ func_discrete_segmentation:
     description: optional
 
 dwi_discrete_segmentation:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.dwi.dwi
   suffixes:
     - dseg
@@ -163,6 +187,8 @@ dwi_discrete_segmentation:
     description: optional
 
 anat_parametric_probabilistic_segmentation:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.anat.parametric
   suffixes:
     - probseg
@@ -179,6 +205,8 @@ anat_parametric_probabilistic_segmentation:
     description: optional
 
 anat_nonparametric_probabilistic_segmentation:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.anat.nonparametric
   suffixes:
     - probseg
@@ -195,6 +223,8 @@ anat_nonparametric_probabilistic_segmentation:
     description: optional
 
 func_probabilistic_segmentation:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.func.func
   suffixes:
     - probseg
@@ -211,6 +241,8 @@ func_probabilistic_segmentation:
     description: optional
 
 dwi_probabilistic_segmentation:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.dwi.dwi
   suffixes:
     - probseg
@@ -227,6 +259,8 @@ dwi_probabilistic_segmentation:
     description: optional
 
 anat_parametic_discrete_surface:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.anat.parametric
   suffixes:
     - dseg
@@ -248,6 +282,8 @@ anat_parametic_discrete_surface:
     description: optional
 
 anat_nonparametic_discrete_surface:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.anat.nonparametric
   suffixes:
     - dseg

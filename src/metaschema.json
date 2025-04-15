@@ -682,6 +682,7 @@
     "pathRule": {
       "type": "object",
       "properties": {
+        "selectors": { "$ref": "#/definitions/ruleTypes/expressionList" },
         "level": { "enum": ["optional", "required"] },
         "path": { "type": "string" }
       },
@@ -691,6 +692,7 @@
     "stemRule": {
       "type": "object",
       "properties": {
+        "selectors": { "$ref": "#/definitions/ruleTypes/expressionList" },
         "level": { "enum": ["optional", "recommended", "required"] },
         "datatypes": {
           "type": "array",
@@ -705,6 +707,7 @@
     "suffixRule": {
       "type": "object",
       "properties": {
+        "selectors": { "$ref": "#/definitions/ruleTypes/expressionList" },
         "level": { "enum": ["optional", "recommended", "required"] },
         "datatypes": {
           "type": "array",
