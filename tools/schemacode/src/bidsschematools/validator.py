@@ -429,7 +429,7 @@ def validate_all(
             # We need to record the actual expressions we query.
             _regex_entry = deepcopy(regex_entry)
             _regex_entry.update({"regex": target_regex})
-            lgr.debug("\t* `%s`, with pattern: `%`", target_path, target_regex)
+            lgr.debug("\t* `%s`, with pattern: `%s`", target_path, target_regex)
             matched = re.match(target_regex, target_path)
             itemwise_result = {}
             itemwise_result["path"] = target_path
