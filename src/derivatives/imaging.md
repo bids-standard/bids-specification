@@ -559,17 +559,20 @@ Template:
             <source_entities>[_space-<space>][_atlas-<label>][seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
 ```
 
--    [`space-<label>`](../appendices/entities.md#space) is REQUIRED to disambiguate derivatives defined with
-     respect to different [coordinate systems](../appendices/coordinate-systems.md), following the general
-     BIDS-Derivatives specifications.
--    [`atlas-<label>`](../appendices/entities.md#atlas) is REQUIRED to encode files pertaining
-     or derived from the atlas identified by the entity's label.
--    [`seg-<label>`](../appendices/entities.md#seg) is REQUIRED when a single atlas has several different
-     realizations (for instance, segmentations and parcellations created with different criteria) that
-     need disambiguation.
--    [`scale-<label>`](../appendices/entities.md#scale) is REQUIRED to disambiguate different atlas 'scales',
-     when the atlas has more than one 'brain unit' or 'areal resolution', typically relating to the
-     number of regions defined and the area they cover.
+-   [`space-<label>`](../appendices/entities.md#space) is REQUIRED to disambiguate derivatives defined with
+    respect to different [coordinate systems](../appendices/coordinate-systems.md), following the general
+    BIDS-Derivatives specifications.
+
+-   [`atlas-<label>`](../appendices/entities.md#atlas) is REQUIRED to encode files pertaining
+    or derived from the atlas identified by the entity's label.
+
+-   [`seg-<label>`](../appendices/entities.md#seg) is REQUIRED when a single atlas has several different
+    realizations (for instance, segmentations and parcellations created with different criteria) that
+    need disambiguation.
+
+-   [`scale-<label>`](../appendices/entities.md#scale) is REQUIRED to disambiguate different atlas 'scales',
+    when the atlas has more than one 'brain unit' or 'areal resolution', typically relating to the
+    number of regions defined and the area they cover.
 
 For example, derivatives from a single subject segmented with the Automated Anatomical Labeling (AAL)
 atlas ([Tzourio-Mazoyer et al., 2002](https://doi.org/10.1006/nimg.2001.0978)).
