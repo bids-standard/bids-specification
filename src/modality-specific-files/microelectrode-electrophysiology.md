@@ -14,7 +14,7 @@ for this modality as well, though some special considerations and additional fie
 
 !!! example "Example datasets"
 
-    Several [example Microelectrode Electrophysiology datasets](https://bids-standard.github.io/bids-examples/#microephys)
+    Several [example Microelectrode Electrophysiology datasets](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#microephys)
     have been formatted using this specification and can be used for practical guidance when curating a new dataset.
 
 ## Primary data file formats
@@ -65,14 +65,6 @@ and a guide for using macros can be found at
    suffixes=["ecephys", "events", "channels", "electrodes","scans","probes","coordsystem"]
 )
 }}
-
-## Participant information
-
-The `participants.tsv` file is located at the root of the data set directory.
-Its presence is RECOMMENDED in order to describe information about the individual subjects (animals) from which the data was recorded.
-It follows the [general BIDS specifications to describe participants](../modality-agnostic-files.md#participants-file).
-
-On top of the existing columns that can be present in this file and that are described in the BIDS specifications (`participant_id`, `species`, `strain`, `strain_rrid`, `sex`, `handedness`, and `age`), we propose to allow adding the following ones:
 
 ## Microephys specific files
 
@@ -140,7 +132,7 @@ They can be permanently implanted (chronic recordings) or inserted temporarily f
 
 The probe positions and properties are stored in a `.tsv` file.
 This file contains the probe ID, the type of recording (acute/chronic), and the probe coordinates.
-The surgical coordinates of the probe can be described using AP, DV, LR, yaw, pitch, and roll.
+The surgical coordinates of the probe can be described with translational coordinates assuming AP, DV, LR direction for x, y, z, respectively, and rotation around the probes tip.
 
 These measurements follow the convention of the Pinpoint software for surgical planning and are intended to describe the surgical plan:
 
