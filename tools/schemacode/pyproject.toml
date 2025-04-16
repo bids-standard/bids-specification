@@ -103,6 +103,8 @@ markers = [
 minversion = "6.0"
 xfail_strict = true
 
+[tool.coverage]
+
 [tool.coverage.paths]
 source = [
     "src/bidsschematools",
@@ -111,3 +113,33 @@ source = [
 
 [tool.coverage.run]
 parallel = true
+
+# Release process:
+# cd tools/schemacode
+# uvx bump-my-version bump pre_label --tag
+# [inspect result]
+# git push upstream <current-branch> --tags
+# uvx bump-my-version bump <patch|minor|major>
+# git push upstream <current-branch>
+[tool.bumpversion]
+current_version = "1.1.0-dev"
+parse = """(?x)
+    (?P<major>[0-9]+)
+    \\.(?P<minor>[0-9]+)
+    \\.(?P<patch>[0-9]+)
+    (?:-(?P<pre_label>dev))?
+"""
+serialize = ["{major}.{minor}.{patch}-{pre_label}", "{major}.{minor}.{patch}"]
+commit = true
+message = "chore: Bump schema package to {new_version}"
+# Use --tag on releases
+tag = false
+tag_name = "schema-{new_version}"
+tag_message = "Schema release {new_version}"
+
+[tool.bumpversion.parts.pre_label]
+values = ["dev", "final"]
+optional_value = "final"
+
+[[tool.bumpversion.files]]
+filename = "../../src/schema/SCHEMA_VERSION"

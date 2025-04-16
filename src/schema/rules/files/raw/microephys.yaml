@@ -8,6 +8,7 @@ microephys:
     # possible future: serialization in .zarr format to accompany .ome.zarr
     # - .nwb.zarr
     - .nix
+    - .json
   datatypes:
     - ecephys
     - icephys
@@ -25,6 +26,7 @@ probes:
     - probes
   extensions:
     - .tsv
+    - .json
   datatypes:
     - ecephys
     - icephys
