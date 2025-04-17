@@ -30,6 +30,7 @@ and a guide for using macros can be found at
    {
       "Name": "REQUIRED",
       "BIDSVersion": "REQUIRED",
+      "BIDSEntitiesLayout": "REQUIRED if layout is not just sub-*/<datatype>",
       "HEDVersion": "RECOMMENDED",
       "DatasetLinks": "REQUIRED if [BIDS URIs][] are used",
       "DatasetType": "RECOMMENDED",
@@ -102,6 +103,102 @@ Example:
   ]
 }
 ```
+
+#### BIDS Entities Layout
+
+The `BIDSEntitiesLayout` field is REQUIRED if the layout of the dataset is not just `sub-*/<datatype>` of a typical BIDS 1.0 dataset without sessions.
+
+The `BIDSEntitiesLayout` field is an object where keys are directory names and values are lists of objects describing order of entities defining hierarchy and/or file name prefixes that are expected to be found in the directory.
+
+**TODO**: define "Entity" and "Datatype" in glossary.
+
+**TODO**: check if *concept* is the best term to use here.
+
+It could be an [entity](appendix/entity-table.md) or the [datatype](glossary.md#datatype) concept to define that level of the hierarchy.
+
+By default, each level represented both as a directory and a prefix in the file name, e.g. having `subject` entity would establish `sub-<label>/` directory and `sub-<label>_` prefix for the filename.
+If the directory is not expected, the `directory` key can be set to `false`.
+If the prefix is not expected, the `prefix` key can be set to `false`.
+
+The order of entities in the list is the order of hierarchy levels, from the root to the leaf.
+It overrides the default order of entities in the BIDS specification, so if the dataset has `session` entity before `subject`, it should then also be listed first in the filename, e.g. `ses-<label>_sub-<label>`.
+
+The scope of the `BIDSEntitiesLayout` field is the dataset root directory and stops at encountering embedded BIDS dataset (a directory with `dataset_description.json` containing `BIDSVersion` key).
+Corollary: the `BIDSEntitiesLayout` field is not inherited by subdatasets.
+
+JsonSchema for `BIDSEntitiesLayout` (elaborated with chatgpt):
+
+```json
+{
+  "type": "object",
+  "patternProperties": {
+    "^[./a-z]+$": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "entity": {
+            "type": "string"
+          },
+          "concept": {
+            "type": "string",
+            "enum": ["entity", "datatype"],
+            "default": "entity"
+          },
+          "prefix": {
+            "type": "boolean"
+          },
+          "directory": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false,
+        "if": {
+          "properties": {
+            "concept": {
+              "const": "entity"
+            }
+          }
+        },
+        "then": {
+          "required": ["entity"]
+        },
+        "anyOf": [
+          {
+            "required": ["entity"]
+          },
+          {
+            "required": ["concept"]
+          }
+        ]
+      }
+    }
+  },
+  "additionalProperties": false
+}
+```
+
+**Note**: In LinkML ChatGPT gave a nice schema but without conditional requirements.
+
+Examples of the values for BIDSEntitiesLayout:
+
+- `{ "." : [ {"entity": "subject"}, {"concept": "datatype", "prefix": false} ]` - (Default) BIDS 1.0 without sessions
+- `{ "." : [ {"entity": "subject"}, {"entity": "session"}, {"concept": "datatype", "prefix": false} ] }` - BIDS 1.0 with sessions
+- ```json
+  { "." : [
+    {"entity": "subject", "directory": false},
+    {"entity": "session", "directory": false},
+    {"concept": "datatype", "prefix": false}]
+  }
+  ```
+  Nested in sub-/ses- subdataset (ref: [devel#59: Ability to compose BIDS dataset from BIDS datasets per sub/ses](https://github.com/bids-standard/bids-2-devel/issues/59))
+
+Alternative specification ideas:
+
+- Sugaring, using convention that `{entity}` is equivalent to `[{"entity": "{entity}"}]` and `{entity}/` is equivalent to `[{"entity": "{entity}", "directory": True}]`, and `datatype/` concept is a "hardcoded" value and corresponds to `{"concept": "datatype", "prefix": false}`.
+ So BIDS 1.0 with sessions could be `{ "." : ["subject/", "session/", "datatype/"] }`.
+
+
 
 #### Derived dataset and pipeline description
 
