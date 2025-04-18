@@ -34,6 +34,10 @@ raw:
     name: derivatives
     level: optional
     opaque: true
+  docs:
+    name: docs
+    level: optional
+    opaque: true
   logs:
     name: logs
     level: optional

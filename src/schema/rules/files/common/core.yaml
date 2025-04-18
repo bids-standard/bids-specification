@@ -36,6 +36,9 @@ code:
 derivatives:
   level: optional
   path: derivatives
+docs:
+  level: optional
+  path: docs
 logs:
   level: optional
   path: logs
