@@ -8,6 +8,7 @@ events:
   datatypes:
     - beh
     - eeg
+    - emg
     - ieeg
     - meg
     - nirs

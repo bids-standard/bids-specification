@@ -1,0 +1,16 @@
+---
+emg:
+  suffixes:
+    - emg
+  extensions:
+    - .json
+    - .edf
+    - .bdf
+  datatypes:
+    - emg
+  entities:
+    subject: required
+    session: optional
+    task: required
+    acquisition: optional
+    run: optional
