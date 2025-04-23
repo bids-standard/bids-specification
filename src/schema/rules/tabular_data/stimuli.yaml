@@ -10,8 +10,8 @@ Stimuli:
     type: required
     URL: optional
     license: recommended
-    copyright: optional
-    description: optional
+    copyright: recommended
+    description: recommended
     HED: optional
     filename: optional
     present: optional
@@ -27,4 +27,16 @@ Annotations:
   columns:
     annot_id: required
     description: required
+  additional_columns: allowed_if_defined
+
+StimulusEvents:
+  selectors:
+    - suffix == "events"
+    - entities.stimulus != null
+  initial_columns:
+    - onset
+    - duration
+  columns:
+    onset: required
+    duration: recommended
   additional_columns: allowed_if_defined
