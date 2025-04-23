@@ -9,6 +9,8 @@ stimuli_table:
     - .json
     - .tsv
   entities: {} # No entities apply to the stimuli.tsv/json index files themselves
+  datatypes:
+    - stimuli
 
 annotations_table:
   level: recommended
@@ -20,6 +22,8 @@ annotations_table:
     - .tsv
   entities:
     stimulus: optional # The annotations table can be global or stimulus-specific
+  datatypes:
+    - stimuli
 
 stimulus_audio:
   level: optional
@@ -35,6 +39,8 @@ stimulus_audio:
   entities:
     stimulus: required
     part: optional
+  datatypes:
+    - stimuli
 
 stimulus_image:
   level: optional
@@ -51,6 +57,8 @@ stimulus_image:
   entities:
     stimulus: required
     part: optional
+  datatypes:
+    - stimuli
 
 stimulus_video:
   level: optional
@@ -81,6 +89,8 @@ stimulus_audiovideo:
   entities:
     stimulus: required
     part: optional
+  datatypes:
+    - stimuli
 
 stimulus_annotations_events: # Renamed for clarity, representing the annot-<label>_events files
   level: optional
@@ -94,3 +104,5 @@ stimulus_annotations_events: # Renamed for clarity, representing the annot-<labe
     stimulus: required
     annotation: required
     part: optional
+  datatypes:
+    - stimuli
