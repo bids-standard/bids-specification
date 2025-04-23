@@ -211,3 +211,7 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___render_text("objects.files.LICENSE.description") }}
+
+<!-- Link Definitions -->
+
+[bids uris]: ./common-principles.md#bids-uri
