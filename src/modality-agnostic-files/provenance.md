@@ -36,6 +36,8 @@ Provenance metadata is written in JSON or JSON-LD. JSON-LD is a specific type of
 
 Provenance records use the [PROV model ontology](http://www.w3.org/TR/prov-o/), augmented by terms curated in this specification, and defined in the [BIDS-Prov context](/context.json).
 
+![](/images/prov_w3c.svg)
+
 A skeleton for a BIDS-Prov JSON-LD file looks like this:
 ```
 {
@@ -100,7 +102,7 @@ A skeleton for a BIDS-Prov JSON-LD file looks like this:
   <tr>
    <td><code>Records</code>
    </td>
-   <td>REQUIRED. A list of provenance records (Activity, Entity, Agent, Environment), describing the provenance (see the <a href="#2-provenance-records">2. Provenance records</a> section below).
+   <td>REQUIRED. A list of provenance records (Activity, Entity, Agent, Environment), describing the provenance (see the <a href="#provenance-records">Provenance records</a> section below).
    </td>
   </tr>
 </table>
@@ -129,7 +131,7 @@ BIDS-Prov metadata consists in a set or records. There are 4 types of records: `
 
 Activities represent the transformations that have been applied to the data. Each Activity can use Entities as inputs and outputs. The Agent specifies the software package. Environments specify the software environment in which the provenance record was obtained.
 
-![](/src/images/prov_records.svg)
+![](/images/prov_records.svg)
 
 ### Activity
 Each Activity record is a JSON Object with the following fields:
