@@ -1,11 +1,26 @@
 ---
-stimuli:
+# Define the stimuli files
+stimuli_table:
   level: recommended
-  path: stimuli/stimuli
+  path: stimuli
+  suffixes:
+    - stimuli
   extensions:
     - .json
     - .tsv
+
+annotations_table:
+  level: recommended
+  path: stimuli
+  suffixes:
+    - annotations
+  extensions:
+    - .json
+    - .tsv
+
 stimulus_audio:
+  level: optional
+  path: stimuli
   suffixes:
     - audio
   extensions:
@@ -14,10 +29,13 @@ stimulus_audio:
     - .mp3
     - .aac
     - .ogg
-   entities:
-     stimulus: required
-     part: optional
+  entities:
+    stimulus: required
+    part: optional
+
 stimulus_image:
+  level: optional
+  path: stimuli
   suffixes:
     - image
   extensions:
@@ -25,11 +43,15 @@ stimulus_image:
     - .jpg
     - .png
     - .svg
+    - .webp
     - .tiff
   entities:
     stimulus: required
     part: optional
+
 stimulus_video:
+  level: optional
+  path: stimuli
   suffixes:
     - video
   extensions:
@@ -41,7 +63,10 @@ stimulus_video:
   entities:
     stimulus: required
     part: optional
+
 stimulus_audiovideo:
+  level: optional
+  path: stimuli
   suffixes:
     - audiovideo
   extensions:
@@ -50,7 +75,13 @@ stimulus_audiovideo:
     - .avi
     - .mkv
     - .webm
-annotations:
+  entities:
+    stimulus: required
+    part: optional
+
+stimulus_annotations:
+  level: optional
+  path: stimuli
   suffixes:
     - events
   extensions:
