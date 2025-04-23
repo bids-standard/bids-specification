@@ -5,7 +5,10 @@ nav:
   - The BIDS Specification:
       - Introduction: introduction.md
       - Common principles: common-principles.md
-      - Modality agnostic files: modality-agnostic-files.md
+      - Modality agnostic files:
+          - Dataset description: modality-agnostic-files/dataset-description.md
+          - Data description: modality-agnostic-files/data-description.md
+          - Code: modality-agnostic-files/code.md
       - Modality specific files:
           - Magnetic Resonance Imaging: modality-specific-files/magnetic-resonance-imaging-data.md
           - Magnetoencephalography: modality-specific-files/magnetoencephalography.md
@@ -101,19 +104,13 @@ extra:
 
 extra_javascript:
   - js/jquery-3.6.0.min.js
-extra_css:
-  - css/tsv.css
 markdown_extensions:
   - toc:
       anchorlink: true
-  - attr_list
   - pymdownx.superfences:
       preserve_tabs: true
       custom_fences:
         - name: tsv
-          class: tsv
-          format: !!python/name:bidsschematools.render.tsv.fence
-        - name: tsvgz
           class: tsv
           format: !!python/name:bidsschematools.render.tsv.fence
   - admonition
@@ -132,7 +129,9 @@ plugins:
       redirect_maps:
         "01-introduction.md": "introduction.md"
         "02-common-principles.md": "common-principles.md"
-        "03-modality-agnostic-files.md": "modality-agnostic-files.md"
+        "03-modality-agnostic-files/01-modality-agnostic-files.md": "modality-agnostic-files/dataset-description.md"
+        "03-modality-agnostic-files/02-modality-agnostic-files.md": "modality-agnostic-files/data-description.md"
+        "03-modality-agnostic-files/03-modality-agnostic-files.md": "modality-agnostic-files/code.md"
         "04-modality-specific-files/01-magnetic-resonance-imaging-data.md": "modality-specific-files/magnetic-resonance-imaging-data.md"
         "04-modality-specific-files/02-magnetoencephalography.md": "modality-specific-files/magnetoencephalography.md"
         "04-modality-specific-files/03-electroencephalography.md": "modality-specific-files/electroencephalography.md"
