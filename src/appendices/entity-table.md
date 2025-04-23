@@ -49,3 +49,7 @@ while entity definitions are in the [Entities Appendix](entities.md).
 ## Microscopy
 
 {{ MACROS___make_entity_table(datatypes=["micr"]) }}
+
+## Stimulus Files
+
+{{ MACROS___make_entity_table(datatypes=["stimuli"]) }}
