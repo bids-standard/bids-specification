@@ -109,7 +109,7 @@ Data for each subject are placed in subdirectories named "`sub-<label>`",
 where string "`<label>`" is substituted with the unique identification
 label of each subject.
 Additional information on each participant MAY be provided in a
-[participants file](modality-agnostic-files.md#participants-file)
+[participants file](modality-agnostic-files/data-description.md#participants-file)
 in the root directory of the dataset.
 
 If data for the subject were acquired across multiple sessions, then within
@@ -119,7 +119,7 @@ label for each session.
 In datasets where at least one subject has more than one session, this
 additional subdirectory later SHOULD be added for all subjects in the dataset.
 Additional information on each session MAY be provided in a
-[sessions file](modality-agnostic-files.md#sessions-file)
+[sessions file](modality-agnostic-files/data-description.md#sessions-file)
 within the subject directory.
 
 Within the session subdirectory (or the subject subdirectory if no
@@ -1143,8 +1143,8 @@ to suppress warnings or provide interpretations of your filenames.
 
 <!-- Link Definitions -->
 
-[dataset-description]: modality-agnostic-files.md#dataset-description
-[dataset_description.json]: modality-agnostic-files.md#dataset_descriptionjson
-[derived-dataset-description]: modality-agnostic-files.md#derived-dataset-and-pipeline-description
+[dataset-description]: modality-agnostic-files/data-description.md
+[dataset_description.json]: modality-agnostic-files/data-description.md#dataset_descriptionjson
+[derived-dataset-description]: modality-agnostic-files/data-description.md#derived-dataset-and-pipeline-description
 [deprecated]: #definitions
 [uris]: #uniform-resource-indicator

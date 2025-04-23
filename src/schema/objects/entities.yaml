@@ -354,7 +354,7 @@ split:
     If there are multiple parts of a recording and the optional `scans.tsv` is provided,
     all files MUST be listed separately in `scans.tsv` and
     the entries for the `acq_time` column in `scans.tsv` MUST all be identical,
-    as described in [Scans file](SPEC_ROOT/modality-agnostic-files.md#scans-file).
+    as described in [Scans file](SPEC_ROOT/modality-agnostic-files/data-description.md#scans-file).
   type: string
   format: index
 stain:

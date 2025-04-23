@@ -41,7 +41,7 @@ sub-03	33	F	n/a	read
 
 It is RECOMMENDED to accompany each `participants.tsv` file with a sidecar
 `participants.json` file to describe the TSV column names and properties of their values (see also
-the [section on tabular files](common-principles.md#tabular-files)).
+the [section on tabular files](../common-principles.md#tabular-files)).
 Such sidecar files are needed to interpret the data, especially so when
 optional columns are defined beyond `age`, `sex`, `handedness`, `species`, `strain`,
 and `strain_rrid`, such as `group` in this example, or when a different
@@ -117,7 +117,7 @@ sample-05	sub-02	tissue	n/a
 
 It is RECOMMENDED to accompany each `samples.tsv` file with a sidecar
 `samples.json` file to describe the TSV column names and properties of their values
-(see also the [section on tabular files](common-principles.md#tabular-files)).
+(see also the [section on tabular files](../common-principles.md#tabular-files)).
 
 `samples.json` example:
 
@@ -160,7 +160,7 @@ in the BIDS dataset and `participants.tsv` file.
 
 As with all other tabular data, the additional phenotypic information files
 MAY be accompanied by a JSON file describing the columns in detail
-(see [Tabular files](common-principles.md#tabular-files)).
+(see [Tabular files](../common-principles.md#tabular-files)).
 
 In addition to the column descriptions, the JSON file MAY contain the following fields:
 
@@ -245,12 +245,12 @@ and not the individual files in that directory.
 Some neural recordings consist of multiple parts,
 that span several files,
 but that share the same extension.
-For example in [entity-linked file collections](./common-principles.md#entity-linked-file-collections),
+For example in [entity-linked file collections](../common-principles.md#entity-linked-file-collections),
 commonly used for qMRI,
 where recordings may be linked through entities such as `echo` and `part`
 (using `.nii` or `.nii.gz` extensions).
 For another example consider the case of large files in `.fif` format that are linked through the `split` entity
-(see [Split files](./appendices/meg-file-formats.md#split-files)).
+(see [Split files](../appendices/meg-file-formats.md#split-files)).
 Such recordings MUST be documented with one row per file
 (unlike the case of multi-file file formats described above).
 
@@ -268,7 +268,7 @@ For example vigilance questionnaire score administered after a resting
 state scan.
 All such included additional fields SHOULD be documented in an accompanying
 `_scans.json` file that describes these fields in detail
-(see [Tabular files](common-principles.md#tabular-files)).
+(see [Tabular files](../common-principles.md#tabular-files)).
 
 Example `_scans.tsv`:
 
@@ -296,7 +296,7 @@ In case of multiple sessions there is an option of adding additional
 In such case one file per participant SHOULD be added.
 These files MUST include a `session_id` column and describe each session by one and only one row.
 Column names in `sessions.tsv` files MUST be different from group level participant key column names in the
-[`participants.tsv` file](./modality-agnostic-files.md#participants-file).
+[`participants.tsv` file](./data-description.md#participants-file).
 
 <!-- This block generates a columns table.
 The definitions of these fields can be found in
