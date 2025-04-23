@@ -10,7 +10,3 @@ Extra care should be taken to avoid including original IDs or
 any identifiable information with the source code.
 There are no limitations or recommendations on the language and/or
 code organization of these scripts at the moment.
-
-<!-- Link Definitions -->
-
-[bids uris]: ../common-principles.md#bids-uri
