@@ -1,0 +1,62 @@
+---
+stimuli:
+  level: recommended
+  path: stimuli/stimuli
+  extensions:
+    - .json
+    - .tsv
+stimulus_audio:
+  suffixes:
+    - audio
+  extensions:
+    - .json
+    - .wav
+    - .mp3
+    - .aac
+    - .ogg
+   entities:
+     stimulus: required
+     part: optional
+stimulus_image:
+  suffixes:
+    - image
+  extensions:
+    - .json
+    - .jpg
+    - .png
+    - .svg
+    - .tiff
+  entities:
+    stimulus: required
+    part: optional
+stimulus_video:
+  suffixes:
+    - video
+  extensions:
+    - .json
+    - .mp4
+    - .avi
+    - .mkv
+    - .webm
+  entities:
+    stimulus: required
+    part: optional
+stimulus_audiovideo:
+  suffixes:
+    - audiovideo
+  extensions:
+    - .json
+    - .mp4
+    - .avi
+    - .mkv
+    - .webm
+annotations:
+  suffixes:
+    - events
+  extensions:
+    - .json
+    - .tsv
+  entities:
+    stimulus: required
+    annotation: required
+    part: optional
