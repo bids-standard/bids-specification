@@ -24,7 +24,7 @@ Following these guidelines will help ensure that stimulus files and their annota
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-<!-- {{ MACROS___make_filetree_example({
+{{ MACROS___make_filetree_example({
    "stimuli": {
     "stimuli.tsv": "",
     "stimuli.json": "",
@@ -35,13 +35,14 @@ A guide for using macros can be found at
     "[stim-<label>[_part-<label>]_annot-<label>_events.tsv]": "",
     "[stim-<label>[_part-<label>]_annot-<label>_events.json]": ""
     }
-  }) }} -->
+  }) }}
 
-{{ MACROS___make_filename_template(
+<!-- Still not working, falls back to subject/session struture. -->
+<!-- {{ MACROS___make_filename_template(
    "raw",
    datatypes=["stim"],
    suffixes=["events","audio","video","audiovideo","image"])
-}}
+}} -->
 
 Note: The presence of the `stimuli.tsv` file indicates that the content of the `/stimuli` directory follows this BIDS specification for stimulus organization.
 
