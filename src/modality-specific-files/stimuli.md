@@ -38,7 +38,7 @@ A guide for using macros can be found at
   }) }} -->
 
 {{ MACROS___make_filename_template(
-   "stimuli",
+   "raw",
    datatypes=["stim"],
    suffixes=["events","audio","video","audiovideo","image"])
 }}
