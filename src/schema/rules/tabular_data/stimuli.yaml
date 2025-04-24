@@ -7,15 +7,15 @@ Stimuli:
     - type
   columns:
     stimulus_id: required
-    type: required
+    type__stimuli: required
     URL: optional
     license: recommended
     copyright: recommended
-    description: recommended
+    description__stimuli: recommended
     HED: optional
     filename: optional
     present: optional
-    partDescription: optional
+    partDescription__stimuli: optional
   additional_columns: allowed_if_defined
 
 Annotations:
@@ -26,7 +26,7 @@ Annotations:
     - description
   columns:
     annot_id: required
-    description: required
+    description__annot: required
   additional_columns: allowed_if_defined
 
 StimulusEvents:

@@ -855,3 +855,67 @@ template_z:
   description: |
     Assumed or ideal position along the z axis.
   type: number
+stimulus_id:
+  name: stimulus_id
+  display_name: Stimulus Identifier
+  description: |
+    Unique identifier for a specific stimulus.
+  type: string
+annot_id:
+  name: annot_id
+  display_name: Annotation Identifier
+  description: |
+    Unique identifier for a specific annotation set applying to a stimulus or group of stimuli. Links to annotation files (for example, `*_annot-<label>_events.tsv`).
+  type: string
+copyright:
+  name: copyright
+  display_name: Stimulus Copyright
+  description: |
+    Copyright information for the stimulus file, typically including year and holder.
+  type: string
+license:
+  name: license
+  display_name: Stimulus License
+  description: |
+    License under which the stimulus file is distributed.
+    SHOULD use identifiers from recognized lists like SPDX or Creative Commons.
+  type: string
+partDescription__stimuli:
+  name: partDescription
+  display_name: Stimulus Part Description
+  description: |
+    Free-form text description of a specific part of a stimulus, relevant when the stimulus is split into multiple files using the `part` entity.
+  type: string
+present:
+  name: present
+  display_name: Stimulus File Present
+  description: |
+    Indicates whether the stimulus file corresponding to the `stimulus_id` is physically present in the dataset.
+  type: boolean
+URL:
+  name: URL
+  display_name: Stimulus URL
+  description: |
+    Uniform Resource Locator pointing to the stimulus file, particularly useful
+    if the stimulus file is not distributed with the dataset.
+  type: string
+  format: uri
+description__stimuli:
+  name: description
+  display_name: Stimulus Description
+  description: |
+    Free-form text description of the stimulus identified by `stimulus_id`.
+  type: string
+description__annot:
+  name: description
+  display_name: Annotation Description
+  description: |
+    Free-form text description of the annotation identified by `annot_id`.
+  type: string
+type__stimuli:
+  name: type
+  display_name: Stimulus type
+  description: |
+    Type of stimulus (for example, image, audio, video).
+    Refers to the suffix of the stimulus file if present.
+  type: string
