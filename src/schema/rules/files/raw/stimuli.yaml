@@ -74,6 +74,8 @@ stimulus_video:
   entities:
     stimulus: required
     part: optional
+  datatypes:
+    - stimuli
 
 stimulus_audiovideo:
   level: optional
