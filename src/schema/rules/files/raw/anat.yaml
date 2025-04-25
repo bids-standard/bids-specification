@@ -85,10 +85,30 @@ defacemask:
     modality: optional
     chunk: optional
 
-multiecho:
+megre:
+  suffixes:
+    - MEGRE
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  datatypes:
+    - anat
+  entities:
+    subject: required
+    session: optional
+    task: optional
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
+    run: optional
+    echo: required
+    part: optional
+    chunk: optional
+
+mese:
   suffixes:
     - MESE
-    - MEGRE
   extensions:
     - .nii.gz
     - .nii
