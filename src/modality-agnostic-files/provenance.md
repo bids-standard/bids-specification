@@ -163,7 +163,7 @@ Each `Activity` record is a JSON Object with the following fields:
    <td><strong>Requirement level</strong></td>
    <td><strong>Data type</strong></td>
    <td><strong>Description</strong></td>
-  </tr>  
+  </tr>
   <tr>
    <td><code>AssociatedWith</code></td>
    <td>OPTIONAL</td>
@@ -427,7 +427,7 @@ prov/
 
 The `prov` entity specifies that provenance records in the files belong to the same group. Defining multiple provenance records groups is appropriate when separate processings have been performed on data.
 
-!!! example 
+!!! example
     In this example, two separated processings (`conversion` and `smoothing`) were performed on the data, resulting in two groups of provenance records.
     ```
     prov/
