@@ -30,24 +30,6 @@ ParticipantIDMismatch:
         sorted(dataset.subjects.sub_dirs)
       )
 
-# 51
-PhenotypeSubjectsMissing:
-  issue:
-    code: PHENOTYPE_SUBJECTS_MISSING
-    message: |
-      A phenotype/ .tsv file lists subjects that were not found in
-      the participant_id column found in the participants.tsv file.
-    level: error
-  selectors:
-    - path == '/participants.tsv'
-    - type(dataset.subjects.phenotype) != 'null'
-  checks:
-    - |
-      allequal(
-        sorted(intersects(columns.participant_id, dataset.subjects.phenotype)),
-        sorted(dataset.subjects.phenotype)
-      )
-
 # 214
 SamplesTSVMissing:
   issue:
