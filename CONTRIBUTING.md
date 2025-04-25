@@ -9,7 +9,7 @@ If you have any questions that aren't discussed below, please let us know
 by [opening an issue](https://github.com/bids-standard/bids-specification/issues/new).
 
 If you are not familiar with Git and GitHub,
-check our [generic contributing guidelines](https://bids-website.readthedocs.io/en/latest/collaboration/bids_github/CONTRIBUTING.html).
+check our [generic contributing guidelines](https://bids.neuroimaging.io/collaboration/bids_github/CONTRIBUTING.html).
 
 If you want to contribute to the BIDS specification,
 make sure you also read the instructions below.
@@ -237,13 +237,10 @@ pip install -U pip
 pip install -r requirements.txt
 ```
 
-The first command ensures you are using an up to date version of `pip`,
+The first command ensures you are using an up-to-date version of `pip`,
 and the second command installs all dependencies.
-The third command ensures to install the BIDS schema code as an "editable" install,
-so that if you make changes to the schema files,
-these are automatically reflected in the sourcecode.
 
-Note that if you need to work on the some of the Python code
+Note that if you need to work on some of the Python code
 that is used to render the specification,
 you will probably have to also run:
 

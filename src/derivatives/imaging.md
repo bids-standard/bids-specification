@@ -232,7 +232,7 @@ vertices) or a combined volume/surface space.
 
 If the segmentation can be generated in different ways,
 for example, following an atlas segmentation,
-the [`seg` entity](../appendices/entities.md#segmentation) MAY be used to
+the [`seg` entity](../appendices/entities.md#seg) MAY be used to
 distinguish the name of the segmentation used.
 
 The following section describes discrete and probabilistic segmentations of
@@ -299,7 +299,7 @@ In this case, the mask suffix MUST be used,
 the [`label` entity](../appendices/entities.md#label) SHOULD be used
 to specify the masked structure
 (see [Common image-derived labels](#common-image-derived-labels)),
-and the [`seg` entity](../appendices/entities.md#segmentation) SHOULD be defined.
+and the [`seg` entity](../appendices/entities.md#seg) SHOULD be defined.
 
 For example:
 
@@ -536,21 +536,21 @@ and a guide for using macros can be found at
 
 An example, custom `dseg.tsv` that defines three labels:
 
-```Text
-index   name            abbreviation    color       mapping
-100     Gray Matter     GM              #ff53bb     1
-101     White Matter    WM              #2f8bbe     2
-102     Brainstem       BS              #36de72     11
+```tsv
+index	name	abbreviation	color	mapping
+100	Gray Matter	GM	#ff53bb	1
+101	White Matter	WM	#2f8bbe	2
+102	Brainstem	BS	#36de72	11
 ```
 
 The following example `dseg.tsv` defines regions that are not part of the
 standard BIDS labels:
 
-```Text
-index   name                abbreviation
-137     pars opercularis    IFGop
-138     pars triangularis   IFGtr
-139     pars orbitalis      IFGor
+```tsv
+index	name	abbreviation
+137	pars	opercularis	IFGop
+138	pars	triangularis	IFGtr
+139	pars	orbitalis	IFGor
 ```
 
 <!-- Link Definitions -->

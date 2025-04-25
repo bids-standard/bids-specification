@@ -101,10 +101,21 @@ extra:
 
 extra_javascript:
   - js/jquery-3.6.0.min.js
+extra_css:
+  - css/tsv.css
 markdown_extensions:
   - toc:
       anchorlink: true
-  - pymdownx.superfences
+  - attr_list
+  - pymdownx.superfences:
+      preserve_tabs: true
+      custom_fences:
+        - name: tsv
+          class: tsv
+          format: !!python/name:bidsschematools.render.tsv.fence
+        - name: tsvgz
+          class: tsv
+          format: !!python/name:bidsschematools.render.tsv.fence
   - admonition
   - pymdownx.details
 plugins:
@@ -116,6 +127,7 @@ plugins:
             - css/watermark.css
   - macros:
       module_name: tools/mkdocs_macros_bids/main
+      on_error_fail: true
   - redirects:
       redirect_maps:
         "01-introduction.md": "introduction.md"

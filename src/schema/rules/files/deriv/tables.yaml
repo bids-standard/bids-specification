@@ -1,5 +1,7 @@
 ---
 descriptions:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   level: optional
   suffixes:
     - descriptions
