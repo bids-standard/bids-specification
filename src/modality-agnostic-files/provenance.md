@@ -55,15 +55,15 @@ The following diagram illustrates PROV-O by depicting its Starting Point classes
 
 ![](../images/prov_w3c.svg)
 
-Provenance metadata represents a graph-like structure that can be encorded into [JSON-LD](https://www.w3.org/TR/json-ld11), a JSON-based Serialization for Linked Data. This allows for handling this metadata with the [Resource Description Framework](https://www.w3.org/RDF/).
+Provenance metadata represents a graph-like structure that can be encoded into [JSON-LD](https://www.w3.org/TR/json-ld11), a JSON-based Serialization for Linked Data. This allows for handling this metadata with the [Resource Description Framework](https://www.w3.org/RDF/).
 
 ## Provenance records
 Provenance metadata consists in a set or records. There are 4 types of records:
 
-- `Activity`: Activities represent the transformations that have been applied to the data.
-- `Entity`: Each Activity can use Entities as inputs and outputs.
-- `Software`: The Software record describes a software package.
-- `Environment`: Environments specify the software environment in which the provenance record was obtained.
+-  `Activity`: Activities represent the transformations that have been applied to the data.
+-  `Entity`: Each Activity can use Entities as inputs and outputs.
+-  `Software`: The Software record describes a software package.
+-  `Environment`: Environments specify the software environment in which the provenance record was obtained.
 
 ![](../images/prov_records.svg)
 
@@ -116,7 +116,7 @@ Each `Activity` record is a JSON Object with the following fields:
    <td><code>Used</code></td>
    <td>OPTIONAL</td>
    <td>UUID (or List of UUIDs)</td>
-   <td>Identifier(s) of entitie(s) or environment(s) used by this activity. The corresponding Entities (resp. Environments) must be defined with their own Entity (resp. Environment) record.</td>
+   <td>Identifier(s) of entitiy(ies) or environment(s) used by this activity. The corresponding Entities (resp. Environments) must be defined with their own Entity (resp. Environment) record.</td>
   </tr>
   <tr>
    <td><code>Type</code></td>
@@ -357,7 +357,7 @@ Each `Entity` record is a JSON Object with the following fields:
 
 Template:
 
-```
+```text
 prov/
     [<label>/]
         prov-<label>_act.json
@@ -398,7 +398,7 @@ and a guide for using macros can be found at
    )
 }}
 
-```
+```text
 "act",
 "ent",
 "env",
@@ -416,7 +416,7 @@ Provenance metadata can be stored inside the sidecar JSON of any BIDS file (or B
 In this case, the provenance content only refers to the associated data file.
 
 The sidecar JSON naming convention is already defined by BIDS. Here is an example dataset tree:
-```
+```text
 └─ example_dataset
    ├─ prov/
    │  └─ prov-dcm2niix_base.json
@@ -511,7 +511,7 @@ The following conventions are recommended in order to have consistent, human rea
 
 IRIs identifying `Activity`, `Software`, and `Environment` provenance records inside files stored in a directory `<directory>` relatively to a BIDS dataset `<dataset>` SHOULD have the following form, where `<label>` is a human readable label for the record and `<uid>` is a unique group of chars:
 
-```
+```text
 bids:<dataset>:prov#<name>-<uid>
 ```
 
@@ -522,7 +522,7 @@ bids:<dataset>:prov#<name>-<uid>
 
 IRI identifying `Entity` provenance records for a file `<file>` relatively to a BIDS dataset `<dataset>` SHOULD have the following form:
 
-```
+```text
 bids:<dataset>:<file>
 ```
 
@@ -532,7 +532,7 @@ bids:<dataset>:<file>
 
 Here is another example that considers the following dataset:
 
-```
+```text
 └─ dataset/
    ├─ sourcedata/
    │  └─ dicoms/
@@ -625,7 +625,7 @@ A list of examples for provenance are available in https://github.com/bids-stand
   <tr>
    <td><a href="https://github.com/bids-standard/BEP028_BIDSprov/tree/master/examples/dcm2niix_4">dcm2niix/</a>
    </td>
-   <td>A set of examples describing dicom to nifti conversion using dcm2niix. These aim at showing different ways to organise the exact same provenance records inside a dataset:
+   <td>A set of examples describing dicom to nifti conversion using dcm2niix. These aim at showing different ways to organize the exact same provenance records inside a dataset:
     <ul>
         <li><code>dcm2niix_1</code>: all provenance records inside one JSON-LD file at dataset level.</li>
         <li><code>dcm2niix_4</code>: all provenance records inside several JSON files at dataset level, sidecar JSON use references to these files.</li>
