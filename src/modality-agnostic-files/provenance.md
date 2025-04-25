@@ -116,7 +116,7 @@ Each `Activity` record is a JSON Object with the following fields:
    <td><code>Used</code></td>
    <td>OPTIONAL</td>
    <td>UUID (or List of UUIDs)</td>
-   <td>Identifier(s) of entitiy(ies) or environment(s) used by this activity. The corresponding Entities (resp. Environments) must be defined with their own Entity (resp. Environment) record.</td>
+   <td>Identifier(s) of entity(ies) or environment(s) used by this activity. The corresponding Entities (resp. Environments) must be defined with their own Entity (resp. Environment) record.</td>
   </tr>
   <tr>
    <td><code>Type</code></td>
