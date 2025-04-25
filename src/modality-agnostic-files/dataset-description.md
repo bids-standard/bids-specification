@@ -101,7 +101,7 @@ Example:
 }
 ```
 
-#### Derived dataset and pipeline description
+### Derived dataset and pipeline description
 
 As for any BIDS dataset, a `dataset_description.json` file MUST be found at the
 top level of every derived dataset:

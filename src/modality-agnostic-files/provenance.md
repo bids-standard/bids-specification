@@ -29,23 +29,23 @@ This part of the BIDS specification is aimed at describing the provenance of a B
 
 Provenance comes up in many different contexts in BIDS. This specification focuses on representing the processings that were applied to a dataset. These could be for instance:
 
-1. The raw conversion from DICOM images or other instrument native formats to BIDS layout, details of stimulus presentation and cognitive paradigms, and clinical and neuropsychiatric assessments, each come with their own details of provenance.
-2. In BIDS derivatives, the consideration of outputs requires knowledge of which inputs from the BIDS dataset were used together with what software was run in what environment and with what parameters.
+1.  The raw conversion from DICOM images or other instrument native formats to BIDS layout, details of stimulus presentation and cognitive paradigms, and clinical and neuropsychiatric assessments, each come with their own details of provenance.
+2.  In BIDS derivatives, the consideration of outputs requires knowledge of which inputs from the BIDS dataset were used together with what software was run in what environment and with what parameters.
 
 But provenance comes up in other contexts as well, which might be addressed at a later stage:
 
-3. For datasets and derivatives, provenance can also include details of why the data were collected in the first place covering hypotheses, claims, and prior publications. Provenance can encode support for which claims were supported by future analyses.
-4. Provenance can involve information about people and institutions involved in a study.
-5. Provenance records can highlight reuse of datasets while providing appropriate attribution to the original dataset generators as well as future transformers.
+1.  For datasets and derivatives, provenance can also include details of why the data were collected in the first place covering hypotheses, claims, and prior publications. Provenance can encode support for which claims were supported by future analyses.
+2.  Provenance can involve information about people and institutions involved in a study.
+3.  Provenance records can highlight reuse of datasets while providing appropriate attribution to the original dataset generators as well as future transformers.
 
 Provenance can be captured using different mechanisms, but independent of encoding, always reflects transformations by either humans or software. The interpretability of provenance records requires a consistent vocabulary for provenance as well as an expectation for a consistent terminology for the objects being encoded.
 
 ### Principles for encoding provenance in BIDS
 
-1. Provenance information SHOULD be included in a BIDS dataset when possible.
-2. If provenance records are included, these MUST be described using the conventions detailed by this specification.
-3. Provenance records MAY be used to reflect the provenance of a dataset, a collection of files or a specific file at any level of the BIDS hierarchy.
-4. Provenance information SHOULD be anonymized/de-identified as necessary.
+1.  Provenance information SHOULD be included in a BIDS dataset when possible.
+2.  If provenance records are included, these MUST be described using the conventions detailed by this specification.
+3.  Provenance records MAY be used to reflect the provenance of a dataset, a collection of files or a specific file at any level of the BIDS hierarchy.
+4.  Provenance information SHOULD be anonymized/de-identified as necessary.
 
 ### Provenance format
 
@@ -57,71 +57,13 @@ The following diagram illustrates PROV-O by depicting its Starting Point classes
 
 Provenance metadata represents a graph-like structure that can be encorded into [JSON-LD](https://www.w3.org/TR/json-ld11), a JSON-based Serialization for Linked Data. This allows for handling this metadata with the [Resource Description Framework](https://www.w3.org/RDF/).
 
-
-
-
-
-<table>
-  <tr>
-   <td><strong>Key name</strong>
-   </td>
-   <td><strong>Description</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><code>@context</code>
-   </td>
-   <td>REQUIRED. A URL to the BIDS-Prov json context. Value must be <code>"https://purl.org/nidash/bidsprov/context.json"</code>
-   </td>
-  </tr>
-  <tr>
-   <td><code>BIDSProvVersion</code>
-   </td>
-   <td>REQUIRED. A string identifying the version of the specification adhered to.
-   </td>
-  </tr>
-  <tr>
-   <td><code>Records</code>
-   </td>
-   <td>REQUIRED. A list of provenance records (Activity, Entity, Software, Environment), describing the provenance (see the <a href="#provenance-records">Provenance records</a> section below).
-   </td>
-  </tr>
-</table>
-
-This skeleton can be split into several *JSON* files. This is described in sections [Suffixes](#suffixes)
-and [Provenance description levels](#provenance-description-levels).
-
-Using tools provided by BIDS-Prov ([Tools](#tools)), these JSON contents can be merged back to a structured JSON-LD as described above.
-
-A complete schema for the model file to facilitate specification and validation is available from [https://github.com/bids-standard/BEP028_BIDSprov](https://github.com/bids-standard/BEP028_BIDSprov). In the event of disagreements between the schema and the specification, the specification is authoritative.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Provenance records
 Provenance metadata consists in a set or records. There are 4 types of records:
 
-* `Activity`: Activities represent the transformations that have been applied to the data.
-* `Entity`: Each Activity can use Entities as inputs and outputs.
-* `Software`: The Software record describes a software package.
-* `Environment`: Environments specify the software environment in which the provenance record was obtained.
+- `Activity`: Activities represent the transformations that have been applied to the data.
+- `Entity`: Each Activity can use Entities as inputs and outputs.
+- `Software`: The Software record describes a software package.
+- `Environment`: Environments specify the software environment in which the provenance record was obtained.
 
 ![](../images/prov_records.svg)
 
@@ -574,9 +516,9 @@ bids:<dataset>:prov#<name>-<uid>
 ```
 
 !!! example "`Activity`, `Environment`, `Software` naming examples"
-    * `bids:ds001734:prov#conversion-xfMMbHK1`: an `Activity` described inside the `ds001734` dataset;
-    * `bids::prov#fedora-uldfv058`: an `Environment` described inside the current dataset.
-    * `bids:derivatives:prov#fmriprep-r4kzzMt8`: a `Software` described inside the `derivatives` dataset.
+    - `bids:ds001734:prov#conversion-xfMMbHK1`: an `Activity` described inside the `ds001734` dataset;
+    - `bids::prov#fedora-uldfv058`: an `Environment` described inside the current dataset.
+    - `bids:derivatives:prov#fmriprep-r4kzzMt8`: a `Software` described inside the `derivatives` dataset.
 
 IRI identifying `Entity` provenance records for a file `<file>` relatively to a BIDS dataset `<dataset>` SHOULD have the following form:
 
@@ -585,8 +527,8 @@ bids:<dataset>:<file>
 ```
 
 !!! example "`Entity` naming examples"
-    * `bids:ds001734:sub-002/anat/sub-02_T1w.nii`: an `Entity` describing a T1w file for subject `sub-002` in the `ds001734` dataset ;
-    * `bids:derivatives:fmriprep/sub-001/func/sub-001_task-MGT_run-01_bold_space-MNI152NLin2009cAsym_preproc.nii.gz`: an `Entity` describing a bold file for subject `sub-001` in the `derivatives` dataset.
+    - `bids:ds001734:sub-002/anat/sub-02_T1w.nii`: an `Entity` describing a T1w file for subject `sub-002` in the `ds001734` dataset ;
+    - `bids:derivatives:fmriprep/sub-001/func/sub-001_task-MGT_run-01_bold_space-MNI152NLin2009cAsym_preproc.nii.gz`: an `Entity` describing a bold file for subject `sub-001` in the `derivatives` dataset.
 
 Here is another example that considers the following dataset:
 
@@ -704,5 +646,4 @@ A list of examples for provenance are available in https://github.com/bids-stand
    <td>An example describing simple processings on anatomical MRI using FSL through Nipype.
    </td>
   </tr>
-
 </table>
