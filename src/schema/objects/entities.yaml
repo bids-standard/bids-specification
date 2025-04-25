@@ -332,17 +332,20 @@ space:
   name: space
   display_name: Space
   description: |
-    The `space-<label>` entity can be used to indicate the way in which electrode positions are interpreted
-    (for EEG/MEG/iEEG data)
-    or the spatial reference to which a file has been aligned (for MRI data).
-    The `<label>` MUST be taken from one of the modality specific lists in the
-    [Coordinate Systems Appendix](SPEC_ROOT/appendices/coordinate-systems.md).
-    For example, for iEEG data, the restricted keywords listed under
-    [iEEG Specific Coordinate Systems](SPEC_ROOT/appendices/coordinate-systems.md#ieeg-specific-coordinate-systems)
-    are acceptable for `<label>`.
+    The `space-<label>` entity indicates the coordinate system for interpreting
+    spatial coordinates.
+    For sensor-based modalities, such as EEG/MEG/iEEG,
+    the space indicates how sensor positions are reported;
+    for imaging modalities,
+    the space indicates a reference image to which a file has been aligned.
+    A list of common spaces is defined in the
+    [Coordinate Systems Appendix](SPEC_ROOT/appendices/coordinate-systems.md),
+    and these SHOULD be used as `<label>` values for data reported in those
+    spaces.
 
-    For EEG/MEG/iEEG data, this entity can be applied to raw data,
-    but for other data types, it is restricted to derivative data.
+    Note that the space entity is broadly applicable to derivative data,
+    but is only defined for a subset of raw data types.
+    For particular use cases, `<label>` may be restricted to a set of enumerated values.
   type: string
   format: label
 split:

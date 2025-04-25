@@ -39,6 +39,12 @@ derivatives:
 prov:
   level: optional
   path: prov
+docs:
+  level: optional
+  path: docs
+logs:
+  level: optional
+  path: logs
 sourcedata:
   level: optional
   path: sourcedata

@@ -21,6 +21,7 @@ raw:
     subdirs:
       - code
       - derivatives
+      - logs
       - phenotype
       - prov
       - sourcedata
@@ -32,6 +33,14 @@ raw:
     opaque: true
   derivatives:
     name: derivatives
+    level: optional
+    opaque: true
+  docs:
+    name: docs
+    level: optional
+    opaque: true
+  logs:
+    name: logs
     level: optional
     opaque: true
   phenotype:
@@ -75,6 +84,7 @@ derivative:
     subdirs:
       - code
       - derivatives
+      - logs
       - phenotype
       - prov
       - sourcedata
@@ -86,6 +96,10 @@ derivative:
     opaque: true
   derivatives:
     name: derivatives
+    level: optional
+    opaque: true
+  logs:
+    name: logs
     level: optional
     opaque: true
   phenotype:
