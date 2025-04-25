@@ -129,9 +129,9 @@ plugins:
       redirect_maps:
         "01-introduction.md": "introduction.md"
         "02-common-principles.md": "common-principles.md"
-        "03-modality-agnostic-files/01-modality-agnostic-files.md": "modality-agnostic-files/dataset-description.md"
-        "03-modality-agnostic-files/02-modality-agnostic-files.md": "modality-agnostic-files/data-description.md"
-        "03-modality-agnostic-files/03-modality-agnostic-files.md": "modality-agnostic-files/code.md"
+        "03-modality-agnostic-files/01-dataset-description.md": "modality-agnostic-files/dataset-description.md"
+        "03-modality-agnostic-files/02-data-description.md": "modality-agnostic-files/data-description.md"
+        "03-modality-agnostic-files/03-code.md": "modality-agnostic-files/code.md"
         "04-modality-specific-files/01-magnetic-resonance-imaging-data.md": "modality-specific-files/magnetic-resonance-imaging-data.md"
         "04-modality-specific-files/02-magnetoencephalography.md": "modality-specific-files/magnetoencephalography.md"
         "04-modality-specific-files/03-electroencephalography.md": "modality-specific-files/electroencephalography.md"
