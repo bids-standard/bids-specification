@@ -109,7 +109,7 @@ Data for each subject are placed in subdirectories named "`sub-<label>`",
 where string "`<label>`" is substituted with the unique identification
 label of each subject.
 Additional information on each participant MAY be provided in a
-[participants file](modality-agnostic-files.md#participants-file)
+[participants file](modality-agnostic-files/data-description.md#participants-file)
 in the root directory of the dataset.
 
 If data for the subject were acquired across multiple sessions, then within
@@ -119,7 +119,7 @@ label for each session.
 In datasets where at least one subject has more than one session, this
 additional subdirectory later SHOULD be added for all subjects in the dataset.
 Additional information on each session MAY be provided in a
-[sessions file](modality-agnostic-files.md#sessions-file)
+[sessions file](modality-agnostic-files/data-description.md#sessions-file)
 within the subject directory.
 
 Within the session subdirectory (or the subject subdirectory if no
@@ -392,6 +392,7 @@ Derivatives can be stored/distributed in two ways:
     that were used to generate the derivatives.
     Likewise, any code used to generate the derivatives from the source data
     MAY be included in the `code/` subdirectory.
+    Logs from running the code or other commands MAY be stored under `logs/` subdirectory.
 
     Example of a derivative dataset including the raw dataset as source:
 
@@ -504,18 +505,18 @@ TSV files MUST be in UTF-8 encoding.
 
 Example:
 
-```Text
-onset   duration    response_time   trial_type        trial_extra
-200     20.0        15.8            word              中国人
-240     5.0         17.34e-1        visual            n/a
+```tsv {linenums="1"}
+onset	duration	response_time	trial_type	trial_extra
+200	20.0	15.8	word	中国人
+240	5.0	17.34e-1	visual	n/a
 ```
 
 !!! warning "Attention"
 
     The TSV examples in this document (like the one above this note) are occasionally
-    formatted using space characters instead of tabs to improve human readability.
-    Directly copying and then pasting these examples from the specification
-    for use in new BIDS datasets can lead to errors and is discouraged.
+    formatted with the addition of the row indices as first column.
+    Those indices are presented for visual reference and
+    are not part of the tabular data file's content.
 
 Tabular files MAY be optionally accompanied by a simple data dictionary
 in the form of a JSON [object](https://www.json.org/json-en.html)
@@ -625,6 +626,13 @@ Rules for formatting plain-text tabular files apply to TSVGZ files with three ex
     TSVGZ are header-less to improve compatibility with existing software
     (for example, FSL, or PNM), and to facilitate the support for other file formats
     in the future.
+
+The above example, if stored as a TSVGZ file would have the following decompressed content:
+
+```tsvgz {linenums="1"}
+200	20.0	15.8	word	中国人
+240	5.0	17.34e-1	visual	n/a
+```
 
 ### Key-value files (dictionaries)
 
@@ -1135,8 +1143,8 @@ to suppress warnings or provide interpretations of your filenames.
 
 <!-- Link Definitions -->
 
-[dataset-description]: modality-agnostic-files.md#dataset-description
-[dataset_description.json]: modality-agnostic-files.md#dataset_descriptionjson
-[derived-dataset-description]: modality-agnostic-files.md#derived-dataset-and-pipeline-description
+[dataset-description]: modality-agnostic-files/data-description.md
+[dataset_description.json]: modality-agnostic-files/data-description.md#dataset_descriptionjson
+[derived-dataset-description]: modality-agnostic-files/data-description.md#derived-dataset-and-pipeline-description
 [deprecated]: #definitions
 [uris]: #uniform-resource-indicator

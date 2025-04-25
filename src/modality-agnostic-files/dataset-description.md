@@ -214,4 +214,4 @@ A guide for using macros can be found at
 
 <!-- Link Definitions -->
 
-[bids uris]: ./common-principles.md#bids-uri
+[bids uris]: ../common-principles.md#bids-uri

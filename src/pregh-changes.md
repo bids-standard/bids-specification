@@ -32,7 +32,7 @@
 ## 1.0.1-rc1
 
 -   Added T1 Rho maps: [4.1 Anatomy imaging data](modality-specific-files/magnetic-resonance-imaging-data.md#anatomy-imaging-data).
--   Added support for phenotypic information split into multiple files: [3.2 Participant key file](modality-agnostic-files.md#participants-file).
+-   Added support for phenotypic information split into multiple files: 3.2 Participant key file.
 -   Added recommendations for multi site datasets.
 -   Added `SoftwareVersions`.
 -   Added `run-<run_index>` to the phase encoding maps. Improved the description.

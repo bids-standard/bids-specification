@@ -404,7 +404,7 @@ A guide for using macros can be found at
 
 ## Required Samples file
 
-For Microscopy data, the [Samples file](../modality-agnostic-files.md#samples-file)
+For Microscopy data, the [Samples file](../modality-agnostic-files/data-description.md#samples-file)
 `samples.tsv` is REQUIRED and its associated sidecar `samples.json` file is RECOMMENDED.
 
 Additional optional columns MAY be used to describe other samples' attributes.
@@ -412,16 +412,16 @@ Additional optional columns MAY be used to describe other samples' attributes.
 ## Recommended Participants data
 
 For Microscopy data, we RECOMMEND to make use of the columns `species`, `strain` and
-`strain_rrid` in the [Participants file](../modality-agnostic-files.md#participants-file)
+`strain_rrid` in the [Participants file](../modality-agnostic-files/data-description.md#participants-file)
 when applicable.
 
 Additional optional columns MAY be used to describe other subjects' attributes.
 
 `participants.tsv` example:
-```Text
-participant_id species strain strain_rrid
-sub-01 mus musculus C57BL/6J RRID:IMSR_JAX:000664
-sub-02 mus musculus C57BL/6J RRID:IMSR_JAX:000664
+```tsv
+participant_id	species	strain	strain_rrid
+sub-01	mus	musculus	C57BL/6J	RRID:IMSR_JAX:000664
+sub-02	mus	musculus	C57BL/6J	RRID:IMSR_JAX:000664
 ```
 
 `participants.json` example:

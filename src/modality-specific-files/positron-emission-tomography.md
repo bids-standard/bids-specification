@@ -313,27 +313,27 @@ Knudsen et al. 2020
 ([doi:10.1177/0271678X20905433](https://doi.org/10.1177/0271678X20905433))
 recommends recording participant body weight.
 If recorded once per participant, these data SHOULD be included in the
-[Participants file](../modality-agnostic-files.md#participants-file) or as
-[Phenotypic and assessment data](../modality-agnostic-files.md#phenotypic-and-assessment-data).
+[Participants file](../modality-agnostic-files/data-description.md#participants-file) or as
+[Phenotypic and assessment data](../modality-agnostic-files/data-description.md#phenotypic-and-assessment-data).
 
 For example:
 
-```Text
-participant_id body_weight
-sub-01 58
-sub-02 96
-sub-03 72
+```tsv
+participant_id	body_weight
+sub-01	58
+sub-02	96
+sub-03	72
 ```
 
 If multiple measurements are made, these data SHOULD be included in the
-[Sessions file](../modality-agnostic-files.md#sessions-file).
+[Sessions file](../modality-agnostic-files/data-description.md#sessions-file).
 
 For example:
 
-```Text
-session_id body_weight
-ses-01 58
-ses-02 59
+```tsv
+session_id	body_weight
+ses-01	58
+ses-02	59
 ```
 
 ## Blood recording data
