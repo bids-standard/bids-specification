@@ -15,14 +15,3 @@ provenance:
     - .json
   entities:
     prov: required
-
-# Provenance ld files
-provenanceld:
-  level: optional
-  path: prov/*
-  suffixes:
-    - all
-  extensions:
-    - .jsonld
-  entities:
-    prov: required

@@ -16,7 +16,7 @@ dataset_description:
     EthicsApprovals: optional
     ReferencesAndLinks: optional
     DatasetDOI: optional
-    GeneratedBy: recommended
+    GeneratedBy: deprecated
     GeneratedByProv: recommended
     SourceDatasets: recommended
 

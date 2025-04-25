@@ -130,15 +130,6 @@ json:
     These sidecar files follow the inheritance principle.
 
     There are also a few special cases of JSON files being first-order data files, such as `genetic_info.json`.
-jsonld:
-  value: .jsonld
-  display_name: JavaScript Object Notation for Linked Data
-  description: |
-    A JSON-LD file.
-
-    JSON-LD files are used to describe relations between objects in the dataset.
-
-    For example, the description of provenance uses this file format.
 kdf:
   value: .kdf
   display_name: KRISS KDF
