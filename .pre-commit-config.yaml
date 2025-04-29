@@ -72,6 +72,7 @@ repos:
       - id: mypy
         # Sync with project.optional-dependencies.typing
         additional_dependencies:
+          - acres
           - click
           - markdown-it-py
           - pandas-stubs

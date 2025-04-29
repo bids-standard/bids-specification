@@ -7,7 +7,6 @@ from itertools import chain
 
 import click
 
-from .data import load_resource
 from .rules import regexify_filename_rules
 from .schema import export_schema, load_schema
 from .utils import configure_logger, get_logger
@@ -48,7 +47,9 @@ def export(ctx, schema, output):
 @click.pass_context
 def export_metaschema(ctx, output):
     """Export BIDS schema to JSON document"""
-    metaschema = load_resource("metaschema.json").read_text()
+    from .data import load
+
+    metaschema = load.readable("metaschema.json").read_text()
     if output == "-":
         print(metaschema, end="")
     else:
