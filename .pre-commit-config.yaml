@@ -74,7 +74,6 @@ repos:
         additional_dependencies:
           - click
           - markdown-it-py
-          - importlib_resources
           - pandas-stubs
           - pyparsing
           - pytest

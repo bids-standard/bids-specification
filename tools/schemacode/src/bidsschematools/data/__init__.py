@@ -6,20 +6,11 @@
 import atexit
 import os
 from contextlib import ExitStack
-from functools import cached_property
+from functools import cache, cached_property
+from importlib.resources import as_file, files
 from pathlib import Path
 from types import ModuleType
 from typing import Union
-
-try:
-    from functools import cache
-except ImportError:  # PY38
-    from functools import lru_cache as cache
-
-try:  # Prefer backport to leave consistency to dependency spec
-    from importlib_resources import as_file, files
-except ImportError:
-    from importlib.resources import as_file, files  # type: ignore
 
 __all__ = ["load_resource"]
 
