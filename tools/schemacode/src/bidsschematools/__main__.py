@@ -7,11 +7,7 @@ from itertools import chain
 
 import click
 
-if sys.version_info < (3, 9):
-    from importlib_resources import files
-else:
-    from importlib.resources import files
-
+from .data import load_resource
 from .rules import regexify_filename_rules
 from .schema import export_schema, load_schema
 from .utils import configure_logger, get_logger
@@ -52,7 +48,7 @@ def export(ctx, schema, output):
 @click.pass_context
 def export_metaschema(ctx, output):
     """Export BIDS schema to JSON document"""
-    metaschema = files("bidsschematools.data").joinpath("metaschema.json").read_text()
+    metaschema = load_resource("metaschema.json").read_text()
     if output == "-":
         print(metaschema, end="")
     else:

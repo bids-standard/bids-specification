@@ -3,7 +3,6 @@
 import json
 import os
 import re
-import sys
 import tempfile
 from collections.abc import Iterable, Mapping
 from copy import deepcopy
@@ -11,12 +10,8 @@ from functools import lru_cache
 
 from jsonschema import ValidationError, validate
 
-if sys.version_info < (3, 9):
-    from importlib_resources import files
-else:
-    from importlib.resources import files
-
 from . import __bids_version__, __version__, utils
+from .data import load_resource
 from .types import Namespace
 
 lgr = utils.get_logger()
@@ -298,7 +293,7 @@ def filter_schema(schema, **kwargs):
 
 def validate_schema(schema: Namespace):
     """Validate a schema against the BIDS metaschema."""
-    metaschema = json.loads(files("bidsschematools.data").joinpath("metaschema.json").read_text())
+    metaschema = json.loads(load_resource("metaschema.json").read_text())
 
     # validate is put in this try/except clause because the error is sometimes too long to
     # print in the terminal
