@@ -4,15 +4,24 @@
 .. autodata:: __bids_version__
 """
 
-try:  # Prefer backport to leave consistency to dependency spec
-    from importlib_resources import files
-except ImportError:
-    from importlib.resources import files  # type: ignore
+global __version__
+global __bids_version__
 
-version_file = files("bidsschematools.data") / "schema" / "SCHEMA_VERSION"
-__version__ = version_file.read_text().strip()
-"Schema version"
+__all__ = ("__version__", "__bids_version__")
 
-bids_version_file = files("bidsschematools.data") / "schema" / "BIDS_VERSION"
-__bids_version__ = bids_version_file.read_text().strip()
-"BIDS specification version"
+
+def __getattr__(attr):
+    from .data import load_resource
+
+    if attr == "__version__":
+        global __version__
+        __version__ = load_resource("schema/SCHEMA_VERSION").read_text().strip()
+        __version__.__doc__ = "Schema version"
+        return __version__
+    elif attr == "__bids_version__":
+        global __bids_version__
+        __bids_version__ = load_resource("schema/BIDS_VERSION").read_text().strip()
+        __bids_version__.__doc__ = "BIDS specification version"
+        return __bids_version__
+
+    raise AttributeError(f"module {__spec__.name!r} has no attribute {attr!r}")
