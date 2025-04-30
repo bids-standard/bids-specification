@@ -8,8 +8,6 @@ from collections.abc import Iterable, Mapping
 from copy import deepcopy
 from functools import lru_cache
 
-from jsonschema import ValidationError, validate
-
 from . import __bids_version__, __version__, data, utils
 from .types import Namespace
 
@@ -292,6 +290,14 @@ def filter_schema(schema, **kwargs):
 
 def validate_schema(schema: Namespace):
     """Validate a schema against the BIDS metaschema."""
+    try:
+        from jsonschema import ValidationError, validate
+    except ImportError as e:
+        raise RuntimeError(
+            "The `jsonschema` package is required to validate schemas. "
+            "Please install it with `pip install jsonschema`."
+        ) from e
+
     from .data import load
 
     metaschema = json.loads(load.readable("metaschema.json").read_text())
