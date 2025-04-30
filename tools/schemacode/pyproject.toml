@@ -14,7 +14,6 @@ dependencies = [
     "acres",
     "click",
     "pyyaml",
-    "jsonschema",
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -30,6 +29,9 @@ classifiers = [
 dynamic = ["version"]
 
 [project.optional-dependencies]
+validation = [
+    "jsonschema",
+]
 doc = [
     "sphinx>=1.5.3",
     "sphinx_rtd_theme",
@@ -41,6 +43,7 @@ render = [
 ]
 expressions = ["pyparsing"]
 tests = [
+    "bidsschematools[validation,render,expressions]",
     "codecov",
     "coverage[toml]",
     "flake8",
@@ -50,7 +53,7 @@ tests = [
     "pytest-cov",
 ]
 all = [
-    "bidsschematools[doc,render,tests,expressions]",
+    "bidsschematools[doc,tests]",
 ]
 
 [project.scripts]
