@@ -24,31 +24,14 @@ repos:
         files: src/metaschema.json
       - id: check-readthedocs
         files: readthedocs.yml
-  - repo: https://github.com/psf/black
-    rev: 24.8.0
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.9.1
     hooks:
-      - id: black
-        files: ^tools/(?!schemacode)
-        args: ["--verbose"]
-      - id: black
-        name: "black bidsschematools"
-        files: tools/schemacode
-        args: ["--config", "tools/schemacode/pyproject.toml", "--verbose"]
-  - repo: https://github.com/pyCQA/isort
-    rev: 5.13.2
-    hooks:
-      - id: isort
-        files: ^tools/(?!schemacode)
-        args: ["--profile", "black"]
-      - id: isort
-        name: "isort bidsschematools"
-        files: tools/schemacode
-        args: ["--settings-file", "tools/schemacode/pyproject.toml"]
-  - repo: https://github.com/pyCQA/flake8
-    rev: 7.1.1
-    hooks:
-      - id: flake8
-        args: [--config=tools/schemacode/setup.cfg]
+      - id: ruff
+        args: [--fix]
+      - id: ruff-format
+      - id: ruff
+        args: [--select, ISC001, --fix]
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: v4.0.0-alpha.8
     hooks:

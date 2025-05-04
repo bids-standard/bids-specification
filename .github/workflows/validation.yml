@@ -50,14 +50,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: 3
-      - run: python -m pip install --upgrade flake8 black isort[colors]
-      - run: black --diff --color --check tools/schemacode
-      - run: isort --diff --color --check tools/schemacode
-      - run: flake8
-        working-directory: tools/schemacode
+      - uses: actions/setup-uv@v6
+      - run: uvx ruff format --diff
+      - run: uvx ruff check
 
   # Avoid Latin phrases to improve readability
   latin-phrases:
