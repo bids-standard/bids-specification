@@ -66,7 +66,7 @@ def build_pdf(filename="bids-spec.pdf", logfile="bids-spec_pandoc_log.json"):
     # appendices/ as a resource-path so that the relative files can
     # be found.
     build_root = HERE.parent
-    cmd += [f'--resource-path=.:{build_root / "appendices"}']
+    cmd += [f"--resource-path=.:{build_root / 'appendices'}"]
 
     # Add input files to command
     # The filenames in `markdown_list` will ensure correct order when sorted

@@ -115,9 +115,9 @@ def test_formats(schema_obj):
         search_pattern = "^" + pattern_format + "$"
         search = re.compile(search_pattern)
         for test_string in test_list:
-            assert bool(
-                search.fullmatch(test_string)
-            ), f"'{test_string}' is not a valid match for the pattern '{search.pattern}'"
+            assert bool(search.fullmatch(test_string)), (
+                f"'{test_string}' is not a valid match for the pattern '{search.pattern}'"
+            )
 
     # Check that invalid strings do not match the search pattern.
     BAD_PATTERNS = {
@@ -172,9 +172,9 @@ def test_formats(schema_obj):
         search_pattern = f"^{pattern_format}$"
         search = re.compile(search_pattern)
         for test_string in test_list:
-            assert not bool(
-                search.fullmatch(test_string)
-            ), f"'{test_string}' should not be a valid match for the pattern '{search.pattern}'"
+            assert not bool(search.fullmatch(test_string)), (
+                f"'{test_string}' should not be a valid match for the pattern '{search.pattern}'"
+            )
 
 
 def test_dereferencing():
@@ -347,7 +347,6 @@ def test_dereferencing():
 
 
 def test_namespace_to_dict():
-
     def check_for_namespaces(obj):
         if isinstance(obj, dict):
             [check_for_namespaces(val) for val in obj.values()]
