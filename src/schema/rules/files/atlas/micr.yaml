@@ -18,7 +18,6 @@ microscopy:
     - NLO
     - OCT
     - SPIM
-    - XPCT
   extensions:
     - .ome.tif
     - .ome.btf
@@ -29,7 +28,7 @@ microscopy:
   datatypes:
     - micr
   entities:
-    $ref: meta.templates.raw_base_entities
+    $ref: meta.templates.atlas_base_entities
     sample: required
     acquisition: optional
     stain: optional
