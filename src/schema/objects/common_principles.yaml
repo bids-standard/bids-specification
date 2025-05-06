@@ -6,12 +6,15 @@
 atlas:
   display_name: Atlas
   description: |
-    Knowledge about the brain, generally formalized with reference to a standard space
-    (see the *Template* definition above) by means of spatiotemporal annotations
-    such as landmarks, segmentations, parcellations, or probability maps.
-    One prominent manuscript regarding the specific aspects of atlases,
-    such as their *regional resolution*,
-    is [Bijsterbosch et al. (2020)](https://doi.org/10.1038/s41593-020-00726-z).
+    An *atlas* is structured neuroanatomical or neurofunctional information expressed as spatial annotations,
+    such as anatomical landmarks, segmentations, parcellations, probabilistic maps, or feature maps, 
+    typically defined in relation to a *space* engendered by a specific *template*.
+    Within BIDS, atlases provide standardized spatially-organized knowledge to label, localize,
+    and interpret data features.
+
+    Atlases often rely on or embed templates as their reference framework.
+    In BIDS, templates establish the spatial coordinate frames for atlases,
+    independently of whether or not they are considered part of specific atlases' outcomes.
 data_acquisition:
   display_name: Data acquisition
   description: |
