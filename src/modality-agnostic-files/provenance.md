@@ -29,23 +29,23 @@ This part of the BIDS specification is aimed at describing the provenance of a B
 
 Provenance comes up in many different contexts in BIDS. This specification focuses on representing the processings that were applied to a dataset. These could be for instance:
 
-1.  The raw conversion from DICOM images or other instrument native formats to BIDS layout, details of stimulus presentation and cognitive paradigms, and clinical and neuropsychiatric assessments, each come with their own details of provenance.
-2.  In BIDS derivatives, the consideration of outputs requires knowledge of which inputs from the BIDS dataset were used together with what software was run in what environment and with what parameters.
+-   The raw conversion from DICOM images or other instrument native formats to BIDS layout, details of stimulus presentation and cognitive paradigms, and clinical and neuropsychiatric assessments, each come with their own details of provenance.
+-   In BIDS derivatives, the consideration of outputs requires knowledge of which inputs from the BIDS dataset were used together with what software was run in what environment and with what parameters.
 
 But provenance comes up in other contexts as well, which might be addressed at a later stage:
 
-1.  For datasets and derivatives, provenance can also include details of why the data were collected in the first place covering hypotheses, claims, and prior publications. Provenance can encode support for which claims were supported by future analyses.
-2.  Provenance can involve information about people and institutions involved in a study.
-3.  Provenance records can highlight reuse of datasets while providing appropriate attribution to the original dataset generators as well as future transformers.
+-   For datasets and derivatives, provenance can also include details of why the data were collected in the first place covering hypotheses, claims, and prior publications. Provenance can encode support for which claims were supported by future analyses.
+-   Provenance can involve information about people and institutions involved in a study.
+-   Provenance records can highlight reuse of datasets while providing appropriate attribution to the original dataset generators as well as future transformers.
 
 Provenance can be captured using different mechanisms, but independent of encoding, always reflects transformations by either humans or software. The interpretability of provenance records requires a consistent vocabulary for provenance as well as an expectation for a consistent terminology for the objects being encoded.
 
 ### Principles for encoding provenance in BIDS
 
-1.  Provenance information SHOULD be included in a BIDS dataset when possible.
-2.  If provenance records are included, these MUST be described using the conventions detailed by this specification.
-3.  Provenance records MAY be used to reflect the provenance of a dataset, a collection of files or a specific file at any level of the BIDS hierarchy.
-4.  Provenance information SHOULD be anonymized/de-identified as necessary.
+-   Provenance information SHOULD be included in a BIDS dataset when possible.
+-   If provenance records are included, these MUST be described using the conventions detailed by this specification.
+-   Provenance records MAY be used to reflect the provenance of a dataset, a collection of files or a specific file at any level of the BIDS hierarchy.
+-   Provenance information SHOULD be anonymized/de-identified as necessary.
 
 ### Provenance format
 
@@ -60,10 +60,10 @@ Provenance metadata represents a graph-like structure that can be encoded into [
 ## Provenance records
 Provenance metadata consists in a set or records. There are 4 types of records:
 
--  `Activity`: Activities represent the transformations that have been applied to the data.
--  `Entity`: Each Activity can use Entities as inputs and outputs.
--  `Software`: The Software record describes a software package.
--  `Environment`: Environments specify the software environment in which the provenance record was obtained.
+-   `Activity`: Activities represent the transformations that have been applied to the data.
+-   `Entity`: Each Activity can use Entities as inputs and outputs.
+-   `Software`: The Software record describes a software package.
+-   `Environment`: Environments specify the software environment in which the provenance record was obtained.
 
 ![](../images/prov_records.svg)
 
