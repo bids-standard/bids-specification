@@ -23,7 +23,7 @@ with details of where to find the genetic data and the type of data available.
 
 If information on associated genetic data is supplied as part of a BIDS dataset,
 these "genetic descriptors" are encoded as an additional, REQUIRED entry in the
-[`dataset_description.json`](../modality-agnostic-files.md#dataset_descriptionjson)
+[`dataset_description.json`](../modality-agnostic-files/dataset-description.md#dataset_descriptionjson)
 file.
 
 Datasets linked to a genetic database entry include the following REQUIRED and OPTIONAL
