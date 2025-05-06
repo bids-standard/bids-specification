@@ -152,9 +152,9 @@ session:
 space:
   display_name: Space
   description: |
-    A reference [coordinate system](SPEC_ROOT/appendices/coordinate-systems.md) of analysis
-    engendered by the spatiotemporal distribution of neuroimaging features such as
-    those given by subjects' and templates' data.
+    A space in BIDS is a reference [coordinate system](SPEC_ROOT/appendices/coordinate-systems.md)
+    defined by neuroimaging data, which may originate from an individual participant (native space)
+    or a standardized reference derived from multiple participants (template space).
 suffix:
   display_name: suffix
   description: |
