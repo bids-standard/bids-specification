@@ -104,13 +104,19 @@ extra:
 
 extra_javascript:
   - js/jquery-3.6.0.min.js
+extra_css:
+  - css/tsv.css
 markdown_extensions:
   - toc:
       anchorlink: true
+  - attr_list
   - pymdownx.superfences:
       preserve_tabs: true
       custom_fences:
         - name: tsv
+          class: tsv
+          format: !!python/name:bidsschematools.render.tsv.fence
+        - name: tsvgz
           class: tsv
           format: !!python/name:bidsschematools.render.tsv.fence
   - admonition
