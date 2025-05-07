@@ -62,6 +62,7 @@ jobs:
                 --ignore-url 'https://github.com/bids-standard/bids-specification/(pull|tree)/.*' \
                 --ignore-url 'https://www.incf.org' \
                 --ignore-url 'https://dicomlookup.com/dicomtags/.*' \
+                --ignore-url 'https://www.instagram.com/bidsstandard/' \
                 ~/project/site/*html ~/project/site/*/*.html
             else
               echo "Release PR - do nothing"
