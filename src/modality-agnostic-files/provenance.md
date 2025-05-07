@@ -415,25 +415,6 @@ Template:
 Provenance metadata can be stored inside the sidecar JSON of any BIDS file (or BIDS-Derivatives file) it applies to.
 In this case, the provenance content only refers to the associated data file.
 
-The sidecar JSON naming convention is already defined by BIDS. Here is an example dataset tree:
-```text
-└─ example_dataset
-   ├─ prov/
-   │  └─ prov-dcm2niix_base.json
-   ├─ sub-001/
-   │  └─ ses-01/
-   │     └─ anat/
-   │        ├─ sub-001_ses-01_T1w.nii.gz
-   │        └─ sub-001_ses-01_T1w.json
-   ├─ sub-002/
-   │  └─ ses-01/
-   │     └─ anat/
-   │        ├─ sub-002_ses-01_T1w.nii.gz
-   │        └─ sub-002_ses-01_T1w.json
-   ├─ ...
-   └─ dataset_description.json
-```
-
 Inside the sidecar JSON, the `GenearatedBy` field must describe the `Activity` that generated the data file, with a reference to an existing `Id`:
 
 ```JSON
@@ -448,7 +429,7 @@ Not defining the `SidecarGenearatedBy` field means that the sidecar JSON was gen
 No other field is allowed to describe provenance inside sidecar JSONs.
 
 !!! warning
-    When using sidecar JSON files to describe provenance, the `@context` and `BIDSProvVersion` fields MUST be defined inside a `prov/prov-<label>_base.json` file, e.g.:
+    When using sidecar JSON files to describe provenance, the `@context` and `BIDSProvVersion` fields MUST be defined inside a `prov/prov-<label>_base.json` file:
     ```JSON
     {
      "@context": "https://purl.org/nidash/bidsprov/context.json",
@@ -497,7 +478,7 @@ Here is an example of a `GeneratedByProv` field containing the IRI of an `Entity
 ```
 
 !!! warning
-    When using provenance in `dataset_description.json` files, the `@context` and `BIDSProvVersion` fields MUST be defined inside a `*_base.json` file, e.g.:
+    When using provenance in `dataset_description.json` files, the `@context` and `BIDSProvVersion` fields MUST be defined inside a `*_base.json` file:
     ```JSON
     {
      "@context": "https://purl.org/nidash/bidsprov/context.json",
