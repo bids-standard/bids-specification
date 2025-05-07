@@ -66,7 +66,7 @@ with split files.
 If there are multiple parts of a recording and the optional `scans.tsv` is provided,
 remember to list all files separately in `scans.tsv` and that the entries for the
 `acq_time` column in `scans.tsv` MUST all be identical, as described in
-[Scans file](../modality-agnostic-files.md#scans-file).
+[Scans file](../modality-agnostic-files/data-description.md#scans-file).
 
 The Neuromag/Elekta/Megin system may also produce datasets that require a set of
 `crosstalk` and `calibration` files to be used properly (see also filename templates above).
@@ -234,7 +234,7 @@ A guide for using macros can be found at
 ```
 
 Note that the date and time information SHOULD be stored in the Study key file
-(`scans.tsv`), see [Scans file](../modality-agnostic-files.md#scans-file).
+(`scans.tsv`), see [Scans file](../modality-agnostic-files/data-description.md#scans-file).
 Date time information MUST be expressed as indicated in [Units](../common-principles.md#units)
 
 ## Channels description (`*_channels.tsv`)

@@ -1,218 +1,4 @@
-# Modality agnostic files
-
-## Dataset description
-
-Templates:
-
--   `dataset_description.json`
--   `README[.md|.rst|.txt]`
--   `CITATION.cff`
--   `CHANGES`
--   `LICENSE[.md|.rst|.txt]`
-
-### `dataset_description.json`
-
-<!-- This block generates a description.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___render_text("objects.files.dataset_description.description") }}
-
-Every dataset MUST include this file with the following fields:
-
-<!-- This block generates a metadata table.
-The definitions of these fields can be found in
-  src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_metadata_table(
-   {
-      "Name": "REQUIRED",
-      "BIDSVersion": "REQUIRED",
-      "HEDVersion": "RECOMMENDED",
-      "DatasetLinks": "REQUIRED if [BIDS URIs][] are used",
-      "DatasetType": "RECOMMENDED",
-      "License": "RECOMMENDED",
-      "Authors": "RECOMMENDED if CITATION.cff is not present",
-      "Acknowledgements": "OPTIONAL",
-      "HowToAcknowledge": "OPTIONAL",
-      "Funding": "OPTIONAL",
-      "EthicsApprovals": "OPTIONAL",
-      "ReferencesAndLinks": "OPTIONAL",
-      "DatasetDOI": "OPTIONAL",
-      "GeneratedBy": "RECOMMENDED",
-      "SourceDatasets": "RECOMMENDED",
-   }
-) }}
-
-Each object in the `GeneratedBy` array includes the following REQUIRED, RECOMMENDED
-and OPTIONAL keys:
-
-<!-- This block generates a table describing subfields within a metadata field.
-The definitions of these fields can be found in
-  src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_subobject_table("metadata.GeneratedBy.items") }}
-
-Example:
-
-```JSON
-{
-  "Name": "The mother of all experiments",
-  "BIDSVersion": "1.6.0",
-  "DatasetType": "raw",
-  "License": "CC0",
-  "Authors": [
-    "Paul Broca",
-    "Carl Wernicke"
-  ],
-  "Acknowledgements": "Special thanks to Korbinian Brodmann for help in formatting this dataset in BIDS. We thank Alan Lloyd Hodgkin and Andrew Huxley for helpful comments and discussions about the experiment and manuscript; Hermann Ludwig Helmholtz for administrative support; and Claudius Galenus for providing data for the medial-to-lateral index analysis.",
-  "HowToAcknowledge": "Please cite this paper: https://www.ncbi.nlm.nih.gov/pubmed/001012092119281",
-  "Funding": [
-    "National Institute of Neuroscience Grant F378236MFH1",
-    "National Institute of Neuroscience Grant 5RMZ0023106"
-  ],
-  "EthicsApprovals": [
-    "Army Human Research Protections Office (Protocol ARL-20098-10051, ARL 12-040, and ARL 12-041)"
-  ],
-  "ReferencesAndLinks": [
-    "https://www.ncbi.nlm.nih.gov/pubmed/001012092119281",
-    "Alzheimer A., & Kraepelin, E. (2015). Neural correlates of presenile dementia in humans. Journal of Neuroscientific Data, 2, 234001. doi:1920.8/jndata.2015.7"
-  ],
-  "DatasetDOI": "doi:10.0.2.3/dfjj.10",
-  "HEDVersion": "8.0.0",
-  "GeneratedBy": [
-    {
-      "Name": "reproin",
-      "Version": "0.6.0",
-      "Container": {
-        "Type": "docker",
-        "Tag": "repronim/reproin:0.6.0"
-      }
-    }
-  ],
-  "SourceDatasets": [
-    {
-      "URL": "s3://dicoms/studies/correlates",
-      "Version": "April 11 2011"
-    }
-  ]
-}
-```
-
-#### Derived dataset and pipeline description
-
-As for any BIDS dataset, a `dataset_description.json` file MUST be found at the
-top level of every derived dataset:
-`<dataset>/derivatives/<pipeline_name>/dataset_description.json`.
-
-In contrast to raw BIDS datasets, derived BIDS datasets MUST include a
-`GeneratedBy` key:
-
-<!-- This block generates a metadata table.
-The definitions of these fields can be found in
-  src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_metadata_table(
-   {
-      "GeneratedBy": "REQUIRED"
-   }
-) }}
-
-If a derived dataset is stored as a subdirectory of the raw dataset, then the `Name` field
-of the first `GeneratedBy` object MUST be a substring of the derived dataset directory name.
-That is, in a directory `<dataset>/derivatives/<pipeline>[-<variant>]/`, the first
-`GeneratedBy` object should have a `Name` of `<pipeline>`.
-
-Example:
-
-```JSON
-{
-  "Name": "FMRIPREP Outputs",
-  "BIDSVersion": "1.6.0",
-  "DatasetType": "derivative",
-  "GeneratedBy": [
-    {
-      "Name": "fmriprep",
-      "Version": "1.4.1",
-      "Container": {
-        "Type": "docker",
-        "Tag": "poldracklab/fmriprep:1.4.1"
-        }
-    },
-    {
-      "Name": "Manual",
-      "Description": "Re-added RepetitionTime metadata to bold.json files"
-    }
-  ],
-  "SourceDatasets": [
-    {
-      "DOI": "doi:10.18112/openneuro.ds000114.v1.0.1",
-      "URL": "https://openneuro.org/datasets/ds000114/versions/1.0.1",
-      "Version": "1.0.1"
-    }
-  ]
-}
-```
-
-### `README`
-
-<!-- This block generates a file tree.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___render_text("objects.files.README.description") }}
-
-### `CITATION.cff`
-
-<!-- This block generates a file tree.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___render_text("objects.files.CITATION.description") }}
-
-For most redundant fields between `CITATION.cff` and `dataset_description.json`,
-the `CITATION.cff` SHOULD take precedence.
-To avoid inconsistency, metadata present in `CITATION.cff` SHOULD NOT be
-be included in `dataset_description.json`, with the exception of `Name` and
-`DatasetDOI`, to ensure that `CITATION.cff`-unaware tools can generate
-references to the dataset.
-In particular, if `CITATION.cff` is present,
-the `"Authors"` field of `dataset_description.json` MUST be omitted,
-and the `"HowToAcknowledge"`, `"License"` and `"ReferencesAndLinks"` SHOULD be omitted
-in favor of the `CITATION.cff` fields `message`/`preferred-citation`, `license` and
-`references`.
-
-### `CHANGES`
-
-<!-- This block generates a description.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___render_text("objects.files.CHANGES.description") }}
-
-Example:
-
-```Text
-1.0.1 2015-08-27
-  - Fixed slice timing information.
-
-1.0.0 2015-08-17
-  - Initial release.
-```
-
-### `LICENSE`
-
-<!-- This block generates a description.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___render_text("objects.files.LICENSE.description") }}
+# Data description
 
 ## Participants file
 
@@ -255,7 +41,7 @@ sub-03	33	F	n/a	read
 
 It is RECOMMENDED to accompany each `participants.tsv` file with a sidecar
 `participants.json` file to describe the TSV column names and properties of their values (see also
-the [section on tabular files](common-principles.md#tabular-files)).
+the [section on tabular files](../common-principles.md#tabular-files)).
 Such sidecar files are needed to interpret the data, especially so when
 optional columns are defined beyond `age`, `sex`, `handedness`, `species`, `strain`,
 and `strain_rrid`, such as `group` in this example, or when a different
@@ -331,7 +117,7 @@ sample-05	sub-02	tissue	n/a
 
 It is RECOMMENDED to accompany each `samples.tsv` file with a sidecar
 `samples.json` file to describe the TSV column names and properties of their values
-(see also the [section on tabular files](common-principles.md#tabular-files)).
+(see also the [section on tabular files](../common-principles.md#tabular-files)).
 
 `samples.json` example:
 
@@ -374,7 +160,7 @@ in the BIDS dataset and `participants.tsv` file.
 
 As with all other tabular data, the additional phenotypic information files
 MAY be accompanied by a JSON file describing the columns in detail
-(see [Tabular files](common-principles.md#tabular-files)).
+(see [Tabular files](../common-principles.md#tabular-files)).
 
 In addition to the column descriptions, the JSON file MAY contain the following fields:
 
@@ -459,12 +245,12 @@ and not the individual files in that directory.
 Some neural recordings consist of multiple parts,
 that span several files,
 but that share the same extension.
-For example in [entity-linked file collections](./common-principles.md#entity-linked-file-collections),
+For example in [entity-linked file collections](../common-principles.md#entity-linked-file-collections),
 commonly used for qMRI,
 where recordings may be linked through entities such as `echo` and `part`
 (using `.nii` or `.nii.gz` extensions).
 For another example consider the case of large files in `.fif` format that are linked through the `split` entity
-(see [Split files](./appendices/meg-file-formats.md#split-files)).
+(see [Split files](../appendices/meg-file-formats.md#split-files)).
 Such recordings MUST be documented with one row per file
 (unlike the case of multi-file file formats described above).
 
@@ -482,7 +268,7 @@ For example vigilance questionnaire score administered after a resting
 state scan.
 All such included additional fields SHOULD be documented in an accompanying
 `_scans.json` file that describes these fields in detail
-(see [Tabular files](common-principles.md#tabular-files)).
+(see [Tabular files](../common-principles.md#tabular-files)).
 
 Example `_scans.tsv`:
 
@@ -510,7 +296,7 @@ In case of multiple sessions there is an option of adding additional
 In such case one file per participant SHOULD be added.
 These files MUST include a `session_id` column and describe each session by one and only one row.
 Column names in `sessions.tsv` files MUST be different from group level participant key column names in the
-[`participants.tsv` file](./modality-agnostic-files.md#participants-file).
+[`participants.tsv` file](./data-description.md#participants-file).
 
 <!-- This block generates a columns table.
 The definitions of these fields can be found in
@@ -528,20 +314,3 @@ ses-predrug	2009-06-15T13:45:30	120
 ses-postdrug	2009-06-16T13:45:30	100
 ses-followup	2009-06-17T13:45:30	110
 ```
-
-## Code
-
-Template: `code/*`
-
-Source code of scripts that were used to prepare the dataset MAY be stored here.
-Examples include deidentification or defacing of the data, or
-the conversion from the format of the source data to the BIDS format
-(see [source vs. raw vs. derived data](./common-principles.md#source-vs-raw-vs-derived-data)).
-Extra care should be taken to avoid including original IDs or
-any identifiable information with the source code.
-There are no limitations or recommendations on the language and/or
-code organization of these scripts at the moment.
-
-<!-- Link Definitions -->
-
-[bids uris]: ./common-principles.md#bids-uri
