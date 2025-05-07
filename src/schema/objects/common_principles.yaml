@@ -43,10 +43,12 @@ data_type:
 
         14. `mrs` (magnetic resonance spectroscopy)
 
-        15. `phenotype` (participant-level measurement and survey data)
+        15. `phenotype` (measurement and survey data)
 
     For files that are subject- and session- specific, the data type directory
     is nested inside those directories.
+    `phenotype` data files are aggregated across subjects and sessions,
+    and so the `phenotype/` directory is placed in the dataset root.
 
 dataset:
   display_name: Dataset
