@@ -20,6 +20,7 @@ nav:
           - Near-Infrared Spectroscopy: modality-specific-files/near-infrared-spectroscopy.md
           - Motion: modality-specific-files/motion.md
           - Magnetic Resonance Spectroscopy: modality-specific-files/magnetic-resonance-spectroscopy.md
+          - Electromyography: modality-specific-files/electromyography.md
       - Derivatives:
           - BIDS Derivatives: derivatives/introduction.md
           - Common data types and metadata: derivatives/common-data-types.md
