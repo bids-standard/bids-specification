@@ -25,6 +25,7 @@ from __future__ import annotations
 
 import json
 import logging
+import os
 from collections import OrderedDict
 from pathlib import Path
 from typing import Optional
@@ -45,8 +46,8 @@ LOG_LEVEL = "DEBUG"  # 'DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'
 # Set to True to update the avatars
 # update with your GitHub username and path to a file with GitHub token
 UPDATE_AVATARS = False
-GH_USERNAME = "Remi-Gau"
-TOKEN_FILE = "/home/remi/Documents/tokens/gh_user.txt"
+GH_USERNAME = os.environ.get("GH_USERNAME")
+GH_TOKEN = os.environ.get("GH_TOKEN")
 # if you not want traceback from rich
 # https://rich.readthedocs.io/en/stable/traceback.html
 # set this to False
@@ -488,11 +489,6 @@ def return_author_list_for_cff(tributors_file: Path) -> list[dict[str, str]]:
 
 
 def main():
-    token = None
-    if TOKEN_FILE is not None:
-        with open(Path(TOKEN_FILE)) as f:
-            token = f.read().strip()
-
     log.debug(f"Reading: {INPUT_FILE}")
     df = pd.read_csv(INPUT_FILE, sep="\t", encoding="utf8")
     log.debug(f"\n{df.head()}")
@@ -563,7 +559,7 @@ def main():
 
         if UPDATE_AVATARS and "avatar_url" not in this_contributor:
             if avatar_url := get_gh_avatar(
-                this_contributor["login"], GH_USERNAME, token
+                this_contributor["login"], GH_USERNAME, GH_TOKEN
             ):
                 this_contributor["avatar_url"] = avatar_url
 
