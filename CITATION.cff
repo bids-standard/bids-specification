@@ -1480,7 +1480,8 @@ authors:
     website: https://github.com/ezemikulan
   - given-names: josator2
     website: https://github.com/josator2
-  - given-names: mathieu_guay-paquet
+  - given-names: Mathieu
+    family-names: Guay-Paquet 
     affiliation: Montreal, Quebec, Canada
     email: mathieu.guay-paquet@polymtl.ca
   - given-names: monkeyman192
