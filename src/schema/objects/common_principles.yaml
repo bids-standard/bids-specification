@@ -13,7 +13,6 @@ data_type:
   description: |
     A functional group of different types of data.
     Data files are contained in a directory named for the data type.
-    In raw datasets, the data type directory is nested inside subject and (optionally) session directories.
     BIDS defines the following data types:
 
         1.  `func` (task based and resting state functional MRI)
@@ -43,6 +42,13 @@ data_type:
         13. `motion` (motion)
 
         14. `mrs` (magnetic resonance spectroscopy)
+
+        15. `phenotype` (measurement and survey data)
+
+    For files that are subject- and session- specific, the data type directory
+    is nested inside those directories.
+    `phenotype` data files are aggregated across subjects and sessions,
+    and so the `phenotype/` directory is placed in the dataset root.
 
 dataset:
   display_name: Dataset
