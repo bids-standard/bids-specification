@@ -152,6 +152,13 @@
         "orcid": "0000-0001-9791-4404",
         "publish_email": true
     },
+    "po09i": {
+        "contributions": [
+            "doc"
+        ],
+        "email": "po09i@hotmail.com",
+        "name": "Alexandre D'Astous"
+    },
     "alexandre_hutton": {
         "contributions": [
             "doc"
