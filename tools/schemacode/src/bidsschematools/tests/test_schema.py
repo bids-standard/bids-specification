@@ -1,7 +1,10 @@
 """Tests for the bidsschematools package."""
 
+import json
 import os
+import subprocess
 from collections.abc import Mapping
+from importlib.resources import files
 
 import pytest
 from jsonschema.exceptions import ValidationError
@@ -85,8 +88,8 @@ def test_formats(schema_obj):
             "2022-01-05T13:16:30",
             "2022-01-05T13:16:30.5",  # subsecond resolution is allowed
             "2022-01-05T13:16:30.000005",  # up to 6 decimal points
-            "2022-01-05T13:16:30UTC",  # timezones are allowed
-            "2022-01-05T13:16:30.05UTC",
+            "2022-01-05T13:16:30Z",  # UTC indicator is allowed
+            "2022-01-05T13:16:30.05Z",
         ],
         "time": [
             "13:16:30",
@@ -133,7 +136,7 @@ def test_formats(schema_obj):
         ],
         "datetime": [
             "2022-01-05T13:16:30.1000005",  # too many decimal points
-            "2022-01-05T13:16:30U",  # time zone too short
+            "2022-01-05T13:16:30U",  # Only Z is permitted
             "2022-01-05T13:16:30UTCUTC",  # time zone too long
             "2022-01-05T34:10:10",  # invalid time
         ],
@@ -363,6 +366,41 @@ def test_valid_schema():
     """Test that a valid schema does not raise an error."""
     namespace = schema.load_schema()
     schema.validate_schema(namespace)
+
+
+@pytest.mark.parametrize("regex_variant", ["default", "nonunicode", "python"])
+def test_valid_schema_with_check_jsonschema(tmp_path, regex_variant):
+    """
+    Test that the BIDS schema is valid against the metaschema when validation is done
+    using the `check-jsonschema` CLI
+    """
+    bids_schema = schema.load_schema().to_dict()
+    metaschema_path = str(files("bidsschematools.data").joinpath("metaschema.json"))
+
+    # Save BIDS schema to a temporary file
+    bids_schema_path = tmp_path / "bids_schema.json"
+    bids_schema_path.write_text(json.dumps(bids_schema))
+
+    # Invoke the check-jsonschema to validate the BIDS schema
+    try:
+        subprocess.run(
+            [
+                "check-jsonschema",
+                "--regex-variant",
+                regex_variant,
+                "--schemafile",
+                metaschema_path,
+                str(bids_schema_path),
+            ],
+            stdout=subprocess.PIPE,  # Capture stdout
+            stderr=subprocess.STDOUT,  # Set stderr to into stdout
+            text=True,
+            check=True,
+        )
+    except subprocess.CalledProcessError as e:
+        pytest.fail(
+            f"check-jsonschema failed with code {e.returncode}:\n{e.stdout}", pytrace=False
+        )
 
 
 def test_add_legal_field():

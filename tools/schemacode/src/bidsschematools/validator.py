@@ -43,7 +43,7 @@ def _bids_schema_versioncheck(schema_dir, compatibility=VALIDATOR_SCHEMA_COMPATI
 
     schema_version_file = os.path.join(schema_dir, "SCHEMA_VERSION")
     try:
-        with open(schema_version_file, "r") as f:
+        with open(schema_version_file) as f:
             schema_version = f.readlines()[0].strip()
     except FileNotFoundError:
         lgr.warning(
@@ -334,7 +334,7 @@ def select_schema_path(
 
     Notes
     -----
-    * This is a purely aspirational function, and is pre-empted by logic inside
+    * This is a purely aspirational function, and is preempted by logic inside
         `bst.validator.validate_bids()`, and further contingent on better schema stability and
         ongoing work in: https://github.com/bids-standard/bids-schema
     * The default `bids_reference_root` value is based on the FHS and ideally should be enforced.
@@ -429,7 +429,7 @@ def validate_all(
             # We need to record the actual expressions we query.
             _regex_entry = deepcopy(regex_entry)
             _regex_entry.update({"regex": target_regex})
-            lgr.debug("\t* `%s`, with pattern: `%`", target_path, target_regex)
+            lgr.debug("\t* `%s`, with pattern: `%s`", target_path, target_regex)
             matched = re.match(target_regex, target_path)
             itemwise_result = {}
             itemwise_result["path"] = target_path

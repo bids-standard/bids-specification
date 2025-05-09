@@ -318,11 +318,11 @@ If recorded once per participant, these data SHOULD be included in the
 
 For example:
 
-```Text
-participant_id body_weight
-sub-01 58
-sub-02 96
-sub-03 72
+```tsv
+participant_id	body_weight
+sub-01	58
+sub-02	96
+sub-03	72
 ```
 
 If multiple measurements are made, these data SHOULD be included in the
@@ -330,10 +330,10 @@ If multiple measurements are made, these data SHOULD be included in the
 
 For example:
 
-```Text
-session_id body_weight
-ses-01 58
-ses-02 59
+```tsv
+session_id	body_weight
+ses-01	58
+ses-02	59
 ```
 
 ## Blood recording data
