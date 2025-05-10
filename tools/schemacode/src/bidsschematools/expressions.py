@@ -1,5 +1,4 @@
-"""Parsing utilities for BIDS Schema expression language
-"""
+"""Parsing utilities for BIDS Schema expression language"""
 
 from functools import partial
 

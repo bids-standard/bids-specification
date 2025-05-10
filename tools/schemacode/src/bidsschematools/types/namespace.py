@@ -168,7 +168,6 @@ class Namespace(MutableMapping):
         self._properties = dict(*args, **kwargs)
 
     def to_dict(self) -> dict:
-
         def _to_dict(obj):
             if isinstance(obj, Namespace):
                 return {k: _to_dict(v) for k, v in obj._properties.items()}
