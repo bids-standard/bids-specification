@@ -8,7 +8,7 @@ from collections.abc import Iterable, Mapping
 from copy import deepcopy
 from functools import lru_cache
 
-from . import __bids_version__, __version__, data, utils
+from . import data, utils
 from .types import Namespace
 
 lgr = utils.get_logger()
@@ -231,9 +231,7 @@ def export_schema(schema):
     json : str
         The schema serialized as a JSON string.
     """
-    versioned = Namespace.build({"schema_version": __version__, "bids_version": __bids_version__})
-    versioned.update(schema)
-    return versioned.to_json()
+    return schema.to_json()
 
 
 def filter_schema(schema, **kwargs):
