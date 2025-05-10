@@ -7,6 +7,7 @@ import tempfile
 from collections.abc import Iterable, Mapping
 from copy import deepcopy
 from functools import lru_cache
+from pathlib import Path
 
 from . import data, utils
 from .types import Namespace
@@ -201,8 +202,19 @@ def load_schema(schema_path=None):
     This function is cached, so it will only be called once per schema path.
     """
     if schema_path is None:
-        schema_path = data.load.readable("schema")
+        # Default to bundled JSON, fall back to bundled YAML directory
+        schema_path = data.load.readable("schema.json")
+        if not schema_path.is_file():
+            schema_path = data.load.readable("schema")
         lgr.info("No schema path specified, defaulting to the bundled schema, `%s`.", schema_path)
+    elif isinstance(schema_path, str):
+        schema_path = Path(schema_path)
+
+    # JSON file: just load it
+    if schema_path.is_file():
+        return Namespace.from_json(schema_path.read_text())
+
+    # YAML directory: load, dereference and set versions
     schema = Namespace.from_directory(schema_path)
     if not schema.objects:
         raise ValueError(f"objects subdirectory path not found in {schema_path}")
