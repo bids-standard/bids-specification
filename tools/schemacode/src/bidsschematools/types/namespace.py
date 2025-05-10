@@ -258,7 +258,9 @@ class Namespace(MutableMapping):
     @classmethod
     def from_directory(cls, path, fmt="yaml"):
         if fmt == "yaml":
-            return cls.build(_read_yaml_dir(Path(path)))
+            if isinstance(path, str):
+                path = Path(path)
+            return cls.build(_read_yaml_dir(path))
         raise NotImplementedError(f"Unknown format: {fmt}")
 
     def to_json(self, **kwargs) -> str:

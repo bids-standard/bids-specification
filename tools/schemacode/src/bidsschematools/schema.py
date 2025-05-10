@@ -3,20 +3,12 @@
 import json
 import os
 import re
-import sys
 import tempfile
 from collections.abc import Iterable, Mapping
 from copy import deepcopy
 from functools import lru_cache
 
-from jsonschema import ValidationError, validate
-
-if sys.version_info < (3, 9):
-    from importlib_resources import files
-else:
-    from importlib.resources import files
-
-from . import __bids_version__, __version__, utils
+from . import __bids_version__, __version__, data, utils
 from .types import Namespace
 
 lgr = utils.get_logger()
@@ -209,7 +201,7 @@ def load_schema(schema_path=None):
     This function is cached, so it will only be called once per schema path.
     """
     if schema_path is None:
-        schema_path = utils.get_bundled_schema_path()
+        schema_path = data.load.readable("schema")
         lgr.info("No schema path specified, defaulting to the bundled schema, `%s`.", schema_path)
     schema = Namespace.from_directory(schema_path)
     if not schema.objects:
@@ -298,7 +290,17 @@ def filter_schema(schema, **kwargs):
 
 def validate_schema(schema: Namespace):
     """Validate a schema against the BIDS metaschema."""
-    metaschema = json.loads(files("bidsschematools.data").joinpath("metaschema.json").read_text())
+    try:
+        from jsonschema import ValidationError, validate
+    except ImportError as e:
+        raise RuntimeError(
+            "The `jsonschema` package is required to validate schemas. "
+            "Please install it with `pip install jsonschema`."
+        ) from e
+
+    from .data import load
+
+    metaschema = json.loads(load.readable("metaschema.json").read_text())
 
     # validate is put in this try/except clause because the error is sometimes too long to
     # print in the terminal

@@ -8,12 +8,12 @@ from jsonschema.exceptions import ValidationError
 
 from bidsschematools import __bids_version__, schema, types
 
-from ..data import load_resource
+from ..data import load
 
 
 def test__get_bids_version(tmp_path):
     # Is the version being read in correctly?
-    schema_path = str(load_resource("schema"))
+    schema_path = str(load("schema"))
     bids_version = schema._get_bids_version(schema_path)
     assert bids_version == __bids_version__
 
