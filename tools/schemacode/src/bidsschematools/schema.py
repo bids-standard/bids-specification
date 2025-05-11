@@ -3,7 +3,6 @@
 import json
 import os
 import re
-import tempfile
 from collections.abc import Iterable, Mapping
 from copy import deepcopy
 from functools import lru_cache
@@ -317,10 +316,12 @@ def validate_schema(schema: Namespace):
     try:
         validate(instance=schema.to_dict(), schema=metaschema)
     except ValidationError as e:
+        import tempfile
+
         with tempfile.NamedTemporaryFile(
             prefix="schema_error_", suffix=".txt", delete=False, mode="w+"
         ) as file:
             file.write(str(e))
             # ValidationError does not have an add_note method yet
             # e.add_note(f"See {file.name} for full error log.")
-            raise e
+        raise e
