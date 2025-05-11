@@ -36,7 +36,7 @@ def get_logger(name=None, level=None):
     logging.Logger
         logger object.
     """
-    logger = logging.getLogger("bidsschematools" + (".%s" % name if name else ""))
+    logger = logging.getLogger("bidsschematools" + (f".{name}" if name else ""))
     # If explicitly instructed via env var -- set log level
     if log_level := os.getenv("BIDS_SCHEMA_LOG_LEVEL", level):
         set_logger_level(logger, log_level)
@@ -79,6 +79,6 @@ def set_logger_level(lgr, level):
     elif level.isalpha():
         level = getattr(logging, level)
     else:
-        lgr.warning("Do not know how to treat loglevel %s" % level)
+        lgr.warning("Do not know how to treat loglevel %s", level)
         return
     lgr.setLevel(level)

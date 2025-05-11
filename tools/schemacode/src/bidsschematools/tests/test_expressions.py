@@ -1,6 +1,5 @@
 from collections.abc import Mapping
 from functools import singledispatch
-from typing import Union
 
 import pytest
 from pyparsing.exceptions import ParseException
@@ -147,7 +146,7 @@ def test_test_valid_sidecar_field():
 
 
 @singledispatch
-def find_names(node: Union[ASTNode, str]):
+def find_names(node: ASTNode | str):
     # Walk AST nodes
     if isinstance(node, BinOp):
         yield from find_names(node.lh)

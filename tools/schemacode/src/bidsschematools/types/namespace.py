@@ -13,7 +13,7 @@ from pathlib import Path
 import yaml
 
 
-def _expand_dots(entry: ty.Tuple[str, ty.Any]) -> ty.Tuple[str, ty.Any]:
+def _expand_dots(entry: tuple[str, ty.Any]) -> tuple[str, ty.Any]:
     # Helper function for expand
     key, val = entry
     if "." in key:
@@ -220,7 +220,7 @@ class Namespace(MutableMapping):
         except KeyError:
             raise err
 
-    def _get_mapping(self, key: str) -> ty.Tuple[Mapping, str]:
+    def _get_mapping(self, key: str) -> tuple[Mapping, str]:
         subkeys = key.split(".")
         mapping = self._properties
         for subkey in subkeys[:-1]:
