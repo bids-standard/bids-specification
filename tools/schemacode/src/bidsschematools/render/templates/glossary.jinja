@@ -1,0 +1,28 @@
+
+<a name="{{ obj['key'] }}"></a>
+## {{ obj_key }}
+
+**Name**: {{ obj_def['display_name'] }}
+
+**Type**: {{ obj['type'].title() }}
+{% if obj["type"] == "suffix" %}
+**Format**: `<entities>_{{ obj_def['value'] }}.<extension>`
+{% elif obj["type"] == "extension" %}
+**Format**: `<entities>_<suffix>{{ obj_def['value'] }}`
+{% elif obj["type"] == "format" %}
+**Regular expression**: `{{ obj_def['pattern'] }}`
+{% endif %}
+
+{% if levels %}
+**Allowed values**: `{% for level in levels %}{{ level }}{% if not loop.last %}`, `{% endif %}{% endfor %}`
+{% endif %}
+
+**Description**:
+{{ obj_desc }}
+
+{% if reduced_obj_def %}
+**Schema information**:
+```yml
+{{ reduced_obj_def }}
+```
+{% endif %}

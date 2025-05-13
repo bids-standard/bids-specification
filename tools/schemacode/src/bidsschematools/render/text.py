@@ -1,6 +1,9 @@
 """Functions for rendering portions of the schema as text."""
 
+from pathlib import Path
+
 import yaml
+from jinja2 import Template
 from markdown_it import MarkdownIt
 
 from bidsschematools.render import utils
@@ -26,6 +29,8 @@ TYPE_CONVERTER = {
     "suffixes": "suffix",
 }
 
+TEMPLATE_DIR = Path(__file__).parent / "templates"
+
 
 def make_entity_definitions(schema, src_path=None):
     """Generate definitions and other relevant information for entities in the specification.
@@ -50,37 +55,32 @@ def make_entity_definitions(schema, src_path=None):
     text = ""
     for entity in entity_order:
         entity_info = entity_definitions[entity]
-        entity_text = _make_entity_definition(entity, entity_info)
-        text += "\n" + entity_text
+        text += _make_entity_definition(entity_info)
 
-    text = text.replace("SPEC_ROOT", utils.get_relpath(src_path))
-    return text
+    return text.replace("SPEC_ROOT", utils.get_relpath(src_path))
 
 
-def _make_entity_definition(entity, entity_info):
-    """Describe an entity."""
-    entity_shorthand = entity_info["name"]
-    text = ""
-    text += f"## {entity_shorthand}"
-    text += "\n\n"
-    text += f"**Full name**: {entity_info['display_name']}"
-    text += "\n\n"
-    text += f"**Format**: `{entity_info['name']}-<{entity_info.get('format', 'label')}>`"
-    text += "\n\n"
-    if "enum" in entity_info.keys():
-        allowed_values = []
+def _make_entity_definition(entity_info):
+    """Generate markdown description for an entity."""
+    # Prepare data for template rendering
+    entity_info.format = entity_info.get("format", "label")
+
+    # Prepare enum values if present
+    allowed_values = []
+    if "enum" in entity_info:
         for value in entity_info["enum"]:
             if isinstance(value, str):
                 allowed_values.append(value)
-            else:
+            elif isinstance(value, dict) and "name" in value:
                 allowed_values.append(value["name"])
+            else:
+                allowed_values.append(str(value))  # Fallback to string
+    entity_info.allowed_values = allowed_values
 
-        text += f"**Allowed values**: `{'`, `'.join(allowed_values)}`"
-        text += "\n\n"
-
-    description = entity_info["description"]
-    text += f"**Definition**: {description}"
-    return text
+    with (TEMPLATE_DIR / "entity_definition.jinja").open("r") as f:
+        template_str = f.read()
+    template = Template(template_str)
+    return template.render(entity=entity_info)
 
 
 def make_glossary(schema, src_path=None):
@@ -103,6 +103,9 @@ def make_glossary(schema, src_path=None):
     """
     all_objects = {}
     schema = schema.to_dict()
+
+    with (TEMPLATE_DIR / "glossary.jinja").open("r") as f:
+        template_str = f.read()
 
     for group, group_objects in schema["objects"].items():
         group_obj_keys = list(group_objects.keys())
@@ -142,27 +145,20 @@ def make_glossary(schema, src_path=None):
     text = ""
     for obj_key in sorted(all_objects.keys()):
         obj = all_objects[obj_key]
-        obj_marker = obj["key"]
+
         obj_def = obj.get("definition", None)
         if obj_def is None:
-            raise ValueError(f"{obj_marker} has no definition.")
+            raise ValueError(f"{obj['key']} has no definition.")
 
         # Clean up the text description
         obj_desc = obj_def.get("description", None)
         if obj_desc is None:
-            raise ValueError(f"{obj_marker} has no description.")
+            raise ValueError(f"{obj['key']} has no description.")
+        obj_desc = MarkdownIt().render(f"{obj_desc}")
 
-        text += f'\n<a name="{obj_marker}"></a>'
-        text += f"\n## {obj_key}\n\n"
-        text += f"**Name**: {obj_def['display_name']}\n\n"
-        text += f"**Type**: {obj['type'].title()}\n\n"
-
-        if obj["type"] == "suffix":
-            text += f"**Format**: `<entities>_{obj_def['value']}.<extension>`\n\n"
-        elif obj["type"] == "extension":
-            text += f"**Format**: `<entities>_<suffix>{obj_def['value']}`\n\n"
-        elif obj["type"] == "format":
-            text += f"**Regular expression**: `{obj_def['pattern']}`\n\n"
+        levels = list(obj_def.get("enum", []) or obj_def.get("definition", {}).get("Levels", {}))
+        if levels:
+            levels = [level["name"] if isinstance(level, dict) else level for level in levels]
 
         keys_to_drop = [
             "description",
@@ -173,20 +169,19 @@ def make_glossary(schema, src_path=None):
             "enum",
             "definition",
         ]
-        levels = list(obj_def.get("enum", []) or obj_def.get("definition", {}).get("Levels", {}))
-        if levels:
-            levels = [level["name"] if isinstance(level, dict) else level for level in levels]
-            text += f"**Allowed values**: `{'`, `'.join(levels)}`\n\n"
-
-        # Convert description into markdown and append to text
-        obj_desc = MarkdownIt().render(f"**Description**:\n{obj_desc}")
-        text += f"{obj_desc}\n\n"
-
         reduced_obj_def = {k: v for k, v in obj_def.items() if k not in keys_to_drop}
-
         if reduced_obj_def:
             reduced_obj_def = yaml.dump(reduced_obj_def)
-            text += f"**Schema information**:\n```yaml\n{reduced_obj_def}\n```"
+
+        template = Template(template_str)
+        text += template.render(
+            obj_key=obj_key,
+            obj=obj,
+            obj_def=obj_def,
+            obj_desc=obj_desc,
+            levels=levels,
+            reduced_obj_def=reduced_obj_def,
+        )
 
     # Spec internal links need to be replaced
     text = text.replace("SPEC_ROOT", utils.get_relpath(src_path))
@@ -549,21 +544,19 @@ def define_common_principles(schema, src_path=None):
     string : str
         The definitions of the common principles in a multiline string.
     """
-    string = ""
+    # reorder the principles according to the order
     common_principles = schema["objects"]["common_principles"]
     order = schema["rules"]["common_principles"]
-    for i_prin, principle in enumerate(order):
-        principle_name = common_principles[principle]["display_name"]
-        substring = (
-            f"{i_prin + 1}. **{principle_name}** - {common_principles[principle]['description']}"
-        )
-        string += substring
-        if i_prin < len(order) - 1:
-            string += "\n\n"
+    principles = []
+    for principle in order:
+        principles.append(common_principles.get(principle))
 
-    string = string.replace("SPEC_ROOT", utils.get_relpath(src_path))
+    with (TEMPLATE_DIR / "common_principle.jinja").open("r") as f:
+        template_str = f.read()
+    template = Template(template_str)
+    text = template.render(principles=principles)
 
-    return string
+    return text.replace("SPEC_ROOT", utils.get_relpath(src_path))
 
 
 def define_allowed_top_directories(schema, src_path=None) -> str:
