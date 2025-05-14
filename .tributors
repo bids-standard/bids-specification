@@ -60,7 +60,8 @@
         ],
         "email": "agahkarakuzu@gmail.com",
         "name": "Agah Karakuzu",
-        "orcid": "0000-0001-7283-271X"
+        "orcid": "0000-0001-7283-271X",
+        "bio": "Not available, theo is on my laptop."
     },
     "agnese_zazio": {
         "contributions": [
@@ -584,7 +585,8 @@
         "email": "christine.rogers@mcgill.ca",
         "github": "christinerogers",
         "name": "Christine Rogers",
-        "orcid": "0000-0002-9893-8448"
+        "orcid": "0000-0002-9893-8448",
+        "bio": "LORIS team |\r\nMCIN: McGill Centre for Integrative Neuroscience |\r\nMontreal Neurological Institute |\r\nMcGill University, Canada"
     },
     "ChristophePhillips": {
         "affiliation": "University of Liège, GIGA CRC in vivo imaging, Liège, 4000, Belgium",
@@ -942,7 +944,9 @@
         "contributions": [
             "code"
         ],
-        "name": "Erdal Karaca"
+        "name": "Erdal Karaca",
+        "email": "erdal.karaca.de@gmail.com",
+        "bio": "I am a freelance Software Engineer with backgrounds from Geoinformatics 🌍 and Neuroinformatics 🧠."
     },
     "ericearl": {
         "affiliation": "NIMH Data Science & Sharing Team, Bethesda, MD, 20892, USA",
@@ -2119,7 +2123,8 @@
         "github": "markmikkelsen",
         "name": "Mark Mikkelsen",
         "orcid": "0000-0002-0349-3782",
-        "publish_email": true
+        "publish_email": true,
+        "bio": "Assistant Professor of Neuroimaging in Radiology"
     },
     "markus_morawski": {
         "affiliation": "Universität Leipzig",
@@ -2938,7 +2943,8 @@
         "github": "sjeung",
         "name": "Sein Jeung",
         "orcid": "0000-0002-0247-087X",
-        "publish_email": true
+        "publish_email": true,
+        "bio": "doctoral researcher at Berlin Mobile Brain-body Imaging Lab, TUB / Doellerlab, MPI CBS Leipzig"
     },
     "neuromechanist": {
         "affiliation": "Swartz Center for Computational Neuroscience, Institute for Neural Computation, University of California San Diego",
@@ -2950,7 +2956,8 @@
         "email": "shirazi@ieee.org",
         "github": "neuromechanist",
         "name": "Seyed Yahya Shirazi",
-        "orcid": "0000-0001-5557-259X"
+        "orcid": "0000-0001-5557-259X",
+        "bio": "Assistant Project Scientist @sccn "
     },
     "shashank_bansal": {
         "contributions": [
@@ -3008,7 +3015,8 @@
         ],
         "email": "stefan.appelhoff@mailbox.org",
         "name": "Stefan Appelhoff",
-        "orcid": "0000-0001-8002-0877"
+        "orcid": "0000-0001-8002-0877",
+        "bio": "Senior Biosignal Data Analyst @Zanderlabs"
     },
     "stefanie_de_smet": {
         "contributions": [
@@ -3505,7 +3513,8 @@
         ],
         "email": "mathieu.guay-paquet@polymtl.ca",
         "github": "mguaypaq",
-        "name": "Mathieu Guay-Paquet"
+        "name": "Mathieu Guay-Paquet",
+        "blog": "https://www.pointedset.ca/"
     },
     "monkeyman192": {
         "blog": "https://github.com/monkeyman192",
@@ -3522,5 +3531,77 @@
         ],
         "name": "Étienne Bergeron",
         "orcid": "0000-0002-8329-7852"
+    },
+    "bids-maintenance": {
+        "name": "BIDS Maintenance User",
+        "bio": "Doing work here-and-there for @bids-standard",
+        "blog": "https://bids.neuroimaging.io/"
+    },
+    "CGSchwarzMayo": {
+        "name": "Christopher G. Schwarz",
+        "email": "schwarz.christopher@mayo.edu",
+        "bio": "Assistant Professor of Radiology,\r\nMayo Clinic, Rochester, MN, USA"
+    },
+    "candleindark": {
+        "name": "Isaac To"
+    },
+    "patrick-g-h": {
+        "name": "patrick-g-h"
+    },
+    "qian-chu": {
+        "name": "Qian Chu",
+        "bio": "PhD Candidate, Max Planck - University of Toronto Centre for Neural Science and Technology",
+        "blog": "https://qian-chu.github.io/"
+    },
+    "bendichter": {
+        "name": "Ben Dichter",
+        "email": "ben.dichter@gmail.com",
+        "bio": "Founder of @CatalystNeuro. \r\n\r\nComputational neuroscience, data standardization, @NeurodataWithoutBorders, data management and visualization, open science",
+        "blog": "bendichter.com"
+    },
+    "jeffersoncasimir": {
+        "name": "jeffersoncasimir"
+    },
+    "fraimondo": {
+        "name": "Fede Raimondo",
+        "email": "f.raimondo@fz-juelich.de",
+        "blog": "fraimondo.github.io"
+    },
+    "mattcieslak": {
+        "name": "Matt Cieslak",
+        "email": "mattcieslak@gmail.com",
+        "bio": "Director of Neuroinformatics at @PennLINC. Diffusion imaging enthusiast."
+    },
+    "chourroutm": {
+        "name": "Matthieu Chourrout",
+        "blog": "https://pro.matthieu-chourrout.fr"
+    },
+    "michaelf500": {
+        "name": "Michael Firbank"
+    },
+    "kousu": {
+        "name": "Nick Guenther",
+        "email": "nick@kousu.ca"
+    },
+    "balbasty": {
+        "name": "Yaël Balbastre",
+        "email": "y.balbastre@ucl.ac.uk",
+        "blog": "https://balbasty.github.io"
+    },
+    "MEDFormat": {
+        "name": "MEDFormat"
+    },
+    "kabilar": {
+        "name": "Kabilar Gunalan"
+    },
+    "jeremie-fouquet": {
+        "name": "Jérémie Fouquet",
+        "email": "jeremie.fouquet2@gmail.com",
+        "bio": "MR physicist.\r\nResponsible for the preclinical MRI unit at the Douglas Cerebral Imaging Centre."
+    },
+    "valosekj": {
+        "name": "Jan Valosek",
+        "bio": "Postdoctoral Fellow 🧠 NeuroPoly Lab (Polytechnique Montréal) & Mila Québec AI Institute",
+        "blog": "https://janvalosek.com"
     }
 }
