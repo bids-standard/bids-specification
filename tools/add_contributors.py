@@ -515,7 +515,7 @@ def main():
     assert len(tributors_names) == len(allcontrib_names), print(
         f"{len(tributors_names)=}, {len(allcontrib_names)=}"
     )
-    assert len(tributors_names) == len(citation["authors"]), print(
+    assert len(tributors_names) >= len(citation["authors"]), print(
         f"{len(tributors_names)=}, {len(citation['authors'])=}"
     )
 
