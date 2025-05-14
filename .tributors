@@ -2589,7 +2589,8 @@
         "publish_email": true
     },
     "michellewang": {
-        "affiliation": "origami lab, McGill university, Montreal, Québec, Canada",
+        "affiliation": "McGill University",
+        "blog": "https://michellewang.github.io",
         "contributions": [
             "code"
         ],
@@ -3078,9 +3079,9 @@
             "doc",
             "ideas"
         ],
-        "email": "samuel.diebolt@iconeus.com",
+        "email": "samuel@diebolt.io",
         "github": "sdiebolt",
-        "name": "Samuel Diebolt",
+        "name": "Samuel Le Meur-Diebolt",
         "orcid": "0000-0002-9788-7263"
     },
     "samuel_garcia": {
@@ -3768,8 +3769,18 @@
         "name": "ezemikulan"
     },
     "jeffersoncasimir": {
+        "affiliation": "McGill Centre for Integrative Neuroscience, Montreal Neurological Institute, EEGNet, LORIS",
         "blog": "https://github.com/jeffersoncasimir",
-        "name": "jeffersoncasimir"
+        "contributions": [
+            "code",
+            "data",
+            "doc",
+            "tool"
+        ],
+        "email": "jefferson.casimir@mcgill.ca",
+        "name": "Jefferson Casimir",
+        "orcid": "0009-0004-4706-0331",
+        "publish_email": false
     },
     "josator2": {
         "blog": "https://github.com/josator2",
