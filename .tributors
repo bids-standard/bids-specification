@@ -94,7 +94,9 @@
             "code",
             "test"
         ],
-        "name": "Alejandro de la Vega"
+        "name": "Alejandro de la Vega",
+        "orcid": "0000-0001-9062-3778",
+        "affiliation": "The University of Texas at Austin"
     },
     "alegiac95": {
         "affiliation": "GlaxoSmithKline Research and Development",
