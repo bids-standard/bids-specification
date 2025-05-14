@@ -421,6 +421,7 @@
     "benjamin_dichter": {
         "affiliation": "CatalystNeuro",
         "blog": "https://bendichter.com/",
+        "bio": "Founder of @CatalystNeuro. \r\n\r\nComputational neuroscience, data standardization, @NeurodataWithoutBorders, data management and visualization, open science",
         "contributions": [
             "doc",
             "code",
@@ -3706,14 +3707,6 @@
         "name": "Qian Chu",
         "bio": "PhD Candidate, Max Planck - University of Toronto Centre for Neural Science and Technology",
         "blog": "https://qian-chu.github.io/"
-    },
-    "bendichter": {
-        "name": "Ben Dichter",
-        "email": "ben.dichter@gmail.com",
-        "bio": "Founder of @CatalystNeuro. \r\n\r\nComputational neuroscience, data standardization, @NeurodataWithoutBorders, data management and visualization, open science",
-        "blog": "bendichter.com",
-        "orcid": "0000-0001-5725-6910",
-        "affiliation": "CatalystNeuro"
     },
     "jeffersoncasimir": {
         "name": "jeffersoncasimir",
