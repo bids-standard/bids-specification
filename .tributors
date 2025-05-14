@@ -3715,7 +3715,7 @@
     "fraimondo": {
         "name": "Fede Raimondo",
         "email": "f.raimondo@fz-juelich.de",
-        "blog": "fraimondo.github.io",
+        "blog": "https://fraimondo.github.io",
         "orcid": "0000-0003-4087-8259",
         "affiliation": "Forschungszentrum Jülich"
     },
