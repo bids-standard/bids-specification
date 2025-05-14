@@ -1298,6 +1298,28 @@
         },
         {
             "contributions": [
+                "ideas",
+                "design",
+                "fundingFinding",
+                "review",
+                "eventOrganizing",
+                "blog",
+                "tool",
+                "bug",
+                "code",
+                "data",
+                "tutorial",
+                "question",
+                "doc",
+                "example",
+                "talk"
+            ],
+            "login": "guiomar",
+            "name": "Guiomar Galán",
+            "profile": "http://guiomarniso.com"
+        },
+        {
+            "contributions": [
                 "doc"
             ],
             "login": "gunnar_schaefer",
@@ -1591,10 +1613,14 @@
         },
         {
             "contributions": [
-                "tool"
+                "tool",
+                "code",
+                "data",
+                "doc"
             ],
-            "login": "jefferson_casimir",
-            "name": "Jefferson Casimir"
+            "login": "jeffersoncasimir",
+            "name": "Jefferson Casimir",
+            "profile": "https://github.com/jeffersoncasimir"
         },
         {
             "contributions": [
@@ -2489,7 +2515,8 @@
                 "code"
             ],
             "login": "michellewang",
-            "name": "Michelle Wang"
+            "name": "Michelle Wang",
+            "profile": "https://michellewang.github.io"
         },
         {
             "avatar_url": "https://avatars.githubusercontent.com/u/1488318?v=4",
@@ -2984,6 +3011,15 @@
             ],
             "login": "SamGuay",
             "name": "Samuel Guay"
+        },
+        {
+            "contributions": [
+                "doc",
+                "ideas"
+            ],
+            "login": "sdiebolt",
+            "name": "Samuel Le Meur-Diebolt",
+            "profile": "https://samuel.diebolt.io/"
         },
         {
             "avatar_url": "https://avatars.githubusercontent.com/u/3496566?v=4",

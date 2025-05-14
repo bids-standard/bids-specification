@@ -1354,6 +1354,31 @@
         "name": "Guillaume Flandin",
         "orcid": "0000-0003-0077-7859"
     },
+    "guiomar": {
+        "affiliation": "Spanish National Research Council (CSIC)",
+        "bio": "Open neuroimaging: standards (BIDS), tools (Brainlife, Brainstorm, Hermes), data repositories (OMEGA).\r\nChair BIDS Steering Group",
+        "blog": "http://guiomarniso.com",
+        "contributions": [
+            "ideas",
+            "design",
+            "fundingFinding",
+            "review",
+            "eventOrganizing",
+            "blog",
+            "tool",
+            "bug",
+            "code",
+            "data",
+            "tutorial",
+            "question",
+            "doc",
+            "example",
+            "talk"
+        ],
+        "email": "guiomar.niso@cajal.csic.es",
+        "name": "Guiomar Galán",
+        "orcid": "0000-0001-5872-8924"
+    },
     "gunnar_schaefer": {
         "contributions": [
             "doc"
@@ -1658,6 +1683,20 @@
         "orcid": "0000-0002-0926-3531",
         "publish_email": false
     },
+    "jeffersoncasimir": {
+        "affiliation": "McGill Centre for Integrative Neuroscience, Montreal Neurological Institute, McGill University",
+        "blog": "https://github.com/jeffersoncasimir",
+        "contributions": [
+            "code",
+            "data",
+            "doc",
+            "tool"
+        ],
+        "email": "jefferson.casimir@mcgill.ca",
+        "name": "Jefferson Casimir",
+        "orcid": "0009-0004-4706-0331",
+        "publish_email": false
+    },
     "jeffrey_g_ojemann": {
         "affiliation": "Seattle Childrens Hospital",
         "contributions": [
@@ -1826,31 +1865,6 @@
         "name": "Joseph Woods",
         "orcid": "0000-0002-0329-824X",
         "publish_email": true
-    },
-    "guiomar": {
-        "affiliation": "Spanish National Research Council (CSIC)",
-        "bio": "Open neuroimaging: standards (BIDS), tools (Brainlife, Brainstorm, Hermes), data repositories (OMEGA).\r\nChair BIDS Steering Group",
-        "blog": "http://guiomarniso.com",
-        "contributions": [
-            "ideas",
-            "design",
-            "fundingFinding",
-            "review",
-            "eventOrganizing",
-            "blog",
-            "tool",
-            "bug",
-            "code",
-            "data",
-            "tutorial",
-            "question",
-            "doc",
-            "example",
-            "talk"
-        ],
-        "email": "guiomar.niso@cajal.csic.es",
-        "name": "Guiomar Galán",
-        "orcid": "0000-0001-5872-8924"
     },
     "juliasprenger": {
         "affiliation": "Institute de Neuroscience de la Timone, CNRS, Marseille, 13005, France",
@@ -3064,17 +3078,6 @@
         "name": "Samir Das",
         "orcid": "0000-0002-6613-7347"
     },
-    "sdiebolt": {
-        "blog": "https://samuel.diebolt.io/",
-        "contributions": [
-            "doc",
-            "ideas"
-        ],
-        "email": "samuel@diebolt.io",
-        "github": "sdiebolt",
-        "name": "Samuel Le Meur-Diebolt",
-        "orcid": "0000-0002-9788-7263"
-    },
     "samuel_garcia": {
         "contributions": [
             "ideas",
@@ -3092,6 +3095,17 @@
         "github": "SamGuay",
         "name": "Samuel Guay",
         "orcid": "0000-0001-6990-839X"
+    },
+    "sdiebolt": {
+        "blog": "https://samuel.diebolt.io/",
+        "contributions": [
+            "doc",
+            "ideas"
+        ],
+        "email": "samuel@diebolt.io",
+        "github": "sdiebolt",
+        "name": "Samuel Le Meur-Diebolt",
+        "orcid": "0000-0002-9788-7263"
     },
     "snastase": {
         "affiliation": "Princeton University",
@@ -3758,20 +3772,6 @@
             "code"
         ],
         "name": "ezemikulan"
-    },
-    "jeffersoncasimir": {
-        "affiliation": "McGill Centre for Integrative Neuroscience, Montreal Neurological Institute, McGill University",
-        "blog": "https://github.com/jeffersoncasimir",
-        "contributions": [
-            "code",
-            "data",
-            "doc",
-            "tool"
-        ],
-        "email": "jefferson.casimir@mcgill.ca",
-        "name": "Jefferson Casimir",
-        "orcid": "0009-0004-4706-0331",
-        "publish_email": false
     },
     "josator2": {
         "blog": "https://github.com/josator2",

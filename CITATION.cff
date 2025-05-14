@@ -642,6 +642,12 @@ authors:
     website: https://www.fil.ion.ucl.ac.uk/team/spm-team/
     orcid: https://orcid.org/0000-0003-0077-7859
     affiliation: University College London
+  - given-names: Guiomar
+    family-names: Galán
+    website: http://guiomarniso.com
+    orcid: https://orcid.org/0000-0001-5872-8924
+    affiliation: Spanish National Research Council (CSIC)
+    email: guiomar.niso@cajal.csic.es
   - given-names: Gunnar
     family-names: Schaefer
     orcid: https://orcid.org/0000-0001-9661-2121
@@ -784,9 +790,10 @@ authors:
     affiliation: Stanford, Department of Psychology, Stanford, CA
   - given-names: Jefferson
     family-names: Casimir
+    website: https://github.com/jeffersoncasimir
     orcid: https://orcid.org/0009-0004-4706-0331
-    affiliation: LORIS, MCIN, Montreal Neurological Institute, McGill University
-    email: jefferson.casimir@mcin.ca
+    affiliation: McGill Centre for Integrative Neuroscience, Montreal Neurological Institute, McGill University
+    email: jefferson.casimir@mcgill.ca
   - given-names: Jeffrey G.
     family-names: Ojemann
     orcid: https://orcid.org/0000-0001-7580-8934
@@ -868,12 +875,6 @@ authors:
     orcid: https://orcid.org/0000-0002-0329-824X
     affiliation: University of Oxford, Nuffield Department of Clinical Neuroscience, Oxford, UK
     email: joseph.woods@ndcn.ox.ac.uk
-  - given-names: Julia
-    family-names: Guiomar Niso Galán
-    website: http://guiomarniso.com
-    orcid: https://orcid.org/0000-0001-5872-8924
-    affiliation: Indiana University
-    email: guiomar.niso@ctb.upm.es
   - given-names: Julia
     family-names: Sprenger
     website: https://github.com/juliasprenger
@@ -1204,8 +1205,9 @@ authors:
     email: michael.schirner@charite.de
   - given-names: Michelle
     family-names: Wang
+    website: https://michellewang.github.io
     orcid: https://orcid.org/0000-0002-3432-6899
-    affiliation: origami lab, McGill university, Montreal, Québec, Canada
+    affiliation: McGill University
     email: michelle.wang6@mail.mcgill.ca
   - given-names: Mikaël
     family-names: Naveau
@@ -1412,17 +1414,17 @@ authors:
     orcid: https://orcid.org/0000-0002-6613-7347
     affiliation: Indian Council of Agricultural Research
   - given-names: Samuel
-    family-names: Diebolt
-    website: https://samuel.diebolt.io/
-    orcid: https://orcid.org/0000-0002-9788-7263
-    email: samuel.diebolt@iconeus.com
-  - given-names: Samuel
     family-names: Garcia
   - given-names: Samuel
     family-names: Guay
     orcid: https://orcid.org/0000-0001-6990-839X
     affiliation: Université de Montréal, Montreal, Québec, CA
     email: samuel.guay@umontreal.ca
+  - given-names: Samuel
+    family-names: Le Meur-Diebolt
+    website: https://samuel.diebolt.io/
+    orcid: https://orcid.org/0000-0002-9788-7263
+    email: samuel@diebolt.io
   - given-names: Samuel
     family-names: Nastase
     website: https://snastase.github.io/
@@ -1706,8 +1708,6 @@ authors:
     email: zhi-de.deng@nih.gov
   - given-names: ezemikulan
     website: https://github.com/ezemikulan
-  - given-names: jeffersoncasimir
-    website: https://github.com/jeffersoncasimir
   - given-names: josator2
     website: https://github.com/josator2
   - given-names: monkeyman192
