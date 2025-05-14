@@ -134,7 +134,7 @@ A guide for using macros can be found at
 {{ MACROS___make_sidecar_table("ieeg.iEEGOptional") }}
 
 Note that the date and time information SHOULD be stored in the study key file
-([`scans.tsv`](../modality-agnostic-files/data-description.md#scans-file)).
+([`scans.tsv`](../modality-agnostic-files/data-summary-files.md#scans-file)).
 Date time information MUST be expressed as indicated in [Units](../common-principles.md#units)
 
 #### Hardware information

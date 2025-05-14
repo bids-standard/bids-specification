@@ -3164,7 +3164,7 @@ ScanDate:
   description: |
     Date of scan in the format `"YYYY-MM-DD[Z]"`.
     This field is DEPRECATED, and this metadata SHOULD be recorded in the `acq_time` column of the
-    corresponding [Scans file](SPEC_ROOT/modality-agnostic-files/data-description.md#scans-file).
+    corresponding [Scans file](SPEC_ROOT/modality-agnostic-files/data-summary-files.md#scans-file).
   type: string
   format: date
 ScanOptions:
