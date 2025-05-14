@@ -260,6 +260,7 @@ def write_tributors(tributors_file: Path, tributors: dict[str, dict]) -> None:
     tributors = sort_tributors(tributors)
     with open(tributors_file, "w", encoding="utf8") as output_file:
         json.dump(tributors, output_file, indent=4, ensure_ascii=False)
+        output_file.write(os.linesep)
 
 
 def return_missing_from_tributors(tributors_file: Path, names: list[str]) -> list[str]:
@@ -347,6 +348,7 @@ def write_allcontrib(allcontrib_file: Path, allcontrib: dict) -> None:
     allcontrib = sort_all_contrib(allcontrib)
     with open(allcontrib_file, "w", encoding="utf8") as output_file:
         json.dump(allcontrib, output_file, indent=4, ensure_ascii=False)
+        output_file.write(os.linesep)
 
 
 def sort_all_contrib(allcontrib: dict) -> dict:
