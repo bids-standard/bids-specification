@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """Add new contributors listed in `new_contributors.tsv` to `.tributors` file.
 
 The `.tributors` file is then used to update:
