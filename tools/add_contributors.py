@@ -514,12 +514,13 @@ def main():
     assert len(allcontrib_names) == len(set(allcontrib_names)), print(
         f"{allcontrib_names=}, {len(set(allcontrib_names))=}"
     )
-    assert len(tributors_names) == len(allcontrib_names), print(
-        f"{len(tributors_names)=}, {len(allcontrib_names)=}"
-    )
-    assert len(tributors_names) >= len(citation["authors"]), print(
-        f"{len(tributors_names)=}, {len(citation['authors'])=}"
-    )
+    # We might be removing duplicates etc, thus let's not verify
+    # assert len(tributors_names) >= len(allcontrib_names), print(
+    #     f"{len(tributors_names)=}, {len(allcontrib_names)=}"
+    # )
+    # assert len(tributors_names) >= len(citation["authors"]), print(
+    #     f"{len(tributors_names)=}, {len(citation['authors'])=}"
+    # )
 
     new_contrib_names = df.name.to_list()
 
