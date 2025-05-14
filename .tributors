@@ -1837,7 +1837,7 @@
         "publish_email": true
     },
     "guiomar": {
-        "affiliation": "Indiana University",
+        "affiliation": "Spanish National Research Council (CSIC)",
         "bio": "Open neuroimaging: standards (BIDS), tools (Brainlife, Brainstorm, Hermes), data repositories (OMEGA).\r\nChair BIDS Steering Group",
         "blog": "http://guiomarniso.com",
         "contributions": [
@@ -1857,8 +1857,8 @@
             "example",
             "talk"
         ],
-        "email": "guiomar.niso@caja.csic.es",
-        "name": "Julia Guiomar Niso Galán",
+        "email": "guiomar.niso@cajal.csic.es",
+        "name": "Guiomar Galán",
         "orcid": "0000-0001-5872-8924"
     },
     "juliasprenger": {
