@@ -162,7 +162,8 @@
         ],
         "email": "po09i@hotmail.com",
         "name": "Alexandre D'Astous",
-        "orcid": "0000-0003-0381-7334"
+        "orcid": "0000-0003-0381-7334",
+        "blog": "https://github.com/po09i"
     },
     "alexandre_hutton": {
         "contributions": [
@@ -596,7 +597,8 @@
         "github": "christinerogers",
         "name": "Christine Rogers",
         "orcid": "0000-0002-9893-8448",
-        "bio": "LORIS team |\r\nMCIN: McGill Centre for Integrative Neuroscience |\r\nMontreal Neurological Institute |\r\nMcGill University, Canada"
+        "bio": "LORIS team |\r\nMCIN: McGill Centre for Integrative Neuroscience |\r\nMontreal Neurological Institute |\r\nMcGill University, Canada",
+        "blog": "https://github.com/christinerogers"
     },
     "ChristophePhillips": {
         "affiliation": "University of Liège, GIGA CRC in vivo imaging, Liège, 4000, Belgium",
@@ -1796,7 +1798,8 @@
         "email": "pfarr@staff.uni-marburg.de",
         "github": "julia-pfarr",
         "name": "Julia-Katharina Pfarr",
-        "orcid": "0000-0003-1450-6005"
+        "orcid": "0000-0003-1450-6005",
+        "blog": "https://github.com/julia-pfarr"
     },
     "jcohenadad": {
         "affiliation": "Polytechnique Montreal, Department of Electrical Engineering, Montreal, QC, Canada",
@@ -2034,7 +2037,8 @@
         ],
         "github": "lukeje",
         "name": "Luke J. Edwards",
-        "orcid": "0000-0002-8320-7298"
+        "orcid": "0000-0002-8320-7298",
+        "blog": "https://github.com/lukeje"
     },
     "lzehl": {
         "affiliation": "Forschungszentrum Jülich",
@@ -2457,7 +2461,8 @@
         ],
         "github": "monique2208",
         "name": "Monique Denissen",
-        "orcid": "0000-0002-7120-1075"
+        "orcid": "0000-0002-7120-1075",
+        "blog": "https://github.com/monique2208"
     },
     "murat_bilgel": {
         "contributions": [
@@ -3602,13 +3607,16 @@
     "CGSchwarzMayo": {
         "name": "Christopher G. Schwarz",
         "email": "schwarz.christopher@mayo.edu",
-        "bio": "Assistant Professor of Radiology,\r\nMayo Clinic, Rochester, MN, USA"
+        "bio": "Assistant Professor of Radiology,\r\nMayo Clinic, Rochester, MN, USA",
+        "blog": "https://github.com/CGSchwarzMayo"
     },
     "candleindark": {
-        "name": "Isaac To"
+        "name": "Isaac To",
+        "blog": "https://github.com/candleindark"
     },
     "patrick-g-h": {
-        "name": "patrick-g-h"
+        "name": "patrick-g-h",
+        "blog": "https://github.com/patrick-g-h"
     },
     "qian-chu": {
         "name": "Qian Chu",
@@ -3622,7 +3630,8 @@
         "blog": "bendichter.com"
     },
     "jeffersoncasimir": {
-        "name": "jeffersoncasimir"
+        "name": "jeffersoncasimir",
+        "blog": "https://github.com/jeffersoncasimir"
     },
     "fraimondo": {
         "name": "Fede Raimondo",
@@ -3634,7 +3643,8 @@
     "mattcieslak": {
         "name": "Matt Cieslak",
         "email": "mattcieslak@gmail.com",
-        "bio": "Director of Neuroinformatics at @PennLINC. Diffusion imaging enthusiast."
+        "bio": "Director of Neuroinformatics at @PennLINC. Diffusion imaging enthusiast.",
+        "blog": "https://github.com/mattcieslak"
     },
     "chourroutm": {
         "name": "Matthieu Chourrout",
@@ -3645,11 +3655,13 @@
     "michaelf500": {
         "name": "Michael Firbank",
         "orcid": "0000-0002-9536-0185",
-        "affiliation": "Newcastle University"
+        "affiliation": "Newcastle University",
+        "blog": "https://github.com/michaelf500"
     },
     "kousu": {
         "name": "Nick Guenther",
-        "email": "nick@kousu.ca"
+        "email": "nick@kousu.ca",
+        "blog": "https://github.com/kousu"
     },
     "balbasty": {
         "name": "Yaël Balbastre",
@@ -3659,17 +3671,20 @@
         "affiliation": "University College London"
     },
     "MEDFormat": {
-        "name": "MEDFormat"
+        "name": "MEDFormat",
+        "blog": "https://github.com/MEDFormat"
     },
     "kabilar": {
         "name": "Kabilar Gunalan",
-        "orcid": "0000-0001-6964-4865"
+        "orcid": "0000-0001-6964-4865",
+        "blog": "https://github.com/kabilar"
     },
     "jeremie-fouquet": {
         "name": "Jérémie Fouquet",
         "email": "jeremie.fouquet2@gmail.com",
         "bio": "MR physicist.\r\nResponsible for the preclinical MRI unit at the Douglas Cerebral Imaging Centre.",
-        "orcid": "0000-0001-6815-7037"
+        "orcid": "0000-0001-6815-7037",
+        "blog": "https://github.com/jeremie-fouquet"
     },
     "valosekj": {
         "name": "Jan Valosek",
