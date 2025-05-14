@@ -1658,15 +1658,6 @@
         "orcid": "0000-0002-0926-3531",
         "publish_email": false
     },
-    "jefferson_casimir": {
-        "affiliation": "LORIS, MCIN, Montreal Neurological Institute, McGill University",
-        "contributions": [
-            "tool"
-        ],
-        "email": "jefferson.casimir@mcin.ca",
-        "name": "Jefferson Casimir",
-        "orcid": "0009-0004-4706-0331"
-    },
     "jeffrey_g_ojemann": {
         "affiliation": "Seattle Childrens Hospital",
         "contributions": [
@@ -3769,7 +3760,7 @@
         "name": "ezemikulan"
     },
     "jeffersoncasimir": {
-        "affiliation": "McGill Centre for Integrative Neuroscience, Montreal Neurological Institute, EEGNet, LORIS",
+        "affiliation": "McGill Centre for Integrative Neuroscience, Montreal Neurological Institute, McGill University",
         "blog": "https://github.com/jeffersoncasimir",
         "contributions": [
             "code",
