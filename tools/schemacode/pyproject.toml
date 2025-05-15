@@ -1,6 +1,6 @@
 [build-system]
-requires = ["setuptools>=61.2"]
-build-backend = "setuptools.build_meta"
+requires = ["pdm-backend", "acres", "pyyaml"]
+build-backend = "pdm.backend"
 
 [project]
 name = "bidsschematools"
@@ -62,19 +62,6 @@ bst = "bidsschematools.__main__:cli"
 
 [project.urls]
 Homepage = "https://github.com/bids-standard/bids-specification"
-
-[tool.setuptools.package-data]
-bidsschematools = [
-    "data/metaschema.json",
-    "data/schema.json",
-    "data/schema/BIDS_VERSION",
-    "data/schema/SCHEMA_VERSION",
-    "data/schema/**/*.yaml",
-    "tests/data/*",
-]
-
-[tool.setuptools.dynamic]
-version = {file = ["src/bidsschematools/data/schema/SCHEMA_VERSION"]}
 
 [tool.black]
 exclude = "*"

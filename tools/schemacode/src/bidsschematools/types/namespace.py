@@ -10,8 +10,6 @@ import typing as ty
 from collections.abc import ItemsView, KeysView, Mapping, MutableMapping, ValuesView
 from pathlib import Path
 
-import yaml
-
 
 def _expand_dots(entry: tuple[str, ty.Any]) -> tuple[str, ty.Any]:
     # Helper function for expand
@@ -276,6 +274,8 @@ def _read_yaml_dir(path: Path) -> dict:
         if subpath.is_dir():
             mapping[subpath.name] = _read_yaml_dir(subpath)
         elif subpath.name.endswith("yaml"):
+            import yaml
+
             mapping[subpath.stem] = yaml.safe_load(subpath.read_text())
     return mapping
 

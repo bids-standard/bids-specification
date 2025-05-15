@@ -3,12 +3,12 @@
 import json
 import os
 import re
-import tempfile
 from collections.abc import Iterable, Mapping
 from copy import deepcopy
 from functools import lru_cache
+from pathlib import Path
 
-from . import __bids_version__, __version__, data, utils
+from . import data, utils
 from .types import Namespace
 
 lgr = utils.get_logger()
@@ -201,8 +201,19 @@ def load_schema(schema_path=None):
     This function is cached, so it will only be called once per schema path.
     """
     if schema_path is None:
-        schema_path = data.load.readable("schema")
+        # Default to bundled JSON, fall back to bundled YAML directory
+        schema_path = data.load.readable("schema.json")
+        if not schema_path.is_file():
+            schema_path = data.load.readable("schema")
         lgr.info("No schema path specified, defaulting to the bundled schema, `%s`.", schema_path)
+    elif isinstance(schema_path, str):
+        schema_path = Path(schema_path)
+
+    # JSON file: just load it
+    if schema_path.is_file():
+        return Namespace.from_json(schema_path.read_text())
+
+    # YAML directory: load, dereference and set versions
     schema = Namespace.from_directory(schema_path)
     if not schema.objects:
         raise ValueError(f"objects subdirectory path not found in {schema_path}")
@@ -231,9 +242,7 @@ def export_schema(schema):
     json : str
         The schema serialized as a JSON string.
     """
-    versioned = Namespace.build({"schema_version": __version__, "bids_version": __bids_version__})
-    versioned.update(schema)
-    return versioned.to_json()
+    return schema.to_json()
 
 
 def filter_schema(schema, **kwargs):
@@ -307,10 +316,12 @@ def validate_schema(schema: Namespace):
     try:
         validate(instance=schema.to_dict(), schema=metaschema)
     except ValidationError as e:
+        import tempfile
+
         with tempfile.NamedTemporaryFile(
             prefix="schema_error_", suffix=".txt", delete=False, mode="w+"
         ) as file:
             file.write(str(e))
             # ValidationError does not have an add_note method yet
             # e.add_note(f"See {file.name} for full error log.")
-            raise e
+        raise e
