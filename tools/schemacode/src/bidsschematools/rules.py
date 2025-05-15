@@ -6,7 +6,6 @@ This module is currently limited to constructing filename rules from
 
 import fnmatch
 import re
-import typing as ty
 from collections.abc import Mapping
 from functools import lru_cache
 
@@ -64,7 +63,7 @@ def _optional_regex(regex, optional):
     return f"(?:{regex})?" if optional else regex
 
 
-@lru_cache()
+@lru_cache
 def _format_entity(entity, name, pattern, level, directory=False):
     if directory and entity not in DIR_ENTITIES:
         return ""
@@ -141,7 +140,7 @@ def _entity_rule(rule: Mapping, schema: bst.types.Namespace):
     }
 
 
-def _split_inheritance_rules(rule: dict) -> ty.List[dict]:
+def _split_inheritance_rules(rule: dict) -> list[dict]:
     """Break composite rules into main and sidecar rules
 
     Implements the inheritance principle for file naming.
@@ -237,7 +236,7 @@ def regexify_filename_rules(
     return regex_schema
 
 
-@lru_cache()
+@lru_cache
 def regexify_all(schema_dir=None):
     """
     Create full path regexes for all BIDS specification files.

@@ -175,7 +175,7 @@ def flatten_enums(namespace, inplace=True):
     return namespace
 
 
-@lru_cache()
+@lru_cache
 def load_schema(schema_path=None):
     """Load the schema into a dictionary.
 

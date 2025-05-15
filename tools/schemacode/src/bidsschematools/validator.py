@@ -335,7 +335,7 @@ def select_schema_path(
 
     Notes
     -----
-    * This is a purely aspirational function, and is pre-empted by logic inside
+    * This is a purely aspirational function, and is preempted by logic inside
         `bst.validator.validate_bids()`, and further contingent on better schema stability and
         ongoing work in: https://github.com/bids-standard/bids-schema
     * The default `bids_reference_root` value is based on the FHS and ideally should be enforced.
@@ -515,7 +515,7 @@ def write_report(
                 else:
                     comparison_result = "no match"
                 f.write(
-                    f'- Comparing the `{comparison["path"]}` path to the `{comparison["regex"]}` '
+                    f"- Comparing the `{comparison['path']}` path to the `{comparison['regex']}` "
                     f"pattern resulted in {comparison_result}.\n"
                 )
         except KeyError:
@@ -525,7 +525,7 @@ def write_report(
             "successfully validated, using the following regular expressions:"
         )
         for regex_entry in validation_result["schema_listing"]:
-            f.write(f'\n\t- `{regex_entry["regex"]}`')
+            f.write(f"\n\t- `{regex_entry['regex']}`")
         f.write("\n")
         if len(validation_result["path_tracking"]) > 0:
             f.write("The following files were not matched by any regex schema entry:")
@@ -538,7 +538,7 @@ def write_report(
             f.write("\n")
             for entry in validation_result["schema_tracking"]:
                 if entry["mandatory"]:
-                    f.write(f'\t** `{entry["regex"]}`\n')
+                    f.write(f"\t** `{entry['regex']}`\n")
         else:
             f.write("All mandatory BIDS files were found.\n")
         f.close()

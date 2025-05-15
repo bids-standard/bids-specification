@@ -1,8 +1,8 @@
 import logging
 import tempfile
+from collections.abc import Generator
 from pathlib import Path
 from subprocess import run
-from typing import Generator
 
 import pytest
 

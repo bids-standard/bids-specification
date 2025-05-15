@@ -36,6 +36,10 @@ doc = [
     "sphinx>=1.5.3",
     "sphinx_rtd_theme",
 ]
+dev = [
+    "bidsschematools[tests]",
+    "ruff",
+]
 render = [
     "tabulate",
     "pandas",
@@ -46,9 +50,6 @@ tests = [
     "bidsschematools[validation,render,expressions]",
     "codecov",
     "coverage[toml]",
-    "flake8",
-    "flake8-black",
-    "flake8-isort",
     "pytest",
     "pytest-cov",
 ]
@@ -76,12 +77,7 @@ bidsschematools = [
 version = {file = ["src/bidsschematools/data/schema/SCHEMA_VERSION"]}
 
 [tool.black]
-line-length = 99
-include = '\.pyi?$'
-
-[tool.isort]
-profile = "black"
-multi_line_output = 3
+exclude = "*"
 
 [tool.pytest.ini_options]
 addopts = "-ra --strict-markers --strict-config"
@@ -132,3 +128,32 @@ optional_value = "final"
 
 [[tool.bumpversion.files]]
 filename = "../../src/schema/SCHEMA_VERSION"
+
+[tool.ruff]
+line-length = 99
+
+[tool.ruff.lint]
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "PLE",  # pylint errors
+    "I",  # isort
+    "LOG",  # flake8-logging
+    "G",  # flake8-logging-format
+    "Q",  # flake8-quotes
+    "YTT",  # flake8-2020
+    "ISC",  # implicit-string-concatenation
+    "UP",  # pyupgrade
+
+    # Intend to evaluate these for inclusion
+    # "PD",  # pandas-vet
+    # "B",  # flake8-bugbear (likely bugs)
+    # "S",  # flake8-bandit (security)
+    # "N",  # pep8-naming (naming conventions)
+    # "C4",  # flake8-comprehensions (comprehension)
+    # "PLW",  # pylint warnings
+]
+
+[tool.ruff.lint.extend-per-file-ignores]
+"*/__init__.py" = ["F401"]
