@@ -17,7 +17,7 @@ repos:
       - id: check-added-large-files
       - id: check-case-conflict
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.32.1
+    rev: 0.33.0
     hooks:
       - id: check-dependabot
       - id: check-github-workflows
@@ -58,7 +58,7 @@ repos:
         entry: env PRETTIER_LEGACY_CLI=1 prettier # temporary fix for https://github.com/prettier/prettier/issues/15742
         files: src/schema/.*/.*\.yaml
   - repo: https://github.com/adrienverge/yamllint
-    rev: v1.37.0
+    rev: v1.37.1
     hooks:
       - id: yamllint
         args: [-f=standard, -c=.yamllint.yml]
