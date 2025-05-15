@@ -1,0 +1,44 @@
+{
+    "@context": {
+        "prov" : "http://www.w3.org/ns/prov#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "RRID": "http://scicrunch.org/resolver/",     
+        "Id": "@id",
+        "Type": "@type",
+        "Label": "http://www.w3.org/2000/01/rdf-schema#label",
+        "StartedAtTime" : {
+          "@id": "prov:startedAtTime",
+          "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+        },
+        "EndedAtTime" : {
+          "@id": "prov:endedAtTime",
+          "@type": "xsd:dateTime"
+        },
+        "GeneratedBy" : {
+          "@id": "prov:wasGeneratedBy",
+          "@type": "@id"
+        },
+        "AttributedTo" : {
+          "@id": "prov:wasAttributedTo",
+          "@type": "@id"
+        },
+        "AssociatedWith" : {
+          "@id": "prov:wasAssociatedWith",
+          "@type": "@id"
+        },
+        "InformedBy" : {
+          "@id": "prov:wasInformedBy",
+          "@type": "@id"
+        },
+        "Used" : {
+          "@id": "prov:used",
+          "@type": "@id"
+        },
+        "Entities": "prov:Entity",
+        "Entity": "prov:Entity",
+        "Activities": "prov:Activity",
+        "Activity": "prov:Activity",
+        "Software": "prov:SoftwareAgent",
+        "Atlocation": "prov:atLocation"
+    }
+}

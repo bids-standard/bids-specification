@@ -49,7 +49,7 @@ Provenance can be captured using different mechanisms, but independent of encodi
 
 ### Provenance format
 
-Provenance metadata is written inside JSON files, using the [PROV ontology (PROV-O)](http://www.w3.org/TR/prov-o/), augmented by terms curated in this specification, and defined in the [BIDS provenance context](/context.json).
+Provenance metadata is written inside JSON files, using the [PROV ontology (PROV-O)](http://www.w3.org/TR/prov-o/), augmented by terms curated in this specification, and defined in the [BIDS provenance context](provenance-context.json).
 
 The following diagram illustrates PROV-O by depicting its Starting Point classes and the properties that relate them.
 
@@ -231,9 +231,6 @@ Each `Entity` record is a JSON Object with the following fields:
 ### `Software` (Optional)
 `Software` records are OPTIONAL. If included, each `Software` record is a JSON Object with the following fields:
 
-!!! bug
-    TODO: "Software" : "prov:SoftwareAgent" to be added in the context
-
 <table>
   <tr>
    <td><strong>Key name</strong></td>
@@ -394,7 +391,7 @@ and a guide for using macros can be found at
 Provenance metadata can be stored inside the sidecar JSON of any BIDS file (or BIDS-Derivatives file) it applies to.
 In this case, the provenance content only refers to the associated data file.
 
-Inside the sidecar JSON, the `GenearatedBy` field must contain the `Id` of the `Activity` that generated the data file. This `Activity` must be described inside a [provenance file](#provenance-file) of the dataset.
+Inside the sidecar JSON, the `GenearatedBy` field must contain the `Id` of the `Activity` that generated the data file. This `Activity` must be described inside a [provenance file](#provenance-files) of the dataset.
 
 !!! example
     ```JSON
@@ -410,11 +407,11 @@ No other field is allowed to describe provenance inside sidecar JSONs.
 
 ## Dataset level provenance
 
-In the current version of the BIDS specification (1.10.0), the [`GeneratedBy`](https://bids-specification.readthedocs.io/en/stable/glossary.html#generatedby-metadata) field of the `dataset_description.json` files allows to specify provenance of the dataset.
+In the current version of the BIDS specification (1.10.0), the `GeneratedBy` field of the `dataset_description.json` files allows to specify provenance of the dataset.
 
 BEP028 proposes that the following description replaces the `GeneratedBy` field as part of a major revision of the BIDS specification. Until this happens, provenance records can be stored in a `GeneratedByProv` field.
 
-As for sidecar JSON files, the `GeneratedByProv` field must contain the `Id` of the `Activity` that generated the data file. This `Activity` must be described inside a [provenance file](#provenance-file) of the dataset.
+As for sidecar JSON files, the `GeneratedByProv` field must contain the `Id` of the `Activity` that generated the data file. This `Activity` must be described inside a [provenance file](#provenance-files) of the dataset.
 
 !!! example
     ```JSON
