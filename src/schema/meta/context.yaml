@@ -80,11 +80,6 @@ properties:
             type: array
             items:
               type: string
-          phenotype:
-            description: 'The union of participant_id columns in phenotype files'
-            type: array
-            items:
-              type: string
   subject:
     description: 'Properties and contents of the current subject'
     type: object
@@ -106,11 +101,6 @@ properties:
               type: string
           session_id:
             description: 'The session_id column of sessions.tsv'
-            type: array
-            items:
-              type: string
-          phenotype:
-            description: 'The union of session_id columns in phenotype files'
             type: array
             items:
               type: string
