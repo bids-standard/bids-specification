@@ -241,19 +241,6 @@ PhaseEncodingDirectionRec:
         (see [Case 4: Multiple phase encoded
         directions](#case-4-multiple-phase-encoded-directions-pepolar))
 
-PhaseEncodingDirectionReq:
-  selectors:
-    - datatype == "fmap"
-    - suffix == "epi"
-    - match(extension, "^\.nii(\.gz)?$")
-  fields:
-    PhaseEncodingDirection:
-      level: required
-      issue:
-        code: PHASE_ENCODING_DIRECTION_MUST_DEFINE
-        message: |
-          You have to define 'PhaseEncodingDirection' for this file.
-
 MRITimingParameters:
   selectors:
     - modality == "mri"

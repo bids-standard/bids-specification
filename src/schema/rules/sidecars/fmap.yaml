@@ -60,15 +60,27 @@ MRIFieldmapDirectFieldMapping:
         Fieldmaps must be in units of Hertz (`"Hz"`),
         radians per second (`"rad/s"`), or Tesla (`"T"`).
 
-# Case 4: Multiple phase encoded directions ("pepolar")
+# Case 4: Multiple phase-encoded directions ("pepolar")
 MRIFieldmapPepolar:
   selectors:
     - datatype == "fmap"
     - suffix == "epi"
     - match(extension, '\.nii(\.gz)?$')
   fields:
-    PhaseEncodingDirection: required
-    TotalReadoutTime: required
+    PhaseEncodingDirection:
+      level: required
+      issue:
+        code: PHASE_ENCODING_DIRECTION_MUST_DEFINE
+        message: |
+          You have to define 'PhaseEncodingDirection' for this file.
+    TotalReadoutTime:
+      level: optional
+      level_addendum: |
+        required if other methods for calculating readout time are not present
+    EffectiveEchoSpacing:
+      level: optional
+      level_addendum: |
+        required if other methods for calculating readout time are not present
 
 TB1EPI:
   selectors:
