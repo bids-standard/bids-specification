@@ -508,6 +508,7 @@ act:
   description: |
     Provenance Activity records for a group of provenance.
     Activities represent the transformations that have been applied to the data.
+    Files with the act suffix must contain a dictionary of Activities (see [`Activity` section](SPEC_ROOT/modality-agnostic-files/provenance.md#activity))
 all:
   value: all
   display_name: Provenance Records
@@ -540,11 +541,6 @@ asllabeling:
     A deidentified screenshot of the planning of the labeling slab/plane
     with respect to the imaging slab or slices.
     This screenshot is based on DICOM macro C.8.13.5.14.
-base:
-  value: base
-  display_name: Base for Provenance Records
-  description: |
-    Base fields for provenance records of a group of provenance.
 beh:
   value: beh
   display_name: Behavioral recording
@@ -634,13 +630,15 @@ ent:
   display_name: Provenance Entity Records
   description: |
     Provenance Entity records for a group of provenance.
-    Entities are inputs and outputs of Activities.
+    Entities are inputs and outputs for Activities.
+    Files with the ent suffix must contain a dictionary of Entities (see [`Entity` section](SPEC_ROOT/modality-agnostic-files/provenance.md#entity))
 env:
   value: env
   display_name: Provenance Environment Records
   description: |
     Provenance Environment records for a group of provenance.
     Environments specify the software environment in which the provenance record was obtained.
+    Files with the env suffix must contain a dictionary of Environments (see [`Environment` section](SPEC_ROOT/modality-agnostic-files/provenance.md#environment))
 epi:
   value: epi
   display_name: EPI
@@ -851,7 +849,8 @@ soft:
   display_name: Provenance Software Records
   description: |
     Provenance Software records for a group of provenance.
-    The Software specifies the software package with which transformations were applied to the data.
+    Software specifies the software package with which transformations were applied to the data.
+    Files with the soft suffix must contain a dictionary of Software (see [`Software` section](SPEC_ROOT/modality-agnostic-files/provenance.md#software))
 sbref:
   value: sbref
   display_name: Single-band reference image

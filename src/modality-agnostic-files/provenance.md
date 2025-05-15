@@ -450,21 +450,29 @@ bids:<dataset>:<file>
 
 Here is another example that considers the following dataset:
 
-```text
-└─ dataset/
-   ├─ sourcedata/
-   │  └─ dicoms/
-   │     └─ ...
-   ├─ sub-001/
-   │  └─ anat/
-   │     ├─ sub-001_T1w.nii.gz
-   │     └─ sub-001_T1w.json
-   ├─ ...
-   └─ prov/
-      ├─ prov-dcm2niix_act.json
-      ├─ prov-dcm2niix_base.json
-      └─ prov-dcm2niix_soft.json
-```
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+    {
+        "sourcedata": {
+            "dicoms": {
+                "...": "",
+            },
+        },
+        "sub-001": {
+            "anat": {
+                "sub-001_T1w.nii.gz": "",
+                "sub-001_T1w.json": ""
+            },
+        },
+        "prov": {
+            "prov-dcm2niix_act.json": "",
+            "prov-dcm2niix_soft.json": ""
+        }
+    }
+) }}
 
 IRIs of provenance records defined in `prov/prov-dcm2niix_soft.json` should start with `bids:dataset:prov#` or `bids::prov#`.
 
