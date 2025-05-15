@@ -6,8 +6,9 @@
 data_acquisition:
   display_name: Data acquisition
   description: |
-    A continuous uninterrupted block of time during which a brain scanning instrument was acquiring data according to
-    particular scanning sequence/protocol.
+    A continuous uninterrupted block of time during which a brain scanning instrument
+    or an electromyography recording device was acquiring data
+    according to a particular scanning sequence/protocol.
 data_type:
   display_name: Data type
   description: |
@@ -43,6 +44,8 @@ data_type:
         13. `motion` (motion)
 
         14. `mrs` (magnetic resonance spectroscopy)
+
+        15. `emg` (electromyography)
 
 dataset:
   display_name: Dataset
