@@ -60,15 +60,65 @@ MRIFieldmapDirectFieldMapping:
         Fieldmaps must be in units of Hertz (`"Hz"`),
         radians per second (`"rad/s"`), or Tesla (`"T"`).
 
-# Case 4: Multiple phase encoded directions ("pepolar")
+      # Case 4: Multiple phase-encoded directions ("pepolar")
 MRIFieldmapPepolar:
   selectors:
     - datatype == "fmap"
     - suffix == "epi"
     - match(extension, '\.nii(\.gz)?$')
   fields:
-    PhaseEncodingDirection: required
-    TotalReadoutTime: required
+    PhaseEncodingDirection:
+      level: required
+      issue:
+        code: PHASE_ENCODING_DIRECTION_MUST_DEFINE
+        message: |
+          You have to define 'PhaseEncodingDirection' for this file.
+    TotalReadoutTime:
+      level: optional
+      level_addendum: |
+        required if other methods for calculating readout time are not present
+    EffectiveEchoSpacing:
+      level: optional
+      level_addendum: |
+        required if other methods for calculating readout time are not present
+    EchoSpacing:
+      level: optional
+      level_addendum: |
+        required if other methods for calculating readout time are not present
+      description_addendum: |
+        May be used to calculate readout time along with `ParallelReductionFactorInPlane`.
+    ParallelReductionFactorInPlane:
+      level: optional
+      level_addendum: |
+        required if other methods for calculating readout time are not present
+      description_addendum: |
+        May be used to calculate readout time along with `ParallelReductionFactorInPlane`.
+    WaterFatShift:
+      level: optional
+      level_addendum: |
+        required if other methods for calculating readout time are not present
+      description_addendum: |
+        May be used to calculate readout time along with `EPIFactor` and either
+        `ImagingFrequency` or `MagneticFieldStrength`.
+    EPIFactor:
+      level: optional
+      level_addendum: |
+        required if other methods for calculating readout time are not present
+      description_addendum: |
+        May be used to calculate readout time along with `WaterFatShift` and either
+        `ImagingFrequency` or `MagneticFieldStrength`.
+    ImagingFrequency:
+      level: optional
+      level_addendum: |
+        required if other methods for calculating readout time are not present
+      description_addendum: |
+        May be used to calculate readout time along with `WaterFatShift` and `EPIFactor`.
+    MagneticFieldStrength:
+      level: optional
+      level_addendum: |
+        required if other methods for calculating readout time are not present
+      description_addendum: |
+        May be used to calculate readout time along with `WaterFatShift` and `EPIFactor`.
 
 TB1EPI:
   selectors:
