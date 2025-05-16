@@ -94,7 +94,7 @@ parallel = true
 # uvx bump-my-version bump <patch|minor|major>
 # git push upstream <current-branch>
 [tool.bumpversion]
-current_version = "1.0.7"
+current_version = "1.0.8-dev"
 parse = """(?x)
     (?P<major>[0-9]+)
     \\.(?P<minor>[0-9]+)
