@@ -1,9 +1,12 @@
 import logging
 import tempfile
+from collections.abc import Generator
 from pathlib import Path
 from subprocess import run
 
 import pytest
+
+from . import data
 
 lgr = logging.getLogger()
 
@@ -90,12 +93,10 @@ def get_gitrepo_fixture(url, whitelist):
 
 
 @pytest.fixture(scope="session")
-def schema_dir():
+def schema_dir() -> Generator[str, None, None]:
     """Path to the schema housed in the bids-specification repo."""
-    from bidsschematools import utils
-
-    bids_schema = utils.get_bundled_schema_path()
-    return bids_schema
+    with data.load.as_path("schema") as schema_path:
+        yield str(schema_path)
 
 
 @pytest.fixture(scope="session")
