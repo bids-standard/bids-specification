@@ -63,6 +63,12 @@ bst = "bidsschematools.__main__:cli"
 [project.urls]
 Homepage = "https://github.com/bids-standard/bids-specification"
 
+[tool.pdm.build]
+excludes = [
+  ".gitignore",
+  "**/.gitignore",
+]
+
 [tool.black]
 exclude = "*"
 
