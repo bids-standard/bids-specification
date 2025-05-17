@@ -96,6 +96,8 @@ def get_gitrepo_fixture(url, whitelist):
 def schema_dir() -> Generator[str, None, None]:
     """Path to the schema housed in the bids-specification repo."""
     with data.load.as_path("schema") as schema_path:
+        if not schema_path.exists():
+            pytest.skip("No schema found; probably in an installed package")
         yield str(schema_path)
 
 
