@@ -41,10 +41,12 @@ def _bids_schema_versioncheck(schema_dir, compatibility=VALIDATOR_SCHEMA_COMPATI
     if compatibility not in ("major", "minor"):
         raise ValueError("Schema compatibility needs to be set to either “major” or “minor”.")
 
-    schema_version_file = os.path.join(schema_dir, "SCHEMA_VERSION")
+    if isinstance(schema_dir, str):
+        schema_dir = Path(schema_dir)
+
+    schema_version_file = schema_dir.joinpath("SCHEMA_VERSION")
     try:
-        with open(schema_version_file) as f:
-            schema_version = f.readlines()[0].strip()
+        schema_version = schema_version_file.read_text().strip()
     except FileNotFoundError:
         lgr.warning(
             "The selected schema directory, `%s`, does not contain a SCHEMA_VERSION file. "
@@ -311,8 +313,7 @@ def select_schema_path(
     (2) a concatenation of `bids_reference_root` the detected version specification
         inside the BIDS root directory, if such a directory is provided and the BIDS version
         schema is compatible with the validator.
-    (3) `None`, expanded to the bundled schema supplied with the validator by
-        `bst.utils.get_bundled_schema_path`.
+    (3) `None`, expanded to the bundled schema.
 
     Parameters
     ----------
@@ -514,7 +515,7 @@ def write_report(
                 else:
                     comparison_result = "no match"
                 f.write(
-                    f'- Comparing the `{comparison["path"]}` path to the `{comparison["regex"]}` '
+                    f"- Comparing the `{comparison['path']}` path to the `{comparison['regex']}` "
                     f"pattern resulted in {comparison_result}.\n"
                 )
         except KeyError:
@@ -524,7 +525,7 @@ def write_report(
             "successfully validated, using the following regular expressions:"
         )
         for regex_entry in validation_result["schema_listing"]:
-            f.write(f'\n\t- `{regex_entry["regex"]}`')
+            f.write(f"\n\t- `{regex_entry['regex']}`")
         f.write("\n")
         if len(validation_result["path_tracking"]) > 0:
             f.write("The following files were not matched by any regex schema entry:")
@@ -537,7 +538,7 @@ def write_report(
             f.write("\n")
             for entry in validation_result["schema_tracking"]:
                 if entry["mandatory"]:
-                    f.write(f'\t** `{entry["regex"]}`\n')
+                    f.write(f"\t** `{entry['regex']}`\n")
         else:
             f.write("All mandatory BIDS files were found.\n")
         f.close()
