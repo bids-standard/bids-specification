@@ -274,7 +274,7 @@ def test_select_schema_path(bids_examples, tmp_path):
     assert schema_path is None
 
 
-def test_bids_schema_versioncheck(monkeypatch):
+def test_bids_schema_versioncheck(monkeypatch, schema_dir):
     """Test incompatible version."""
     import bidsschematools as bst
 

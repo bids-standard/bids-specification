@@ -10,15 +10,14 @@ from jsonschema.exceptions import ValidationError
 
 from bidsschematools import __bids_version__, schema, types
 
-from ..data import load
 
-
-def test__get_bids_version(tmp_path):
+def test__get_bids_version(schema_dir):
     # Is the version being read in correctly?
-    schema_path = str(load("schema"))
-    bids_version = schema._get_bids_version(schema_path)
+    bids_version = schema._get_bids_version(schema_dir)
     assert bids_version == __bids_version__
 
+
+def test__get_bids_version_fallback(tmp_path):
     # Does fallback to unknown development version work?
     expected_version = "1.2.3-dev"
     schema_path = os.path.join(tmp_path, "whatever", expected_version)
