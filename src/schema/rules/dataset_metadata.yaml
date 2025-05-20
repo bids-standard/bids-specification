@@ -40,7 +40,7 @@ derivative_description:
     - json.DatasetType == "derivative"
   fields:
     GeneratedByProv: recommended
-    GeneratedBy: required
+    GeneratedBy: deprecated
 
 dataset_description_with_genetics:
   selectors:
