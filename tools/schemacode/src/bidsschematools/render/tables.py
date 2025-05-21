@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import typing as ty
-
 import pandas as pd
 from tabulate import tabulate
 
@@ -133,8 +131,8 @@ def _make_object_table(
 def _make_table_from_rule(
     schema: Namespace,
     table_type: str,
-    table_name: ty.Union[str, ty.List[str]],
-    src_path: ty.Optional[str] = None,
+    table_name: str | list[str],
+    src_path: str | None = None,
     tablefmt: str = "github",
 ):
     """Create a table for one or more rules.
@@ -404,8 +402,8 @@ def make_suffix_table(schema, suffixes, src_path=None, tablefmt="github"):
 
 def make_json_table(
     schema: Namespace,
-    table_name: ty.Union[str, ty.List[str]],
-    src_path: ty.Optional[str] = None,
+    table_name: str | list[str],
+    src_path: str | None = None,
     tablefmt: str = "github",
 ):
     """Produce metadata table (markdown) based on requested fields.
@@ -440,8 +438,8 @@ def make_json_table(
 
 def make_sidecar_table(
     schema: Namespace,
-    table_name: ty.Union[str, ty.List[str]],
-    src_path: ty.Optional[str] = None,
+    table_name: str | list[str],
+    src_path: str | None = None,
     tablefmt: str = "github",
 ):
     """Produce metadata table (markdown) based on requested fields.
@@ -539,7 +537,7 @@ def make_metadata_table(schema, field_info, src_path=None, tablefmt="github"):
 def make_subobject_table(
     schema: Namespace,
     object_name: str,
-    src_path: ty.Optional[str] = None,
+    src_path: str | None = None,
     tablefmt: str = "github",
 ):
     """Create a metadata table (markdown) based on the properties of an object
@@ -590,7 +588,7 @@ def make_subobject_table(
 def make_columns_table(
     schema: Namespace,
     table_name: str,
-    src_path: ty.Optional[str] = None,
+    src_path: str | None = None,
     tablefmt: str = "github",
 ):
     """Produce columns table (markdown) based on requested fields.

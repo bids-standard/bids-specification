@@ -3,7 +3,7 @@
 Multiple sessions (visits) are encoded by adding an extra layer of directories
 and [filenames](common-principles.md#filenames)
 in the form of a session (for example `ses-<label>`) and
-with a [`*_sessions.tsv` file](modality-agnostic-files/data-description.md#sessions-file).
+with a [`*_sessions.tsv` file](modality-agnostic-files/data-summary-files.md#sessions-file).
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
