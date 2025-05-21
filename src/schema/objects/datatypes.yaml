@@ -71,6 +71,13 @@ pet:
   display_name: Positron Emission Tomography
   description: |
     Positron emission tomography data
+phenotype:
+  value: phenotype
+  display_name: Phenotype
+  description: |
+    Participant level measurement data
+    (for example, responses from multiple questionnaires)
+    split into individual files separate from `participants.tsv`.
 nirs:
   value: nirs
   display_name: Near-Infrared Spectroscopy

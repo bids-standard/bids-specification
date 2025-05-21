@@ -6,7 +6,7 @@ import pytest
 from bidsschematools.conftest import BIDS_ERROR_SELECTION, BIDS_SELECTION
 from bidsschematools.validator import select_schema_path, validate_bids
 
-from ..data import load_resource
+from ..data import load
 from .data import load_test_data
 
 
@@ -155,9 +155,8 @@ def test_validate_bids(bids_examples, tmp_path):
     assert len(result["path_tracking"]) == 0
 
     # Is the schema version recorded correctly?
-    schema_path = load_resource("schema")
-    with open(os.path.join(schema_path, "BIDS_VERSION")) as f:
-        expected_version = f.readline().rstrip()
+    schema_path = load.readable("schema")
+    expected_version = schema_path.joinpath("BIDS_VERSION").read_text().rstrip()
     assert result["bids_version"] == expected_version
 
 
@@ -275,13 +274,11 @@ def test_select_schema_path(bids_examples, tmp_path):
     assert schema_path is None
 
 
-def test_bids_schema_versioncheck(monkeypatch):
+def test_bids_schema_versioncheck(monkeypatch, schema_dir):
     """Test incompatible version."""
     import bidsschematools as bst
 
-    from ..utils import get_bundled_schema_path
-
-    schema_dir = get_bundled_schema_path()
+    schema_dir = bst.data.load.readable("schema")
     assert bst.validator._bids_schema_versioncheck(schema_dir)
     monkeypatch.setattr(bst, "__version__", "99.99.99")
     assert not bst.validator._bids_schema_versioncheck(schema_dir)
