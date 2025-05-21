@@ -92,7 +92,7 @@ Not defining the `SidecarGenearatedBy` field means that the sidecar JSON was gen
 
 No other field is allowed to describe provenance inside sidecar JSONs.
 
-## Dataset level provenance
+## Provenance at dataset level
 
 In the current version of the BIDS specification (1.10.0), the `GeneratedBy` field of the `dataset_description.json` files allows to specify provenance of the dataset.
 
