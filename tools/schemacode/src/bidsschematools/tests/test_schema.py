@@ -10,6 +10,8 @@ from jsonschema.exceptions import ValidationError
 
 from bidsschematools import __bids_version__, schema, types
 
+from ..data import load
+
 
 def test__get_bids_version(schema_dir):
     # Is the version being read in correctly?
@@ -372,7 +374,7 @@ def test_valid_schema_with_check_jsonschema(tmp_path, regex_variant):
     using the `check-jsonschema` CLI
     """
     bids_schema = schema.load_schema().to_dict()
-    metaschema_path = str(load("metaschema.json"))
+    metaschema_path = str(load.readable("metaschema.json"))
 
     # Save BIDS schema to a temporary file
     bids_schema_path = tmp_path / "bids_schema.json"
