@@ -100,7 +100,7 @@ code:
   description: |
     A directory in which to store any code
     (for example the one used to generate the derivatives from the raw data).
-    See the [Code section](SPEC_ROOT/modality-agnostic-files.md#code)
+    See the [Code section](SPEC_ROOT/modality-agnostic-files/code.md)
     for more information.
 prov:
   display_name: Provenance Records
@@ -123,7 +123,7 @@ phenotype:
     A directory where to store participant level measurements (for
     example responses from multiple questionnaires) split into
     individual files separate from `participants.tsv`.
-    See the [relevant section](SPEC_ROOT/modality-agnostic-files.md#phenotypic-and-assessment-data)
+    See the [relevant section](SPEC_ROOT/modality-agnostic-files/phenotypic-and-assessment-data.md)
     for more information.
 sourcedata:
   display_name: Source data
