@@ -368,6 +368,7 @@ The `prov` entity specifies that provenance records in the files belong to the s
     │  └─ prov-conversion_ent.json
     ├─ prov-smoothing_act.json
     ├─ prov-smoothing_ent.json
+    ├─ prov-smoothing_env.json
     ├─ prov-smoothing_soft.json
     └─ ...
     ```
@@ -385,6 +386,62 @@ and a guide for using macros can be found at
       ["act", "ent", "env", "soft"]
    )
 }}
+
+Files having the `act` suffix in their names must define the `Activities` metadata, as a table of [`Activity`](#activity) records.
+
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_metadata_table(
+   {
+      "Activities": "REQUIRED"
+   }
+) }}
+
+Files having the `ent` suffix in their names must define the `Entities` metadata, as a table of [`Entity`](#entity) records.
+
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_metadata_table(
+   {
+      "Entities": "REQUIRED"
+   }
+) }}
+
+Files having the `env` suffix in their names must define the `Environments` metadata, as a table of [`Environment`](#environment) records.
+
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_metadata_table(
+   {
+      "Environments": "REQUIRED"
+   }
+) }}
+
+Files having the `soft` suffix in their names must define the `Software` metadata, as a table of [`Software`](#software) records.
+
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_metadata_table(
+   {
+      "Software": "REQUIRED"
+   }
+) }}
 
 ## Provenance in sidecar JSON files
 
@@ -420,11 +477,11 @@ As for sidecar JSON files, the `GeneratedByProv` field must contain the `Id` of 
     }
     ```
 
-## Consistency of IRIs
+## Consistency of Ids
 
 The following conventions are recommended in order to have consistent, human readable, and explicit [IRIs](https://www.w3.org/TR/json-ld11/#iris) as `Id` for provenance records objects. These principles also allow to identify where a record is described.
 
-IRIs identifying `Activity`, `Software`, and `Environment` provenance records inside files stored in a directory `<directory>` relatively to a BIDS dataset `<dataset>` SHOULD have the following form, where `<label>` is a human readable label for the record and `<uid>` is a unique group of chars:
+An `Id` identifying `Activity`, `Software`, and `Environment` provenance records inside files stored in a directory `<directory>` relatively to a BIDS dataset `<dataset>` SHOULD have the following form, where `<label>` is a human readable label for the record and `<uid>` is a unique group of chars:
 
 ```text
 bids:<dataset>:prov#<name>-<uid>
@@ -435,7 +492,7 @@ bids:<dataset>:prov#<name>-<uid>
     - `bids::prov#fedora-uldfv058`: an `Environment` described inside the current dataset.
     - `bids:derivatives:prov#fmriprep-r4kzzMt8`: a `Software` described inside the `derivatives` dataset.
 
-IRI identifying `Entity` provenance records for a file `<file>` relatively to a BIDS dataset `<dataset>` SHOULD have the following form:
+An `Id` identifying an `Entity` provenance record for a file `<file>` relatively to a BIDS dataset `<dataset>` SHOULD have the following form:
 
 ```text
 bids:<dataset>:<file>
@@ -471,14 +528,17 @@ A guide for using macros can be found at
     }
 ) }}
 
-IRIs of provenance records defined in `prov/prov-dcm2niix_soft.json` should start with `bids:dataset:prov#` or `bids::prov#`.
+Ids of provenance records defined in `prov/prov-dcm2niix_soft.json` should start with `bids:dataset:prov#` or `bids::prov#`.
 
 ```JSON
 {
-    "bids:dataset:prov#dcm2niix-70ug8pl5": {
-        "Label": "dcm2niix",
-        "Version": "v1.1.3"
-    }
+    "Software": [
+        {
+            "Id": "bids:dataset:prov#dcm2niix-70ug8pl5",
+            "Label": "dcm2niix",
+            "Version": "v1.1.3"
+        }
+    ]
 }
 ```
 
@@ -486,11 +546,14 @@ The previously described `Software` can be referred to in the `prov/prov-dcm2nii
 
 ```JSON
 {
-    "bids:dataset:prov#conversion-00f3a18f": {
-        "Label": "Conversion",
-        "Command": "dcm2niix -o . -f sub-%i/anat/sub-%i_T1w sourcedata/dicoms",
-        "AssociatedWith": "bids:dataset:prov#dcm2niix-70ug8pl5"
-    }
+    "Activities": [
+        {
+            "Id": "bids:dataset:prov#conversion-00f3a18f",
+            "Label": "Conversion",
+            "Command": "dcm2niix -o . -f sub-%i/anat/sub-%i_T1w sourcedata/dicoms",
+            "AssociatedWith": "bids:dataset:prov#dcm2niix-70ug8pl5"
+        }
+    ]
 }
 ```
 
