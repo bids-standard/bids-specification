@@ -21,24 +21,7 @@ context of the academic literature.
 
 ### Goals
 
-Interpreting and comparing scientific results and enabling reusable data and analysis output require understanding provenance, i.e. how the data were generated and processed. To be useful, the provenance must be comprehensive, understandable, easily communicated, and captured automatically in machine accessible form. Provenance records are thus used to encode transformations between digital objects.
-
 This part of the BIDS specification is aimed at describing the provenance of a BIDS dataset. This description is retrospective, i.e. it describes a set of steps that were executed in order to obtain the dataset (this is different from prospective descriptions of workflows that could for instance list all sets of steps that can be run on this dataset).
-
-### Type of provenance covered in BIDS
-
-Provenance comes up in many different contexts in BIDS. This specification focuses on representing the processings that were applied to a dataset. These could be for instance:
-
--   The raw conversion from DICOM images or other instrument native formats to BIDS layout, details of stimulus presentation and cognitive paradigms, and clinical and neuropsychiatric assessments, each come with their own details of provenance.
--   In BIDS derivatives, the consideration of outputs requires knowledge of which inputs from the BIDS dataset were used together with what software was run in what environment and with what parameters.
-
-But provenance comes up in other contexts as well, which might be addressed at a later stage:
-
--   For datasets and derivatives, provenance can also include details of why the data were collected in the first place covering hypotheses, claims, and prior publications. Provenance can encode support for which claims were supported by future analyses.
--   Provenance can involve information about people and institutions involved in a study.
--   Provenance records can highlight reuse of datasets while providing appropriate attribution to the original dataset generators as well as future transformers.
-
-Provenance can be captured using different mechanisms, but independent of encoding, always reflects transformations by either humans or software. The interpretability of provenance records requires a consistent vocabulary for provenance as well as an expectation for a consistent terminology for the objects being encoded.
 
 ### Principles for encoding provenance in BIDS
 
@@ -47,17 +30,85 @@ Provenance can be captured using different mechanisms, but independent of encodi
 -   Provenance records MAY be used to reflect the provenance of a dataset, a collection of files or a specific file at any level of the BIDS hierarchy.
 -   Provenance information SHOULD be anonymized/de-identified as necessary.
 
-### Provenance format
+## Provenance files
 
-Provenance metadata is written inside JSON files, using the [PROV ontology (PROV-O)](http://www.w3.org/TR/prov-o/), augmented by terms curated in this specification, and defined in the [BIDS provenance context](provenance-context.json).
+Template:
 
-The following diagram illustrates PROV-O by depicting its Starting Point classes and the properties that relate them.
+```text
+prov/
+    [<label>/]
+        prov-<label>_act.json
+        prov-<label>_ent.json
+        prov-<label>_env.json
+        prov-<label>_soft.json
+```
 
-![](../images/prov_w3c.svg)
+The `prov` entity specifies that provenance records in the files belong to the same group. Defining multiple provenance records groups is appropriate when separate processings have been performed on data.
 
-Provenance metadata represents a graph-like structure that can be encoded into [JSON-LD](https://www.w3.org/TR/json-ld11), a JSON-based Serialization for Linked Data. This allows for handling this metadata with the [Resource Description Framework](https://www.w3.org/RDF/).
+!!! example
+    In this example, two separated processings (`conversion` and `smoothing`) were performed on the data, resulting in two groups of provenance records.
+    ```
+    prov/
+    ├─ conversion/
+    │  ├─ prov-conversion_act.json
+    │  └─ prov-conversion_ent.json
+    ├─ prov-smoothing_act.json
+    ├─ prov-smoothing_ent.json
+    ├─ prov-smoothing_env.json
+    ├─ prov-smoothing_soft.json
+    └─ ...
+    ```
+
+The following suffixes specify the contents of a provenance file.
+
+<!--
+This block generates a suffix table.
+The definitions of these fields can be found in
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_suffix_table(
+      ["act", "ent", "env", "soft"]
+   )
+}}
+
+## Provenance in sidecar JSON files
+
+Provenance metadata can be stored inside the sidecar JSON of any BIDS file (or BIDS-Derivatives file) it applies to.
+In this case, the provenance content only refers to the associated data file.
+
+Inside the sidecar JSON, the `GenearatedBy` field must contain the `Id` of the `Activity` that generated the data file. This `Activity` must be described inside a [provenance file](#provenance-files) of the dataset.
+
+!!! example
+    ```JSON
+    {
+        "GeneratedBy": "bids::prov#conversion-00f3a18f",
+    }
+    ```
+
+Based on the same principle, the `SidecarGenearatedBy` field can be defined to describe the `Activity` that generated the sidecar JSON file.
+Not defining the `SidecarGenearatedBy` field means that the sidecar JSON was generated by the `Activity` described in the `GenearatedBy` field.
+
+No other field is allowed to describe provenance inside sidecar JSONs.
+
+## Dataset level provenance
+
+In the current version of the BIDS specification (1.10.0), the `GeneratedBy` field of the `dataset_description.json` files allows to specify provenance of the dataset.
+
+BEP028 proposes that the following description replaces the `GeneratedBy` field as part of a major revision of the BIDS specification. Until this happens, provenance records can be stored in a `GeneratedByProv` field.
+
+As for sidecar JSON files, the `GeneratedByProv` field must contain the `Id` of the `Activity` that generated the data file. This `Activity` must be described inside a [provenance file](#provenance-files) of the dataset.
+
+!!! example
+    ```JSON
+    {
+        "GeneratedByProv": "bids::prov#conversion-00f3a18f"
+    }
+    ```
 
 ## Provenance records
+
 Provenance metadata consists in a set or records. There are 4 types of records:
 
 -   `Activity`: Activities represent the transformations that have been applied to the data.
@@ -344,82 +395,6 @@ Each `Entity` record is a JSON Object with the following fields:
     }
     ```
 
-## Provenance files
-
-Template:
-
-```text
-prov/
-    [<label>/]
-        prov-<label>_act.json
-        prov-<label>_ent.json
-        prov-<label>_env.json
-        prov-<label>_soft.json
-```
-
-The `prov` entity specifies that provenance records in the files belong to the same group. Defining multiple provenance records groups is appropriate when separate processings have been performed on data.
-
-!!! example
-    In this example, two separated processings (`conversion` and `smoothing`) were performed on the data, resulting in two groups of provenance records.
-    ```
-    prov/
-    ├─ conversion/
-    │  ├─ prov-conversion_act.json
-    │  └─ prov-conversion_ent.json
-    ├─ prov-smoothing_act.json
-    ├─ prov-smoothing_ent.json
-    ├─ prov-smoothing_env.json
-    ├─ prov-smoothing_soft.json
-    └─ ...
-    ```
-
-The following suffixes specify the contents of a provenance file.
-
-<!--
-This block generates a suffix table.
-The definitions of these fields can be found in
-  src/schema/rules/files/raw
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_suffix_table(
-      ["act", "ent", "env", "soft"]
-   )
-}}
-
-## Provenance in sidecar JSON files
-
-Provenance metadata can be stored inside the sidecar JSON of any BIDS file (or BIDS-Derivatives file) it applies to.
-In this case, the provenance content only refers to the associated data file.
-
-Inside the sidecar JSON, the `GenearatedBy` field must contain the `Id` of the `Activity` that generated the data file. This `Activity` must be described inside a [provenance file](#provenance-files) of the dataset.
-
-!!! example
-    ```JSON
-    {
-        "GeneratedBy": "bids::prov#conversion-00f3a18f",
-    }
-    ```
-
-Based on the same principle, the `SidecarGenearatedBy` field can be defined to describe the `Activity` that generated the sidecar JSON file.
-Not defining the `SidecarGenearatedBy` field means that the sidecar JSON was generated by the `Activity` described in the `GenearatedBy` field.
-
-No other field is allowed to describe provenance inside sidecar JSONs.
-
-## Dataset level provenance
-
-In the current version of the BIDS specification (1.10.0), the `GeneratedBy` field of the `dataset_description.json` files allows to specify provenance of the dataset.
-
-BEP028 proposes that the following description replaces the `GeneratedBy` field as part of a major revision of the BIDS specification. Until this happens, provenance records can be stored in a `GeneratedByProv` field.
-
-As for sidecar JSON files, the `GeneratedByProv` field must contain the `Id` of the `Activity` that generated the data file. This `Activity` must be described inside a [provenance file](#provenance-files) of the dataset.
-
-!!! example
-    ```JSON
-    {
-        "GeneratedByProv": "bids::prov#conversion-00f3a18f"
-    }
-    ```
 
 ## Consistency of Ids
 
