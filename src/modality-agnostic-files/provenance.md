@@ -387,62 +387,6 @@ and a guide for using macros can be found at
    )
 }}
 
-Files having the `act` suffix in their names must define the `Activities` metadata, as a table of [`Activity`](#activity) records.
-
-<!-- This block generates a metadata table.
-The definitions of these fields can be found in
-  src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_metadata_table(
-   {
-      "Activities": "REQUIRED"
-   }
-) }}
-
-Files having the `ent` suffix in their names must define the `Entities` metadata, as a table of [`Entity`](#entity) records.
-
-<!-- This block generates a metadata table.
-The definitions of these fields can be found in
-  src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_metadata_table(
-   {
-      "Entities": "REQUIRED"
-   }
-) }}
-
-Files having the `env` suffix in their names must define the `Environments` metadata, as a table of [`Environment`](#environment) records.
-
-<!-- This block generates a metadata table.
-The definitions of these fields can be found in
-  src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_metadata_table(
-   {
-      "Environments": "REQUIRED"
-   }
-) }}
-
-Files having the `soft` suffix in their names must define the `Software` metadata, as a table of [`Software`](#software) records.
-
-<!-- This block generates a metadata table.
-The definitions of these fields can be found in
-  src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_metadata_table(
-   {
-      "Software": "REQUIRED"
-   }
-) }}
-
 ## Provenance in sidecar JSON files
 
 Provenance metadata can be stored inside the sidecar JSON of any BIDS file (or BIDS-Derivatives file) it applies to.

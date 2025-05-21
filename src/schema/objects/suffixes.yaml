@@ -508,7 +508,8 @@ act:
   description: |
     Provenance Activity records for a group of provenance.
     Activities represent the transformations that have been applied to the data.
-    Files with the act suffix must contain a dictionary of Activities (see [`Activity` section](SPEC_ROOT/modality-agnostic-files/provenance.md#activity))
+    Files with the `act` suffix must define the `Activities` metadata, which is an array of `Activity` records.
+    See the [`Activity` section](SPEC_ROOT/modality-agnostic-files/provenance.md#activity)
 all:
   value: all
   display_name: Provenance Records
@@ -631,14 +632,16 @@ ent:
   description: |
     Provenance Entity records for a group of provenance.
     Entities are inputs and outputs for Activities.
-    Files with the ent suffix must contain a dictionary of Entities (see [`Entity` section](SPEC_ROOT/modality-agnostic-files/provenance.md#entity))
+    Files with the `ent` suffix must define the `Entities` metadata, which is an array of `Entity` records.
+    See the [`Entity` section](SPEC_ROOT/modality-agnostic-files/provenance.md#entity)
 env:
   value: env
   display_name: Provenance Environment Records
   description: |
     Provenance Environment records for a group of provenance.
     Environments specify the software environment in which the provenance record was obtained.
-    Files with the env suffix must contain a dictionary of Environments (see [`Environment` section](SPEC_ROOT/modality-agnostic-files/provenance.md#environment))
+    Files with the `env` suffix must define the `Environments` metadata, which is an array of `Environment` records.
+    See the [`Environment` section](SPEC_ROOT/modality-agnostic-files/provenance.md#environment)
 epi:
   value: epi
   display_name: EPI
@@ -850,7 +853,8 @@ soft:
   description: |
     Provenance Software records for a group of provenance.
     Software specifies the software package with which transformations were applied to the data.
-    Files with the soft suffix must contain a dictionary of Software (see [`Software` section](SPEC_ROOT/modality-agnostic-files/provenance.md#software))
+    Files with the `soft` suffix must define the `Software` metadata, which is an array of `Software` records.
+    See the [`Software` section](SPEC_ROOT/modality-agnostic-files/provenance.md#software)
 sbref:
   value: sbref
   display_name: Single-band reference image
