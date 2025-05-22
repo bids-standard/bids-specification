@@ -54,7 +54,8 @@ NiftiPEDir:
   issue:
     code: NIFTI_PE_DIRECTION_CONSISTENCY
     message: |
-      Phase encoding direction is inconsistent with `dir-` entity.
+      The PhaseEncodingDirection and affine orientation indicate
+      that the entity value (one of AP, PA, RL, LR, SI, IS) may be inaccurate.
     level: warning
   selectors:
     - type(nifti_header.axis_codes) != "null"
