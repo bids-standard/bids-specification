@@ -21,6 +21,7 @@ Blood:
     whole_blood_radioactivity:
       level: optional
       level_addendum: required if `WholeBloodAvail` is `true`
+  additional_columns: allowed
 
 BloodPlasma:
   selectors:
@@ -30,6 +31,7 @@ BloodPlasma:
     - sidecar.PlasmaAvail == true
   columns:
     plasma_radioactivity: required
+  additional_columns: n/a
 
 BloodMetabolite:
   selectors:
@@ -40,6 +42,7 @@ BloodMetabolite:
   columns:
     metabolite_parent_fraction: required
     metabolite_polar_fraction: recommended
+  additional_columns: n/a
 
 BloodMetaboliteCorrection:
   selectors:
@@ -49,6 +52,7 @@ BloodMetaboliteCorrection:
     - sidecar.MetaboliteRecoveryCorrectionApplied == true
   columns:
     hplc_recovery_fractions: required
+  additional_columns: n/a
 
 BloodWholeBlood:
   selectors:
@@ -58,3 +62,4 @@ BloodWholeBlood:
     - sidecar.WholeBloodAvail == true
   columns:
     whole_blood_radioactivity: required
+  additional_columns: n/a
