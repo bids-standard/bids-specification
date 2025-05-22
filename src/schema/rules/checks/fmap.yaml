@@ -65,3 +65,32 @@ EPISmallBVals:
     - '"bval" in associations'
   checks:
     - min(associations.bval.values) < 100
+
+TotalReadoutTimeMustDefine:
+  issue:
+    code: TOTAL_READOUT_TIME_MUST_DEFINE
+    message: |
+      You must provide enough metadata to determine the TotalReadoutTime of this file.
+      `TotalReadoutTime` or `EffectiveEchoSpacing` satisfy this criterion.
+    ## Other methods of calculating readout time need fields not presently
+    ## defined in BIDS.
+    # message: |
+    #   You must provide enough metadata to determine the TotalReadoutTime of this file.
+    #   `TotalReadoutTime` or `EffectiveEchoSpacing` satisfy this criterion.
+    #   This value can also be derived from `EchoSpacing` and `ParallelReductionFactorInPlane`,
+    #   OR `WaterFatShift`, `EPIFactor`, and either `ImagingFrequency` or `MagneticFieldStrength`.
+    level: error
+  selectors:
+    - datatype == "fmap"
+    - suffix == "epi"
+    - match(extension, "^\.nii(\.gz)?$")
+  checks:
+    - |
+      sidecar.TotalReadoutTime ||
+      sidecar.EffectiveEchoSpacing
+    # - |
+    #   sidecar.TotalReadoutTime ||
+    #   sidecar.EffectiveEchoSpacing ||
+    #   sidecar.EchoSpacing && sidecar.ParallelReductionFactorInPlane ||
+    #   sidecar.WaterFatShift && sidecar.EPIFactor &&
+    #   (sidecar.ImagingFrequency || sidecar.MagneticFieldStrength)
