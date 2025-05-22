@@ -4,6 +4,7 @@ Blood:
     - datatype == "pet"
     - suffix == "blood"
     - extension == ".tsv"
+  initial_columns: [time]
   columns:
     time: required
     plasma_radioactivity:
