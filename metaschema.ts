@@ -922,7 +922,7 @@ export interface TabularData {
           }
         | string;
     };
-    additional_columns?: string;
+    additional_columns: "allowed" | "allowed_if_defined" | "not_allowed" | "n/a";
     index_columns?: string[];
     initial_columns?: string[];
   };

@@ -288,10 +288,6 @@ export interface Subjects {
      */
     participant_id?: string[];
     /**
-     * The union of participant_id columns in phenotype files
-     */
-    phenotype?: string[];
-    /**
      * Subjects as determined by sub-* directories
      */
     sub_dirs: string[];
@@ -453,10 +449,6 @@ export interface Subject {
  * Collections of sessions in subject
  */
 export interface Sessions {
-    /**
-     * The union of session_id columns in phenotype files
-     */
-    phenotype?: string[];
     /**
      * Sessions as determined by ses-* directories
      */
