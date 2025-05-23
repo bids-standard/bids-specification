@@ -321,6 +321,12 @@ Each `Entity` record is a JSON Object with the following fields:
    <td>URI</td>
    <td>URI of the RRID for this software package (cf. <a href="https://scicrunch.org/resources/about/Getting%20Started">scicrunch</a>).</td>
   </tr>
+  <tr>
+   <td><code>ActedOnBehalfOf</code></td>
+   <td>OPTIONAL</td>
+   <td>UUID</td>
+   <td>Identifier of another software package that was responsible for using this software package in the context of the activities associated to it. The corresponding software must be defined with its own Software record. Example: if software A launches software B to perform activity C, then B ActedOnBehalfOf A.</td>
+  </tr>
 </table>
 
 !!! example "Example `Software` record"
