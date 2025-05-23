@@ -1158,7 +1158,7 @@ Entities:
   items:
     type: object
     required: [Id, Label]
-    recommanded: [Digest]
+    recommended: [Digest]
     properties:
       Id:
         name: Id
@@ -3574,6 +3574,14 @@ Software:
         name: AltIdentifier
         description: |
           URI of the RRID for this software package (cf. https://rrid.site/).
+        type: string
+        format: uri
+      ActedOnBehalfOf:
+        name: ActedOnBehalfOf
+        description: |
+          Identifier of another software package that was responsible for using this software package in the context of the activities associated to it.
+          The corresponding software must be defined with its own Software record.
+          Example: if software A launches software B to perform activity C, then B ActedOnBehalfOf A.
         type: string
         format: uri
 SoftwareFilters:
