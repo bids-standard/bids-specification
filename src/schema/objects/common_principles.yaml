@@ -7,7 +7,7 @@ atlas:
   display_name: Atlas
   description: |
     An *atlas* is structured neuroanatomical or neurofunctional information expressed as spatial annotations,
-    such as anatomical landmarks, segmentations, parcellations, probabilistic maps, or feature maps, 
+    such as anatomical landmarks, segmentations, parcellations, probabilistic maps, or feature maps,
     typically defined in relation to a *space* engendered by a specific *template*.
     Within BIDS, atlases provide standardized spatially-organized knowledge to label, localize,
     and interpret data features.
@@ -186,5 +186,7 @@ template:
   display_name: Template
   description: |
     A template (also called *atlas template*) is any aggregation of data across subjects.
-    Templates MAY operationalize the notion of a common spatial frame of reference (see *space* below) beyond individual subjects.
-    In practical BIDS usage, templates CAN BE recognized (via the tpl- entity) as standard spaces that enable analyses of data from multiple individuals.
+    Templates MAY operationalize the notion of a common spatial frame of reference
+    (see *space*) beyond individual subjects.
+    In practical BIDS usage, templates CAN BE recognized (via the tpl- entity) as
+    standard spaces that enable analyses of data from multiple individuals.
