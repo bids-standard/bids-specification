@@ -16,14 +16,12 @@ ADMONITION_DELIMITERS = ["!!!", "???", "???+"]
 def remove_admonitions(
     input_folder: str | Path, output_folder: str | Path, indent: str = None
 ):
-
     if indent is None:
         indent = INDENT
 
     md_files = Path(input_folder).glob("**/*.md")
 
     for file in md_files:
-
         with open(file, "r", encoding="utf8") as f:
             content = f.readlines()
 
@@ -32,11 +30,9 @@ def remove_admonitions(
         print(f"processing: {file}\n to: {output_file}")
 
         with open(output_file, "w", encoding="utf8") as f:
-
             is_admonition = False
             counter = 0
             for line in content:
-
                 if any(line.startswith(x) for x in ADMONITION_DELIMITERS):
                     is_admonition = True
                     counter = 0

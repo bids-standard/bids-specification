@@ -666,7 +666,8 @@
               "additionalProperties": false
             },
             "additional_columns": {
-              "type": "string"
+              "type": "string",
+              "enum": ["allowed", "allowed_if_defined", "not_allowed", "n/a"]
             },
             "index_columns": { "type": "array", "items": { "type": "string" } },
             "initial_columns": {
@@ -674,7 +675,7 @@
               "items": { "type": "string" }
             }
           },
-          "required": ["selectors", "columns"],
+          "required": ["selectors", "columns", "additional_columns"],
           "additionalProperties": false
         }
       }

@@ -526,21 +526,21 @@ and a guide for using macros can be found at
 
 An example, custom `dseg.tsv` that defines three labels:
 
-```Text
-index   name            abbreviation    color       mapping
-100     Gray Matter     GM              #ff53bb     1
-101     White Matter    WM              #2f8bbe     2
-102     Brainstem       BS              #36de72     11
+```tsv
+index	name	abbreviation	color	mapping
+100	Gray Matter	GM	#ff53bb	1
+101	White Matter	WM	#2f8bbe	2
+102	Brainstem	BS	#36de72	11
 ```
 
 The following example `dseg.tsv` defines regions that are not part of the
 standard BIDS labels:
 
-```Text
-index   name                abbreviation
-137     pars opercularis    IFGop
-138     pars triangularis   IFGtr
-139     pars orbitalis      IFGor
+```tsv
+index	name	abbreviation
+137	pars	opercularis	IFGop
+138	pars	triangularis	IFGtr
+139	pars	orbitalis	IFGor
 ```
 
 ## Derivatives from atlases

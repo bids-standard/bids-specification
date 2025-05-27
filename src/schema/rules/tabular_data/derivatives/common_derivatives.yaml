@@ -19,6 +19,7 @@ SegmentationLookup:
     y: optional
     z: optional
   index_columns: [index]
+  additional_columns: allowed
 
 Descriptions:
   selectors:

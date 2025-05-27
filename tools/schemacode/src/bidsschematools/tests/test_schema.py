@@ -4,22 +4,22 @@ import json
 import os
 import subprocess
 from collections.abc import Mapping
-from importlib.resources import files
 
 import pytest
 from jsonschema.exceptions import ValidationError
 
 from bidsschematools import __bids_version__, schema, types
 
-from ..data import load_resource
+from ..data import load
 
 
-def test__get_bids_version(tmp_path):
+def test__get_bids_version(schema_dir):
     # Is the version being read in correctly?
-    schema_path = str(load_resource("schema"))
-    bids_version = schema._get_bids_version(schema_path)
+    bids_version = schema._get_bids_version(schema_dir)
     assert bids_version == __bids_version__
 
+
+def test__get_bids_version_fallback(tmp_path):
     # Does fallback to unknown development version work?
     expected_version = "1.2.3-dev"
     schema_path = os.path.join(tmp_path, "whatever", expected_version)
@@ -118,9 +118,9 @@ def test_formats(schema_obj):
         search_pattern = "^" + pattern_format + "$"
         search = re.compile(search_pattern)
         for test_string in test_list:
-            assert bool(
-                search.fullmatch(test_string)
-            ), f"'{test_string}' is not a valid match for the pattern '{search.pattern}'"
+            assert bool(search.fullmatch(test_string)), (
+                f"'{test_string}' is not a valid match for the pattern '{search.pattern}'"
+            )
 
     # Check that invalid strings do not match the search pattern.
     BAD_PATTERNS = {
@@ -175,9 +175,9 @@ def test_formats(schema_obj):
         search_pattern = f"^{pattern_format}$"
         search = re.compile(search_pattern)
         for test_string in test_list:
-            assert not bool(
-                search.fullmatch(test_string)
-            ), f"'{test_string}' should not be a valid match for the pattern '{search.pattern}'"
+            assert not bool(search.fullmatch(test_string)), (
+                f"'{test_string}' should not be a valid match for the pattern '{search.pattern}'"
+            )
 
 
 def test_dereferencing():
@@ -350,7 +350,6 @@ def test_dereferencing():
 
 
 def test_namespace_to_dict():
-
     def check_for_namespaces(obj):
         if isinstance(obj, dict):
             [check_for_namespaces(val) for val in obj.values()]
@@ -375,7 +374,7 @@ def test_valid_schema_with_check_jsonschema(tmp_path, regex_variant):
     using the `check-jsonschema` CLI
     """
     bids_schema = schema.load_schema().to_dict()
-    metaschema_path = str(files("bidsschematools.data").joinpath("metaschema.json"))
+    metaschema_path = str(load.readable("metaschema.json"))
 
     # Save BIDS schema to a temporary file
     bids_schema_path = tmp_path / "bids_schema.json"
