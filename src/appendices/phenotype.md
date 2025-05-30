@@ -61,7 +61,7 @@ as needed according to the smallest unit of acquisition.
 The combination of values in the `participant_id`, `session_id`, and `run` (if present)
 columns MUST be unique for the entire tabular file.
 
-### 4. Add `MeasurementToolMetadata` to each tabular phenotypic measurment tool
+### 4. Add `MeasurementToolMetadata` to each tabular phenotypic measurement tool
 
 Whenever possible, it is RECOMMENDED to add `MeasurementToolMetadata` to
 each `phenotype/<measurement_tool_name>.json` data dictionary.
