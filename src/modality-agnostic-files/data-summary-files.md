@@ -32,11 +32,11 @@ available").
 
 `participants.tsv` example:
 
-```Text
-participant_id age sex handedness group
-sub-01         34  M   right      read
-sub-02         12  F   right      write
-sub-03         33  F   n/a        read
+```tsv
+participant_id	age	sex	handedness	group
+sub-01	34	M	right	read
+sub-02	12	F	right	write
+sub-03	33	F	n/a	read
 ```
 
 It is RECOMMENDED to accompany each `participants.tsv` file with a sidecar
@@ -106,13 +106,13 @@ and a guide for using macros can be found at
 
 `samples.tsv` example:
 
-```Text
-sample_id participant_id sample_type derived_from
-sample-01 sub-01         tissue      n/a
-sample-02 sub-01         tissue      sample-01
-sample-03 sub-01         tissue      sample-01
-sample-04 sub-02         tissue      n/a
-sample-05 sub-02         tissue      n/a
+```tsv
+sample_id	participant_id	sample_type	derived_from
+sample-01	sub-01	tissue	n/a
+sample-02	sub-01	tissue	sample-01
+sample-03	sub-01	tissue	sample-01
+sample-04	sub-02	tissue	n/a
+sample-05	sub-02	tissue	n/a
 ```
 
 It is RECOMMENDED to accompany each `samples.tsv` file with a sidecar
@@ -226,12 +226,12 @@ All such included additional fields SHOULD be documented in an accompanying
 
 Example `_scans.tsv`:
 
-```Text
-filename                                        acq_time
-func/sub-control01_task-nback_bold.nii.gz       1877-06-15T13:45:30
-func/sub-control01_task-motor_bold.nii.gz       1877-06-15T13:55:33
-meg/sub-control01_task-rest_split-01_meg.nii.gz 1877-06-15T12:15:27
-meg/sub-control01_task-rest_split-02_meg.nii.gz 1877-06-15T12:15:27
+```tsv
+filename	acq_time
+func/sub-control01_task-nback_bold.nii.gz	1877-06-15T13:45:30
+func/sub-control01_task-motor_bold.nii.gz	1877-06-15T13:55:33
+meg/sub-control01_task-rest_split-01_meg.nii.gz	1877-06-15T12:15:27
+meg/sub-control01_task-rest_split-02_meg.nii.gz	1877-06-15T12:15:27
 ```
 
 ## Sessions file
@@ -263,11 +263,11 @@ and a guide for using macros can be found at
 
 `sub-<label>/sub-<label>_sessions.tsv` example:
 
-```Text
-session_id   acq_time            systolic_blood_pressure
-ses-predrug  2009-06-15T13:45:30 120
-ses-postdrug 2009-06-16T13:45:30 100
-ses-followup 2009-06-17T13:45:30 110
+```tsv
+session_id	acq_time	systolic_blood_pressure
+ses-predrug	2009-06-15T13:45:30	120
+ses-postdrug	2009-06-16T13:45:30	100
+ses-followup	2009-06-17T13:45:30	110
 ```
 
 Template B (aggregated sessions file):
@@ -289,15 +289,15 @@ a [demographics file](#demographics-file), as described above.
 
 `sessions.tsv` example:
 
-```Text
-participant_id session_id   acq_time            systolic_blood_pressure
-sub-01         ses-predrug  2009-06-15T13:45:30 120
-sub-01         ses-postdrug 2009-06-16T13:45:30 100
-sub-01         ses-followup 2009-06-17T13:45:30 110
-sub-02         ses-predrug  2009-06-22T12:22:05 105
-sub-02         ses-postdrug 2009-06-23T12:22:05 95
-sub-03         ses-postdrug 2009-06-30T14:06:40 115
-sub-03         ses-followup 2009-07-01T14:06:40 120
+```tsv
+participant_id	session_id	acq_time	systolic_blood_pressure
+sub-01	ses-predrug	2009-06-15T13:45:30	120
+sub-01	ses-postdrug	2009-06-16T13:45:30	100
+sub-01	ses-followup	2009-06-17T13:45:30	110
+sub-02	ses-predrug	2009-06-22T12:22:05	105
+sub-02	ses-postdrug	2009-06-23T12:22:05	95
+sub-03	ses-postdrug	2009-06-30T14:06:40	115
+sub-03	ses-followup	2009-07-01T14:06:40	120
 ```
 
 !!! success "Guideline 7"

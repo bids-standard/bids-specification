@@ -142,9 +142,9 @@ sub-01/anat/
 
 Contents of `phenotype/<measurement_tool_name>.tsv`
 
-```Text
-participant_id measurement_1 measurement_2
-sub-01 value1 value2
+```tsv
+participant_id	measurement_1	measurement_2
+sub-01	value1	value2
 ```
 
 ### 1 participant with 2 sessions, where 1 session is only tabular phenotype and the other is only imaging
@@ -172,9 +172,9 @@ sub-01/ses-MRI/anat/
 
 Contents of `phenotype/<measurement_tool_name>.tsv`
 
-```Text
-participant_id session_id measurement_1 measurement_2
-sub-01         ses-pheno  value1        value2
+```tsv
+participant_id	session_id	measurement_1	measurement_2
+sub-01	ses-pheno	value1	value2
 ```
 
 #### INCORRECT
@@ -192,9 +192,9 @@ sub-01/anat/
 
 Contents of `phenotype/<measurement_tool_name>.tsv`
 
-```Text
-participant_id measurement_1 measurement_2
-sub-01         value1        value2
+```tsv
+participant_id	measurement_1	measurement_2
+sub-01	value1	value2
 ```
 
 A session directory **MUST** be present in the participant directory and
@@ -228,11 +228,11 @@ sub-02/
 
 Contents of `phenotype/<measurement_tool_name>.tsv`
 
-```Text
-participant_id session_id measurement_1 measurement_2
-sub-01         ses-pheno1 value1        value2
-sub-02         ses-pheno1 value3        value4
-sub-02         ses-pheno2 value5        value6
+```tsv
+participant_id	session_id	measurement_1	measurement_2
+sub-01	ses-pheno1	value1	value2
+sub-02	ses-pheno1	value3	value4
+sub-02	ses-pheno2	value5	value6
 ```
 
 ### 3 participants with 3 different kinds of sessions among them
@@ -262,15 +262,15 @@ sub-03/
 
 Contents of `sessions.tsv`.
 
-```Text
-participant_id session_id      acq_time
-sub-01         ses-baseline    2001-01-01T12:05:00
-sub-01         ses-followupMRI 2001-07-01T13:33:00
-sub-01         ses-interview   2002-01-01T11:21:00
-sub-02         ses-baseline    2001-04-01T11:01:00
-sub-02         ses-interview   2002-04-01T14:08:00
-sub-03         ses-baseline    2001-09-01T11:45:00
-sub-03         ses-followupMRI 2002-03-01T12:17:00
+```tsv
+participant_id	session_id	acq_time
+sub-01	ses-baseline	2001-01-01T12:05:00
+sub-01	ses-followupMRI	2001-07-01T13:33:00
+sub-01	ses-interview	2002-01-01T11:21:00
+sub-02	ses-baseline	2001-04-01T11:01:00
+sub-02	ses-interview	2002-04-01T14:08:00
+sub-03	ses-baseline	2001-09-01T11:45:00
+sub-03	ses-followupMRI	2002-03-01T12:17:00
 ```
 
 Contents of `sessions.json`. Note how the `session_id` `Levels` are clearly described.
@@ -296,25 +296,25 @@ Contents of `sessions.json`. Note how the `session_id` `Levels` are clearly desc
 
 Contents of `participants.tsv`.
 
-```Text
-participant_id sex
-sub-01         M
-sub-02         F
-sub-03         F
+```tsv
+participant_id	sex
+sub-01	M
+sub-02	F
+sub-03	F
 ```
 
 Contents of `phenotype/demographics.tsv`. Measures or features that can change
 from session to session belong here especially.
 
-```Text
-participant_id session_id      age gender race household_income
-sub-01         ses-baseline    10  3      4    5
-sub-01         ses-followupMRI 10  3      4    5
-sub-01         ses-interview   11  4      4    6
-sub-02         ses-baseline    9   1      3    3
-sub-02         ses-interview   10  1      7    3
-sub-03         ses-baseline    11  2      10   4
-sub-03         ses-followupMRI 12  5      10   4
+```tsv
+participant_id	session_id	age	gender	race	household_income
+sub-01	ses-baseline	10	3	4	5
+sub-01	ses-followupMRI	10	3	4	5
+sub-01	ses-interview	11	4	4	6
+sub-02	ses-baseline	9	1	3	3
+sub-02	ses-interview	10	1	7	3
+sub-03	ses-baseline	11	2	10	4
+sub-03	ses-followupMRI	12	5	10	4
 ```
 
 For more complete examples, see the `pheno00*`
