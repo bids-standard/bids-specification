@@ -130,9 +130,9 @@ in that directory.
 
 **Specific structure of derived data**.
 In the case of [storing derived data (see below)](#source-vs-raw-vs-derived-data),
-the subject (`sub-<label>`) and session (`ses-<label>`) entities MAY map onto
+the subject (`sub-<label>`) and session (`ses-<label>`) entities may map onto
 the template (`tpl-<label>`) and cohort (`cohort-<label>`) entities
-as described in the [corresponding section](derivatives/atlas.md) of this specification.
+as described in the [Templates and atlases section](derivatives/atlas.md) of this specification.
 
 ### Other top level directories
 
@@ -350,9 +350,9 @@ field in `dataset_description.json` of each subdirectory of `derivatives` to:
 Templates and atlases are key neuroscientific tools to carry out group-level inferences
 and also employed in many atlas-based methodologies (such as atlas-based segmentation).
 Original templates and atlases employed as primary data to the analysis MAY be stored
-within the `sourcedata/atlases/`.
+within the `sourcedata/atlases/` directory.
 Any artifacts deriving from atlases, or the creation of new templates and atlases MUST
-follow the [corresponding specification](derivatives/atlas.md) and stored under the
+follow the [Templates and atlases specification](derivatives/atlas.md), be stored under the
 `derivatives/` directory, and follow the general specifications for derivatives regarding
 storage and distribution, as described in the next section.
 
@@ -391,8 +391,8 @@ Derivatives can be stored/distributed in two ways:
     <dataset>/derivatives/spm-stats/sub-0001
     ```
 
-    Example of an atlas-generating pipeline with outputs for individual subjects
-    and the aggregation in an atlas defined with respect to the widely-used
+    Example of an atlas-generating pipeline, including outputs for individual subjects
+    prior to aggregation in the
     [`MNI152NLin2009cAsym` standard space](appendices/coordinate-systems.md):
 
     ```Plain

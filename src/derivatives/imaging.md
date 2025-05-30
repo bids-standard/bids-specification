@@ -11,7 +11,7 @@ Template:
 <pipeline_name>/
     sub-<label>/
         <datatype>/
-            <source_entities>[_space-<space>][_atlas-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
+            <source_entities>[_space-<space>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
 ```
 
 Volumetric preprocessing does not modify the number of dimensions, and so
@@ -211,8 +211,8 @@ A guide for using macros can be found at
 
 ## Segmentations
 
-A *segmentation* is a spatiotemporal partition of images and surfaces,
-such that each location and/or timepoint (for example, a voxel or a surface vertex)
+A *segmentation* is a spatial partition of images and surfaces,
+such that each location (for example, a voxel or a surface vertex)
 is identified with one label (discrete) or a combination of labels (probabilistic).
 Labeled regions may include anatomical structures (for example, tissue classes,
 white matter tracts, Thalamic nuclei, cortical areas),
@@ -546,7 +546,7 @@ index	name	abbreviation
 ## Derivatives from atlases
 
 Often, derivatives are *atlas-based*, meaning, a particular result has been
-projected from prior knowledge in the form of an [atlas](../common-principles.md).
+derived from prior knowledge in the form of an [atlas](../common-principles.md).
 These derivatives follow the specifications above, with the addition of
 a set of entities that MAY be used to disambiguate the outputs.
 
@@ -563,8 +563,8 @@ Template:
     respect to different [coordinate systems](../appendices/coordinate-systems.md), following the general
     BIDS-Derivatives specifications.
 
--   [`atlas-<label>`](../appendices/entities.md#atlas) is REQUIRED to encode files pertaining
-    or derived from the atlas identified by the entity's label.
+-   [`atlas-<label>`](../appendices/entities.md#atlas) is REQUIRED to encode files derived
+    from the atlas identified by the entity's label.
 
 -   [`seg-<label>`](../appendices/entities.md#seg) is REQUIRED when a single atlas has several different
     realizations (for instance, segmentations and parcellations created with different criteria) that
@@ -634,8 +634,8 @@ A guide for using macros can be found at
     and therefore, the specification of transforms files (`sub-01_from-T1w_to-MNI305_mode-image_xfm.h5`
     in the example above) may change in the future.
 
-In the common case of segmentations and parcellations derived from an atlas,
-[`seg-<label>`](../appendices/entities.md#segmentation) MAY be used in combination
+In the common case of multiple segmentations and parcellations derived from an atlas,
+[`seg-<label>`](../appendices/entities.md#segmentation) SHOULD be used in combination
 with the [`atlas-<label>` entity](../appendices/entities.md#atlas-entities).
 Extending on our previous example, when the brain tissue and the eye
 segmentations are stored next to the results of *FreeSurfer*'s automatic subcortical
@@ -708,7 +708,7 @@ which node/parcel/region information is required, as the index/label fields will
 the original anatomy the index/labels are derived from.
 Atlas-derived results SHOULD encode this information with the `[probseg|dseg|mask].tsv` files following
 the prescriptions of the [Common image-derived labels](#common-image-derived-labels) section above.
-Additional fields can be added with their respective definition/description in the sidecar json file.
+Additional fields can be added with their respective definition/description in the sidecar JSON file.
 
 Template:
 
@@ -716,7 +716,7 @@ Template:
 <pipeline_name>/
     sub-<label>/
         <datatype>/
-            <source_entities>[_space-<space>][_atlas-<label>][seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.tsv
+            <source_entities>[_atlas-<label>][seg-<label>][_scale-<label>][_desc-<label>]_<suffix>.tsv
 ```
 
 For example, the participant-level results using the Schaefer 2018 atlas
@@ -785,7 +785,7 @@ A guide for using macros can be found at
 **Example of contents**.
 For example, the file `atlas-Schaefer2018_seg-7n_scale-100_dseg.tsv` could look like:
 
-```Text
+```tsv
 index   name    color
 1   17Networks_LH_VisCent_ExStr_1   #781180
 2   17Networks_LH_VisCent_ExStr_2   #781181

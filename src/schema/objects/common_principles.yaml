@@ -185,7 +185,7 @@ task:
 template:
   display_name: Template
   description: |
-    A template (also called *atlas template*) is any aggregation of data across subjects.
+    A template (sometimes called an *atlas template*) is any aggregation of data across subjects.
     Templates MAY operationalize the notion of a common spatial frame of reference
     (see *space*) beyond individual subjects.
     In practical BIDS usage, templates CAN BE recognized (via the tpl- entity) as
