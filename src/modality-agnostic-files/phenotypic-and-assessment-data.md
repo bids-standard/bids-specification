@@ -35,14 +35,17 @@ an independent aggregated data TSV file in which the user collects
 all subjects, sessions, and/or runs of data as one entry per row
 (with a row defined by the smallest unit of acquisition). In other words:
 
-1. Each row MUST start with `participant_id`.
-2. Each TSV file SHOULD contain a `session_id` column
+1.  Each row MUST start with `participant_id`.
+
+1.  Each TSV file SHOULD contain a `session_id` column
 when multiple [sessions](../glossary.md#session-entities) are present
 in the data set regardless of whether those sessions are in
 the `phenotype/` data, `sub-<label>/` data, or a combination of the two.
-3. If more than one of the same measurement tool is acquired
+
+1.  If more than one of the same measurement tool is acquired
 within the same `session_id`, a `run` column SHOULD be added.
-4. To encode the acquisition time for a measurement tool’s `session_id`,
+
+1.  To encode the acquisition time for a measurement tool’s `session_id`,
 add the `session_id` to the sessions file
 and include the OPTIONAL `acq_time` column.
 
