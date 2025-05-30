@@ -296,11 +296,11 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_filename_template("raw", datatypes=["ieeg"], suffixes=["electrodes"]) }}
 
-File that gives the location, size and other properties of iEEG electrodes. Note
-that coordinates are expected in cartesian coordinates according to the
-`iEEGCoordinateSystem` and `iEEGCoordinateUnits` fields in
-`*_coordsystem.json`. If an `*_electrodes.tsv` file is specified, a
-`*_coordsystem.json` file MUST be specified as well.
+This REQUIRED file gives the location, size and other properties of iEEG electrodes.
+Note that coordinates are expected in cartesian coordinates according to the
+`iEEGCoordinateSystem` and `iEEGCoordinateUnits` fields in `*_coordsystem.json`.
+For each `*_electrodes.tsv` file specified,
+a `*_coordsystem.json` file MUST be specified as well.
 
 The optional [`space-<label>`](../appendices/entities.md#space) entity (`*[_space-<label>]_electrodes.tsv`) can be used to
 indicate the way in which electrode positions are interpreted.
