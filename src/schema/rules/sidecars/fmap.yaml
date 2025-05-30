@@ -23,7 +23,16 @@ MRIFieldmapB0FieldIdentifier:
     - match(extension, '\.nii(\.gz)?$')
     - '!("IntendedFor" in sidecar)'
   fields:
-    B0FieldIdentifier: recommended
+    B0FieldIdentifier:
+      level: recommended
+      issue:
+        code: B0_FIELD_IDENTIFIER_RECOMMENDED
+        message: |
+          File is missing B0FieldIdentifier metadata and IntendedFor metadata,
+          so it will not be possible to use to perform susceptibility distortion correction.
+          B0FieldIdentifier metadata permits the flexible selection of images
+          for estimating B0 inhomogeneity fields, and B0FieldSource permits EPI
+          images to indicate the identifier of the estimated field to use.
 
 # Case 1: Phase-difference map and at least one magnitude image
 MRIFieldmapPhaseDifferencePhasediff:

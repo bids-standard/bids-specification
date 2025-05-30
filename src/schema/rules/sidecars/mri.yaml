@@ -385,7 +385,17 @@ MRIEchoPlanarImagingAndB0FieldSource:
     - intersects(dataset.datatypes, ['fmap'])
     - match(extension, "^\.nii(\.gz)?$")
   fields:
-    B0FieldSource: recommended
+    B0FieldSource:
+      level: recommended
+      issue:
+        code: B0_FIELD_SOURCE_RECOMMENDED
+        message: |
+          File is missing B0FieldSource metadata, so it may not be possible to
+          perform susceptibility distortion correction on it.
+          B0FieldIdentifier metadata permits the flexible selection of images
+          for estimating B0 inhomogeneity fields, and B0FieldSource permits EPI
+          images to indicate the identifier of the estimated field to use.
+          If associations are fully specified with `IntendedFor`, there is no need to change this.
 
 MRIInstitutionInformation:
   selectors:
