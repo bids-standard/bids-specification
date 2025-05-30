@@ -456,7 +456,7 @@ sub-03         ses-followup 2009-07-01T14:06:40 120
     for tabular phenotypic data and store the time of acquisition of each row
     inside a column named `acq_time` in the sessions file.
     This is consistent with how acquisition time is recorded for MRI data
-    and other time-sensitive measurements (e.g. systolic blood pressure).
+    and other time-sensitive measurements (for example systolic blood pressure).
 
     When it is needed to preserve participant privacy, you SHOULD record
     relative acquisition times with respect to the earliest session.
