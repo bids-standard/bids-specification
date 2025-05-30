@@ -125,8 +125,6 @@ columns.
     Whenever possible, it is RECOMMENDED to add `MeasurementToolMetadata` to
     each `phenotype/<measurement_tool_name>.json` data dictionary.
     This improves reusability and provides clarity about the measurement tool.
-
-
 In addition to the keys available to describe columns in all tabular files
 (`LongName`, `Description`, `Levels`, `Units`, and `TermURL`) the
 `participants.json` file as well as phenotypic files can also include column
