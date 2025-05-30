@@ -3,6 +3,6 @@
 EpochedData:
   selectors:
     - intersects([datatype], ['eeg', 'meg', 'ieeg'])
-    - sidecar.RecordingType == 'EpochLength'
+    - sidecar.RecordingType == 'epoched'
   fields:
     EpochLength: recommended
