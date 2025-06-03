@@ -63,3 +63,14 @@ Sessions:
     HED: optional
   index_columns: [session_id]
   additional_columns: allowed
+
+Phenotype:
+  selectors:
+    - datatype == 'phenotype'
+  initial_columns:
+    - participant_id
+  columns:
+    participant_id: required
+    HED: optional
+  index_columns: [participant_id]
+  additional_columns: allowed
