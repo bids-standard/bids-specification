@@ -23,7 +23,7 @@ context of the academic literature.
 
 ### Goals
 
-This part of the BIDS specification is aimed at describing the provenance of a BIDS dataset. This description is retrospective, i.e. it describes a set of steps that were executed in order to obtain the dataset (this is different from prospective descriptions of workflows that could for instance list all sets of steps that can be run on this dataset).
+This part of the BIDS specification is aimed at describing the provenance of a BIDS dataset. This description is retrospective : it describes a set of steps that were executed in order to obtain the dataset (this is different from prospective descriptions of workflows that could for instance list all sets of steps that can be run on this dataset).
 
 ### Principles for encoding provenance in BIDS
 
