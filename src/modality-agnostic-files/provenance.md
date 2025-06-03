@@ -5,14 +5,16 @@ Please see [Citing BIDS](../introduction.md#citing-bids) on how to appropriately
 context of the academic literature.
 
 !!! bug
-    TODO: change example link below
+    Change example links below once they are merged to bids-examples
 
 !!! example "Example datasets"
 
     The following examples have been formatted using this specification
     and can be used for practical guidance when curating a new dataset.
 
-    - [Provenance records of dicom to nifti conversion using dcm2niix](https://github.com/bids-standard/BEP028_BIDSprov/tree/master/examples/dcm2niix_4)
+    - [Provenance records for DICOM to Nifti conversion using `dcm2niix`](https://github.com/bids-standard/bids-examples/pull/494)
+    - [Provenance records for DICOM to Nifti conversion using `heudiconv`](https://github.com/bids-standard/bids-examples/pull/496)
+    - [Provenance records for SPM fMRI preprocessing](https://github.com/bids-standard/bids-examples/pull/497)
 
     Further datasets are available from
     the [BIDS examples repository](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#provenance).
@@ -489,72 +491,3 @@ The previously described `Activity` can be referred to in the `sub-001/anat/sub-
     "GeneratedBy":"bids:dataset:prov#conversion-00f3a18f"
 }
 ```
-
-## Examples
-
-A list of examples for provenance are available in https://github.com/bids-standard/BEP028_BIDSprov/tree/master/examples
-
-!!! bug
-    TODO: merge to BIDS examples to bids-examples, and update links (or completely remove this part)
-
-<table>
-  <tr>
-   <td><strong>Location</strong>
-   </td>
-   <td><strong>Description</strong>
-   </td>
-  </tr>
-
-  <tr>
-   <td><a href="https://github.com/bids-standard/BEP028_BIDSprov/tree/master/examples/simple_example/">simple_example/</a>
-   </td>
-   <td>A simple example describing the downsampling of EEG data using EEGLAB.
-   </td>
-  </tr>
-
-  <tr>
-   <td><a href="https://github.com/bids-standard/BEP028_BIDSprov/tree/master/examples/from_parsers/afni/">from_parsers/afni/</a>
-   </td>
-   <td>A set of examples for fMRI processing using AFNI. These where generated generated from ...
-   </td>
-  </tr>
-
-  <tr>
-   <td><a href="https://github.com/bids-standard/BEP028_BIDSprov/tree/master/examples/from_parsers/fsl/">from_parsers/fsl/</a>
-   </td>
-   <td>A set of examples for fMRI processing using FSL. These where generated generated from ...
-   </td>
-  </tr>
-
-  <tr>
-   <td><a href="https://github.com/bids-standard/BEP028_BIDSprov/tree/master/examples/from_parsers/spm/">from_parsers/spm/</a>
-   </td>
-   <td>A set of examples for fMRI processing using SPM. These where generated generated from ...
-   </td>
-  </tr>
-
-  <tr>
-   <td><a href="https://github.com/bids-standard/BEP028_BIDSprov/tree/master/examples/dcm2niix_4">dcm2niix/</a>
-   </td>
-   <td>A set of examples describing dicom to nifti conversion using dcm2niix. These aim at showing different ways to organize the exact same provenance records inside a dataset:
-    <ul>
-        <li><code>dcm2niix_1</code>: all provenance records inside one JSON-LD file at dataset level.</li>
-        <li><code>dcm2niix_4</code>: all provenance records inside several JSON files at dataset level, sidecar JSON use references to these files.</li>
-    </ul>
-   </td>
-  </tr>
-
-  <tr>
-   <td><a href="https://github.com/bids-standard/BEP028_BIDSprov/tree/master/examples/heudiconv/">heudiconv/</a>
-   </td>
-   <td>An example describing dicom to nifti conversion using heudiconv.
-   </td>
-  </tr>
-
-  <tr>
-   <td><a href="https://github.com/bids-standard/BEP028_BIDSprov/tree/master/examples/nipype/">nipype/</a>
-   </td>
-   <td>An example describing simple processings on anatomical MRI using FSL through Nipype.
-   </td>
-  </tr>
-</table>
