@@ -45,6 +45,25 @@ age:
     "Description": "Subject age in postnatal years",
     "Units": "year",
   }
+age_reference:
+  name: age reference
+  display_name: age reference
+  description: |
+    Non-numeric term of for a time point in a subject's life cycle that serves
+    as reference for the numeric age information (for instance, 'start of embryo stage').
+  type: string
+  enum:
+    - $ref: objects.enums.start_of_embryo_stage.value
+    - $ref: objects.enums.start_of_gestational_stage.value
+    - $ref: objects.enums.start_of_neonate_stage.value
+birthdate:
+  name: birthdate
+  display_name: birthdate
+  description: |
+    Date of the start of a subject's neonate stage. Datetime format.
+    Should not be provided or anonymized for human subjects.
+  type: string
+  format: datetime
 cardiac:
   name: cardiac
   display_name: Cardiac measurement
@@ -252,6 +271,26 @@ index:
   description: |
     The label integer index.
   type: integer
+life_cycle_stage:
+  name: life cycle stage
+  display_name: life cycle stage
+  description: |
+    A non-numeric term for a subject's life cycle stage (for instance, 'adult stage').
+    Inspired by the
+    [UBERON life cycle stage](http://purl.obolibrary.org/obo/UBERON_0000105).
+  type: string
+  enum:
+    - $ref: objects.enums.adolescent.value
+    - $ref: objects.enums.adult.value
+    - $ref: objects.enums.death.value
+    - $ref: objects.enums.embryo.value
+    - $ref: objects.enums.infant.value
+    - $ref: objects.enums.juvenile.value
+    - $ref: objects.enums.late_adult.value
+    - $ref: objects.enums.neonate.value
+    - $ref: objects.enums.perinate.value
+    - $ref: objects.enums.prime_adult.value
+    - $ref: objects.enums.young_adult.value
 low_cutoff:
   name: low_cutoff
   display_name: Low cutoff
