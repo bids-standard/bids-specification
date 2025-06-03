@@ -29,13 +29,7 @@ atlas:
   name: atlas
   display_name: Atlas
   description: |
-    Atlas comprises all possible types of atlases, specifically deterministic, probabilistic,
-    and mask/voxel-based ones, and quantitative maps from various modalities including but not
-    limited to structural features (such as myelination, cytoarchitecture),
-    functional features (such as resting-state networks, localizers) and such based on
-    multimodal data integration (such as gene expression, receptors).
-    Furthermore, it covers both volume/voxel and surface/vertex data,
-    as well as gray and white matter atlases.
+    The `atlas-<label>` entity identifies files that are part of, or derived from, an atlas.
   type: string
   format: label
 ceagent:
@@ -54,8 +48,12 @@ cohort:
   name: cohort
   display_name: Cohort
   description: |
-    A subset of a defined template space, for instance, for a longitudinal template of brain development
-    where infants were participants were averaged at three, six, and twelve months old.
+    A set of subjects sharing one or more common characteristics.
+
+    In the context of a template, the `cohort-<label>` entity identifies a subset of
+    subjects or sessions that were used to construct template variations.
+    For example, a developmental template may use scans from participants of different ages,
+    longitudinal sessions of the same participants, or a combination of the two.
   type: string
   format: label
 chunk:
