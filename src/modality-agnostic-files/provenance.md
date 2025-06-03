@@ -140,7 +140,7 @@ Each `Activity` record is a JSON Object with the following fields:
    <td><code>Label</code></td>
    <td>REQUIRED</td>
    <td>String</td>
-   <td>Name of the tool, script, or function used (e.g. “bet”, "recon-all", "myFunc", "docker").</td>
+   <td>Name of the tool, script, or function used (examples: "bet", "recon-all", "myFunc", "docker").</td>
   </tr>
   <tr>
    <td><code>Command</code></td>
@@ -295,7 +295,7 @@ Each `Entity` record is a JSON Object with the following fields:
    <td><code>Id</code></td>
    <td>REQUIRED</td>
    <td>A unique identifier like a UUID</td>
-   <td>that will be used to associate activities with this software package (e.g., urn:1264-1233-11231-12312, "urn:bet-o1ef4rt")</td>
+   <td>that will be used to associate activities with this software package (examples: "urn:1264-1233-11231-12312", "urn:bet-o1ef4rt")</td>
   </tr>
   <tr>
    <td><code>Label</code></td>
@@ -402,7 +402,6 @@ Each `Entity` record is a JSON Object with the following fields:
         "OperatingSystem": "GNU/Linux 6.2.15-100.fc36.x86_64"
     }
     ```
-
 
 ## Consistency of Ids
 
