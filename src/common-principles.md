@@ -470,7 +470,7 @@ NIfTI header.
 
 ### Tabular files
 
-Tabular data MUST be saved as plain-text, tab-delimited values (TSV) files
+Tabular data MUST be saved as plain-text, tab-separated values (TSV) files
 (with [extension `.tsv`](glossary.md#tsv-extensions)),
 that is, [CSV files](https://en.wikipedia.org/wiki/Comma-separated_values) where commas are replaced by tab characters.
 Tabs MUST be true tab characters and MUST NOT be a series of space characters.
@@ -531,6 +531,12 @@ it MAY contain one or more fields describing the columns found in the TSV file
 Note that if a field name included in the data dictionary matches a column name in the TSV file,
 then that field MUST contain a description of the corresponding column,
 using an object containing the following fields:
+
+!!! success "Guideline 1"
+
+    For [best tabular phenotypic data](./appendices/phenotype.md):
+    Each tabular phenotypic data TSV file MUST be accompanied by
+    a corresponding data dictionary JSON file.
 
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in
