@@ -77,7 +77,6 @@ raw:
     value: datatype
     level: required
     opaque: false
-    subdirs:
 
 derivative:
   root:

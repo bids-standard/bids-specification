@@ -68,6 +68,11 @@ phenotype:
     Participant level measurement data
     (for example, responses from multiple questionnaires)
     split into individual files separate from `participants.tsv`.
+prov:
+  value: prov
+  display_name: Provenance
+  description: |
+    Provenance records describing how files in the dataset were generated.
 nirs:
   value: nirs
   display_name: Near-Infrared Spectroscopy

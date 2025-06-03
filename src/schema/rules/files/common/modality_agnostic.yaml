@@ -4,10 +4,10 @@
 # Provenance json files
 provenance:
   level: optional
-  path: prov/*
+  datatypes:
+    - prov
   suffixes:
     - act
-    - base
     - ent
     - env
     - soft
