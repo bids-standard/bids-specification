@@ -10,9 +10,15 @@ from . import data
 
 TYPE_CHECKING = False
 if TYPE_CHECKING:
-    from typing import Any
+    from typing import Any, NotRequired, TypedDict
 
+    from jsonschema import FormatChecker
     from jsonschema.protocols import Validator as JsonschemaValidator
+
+    class ValidatorKwargs(TypedDict):
+        """Type for the keyword arguments used to create a JSON schema validator."""
+
+        format_checker: NotRequired[FormatChecker]
 
 
 def get_bundled_schema_path():
@@ -140,5 +146,6 @@ def jsonschema_validator(
     # Ensure the schema is valid
     validator_cls.check_schema(schema)
 
+    validator_kwargs: ValidatorKwargs
     validator_kwargs = {"format_checker": validator_cls.FORMAT_CHECKER} if check_format else {}
     return validator_cls(schema, **validator_kwargs)
