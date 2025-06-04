@@ -98,6 +98,10 @@ export interface Associations {
      */
     coordsystem?: Coordsystem;
     /**
+     * Electrodes file
+     */
+    electrodes?: Electrodes;
+    /**
      * Events file
      */
     events?: Events;
@@ -201,6 +205,16 @@ export interface Channels {
 export interface Coordsystem {
     /**
      * Path to associated coordsystem file
+     */
+    path: string;
+}
+
+/**
+ * Electrodes file
+ */
+export interface Electrodes {
+    /**
+     * Path to associated electrodes.tsv file
      */
     path: string;
 }

@@ -544,6 +544,7 @@ export interface Schema {
       [k: string]: {
         selectors?: ExpressionList;
         target: {
+          entities?: string[];
           suffix?: string;
           extension: string | string[];
         };
