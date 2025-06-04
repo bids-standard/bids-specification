@@ -17,6 +17,12 @@
                 "target": {
                   "type": "object",
                   "properties": {
+                    "entities": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
                     "suffix": {
                       "type": "string"
                     },
@@ -498,7 +504,7 @@
       "required": [
         "entities",
         "files",
-	"json",
+        "json",
         "sidecars",
         "tabular_data",
         "metaentities",
