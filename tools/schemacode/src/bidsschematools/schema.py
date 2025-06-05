@@ -226,7 +226,7 @@ def load_schema(schema_path=None):
     if schema_path.is_file():
         content = schema_path.read_text()
 
-        # Bug in Windows dev mode; 'symlink' style to schema directory does not automatically resolve
+        # Bug in dev mode; 'symlink' style to schema directory does not automatically resolve
         if content[:3] == "../":
             schema_path = (Path(__file__) / content).resolve()
         else:
