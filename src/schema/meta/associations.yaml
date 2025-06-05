@@ -93,11 +93,13 @@ coordsystem:
 
 electrodes:
   selectors:
-    - intersects([suffix], ['ecephys', 'icephys'])
+    - intersects([suffix], ['eeg', 'ieeg', 'meg', 'ecephys', 'icephys'])
     - extension != '.json'
   target:
     suffix: electrodes
     extension: .tsv
+    entities:
+      - space
   inherit: true
 
 probes:

@@ -461,9 +461,10 @@ Where possible, DICOM Tags are adopted directly as BIDS metadata terms and
 indicated with "**Corresponds to** DICOM Tag ID1, ID2 `DICOM Tag Name`.".
 When harmonization has been deemed necessary, this is indicated in the
 BIDS term description with "**Based on** DICOM Tag ID1, ID2 `DICOM Tag Name`.".
-Extraction of BIDS compatible metadata can be performed using [dcm2niix](https://github.com/rordenlab/dcm2niix)
-and [dicm2nii](https://www.mathworks.com/matlabcentral/fileexchange/42997-xiangruili-dicm2nii)
-DICOM to NIfTI converters. The [BIDS-validator](https://github.com/bids-standard/bids-validator)
+Extraction of BIDS compatible metadata can be performed using
+[DICOM to NIfTI converters](https://bids.neuroimaging.io/tools/converters.html)
+such as [dcm2niix](https://github.com/rordenlab/dcm2niix).
+The [BIDS-validator](https://github.com/bids-standard/bids-validator)
 will check for conflicts between the JSON file and the data recorded in the
 NIfTI header.
 
