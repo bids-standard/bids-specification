@@ -97,6 +97,7 @@ jobs:
       - if: matrix.install-type == 'dev'
         name: "Install package in dev mode"
         run: |
+          cd tools/schemacode
           pip install -e .[all]
 
       - name: "Run tests"
