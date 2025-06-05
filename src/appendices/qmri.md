@@ -314,7 +314,7 @@ and a guide for using macros can be found at
 ### Metadata requirements for qMRI maps
 
 As qMRI maps are stored as derivatives, they are subjected to the metadata requirements of
-[derived datasets](../modality-agnostic-files.md#derived-dataset-and-pipeline-description).
+[derived datasets](../modality-agnostic-files/dataset-description.md#derived-dataset-and-pipeline-description).
 
 An example `dataset_description.json` for a qMRI map derivatives directory:
 

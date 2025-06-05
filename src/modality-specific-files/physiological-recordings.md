@@ -216,7 +216,7 @@ A guide for using macros can be found at
 In this example, the contents of `sub-01_task-nback_physio.tsv.gz`
 after decompression are:
 
-```tsv
+```tsvgz {linenums="1"}
 34	110	0
 44	112	0
 23	100	1

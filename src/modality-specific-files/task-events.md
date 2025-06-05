@@ -206,11 +206,11 @@ A guide for using macros can be found at
 
 Example of the content of the TSV file:
 
-```Text
-onset duration  trial_type  identifier  database  response_time
-1.2 0.6 afraid  AF01AFAF  kdef  1.435
-5.6 0.6 angry AM01AFAN  kdef  1.739
-5.6 0.6 sad AF01ANSA  kdef  1.739
+```tsv
+onset	duration	trial_type	identifier	database	response_time
+1.2	0.6	afraid	AF01AFAF	kdef	1.435
+5.6	0.6	angry	AM01AFAN	kdef	1.739
+5.6	0.6	sad	AF01ANSA	kdef	1.739
 ```
 
 The `trial_type` and `identifier` columns from the `events.tsv` files might be described

@@ -8,7 +8,7 @@ from bidsschematools import render, schema
 code_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(code_path)
 
-from examplecode import example
+from examplecode import example  # noqa: E402
 
 
 def _get_source_path(level=1):
