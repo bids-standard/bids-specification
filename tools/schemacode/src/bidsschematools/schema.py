@@ -218,19 +218,17 @@ def load_schema(schema_path=None):
         schema_path = data.load.readable("schema.json")
         if not schema_path.is_file():
             schema_path = data.load.readable("schema")
+
+            # Probably a Windows checkout with a git link. Resolve first.
+            if schema_path.is_file() and (content := schema_path.read_text()).startswith("../"):
+                schema_path = Path.resolve(schema_path.parent / content)
         lgr.info("No schema path specified, defaulting to the bundled schema, `%s`.", schema_path)
     elif isinstance(schema_path, str):
         schema_path = Path(schema_path)
 
     # JSON file: just load it
     if schema_path.is_file():
-        content = schema_path.read_text()
-
-        # Bug in dev mode; 'symlink' style to schema directory does not automatically resolve
-        if content[:3] == "../":
-            schema_path = (Path(__file__) / content).resolve()
-        else:
-            return Namespace.from_json(jsonstr=content)
+        return Namespace.from_json(schema_path.read_text())
 
     # YAML directory: load, dereference and set versions
     schema = Namespace.from_directory(schema_path)
