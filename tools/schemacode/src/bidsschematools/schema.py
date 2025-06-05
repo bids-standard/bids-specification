@@ -224,7 +224,13 @@ def load_schema(schema_path=None):
 
     # JSON file: just load it
     if schema_path.is_file():
-        return Namespace.from_json(schema_path.read_text())
+        content = schema_path.read_text()
+
+        # Bug in Windows dev mode; 'symlink' style to schema directory does not automatically resolve
+        if content[:3] == "../":
+            schema_path = (Path(__file__) / content).resolve()
+        else:
+            return Namespace.from_json(jsonstr=content)
 
     # YAML directory: load, dereference and set versions
     schema = Namespace.from_directory(schema_path)
