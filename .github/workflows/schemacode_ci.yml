@@ -47,28 +47,45 @@ jobs:
           path: tools/schemacode
           attest-build-provenance-github: ${{ github.event_name != 'pull_request' }}
 
-  test:
+  test_dev_install:
     runs-on: ${{ matrix.os }}
     needs: [build]
     strategy:
       fail-fast: false
       matrix:
+        os: ["ubuntu-latest", "windows-latest", "macos-latest"]
+        python-version: ["3.13"]
+
+    name: ${{ matrix.os }} with Python ${{ matrix.python-version }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: "Set up Python"
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          allow-prereleases: true
+
+      - name: "Display Python version"
+        run: python -c "import sys; print(sys.version)"
+
+      - if: matrix.install-type == 'wheel'
+        name: "Install package from wheel"
+        run: pip install -e tools/schemacode[all]
+
+  test:
+    runs-on: ${{ matrix.os }}
+    needs: [test_dev_install]
+    strategy:
+      fail-fast: false
+      matrix:
         os: ["ubuntu-latest"]
         python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
-        install-type: [wheel, dev]
         include:
           - os: macos-latest
             python-version: 3
-            install-type: wheel
-          - os: macos-latest
-            python-version: 3
-            install-type: dev
           - os: windows-latest
             python-version: 3
-            install-type: wheel
-          - os: windows-latest
-            python-version: 3
-            install-type: dev
 
     name: ${{ matrix.os }} with Python ${{ matrix.python-version }}
     steps:
@@ -89,16 +106,8 @@ jobs:
           name: Packages
           path: dist
 
-      - if: matrix.install-type == 'wheel'
-        name: "Install package from wheel"
-        run: |
-          pip install $( ls dist/*.whl )[all]
-
-      - if: matrix.install-type == 'dev'
-        name: "Install package in dev mode"
-        run: |
-          cd tools/schemacode
-          pip install -e .[all]
+      - name: "Install package from wheel"
+        run: pip install $( ls dist/*.whl )[all]
 
       - name: "Run tests"
         run: |
