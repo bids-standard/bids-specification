@@ -12,6 +12,7 @@ PhaseSuffixDeprecated:
     level: warning
   selectors:
     - datatype == "func"
+    - match(extension, "^\.nii(\.gz)?$")
   checks:
     - suffix != "phase"
 
@@ -67,6 +68,7 @@ SliceTimingGreaterThanRepetitionTime:
     level: error
   selectors:
     - suffix == "bold"
+    - match(extension, "^\.nii(\.gz)?$")
     - type(sidecar.SliceTiming) != "null"
     - type(sidecar.RepetitionTime) != "null"
   checks:
@@ -88,8 +90,8 @@ VolumeTimingRepetitionTimeMutex:
       or 'VolumeTiming' when variable times are used.
     level: error
   selectors:
-    - type(nifti_header) != "null"
     - intersects([suffix], ["asl", "bold"])
+    - match(extension, "^\.nii(\.gz)?$")
     - type(sidecar.VolumeTiming) != "null"
   checks:
     - type(sidecar.RepetitionTime) == "null"
@@ -103,8 +105,8 @@ RepetitionTimeFrameAcquisitionDurationMutex:
       (RepetitionTime - FrameAcquisitionDuration).
     level: error
   selectors:
-    - type(nifti_header) != "null"
     - intersects([suffix], ["asl", "bold"])
+    - match(extension, "^\.nii(\.gz)?$")
     - type(sidecar.FrameAcquisitionDuration) != "null"
   checks:
     - type(sidecar.RepetitionTime) == "null"
@@ -117,9 +119,10 @@ VolumeTimingDelayTimeMutex:
       To specify acquisition duration, use 'FrameAcquisitionDuration' or 'SliceTiming'.
     level: error
   selectors:
-    - type(nifti_header) != "null"
     - intersects([suffix], ["asl", "bold"])
+    - match(extension, "^\.nii(\.gz)?$")
     - type(sidecar.VolumeTiming) != "null"
+    - type(sidecar.RepetitionTime) == "null"
   checks:
     - type(sidecar.DelayTime) == "null"
 
@@ -130,9 +133,10 @@ VolumeTimingMissingFrameAcquisitionDuration:
       The field 'VolumeTiming' requires 'FrameAcquisitionDuration' or 'SliceTiming' to be defined.
     level: error
   selectors:
-    - type(nifti_header) != "null"
     - intersects([suffix], ["asl", "bold"])
+    - match(extension, "^\.nii(\.gz)?$")
     - type(sidecar.VolumeTiming) != "null"
+    - type(sidecar.RepetitionTime) == "null"
   checks:
     - |
       "SliceTiming" in sidecar ||
@@ -147,8 +151,8 @@ DeprecatedAcquisitionDuration:
       to indicate the duration of volume acquisition in sparse acquisition sequences.
     level: warning
   selectors:
-    - type(nifti_header) != "null"
     - intersects([suffix], ["asl", "bold"])
+    - match(extension, "^\.nii(\.gz)?$")
     - type(sidecar.VolumeTiming) != "null"
     - type(sidecar.FrameAcquisitionDuration) == "null"
   checks:
