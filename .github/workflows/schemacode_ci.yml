@@ -47,6 +47,30 @@ jobs:
           path: tools/schemacode
           attest-build-provenance-github: ${{ github.event_name != 'pull_request' }}
 
+  test_dev_install:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["ubuntu-latest", "windows-latest", "macos-latest"]
+        python-version: ["3.13"]
+
+    name: ${{ matrix.os }} with Python ${{ matrix.python-version }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: "Set up Python"
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          allow-prereleases: true
+
+      - name: "Install package in dev mode"
+        run: pip install -e tools/schemacode[all]
+
+      - name: Test schema loading
+        run: python -c 'import bidsschematools.schema; bidsschematools.schema.load_schema()'
+
   test:
     runs-on: ${{ matrix.os }}
     needs: [build]
