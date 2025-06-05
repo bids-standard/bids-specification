@@ -134,4 +134,22 @@ VolumeTimingMissingFrameAcquisitionDuration:
     - intersects([suffix], ["asl", "bold"])
     - type(sidecar.VolumeTiming) != "null"
   checks:
-    - '"SliceTiming" in sidecar || "FrameAcquisitionDuration" in sidecar'
+    - |
+      "SliceTiming" in sidecar ||
+      "FrameAcquisitionDuration" in sidecar ||
+      "AcquisitionDuration" in sidecar
+
+DeprecatedAcquisitionDuration:
+  issue:
+    code: DEPRECATED_ACQUISITION_DURATION
+    message: |
+      The 'AcquisitionDuration' field has been replaced with 'FrameAcquisitionDuration'
+      to indicate the duration of volume acquisition in sparse acquisition sequences.
+    level: warning
+  selectors:
+    - type(nifti_header) != "null"
+    - intersects([suffix], ["asl", "bold"])
+    - type(sidecar.VolumeTiming) != "null"
+    - type(sidecar.FrameAcquisitionDuration) == "null"
+  checks:
+    - '!("AcquisitionDuration" in sidecar)'

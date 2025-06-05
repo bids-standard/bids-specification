@@ -63,6 +63,11 @@ MRIFuncTimingParameters:
         field and that do not have the `SliceTiming` field set to allow for
         accurate calculation of "acquisition time"
     DelayAfterTrigger: recommended
+    AcquisitionDuration:
+      level: deprecated
+      description_addendum: |
+        This field was previously used to indicate volume acquisition duration
+        for BOLD data. The `FrameAcquisitionDuration` field should be used instead.
 
 # fMRI task information
 MRIFuncTaskInformation:
