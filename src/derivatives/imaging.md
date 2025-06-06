@@ -786,18 +786,18 @@ A guide for using macros can be found at
 For example, the file `atlas-Schaefer2018_seg-7n_scale-100_dseg.tsv` could look like:
 
 ```tsv
-index   name    color
-1   17Networks_LH_VisCent_ExStr_1   #781180
-2   17Networks_LH_VisCent_ExStr_2   #781181
-3   17Networks_LH_VisCent_ExStr_3   #781182
-4   17Networks_LH_VisCent_ExStr_4   #781183
-5   17Networks_LH_VisCent_ExStr_5   #781184
+index	name	color
+1	17Networks_LH_VisCent_ExStr_1	#781180
+2	17Networks_LH_VisCent_ExStr_2	#781181
+3	17Networks_LH_VisCent_ExStr_3	#781182
+4	17Networks_LH_VisCent_ExStr_4	#781183
+5	17Networks_LH_VisCent_ExStr_5	#781184
 
 ...
 
-998 17Networks_RH_TempPar_20    #0d2afb
-999 17Networks_RH_TempPar_21    #0d2afc
-1000    17Networks_RH_TempPar_22    #0d2afd
+998	17Networks_RH_TempPar_20	#0d2afb
+999	17Networks_RH_TempPar_21	#0d2afc
+1000	17Networks_RH_TempPar_22	#0d2afd
 ```
 
 <!-- Link Definitions -->
