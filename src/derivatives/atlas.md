@@ -23,8 +23,8 @@ several sessions and/or subjects, the derivatives-specific
 [`tpl-<label>` entity](../appendices/entities.md#tpl) indicates that the
 spatial frame of analysis is not defined by a single brain image but an
 aggregation thereof.
-On that sense, the [`tpl-<label>` entity](../appendices/entities.md#tpl)
-would be dual in terms of usage to BIDS raw's [`sub-<label>`](../appendices/entities.md#sub).
+In that sense, the [`tpl-<label>` entity](../appendices/entities.md#tpl)
+would be analogous in terms of usage to BIDS raw's [`sub-<label>`](../appendices/entities.md#sub).
 
 !!! tip "Recommendation"
 
@@ -349,7 +349,7 @@ A guide for using macros can be found at
    "suit-pipeline": {
       "tpl-SUIT": {
          "anat": {
-            "atlas-Dietrich2009_description.json": "",
+            "atlas-Diedrichsen2009_description.json": "",
             "tpl-SUIT_T1w.nii.gz": "",
             "tpl-SUIT_dseg.json": "",
             "tpl-SUIT_dseg.label.gii": "",
@@ -364,7 +364,7 @@ A guide for using macros can be found at
 })
 }}
 
-where `atlas-Dietrich2009_description.json` could contain:
+where `atlas-Diedrichsen2009_description.json` could contain:
 
 ```JSON
 {
@@ -400,7 +400,7 @@ A guide for using macros can be found at
       "tpl-SUIT": {
          "anat": {
             "atlas-Buckner2011_description.json": "",
-            "atlas-Dietrich2009_description.json": "",
+            "atlas-Diedrichsen2009_description.json": "",
             "tpl-SUIT_T1w.nii.gz": "",
             "tpl-SUIT_atlas-Buckner2011_dseg.json": "",
             "tpl-SUIT_atlas-Buckner2011_seg-17n_dseg.label.gii": "",
@@ -424,7 +424,7 @@ A guide for using macros can be found at
 })
 }}
 
-where `atlas-Dietrich2009_description.json` remains as above,
+where `atlas-Diedrichsen2009_description.json` remains as above,
 and `atlas-Buckner2011_description.json` could contain:
 
 ```JSON
