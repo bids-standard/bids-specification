@@ -23,8 +23,6 @@ several sessions and/or subjects, the derivatives-specific
 [`tpl-<label>` entity](../appendices/entities.md#tpl) indicates that the
 spatial frame of analysis is not defined by a single brain image but an
 aggregation thereof.
-In that sense, the [`tpl-<label>` entity](../appendices/entities.md#tpl)
-would be analogous in terms of usage to BIDS raw's [`sub-<label>`](../appendices/entities.md#sub).
 
 !!! tip "Recommendation"
 
@@ -55,8 +53,14 @@ only one data type (such as `anat/`) is stored under the `tpl-<label>/` director
 
 The [`cohort-<label>` directory and entity](../appendices/entities.md#cohort) MUST be specified for templates
 with several cohorts.
-The [`cohort-<label>` directory and entity](../appendices/entities.md#cohort) are dual in terms of usage to BIDS raw's
-[`session-<label>`](../appendices/entities.md#ses).
+
+!!! note "Dataset structure"
+
+    In templates/atlases the [`tpl-<label>`](../appendices/entities.md#tpl) and
+    [`cohort-<label>`](../appendices/entities.md#cohort) entities are structurally
+    analogous to the [`sub-<label>`](../appendices/entities.md#sub)
+    and [`ses-<label>`](../appendices/entities.md#ses) entities,
+    appearing as both directories and entities.
 
 ### Example: the `MNI152NLin2009cAsym` template
 
