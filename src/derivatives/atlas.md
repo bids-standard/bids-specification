@@ -62,6 +62,18 @@ with several cohorts.
     and [`ses-<label>`](../appendices/entities.md#ses) entities,
     appearing as both directories and entities.
 
+In BIDS, a template is considered *any* aggregation of data and the `tpl-` entity
+replaces the subject-level `sub-` entity when aggregating data across subjects.
+The `tpl-` entity and `sub-` entity are mutually exclusive in a given file.
+When the `tpl-` entity is used without the `atlas-` entity, as in the following examples,
+the imaging data serves as an instantiation of a space.
+the intention is to denote the imaging data serves as the definition of a space.
+When the `tpl-` entity is used in conjunction with the `atlas-` entity,
+the intention is to describe aggregations of data in a particular space,
+as described in the [Derived atlases](#derived-atlases) section, below.
+For uses of the `atlas-` entity without the `tpl-` entity,
+see [Imaging derivatives - Derivatives from atlases](imaging.md#derivatives-from-atlases).
+
 ### Example: the `MNI152NLin2009cAsym` template
 
 For the pipeline that generated [`MNI152NLin2009cAsym`](../appendices/coordinate-systems.md#standard-template-identifiers),
