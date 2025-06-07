@@ -3,6 +3,7 @@ import sys
 sys.path.insert(0, "src")
 
 import bidsschematools.schema
+from bidsschematools.types._generator import generate_module
 
 
 def pdm_build_initialize(context):
@@ -22,6 +23,10 @@ def pdm_build_initialize(context):
     schema_json = base_dir / "bidsschematools/data/schema.json"
     schema_json.parent.mkdir(parents=True, exist_ok=True)
     schema_json.write_text(schema.to_json())
+
+    context_py = base_dir / "bidsschematools/types/context.py"
+    context_py.parent.mkdir(parents=True, exist_ok=True)
+    context_py.write_text(generate_module(schema))
 
 
 def pdm_build_update_files(context, files):
