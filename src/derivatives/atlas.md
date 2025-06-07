@@ -46,9 +46,7 @@ such as `T1w` or `PET`; and
 [`extension`](../glossary.md#extension-common_principles) MAY take values such as `nii[.gz]`, `dscalar.nii[.gz]`,
 `dlabel.nii[.gz]`, `label.gii[.gz]`, `tsv`, or `json`.
 
-Please note that the [`<datatype>/` directory](../glossary.md#data_type-common_principles) is RECOMMENDED.
-Like for the remainder of BIDS Derivatives,
-the [`<datatype>/` directory](../glossary.md#data_type-common_principles) MAY be omitted in the case
+The [`<datatype>/` directory](../glossary.md#data_type-common_principles) MAY be omitted in the case
 only one data type (such as `anat/`) is stored under the `tpl-<label>/` directory.
 
 The [`cohort-<label>` directory and entity](../appendices/entities.md#cohort) MUST be specified for templates
