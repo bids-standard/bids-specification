@@ -18,8 +18,8 @@ NoSubjectFolders:
   issue:
     code: NOSUBJECT_FOLDERS
     message: |
-      There must be no subject directories (labeled "sub-*") in the root of the "project" type BIDS dataset.
-    level: error
+      There should be no subject directories (labeled "sub-*") in the root of this project BIDS dataset.
+    level: warning
   selectors:
     - path == '/dataset_description.json'
     - dataset.dataset_description.DatasetType == "project"
