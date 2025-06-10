@@ -863,7 +863,74 @@ A guide for using macros can be found at
             }
         }
     }
-) }}
+  ) }}
+
+## Data type and modality selection
+
+BIDS is primarily for brain-related data, which should be interpreted as a research perspective rather than an inherent property of the data.
+For example, motion is a data type in BIDS because it informs brain activity research,
+while eye-tracking data in BIDS serves brain research perspectives.
+As long as data serves as a window to the brain or supports brain-related research objectives,
+it falls within BIDS' scope.
+
+When developing BIDS Extension Proposals (BEPs) that introduce new types of data,
+it is important to determine whether the data should:
+
+1.  Have its own dedicated data type and modality
+2.  Be incorporated under an existing data type
+3.  Be embedded within other modalities when appropriate
+
+### Simplicity principle
+
+Decisions about data organization SHOULD be guided by a simplicity principle
+that considers how easy it is to curate, manage, and reuse data.
+This principle can be quantified through the following criteria:
+
+1.  **Minimize file requirements**: Reduce the number of files needed (excluding sidecars) to describe new data
+
+1.  **Maximize reuse**: Keep data types, modalities, and entities minimal while reusing existing structures for new data
+    (metadata fields may change when new data is added to the specification)
+
+1.  **Avoid data type congestion**: The majority of data files in a host data type directory
+    should be directly related to that data type's primary purpose
+
+1.  **Balance reuse and congestion**: Balance the benefits of reusing existing structures against
+    the risk of overcrowding a data type with unrelated files
+
+1.  **Maintain data coherence**: Keep data with shared characteristics
+    (common acquisition clock, recording instrument, coordinate system) in one file
+    unless specific features (such as task, run, or data source) warrant separation
+
+### Application guidelines
+
+The simplicity principle SHOULD be applied early in BEP development based on:
+
+-   **File count analysis**: Consider the total number of files required to represent the data
+    and how this affects dataset organization
+
+-   **Usage patterns**: Evaluate whether the data is commonly used standalone
+    or primarily as auxiliary measurements alongside other data types
+
+-   **Technical requirements**: Assess whether the data requires specific metadata fields,
+    coordinate systems, or other specifications that align with existing structures
+
+-   **Community perspective**: Consider both data curator and end-user perspectives
+    when evaluating organizational approaches
+
+### Examples
+
+**Motion data**: Uses three core files (data, channels, events) plus sidecars,
+introduces one data type and essentially one entity while reusing important resources,
+avoiding congestion in other data types.
+
+**Electrocardiogram (EKG) data**: Can serve as an example of flexible placement options:
+
+-   As a channel in EEG recordings when recorded with the same instrument
+-   As a physio modality in a host EEG data type for standalone EKG with different instruments
+-   In a dedicated physio data type (once physio-BEP is merged) when multiple physiological recordings
+    (eye-tracking, galvanic skin response, metabolics, SpO2, EKG) are present
+
+The simplicity principle guides the recommendation based on the specific dataset context and usage requirements.
 
 ## Participant names and other labels
 
