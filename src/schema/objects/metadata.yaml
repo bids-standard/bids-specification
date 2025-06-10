@@ -67,7 +67,7 @@ Activities:
         format: uri
       Label:
         name: Label
-        description: Name of the tool, script, or function used (e.g. “bet”, "recon-all", "myFunc", "docker").
+        description: Name of the tool, script, or function used (for example "bet", "recon-all", "myFunc", "docker").
         type: string
         format: label
       Command:
@@ -90,7 +90,8 @@ Activities:
         name: Used
         description: |
           Identifier(s) of entity(ies) or environment(s) used by this activity.
-          The corresponding Entities (resp. Environments) must be defined with their own Entity (resp. Environment) record.
+          The corresponding Entities (resp. Environments) must be defined with
+          their own Entity (resp. Environment) record.
         anyOf:
           - type: string
             format: uri
@@ -3558,7 +3559,8 @@ Software:
       Id:
         name: Id
         description: |
-          that will be used to associate activities with this software package (e.g., urn:1264-1233-11231-12312, "urn:bet-o1ef4rt")
+          that will be used to associate activities with this software package
+          (for example "urn:1264-1233-11231-12312", "urn:bet-o1ef4rt")
         type: string
         format: uri
       Label:
@@ -3579,7 +3581,8 @@ Software:
       ActedOnBehalfOf:
         name: ActedOnBehalfOf
         description: |
-          Identifier of another software package that was responsible for using this software package in the context of the activities associated to it.
+          Identifier of another software package that was responsible for using this software package
+          in the context of the activities associated to it.
           The corresponding software must be defined with its own Software record.
           Example: if software A launches software B to perform activity C, then B ActedOnBehalfOf A.
         type: string
