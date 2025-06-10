@@ -16,7 +16,8 @@ dataset_description:
     EthicsApprovals: optional
     ReferencesAndLinks: optional
     DatasetDOI: optional
-    GeneratedBy: recommended
+    GeneratedBy: deprecated
+    GeneratedByProv: recommended
     SourceDatasets: recommended
 
 dataset_authors:
@@ -38,7 +39,8 @@ derivative_description:
     - path == "/dataset_description.json"
     - json.DatasetType == "derivative"
   fields:
-    GeneratedBy: required
+    GeneratedByProv: recommended
+    GeneratedBy: deprecated
 
 dataset_description_with_genetics:
   selectors:

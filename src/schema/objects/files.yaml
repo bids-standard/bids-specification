@@ -102,6 +102,13 @@ code:
     (for example the one used to generate the derivatives from the raw data).
     See the [Code section](SPEC_ROOT/modality-agnostic-files/code.md)
     for more information.
+prov:
+  display_name: Provenance Records
+  file_type: directory
+  description: |
+    A directory in which to store provenance metadata.
+    See the [Provenance section](SPEC_ROOT/modality-agnostic-files.md#provenance)
+    for more information.
 derivatives:
   display_name: Derivative data
   file_type: directory
