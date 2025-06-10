@@ -796,6 +796,14 @@ DewarPosition:
     `"upright"`, `"supine"` or `"degrees"` of angle from vertical:
     for example on CTF systems, `"upright=15°, supine=90°"`.
   type: string
+Digest:
+  name: Digest
+  display_name: Digest
+  description: |
+    Object containing checksum(s) of a file.
+    It takes the form {"<type_of_digest>": "value"}.
+    For example: {"sha256" : "66eeafb465559148e0222d4079558a8354eb09b9efabcc47cd5b8af6eed51907"}
+  type: object
 DigitizedHeadPoints:
   name: DigitizedHeadPoints
   display_name: Digitized Head Points
@@ -1194,6 +1202,14 @@ Entities:
         description: A term from a controlled vocabulary that more specifically describes the Entity.
         type: string
         format: uri
+EntityType:
+  name: Type
+  display_name: Type
+  description: |
+    A term from a controlled vocabulary that more specifically describes an Entity provenance record.
+    See the [`Entity` section](SPEC_ROOT/modality-agnostic-files/provenance.md#entity).
+  type: string
+  format: uri
 Environments:
   name: Environments
   display_name: Environments
