@@ -95,6 +95,11 @@ source = [
 [tool.coverage.run]
 parallel = true
 
+[tool.coverage.report]
+exclude_also = [
+  "if.*TYPE_CHECKING:",
+]
+
 # Release process:
 # cd tools/schemacode
 # uvx bump-my-version bump pre_label --tag
