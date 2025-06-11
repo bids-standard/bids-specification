@@ -104,11 +104,11 @@ class DataclassSpec:
     from dataclasses import dataclass
 
     TYPE_CHECKING = False
-    if TYPE_CHECKING:
+    if TYPE_CHECKING or "sphinx.ext.autodoc" in sys.modules:
         from collections.abc import Mapping, Sequence
         from typing import Any, Literal
 
-        from . import protocols as p
+        from . import protocols
 
     if sys.version_info >= (3, 10):
         dc_kwargs = {{"slots": True, "frozen": True}}
@@ -131,7 +131,7 @@ class DataclassSpec:
         #: {docstring}
     """)
 
-    proto_prefix = "p."
+    proto_prefix = "protocols."
 
 
 def snake_to_pascal(name: str) -> str:
