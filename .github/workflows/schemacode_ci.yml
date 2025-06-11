@@ -145,7 +145,7 @@ jobs:
 
       - name: Run schema validation tests
         run: |
-          python -m pytest -vs --doctest-modules -m "not validate_schema" \
+          python -m pytest -vs --doctest-modules -m "validate_schema" \
               --cov-append --cov-report=xml --cov-report=term --cov=src/bidsschematools
         working-directory: tools/schemacode
 
