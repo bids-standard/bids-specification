@@ -18,7 +18,7 @@ from textwrap import dedent, indent
 
 TYPE_CHECKING = False
 if TYPE_CHECKING:
-    from typing import Any, Protocol
+    from typing import Any, Callable, Protocol
 
     class Spec(Protocol):
         prelude: str
@@ -27,8 +27,8 @@ if TYPE_CHECKING:
         proto_prefix: str
 
 
-def with_indent(spaces: int, /):
-    def decorator(attr):
+def with_indent(spaces: int, /) -> Callable[[str], str]:
+    def decorator(attr: str) -> str:
         return indent(dedent(attr), " " * spaces)
 
     return decorator
@@ -146,12 +146,13 @@ def create_protocol_source(
     classes: dict[str, str],
 ) -> str:
     class_name = snake_to_pascal(class_name)
-    docstring = f"""\
-{metadata.get("description", "").strip()}
+    docstring = metadata.get("description", "").strip()
+    if "@property" not in template.attr_def:
+        docstring += with_indent(4)("""
 
-Attributes
-----------
-"""
+            Attributes
+            ----------
+            """)
 
     required = metadata.get("required", {})
     optional = [prop for prop in properties if prop not in required]
@@ -172,7 +173,13 @@ Attributes
                 name=prop_name, type=type_, docstring=description, default=default
             )
         )
-        docstring += f"{prop_name}: {type_}\n\t{description}\n"
+        # Avoid double-documenting properties
+        if "@property" not in template.attr_def:
+            docstring += with_indent(4)(f"""\
+                {prop_name}: {type_}
+                    {description}
+
+                """)
 
     lines.insert(0, template.class_def.format(name=class_name, docstring=docstring))
 
