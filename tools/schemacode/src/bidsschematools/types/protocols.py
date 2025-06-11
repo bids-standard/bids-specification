@@ -8,4 +8,4 @@ from ..schema import load_schema
 from ._generator import generate_module
 
 schema = load_schema()
-exec(generate_module(schema, "dataclasses"), globals())
+exec(generate_module(schema, "protocol"), globals())
