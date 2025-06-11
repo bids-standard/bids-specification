@@ -3,6 +3,7 @@ import sys
 sys.path.insert(0, "src")
 
 import bidsschematools.schema
+from bidsschematools.types._generator import generate_module
 
 
 def pdm_build_initialize(context):
@@ -23,7 +24,22 @@ def pdm_build_initialize(context):
     schema_json.parent.mkdir(parents=True, exist_ok=True)
     schema_json.write_text(schema.to_json())
 
+    # Write generated code for types
+    # Limit to wheel to avoid duplication while allowing building
+    # the wheel directly from source
+    if context.target == "wheel":
+        context_py = base_dir / "bidsschematools/types/context.py"
+        context_py.parent.mkdir(parents=True, exist_ok=True)
+        context_py.write_text(generate_module(schema, "dataclasses"))
+
+        protocols_py = base_dir / "bidsschematools/types/protocols.py"
+        protocols_py.parent.mkdir(parents=True, exist_ok=True)
+        protocols_py.write_text(generate_module(schema, "protocol"))
+
 
 def pdm_build_update_files(context, files):
     # Dereference symlinks
     files.update({relpath: path.resolve() for relpath, path in files.items()})
+    # Remove code generator, which is not used once installed
+    if context.target == "wheel":
+        del files["bidsschematools/types/_generator.py"]
