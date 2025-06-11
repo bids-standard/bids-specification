@@ -38,7 +38,6 @@ stored in one of the following formats:
 | [EEGLAB](https://sccn.ucsd.edu/eeglab/index.php)                          | `.set`, `.fdt`           | The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab/index.php). Each recording consists of a `.set` file with an OPTIONAL `.fdt` file.             |
 | [Neurodata Without Borders](https://nwb-schema.readthedocs.io/en/latest/) | `.nwb`                   | Each recording consists of a single `.nwb` file.                                                                                                                           |
 | [MEF3](https://osf.io/e3sf9/)                                             | `.mefd`                  | Each recording consists of a `.mefd` directory.                                                                                                                            |
-| [MED](https://medformat.org/)                                             | `.medd`                  | Each recording consists of a `.medd` directory.                                                                                                                            |
 
 It is RECOMMENDED to use the European data format, or the BrainVision data
 format. It is furthermore discouraged to use the other accepted formats over
@@ -134,7 +133,7 @@ A guide for using macros can be found at
 {{ MACROS___make_sidecar_table("ieeg.iEEGOptional") }}
 
 Note that the date and time information SHOULD be stored in the study key file
-([`scans.tsv`](../modality-agnostic-files.md#scans-file)).
+([`scans.tsv`](../modality-agnostic-files/data-summary-files.md#scans-file)).
 Date time information MUST be expressed as indicated in [Units](../common-principles.md#units)
 
 #### Hardware information
@@ -296,15 +295,15 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_filename_template("raw", datatypes=["ieeg"], suffixes=["electrodes"]) }}
 
-File that gives the location, size and other properties of iEEG electrodes. Note
-that coordinates are expected in cartesian coordinates according to the
-`iEEGCoordinateSystem` and `iEEGCoordinateUnits` fields in
-`*_coordsystem.json`. If an `*_electrodes.tsv` file is specified, a
-`*_coordsystem.json` file MUST be specified as well.
+This REQUIRED file gives the location, size and other properties of iEEG electrodes.
+Note that coordinates are expected in cartesian coordinates according to the
+`iEEGCoordinateSystem` and `iEEGCoordinateUnits` fields in `*_coordsystem.json`.
+For each `*_electrodes.tsv` file specified,
+a `*_coordsystem.json` file MUST be specified as well.
 
 The optional [`space-<label>`](../appendices/entities.md#space) entity (`*[_space-<label>]_electrodes.tsv`) can be used to
 indicate the way in which electrode positions are interpreted.
-The space `<label>` MUST be taken from one of the modality specific lists in
+The space `<label>` MUST be taken from one of the modality-specific lists in
 the [Coordinate Systems Appendix](../appendices/coordinate-systems.md).
 For example for iEEG data, the restricted keywords listed under
 [iEEG Specific Coordinate Systems](../appendices/coordinate-systems.md#ieeg-specific-coordinate-systems)
@@ -495,11 +494,13 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example(
    {
-   "sub-01": {
-      "ses-0001": {
-         "sub-0001_ses-01_acq-photo1_photo.jpg": "",
-         "sub-0001_ses-01_acq-photo2_photo.jpg": "",
-         "...": "",
+   "sub-0001": {
+      "ses-01": {
+         "ieeg": {
+            "sub-0001_ses-01_acq-photo1_photo.jpg": "",
+            "sub-0001_ses-01_acq-photo2_photo.jpg": "",
+            "...": "",
+            },
          },
       },
    }
@@ -509,7 +510,6 @@ A guide for using macros can be found at
 
 Below is an example of a volume rendering of the cortical surface with a
 superimposed subdural electrode implantation. This map is often provided by the
-
 EEG technician and provided to the epileptologists (for example, see Burneo JG et al.
 2014. [doi:10.1016/j.clineuro.2014.03.020](https://doi.org/10.1016/j.clineuro.2014.03.020)).
 

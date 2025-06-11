@@ -3,7 +3,7 @@
 Multiple sessions (visits) are encoded by adding an extra layer of directories
 and [filenames](common-principles.md#filenames)
 in the form of a session (for example `ses-<label>`) and
-with a [`*_sessions.tsv` file](modality-agnostic-files.md#sessions-file).
+with a [`*_sessions.tsv` file](modality-agnostic-files/data-summary-files.md#sessions-file).
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -94,7 +94,6 @@ Apps and everything should just work.
 
 Alternatively you can combine data from all sites into one dataset.
 This can be done in two ways:
-
 
 #### Option 2.a: Collate sites at subject level
 

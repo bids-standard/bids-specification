@@ -32,3 +32,15 @@ CoordsystemSpecificity:
     - '!("task" in entities)'
     - '!("acquisition" in entities)'
     - '!("run" in entities)'
+
+RequiredCoordsystem:
+  issue:
+    code: REQUIRED_COORDSYSTEM
+    message: |
+      If an electrodes.tsv file is provided, an associated coordsystem.json must also be present.
+    level: error
+  selectors:
+    - suffix == "electrodes"
+    - extension == ".tsv"
+  checks:
+    - associations.coordsystem != null
