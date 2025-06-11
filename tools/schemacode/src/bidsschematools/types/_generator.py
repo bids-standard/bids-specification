@@ -100,6 +100,7 @@ class DataclassSpec:
 
     from __future__ import annotations
 
+    import sys
     from dataclasses import dataclass
 
     TYPE_CHECKING = False
@@ -109,13 +110,18 @@ class DataclassSpec:
 
         from . import protocols as p
 
+    if sys.version_info >= (3, 10):
+        dc_kwargs = {{"slots": True, "frozen": True}}
+    else:  # PY39
+        dc_kwargs = {{"frozen": True}}
+
     __all__ = {__all__}
 
 
     ''')
 
     class_def = dedent('''\
-    @dataclass(slots=True, frozen=True)
+    @dataclass(**dc_kwargs)
     class {name}:
         """{docstring}"""
     ''')
