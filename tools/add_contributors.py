@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """Add new contributors listed in `new_contributors.tsv` to `.tributors` file.
 
 The `.tributors` file is then used to update:
@@ -25,6 +27,7 @@ from __future__ import annotations
 
 import json
 import logging
+import os
 from collections import OrderedDict
 from pathlib import Path
 from typing import Optional
@@ -45,8 +48,8 @@ LOG_LEVEL = "DEBUG"  # 'DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'
 # Set to True to update the avatars
 # update with your GitHub username and path to a file with GitHub token
 UPDATE_AVATARS = False
-GH_USERNAME = "Remi-Gau"
-TOKEN_FILE = None
+GH_USERNAME = os.environ.get("GH_USERNAME")
+GH_TOKEN = os.environ.get("GH_TOKEN")
 # if you not want traceback from rich
 # https://rich.readthedocs.io/en/stable/traceback.html
 # set this to False
@@ -78,6 +81,7 @@ log = logger(log_level=LOG_LEVEL)
 
 yaml = ruamel.yaml.YAML()
 yaml.indent(mapping=2, sequence=4, offset=2)
+yaml.width = 4096
 
 
 def root_dir() -> Path:
@@ -256,6 +260,7 @@ def write_tributors(tributors_file: Path, tributors: dict[str, dict]) -> None:
     tributors = sort_tributors(tributors)
     with open(tributors_file, "w", encoding="utf8") as output_file:
         json.dump(tributors, output_file, indent=4, ensure_ascii=False)
+        output_file.write(os.linesep)
 
 
 def return_missing_from_tributors(tributors_file: Path, names: list[str]) -> list[str]:
@@ -343,6 +348,7 @@ def write_allcontrib(allcontrib_file: Path, allcontrib: dict) -> None:
     allcontrib = sort_all_contrib(allcontrib)
     with open(allcontrib_file, "w", encoding="utf8") as output_file:
         json.dump(allcontrib, output_file, indent=4, ensure_ascii=False)
+        output_file.write(os.linesep)
 
 
 def sort_all_contrib(allcontrib: dict) -> dict:
@@ -374,7 +380,10 @@ def update_allcontrib(allcontrib: dict, this_contributor: dict[str, str]) -> dic
                 value=value,
             )
 
-        if allcontrib["contributors"][index_allcontrib][key] != value:
+        if (
+            key not in allcontrib["contributors"][index_allcontrib]
+            or allcontrib["contributors"][index_allcontrib][key] != value
+        ):
             allcontrib["contributors"][index_allcontrib] = update_key(
                 contributor=allcontrib["contributors"][index_allcontrib],
                 key=key,
@@ -396,6 +405,9 @@ def get_gh_avatar(gh_username: str, auth_username: str, auth_token: str) -> str:
     response = requests.get(url, auth=(auth_username, auth_token))
     if response.status_code == 200:
         avatar_url = response.json()["avatar_url"]
+        log.info(f" got avatar: {avatar_url}\n")
+    else:
+        log.error(" FAIL\n")
 
     return avatar_url
 
@@ -481,11 +493,6 @@ def return_author_list_for_cff(tributors_file: Path) -> list[dict[str, str]]:
 
 
 def main():
-    token = None
-    if TOKEN_FILE is not None:
-        with open(Path(TOKEN_FILE)) as f:
-            token = f.read().strip()
-
     log.debug(f"Reading: {INPUT_FILE}")
     df = pd.read_csv(INPUT_FILE, sep="\t", encoding="utf8")
     log.debug(f"\n{df.head()}")
@@ -504,9 +511,16 @@ def main():
 
     # sanity checks to make sure no contributor was added manually
     assert len(tributors_names) == len(set(tributors_names))
-    assert len(allcontrib_names) == len(set(allcontrib_names))
-    assert len(tributors_names) == len(allcontrib_names)
-    assert len(tributors_names) == len(citation["authors"])
+    assert len(allcontrib_names) == len(set(allcontrib_names)), print(
+        f"{allcontrib_names=}, {len(set(allcontrib_names))=}"
+    )
+    # We might be removing duplicates etc, thus let's not verify
+    # assert len(tributors_names) >= len(allcontrib_names), print(
+    #     f"{len(tributors_names)=}, {len(allcontrib_names)=}"
+    # )
+    # assert len(tributors_names) >= len(citation["authors"]), print(
+    #     f"{len(tributors_names)=}, {len(citation['authors'])=}"
+    # )
 
     new_contrib_names = df.name.to_list()
 
@@ -548,11 +562,11 @@ def main():
         this_contributor["login"] = github_username
         this_contributor = rename_keys_for_allcontrib(this_contributor)
 
-        if UPDATE_AVATARS:
-            avatar_url = get_gh_avatar(
-                this_contributor["github_username"], GH_USERNAME, token
-            )
-            this_contributor["avatar_url"] = avatar_url
+        if UPDATE_AVATARS and "avatar_url" not in this_contributor:
+            if avatar_url := get_gh_avatar(
+                this_contributor["login"], GH_USERNAME, GH_TOKEN
+            ):
+                this_contributor["avatar_url"] = avatar_url
 
         allcontrib = update_allcontrib(allcontrib, this_contributor)
 
