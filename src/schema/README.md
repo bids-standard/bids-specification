@@ -167,7 +167,7 @@ references (the cases in which they are used will be presented later):
     (which are in turn references to individual values), and the references inside `GeneticLevel.anyOf` indicate that there may be a single
     such value or a list of values.
 
-1.  In [`rules.files.deriv.preprocessed_data`](./rules/files/deriv/preprocessed_data.yaml):
+1.  In [`rules.files.deriv.preprocessed_data`][preprocessed_data]:
     ```YAML
     anat_nonparametric_common:
       $ref: rules.files.raw.anat.nonparametric
@@ -1071,4 +1071,5 @@ ensuring consistency across the entire schema directory. Validation of the schem
 incorporated into the CI, so any changes that are inconsistent will be flagged before
 inclusion.
 
+[preprocessed_data]: https://github.com/bids-standard/bids-specification/tree/master/src/schema/rules/files/deriv/preprocessed_data.yaml
 [tabular files]: https://bids-specification.readthedocs.io/en/stable/common-principles.html#tabular-files

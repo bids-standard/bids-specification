@@ -196,7 +196,18 @@ cd bids-specification
 
 Enter all commands below from the command line prompt located at the root of the local version of the specification.
 
-### 3. Install MkDocs, the Material theme and the required extensions
+### 3. Prepare your virtual environment
+
+The simplest way to prepare a Python environment for building the specification is
+with [uv](https://docs.astral.sh/uv/).
+
+```bash
+uv sync
+```
+
+(If you use `uv run` in the next section, this will be run implicitly.)
+
+<details><summary>Expand for detailed instructions that do not use `uv`.</summary>
 
 In the following links, you can find more information about
 
@@ -252,12 +263,16 @@ This installs the `bidsschemacode` package in "editable" mode,
 so that any changes you make to the code will be reflected when you use it,
 such as when you build the documentation locally.
 
+</details>
+
 ### 4. Ready to build!
 
-Using the terminal (command line) please enter `mkdocs serve`.
+Using the terminal (command line) please enter `uv run mkdocs serve`.
 This will allow you to see a local version of the specification.
 The local address will be `http://127.0.0.1:8000`.
 You may enter that into your browser and this will bring up the specification!
+
+(If you are not using `uv`, activate your environment and then run `mkdocs serve`.)
 
 ## Fixing Markdown style errors
 
