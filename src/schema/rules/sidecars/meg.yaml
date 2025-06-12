@@ -102,7 +102,10 @@ MEGRecommended:
     TriggerChannelCount: recommended
     RecordingDuration: recommended
     RecordingType: recommended
-    EpochLength: recommended
+    EpochLength:
+      level: optional
+      # Implemented in rules.sidecars.electrophys
+      level_addendum: recommended if RecordingType is "epoched"
     ContinuousHeadLocalization: recommended
     HeadCoilFrequency: recommended
     MaxMovement: recommended
