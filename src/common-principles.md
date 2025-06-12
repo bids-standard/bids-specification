@@ -400,9 +400,9 @@ In particular, if a BIDS dataset contains a `derivatives/` subdirectory,
 the contents of that directory may be a heterogeneous mix of BIDS Derivatives
 datasets and non-compliant derivatives.
 
-## Project dataset
+## Study dataset
 
-BIDS allows one to organize the data for the entire project (original source data, raw BIDS, derivatives) as a valid BIDS dataset in the following way
+BIDS allows one to organize the data for the entire study (original source data, raw BIDS, derivatives) as a valid BIDS dataset in the following way
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -410,7 +410,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example(
     {
-    "my_project-1": {
+    "study-1": {
         "sourcedata": {
             "dicoms": {},
             "raw": {
@@ -438,7 +438,7 @@ In this example, `sourcedata/dicoms` is not nested inside
 The subdirectories of `derivatives` MAY be BIDS-compliant derivatives datasets
 (see [Non-compliant derivatives](#non-compliant-derivatives) for further discussion).
 The above example is a fully compliant BIDS dataset, providing a convention useful for organizing source, raw BIDS, and derived BIDS data while maintaining overall BIDS compliance.
-When using this convention, `dataset_description.json` MUST have `DatasetType` to be set to `"project"`.  It is also RECOMMENDED to set the `SourceDatasets`
+When using this convention, `dataset_description.json` MUST have `DatasetType` to be set to `"study"`.  It is also RECOMMENDED to set the `SourceDatasets`
 field in `dataset_description.json` of each subdirectory of `derivatives` to:
 
 ```JSON
