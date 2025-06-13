@@ -188,6 +188,12 @@ For example:
 
 -   (publication forthcoming)
 
+### Other extensions specific publications
+
+#### Provenance
+
+-   (publication forthcoming)
+
 ### Research Resource Identifier (RRID)
 
 BIDS has also a
