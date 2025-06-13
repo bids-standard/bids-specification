@@ -101,3 +101,12 @@ electrodes:
     entities:
       - space
   inherit: true
+
+physio:
+  selectors:
+    - 'task in entities'
+    - extension != '.json'
+  target:
+    suffix: physio
+    extension: .tsv.gz
+  inherit: true

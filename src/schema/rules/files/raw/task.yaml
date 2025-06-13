@@ -21,6 +21,7 @@ events:
 timeseries:
   suffixes:
     - physio
+    - physioevents
     - stim
   extensions:
     - .tsv.gz
@@ -41,6 +42,7 @@ timeseries:
 timeseries__mri_no_task:
   suffixes:
     - physio
+    - physioevents
     - stim
   extensions:
     - .tsv.gz
