@@ -25,6 +25,7 @@ channels__microephys:
   entities:
     $ref: rules.files.raw.channels.channels.entities
     sample: optional
+    task: optional
 
 # MEG has an additional entity available
 channels__meg:
@@ -101,6 +102,16 @@ electrodes__meg:
   $ref: rules.files.raw.channels.electrodes
   datatypes:
     - meg
+  entities:
+    $ref: rules.files.raw.channels.electrodes.entities
+    processing: optional
+
+# microephys has an additional entity available
+electrodes__microephys:
+  $ref: rules.files.raw.channels.electrodes
+  datatypes:
+    - ecephys
+    - icephys
   entities:
     $ref: rules.files.raw.channels.electrodes.entities
     processing: optional
