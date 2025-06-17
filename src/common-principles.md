@@ -720,7 +720,10 @@ to which the metadata contained within are not applicable.
 The Inheritance Principle defines a systematized set of rules
 to determine which metadata files to associate with which data files.
 Further, because multiple metadata files may apply to an individual data file,
-the Principle defines the *order of precedence* of such metadata files contents.
+the Principle defines the *order of precedence* of such metadata content;
+this is necessary for resolution of conflicts if the same metadata field
+contains different values in different metadata files
+(though it is RECOMMENDED to avoid such overloading).
 
 ### Rules
 
@@ -1055,16 +1058,15 @@ For additional rules, see below:
 Describing dates and timestamps:
 
 -   Date time information MUST be expressed in the following format
-    `YYYY-MM-DDThh:mm:ss[.000000][Z]` (year, month, day, hour (24h), minute,
-    second, optional fractional seconds, and optional UTC time indicator).
+    `YYYY-MM-DDThh:mm:ss[.000000][Z|+hh:mm|-hh:mm]` (year, month, day, hour (24h),
+    minute, second, optional fractional seconds, and optional time offset).
     This is almost equivalent to the [RFC3339](https://tools.ietf.org/html/rfc3339)
-    "date-time" format, with the exception that UTC indicator `Z` is optional and
-    non-zero UTC offsets are not indicated.
-    If `Z` is not indicated, time zone is always assumed to be the local time of the
-    dataset viewer.
+    "date-time" format, with the exception that UTC offsets are OPTIONAL.
+    If no time offset is indicated,
+    time zone is always assumed to be the local time of the dataset viewer.
     No specific precision is required for fractional seconds, but the precision
     SHOULD be consistent across the dataset.
-    For example `2009-06-15T13:45:30`.
+    For example `2009-06-15T13:45:30+01:00`.
 
 -   Time stamp information MUST be expressed in the following format:
     `hh:mm:ss[.000000]`

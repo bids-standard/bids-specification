@@ -38,7 +38,6 @@ stored in one of the following formats:
 | [EEGLAB](https://sccn.ucsd.edu/eeglab/index.php)                          | `.set`, `.fdt`           | The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab/index.php). Each recording consists of a `.set` file with an OPTIONAL `.fdt` file.             |
 | [Neurodata Without Borders](https://nwb-schema.readthedocs.io/en/latest/) | `.nwb`                   | Each recording consists of a single `.nwb` file.                                                                                                                           |
 | [MEF3](https://osf.io/e3sf9/)                                             | `.mefd`                  | Each recording consists of a `.mefd` directory.                                                                                                                            |
-| [MED](https://medformat.org/)                                             | `.medd`                  | Each recording consists of a `.medd` directory.                                                                                                                            |
 
 It is RECOMMENDED to use the European data format, or the BrainVision data
 format. It is furthermore discouraged to use the other accepted formats over
@@ -296,11 +295,11 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_filename_template("raw", datatypes=["ieeg"], suffixes=["electrodes"]) }}
 
-File that gives the location, size and other properties of iEEG electrodes. Note
-that coordinates are expected in cartesian coordinates according to the
-`iEEGCoordinateSystem` and `iEEGCoordinateUnits` fields in
-`*_coordsystem.json`. If an `*_electrodes.tsv` file is specified, a
-`*_coordsystem.json` file MUST be specified as well.
+This REQUIRED file gives the location, size and other properties of iEEG electrodes.
+Note that coordinates are expected in cartesian coordinates according to the
+`iEEGCoordinateSystem` and `iEEGCoordinateUnits` fields in `*_coordsystem.json`.
+For each `*_electrodes.tsv` file specified,
+a `*_coordsystem.json` file MUST be specified as well.
 
 The optional [`space-<label>`](../appendices/entities.md#space) entity (`*[_space-<label>]_electrodes.tsv`) can be used to
 indicate the way in which electrode positions are interpreted.

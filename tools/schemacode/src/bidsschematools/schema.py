@@ -218,6 +218,10 @@ def load_schema(schema_path=None):
         schema_path = data.load.readable("schema.json")
         if not schema_path.is_file():
             schema_path = data.load.readable("schema")
+
+            # Probably a Windows checkout with a git link. Resolve first.
+            if schema_path.is_file() and (content := schema_path.read_text()).startswith("../"):
+                schema_path = Path.resolve(schema_path.parent / content)
         lgr.info("No schema path specified, defaulting to the bundled schema, `%s`.", schema_path)
     elif isinstance(schema_path, str):
         schema_path = Path(schema_path)

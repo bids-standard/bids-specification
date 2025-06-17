@@ -61,7 +61,7 @@ jobs:
       - name: Regenerate context types
         run: |
           jq .meta.context schema.json \
-          | npx quicktype --src-lang schema --lang ts -t Context --just-types true \
+          | npx quicktype --src-lang schema --lang ts -t Context --just-types \
           > context.ts
       - name: Regenerate metaschema types
         run: |
