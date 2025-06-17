@@ -59,13 +59,14 @@ with several cohorts.
     analogous to the [`sub-<label>`](../appendices/entities.md#sub)
     and [`ses-<label>`](../appendices/entities.md#ses) entities,
     appearing as both directories and entities.
+    The [`cohort-<label>`](../appendices/entities.md#cohort) entity is used
+    to track mappings of arbitrary subject/session pairs.
 
 In BIDS, a template is considered *any* aggregation of data and the `tpl-` entity
 replaces the subject-level `sub-` entity when aggregating data across subjects.
 The `tpl-` entity and `sub-` entity are mutually exclusive in a given file.
 When the `tpl-` entity is used without the `atlas-` entity, as in the following examples,
 the imaging data serves as an instantiation of a space.
-the intention is to denote the imaging data serves as the definition of a space.
 When the `tpl-` entity is used in conjunction with the `atlas-` entity,
 the intention is to describe aggregations of data in a particular space,
 as described in the [Derived atlases](#derived-atlases) section, below.
