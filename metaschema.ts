@@ -889,8 +889,7 @@ export interface Json {
             level_addendum?: string;
             description_addendum?: string;
             issue?: Issue;
-          }
-        | string;
+          };
     };
   };
 }
@@ -920,8 +919,7 @@ export interface TabularData {
             level_addendum?: string;
             description_addendum?: string;
             issue?: Issue;
-          }
-        | string;
+          };
     };
     additional_columns: "allowed" | "allowed_if_defined" | "not_allowed" | "n/a";
     index_columns?: string[];
