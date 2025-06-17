@@ -509,7 +509,7 @@ act:
     Provenance Activity records for a group of provenance.
     Activities represent the transformations that have been applied to the data.
     Files with the `act` suffix must define the `Activities` metadata, which is an array of `Activity` records.
-    See the [`Activity` section](SPEC_ROOT/modality-agnostic-files/provenance.md#activity)
+    See the [`Activity` records](SPEC_ROOT/modality-agnostic-files/provenance.md#activity-records) section.
 all:
   value: all
   display_name: Provenance Records
@@ -633,7 +633,7 @@ ent:
     Provenance Entity records for a group of provenance.
     Entities are inputs and outputs for Activities.
     Files with the `ent` suffix must define the `Entities` metadata, which is an array of `Entity` records.
-    See the [`Entity` section](SPEC_ROOT/modality-agnostic-files/provenance.md#entity)
+    See the [`Entity` records](SPEC_ROOT/modality-agnostic-files/provenance.md#entity-records) section.
 env:
   value: env
   display_name: Provenance Environment Records
@@ -641,7 +641,7 @@ env:
     Provenance Environment records for a group of provenance.
     Environments specify the software environment in which the provenance record was obtained.
     Files with the `env` suffix must define the `Environments` metadata, which is an array of `Environment` records.
-    See the [`Environment` section](SPEC_ROOT/modality-agnostic-files/provenance.md#environment)
+    See the [`Environment` records](SPEC_ROOT/modality-agnostic-files/provenance.md#environment-records) section.
 epi:
   value: epi
   display_name: EPI
@@ -854,7 +854,7 @@ soft:
     Provenance Software records for a group of provenance.
     Software specifies the software package with which transformations were applied to the data.
     Files with the `soft` suffix must define the `Software` metadata, which is an array of `Software` records.
-    See the [`Software` section](SPEC_ROOT/modality-agnostic-files/provenance.md#software)
+    See the [`Software` records](SPEC_ROOT/modality-agnostic-files/provenance.md#software-records) section.
 sbref:
   value: sbref
   display_name: Single-band reference image

@@ -1207,7 +1207,7 @@ EntityType:
   display_name: Type
   description: |
     A term from a controlled vocabulary that more specifically describes an Entity provenance record.
-    See the [`Entity` section](SPEC_ROOT/modality-agnostic-files/provenance.md#entity).
+    See the [`Entity` records](SPEC_ROOT/modality-agnostic-files/provenance.md#entity-records) section.
   type: string
   format: uri
 Environments:
