@@ -53,16 +53,16 @@ MRIFuncTimingParameters:
     - suffix == "bold"
     - match(extension, "^\.nii(\.gz)?$")
   fields:
-    NumberOfVolumesDiscardedByScanner: recommended
-    NumberOfVolumesDiscardedByUser: recommended
-    DelayTime: recommended
+    NumberOfVolumesDiscardedByScanner: optional
+    NumberOfVolumesDiscardedByUser: optional
+    DelayTime: optional
     FrameAcquisitionDuration:
       level: optional
       level_addendum: |
         required for sequences that are described with the `VolumeTiming`
         field and that do not have the `SliceTiming` field set to allow for
         accurate calculation of "acquisition time"
-    DelayAfterTrigger: recommended
+    DelayAfterTrigger: optional
     AcquisitionDuration:
       level: deprecated
       description_addendum: |

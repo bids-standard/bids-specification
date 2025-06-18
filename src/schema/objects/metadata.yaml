@@ -2516,7 +2516,6 @@ PartialFourier:
   display_name: Partial Fourier
   description: |
     The fraction of partial Fourier information collected.
-    Corresponds to [DICOM Tag 0018, 9081](https://dicomlookup.com/dicomtags/(0018,9081)) `Partial Fourier`.
   type: number
 PartialFourierDirection:
   name: PartialFourierDirection
