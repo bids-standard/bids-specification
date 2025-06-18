@@ -20,8 +20,7 @@ nonparametric:
   datatypes:
     - anat
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.base.entities
     task: optional
     acquisition: optional
     ceagent: optional
@@ -56,8 +55,7 @@ parametric:
   datatypes:
     - anat
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.base.entities
     task: optional
     acquisition: optional
     ceagent: optional
@@ -75,8 +73,7 @@ defacemask:
   datatypes:
     - anat
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.base.entities
     task: optional
     acquisition: optional
     ceagent: optional
@@ -95,8 +92,7 @@ megre:
   datatypes:
     - anat
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.base.entities
     task: optional
     acquisition: optional
     ceagent: optional
@@ -116,8 +112,7 @@ mese:
   datatypes:
     - anat
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.base.entities
     task: optional
     acquisition: optional
     ceagent: optional
@@ -138,8 +133,7 @@ multiflip:
   datatypes:
     - anat
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.base.entities
     task: optional
     acquisition: optional
     ceagent: optional
@@ -160,8 +154,7 @@ multiinversion:
   datatypes:
     - anat
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.base.entities
     task: optional
     acquisition: optional
     ceagent: optional
@@ -181,8 +174,7 @@ mp2rage:
   datatypes:
     - anat
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.base.entities
     task: optional
     acquisition: optional
     ceagent: optional
@@ -205,8 +197,7 @@ vfamt:
   datatypes:
     - anat
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.base.entities
     task: optional
     acquisition: optional
     ceagent: optional
@@ -228,8 +219,7 @@ mtr:
   datatypes:
     - anat
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.base.entities
     task: optional
     acquisition: optional
     ceagent: optional

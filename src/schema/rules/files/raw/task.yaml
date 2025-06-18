@@ -12,8 +12,7 @@ timeseries:
     - ieeg
     - nirs
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.base.entities
     task: required
     acquisition: optional
     run: optional
@@ -30,8 +29,7 @@ timeseries__mri_no_task:
     - dwi
     - perf
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.base.entities
     acquisition: optional
     run: optional
     reconstruction: optional
@@ -86,8 +84,7 @@ timeseries__pet:
     - pet
   entities:
     # Most timeseries allow acquisition, PET doesn't
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.base.entities
     task: required
     tracer: optional
     reconstruction: optional

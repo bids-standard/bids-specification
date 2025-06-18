@@ -12,8 +12,7 @@ events:
     - meg
     - nirs
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.base.entities
     task: required
     acquisition: optional
     run: optional
@@ -45,8 +44,7 @@ events__pet:
     - pet
   entities:
     # Most events allow acquisition, PET doesn't
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.base.entities
     task: required
     tracer: optional
     reconstruction: optional

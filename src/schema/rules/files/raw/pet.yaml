@@ -9,8 +9,7 @@ pet:
   datatypes:
     - pet
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.base.entities
     task: optional
     tracer: optional
     reconstruction: optional
@@ -25,8 +24,7 @@ blood:
   datatypes:
     - pet
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.base.entities
     task: optional
     tracer: optional
     reconstruction: optional
