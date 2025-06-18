@@ -88,7 +88,7 @@ No other field is allowed to describe provenance inside sidecar JSON files.
 Provenance metadata CAN be stored inside the `dataset_description.json` of any BIDS dataset (or BIDS-Derivatives dataset) it applies to.
 In this case, the provenance content describes the provenance of the whole dataset.
 
-The `dataset_description.json` file CAN include the following key:
+The `dataset_description.json` file of a BIDS dataset CAN include the following key:
 
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in
@@ -102,10 +102,24 @@ and a guide for using macros can be found at
    }
 ) }}
 
+The `dataset_description.json` file of a BIDS-Derivatives dataset MUST include the following key:
+
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_metadata_table(
+   {
+      "GeneratedByProv": "REQUIRED"
+   }
+) }}
+
 !!! Note
     In the previous versions of the BIDS specification, the `GeneratedBy` field of the `dataset_description.json` files allowed to specify provenance of the dataset. This field is DEPRECATED and will be removed as part of a major revision of the BIDS specification.
 
-!!! example
+!!! example `dataset_description.json`
     ```JSON
     {
         "GeneratedByProv": "bids::prov#conversion-00f3a18f"
