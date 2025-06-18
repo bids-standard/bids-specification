@@ -15,8 +15,7 @@ ieeg:
   datatypes:
     - ieeg
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.base.entities
     task: required
     acquisition: optional
     run: optional
