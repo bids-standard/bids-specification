@@ -10,8 +10,7 @@ asl:
   datatypes:
     - perf
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.base.entities
     acquisition: optional
     reconstruction: optional
     direction: optional
@@ -27,8 +26,7 @@ aslcontext:
   datatypes:
     - perf
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.base.entities
     acquisition: optional
     reconstruction: optional
     direction: optional
@@ -44,8 +42,7 @@ asllabeling:
   datatypes:
     - perf
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.base.entities
     acquisition: optional
     reconstruction: optional
     run: optional

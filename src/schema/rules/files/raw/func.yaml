@@ -11,8 +11,7 @@ func:
   datatypes:
     - func
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.base.entities
     task: required
     acquisition: optional
     ceagent: optional
@@ -41,8 +40,7 @@ phase:
   datatypes:
     - func
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.base.entities
     task: required
     acquisition: optional
     ceagent: optional

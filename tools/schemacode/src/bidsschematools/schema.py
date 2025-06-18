@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import os
 import re
+from collections import ChainMap
 from collections.abc import Iterable, Mapping
 from copy import deepcopy
 from functools import cache, lru_cache
@@ -94,13 +95,26 @@ def _dereference(namespace, base_schema):
     # A dependency graph could be constructed, but would likely be slower
     # to build than to duplicate a couple dereferences
     for struct in _find(namespace, lambda obj: "$ref" in obj):
-        target = base_schema.get(struct["$ref"])
-        if target is None:
-            raise ValueError(f"Reference {struct['$ref']} not found in schema.")
-        if isinstance(target, Mapping):
+        refs = struct["$ref"]
+        if isinstance(refs, str):
+            refs = [refs]
+        targets = []
+        for ref in refs:
+            target = base_schema.get(ref)
+            if target is None:
+                raise ValueError(f"Reference {ref} not found in schema.")
+            targets.append(target)
+        if all(isinstance(target, Mapping) for target in targets):
             struct.pop("$ref")
-            _dereference(target, base_schema)
-            struct.update({**target, **struct})
+
+            combined_target = dict(ChainMap(*targets))
+            _dereference(combined_target, base_schema)
+            struct.update({**combined_target, **struct})
+
+            # Use `key: null` to delete fields
+            for key, value in list(struct.items()):
+                if value is None:
+                    del struct[key]
 
 
 @cache
