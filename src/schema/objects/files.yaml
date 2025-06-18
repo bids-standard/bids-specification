@@ -107,7 +107,7 @@ prov:
   file_type: directory
   description: |
     A directory in which to store provenance metadata.
-    See the [Provenance section](SPEC_ROOT/modality-agnostic-files.md#provenance)
+    See the [Provenance section](SPEC_ROOT/modality-agnostic-files/provenance.md)
     for more information.
 derivatives:
   display_name: Derivative data
