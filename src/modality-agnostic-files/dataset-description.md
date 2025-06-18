@@ -88,7 +88,7 @@ As for any BIDS dataset, a `dataset_description.json` file MUST be found at the
 top level of every derived dataset:
 `<dataset>/derivatives/<pipeline_name>/dataset_description.json`.
 
-In contrast to raw BIDS datasets, provenance of the dataset MUST be described in one of the ways defined in the [Provenance section](modality-agnostic-files/provenance.md).
+In contrast to raw BIDS datasets, provenance of the dataset MUST be described in one of the ways defined in the [Provenance section](provenance.md).
 
 !!! Note
     In the previous versions of the BIDS specification, the `GeneratedBy` field allowed to specify provenance of the dataset.

@@ -358,7 +358,7 @@ Derivatives can be stored/distributed in two ways:
     For the sake of consistency, the subdirectory name SHOULD be
     the `GeneratedBy.Name` field in `dataset_description.json`,
     optionally followed by a hyphen and a suffix (see
-    [Derived dataset and pipeline description](modality-specific-files/dataset-description.md#derived-dataset-and-pipeline-description)).
+    [Derived dataset and pipeline description](modality-agnostic-files/dataset-description.md#derived-dataset-and-pipeline-description)).
 
     Example of derivatives with one directory per pipeline:
 
