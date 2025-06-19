@@ -351,17 +351,12 @@ and a guide for using macros can be found at
 
 ## Consistency of Ids
 
-!!! Note
-    The following rules and conventions are provided in order to have consistent, human readable, and explicit [IRIs](https://www.w3.org/TR/json-ld11/#iris) as `Id` for `Entity` provenance records.
+The following rules and conventions are provided in order to have consistent, human readable, and explicit [IRIs](https://www.w3.org/TR/json-ld11/#iris) as `Id` for `Entity` provenance records.
 
-An `Id` identifying an `Entity` record for a file `<file>` relatively to a BIDS dataset `<dataset>` MUST have the following form:
+An `Id` identifying an `Entity` record corresponding to a file of a BIDS dataset MUST be a [BIDS URI](common-principles.html#bids-uri).
 
-```text
-bids:<dataset>:<file>
-```
-
-!!! Note
-    This principle also allow to identify where an `Entity` is stored in the dataset.
+!!! Warning
+    The use of BIDS URIs may require to define the `DatasetLinks` object in [`dataset_description.json`](modality-agnostic-files/dataset-description.md#dataset_descriptionjson).
 
 !!! example "`Entity` naming examples"
     - `bids:ds001734:sub-002/anat/sub-02_T1w.nii`: the `Id` of an `Entity` describing a T1w file for subject `sub-002` in the `ds001734` dataset ;
