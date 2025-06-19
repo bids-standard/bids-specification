@@ -235,6 +235,15 @@ and a guide for using macros can be found at
 
 Each `prov/[<label>/]prov-<label>_ent.json` file is a JSON file describing `Entity` records for a provenance group.
 
+!!! Caution
+    These files MUST not contain `Entity` records describing data files that are available in the dataset. Use sidecar JSON files instead for this purpose (see [Provenance in sidecar JSON files](#provenance-in-sidecar-json-files)).
+    These files MUST not contain `Entity` records describing the current dataset. Use the `GeneratedBy` field of the `dataset_description.json` files instead for this purpose (see [Provenance at dataset level](#provenance-at-dataset-level)).
+
+`Entity` records in these files CAN describe:
+- files or data that are located in another dataset ;
+- files or data that were deleted during the creation of the dataset ;
+- files or data that are part of software pieces or environments.
+
 This file MUST include an `Entities` key:
 
 <!-- This block generates a metadata table.
