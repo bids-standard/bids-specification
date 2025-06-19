@@ -240,9 +240,9 @@ Each `prov/[<label>/]prov-<label>_ent.json` file is a JSON file describing `Enti
     These files MUST not contain `Entity` records describing the current dataset. Use the `GeneratedBy` field of the `dataset_description.json` files instead for this purpose (see [Provenance at dataset level](#provenance-at-dataset-level)).
 
 `Entity` records in these files CAN describe:
-- files or data that are located in another dataset ;
-- files or data that were deleted during the creation of the dataset ;
-- files or data that are part of software pieces or environments.
+-   files or data that are located in another dataset ;
+-   files or data that were deleted during the creation of the dataset ;
+-   files or data that are part of software pieces or environments.
 
 This file MUST include an `Entities` key:
 
