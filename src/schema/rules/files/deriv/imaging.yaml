@@ -1,4 +1,9 @@
+# This document implements general imaging derivatives.
+#
+# The _volumetric rules cover supersets of files that would be covered by the
+# common derivatives spec, namely, the space and description entities.
 ---
+# Preprocessed and/or resampled volumes
 anat_parametric_volumetric:
   $ref:
     - meta.templates.deriv.volumetric
@@ -16,6 +21,69 @@ anat_nonparametric_volumetric:
     $ref:
       - meta.templates.deriv.volumetric.entities
       - rules.files.raw.anat.nonparametric.entities
+
+anat_defacemask_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.anat.defacemask
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.anat.defacemask.entities
+
+anat_multiecho_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.anat.multiecho
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.anat.multiecho.entities
+
+anat_multiflip_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.anat.multiflip
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.anat.multiflip.entities
+
+anat_multiinversion_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.anat.multiinversion
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.anat.multiinversion.entities
+
+anat_mp2rage_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.anat.mp2rage
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.anat.mp2rage.entities
+
+anat_vfamt_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.anat.vfamt
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.anat.vfamt.entities
+
+anat_mtr_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.anat.mtr
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.anat.mtr.entities
 
 dwi_dwi_volumetric:
   $ref:
@@ -62,6 +130,97 @@ func_phase_volumetric:
       - meta.templates.deriv.volumetric.entities
       - rules.files.raw.func.phase.entities
 
+fmap_fieldmaps_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.fmap.fieldmaps
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.fmap.fieldmaps.entities
+
+fmap_pepolar_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.fmap.pepolar
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.fmap.pepolar.entities
+
+fmap_pepolar_m0scan:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.fmap.pepolar_m0scan
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.fmap.pepolar.entities
+
+fmap_TB1DAM_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.fmap.TB1DAM
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.fmap.TB1DAM.entities
+
+fmap_TB1EPI_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.fmap.TB1EPI
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.fmap.TB1EPI.entities
+
+fmap_RFFieldMaps_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.fmap.RFFieldMaps
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.fmap.RFFieldMaps.entities
+
+fmap_TB1SRGE_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.fmap.TB1SRGE
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.fmap.TB1SRGE.entities
+
+fmap_parametric_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.fmap.parametric
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.fmap.parametric.entities
+
+perf_asl_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.perf.asl
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.perf.asl.entities
+
+pet_pet_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.pet.pet
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.pet.pet.entities
+
+# Masks
 anat_parametric_mask:
   $ref:
     - meta.templates.deriv.mask
@@ -98,6 +257,7 @@ func_mask:
       - meta.templates.deriv.mask.entities
       - rules.files.raw.func.func.entities
 
+# Discrete and probabilistic segmentations
 anat_parametric_discrete_segmentation:
   $ref:
     - meta.templates.deriv.dseg
