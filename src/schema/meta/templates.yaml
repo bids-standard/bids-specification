@@ -17,6 +17,30 @@ raw:
       subject: required
       session: optional
 
+  recording:
+    entities:
+      $ref: meta.templates.raw.base.entities
+      acquisition: optional
+      run: optional
+
+  task:
+    entities:
+      $ref: meta.templates.raw.recording.entities
+      task: required
+
+  mri:
+    entities:
+      $ref: meta.templates.raw.recording.entities
+      ceagent: optional
+      reconstruction: optional
+      chunk: optional
+
+  epi:
+    entities:
+      $ref: meta.templates.raw.mri.entities
+      direction: optional
+      part: optional
+
 # Entities that apply to most derivative files
 # Include thus:
 #
