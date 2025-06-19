@@ -242,7 +242,9 @@ Each `prov/[<label>/]prov-<label>_ent.json` file is a JSON file describing `Enti
 `Entity` records in these files CAN describe:
 -   files or data that are located in another dataset ;
 -   files or data that were deleted during the creation of the dataset ;
--   files or data that are part of software pieces or environments.
+-   different versions of the same files or data that were modified during the creation of the dataset ;
+-   files or data that are part of software pieces or environments ;
+-   any other files or data that do not match the previously listed cases.
 
 This file MUST include an `Entities` key:
 
