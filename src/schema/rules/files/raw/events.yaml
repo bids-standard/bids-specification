@@ -1,5 +1,6 @@
 ---
 events:
+  $ref: meta.templates.raw.task
   suffixes:
     - events
   extensions:
@@ -11,11 +12,6 @@ events:
     - ieeg
     - meg
     - nirs
-  entities:
-    $ref: meta.templates.raw.base.entities
-    task: required
-    acquisition: optional
-    run: optional
 
 # Specializations
 # In these rules, we use $ref to retrieve most of an object, and then override
@@ -43,12 +39,11 @@ events__pet:
   datatypes:
     - pet
   entities:
-    # Most events allow acquisition, PET doesn't
-    $ref: meta.templates.raw.base.entities
-    task: required
+    $ref: meta.templates.raw.task.entities
     tracer: optional
     reconstruction: optional
-    run: optional
+    # Most events allow acquisition, PET doesn't
+    acquisition: null
 
 events__mrs:
   $ref: rules.files.raw.events.events

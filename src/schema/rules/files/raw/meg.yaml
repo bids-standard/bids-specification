@@ -19,10 +19,7 @@ meg:
   datatypes:
     - meg
   entities:
-    $ref: meta.templates.raw.base.entities
-    task: required
-    acquisition: optional
-    run: optional
+    $ref: meta.templates.raw.task.entities
     processing: optional
     split: optional
 
