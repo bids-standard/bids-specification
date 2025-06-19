@@ -16,7 +16,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___render_text("objects.files.dataset_description.description") }}
 
-Every dataset MUST include this file with the following fields:
+Every BIDS dataset MUST include this file with the following fields:
 
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in
@@ -39,8 +39,7 @@ and a guide for using macros can be found at
       "EthicsApprovals": "OPTIONAL",
       "ReferencesAndLinks": "OPTIONAL",
       "DatasetDOI": "OPTIONAL",
-      "GeneratedBy": "DEPRECATED",
-      "GeneratedByProv": "RECOMMENDED",
+      "GeneratedBy": "RECOMMENDED",
       "SourceDatasets": "RECOMMENDED",
    }
 ) }}
@@ -72,7 +71,16 @@ Example:
   ],
   "DatasetDOI": "doi:10.0.2.3/dfjj.10",
   "HEDVersion": "8.0.0",
-  "GeneratedByProv": "bids::prov#conversion-00f3a18f",
+  "GeneratedBy": [
+    {
+      "Name": "reproin",
+      "Version": "0.6.0",
+      "Container": {
+        "Type": "docker",
+        "Tag": "repronim/reproin:0.6.0"
+      }
+    }
+  ],
   "SourceDatasets": [
     {
       "URL": "s3://dicoms/studies/correlates",
@@ -82,17 +90,24 @@ Example:
 }
 ```
 
-### Derived dataset and pipeline description
-
 As for any BIDS dataset, a `dataset_description.json` file MUST be found at the
 top level of every derived dataset:
 `<dataset>/derivatives/<pipeline_name>/dataset_description.json`.
 
-In contrast to raw BIDS datasets, provenance of the dataset MUST be described in one of the ways defined in the [Provenance section](provenance.md).
+In contrast to raw BIDS datasets, derived BIDS datasets MUST include a
+`GeneratedBy` key:
 
-!!! Note
-    In the previous versions of the BIDS specification, the `GeneratedBy` field allowed to specify provenance of the dataset.
-    This field is DEPRECATED and will be removed as part of a major revision of the BIDS specification.
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_metadata_table(
+   {
+      "GeneratedBy": "REQUIRED"
+   }
+) }}
 
 Example:
 
@@ -101,7 +116,20 @@ Example:
   "Name": "FMRIPREP Outputs",
   "BIDSVersion": "1.6.0",
   "DatasetType": "derivative",
-  "GeneratedByProv": "bids::prov#fmriprep-32g5a29e",
+  "GeneratedBy": [
+    {
+      "Name": "fmriprep",
+      "Version": "1.4.1",
+      "Container": {
+        "Type": "docker",
+        "Tag": "poldracklab/fmriprep:1.4.1"
+        }
+    },
+    {
+      "Name": "Manual",
+      "Description": "Re-added RepetitionTime metadata to bold.json files"
+    }
+  ],
   "SourceDatasets": [
     {
       "DOI": "doi:10.18112/openneuro.ds000114.v1.0.1",

@@ -86,23 +86,9 @@ No other field is allowed to describe provenance inside sidecar JSON files.
 ## Provenance at dataset level
 
 Provenance metadata CAN be stored inside the `dataset_description.json` of any BIDS dataset (or BIDS-Derivatives dataset) it applies to.
-In this case, the provenance content describes the provenance of the whole dataset.
+In this case, the provenance content describes provenance for the whole dataset.
 
-The `dataset_description.json` file of a BIDS dataset CAN include the following key:
-
-<!-- This block generates a metadata table.
-The definitions of these fields can be found in
-  src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_metadata_table(
-   {
-      "GeneratedByProv": "RECOMMENDED"
-   }
-) }}
-
-The `dataset_description.json` file of a BIDS-Derivatives dataset MUST include the following key:
+The `dataset_description.json` file of a BIDS dataset CAN include the following key to describe provenance:
 
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in
@@ -112,17 +98,44 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_metadata_table(
    {
-      "GeneratedByProv": "REQUIRED"
+      "GeneratedBy": "RECOMMENDED"
    }
 ) }}
 
-!!! Note
-    In the previous versions of the BIDS specification, the `GeneratedBy` field of the `dataset_description.json` files allowed to specify provenance of the dataset. This field is DEPRECATED and will be removed as part of a major revision of the BIDS specification.
+The `dataset_description.json` file of a BIDS-Derivatives dataset MUST include the following key to describe provenance:
 
-!!! example `dataset_description.json`
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_metadata_table(
+   {
+      "GeneratedBy": "REQUIRED"
+   }
+) }}
+
+Each object in the `GeneratedBy` array includes the following REQUIRED, RECOMMENDED
+and OPTIONAL keys:
+
+<!-- This block generates a table describing subfields within a metadata field.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_subobject_table("metadata.GeneratedBy.items") }}
+
+!!! example
     ```JSON
     {
-        "GeneratedByProv": "bids::prov#conversion-00f3a18f"
+        "GeneratedBy": [
+            {
+                "Id": "bids::prov#conversion-00f3a18f",
+                "Name": "dcm2niix_conversion"
+            }
+        }
     }
     ```
 
@@ -353,10 +366,10 @@ and a guide for using macros can be found at
 
 The following rules and conventions are provided in order to have consistent, human readable, and explicit [IRIs](https://www.w3.org/TR/json-ld11/#iris) as `Id` for `Entity` provenance records.
 
-An `Id` identifying an `Entity` record corresponding to a file of a BIDS dataset MUST be a [BIDS URI](common-principles.html#bids-uri).
+An `Id` identifying an `Entity` record corresponding to a file of a BIDS dataset MUST be a [BIDS URI](../common-principles.md#bids-uri).
 
 !!! Warning
-    The use of BIDS URIs may require to define the `DatasetLinks` object in [`dataset_description.json`](modality-agnostic-files/dataset-description.md#dataset_descriptionjson).
+    The use of BIDS URIs may require to define the `DatasetLinks` object in [`dataset_description.json`](dataset-description.md#dataset_descriptionjson).
 
 !!! example "`Entity` naming examples"
     - `bids:ds001734:sub-002/anat/sub-02_T1w.nii`: the `Id` of an `Entity` describing a T1w file for subject `sub-002` in the `ds001734` dataset ;
