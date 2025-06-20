@@ -33,11 +33,11 @@ import bidsschematools.schema
 editable: true
 slideshow:
   slide_type: skip
-tags: [hide-cell]
+tags: [hide-cell, remove-input]
 ---
 # Hidden cell to import useful tools
 import os
-from pathlib import Path
+from upath import UPath
 from pprint import pprint
 ```
 
@@ -67,13 +67,13 @@ slideshow:
   slide_type: ''
 ---
 # Build from local repository, or else set `BIDS_SPEC_REPO` environment variable
-spec = Path(os.getenv('BIDS_SPEC_REPO', Path(os.getcwd()).parent.parent.parent))
+spec = UPath(os.getenv('BIDS_SPEC_REPO', UPath(os.getcwd()).parent.parent.parent))
 schema_from_directory = bst.schema.load_schema(spec / 'src' / 'schema')
 ```
 
 +++ {"editable": true, "slideshow": {"slide_type": "subslide"}}
 
-`load_schema()` can also load a precompiled JSON schema document, such as can be found at <https://bids-specification.readthedocs.io/en/latest/schema.json>. For the purposes of this tutorial, we will use the document compiled into this package:
+`load_schema()` can also load a precompiled JSON schema document, such as can be found at <https://bids-specification.readthedocs.io/en/latest/schema.json>.
 
 ```{code-cell} ipython3
 ---
@@ -81,7 +81,7 @@ editable: true
 slideshow:
   slide_type: ''
 ---
-schema_path = bst.data.load('schema.json')
+schema_path = UPath('https://bids-specification.readthedocs.io/en/latest/schema.json')
 schema_from_json = bst.schema.load_schema(schema_path)
 ```
 
@@ -104,7 +104,7 @@ print(f'BIDS version: {schema.bids_version}')
 
 +++ {"editable": true, "slideshow": {"slide_type": ""}}
 
-Note that the schema provided by `load_schema()` is a [Namespace](project:bidsschematools.types.namespace.Namespace) object, which is able to access fields with dot notation (`schema.bids_version`) as well as index notation (`schema['bids_version'])`.
+Note that the schema provided by `load_schema()` is a [Namespace](#bidsschematools.types.namespace.Namespace) object, which is able to access fields with dot notation (`schema.bids_version`) as well as index notation (`schema['bids_version'])`.
 
 +++ {"editable": true, "slideshow": {"slide_type": "subslide"}}
 
