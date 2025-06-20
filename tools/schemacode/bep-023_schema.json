@@ -11626,6 +11626,32 @@
             "datatypes": [
               "anat"
             ]
+          },
+          "pet_petref": {
+            "selectors": [
+              "dataset.dataset_description.DatasetType == 'derivative'"
+            ],
+            "suffixes": [
+              "petref"
+            ],
+            "extensions": [
+              ".nii.gz",
+              ".nii",
+              ".json"
+            ],
+            "entities": {
+              "space": "optional",
+              "description": "optional",
+              "subject": "required",
+              "session": "optional",
+              "task": "optional",
+              "tracer": "optional",
+              "reconstruction": "optional",
+              "run": "optional"
+            },
+            "datatypes": [
+              "pet"
+            ]
           }
         },
         "pet": {
