@@ -28,5 +28,5 @@ all:
 .PHONY: runprettier commitschema
 
 validateschema:
-	bst export > schema.json
-	bids-validator-deno --schema file://${PWD}/schema.json ../bids-examples/petprep/ --ignoreWarnings
+	bst export > bep-23_schema.json
+	bids-validator-deno --schema file://${PWD}/bep-23_schema.json ../bids-examples/petprep/ --ignoreWarnings
