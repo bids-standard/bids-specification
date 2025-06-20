@@ -1,0 +1,17 @@
+---
+pet:
+  suffixes:
+    - petref
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  datatypes:
+    - pet
+  entities:
+    subject: required
+    session: optional
+    task: optional
+    tracer: optional
+    reconstruction: optional
+    run: optional

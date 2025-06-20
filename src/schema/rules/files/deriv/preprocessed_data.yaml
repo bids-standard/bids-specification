@@ -342,6 +342,20 @@ perf_asl_common:
     space: optional
     description: optional
 
+pet_petref_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
+  suffixes:
+    - petref
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  entities:
+    $ref: rules.files.raw.pet.pet.entities
+    space: optional
+    description: optional
+
 pet_pet_common:
   selectors:
     - dataset.dataset_description.DatasetType == 'derivative'
