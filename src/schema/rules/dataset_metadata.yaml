@@ -8,13 +8,8 @@ dataset_description:
     DatasetType: recommended
     License: recommended
     Authors:
-      level: recommended
-      issue:
-        code: NO_AUTHORS
-        message: |
-          The Authors field of dataset_description.json should contain an array of fields -
-          with one author per field. This was triggered because there are no authors, which
-          will make DOI registration from dataset metadata impossible.
+      level: optional
+      level_addendum: recommended if no CITATION.cff file is present
     Acknowledgements: optional
     HowToAcknowledge: optional
     Funding: optional
@@ -23,6 +18,20 @@ dataset_description:
     DatasetDOI: optional
     GeneratedBy: recommended
     SourceDatasets: recommended
+
+dataset_authors:
+  selectors:
+    - path == "/dataset_description.json"
+    - '!exists("CITATION.cff", "dataset")'
+  fields:
+    Authors:
+      level: recommended
+      issue:
+        code: NO_AUTHORS
+        message: |
+          The Authors field of dataset_description.json should contain an array of fields -
+          with one author per field. This was triggered because there are no authors, which
+          will make DOI registration from dataset metadata impossible.
 
 derivative_description:
   selectors:
@@ -34,7 +43,7 @@ derivative_description:
 dataset_description_with_genetics:
   selectors:
     - path == "/dataset_description.json"
-    - intersects(dataset.files, ["/genetic_info.json"])
+    - exists('genetic_info.json', 'dataset')
   fields:
     Genetics: required
 

@@ -47,6 +47,10 @@ motion:
   value: motion
   display_name: Motion
   description: Motion data from a tracking system
+mrs:
+  value: mrs
+  display_name: Magnetic Resonance Spectroscopy
+  description: Magnetic resonance spectroscopy data
 perf:
   value: perf
   display_name: Perfusion imaging
@@ -57,6 +61,13 @@ pet:
   display_name: Positron Emission Tomography
   description: |
     Positron emission tomography data
+phenotype:
+  value: phenotype
+  display_name: Phenotype
+  description: |
+    Participant level measurement data
+    (for example, responses from multiple questionnaires)
+    split into individual files separate from `participants.tsv`.
 nirs:
   value: nirs
   display_name: Near-Infrared Spectroscopy

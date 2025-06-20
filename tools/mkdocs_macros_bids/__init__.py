@@ -5,6 +5,7 @@ from .macros import (
     make_filetree_example,
     make_metadata_table,
     make_suffix_table,
+    render_text,
 )
 from .main import define_env
 
@@ -16,4 +17,5 @@ __all__ = [
     "make_suffix_table",
     "make_metadata_table",
     "make_filetree_example",
+    "render_text",
 ]

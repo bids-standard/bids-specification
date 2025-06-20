@@ -1,3 +1,7 @@
+---
+render_macros: false
+---
+
 # Using MkDocs macros in the BIDS specification
 
 We use [mkdocs-macros](https://mkdocs-macros-plugin.readthedocs.io/en/latest/)
@@ -8,23 +12,6 @@ in the specification.
 
 Below you will find answers to frequently asked questions regarding using macros
 in the BIDS specification.
-
-- [Using MkDocs macros in the BIDS specification](#using-mkdocs-macros-in-the-bids-specification)
-   - [What are macros and why use them?](#what-are-macros-and-why-use-them)
-   - [What kind of input information are required by macros?](#what-kind-of-input-information-are-required-by-macros)
-   - [What macros are available?](#what-macros-are-available)
-   - [When should I use a macro?](#when-should-i-use-a-macro)
-   - [Do I need learn how to program to use those macros?](#do-i-need-learn-how-to-program-to-use-those-macros)
-   - [Anything else I need to know if I need to insert a new macro call?](#anything-else-i-need-to-know-if-i-need-to-insert-a-new-macro-call)
-   - [How-To and Examples](#how-to-and-examples)
-      - [Writing directory content examples](#writing-directory-content-examples)
-      - [Generating tables](#generating-tables)
-         - [Modifying a term in the table](#modifying-a-term-in-the-table)
-         - [Why would you NOT want to modify the content of the yml file directly ?](#why-would-you-not-want-to-modify-the-content-of-the-yml-file-directly-)
-         - [Adding a new term to the table](#adding-a-new-term-to-the-table)
-         - [Should I create a macro if I need a new kind of table?](#should-i-create-a-macro-if-i-need-a-new-kind-of-table)
-   - [Why use macros at all?](#why-use-macros-at-all)
-   - [Links and references](#links-and-references)
 
 ## What are macros and why use them?
 
@@ -92,6 +79,7 @@ All the macros we use are in listed in this
 | make_suffix_table              | Generate a markdown table of suffix information.                                       | Yes         | [link](https://github.com/bids-standard/bids-specification/blob/9201b203ffaa72d83b2fa30d1c61f46f089f77de/src/04-modality-specific-files/01-magnetic-resonance-imaging-data.md?plain=1#L199) |
 | define_common_principles       | List the common principles and definitions.                                            | Yes         | [link](https://github.com/bids-standard/bids-specification/blob/831ee55577b91aaa110153e9269e7829b095fb6f/src/02-common-principles.md?plain=1#L12)                                           |
 | define_allowed_top_directories | Create a list of allowed top-level directories with their descriptions.                | Yes         | [link](https://github.com/bids-standard/bids-specification/blob/2a701fd034d51c25e8fe18ba67bb7b76621ba477/src/02-common-principles.md?plain=1#L124)                                          |
+| render_description             | Renders the description of an object in the schema.                                    | Yes         | [link] (???)                                          |
 
 
 ## When should I use a macro?
@@ -125,9 +113,6 @@ One nice thing for the people who will come after you (or yourself in 6 months
 when you get back to the document you just edited) is to leave a comment before
 the macro to quickly explain what it does and where to find more information
 about it.
-
-<!-- - [ ] TODO for maintainers: actually add those comments in the current
-      specification. -->
 
 It could for example look like this:
 
@@ -177,7 +162,7 @@ To do this get this output, your macro call would look like this:
 ```
 
 When you have complex files and directory structure, we suggest you use this
-[Jupyter notebook](tools/filetree_example.ipynb) for sandboxing your example
+[Jupyter notebook](https://github.com/bids-standard/bids-specification/blob/master/tools/filetree_example.ipynb) for sandboxing your example
 before you insert the macro call into the markdown document.
 
 ### Generating tables
@@ -187,11 +172,11 @@ the PET page.
 
 The HTML version of the this section is here:
 
-https://bids-specification.readthedocs.io/en/stable/04-modality-specific-files/09-positron-emission-tomography.html#reconstruction
+https://bids-specification.readthedocs.io/en/stable/modality-specific-files/positron-emission-tomography.html#reconstruction
 
 In the markdown document, it is here:
 
-https://github.com/bids-standard/bids-specification/blob/master/src/04-modality-specific-files/09-positron-emission-tomography.md#reconstruction
+https://github.com/bids-standard/bids-specification/blob/master/src/modality-specific-files/positron-emission-tomography.md#reconstruction
 
 GitHub's way of directly rendering markdown documents makes it a bit harder to
 read, so if you opened the markdown document in your code editor it would look

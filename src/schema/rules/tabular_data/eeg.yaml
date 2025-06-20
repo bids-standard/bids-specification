@@ -6,11 +6,11 @@ EEGChannels:
     - extension == ".tsv"
   initial_columns:
     - name__channels
-    - type__eeg_channels
+    - type__channels
     - units
   columns:
     name__channels: required
-    type__eeg_channels: required
+    type__channels: required
     units: required
     description: optional
     sampling_frequency: optional

@@ -1,3 +1,5 @@
 ignore:
-    - "*/*/tests/*"
-    - "**/tests/*"
+  - "*/*/tests/*"
+  - "**/tests/*"
+codecov:
+  token: 7e84a7fb-8f7e-45f5-8dcc-9f5219fa3855

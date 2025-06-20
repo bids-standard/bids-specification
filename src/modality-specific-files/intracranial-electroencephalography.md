@@ -6,9 +6,11 @@ Please see [Citing BIDS](../introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
-Several [example iEEG datasets](https://github.com/bids-standard/bids-examples#ieeg-datasets)
-have been formatted using this specification
-and can be used for practical guidance when curating a new dataset.
+!!! example "Example datasets"
+
+    Several [example iEEG datasets](https://bids-standard.github.io/bids-examples/#ieeg)
+    have been formatted using this specification
+    and can be used for practical guidance when curating a new dataset.
 
 ## iEEG recording data
 
@@ -29,13 +31,13 @@ The iEEG community uses a variety of formats for storing raw data, and there is
 no single standard that all researchers agree on. For BIDS, iEEG data MUST be
 stored in one of the following formats:
 
-| **Format**                                                     | **Extension(s)**         | **Description**                                                                                                                                                            |
-| -------------------------------------------------------------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [European data format](https://www.edfplus.info/)              | `.edf`                   | Each recording consists of a `.edf` single file. [`edf+`](https://www.edfplus.info/specs/edfplus.html) files are permitted. The capital `.EDF` extension MUST NOT be used. |
-| [BrainVision Core Data Format][bvformat]                       | `.vhdr`, `.vmrk`, `.eeg` | Each recording consists of a  `.vhdr`, `.vmrk`, `.eeg` file triplet.                                                                                                       |
-| [EEGLAB](https://sccn.ucsd.edu/eeglab)                         | `.set`, `.fdt`           | The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab). Each recording consists of a `.set` file with an OPTIONAL `.fdt` file.                       |
-| [Neurodata Without Borders](https://nwb-schema.readthedocs.io) | `.nwb`                   | Each recording consists of a single `.nwb` file.                                                                                                                           |
-| [MEF3](https://osf.io/e3sf9/)                                  | `.mefd`                  | Each recording consists of a `.mefd` directory.                                                                                                                            |
+| **Format**                                                                | **Extension(s)**         | **Description**                                                                                                                                                            |
+| ------------------------------------------------------------------------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [European data format](https://www.edfplus.info/)                         | `.edf`                   | Each recording consists of a `.edf` single file. [`edf+`](https://www.edfplus.info/specs/edfplus.html) files are permitted. The capital `.EDF` extension MUST NOT be used. |
+| [BrainVision Core Data Format][bvformat]                                  | `.vhdr`, `.vmrk`, `.eeg` | Each recording consists of a  `.vhdr`, `.vmrk`, `.eeg` file triplet.                                                                                                       |
+| [EEGLAB](https://sccn.ucsd.edu/eeglab/index.php)                          | `.set`, `.fdt`           | The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab/index.php). Each recording consists of a `.set` file with an OPTIONAL `.fdt` file.             |
+| [Neurodata Without Borders](https://nwb-schema.readthedocs.io/en/latest/) | `.nwb`                   | Each recording consists of a single `.nwb` file.                                                                                                                           |
+| [MEF3](https://osf.io/e3sf9/)                                             | `.mefd`                  | Each recording consists of a `.mefd` directory.                                                                                                                            |
 
 It is RECOMMENDED to use the European data format, or the BrainVision data
 format. It is furthermore discouraged to use the other accepted formats over
@@ -51,12 +53,8 @@ packages. Other formats that may be considered in the future should have a clear
 added advantage over the existing formats and should have wide adoption in the
 BIDS community.
 
-The data format in which the data was originally stored is especially valuable
-in case conversion elicits the loss of crucial metadata specific to
-manufacturers and specific iEEG systems. We also encourage users to provide
-additional meta information extracted from the manufacturer-specific data files
-in the sidecar JSON file. Other relevant files MAY be included alongside the
-original iEEG data in the [`/sourcedata` directory](../common-principles.md#source-vs-raw-vs-derived-data).
+We encourage users to provide additional metadata extracted from the
+manufacturer-specific data files in the sidecar JSON file.
 
 Note the RecordingType, which depends on whether the data stream on disk is interrupted or not.
 Continuous data is by definition 1 segment without interruption.
@@ -135,7 +133,7 @@ A guide for using macros can be found at
 {{ MACROS___make_sidecar_table("ieeg.iEEGOptional") }}
 
 Note that the date and time information SHOULD be stored in the study key file
-([`scans.tsv`](../modality-agnostic-files.md#scans-file)).
+([`scans.tsv`](../modality-agnostic-files/data-summary-files.md#scans-file)).
 Date time information MUST be expressed as indicated in [Units](../common-principles.md#units)
 
 #### Hardware information
@@ -277,13 +275,13 @@ Examples of free-form text for field `description`:
 
 ### Example `*_channels.tsv`
 
-```Text
-name  type  units low_cutoff  high_cutoff status  status_description
-LT01  ECOG  uV    300         0.11        good    n/a
-LT02  ECOG  uV    300         0.11        bad     broken
-H01   SEEG  uV    300         0.11        bad     line_noise
-ECG1  ECG   uV    n/a         0.11        good    n/a
-TR1   TRIG  n/a   n/a         n/a         good    n/a
+```tsv
+name	type	units	low_cutoff	high_cutoff	status	status_description
+LT01	ECOG	uV	300	0.11	good	n/a
+LT02	ECOG	uV	300	0.11	bad	broken
+H01	SEEG	uV	300	0.11	bad	line_noise
+ECG1	ECG	uV	n/a	0.11	good	n/a
+TR1	TRIG	n/a	n/a	n/a	good	n/a
 ```
 
 ## Electrode description (`*_electrodes.tsv`)
@@ -297,15 +295,15 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_filename_template("raw", datatypes=["ieeg"], suffixes=["electrodes"]) }}
 
-File that gives the location, size and other properties of iEEG electrodes. Note
-that coordinates are expected in cartesian coordinates according to the
-`iEEGCoordinateSystem` and `iEEGCoordinateUnits` fields in
-`*_coordsystem.json`. If an `*_electrodes.tsv` file is specified, a
-`*_coordsystem.json` file MUST be specified as well.
+This REQUIRED file gives the location, size and other properties of iEEG electrodes.
+Note that coordinates are expected in cartesian coordinates according to the
+`iEEGCoordinateSystem` and `iEEGCoordinateUnits` fields in `*_coordsystem.json`.
+For each `*_electrodes.tsv` file specified,
+a `*_coordsystem.json` file MUST be specified as well.
 
 The optional [`space-<label>`](../appendices/entities.md#space) entity (`*[_space-<label>]_electrodes.tsv`) can be used to
 indicate the way in which electrode positions are interpreted.
-The space `<label>` MUST be taken from one of the modality specific lists in
+The space `<label>` MUST be taken from one of the modality-specific lists in
 the [Coordinate Systems Appendix](../appendices/coordinate-systems.md).
 For example for iEEG data, the restricted keywords listed under
 [iEEG Specific Coordinate Systems](../appendices/coordinate-systems.md#ieeg-specific-coordinate-systems)
@@ -351,13 +349,19 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_columns_table("ieeg.iEEGElectrodes") }}
 
+`*_electrodes.tsv` files SHOULD NOT be duplicated for each data file,
+for example, during multiple runs of a task.
+The [inheritance principle](../common-principles.md#the-inheritance-principle) MUST
+be used to find the appropriate electrode positions for a given data file.
+If electrodes are repositioned, it is RECOMMENDED to use multiple sessions to indicate this.
+
 ### Example `*_electrodes.tsv`
 
-```Text
-name  x   y    z    size   manufacturer
-LT01  19  -39  -16  2.3    Integra
-LT02  23  -40  -19  2.3    Integra
-H01   27  -42  -21  5      AdTech
+```tsv
+name	x	y	z	size	manufacturer
+LT01	19	-39	-16	2.3	Integra
+LT02	23	-40	-19	2.3	Integra
+H01	27	-42	-21	5	AdTech
 ```
 
 ## Coordinate System JSON (`*_coordsystem.json`)
@@ -385,7 +389,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("ieeg.iEEGCoordsystemGeneral") }}
+{{ MACROS___make_json_table("json.ieeg.iEEGCoordsystemGeneral") }}
 
 Fields relating to the iEEG electrode positions:
 
@@ -397,7 +401,13 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("ieeg.iEEGCoordsystemPositions") }}
+{{ MACROS___make_json_table("json.ieeg.iEEGCoordsystemPositions") }}
+
+`*_coordsystem.json` files SHOULD NOT be duplicated for each data file,
+for example, across multiple tasks.
+The [inheritance principle](../common-principles.md#the-inheritance-principle) MUST
+be used to find the appropriate coordinate system description for a given data file.
+If electrodes are repositioned, it is RECOMMENDED to use multiple sessions to indicate this.
 
 ### Recommended 3D coordinate systems
 
@@ -484,11 +494,13 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example(
    {
-   "sub-01": {
-      "ses-0001": {
-         "sub-0001_ses-01_acq-photo1_photo.jpg": "",
-         "sub-0001_ses-01_acq-photo2_photo.jpg": "",
-         "...": "",
+   "sub-0001": {
+      "ses-01": {
+         "ieeg": {
+            "sub-0001_ses-01_acq-photo1_photo.jpg": "",
+            "sub-0001_ses-01_acq-photo2_photo.jpg": "",
+            "...": "",
+            },
          },
       },
    }
@@ -498,7 +510,6 @@ A guide for using macros can be found at
 
 Below is an example of a volume rendering of the cortical surface with a
 superimposed subdural electrode implantation. This map is often provided by the
-
 EEG technician and provided to the epileptologists (for example, see Burneo JG et al.
 2014. [doi:10.1016/j.clineuro.2014.03.020](https://doi.org/10.1016/j.clineuro.2014.03.020)).
 
@@ -523,13 +534,13 @@ For example: `/stimuli/electrical_stimulation_functions/biphasic.tsv`
 
 ### Example `*_events.tsv`
 
-```Text
-onset duration trial_type             electrical_stimulation_type electrical_stimulation_site electrical_stimulation_current
-1.2   0.001    electrical_stimulation biphasic                    LT01-LT02                   0.005
-1.3   0.001    electrical_stimulation biphasic                    LT01-LT02                   0.005
-2.2   0.001    electrical_stimulation biphasic                    LT02-LT03                   0.005
-4.2   1        electrical_stimulation complex                     LT02-LT03                   n/a
-15.2  3        auditory_stimulus      n/a                         n/a                         n/a
+```tsv
+onset	duration	trial_type	electrical_stimulation_type	electrical_stimulation_site	electrical_stimulation_current
+1.2	0.001	electrical_stimulation	biphasic	LT01-LT02	0.005
+1.3	0.001	electrical_stimulation	biphasic	LT01-LT02	0.005
+2.2	0.001	electrical_stimulation	biphasic	LT02-LT03	0.005
+4.2	1	electrical_stimulation	complex	LT02-LT03	n/a
+15.2	3	auditory_stimulus	n/a	n/a	n/a
 ```
 
 <!-- Link Definitions -->

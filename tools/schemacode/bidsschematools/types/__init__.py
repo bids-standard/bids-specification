@@ -1,1 +1,0 @@
-from .namespace import Namespace

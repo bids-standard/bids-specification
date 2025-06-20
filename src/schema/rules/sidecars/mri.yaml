@@ -9,77 +9,136 @@
 MRIHardware:
   selectors:
     - modality == "mri"
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     Manufacturer:
       level: recommended
-      description_addendum: Corresponds to DICOM Tag 0008, 0070 `Manufacturer`.
+      description_addendum: |
+        Corresponds to [DICOM Tag 0008, 0070](https://dicomlookup.com/dicomtags/(0008,0070)) `Manufacturer`.
     ManufacturersModelName:
       level: recommended
-      description_addendum: Corresponds to DICOM Tag 0008, 1090 `Manufacturers Model Name`.
+      description_addendum: |
+        Corresponds to [DICOM Tag 0008, 1090](https://dicomlookup.com/dicomtags/(0008,1090)) `Manufacturers Model Name`.
     DeviceSerialNumber:
       level: recommended
-      description_addendum: Corresponds to DICOM Tag 0018, 1000 `DeviceSerialNumber`.
+      description_addendum: |
+        Corresponds to [DICOM Tag 0018, 1000](https://dicomlookup.com/dicomtags/(0018,1000)) `DeviceSerialNumber`.
     StationName:
       level: recommended
-      description_addendum: Corresponds to DICOM Tag 0008, 1010 `Station Name`.
+      description_addendum: |
+        Corresponds to [DICOM Tag 0008, 1010](https://dicomlookup.com/dicomtags/(0008,1010)) `Station Name`.
     SoftwareVersions:
       level: recommended
-      description_addendum: Corresponds to DICOM Tag 0018, 1020 `Software Versions`.
-    HardcopyDeviceSoftwareVersion: DEPRECATED
+      description_addendum: |
+        Corresponds to [DICOM Tag 0018, 1020](https://dicomlookup.com/dicomtags/(0018,1020)) `Software Versions`.
+    HardcopyDeviceSoftwareVersion: deprecated
     MagneticFieldStrength:
-      level: recommended, but required for Arterial Spin Labeling
+      level: recommended
+      level_addendum: required for Arterial Spin Labeling
     ReceiveCoilName: recommended
     ReceiveCoilActiveElements: recommended
-    GradientSetType: recommended
-    MRTransmitCoilSequence: recommended
+    NumberReceiveCoilActiveElements: optional
+    GradientSetType: optional
+    MRTransmitCoilSequence: optional
     MatrixCoilMode: recommended
     CoilCombinationMethod: recommended
+    NumberTransmitCoilActiveElements: optional
+    TablePosition:
+      level: optional
+      level_addendum: recommended if `chunk` entity is present
+
+MRIChunkPosition:
+  selectors:
+    - modality == "mri"
+    - entities.chunk
+    - match(extension, '\.nii(\.gz)?$')
+  fields:
+    TablePosition:
+      level: recommended
+      issue:
+        code: TABLE_POSITION_RECOMMENDED
+        message: |
+          TablePosition is RECOMMENDED if the chunk entity is present.
+
+MRISample:
+  selectors:
+    - modality == "mri"
+    - match(extension, "^\.nii(\.gz)?$")
+  fields:
+    BodyPart:
+      level: optional
+      description_addendum: |
+        Corresponds to [DICOM Tag 0018, 0015](https://dicomlookup.com/dicomtags/(0018,0015)) `Body Part Examined`.
+    BodyPartDetails: optional
+    BodyPartDetailsOntology: optional
 
 MRIScannerHardwareASL:
   selectors:
     - datatype == "perf"
     - suffix == "asl"
     - intersects([suffix], ["asl", "m0scan"])
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     MagneticFieldStrength: required
 
 MRISequenceSpecifics:
   selectors:
     - modality == "mri"
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
-    PulseSequenceType: recommended
-    ScanningSequence: recommended
+    PulseSequenceType:
+      level: recommended
+      description_addendum: |
+        For example, `"MPRAGE"`, `"Gradient Echo EPI"`, `"Spin Echo EPI"`, `"Multiband gradient
+        echo EPI"`.
+    ScanningSequence:
+      level: recommended
+      description_addendum: |
+        Corresponds to [DICOM Tag 0018, 0020](https://dicomlookup.com/dicomtags/(0018,0020)) `Scanning Sequence`.
     SequenceVariant: recommended
-    ScanOptions: recommended
+    ScanOptions: optional
     SequenceName: recommended
     PulseSequenceDetails: recommended
-    NonlinearGradientCorrection: |
-      recommended, but required if [PET](./positron-emission-tomography.md) data are present
-    MRAcquisitionType: recommended, but required for Arterial Spin Labeling
-    MTState: recommended
+    NonlinearGradientCorrection:
+      level: recommended
+      level_addendum: required if [PET](./positron-emission-tomography.md) data are present
+    MRAcquisitionType:
+      level: recommended
+      level_addendum: required for Arterial Spin Labeling
+    MTState:
+      level: optional
+      level_addendum: required if the `mt` entity is present
     MTOffsetFrequency: optional
     MTPulseBandwidth: optional
     MTNumberOfPulses: optional
     MTPulseShape: optional
     MTPulseDuration: optional
-    SpoilingState: recommended
+    NumberShots:
+      level: optional
+      level_addendum: required for some qMRI sequences
+    SpoilingState: optional
     SpoilingType: optional
     SpoilingRFPhaseIncrement: optional
     SpoilingGradientMoment: optional
     SpoilingGradientDuration: optional
+    WaterSuppression: optional
+    WaterSuppressionTechnique: optional
+    B0ShimmingTechnique: optional
+    B1ShimmingTechnique: optional
 
 PETMRISequenceSpecifics:
   selectors:
     - modality == "mri"
     - intersects(dataset.modalities, ["pet"])
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     NonlinearGradientCorrection: required
 
 ASLMRISequenceSpecifics:
   selectors:
-    - modality == "mri"
     - datatype == "perf"
     - suffix == "asl"
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     MRAcquisitionType: required
 
@@ -115,23 +174,57 @@ SpoilingGradient:
 MRISpatialEncoding:
   selectors:
     - modality == "mri"
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
-    NumberShots: recommended
-    ParallelReductionFactorInPlane: recommended
-    ParallelReductionFactorOutOfPlane: recommended
-    ParallelAcquisitionTechnique: recommended
-    PartialFourier: recommended
-    PartialFourierDirection: recommended
+    ParallelReductionFactorInPlane:
+      level: optional
+      level_addendum: recommended if `ParallelAcquisitionTechnique` is defined
+    ParallelReductionFactorOutOfPlane:
+      level: optional
+      level_addendum: recommended if `ParallelAcquisitionTechnique` is defined
+    ParallelAcquisitionTechnique: optional
+    PartialFourier: optional
+    PartialFourierDirection:
+      level: optional
+      level_addendum: recommended if PartialFourier is defined
     EffectiveEchoSpacing:
-      level: recommended
-      level_addendum: required if corresponding fieldmap data present
+      level: optional
+      level_addendum: recommended if corresponding fieldmap data present
       description_addendum: <sup>2</sup>
-    MixingTime: recommended
+    MixingTime:
+      level: optional
+      level_addendum: required for some qMRI sequences
+
+MRIPartialFourier:
+  selectors:
+    - modality == "mri"
+    - match(extension, "^\.nii(\.gz)?$")
+    - type(sidecar.PartialFourier) != "null"
+  fields:
+    PartialFourierDirection: recommended
+
+MRIParallelReductionFactorInPlane:
+  selectors:
+    - modality == "mri"
+    - match(extension, "^\.nii(\.gz)?$")
+    - type(sidecar.ParallelAcquisitionTechnique) == "string"
+  fields:
+    ParallelReductionFactorInPlane: recommended
+
+MRIParallelReductionFactorOutOfPlane:
+  selectors:
+    - modality == "mri"
+    - match(extension, "^\.nii(\.gz)?$")
+    - type(sidecar.ParallelAcquisitionTechnique) == "string"
+    - sidecar.MRAcquisitionType == "3D"
+  fields:
+    ParallelReductionFactorOutOfPlane: recommended
 
 PhaseEncodingDirectionRec:
   selectors:
     - modality == "mri"
-    - suffix != "epi"
+    - intersects(suffix, ["bold", "sbref", "dwi", "asl"])
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     PhaseEncodingDirection:
       level: recommended
@@ -141,74 +234,69 @@ PhaseEncodingDirectionRec:
         (which can be later used for field inhomogeneity correction).
     TotalReadoutTime:
       level: recommended
+      description_addendum: <sup>3</sup>
       level_addendum: |
         required if corresponding 'field/distortion' maps
         acquired with opposing phase encoding directions are present
         (see [Case 4: Multiple phase encoded
         directions](#case-4-multiple-phase-encoded-directions-pepolar))
-PhaseEncodingDirectionReq:
-  selectors:
-    - modality == "mri"
-    - suffix == "epi"
-  fields:
-    PhaseEncodingDirection:
-      level: required
-      issue:
-        name: PHASE_ENCODING_DIRECTION_MUST_DEFINE
-        issue: |
-          You have to define 'PhaseEncodingDirection' for this file.
-    TotalReadoutTime:
-      level: required
-      description_addendum: <sup>3</sup>
-      issue:
-        name: TOTAL_READOUT_TIME_MUST_DEFINE
-        message: |
-          You have to define 'TotalReadoutTime' for this file.
 
 MRITimingParameters:
   selectors:
     - modality == "mri"
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     EchoTime:
       level: recommended
       level_addendum: |
         required if corresponding fieldmap data is present,
         or the data comes from a multi-echo sequence or Arterial Spin Labeling.
-      issue:
-        name: ECHO_TIME_NOT_DEFINED
-        message: |
-          You must define 'EchoTime' for this file. 'EchoTime' is the echo time (TE)
-          for the acquisition, specified in seconds. Corresponds to DICOM Tag
-          0018, 0081 Echo Time (please note that the DICOM term is in milliseconds
-          not seconds). The data type number may apply to files from any MRI modality
-          concerned with a single value for this field, or to the files in a file
-          collection where the value of this field is iterated using the echo entity.
-          The data type array provides a value for each volume in a 4D dataset and
-          should only be used when the volume timing is critical for interpretation
-          of the data, such as in ASL or variable echo time fMRI sequences.
-    InversionTime: recommended
+      description_addendum: |
+        The data type array provides a value for each volume in a 4D dataset and
+        should only be used when the volume timing is critical for interpretation
+        of the data, such as in
+        [ASL](SPEC_ROOT/modality-specific-files/magnetic-resonance-imaging-data.md#\
+        arterial-spin-labeling-perfusion-data)
+        or variable echo time fMRI sequences.
+    InversionTime:
+      level: optional
+      level_addendum: required if `inv` entity is present
+    DwellTime: recommended
+
+EchoTimeRequiredASL:
+  selectors:
+    - modality == "mri"
+    - datatype == "perf"
+    - match(extension, "^\.nii(\.gz)?$")
+  fields:
+    EchoTime: required
+
+SliceTimingMRI:
+  selectors:
+    - modality == "mri"
+    - sidecar.MRAcquisitionType == "2D"
+    - match(extension, "^\.nii(\.gz)?$")
+  fields:
     SliceTiming:
       level: recommended
       level_addendum: |
         required for sparse sequences that do not have the `DelayTime` field set,
         and Arterial Spin Labeling with `MRAcquisitionType` set on `2D`.
-    SliceEncodingDirection: recommended
-    DwellTime: recommended
+    SliceEncodingDirection: optional
 
 SliceTimingASL:
   selectors:
-    - modality == "mri"
     - datatype == "perf"
     - intersects([suffix], ["asl", "m0scan"])
     - sidecar.MRAcquisitionType == "2D"
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
-    EchoTime: required
     SliceTiming:
       level: required
       issue:
         code: SLICE_TIMING_NOT_DEFINED_2D_ASL
         message: |
-          You should define `SliceTiming` for this file, because `SequenceType` is sets
+          You should define `SliceTiming` for this file, because `SequenceType` is set
           to a 2D sequence. `SliceTiming` is the time at which each slice was
           acquired within each volume (frame) of the acquisition. Slice timing
           is not slice order -- rather, it is a list of times containing the
@@ -222,16 +310,10 @@ SliceTimingASL:
           final entry in the `SliceTiming` list is the time of acquisition of slice 0.
           Without this parameter slice time correction will not be possible.
 
-# This is technically for sparse sequences only, but I don't know how to encode that.
-# SliceTimingSparse:
-#    selectors:
-#    - modality == "mri"
-#    fields:
-#        SliceTiming: required
-
 MRIRFandContrast:
   selectors:
     - modality == "mri"
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     NegativeContrast: optional
 
@@ -239,25 +321,41 @@ MRIFlipAngleLookLockerFalse:
   selectors:
     - modality == "mri"
     - sidecar.LookLocker != true
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     FlipAngle:
       level: recommended
       level_addendum: required if LookLocker is set to `true`
+      description_addendum: |
+        The data type array provides a value for each volume in a 4D dataset and
+        should only be used when the volume timing is critical for interpretation of
+        the data, such as in
+        [ASL](SPEC_ROOT/modality-specific-files/magnetic-resonance-imaging-data.md#\
+        arterial-spin-labeling-perfusion-data)
+        or variable flip angle fMRI sequences.
 
 MRIFlipAngleLookLockerTrue:
   selectors:
     - modality == "mri"
     - sidecar.LookLocker == true
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     FlipAngle:
       level: required
+      description_addendum: |
+        The data type array provides a value for each volume in a 4D dataset and
+        should only be used when the volume timing is critical for interpretation of
+        the data, such as in
+        [ASL](SPEC_ROOT/modality-specific-files/magnetic-resonance-imaging-data.md#\
+        arterial-spin-labeling-perfusion-data)
+        or variable flip angle fMRI sequences.
       issue:
-        name: LOOK_LOCKER_FLIP_ANGLE_MISSING
+        code: LOOK_LOCKER_FLIP_ANGLE_MISSING
         message: |
           You should define 'FlipAngle' for this file, in
           case of a LookLocker acquisition. 'FlipAngle' is the
           flip angle (FA) for the acquisition, specified in degrees.
-          Corresponds to: DICOM Tag 0018, 1314 `Flip Angle`. The data
+          Corresponds to: [DICOM Tag 0018, 1314](https://dicomlookup.com/dicomtags/(0018,1314)) `Flip Angle`. The data
           type number may apply to files from any MRI modality concerned
           with a single value for this field, or to the files in a file
           collection where the value of this field is iterated using the
@@ -269,32 +367,66 @@ MRIFlipAngleLookLockerTrue:
 MRISliceAcceleration:
   selectors:
     - modality == "mri"
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
-    MultibandAccelerationFactor: recommended
+    MultibandAccelerationFactor: optional
 
 MRIAnatomicalLandmarks:
   selectors:
-    - modality == "mri"
+    - datatype == "anat"
+    - intersects(dataset.datatypes, ["meg"])
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     AnatomicalLandmarkCoordinates__mri: recommended
 
-MRIEchoPlanarImagingAndB0Mapping:
+MRIEchoPlanarImagingAndB0FieldSource:
   selectors:
-    - modality == "mri"
+    - intersects(datatype, ['dwi', 'func', 'perf'])
+    - intersects(dataset.datatypes, ['fmap'])
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
-    B0FieldIdentifier: recommended
-    B0FieldSource: recommended
+    B0FieldSource:
+      level: recommended
+      issue:
+        code: B0_FIELD_SOURCE_RECOMMENDED
+        message: |
+          File is missing B0FieldSource metadata, so it may not be possible to
+          perform susceptibility distortion correction on it.
+          B0FieldIdentifier metadata permits the flexible selection of images
+          for estimating B0 inhomogeneity fields, and B0FieldSource permits EPI
+          images to indicate the identifier of the estimated field to use.
+          If associations are fully specified with `IntendedFor`, there is no need to change this.
 
 MRIInstitutionInformation:
   selectors:
     - modality == "mri"
+    - match(extension, "^\.nii(\.gz)?$")
   fields:
     InstitutionName:
       level: recommended
-      description_addendum: Corresponds to DICOM Tag 0008, 0080 `InstitutionName`.
+      description_addendum: |
+        Corresponds to [DICOM Tag 0008, 0080](https://dicomlookup.com/dicomtags/(0008,0080)) `InstitutionName`.
     InstitutionAddress:
       level: recommended
-      description_addendum: Corresponds to DICOM Tag 0008, 0081 `InstitutionAddress`.
+      description_addendum: |
+        Corresponds to [DICOM Tag 0008, 0081](https://dicomlookup.com/dicomtags/(0008,0081)) `InstitutionAddress`.
     InstitutionalDepartmentName:
       level: recommended
-      description_addendum: Corresponds to DICOM Tag 0008, 1040 `Institutional Department Name`.
+      description_addendum: |
+        Corresponds to [DICOM Tag 0008, 1040](https://dicomlookup.com/dicomtags/(0008,1040))
+        `Institutional Department Name`.
+
+DeidentificationMethod:
+  selectors:
+    - intersects([modality], ["mri", "pet"])
+    - match(extension, "^\.nii(\.gz)?$")
+  fields:
+    DeidentificationMethod:
+      level: optional
+      description_addendum: |
+        Corresponds to [DICOM Tag 0012, 0063](https://dicomlookup.com/dicomtags/(0012,0063)) `De-identification Method`.
+    DeidentificationMethodCodeSequence:
+      level: optional
+      description_addendum: |
+        Corresponds to [DICOM Tag 0012, 0064](https://dicomlookup.com/dicomtags/(0012,0064))
+        `De-identification Method Code Sequence`.

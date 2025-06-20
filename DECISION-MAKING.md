@@ -6,61 +6,42 @@ In October 2019, the BIDS community [voted](https://github.com/bids-standard/bid
 to ratify a governance structure and to elect five members as a *Steering Group*
 to oversee the development and adoption of the standard.
 
-The document outlining our governance structure is hosted on the BIDS website:
-[https://bids.neuroimaging.io/governance.html](https://bids.neuroimaging.io/governance.html)
+The document outlining our governance structure is hosted [on the BIDS website](https://bids.neuroimaging.io/collaboration/governance.html)
 
 In the following, we list the current members of subgroups detailed in the
 BIDS governance.
 
 ### Steering Group
 
-Current and past members of the steering group can be found
-[here](https://bids.neuroimaging.io/governance.html#bids-steering-group).
+Current and past members of the steering group can be found in the
+[BIDS governance](https://bids.neuroimaging.io/collaboration/governance.html#bids-steering-group).
 
 ### Maintainers Group
 
-| Name                                                                           | Time commitment | Scope                            |
-|--------------------------------------------------------------------------------|-----------------|----------------------------------|
-| Stefan Appelhoff ([@sappelhoff](https://github.com/sappelhoff))                | 5h/week         | Lead Maintainer                  |
-| Chris Markiewicz ([@effigies](https://github.com/effigies))                    | 5h/week         |                                  |
-| Taylor Salo ([@tsalo](https://github.com/tsalo))                               | 3h/week         | MRI                              |
-| Remi Gau ([@Remi-Gau](https://github.com/Remi-Gau))                            | 3h/week         | Community development, MRI       |
-| Anthony Galassi  ([@bendhouseart](https://github.com/bendhouseart))            | 3h/week         | PET, Community development       |
-| Eric Earl ([@ericearl](https://github.com/ericearl))                           | 2h/week         |                                  |
-| Ross Blair ([@rwblair](https://github.com/rwblair))      |   | Maintainer of the bids-validator |
-| Christine Rogers ([@christinerogers](https://github.com/christinerogers))      | 2h/mo        | interoperability, EEG and multi-modal |
-
-In addition to the [BIDS Governance](https://bids.neuroimaging.io/governance.html#bids-maintainers-group)
-classification of a maintainer, maintainers may declare a limited scope of responsibility.
-Such a scope can range from maintaining a modality supported in the specification to nurturing a
-welcoming BIDS community.
-One or more scopes can be chosen by the maintainer and agreed upon by the Maintainers Group.
-A maintainer is primarily responsible for issues within their chosen scope(s), although
-contributions elsewhere are welcome, as well.
-
-#### Past maintainers group members
-
-| Name                                                                           |
-|--------------------------------------------------------------------------------|
-| Franklin Feingold ([@franklin-feingold](https://github.com/franklin-feingold)) |
+Current and past members of the maintainers group can be found in the
+[BIDS governance](https://bids.neuroimaging.io/collaboration/governance.html#bids-maintainers-group),
+and in the
+[Maintainers Guide](Maintainers_Guide.md).
 
 ### BEP Leads Group
 
 Leaders of BIDS Extension Proposals are listed in the
-[table of BEPs](https://bids.neuroimaging.io/get_involved.html#extending-the-bids-specification).
+[table of BEPs](https://bids.neuroimaging.io/extensions/beps.html).
 
 ### Contributors Group
 
-Contributors are listed in the [Contributors appendix](https://bids-specification.readthedocs.io/en/stable/appendices/contributors.html)
-of the BIDS specification. Contributors who have not yet entered their name
-into this list are encouraged to edit the [Contributors WIKI page](https://github.com/bids-standard/bids-specification/wiki/Contributors)
-with their name, using the emojis listed in the WIKI to indicate their
-contributions.
+Contributors are listed in the
+[Contributors appendix](https://bids-specification.readthedocs.io/en/stable/appendices/contributors.html)
+of the BIDS specification.
+Contributors who have not yet entered their name into this list are encouraged to edit the
+[Contributors wiki page](https://github.com/bids-standard/bids-specification/wiki/Recent-Contributors)
+according to the instructions listed there.
 
 ### Other groups
 
-The following groups not listed in detail. Please learn more about these groups
-from the [governance document](https://bids.neuroimaging.io/governance.html).
+The following groups are not described in detail.
+Please learn more about these groups from the
+[BIDS governance](https://bids.neuroimaging.io/collaboration/governance.html).
 
 - BEP working groups
 - Advisory Group
@@ -76,8 +57,7 @@ following rules with the intention to:
 - Minimize the administrative burden.
 - Provide a path for when consensus cannot be made.
 - Grow the community.
-- Maximize the [bus factor](https://en.wikipedia.org/wiki/Bus_factor) of the
-  project.
+- Maximize the [bus factor](https://en.wikipedia.org/wiki/Bus_factor) of the project.
 
 The rules outlined below are inspired by the [lazy consensus system used in the Apache Foundation](https://www.apache.org/foundation/voting.html)
 and heavily depends on [GitHub Pull Request Review system](https://help.github.com/articles/about-pull-requests/).
