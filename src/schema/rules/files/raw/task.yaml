@@ -1,5 +1,6 @@
 ---
 events:
+  $ref: meta.templates.raw.task
   suffixes:
     - events
   extensions:
@@ -11,11 +12,6 @@ events:
     - ieeg
     - meg
     - nirs
-  entities:
-    $ref: meta.templates.raw_base_entities
-    task: required
-    acquisition: optional
-    run: optional
 
 timeseries:
   suffixes:
@@ -30,10 +26,7 @@ timeseries:
     - ieeg
     - nirs
   entities:
-    $ref: meta.templates.raw_base_entities
-    task: required
-    acquisition: optional
-    run: optional
+    $ref: meta.templates.raw.task.entities
     recording: optional
 
 timeseries__mri_no_task:
@@ -47,9 +40,7 @@ timeseries__mri_no_task:
     - dwi
     - perf
   entities:
-    $ref: meta.templates.raw_base_entities
-    acquisition: optional
-    run: optional
+    $ref: meta.templates.raw.recording.entities
     reconstruction: optional
     direction: optional
     recording: optional
@@ -80,12 +71,11 @@ events__pet:
   datatypes:
     - pet
   entities:
-    # Most events allow acquisition, PET doesn't
-    $ref: meta.templates.raw_base_entities
-    task: required
+    $ref: meta.templates.raw.task.entities
     tracer: optional
     reconstruction: optional
-    run: optional
+    # Most events allow acquisition, PET doesn't
+    acquisition: null
 
 events__mrs:
   $ref: rules.files.raw.task.events
@@ -102,12 +92,11 @@ timeseries__anat:
   datatypes:
     - anat
   entities:
-    $ref: rules.files.raw.task.timeseries.entities
-    ceagent: optional
-    reconstruction: optional
+    $ref:
+      - rules.files.raw.task.timeseries.entities
+      - meta.templates.raw.mri.entities
     echo: optional
     part: optional
-    chunk: optional
     modality: optional
 
 timeseries__func:
@@ -141,10 +130,8 @@ timeseries__pet:
   datatypes:
     - pet
   entities:
-    # Most timeseries allow acquisition, PET doesn't
-    $ref: meta.templates.raw_base_entities
-    task: required
+    $ref: rules.files.raw.task.timeseries.entities
     tracer: optional
     reconstruction: optional
-    run: optional
-    recording: optional
+    # Most timeseries allow acquisition, PET doesn't
+    acquisition: null

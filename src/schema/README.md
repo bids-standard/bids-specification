@@ -167,21 +167,23 @@ references (the cases in which they are used will be presented later):
     (which are in turn references to individual values), and the references inside `GeneticLevel.anyOf` indicate that there may be a single
     such value or a list of values.
 
-1.  In [`rules.files.deriv.preprocessed_data`](./rules/files/deriv/preprocessed_data.yaml):
+1.  In [`rules.files.deriv.imaging`](./rules/files/deriv/imaging.yaml):
     ```YAML
-    anat_nonparametric_common:
-      $ref: rules.files.raw.anat.nonparametric
+    anat_parametric_volumetric:
+      $ref: rules.files.raw.anat.parametric
       entities:
-        $ref: rules.files.raw.anat.nonparametric.entities
-        space: optional
-        description: optional
+        $ref:
+          - meta.templates.deriv.volumetric.entities
+          - rules.files.raw.anat.parametric.entities
     ```
     Here, the derivative datatype rule starts by copying the raw datatype rule
     `rules.files.raw.anat.nonparametric`.
     It then *overrides* the `entities` portion of that rule with a new object.
-    To *extend* the original `entities`, it again begins
-    by referencing `rules.files.raw.anat.nonparametric.entities`,
-    and adding the new entities `space` and `description`.
+    To *extend* the original `entities`, it composes
+    `meta.templates.deriv.volumetric.entities`
+    and `rules.files.raw.anat.nonparametric.entities`.
+    When multiple references are aggregated, the first reference takes
+    precedence.
 
 ### Expressions
 

@@ -6,25 +6,145 @@
 #
 # filerule:
 #   entities:
-#     $ref: meta.templates.raw_base_entities
+#     $ref: meta.templates.raw.base.entities
 #     task: optional
 #     ...
 #   datatypes:
 #     ...
-raw_base_entities:
-  subject: required
-  session: optional
+
+raw:
+  base:
+    entities:
+      subject: required
+      session: optional
+
+  recording:
+    entities:
+      $ref: meta.templates.raw.base.entities
+      acquisition: optional
+      run: optional
+
+  task:
+    entities:
+      $ref: meta.templates.raw.recording.entities
+      task: required
+
+  mri:
+    entities:
+      $ref: meta.templates.raw.recording.entities
+      ceagent: optional
+      reconstruction: optional
+      chunk: optional
+
+  epi:
+    entities:
+      $ref: meta.templates.raw.mri.entities
+      direction: optional
+      part: optional
+
+# Entities that apply to most derivative files
+#     $ref: meta.templates.deriv.base.entities
+#     task: optional
+#     ...
+#   datatypes:
+#     ...
+deriv:
+  base:
+    selectors:
+      - dataset.dataset_description.DatasetType == 'derivative'
+    entities:
+      subject: optional
+      session: optional
+      description: optional
+
+  spatial:
+    $ref: meta.templates.deriv.base
+    entities:
+      $ref: meta.templates.deriv.base.entities
+      space: optional
+
+  # Imaging derivatives
+  volumetric:
+    $ref: meta.templates.deriv.spatial
+    extensions:
+      - .nii.gz
+      - .nii
+      - .json
+    entities:
+      $ref: meta.templates.deriv.spatial.entities
+      resolution: optional
+
+  surface:
+    $ref: meta.templates.deriv.spatial
+    entities:
+      $ref: meta.templates.deriv.spatial.entities
+      hemisphere: optional
+      density: optional
+
+  mask:
+    $ref: meta.templates.deriv.volumetric
+    suffixes:
+      - mask
+    entities:
+      $ref: meta.templates.deriv.volumetric.entities
+      label: optional
+
+  dseg:
+    $ref: meta.templates.deriv.volumetric
+    extensions:
+      - .nii.gz
+      - .nii
+      - .tsv
+      - .json
+    suffixes:
+      - dseg
+    entities:
+      $ref: meta.templates.deriv.volumetric.entities
+      cohort: optional
+      atlas: optional
+      segmentation: optional
+      scale: optional
+
+  probseg:
+    $ref: meta.templates.deriv.volumetric
+    extensions:
+      - .nii.gz
+      - .nii
+      - .json
+    suffixes:
+      - probseg
+    entities:
+      $ref: meta.templates.deriv.volumetric.entities
+      cohort: optional
+      atlas: optional
+      segmentation: optional
+      scale: optional
+      label: optional
+
+  dseg_surface:
+    $ref: meta.templates.deriv.surface
+    extensions:
+      - .label.gii
+      - .dlabel.nii
+      - .tsv
+      - .json
+    suffixes:
+      - dseg
+    entities:
+      $ref: meta.templates.deriv.surface.entities
+      cohort: optional
+      atlas: optional
+      segmentation: optional
+      scale: optional
 
 # Entities that apply to most atlas files
 # Include thus:
 #
 # filerule:
 #   entities:
-#     $ref: meta.templates.atlas_base_entities
-#     task: optional
-#     ...
-#   datatypes:
-#     ...
-atlas_base_entities:
-  template: required
-  cohort: optional
+#     $ref: meta.templates.atlas.base.entities
+atlas:
+  base:
+    entities:
+      template: required
+      cohort: optional

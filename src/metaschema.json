@@ -611,8 +611,7 @@
             },
             "required": ["level"],
             "additionalProperties": false
-          },
-          { "type": "string", "pattern": "recommended.*" }
+          }
         ]
       },
       "issue": {

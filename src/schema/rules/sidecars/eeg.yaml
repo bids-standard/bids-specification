@@ -74,7 +74,10 @@ EEGRecommended:
     TriggerChannelCount: recommended
     RecordingDuration: recommended
     RecordingType: recommended
-    EpochLength: recommended
+    EpochLength:
+      level: optional
+      # Implemented in rules.sidecars.electrophys
+      level_addendum: recommended if RecordingType is "epoched"
     EEGGround: recommended
     HeadCircumference: recommended
     EEGPlacementScheme: recommended

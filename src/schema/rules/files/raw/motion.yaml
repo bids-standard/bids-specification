@@ -8,8 +8,5 @@ motion:
   datatypes:
     - motion
   entities:
-    $ref: meta.templates.raw_base_entities
-    task: required
+    $ref: meta.templates.raw.task.entities
     tracksys: required
-    acquisition: optional
-    run: optional

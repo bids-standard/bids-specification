@@ -19,10 +19,7 @@ meg:
   datatypes:
     - meg
   entities:
-    $ref: meta.templates.raw_base_entities
-    task: required
-    acquisition: optional
-    run: optional
+    $ref: meta.templates.raw.task.entities
     processing: optional
     split: optional
 
@@ -34,7 +31,7 @@ calibration:
   datatypes:
     - meg
   entities:
-    $ref: meta.templates.raw_base_entities
+    $ref: meta.templates.raw.base.entities
     acquisition:
       level: required
       enum:
@@ -48,7 +45,7 @@ crosstalk:
   datatypes:
     - meg
   entities:
-    $ref: meta.templates.raw_base_entities
+    $ref: meta.templates.raw.base.entities
     acquisition:
       level: required
       enum:
@@ -63,7 +60,7 @@ headshape:
   datatypes:
     - meg
   entities:
-    $ref: meta.templates.raw_base_entities
+    $ref: meta.templates.raw.base.entities
     acquisition: optional
 
 markers:
@@ -75,7 +72,7 @@ markers:
   datatypes:
     - meg
   entities:
-    $ref: meta.templates.raw_base_entities
+    $ref: meta.templates.raw.base.entities
     task: optional
     acquisition: optional
     space: optional
