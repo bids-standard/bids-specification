@@ -13,6 +13,13 @@ anat_parametric_volumetric:
       - meta.templates.deriv.volumetric.entities
       - rules.files.raw.anat.parametric.entities
 
+anat_parametric_volumetric_atlas:
+  $ref: rules.files.deriv.imaging.anat_parametric_volumetric
+  entities:
+    $ref:
+      - meta.templates.atlas.base.entities
+      - rules.files.deriv.imaging.anat_parametric_volumetric.entities
+
 anat_nonparametric_volumetric:
   $ref:
     - meta.templates.deriv.volumetric
@@ -21,6 +28,13 @@ anat_nonparametric_volumetric:
     $ref:
       - meta.templates.deriv.volumetric.entities
       - rules.files.raw.anat.nonparametric.entities
+
+anat_nonparametric_volumetric_atlas:
+  $ref: rules.files.deriv.imaging.anat_nonparametric_volumetric
+  entities:
+    $ref:
+      - meta.templates.atlas.base.entities
+      - rules.files.deriv.imaging.anat_nonparametric_volumetric.entities
 
 anat_defacemask_volumetric:
   $ref:
@@ -31,6 +45,13 @@ anat_defacemask_volumetric:
       - meta.templates.deriv.volumetric.entities
       - rules.files.raw.anat.defacemask.entities
 
+anat_defacemask_volumetric_atlas:
+  $ref: rules.files.deriv.imaging.anat_defacemask_volumetric
+  entities:
+    $ref:
+      - meta.templates.atlas.base.entities
+      - rules.files.deriv.imaging.anat_defacemask_volumetric.entities
+
 anat_multiecho_volumetric:
   $ref:
     - meta.templates.deriv.volumetric
@@ -39,6 +60,13 @@ anat_multiecho_volumetric:
     $ref:
       - meta.templates.deriv.volumetric.entities
       - rules.files.raw.anat.multiecho.entities
+
+anat_multiecho_volumetric_atlas:
+  $ref: rules.files.deriv.imaging.anat_multiecho_volumetric
+  entities:
+    $ref:
+      - meta.templates.atlas.base.entities
+      - rules.files.deriv.imaging.anat_multiecho_volumetric.entities
 
 anat_multiflip_volumetric:
   $ref:
@@ -49,6 +77,13 @@ anat_multiflip_volumetric:
       - meta.templates.deriv.volumetric.entities
       - rules.files.raw.anat.multiflip.entities
 
+anat_multiflip_volumetric_atlas:
+  $ref: rules.files.deriv.imaging.anat_multiflip_volumetric
+  entities:
+    $ref:
+      - meta.templates.atlas.base.entities
+      - rules.files.deriv.imaging.anat_multiflip_volumetric.entities
+
 anat_multiinversion_volumetric:
   $ref:
     - meta.templates.deriv.volumetric
@@ -57,6 +92,13 @@ anat_multiinversion_volumetric:
     $ref:
       - meta.templates.deriv.volumetric.entities
       - rules.files.raw.anat.multiinversion.entities
+
+anat_multiinversion_volumetric_atlas:
+  $ref: rules.files.deriv.imaging.anat_multiinversion_volumetric
+  entities:
+    $ref:
+      - meta.templates.atlas.base.entities
+      - rules.files.deriv.imaging.anat_multiinversion_volumetric.entities
 
 anat_mp2rage_volumetric:
   $ref:
@@ -67,6 +109,13 @@ anat_mp2rage_volumetric:
       - meta.templates.deriv.volumetric.entities
       - rules.files.raw.anat.mp2rage.entities
 
+anat_mp2rage_volumetric_atlas:
+  $ref: rules.files.deriv.imaging.anat_mp2rage_volumetric
+  entities:
+    $ref:
+      - meta.templates.atlas.base.entities
+      - rules.files.deriv.imaging.anat_mp2rage_volumetric.entities
+
 anat_vfamt_volumetric:
   $ref:
     - meta.templates.deriv.volumetric
@@ -75,6 +124,13 @@ anat_vfamt_volumetric:
     $ref:
       - meta.templates.deriv.volumetric.entities
       - rules.files.raw.anat.vfamt.entities
+
+anat_vfamt_volumetric_atlas:
+  $ref: rules.files.deriv.imaging.anat_vfamt_volumetric
+  entities:
+    $ref:
+      - meta.templates.atlas.base.entities
+      - rules.files.deriv.imaging.anat_vfamt_volumetric.entities
 
 anat_mtr_volumetric:
   $ref:
@@ -85,6 +141,13 @@ anat_mtr_volumetric:
       - meta.templates.deriv.volumetric.entities
       - rules.files.raw.anat.mtr.entities
 
+anat_mtr_volumetric_atlas:
+  $ref: rules.files.deriv.imaging.anat_mtr_volumetric
+  entities:
+    $ref:
+      - meta.templates.atlas.base.entities
+      - rules.files.deriv.imaging.anat_mtr_volumetric.entities
+
 dwi_dwi_volumetric:
   $ref:
     - meta.templates.deriv.volumetric
@@ -93,6 +156,13 @@ dwi_dwi_volumetric:
     $ref:
       - meta.templates.deriv.volumetric.entities
       - rules.files.raw.dwi.dwi.entities
+
+dwi_dwi_volumetric_atlas:
+  $ref: rules.files.deriv.imaging.dwi_dwi_volumetric
+  entities:
+    $ref:
+      - meta.templates.atlas.base.entities
+      - rules.files.deriv.imaging.dwi_dwi_volumetric.entities
 
 dwi_sbref_volumetric:
   $ref:
@@ -103,7 +173,14 @@ dwi_sbref_volumetric:
       - meta.templates.deriv.volumetric.entities
       - rules.files.raw.dwi.sbref.entities
 
-dwi_scannerderivatives:
+dwi_sbref_volumetric_atlas:
+  $ref: rules.files.deriv.imaging.dwi_sbref_volumetric
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.deriv.imaging.dwi_sbref_volumetric.entities
+
+dwi_scannerderivatives_volumetric:
   $ref:
     - meta.templates.deriv.volumetric
     - rules.files.raw.dwi.ScannerDerivatives
@@ -111,6 +188,13 @@ dwi_scannerderivatives:
     $ref:
       - meta.templates.deriv.volumetric.entities
       - rules.files.raw.dwi.ScannerDerivatives.entities
+
+dwi_scannerderivatives_volumetric_atlas:
+  $ref: rules.files.deriv.imaging.dwi_scannerderivatives_volumetric
+  entities:
+    $ref:
+      - meta.templates.atlas.base.entities
+      - rules.files.deriv.imaging.dwi_scannerderivatives_volumetric.entities
 
 func_volumetric:
   $ref:
@@ -121,6 +205,13 @@ func_volumetric:
       - meta.templates.deriv.volumetric.entities
       - rules.files.raw.func.func.entities
 
+func_volumetric_atlas:
+  $ref: rules.files.deriv.imaging.func_volumetric
+  entities:
+    $ref:
+      - meta.templates.atlas.base.entities
+      - rules.files.deriv.imaging.func_volumetric.entities
+
 func_phase_volumetric:
   $ref:
     - meta.templates.deriv.volumetric
@@ -129,6 +220,8 @@ func_phase_volumetric:
     $ref:
       - meta.templates.deriv.volumetric.entities
       - rules.files.raw.func.phase.entities
+
+# NB: Not permitting deprecated phase suffix for atlases
 
 fmap_fieldmaps_volumetric:
   $ref:
@@ -139,6 +232,13 @@ fmap_fieldmaps_volumetric:
       - meta.templates.deriv.volumetric.entities
       - rules.files.raw.fmap.fieldmaps.entities
 
+fmap_fieldmaps_volumetric_atlas:
+  $ref: rules.files.deriv.imaging.fmap_fieldmaps_volumetric
+  entities:
+    $ref:
+      - meta.templates.atlas.base.entities
+      - rules.files.deriv.imaging.fmap_fieldmaps_volumetric.entities
+
 fmap_pepolar_volumetric:
   $ref:
     - meta.templates.deriv.volumetric
@@ -148,7 +248,14 @@ fmap_pepolar_volumetric:
       - meta.templates.deriv.volumetric.entities
       - rules.files.raw.fmap.pepolar.entities
 
-fmap_pepolar_m0scan:
+fmap_pepolar_volumetric_atlas:
+  $ref: rules.files.deriv.imaging.fmap_pepolar_volumetric
+  entities:
+    $ref:
+      - meta.templates.atlas.base.entities
+      - rules.files.deriv.imaging.fmap_pepolar_volumetric.entities
+
+fmap_pepolar_m0scan_volumetric:
   $ref:
     - meta.templates.deriv.volumetric
     - rules.files.raw.fmap.pepolar_m0scan
@@ -156,6 +263,13 @@ fmap_pepolar_m0scan:
     $ref:
       - meta.templates.deriv.volumetric.entities
       - rules.files.raw.fmap.pepolar.entities
+
+fmap_pepolar_m0scan_volumetric_atlas:
+  $ref: rules.files.deriv.imaging.fmap_pepolar_m0scan_volumetric
+  entities:
+    $ref:
+      - meta.templates.atlas.base.entities
+      - rules.files.deriv.imaging.fmap_pepolar_m0scan_volumetric.entities
 
 fmap_TB1DAM_volumetric:
   $ref:
@@ -166,6 +280,13 @@ fmap_TB1DAM_volumetric:
       - meta.templates.deriv.volumetric.entities
       - rules.files.raw.fmap.TB1DAM.entities
 
+fmap_TB1DAM_volumetric_atlas:
+  $ref: rules.files.deriv.imaging.fmap_TB1DAM_volumetric
+  entities:
+    $ref:
+      - meta.templates.atlas.base.entities
+      - rules.files.deriv.imaging.fmap_TB1DAM_volumetric.entities
+
 fmap_TB1EPI_volumetric:
   $ref:
     - meta.templates.deriv.volumetric
@@ -174,6 +295,13 @@ fmap_TB1EPI_volumetric:
     $ref:
       - meta.templates.deriv.volumetric.entities
       - rules.files.raw.fmap.TB1EPI.entities
+
+fmap_TB1EPI_volumetric_atlas:
+  $ref: rules.files.deriv.imaging.fmap_TB1EPI_volumetric
+  entities:
+    $ref:
+      - meta.templates.atlas.base.entities
+      - rules.files.deriv.imaging.fmap_TB1EPI_volumetric.entities
 
 fmap_RFFieldMaps_volumetric:
   $ref:
@@ -184,6 +312,13 @@ fmap_RFFieldMaps_volumetric:
       - meta.templates.deriv.volumetric.entities
       - rules.files.raw.fmap.RFFieldMaps.entities
 
+fmap_RFFieldMaps_volumetric_atlas:
+  $ref: rules.files.deriv.imaging.fmap_RFFieldMaps_volumetric
+  entities:
+    $ref:
+      - meta.templates.atlas.base.entities
+      - rules.files.deriv.imaging.fmap_RFFieldMaps_volumetric.entities
+
 fmap_TB1SRGE_volumetric:
   $ref:
     - meta.templates.deriv.volumetric
@@ -192,6 +327,13 @@ fmap_TB1SRGE_volumetric:
     $ref:
       - meta.templates.deriv.volumetric.entities
       - rules.files.raw.fmap.TB1SRGE.entities
+
+fmap_TB1SRGE_volumetric_atlas:
+  $ref: rules.files.deriv.imaging.fmap_TB1SRGE_volumetric
+  entities:
+    $ref:
+      - meta.templates.atlas.base.entities
+      - rules.files.deriv.imaging.fmap_TB1SRGE_volumetric.entities
 
 fmap_parametric_volumetric:
   $ref:
@@ -202,6 +344,13 @@ fmap_parametric_volumetric:
       - meta.templates.deriv.volumetric.entities
       - rules.files.raw.fmap.parametric.entities
 
+fmap_parametric_volumetric_atlas:
+  $ref: rules.files.deriv.imaging.fmap_parametric_volumetric
+  entities:
+    $ref:
+      - meta.templates.atlas.base.entities
+      - rules.files.deriv.imaging.fmap_parametric_volumetric.entities
+
 perf_asl_volumetric:
   $ref:
     - meta.templates.deriv.volumetric
@@ -211,6 +360,13 @@ perf_asl_volumetric:
       - meta.templates.deriv.volumetric.entities
       - rules.files.raw.perf.asl.entities
 
+perf_asl_volumetric_atlas:
+  $ref: rules.files.deriv.imaging.perf_asl_volumetric
+  entities:
+    $ref:
+      - meta.templates.atlas.base.entities
+      - rules.files.deriv.imaging.perf_asl_volumetric.entities
+
 pet_pet_volumetric:
   $ref:
     - meta.templates.deriv.volumetric
@@ -219,6 +375,13 @@ pet_pet_volumetric:
     $ref:
       - meta.templates.deriv.volumetric.entities
       - rules.files.raw.pet.pet.entities
+
+pet_pet_volumetric_atlas:
+  $ref: rules.files.deriv.imaging.pet_pet_volumetric
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.deriv.imaging.pet_pet_volumetric.entities
 
 # Masks
 anat_mask:
@@ -232,6 +395,13 @@ anat_mask:
       - meta.templates.deriv.mask.entities
       - rules.files.raw.anat.nonparametric.entities
 
+anat_mask_atlas:
+  $ref: rules.files.deriv.imaging.anat_mask
+  entities:
+    $ref:
+      - meta.templates.atlas.base.entities
+      - rules.files.deriv.imaging.anat_mask.entities
+
 dwi_mask:
   $ref:
     - meta.templates.deriv.mask
@@ -241,6 +411,13 @@ dwi_mask:
       - meta.templates.deriv.mask.entities
       - rules.files.raw.dwi.dwi.entities
 
+dwi_mask_atlas:
+  $ref: rules.files.deriv.imaging.dwi_mask
+  entities:
+    $ref:
+      - meta.templates.atlas.base.entities
+      - rules.files.deriv.imaging.dwi_mask.entities
+
 func_mask:
   $ref:
     - meta.templates.deriv.mask
@@ -249,6 +426,13 @@ func_mask:
     $ref:
       - meta.templates.deriv.mask.entities
       - rules.files.raw.func.func.entities
+
+func_mask_atlas:
+  $ref: rules.files.deriv.imaging.func_mask
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.deriv.imaging.func_mask.entities
 
 # Discrete and probabilistic segmentations
 anat_discrete_segmentation:
@@ -261,6 +445,13 @@ anat_discrete_segmentation:
       - meta.templates.deriv.dseg.entities
       - rules.files.raw.anat.nonparametric.entities
 
+anat_discrete_segmentation_atlas:
+  $ref: rules.files.deriv.imaging.anat_discrete_segmentation
+  entities:
+    $ref:
+      - meta.templates.atlas.base.entities
+      - rules.files.deriv.imaging.anat_discrete_segmentation.entities
+
 func_discrete_segmentation:
   $ref:
     - meta.templates.deriv.dseg
@@ -270,6 +461,13 @@ func_discrete_segmentation:
       - meta.templates.deriv.dseg.entities
       - rules.files.raw.func.func.entities
 
+func_discrete_segmentation_atlas:
+  $ref: rules.files.deriv.imaging.func_discrete_segmentation
+  entities:
+    $ref:
+      - meta.templates.atlas.base.entities
+      - rules.files.deriv.imaging.func_discrete_segmentation.entities
+
 dwi_discrete_segmentation:
   $ref:
     - meta.templates.deriv.dseg
@@ -278,6 +476,13 @@ dwi_discrete_segmentation:
     $ref:
       - meta.templates.deriv.dseg.entities
       - rules.files.raw.dwi.dwi.entities
+
+dwi_discrete_segmentation_atlas:
+  $ref: rules.files.deriv.imaging.dwi_discrete_segmentation
+  entities:
+    $ref:
+      - meta.templates.atlas.base.entities
+      - rules.files.deriv.imaging.dwi_discrete_segmentation.entities
 
 anat_probabilistic_segmentation:
   $ref:
@@ -289,6 +494,13 @@ anat_probabilistic_segmentation:
       - meta.templates.deriv.probseg.entities
       - rules.files.raw.anat.nonparametric.entities
 
+anat_probabilistic_segmentation_atlas:
+  $ref: rules.files.deriv.imaging.anat_probabilistic_segmentation
+  entities:
+    $ref:
+      - meta.templates.atlas.base.entities
+      - rules.files.deriv.imaging.anat_probabilistic_segmentation.entities
+
 func_probabilistic_segmentation:
   $ref:
     - meta.templates.deriv.probseg
@@ -297,6 +509,13 @@ func_probabilistic_segmentation:
     $ref:
       - meta.templates.deriv.probseg.entities
       - rules.files.raw.func.func.entities
+
+func_probabilistic_segmentation_atlas:
+  $ref: rules.files.deriv.imaging.func_probabilistic_segmentation
+  entities:
+    $ref:
+      - meta.templates.atlas.base.entities
+      - rules.files.deriv.imaging.func_probabilistic_segmentation.entities
 
 dwi_probabilistic_segmentation:
   $ref:
@@ -307,6 +526,13 @@ dwi_probabilistic_segmentation:
       - meta.templates.deriv.probseg.entities
       - rules.files.raw.dwi.dwi.entities
 
+dwi_probabilistic_segmentation_atlas:
+  $ref: rules.files.deriv.imaging.dwi_probabilistic_segmentation
+  entities:
+    $ref:
+      - meta.templates.atlas.base.entities
+      - rules.files.deriv.imaging.dwi_probabilistic_segmentation.entities
+
 anat_discrete_surface:
   $ref:
     - meta.templates.deriv.dseg_surface
@@ -316,3 +542,10 @@ anat_discrete_surface:
     $ref:
       - meta.templates.deriv.dseg_surface.entities
       - rules.files.raw.anat.nonparametric.entities
+
+anat_discrete_surface_atlas:
+  $ref: rules.files.deriv.imaging.anat_discrete_surface
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.deriv.imaging.anat_discrete_surface.entities

@@ -156,6 +156,13 @@ micr_microscopy_common:
       - meta.templates.deriv.spatial.entities
       - rules.files.raw.micr.microscopy.entities
 
+micr_microscopy_atlas:
+  $ref: rules.files.deriv.preprocessed_data.micr_microscopy_common
+  entities:
+    $ref:
+      - meta.templates.atlas.base.entities
+      - rules.files.deriv.preprocessed_data.micr_microscopy_common.entities
+
 pet_blood_common:
   $ref:
     - meta.templates.deriv.spatial
