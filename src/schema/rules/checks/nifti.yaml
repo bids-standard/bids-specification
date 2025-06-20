@@ -49,3 +49,19 @@ XformCodes0:
     - nifti_header != null
   checks:
     - nifti_header.qform_code != 0 || nifti_header.sform_code != 0
+
+NiftiPEDir:
+  issue:
+    code: NIFTI_PE_DIRECTION_CONSISTENCY
+    message: |
+      The PhaseEncodingDirection and affine orientation indicate
+      that the entity value (one of AP, PA, RL, LR, SI, IS) may be inaccurate.
+    level: warning
+  selectors:
+    - type(nifti_header.axis_codes) != "null"
+    - intersects([entities.direction], ["AP", "PA", "RL", "LR", "SI", "IS"])
+    - sidecar.PhaseEncodingDirection
+  checks:
+    - |
+      entities.direction[2 - length(sidecar.PhaseEncodingDirection)]
+      == nifti_header.axis_codes[index(["i", "j", "k"], sidecar.PhaseEncodingDirection[0])]
