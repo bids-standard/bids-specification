@@ -1194,8 +1194,13 @@ Entities:
         description: |
           Identifier(s) of the Activity(ies) which generated this Entity.
           The corresponding Activity must be defined with its own Activity record.
-        type: string
-        format: uri
+        anyOf:
+          - type: string
+            format: uri
+          - type: array
+            items:
+              type: string
+              format: uri
       Type:
         name: Type
         description: A term from a controlled vocabulary that more specifically describes the Entity.
