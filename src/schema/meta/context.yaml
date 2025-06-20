@@ -407,7 +407,9 @@ properties:
         type: integer
       axis_codes:
         name: 'axis codes'
-        description: 'Orientation labels indicating primary direction of data axes defined with respect to the object of interest.'
+        description: >
+          Orientation labels indicating primary direction of data axes defined
+          with respect to the object of interest.
         type: array
         minItems: 3
         maxItems: 3
