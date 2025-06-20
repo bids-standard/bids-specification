@@ -311,7 +311,7 @@ PETDerivativesMotionCorrection:
   selectors:
     - dataset.dataset_description.DatasetType == "derivative"
     - 'intersects([modality], ["pet"])'
-    - suffix == "motion"
+    - 'intersects(entities.desc, ["mc"])'
   fields:
     Description:
       level: required
@@ -328,11 +328,20 @@ PETDerivativesMotionCorrection:
     CommandLine:
       level: optional
 
+PETDerivativesRegistration:
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - 'intersects([modality], ["pet"])'
+    - '"space" in entities || ("from" in entities && "to" in entities)'
+  fields:
+    Description: optional
+
 PETDerivativesSmoothing:
   selectors:
     - dataset.dataset_description.DatasetType == "derivative"
     - 'intersects([modality], ["pet"])'
     - suffix == "pet"
+    - 'intersects(entities.desc, ["+sm"])'
   fields:
     FullWidthHalfMaximum:
       level: required
