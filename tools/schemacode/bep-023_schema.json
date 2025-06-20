@@ -8576,6 +8576,11 @@
         "display_name": "Positron Emission Tomography",
         "description": "PET imaging data SHOULD be stored in 4D\n(or 3D, if only one volume was acquired) NIfTI files with the `_pet` suffix.\nVolumes MUST be stored in chronological order\n(the order they were acquired in).\n"
       },
+      "petref": {
+        "value": "petref",
+        "display_name": "PET reference acquisition",
+        "description": "A PET acquisition collected to serve as a concentration reference for absolute quantification\nor as a calibration reference for preprocessing (for example, motion correction).\nThis acquisition is typically a static PET scan of a phantom with known radioactivity concentration.\n"
+      },
       "phase": {
         "value": "phase",
         "display_name": "Phase image",
@@ -11621,6 +11626,55 @@
             "datatypes": [
               "anat"
             ]
+          },
+          "pet_petref": {
+            "selectors": [
+              "dataset.dataset_description.DatasetType == 'derivative'"
+            ],
+            "suffixes": [
+              "petref"
+            ],
+            "extensions": [
+              ".nii.gz",
+              ".nii",
+              ".json"
+            ],
+            "entities": {
+              "space": "optional",
+              "description": "optional",
+              "subject": "required",
+              "session": "optional",
+              "task": "optional",
+              "tracer": "optional",
+              "reconstruction": "optional",
+              "run": "optional"
+            },
+            "datatypes": [
+              "pet"
+            ]
+          }
+        },
+        "pet": {
+          "pet": {
+            "suffixes": [
+              "petref"
+            ],
+            "extensions": [
+              ".nii.gz",
+              ".nii",
+              ".json"
+            ],
+            "datatypes": [
+              "pet"
+            ],
+            "entities": {
+              "subject": "required",
+              "session": "optional",
+              "task": "optional",
+              "tracer": "optional",
+              "reconstruction": "optional",
+              "run": "optional"
+            }
           }
         },
         "preprocessed_data": {
@@ -12771,6 +12825,29 @@
             "datatypes": [
               "perf"
             ]
+          },
+          "pet_petref_common": {
+            "selectors": [
+              "dataset.dataset_description.DatasetType == 'derivative'"
+            ],
+            "suffixes": [
+              "petref"
+            ],
+            "extensions": [
+              ".nii.gz",
+              ".nii",
+              ".json"
+            ],
+            "entities": {
+              "space": "optional",
+              "description": "optional",
+              "subject": "required",
+              "session": "optional",
+              "task": "optional",
+              "tracer": "optional",
+              "reconstruction": "optional",
+              "run": "optional"
+            }
           },
           "pet_pet_common": {
             "selectors": [

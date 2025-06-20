@@ -278,3 +278,18 @@ anat_nonparametric_discrete_surface:
     resolution: optional
     density: optional
     description: optional
+
+pet_petref:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
+  $ref: rules.files.raw.pet.pet
+  suffixes:
+    - petref
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  entities:
+    $ref: rules.files.raw.pet.pet.entities
+    space: optional
+    description: optional
