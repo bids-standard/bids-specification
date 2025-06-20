@@ -5,6 +5,12 @@ Contents
 ========
 
 .. toctree::
+   :caption: Tutorial
+
+   quickstart
+
+.. toctree::
+   :caption: Reference
    :maxdepth: 2
 
    description

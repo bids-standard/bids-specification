@@ -144,6 +144,7 @@ venv.bak/
 
 # schema docs documentation
 tools/schemacode/build/*
+_build/
 
 # mypy
 .mypy_cache/
