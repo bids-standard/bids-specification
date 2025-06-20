@@ -11,7 +11,6 @@ atlas:
     typically defined in relation to a *space* engendered by a specific *template*.
     Within BIDS, atlases provide standardized spatially-organized knowledge to label, localize,
     and interpret data features.
-
     Atlases often rely on or embed templates as their reference framework.
     In BIDS, templates establish the spatial coordinate frames for atlases,
     independently of whether or not they are considered part of specific atlases' outcomes.
@@ -188,5 +187,5 @@ template:
     A template (sometimes called an *atlas template*) is any aggregation of data across subjects.
     Templates MAY operationalize the notion of a common spatial frame of reference
     (see *space*) beyond individual subjects.
-    In practical BIDS usage, templates CAN BE recognized (via the tpl- entity) as
+    In practical BIDS usage, templates can be recognized (via the `tpl-` entity) as
     standard spaces that enable analyses of data from multiple individuals.
