@@ -91,25 +91,27 @@ def _find(obj, predicate):
 
 def _dereference(namespace, base_schema):
     # In-place, recursively dereference objects
-    # This allows a referenced object to itself contain a reference
-    # A dependency graph could be constructed, but would likely be slower
-    # to build than to duplicate a couple dereferences
+    # This allows for referencing objects that contain references,
+    # as well as objects that do not exist until a parent is dereferenced.
     for struct in _find(namespace, lambda obj: "$ref" in obj):
         refs = struct["$ref"]
         if isinstance(refs, str):
             refs = [refs]
         targets = []
         for ref in refs:
-            target = base_schema.get(ref)
-            if target is None:
-                raise ValueError(f"Reference {ref} not found in schema.")
+            target = base_schema
+            for part in ref.split("."):
+                target = target.get(part)
+                if target is None:
+                    raise ValueError(f"Reference {ref} not found in schema.")
+                if "$ref" in target:
+                    _dereference(target, base_schema)
             targets.append(target)
+
         if all(isinstance(target, Mapping) for target in targets):
             struct.pop("$ref")
 
-            combined_target = dict(ChainMap(*targets))
-            _dereference(combined_target, base_schema)
-            struct.update({**combined_target, **struct})
+            struct.update({**ChainMap(*targets), **struct})
 
             # Use `key: null` to delete fields
             for key, value in list(struct.items()):
