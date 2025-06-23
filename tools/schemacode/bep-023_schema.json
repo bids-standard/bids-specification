@@ -1949,6 +1949,73 @@
         "type": "string",
         "format": "index"
       },
+      "from": {
+        "name": "from",
+        "display_name": "From Space",
+        "description": "The `from-<label>` entity indicates the coordinate system from which a\ntransform is defined.\n",
+        "type": "string",
+        "format": "label",
+        "enum": [
+          {
+            "type": "string",
+            "enum": [
+              "orig",
+              "individual",
+              "study",
+              "scanner",
+              "ICBM452AirSpace",
+              "ICBM452Warp5Space",
+              "IXI549Space",
+              "fsaverage",
+              "fsaverageSym",
+              "fsLR",
+              "MNIColin27",
+              "MNI152Lin",
+              "MNI152NLin2009aSym",
+              "MNI152NLin2009bSym",
+              "MNI152NLin2009cSym",
+              "MNI152NLin2009aAsym",
+              "MNI152NLin2009bAsym",
+              "MNI152NLin2009cAsym",
+              "MNI152NLin6Sym",
+              "MNI152NLin6ASym",
+              "MNI305",
+              "NIHPD",
+              "OASIS30AntsOASISAnts",
+              "OASIS30Atropos",
+              "Talairach",
+              "UNCInfant",
+              "fsaverage3",
+              "fsaverage4",
+              "fsaverage5",
+              "fsaverage6",
+              "fsaveragesym",
+              "UNCInfant0V21",
+              "UNCInfant1V21",
+              "UNCInfant2V21",
+              "UNCInfant0V22",
+              "UNCInfant1V22",
+              "UNCInfant2V22",
+              "UNCInfant0V23",
+              "UNCInfant1V23",
+              "UNCInfant2V23",
+              "Pixels",
+              "ACPC",
+              "ScanRAS"
+            ]
+          }
+        ]
+      },
+      "mode": {
+        "name": "mode",
+        "display_name": "Transform Mode",
+        "description": "Specifies the domain of a transformation, for example `image`.\n",
+        "type": "string",
+        "format": "label",
+        "enum": [
+          "image"
+        ]
+      },
       "hemisphere": {
         "name": "hemi",
         "display_name": "Hemisphere",
@@ -2103,6 +2170,63 @@
         "type": "string",
         "format": "label"
       },
+      "to": {
+        "name": "to",
+        "display_name": "To Space",
+        "description": "The `to-<label>` entity indicates the target coordinate system of a\ntransform.\n",
+        "type": "string",
+        "format": "label",
+        "enum": [
+          {
+            "type": "string",
+            "enum": [
+              "orig",
+              "individual",
+              "study",
+              "scanner",
+              "ICBM452AirSpace",
+              "ICBM452Warp5Space",
+              "IXI549Space",
+              "fsaverage",
+              "fsaverageSym",
+              "fsLR",
+              "MNIColin27",
+              "MNI152Lin",
+              "MNI152NLin2009aSym",
+              "MNI152NLin2009bSym",
+              "MNI152NLin2009cSym",
+              "MNI152NLin2009aAsym",
+              "MNI152NLin2009bAsym",
+              "MNI152NLin2009cAsym",
+              "MNI152NLin6Sym",
+              "MNI152NLin6ASym",
+              "MNI305",
+              "NIHPD",
+              "OASIS30AntsOASISAnts",
+              "OASIS30Atropos",
+              "Talairach",
+              "UNCInfant",
+              "fsaverage3",
+              "fsaverage4",
+              "fsaverage5",
+              "fsaverage6",
+              "fsaveragesym",
+              "UNCInfant0V21",
+              "UNCInfant1V21",
+              "UNCInfant2V21",
+              "UNCInfant0V22",
+              "UNCInfant1V22",
+              "UNCInfant2V22",
+              "UNCInfant0V23",
+              "UNCInfant1V23",
+              "UNCInfant2V23",
+              "Pixels",
+              "ACPC",
+              "ScanRAS"
+            ]
+          }
+        ]
+      },
       "tracer": {
         "name": "trc",
         "display_name": "Tracer",
@@ -2204,6 +2328,54 @@
           "UNCInfant2V23"
         ]
       },
+      "_TransformSpace": {
+        "type": "string",
+        "enum": [
+          "orig",
+          "individual",
+          "study",
+          "scanner",
+          "ICBM452AirSpace",
+          "ICBM452Warp5Space",
+          "IXI549Space",
+          "fsaverage",
+          "fsaverageSym",
+          "fsLR",
+          "MNIColin27",
+          "MNI152Lin",
+          "MNI152NLin2009aSym",
+          "MNI152NLin2009bSym",
+          "MNI152NLin2009cSym",
+          "MNI152NLin2009aAsym",
+          "MNI152NLin2009bAsym",
+          "MNI152NLin2009cAsym",
+          "MNI152NLin6Sym",
+          "MNI152NLin6ASym",
+          "MNI305",
+          "NIHPD",
+          "OASIS30AntsOASISAnts",
+          "OASIS30Atropos",
+          "Talairach",
+          "UNCInfant",
+          "fsaverage3",
+          "fsaverage4",
+          "fsaverage5",
+          "fsaverage6",
+          "fsaveragesym",
+          "UNCInfant0V21",
+          "UNCInfant1V21",
+          "UNCInfant2V21",
+          "UNCInfant0V22",
+          "UNCInfant1V22",
+          "UNCInfant2V22",
+          "UNCInfant0V23",
+          "UNCInfant1V23",
+          "UNCInfant2V23",
+          "Pixels",
+          "ACPC",
+          "ScanRAS"
+        ]
+      },
       "_iEEGCoordSys": {
         "type": "string",
         "enum": [
@@ -2272,6 +2444,11 @@
         "value": "3D",
         "display_name": "Three-dimensional",
         "description": "Three-dimensional MR acquisition.\n"
+      },
+      "image_mode": {
+        "value": "image",
+        "display_name": "image mode",
+        "description": "Transformation defined in an image domain.\n"
       },
       "HARD": {
         "value": "HARD",
@@ -4372,6 +4549,12 @@
           "type": "string"
         }
       },
+      "CommandLine": {
+        "name": "CommandLine",
+        "display_name": "Command Line",
+        "description": "The command line used to generate the derivative.\n",
+        "type": "string"
+      },
       "ContinuousHeadLocalization": {
         "name": "ContinuousHeadLocalization",
         "display_name": "Continuous Head Localization",
@@ -5116,6 +5299,16 @@
         },
         "unit": "s"
       },
+      "FullWidthHalfMaximum": {
+        "name": "FWHM",
+        "display_name": "Full Width Half Maximum",
+        "description": "FWHM of spatial filter, applied to the data\n",
+        "type": "array",
+        "items": {
+          "type": "number"
+        },
+        "unit": "mm"
+      },
       "Funding": {
         "name": "Funding",
         "display_name": "Funding",
@@ -5476,6 +5669,12 @@
         "description": "Point in time from which the decay correction was applied with respect to\n`\"TimeZero\"` in the default unit seconds.\n",
         "type": "number",
         "unit": "s"
+      },
+      "ImageSimilarityMetric": {
+        "name": "ImageSimilarityMetric",
+        "display_name": "Image Similarity Metric",
+        "description": "Final image similarity metric used to determine the similarity \nbetween the moving and target images as part of the registration.\n",
+        "type": "string"
       },
       "Immersion": {
         "name": "Immersion",
@@ -7356,6 +7555,12 @@
         "description": "Refers to the coordinate system in which the motion data are to be interpreted,\nif the recorded data can be mapped to a fixed reference frame. A sequence of\ncharacters F/B (forward-backward), L/R (left-right), and U/D (up-down). The\nposition of a character in the sequence determines which of the X,Y,Z axes it\nmaps to. For example, \"FRD\" for X-forward, Y-right, Z-down. For 1D or 2D cases,\nonly specify the used axes and use the character \"_\" for unused axes\n(\"F_R\" when the Y axis is not used, for instance).\n",
         "type": "string"
       },
+      "SpatialInterpolation": {
+        "name": "SpatialInterpolation",
+        "display_name": "Spatial Interpolation",
+        "description": "Final spatial interpolation applied to the moving image(s).\n",
+        "type": "string"
+      },
       "SpatialReference": {
         "name": "SpatialReference",
         "display_name": "Spatial Reference",
@@ -7642,6 +7847,18 @@
           "type": "number",
           "unit": "mm"
         }
+      },
+      "TargetImage": {
+        "name": "TargetImage",
+        "display_name": "Target Image",
+        "description": "String with the path to the reference image used for the motion correction.\n",
+        "type": "string"
+      },
+      "TargetImageDescription": {
+        "name": "TargetImageDescription",
+        "display_name": "Target Image Description",
+        "description": "Free-form natural language description of how the target image was generated (e.g. average across all frames)\n",
+        "type": "string"
       },
       "TaskDescription": {
         "name": "TaskDescription",
@@ -11652,6 +11869,25 @@
             "datatypes": [
               "pet"
             ]
+          },
+          "spatial_transform_image": {
+            "selectors": [
+              "dataset.dataset_description.DatasetType == 'derivative'"
+            ],
+            "suffixes": [
+              "xfm"
+            ],
+            "extensions": [
+              ".txt",
+              ".json"
+            ],
+            "entities": {
+              "subject": "required",
+              "session": "optional",
+              "from": "required",
+              "to": "required",
+              "mode": "required"
+            }
           }
         },
         "pet": {
@@ -17267,6 +17503,61 @@
             "TaskDescription": "recommended",
             "CogAtlasID": "recommended",
             "CogPOID": "recommended"
+          }
+        },
+        "PETDerivativesMotionCorrection": {
+          "selectors": [
+            "dataset.dataset_description.DatasetType == \"derivative\"",
+            "intersects([modality], [\"pet\"])",
+            "intersects(entities.desc, [\"mc\"])"
+          ],
+          "fields": {
+            "Description": {
+              "level": "required"
+            },
+            "Sources": {
+              "level": "optional"
+            },
+            "TargetImage": {
+              "level": "optional"
+            },
+            "TargetImageDescription": {
+              "level": "optional"
+            },
+            "SpatialInterpolation": {
+              "level": "optional"
+            },
+            "ImageSimilarityMetric": {
+              "level": "optional"
+            },
+            "CommandLine": {
+              "level": "optional"
+            }
+          }
+        },
+        "PETDerivativesRegistration": {
+          "selectors": [
+            "dataset.dataset_description.DatasetType == \"derivative\"",
+            "intersects([modality], [\"pet\"])",
+            "\"space\" in entities || (\"from\" in entities && \"to\" in entities)"
+          ],
+          "fields": {
+            "Description": "optional"
+          }
+        },
+        "PETDerivativesSmoothing": {
+          "selectors": [
+            "dataset.dataset_description.DatasetType == \"derivative\"",
+            "intersects([modality], [\"pet\"])",
+            "suffix == \"pet\"",
+            "intersects(entities.desc, [\"+sm\"])"
+          ],
+          "fields": {
+            "FullWidthHalfMaximum": {
+              "level": "required",
+              "level_addendum": "if `TargetImageDescription` contains `\"FWHM\"`",
+              "description_addendum": "FWHM of spatial filter, applied to the data\n"
+            }
           }
         }
       },

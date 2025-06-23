@@ -119,17 +119,12 @@ from:
   name: from
   display_name: From Space
   description: |
-    Indicates the coordinate space from which a spatial transformation is
-    applied.
+    The `from-<label>` entity indicates the coordinate system from which a
+    transform is defined.
   type: string
   format: label
-to:
-  name: to
-  display_name: To Space
-  description: |
-    Indicates the coordinate space to which a spatial transformation maps.
-  type: string
-  format: label
+  enum:
+    - $ref: objects.enums._TransformSpace
 mode:
   name: mode
   display_name: Transform Mode
@@ -434,6 +429,16 @@ task:
     the `task` label for resting state files (for example, `task-rest`).
   type: string
   format: label
+to:
+  name: to
+  display_name: To Space
+  description: |
+    The `to-<label>` entity indicates the target coordinate system of a
+    transform.
+  type: string
+  format: label
+  enum:
+    - $ref: objects.enums._TransformSpace
 tracer:
   name: trc
   display_name: Tracer

@@ -303,6 +303,8 @@ spatial_transform_image:
     - .txt
     - .json
   entities:
+    subject: required
+    session: optional
     from: required
     to: required
     mode: required
