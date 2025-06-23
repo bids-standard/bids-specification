@@ -293,3 +293,16 @@ pet_petref:
     $ref: rules.files.raw.pet.pet.entities
     space: optional
     description: optional
+
+spatial_transform_image:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
+  suffixes:
+    - xfm
+  extensions:
+    - .txt
+    - .json
+  entities:
+    from: required
+    to: required
+    mode: required

@@ -68,6 +68,15 @@ _StandardTemplateDeprecatedCoordSys:
     - $ref: objects.enums.UNCInfant0V23.value
     - $ref: objects.enums.UNCInfant1V23.value
     - $ref: objects.enums.UNCInfant2V23.value
+_TransformSpace:
+  type: string
+  enum:
+    - $ref: objects.enums.orig.value
+    - $ref: objects.enums.individual.value
+    - $ref: objects.enums.study.value
+    - $ref: objects.enums.scanner.value
+    - $ref: objects.enums.fsaverage.value
+    - $ref: objects.enums.MNI152Lin.value
 _iEEGCoordSys:
   type: string
   enum:
@@ -135,6 +144,11 @@ ThreeD:
   display_name: Three-dimensional
   description: |
     Three-dimensional MR acquisition.
+image_mode:
+  value: image
+  display_name: image mode
+  description: |
+    Transformation defined in an image domain.
 HARD:
   value: HARD
   display_name: Hard pulse

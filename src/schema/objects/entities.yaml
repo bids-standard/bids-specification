@@ -115,6 +115,30 @@ flip:
     not the `"FlipAngle"` value of the separate JSON file.
   type: string
   format: index
+from:
+  name: from
+  display_name: From Space
+  description: |
+    Indicates the coordinate space from which a spatial transformation is
+    applied.
+  type: string
+  format: label
+to:
+  name: to
+  display_name: To Space
+  description: |
+    Indicates the coordinate space to which a spatial transformation maps.
+  type: string
+  format: label
+mode:
+  name: mode
+  display_name: Transform Mode
+  description: |
+    Specifies the domain of a transformation, for example `image`.
+  type: string
+  format: label
+  enum:
+    - $ref: objects.enums.image_mode.value
 hemisphere:
   name: hemi
   display_name: Hemisphere

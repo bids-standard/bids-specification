@@ -458,6 +458,11 @@ A guide for using macros can be found at
    }
 ) }}
 
+## Spatial transformations
+
+Spatial transformations between coordinate spaces SHOULD be stored using the pattern `from-<space>_to-<space>_mode-image_xfm.<extension>`. The `from` and `to` entities identify the source and target spaces, such as `orig`. Allowed extensions are `.txt` and `.json`.
+
+
 ### Common image-derived labels
 
 BIDS supplies a standard, generic label-index mapping, defined in the table
