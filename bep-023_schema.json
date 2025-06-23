@@ -10868,6 +10868,9 @@
     "entities": [
       "subject",
       "session",
+      "to",
+      "from",
+      "mode",
       "sample",
       "task",
       "tracksys",
@@ -10896,10 +10899,7 @@
       "resolution",
       "density",
       "label",
-      "description",
-      "to",
-      "from",
-      "mode"
+      "description"
     ],
     "errors": {
       "InternalError": {

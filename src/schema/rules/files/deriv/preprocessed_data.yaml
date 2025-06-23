@@ -345,6 +345,7 @@ perf_asl_common:
 pet_petref_common:
   selectors:
     - dataset.dataset_description.DatasetType == 'derivative'
+  $ref: rules.files.raw.pet.pet
   suffixes:
     - petref
   extensions:
