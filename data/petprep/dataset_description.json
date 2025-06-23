@@ -1,6 +1,6 @@
 {
     "Name": "fMRIPrep - fMRI PREProcessing workflow",
-    "BIDSVersion": "1.4.0",
+    "BIDSVersion": "1.9.0",
     "DatasetType": "derivative",
     "GeneratedBy": [
         {
