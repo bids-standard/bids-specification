@@ -117,14 +117,24 @@ flip:
   format: index
 from:
   name: from
-  display_name: From Space
+  display_name: From
   description: |
-    The `from-<label>` entity indicates the coordinate system from which a
-    transform is defined.
+    The `from-<label>` entity is used to indicate the source of a file.
+    This entity is typically used in files that are derived from other files,
+    such as derivatives of raw data or derivatives of other derivatives.
+    The label should be descriptive of the source, such as `from-anat` or `from-func`.
   type: string
   format: label
-  enum:
-    - $ref: objects.enums._TransformSpace
+to: 
+  name: to
+  display_name: To
+  description: |
+    The `to-<label>` entity is used to indicate the target of a file.
+    This entity is typically used in files that are derived from other files,
+    such as derivatives of raw data or derivatives of other derivatives.
+    The label should be descriptive of the target, such as `to-anat` or `to-func`.
+  type: string
+  format: label
 mode:
   name: mode
   display_name: Transform Mode
@@ -429,16 +439,6 @@ task:
     the `task` label for resting state files (for example, `task-rest`).
   type: string
   format: label
-to:
-  name: to
-  display_name: To Space
-  description: |
-    The `to-<label>` entity indicates the target coordinate system of a
-    transform.
-  type: string
-  format: label
-  enum:
-    - $ref: objects.enums._TransformSpace
 tracer:
   name: trc
   display_name: Tracer
