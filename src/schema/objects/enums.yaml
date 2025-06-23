@@ -114,6 +114,7 @@ _TransformSpace:
     - $ref: objects.enums.Pixels.value
     - $ref: objects.enums.ACPC.value
     - $ref: objects.enums.ScanRAS.value
+    - $ref: objects.enums.petref.value
 _iEEGCoordSys:
   type: string
   enum:
@@ -719,6 +720,12 @@ ScanRAS:
     strongly encouraged to align the subject's T1w to ACPC so that the `ACPC`
     coordinate system can be used. If the subject's T1w in the BIDS dataset
     is not aligned to ACPC, `ScanRAS` should be used.
+petref:
+  value: petref
+  display_name: PETREF
+  description: |
+    The PET reference space is the space of the PET image that is used to
+    register the PET image to the MRI image and/or for alignment for head motion correction. 
 on__mtransfer:
   value: 'on'
   display_name: 'On'
