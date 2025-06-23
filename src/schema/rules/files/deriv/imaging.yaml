@@ -306,7 +306,7 @@ spatial_transform_image:
   entities:
     $ref: rules.files.raw.pet.pet.entities
     space: optional
-    description: optional
     from: required
     to: required
     mode: required
+    description: optional

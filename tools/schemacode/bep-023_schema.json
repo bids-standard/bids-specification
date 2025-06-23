@@ -10897,8 +10897,8 @@
       "density",
       "label",
       "description",
-      "to",
       "from",
+      "to",
       "mode"
     ],
     "errors": {
@@ -11899,10 +11899,10 @@
             ],
             "entities": {
               "space": "optional",
-              "description": "optional",
               "from": "required",
               "to": "required",
               "mode": "required",
+              "description": "optional",
               "subject": "required",
               "session": "optional",
               "task": "optional",

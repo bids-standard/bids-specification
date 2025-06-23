@@ -3,9 +3,6 @@
 # Entity definitions appear in the `objects/entities.yaml` file.
 - subject
 - session
-- to
-- from
-- mode
 - sample
 - task
 - tracksys
@@ -35,3 +32,6 @@
 - density
 - label
 - description
+- from
+- to
+- mode
