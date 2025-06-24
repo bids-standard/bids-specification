@@ -18,7 +18,7 @@ Participants:
   index_columns: [participant_id]
   additional_columns: allowed
 
-Phenotype:
+Phenotypes:
   selectors:
     - extension == ".tsv"
   initial_columns:
@@ -31,7 +31,7 @@ Phenotype:
         Note that data for one participant MAY be represented across multiple rows
         in case of multiple sessions or runs, and
         therefore the entry in the `participant_id` column will be repeated.
-    session_id__phenotype:
+    session_id:
       level: optional
       description_addendum: |
         REQUIRED if sessions are defined in the dataset.
@@ -51,7 +51,7 @@ Phenotype:
       description_addendum: |
         If acquisition time is available, the `acq_time` column CAN be used
         to record the time of acquisition of each row in the tabular file.
-  index_columns: [participant_id, session_id__phenotype, run__phenotype, acq_time__phenotype]
+  index_columns: [participant_id, session_id, run__phenotype, acq_time__phenotype]
   additional_columns: allowed
 
 Samples:

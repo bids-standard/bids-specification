@@ -51,7 +51,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_columns_table("modality_agnostic.Phenotype") }}
+{{ MACROS___make_columns_table("modality_agnostic.Phenotypes") }}
 
 Furthermore, if you have to add a `session_id` column to the
 tabular phenotypic data, you then MUST also introduce a session directory to the
