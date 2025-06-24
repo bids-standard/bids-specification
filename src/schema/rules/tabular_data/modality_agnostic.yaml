@@ -31,7 +31,7 @@ Phenotype:
         Note that data for one participant MAY be represented across multiple rows
         in case of multiple sessions or runs, and
         therefore the entry in the `participant_id` column will be repeated.
-    session_id:
+    session_id__phenotype:
       level: optional
       description_addendum: |
         REQUIRED if sessions are defined in the dataset.
@@ -39,7 +39,7 @@ Phenotype:
         as soon as multiple sessions are present in the data set
         regardless of whether those sessions are in the
         `phenotype/` data, `sub-<label>/` data, or a combination of the two.
-    run:
+    run__phenotype:
       level: optional
       description_addendum: |
         REQUIRED if there are multiple runs within any session.
@@ -51,7 +51,12 @@ Phenotype:
       description_addendum: |
         If acquisition time is available, the `acq_time` column CAN be used
         to record the time of acquisition of each row in the tabular file.
-  index_columns: [participant_id, session_id, run, acq_time__phenotype]
+  index_columns: [
+    participant_id,
+    session_id__phenotype,
+    run__phenotype,
+    acq_time__phenotype
+  ]
   additional_columns: allowed
 
 Samples:
