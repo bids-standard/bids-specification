@@ -39,19 +39,19 @@ Phenotypes:
         as soon as multiple sessions are present in the data set
         regardless of whether those sessions are in the
         `phenotype/` data, `sub-<label>/` data, or a combination of the two.
-    run__phenotype:
+    run:
       level: optional
       description_addendum: |
         REQUIRED if there are multiple runs within any session.
         A chronological `run` number is used when
         a measurement tool or assessment described by a tabular file
         was repeated within a session.
-    acq_time__phenotype:
+    acq_time:
       level: optional
       description_addendum: |
         If acquisition time is available, the `acq_time` column CAN be used
         to record the time of acquisition of each row in the tabular file.
-  index_columns: [participant_id, session_id, run__phenotype, acq_time__phenotype]
+  index_columns: [participant_id, session_id, run, acq_time]
   additional_columns: allowed
 
 Samples:
