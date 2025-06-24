@@ -14,7 +14,8 @@ context of the academic literature.
 
     - [Provenance records for DICOM to Nifti conversion using `dcm2niix`](https://github.com/bids-standard/bids-examples/pull/494)
     - [Provenance records for DICOM to Nifti conversion using `heudiconv`](https://github.com/bids-standard/bids-examples/pull/496)
-    - [Provenance records for SPM fMRI preprocessing](https://github.com/bids-standard/bids-examples/pull/497)
+    - [Provenance records for fMRI preprocessing using `SPM`](https://github.com/bids-standard/bids-examples/pull/497)
+    - [Provenance records for fMRI preprocessing using `fMRIPrep`](https://github.com/bids-standard/bids-examples/pull/502)
 
     Further datasets are available from
     the [BIDS examples repository](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#provenance).
