@@ -45,12 +45,13 @@ the smallest unit of acquisition). In other words:
 
 To summarize this guideline as a table:
 
-| **Column name**  | **Requirement** | **Description** |
-| :--------------- | :-------------- | :-------------- |
-| `participant_id` | REQUIRED        | MUST be the first column in the file.   Note that data for one participant MAY be represented across multiple rows in case of multiple sessions or runs, and therefore the entry in the `participant_id` column will be repeated. |
-| `session _id`    | CONDITIONAL ; If sessions are defined in the dataset | A `session_id` column MUST be added to all tabular files in the phenotype directory as soon as multiple sessions are present in the data set regardless of whether those sessions are in the  `phenotype/` data, `sub-<label>/` data, or a combination of the two. |
-| `run`            | CONDITIONAL ; If there are multiple runs within any session | A chronological `run` number is used when a measurement tool or assessment described by a tabular file was repeated within a session. |
-| `acq_time`       | OPTIONAL        | If acquisition time is available, the `acq_time` column CAN be used to record the time of acquisition of each row in the tabular file. |
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/rules/tabular_data/*.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_columns_table("modality_agnostic.Phenotype") }}
 
 Furthermore, if you have to add a `session_id` column to the
 tabular phenotypic data, you then MUST also introduce a session directory to the
