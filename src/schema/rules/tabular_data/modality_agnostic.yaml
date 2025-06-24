@@ -51,12 +51,7 @@ Phenotype:
       description_addendum: |
         If acquisition time is available, the `acq_time` column CAN be used
         to record the time of acquisition of each row in the tabular file.
-  index_columns: [
-    participant_id,
-    session_id__phenotype,
-    run__phenotype,
-    acq_time__phenotype
-  ]
+  index_columns: [participant_id, session_id__phenotype, run__phenotype, acq_time__phenotype]
   additional_columns: allowed
 
 Samples:
