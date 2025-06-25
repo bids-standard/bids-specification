@@ -639,8 +639,8 @@ BigBrain20215:
   value: BigBrain2015
   display_name: BigBrain2015
   description: |
-    Asymmetric single-subject template of the BigBrain 
-    Ultrahigh resolution 3D human brain model at nearly cellular resolution of 20 micrometers, based on a 3D reconstruction from 7400 histological sections. 
+    Asymmetric single-subject template of the BigBrain
+    Ultrahigh resolution 3D human brain model at nearly cellular resolution of 20 micrometers, based on a 3D reconstruction from 7400 histological sections.
     The sections were stained for cell bodies, so the model displays cytoarchitectural structures such as cortical layers.
     The BigBrain was published in [Amunts et al., Science 2013](https://doi.org/10.1126/science.1235381).
     This identifier refers to the 2015 version of the 3D reconstruction hosted at [https://ftp.bigbrainproject.org/bigbrain-ftp/BigBrainRelease.2015/](https://ftp.bigbrainproject.org/bigbrain-ftp/BigBrainRelease.2015/), which comprises almost a Terabyte of image data.
