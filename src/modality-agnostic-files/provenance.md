@@ -241,6 +241,7 @@ Each `prov/[<label>/]prov-<label>_ent.json` file is a JSON file describing `Enti
     These files MUST not contain `Entity` records describing the current dataset. Use the `GeneratedBy` field of the `dataset_description.json` files instead for this purpose (see [Provenance at dataset level](#provenance-at-dataset-level)).
 
 `Entity` records in these files CAN describe:
+
 -   files or data that are located in another dataset ;
 -   files or data that were deleted during the creation of the dataset ;
 -   different versions of the same files or data that were modified during the creation of the dataset ;
@@ -427,7 +428,7 @@ A guide for using macros can be found at
     }
 ) }}
 
-`Id`s of provenance records defined in `prov/prov-dcm2niix_soft.json` SHOULD start with `bids:<dataset>:prov#` or `bids::prov#`.
+The following provenance record is defined in `prov/prov-dcm2niix_soft.json`, so its `Id` SHOULD start with `bids:<dataset>:prov#` or `bids::prov#`.
 
 ```JSON
 {
