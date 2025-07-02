@@ -38,19 +38,3 @@ probes:
     acquisition: optional
     run: optional
     split: optional
-
-events:
-  suffixes:
-    - events
-  extensions:
-    - .tsv
-    - .json
-  datatypes:
-    - ecephys
-    - icephys
-  entities:
-    subject: required
-    session: optional
-    task: optional
-    acquisition: optional
-    run: optional
