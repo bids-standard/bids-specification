@@ -38,3 +38,55 @@ probes:
     acquisition: optional
     run: optional
     split: optional
+
+channels:
+  suffixes:
+    - channels
+  extensions:
+    - .tsv
+    - .json
+  datatypes:
+    - ecephys
+    - icephys
+  entities:
+    subject: required
+    session: optional
+    sample: optional
+    task: optional
+    acquisition: optional
+    run: optional
+    split: optional
+
+electrodes:
+  suffixes:
+    - electrodes
+  extensions:
+    - .tsv
+    - .json
+  datatypes:
+    - ecephys
+    - icephys
+  entities:
+    subject: required
+    session: optional
+    sample: optional
+    task: optional
+    acquisition: optional
+    run: optional
+    split: optional
+
+events:
+  suffixes:
+    - events
+  extensions:
+    - .tsv
+    - .json
+  datatypes:
+    - ecephys
+    - icephys
+  entities:
+    subject: required
+    session: optional
+    task: optional
+    acquisition: optional
+    run: optional
