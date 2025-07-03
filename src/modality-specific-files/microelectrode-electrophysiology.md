@@ -272,7 +272,7 @@ The [`ses-<label>`](../appendices/entities.md#ses) entity may be used to specify
 
 ## **Multiple coordinate systems**
 
-The optional[` space-<label>`](../appendices/entities.md#space) entity (`*[_space-<label>]_coordsystem.json`) can be used to indicate how to interpret the electrode positions. The space `<label>` MUST be taken from one of the modality specific lists in the [Coordinate Systems Appendix](../appendices/coordinate-systems.md). For example for iEEG data, the restricted keywords listed under [iEEG Specific Coordinate Systems](../appendices/coordinate-systems.md#ieeg-specific-coordinate-systems) are acceptable for `<label>`.
+The optional [`space-<label>`](../appendices/entities.md#space) entity (`*[_space-<label>]_coordsystem.json`) can be used to indicate how to interpret the electrode positions. The space `<label>` MUST be taken from one of the modality specific lists in the [Coordinate Systems Appendix](../appendices/coordinate-systems.md). For example for iEEG data, the restricted keywords listed under [iEEG Specific Coordinate Systems](../appendices/coordinate-systems.md#ieeg-specific-coordinate-systems) are acceptable for `<label>`.
 
 ## General microephys metadata (`*_icephys.json` and `*_ecephys.json`)
 
