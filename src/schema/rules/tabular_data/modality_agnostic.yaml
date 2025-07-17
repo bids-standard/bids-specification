@@ -39,7 +39,7 @@ Phenotypes:
         as soon as multiple sessions are present in the data set
         regardless of whether those sessions are in the
         `phenotype/` data, `sub-<label>/` data, or a combination of the two.
-    run:
+    run_id:
       level: optional
       description_addendum: |
         REQUIRED if there are multiple runs within any session.
@@ -51,7 +51,7 @@ Phenotypes:
       description_addendum: |
         If acquisition time is available, the `acq_time` column CAN be used
         to record the time of acquisition of each row in the tabular file.
-  index_columns: [participant_id, session_id, run, acq_time__scans]
+  index_columns: [participant_id, session_id, run_id, acq_time__scans]
   additional_columns: allowed
 
 Samples:
