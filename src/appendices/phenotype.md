@@ -43,7 +43,7 @@ the smallest unit of acquisition). In other words:
   add the `session_id` to the sessions file and
   include the OPTIONAL `acq_time` column.
 
-To summarize this guideline as a table:
+#### To summarize this guideline as a table
 
 <!-- This block generates a columns table.
 The definitions of these fields can be found in
