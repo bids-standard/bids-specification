@@ -38,8 +38,8 @@ MRIHardware:
     ReceiveCoilName: recommended
     ReceiveCoilActiveElements: recommended
     NumberReceiveCoilActiveElements: optional
-    GradientSetType: recommended
-    MRTransmitCoilSequence: recommended
+    GradientSetType: optional
+    MRTransmitCoilSequence: optional
     MatrixCoilMode: recommended
     CoilCombinationMethod: recommended
     NumberTransmitCoilActiveElements: optional
@@ -96,19 +96,27 @@ MRISequenceSpecifics:
       description_addendum: |
         Corresponds to [DICOM Tag 0018, 0020](https://dicomlookup.com/dicomtags/(0018,0020)) `Scanning Sequence`.
     SequenceVariant: recommended
-    ScanOptions: recommended
+    ScanOptions: optional
     SequenceName: recommended
     PulseSequenceDetails: recommended
-    NonlinearGradientCorrection: |
-      recommended, but required if [PET](./positron-emission-tomography.md) data are present
-    MRAcquisitionType: recommended, but required for Arterial Spin Labeling
-    MTState: recommended
+    NonlinearGradientCorrection:
+      level: recommended
+      level_addendum: required if [PET](./positron-emission-tomography.md) data are present
+    MRAcquisitionType:
+      level: recommended
+      level_addendum: required for Arterial Spin Labeling
+    MTState:
+      level: optional
+      level_addendum: required if the `mt` entity is present
     MTOffsetFrequency: optional
     MTPulseBandwidth: optional
     MTNumberOfPulses: optional
     MTPulseShape: optional
     MTPulseDuration: optional
-    SpoilingState: recommended
+    NumberShots:
+      level: optional
+      level_addendum: required for some qMRI sequences
+    SpoilingState: optional
     SpoilingType: optional
     SpoilingRFPhaseIncrement: optional
     SpoilingGradientMoment: optional
@@ -168,22 +176,54 @@ MRISpatialEncoding:
     - modality == "mri"
     - match(extension, "^\.nii(\.gz)?$")
   fields:
-    NumberShots: recommended
-    ParallelReductionFactorInPlane: recommended
-    ParallelReductionFactorOutOfPlane: recommended
-    ParallelAcquisitionTechnique: recommended
-    PartialFourier: recommended
-    PartialFourierDirection: recommended
+    ParallelReductionFactorInPlane:
+      level: optional
+      level_addendum: recommended if `ParallelAcquisitionTechnique` is defined
+    ParallelReductionFactorOutOfPlane:
+      level: optional
+      level_addendum: recommended if `ParallelAcquisitionTechnique` is defined
+    ParallelAcquisitionTechnique: optional
+    PartialFourier: optional
+    PartialFourierDirection:
+      level: optional
+      level_addendum: recommended if PartialFourier is defined
     EffectiveEchoSpacing:
-      level: recommended
-      level_addendum: required if corresponding fieldmap data present
+      level: optional
+      level_addendum: recommended if corresponding fieldmap data present
       description_addendum: <sup>2</sup>
-    MixingTime: recommended
+    MixingTime:
+      level: optional
+      level_addendum: required for some qMRI sequences
+
+MRIPartialFourier:
+  selectors:
+    - modality == "mri"
+    - match(extension, "^\.nii(\.gz)?$")
+    - type(sidecar.PartialFourier) != "null"
+  fields:
+    PartialFourierDirection: recommended
+
+MRIParallelReductionFactorInPlane:
+  selectors:
+    - modality == "mri"
+    - match(extension, "^\.nii(\.gz)?$")
+    - type(sidecar.ParallelAcquisitionTechnique) == "string"
+  fields:
+    ParallelReductionFactorInPlane: recommended
+
+MRIParallelReductionFactorOutOfPlane:
+  selectors:
+    - modality == "mri"
+    - match(extension, "^\.nii(\.gz)?$")
+    - type(sidecar.ParallelAcquisitionTechnique) == "string"
+    - sidecar.MRAcquisitionType == "3D"
+  fields:
+    ParallelReductionFactorOutOfPlane: recommended
 
 PhaseEncodingDirectionRec:
   selectors:
     - modality == "mri"
-    - suffix != "epi"
+    - intersects(suffix, ["bold", "sbref", "dwi", "asl"])
     - match(extension, "^\.nii(\.gz)?$")
   fields:
     PhaseEncodingDirection:
@@ -194,31 +234,12 @@ PhaseEncodingDirectionRec:
         (which can be later used for field inhomogeneity correction).
     TotalReadoutTime:
       level: recommended
+      description_addendum: <sup>3</sup>
       level_addendum: |
         required if corresponding 'field/distortion' maps
         acquired with opposing phase encoding directions are present
         (see [Case 4: Multiple phase encoded
         directions](#case-4-multiple-phase-encoded-directions-pepolar))
-
-PhaseEncodingDirectionReq:
-  selectors:
-    - datatype == "fmap"
-    - suffix == "epi"
-    - match(extension, "^\.nii(\.gz)?$")
-  fields:
-    PhaseEncodingDirection:
-      level: required
-      issue:
-        code: PHASE_ENCODING_DIRECTION_MUST_DEFINE
-        message: |
-          You have to define 'PhaseEncodingDirection' for this file.
-    TotalReadoutTime:
-      level: required
-      description_addendum: <sup>3</sup>
-      issue:
-        code: TOTAL_READOUT_TIME_MUST_DEFINE
-        message: |
-          You have to define 'TotalReadoutTime' for this file.
 
 MRITimingParameters:
   selectors:
@@ -237,7 +258,9 @@ MRITimingParameters:
         [ASL](SPEC_ROOT/modality-specific-files/magnetic-resonance-imaging-data.md#\
         arterial-spin-labeling-perfusion-data)
         or variable echo time fMRI sequences.
-    InversionTime: recommended
+    InversionTime:
+      level: optional
+      level_addendum: required if `inv` entity is present
     DwellTime: recommended
 
 EchoTimeRequiredASL:
@@ -259,7 +282,7 @@ SliceTimingMRI:
       level_addendum: |
         required for sparse sequences that do not have the `DelayTime` field set,
         and Arterial Spin Labeling with `MRAcquisitionType` set on `2D`.
-    SliceEncodingDirection: recommended
+    SliceEncodingDirection: optional
 
 SliceTimingASL:
   selectors:
@@ -346,7 +369,7 @@ MRISliceAcceleration:
     - modality == "mri"
     - match(extension, "^\.nii(\.gz)?$")
   fields:
-    MultibandAccelerationFactor: recommended
+    MultibandAccelerationFactor: optional
 
 MRIAnatomicalLandmarks:
   selectors:
@@ -356,20 +379,23 @@ MRIAnatomicalLandmarks:
   fields:
     AnatomicalLandmarkCoordinates__mri: recommended
 
-MRIB0FieldIdentifier:
-  selectors:
-    - datatype == 'fmap'
-    - match(extension, '\.nii(\.gz)?$')
-  fields:
-    B0FieldIdentifier: recommended
-
 MRIEchoPlanarImagingAndB0FieldSource:
   selectors:
     - intersects(datatype, ['dwi', 'func', 'perf'])
     - intersects(dataset.datatypes, ['fmap'])
     - match(extension, "^\.nii(\.gz)?$")
   fields:
-    B0FieldSource: recommended
+    B0FieldSource:
+      level: recommended
+      issue:
+        code: B0_FIELD_SOURCE_RECOMMENDED
+        message: |
+          File is missing B0FieldSource metadata, so it may not be possible to
+          perform susceptibility distortion correction on it.
+          B0FieldIdentifier metadata permits the flexible selection of images
+          for estimating B0 inhomogeneity fields, and B0FieldSource permits EPI
+          images to indicate the identifier of the estimated field to use.
+          If associations are fully specified with `IntendedFor`, there is no need to change this.
 
 MRIInstitutionInformation:
   selectors:

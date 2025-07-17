@@ -15,6 +15,7 @@ Participants:
     handedness: recommended
     strain: recommended
     strain_rrid: recommended
+    HED: optional
   index_columns: [participant_id]
   additional_columns: allowed
 
@@ -80,6 +81,7 @@ Scans:
       description_addendum: |
         There MUST be exactly one row for each file.
     acq_time__scans: optional
+    HED: optional
   index_columns: [filename]
   additional_columns: allowed
 
@@ -96,5 +98,17 @@ Sessions:
         There MUST be exactly one row for each session.
     acq_time__sessions: optional
     pathology: recommended
+    HED: optional
   index_columns: [session_id]
+  additional_columns: allowed
+
+Phenotype:
+  selectors:
+    - datatype == 'phenotype'
+  initial_columns:
+    - participant_id
+  columns:
+    participant_id: required
+    HED: optional
+  index_columns: [participant_id]
   additional_columns: allowed

@@ -52,12 +52,8 @@ tests = [
   "pytest>6",
   "pytest-cov",
 ]
-doc = [
-  "sphinx>=1.5.3",
-  "sphinx_rtd_theme",
-]
 all = [
-  "bidsschematools[doc,tests]",
+  "bidsschematools[tests]",
 ]
 
 [project.scripts]
@@ -94,6 +90,11 @@ source = [
 
 [tool.coverage.run]
 parallel = true
+
+[tool.coverage.report]
+exclude_also = [
+  "if.*TYPE_CHECKING:",
+]
 
 # Release process:
 # cd tools/schemacode
