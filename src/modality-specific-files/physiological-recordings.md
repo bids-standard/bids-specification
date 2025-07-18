@@ -227,6 +227,7 @@ We **RECOMMEND** to store trigger signals recorded alongside physiological chann
 **For example:**
 
 **Splitting recorded data into separate physio data files**
+
 {{ MACROS___make_filetree_example() }}
 ```
 dataset/
@@ -242,6 +243,7 @@ sub-001_ses-01_recording-resp_physio.tsv.gz
 ```
 
 **Combining recorded data into one pair of physio data files**
+
 {{ MACROS___make_filetree_example() }}
 ```
 dataset/
@@ -339,12 +341,14 @@ More information about the metadata entities contained in the JSON files can be 
 ### 2.1 Metadata fields used in top level metadata 
 
 We highlight in *italics* the changes from the current specification.
+
 {{ MACROS___make_sidecar_table(["continuous.Continuous"]) }}
 | Key name | Requirement level | Data type | Description |
 |----------|----------|----------|----------|
 | Row 1-A  | Row 1-B  | Row 1-C  | Row 1-D  |
 
 ### 2.2 Metadata fields for column description
+
 {{ MACROS___make_columns_table("physio.PhysioColumns") }}
 | Key name | Requirement level | Data type | Description |
 |----------|----------|----------|----------|
