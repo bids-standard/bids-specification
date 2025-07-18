@@ -8,7 +8,14 @@ The file and dataset naming conventions for physiological data follow the common
 
 An example of the physio directory structure is shown below:
 
-{{ MACROS___make_filename_template()}}
+{{ MACROS___make_filename_template(
+       "raw",
+       placeholders=True,
+       show_entities=["recording"],
+       suffixes=["physio"]
+   )
+}}
+
 ```
 dataset/
 [...]
@@ -44,7 +51,22 @@ We **RECOMMEND** to store trigger signals recorded alongside physiological chann
 
 **Splitting recorded data into separate physio data files**
 
-{{ MACROS___make_filetree_example() }}
+{{ MACROS___make_filetree_example(
+   {
+   "sub-001": {
+      "ses-01": {
+         "physio": {
+            "sub-001_ses-01_recording-scr_physio.json": "",
+            "sub-001_ses-01_recording-scr_physio.tsv.gz": "",
+            "sub-001_ses-01_recording-ecg_physio.json": "",
+            "sub-001_ses-01_recording-ecg_physio.tsv.gz": "",
+            "sub-001_ses-01_recording-resp_physio.json": "",
+            "sub-001_ses-01_recording-resp_physio.tsv.gz": ""
+            },
+         },
+      }
+   }
+) }}
 ```
 dataset/
 [...]
@@ -60,7 +82,18 @@ sub-001_ses-01_recording-resp_physio.tsv.gz
 
 **Combining recorded data into one pair of physio data files**
 
-{{ MACROS___make_filetree_example() }}
+{{ MACROS___make_filetree_example(
+   {
+   "sub-001": {
+      "ses-01": {
+         "physio": {
+            "sub-001_ses-01_physio.json": "",
+            "sub-001_ses-01_physio.tsv.gz": ""
+            },
+         },
+      }
+   }
+) }}
 ```
 dataset/
 [...]
