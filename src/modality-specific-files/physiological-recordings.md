@@ -743,6 +743,7 @@ would read:
 The file and dataset naming conventions for physiological data follow the common principles of BIDS. When present, physiological recordings **SHOULD** be stored as compressed tabular files (`.tsv.gz` format) along with corresponding JSON files for storing metadata fields (see below).
 
 An example of the physio directory structure is shown below:
+
 {{ MACROS___make_filename_template()}}
 ```
 dataset/
