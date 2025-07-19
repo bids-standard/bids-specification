@@ -88,6 +88,8 @@ VolumeTimingRepetitionTimeMutex:
       or 'VolumeTiming' when variable times are used.
     level: error
   selectors:
+    - type(nifti_header) != "null"
+    - intersects([suffix], ["asl", "bold"])
     - type(sidecar.VolumeTiming) != "null"
   checks:
     - type(sidecar.RepetitionTime) == "null"
@@ -101,6 +103,8 @@ RepetitionTimeAcquisitionDurationMutex:
       (RepetitionTime - AcquisitionDuration).
     level: error
   selectors:
+    - type(nifti_header) != "null"
+    - intersects([suffix], ["asl", "bold"])
     - type(sidecar.AcquisitionDuration) != "null"
   checks:
     - type(sidecar.RepetitionTime) == "null"
@@ -113,6 +117,8 @@ VolumeTimingDelayTimeMutex:
       To specify acquisition duration, use 'AcquisitionDuration' or 'SliceTiming'.
     level: error
   selectors:
+    - type(nifti_header) != "null"
+    - intersects([suffix], ["asl", "bold"])
     - type(sidecar.VolumeTiming) != "null"
   checks:
     - type(sidecar.DelayTime) == "null"
@@ -124,6 +130,8 @@ VolumeTimingMissingAcquisitionDuration:
       The field 'VolumeTiming' requires 'AcquisitionDuration' or 'SliceTiming' to be defined.
     level: error
   selectors:
+    - type(nifti_header) != "null"
+    - intersects([suffix], ["asl", "bold"])
     - type(sidecar.VolumeTiming) != "null"
   checks:
     - '"SliceTiming" in sidecar || "AcquisitionDuration" in sidecar'

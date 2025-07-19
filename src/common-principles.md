@@ -15,9 +15,9 @@ REQUIRED, RECOMMENDED, and OPTIONAL.
 The guiding principles for when particular data is placed under a given requirement level
 can be loosely described as below:
 
-* REQUIRED: Data cannot be be interpreted without this information (or the ambiguity is unacceptably high)
-* RECOMMENDED: Interpretation/utility would be dramatically improved with this information
-* OPTIONAL: Users and/or tools might find it useful to have this information
+-   REQUIRED: Data cannot be be interpreted without this information (or the ambiguity is unacceptably high)
+-   RECOMMENDED: Interpretation/utility would be dramatically improved with this information
+-   OPTIONAL: Users and/or tools might find it useful to have this information
 
 Throughout this specification we use a list of terms and abbreviations.
 To avoid misunderstanding we clarify them here.
@@ -49,7 +49,7 @@ Each entity has the following attributes:
     1.  *Index*: A non-negative integer, potentially zero-padded for
         consistent width.
 
-    1.  *Label*: An alphanumeric string.
+    1.  *Label*: An alphanumeric (and possibly including `+` character(s)) string.
         Note that labels MUST not collide when casing is ignored
         (see [Case collision intolerance](#case-collision-intolerance)).
 
@@ -109,7 +109,7 @@ Data for each subject are placed in subdirectories named "`sub-<label>`",
 where string "`<label>`" is substituted with the unique identification
 label of each subject.
 Additional information on each participant MAY be provided in a
-[participants file](modality-agnostic-files.md#participants-file)
+[participants file](modality-agnostic-files/data-summary-files.md#participants-file)
 in the root directory of the dataset.
 
 If data for the subject were acquired across multiple sessions, then within
@@ -119,7 +119,7 @@ label for each session.
 In datasets where at least one subject has more than one session, this
 additional subdirectory later SHOULD be added for all subjects in the dataset.
 Additional information on each session MAY be provided in a
-[sessions file](modality-agnostic-files.md#sessions-file)
+[sessions file](modality-agnostic-files/data-summary-files.md#sessions-file)
 within the subject directory.
 
 Within the session subdirectory (or the subject subdirectory if no
@@ -201,6 +201,11 @@ For example, a dataset cannot contain both `sub-s1` and `sub-S1`,
 as the labels would collide on a case-insensitive filesystem.
 Additionally, because the suffix `eeg` is defined,
 then the suffix `EEG` will not be added to future versions of the standard.
+
+### Dotfiles
+
+Files and directories starting with a dot (`.`) are reserved for system use and no valid recognized BIDS file or directory can start with a `.`.
+Any file or directory starting with a `.` present in a BIDS dataset is considered hidden and not subject to BIDS validation.
 
 ## Uniqueness of data files
 
@@ -387,6 +392,8 @@ Derivatives can be stored/distributed in two ways:
     that were used to generate the derivatives.
     Likewise, any code used to generate the derivatives from the source data
     MAY be included in the `code/` subdirectory.
+    Extra documentation (and relevant images) MAY be included in the `docs/` subdirectory.
+    Logs from running the code or other commands MAY be stored under `logs/` subdirectory.
 
     Example of a derivative dataset including the raw dataset as source:
 
@@ -454,9 +461,10 @@ Where possible, DICOM Tags are adopted directly as BIDS metadata terms and
 indicated with "**Corresponds to** DICOM Tag ID1, ID2 `DICOM Tag Name`.".
 When harmonization has been deemed necessary, this is indicated in the
 BIDS term description with "**Based on** DICOM Tag ID1, ID2 `DICOM Tag Name`.".
-Extraction of BIDS compatible metadata can be performed using [dcm2niix](https://github.com/rordenlab/dcm2niix)
-and [dicm2nii](https://www.mathworks.com/matlabcentral/fileexchange/42997-xiangruili-dicm2nii)
-DICOM to NIfTI converters. The [BIDS-validator](https://github.com/bids-standard/bids-validator)
+Extraction of BIDS compatible metadata can be performed using
+[DICOM to NIfTI converters](https://bids.neuroimaging.io/tools/converters.html)
+such as [dcm2niix](https://github.com/rordenlab/dcm2niix).
+The [BIDS-validator](https://github.com/bids-standard/bids-validator)
 will check for conflicts between the JSON file and the data recorded in the
 NIfTI header.
 
@@ -479,6 +487,7 @@ with two exceptions:
 1.  [compressed tabular files](#compressed-tabular-files),
     for which column names are defined in a sidecar metadata
     [JSON object](https://www.json.org/json-en.html) described below; and
+
 1.  [motion recording data](modality-specific-files/motion.md),
     which use plain-text TSV and columns are defined as described
     in its corresponding section of the specifications.
@@ -489,8 +498,8 @@ first letter in lower case (for example, `variable_name`, not `Variable_name`).
 Column names defined in the header MUST be separated with tabs as for the data contents.
 Furthermore, column names MUST NOT be blank (that is, an empty string) and MUST NOT
 be duplicated within a single TSV file.
-String values containing tabs MUST be escaped using double quotes.
 Missing and non-applicable values MUST be coded as `n/a`.
+String values containing tabs MUST be escaped using double quotes.
 Numerical values MUST employ the dot (`.`) as decimal separator and MAY be specified
 in scientific notation, using `e` or `E` to separate the significand from the
 exponent.
@@ -498,18 +507,18 @@ TSV files MUST be in UTF-8 encoding.
 
 Example:
 
-```Text
-onset   duration    response_time   trial_type        trial_extra
-200     20.0        15.8            word              中国人
-240     5.0         17.34e-1        visual            n/a
+```tsv {linenums="1"}
+onset	duration	response_time	trial_type	trial_extra
+200	20.0	15.8	word	中国人
+240	5.0	17.34e-1	visual	n/a
 ```
 
 !!! warning "Attention"
 
     The TSV examples in this document (like the one above this note) are occasionally
-    formatted using space characters instead of tabs to improve human readability.
-    Directly copying and then pasting these examples from the specification
-    for use in new BIDS datasets can lead to errors and is discouraged.
+    formatted with the addition of the row indices as first column.
+    Those indices are presented for visual reference and
+    are not part of the tabular data file's content.
 
 Tabular files MAY be optionally accompanied by a simple data dictionary
 in the form of a JSON [object](https://www.json.org/json-en.html)
@@ -601,8 +610,10 @@ Rules for formatting plain-text tabular files apply to TSVGZ files with three ex
 
 1.  The contents of TSVGZ files MUST be compressed with
     [gzip](https://datatracker.ietf.org/doc/html/rfc1952).
+
 1.  Compressed tabular files MUST NOT contain a header in the first row
     indicating the column names.
+
 1.  TSVGZ files MUST have an associated JSON file that defines the columns in the tabular file.
 
 !!! warning "Attention"
@@ -617,6 +628,13 @@ Rules for formatting plain-text tabular files apply to TSVGZ files with three ex
     TSVGZ are header-less to improve compatibility with existing software
     (for example, FSL, or PNM), and to facilitate the support for other file formats
     in the future.
+
+The above example, if stored as a TSVGZ file would have the following decompressed content:
+
+```tsvgz {linenums="1"}
+200	20.0	15.8	word	中国人
+240	5.0	17.34e-1	visual	n/a
+```
 
 ### Key-value files (dictionaries)
 
@@ -674,7 +692,10 @@ to which the metadata contained within are not applicable.
 The Inheritance Principle defines a systematized set of rules
 to determine which metadata files to associate with which data files.
 Further, because multiple metadata files may apply to an individual data file,
-the Principle defines the *order of precedence* of such metadata files contents.
+the Principle defines the *order of precedence* of such metadata content;
+this is necessary for resolution of conflicts if the same metadata field
+contains different values in different metadata files
+(though it is RECOMMENDED to avoid such overloading).
 
 ### Rules
 
@@ -739,9 +760,11 @@ A guide for using macros can be found at
             "sub-01_task-rest_acq-default_bold.nii.gz": "",
             "sub-01_task-rest_acq-longtr_bold.nii.gz": "",
             "sub-01_task-rest_acq-longtr_bold.json": "",
-            }
+            },
+        "sub-01_scans.tsv": "",
         },
     "task-rest_bold.json": "",
+    "scans.json": ""
     }
 ) }}
 
@@ -772,6 +795,10 @@ entity "`acq-longtr`" that is absent from the image path (rule 2.c). When readin
 the value for field "`RepetitionTime`" is therefore overridden to the value `3.0`.
 The value for field "`EchoTime`" remains applicable to that image, and is not unset by its
 absence in the metadata file at the lower level (rule 5.b; corollary 3).
+
+A single `scans.json`, without any entity in the filename at the top level,
+is applicable to describe columns of the `sub-01_scans.tsv`
+and any other `_scans.tsv` potentially present in the dataset for other subjects.
 
 Example 2: Impermissible use of multiple metadata files at one directory level (rule 4)
 
@@ -878,7 +905,7 @@ have the form `<scheme>:[//<authority>]<path>[?<query>][#<fragment>]`, as specif
 in [RFC 3986](https://tools.ietf.org/html/rfc3986).
 This applies to URLs and other common URIs, including Digital Object Identifiers (DOIs),
 which may be fully specified as `doi:<path>`,
-for example, [doi:10.5281/zenodo.3686061](https://doi.org/10.5281/zenodo.3686061).
+for example, [doi:10.5281/zenodo.10175845](https://doi.org/10.5281/zenodo.10175845).
 A given resource may have multiple URIs.
 When selecting URIs to add to dataset metadata, it is important to consider
 specificity and persistence.
@@ -1003,16 +1030,15 @@ For additional rules, see below:
 Describing dates and timestamps:
 
 -   Date time information MUST be expressed in the following format
-    `YYYY-MM-DDThh:mm:ss[.000000][Z]` (year, month, day, hour (24h), minute,
-    second, optional fractional seconds, and optional UTC time indicator).
+    `YYYY-MM-DDThh:mm:ss[.000000][Z|+hh:mm|-hh:mm]` (year, month, day, hour (24h),
+    minute, second, optional fractional seconds, and optional time offset).
     This is almost equivalent to the [RFC3339](https://tools.ietf.org/html/rfc3339)
-    "date-time" format, with the exception that UTC indicator `Z` is optional and
-    non-zero UTC offsets are not indicated.
-    If `Z` is not indicated, time zone is always assumed to be the local time of the
-    dataset viewer.
+    "date-time" format, with the exception that UTC offsets are OPTIONAL.
+    If no time offset is indicated,
+    time zone is always assumed to be the local time of the dataset viewer.
     No specific precision is required for fractional seconds, but the precision
     SHOULD be consistent across the dataset.
-    For example `2009-06-15T13:45:30`.
+    For example `2009-06-15T13:45:30+01:00`.
 
 -   Time stamp information MUST be expressed in the following format:
     `hh:mm:ss[.000000]`
@@ -1106,7 +1132,7 @@ A guide for using macros can be found at
 Additional files and directories containing raw data MAY be added as needed for
 special cases.
 All non-standard file entities SHOULD conform to BIDS-style naming conventions, including
-alphabetic entities and suffixes and alphanumeric labels/indices.
+alphabetic entities and suffixes and alphanumeric (and possibly including `+` character(s)) labels/indices.
 Non-standard suffixes SHOULD reflect the nature of the data, and existing
 entities SHOULD be used when appropriate.
 For example, an ASSET calibration scan might be named
@@ -1121,8 +1147,8 @@ to suppress warnings or provide interpretations of your filenames.
 
 <!-- Link Definitions -->
 
-[dataset-description]: modality-agnostic-files.md#dataset-description
-[dataset_description.json]: modality-agnostic-files.md#dataset_descriptionjson
-[derived-dataset-description]: modality-agnostic-files.md#derived-dataset-and-pipeline-description
+[dataset-description]: modality-agnostic-files/data-summary-files.md
+[dataset_description.json]: modality-agnostic-files/data-summary-files.md#dataset_descriptionjson
+[derived-dataset-description]: modality-agnostic-files/data-summary-files.md#derived-dataset-and-pipeline-description
 [deprecated]: #definitions
 [uris]: #uniform-resource-indicator

@@ -7,7 +7,7 @@ SubjectFolders:
     code: SUBJECT_FOLDERS
     message: |
       There are no subject directories (labeled "sub-*") in the root of this dataset.
-    level: error
+    level: warning
   selectors:
     - path == '/dataset_description.json'
   checks:
@@ -18,26 +18,17 @@ ParticipantIDMismatch:
   issue:
     code: PARTICIPANT_ID_MISMATCH
     message: |
-      Participant labels found in this dataset did not match the values in participant_id column
-      found in the participants.tsv file.
+      Subject directories found in this dataset did not match the values in
+      the participant_id column found in the participants.tsv file.
     level: error
   selectors:
     - path == '/participants.tsv'
   checks:
-    - allequal(sorted(columns.participant_id), sorted(dataset.subjects.sub_dirs))
-
-# 51
-PhenotypeSubjectsMissing:
-  issue:
-    code: PHENOTYPE_SUBJECTS_MISSING
-    message: |
-      A phenotype/ .tsv file lists subjects that were not found in the dataset.
-    level: error
-  selectors:
-    - path == '/dataset_description.json'
-    - type(dataset.subjects.phenotype) != 'null'
-  checks:
-    - allequal(sorted(dataset.subjects.phenotype), sorted(dataset.subjects.sub_dirs))
+    - |
+      allequal(
+        sorted(intersects(columns.participant_id, dataset.subjects.sub_dirs)),
+        sorted(dataset.subjects.sub_dirs)
+      )
 
 # 214
 SamplesTSVMissing:

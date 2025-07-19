@@ -180,8 +180,9 @@ Template:
 ```Text
 <pipeline_name>/
     sub-<label>/
-        <datatype>/
-            <source_entities>[_space-<space>][_desc-<label>]_<suffix>.<extension>
+        [ses-<label>/]
+            <datatype>/
+                <source_entities>[_space-<space>][_desc-<label>]_<suffix>.<extension>
 ```
 
 Data is considered to be *preprocessed* or *cleaned* if the data type of the input,
@@ -328,11 +329,12 @@ A guide for using macros can be found at
 
 Contents of the `descriptions.tsv` file:
 
-| desc_id | description                                                                                     |
-| ------- | ----------------------------------------------------------------------------------------------- |
-| Filt    | low-pass filtered at 30Hz                                                                       |
-| FiltDs  | low-pass filtered at 30Hz, downsampled to 250Hz                                                 |
-| preproc | low-pass filtered at 30Hz, downsampled to 250Hz, and rereferenced to a common average reference |
+```tsv
+desc_id	description
+Filt	low-pass filtered at 30Hz
+FiltDs	low-pass filtered at 30Hz, downsampled to 250Hz
+preproc	low-pass filtered at 30Hz, downsampled to 250Hz, and rereferenced to a common average reference
+```
 
 <!-- Link Definitions -->
 

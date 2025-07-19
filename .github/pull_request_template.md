@@ -7,7 +7,7 @@ See the [CONTRIBUTING](https://github.com/bids-standard/bids-specification/blob/
 
 - Please ensure your name is credited
   on our [Contributors appendix](https://github.com/bids-standard/bids-specification/blob/master/src/appendices/contributors.md).
-  To add your name, please edit our [Contributors wiki](https://github.com/bids-standard/bids-specification/wiki/Contributors)
+  To add your name, please edit our [Recent Contributors wiki](https://github.com/bids-standard/bids-specification/wiki/Recent-Contributors)
   and add your name with the type of contribution.
   For assistance, please tag @bids-standard/maintainers.
 
