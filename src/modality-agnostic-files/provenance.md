@@ -38,11 +38,15 @@ This part of the BIDS specification is aimed at describing the provenance of a B
 **Provenance record**: provenance metadata consists in sets of records. These provenance records can be of 4 types:
 
 -   `Activity`: Activities represent the transformations that have been applied to the data.
--   `Entity`: Each Activity can use Entities as inputs and outputs.
+-   `Entity`: Entities represent input or output data for Activities.
 -   `Software`: The Software record describes a software package.
 -   `Environment`: Environments specify the software environment in which the provenance record was obtained.
 
 Provenance records are described as JSON objects in BIDS. This is detailed in the [Provenance files section](#provenance-files).
+
+!!! example
+    The following graph represents examples of links between provenance records. In this example, `Entity A` and `Entity B` are files used by `Activity 1` to generate another file: `Entity C`. `Activity 1` and `Activity 2` were associated with a `Software` and used `Environment` as a software environment.
+    ![](../images/provenance_definitions_graph.png)
 
 **Provenance group**: refers to a collection of provenance records corresponding to a consistent set of processings. Defining multiple provenance groups is appropriate when separate sets of processings have been performed on data, and that they differ in purpose or chronology.
 
