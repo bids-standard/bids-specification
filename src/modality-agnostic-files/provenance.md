@@ -78,28 +78,15 @@ No other field is allowed to describe provenance inside sidecar JSON files.
     ```JSON
     {
         "GeneratedBy": "bids::prov#conversion-00f3a18f",
-        "SidecarGeneratedBy": "bids::prov#conversion-36d22a53",
+        "SidecarGeneratedBy": [
+            "bids::prov#preparation-conversion-1xkhm1ft",
+            "bids::prov#conversion-00f3a18f"
+        ],
         "Digest": {
             "sha256": "66eeafb465559148e0222d4079558a8354eb09b9efabcc47cd5b8af6eed51907"
         }
     }
-    ```
-    In this example, the referred activities `bids::prov#conversion-00f3a18f` and `bids::prov#conversion-36d22a53` would be described inside a `prov/[<label>/]prov-<label>_act.json` file (see the [Provenance files section](#provenance-files)):
-    ```JSON
-    {
-        "Activities": [
-            {
-                "Id": "bids::prov#conversion-00f3a18f",
-                "Label": "Conversion",
-                "Command": "dcm2niix"
-            },
-            {
-                "Id": "bids::prov#conversion-36d22a53",
-                "Label": "Preparation to conversion",
-                "Command": "heudiconv --files sourcedata/hirni-demo/acq1/dicoms/example-dicom-structural-master/dicoms/\*.dcm -o . -f sourcedata/hirni-demo/code/hirni-toolbox/converters/heudiconv/hirni_heuristic.py -s 001 -ss acq1 -c dcm2niix -b --minmeta --overwrite"
-            }
-        ]
-    }
+    This snippet is derived from the following comprehensive example: [Provenance records for DICOM to Nifti conversion using `heudiconv`](https://github.com/bclenet/bids-examples/tree/BEP028_heudiconv/provenance_heudiconv).
     ```
 
 ## Provenance at dataset level
@@ -147,28 +134,18 @@ and a guide for using macros can be found at
 {{ MACROS___make_subobject_table("metadata.GeneratedBy.items") }}
 
 !!! example
-    `GeneratedBy` contents in the `dataset_description.json`:
+    `GeneratedBy` contents in a `dataset_description.json`:
     ```JSON
     {
         "GeneratedBy": [
             {
-                "Id": "bids::prov#conversion-00f3a18f",
-                "Name": "dcm2niix_conversion"
+                "Name": "fmriprep",
+                "Id": "bids::prov#preprocessing-xMpFqB5q"
             }
         ]
     }
     ```
-    In this example, the referred activity `bids::prov#conversion-00f3a18f` would be described inside a `prov/[<label>/]prov-<label>_act.json` file (see the [Provenance files section](#provenance-files)):
-    ```JSON
-    {
-        "Activities": [
-            {
-                "Id": "bids::prov#conversion-00f3a18f",
-                "Label": "Conversion",
-                "Command": "dcm2niix -o . -f sub-%i/anat/sub-%i_T1w sourcedata/dicoms"
-            }
-        ]
-    }
+    This snippet is an extract of the following comprehensive example: [Provenance records for fMRI preprocessing using `fMRIPrep`](https://github.com/bclenet/bids-examples/tree/BEP028_fmriprep/provenance_fmriprep).
     ```
 
 ## Provenance files
@@ -243,7 +220,8 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_subobject_table("metadata.Activities.items") }}
 
-!!! example "Example:"
+!!! example
+    Provenance metadata in a `prov/[<label>/]prov-<label>_act.json` file:
     ```JSON
     {
         "Activities": [
@@ -262,6 +240,7 @@ and a guide for using macros can be found at
         ]
     }
     ```
+    This snippet is derived from the following comprehensive example: [Provenance records for DICOM to Nifti conversion using `dcm2niix`](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix).
 
 ### `Entity` records
 
@@ -303,22 +282,24 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_subobject_table("metadata.Entities.items") }}
 
-!!! example "Example"
+!!! example
+    Provenance metadata in a `prov/[<label>/]prov-<label>_ent.json` file:
     ```JSON
     {
         "Entities": [
             {
-                "Id": "bids::sub-02/anat/sub-02_T1w.nii",
-                "Label": "sub-02_T1w.nii",
-                "AtLocation": "sub-02/anat/sub-02_T1w.nii",
-                "GeneratedBy": "bids::prov/#conversion-00f3a18f",
+                "Id": "bids::sub-01/func/sub-01_task-tonecounting_bold.nii",
+                "Label": "sub-01_task-tonecounting_bold.nii",
+                "AtLocation": "sub-01/func/sub-01_task-tonecounting_bold.nii",
+                "GeneratedBy": "bids::prov#realign-acea8093",
                 "Digest": {
-                    "SHA-256": "42d8faeaa6d4988a9233a95860ef3f481fb0daccce4c81bc2c1634ea8cf89e52"
+                    "sha256": "a4e801438b9c36df010309c94fc4ef8b07d95e7d9cb2edb8c212a5e5efc78d90"
                 }
             }
         ]
     }
     ```
+    This snippet is an extract of the following comprehensive example: [Provenance records for fMRI preprocessing using `SPM`](https://github.com/bclenet/bids-examples/tree/BEP028_spm/provenance_spm)
 
 ### `Software` records
 
@@ -348,7 +329,8 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_subobject_table("metadata.Software.items") }}
 
-!!! example "Example"
+!!! example
+    Provenance metadata in a `prov/[<label>/]prov-<label>_soft.json` file:
     ```JSON
     {
         "Software": [
@@ -361,6 +343,7 @@ and a guide for using macros can be found at
         ]
     }
     ```
+    This snippet is an extract of the following comprehensive example: [Provenance records for DICOM to Nifti conversion using `dcm2niix`](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix)
 
 ### `Environment` records
 
@@ -393,7 +376,8 @@ and a guide for using macros can be found at
 !!! bug
     TODO: Environment not currently defined in the context
 
-!!! example "Example"
+!!! example
+    Provenance metadata in a `prov/[<label>/]prov-<label>_ent.json` file:
     ```JSON
     {
         "Environments": [
@@ -405,6 +389,7 @@ and a guide for using macros can be found at
         ]
     }
     ```
+    This snippet is an extract of the following comprehensive example: [Provenance records for DICOM to Nifti conversion using `dcm2niix`](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix)
 
 ## Consistency of Ids
 
