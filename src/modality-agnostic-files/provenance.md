@@ -12,10 +12,10 @@ context of the academic literature.
     The following examples have been formatted using this specification
     and can be used for practical guidance when curating a new dataset.
 
-    - [Provenance records for DICOM to Nifti conversion using `dcm2niix`](https://github.com/bids-standard/bids-examples/pull/494)
-    - [Provenance records for DICOM to Nifti conversion using `heudiconv`](https://github.com/bids-standard/bids-examples/pull/496)
-    - [Provenance records for fMRI preprocessing using `SPM`](https://github.com/bids-standard/bids-examples/pull/497)
-    - [Provenance records for fMRI preprocessing using `fMRIPrep`](https://github.com/bids-standard/bids-examples/pull/502)
+    - [Provenance records for DICOM to Nifti conversion using `dcm2niix`](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix) [Associated Pull Request #494](https://github.com/bids-standard/bids-examples/pull/494)
+    - [Provenance records for DICOM to Nifti conversion using `heudiconv`](https://github.com/bclenet/bids-examples/tree/BEP028_heudiconv/provenance_heudiconv) - [Associated Pull Request #496](https://github.com/bids-standard/bids-examples/pull/496)
+    - [Provenance records for fMRI preprocessing using `SPM`](https://github.com/bclenet/bids-examples/tree/BEP028_spm/provenance_spm) [Associated Pull Request #497](https://github.com/bids-standard/bids-examples/pull/497)
+    - [Provenance records for fMRI preprocessing using `fMRIPrep`](https://github.com/bclenet/bids-examples/tree/BEP028_fmriprep/provenance_fmriprep) [Associated Pull Request#502](https://github.com/bids-standard/bids-examples/pull/502)
 
     Further datasets are available from
     the [BIDS examples repository](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#provenance).
