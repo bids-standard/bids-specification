@@ -12,10 +12,10 @@ context of the academic literature.
     The following examples have been formatted using this specification
     and can be used for practical guidance when curating a new dataset.
 
-    - [Provenance records for DICOM to Nifti conversion using `dcm2niix`](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix) [Associated Pull Request #494](https://github.com/bids-standard/bids-examples/pull/494)
+    - [Provenance records for DICOM to Nifti conversion using `dcm2niix`](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix) - [Associated Pull Request #494](https://github.com/bids-standard/bids-examples/pull/494)
     - [Provenance records for DICOM to Nifti conversion using `heudiconv`](https://github.com/bclenet/bids-examples/tree/BEP028_heudiconv/provenance_heudiconv) - [Associated Pull Request #496](https://github.com/bids-standard/bids-examples/pull/496)
-    - [Provenance records for fMRI preprocessing using `SPM`](https://github.com/bclenet/bids-examples/tree/BEP028_spm/provenance_spm) [Associated Pull Request #497](https://github.com/bids-standard/bids-examples/pull/497)
-    - [Provenance records for fMRI preprocessing using `fMRIPrep`](https://github.com/bclenet/bids-examples/tree/BEP028_fmriprep/provenance_fmriprep) [Associated Pull Request#502](https://github.com/bids-standard/bids-examples/pull/502)
+    - [Provenance records for fMRI preprocessing using `SPM`](https://github.com/bclenet/bids-examples/tree/BEP028_spm/provenance_spm) - [Associated Pull Request #497](https://github.com/bids-standard/bids-examples/pull/497)
+    - [Provenance records for fMRI preprocessing using `fMRIPrep`](https://github.com/bclenet/bids-examples/tree/BEP028_fmriprep/provenance_fmriprep) - [Associated Pull Request#502](https://github.com/bids-standard/bids-examples/pull/502)
 
     Further datasets are available from
     the [BIDS examples repository](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#provenance).
@@ -24,18 +24,18 @@ context of the academic literature.
 
 ### Goals
 
-This part of the BIDS specification is aimed at describing the provenance of a BIDS dataset. This description is retrospective : it describes a set of steps that were executed in order to obtain the dataset (this is different from prospective descriptions of workflows that could for instance list all sets of steps that can be run on this dataset).
+This part of the BIDS specification is aimed at describing the provenance of a BIDS dataset. This description is retrospective: it describes a set of steps that were executed in order to obtain the dataset (this is different from prospective descriptions of workflows that could for instance list all sets of steps that can be run on this dataset).
 
 ### Principles for encoding provenance in BIDS
 
 -   Provenance information SHOULD be included in a BIDS dataset when possible.
 -   If provenance records are included, these MUST be described using the conventions detailed by this specification.
--   Provenance records MAY be used to reflect the provenance of a dataset, a collection of files or a specific file at any level of the BIDS hierarchy.
+-   Provenance records MAY be used to reflect the provenance of a full dataset and/or of specific files at any level of the BIDS hierarchy.
 -   Provenance information SHOULD be de-identified as necessary.
 
 ### Definitions
 
-**Provenance record** : provenance metadata consists in sets of records. These provenance records can be of 4 types:
+**Provenance record**: provenance metadata consists in sets of records. These provenance records can be of 4 types:
 
 -   `Activity`: Activities represent the transformations that have been applied to the data.
 -   `Entity`: Each Activity can use Entities as inputs and outputs.
@@ -44,12 +44,12 @@ This part of the BIDS specification is aimed at describing the provenance of a B
 
 Provenance records are described as JSON objects in BIDS. This is detailed in the [Provenance files section](#provenance-files).
 
-**Provenance group** : refers to a collection of provenance records corresponding to a consistent set of processings. Defining multiple provenance groups is appropriate when separate sets of processings have been performed on data, and that they differ in purpose or chronology.
+**Provenance group**: refers to a collection of provenance records corresponding to a consistent set of processings. Defining multiple provenance groups is appropriate when separate sets of processings have been performed on data, and that they differ in purpose or chronology.
 
 ## Provenance in sidecar JSON files
 
 Provenance metadata CAN be stored inside the sidecar JSON of any BIDS file (or BIDS-Derivatives file) it applies to.
-In this case, the provenance content only describes the provenance of the associated data file.
+This metadata only describes the provenance of the BIDS file.
 
 Any sidecar JSON file CAN include the following keys:
 
@@ -74,20 +74,38 @@ No other field is allowed to describe provenance inside sidecar JSON files.
     Not defining the `SidecarGenearatedBy` field means that the sidecar JSON was generated by the `Activity` described in the `GenearatedBy` field.
 
 !!! example
+    Provenance metadata in a sidecar JSON file:
     ```JSON
     {
         "GeneratedBy": "bids::prov#conversion-00f3a18f",
         "SidecarGeneratedBy": "bids::prov#conversion-36d22a53",
         "Digest": {
-            "sha256" : "66eeafb465559148e0222d4079558a8354eb09b9efabcc47cd5b8af6eed51907"
+            "sha256": "66eeafb465559148e0222d4079558a8354eb09b9efabcc47cd5b8af6eed51907"
         }
+    }
+    ```
+    In this example, the referred activities `bids::prov#conversion-00f3a18f` and `bids::prov#conversion-36d22a53` would be described inside a `prov/[<label>/]prov-<label>_act.json` file (see the [Provenance files section](#provenance-files)):
+    ```JSON
+    {
+        "Activities": [
+            {
+                "Id": "bids::prov#conversion-00f3a18f",
+                "Label": "Conversion",
+                "Command": "dcm2niix"
+            },
+            {
+                "Id": "bids::prov#conversion-36d22a53",
+                "Label": "Preparation to conversion",
+                "Command": "heudiconv --files sourcedata/hirni-demo/acq1/dicoms/example-dicom-structural-master/dicoms/\*.dcm -o . -f sourcedata/hirni-demo/code/hirni-toolbox/converters/heudiconv/hirni_heuristic.py -s 001 -ss acq1 -c dcm2niix -b --minmeta --overwrite"
+            }
+        ]
     }
     ```
 
 ## Provenance at dataset level
 
 Provenance metadata CAN be stored inside the `dataset_description.json` of any BIDS dataset (or BIDS-Derivatives dataset) it applies to.
-In this case, the provenance content describes provenance for the whole dataset.
+This metadata describes the provenance of the whole dataset.
 
 The `dataset_description.json` file of a BIDS dataset CAN include the following key to describe provenance:
 
@@ -129,6 +147,7 @@ and a guide for using macros can be found at
 {{ MACROS___make_subobject_table("metadata.GeneratedBy.items") }}
 
 !!! example
+    `GeneratedBy` contents in the `dataset_description.json`:
     ```JSON
     {
         "GeneratedBy": [
@@ -136,7 +155,19 @@ and a guide for using macros can be found at
                 "Id": "bids::prov#conversion-00f3a18f",
                 "Name": "dcm2niix_conversion"
             }
-        }
+        ]
+    }
+    ```
+    In this example, the referred activity `bids::prov#conversion-00f3a18f` would be described inside a `prov/[<label>/]prov-<label>_act.json` file (see the [Provenance files section](#provenance-files)):
+    ```JSON
+    {
+        "Activities": [
+            {
+                "Id": "bids::prov#conversion-00f3a18f",
+                "Label": "Conversion",
+                "Command": "dcm2niix -o . -f sub-%i/anat/sub-%i_T1w sourcedata/dicoms"
+            }
+        ]
     }
     ```
 
@@ -188,7 +219,7 @@ and a guide for using macros can be found at
 
 Each `prov/[<label>/]prov-<label>_act.json` file is a JSON file describing `Activity` records for a provenance group.
 
-This file MUST include an `Activities` key:
+Each file MUST include an `Activities` key:
 
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in
@@ -246,9 +277,9 @@ Each `prov/[<label>/]prov-<label>_ent.json` file is a JSON file describing `Enti
 -   files or data that were deleted during the creation of the dataset ;
 -   different versions of the same files or data that were modified during the creation of the dataset ;
 -   files or data that are part of software pieces or environments ;
--   any other files or data that do not match the previously listed cases.
+-   any other files or data that do not match the previously listed cases, as long as the `Entity` record cannot be described in a sidecar JSON or in `dataset_description.json`.
 
-This file MUST include an `Entities` key:
+Each file MUST include an `Entities` key:
 
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in
@@ -293,7 +324,7 @@ and a guide for using macros can be found at
 
 Each `prov/[<label>/]prov-<label>_soft.json` file is a JSON file describing `Software` records for a provenance group.
 
-This file MUST include a `Software` key:
+Each file MUST include a `Software` key:
 
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in
@@ -335,7 +366,7 @@ and a guide for using macros can be found at
 
 Each `prov/[<label>/]prov-<label>_env.json` file is a JSON file describing `Environment` records for a provenance group.
 
-This file MUST include a `Environments` key:
+Each file MUST include a `Environments` key:
 
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in
@@ -461,6 +492,6 @@ The previously described `Activity`  is referred to in the `sub-001/anat/sub-001
 
 ```JSON
 {
-    "GeneratedBy":"bids::prov#conversion-00f3a18f"
+    "GeneratedBy": "bids::prov#conversion-00f3a18f"
 }
 ```
