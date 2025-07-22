@@ -86,8 +86,8 @@ No other field is allowed to describe provenance inside sidecar JSON files.
             "sha256": "66eeafb465559148e0222d4079558a8354eb09b9efabcc47cd5b8af6eed51907"
         }
     }
-    This snippet is derived from the following comprehensive example: [Provenance records for DICOM to Nifti conversion using `heudiconv`](https://github.com/bclenet/bids-examples/tree/BEP028_heudiconv/provenance_heudiconv).
     ```
+    This snippet is derived from the following comprehensive example: [Provenance records for DICOM to Nifti conversion using `heudiconv`](https://github.com/bclenet/bids-examples/tree/BEP028_heudiconv/provenance_heudiconv).
 
 ## Provenance at dataset level
 
@@ -146,7 +146,6 @@ and a guide for using macros can be found at
     }
     ```
     This snippet is an extract of the following comprehensive example: [Provenance records for fMRI preprocessing using `fMRIPrep`](https://github.com/bclenet/bids-examples/tree/BEP028_fmriprep/provenance_fmriprep).
-    ```
 
 ## Provenance files
 
