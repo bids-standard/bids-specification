@@ -30,4 +30,84 @@ and finishing with it's translation into schema.
 
 ## The Google Doc
 
-blah
+![Title Page of BEP 009](_static/pet_google_doc_first_page.png)
+
+### Adding your modality to BIDS
+
+One of the first steps to undertake is to add the modality to the [modalities.yaml](https://github.com/bids-standard/bids-specification/blob/880ab2db0570ff2038f403576f85564aa4454710/src/schema/objects/modalities.yaml) file if it doesn't already exist. In this instance, we would modify `src/schema/objects/modalities.yaml` from:
+
+```yaml
+# src/schema/objects/modalities.yaml
+---
+# This file describes modalities supported by BIDS.
+mri:
+  display_name: Magnetic Resonance Imaging
+  description: |
+    Data acquired with an MRI scanner.
+mrs:
+  display_name: Magnetic Resonance Spectroscopy
+  description: Data acquired with MRS.
+```
+
+To include your new modality, in this instance PET.
+
+```yaml
+# src/schema/objects/modalities.yaml
+---
+# This file describes modalities supported by BIDS.
+mri:
+  display_name: Magnetic Resonance Imaging
+  description: |
+    Data acquired with an MRI scanner.
+pet:
+  display_name: Positron Emission Tomography
+  description: |
+    Data acquired with PET.
+mrs:
+  display_name: Magnetic Resonance Spectroscopy
+  description: Data acquired with MRS.
+```
+
+### Defining filename entity
+
+Your next steps are to move from this template file name as described in your document to formally defining those entities within the schema. The definitions for these file entities are
+located within `src/schema/rules/files`. Since this BEP is referring to raw data we go one level
+further to `src/schema/rules/files/raw` and create a new `pet.yaml` file to record each entity/rule. There are additional folders for side card files (`sidecars/`), common elements (`common`), and derivative files (`derivatives/`), but we're only focusing on raw PET data for
+this example.
+
+```bash
+tree src/schema/rules/files -L 1
+src/schema/rules/files
+├── common
+├── deriv
+└── raw
+```
+
+![PET file entity schematic](_static/pet_file_entity_schematic.png)
+
+Given the templaet above we want to include mark all entities surrounded by `[]` as optional while everything else not contained in `[]` will be marked as required.
+
+So, we create that `pet.yaml` file and begin to populate it.
+
+```yaml
+# src/schema/rules/files/pet.yaml
+---
+pet:
+  suffixes:
+    - pet
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  entities:
+    subject: required
+    session: optional
+    task: optional
+    tracer: optional
+    reconstruction: optional
+    run: optional
+```
+
+![PET side car table](_static/pet_side_car_table.png)
+
+![PET file Enum object](_static/pet_enum_table_entry.png)
