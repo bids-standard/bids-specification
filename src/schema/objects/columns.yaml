@@ -156,7 +156,7 @@ coordinate_reference_point:
   display_name: Coordinate reference point
   description: |
     Point of the probe that is described by the probe coordinates and
-    on which the alpha, beta and gamma rotations are applied.
+    on which the yaw, pitch, and roll rotations are applied.
   type: string
 data_entity_id:
   name: data_entity_id
@@ -173,7 +173,7 @@ depth__probes:
     Physical depth of the probe, for example, '0.3'.
     This dimension should be omitted or set to 0 for two-dimensional (shank-type) probes.
     This dimension corresponds to the z’axis of the Euler transformation defined by
-    alpha, beta and gamma rotations values.
+    yaw, pitch, and roll rotations values.
   type: number
 detector__channels:
   name: detector

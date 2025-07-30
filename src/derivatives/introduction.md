@@ -15,7 +15,7 @@ Examples:
 A defaced T1w image would typically be made during the curation process and is thus under raw
 
 ```Text
-sourcedata/private/sub-01/anat/sub-01_T1w.nii.gz
+sourcedata/pre-deface/sub-01/anat/sub-01_T1w.nii.gz
 sub-01/anat/sub-01_T1w.nii.gz
 ```
 
@@ -23,7 +23,7 @@ A defaced T1w image could also, in theory, be derived from a BIDS dataset and wo
 
 ```Text
 sub-01/anat/sub-01_T1w.nii.gz
-derivatives/sub-01/anat/sub-01_desc-defaced_T1w.nii.gz
+derivatives/defaced/sub-01/anat/sub-01_desc-defaced_T1w.nii.gz
 ```
 
 ## Derivatives storage and directory structure
@@ -129,7 +129,7 @@ for GIFTI files.
 
 [storage]: ../common-principles.md#storage-of-derived-datasets
 
-[derived-dataset-description]: ../modality-agnostic-files.md#derived-dataset-and-pipeline-description
+[derived-dataset-description]: ../modality-agnostic-files/dataset-description.md#derived-dataset-and-pipeline-description
 
 [gifti]: https://www.nitrc.org/projects/gifti/
 

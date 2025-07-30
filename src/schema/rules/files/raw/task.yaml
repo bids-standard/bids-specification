@@ -60,6 +60,18 @@ timeseries__mri_no_task:
 # Specializations
 # In these rules, we use $ref to retrieve most of an object, and then override
 
+events__microephys:
+  $ref: rules.files.raw.task.events
+  datatypes:
+    - ecephys
+    - icephys
+  entities:
+    subject: required
+    session: optional
+    task: optional
+    acquisition: optional
+    run: optional
+
 events__mri:
   $ref: rules.files.raw.task.events
   datatypes:
@@ -112,6 +124,7 @@ timeseries__anat:
     echo: optional
     part: optional
     chunk: optional
+    modality: optional
 
 timeseries__func:
   $ref: rules.files.raw.task.timeseries

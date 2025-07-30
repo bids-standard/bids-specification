@@ -17,6 +17,12 @@
                 "target": {
                   "type": "object",
                   "properties": {
+                    "entities": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
                     "suffix": {
                       "type": "string"
                     },
@@ -498,7 +504,7 @@
       "required": [
         "entities",
         "files",
-	"json",
+        "json",
         "sidecars",
         "tabular_data",
         "metaentities",
@@ -589,8 +595,7 @@
             },
             "required": ["level"],
             "additionalProperties": false
-          },
-          { "type": "string", "pattern": "recommended.*" }
+          }
         ]
       },
       "issue": {
@@ -650,7 +655,8 @@
               "additionalProperties": false
             },
             "additional_columns": {
-              "type": "string"
+              "type": "string",
+              "enum": ["allowed", "allowed_if_defined", "not_allowed", "n/a"]
             },
             "index_columns": { "type": "array", "items": { "type": "string" } },
             "initial_columns": {
@@ -658,7 +664,7 @@
               "items": { "type": "string" }
             }
           },
-          "required": ["selectors", "columns"],
+          "required": ["selectors", "columns", "additional_columns"],
           "additionalProperties": false
         }
       }
@@ -666,6 +672,7 @@
     "pathRule": {
       "type": "object",
       "properties": {
+        "selectors": { "$ref": "#/definitions/ruleTypes/expressionList" },
         "level": { "enum": ["optional", "required"] },
         "path": { "type": "string" }
       },
@@ -675,6 +682,7 @@
     "stemRule": {
       "type": "object",
       "properties": {
+        "selectors": { "$ref": "#/definitions/ruleTypes/expressionList" },
         "level": { "enum": ["optional", "recommended", "required"] },
         "datatypes": {
           "type": "array",
@@ -689,6 +697,7 @@
     "suffixRule": {
       "type": "object",
       "properties": {
+        "selectors": { "$ref": "#/definitions/ruleTypes/expressionList" },
         "level": { "enum": ["optional", "recommended", "required"] },
         "datatypes": {
           "type": "array",

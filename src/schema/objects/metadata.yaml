@@ -2562,7 +2562,6 @@ PartialFourier:
   display_name: Partial Fourier
   description: |
     The fraction of partial Fourier information collected.
-    Corresponds to [DICOM Tag 0018, 9081](https://dicomlookup.com/dicomtags/(0018,9081)) `Partial Fourier`.
   type: number
 PartialFourierDirection:
   name: PartialFourierDirection
@@ -3224,7 +3223,7 @@ ScanDate:
   description: |
     Date of scan in the format `"YYYY-MM-DD[Z]"`.
     This field is DEPRECATED, and this metadata SHOULD be recorded in the `acq_time` column of the
-    corresponding [Scans file](SPEC_ROOT/modality-agnostic-files.md#scans-file).
+    corresponding [Scans file](SPEC_ROOT/modality-agnostic-files/data-summary-files.md#scans-file).
   type: string
   format: date
 ScanOptions:

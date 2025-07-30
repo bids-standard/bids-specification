@@ -82,7 +82,7 @@ A guide for using macros can be found at
 the size of the actual reconstructed data in the phase direction (which is NOT
 reflected in a single DICOM Tag for all possible aforementioned scan
 manipulations). See
-[Acquiring and using field maps - LCNI](https://lcni.uoregon.edu/wiki/acquiring-and-using-field-maps/)
+[Acquiring and using field maps - LCNI](https://web.archive.org/web/20240709020334/https://lcni.uoregon.edu/wiki/acquiring-and-using-field-maps/)
 and [TotalReadoutTime - dcm\_qa](https://github.com/neurolabusc/dcm_qa/tree/master/In/TotalReadoutTime).
 
 <sup>3</sup>We use the time between the center of the first "effective" echo
@@ -161,7 +161,7 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_sidecar_table([
-     "mri.MRIB0FieldIdentifier",
+     "fmap.MRIFieldmapB0FieldIdentifier",
      "mri.MRIEchoPlanarImagingAndB0FieldSource",
    ])
 }}
