@@ -201,7 +201,7 @@ A guide for using macros can be found at
 ```
 
 Note that the date and time information SHOULD be stored in the Study key file
-([`scans.tsv`](../modality-agnostic-files.md#scans-file)).
+([`scans.tsv`](../modality-agnostic-files/data-summary-files.md#scans-file)).
 Date time information MUST be expressed as indicated in [Units](../common-principles.md#units)
 
 ## Channels description (`*_channels.tsv`)

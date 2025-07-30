@@ -1,19 +1,21 @@
 """Schema loading- and processing-related functions."""
 
+from __future__ import annotations
+
 import json
 import os
 import re
-import tempfile
 from collections.abc import Iterable, Mapping
 from copy import deepcopy
 from functools import cache, lru_cache
-from importlib.resources import files
+from pathlib import Path
 
-from jsonschema import ValidationError
-from jsonschema.protocols import Validator as JsonschemaValidator
-
-from . import __bids_version__, __version__, utils
+from . import data, utils
 from .types import Namespace
+
+TYPE_CHECKING = False
+if TYPE_CHECKING:
+    from jsonschema.protocols import Validator as JsonschemaValidator
 
 lgr = utils.get_logger()
 
@@ -104,7 +106,7 @@ def _dereference(namespace, base_schema):
 @cache
 def get_schema_validator() -> JsonschemaValidator:
     """Get the jsonschema validator for validating BIDS schemas."""
-    metaschema = json.loads(files("bidsschematools.data").joinpath("metaschema.json").read_text())
+    metaschema = json.loads(data.load.readable("metaschema.json").read_text())
     return utils.jsonschema_validator(metaschema, check_format=True)
 
 
@@ -212,8 +214,23 @@ def load_schema(schema_path=None):
     This function is cached, so it will only be called once per schema path.
     """
     if schema_path is None:
-        schema_path = utils.get_bundled_schema_path()
+        # Default to bundled JSON, fall back to bundled YAML directory
+        schema_path = data.load.readable("schema.json")
+        if not schema_path.is_file():
+            schema_path = data.load.readable("schema")
+
+            # Probably a Windows checkout with a git link. Resolve first.
+            if schema_path.is_file() and (content := schema_path.read_text()).startswith("../"):
+                schema_path = Path.resolve(schema_path.parent / content)
         lgr.info("No schema path specified, defaulting to the bundled schema, `%s`.", schema_path)
+    elif isinstance(schema_path, str):
+        schema_path = Path(schema_path)
+
+    # JSON file: just load it
+    if schema_path.is_file():
+        return Namespace.from_json(schema_path.read_text())
+
+    # YAML directory: load, dereference and set versions
     schema = Namespace.from_directory(schema_path)
     if not schema.objects:
         raise ValueError(f"objects subdirectory path not found in {schema_path}")
@@ -242,9 +259,7 @@ def export_schema(schema):
     json : str
         The schema serialized as a JSON string.
     """
-    versioned = Namespace.build({"schema_version": __version__, "bids_version": __bids_version__})
-    versioned.update(schema)
-    return versioned.to_json()
+    return schema.to_json()
 
 
 def filter_schema(schema, **kwargs):
@@ -302,15 +317,24 @@ def filter_schema(schema, **kwargs):
 def validate_schema(schema: Namespace):
     """Validate a schema against the BIDS metaschema."""
 
+    try:
+        from jsonschema import ValidationError
+    except ImportError as e:
+        raise RuntimeError(
+            "The `jsonschema` package is required to validate schemas. "
+            "Please install it with `pip install jsonschema`."
+        ) from e
     # validate is put in this try/except clause because the error is sometimes too long to
     # print in the terminal
     try:
         get_schema_validator().validate(instance=schema.to_dict())
     except ValidationError as e:
+        import tempfile
+
         with tempfile.NamedTemporaryFile(
             prefix="schema_error_", suffix=".txt", delete=False, mode="w+"
         ) as file:
             file.write(str(e))
             # ValidationError does not have an add_note method yet
             # e.add_note(f"See {file.name} for full error log.")
-            raise e
+        raise e

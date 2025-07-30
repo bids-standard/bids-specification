@@ -1,14 +1,24 @@
 """Utility functions for the bids-specification schema."""
 
+from __future__ import annotations
+
 import logging
 import os
 import sys
-from typing import Any, Optional
-
-from jsonschema.protocols import Validator as JsonschemaValidator
-from jsonschema.validators import validator_for
 
 from . import data
+
+TYPE_CHECKING = False
+if TYPE_CHECKING:
+    from typing import Any, NotRequired, TypedDict
+
+    from jsonschema import FormatChecker
+    from jsonschema.protocols import Validator as JsonschemaValidator
+
+    class ValidatorKwargs(TypedDict):
+        """Type for the keyword arguments used to create a JSON schema validator."""
+
+        format_checker: NotRequired[FormatChecker]
 
 
 def get_bundled_schema_path():
@@ -40,7 +50,7 @@ def get_logger(name=None, level=None):
     logging.Logger
         logger object.
     """
-    logger = logging.getLogger("bidsschematools" + (".%s" % name if name else ""))
+    logger = logging.getLogger("bidsschematools" + (f".{name}" if name else ""))
     # If explicitly instructed via env var -- set log level
     if log_level := os.getenv("BIDS_SCHEMA_LOG_LEVEL", level):
         set_logger_level(logger, log_level)
@@ -83,7 +93,7 @@ def set_logger_level(lgr, level):
     elif level.isalpha():
         level = getattr(logging, level)
     else:
-        lgr.warning("Do not know how to treat loglevel %s" % level)
+        lgr.warning("Do not know how to treat loglevel %s", level)
         return
     lgr.setLevel(level)
 
@@ -92,7 +102,7 @@ def jsonschema_validator(
     schema: dict[str, Any],
     *,
     check_format: bool,
-    default_cls: Optional[type[JsonschemaValidator]] = None,
+    default_cls: type[JsonschemaValidator] | None = None,
 ) -> JsonschemaValidator:
     """
     Create a jsonschema validator appropriate for validating instances against a given
@@ -121,17 +131,21 @@ def jsonschema_validator(
     jsonschema.exceptions.SchemaError
         If the JSON schema is invalid
     """
+    try:
+        from jsonschema.validators import validator_for
+    except ImportError as e:
+        raise RuntimeError(
+            "The `jsonschema` package is required to validate schemas. "
+            "Please install it with `pip install jsonschema`."
+        ) from e
+
+    cls_kwargs = {} if default_cls is None else {"default": default_cls}
     # Retrieve appropriate validator class for validating the given schema
-    validator_cls: type[JsonschemaValidator] = (
-        validator_for(schema, default_cls) if default_cls is not None else validator_for(schema)
-    )
+    validator_cls = validator_for(schema, **cls_kwargs)
 
     # Ensure the schema is valid
     validator_cls.check_schema(schema)
 
-    if check_format:
-        # Return a validator with format checking enabled
-        return validator_cls(schema, format_checker=validator_cls.FORMAT_CHECKER)
-
-    # Return a validator with format checking disabled
-    return validator_cls(schema)
+    validator_kwargs: ValidatorKwargs
+    validator_kwargs = {"format_checker": validator_cls.FORMAT_CHECKER} if check_format else {}
+    return validator_cls(schema, **validator_kwargs)
