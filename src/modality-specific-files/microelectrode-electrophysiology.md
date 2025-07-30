@@ -90,7 +90,7 @@ This file contains the following information:
 -   Amplifier information
 -   …
 
-This table stores information about the recorded signals, *not* the electrodes. The distinction is particularly important in cases where multiple signals are recorded from a single electrode (e.g. Neuropixel probes). For more information about the distinction between electrodes and channels, see [the corresponding section in iEEG](./intracranial-electroencephalography.md#terminology-electrodes-vs-channels).
+This table stores information about the recorded signals, *not* the electrodes. The distinction is particularly important in cases where multiple signals are recorded from a single electrode (such as Neuropixel probes). For more information about the distinction between electrodes and channels, see [the corresponding section in iEEG](./intracranial-electroencephalography.md#terminology-electrodes-vs-channels).
 
 Columns in the `*_channel.tsv` file are:
 
@@ -145,7 +145,6 @@ For the `type` column we recommend to use the following terms (adapted from [iEE
 | **REF**      | Reference channel                                                                                                               |
 | **OTHER**    | Any other type of channel                                                                                                       |
 
-
 ## Electrodes  (`*_electrodes.tsv`)
 
 Electrodes are the physical recording sites that make electrical contact with neural tissue to capture electrophysiological signals.
@@ -157,7 +156,6 @@ This file contains the following information:
 -   The electrode name
 -   The electrode coordinates in 3 columns (`xyz`) (use `n/a` for values if a dimension is absent). By default, this is the position on the probe (not the brain).
 -   The ID of the probe the electrode is located on
-
 
 {{ MACROS___make_columns_table("microephys.microephysElectrodes") }}
 Example of `*_electrodes.tsv`:
@@ -223,7 +221,6 @@ p023	left	-11.64	0.51	-4.20	utah-array	iridium-oxide	V2
 p021	left	-12.11	-3.12	-2.54	utah-array	iridium-oxide	V4
 p021	left	-9.94	-1.19	-2.86	utah-array	iridium-oxide	V3
 ```
-
 
 ## Coordinate System JSON (`*_coordsystem.json`) & Photos of electrode positions (`_photo.jpg`)
 
