@@ -10,10 +10,8 @@ import typing as ty
 from collections.abc import ItemsView, KeysView, Mapping, MutableMapping, ValuesView
 from pathlib import Path
 
-import yaml
 
-
-def _expand_dots(entry: ty.Tuple[str, ty.Any]) -> ty.Tuple[str, ty.Any]:
+def _expand_dots(entry: tuple[str, ty.Any]) -> tuple[str, ty.Any]:
     # Helper function for expand
     key, val = entry
     if "." in key:
@@ -168,7 +166,6 @@ class Namespace(MutableMapping):
         self._properties = dict(*args, **kwargs)
 
     def to_dict(self) -> dict:
-
         def _to_dict(obj):
             if isinstance(obj, Namespace):
                 return {k: _to_dict(v) for k, v in obj._properties.items()}
@@ -221,7 +218,7 @@ class Namespace(MutableMapping):
         except KeyError:
             raise err
 
-    def _get_mapping(self, key: str) -> ty.Tuple[Mapping, str]:
+    def _get_mapping(self, key: str) -> tuple[Mapping, str]:
         subkeys = key.split(".")
         mapping = self._properties
         for subkey in subkeys[:-1]:
@@ -258,7 +255,9 @@ class Namespace(MutableMapping):
     @classmethod
     def from_directory(cls, path, fmt="yaml"):
         if fmt == "yaml":
-            return cls.build(_read_yaml_dir(Path(path)))
+            if isinstance(path, str):
+                path = Path(path)
+            return cls.build(_read_yaml_dir(path))
         raise NotImplementedError(f"Unknown format: {fmt}")
 
     def to_json(self, **kwargs) -> str:
@@ -275,6 +274,8 @@ def _read_yaml_dir(path: Path) -> dict:
         if subpath.is_dir():
             mapping[subpath.name] = _read_yaml_dir(subpath)
         elif subpath.name.endswith("yaml"):
+            import yaml
+
             try:
                 mapping[subpath.stem] = yaml.safe_load(subpath.read_text())
             except Exception as e:

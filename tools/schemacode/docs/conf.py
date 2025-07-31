@@ -37,7 +37,7 @@ extensions = [
     "sphinx.ext.napoleon",
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
-    "myst_parser",
+    "myst_nb",
 ]
 
 autosummary_generate = True
@@ -48,7 +48,7 @@ templates_path = ["_templates"]
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = ["_build", "tests"]
+exclude_patterns = ["_build"]
 
 
 autosummary_mock_imports = [

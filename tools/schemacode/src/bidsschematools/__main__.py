@@ -3,14 +3,16 @@ import logging
 import os
 import re
 import sys
-from importlib.resources import files
 from itertools import chain
 
 import click
 
 from .rules import regexify_filename_rules
-from .schema import export_schema, load_schema
+from .schema import load_schema
+from .utils import configure_logger, get_logger
 from .validator import _bidsignore_check
+
+lgr = get_logger()
 
 
 @click.group()
@@ -19,7 +21,7 @@ from .validator import _bidsignore_check
 def cli(verbose, quiet):
     """BIDS Schema Tools"""
     verbose = verbose - quiet
-    logging.getLogger("bidsschematools").setLevel(logging.WARNING - verbose * 10)
+    configure_logger(get_logger(level=logging.WARNING - verbose * 10))
 
 
 @cli.command()
@@ -28,15 +30,14 @@ def cli(verbose, quiet):
 @click.pass_context
 def export(ctx, schema, output):
     """Export BIDS schema to JSON document"""
-    logger = logging.getLogger("bidsschematools")
     schema = load_schema(schema)
-    text = export_schema(schema)
+    text = schema.to_json()
     if output == "-":
-        logger.debug("Writing to stdout")
+        lgr.debug("Writing to stdout")
         print(text)
     else:
         output = os.path.abspath(output)
-        logger.debug(f"Writing to {output}")
+        lgr.debug(f"Writing to {output}")
         with open(output, "w") as fobj:
             fobj.write(text)
 
@@ -46,7 +47,9 @@ def export(ctx, schema, output):
 @click.pass_context
 def export_metaschema(ctx, output):
     """Export BIDS schema to JSON document"""
-    metaschema = files("bidsschematools.data").joinpath("metaschema.json").read_text()
+    from .data import load
+
+    metaschema = load.readable("metaschema.json").read_text()
     if output == "-":
         print(metaschema, end="")
     else:
@@ -98,7 +101,6 @@ def pre_receive_hook(schema, input_, output):
 
     This is intended to be used in a git pre-receive hook.
     """
-    logger = logging.getLogger("bidsschematools")
     schema = load_schema(schema)
 
     # Slurp inputs for now; we can think about streaming later
@@ -117,11 +119,9 @@ def pre_receive_hook(schema, input_, output):
         except json.JSONDecodeError:
             fail = True
         if fail or not isinstance(description, dict):
-            logger.critical("Protocol error: invalid JSON in description")
-            logger.critical(
-                "Dataset description must be one JSON object, written to a single line"
-            )
-            logger.critical("Received: %s", description_str)
+            lgr.critical("Protocol error: invalid JSON in description")
+            lgr.critical("Dataset description must be one JSON object, written to a single line")
+            lgr.critical("Received: %s", description_str)
             stream.close()
             sys.exit(2)
     else:
@@ -130,14 +130,14 @@ def pre_receive_hook(schema, input_, output):
         description = {}
 
     dataset_type = description.get("DatasetType", "raw")
-    logger.info("Dataset type: %s", dataset_type)
+    lgr.info("Dataset type: %s", dataset_type)
 
     ignore = []
     for line in stream:
         if line == "0001\n":
             break
         ignore.append(line.strip())
-    logger.info("Ignore patterns found: %d", len(ignore))
+    lgr.info("Ignore patterns found: %d", len(ignore))
 
     all_rules = chain.from_iterable(
         regexify_filename_rules(group, schema, level=2)
@@ -150,9 +150,6 @@ def pre_receive_hook(schema, input_, output):
         )
 
     regexes = [rule["regex"] for rule in all_rules]
-    # XXX Hack for phenotype files - this can be removed once we
-    # have a schema definition for them
-    regexes.append(r"phenotype/.*\.(tsv|json)")
 
     output = sys.stdout if output == "-" else open(output, "w")
 
@@ -162,7 +159,7 @@ def pre_receive_hook(schema, input_, output):
     with output:
         for filename in stream:
             if not any_files:
-                logger.debug("Validating files, first file: %s", filename)
+                lgr.debug("Validating files, first file: %s", filename)
                 any_files = True
             filename = filename.strip()
             if filename.startswith(".") or any(
@@ -176,7 +173,7 @@ def pre_receive_hook(schema, input_, output):
                 valid_files += 1
 
     if valid_files == 0:
-        logger.error("No files to validate")
+        lgr.error("No files to validate")
         rc = 2
 
     stream.close()

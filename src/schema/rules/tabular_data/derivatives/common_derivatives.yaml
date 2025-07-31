@@ -10,6 +10,7 @@ SegmentationLookup:
     color: optional
     mapping: optional
   index_columns: [index]
+  additional_columns: allowed
 
 Descriptions:
   selectors:

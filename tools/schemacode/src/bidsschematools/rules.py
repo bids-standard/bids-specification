@@ -6,7 +6,6 @@ This module is currently limited to constructing filename rules from
 
 import fnmatch
 import re
-import typing as ty
 from collections.abc import Mapping
 from functools import lru_cache
 
@@ -141,7 +140,7 @@ def _entity_rule(rule: Mapping, schema: bst.types.Namespace):
     }
 
 
-def _split_inheritance_rules(rule: dict) -> ty.List[dict]:
+def _split_inheritance_rules(rule: dict) -> list[dict]:
     """Break composite rules into main and sidecar rules
 
     Implements the inheritance principle for file naming.

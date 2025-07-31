@@ -91,6 +91,7 @@ def test_rule_objects(schema_obj):
                     "files",
                     "formats",
                     "metadata",
+                    "metaentities",
                     "modalities",
                 ]:
                     # But other object types are referenced via their keys
@@ -100,11 +101,6 @@ def test_rule_objects(schema_obj):
 
                 # Build a list of items mentioned in rules, but not found in objects.
                 if use not in object_values:
-                    if (use, object_type) == ("phenotype", "datatypes"):
-                        # Special case: phenotype is a top-level directory
-                        # that acts like a datatype, but we don't want to
-                        # define it that way in the glossary, currently.
-                        continue
                     temp_path = path[:]
                     if is_list:
                         temp_path[-1] += f"[{i_use}]"

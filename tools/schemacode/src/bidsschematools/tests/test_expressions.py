@@ -1,6 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
 from functools import singledispatch
-from typing import Union
 
 import pytest
 from pyparsing.exceptions import ParseException
@@ -116,16 +117,16 @@ def test_valid_sidecar_field(schema_obj):
             ast = expression.parse_string(selector)[0]
             for name in find_names(ast):
                 if name.startswith(("json.", "sidecar.")):
-                    assert (
-                        name.split(".", 1)[1] in field_names
-                    ), f"Bad field in selector: {name} ({key})"
+                    assert name.split(".", 1)[1] in field_names, (
+                        f"Bad field in selector: {name} ({key})"
+                    )
         for check in rule.get("checks", []):
             ast = expression.parse_string(check)[0]
             for name in find_names(ast):
                 if name.startswith(("json.", "sidecar.")):
-                    assert (
-                        name.split(".", 1)[1] in field_names
-                    ), f"Bad field in check: {name} ({key})"
+                    assert name.split(".", 1)[1] in field_names, (
+                        f"Bad field in check: {name} ({key})"
+                    )
 
 
 def test_test_valid_sidecar_field():
@@ -147,7 +148,7 @@ def test_test_valid_sidecar_field():
 
 
 @singledispatch
-def find_names(node: Union[ASTNode, str]):
+def find_names(node: ASTNode | str):
     # Walk AST nodes
     if isinstance(node, BinOp):
         yield from find_names(node.lh)

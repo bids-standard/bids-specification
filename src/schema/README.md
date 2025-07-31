@@ -167,7 +167,7 @@ references (the cases in which they are used will be presented later):
     (which are in turn references to individual values), and the references inside `GeneticLevel.anyOf` indicate that there may be a single
     such value or a list of values.
 
-1.  In [`rules.files.deriv.preprocessed_data`](./rules/files/deriv/preprocessed_data.yaml):
+1.  In [`rules.files.deriv.preprocessed_data`][preprocessed_data]:
     ```YAML
     anat_nonparametric_common:
       $ref: rules.files.raw.anat.nonparametric
@@ -369,6 +369,7 @@ The namespaces are:
 | --------------------------- | ----------------------------------------------------------------------------------- | ---------------- |
 | `objects.common_principles` | Terms that are used throughout BIDS                                                 | General terms    |
 | `objects.modalities`        | Broad categories of data represented in BIDS, roughly matching recording instrument | General terms    |
+| `objects.metaentities`      | Placeholders and wildcards to reduce verbosity of some templates in BIDS            | General terms    |
 | `objects.entities`          | Name-value pairs appearing in filenames                                             | Name/value terms |
 | `objects.metadata`          | Name-value pairs appearing in JSON files                                            | Name/value terms |
 | `objects.columns`           | Column headings and values appearing in TSV files                                   | Name/value terms |
@@ -500,6 +501,12 @@ The convention can be summed up in the following rules:
     | `description`  | Term definition     |
 
 -   `objects.modalities`
+    | Field          | Description         |
+    | -------------- | ------------------- |
+    | `display_name` | Human-friendly name |
+    | `description`  | Term definition     |
+
+-   `objects.metaentities`
     | Field          | Description         |
     | -------------- | ------------------- |
     | `display_name` | Human-friendly name |
@@ -1004,6 +1011,9 @@ EventsMissing:
 -   `rules.common_principles` - This file contains a list of terms that appear in `objects.common_principles`
     that determines the order they appear in the specification
 
+-   `rules.metaentities` - This file contains a list of terms that appear in `objects.metaentities`
+    that determines the order they appear in the specification
+
 ### One-off rules
 
 -   `rules.modalities` - The keys in this file are the modalities, the values objects with the following field:
@@ -1061,4 +1071,5 @@ ensuring consistency across the entire schema directory. Validation of the schem
 incorporated into the CI, so any changes that are inconsistent will be flagged before
 inclusion.
 
+[preprocessed_data]: https://github.com/bids-standard/bids-specification/tree/master/src/schema/rules/files/deriv/preprocessed_data.yaml
 [tabular files]: https://bids-specification.readthedocs.io/en/stable/common-principles.html#tabular-files
