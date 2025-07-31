@@ -43,9 +43,9 @@ data_type:
         13. `motion` (motion)
 
         14. `mrs` (magnetic resonance spectroscopy)
-        
+
         15. `phenotype` (measurement and survey data)
-        
+
         16. `emg` (electromyography)
 
     For files that are subject- and session- specific, the data type directory
