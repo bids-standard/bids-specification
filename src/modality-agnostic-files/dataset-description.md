@@ -16,7 +16,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___render_text("objects.files.dataset_description.description") }}
 
-Every dataset MUST include this file with the following fields:
+Every BIDS dataset MUST include this file with the following fields:
 
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in
@@ -43,17 +43,6 @@ and a guide for using macros can be found at
       "SourceDatasets": "RECOMMENDED",
    }
 ) }}
-
-Each object in the `GeneratedBy` array includes the following REQUIRED, RECOMMENDED
-and OPTIONAL keys:
-
-<!-- This block generates a table describing subfields within a metadata field.
-The definitions of these fields can be found in
-  src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_subobject_table("metadata.GeneratedBy.items") }}
 
 Example:
 
@@ -101,8 +90,6 @@ Example:
 }
 ```
 
-### Derived dataset and pipeline description
-
 As for any BIDS dataset, a `dataset_description.json` file MUST be found at the
 top level of every derived dataset:
 `<dataset>/derivatives/<pipeline_name>/dataset_description.json`.
@@ -121,11 +108,6 @@ and a guide for using macros can be found at
       "GeneratedBy": "REQUIRED"
    }
 ) }}
-
-If a derived dataset is stored as a subdirectory of the raw dataset, then the `Name` field
-of the first `GeneratedBy` object MUST be a substring of the derived dataset directory name.
-That is, in a directory `<dataset>/derivatives/<pipeline>[-<variant>]/`, the first
-`GeneratedBy` object should have a `Name` of `<pipeline>`.
 
 Example:
 
