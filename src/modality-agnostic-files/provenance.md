@@ -45,7 +45,7 @@ This part of the BIDS specification is aimed at describing the provenance of a B
 Provenance records are described as JSON objects in BIDS. This is detailed in the [Provenance files section](#provenance-files).
 
 !!! example
-    The following graph represents examples of links between provenance records. In this example, `Entity A` and `Entity B` are files used by `Activity 1` to generate another file: `Entity C`. `Activity 1` and `Activity 2` were associated with a `Software` and used `Environment` as a software environment.
+    The following graph represents examples of links between provenance records. In this example, `Entities` *sub-001_brainmask.nii* and *sub-001_T1w.nii* represent files used by `Activity` *Brain extraction* to generate another file represented by `Entity` *sub-001_T1w_preproc.nii*. `Activities` *Brain extraction* and *Move to MNI* were associated with the `Software` *FSL* and used `Environment` *Linux* as a software environment.
     ![](../images/provenance_definitions_graph.png)
 
 **Provenance group**: refers to a collection of provenance records corresponding to a consistent set of processings. Defining multiple provenance groups is appropriate when separate sets of processings have been performed on data, and that they differ in purpose or chronology.
