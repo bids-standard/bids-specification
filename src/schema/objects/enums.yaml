@@ -644,7 +644,7 @@ BigBrain20215:
     The sections were stained for cell bodies, so the model displays cytoarchitectural structures such as cortical layers.
     The BigBrain was published in [Amunts et al., Science 2013](https://doi.org/10.1126/science.1235381).
     This identifier refers to the 2015 version of the 3D reconstruction hosted at [https://ftp.bigbrainproject.org/bigbrain-ftp/BigBrainRelease.2015/](https://ftp.bigbrainproject.org/bigbrain-ftp/BigBrainRelease.2015/), which comprises almost a Terabyte of image data.
-  The 3D reconstruction can be viewed online at [EBRAINS](https://atlases.ebrains.eu/viewer/go/bigbrain) and accessed programmatically using [siibra-python](https://siibra-python.readthedocs.io).
+    The 3D reconstruction can be viewed online at [EBRAINS](https://atlases.ebrains.eu/viewer/go/bigbrain) and accessed programmatically using [siibra-python](https://siibra-python.readthedocs.io).
 Pixels:
   value: Pixels
   display_name: Pixels
