@@ -1732,9 +1732,8 @@ Keywords:
   name: Keywords
   display_name: Keywords
   description: |
-    List of three to six keywords that describe the content or subject matter of the dataset.
-    These are useful for enhancing the findability of the dataset through Search Engine
-    Optimization (SEO).
+    A list of keywords that describe the content or subject matter of the dataset.
+    These may be used to enhance the findability of the dataset on public archives.
   type: array
   items:
     type: string
