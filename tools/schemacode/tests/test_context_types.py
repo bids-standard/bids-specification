@@ -59,7 +59,7 @@ def test_assignability() -> None:
     gzip = ctx.Gzip(0, "filename", "comment")
 
     sessions: p.Sessions = ctx.Sessions([])
-    sessions = ctx.Sessions([], [], [])
+    sessions = ctx.Sessions([], [])
     subject: p.Subject = ctx.Subject(sessions)
 
     tiff: p.Tiff = ctx.Tiff(0x4D4D)
