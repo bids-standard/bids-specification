@@ -11,14 +11,10 @@ dwi:
   datatypes:
     - dwi
   entities:
-    subject: required
-    session: optional
-    acquisition: optional
-    reconstruction: optional
-    direction: optional
-    run: optional
-    part: optional
-    chunk: optional
+    $ref: meta.templates.raw.epi.entities
+    # Historically BIDS has not permitted ceagent for DWI
+    # This could be relaxed without backwards incompatibility
+    ceagent: null
 
 sbref:
   suffixes:
@@ -30,14 +26,8 @@ sbref:
   datatypes:
     - dwi
   entities:
-    subject: required
-    session: optional
-    acquisition: optional
-    reconstruction: optional
-    direction: optional
-    run: optional
-    part: optional
-    chunk: optional
+    $ref: meta.templates.raw.epi.entities
+    ceagent: null
 
 # Common scanner-generated derivatives need raw names
 ScannerDerivatives:
@@ -55,10 +45,7 @@ ScannerDerivatives:
   datatypes:
     - dwi
   entities:
-    subject: required
-    session: optional
-    acquisition: optional
-    reconstruction: optional
-    direction: optional
-    run: optional
-    chunk: optional
+    $ref: meta.templates.raw.epi.entities
+    # part is also not defined for derivative maps
+    ceagent: null
+    part: null
