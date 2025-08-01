@@ -21,7 +21,7 @@ def test_assignability() -> None:
         uvx --with=. mypy tests
     """
     subjects: p.Subjects = ctx.Subjects([])
-    subjects = ctx.Subjects([], [], [])
+    subjects = ctx.Subjects([], [])
 
     dataset: p.Dataset = ctx.Dataset(
         dataset_description={},
