@@ -1199,6 +1199,39 @@ FlipAngle:
         unit: degree
         exclusiveMinimum: 0
         maximum: 360
+Format:
+  name: Format
+  display_name: Value format
+  description: |
+    Permitted formats for values in the described column.
+  type: string
+  # Keep synced with objects.formats
+  enum:
+    # Type formats
+    - string
+    - number
+    - integer
+    - boolean
+    # Numeric/alphanumeric strings
+    - index
+    - label
+    # Dates/times
+    - date
+    - datetime
+    - time
+    # Units
+    - unit
+    # URIs
+    - uri
+    - rrid
+    - bids_uri
+    # Paths
+    - dataset_relative
+    - file_relative
+    - participant_relative
+    - stimuli_relative
+    # Miscellaneous
+    - hed_version
 FrameAcquisitionDuration:
   name: FrameAcquisitionDuration
   display_name: Frame Acquisition Duration
