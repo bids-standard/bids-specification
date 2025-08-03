@@ -175,11 +175,13 @@ Probes are electrode-bearing devices that interface with neural tissue to record
 The probe positions and properties are stored in a `.tsv` file.
 This file contains the probe ID, the type of recording (acute/chronic), and the probe coordinates.
 
-### Translational Coordinates
+### Surgical Coordinates System
+
+The surgical coordinates system provides a standard way to describe the placement of an intracrial probe implantation during surgery.
 
 #### Anatomical Reference Points
 
-In neurosurgery or in research, it is important to define coordinates for where in the brain a surgical intervention will take place. These coordinates rely on anatomical markers that are uniform across individuals. There are two major anatomical markers on the dorsal surface of the brain that are formed when the plates of the skull fuse during development, and these markers are used to identify the location of various anatomical structures of the brain.
+In neurosurgery or in research, it is important to define coordinates for where in the brain a surgical intervention will take place. These coordinates rely on anatomical markers that are uniform across individuals. There are two major anatomical markers on the dorsal surface of the brain that are formed when the plates of the skull fuse during development, and these markers are often used to identify the location of various anatomical structures of the brain.
 
 ![Bregma and Lambda anatomical reference points](images/bregma_and_lambda.png)
 
@@ -187,7 +189,7 @@ In neurosurgery or in research, it is important to define coordinates for where 
 
 **Lambda**: the meeting point of the sagittal suture (between left and right parietal bones) and the lambdoid suture (between parietal and occipital bones).
 
-Both points serve as standard reference points for stereotaxic coordinates in neuroscience research.
+Both points serve as standard reference points for stereotaxic coordinates in neuroscience research. `(0,0,0)` is assumed to be Bregma when working with rodents. It may optionally be defined differently using `coordinate_reference_point`, and **must** be defined for other species.
 
 #### Stereotaxic Coordinate System Conventions
 
@@ -197,23 +199,13 @@ All stereotaxic coordinate systems follow a right-handed coordinate system with 
 
 ![AP_ML_DV coordinate system](images/AP_ML_DV.png)
 
--   **AP (Anterior-Posterior) axis:**
-    -   Primary reference axis
-    -   Positive values are anterior to reference point
--   **ML (Medial-Lateral) axis:**
-    -   Following right-hand rule relative to AP axis
-    -   Positive values are to the right (as seen from behind)
--   **DV (Dorsal-Ventral) axis:**
-    -   Following right-hand rule
-    -   Positive values are ventral
-
-`(0,0,0)` is assumed to be Bregma when working with rodents. It may optionally be defined differently using `coordinate_reference_point`, and **must** be defined for other species.
+-   **AP (Anterior-Posterior) axis:** Positive values are anterior to reference point
+-   **ML (Medial-Lateral) axis:** Positive values are to the right (as seen from behind)
+-   **DV (Dorsal-Ventral) axis:**: Positive values are ventral (following right-hand rule)
 
 ##### Angle Measurement System
 
-Proper understanding and application of these angles is critical for accurate probe placement and experimental reproducibility.
-
-All stereotaxic measurements use three angles to specify orientation:
+Proper understanding and application of these angles is critical for accurate probe placement and experimental reproducibility. All stereotaxic measurements use three angles to specify orientation:
 
 **AP angle (Anterior-Posterior rotation):**
 

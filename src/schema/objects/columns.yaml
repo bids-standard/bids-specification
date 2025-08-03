@@ -55,6 +55,14 @@ AP_angle:
   type: number
   minimum: -180
   maximum: 180
+AP__probes:
+  name: AP
+  display_name: Probe AP position
+  description: |
+    Probe position along the Anterior-Posterior axis.
+    Positive values are anterior to the reference point.
+  type: number
+  unit: mm
 associated_brain_region:
   name: associated_brain_region
   display_name: Associated brain region
@@ -268,6 +276,7 @@ DV__probes:
     Probe position along the Dorsal-Ventral axis.
     Positive values are ventral.
   type: number
+  unit: mm
 electrode_count:
   name: electrode_count
   display_name: Electrode count
@@ -480,6 +489,14 @@ ML_angle:
   type: number
   minimum: -180
   maximum: 180
+ML__probes:
+  name: ML
+  display_name: Probe ML position
+  description: |
+    Probe position along the Medial-Lateral axis.
+    Positive values are to the right (as seen from behind).
+  type: number
+  unit: mm
 metabolite_parent_fraction:
   name: metabolite_parent_fraction
   display_name: Metabolite parent fraction
