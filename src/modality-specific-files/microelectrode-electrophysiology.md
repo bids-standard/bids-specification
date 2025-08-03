@@ -208,7 +208,7 @@ The `ProbeInterface` model corresponding to your probe can be referenced using:
 
 For example, you could use `probeinterface_manufacturer: "neuronexus"` and `probeinterface_model: "A1x32-Poly3-10mm-50-177"` to specify a NeuroNexus A1x32 probe.
 
-If the probe is not listed in the ProbeInterface library, you can define it using the `ProbeInterface` format and include it in a directory called `probes/`. Probes defined within the `probes/` directory MUST follow the naming convention `probeinterface_<manufacturer>_<model>.json`.
+If the probe is not listed in the ProbeInterface library, you SHOULD define it using the [ProbeInterface format](https://probeinterface.readthedocs.io/en/latest/format_spec.html) and include it in a directory called `probes/` in the root of the dataset. Probes defined within the `probes/` directory MUST follow the naming convention `probeinterface_<manufacturer>_<model>.json` and comply with the [ProbeInterface specification](https://probeinterface.readthedocs.io/en/latest/format_spec.html) and [JSON schema](https://raw.githubusercontent.com/SpikeInterface/probeinterface/refs/heads/main/src/probeinterface/schema/probe.json.schema).
 
 {{ MACROS___make_columns_table("microephys.microephysProbes") }}
 
@@ -225,9 +225,9 @@ p021	left	-9.94	-1.19	-2.86	utah-array	iridium-oxide	V3
 ## Coordinate System JSON (`*_coordsystem.json`) & Photos of electrode positions (`_photo.jpg`)
 
 This file provides metadata on the coordinate system in which the electrodes are placed.
-This file is **RECOMMENDED**, and the listed required fields below must be included if a `*_coordsystem.json` file is provided.
+This file is **RECOMMENDED**, and the listed required fields below MUST be included if a `*_coordsystem.json` file is provided.
 
-The coordinate system can be defined using reference pictures, anatomical landmarks, brain images, or a reference atlas.
+The coordinate system can be defined using reference pictures, anatomical landmarks, brain images, or a reference atlas or volume.
 For more details, see the [BIDS Coordinate Systems specifications](../appendices/coordinate-systems.md).
 
 Fields relating to the microephys probe and electrode positions:
@@ -316,27 +316,6 @@ For each pharmaceutical we RECOMMEND to use a dedicated node with the name of th
 #### Supplementary
 
 {{ MACROS___make_sidecar_table("microephys.microephysSupplementary") }}
-
-### Probes
-
-It is RECOMMENDED to use the following structure to provide more metadata for each probe:
-
-```JSON
-"ProbeContours": {
-   "probe_infoid": {
-      "<my_probe_id>": {
-         "Contour": "<list of contour points>",
-         "Unit": "<my spatial unit>"
-      }
-   }
-}
-```
-
-Whereas `<my_probe_id>` has to exist also in the `probes.tsv` file and `<list of contour points>` is
-a list of x, y(, z) tuples providing the contour of the probe in the same reference frame as the
-electrode coordinates (see `electrodes.tsv`).
-In case of different units used than in the `electrodes.tsv`, the key `Unit` can be used here to
-provide the spatial unit of the coordinate points.
 
 ### Task (*see also  iEEG.json*)
 
