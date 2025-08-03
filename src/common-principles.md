@@ -551,6 +551,8 @@ and a guide for using macros can be found at
         "Delimiter": "OPTIONAL",
         "TermURL": "RECOMMENDED",
         "HED": "OPTIONAL",
+        "Maximum": "OPTIONAL",
+        "Minimum": "OPTIONAL",
    }
 ) }}
 

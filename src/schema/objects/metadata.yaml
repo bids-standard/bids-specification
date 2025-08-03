@@ -2186,6 +2186,14 @@ MaxMovement:
     as measured by the head localization coils (for example, `4.8`).
   type: number
   unit: mm
+Maximum:
+  name: Maximum
+  display_name: Maximum value
+  description: |
+    Maximum value a column entry is permitted to have.
+  anyOf:
+    - type: number
+    - type: string
 MeasurementToolMetadata:
   name: MeasurementToolMetadata
   display_name: Measurement Tool Metadata
@@ -2224,6 +2232,14 @@ MetaboliteRecoveryCorrectionApplied:
     If `true`, the `hplc_recovery_fractions` column MUST be present in the
     corresponding `*_blood.tsv` file.
   type: boolean
+Minimum:
+  name: Minimum
+  display_name: Minimum value
+  description: |
+    Minimum value a column entry is permitted to have.
+  anyOf:
+    - type: number
+    - type: string
 MiscChannelCount:
   name: MiscChannelCount
   display_name: Misc Channel Count
