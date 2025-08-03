@@ -38,12 +38,14 @@ age:
   description: |
     Numeric value in years (float or integer value).
 
-    It is recommended to tag participant ages that are 89 or higher as 89+,
-    for privacy purposes.
+    For privacy purposes, participant ages should be capped at 89.
+    Using "89+" for ages above 88 is DEPRECATED.
   definition: {
     "LongName": "Subject age",
     "Description": "Subject age in postnatal years",
+    "Format": "number",
     "Units": "year",
+    "Maximum": 89,
   }
 cardiac:
   name: cardiac
