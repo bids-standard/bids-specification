@@ -161,7 +161,7 @@ This file contains the following information:
 Example of `*_electrodes.tsv`:
 
 ```tsv
-electrode_id	probe_id	impedance	x	y	z	material	location
+electrode_id	probe_id	impedance	AP  ML DV  material	location
 e0123	p01	1.1	-11.87	-1.30	-3.37	iridium-oxide	V1
 e234	p01	1.5	-11.64	0.51	-4.20	iridium-oxide	V2
 e934	p02	3.5	-12.11	-3.12	-2.54	iridium-oxide	V4
@@ -174,27 +174,79 @@ Probes are electrode-bearing devices that interface with neural tissue to record
 
 The probe positions and properties are stored in a `.tsv` file.
 This file contains the probe ID, the type of recording (acute/chronic), and the probe coordinates.
-The surgical coordinates of the probe can be described with translational coordinates assuming AP, DV, LR direction for x, y, z, respectively, and rotation around the probes tip.
-
-These measurements follow the convention of the Pinpoint software for surgical planning and are intended to describe the surgical plan:
 
 ### Translational Coordinates
 
--   `(0,0,0)` is assumed to be Bregma when working with rodents.
--   It may optionally be defined differently and **must** be defined for other species.
--   `x, y, z` represents posterior, ventral, and right directions, respectively, in micrometers (`µm`).
+#### Anatomical Reference Points
 
-### Rotation
+In neurosurgery or in research, it is important to define coordinates for where in the brain a surgical intervention will take place. These coordinates rely on anatomical markers that are uniform across individuals. There are two major anatomical markers on the dorsal surface of the brain that are formed when the plates of the skull fuse during development, and these markers are used to identify the location of various anatomical structures of the brain.
 
--   `(0,0,0)` corresponds to the probe facing up with the tip pointing forward.
--   Rotations are measured in degrees, clockwise, and around the tip.
--   For multi-shank probes, the "tip" of the probe is defined as the end of the left shank when facing the electrodes.
+![Bregma and Lambda anatomical reference points](images/bregma_and_lambda.png)
 
-#### Rotation Definitions
+**Bregma**: the anatomical point on the skull at which the coronal suture (between frontal and parietal bones) is intersected perpendicularly by the sagittal suture (between left and right parietal bones).
 
--   **Yaw**: Clockwise rotation when looking down.
--   **Pitch**: Rotation in the direction of the electrode face.
--   **Roll**: Clockwise rotation when looking down at the probe.
+**Lambda**: the meeting point of the sagittal suture (between left and right parietal bones) and the lambdoid suture (between parietal and occipital bones).
+
+Both points serve as standard reference points for stereotaxic coordinates in neuroscience research.
+
+#### Stereotaxic Coordinate System Conventions
+
+##### Basic Coordinate System
+
+All stereotaxic coordinate systems follow a right-handed coordinate system with the following conventions:
+
+![AP_ML_DV coordinate system](images/AP_ML_DV.png)
+
+-   **AP (Anterior-Posterior) axis:**
+    -   Primary reference axis
+    -   Positive values are anterior to reference point
+-   **ML (Medial-Lateral) axis:**
+    -   Following right-hand rule relative to AP axis
+    -   Positive values are to the right (as seen from behind)
+-   **DV (Dorsal-Ventral) axis:**
+    -   Following right-hand rule
+    -   Positive values are ventral
+
+`(0,0,0)` is assumed to be Bregma when working with rodents. It may optionally be defined differently using `coordinate_reference_point`, and **must** be defined for other species.
+
+##### Angle Measurement System
+
+Proper understanding and application of these angles is critical for accurate probe placement and experimental reproducibility.
+
+All stereotaxic measurements use three angles to specify orientation:
+
+**AP angle (Anterior-Posterior rotation):**
+
+![AP angle rotation diagram](images/AP_angle.png)
+
+-   Measured as rotation from the vertical axis in the sagittal plane
+-   0° represents vertical along DV axis
+-   Range: -180° to +180°
+-   Positive values indicate anterior rotation
+-   Example: +15° indicates probe tilted 15° anteriorly from vertical
+
+**ML angle (Medial-Lateral rotation):**
+
+![ML angle rotation diagram](images/ML_angle.png)
+
+-   Measured as rotation from the vertical axis in the coronal plane
+-   0° represents vertical along DV axis
+-   Range: -180° to +180°
+-   Positive values indicate rightward/clockwise rotation (as seen from behind)
+-   Example: +20° indicates probe tilted 20° to the right from vertical
+
+**Rotation angle (around probe axis):**
+
+![Rotation angle diagram](images/rotation_angle.png)
+
+-   0° when probe features align with the coronal plane
+-   Range: -180° to +180° (or 0° to 360°)
+-   Positive rotation is clockwise when viewed from above
+
+!!! note "Source Attribution"
+
+    The coordinate system conventions and angle definitions presented in this section are adapted from the [BrainSTEM documentation](https://support.brainstem.org/datamodel/schemas/coordinates/).
+
 
 ### ProbeInterface Library
 
