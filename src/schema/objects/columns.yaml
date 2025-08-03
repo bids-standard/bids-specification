@@ -54,6 +54,7 @@ cardiac:
     continuous pulse measurement
   definition: {
     "Description": "continuous pulse measurement",
+    "Format": "number",
     "Units": "mV"
   }
 channel:
@@ -187,6 +188,7 @@ handedness:
   definition: {
     "LongName": "Subject handedness",
     "Description": "String value indicating one of \"left\", \"right\", or \"ambidextrous\".",
+    "Format": "string",
     "Levels": {
       "left": "Left-handed",
       "l": "Left-handed",
@@ -364,7 +366,8 @@ pathology:
     The pathology may be specified in either `samples.tsv` or
     `sessions.tsv`, depending on whether the pathology changes over time.
   definition: {
-    "Description": "Description of the pathology of the sample or type of control."
+    "Description": "Description of the pathology of the sample or type of control.",
+    "Format": "string",
   }
 participant_id:
   name: participant_id
@@ -420,6 +423,7 @@ respiratory:
     continuous breathing measurement
   definition: {
     "Description": "continuous measurements by respiration belt",
+    "Format": "number",
     "Units": "mV"
   }
 response_time:
@@ -485,6 +489,7 @@ sex:
   definition: {
     "LongName": "sex",
     "Description": "String value indicating phenotypical sex.",
+    "Format": "string",
     "Levels": {
       "F": "Female",
       "FEMALE": "Female",
@@ -552,7 +557,8 @@ species:
     `homo sapiens`.
   definition: {
     "Description":
-      "binomial species name from the NCBI Taxonomy (https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi)"
+      "binomial species name from the NCBI Taxonomy (https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi)",
+    "Format": "string",
   }
 status:
   name: status
@@ -594,7 +600,8 @@ strain:
     For species different from `homo sapiens`, string value indicating
     the strain of the species, for example: `C57BL/6J`.
   definition: {
-    "Description": "name of the strain of the species"
+    "Description": "name of the strain of the species",
+    "Format": "string",
   }
 strain_rrid:
   name: strain_rrid
@@ -637,6 +644,7 @@ trigger:
     continuous measurement of the scanner trigger signal
   definition: {
     "Description": "continuous measurement of the scanner trigger signal",
+    "Format": "number",
     "Units": "arbitrary"
   }
 # type column in channels.tsv files
