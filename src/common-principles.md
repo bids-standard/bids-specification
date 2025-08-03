@@ -568,6 +568,7 @@ Example:
   "test": {
     "LongName": "Education level",
     "Description": "Education level, self-rated by participant",
+    "Format": "integer",
     "Levels": {
       "1": "Finished primary school",
       "2": "Finished secondary school",
@@ -577,7 +578,9 @@ Example:
   },
   "bmi": {
     "LongName": "Body mass index",
+    "Format": "number",
     "Units": "kg/m^2",
+    "Minimum": 0,
     "TermURL": "https://purl.bioontology.org/ontology/SNOMEDCT/60621009"
   }
 }
