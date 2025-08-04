@@ -35,7 +35,7 @@ jobs:
               uvx linkchecker -t 1 ~/project/site/
               # check external separately by pointing to all *html so no
               # failures for local file:/// -- yoh found no better way,
-              linkchecker -t 1 --check-extern \
+              uvx linkchecker -t 1 --check-extern \
                 --ignore-url 'file:///.*' \
                 --ignore-url 'https://bids-specification.readthedocs.io/en/stable/.*' \
                 --ignore-url 'https://doi.org/.*' \
