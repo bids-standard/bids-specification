@@ -45,6 +45,7 @@ jobs:
                 --ignore-url 'https://www.incf.org' \
                 --ignore-url 'https://dicomlookup.com/dicomtags/.*' \
                 --ignore-url 'https://www.instagram.com/bidsstandard/' \
+                --ignore-url 'https://jsoneditoronline.org' \
                 ~/project/site/*html ~/project/site/*/*.html
             else
               echo "Release PR - do nothing"
