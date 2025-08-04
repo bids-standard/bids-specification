@@ -45,15 +45,24 @@ age:
     "Description": "Subject age in postnatal years",
     "Units": "year",
   }
-roll:
-  name: roll
-  display_name: Roll rotation
+AP_angle:
+  name: AP_angle
+  display_name: AP angle
   description: |
-    Clockwise rotation when looking down at the probe.
+    Anterior-Posterior rotation angle measured as rotation from the vertical axis in the sagittal plane.
+    0° represents vertical along DV axis. Positive values indicate anterior rotation.
   unit: degree
   type: number
   minimum: -180
   maximum: 180
+AP__probes:
+  name: AP
+  display_name: Probe AP position
+  description: |
+    Probe position along the Anterior-Posterior axis.
+    Positive values are anterior to the reference point.
+  type: number
+  unit: mm
 associated_brain_region:
   name: associated_brain_region
   display_name: Associated brain region
@@ -75,14 +84,6 @@ associated_brain_region_quality_type:
     The method used to identify the associated brain region (estimated|proof)
     depending on anatomical pictures proofing the location or indirect estimation of the location.
   type: string
-pitch:
-  name: pitch
-  display_name: Pitch rotation
-  description: Rotation in the direction of the electrode face, in degrees.
-  unit: degree
-  type: number
-  minimum: -90
-  maximum: 90
 cardiac:
   name: cardiac
   display_name: Cardiac measurement
@@ -268,6 +269,14 @@ duration_index:
   description: |
     Number of recording samples included in the event.
   type: number
+DV__probes:
+  name: DV
+  display_name: Probe DV position
+  description: |
+    Probe position along the Dorsal-Ventral axis.
+    Positive values are ventral.
+  type: number
+  unit: mm
 electrode_count:
   name: electrode_count
   display_name: Electrode count
@@ -303,14 +312,6 @@ gain:
     to the signal stored in the data file.
     If no gain factor is provided it is assumed to be 1.
   type: number
-yaw:
-  name: yaw
-  display_name: Yaw rotation
-  description: Rotation clockwise when looking down.
-  unit: degree
-  type: number
-  minimum: -180
-  maximum: 180
 # TODO: Clarify if the optionality of the column be defined here or as an addendum in the rules.
 ground:
   name: ground
@@ -478,6 +479,24 @@ material__probes:
   description: |
     A textual description of the base material of the probe.
   type: string
+ML_angle:
+  name: ML_angle
+  display_name: ML angle
+  description: |
+    Medial-Lateral rotation angle measured as rotation from the vertical axis in the coronal plane.
+    0° represents vertical along DV axis. Positive values indicate rightward/clockwise rotation (as seen from behind).
+  unit: degree
+  type: number
+  minimum: -180
+  maximum: 180
+ML__probes:
+  name: ML
+  display_name: Probe ML position
+  description: |
+    Probe position along the Medial-Lateral axis.
+    Positive values are to the right (as seen from behind).
+  type: number
+  unit: mm
 metabolite_parent_fraction:
   name: metabolite_parent_fraction
   display_name: Metabolite parent fraction
@@ -683,6 +702,16 @@ response_time:
     `n/a` denotes a missed response.
   type: number
   unit: s
+rotation_angle:
+  name: rotation_angle
+  display_name: Rotation angle
+  description: |
+    Rotation angle around the probe axis. 0° when probe features align with the coronal plane.
+    Positive rotation is clockwise when viewed from above.
+  unit: degree
+  type: number
+  minimum: -180
+  maximum: 180
 sample_id:
   name: sample_id
   display_name: Sample ID
@@ -1178,24 +1207,6 @@ z__optodes:
     `"n/a"` if not available.
   type: number
 # TODO: How are the units specified for the probe x, y and z fields?
-x__probes:
-  name: x
-  display_name: Probe X position
-  description: |
-    Probe position along the global coordinate system x-axis.
-  type: number
-y__probes:
-  name: y
-  display_name: Probe Y position
-  description: |
-    Probe position along the global coordinate system y-axis.
-  type: number
-z__probes:
-  name: z
-  display_name: Probe Z position
-  description: |
-    Probe position along the global coordinate system z-axis.
-  type: number
 x__electrodes:
   name: x
   display_name: Electrode X position
