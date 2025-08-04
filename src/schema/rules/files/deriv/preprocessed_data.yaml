@@ -1,5 +1,7 @@
 ---
 anat_nonparametric_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.anat.nonparametric
   entities:
     $ref: rules.files.raw.anat.nonparametric.entities
@@ -7,6 +9,8 @@ anat_nonparametric_common:
     description: optional
 
 anat_parametric_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.anat.parametric
   entities:
     $ref: rules.files.raw.anat.parametric.entities
@@ -14,6 +18,8 @@ anat_parametric_common:
     description: optional
 
 anat_defacemask_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.anat.defacemask
   entities:
     $ref: rules.files.raw.anat.defacemask.entities
@@ -21,6 +27,8 @@ anat_defacemask_common:
     description: optional
 
 anat_multiecho_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.anat.multiecho
   entities:
     $ref: rules.files.raw.anat.multiecho.entities
@@ -28,6 +36,8 @@ anat_multiecho_common:
     description: optional
 
 anat_multiflip_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.anat.multiflip
   entities:
     $ref: rules.files.raw.anat.multiflip.entities
@@ -35,6 +45,8 @@ anat_multiflip_common:
     description: optional
 
 anat_multiinversion_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.anat.multiinversion
   entities:
     $ref: rules.files.raw.anat.multiinversion.entities
@@ -42,6 +54,8 @@ anat_multiinversion_common:
     description: optional
 
 anat_mp2rage_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.anat.mp2rage
   entities:
     $ref: rules.files.raw.anat.mp2rage.entities
@@ -49,6 +63,8 @@ anat_mp2rage_common:
     description: optional
 
 anat_vfamt_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.anat.vfamt
   entities:
     $ref: rules.files.raw.anat.vfamt.entities
@@ -56,6 +72,8 @@ anat_vfamt_common:
     description: optional
 
 anat_mtr_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.anat.mtr
   entities:
     $ref: rules.files.raw.anat.mtr.entities
@@ -63,13 +81,81 @@ anat_mtr_common:
     description: optional
 
 beh_noncontinuous_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.beh.noncontinuous
   entities:
     $ref: rules.files.raw.beh.noncontinuous.entities
     space: optional
     description: optional
 
+channels_channels_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
+  $ref: rules.files.raw.channels.channels
+  entities:
+    $ref: rules.files.raw.channels.channels.entities
+    description: optional
+
+channels_channels__meg_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
+  $ref: rules.files.raw.channels.channels__meg
+  entities:
+    $ref: rules.files.raw.channels.channels__meg.entities
+    description: optional
+
+channels_channels__motion_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
+  $ref: rules.files.raw.channels.channels__motion
+  entities:
+    $ref: rules.files.raw.channels.channels__motion.entities
+    description: optional
+
+channels_coordsystem_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
+  $ref: rules.files.raw.channels.coordsystem
+  entities:
+    $ref: rules.files.raw.channels.coordsystem.entities
+    description: optional
+
+channels_coordsystem__eeg_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
+  $ref: rules.files.raw.channels.coordsystem__eeg
+  entities:
+    $ref: rules.files.raw.channels.coordsystem__eeg.entities
+    description: optional
+
+channels_electrodes_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
+  $ref: rules.files.raw.channels.electrodes
+  entities:
+    $ref: rules.files.raw.channels.electrodes.entities
+    description: optional
+
+channels_electrodes__meg_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
+  $ref: rules.files.raw.channels.electrodes__meg
+  entities:
+    $ref: rules.files.raw.channels.electrodes__meg.entities
+    description: optional
+
+channels_electrodes_optodes_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
+  $ref: rules.files.raw.channels.optodes
+  entities:
+    $ref: rules.files.raw.channels.optodes.entities
+    description: optional
+
 dwi_dwi_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.dwi.dwi
   entities:
     $ref: rules.files.raw.dwi.dwi.entities
@@ -77,6 +163,8 @@ dwi_dwi_common:
     description: optional
 
 dwi_sbref_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.dwi.sbref
   entities:
     $ref: rules.files.raw.dwi.sbref.entities
@@ -84,6 +172,8 @@ dwi_sbref_common:
     description: optional
 
 eeg_eeg_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.eeg.eeg
   entities:
     $ref: rules.files.raw.eeg.eeg.entities
@@ -91,6 +181,8 @@ eeg_eeg_common:
     description: optional
 
 fmap_fieldmaps_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.fmap.fieldmaps
   entities:
     $ref: rules.files.raw.fmap.fieldmaps.entities
@@ -98,6 +190,8 @@ fmap_fieldmaps_common:
     description: optional
 
 fmap_pepolar_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.fmap.pepolar
   entities:
     $ref: rules.files.raw.fmap.pepolar.entities
@@ -105,6 +199,8 @@ fmap_pepolar_common:
     description: optional
 
 fmap_pepolar_m0scan:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.fmap.pepolar_m0scan
   entities:
     $ref: rules.files.raw.fmap.pepolar.entities
@@ -112,6 +208,8 @@ fmap_pepolar_m0scan:
     description: optional
 
 fmap_TB1DAM_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.fmap.TB1DAM
   entities:
     $ref: rules.files.raw.fmap.TB1DAM.entities
@@ -119,6 +217,8 @@ fmap_TB1DAM_common:
     description: optional
 
 fmap_TB1EPI_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.fmap.TB1EPI
   entities:
     $ref: rules.files.raw.fmap.TB1EPI.entities
@@ -126,6 +226,8 @@ fmap_TB1EPI_common:
     description: optional
 
 fmap_RFFieldMaps_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.fmap.RFFieldMaps
   entities:
     $ref: rules.files.raw.fmap.RFFieldMaps.entities
@@ -133,6 +235,8 @@ fmap_RFFieldMaps_common:
     description: optional
 
 fmap_TB1SRGE_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.fmap.TB1SRGE
   entities:
     $ref: rules.files.raw.fmap.TB1SRGE.entities
@@ -140,6 +244,8 @@ fmap_TB1SRGE_common:
     description: optional
 
 fmap_parametric_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.fmap.parametric
   entities:
     $ref: rules.files.raw.fmap.parametric.entities
@@ -147,6 +253,8 @@ fmap_parametric_common:
     description: optional
 
 func_func_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.func.func
   entities:
     $ref: rules.files.raw.func.func.entities
@@ -154,6 +262,8 @@ func_func_common:
     description: optional
 
 func_phase_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.func.phase
   entities:
     $ref: rules.files.raw.func.phase.entities
@@ -161,6 +271,8 @@ func_phase_common:
     description: optional
 
 ieeg_ieeg_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.ieeg.ieeg
   entities:
     $ref: rules.files.raw.ieeg.ieeg.entities
@@ -168,6 +280,8 @@ ieeg_ieeg_common:
     description: optional
 
 meg_meg_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.meg.meg
   entities:
     $ref: rules.files.raw.meg.meg.entities
@@ -175,6 +289,8 @@ meg_meg_common:
     description: optional
 
 meg_calibration_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.meg.calibration
   entities:
     $ref: rules.files.raw.meg.calibration.entities
@@ -182,6 +298,8 @@ meg_calibration_common:
     description: optional
 
 meg_crosstalk_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.meg.crosstalk
   entities:
     $ref: rules.files.raw.meg.crosstalk.entities
@@ -189,6 +307,8 @@ meg_crosstalk_common:
     description: optional
 
 meg_headshape_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.meg.headshape
   entities:
     $ref: rules.files.raw.meg.headshape.entities
@@ -196,6 +316,8 @@ meg_headshape_common:
     description: optional
 
 meg_markers_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.meg.markers
   entities:
     $ref: rules.files.raw.meg.markers.entities
@@ -203,6 +325,8 @@ meg_markers_common:
     description: optional
 
 micr_microscopy_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.micr.microscopy
   entities:
     $ref: rules.files.raw.micr.microscopy.entities
@@ -210,6 +334,8 @@ micr_microscopy_common:
     description: optional
 
 perf_asl_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.perf.asl
   entities:
     $ref: rules.files.raw.perf.asl.entities
@@ -217,6 +343,8 @@ perf_asl_common:
     description: optional
 
 pet_pet_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.pet.pet
   entities:
     $ref: rules.files.raw.pet.pet.entities
@@ -224,8 +352,18 @@ pet_pet_common:
     description: optional
 
 pet_blood_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.pet.blood
   entities:
     $ref: rules.files.raw.pet.blood.entities
     space: optional
+    description: optional
+
+task_events_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
+  $ref: rules.files.raw.task.events
+  entities:
+    $ref: rules.files.raw.task.events.entities
     description: optional
