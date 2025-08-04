@@ -75,6 +75,7 @@ def test_assignability() -> None:
         xyzt_units=xyzt_units,
         qform_code=1,
         sform_code=1,
+        axis_codes=("L", "P", "S"),
     )
 
     ome: p.Ome = ctx.Ome()
