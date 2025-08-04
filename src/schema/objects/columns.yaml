@@ -104,8 +104,7 @@ detector_type:
   display_name: Detector Type
   description: |
     The type of detector. Only to be used if the field `DetectorType` in `*_nirs.json` is set to `mixed`.
-  anyOf:
-    - type: string
+  type: string
 derived_from:
   name: derived_from
   display_name: Derived from
@@ -544,8 +543,7 @@ source__optodes:
   display_name: Source type
   description: |
     The type of source. Only to be used if the field `SourceType` in `*_nirs.json` is set to `mixed`.
-  anyOf:
-    - type: string
+  type: string
 species:
   name: species
   display_name: Species
