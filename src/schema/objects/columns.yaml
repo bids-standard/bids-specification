@@ -178,9 +178,7 @@ group__channel:
     Which group of channels (grid/strip/seeg/depth) this channel belongs to.
     This is relevant because one group has one cable-bundle and noise can be shared.
     This can be a name or number.
-  anyOf:
-    - type: string
-    - type: number
+  type: string
 handedness:
   name: handedness
   display_name: Subject handedness
