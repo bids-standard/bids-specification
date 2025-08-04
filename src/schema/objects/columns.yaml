@@ -553,7 +553,7 @@ species:
     `homo sapiens`.
   definition: {
     "Description":
-      "binomial species name from the NCBI Taxonomy (https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi)",
+      "Latin binomial species name from the NCBI Taxonomy (https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi).",
     "Format": "string",
   }
 status:
@@ -596,7 +596,7 @@ strain:
     For species different from `homo sapiens`, string value indicating
     the strain of the species, for example: `C57BL/6J`.
   definition: {
-    "Description": "name of the strain of the species",
+    "Description": "Name of the strain of the species.",
     "Format": "string",
   }
 strain_rrid:
