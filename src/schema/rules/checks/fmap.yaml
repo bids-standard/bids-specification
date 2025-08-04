@@ -65,3 +65,19 @@ EPISmallBVals:
     - '"bval" in associations'
   checks:
     - min(associations.bval.values) < 100
+
+TotalReadoutTimeMustDefine:
+  issue:
+    code: TOTAL_READOUT_TIME_MUST_DEFINE
+    message: |
+      You must provide enough metadata to determine the TotalReadoutTime of this file.
+      `TotalReadoutTime` or `EffectiveEchoSpacing` satisfy this criterion.
+    level: error
+  selectors:
+    - datatype == "fmap"
+    - suffix == "epi"
+    - match(extension, "^\.nii(\.gz)?$")
+  checks:
+    - |
+      sidecar.TotalReadoutTime ||
+      sidecar.EffectiveEchoSpacing

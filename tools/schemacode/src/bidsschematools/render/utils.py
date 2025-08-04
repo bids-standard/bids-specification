@@ -2,6 +2,7 @@
 
 import math
 import posixpath
+import re
 
 
 def _link_with_html(string, html_path=None, heading=None, pdf_format=False):
@@ -337,10 +338,12 @@ def normalize_requirements(text):
     -------
     text : str
     """
-    for level in ("optional", "recommended", "required", "deprecated"):
-        # Replace both "optional" and "Optional" with "OPTIONAL"
-        text = text.replace(level.title(), level).replace(level, level.upper())
-    return text
+    return re.sub(
+        r"\b(optional|recommended|required|deprecated)\b",
+        lambda m: m.group(1).upper(),
+        text,
+        flags=re.IGNORECASE,
+    )
 
 
 def normalize_breaks(text):

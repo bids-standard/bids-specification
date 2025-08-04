@@ -161,7 +161,7 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_sidecar_table([
-     "mri.MRIB0FieldIdentifier",
+     "fmap.MRIFieldmapB0FieldIdentifier",
      "mri.MRIEchoPlanarImagingAndB0FieldSource",
    ])
 }}
