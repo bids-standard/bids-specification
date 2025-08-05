@@ -316,6 +316,7 @@ properties:
       - xyzt_units
       - qform_code
       - sform_code
+      - axis_codes
     additionalProperties: false
     properties:
       dim_info:
@@ -404,6 +405,17 @@ properties:
         name: 'sform code'
         description: 'Use of the affine fields.'
         type: integer
+      axis_codes:
+        name: 'axis codes'
+        description: >
+          Orientation labels indicating primary direction of data axes defined
+          with respect to the object of interest.
+        type: array
+        minItems: 3
+        maxItems: 3
+        items:
+          type: string
+          enum: ['R', 'L', 'A', 'P', 'S', 'I']
       mrs:
         name: 'NIfTI-MRS extension'
         description: 'NIfTI-MRS JSON fields'
