@@ -2191,9 +2191,7 @@ Maximum:
   display_name: Maximum value
   description: |
     Maximum value a column entry is permitted to have.
-  anyOf:
-    - type: number
-    - type: string
+  type: number
 MeasurementToolMetadata:
   name: MeasurementToolMetadata
   display_name: Measurement Tool Metadata
@@ -2237,9 +2235,7 @@ Minimum:
   display_name: Minimum value
   description: |
     Minimum value a column entry is permitted to have.
-  anyOf:
-    - type: number
-    - type: string
+  type: number
 MiscChannelCount:
   name: MiscChannelCount
   display_name: Misc Channel Count
