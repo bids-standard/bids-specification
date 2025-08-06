@@ -259,11 +259,11 @@ If the probe is not listed in the ProbeInterface library, you SHOULD define it u
 Example of `_probes.tsv`:
 
 ```tsv
-probe_id	hemisphere	x	y	z	type	material	location
-p023	left	-11.87	-1.30	-3.37	utah-array	iridium-oxide	V1
-p023	left	-11.64	0.51	-4.20	utah-array	iridium-oxide	V2
-p021	left	-12.11	-3.12	-2.54	utah-array	iridium-oxide	V4
-p021	left	-9.94	-1.19	-2.86	utah-array	iridium-oxide	V3
+probe_id	hemisphere	AP	ML	DV	AP_angle	ML_angle	rotation_angle	material	location	probeinterface_manufacturer	probeinterface_model
+p023	left	-11.87	-1.30	-3.37	0.0	0.0	0.0	iridium-oxide	V1	neuronexus	A1x32-Poly3-10mm-50-177
+p023	left	-11.64	0.51	-4.20	0.0	0.0	0.0	iridium-oxide	V2	neuronexus	A1x32-Poly3-10mm-50-177
+p021	left	-12.11	-3.12	-2.54	0.0	0.0	0.0	iridium-oxide	V4	neuronexus	A1x32-Poly3-10mm-50-177
+p021	left	-9.94	-1.19	-2.86	0.0	0.0	0.0	iridium-oxide	V3	neuronexus	A1x32-Poly3-10mm-50-177
 ```
 
 ## Coordinate System JSON (`*_coordsystem.json`) & Photos of electrode positions (`_photo.jpg`)
