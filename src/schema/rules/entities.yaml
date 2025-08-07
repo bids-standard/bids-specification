@@ -31,4 +31,7 @@
 - resolution
 - density
 - label
+# NOTE: there is a current convention to keep description to be the last entity.
+# If to be changed - potentially might need to adjust text, e.g. now in
+# src/derivatives/common-data-types.md
 - description
