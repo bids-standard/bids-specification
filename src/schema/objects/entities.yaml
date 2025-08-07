@@ -243,7 +243,8 @@ recording:
   description: |
     The `recording-<label>` entity can be used to distinguish continuous recording files.
 
-    This entity is commonly applied when continuous recordings are from different acquisition instruments, or have different sampling frequencies or start times.
+    This entity is commonly applied when continuous recordings are from different acquisition instruments,
+    or have different sampling frequencies or start times.
     For example, physiological recordings with different sampling frequencies may be distinguished using
     labels like `recording-100Hz` and `recording-500Hz`.
   type: string
