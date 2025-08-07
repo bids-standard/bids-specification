@@ -23,7 +23,6 @@ acquisition:
     The level of detail at which the distinction is made
     (for example, just between `RARE` and `FLASH`, or between `RARE`, `FLASH`, and `FLASHsubsampled`)
     remains at the discretion of the researcher.
-
   type: string
   format: label
 ceagent:
