@@ -276,8 +276,6 @@ For more details, see the [BIDS Coordinate Systems specifications](../appendices
 
 Fields relating to the microephys probe and electrode positions:
 
-{{ MACROS___make_sidecar_table("microephys.microephysCoordsystemGeneral") }}
-
 ### Allowed 2D coordinate systems
 
 If electrodes are localized in 2D space (only `x` and `y` are specified, and `z` is `"n/a"`),

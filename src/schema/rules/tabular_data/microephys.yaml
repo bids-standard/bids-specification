@@ -13,9 +13,9 @@ microephysProbes:
   columns:
     probe_id: required
     type__probes: required
-    x__probes: recommended
-    y__probes: recommended
-    z__probes: recommended
+    AP__probes: recommended
+    DV__probes: recommended
+    ML__probes: recommended
     manufacturer__probes: recommended
     device_serial_number: recommended
     electrode_count: optional
@@ -23,9 +23,9 @@ microephysProbes:
     height__probes: optional
     depth__probes: optional
     dimension_unit: optional
-    yaw: recommended
-    pitch: recommended
-    roll: recommended
+    AP_angle: recommended
+    ML_angle: recommended
+    rotation_angle: recommended
     coordinate_reference_point: recommended
     hemisphere__probes: recommended
     associated_brain_region: recommended
