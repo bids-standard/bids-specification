@@ -182,6 +182,11 @@ def test_formats(schema_obj):
             )
 
 
+def test_format_consistency(schema_obj):
+    """Test that the "Format" field is consistent with objects.formats."""
+    assert set(schema_obj.objects.metadata.Format.enum) == schema_obj.objects.formats.keys()
+
+
 def test_dereferencing():
     orig = {
         "ReferencedObject": {
