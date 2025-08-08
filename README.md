@@ -1,8 +1,10 @@
 [![Validation](https://github.com/bids-standard/bids-specification/actions/workflows/validation.yml/badge.svg)](https://github.com/bids-standard/bids-specification/actions/workflows/validation.yml)
 [![CircleCI](https://circleci.com/gh/bids-standard/bids-specification.svg?style=shield)](https://circleci.com/gh/bids-standard/bids-specification)
+[![Bluesky Follow](https://img.shields.io/badge/bluesky-Follow_bidsstandard-blue?logo=bluesky)](https://bsky.app/profile/bidsstandard.bsky.social)
+![YouTube Channel Subscribers](https://img.shields.io/youtube/channel/subscribers/UCxZUcYfd_nvIVWAbzRB1tlw)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109520103085644521?domain=https%3A%2F%2Ffosstodon.org%2F)](https://fosstodon.org/@bidsstandard)
 [![@BIDSstandard](https://img.shields.io/twitter/follow/bidsstandard.svg?style=social)](https://x.com/BIDSstandard)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3686061.svg)](https://doi.org/10.5281/zenodo.3686061)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10175845.svg)](https://doi.org/10.5281/zenodo.10175845)
 
 <img src="./BIDS_logo/BIDS_logo_white_transparent_background_crop.png#gh-dark-mode-only" alt="bids-logo" width="600"/>
 <img src="./BIDS_logo/BIDS_logo_black_transparent_background_crop.png#gh-light-mode-only" alt="bids-logo" width="600"/>
@@ -18,7 +20,8 @@ In this repository, we develop the
 To organize your data in BIDS, all you need is neuro data, a computer, and the
 [BIDS specification](https://bids-specification.readthedocs.io/en/stable/).
 
-BIDS currently supports the following data modalities with more to come in the future:
+BIDS currently supports the following data modalities with
+[more to come in the future](https://bids.neuroimaging.io/extensions/index.html):
 
 - MRI
 - MEG
@@ -30,6 +33,7 @@ BIDS currently supports the following data modalities with more to come in the f
 - microscopy
 - NIRS
 - motion
+- MRS
 
 # Formatting your data with BIDS
 
@@ -70,9 +74,9 @@ adhere to our [code of conduct](https://github.com/bids-standard/bids-specificat
     for reporting problems or making suggestions
   - The [NeuroStars Discourse forum](https://neurostars.org/tags/bids), for asking usage questions
   - The [BrainHack Mattermost](https://mattermost.brainhack.org), for instant messaging
-    (see also this [news item](https://bids.neuroimaging.io/2020/06/24/Join-the-BIDS-community-on-the-BrainHack-Mattermost.html))
+    (see also this [news item](https://bids.neuroimaging.io/blog/2020/06/24/Join%20the%20BIDS%20community%20on%20the%20BrainHack%20Mattermost.html))
   - The [Google group](https://groups.google.com/forum/#!forum/bids-discussion), for broader discussions and announcements surrounding BIDS
-  - The [BIDS website "news"](https://bids.neuroimaging.io/news.html), similar to the Google group, for broader discussions and announcements
+  - The [BIDS website "blog"](https://bids.neuroimaging.io/blog/index.html), similar to the Google group, for broader discussions and announcements
 
 ## Social media channels
 

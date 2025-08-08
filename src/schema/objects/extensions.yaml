@@ -30,21 +30,26 @@ bvec:
   description: |
     A space-delimited file containing gradient directions (b-vectors) of diffusion measurement.
 
-    This file contains 3 rows with *N* space-delimited floating-point numbers,
+    The `bvec` file contains 3 rows with *N* space-delimited floating-point numbers,
     corresponding to the *N* volumes in the corresponding NIfTI file.
 
-    The first row contains the *x* elements, the second row contains the *y* elements and
-    the third row contains the *z* elements of a unit vector in the direction of the applied
-    diffusion gradient, where the *i*-th elements in each row correspond together to
-    the *i*-th volume, with `[0,0,0]` for *non-diffusion-weighted* (also called *b*=0 or *low-b*)
-    volumes.
+    Across these three rows,
+    each column encodes three elements of a 3-vector for the corresponding image volume;
+    each vector MUST be either of unit norm,
+    or optionally the vector `[0.0,0.0,0.0]`
+    for *non-diffusion-weighted* (also called *b*=0 or *low-b*) volumes.
+    These values are to be interpreted as cosine values with respect to the image axis orientations
+    as defined by the corresponding NIfTI image header transformation;
+    *unless* the image axes defined in the corresponding NIfTI image header
+    form a right-handed coordinate system
+    (that is, the 3x3 matrix of direction cosines has a positive determinant),
+    in which case the sign of the first element of each 3-vector must be inverted
+    for this interpretation to be valid.
 
-    Following the FSL format for the `bvec` specification, the coordinate system of
-    the *b* vectors MUST be defined with respect to the coordinate system defined by
-    the header of the corresponding `_dwi` NIfTI file and not the scanner's device
-    coordinate system (see [Coordinate systems](SPEC_ROOT/appendices/coordinate-systems.md)).
-    The most relevant limitation imposed by this choice is that the gradient information cannot
-    be directly stored in this format if the scanner generates *b*-vectors in *scanner coordinates*.
+    Note that this definition of orientations with respect to the NIfTI image axes
+    is *not* equivalent to the DICOM convention,
+    where orientations are instead defined with respect to the scanner device's coordinate system
+    (see [Coordinate systems](SPEC_ROOT/appendices/coordinate-systems.md)).
 chn:
   value: .chn
   display_name: KRISS CHN
@@ -184,7 +189,7 @@ nii:
   display_name: NIfTI
   description: |
     A Neuroimaging Informatics Technology Initiative (NIfTI) data file.
-niigz:
+nii_gz:
   value: .nii.gz
   display_name: Compressed NIfTI
   description: |
@@ -274,7 +279,7 @@ tsv:
   display_name: Tab-Delimited
   description: |
     A tab-delimited file.
-tsvgz:
+tsv_gz:
   value: .tsv.gz
   display_name: Compressed Tab-Delimited
   description: |

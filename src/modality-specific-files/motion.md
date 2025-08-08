@@ -53,7 +53,7 @@ All relevant metadata about a tracking systems is stored in accompanying sidecar
 When multiple tracking systems are used to record motion or motion capture is used alongside the recording of other BIDS modalities and recordings should be interpreted together,
 it is advised to provide a possibility to synchronize recordings.
 The preferred way to do so is to use the acquisition time of the first data point of recordings and
-to store this information in the `acq_time` column of the [`*_scans.tsv`](../modality-agnostic-files.md#scans-file) file.
+to store this information in the `acq_time` column of the [`*_scans.tsv`](../modality-agnostic-files/data-summary-files.md#scans-file) file.
 Note that the [BIDS date time format](../common-principles.md#units) allows optional fractional seconds, which SHOULD be used to maximize the precision of the synchronization.
 Only if the precision of the synchronization is not high enough, the `*_events.tsv` file SHOULD be used to synchronize recordings.
 In this file, the start- and stop time of the recording of a system are specified in relation to a system to synchronize with.
@@ -122,9 +122,9 @@ If there are additional tracking systems (for example [optical motion capture](h
 data from these MUST be stored as separate files like `*_tracksys-omcA_motion.tsv` and `*_tracksys-omcB_motion.tsv`.
 All specified tracking systems MAY share `tracked_point` defined in `*_channels.tsv`, when tracking devices are placed on the same object or body part.
 
-Note that the onsets of the recordings SHOULD be stored in the study key file [(`scans.tsv`)](../modality-agnostic-files.md#scans-file).
+Note that the onsets of the recordings SHOULD be stored in the study key file [(`scans.tsv`)](../modality-agnostic-files/data-summary-files.md#scans-file).
 Here, date-time information MUST be expressed as indicated in [Units](../common-principles.md#units).
-The [`scans.tsv`](../modality-agnostic-files.md#scans-file) file contains the filename and the acquisition time of a recording,
+The [`scans.tsv`](../modality-agnostic-files/data-summary-files.md#scans-file) file contains the filename and the acquisition time of a recording,
 which MAY be used to synchronize multiple recordings.
 
 ## Channels description (`*_channels.tsv`)
@@ -185,21 +185,21 @@ Note that upper-case is REQUIRED:
 
 ### Example `*_channels.tsv`
 
-```Text
-name        component   type   tracked_point   units    reference_frame
-t1_acc_x    x           ACCEL  LeftFoot        m/s^2    global
-t1_acc_y    y           ACCEL  LeftFoot        m/s^2    global
-t1_acc_z    z           ACCEL  LeftFoot        m/s^2    global
-t1_gyro_x   x           GYRO   LeftFoot        rad/s    global
-t1_gyro_y   y           GYRO   LeftFoot        rad/s    global
-t1_gyro_z   z           GYRO   LeftFoot        rad/s    global
+```tsv
+name	component	type	tracked_point	units	reference_frame
+t1_acc_x	x	ACCEL	LeftFoot	m/s^2	global
+t1_acc_y	y	ACCEL	LeftFoot	m/s^2	global
+t1_acc_z	z	ACCEL	LeftFoot	m/s^2	global
+t1_gyro_x	x	GYRO	LeftFoot	rad/s	global
+t1_gyro_y	y	GYRO	LeftFoot	rad/s	global
+t1_gyro_z	z	GYRO	LeftFoot	rad/s	global
 …
-t2_acc_x    x           ACCEL  RightWrist      m/s^2    global
-t2_acc_y    y           ACCEL  RightWrist      m/s^2    global
-t2_acc_z    z           ACCEL  RightWrist      m/s^2    global
-t2_gyro_x   x           GYRO   RightWrist      rad/s    global
-t2_gyro_y   y           GYRO   RightWrist      rad/s    global
-t2_gyro_z   z           GYRO   RightWrist      rad/s    global
+t2_acc_x	x	ACCEL	RightWrist	m/s^2	global
+t2_acc_y	y	ACCEL	RightWrist	m/s^2	global
+t2_acc_z	z	ACCEL	RightWrist	m/s^2	global
+t2_gyro_x	x	GYRO	RightWrist	rad/s	global
+t2_gyro_y	y	GYRO	RightWrist	rad/s	global
+t2_gyro_z	z	GYRO	RightWrist	rad/s	global
 ```
 
 ## Reference frame description (`*_channels.json`)
@@ -210,7 +210,7 @@ The description of the `reference_frame` column SHOULD use the `"Levels"`
 field to describe the named field using [objects][object] with following fields.
 
 | Key name      | Requirement Level                                      | Data type  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-|---------------|--------------------------------------------------------|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------- | ------------------------------------------------------ | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | RotationOrder | RECOMMENDED                                            | [string][] | The sequence in which the extrinsic rotations are applied around the three axes. One of `"XYZ"`, `"XZY"`, `"YXZ"`, `"YZX"`, `"ZXY"`, or `"ZYX"`.                                                                                                                                                                                                                                                                                                                   |
 | RotationRule  | RECOMMENDED                                            | [string][] | The direction of rotation around each axis. One of `"left-hand"` or `"right-hand"`.                                                                                                                                                                                                                                                                                                                                                                                |
 | SpatialAxes   | RECOMMENDED                                            | [string][] | The coordinate system in which the motion data are to be interpreted. A sequence of characters from the set `{'A', 'P', 'L', 'R', 'S', 'I', '_'}` indicating the direction of each axis. For example `"ARS"` indicates positive values in the X, Y, Z axes are respectively anterior, right, and superior of the origin, while `"PLI"` indicates positive values are posterior, left, and inferior of the origin. The `"_"` character may be used for unused axes. |

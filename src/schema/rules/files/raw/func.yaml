@@ -23,6 +23,14 @@ func:
     part: optional
     chunk: optional
 
+norf:
+  $ref: rules.files.raw.func.func
+  suffixes:
+    - noRF
+  entities:
+    $ref: rules.files.raw.func.func.entities
+    modality: optional
+
 phase:
   suffixes:
     - phase # deprecated

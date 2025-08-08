@@ -1,4 +1,4 @@
-# These rules indicate whether an association (defined in meta.context.context.associations)
+# These rules indicate whether an association (defined in meta.context.associations)
 # applies to a given file. These are hints to allow implementations to avoid unnecessary
 # directory and file reads.
 #
@@ -14,7 +14,7 @@
 ---
 events:
   selectors:
-    - 'task in entities'
+    - '"task" in entities'
     - extension != '.json'
   target:
     suffix: events
@@ -59,7 +59,7 @@ magnitude1:
 
 bval:
   selectors:
-    - suffix == 'dwi'
+    - intersects([suffix], ['dwi', 'epi'])
     - match(extension, '\.nii(\.gz)?$')
   target:
     extension: .bval
@@ -67,7 +67,7 @@ bval:
 
 bvec:
   selectors:
-    - suffix == 'dwi'
+    - intersects([suffix], ['dwi', 'epi'])
     - match(extension, '\.nii(\.gz)?$')
   target:
     extension: .bvec
@@ -89,4 +89,15 @@ coordsystem:
   target:
     suffix: coordsystem
     extension: .json
+  inherit: true
+
+electrodes:
+  selectors:
+    - intersects([suffix], ['eeg', 'ieeg', 'meg'])
+    - extension != '.json'
+  target:
+    suffix: electrodes
+    extension: .tsv
+    entities:
+      - space
   inherit: true

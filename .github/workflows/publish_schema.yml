@@ -1,0 +1,114 @@
+name: "Publish schema"
+
+on:
+  push:
+    branches:
+      - "master"
+      - "maint/*"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  GIT_AUTHOR_NAME: BIDS CI
+  GIT_AUTHOR_EMAIL: bids.maintenance@gmail.com
+  GIT_COMMITTER_NAME: BIDS CI
+  GIT_COMMITTER_EMAIL: bids.maintenance@gmail.com
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          filter: "blob:none"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3
+      - run: env
+      - run: git status
+      - name: Determine master/maintenance branch
+        id: branch
+        run: |
+          if [[ "$GITHUB_REF_NAME" = "master" ]]; then
+            echo "branch=jsr-dist" | tee -a $GITHUB_OUTPUT
+            echo "mode=dev" | tee -a $GITHUB_OUTPUT
+          else
+            echo "branch=jsr-maint" | tee -a $GITHUB_OUTPUT
+            echo "mode=maint" | tee -a $GITHUB_OUTPUT
+          fi
+      - name: Install bidsschematools
+        run: |
+          pip install --upgrade tools/schemacode
+          git clean -fxd tools/schemacode
+      - name: Checkout ${{ steps.branch.outputs.branch }}
+        run: |
+          git checkout -t origin/$JSR_BRANCH
+        env:
+          JSR_BRANCH: ${{ steps.branch.outputs.branch }}
+      - name: Regenerate schema
+        run: bst export > schema.json
+      - name: Regenerate context types
+        run: |
+          jq .meta.context schema.json \
+          | npx quicktype --src-lang schema --lang ts -t Context --just-types \
+          > context.ts
+      - name: Regenerate metaschema types
+        run: |
+          # Name the file schema so the type will be named Schema
+          bst export-metaschema > /tmp/schema.json
+          npx --package=json-schema-to-typescript json2ts --unknownAny /tmp/schema.json > metaschema.ts
+      - name: Determine next version
+        id: version
+        run: |
+          BASE=$( jq -r .schema_version schema.json )
+          if [[ "$BASE" =~ ^[0-9]*\.[0-9]*\.[0-9]*$ ]]; then
+            # Release, so unconditionally update version
+            VERSION=$BASE
+            jq ".version = \"$VERSION\"" jsr.json > tmp.json && mv tmp.json jsr.json
+            echo release=true | tee -a $GITHUB_OUTPUT
+          elif [[ "$BASE" =~ ^[0-9]*\.[0-9]*\.[0-9]*\.post[0-9]*$ ]]; then
+            # Post-release, so replace .post with + for JSR semver
+            VERSION=${BASE/.post/+}
+            jq ".version = \"$VERSION\"" jsr.json > tmp.json && mv tmp.json jsr.json
+            echo release=true | tee -a $GITHUB_OUTPUT
+          elif [[ "$GITHUB_REF_NAME" = "master" ]]; then
+            DENOVER=$( jq -r .version jsr.json )
+            # Get the reference of the latest commit to touch the schema directory
+            HASH=$( git log -n 1 --pretty=%h $GITHUB_REF -- src/schema )
+            if [[ $DENOVER =~ ^"$BASE".[0-9] ]]; then
+              PREFIX=${DENOVER%+*}
+              let SERIAL=1+${PREFIX#$BASE.}
+            else
+              SERIAL=1
+            fi
+            VERSION="$BASE.$SERIAL+$HASH"
+            echo release=true | tee -a $GITHUB_OUTPUT
+          else
+            echo release=false | tee -a $GITHUB_OUTPUT
+          fi
+          echo VERSION=$VERSION | tee -a $GITHUB_ENV
+          echo version=$VERSION | tee -a $GITHUB_OUTPUT
+      - name: Bump version (${{ steps.version.outputs.version }}) if changed
+        if: steps.version.outputs.release == 'true'
+        run: |
+          if ! git diff -s --exit-code; then
+            jq ".version = \"$VERSION\"" jsr.json > tmp.json && mv tmp.json jsr.json
+            git add jsr.json schema.json context.ts metaschema.ts
+            git commit -m "Update schema JSR distribution ($VERSION)"
+            git push
+          fi
+      - name: Publish to JSR
+        if: success() && steps.version.outputs.release == 'true'
+        run: |
+          npx jsr publish

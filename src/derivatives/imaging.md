@@ -10,8 +10,9 @@ Template:
 ```Text
 <pipeline_name>/
     sub-<label>/
-        <datatype>/
-            <source_entities>[_space-<space>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
+        [ses-<label>/]
+            <datatype>/
+                <source_entities>[_space-<space>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
 ```
 
 Volumetric preprocessing does not modify the number of dimensions, and so
@@ -147,8 +148,10 @@ Template:
 ```Text
 <pipeline_name>/
     sub-<label>/
-        anat|func|dwi/
-            <source_entities>[_space-<space>][_res-<label>][_den-<label>][_label-<label>][_desc-<label>]_mask.nii.gz
+        [ses-<label>/]
+            anat|func|dwi/
+                <source_entities>[_space-<space>][_res-<label>][_label-<label>][_desc-<label>]_mask.json
+                <source_entities>[_space-<space>][_res-<label>][_label-<label>][_desc-<label>]_mask.nii[.gz]
 ```
 
 A binary (1 - inside, 0 - outside) mask in the space defined by the [`space` entity](../appendices/entities.md#space).
@@ -229,7 +232,7 @@ vertices) or a combined volume/surface space.
 
 If the segmentation can be generated in different ways,
 for example, following an atlas segmentation,
-the [`seg` entity](../appendices/entities.md#segmentation) MAY be used to
+the [`seg` entity](../appendices/entities.md#seg) MAY be used to
 distinguish the name of the segmentation used.
 
 The following section describes discrete and probabilistic segmentations of
@@ -264,8 +267,11 @@ Template:
 ```Text
 <pipeline_name>/
     sub-<label>/
-        anat|func|dwi/
-            <source_entities>[_space-<space>][_seg-<label>][_res-<label>][_den-<label>]_dseg.nii.gz
+        [ses-<label>/]
+            anat|func|dwi/
+                <source_entities>[_space-<space>][_seg-<label>][_res-<label>][_desc-<label>]_dseg.json
+                <source_entities>[_space-<space>][_seg-<label>][_res-<label>][_desc-<label>]_dseg.nii[.gz]
+                <source_entities>[_space-<space>][_seg-<label>][_res-<label>][_desc-<label>]_dseg.tsv
 ```
 
 Example:
@@ -290,10 +296,10 @@ A guide for using macros can be found at
 A segmentation can be used to generate a binary mask that functions as a
 discrete "label" for a single structure.
 In this case, the mask suffix MUST be used,
-the [`label` entity](../appendices/entities.md#label)) SHOULD be used
+the [`label` entity](../appendices/entities.md#label) SHOULD be used
 to specify the masked structure
 (see [Common image-derived labels](#common-image-derived-labels)),
-and the [`seg` entity](../appendices/entities.md#segmentation) SHOULD be defined.
+and the [`seg` entity](../appendices/entities.md#seg) SHOULD be defined.
 
 For example:
 
@@ -328,8 +334,10 @@ Template:
 ```Text
 <pipeline_name>/
     sub-<label>/
-        func|anat|dwi/
-            <source_entities>[_space-<space>][_seg-<label>][_res-<label>][_den-<label>][_label-<label>]_probseg.nii.gz
+        [ses-<label>/]
+            func|anat|dwi/
+                <source_entities>[_space-<space>][_seg-<label>][_res-<label>][_label-<label>][_desc-<label>]_probseg.json
+                <source_entities>[_space-<space>][_seg-<label>][_res-<label>][_label-<label>][_desc-<label>]_probseg.nii[.gz]
 ```
 
 Example:
@@ -402,8 +410,12 @@ Template:
 ```Text
 <pipeline_name>/
     sub-<label>/
-        anat/
-            <source_entities>[_hemi-{L|R}][_space-<space>][_seg-<label>][_res-<label>][_den-<label>]_dseg.{label.gii|dlabel.nii}
+        [ses-<label>/]
+            anat/
+                <source_entities>[_hemi-{L|R}][_space-<space>][_seg-<label>][_res-<label>][_den-<label>][_desc-<label>]_dseg.json
+                <source_entities>[_hemi-{L|R}][_space-<space>][_seg-<label>][_den-<label>][_desc-<label>]_dseg.label.gii
+                <source_entities>[_hemi-{L|R}][_space-<space>][_seg-<label>][_res-<label>][_den-<label>][_desc-<label>]_dseg.dlabel.nii
+                <source_entities>[_hemi-{L|R}][_space-<space>][_seg-<label>][_res-<label>][_den-<label>][_desc-<label>]_dseg.tsv
 ```
 
 The [`hemi-<label>`](../appendices/entities.md#hemi) entity is REQUIRED for GIFTI files storing information about
@@ -524,21 +536,21 @@ and a guide for using macros can be found at
 
 An example, custom `dseg.tsv` that defines three labels:
 
-```Text
-index   name            abbreviation    color       mapping
-100     Gray Matter     GM              #ff53bb     1
-101     White Matter    WM              #2f8bbe     2
-102     Brainstem       BS              #36de72     11
+```tsv
+index	name	abbreviation	color	mapping
+100	Gray Matter	GM	#ff53bb	1
+101	White Matter	WM	#2f8bbe	2
+102	Brainstem	BS	#36de72	11
 ```
 
 The following example `dseg.tsv` defines regions that are not part of the
 standard BIDS labels:
 
-```Text
-index   name                abbreviation
-137     pars opercularis    IFGop
-138     pars triangularis   IFGtr
-139     pars orbitalis      IFGor
+```tsv
+index	name	abbreviation
+137	pars	opercularis	IFGop
+138	pars	triangularis	IFGtr
+139	pars	orbitalis	IFGor
 ```
 
 <!-- Link Definitions -->

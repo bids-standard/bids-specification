@@ -12,25 +12,20 @@ are supported (in contrast to "block" designs) - each "block of events" can be
 represented by an individual row in the `events.tsv` file (with a long
 duration).
 
-Template:
-
-```Text
-sub-<label>/[ses-<label>]
-    <data_type>/
-        <matches>_events.tsv
-        <matches>_events.json
-```
-
-Where `<matches>` corresponds to data filename. For example:
-`sub-control01_task-nback`.
+{{ MACROS___make_filename_template(
+       "raw",
+       placeholders=True,
+       suffixes=["events"]
+   )
+}}
 
 Each events file REQUIRES a corresponding data file.
 It is also possible to have a single `events.tsv` file describing events
 for all participants and runs (see
 [Inheritance Principle](../common-principles.md#the-inheritance-principle)).
-As with all other tabular data, `events.tsv` files MAY be accompanied by a JSON
-file describing the columns in detail (see
-[Tabular Files](../common-principles.md#tabular-files)).
+As with all other tabular data, `events.tsv` files MAY be accompanied
+by a JSON file describing the columns in detail
+(see [Tabular Files](../common-principles.md#tabular-files)).
 
 The tabular files consists of one row per event and a set of REQUIRED
 and OPTIONAL columns:
@@ -45,25 +40,29 @@ and a guide for using macros can be found at
 
 The content of  `events.tsv` files SHOULD be sorted by values in the `onset` column.
 
-Note for MRI data:
-If any acquired scans have been discarded before forming the imaging data file,
-ensure that an `onset` of 0 corresponds to the time the first image was stored.
-For example in case there is an in scanner training phase that
-begins before the scanning sequence has started events from this sequence should
-have negative onset time counting down to the beginning of the acquisition of
-the first volume.
-
-Note regarding the precision of numeric metadata:
-It is RECOMMENDENDED that dataset curators specify numeric metadata like `onset` and
-`duration` with as much decimal precision as is reasonable in the context of the experiment.
-For example in an EEG experiment with devices operating at 1000 Hz sampling frequency,
-dataset curators SHOULD specify **at least** 3 figures after the decimal point.
-
-An arbitrary number of additional columns can be added. Those allow describing
-other properties of events that could be later referenced in modeling and
+An arbitrary number of additional columns can be added.
+Those allow describing other properties of events that could be later referenced in modeling and
 hypothesis extensions of BIDS.
 Note that the `trial_type` and any additional columns in a TSV file
 SHOULD be documented in an accompanying JSON sidecar file.
+
+!!! note "Regarding the precision of numeric metadata"
+
+    For the precision of numeric metadata,
+    it is RECOMMENDENDED that dataset curators specify numeric metadata like `onset` and
+    `duration` with as much decimal precision as is reasonable in the context of the experiment.
+    For example in an EEG experiment with devices operating at 1000 Hz sampling frequency,
+    dataset curators SHOULD specify **at least** 3 figures after the decimal point.
+
+!!! note "For fMRI data"
+
+    For fMRI data
+    if any acquired scans have been discarded before forming the imaging data file,
+    ensure that an `onset` of 0 corresponds to the time the first image was stored.
+    For example in case there is an in scanner training phase that
+    begins before the scanning sequence has started events from this sequence should
+    have negative onset time counting down to the beginning of the acquisition of
+    the first volume.
 
 Example:
 
@@ -84,7 +83,7 @@ A guide for using macros can be found at
 
 Example of the content of the TSV file:
 
-```Text
+```tsv
 onset	duration	trial_type	response_time	stim_file	channel	annots
 1.23	0.65	start	1.435	images/red_square.jpg	n/a	n/a
 5.65	0.65	stop	1.739	images/blue_square.jpg	n/a	n/a
@@ -120,24 +119,26 @@ In the accompanying JSON sidecar, the `trial_type` column might look as follows:
 }
 ```
 
-Note that in the example above:
+!!! note
 
-1.  Only a subset of columns are described for the sake of brevity.
-    In a real dataset, all other columns SHOULD also be described.
+    In the example above:
 
-1.  The `channel` column contains a list of values that are separated
-    by a delimiter (`|`), as is declared in the `Delimiter` metadata
-    field of the `events.json` file.
-    Thus, the channels related to the event in the third row of the example
-    are called `F,1`, `F,2`, and `Cz`.
+    1.  Only a subset of columns are described for the sake of brevity.
+        In a real dataset, all other columns SHOULD also be described.
 
-1.  The example contains a column called `annots`.
-    This column is not defined in BIDS, and constitutes additional, arbitrary
-    (that is, unofficial) metadata.
-    In the present case, it is used to describe artifacts in the data,
-    in reference to the `channel` column.
-    The `annots` column is making
-    use of the powerful HED system for documenting events, see below.
+    1.  The `channel` column contains a list of values that are separated
+        by a delimiter (`|`), as is declared in the `Delimiter` metadata field
+        of the `events.json` file.
+        Thus, the channels related to the event in the third row of the example
+        are called `F,1`, `F,2`, and `Cz`.
+
+    1.  The example contains a column called `annots`.
+        This column is not defined in BIDS, and constitutes additional,
+        arbitrary (that is, unofficial) metadata.
+        In the present case, it is used to describe artifacts in the data,
+        in reference to the `channel` column.
+        The `annots` column is making use of the powerful HED system
+        for documenting events, see below.
 
 Events MAY also be documented in machine-actionable form
 using HED (Hierarchical Event Descriptor) tags.
@@ -146,8 +147,8 @@ in event-related analyses.
 See [Hierarchical Event Descriptors](../appendices/hed.md)
 for additional information and examples.
 
-For multi-echo files, the `events.tsv` file is applicable to all echos of
-a particular run:
+For multi-echo files, the `events.tsv` file is applicable
+to all echos of a particular run:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -189,8 +190,6 @@ References to existing databases can also be encoded using additional columns.
 The following example includes references to the
 [Karolinska Directed Emotional Faces (KDEF) database](https://www.kdef.se/).
 
-Example:
-
 <!-- This block generates a file tree.
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
@@ -208,11 +207,11 @@ A guide for using macros can be found at
 
 Example of the content of the TSV file:
 
-```Text
-onset duration  trial_type  identifier  database  response_time
-1.2 0.6 afraid  AF01AFAF  kdef  1.435
-5.6 0.6 angry AM01AFAN  kdef  1.739
-5.6 0.6 sad AF01ANSA  kdef  1.739
+```tsv
+onset	duration	trial_type	identifier	database	response_time
+1.2	0.6	afraid	AF01AFAF	kdef	1.435
+5.6	0.6	angry	AM01AFAN	kdef	1.739
+5.6	0.6	sad	AF01ANSA	kdef	1.739
 ```
 
 The `trial_type` and `identifier` columns from the `events.tsv` files might be described
@@ -236,8 +235,8 @@ in the accompanying JSON sidecar as follows:
 }
 ```
 
-Note that all other columns SHOULD also be described but are omitted for the
-sake of brevity.
+Note that all other columns SHOULD also be described but are omitted
+for the sake of brevity.
 
 ### Stimulus presentation details
 
@@ -326,7 +325,7 @@ in the accompanying JSON sidecar as follows (based on the example of the previou
 Signals related to stimuli (such as parameters of a film or audio stimuli) that are
 evenly recorded at a constant sampling frequency MUST be specified using a
 [compressed tabular file](../common-principles.md#compressed-tabular-files)
-([TSV.GZ file](../glossary.md#tsvgz-extensions)) and a corresponding
+([TSV.GZ file](../glossary.md#tsv_gz-extensions)) and a corresponding
 JSON file for storing metadata fields (see below).
 
 Template:

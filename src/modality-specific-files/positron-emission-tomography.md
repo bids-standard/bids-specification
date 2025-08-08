@@ -177,7 +177,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("pet.PETTime") }}
 
-We refer to the common principles for the standards for describing dates and timestamps, including possibilities for anonymization (see [Units](../common-principles.md#units)).
+We refer to the common principles for the standards for describing dates and timestamps, including possibilities for deidentification (see [Units](../common-principles.md#units)).
 
 #### Reconstruction
 
@@ -229,6 +229,31 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_sidecar_table("pet.PETSample") }}
+
+#### Deidentification information
+
+Describes the mechanism or method used to modify or remove metadata
+and/or pixel data to protect the patient or participant's identity.
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("mri.DeidentificationMethod") }}
+
+Each object in the `DeidentificationMethodCodeSequence` array includes the following RECOMMENDED keys:
+
+<!-- This block generates a table describing subfields within a metadata field.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_subobject_table("metadata.DeidentificationMethodCodeSequence.items") }}
 
 #### Task
 
@@ -288,27 +313,27 @@ Knudsen et al. 2020
 ([doi:10.1177/0271678X20905433](https://doi.org/10.1177/0271678X20905433))
 recommends recording participant body weight.
 If recorded once per participant, these data SHOULD be included in the
-[Participants file](../modality-agnostic-files.md#participants-file) or as
-[Phenotypic and assessment data](../modality-agnostic-files.md#phenotypic-and-assessment-data).
+[Participants file](../modality-agnostic-files/data-summary-files.md#participants-file) or as
+[Phenotypic and assessment data](../modality-agnostic-files/data-summary-files.md#phenotypic-and-assessment-data).
 
 For example:
 
-```Text
-participant_id body_weight
-sub-01 58
-sub-02 96
-sub-03 72
+```tsv
+participant_id	body_weight
+sub-01	58
+sub-02	96
+sub-03	72
 ```
 
 If multiple measurements are made, these data SHOULD be included in the
-[Sessions file](../modality-agnostic-files.md#sessions-file).
+[Sessions file](../modality-agnostic-files/data-summary-files.md#sessions-file).
 
 For example:
 
-```Text
-session_id body_weight
-ses-01 58
-ses-02 59
+```tsv
+session_id	body_weight
+ses-01	58
+ses-02	59
 ```
 
 ## Blood recording data
@@ -419,17 +444,17 @@ as shown in the following example.
 
 **`*_recording-manual_blood.tsv`**:
 
-```Text
-time plasma_radioactivity whole_blood_radioactivity metabolite_parent_fraction metabolite_polar_fraction
-0    0    0    1    0
-145    43.31    33.79    0.5749    0.1336
-292    48.96    37.42    0.3149    0.2746
-602    39.84    32.05    0.1469    0.3548
-1248    37.38    31.52    0.073    0.444
-1785    36.40    28.83    0.078    0.429
-2390    33.13    26.32    0.061    0.453
-3059    30.83    25.22    0.049    0.473
-4196    27.28    21.98    0.036    0.503
-5407    22.70    19.49    0.032    0.523
-7193    19.71    15.70    0.02    0.559
+```tsv
+time	plasma_radioactivity	whole_blood_radioactivity	metabolite_parent_fraction	metabolite_polar_fraction
+0	0	0	1	0
+145	43.31	33.79	0.5749	0.1336
+292	48.96	37.42	0.3149	0.2746
+602	39.84	32.05	0.1469	0.3548
+1248	37.38	31.52	0.073	0.444
+1785	36.40	28.83	0.078	0.429
+2390	33.13	26.32	0.061	0.453
+3059	30.83	25.22	0.049	0.473
+4196	27.28	21.98	0.036	0.503
+5407	22.70	19.49	0.032	0.523
+7193	19.71	15.70	0.02	0.559
 ```

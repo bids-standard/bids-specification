@@ -167,7 +167,7 @@ references (the cases in which they are used will be presented later):
     (which are in turn references to individual values), and the references inside `GeneticLevel.anyOf` indicate that there may be a single
     such value or a list of values.
 
-1.  In [`rules.files.deriv.preprocessed_data`](./rules/files/deriv/preprocessed_data.yaml):
+1.  In [`rules.files.deriv.preprocessed_data`][preprocessed_data]:
     ```YAML
     anat_nonparametric_common:
       $ref: rules.files.raw.anat.nonparametric
@@ -215,7 +215,7 @@ We see expressions may contain:
 -   Comparison operators such as `==` (equality) or `in` (subfield exists in field)
 -   Functions such as `intersects()`
 
-In fact, the full list of fields is defined in the `meta.context.context` object,
+In fact, the full list of fields is defined in the `meta.context` object,
 which (currently) contains at the top level:
 
 -   `schema`: access to the schema itself
@@ -259,19 +259,36 @@ The following operators should be defined by an interpreter:
 
 The following functions should be defined by an interpreter:
 
-| Function                                        | Definition                                                                                                                                                 | Example                                                | Note                                                                           |
-| ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `count(arg: array, val: any)`                   | Number of elements in an array equal to `val`                                                                                                              | `count(columns.type, "EEG")`                           | The number of times "EEG" appears in the column "type" of the current TSV file |
-| `exists(arg: str \| array, rule: str) -> int`   | Count of files in an array that exist in the dataset. String is array with length 1. Rules include `"bids-uri"`, `"dataset"`, `"subject"` and `"stimuli"`. | `exists(sidecar.IntendedFor, "subject")`               | True if all files in `IntendedFor` exist, relative to the subject directory.   |
-| `index(arg: array, val: any)`                   | Index of first element in an array equal to `val`, `null` if not found                                                                                     | `index(["i", "j", "k"], axis)`                         | The number, from 0-2 corresponding to the string `axis`                        |
-| `intersects(a: array, b: array) -> bool`        | `true` if arguments contain any shared elements                                                                                                            | `intersects(dataset.modalities, ["pet", "mri"])`       | True if either PET or MRI data is found in dataset                             |
-| `length(arg: array) -> int`                     | Number of elements in an array                                                                                                                             | `length(columns.onset) > 0`                            | True if there is at least one value in the onset column                        |
-| `match(arg: str, pattern: str) -> bool`         | `true` if `arg` matches the regular expression `pattern` (anywhere in string)                                                                              | `match(extension, ".gz$")`                             | True if the file extension ends with `.gz`                                     |
-| `max(arg: array) -> number`                     | The largest non-`n/a` value in an array                                                                                                                    | `max(columns.onset)`                                   | The time of the last onset in an events.tsv file                               |
-| `min(arg: array) -> number`                     | The smallest non-`n/a` value in an array                                                                                                                   | `min(sidecar.SliceTiming) == 0`                        | A check that the onset of the first slice is 0s                                |
-| `sorted(arg: array) -> array`                   | The sorted values of the input array                                                                                                                       | `sorted(sidecar.VolumeTiming) == sidecar.VolumeTiming` | True if `sidecar.VolumeTiming` is sorted                                       |
-| `substr(arg: str, start: int, end: int) -> str` | The portion of the input string spanning from start position to end position                                                                               | `substr(path, 0, length(path) - 3)`                    | `path` with the last three characters dropped                                  |
-| `type(arg: Any) -> str`                         | The name of the type, including `"array"`, `"object"`, `"null"`                                                                                            | `type(datatypes)`                                      | Returns `"array"`                                                              |
+| Function                                          | Definition                                                                                                                                | Example                                                | Note                                                                           |
+| ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `count(arg: array, val: any) -> int`              | Number of elements in an array equal to `val`                                                                                             | `count(columns.type, "EEG")`                           | The number of times "EEG" appears in the column "type" of the current TSV file |
+| `exists(arg: str \| array, rule: str) -> int`     | Count of files in an array that exist in the dataset. String is array with length 1. See following section for the meanings of rules.     | `exists(sidecar.IntendedFor, "subject")`               | True if all files in `IntendedFor` exist, relative to the subject directory.   |
+| `index(arg: array, val: any) -> int`              | Index of first element in an array equal to `val`, `null` if not found                                                                    | `index(["i", "j", "k"], axis)`                         | The number, from 0-2 corresponding to the string `axis`                        |
+| `intersects(a: array, b: array) -> array \| bool` | The intersection of arrays `a` and `b`, or `false` if there are no shared values.                                                         | `intersects(dataset.modalities, ["pet", "mri"])`       | Non-empty array if either PET or MRI data is found in dataset, otherwise false |
+| `allequal(a: array, b: array) -> bool`            | `true` if arrays have the same length and paired elements are equal                                                                       | `intersects(dataset.modalities, ["pet", "mri"])`       | True if either PET or MRI data is found in dataset                             |
+| `length(arg: array) -> int`                       | Number of elements in an array                                                                                                            | `length(columns.onset) > 0`                            | True if there is at least one value in the onset column                        |
+| `match(arg: str, pattern: str) -> bool`           | `true` if `arg` matches the regular expression `pattern` (anywhere in string)                                                             | `match(extension, ".gz$")`                             | True if the file extension ends with `.gz`                                     |
+| `max(arg: array) -> number`                       | The largest non-`n/a` value in an array                                                                                                   | `max(columns.onset)`                                   | The time of the last onset in an events.tsv file                               |
+| `min(arg: array) -> number`                       | The smallest non-`n/a` value in an array                                                                                                  | `min(sidecar.SliceTiming) == 0`                        | A check that the onset of the first slice is 0s                                |
+| `sorted(arg: array, method: str) -> array`        | The sorted values of the input array; defaults to type-determined sort. If method is "lexical", or "numeric" use lexical or numeric sort. | `sorted(sidecar.VolumeTiming) == sidecar.VolumeTiming` | True if `sidecar.VolumeTiming` is sorted                                       |
+| `substr(arg: str, start: int, end: int) -> str`   | The portion of the input string spanning from start position to end position                                                              | `substr(path, 0, length(path) - 3)`                    | `path` with the last three characters dropped                                  |
+| `type(arg: Any) -> str`                           | The name of the type, including `"array"`, `"object"`, `"null"`                                                                           | `type(datatypes)`                                      | Returns `"array"`                                                              |
+
+#### The `exists()` function
+
+In various places, BIDS datasets may declare links between files.
+In order to validate these links,
+the `exists()` function returns a count of files that can be found within the dataset.
+To accommodate the various ways of declaring these links,
+the following rules are defined:
+
+| `rule`       | Definition                                                                                                | Example                                                                               |
+| ------------ | --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `"dataset"`  | A path relative to the root of the dataset.                                                               | `exists('participants.tsv', 'dataset')`                                               |
+| `"subject"`  | A path relative to the current subject directory.                                                         | `exists('ses-1/anat/sub-01_ses-1_T1w.nii.gz', 'subject')`                             |
+| `"stimuli"`  | A path relative to the `/stimuli` directory.                                                              | For `events.tsv`: `exists(columns.stim_file, 'stimuli') == length(columns.stim_file)` |
+| `"file"`     | A path relative to the directory containing the current file.                                             | For `scans.tsv`: `exists(columns.filename, 'file') == length(columns.stim_file)`      |
+| `"bids-uri"` | A URI of the form `bids:<dataset>:<relative-path>`. If `<dataset>` is empty, the current dataset is used. | `exists('bids::participants.tsv', 'bids-uri')`                                        |
 
 #### The special value `null`
 
@@ -294,6 +311,9 @@ Most operations involving `null` simply resolve to `null`:
 | `null / 1`                 | `null` |
 | `match(null, pattern)`     | `null` |
 | `intersects(list, null)`   | `null` |
+| `intersects(null, list)`   | `null` |
+| `allequal(list, null)`     | `null` |
+| `allequal(null, list)`     | `null` |
 | `substr(null, 0, 1)`       | `null` |
 | `substr(str, null, 1)`     | `null` |
 | `substr(str, 0, null)`     | `null` |
@@ -349,6 +369,7 @@ The namespaces are:
 | --------------------------- | ----------------------------------------------------------------------------------- | ---------------- |
 | `objects.common_principles` | Terms that are used throughout BIDS                                                 | General terms    |
 | `objects.modalities`        | Broad categories of data represented in BIDS, roughly matching recording instrument | General terms    |
+| `objects.metaentities`      | Placeholders and wildcards to reduce verbosity of some templates in BIDS            | General terms    |
 | `objects.entities`          | Name-value pairs appearing in filenames                                             | Name/value terms |
 | `objects.metadata`          | Name-value pairs appearing in JSON files                                            | Name/value terms |
 | `objects.columns`           | Column headings and values appearing in TSV files                                   | Name/value terms |
@@ -378,6 +399,13 @@ These objects additionally have the field:
 | `name`   | For terms that can take on multiple values (such as entities, metadata fields), the name of the term as it appears in the specification and in a dataset; must be alphanumeric; mutually exclusive with `value` |
 | `type`   | The type (such as `string`, `integer`, `object`) of values the term describes                                                                                                                                   |
 | `format` | The format of the term (defined in `objects.formats`)                                                                                                                                                           |
+
+`objects.columns` additionally permit a `definition` field that may take any value permissible
+for the definition of a column in a JSON sidecar:
+
+| Field        | Description                                                                                                                                                                                                   |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `definition` | A JSON object that describes the column as in [Common principles - Tabular files][tabular files]. This is mutually exclusive with the `type` field, and is used for fields that have overridable definitions. |
 
 Value terms groups (`datatypes`, `suffixes`, `extensions`) define terms where a field
 can take on multiple values.
@@ -419,7 +447,7 @@ arrays or objects:
 | `properties`           | The object described has a given set of fields; the values of these fields may be constrained |
 | `additionalProperties` | The object described has constraints on its values, but not the names                         |
 
-### On re-used objects with different definitions
+### On reused objects with different definitions
 
 In a few cases, two objects with the same name appear multiple times in the specification.
 When this happens, it is preferred to find a common definition, and clarify it in the rules (see below).
@@ -478,6 +506,12 @@ The convention can be summed up in the following rules:
     | `display_name` | Human-friendly name |
     | `description`  | Term definition     |
 
+-   `objects.metaentities`
+    | Field          | Description         |
+    | -------------- | ------------------- |
+    | `display_name` | Human-friendly name |
+    | `description`  | Term definition     |
+
 -   `objects.entities`
 
     | Field          | Description                                             |
@@ -512,6 +546,7 @@ The convention can be summed up in the following rules:
     | `display_name` | Human-friendly name                                                 |
     | `description`  | Term definition                                                     |
     | `name`         | Name of column in TSV file (in `snake_case`)                        |
+    | `definition`   | JSON definition of a column, according to [Tabular files][]         |
     | `unit`         | Interpretation of numeric values                                    |
     | `type`         | Type of value                                                       |
     | `format`       | Permissible format of values, from definitions in `objects.formats` |
@@ -976,9 +1011,13 @@ EventsMissing:
 -   `rules.common_principles` - This file contains a list of terms that appear in `objects.common_principles`
     that determines the order they appear in the specification
 
+-   `rules.metaentities` - This file contains a list of terms that appear in `objects.metaentities`
+    that determines the order they appear in the specification
+
 ### One-off rules
 
 -   `rules.modalities` - The keys in this file are the modalities, the values objects with the following field:
+
     | Field       | Description                           |
     | ----------- | ------------------------------------- |
     | `datatypes` | List of datatypes mapping to modality |
@@ -1023,3 +1062,14 @@ be found at <https://bids-specification.readthedocs.io/en/latest/schema.json>.
 The JSON version of the schema contains `schema_version` and `bids_version` keys
 that identify the state of both the schema and the specification at the time it was
 compiled.
+
+## Metaschema
+
+The `metaschema.json` file is a meta-schema that uses the JSON Schema language to
+formalize the allowable directories, files, fields and values of the BIDS schema,
+ensuring consistency across the entire schema directory. Validation of the schema is
+incorporated into the CI, so any changes that are inconsistent will be flagged before
+inclusion.
+
+[preprocessed_data]: https://github.com/bids-standard/bids-specification/tree/master/src/schema/rules/files/deriv/preprocessed_data.yaml
+[tabular files]: https://bids-specification.readthedocs.io/en/stable/common-principles.html#tabular-files

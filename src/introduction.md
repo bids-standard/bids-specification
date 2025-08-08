@@ -178,11 +178,15 @@ For example:
 
 #### Motion
 
--    Jeung, S., Cockx, H., Appelhoff, S., Berg, T., Gramann, K., Grothkopp, S., Warmerdam, E., Hansen, C.,
-     Oostenveld, R., BIDS maintainers, Welzel, J. (2023).
-     **Motion-BIDS: extending the Brain Imaging Data Structure specification to organize motion data for reproducible research**.
-     PsyArXiv.
-     [doi:10.31234/osf.io/w6z79](https://doi.org/10.31234/osf.io/w6z79)
+-   Jeung, S., Cockx, H., Appelhoff, S., Berg, T., Gramann, K., Grothkopp, S., Warmerdam, E., Hansen, C.,
+    Oostenveld, R., BIDS maintainers, Welzel, J. (2023).
+    **Motion-BIDS: extending the Brain Imaging Data Structure specification to organize motion data for reproducible research**.
+    PsyArXiv.
+    [doi:10.31234/osf.io/w6z79](https://doi.org/10.31234/osf.io/w6z79)
+
+#### MRS
+
+-   (publication forthcoming)
 
 ### Research Resource Identifier (RRID)
 
@@ -190,4 +194,4 @@ BIDS has also a
 [Research Resource Identifier (RRID)](https://force11.org/group/resource-identification-initiative),
 which you can also include in your citations in addition to relevant publications (see above):
 
--   [`RRID:SCR_016124`](https://scicrunch.org/resources/data/record/nlx_144509-1/SCR_016124/resolver?q=SCR_016124)
+-   [`RRID:SCR_016124`](https://rrid.site/data/record/nlx_144509-1/SCR_016124/resolver?q=SCR_016124)

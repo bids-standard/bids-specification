@@ -16,6 +16,6 @@ Features:
 If you have questions, you can post them in one of several channels where BIDS members are active:
   - the [NeuroStars](https://neurostars.org/tags/bids) discourse forum
   - the [BrainHack Mattermost](https://mattermost.brainhack.org),
-    for instant messaging (see also this [news item](https://bids.neuroimaging.io/2020/06/24/Join-the-BIDS-community-on-the-BrainHack-Mattermost.html))
+    for instant messaging (see also this [news item](https://bids.neuroimaging.io/blog/2020/06/24/Join%20the%20BIDS%20community%20on%20the%20BrainHack%20Mattermost.html))
   - the [Google group](https://groups.google.com/forum/#!forum/bids-discussion),
     for broader discussions surrounding BIDS

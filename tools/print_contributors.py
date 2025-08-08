@@ -15,8 +15,9 @@ output_file = Path(__file__).parent.parent / "src" / "appendices" / "contributor
 
 
 def contributor_table_header(max_name_length, max_contrib_length):
-    return f"""| name{" " * (max_name_length-4)} | contributions{" " * (max_contrib_length-13)} |
-| {"-" * max_name_length} | {"-"*max_contrib_length} |
+    return f"""\
+| {"name":<{max_name_length}} | {"contributions":<{max_contrib_length}} |
+| {"":-<{max_name_length}} | {"":-<{max_contrib_length}} |
 """
 
 
@@ -24,16 +25,13 @@ def create_line_contributor(
     contributor: dict[str, str], max_name_length: int, max_contrib_length: int
 ):
     name = contributor["name"]
+    emap = emoji_map()
+    contributions = "".join(
+        emoji.emojize(emap[cont]) for cont in contributor["contributions"]
+    )
 
-    line = f"| {name}{' '*(max_name_length-len(name))} | "
-
-    nb_contrib = len(contributor["contributions"]) * 2
-    for contrib in contributor["contributions"]:
-        line += emoji.emojize(emoji_map()[contrib])
-
-    line += f"{' '*(max_contrib_length-nb_contrib)} |\n"
-
-    return line
+    pad = max_contrib_length - len(contributor["contributions"]) * 2
+    return f"| {name:<{max_name_length}} | {contributions}{'':<{pad}} |\n"
 
 
 def main():

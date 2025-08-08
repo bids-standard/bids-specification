@@ -1,66 +1,73 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
-exclude: 'tools/schemacode/bidsschematools/tests/data/broken_dataset_description.json'
+ci:
+  skip: [shellcheck]
+exclude: 'tools/schemacode/src/bidsschematools/tests/data/broken_dataset_description.json'
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v5.0.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: check-yaml
+        args: [--unsafe]
       - id: check-json
+      - id: check-toml
       - id: check-ast
       - id: check-added-large-files
       - id: check-case-conflict
-  - repo: https://github.com/psf/black
-    rev: 24.3.0
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 0.33.2
     hooks:
-      - id: black
-        files: ^tools/(?!schemacode)
+      - id: check-dependabot
+      - id: check-github-workflows
         args: ["--verbose"]
-      - id: black
-        name: "black bidsschematools"
-        files: tools/schemacode
-        args: ["--config", "tools/schemacode/pyproject.toml", "--verbose"]
-  - repo: https://github.com/pyCQA/isort
-    rev: 5.13.2
-    hooks:
-      - id: isort
-        files: ^tools/(?!schemacode)
-        args: ["--profile", "black"]
-      - id: isort
-        name: "isort bidsschematools"
-        files: tools/schemacode
-        args: ["--settings-file", "tools/schemacode/pyproject.toml"]
-  - repo: https://github.com/pyCQA/flake8
-    rev: 7.0.0
-    hooks:
-      - id: flake8
-        args: [--config=tools/schemacode/setup.cfg]
+      - id: check-metaschema
+        files: src/metaschema.json
+      - id: check-readthedocs
+        files: readthedocs.yml
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: v4.0.0-alpha.8
     hooks:
       - id: prettier
         entry: env PRETTIER_LEGACY_CLI=1 prettier # temporary fix for https://github.com/prettier/prettier/issues/15742
         files: src/schema/.*/.*\.yaml
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.37.1
+    hooks:
+      - id: yamllint
+        args: [-f=standard, -c=.yamllint.yml]
+        files: src/schema/.*/.*\.yaml
+  - repo: https://github.com/ComPWA/taplo-pre-commit
+    rev: v0.9.3
+    hooks:
+      - id: taplo-format
+        args: [-o, 'array_auto_collapse=false']
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.2.6
+    rev: v2.4.1
     hooks:
       - id: codespell
         args: ["--config=.codespellrc", "--dictionary=-", "--dictionary=.codespell_dict"]
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.9.0
+    rev: v1.17.1
     hooks:
       - id: mypy
         # Sync with project.optional-dependencies.typing
         additional_dependencies:
+          - acres
           - click
           - markdown-it-py
-          - importlib_resources
           - pandas-stubs
           - pyparsing
           - pytest
           - types-PyYAML
           - types-tabulate
-        args: ["tools/schemacode/bidsschematools"]
+          - types-jsonschema
+          - jsonschema
+          - httpx
+        args: ["tools/schemacode/src"]
         pass_filenames: false
+  - repo: https://github.com/koalaman/shellcheck-precommit
+    rev: v0.11.0
+    hooks:
+      - id: shellcheck

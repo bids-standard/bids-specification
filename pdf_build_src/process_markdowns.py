@@ -158,7 +158,6 @@ def remove_internal_links_reference(root_path):
                 # first find, which links need to be remove by scanning the
                 # references, and remove the reference
                 for ind, line in enumerate(data):
-
                     match = pattern_ref.search(line)
 
                     if match:
@@ -175,7 +174,6 @@ def remove_internal_links_reference(root_path):
                     # link
                     pattern = re.compile(r"\[([^\]]+)\]\[" + f"{link}" + r"\]")
                     for ind, line in enumerate(data):
-
                         match = pattern.search(line)
 
                         if match:
@@ -256,7 +254,6 @@ def assert_no_multiline_links(root_path):
                 code_context = False
                 macro_context = False
                 for ind, line in enumerate(data):
-
                     # do not check "code blocks" or "macros"
                     if line.strip().startswith("```"):
                         code_context = not code_context
@@ -277,8 +274,7 @@ def assert_no_multiline_links(root_path):
 
     if len(problems) > 0:
         msg = (
-            "Found multiline markdown links! Please reformat as single"
-            " line links.\n\n"
+            "Found multiline markdown links! Please reformat as single line links.\n\n"
         )
         msg += json.dumps(problems, indent=4)
         raise AssertionError(msg)
@@ -378,7 +374,6 @@ def correct_table(table, offset=[0.0, 0.0], debug=False):
     # correct alignment of fences and populate the new table (A List of str)
     new_table = []
     for i, row in enumerate(table):
-
         if i == 1:
             str_format = " {:-{align}{width}} "
         else:
@@ -559,7 +554,7 @@ def correct_tables(root_path, debug=False):
                             for i, new_line in enumerate(content):
                                 if i == start_line:
                                     new_content.pop()
-                                if i >= start_line and i < end_line:
+                                if start_line <= i < end_line:
                                     new_content.append("|".join(table[count]) + " \n")
                                     count += 1
                                 elif i == end_line:
@@ -678,7 +673,6 @@ def process_macros(duplicated_src_dir_path):
 
 
 if __name__ == "__main__":
-
     duplicated_src_dir_path = "src_copy/src"
 
     # make a copy of the src directory in the current directory

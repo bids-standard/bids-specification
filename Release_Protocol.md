@@ -12,10 +12,6 @@ your fork locally to a directory called `bids-specification`.
 
 Before you start a release, you have to ensure that the automatically generated changelog is **up to date**.
 See the relevant [section in CONTRIBUTING.md](CONTRIBUTING.md#how-is-the-changelog-generated) for further information.
-In practice this means ensuring that the most recently merged pull request
-was merged into the `master` branch using the "Merge commit" option.
-
-![merge-commit](release_images/merge_commit.png.png "merge-commit")
 
 ### 1. Fetch the latest version of the [master branch of the BIDS-specification](https://github.com/bids-standard/bids-specification/tree/master)
 
@@ -119,6 +115,10 @@ important changes might be moved down the list to ensure that large changes are 
 You can also make use of the `exclude-from-changelog` label.
 Adding this label to PRs in the GitHub web interface will prevent the changelog generator from
 considering this item for inclusion in the changelog.
+
+#### 2.5 Update the schema
+
+Add the new version to `src/schema/meta/versions.yaml`.
 
 ### 3. Commit changes and push to upstream
 
@@ -271,10 +271,14 @@ Similarly update the version in CITATION.cff with a `dev` suffix.
 
 Update the following files in the BIDS website repository (https://github.com/bids-standard/bids-website) if applicable:
 
-- `tools/timeline.csv`
-- `_data/beps.yml`
-- `_data/beps_completed.yml`
-- `_data/beps_other.yml`
+- `data/timeline.csv`
+- `data/beps/beps.yml`
+- `data/beps/beps_completed.yml`
+- `data/beps/beps_other.yml`
+
+If the release relates to the merge of a BEP, add the BEP leads to the BIDS advisory group:
+
+- `data/people/advisory.yml`
 
 ### 12. Sharing news of the release
 
