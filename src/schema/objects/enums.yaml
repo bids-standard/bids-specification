@@ -372,7 +372,8 @@ study__datasettype:
   value: study
   display_name: study
   description: |
-    A study BIDS dataset.
+    A study BIDS dataset to organize the data for the entire study (original source data, raw BIDS,
+    derivatives) as a valid BIDS dataset.
 scanner:
   value: scanner
   display_name: scanner
