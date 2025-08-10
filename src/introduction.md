@@ -186,7 +186,11 @@ For example:
 
 #### MRS
 
--   (publication forthcoming)
+-   Bouchard, A.E., Wong, D., Bogner, W., Gau, R., Halchenko, Y.O., Lamb, D.G., Markiewicz, C.J., Mullins, P.G.,
+    Niso, G., Oeltzschner, G., BIDS Maintainers, Clarke, W.T., Wilson, M., Mikkelsen, M. (2025).
+    **MRS-BIDS, an extension to the Brain Imaging Data Structure for magnetic resonance spectroscopy**.
+    Scientific Data 12, (13841).
+    [doi:10.1038/s41597-025-05543-2](https://doi.org/10.1038/s41597-025-05543-2)
 
 ### Research Resource Identifier (RRID)
 
