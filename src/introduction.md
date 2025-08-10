@@ -169,20 +169,20 @@ For example:
 
 #### NIRS
 
--   Luke, R., Oostenveld, R., Cockx, H., Niso, G., Shader, M., Orihuela-Espina, F.,
-    Innes-Brown, H., Tucker, S., Boas, D., Gau, R., Salo, T., Appelhoff, S., Markiewicz, C
-    McAlpine, D., BIDS maintainers, Pollonini, L. (2023).
-    **fNIRS-BIDS, the Brain Imaging Data Structure Extended to Functional Near-Infrared Spectroscopy**.
-    PsyArXiv.
-    [doi:10.31219/osf.io/7nmcp](https://doi.org/10.31219/osf.io/7nmcp)
+-   Luke, R., Oostenveld, R., Cockx, H., Niso, G., Shader, M.J., Orihuela-Espina, F., Innes-Brown, H.,
+    Tucker, S., Boas, D., Yücel, M.A., Gau, R., Salo, T., Appelhoff, S., Markiewicz, C.J., McAlpine, D.,
+    The BIDS Maintainers, Pollonini, L. (2025)
+    **NIRS-BIDS: Brain Imaging Data Structure Extended to Near-Infrared Spectroscopy**.
+    Scientific Data 12, (159).
+    [doi:10.1038/s41597-024-04136-9](https://doi.org/10.1038/s41597-024-04136-9)
 
 #### Motion
 
 -   Jeung, S., Cockx, H., Appelhoff, S., Berg, T., Gramann, K., Grothkopp, S., Warmerdam, E., Hansen, C.,
-    Oostenveld, R., BIDS maintainers, Welzel, J. (2023).
-    **Motion-BIDS: extending the Brain Imaging Data Structure specification to organize motion data for reproducible research**.
-    PsyArXiv.
-    [doi:10.31234/osf.io/w6z79](https://doi.org/10.31234/osf.io/w6z79)
+    Oostenveld, R., BIDS Maintainers, Welzel J. (2024).
+    **Motion-BIDS: an extension to the brain imaging data structure to organize motion data for reproducible research**.
+    Scientific Data 11, (716).
+    [doi:10.1038/s41597-024-03559-8](https://doi.org/10.1038/s41597-024-03559-8)
 
 #### MRS
 
