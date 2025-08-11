@@ -5,7 +5,7 @@ ci:
 exclude: 'tools/schemacode/src/bidsschematools/tests/data/broken_dataset_description.json'
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
