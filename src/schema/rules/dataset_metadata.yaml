@@ -58,3 +58,10 @@ genetic_info:
     TissueOrigin: optional
     BrainLocation: optional
     CellType: optional
+
+participants:
+  selectors:
+    - path == "/participants.json"
+    - '"age" in columns'
+  fields:
+    AgeReference: recommended
