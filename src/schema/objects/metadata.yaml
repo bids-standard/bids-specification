@@ -644,6 +644,14 @@ ContainerURI:
     URI for software container image used to produce the dataset
   type: string
   format: uri
+ConcurrenceGroup:
+  name: ConcurrenceGroup
+  display_name: ConcurrenceGroup
+  description: |
+    An identifier shared by files recorded concurrently.
+    Each "ConcurrenceGroup" MUST be a unique string within one participant's tree,
+    shared only by the continuously recorded data which was measured simultaneously.
+  type: string
 ContinuousHeadLocalization:
   name: ContinuousHeadLocalization
   display_name: Continuous Head Localization
@@ -2794,9 +2802,9 @@ PhysioType:
     For backwards compatibility, the default value is "generic".
   type: string
   enum:
-    - generic
-    - specified
-    - eyetracking
+    - $ref: objects.enums.PhysioTypeGeneric.value
+    - $ref: objects.enums.PhysioTypeEyetrack.value
+    - $ref: objects.enums.PhysioTypeEnriched.value
 PixelSize:
   name: PixelSize
   display_name: Pixel Size
