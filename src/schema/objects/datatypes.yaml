@@ -68,6 +68,11 @@ phenotype:
     Participant level measurement data
     (for example, responses from multiple questionnaires)
     split into individual files separate from `participants.tsv`.
+physio:
+  value: physio
+  display_name: Physiological Data
+  description: |
+    Continuous peripheral physiological recordings such as respiratory, cardiac, pulse, gastric fluctuations, skin conductance, or blood pressure changes.
 nirs:
   value: nirs
   display_name: Near-Infrared Spectroscopy
