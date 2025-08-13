@@ -32,6 +32,13 @@ AcquisitionMode:
   description: |
     Type of acquisition of the PET data (for example, `"list mode"`).
   type: string
+AcquisitionObservations:
+  name: AcquisitionObservations
+  display_name: Acquisition Observations
+  description: |
+    General observations during the acquisition that might alter physiological fluctuations, 
+    their recording, or their QC/QA (e.g. subject moves hands often, or does not comply with instructions).
+  type: string
 AcquisitionVoxelSize:
   name: AcquisitionVoxelSize
   display_name: Acquisition Voxel Size
@@ -49,6 +56,13 @@ AcquisitionVoxelSize:
     type: number
     exclusiveMinimum: 0
     unit: mm
+AmplifierSettings:
+  name: AmplifierSettings
+  display_name: AmplifierSettings
+  description: |
+    Amplifier settings during data acquisition (e.g. gain, sampling filters, bandwidth, etc.)
+    Strings MAY be represented in the format Setting:Value  (e.g. Gain:10)
+  type: array of strings
 Anaesthesia:
   name: Anaesthesia
   display_name: Anaesthesia
@@ -416,6 +430,36 @@ CellType:
     Values SHOULD come from the
     [cell ontology](https://obofoundry.org/ontology/cl.html).
   type: string
+ChannelDeviceSerialNumber:
+  name: ChannelDeviceSerialNumber
+  display_name: Channel Device Serial Number
+  description: |
+    The serial number(s) of each piece of hardware equipment that 
+    produced the measurements, including the sensor, connecting cables, 
+    and amplifiers. Equipment should be listed in order of attachment, 
+    from participant to recording device. A pseudonym can also be used to 
+    prevent the equipment from being identifiable, so long as each 
+    pseudonym is unique within the dataset.
+  type: string or array of strings
+ChannelManufacturer:
+  name: ChannelManufacturer
+  display_name: Channel Manufacturer
+  description: |
+    Manufacturer(s) of each piece of the equipment that 
+    produced the measurements upstream of the recording device, including 
+    the sensor, connecting cables, and amplifiers. If more than one manufacturer 
+    applies, list the manufacturer for each piece of hardware, in order 
+    of attachment from participant to recording device.
+  type: string or array of strings
+ChannelManufacturersModelName:
+  name: ChannelManufacturersModelName
+  display_name: Channel Manufacturers Model Name
+  description: |
+    Manufacturer's model name(s) of each piece of hardware equipment that 
+    produced the measurements upstream of the recording device, including 
+    the sensor, connecting cables, and amplifiers. Equipment should be listed 
+    in order of attachment, from participant to recording device.
+  type: string or array of strings
 ChemicalShiftOffset:
   name: ChemicalShiftOffset
   display_name: Chemical Shift Offset
@@ -519,6 +563,14 @@ Columns:
   type: array
   items:
     type: string
+ConcurrenceGroup:
+  name: ConcurrenceGroup
+  display_name: ConcurrenceGroup
+  description: |
+    An identifier shared by files recorded concurrently. 
+    Each "ConcurrenceGroup" MUST be a unique string within one participant's tree, 
+    shared only by the continuously recorded data which was measured simultaneously.
+  type: string
 ContinuousHeadLocalization:
   name: ContinuousHeadLocalization
   display_name: Continuous Head Localization
@@ -719,7 +771,8 @@ DeviceSerialNumber:
   name: DeviceSerialNumber
   display_name: Device Serial Number
   description: |
-    The serial number of the equipment that produced the measurements.
+    The serial number of the equipment that recorded the measurements:
+    that is, the main recording device.
     A pseudonym can also be used to prevent the equipment from being
     identifiable, so long as each pseudonym is unique within the dataset.
   type: string
@@ -2097,13 +2150,13 @@ Manufacturer:
   name: Manufacturer
   display_name: Manufacturer
   description: |
-    Manufacturer of the equipment that produced the measurements.
+    Manufacturer of the main equipment that recorded the measurements.
   type: string
 ManufacturersModelName:
   name: ManufacturersModelName
   display_name: Manufacturers Model Name
   description: |
-    Manufacturer's model name of the equipment that produced the measurements.
+    Manufacturer's model name of the main equipment that recorded the measurements.
   type: string
 MatrixCoilMode:
   name: MatrixCoilMode
@@ -2151,6 +2204,26 @@ MeasurementToolMetadata:
       format: uri
     Description:
       type: string
+MeasureType:
+  name: MeasureType
+  display_name: Measure Type
+  description: |
+    Describes the category of physiological data which was recorded.
+  type: string
+  enum:
+  - Trigger, 
+  - PPG 
+  - ECG 
+  - Ventilation
+  - CO2
+  - O2
+  - PetCO2
+  - PetO2
+  - EDA-tonic
+  - EDA-phasic
+  - EDA-total
+  - BP 
+  - Other
 MetaboliteAvail:
   name: MetaboliteAvail
   display_name: Metabolite Available
@@ -2593,6 +2666,17 @@ PhotoDescription:
   description: |
     Description of the photo.
   type: string
+PhysioType:
+  name: PhysioType
+  display_name: PhysioType
+  description: |
+    Defines the specific type of physiological recording. 
+    For backwards compatibility, the default value is "generic".
+  type: string
+  enum:
+    - generic
+    - specified
+    - eyetracking
 PixelSize:
   name: PixelSize
   display_name: Pixel Size
@@ -2622,6 +2706,13 @@ PixelSizeUnits:
     - mm
     - um
     - nm
+Placement:
+  name: Placement
+  display_name: Placement
+  description: |
+    Placement of sensor on the measurement subject. 
+    Non-physiological and trigger columns must have “n/a”.
+  type: string
 PlasmaAvail:
   name: PlasmaAvail
   display_name: Plasma Avail
@@ -3377,6 +3468,12 @@ SoftwareFilters:
     - type: string
       enum:
         - n/a
+SoftwareModels:
+  name: SoftwareModels
+  display_name: Software Models
+  description: |
+    Name of the software which recorded the measurements.
+  type: string
 SoftwareName:
   name: SoftwareName
   display_name: Software Name
@@ -3595,9 +3692,12 @@ StartTime:
   display_name: Start Time
   description: |
     Start time in seconds in relation to the start of acquisition of the first
-    data sample in the corresponding (neural) dataset (negative values are allowed).
+    data sample in a reference file sharing the same "ConcurrenceGroup" identifier 
+    (negative values are allowed). Within each set of “ConcurrenceGroup” files, 
+    a reference file MUST be designated with a “StartTime” equaling 0.
     This data MAY be specified with sub-second precision using the syntax `s[.000000]`,
     where `s` reflects whole seconds, and `.000000` reflects OPTIONAL fractional seconds.
+    If no ConcurrenceGroup identifier is defined, the StartTime should be set to 0.
   type: number
   unit: s
 StationName:
@@ -3652,6 +3752,27 @@ SubjectArtefactDescription:
     If this field is set to `"n/a"`, it will be interpreted as absence of major
     source of artifacts except cardiac and blinks.
   type: string
+SubjectArtefactDescription:
+  name: SubjectArtefactDescription
+  display_name: Subject Artifact Description
+  description: |
+    Freeform description of the observed subject artifact and its possible cause
+    (for example, `"Vagus Nerve Stimulator"`, `"non-removable implant"`).
+    If this field is set to `"n/a"`, it will be interpreted as absence of major
+    source of artifacts except cardiac and blinks.
+  type: string
+SubjectPosition:
+  name: SubjectPosition
+  display_name: Subject Position
+  description: |
+    Position of the subject during data acquisition.
+  type: string
+  enum:
+  - prone
+  - supine
+  - standing
+  - sitting
+  - reclined
 TablePosition:
   name: TablePosition
   display_name: Table Position
