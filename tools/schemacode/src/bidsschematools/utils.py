@@ -148,4 +148,4 @@ def jsonschema_validator(
 
     validator_kwargs: ValidatorKwargs
     validator_kwargs = {"format_checker": validator_cls.FORMAT_CHECKER} if check_format else {}
-    return validator_cls(schema, **validator_kwargs)
+    return validator_cls(schema, **validator_kwargs)  # type: ignore[call-arg]

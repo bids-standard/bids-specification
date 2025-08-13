@@ -20,9 +20,8 @@ AcquisitionDuration:
   name: AcquisitionDuration
   display_name: Acquisition Duration
   description: |
-    Duration (in seconds) of volume acquisition.
+    Duration (in seconds) of scan acquisition, including all volumes for multi-volume scans.
     Corresponds to [DICOM Tag 0018, 9073](https://dicomlookup.com/dicomtags/(0018,9073)) `Acquisition Duration`.
-    This field is mutually exclusive with `"RepetitionTime"`.
   type: number
   exclusiveMinimum: 0
   unit: s
@@ -1200,6 +1199,15 @@ FlipAngle:
         unit: degree
         exclusiveMinimum: 0
         maximum: 360
+FrameAcquisitionDuration:
+  name: FrameAcquisitionDuration
+  display_name: Frame Acquisition Duration
+  description: |
+    Duration (in seconds) of volume acquisition.
+    Corresponds to DICOM Tag 0018, 9220 `Frame Acquisition Duration`.
+  type: number
+  exclusiveMinimum: 0
+  unit: s
 FrameDuration:
   name: FrameDuration
   display_name: Frame Duration
@@ -1728,6 +1736,15 @@ JNTANGChannelCount:
     Number of joint angle channels.
   type: integer
   minimum: 0
+Keywords:
+  name: Keywords
+  display_name: Keywords
+  description: |
+    A list of keywords that describe the content or subject matter of the dataset.
+    These may be used to enhance the findability of the dataset on public archives.
+  type: array
+  items:
+    type: string
 LabelingDistance:
   name: LabelingDistance
   display_name: Labeling Distance
