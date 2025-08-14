@@ -609,7 +609,7 @@ DeidentificationMethodCodeSequence:
   type: array
   items:
     type: object
-    recommended_fields:
+    recommended:
       - CodeValue
       - CodeMeaning
       - CodingSchemeDesignator
@@ -999,7 +999,7 @@ EditPulse:
   type: object
   additionalProperties:
     type: object
-    recommended_fields: [FrequencyOffset, PulseDuration]
+    recommended: [FrequencyOffset, PulseDuration]
     properties:
       FrequencyOffset:
         anyOf:
