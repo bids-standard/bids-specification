@@ -545,16 +545,21 @@ and a guide for using macros can be found at
             "RECOMMENDED",
             "The description of the column.",
         ),
+        "Format": "OPTIONAL",
         "Levels": "RECOMMENDED",
         "Units": "RECOMMENDED",
         "Delimiter": "OPTIONAL",
         "TermURL": "RECOMMENDED",
         "HED": "OPTIONAL",
+        "Maximum": "OPTIONAL",
+        "Minimum": "OPTIONAL",
    }
 ) }}
 
 Please note that while both `Units` and `Levels` are RECOMMENDED, typically only one
 of these two fields would be specified for describing a single TSV file column.
+In the absence of `Format`, `Units` implies the column contains numeric values,
+and `Levels` implies the column contains strings.
 
 Example:
 
@@ -563,6 +568,7 @@ Example:
   "test": {
     "LongName": "Education level",
     "Description": "Education level, self-rated by participant",
+    "Format": "integer",
     "Levels": {
       "1": "Finished primary school",
       "2": "Finished secondary school",
@@ -572,7 +578,9 @@ Example:
   },
   "bmi": {
     "LongName": "Body mass index",
+    "Format": "number",
     "Units": "kg/m^2",
+    "Minimum": 0,
     "TermURL": "https://purl.bioontology.org/ontology/SNOMEDCT/60621009"
   }
 }

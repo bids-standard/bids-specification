@@ -1199,6 +1199,39 @@ FlipAngle:
         unit: degree
         exclusiveMinimum: 0
         maximum: 360
+Format:
+  name: Format
+  display_name: Value format
+  description: |
+    Permitted formats for values in the described column.
+  type: string
+  # Keep synced with objects.formats
+  enum:
+    # Type formats
+    - string
+    - number
+    - integer
+    - boolean
+    # Numeric/alphanumeric strings
+    - index
+    - label
+    # Dates/times
+    - date
+    - datetime
+    - time
+    # Units
+    - unit
+    # URIs
+    - uri
+    - rrid
+    - bids_uri
+    # Paths
+    - dataset_relative
+    - file_relative
+    - participant_relative
+    - stimuli_relative
+    # Miscellaneous
+    - hed_version
 FrameAcquisitionDuration:
   name: FrameAcquisitionDuration
   display_name: Frame Acquisition Duration
@@ -2153,6 +2186,12 @@ MaxMovement:
     as measured by the head localization coils (for example, `4.8`).
   type: number
   unit: mm
+Maximum:
+  name: Maximum
+  display_name: Maximum value
+  description: |
+    Maximum value a column entry is permitted to have.
+  type: number
 MeasurementToolMetadata:
   name: MeasurementToolMetadata
   display_name: Measurement Tool Metadata
@@ -2191,6 +2230,12 @@ MetaboliteRecoveryCorrectionApplied:
     If `true`, the `hplc_recovery_fractions` column MUST be present in the
     corresponding `*_blood.tsv` file.
   type: boolean
+Minimum:
+  name: Minimum
+  display_name: Minimum value
+  description: |
+    Minimum value a column entry is permitted to have.
+  type: number
 MiscChannelCount:
   name: MiscChannelCount
   display_name: Misc Channel Count
