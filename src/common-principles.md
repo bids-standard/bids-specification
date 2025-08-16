@@ -394,6 +394,7 @@ Derivatives can be stored/distributed in two ways:
     MAY be included in the `code/` subdirectory.
     Extra documentation (and relevant images) MAY be included in the `docs/` subdirectory.
     Logs from running the code or other commands MAY be stored under `logs/` subdirectory.
+    Temporary working files MAY be stored under the `scratch/` subdirectory.
 
     Example of a derivative dataset including the raw dataset as source:
 

@@ -42,6 +42,9 @@ docs:
 logs:
   level: optional
   path: logs
+scratch:
+  level: optional
+  path: scratch
 sourcedata:
   level: optional
   path: sourcedata

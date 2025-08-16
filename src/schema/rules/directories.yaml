@@ -46,6 +46,10 @@ raw:
     name: phenotype
     level: optional
     opaque: false
+  scratch:
+    name: scratch
+    level: optional
+    opaque: true
   sourcedata:
     name: sourcedata
     level: optional
