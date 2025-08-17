@@ -3050,6 +3050,8 @@ ResonantNucleus:
     - type: array
       items:
         type: string
+        minItems: 1
+        maxItems: 2
 RotationOrder:
   name: RotationOrder
   display_name: RotationOrder
