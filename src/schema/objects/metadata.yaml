@@ -3616,6 +3616,8 @@ SpectrometerFrequency:
       items:
         type: number
         unit: MHz
+        minItems: 1
+        maxItems: 2
 SpoilingGradientDuration:
   name: SpoilingGradientDuration
   display_name: Spoiling Gradient Duration
