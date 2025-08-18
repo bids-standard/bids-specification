@@ -48,6 +48,71 @@ AcquisitionVoxelSize:
     type: number
     exclusiveMinimum: 0
     unit: mm
+Activities:
+  name: Activities
+  display_name: Activities
+  description: |
+    Describe Activities provenance records.
+  type: array
+  minItems: 1
+  items:
+    type: object
+    required: [Id, Label, Command]
+    properties:
+      Id:
+        name: Id
+        description: Identifier for the activity.
+        type: string
+        format: uri
+      Label:
+        name: Label
+        description: Name of the tool, script, or function used (for example "bet", "recon-all", "myFunc", "docker").
+        type: string
+        format: label
+      Command:
+        name: Command
+        description: Command(s) used to run the tool, including all parameters.
+        type: string
+      AssociatedWith:
+        name: AssociatedWith
+        description: |
+          Identifier(s) of the software package(s) used to compute this activity.
+          The corresponding Software must be defined with its own Software record).
+        anyOf:
+          - type: string
+            format: uri
+          - type: array
+            items:
+              type: string
+              format: uri
+      Used:
+        name: Used
+        description: |
+          Identifier(s) of entity(ies) or environment(s) used by this activity.
+          The corresponding Entities (resp. Environments) must be defined with
+          their own Entity (resp. Environment) record.
+        anyOf:
+          - type: string
+            format: uri
+          - type: array
+            items:
+              type: string
+              format: uri
+      Type:
+        name: Type
+        description: A term from a controlled vocabulary that more specifically describes the Activity.
+        type: string
+        format: uri
+      StartedAtTime:
+        name: StartedAtTime
+        description: A timestamp tracking when this activity started.
+        type: string
+        format: date
+      EndedAtTime:
+        name: EndedAtTime
+        description: A timestamp tracking when this activity ended.
+        type: string
+        format: date
 Anaesthesia:
   name: Anaesthesia
   display_name: Anaesthesia
@@ -730,6 +795,13 @@ DewarPosition:
     `"upright"`, `"supine"` or `"degrees"` of angle from vertical:
     for example on CTF systems, `"upright=15°, supine=90°"`.
   type: string
+Digest:
+  name: Digest
+  display_name: Digest
+  description: |
+    Object containing checksum(s) of a file.
+    It takes the form {"type_of_digest": "value"}.
+  type: object
 DigitizedHeadPoints:
   name: DigitizedHeadPoints
   display_name: Digitized Head Points
@@ -1083,6 +1155,100 @@ EncodingTechnique:
     For example, `"Cartesian"`, `"EPSI"`, `"Spiral"`,
     or `"Density-weighted concentric ring trajectory"`.
   type: string
+Entities:
+  name: Entities
+  display_name: Entities
+  description: |
+    Describe Entities provenance records.
+  type: array
+  minItems: 1
+  items:
+    type: object
+    required: [Id, Label]
+    recommended: [Digest]
+    properties:
+      Id:
+        name: Id
+        description: Identifier for the entity.
+        type: string
+        format: bids_uri
+      Label:
+        name: Label
+        description: A name for the entity.
+        type: string
+        format: label
+      Digest:
+        name: Digest
+        description: |
+          For files, this would include checksums of files.
+          It would take the form {"": "value"}.
+        type: object
+      AtLocation:
+        name: AtLocation
+        description: |
+          For input files, this is the relative path to the file on disk.
+        type: string
+      GeneratedBy:
+        name: GeneratedBy
+        description: |
+          Identifier(s) of the Activity(ies) which generated this Entity.
+          The corresponding Activity must be defined with its own Activity record.
+        anyOf:
+          - type: string
+            format: uri
+          - type: array
+            items:
+              type: string
+              format: uri
+      Type:
+        name: Type
+        description: A term from a controlled vocabulary that more specifically describes the Entity.
+        type: string
+        format: uri
+EntityType:
+  name: Type
+  display_name: Type
+  description: |
+    A term from a controlled vocabulary that more specifically describes an Entity provenance record.
+    See the [`Entity` records](SPEC_ROOT/modality-agnostic-files/provenance.md#entity-records) section.
+  type: string
+  format: uri
+Environments:
+  name: Environments
+  display_name: Environments
+  description: |
+    Describe Environments provenance records.
+  type: array
+  minItems: 1
+  items:
+    type: object
+    required: [Id, Label]
+    properties:
+      Id:
+        name: Id
+        description: |
+          Identifier for the environment (this identifier will be used to associated activities with this environment).
+        type: string
+        format: uri
+      Label:
+        name: Label
+        description: A name for the environment.
+        type: string
+        format: label
+      EnvVars:
+        name: EnvVars
+        description: |
+          A dictionary defining the environment variables as key-value pairs.
+        type: object
+      OperatingSystem:
+        name: OperatingSystem
+        description: Name of the operating system.
+        type: string
+      Dependencies:
+        name: Dependencies
+        description: |
+          A dictionary defining the software used and their versions as key-value pairs.
+        type: object
 EpochLength:
   name: EpochLength
   display_name: Epoch Length
@@ -1274,28 +1440,40 @@ GeneratedBy:
   display_name: Generated By
   description: |
     Used to specify provenance of the dataset.
+    See the [Provenance section](SPEC_ROOT/modality-agnostic-files/provenance.md#provenance-at-dataset-level)
+    for more information.
   type: array
   minItems: 1
   items:
     type: object
     required: [Name]
-    recommended: [Version]
+    recommended: [Id, Version]
     properties:
       Name:
         name: Name
         description: |
-          Name of the pipeline or process that generated the outputs. Use `"Manual"` to
-          indicate the derivatives were generated by hand, or adjusted manually after an
+          Name of the pipeline, process or Activity provenance record that generated the outputs.
+          Use `"Manual"` to indicate the derivatives were generated by hand, or adjusted manually after an
           initial run of an automated pipeline.
         type: string
+      Id:
+        name: Id
+        description: |
+          When using the `Id` property, the object describes an Activity responsible for the creation of the dataset.
+          The value for `Id` is the `Id` of the corresponding Activity provenance record.
+          This provenance record MUST be described inside a
+          [provenance file](SPEC_ROOT/modality-agnostic-files/provenance.md#provenance-files)
+          of the dataset.
+        type: string
+        format: uri
       Version:
         name: Version
-        description: Version of the pipeline
+        description: Used to specify a version of the pipeline or process that generated the dataset.
         type: string
       Description:
         name: Description
         description: |
-          Plain-text description of the pipeline or process that generated the outputs.
+          Plain-text description of the pipeline or process that generated the dataset.
           RECOMMENDED if `Name` is `"Manual"`.
         type: string
       CodeURL:
@@ -1322,6 +1500,20 @@ GeneratedBy:
           URI:
             type: string
             format: uri
+GeneratedById:
+  name: GeneratedBy
+  display_name: Generated By
+  description: |
+    Specify the Id(s) of Activity (or Activities) responsible for the creation of the data file.
+    The corresponding Activity (or Activities) MUST be described inside a
+    [provenance file](SPEC_ROOT/modality-agnostic-files/provenance.md#provenance-files) of the dataset.
+  anyOf:
+    - type: string
+      format: uri
+    - type: array
+      items:
+        type: string
+        format: uri
 GeneticLevel:
   name: GeneticLevel
   display_name: Genetic Level
@@ -3353,6 +3545,20 @@ ShortChannelCount:
     The number of short channels. 0 indicates no short channels.
   type: integer
   minimum: 0
+SidecarGeneratedBy:
+  name: SidecarGeneratedBy
+  display_name: Sidecar Generated By
+  description: |
+    Specify the Id(s) of Activity (or Activities) responsible for the creation of the sidecar JSON file.
+    The corresponding Activity (or Activities) MUST be described inside a
+    [provenance file](SPEC_ROOT/modality-agnostic-files/provenance.md#provenance-files) of the dataset.
+  anyOf:
+    - type: string
+      format: uri
+    - type: array
+      items:
+        type: string
+        format: uri
 SinglesRate:
   name: SinglesRate
   display_name: Singles Rate
@@ -3421,6 +3627,48 @@ SliceTiming:
     type: number
     minimum: 0
     unit: s
+Software:
+  name: Software
+  display_name: Software
+  description: |
+    Describe Software provenance records.
+  type: array
+  minItems: 1
+  items:
+    type: object
+    required: [Id, Label, Version]
+    properties:
+      Id:
+        name: Id
+        description: |
+          that will be used to associate activities with this software package
+          (for example "urn:1264-1233-11231-12312", "urn:bet-o1ef4rt")
+        type: string
+        format: uri
+      Label:
+        name: Label
+        description: Name of the software package.
+        type: string
+        format: label
+      Version:
+        name: Version
+        description: Version of the software package.
+        type: string
+      AltIdentifier:
+        name: AltIdentifier
+        description: |
+          URI of the RRID for this software package (cf. https://rrid.site/).
+        type: string
+        format: uri
+      ActedOnBehalfOf:
+        name: ActedOnBehalfOf
+        description: |
+          Identifier of another software package that was responsible for using this software package
+          in the context of the activities associated to it.
+          The corresponding software must be defined with its own Software record.
+          Example: if software A launches software B to perform activity C, then B ActedOnBehalfOf A.
+        type: string
+        format: uri
 SoftwareFilters:
   name: SoftwareFilters
   display_name: Software Filters
