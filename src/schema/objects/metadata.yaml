@@ -20,9 +20,8 @@ AcquisitionDuration:
   name: AcquisitionDuration
   display_name: Acquisition Duration
   description: |
-    Duration (in seconds) of volume acquisition.
+    Duration (in seconds) of scan acquisition, including all volumes for multi-volume scans.
     Corresponds to [DICOM Tag 0018, 9073](https://dicomlookup.com/dicomtags/(0018,9073)) `Acquisition Duration`.
-    This field is mutually exclusive with `"RepetitionTime"`.
   type: number
   exclusiveMinimum: 0
   unit: s
@@ -615,7 +614,7 @@ DeidentificationMethodCodeSequence:
   type: array
   items:
     type: object
-    recommended_fields:
+    recommended:
       - CodeValue
       - CodeMeaning
       - CodingSchemeDesignator
@@ -1006,7 +1005,7 @@ EditPulse:
   type: object
   additionalProperties:
     type: object
-    recommended_fields: [FrequencyOffset, PulseDuration]
+    recommended: [FrequencyOffset, PulseDuration]
     properties:
       FrequencyOffset:
         anyOf:
@@ -1205,6 +1204,48 @@ FlipAngle:
         unit: degree
         exclusiveMinimum: 0
         maximum: 360
+Format:
+  name: Format
+  display_name: Value format
+  description: |
+    Permitted formats for values in the described column.
+  type: string
+  # Keep synced with objects.formats
+  enum:
+    # Type formats
+    - string
+    - number
+    - integer
+    - boolean
+    # Numeric/alphanumeric strings
+    - index
+    - label
+    # Dates/times
+    - date
+    - datetime
+    - time
+    # Units
+    - unit
+    # URIs
+    - uri
+    - rrid
+    - bids_uri
+    # Paths
+    - dataset_relative
+    - file_relative
+    - participant_relative
+    - stimuli_relative
+    # Miscellaneous
+    - hed_version
+FrameAcquisitionDuration:
+  name: FrameAcquisitionDuration
+  display_name: Frame Acquisition Duration
+  description: |
+    Duration (in seconds) of volume acquisition.
+    Corresponds to DICOM Tag 0018, 9220 `Frame Acquisition Duration`.
+  type: number
+  exclusiveMinimum: 0
+  unit: s
 FrameDuration:
   name: FrameDuration
   display_name: Frame Duration
@@ -1733,6 +1774,15 @@ JNTANGChannelCount:
     Number of joint angle channels.
   type: integer
   minimum: 0
+Keywords:
+  name: Keywords
+  display_name: Keywords
+  description: |
+    A list of keywords that describe the content or subject matter of the dataset.
+    These may be used to enhance the findability of the dataset on public archives.
+  type: array
+  items:
+    type: string
 LabelingDistance:
   name: LabelingDistance
   display_name: Labeling Distance
@@ -2146,6 +2196,12 @@ MaxMovement:
     as measured by the head localization coils (for example, `4.8`).
   type: number
   unit: mm
+Maximum:
+  name: Maximum
+  display_name: Maximum value
+  description: |
+    Maximum value a column entry is permitted to have.
+  type: number
 MeasurementToolMetadata:
   name: MeasurementToolMetadata
   display_name: Measurement Tool Metadata
@@ -2184,6 +2240,12 @@ MetaboliteRecoveryCorrectionApplied:
     If `true`, the `hplc_recovery_fractions` column MUST be present in the
     corresponding `*_blood.tsv` file.
   type: boolean
+Minimum:
+  name: Minimum
+  display_name: Minimum value
+  description: |
+    Minimum value a column entry is permitted to have.
+  type: number
 MiscChannelCount:
   name: MiscChannelCount
   display_name: Misc Channel Count
@@ -2518,7 +2580,6 @@ PartialFourier:
   display_name: Partial Fourier
   description: |
     The fraction of partial Fourier information collected.
-    Corresponds to [DICOM Tag 0018, 9081](https://dicomlookup.com/dicomtags/(0018,9081)) `Partial Fourier`.
   type: number
 PartialFourierDirection:
   name: PartialFourierDirection
@@ -3174,7 +3235,7 @@ ScanDate:
   description: |
     Date of scan in the format `"YYYY-MM-DD[Z]"`.
     This field is DEPRECATED, and this metadata SHOULD be recorded in the `acq_time` column of the
-    corresponding [Scans file](SPEC_ROOT/modality-agnostic-files.md#scans-file).
+    corresponding [Scans file](SPEC_ROOT/modality-agnostic-files/data-summary-files.md#scans-file).
   type: string
   format: date
 ScanOptions:
@@ -3255,8 +3316,8 @@ ScreenResolution:
     - type: array
       items:
         type: integer
-        minItems: 2
-        maxItems: 2
+      minItems: 2
+      maxItems: 2
     - type: string
       enum:
         - n/a
@@ -3272,8 +3333,8 @@ ScreenSize:
       items:
         type: number
         unit: m
-        minItems: 2
-        maxItems: 2
+      minItems: 2
+      maxItems: 2
     - type: string
       enum:
         - n/a
@@ -3698,9 +3759,10 @@ TaskName:
     Name of the task.
     No two tasks should have the same name.
     The task label included in the filename is derived from this `"TaskName"` field
-    by removing all non-alphanumeric characters (that is, all except those matching `[0-9a-zA-Z]`).
-    For example `"TaskName"` `"faces n-back"` or `"head nodding"` will correspond to task labels
-    `facesnback` and `headnodding`, respectively.
+    by removing all non-alphanumeric or `+` characters (that is, all except those matching `[0-9a-zA-Z+]`),
+    and potentially replacing spaces with `+` to ease readability.
+    For example `"TaskName"` `"faces n-back"` or `"head nodding"` could correspond to task labels
+    `faces+n+back` or `facesnback` and `head+nodding` or `headnodding`, respectively.
   type: string
 TermURL:
   name: TermURL

@@ -14,7 +14,7 @@
 ---
 events:
   selectors:
-    - 'task in entities'
+    - '"task" in entities'
     - extension != '.json'
   target:
     suffix: events
@@ -89,4 +89,15 @@ coordsystem:
   target:
     suffix: coordsystem
     extension: .json
+  inherit: true
+
+electrodes:
+  selectors:
+    - intersects([suffix], ['eeg', 'ieeg', 'meg'])
+    - extension != '.json'
+  target:
+    suffix: electrodes
+    extension: .tsv
+    entities:
+      - space
   inherit: true

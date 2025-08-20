@@ -1,6 +1,8 @@
 """Tests for the bidsschematools package."""
 
+import json
 import os
+import subprocess
 from collections.abc import Mapping
 
 import pytest
@@ -8,15 +10,16 @@ from jsonschema.exceptions import ValidationError
 
 from bidsschematools import __bids_version__, schema, types
 
-from ..data import load_resource
+from ..data import load
 
 
-def test__get_bids_version(tmp_path):
+def test__get_bids_version(schema_dir):
     # Is the version being read in correctly?
-    schema_path = str(load_resource("schema"))
-    bids_version = schema._get_bids_version(schema_path)
+    bids_version = schema._get_bids_version(schema_dir)
     assert bids_version == __bids_version__
 
+
+def test__get_bids_version_fallback(tmp_path):
     # Does fallback to unknown development version work?
     expected_version = "1.2.3-dev"
     schema_path = os.path.join(tmp_path, "whatever", expected_version)
@@ -85,8 +88,10 @@ def test_formats(schema_obj):
             "2022-01-05T13:16:30",
             "2022-01-05T13:16:30.5",  # subsecond resolution is allowed
             "2022-01-05T13:16:30.000005",  # up to 6 decimal points
-            "2022-01-05T13:16:30UTC",  # timezones are allowed
-            "2022-01-05T13:16:30.05UTC",
+            "2022-01-05T13:16:30Z",  # UTC indicator is allowed
+            "2022-01-05T13:16:30.05Z",
+            "2022-01-05T13:16:30+01:00",  # integral offsets are allowed
+            "2022-01-05T13:16:30-05:00",
         ],
         "time": [
             "13:16:30",
@@ -115,9 +120,9 @@ def test_formats(schema_obj):
         search_pattern = "^" + pattern_format + "$"
         search = re.compile(search_pattern)
         for test_string in test_list:
-            assert bool(
-                search.fullmatch(test_string)
-            ), f"'{test_string}' is not a valid match for the pattern '{search.pattern}'"
+            assert bool(search.fullmatch(test_string)), (
+                f"'{test_string}' is not a valid match for the pattern '{search.pattern}'"
+            )
 
     # Check that invalid strings do not match the search pattern.
     BAD_PATTERNS = {
@@ -133,7 +138,7 @@ def test_formats(schema_obj):
         ],
         "datetime": [
             "2022-01-05T13:16:30.1000005",  # too many decimal points
-            "2022-01-05T13:16:30U",  # time zone too short
+            "2022-01-05T13:16:30U",  # Only Z is permitted
             "2022-01-05T13:16:30UTCUTC",  # time zone too long
             "2022-01-05T34:10:10",  # invalid time
         ],
@@ -172,9 +177,14 @@ def test_formats(schema_obj):
         search_pattern = f"^{pattern_format}$"
         search = re.compile(search_pattern)
         for test_string in test_list:
-            assert not bool(
-                search.fullmatch(test_string)
-            ), f"'{test_string}' should not be a valid match for the pattern '{search.pattern}'"
+            assert not bool(search.fullmatch(test_string)), (
+                f"'{test_string}' should not be a valid match for the pattern '{search.pattern}'"
+            )
+
+
+def test_format_consistency(schema_obj):
+    """Test that the "Format" field is consistent with objects.formats."""
+    assert set(schema_obj.objects.metadata.Format.enum) == schema_obj.objects.formats.keys()
 
 
 def test_dereferencing():
@@ -347,7 +357,6 @@ def test_dereferencing():
 
 
 def test_namespace_to_dict():
-
     def check_for_namespaces(obj):
         if isinstance(obj, dict):
             [check_for_namespaces(val) for val in obj.values()]
@@ -363,6 +372,41 @@ def test_valid_schema():
     """Test that a valid schema does not raise an error."""
     namespace = schema.load_schema()
     schema.validate_schema(namespace)
+
+
+@pytest.mark.parametrize("regex_variant", ["default", "nonunicode", "python"])
+def test_valid_schema_with_check_jsonschema(tmp_path, regex_variant):
+    """
+    Test that the BIDS schema is valid against the metaschema when validation is done
+    using the `check-jsonschema` CLI
+    """
+    bids_schema = schema.load_schema().to_dict()
+    metaschema_path = str(load.readable("metaschema.json"))
+
+    # Save BIDS schema to a temporary file
+    bids_schema_path = tmp_path / "bids_schema.json"
+    bids_schema_path.write_text(json.dumps(bids_schema))
+
+    # Invoke the check-jsonschema to validate the BIDS schema
+    try:
+        subprocess.run(
+            [
+                "check-jsonschema",
+                "--regex-variant",
+                regex_variant,
+                "--schemafile",
+                metaschema_path,
+                str(bids_schema_path),
+            ],
+            stdout=subprocess.PIPE,  # Capture stdout
+            stderr=subprocess.STDOUT,  # Set stderr to into stdout
+            text=True,
+            check=True,
+        )
+    except subprocess.CalledProcessError as e:
+        pytest.fail(
+            f"check-jsonschema failed with code {e.returncode}:\n{e.stdout}", pytrace=False
+        )
 
 
 def test_add_legal_field():

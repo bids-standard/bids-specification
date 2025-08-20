@@ -65,7 +65,8 @@ def test_make_glossary(schema_obj, schema_dir):
             assert not any([line.startswith(f'<a name="objects.{i}') for i in rules_only])
 
 
-def test_make_filename_template(schema_obj, schema_dir):
+@pytest.mark.parametrize("placeholders", [True, False])
+def test_make_filename_template(schema_obj, schema_dir, placeholders):
     """
     Test whether:
 
@@ -76,7 +77,9 @@ def test_make_filename_template(schema_obj, schema_dir):
     * All files under the datatype rules subdirectory have corresponding entries.
       This may need to be updated for schema hierarchy changes.
     """
-    filename_template = text.make_filename_template("raw", schema_obj, pdf_format=True)
+    filename_template = text.make_filename_template(
+        "raw", schema_obj, placeholders=placeholders, pdf_format=True
+    )
 
     # Test predefined substrings
     expected_template_part = """
@@ -93,20 +96,72 @@ sub-<label>/
         for datatype in rule.datatypes
     }
 
+    datatype_count = len(datatypes)
     datatype_bases = [f"        {i}/" for i in datatypes if i != "stimuli"]
-    datatype_level = False
-    datatype_file_start = "            sub-<label>"
+    datatype_file_start = (
+        "            sub-<label>" if not placeholders else "            <matches>_"
+    )
     datatype_bases_found = 0
+    template_started = False
     for line in filename_template.split("\n"):
-        if datatype_level:
-            # Is there at least one file pattern per datatype?
-            assert line.startswith(datatype_file_start)
-            datatype_level = False
+        if "```" in line:
+            if template_started:
+                break
+
+            template_started = True
+            continue
+
+        if not template_started:
+            continue
+
+        if line.startswith("sub-<label>"):
+            continue
+        if line.startswith("    [ses-<label>/]"):
+            continue
+
         if line in datatype_bases:
-            datatype_level = True
             datatype_bases_found += 1
+        else:
+            assert line.startswith(datatype_file_start)
+
     # Are all datatypes listed?
     assert datatype_bases_found == len(datatypes) - 1
+
+    # Restrict (a little) the datatype bases
+    filename_template = text.make_filename_template(
+        "raw",
+        schema_obj,
+        suffixes=["events"],
+        placeholders=placeholders,
+        empty_dirs=False,
+        pdf_format=True,
+    )
+
+    datatype_bases_found = 0
+    template_started = False
+    for line in filename_template.split("\n"):
+        if "```" in line:
+            if template_started:
+                break
+
+            template_started = True
+            continue
+
+        if not template_started:
+            continue
+
+        if line.startswith("sub-<label>"):
+            continue
+        if line.startswith("    [ses-<label>/]"):
+            continue
+
+        if line in datatype_bases:
+            datatype_bases_found += 1
+        else:
+            assert line.startswith(datatype_file_start)
+
+    # In this case events is not defined for all datatypes
+    assert datatype_bases_found < datatype_count
 
 
 def test_define_common_principles(schema_obj):
