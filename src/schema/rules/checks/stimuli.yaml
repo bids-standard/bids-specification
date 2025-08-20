@@ -3,7 +3,7 @@ StimulusIdExists:
   issue:
     code: STIMULUS_ID_NOT_FOUND
     message: |
-      Stimulus ID referenced in events.tsv file does not exist in the /stimuli directory 
+      Stimulus ID referenced in events.tsv file does not exist in the /stimuli directory
       or is not properly referenced in stimuli.tsv file.
     level: error
   selectors:
