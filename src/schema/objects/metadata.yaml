@@ -625,7 +625,7 @@ Database:
   format: uri
 Dataset:
   name: Dataset
-  display_name: Dataset 
+  display_name: Dataset
   description: |
     [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
     where data can be retrieved.
