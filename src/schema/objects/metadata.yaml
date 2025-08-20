@@ -615,14 +615,22 @@ ContrastBolusIngredient:
     # TODO: Add definitions for these values. (perhaps don't specify)
     - UNKNOWN
     - NONE
-DCOffsetCorrection:
-  name: DCOffsetCorrection
-  display_name: DC Offset Correction
+Database:
+  name: Database
+  display_name: Database
   description: |
-    A description of the method (if any) used to correct for a DC offset.
-    If the method used was subtracting the mean value for each channel,
-    use "mean".
+    [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
+    of database where the dataset is hosted.
   type: string
+  format: uri
+Dataset:
+  name: Dataset
+  display_name: Dataset 
+  description: |
+    [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
+    where data can be retrieved.
+  type: string
+  format: uri
 DatasetDOI:
   name: DatasetDOI
   display_name: DatasetDOI
@@ -656,6 +664,14 @@ DatasetType:
   enum:
     - $ref: objects.enums.raw.value
     - $ref: objects.enums.derivative.value
+DCOffsetCorrection:
+  name: DCOffsetCorrection
+  display_name: DC Offset Correction
+  description: |
+    A description of the method (if any) used to correct for a DC offset.
+    If the method used was subtracting the mean value for each channel,
+    use "mean".
+  type: string
 DecayCorrectionFactor:
   name: DecayCorrectionFactor
   display_name: Decay Correction Factor
@@ -770,6 +786,19 @@ DetectorType:
     - type: string
       enum:
         - $ref: objects.enums.mixed.value
+Descriptors:
+  name: Descriptors
+  display_name: Descriptors
+  description: |
+    List of relevant descriptors (for example, journal articles) for dataset
+    using a valid
+    [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
+    when possible.
+  anyOf:
+    - type: string
+    - type: array
+      items:
+        type: string
 DeviceSerialNumber:
   name: DeviceSerialNumber
   display_name: Device Serial Number
@@ -860,6 +889,13 @@ DispersionCorrected:
     Boolean flag specifying whether the blood data have been dispersion-corrected.
     NOTE: not customary for manual samples, and hence should be set to `false`.
   type: boolean
+DOI:
+  name: DOI
+  display_name: DOI
+  description: |
+    Used to specify the locations of all source datasets.
+    (see [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator))
+  type: string
 DoseCalibrationFactor:
   name: DoseCalibrationFactor
   display_name: Dose Calibration Factor
@@ -1377,31 +1413,11 @@ Genetics:
   required: [Dataset]
   properties:
     Dataset:
-      name: Dataset
-      description: |
-        [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
-        where data can be retrieved.
-      type: string
-      format: uri
+      $ref: objects.metadata.Dataset
     Database:
-      name: Database
-      description: |
-        [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
-        of database where the dataset is hosted.
-      type: string
-      format: uri
+      $ref: objects.metadata.Database
     Descriptors:
-      name: Descriptors
-      description: |
-        List of relevant descriptors (for example, journal articles) for dataset
-        using a valid
-        [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
-        when possible.
-      anyOf:
-        - type: string
-        - type: array
-          items:
-            type: string
+      $ref: objects.metadata.Descriptors
 GradientSetType:
   name: GradientSetType
   display_name: Gradient Set Type
@@ -1958,10 +1974,9 @@ Levels:
       - type: object
         properties:
           TermURL:
-            type: string
-            format: uri
+            $ref: objects.metadata.TermURL
           Description:
-            type: string
+            $ref: objects.metadata.Description
 License:
   name: License
   display_name: License
@@ -2233,10 +2248,9 @@ MeasurementToolMetadata:
   type: object
   properties:
     TermURL:
-      type: string
-      format: uri
+      $ref: objects.metadata.TermURL
     Description:
-      type: string
+      $ref: objects.metadata.Description
 MetaboliteAvail:
   name: MetaboliteAvail
   display_name: Metabolite Available
@@ -3540,12 +3554,11 @@ SourceDatasets:
     type: object
     properties:
       URL:
-        type: string
-        format: uri
+        $ref: objects.metadata.URL
       DOI:
-        type: string
+        $ref: objects.metadata.DOI
       Version:
-        type: string
+        $ref: objects.metadata.Version
 Sources:
   name: Sources
   display_name: Sources
@@ -3963,6 +3976,14 @@ Units:
     (see [Units](SPEC_ROOT/common-principles.md#units)).
   type: string
   format: unit
+URL:
+  name: URL
+  display_name: URL
+  description: |
+    Used to specify the locations of all source datasets.
+    (see [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator))
+  type: string
+  format: uri
 VascularCrushing:
   name: VascularCrushing
   display_name: Vascular Crushing
@@ -3986,6 +4007,14 @@ VascularCrushingVENC:
       items:
         type: number
         unit: cm/s
+Version:
+  name: Version
+  display_name: Version
+  description: |
+    `"Version"` with
+    [string](https://www.w3schools.com/js/js_json_datatypes.asp)
+    values
+  type: string
 VolumeAffineMatrix:
   name: VolumeAffineMatrix
   display_name: Volume Affine Matrix
