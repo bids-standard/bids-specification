@@ -615,6 +615,14 @@ ContrastBolusIngredient:
     # TODO: Add definitions for these values. (perhaps don't specify)
     - UNKNOWN
     - NONE
+DCOffsetCorrection:
+  name: DCOffsetCorrection
+  display_name: DC Offset Correction
+  description: |
+    A description of the method (if any) used to correct for a DC offset.
+    If the method used was subtracting the mean value for each channel,
+    use "mean".
+  type: string
 Database:
   name: Database
   display_name: Database
@@ -664,14 +672,7 @@ DatasetType:
   enum:
     - $ref: objects.enums.raw.value
     - $ref: objects.enums.derivative.value
-DCOffsetCorrection:
-  name: DCOffsetCorrection
-  display_name: DC Offset Correction
-  description: |
-    A description of the method (if any) used to correct for a DC offset.
-    If the method used was subtracting the mean value for each channel,
-    use "mean".
-  type: string
+    - $ref: objects.enums.study__datasettype.value
 DecayCorrectionFactor:
   name: DecayCorrectionFactor
   display_name: Decay Correction Factor
