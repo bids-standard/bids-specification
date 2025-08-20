@@ -161,7 +161,7 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_sidecar_table([
-     "mri.MRIB0FieldIdentifier",
+     "fmap.MRIFieldmapB0FieldIdentifier",
      "mri.MRIEchoPlanarImagingAndB0FieldSource",
    ])
 }}
@@ -600,13 +600,13 @@ to be populated for functional sequences. Note that all these options can be
 used for non sparse sequences but that only options B, D and E are valid for
 sparse sequences.
 
-|          | **`RepetitionTime`** | **`SliceTiming`** | **`AcquisitionDuration`** | **`DelayTime`** | **`VolumeTiming`** |
-| -------- | -------------------- | ----------------- | ------------------------- | --------------- | ------------------ |
-| option A | \[ X ]               |                   | \[ ]                      |                 | \[ ]               |
-| option B | \[ ]                 | \[ X ]            |                           | \[ ]            | \[ X ]             |
-| option C | \[ ]                 |                   | \[ X ]                    | \[ ]            | \[ X ]             |
-| option D | \[ X ]               | \[ X ]            | \[ ]                      |                 | \[ ]               |
-| option E | \[ X ]               |                   | \[ ]                      | \[ X ]          | \[ ]               |
+|          | **`RepetitionTime`** | **`SliceTiming`** | **`FrameAcquisitionDuration`** | **`DelayTime`** | **`VolumeTiming`** |
+| -------- | -------------------- | ----------------- | ------------------------------ | --------------- | ------------------ |
+| option A | \[ X ]               |                   | \[ ]                           |                 | \[ ]               |
+| option B | \[ ]                 | \[ X ]            |                                | \[ ]            | \[ X ]             |
+| option C | \[ ]                 |                   | \[ X ]                         | \[ ]            | \[ X ]             |
+| option D | \[ X ]               | \[ X ]            | \[ ]                           |                 | \[ ]               |
+| option E | \[ X ]               |                   | \[ ]                           | \[ X ]          | \[ ]               |
 
 **Legend**
 
