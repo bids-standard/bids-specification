@@ -17,9 +17,7 @@ kernelspec:
 # Translating a BEP Document into Schema Code
 
 One of the most important steps of a BEP is translating it from a plain text (google/microsoft document) as
-a yaml schema.
-
-Following this step one will be able to:
+a yaml schema. The yaml schema necessary for the following steps:
 
 1) render the spec into its [ultimate markdown form](https://bids-specification.readthedocs.io/en/stable/)
 2) apply and validate the new rules and requirements introduced by the BEP
@@ -32,9 +30,13 @@ and finishing with it's translation into schema.
 
 ![Title Page of BEP 009](_static/pet_google_doc_first_page.png)
 
-### Adding your modality to BIDS
+### Updating modalities.yaml
 
-One of the first steps to undertake is to add the modality to the [modalities.yaml](https://github.com/bids-standard/bids-specification/blob/880ab2db0570ff2038f403576f85564aa4454710/src/schema/objects/modalities.yaml) file if it doesn't already exist. In this instance, we would modify `src/schema/objects/modalities.yaml` from:
+For new modalities the first step should be to add that modality to the
+[modalities.yaml](https://github.com/bids-standard/bids-specification/blob/880ab2db0570ff2038f403576f85564aa4454710/src/schema/objects/modalities.yaml)
+file if it's not present.
+
+`src/schema/objects/modalities.yaml` from:
 
 ```yaml
 # src/schema/objects/modalities.yaml
@@ -68,7 +70,7 @@ mrs:
   description: Data acquired with MRS.
 ```
 
-### Defining filename entity
+### Defining filename entities
 
 Your next steps are to move from this template file name as described in your document to formally defining those entities within the schema. The definitions for these file entities are
 located within `src/schema/rules/files`. Since this BEP is referring to raw data we go one level
@@ -85,7 +87,7 @@ src/schema/rules/files
 
 ![PET file entity schematic](_static/pet_file_entity_schematic.png)
 
-Given the templaet above we want to include mark all entities surrounded by `[]` as optional while everything else not contained in `[]` will be marked as required.
+Given the template above we want to include mark all entities surrounded by `[]` as optional while everything else not contained in `[]` will be marked as required.
 
 So, we create that `pet.yaml` file and begin to populate it.
 
@@ -107,6 +109,8 @@ pet:
     reconstruction: optional
     run: optional
 ```
+
+### Sidecars and Metadata Rules
 
 ![PET side car table](_static/pet_side_car_table.png)
 
