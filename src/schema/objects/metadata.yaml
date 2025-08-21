@@ -2976,10 +2976,14 @@ ResonantNucleus:
     The isotope of interest of an MR experiment (for example, `"1H"`, `"13C"`, `"31P"`).
     For multi-nuclei experiments such as <sup>1</sup>H-[<sup>13</sup>C] MR,
     an array can be used: `["1H", "13C"]`.
-    Corresponds to DICOM Tag 0018, 9100 `Resonant Nucleus`.
-  type: array
-  items:
-    type: string
+    Corresponds to [DICOM Tag 0018, 9100](https://dicomlookup.com/dicomtags/(0018,9100)) `Resonant Nucleus`.
+  anyOf:
+    - type: string
+    - type: array
+      items:
+        type: string
+        minItems: 1
+        maxItems: 2
 RotationOrder:
   name: RotationOrder
   display_name: RotationOrder
@@ -3537,10 +3541,15 @@ SpectrometerFrequency:
     to the resonant frequency of <sup>1</sup>H.
     For multi-nuclei experiments such as <sup>1</sup>H-[<sup>13</sup>C] MR at 3T,
     an array can be used: `[127.731, 32.125]`.
-  type: array
-  items:
-    type: number
-    unit: MHz
+  anyOf:
+    - type: number
+      unit: MHz
+    - type: array
+      items:
+        type: number
+        unit: MHz
+        minItems: 1
+        maxItems: 2
 SpoilingGradientDuration:
   name: SpoilingGradientDuration
   display_name: Spoiling Gradient Duration
