@@ -11,17 +11,10 @@ func:
   datatypes:
     - func
   entities:
-    subject: required
-    session: optional
-    task: required
-    acquisition: optional
-    ceagent: optional
-    reconstruction: optional
-    direction: optional
-    run: optional
+    $ref:
+      - meta.templates.raw.epi.entities
+      - meta.templates.raw.task.entities
     echo: optional
-    part: optional
-    chunk: optional
 
 norf:
   $ref: rules.files.raw.func.func
@@ -32,22 +25,9 @@ norf:
     modality: optional
 
 phase:
+  $ref: rules.files.raw.func.func
   suffixes:
     - phase # deprecated
-  extensions:
-    - .nii.gz
-    - .nii
-    - .json
-  datatypes:
-    - func
   entities:
-    subject: required
-    session: optional
-    task: required
-    acquisition: optional
-    ceagent: optional
-    reconstruction: optional
-    direction: optional
-    run: optional
-    echo: optional
-    chunk: optional
+    $ref: rules.files.raw.func.func.entities
+    part: null

@@ -12,12 +12,9 @@ mrs:
   datatypes:
     - mrs
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.recording.entities
     task: optional
-    acquisition: optional
     reconstruction: optional
-    run: optional
     echo: optional
     inversion: optional
     nucleus: optional
