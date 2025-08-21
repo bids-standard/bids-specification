@@ -102,7 +102,8 @@ Consistent with other data types in BIDS, the session entity is optional.
 
 The [`sample-<label>`](../appendices/entities.md#sample) entity is REQUIRED for
 Microscopy data and is used to distinguish between different samples from the same subject.
-The label MUST be unique per subject and is RECOMMENDED to be unique throughout the dataset.
+Contrary to other labels, the `sample-<label>` MUST be unique per subject
+and is RECOMMENDED to be unique throughout the dataset.
 
 For example: Three brain slices (`sample-01` to `sample-03`) extracted from subject `sub-01`,
 imaged by scanning electron microscopy (SEM) in PNG format
@@ -133,8 +134,7 @@ MAY be used to distinguish a different set of parameters used for acquiring the 
 For example, two images of the same sample acquired by bright-field microscopy (BF) in PNG format at
 different magnification of 40x and 60x.
 In such case two files could have the following names: `sub-01_sample-01_acq-40x_BF.png` and
-`sub-01_sample-01_acq-60x_BF.png`, however the user is free to choose any other label as long as
-they are consistent across subjects and sessions.
+`sub-01_sample-01_acq-60x_BF.png`.
 
 The [`stain-<label>`](../appendices/entities.md#stain) entity MAY be used to distinguish
 image files from the same sample using different stains or antibodies for contrast enhancement.
