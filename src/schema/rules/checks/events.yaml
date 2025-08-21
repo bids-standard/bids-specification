@@ -13,7 +13,7 @@ EventsMissing:
     - datatype != "beh"
     - '"task" in entities'
     - '!match(entities.task, "rest")'
-    - '!intersects([suffix], ["events", "beh"])'
+    - '!intersects([suffix], ["events", "beh", "channels", "electrodes", "optodes"])'
     - extension != ".json"
     - datatype != "meg" || entities.subject != "emptyroom" && entities.task != "noise"
   checks:

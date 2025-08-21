@@ -12,6 +12,7 @@ PhaseSuffixDeprecated:
     level: warning
   selectors:
     - datatype == "func"
+    - match(extension, "^\.nii(\.gz)?$")
   checks:
     - suffix != "phase"
 
@@ -40,9 +41,17 @@ RepetitionTimeMismatch:
     - type(sidecar.RepetitionTime) != "null"
     - type(nifti_header) != "null"
   checks:
-    # Implement millisecond rounding via AND
-    - sidecar.RepetitionTime - nifti_header.pixdim[4] < 0.001
-    - sidecar.RepetitionTime - nifti_header.pixdim[4] > -0.001
+    # Use index(...) % 3 to treat unknown units like seconds
+    - |
+      nifti_header.pixdim[4]
+        * 10 ** (-3 * (index(["sec", "msec", "usec", "unknown"], nifti_header.xyzt_units.t) % 3))
+      - sidecar.RepetitionTime
+      > -0.001
+    - |
+      nifti_header.pixdim[4]
+        * 10 ** (-3 * (index(["sec", "msec", "usec", "unknown"], nifti_header.xyzt_units.t) % 3))
+      - sidecar.RepetitionTime
+      < 0.001
 
 # 54
 BoldNot4d:
@@ -67,6 +76,7 @@ SliceTimingGreaterThanRepetitionTime:
     level: error
   selectors:
     - suffix == "bold"
+    - match(extension, "^\.nii(\.gz)?$")
     - type(sidecar.SliceTiming) != "null"
     - type(sidecar.RepetitionTime) != "null"
   checks:
@@ -88,24 +98,24 @@ VolumeTimingRepetitionTimeMutex:
       or 'VolumeTiming' when variable times are used.
     level: error
   selectors:
-    - type(nifti_header) != "null"
     - intersects([suffix], ["asl", "bold"])
+    - match(extension, "^\.nii(\.gz)?$")
     - type(sidecar.VolumeTiming) != "null"
   checks:
     - type(sidecar.RepetitionTime) == "null"
 
-RepetitionTimeAcquisitionDurationMutex:
+RepetitionTimeFrameAcquisitionDurationMutex:
   issue:
     code: REPETITION_TIME_AND_ACQUISITION_DURATION_MUTUALLY_EXCLUSIVE
     message: |
-      The fields 'RepetitionTime' and 'AcquisitionDuration' for this file are mutually exclusive.
+      The fields 'RepetitionTime' and 'FrameAcquisitionDuration' for this file are mutually exclusive.
       To specify acquisition duration, use 'SliceTiming' or 'DelayTime'
-      (RepetitionTime - AcquisitionDuration).
+      (RepetitionTime - FrameAcquisitionDuration).
     level: error
   selectors:
-    - type(nifti_header) != "null"
     - intersects([suffix], ["asl", "bold"])
-    - type(sidecar.AcquisitionDuration) != "null"
+    - match(extension, "^\.nii(\.gz)?$")
+    - type(sidecar.FrameAcquisitionDuration) != "null"
   checks:
     - type(sidecar.RepetitionTime) == "null"
 
@@ -114,24 +124,44 @@ VolumeTimingDelayTimeMutex:
     code: VOLUME_TIMING_AND_DELAY_TIME_MUTUALLY_EXCLUSIVE
     message: |
       The fields 'VolumeTiming' and 'DelayTime' for this file are mutually exclusive.
-      To specify acquisition duration, use 'AcquisitionDuration' or 'SliceTiming'.
+      To specify acquisition duration, use 'FrameAcquisitionDuration' or 'SliceTiming'.
     level: error
   selectors:
-    - type(nifti_header) != "null"
     - intersects([suffix], ["asl", "bold"])
+    - match(extension, "^\.nii(\.gz)?$")
     - type(sidecar.VolumeTiming) != "null"
+    - type(sidecar.RepetitionTime) == "null"
   checks:
     - type(sidecar.DelayTime) == "null"
 
-VolumeTimingMissingAcquisitionDuration:
+VolumeTimingMissingFrameAcquisitionDuration:
   issue:
     code: VOLUME_TIMING_MISSING_ACQUISITION_DURATION
     message: |
-      The field 'VolumeTiming' requires 'AcquisitionDuration' or 'SliceTiming' to be defined.
+      The field 'VolumeTiming' requires 'FrameAcquisitionDuration' or 'SliceTiming' to be defined.
     level: error
   selectors:
-    - type(nifti_header) != "null"
     - intersects([suffix], ["asl", "bold"])
+    - match(extension, "^\.nii(\.gz)?$")
     - type(sidecar.VolumeTiming) != "null"
+    - type(sidecar.RepetitionTime) == "null"
   checks:
-    - '"SliceTiming" in sidecar || "AcquisitionDuration" in sidecar'
+    - |
+      "SliceTiming" in sidecar ||
+      "FrameAcquisitionDuration" in sidecar ||
+      "AcquisitionDuration" in sidecar
+
+DeprecatedAcquisitionDuration:
+  issue:
+    code: DEPRECATED_ACQUISITION_DURATION
+    message: |
+      The 'AcquisitionDuration' field has been replaced with 'FrameAcquisitionDuration'
+      to indicate the duration of volume acquisition in sparse acquisition sequences.
+    level: warning
+  selectors:
+    - intersects([suffix], ["asl", "bold"])
+    - match(extension, "^\.nii(\.gz)?$")
+    - type(sidecar.VolumeTiming) != "null"
+    - type(sidecar.FrameAcquisitionDuration) == "null"
+  checks:
+    - '!("AcquisitionDuration" in sidecar)'

@@ -74,6 +74,14 @@
 # General expressions
 - expression: 1 + 2
   result: 3
+- expression: 1 - 2
+  result: -1
+- expression: 3 * 4
+  result: 12
+- expression: 3 / 2
+  result: 1.5
+- expression: 3 % 2
+  result: 1
 - expression: '"cat" + "dog"'
   result: 'catdog'
 - expression: match('string', '.*')

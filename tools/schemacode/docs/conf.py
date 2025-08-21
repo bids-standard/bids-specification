@@ -55,6 +55,7 @@ autosummary_mock_imports = [
     "pytest",
     # Mock internal modules to avoid building docs
     "bidsschematools.conftest",
+    "bidsschematools.tests",
 ]
 
 intersphinx_mapping = {"python": ("https://docs.python.org/3", None)}
