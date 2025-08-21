@@ -26,3 +26,12 @@ formatschema: runprettier commitschema
 all:
 
 .PHONY: runprettier commitschema
+
+schemacodedocs_clean:
+	uv run --group=doc sphinx-build -M clean tools/schemacode/docs tools/schemacode/docs/_build
+
+schemacodedocs_build: schemacodedocs_clean
+	uv run --group=doc sphinx-build -M html tools/schemacode/docs tools/schemacode/docs/_build
+
+schemacodedocs_serve: schemacodedocs_build
+	uv run python -m http.server -d tools/schemacode/docs/_build
