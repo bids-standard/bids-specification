@@ -178,7 +178,7 @@ A guide for using macros can be found at
 Template:
 
 ```Text
-<pipeline_name>/
+<pipeline-name>/
     sub-<label>/
         [ses-<label>/]
             <datatype>/

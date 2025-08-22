@@ -8,7 +8,7 @@ extent and resolution.
 Template:
 
 ```Text
-<pipeline_name>/
+<pipeline-name>/
     sub-<label>/
         [ses-<label>/]
             <datatype>/
@@ -146,7 +146,7 @@ And the corresponding `sub-001_task-rest_run-1_space-fsLR_bold.json` file:
 Template:
 
 ```Text
-<pipeline_name>/
+<pipeline-name>/
     sub-<label>/
         [ses-<label>/]
             anat|func|dwi/
@@ -265,7 +265,7 @@ of how integer values map to anatomical structures.
 Template:
 
 ```Text
-<pipeline_name>/
+<pipeline-name>/
     sub-<label>/
         [ses-<label>/]
             anat|func|dwi/
@@ -332,7 +332,7 @@ the structure.
 Template:
 
 ```Text
-<pipeline_name>/
+<pipeline-name>/
     sub-<label>/
         [ses-<label>/]
             func|anat|dwi/
@@ -408,7 +408,7 @@ CIFTI-2 dense label files, with the extension `.dlabel.nii`.
 Template:
 
 ```Text
-<pipeline_name>/
+<pipeline-name>/
     sub-<label>/
         [ses-<label>/]
             anat/
