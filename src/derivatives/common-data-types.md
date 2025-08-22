@@ -180,8 +180,9 @@ Template:
 ```Text
 <pipeline_name>/
     sub-<label>/
-        <datatype>/
-            <source_entities>[_space-<space>][_desc-<label>]_<suffix>.<extension>
+        [ses-<label>/]
+            <datatype>/
+                <source_entities>[_space-<space>][_desc-<label>]_<suffix>.<extension>
 ```
 
 Data is considered to be *preprocessed* or *cleaned* if the data type of the input,

@@ -1,0 +1,21 @@
+# Rules for phenotype files
+---
+
+# 51
+PhenotypeSubjectsMissing:
+  issue:
+    code: PHENOTYPE_SUBJECTS_MISSING
+    message: |
+      A phenotype/ .tsv file lists subjects that were not found in
+      the participant_id column found in the participants.tsv file.
+    level: error
+  selectors:
+    - datatype == 'phenotype'
+    - suffix == '.tsv'
+    - type(dataset.subjects.participant_id) != 'null'
+  checks:
+    - |
+      allequal(
+        sorted(intersects(columns.participant_id, dataset.subjects.participant_id)),
+        sorted(dataset.subjects.participant_id)
+      )

@@ -13,7 +13,7 @@ EventsMissing:
     - datatype != "beh"
     - '"task" in entities'
     - '!match(entities.task, "rest")'
-    - '!intersects([suffix], ["events", "beh"])'
+    - '!intersects([suffix], ["events", "beh", "channels", "electrodes", "optodes"])'
     - extension != ".json"
     - datatype != "meg" || entities.subject != "emptyroom" && entities.task != "noise"
   checks:
@@ -43,3 +43,29 @@ SortedOnsets:
   checks:
     # n/a values will likely cause false alarms if encountered. Consider alternatives.
     - allequal(sorted(columns.onset, "numeric"), columns.onset)
+
+SuspiciousNegativeEventOnset:
+  issue:
+    code: SUSPICIOUS_NEGATIVE_EVENT_ONSET
+    message: |
+      Event onsets were found more than 60s before the start of recording, indicated by negative values.
+      If this is not a mistake, remove or consider an alternative method of representing these events.
+    level: warning
+  selectors:
+    - suffix == "events"
+    - extension == ".tsv"
+  checks:
+    - min(columns.onset) >= -60
+
+SuspiciousPositiveEventOnset:
+  issue:
+    code: SUSPICIOUS_POSITIVE_EVENT_ONSET
+    message: |
+      Event onsets were found more than a month after the start of recording.
+      If this is not a mistake, remove or consider an alternative method of representing these events.
+    level: warning
+  selectors:
+    - suffix == "events"
+    - extension == ".tsv"
+  checks:
+    - max(columns.onset) < 2678400

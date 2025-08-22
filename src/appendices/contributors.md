@@ -1,7 +1,7 @@
 # Contributors
 
 Legend (source:
-<https://allcontributors.org/docs/en/emoji-key>)
+<https://github.com/all-contributors/all-contributors/blob/master/docs/emoji-key.md>)
 
 | **Emoji** | **Represents**                                                                         |
 | --------- | -------------------------------------------------------------------------------------- |
@@ -107,6 +107,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Christopher Lee-Messer                               | 📖                                     |
 | Clara Moreau                                         | 📖                                     |
 | Clint Hansen                                         | 📖🤔                                   |
+| Cody Baker                                           | 💻🔧                                   |
 | Cyril Pernet                                         | 💬📝📖🎨💡📋🤔📢                       |
 | Cyrus Eierud                                         | 📖                                     |
 | D. Sturgeon                                          | 💻                                     |
