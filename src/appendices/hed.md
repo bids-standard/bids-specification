@@ -34,7 +34,7 @@ on GitHub.
 
 Event-related data in BIDS appears in tab-separated value (`events.tsv`)
 files in various places in the dataset hierarchy
-(see [Events](../modality-specific-files/task-events.md)).
+(see [Events](../modality-specific-files/events.md)).
 
 `events.tsv` files MUST have `onset` and `duration` columns.
 Dataset curators MAY also include additional columns and define their
