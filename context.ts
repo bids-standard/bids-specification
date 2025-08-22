@@ -330,6 +330,11 @@ export interface Gzip {
  */
 export interface NiftiHeader {
     /**
+     * Orientation labels indicating primary direction of data axes defined with respect to the
+     * object of interest.
+     */
+    axis_codes: AxisCode[];
+    /**
      * Data seq dimensions.
      */
     dim: number[];
@@ -365,6 +370,15 @@ export interface NiftiHeader {
      * Units of pixdim[1..4]
      */
     xyzt_units: XyztUnits;
+}
+
+export enum AxisCode {
+    A = "A",
+    I = "I",
+    L = "L",
+    P = "P",
+    R = "R",
+    S = "S",
 }
 
 /**
