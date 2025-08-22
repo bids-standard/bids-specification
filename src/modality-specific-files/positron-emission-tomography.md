@@ -83,7 +83,7 @@ Volumes MUST be stored in chronological order (the order they were acquired in).
 The OPTIONAL [`task-<label>`](../appendices/entities.md#task) is used to
 indicate a task subjects were asked to perform in the scanner.
 Those labels MUST be consistent across subjects and sessions.
-For task based PET, a corresponding [`events`](./events.md) file MUST be provided
+For task based PET, a corresponding [`events`](../modality-agnostic-files/events.md) file MUST be provided
 (please note that this file is not necessary for resting scans).
 
 The [`trc-<label>`](../appendices/entities.md#trc) entity is used to
