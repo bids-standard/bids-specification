@@ -193,7 +193,7 @@ along with or instead of the standard vocabulary.
 These specialized vocabularies are developed by communities of users
 and are available in the
 [hed-schemas](https://github.com/hed-standard/hed-schemas) GitHub repository.
-A library schema is specified in the form `<library-name<_>library-version>`.
+A library schema is specified in the form `<library-name>_<library-version>`.
 
 #### Partnered library schemas
 
