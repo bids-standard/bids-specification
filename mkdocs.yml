@@ -169,6 +169,5 @@ plugins:
         "99-appendices/12-arterial-spin-labeling.md": "appendices/arterial-spin-labeling.md"
         "99-appendices/13-cross-modality-correspondence.md": "appendices/cross-modality-correspondence.md"
         "modality-specific-files/task-events.md": "modality-agnostic-files/events.md"
-        "modality-specific-files/events.md": "modality-agnostic-files/events.md"
 docs_dir: "src"
 use_directory_urls: false
