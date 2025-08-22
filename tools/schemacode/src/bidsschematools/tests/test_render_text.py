@@ -97,7 +97,7 @@ sub-<label>/
     }
 
     datatype_count = len(datatypes)
-    datatype_bases = [f"        {i}/" for i in datatypes]
+    datatype_bases = [f"        {i}/" for i in datatypes if i != "stimuli"]
     datatype_file_start = (
         "            sub-<label>" if not placeholders else "            <matches>_"
     )
@@ -125,7 +125,7 @@ sub-<label>/
             assert line.startswith(datatype_file_start)
 
     # Are all datatypes listed?
-    assert datatype_bases_found == datatype_count
+    assert datatype_bases_found == len(datatypes) - 1
 
     # Restrict (a little) the datatype bases
     filename_template = text.make_filename_template(
