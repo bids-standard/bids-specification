@@ -418,7 +418,7 @@ task:
     The `task-<label>` MUST be consistent across subjects and sessions.
 
     Files with the `task-<label>` entity SHOULD have an associated
-    [events file](SPEC_ROOT/modality-specific-files/task-events.md#task-events),
+    [events file](SPEC_ROOT/modality-agnostic-files/events.md#events),
     as well as certain metadata fields in the associated JSON file.
 
     For the purpose of this specification we consider the so-called "resting state" a task,
