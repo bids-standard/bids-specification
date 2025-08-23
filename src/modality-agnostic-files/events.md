@@ -20,10 +20,10 @@ duration).
    )
 }}
 
-Each `events.tsv` file REQUIRES a corresponding data file.
-It is also possible to have a single `events.tsv` file describing events
-for all participants and runs (see
-[Inheritance Principle](../common-principles.md#the-inheritance-principle)).
+Each `events.tsv` file REQUIRES at least one corresponding data file.
+Through the [Inheritance Principle](../common-principles.md#the-inheritance-principle),
+a single `events.tsv` file MAY describe events for multiple participants,
+sessions, and runs.
 As with all other tabular data, `events.tsv` files MAY be accompanied
 by a JSON file describing the columns in detail
 (see [Tabular Files](../common-principles.md#tabular-files)).
@@ -61,7 +61,7 @@ SHOULD be documented in an accompanying JSON sidecar file.
     if any acquired scans have been discarded before forming the imaging data file,
     ensure that an `onset` of 0 corresponds to the time the first image was stored.
     For example in case there is an in scanner training phase that
-    begins before the scanning sequence has started events from this sequence should
+    begins before the scanning sequence has started, events from this sequence should
     have negative onset time counting down to the beginning of the acquisition of
     the first volume.
 
