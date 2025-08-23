@@ -2,12 +2,13 @@
 
 The purpose of this file is to describe timing and other properties of events
 recorded during data acquisition.
-Events are, for example, stimuli presented to the participant or participant responses
-during acquisition of functional data and thus associated with specific tasks performed
-(see [Definitions](../common-principles.md#definitions)).
+Events may include stimuli presented to the participant, participant responses
+that are associated with tasks, or markers of other incidents that occurred
+during the execution of the experiment.
+See the [definition of Event](../common-principles.md#definitions) for a more detailed explanation.
 A single event file MAY include any combination of stimulus, response, and other events.
 Events MAY overlap in time.
-Please mind that this does not imply that only so called "event related" study designs
+Please keep in mind that this does not imply that only so called "event related" study designs
 are supported (in contrast to "block" designs) - each "block of events" can be
 represented by an individual row in the `events.tsv` file (with a long
 duration).
@@ -19,7 +20,7 @@ duration).
    )
 }}
 
-Each events file REQUIRES a corresponding data file.
+Each `events.tsv` file REQUIRES a corresponding data file.
 It is also possible to have a single `events.tsv` file describing events
 for all participants and runs (see
 [Inheritance Principle](../common-principles.md#the-inheritance-principle)).

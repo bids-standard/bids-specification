@@ -677,7 +677,7 @@ Example of a hypothetical `*_bold.json` file, accompanying a `*_bold.nii` file:
 Example of a hypothetical `*_events.json` file, accompanying an
 `*_events.tsv` file. Note that the JSON file contains a key describing an
 *arbitrary* column `stim_presentation_side` in the TSV file it accompanies.
-See [task events section](modality-agnostic-files/events.md)
+See [events section](modality-agnostic-files/events.md)
 for more information.
 
 ```JSON
