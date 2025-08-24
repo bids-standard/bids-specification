@@ -60,12 +60,12 @@ in [Derived dataset and pipeline description][derived-dataset-description].
     copy of that raw file.
 
 -   Each Derivatives filename MUST be of the form:
-    `<source_entities>[_keyword-<value>]_<suffix>.<extension>`
+    `<source-entities>[_keyword-<value>]_<suffix>.<extension>`
     (where `<value>` could either be an `<index>` or a `<label>` depending on
     the keyword; see [Definitions][definitions])
 
 -   When the derivatives chain involves outputs derived from a single raw input,
-    `source_entities` MUST be the entire source filename, with the omission of
+    `source-entities` MUST be the entire source filename, with the omission of
     the source suffix and extension. One exception to this rule is filename
     entities that are no longer relevant. Depending on the nature of the
     derivative file, the suffix can either be the same as the source file if

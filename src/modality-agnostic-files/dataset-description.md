@@ -111,7 +111,7 @@ Example:
 
 As for any BIDS dataset, a `dataset_description.json` file MUST be found at the
 top level of every derived dataset:
-`<dataset>/derivatives/<pipeline_name>/dataset_description.json`.
+`<dataset>/derivatives/<pipeline-name>/dataset_description.json`.
 
 In contrast to raw BIDS datasets, derived BIDS datasets MUST include a
 `GeneratedBy` key:
@@ -130,8 +130,8 @@ and a guide for using macros can be found at
 
 If a derived dataset is stored as a subdirectory of the raw dataset, then the `Name` field
 of the first `GeneratedBy` object MUST be a substring of the derived dataset directory name.
-That is, in a directory `<dataset>/derivatives/<pipeline>[-<variant>]/`, the first
-`GeneratedBy` object should have a `Name` of `<pipeline>`.
+That is, in a directory `<dataset>/derivatives/<pipeline-name>[-<variant>]/`, the first
+`GeneratedBy` object should have a `Name` of `<pipeline-name>`.
 
 Example:
 
