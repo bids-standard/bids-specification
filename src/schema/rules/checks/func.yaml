@@ -41,9 +41,17 @@ RepetitionTimeMismatch:
     - type(sidecar.RepetitionTime) != "null"
     - type(nifti_header) != "null"
   checks:
-    # Implement millisecond rounding via AND
-    - sidecar.RepetitionTime - nifti_header.pixdim[4] < 0.001
-    - sidecar.RepetitionTime - nifti_header.pixdim[4] > -0.001
+    # Use index(...) % 3 to treat unknown units like seconds
+    - |
+      nifti_header.pixdim[4]
+        * 10 ** (-3 * (index(["sec", "msec", "usec", "unknown"], nifti_header.xyzt_units.t) % 3))
+      - sidecar.RepetitionTime
+      > -0.001
+    - |
+      nifti_header.pixdim[4]
+        * 10 ** (-3 * (index(["sec", "msec", "usec", "unknown"], nifti_header.xyzt_units.t) % 3))
+      - sidecar.RepetitionTime
+      < 0.001
 
 # 54
 BoldNot4d:
