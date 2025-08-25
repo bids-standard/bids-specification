@@ -25,7 +25,7 @@ A guide for using macros can be found at
 Preprocessed `bold` NIfTI file in the original coordinate space of the original run.
 The location of the file in the original datasets is encoded in the `Sources` metadata,
 and [`_desc-<label>`](../appendices/entities.md#desc)
-is used to prevent clashing with the original filename.
+is used (the last entity before the suffix) to prevent clashing with the original filename.
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
