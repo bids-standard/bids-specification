@@ -332,8 +332,6 @@ and a guide for using macros can be found at
          "MWFmap",
          "MTVmap",
          "Chimap",
-         "TB1map",
-         "RB1map",
          "S0map",
          "M0map",
       ])
@@ -1090,7 +1088,16 @@ form of flowcharts.
 
 ## Fieldmap data
 
-Data acquired to correct for *B<sub>0</sub>* inhomogeneities can come in different forms.
+Data acquired to correct for inhomogeneities in the magnetic field can come in different forms.
+These "fieldmaps" can characterize different magnetic fields in the scanner,
+including the main static magnetic field (B<sub>0</sub>)
+and the transmit (B<sub>1</sub><sup>+</sup>) and receive (B<sub>1</sub><sup>-</sup>) components of
+the radiofrequency magnetic field (B<sub>1</sub>).
+
+Data acquired to correct for these inhomogeneities can come in different forms.
+
+### B<sub>0</sub> fieldmaps
+
 The current version of this standard considers four different scenarios:
 
 1.  [Phase-difference map](#case-1-phase-difference-map-and-at-least-one-magnitude-image)
@@ -1122,13 +1129,13 @@ and a guide for using macros can be found at
    )
 }}
 
-### Expressing the MR protocol intent for fieldmaps
+#### Expressing the MR protocol intent for fieldmaps
 
 Fieldmaps are typically acquired with the purpose of correcting one or more EPI
 scans under `dwi/`, `func/`, or `perf/` for distortions derived from *B<sub>0</sub>*
 nonuniformity.
 
-#### Using `B0FieldIdentifier` metadata
+##### Using `B0FieldIdentifier` metadata
 
 The general purpose [`B0FieldIdentifier` MRI metadata](#echo-planar-imaging-and-b0-mapping)
 is RECOMMENDED for the prescription of the *B<sub>0</sub>* field estimation intent of the
@@ -1139,7 +1146,7 @@ complex use cases.
 It is RECOMMENDED to use both approaches to maintain compatibility with
 tools that support older datasets.
 
-#### Using `IntendedFor` metadata
+##### Using `IntendedFor` metadata
 
 Fieldmap data MAY be linked to the specific scan(s) it was acquired for by
 filling the `IntendedFor` field in the corresponding JSON file.
@@ -1165,9 +1172,9 @@ For example:
 }
 ```
 
-### Types of fieldmaps
+#### Types of B<sub>0</sub> fieldmaps
 
-#### Case 1: Phase-difference map and at least one magnitude image
+##### Case 1: Phase-difference map and at least one magnitude image
 
 !!! example "Example datasets"
 
@@ -1218,7 +1225,7 @@ For example:
 }
 ```
 
-#### Case 2: Two phase maps and two magnitude images
+##### Case 2: Two phase maps and two magnitude images
 
 Similar to case 1, but instead of a precomputed phase-difference map, two
 separate phase images and two magnitude images corresponding to first and
@@ -1255,7 +1262,7 @@ For example, `sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phase2.json`
 }
 ```
 
-#### Case 3: Direct *field mapping*
+##### Case 3: Direct *field mapping*
 
 In some cases (for example GE), the scanner software will directly reconstruct a
 *B<sub>0</sub>* field map along with a magnitude image used for anatomical reference.
@@ -1294,7 +1301,7 @@ For example:
 See [Using `IntendedFor` metadata](#using-intendedfor-metadata)
 for details on the `IntendedFor` field.
 
-#### Case 4: Multiple phase encoded directions ("pepolar")
+##### Case 4: Multiple phase encoded directions ("pepolar")
 
 !!! example "Example datasets"
 
@@ -1357,3 +1364,73 @@ As for other EPI sequences, these field mapping sequences may have any of the
 [in-plane spatial encoding](#in-and-out-of-plane-spatial-encoding) metadata keys.
 However, please note that `PhaseEncodingDirection` and `TotalReadoutTime` keys
 are REQUIRED for these field mapping sequences.
+
+### B<sub>1</sub><sup>+</sup> fieldmaps
+
+<!--
+This block generates a suffix table.
+The definitions of these fields can be found in
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_suffix_table(
+      [
+         "TB1AFI",
+         "TB1DAM",
+         "TB1EPI",
+         "TB1RFM",
+         "TB1SRGE",
+         "TB1TFL",
+         "TB1map",
+      ]
+   )
+}}
+
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the directory
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filename_template("raw", datatypes=["fmap"], suffixes=[
+         "TB1AFI",
+         "TB1DAM",
+         "TB1EPI",
+         "TB1RFM",
+         "TB1SRGE",
+         "TB1TFL",
+         "TB1map",
+      ])
+}}
+
+### B<sub>1</sub><sup>-</sup> fieldmaps
+
+<!--
+This block generates a suffix table.
+The definitions of these fields can be found in
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_suffix_table(
+      [
+         "RB1COR",
+         "RB1map",
+      ]
+   )
+}}
+
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the directory
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filename_template("raw", datatypes=["fmap"], suffixes=[
+         "RB1COR",
+         "RB1map",
+      ])
+}}
