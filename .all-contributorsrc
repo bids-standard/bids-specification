@@ -398,17 +398,6 @@
             "name": "B. Nolan Nichols"
         },
         {
-            "avatar_url": [
-                "https://avatars.githubusercontent.com/u/61424864?v=4"
-            ],
-            "contributions": [
-                "code"
-            ],
-            "login": "bids-maintenance",
-            "name": "BIDS Maintenance User",
-            "profile": "https://bids.neuroimaging.io/"
-        },
-        {
             "contributions": [
                 "doc"
             ],
