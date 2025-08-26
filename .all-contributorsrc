@@ -418,7 +418,8 @@
         {
             "avatar_url": "https://avatars.githubusercontent.com/u/6898909?v=4",
             "contributions": [
-                "doc"
+                "doc",
+                "code"
             ],
             "login": "musicinmybrain",
             "name": "Benjamin Beasley",
@@ -1304,6 +1305,7 @@
             "profile": "https://www.fil.ion.ucl.ac.uk/team/spm-team/"
         },
         {
+            "avatar_url": "https://avatars.githubusercontent.com/u/4451818?v=4",
             "contributions": [
                 "ideas",
                 "design",
@@ -1322,7 +1324,7 @@
                 "talk"
             ],
             "login": "guiomar",
-            "name": "Guiomar Niso",
+            "name": "Julia Guiomar Niso Galán",
             "profile": "http://guiomarniso.com"
         },
         {
@@ -1783,29 +1785,6 @@
             "login": "JosephGWoods",
             "name": "Joseph Woods",
             "profile": "https://www.ndcn.ox.ac.uk/team/joseph-woods"
-        },
-        {
-            "avatar_url": "https://avatars.githubusercontent.com/u/4451818?v=4",
-            "contributions": [
-                "ideas",
-                "design",
-                "fundingFinding",
-                "review",
-                "eventOrganizing",
-                "blog",
-                "tool",
-                "bug",
-                "code",
-                "data",
-                "tutorial",
-                "question",
-                "doc",
-                "example",
-                "talk"
-            ],
-            "login": "guiomar",
-            "name": "Julia Guiomar Niso Galán",
-            "profile": "http://guiomarniso.com"
         },
         {
             "avatar_url": "https://avatars.githubusercontent.com/u/8088860?v=4",
@@ -3677,6 +3656,72 @@
             ],
             "login": "étienne_bergeron",
             "name": "Étienne Bergeron"
+        },
+        {
+            "login": "bclenet",
+            "name": "bclenet",
+            "contributions": [
+                "code"
+            ],
+            "profile": "https://github.com/bclenet",
+            "avatar_url": [
+                "https://avatars.githubusercontent.com/u/117362283?v=4"
+            ]
+        },
+        {
+            "login": "tstoeter",
+            "name": "tstoeter",
+            "contributions": [
+                "code"
+            ],
+            "profile": "https://github.com/tstoeter",
+            "avatar_url": [
+                "https://avatars.githubusercontent.com/u/4901704?v=4"
+            ]
+        },
+        {
+            "login": "AugustijnVrolijk",
+            "name": "AugustijnVrolijk",
+            "contributions": [
+                "code"
+            ],
+            "profile": "https://github.com/AugustijnVrolijk",
+            "avatar_url": [
+                "https://avatars.githubusercontent.com/u/96262227?v=4"
+            ]
+        },
+        {
+            "login": "CodyCBakerPhD",
+            "name": "CodyCBakerPhD",
+            "contributions": [
+                "code"
+            ],
+            "profile": "https://github.com/CodyCBakerPhD",
+            "avatar_url": [
+                "https://avatars.githubusercontent.com/u/51133164?v=4"
+            ]
+        },
+        {
+            "login": "drammock",
+            "name": "drammock",
+            "contributions": [
+                "code"
+            ],
+            "profile": "https://github.com/drammock",
+            "avatar_url": [
+                "https://avatars.githubusercontent.com/u/1810515?v=4"
+            ]
+        },
+        {
+            "login": "bendichter",
+            "name": "bendichter",
+            "contributions": [
+                "code"
+            ],
+            "profile": "https://github.com/bendichter",
+            "avatar_url": [
+                "https://avatars.githubusercontent.com/u/844306?v=4"
+            ]
         }
     ],
     "contributorsPerLine": 7

@@ -869,7 +869,8 @@
             "doc",
             "code"
         ],
-        "name": "Dmitry Petrov"
+        "name": "Dmitry Petrov",
+        "orcid": "0000-0003-0445-3923"
     },
     "dorahermes": {
         "affiliation": "Mayo Clinic",
@@ -1196,7 +1197,8 @@
             "doc"
         ],
         "email": "fbreuer@uni-mainz.de",
-        "name": "Friederike Breuer"
+        "name": "Friederike Breuer",
+        "orcid": "0000-0002-3020-6590"
     },
     "gaiarizzo": {
         "affiliation": "Invicro, Burlington Danes Building, Imperial College London, Hammersmith Hospital, Du Cane Road, London, W12 0NN, UK",
@@ -3010,7 +3012,9 @@
         "contributions": [
             "code"
         ],
-        "name": "Robert Luke"
+        "name": "Robert Luke",
+        "orcid": "0000-0002-9585-9939",
+        "affiliation": "The University of Manchester"
     },
     "robertoostenveld": {
         "affiliation": "Radboud University, Donders Institute, Nijmegen, 6525 EN, The Netherlands",
