@@ -36,11 +36,11 @@ languages and SHOULD be widely supported in multiple software packages.
 Other formats that may be considered in the future should have a clear added advantage
 over the existing formats and should have wide adoption in the BIDS community.
 
-The [`acq-<label>`](../appendices/entities.md#acq) entity MAY be used to indicate
+The [`recording-<label>`](../appendices/entities.md#recording) entity MAY be used to indicate
 simultaneous acquisition of data from multiple EMG devices, in cases where the devices
 store data in separate data files.
 If separate devices are being used with separate sampling rates, start times, or other
-acquisition parameters, the `acq-<label>` entity MUST be used to distinguish between them.
+acquisition parameters, the `recording-<label>` entity MUST be used to distinguish between them.
 The synchronization of data from multiple devices SHOULD be described in the
 [Scans](../modality-agnostic-files.md#scans-file) (`scans.tsv`) file, using the
 `acq_time` entity.
@@ -426,7 +426,7 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_columns_table("emg.EMGElectrodes") }}
 
-The [`acq-<label>`](../appendices/entities.md#acq) entity MUST be used to indicate
+The [`recording-<label>`](../appendices/entities.md#recording) entity MUST be used to indicate
 simultaneous acquisition of data from multiple EMG devices, in cases where the devices
 store data in separate data files.
 For example:
@@ -440,9 +440,9 @@ A guide for using macros can be found at
    "sub-01": {
       "ses-01":{
          "emg": {
-            "sub-01_ses-01_acq-RectusFemoris_electrodes.tsv": "",
-            "sub-01_ses-01_acq-VastusLateralis_electrodes.tsv": "",
-            "sub-01_ses-01_acq-VastusMedialis_electrodes.tsv": ""
+            "sub-01_ses-01_recording-RectusFemoris_electrodes.tsv": "",
+            "sub-01_ses-01_recording-VastusLateralis_electrodes.tsv": "",
+            "sub-01_ses-01_recording-VastusMedialis_electrodes.tsv": ""
             },
          },
       }
@@ -509,7 +509,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_json_table("json.emg.EMGCoordsystemPositions") }}
 
-The [`acq-<label>`](../appendices/entities.md#acq) entity MUST be used to indicate
+The [`recording-<label>`](../appendices/entities.md#recording) entity MUST be used to indicate
 simultaneous acquisition of data from multiple EMG devices, in cases where the devices
 store data in separate data files.
 Except in cases of simultaneous acquisitions from different devices into different data
@@ -627,7 +627,7 @@ For example, photographs of electrodes on the limbs should include at least one 
 Photos may need to be cropped and/or blurred to conceal identifying features
 or entirely omitted prior to dataset distribution, depending on obtained consent.
 
-If there are photos of the electrodes, the [`acq-<label>`](../appendices/entities.md#acq) entity
+If there are photos of the electrodes, the [`recording-<label>`](../appendices/entities.md#recording) entity
 MAY be specified, if separate photos are provided of each EMG device and the devices recorded
 into separate data files.
 The [`ses-<label>`](../appendices/entities.md#ses) entity may be used to specify when the photo was taken.
@@ -642,7 +642,7 @@ A guide for using macros can be found at
    {
    "sub-01": {
       "ses-01":{
-         "sub-01_ses-01_acq-DorsalForearmGrid_photo.jpg": "",
+         "sub-01_ses-01_recording-DorsalForearmGrid_photo.jpg": "",
          "...": "",
          },
       }
