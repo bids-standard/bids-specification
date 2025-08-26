@@ -64,7 +64,6 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Ali Khan                                             | 📖                                     |
 | Alizee Wickenheiser                                  | 🔧                                     |
 | Alyssa Dai                                           | 💻                                     |
-| Amber Hopkins                                        | 📖                                     |
 | Amber R. Hopkins                                     | 📖                                     |
 | Ana Fouto                                            | 📓                                     |
 | Anders Eklund                                        | 📖📢💻                                 |
