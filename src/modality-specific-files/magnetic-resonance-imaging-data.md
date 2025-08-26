@@ -1094,7 +1094,6 @@ including the main static magnetic field (B<sub>0</sub>)
 and the transmit (B<sub>1</sub><sup>+</sup>) and receive (B<sub>1</sub><sup>-</sup>) components of
 the radiofrequency magnetic field (B<sub>1</sub>).
 
-
 ### B<sub>0</sub> fieldmaps
 
 The current version of this standard considers four different scenarios:
