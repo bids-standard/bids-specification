@@ -1364,7 +1364,11 @@ As for other EPI sequences, these field mapping sequences may have any of the
 However, please note that `PhaseEncodingDirection` and `TotalReadoutTime` keys
 are REQUIRED for these field mapping sequences.
 
-### B<sub>1</sub><sup>+</sup> fieldmaps
+### B<sub>1</sub> fieldmaps
+
+
+
+#### B<sub>1</sub><sup>+</sup> fieldmaps
 
 <!--
 This block generates a suffix table.
@@ -1386,6 +1390,17 @@ and a guide for using macros can be found at
    )
 }}
 
+| **Suffix**           | **REQUIRED metadata**                                                                                |
+| -------------------- | ---------------------------------------------------------------------------------------------------- |
+| TB1DAM               | `FlipAngle`                                                                                          |
+| TB1EPI               | `EchoTime`, `FlipAngle`, `TotalReadoutTime`, `MixingTime`                                            |
+| TB1AFI               | `RepetitionTimeExcitation`                                                                           |
+| TB1TFL               |                                                                                                      |
+| TB1RFM               |                                                                                                      |
+| TB1SRGE<sup>\*</sup> | `FlipAngle`, `InversionTime`, `RepetitionTimeExcitation`, `RepetitionTimePreperation`, `NumberShots` |
+
+<sup>\*</sup> Please see TB1SRGE-specific notes for the calculation of `NumberShots`.
+
 <!--
 This block generates a filename templates.
 The inputs for this macro can be found in the directory
@@ -1404,7 +1419,7 @@ and a guide for using macros can be found at
       ])
 }}
 
-### B<sub>1</sub><sup>-</sup> fieldmaps
+#### B<sub>1</sub><sup>-</sup> fieldmaps
 
 <!--
 This block generates a suffix table.
