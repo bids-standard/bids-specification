@@ -3420,11 +3420,13 @@
         "orcid": "0000-0002-3858-4094"
     },
     "taylor_khuhn": {
+        "affiliation": "University of California, Department of Psychiatry and Biobehavioral Sciences, Los Angeles, CA, USA",
         "contributions": [
             "doc"
         ],
         "email": "TKuhn@mednet.ucla.edu",
-        "name": "Taylor Khuhn"
+        "name": "Taylor Khuhn",
+        "orcid": "0000-0002-5932-1584"
     },
     "tsalo": {
         "affiliation": "University of Pennsylvania, Department of Psychiatry, Philadelphia, Pennsylvania, 19104, United States",

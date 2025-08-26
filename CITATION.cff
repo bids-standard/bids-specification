@@ -1557,6 +1557,8 @@ authors:
   - given-names: Taylor
     family-names: Khuhn
     email: TKuhn@mednet.ucla.edu
+    orcid: https://orcid.org/0000-0002-5932-1584
+    affiliation: University of California, Department of Psychiatry and Biobehavioral Sciences, Los Angeles, CA, USA
   - given-names: Taylor
     family-names: Salo
     website: https://tsalo.github.io
