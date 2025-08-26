@@ -185,6 +185,26 @@ references (the cases in which they are used will be presented later):
     When multiple references are aggregated, the first reference takes
     precedence.
 
+    Note also that `value: null` can be used to "delete" a key from a template.
+    For example, in `rules.files.raw.events`:
+
+    ```YAML
+    events__pet:
+      $ref: rules.files.raw.events.events
+      datatypes:
+        - pet
+      entities:
+        $ref: meta.templates.raw.task.entities
+        tracer: optional
+        reconstruction: optional
+        # Most events allow acquisition, PET doesn't
+        acquisition: null
+    ```
+
+    This technique should be used judiciously, preferring semantic clarity to brevity.
+    Templates should be expected to grow as BIDS evolves,
+    and should thus be used only where those changes should propagate.
+
 ### Expressions
 
 Rules definitions make use of a limited language of expressions that always evaluate to `true` or `false`.
