@@ -3829,5 +3829,29 @@
         ],
         "name": "Étienne Bergeron",
         "orcid": "0000-0002-8329-7852"
+    },
+    "bclenet": {
+        "name": "bclenet",
+        "blog": "https://github.com/bclenet"
+    },
+    "tstoeter": {
+        "name": "tstoeter",
+        "blog": "https://github.com/tstoeter"
+    },
+    "AugustijnVrolijk": {
+        "name": "AugustijnVrolijk",
+        "blog": "https://github.com/AugustijnVrolijk"
+    },
+    "CodyCBakerPhD": {
+        "name": "CodyCBakerPhD",
+        "blog": "https://github.com/CodyCBakerPhD"
+    },
+    "drammock": {
+        "name": "drammock",
+        "blog": "https://github.com/drammock"
+    },
+    "bendichter": {
+        "name": "bendichter",
+        "blog": "https://github.com/bendichter"
     }
 }
