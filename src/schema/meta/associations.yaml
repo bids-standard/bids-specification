@@ -14,7 +14,7 @@
 ---
 events:
   selectors:
-    - 'task in entities'
+    - '"task" in entities'
     - extension != '.json'
   target:
     suffix: events
