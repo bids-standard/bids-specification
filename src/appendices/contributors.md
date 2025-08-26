@@ -85,6 +85,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Aysegul Gunduz                                       | 📖                                     |
 | Azeez Adebimpe                                       | 📖                                     |
 | B. Nolan Nichols                                     | 📖                                     |
+| BIDS Maintenance User                                | 💻                                     |
 | Balint Kincses                                       | 📖                                     |
 | Benjamin Beasley                                     | 📖                                     |
 | Benjamin Dichter                                     | 📖💻⚠️                                 |
