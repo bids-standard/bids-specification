@@ -252,65 +252,6 @@ Explanation of the table:
     See [deriving the intended qMRI application from an ambiguous file collection](#deriving-the-intended-qmri-application-from-an-ambiguous-file-collection)
     for details.
 
-#### Field maps
-
-<!--
-This block generates a suffix table.
-The definitions of these fields can be found in
-  src/schema/rules/files/raw
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_suffix_table(
-      [
-        "TB1DAM",
-        "TB1EPI",
-        "TB1AFI",
-        "TB1TFL",
-        "TB1RFM",
-        "RB1COR",
-        "TB1SRGE",
-        "TB1map",
-        "RB1map",
-      ]
-   )
-}}
-
-<!--
-This block generates a filename templates.
-The inputs for this macro can be found in the directory
-  src/schema/rules/files/raw
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filename_template(
-   "raw",
-   datatypes=["fmap"],
-   suffixes=[
-    "TB1DAM",
-    "TB1EPI",
-    "TB1AFI",
-    "TB1TFL",
-    "TB1RFM",
-    "RB1COR",
-    "TB1SRGE",
-    "TB1map",
-    "RB1map",
-    ])
-}}
-
-| **File collection**  | **REQUIRED metadata**                                                                                |
-| -------------------- | ---------------------------------------------------------------------------------------------------- |
-| TB1DAM               | `FlipAngle`                                                                                          |
-| TB1EPI               | `EchoTime`, `FlipAngle`, `TotalReadoutTime`, `MixingTime`                                            |
-| TB1AFI               | `RepetitionTimeExcitation`                                                                           |
-| TB1TFL               |                                                                                                      |
-| TB1RFM               |                                                                                                      |
-| TB1SRGE<sup>\*</sup> | `FlipAngle`, `InversionTime`, `RepetitionTimeExcitation`, `RepetitionTimePreperation`, `NumberShots` |
-| RB1COR               |                                                                                                      |
-
-<sup>\*</sup> Please see TB1SRGE-specific notes for the calculation of `NumberShots`.
-
 ### Metadata requirements for qMRI maps
 
 As qMRI maps are stored as derivatives, they are subjected to the metadata requirements of
