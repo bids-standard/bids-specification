@@ -29,12 +29,6 @@ stored in one of the following formats:
 | [European data format](https://www.edfplus.info/)                  | `.edf`                   | Each recording consists of a single `.edf` file. [`edf+`](https://www.edfplus.info/specs/edfplus.html) files are permitted. The capital `.EDF` extension MUST NOT be used.                           |
 
 EDF, EDF+, BDF, and BDF+ are all open data formats with broad support in various programming languages for reading and writing the files. BDF and BDF+ formats store data samples using 3 bytes instead of 2 bytes as in EDF and EDF+ formats, allowing for greater resolution. EDF+/BDF+ accommodate more header metadata than EDF/BDF, and support storing event or annotation information in the file. Thus it is RECOMMENDED to use the BDF+ data format.
-Future versions of BIDS may extend this list of supported file formats.
-File formats for future consideration MUST have open access documentation, MUST have
-open source implementation for both reading and writing in at least two programming
-languages and SHOULD be widely supported in multiple software packages.
-Other formats that may be considered in the future should have a clear added advantage
-over the existing formats and should have wide adoption in the BIDS community.
 
 The [`recording-<label>`](../appendices/entities.md#recording) entity MAY be used to indicate
 simultaneous acquisition of data from multiple EMG devices, in cases where the devices
