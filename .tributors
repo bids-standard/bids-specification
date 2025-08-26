@@ -1692,7 +1692,6 @@
             "doc",
             "tool"
         ],
-        "email": "jefferson.casimir@mcgill.ca",
         "name": "Jefferson Casimir",
         "orcid": "0009-0004-4706-0331",
         "publish_email": false
@@ -3341,7 +3340,6 @@
             "code",
             "doc"
         ],
-        "email": "sebastien.tourbier1@gmail.com",
         "name": "Sébastien Tourbier",
         "orcid": "0000-0002-4441-899X",
         "publish_email": false
