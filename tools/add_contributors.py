@@ -457,9 +457,16 @@ def write_citation(citation_file: Path, citation: dict) -> None:
         return yaml.dump(citation, output_file)
 
 
-def return_author_list_for_cff(tributors_file: Path) -> list[dict[str, str]]:
+def return_author_list_for_cff(
+    tributors_file: Path, authors: list[dict[str, str]]
+) -> list[dict[str, str]]:
     """Create an dict to be used for the authors in the `CITATION.cff` file."""
     tributors = load_tributors(tributors_file)
+
+    name_map = {
+        f"{author.get('given-names')} {author.get('family-names')}": author
+        for author in authors
+    }
 
     author_list = []
 
@@ -468,20 +475,28 @@ def return_author_list_for_cff(tributors_file: Path) -> list[dict[str, str]]:
 
         name = this_tributor["name"]
 
-        # take as given name the first part of the name and anything ending with a dot
-        # suboptimal for people with multiple given names
-        given_names = name.split()[0]
-        str_index = 1
-        while str_index < len(name.split()) and name.split()[str_index].endswith("."):
-            given_names += f" {name.split()[str_index]}"
-            str_index += 1
+        new_contrib = {}
+        if name in name_map:
+            # Accept given-names and family-names already in CITATION.cff as authoritative
+            new_contrib["given-names"] = name_map[name]["given-names"]
+            new_contrib["family-names"] = name_map[name]["family-names"]
+            # Do not just new_contrib.update(name_map[name]), to let entries be removed
+            # by removing from tributors
+        else:
+            # take as given name the first part of the name and anything ending with a dot
+            # suboptimal for people with multiple given names
+            given_names = name.split()[0]
+            str_index = 1
+            while str_index < len(name.split()) and name.split()[str_index].endswith(
+                "."
+            ):
+                given_names += f" {name.split()[str_index]}"
+                str_index += 1
 
-        new_contrib = {
-            "given-names": given_names,
-        }
+            new_contrib["given-names"] = given_names
 
-        if family_names := " ".join(name.split()[str_index:]):
-            new_contrib["family-names"] = family_names
+            if family_names := " ".join(name.split()[str_index:]):
+                new_contrib["family-names"] = family_names
 
         if this_tributor.get("blog") is not None:
             new_contrib["website"] = this_tributor["blog"]
@@ -585,7 +600,9 @@ def main():
 
     log.info("UPDATING CITATION.cff")
     citation = load_citation(citation_file)
-    citation["authors"] = return_author_list_for_cff(tributors_file)
+    citation["authors"] = return_author_list_for_cff(
+        tributors_file, citation["authors"]
+    )
     write_citation(citation_file, citation)
 
     log.info("VALIDATING CITATION.cff")
