@@ -1094,7 +1094,6 @@ including the main static magnetic field (B<sub>0</sub>)
 and the transmit (B<sub>1</sub><sup>+</sup>) and receive (B<sub>1</sub><sup>-</sup>) components of
 the radiofrequency magnetic field (B<sub>1</sub>).
 
-Data acquired to correct for these inhomogeneities can come in different forms.
 
 ### B<sub>0</sub> fieldmaps
 
