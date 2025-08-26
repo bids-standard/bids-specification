@@ -227,6 +227,13 @@
         },
         {
             "contributions": [
+                "doc"
+            ],
+            "login": "amber_hopkins",
+            "name": "Amber R. Hopkins"
+        },
+        {
+            "contributions": [
                 "userTesting"
             ],
             "login": "ana_fouto",
@@ -412,7 +419,7 @@
             "contributions": [
                 "doc"
             ],
-            "login": "balint_kincses",
+            "login": "kincsesbalint",
             "name": "Balint Kincses"
         },
         {
@@ -1133,6 +1140,13 @@
             "name": "François Tadel"
         },
         {
+            "contributions": [
+                "doc"
+            ],
+            "login": "friederike_breuer",
+            "name": "Friederike Breuer"
+        },
+        {
             "avatar_url": "https://avatars.githubusercontent.com/u/16919574?v=4",
             "contributions": [
                 "doc"
@@ -1234,7 +1248,7 @@
             "contributions": [
                 "doc"
             ],
-            "login": "giuseppe_gallitto",
+            "login": "gallg",
             "name": "Giuseppe Gallitto"
         },
         {
@@ -1315,7 +1329,7 @@
                 "talk"
             ],
             "login": "guiomar",
-            "name": "Guiomar Galán",
+            "name": "Guiomar Niso",
             "profile": "http://guiomarniso.com"
         },
         {
@@ -1612,6 +1626,7 @@
             "profile": "https://jeanettemumford.org/"
         },
         {
+            "avatar_url": "https://avatars.githubusercontent.com/u/15801528?v=4",
             "contributions": [
                 "tool",
                 "code",
@@ -1812,7 +1827,9 @@
             "avatar_url": "https://avatars.githubusercontent.com/u/111446107?v=4",
             "contributions": [
                 "code",
-                "doc"
+                "doc",
+                "tool",
+                "example"
             ],
             "login": "julia-pfarr",
             "name": "Julia-Katharina Pfarr",
@@ -2436,7 +2453,7 @@
                 "doc"
             ],
             "login": "mekline",
-            "name": "Melissa kline",
+            "name": "Melissa Kline Struhl",
             "profile": "http://www.melissaklinestruhl.com/"
         },
         {
@@ -2986,16 +3003,6 @@
             "profile": "https://github.com/samirdas"
         },
         {
-            "avatar_url": "https://avatars.githubusercontent.com/u/3774850?v=4",
-            "contributions": [
-                "doc",
-                "ideas"
-            ],
-            "login": "sdiebolt",
-            "name": "Samuel Diebolt",
-            "profile": "https://samuel.diebolt.io/"
-        },
-        {
             "contributions": [
                 "ideas",
                 "review",
@@ -3013,6 +3020,7 @@
             "name": "Samuel Guay"
         },
         {
+            "avatar_url": "https://avatars.githubusercontent.com/u/3774850?v=4",
             "contributions": [
                 "doc",
                 "ideas"
@@ -3494,8 +3502,9 @@
             "contributions": [
                 "doc"
             ],
-            "login": "victor_hugo_souza",
-            "name": "Victor Hugo Souza"
+            "login": "victor_h_souza",
+            "name": "Victor H. Souza",
+            "profile": "https://vhosouza.github.io/"
         },
         {
             "avatar_url": "https://avatars.githubusercontent.com/u/48063259?v=4",
@@ -3638,17 +3647,6 @@
             "login": "ezemikulan",
             "name": "ezemikulan",
             "profile": "https://github.com/ezemikulan"
-        },
-        {
-            "avatar_url": [
-                "https://avatars.githubusercontent.com/u/15801528?v=4"
-            ],
-            "contributions": [
-                "code"
-            ],
-            "login": "jeffersoncasimir",
-            "name": "jeffersoncasimir",
-            "profile": "https://github.com/jeffersoncasimir"
         },
         {
             "avatar_url": "https://avatars.githubusercontent.com/u/9729281?v=4",

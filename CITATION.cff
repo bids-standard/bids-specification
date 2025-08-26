@@ -134,11 +134,13 @@ authors:
   - given-names: Alyssa
     family-names: Dai
     orcid: https://orcid.org/0000-0003-0174-6800
-    affiliation: origami lab, McGill university, Montreal, Québec, Canada
+    affiliation: McGill University
     email: alyssa.ydai@gmail.com
-  - given-names: Amber
+  - given-names: Amber R.
     family-names: Hopkins
-    email: arhopkins@ucla.edu
+    orcid: https://orcid.org/0000-0002-8354-565X
+    affiliation: Department of Psychology, University of California Los Angeles, Los Angeles, California, United States
+    email: amber.neuro@gmail.com
   - given-names: Ana
     family-names: Fouto
   - given-names: Anders
@@ -226,6 +228,7 @@ authors:
     website: https://bids.neuroimaging.io/
   - given-names: Balint
     family-names: Kincses
+    orcid: https://orcid.org/0000-0002-0478-6384
     email: balint.kincses@uk-essen.de
   - given-names: Benjamin
     family-names: Beasley
@@ -443,6 +446,7 @@ authors:
   - given-names: Dorota
     family-names: Jarecka
     website: https://www.linkedin.com/in/djarecka
+    orcid: https://orcid.org/0000-0001-8282-2988
     affiliation: MIT, Cambridge, USA
     email: djarecka@mit.edu
   - given-names: Douglas N.
@@ -560,6 +564,10 @@ authors:
     affiliation: Stanford University
   - given-names: François
     family-names: Tadel
+  - given-names: Friederike
+    family-names: Breuer
+    affiliation: Johannes-Gutenberg University Medical Center, Mainz Germany
+    email: fbreuer@uni-mainz.de
   - given-names: Gaia
     family-names: Rizzo
     website: http://fair.dei.unipd.it/gaia-rizzo/
@@ -581,8 +589,8 @@ authors:
   - given-names: Giacomo
     family-names: Bertazzoli
     orcid: https://orcid.org/0000-0003-1624-2576
-    affiliation: Centro San Giovanni di Dio Fatebenefratelli
-    email: giacomo.bertazzoli@unitn.it
+    affiliation: Berenson-Allen Center for Noninvasive Brain Stimulation, Beth Israel Deaconess Medical Center and Harvard Medical School, Boston, MA, USA,  Department of Neurology, Harvard Medical School, Boston, MA, USA
+    email: giacomofirst@gmail.com
   - given-names: Giacomo
     family-names: Guidali
     orcid: https://orcid.org/0000-0002-3741-0404
@@ -643,7 +651,7 @@ authors:
     orcid: https://orcid.org/0000-0003-0077-7859
     affiliation: University College London
   - given-names: Guiomar
-    family-names: Galán
+    family-names: Niso
     website: http://guiomarniso.com
     orcid: https://orcid.org/0000-0001-5872-8924
     affiliation: Spanish National Research Council (CSIC)
@@ -793,7 +801,6 @@ authors:
     website: https://github.com/jeffersoncasimir
     orcid: https://orcid.org/0009-0004-4706-0331
     affiliation: McGill Centre for Integrative Neuroscience, Montreal Neurological Institute, McGill University
-    email: jefferson.casimir@mcgill.ca
   - given-names: Jeffrey G.
     family-names: Ojemann
     orcid: https://orcid.org/0000-0001-7580-8934
@@ -885,7 +892,8 @@ authors:
     family-names: Pfarr
     website: https://github.com/julia-pfarr
     orcid: https://orcid.org/0000-0003-1450-6005
-    email: pfarr@staff.uni-marburg.de
+    affiliation: McGill University
+    email: juliakatharina.pfarr@gmail.com
   - given-names: Julien
     family-names: Cohen-Adad
     website: https://www.neuro.polymtl.ca
@@ -1123,7 +1131,7 @@ authors:
   - given-names: Mathieu
     family-names: Guay-Paquet
     website: https://www.pointedset.ca/
-    affiliation: Montreal, Quebec, Canada
+    affiliation: NeuroPoly Lab, Polytechnique Montréal
     email: mathieu.guay-paquet@polymtl.ca
   - given-names: Matt
     family-names: Cieslak
@@ -1175,7 +1183,7 @@ authors:
     affiliation: University of Copenhagen, Department of Computer Science, Copenhagen, 2100, Denmark
     email: ganz@di.ku.dk
   - given-names: Melissa
-    family-names: kline
+    family-names: Kline Struhl
     website: http://www.melissaklinestruhl.com/
     orcid: https://orcid.org/0000-0003-2217-9331
     affiliation: MIT, Cambridge, USA
@@ -1217,7 +1225,7 @@ authors:
   - given-names: Mohammad
     family-names: Torabi
     orcid: https://orcid.org/0000-0002-4429-8481
-    affiliation: origami lab, McGill university, Montreal, Québec, Canada
+    affiliation: McGill University
     email: mohammad.torabi@mail.mcgill.ca
   - given-names: Monique
     family-names: Denissen
@@ -1524,7 +1532,6 @@ authors:
     website: https://github.com/sebastientourbier
     orcid: https://orcid.org/0000-0002-4441-899X
     affiliation: Lausanne University Hospital (CHUV), Department of Clinical Neurosciences (DNC), Lausanne, 1007, Switzerland
-    email: sebastien.tourbier1@gmail.com
   - given-names: Sören
     family-names: Grothkopp
     affiliation: Technical University Berlin
@@ -1591,7 +1598,7 @@ authors:
   - given-names: Til
     family-names: Ole Bergmann
     orcid: https://orcid.org/0000-0002-2282-6618
-    affiliation: ohannes-Gutenberg University Medical Center, Mainz Germany
+    affiliation: Johannes-Gutenberg University Medical Center, Mainz Germany
     email: tobergmann@uni-mainz.de
   - given-names: Timo
     family-names: Dickscheid
@@ -1641,9 +1648,12 @@ authors:
     orcid: https://orcid.org/0000-0002-4387-3819
   - given-names: Vasudev
     family-names: Raguram
-  - given-names: Victor
-    family-names: Hugo Souza
-    email: victor.souza@aalto.fi
+  - given-names: Victor H.
+    family-names: Souza
+    website: https://vhosouza.github.io/
+    orcid: https://orcid.org/0000-0002-0254-4322
+    affiliation: Aalto University, Finland
+    email: victorhos@hotmail.com
   - given-names: Vince D.
     family-names: Calhoun
     website: http://trendscenter.org
