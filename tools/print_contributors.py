@@ -1,3 +1,14 @@
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "cffconvert",
+#     "emoji",
+#     "pandas",
+#     "requests",
+#     "rich",
+#     "ruamel-yaml",
+# ]
+# ///
 """Update the table of contributors in the specification appendix.
 
 

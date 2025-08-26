@@ -1,4 +1,15 @@
 #!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "cffconvert",
+#     "emoji",
+#     "pandas",
+#     "requests",
+#     "rich",
+#     "ruamel-yaml",
+# ]
+# ///
 
 """Add new contributors listed in `new_contributors.tsv` to `.tributors` file.
 
