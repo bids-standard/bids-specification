@@ -82,14 +82,16 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Arshitha Basavaraj                                   | 📖🚇💻                                 |
 | Ashley G. Gillman                                    | 📖                                     |
 | Athanasia Monika Mowinckel                           | 📖                                     |
+| Augustijn Vrolijk                                    | 💻📖                                   |
 | Aysegul Gunduz                                       | 📖                                     |
 | Azeez Adebimpe                                       | 📖                                     |
 | B. Nolan Nichols                                     | 📖                                     |
 | Balint Kincses                                       | 📖                                     |
-| Benjamin Beasley                                     | 📖                                     |
+| Benjamin Beasley                                     | 📖💻                                   |
 | Benjamin Dichter                                     | 📖💻⚠️                                 |
 | Benjamin Gagl                                        | 📖                                     |
 | Bertrand Thirion                                     | 📖                                     |
+| Boris Clénet                                         | 📖💻                                   |
 | Bradley Voytek                                       | 📖                                     |
 | Brent McPherson                                      | 💻                                     |
 | Brett L. Foster                                      | 📖                                     |
@@ -114,12 +116,15 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Christopher Lee-Messer                               | 📖                                     |
 | Clara Moreau                                         | 📖                                     |
 | Clint Hansen                                         | 📖🤔                                   |
+| Cody C Baker                                         | 📖                                     |
+| CodyCBakerPhD                                        | 💻                                     |
 | Cyril Pernet                                         | 💬📝📖🎨💡📋🤔📢                       |
 | Cyrus Eierud                                         | 📖                                     |
 | D. Sturgeon                                          | 💻                                     |
 | Dan Levitas                                          | 📖                                     |
 | Dan Lurie                                            | 🤔📖🔧🔌💻💬                           |
 | Daniel A. Handwerker                                 | 📖                                     |
+| Daniel McCloy                                        | 📖                                     |
 | David Alsop                                          | 📖                                     |
 | David Boas                                           | 📖                                     |
 | David Groppe                                         | 📖                                     |
@@ -400,6 +405,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Tobias Bengfort                                      | 💻                                     |
 | Tom Hampshire                                        | 📖                                     |
 | Tor Wager                                            | 📖                                     |
+| Torsten Stöter                                       | 📖                                     |
 | Travis Riddle                                        | 📖🔧🐛                                 |
 | Tristan Glatard                                      | 📖💻                                   |
 | Tyler Collins                                        | 🔣🔧                                   |
@@ -422,8 +428,12 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Yuan Wang                                            | 💻                                     |
 | Zachary Michael                                      | 📖                                     |
 | Zhi-De Deng                                          | 📖                                     |
+| bclenet                                              | 💻                                     |
+| bendichter                                           | 💻                                     |
+| drammock                                             | 💻                                     |
 | ezemikulan                                           | 💻                                     |
 | josator2                                             | 💻                                     |
 | monkeyman192                                         | 💻                                     |
 | patrick-g-h                                          | 💻                                     |
+| tstoeter                                             | 💻                                     |
 | Étienne Bergeron                                     | 🔣💻                                   |

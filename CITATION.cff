@@ -213,6 +213,9 @@ authors:
     website: https://github.com/drmowinckels
     orcid: https://orcid.org/0000-0002-5756-0223
     affiliation: University of Oslo
+  - given-names: Augustijn
+    family-names: Vrolijk
+    website: https://github.com/AugustijnVrolijk
   - given-names: Aysegul
     family-names: Gunduz
   - given-names: Azeez
@@ -223,9 +226,6 @@ authors:
     family-names: Nichols
     orcid: https://orcid.org/0000-0003-1099-3328
     affiliation: Altos Labs
-  - given-names: BIDS
-    family-names: Maintenance User
-    website: https://bids.neuroimaging.io/
   - given-names: Balint
     family-names: Kincses
     orcid: https://orcid.org/0000-0002-0478-6384
@@ -248,6 +248,9 @@ authors:
     family-names: Thirion
     website: https://github.com/bthirion
     orcid: https://orcid.org/0000-0001-5018-7895
+  - given-names: Boris
+    family-names: Clénet
+    website: https://github.com/bclenet
   - given-names: Bradley
     family-names: Voytek
     website: https://www.voyteklab.com/
@@ -357,6 +360,9 @@ authors:
     family-names: Hansen
     affiliation: Kiel University
     email: c.hansen@neurologie.uni-kiel.de
+  - given-names: Cody
+    family-names: C Baker
+    website: https://github.com/CodyCBakerPhD
   - given-names: Cyril
     family-names: Pernet
     website: https://cpernet.github.io/
@@ -387,6 +393,9 @@ authors:
     family-names: Handwerker
     orcid: https://orcid.org/0000-0001-7261-4042
     affiliation: National  Institute of Mental Health
+  - given-names: Daniel
+    family-names: McCloy
+    website: https://github.com/drammock
   - given-names: David
     family-names: Alsop
   - given-names: David
@@ -432,6 +441,7 @@ authors:
     orcid: https://orcid.org/0000-0002-1242-8990
   - given-names: Dmitry
     family-names: Petrov
+    orcid: https://orcid.org/0000-0003-0445-3923
   - given-names: Dora
     family-names: Hermes
     website: https://github.com/dorahermes
@@ -566,6 +576,7 @@ authors:
     family-names: Tadel
   - given-names: Friederike
     family-names: Breuer
+    orcid: https://orcid.org/0000-0002-3020-6590
     affiliation: Johannes-Gutenberg University Medical Center, Mainz Germany
     email: fbreuer@uni-mainz.de
   - given-names: Gaia
@@ -1389,6 +1400,8 @@ authors:
   - given-names: Robert
     family-names: Luke
     website: https://github.com/rob-luke
+    orcid: https://orcid.org/0000-0002-9585-9939
+    affiliation: The University of Manchester
   - given-names: Robert
     family-names: Oostenveld
     website: https://robertoostenveld.nl
@@ -1556,9 +1569,9 @@ authors:
     orcid: https://orcid.org/0000-0002-3858-4094
   - given-names: Taylor
     family-names: Khuhn
-    email: TKuhn@mednet.ucla.edu
     orcid: https://orcid.org/0000-0002-5932-1584
     affiliation: University of California, Department of Psychiatry and Biobehavioral Sciences, Los Angeles, CA, USA
+    email: TKuhn@mednet.ucla.edu
   - given-names: Taylor
     family-names: Salo
     website: https://tsalo.github.io
@@ -1629,6 +1642,9 @@ authors:
     website: https://github.com/torwager
     orcid: https://orcid.org/0000-0002-1936-5574
     affiliation: University of Colorado Boulder
+  - given-names: Torsten
+    family-names: Stöter
+    website: https://github.com/tstoeter
   - given-names: Travis
     family-names: Riddle
     orcid: https://orcid.org/0000-0001-8160-3986

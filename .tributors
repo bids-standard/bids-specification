@@ -384,6 +384,14 @@
         "name": "Athanasia Monika Mowinckel",
         "orcid": "0000-0002-5756-0223"
     },
+    "AugustijnVrolijk": {
+        "blog": "https://github.com/AugustijnVrolijk",
+        "contributions": [
+            "code",
+            "doc"
+        ],
+        "name": "Augustijn Vrolijk"
+    },
     "aysegul_gunduz": {
         "contributions": [
             "doc"
@@ -453,6 +461,14 @@
         ],
         "name": "Bertrand Thirion",
         "orcid": "0000-0001-5018-7895"
+    },
+    "bclenet": {
+        "blog": "https://github.com/bclenet",
+        "contributions": [
+            "doc",
+            "code"
+        ],
+        "name": "Boris Clénet"
     },
     "voytek": {
         "affiliation": "UC San Diego, Cognitive Science and Data Science, La Jolla, CA, 92093, USA",
@@ -698,6 +714,13 @@
         "email": "c.hansen@neurologie.uni-kiel.de",
         "name": "Clint Hansen"
     },
+    "CodyCBakerPhD": {
+        "blog": "https://github.com/CodyCBakerPhD",
+        "contributions": [
+            "doc"
+        ],
+        "name": "Cody C Baker"
+    },
     "CPernet": {
         "affiliation": "Neurobiology Research Unit,  Copenhagen University Hospital Rigshospitalet, DK-2100 Copenhagen, Denmark",
         "blog": "https://cpernet.github.io/",
@@ -767,6 +790,13 @@
         ],
         "name": "Daniel A. Handwerker",
         "orcid": "0000-0001-7261-4042"
+    },
+    "drammock": {
+        "blog": "https://github.com/drammock",
+        "contributions": [
+            "doc"
+        ],
+        "name": "Daniel McCloy"
     },
     "david_alsop": {
         "contributions": [
@@ -3003,13 +3033,13 @@
         "name": "Robert Knight"
     },
     "rob-luke": {
+        "affiliation": "The University of Manchester",
         "blog": "https://github.com/rob-luke",
         "contributions": [
             "code"
         ],
         "name": "Robert Luke",
-        "orcid": "0000-0002-9585-9939",
-        "affiliation": "The University of Manchester"
+        "orcid": "0000-0002-9585-9939"
     },
     "robertoostenveld": {
         "affiliation": "Radboud University, Donders Institute, Nijmegen, 6525 EN, The Netherlands",
@@ -3589,6 +3619,10 @@
         "name": "Tor Wager",
         "orcid": "0000-0002-1936-5574"
     },
+    "tstoeter": {
+        "blog": "https://github.com/tstoeter",
+        "name": "Torsten Stöter"
+    },
     "travis_riddle": {
         "affiliation": "National Police Foundation",
         "contributions": [
@@ -3824,25 +3858,5 @@
         ],
         "name": "Étienne Bergeron",
         "orcid": "0000-0002-8329-7852"
-    },
-    "bclenet": {
-        "name": "Boris Clénet",
-        "blog": "https://github.com/bclenet"
-    },
-    "tstoeter": {
-        "name": "Torsten Stöter",
-        "blog": "https://github.com/tstoeter"
-    },
-    "AugustijnVrolijk": {
-        "name": "Augustijn Vrolijk",
-        "blog": "https://github.com/AugustijnVrolijk"
-    },
-    "CodyCBakerPhD": {
-        "name": "Cody C Baker",
-        "blog": "https://github.com/CodyCBakerPhD"
-    },
-    "drammock": {
-        "name": "Daniel McCloy",
-        "blog": "https://github.com/drammock"
     }
 }
