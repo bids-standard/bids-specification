@@ -23,9 +23,7 @@ study:
       - docs
       - derivatives
       - logs
-      - phenotype
       - sourcedata
-      - stimuli
   code:
     name: code
     level: optional
@@ -42,16 +40,8 @@ study:
     name: logs
     level: optional
     opaque: true
-  phenotype:
-    name: phenotype
-    level: optional
-    opaque: false
   sourcedata:
     name: sourcedata
-    level: optional
-    opaque: true
-  stimuli:
-    name: stimuli
     level: optional
     opaque: true
 
