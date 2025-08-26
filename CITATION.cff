@@ -219,8 +219,8 @@ authors:
     family-names: Adebimpe
     orcid: https://orcid.org/0000-0001-9049-0135
     affiliation: University of Pennsylvania
-  - given-names: B.
-    family-names: Nolan Nichols
+  - given-names: B. Nolan
+    family-names: Nichols
     orcid: https://orcid.org/0000-0003-1099-3328
     affiliation: Altos Labs
   - given-names: BIDS
@@ -1469,8 +1469,8 @@ authors:
     orcid: https://orcid.org/0000-0002-0247-087X
     affiliation: Technical University Berlin
     email: seinjeung@gmail.com
-  - given-names: Seyed
-    family-names: Yahya Shirazi
+  - given-names: Seyed Yahya
+    family-names: Shirazi
     website: http://neuromechanist.github.io/
     orcid: https://orcid.org/0000-0001-5557-259X
     affiliation: Swartz Center for Computational Neuroscience, Institute for Neural Computation, University of California San Diego
