@@ -39,18 +39,11 @@ events__pet:
   datatypes:
     - pet
   entities:
-    $ref: meta.templates.raw.task.entities
-    tracer: optional
-    reconstruction: optional
-    # Most events allow acquisition, PET doesn't
-    acquisition: null
+    $ref: meta.templates.raw.pet.entities
 
 events__mrs:
   $ref: rules.files.raw.events.events
   datatypes:
     - mrs
   entities:
-    $ref: rules.files.raw.events.events.entities
-    reconstruction: optional
-    nucleus: optional
-    volume: optional
+    $ref: meta.templates.raw.mrs.entities
