@@ -3831,27 +3831,23 @@
         "orcid": "0000-0002-8329-7852"
     },
     "bclenet": {
-        "name": "bclenet",
+        "name": "Boris Clénet",
         "blog": "https://github.com/bclenet"
     },
     "tstoeter": {
-        "name": "tstoeter",
+        "name": "Torsten Stöter",
         "blog": "https://github.com/tstoeter"
     },
     "AugustijnVrolijk": {
-        "name": "AugustijnVrolijk",
+        "name": "Augustijn Vrolijk",
         "blog": "https://github.com/AugustijnVrolijk"
     },
     "CodyCBakerPhD": {
-        "name": "CodyCBakerPhD",
+        "name": "Cody C Baker",
         "blog": "https://github.com/CodyCBakerPhD"
     },
     "drammock": {
-        "name": "drammock",
+        "name": "Daniel McCloy",
         "blog": "https://github.com/drammock"
-    },
-    "bendichter": {
-        "name": "bendichter",
-        "blog": "https://github.com/bendichter"
     }
 }
