@@ -1365,8 +1365,8 @@ are REQUIRED for these field mapping sequences.
 
 ### Radiofrequency (RF) field mapping
 
-Fieldmaps may be acquired to measure the inhomogeneity in the RF ($B_1$) field.
-These fieldmaps may be divided into two categories: transmit ($B_1^+$) and receive ($B_1^-$) fieldmaps.
+Fieldmaps may be acquired to measure the inhomogeneity in the RF (B<sub>1</sub>) field.
+These fieldmaps may be divided into two categories: transmit (B<sub>1</sub><sup>+</sup>) and receive (B<sub>1</sub><sup>-</sup>) fieldmaps.
 
 Some B1 fieldmap acquisitions call for the use of special notations that cannot be resolved by
 by entities that can generalize to other applications.
