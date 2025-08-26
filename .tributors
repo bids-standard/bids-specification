@@ -207,7 +207,7 @@
         "name": "Alizee Wickenheiser"
     },
     "alyssadai": {
-        "affiliation": "origami lab, McGill university, Montreal, Québec, Canada",
+        "affiliation": "McGill University",
         "contributions": [
             "code"
         ],
@@ -217,11 +217,15 @@
         "orcid": "0000-0003-0174-6800"
     },
     "amber_hopkins": {
+        "affiliation": "Department of Psychology, University of California Los Angeles, Los Angeles, California, United States",
         "contributions": [
             "doc"
         ],
-        "email": "arhopkins@ucla.edu",
-        "name": "Amber Hopkins"
+        "email": "amber.neuro@gmail.com",
+        "github": "amberrhopkins",
+        "name": "Amber R. Hopkins",
+        "orcid": "0000-0002-8354-565X",
+        "publish_email": true
     },
     "ana_fouto": {
         "contributions": [
@@ -407,12 +411,14 @@
         "blog": "https://bids.neuroimaging.io/",
         "name": "BIDS Maintenance User"
     },
-    "balint_kincses": {
+    "kincsesbalint": {
         "contributions": [
             "doc"
         ],
         "email": "balint.kincses@uk-essen.de",
-        "name": "Balint Kincses"
+        "github": "kincsesbalint",
+        "name": "Balint Kincses",
+        "orcid": "0000-0002-0478-6384"
     },
     "musicinmybrain": {
         "blog": "https://github.com/musicinmybrain",
@@ -897,7 +903,8 @@
         ],
         "email": "djarecka@mit.edu",
         "github": "djarecka",
-        "name": "Dorota Jarecka"
+        "name": "Dorota Jarecka",
+        "orcid": "0000-0001-8282-2988"
     },
     "dngreve": {
         "blog": "https://github.com/dngreve",
@@ -1183,6 +1190,14 @@
         ],
         "name": "François Tadel"
     },
+    "friederike_breuer": {
+        "affiliation": "Johannes-Gutenberg University Medical Center, Mainz Germany",
+        "contributions": [
+            "doc"
+        ],
+        "email": "fbreuer@uni-mainz.de",
+        "name": "Friederike Breuer"
+    },
     "gaiarizzo": {
         "affiliation": "Invicro, Burlington Danes Building, Imperial College London, Hammersmith Hospital, Du Cane Road, London, W12 0NN, UK",
         "blog": "http://fair.dei.unipd.it/gaia-rizzo/",
@@ -1221,13 +1236,15 @@
         "orcid": "0000-0003-0267-3033"
     },
     "GiacomoBert": {
-        "affiliation": "Centro San Giovanni di Dio Fatebenefratelli",
+        "affiliation": "Berenson-Allen Center for Noninvasive Brain Stimulation, Beth Israel Deaconess Medical Center and Harvard Medical School, Boston, MA, USA,  Department of Neurology, Harvard Medical School, Boston, MA, USA",
         "contributions": [
             "doc"
         ],
-        "email": "giacomo.bertazzoli@unitn.it",
+        "email": "giacomofirst@gmail.com",
+        "github": "GiacomoBert",
         "name": "Giacomo Bertazzoli",
-        "orcid": "0000-0003-1624-2576"
+        "orcid": "0000-0003-1624-2576",
+        "publish_email": true
     },
     "giacomo_guidali": {
         "affiliation": "IRCCS Centro San Giovanni di Dio Fatebenefratelli",
@@ -1284,12 +1301,13 @@
         ],
         "name": "Giulio Castegnaro"
     },
-    "giuseppe_gallitto": {
+    "gallg": {
         "affiliation": "Essen University Hospital",
         "contributions": [
             "doc"
         ],
         "email": "giuseppe.gallitto@uk-essen.de",
+        "github": "gallg",
         "name": "Giuseppe Gallitto",
         "orcid": "0000-0001-5185-0206"
     },
@@ -1376,7 +1394,7 @@
             "talk"
         ],
         "email": "guiomar.niso@cajal.csic.es",
-        "name": "Guiomar Galán",
+        "name": "Guiomar Niso",
         "orcid": "0000-0001-5872-8924"
     },
     "gunnar_schaefer": {
@@ -1877,12 +1895,15 @@
         "publish_email": true
     },
     "julia-pfarr": {
+        "affiliation": "McGill University",
         "blog": "https://github.com/julia-pfarr",
         "contributions": [
             "code",
-            "doc"
+            "doc",
+            "tool",
+            "example"
         ],
-        "email": "pfarr@staff.uni-marburg.de",
+        "email": "juliakatharina.pfarr@gmail.com",
         "github": "julia-pfarr",
         "name": "Julia-Katharina Pfarr",
         "orcid": "0000-0003-1450-6005"
@@ -2409,7 +2430,7 @@
         "orcid": "0000-0003-2828-6031"
     },
     "mguaypaq": {
-        "affiliation": "Montreal, Quebec, Canada",
+        "affiliation": "NeuroPoly Lab, Polytechnique Montréal",
         "blog": "https://www.pointedset.ca/",
         "contributions": [
             "doc"
@@ -2527,7 +2548,7 @@
         ],
         "email": "mekline@mit.edu",
         "github": "mekline",
-        "name": "Melissa kline",
+        "name": "Melissa Kline Struhl",
         "orcid": "0000-0003-2217-9331"
     },
     "michael_chappell": {
@@ -2614,7 +2635,7 @@
         "publish_email": false
     },
     "mtorabi59": {
-        "affiliation": "origami lab, McGill university, Montreal, Québec, Canada",
+        "affiliation": "McGill University",
         "contributions": [
             "code"
         ],
@@ -3503,7 +3524,7 @@
         "publish_email": true
     },
     "til_ole_bergmann": {
-        "affiliation": "ohannes-Gutenberg University Medical Center, Mainz Germany",
+        "affiliation": "Johannes-Gutenberg University Medical Center, Mainz Germany",
         "contributions": [
             "doc"
         ],
@@ -3619,12 +3640,17 @@
         ],
         "name": "Vasudev Raguram"
     },
-    "victor_hugo_souza": {
+    "victor_h_souza": {
+        "affiliation": "Aalto University, Finland",
+        "blog": "https://vhosouza.github.io/",
         "contributions": [
             "doc"
         ],
-        "email": "victor.souza@aalto.fi",
-        "name": "Victor Hugo Souza"
+        "email": "victorhos@hotmail.com",
+        "github": "vhosouza",
+        "name": "Victor H. Souza",
+        "orcid": "0000-0002-0254-4322",
+        "publish_email": true
     },
     "vdcalhoun": {
         "affiliation": "Tri-institutional Center for Translational Research in Neuroimaging and Data Science (TReNDS), Georgia State, Georgia Tech, and Emory, Atlanta, GA 30030",
