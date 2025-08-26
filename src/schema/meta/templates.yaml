@@ -41,6 +41,22 @@ raw:
       direction: optional
       part: optional
 
+  pet:
+    entities:
+      $ref: meta.templates.raw.base.entities
+      task: optional
+      tracer: optional
+      reconstruction: optional
+      run: optional
+
+  mrs:
+    entities:
+      $ref: meta.templates.raw.recording.entities
+      task: optional
+      nucleus: optional
+      volume: optional
+      reconstruction: optional
+
 # Entities that apply to most derivative files
 # Include thus:
 #

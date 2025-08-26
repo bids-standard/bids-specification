@@ -12,10 +12,6 @@ mrs:
   datatypes:
     - mrs
   entities:
-    $ref: meta.templates.raw.recording.entities
-    task: optional
-    reconstruction: optional
+    $ref: meta.templates.raw.mrs.entities
     echo: optional
     inversion: optional
-    nucleus: optional
-    volume: optional
