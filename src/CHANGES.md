@@ -1,6 +1,6 @@
 # Changelog
 
-## Upcoming
+## [v1.10.1](https://bids-specification.readthedocs.io/en/v1.10.1/) (2025-09-03)
 
 -   \[ENH] Expand fieldmaps section to include B1 maps, including qMRI maps [#2183](https://github.com/bids-standard/bids-specification/pull/2183) ([tsalo](https://github.com/tsalo))
 -   \[ENH] Clarify that task label is not required to derive from TaskName [#2179](https://github.com/bids-standard/bids-specification/pull/2179) ([effigies](https://github.com/effigies))
