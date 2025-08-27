@@ -116,8 +116,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Christopher Lee-Messer                               | 📖                                     |
 | Clara Moreau                                         | 📖                                     |
 | Clint Hansen                                         | 📖🤔                                   |
-| Cody C Baker                                         | 📖                                     |
-| CodyCBakerPhD                                        | 💻                                     |
+| Cody C Baker                                         | 💻📖                                   |
 | Cyril Pernet                                         | 💬📝📖🎨💡📋🤔📢                       |
 | Cyrus Eierud                                         | 📖                                     |
 | D. Sturgeon                                          | 💻                                     |
@@ -428,9 +427,6 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Yuan Wang                                            | 💻                                     |
 | Zachary Michael                                      | 📖                                     |
 | Zhi-De Deng                                          | 📖                                     |
-| bclenet                                              | 💻                                     |
-| bendichter                                           | 💻                                     |
-| drammock                                             | 💻                                     |
 | ezemikulan                                           | 💻                                     |
 | josator2                                             | 💻                                     |
 | monkeyman192                                         | 💻                                     |

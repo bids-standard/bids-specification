@@ -424,6 +424,9 @@
             "profile": "https://github.com/musicinmybrain"
         },
         {
+            "avatar_url": [
+                "https://avatars.githubusercontent.com/u/844306?v=4"
+            ],
             "contributions": [
                 "doc",
                 "code",
@@ -450,6 +453,9 @@
             "profile": "https://github.com/bthirion"
         },
         {
+            "avatar_url": [
+                "https://avatars.githubusercontent.com/u/117362283?v=4"
+            ],
             "contributions": [
                 "doc",
                 "code"
@@ -687,10 +693,11 @@
                 "https://avatars.githubusercontent.com/u/51133164?v=4"
             ],
             "contributions": [
-                "code", "doc"
+                "code",
+                "doc"
             ],
             "login": "CodyCBakerPhD",
-            "name": "CodyCBakerPhD",
+            "name": "Cody C Baker",
             "profile": "https://github.com/CodyCBakerPhD"
         },
         {
@@ -758,6 +765,9 @@
             "name": "Daniel A. Handwerker"
         },
         {
+            "avatar_url": [
+                "https://avatars.githubusercontent.com/u/1810515?v=4"
+            ],
             "contributions": [
                 "doc"
             ],
@@ -3666,39 +3676,6 @@
             ],
             "login": "zhi-de_deng",
             "name": "Zhi-De Deng"
-        },
-        {
-            "avatar_url": [
-                "https://avatars.githubusercontent.com/u/117362283?v=4"
-            ],
-            "contributions": [
-                "code"
-            ],
-            "login": "bclenet",
-            "name": "bclenet",
-            "profile": "https://github.com/bclenet"
-        },
-        {
-            "avatar_url": [
-                "https://avatars.githubusercontent.com/u/844306?v=4"
-            ],
-            "contributions": [
-                "code"
-            ],
-            "login": "bendichter",
-            "name": "bendichter",
-            "profile": "https://github.com/bendichter"
-        },
-        {
-            "avatar_url": [
-                "https://avatars.githubusercontent.com/u/1810515?v=4"
-            ],
-            "contributions": [
-                "code"
-            ],
-            "login": "drammock",
-            "name": "drammock",
-            "profile": "https://github.com/drammock"
         },
         {
             "avatar_url": "https://avatars.githubusercontent.com/u/39155887?v=4",
