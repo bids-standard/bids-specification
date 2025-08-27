@@ -12,13 +12,6 @@ mrs:
   datatypes:
     - mrs
   entities:
-    subject: required
-    session: optional
-    task: optional
-    acquisition: optional
-    reconstruction: optional
-    run: optional
+    $ref: meta.templates.raw.mrs.entities
     echo: optional
     inversion: optional
-    nucleus: optional
-    volume: optional

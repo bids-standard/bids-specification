@@ -10,14 +10,10 @@ asl:
   datatypes:
     - perf
   entities:
-    subject: required
-    session: optional
-    acquisition: optional
-    reconstruction: optional
-    direction: optional
-    run: optional
+    $ref: meta.templates.raw.epi.entities
     echo: optional
-    part: optional
+    ceagent: null
+    chunk: null
 
 aslcontext:
   suffixes:
@@ -27,12 +23,10 @@ aslcontext:
   datatypes:
     - perf
   entities:
-    subject: required
-    session: optional
-    acquisition: optional
-    reconstruction: optional
-    direction: optional
-    run: optional
+    $ref: meta.templates.raw.epi.entities
+    ceagent: null
+    part: null
+    chunk: null
 
 asllabeling:
   suffixes:
@@ -44,11 +38,8 @@ asllabeling:
   datatypes:
     - perf
   entities:
-    subject: required
-    session: optional
-    acquisition: optional
+    $ref: meta.templates.raw.recording.entities
     reconstruction: optional
-    run: optional
 
 norf:
   $ref: rules.files.raw.perf.asl
