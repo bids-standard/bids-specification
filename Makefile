@@ -4,9 +4,9 @@ validate_citation_cff: CITATION.cff
 	cffconvert --validate
 
 update_contributors:
-	python tools/add_contributors.py
-	python tools/print_contributors.py
-	yarn all-contributors generate
+	uv run tools/add_contributors.py
+	uv run tools/print_contributors.py
+	npx all-contributors generate
 
 runprettier:
 	prettier --write "src/schema/**/*.yaml"
