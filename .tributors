@@ -390,7 +390,8 @@
             "code",
             "doc"
         ],
-        "name": "Augustijn Vrolijk"
+        "name": "Augustijn Vrolijk",
+        "orcid": "0000-0001-8629-4465"
     },
     "aysegul_gunduz": {
         "contributions": [
@@ -468,7 +469,9 @@
             "doc",
             "code"
         ],
-        "name": "Boris Clénet"
+        "name": "Boris Clénet",
+        "orcid": "0009-0006-7727-5100",
+        "affiliation": "Inria Rennes - Bretagne Atlantique Research Centre"
     },
     "voytek": {
         "affiliation": "UC San Diego, Cognitive Science and Data Science, La Jolla, CA, 92093, USA",
@@ -796,7 +799,9 @@
         "contributions": [
             "doc"
         ],
-        "name": "Daniel McCloy"
+        "name": "Daniel McCloy",
+        "orcid": "0000-0002-7572-3241",
+        "affiliation": "University of Washington"
     },
     "david_alsop": {
         "contributions": [
@@ -3621,7 +3626,8 @@
     },
     "tstoeter": {
         "blog": "https://github.com/tstoeter",
-        "name": "Torsten Stöter"
+        "name": "Torsten Stöter",
+        "orcid": "0009-0003-6932-023X"
     },
     "travis_riddle": {
         "affiliation": "National Police Foundation",
