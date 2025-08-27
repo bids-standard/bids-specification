@@ -464,14 +464,14 @@
         "orcid": "0000-0001-5018-7895"
     },
     "bclenet": {
+        "affiliation": "Inria Rennes - Bretagne Atlantique Research Centre",
         "blog": "https://github.com/bclenet",
         "contributions": [
             "doc",
             "code"
         ],
         "name": "Boris Clénet",
-        "orcid": "0009-0006-7727-5100",
-        "affiliation": "Inria Rennes - Bretagne Atlantique Research Centre"
+        "orcid": "0009-0006-7727-5100"
     },
     "voytek": {
         "affiliation": "UC San Diego, Cognitive Science and Data Science, La Jolla, CA, 92093, USA",
@@ -795,13 +795,13 @@
         "orcid": "0000-0001-7261-4042"
     },
     "drammock": {
+        "affiliation": "University of Washington",
         "blog": "https://github.com/drammock",
         "contributions": [
             "doc"
         ],
         "name": "Daniel McCloy",
-        "orcid": "0000-0002-7572-3241",
-        "affiliation": "University of Washington"
+        "orcid": "0000-0002-7572-3241"
     },
     "david_alsop": {
         "contributions": [

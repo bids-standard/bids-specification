@@ -216,6 +216,7 @@ authors:
   - given-names: Augustijn
     family-names: Vrolijk
     website: https://github.com/AugustijnVrolijk
+    orcid: https://orcid.org/0000-0001-8629-4465
   - given-names: Aysegul
     family-names: Gunduz
   - given-names: Azeez
@@ -251,6 +252,8 @@ authors:
   - given-names: Boris
     family-names: Clénet
     website: https://github.com/bclenet
+    orcid: https://orcid.org/0009-0006-7727-5100
+    affiliation: Inria Rennes - Bretagne Atlantique Research Centre
   - given-names: Bradley
     family-names: Voytek
     website: https://www.voyteklab.com/
@@ -396,6 +399,8 @@ authors:
   - given-names: Daniel
     family-names: McCloy
     website: https://github.com/drammock
+    orcid: https://orcid.org/0000-0002-7572-3241
+    affiliation: University of Washington
   - given-names: David
     family-names: Alsop
   - given-names: David
@@ -1645,6 +1650,7 @@ authors:
   - given-names: Torsten
     family-names: Stöter
     website: https://github.com/tstoeter
+    orcid: https://orcid.org/0009-0003-6932-023X
   - given-names: Travis
     family-names: Riddle
     orcid: https://orcid.org/0000-0001-8160-3986
