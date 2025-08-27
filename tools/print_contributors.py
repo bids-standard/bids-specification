@@ -57,7 +57,7 @@ def main():
         max(len(x.get("contributions", [])) for x in allcontrib["contributors"]) * 2
     )
     no_contributions_contributors = [
-       x["name"] for x in allcontrib["contributors"] if not x.get("contributions")
+        x["name"] for x in allcontrib["contributors"] if not x.get("contributions")
     ]
     if no_contributions_contributors:
         print(
