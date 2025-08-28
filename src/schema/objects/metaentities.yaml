@@ -43,11 +43,11 @@ matches:
 
     `<matches>` could correspond to `sub-control01_task-nback_run-1`.
 
-source_entities:
+source-entities:
   display_name: source entities
   description: |
-    `source_entities` is used as a placeholder in BIDS derivatives filenames templates.
+    `source-entities` is used as a placeholder in BIDS derivatives filenames templates.
 
-    `source_entities` MUST be the entire source filename, with the omission of
+    `source-entities` MUST be the entire source filename, with the omission of
     the source suffix and extension.
     One exception to this rule is filename entities that are no longer relevant.
