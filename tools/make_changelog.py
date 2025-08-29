@@ -1,93 +1,163 @@
 #!/usr/bin/env -S uv run
 # /// script
-# requires-python = ">=3.11"
+# requires-python = ">=3.13"
 # dependencies = [
-#   "httpx",
+#     "gql[aiohttp]",
 # ]
 # ///
 
 # How to use this script:
-# 1. Go to https://github.com/bids-standard/bids-specification/releases/new and
-#    generate a new changelog. Do not release. Paste the contents into `auto-changelog.txt`.
-# 2. Generate a GitHub token at https://github.com/settings/tokens with `public_repo` scope.
+# 1. Generate a GitHub token at https://github.com/settings/tokens with `public_repo` scope.
 #    Set the `GITHUB_TOKEN` environment variable to the token.
-# 3. Run this script with `uv run`, `pipx run`, `pip run` or similar. Or run with Python,
-#    but you will need to install httpx into your environment.
+# 2. Run this script with `uv run`, `pipx run`, `pip run` or similar. Or run with Python,
+#    but you will need to install `gql[aiohttp]`.
 #
-# This will output to stdout the PRs that are not excluded from the changelog.
-#
-# Future versions could modify the changelog file in place, but this is the limit of my
-# interest for now.
-
+# This will update src/CHANGES.md with the PRs that are not excluded from the changelog.
 import asyncio
 import os
 import re
-import sys
+import subprocess as sp
+from dataclasses import dataclass
+from datetime import date, datetime, timedelta, UTC
 from pathlib import Path
 
-import httpx
+from gql import gql, Client
+from gql.transport.aiohttp import AIOHTTPTransport
 
-GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
-REPO_OWNER = "bids-standard"
-REPO_NAME = "bids-specification"
-
-if not GITHUB_TOKEN:
-    raise ValueError("Please set the GITHUB_TOKEN environment variable")
-
-auto_changelog = Path("auto-changelog.txt")
-
-if not auto_changelog.exists():
-    raise FileNotFoundError("auto-changelog.txt not found")
-
-pr_numbers = reversed(
-    [line.split("/")[-1] for line in auto_changelog.read_text().splitlines()]
-)
-
-headers = {
-    "Authorization": f"Bearer {GITHUB_TOKEN}",
-    "X-GitHub-Api-Version": "2022-11-28",
-    "Accept": "application/vnd.github.v3+json",
+SEARCH_MERGED_PRS_QUERY = gql("""\
+query SearchMergedPullRequests($query: String!, $after: String) {
+  search(query: $query, type: ISSUE, first: 100, after: $after) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    nodes {
+      ... on PullRequest {
+        title
+        mergedAt
+        number
+        url
+        author {
+          login
+          url
+        }
+      }
+    }
+  }
 }
+""")
 
 
-async def get_pr_details(client, pr_number):
-    url = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/pulls/{pr_number}"
+@dataclass
+class PR:
+    title: str
+    number: int
+    url: str
+    merged_date: datetime
+    author: str
+    author_url: str
 
-    response = await client.get(url)
+    @property
+    def category(self) -> str:
+        if match := re.match(r"^\[[^\]]+\]", self.title):
+            return match.group()
+        return ""
 
-    if response.status_code == 200:
-        pr_data = response.json()
-        labels = [label["name"] for label in pr_data.get("labels", [])]
+    def __str__(self):
+        return f"-   \\{self.title} [#{self.number}]({self.url}) ([{self.author}]({self.author_url}))"
 
-        if "exclude-from-changelog" not in labels:
-            return (
-                pr_data.get("title"),
-                pr_data.get("html_url"),
-                pr_data["user"]["login"],
-                pr_data["user"]["html_url"],
-            )
-    else:
-        print(
-            f"Failed to fetch PR #{pr_number}: {response.status_code}", file=sys.stderr
+
+def git(*args: str) -> str:
+    return (
+        sp.run(["git", *args], capture_output=True, check=True).stdout.decode().strip()
+    )
+
+
+def get_repo() -> Path:
+    return Path(git("rev-parse", "--show-toplevel"))
+
+
+def previous_tag() -> str:
+    return git("describe", "--match=v*", "--abbrev=0")
+
+
+def tag_date(tag: str) -> date:
+    short_date = git("log", "-n1", tag, "--pretty=%as")
+    return date.fromisoformat(short_date)
+
+
+def load_changes(repo: Path, tag: str) -> str:
+    with open(repo / "src/CHANGES.md") as changelog:
+        for line in changelog:
+            if line.startswith(f"## [{tag}]"):
+                break
+        return line + changelog.read()
+
+
+async def get_merged_prs(
+    client: Client, repository: str, merged_after: date
+) -> list[PR]:
+    prs = []
+
+    cursor = None
+    has_next_page = True
+
+    search_query = f"repo:{repository} is:pr is:merged base:master merged:>={merged_after:%Y-%m-%d} -label:exclude-from-changelog"
+
+    now = datetime.now(UTC)
+
+    while has_next_page:
+        variable_values = {"query": search_query, "after": cursor}
+        result = await client.execute_async(
+            SEARCH_MERGED_PRS_QUERY, variable_values=variable_values
         )
-    return (None, None, None, None)
 
+        search_results = result["search"]
+        page_info = search_results["pageInfo"]
+        cursor = page_info["endCursor"]
+        has_next_page = page_info["hasNextPage"]
 
-async def main():
-    cat = re.compile(r"^\[[^\]]+\]")
-    async with httpx.AsyncClient(headers=headers) as client:
-        pr_summaries = {}
-        for pr_number in pr_numbers:
-            title, pr_url, username, user_url = await get_pr_details(client, pr_number)
-            if title:
-                category = cat.match(title).group()
-                pr_summaries.setdefault(category, []).append(
-                    f"- {title} [{pr_number}]({pr_url}) ([{username}]({user_url}))"
+        for pr in search_results["nodes"]:
+            if not pr:
+                continue
+
+            merged_date = datetime.fromisoformat(pr["mergedAt"].replace("Z", "+00:00"))
+
+            prs.append(
+                PR(
+                    title=pr["title"],
+                    number=pr["number"],
+                    url=pr["url"],
+                    merged_date=merged_date,
+                    author=pr["author"]["login"],
+                    author_url=pr["author"]["url"],
                 )
+            )
 
-    for category in sorted(pr_summaries):
-        for pr_summary in pr_summaries[category]:
-            print(pr_summary)
+    # Sort by category, and then descending by merge date
+    return sorted(prs, key=lambda x: (x.category, now - x.merged_date))
+
+
+async def main() -> None:
+    github_token = os.getenv("GITHUB_TOKEN")
+    transport = AIOHTTPTransport(
+        url="https://api.github.com/graphql",
+        headers={"Authorization": f"Bearer {github_token}"},
+    )
+    client = Client(transport=transport, fetch_schema_from_transport=True)
+
+    tag = previous_tag()
+    start_date = tag_date(tag) + timedelta(days=1)
+    repo = get_repo()
+    changes = load_changes(repo, tag)
+
+    prs = await get_merged_prs(
+        client, repository="bids-standard/bids-specification", merged_after=start_date
+    )
+
+    with open(repo / "src/CHANGES.md", "w") as changelog:
+        changelog.write("# Changelog\n\n## Upcoming\n\n")
+        changelog.write("\n".join([*map(str, prs), "", changes]))
 
 
 if __name__ == "__main__":

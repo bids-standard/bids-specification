@@ -424,6 +424,16 @@
             "profile": "https://github.com/musicinmybrain"
         },
         {
+            "contributions": [
+                "doc",
+                "code",
+                "test"
+            ],
+            "login": "bendichter",
+            "name": "Benjamin Dichter",
+            "profile": "https://bendichter.com/"
+        },
+        {
             "avatar_url": [
                 "https://avatars.githubusercontent.com/u/844306?v=4"
             ],

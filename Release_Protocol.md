@@ -44,7 +44,20 @@ git checkout -b rel/1.2.0 upstream/master
 
 #### 2.1 Update the version
 
-Update the version in CITATION.cff.
+Update the specification and schema versions using [bump-my-version][]
+
+
+```Shell
+uvx bump-my-version bump pre_label
+(cd tools/schemacode; uvx bump-my-version bump pre_label)
+```
+
+This will update the version in:
+
+* `CITATION.cff`
+* `mkdocs.yml`
+* `src/schema/*_VERSION`
+* `src/schema/meta/versions.yaml`
 
 Change the "Unreleased" heading in
 [src/CHANGES.md](https://github.com/bids-standard/bids-specification/blob/master/src/CHANGES.md)
@@ -58,20 +71,6 @@ the link.
 ```
 
 The date can be changed or added later, so accurate prediction is not necessary.
-
-Remove the `-dev` from the version in
-[mkdocs.yml](https://github.com/bids-standard/bids-specification/blob/master/mkdocs.yml)
-configuration, so the title will be correct for the released specification.
-If the version preceding the `-dev` is not the target version, update the version as well.
-In the figure below, we update `1.2.0-dev` to `1.2.0`.
-![dev-to-stable](release_images/site_name_release_1.2dev-1.2.png "dev-to-stable")
-
-Additionally, implement the same change in the version name perform above in the `src/schema/BIDS_VERSION` file.
-
-Note:
-this will make our continuous integration ([CircleCI](https://circleci.com/)) fail.
-This fails because the URL of the new ReadTheDocs rendering has not been generated at this time.
-It will be generated once the GitHub release has been completed.
 
 #### 2.2 Update the contributors list
 
@@ -99,14 +98,7 @@ make update_contributors
 - make sure to review the changes and not commit them blindly
 - commit the changes
 
-#### 2.3 Update the previous version URLs
-
-In `src/CHANGES.md`,
-please change the previous version links from GitHub to ReadTheDocs.
-In the figure below, we update 1.2.2.
-![github-to-rtd](release_images/GitHub_to_RTD_spec_rendering.png "github-to-rtd")
-
-#### 2.4 Update the Changelog
+#### 2.3 Update the Changelog
 
 Review `src/CHANGES.md` to ensure that the document produces a changelog that is useful to a
 reader of the specification.
@@ -115,10 +107,6 @@ important changes might be moved down the list to ensure that large changes are 
 You can also make use of the `exclude-from-changelog` label.
 Adding this label to PRs in the GitHub web interface will prevent the changelog generator from
 considering this item for inclusion in the changelog.
-
-#### 2.5 Update the schema
-
-Add the new version to `src/schema/meta/versions.yaml`.
 
 ### 3. Commit changes and push to upstream
 
@@ -284,3 +272,5 @@ If the release relates to the merge of a BEP, add the BEP leads to the BIDS advi
 
 Please share news of the release on the [identified platforms](https://github.com/bids-standard/bids-specification?tab=readme-ov-file#BIDS-communication-channels).
 Please use our previous release posts as a guide.
+
+[bump-my-version]: https://callowayproject.github.io/bump-my-version/
