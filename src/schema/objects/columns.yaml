@@ -852,3 +852,30 @@ template_z:
   description: |
     Assumed or ideal position along the z axis.
   type: number
+stage:
+  name: stage
+  display_name: Sleep stage
+  description: |
+    Sleep stage label (e.g., Wake, N1, N2, N3, R)
+  type: string
+scorer:
+  name: scorer
+  display_name: Scorer
+  description: |
+    Identifier of the sleep stage scorer (e.g., human1, AI)
+  type: string
+confidence:
+  name: confidence
+  display_name: Confidence
+  description: |
+    Confidence score (0–1) for automated scoring
+  type: number
+confidence_<stage_label>:
+  name: confidence_<stage_label>
+  display_name: Confidence for Stage
+  description: |
+    A numeric value (0-1) representing the confidence score in the assigned sleep stage for automated scorers. 
+    For automated scorers, this value represents the posterior probability of the winning class. 
+    To store the full probability distribution across all possible stages, users MAY add separate columns 
+    (e.g., confidence_N1, confidence_N2, confidence_N3), which MUST also be described in the JSON sidecar.
+  type: number  
