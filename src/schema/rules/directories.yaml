@@ -16,14 +16,16 @@
 # The special "root" specifier describes the root of the dataset and only defines subdirectories.
 # No naming convention applies, and the requirement level and opacity would be superfluous.
 #
-study:
+bids-study:
   root:
     subdirs:
       - code
       - docs
-      - derivatives
+      - bids-raw
+      - bids-derivatives
       - logs
       - sourcedata
+      - phenotype
   code:
     name: code
     level: optional
@@ -32,7 +34,11 @@ study:
     name: docs
     level: optional
     opaque: true
-  derivatives:
+  bids-raw:
+    name: bids-raw
+    level: optional
+    opaque: true
+  bids-derivatives:
     name: derivatives
     level: optional
     opaque: true
@@ -44,8 +50,12 @@ study:
     name: sourcedata
     level: optional
     opaque: true
+  phenotype:
+    name: phenotype
+    level: optional
+    opaque: false
 
-raw:
+bids-raw:
   root:
     subdirs:
       - code
@@ -103,7 +113,7 @@ raw:
     level: required
     opaque: false
 
-derivative:
+bids-derivative:
   root:
     subdirs:
       - code
