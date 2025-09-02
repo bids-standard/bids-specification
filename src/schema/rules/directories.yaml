@@ -39,7 +39,7 @@ bids-study:
     level: optional
     opaque: true
   bids-derivatives:
-    name: derivatives
+    name: bids-derivatives
     level: optional
     opaque: true
   logs:
