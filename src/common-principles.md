@@ -312,11 +312,10 @@ Derivatives can be stored/distributed in two ways:
     it is RECOMMENDED to use the format `<pipeline>-<variant>` in cases where
     it is anticipated that the same pipeline will output more than one variant
     (for example, `AFNI-blurring` and `AFNI-noblurring`).
-    For the sake of consistency, the subdirectory name MUST be
-    the `Name` field of the first `GeneratedBy` object in `dataset_description.json`,
-    optionally followed by a hyphen and a suffix.
-    That is, if a directory `<dataset>/derivatives/<pipeline>[-<variant>]/` is used, the first
-    `GeneratedBy` object should have a `Name` of `<pipeline>`.
+    For the sake of consistency, the subdirectory name SHOULD be
+    the `GeneratedBy.Name` field in `dataset_description.json`,
+    optionally followed by a hyphen and a suffix (see
+    [Derived dataset and pipeline description][derived-dataset-description]).
 
     Example of derivatives with one directory per pipeline:
 
