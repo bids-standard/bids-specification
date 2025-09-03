@@ -33,6 +33,7 @@ and a guide for using macros can be found at
       "DatasetType": "RECOMMENDED",
       "License": "RECOMMENDED",
       "Authors": "RECOMMENDED if CITATION.cff is not present",
+      "Keywords": "OPTIONAL",
       "Acknowledgements": "OPTIONAL",
       "HowToAcknowledge": "OPTIONAL",
       "Funding": "OPTIONAL",
@@ -66,6 +67,11 @@ Example:
   "Authors": [
     "Paul Broca",
     "Carl Wernicke"
+  ],
+  "Keywords": [
+    "neuroscience",
+    "language",
+    "brain"
   ],
   "Acknowledgements": "Special thanks to Korbinian Brodmann for help in formatting this dataset in BIDS. We thank Alan Lloyd Hodgkin and Andrew Huxley for helpful comments and discussions about the experiment and manuscript; Hermann Ludwig Helmholtz for administrative support; and Claudius Galenus for providing data for the medial-to-lateral index analysis.",
   "HowToAcknowledge": "Please cite this paper: https://www.ncbi.nlm.nih.gov/pubmed/001012092119281",
