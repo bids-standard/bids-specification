@@ -68,6 +68,7 @@ events__microephys:
   entities:
     subject: required
     session: optional
+    sample: optional
     task: optional
     acquisition: optional
     run: optional
