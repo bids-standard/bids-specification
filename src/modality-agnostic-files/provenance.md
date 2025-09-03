@@ -447,7 +447,7 @@ A guide for using macros can be found at
     }
 ) }}
 
-The following provenance record is defined in `prov/prov-dcm2niix_soft.json`, so its `Id` SHOULD start with `bids:<dataset>:prov#` or `bids::prov#`.
+The following provenance record is defined in `prov/prov-dcm2niix_soft.json`. As mentioned in the [Consistency and uniqueness of Ids](#consistency-and-uniqueness-of-ids) section, its `Id` SHOULD start with `bids:<dataset>:prov#` (here, `bids::` refers to the current dataset).
 
 ```JSON
 {
