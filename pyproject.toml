@@ -28,7 +28,7 @@ doc = [
 ]
 
 [tool.bumpversion]
-current_version = "1.10.1"
+current_version = "1.10.2-dev"
 parse = """(?x)
     (?P<major>[0-9]+)
     \\.(?P<minor>[0-9]+)
