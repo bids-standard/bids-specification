@@ -269,7 +269,7 @@ This file contains the following information:
 #### Example *_electrodes.tsv
 
 ```tsv
-electrode_id	probe_id	impedance	x  y  z  material	location
+electrode_id	probe_id	impedance	x	y	z	material	location
 e0123	p01	1.1	-11.87	-1.30	-3.37	iridium-oxide	V1
 e234	p01	1.5	-11.64	0.51	-4.20	iridium-oxide	V2
 e934	p02	3.5	-12.11	-3.12	-2.54	iridium-oxide	V4
