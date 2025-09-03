@@ -14,8 +14,8 @@ for this modality as well, though some special considerations and additional fie
 
 !!! example "Example datasets"
 
-    Several [example Microelectrode Electrophysiology datasets](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#microephys)
-    have been formatted using this specification and can be used for practical guidance when curating a new dataset.
+Several [example Microelectrode Electrophysiology datasets](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#microephys)
+have been formatted using this specification and can be used for practical guidance when curating a new dataset.
 
 ## Primary data file formats
 
@@ -51,18 +51,20 @@ and a guide for using macros can be found at
 <!-- Link Definitions -->
 
 ### icephys
+
 {{ MACROS___make_filename_template(
-   "raw",
-   datatypes=["icephys"],
-   suffixes=["icephys", "events", "channels", "electrodes","scans","probes","coordsystem"]
+"raw",
+datatypes=["icephys"],
+suffixes=["icephys", "events", "channels", "electrodes","scans","probes","coordsystem"]
 )
 }}
 
 ### ecephys
+
 {{ MACROS___make_filename_template(
-   "raw",
-   datatypes=["ecephys"],
-   suffixes=["ecephys", "events", "channels", "electrodes","scans","probes","coordsystem"]
+"raw",
+datatypes=["ecephys"],
+suffixes=["ecephys", "events", "channels", "electrodes","scans","probes","coordsystem"]
 )
 }}
 
@@ -207,7 +209,7 @@ All stereotaxic coordinate systems follow a right-handed coordinate system with 
 
 Proper understanding and application of these angles is critical for accurate probe placement and experimental reproducibility. All stereotaxic measurements use three angles to specify orientation:
 
-**AP angle (Anterior-Posterior rotation):**
+#### AP angle (Anterior-Posterior rotation)
 
 ![AP angle rotation diagram](images/AP_angle.png)
 
@@ -217,7 +219,7 @@ Proper understanding and application of these angles is critical for accurate pr
 -   Positive values indicate anterior rotation
 -   Example: +15° indicates probe tilted 15° anteriorly from vertical
 
-**ML angle (Medial-Lateral rotation):**
+#### ML angle (Medial-Lateral rotation)
 
 ![ML angle rotation diagram](images/ML_angle.png)
 
@@ -227,7 +229,7 @@ Proper understanding and application of these angles is critical for accurate pr
 -   Positive values indicate rightward/clockwise rotation (as seen from behind)
 -   Example: +20° indicates probe tilted 20° to the right from vertical
 
-**Rotation angle (around probe axis):**
+#### Rotation angle (around probe axis)
 
 ![Rotation angle diagram](images/rotation_angle.png)
 
@@ -237,8 +239,7 @@ Proper understanding and application of these angles is critical for accurate pr
 
 !!! note "Source Attribution"
 
-    The coordinate system conventions and angle definitions presented in this section are adapted from the [BrainSTEM documentation](https://support.brainstem.org/datamodel/schemas/coordinates/).
-
+The coordinate system conventions and angle definitions presented in this section are adapted from the [BrainSTEM documentation](https://support.brainstem.org/datamodel/schemas/coordinates/).
 
 ### ProbeInterface Library
 
@@ -507,33 +508,33 @@ contain a `task` entity in their name. For the nose-poke task, additional behavi
 {{ MACROS___make_filetree_example(
 
 {
-  "dataset_description.json": "",
-  "tasks.tsv": "",
-  "tasks.json": "",
-  "participants.tsv": "",
-  "sub-A/": {
-    "ses-20220101/": {
-      "ecephys/": {
-        "sub-A_ses-20220101_task-nosepoke_ecephys.nix": "",
-        "sub-A_ses-20220101_task-nosepoke_ecephys.json": "",
-        "sub-A_ses-20220101_task-nosepoke_events.tsv": "",
-        "sub-A_ses-20220101_task-rest_ecephys.nix": "",
-        "sub-A_ses-20220101_task-rest_ecephys.json": "",
-        "sub-A_ses-20220101_channels.tsv": "",
-        "sub-A_ses-20220101_electrodes.tsv": "",
-        "sub-A_ses-20220101_probes.tsv": ""
-      }
-    },
-    "ses-20220102/": {
-      "ecephys/": {
-        "sub-A_ses-20220102_task-rest_ecephys.nix": "",
-        "sub-A_ses-20220102_task-rest_ecephys.json": "",
-        "sub-A_ses-20220102_channels.tsv": "",
-        "sub-A_ses-20220102_electrodes.tsv": "",
-        "sub-A_ses-20220102_probes.tsv": ""
-      }
-    }
-  }
+"dataset_description.json": "",
+"tasks.tsv": "",
+"tasks.json": "",
+"participants.tsv": "",
+"sub-A/": {
+"ses-20220101/": {
+"ecephys/": {
+"sub-A_ses-20220101_task-nosepoke_ecephys.nix": "",
+"sub-A_ses-20220101_task-nosepoke_ecephys.json": "",
+"sub-A_ses-20220101_task-nosepoke_events.tsv": "",
+"sub-A_ses-20220101_task-rest_ecephys.nix": "",
+"sub-A_ses-20220101_task-rest_ecephys.json": "",
+"sub-A_ses-20220101_channels.tsv": "",
+"sub-A_ses-20220101_electrodes.tsv": "",
+"sub-A_ses-20220101_probes.tsv": ""
+}
+},
+"ses-20220102/": {
+"ecephys/": {
+"sub-A_ses-20220102_task-rest_ecephys.nix": "",
+"sub-A_ses-20220102_task-rest_ecephys.json": "",
+"sub-A_ses-20220102_channels.tsv": "",
+"sub-A_ses-20220102_electrodes.tsv": "",
+"sub-A_ses-20220102_probes.tsv": ""
+}
+}
+}
 }
 
 ) }}
@@ -549,40 +550,40 @@ For the second subject two samples (sample-cell003 and sample-cell004) were extr
 {{ MACROS___make_filetree_example(
 
 {
-  "samples.tsv": "",
-  "samples.json": "",
-  "participants.tsv": "",
-  "dataset_description.json": "",
-  "sub-20220101A/": {
-    "sub-20220101A_sample-cell001_scans.tsv": "",
-    "icephys/": {
-      "sub-20220101A_sample-cell001_run-1_icephys.nwb": "",
-      "sub-20220101A_sample-cell001_run-1_events.tsv": "",
-      "sub-20220101A_sample-cell001_run-2_icephys.nwb": "",
-      "sub-20220101A_sample-cell001_run-2_events.tsv": "",
-      "sub-20220101A_channels.tsv": "",
-      "sub-20220101A_electrodes.tsv": "",
-      "sub-20220101A_probes.tsv": "",
-      "sub-20220101A_icephys.json": "",
-      "sub-20220101A_events.json": ""
-    }
-  },
-  "sub-20220101B/": {
-    "sub-20220101B_sample-cell001_scans.tsv": "",
-    "icephys/": {
-      "sub-20220101B_sample-cell002_icephys.nwb": "",
-      "sub-20220101B_sample-cell002_events.tsv": "",
-      "sub-20220101B_sample-cell002_channels.tsv": "",
-      "sub-20220101B_sample-cell002_electrodes.tsv": "",
-      "sub-20220101B_sample-cell003_icephys.nwb": "",
-      "sub-20220101B_sample-cell003_events.tsv": "",
-      "sub-20220101B_sample-cell003_channels.tsv": "",
-      "sub-20220101B_sample-cell003_electrodes.tsv": "",
-      "sub-20220101B_probes.tsv": "",
-      "sub-20220101B_icephys.json": "",
-      "sub-20220101B_events.json": ""
-    }
-  }
+"samples.tsv": "",
+"samples.json": "",
+"participants.tsv": "",
+"dataset_description.json": "",
+"sub-20220101A/": {
+"sub-20220101A_sample-cell001_scans.tsv": "",
+"icephys/": {
+"sub-20220101A_sample-cell001_run-1_icephys.nwb": "",
+"sub-20220101A_sample-cell001_run-1_events.tsv": "",
+"sub-20220101A_sample-cell001_run-2_icephys.nwb": "",
+"sub-20220101A_sample-cell001_run-2_events.tsv": "",
+"sub-20220101A_channels.tsv": "",
+"sub-20220101A_electrodes.tsv": "",
+"sub-20220101A_probes.tsv": "",
+"sub-20220101A_icephys.json": "",
+"sub-20220101A_events.json": ""
+}
+},
+"sub-20220101B/": {
+"sub-20220101B_sample-cell001_scans.tsv": "",
+"icephys/": {
+"sub-20220101B_sample-cell002_icephys.nwb": "",
+"sub-20220101B_sample-cell002_events.tsv": "",
+"sub-20220101B_sample-cell002_channels.tsv": "",
+"sub-20220101B_sample-cell002_electrodes.tsv": "",
+"sub-20220101B_sample-cell003_icephys.nwb": "",
+"sub-20220101B_sample-cell003_events.tsv": "",
+"sub-20220101B_sample-cell003_channels.tsv": "",
+"sub-20220101B_sample-cell003_electrodes.tsv": "",
+"sub-20220101B_probes.tsv": "",
+"sub-20220101B_icephys.json": "",
+"sub-20220101B_events.json": ""
+}
+}
 }
 
 ) }}
