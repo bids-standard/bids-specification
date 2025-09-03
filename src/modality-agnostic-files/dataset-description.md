@@ -16,7 +16,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___render_text("objects.files.dataset_description.description") }}
 
-Every BIDS dataset MUST include this file with the following fields:
+Every dataset MUST include this file with the following fields:
 
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in
