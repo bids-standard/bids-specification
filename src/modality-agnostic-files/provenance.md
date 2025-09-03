@@ -249,7 +249,7 @@ Each `prov/[<label>/]prov-<label>_ent.json` file is a JSON file describing `Enti
 
 !!! Caution
     These files MUST not contain `Entity` records describing data files that are available in the dataset. Use sidecar JSON files instead for this purpose (see [Provenance in sidecar JSON files](#provenance-in-sidecar-json-files)).
-    These files MUST not contain `Entity` records describing the current dataset. Use the `GeneratedBy` field of the `dataset_description.json` files instead for this purpose (see [Provenance at dataset level](#provenance-at-dataset-level)).
+    These files MUST not contain `Entity` records describing the current dataset. The provenance of a dataset MAY be described in the `dataset_description.json` files instead (see [Provenance at dataset level](#provenance-at-dataset-level)).
 
 !!! example
     Provenance metadata in a `prov/[<label>/]prov-<label>_ent.json` file:
@@ -411,11 +411,13 @@ An `Id` identifying an `Entity` record corresponding to a file of a BIDS dataset
     - `bids::sub-014/func/sub-014_task-MGT_run-01_events.tsv`: the `Id` of an `Entity` describing an events file for subject `sub-014` in the current dataset ;
     - `bids:derivatives:fmriprep/sub-001/func/sub-001_task-MGT_run-01_bold_space-MNI152NLin2009cAsym_preproc.nii.gz`:  the `Id` of an `Entity` describing a bold file for subject `sub-001` in the `derivatives` dataset.
 
-An `Id` identifying `Activity`, `Software`, and `Environment` provenance records described in a BIDS dataset `<dataset>` SHOULD have the following form, where `<label>` is a human readable name for coherently identifying the record and `<uid>` is a unique group of chars. The uniqueness should be used to distinguish any `Activity`, `Software`, or `Environment` that are different in any of their attributes:
+An `Id` identifying `Activity`, `Software`, and `Environment` provenance records described in a BIDS dataset `<dataset>` SHOULD have the following form, where `<label>` is a human readable name for coherently identifying the record and `<uid>` is a unique group of chars.
 
 ```text
 bids:<dataset>:prov#<label>-<uid>
 ```
+
+The uniqueness of this `Id` MUST be used to distinguish any `Activity`, `Software`, or `Environment` that are different in any of their attributes.
 
 ## Minimal example
 
