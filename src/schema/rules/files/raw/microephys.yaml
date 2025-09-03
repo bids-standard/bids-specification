@@ -19,7 +19,6 @@ microephys:
     task: optional
     acquisition: optional
     run: optional
-    split: optional
 
 probes:
   suffixes:
@@ -34,7 +33,4 @@ probes:
     subject: required
     session: optional
     sample: optional
-    task: optional
     acquisition: optional
-    run: optional
-    split: optional
