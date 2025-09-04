@@ -15,7 +15,7 @@ EMGChannels:
     description: optional
     sampling_frequency: optional
     signal_electrode: recommended
-    reference_electrode: recommended
+    reference__emg: recommended
     group__emg: recommended
     target_muscle: recommended
     placement_scheme: recommended
