@@ -510,12 +510,6 @@ act:
     Activities represent the transformations that have been applied to the data.
     Files with the `act` suffix must define the `Activities` metadata, which is an array of `Activity` records.
     See the [`Activity` records](SPEC_ROOT/modality-agnostic-files/provenance.md#activity-records) section.
-all:
-  value: all
-  display_name: Provenance Records
-  description: |
-    All types of provenance records (Activity, Entity, Environment, Software)
-    for a group of provenance.
 angio:
   value: angio
   display_name: Angiogram
