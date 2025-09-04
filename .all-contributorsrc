@@ -2192,19 +2192,6 @@
         },
         {
             "contributions": [
-                "blog",
-                "bug",
-                "code",
-                "doc",
-                "ideas",
-                "maintenance",
-                "review"
-            ],
-            "login": "margaret_e._heafield",
-            "name": "Margaret E. Heafield"
-        },
-        {
-            "contributions": [
                 "doc"
             ],
             "login": "maria_ermolova",

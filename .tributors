@@ -2281,18 +2281,6 @@
         "orcid": "0000-0002-1203-2670",
         "publish_email": true
     },
-    "margaret_e._heafield": {
-        "contributions": [
-            "blog",
-            "bug",
-            "code",
-            "doc",
-            "ideas",
-            "maintenance",
-            "review"
-        ],
-        "name": "Margaret E. Heafield"
-    },
     "maria_ermolova": {
         "contributions": [
             "doc"
