@@ -297,6 +297,22 @@ For example, you could use `probeinterface_manufacturer: "neuronexus"` and `prob
 
 If the probe is not listed in the ProbeInterface library, you SHOULD define it using the [ProbeInterface format](https://probeinterface.readthedocs.io/en/latest/format_spec.html) and include it in a directory called `probes/` in the root of the dataset. Probes defined within the `probes/` directory MUST follow the naming convention `probeinterface_<manufacturer>_<model>.json` and comply with the [ProbeInterface specification](https://probeinterface.readthedocs.io/en/latest/format_spec.html) and [JSON schema](https://raw.githubusercontent.com/SpikeInterface/probeinterface/refs/heads/main/src/probeinterface/schema/probe.json.schema).
 
+For example:
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+   {
+   "probes": {
+      "probeinterface_neuronexus_A4x8-5mm-100-200-177.json": "",
+      "probeinterface_plexon_1S256.json": "",
+      "...": "",
+      },
+   }
+) }}
+
 {{ MACROS___make_columns_table("microephys.microephysProbes") }}
 
 #### Example *_probes.tsv
