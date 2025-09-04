@@ -5,3 +5,36 @@
 # Assumptions: top-to-bottom overrides is sufficient logic
 
 ---
+microephysCoordsystemGeneral:
+  selectors:
+    - datatype == ["ecephys", "icephys"]
+    - suffix == ["coordsystem"]
+  fields:
+    IntendedFor:
+      level: optional
+      description_addendum: |
+        # TODO
+
+# Fields relating to the microephys electrode positions
+microephysCoordsystemPositions:
+  selectors:
+    - datatype == ["ecephys", "icephys"]
+    - suffix == ["coordsystem"]
+  fields:
+    MicroephysCoordinateSystem: required
+    MicroephysCoordinateUnits: required
+    MicroephysCoordinateSystemDescription:
+      level: recommended
+      level_addendum: required if `MicroephysCoordinateSystem` is `"Other"`
+    MicroephysCoordinateSystemPhoto:
+      level: optional
+      level_addendum: required if `MicroephysCoordinateUnits` is `"pixels"`
+
+microephysCoordsystemOther:
+  selectors:
+    - datatype == ["ecephys", "icephys"]
+    - suffix == ["coordsystem"]
+    - '"MicroephysCoordinateSystem" in json'
+    - json.MicroephysCoordinateSystem == "Other"
+  fields:
+    MicroephysCoordinateSystemDescription: required
