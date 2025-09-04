@@ -6,7 +6,7 @@ validate_citation_cff: CITATION.cff
 update_contributors:
 	uv run tools/add_contributors.py
 	uv run tools/print_contributors.py
-	npx all-contributors generate
+	npx all-contributors-cli generate
 
 runprettier:
 	prettier --write "src/schema/**/*.yaml"
