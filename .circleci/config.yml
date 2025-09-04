@@ -38,6 +38,7 @@ jobs:
               uvx linkchecker -t 1 --check-extern \
                 --ignore-url 'file:///.*' \
                 --ignore-url 'https://bids-specification.readthedocs.io/en/stable/.*' \
+                --ignore-url "https://bids-specification.readthedocs.io/en/v${CIRCLE_BRANCH#rel/}/" \
                 --ignore-url 'https://doi.org/.*' \
                 --ignore-url 'https://fonts.gstatic.com' \
                 --ignore-url 'https://github.com/[^/]*' \

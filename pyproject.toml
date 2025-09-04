@@ -26,3 +26,34 @@ doc = [
   "universal_pathlib",
   "fsspec[http]",
 ]
+
+[tool.bumpversion]
+current_version = "1.10.2-dev"
+parse = """(?x)
+    (?P<major>[0-9]+)
+    \\.(?P<minor>[0-9]+)
+    \\.(?P<patch>[0-9]+)
+    (?:-(?P<pre_label>dev))?
+"""
+serialize = ["{major}.{minor}.{patch}-{pre_label}", "{major}.{minor}.{patch}"]
+commit = true
+message = "chore: Bump BIDS version to {new_version}"
+
+[tool.bumpversion.parts.pre_label]
+values = ["dev", "final"]
+optional_value = "final"
+
+[[tool.bumpversion.files]]
+filename = "CITATION.cff"
+[[tool.bumpversion.files]]
+filename = "mkdocs.yml"
+[[tool.bumpversion.files]]
+filename = "src/schema/BIDS_VERSION"
+[[tool.bumpversion.files]]
+filename = "src/schema/meta/versions.yaml"
+search = """NEXT_VERSION_HERE
+- """
+replace = """NEXT_VERSION_HERE
+- '{new_version}'
+- """
+include_bumps = ['pre_label']

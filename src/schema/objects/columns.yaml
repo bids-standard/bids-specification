@@ -1,9 +1,9 @@
 ---
 HED:
   name: HED
-  display_name: HED Tag
+  display_name: HED
   description: |
-    Hierarchical Event Descriptor (HED) Tag.
+    Hierarchical Event Descriptor (HED) tags.
     See the [HED Appendix](SPEC_ROOT/appendices/hed.md) for details.
   type: string
 abbreviation:
@@ -38,12 +38,14 @@ age:
   description: |
     Numeric value in years (float or integer value).
 
-    It is recommended to tag participant ages that are 89 or higher as 89+,
-    for privacy purposes.
+    For privacy purposes, participant ages should be capped at 89.
+    Using "89+" for ages above 88 is DEPRECATED.
   definition: {
     "LongName": "Subject age",
     "Description": "Subject age in postnatal years",
+    "Format": "number",
     "Units": "year",
+    "Maximum": 89,
   }
 AP_angle:
   name: AP_angle
@@ -91,6 +93,7 @@ cardiac:
     continuous pulse measurement
   definition: {
     "Description": "continuous pulse measurement",
+    "Format": "number",
     "Units": "mV"
   }
 channel:
@@ -188,8 +191,7 @@ detector_type:
   display_name: Detector Type
   description: |
     The type of detector. Only to be used if the field `DetectorType` in `*_nirs.json` is set to `mixed`.
-  anyOf:
-    - type: string
+  type: string
 derived_from:
   name: derived_from
   display_name: Derived from
@@ -327,15 +329,14 @@ group__channel:
     Which group of channels (grid/strip/seeg/depth) this channel belongs to.
     This is relevant because one group has one cable-bundle and noise can be shared.
     This can be a name or number.
-  anyOf:
-    - type: string
-    - type: number
+  type: string
 handedness:
   name: handedness
   display_name: Subject handedness
   definition: {
     "LongName": "Subject handedness",
     "Description": "String value indicating one of \"left\", \"right\", or \"ambidextrous\".",
+    "Format": "string",
     "Levels": {
       "left": "Left-handed",
       "l": "Left-handed",
@@ -586,7 +587,8 @@ pathology:
     The pathology may be specified in either `samples.tsv` or
     `sessions.tsv`, depending on whether the pathology changes over time.
   definition: {
-    "Description": "Description of the pathology of the sample or type of control."
+    "Description": "Description of the pathology of the sample or type of control.",
+    "Format": "string",
   }
 participant_id:
   name: participant_id
@@ -691,6 +693,7 @@ respiratory:
     continuous breathing measurement
   definition: {
     "Description": "continuous measurements by respiration belt",
+    "Format": "number",
     "Units": "mV"
   }
 response_time:
@@ -766,6 +769,7 @@ sex:
   definition: {
     "LongName": "sex",
     "Description": "String value indicating phenotypical sex.",
+    "Format": "string",
     "Levels": {
       "F": "Female",
       "FEMALE": "Female",
@@ -841,8 +845,7 @@ source__optodes:
   display_name: Source type
   description: |
     The type of source. Only to be used if the field `SourceType` in `*_nirs.json` is set to `mixed`.
-  anyOf:
-    - type: string
+  type: string
 species:
   name: species
   display_name: Species
@@ -854,7 +857,8 @@ species:
     `homo sapiens`.
   definition: {
     "Description":
-      "binomial species name from the NCBI Taxonomy (https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi)"
+      "Latin binomial species name from the NCBI Taxonomy (https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi).",
+    "Format": "string",
   }
 status:
   name: status
@@ -882,7 +886,7 @@ stim_file:
     Represents the location of the stimulus file (such as an image, video, or
     audio file) presented at the given onset time.
     There are no restrictions on the file formats of the stimuli files,
-    but they should be stored in the `/stimuli` directory
+    but they should be stored in the `/stimuli/` directory
     (under the root directory of the dataset; with optional subdirectories).
     The values under the `stim_file` column correspond to a path relative to
     `/stimuli`.
@@ -896,7 +900,8 @@ strain:
     For species different from `homo sapiens`, string value indicating
     the strain of the species, for example: `C57BL/6J`.
   definition: {
-    "Description": "name of the strain of the species"
+    "Description": "Name of the strain of the species.",
+    "Format": "string",
   }
 strain_rrid:
   name: strain_rrid
@@ -980,6 +985,7 @@ trigger:
     continuous measurement of the scanner trigger signal
   definition: {
     "Description": "continuous measurement of the scanner trigger signal",
+    "Format": "number",
     "Units": "arbitrary"
   }
 # type column in channels.tsv files

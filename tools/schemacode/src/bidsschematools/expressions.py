@@ -62,7 +62,7 @@ andOp = Literal("&&")
 notOp = Literal("!")
 compOp = one_of(("==", "!=", "<", "<=", ">", ">=", "in"))
 addOp = one_of(("+", "-"))
-mulOp = one_of(("*", "/"))
+mulOp = one_of(("*", "/", "%"))
 expOp = Literal("**")
 
 lpar, rpar = Suppress("("), Suppress(")")
