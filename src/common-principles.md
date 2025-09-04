@@ -309,7 +309,7 @@ Derivatives can be stored/distributed in two ways:
     Different components of a pipeline can, however, also be stored under different
     subdirectories.
     There are few restrictions on the directory names;
-    it is RECOMMENDED to use the format `<pipeline>-<variant>` in cases where
+    it is RECOMMENDED to use the format `<pipeline-name>-<variant>` in cases where
     it is anticipated that the same pipeline will output more than one variant
     (for example, `AFNI-blurring` and `AFNI-noblurring`).
     For the sake of consistency, the subdirectory name SHOULD be
@@ -381,7 +381,7 @@ Derivatives can be stored/distributed in two ways:
 
 Throughout this specification, if a section applies particularly to derivatives,
 then Case 1 will be assumed for clarity in templates and examples, but removing
-`/derivatives/<pipeline>` from the template name will provide the equivalent for
+`/derivatives/<pipeline-name>[-<variant>]` from the template name will provide the equivalent for
 Case 2.
 In both cases, every derivatives dataset is considered a BIDS dataset and must
 include a `dataset_description.json` file at the root level (see
@@ -423,8 +423,8 @@ A guide for using macros can be found at
             "..." : "",
         },
         "derivatives": {
-            "pipeline_1": {},
-            "pipeline_2": {},
+            "pipeline1-v1": {},
+            "pipeline2": {},
             "...": "",
         },
         "dataset_description.json": "",
@@ -677,7 +677,7 @@ Example of a hypothetical `*_bold.json` file, accompanying a `*_bold.nii` file:
 Example of a hypothetical `*_events.json` file, accompanying an
 `*_events.tsv` file. Note that the JSON file contains a key describing an
 *arbitrary* column `stim_presentation_side` in the TSV file it accompanies.
-See [task events section](modality-specific-files/task-events.md)
+See [events section](modality-agnostic-files/events.md)
 for more information.
 
 ```JSON
