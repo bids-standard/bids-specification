@@ -432,8 +432,9 @@ specified without an accompanying `*_coordsystem.json` file. In this case, elect
 in `*_electrodes.tsv` are assumed to be **probe-relative coordinates**:
 
 -   The origin (0, 0, 0) is at the probe tip or a standard reference point on the probe
+<!-- TODO: Unsure if this reference is what we discussed in the surgical coordinate system -->
 -   The `x`, `y`, and `z` coordinates describe electrode positions relative to this probe reference
--   This is the most common case for linear probes where electrode spacing is fixed and known
+- This the most common case for in-vivo recordings where electrodes are not localized in a 3D anatomical space
 
 ### Recommended 3D coordinate systems
 
