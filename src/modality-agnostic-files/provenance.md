@@ -31,7 +31,7 @@ This part of the BIDS specification is aimed at describing the provenance of a B
 -   Provenance information SHOULD be included in a BIDS dataset when possible.
 -   If provenance records are included, these MUST be described using the conventions detailed by this specification.
 -   Provenance records MAY be used to reflect the provenance of a full dataset and/or of specific files at any level of the BIDS hierarchy.
--   Provenance information SHOULD be de-identified as necessary.
+-   Provenance information SHOULD not include human subject identifying data.
 
 ### Definitions
 
