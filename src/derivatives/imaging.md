@@ -8,10 +8,11 @@ extent and resolution.
 Template:
 
 ```Text
-<pipeline_name>/
+<pipeline-name>/
     sub-<label>/
-        <datatype>/
-            <source_entities>[_space-<space>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
+        [ses-<label>/]
+            <datatype>/
+                <source-entities>[_space-<space>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
 ```
 
 Volumetric preprocessing does not modify the number of dimensions, and so
@@ -145,10 +146,12 @@ And the corresponding `sub-001_task-rest_run-1_space-fsLR_bold.json` file:
 Template:
 
 ```Text
-<pipeline_name>/
+<pipeline-name>/
     sub-<label>/
-        anat|func|dwi/
-            <source_entities>[_space-<space>][_res-<label>][_den-<label>][_label-<label>][_desc-<label>]_mask.nii.gz
+        [ses-<label>/]
+            anat|func|dwi/
+                <source-entities>[_space-<space>][_res-<label>][_label-<label>][_desc-<label>]_mask.json
+                <source-entities>[_space-<space>][_res-<label>][_label-<label>][_desc-<label>]_mask.nii[.gz]
 ```
 
 A binary (1 - inside, 0 - outside) mask in the space defined by the [`space` entity](../appendices/entities.md#space).
@@ -262,10 +265,13 @@ of how integer values map to anatomical structures.
 Template:
 
 ```Text
-<pipeline_name>/
+<pipeline-name>/
     sub-<label>/
-        anat|func|dwi/
-            <source_entities>[_space-<space>][_seg-<label>][_res-<label>][_den-<label>]_dseg.nii.gz
+        [ses-<label>/]
+            anat|func|dwi/
+                <source-entities>[_space-<space>][_seg-<label>][_res-<label>][_desc-<label>]_dseg.json
+                <source-entities>[_space-<space>][_seg-<label>][_res-<label>][_desc-<label>]_dseg.nii[.gz]
+                <source-entities>[_space-<space>][_seg-<label>][_res-<label>][_desc-<label>]_dseg.tsv
 ```
 
 Example:
@@ -326,10 +332,12 @@ the structure.
 Template:
 
 ```Text
-<pipeline_name>/
+<pipeline-name>/
     sub-<label>/
-        func|anat|dwi/
-            <source_entities>[_space-<space>][_seg-<label>][_res-<label>][_den-<label>][_label-<label>]_probseg.nii.gz
+        [ses-<label>/]
+            func|anat|dwi/
+                <source-entities>[_space-<space>][_seg-<label>][_res-<label>][_label-<label>][_desc-<label>]_probseg.json
+                <source-entities>[_space-<space>][_seg-<label>][_res-<label>][_label-<label>][_desc-<label>]_probseg.nii[.gz]
 ```
 
 Example:
@@ -400,10 +408,14 @@ CIFTI-2 dense label files, with the extension `.dlabel.nii`.
 Template:
 
 ```Text
-<pipeline_name>/
+<pipeline-name>/
     sub-<label>/
-        anat/
-            <source_entities>[_hemi-{L|R}][_space-<space>][_seg-<label>][_res-<label>][_den-<label>]_dseg.{label.gii|dlabel.nii}
+        [ses-<label>/]
+            anat/
+                <source-entities>[_hemi-{L|R}][_space-<space>][_seg-<label>][_res-<label>][_den-<label>][_desc-<label>]_dseg.json
+                <source-entities>[_hemi-{L|R}][_space-<space>][_seg-<label>][_den-<label>][_desc-<label>]_dseg.label.gii
+                <source-entities>[_hemi-{L|R}][_space-<space>][_seg-<label>][_res-<label>][_den-<label>][_desc-<label>]_dseg.dlabel.nii
+                <source-entities>[_hemi-{L|R}][_space-<space>][_seg-<label>][_res-<label>][_den-<label>][_desc-<label>]_dseg.tsv
 ```
 
 The [`hemi-<label>`](../appendices/entities.md#hemi) entity is REQUIRED for GIFTI files storing information about
@@ -524,21 +536,21 @@ and a guide for using macros can be found at
 
 An example, custom `dseg.tsv` that defines three labels:
 
-```Text
-index   name            abbreviation    color       mapping
-100     Gray Matter     GM              #ff53bb     1
-101     White Matter    WM              #2f8bbe     2
-102     Brainstem       BS              #36de72     11
+```tsv
+index	name	abbreviation	color	mapping
+100	Gray Matter	GM	#ff53bb	1
+101	White Matter	WM	#2f8bbe	2
+102	Brainstem	BS	#36de72	11
 ```
 
 The following example `dseg.tsv` defines regions that are not part of the
 standard BIDS labels:
 
-```Text
-index   name                abbreviation
-137     pars opercularis    IFGop
-138     pars triangularis   IFGtr
-139     pars orbitalis      IFGor
+```tsv
+index	name	abbreviation
+137	pars	opercularis	IFGop
+138	pars	triangularis	IFGtr
+139	pars	orbitalis	IFGor
 ```
 
 <!-- Link Definitions -->

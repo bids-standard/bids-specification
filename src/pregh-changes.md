@@ -9,7 +9,7 @@
 
 -   Added support for MEG data (merged BEP008).
 -   Added `SequenceName` field.
--   Added support for describing events with Hierarchical Event Descriptors: [4.3 Task events](modality-specific-files/task-events.md).
+-   Added support for describing events with Hierarchical Event Descriptors: [4.3 Events](modality-agnostic-files/events.md).
 -   Added `VolumeTiming` and `AcquisitionDuration` fields: [4.1 Task (including resting state) imaging data](modality-specific-files/magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data).
 -   Added `DwellTime` field.
 
@@ -32,7 +32,7 @@
 ## 1.0.1-rc1
 
 -   Added T1 Rho maps: [4.1 Anatomy imaging data](modality-specific-files/magnetic-resonance-imaging-data.md#anatomy-imaging-data).
--   Added support for phenotypic information split into multiple files: [3.2 Participant key file](modality-agnostic-files.md#participants-file).
+-   Added support for phenotypic information split into multiple files: [3.2 Participant key file](modality-agnostic-files/data-summary-files.md#participants-file).
 -   Added recommendations for multi site datasets.
 -   Added `SoftwareVersions`.
 -   Added `run-<run_index>` to the phase encoding maps. Improved the description.

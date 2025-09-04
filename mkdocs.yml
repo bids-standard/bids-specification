@@ -1,17 +1,21 @@
-site_name: Brain Imaging Data Structure 1.10.1-dev
+site_name: Brain Imaging Data Structure 1.10.2-dev
 site_url: https://bids-specification.readthedocs.io/en/stable/
 repo_url: https://github.com/bids-standard/bids-specification
 nav:
   - The BIDS Specification:
       - Introduction: introduction.md
       - Common principles: common-principles.md
-      - Modality agnostic files: modality-agnostic-files.md
+      - Modality agnostic files:
+          - Dataset description: modality-agnostic-files/dataset-description.md
+          - Data summary files: modality-agnostic-files/data-summary-files.md
+          - Phenotypic and assessment data: modality-agnostic-files/phenotypic-and-assessment-data.md
+          - Code: modality-agnostic-files/code.md
+          - Events: modality-agnostic-files/events.md
       - Modality specific files:
           - Magnetic Resonance Imaging: modality-specific-files/magnetic-resonance-imaging-data.md
           - Magnetoencephalography: modality-specific-files/magnetoencephalography.md
           - Electroencephalography: modality-specific-files/electroencephalography.md
           - Intracranial Electroencephalography: modality-specific-files/intracranial-electroencephalography.md
-          - Task events: modality-specific-files/task-events.md
           - Physiological recordings: modality-specific-files/physiological-recordings.md
           - Behavioral experiments (with no neural recordings): modality-specific-files/behavioral-experiments.md
           - Genetic Descriptor: modality-specific-files/genetic-descriptor.md
@@ -101,13 +105,19 @@ extra:
 
 extra_javascript:
   - js/jquery-3.6.0.min.js
+extra_css:
+  - css/tsv.css
 markdown_extensions:
   - toc:
       anchorlink: true
+  - attr_list
   - pymdownx.superfences:
       preserve_tabs: true
       custom_fences:
         - name: tsv
+          class: tsv
+          format: !!python/name:bidsschematools.render.tsv.fence
+        - name: tsvgz
           class: tsv
           format: !!python/name:bidsschematools.render.tsv.fence
   - admonition
@@ -126,12 +136,13 @@ plugins:
       redirect_maps:
         "01-introduction.md": "introduction.md"
         "02-common-principles.md": "common-principles.md"
-        "03-modality-agnostic-files.md": "modality-agnostic-files.md"
+        "03-modality-agnostic-files.md": "modality-agnostic-files/dataset-description.md"
+        "modality-agnostic-files.md": "modality-agnostic-files/dataset-description.md"
         "04-modality-specific-files/01-magnetic-resonance-imaging-data.md": "modality-specific-files/magnetic-resonance-imaging-data.md"
         "04-modality-specific-files/02-magnetoencephalography.md": "modality-specific-files/magnetoencephalography.md"
         "04-modality-specific-files/03-electroencephalography.md": "modality-specific-files/electroencephalography.md"
         "04-modality-specific-files/04-intracranial-electroencephalography.md": "modality-specific-files/intracranial-electroencephalography.md"
-        "04-modality-specific-files/05-task-events.md": "modality-specific-files/task-events.md"
+        "04-modality-specific-files/05-task-events.md": "modality-agnostic-files/events.md"
         "04-modality-specific-files/06-physiological-and-other-continuous-recordings.md": "modality-specific-files/physiological-recordings.md"
         "04-modality-specific-files/07-behavioral-experiments.md": "modality-specific-files/behavioral-experiments.md"
         "04-modality-specific-files/08-genetic-descriptor.md": "modality-specific-files/genetic-descriptor.md"
@@ -157,5 +168,6 @@ plugins:
         "99-appendices/11-qmri.md": "appendices/qmri.md"
         "99-appendices/12-arterial-spin-labeling.md": "appendices/arterial-spin-labeling.md"
         "99-appendices/13-cross-modality-correspondence.md": "appendices/cross-modality-correspondence.md"
+        "modality-specific-files/task-events.md": "modality-agnostic-files/events.md"
 docs_dir: "src"
 use_directory_urls: false
