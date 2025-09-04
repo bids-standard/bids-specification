@@ -2300,20 +2300,6 @@
         "email": "ermolova.mary@gmail.com",
         "name": "Maria Ermolova"
     },
-    "MarieCurie": {
-        "affiliation": "Open-Science University, Earth",
-        "blog": "https://example.com",
-        "contributions": [
-            "bug",
-            "doc",
-            "ideas",
-            "review"
-        ],
-        "email": "marie-curie@openscience.com",
-        "github": "MarieCurie",
-        "name": "Maria Salomea Skłodowska",
-        "orcid": "0320-4024-4203-5343"
-    },
     "maigva": {
         "affiliation": "FISABIO, Join Unit Biomedical Imagin, Valencia, Valencia, 46006, Spain",
         "blog": "https://bimcv.cipf.es",

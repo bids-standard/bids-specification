@@ -2211,17 +2211,6 @@
             "name": "Maria Ermolova"
         },
         {
-            "contributions": [
-                "bug",
-                "doc",
-                "ideas",
-                "review"
-            ],
-            "login": "MarieCurie",
-            "name": "Maria Salomea Skłodowska",
-            "profile": "https://example.com"
-        },
-        {
             "avatar_url": "https://avatars.githubusercontent.com/u/3390888?v=4",
             "contributions": [
                 "doc"

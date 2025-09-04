@@ -275,7 +275,6 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Marco Castellaro                                     | 💬🐛💻📖💡⚠️📢🚇                       |
 | Margaret E. Heafield                                 | 📝🐛💻📖🤔🚧👀                         |
 | Maria Ermolova                                       | 📖                                     |
-| Maria Salomea Skłodowska                             | 🐛📖🤔👀                               |
 | Maria de la Iglesia                                  | 📖                                     |
 | Marie-Hélène Bourget                                 | 📖🔣💻🤔                               |
 | Mark Mikkelsen                                       | 📖💻🔣👀                               |
