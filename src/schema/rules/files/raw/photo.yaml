@@ -28,3 +28,15 @@ photo__micr:
   entities:
     $ref: rules.files.raw.photo.photo.entities
     sample: required
+
+# microephys photo has sample and space entities like other
+# microephys files and unlike iEEG
+photo__microephys:
+  $ref: rules.files.raw.photo.photo
+  datatypes:
+    - ecephys
+    - icephys
+  entities:
+    $ref: rules.files.raw.photo.photo.entities
+    sample: optional
+    space: optional
