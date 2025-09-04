@@ -36,7 +36,7 @@ store data in separate data files.
 If separate devices are being used with separate sampling rates, start times, or other
 acquisition parameters, the `recording-<label>` entity MUST be used to distinguish between them.
 The synchronization of data from multiple devices SHOULD be described in the
-[Scans](../modality-agnostic-files.md#scans-file) (`scans.tsv`) file, using the
+[Scans](../modality-agnostic-files/data-summary-files.md#scans-file) (`scans.tsv`) file, using the
 `acq_time` entity.
 
 In cases where the allowed formats do not encode all relevant metadata present in the
@@ -176,7 +176,7 @@ A guide for using macros can be found at
 {{ MACROS___make_sidecar_table("emg.EMGOptional") }}
 
 Note that the date and time information SHOULD be stored in the study key file
-([`scans.tsv`](../modality-agnostic-files.md#scans-file)).
+([`scans.tsv`](../modality-agnostic-files/data-summary-files.md#scans-file)).
 Date time information MUST be expressed as indicated in [Units](../common-principles.md#units).
 
 #### Hardware information
