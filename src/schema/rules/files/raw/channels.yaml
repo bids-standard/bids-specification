@@ -75,6 +75,14 @@ coordsystem__eeg:
     $ref: rules.files.raw.channels.coordsystem.entities
     space: optional
 
+coordsystem_microephys:
+  $ref: rules.files.raw.channels.coordsystem
+  datatypes:
+    - icephys
+    - ecephys
+  entities:
+    $ref: rules.files.raw.channels.coordsystem.entities
+    space: required
 
 electrodes:
   suffixes:
@@ -119,6 +127,7 @@ electrodes__microephys:
     sample: optional
     acquisition: optional
     processing: optional
+    space: optional
 
 optodes:
   suffixes:
