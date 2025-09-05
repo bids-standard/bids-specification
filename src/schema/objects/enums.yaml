@@ -361,7 +361,7 @@ individual:
     In context of surfaces this space has been referred to as `fsnative`.
 
     In order for this space to be interpretable, `SpatialReference` metadata MUST be provided.
-study:
+study__space:
   value: study
   display_name: study
   description: |
@@ -369,6 +369,12 @@ study:
     This coordinate system requires specifying an additional file to be fully defined.
 
     In order for this space to be interpretable, `SpatialReference` metadata MUST be provided.
+study__datasettype:
+  value: study
+  display_name: study
+  description: |
+    A study BIDS dataset to organize the data for the entire study (original source data, raw BIDS,
+    derivatives) as a valid BIDS dataset.
 scanner:
   value: scanner
   display_name: scanner

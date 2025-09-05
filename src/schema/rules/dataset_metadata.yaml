@@ -10,6 +10,7 @@ dataset_description:
     Authors:
       level: optional
       level_addendum: recommended if no CITATION.cff file is present
+    Keywords: optional
     Acknowledgements: optional
     HowToAcknowledge: optional
     Funding: optional
