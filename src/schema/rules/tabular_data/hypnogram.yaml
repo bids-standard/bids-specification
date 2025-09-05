@@ -1,0 +1,52 @@
+hypnogram:
+  selectors:
+    - suffix == "hypnogram"
+    - extension == ".tsv"
+  initial_columns:
+    - onset
+    - duration
+    - stage
+  columns:
+    onset:
+      required: true
+    duration:
+      required: true
+    stage:
+      required: true
+      levels: optional
+    scorer:
+      required: false
+      levels: optional
+  additional_columns: allowed_if_defined
+
+hypnogramSidecar:
+  selectors:
+    - suffix == "hypnogram"
+    - extension == ".json"
+  properties:
+    stage:
+      display_name: Sleep Stage
+      description: |
+        Categorical labels for sleep stages.
+      type: object
+      properties:
+        Levels:
+          type: object
+          additionalProperties:
+            type: string
+            description: |
+              Human-readable description of the stage label. 
+              For handling noisy or missing data, labels such as 'Artefact' or 'Unscored' MUST be defined here.
+    scorer:
+      display_name: Scorer
+      description: |
+        Categorical labels for the annotation source.
+      type: object
+      properties:
+        Levels:
+          type: object
+          additionalProperties:
+            type: string
+            description: |
+              Human-readable description of the scorer. 
+              For multiple scorers, all possible scorer values MUST be defined here.
