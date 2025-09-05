@@ -1,0 +1,14 @@
+hypnogram:
+  suffixes:
+    - hypnogram
+  extensions:
+    - .tsv
+    - .json
+  datatypes:
+    - eeg
+  entities:
+    subject: required
+    session: optional
+    task: required
+    acquisition: optional
+    run: optional
