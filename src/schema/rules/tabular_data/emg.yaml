@@ -45,7 +45,7 @@ EMGElectrodes:
     x: required
     y: required
     z: optional
-    coordinate_system: required
+    coordinate_system: recommended
     type__electrodes: recommended
     material: recommended
     impedance: recommended

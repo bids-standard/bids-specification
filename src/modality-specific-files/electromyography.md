@@ -355,8 +355,11 @@ Electrode locations may be specified in one of four ways:
     It may be possible to omit the `z` column when all electrodes are on the same surface
     (in the above example, if all electrodes were on the volar surface and none were on
     the dorsal surface).
-    Likewise it may be possible to omit both `z` and `y` if all electrodes are colinear
-    along the anatomically defined `x` axis.
+    Though it would be possible to omit both `z` and `y` if all electrodes are colinear
+    along the anatomically defined `x` axis, the `y` column is required and thus researchers
+    SHOULD enter `0` for all entries in column `y` in such cases.
+    In this case (of a single coordinate system for all electrodes) the
+    `coordinate_system` column in `*_electrodes.tsv` may be omitted as in (1) above.
 
 1.  **Measured coordinates in multiple anatomically-defined coordinate systems.**
     This approach is suitable for individual electrodes placed on multiple body parts.
@@ -371,8 +374,8 @@ Electrode locations may be specified in one of four ways:
     defined by upper-leg landmarks for electrodes above the knee.
     In such a case, entries in the `coordinate_system` column of `*_electrodes.tsv` MUST
     specify either `"lower-leg"` or `"thigh"`.
-    As in (2) above, it may be possible to omit the `z` and `y` columns, depending on the
-    details of the electrode placements.
+    As in (2) above, enter `0` for the `y` column values if all electrodes are colinear
+    along the defined `x` axis.
 
 1.  **Measured coordinates in "nested" coordinate systems.**
     This approach is suitable for large electrode grids or similar devices.
@@ -396,6 +399,8 @@ Electrode locations may be specified in one of four ways:
     Each grid would have its own coordinate system (named, for example, "volar-grid" and
     "dorsal-grid") in which coordinates of each electrode are relative to a device-internal
     origin, such as the lower-leftmost electrode when the device is in a specified orientation.
+    In such a scenario, entries in the `coordinate_system` column of `*_electrodes.tsv`
+    MUST specify either `"volar-grid"` or `"dorsal-grid"`.
     Note that the parent coordinate system may be defined in different units than the child
     coordinate system; for example, if an anchor electrode was placed 50% of the distance
     between the ulnar styloid process and cubital fossa, the unit of the parent coordinate
