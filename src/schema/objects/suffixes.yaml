@@ -877,3 +877,8 @@ unloc:
   description: |
     MRS acquisitions run without localization.
     This includes signals detected using coil sensitivity only.
+hypnogram:
+  value: hypnogram
+  display_name: Hypnogram
+  description: |
+    Sleep staging annotation file.
