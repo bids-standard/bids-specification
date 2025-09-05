@@ -17,6 +17,10 @@ hypnogram:
     scorer:
       required: false
       levels: optional
+    confidence:
+      required: false
+    confidence_<stage_label>:
+      required: false
   additional_columns: allowed_if_defined
 
 hypnogramSidecar:
@@ -50,3 +54,34 @@ hypnogramSidecar:
             description: |
               Human-readable description of the scorer. 
               For multiple scorers, all possible scorer values MUST be defined here.
+    confidence:
+      name: confidence
+      display_name: Confidence Score
+      description: |
+        Overall confidence score for the sleep stage annotation.
+      type: object
+      properties:
+        Levels:
+          type: object
+          additionalProperties:
+            type: string
+            description: |
+              A human-readable description for the confidence scores (for example, "posterior probability").
+    confidence_<stage_label>:
+      name: confidence_<stage_label>
+      display_name: Confidence Score by Stage
+      description: |
+        Confidence score for a specific sleep stage, 
+        where <stage_label> corresponds to a value in the stage column (e.g., confidence_N1). 
+        This is useful for representing the full probability distribution from an automated scorer.
+      type: object
+      properties:
+        Levels:
+          type: object
+          additionalProperties:
+            type: string
+            description: |
+              A human-readable description for the confidence scores (for example, "posterior probability").
+  metadata:
+    - stages_definition:
+        required: false
