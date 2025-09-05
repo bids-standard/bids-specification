@@ -856,13 +856,15 @@ stage:
   name: stage
   display_name: Sleep stage
   description: |
-    Sleep stage label (e.g., Wake, N1, N2, N3, R)
+    Sleep stage label (e.g., Wake, N1, N2, etc.). 
+    It is RECOMMENDED to use labels from established guidelines.
   type: string
 scorer:
   name: scorer
   display_name: Scorer
   description: |
-    Identifier of the sleep stage scorer (e.g., human1, AI)
+    Source of the annotation (e.g., human, automated algorithm). 
+    This is highly RECOMMENDED when multiple scorers are involved.
   type: string
 confidence:
   name: confidence
