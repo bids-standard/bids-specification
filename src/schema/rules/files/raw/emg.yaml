@@ -12,5 +12,6 @@ emg:
     subject: required
     session: optional
     task: required
-    recording: optional
+    acquisition: optional
     run: optional
+    recording: optional
