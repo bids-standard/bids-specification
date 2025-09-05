@@ -635,16 +635,21 @@ UNCInfant2V23:
   description: |
     Infant Brain Atlases from Neonates to 1- and 2-year-olds. See https://www.nitrc.org/projects/pediatricatlas.
     For new datasets, the recommended alternative is UNCInfant.
-BigBrain20215:
+BigBrain2015:
   value: BigBrain2015
   display_name: BigBrain2015
   description: |
     Asymmetric single-subject template of the BigBrain
-    Ultrahigh resolution 3D human brain model at nearly cellular resolution of 20 micrometers, based on a 3D reconstruction from 7400 histological sections.
-    The sections were stained for cell bodies, so the model displays cytoarchitectural structures such as cortical layers.
+    Ultrahigh resolution 3D human brain model at nearly cellular resolution of 20 micrometers,
+    based on a 3D reconstruction from 7400 histological sections.
+    The sections were stained for cell bodies,
+    so the model displays cytoarchitectural structures such as cortical layers.
     The BigBrain was published in [Amunts et al., Science 2013](https://doi.org/10.1126/science.1235381).
-    This identifier refers to the 2015 version of the 3D reconstruction hosted at [https://ftp.bigbrainproject.org/bigbrain-ftp/BigBrainRelease.2015/](https://ftp.bigbrainproject.org/bigbrain-ftp/BigBrainRelease.2015/), which comprises almost a Terabyte of image data.
-    The 3D reconstruction can be viewed online at [EBRAINS](https://atlases.ebrains.eu/viewer/go/bigbrain) and accessed programmatically using [siibra-python](https://siibra-python.readthedocs.io).
+    This identifier refers to the 2015 version of the 3D reconstruction hosted at
+    <https://ftp.bigbrainproject.org/bigbrain-ftp/BigBrainRelease.2015/>,
+    which comprises almost a terabyte of image data.
+    The 3D reconstruction can be viewed online at [EBRAINS](https://atlases.ebrains.eu/viewer/go/bigbrain)
+    and accessed programmatically using [siibra-python](https://siibra-python.readthedocs.io).
 Pixels:
   value: Pixels
   display_name: Pixels
