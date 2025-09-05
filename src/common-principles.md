@@ -1160,6 +1160,6 @@ to suppress warnings or provide interpretations of your filenames.
 <!-- Link Definitions -->
 
 [dataset-description]: modality-agnostic-files/dataset-description.md#dataset_descriptionjson
-[derived-dataset-description]: modality-agnostic-files/data-summary-files.md#derived-dataset-and-pipeline-description
+[derived-dataset-description]: modality-agnostic-files/dataset-description.md#derived-dataset-and-pipeline-description
 [deprecated]: #definitions
 [uris]: #uniform-resource-indicator
