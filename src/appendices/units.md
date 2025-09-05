@@ -47,7 +47,7 @@ Examples for CMIXF-12 (including the five unicode symbols mentioned above):
 ## Unit table
 
 | **Unit name**  | **Unit symbol** | **Quantity name**                          |
-| ---------------| --------------- | ------------------------------------------ |
+| -------------- | --------------- | ------------------------------------------ |
 | meter          | m               | length                                     |
 | kilogram       | kg              | mass                                       |
 | liter          | L               | volume                                     |
@@ -83,30 +83,51 @@ Examples for CMIXF-12 (including the five unicode symbols mentioned above):
 
 ### Multiples
 
-| **Prefix name**                             | **Prefix symbol** | **Factor**      |
-| --------------------------------------------| ------------------| --------------- |
-| [deca](https://www.wikiwand.com/en/Deca-)   | da                | 10<sup>1</sup>  |
-| [hecto](https://www.wikiwand.com/en/Hecto-) | h                 | 10<sup>2</sup>  |
-| [kilo](https://www.wikiwand.com/en/Kilo-)   | k                 | 10<sup>3</sup>  |
-| [mega](https://www.wikiwand.com/en/Mega-)   | M                 | 10<sup>6</sup>  |
-| [giga](https://www.wikiwand.com/en/Giga-)   | G                 | 10<sup>9</sup>  |
-| [tera](https://www.wikiwand.com/en/Tera-)   | T                 | 10<sup>12</sup> |
-| [peta](https://www.wikiwand.com/en/Peta-)   | P                 | 10<sup>15</sup> |
-| [exa](https://www.wikiwand.com/en/Exa-)     | E                 | 10<sup>18</sup> |
-| [zetta](https://www.wikiwand.com/en/Zetta-) | Z                 | 10<sup>21</sup> |
-| [yotta](https://www.wikiwand.com/en/Yotta-) | Y                 | 10<sup>24</sup> |
+| **Prefix name** | **Prefix symbol** | **Factor**      |
+| --------------- | ----------------- | --------------- |
+| [deca][]        | da                | 10<sup>1</sup>  |
+| [hecto][]       | h                 | 10<sup>2</sup>  |
+| [kilo][]        | k                 | 10<sup>3</sup>  |
+| [mega][]        | M                 | 10<sup>6</sup>  |
+| [giga][]        | G                 | 10<sup>9</sup>  |
+| [tera][]        | T                 | 10<sup>12</sup> |
+| [peta][]        | P                 | 10<sup>15</sup> |
+| [exa][]         | E                 | 10<sup>18</sup> |
+| [zetta][]       | Z                 | 10<sup>21</sup> |
+| [yotta][]       | Y                 | 10<sup>24</sup> |
 
 ### Submultiples
 
-| **Prefix name**                             | **Prefix symbol** | **Factor**       |
-| ------------------------------------------- | ----------------- | ---------------- |
-| [deci](https://www.wikiwand.com/en/Deci-)   | d                 | 10<sup>-1</sup>  |
-| [centi](https://www.wikiwand.com/en/Centi-) | c                 | 10<sup>-2</sup>  |
-| [milli](https://www.wikiwand.com/en/Milli-) | m                 | 10<sup>-3</sup>  |
-| [micro](https://www.wikiwand.com/en/Micro-) | u                 | 10<sup>-6</sup>  |
-| [nano](https://www.wikiwand.com/en/Nano-)   | n                 | 10<sup>-9</sup>  |
-| [pico](https://www.wikiwand.com/en/Pico-)   | p                 | 10<sup>-12</sup> |
-| [femto](https://www.wikiwand.com/en/Femto-) | f                 | 10<sup>-15</sup> |
-| [atto](https://www.wikiwand.com/en/Atto-)   | a                 | 10<sup>-18</sup> |
-| [zepto](https://www.wikiwand.com/en/Zepto-) | z                 | 10<sup>-21</sup> |
-| [yocto](https://www.wikiwand.com/en/Yocto-) | y                 | 10<sup>-24</sup> |
+| **Prefix name** | **Prefix symbol** | **Factor**       |
+| --------------- | ----------------- | ---------------- |
+| [deci][]        | d                 | 10<sup>-1</sup>  |
+| [centi][]       | c                 | 10<sup>-2</sup>  |
+| [milli][]       | m                 | 10<sup>-3</sup>  |
+| [micro][]       | u                 | 10<sup>-6</sup>  |
+| [nano][]        | n                 | 10<sup>-9</sup>  |
+| [pico][]        | p                 | 10<sup>-12</sup> |
+| [femto][]       | f                 | 10<sup>-15</sup> |
+| [atto][]        | a                 | 10<sup>-18</sup> |
+| [zepto][]       | z                 | 10<sup>-21</sup> |
+| [yocto][]       | y                 | 10<sup>-24</sup> |
+
+[deca]: https://en.wikipedia.org/wiki/Deca-
+[hecto]: https://en.wikipedia.org/wiki/Hecto-
+[kilo]: https://en.wikipedia.org/wiki/Kilo-
+[mega]: https://en.wikipedia.org/wiki/Mega-
+[giga]: https://en.wikipedia.org/wiki/Giga-
+[tera]: https://en.wikipedia.org/wiki/Tera-
+[peta]: https://en.wikipedia.org/wiki/Peta-
+[exa]: https://en.wikipedia.org/wiki/Exa-
+[zetta]: https://en.wikipedia.org/wiki/Zetta-
+[yotta]: https://en.wikipedia.org/wiki/Yotta-
+[deci]: https://en.wikipedia.org/wiki/Deci-
+[centi]: https://en.wikipedia.org/wiki/Centi-
+[milli]: https://en.wikipedia.org/wiki/Milli-
+[micro]: https://en.wikipedia.org/wiki/Micro-
+[nano]: https://en.wikipedia.org/wiki/Nano-
+[pico]: https://en.wikipedia.org/wiki/Pico-
+[femto]: https://en.wikipedia.org/wiki/Femto-
+[atto]: https://en.wikipedia.org/wiki/Atto-
+[zepto]: https://en.wikipedia.org/wiki/Zepto-
+[yocto]: https://en.wikipedia.org/wiki/Yocto-

@@ -17,6 +17,8 @@ from datetime import datetime
 
 import numpy as np
 
+from remove_admonitions import remove_admonitions
+
 sys.path.append("../tools/")
 # functions from module macros are called by eval() later on
 from mkdocs_macros_bids import macros  # noqa: F401
@@ -156,7 +158,6 @@ def remove_internal_links_reference(root_path):
                 # first find, which links need to be remove by scanning the
                 # references, and remove the reference
                 for ind, line in enumerate(data):
-
                     match = pattern_ref.search(line)
 
                     if match:
@@ -173,7 +174,6 @@ def remove_internal_links_reference(root_path):
                     # link
                     pattern = re.compile(r"\[([^\]]+)\]\[" + f"{link}" + r"\]")
                     for ind, line in enumerate(data):
-
                         match = pattern.search(line)
 
                         if match:
@@ -254,7 +254,6 @@ def assert_no_multiline_links(root_path):
                 code_context = False
                 macro_context = False
                 for ind, line in enumerate(data):
-
                     # do not check "code blocks" or "macros"
                     if line.strip().startswith("```"):
                         code_context = not code_context
@@ -275,8 +274,7 @@ def assert_no_multiline_links(root_path):
 
     if len(problems) > 0:
         msg = (
-            "Found multiline markdown links! Please reformat as single"
-            " line links.\n\n"
+            "Found multiline markdown links! Please reformat as single line links.\n\n"
         )
         msg += json.dumps(problems, indent=4)
         raise AssertionError(msg)
@@ -376,7 +374,6 @@ def correct_table(table, offset=[0.0, 0.0], debug=False):
     # correct alignment of fences and populate the new table (A List of str)
     new_table = []
     for i, row in enumerate(table):
-
         if i == 1:
             str_format = " {:-{align}{width}} "
         else:
@@ -557,7 +554,7 @@ def correct_tables(root_path, debug=False):
                             for i, new_line in enumerate(content):
                                 if i == start_line:
                                     new_content.pop()
-                                if i >= start_line and i < end_line:
+                                if start_line <= i < end_line:
                                     new_content.append("|".join(table[count]) + " \n")
                                     count += 1
                                 elif i == end_line:
@@ -585,9 +582,9 @@ def edit_titlepage():
         data = file.readlines()
 
     data[-1] = (
-        fr"\textsc{{\large {version_number}}}"
+        rf"\textsc{{\large {version_number}}}"
         r"\\[0.5cm]"
-        fr"{{\large {build_date}}}"
+        rf"{{\large {build_date}}}"
         r"\\[2cm]"
         r"\vfill"
         r"\end{titlepage}"
@@ -676,36 +673,40 @@ def process_macros(duplicated_src_dir_path):
 
 
 if __name__ == "__main__":
-
     duplicated_src_dir_path = "src_copy/src"
 
-    # Step 1: make a copy of the src directory in the current directory
+    # make a copy of the src directory in the current directory
     copy_src()
 
-    # Step 2: run mkdocs macros embedded in markdown files
+    # run mkdocs macros embedded in markdown files
     process_macros(duplicated_src_dir_path)
 
-    # Step 3: copy BIDS_logo to images directory of the src_copy directory
+    # remove mkdocs admonition
+    remove_admonitions(
+        input_folder=duplicated_src_dir_path, output_folder=duplicated_src_dir_path
+    )
+
+    # copy BIDS_logo to images directory of the src_copy directory
     copy_bids_logo()
 
-    # Step 4: copy images from subdirectories of src_copy directory
+    # copy images from subdirectories of src_copy directory
     copy_images(duplicated_src_dir_path)
     subprocess.call("mv src_copy/src/images/images/* src_copy/src/images/", shell=True)
 
-    # Step 5: extract the latest version number, date and title
+    # extract the latest version number, date and title
     extract_header_string()
     add_header()
 
     edit_titlepage()
 
-    # Step 6: modify changelog to be a level 1 heading to facilitate section
+    # modify changelog to be a level 1 heading to facilitate section
     # separation
     modify_changelog()
 
-    # Step 7: remove all internal links
+    # remove all internal links
     assert_no_multiline_links(duplicated_src_dir_path)
     remove_internal_links_inline(duplicated_src_dir_path)
     remove_internal_links_reference(duplicated_src_dir_path)
 
-    # Step 8: correct number of dashes and fences alignment for rendering tables in PDF
+    # correct number of dashes and fences alignment for rendering tables in PDF
     correct_tables(duplicated_src_dir_path)

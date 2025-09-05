@@ -15,7 +15,7 @@ Examples:
 A defaced T1w image would typically be made during the curation process and is thus under raw
 
 ```Text
-sourcedata/private/sub-01/anat/sub-01_T1w.nii.gz
+sourcedata/pre-deface/sub-01/anat/sub-01_T1w.nii.gz
 sub-01/anat/sub-01_T1w.nii.gz
 ```
 
@@ -23,7 +23,7 @@ A defaced T1w image could also, in theory, be derived from a BIDS dataset and wo
 
 ```Text
 sub-01/anat/sub-01_T1w.nii.gz
-derivatives/sub-01/anat/sub-01_desc-defaced_T1w.nii.gz
+derivatives/defaced/sub-01/anat/sub-01_desc-defaced_T1w.nii.gz
 ```
 
 ## Derivatives storage and directory structure
@@ -39,13 +39,13 @@ in [Derived dataset and pipeline description][derived-dataset-description].
     pertinent fields is very valuable and thus encouraged. Moreover, for some
     types of files, there may be one or more required metadata fields, in which
     case at least one metadata file containing that field must be located
-    somewhere within the file’s hierarchy (per the
+    somewhere within the file's hierarchy (per the
     [Inheritance Principle](../common-principles.md#the-inheritance-principle)).
 
 -   When chaining derivative pipelines, any JSON fields that were specified as
     mandatory in the input files SHOULD be propagated forward in the output
-    file’s JSON provided they remain valid. Non-required JSON fields MAY be
-    propagated, and are highly useful, but it is the pipeline’s responsibility
+    file's JSON provided they remain valid. Non-required JSON fields MAY be
+    propagated, and are highly useful, but it is the pipeline's responsibility
     to ensure that the values are still relevant and appropriate to the type of
     output data.
 
@@ -60,12 +60,12 @@ in [Derived dataset and pipeline description][derived-dataset-description].
     copy of that raw file.
 
 -   Each Derivatives filename MUST be of the form:
-    `<source_entities>[_keyword-<value>]_<suffix>.<extension>`
+    `<source-entities>[_keyword-<value>]_<suffix>.<extension>`
     (where `<value>` could either be an `<index>` or a `<label>` depending on
     the keyword; see [Definitions][definitions])
 
 -   When the derivatives chain involves outputs derived from a single raw input,
-    `source_entities` MUST be the entire source filename, with the omission of
+    `source-entities` MUST be the entire source filename, with the omission of
     the source suffix and extension. One exception to this rule is filename
     entities that are no longer relevant. Depending on the nature of the
     derivative file, the suffix can either be the same as the source file if
@@ -108,7 +108,7 @@ The following extension table is reproduced in part from Section 9.0 of the
 or combinations of data arrays.
 
 | Intent      | Extension     |
-|-------------|---------------|
+| ----------- | ------------- |
 | Coordinates | `.coord.gii`  |
 | Functional  | `.func.gii`   |
 | Labels      | `.label.gii`  |
@@ -129,7 +129,7 @@ for GIFTI files.
 
 [storage]: ../common-principles.md#storage-of-derived-datasets
 
-[derived-dataset-description]: ../modality-agnostic-files.md#derived-dataset-and-pipeline-description
+[derived-dataset-description]: ../modality-agnostic-files/dataset-description.md#derived-dataset-and-pipeline-description
 
 [gifti]: https://www.nitrc.org/projects/gifti/
 

@@ -10,17 +10,34 @@ PixelSizeInconsistent:
   selectors:
     - ome != null
     - sidecar.PixelSize != null
-    - sidecar.PixelSizeUnit != null
+    - sidecar.PixelSizeUnits != null
   checks:
+    # Note that OME-XML uses µm for microns and BIDS uses um
+    # Accept an error up to .001 of the BIDS unit, to account for floating point error
     - |
-      ome.PhysicalSizeX * 10 ** (-3 * index(["mm", "um", "nm"], ome.PhysicalSizeXUnit))
-      == sidecar.PixelSize[0] * 10 ** (-3 * index(["mm", "um", "nm"], sidecar.PixelSizeUnit))
+      ome.PhysicalSizeX * 10 ** (-3 * index(["mm", "µm", "nm"], ome.PhysicalSizeXUnit))
+      - sidecar.PixelSize[0] * 10 ** (-3 * index(["mm", "um", "nm"], sidecar.PixelSizeUnits))
+      < 0.001 * 10 ** (-3 * index(["mm", "um", "nm"], sidecar.PixelSizeUnits))
     - |
-      ome.PhysicalSizeY * 10 ** (-3 * index(["mm", "um", "nm"], ome.PhysicalSizeYUnit))
-      == sidecar.PixelSize[1] * 10 ** (-3 * index(["mm", "um", "nm"], sidecar.PixelSizeUnit))
+      sidecar.PixelSize[0] * 10 ** (-3 * index(["mm", "um", "nm"], sidecar.PixelSizeUnits))
+      - ome.PhysicalSizeX * 10 ** (-3 * index(["mm", "µm", "nm"], ome.PhysicalSizeXUnit))
+      < 0.001 * 10 ** (-3 * index(["mm", "um", "nm"], sidecar.PixelSizeUnits))
     - |
-      ome.PhysicalSizeZ * 10 ** (-3 * index(["mm", "um", "nm"], ome.PhysicalSizeZUnit))
-      == sidecar.PixelSize[2] * 10 ** (-3 * index(["mm", "um", "nm"], sidecar.PixelSizeUnit))
+      ome.PhysicalSizeY * 10 ** (-3 * index(["mm", "µm", "nm"], ome.PhysicalSizeYUnit))
+      - sidecar.PixelSize[1] * 10 ** (-3 * index(["mm", "um", "nm"], sidecar.PixelSizeUnits))
+      < 0.001 * 10 ** (-3 * index(["mm", "um", "nm"], sidecar.PixelSizeUnits))
+    - |
+      sidecar.PixelSize[1] * 10 ** (-3 * index(["mm", "um", "nm"], sidecar.PixelSizeUnits))
+      - ome.PhysicalSizeY * 10 ** (-3 * index(["mm", "µm", "nm"], ome.PhysicalSizeYUnit))
+      < 0.001 * 10 ** (-3 * index(["mm", "um", "nm"], sidecar.PixelSizeUnits))
+    - |
+      ome.PhysicalSizeZ * 10 ** (-3 * index(["mm", "µm", "nm"], ome.PhysicalSizeZUnit))
+      - sidecar.PixelSize[2] * 10 ** (-3 * index(["mm", "um", "nm"], sidecar.PixelSizeUnits))
+      < 0.001 * 10 ** (-3 * index(["mm", "um", "nm"], sidecar.PixelSizeUnits))
+    - |
+      sidecar.PixelSize[2] * 10 ** (-3 * index(["mm", "um", "nm"], sidecar.PixelSizeUnits))
+      - ome.PhysicalSizeZ * 10 ** (-3 * index(["mm", "µm", "nm"], ome.PhysicalSizeZUnit))
+      < 0.001 * 10 ** (-3 * index(["mm", "um", "nm"], sidecar.PixelSizeUnits))
 
 # 227
 InconsistentTiffExtension:

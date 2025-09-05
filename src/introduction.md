@@ -138,7 +138,8 @@ For example:
 -   Clara Moreau, Martineau Jean-Louis, Ross Blair, Christopher Markiewicz, Jessica Turner,
     Vince Calhoun, Thomas Nichols, Cyril Pernet (2020).
     **The genetics-BIDS extension: Easing the search for genetic data associated with human brain imaging**.
-    GigaScience, 9 (10). [doi:10.1093/gigascience/giaa104](https://doi.org/10.1093/gigascience/giaa104)
+    GigaScience, 9 (10).
+    [doi:10.1093/gigascience/giaa104](https://doi.org/10.1093/gigascience/giaa104)
 
 #### Microscopy
 
@@ -152,30 +153,49 @@ For example:
 #### qMRI
 
 -   Karakuzu, A., Appelhoff, S., Auer, T., Boudreau M., Feingold F., Khan A.R., Lazari A., Markiewicz C.J.,
-    Mulder M., Phillips C., Salo T., Stikov N., Whitaker K. and de Hollander G.,
-    **qMRI-BIDS: An extension to the brain imaging data structure for quantitative magnetic resonance imaging data.**
-    Scientific Data 9, 517 (2022). [doi:10.1038/s41597-022-01571-4](https://doi.org/10.1038/s41597-022-01571-4)
+    Mulder M., Phillips C., Salo T., Stikov N., Whitaker K. and de Hollander G. (2022).
+    **qMRI-BIDS: An extension to the brain imaging data structure for quantitative magnetic resonance imaging data**.
+    Scientific Data 9, (517).
+    [doi:10.1038/s41597-022-01571-4](https://doi.org/10.1038/s41597-022-01571-4)
 
 #### ASL
 
 -   Clement P., Castellaro M., Okell T. W., Thomas D. L., Vandemaele P., Elgayar S., Oliver-Taylor A.,
     Kirk T., Woods J. G., Vos S. B., Kuijer J. P. A., Achten E., van Osch M. J. P., BIDS maintainers,
-    Detre J. A., Lu H., Alsop D. C., Chappell M. A., Hernandez-Garcia L., Petr J. & Mutsaerts H. J. M. M.
-    **ASL-BIDS, the brain imaging data structure extension for arterial spin labeling.**
-    Scientific Data 9, 543 (2022). [doi:10.1038/s41597-022-01615-9](https://doi.org/10.1038/s41597-022-01615-9)
+    Detre J. A., Lu H., Alsop D. C., Chappell M. A., Hernandez-Garcia L., Petr J. & Mutsaerts H. J. M. M. (2022)
+    **ASL-BIDS, the brain imaging data structure extension for arterial spin labeling**.
+    Scientific Data 9, (543).
+    [doi:10.1038/s41597-022-01615-9](https://doi.org/10.1038/s41597-022-01615-9)
 
 #### NIRS
 
--   (publication forthcoming)
+-   Luke, R., Oostenveld, R., Cockx, H., Niso, G., Shader, M.J., Orihuela-Espina, F., Innes-Brown, H.,
+    Tucker, S., Boas, D., Yücel, M.A., Gau, R., Salo, T., Appelhoff, S., Markiewicz, C.J., McAlpine, D.,
+    The BIDS Maintainers, Pollonini, L. (2025)
+    **NIRS-BIDS: Brain Imaging Data Structure Extended to Near-Infrared Spectroscopy**.
+    Scientific Data 12, (159).
+    [doi:10.1038/s41597-024-04136-9](https://doi.org/10.1038/s41597-024-04136-9)
 
 #### Motion
 
--   (publication forthcoming)
+-   Jeung, S., Cockx, H., Appelhoff, S., Berg, T., Gramann, K., Grothkopp, S., Warmerdam, E., Hansen, C.,
+    Oostenveld, R., BIDS Maintainers, Welzel J. (2024).
+    **Motion-BIDS: an extension to the brain imaging data structure to organize motion data for reproducible research**.
+    Scientific Data 11, (716).
+    [doi:10.1038/s41597-024-03559-8](https://doi.org/10.1038/s41597-024-03559-8)
+
+#### MRS
+
+-   Bouchard, A.E., Wong, D., Bogner, W., Gau, R., Halchenko, Y.O., Lamb, D.G., Markiewicz, C.J., Mullins, P.G.,
+    Niso, G., Oeltzschner, G., BIDS Maintainers, Clarke, W.T., Wilson, M., Mikkelsen, M. (2025).
+    **MRS-BIDS, an extension to the Brain Imaging Data Structure for magnetic resonance spectroscopy**.
+    Scientific Data 12, (13841).
+    [doi:10.1038/s41597-025-05543-2](https://doi.org/10.1038/s41597-025-05543-2)
 
 ### Research Resource Identifier (RRID)
 
 BIDS has also a
-[Research Resource Identifier (RRID)](https://www.force11.org/group/resource-identification-initiative),
+[Research Resource Identifier (RRID)](https://force11.org/group/resource-identification-initiative),
 which you can also include in your citations in addition to relevant publications (see above):
 
--   [`RRID:SCR_016124`](https://scicrunch.org/resources/Any/search?q=SCR_016124&l=SCR_016124)
+-   [`RRID:SCR_016124`](https://rrid.site/data/record/nlx_144509-1/SCR_016124/resolver?q=SCR_016124)

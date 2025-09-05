@@ -18,6 +18,7 @@ microscopy:
     - NLO
     - OCT
     - SPIM
+    - XPCT
   extensions:
     - .ome.tif
     - .ome.btf

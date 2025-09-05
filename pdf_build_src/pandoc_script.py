@@ -2,6 +2,7 @@
 
 This is done once the duplicate src directory is processed.
 """
+
 import subprocess
 import yaml
 from pathlib import Path
@@ -11,9 +12,7 @@ HERE = Path(__file__).absolute()
 
 def _find(path, filename):
     return next(
-        parent / filename
-        for parent in path.parents
-        if Path.is_file(parent / filename)
+        parent / filename for parent in path.parents if Path.is_file(parent / filename)
     )
 
 
@@ -40,7 +39,7 @@ def build_pdf(filename="bids-spec.pdf", logfile="bids-spec_pandoc_log.json"):
     fname_mkdocs_yml = _find(HERE, "mkdocs.yml")
 
     with open(fname_mkdocs_yml, "r") as stream:
-        mkdocs_yml = yaml.safe_load(stream)
+        mkdocs_yml = yaml.load(stream, yaml.Loader)
 
     sections = mkdocs_yml["nav"][0]["The BIDS Specification"]
 
@@ -67,7 +66,7 @@ def build_pdf(filename="bids-spec.pdf", logfile="bids-spec_pandoc_log.json"):
     # appendices/ as a resource-path so that the relative files can
     # be found.
     build_root = HERE.parent
-    cmd += [f'--resource-path=.:{build_root / "appendices"}']
+    cmd += [f"--resource-path=.:{build_root / 'appendices'}"]
 
     # Add input files to command
     # The filenames in `markdown_list` will ensure correct order when sorted

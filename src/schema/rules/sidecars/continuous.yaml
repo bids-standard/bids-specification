@@ -15,7 +15,7 @@ Continuous:
     Columns: required
 
 # Other recommended metadata for physiological data
-Physio:
+PhysioHardware:
   selectors:
     - suffix == "physio"
   fields:

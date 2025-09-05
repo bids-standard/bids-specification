@@ -9,7 +9,7 @@
 EPOCH="$(date +%s)"
 
 GIT_DIR=$( git rev-parse --git-dir )
-REPO_ROOT=$( ls -d ${GIT_DIR%.git} )
+REPO_ROOT=$( ls -d "${GIT_DIR%.git}" )
 
 VERSION_FILE="$REPO_ROOT/src/schema/SCHEMA_VERSION"
 

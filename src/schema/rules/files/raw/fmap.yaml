@@ -24,6 +24,26 @@ fieldmaps:
 pepolar:
   suffixes:
     - epi
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+    - .bval
+    - .bvec
+  datatypes:
+    - fmap
+  entities:
+    subject: required
+    session: optional
+    acquisition: optional
+    ceagent: optional
+    direction: required
+    run: optional
+    part: optional
+    chunk: optional
+
+pepolar_m0scan:
+  suffixes:
     - m0scan
   extensions:
     - .nii.gz
@@ -38,6 +58,7 @@ pepolar:
     ceagent: optional
     direction: required
     run: optional
+    part: optional
     chunk: optional
 
 TB1DAM:

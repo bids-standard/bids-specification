@@ -17,6 +17,7 @@ motionChannels:
     tracked_point__channels: required
     units__motion: required
     placement__motion: recommended
+    reference_frame: recommended
     description: optional
     sampling_frequency: optional
     status: optional

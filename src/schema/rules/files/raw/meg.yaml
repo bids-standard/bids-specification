@@ -39,9 +39,8 @@ calibration:
     session: optional
     acquisition:
       level: required
-      # TODO: Add definitions for these values.
       enum:
-        - calibration
+        - $ref: objects.enums.calibration.value
 
 crosstalk:
   suffixes:
@@ -55,9 +54,8 @@ crosstalk:
     session: optional
     acquisition:
       level: required
-      # TODO: Add definitions for these values.
       enum:
-        - crosstalk
+        - $ref: objects.enums.crosstalk.value
 
 headshape:
   suffixes:

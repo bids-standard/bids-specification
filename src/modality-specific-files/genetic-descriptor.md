@@ -1,6 +1,6 @@
 # Genetic Descriptor
 
-Support genetic descriptors was developed as a
+Support for genetic descriptors was developed as a
 [BIDS Extension Proposal](../extensions.md#bids-extension-proposals).
 Please see [Citing BIDS](../introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
@@ -12,16 +12,18 @@ A genetic descriptor links a BIDS dataset to associated genetic data,
 potentially in a separate repository,
 with details of where to find the genetic data and the type of data available.
 
-The following example dataset with genetics data have been formatted using this specification
-and can be used for practical guidance when curating a new dataset.
+!!! example "Example datasets"
 
--   [`UK biobank`](https://github.com/bids-standard/bids-examples/tree/master/genetics_ukbb)
+    The following example dataset with genetics data have been formatted using this specification
+    and can be used for practical guidance when curating a new dataset.
+
+    -   [`UK biobank`](https://github.com/bids-standard/bids-examples/tree/master/genetics_ukbb)
 
 ## Dataset Description
 
 If information on associated genetic data is supplied as part of a BIDS dataset,
 these "genetic descriptors" are encoded as an additional, REQUIRED entry in the
-[`dataset_description.json`](../modality-agnostic-files.md#dataset_descriptionjson)
+[`dataset_description.json`](../modality-agnostic-files/dataset-description.md#dataset_descriptionjson)
 file.
 
 Datasets linked to a genetic database entry include the following REQUIRED and OPTIONAL
@@ -68,7 +70,7 @@ Note that optional columns MUST be further described in an accompanying
 
 `participants.tsv` example:
 
-```Text
+```tsv
 participant_id	age	sex	group	genetic_id	idh_mutation
 sub-control01	34	M	control	124587	yes
 sub-control02	12	F	control	548936	yes
