@@ -15,7 +15,6 @@ See also: [BIDS governance](https://bids.neuroimaging.io/collaboration/governanc
 
 | Name                                                                         | Time commitment | Scope                                 | Joined   |
 | ---------------------------------------------------------------------------- | --------------- | ------------------------------------- | -------- |
-| Stefan Appelhoff ([@sappelhoff](https://github.com/sappelhoff))              | 1h/week         |                                       | Mar 2020 |
 | Chris Markiewicz ([@effigies](https://github.com/effigies))                  | 5h/week         |                                       | Mar 2020 |
 | Ross Blair ([@rwblair](https://github.com/rwblair))                          |                 | Maintainer of the bids-validator      | Mar 2020 |
 | Taylor Salo ([@tsalo](https://github.com/tsalo))                             | 3h/week         | MRI                                   | Sep 2020 |
@@ -48,6 +47,7 @@ See also: [BIDS governance](https://bids.neuroimaging.io/collaboration/governanc
 | Name                                                                           | Duration            |
 | ------------------------------------------------------------------------------ | ------------------- |
 | Franklin Feingold ([@franklin-feingold](https://github.com/franklin-feingold)) | Mar 2020 - Jul 2022 |
+| Stefan Appelhoff ([@sappelhoff](https://github.com/sappelhoff))                | Mar 2020 - Aug 2025 |
 
 ## Why become a maintainer?
 
