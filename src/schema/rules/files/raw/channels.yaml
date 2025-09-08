@@ -7,7 +7,6 @@ channels:
     - .tsv
   datatypes:
     - eeg
-    - emg
     - ieeg
     - nirs
   entities:
@@ -16,6 +15,15 @@ channels:
     task: required
     acquisition: optional
     run: optional
+
+# emg may have a `recording` entity
+channels__emg:
+  $ref: rules.files.raw.channels.channels
+  datatypes:
+    - emg
+  entities:
+    $ref: rules.files.raw.channels.channels.entities
+    recording: optional
 
 # MEG has an additional entity available
 channels__meg:
@@ -41,7 +49,6 @@ coordsystem:
   extensions:
     - .json
   datatypes:
-    - emg
     - meg
     - nirs
   entities:
@@ -59,6 +66,15 @@ coordsystem__eeg:
   entities:
     $ref: rules.files.raw.channels.coordsystem.entities
     space: optional
+
+# emg may have a `recording` entity
+coordsystem__emg:
+  $ref: rules.files.raw.channels.coordsystem
+  datatypes:
+    - emg
+  entities:
+    $ref: rules.files.raw.channels.coordsystem.entities
+    recording: optional
 
 electrodes:
   suffixes:
