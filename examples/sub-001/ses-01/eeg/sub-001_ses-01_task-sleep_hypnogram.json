@@ -1,0 +1,27 @@
+{
+  "onset": {
+    "Description": "Start time of the sleep epoch in seconds", 
+    "Units": "seconds"},
+  "duration": {
+    "Description": "Duration of the sleep epoch in seconds", 
+    "Units": "seconds"},
+  "stage": {
+    "Description": "Sleep stage label",
+    "Levels": {
+      "Wake": "Wakefulness",
+      "N1": "Non-REM stage 1",
+      "N2": "Non-REM stage 2",
+      "N3": "Non-REM stage 3 (slow-wave sleep)",
+      "REM": "Rapid Eye Movement sleep",
+      "Movement": "Movement time",
+      "Unscored": "Not scored due to poor signal quality"
+    }
+  },
+  "scorer": {
+    "Description": "Identifier for the agent (human or algorithm) that produced the annotation.",
+    "Levels": {
+      "human": "Primary human scorer, a well-trained technician from the original study."
+    }
+  },
+  "ScoringStandard": "Rechtschaffen & Kales 1968"
+}

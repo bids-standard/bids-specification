@@ -1,0 +1,10 @@
+{
+  "TaskName": "sleep",
+  "SamplingFrequency": 100,
+  "EEGChannelCount": 2,
+  "EOGChannelCount": 1,
+  "EMGChannelCount": 1,
+  "MiscChannelCount": 3,
+  "RecordingDuration": 79500,
+  "InstitutionName": "Sleep-EDF Database"
+}
