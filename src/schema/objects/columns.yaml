@@ -856,14 +856,14 @@ stage:
   name: stage
   display_name: Sleep stage
   description: |
-    Sleep stage label (e.g., Wake, N1, N2, etc.). 
+    Sleep stage label (e.g., Wake, N1, N2, etc.).
     It is RECOMMENDED to use labels from established guidelines.
   type: string
 scorer:
   name: scorer
   display_name: Scorer
   description: |
-    Source of the annotation (e.g., human, automated algorithm). 
+    Source of the annotation (e.g., human, automated algorithm).
     This is highly RECOMMENDED when multiple scorers are involved.
   type: string
 confidence:
@@ -876,8 +876,8 @@ confidence_<stage_label>:
   name: confidence_<stage_label>
   display_name: Confidence for Stage
   description: |
-    A numeric value (0-1) representing the confidence score in the assigned sleep stage for automated scorers. 
-    For automated scorers, this value represents the posterior probability of the winning class. 
-    To store the full probability distribution across all possible stages, users MAY add separate columns 
+    A numeric value (0-1) representing the confidence score in the assigned sleep stage for automated scorers.
+    For automated scorers, this value represents the posterior probability of the winning class.
+    To store the full probability distribution across all possible stages, users MAY add separate columns
     (e.g., confidence_N1, confidence_N2, confidence_N3), which MUST also be described in the JSON sidecar.
-  type: number  
+  type: number

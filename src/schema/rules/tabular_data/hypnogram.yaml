@@ -39,7 +39,7 @@ hypnogramSidecar:
           additionalProperties:
             type: string
             description: |
-              Human-readable description of the stage label. 
+              Human-readable description of the stage label.
               For handling noisy or missing data, labels such as 'Artefact' or 'Unscored' MUST be defined here.
     scorer:
       display_name: Scorer
@@ -52,7 +52,7 @@ hypnogramSidecar:
           additionalProperties:
             type: string
             description: |
-              Human-readable description of the scorer. 
+              Human-readable description of the scorer.
               For multiple scorers, all possible scorer values MUST be defined here.
     confidence:
       name: confidence
@@ -71,8 +71,8 @@ hypnogramSidecar:
       name: confidence_<stage_label>
       display_name: Confidence Score by Stage
       description: |
-        Confidence score for a specific sleep stage, 
-        where <stage_label> corresponds to a value in the stage column (e.g., confidence_N1). 
+        Confidence score for a specific sleep stage,
+        where <stage_label> corresponds to a value in the stage column (e.g., confidence_N1).
         This is useful for representing the full probability distribution from an automated scorer.
       type: object
       properties:
