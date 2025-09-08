@@ -66,6 +66,7 @@ electrodes:
   extensions:
     - .json
     - .tsv
+  datatypes: []
   entities:
     subject: required
     session: optional
