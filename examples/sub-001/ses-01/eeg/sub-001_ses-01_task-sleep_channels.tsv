@@ -1,8 +1,0 @@
-name	type	units	description
-EEG Fpz-Cz	EEG	uV	Frontopolar-central EEG
-EEG Pz-Oz	EEG	uV	Parietal-occipital EEG
-EOG horizontal	EOG	uV	Horizontal EOG
-Resp oro-nasal	MISC	n/a	Oro-nasal respiration
-EMG submental	EMG	uV	Submental chin EMG
-Temp rectal	MISC	degC	Rectal body temperature
-Event marker	MISC	n/a	Event marker
