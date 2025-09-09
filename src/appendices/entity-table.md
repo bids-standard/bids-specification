@@ -42,6 +42,14 @@ while entity definitions are in the [Entities Appendix](entities.md).
 
 {{ MACROS___make_entity_table(datatypes=["pet"]) }}
 
+## NIRS
+
+{{ MACROS___make_entity_table(datatypes=["nirs"]) }}
+
+## MRS
+
+{{ MACROS___make_entity_table(datatypes=["mrs"]) }}
+
 ## Behavioral Data
 
 {{ MACROS___make_entity_table(datatypes=["beh"]) }}
