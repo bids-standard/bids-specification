@@ -14,4 +14,3 @@ motion:
     tracksys: required
     acquisition: optional
     run: optional
-    recording: optional
