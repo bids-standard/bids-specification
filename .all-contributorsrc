@@ -424,6 +424,16 @@
             "profile": "https://github.com/musicinmybrain"
         },
         {
+            "contributions": [
+                "doc",
+                "code",
+                "test"
+            ],
+            "login": "bendichter",
+            "name": "Benjamin Dichter",
+            "profile": "https://bendichter.com/"
+        },
+        {
             "avatar_url": [
                 "https://avatars.githubusercontent.com/u/844306?v=4"
             ],
@@ -2182,34 +2192,10 @@
         },
         {
             "contributions": [
-                "blog",
-                "bug",
-                "code",
-                "doc",
-                "ideas",
-                "maintenance",
-                "review"
-            ],
-            "login": "margaret_e._heafield",
-            "name": "Margaret E. Heafield"
-        },
-        {
-            "contributions": [
                 "doc"
             ],
             "login": "maria_ermolova",
             "name": "Maria Ermolova"
-        },
-        {
-            "contributions": [
-                "bug",
-                "doc",
-                "ideas",
-                "review"
-            ],
-            "login": "MarieCurie",
-            "name": "Maria Salomea Skłodowska",
-            "profile": "https://example.com"
         },
         {
             "avatar_url": "https://avatars.githubusercontent.com/u/3390888?v=4",

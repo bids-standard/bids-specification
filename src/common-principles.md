@@ -309,7 +309,7 @@ Derivatives can be stored/distributed in two ways:
     Different components of a pipeline can, however, also be stored under different
     subdirectories.
     There are few restrictions on the directory names;
-    it is RECOMMENDED to use the format `<pipeline>-<variant>` in cases where
+    it is RECOMMENDED to use the format `<pipeline-name>-<variant>` in cases where
     it is anticipated that the same pipeline will output more than one variant
     (for example, `AFNI-blurring` and `AFNI-noblurring`).
     For the sake of consistency, the subdirectory name SHOULD be
@@ -381,7 +381,7 @@ Derivatives can be stored/distributed in two ways:
 
 Throughout this specification, if a section applies particularly to derivatives,
 then Case 1 will be assumed for clarity in templates and examples, but removing
-`/derivatives/<pipeline>` from the template name will provide the equivalent for
+`/derivatives/<pipeline-name>[-<variant>]` from the template name will provide the equivalent for
 Case 2.
 In both cases, every derivatives dataset is considered a BIDS dataset and must
 include a `dataset_description.json` file at the root level (see
@@ -423,8 +423,8 @@ A guide for using macros can be found at
             "..." : "",
         },
         "derivatives": {
-            "pipeline_1": {},
-            "pipeline_2": {},
+            "pipeline1-v1": {},
+            "pipeline2": {},
             "...": "",
         },
         "dataset_description.json": "",
@@ -962,7 +962,7 @@ The dataset root is the nearest parent directory that contains a valid
 `dataset_description.json`.
 
 All other dataset names MUST be specified in the `DatasetLinks` object in
-[dataset_description.json][], which maps dataset names to URIs that point
+[dataset_description.json][dataset-description], which maps dataset names to URIs that point
 to BIDS dataset locations.
 If the scheme is omitted from a URI in `DatasetLinks`,
 that path is resolved relative to the current dataset root
@@ -1159,8 +1159,7 @@ to suppress warnings or provide interpretations of your filenames.
 
 <!-- Link Definitions -->
 
-[dataset-description]: modality-agnostic-files/data-summary-files.md
-[dataset_description.json]: modality-agnostic-files/data-summary-files.md#dataset_descriptionjson
-[derived-dataset-description]: modality-agnostic-files/data-summary-files.md#derived-dataset-and-pipeline-description
+[dataset-description]: modality-agnostic-files/dataset-description.md#dataset_descriptionjson
+[derived-dataset-description]: modality-agnostic-files/dataset-description.md#derived-dataset-and-pipeline-description
 [deprecated]: #definitions
 [uris]: #uniform-resource-indicator

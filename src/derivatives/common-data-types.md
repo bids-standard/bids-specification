@@ -178,11 +178,11 @@ A guide for using macros can be found at
 Template:
 
 ```Text
-<pipeline_name>/
+<pipeline-name>/
     sub-<label>/
         [ses-<label>/]
             <datatype>/
-                <source_entities>[_space-<space>][_desc-<label>]_<suffix>.<extension>
+                <source-entities>[_space-<space>][_desc-<label>]_<suffix>.<extension>
 ```
 
 Data is considered to be *preprocessed* or *cleaned* if the data type of the input,
