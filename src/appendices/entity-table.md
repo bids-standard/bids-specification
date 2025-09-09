@@ -42,11 +42,11 @@ while entity definitions are in the [Entities Appendix](entities.md).
 
 {{ MACROS___make_entity_table(datatypes=["pet"]) }}
 
-## NIRS
+## Near-Infrared Spectroscopy  (NIRS)
 
 {{ MACROS___make_entity_table(datatypes=["nirs"]) }}
 
-## MRS
+## Magnetic Resonance Spectroscopy (MRS)
 
 {{ MACROS___make_entity_table(datatypes=["mrs"]) }}
 
