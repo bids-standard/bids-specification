@@ -49,3 +49,7 @@ while entity definitions are in the [Entities Appendix](entities.md).
 ## Microscopy
 
 {{ MACROS___make_entity_table(datatypes=["micr"]) }}
+
+## Motion
+
+{{ MACROS___make_entity_table(datatypes=["motion"]) }}
