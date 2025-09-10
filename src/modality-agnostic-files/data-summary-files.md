@@ -132,6 +132,43 @@ It is RECOMMENDED to accompany each `samples.tsv` file with a sidecar
 }
 ```
 
+## Demographics file
+
+Template:
+
+```Text
+phenotype/
+    demographics.tsv
+    demographics.json
+```
+
+The demographics file is an OPTIONAL tabular phenotypic file in
+the `phenotype/` directory meant to house common subject demographics.
+For example demographics like age, gender, race, and household income.
+A demographics file is RECOMMENDED to use when any participant has
+more than one session of any type.
+It does not replace the participants file, which is meant for unchanging data about
+each participant in the data set. It is instead a superset of the participants file,
+centralizing demographics across as many sessions as are available.
+
+!!! success "Guideline 5"
+
+    For [best tabular phenotypic data](../appendices/phenotype.md):
+    Some studies collect demographics into their own
+    tabular phenotypic data file already. In these cases, it is RECOMMENDED
+    to house this data also in the demographics file.
+
+!!! success "Guideline 6"
+
+    For [best tabular phenotypic data](../appendices/phenotype.md):
+    It is RECOMMENDED to use the `age` column to record participant age
+    at every session in longitudinal or multi-session data sets.
+    This reduces data duplication across tabular data files. The `Units` of `age`
+    do not have to be years so long as the units of the age
+    are written in `phenotype/demographics.json`.
+    Consider participant privacy or study objectives when selecting
+    the `Units` of `age` or the accuracy of `age` data.
+
 ## Scans file
 
 Template:
@@ -199,9 +236,10 @@ meg/sub-control01_task-rest_split-02_meg.nii.gz	1877-06-15T12:15:27
 
 ## Sessions file
 
-Template:
+Template A (segregated sessions files):
 
 ```Text
+[sessions.json]
 sub-<label>/
     sub-<label>_sessions.tsv
 ```
@@ -209,11 +247,11 @@ sub-<label>/
 Optional: Yes
 
 In case of multiple sessions there is an option of adding additional
-`sessions.tsv` files describing variables changing between sessions.
+`sessions.tsv` files describing each session and variables changing between sessions.
 In such case one file per participant SHOULD be added.
 These files MUST include a `session_id` column and describe each session by one and only one row.
 Column names in `sessions.tsv` files MUST be different from group level participant key column names in the
-[`participants.tsv` file](./data-summary-files.md#participants-file).
+[`participants.tsv` file](#participants-file).
 
 <!-- This block generates a columns table.
 The definitions of these fields can be found in
@@ -223,7 +261,7 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_columns_table("modality_agnostic.Sessions") }}
 
-`_sessions.tsv` example:
+`sub-<label>/sub-<label>_sessions.tsv` example:
 
 ```tsv
 session_id	acq_time	systolic_blood_pressure
@@ -231,3 +269,63 @@ ses-predrug	2009-06-15T13:45:30	120
 ses-postdrug	2009-06-16T13:45:30	100
 ses-followup	2009-06-17T13:45:30	110
 ```
+
+Template B (aggregated sessions file):
+
+```Text
+sessions.tsv
+sessions.json
+```
+
+Optional: Yes
+
+An aggregated sessions file CAN be provided at the dataset root.
+If a root-level sessions file is provided, then it MUST begin with
+a `participant_id` column followed immediately after by a `session_id` column.
+The intent of this root-level sessions file is to describe the sessions
+in a data set and non-demographic variables changing between sessions.
+Participant's demographic variables should be added to
+a [demographics file](#demographics-file), as described above.
+
+`sessions.tsv` example:
+
+```tsv
+participant_id	session_id	acq_time	systolic_blood_pressure
+sub-01	ses-predrug	2009-06-15T13:45:30	120
+sub-01	ses-postdrug	2009-06-16T13:45:30	100
+sub-01	ses-followup	2009-06-17T13:45:30	110
+sub-02	ses-predrug	2009-06-22T12:22:05	105
+sub-02	ses-postdrug	2009-06-23T12:22:05	95
+sub-03	ses-postdrug	2009-06-30T14:06:40	115
+sub-03	ses-followup	2009-07-01T14:06:40	120
+```
+
+!!! success "Guideline 7"
+
+    For [best tabular phenotypic data](../appendices/phenotype.md):
+    If there is more than one session for any one participant, then it is
+    REQUIRED to provide a sessions file at the dataset root.
+    The sessions file MUST list all sessions for all subjects
+    across imaging and tabular phenotypic data.
+
+    When a sessions file is in use, you MUST NOT provide additional sessions
+    files at the participant-level which would otherwise use
+    the inheritance principle. If a sessions file is provided, then
+    it MUST begin with a `participant_id` column followed immediately by
+    a `session_id` column. The data dictionary JSON file's `session_id` field
+    MUST include `Levels` with the description of each `session_id`.
+
+!!! success "Guideline 8"
+
+    For [best tabular phenotypic data](../appendices/phenotype.md):
+    Whenever possible, it is RECOMMENDED to also collect acquisition time
+    for tabular phenotypic data and store the time of acquisition of each row
+    inside a column named `acq_time` in the sessions file.
+    This is consistent with how acquisition time is recorded for MRI data
+    and other time-sensitive measurements (for example systolic blood pressure).
+
+    When it is needed to preserve participant privacy, you SHOULD record
+    relative acquisition times with respect to the earliest session.
+    Relative session acquisition times MAY be listed as durations from
+    the earliest session (baseline) in days, months, or years
+    using the `acq_time` column.
