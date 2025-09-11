@@ -48,6 +48,17 @@ AcquisitionVoxelSize:
     type: number
     exclusiveMinimum: 0
     unit: mm
+AgeReference:
+  name: AgeReference
+  display_name: Age Reference
+  description: |
+    Non-numeric term of for a time point in a subject's life cycle that serves
+    as reference for the numeric age information (for instance, 'birth').
+  type: string
+  enum:
+    - $ref: objects.enums.fertilization.value
+    - $ref: objects.enums.gestation.value
+    - $ref: objects.enums.birth.value
 Anaesthesia:
   name: Anaesthesia
   display_name: Anaesthesia
