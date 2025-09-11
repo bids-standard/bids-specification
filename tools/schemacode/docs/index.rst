@@ -8,6 +8,8 @@ Contents
    :caption: Tutorial
 
    quickstart
+   doc_to_schema
+
 
 .. toctree::
    :caption: Reference
