@@ -38,6 +38,8 @@ EMGElectrodes:
     - name__electrodes
     - x
     - y
+    - z
+    - coordinate_system
   columns:
     name__electrodes: required
     x: required
