@@ -10,6 +10,7 @@ nav:
           - Data summary files: modality-agnostic-files/data-summary-files.md
           - Phenotypic and assessment data: modality-agnostic-files/phenotypic-and-assessment-data.md
           - Code: modality-agnostic-files/code.md
+          - Provenance: modality-agnostic-files/provenance.md
           - Events: modality-agnostic-files/events.md
       - Modality specific files:
           - Magnetic Resonance Imaging: modality-specific-files/magnetic-resonance-imaging-data.md
