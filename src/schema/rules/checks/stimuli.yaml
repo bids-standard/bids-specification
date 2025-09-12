@@ -10,7 +10,7 @@ StimulusIdExists:
     - suffix == "events"
     - '"stim_id" in columns'
   checks:
-    - 'for_any(columns.stim_id, lambda id: id == "n/a" or exists("stimuli/stim-" + id))'
+    - exists(columns.stim_id, "stimuli") == length(columns.stim_id) - count(columns.stim_id, "n/a")
 
 StimuliDirectoryStructure:
   issue:
