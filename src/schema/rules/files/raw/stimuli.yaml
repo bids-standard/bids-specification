@@ -3,8 +3,7 @@
 stimuli_table:
   level: recommended
   path: stimuli
-  suffixes:
-    - stimuli
+  stem: stimuli
   extensions:
     - .json
     - .tsv
@@ -15,8 +14,7 @@ stimuli_table:
 annotations_table:
   level: recommended
   path: stimuli
-  suffixes:
-    - annotations
+  stem: annotations
   extensions:
     - .json
     - .tsv
