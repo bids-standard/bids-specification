@@ -456,14 +456,14 @@ The decompressed contents of `sub-01_task-nback_physio.tsv.gz`
 are now:
 
 ```{.text noheader="1" linenums="1"}
-10.1	13894432329
-10.0	13894432330
-9.5	13894432331
-9.2	13894432332
-9.0	13894432333
-10.2	13894432334
-10.3	13894432335
-10.1	13894432336
+13894432329	10.1
+13894432330	10.0
+13894432331     9.5
+13894432332     9.2
+13894432333     9.0
+13894432334	10.2
+13894432335	10.3
+13894432336	10.1
 ```
 
 Then, the `sub-01_task-nback_physioevents.json` MAY define
@@ -480,7 +480,7 @@ the `ForeignIndexColumn` for indexing:
 The decompressed contents of the corresponding TSV file,
 `sub-01_task-nback_physioevents.tsv.gz` could read now:
 
-```tsv
+```{.text noheader="1" linenums="1"}
 13894432325	Ready
 13894432331	Synchronous recalibration triggered
 13894432334	External message received: new block
