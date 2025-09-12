@@ -326,17 +326,11 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table(["continuous.PhysioEvents"]) }}
 
-The `ForeignIndexColumn` metadata specifies whether
-`<matches>[_recording-<label>]_physio.tsv.gz` files are
-implicitly or explicitly indexed.
-
-**Implicit indexing of `<matches>_physioevents.tsv.gz` files**.
-When `ForeignIndexColumn` is not provided, the `"onset"` column
-corresponds to the one-based row number of the associated
-`<matches>_physio.tsv.gz` file.
-The `"onset"` column accepts negative values to register
-events occurred before the recording(s) in the corresponding
-`<matches>_physio.tsv.gz` file started.
+The REQUIRED `ForeignIndexColumn` metadata specifies the interpretation of
+the values of the `onset` column.
+If `ForeignIndexColumn` is the name of a column in the associated
+`<matches>[_recording-<label>]_physio.tsv.gz` file, the values have the same interpretation
+as values in the named column.
 
 For example, considering the following structure:
 
@@ -355,85 +349,20 @@ A guide for using macros can be found at
   },
 }) }}
 
-where the decompressed contents of `sub-01_task-nback_physio.tsv.gz`
-are:
+The decompressed contents of `sub-01_task-nback_physio.tsv.gz` are:
 
-```{.text linenums="1"}
-10.1
-10.0
-9.5
-9.2
-9.0
-10.2
-10.3
-10.1
+```{.text noheader="1" linenums="1"}
+13894432329	10.1
+13894432330	10.0
+13894432331     9.5
+13894432332     9.2
+13894432333     9.0
+13894432334	10.2
+13894432335	10.3
+13894432336	10.1
 ```
 
-Please note that the above code block has the line numbers enabled,
-but those line numbers are not part of the contents of the file.
-Since there is no explicit column to index the recording,
-the `ForeignIndexColumn` SHOULD NOT be defined in the
-`sub-01_task-nback_physioevents.json` file:
-
-```JSON
-{
-    "Columns": ["onset", "message"],
-    "Description": "Messages logged by the measurement device"
-}
-```
-
-An example of the decompressed contents of the corresponding
-TSV file, `sub-01_task-nback_physioevents.tsv.gz` is:
-
-```{.text noheader="1"}
--3	Ready
-3	Synchronous recalibration triggered
-6	External message received: new block
-```
-
-In this case, the first column lists the indices (one-based row number)
-from the `sub-01_task-nback_physio.tsv.gz`.
-The first entry, with `"onset"` set to 3, maps to the third line of the
-`sub-01_task-nback_physio.tsv.gz`, indicating that the message
-*Synchronous recalibration triggered* was logged at the same time the
-sample with value `9.5` was registered.
-Likewise, the second message was logged when the recording later registered a
-value of `10.2` (row number 5 of `sub-01_task-nback_physio.tsv.gz`).
-As negative indexes are allowed, the first *Ready* message occurred four sampling
-cycles before the first recorded measurement (line number 1).
-For example, if `SamplingFrequency` in `sub-01_task-nback_physio.json`
-is set to 100 Hz and `StartTime` is -22.345 s, then the *Ready* message was recorded
-0.04 s before the first sample, therefore at -22.305 s.
-
-**Explicit indexing of `<matches>_physioevents.tsv.gz` files (RECOMMENDED)**.
-When the `ForeignIndexColumn` defines a value such as `"timestamp"`,
-that specific column name MUST be present the `<matches>_physio.tsv.gz` file.
-In that case, all values of the `"onset"` column of the
-`<matches>_physioevents.tsv.gz` are indexed by the index established by
-the `ForeignIndexColumn` of the corresponding `<matches>_physio.tsv.gz` file
-(that is, `"timestamp"` in this example).
-It is RECOMMENDED to specify metadata such as `Units` or `Origin`
-corresponding to the column defined by `ForeignIndexColumn`.
-
-For example, let us consider the previous structure:
-
-<!-- This block generates a file tree.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filetree_example({
-  "sub-01": {
-    "func": {
-      "sub-01_task-nback_physio.json": "",
-      "sub-01_task-nback_physio.tsv.gz": "",
-      "sub-01_task-nback_physioevents.json": "",
-      "sub-01_task-nback_physioevents.tsv.gz": "",
-    },
-  },
-}) }}
-
-However, the `sub-01_task-nback_physio.json` will define now an extra
-column called `"timestamp"`:
+And `sub-01_task-nback_physio.json` defines `timestamp` column:
 
 ```JSON
 {
@@ -452,22 +381,16 @@ column called `"timestamp"`:
 }
 ```
 
-The decompressed contents of `sub-01_task-nback_physio.tsv.gz`
-are now:
+The decompressed contents of the corresponding `sub-01_task-nback_physioevents.tsv.gz` are:
 
 ```{.text noheader="1" linenums="1"}
-13894432329	10.1
-13894432330	10.0
-13894432331     9.5
-13894432332     9.2
-13894432333     9.0
-13894432334	10.2
-13894432335	10.3
-13894432336	10.1
+13894432325	Ready
+13894432331	Synchronous recalibration triggered
+13894432334	External message received: new block
 ```
 
-Then, the `sub-01_task-nback_physioevents.json` MAY define
-the `ForeignIndexColumn` for indexing:
+To indicate that the first column (`onset`) is to be interpreted as a timestamp,
+the `ForeignIndexColumn` MUST be set to `"timestamp"` in `sub-01_task-nback_physioevents.json`:
 
 ```JSON
 {
@@ -477,13 +400,31 @@ the `ForeignIndexColumn` for indexing:
 }
 ```
 
-The decompressed contents of the corresponding TSV file,
-`sub-01_task-nback_physioevents.tsv.gz` could read now:
+If there is no appropriate source column in
+`<matches>[_recording-<label>]_physio.tsv.gz`, `ForeignIndexColumn` MAY be set to `"n/a"`.
+In this case, the values of `onset` MUST be interpreted as row indices
+into the `physio` file, with the first row having index zero (`0`).
+Negative onsets are possible, and such events are interpreted as occurring prior
+to the start of the recording, at the same sampling rate.
 
-```{.text noheader="1" linenums="1"}
-13894432325	Ready
-13894432331	Synchronous recalibration triggered
-13894432334	External message received: new block
+For example, the above `sub-01_task-nback_physioevents.tsv.gz` could be equivalently
+written:
+
+```{.text noheader="1"}
+-3	Ready
+3	Synchronous recalibration triggered
+6	External message received: new block
+```
+
+To indicate that the first column (`onset`) is to be interpreted as an index,
+the `ForeignIndexColumn` is set to `"n/a"` in `sub-01_task-nback_physioevents.json`:
+
+```JSON
+{
+    "Columns": ["onset", "message"],
+    "Description": "Messages logged by the measurement device",
+    "ForeignIndexColumn": "n/a"
+}
 ```
 
 ## Specific physiological signal types
