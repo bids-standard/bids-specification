@@ -1395,6 +1395,14 @@ FlipAngle:
         unit: degree
         exclusiveMinimum: 0
         maximum: 360
+ForeignIndexColumn:
+  name: ForeignIndexColumn
+  display_name: Column Name of a Foreign Index
+  description: |
+    An existing column name in an corresponding recoding data TSV file that
+    indexes the `"onset"` column of the present TSV file.
+    For example, `"timestamp"` column.
+  type: string
 Format:
   name: Format
   display_name: Value format
