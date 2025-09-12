@@ -1,0 +1,38 @@
+---
+StimulusIdExists:
+  issue:
+    code: STIMULUS_ID_NOT_FOUND
+    message: |
+      Stimulus ID referenced in events.tsv file does not exist in the /stimuli directory
+      or is not properly referenced in stimuli.tsv file.
+    level: error
+  selectors:
+    - suffix == "events"
+    - '"stim_id" in columns'
+  checks:
+    - exists(columns.stim_id, "stimuli") == length(columns.stim_id) - count(columns.stim_id, "n/a")
+
+StimuliDirectoryStructure:
+  issue:
+    code: INVALID_STIMULUS_FILENAME
+    message: |
+      Stimulus files in the /stimuli directory must follow the BIDS naming convention
+      with the format stim-<label>[_part-<label>]_<suffix>.<extension>
+    level: warning
+  selectors:
+    - datatype == "stimuli"
+    - suffix in ["audio", "video", "audiovideo", "image"]
+  checks:
+    - entities.stimulus != null
+
+StimuliTableEntriesValid:
+  issue:
+    code: STIMULI_TABLE_REFERENCES
+    message: |
+      Each stimulus_id in stimuli.tsv must correspond to an actual stimulus file
+      in the /stimuli directory.
+    level: warning
+  selectors:
+    - suffix == "stimuli"
+  checks:
+    - matches_pattern(columns.stimulus_id, "^stim-[a-zA-Z0-9]+$")

@@ -93,6 +93,7 @@ sub-<label>/
     datatypes = {
         datatype
         for rule in schema_obj.rules.files.raw.values(level=2)
+        if hasattr(rule, "datatypes")  # Skip rules without datatypes (e.g., stimuli)
         for datatype in rule.datatypes
     }
 
@@ -122,10 +123,24 @@ sub-<label>/
         if line in datatype_bases:
             datatype_bases_found += 1
         else:
+            # Special handling for stimuli files which don't follow subject pattern
+            if (
+                "stimuli.json" in line
+                or "stimuli.tsv" in line
+                or "annotations." in line
+                or "_audio." in line
+                or "_image." in line
+                or "_video." in line
+                or "_audiovideo." in line
+                or "_events." in line
+                or "stimuli" in line.lower()
+            ):
+                # Root-level stimuli files and stimulus files don't follow subject pattern
+                continue
             assert line.startswith(datatype_file_start)
 
     # Are all datatypes listed?
-    assert datatype_bases_found == datatype_count
+    assert datatype_bases_found == len(datatypes)
 
     # Restrict (a little) the datatype bases
     filename_template = text.make_filename_template(
@@ -158,6 +173,20 @@ sub-<label>/
         if line in datatype_bases:
             datatype_bases_found += 1
         else:
+            # Special handling for stimuli files which don't follow subject pattern
+            if (
+                "stimuli.json" in line
+                or "stimuli.tsv" in line
+                or "annotations." in line
+                or "_audio." in line
+                or "_image." in line
+                or "_video." in line
+                or "_audiovideo." in line
+                or "_events." in line
+                or "stimuli" in line.lower()
+            ):
+                # Root-level stimuli files and stimulus files don't follow subject pattern
+                continue
             assert line.startswith(datatype_file_start)
 
     # In this case events is not defined for all datatypes

@@ -615,6 +615,11 @@ ContrastBolusIngredient:
     # TODO: Add definitions for these values. (perhaps don't specify)
     - UNKNOWN
     - NONE
+Copyright:
+  name: Copyright
+  display_name: Copyright
+  description: Copyright information
+  type: string
 DCOffsetCorrection:
   name: DCOffsetCorrection
   display_name: DC Offset Correction
@@ -1994,6 +1999,11 @@ License:
     (see [Licenses](SPEC_ROOT/appendices/licenses.md)).
     The corresponding full license text MAY be specified in an additional
     `LICENSE` file.
+  type: string
+StimulusLicense:
+  name: License
+  display_name: License
+  description: License under which this stimulus is shared.
   type: string
 LongName:
   name: LongName
@@ -3789,6 +3799,11 @@ SubjectArtefactDescription:
     If this field is set to `"n/a"`, it will be interpreted as absence of major
     source of artifacts except cardiac and blinks.
   type: string
+StimulusURL:
+  name: URL
+  display_name: URL
+  description: Location (origin) for the stimulus file.
+  type: string
 TablePosition:
   name: TablePosition
   display_name: Table Position
@@ -4195,4 +4210,11 @@ iEEGReference:
     If different channels have a different reference,
     this field should have a general description and the channel specific
     reference should be defined in the `channels.tsv` file.
+  type: string
+type:
+  name: type
+  display_name: Type
+  description: |
+    Type of stimulus file (for example, image, audio, video, audiovideo).
+    Refers to the suffix of the stimulus file when present in stimulus metadata.
   type: string
