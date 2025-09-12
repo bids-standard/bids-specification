@@ -4211,3 +4211,10 @@ iEEGReference:
     this field should have a general description and the channel specific
     reference should be defined in the `channels.tsv` file.
   type: string
+type:
+  name: type
+  display_name: Type
+  description: |
+    Type of stimulus file (for example, image, audio, video, audiovideo).
+    Refers to the suffix of the stimulus file when present in stimulus metadata.
+  type: string
