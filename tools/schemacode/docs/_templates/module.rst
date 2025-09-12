@@ -11,7 +11,9 @@
    :template: module.rst
    :recursive:
 {% for item in modules %}
+{% if item != 'tests' %}
    {{ item }}
+{% endif %}
 {%- endfor %}
 {% endif %}
 {% endblock %}

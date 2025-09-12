@@ -15,7 +15,7 @@ Examples:
 A defaced T1w image would typically be made during the curation process and is thus under raw
 
 ```Text
-sourcedata/private/sub-01/anat/sub-01_T1w.nii.gz
+sourcedata/pre-deface/sub-01/anat/sub-01_T1w.nii.gz
 sub-01/anat/sub-01_T1w.nii.gz
 ```
 
@@ -23,7 +23,7 @@ A defaced T1w image could also, in theory, be derived from a BIDS dataset and wo
 
 ```Text
 sub-01/anat/sub-01_T1w.nii.gz
-derivatives/sub-01/anat/sub-01_desc-defaced_T1w.nii.gz
+derivatives/defaced/sub-01/anat/sub-01_desc-defaced_T1w.nii.gz
 ```
 
 ## Derivatives storage and directory structure
@@ -60,12 +60,12 @@ in [Derived dataset and pipeline description][derived-dataset-description].
     copy of that raw file.
 
 -   Each Derivatives filename MUST be of the form:
-    `<source_entities>[_keyword-<value>]_<suffix>.<extension>`
+    `<source-entities>[_keyword-<value>]_<suffix>.<extension>`
     (where `<value>` could either be an `<index>` or a `<label>` depending on
     the keyword; see [Definitions][definitions])
 
 -   When the derivatives chain involves outputs derived from a single raw input,
-    `source_entities` MUST be the entire source filename, with the omission of
+    `source-entities` MUST be the entire source filename, with the omission of
     the source suffix and extension. One exception to this rule is filename
     entities that are no longer relevant. Depending on the nature of the
     derivative file, the suffix can either be the same as the source file if

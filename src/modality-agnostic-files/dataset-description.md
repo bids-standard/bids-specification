@@ -33,6 +33,7 @@ and a guide for using macros can be found at
       "DatasetType": "RECOMMENDED",
       "License": "RECOMMENDED",
       "Authors": "RECOMMENDED if CITATION.cff is not present",
+      "Keywords": "OPTIONAL",
       "Acknowledgements": "OPTIONAL",
       "HowToAcknowledge": "OPTIONAL",
       "Funding": "OPTIONAL",
@@ -66,6 +67,11 @@ Example:
   "Authors": [
     "Paul Broca",
     "Carl Wernicke"
+  ],
+  "Keywords": [
+    "neuroscience",
+    "language",
+    "brain"
   ],
   "Acknowledgements": "Special thanks to Korbinian Brodmann for help in formatting this dataset in BIDS. We thank Alan Lloyd Hodgkin and Andrew Huxley for helpful comments and discussions about the experiment and manuscript; Hermann Ludwig Helmholtz for administrative support; and Claudius Galenus for providing data for the medial-to-lateral index analysis.",
   "HowToAcknowledge": "Please cite this paper: https://www.ncbi.nlm.nih.gov/pubmed/001012092119281",
@@ -105,7 +111,7 @@ Example:
 
 As for any BIDS dataset, a `dataset_description.json` file MUST be found at the
 top level of every derived dataset:
-`<dataset>/derivatives/<pipeline_name>/dataset_description.json`.
+`<dataset>/derivatives/<pipeline-name>/dataset_description.json`.
 
 In contrast to raw BIDS datasets, derived BIDS datasets MUST include a
 `GeneratedBy` key:
@@ -124,8 +130,8 @@ and a guide for using macros can be found at
 
 If a derived dataset is stored as a subdirectory of the raw dataset, then the `Name` field
 of the first `GeneratedBy` object MUST be a substring of the derived dataset directory name.
-That is, in a directory `<dataset>/derivatives/<pipeline>[-<variant>]/`, the first
-`GeneratedBy` object should have a `Name` of `<pipeline>`.
+That is, in a directory `<dataset>/derivatives/<pipeline-name>[-<variant>]/`, the first
+`GeneratedBy` object should have a `Name` of `<pipeline-name>`.
 
 Example:
 

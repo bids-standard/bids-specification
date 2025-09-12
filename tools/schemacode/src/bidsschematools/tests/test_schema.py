@@ -90,6 +90,8 @@ def test_formats(schema_obj):
             "2022-01-05T13:16:30.000005",  # up to 6 decimal points
             "2022-01-05T13:16:30Z",  # UTC indicator is allowed
             "2022-01-05T13:16:30.05Z",
+            "2022-01-05T13:16:30+01:00",  # integral offsets are allowed
+            "2022-01-05T13:16:30-05:00",
         ],
         "time": [
             "13:16:30",
@@ -178,6 +180,11 @@ def test_formats(schema_obj):
             assert not bool(search.fullmatch(test_string)), (
                 f"'{test_string}' should not be a valid match for the pattern '{search.pattern}'"
             )
+
+
+def test_format_consistency(schema_obj):
+    """Test that the "Format" field is consistent with objects.formats."""
+    assert set(schema_obj.objects.metadata.Format.enum) == schema_obj.objects.formats.keys()
 
 
 def test_dereferencing():

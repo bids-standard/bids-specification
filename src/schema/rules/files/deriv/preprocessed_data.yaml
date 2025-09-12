@@ -26,12 +26,21 @@ anat_defacemask_common:
     space: optional
     description: optional
 
-anat_multiecho_common:
+anat_megre_common:
   selectors:
     - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.anat.multiecho
+  $ref: rules.files.raw.anat.megre
   entities:
-    $ref: rules.files.raw.anat.multiecho.entities
+    $ref: rules.files.raw.anat.megre.entities
+    space: optional
+    description: optional
+
+anat_mese_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
+  $ref: rules.files.raw.anat.mese
+  entities:
+    $ref: rules.files.raw.anat.mese.entities
     space: optional
     description: optional
 
@@ -363,7 +372,7 @@ pet_blood_common:
 task_events_common:
   selectors:
     - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.task.events
+  $ref: rules.files.raw.events.events
   entities:
-    $ref: rules.files.raw.task.events.entities
+    $ref: rules.files.raw.events.events.entities
     description: optional

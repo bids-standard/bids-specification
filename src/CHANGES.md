@@ -1,5 +1,45 @@
 # Changelog
 
+## [v1.10.1](https://bids-specification.readthedocs.io/en/v1.10.1/) (2025-09-03)
+
+-   \[ENH] Expand fieldmaps section to include B1 maps, including qMRI maps [#2183](https://github.com/bids-standard/bids-specification/pull/2183) ([tsalo](https://github.com/tsalo))
+-   \[ENH] Clarify that task label is not required to derive from TaskName [#2179](https://github.com/bids-standard/bids-specification/pull/2179) ([effigies](https://github.com/effigies))
+-   \[ENH] Remove explicitly worded requirement of events file association with the task [#1440](https://github.com/bids-standard/bids-specification/pull/1440) ([yarikoptic](https://github.com/yarikoptic))
+-   \[ENH] Clarify that recording entity may be used to distinguish recording instruments [#2090](https://github.com/bids-standard/bids-specification/pull/2090) ([drammock](https://github.com/drammock))
+-   \[ENH] Specify that dir-<label> should correspond to PhaseEncodingDirection [#2097](https://github.com/bids-standard/bids-specification/pull/2097) ([effigies](https://github.com/effigies))
+-   \[ENH] Allow direction entity in MESE files [#2100](https://github.com/bids-standard/bids-specification/pull/2100) ([tsalo](https://github.com/tsalo))
+-   \[ENH] Add "study" DatasetType to organize a collection of source and derivative datasets [#1972](https://github.com/bids-standard/bids-specification/pull/1972) ([yarikoptic](https://github.com/yarikoptic))
+-   \[ENH] Deprecate 89+ string for default age column, increase expressiveness of column definitions in sidecar files [#2162](https://github.com/bids-standard/bids-specification/pull/2162) ([effigies](https://github.com/effigies))
+-   \[ENH] Update extension citations in Introduction [#2168](https://github.com/bids-standard/bids-specification/pull/2168) ([markmikkelsen](https://github.com/markmikkelsen))
+-   \[ENH] Add "Keywords" to `dataset_description.json` [#2158](https://github.com/bids-standard/bids-specification/pull/2158) ([markmikkelsen](https://github.com/markmikkelsen))
+-   \[ENH] Update AcquisitionDuration definition to match DICOM, define FrameAcquisitionDuration for sparse sequences [#1974](https://github.com/bids-standard/bids-specification/pull/1974) ([effigies](https://github.com/effigies))
+-   \[ENH] Inheritance Principle: Advise against value overloading. Plan to deprecate support for overloading for BIDS 2.0 [#1834](https://github.com/bids-standard/bids-specification/pull/1834) ([Lestropie](https://github.com/Lestropie))
+-   \[ENH] Allow `mod-*` entity to relate physio data to MRI data in `anat/` [#1991](https://github.com/bids-standard/bids-specification/pull/1991) ([tstoeter](https://github.com/tstoeter))
+-   \[ENH] Accept UTC offsets in datetimes [#2001](https://github.com/bids-standard/bids-specification/pull/2001) ([effigies](https://github.com/effigies))
+-   \[ENH] Clarify that electrodes.tsv are REQUIRED for iEEG data [#1896](https://github.com/bids-standard/bids-specification/pull/1896) ([effigies](https://github.com/effigies))
+-   \[ENH] Allow additional columns if defined for various TSV files [#2054](https://github.com/bids-standard/bids-specification/pull/2054) ([effigies](https://github.com/effigies))
+-   \[ENH] Reorganise modality agnostic files section into multiple pages [#2106](https://github.com/bids-standard/bids-specification/pull/2106) ([bclenet](https://github.com/bclenet))
+-   \[ENH] Define "phenotype" as a data type not nested inside subjects [#2050](https://github.com/bids-standard/bids-specification/pull/2050) ([effigies](https://github.com/effigies))
+-   \[ENH] Formalize presence of optional docs/ folder [#2104](https://github.com/bids-standard/bids-specification/pull/2104) ([yarikoptic](https://github.com/yarikoptic))
+-   \[ENH] Clarify definition of space entity [#2105](https://github.com/bids-standard/bids-specification/pull/2105) ([effigies](https://github.com/effigies))
+-   \[ENH] Formalize presence of optional logs/ folder [#1962](https://github.com/bids-standard/bids-specification/pull/1962) ([yarikoptic](https://github.com/yarikoptic))
+-   \[ENH] Add `matches` and `source_entity` to glossary and file templates [#1781](https://github.com/bids-standard/bids-specification/pull/1781) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[ENH] Allow plus signs in labels [#1926](https://github.com/bids-standard/bids-specification/pull/1926) ([tsalo](https://github.com/tsalo))
+-   \[ENH] Allow participants.tsv to contain a superset of subject directories and subjects listed in phenotype files [#2044](https://github.com/bids-standard/bids-specification/pull/2044) ([ericearl](https://github.com/ericearl))
+-   \[ENH] Allow LICENSE files to have .txt, .md, or .rst extensions [#2036](https://github.com/bids-standard/bids-specification/pull/2036) ([monique2208](https://github.com/monique2208))
+-   \[ENH] Render code blocks with language "tsv" as tables [#1794](https://github.com/bids-standard/bids-specification/pull/1794) ([effigies](https://github.com/effigies))
+-   \[ENH] Do explicitly "allow" for having dotfiles and explicitly ignore them [#1992](https://github.com/bids-standard/bids-specification/pull/1992) ([yarikoptic](https://github.com/yarikoptic))
+-   \[ENH] Add interpretation of "n/a" onsets in events.tsv files [#1966](https://github.com/bids-standard/bids-specification/pull/1966) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[ENH] Update DWI suffixes to include most common scanner derivatives [#1864](https://github.com/bids-standard/bids-specification/pull/1864) ([Lestropie](https://github.com/Lestropie))
+-   \[FIX] Update ResonantFrequency and SpectrometerFrequency to support both string/number and arrays [#2172](https://github.com/bids-standard/bids-specification/pull/2172) ([markmikkelsen](https://github.com/markmikkelsen))
+-   \[FIX] Rescope or downgrade excess RECOMMENDED fields [#2116](https://github.com/bids-standard/bids-specification/pull/2116) ([effigies](https://github.com/effigies))
+-   \[FIX] Remove incorrect DICOM correspondence of PartialFourier [#2128](https://github.com/bids-standard/bids-specification/pull/2128) ([effigies](https://github.com/effigies))
+-   \[FIX] Re-align the text and the schema for filenames in derivatives [#1567](https://github.com/bids-standard/bids-specification/pull/1567) ([mguaypaq](https://github.com/mguaypaq))
+-   \[FIX] Show example defaced derivative in a pipeline subdirectory [#2065](https://github.com/bids-standard/bids-specification/pull/2065) ([robertoostenveld](https://github.com/robertoostenveld))
+-   \[FIX] Remove reference to dicm2nii and point to page with more converters [#2119](https://github.com/bids-standard/bids-specification/pull/2119) ([yarikoptic](https://github.com/yarikoptic))
+-   \[FIX] Fix typos in specification about iEEG photo [#2091](https://github.com/bids-standard/bids-specification/pull/2091) ([qian-chu](https://github.com/qian-chu))
+-   \[FIX] Allow (but discourage) task, acquisition and run entities for coordsystem.json and electrodes.tsv [#1888](https://github.com/bids-standard/bids-specification/pull/1888) ([effigies](https://github.com/effigies))
+
 ## [v1.10.0](https://bids-specification.readthedocs.io/en/v1.10.0/) (2024-09-06)
 
 -   \[ENH] Add noRF and n/a ASL volume types [1884](https://github.com/bids-standard/bids-specification/pull/1884) ([tsalo](https://github.com/tsalo))
@@ -602,7 +642,7 @@
 
 -   Added support for MEG data (merged BEP008).
 -   Added `SequenceName` field.
--   Added support for describing events with Hierarchical Event Descriptors: [4.3 Task events](modality-specific-files/task-events.md).
+-   Added support for describing events with Hierarchical Event Descriptors: [4.3 Task events](modality-agnostic-files/events.md).
 -   Added `VolumeTiming` and `AcquisitionDuration` fields: [4.1 Task (including resting state) imaging data](modality-specific-files/magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data).
 -   Added `DwellTime` field.
 

@@ -565,7 +565,7 @@ metadata fields such as [`LongName`](../glossary.md#objects.metadata.LongName),
 [`Levels`](../glossary.md#objects.metadata.Levels), or
 [`TermURL`](../glossary.md#objects.metadata.TermURL).
 However, in the case of eye-tracking, the metadata entry [`Units`](../glossary.md#objects.metadata.Units),
-becomes REQUIRED for the colums `x_coordinate` and `y_coordinate`:
+becomes REQUIRED for the columns `x_coordinate` and `y_coordinate`:
 
 {{ MACROS___make_metadata_table(
    {
