@@ -161,3 +161,7 @@ dmypy.json
 cython_debug/
 
 .*.swp
+
+# Claude specific files
+CLAUDE.md
+.rules/
