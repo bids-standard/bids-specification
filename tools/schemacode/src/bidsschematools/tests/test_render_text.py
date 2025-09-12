@@ -97,7 +97,7 @@ sub-<label>/
     }
 
     datatype_count = len(datatypes)
-    datatype_bases = [f"        {i}/" for i in datatypes if i != "stimuli"]
+    datatype_bases = [f"        {i}/" for i in datatypes]
     datatype_file_start = (
         "            sub-<label>" if not placeholders else "            <matches>_"
     )
@@ -122,10 +122,14 @@ sub-<label>/
         if line in datatype_bases:
             datatype_bases_found += 1
         else:
+            # Special handling for stimuli files which don't follow subject pattern
+            if "stimuli.json" in line or "stimuli.tsv" in line or "annotations." in line:
+                # Root-level stimuli files don't have subject prefix
+                continue
             assert line.startswith(datatype_file_start)
 
     # Are all datatypes listed?
-    assert datatype_bases_found == len(datatypes) - 1
+    assert datatype_bases_found == len(datatypes)
 
     # Restrict (a little) the datatype bases
     filename_template = text.make_filename_template(
