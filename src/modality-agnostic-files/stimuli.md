@@ -37,12 +37,6 @@ A guide for using macros can be found at
     }
   }) }}
 
-<!-- Still not working, falls back to subject/session struture. -->
-<!-- {{ MACROS___make_filename_template(
-   "raw",
-   datatypes=["stim"],
-   suffixes=["events","audio","video","audiovideo","image"])
-}} -->
 
 Note: The presence of the `stimuli.tsv` file indicates that the content of the `/stimuli` directory follows this BIDS specification for stimulus organization.
 

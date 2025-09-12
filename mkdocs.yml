@@ -11,6 +11,7 @@ nav:
           - Phenotypic and assessment data: modality-agnostic-files/phenotypic-and-assessment-data.md
           - Code: modality-agnostic-files/code.md
           - Events: modality-agnostic-files/events.md
+          - Stimuli: modality-agnostic-files/stimuli.md
       - Modality specific files:
           - Magnetic Resonance Imaging: modality-specific-files/magnetic-resonance-imaging-data.md
           - Magnetoencephalography: modality-specific-files/magnetoencephalography.md
@@ -24,7 +25,6 @@ nav:
           - Near-Infrared Spectroscopy: modality-specific-files/near-infrared-spectroscopy.md
           - Motion: modality-specific-files/motion.md
           - Magnetic Resonance Spectroscopy: modality-specific-files/magnetic-resonance-spectroscopy.md
-          - Stimuli: modality-specific-files/stimuli.md
       - Derivatives:
           - BIDS Derivatives: derivatives/introduction.md
           - Common data types and metadata: derivatives/common-data-types.md
