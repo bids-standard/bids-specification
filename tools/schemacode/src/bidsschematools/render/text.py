@@ -396,29 +396,37 @@ def make_filename_template(
 
                 ent_string = _add_entity(ent_string, pattern, entity["level"])
 
-            # In cases of large numbers of suffixes,
-            # we use the "suffix" variable and expect a table later in the spec
-            if len(group["suffixes"]) >= n_dupes_to_combine:
-                suffixes = [
-                    lt
-                    + utils._link_with_html(
-                        "suffix",
-                        html_path=GLOSSARY_PATH + ".html",
-                        heading="suffix-common_principles",
-                        pdf_format=pdf_format,
-                    )
-                    + gt
-                ]
+            # Handle both suffix-based and stem-based groups
+            if "suffixes" in group:
+                # In cases of large numbers of suffixes,
+                # we use the "suffix" variable and expect a table later in the spec
+                if len(group["suffixes"]) >= n_dupes_to_combine:
+                    suffixes = [
+                        lt
+                        + utils._link_with_html(
+                            "suffix",
+                            html_path=GLOSSARY_PATH + ".html",
+                            heading="suffix-common_principles",
+                            pdf_format=pdf_format,
+                        )
+                        + gt
+                    ]
+                else:
+                    suffixes = [
+                        utils._link_with_html(
+                            suffix,
+                            html_path=GLOSSARY_PATH + ".html",
+                            heading=f"{suffix_key_table[suffix].lower()}-suffixes",
+                            pdf_format=pdf_format,
+                        )
+                        for suffix in group.suffixes
+                    ]
+            elif "stem" in group:
+                # For stem-based groups (like participants.tsv), use the stem directly
+                suffixes = [group["stem"]]
             else:
-                suffixes = [
-                    utils._link_with_html(
-                        suffix,
-                        html_path=GLOSSARY_PATH + ".html",
-                        heading=f"{suffix_key_table[suffix].lower()}-suffixes",
-                        pdf_format=pdf_format,
-                    )
-                    for suffix in group.suffixes
-                ]
+                # Fallback - should not happen in well-formed schema
+                suffixes = ["<unknown>"]
 
             # Add extensions
             extensions = [ext if ext != "*" else ".<extension>" for ext in group.extensions]
