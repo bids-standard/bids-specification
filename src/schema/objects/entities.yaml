@@ -225,7 +225,7 @@ part:
     When there is only a magnitude image of a given type, the `part` entity MAY be
     omitted.
 
-    For stimulus files, ‍`part-<label>` can be used to distinguish different parts of a single stimulus, such as
+    For stimulus files, `part-<label>` can be used to distinguish different parts of a single stimulus, such as
     chapters in an audiobook or segments of a long movie (for example, `part-1`, `part-2`, `part-epilog`,
     `part-chapter1`).
   type: string
