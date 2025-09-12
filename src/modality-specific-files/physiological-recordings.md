@@ -529,7 +529,6 @@ A guide for using macros can be found at
     "continuous.EyeTrack"
 ]) }}
 
-
 Comprehensively documenting the calibration metadata is RECOMMENDED.
 
 Eye-tracking files `<matches>_recording-<label>_physio.tsv.gz` MAY be annotated
