@@ -4,10 +4,7 @@
 
 Stimuli:
   selectors:
-    - suffix == "audio"
-    - suffix == "video"
-    - suffix == "audiovideo"
-    - suffix == "image"
+    - intersects([suffix], ["audio", "video", "audiovideo", "image"])
   fields:
     StimulusLicense: recommended
     Copyright: recommended
