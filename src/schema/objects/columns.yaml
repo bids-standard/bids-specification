@@ -1,9 +1,9 @@
 ---
 HED:
   name: HED
-  display_name: HED Tag
+  display_name: HED
   description: |
-    Hierarchical Event Descriptor (HED) Tag.
+    Hierarchical Event Descriptor (HED) tags.
     See the [HED Appendix](SPEC_ROOT/appendices/hed.md) for details.
   type: string
 abbreviation:
@@ -582,7 +582,7 @@ stim_file:
     Represents the location of the stimulus file (such as an image, video, or
     audio file) presented at the given onset time.
     There are no restrictions on the file formats of the stimuli files,
-    but they should be stored in the `/stimuli` directory
+    but they should be stored in the `/stimuli/` directory
     (under the root directory of the dataset; with optional subdirectories).
     The values under the `stim_file` column correspond to a path relative to
     `/stimuli`.
