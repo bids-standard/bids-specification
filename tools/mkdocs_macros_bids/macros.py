@@ -154,6 +154,8 @@ def make_root_filename_template(
         if hasattr(rule, "stem"):
             # Handle stem-based files (like stimuli.tsv, annotations.tsv)
             if hasattr(rule, "extensions"):
+                # For stem files, always show each extension explicitly
+                # These are important catalog files that should be clear
                 for ext in rule.extensions:
                     template_lines.append(f"    {rule.stem}{ext}")
 
@@ -186,8 +188,16 @@ def make_root_filename_template(
 
             for suffix in rule.suffixes:
                 if hasattr(rule, "extensions"):
-                    for ext in rule.extensions:
-                        template_lines.append(f"    {entities_part}_{suffix}{ext}")
+                    # Consolidate only when there are more than 2 extensions
+                    if len(rule.extensions) > 2:
+                        # Show the pattern once with generic extension
+                        template_lines.append(
+                            f"    {entities_part}_{suffix}.<extension>"
+                        )
+                    else:
+                        # Show each extension explicitly for clarity
+                        for ext in rule.extensions:
+                            template_lines.append(f"    {entities_part}_{suffix}{ext}")
 
     # Format as code block
     template_content = "\n".join(template_lines)
