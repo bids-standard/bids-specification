@@ -13,13 +13,9 @@ StimulusPresentation:
     StimulusPresentation: recommended
     VisionCorrection: optional
 
-StimulusPresentation_for_eyetracking:
+StimulusPresentation__eyetrack:
   selectors:
     - suffix == "events"
     - associations.physio.sidecar.PhysioType == "eyetrack"
   fields:
-    StimulusPresentation.ScreenDistance: required
-    StimulusPresentation.ScreenOrigin: required
-    StimulusPresentation.ScreenRefreshRate: recommended
-    StimulusPresentation.ScreenResolution: required
-    StimulusPresentation.ScreenSize: required
+    StimulusPresentation__eyetrack: required
