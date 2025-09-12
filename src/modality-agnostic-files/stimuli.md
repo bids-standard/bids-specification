@@ -29,7 +29,7 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_root_filename_template(
    "raw",
-   datatypes=["stimuli"])
+   path="stimuli")
 }}
 
 Note: The presence of the `stimuli.tsv` file indicates that the content of the `/stimuli` directory follows this BIDS specification for stimulus organization.

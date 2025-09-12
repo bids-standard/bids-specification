@@ -106,36 +106,74 @@ def make_root_filename_template(
 ):
     """Generate a filename template snippet for root-level directories.
 
-    This function is specifically designed for root-level directories like /stimuli
-    that don't follow the sub-<label>/[ses-<label>/] pattern.
+    This function is designed for root-level directories like /stimuli
+    that use stem files and path-based organization (not subject-scoped datatypes).
     """
-    # For now, provide a hard-coded template for stimuli
-    # This can be made dynamic once the schema loading issues are resolved
-    datatypes = kwargs.get("datatypes", [])
+    if src_path is None:
+        src_path = _get_source_path()
 
-    if "stimuli" in datatypes:
-        template_content = """stimuli/
-    stimuli.tsv
-    stimuli.json
-    [stim-<label>_]annotations.tsv
-    [stim-<label>_]annotations.json
-    stim-<label>[_part-<label>]_audio.<extension>
-    stim-<label>[_part-<label>]_audio.json
-    stim-<label>[_part-<label>]_image.<extension>
-    stim-<label>[_part-<label>]_image.json
-    stim-<label>[_part-<label>]_video.<extension>
-    stim-<label>[_part-<label>]_video.json
-    stim-<label>[_part-<label>]_audiovideo.<extension>
-    stim-<label>[_part-<label>]_audiovideo.json
-    stim-<label>[_part-<label>]_annot-<label>_events.tsv
-    stim-<label>[_part-<label>]_annot-<label>_events.json"""
+    schema_obj = schema.load_schema()
 
-        if pdf_format:
-            return f"```Text\n{template_content}\n```"
-        else:
-            return f'<div class="highlight"><pre><code>{template_content}</code></pre></div>'
+    # Look for rules that have a specific path (root-level organization)
+    target_path = kwargs.get("path", "stimuli")  # Default to stimuli
 
-    return ""
+    rules = schema_obj.rules.files[dstype]
+
+    # Find rules that match our target path (handle nested namespaces)
+    matching_rules = {}
+    for rule_name, rule in rules.items():
+        # Check if rule directly has the path
+        if hasattr(rule, "path") and rule.path == target_path:
+            matching_rules[rule_name] = rule
+        # Check if rule is a namespace containing rules with the path
+        elif not hasattr(rule, "path") and hasattr(rule, "keys"):
+            for sub_name in rule.keys():
+                sub_rule = rule[sub_name]
+                if hasattr(sub_rule, "path") and sub_rule.path == target_path:
+                    matching_rules[f"{rule_name}.{sub_name}"] = sub_rule
+
+    if not matching_rules:
+        return ""
+
+    # Generate template content
+    template_lines = [f"{target_path}/"]
+
+    # Process each matching rule
+    for rule_name, rule in matching_rules.items():
+        if hasattr(rule, "stem"):
+            # Handle stem-based files (like stimuli.tsv, annotations.tsv)
+            if hasattr(rule, "extensions"):
+                for ext in rule.extensions:
+                    template_lines.append(f"    {rule.stem}{ext}")
+
+        elif hasattr(rule, "suffixes"):
+            # Handle entity-based files (like stim-<label>_audio.wav)
+            entities_part = ""
+            if hasattr(rule, "entities"):
+                entity_parts = []
+                for entity_name, requirement in rule.entities.items():
+                    if entity_name == "stimulus":
+                        entity_parts.append("stim-<label>")
+                    elif entity_name == "part":
+                        entity_parts.append("[_part-<label>]")
+                    elif entity_name == "annotation":
+                        entity_parts.append("_annot-<label>")
+                entities_part = "".join(entity_parts)
+
+            for suffix in rule.suffixes:
+                if hasattr(rule, "extensions"):
+                    for ext in rule.extensions:
+                        template_lines.append(f"    {entities_part}_{suffix}{ext}")
+
+    # Format as code block
+    template_content = "\n".join(template_lines)
+
+    if pdf_format:
+        return f"```Text\n{template_content}\n```"
+    else:
+        return (
+            f'<div class="highlight"><pre><code>{template_content}</code></pre></div>'
+        )
 
 
 def make_entity_table(src_path=None, **kwargs):
