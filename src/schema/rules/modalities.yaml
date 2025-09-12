@@ -34,6 +34,3 @@ nirs:
 mrs:
   datatypes:
     - mrs
-stim:
-  datatypes:
-    - stimuli
