@@ -407,14 +407,13 @@ CalibrationPosition:
     A list of `[x, y]` coordinates in the `CalibrationUnit`.
     For example, using 5 positions calibration presented on an HD screen,
     it could be `[[960,50],[960,540],[960,1030],[50,540],[1870,540]]`.
-  anyOf:
-    - type: array
-      items:
-        type: array
-        minItems: 2
-        maxItems: 2
-        items:
-          type: number
+  type: array
+  items:
+    type: array
+    minItems: 2
+    maxItems: 2
+    items:
+      type: number
 CalibrationType:
   name: CalibrationType
   display_name: Calibration Type
@@ -1178,7 +1177,7 @@ EyeCameraSettings:
   description: |
     A field to store any settings that influence the resolution
     and quality of the eye imagery.
-    Autowhitebalance? Changes in sharpness?
+    For example, `{"Autowhitebalance": true}`.
   type: object
   items:
     type: object
@@ -3444,7 +3443,7 @@ ScreenOrigin:
     minItems: 2
     enum:
       - "top"
-      - "botom"
+      - "bottom"
       - "left"
       - "right"
       - "center"
@@ -3826,12 +3825,6 @@ StartTime:
     where `s` reflects whole seconds, and `.000000` reflects OPTIONAL fractional seconds.
   type: number
   unit: s
-StartTime_eyetrack:
-  name: StartTime
-  display_name: Eye-tracking recording start time
-  description: |
-    Eye-tracking timestamp corresponding to the onset (start) of the run.
-  type: number
 StationName:
   name: StationName
   display_name: Station Name

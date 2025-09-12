@@ -186,7 +186,7 @@ pupil_size:
     being recorded in the `Description` field of this column.
     It is RECOMMENDED to specify the `Units` field corresponding to this column.
   type: number
-et_timestamp:
+timestamp__eyetrack:
   name: timestamp
   display_name: Eye-tracking recording timestamp
   description: |
@@ -410,7 +410,7 @@ participant_id:
     matching a participant entity found in the dataset.
   type: string
   pattern: ^sub-[0-9a-zA-Z+]+$
-physio_onset:
+onset__physioevents:
   name: onset
   display_name: Onset of events in physiological recordings
   description: |

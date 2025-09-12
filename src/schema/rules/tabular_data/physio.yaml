@@ -10,14 +10,14 @@ PhysioColumns:
 
 PhysioEyeTracking:
   selectors:
-    - PhysioType == "eyetrack"
+    - sidecar.PhysioType == "eyetrack"
   columns:
-    et_timestamp: recommended
+    timestamp__eyetrack: recommended
     x_coordinate: required
     y_coordinate: required
     pupil_size: optional
   initial_columns:
-    - et_timestamp
+    - timestamp__eyetrack
     - x_coordinate
     - y_coordinate
   additional_columns: allowed
@@ -26,10 +26,10 @@ PhysioEventsColumns:
   selectors:
     - suffix == "physioevents"
   columns:
-    physio_onset: required
+    onset__physio: required
     duration: recommended
     trial_type: optional
     message: optional
-  additional_columns: allowed
   initial_columns:
-    - physio_onset
+    - onset__physio
+  additional_columns: allowed

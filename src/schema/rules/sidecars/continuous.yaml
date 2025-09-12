@@ -32,7 +32,8 @@ PhysioTypeRecommended:
 
 PhysioTypeRequired:
   selectors:
-    - suffix == "physio"
+    # Avoid automated validation; this is for the sake of rendering a table.
+    - false
   fields:
     PhysioType: required
 
@@ -48,6 +49,7 @@ PhysioEvents:
 EyeTrack:
   selectors:
     - suffix == "physio"
+    - sidecar.PhysioType == "eyetrack"
   fields:
     RecordedEye: required
     SampleCoordinateSystem: required
