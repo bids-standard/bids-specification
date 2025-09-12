@@ -293,6 +293,61 @@ txt:
     A free-form text file.
 
     Tab-delimited files should have the `.tsv` extension rather than a `.txt` extension.
+wav:
+  value: .wav
+  display_name: Waveform Audio File Format
+  description: |
+    A digital audio file format.
+mp3:
+  value: .mp3
+  display_name: MPEG Audio Layer III
+  description: |
+    A digital audio file format.
+aac:
+  value: .aac
+  display_name: Advanced Audio Coding
+  description: |
+    A digital audio file format.
+ogg:
+  value: .ogg
+  display_name: Ogg Vorbis
+  description: |
+    A digital audio file format.
+svg:
+  value: .svg
+  display_name: Scalable Vector Graphics
+  description: |
+    A vector graphics file format.
+webp:
+  value: .webp
+  display_name: WebP
+  description: |
+    A modern image file format.
+tiff:
+  value: .tiff
+  display_name: Tagged Image File Format
+  description: |
+    A raster graphics file format.
+mp4:
+  value: .mp4
+  display_name: MPEG-4 Part 14
+  description: |
+    A digital video file format.
+avi:
+  value: .avi
+  display_name: Audio Video Interleave
+  description: |
+    A digital video file format.
+mkv:
+  value: .mkv
+  display_name: Matroska Video
+  description: |
+    A digital video file format.
+webm:
+  value: .webm
+  display_name: WebM
+  description: |
+    A digital video file format.
 vhdr:
   value: .vhdr
   display_name: BrainVision Text Header
