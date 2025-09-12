@@ -21,16 +21,15 @@ Following these guidelines will help ensure that stimulus files and their annota
 ## File Organization
 
 <!--
-This block generates a filename templates.
+This block generates a filename templates for root-level directories.
 The inputs for this macro can be found in the directory
   src/schema/rules/files/raw
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_filename_template(
+{{ MACROS___make_root_filename_template(
    "raw",
-   datatypes=["stimuli"],
-   suffixes=["stimuli", "annotations", "audio", "image", "video", "audiovideo", "events"])
+   datatypes=["stimuli"])
 }}
 
 Note: The presence of the `stimuli.tsv` file indicates that the content of the `/stimuli` directory follows this BIDS specification for stimulus organization.

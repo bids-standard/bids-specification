@@ -101,6 +101,43 @@ def make_filename_template(dstype="raw", src_path=None, pdf_format=False, **kwar
     return codeblock
 
 
+def make_root_filename_template(
+    dstype="raw", src_path=None, pdf_format=False, **kwargs
+):
+    """Generate a filename template snippet for root-level directories.
+
+    This function is specifically designed for root-level directories like /stimuli
+    that don't follow the sub-<label>/[ses-<label>/] pattern.
+    """
+    # For now, provide a hard-coded template for stimuli
+    # This can be made dynamic once the schema loading issues are resolved
+    datatypes = kwargs.get("datatypes", [])
+
+    if "stimuli" in datatypes:
+        template_content = """stimuli/
+    stimuli.tsv
+    stimuli.json
+    [stim-<label>_]annotations.tsv
+    [stim-<label>_]annotations.json
+    stim-<label>[_part-<label>]_audio.<extension>
+    stim-<label>[_part-<label>]_audio.json
+    stim-<label>[_part-<label>]_image.<extension>
+    stim-<label>[_part-<label>]_image.json
+    stim-<label>[_part-<label>]_video.<extension>
+    stim-<label>[_part-<label>]_video.json
+    stim-<label>[_part-<label>]_audiovideo.<extension>
+    stim-<label>[_part-<label>]_audiovideo.json
+    stim-<label>[_part-<label>]_annot-<label>_events.tsv
+    stim-<label>[_part-<label>]_annot-<label>_events.json"""
+
+        if pdf_format:
+            return f"```Text\n{template_content}\n```"
+        else:
+            return f'<div class="highlight"><pre><code>{template_content}</code></pre></div>'
+
+    return ""
+
+
 def make_entity_table(src_path=None, **kwargs):
     """Generate an entity table from the schema, based on specific filters.
 
