@@ -66,7 +66,9 @@ def test_selectors(schema_obj):
         for key in keys:
             for selector in rules[key]:
                 ast = expression.parse_string(selector)[0]
-                assert isinstance(ast, ASTNode)
+                # A literal `false` or `0` value may be used to ensure an expression
+                # always fails. These show up as strings and ints.
+                assert isinstance(ast, (ASTNode, str, int))
 
 
 def test_checks(schema_obj):

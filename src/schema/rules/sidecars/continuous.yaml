@@ -33,7 +33,7 @@ PhysioTypeRecommended:
 PhysioTypeRequired:
   selectors:
     # Avoid automated validation; this is for the sake of rendering a table.
-    - false
+    - "false"
   fields:
     PhysioType: required
 
