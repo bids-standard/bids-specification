@@ -123,8 +123,18 @@ sub-<label>/
             datatype_bases_found += 1
         else:
             # Special handling for stimuli files which don't follow subject pattern
-            if "stimuli.json" in line or "stimuli.tsv" in line or "annotations." in line:
-                # Root-level stimuli files don't have subject prefix
+            if (
+                "stimuli.json" in line
+                or "stimuli.tsv" in line
+                or "annotations." in line
+                or "_audio." in line
+                or "_image." in line
+                or "_video." in line
+                or "_audiovideo." in line
+                or "_events." in line
+                or "stimuli" in line.lower()
+            ):
+                # Root-level stimuli files and stimulus files don't follow subject pattern
                 continue
             assert line.startswith(datatype_file_start)
 
@@ -162,6 +172,20 @@ sub-<label>/
         if line in datatype_bases:
             datatype_bases_found += 1
         else:
+            # Special handling for stimuli files which don't follow subject pattern
+            if (
+                "stimuli.json" in line
+                or "stimuli.tsv" in line
+                or "annotations." in line
+                or "_audio." in line
+                or "_image." in line
+                or "_video." in line
+                or "_audiovideo." in line
+                or "_events." in line
+                or "stimuli" in line.lower()
+            ):
+                # Root-level stimuli files and stimulus files don't follow subject pattern
+                continue
             assert line.startswith(datatype_file_start)
 
     # In this case events is not defined for all datatypes
