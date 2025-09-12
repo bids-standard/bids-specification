@@ -191,8 +191,12 @@ def make_root_filename_template(
                     # Consolidate only when there are more than 2 extensions
                     if len(rule.extensions) > 2:
                         # Show the pattern once with generic extension
+                        # Need to escape < and > for HTML but not for PDF
+                        ext_placeholder = (
+                            "<extension>" if pdf_format else "&lt;extension&gt;"
+                        )
                         template_lines.append(
-                            f"    {entities_part}_{suffix}.<extension>"
+                            f"    {entities_part}_{suffix}.{ext_placeholder}"
                         )
                     else:
                         # Show each extension explicitly for clarity
