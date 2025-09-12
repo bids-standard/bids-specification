@@ -423,6 +423,7 @@ def make_filename_template(
                     ]
             elif "stem" in group:
                 # For stem-based groups (like participants.tsv), use the stem directly
+                # No need to add underscore prefix for stem-based files
                 suffixes = [group["stem"]]
             else:
                 # Fallback - should not happen in well-formed schema
@@ -455,11 +456,21 @@ def make_filename_template(
                 pdf_format=pdf_format,
             )
 
-            group_lines.extend(
-                f"\t\t\t{ent_string}_{suffix}{extension}"
-                for suffix in sorted(suffixes)
-                for extension in sorted(extensions)
-            )
+            # Build filename patterns based on whether this is a stem or suffix-based group
+            if "stem" in group:
+                # For stem-based files, use just stem + extension (no underscore separator)
+                group_lines.extend(
+                    f"\t\t\t{ent_string}{suffix}{extension}"
+                    for suffix in sorted(suffixes)
+                    for extension in sorted(extensions)
+                )
+            else:
+                # For suffix-based files, use entities + underscore + suffix + extension
+                group_lines.extend(
+                    f"\t\t\t{ent_string}_{suffix}{extension}"
+                    for suffix in sorted(suffixes)
+                    for extension in sorted(extensions)
+                )
 
         # If the datatype does not have any files, skip
         if not empty_dirs and len(group_lines) == 1:
