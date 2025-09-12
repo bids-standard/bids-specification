@@ -391,7 +391,7 @@ TSV file, `sub-01_task-nback_physioevents.tsv.gz` is:
 6	External message received: new block
 ```
 
-In this case, the first column lists the indexes (one-based row number)
+In this case, the first column lists the indices (one-based row number)
 from the `sub-01_task-nback_physio.tsv.gz`.
 The first entry, with `"onset"` set to 3, maps to the third line of the
 `sub-01_task-nback_physio.tsv.gz`, indicating that the message
