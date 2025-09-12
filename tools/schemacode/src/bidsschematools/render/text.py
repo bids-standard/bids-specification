@@ -324,6 +324,9 @@ def make_filename_template(
     file_rules = schema.rules.files[dstype]
     file_groups = {}
     for rule in file_rules.values(level=2):
+        # Skip rules that don't have datatypes (e.g., stimuli rules with path-based organization)
+        if not hasattr(rule, "datatypes"):
+            continue
         for datatype in rule.datatypes:
             file_groups.setdefault(datatype, []).append(rule)
 

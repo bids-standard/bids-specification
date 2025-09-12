@@ -93,6 +93,7 @@ sub-<label>/
     datatypes = {
         datatype
         for rule in schema_obj.rules.files.raw.values(level=2)
+        if hasattr(rule, "datatypes")  # Skip rules without datatypes (e.g., stimuli)
         for datatype in rule.datatypes
     }
 

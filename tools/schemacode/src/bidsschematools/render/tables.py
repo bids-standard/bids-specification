@@ -309,6 +309,10 @@ def make_entity_table(schema, tablefmt="github", src_path=None, **kwargs):
         if not suffixes:
             continue
 
+        # Skip rules that don't have datatypes (e.g., stimuli rules with path-based organization)
+        if not hasattr(rule, "datatypes"):
+            continue
+
         entities = []
         for ent in schema.rules.entities:
             val = rule.entities.get(ent, "")
