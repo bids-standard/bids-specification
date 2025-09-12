@@ -422,7 +422,7 @@ Reference stimulus identifiers using the `stim_id` column to link events to comp
 ```JSON
 {
     "stim_id": {
-        "LongName": "Stimulus identifier", 
+        "LongName": "Stimulus identifier",
         "Description": "Unique identifier linking to stimulus files and annotations in /stimuli directory."
     }
 }
