@@ -109,4 +109,4 @@ physio:
   target:
     suffix: physio
     extension: .tsv.gz
-  inherit: true
+  inherit: false
