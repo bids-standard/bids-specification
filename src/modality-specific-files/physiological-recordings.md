@@ -38,7 +38,7 @@ entity is OPTIONAL, and is [described below](#continuous-physiological-recording
     As a consequence, when supplying a `<matches>_<physio|physioevents>.tsv.gz` file,
     an accompanying `<matches>_<physio|physioevents>.json` MUST be supplied as well.
 
-For multi-echo data, a single `_<physio>.<tsv.gz|json>` file without the
+For multi-echo data, a single `_physio.<tsv.gz|json>` file without the
 [`echo-<index>`](../appendices/entities.md#echo) entity applies to all echos of
 a particular run.
 For example:
