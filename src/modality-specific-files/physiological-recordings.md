@@ -69,18 +69,17 @@ such as [eye-tracking](#eye-tracking).
 
 Continuous physiological recordings, such as pulse monitoring,
 electrocardiogram, respiratory movement measured with a respiration belt,
-gas concentration, eye-tracking, or head-motion parameters estimated
-by the MRI scanner, MUST use `_physio.<tsv.gz|json>` pairs.
+gas concentration, or eye-tracking, MUST use `_physio.<tsv.gz|json>` pairs.
 
-**Storing different recordings**.
+### Storing different recordings
 The [`recording-<label>`](../appendices/entities.md#recording)
 entity MAY be used to distinguish between several recording files.
 Recordings with different metadata such as sampling frequencies
 or recording device MUST be stored in separate files with different
 [`recording-<label>`](../appendices/entities.md#recording) entities.
-For example, given a multi-echo acquisition corresponding to a breath-holding
-task (`task-bht`) for which pulse and respiratory movement were
-sampled at different frequencies, recordings are separated as follows:
+For example, given a BOLD acquisition of a breath-holding task (`task-bht`)
+for which pulse and respiratory movement were sampled at different frequencies,
+recordings are separated as follows:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -89,9 +88,7 @@ A guide for using macros can be found at
 {{ MACROS___make_filetree_example({
   "sub-01": {
     "func": {
-      "sub-01_task-bht_echo-1_bold.nii.gz": "",
-      "sub-01_task-bht_echo-2_bold.nii.gz": "",
-      "sub-01_task-bht_echo-3_bold.nii.gz": "",
+      "sub-01_task-bht_bold.nii.gz": "",
       "sub-01_task-bht_recording-cardiac_physio.json": "",
       "sub-01_task-bht_recording-cardiac_physio.tsv.gz": "",
       "sub-01_task-bht_recording-respiratory_physio.json": "",
@@ -100,7 +97,7 @@ A guide for using macros can be found at
   },
 }) }}
 
-**Metadata fields for `<matches>_<physio>.json` files**.
+**Metadata fields for `<matches>_physio.json` files**.
 General metadata fields include `SamplingFrequency`, `StartTime`, `Columns`,
 and `Manufacturer`, in addition to individual column descriptions.
 Each individual column in the TSV file MAY be documented as its own field in the JSON file
@@ -255,7 +252,7 @@ Columns are further described following the specifications for
 indicating `Description` and `Units` fields.
 Other fields, such as `TermURL`, `LongName`, MAY be included.
 
-The `PhysioType` can be omitted as the recordings are `"generic"`:
+Because a missing `PhysioType` is assumed to be `"generic"`, the following sidecar is equivalent:
 
 ```JSON
 {
@@ -540,8 +537,8 @@ for the [`recording-<label>`](../appendices/entities.md#recording) entity.
     The [`recording-<label>`](../appendices/entities.md#recording) entity
     MAY take other values such as `"left"`, `"cyclopean"`, or `"right"` corresponding
     to the `RecordedEye` metadata.
-    However, it is RECOMMENDED that metadata is not encoded in the file names to avert
-    that filename and metadata enter into conflict.
+    However, it is RECOMMENDED that metadata is not encoded in the file names to avoid
+    conflicts between filenames and metadata.
     For example, if [`recording-<label>`](../appendices/entities.md#recording) takes
     the value `"left"` but the corresponding sidecar JSON file contains a definition of
     `RecordedEye` being `"right"`.
