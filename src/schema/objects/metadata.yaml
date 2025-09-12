@@ -4218,20 +4218,3 @@ type:
     Type of stimulus file (for example, image, audio, video, audiovideo).
     Refers to the suffix of the stimulus file when present in stimulus metadata.
   type: string
-duration:
-  name: duration
-  display_name: Duration
-  description: |
-    Duration of the event (measured from onset) in seconds.
-    Must always be either zero or positive (or `n/a` if unavailable).
-  type: number
-  unit: s
-  minimum: 0
-onset:
-  name: onset  
-  display_name: Onset
-  description: |
-    Onset (in seconds) of the event, measured from the beginning of the acquisition
-    of the first data point stored in the corresponding task data file.
-  type: number
-  unit: s
