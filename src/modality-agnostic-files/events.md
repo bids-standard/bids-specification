@@ -267,7 +267,7 @@ and a guide for using macros can be found at
 !!! warning "Important"
 
     Some metadata of the `StimulusPresentation` object become REQUIRED with the presence of
-    [eye-tracking data](physiological-recordings.md#eye-tracking)
+    [eye-tracking data](../modality-specific-files/physiological-recordings.md#eye-tracking)
 
     The following fields pertaining to `<matches>_events.json` of tasks that were acquired
     with the simultaneous recording of eye-tracking escalate to REQUIRED as they are considered
