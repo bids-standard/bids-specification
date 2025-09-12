@@ -112,7 +112,18 @@ def make_root_filename_template(
     if src_path is None:
         src_path = _get_source_path()
 
-    schema_obj = schema.load_schema()
+    # Load schema with explicit path to avoid caching issues
+    import os
+
+    schema_path = os.path.join(
+        os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
+        "src",
+        "schema.json",
+    )
+    if os.path.exists(schema_path):
+        schema_obj = schema.load_schema(schema_path)
+    else:
+        schema_obj = schema.load_schema()
 
     # Look for rules that have a specific path (root-level organization)
     target_path = kwargs.get("path", "stimuli")  # Default to stimuli
@@ -147,17 +158,25 @@ def make_root_filename_template(
                     template_lines.append(f"    {rule.stem}{ext}")
 
         elif hasattr(rule, "suffixes"):
-            # Handle entity-based files (like stim-<label>_audio.wav)
+            # Handle entity-based files generically using entity definitions from schema
             entities_part = ""
             if hasattr(rule, "entities"):
                 entity_parts = []
                 for entity_name, requirement in rule.entities.items():
-                    if entity_name == "stimulus":
-                        entity_parts.append("stim-<label>")
-                    elif entity_name == "part":
-                        entity_parts.append("[_part-<label>]")
-                    elif entity_name == "annotation":
-                        entity_parts.append("_annot-<label>")
+                    # Look up the entity in the schema to get its prefix
+                    if entity_name in schema_obj.objects.entities:
+                        entity_def = schema_obj.objects.entities[entity_name]
+                        entity_prefix = entity_def.get("name", entity_name)
+
+                        # Format based on requirement (required vs optional)
+                        if requirement == "optional":
+                            entity_parts.append(f"[_{entity_prefix}-<label>]")
+                        else:
+                            # First entity doesn't need underscore prefix
+                            if not entity_parts:
+                                entity_parts.append(f"{entity_prefix}-<label>")
+                            else:
+                                entity_parts.append(f"_{entity_prefix}-<label>")
                 entities_part = "".join(entity_parts)
 
             for suffix in rule.suffixes:
