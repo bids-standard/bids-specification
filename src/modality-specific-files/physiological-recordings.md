@@ -326,19 +326,11 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table(["continuous.PhysioEvents"]) }}
 
-The `ForeignIndexColumn` metadata specifies whether
-`<matches>[_recording-<label>]_physio.tsv.gz` files are
-implicitly or explicitly indexed.
+Values of the `onset` column of the `<matches>_physioevents.tsv.gz` MUST be interpreted
+relative to the `timestamp` column of the corresponding `<matches>_physio.tsv.gz` file,
+using the same units.
 
-**Implicit indexing of `<matches>_physioevents.tsv.gz` files**.
-When `ForeignIndexColumn` is not provided, the `"onset"` column
-corresponds to the one-based row number of the associated
-`<matches>_physio.tsv.gz` file.
-The `"onset"` column accepts negative values to register
-events occurred before the recording(s) in the corresponding
-`<matches>_physio.tsv.gz` file started.
-
-For example, considering the following structure:
+For example, consider the following structure:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -355,85 +347,7 @@ A guide for using macros can be found at
   },
 }) }}
 
-where the decompressed contents of `sub-01_task-nback_physio.tsv.gz`
-are:
-
-```{.text linenums="1"}
-10.1
-10.0
-9.5
-9.2
-9.0
-10.2
-10.3
-10.1
-```
-
-Please note that the above code block has the line numbers enabled,
-but those line numbers are not part of the contents of the file.
-Since there is no explicit column to index the recording,
-the `ForeignIndexColumn` SHOULD NOT be defined in the
-`sub-01_task-nback_physioevents.json` file:
-
-```JSON
-{
-    "Columns": ["onset", "message"],
-    "Description": "Messages logged by the measurement device"
-}
-```
-
-An example of the decompressed contents of the corresponding
-TSV file, `sub-01_task-nback_physioevents.tsv.gz` is:
-
-```{.text noheader="1"}
--3	Ready
-3	Synchronous recalibration triggered
-6	External message received: new block
-```
-
-In this case, the first column lists the indexes (one-based row number)
-from the `sub-01_task-nback_physio.tsv.gz`.
-The first entry, with `"onset"` set to 3, maps to the third line of the
-`sub-01_task-nback_physio.tsv.gz`, indicating that the message
-*Synchronous recalibration triggered* was logged at the same time the
-sample with value `9.5` was registered.
-Likewise, the second message was logged when the recording later registered a
-value of `10.2` (row number 5 of `sub-01_task-nback_physio.tsv.gz`).
-As negative indexes are allowed, the first *Ready* message occurred four sampling
-cycles before the first recorded measurement (line number 1).
-For example, if `SamplingFrequency` in `sub-01_task-nback_physio.json`
-is set to 100 Hz and `StartTime` is -22.345 s, then the *Ready* message was recorded
-0.04 s before the first sample, therefore at -22.305 s.
-
-**Explicit indexing of `<matches>_physioevents.tsv.gz` files (RECOMMENDED)**.
-When the `ForeignIndexColumn` defines a value such as `"timestamp"`,
-that specific column name MUST be present the `<matches>_physio.tsv.gz` file.
-In that case, all values of the `"onset"` column of the
-`<matches>_physioevents.tsv.gz` are indexed by the index established by
-the `ForeignIndexColumn` of the corresponding `<matches>_physio.tsv.gz` file
-(that is, `"timestamp"` in this example).
-It is RECOMMENDED to specify metadata such as `Units` or `Origin`
-corresponding to the column defined by `ForeignIndexColumn`.
-
-For example, let us consider the previous structure:
-
-<!-- This block generates a file tree.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filetree_example({
-  "sub-01": {
-    "func": {
-      "sub-01_task-nback_physio.json": "",
-      "sub-01_task-nback_physio.tsv.gz": "",
-      "sub-01_task-nback_physioevents.json": "",
-      "sub-01_task-nback_physioevents.tsv.gz": "",
-    },
-  },
-}) }}
-
-However, the `sub-01_task-nback_physio.json` will define now an extra
-column called `"timestamp"`:
+The `sub-01_task-nback_physio.json` contains the required `timestamp` column:
 
 ```JSON
 {
@@ -452,35 +366,9 @@ column called `"timestamp"`:
 }
 ```
 
-The decompressed contents of `sub-01_task-nback_physio.tsv.gz`
-are now:
+The decompressed contents of `sub-01_task-nback_physio.tsv.gz` may look like:
 
 ```{.text noheader="1" linenums="1"}
-10.1	13894432329
-10.0	13894432330
-9.5	13894432331
-9.2	13894432332
-9.0	13894432333
-10.2	13894432334
-10.3	13894432335
-10.1	13894432336
-```
-
-Then, the `sub-01_task-nback_physioevents.json` MAY define
-the `ForeignIndexColumn` for indexing:
-
-```JSON
-{
-    "Columns": ["onset", "message"],
-    "Description": "Messages logged by the measurement device",
-    "ForeignIndexColumn": "timestamp"
-}
-```
-
-The decompressed contents of the corresponding TSV file,
-`sub-01_task-nback_physioevents.tsv.gz` could read now:
-
-```tsv
 13894432325	Ready
 13894432331	Synchronous recalibration triggered
 13894432334	External message received: new block
@@ -777,7 +665,6 @@ would read:
 {
     "Columns": ["onset", "duration", "trial_type", "blink", "message"],
     "Description": "Messages logged by the measurement device",
-    "ForeignIndexColumn": "timestamp",
     "blink": {
       "Description": "Gives status of the eye.",
       "Levels": {
