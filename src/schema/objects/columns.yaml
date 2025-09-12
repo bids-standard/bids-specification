@@ -871,7 +871,8 @@ annot_id:
   name: annot_id
   display_name: Annotation Identifier
   description: |
-    Unique identifier for a specific annotation set applying to a stimulus or group of stimuli. Links to annotation files (for example, `*_annot-<label>_events.tsv`).
+    Unique identifier for a specific annotation set applying to a stimulus or group of stimuli. Links to annotation
+    files (for example, `*_annot-<label>_events.tsv`).
   type: string
 copyright:
   name: copyright
@@ -890,7 +891,8 @@ partDescription__stimuli:
   name: partDescription
   display_name: Stimulus Part Description
   description: |
-    Free-form text description of a specific part of a stimulus, relevant when the stimulus is split into multiple files using the `part` entity.
+    Free-form text description of a specific part of a stimulus, relevant when the stimulus is split into multiple
+    files using the `part` entity.
   type: string
 present:
   name: present
