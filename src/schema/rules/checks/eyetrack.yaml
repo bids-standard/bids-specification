@@ -15,3 +15,18 @@ EyetrackingStimulusPresentation:
     - '"ScreenOrigin" in associations.events.sidecar.StimulusPresentation'
     - '"ScreenResolution" in associations.events.sidecar.StimulusPresentation'
     - '"ScreenSize" in associations.events.sidecar.StimulusPresentation'
+
+ForeignColumnConsistency:
+  issue:
+    code: MISSING_FOREIGN_COLUMN
+    level: error
+    message: >
+      The `physioevents.tsv.gz` file declared a `ForeignIndexColumn` of
+      {sidecar.ForeignIndexColumn}, but no such column was found in
+      {associations.physio.path}.
+  selectors:
+    - suffix == 'physioevents'
+    - extension == '.tsv.gz'
+    - sidecar.ForeignIndexColumn
+  checks:
+    - intersects([sidecar.ForeignIndexColumn], associations.physio.sidecar.Columns)
