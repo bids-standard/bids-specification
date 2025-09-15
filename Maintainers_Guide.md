@@ -13,19 +13,19 @@ which is a recommended reading in conjunction with this guide.
 
 See also: [BIDS governance](https://bids.neuroimaging.io/collaboration/governance.html#bids-maintainers-group)
 
-| Name                                                                      | Time commitment | Scope                                 | Joined   |
-| ------------------------------------------------------------------------- | --------------- | ------------------------------------- | -------- |
-| Stefan Appelhoff ([@sappelhoff](https://github.com/sappelhoff))           | 1h/week         |                                       | Mar 2020 |
-| Chris Markiewicz ([@effigies](https://github.com/effigies))               | 5h/week         |                                       | Mar 2020 |
-| Ross Blair ([@rwblair](https://github.com/rwblair))                       |                 | Maintainer of the bids-validator      | Mar 2020 |
-| Taylor Salo ([@tsalo](https://github.com/tsalo))                          | 3h/week         | MRI                                   | Sep 2020 |
-| Remi Gau ([@Remi-Gau](https://github.com/Remi-Gau))                       | 3h/week         | Community development, MRI            | Oct 2020 |
-| Anthony Galassi  ([@bendhouseart](https://github.com/bendhouseart))       | 3h/week         | PET, Community development            | Sep 2021 |
-| Eric Earl ([@ericearl](https://github.com/ericearl))                      | 2h/week         |                                       | Dec 2021 |
-| Christine Rogers ([@christinerogers](https://github.com/christinerogers)) | 2h/month        | Interoperability, EEG and multi-modal | Apr 2023 |
-| Nell Hardcastle ([@nellh](https://github.com/nellh))                      | 2h/week         |                                       | Jul 2023 |
-| Kimberly Ray ([@KimberlyLRay](https://github.com/KimberlyLRay))           | 1h/week         |                                       | Nov 2022 |
-| Julia-Katharina Pfarr ([@julia-pfarr](https://github.com/julia-pfarr))    | 2h/week         |                                       | Mar 2025 |
+| Name                                                                         | Time commitment | Scope                                 | Joined   |
+| ---------------------------------------------------------------------------- | --------------- | ------------------------------------- | -------- |
+| Chris Markiewicz ([@effigies](https://github.com/effigies))                  | 5h/week         |                                       | Mar 2020 |
+| Ross Blair ([@rwblair](https://github.com/rwblair))                          |                 | Maintainer of the bids-validator      | Mar 2020 |
+| Taylor Salo ([@tsalo](https://github.com/tsalo))                             | 3h/week         | MRI                                   | Sep 2020 |
+| Remi Gau ([@Remi-Gau](https://github.com/Remi-Gau))                          | 3h/week         | Community development, MRI            | Oct 2020 |
+| Anthony Galassi  ([@bendhouseart](https://github.com/bendhouseart))          | 3h/week         | PET, Community development            | Sep 2021 |
+| Eric Earl ([@ericearl](https://github.com/ericearl))                         | 2h/week         |                                       | Dec 2021 |
+| Christine Rogers ([@christinerogers](https://github.com/christinerogers))    | 2h/month        | Interoperability, EEG and multi-modal | Apr 2023 |
+| Nell Hardcastle ([@nellh](https://github.com/nellh))                         | 2h/week         |                                       | Jul 2023 |
+| Kimberly Ray ([@KimberlyLRay](https://github.com/KimberlyLRay))              | 1h/week         |                                       | Nov 2022 |
+| Julia-Katharina Pfarr ([@julia-pfarr](https://github.com/julia-pfarr))       | 2h/week         |                                       | Mar 2025 |
+| Seyed (Yahya) Shirazi ([@neuromechanist](https://github.com/neuromechanist)) | 2h/week         | ExG, multi-modal, events & annotations | Jul 2025 |
 
 In addition to the [BIDS Governance](https://bids.neuroimaging.io/collaboration/governance.html#bids-maintainers-group)
 classification of a maintainer, maintainers may declare a limited scope of responsibility.
@@ -47,6 +47,7 @@ See also: [BIDS governance](https://bids.neuroimaging.io/collaboration/governanc
 | Name                                                                           | Duration            |
 | ------------------------------------------------------------------------------ | ------------------- |
 | Franklin Feingold ([@franklin-feingold](https://github.com/franklin-feingold)) | Mar 2020 - Jul 2022 |
+| Stefan Appelhoff ([@sappelhoff](https://github.com/sappelhoff))                | Mar 2020 - Aug 2025 |
 
 ## Why become a maintainer?
 

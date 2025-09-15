@@ -38,7 +38,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_columns_table("task.Behavioral") }}
+{{ MACROS___make_columns_table("events.Behavioral") }}
 
 ## Sidecar JSON (`*_beh.json`)
 
