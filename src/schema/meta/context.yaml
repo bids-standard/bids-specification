@@ -156,6 +156,9 @@ properties:
             type: array
             items:
               type: string
+          sidecar:
+            description: 'Sidecar metadata constructed via the inheritance principle'
+            type: object
       aslcontext:
         description: 'ASL context file'
         type: object
