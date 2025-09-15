@@ -8,7 +8,7 @@ EyetrackingStimulusPresentation:
       `ScreenResolution` and `ScreenSize` fields.
   selectors:
     - suffix == 'physio'
-    - extension == ['.tsv.gz']
+    - extension == '.tsv.gz'
     - sidecar.PhysioType == 'eyetrack'
   checks:
     - '"ScreenDistance" in associations.events.sidecar.StimulusPresentation'
