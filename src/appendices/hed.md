@@ -34,7 +34,7 @@ on GitHub.
 
 Event-related data in BIDS appears in tab-separated value (`events.tsv`)
 files in various places in the dataset hierarchy
-(see [Events](../modality-specific-files/task-events.md)).
+(see [Events](../modality-agnostic-files/events.md)).
 
 `events.tsv` files MUST have `onset` and `duration` columns.
 Dataset curators MAY also include additional columns and define their
@@ -44,10 +44,10 @@ meanings in associated JSON sidecar files (`events.json`).
 (`trial_type`, `response_time`, and `stim_file`) in addition to
 the required `onset` and `duration` columns.
 
-```Text
-onset  duration  trial_type  response_time stim_file
-1.2    0.6       go          1.435         images/red_square.jpg
-5.6    0.6       stop        n/a           images/blue_square.jpg
+```tsv
+onset	duration	trial_type	response_time	stim_file
+1.2	0.6	go	1.435	images/red_square.jpg
+5.6	0.6	stop	n/a	images/blue_square.jpg
 ```
 
 The `trial_type` column in the above example contains a limited number of distinct
@@ -193,7 +193,7 @@ along with or instead of the standard vocabulary.
 These specialized vocabularies are developed by communities of users
 and are available in the
 [hed-schemas](https://github.com/hed-standard/hed-schemas) GitHub repository.
-A library schema is specified in the form `<library-name<_>library-version>`.
+A library schema is specified in the form `<library-name>_<library-version>`.
 
 #### Partnered library schemas
 

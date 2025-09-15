@@ -1,9 +1,9 @@
 ---
 HED:
   name: HED
-  display_name: HED Tag
+  display_name: HED
   description: |
-    Hierarchical Event Descriptor (HED) Tag.
+    Hierarchical Event Descriptor (HED) tags.
     See the [HED Appendix](SPEC_ROOT/appendices/hed.md) for details.
   type: string
 abbreviation:
@@ -38,12 +38,14 @@ age:
   description: |
     Numeric value in years (float or integer value).
 
-    It is recommended to tag participant ages that are 89 or higher as 89+,
-    for privacy purposes.
+    For privacy purposes, participant ages should be capped at 89.
+    Using "89+" for ages above 88 is DEPRECATED.
   definition: {
     "LongName": "Subject age",
     "Description": "Subject age in postnatal years",
+    "Format": "number",
     "Units": "year",
+    "Maximum": 89,
   }
 cardiac:
   name: cardiac
@@ -52,6 +54,7 @@ cardiac:
     continuous pulse measurement
   definition: {
     "Description": "continuous pulse measurement",
+    "Format": "number",
     "Units": "mV"
   }
 channel:
@@ -89,25 +92,19 @@ component:
     - $ref: objects.enums.quat_y.value
     - $ref: objects.enums.quat_z.value
     - $ref: objects.enums.quat_w.value
-    - n/a
 detector__channels:
   name: detector
   display_name: Detector Name
   description: |
     Name of the detector as specified in the `*_optodes.tsv` file.
     `n/a` for channels that do not contain NIRS signals (for example, acceleration).
-  anyOf:
-    - type: string
-    - type: string
-      enum:
-        - n/a
+  type: string
 detector_type:
   name: detector_type
   display_name: Detector Type
   description: |
     The type of detector. Only to be used if the field `DetectorType` in `*_nirs.json` is set to `mixed`.
-  anyOf:
-    - type: string
+  type: string
 derived_from:
   name: derived_from
   display_name: Derived from
@@ -115,7 +112,7 @@ derived_from:
     `sample-<label>` entity from which a sample is derived,
     for example a slice of tissue (`sample-02`) derived from a block of tissue (`sample-01`).
   type: string
-  pattern: ^sample-[0-9a-zA-Z]+$
+  pattern: ^sample-[0-9a-zA-Z+]+$
 desc_id:
   name: desc_id
   display_name: Description Label
@@ -130,7 +127,7 @@ desc_id:
     its `desc_id` column SHOULD contain all labels of the `desc` entity)
     used across the entire derivative dataset.
   type: string
-  pattern: ^desc-[0-9a-zA-Z]+$
+  pattern: ^desc-[0-9a-zA-Z+]+$
 description:
   name: description
   display_name: Description
@@ -164,13 +161,9 @@ duration:
     Must always be either zero or positive (or `n/a` if unavailable).
     A "duration" value of zero implies that the delta function or event is so
     short as to be effectively modeled as an impulse.
-  anyOf:
-    - type: number
-      unit: s
-      minimum: 0
-    - type: string
-      enum:
-        - n/a
+  type: number
+  unit: s
+  minimum: 0
 filename:
   name: filename
   display_name: Filename
@@ -185,15 +178,14 @@ group__channel:
     Which group of channels (grid/strip/seeg/depth) this channel belongs to.
     This is relevant because one group has one cable-bundle and noise can be shared.
     This can be a name or number.
-  anyOf:
-    - type: string
-    - type: number
+  type: string
 handedness:
   name: handedness
   display_name: Subject handedness
   definition: {
     "LongName": "Subject handedness",
     "Description": "String value indicating one of \"left\", \"right\", or \"ambidextrous\".",
+    "Format": "string",
     "Levels": {
       "left": "Left-handed",
       "l": "Left-handed",
@@ -238,13 +230,9 @@ high_cutoff:
     If no low-pass filter applied, use `n/a`.
     Note that hardware anti-aliasing in A/D conversion of all MEG/EEG electronics
     applies a low-pass filter; specify its frequency here if applicable.
-  anyOf:
-    - type: number
-      unit: Hz
-      minimum: 0
-    - type: string
-      enum:
-        - n/a
+  type: number
+  unit: Hz
+  minimum: 0
 hplc_recovery_fractions:
   name: hplc_recovery_fractions
   display_name: HPLC recovery fractions
@@ -271,12 +259,8 @@ low_cutoff:
   description: |
     Frequencies used for the high-pass filter applied to the channel in Hz.
     If no high-pass filter applied, use `n/a`.
-  anyOf:
-    - type: number
-      unit: Hz
-    - type: string
-      enum:
-        - n/a
+  type: number
+  unit: Hz
 manufacturer:
   name: manufacturer
   display_name: Manufacturer
@@ -366,6 +350,8 @@ onset:
     (for example, "dummy volumes" in BOLD fMRI),
     a time of 0 corresponds to the first stored data point and not the first
     acquired data point.
+
+    A value of `n/a` value indicates the onset time is unknown or unavailable.
   type: number
   unit: s
 pathology:
@@ -377,7 +363,8 @@ pathology:
     The pathology may be specified in either `samples.tsv` or
     `sessions.tsv`, depending on whether the pathology changes over time.
   definition: {
-    "Description": "Description of the pathology of the sample or type of control."
+    "Description": "Description of the pathology of the sample or type of control.",
+    "Format": "string",
   }
 participant_id:
   name: participant_id
@@ -386,7 +373,7 @@ participant_id:
     A participant identifier of the form `sub-<label>`,
     matching a participant entity found in the dataset.
   type: string
-  pattern: ^sub-[0-9a-zA-Z]+$
+  pattern: ^sub-[0-9a-zA-Z+]+$
 placement__motion:
   name: placement
   display_name: Placement
@@ -417,11 +404,7 @@ reference__ieeg:
   description: |
     Specification of the reference (for example, `mastoid`, `ElectrodeName01`, `intracranial`, `CAR`, `other`, `n/a`).
     If the channel is not an electrode channel (for example, a microphone channel) use `n/a`.
-  anyOf:
-    - type: string
-    - type: string
-      enum:
-        - n/a
+  type: string
 reference_frame:
   name: reference_frame
   display_name: Reference frame
@@ -429,11 +412,7 @@ reference_frame:
     Specification of a reference frame in which the motion data are to be interpreted.
     The description of the levels in `*_channels.json` SHOULD use `RotationRule`,
     `RotationOrder`, and `SpatialAxes`, and MAY use `Description` for the specification.
-  anyOf:
-    - type: string
-    - type: string
-      enum:
-        - n/a
+  type: string
 respiratory:
   name: respiratory
   display_name: Respiratory measurement
@@ -441,6 +420,7 @@ respiratory:
     continuous breathing measurement
   definition: {
     "Description": "continuous measurements by respiration belt",
+    "Format": "number",
     "Units": "mV"
   }
 response_time:
@@ -450,12 +430,8 @@ response_time:
     Response time measured in seconds.
     A negative response time can be used to represent preemptive responses and
     `n/a` denotes a missed response.
-  anyOf:
-    - type: number
-      unit: s
-    - type: string
-      enum:
-        - n/a
+  type: number
+  unit: s
 sample_id:
   name: sample_id
   display_name: Sample ID
@@ -463,7 +439,7 @@ sample_id:
     A sample identifier of the form `sample-<label>`,
     matching a sample entity found in the dataset.
   type: string
-  pattern: ^sample-[0-9a-zA-Z]+$
+  pattern: ^sample-[0-9a-zA-Z+]+$
 sample_type:
   name: sample_type
   display_name: Sample type
@@ -495,7 +471,7 @@ session_id:
     A session identifier of the form `ses-<label>`,
     matching a session found in the dataset.
   type: string
-  pattern: ^ses-[0-9a-zA-Z]+$
+  pattern: ^ses-[0-9a-zA-Z+]+$
 sex:
   name: sex
   display_name: Sex
@@ -510,6 +486,7 @@ sex:
   definition: {
     "LongName": "sex",
     "Description": "String value indicating phenotypical sex.",
+    "Format": "string",
     "Levels": {
       "F": "Female",
       "FEMALE": "Female",
@@ -551,29 +528,20 @@ software_filters:
     (for example, `SSS`, `SpatialCompensation`).
     Note that parameters should be defined in the general MEG sidecar .json file.
     Indicate `n/a` in the absence of software filters applied.
-  anyOf:
-    - type: string
-    - type: string
-      enum:
-        - n/a
+  type: string
 source__channels:
   name: source
   display_name: Source name
   description: |
     Name of the source as specified in the `*_optodes.tsv` file.
     `n/a` for channels that do not contain fNIRS signals (for example, acceleration).
-  anyOf:
-    - type: string
-    - type: string
-      enum:
-        - n/a
+  type: string
 source__optodes:
   name: source_type
   display_name: Source type
   description: |
     The type of source. Only to be used if the field `SourceType` in `*_nirs.json` is set to `mixed`.
-  anyOf:
-    - type: string
+  type: string
 species:
   name: species
   display_name: Species
@@ -585,7 +553,8 @@ species:
     `homo sapiens`.
   definition: {
     "Description":
-      "binomial species name from the NCBI Taxonomy (https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi)"
+      "Latin binomial species name from the NCBI Taxonomy (https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi).",
+    "Format": "string",
   }
 status:
   name: status
@@ -599,7 +568,6 @@ status:
   enum:
     - $ref: objects.enums.good.value
     - $ref: objects.enums.bad.value
-    - n/a
 status_description:
   name: status_description
   display_name: Channel status description
@@ -614,7 +582,7 @@ stim_file:
     Represents the location of the stimulus file (such as an image, video, or
     audio file) presented at the given onset time.
     There are no restrictions on the file formats of the stimuli files,
-    but they should be stored in the `/stimuli` directory
+    but they should be stored in the `/stimuli/` directory
     (under the root directory of the dataset; with optional subdirectories).
     The values under the `stim_file` column correspond to a path relative to
     `/stimuli`.
@@ -628,7 +596,8 @@ strain:
     For species different from `homo sapiens`, string value indicating
     the strain of the species, for example: `C57BL/6J`.
   definition: {
-    "Description": "name of the strain of the species"
+    "Description": "Name of the strain of the species.",
+    "Format": "string",
   }
 strain_rrid:
   name: strain_rrid
@@ -671,6 +640,7 @@ trigger:
     continuous measurement of the scanner trigger signal
   definition: {
     "Description": "continuous measurement of the scanner trigger signal",
+    "Format": "number",
     "Units": "arbitrary"
   }
 # type column in channels.tsv files
@@ -746,7 +716,6 @@ type__optodes:
   enum:
     - $ref: objects.enums.source.value
     - $ref: objects.enums.detector.value
-    - n/a
 units:
   name: units
   display_name: Units
@@ -794,6 +763,7 @@ volume_type:
     - $ref: objects.enums.m0scan.value
     - $ref: objects.enums.deltam.value
     - $ref: objects.enums.cbf.value
+    - $ref: objects.enums.noRF.value
 wavelength_nominal:
   name: wavelength_nominal
   display_name: Wavelength nominal
@@ -801,11 +771,7 @@ wavelength_nominal:
     Specified wavelength of light in nm.
     `n/a` for channels that do not contain raw NIRS signals (for example, acceleration).
     This field is equivalent to `/nirs(i)/probe/wavelengths` in the SNIRF specification.
-  anyOf:
-    - type: number
-    - type: string
-      enum:
-        - n/a
+  type: number
 wavelength_actual:
   name: wavelength_actual
   display_name: Wavelength actual
@@ -846,71 +812,43 @@ z:
   display_name: Z position
   description: |
     Recorded position along the z-axis.
-  anyOf:
-    - type: number
-    - type: string
-      enum:
-        - n/a
+  type: number
 x__optodes:
   name: x
   display_name: X position
   description: |
     Recorded position along the x-axis.
     `"n/a"` if not available.
-  anyOf:
-    - type: number
-    - type: string
-      enum:
-        - n/a
+  type: number
 y__optodes:
   name: y
   display_name: Y position
   description: |
     Recorded position along the y-axis.
     `"n/a"` if not available.
-  anyOf:
-    - type: number
-    - type: string
-      enum:
-        - n/a
+  type: number
 z__optodes:
   name: z
   display_name: Z position
   description: |
     Recorded position along the z-axis.
     `"n/a"` if not available.
-  anyOf:
-    - type: number
-    - type: string
-      enum:
-        - n/a
+  type: number
 template_x:
   name: template_x
   display_name: X template position
   description: |
     Assumed or ideal position along the x axis.
-  anyOf:
-    - type: number
-    - type: string
-      enum:
-        - n/a
+  type: number
 template_y:
   name: template_y
   display_name: Y template position
   description: |
     Assumed or ideal position along the y axis.
-  anyOf:
-    - type: number
-    - type: string
-      enum:
-        - n/a
+  type: number
 template_z:
   name: template_z
   display_name: Z template position
   description: |
     Assumed or ideal position along the z axis.
-  anyOf:
-    - type: number
-    - type: string
-      enum:
-        - n/a
+  type: number

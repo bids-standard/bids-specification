@@ -2,22 +2,14 @@ version: 2.1
 jobs:
   build_docs:
     docker:
-      - image: cimg/python:3.12-node
+      - image: cimg/python:3.12
     steps:
       # checkout code to default ~/project
       - checkout
       - run:
-          name: install dependencies
-          command: |
-            python -m venv env
-            source env/bin/activate
-            python -m pip install --upgrade pip
-            pip install -r requirements.txt
-      - run:
           name: generate docs
           command: |
-            source env/bin/activate
-            mkdocs build --clean --strict --verbose
+            uv run mkdocs build --clean --strict --verbose
       - persist_to_workspace:
           # the mkdocs build outputs are in ~/project/site
           root: ~/project
@@ -31,35 +23,30 @@ jobs:
     docker:
       - image: cimg/python:3.12
     steps:
-      # checkout code to default ~/project
       - checkout
       - attach_workspace:
-          # mkdocs build outputs will be in ~/project/site
           at: ~/project
-      - run:
-          name: install linkchecker
-          command: |
-            python -m venv env
-            source env/bin/activate
-            python -m pip install --upgrade pip
-            python -m pip install linkchecker
       - run:
           name: check links
           command: |
-            source env/bin/activate
             git status
             if (! git log -1 --pretty=oneline | grep REL:) ; then
               chmod a+rX -R ~
-              linkchecker -t 1 ~/project/site/
+              uvx linkchecker -t 1 ~/project/site/
               # check external separately by pointing to all *html so no
               # failures for local file:/// -- yoh found no better way,
-              linkchecker -t 1 --check-extern \
+              uvx linkchecker -t 1 --check-extern \
                 --ignore-url 'file:///.*' \
-                --ignore-url 'https://fonts.gstatic.com' \
-                --ignore-url 'https://github.com/bids-standard/bids-specification/(pull|tree)/.*' \
-                --ignore-url 'https://github.com/[^/]*' \
-                --ignore-url 'https://doi.org/.*' \
                 --ignore-url 'https://bids-specification.readthedocs.io/en/stable/.*' \
+                --ignore-url "https://bids-specification.readthedocs.io/en/v${CIRCLE_BRANCH#rel/}/" \
+                --ignore-url 'https://doi.org/.*' \
+                --ignore-url 'https://fonts.gstatic.com' \
+                --ignore-url 'https://github.com/[^/]*' \
+                --ignore-url 'https://github.com/bids-standard/bids-specification/(pull|tree)/.*' \
+                --ignore-url 'https://www.incf.org' \
+                --ignore-url 'https://dicomlookup.com/dicomtags/.*' \
+                --ignore-url 'https://www.instagram.com/bidsstandard/' \
+                --ignore-url 'https://jsoneditoronline.org' \
                 ~/project/site/*html ~/project/site/*/*.html
             else
               echo "Release PR - do nothing"
@@ -72,20 +59,17 @@ jobs:
       # checkout code to default ~/project
       - checkout
       - run:
+          name: install uv
+          command: |
+            curl -LsSf https://astral.sh/uv/install.sh | XDG_BIN_HOME=/usr/local/bin sh
+      - run:
           name: install dependencies
           command: |
-            apt-get update && apt install -y python3-pip python3-venv pandoc
-            python3 -m venv .venv
-            source .venv/bin/activate
-            python3 -m pip install --upgrade pip
-            python3 -m pip install -r  ~/project/requirements.txt
-            python3 -m pip install ~/project/tools/schemacode/[render]
-      - run:
-          name: install font that works with unicode emojis
-          command: apt-get update && apt-get install -y fonts-symbola
+            apt-get update && apt install -y fonts-symbola pandoc
       - run:
           name: generate pdf version docs
           command: |
+            uv sync
             source .venv/bin/activate
             cd ~/project/pdf_build_src
             bash build_pdf.sh

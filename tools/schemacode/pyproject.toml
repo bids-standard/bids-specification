@@ -1,38 +1,156 @@
 [build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
+requires = ["pdm-backend", "acres", "pyyaml"]
+build-backend = "pdm.backend"
+
+[project]
+name = "bidsschematools"
+description = "Python tools for working with the BIDS schema."
+authors = [{ name = "bids-standard developers" }]
+maintainers = [
+  { name = "bids-standard developers", email = "bids.maintenance@gmail.com" },
+]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+  "acres",
+  "click",
+  "pyyaml",
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "License :: OSI Approved :: MIT License",
+  "Intended Audience :: Science/Research",
+  "Topic :: Scientific/Engineering :: Information Analysis",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+validation = [
+  "jsonschema[format]",
+]
+dev = [
+  "bidsschematools[tests]",
+  "ruff",
+]
+expressions = ["pyparsing"]
+render = [
+  "tabulate",
+  "pandas",
+  "markdown-it-py",
+]
+tests = [
+  "bidsschematools[validation,render,expressions]",
+  "check-jsonschema",
+  "codecov",
+  "coverage[toml]",
+  "pytest>6",
+  "pytest-cov",
+]
+all = [
+  "bidsschematools[tests]",
+]
+
+[project.scripts]
+bst = "bidsschematools.__main__:cli"
+
+[project.urls]
+Homepage = "https://github.com/bids-standard/bids-specification"
+
+[tool.pdm.build]
+excludes = [
+  ".gitignore",
+  "**/.gitignore",
+]
 
 [tool.black]
-line-length = 99
-target-version = ['py37']
-include = '\.pyi?$'
-exclude = '''
-(
-  /(
-      \.eggs         # exclude a few common directories in the
-    | \.git          # root of the project
-    | \.github
-    | \.hg
-    | \.pytest_cache
-    | _build
-    | build
-    | dist
-  )/
-)
-'''
-
-[tool.isort]
-profile = "black"
-multi_line_output = 3
+exclude = "*"
 
 [tool.pytest.ini_options]
+addopts = "-ra --strict-markers --strict-config"
+log_cli = true
+log_cli_level = "INFO"
 markers = [
   "validate_schema: tests that validate the schema itself",
+]
+minversion = "6.0"
+xfail_strict = true
+
+
+[tool.coverage.paths]
+source = [
+  "src/bidsschematools",
+  "**/site-packages/bidsschematools",
 ]
 
 [tool.coverage.run]
 parallel = true
-omit = [
-  "*/*/tests/*",
-  "**/tests/*"
+
+[tool.coverage.report]
+exclude_also = [
+  "if.*TYPE_CHECKING:",
 ]
+
+# Release process:
+# cd tools/schemacode
+# uvx bump-my-version bump pre_label --tag
+# [inspect result]
+# git push upstream <current-branch> --tags
+# uvx bump-my-version bump <patch|minor|major>
+# git push upstream <current-branch>
+[tool.bumpversion]
+current_version = "1.2.0-dev"
+parse = """(?x)
+    (?P<major>[0-9]+)
+    \\.(?P<minor>[0-9]+)
+    \\.(?P<patch>[0-9]+)
+    (?:-(?P<pre_label>dev))?
+"""
+serialize = ["{major}.{minor}.{patch}-{pre_label}", "{major}.{minor}.{patch}"]
+commit = true
+message = "chore: Bump schema package to {new_version}"
+# Use --tag on releases
+tag = false
+tag_name = "schema-{new_version}"
+tag_message = "Schema release {new_version}"
+
+[tool.bumpversion.parts.pre_label]
+values = ["dev", "final"]
+optional_value = "final"
+
+[[tool.bumpversion.files]]
+filename = "../../src/schema/SCHEMA_VERSION"
+
+[tool.ruff]
+line-length = 99
+
+[tool.ruff.lint]
+select = [
+  "E",   # pycodestyle errors
+  "W",   # pycodestyle warnings
+  "F",   # pyflakes
+  "PLE", # pylint errors
+  "I",   # isort
+  "LOG", # flake8-logging
+  "G",   # flake8-logging-format
+  "Q",   # flake8-quotes
+  "YTT", # flake8-2020
+  "ISC", # implicit-string-concatenation
+  "UP",  # pyupgrade
+
+  # Intend to evaluate these for inclusion
+  # "PD",  # pandas-vet
+  # "B",  # flake8-bugbear (likely bugs)
+  # "S",  # flake8-bandit (security)
+  # "N",  # pep8-naming (naming conventions)
+  # "C4",  # flake8-comprehensions (comprehension)
+  # "PLW",  # pylint warnings
+]
+
+[tool.ruff.lint.extend-per-file-ignores]
+"*/__init__.py" = ["F401"]

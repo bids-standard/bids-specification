@@ -74,6 +74,14 @@
 # General expressions
 - expression: 1 + 2
   result: 3
+- expression: 1 - 2
+  result: -1
+- expression: 3 * 4
+  result: 12
+- expression: 3 / 2
+  result: 1.5
+- expression: 3 % 2
+  result: 1
 - expression: '"cat" + "dog"'
   result: 'catdog'
 - expression: match('string', '.*')
@@ -93,7 +101,7 @@
 - expression: type(true)
   result: 'boolean'
 - expression: intersects([1], [1, 2])
-  result: true
+  result: [1]
 - expression: intersects([1], [])
   result: false
 - expression: length([1, 2, 3])

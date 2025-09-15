@@ -1,0 +1,24 @@
+---
+mrs:
+  suffixes:
+    - svs
+    - mrsi
+    - unloc
+    - mrsref
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  datatypes:
+    - mrs
+  entities:
+    subject: required
+    session: optional
+    task: optional
+    acquisition: optional
+    reconstruction: optional
+    run: optional
+    echo: optional
+    inversion: optional
+    nucleus: optional
+    volume: optional
