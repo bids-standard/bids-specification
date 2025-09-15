@@ -1,0 +1,17 @@
+EyetrackingStimulusPresentation:
+  issue:
+    code: INCOMPLETE_STIMULUS_PRESENTATION
+    level: error
+    message: |
+      `StimulusPresentation` metadata for the events file associated with {path}
+      ({associations.events.path}) must have `ScreenDistance`, `ScreenOrigin`,
+      `ScreenResolution` and `ScreenSize` fields.
+  selectors:
+    - suffix == 'physio'
+    - extension == ['.tsv.gz']
+    - sidecar.PhysioType == 'eyetrack'
+  checks:
+    - '"ScreenDistance" in associations.events.sidecar.StimulusPresentation'
+    - '"ScreenOrigin" in associations.events.sidecar.StimulusPresentation'
+    - '"ScreenResolution" in associations.events.sidecar.StimulusPresentation'
+    - '"ScreenSize" in associations.events.sidecar.StimulusPresentation'

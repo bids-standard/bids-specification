@@ -12,10 +12,3 @@ StimulusPresentation:
   fields:
     StimulusPresentation: recommended
     VisionCorrection: optional
-
-StimulusPresentation__eyetrack:
-  selectors:
-    - suffix == "events"
-    - associations.physio.sidecar.PhysioType == "eyetrack"
-  fields:
-    StimulusPresentation__eyetrack: required
