@@ -11,8 +11,8 @@ MRSInstitutionInformation:
     - modality == "mrs"
     - match(extension, "^\.nii(\.gz)?$")
   fields:
-    InstitutionAddress: recommended
     InstitutionName: recommended
+    InstitutionAddress: recommended
     InstitutionalDepartmentName: recommended
 
 MRSScannerHardware:
