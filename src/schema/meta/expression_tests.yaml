@@ -149,3 +149,7 @@
   result: [52, -4, 3, 8, 9]
 - expression: unique(["52", "-4", "3", "8", "-4", "52", "9"])
   result: ["52", "-4", "3", "8", "9"]
+- expression: unique([1, 1.0])
+  result: [1]
+- expression: unique([1.0, 1])
+  result: [1.0]
