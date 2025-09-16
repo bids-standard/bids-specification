@@ -46,6 +46,8 @@
   result: null
 - expression: length(null)
   result: null
+- expression: unique(null)
+  result: null
 - expression: type(null)
   result: 'null'
 - expression: null == false
@@ -141,3 +143,9 @@
   result: 3
 - expression: '"string"[0]'
   result: 's'
+- expression: unique([])
+  result: []
+- expression: unique([52, -4, 3, 8, -4, 52, 9])
+  result: [52, -4, 3, 8, 9]
+- expression: unique(["52", "-4", "3", "8", "-4", "52", "9"])
+  result: ["52", "-4", "3", "8", "9"]
