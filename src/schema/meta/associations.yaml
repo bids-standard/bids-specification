@@ -103,7 +103,6 @@ electrodes:
 
 physio:
   selectors:
-    - 'task in entities'
     - extension != '.json'
   target:
     suffix: physio
