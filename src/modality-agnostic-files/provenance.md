@@ -397,9 +397,6 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_subobject_table("metadata.Environments.items") }}
 
-!!! bug
-    TODO: Environment not currently defined in the context
-
 ## Consistency and uniqueness of Ids
 
 The following rules and conventions are provided in order to have consistent, human readable, and explicit [IRIs](https://www.w3.org/TR/json-ld11/#iris) as `Id` for `Entity` provenance records.

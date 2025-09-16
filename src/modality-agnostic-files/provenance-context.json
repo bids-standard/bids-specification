@@ -39,9 +39,8 @@
           "@type": "@id"
         },
         "Entities": "prov:Entity",
-        "Entity": "prov:Entity",
+        "Environments": "prov:Entity",
         "Activities": "prov:Activity",
-        "Activity": "prov:Activity",
         "Software": "prov:SoftwareAgent",
         "Atlocation": "prov:atLocation"
     }
