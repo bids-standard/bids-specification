@@ -525,7 +525,7 @@ onset	duration	response_time	trial_type	trial_extra
     are not part of the tabular data file's content.
 
 Tabular files MAY be optionally accompanied by a simple data dictionary
-in the form of a JSON [object](https://www.json.org/json-en.html)
+in the form of a [JSON object](https://www.json.org/json-en.html)
 within a JSON file.
 The JSON files containing the data dictionaries MUST have the same name as
 their corresponding tabular files but with `.json` extensions.
@@ -535,12 +535,6 @@ it MAY contain one or more fields describing the columns found in the TSV file
 Note that if a field name included in the data dictionary matches a column name in the TSV file,
 then that field MUST contain a description of the corresponding column,
 using an object containing the following fields:
-
-!!! success "Guideline 1"
-
-    For [best tabular phenotypic data](./appendices/phenotype.md):
-    Each tabular phenotypic data TSV file MUST be accompanied by
-    a corresponding data dictionary JSON file.
 
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in

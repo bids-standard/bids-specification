@@ -42,6 +42,7 @@ and a guide for using macros can be found at
       "DatasetDOI": "OPTIONAL",
       "GeneratedBy": "RECOMMENDED",
       "SourceDatasets": "RECOMMENDED",
+      "AdditionalValidation": "OPTIONAL",
    }
 ) }}
 
@@ -163,6 +164,19 @@ Example:
   ]
 }
 ```
+
+### Additional validation
+
+The `AdditionalValidation` key MAY be used to opt into additional validation
+to be performed on the dataset beyond standard BIDS validation.
+The value of this field is either a string or an array of strings,
+each of which MUST be the name of a supported additional validation to be performed.
+
+The currently supported values are:
+
+| **Value**     | **Description**                                                                                                        |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `"Phenotype"` | Stricter validation for tabular phenotypic data, as described in the [phenotype appendix](../appendices/phenotype.md). |
 
 ## `README`
 

@@ -53,6 +53,9 @@ to date of birth.
 
 ```JSON
 {
+    "participant_id": {
+        "Description": "participant identifier"
+    },
     "age": {
         "Description": "age of the participant",
         "Units": "year"
@@ -80,6 +83,14 @@ to date of birth.
     }
 }
 ```
+
+It is RECOMMENDED to use the `age` column to record participant age
+at every session in longitudinal or multi-session data sets.
+This reduces data duplication across tabular data files. The `Units` of `age`
+do not have to be years so long as the units of the age
+are written in `participants.json`.
+Consider participant privacy or study objectives when selecting
+the `Units` of `age` or the accuracy of `age` data.
 
 ## Samples file
 
@@ -131,43 +142,6 @@ It is RECOMMENDED to accompany each `samples.tsv` file with a sidecar
     }
 }
 ```
-
-## Demographics file
-
-Template:
-
-```Text
-phenotype/
-    demographics.tsv
-    demographics.json
-```
-
-The demographics file is an OPTIONAL tabular phenotypic file in
-the `phenotype/` directory meant to house common subject demographics.
-For example demographics like age, gender, race, and household income.
-A demographics file is RECOMMENDED to use when any participant has
-more than one session of any type.
-It does not replace the participants file, which is meant for unchanging data about
-each participant in the data set. It is instead a superset of the participants file,
-centralizing demographics across as many sessions as are available.
-
-!!! success "Guideline 5"
-
-    For [best tabular phenotypic data](../appendices/phenotype.md):
-    Some studies collect demographics into their own
-    tabular phenotypic data file already. In these cases, it is RECOMMENDED
-    to house this data also in the demographics file.
-
-!!! success "Guideline 6"
-
-    For [best tabular phenotypic data](../appendices/phenotype.md):
-    It is RECOMMENDED to use the `age` column to record participant age
-    at every session in longitudinal or multi-session data sets.
-    This reduces data duplication across tabular data files. The `Units` of `age`
-    do not have to be years so long as the units of the age
-    are written in `phenotype/demographics.json`.
-    Consider participant privacy or study objectives when selecting
-    the `Units` of `age` or the accuracy of `age` data.
 
 ## Scans file
 
@@ -236,12 +210,12 @@ meg/sub-control01_task-rest_split-02_meg.nii.gz	1877-06-15T12:15:27
 
 ## Sessions file
 
-Template A (segregated sessions files):
+### Option 1: Segregated sessions files
 
 ```Text
-[sessions.json]
 sub-<label>/
     sub-<label>_sessions.tsv
+    [sub-<label>_sessions.json]
 ```
 
 Optional: Yes
@@ -270,7 +244,7 @@ ses-postdrug	2009-06-16T13:45:30	100
 ses-followup	2009-06-17T13:45:30	110
 ```
 
-Template B (aggregated sessions file):
+### Option 2: Aggregated sessions file
 
 ```Text
 sessions.tsv
@@ -285,7 +259,7 @@ a `participant_id` column followed immediately after by a `session_id` column.
 The intent of this root-level sessions file is to describe the sessions
 in a data set and non-demographic variables changing between sessions.
 Participant's demographic variables should be added to
-a [demographics file](#demographics-file), as described above.
+the [participants file](#participants-file), as described above.
 
 `sessions.tsv` example:
 
@@ -300,32 +274,59 @@ sub-03	ses-postdrug	2009-06-30T14:06:40	115
 sub-03	ses-followup	2009-07-01T14:06:40	120
 ```
 
-!!! success "Guideline 7"
+`sessions.json` example:
 
-    For [best tabular phenotypic data](../appendices/phenotype.md):
-    If there is more than one session for any one participant, then it is
+```JSON
+{
+    "participant_id": {
+        "Description": "Participant identifier"
+    },
+    "session_id": {
+        "Description": "Session identifier for the session",
+        "Levels": {
+            "ses-predrug": "session before drug administration",
+            "ses-postdrug": "session after drug administration",
+            "ses-followup": "follow-up session"
+        }
+    },
+    "acq_time": {
+        "Description": "Acquisition time of the session"
+    },
+    "systolic_blood_pressure": {
+        "Description": "Systolic blood pressure measured at the beginning of the session in mmHg"
+    }
+}
+```
+
+### Additional validation
+
+When the [`AdditionalValidation` key](dataset-description.md#additional-validation)
+contains `"Phenotype"` in the `dataset_description.json`,
+the following expectations apply to sessions files.
+
+1.  If there is more than one session for any one participant, then it is
     REQUIRED to provide a sessions file at the dataset root.
     The sessions file MUST list all sessions for all subjects
-    across imaging and tabular phenotypic data.
-
-    When a sessions file is in use, you MUST NOT provide additional sessions
-    files at the participant-level which would otherwise use
-    the inheritance principle. If a sessions file is provided, then
+    across imaging and tabular phenotypic data. If a sessions file is provided, then
     it MUST begin with a `participant_id` column followed immediately by
     a `session_id` column. The data dictionary JSON file's `session_id` field
     MUST include `Levels` with the description of each `session_id`.
 
-!!! success "Guideline 8"
+1.  When a sessions file is in use, you MUST NOT provide additional sessions
+    files at the participant-level which would otherwise use
+    the inheritance principle.
 
-    For [best tabular phenotypic data](../appendices/phenotype.md):
-    Whenever possible, it is RECOMMENDED to also collect acquisition time
+1.  Whenever possible, it is RECOMMENDED to also collect acquisition time
     for tabular phenotypic data and store the time of acquisition of each row
     inside a column named `acq_time` in the sessions file.
     This is consistent with how acquisition time is recorded for MRI data
     and other time-sensitive measurements (for example systolic blood pressure).
 
-    When it is needed to preserve participant privacy, you SHOULD record
+1.  When it is needed to preserve participant privacy, you SHOULD record
     relative acquisition times with respect to the earliest session.
     Relative session acquisition times MAY be listed as durations from
     the earliest session (baseline) in days, months, or years
     using the `acq_time` column.
+
+To read more about the guidelines for tabular phenotypic data and examples,
+see the [Tabular phenotypic data guidelines appendix](../appendices/phenotype.md).

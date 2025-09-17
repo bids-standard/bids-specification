@@ -19,6 +19,7 @@ dataset_description:
     DatasetDOI: optional
     GeneratedBy: recommended
     SourceDatasets: recommended
+    AdditionalValidation: optional
 
 dataset_authors:
   selectors:

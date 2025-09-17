@@ -68,19 +68,23 @@ participants:
   display_name: Participant Information
   file_type: regular
   description: |
-    The purpose of this RECOMMENDED file is to describe unchanging properties of participants
+    The purpose of this RECOMMENDED file is to describe properties of participants
     such as sex, species, and strain.
     If this file exists, it MUST contain the column `participant_id`,
     which MUST consist of `sub-<label>` values identifying one row for each participant,
     followed by a list of optional columns describing participants.
-    Each participant MUST be described by one and only one row.
-    For participants with multiple sessions, see
-    the [sessions file](SPEC_ROOT/modality-agnostic-files/data-summary-files.md#sessions-file)
-    and [demographics file](SPEC_ROOT/modality-agnostic-files/data-summary-files.md#demographics-file) sections.
+    For participants with multiple sessions, the `session_id` column MAY be used
+    and, when present, MUST be the second column in the file.
+    Each pairing of `participant_id` and `session_id` MUST be unique.
+    When `session_id` is not in use, each participant MUST be described by one and only one row.
 
     The `participant_id` entries MUST be a superset of all subject directories
     and all `participant_id` entries found among phenotypic and assessment data
     in the `phenotype/` directory.
+    When in use, the `session_id` entries MUST be a superset of all session directories,
+    all tabular phenotypic `session_id` entries found among phenotypic and assessment data
+    in the `phenotype/` directory, and all `session_id` entries found in the
+    [sessions file(s)](SPEC_ROOT/modality-agnostic-files/data-summary-files.md#sessions-file).
 
     Commonly used *optional* columns in `participants.tsv` files are `age`, `sex`,
     `handedness`, `strain`, and `strain_rrid`.

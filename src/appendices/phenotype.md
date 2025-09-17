@@ -1,30 +1,37 @@
 # Tabular phenotypic data guidelines
 
-This appendix is a collection of guidelines and examples for creating well-organized aggregated tabular phenotypic data.
+This appendix is a collection of guidelines and examples
+for creating well-organized aggregated tabular phenotypic data.
 
 ## Guidelines
 
-These guidelines are all **RECOMMENDED** when preparing
-tabular phenotypic data like the
-participants file, sessions file, demographics file,
-or phenotypic and assessment data.
-The language below uses REQUIRED, MUST, and others to imply
-these are the requirements for these **RECOMMENDED** guidelines.
+These guidelines all apply when the
+[`AdditionalValidation` key](dataset-description.md#additional-validation)
+contains `"Phenotype"` in the `dataset_description.json`.
+They are intended to improve the organization and clarity of
+tabular phenotypic data like the participants file, sessions file,
+and phenotypic and assessment data.
 
-### 1. Always pair tabular data with data dictionaries
+### 1. Aggregate data across sessions
+
+Aggregation refers to the contents of the TSV file. It is REQUIRED
+to collect all participant data into one TSV per tabular phenotypic file.
+
+### 2. Always pair tabular data with data dictionaries
 
 Tabular phenotypic data MUST be prepared as one pair of a tabular file
 in tab-separated value (TSV) format and a corresponding data dictionary
 in JavaScript Object Notation (JSON) format.
 
-### 2. Aggregate data across sessions
+### 3. Add `MeasurementToolMetadata` to each tabular phenotypic measurement tool
 
-Aggregation refers to the contents of the TSV file. It is REQUIRED
-to collect all participant data into one TSV per tabular phenotypic file.
+Whenever possible, it is RECOMMENDED to add `MeasurementToolMetadata` to
+each `phenotype/<measurement_tool_name>.json` data dictionary.
+This improves reusability and provides clarity about the measurement tool.
 
-### 3. Ensure minimal annotation for phenotypic and assessment data
+### 4. Ensure minimal annotation for phenotypic and assessment data
 
-In phenotypic and assessment data each measurement tool has an independent
+In phenotypic and assessment data each measurement tool SHOULD have an independent
 aggregated data TSV file in which the user collects all subjects, sessions,
 and/or runs of data as one entry per row (with a row defined by
 the smallest unit of acquisition). In other words:
@@ -32,16 +39,16 @@ the smallest unit of acquisition). In other words:
 1.  Each row MUST start with `participant_id`.
 
 1.  Each TSV file MUST contain a `session_id` column when
-  multiple [sessions](../glossary.md#session-entities)[^1] are present
-  in the data set regardless of whether those sessions are in
-  the `phenotype/` data, `sub-<label>/` data, or a combination of the two.
+    multiple [sessions](../glossary.md#session-entities)[^1] are present
+    in the data set regardless of whether those sessions are in
+    the `phenotype/` data, `sub-<label>/` data, or a combination of the two.
 
 1.  If more than one of the same measurement tool is acquired within
-  the same `session_id`, a `run_id` column MUST be added.
+    the same `session_id`, a `run_id` column MUST be added.
 
 1.  To encode the acquisition time for a measurement tool’s `session_id`,
-  add the `session_id` to the sessions file and
-  include the OPTIONAL `acq_time` column.
+    add the `session_id` to the sessions file and
+    include the OPTIONAL `acq_time` column.
 
 #### To summarize this guideline as a table
 
@@ -65,41 +72,30 @@ as needed according to the smallest unit of acquisition.
 The combination of values in the `participant_id`, `session_id`, and `run_id` (if present)
 columns MUST be unique for the entire tabular file.
 
-### 4. Add `MeasurementToolMetadata` to each tabular phenotypic measurement tool
-
-Whenever possible, it is RECOMMENDED to add `MeasurementToolMetadata` to
-each `phenotype/<measurement_tool_name>.json` data dictionary.
-This improves reusability and provides clarity about the measurement tool.
-
-### 5. Use the demographics file for common variables about participants
-
-Some studies collect demographics into their own tabular phenotypic data file already.
-In these cases, it is RECOMMENDED to house this data in the `phenotype/` directory
-as a TSV called `demographics.tsv` and its corresponding data dictionary JSON
-called `demographics.json`.
-
-### 6. Store longitudinal age in the demographics file
+### 5. Store longitudinal age in the participants file
 
 It is RECOMMENDED to use the `age` column to record participant age
 at every session in longitudinal or multi-session data sets.
 This reduces data duplication across tabular data files. The `Units` of `age`
 do not have to be years so long as the units of the age
-are written in `phenotype/demographics.json`.
+are written in `participants.json`.
 Consider participant privacy or study objectives when selecting
 the `Units` of `age` or the accuracy of `age` data.
 
-### 7. Use the sessions file at the root level
+### 6. Use the sessions file at the root-level
 
 If there is more than one session for any one participant, then
 it is REQUIRED to provide a sessions file at the dataset root.
 The sessions file MUST list all sessions for all subjects across
 imaging and tabular phenotypic data.
-
-When a sessions file is in use, you MUST NOT provide additional sessions files
-at the participant-level which would otherwise use the inheritance principle.
 If a sessions file is provided, then it MUST begin with a `participant_id` column
 followed immediately by a `session_id` column. The data dictionary JSON file’s
 `session_id` field MUST include `Levels` with the description of each `session_id`.
+
+### 7. Use either root-level sessions file or participant-level sessions files
+
+When a sessions file is in use, you MUST NOT provide additional sessions files
+at the participant-level which would otherwise use the inheritance principle.
 
 ### 8. Record acquisition time of sessions with `acq_time`
 
@@ -109,6 +105,8 @@ inside a column named `acq_time` in the sessions file.
 This is consistent with how acquisition time is recorded for MRI data
 and other time-sensitive measurements (for example systolic blood pressure).
 
+### 9. Respect participant privacy when recording acquisition times
+
 When needed to preserve participant privacy, you SHOULD record
 relative acquisition times with respect to the earliest session.
 Relative session acquisition times MAY be listed as durations from
@@ -117,7 +115,7 @@ using the `acq_time` column.
 
 ## Summary
 
-This appendix described seven guidelines for best tabular phenotypic data.
+This appendix described guidelines for best tabular phenotypic data.
 A short summary table here describes when to use which files.
 
 | File                           | Single session data | Multiple session data |
@@ -125,7 +123,6 @@ A short summary table here describes when to use which files.
 | Participants                   | RECOMMENDED         | RECOMMENDED           |
 | Phenotypic and assessment data | RECOMMENDED         | RECOMMENDED           |
 | Sessions                       | OPTIONAL            | REQUIRED              |
-| Demographics                   | OPTIONAL            | RECOMMENDED           |
 
 ## Examples
 

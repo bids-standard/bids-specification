@@ -9,6 +9,7 @@ Participants:
       level: required
       description_addendum: |
         There MUST be exactly one row for each participant.
+    session_id: recommended
     species: recommended
     age: recommended
     sex: recommended
@@ -16,7 +17,7 @@ Participants:
     strain: recommended
     strain_rrid: recommended
     HED: optional
-  index_columns: [participant_id]
+  index_columns: [participant_id, session_id]
   additional_columns: allowed
 
 Phenotypes:
