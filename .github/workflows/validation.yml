@@ -67,3 +67,5 @@ jobs:
       - uses: astral-sh/setup-uv@v6
       - name: Validate CITATION.cff
         run: uvx cffconvert --validate
+      - name: Check for Zenodo compatibility
+        run: uv run tools/validate_citation.py

@@ -962,7 +962,7 @@ The dataset root is the nearest parent directory that contains a valid
 `dataset_description.json`.
 
 All other dataset names MUST be specified in the `DatasetLinks` object in
-[dataset_description.json][], which maps dataset names to URIs that point
+[dataset_description.json][dataset-description], which maps dataset names to URIs that point
 to BIDS dataset locations.
 If the scheme is omitted from a URI in `DatasetLinks`,
 that path is resolved relative to the current dataset root
@@ -1159,8 +1159,7 @@ to suppress warnings or provide interpretations of your filenames.
 
 <!-- Link Definitions -->
 
-[dataset-description]: modality-agnostic-files/data-summary-files.md
-[dataset_description.json]: modality-agnostic-files/data-summary-files.md#dataset_descriptionjson
-[derived-dataset-description]: modality-agnostic-files/data-summary-files.md#derived-dataset-and-pipeline-description
+[dataset-description]: modality-agnostic-files/dataset-description.md#dataset_descriptionjson
+[derived-dataset-description]: modality-agnostic-files/dataset-description.md#derived-dataset-and-pipeline-description
 [deprecated]: #definitions
 [uris]: #uniform-resource-indicator
