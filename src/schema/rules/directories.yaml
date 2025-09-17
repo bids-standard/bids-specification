@@ -23,6 +23,7 @@ study:
       - docs
       - derivatives
       - logs
+      - scratch
       - sourcedata
   code:
     name: code
@@ -38,6 +39,10 @@ study:
     opaque: true
   logs:
     name: logs
+    level: optional
+    opaque: true
+  scratch:
+    name: scratch
     level: optional
     opaque: true
   sourcedata:
