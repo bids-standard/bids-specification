@@ -6,7 +6,7 @@ for creating well-organized aggregated tabular phenotypic data.
 ## Guidelines
 
 These guidelines all apply when the
-[`AdditionalValidation` key](dataset-description.md#additional-validation)
+[`AdditionalValidation` key](../modality-agnostic-files/dataset-description.md#additional-validation)
 contains `"Phenotype"` in the `dataset_description.json`.
 They are intended to improve the organization and clarity of
 tabular phenotypic data like the participants file, sessions file,
