@@ -269,7 +269,7 @@ This file contains the following information:
 #### Example *_electrodes.tsv
 
 ```tsv
-electrode_id	probe_id	impedance	x	y	z	material	location
+electrode_id	probe_id	impedance	x  y  z  material	location
 e0123	p01	1.1	-11.87	-1.30	-3.37	iridium-oxide	V1
 e234	p01	1.5	-11.64	0.51	-4.20	iridium-oxide	V2
 e934	p02	3.5	-12.11	-3.12	-2.54	iridium-oxide	V4
@@ -296,6 +296,22 @@ The `ProbeInterface` model corresponding to your probe can be referenced using:
 For example, you could use `probeinterface_manufacturer: "neuronexus"` and `probeinterface_model: "A1x32-Poly3-10mm-50-177"` to specify a NeuroNexus A1x32 probe.
 
 If the probe is not listed in the ProbeInterface library, you SHOULD define it using the [ProbeInterface format](https://probeinterface.readthedocs.io/en/latest/format_spec.html) and include it in a directory called `probes/` in the root of the dataset. Probes defined within the `probes/` directory MUST follow the naming convention `probeinterface_<manufacturer>_<model>.json` and comply with the [ProbeInterface specification](https://probeinterface.readthedocs.io/en/latest/format_spec.html) and [JSON schema](https://raw.githubusercontent.com/SpikeInterface/probeinterface/refs/heads/main/src/probeinterface/schema/probe.json.schema).
+
+For example:
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+   {
+   "probes": {
+      "probeinterface_neuronexus_A4x8-5mm-100-200-177.json": "",
+      "probeinterface_plexon_1S256.json": "",
+      "...": "",
+      },
+   }
+) }}
 
 {{ MACROS___make_columns_table("microephys.microephysProbes") }}
 
@@ -374,52 +390,163 @@ Proper understanding and application of these angles is critical for accurate pr
 The coordinate system conventions and angle definitions presented in this section are adapted from the [BrainSTEM documentation](https://support.brainstem.org/datamodel/schemas/coordinates/).
 
 
-<!-- ## Coordinate System JSON (`*_coordsystem.json`) & Photos of electrode positions (`_photo.jpg`)
+## Coordinate System JSON (`*_coordsystem.json`)
 
-This file provides metadata on the coordinate system in which the electrodes are placed.
-This file is **RECOMMENDED**, and the listed required fields below MUST be included if a `*_coordsystem.json` file is provided.
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the directory
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filename_template("raw", datatypes=["icephys", "ecephys"], suffixes=["coordsystem"]) }}
 
-The coordinate system can be defined using reference pictures, anatomical landmarks, brain images, or a reference atlas or volume.
-For more details, see the [BIDS Coordinate Systems specifications](../appendices/coordinate-systems.md).
+This `*_coordsystem.json` file contains the coordinate system in which electrode
+positions are expressed. The associated MRI, CT, X-Ray, or operative photo can
+also be specified.
 
-Fields relating to the microephys probe and electrode positions:
+This file is **OPTIONAL** when electrode positions are probe-relative (default case).
+This file is **REQUIRED** when electrode positions are expressed in an absolute coordinate system.
+When provided, the [`space-<label>`](../appendices/entities.md#space) entity is **REQUIRED** in the filename to specify the coordinate system reference.
+
+General fields:
+
+<!--
+This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_json_table("json.microephys.microephysCoordsystemGeneral") }}
+
+Fields relating to the microelectrode electrophysiology electrode positions:
+
+<!--
+This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_json_table("json.microephys.microephysCoordsystemPositions") }}
+
+`*_coordsystem.json` files SHOULD NOT be duplicated for each data file,
+for example, across multiple tasks.
+The [inheritance principle](../common-principles.md#the-inheritance-principle) MUST
+be used to find the appropriate coordinate system description for a given data file.
+If electrodes are repositioned, it is RECOMMENDED to use multiple sessions to indicate this.
+
+### Default probe-relative coordinate systems
+
+Microelectrode electrophysiology allows for electrode positions to be
+specified without an accompanying `*_coordsystem.json` file. In this case, electrode positions
+in `*_electrodes.tsv` are assumed to be **probe-relative coordinates**:
+
+-   The origin (0, 0, 0) is at the probe tip or a standard reference point on the probe
+<!-- TODO: Unsure if this reference is what we discussed in the surgical coordinate system -->
+-   The `x`, `y`, and `z` coordinates describe electrode positions relative to this probe reference
+- This the most common case for in-vivo recordings where electrodes are not localized in a 3D anatomical space
+
+### Recommended 3D coordinate systems
+
+It is preferred that electrodes are localized in a 3D coordinate system (with
+respect to anatomical reference images, stereotactic coordinates, or in a
+standard space as specified in the BIDS [Coordinate Systems Appendix](../appendices/coordinate-systems.md)
+about preferred names of coordinate systems, such as StereoTaxic).
 
 ### Allowed 2D coordinate systems
 
-If electrodes are localized in 2D space (only `x` and `y` are specified, and `z` is `"n/a"`),
-then the positions in this file MUST correspond to the locations expressed in pixels on the
-photo, drawing, or rendering of the electrodes on the brain.
-
+If electrodes are localized in 2D space (only x and y are specified and z is `"n/a"`),
+then the positions in this file MUST correspond to the locations expressed
+in pixels on the photo/drawing/rendering of the electrodes on the brain.
 In this case, `MicroephysCoordinateSystem` MUST be defined as `"Pixels"`,
-and `MicroephysCoordinateUnits` MUST be defined as `"pixels"` (note the difference in capitalization).
+and `MicroephysCoordinateUnits` MUST be defined as `"pixels"`
+(note the difference in capitalization).
+Furthermore, the coordinates MUST be (row,column) pairs,
+with (0,0) corresponding to the upper left pixel and (N,0) corresponding to the lower left pixel.
 
-Furthermore, the coordinates MUST be `(row,column)` pairs,
-with `(0,0)` corresponding to the upper-left pixel and `(N,0)` corresponding to the lower-left pixel. -->
+### Multiple coordinate systems
 
-<!-- ### Photos of the electrode positions (`*_photo.jpg`)
+If electrode positions are known in multiple coordinate systems (for example, probe-relative, StereoTaxic,
+and AllenCCFv3), these spaces can be distinguished by the optional [`space-<label>`](../appendices/entities.md#space)
+field, see the [`*_electrodes.tsv`-section](#electrodes-description-_electrodestsv)
+for more information.
+Note that the [`space-<label>`](../appendices/entities.md#space) fields must correspond
+between `*_electrodes.tsv` and `*_coordsystem.json` if they refer to the same
+data.
 
-These can include photos of the electrodes on the brain surface,
-photos of anatomical features or landmarks (such as sulcal structures), and fiducials.
-Photos can also include an X-ray picture, a flatbed scan of a schematic drawing made during surgery,
-or screenshots of a brain rendering with electrode positions.
+For examples:
+-   `*_space-StereoTaxic` (electrodes are localized in stereotactic coordinate system with bregma origin)
+  <!-- TODO: Add 'StereoTaxic', 'AllenCCFv3', 'PaxinosWatson', etc coordinate systems to appendix coordinate-systems.md under "Microelectrode Electrophysiology Specific Coordinate Systems" with appropriate definitions for each standard reference frame used in animal electrophysiology -->
+-   `*_space-individual` (electrodes are localized in subject-specific anatomical coordinate system)
+-   `*_space-AllenCCFv3` (electrodes are mapped to Allen Common Coordinate Framework v3)
+-   `*_space-PaxinosWatson` (electrodes are mapped to Paxinos-Watson rat brain atlas coordinates)
 
+When referring to the `*_electrodes.tsv` file in a certain _space_ as defined
+above, the [`space-<label>`](../appendices/entities.md#space) of the accompanying `*_coordsystem.json` MUST
+correspond.
+
+For example:
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "sub-01_electrodes.tsv": "",
+      "sub-01_space-StereoTaxic_electrodes.tsv": "",
+      "sub-01_space-StereoTaxic_coordsystem.json": "",
+      "...": "",
+      },
+   }
+) }}
+
+The order of the required columns in the `*_electrodes.tsv` file MUST be as listed below.
+The `x`, `y`, and `z` columns indicate the positions of the center of each electrode in Cartesian coordinates.
+Units are specified in `*_coordsystem.json`.
+
+!!! note "Coordinate system requirement"
+    If a `*_space-<label>_coordsystem.json` file exists, a corresponding `*_space-<label>_electrodes.tsv` file with the same space label MUST also be present.
+
+## Photos of the electrode positions (`*_photo.<extension>`)
+
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the directory
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filename_template("raw", datatypes=["icephys", "ecephys"], suffixes=["photo"]) }}
+
+These can include photos of the electrodes on the brain surface, photos of
+anatomical features or landmarks (such as cortical vasculature, stereotactic coordinates), and fiducials. Photos
+can also include histological sections showing electrode tracks, microscope images of electrode placements,
+or screenshots of a brain atlas with electrode positions.
 The photos may need to be cropped and/or blurred to conceal identifying features
-or entirely omitted prior to sharing, depending on the obtained consent.
+or entirely omitted prior to sharing, depending on obtained consent and institutional protocols.
 
-If there are photos of the electrodes, the [`_acq-<label>`](../appendices/entities.md#acq) entity should be specified with:
+If there are photos of the electrodes, the [`acq-<label>`](../appendices/entities.md#acq) entity should be specified
+with:
 
--   `*_photo.jpg` for an operative photo.
--   `*_acq-xray#_photo.<extension>` for an X-ray picture.
--   `*_acq-drawing#_photo.<extension>` for a drawing or sketch of electrode placements.
--   `*_acq-render#_photo.<extension>` for a rendering.
+-   `*_photo.<extension>` in case of an operative or in-vivo photo
 
-The file `<extension>` for photos MUST be either `.jpg`, `.png`, or `.tif`.
+-   `*_acq-<label>_photo.<extension>` where `<label>` describes the acquisition type (for example: `histology` for histological sections showing electrode tracks, `microscopy` for microscope images of electrode placements, `atlas` for screenshots showing electrodes overlaid on brain atlas)
 
-The [`ses-<label>`](../appendices/entities.md#ses) entity may be used to specify when the photo was taken. -->
+-   `*_acq-drawing#_photo.<extension>` in case of a drawing or sketch of electrode placements
 
-<!-- ## **Multiple coordinate systems**
+The [`ses-<label>`](../appendices/entities.md#ses) entity may be used to specify when the photo was taken.
 
-The optional [`space-<label>`](../appendices/entities.md#space) entity (`*[_space-<label>]_coordsystem.json`) can be used to indicate how to interpret the electrode positions. The space `<label>` MUST be taken from one of the modality specific lists in the [Coordinate Systems Appendix](../appendices/coordinate-systems.md). For example for iEEG data, the restricted keywords listed under [iEEG Specific Coordinate Systems](../appendices/coordinate-systems.md#ieeg-specific-coordinate-systems) are acceptable for `<label>`. -->
+The [`sample-<label>`](../appendices/entities.md#sample) entity may be used to specify the tissue sample for histological photos.
+
+The [`space-<label>`](../appendices/entities.md#space) entity may be used to specify the coordinate system for atlas overlay photos.
 
 
 ## Recording Events (`*_events.tsv`)
