@@ -1,0 +1,17 @@
+---
+EMGCoordSysMatch:
+  issue:
+    code: EMG_COORD_SYS_MISMATCH
+    message: |
+      Some values in the coordinate_system column of *_electrodes.tsv are not present as
+      top-level keys of the corresponding *_coordsystem.json file.
+    level: error
+  selectors:
+    - datatype == "emg"
+    - suffix == "electrodes"
+  checks:
+    - |
+      length(
+        intersects(unique(columns.coordinate_system),
+        associations.coordsystem.keys)
+      ) == length(unique(columns.coordinate_system))
