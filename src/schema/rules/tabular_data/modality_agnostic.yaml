@@ -4,11 +4,10 @@ Participants:
     - path == "/participants.tsv"
   initial_columns:
     - participant_id
+    - session_id
   columns:
     participant_id:
       level: required
-      description_addendum: |
-        There MUST be exactly one row for each participant.
     session_id: recommended
     species: recommended
     age: recommended
@@ -26,6 +25,8 @@ Phenotypes:
     - extension == ".tsv"
   initial_columns:
     - participant_id
+    - session_id
+    - run_id
   columns:
     participant_id:
       level: required
@@ -53,7 +54,7 @@ Phenotypes:
       description_addendum: |
         If acquisition time is available, the `acq_time` column CAN be used
         to record the time of acquisition of each row in the tabular file.
-  index_columns: [participant_id, session_id, run_id, acq_time__phenotype]
+  index_columns: [participant_id, session_id, run_id]
   additional_columns: allowed
 
 Samples:
