@@ -2,19 +2,19 @@
 
 ## Preprocessed diffusion-weighted images
 
--   As with [raw diffusion imaging data](../04-modality-specific-files/01-magnetic-resonance-imaging-data.md#required-gradient-orientation-information),
+-   As with [raw diffusion imaging data](../modality-specific-files/magnetic-resonance-imaging-data.md#required-gradient-orientation-information),
     inclusion of gradient orientation information is REQUIRED. While
-    [the inheritance principle](../02-common-principles.md#the-inheritance-principle)
+    [the inheritance principle](../common-principles.md#the-inheritance-principle)
     applies, it is common for DWI preprocessing to include rotation of
     gradient orientations according to subject motion, so series-specific
     gradient information is typically expected.
 
--   As per [file naming conventions for BIDS Derivatives](01-introduction.md#file-naming-conventions),
+-   As per [file naming conventions for BIDS Derivatives](introduction.md#file-naming-conventions),
     preprocessed DWI data must not possess the same name as that of the raw
     DWI data. It is RECOMMENDED to disambiguate through use of the key-value
     "`_desc-preproc`".
 
--   As per [common data types](02-common-data-types.md) for derivative data, a
+-   As per [common data types](common-data-types.md) for derivative data, a
     JSON sidecar file is REQUIRED due to the REQUIRED `SkullStripped` field.
 
 ```Text
