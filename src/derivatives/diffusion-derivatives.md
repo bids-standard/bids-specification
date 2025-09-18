@@ -208,12 +208,12 @@ but multiple realizations of that fit taking into account image noise,
 typically through some form of bootstrapping procedure.
 Where this occurs,
 the image data for each parameter possess an additional dimension,
-along which those multiple realisations are stored.
+along which those multiple realizations are stored.
 
 For some models,
-it is common to explicitly store *both* the multiple realisations of the model
+it is common to explicitly store *both* the multiple realizations of the model
 *and* either the parameters corresponding to the maximum *a posteriori* fit
-or the mean of each parameter computed across those realisations.
+or the mean of each parameter computed across those realizations.
 In these circumstances,
 it is RECOMMENDED to use the same label for the "`_model-`" entity,
 and use the "`_desc-`" entity to disambiguate between these two versions
@@ -247,7 +247,7 @@ The following table defines reserved fields within the `"Model"` sub-dictionary.
 
 | **Key name**        | **Description**                                                                                                                 |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| BootstrapParameters | OPTIONAL. Dictionary. Parameters relating to the generation of multiple realisations of the model fit using bootstrapping.      |
+| BootstrapParameters | OPTIONAL. Dictionary. Parameters relating to the generation of multiple realizations of the model fit using bootstrapping.      |
 | Description         | OPTIONAL. String. Extended text-based information to describe the model.                                                        |
 | Parameters          | OPTIONAL. Dictionary. Parameters that influenced the process of fitting the model to empirical image data (see examples below). |
 | URL                 | OPTIONAL. String. URL to the specific implementation of the model utilized.                                                     |
@@ -259,7 +259,7 @@ Dictionary `"Model["Parameters"]"` has the following reserved keywords that may 
 | FitMethod              | OPTIONAL. String. The optimization procedure used to fit the intrinsic model parameters to the empirical diffusion-weighted signal. Reserved values are: "`ols`" (Ordinary Least Squares); "`wls`" (Weighted Least Squares); "`iwls`" (Iterative Weighted Least Squares); "`nlls`" (Non-Linear Least Squares). |
 | Iterations             | OPTIONAL. Integer. The number of iterations used for any form of model fitting procedure where the number of iterations is a fixed input parameter.                                                                                                                                                           |
 | OutlierRejectionMethod | OPTIONAL. String. Text describing any form of rejection of outlier values that was performed during fitting of the model.                                                                                                                                                                                     |
-| Samples                | OPTIONAL. Integer. The number of realisations of a diffusion model from which statistical summaries (such as mean, standard deviation) of those parameters were computed.                                                                                                                                        |
+| Samples                | OPTIONAL. Integer. The number of realizations of a diffusion model from which statistical summaries (such as mean, standard deviation) of those parameters were computed.                                                                                                                                        |
 
 #### Parameter metadata
 
@@ -275,7 +275,7 @@ Some fields are relevant only to specific [orientation encoding types](#orientat
 
 | **Key name**        | Relevant [orientation encoding types](#orientation-encoding-types)                         | **Description**                                                                                                                                                                                                                       |
 | ------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| BootstrapAxis       | Any                                                                                        | OPTIONAL. Integer. If multiple realisations of a given parameter are stored in a NIfTI image, this field nominates the image axis (indexed from zero) along which those multiple realisations are stored.                             |
+| BootstrapAxis       | Any                                                                                        | OPTIONAL. Integer. If multiple realizations of a given parameter are stored in a NIfTI image, this field nominates the image axis (indexed from zero) along which those multiple realizations are stored.                             |
 | Description         | Any                                                                                        | OPTIONAL. String. Text description of what model parameter is encoded in the corresponding data file.                                                                                                                                 |
 | NonNegativity       | All except [spherical coordinates](#encoding-spherical) and [3-vectors](#encoding-3vector) | OPTIONAL. String. Options are: { `regularized`, `constrained` }. Specifies whether, during model fitting, the parameter was regularized to not take extreme negative values, or was explicitly forbidden from taking negative values. |
 | OrientationEncoding | Any                                                                                        | REQUIRED if dimensionality of NIfTI image is greater than three. Dictionary. Provides information requisite to the interpretation of orientation information encoded in each voxel; more details below.                               |
@@ -560,8 +560,8 @@ Notes:
 
 #### An FSL `bedpostx` Ball-And-Sticks fit
 
-This example includes both bootstrap realisations of the model fit,
-and the aggregated means of those parameters across realisations.
+This example includes both bootstrap realizations of the model fit,
+and the aggregated means of those parameters across realizations.
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -603,14 +603,14 @@ Dimensions of NIfTI image "`sub-01_model-bs_desc-mean_param-vf_dwimap.nii.gz`": 
 Dimensions of NIfTI image "`sub-01_model-bs_desc-mean_param-vfsum_dwimap.nii.gz`": *I*x*J*x*K* ([scalar](#encoding-scalar))
 Dimensions of NIfTI image "`sub-01_model-bs_desc-mean_param-diffusivity_dwimap.nii.gz`": *I*x*J*x*K* ([scalar](#encoding-scalar))
 Dimensions of NIfTI image "`sub-01_model-bs_desc-mean_param-dstd_dwimap.nii.gz`": *I*x*J*x*K* ([scalar](#encoding-scalar))
-Dimensions of NIfTI image "`sub-01_model-bs_desc-merged_param-polar_dwimap.nii.gz`": *I*x*J*x*K*x(*2*x*N*)x*R* ([spherical coordinates](#encoding-spherical), orientations only; *N* orientations per voxel; *R* bootstrap realisations)
-Dimensions of NIfTI image "`sub-01_model-bs_desc-merged_param-vf_dwimap.nii.gz`": *I*x*J*x*K*x*N*x*R* ([scalar](#encoding-scalar); *N* values per voxel; *R* bootstrap realisations)
+Dimensions of NIfTI image "`sub-01_model-bs_desc-merged_param-polar_dwimap.nii.gz`": *I*x*J*x*K*x(*2*x*N*)x*R* ([spherical coordinates](#encoding-spherical), orientations only; *N* orientations per voxel; *R* bootstrap realizations)
+Dimensions of NIfTI image "`sub-01_model-bs_desc-merged_param-vf_dwimap.nii.gz`": *I*x*J*x*K*x*N*x*R* ([scalar](#encoding-scalar); *N* values per voxel; *R* bootstrap realizations)
 
 Contents of JSON file "`sub-01_model-bs_desc-mean_param-s0_dwimap.json`":
 
 ```JSON
 {
-    "Description": "Estimated signal intensity with no diffusion weighting, ie. S0; mean across bootstrap realisations",
+    "Description": "Estimated signal intensity with no diffusion weighting, ie. S0; mean across bootstrap realizations",
     "Model": {
         "Description": "Ball-And-Sticks model using FSL bedpostx",
         "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
@@ -631,7 +631,7 @@ Contents of JSON file "`sub-01_model-bs_desc-mean_param-polar_dwimap.json`":
 
 ```JSON
 {
-    "Description": "Fibre orientations encoded using polar angles; mean across bootstrap realisations",
+    "Description": "Fibre orientations encoded using polar angles; mean across bootstrap realizations",
     "Model": {
         "Description": "Ball-And-Sticks model using FSL bedpostx",
         "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
@@ -657,7 +657,7 @@ Contents of JSON file "`sub-01_model-bs_desc-mean_param-vector_dwimap.json`":
 
 ```JSON
 {
-    "Description": "Fibre orientations encoded using 3-vectors; mean across bootstrap realisations",
+    "Description": "Fibre orientations encoded using 3-vectors; mean across bootstrap realizations",
     "Model": {
         "Description": "Ball-And-Sticks model using FSL bedpostx",
         "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
@@ -683,7 +683,7 @@ Contents of JSON file "`sub-01_model-bs_desc-mean_param-vf_dwimap.json`":
 
 ```JSON
 {
-    "Description": "Volume fractions of stick components; mean across bootstrap realisations",
+    "Description": "Volume fractions of stick components; mean across bootstrap realizations",
     "Model": {
         "Description": "Ball-And-Sticks model using FSL bedpostx",
         "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
@@ -707,7 +707,7 @@ Contents of JSON file "`sub-01_model-bs_desc-mean_param-vfsum_dwimap.json`":
 
 ```JSON
 {
-    "Description": "Sum of volume fractions of stick components; mean across bootstrap realisations",
+    "Description": "Sum of volume fractions of stick components; mean across bootstrap realizations",
     "Model": {
         "Description": "Ball-And-Sticks model using FSL bedpostx",
         "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
@@ -728,7 +728,7 @@ Contents of JSON file "`sub-01_model-bs_desc-mean_param-diffusivity_dwimap.json`
 
 ```JSON
 {
-    "Description": "Diffusivity; mean across bootstrap realisations",
+    "Description": "Diffusivity; mean across bootstrap realizations",
     "Model": {
         "Description": "Ball-And-Sticks model using FSL bedpostx",
         "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
@@ -750,7 +750,7 @@ Contents of JSON file "`sub-01_model-bs_desc-mean_param-dstd_dwimap.json`":
 
 ```JSON
 {
-    "Description": "Diffusivity variance parameter; mean across bootstrap realisations",
+    "Description": "Diffusivity variance parameter; mean across bootstrap realizations",
     "Model": {
         "Description": "Ball-And-Sticks model using FSL bedpostx",
         "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
@@ -772,7 +772,7 @@ Contents of JSON file "`sub-01_model-bs_desc-merged_param-polar_dwimap.json`":
 ```JSON
 {
     "BootstrapAxis": 4,
-    "Description": "Fibre orientations encoded using polar angles; concatenated bootstrap realisations",
+    "Description": "Fibre orientations encoded using polar angles; concatenated bootstrap realizations",
     "Model": {
         "Description": "Ball-And-Sticks model using FSL bedpostx",
         "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
@@ -798,7 +798,7 @@ Contents of JSON file "`sub-01_model-bs_desc-merged_param-vf_dwimap.json`":
 ```JSON
 {
     "BootstrapAxis": 4,
-    "Description": "Volume fractions of stick components; concatenated bootstrap realisations",
+    "Description": "Volume fractions of stick components; concatenated bootstrap realizations",
     "Model": {
         "Description": "Ball-And-Sticks model using FSL bedpostx",
         "URL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
@@ -820,8 +820,8 @@ Contents of JSON file "`sub-01_model-bs_desc-merged_param-vf_dwimap.json`":
 Notes:
 
 -   Here the descriptors "`merged`" and "`mean`" have been utilized
-    to distinguish between the comprehensive set of all bootstrap realisations
-    and the computed mean statistics of parameters across all realisations respectively,
+    to distinguish between the comprehensive set of all bootstrap realizations
+    and the computed mean statistics of parameters across all realizations respectively,
     as this is the terminology utilized by the FSL software itself.
     These labels are not however a part of the specification.
 
@@ -841,7 +841,7 @@ Notes:
     -   In image `"sub-01_model-bs_desc-merged_param-vf_dwimap.json"`,
         there are two extra image dimensions beyond the three spatial dimensions:
         the fourth image axis encodes across the multiple stick components per voxel,
-        and the fifth axis encodes realisations across bootstraps.
+        and the fifth axis encodes realizations across bootstraps.
         it is therefore necessary to explicitly specify
         that the parameter being encoded in the data,
         being the volume fractions of individual stick components,
@@ -849,7 +849,7 @@ Notes:
         and therefore field `"OrientationEncoding"["Type"]` MUST be specified as `"scalar"`.
 
 -   TODO CONFIRM WHETHER WE WANT TO ENFORCE THIS OR INCLUDE EXPLICIT METADATA FIELDS
-    THAT INDICATE THE AXIS / AXES OF DIRECTION ENCODING VS. BOOTSTRAP REALISATIONS
+    THAT INDICATE THE AXIS / AXES OF DIRECTION ENCODING VS. BOOTSTRAP REALIZATIONS
 
 -   TODO DISCUSS
     The example presented here is not necessarily a unique solution
