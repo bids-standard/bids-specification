@@ -254,8 +254,8 @@ The following table defines reserved fields within the `"Model"` sub-dictionary.
 
 Dictionary `"Model["Parameters"]"` has the following reserved keywords that may be applicable to a broad range of models:
 
-| **Key name**           | **Description**                                                                                                                                                                                                                                                                                               |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Key name**        | **Description**                                                                                                                 |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | FitMethod              | OPTIONAL. String. The optimization procedure used to fit the intrinsic model parameters to the empirical diffusion-weighted signal. Reserved values are: "`ols`" (Ordinary Least Squares); "`wls`" (Weighted Least Squares); "`iwls`" (Iterative Weighted Least Squares); "`nlls`" (Non-Linear Least Squares). |
 | Iterations             | OPTIONAL. Integer. The number of iterations used for any form of model fitting procedure where the number of iterations is a fixed input parameter.                                                                                                                                                           |
 | OutlierRejectionMethod | OPTIONAL. String. Text describing any form of rejection of outlier values that was performed during fitting of the model.                                                                                                                                                                                     |
