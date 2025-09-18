@@ -527,7 +527,7 @@ However, multiple `*_coordsystem.json` files distinguished by the `space` entity
 used to describe separate anatomically-defined coordinate systems (for example, to situate
 devices in reference to landmarks on different limbs).
 Multiple `*_coordsystem.json` files distinguished by the `space` entity MUST also be used to describe
-*nested coordinate systems* that give the relative positions of groups or grids of electrodes
+_nested coordinate systems_ that give the relative positions of groups or grids of electrodes
 mounted to a single device and situate that "child" coordinate system within an anatomically-defined
 "parent" coordinate system that situates the placement multi-electrode device on the body.
 The [inheritance principle](../common-principles.md#the-inheritance-principle) MUST
