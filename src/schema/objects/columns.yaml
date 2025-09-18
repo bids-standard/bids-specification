@@ -12,6 +12,15 @@ abbreviation:
   description: |
     The unique label abbreviation
   type: string
+acq_time__phenotype:
+  name: acq_time
+  display_name: Phenotypic and assessment data acquisition time
+  description: |
+    Acquisition time refers to when the first data point in each run was acquired.
+    Datetime format and their deidentification are described in
+    [Units](SPEC_ROOT/common-principles.md#units).
+  type: string
+  format: datetime
 acq_time__scans:
   name: acq_time
   display_name: Scan acquisition time
