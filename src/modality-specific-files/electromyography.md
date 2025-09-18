@@ -561,7 +561,7 @@ same body part:
 }
 ```
 
-### Example 3: `*_coordsystem.json` for measured electrode positions in in multiple anatomically-defined coordinate systems
+### Example 3: multiple `*_coordsystem.json` files for measured electrode positions in multiple anatomically-defined coordinate systems
 
 Here, separate anatomically-based coordinate systems are defined for electrodes above and
 below the elbow joint, and each is given a unique name ("Forearm" or "Humerus") which can
@@ -583,7 +583,7 @@ be referenced in the `coordinate_system` column of `*_electrodes.tsv`:
 }
 ```
 
-### Example 4: `*_coordsystem.json` with nested/anchored coordinate systems
+### Example 4: multiple `*_coordsystem.json` files for nested/anchored coordinate systems
 
 Here, coordinate systems for the _relative_ locations of electrodes in grids or groups are
 given in "child" coordinate systems ("BicepGrid", "VolarForearmGrid", "DorsalForearmGrid"),
