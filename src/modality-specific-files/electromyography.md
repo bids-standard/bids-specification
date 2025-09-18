@@ -97,19 +97,23 @@ guide to where sensor placement information should be stored in the dataset.
     landmarks.
 
 1.  The arrangement of electrodes in a group or grid is measured (or known from the device
-    manufacturer), and is provided in `x,y,z` columns of `*_electrodes.tsv`, with a
-    device-internal "child" coordinate system provided in `*_coordsystem.json`.
-    An anatomically-defined "parent" coordinate system is also defined in the same
+    manufacturer), and is provided in `x`, `y`, and (optionally) `z` columns of `*_electrodes.tsv`,
+    with a device-internal "child" coordinate system defined in a `*_coordsystem.json` file.
+    An anatomically-defined "parent" coordinate system is also defined in a different
     `*_coordsystem.json` file, and the name and coordinates of one electrode (the "anchor"
     electrode) from each "child" group or grid is provided in the "parent" coordinate system.
     This allows the approximate anatomical locations of all electrodes to be calculated
     by treating the device-internal coordinates as offsets from the anchor coordinate.
+    The two `*_coordsystem.json` files are distinguished by the `space` entity in their filenames;
+    the labels used for that entity may be arbitrary (for example, `*_space-grid_coordsystem.json`
+    for the child coordinate system, and `*_space-forearm_coordsystem.json` for the parent
+    coordinate system).
 
 1.  Individual electrode locations are chosen by visual inspection, palpation, or
     functional localizers.
     No measured coordinates are provided; placement information is given either in the
     `EMGPlacementSchemeDescription` field of `*_emg.json` (when the placement approach is
-    the same for all sensors), or in the `placement_scheme` column of `*_channels.tsv`
+    the same for all sensors), or in the `placement_scheme_description` column of `*_channels.tsv`
     (when the placement approach varied across sensors).
 
 More details on each of these scenarios is given below in the
@@ -363,17 +367,18 @@ Electrode locations may be specified in one of four ways:
 
 1.  **Measured coordinates in multiple anatomically-defined coordinate systems.**
     This approach is suitable for individual electrodes placed on multiple body parts.
-    In this case the `*_coordsystem.json` file MUST contain a separate, arbitrarily-named
-    JSON object for each coordinate system, each of which MUST contain the fields
+    In this case there MUST be multiple `*_coordsystem.json` files (distinguished by the
+    `space` entity) for each coordinate system, each of which MUST contain the fields
     `EMGCoordinateSystem`, `EMGCoordinateUnits`, and `EMGCoordinateSystemDescription` as
     described in (1) above.
     Additionally, the `coordinate_system` column in `*_electrodes.tsv` MUST indicate which
-    named coordinate system the coordinate values in that row reflect.
-    For example, `*_coordsystem.json` may include a coordinate system called "lower-leg" defined
-    by lower leg landmarks for electrodes below the knee, and another called "thigh"
-    defined by upper-leg landmarks for electrodes above the knee.
+    named coordinate system the coordinate values in that row reflect, by referencing the
+    label of the `space` entity for the corresponding `*_coordsystem.json` file.
+    For example, `*_space-lowerLeg_coordsystem.json` may specify a coordinate system defined
+    by lower leg landmarks for electrodes below the knee, and another called
+    `*_space-thigh_coordsystem.json` defined by upper-leg landmarks for electrodes above the knee.
     In such a case, entries in the `coordinate_system` column of `*_electrodes.tsv` MUST
-    specify either `"lower-leg"` or `"thigh"`.
+    specify either `"lowerLeg"` or `"thigh"`.
     As in (2) above, enter `0` for the `y` column values if all electrodes are colinear
     along the defined `x` axis.
 
@@ -381,31 +386,35 @@ Electrode locations may be specified in one of four ways:
     This approach is suitable for large electrode grids or similar devices.
     In this case, measured 2D locations in the `x` and `y` columns define the geometry
     of an electrode grid or group, relative to an arbitrary device-internal origin and
-    axes (this is the "child" coordinate system).
+    axes (this is the "child" coordinate system, defined for example in a file
+    `*_space-dorsalGrid_coordsystem.json`).
     The group's placement on the body is then described by selecting an "anchor"
     electrode and providing its coordinates within a "parent" coordinate system defined
-    in reference to subject anatomy (as in (2) above).
-    The `*_coordsystem.json` file MUST contain separate, arbitrarily-named JSON objects
-    for each of the parent and child coordinate systems, each containing the fields
-    `EMGCoordinateSystem`, `EMGCoordinateUnits`, and `EMGCoordinateSystemDescription` as
-    described in (1) above.
-    Additionally, each child coordinate system MUST contain an entry `ParentCoordinateSystem`
-    giving the name of the JSON object that defines the parent (anatomical) coordinate system,
+    in reference to subject anatomy (as in (2) above), in a separate file such as
+    `*_space-forearm_coordsystem.json`.
+    Each coordinate system file MUST contain the fields `EMGCoordinateSystem`,
+    `EMGCoordinateUnits`, and `EMGCoordinateSystemDescription` as described in (1) above.
+    Additionally, each child coordinate system file MUST contain an entry `ParentCoordinateSystem`
+    giving the value of the `space` entity for the file that defines the parent (anatomical) coordinate system,
     and entries `AnchorElectrode` and `AnchorCoordinates` that name an electrode and provide
     its coordinates in the parent coordinate system (respectively).
     For example, a coordinate system called "forearm" defined by forearm anatomical landmarks
     (as in (2) above) could be the parent coordinate system for two electrode grids placed on
     the volar and dorsal surfaces of the forearm.
-    Each grid would have its own coordinate system (named, for example, "volar-grid" and
-    "dorsal-grid") in which coordinates of each electrode are relative to a device-internal
+    Each grid would have its own coordinate system file (named, for example,
+    `*_space-dorsalGrid_coordsystem.json` and `*_space-volarGrid_coordsystem.json`)
+    in which coordinates of each electrode are relative to a device-internal
     origin, such as the lower-leftmost electrode when the device is in a specified orientation.
     In such a scenario, entries in the `coordinate_system` column of `*_electrodes.tsv`
-    MUST specify either `"volar-grid"` or `"dorsal-grid"`.
+    MUST specify either `"volarGrid"` or `"dorsalGrid"` for electrodes within each grid
+    (electrodes external to the grid, such as separate reference or ground electrodes, MAY
+    specify a different value in the `coordinate_system` column: typically this will be the parent
+    coordinate system or a different anatomically defined coordinate system as in (2) above).
     Note that the parent coordinate system may be defined in different units than the child
     coordinate system; for example, if an anchor electrode was placed 50% of the distance
     between the ulnar styloid process and cubital fossa, the unit of the parent coordinate
     system is `"percent"` and `AnchorCoordinates` would have a value of `50` for the `x`
-    coordinate in `*_coordsystem.json`.
+    coordinate in `*_space-volarGrid_coordsystem.json`.
     Meanwhile, the `x` column of `*_electrodes.tsv` gives the device-internal coordinates
     of the grid electrodes, which may be in a different unit such as `"mm"`.
     See the [`coordsystem.json` section](#example-coordsystemjson) for further details.
@@ -514,6 +523,13 @@ store data in separate data files.
 Except in cases of simultaneous acquisitions from different devices into different data
 files (as just mentioned), `*_coordsystem.json` files SHOULD NOT be duplicated for each data file,
 for example, during multiple runs of a task.
+However, multiple `*_coordsystem.json` files distinguished by the `space` entity MUST be
+used to describe separate anatomically-defined coordinate systems (for example, to situate
+devices in reference to landmarks on different limbs).
+Multiple `*_coordsystem.json` files distinguished by the `space` entity MUST also be used to describe
+*nested coordinate systems* that give the relative positions of groups or grids of electrodes
+mounted to a single device and situate that "child" coordinate system within an anatomically-defined
+"parent" coordinate system that situates the placement multi-electrode device on the body.
 The [inheritance principle](../common-principles.md#the-inheritance-principle) MUST
 be used to find the appropriate coordinate system description for a given data file.
 
@@ -551,17 +567,20 @@ Here, separate anatomically-based coordinate systems are defined for electrodes 
 below the elbow joint, and each is given a unique name ("Forearm" or "Humerus") which can
 be referenced in the `coordinate_system` column of `*_electrodes.tsv`:
 
-```json
-    "Forearm": {
-        "EMGCoordinateSystem": "Other",
-        "EMGCoordinateSystemDescription": "x: radial styloid process (RSP) → ulnar styloid process (USP); y: oleacranon process → cubital fossa; z: RSP-USP → lateral humerus epicondyle",
-        "EMGCoordinateSystemUnits": "percent"
-    },
-    "Humerus": {
-        "EMGCoordinateSystem": "Other",
-        "EMGCoordinateSystemDescription": "x: medial humerus epicondyle (MHE) → lateral humerus epicondyle (LHE), y: oleacranon process → cubital fossa, z: MHE-LHE → greater humerus tubercule",
-        "EMGCoordinateSystemUnits": "percent"
-    }
+```json title="*_space-Forearm_coordsystem.json"
+{
+    "EMGCoordinateSystem": "Other",
+    "EMGCoordinateSystemDescription": "x: radial styloid process (RSP) → ulnar styloid process (USP); y: oleacranon process → cubital fossa; z: RSP-USP → lateral humerus epicondyle",
+    "EMGCoordinateSystemUnits": "percent"
+}
+```
+
+```json title="*_space-Humerus_coordsystem.json"
+{
+    "EMGCoordinateSystem": "Other",
+    "EMGCoordinateSystemDescription": "x: medial humerus epicondyle (MHE) → lateral humerus epicondyle (LHE), y: oleacranon process → cubital fossa, z: MHE-LHE → greater humerus tubercule",
+    "EMGCoordinateSystemUnits": "percent"
+}
 ```
 
 ### Example 4: `*_coordsystem.json` with nested/anchored coordinate systems
@@ -570,42 +589,52 @@ Here, coordinate systems for the _relative_ locations of electrodes in grids or 
 given in "child" coordinate systems ("BicepGrid", "VolarForearmGrid", "DorsalForearmGrid"),
 each of which is anchored to a "parent" coordinate system that is defined anatomically:
 
-```json
+```json title="*_space-BicepGrid_coordsystem.json"
 {
-    "Forearm": {
-        "EMGCoordinateSystem": "Other",
-        "EMGCoordinateSystemDescription": "x: radial styloid process (RSP) → ulnar styloid process (USP); y: oleacranon process → cubital fossa; z: RSP-USP → lateral humerus epicondyle",
-        "EMGCoordinateSystemUnits": "percent"
-    },
-    "Humerus": {
+    "EMGCoordinateSystem": "Other",
+    "EMGCoordinateSystemDescription": "x-axis left → right, y-axis bottom → top, when grid is oriented with leads at the bottom",
+    "EMGCoordinateSystemUnits": "mm",
+    "ParentCoordinateSystem": "Humerus",
+    "AnchorCoordinates": [40, 70, 0],
+    "AnchorElectrode": "E1"
+}
+```
+
+```json title="*_space-VolarForearmGrid_coordsystem.json"
+{
+    "EMGCoordinateSystem": "Other",
+    "EMGCoordinateSystemDescription": "x-axis left → right, y-axis bottom → top, when grid is oriented with leads at the bottom",
+    "EMGCoordinateSystemUnits": "mm",
+    "ParentCoordinateSystem": "Forearm",
+    "AnchorCoordinates": [25, 50, 10],
+    "AnchorElectrode": "E1"
+}
+```
+
+```json title="*_space-DorsalForearmGrid_coordsystem.json"
+{
+    "EMGCoordinateSystem": "Other",
+    "EMGCoordinateSystemDescription": "x-axis left → right, y-axis bottom → top, when grid is oriented with leads at the bottom",
+    "EMGCoordinateSystemUnits": "mm",
+    "ParentCoordinateSystem": "Forearm",
+    "AnchorCoordinates": [75, 0, 90],
+    "AnchorElectrode": "E1",
+}
+```
+
+```json title="*_space-Forearm_coordsystem.json"
+{
+    "EMGCoordinateSystem": "Other",
+    "EMGCoordinateSystemDescription": "x: radial styloid process (RSP) → ulnar styloid process (USP); y: oleacranon process → cubital fossa; z: RSP-USP → lateral humerus epicondyle",
+    "EMGCoordinateSystemUnits": "percent"
+}
+```
+
+```json title="*_space-Humerus_coordsystem.json"
+{
         "EMGCoordinateSystem": "Other",
         "EMGCoordinateSystemDescription": "x: medial humerus epicondyle (MHE) → lateral humerus epicondyle (LHE), y: oleacranon process → cubital fossa, z: MHE-LHE → greater humerus tubercule",
         "EMGCoordinateSystemUnits": "percent"
-    },
-    "BicepGrid": {
-        "EMGCoordinateSystem": "Other",
-        "EMGCoordinateSystemDescription": "x-axis left → right, y-axis bottom → top, when grid is oriented with leads at the bottom",
-        "EMGCoordinateSystemUnits": "mm",
-        "ParentCoordinateSystem": "Humerus",
-        "AnchorCoordinates": [40, 70, 0],
-        "AnchorElectrode": "E1"
-    },
-    "VolarForearmGrid": {
-        "EMGCoordinateSystem": "Other",
-        "EMGCoordinateSystemDescription": "x-axis left → right, y-axis bottom → top, when grid is oriented with leads at the bottom",
-        "EMGCoordinateSystemUnits": "mm",
-        "ParentCoordinateSystem": "Forearm",
-        "AnchorCoordinates": [25, 50, 10],
-        "AnchorElectrode": "E1"
-    },
-    "DorsalForearmGrid": {
-        "EMGCoordinateSystem": "Other",
-        "EMGCoordinateSystemDescription": "x-axis left → right, y-axis bottom → top, when grid is oriented with leads at the bottom",
-        "EMGCoordinateSystemUnits": "mm",
-        "ParentCoordinateSystem": "Forearm",
-        "AnchorCoordinates": [75, 0, 90],
-        "AnchorElectrode": "E1",
-    }
 }
 ```
 
