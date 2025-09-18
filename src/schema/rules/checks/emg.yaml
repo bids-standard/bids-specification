@@ -4,14 +4,37 @@ EMGCoordSysMatch:
     code: EMG_COORD_SYS_MISMATCH
     message: |
       Some values in the coordinate_system column of *_electrodes.tsv are not present as
-      top-level keys of the corresponding *_coordsystem.json file.
+      space entities in *_coordsystem.json files.
     level: error
   selectors:
     - datatype == "emg"
     - suffix == "electrodes"
   checks:
+    # ↓ any LABEL that is mentioned in `coordinate_system` column of `*_electrodes.tsv`
+    # ↓ must have an associated file `*_space-LABEL_coordsystem.json`
     - |
       length(
-        intersects(unique(columns.coordinate_system),
-        associations.coordsystem.keys)
+        intersects(
+          unique(columns.coordinate_system),
+          associations.coordsystems.spaces
+        )
       ) == length(unique(columns.coordinate_system))
+
+EMGCoordSysParents:
+  issue:
+    code: EMG_COORD_SYS_PARENTS
+    message: Some parent coordinate systems were not found.
+    level: error
+  selectors:
+    - datatype == "emg"
+    - suffix == "electrodes"
+  checks:
+    # ↓ any LABEL that is mentioned as a ParentCoordinateSystem must have an associated
+    # ↓ file `*_space-LABEL_coordsystem.json`
+    - |
+      length(
+        intersects(
+          unique(associations.coordsystems.ParentCoordinateSystems),
+          associations.coordsystems.spaces
+        )
+      ) == length(unique(associations.coordsystems.ParentCoordinateSystems))
