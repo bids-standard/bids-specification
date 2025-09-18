@@ -16,6 +16,13 @@ EMGCoordsystemPositions:
     EMGCoordinateSystemDescription:
       level: recommended
       level_addendum: required if `EMGCoordinateSystem` is `"Other"`
+    ParentCoordinateSystem: optional
+    AnchorCoordinates:
+      level: optional
+      level_addendum: required if `ParentCoordinateSystem` is present
+    AnchorElectrode:
+      level: optional
+      level_addendum: required if `ParentCoordinateSystem` is present
 
 EMGCoordsystemOther:
   selectors:
@@ -25,6 +32,17 @@ EMGCoordsystemOther:
     - json.EMGCoordinateSystem == "Other"
   fields:
     EMGCoordinateSystemDescription: required
+
+# Fields relating to the linkage between child (device) and parent (anatomical) coordinate systems
+EMGChildCoordSystem:
+  selectors:
+    - datatype == "emg"
+    - suffix == "coordsystem"
+    - '"ParentCoordinateSystem" in json'
+  fields:
+    AnchorCoordinates: required
+    AnchorElectrode: required
+
 
 # Fields relating to EMG placement
 EMGPlacementSchemeInfo:
@@ -37,13 +55,3 @@ EMGPlacementSchemeInfo:
     EMGPlacementSchemeDescription:
       level: recommended
       level_addendum: required if `EMGPlacementScheme` is `"Other"`
-
-# Fields relating to the linkage between child (device) and parent (anatomical) coordinate systems
-EMGCoordsystemAnchor:
-  selectors:
-    - datatype == "emg"
-    - suffix == "coordsystem"
-  fields:
-    ParentCoordinateSystem: optional
-    AnchorCoordinates: optional
-    AnchorElectrode: optional
