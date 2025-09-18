@@ -4,11 +4,11 @@ Participants:
     - path == "/participants.tsv"
   initial_columns:
     - participant_id
+    - session_id
   columns:
     participant_id:
       level: required
-      description_addendum: |
-        There MUST be exactly one row for each participant.
+    session_id: recommended
     species: recommended
     age: recommended
     sex: recommended
@@ -16,7 +16,45 @@ Participants:
     strain: recommended
     strain_rrid: recommended
     HED: optional
-  index_columns: [participant_id]
+  index_columns: [participant_id, session_id]
+  additional_columns: allowed
+
+Phenotypes:
+  selectors:
+    - datatype == "phenotype"
+    - extension == ".tsv"
+  initial_columns:
+    - participant_id
+    - session_id
+    - run_id
+  columns:
+    participant_id:
+      level: required
+      description_addendum: |
+        Note that data for one participant MAY be represented across multiple rows
+        in case of multiple sessions or runs, and
+        therefore the entry in the `participant_id` column will be repeated.
+    session_id:
+      level: optional
+      level_addendum: required if sessions are defined in the dataset
+      description_addendum: |
+        A `session_id` column MUST be added to all tabular files in the phenotype directory
+        as soon as multiple sessions are present in the data set
+        regardless of whether those sessions are in the
+        `phenotype/` data, `sub-<label>/` data, or a combination of the two.
+    run_id:
+      level: optional
+      level_addendum: required if there are multiple runs within any session
+      description_addendum: |
+        A chronological `run` number is used when
+        a measurement tool or assessment described by a tabular file
+        was repeated within a session.
+    acq_time__phenotype:
+      level: optional
+      description_addendum: |
+        If acquisition time is available, the `acq_time` column CAN be used
+        to record the time of acquisition of each row in the tabular file.
+  index_columns: [participant_id, session_id, run_id]
   additional_columns: allowed
 
 Samples:
