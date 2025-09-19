@@ -188,10 +188,10 @@ group__channel:
   type: string
 group__emg:
   name: group
-  display_name: Channel group
+  display_name: Electrode or channel group
   description: |
-    Which group of channels this channel belongs to (typically this indicates channels
-    on the same grid, strip, or other device).
+    Which group the electrode or channel belongs to (typically this indicates electrodes
+    or bipolar channels on the same grid, strip, or other device).
   anyOf:
     - type: string
     - type: number
