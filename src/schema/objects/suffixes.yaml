@@ -502,6 +502,14 @@ VFA:
     Depending on the provided metadata fields and the sequence type,
     data may be eligible for DESPOT1, DESPOT2 and their variants
     ([Deoni et al. 2005](https://doi.org/10.1002/mrm.20314)).
+act:
+  value: act
+  display_name: Provenance activity records
+  description: |
+    Provenance activity records for a group of provenance.
+    Activities represent the transformations that have been applied to the data.
+    Files with the `act` suffix must define the `Activities` metadata, which is an array of activity records.
+    See the [`Activities`](SPEC_ROOT/modality-agnostic-files/provenance.md#activities) section.
 angio:
   value: angio
   display_name: Angiogram
@@ -612,6 +620,22 @@ electrodes:
   display_name: Electrodes
   description: |
     File that gives the location of (i)EEG electrodes.
+ent:
+  value: ent
+  display_name: Provenance entity records
+  description: |
+    Provenance entity records for a group of provenance.
+    Entities are inputs and outputs for activities.
+    Files with the `ent` suffix must define the `Entities` metadata, which is an array of entity records.
+    See the [`Entities`](SPEC_ROOT/modality-agnostic-files/provenance.md#entities) section.
+env:
+  value: env
+  display_name: Provenance environment records
+  description: |
+    Provenance environment records for a group of provenance.
+    Environments specify the software environments in which activities were performed.
+    Files with the `env` suffix must define the `Environments` metadata, which is an array of environment records.
+    See the [`Environments`](SPEC_ROOT/modality-agnostic-files/provenance.md#environments) section.
 epi:
   value: epi
   display_name: EPI
@@ -817,6 +841,14 @@ probseg:
     A probabilistic segmentation.
 
     This suffix may only be used in derivative datasets.
+soft:
+  value: soft
+  display_name: Provenance software records
+  description: |
+    Provenance software records for a group of provenance.
+    Software specifies the software packages with which transformations were applied to the data.
+    Files with the `soft` suffix must define the `Software` metadata, which is an array of software records.
+    See the [`Software`](SPEC_ROOT/modality-agnostic-files/provenance.md#software) section.
 sbref:
   value: sbref
   display_name: Single-band reference image
