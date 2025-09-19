@@ -277,6 +277,24 @@ properties:
           path:
             description: 'Path to associated coordsystem file'
             type: string
+      coordsystems:
+        description: 'All associated coordinate system files'
+        type: object
+        required:
+        additionalProperties: false
+        properties:
+          paths:
+            type: array
+            items:
+              type: string
+          spaces:
+            type: array
+            items:
+              type: string
+          ParentCoordinateSystems:
+            type: array
+            items:
+              type: string
   # The following properties are populated if the current file is of an appropriate type
   columns:
     description: 'TSV columns, indexed by column header, values are arrays with column contents'

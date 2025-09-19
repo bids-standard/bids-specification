@@ -91,6 +91,15 @@ coordsystem:
     extension: .json
   inherit: true
 
+coordsystems:
+  selectors:
+    - suffix == 'electrodes'
+    - datatype == 'emg'
+  target:
+    suffix: coordsystem
+    extension: json
+  inherit: true
+
 electrodes:
   selectors:
     - intersects([suffix], ['eeg', 'emg', 'ieeg', 'meg'])
