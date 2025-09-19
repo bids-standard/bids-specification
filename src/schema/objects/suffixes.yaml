@@ -633,7 +633,7 @@ env:
   display_name: Provenance environment records
   description: |
     Provenance environment records for a group of provenance.
-    Environments specify the software environment in which the provenance record was obtained.
+    Environments specify the software environments in which activities were performed.
     Files with the `env` suffix must define the `Environments` metadata, which is an array of environment records.
     See the [`Environments`](SPEC_ROOT/modality-agnostic-files/provenance.md#environments) section.
 epi:
@@ -846,9 +846,9 @@ soft:
   display_name: Provenance software records
   description: |
     Provenance software records for a group of provenance.
-    Software specifies the software package with which transformations were applied to the data.
+    Software specifies the software packages with which transformations were applied to the data.
     Files with the `soft` suffix must define the `Software` metadata, which is an array of software records.
-    See the [`Softwares`](SPEC_ROOT/modality-agnostic-files/provenance.md#software) section.
+    See the [`Software`](SPEC_ROOT/modality-agnostic-files/provenance.md#software) section.
 sbref:
   value: sbref
   display_name: Single-band reference image
