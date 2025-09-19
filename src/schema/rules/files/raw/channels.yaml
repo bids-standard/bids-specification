@@ -69,11 +69,11 @@ coordsystem__eeg:
 
 # emg may have a `recording` entity
 coordsystem__emg:
-  $ref: rules.files.raw.channels.coordsystem
+  $ref: rules.files.raw.channels.coordsystem__eeg
   datatypes:
     - emg
   entities:
-    $ref: rules.files.raw.channels.coordsystem.entities
+    $ref: rules.files.raw.channels.coordsystem__eeg.entities
     recording: optional
     space: optional
 
