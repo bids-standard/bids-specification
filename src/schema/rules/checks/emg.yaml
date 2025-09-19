@@ -28,6 +28,7 @@ EMGCoordSysParents:
   selectors:
     - datatype == "emg"
     - suffix == "electrodes"
+    - length(associations.coordsystems.ParentCoordinateSystems)
   checks:
     # ↓ any LABEL that is mentioned as a ParentCoordinateSystem must have an associated
     # ↓ file `*_space-LABEL_coordsystem.json`
