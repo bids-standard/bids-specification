@@ -75,6 +75,7 @@ coordsystem__emg:
   entities:
     $ref: rules.files.raw.channels.coordsystem.entities
     recording: optional
+    space: optional
 
 electrodes:
   suffixes:
