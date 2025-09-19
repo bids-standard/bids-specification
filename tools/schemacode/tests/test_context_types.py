@@ -40,7 +40,7 @@ def test_assignability() -> None:
     channels = ctx.Channels("path", ["TYPE"], ["1"], ["SHORT"])
     events: p.Events = ctx.Events("path", ["0.0", "3.0"])
     bvec: p.Bvec = ctx.Bvec("path", 5, 3)
-    coordsystem: p.Coordsystem = ctx.Coordsystem("path", [])
+    coordsystem: p.Coordsystem = ctx.Coordsystem("path")
     aslcontext: p.Aslcontext = ctx.Aslcontext("path", 2, ["label", "control"])
     associations: p.Associations = ctx.Associations()
     associations = ctx.Associations(
