@@ -269,7 +269,7 @@ properties:
             description: 'Path to associated electrodes.tsv file'
             type: string
       coordsystem:
-        description: 'Coordinate system file'
+        description: 'Coordinate system file (first found)'
         type: object
         required: [path]
         additionalProperties: false
@@ -278,20 +278,23 @@ properties:
             description: 'Path to associated coordsystem file'
             type: string
       coordsystems:
-        description: 'All associated coordinate system files'
+        description: 'Coordinate system files (all)'
         type: object
-        required:
+        required: [paths, spaces, ParentCoordinateSystems]
         additionalProperties: false
         properties:
           paths:
+            description: 'Paths to associated coordsystem files'
             type: array
             items:
               type: string
           spaces:
+            description: 'Space entity labels extracted from file names'
             type: array
             items:
               type: string
           ParentCoordinateSystems:
+            description: 'ParentCoordinateSystem fields loaded from files'
             type: array
             items:
               type: string
