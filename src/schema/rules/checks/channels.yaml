@@ -44,4 +44,4 @@ RequiredCoordsystem:
     - extension == ".tsv"
     - datatype != "emg"  # coordsys file may have space entity that electrodes.tsv lacks
   checks:
-    - associations.coordsystem != null
+    - associations.coordsystem != null || associations.coordsystems != null
