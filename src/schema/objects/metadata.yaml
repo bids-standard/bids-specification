@@ -61,7 +61,10 @@ Activities:
     properties:
       Id:
         name: Id
-        description: Identifier for the activity.
+        description: |
+          Identifier for the activity.
+          See the [Consistency and uniqueness of Ids](SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-ids)
+          section.
         type: string
         format: uri
       Label:
@@ -1269,7 +1272,7 @@ Entities:
           See the [Consistency and uniqueness of Ids](SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-ids)
           section.
         type: string
-        format: bids_uri
+        format: uri
       Label:
         name: Label
         description: A name for the entity.
@@ -1278,8 +1281,8 @@ Entities:
       Digest:
         name: Digest
         description: |
-          For files, this would include checksums of files.
-          It would take the form {"": "value"}.
+          For files, this includes checksums.
+          It takes the form of a dictionary with the name of the checksum functions as keys and checksums as values : `{"<checksum_function>": "<checksum>"}`.
         type: object
       AtLocation:
         name: AtLocation
@@ -1325,7 +1328,9 @@ Environments:
       Id:
         name: Id
         description: |
-          Identifier for the environment (this identifier will be used to associated activities with this environment).
+          Identifier for the environment.
+          See the [Consistency and uniqueness of Ids](SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-ids)
+          section.
         type: string
         format: uri
       Label:
@@ -3749,8 +3754,9 @@ Software:
       Id:
         name: Id
         description: |
-          that will be used to associate activities with this software package
-          (for example "urn:1264-1233-11231-12312", "urn:bet-o1ef4rt")
+          Identifier for the software package.
+          See the [Consistency and uniqueness of Ids](SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-ids)
+          section.
         type: string
         format: uri
       Label:
