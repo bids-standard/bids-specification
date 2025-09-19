@@ -896,7 +896,7 @@ Digest:
   display_name: Digest
   description: |
     Object containing checksum(s) of a file.
-    It takes the form {"type_of_digest": "value"}.
+    It takes the form of a dictionary with the name of the checksum functions as keys and checksums as values : `{"<checksum_function>": "<checksum>"}`.
   type: object
 DigitizedHeadPoints:
   name: DigitizedHeadPoints
@@ -1293,7 +1293,7 @@ Entities:
         name: GeneratedBy
         description: |
           Identifier(s) of the activity(ies) which generated this entity.
-          The corresponding activity must be defined with its own activity record.
+          The corresponding activity(ies) must be defined with their own activity record.
         anyOf:
           - type: string
             format: uri
@@ -1350,7 +1350,7 @@ Environments:
       Dependencies:
         name: Dependencies
         description: |
-          A dictionary defining the software used and their versions as key-value pairs.
+          A dictionary defining the software used as dependencies and their versions as key-value pairs.
         type: object
 EpochLength:
   name: EpochLength
@@ -3779,7 +3779,7 @@ Software:
         description: |
           Identifier of another software package that was responsible for using this software package
           in the context of the activities associated to it.
-          The corresponding software must be defined with its own software record.
+          The corresponding software package must be defined with its own software record.
           Example: if software A launches software B to perform activity C, then B ActedOnBehalfOf A.
         type: string
         format: uri
