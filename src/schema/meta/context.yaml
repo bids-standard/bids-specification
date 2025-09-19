@@ -271,17 +271,12 @@ properties:
       coordsystem:
         description: 'Coordinate system file'
         type: object
-        required: [path, keys]
+        required: [path]
         additionalProperties: false
         properties:
           path:
             description: 'Path to associated coordsystem file'
             type: string
-          keys:
-            description: 'Top-level keys in coordsystem file'
-            type: array
-            items:
-              type: string
   # The following properties are populated if the current file is of an appropriate type
   columns:
     description: 'TSV columns, indexed by column header, values are arrays with column contents'
