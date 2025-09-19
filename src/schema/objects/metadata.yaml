@@ -1262,7 +1262,12 @@ Entities:
     properties:
       Id:
         name: Id
-        description: Identifier for the entity.
+        description: |
+          Identifier for the entity.
+          An `Id` identifying an entity record corresponding to a file of a BIDS
+          dataset MUST be a [BIDS URI](SPEC_ROOT/common-principles.md#bids-uri).
+          See the [Consistency and uniqueness of Ids](SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-ids)
+          section.
         type: string
         format: bids_uri
       Label:
