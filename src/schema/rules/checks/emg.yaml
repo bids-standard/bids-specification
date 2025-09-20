@@ -9,6 +9,7 @@ EMGCoordSysMatch:
   selectors:
     - datatype == "emg"
     - suffix == "electrodes"
+    - columns.coordinate_system
   checks:
     # ↓ any LABEL that is mentioned in `coordinate_system` column of `*_electrodes.tsv`
     # ↓ must have an associated file `*_space-LABEL_coordsystem.json`
