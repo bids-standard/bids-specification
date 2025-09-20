@@ -6,8 +6,9 @@
 data_acquisition:
   display_name: Data acquisition
   description: |
-    A continuous uninterrupted block of time during which a brain scanning instrument was acquiring data according to
-    particular scanning sequence/protocol.
+    A continuous uninterrupted block of time during which a brain scanning instrument
+    or an electromyography recording device was acquiring data
+    according to a particular scanning sequence/protocol.
 data_type:
   display_name: Data type
   description: |
@@ -45,10 +46,13 @@ data_type:
 
         15. `phenotype` (measurement and survey data)
 
+        16. `emg` (electromyography)
+
     For files that are subject- and session- specific, the data type directory
     is nested inside those directories.
     `phenotype` data files are aggregated across subjects and sessions,
     and so the `phenotype/` directory is placed in the dataset root.
+
 
 dataset:
   display_name: Dataset
