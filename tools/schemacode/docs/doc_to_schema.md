@@ -74,7 +74,7 @@ mrs:
 
 Your next steps are to move from this template file name as described in your document to formally defining those entities within the schema. The definitions for these file entities are
 located within `src/schema/rules/files`. Since this BEP is referring to raw data we go one level
-further to `src/schema/rules/files/raw` and create a new `pet.yaml` file to record each entity/rule. There are additional folders for side card files (`sidecars/`), common elements (`common`), and derivative files (`derivatives/`), but we're only focusing on raw PET data for
+further to `src/schema/rules/files/raw` and create a new `pet.yaml` file to record each entity/rule. There are additional folders for sidecar files (`sidecars/`), common elements (`common`), and derivative files (`derivatives/`), but we're only focusing on raw PET data for
 this example.
 
 ```bash
@@ -87,7 +87,7 @@ src/schema/rules/files
 
 ![PET file entity schematic](_static/pet_file_entity_schematic.png)
 
-Given the template above we want to include mark all entities surrounded by `[]` as optional while everything else not contained in `[]` will be marked as required.
+Given the template above we want to mark all entities surrounded by `[]` as optional while everything else not contained in `[]` will be marked as required.
 
 So, we create that `pet.yaml` file and begin to populate it.
 
