@@ -107,6 +107,7 @@ extra_javascript:
   - js/jquery-3.6.0.min.js
 extra_css:
   - css/tsv.css
+  - css/dynamic-width.css
 markdown_extensions:
   - toc:
       anchorlink: true
