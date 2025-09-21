@@ -239,6 +239,7 @@ src/schema/rules/files
 ![PET file entity schematic](_static/pet_file_entity_schematic.png)
 
 Given the template above we want to mark all entities surrounded by `[]` as optional while everything else not contained in `[]` will be marked as required.
+(The `acquisition` entity was dropped in favor of `tracer` after the Google Doc was closed to edits, before the final inclusion of BEP 009.)
 
 So, we create that `pet.yaml` file and begin to populate it.
 
