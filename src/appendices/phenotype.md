@@ -132,16 +132,26 @@ What follows are a few common use case examples for tabular phenotypic files.
 
 File tree
 
-```Text
-phenotype/
-    <measurement_tool_name>.json
-    <measurement_tool_name>.tsv
-sub-01/anat/
-    sub-01_T1w.json
-    sub-01_T1w.nii.gz
-```
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+   {
+   "phenotype": {
+      "measurement_tool.json": "",
+      "measurement_tool.tsv": "",
+      },
+   "sub-01": {
+      "anat": {
+         "sub-01_T1w.json": "",
+         "sub-01_T1w.nii.gz": "",
+         }
+      }
+   }
+) }}
 
-Contents of `phenotype/<measurement_tool_name>.tsv`
+Contents of `phenotype/measurement_tool.tsv`
 
 ```tsv
 participant_id	measurement_1	measurement_2
@@ -162,16 +172,28 @@ of prepared data following these guidelines.
 
 File tree
 
-```Text
-phenotype/
-    <measurement_tool_name>.json
-    <measurement_tool_name>.tsv
-sub-01/ses-MRI/anat/
-    sub-01_ses-MRI_T1w.json
-    sub-01_ses-MRI_T1w.nii.gz
-```
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+   {
+   "phenotype": {
+      "measurement_tool.json": "",
+      "measurement_tool.tsv": "",
+      },
+   "sub-01": {
+      "ses-MRI": {
+         "anat": {
+            "sub-01_ses-MRI_T1w.json": "",
+            "sub-01_ses-MRI_T1w.nii.gz": "",
+            }
+         }
+      }
+   }
+) }}
 
-Contents of `phenotype/<measurement_tool_name>.tsv`
+Contents of `phenotype/measurement_tool.tsv`
 
 ```tsv
 participant_id	session_id	measurement_1	measurement_2
@@ -182,16 +204,26 @@ sub-01	ses-pheno	value1	value2
 
 File tree
 
-```Text
-phenotype/
-    <measurement_tool_name>.json
-    <measurement_tool_name>.tsv
-sub-01/anat/
-    sub-01_T1w.json
-    sub-01_T1w.nii.gz
-```
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+   {
+   "phenotype": {
+      "measurement_tool.json": "",
+      "measurement_tool.tsv": "",
+      },
+   "sub-01": {
+      "anat": {
+         "sub-01_T1w.json": "",
+         "sub-01_T1w.nii.gz": "",
+         }
+      }
+   }
+) }}
 
-Contents of `phenotype/<measurement_tool_name>.tsv`
+Contents of `phenotype/measurement_tool.tsv`
 
 ```tsv
 participant_id	measurement_1	measurement_2
@@ -199,7 +231,7 @@ sub-01	value1	value2
 ```
 
 A session directory **MUST** be present in the participant directory and
-the `session_id` column **MUST** be present in `<measurement_tool_name>.tsv` as well.
+the `session_id` column **MUST** be present in `phenotype/measurement_tool.tsv` as well.
 Sessions must be used consistently for the combination of tabular and
 non-tabular phenotypic data.
 
@@ -207,27 +239,42 @@ non-tabular phenotypic data.
 
 File tree
 
-```Text
-phenotype/
-    <measurement_tool_name>.json
-    <measurement_tool_name>.tsv
-sub-01/
-    ses-MRI1/
-        anat/
-            sub-01_ses-MRI1_T1w.json
-            sub-01_ses-MRI1_T1w.nii.gz
-    ses-MRI2/
-        anat/
-            sub-01_ses-MRI2_T1w.json
-            sub-01_ses-MRI2_T1w.nii.gz
-sub-02/
-    ses-MRI1/
-        anat/
-            sub-02_ses-MRI1_T1w.json
-            sub-02_ses-MRI1_T1w.nii.gz
-```
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+   {
+   "phenotype": {
+      "measurement_tool.json": "",
+      "measurement_tool.tsv": "",
+      },
+   "sub-01": {
+      "ses-MRI1": {
+         "anat": {
+            "sub-01_ses-MRI1_T1w.json": "",
+            "sub-01_ses-MRI1_T1w.nii.gz": "",
+            }
+         },
+      "ses-MRI2": {
+         "anat": {
+            "sub-01_ses-MRI2_T1w.json": "",
+            "sub-01_ses-MRI2_T1w.nii.gz": "",
+            }
+         }
+      },
+   "sub-02": {
+      "ses-MRI1": {
+         "anat": {
+            "sub-02_ses-MRI1_T1w.json": "",
+            "sub-02_ses-MRI1_T1w.nii.gz": "",
+            }
+         }
+      }
+   }
+) }}
 
-Contents of `phenotype/<measurement_tool_name>.tsv`
+Contents of `phenotype/measurement_tool.tsv`
 
 ```tsv
 participant_id	session_id	measurement_1	measurement_2
@@ -242,23 +289,46 @@ The `ses-baseline` session collects an MRI and tabular phenotypic data.
 
 File tree
 
-```Text
-participants.json
-participants.tsv
-sessions.json
-sessions.tsv
-phenotype/
-    demographics.json
-    demographics.tsv
-    ...
-sub-01/
-    ses-baseline/
-    ses-followupMRI/
-sub-02/
-    ses-baseline/
-sub-03/
-    ses-baseline/
-    ses-followupMRI/
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+   {
+   "participants.json": "",
+   "participants.tsv": "",
+   "sessions.json": "",
+   "sessions.tsv": "",
+   "phenotype": {
+      "survey.json": "",
+      "survey.tsv": "",
+      },
+   "sub-01": {
+      "ses-baseline/": "",
+      "ses-followupMRI/": "",
+      },
+   "sub-02": {
+      "ses-baseline/": "",
+      },
+   "sub-03": {
+      "ses-baseline/": "",
+      "ses-followupMRI/": "",
+      }
+   }
+) }}
+
+Contents of `participants.tsv`. Participant properties that can change
+from session to session belong here especially.
+
+```tsv
+participant_id	session_id	sex	age	gender	race	household_income
+sub-01	ses-baseline	M	10	3	4	5
+sub-01	ses-followupMRI	M	10	3	4	5
+sub-01	ses-interview	M	11	4	4	6
+sub-02	ses-baseline	F	9	1	3	3
+sub-02	ses-interview	F	10	1	7	3
+sub-03	ses-baseline	F	11	2	10	4
+sub-03	ses-followupMRI	F	12	5	10	4
 ```
 
 Contents of `sessions.tsv`.
@@ -295,27 +365,17 @@ Contents of `sessions.json`. Note how the `session_id` `Levels` are clearly desc
 }
 ```
 
-Contents of `participants.tsv`.
+Contents of `phenotype/survey.tsv`. Note how `sub-03` does not have
+a row for `ses-interview` because that session was not collected
+and is absent above in the `participants.tsv` and `sessions.tsv` files.
 
 ```tsv
-participant_id	sex
-sub-01	M
-sub-02	F
-sub-03	F
-```
-
-Contents of `phenotype/demographics.tsv`. Measures or features that can change
-from session to session belong here especially.
-
-```tsv
-participant_id	session_id	age	gender	race	household_income
-sub-01	ses-baseline	10	3	4	5
-sub-01	ses-followupMRI	10	3	4	5
-sub-01	ses-interview	11	4	4	6
-sub-02	ses-baseline	9	1	3	3
-sub-02	ses-interview	10	1	7	3
-sub-03	ses-baseline	11	2	10	4
-sub-03	ses-followupMRI	12	5	10	4
+participant_id	session_id	question_1	question_2	question_3
+sub-01	ses-baseline	A	2	no
+sub-01	ses-interview	A	3	yes
+sub-02	ses-baseline	A	2	no
+sub-02	ses-interview	B	1	unsure
+sub-03	ses-baseline	B	3	no
 ```
 
 For more complete examples, see the `pheno00*`

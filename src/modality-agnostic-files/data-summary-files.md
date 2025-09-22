@@ -312,9 +312,9 @@ the following expectations apply to sessions files.
     a `session_id` column. The data dictionary JSON file's `session_id` field
     MUST include `Levels` with the description of each `session_id`.
 
-1.  When a sessions file is in use, you MUST NOT provide additional sessions
-    files at the participant-level which would otherwise use
-    the inheritance principle.
+1.  When a root-level sessions file is in use, you MUST NOT provide
+    additional sessions files at the participant-level
+    which would otherwise use the inheritance principle.
 
 1.  Whenever possible, it is RECOMMENDED to also collect acquisition time
     for tabular phenotypic data and store the time of acquisition of each row

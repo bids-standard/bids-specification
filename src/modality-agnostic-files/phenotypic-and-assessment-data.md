@@ -32,9 +32,13 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_columns_table("modality_agnostic.Phenotypes") }}
 
-As with all other tabular data, the additional phenotypic information files
-MAY be accompanied by a JSON file describing the columns in detail
+As with all other tabular data, the additional tabular phenotypic data
+MAY be accompanied by a JSON data dictionary file describing the columns in detail
 (see [Tabular files](../common-principles.md#tabular-files)).
+When the [`AdditionalValidation` key](dataset-description.md#additional-validation)
+contains `"Phenotype"` in the `dataset_description.json`,
+then the additional tabular phenotypic data
+MUST be accompanied by a JSON data dictionary file.
 
 In addition to the column descriptions, the JSON file MAY contain the following fields:
 
@@ -116,11 +120,12 @@ the following expectations apply to phenotypic and assessment data.
         multiple [sessions](../glossary.md#session-entities) are present
         in the data set regardless of whether those sessions are in
         the `phenotype/` data, `sub-<label>/` data, or a combination of the two.
+        See the first two examples in [the appendix](../appendices/phenotype.md).
 
     1.  If more than one of the same measurement tool is acquired within
         the same `session_id`, a `run_id` column MUST be added.
 
-    1.  To encode the acquisition time for a measurement tool’s `session_id`,
+    1.  To encode the acquisition time for a tabular phenotypic file’s `session_id`,
         add the `session_id` to the sessions file and
         include the OPTIONAL `acq_time` column.
 
@@ -130,7 +135,7 @@ the following expectations apply to phenotypic and assessment data.
     Furthermore, if you have to add a `session_id` column to the tabular phenotypic data,
     you then MUST also introduce a session directory to the imaging data,
     even if only one imaging session has been created.
-    This rule can be considered as "**if anyone uses sessions, everyone uses sessions**."
+    This rule can be considered as "**if anyone uses sessions, everyone uses sessions.**"
     And vice versa, if imaging data has session directories,
     all imaging data and tabular phenotypic data MUST have sessions.
 
