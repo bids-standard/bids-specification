@@ -1,0 +1,42 @@
+---
+Stimuli:
+  selectors:
+    - suffix == "stimuli"
+  initial_columns:
+    - stimulus_id
+    - type
+  columns:
+    stimulus_id: required
+    type__stimuli: required
+    URL: optional
+    license: recommended
+    copyright: recommended
+    description__stimuli: recommended
+    HED: optional
+    filename: optional
+    present: optional
+    partDescription__stimuli: optional
+  additional_columns: allowed_if_defined
+
+Annotations:
+  selectors:
+    - suffix == "annotations"
+  initial_columns:
+    - annot_id
+    - description
+  columns:
+    annot_id: required
+    description__annot: required
+  additional_columns: allowed_if_defined
+
+StimulusEvents:
+  selectors:
+    - suffix == "events"
+    - entities.stimulus != null
+  initial_columns:
+    - onset
+    - duration
+  columns:
+    onset: required
+    duration: recommended
+  additional_columns: allowed_if_defined

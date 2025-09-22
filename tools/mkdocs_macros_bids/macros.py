@@ -101,6 +101,119 @@ def make_filename_template(dstype="raw", src_path=None, pdf_format=False, **kwar
     return codeblock
 
 
+def make_root_filename_template(
+    dstype="raw", src_path=None, pdf_format=False, **kwargs
+):
+    """Generate a filename template snippet for root-level directories.
+
+    This function is designed for root-level directories like /stimuli
+    that use stem files and path-based organization (not subject-scoped datatypes).
+    """
+    if src_path is None:
+        src_path = _get_source_path()
+
+    # Load schema with explicit path to avoid caching issues
+    import os
+
+    schema_path = os.path.join(
+        os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
+        "src",
+        "schema.json",
+    )
+    if os.path.exists(schema_path):
+        schema_obj = schema.load_schema(schema_path)
+    else:
+        schema_obj = schema.load_schema()
+
+    # Look for rules that have a specific path (root-level organization)
+    target_path = kwargs.get("path", "stimuli")  # Default to stimuli
+
+    rules = schema_obj.rules.files[dstype]
+
+    # Find rules that match our target path (handle nested namespaces)
+    matching_rules = {}
+    for rule_name, rule in rules.items():
+        # Check if rule directly has the path
+        if hasattr(rule, "path") and rule.path == target_path:
+            matching_rules[rule_name] = rule
+        # Check if rule is a namespace containing rules with the path
+        elif not hasattr(rule, "path") and hasattr(rule, "keys"):
+            for sub_name in rule.keys():
+                sub_rule = rule[sub_name]
+                if hasattr(sub_rule, "path") and sub_rule.path == target_path:
+                    matching_rules[f"{rule_name}.{sub_name}"] = sub_rule
+
+    if not matching_rules:
+        return ""
+
+    # Generate template content
+    template_lines = [f"{target_path}/"]
+
+    # Process each matching rule
+    for rule_name, rule in matching_rules.items():
+        if hasattr(rule, "stem"):
+            # Handle stem-based files (like stimuli.tsv, annotations.tsv)
+            if hasattr(rule, "extensions"):
+                # For stem files, always show each extension explicitly
+                # These are important catalog files that should be clear
+                for ext in rule.extensions:
+                    template_lines.append(f"    {rule.stem}{ext}")
+
+        elif hasattr(rule, "suffixes"):
+            # Handle entity-based files generically using entity definitions from schema
+            entities_part = ""
+            if hasattr(rule, "entities"):
+                entity_parts = []
+                for entity_name, requirement in rule.entities.items():
+                    # Look up the entity in the schema to get its prefix and format
+                    if entity_name in schema_obj.objects.entities:
+                        entity_def = schema_obj.objects.entities[entity_name]
+                        entity_prefix = entity_def.get("name", entity_name)
+                        entity_format = entity_def.get("format", "label")
+
+                        # Format based on requirement (required vs optional)
+                        if requirement == "optional":
+                            entity_parts.append(f"[_{entity_prefix}-<{entity_format}>]")
+                        else:
+                            # First entity doesn't need underscore prefix
+                            if not entity_parts:
+                                entity_parts.append(
+                                    f"{entity_prefix}-<{entity_format}>"
+                                )
+                            else:
+                                entity_parts.append(
+                                    f"_{entity_prefix}-<{entity_format}>"
+                                )
+                entities_part = "".join(entity_parts)
+
+            for suffix in rule.suffixes:
+                if hasattr(rule, "extensions"):
+                    # Consolidate only when there are more than 2 extensions
+                    if len(rule.extensions) > 2:
+                        # Show the pattern once with generic extension
+                        # Need to escape < and > for HTML but not for PDF
+                        ext_placeholder = (
+                            "<extension>" if pdf_format else "&lt;extension&gt;"
+                        )
+                        template_lines.append(
+                            f"    {entities_part}_{suffix}.{ext_placeholder}"
+                        )
+                    else:
+                        # Show each extension explicitly for clarity
+                        for ext in rule.extensions:
+                            template_lines.append(f"    {entities_part}_{suffix}{ext}")
+
+    # Format as code block
+    template_content = "\n".join(template_lines)
+
+    if pdf_format:
+        return f"```Text\n{template_content}\n```"
+    else:
+        return (
+            f'<div class="highlight"><pre><code>{template_content}</code></pre></div>'
+        )
+
+
 def make_entity_table(src_path=None, **kwargs):
     """Generate an entity table from the schema, based on specific filters.
 
@@ -278,7 +391,18 @@ def make_sidecar_table(table_name, src_path=None):
     if src_path is None:
         src_path = _get_source_path()
 
-    schema_obj = schema.load_schema()
+    # Load schema with explicit path to avoid caching issues
+    import os
+
+    schema_path = os.path.join(
+        os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
+        "src",
+        "schema.json",
+    )
+    if os.path.exists(schema_path):
+        schema_obj = schema.load_schema(schema_path)
+    else:
+        schema_obj = schema.load_schema()
     table = render.make_sidecar_table(schema_obj, table_name, src_path=src_path)
     return table
 
@@ -337,7 +461,18 @@ def make_columns_table(table_name, src_path=None):
     if src_path is None:
         src_path = _get_source_path()
 
-    schema_obj = schema.load_schema()
+    # Load schema with explicit path to avoid caching issues
+    import os
+
+    schema_path = os.path.join(
+        os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
+        "src",
+        "schema.json",
+    )
+    if os.path.exists(schema_path):
+        schema_obj = schema.load_schema(schema_path)
+    else:
+        schema_obj = schema.load_schema()
     table = render.make_columns_table(schema_obj, table_name, src_path=src_path)
     return table
 
