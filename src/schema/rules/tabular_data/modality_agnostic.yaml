@@ -92,16 +92,18 @@ Sessions:
   initial_columns:
     - participant_id
     - session_id
+    - run_id
   columns:
     participant_id: optional
     session_id:
       level: required
       description_addendum: |
         There MUST be exactly one row for each session.
+    run_id: optional
     acq_time__sessions: optional
     pathology: recommended
     HED: optional
-  index_columns: [participant_id, session_id]
+  index_columns: [participant_id, session_id, run_id]
   additional_columns: allowed
 
 Phenotype:
