@@ -504,9 +504,9 @@ VFA:
     ([Deoni et al. 2005](https://doi.org/10.1002/mrm.20314)).
 act:
   value: act
-  display_name: Provenance activity records
+  display_name: Activities
   description: |
-    Provenance activity records for a group of provenance.
+    Activities for a group of provenance.
     Activities represent the transformations that have been applied to the data.
     Files with the `act` suffix must define the `Activities` metadata, which is an array of activity records.
     See the [`Activities`](SPEC_ROOT/modality-agnostic-files/provenance.md#activities) section.
@@ -622,17 +622,17 @@ electrodes:
     File that gives the location of (i)EEG electrodes.
 ent:
   value: ent
-  display_name: Provenance entity records
+  display_name: Entities
   description: |
-    Provenance entity records for a group of provenance.
+    Entities for a group of provenance.
     Entities are inputs and outputs for activities.
     Files with the `ent` suffix must define the `Entities` metadata, which is an array of entity records.
     See the [`Entities`](SPEC_ROOT/modality-agnostic-files/provenance.md#entities) section.
 env:
   value: env
-  display_name: Provenance environment records
+  display_name: Environments
   description: |
-    Provenance environment records for a group of provenance.
+    Environments for a group of provenance.
     Environments specify the software environments in which activities were performed.
     Files with the `env` suffix must define the `Environments` metadata, which is an array of environment records.
     See the [`Environments`](SPEC_ROOT/modality-agnostic-files/provenance.md#environments) section.
@@ -843,9 +843,9 @@ probseg:
     This suffix may only be used in derivative datasets.
 soft:
   value: soft
-  display_name: Provenance software records
+  display_name: Software
   description: |
-    Provenance software records for a group of provenance.
+    Software for a group of provenance.
     Software specifies the software packages with which transformations were applied to the data.
     Files with the `soft` suffix must define the `Software` metadata, which is an array of software records.
     See the [`Software`](SPEC_ROOT/modality-agnostic-files/provenance.md#software) section.

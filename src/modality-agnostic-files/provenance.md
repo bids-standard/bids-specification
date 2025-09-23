@@ -42,7 +42,7 @@ This part of the BIDS specification is aimed at describing the provenance of a B
 -   `Software`: software packages activities are associated with.
 -   `Environments`: software environments in which activities were performed.
 
-Provenance records are described as JSON objects in BIDS. This is detailed in the [Provenance files section](#provenance-files).
+Provenance records are described as JSON objects in BIDS (see the [Provenance files section](#provenance-files)).
 
 !!! example
 
@@ -62,26 +62,9 @@ Provenance records are described as JSON objects in BIDS. This is detailed in th
 
 **Provenance group**: refers to a collection of provenance records corresponding to a consistent set of processings. Defining multiple provenance groups is appropriate when separate sets of processings have been performed on data, and that they differ in purpose or chronology.
 
-## Provenance in sidecar JSON files
+## Provenance of a BIDS file
 
-Provenance metadata MAY be stored inside the sidecar JSON of any BIDS file it applies to.
-This metadata only describes the provenance of the BIDS file.
-
-!!! example
-    Provenance metadata in a sidecar JSON file:
-    ```JSON
-    {
-        "GeneratedBy": "bids::prov#conversion-00f3a18f",
-        "SidecarGeneratedBy": [
-            "bids::prov#preparation-conversion-1xkhm1ft",
-            "bids::prov#conversion-00f3a18f"
-        ],
-        "Digest": {
-            "sha256": "66eeafb465559148e0222d4079558a8354eb09b9efabcc47cd5b8af6eed51907"
-        }
-    }
-    ```
-    This snippet is derived from the following comprehensive example: [Provenance records for DICOM to Nifti conversion using `heudiconv`](https://github.com/bclenet/bids-examples/tree/BEP028_heudiconv/provenance_heudiconv).
+Provenance metadata describing the provenance of a BIDS file MAY be stored inside its sidecar JSON.
 
 Any sidecar JSON file MAY include the following keys:
 
@@ -105,26 +88,28 @@ and a guide for using macros can be found at
 
     `SidecarGeneratedBy` MUST explicitly include all activities that modified the sidecar JSON, even if some are already listed in `GeneratedBy`.
 
-## Provenance at dataset level
+!!! example
+    Provenance metadata in a sidecar JSON file:
+    ```JSON
+    {
+        "GeneratedBy": "bids::prov#conversion-00f3a18f",
+        "SidecarGeneratedBy": [
+            "bids::prov#preparation-conversion-1xkhm1ft",
+            "bids::prov#conversion-00f3a18f"
+        ],
+        "Digest": {
+            "sha256": "66eeafb465559148e0222d4079558a8354eb09b9efabcc47cd5b8af6eed51907"
+        }
+    }
+    ```
+    This snippet is derived from the [DICOM to Nifti conversion with `heudiconv` example](https://github.com/bclenet/bids-examples/tree/BEP028_heudiconv/provenance_heudiconv).
+
+## Provenance of a BIDS dataset
 
 Provenance metadata MAY be stored inside the `dataset_description.json` of any BIDS dataset (or BIDS-Derivatives dataset) it applies to.
 This metadata describes the provenance of the whole dataset.
 
-!!! example
-    `GeneratedBy` contents in a `dataset_description.json`:
-    ```JSON
-    {
-        "GeneratedBy": [
-            {
-                "Name": "fmriprep",
-                "Id": "bids::prov#preprocessing-xMpFqB5q"
-            }
-        ]
-    }
-    ```
-    This snippet is an extract of the following comprehensive example: [Provenance records for fMRI preprocessing using `fMRIPrep`](https://github.com/bclenet/bids-examples/tree/BEP028_fmriprep/provenance_fmriprep).
-
-The `dataset_description.json` file of a BIDS dataset MAY include the following key to describe provenance:
+The `dataset_description.json` file of a **BIDS dataset** MAY include the following key to describe provenance. The `dataset_description.json` file of a **BIDS-Derivatives dataset** MUST include the following key to describe provenance.
 
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in
@@ -134,21 +119,7 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_metadata_table(
    {
-      "GeneratedBy": "RECOMMENDED"
-   }
-) }}
-
-The `dataset_description.json` file of a BIDS-Derivatives dataset MUST include the following key to describe provenance:
-
-<!-- This block generates a metadata table.
-The definitions of these fields can be found in
-  src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_metadata_table(
-   {
-      "GeneratedBy": "REQUIRED"
+      "GeneratedBy": "RECOMMENDED for BIDS datasets, REQUIRED for BIDS-Derivatives datasets"
    }
 ) }}
 
@@ -163,6 +134,20 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_subobject_table("metadata.GeneratedBy.items") }}
 
+!!! example
+    `GeneratedBy` contents in a `dataset_description.json`:
+    ```JSON
+    {
+        "GeneratedBy": [
+            {
+                "Name": "fmriprep",
+                "Id": "bids::prov#preprocessing-xMpFqB5q"
+            }
+        ]
+    }
+    ```
+    This snippet is an extract of the [fMRI preprocessing with `fMRIPrep` example](https://github.com/bclenet/bids-examples/tree/BEP028_fmriprep/provenance_fmriprep).
+
 ## Provenance files
 
 Template:
@@ -175,6 +160,20 @@ prov/
         prov-<label>_env.json
         prov-<label>_soft.json
 ```
+
+The following suffixes specify the contents of provenance files.
+
+<!--
+This block generates a suffix table.
+The definitions of these fields can be found in
+  src/schema/objects/suffixes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_suffix_table(
+      ["act", "ent", "env", "soft"]
+   )
+}}
 
 !!! Note
     Files sharing the same `prov` BIDS entity contain provenance records that belong to the same provenance group.
@@ -193,45 +192,9 @@ prov/
     └─ ...
     ```
 
-The following suffixes specify the contents of provenance files.
-
-<!--
-This block generates a suffix table.
-The definitions of these fields can be found in
-  src/schema/objects/suffixes
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_suffix_table(
-      ["act", "ent", "env", "soft"]
-   )
-}}
-
 ### `Activities`
 
 Each `prov/[<label>/]prov-<label>_act.json` file is a JSON file describing activity records for a provenance group.
-
-!!! example
-    Provenance metadata in a `prov/[<label>/]prov-<label>_act.json` file:
-    ```JSON
-    {
-        "Activities": [
-            {
-                "Id": "bids::prov/#conversion-00f3a18f",
-                "Label": "Dicom to Nifti conversion",
-                "Command": "dcm2niix -o . -f sub-%i/anat/sub-%i_T1w sourcedata/dicoms",
-                "AssociatedWith": "bids::prov/#dcm2niix-khhkm7u1",
-                "Used": [
-                    "bids::prov/#fedora-uldfv058",
-                    "bids::sourcedata/dicoms"
-                ],
-                "StartedAtTime": "2025-03-13T10:26:00",
-                "EndedAtTime": "2025-03-13T10:26:05"
-            }
-        ]
-    }
-    ```
-    This snippet is derived from the following comprehensive example: [Provenance records for DICOM to Nifti conversion using `dcm2niix`](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix).
 
 Each file MUST include an `Activities` key:
 
@@ -257,32 +220,35 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_subobject_table("metadata.Activities.items") }}
 
+!!! example
+    Provenance metadata in a `prov/[<label>/]prov-<label>_act.json` file:
+    ```JSON
+    {
+        "Activities": [
+            {
+                "Id": "bids::prov/#conversion-00f3a18f",
+                "Label": "Dicom to Nifti conversion",
+                "Command": "dcm2niix -o . -f sub-%i/anat/sub-%i_T1w sourcedata/dicoms",
+                "AssociatedWith": "bids::prov/#dcm2niix-khhkm7u1",
+                "Used": [
+                    "bids::prov/#fedora-uldfv058",
+                    "bids::sourcedata/dicoms"
+                ],
+                "StartedAtTime": "2025-03-13T10:26:00",
+                "EndedAtTime": "2025-03-13T10:26:05"
+            }
+        ]
+    }
+    ```
+    This snippet is derived from the [DICOM to Nifti conversion with `dcm2niix` example](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix).
+
 ### `Entities`
 
 Each `prov/[<label>/]prov-<label>_ent.json` file is a JSON file describing entity records for a provenance group.
 
 !!! Caution
-    These files MUST not contain entity records describing data files that are available in the dataset. Use sidecar JSON files instead for this purpose (see [Provenance in sidecar JSON files](#provenance-in-sidecar-json-files)).
-    These files MUST not contain entity records describing the current dataset. The provenance of a dataset MAY be described in the `dataset_description.json` files instead (see [Provenance at dataset level](#provenance-at-dataset-level)).
-
-!!! example
-    Provenance metadata in a `prov/[<label>/]prov-<label>_ent.json` file:
-    ```JSON
-    {
-        "Entities": [
-            {
-                "Id": "bids::sub-01/func/sub-01_task-tonecounting_bold.nii",
-                "Label": "sub-01_task-tonecounting_bold.nii",
-                "AtLocation": "sub-01/func/sub-01_task-tonecounting_bold.nii",
-                "GeneratedBy": "bids::prov#realign-acea8093",
-                "Digest": {
-                    "sha256": "a4e801438b9c36df010309c94fc4ef8b07d95e7d9cb2edb8c212a5e5efc78d90"
-                }
-            }
-        ]
-    }
-    ```
-    This snippet is an extract of the following comprehensive example: [Provenance records for fMRI preprocessing using `SPM`](https://github.com/bclenet/bids-examples/tree/BEP028_spm/provenance_spm)
+    These files MUST not contain entity records describing data files that are available in the dataset. Use sidecar JSON files instead for this purpose (see [Provenance in sidecar JSON files](#provenance-of-a-bids-file)).
+    These files MUST not contain entity records describing the current dataset. The provenance of a dataset MAY be described in the `dataset_description.json` files instead (see [Provenance at dataset level](#provenance-of-a-bids-dataset)).
 
 Entity records in these files MAY describe:
 
@@ -316,25 +282,28 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_subobject_table("metadata.Entities.items") }}
 
-### `Software`
-
-Each `prov/[<label>/]prov-<label>_soft.json` file is a JSON file describing software records for a provenance group.
-
 !!! example
-    Provenance metadata in a `prov/[<label>/]prov-<label>_soft.json` file:
+    Provenance metadata in a `prov/[<label>/]prov-<label>_ent.json` file:
     ```JSON
     {
-        "Software": [
+        "Entities": [
             {
-                "Id": "bids::prov/#dcm2niix-khhkm7u1",
-                "AltIdentifier": "RRID:SCR_023517",
-                "Label": "dcm2niix",
-                "Version": "v1.0.20220720"
+                "Id": "bids::sub-01/func/sub-01_task-tonecounting_bold.nii",
+                "Label": "sub-01_task-tonecounting_bold.nii",
+                "AtLocation": "sub-01/func/sub-01_task-tonecounting_bold.nii",
+                "GeneratedBy": "bids::prov#realign-acea8093",
+                "Digest": {
+                    "sha256": "a4e801438b9c36df010309c94fc4ef8b07d95e7d9cb2edb8c212a5e5efc78d90"
+                }
             }
         ]
     }
     ```
-    This snippet is an extract of the following comprehensive example: [Provenance records for DICOM to Nifti conversion using `dcm2niix`](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix)
+    This snippet is an extract of the [fMRI preprocessing with `SPM` example](https://github.com/bclenet/bids-examples/tree/BEP028_spm/provenance_spm)
+
+### `Software`
+
+Each `prov/[<label>/]prov-<label>_soft.json` file is a JSON file describing software records for a provenance group.
 
 Each file MUST include a `Software` key:
 
@@ -360,24 +329,25 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_subobject_table("metadata.Software.items") }}
 
-### `Environments`
-
-Each `prov/[<label>/]prov-<label>_env.json` file is a JSON file describing environment records for a provenance group.
-
 !!! example
-    Provenance metadata in a `prov/[<label>/]prov-<label>_ent.json` file:
+    Provenance metadata in a `prov/[<label>/]prov-<label>_soft.json` file:
     ```JSON
     {
-        "Environments": [
+        "Software": [
             {
-                "Id": "bids::prov/#fedora-uldfv058",
-                "Label": "Fedora release 36 (Thirty Six)",
-                "OperatingSystem": "GNU/Linux 6.2.15-100.fc36.x86_64"
+                "Id": "bids::prov/#dcm2niix-khhkm7u1",
+                "AltIdentifier": "RRID:SCR_023517",
+                "Label": "dcm2niix",
+                "Version": "v1.0.20220720"
             }
         ]
     }
     ```
-    This snippet is an extract of the following comprehensive example: [Provenance records for DICOM to Nifti conversion using `dcm2niix`](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix)
+    This snippet is an extract of the [DICOM to Nifti conversion with `dcm2niix` example](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix)
+
+### `Environments`
+
+Each `prov/[<label>/]prov-<label>_env.json` file is a JSON file describing environment records for a provenance group.
 
 Each file MUST include a `Environments` key:
 
@@ -402,6 +372,21 @@ and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_subobject_table("metadata.Environments.items") }}
+
+!!! example
+    Provenance metadata in a `prov/[<label>/]prov-<label>_ent.json` file:
+    ```JSON
+    {
+        "Environments": [
+            {
+                "Id": "bids::prov/#fedora-uldfv058",
+                "Label": "Fedora release 36 (Thirty Six)",
+                "OperatingSystem": "GNU/Linux 6.2.15-100.fc36.x86_64"
+            }
+        ]
+    }
+    ```
+    This snippet is an extract of the [DICOM to Nifti conversion with `dcm2niix` example](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix)
 
 ## Consistency and uniqueness of Ids
 
