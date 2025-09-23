@@ -106,10 +106,10 @@ and a guide for using macros can be found at
 
 ## Provenance of a BIDS dataset
 
-Provenance metadata MAY be stored inside the `dataset_description.json` of any BIDS dataset (or BIDS-Derivatives dataset) it applies to.
+Provenance metadata MAY be stored inside the `dataset_description.json` of any BIDS dataset (raw, derivative, or study) it applies to.
 This metadata describes the provenance of the whole dataset.
 
-The `dataset_description.json` file of a **BIDS dataset** MAY include the following key to describe provenance. The `dataset_description.json` file of a **BIDS-Derivatives dataset** MUST include the following key to describe provenance.
+The `dataset_description.json` file of a **BIDS raw dataset** or **BIDS study dataset** MAY include the following key to describe provenance. The `dataset_description.json` file of a **BIDS derivative dataset** MUST include the following key to describe provenance.
 
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in
@@ -119,7 +119,7 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_metadata_table(
    {
-      "GeneratedBy": "RECOMMENDED for BIDS datasets, REQUIRED for BIDS-Derivatives datasets"
+      "GeneratedBy": "RECOMMENDED for BIDS raw datasets and BIDS study datasets, REQUIRED for BIDS derivative datasets"
    }
 ) }}
 
@@ -400,7 +400,7 @@ An `Id` identifying an entity record corresponding to a file of a BIDS dataset M
 !!! example "Entity records naming examples"
     - `bids:ds001734:sub-002/anat/sub-02_T1w.nii`: the `Id` of an entity describing a T1w file for subject `sub-002` in the `ds001734` dataset ;
     - `bids::sub-014/func/sub-014_task-MGT_run-01_events.tsv`: the `Id` of an entity describing an events file for subject `sub-014` in the current dataset ;
-    - `bids:derivatives:fmriprep/sub-001/func/sub-001_task-MGT_run-01_bold_space-MNI152NLin2009cAsym_preproc.nii.gz`:  the `Id` of an entity describing a bold file for subject `sub-001` in the `derivatives` dataset.
+    - `bids:fmriprep:sub-001/func/sub-001_task-MGT_run-01_bold_space-MNI152NLin2009cAsym_preproc.nii.gz`:  the `Id` of an entity describing a bold file for subject `sub-001` in the `fmriprep` dataset.
 
 An `Id` identifying activity, software, or environment provenance records described in a BIDS dataset `<dataset>` SHOULD have the following form, where `<label>` is a human readable name for coherently identifying the record and `<uid>` is a unique group of chars.
 
@@ -413,7 +413,7 @@ The uniqueness of this `Id` MUST be used to distinguish any `Activity`, `Softwar
 !!! example "Activity, environment and software records naming examples"
     - `bids:ds001734:prov#conversion-xfMMbHK1`: a conversion activity described inside the `ds001734` dataset;
     - `bids::prov#fedora-uldfv058`: a Fedora based environment described inside the current dataset.
-    - `bids:derivatives:prov#fmriprep-r4kzzMt8`: the fMRIPrep software described inside the `derivatives` dataset.
+    - `bids:preprocessing:prov#fmriprep-r4kzzMt8`: the fMRIPrep software described inside the `preprocessing` dataset.
 
 ## Minimal example
 
