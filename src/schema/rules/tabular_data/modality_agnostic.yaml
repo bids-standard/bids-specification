@@ -90,8 +90,10 @@ Sessions:
     - suffix == "sessions"
     - extension == ".tsv"
   initial_columns:
+    - participant_id
     - session_id
   columns:
+    participant_id: optional
     session_id:
       level: required
       description_addendum: |
@@ -99,7 +101,7 @@ Sessions:
     acq_time__sessions: optional
     pathology: recommended
     HED: optional
-  index_columns: [session_id]
+  index_columns: [participant_id, session_id]
   additional_columns: allowed
 
 Phenotype:
