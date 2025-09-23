@@ -111,8 +111,10 @@ Phenotype:
     - datatype == 'phenotype'
   initial_columns:
     - participant_id
+    - session_id
   columns:
     participant_id: required
+    session_id: optional
     HED: optional
-  index_columns: [participant_id]
+  index_columns: [participant_id, session_id]
   additional_columns: allowed
