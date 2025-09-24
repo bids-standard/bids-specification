@@ -24,7 +24,7 @@ context of the academic literature.
 
 ### Goals
 
-This part of the BIDS specification is aimed at describing the provenance of a BIDS dataset. This description is retrospective: it describes a set of steps that were executed in order to obtain the dataset (this is different from prospective descriptions of workflows that could for instance list all sets of steps that can be run on this dataset).
+This part of the BIDS specification is aimed at describing the provenance of a BIDS dataset. This description is retrospective -- it describes a set of steps that were executed in order to obtain the dataset (this is different from prospective descriptions of workflows that could for instance list all sets of steps that can be run on this dataset) -- and based on the [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/) standard.
 
 ### Principles for encoding provenance in BIDS
 
@@ -109,7 +109,9 @@ and a guide for using macros can be found at
 Provenance metadata MAY be stored inside the `dataset_description.json` of any BIDS dataset (raw, derivative, or study) it applies to.
 This metadata describes the provenance of the whole dataset.
 
-The `dataset_description.json` file of a **BIDS raw dataset** or **BIDS study dataset** MAY include the following key to describe provenance. The `dataset_description.json` file of a **BIDS derivative dataset** MUST include the following key to describe provenance.
+The `dataset_description.json` file of a **BIDS raw dataset** or **BIDS study dataset** MAY include the following key to describe provenance.
+
+The `dataset_description.json` file of a **BIDS derivative dataset** MUST include the following key to describe provenance.
 
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in
@@ -123,16 +125,33 @@ and a guide for using macros can be found at
    }
 ) }}
 
+The `GeneratedBy` field can contain either of the following values:
+
+-   descriptions of pipelines or processes, (see the [Descriptions of pipelines or processes](#descriptions-of-pipelines-or-processes) section);
+-   identifier(s) of provenance record(s), (see the [Using provenance records](#using-provenance-records) section).
+
+### Descriptions of processes or pipelines 
+
+This is a way to describe the provenance of a dataset with array of objects representing pipelines or processes that generated the dataset.
+
 Each object in the `GeneratedBy` array includes the following REQUIRED, RECOMMENDED
 and OPTIONAL keys:
 
-<!-- This block generates a table describing subfields within a metadata field.
+<!-- This block generates a metadata table.
 The definitions of these fields can be found in
   src/schema/objects/metadata.yaml
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_subobject_table("metadata.GeneratedBy.items") }}
+{{ MACROS___make_metadata_table(
+   {
+      "Name__GeneratedBy": "REQUIRED",
+      "Version__GeneratedBy": "RECOMMENDED",
+      "Description__GeneratedBy": 'RECOMMENDED if `Name` is `"Manual"`, OPTIONAL otherwise',
+      "CodeURL": "OPTIONAL",
+      "Container": "OPTIONAL"
+   }
+) }}
 
 !!! example
     `GeneratedBy` contents in a `dataset_description.json`:
@@ -140,10 +159,28 @@ and a guide for using macros can be found at
     {
         "GeneratedBy": [
             {
-                "Name": "fmriprep",
-                "Id": "bids::prov#preprocessing-xMpFqB5q"
+              "Name": "reproin",
+              "Version": "0.6.0",
+              "Container": {
+                "Type": "docker",
+                "Tag": "repronim/reproin:0.6.0"
+              }
             }
         ]
+    }
+    ```
+
+### Using provenance records
+
+When describing provenance of a dataset using provenance records, `GeneratedBy` is the identifier (respectively a set of identifiers) of the activity (resp. activities) responsible for the creation of the dataset.
+
+Each activity MUST be described inside a [provenance file](#provenance-files) of the dataset.
+
+!!! example
+    `GeneratedBy` contents in a `dataset_description.json`:
+    ```JSON
+    {
+        "GeneratedBy": "bids::prov#preprocessing-xMpFqB5q"
     }
     ```
     This snippet is an extract of the [fMRI preprocessing with `fMRIPrep` example](https://github.com/bclenet/bids-examples/tree/BEP028_fmriprep/provenance_fmriprep).

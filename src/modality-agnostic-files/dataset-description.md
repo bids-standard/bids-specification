@@ -45,6 +45,10 @@ and a guide for using macros can be found at
    }
 ) }}
 
+!!! Note
+    See the [Provenance of a BIDS dataset](provenance.md#provenance-of-a-bids-dataset) section
+    for more information on how to describe provenance using the `GeneratedBy` field.
+
 Example:
 
 ```JSON
