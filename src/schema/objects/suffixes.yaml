@@ -506,9 +506,8 @@ act:
   value: act
   display_name: Activities
   description: |
-    Activities represent the transformations that have been applied to the data.
-    Files with the `act` suffix must define the `Activities` metadata, which is an array of activity records.
-    See the [`Activities`](SPEC_ROOT/modality-agnostic-files/provenance.md#activities) section.
+    A JSON file containing provenance records describing activities
+    (see the [`Activities`](SPEC_ROOT/modality-agnostic-files/provenance.md#activities) section).
 angio:
   value: angio
   display_name: Angiogram
@@ -623,16 +622,14 @@ ent:
   value: ent
   display_name: Entities
   description: |
-    Entities are inputs and outputs for activities.
-    Files with the `ent` suffix must define the `Entities` metadata, which is an array of entity records.
-    See the [`Entities`](SPEC_ROOT/modality-agnostic-files/provenance.md#entities) section.
+    A JSON file containing provenance records describing entities
+    (see the [`Entities`](SPEC_ROOT/modality-agnostic-files/provenance.md#entities) section).
 env:
   value: env
   display_name: Environments
   description: |
-    Environments specify the software environments in which activities were performed.
-    Files with the `env` suffix must define the `Environments` metadata, which is an array of environment records.
-    See the [`Environments`](SPEC_ROOT/modality-agnostic-files/provenance.md#environments) section.
+    A JSON file containing provenance records describing environments
+    (see the [`Environments`](SPEC_ROOT/modality-agnostic-files/provenance.md#environments) section).
 epi:
   value: epi
   display_name: EPI
@@ -842,9 +839,8 @@ soft:
   value: soft
   display_name: Software
   description: |
-    Software specifies the software packages with which transformations were applied to the data.
-    Files with the `soft` suffix must define the `Software` metadata, which is an array of software records.
-    See the [`Software`](SPEC_ROOT/modality-agnostic-files/provenance.md#software) section.
+    A JSON file containing provenance records describing software
+    (see the [`Software`](SPEC_ROOT/modality-agnostic-files/provenance.md#software) section).
 sbref:
   value: sbref
   display_name: Single-band reference image
