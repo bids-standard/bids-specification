@@ -85,19 +85,32 @@ the `Units` of `age` or the accuracy of `age` data.
 ### 6. Use the sessions file at the root-level
 
 If there is more than one session for any one participant, then
-it is REQUIRED to provide a sessions file at the dataset root.
+it is RECOMMENDED to provide a sessions file at the dataset root.
 The sessions file MUST list all sessions for all subjects across
 imaging and tabular phenotypic data.
 If a sessions file is provided, then it MUST begin with a `participant_id` column
 followed immediately by a `session_id` column. The data dictionary JSON file’s
 `session_id` field MUST include `Levels` with the description of each `session_id`.
 
-### 7. Use either root-level sessions file or participant-level sessions files
+
+### 7. Record participant properties in the participants file and session properties in the sessions file
+
+Since the same `participant_id` and `session_id` columns can be used
+similarly in the participants file and the sessions file,
+use the two different files to instead differentiate
+properties of participants versus sessions.
+Properties of participants MAY include things like
+age, sex, race, or household income.
+Properties of sessions MAY include things like
+acquisition time, measurement device properties,
+and indoor or outdoor experimental conditions.
+
+### 8. Use either root-level sessions file or participant-level sessions files
 
 When a sessions file is in use, you MUST NOT provide additional sessions files
 at the participant-level which would otherwise use the inheritance principle.
 
-### 8. Record acquisition time of sessions with `acq_time`
+### 9. Record acquisition time of sessions with `acq_time`
 
 Whenever possible, it is RECOMMENDED to also collect acquisition time for
 tabular phenotypic data and store the time of acquisition[^2] of each row
@@ -105,7 +118,7 @@ inside a column named `acq_time` in the sessions file.
 This is consistent with how acquisition time is recorded for MRI data
 and other time-sensitive measurements (for example systolic blood pressure).
 
-### 9. Respect participant privacy when recording acquisition times
+### 10. Respect participant privacy when recording acquisition times
 
 When needed to preserve participant privacy, you SHOULD record
 relative acquisition times with respect to the earliest session.
@@ -122,7 +135,7 @@ A short summary table here describes when to use which files.
 | :----------------------------- | :------------------ | :-------------------- |
 | Participants                   | RECOMMENDED         | RECOMMENDED           |
 | Phenotypic and assessment data | RECOMMENDED         | RECOMMENDED           |
-| Sessions                       | OPTIONAL            | REQUIRED              |
+| Sessions                       | OPTIONAL            | RECOMMENDED           |
 
 ## Examples
 
