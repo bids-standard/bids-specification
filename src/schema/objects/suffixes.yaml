@@ -506,7 +506,6 @@ act:
   value: act
   display_name: Activities
   description: |
-    Activities for a group of provenance.
     Activities represent the transformations that have been applied to the data.
     Files with the `act` suffix must define the `Activities` metadata, which is an array of activity records.
     See the [`Activities`](SPEC_ROOT/modality-agnostic-files/provenance.md#activities) section.
@@ -624,7 +623,6 @@ ent:
   value: ent
   display_name: Entities
   description: |
-    Entities for a group of provenance.
     Entities are inputs and outputs for activities.
     Files with the `ent` suffix must define the `Entities` metadata, which is an array of entity records.
     See the [`Entities`](SPEC_ROOT/modality-agnostic-files/provenance.md#entities) section.
@@ -632,7 +630,6 @@ env:
   value: env
   display_name: Environments
   description: |
-    Environments for a group of provenance.
     Environments specify the software environments in which activities were performed.
     Files with the `env` suffix must define the `Environments` metadata, which is an array of environment records.
     See the [`Environments`](SPEC_ROOT/modality-agnostic-files/provenance.md#environments) section.
@@ -845,7 +842,6 @@ soft:
   value: soft
   display_name: Software
   description: |
-    Software for a group of provenance.
     Software specifies the software packages with which transformations were applied to the data.
     Files with the `soft` suffix must define the `Software` metadata, which is an array of software records.
     See the [`Software`](SPEC_ROOT/modality-agnostic-files/provenance.md#software) section.

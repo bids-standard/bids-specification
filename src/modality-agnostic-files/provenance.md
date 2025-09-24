@@ -33,7 +33,7 @@ This part of the BIDS specification is aimed at describing the provenance of a B
 -   Provenance records reflect the provenance of a full dataset and/or of specific files at any level of the BIDS hierarchy.
 -   Provenance information SHOULD not include human subject identifying data.
 
-### Definitions
+### Key concepts
 
 **Provenance record**: provenance metadata consists of records of 4 types:
 
@@ -59,8 +59,6 @@ Provenance records are described as JSON objects in BIDS (see the [Provenance fi
         B -->|used| L((Linux))
         T1p([sub-001_T1w_preproc.nii]) -->|wasGeneratedBy| B
     ```
-
-**Provenance group**: refers to a collection of provenance records corresponding to a consistent set of processings. Defining multiple provenance groups is appropriate when separate sets of processings have been performed on data, and that they differ in purpose or chronology.
 
 ## Provenance of a BIDS file
 
@@ -191,12 +189,16 @@ Template:
 
 ```text
 prov/
-    [<label>/]
+    [<group>/]
         prov-<label>_act.json
         prov-<label>_ent.json
         prov-<label>_env.json
         prov-<label>_soft.json
 ```
+
+The `prov` BIDS entity allow to group provenance files, using an arbitrary value for `<label>`.
+
+A subdirectory MAY be used to organise provenance files, using an arbitrary value for `<group>`.
 
 The following suffixes specify the contents of provenance files.
 
@@ -212,16 +214,14 @@ and a guide for using macros can be found at
    )
 }}
 
-!!! Note
-    Files sharing the same `prov` BIDS entity contain provenance records that belong to the same provenance group.
-
 !!! example
-    In this example, two separated sets of processings (`preprocspm` and `preprocfsl`) were performed on the data, resulting in two groups of provenance records.
     ```
     prov/
     ├─ preprocspm/
-    │  ├─ prov-preprocspm_act.json
-    │  └─ prov-preprocspm_ent.json
+    │  ├─ prov-preprocspm1_act.json
+    │  ├─ prov-preprocspm1_ent.json
+    │  ├─ prov-preprocspm2_act.json
+    │  └─ prov-preprocspm2_ent.json
     ├─ prov-preprocfsl_act.json
     ├─ prov-preprocfsl_ent.json
     ├─ prov-preprocfsl_env.json
@@ -231,7 +231,7 @@ and a guide for using macros can be found at
 
 ### `Activities`
 
-Each `prov/[<label>/]prov-<label>_act.json` file is a JSON file describing activity records for a provenance group.
+Each `prov/[<label>/]prov-<label>_act.json` file is a JSON file describing `Activities` (see [Key concepts](#key-concepts)).
 
 Each file MUST include an `Activities` key:
 
@@ -281,7 +281,7 @@ and a guide for using macros can be found at
 
 ### `Entities`
 
-Each `prov/[<label>/]prov-<label>_ent.json` file is a JSON file describing entity records for a provenance group.
+Each `prov/[<label>/]prov-<label>_ent.json` file is a JSON file describing `Entities` (see [Key concepts](#key-concepts)).
 
 !!! Caution
     These files MUST not contain entity records describing data files that are available in the dataset. Use sidecar JSON files instead for this purpose (see [Provenance in sidecar JSON files](#provenance-of-a-bids-file)).
@@ -340,7 +340,7 @@ and a guide for using macros can be found at
 
 ### `Software`
 
-Each `prov/[<label>/]prov-<label>_soft.json` file is a JSON file describing software records for a provenance group.
+Each `prov/[<label>/]prov-<label>_soft.json` file is a JSON file describing `Software` (see [Key concepts](#key-concepts)).
 
 Each file MUST include a `Software` key:
 
@@ -384,7 +384,7 @@ and a guide for using macros can be found at
 
 ### `Environments`
 
-Each `prov/[<label>/]prov-<label>_env.json` file is a JSON file describing environment records for a provenance group.
+Each `prov/[<label>/]prov-<label>_env.json` file is a JSON file describing `Environments` (see [Key concepts](#key-concepts)).
 
 Each file MUST include a `Environments` key:
 
@@ -434,7 +434,7 @@ An `Id` identifying an entity record corresponding to a file of a BIDS dataset M
 !!! Warning
     The use of BIDS URIs may require to define the `DatasetLinks` object in [`dataset_description.json`](dataset-description.md#dataset_descriptionjson).
 
-!!! example "Entity records naming examples"
+!!! example "Examples of `Id` for entities"
     - `bids:ds001734:sub-002/anat/sub-02_T1w.nii`: the `Id` of an entity describing a T1w file for subject `sub-002` in the `ds001734` dataset ;
     - `bids::sub-014/func/sub-014_task-MGT_run-01_events.tsv`: the `Id` of an entity describing an events file for subject `sub-014` in the current dataset ;
     - `bids:fmriprep:sub-001/func/sub-001_task-MGT_run-01_bold_space-MNI152NLin2009cAsym_preproc.nii.gz`:  the `Id` of an entity describing a bold file for subject `sub-001` in the `fmriprep` dataset.
@@ -447,7 +447,7 @@ bids:<dataset>:prov#<label>-<uid>
 
 The uniqueness of this `Id` MUST be used to distinguish any `Activity`, `Software`, or `Environment` that are different in any of their attributes.
 
-!!! example "Activity, environment and software records naming examples"
+!!! example "Examples of `Id` for activities, environments and software"
     - `bids:ds001734:prov#conversion-xfMMbHK1`: a conversion activity described inside the `ds001734` dataset;
     - `bids::prov#fedora-uldfv058`: a Fedora based environment described inside the current dataset.
     - `bids:preprocessing:prov#fmriprep-r4kzzMt8`: the fMRIPrep software described inside the `preprocessing` dataset.
