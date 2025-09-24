@@ -128,7 +128,7 @@ The `GeneratedBy` field can contain either of the following values:
 -   descriptions of pipelines or processes, (see the [Descriptions of pipelines or processes](#descriptions-of-pipelines-or-processes) section);
 -   identifier(s) of provenance record(s), (see the [Using provenance records](#using-provenance-records) section).
 
-### Descriptions of processes or pipelines 
+### Descriptions of processes or pipelines
 
 This is a way to describe the provenance of a dataset with array of objects representing pipelines or processes that generated the dataset.
 
