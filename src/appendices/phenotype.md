@@ -92,7 +92,6 @@ If a sessions file is provided, then it MUST begin with a `participant_id` colum
 followed immediately by a `session_id` column. The data dictionary JSON file’s
 `session_id` field MUST include `Levels` with the description of each `session_id`.
 
-
 ### 7. Record participant properties in the participants file and session properties in the sessions file
 
 Since the same `participant_id` and `session_id` columns can be used
