@@ -35,18 +35,20 @@ This part of the BIDS specification is aimed at describing the provenance of a B
 
 ### Key concepts
 
-**Provenance record**: provenance metadata consists of records of 4 types:
+Provenance metadata consists of **provenance records** of 4 types:
 
 -   `Activities`: transformations that have been applied to data.
 -   `Entities`: input or output data for activities.
 -   `Software`: software packages activities are associated with.
 -   `Environments`: software environments in which activities were performed.
 
-Provenance records are described as JSON objects in BIDS (see the [Provenance files section](#provenance-files)).
+Provenance records are described as JSON objects in BIDS (see the [Provenance files](#provenance-files) section).
 
 !!! example
 
-    The following graph represents examples of links between provenance records. In this example:
+    The following graph presents examples of links between provenance records.
+
+    In this example:
 
     - *sub-001_T1w.nii* is an entity representing a file used by the *Brain extraction* activity;
     - this activity generated another file represented by the *sub-001_T1w_preproc.nii* entity;
@@ -123,14 +125,14 @@ and a guide for using macros can be found at
    }
 ) }}
 
-The `GeneratedBy` field can contain either of the following values:
+The `GeneratedBy` field MAY contain either of the following values:
 
--   descriptions of pipelines or processes, (see the [Descriptions of pipelines or processes](#descriptions-of-pipelines-or-processes) section);
--   identifier(s) of provenance record(s), (see the [Using provenance records](#using-provenance-records) section).
+-   A description of pipelines or processes responsible for the creation of the dataset (see the [Descriptions of pipelines or processes](#description-of-pipelines-or-processes) section).
+-   Identifier (respectively set of identifiers) of the activity (resp. activities) responsible for the creation of the dataset (see the [Using provenance records](#using-provenance-records) section).
 
-### Descriptions of processes or pipelines
+### Description of processes or pipelines
 
-This is a way to describe the provenance of a dataset with array of objects representing pipelines or processes that generated the dataset.
+This section details a way to describe the provenance of a dataset providing `GeneratedBy` with an array of objects representing pipelines or processes that generated the dataset.
 
 Each object in the `GeneratedBy` array includes the following REQUIRED, RECOMMENDED
 and OPTIONAL keys:
@@ -170,7 +172,7 @@ and a guide for using macros can be found at
 
 ### Using provenance records
 
-When describing provenance of a dataset using provenance records, `GeneratedBy` is the identifier (respectively a set of identifiers) of the activity (resp. activities) responsible for the creation of the dataset.
+This section details a way to describe the provenance of a dataset using provenance records providing `GeneratedBy` with the identifier (respectively a set of identifiers) of the activity (resp. activities) responsible for the creation of the dataset.
 
 Each activity MUST be described inside a [provenance file](#provenance-files) of the dataset.
 
@@ -189,7 +191,7 @@ Template:
 
 ```text
 prov/
-    [<group>/]
+    [<subdir>/]
         prov-<label>_act.json
         prov-<label>_ent.json
         prov-<label>_env.json
@@ -198,7 +200,7 @@ prov/
 
 The `prov` BIDS entity allow to group provenance files, using an arbitrary value for `<label>`.
 
-A subdirectory MAY be used to organise provenance files, using an arbitrary value for `<group>`.
+A subdirectory MAY be used to organise provenance files, using an arbitrary value for `<subdir>`.
 
 The following suffixes specify the contents of provenance files.
 
@@ -231,7 +233,7 @@ and a guide for using macros can be found at
 
 ### `Activities`
 
-Each `prov/[<label>/]prov-<label>_act.json` file is a JSON file describing `Activities` (see [Key concepts](#key-concepts)).
+Each `prov/[<subdir>/]prov-<label>_act.json` file is a JSON file describing `Activities` (see [Key concepts](#key-concepts)).
 
 Each file MUST include an `Activities` key:
 
@@ -258,7 +260,7 @@ and a guide for using macros can be found at
 {{ MACROS___make_subobject_table("metadata.Activities.items") }}
 
 !!! example
-    Provenance metadata in a `prov/[<label>/]prov-<label>_act.json` file:
+    Provenance metadata in a `prov/[<subdir>/]prov-<label>_act.json` file:
     ```JSON
     {
         "Activities": [
@@ -281,7 +283,7 @@ and a guide for using macros can be found at
 
 ### `Entities`
 
-Each `prov/[<label>/]prov-<label>_ent.json` file is a JSON file describing `Entities` (see [Key concepts](#key-concepts)).
+Each `prov/[<subdir>/]prov-<label>_ent.json` file is a JSON file describing `Entities` (see [Key concepts](#key-concepts)).
 
 !!! Caution
     These files MUST not contain entity records describing data files that are available in the dataset. Use sidecar JSON files instead for this purpose (see [Provenance in sidecar JSON files](#provenance-of-a-bids-file)).
@@ -289,10 +291,10 @@ Each `prov/[<label>/]prov-<label>_ent.json` file is a JSON file describing `Enti
 
 Entity records in these files MAY describe:
 
--   files or data that are located in another dataset ;
--   files or data that were deleted during the creation of the dataset ;
--   different versions of the same files or data that were modified during the creation of the dataset ;
--   files or data that are part of software pieces or environments ;
+-   files or data that are located in another dataset;
+-   files or data that were deleted during the creation of the dataset;
+-   different versions of the same files or data that were modified during the creation of the dataset;
+-   files or data that are part of software pieces or environments;
 -   any other files or data that do not match the previously listed cases, as long as the entity record cannot be described in a sidecar JSON or in `dataset_description.json`.
 
 Each file MUST include an `Entities` key:
@@ -320,7 +322,7 @@ and a guide for using macros can be found at
 {{ MACROS___make_subobject_table("metadata.Entities.items") }}
 
 !!! example
-    Provenance metadata in a `prov/[<label>/]prov-<label>_ent.json` file:
+    Provenance metadata in a `prov/[<subdir>/]prov-<label>_ent.json` file:
     ```JSON
     {
         "Entities": [
@@ -340,7 +342,7 @@ and a guide for using macros can be found at
 
 ### `Software`
 
-Each `prov/[<label>/]prov-<label>_soft.json` file is a JSON file describing `Software` (see [Key concepts](#key-concepts)).
+Each `prov/[<subdir>/]prov-<label>_soft.json` file is a JSON file describing `Software` (see [Key concepts](#key-concepts)).
 
 Each file MUST include a `Software` key:
 
@@ -367,7 +369,7 @@ and a guide for using macros can be found at
 {{ MACROS___make_subobject_table("metadata.Software.items") }}
 
 !!! example
-    Provenance metadata in a `prov/[<label>/]prov-<label>_soft.json` file:
+    Provenance metadata in a `prov/[<subdir>/]prov-<label>_soft.json` file:
     ```JSON
     {
         "Software": [
@@ -384,7 +386,7 @@ and a guide for using macros can be found at
 
 ### `Environments`
 
-Each `prov/[<label>/]prov-<label>_env.json` file is a JSON file describing `Environments` (see [Key concepts](#key-concepts)).
+Each `prov/[<subdir>/]prov-<label>_env.json` file is a JSON file describing `Environments` (see [Key concepts](#key-concepts)).
 
 Each file MUST include a `Environments` key:
 
@@ -411,7 +413,7 @@ and a guide for using macros can be found at
 {{ MACROS___make_subobject_table("metadata.Environments.items") }}
 
 !!! example
-    Provenance metadata in a `prov/[<label>/]prov-<label>_ent.json` file:
+    Provenance metadata in a `prov/[<subdir>/]prov-<label>_ent.json` file:
     ```JSON
     {
         "Environments": [
@@ -435,8 +437,8 @@ An `Id` identifying an entity record corresponding to a file of a BIDS dataset M
     The use of BIDS URIs may require to define the `DatasetLinks` object in [`dataset_description.json`](dataset-description.md#dataset_descriptionjson).
 
 !!! example "Examples of `Id` for entities"
-    - `bids:ds001734:sub-002/anat/sub-02_T1w.nii`: the `Id` of an entity describing a T1w file for subject `sub-002` in the `ds001734` dataset ;
-    - `bids::sub-014/func/sub-014_task-MGT_run-01_events.tsv`: the `Id` of an entity describing an events file for subject `sub-014` in the current dataset ;
+    - `bids:ds001734:sub-002/anat/sub-02_T1w.nii`: the `Id` of an entity describing a T1w file for subject `sub-002` in the `ds001734` dataset;
+    - `bids::sub-014/func/sub-014_task-MGT_run-01_events.tsv`: the `Id` of an entity describing an events file for subject `sub-014` in the current dataset;
     - `bids:fmriprep:sub-001/func/sub-001_task-MGT_run-01_bold_space-MNI152NLin2009cAsym_preproc.nii.gz`:  the `Id` of an entity describing a bold file for subject `sub-001` in the `fmriprep` dataset.
 
 An `Id` identifying activity, software, or environment provenance records described in a BIDS dataset `<dataset>` SHOULD have the following form, where `<label>` is a human readable name for coherently identifying the record and `<uid>` is a unique group of chars.
