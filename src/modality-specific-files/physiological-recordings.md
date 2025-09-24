@@ -445,7 +445,7 @@ the `ForeignIndexColumn` is set to `"n/a"` in `sub-01_task-nback_physioevents.js
         an Eyelink (SR research). Human participant kept their gaze steady at the
         screen center.
 
-        [BIDS dataset](https://openneuro.org/datasets/ds004158/versions/2.0.1)
+        [BIDS dataset](https://openneuro.org/datasets/ds004158)
 
     -   Combined behavioral and eye-tracking data, measured with and Eyelink
         (SR Research). Human participants freely viewed as set of natural images.
@@ -607,7 +607,6 @@ could read:
 {
     "DeviceSerialNumber": "17535483",
     "Columns": ["timestamp", "x_coordinate", "y_coordinate", "pupil_size"],
-    "EnvironmentCoordinates": "top-left",
     "Manufacturer": "SR-Research",
     "ManufacturersModelName": "EYELINK II CL v4.56 Aug 18 2010",
     "PhysioType": "eyetrack",
