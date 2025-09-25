@@ -17,9 +17,9 @@ to `"Phenotype"` in the `dataset_description.json`.
 
 ### 1. Aggregate data across sessions
 
-Aggregate participant information across all sessions into one tabular TSV file per 
+Aggregate participant information across all sessions into one tabular TSV file per
 measurement or phenotypic assessment and store this file in the `/phenotype` directory.
-Demographic information is a special case and  MUST be aggregated 
+Demographic information is a special case and  MUST be aggregated
 in the `participants.tsv` file at the root level of the dataset.
 
 ### 2. Always pair tabular data with data dictionaries
