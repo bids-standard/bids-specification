@@ -43,7 +43,7 @@ PhysioEvents:
   fields:
     Columns: required
     Description: recommended
-    ForeignIndexColumn: recommended
+    OnsetSource: required
 
 # Eye-tracking
 EyeTrack:

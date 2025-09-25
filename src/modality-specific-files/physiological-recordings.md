@@ -326,9 +326,9 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table(["continuous.PhysioEvents"]) }}
 
-The REQUIRED `ForeignIndexColumn` metadata specifies the interpretation of
+The REQUIRED `OnsetSource` metadata specifies the interpretation of
 the values of the `onset` column.
-If `ForeignIndexColumn` is the name of a column in the associated
+If `OnsetSource` is the name of a column in the associated
 `<matches>[_recording-<label>]_physio.tsv.gz` file, the values have the same interpretation
 as values in the named column.
 
@@ -390,18 +390,18 @@ The decompressed contents of the corresponding `sub-01_task-nback_physioevents.t
 ```
 
 To indicate that the first column (`onset`) is to be interpreted as a timestamp,
-the `ForeignIndexColumn` MUST be set to `"timestamp"` in `sub-01_task-nback_physioevents.json`:
+the `OnsetSource` MUST be set to `"timestamp"` in `sub-01_task-nback_physioevents.json`:
 
 ```JSON
 {
     "Columns": ["onset", "message"],
     "Description": "Messages logged by the measurement device",
-    "ForeignIndexColumn": "timestamp"
+    "OnsetSource": "timestamp"
 }
 ```
 
 If there is no appropriate source column in
-`<matches>[_recording-<label>]_physio.tsv.gz`, `ForeignIndexColumn` MAY be set to `"n/a"`.
+`<matches>[_recording-<label>]_physio.tsv.gz`, `OnsetSource` MAY be set to `"n/a"`.
 In this case, the values of `onset` MUST be interpreted as row indices
 into the `physio` file, with the first row having index zero (`0`).
 Negative onsets are possible, and such events are interpreted as occurring prior
@@ -417,13 +417,13 @@ written:
 ```
 
 To indicate that the first column (`onset`) is to be interpreted as an index,
-the `ForeignIndexColumn` is set to `"n/a"` in `sub-01_task-nback_physioevents.json`:
+the `OnsetSource` is set to `"n/a"` in `sub-01_task-nback_physioevents.json`:
 
 ```JSON
 {
     "Columns": ["onset", "message"],
     "Description": "Messages logged by the measurement device",
-    "ForeignIndexColumn": "n/a"
+    "OnsetSource": "n/a"
 }
 ```
 
@@ -635,7 +635,7 @@ could read:
     },
     "pupil_size": {
         "Description": "Pupil area of the recorded eye as calculated by the eye-tracker in arbitrary units (see EyeLink's documentation for conversion).",
-        "Units": "a.u."
+        "Units": "arbitrary"
     }
 }
 ```
@@ -716,7 +716,7 @@ would read:
 {
     "Columns": ["onset", "duration", "trial_type", "blink", "message"],
     "Description": "Messages logged by the measurement device",
-    "ForeignIndexColumn": "timestamp",
+    "OnsetSource": "timestamp",
     "blink": {
       "Description": "Gives status of the eye.",
       "Levels": {
