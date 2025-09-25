@@ -18,7 +18,7 @@ Each of the measurement files MUST be kept in a `/phenotype` directory placed
 at the root of the BIDS dataset and MUST end with the `.tsv` extension.
 Filenames SHOULD be chosen to reflect the contents of the file.
 For example, the "Adult ADHD Clinical Diagnostic Scale" could be saved in a file
-called `phenotype/acds_adult.tsv`.
+called `/phenotype/acds_adult.tsv`.
 
 The files can include an arbitrary set of columns, but one of them MUST be
 `participant_id` and the entries of that column MUST correspond to the subjects

@@ -69,7 +69,7 @@ participants:
   file_type: regular
   description: |
     The purpose of this RECOMMENDED file is to describe properties of participants
-    such as sex, species, and strain.
+    such as age, sex, handedness, species, and strain.
     If this file exists, it MUST contain the column `participant_id`,
     which MUST consist of `sub-<label>` values identifying one row for each participant,
     followed by a list of optional columns describing participants.

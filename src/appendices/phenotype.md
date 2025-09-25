@@ -1,21 +1,26 @@
 # Tabular phenotypic data guidelines
 
 This appendix is a collection of guidelines and examples
-for creating well-organized aggregated tabular phenotypic data.
+for curating well-organized tabular phenotypic data.
 
 ## Guidelines
 
-These guidelines all apply when the
-[`AdditionalValidation` key](../modality-agnostic-files/dataset-description.md#additional-validation)
-contains `"Phenotype"` in the `dataset_description.json`.
-They are intended to improve the organization and clarity of
+These guidelines are intended to improve the organization and clarity of
 tabular phenotypic data like the participants file, sessions file,
 and phenotypic and assessment data.
 
+They are recommendations and are by default ignored during validation.
+You can make them mandatory during validation by setting the
+[`AdditionalValidation` key](../modality-agnostic-files/dataset-description.md#additional-validation)
+to `"Phenotype"` in the `dataset_description.json`.
+
+
 ### 1. Aggregate data across sessions
 
-Aggregation refers to the contents of the TSV file. It is REQUIRED
-to collect all participant data into one TSV per tabular phenotypic file.
+Aggregate participant information across all sessions into one tabular TSV file per 
+measurement or phenotypic assessment and store this file in the `/phenotype` directory.
+Demographic information is a special case and  MUST be aggregated 
+in the `participants.tsv` file at the root level of the dataset.
 
 ### 2. Always pair tabular data with data dictionaries
 
@@ -46,9 +51,9 @@ the smallest unit of acquisition). In other words:
 1.  If more than one of the same measurement tool is acquired within
     the same `session_id`, a `run_id` column MUST be added.
 
-1.  To encode the acquisition time for a measurement tool’s `session_id`,
-    add the `session_id` to the sessions file and
-    include the OPTIONAL `acq_time` column.
+1.  Encoding  the acquisition time for a measurement tool’s `session_id`,
+     is RECOMMENDED. This information MUST be stored in the `sessions.tsv`
+     file at the root level of the dataset in the `acq_time` column.
 
 #### To summarize this guideline as a table
 
