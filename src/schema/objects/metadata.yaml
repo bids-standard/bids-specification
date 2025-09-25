@@ -62,7 +62,7 @@ Activities:
         name: Id
         description: |
           Identifier for the activity
-          (see the [Consistency and uniqueness of Ids](SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-ids)
+          (see the [Consistency and uniqueness of Ids](SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers)
           section).
         type: string
         format: uri
@@ -1268,7 +1268,7 @@ Entities:
         name: Id
         description: |
           Identifier for the entity
-          (see the [Consistency and uniqueness of Ids](SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-ids)
+          (see the [Consistency and uniqueness of Ids](SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers)
           section).
         type: string
         format: uri
@@ -1327,7 +1327,7 @@ Environments:
         name: Id
         description: |
           Identifier for the environment.
-          (see the [Consistency and uniqueness of Ids](SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-ids)
+          (see the [Consistency and uniqueness of Ids](SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers)
           section).
         type: string
         format: uri
@@ -3715,7 +3715,7 @@ Software:
         name: Id
         description: |
           Identifier for the software package
-          (see the [Consistency and uniqueness of Ids](SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-ids)
+          (see the [Consistency and uniqueness of Ids](SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers)
           section).
         type: string
         format: uri
