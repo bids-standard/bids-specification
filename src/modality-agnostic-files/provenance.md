@@ -51,9 +51,9 @@ For the most part, this metadata consists of **provenance records** of 4 types:
 -   **Software**: software packages activities are associated with.
 -   **Environments**: software environments in which activities were performed.
 
-!!! example
+!!! example "Relations between provenance records"
 
-    The following graph presents examples of links between provenance records.
+    The following graph presents examples of relations between provenance records.
 
     ```mermaid
     flowchart BT
@@ -106,7 +106,7 @@ and a guide for using macros can be found at
    )
 }}
 
-!!! example
+!!! example "Example of provenance file organization"
     ```
     prov/
     ├─ preprocspm/
@@ -149,8 +149,7 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_subobject_table("metadata.Activities.items") }}
 
-!!! example
-    Provenance metadata in a `prov/[<subdir>/]prov-<label>_act.json` file:
+!!! example "Example of provenance record in a `prov/[<subdir>/]prov-<label>_act.json` file"
     ```JSON
     {
         "Activities": [
@@ -213,8 +212,7 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_subobject_table("metadata.Entities.items") }}
 
-!!! example
-    Provenance metadata in a `prov/[<subdir>/]prov-<label>_ent.json` file:
+!!! example "Example of provenance record in a `prov/[<subdir>/]prov-<label>_ent.json` file"
     ```JSON
     {
         "Entities": [
@@ -260,8 +258,7 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_subobject_table("metadata.Software.items") }}
 
-!!! example
-    Provenance metadata in a `prov/[<subdir>/]prov-<label>_soft.json` file:
+!!! example "Example of provenance record in a `prov/[<subdir>/]prov-<label>_soft.json` file"
     ```JSON
     {
         "Software": [
@@ -304,8 +301,7 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_subobject_table("metadata.Environments.items") }}
 
-!!! example
-    Provenance metadata in a `prov/[<subdir>/]prov-<label>_ent.json` file:
+!!! example "Example of provenance record in a `prov/[<subdir>/]prov-<label>_env.json` file"
     ```JSON
     {
         "Environments": [
@@ -345,8 +341,7 @@ and a guide for using macros can be found at
 
     `SidecarGeneratedBy` MUST explicitly include all activities that modified the sidecar JSON, even if some are already listed in `GeneratedBy`.
 
-!!! example
-    Provenance metadata in a sidecar JSON file:
+!!! example "Example of provenance metadata in a sidecar JSON file"
     ```JSON
     {
         "GeneratedBy": "bids::prov#conversion-00f3a18f",
@@ -393,8 +388,7 @@ This section details a way to describe the provenance of a dataset using provena
 
 Related `Activities` MUST be described inside the dataset (see the [`Activities`](#activities) section).
 
-!!! example
-    `GeneratedBy` contents in a `dataset_description.json`:
+!!! example "Example of `GeneratedBy` contents in a `dataset_description.json`"
     ```JSON
     {
         "GeneratedBy": "bids::prov#preprocessing-xMpFqB5q"
@@ -425,8 +419,7 @@ and a guide for using macros can be found at
    }
 ) }}
 
-!!! example
-    `GeneratedBy` contents in a `dataset_description.json`:
+!!! example "Example of `GeneratedBy` contents in a `dataset_description.json`"
     ```JSON
     {
         "GeneratedBy": [
@@ -442,36 +435,41 @@ and a guide for using macros can be found at
     }
     ```
 
-## Consistency and uniqueness of Ids
+## Consistency and uniqueness of identifiers
 
-The following rules and conventions are provided in order to have consistent, human readable, and explicit [IRIs](https://www.w3.org/TR/json-ld11/#iris) as `Id` for provenance records.
+The following rules and conventions are provided in order to have consistent, human readable, and explicit [IRIs](https://www.w3.org/TR/json-ld11/#iris) as identifiers for provenance records.
 
-### `Id` for entities
+!!! note
+    The `Id` field contains the identifier of a provenance records.
 
-An `Id` identifying an entity corresponding to a file of a BIDS dataset MUST be a [BIDS URI](../common-principles.md#bids-uri).
+### Identifiers for entities
+
+The identifier of an entity describing a BIDS file inside a BIDS dataset MUST be a [BIDS URI](../common-principles.md#bids-uri).
 
 !!! note
     The use of BIDS URIs may require to define the `DatasetLinks` object in [`dataset_description.json`](dataset-description.md#dataset_descriptionjson).
 
-!!! example "Examples of `Id` for entities"
-    - `bids:ds001734:sub-002/anat/sub-02_T1w.nii`: the `Id` of an entity describing a T1w file for subject `sub-002` in the `ds001734` dataset;
-    - `bids::sub-014/func/sub-014_task-MGT_run-01_events.tsv`: the `Id` of an entity describing an events file for subject `sub-014` in the current dataset;
-    - `bids:fmriprep:sub-001/func/sub-001_task-MGT_run-01_bold_space-MNI152NLin2009cAsym_preproc.nii.gz`:  the `Id` of an entity describing a bold file for subject `sub-001` in the `fmriprep` dataset.
+!!! example "Examples of identifiers for entities"
+    - `bids:ds001734:sub-002/anat/sub-02_T1w.nii` - an entity describing a T1w file for subject `sub-002` in the `ds001734` dataset;
+    - `bids::sub-014/func/sub-014_task-MGT_run-01_events.tsv` - an entity describing an events file for subject `sub-014` in the current dataset;
+    - `bids:fmriprep:sub-001/func/sub-001_task-MGT_run-01_bold_space-MNI152NLin2009cAsym_preproc.nii.gz` - an entity describing a bold file for subject `sub-001` in the `fmriprep` dataset.
 
-### `Id` for other provenance records
+For other cases listed in the [Entities](#entities) section, the identifier of an entity described in a BIDS dataset `<dataset>` SHOULD have the following form, where `<label>` is a human readable name for coherently identifying the record and `<uid>` is a unique group of chars.
 
-An `Id` identifying activity, software, or environment provenance records described in a BIDS dataset `<dataset>` SHOULD have the following form, where `<label>` is a human readable name for coherently identifying the record and `<uid>` is a unique group of chars.
+### Identifiers for other provenance records
+
+The identifier of an activity, software, or environment described in a BIDS dataset `<dataset>` SHOULD have the following form, where `<label>` is a human readable name for coherently identifying the record and `<uid>` is a unique group of chars.
 
 ```text
 bids:<dataset>:prov#<label>-<uid>
 ```
 
-The uniqueness of this `Id` MUST be used to distinguish any `Activity`, `Software`, or `Environment` that are different in any of their attributes.
+The uniqueness of this identifier MUST be used to distinguish any activity, software, or environment that are different in any of their attributes.
 
-!!! example "Examples of `Id` for activities, environments and software"
-    - `bids:ds001734:prov#conversion-xfMMbHK1`: a conversion activity described inside the `ds001734` dataset;
-    - `bids::prov#fedora-uldfv058`: a Fedora based environment described inside the current dataset.
-    - `bids:preprocessing:prov#fmriprep-r4kzzMt8`: the fMRIPrep software described inside the `preprocessing` dataset.
+!!! example "Examples of identifiers for activities, environments and software"
+    - `bids:ds001734:prov#conversion-xfMMbHK1` - a conversion activity described inside the `ds001734` dataset;
+    - `bids::prov#fedora-uldfv058` - a Fedora based environment described inside the current dataset.
+    - `bids:preprocessing:prov#fmriprep-r4kzzMt8` - the fMRIPrep software described inside the `preprocessing` dataset.
 
 ## Minimal example
 
@@ -501,7 +499,7 @@ A guide for using macros can be found at
     }
 ) }}
 
-The following provenance record is defined in `prov/prov-dcm2niix_soft.json`. As mentioned in the [Consistency and uniqueness of Ids](#consistency-and-uniqueness-of-ids) section, its `Id` SHOULD start with `bids:<dataset>:prov#` (here, `bids::` refers to the current dataset).
+The following provenance record is defined in `prov/prov-dcm2niix_soft.json`. As mentioned in the [Consistency and uniqueness of Ids](#consistency-and-uniqueness-of-ids) section, its identifier SHOULD start with `bids:<dataset>:prov#` (here, `bids::` refers to the current dataset).
 
 ```JSON
 {
