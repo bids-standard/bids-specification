@@ -449,12 +449,17 @@ The identifier of an entity describing a BIDS file inside a BIDS dataset MUST be
 !!! note
     The use of BIDS URIs may require to define the `DatasetLinks` object in [`dataset_description.json`](dataset-description.md#dataset_descriptionjson).
 
+For other cases listed in the [Entities](#entities) section, the identifier of an entity described in a BIDS dataset `<dataset>` SHOULD have the following form, where `<label>` is a human readable name for coherently identifying the record and `<uid>` is a unique group of chars.
+
+```text
+bids:<dataset>:prov#<label>-<uid>
+```
+
 !!! example "Examples of identifiers for entities"
     - `bids:ds001734:sub-002/anat/sub-02_T1w.nii` - an entity describing a T1w file for subject `sub-002` in the `ds001734` dataset;
     - `bids::sub-014/func/sub-014_task-MGT_run-01_events.tsv` - an entity describing an events file for subject `sub-014` in the current dataset;
-    - `bids:fmriprep:sub-001/func/sub-001_task-MGT_run-01_bold_space-MNI152NLin2009cAsym_preproc.nii.gz` - an entity describing a bold file for subject `sub-001` in the `fmriprep` dataset.
-
-For other cases listed in the [Entities](#entities) section, the identifier of an entity described in a BIDS dataset `<dataset>` SHOULD have the following form, where `<label>` is a human readable name for coherently identifying the record and `<uid>` is a unique group of chars.
+    - `bids:fmriprep:sub-001/func/sub-001_task-MGT_run-01_bold_space-MNI152NLin2009cAsym_preproc.nii.gz` - an entity describing a bold file for subject `sub-001` in the `fmriprep` dataset;
+    - `bids::prov#entity-acea8093` - an entity describing a file that is not available in the dataset.
 
 ### Identifiers for other provenance records
 
