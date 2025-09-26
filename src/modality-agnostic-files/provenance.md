@@ -106,7 +106,7 @@ and a guide for using macros can be found at
    )
 }}
 
-!!! example "Example of provenance file organization"
+!!! example "Example of organization for provenance files"
     ```
     prov/
     ├─ preprocspm/
