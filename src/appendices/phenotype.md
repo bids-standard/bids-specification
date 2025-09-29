@@ -14,7 +14,6 @@ You can make them mandatory during validation by setting the
 [`AdditionalValidation` key](../modality-agnostic-files/dataset-description.md#additional-validation)
 to `"Phenotype"` in the `dataset_description.json`.
 
-
 ### 1. Aggregate data across sessions
 
 Aggregate participant information across all sessions into one tabular TSV file per
