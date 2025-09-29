@@ -6,8 +6,7 @@ Participants:
     - participant_id
     - session_id
   columns:
-    participant_id:
-      level: required
+    participant_id: required
     session_id: recommended
     species: recommended
     age: recommended
@@ -95,12 +94,9 @@ Sessions:
     - run_id
   columns:
     participant_id: optional
-    session_id:
-      level: required
-      description_addendum: |
-        There MUST be exactly one row for each session.
+    session_id: required
     run_id: optional
-    acq_time__sessions: optional
+    acq_time__sessions: recommended
     pathology: recommended
     HED: optional
   index_columns: [participant_id, session_id, run_id]

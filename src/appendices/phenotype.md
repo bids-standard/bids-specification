@@ -27,12 +27,14 @@ in the `participants.tsv` file at the root level of the dataset.
 Tabular phenotypic data MUST be prepared as one pair of a tabular file
 in tab-separated value (TSV) format and a corresponding data dictionary
 in JavaScript Object Notation (JSON) format.
+See the [Tabular files section](../common-principles.md#tabular-files) for more information.
 
 ### 3. Add `MeasurementToolMetadata` to each tabular phenotypic measurement tool
 
 Whenever possible, it is RECOMMENDED to add `MeasurementToolMetadata` to
 each `phenotype/<measurement_tool_name>.json` data dictionary.
 This improves reusability and provides clarity about the measurement tool.
+See [`MeasurementToolMetadata` in the glossary](../glossary.md#measurementtoolmetadata-metadata) for more.
 
 ### 4. Ensure minimal annotation for phenotypic and assessment data
 
@@ -41,21 +43,19 @@ aggregated data TSV file in which the user collects all subjects, sessions,
 and/or runs of data as one entry per row (with a row defined by
 the smallest unit of acquisition). In other words:
 
-1.  Each row MUST start with `participant_id`.
+-   Each row MUST start with `participant_id`.
 
-1.  Each TSV file MUST contain a `session_id` column when
-    multiple [sessions](../glossary.md#session-entities)[^1] are present
+-   Each TSV file MUST contain a `session_id` column when
+    multiple [sessions](../glossary.md#session-entities)[<sup>1</sup>](#footnotes) are present
     in the data set regardless of whether those sessions are in
     the `phenotype/` data, `sub-<label>/` data, or a combination of the two.
 
-1.  If more than one of the same measurement tool is acquired within
+-   If more than one of the same measurement tool is acquired within
     the same `session_id`, a `run_id` column MUST be added.
 
-1.  Encoding  the acquisition time for a measurement tool’s `session_id`,
+-   Encoding  the acquisition time for a measurement tool’s `session_id`,
      is RECOMMENDED. This information MUST be stored in the `sessions.tsv`
      file at the root level of the dataset in the `acq_time` column.
-
-#### To summarize this guideline as a table
 
 <!-- This block generates a columns table.
 The definitions of these fields can be found in
@@ -65,17 +65,7 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_columns_table("modality_agnostic.Phenotypes") }}
 
-Furthermore, if you have to add a `session_id` column to the
-tabular phenotypic data, you then MUST also introduce a session directory to the
-imaging data, even if only one imaging session has been created.
 This rule can be considered as "**if anyone uses sessions, everyone uses sessions**."
-And vice versa, if imaging data has session directories,
-all imaging data and tabular phenotypic data MUST have sessions.
-
-This produces a file in which same-participant entries can take up as many rows
-as needed according to the smallest unit of acquisition.
-The combination of values in the `participant_id`, `session_id`, and `run_id` (if present)
-columns MUST be unique for the entire tabular file.
 
 ### 5. Store longitudinal age in the participants file
 
@@ -109,16 +99,15 @@ Properties of sessions MAY include things like
 acquisition time, measurement device properties,
 and indoor or outdoor experimental conditions.
 
-### 8. Use either root-level sessions file or participant-level sessions files
+### 8. Use either root-level sessions file or participant-level sessions files, but not both
 
 When a sessions file is in use, you MUST NOT provide additional sessions files
 at the participant-level which would otherwise use the inheritance principle.
 
-### 9. Record acquisition time of sessions with `acq_time`
+### 9. Record acquisition time of all sessions with `acq_time`
 
-Whenever possible, it is RECOMMENDED to also collect acquisition time for
-tabular phenotypic data and store the time of acquisition[^2] of each row
-inside a column named `acq_time` in the sessions file.
+It is RECOMMENDED to store acquisition time[<sup>2</sup>](#footnotes)
+for tabular phenotypic data in the sessions file in a column named `acq_time`.
 This is consistent with how acquisition time is recorded for MRI data
 and other time-sensitive measurements (for example systolic blood pressure).
 
@@ -133,13 +122,10 @@ using the `acq_time` column.
 ## Summary
 
 This appendix described guidelines for best tabular phenotypic data.
-A short summary table here describes when to use which files.
-
-| File                           | Single session data | Multiple session data |
-| :----------------------------- | :------------------ | :-------------------- |
-| Participants                   | RECOMMENDED         | RECOMMENDED           |
-| Phenotypic and assessment data | RECOMMENDED         | RECOMMENDED           |
-| Sessions                       | OPTIONAL            | RECOMMENDED           |
+In summary, it is RECOMMENDED to always use the participants file
+and separate files by assessment in the `/phenotype/` directory,
+since they each collect different information.
+If you use sessions, then the sessions file is also RECOMMENDED.
 
 ## Examples
 
@@ -195,6 +181,8 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example(
    {
+   "sessions.json": "",
+   "sessions.tsv": "",
    "phenotype": {
       "measurement_tool.json": "",
       "measurement_tool.tsv": "",
@@ -209,6 +197,14 @@ A guide for using macros can be found at
       }
    }
 ) }}
+
+Contents of `sessions.tsv`
+
+```tsv
+participant_id	session_id	acq_time
+sub-01	ses-pheno	2001-01-01T12:05:00
+sub-01	ses-MRI	2001-03-01T13:14:00
+```
 
 Contents of `phenotype/measurement_tool.tsv`
 
@@ -254,6 +250,11 @@ non-tabular phenotypic data.
 
 ### 2 participants with a mix of tabular phenotypic data and imaging sessions
 
+In this example, participants acquired both
+a phenotypic measurement tool and an MRI during `ses-MRI1`.
+`sub-01` has a `ses-MRI2` with no phenotypic measurement tool acquired
+and `sub-02` has a `ses-pheno` where no MRI was acquired.
+
 File tree
 
 <!-- This block generates a file tree.
@@ -262,6 +263,8 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example(
    {
+   "sessions.json": "",
+   "sessions.tsv": "",
    "phenotype": {
       "measurement_tool.json": "",
       "measurement_tool.tsv": "",
@@ -291,13 +294,23 @@ A guide for using macros can be found at
    }
 ) }}
 
+Contents of `sessions.tsv`
+
+```tsv
+participant_id	session_id	acq_time
+sub-01	ses-MRI1	2001-01-01T11:12:00
+sub-01	ses-MRI2	2001-07-01T13:14:00
+sub-02	ses-MRI1	2001-01-181T15:16:00
+sub-02	ses-pheno	2001-02-20T12:05:00
+```
+
 Contents of `phenotype/measurement_tool.tsv`
 
 ```tsv
 participant_id	session_id	measurement_1	measurement_2
-sub-01	ses-pheno1	value1	value2
-sub-02	ses-pheno1	value3	value4
-sub-02	ses-pheno2	value5	value6
+sub-01	ses-MRI1	value1	value2
+sub-02	ses-MRI1	value3	value4
+sub-02	ses-pheno	value5	value6
 ```
 
 ### 3 participants with 3 different kinds of sessions among them
@@ -398,12 +411,14 @@ sub-03	ses-baseline	B	3	no
 For more complete examples, see the `pheno00*`
 [bids-examples on GitHub](https://github.com/bids-standard/bids-examples/).
 
-[^1]: A session is any logical grouping of imaging and behavioral data consistent
+## Footnotes
+
+<sup>1</sup> A session is any logical grouping of imaging and behavioral data consistent
 across participants. Session can (but doesn't have to) be synonymous to a visit
 in a longitudinal study. In situations where different data types are obtained over
 several visits (for example fMRI on one day followed by DWI the day after)
 those can still be grouped in one session. Refer to the
 [definition of session](../glossary.md#session-entities) for more details.
 
-[^2]: Datetime format and the anonymization procedure are
+<sup>2</sup> Datetime format and the anonymization procedure are
 described in [Units](../common-principles.md#units).
