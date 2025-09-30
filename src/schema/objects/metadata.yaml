@@ -1298,6 +1298,7 @@ Entities:
           - type: string
             format: uri
           - type: array
+            minItems: 2
             items:
               type: string
               format: uri
@@ -1588,6 +1589,7 @@ GeneratedById:
     - type: string
       format: uri
     - type: array
+      minItems: 2
       items:
         type: string
         format: uri
