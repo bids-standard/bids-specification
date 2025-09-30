@@ -20,6 +20,8 @@ Aggregate participant information across all sessions into one tabular TSV file 
 measurement or phenotypic assessment and store this file in the `/phenotype` directory.
 Demographic information is a special case and  MUST be aggregated
 in the `participants.tsv` file at the root level of the dataset.
+It is RECOMMENDED to use the `age` column in the `participants.tsv` file
+to record participant age at every session in longitudinal or multi-session data sets.
 
 ### 2. Always pair tabular data with data dictionaries
 
