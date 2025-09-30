@@ -100,8 +100,8 @@ and indoor or outdoor experimental conditions.
 
 ### 8. Use either root-level sessions file or participant-level sessions files, but not both
 
-When you use a sessions file at the dataset-level, 
-you MUST NOT provide additional sessions files at the participant-level 
+When you use a sessions file at the dataset-level,
+you MUST NOT provide additional sessions files at the participant-level
 as this might conflict with the inheritance principle.
 
 ### 9. Record acquisition time of all sessions with `acq_time`
