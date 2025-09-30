@@ -283,7 +283,7 @@ sub-03	ses-postdrug	2009-06-30T14:06:40	115
 sub-03	ses-followup	2009-07-01T14:06:40	120
 ```
 
-### OPTIONAL: Subject-level sessions files
+### OPTIONAL: Participant-level sessions files
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
