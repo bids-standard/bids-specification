@@ -48,11 +48,6 @@ Phenotypes:
         A chronological `run` number is used when
         a measurement tool or assessment described by a tabular file
         was repeated within a session.
-    acq_time__phenotype:
-      level: optional
-      description_addendum: |
-        If acquisition time is available, the `acq_time` column CAN be used
-        to record the time of acquisition of each row in the tabular file.
   index_columns: [participant_id, session_id, run_id]
   additional_columns: allowed
 
