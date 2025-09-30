@@ -68,15 +68,13 @@ and a guide for using macros can be found at
 
 This rule can be considered as "**if anyone uses sessions, everyone uses sessions**."
 
-### 5. Store longitudinal age in the participants file
+### 5. Store demographic data in `participants.tsv` and instrument data in the `/phenotype` directory
 
-It is RECOMMENDED to use the `age` column to record participant age
-at every session in longitudinal or multi-session data sets.
-This reduces data duplication across tabular data files. The `Units` of `age`
-do not have to be years so long as the units of the age
-are written in `participants.json`.
-Consider participant privacy or study objectives when selecting
-the `Units` of `age` or the accuracy of `age` data.
+The `participants.tsv` file is for demographic information about the participant,
+including longitudinal information such as `age`.
+The `/phenotype` directory is for phenotypic information collected about
+the participants, such as questionnaires, cognitive assessments or tasks.
+Create one tabular `.tsv` file for each instrument or assessment in the `/phenotype` directory.
 
 ### 6. Use the sessions file at the root-level
 
