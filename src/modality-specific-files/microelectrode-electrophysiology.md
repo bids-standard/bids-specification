@@ -154,18 +154,6 @@ If the OPTIONAL [` task-<label>`](../appendices/entities.md#task) is used, the f
       "BodyPart": "BRAIN",
       "BodyPartDetails": "Motor Cortex"
     },
-    "ProbeContours": {
-      "p021": {
-        "Contour": [
-          [0, 0, 0],
-          [0, 10, 0],
-          [1, 11, 0],
-          [2, 10, 0],
-          [2, 0, 0]
-        ],
-        "Unit": "mm"
-      }
-    },
     "TaskName": "Reach-to-Grasp",
     "TaskDescription": "A task that involves the reaching of an object and holding it for a specific time"
   }
