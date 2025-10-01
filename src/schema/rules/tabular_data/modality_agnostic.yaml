@@ -20,8 +20,9 @@ Participants:
 
 Phenotypes:
   selectors:
-    - datatype == "phenotype"
+    - datatype == 'phenotype'
     - extension == ".tsv"
+    - '!intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])'
   initial_columns:
     - participant_id
     - session_id
@@ -48,8 +49,16 @@ Phenotypes:
         A chronological `run` number is used when
         a measurement tool or assessment described by a tabular file
         was repeated within a session.
+    HED: optional
   index_columns: [participant_id, session_id, run_id]
   additional_columns: allowed
+
+Phenotypes__Additional:
+  $ref: rules.tabular_data.modality_agnostic.Phenotypes
+  selectors:
+    - datatype == 'phenotype'
+    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
+  additional_columns: allowed_if_defined
 
 Samples:
   selectors:
@@ -107,27 +116,4 @@ Sessions__Additional:
   columns:
     $ref: rules.tabular_data.modality_agnostic.Sessions.columns
     acq_time__sessions: required
-  additional_columns: allowed_if_defined
-
-Phenotype:
-  selectors:
-    - datatype == 'phenotype'
-    - '!intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])'
-  initial_columns:
-    - participant_id
-    - session_id
-    - run_id
-  columns:
-    participant_id: required
-    session_id: optional
-    run_id: optional
-    HED: optional
-  index_columns: [participant_id, session_id, run_id]
-  additional_columns: allowed
-
-Phenotype__Additional:
-  $ref: rules.tabular_data.modality_agnostic.Phenotype
-  selectors:
-    - datatype == 'phenotype'
-    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
   additional_columns: allowed_if_defined
