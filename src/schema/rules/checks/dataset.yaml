@@ -38,7 +38,7 @@ ParticipantIDMismatch:
     - path == '/participants.tsv'
   checks:
     - |
-      length(intersects(unique(columns.participant_id), dataset.subjects.sub_dirs))) ==
+      length(intersects(unique(columns.participant_id), dataset.subjects.sub_dirs)) ==
       length(dataset.subjects.sub_dirs)
 
 # 214
