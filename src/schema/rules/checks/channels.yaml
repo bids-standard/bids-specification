@@ -42,5 +42,6 @@ RequiredCoordsystem:
   selectors:
     - suffix == "electrodes"
     - extension == ".tsv"
+    - '!intersects([datatype], ["ecephys", "icephys"])'
   checks:
     - associations.coordsystem != null
