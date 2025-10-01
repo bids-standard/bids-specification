@@ -52,6 +52,28 @@ func_volumetric:
     density: optional
     description: optional
 
+func_dtseries:
+  $ref: rules.files.raw.func.func
+  entities:
+    $ref: rules.files.raw.func.func.entities
+    space: optional
+    resolution: optional
+    density: optional
+    description: optional
+  extensions:
+    - .dtseries.nii
+
+func_gifti:
+  $ref: rules.files.raw.func.func
+  entities:
+    $ref: rules.files.raw.func.func.entities
+    hemisphere: required
+    space: optional
+    density: optional
+    description: optional
+  extensions:
+    - .func.gii
+
 anat_parametric_mask:
   selectors:
     - dataset.dataset_description.DatasetType == 'derivative'
