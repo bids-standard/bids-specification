@@ -14,8 +14,8 @@ for this modality as well, though some special considerations and additional fie
 
 !!! example "Example datasets"
 
-Several [example Microelectrode Electrophysiology datasets](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#microephys)
-have been formatted using this specification and can be used for practical guidance when curating a new dataset.
+    Several [example Microelectrode Electrophysiology datasets](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#microephys)
+    have been formatted using this specification and can be used for practical guidance when curating a new dataset.
 
 ## Primary Data File Formats
 
@@ -375,7 +375,7 @@ Proper understanding and application of these angles is critical for accurate pr
 
 !!! note "Source Attribution"
 
-The coordinate system conventions and angle definitions presented in this section are adapted from the [BrainSTEM documentation](https://support.brainstem.org/datamodel/schemas/coordinates/).
+    The coordinate system conventions and angle definitions presented in this section are adapted from the [BrainSTEM documentation](https://support.brainstem.org/datamodel/schemas/coordinates/).
 
 
 ## Coordinate System JSON (`*_coordsystem.json`)
@@ -501,6 +501,7 @@ The `x`, `y`, and `z` columns indicate the positions of the center of each elect
 Units are specified in `*_coordsystem.json`.
 
 !!! note "Coordinate system requirement"
+
     If a `*_space-<label>_coordsystem.json` file exists, a corresponding `*_space-<label>_electrodes.tsv` file with the same space label MUST also be present.
 
 ## Photos of the electrode positions (`*_photo.<extension>`)
