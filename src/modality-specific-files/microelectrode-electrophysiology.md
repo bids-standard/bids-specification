@@ -351,7 +351,7 @@ All stereotaxic coordinate systems follow a right-handed coordinate system with 
 
 -   **AP (Anterior-Posterior) axis:** Positive values are anterior to reference point
 -   **ML (Medial-Lateral) axis:** Positive values are to the right (as seen from behind)
--   **DV (Dorsal-Ventral) axis:**: Positive values are ventral (following right-hand rule). For humans, this is the superior-inferior axis, and positive values point to inferior.
+-   **DV (Dorsal-Ventral) axis:** Positive values are ventral (following right-hand rule). For humans, this is the superior-inferior axis, and positive values point to inferior.
 
 #### Angle Measurement System
 
