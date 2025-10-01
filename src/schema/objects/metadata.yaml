@@ -901,7 +901,7 @@ DOI:
   name: DOI
   display_name: DOI
   description: |
-    Used to specify the locations of all source datasets.
+    A Digital Object Identifier (DOI) is a persistent, resolvable name for a digital resource.
     (see [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator))
   type: string
 DoseCalibrationFactor:
@@ -3603,7 +3603,7 @@ SourceDatasets:
   name: SourceDatasets
   display_name: Source Datasets
   description: |
-    Used to specify the locations and relevant attributes of all source datasets.
+    Used to specify the locations and relevant attributes of all source datasets (BIDS or not).
     Valid keys in each object include `"URL"`, `"DOI"` (see
     [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)), and
     `"Version"` with
@@ -4052,7 +4052,8 @@ URL:
   name: URL
   display_name: URL
   description: |
-    Used to specify the locations of all source datasets.
+    A Uniform Resource Locator (URL) is a structured reference to an object that
+    includes a resource transfer scheme and a location.
     (see [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator))
   type: string
   format: uri
