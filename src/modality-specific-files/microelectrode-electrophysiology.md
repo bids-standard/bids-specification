@@ -205,7 +205,7 @@ We RECOMMEND to include alternative sets of identifiers, for instance identifier
 
 -*Recommended Channel Type Values**
 
-For the `type` column we recommend to use the following terms (adapted from [iEEG](intracranial-electroencephalography.md#channelselectrode-description-_channelselectrodestsv))
+For the `type` column we recommend to use the following terms (adapted from [iEEG](intracranial-electroencephalography.md#channels-description-_channelstsv))
 
 | **Keyword**  | **Description**                                                                                                                 |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------- |
