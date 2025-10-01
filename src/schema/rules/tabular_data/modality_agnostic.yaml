@@ -2,6 +2,7 @@
 Participants:
   selectors:
     - path == "/participants.tsv"
+    - '!intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])'
   initial_columns:
     - participant_id
     - session_id
@@ -17,6 +18,17 @@ Participants:
     HED: optional
   index_columns: [participant_id, session_id]
   additional_columns: allowed
+
+Participants__Additional:
+  $ref: rules.tabular_data.modality_agnostic.Participants
+  selectors:
+    - path == "/participants.tsv"
+    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
+  columns:
+    participant_id: required
+    session_id: recommended
+    HED: optional
+  additional_columns: allowed_if_defined
 
 Phenotypes:
   selectors:
