@@ -1,15 +1,24 @@
 .PHONY:  tools/contributors.tsv
+all:
 
-validate_citation_cff: CITATION.cff
-	cffconvert --validate
+install: .venv node_modules
 
-update_contributors:
+node_modules: package.json package-lock.json
+	npm install
+
+.venv: pyproject.toml uv.lock
+	uv sync --frozen --group doc --group tools
+
+validate_citation_cff: CITATION.cff .venv
+	uv run cffconvert --validate
+
+update_contributors: .venv
 	uv run tools/add_contributors.py
 	uv run tools/print_contributors.py
 	npx all-contributors-cli generate
 
 runprettier:
-	prettier --write "src/schema/**/*.yaml"
+	npx prettier --write "src/schema/**/*.yaml"
 	python3 -m yamllint -f standard src/schema/ -c .yamllint.yml
 
 SCHEMA_CHANGES := $(shell git diff --name-only | grep src/schema/*.yaml)
@@ -22,8 +31,6 @@ commitschema:
 	|| true
 
 formatschema: runprettier commitschema
-
-all:
 
 .PHONY: runprettier commitschema
 
