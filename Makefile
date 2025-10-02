@@ -9,7 +9,7 @@ update_contributors:
 	npx all-contributors-cli generate
 
 runprettier:
-	prettier --write "src/schema/**/*.yaml"
+	npx prettier --write "src/schema/**/*.yaml"
 	python3 -m yamllint -f standard src/schema/ -c .yamllint.yml
 
 SCHEMA_CHANGES := $(shell git diff --name-only | grep src/schema/*.yaml)
