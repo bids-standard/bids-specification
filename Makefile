@@ -1,9 +1,18 @@
 .PHONY:  tools/contributors.tsv
+all:
 
-validate_citation_cff: CITATION.cff
-	cffconvert --validate
+install: .venv node_modules
 
-update_contributors:
+node_modules: package.json package-lock.json
+	npm install
+
+.venv: pyproject.toml uv.lock
+	uv sync --frozen --group doc --group tools
+
+validate_citation_cff: CITATION.cff .venv
+	uv run cffconvert --validate
+
+update_contributors: .venv
 	uv run tools/add_contributors.py
 	uv run tools/print_contributors.py
 	npx all-contributors-cli generate
@@ -22,7 +31,5 @@ commitschema:
 	|| true
 
 formatschema: runprettier commitschema
-
-all:
 
 .PHONY: runprettier commitschema
