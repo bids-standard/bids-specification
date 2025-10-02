@@ -40,20 +40,13 @@ sub-<label>/[ses-<label>/]pet/sub-<label>[_ses-<label>][_task-<label>][_trc-<lab
 
 This indicates the following objects that are defined in the schema:
 
-* `sub-<label>`, `ses-<label>`, and other key-value pairs are known as "entities",
-  and must be defined in [`schema/objects/entities.yaml`][entities.yaml].
-  This file name introduces the `trc-<label>` entity.
-* The `pet/` directory underneath the subject/session directories is known as a "data type",
-  and must be defined in [`schema/objects/datatypes.yaml`][datatypes.yaml].
-* `pet` at the end of the file name (`_pet.nii[.gz]`) is a "suffix",
-  and must be defined in [`schema/objects/suffixes.yaml`][suffixes.yaml].
-* `.nii` and `.nii.gz` are known as "extensions",
-  and must be defined in [`schema/objects/extensions.yaml`][extensions.yaml].
-  This file name did not introduce any new extensions.
-
-BIDS also has the concept of a "modality",
-which generally refers to the primary recording technique,
-and the modalities are defined in [`schema/objects/modalities.yaml`][modalities.yaml].
+|object|known as|defined in|example BEP009|
+|---|---|---|---|
+|`sub-<label>`, `ses-<label>`, other key-value pairs|"entities"|[`schema/objects/entities.yaml`][entities.yaml]|`trc-<label>` entity|
+|directory underneath the subject/session directories|"data type"|[`schema/objects/datatypes.yaml`][datatypes.yaml]|`pet/` directory|
+|end of the file name|"suffix"|[`schema/objects/suffixes.yaml`][suffixes.yaml]|`_pet.nii[.gz]`|
+|`.nii` and `.nii.gz`|"extensions"|[`schema/objects/extensions.yaml`][extensions.yaml]|did not introduce any new extensions|
+|primary recording technique|"modality"|[`schema/objects/modalities.yaml`][modalities.yaml]| |
 
 #### Datatypes and modalities
 
