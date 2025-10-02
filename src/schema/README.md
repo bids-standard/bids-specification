@@ -650,6 +650,7 @@ as part of a larger rule.
 In these cases, the `level` field should be omitted from the issue
 to avoid duplication or conflict.
 
+(filename-construction-rules)=
 ### Filename construction rules
 
 A significant portion of BIDS is devoted to the naming of files,

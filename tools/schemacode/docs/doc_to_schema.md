@@ -265,7 +265,7 @@ pet:
 ```
 
 In rare cases, new files may not have any entities.
-See [Filename construction rules](description.md#filename-construction-rules) for more details.
+See [Filename construction rules](#filename-construction-rules) for more details.
 
 ### Sidecars and Metadata Rules
 
