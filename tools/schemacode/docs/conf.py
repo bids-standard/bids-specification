@@ -78,4 +78,4 @@ html_theme_options = {
     "dark_logo": "white_logo.svg",
 }
 
-myst_heading_anchors = 3
+myst_heading_anchors = 4

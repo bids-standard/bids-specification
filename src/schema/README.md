@@ -986,7 +986,7 @@ They additionally have a `checks` list, and an explicit issue.
 
 | Field       | Description                                                                                    |
 | ----------- | ---------------------------------------------------------------------------------------------- |
-| `issue`     | Issue code object (see [Issues](#issues)                                                       |
+| `issue`     | Issue code object (see [Issues](#issues))                                                      |
 | `selectors` | List of expressions; any evaluating false indicate rule does not apply                         |
 | `checks`    | List of expressions; any evaluating false indicate rule is violated and issue should be raised |
 
