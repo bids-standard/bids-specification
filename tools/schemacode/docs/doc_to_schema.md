@@ -19,9 +19,9 @@ kernelspec:
 One of the most important steps of a BEP is translating it from a plain text (google/microsoft document) as
 a yaml schema. The yaml schema necessary for the following steps:
 
-1) render the spec into its [ultimate compiled form](https://bids-specification.readthedocs.io/en/stable/)
-2) apply and validate the new rules and requirements introduced by the BEP
-3) merge their BEP into the BIDS Spec
+1. render the spec into its [ultimate compiled form](https://bids-specification.readthedocs.io/en/stable/)
+2. apply and validate the new rules and requirements introduced by the BEP
+3. merge their BEP into the BIDS Spec
 
 For the purpose of this guide we'll be referencing a completed BEP starting from its initial Google doc form
 and finishing with its translation into schema.
@@ -40,13 +40,13 @@ sub-<label>/[ses-<label>/]pet/sub-<label>[_ses-<label>][_task-<label>][_trc-<lab
 
 This indicates the following objects that are defined in the schema:
 
-|object|known as|defined in|example BEP009|
-|---|---|---|---|
-|`sub-<label>`, `ses-<label>`, other key-value pairs|"entities"|[`schema/objects/entities.yaml`][entities.yaml]|`trc-<label>` entity|
-|directory underneath the subject/session directories|"data type"|[`schema/objects/datatypes.yaml`][datatypes.yaml]|`pet/` directory|
-|end of the file name|"suffix"|[`schema/objects/suffixes.yaml`][suffixes.yaml]|`_pet.nii[.gz]`|
-|`.nii` and `.nii.gz`|"extensions"|[`schema/objects/extensions.yaml`][extensions.yaml]|did not introduce any new extensions|
-|primary recording technique|"modality"|[`schema/objects/modalities.yaml`][modalities.yaml]| |
+| object                                               | known as     | defined in                                          | example BEP009                       |
+| ---------------------------------------------------- | ------------ | --------------------------------------------------- | ------------------------------------ |
+| `sub-<label>`, `ses-<label>`, other key-value pairs  | "entities"   | [`schema/objects/entities.yaml`][entities.yaml]     | `trc-<label>` entity                 |
+| directory underneath the subject/session directories | "data type"  | [`schema/objects/datatypes.yaml`][datatypes.yaml]   | `pet/` directory                     |
+| end of the file name                                 | "suffix"     | [`schema/objects/suffixes.yaml`][suffixes.yaml]     | `_pet.nii[.gz]`                      |
+| `.nii` and `.nii.gz`                                 | "extensions" | [`schema/objects/extensions.yaml`][extensions.yaml] | did not introduce any new extensions |
+| primary recording technique                          | "modality"   | [`schema/objects/modalities.yaml`][modalities.yaml] |                                      |
 
 #### Datatypes and modalities
 
