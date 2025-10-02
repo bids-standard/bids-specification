@@ -19,3 +19,15 @@ updates:
       interval: "monthly"
     labels:
       - "exclude-from-changelog"
+    groups:
+      build-dependencies:
+        patterns: ["*"]
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    labels:
+      - "exclude-from-changelog"
+    groups:
+      node-utilities:
+        patterns: ["*"]
