@@ -38,15 +38,21 @@ BEP 009 introduced files of the form
 sub-<label>/[ses-<label>/]pet/sub-<label>[_ses-<label>][_task-<label>][_trc-<label>][_rec-<label>][_run-<index>]_pet.nii[.gz]
 ```
 
-This indicates the following objects that are defined in the schema:
+This path consists of the following objects, which are defined in the schema:
 
-| object                                               | known as     | defined in                                          | example BEP009                       |
-| ---------------------------------------------------- | ------------ | --------------------------------------------------- | ------------------------------------ |
-| `sub-<label>`, `ses-<label>`, other key-value pairs  | "entities"   | [`schema/objects/entities.yaml`][entities.yaml]     | `trc-<label>` entity                 |
-| directory underneath the subject/session directories | "data type"  | [`schema/objects/datatypes.yaml`][datatypes.yaml]   | `pet/` directory                     |
-| end of the file name                                 | "suffix"     | [`schema/objects/suffixes.yaml`][suffixes.yaml]     | `_pet.nii[.gz]`                      |
-| `.nii` and `.nii.gz`                                 | "extensions" | [`schema/objects/extensions.yaml`][extensions.yaml] | did not introduce any new extensions |
-| primary recording technique                          | "modality"   | [`schema/objects/modalities.yaml`][modalities.yaml] |                                      |
+| Object type | Description                             | Example       | Defined in                                          | Introduced by BEP009 |
+| ----------- | --------------------------------------- | ------------- | --------------------------------------------------- | -------------------- |
+| entity      | key-value pairs                         | `sub-<label>` | [`schema/objects/entities.yaml`][entities.yaml]     | `trc-<label>`        |
+| data type   | directory describing data               | `pet/`        | [`schema/objects/datatypes.yaml`][datatypes.yaml]   | `pet/`               |
+| suffix      | end of the file stem (before extension) | `_pet`        | [`schema/objects/suffixes.yaml`][suffixes.yaml]     | `_pet`               |
+| extension   | file type indicator                     | `.nii.gz`     | [`schema/objects/extensions.yaml`][extensions.yaml] | none                 |
+
+BIDS also has the concept of a "modality", which does not always appear in the path,
+but is determined by the data type.
+
+| Object type | Description                 | Example | Defined in                                         | Introduced by BEP009 |
+| ----------- | --------------------------- | ------- | -------------------------------------------------- | -------------------- |
+| modality    | primary recording technique | `pet`   | [`schema/objects/modalities.yaml`][datatypes.yaml] | `pet`                |
 
 #### Datatypes and modalities
 
