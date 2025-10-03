@@ -192,6 +192,15 @@ For example:
     Scientific Data 12, (13841).
     [doi:10.1038/s41597-025-05543-2](https://doi.org/10.1038/s41597-025-05543-2)
 
+### Other extensions specific publications
+
+#### Provenance
+
+-   Rémi Adon, Stefan Appelhoff, Tibor Auer, Laurent Guillo, Yaroslav O Halchenko, David Keator, Christopher J Markiewicz, Thomas E Nichols, Jean-Baptiste Poline, Satrajit Ghosh, Camille Maumet (2021).
+    **BIDS-prov: a provenance framework for BIDS**.
+    OHBM 2021 - 25th Annual Meeting of the Organization for Human Brain Mapping, Jun 2021, Online, South Korea. pp.1-3
+    [https://inserm.hal.science/inserm-03478998v1](https://inserm.hal.science/inserm-03478998v1)
+
 ### Research Resource Identifier (RRID)
 
 BIDS has also a

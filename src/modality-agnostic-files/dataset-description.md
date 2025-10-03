@@ -45,16 +45,9 @@ and a guide for using macros can be found at
    }
 ) }}
 
-Each object in the `GeneratedBy` array includes the following REQUIRED, RECOMMENDED
-and OPTIONAL keys:
-
-<!-- This block generates a table describing subfields within a metadata field.
-The definitions of these fields can be found in
-  src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_subobject_table("metadata.GeneratedBy.items") }}
+!!! Note
+    See the [Provenance of a BIDS dataset](provenance.md#provenance-of-a-bids-dataset) section
+    for more information on how to describe provenance using the `GeneratedBy` field.
 
 Example:
 
@@ -106,8 +99,6 @@ Example:
   ]
 }
 ```
-
-### Derived dataset and pipeline description
 
 As for any BIDS dataset, a `dataset_description.json` file MUST be found at the
 top level of every derived dataset:
