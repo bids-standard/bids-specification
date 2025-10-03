@@ -363,10 +363,7 @@
                   "type": "object",
                   "patternProperties": {
                     "^[a-zA-Z0-9_]+$": {
-                      "anyOf": [
-                        { "$ref": "#/definitions/pathRule" },
-                        { "$ref": "#/definitions/stemRule" }
-                      ]
+                      "$ref": "#/definitions/suffixRule"
                     }
                   },
                   "additionalProperties": false
