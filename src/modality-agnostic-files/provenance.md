@@ -88,7 +88,7 @@ prov/
 ```
 
 !!! note
-    The `prov` BIDS entity allows to group related provenance files, using an arbitrary value for `<label>`. A subdirectory MAY be used to organise provenance files, using an arbitrary value for `<subdir>`.
+    The `prov` BIDS entity allows to group related provenance files, using an arbitrary value for `<label>`. A subdirectory MAY be used to organize provenance files, using an arbitrary value for `<subdir>`.
 
 The following suffixes specify the contents of provenance files.
 
