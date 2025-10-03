@@ -249,8 +249,7 @@ prov:
   name: prov
   display_name: Provenance group
   description: |
-    A grouping of provenance records.
-    Defining multiple provenance records groups is appropriate when several processings have been performed on data.
+    The `prov-<label>` entity allows to group related provenance files, using an arbitrary value for `<label>`.
   type: string
   format: label
 reconstruction:
