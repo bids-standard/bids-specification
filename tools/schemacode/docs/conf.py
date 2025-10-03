@@ -77,3 +77,5 @@ html_theme_options = {
     "light_logo": "black_logo.svg",
     "dark_logo": "white_logo.svg",
 }
+
+myst_heading_anchors = 4

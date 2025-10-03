@@ -24,13 +24,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
       - name: Install dependencies
-        run: npm install `cat npm-requirements.txt`
+        run: npm install
       - name: Run style checks
-        run: npx remark src/**/*.md --frail --rc-path .remarkrc
+        run: npm run remark
 
   # YAML
   yamllint:
@@ -67,3 +67,5 @@ jobs:
       - uses: astral-sh/setup-uv@v6
       - name: Validate CITATION.cff
         run: uvx cffconvert --validate
+      - name: Check for Zenodo compatibility
+        run: uv run tools/validate_citation.py
