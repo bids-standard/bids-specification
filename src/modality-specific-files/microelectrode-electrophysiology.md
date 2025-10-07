@@ -193,7 +193,7 @@ Columns in the `*_channel.tsv` file are:
 #### Example *_channels.tsv
 
 ```tsv
-channel_id	electrode_id	gain	type	units	sampling_frequency	status
+channel_id	reference	gain	type	units	sampling_frequency	status
 c0123	        con0123	        30	EXT	mV	30000	                good
 c234	        con234	        30	EXT	mV	30000	                good
 c934	        con934	        50	EXT	mV	30000	                bad
@@ -203,7 +203,7 @@ c234	        n/a	        1	SYNC	mV	1000	                good
 Note: In many datasets multiple sets of identifiers are used for probes, electrodes and channels.
 We RECOMMEND to include alternative sets of identifiers, for instance identifiers that enumerate electrodes according to their spatial arrangement, as additional custom columns in the `.tsv` file.
 
--*Recommended Channel Type Values**
+#### Recommended Channel Type Values
 
 For the `type` column we recommend to use the following terms (adapted from [iEEG](intracranial-electroencephalography.md#channels-description-_channelstsv))
 
