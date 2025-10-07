@@ -51,7 +51,7 @@ AcquisitionVoxelSize:
 Activities:
   name: Activities
   display_name: Activities
-  description: Provenance records describing activities.
+  description: Provenance objects describing activities.
   type: array
   minItems: 1
   items:
@@ -68,17 +68,21 @@ Activities:
         format: uri
       Label:
         name: Label
-        description: Name of the tool, script, or function used (for example "bet", "recon-all", "myFunc", "docker").
+        description: Name for the activity. This can be the name of the tool, script, or function used (for example "bet", "recon-all", "myFunction.py", "docker").
         type: string
         format: label
       Command:
         name: Command
-        description: Command(s) used to run the tool, including all parameters.
-        type: string
+        description: Command (or commands) used to run the tool, including all parameters.
+        anyOf:
+          - type: string
+          - type: array
+            items:
+              type: string
       AssociatedWith:
         name: AssociatedWith
         description: |
-          Identifier (respectively set of identifiers) of the software package (resp. software packages) used to compute this activity.
+          Identifier(s) of the software package(s) used to compute this activity.
 
           Related software MUST be described inside the dataset (see the [Software](SPEC_ROOT/modality-agnostic-files/provenance.md#software) section).
         anyOf:
@@ -91,7 +95,7 @@ Activities:
       Used:
         name: Used
         description: |
-          Identifier (respectively set of identifiers) of entity (resp. entities) or environment (resp. environments) used by this activity.
+          Identifier(s) of the entity (one or more) or environment (one or more) used by this activity.
 
           Related entities MUST be described inside the dataset (see the [Entities](SPEC_ROOT/modality-agnostic-files/provenance.md#entities) section).
 
@@ -1256,7 +1260,7 @@ EncodingTechnique:
 Entities:
   name: Entities
   display_name: Entities
-  description: Provenance records describing entities.
+  description: Provenance objects describing entities.
   type: array
   minItems: 1
   items:
@@ -1317,7 +1321,7 @@ EntityType:
 Environments:
   name: Environments
   display_name: Environments
-  description: Provenance records describing environments.
+  description: Provenance objects describing environments.
   type: array
   minItems: 1
   items:
@@ -1339,8 +1343,7 @@ Environments:
         format: label
       EnvVars:
         name: EnvVars
-        description: |
-          A dictionary defining the environment variables as key-value pairs.
+        description: A dictionary defining the environment variables as key-value pairs.
         type: object
       OperatingSystem:
         name: OperatingSystem
@@ -3706,7 +3709,7 @@ SliceTiming:
 Software:
   name: Software
   display_name: Software
-  description: Provenance records describing software.
+  description: Provenance objects describing software.
   type: array
   minItems: 1
   items:
@@ -3732,8 +3735,7 @@ Software:
         type: string
       AltIdentifier:
         name: AltIdentifier
-        description: |
-          URI of the RRID for this software package (cf. https://rrid.site/).
+        description: URI of the RRID for this software package (cf. https://rrid.site/).
         type: string
         format: uri
       ActedOnBehalfOf:
