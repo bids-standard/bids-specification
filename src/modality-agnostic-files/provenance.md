@@ -178,7 +178,7 @@ Each `prov/[<subdir>/]prov-<label>_ent.json` file is a JSON file describing enti
 
     These files MUST not contain entities describing the current dataset. Use `dataset_description.json` files instead for this purpose (see [Provenance of a BIDS dataset](#provenance-of-a-bids-dataset)).
 
-Entity objects MAY describe:
+Inside provenance files, entity objects MAY describe:
 
 -   files or data that are located in another dataset;
 -   files or data that were deleted during the creation of the dataset;

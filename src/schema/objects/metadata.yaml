@@ -74,11 +74,7 @@ Activities:
       Command:
         name: Command
         description: Command (or commands) used to run the tool, including all parameters.
-        anyOf:
-          - type: string
-          - type: array
-            items:
-              type: string
+        type: string
       AssociatedWith:
         name: AssociatedWith
         description: |
@@ -1303,10 +1299,10 @@ Entities:
           Related activities MUST be described as specified in the
           [Activities](SPEC_ROOT/modality-agnostic-files/provenance.md#activities) section.
         type: array
-          minItems: 1
-          items:
-            type: string
-            format: uri
+        minItems: 1
+        items:
+          type: string
+          format: uri
       Type:
         name: Type
         description: A term from a controlled vocabulary that more specifically describes the entity.
@@ -1586,12 +1582,11 @@ GeneratedById:
 
     Related activities MUST be described as specified in the
     [Activities](SPEC_ROOT/modality-agnostic-files/provenance.md#activities) section.
-  anyOf:
-    - type: array
-      minItems: 1
-      items:
-        type: string
-        format: uri
+  type: array
+  minItems: 1
+  items:
+    type: string
+    format: uri
 GeneticLevel:
   name: GeneticLevel
   display_name: Genetic Level
@@ -3629,10 +3624,10 @@ SidecarGeneratedBy:
     Related activities MUST be described as specified in the
     [Activities](SPEC_ROOT/modality-agnostic-files/provenance.md#activities) section.
   type: array
-    minItems: 1
-    items:
-      type: string
-      format: uri
+  minItems: 1
+  items:
+    type: string
+    format: uri
 SinglesRate:
   name: SinglesRate
   display_name: Singles Rate
