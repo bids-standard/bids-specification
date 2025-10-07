@@ -276,16 +276,37 @@ This file contains the probe ID, the type of recording (acute/chronic), and the 
 [ProbeInterface](https://github.com/SpikeInterface/probeinterface) is a standard for specifying electrode layouts on probes.
 The [ProbeInterface library](https://github.com/SpikeInterface/probeinterface_library) includes layouts for many common probes.
 
-The `ProbeInterface` model corresponding to your probe can be referenced using:
+Probe information is specified in the `probes.json` sidecar file using the `model` field with `Levels` to define each probe model.
 
--   `probeinterface_manufacturer`
--   `probeinterface_model`
+For probes listed in the ProbeInterface library, use `TermURL` to reference the probe definition:
 
-For example, you could use `probeinterface_manufacturer: "neuronexus"` and `probeinterface_model: "A1x32-Poly3-10mm-50-177"` to specify a NeuroNexus A1x32 probe.
+```json
+"model": {
+    "Levels": {
+        "A1x32": {
+            "Description": "A1x32-Poly3-10mm-50-177, a 1-shank probe",
+            "TermURL": "https://raw.githubusercontent.com/SpikeInterface/probeinterface_library/refs/heads/main/neuronexus/A1x32-Poly3-10mm-50-177/A1x32-Poly3-10mm-50-177.json"
+        }
+    }
+}
+```
 
-If the probe is not listed in the ProbeInterface library, you SHOULD define it using the [ProbeInterface format](https://probeinterface.readthedocs.io/en/latest/format_spec.html) and include it in a directory called `probes/` in the root of the dataset. Probes defined within the `probes/` directory MUST follow the naming convention `probeinterface_<manufacturer>_<model>.json` and comply with the [ProbeInterface specification](https://probeinterface.readthedocs.io/en/latest/format_spec.html) and [JSON schema](https://raw.githubusercontent.com/SpikeInterface/probeinterface/refs/heads/main/src/probeinterface/schema/probe.json.schema).
+If the probe is not listed in the ProbeInterface library, you SHOULD define it using the [ProbeInterface format](https://probeinterface.readthedocs.io/en/latest/format_spec.html) and include it in a directory called `probes/` in the root of the dataset. Custom probe files MUST comply with the [ProbeInterface specification](https://probeinterface.readthedocs.io/en/latest/format_spec.html) and [JSON schema](https://raw.githubusercontent.com/SpikeInterface/probeinterface/refs/heads/main/src/probeinterface/schema/probe.json.schema).
 
-For example:
+For custom probes, reference them using a [BIDS URI](../common-principles.md#bids-uri) with the `bids::` prefix in the `TermURL` field:
+
+```json
+"model": {
+    "Levels": {
+        "customprobe1": {
+            "Description": "Custom experimental probe",
+            "TermURL": "bids::probes/customprobe1.json"
+        }
+    }
+}
+```
+
+Example file structure:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -294,8 +315,8 @@ A guide for using macros can be found at
 {{ MACROS___make_filetree_example(
    {
    "probes": {
-      "probeinterface_neuronexus_A4x8-5mm-100-200-177.json": "",
-      "probeinterface_plexon_1S256.json": "",
+      "customprobe1.json": "",
+      "customprobe2.json": "",
       "...": "",
       },
    }
@@ -306,11 +327,11 @@ A guide for using macros can be found at
 #### Example *_probes.tsv
 
 ```tsv
-probe_id	hemisphere	AP	ML	DV	AP_angle	ML_angle	rotation_angle	material	location	probeinterface_manufacturer	probeinterface_model
-p023	left	-11.87	-1.30	-3.37	0.0	0.0	0.0	iridium-oxide	V1	neuronexus	A1x32-Poly3-10mm-50-177
-p023	left	-11.64	0.51	-4.20	0.0	0.0	0.0	iridium-oxide	V2	neuronexus	A1x32-Poly3-10mm-50-177
-p021	left	-12.11	-3.12	-2.54	0.0	0.0	0.0	iridium-oxide	V4	neuronexus	A1x32-Poly3-10mm-50-177
-p021	left	-9.94	-1.19	-2.86	0.0	0.0	0.0	iridium-oxide	V3	neuronexus	A1x32-Poly3-10mm-50-177
+probe_id	hemisphere	AP	ML	DV	AP_angle	ML_angle	rotation_angle	material	location	manufacturer	model
+p023	left	-11.87	-1.30	-3.37	0.0	0.0	0.0	iridium-oxide	V1	neuronexus	A1x32
+p023	left	-11.64	0.51	-4.20	0.0	0.0	0.0	iridium-oxide	V2	neuronexus	A1x32
+p021	left	-12.11	-3.12	-2.54	0.0	0.0	0.0	iridium-oxide	V4	neuronexus	A1x32
+p021	left	-9.94	-1.19	-2.86	0.0	0.0	0.0	iridium-oxide	V3	neuronexus	A1x32
 ```
 
 ## Surgical Coordinates System
