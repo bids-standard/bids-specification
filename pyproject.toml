@@ -26,6 +26,9 @@ doc = [
   "universal_pathlib",
   "fsspec[http]",
 ]
+tools = [
+  "cffconvert",
+]
 
 [tool.bumpversion]
 current_version = "1.10.2-dev"

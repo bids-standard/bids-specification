@@ -14,8 +14,6 @@ pdf_build_src/src_copy
 pdf_build_src/tests/data/output
 
 # JS/NPM
-package-lock.json
-package.json
 node_modules/
 
 # Python gitignore

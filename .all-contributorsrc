@@ -424,6 +424,9 @@
             "profile": "https://github.com/musicinmybrain"
         },
         {
+            "avatar_url": [
+                "https://avatars.githubusercontent.com/u/844306?v=4"
+            ],
             "contributions": [
                 "doc",
                 "code",
@@ -434,9 +437,6 @@
             "profile": "https://bendichter.com/"
         },
         {
-            "avatar_url": [
-                "https://avatars.githubusercontent.com/u/844306?v=4"
-            ],
             "contributions": [
                 "doc"
             ],

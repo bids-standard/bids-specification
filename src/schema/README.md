@@ -650,6 +650,7 @@ as part of a larger rule.
 In these cases, the `level` field should be omitted from the issue
 to avoid duplication or conflict.
 
+(filename-construction-rules)=
 ### Filename construction rules
 
 A significant portion of BIDS is devoted to the naming of files,
@@ -985,7 +986,7 @@ They additionally have a `checks` list, and an explicit issue.
 
 | Field       | Description                                                                                    |
 | ----------- | ---------------------------------------------------------------------------------------------- |
-| `issue`     | Issue code object (see [Issues](#issues)                                                       |
+| `issue`     | Issue code object (see [Issues](#issues))                                                      |
 | `selectors` | List of expressions; any evaluating false indicate rule does not apply                         |
 | `checks`    | List of expressions; any evaluating false indicate rule is violated and issue should be raised |
 
