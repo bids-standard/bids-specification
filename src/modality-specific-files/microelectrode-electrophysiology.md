@@ -342,7 +342,7 @@ The surgical coordinates system provides a standard way to describe the placemen
 
 In neurosurgery or in research, it is important to define coordinates for where in the brain a surgical intervention will take place. These coordinates rely on anatomical markers that are uniform across individuals. There are two major anatomical markers on the dorsal surface of the brain that are formed when the plates of the skull fuse during development, and these markers are often used to identify the location of various anatomical structures of the brain.
 
-![Bregma and Lambda anatomical reference points](images/bregma_and_lambda.png)
+<img src="images/bregma_and_lambda.png" alt="Bregma and Lambda anatomical reference points" style="max-width: 600px;">
 
 **Bregma**: the anatomical point on the skull at which the coronal suture (between frontal and parietal bones) is intersected perpendicularly by the sagittal suture (between left and right parietal bones).
 
@@ -356,7 +356,7 @@ Both points serve as standard reference points for stereotaxic coordinates in ne
 
 All stereotaxic coordinate systems follow a right-handed coordinate system with the following conventions:
 
-![AP_ML_DV coordinate system](images/AP_ML_DV.png)
+<img src="images/AP_ML_DV.png" alt="AP_ML_DV coordinate system" style="max-width: 600px;">
 
 -   **AP (Anterior-Posterior) axis:** Positive values are anterior to reference point
 -   **ML (Medial-Lateral) axis:** Positive values are to the right (as seen from behind)
@@ -368,7 +368,7 @@ Proper understanding and application of these angles is critical for accurate pr
 
 ##### AP angle (Anterior-Posterior rotation)
 
-![AP angle rotation diagram](images/AP_angle.png)
+<img src="images/AP_angle.png" alt="AP angle rotation diagram" style="max-width: 600px;">
 
 -   Measured as rotation from the vertical axis in the sagittal plane
 -   0° represents vertical along DV axis
@@ -378,7 +378,7 @@ Proper understanding and application of these angles is critical for accurate pr
 
 ##### ML angle (Medial-Lateral rotation)
 
-![ML angle rotation diagram](images/ML_angle.png)
+<img src="images/ML_angle.png" alt="ML angle rotation diagram" style="max-width: 600px;">
 
 -   Measured as rotation from the vertical axis in the coronal plane
 -   0° represents vertical along DV axis
@@ -388,7 +388,7 @@ Proper understanding and application of these angles is critical for accurate pr
 
 ##### Rotation angle (around probe axis)
 
-![Rotation angle diagram](images/rotation_angle.png)
+<img src="images/rotation_angle.png" alt="Rotation angle diagram" style="max-width: 600px;">
 
 -   0° when probe features align with the coronal plane
 -   Range: -180° to +180° (or 0° to 360°)
