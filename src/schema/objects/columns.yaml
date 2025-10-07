@@ -42,11 +42,29 @@ age:
     Using "89+" for ages above 88 is DEPRECATED.
   definition: {
     "LongName": "Subject age",
-    "Description": "Subject age in postnatal years",
+    "Description": "Subject age in postnatal years.",
+    "AgeReference": "birth",
     "Format": "number",
     "Units": "year",
     "Maximum": 89,
   }
+birthdate:
+  name: birthdate
+  display_name: Birth date
+  description: |
+    Date of the start of a subject's neonate stage. Date format (YYYY-MM-DD).
+    Should not be provided or anonymized for human subjects.
+  type: string
+  format: date
+birthtime:
+  name: birthtime
+  display_name: Birth time
+  description: |
+    Time (or estimated time) of birth. Time format (hh:mm:ssZ).
+    Typically, this field will be combined with birthdate.
+    Should not be provided or anonymized for human subjects.
+  type: string
+  format: time
 cardiac:
   name: cardiac
   display_name: Cardiac measurement
@@ -92,6 +110,23 @@ component:
     - $ref: objects.enums.quat_y.value
     - $ref: objects.enums.quat_z.value
     - $ref: objects.enums.quat_w.value
+deathdate:
+  name: deathdate
+  display_name: Death date
+  description: |
+    Date of the end of a subject's life cycle. Date format (YYYY-MM-DD).
+    Should not be provided or anonymized for human subjects.
+  type: string
+  format: date
+deathtime:
+  name: deathtime
+  display_name: Death time
+  description: |
+    Time (or estimated time) of death. Time format (hh:mm:ssZ).
+    Typically, this field will be combined with deathdate.
+    Should not be provided or anonymized for human subjects.
+  type: string
+  format: time
 detector__channels:
   name: detector
   display_name: Detector Name
@@ -253,6 +288,25 @@ index:
   description: |
     The label integer index.
   type: integer
+age_category:
+  name: age_category
+  display_name: Age category
+  description: |
+    A non-numeric term for a subject's life cycle stage (for instance, 'adult').
+    Inspired by the
+    [UBERON life cycle stage](http://purl.obolibrary.org/obo/UBERON_0000105).
+  type: string
+  enum:
+    - $ref: objects.enums.adolescent.value
+    - $ref: objects.enums.adult.value
+    - $ref: objects.enums.embryo.value
+    - $ref: objects.enums.infant.value
+    - $ref: objects.enums.juvenile.value
+    - $ref: objects.enums.late_adult.value
+    - $ref: objects.enums.neonate.value
+    - $ref: objects.enums.perinate.value
+    - $ref: objects.enums.prime_adult.value
+    - $ref: objects.enums.young_adult.value
 low_cutoff:
   name: low_cutoff
   display_name: Low cutoff
