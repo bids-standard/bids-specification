@@ -380,7 +380,7 @@ The `GeneratedBy` field MAY contain either of the following values:
 
 This section details a way to describe the provenance of a dataset using provenance objects, providing `GeneratedBy` with the identifier(s) of the activity (one or more) responsible for the creation of the dataset.
 
-Related `Activities` MUST be described inside the dataset (see the [`Activities`](#activities) section).
+Related activities MUST be described inside the dataset (see the [Activities](#activities) section).
 
 !!! example "Example of `GeneratedBy` contents in a `dataset_description.json`"
     ```JSON
@@ -395,7 +395,7 @@ Related `Activities` MUST be described inside the dataset (see the [`Activities`
 This section details a way to describe the provenance of a dataset, providing `GeneratedBy` with an array of objects representing pipelines or processes that generated the dataset.
 
 !!! note
-    This description can be equivalently represented using the previous section. This modelling is kept for backward-compatibility but might be removed in future BIDS releases (see BIDS 2.0).
+    This description can be equivalently represented using the previous section. This modeling is kept for backward-compatibility but might be removed in future BIDS releases (see BIDS 2.0).
 
 Each object in the `GeneratedBy` array includes the following REQUIRED, RECOMMENDED
 and OPTIONAL keys:
