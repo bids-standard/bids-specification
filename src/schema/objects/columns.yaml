@@ -1218,21 +1218,21 @@ x__electrodes:
   display_name: Electrode X position
   description: |
     Recorded position along the local width-axis relative
-    to the probe origin and rotation (see `_probes.tsv`)
+    to the probe origin (see `_probes.tsv`)
   type: number
 y__electrodes:
   name: y
   display_name: Electrode Y position
   description: |
     Recorded position along the local height-axis relative
-    to the probe origin and rotation (see `_probes.tsv`)
+    to the probe origin (see `_probes.tsv`)
   type: number
 z__electrodes:
   name: z
   display_name: Electrode Z position
   description: |
     Recorded position along the local depth-axis relative
-    to the probe origin and rotation (see `_probes.tsv`)
+    to the probe origin (see `_probes.tsv`)
   type: number
 template_x:
   name: template_x
