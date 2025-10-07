@@ -60,15 +60,15 @@ Activities:
     properties:
       Id:
         name: Id
-        description: |
-          Identifier for the activity
-          (see the [Consistency and uniqueness of Ids](SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers)
-          section).
+        description: "Identifier for the activity (see the [Consistency and uniqueness of identifiers]\
+        (SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section)."
         type: string
         format: uri
       Label:
         name: Label
-        description: Name for the activity. This can be the name of the tool, script, or function used (for example "bet", "recon-all", "myFunction.py", "docker").
+        description: |
+          Name for the activity. This can be the name of the tool, script,
+          or function used (for example "bet", "recon-all", "myFunction.py", "docker").
         type: string
         format: label
       Command:
@@ -84,7 +84,8 @@ Activities:
         description: |
           Identifier(s) of the software package(s) used to compute this activity.
 
-          Related software MUST be described inside the dataset (see the [Software](SPEC_ROOT/modality-agnostic-files/provenance.md#software) section).
+          Related software MUST be described as specified in the
+          [Software](SPEC_ROOT/modality-agnostic-files/provenance.md#software) section.
         anyOf:
           - type: string
             format: uri
@@ -97,9 +98,11 @@ Activities:
         description: |
           Identifier(s) of the entity (one or more) or environment (one or more) used by this activity.
 
-          Related entities MUST be described inside the dataset (see the [Entities](SPEC_ROOT/modality-agnostic-files/provenance.md#entities) section).
+          Related entities MUST be described as specified in the
+          [Entities](SPEC_ROOT/modality-agnostic-files/provenance.md#entities) section.
 
-          Related environments MUST be described inside the dataset (see the [Environments](SPEC_ROOT/modality-agnostic-files/provenance.md#environments) section).
+          Related environments MUST be described as specified in the
+          [Environments](SPEC_ROOT/modality-agnostic-files/provenance.md#environments) section.
         anyOf:
           - type: string
             format: uri
@@ -902,7 +905,8 @@ Digest:
   display_name: Digest
   description: |
     Object containing checksum(s) of a file.
-    It takes the form of a dictionary with the name of the checksum functions as keys and checksums as values : `{"<checksum_function>": "<checksum>"}`.
+    It takes the form of a dictionary with the name of the checksum functions as keys and
+    checksums as values : `{"<checksum_function>": "<checksum>"}`.
   type: object
 DigitizedHeadPoints:
   name: DigitizedHeadPoints
@@ -1270,10 +1274,8 @@ Entities:
     properties:
       Id:
         name: Id
-        description: |
-          Identifier for the entity
-          (see the [Consistency and uniqueness of Ids](SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers)
-          section).
+        description: "Identifier for the entity (see the [Consistency and uniqueness of identifiers]\
+        (SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section)."
         type: string
         format: uri
       Label:
@@ -1285,7 +1287,8 @@ Entities:
         name: Digest
         description: |
           For files, this includes checksums.
-          It takes the form of a dictionary with the name of the checksum functions as keys and checksums as values : `{"<checksum_function>": "<checksum>"}`.
+          It takes the form of a dictionary with the name of the checksum functions as keys
+          and checksums as values : `{"<checksum_function>": "<checksum>"}`.
         type: object
       AtLocation:
         name: AtLocation
@@ -1295,9 +1298,10 @@ Entities:
       GeneratedBy:
         name: GeneratedBy
         description: |
-          Identifier (respectively set of identifiers) of the activity (resp. activities) responsible for the creation of the entity.
+          Identifier(s) of the activity (one or more) responsible for the creation of the entity.
 
-          Related activities MUST be described inside the dataset (see the [Activities](SPEC_ROOT/modality-agnostic-files/provenance.md#activities) section).
+          Related activities MUST be described as specified in the
+          [Activities](SPEC_ROOT/modality-agnostic-files/provenance.md#activities) section.
         anyOf:
           - type: string
             format: uri
@@ -1330,10 +1334,8 @@ Environments:
     properties:
       Id:
         name: Id
-        description: |
-          Identifier for the environment.
-          (see the [Consistency and uniqueness of Ids](SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers)
-          section).
+        description: "Identifier for the environment (see the [Consistency and uniqueness of identifiers]\
+        (SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section)."
         type: string
         format: uri
       Label:
@@ -1585,9 +1587,10 @@ GeneratedById:
   name: GeneratedBy
   display_name: Generated By
   description: |
-    Identifier (respectively set of identifiers) of the activity (resp. activities) responsible for the creation of the file.
+    Identifier(s) of the activity (one or more) responsible for the creation of the file.
 
-    Related activities MUST be described inside the dataset (see the [Activities](SPEC_ROOT/modality-agnostic-files/provenance.md#activities) section).
+    Related activities MUST be described as specified in the
+    [Activities](SPEC_ROOT/modality-agnostic-files/provenance.md#activities) section.
   anyOf:
     - type: string
       format: uri
@@ -3628,9 +3631,10 @@ SidecarGeneratedBy:
   name: SidecarGeneratedBy
   display_name: Sidecar Generated By
   description: |
-    Identifier (respectively set of identifiers) of the activity (resp. activities) responsible for the creation of the sidecar JSON file.
+    Identifier(s) of the activity (one or more) responsible for the creation of the sidecar JSON file.
 
-    Related activities MUST be described inside the dataset (see the [Activities](SPEC_ROOT/modality-agnostic-files/provenance.md#activities) section).
+    Related activities MUST be described as specified in the
+    [Activities](SPEC_ROOT/modality-agnostic-files/provenance.md#activities) section.
   anyOf:
     - type: string
       format: uri
@@ -3718,10 +3722,8 @@ Software:
     properties:
       Id:
         name: Id
-        description: |
-          Identifier for the software package
-          (see the [Consistency and uniqueness of Ids](SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers)
-          section).
+        description: "Identifier for the software package (see the [Consistency and uniqueness of identifiers]\
+        (SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section)."
         type: string
         format: uri
       Label:
@@ -3746,7 +3748,8 @@ Software:
 
           Example: if software A launches software B to perform activity C, then B ActedOnBehalfOf A.
 
-          Related software MUST be described inside the dataset (see the [Software](SPEC_ROOT/modality-agnostic-files/provenance.md#software) section).
+          Related software MUST be described as specified in the
+          [Software](SPEC_ROOT/modality-agnostic-files/provenance.md#software) section.
         type: string
         format: uri
 SoftwareFilters:

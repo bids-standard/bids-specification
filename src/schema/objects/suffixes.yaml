@@ -507,7 +507,7 @@ act:
   display_name: Activities
   description: |
     A JSON file containing provenance objects describing activities.
-    (see the [`Activities`](SPEC_ROOT/modality-agnostic-files/provenance.md#activities) section).
+    (See the [`Activities`](SPEC_ROOT/modality-agnostic-files/provenance.md#activities) section).
 angio:
   value: angio
   display_name: Angiogram
@@ -623,13 +623,13 @@ ent:
   display_name: Entities
   description: |
     A JSON file containing provenance objects describing entities.
-    (see the [`Entities`](SPEC_ROOT/modality-agnostic-files/provenance.md#entities) section).
+    (See the [`Entities`](SPEC_ROOT/modality-agnostic-files/provenance.md#entities) section).
 env:
   value: env
   display_name: Environments
   description: |
     A JSON file containing provenance objects describing environments.
-    (see the [`Environments`](SPEC_ROOT/modality-agnostic-files/provenance.md#environments) section).
+    (See the [`Environments`](SPEC_ROOT/modality-agnostic-files/provenance.md#environments) section).
 epi:
   value: epi
   display_name: EPI
@@ -840,7 +840,7 @@ soft:
   display_name: Software
   description: |
     A JSON file containing provenance objects describing software.
-    (see the [`Software`](SPEC_ROOT/modality-agnostic-files/provenance.md#software) section).
+    (See the [`Software`](SPEC_ROOT/modality-agnostic-files/provenance.md#software) section).
 sbref:
   value: sbref
   display_name: Single-band reference image
