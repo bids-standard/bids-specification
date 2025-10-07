@@ -203,7 +203,7 @@ c234	        n/a	        1	SYNC	mV	1000	                good
 Note: In many datasets multiple sets of identifiers are used for probes, electrodes and channels.
 We RECOMMEND to include alternative sets of identifiers, for instance identifiers that enumerate electrodes according to their spatial arrangement, as additional custom columns in the `.tsv` file.
 
--*Recommended Channel Type Values**
+#### Recommended Channel Type Values
 
 For the `type` column we recommend to use the following terms (adapted from [iEEG](intracranial-electroencephalography.md#channels-description-_channelstsv))
 
