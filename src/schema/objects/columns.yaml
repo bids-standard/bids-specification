@@ -376,14 +376,6 @@ hardware_filters:
     - type: string
       enum:
         - n/a
-height__probes:
-  name: height
-  display_name: Height
-  description: |
-    Physical height of the probe, for example, '5'.
-    This dimension corresponds to the y’axis of the Euler transformation defined by
-    alpha, beta and gamma rotations values below.
-  type: number
 hemisphere:
   name: hemisphere
   display_name: Electrode hemisphere
