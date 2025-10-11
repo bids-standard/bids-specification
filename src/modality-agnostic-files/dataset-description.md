@@ -169,7 +169,7 @@ Example:
 
 The `AdditionalValidation` key MAY be used to opt into additional validation
 to be performed on the dataset beyond standard BIDS validation.
-The value of this field is either a string or an array of strings,
+The value of this field is an array of strings,
 each of which MUST be the name of a supported additional validation to be performed.
 
 The currently supported values are:

@@ -213,7 +213,7 @@ meg/sub-control01_task-rest_split-02_meg.nii.gz	1877-06-15T12:15:27
 In case of multiple sessions there is an option of adding an additional
 `sessions.tsv` file describing each session and variables changing between sessions.
 It is RECOMMENDED to provide this as a single file at the root-level of the dataset.
-It is OPTIONAL to provide these as separate files at the subject-level of the dataset.
+It is OPTIONAL to instead provide these as separate files at the subject-level of the dataset.
 The intent of the sessions file is to describe the sessions
 in a data set and non-demographic variables changing between sessions.
 Column names in `sessions.tsv` files MUST be different from participant key column names in
@@ -315,31 +315,25 @@ ses-followup	2009-06-17T13:45:30	110
 
 When the [`AdditionalValidation` key](dataset-description.md#additional-validation)
 contains `"Phenotype"` in the `dataset_description.json`,
-the following expectations apply to sessions files.
+the following tabular phenotypic data guidelines
+apply to sessions files:
 
-1.  If there is more than one session for any one participant, then it is
-    REQUIRED to provide a sessions file at the dataset root.
-    The sessions file MUST list all sessions for all subjects
-    across imaging and tabular phenotypic data. If a sessions file is provided, then
-    it MUST begin with a `participant_id` column followed immediately by
-    a `session_id` column. The data dictionary JSON file's `session_id` field
-    MUST include `Levels` with the description of each `session_id`.
+-   [6.](../appendices/phenotype.md#6-record-participant-properties-in-the-participants-file-and-session-properties-in-the-sessions-file)
+    Record participant properties in the participants file
+    and session properties in the sessions file
 
-1.  When a root-level sessions file is in use, you MUST NOT provide
-    additional sessions files at the participant-level
-    which would otherwise obey the inheritance principle.
+-   [7.](../appendices/phenotype.md#7-use-the-sessions-file-at-the-root-level)
+    Use the sessions file at the root-level
 
-1.  Whenever possible, it is RECOMMENDED to also collect acquisition time
-    for tabular phenotypic data and store the time of acquisition of each row
-    inside a column named `acq_time` in the sessions file.
-    This is consistent with how acquisition time is recorded for MRI data
-    and other time-sensitive measurements (for example systolic blood pressure).
+-   [8.](../appendices/phenotype.md#8-use-either-root-level-sessions-file-or-participant-level-sessions-files-but-not-both)
+    Use either root-level sessions file or
+    participant-level sessions files, but not both
 
-1.  When it is needed to preserve participant privacy, you SHOULD record
-    relative acquisition times with respect to the earliest session.
-    Relative session acquisition times MAY be listed as durations from
-    the earliest session (baseline) in days, months, or years
-    using the `acq_time` column.
+-   [9.](../appendices/phenotype.md#9-record-acquisition-time-of-all-sessions-with-acq_time)
+    Record acquisition time of all sessions with `acq_time`
+
+-   [10.](../appendices/phenotype.md#10-respect-participant-privacy-when-recording-acquisition-times)
+    Respect participant privacy when recording acquisition times
 
 To read more about the guidelines for tabular phenotypic data and examples,
-see the [Tabular phenotypic data guidelines appendix](../appendices/phenotype.md).
+see the [tabular phenotypic data guidelines appendix](../appendices/phenotype.md).

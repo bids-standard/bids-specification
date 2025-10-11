@@ -97,52 +97,24 @@ questionnaire).
 
 When the [`AdditionalValidation` key](dataset-description.md#additional-validation)
 contains `"Phenotype"` in the `dataset_description.json`,
-the following expectations apply to phenotypic and assessment data.
+the following tabular phenotypic data guidelines
+apply to phenotypic and assessment data.
 
-1.  It is REQUIRED to aggregate all participant data into
-    one TSV per tabular phenotypic file.
+-   [1.](../appendices/phenotype.md#1-aggregate-data-across-sessions)
+    Aggregate data across sessions
 
-1.  Each tabular phenotypic data TSV file MUST be accompanied by
-    a corresponding data dictionary JSON file.
+-   [2.](../appendices/phenotype.md#2-always-pair-tabular-data-with-data-dictionaries)
+    Always pair tabular data with data dictionaries
 
-1.  Whenever possible, it is RECOMMENDED to add `MeasurementToolMetadata` to
-    each `phenotype/<measurement_tool_name>.json` data dictionary.
-    This improves reusability and provides clarity about the measurement tool.
+-   [3.](../appendices/phenotype.md#3-add-measurementtoolmetadata-to-each-tabular-phenotypic-measurement-tool)
+    Add `MeasurementToolMetadata` to each tabular phenotypic measurement tool
 
-1.  Each measurement tool SHOULD have an independent
-    aggregated data TSV file in which the user collects all subjects, sessions,
-    and/or runs of data as one entry per row (with a row defined by
-    the smallest unit of acquisition). In other words:
+-   [4.](../appendices/phenotype.md#4-ensure-minimal-annotation-for-phenotypic-and-assessment-data)
+    Ensure minimal annotation for phenotypic and assessment data
 
-    1.  Each row MUST start with `participant_id`.
-
-    1.  Each TSV file MUST contain a `session_id` column when
-        multiple [sessions](../glossary.md#session-entities) are present
-        in the data set regardless of whether those sessions are in
-        the `phenotype/` data, `sub-<label>/` data, or a combination of the two.
-        See the first two examples in [the appendix](../appendices/phenotype.md).
-
-    1.  If more than one of the same measurement tool is acquired within
-        the same `session_id`, a `run_id` column MUST be added.
-
-    1.  To encode the acquisition time for a tabular phenotypic file’s `session_id`,
-        add the `session_id` to the sessions file and
-        include the OPTIONAL `acq_time` column.
-
-    To see this guideline summarized as a table,
-    see [the appendix](../appendices/phenotype.md#to-summarize-this-guideline-as-a-table).
-
-    Furthermore, if you have to add a `session_id` column to the tabular phenotypic data,
-    you then MUST also introduce a session directory to the imaging data,
-    even if only one imaging session has been created.
-    This rule can be considered as "**if anyone uses sessions, everyone uses sessions.**"
-    And vice versa, if imaging data has session directories,
-    all imaging data and tabular phenotypic data MUST have sessions.
-
-    This produces a file in which same-participant entries can take up as many rows as needed
-    according to the smallest unit of acquisition.
-    The combination of values in the `participant_id`, `session_id`, and `run_id` (if present)
-    columns MUST be unique for the entire tabular file.
+-   [5.](../appendices/phenotype.md#5-store-demographic-data-in-the-participants-file-and-instrument-data-in-the-phenotype-directory)
+    Store demographic data in the participants file
+    and instrument data in the phenotype directory
 
 To read more about the guidelines for tabular phenotypic data and examples,
-see the [Tabular phenotypic data guidelines appendix](../appendices/phenotype.md).
+see the [tabular phenotypic data guidelines appendix](../appendices/phenotype.md).

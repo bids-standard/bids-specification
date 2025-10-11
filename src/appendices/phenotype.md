@@ -12,7 +12,7 @@ and phenotypic and assessment data.
 They are recommendations and are by default ignored during validation.
 You can make them mandatory during validation by setting the
 [`AdditionalValidation` key](../modality-agnostic-files/dataset-description.md#additional-validation)
-to `"Phenotype"` in the `dataset_description.json`.
+contains `"Phenotype"` in the `dataset_description.json`.
 
 ### 1. Aggregate data across sessions
 
@@ -39,7 +39,7 @@ See [`MeasurementToolMetadata` in the glossary](../glossary.md#measurementtoolme
 
 ### 4. Ensure minimal annotation for phenotypic and assessment data
 
-In phenotypic and assessment data each measurement tool SHOULD have an independent
+In phenotypic and assessment data, each measurement tool SHOULD have an independent
 aggregated data TSV file in which the user collects all subjects, sessions,
 and/or runs of data as one entry per row (with a row defined by
 the smallest unit of acquisition). In other words:
@@ -54,9 +54,9 @@ the smallest unit of acquisition). In other words:
 -   If more than one of the same measurement tool is acquired within
     the same `session_id`, a `run_id` column MUST be added.
 
--   Encoding  the acquisition time for a measurement tool’s `session_id`,
-     is RECOMMENDED. This information MUST be stored in the `sessions.tsv`
-     file at the root level of the dataset in the `acq_time` column.
+-   Encoding the acquisition time for a measurement tool’s `session_id`,
+    is RECOMMENDED. This information MUST be stored in the `sessions.tsv`
+    file at the root level of the dataset in the `acq_time` column.
 
 <!-- This block generates a columns table.
 The definitions of these fields can be found in
@@ -66,27 +66,29 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_columns_table("modality_agnostic.Phenotypes") }}
 
-This rule can be considered as "**if anyone uses sessions, everyone uses sessions**."
+Furthermore, if you have to add a `session_id` column to the tabular phenotypic data,
+you then MUST also introduce a session directory to the imaging data,
+even if only one imaging session has been created.
+This rule can be considered as "**if anyone uses sessions, everyone uses sessions.**"
+And vice versa, if imaging data has session directories,
+all imaging data and tabular phenotypic data MUST have sessions.
 
-### 5. Store demographic data in `participants.tsv` and instrument data in the `/phenotype` directory
+This produces a file in which same-participant entries can take up as many rows as needed
+according to the smallest unit of acquisition.
+The combination of values in the `participant_id`, `session_id`, and `run_id` (if present)
+columns MUST be unique for the entire tabular file.
 
-The `participants.tsv` file is for demographic information about the participant,
+### 5. Store demographic data in the participants file and instrument data in the phenotype directory
+
+The participants file is for demographic data about the participant,
 including longitudinal information such as `age`.
-The `/phenotype` directory is for phenotypic information collected about
-the participants, such as questionnaires, cognitive assessments or tasks.
-Create one tabular `.tsv` file for each instrument or assessment in the `/phenotype` directory.
+The phenotypic and assessment data directory
+is for phenotypic measurement instruments collected about the participants
+such as questionnaires, surveys, and cognitive assessments.
+Create one tabular file for each instrument
+in the phenotypic and assessment data directory.
 
-### 6. Use the sessions file at the root-level
-
-If there is more than one session for any one participant, then
-it is RECOMMENDED to provide a sessions file at the dataset root.
-The sessions file MUST list all sessions for all subjects across
-imaging and tabular phenotypic data.
-If a sessions file is provided, then it MUST begin with a `participant_id` column
-followed immediately by a `session_id` column. The data dictionary JSON file’s
-`session_id` field MUST include `Levels` with the description of each `session_id`.
-
-### 7. Record participant properties in the participants file and session properties in the sessions file
+### 6. Record participant properties in the participants file and session properties in the sessions file
 
 Since the same `participant_id` and `session_id` columns can be used
 similarly in the participants file and the sessions file,
@@ -98,6 +100,14 @@ Properties of sessions MAY include things like
 acquisition time, measurement device properties,
 and indoor or outdoor experimental conditions.
 
+### 7. Use the sessions file at the root-level
+
+If there is more than one session for any one participant, then
+it is RECOMMENDED to provide a sessions file at the dataset root.
+The sessions file MUST list all sessions for all subjects across
+imaging and tabular phenotypic data. The data dictionary JSON file’s
+`session_id` field MUST include `Levels` with the description of each `session_id`.
+
 ### 8. Use either root-level sessions file or participant-level sessions files, but not both
 
 When you use a sessions file at the dataset-level,
@@ -107,7 +117,8 @@ as this might conflict with the inheritance principle.
 ### 9. Record acquisition time of all sessions with `acq_time`
 
 It is RECOMMENDED to store acquisition time[<sup>2</sup>](#footnotes)
-for tabular phenotypic data in the sessions file in a column named `acq_time`.
+for tabular phenotypic data and store the time of acquisition of each row
+inside a column named `acq_time` in the sessions file.
 This is consistent with how acquisition time is recorded for MRI data
 and other time-sensitive measurements (for example systolic blood pressure).
 
@@ -123,7 +134,8 @@ using the `acq_time` column.
 
 This appendix described guidelines for best tabular phenotypic data.
 In summary, it is RECOMMENDED to always use the participants file
-and separate files by assessment in the `/phenotype/` directory,
+and separate files by measurement instrument in
+the phenotypic and assessment data directory,
 since they each collect different information.
 If you use sessions, then the sessions file is also RECOMMENDED.
 
