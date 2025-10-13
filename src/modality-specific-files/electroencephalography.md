@@ -37,6 +37,7 @@ stored in one of the following formats:
 | [BrainVision Core Data Format][bvformat]          | `.vhdr`, `.vmrk`, `.eeg` | Each recording consists of a  `.vhdr`, `.vmrk`, `.eeg` file triplet.                                                                                                                                 |
 | [EEGLAB](https://sccn.ucsd.edu/eeglab/index.php)  | `.set`, `.fdt`           | The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab/index.php). Each recording consists of a `.set` file with an OPTIONAL `.fdt` file.                                       |
 | [Biosemi](https://www.biosemi.com/)               | `.bdf`                   | Each recording consists of a single `.bdf` file. [`bdf+`](https://www.teuniz.net/edfbrowser/bdfplus%20format%20description.html) files are permitted. The capital `.BDF` extension MUST NOT be used. |
+| [Neurodata Without Borders (NWB)][nwb]            | `.nwb`                   | Each recording consists of a single `.nwb` file.                                                                                                                                                     |
 
 It is RECOMMENDED to use the European data format, or the BrainVision data
 format. It is furthermore discouraged to use the other accepted formats over
@@ -490,3 +491,4 @@ actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
 <!-- Link Definitions -->
 
 [bvformat]: https://www.brainproducts.com/support-resources/brainvision-core-data-format-1-0/
+[nwb]: https://neurodatawithoutborders.github.io/
