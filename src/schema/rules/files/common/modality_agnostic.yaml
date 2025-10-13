@@ -15,3 +15,4 @@ provenance:
     - .json
   entities:
     prov: required
+    description: optional

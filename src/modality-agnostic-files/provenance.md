@@ -77,19 +77,33 @@ Additionally, metadata of provEntities can be stored as regular BIDS metadata in
 
 ## Provenance files
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the directory
+  src/schema/rules/files/common
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+
+{{ MACROS___make_filename_template(
+   "raw",
+   datatypes=["prov"],
+   suffixes=["act", "ent", "env", "soft"])
+}}
+-->
+
 Template:
 
 ```text
 prov/
-    [<subdir>/]
-        prov-<label>_act.json
-        prov-<label>_ent.json
-        prov-<label>_env.json
-        prov-<label>_soft.json
+    [prov-<label>/]
+        prov-<label>[_desc-<label>]_act.json
+        prov-<label>[_desc-<label>]_ent.json
+        prov-<label>[_desc-<label>]_env.json
+        prov-<label>[_desc-<label>]_soft.json
 ```
 
 !!! note
-    The `prov` BIDS entity allows to group related provenance files, using an arbitrary value for `<label>`. A subdirectory MAY be used to organize provenance files, using an arbitrary value for `<subdir>`.
+    The `prov` BIDS entity allows to group related provenance files, using an arbitrary value for `<label>`. A subdirectory MAY be used to group provenance files with the same `prov` entity.
 
 The following suffixes specify the contents of provenance files.
 
@@ -108,11 +122,11 @@ and a guide for using macros can be found at
 !!! example "Example of organization for provenance files"
     ```
     prov/
-    ├─ preprocspm/
-    │  ├─ prov-preprocspm1_act.json
-    │  ├─ prov-preprocspm1_ent.json
-    │  ├─ prov-preprocspm2_act.json
-    │  └─ prov-preprocspm2_ent.json
+    ├─ prov-preprocspm/
+    │  ├─ prov-preprocspm_desc-v1_act.json
+    │  ├─ prov-preprocspm_desc-v1_ent.json
+    │  ├─ prov-preprocspm_desc-v2_act.json
+    │  └─ prov-preprocspm_desc-v2_ent.json
     ├─ prov-preprocfsl_act.json
     ├─ prov-preprocfsl_ent.json
     ├─ prov-preprocfsl_env.json
@@ -122,7 +136,7 @@ and a guide for using macros can be found at
 
 ### Activities
 
-Each `prov/[<subdir>/]prov-<label>_act.json` file is a JSON file describing activities.
+Each file with a `act` suffix is a JSON file describing activities.
 
 Each file MUST include the following key:
 
@@ -171,7 +185,7 @@ and a guide for using macros can be found at
 
 ### ProvEntities
 
-Each `prov/[<subdir>/]prov-<label>_ent.json` file is a JSON file describing provEntities.
+Each file with a `ent` suffix is a JSON file describing provEntities.
 
 !!! warning
     These files MUST not contain provEntities describing data files that are available in the dataset. Use sidecar JSON files instead for this purpose (see [Provenance of a BIDS file](#provenance-of-a-bids-file)).
@@ -230,7 +244,7 @@ and a guide for using macros can be found at
 
 ### Software
 
-Each `prov/[<subdir>/]prov-<label>_soft.json` file is a JSON file describing software.
+Each file with a `soft` suffix is a JSON file describing software.
 
 Each file MUST include the following key:
 
@@ -273,7 +287,7 @@ and a guide for using macros can be found at
 
 ### Environments
 
-Each `prov/[<subdir>/]prov-<label>_env.json` file is a JSON file describing environments.
+Each file with a `env` suffix is a JSON file describing environments.
 
 Each file MUST include the following key:
 
