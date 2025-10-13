@@ -48,7 +48,7 @@ Provenance information is encoded using metadata fields.
 For the most part, this metadata consists of **provenance objects** of 4 types:
 
 -   **Activities**: transformations that have been applied to data.
--   **Entities**: input or output data for activities.
+-   **ProvEntities**: input or output data for activities.
 -   **Software**: software packages used to compute the activities.
 -   **Environments**: software environments in which activities were performed.
 
@@ -70,7 +70,7 @@ For the most part, this metadata consists of **provenance objects** of 4 types:
 
 Provenance objects are described as JSON objects in BIDS. They are stored inside **provenance files** (see [Provenance files](#provenance-files)).
 
-Additionally, metadata of entities can be stored as regular BIDS metadata inside:
+Additionally, metadata of ProvEntities can be stored as regular BIDS metadata inside:
 
 -   sidecar JSON files (see [Provenance of a BIDS file](#provenance-of-a-bids-file));
 -   `dataset_description.json` files (see [Provenance of a BIDS dataset](#provenance-of-a-bids-dataset)).
@@ -171,20 +171,20 @@ and a guide for using macros can be found at
 
 ### Entities
 
-Each `prov/[<subdir>/]prov-<label>_ent.json` file is a JSON file describing entities.
+Each `prov/[<subdir>/]prov-<label>_ent.json` file is a JSON file describing ProvEntities.
 
 !!! warning
-    These files MUST not contain entities describing data files that are available in the dataset. Use sidecar JSON files instead for this purpose (see [Provenance of a BIDS file](#provenance-of-a-bids-file)).
+    These files MUST not contain ProvEntities describing data files that are available in the dataset. Use sidecar JSON files instead for this purpose (see [Provenance of a BIDS file](#provenance-of-a-bids-file)).
 
-    These files MUST not contain entities describing the current dataset. Use `dataset_description.json` files instead for this purpose (see [Provenance of a BIDS dataset](#provenance-of-a-bids-dataset)).
+    These files MUST not contain ProvEntities describing the current dataset. Use `dataset_description.json` files instead for this purpose (see [Provenance of a BIDS dataset](#provenance-of-a-bids-dataset)).
 
-Inside provenance files, entity objects MAY describe:
+Inside provenance files, ProvEntities MAY describe:
 
 -   files or data that are located in another dataset;
 -   files or data that were deleted during the creation of the dataset;
 -   different versions of the same files or data that were modified during the creation of the dataset;
 -   files or data that are external to the dataset (for example templates shipped with software packages or environments);
--   any other files or data that do not match the previously listed cases, as long as the entity cannot be described in a sidecar JSON or in `dataset_description.json`.
+-   any other files or data that do not match the previously listed cases, as long as the ProvEntity cannot be described in a sidecar JSON or in `dataset_description.json`.
 
 Each file MUST include the following key:
 
@@ -196,11 +196,11 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_metadata_table(
    {
-      "Entities": "REQUIRED"
+      "ProvEntities": "REQUIRED"
    }
 ) }}
 
-Each object in the `Entities` array includes the following keys:
+Each object in the `ProvEntities` array includes the following keys:
 
 <!-- This block generates a table describing subfields within a metadata field.
 The definitions of these fields can be found in
@@ -208,12 +208,12 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_subobject_table("metadata.Entities.items") }}
+{{ MACROS___make_subobject_table("metadata.ProvEntities.items") }}
 
 !!! example "Example: a provenance object in a `prov/[<subdir>/]prov-<label>_ent.json` file"
     ```JSON
     {
-        "Entities": [
+        "ProvEntities": [
             {
                 "Id": "bids::sub-01/func/sub-01_task-tonecounting_bold.nii",
                 "Label": "sub-01_task-tonecounting_bold.nii",
@@ -315,7 +315,7 @@ and a guide for using macros can be found at
 
 ## Provenance of a BIDS file
 
-Metadata of an entity describing a BIDS file MAY be stored inside its sidecar JSON.
+Metadata of a ProvEntity describing a BIDS file MAY be stored inside its sidecar JSON.
 
 Any sidecar JSON file MAY include the following keys:
 
@@ -330,7 +330,7 @@ and a guide for using macros can be found at
       "GeneratedById": "OPTIONAL",
       "SidecarGeneratedBy": "OPTIONAL",
       "Digest": "OPTIONAL",
-      "EntityType": "OPTIONAL"
+      "ProvEntityType": "OPTIONAL"
    }
 ) }}
 
@@ -351,7 +351,7 @@ and a guide for using macros can be found at
 
 ## Provenance of a BIDS dataset
 
-Metadata of an entity describing a BIDS dataset (raw, derivative, or study) MAY be stored inside its `dataset_description.json` file.
+Metadata of a ProvEntity describing a BIDS dataset (raw, derivative, or study) MAY be stored inside its `dataset_description.json` file.
 
 This metadata describes the provenance of the whole dataset.
 
@@ -439,24 +439,24 @@ The following rules and conventions are provided in order to have consistent, hu
 !!! note
     The `Id` field contains the identifier of a provenance objects.
 
-### Identifiers for entities
+### Identifiers for ProvEntities
 
-The identifier of an entity describing a BIDS file inside a BIDS dataset MUST be a [BIDS URI](../common-principles.md#bids-uri).
+The identifier of a ProvEntity describing a BIDS file inside a BIDS dataset MUST be a [BIDS URI](../common-principles.md#bids-uri).
 
 !!! warning
     The use of BIDS URIs may require to define the `DatasetLinks` object in [`dataset_description.json`](dataset-description.md#dataset_descriptionjson).
 
-For other cases listed in the [Entities](#entities) section, the identifier of an entity described in a BIDS dataset `<dataset>` SHOULD have the following form, where `<label>` is a human readable name for coherently identifying the entity and `<uid>` is a unique group of chars.
+For other cases listed in the [ProvEntities](#proventities) section, the identifier of a ProvEntity described in a BIDS dataset `<dataset>` SHOULD have the following form, where `<label>` is a human readable name for coherently identifying the ProvEntity and `<uid>` is a unique group of chars.
 
 ```text
 bids:<dataset>:prov#<label>-<uid>
 ```
 
-!!! example "Examples of identifiers for entities"
-    - `bids:ds001734:sub-002/anat/sub-02_T1w.nii` - an entity describing a T1w file for subject `sub-002` in the `ds001734` dataset;
-    - `bids::sub-014/func/sub-014_task-MGT_run-01_events.tsv` - an entity describing an events file for subject `sub-014` in the current dataset;
-    - `bids:fmriprep:sub-001/func/sub-001_task-MGT_run-01_bold_space-MNI152NLin2009cAsym_preproc.nii.gz` - an entity describing a bold file for subject `sub-001` in the `fmriprep` dataset;
-    - `bids::prov#entity-acea8093` - an entity describing a file that is not available in the dataset.
+!!! example "Examples of identifiers for ProvEntities"
+    - `bids:ds001734:sub-002/anat/sub-02_T1w.nii` - a ProvEntity describing a T1w file for subject `sub-002` in the `ds001734` dataset;
+    - `bids::sub-014/func/sub-014_task-MGT_run-01_events.tsv` - a ProvEntity describing an events file for subject `sub-014` in the current dataset;
+    - `bids:fmriprep:sub-001/func/sub-001_task-MGT_run-01_bold_space-MNI152NLin2009cAsym_preproc.nii.gz` - a ProvEntity describing a bold file for subject `sub-001` in the `fmriprep` dataset;
+    - `bids::prov#provEntity-acea8093` - a ProvEntity describing a file that is not available in the dataset.
 
 ### Identifiers for other provenance objects
 
@@ -648,11 +648,11 @@ Inside the `dataset_description.json` file of the study dataset, dataset names a
 }
 ```
 
-The `prov/prov-fmriprep_ent.json` file describes two entities: one per nested dataset.
+The `prov/prov-fmriprep_ent.json` file describes two ProvEntities: one per nested dataset.
 
 ```JSON
 {
-    "Entities": [
+    "ProvEntities": [
         {
             "Id": "bids:raw",
             "Label": "Raw data"
