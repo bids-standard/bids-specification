@@ -620,10 +620,10 @@ electrodes:
     File that gives the location of (i)EEG electrodes.
 ent:
   value: ent
-  display_name: Entities
+  display_name: ProvEntities
   description: |
-    A JSON file containing provenance objects describing entities.
-    (See the [`Entities`](SPEC_ROOT/modality-agnostic-files/provenance.md#entities) section).
+    A JSON file containing provenance objects describing provEntities.
+    (See the [`ProvEntities`](SPEC_ROOT/modality-agnostic-files/provenance.md#proventities) section).
 env:
   value: env
   display_name: Environments

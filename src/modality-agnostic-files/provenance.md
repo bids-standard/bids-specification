@@ -70,7 +70,7 @@ For the most part, this metadata consists of **provenance objects** of 4 types:
 
 Provenance objects are described as JSON objects in BIDS. They are stored inside **provenance files** (see [Provenance files](#provenance-files)).
 
-Additionally, metadata of ProvEntities can be stored as regular BIDS metadata inside:
+Additionally, metadata of provEntities can be stored as regular BIDS metadata inside:
 
 -   sidecar JSON files (see [Provenance of a BIDS file](#provenance-of-a-bids-file));
 -   `dataset_description.json` files (see [Provenance of a BIDS dataset](#provenance-of-a-bids-dataset)).
@@ -169,22 +169,22 @@ and a guide for using macros can be found at
     ```
     This snippet is similar to Activities described in the [DICOM to Nifti conversion with `dcm2niix` example](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix).
 
-### Entities
+### ProvEntities
 
-Each `prov/[<subdir>/]prov-<label>_ent.json` file is a JSON file describing ProvEntities.
+Each `prov/[<subdir>/]prov-<label>_ent.json` file is a JSON file describing provEntities.
 
 !!! warning
-    These files MUST not contain ProvEntities describing data files that are available in the dataset. Use sidecar JSON files instead for this purpose (see [Provenance of a BIDS file](#provenance-of-a-bids-file)).
+    These files MUST not contain provEntities describing data files that are available in the dataset. Use sidecar JSON files instead for this purpose (see [Provenance of a BIDS file](#provenance-of-a-bids-file)).
 
-    These files MUST not contain ProvEntities describing the current dataset. Use `dataset_description.json` files instead for this purpose (see [Provenance of a BIDS dataset](#provenance-of-a-bids-dataset)).
+    These files MUST not contain provEntities describing the current dataset. Use `dataset_description.json` files instead for this purpose (see [Provenance of a BIDS dataset](#provenance-of-a-bids-dataset)).
 
-Inside provenance files, ProvEntities MAY describe:
+Inside provenance files, provEntities MAY describe:
 
 -   files or data that are located in another dataset;
 -   files or data that were deleted during the creation of the dataset;
 -   different versions of the same files or data that were modified during the creation of the dataset;
 -   files or data that are external to the dataset (for example templates shipped with software packages or environments);
--   any other files or data that do not match the previously listed cases, as long as the ProvEntity cannot be described in a sidecar JSON or in `dataset_description.json`.
+-   any other files or data that do not match the previously listed cases, as long as the provEntity cannot be described in a sidecar JSON or in `dataset_description.json`.
 
 Each file MUST include the following key:
 
@@ -315,7 +315,7 @@ and a guide for using macros can be found at
 
 ## Provenance of a BIDS file
 
-Metadata of a ProvEntity describing a BIDS file MAY be stored inside its sidecar JSON.
+Metadata of a provEntity describing a BIDS file MAY be stored inside its sidecar JSON.
 
 Any sidecar JSON file MAY include the following keys:
 
@@ -351,7 +351,7 @@ and a guide for using macros can be found at
 
 ## Provenance of a BIDS dataset
 
-Metadata of a ProvEntity describing a BIDS dataset (raw, derivative, or study) MAY be stored inside its `dataset_description.json` file.
+Metadata of a provEntity describing a BIDS dataset (raw, derivative, or study) MAY be stored inside its `dataset_description.json` file.
 
 This metadata describes the provenance of the whole dataset.
 
@@ -439,24 +439,24 @@ The following rules and conventions are provided in order to have consistent, hu
 !!! note
     The `Id` field contains the identifier of a provenance objects.
 
-### Identifiers for ProvEntities
+### Identifiers for provEntities
 
-The identifier of a ProvEntity describing a BIDS file inside a BIDS dataset MUST be a [BIDS URI](../common-principles.md#bids-uri).
+The identifier of a provEntity describing a BIDS file inside a BIDS dataset MUST be a [BIDS URI](../common-principles.md#bids-uri).
 
 !!! warning
     The use of BIDS URIs may require to define the `DatasetLinks` object in [`dataset_description.json`](dataset-description.md#dataset_descriptionjson).
 
-For other cases listed in the [ProvEntities](#proventities) section, the identifier of a ProvEntity described in a BIDS dataset `<dataset>` SHOULD have the following form, where `<label>` is a human readable name for coherently identifying the ProvEntity and `<uid>` is a unique group of chars.
+For other cases listed in the [ProvEntities](#proventities) section, the identifier of a provEntity described in a BIDS dataset `<dataset>` SHOULD have the following form, where `<label>` is a human readable name for coherently identifying the provEntity and `<uid>` is a unique group of chars.
 
 ```text
 bids:<dataset>:prov#<label>-<uid>
 ```
 
-!!! example "Examples of identifiers for ProvEntities"
-    - `bids:ds001734:sub-002/anat/sub-02_T1w.nii` - a ProvEntity describing a T1w file for subject `sub-002` in the `ds001734` dataset;
-    - `bids::sub-014/func/sub-014_task-MGT_run-01_events.tsv` - a ProvEntity describing an events file for subject `sub-014` in the current dataset;
-    - `bids:fmriprep:sub-001/func/sub-001_task-MGT_run-01_bold_space-MNI152NLin2009cAsym_preproc.nii.gz` - a ProvEntity describing a bold file for subject `sub-001` in the `fmriprep` dataset;
-    - `bids::prov#provEntity-acea8093` - a ProvEntity describing a file that is not available in the dataset.
+!!! example "Examples of identifiers for provEntities"
+    - `bids:ds001734:sub-002/anat/sub-02_T1w.nii` - a provEntity describing a T1w file for subject `sub-002` in the `ds001734` dataset;
+    - `bids::sub-014/func/sub-014_task-MGT_run-01_events.tsv` - a provEntity describing an events file for subject `sub-014` in the current dataset;
+    - `bids:fmriprep:sub-001/func/sub-001_task-MGT_run-01_bold_space-MNI152NLin2009cAsym_preproc.nii.gz` - a provEntity describing a bold file for subject `sub-001` in the `fmriprep` dataset;
+    - `bids::prov#provEntity-acea8093` - a provEntity describing a file that is not available in the dataset.
 
 ### Identifiers for other provenance objects
 
@@ -648,7 +648,7 @@ Inside the `dataset_description.json` file of the study dataset, dataset names a
 }
 ```
 
-The `prov/prov-fmriprep_ent.json` file describes two ProvEntities: one per nested dataset.
+The `prov/prov-fmriprep_ent.json` file describes two provEntities: one per nested dataset.
 
 ```JSON
 {

@@ -92,10 +92,10 @@ Activities:
       Used:
         name: Used
         description: |
-          Identifier(s) of the entity (one or more) or environment (one or more) used by this activity.
+          Identifier(s) of the provEntity (one or more) or environment (one or more) used by this activity.
 
-          Related entities MUST be described as specified in the
-          [Entities](SPEC_ROOT/modality-agnostic-files/provenance.md#entities) section.
+          Related provEntities MUST be described as specified in the
+          [ProvEntities](SPEC_ROOT/modality-agnostic-files/provenance.md#proventities) section.
 
           Related environments MUST be described as specified in the
           [Environments](SPEC_ROOT/modality-agnostic-files/provenance.md#environments) section.
@@ -1257,10 +1257,10 @@ EncodingTechnique:
     For example, `"Cartesian"`, `"EPSI"`, `"Spiral"`,
     or `"Density-weighted concentric ring trajectory"`.
   type: string
-Entities:
-  name: Entities
-  display_name: Entities
-  description: Provenance objects describing entities.
+ProvEntities:
+  name: ProvEntities
+  display_name: ProvEntities
+  description: Provenance objects describing provEntities.
   type: array
   minItems: 1
   items:
@@ -1270,13 +1270,13 @@ Entities:
     properties:
       Id:
         name: Id
-        description: "Identifier for the entity (see the [Consistency and uniqueness of identifiers]\
+        description: "Identifier for the provEntity (see the [Consistency and uniqueness of identifiers]\
         (SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section)."
         type: string
         format: uri
       Label:
         name: Label
-        description: A name for the entity.
+        description: A name for the provEntity.
         type: string
         format: label
       Digest:
@@ -1294,7 +1294,7 @@ Entities:
       GeneratedBy:
         name: GeneratedBy
         description: |
-          Identifier(s) of the activity (one or more) responsible for the creation of the entity.
+          Identifier(s) of the activity (one or more) responsible for the creation of the provEntity.
 
           Related activities MUST be described as specified in the
           [Activities](SPEC_ROOT/modality-agnostic-files/provenance.md#activities) section.
@@ -1305,14 +1305,14 @@ Entities:
           format: uri
       Type:
         name: Type
-        description: A term from a controlled vocabulary that more specifically describes the entity.
+        description: A term from a controlled vocabulary that more specifically describes the provEntity.
         type: string
         format: uri
-EntityType:
+ProvEntityType:
   name: Type
   display_name: Type
   description: |
-    A term from a controlled vocabulary that more specifically describes an entity.
+    A term from a controlled vocabulary that more specifically describes a ProvEntity.
   type: string
   format: uri
 Environments:

@@ -38,7 +38,7 @@
           "@id": "prov:actedOnBehalfOf",
           "@type": "@id"
         },
-        "Entities": "prov:Entity",
+        "ProvEntities": "prov:Entity",
         "Environments": "prov:Entity",
         "Activities": "prov:Activity",
         "Software": "prov:SoftwareAgent",
