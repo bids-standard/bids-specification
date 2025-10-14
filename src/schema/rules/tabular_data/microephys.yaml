@@ -73,13 +73,13 @@ microephysChannels:
     - suffix == "channels"
     - extension == ".tsv"
   initial_columns:
-    - channel_id
+    - name__channels
     - reference__microephys
     - type__channels
     - units__channels
     - sampling_frequency
   columns:
-    channel_id: required
+    name__channels: required
     reference__microephys: required
     type__channels: required
     units__channels: required
@@ -96,5 +96,5 @@ microephysChannels:
     time_reference_channel: optional
     ground: optional
     recording_mode: recommended
-  index_columns: [channel_id]
+  index_columns: [name__channels]
   additional_columns: allowed_if_defined

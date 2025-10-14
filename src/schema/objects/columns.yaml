@@ -108,16 +108,6 @@ channel:
     In the absence of a delimiter, tools MUST interpret any character as being part
     of a channel name.
   type: string
-channel_id:
-  name: channel_id
-  display_name: Channel ID
-  description: |
-    Unique identifier of the channel, only containing letters and numbers.
-    This id must be reflected in the data files, for example, as signal annotations in the nix file.
-    When inserting existing nwb files into a BIDS structure, one can combine
-    the nwb record_id and channel_index to create this unique identifier.
-  type: string
-  pattern: ^[0-9a-zA-Z]+$
 channel_label:
   name: channel_label
   display_name: Channel label
