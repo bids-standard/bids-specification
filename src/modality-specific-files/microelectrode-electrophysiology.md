@@ -20,9 +20,7 @@ The Microelectrode Electrophysiology modality encompasses recordings made with m
 distinguishing it from related BIDS modalities (EEG, MEG, iEEG) that use larger electrodes.
 This modality is primarily used in animal research.
 
-Within this modality, BIDS defines two datatypes based on fundamentally different recording techniques
-
-(see [Issue #1800](https://github.com/bids-standard/bids-specification/issues/1800)):
+Within this modality, BIDS defines two datatypes based on fundamentally different recording techniques (see [Issue #1800](https://github.com/bids-standard/bids-specification/issues/1800)):
 
 -   **`ecephys`** (Extracellular Electrophysiology): Electrodes remain in the extracellular space,
     measuring field potentials (μV) from nearby neurons without membrane penetration.
@@ -42,14 +40,14 @@ Files are organized into `ecephys/` or `icephys/` subdirectories with correspond
 ## Primary Data File Formats
 
 Microelectrode electrophysiology data (of `icephys` or `ecephys` datatypes) MUST be stored in an [open file format](https://en.wikipedia.org/wiki/Open_format),
-while the native format, if different, can be stored in an optional  `sourcedata/` directory.
+while the native format, if different, can be stored in an optional `sourcedata/` directory.
 The native file format is used in case conversion elicits the loss of crucial metadata specific to manufacturers and specific acquisition systems.
 Metadata should be included alongside the data in the `.json` and `.tsv` files.
 The current list of allowed data file formats:
 
 | **Format**                                                                          | **Extension(s)** | **Description**                                                                                                                                                                                                           |
 | ----------------------------------------------------------------------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Neuroscience Information Exchange Format](https://nixio.readthedocs.io/en/latest/) | `.nix`           | A generic and open  framework with an hdf5 backend and a defined interface to many microephys formats via the [Neo library](https://neo.readthedocs.io/en/latest/). The `.nix` file has to contain a valid Neo structure. |
+| [Neuroscience Information Exchange Format](https://nixio.readthedocs.io/en/latest/) | `.nix`           | A generic and open framework with an hdf5 backend and a defined interface to many microephys formats via the [Neo library](https://neo.readthedocs.io/en/latest/). The `.nix` file has to contain a valid Neo structure. |
 | [Neurodata Without Borders](https://www.nwb.org)                                    | `.nwb`           | An open data standard for neurophysiology, including data from intracellular and extracellular electrophysiology experiments.                                                                                             |
 
 Both of these formats can also store essential metadata of the datasets.
@@ -434,11 +432,13 @@ pipette03	sharp-electrode	-3.2	1.2	-3.8	20	5	0	L	WPI	1	tip	Prefrontal Cortex Lay
 
 ## Surgical Coordinates System
 
-The surgical coordinates system provides a standard way to describe the placement of an intracrial probe implantation during surgery.
+The surgical coordinates system provides a standard way to describe the placement of an intracranial probe implantation during surgery.
 
 ### Anatomical Reference Points
 
-In neurosurgery or in research, it is important to define coordinates for where in the brain a surgical intervention will take place. These coordinates rely on anatomical markers that are uniform across individuals. There are two major anatomical markers on the dorsal surface of the brain that are formed when the plates of the skull fuse during development, and these markers are often used to identify the location of various anatomical structures of the brain.
+In neurosurgery and research, it is important to define coordinates for where in the brain a surgical intervention will take place.
+These coordinates rely on anatomical markers that are uniform across individuals.
+There are two major anatomical markers on the dorsal surface of the brain that are formed when the plates of the skull fuse during development, and these markers are often used to identify the location of various anatomical structures of the brain.
 
 <img src="images/bregma_and_lambda.png" alt="Bregma and Lambda anatomical reference points" style="max-width: 600px;">
 
@@ -446,7 +446,7 @@ In neurosurgery or in research, it is important to define coordinates for where 
 
 **Lambda**: the meeting point of the sagittal suture (between left and right parietal bones) and the lambdoid suture (between parietal and occipital bones).
 
-Both points serve as standard reference points for stereotaxic coordinates in neuroscience research. `(0,0,0)` is assumed to be Bregma when working with rodents. It may optionally be defined differently using `coordinate_reference_point`, and **must** be defined for other species.
+Both points serve as standard reference points for stereotaxic coordinates in neuroscience research. `(0,0,0)` is assumed to be Bregma when working with rodents. It may optionally be defined differently using `coordinate_reference_point`, and MUST be defined for other species.
 
 ### Stereotaxic Coordinate System Conventions
 
@@ -628,7 +628,7 @@ The `x`, `y`, and `z` columns indicate the positions of the center of each elect
 
     - Use `*_space-<label>_electrodes.tsv` with the appropriate space label
     - A corresponding `*_space-<label>_coordsystem.json` file MUST be present
-    - Units are specified in the coordsystem.json file
+    - Units are specified in the `coordsystem.json` file
 
     Multiple coordinate systems MAY coexist in the same dataset.
 
