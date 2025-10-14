@@ -5,13 +5,13 @@ microephysProbes:
     - suffix == "probes"
     - extension == ".tsv"
   initial_columns:
-    - probe_id
+    - probe_name
     - type__probes
     - x__probes
     - y__probes
     - z__probes
   columns:
-    probe_id: required
+    probe_name: required
     type__probes: required
     AP__probes: recommended
     DV__probes: recommended
@@ -33,7 +33,7 @@ microephysProbes:
     associated_brain_region_quality_type: recommended
     reference_atlas: recommended
     material__probes: optional
-  index_columns: [probe_id]
+  index_columns: [probe_name]
   additional_columns: allowed_if_defined
 
 microephysElectrodes:
@@ -43,14 +43,14 @@ microephysElectrodes:
     - extension == ".tsv"
   initial_columns:
     - name__electrodes
-    - probe_id
+    - probe_name
     - hemisphere
     - x
     - y
     - z
   columns:
     name__electrodes: required
-    probe_id: required
+    probe_name: required
     hemisphere: required
     x: required
     y: required

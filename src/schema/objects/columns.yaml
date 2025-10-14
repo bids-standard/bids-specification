@@ -617,13 +617,12 @@ plasma_radioactivity:
   description: |
     Radioactivity in plasma, in unit of plasma radioactivity (for example, `kBq/mL`).
   type: number
-# reference column for channels.tsv files for EEG data
-probe_id:
-  name: probe_id
-  display_name: Probe ID
+probe_name:
+  name: probe_name
+  display_name: Probe name
   description: |
     A unique identifier of the probe, can be identical with the `device_serial_number`.
-    (expected to match probe_ids listed in `*_eletrodes.tsv`).
+    (expected to match probe_name listed in `*_electrodes.tsv`).
   type: string
 recording_mode:
   name: recording_mode
