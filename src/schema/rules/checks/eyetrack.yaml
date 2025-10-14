@@ -10,6 +10,7 @@ EyetrackingStimulusPresentation:
     - suffix == 'physio'
     - extension == '.tsv.gz'
     - sidecar.PhysioType == 'eyetrack'
+    - sidecar.SampleCoordinateSystem == 'gaze-on-screen'
   checks:
     - '"ScreenDistance" in associations.events.sidecar.StimulusPresentation'
     - '"ScreenOrigin" in associations.events.sidecar.StimulusPresentation'

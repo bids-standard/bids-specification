@@ -4007,21 +4007,6 @@ StimulusPresentation:
       $ref: objects.metadata.SoftwareVersion
     Code:
       $ref: objects.metadata.Code
-StimulusPresentation__eyetrack:
-  $ref: objects.metadata.StimulusPresentation
-  required:
-    - ScreenDistance
-    - ScreenOrigin
-    - ScreenResolution
-    - ScreenSize
-  recommended:
-    - OperatingSystem
-    - ScreenRefreshRate
-    - SoftwareName
-    - SoftwareRRID
-    - SoftwareVersion
-    - Code
-    - HeadStabilization
 StopTime_eyetrack:
   name: StopTime
   display_name: Eye-tracking recording stop time

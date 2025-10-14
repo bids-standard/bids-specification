@@ -539,9 +539,9 @@ those derived from the saccade and blinks model some eye-trackers produce.
 
 !!! warning "Important"
 
-    The following fields pertaining to `<matches>_events.json` of tasks that were acquired
-    with the simultaneous recording of eye-tracking escalate to REQUIRED as they are considered
-    essential in eye-tracking data analysis:
+    For eye-tracking recordings where `"SampleCoordinateSystem"` is set to `"gaze-on-screen"`,
+    the following fields pertaining to `<matches>_events.json` escalate to REQUIRED
+    as they are considered essential in eye-tracking data analysis:
 
     -   `StimulusPresentation.ScreenDistance`,
     -   `StimulusPresentation.ScreenOrigin`,
