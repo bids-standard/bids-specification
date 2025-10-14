@@ -4,28 +4,46 @@ Support for Microelectrode Electrophysiology was developed as a [BIDS Extension 
 Please see [Citing BIDS](../introduction.md#citing-bids) on how to appropriately credit this extension
 when referring to it in the context of the academic literature.
 
-This BEP has been initiated by members of the INCF Working Group on Standardized Data Structures,
-that was initiated in 2020 to develop a set of specifications and tools
-that would allow the standardization of a directory structure for experimental data recorded
-with animal models in neuroscience, and its associated metadata.
-
-Most core principles of the original BIDS and particulars of BIDS-iEEG specification are adopted
-for this modality as well, though some special considerations and additional fields were added.
+This BEP was initiated by members of the INCF Working Group on Standardized Data Structures in 2020
+to develop specifications and tools for standardizing experimental data recorded with animal models
+in neuroscience and its associated metadata.
 
 !!! example "Example datasets"
 
     Several [example Microelectrode Electrophysiology datasets](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#microephys)
     have been formatted using this specification and can be used for practical guidance when curating a new dataset.
 
+## Terminology: Modality and Datatypes
+
+The Microelectrode Electrophysiology modality encompasses recordings made with micrometer-scale electrodes,
+distinguishing it from related BIDS modalities (EEG, MEG, iEEG) that use larger electrodes.
+This modality is primarily used in animal research.
+
+Within this modality, BIDS defines two datatypes based on fundamentally different recording techniques
+(see [Issue #1800](https://github.com/bids-standard/bids-specification/issues/1800)):
+
+-   **`ecephys`** (Extracellular Electrophysiology): Electrodes remain in the extracellular space,
+    measuring field potentials (μV) from nearby neurons without membrane penetration.
+    Examples: Neuropixels probes, tetrodes, multi-electrode arrays.
+
+-   **`icephys`** (Intracellular Electrophysiology): Electrodes penetrate cell membranes to directly measure
+    intracellular potentials (mV) and cellular dynamics.
+    Examples: whole-cell patch clamp, sharp electrode recordings.
+
+These datatypes differ in recording technique, signal amplitude, required metadata
+(for example, `pipette_solution` and `recording_mode` for icephys; probe geometry for ecephys),
+and analysis pipelines. The terms are established and used in [Neurodata Without Borders (NWB)](https://www.nwb.org).
+
+Both datatypes share a unified BIDS structure (probes, electrodes, channels) with technique-specific optional metadata fields.
+Files are organized into `ecephys/` or `icephys/` subdirectories with corresponding file suffixes.
+
 ## Primary Data File Formats
 
-Microelectrode electrophysiology (`microephys`) modality data (of `icephys` or `ecephys` datatypes) must be stored in an [open file format](https://en.wikipedia.org/wiki/Open_format),
+Microelectrode electrophysiology data (of `icephys` or `ecephys` datatypes) MUST be stored in an [open file format](https://en.wikipedia.org/wiki/Open_format),
 while the native format, if different, can be stored in an optional  `sourcedata/` directory.
 The native file format is used in case conversion elicits the loss of crucial metadata specific to manufacturers and specific acquisition systems.
 Metadata should be included alongside the data in the `.json` and `.tsv` files.
 The current list of allowed data file formats:
-
-<!-- We should define icephys and ecephys -->
 
 | **Format**                                                                          | **Extension(s)** | **Description**                                                                                                                                                                                                           |
 | ----------------------------------------------------------------------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
