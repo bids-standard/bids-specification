@@ -20,6 +20,7 @@ distinguishing it from related BIDS modalities (EEG, MEG, iEEG) that use larger 
 This modality is primarily used in animal research.
 
 Within this modality, BIDS defines two datatypes based on fundamentally different recording techniques
+
 (see [Issue #1800](https://github.com/bids-standard/bids-specification/issues/1800)):
 
 -   **`ecephys`** (Extracellular Electrophysiology): Electrodes remain in the extracellular space,
@@ -138,61 +139,59 @@ If the OPTIONAL [` task-<label>`](../appendices/entities.md#task) is used, the f
 
 {{ MACROS___make_sidecar_table("microephys.microephysTaskInformation") }}
 
-### Example `*_icephys.json` and `*_ecephys.json`
-
-<!-- TODO: below there is Procedure.Pharmaceuticals which is not standardized since ATM there is only single pharmaceutical "allowed" and we have no "Procedure" -->
+### Example `*_ecephys.json`
 
 ```JSON
 {
-  "PowerLineFrequency": 50,
-  "Manufacturer": "OpenEphys",
-  "ManufacturerModelName": "OpenEphys Starter Kit",
-  "ManufacturerModelVersion": "OEPS-9031",
+  "InstitutionName": "Example University",
+  "InstitutionAddress": "123 Main St, City, State 12345, Country",
+  "InstitutionalDepartmentName": "Neuroscience Department",
+  "PowerLineFrequency": 60,
+  "Manufacturer": "ExampleManufacturer",
+  "ManufacturersModelName": "Model-XYZ",
   "SamplingFrequency": 30000,
-  "SamplingFrequencyUnit": "Hz",
-  "Location": "Institut de Neurosciences de la Timone, Faculté de Médecine, 27, boulevard Jean Moulin, 13005 Marseille - France",
-  "Software": "Cerebus",
-  "SoftwareVersion": "1.5.1",
-  "Creator": "John Doe",
-  "Maintainer": "John Doe jr.",
-  "Procedure": {
-    "Pharmaceuticals": {
-      "isoflurane": {
-        "PharmaceuticalName": "isoflurane",
-        "PharmaceuticalDoseAmount": 50,
-        "PharmaceuticalDoseUnit": "ug/kg/min"
-      },
-      "ketamine": {
-        "PharmaceuticalName": "ketamine",
-        "PharmaceuticalDoseAmount": 0.1,
-        "PharmaceuticalDoseUnit": "ug/kg/min"
-      }
-    },
-    "Sample": {
-      "BodyPart": "BRAIN",
-      "BodyPartDetails": "Motor Cortex"
-    },
-    "TaskName": "Reach-to-Grasp",
-    "TaskDescription": "A task that involves the reaching of an object and holding it for a specific time"
-  }
+  "SoftwareName": "RecordingSoftware",
+  "SoftwareVersions": "1.0.0",
+  "SoftwareFilters": "n/a",
+  "HardwareFilters": {"Highpass": {"Cutoff": 0.1}},
+  "PharmaceuticalName": ["anesthetic1", "anesthetic2"],
+  "PharmaceuticalDoseAmount": [1.5, 10],
+  "PharmaceuticalDoseUnits": ["percent", "mg/kg"],
+  "BodyPart": "BRAIN",
+  "BodyPartDetails": "Motor Cortex",
+  "SampleEnvironment": "in-vivo",
+  "TaskName": "ExampleTask",
+  "TaskDescription": "Description of the experimental task"
 }
 ```
 
-## Microephys Specific Files
+### Example `*_icephys.json`
 
-The following metadata files are REQUIRED for a given microephys session:
+```JSON
+{
+  "InstitutionName": "Example Institute",
+  "InstitutionAddress": "456 Science Ave, City, State 67890, Country",
+  "PowerLineFrequency": 60,
+  "Manufacturer": "PatchClampManufacturer",
+  "ManufacturersModelName": "Amplifier-ABC",
+  "SamplingFrequency": 20000,
+  "SoftwareName": "PatchSoftware",
+  "SoftwareVersions": "2.1.0",
+  "SoftwareFilters": {"Bessel": {"Cutoff": 10000}},
+  "BodyPart": "BRAIN",
+  "BodyPartDetails": "Visual Cortex",
+  "SampleEnvironment": "ex-vivo",
+  "SliceThickness": 300,
+  "TaskName": "MembraneProperties",
+  "TaskDescription": "Characterization of intrinsic properties"
+}
+```
 
-1.  `[_ses-<session_label>]_channels.tsv`: A REQUIRED file listing information on the recorded signals, such as preprocessing, filtering, ids, and others.
-1.  `[_ses-<session_label>]_electrodes.tsv`: A REQUIRED file listing information on the points of electrical contact to the tissue, such as impedance, names, relative positions, and others.
-1.  `[_ses-<session_label>]_probes.tsv`: A REQUIRED file listing information on the device used to acquire the electrophysiology data, such as implant or probe specification, location, material, and others.
-
-As with all tsv-based metadata files in BIDS the probes, electrodes and channels tsv files can be accompanied by json sidecar files.
-
-### Coordinate Systems for Electrode Positions
+## Coordinate Systems for Electrode Positions
 
 Microelectrode electrophysiology supports two approaches for specifying electrode positions:
 
-#### Default: Probe-Relative Coordinates
+### Default: Probe-Relative Coordinates
 
 By default, when no `space-<label>` entity is used:
 
@@ -204,7 +203,7 @@ By default, when no `space-<label>` entity is used:
 
 This is the most common case for in-vivo recordings where absolute anatomical localization is not available.
 
-#### Optional: Anatomical Coordinate Systems
+### Optional: Anatomical Coordinate Systems
 
 When electrode positions are known in anatomical or stereotaxic space:
 
@@ -231,7 +230,7 @@ Example file structure with both probe-relative and stereotaxic coordinates:
    }
 ) }}
 
-### Channels Description  (`*_channels.tsv`)
+## Channels description (`*_channels.tsv`)
 
 Channels are recorded signals.
 These may be of neuronal origin (for example, online filtered LFP signals) or generated by the recording setup
@@ -251,20 +250,33 @@ Columns in the `*_channel.tsv` file are:
 
 {{ MACROS___make_columns_table("microephys.microephysChannels") }}
 
-#### Example *_channels.tsv
+### Example `*_channels.tsv`
+
+**Extracellular electrophysiology example:**
 
 ```tsv
-channel_id	reference	gain	type	units	sampling_frequency	status
-c0123	        con0123	        30	EXT	mV	30000	                good
-c234	        con234	        30	EXT	mV	30000	                good
-c934	        con934	        50	EXT	mV	30000	                bad
-c234	        n/a	        1	SYNC	mV	1000	                good
+name	reference	type	units	sampling_frequency	hardware_filters	software_filters	gain	status	status_description
+ch001	ref01	LFP	uV	1000	{"Highpass": {"Cutoff": 0.1}}	{"Lowpass": {"Cutoff": 300}}	500	good	n/a
+ch002	ref01	LFP	uV	1000	{"Highpass": {"Cutoff": 0.1}}	{"Lowpass": {"Cutoff": 300}}	500	good	n/a
+ch003	ref01	HP	uV	30000	{"Highpass": {"Cutoff": 300}}	n/a	500	good	n/a
+ch004	ref01	HP	uV	30000	{"Highpass": {"Cutoff": 300}}	n/a	500	bad	high_noise
+ch005	ref02	LFP	uV	1000	{"Highpass": {"Cutoff": 0.1}}	{"Lowpass": {"Cutoff": 300}}	500	good	n/a
+ch006	n/a	SYNC	V	30000	n/a	n/a	1	good	n/a
+```
+
+**Intracellular electrophysiology example:**
+
+```tsv
+name	reference	type	units	sampling_frequency	recording_mode	gain	ground	status	status_description
+patch01	n/a	VM	mV	20000	current-clamp	10	AgCl	good	n/a
+patch02	n/a	VM	mV	20000	current-clamp	10	AgCl	good	n/a
+patch03	n/a	IM	pA	20000	voltage-clamp	5	AgCl	good	n/a
 ```
 
 Note: In many datasets multiple sets of identifiers are used for probes, electrodes and channels.
 We RECOMMEND to include alternative sets of identifiers, for instance identifiers that enumerate electrodes according to their spatial arrangement, as additional custom columns in the `.tsv` file.
 
-#### Recommended Channel Type Values
+### Recommended Channel Type Values
 
 For the `type` column we recommend to use the following terms (adapted from [iEEG](intracranial-electroencephalography.md#channels-description-_channelstsv))
 
@@ -301,7 +313,7 @@ For the `type` column we recommend to use the following terms (adapted from [iEE
 | **REF**      | Reference channel                                                                                                               |
 | **OTHER**    | Any other type of channel                                                                                                       |
 
-### Electrodes Description  (`*_electrodes.tsv`)
+## Electrodes description (`*_electrodes.tsv`)
 
 Electrodes are the physical recording sites that make electrical contact with neural tissue to capture electrophysiological signals.
 
@@ -315,24 +327,39 @@ This file contains the following information:
 
 {{ MACROS___make_columns_table("microephys.microephysElectrodes") }}
 
-#### Example *_electrodes.tsv
+### Example `*_electrodes.tsv`
+
+**Extracellular electrophysiology example (probe-relative coordinates):**
 
 ```tsv
-electrode_id	probe_id	impedance	x	y	z	material	location
-e0123	p01	1.1	-11.87	-1.30	-3.37	iridium-oxide	V1
-e234	p01	1.5	-11.64	0.51	-4.20	iridium-oxide	V2
-e934	p02	3.5	-12.11	-3.12	-2.54	iridium-oxide	V4
-e234	p02	7.0	-9.94	-1.19	-2.86	iridium-oxide	V3
+name	probe_name	hemisphere	x	y	z	impedance	shank_id	size	material	location
+e001	probe01	L	0	0	0	1.2	0	15	iridium-oxide	MOp
+e002	probe01	L	0	0	25	1.1	0	15	iridium-oxide	MOp
+e003	probe01	L	0	0	50	1.3	0	15	iridium-oxide	MOp
+e004	probe01	L	0	0	75	1.4	0	15	iridium-oxide	MOp
+e005	probe02	R	0	0	0	2.1	n/a	12	tungsten	CA1
+e006	probe02	R	0	0	15	2.3	n/a	12	tungsten	CA1
+e007	probe02	R	0	0	30	1.9	n/a	12	tungsten	CA1
+e008	probe02	R	0	0	45	2.0	n/a	12	tungsten	CA1
 ```
 
-### Probes Description  (`*_probes.tsv`)
+**Intracellular electrophysiology example:**
+
+```tsv
+name	probe_name	hemisphere	x	y	z	impedance	pipette_solution	internal_pipette_diameter	external_pipette_diameter	material	location
+patch01	pipette01	L	0	0	0	5.2	K-gluconate	1.5	2.5	borosilicate-glass	VISp2/3
+patch02	pipette02	R	0	0	0	4.8	K-gluconate	1.5	2.5	borosilicate-glass	VISp2/3
+sharp01	pipette03	L	0	0	0	80	3M KCl	0.5	1.0	borosilicate-glass	PL5
+```
+
+## Probes description (`*_probes.tsv`)
 
 Probes are electrode-bearing devices that interface with neural tissue to record electrophysiological activity, ranging from multi-electrode arrays to single recording pipettes. They can be permanently implanted (chronic recordings) or inserted temporarily for the recording (acute recordings).
 
 The probe positions and properties are stored in a `.tsv` file.
 This file contains the probe ID, the type of recording (acute/chronic), and the probe coordinates.
 
-#### ProbeInterface Library
+### ProbeInterface Library
 
 [ProbeInterface](https://github.com/SpikeInterface/probeinterface) is a standard for specifying electrode layouts on probes.
 The [ProbeInterface library](https://github.com/SpikeInterface/probeinterface_library) includes layouts for many common probes.
@@ -385,14 +412,23 @@ A guide for using macros can be found at
 
 {{ MACROS___make_columns_table("microephys.microephysProbes") }}
 
-#### Example *_probes.tsv
+### Example `*_probes.tsv`
+
+**Extracellular electrophysiology example:**
 
 ```tsv
-probe_id	hemisphere	AP	ML	DV	AP_angle	ML_angle	rotation_angle	material	location	manufacturer	model
-p023	left	-11.87	-1.30	-3.37	0.0	0.0	0.0	iridium-oxide	V1	neuronexus	A1x32
-p023	left	-11.64	0.51	-4.20	0.0	0.0	0.0	iridium-oxide	V2	neuronexus	A1x32
-p021	left	-12.11	-3.12	-2.54	0.0	0.0	0.0	iridium-oxide	V4	neuronexus	A1x32
-p021	left	-9.94	-1.19	-2.86	0.0	0.0	0.0	iridium-oxide	V3	neuronexus	A1x32
+probe_name	type	AP	ML	DV	AP_angle	ML_angle	rotation_angle	hemisphere	manufacturer	device_serial_number	electrode_count	width	height	depth	dimension_unit	coordinate_reference_point	associated_brain_region	associated_brain_region_id	reference_atlas	material
+probe01	silicon-probe	-2.5	1.5	-4.0	15	0	0	L	IMEC	NP1100-2205	384	70	20	10000	um	tip	Primary Motor Cortex	MOp	Franklin-Paxinos	silicon
+probe02	tetrode	-1.2	-2.1	-3.5	0	10	45	R	Neuralynx	TT-12345	4	n/a	n/a	n/a	um	tip	Hippocampus CA1	CA1	Paxinos-Watson	tungsten
+```
+
+**Intracellular electrophysiology example:**
+
+```tsv
+probe_name	type	AP	ML	DV	AP_angle	ML_angle	rotation_angle	hemisphere	manufacturer	electrode_count	coordinate_reference_point	associated_brain_region	associated_brain_region_id	reference_atlas
+pipette01	patch-pipette	-1.8	0.5	-2.2	30	0	0	L	Sutter	1	tip	Visual Cortex Layer 2/3	VISp2/3	AllenCCFv3
+pipette02	patch-pipette	-1.8	-0.5	-2.2	30	0	0	R	Sutter	1	tip	Visual Cortex Layer 2/3	VISp2/3	AllenCCFv3
+pipette03	sharp-electrode	-3.2	1.2	-3.8	20	5	0	L	WPI	1	tip	Prefrontal Cortex Layer 5	PL5	Franklin-Paxinos
 ```
 
 ## Surgical Coordinates System
@@ -413,8 +449,6 @@ Both points serve as standard reference points for stereotaxic coordinates in ne
 
 ### Stereotaxic Coordinate System Conventions
 
-#### Basic Coordinate System
-
 All stereotaxic coordinate systems follow a right-handed coordinate system with the following conventions:
 
 <img src="images/AP_ML_DV.png" alt="AP_ML_DV coordinate system" style="max-width: 600px;">
@@ -423,11 +457,9 @@ All stereotaxic coordinate systems follow a right-handed coordinate system with 
 -   **ML (Medial-Lateral) axis:** Positive values are to the right (as seen from behind)
 -   **DV (Dorsal-Ventral) axis:** Positive values are ventral (following right-hand rule). For humans, this is the superior-inferior axis, and positive values point to inferior.
 
-#### Angle Measurement System
-
 Proper understanding and application of these angles is critical for accurate probe placement and experimental reproducibility. All stereotaxic measurements use three angles to specify orientation:
 
-##### AP angle (Anterior-Posterior rotation)
+#### AP angle (Anterior-Posterior rotation)
 
 <img src="images/AP_angle.png" alt="AP angle rotation diagram" style="max-width: 600px;">
 
@@ -437,7 +469,7 @@ Proper understanding and application of these angles is critical for accurate pr
 -   Positive values indicate anterior rotation
 -   Example: +15° indicates probe tilted 15° anteriorly from vertical
 
-##### ML angle (Medial-Lateral rotation)
+#### ML angle (Medial-Lateral rotation)
 
 <img src="images/ML_angle.png" alt="ML angle rotation diagram" style="max-width: 600px;">
 
@@ -447,7 +479,7 @@ Proper understanding and application of these angles is critical for accurate pr
 -   Positive values indicate rightward/clockwise rotation (as seen from behind)
 -   Example: +20° indicates probe tilted 20° to the right from vertical
 
-##### Rotation angle (around probe axis)
+#### Rotation angle (around probe axis)
 
 <img src="images/rotation_angle.png" alt="Rotation angle diagram" style="max-width: 600px;">
 
