@@ -10,8 +10,9 @@ in neuroscience and its associated metadata.
 
 !!! example "Example datasets"
 
-    Several [example Microelectrode Electrophysiology datasets](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#microephys)
-    have been formatted using this specification and can be used for practical guidance when curating a new dataset.
+    Several [example microelectrode electrophysiology datasets](https://bids-standard.github.io/bids-examples/#microephys)
+    have been formatted using this specification
+    and can be used for practical guidance when curating a new dataset.
 
 ## Terminology: Modality and Datatypes
 
@@ -738,30 +739,32 @@ Optional column names in `events.tsv` to support multiple recordings in a single
 
 This dataset contains data from a single subject (subject A), that was recorded on two
 days (2022-01-01 and 2022-01-02).
-On the first day it performed two tasks (nose-poke & rest), and on the second day only a
+On the first day the subject performed three tasks (nose-poke, reach-to-grasp, and rest), and on the second day only a
 rest task was performed.
-Detailed information about these tasks can be found in the `tasks.tsv` and `tasks.json` files.
-The electrophysiology data for each of the three recordings are stored in the corresponding
-session and microephys directories in the `nix` format. Metadata about the probes, their electrodes
+The electrophysiology data for each of the four recordings are stored in the corresponding
+session and ecephys directories in the `nix` format. Metadata about the probes, their electrodes
 and the corresponding recording channels are stored in `tsv` format. Note that in this case,
 this information is shared between data files (see BIDS Inheritance Principle): in the first session,
-the probe, electrode and channel files apply to both data files of that session, as they do not
-contain a `task` entity in their name. For the nose-poke task, additional behavioral timestamps
-(events) were recorded and stored in an additional `events.tsv` file.
+the probe, electrode and channel files apply to all data files of that session, as they do not
+contain a `task` entity in their name. For the behavioral tasks (nose-poke and reach-to-grasp), additional behavioral timestamps
+(events) were recorded and stored in task-specific `events.tsv` files.
 
 {{ MACROS___make_filetree_example(
 
 {
 "dataset_description.json": "",
-"tasks.tsv": "",
-"tasks.json": "",
 "participants.tsv": "",
 "sub-A/": {
+"sub-A_sessions.tsv": "",
 "ses-20220101/": {
+"sub-A_ses-20220101_scans.tsv": "",
 "ecephys/": {
 "sub-A_ses-20220101_task-nosepoke_ecephys.nix": "",
 "sub-A_ses-20220101_task-nosepoke_ecephys.json": "",
 "sub-A_ses-20220101_task-nosepoke_events.tsv": "",
+"sub-A_ses-20220101_task-reachtograsp_ecephys.nix": "",
+"sub-A_ses-20220101_task-reachtograsp_ecephys.json": "",
+"sub-A_ses-20220101_task-reachtograsp_events.tsv": "",
 "sub-A_ses-20220101_task-rest_ecephys.nix": "",
 "sub-A_ses-20220101_task-rest_ecephys.json": "",
 "sub-A_ses-20220101_channels.tsv": "",
@@ -770,6 +773,7 @@ contain a `task` entity in their name. For the nose-poke task, additional behavi
 }
 },
 "ses-20220102/": {
+"sub-A_ses-20220102_scans.tsv": "",
 "ecephys/": {
 "sub-A_ses-20220102_task-rest_ecephys.nix": "",
 "sub-A_ses-20220102_task-rest_ecephys.json": "",
@@ -783,13 +787,85 @@ contain a `task` entity in their name. For the nose-poke task, additional behavi
 
 ) }}
 
+Example `sub-A_ses-20220101_task-nosepoke_ecephys.json`:
+
+```json
+{
+  "TaskName": "Nose Poke Task",
+  "TaskDescription": "Subject performs nose-poke responses to visual cues for reward",
+  "InstitutionName": "Example University",
+  "PowerLineFrequency": 60,
+  "SamplingFrequency": 30000,
+  "HardwareFilters": {
+    "Highpass": {
+      "Cutoff": 0.1
+    }
+  },
+  "SoftwareFilters": "n/a",
+  "RecordingType": "continuous",
+  "PharmaceuticalName": ["ketamine", "xylazine"],
+  "PharmaceuticalDoseAmount": [10, 1],
+  "PharmaceuticalDoseUnits": ["mg/kg", "mg/kg"],
+  "BodyPart": "BRAIN",
+  "SampleEnvironment": "in-vivo"
+}
+```
+
+Example `sub-A_ses-20220101_task-reachtograsp_ecephys.json`:
+
+```json
+{
+  "TaskName": "Reach to Grasp Task",
+  "TaskDescription": "Subject reaches and grasps objects of different shapes and sizes",
+  "InstitutionName": "Example University",
+  "PowerLineFrequency": 60,
+  "SamplingFrequency": 30000,
+  "HardwareFilters": {
+    "Highpass": {
+      "Cutoff": 0.1
+    }
+  },
+  "SoftwareFilters": "n/a",
+  "RecordingType": "continuous",
+  "PharmaceuticalName": ["ketamine", "xylazine"],
+  "PharmaceuticalDoseAmount": [10, 1],
+  "PharmaceuticalDoseUnits": ["mg/kg", "mg/kg"],
+  "BodyPart": "BRAIN",
+  "SampleEnvironment": "in-vivo"
+}
+```
+
+Example `sub-A_ses-20220101_task-rest_ecephys.json`:
+
+```json
+{
+  "TaskName": "Resting State",
+  "TaskDescription": "Spontaneous activity recording with no task",
+  "InstitutionName": "Example University",
+  "PowerLineFrequency": 60,
+  "SamplingFrequency": 30000,
+  "HardwareFilters": {
+    "Highpass": {
+      "Cutoff": 0.1
+    }
+  },
+  "SoftwareFilters": "n/a",
+  "RecordingType": "continuous",
+  "PharmaceuticalName": ["ketamine", "xylazine"],
+  "PharmaceuticalDoseAmount": [10, 1],
+  "PharmaceuticalDoseUnits": ["mg/kg", "mg/kg"],
+  "BodyPart": "BRAIN",
+  "SampleEnvironment": "in-vivo"
+}
+```
+
 #### Intracellular Electrophysiology (Patch)
 
-This dataset contains intracellular data from slices acquired from two subjects (20220101-A and 20220101B). Details about the subjects and the sample generation are documented in the samples (tsv/json) files. Data of each subject is stored in separate subject directories (top level directories), each of which contains an ‘icephys/’ subdirectory. Note that there is no session-level directory in this case. Here, we choose the option of having "multiple tasks/runs in separate files" as described in 3.81., to demonstrate the high level of readability offered by the filenames in this case.
+This dataset contains intracellular data from slices acquired from two subjects (20220101-A and 20220101B). Details about the subjects and the sample generation are documented in the samples (tsv/json) files. Data of each subject is stored in separate subject directories (top level directories), each of which contains an 'icephys/' subdirectory. Note that there is no session-level directory in this case. Here, we choose the option of having "multiple tasks/runs in separate files" to demonstrate the high level of readability offered by the filenames in this case.
 
-For the first subject only a single sample (a cell for patch-clamp terminology) was extracted (sample-cell001), on which two recordings (runs 1 and 2) were performed. Here, the `scans.tsv` file can be used to store information such as the starting recording times. The detailed information on the recording channel (such as the recording mode used) is stored in the `channels.tsv` which, in this case, is common to all available recordings. The probes and electrodes files provide information on the pipette and solutions used for the recordings and are also shared for the two data files.
+For the first subject only a single sample (a cell for patch-clamp terminology) was extracted (sample-cell001), on which three different protocol recordings were performed: two runs of current injection to characterize intrinsic properties, and one run of synaptic stimulation. The `scans.tsv` file stores information such as the starting recording times. The detailed information on the recording channel (such as the recording mode used) is stored in the `channels.tsv` which, in this case, is common to all available recordings. The probes and electrodes files provide information on the pipette and solutions used for the recordings and are also shared across data files.
 
-For the second subject two samples (sample-cell003 and sample-cell004) were extracted and a single recording performed on each of them. Each recording was performed using a different probe (listed in the probes.tsv) having specific electrode and channel information. Therefore, each data file has a dedicated channel and electrode file with the same name as the data file.
+For the second subject two samples (sample-cell002 and sample-cell003) were extracted and recordings of different tasks (current injection and synaptic stimulation) were performed on each of them. Each recording was performed using a different probe (listed in the probes.tsv) having specific electrode and channel information. Therefore, each data file has a dedicated channel and electrode file with the same name as the data file.
 
 {{ MACROS___make_filetree_example(
 
@@ -801,30 +877,45 @@ For the second subject two samples (sample-cell003 and sample-cell004) were extr
 "sub-20220101A/": {
 "sub-20220101A_sample-cell001_scans.tsv": "",
 "icephys/": {
-"sub-20220101A_sample-cell001_run-1_icephys.nwb": "",
-"sub-20220101A_sample-cell001_run-1_events.tsv": "",
-"sub-20220101A_sample-cell001_run-2_icephys.nwb": "",
-"sub-20220101A_sample-cell001_run-2_events.tsv": "",
+"sub-20220101A_sample-cell001_task-IVcurve_run-1_icephys.nwb": "",
+"sub-20220101A_sample-cell001_task-IVcurve_run-1_icephys.json": "",
+"sub-20220101A_sample-cell001_task-IVcurve_run-1_events.tsv": "",
+"sub-20220101A_sample-cell001_task-IVcurve_run-2_icephys.nwb": "",
+"sub-20220101A_sample-cell001_task-IVcurve_run-2_icephys.json": "",
+"sub-20220101A_sample-cell001_task-IVcurve_run-2_events.tsv": "",
+"sub-20220101A_sample-cell001_task-synaptic_icephys.nwb": "",
+"sub-20220101A_sample-cell001_task-synaptic_icephys.json": "",
+"sub-20220101A_sample-cell001_task-synaptic_events.tsv": "",
 "sub-20220101A_channels.tsv": "",
 "sub-20220101A_electrodes.tsv": "",
 "sub-20220101A_probes.tsv": "",
-"sub-20220101A_icephys.json": "",
 "sub-20220101A_events.json": ""
 }
 },
 "sub-20220101B/": {
-"sub-20220101B_sample-cell001_scans.tsv": "",
+"sub-20220101B_scans.tsv": "",
 "icephys/": {
-"sub-20220101B_sample-cell002_icephys.nwb": "",
-"sub-20220101B_sample-cell002_events.tsv": "",
-"sub-20220101B_sample-cell002_channels.tsv": "",
-"sub-20220101B_sample-cell002_electrodes.tsv": "",
-"sub-20220101B_sample-cell003_icephys.nwb": "",
-"sub-20220101B_sample-cell003_events.tsv": "",
-"sub-20220101B_sample-cell003_channels.tsv": "",
-"sub-20220101B_sample-cell003_electrodes.tsv": "",
+"sub-20220101B_sample-cell002_task-IVcurve_icephys.nwb": "",
+"sub-20220101B_sample-cell002_task-IVcurve_icephys.json": "",
+"sub-20220101B_sample-cell002_task-IVcurve_events.tsv": "",
+"sub-20220101B_sample-cell002_task-IVcurve_channels.tsv": "",
+"sub-20220101B_sample-cell002_task-IVcurve_electrodes.tsv": "",
+"sub-20220101B_sample-cell002_task-synaptic_icephys.nwb": "",
+"sub-20220101B_sample-cell002_task-synaptic_icephys.json": "",
+"sub-20220101B_sample-cell002_task-synaptic_events.tsv": "",
+"sub-20220101B_sample-cell002_task-synaptic_channels.tsv": "",
+"sub-20220101B_sample-cell002_task-synaptic_electrodes.tsv": "",
+"sub-20220101B_sample-cell003_task-IVcurve_icephys.nwb": "",
+"sub-20220101B_sample-cell003_task-IVcurve_icephys.json": "",
+"sub-20220101B_sample-cell003_task-IVcurve_events.tsv": "",
+"sub-20220101B_sample-cell003_task-IVcurve_channels.tsv": "",
+"sub-20220101B_sample-cell003_task-IVcurve_electrodes.tsv": "",
+"sub-20220101B_sample-cell003_task-synaptic_icephys.nwb": "",
+"sub-20220101B_sample-cell003_task-synaptic_icephys.json": "",
+"sub-20220101B_sample-cell003_task-synaptic_events.tsv": "",
+"sub-20220101B_sample-cell003_task-synaptic_channels.tsv": "",
+"sub-20220101B_sample-cell003_task-synaptic_electrodes.tsv": "",
 "sub-20220101B_probes.tsv": "",
-"sub-20220101B_icephys.json": "",
 "sub-20220101B_events.json": ""
 }
 }
@@ -832,15 +923,77 @@ For the second subject two samples (sample-cell003 and sample-cell004) were extr
 
 ) }}
 
+Example `sub-20220101A_sample-cell001_task-IVcurve_run-1_icephys.json`:
+
+```json
+{
+  "TaskName": "IV Curve Characterization",
+  "TaskDescription": "Current injection protocol to characterize intrinsic membrane properties and generate current-voltage curves",
+  "InstitutionName": "Example University",
+  "PowerLineFrequency": 60,
+  "SamplingFrequency": 20000,
+  "HardwareFilters": "n/a",
+  "SoftwareFilters": "n/a",
+  "RecordingType": "epoched",
+  "BodyPart": "BRAIN",
+  "SampleEnvironment": "ex-vivo",
+  "SliceThickness": 300,
+  "SliceThicknessUnits": "um",
+  "TissueOrigin": "Visual Cortex",
+  "CellType": "pyramidal"
+}
+```
+
+Example `sub-20220101A_sample-cell001_task-synaptic_icephys.json`:
+
+```json
+{
+  "TaskName": "Synaptic Stimulation",
+  "TaskDescription": "Electrical stimulation to evoke synaptic responses and characterize synaptic properties",
+  "InstitutionName": "Example University",
+  "PowerLineFrequency": 60,
+  "SamplingFrequency": 20000,
+  "HardwareFilters": "n/a",
+  "SoftwareFilters": "n/a",
+  "RecordingType": "epoched",
+  "BodyPart": "BRAIN",
+  "SampleEnvironment": "ex-vivo",
+  "SliceThickness": 300,
+  "SliceThicknessUnits": "um",
+  "TissueOrigin": "Visual Cortex",
+  "CellType": "pyramidal"
+}
+```
+
+Example `sub-20220101B_sample-cell002_task-IVcurve_icephys.json`:
+
+```json
+{
+  "TaskName": "IV Curve Characterization",
+  "TaskDescription": "Current injection protocol to characterize intrinsic membrane properties and generate current-voltage curves",
+  "InstitutionName": "Example University",
+  "PowerLineFrequency": 60,
+  "SamplingFrequency": 20000,
+  "HardwareFilters": "n/a",
+  "SoftwareFilters": "n/a",
+  "RecordingType": "epoched",
+  "BodyPart": "BRAIN",
+  "SampleEnvironment": "ex-vivo",
+  "SliceThickness": 350,
+  "SliceThicknessUnits": "um",
+  "TissueOrigin": "Hippocampus",
+  "CellType": "interneuron"
+}
+```
+
 This toy data set can be found in [this repository,](https://gin.g-node.org/NeuralEnsemble/BEP032-examples/src/master/toy-dataset_patchclamp_single-record-per-file) with the content of the metadata files. The other option available to organize such data consists in storing several recordings in a single data file (as described in 3.8.2); the same data set is presented using this latter option in [this other repository](https://gin.g-node.org/NeuralEnsemble/BEP032-examples/src/master/toy-dataset_patchclamp_multiple-records-per-file), so that both options can be compared for the same data set.
 
 ## Examples of Real Datasets
 
-Multiple datasets have been converted to follow this BEP proposal.
-These datasets typically have pruned data files to reduce the data file size, but are accompanied by the full set of metadata.
-A current version of these datasets [can be found on GIN](https://gin.g-node.org/NeuralEnsemble/BEP032-examples) .
+Several real-world datasets have been formatted using this specification and can be used for practical guidance when curating a new dataset.
+<!-- TODO: Update with current real datasets. A current version of these datasets [can be found on GIN](https://gin.g-node.org/NeuralEnsemble/BEP032-examples) .
 
 For a complete dataset including all data samples the extracellular microelectrode dataset published in [Brochier (2018)](https://doi.org/10.1038/sdata.2018.55) has been reorganized according to the current version of this BEP, using the NIX data format.
 The up-to-date version of the dataset [can be found on GIN](https://gin.g-node.org/sprenger/multielectrode_grasp/src/bep_animalephys) .
 
-We will also publish another dataset using the NWB data format in the near future, and a dataset acquired
+We will also publish another dataset using the NWB data format in the near future, and a dataset acquired -->
