@@ -12,10 +12,10 @@ EyetrackingStimulusPresentation:
     - sidecar.PhysioType == 'eyetrack'
     - sidecar.SampleCoordinateSystem == 'gaze-on-screen'
   checks:
-    - '"ScreenDistance" in associations.events.sidecar.StimulusPresentation'
+    - associations.events.sidecar.StimulusPresentation.ScreenDistance != 'n/a'
     - '"ScreenOrigin" in associations.events.sidecar.StimulusPresentation'
-    - '"ScreenResolution" in associations.events.sidecar.StimulusPresentation'
-    - '"ScreenSize" in associations.events.sidecar.StimulusPresentation'
+    - associations.events.sidecar.StimulusPresentation.ScreenResolution != 'n/a'
+    - associations.events.sidecar.StimulusPresentation.ScreenSize != 'n/a'
 
 OnsetSourceConsistency:
   issue:

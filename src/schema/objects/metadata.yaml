@@ -3592,7 +3592,7 @@ ScreenResolution:
     (for example `[1920, 1200]` for a screen of 1920-width by 1080-height pixels),
     if no screen use `n/a`.
     `ScreenResolution` is REQUIRED when the experiment included simultaneous eye-tracking
-    recordings.
+    recordings with `SampleCoordinateSystem` matching `"gaze-on-screen"`.
   anyOf:
     - type: array
       items:
@@ -3610,7 +3610,7 @@ ScreenSize:
     (for example `[0.472, 0.295]` for a screen of 47.2-width by 29.5-height cm),
     if no screen use `n/a`.
     `ScreenSize` is REQUIRED when the experiment included simultaneous eye-tracking
-    recordings.
+    recordings with `SampleCoordinateSystem` matching `"gaze-on-screen"`.
   anyOf:
     - type: array
       items:
