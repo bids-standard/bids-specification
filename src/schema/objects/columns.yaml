@@ -359,14 +359,6 @@ hardware_filters:
     - type: string
       enum:
         - n/a
-height__probes:
-  name: height
-  display_name: Height
-  description: |
-    Physical height of the probe, for example, '5'.
-    This dimension corresponds to the y’axis of the Euler transformation defined by
-    alpha, beta and gamma rotations values below.
-  type: number
 hemisphere:
   name: hemisphere
   display_name: Electrode hemisphere
@@ -1200,21 +1192,21 @@ x__electrodes:
   display_name: Electrode X position
   description: |
     Recorded position along the local width-axis relative
-    to the probe origin and rotation (see `_probes.tsv`)
+    to the probe origin (see `_probes.tsv`)
   type: number
 y__electrodes:
   name: y
   display_name: Electrode Y position
   description: |
     Recorded position along the local height-axis relative
-    to the probe origin and rotation (see `_probes.tsv`)
+    to the probe origin (see `_probes.tsv`)
   type: number
 z__electrodes:
   name: z
   display_name: Electrode Z position
   description: |
     Recorded position along the local depth-axis relative
-    to the probe origin and rotation (see `_probes.tsv`)
+    to the probe origin (see `_probes.tsv`)
   type: number
 template_x:
   name: template_x
