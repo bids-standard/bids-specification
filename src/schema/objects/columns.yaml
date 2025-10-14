@@ -358,7 +358,7 @@ hardware_filters:
     - type: string
       enum:
         - n/a
-height__probe:
+height__probes:
   name: height
   display_name: Probe height
   description: |
