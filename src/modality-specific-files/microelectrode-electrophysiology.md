@@ -398,7 +398,6 @@ Proper understanding and application of these angles is critical for accurate pr
 
     The coordinate system conventions and angle definitions presented in this section are adapted from the [BrainSTEM documentation](https://support.brainstem.org/datamodel/schemas/coordinates/).
 
-
 ## Coordinate System JSON (`*_coordsystem.json`)
 
 <!--
@@ -459,7 +458,7 @@ in `*_electrodes.tsv` are assumed to be **probe-relative coordinates**:
 -   The origin (0, 0, 0) is at the probe tip or a standard reference point on the probe
 <!-- TODO: Unsure if this reference is what we discussed in the surgical coordinate system -->
 -   The `x`, `y`, and `z` coordinates describe electrode positions relative to this probe reference
-- This the most common case for in-vivo recordings where electrodes are not localized in a 3D anatomical space
+-   This the most common case for in-vivo recordings where electrodes are not localized in a 3D anatomical space
 
 ### Recommended 3D coordinate systems
 
@@ -496,7 +495,7 @@ For examples:
 -   `*_space-AllenCCFv3` (electrodes are mapped to Allen Common Coordinate Framework v3)
 -   `*_space-PaxinosWatson` (electrodes are mapped to Paxinos-Watson rat brain atlas coordinates)
 
-When referring to the `*_electrodes.tsv` file in a certain _space_ as defined
+When referring to the `*_electrodes.tsv` file in a certain *space* as defined
 above, the [`space-<label>`](../appendices/entities.md#space) of the accompanying `*_coordsystem.json` MUST
 correspond.
 
@@ -547,9 +546,7 @@ If there are photos of the electrodes, the [`acq-<label>`](../appendices/entitie
 with:
 
 -   `*_photo.<extension>` in case of an operative or in-vivo photo
-
 -   `*_acq-<label>_photo.<extension>` where `<label>` describes the acquisition type (for example: `histology` for histological sections showing electrode tracks, `microscopy` for microscope images of electrode placements, `atlas` for screenshots showing electrodes overlaid on brain atlas)
-
 -   `*_acq-drawing#_photo.<extension>` in case of a drawing or sketch of electrode placements
 
 The [`ses-<label>`](../appendices/entities.md#ses) entity may be used to specify when the photo was taken.
@@ -557,7 +554,6 @@ The [`ses-<label>`](../appendices/entities.md#ses) entity may be used to specify
 The [`sample-<label>`](../appendices/entities.md#sample) entity may be used to specify the tissue sample for histological photos.
 
 The [`space-<label>`](../appendices/entities.md#space) entity may be used to specify the coordinate system for atlas overlay photos.
-
 
 ## Recording Events (`*_events.tsv`)
 
