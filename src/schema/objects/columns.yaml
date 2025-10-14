@@ -275,13 +275,6 @@ electrode_count:
   description: |
     Number of miscellaneous analog electrodes for auxiliary signals (for example, '2').
   type: number
-electrode_id:
-  name: electrode_id
-  display_name: Electrode ID
-  description: |
-    A unique identifier of the electrode.
-    (expected to match electrode_ids listed in `*_channels.tsv`).
-  type: string
 electrode_shape:
   name: electrode_shape
   display_name: Electrode shape
@@ -1202,7 +1195,7 @@ z__optodes:
     Recorded position along the z-axis.
     `"n/a"` if not available.
   type: number
-# TODO: How are the units specified for the probe x, y and z fields?
+# TODO: Remove the overspecified entries for electrode positions if not used in microephys
 x__electrodes:
   name: x
   display_name: Electrode X position

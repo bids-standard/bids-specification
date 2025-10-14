@@ -42,19 +42,19 @@ microephysElectrodes:
     - suffix == "electrodes"
     - extension == ".tsv"
   initial_columns:
-    - electrode_id
+    - name__electrodes
     - probe_id
     - hemisphere
-    - x__electrodes
-    - y__electrodes
-    - z__electrodes
+    - x
+    - y
+    - z
   columns:
-    electrode_id: required
+    name__electrodes: required
     probe_id: required
-    hemisphere: recommended
-    x__electrodes: recommended
-    y__electrodes: recommended
-    z__electrodes: recommended
+    hemisphere: required
+    x: required
+    y: required
+    z: required
     impedance: recommended
     shank_id: optional
     size: optional
@@ -64,7 +64,7 @@ microephysElectrodes:
     pipette_solution: optional
     internal_pipette_diameter: optional
     external_pipette_diameter: optional
-  index_columns: [electrode_id]
+  index_columns: [name__electrodes]
   additional_columns: allowed_if_defined
 
 microephysChannels:
