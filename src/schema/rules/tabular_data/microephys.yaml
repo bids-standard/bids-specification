@@ -7,15 +7,19 @@ microephysProbes:
   initial_columns:
     - probe_name
     - type__probes
-    - x__probes
-    - y__probes
-    - z__probes
+    - AP__probes
+    - ML__probes
+    - DV__probes
+    - AP_angle
+    - ML_angle
   columns:
     probe_name: required
     type__probes: required
     AP__probes: recommended
-    DV__probes: recommended
     ML__probes: recommended
+    DV__probes: recommended
+    AP_angle: recommended
+    ML_angle: recommended
     manufacturer__probes: recommended
     device_serial_number: recommended
     electrode_count: optional
@@ -23,8 +27,6 @@ microephysProbes:
     height__probes: optional
     depth__probes: optional
     dimension_unit: optional
-    AP_angle: recommended
-    ML_angle: recommended
     rotation_angle: recommended
     coordinate_reference_point: recommended
     hemisphere__probes: recommended
