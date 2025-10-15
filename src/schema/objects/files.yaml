@@ -103,7 +103,7 @@ code:
     See the [Code section](SPEC_ROOT/modality-agnostic-files/code.md)
     for more information.
 prov:
-  display_name: Provenance Records
+  display_name: Provenance
   file_type: directory
   description: |
     A directory in which to store provenance metadata.

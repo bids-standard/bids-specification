@@ -134,6 +134,54 @@ and a guide for using macros can be found at
     └─ ...
     ```
 
+### Provenance description file
+
+Template:
+
+```
+provenance.tsv
+provenance.json
+```
+
+The purpose of this RECOMMENDED file is to describe properties of provenance files. It MUST contain the column `provenance_label`, which MUST consist of `prov-<label>` values identifying one row for each `prov` entity in the dataset, followed by an optional column containing a description for the entity. Each entity MUST be described by one and only one row.
+
+We RECOMMEND to make use of these columns, and
+in case that you do use them, we RECOMMEND to use the following values
+for them:
+
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/rules/tabular_data/*.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_columns_table("modality_agnostic.Provenance") }}
+
+Throughout BIDS you can indicate missing values with `n/a` (for "not
+available").
+
+`provenance.tsv` example:
+
+```tsv
+provenance_label    description
+prov-preprocspm Provenance of preprocessing performed with SPM.  
+prov-preprocfsl Provenance of preprocessing performed with FSL.
+```
+
+It is RECOMMENDED to accompany each `provenance.tsv` file with a sidecar
+`provenance.json` file to describe the TSV column names and properties of their values
+(see also the [section on tabular files](../common-principles.md#tabular-files)).
+
+`provenance.json` example:
+
+```JSON
+{
+    "description": {
+        "Description": "Description of the provenance file(s)."
+    }
+}
+```
+
 ### Activities
 
 Each file with a `act` suffix is a JSON file describing activities.
