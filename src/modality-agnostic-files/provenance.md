@@ -164,7 +164,7 @@ available").
 
 ```tsv
 provenance_label    description
-prov-preprocspm Provenance of preprocessing performed with SPM.  
+prov-preprocspm Provenance of preprocessing performed with SPM.
 prov-preprocfsl Provenance of preprocessing performed with FSL.
 ```
 
