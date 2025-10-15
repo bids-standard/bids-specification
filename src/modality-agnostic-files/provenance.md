@@ -83,24 +83,12 @@ The inputs for this macro can be found in the directory
   src/schema/rules/files/common
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
-
+-->
 {{ MACROS___make_filename_template(
-   "raw",
+   "common",
    datatypes=["prov"],
    suffixes=["act", "ent", "env", "soft"])
 }}
--->
-
-Template:
-
-```text
-prov/
-    [prov-<label>/]
-        prov-<label>[_desc-<label>]_act.json
-        prov-<label>[_desc-<label>]_ent.json
-        prov-<label>[_desc-<label>]_env.json
-        prov-<label>[_desc-<label>]_soft.json
-```
 
 !!! note
     The `prov` BIDS entity allows to group related provenance files, using an arbitrary value for `<label>`. A subdirectory MAY be used to group provenance files with the same `prov` entity.
