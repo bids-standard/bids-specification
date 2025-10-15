@@ -508,10 +508,10 @@ The identifier of a provEntity describing a BIDS file inside a BIDS dataset MUST
 !!! warning
     The use of BIDS URIs may require to define the `DatasetLinks` object in [`dataset_description.json`](dataset-description.md#dataset_descriptionjson).
 
-For other cases listed in the [ProvEntities](#proventities) section, the identifier of a provEntity described in a BIDS dataset `<dataset>` SHOULD have the following form, where `<label>` is a human readable name for coherently identifying the provEntity and `<uid>` is a unique group of chars.
+For other cases listed in the [ProvEntities](#proventities) section, the identifier of a provEntity described in a BIDS dataset `<dataset-name>` SHOULD have the following form, where `<label>` is a human readable name for coherently identifying the provEntity and `<uid>` is a unique group of chars.
 
 ```text
-bids:<dataset>:prov#<label>-<uid>
+bids:[<dataset-name>]:prov#<label>-<uid>
 ```
 
 !!! example "Examples of identifiers for provEntities"
@@ -522,10 +522,10 @@ bids:<dataset>:prov#<label>-<uid>
 
 ### Identifiers for other provenance objects
 
-The identifier of an activity, software, or environment described in a BIDS dataset `<dataset>` SHOULD have the following form, where `<label>` is a human readable name for coherently identifying the provenance objects and `<uid>` is a unique group of chars.
+The identifier of an activity, software, or environment described in a BIDS dataset `<dataset-name>` SHOULD have the following form, where `<label>` is a human readable name for coherently identifying the provenance objects and `<uid>` is a unique group of chars.
 
 ```text
-bids:<dataset>:prov#<label>-<uid>
+bids:[<dataset-name>]:prov#<label>-<uid>
 ```
 
 The uniqueness of this identifier MUST be used to distinguish any activity, software, or environment that are different in any of their attributes.
