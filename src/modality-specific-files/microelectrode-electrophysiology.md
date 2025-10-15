@@ -45,10 +45,10 @@ The native file format is used in case conversion elicits the loss of crucial me
 Metadata should be included alongside the data in the `.json` and `.tsv` files.
 The current list of allowed data file formats:
 
-| **Format**                                                                          | **Extension(s)** | **Description**                                                                                                                                                                                                           |
-| ----------------------------------------------------------------------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Neuroscience Information Exchange Format](https://nixio.readthedocs.io/en/latest/) | `.nix`           | A generic and open framework with an hdf5 backend and a defined interface to many microephys formats via the [Neo library](https://neo.readthedocs.io/en/latest/). The `.nix` file has to contain a valid Neo structure. |
-| [Neurodata Without Borders](https://www.nwb.org)                                    | `.nwb`           | An open data standard for neurophysiology, including data from intracellular and extracellular electrophysiology experiments.                                                                                             |
+| **Format**                                                                           | **Extension(s)** | **Description**                                                                                                                                                                                                           |
+| ------------------------------------------------------------------------------------ | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Neuroscience Information Exchange Format](https://nixio.readthedocs.io/en/latest/)  | `.nix`            | A generic and open framework with an hdf5 backend and a defined interface to many microephys formats via the [Neo library](https://neo.readthedocs.io/en/latest/). The `.nix` file has to contain a valid Neo structure. |
+| [Neurodata Without Borders](https://www.nwb.org)                                     | `.nwb`            | An open data standard for neurophysiology, including data from intracellular and extracellular electrophysiology experiments.                                                                                            |
 
 Both of these formats can also store essential metadata of the datasets.
 Some of this metadata needs to be duplicated in BIDS `.tsv` and `.json` sidecar files.
@@ -151,8 +151,18 @@ If the OPTIONAL [` task-<label>`](../appendices/entities.md#task) is used, the f
   "SamplingFrequency": 30000,
   "SoftwareName": "RecordingSoftware",
   "SoftwareVersions": "1.0.0",
-  "SoftwareFilters": "n/a",
-  "HardwareFilters": {"Highpass": {"Cutoff": 0.1}},
+  "SoftwareFilters": {
+    "LowpassFilter": {
+      "Half-amplitude cutoff (Hz)": 300,
+      "Roll-off": "6dB/Octave"
+    }
+  },
+  "HardwareFilters": {
+    "HighpassFilter": {
+      "Half-amplitude cutoff (Hz)": 0.1,
+      "Roll-off": "6dB/Octave"
+    }
+  },
   "PharmaceuticalName": ["anesthetic1", "anesthetic2"],
   "PharmaceuticalDoseAmount": [1.5, 10],
   "PharmaceuticalDoseUnits": ["percent", "mg/kg"],
@@ -176,7 +186,12 @@ If the OPTIONAL [` task-<label>`](../appendices/entities.md#task) is used, the f
   "SamplingFrequency": 20000,
   "SoftwareName": "PatchSoftware",
   "SoftwareVersions": "2.1.0",
-  "SoftwareFilters": {"Bessel": {"Cutoff": 10000}},
+  "SoftwareFilters": {
+    "BesselFilter": {
+      "Half-amplitude cutoff (Hz)": 10000,
+      "Roll-off": "12dB/Octave"
+    }
+  },
   "BodyPart": "BRAIN",
   "BodyPartDetails": "Visual Cortex",
   "SampleEnvironment": "ex-vivo",
@@ -255,21 +270,21 @@ Columns in the `*_channel.tsv` file are:
 
 ```tsv
 name	reference	type	units	sampling_frequency	hardware_filters	software_filters	gain	status	status_description
-ch001	ref01	LFP	uV	1000	{"Highpass": {"Cutoff": 0.1}}	{"Lowpass": {"Cutoff": 300}}	500	good	n/a
-ch002	ref01	LFP	uV	1000	{"Highpass": {"Cutoff": 0.1}}	{"Lowpass": {"Cutoff": 300}}	500	good	n/a
-ch003	ref01	HP	uV	30000	{"Highpass": {"Cutoff": 300}}	n/a	500	good	n/a
-ch004	ref01	HP	uV	30000	{"Highpass": {"Cutoff": 300}}	n/a	500	bad	high_noise
-ch005	ref02	LFP	uV	1000	{"Highpass": {"Cutoff": 0.1}}	{"Lowpass": {"Cutoff": 300}}	500	good	n/a
+ch001	ref01	LFP	uV	1000	HighpassFilter	LowpassFilter	500	good	n/a
+ch002	ref01	LFP	uV	1000	HighpassFilter	LowpassFilter	500	good	n/a
+ch003	ref01	HP	uV	30000	HighpassFilter	n/a	500	good	n/a
+ch004	ref01	HP	uV	30000	HighpassFilter	n/a	500	bad	high_noise
+ch005	ref02	LFP	uV	1000	HighpassFilter	LowpassFilter	500	good	n/a
 ch006	n/a	SYNC	V	30000	n/a	n/a	1	good	n/a
 ```
 
 **Intracellular electrophysiology example:**
 
 ```tsv
-name	reference	type	units	sampling_frequency	recording_mode	gain	ground	status	status_description
-patch01	n/a	VM	mV	20000	current-clamp	10	AgCl	good	n/a
-patch02	n/a	VM	mV	20000	current-clamp	10	AgCl	good	n/a
-patch03	n/a	IM	pA	20000	voltage-clamp	5	AgCl	good	n/a
+name	type	units	sampling_frequency	recording_mode	gain	ground	status
+patch01	VM	mV	20000	current-clamp	10	AgCl	good
+patch02	VM	mV	20000	current-clamp	10	AgCl	good
+patch03	IM	pA	20000	voltage-clamp	5	AgCl	good
 ```
 
 Note: In many datasets multiple sets of identifiers are used for probes, electrodes and channels.
@@ -797,8 +812,9 @@ Example `sub-A_ses-20220101_task-nosepoke_ecephys.json`:
   "PowerLineFrequency": 60,
   "SamplingFrequency": 30000,
   "HardwareFilters": {
-    "Highpass": {
-      "Cutoff": 0.1
+    "HighpassFilter": {
+      "Half-amplitude cutoff (Hz)": 0.1,
+      "Roll-off": "6dB/Octave"
     }
   },
   "SoftwareFilters": "n/a",
@@ -821,8 +837,9 @@ Example `sub-A_ses-20220101_task-reachtograsp_ecephys.json`:
   "PowerLineFrequency": 60,
   "SamplingFrequency": 30000,
   "HardwareFilters": {
-    "Highpass": {
-      "Cutoff": 0.1
+    "HighpassFilter": {
+      "Half-amplitude cutoff (Hz)": 0.1,
+      "Roll-off": "6dB/Octave"
     }
   },
   "SoftwareFilters": "n/a",
@@ -845,8 +862,9 @@ Example `sub-A_ses-20220101_task-rest_ecephys.json`:
   "PowerLineFrequency": 60,
   "SamplingFrequency": 30000,
   "HardwareFilters": {
-    "Highpass": {
-      "Cutoff": 0.1
+    "HighpassFilter": {
+      "Half-amplitude cutoff (Hz)": 0.1,
+      "Roll-off": "6dB/Octave"
     }
   },
   "SoftwareFilters": "n/a",
