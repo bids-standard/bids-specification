@@ -219,17 +219,9 @@ and a guide for using macros can be found at
 Each file with a `ent` suffix is a JSON file describing provEntities.
 
 !!! warning
-    These files MUST not contain provEntities describing data files that are available in the dataset. Use sidecar JSON files instead for this purpose (see [Provenance of a BIDS file](#provenance-of-a-bids-file)).
+    These files SHOULD not contain provEntities describing data files that are available in the dataset. Use sidecar JSON files instead for this purpose (see [Provenance of a BIDS file](#provenance-of-a-bids-file)).
 
-    These files MUST not contain provEntities describing the current dataset. Use `dataset_description.json` files instead for this purpose (see [Provenance of a BIDS dataset](#provenance-of-a-bids-dataset)).
-
-Inside provenance files, provEntities MAY describe:
-
--   files or data that are located in another dataset;
--   files or data that were deleted during the creation of the dataset;
--   different versions of the same files or data that were modified during the creation of the dataset;
--   files or data that are external to the dataset (for example templates shipped with software packages or environments);
--   any other files or data that do not match the previously listed cases, as long as the provEntity cannot be described in a sidecar JSON or in `dataset_description.json`.
+    These files SHOULD not contain provEntities describing the current dataset. Use `dataset_description.json` files instead for this purpose (see [Provenance of a BIDS dataset](#provenance-of-a-bids-dataset)).
 
 Each file MUST include the following key:
 
