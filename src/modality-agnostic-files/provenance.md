@@ -48,7 +48,7 @@ Provenance information is encoded using metadata fields.
 For the most part, this metadata consists of **provenance objects** of 4 types:
 
 -   **Activities**: transformations that have been applied to data.
--   **ProvEntities**: input or output data for activities.
+-   **ProvEntities**: input or output data for activities (Note: this corresponds to Entities as per the Prov W3C standard, the prefix "Prov" is used to disambiguate with [BIDS entities](../appendices/entities.md)).
 -   **Software**: software packages used to compute the activities.
 -   **Environments**: software environments in which activities were performed.
 
