@@ -86,7 +86,7 @@ and a guide for using macros can be found at
 }}
 
 !!! note
-    The `prov` BIDS entity allows to group related provenance files, using an arbitrary value for `<label>`. A subdirectory MAY be used to group provenance files with the same `prov` entity.
+    The `prov` BIDS entity allows to group related provenance files, using an arbitrary value for `<label>`. A subdirectory MAY be used to group provenance files sharing the same `prov` entity.
 
 The following suffixes specify the contents of provenance files.
 
@@ -146,9 +146,9 @@ available").
 `provenance.tsv` example:
 
 ```tsv
-provenance_label    description
-prov-preprocspm Provenance of preprocessing performed with SPM.
-prov-preprocfsl Provenance of preprocessing performed with FSL.
+provenance_label	description
+prov-preprocspm	Provenance of preprocessing performed with SPM.
+prov-preprocfsl	Provenance of preprocessing performed with FSL.
 ```
 
 It is RECOMMENDED to accompany each `provenance.tsv` file with a sidecar
@@ -388,9 +388,7 @@ and a guide for using macros can be found at
 
 ## Provenance of a BIDS dataset
 
-Metadata of a provEntity describing a BIDS dataset (raw, derivative, or study) MAY be stored inside its `dataset_description.json` file.
-
-This metadata describes the provenance of the whole dataset.
+Metadata of a provEntity describing a BIDS dataset (raw, derivative, or study) MAY be stored inside its `dataset_description.json` file. This metadata describes the provenance of the whole dataset.
 
 The `dataset_description.json` file of a **BIDS raw dataset** or **BIDS study dataset** MAY include the following key to describe provenance.
 
