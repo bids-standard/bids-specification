@@ -17,7 +17,8 @@ dataset_description:
     EthicsApprovals: optional
     ReferencesAndLinks: optional
     DatasetDOI: optional
-    GeneratedBy: recommended
+    GeneratedBy: recommended if `GeneratedById` is not defined
+    GeneratedById: recommended if `GeneratedById` is not defined
     SourceDatasets: recommended
 
 dataset_authors:
@@ -39,7 +40,8 @@ derivative_description:
     - path == "/dataset_description.json"
     - json.DatasetType == "derivative"
   fields:
-    GeneratedBy: required
+    GeneratedBy: required if `GeneratedById` is not defined
+    GeneratedById: required if `GeneratedBy` is not defined
 
 dataset_description_with_genetics:
   selectors:

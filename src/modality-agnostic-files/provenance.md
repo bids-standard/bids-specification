@@ -391,9 +391,18 @@ and a guide for using macros can be found at
 
 Metadata of a provEntity describing a BIDS dataset (raw, derivative, or study) SHOULD be stored inside its `dataset_description.json` file. This metadata describes the provenance of the whole dataset.
 
-The `dataset_description.json` file of a **BIDS raw dataset** or **BIDS study dataset** MAY include the following key to describe provenance.
+The `dataset_description.json` file of a **BIDS raw dataset** or **BIDS study dataset** MAY include the `GeneratedBy` key to describe provenance.
 
-The `dataset_description.json` file of a **BIDS derivative dataset** MUST include the following key to describe provenance.
+The `dataset_description.json` file of a **BIDS derivative dataset** MUST include the `GeneratedBy` key to describe provenance.
+
+The `GeneratedBy` field MAY contain either of the following values:
+
+-   Identifier(s) of the activity (one or more) responsible for the creation of the dataset (see the [Description using provenance objects](#description-using-provenance-objects) section).
+-   A description of pipelines or processes responsible for the creation of the dataset (see the [Description of pipelines or processes](#description-of-pipelines-or-processes) section).
+
+### Description using provenance objects
+
+This section details the way to describe provenance of a dataset in the `GeneratedBy` field, using provenance objects.
 
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in
@@ -403,20 +412,9 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_metadata_table(
    {
-      "GeneratedBy": "RECOMMENDED for BIDS raw datasets and BIDS study datasets, REQUIRED for BIDS derivative datasets"
+      "GeneratedById": "RECOMMENDED for BIDS raw datasets and BIDS study datasets, REQUIRED for BIDS derivative datasets"
    }
 ) }}
-
-The `GeneratedBy` field MAY contain either of the following values:
-
--   Identifier(s) of the activity (one or more) responsible for the creation of the dataset (see the [Description using provenance objects](#description-using-provenance-objects) section).
--   A description of pipelines or processes responsible for the creation of the dataset (see the [Description of pipelines or processes](#description-of-pipelines-or-processes) section).
-
-### Description using provenance objects
-
-This section details a way to describe the provenance of a dataset using provenance objects, providing `GeneratedBy` with the identifier(s) of the activity (one or more) responsible for the creation of the dataset.
-
-Related activities MUST be described inside the dataset (see the [Activities](#activities) section).
 
 !!! example "Example of `GeneratedBy` contents in a `dataset_description.json`"
     ```JSON
@@ -432,6 +430,18 @@ This section details a way to describe the provenance of a dataset, providing `G
 
 !!! note
     This description can be equivalently represented using the previous section. This modeling is kept for backward-compatibility but might be removed in future BIDS releases (see BIDS 2.0).
+
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_metadata_table(
+   {
+      "GeneratedById": "RECOMMENDED for BIDS raw datasets and BIDS study datasets, REQUIRED for BIDS derivative datasets"
+   }
+) }}
 
 Each object in the `GeneratedBy` array includes the following REQUIRED, RECOMMENDED
 and OPTIONAL keys:
