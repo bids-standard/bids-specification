@@ -1,0 +1,28 @@
+---
+ActivitiesProvenanceFile:
+  selectors:
+    - datatype == "prov"
+    - suffix == "act"
+  fields:
+    Activities: required
+
+EnvironmentsProvenanceFile:
+  selectors:
+    - datatype == "prov"
+    - suffix == "env"
+  fields:
+    Environments: required
+
+ProvEntitiesProvenanceFile:
+  selectors:
+    - datatype == "prov"
+    - suffix == "ent"
+  fields:
+    ProvEntities: required
+
+SoftwareProvenanceFile:
+  selectors:
+    - datatype == "prov"
+    - suffix == "soft"
+  fields:
+    Software: required

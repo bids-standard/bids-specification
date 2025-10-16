@@ -23,6 +23,7 @@ study:
       - docs
       - derivatives
       - logs
+      - prov
       - sourcedata
   code:
     name: code
@@ -40,6 +41,10 @@ study:
     name: logs
     level: optional
     opaque: true
+  prov:
+    name: prov
+    level: optional
+    opaque: false
   sourcedata:
     name: sourcedata
     level: optional
