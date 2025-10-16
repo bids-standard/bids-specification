@@ -199,12 +199,12 @@ and a guide for using macros can be found at
     {
         "Activities": [
             {
-                "Id": "bids::prov/#conversion-00f3a18f",
+                "Id": "bids::prov#conversion-00f3a18f",
                 "Label": "Dicom to Nifti conversion",
                 "Command": "dcm2niix -o . -f sub-%i/anat/sub-%i_T1w sourcedata/dicoms",
-                "AssociatedWith": "bids::prov/#dcm2niix-khhkm7u1",
+                "AssociatedWith": "bids::prov#dcm2niix-khhkm7u1",
                 "Used": [
-                    "bids::prov/#fedora-uldfv058",
+                    "bids::prov#fedora-uldfv058",
                     "bids::sourcedata/dicoms"
                 ],
                 "StartedAtTime": "2025-03-13T10:26:00",
@@ -299,7 +299,7 @@ and a guide for using macros can be found at
     {
         "Software": [
             {
-                "Id": "bids::prov/#dcm2niix-khhkm7u1",
+                "Id": "bids::prov#dcm2niix-khhkm7u1",
                 "AltIdentifier": "RRID:SCR_023517",
                 "Label": "dcm2niix",
                 "Version": "v1.0.20220720"
@@ -342,7 +342,7 @@ and a guide for using macros can be found at
     {
         "Environments": [
             {
-                "Id": "bids::prov/#fedora-uldfv058",
+                "Id": "bids::prov#fedora-uldfv058",
                 "Label": "Fedora release 36 (Thirty Six)",
                 "OperatingSystem": "GNU/Linux 6.2.15-100.fc36.x86_64"
             }
@@ -513,7 +513,7 @@ The uniqueness of this identifier MUST be used to distinguish any activity, soft
 
 The Resource Description Framework (RDF) is a method to describe and exchange graph data.
 
-The terms defined in this part of the BIDS specfication are based on the [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/) standard. Their relations with W3C Prov terms are defined in the [`provenance-context.json`]() file.
+The terms defined in this part of the BIDS specification are based on the [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/) standard. Their relations with W3C Prov terms are defined in the [`provenance-context.json`]() file.
 
 Provenance metadata can be aggregated into JSON-LD files that represent RDF graphs.
 
