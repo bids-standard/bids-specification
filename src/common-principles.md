@@ -931,7 +931,7 @@ Bare DOIs such as `10.18112/openneuro.ds000001.v1.0.0` are [DEPRECATED][].
 To reference files in BIDS datasets, the following URI scheme may be used:
 
 ```plain
-bids:[<dataset-name>]:<relative-path>
+bids:[<dataset-name>]:<relative-path>[#<fragment>]
 ```
 
 The scheme component `bids` identifies a BIDS URI,
@@ -947,6 +947,8 @@ Examples:
 bids::sub-01/fmap/sub-01_dir-AP_epi.nii.gz
 bids:ds000001:sub-02/anat/sub-02_T1w.nii.gz
 bids:myderivatives:sub-03/func/sub-03_task-rest_space-MNI152_bold.nii.gz
+bids:fmriprep:sub-001/anat/sub-001_T1w_preproc.nii.gz#aa56ztg8
+bids::prov#preprocessing-00f3a18f
 ```
 
 If no dataset name is specified, the URI is relative to the current BIDS dataset.
@@ -1003,7 +1005,7 @@ No protocol is currently proposed to automatically resolve all possible BIDS URI
 
 BIDS URIs are parsable as standard [URIs][] with scheme `bids` and path
 `[<dataset-name>]:<relative-path>`.
-The authority, query and fragment components are unused.
+The authority and query components are unused.
 Future versions of BIDS may specify interpretations for these components,
 but MUST NOT change the interpretation of a previously valid BIDS URI.
 For example, a future version may specify an authority that would allow BIDS
