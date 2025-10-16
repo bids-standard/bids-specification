@@ -121,7 +121,7 @@ and a guide for using macros can be found at
 
 Template:
 
-```
+```text
 prov/
 	provenance.tsv
 	provenance.json
