@@ -122,8 +122,9 @@ and a guide for using macros can be found at
 Template:
 
 ```
-provenance.tsv
-provenance.json
+prov/
+	provenance.tsv
+	provenance.json
 ```
 
 The purpose of this RECOMMENDED file is to describe properties of provenance files. It MUST contain the column `provenance_label`, which MUST consist of `prov-<label>` values identifying one row for each `prov` entity in the dataset, followed by an optional column containing a description for the entity. Each entity MUST be described by one and only one row.
