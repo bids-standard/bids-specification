@@ -353,7 +353,7 @@ and a guide for using macros can be found at
 
 ## Provenance of a BIDS file
 
-Metadata of a provEntity describing a BIDS file MAY be stored inside its sidecar JSON.
+Metadata of a provEntity describing a BIDS file SHOULD be stored inside its sidecar JSON.
 
 Any sidecar JSON file MAY include the following keys:
 
@@ -389,7 +389,7 @@ and a guide for using macros can be found at
 
 ## Provenance of a BIDS dataset
 
-Metadata of a provEntity describing a BIDS dataset (raw, derivative, or study) MAY be stored inside its `dataset_description.json` file. This metadata describes the provenance of the whole dataset.
+Metadata of a provEntity describing a BIDS dataset (raw, derivative, or study) SHOULD be stored inside its `dataset_description.json` file. This metadata describes the provenance of the whole dataset.
 
 The `dataset_description.json` file of a **BIDS raw dataset** or **BIDS study dataset** MAY include the following key to describe provenance.
 
@@ -508,6 +508,16 @@ The uniqueness of this identifier MUST be used to distinguish any activity, soft
     - `bids:ds001734:prov#conversion-xfMMbHK1` - a conversion activity described inside the `ds001734` dataset;
     - `bids::prov#fedora-uldfv058` - a Fedora based environment described inside the current dataset.
     - `bids:preprocessing:prov#fmriprep-r4kzzMt8` - the fMRIPrep software described inside the `preprocessing` dataset.
+
+## BIDS provenance from a RDF perspective
+
+The Resource Description Framework (RDF) is a method to describe and exchange graph data.
+
+The terms defined in this part of the BIDS specfication are based on the [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/) standard. Their relations with W3C Prov terms are defined in the [`provenance-context.json`]() file.
+
+Provenance metadata can be aggregated into JSON-LD files that represent RDF graphs.
+
+Insert examples and links to bids-examples here.
 
 ## Minimal examples
 
