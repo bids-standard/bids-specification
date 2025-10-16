@@ -900,9 +900,13 @@ Digest:
   name: Digest
   display_name: Digest
   description: |
-    Object containing checksum(s) of a file.
-    It takes the form of a dictionary with the name of the checksum functions as keys and
-    checksums as values : `{"<checksum_function>": "<checksum>"}`.
+    Object containing digests of the data described by the provEntity.
+    Each key in the object MUST be the name of a checksum function among:
+    `MD5`; `SHA1`; `SHA-224` ; `SHA-256` ; `SHA-384` ; `SHA-512` ;
+    `SHA3-224`; `SHA3-256`; `SHA3-384`; `SHA3-512`; `BLAKE2B-256`; `BLAKE3-256`;
+    `SHAKE128`; `SHAKE256`.
+    If the checksum function is not in this list, key MAY be an arbitrary label.
+    The corresponding value is the checksum as computed by the function.
   type: object
 DigitizedHeadPoints:
   name: DigitizedHeadPoints
