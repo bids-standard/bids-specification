@@ -928,7 +928,7 @@ Bare DOIs such as `10.18112/openneuro.ds000001.v1.0.0` are [DEPRECATED][].
 
 ### BIDS URI
 
-To reference files in BIDS datasets, the following URI scheme may be used:
+To reference files or directories in BIDS datasets, the following URI scheme may be used:
 
 ```plain
 bids:[<dataset-name>]:<relative-path>[#<fragment>]
@@ -940,6 +940,7 @@ The `dataset-name` component is an identifier for a BIDS dataset,
 and the `relative-path` component is the location of a resource within that
 BIDS dataset, relative to the root of that dataset.
 The `relative-path` MUST NOT start with a forward-slash character (`/`).
+The `fragment` MAY be used to identify a resource that is subordinate to the file or directory.
 
 Examples:
 
@@ -953,6 +954,9 @@ bids::prov#preprocessing-00f3a18f
 
 If no dataset name is specified, the URI is relative to the current BIDS dataset.
 This is made more precise in the next section.
+
+!!! note
+    A BIDS dataset can be referenced using the BIDS URI of its root directory. For example: `bids:ds000001:`
 
 #### Resolution of BIDS URIs
 
