@@ -606,11 +606,6 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example(
     {
-        "sourcedata": {
-            "dicoms": {
-                "...": "",
-            },
-        },
         "sub-001": {
             "anat": {
                 "sub-001_T1w.nii.gz": "",
@@ -618,8 +613,8 @@ A guide for using macros can be found at
             },
         },
         "prov": {
-            "prov-dcm2niix_act.json": "",
-            "prov-dcm2niix_soft.json": ""
+            "prov-spm_act.json": "",
+            "prov-spm_soft.json": ""
         }
     }
 ) }}
@@ -671,7 +666,6 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example(
     {
-    "study-1": {
         "sourcedata": {
             "raw": {
                 "sub-01": {},
@@ -688,7 +682,6 @@ A guide for using macros can be found at
         },
         "dataset_description.json": "",
         "...": ""
-    }
    }
 ) }}
 
