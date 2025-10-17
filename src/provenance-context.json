@@ -46,7 +46,7 @@
         "ProvEntities": "prov:Entity",
         "Environments": "prov:Entity",
         "Activities": "prov:Activity",
-        "Software": "prov:SoftwareAgent",
+        "Software": "prov:Agent",
         "Atlocation": "prov:atLocation"
     }
 }
