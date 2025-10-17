@@ -26,9 +26,9 @@ Within this modality, BIDS defines two datatypes based on fundamentally differen
     measuring field potentials (μV) from nearby neurons without membrane penetration.
     Examples: Neuropixels probes, tetrodes, multi-electrode arrays.
 
--   **`icephys`** (Intracellular Electrophysiology): Electrodes penetrate cell membranes to directly measure
+-   **`icephys`** (Intracellular Electrophysiology): Electrodes penetrate or attach to cell membranes to directly measure
     intracellular potentials (mV) and cellular dynamics.
-    Examples: whole-cell patch clamp, sharp electrode recordings.
+    Examples: cell-attached patch clamp, whole-cell patch clamp, sharp electrode recordings.
 
 These datatypes differ in recording technique, signal amplitude, required metadata
 (for example, `pipette_solution` and `recording_mode` for icephys; probe geometry for ecephys),
@@ -251,16 +251,11 @@ These may be of neuronal origin (for example, online filtered LFP signals) or ge
 (for example, synchronization or behavioral signals).
 
 The channel properties are stored in a `.tsv` file.
-This file contains the following information:
-
--   `channel_id`
--   `electrode_id` (in the case of neuronal signals)
--   Amplifier information
--   …
+It should contain information about reference electrodes, amplifier, filtering, time alignment and other metadata pertinent to the data for each channel.
 
 This table stores information about the recorded signals, *not* the electrodes. The distinction is particularly important in cases where multiple signals are recorded from a single electrode (such as Neuropixel probes). For more information about the distinction between electrodes and channels, see [the corresponding section in iEEG](./intracranial-electroencephalography.md#terminology-electrodes-vs-channels).
 
-Columns in the `*_channel.tsv` file are:
+Columns in the `*_channels.tsv` file are:
 
 {{ MACROS___make_columns_table("microephys.microephysChannels") }}
 
@@ -706,7 +701,7 @@ The `*_scans.tsv` should be used to provide information about multiple parts of 
 session (for example, recording start times in case the recording was paused and restarted)
 when the data from each of these different recordings is stored in separate files.
 Each data file should have a name that contains a `_task-XX` and/or `_run-XX` suffix, and
-should be described by at most one row in the `*_scans.tsv` file. See also the BIDS Scans
+should be described by one row in the `*_scans.tsv` file. See also the BIDS Scans
 specification.
 Relative paths to files should be used under a compulsory "filename" header.
 If acquisition time is included, it should be with the `acq_time` header. Datetime should

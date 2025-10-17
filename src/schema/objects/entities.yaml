@@ -362,7 +362,8 @@ split:
   display_name: Split
   description: |
     In the case of long data recordings that exceed a file size of 2Gb,
-    `.fif`, `.nwb`, `.nix` files are conventionally split into multiple parts.
+    Files with a lot of data may be split into multiple parts.
+    Some file types, such as `.fif`, have internal pointers to the next file
     Each of the `.fif` files has an internal pointer to the next file.
     This is important when renaming these split recordings to the BIDS convention.
 
