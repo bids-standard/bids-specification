@@ -1,5 +1,10 @@
 {
     "@context": {
+        "@version": 1.1, 
+        "Records": {
+          "@container": "@type", 
+          "@id": "@graph"
+        }, 
         "prov" : "http://www.w3.org/ns/prov#",
         "xsd": "http://www.w3.org/2001/XMLSchema#",
         "RRID": "http://scicrunch.org/resolver/",
