@@ -956,7 +956,7 @@ If no dataset name is specified, the URI is relative to the current BIDS dataset
 This is made more precise in the next section.
 
 !!! note
-    A BIDS dataset can be referenced using the BIDS URI of its root directory. For example: `bids:ds000001:`
+    A BIDS dataset can be referenced using the BIDS URI of its root directory. For example: `bids:ds000001:.`
 
 #### Resolution of BIDS URIs
 
