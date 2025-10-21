@@ -1034,6 +1034,13 @@ ElectrodeMaterial:
   display_name: Electrode Material
   description: |
     Material of the electrode (for example, `Tin`, `Ag/AgCl`, `Gold`).
+    If multiple sensor devices with heterogeneous electrode materials are recorded into
+    the same data file,
+    electrode material SHOULD be recorded in the `material` column of `*_electrodes.tsv` instead.
+    If instead those devices were recorded into separate data files (distinguished for example
+    by the `recording` entity),
+    separate `*_emg.json` files (similarly distinguished) MAY be included,
+    each with their own `ElectrodeMaterial` values.
   type: string
 ElectrodeType:
   name: ElectrodeType
@@ -1930,9 +1937,17 @@ IntendedFor__ds_relative:
             format: dataset_relative
 InterelectrodeDistance:
   name: InterelectrodeDistance
-  display_name: Interelectrode Distance
+  display_name: Inter-electrode Distance
   description: |
     Distance between pairs or grids of electrodes rigidly attached to the same sensor device.
+    If multiple sensor devices with heterogeneous inter-electrode distances are recorded into
+    the same data file,
+    inter-electrode distance SHOULD be recorded in the `interelectrode_distance` column of
+    `*_electrodes.tsv` instead.
+    If instead those devices were recorded into separate data files (distinguished for example
+    by the `recording` entity),
+    separate `*_emg.json` files (similarly distinguished) MAY be included,
+    each with their own `InterelectrodeDistance` values.
   type: number
   unit: mm
 InversionTime:
