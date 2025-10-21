@@ -72,6 +72,8 @@ EMGRecommended:
     EMGPlacementSchemeDescription: recommended
     EpochLength: recommended
     HardwareFilters: recommended
+    Preamplification: recommended
+    Gain: recommended
     InterelectrodeDistance: recommended
     RecordingDuration: recommended
     RecordingType: recommended
