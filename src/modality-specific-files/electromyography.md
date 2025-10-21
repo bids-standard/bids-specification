@@ -298,7 +298,7 @@ Note that upper-case is REQUIRED:
 | LATENCY     | Latency of sample, in seconds from recording onset, typically from an _external_ clock source. |
 | REF         | Reference channel                                                                              |
 
-Examples of free-form text for field `description`:
+Examples of common free-form text for the `description` column (these should occur _without enclosing quotation marks_):
 
 -   n/a
 -   stimulus
