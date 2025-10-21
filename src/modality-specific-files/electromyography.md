@@ -130,6 +130,26 @@ Rather, each entry from `*_channels.tsv` should have a corresponding row in `*_e
 where the location information is given, and `*_coordsystem.json` should also be provided
 (as in scenarios (1) or (2) above).
 
+### EMG in combination with other modalities
+
+When EMG is recorded alongside other BIDS modalities (such as EEG or motion),
+researchers SHOULD define how recordings are synchronized. Options include:
+
+-   Recording time stamps from a common clock source on the LATENCY channel of
+    each modality’s acquisition device.
+-   Recording experimental events (usually as TTL pulses) on dedicated channels of
+    each modality’s acquisition devices.
+-   Storing the acquisition time (relative to a common clock source) of the first data point
+    of each modality’s recording in the acq_time column of the *_scans.tsv file.
+    Note that the BIDS date time format allows optional fractional seconds,
+    which SHOULD be used to maximize the precision of the synchronization.
+-   Record the start- and stop-time of one modality’s recording (relative to
+    the other modality’s clock) in the *_events.tsv file for the other modality.
+
+It is up to the user to decide which approach is most appropriate given their experimental setup,
+and to identify which modality will serve as the 'main' clock source for synchronization purposes
+(or whether a separate external clock source is used).
+
 ### Sidecar JSON (`*_emg.json`)
 
 For consistency between studies and institutions,
