@@ -52,12 +52,12 @@ differential amplifier (which combines signals from two electrode sources) and t
 analog-to-digital converter, which results in a potential difference (voltage) that forms
 the actual data stored in the EMG dataset. We employ the following short definitions:
 
--   Electrode = A single point of contact between the acquisition system and
+-   **Electrode:** A single point of contact between the acquisition system and
     the recording site (whether on the skin surface or intramuscular).
     Multiple electrodes can be organized as arrays, grids, leads, strips, probes,
     shafts, and so on.
 
--   Channel = A single analog-to-digital converter in the recording system that
+-   **Channel:** A single analog-to-digital converter in the recording system that
     regularly samples the value of a transducer, which results in the signal being
     represented as a time series in the digitized data.
     This can be connected to two electrodes (to measure the potential difference between
