@@ -5,7 +5,7 @@
 # Assumptions: top-to-bottom overrides is sufficient logic
 
 ---
-# Fields relating to the EMG electrode positions
+# ensure presence of fields relating to the EMG electrode positions
 EMGCoordsystemPositions:
   selectors:
     - datatype == "emg"
@@ -24,6 +24,7 @@ EMGCoordsystemPositions:
       level: optional
       level_addendum: required if `ParentCoordinateSystem` is present
 
+# ensure description is present when coordsys is "other"
 EMGCoordsystemOther:
   selectors:
     - datatype == "emg"
@@ -33,7 +34,7 @@ EMGCoordsystemOther:
   fields:
     EMGCoordinateSystemDescription: required
 
-# Fields relating to the linkage between child (device) and parent (anatomical) coordinate systems
+# ensure linkage between child (device) and parent (anatomical) coordinate systems
 EMGChildCoordSystem:
   selectors:
     - datatype == "emg"
@@ -43,8 +44,19 @@ EMGChildCoordSystem:
     AnchorCoordinates: required
     AnchorElectrode: required
 
-# Fields relating to EMG placement
+# ensure presence of fields relating to EMG placement
 EMGPlacementSchemeInfo:
+  selectors:
+    - datatype == "emg"
+    - suffix == "emg"
+  fields:
+    EMGPlacementScheme: required
+    EMGPlacementSchemeDescription:
+      level: optional
+      level_addendum: required if `EMGPlacementScheme` is `"Other"`
+
+# ensure description is present when EMGPlacementScheme is "other"
+EMGPlacementSchemeDescription:
   selectors:
     - datatype == "emg"
     - suffix == "emg"
@@ -52,5 +64,4 @@ EMGPlacementSchemeInfo:
     - json.EMGPlacementScheme == "Other"
   fields:
     EMGPlacementSchemeDescription:
-      level: recommended
-      level_addendum: required if `EMGPlacementScheme` is `"Other"`
+      level: required
