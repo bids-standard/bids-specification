@@ -137,12 +137,15 @@ researchers SHOULD define how recordings are synchronized. Options include:
 
 -   Recording time stamps from a common clock source on the LATENCY channel of
     each modality’s acquisition device.
+
 -   Recording experimental events (usually as TTL pulses) on dedicated channels of
     each modality’s acquisition devices.
+
 -   Storing the acquisition time (relative to a common clock source) of the first data point
     of each modality’s recording in the acq_time column of the *_scans.tsv file.
     Note that the BIDS date time format allows optional fractional seconds,
     which SHOULD be used to maximize the precision of the synchronization.
+
 -   Record the start- and stop-time of one modality’s recording (relative to
     the other modality’s clock) in the *_events.tsv file for the other modality.
 

@@ -43,7 +43,6 @@ EMGChildCoordSystem:
     AnchorCoordinates: required
     AnchorElectrode: required
 
-
 # Fields relating to EMG placement
 EMGPlacementSchemeInfo:
   selectors:
