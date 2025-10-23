@@ -1436,3 +1436,8 @@ microvascular:
   display_name: microvascular
   description: |
     The origin of a tissue: microvascular
+PhysioTypeEnriched:
+  value: enriched
+  display_name: Enriched Physiological Recording
+  description: |
+    Physiological recording data accompanied by enriched metadata.
