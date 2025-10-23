@@ -1476,6 +1476,11 @@ PhysioTypeGeneric:
   display_name: Generic Physiological Recording
   description: |
     Unspecified physiological recording.
+PhysioTypeEnriched:
+  value: enriched
+  display_name: Enriched Physiological Recording
+  description: |
+    Physiological recording data accompanied by enriched metadata.
 PhysioTypeEyetrack:
   value: eyetrack
   display_name: Eye-tracking recording
