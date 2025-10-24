@@ -253,7 +253,7 @@ and a guide for using macros can be found at
     {
         "ProvEntities": [
             {
-                "Id": "bids::sub-01/func/sub-01_task-tonecounting_bold.nii",
+                "Id": "bids::prov#provEntity-9rfe8szz",
                 "Label": "sub-01_task-tonecounting_bold.nii",
                 "AtLocation": "sub-01/func/sub-01_task-tonecounting_bold.nii",
                 "GeneratedBy": "bids::prov#realign-acea8093",
@@ -487,12 +487,13 @@ The following rules and conventions are provided in order to have consistent, hu
 
 ### Identifiers for provEntities
 
-The identifier of a provEntity describing a BIDS file SHOULD be a [BIDS URI](../common-principles.md#bids-uri).
+The identifier of a provEntity describing a BIDS file available in the dataset MUST be a [BIDS URI](../common-principles.md#bids-uri).
+The identifier of a provEntity describing a BIDS file not available in the dataset SHOULD be a [BIDS URI](../common-principles.md#bids-uri) with a fragment part.
 
 !!! warning
     The use of BIDS URIs may require to define the `DatasetLinks` object in [`dataset_description.json`](dataset-description.md#dataset_descriptionjson).
 
-In other cases, the identifier of a provEntity described in a BIDS dataset `<dataset-name>` SHOULD have the following form, where `<label>` is an arbitrary value for identifying the provEntity.
+In other cases, the identifier of a provEntity described in a BIDS dataset `<dataset-name>` MAY have the following form, where `<label>` is an arbitrary value for identifying the provEntity.
 
 ```text
 bids:[<dataset-name>]:prov#provEntity-<label>
@@ -506,7 +507,7 @@ bids:[<dataset-name>]:prov#provEntity-<label>
 
 ### Identifiers for other provenance objects
 
-The identifier of an activity, software, or environment described in a BIDS dataset `<dataset-name>` SHOULD have the following form, where `<label>` is a human readable name for coherently identifying the provenance objects and `<uid>` is a unique group of chars.
+The identifier of an activity, software, or environment described in a BIDS dataset `<dataset-name>` SHOULD have the following form, where `<label>` is a human readable name for coherently identifying the provenance object and `<uid>` is a unique group of chars.
 
 ```text
 bids:[<dataset-name>]:prov#<label>-<uid>
