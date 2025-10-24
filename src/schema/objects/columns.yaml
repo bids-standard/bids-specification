@@ -146,6 +146,12 @@ description__entities:
   description: |
     Free-form text description of the entity's label (defined in `<entity>_id` column).
   type: string
+description__provenance:
+  name: description
+  display_name: Description
+  description: |
+    Free-form text description of the provenance file(s).
+  type: string
 dimension:
   name: dimension
   display_name: Dimension
@@ -388,6 +394,14 @@ plasma_radioactivity:
   description: |
     Radioactivity in plasma, in unit of plasma radioactivity (for example, `kBq/mL`).
   type: number
+provenance_label:
+  name: provenance_label
+  display_name: Provenance label
+  description: |
+    An identifier of the form `prov-<label>`,
+    matching a `prov` entity found in the dataset.
+  type: string
+  pattern: ^prov-[0-9a-zA-Z+]+$
 # reference column for channels.tsv files for EEG data
 reference__eeg:
   name: reference

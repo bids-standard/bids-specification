@@ -74,3 +74,16 @@ Phenotype:
     HED: optional
   index_columns: [participant_id]
   additional_columns: allowed
+
+Provenance:
+  selectors:
+    - datatype == 'prov'
+    - stem == 'provenance'
+    - extension == '.tsv'
+  initial_columns:
+    - provenance_label
+  columns:
+    provenance_label: required
+    description__provenance: optional
+  index_columns: [provenance_label]
+  additional_columns: allowed
