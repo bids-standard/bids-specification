@@ -2211,19 +2211,17 @@ MeasureType:
     Describes the category of physiological data which was recorded.
   type: string
   enum:
-  - Trigger, 
-  - PPG 
-  - ECG 
-  - Ventilation
-  - CO2
-  - O2
-  - PetCO2
-  - PetO2
-  - EDA-tonic
-  - EDA-phasic
-  - EDA-total
-  - BP 
-  - Other
+    - $ref: objects.enums.BP.value
+    - $ref: objects.enums.PPG__physio.value
+    - $ref: objects.enums.ECG__physio.value
+    - $ref: objects.enums.Ventilation.value
+    - $ref: objects.enums.EDA.value
+    - $ref: objects.enums.CO2.value
+    - $ref: objects.enums.O2.value
+    - $ref: objects.enums.PETCO2.value
+    - $ref: objects.enums.PETO2.value
+    - $ref: objects.enums.Trigger.value
+    - Other
 MetaboliteAvail:
   name: MetaboliteAvail
   display_name: Metabolite Available
