@@ -67,8 +67,7 @@ Activities:
       Label:
         name: Label
         description: |
-          Name for the activity. This can be the name of the tool, script,
-          or function used (for example "bet", "recon-all", "myFunction.py", "docker").
+          Name for the activity.
         type: string
         format: label
       Command:
@@ -1279,7 +1278,7 @@ ProvEntities:
         format: uri
       Label:
         name: Label
-        description: A name for the provEntity.
+        description: Name for the provEntity.
         type: string
         format: label
       Digest:
@@ -1342,12 +1341,12 @@ Environments:
         format: uri
       Label:
         name: Label
-        description: A name for the environment.
+        description: Name for the environment.
         type: string
         format: label
       EnvVars:
         name: EnvVars
-        description: A dictionary defining the environment variables as key-value pairs.
+        description: Object containing environment variables as key-value pairs.
         type: object
       OperatingSystem:
         name: OperatingSystem
@@ -1356,7 +1355,7 @@ Environments:
       Dependencies:
         name: Dependencies
         description: |
-          A dictionary defining the software used as dependencies and their versions as key-value pairs.
+          Object containing software dependencies as keys and their versions as values.
         type: object
 EpochLength:
   name: EpochLength
