@@ -68,7 +68,7 @@ For the most part, this metadata consists of **provenance objects** of 4 types:
     - *sub-001_T1w_preproc.nii* is the skull striped image;
     - the *"Brain extraction"* activity was performed using the *FSL* software within a *Linux* software environment.
 
-Provenance objects are described as JSON objects in BIDS. They are stored inside **provenance files** (see [Provenance files](#provenance-files)). Additionally, metadata of provEntities can be stored as BIDS metadata inside sidecar JSON files (see [Provenance of a BIDS file](#provenance-of-a-bids-file)) as well as in `dataset_description.json` files (see [Provenance of a BIDS dataset](#provenance-of-a-bids-dataset)).
+Provenance objects are described as JSON objects in BIDS. They are stored inside **provenance files** (see [Provenance files](#provenance-files)). Additionally, metadata for provEntities can be stored inside the JSON sidecar file for any BIDS data file (see [Provenance of a BIDS file](#provenance-of-a-bids-file)), as well as in `dataset_description.json` files (see [Provenance of a BIDS dataset](#provenance-of-a-bids-dataset)).
 
 ## Provenance files
 
