@@ -1436,3 +1436,78 @@ microvascular:
   display_name: microvascular
   description: |
     The origin of a tissue: microvascular
+PhysioTypeEnriched:
+  value: enriched
+  display_name: Enriched Physiological Recording
+  description: |
+    Physiological recording data accompanied by enriched metadata.
+PPG__physio:
+  value: PPG
+  display_name: Photoplethysmography (PPG)
+  tags:
+    - physio
+  description: |
+    Continuous optical measurements capturing cardiac pulsation.
+Trigger:
+  value: Trigger
+  display_name: Trigger
+  tags:
+    - physio
+  description: |
+    Continuous digital (binary TTL) or analog (TTL in Volt) values indicating scanner triggers.
+ECG__physio:
+  value: ECG
+  display_name: Electrocardiogram (ECG)
+  tags:
+    - physio
+  description: |
+    Continuous electrical measurements capturing cardiac activity.
+Ventilation:
+  value: Ventilation
+  display_name: Ventilation
+  tags:
+    - physio
+  description: |
+    Continuous breathing measurements, e.g. signal acquired using a respiratory belt.
+CO2:
+  value: CO2
+  display_name: Carbon dioxide (CO2)
+  tags:
+    - physio
+  description: |
+    Continuous measurements of the carbon dioxide concentration in expired air..
+O2:
+  value: O2
+  display_name: Oxygen (O2)
+  tags:
+    - physio
+  description: |
+    Continuous measurements of the oxygen concentration from respiratory gases.
+PETCO2:
+  value: PETCO2
+  display_name: End-tidal carbon dioxide (PETCO2)
+  tags:
+    - physio
+  description: |
+    Continuous measurements of the end-tidal pressure of carbon dioxide at the end of an exhalation.
+PETO2:
+  value: PETO2
+  display_name: End-tidal oxygen (PETO2)
+  tags:
+    - physio
+  description: |
+    Continuous measurements of the end-tidal pressure of oxygen at the end of an inhalation.
+EDA:
+  value: EDA
+  display_name: Electrodermal activity (EDA)
+  tags:
+    - physio
+  description: |
+    Continuous measurements of changes in the electrical properties of the skin.
+BP:
+  value: BP
+  display_name: Blood pressure (BP)
+  tags:
+    - physio
+  description: |
+    Continuous measurements of the blood pressure waveform representing changes in arterial pressure over time.
