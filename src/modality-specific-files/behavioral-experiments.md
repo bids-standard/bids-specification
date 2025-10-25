@@ -86,7 +86,7 @@ body movements, or other behavioral aspects during experimental tasks or rest pe
     Data curators MUST take special care to ensure compliance with applicable privacy
     regulations (such as HIPAA in the United States, GDPR in the European Union, or other
     local data protection laws) when handling these recordings.
-    
+
     These recordings are generally more suitable for internal use or for sharing
     non-human subject data, unless appropriate privacy protections are implemented.
 
