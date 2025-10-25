@@ -672,7 +672,6 @@ DatasetType:
   enum:
     - $ref: objects.enums.raw.value
     - $ref: objects.enums.derivative.value
-    - $ref: objects.enums.study__datasettype.value
 DecayCorrectionFactor:
   name: DecayCorrectionFactor
   display_name: Decay Correction Factor
