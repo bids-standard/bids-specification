@@ -1,7 +1,7 @@
 # Contributors
 
 Legend (source:
-<https://allcontributors.org/docs/en/emoji-key>)
+<https://github.com/all-contributors/all-contributors/blob/master/docs/emoji-key.md>)
 
 | **Emoji** | **Represents**                                                                         |
 | --------- | -------------------------------------------------------------------------------------- |
@@ -47,6 +47,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Adeen Flinker                                        | 📖                                     |
 | Adina S. Wagner                                      | 🎨💻                                   |
 | Agah Karakuzu                                        | 💬📖🔣🤔💻                             |
+| Agnese Zazio                                         | 📖                                     |
 | Aki Nikolaidis                                       | 📖                                     |
 | Alberto Lazari                                       | 📖                                     |
 | Alejandro de la Vega                                 | 🐛💻⚠️                                 |
@@ -55,13 +56,15 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Alexander Jones                                      | 💻🐛                                   |
 | Alexander L. Cohen                                   | 🐛💻📖💬                               |
 | Alexander von Lautz                                  | 📖                                     |
-| Alexandre D'Astous                                   | 📖                                     |
+| Alexandre D'Astous                                   | 📖💻                                   |
 | Alexandre Gramfort                                   | 📖💡                                   |
 | Alexandre Hutton                                     | 📖                                     |
 | Alexandre Routier                                    | 📖                                     |
 | Alexandru Foias                                      | 📖🔣                                   |
 | Ali Khan                                             | 📖                                     |
 | Alizee Wickenheiser                                  | 🔧                                     |
+| Alyssa Dai                                           | 💻                                     |
+| Amber R. Hopkins                                     | 📖                                     |
 | Ana Fouto                                            | 📓                                     |
 | Anders Eklund                                        | 📖📢💻                                 |
 | Andrea Pigorini                                      | 📖                                     |
@@ -70,22 +73,27 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Andrew Janke                                         | 📖💻                                   |
 | Anibal Sólon                                         | 💻🐛                                   |
 | Anthony Galassi                                      | 📖💻                                   |
+| Arianna Sala                                         | 📖                                     |
 | Ariel Rokem                                          | 📖💻                                   |
 | Arjen Stolk                                          | 📖                                     |
+| Arman Jahanpour                                      | 💻                                     |
 | Arnaud Delorme                                       | 📖💡🤔                                 |
 | Arnaud Marcoux                                       | 📖                                     |
 | Arshitha Basavaraj                                   | 📖🚇💻                                 |
 | Ashley G. Gillman                                    | 📖                                     |
 | Athanasia Monika Mowinckel                           | 📖                                     |
+| Augustijn Vrolijk                                    | 💻📖                                   |
 | Aysegul Gunduz                                       | 📖                                     |
 | Azeez Adebimpe                                       | 📖                                     |
 | B. Nolan Nichols                                     | 📖                                     |
 | Balint Kincses                                       | 📖                                     |
-| Benjamin Beasley                                     | 📖                                     |
-| Benjamin Dichter                                     | 📖                                     |
+| Benjamin Beasley                                     | 📖💻                                   |
+| Benjamin Dichter                                     | 📖💻⚠️                                 |
 | Benjamin Gagl                                        | 📖                                     |
 | Bertrand Thirion                                     | 📖                                     |
+| Boris Clénet                                         | 📖💻                                   |
 | Bradley Voytek                                       | 📖                                     |
+| Brent McPherson                                      | 💻                                     |
 | Brett L. Foster                                      | 📖                                     |
 | Brian A. Wandell                                     | 📖                                     |
 | Brian N. Lundstrom                                   | 📖                                     |
@@ -100,20 +108,22 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Chris Rorden                                         | 📖💻                                   |
 | Christian Büchel                                     | 📖                                     |
 | Christian Horea                                      | 💻📖                                   |
-| Christine Rogers                                     | 🔣📖🤔🚇🔧                             |
+| Christine Rogers                                     | 🔣📖🤔🚇🔧💻                           |
 | Christophe Phillips                                  | 📖                                     |
+| Christopher G. Schwarz                               | 💻                                     |
 | Christopher J. Honey                                 | 📖                                     |
 | Christopher J. Markiewicz                            | 💬🐛💻📖🎨💡🤔🔌👀🔧📢🔣📋🚧           |
 | Christopher Lee-Messer                               | 📖                                     |
 | Clara Moreau                                         | 📖                                     |
 | Clint Hansen                                         | 📖🤔                                   |
-| Cody Baker                                           | 💻🔧                                   |
+| Cody C Baker                                         | 💻📖                                   |
 | Cyril Pernet                                         | 💬📝📖🎨💡📋🤔📢                       |
 | Cyrus Eierud                                         | 📖                                     |
 | D. Sturgeon                                          | 💻                                     |
 | Dan Levitas                                          | 📖                                     |
 | Dan Lurie                                            | 🤔📖🔧🔌💻💬                           |
 | Daniel A. Handwerker                                 | 📖                                     |
+| Daniel McCloy                                        | 📖                                     |
 | David Alsop                                          | 📖                                     |
 | David Boas                                           | 📖                                     |
 | David Groppe                                         | 📖                                     |
@@ -121,14 +131,17 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | David McAlpine                                       | 📖                                     |
 | David Thomas                                         | 📖🔣                                   |
 | Dejan Draschkow                                      | 📖                                     |
+| Desmond Oathes                                       | 📖                                     |
 | Dianne Patterson                                     | 📖                                     |
 | Dimitri Papadopoulos Orfanos                         | 📖💡🤔💬💻                             |
 | Dmitry Petrov                                        | 📖💻                                   |
 | Dora Hermes                                          | 📖💻✅🔍🤔                             |
 | Dorien Huijser                                       | 📖                                     |
+| Dorota Jarecka                                       | 💻📖                                   |
 | Douglas N. Greve                                     | 📖                                     |
 | Duncan Macleod                                       | 📖🚇                                   |
 | Dung Truong                                          | 📖💻🔧🤔                               |
+| Dustin Moraczewski                                   | 📖                                     |
 | Dylan Nielson                                        | 📖💻🔧                                 |
 | Eduard Ort                                           | 📖💻                                   |
 | Eleonora Marcantoni                                  | 📖                                     |
@@ -143,6 +156,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Ethan Blackwood                                      | 👀📖                                   |
 | Eugene P. Duff                                       | 📖                                     |
 | Ezequiel Mikulan                                     | 📖💻                                   |
+| Fede Raimondo                                        | 💻                                     |
 | Felipe Orihuela-Espina                               | 📖                                     |
 | Fidel Alfaro Almagro                                 | 💬📖💡🔌                               |
 | Filip Szczepankiewicz                                | 📖                                     |
@@ -150,6 +164,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Franco Pestilli                                      | 📖💻🎨💡🤔👀🔧📋🔍🚇📢                 |
 | Franklin W. Feingold                                 | 📋📝✅💬🤔🎨📢👀🚇🖋️📆💻               |
 | François Tadel                                       | 📖🔌💡                                 |
+| Friederike Breuer                                    | 📖                                     |
 | Gaia Rizzo                                           | 📖                                     |
 | Gang Chen                                            | 📖                                     |
 | Gaël Varoquaux                                       | 📖                                     |
@@ -159,6 +174,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Giacomo Mazzamuto                                    | 📖🔣                                   |
 | Gilles de Hollander                                  | 📖                                     |
 | Gio Piantoni                                         | 📖                                     |
+| Giovanna Nordio                                      | 📖                                     |
 | Gitte M. Knudsen                                     | 📖                                     |
 | Giulio Castegnaro                                    | 📖                                     |
 | Giuseppe Gallitto                                    | 📖                                     |
@@ -168,6 +184,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Gregory Noack                                        | 📖💻⚠️                                 |
 | Greydon Gilmore                                      | 📖💻                                   |
 | Guillaume Flandin                                    | 📖💻                                   |
+| Guiomar Niso                                         | 🤔🎨🔍👀📋📝🔧🐛💻🔣✅💬📖💡📢         |
 | Gunnar Schaefer                                      | 📖                                     |
 | Gustav Nilsonne                                      | 📖                                     |
 | Hamish Innes-Brown                                   | 📖                                     |
@@ -182,20 +199,24 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Ilona Lipp                                           | 📖                                     |
 | International Neuroinformatics Coordinating Facility | 💵📋                                   |
 | Iris Groen                                           | 📖                                     |
+| Isaac To                                             | 💻                                     |
 | Isla Staden                                          | 📖                                     |
 | Jaap von der Aar                                     | 📖                                     |
+| Jacob Sanz-Robinson                                  | 💻                                     |
 | Jakub Kaczmarzyk                                     | 📖🔧🚇                                 |
 | James Gholam                                         | 📖                                     |
 | James Kent                                           | 💬💻                                   |
 | Jan Mathijs Schoffelen                               | 📖                                     |
 | Jan Petr                                             | 💬🐛💻📖🔣💡📋🤔📆⚠️📢                 |
+| Jan Valosek                                          | 💻                                     |
 | Jan-Mathijs Schoffelen                               | 📖                                     |
 | Jean-Baptiste Poline                                 | 📖📢🤔🎨💻                             |
+| Jean-Charles Mariani                                 | 📖🤔                                   |
 | Jean-Christophe Houde                                | 📖💻                                   |
 | Jean-Dominique Gallezot                              | 📖                                     |
 | Jean-Philippe Lachaux                                | 📖                                     |
 | Jeanette Mumford                                     | 📖                                     |
-| Jefferson Casimir                                    | 🔧                                     |
+| Jefferson Casimir                                    | 🔧💻🔣📖                               |
 | Jeffrey G. Ojemann                                   | 📖                                     |
 | Jeffrey S. Grethe                                    | 💬🐛✅📢💻                             |
 | JegouA                                               | 💻                                     |
@@ -216,8 +237,12 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Joseph Woods                                         | 📖                                     |
 | Julia Guiomar Niso Galán                             | 🤔🎨🔍👀📋📝🔧🐛💻🔣✅💬📖💡📢         |
 | Julia Sprenger                                       | 📖                                     |
+| Julia-Katharina Pfarr                                | 💻📖🔧💡                               |
 | Julien Cohen-Adad                                    | 📖🔣🤔                                 |
+| Julio C Hernandez Pavon                              | 📖                                     |
 | Julius Welzel                                        | 📖💡🐛💻🔣🤔💬📓                       |
+| Jérémie Fouquet                                      | 💻                                     |
+| Kabilar Gunalan                                      | 💻                                     |
 | Kai J. Miller                                        | 📖                                     |
 | Kangjoo Lee                                          | 📖                                     |
 | Katja Heuer                                          | 🔧                                     |
@@ -239,17 +264,19 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Liberty Hamilton                                     | 📖                                     |
 | Luca Pollonini                                       | 📖                                     |
 | Luis Hernandez-Garcia                                | 📖📓                                   |
-| Luke J. Edwards                                      | 📖💬                                   |
+| Luke J. Edwards                                      | 📖💬💻                                 |
 | Lyuba Zehl                                           | 📖                                     |
 | Mainak Jas                                           | 📖💻                                   |
+| Mana Biabani                                         | 📖                                     |
 | Manjari Narayan                                      | 📖                                     |
 | Manuel Mercier                                       | 📖🤔                                   |
 | Maqsood Yaqub                                        | 📖                                     |
 | Marc Lalancette                                      | 📖💻                                   |
 | Marco Castellaro                                     | 💬🐛💻📖💡⚠️📢🚇                       |
+| Maria Ermolova                                       | 📖                                     |
 | Maria de la Iglesia                                  | 📖                                     |
 | Marie-Hélène Bourget                                 | 📖🔣💻🤔                               |
-| Mark Mikkelsen                                       | 📖                                     |
+| Mark Mikkelsen                                       | 📖💻🔣👀                               |
 | Markus Morawski                                      | 📖                                     |
 | Marta Bortoletto                                     | 📖                                     |
 | Martin Craig                                         | 🔣                                     |
@@ -257,31 +284,49 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Martin Szinte                                        | 📖                                     |
 | Martin Wilson                                        | 📖                                     |
 | Martina Bulgari                                      | 📖                                     |
-| Mateusz Pawlik                                       | 📖🐛🤔🚧👀                             |
+| Mateusz Pawlik                                       | 📖🐛🤔🚧👀💻                           |
 | Mathias Goncalves                                    | 💻🔧📢                                 |
 | Mathieu Boudreau                                     | 💬🤔📢                                 |
+| Mathieu Dugré                                        | 💻                                     |
+| Mathieu Guay-Paquet                                  | 📖💻                                   |
+| Matt Cieslak                                         | 💻                                     |
 | Matt Sanderson                                       | 📖💻                                   |
+| Matt Stead                                           | 💻                                     |
 | Matteo Tonietto                                      | 📖                                     |
 | Matthias Günther                                     | 📖                                     |
 | Matthias Van Osch                                    | 📖                                     |
+| Matthieu Chourrout                                   | 💻                                     |
+| Mattia Veronese                                      | 📖                                     |
 | Maureen J Shader                                     | 📖                                     |
 | Maurice Pasternak                                    | 📓                                     |
 | Max A. van den Boom                                  | 💻👀📖🐛                               |
 | Melanie Ganz-Benjaminsen                             | 📖🔣💻🤔📆🔍📢                         |
+| Melissa Kline Struhl                                 | 📖                                     |
 | Michael Chappell                                     | 📖🔣📆                                 |
+| Michael Firbank                                      | 💻                                     |
 | Michael Hanke                                        | 📖🤔🔧🐛📢                             |
 | Michael P. Harms                                     | 📖⚠️🔧                                 |
 | Michael P. Milham                                    | 💡🔍                                   |
 | Michael P. Notter                                    | 💬📝✅📢📖                             |
 | Michael Schirner                                     | 📖                                     |
+| Michelle Wang                                        | 💻                                     |
 | Mikaël Naveau                                        | 🐛                                     |
+| Mohammad Torabi                                      | 💻                                     |
+| Monique Denissen                                     | 📖💻                                   |
+| Murat Bilgel                                         | 📖                                     |
 | Nader Pouratian                                      | 📖                                     |
 | Natalia Petridou                                     | 📖                                     |
+| Natalie Rotstein                                     | 📖                                     |
 | National Institute of Mental Health                  | 💵                                     |
 | Nell Hardcastle                                      | 💻📖🤔🚇👀💬                           |
+| Nicholas Holmes                                      | 📖                                     |
 | Nicholas Traut                                       | 📖🔧💻                                 |
 | Nick F. Ramsey                                       | 📖                                     |
+| Nick Guenther                                        | 💻                                     |
 | Nicole C. Swann                                      | 📖                                     |
+| Nigel Rogasch                                        | 📖                                     |
+| Nikhil Bhagwat                                       | 💻                                     |
+| Nikita Beliy                                         | 📖                                     |
 | Nima Bigdely Shamlo                                  | 📖                                     |
 | Olivier David                                        | 📖                                     |
 | Orrin Devinsky                                       | 📖                                     |
@@ -296,6 +341,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Pierre Rioux                                         | 📖                                     |
 | Pieter Vandemaele                                    | 📖💻                                   |
 | Pradeep Reddy Raamana                                | 💻🔧                                   |
+| Qian Chu                                             | 💻                                     |
 | R. Cameron Craddock                                  | 📖📢                                   |
 | Remi Gau                                             | 📖💻💬📢🐛💻🚇👀🔧🤔                   |
 | Richard Höchenberger                                 | 📖💻                                   |
@@ -305,6 +351,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Robert Knight                                        | 📖                                     |
 | Robert Luke                                          | 💻                                     |
 | Robert Oostenveld                                    | 📖🔧📢💡✅⚠️🤔💬🐛📝💻🖋️🔣🎨📋🚇👀📓📹 |
+| Roberto Guidotti                                     | 📖                                     |
 | Roberto Toro                                         | 🔧                                     |
 | Rohan Goyal                                          | 📖                                     |
 | Ross W. Blair                                        | 💻                                     |
@@ -312,16 +359,22 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Rémi Adon                                            | 📖                                     |
 | Samir Das                                            | 📖                                     |
 | Samuel Garcia                                        | 🤔👀📖                                 |
+| Samuel Guay                                          | 📖                                     |
+| Samuel Le Meur-Diebolt                               | 📖🤔                                   |
 | Samuel Nastase                                       | 💻                                     |
 | Sara Elgayar                                         | 📖                                     |
 | Sasha D'Ambrosio                                     | 📖                                     |
 | Satrajit S. Ghosh                                    | 📖💻                                   |
 | Scott Makeig                                         | 📖                                     |
+| Sebastian Urchs                                      | 💻📖🤔                                 |
 | Sein Jeung                                           | 📖💡🐛💻🔣🤔💬🔧📓                     |
+| Seyed Yahya Shirazi                                  | 📖🤔💻                                 |
 | Shashank Bansal                                      | 📖                                     |
+| Silvia Isabella                                      | 📖                                     |
 | Sjoerd B. Vos                                        | 📖                                     |
 | Soichi Hayashi                                       | 📖🔧🐛                                 |
 | Stefan Appelhoff                                     | 📖💬🤔🐛💡💻👀⚠️📢✅🔧🔌📝🚧🔣         |
+| Stefanie De Smet                                     | 📖                                     |
 | Stephan Bickel                                       | 📖                                     |
 | Steven Meisler                                       | 🐛💻💬🔧📓                             |
 | Suyash Bhogawar                                      | 📖💡⚠️🔧💬                             |
@@ -333,27 +386,33 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Tal Yarkoni                                          | 💻📖🤔🔍🔌👀📢🐛🎨                     |
 | Tamas Spisak                                         | 📖                                     |
 | Tamás Józsa                                          | 📓                                     |
+| Taylor Khuhn                                         | 📖                                     |
 | Taylor Salo                                          | 💬📖🔌💻                               |
 | Teon L. Brooks                                       | 📖💻⚠️💬👀🤔🔧🐛📢                     |
+| Thomas Deffieux                                      | 📖🤔                                   |
 | Thomas E. Nichols                                    | 📖📢🔧👀🚧💻                           |
 | Thomas Funck                                         | 📖                                     |
 | Thomas Kirk                                          | 📖                                     |
 | Thomas Okell                                         | 📖                                     |
 | Tibor Auer                                           | 💬📖💡🔧📢🐛🤔                         |
+| Til Ole Bergmann                                     | 📖                                     |
 | Timo Dickscheid                                      | 📖                                     |
 | Timotheus Berg                                       | 📖🤔📓                                 |
 | Tobey Betthauser                                     | 📖                                     |
 | Tobias Bengfort                                      | 💻                                     |
 | Tom Hampshire                                        | 📖                                     |
 | Tor Wager                                            | 📖                                     |
+| Torsten Stöter                                       | 📖                                     |
 | Travis Riddle                                        | 📖🔧🐛                                 |
 | Tristan Glatard                                      | 📖💻                                   |
 | Tyler Collins                                        | 🔣🔧                                   |
 | Ulrike Bingel                                        | 📖                                     |
 | Vanessa Sochat                                       | 📖                                     |
 | Vasudev Raguram                                      | 💻🎨📖🔧                               |
+| Victor H. Souza                                      | 📖                                     |
 | Vince D. Calhoun                                     | 📖                                     |
 | Vittorio Iacovella                                   | 📖                                     |
+| Viviana Siless                                       | 📖                                     |
 | Vladimir Litvak                                      | 📖                                     |
 | Wietske van der Zwaag                                | 🔣💬                                   |
 | William Clarke                                       | 📖                                     |
@@ -361,10 +420,14 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Wouter V. Potters                                    | 💻📖                                   |
 | Xiangrui Li                                          | 📖💻                                   |
 | Yaroslav O. Halchenko                                | 📖📢🔧💬🐛💻🔣🔍🤔🔌👀📓🚇             |
+| Yaël Balbastre                                       | 💻                                     |
 | Yoni Ashar                                           | 📖                                     |
 | Yuan Wang                                            | 💻                                     |
 | Zachary Michael                                      | 📖                                     |
+| Zhi-De Deng                                          | 📖                                     |
 | ezemikulan                                           | 💻                                     |
 | josator2                                             | 💻                                     |
 | monkeyman192                                         | 💻                                     |
+| patrick-g-h                                          | 💻                                     |
+| tstoeter                                             | 💻                                     |
 | Étienne Bergeron                                     | 🔣💻                                   |

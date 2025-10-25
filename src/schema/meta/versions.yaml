@@ -1,5 +1,7 @@
 ---
 # A list of released BIDS versions as of the next schema release
+# NEXT_VERSION_HERE
+- '1.10.1'
 - '1.10.0'
 - '1.9.0'
 - '1.8.0'
