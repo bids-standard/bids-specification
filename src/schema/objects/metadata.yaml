@@ -2215,12 +2215,6 @@ ManufacturersModelName:
   description: |
     Manufacturer's model name of the equipment that produced the measurements.
   type: string
-ManufacturersModelVersion:
-  name: ManufacturersModelVersion
-  display_name: Manufacturers Model Version
-  description: |
-    Manufacturer's model version of the equipment that produced the measurements.
-  type: string
 MatrixCoilMode:
   name: MatrixCoilMode
   display_name: Matrix Coil Mode
