@@ -1,4 +1,4 @@
-# Behavioral experiments
+# Behavioral recordings
 
 !!! example "Example datasets"
 
@@ -115,31 +115,49 @@ Audio and video files MAY use the following entities:
 
 ### Examples
 
-```Text
-sub-01/
-    beh/
-        sub-01_task-rest_video.mp4
-        sub-01_task-rest_video.json
-        sub-01_task-stroop_recording-face_video.mp4
-        sub-01_task-stroop_recording-face_video.json
-        sub-01_task-stroop_recording-room_video.mp4
-        sub-01_task-stroop_recording-room_video.json
-        sub-01_task-vocalization_audio.wav
-        sub-01_task-vocalization_audio.json
-```
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "beh": {
+         "sub-01_task-rest_video.mp4": "",
+         "sub-01_task-rest_video.json": "",
+         "sub-01_task-stroop_recording-face_video.mp4": "",
+         "sub-01_task-stroop_recording-face_video.json": "",
+         "sub-01_task-stroop_recording-room_video.mp4": "",
+         "sub-01_task-stroop_recording-room_video.json": "",
+         "sub-01_task-vocalization_audio.wav": "",
+         "sub-01_task-vocalization_audio.json": "",
+         },
+      },
+   }
+) }}
 
 For continuous recordings split into multiple files:
 
-```Text
-sub-01/
-    ses-01/
-        beh/
-            sub-01_ses-01_task-freeplay_run-01_video/
-                split-001.mp4
-                split-002.mp4
-                split-003.mp4
-            sub-01_ses-01_task-freeplay_run-01_video.json
-```
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "ses-01": {
+         "beh": {
+            "sub-01_ses-01_task-freeplay_run-01_video": {
+               "split-001.mp4": "",
+               "split-002.mp4": "",
+               "split-003.mp4": "",
+               },
+            "sub-01_ses-01_task-freeplay_run-01_video.json": "",
+            },
+         },
+      },
+   }
+) }}
 
 ### Sidecar JSON for audio and video recordings
 
@@ -198,14 +216,22 @@ but with the `_events` suffix.
 
 For example:
 
-```Text
-sub-01/
-    beh/
-        sub-01_task-speech_audio.wav
-        sub-01_task-speech_audio.json
-        sub-01_task-speech_events.tsv
-        sub-01_task-speech_events.json
-```
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "beh": {
+         "sub-01_task-speech_audio.wav": "",
+         "sub-01_task-speech_audio.json": "",
+         "sub-01_task-speech_events.tsv": "",
+         "sub-01_task-speech_events.json": "",
+         },
+      },
+   }
+) }}
 
 ## Example `_beh.tsv`
 
