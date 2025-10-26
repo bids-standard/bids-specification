@@ -705,9 +705,7 @@ should be described by one row in the `*_scans.tsv` file. See also the BIDS Scan
 specification.
 Relative paths to files should be used under a compulsory "filename" header.
 If acquisition time is included, it should be with the `acq_time` header. Datetime should
-be expressed in the following format 2009-06-15T13:45:30 (year, month, day, hour (24h),
-minute, second; this is equivalent to the RFC3339 "date-time" format, time zone is always
-assumed as local time).
+be expressed in the RFC3339 "date-time" format, for example `2009-06-15T13:45:30` (year, month, day, hour (24h), minute, second). Time zone is always assumed as local time.
 The run and task keywords and the corresponding `*_scans.tsv` file are OPTIONAL and can be
 ignored if the dataset consists of only one continuous recording and a single or no task.
 
