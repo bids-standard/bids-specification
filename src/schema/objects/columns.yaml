@@ -1145,14 +1145,6 @@ whole_blood_radioactivity:
   description: |
     Radioactivity in whole blood samples,
     in unit of radioactivity measurements in whole blood samples (for example, `kBq/mL`).
-  type: number
-width__probes:
-  name: width
-  display_name: Width
-  description: |
-    Physical width of the probe, for example, '5'.
-    This dimension corresponds to the x-axis of the probe's local coordinate frame.
-  type: number
 x:
   name: x
   display_name: X position
