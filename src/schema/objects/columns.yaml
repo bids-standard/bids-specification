@@ -1145,6 +1145,7 @@ whole_blood_radioactivity:
   description: |
     Radioactivity in whole blood samples,
     in unit of radioactivity measurements in whole blood samples (for example, `kBq/mL`).
+  type: number
 x:
   name: x
   display_name: X position
