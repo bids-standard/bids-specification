@@ -15,15 +15,11 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_filename_template("raw", datatypes=["beh"]) }}
 
-Behavioral data MAY be stored in the `beh` directory,
-The `beh` directory uses standard formats for event timing (`_events.tsv`),
-metadata (`_events.json`), video recordings (`_video.*`), audio recordings (`_audio.*`),
-physiological recordings (`_physio.tsv.gz`, `_physio.json`),
-and other continuous recordings (`_stim.tsv.gz`, `_stim.json`).
+The `beh` directory MAY store behavioral recordings such as audio (`_audio.*`) and video (`_video.*`) recordings, physiological (`_physio.*`) recordings, and other continuous recordings (`_stim.tsv.gz`, `_stim.json`).
+Audio and video recordings MAY be of subjects performing tasks, resting-state behavior, or recordings of stimuli being presented to the subject.
+The `beh` directory MAY also contain event timing files (`_events.tsv`) and their associated metadata (`_events.json`) for behavioral experiments that do not have corresponding neuroimaging or functional data.
 
-Additionally, events files
-that do not include the mandatory `onset` and `duration` columns
-MAY be included,
+Additionally, events files that do not include the mandatory `onset` and `duration` columns MAY be included,
 but MUST be labeled `_beh.tsv` rather than `_events.tsv`.
 
 The following OPTIONAL columns are pre-defined for behavioral data files:
