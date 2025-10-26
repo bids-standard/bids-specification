@@ -682,7 +682,7 @@ by the experimentalist (for example, manual reward). Note that these events must
 with the corresponding microephys recording data. For more details, see the
 Task Events documentation.
 Note that this file can also be used to describe stimulation performed during the recording. For this,
-please follow the iEEG stimulation documentation.
+please follow the [iEEG stimulation documentation](intracranial-electroencephalography.md#electrical-stimulation).
 
 ## Multi-part Recordings
 
