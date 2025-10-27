@@ -250,7 +250,7 @@ The following `dataset_description.json` indicates that only the HED-SCORE libra
 ```JSON
 {
   "Name": "A great experiment",
-  "BIDSVersion": "1.10.0",
+  "BIDSVersion": "1.10.1",
   "HEDVersion": "score_1.0.0"
 }
 ```
