@@ -223,7 +223,7 @@ PostLabelingDelayGreater:
     - suffix == "asl"
     - sidecar.PostLabelingDelay != null
   checks:
-    - sidecar.PostLabelingDelay <= 10
+    - max(sidecar.PostLabelingDelay) <= 10
 
 # 186
 BolusCutOffDelayTimeGreater:
@@ -247,7 +247,7 @@ LabelingDurationGreater:
   selectors:
     - sidecar.LabelingDuration != null
   checks:
-    - sidecar.LabelingDuration <= 10
+    - max(sidecar.LabelingDuration) <= 10
 
 # 196
 ASLEchoTimeASLContextLength:
