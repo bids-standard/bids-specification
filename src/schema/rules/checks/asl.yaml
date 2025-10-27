@@ -235,7 +235,7 @@ BolusCutOffDelayTimeGreater:
   selectors:
     - sidecar.BolusCutOffDelayTime != null
   checks:
-    - sidecar.BolusCutOffDelayTime <= 10
+    - max(sidecar.BolusCutOffDelayTime) <= 10
 
 # 187
 LabelingDurationGreater:

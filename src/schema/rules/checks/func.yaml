@@ -27,7 +27,7 @@ RepetitionTimeGreaterThan:
     - suffix == "bold"
     - type(sidecar.RepetitionTime) != "null"
   checks:
-    - max(sidecar.RepetitionTime) <= 100
+    - sidecar.RepetitionTime <= 100
 
 # 12
 RepetitionTimeMismatch:
