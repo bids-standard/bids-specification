@@ -120,6 +120,12 @@ fif:
   display_name: Functional Imaging File Format
   description: |
     An MEG file format used by Neuromag, Elekta, and MEGIN.
+flac:
+  value: .flac
+  display_name: Free Lossless Audio Codec
+  description: |
+    A [FLAC](https://en.wikipedia.org/wiki/FLAC) audio file.
+    This format is commonly used for behavioral audio recordings.
 jpg:
   value: .jpg
   display_name: Joint Photographic Experts Group Format
