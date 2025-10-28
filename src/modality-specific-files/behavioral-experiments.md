@@ -17,6 +17,9 @@ and a guide for using macros can be found at
 
 The `beh` directory MAY store behavioral recordings such as audio (`_audio.*`) and video (`_video.*`) recordings, physiological (`_physio.*`) recordings, and other continuous recordings (`_stim.tsv.gz`, `_stim.json`).
 Audio and video recordings MAY be of subjects performing tasks, resting-state behavior, or recordings of stimuli being presented to the subject.
+Audio/video recordings MAY occur simultaneously with other recordings, such as BOLD or EEG.
+Relative timing between files may be determined by consulting the `scans.tsv` file.
+If no `scans.tsv` file is present, the alignment is undefined.
 The `beh` directory MAY also contain event timing files (`_events.tsv`) and their associated metadata (`_events.json`) for behavioral experiments that do not have corresponding neuroimaging or functional data.
 
 Additionally, events files that do not include the mandatory `onset` and `duration` columns MAY be included,
