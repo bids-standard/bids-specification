@@ -3744,22 +3744,6 @@ StartTime:
     where `s` reflects whole seconds, and `.000000` reflects OPTIONAL fractional seconds.
   type: number
   unit: s
-StartTime__audiovideo:
-  name: StartTime
-  display_name: Start Time
-  description: |
-    Start time in seconds in relation to the start of acquisition of the first
-    data sample in the corresponding dataset (negative values are allowed).
-    This data MAY be specified with sub-second precision using the syntax `s[.000000]`,
-    where `s` reflects whole seconds, and `.000000` reflects OPTIONAL fractional seconds.
-    For audio/video files where precise temporal alignment is not possible or applicable,
-    this field MAY be set to `"n/a"`.
-  anyOf:
-    - type: number
-      unit: s
-    - type: string
-      enum:
-        - n/a
 StationName:
   name: StationName
   display_name: Station Name

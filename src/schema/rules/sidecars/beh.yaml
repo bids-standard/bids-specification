@@ -40,7 +40,6 @@ AudioVideoStreams:
     - datatype == "beh"
     - intersects([suffix], ["audio", "video"])
   fields:
-    StartTime__audiovideo: required
     AudioChannelCount: optional
     AudioSampleRate: optional
     FrameRate: optional
