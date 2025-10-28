@@ -98,6 +98,10 @@ export interface Associations {
      */
     coordsystem?: Coordsystem;
     /**
+     * Electrodes file
+     */
+    electrodes?: Electrodes;
+    /**
      * Events file
      */
     events?: Events;
@@ -206,6 +210,16 @@ export interface Coordsystem {
 }
 
 /**
+ * Electrodes file
+ */
+export interface Electrodes {
+    /**
+     * Path to associated electrodes.tsv file
+     */
+    path: string;
+}
+
+/**
  * Events file
  */
 export interface Events {
@@ -288,10 +302,6 @@ export interface Subjects {
      */
     participant_id?: string[];
     /**
-     * The union of participant_id columns in phenotype files
-     */
-    phenotype?: string[];
-    /**
      * Subjects as determined by sub-* directories
      */
     sub_dirs: string[];
@@ -319,6 +329,11 @@ export interface Gzip {
  * Parsed contents of NIfTI header referenced elsewhere in schema.
  */
 export interface NiftiHeader {
+    /**
+     * Orientation labels indicating primary direction of data axes defined with respect to the
+     * object of interest.
+     */
+    axis_codes: AxisCode[];
     /**
      * Data seq dimensions.
      */
@@ -355,6 +370,15 @@ export interface NiftiHeader {
      * Units of pixdim[1..4]
      */
     xyzt_units: XyztUnits;
+}
+
+export enum AxisCode {
+    A = "A",
+    I = "I",
+    L = "L",
+    P = "P",
+    R = "R",
+    S = "S",
 }
 
 /**
@@ -453,10 +477,6 @@ export interface Subject {
  * Collections of sessions in subject
  */
 export interface Sessions {
-    /**
-     * The union of session_id columns in phenotype files
-     */
-    phenotype?: string[];
     /**
      * Sessions as determined by ses-* directories
      */

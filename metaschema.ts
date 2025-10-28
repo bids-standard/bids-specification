@@ -544,6 +544,7 @@ export interface Schema {
       [k: string]: {
         selectors?: ExpressionList;
         target: {
+          entities?: string[];
           suffix?: string;
           extension: string | string[];
         };
@@ -675,8 +676,11 @@ export interface Schema {
           [k: string]: unknown;
         };
     };
+    metaentities: {
+      [k: string]: unknown;
+    };
     modalities: {
-      [k: string]: General2;
+      [k: string]: General3;
     };
     suffixes: {
       [k: string]: unknown;
@@ -741,6 +745,7 @@ export interface Schema {
     };
     sidecars: {};
     tabular_data: {};
+    metaentities: string[];
     common_principles: string[];
     dataset_metadata: {
       [k: string]: unknown;
@@ -798,9 +803,18 @@ export interface Value {
 }
 /**
  * This interface was referenced by `undefined`'s JSON-Schema definition
- * via the `patternProperty` "^[a-z]+$".
+ * via the `patternProperty` "^[a-zA-Z0-9_]+$".
  */
 export interface General2 {
+  display_name: string;
+  description: string;
+  [k: string]: unknown;
+}
+/**
+ * This interface was referenced by `undefined`'s JSON-Schema definition
+ * via the `patternProperty` "^[a-z]+$".
+ */
+export interface General3 {
   display_name: string;
   description: string;
   [k: string]: unknown;
@@ -875,8 +889,7 @@ export interface Json {
             level_addendum?: string;
             description_addendum?: string;
             issue?: Issue;
-          }
-        | string;
+          };
     };
   };
 }
@@ -906,8 +919,7 @@ export interface TabularData {
             level_addendum?: string;
             description_addendum?: string;
             issue?: Issue;
-          }
-        | string;
+          };
     };
     additional_columns: "allowed" | "allowed_if_defined" | "not_allowed" | "n/a";
     index_columns?: string[];
