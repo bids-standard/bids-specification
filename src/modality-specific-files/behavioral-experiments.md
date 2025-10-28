@@ -90,6 +90,7 @@ body movements, or other behavioral aspects during experimental tasks or rest pe
 
 Audio recordings MUST use one of the following extensions:
 
+-   `.flac` - Free Lossless Audio Codec
 -   `.mp3` - MPEG Audio Layer III
 -   `.wav` - Waveform Audio File Format
 
