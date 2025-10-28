@@ -137,6 +137,10 @@
   result: -1
 - expression: max([-1, "n/a", 1])
   result: 1
+- expression: min(42)
+  result: 42
+- expression: max(42)
+  result: 42
 - expression: '[3, 2, 1][0]'
   result: 3
 - expression: '"string"[0]'
