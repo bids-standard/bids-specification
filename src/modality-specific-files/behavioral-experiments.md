@@ -143,11 +143,9 @@ A guide for using macros can be found at
    "sub-01": {
       "ses-01": {
          "beh": {
-            "sub-01_ses-01_task-freeplay_run-01_video": {
-               "split-001.mp4": "",
-               "split-002.mp4": "",
-               "split-003.mp4": "",
-               },
+            "sub-01_ses-01_task-freeplay_run-01_split-001_video.mp4": "",
+            "sub-01_ses-01_task-freeplay_run-01_split-002_video.mp4": "",
+            "sub-01_ses-01_task-freeplay_run-01_split-003_video.mp4": "",
             "sub-01_ses-01_task-freeplay_run-01_video.json": "",
             },
          },
