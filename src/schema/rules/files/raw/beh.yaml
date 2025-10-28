@@ -22,6 +22,7 @@ audio:
   extensions:
     - .mp3
     - .wav
+    - .flac
     - .json
   datatypes:
     - beh
