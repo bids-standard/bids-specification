@@ -108,7 +108,7 @@ Video recordings MUST use one of the following extensions:
 Audio and video files MAY use the following entities:
 
 -   `task` - OPTIONAL for audio and video recordings
--   `acquisition` - OPTIONAL, can distinguish different recording setups
+-   `acq` - OPTIONAL, can distinguish different recording setups
 -   `run` - OPTIONAL, for multiple recordings with identical parameters
 -   `recording` - OPTIONAL, to differentiate simultaneous recordings from different angles, locations, or devices
 -   `split` - OPTIONAL, for continuous recordings split into multiple files
