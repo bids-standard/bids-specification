@@ -12,8 +12,7 @@ photo:
     - meg
     - nirs
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.base.entities
     acquisition: optional
 
 photo__micr:
