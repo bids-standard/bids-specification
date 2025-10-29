@@ -1,5 +1,6 @@
 {
   "plugins": [
+    "remark-frontmatter",
     "preset-lint-markdown-style-guide",
     "preset-lint-recommended",
     "remark-gfm",
