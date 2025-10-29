@@ -5,6 +5,7 @@ from __future__ import annotations
 import logging
 import os
 import sys
+from functools import wraps
 
 from . import data
 
@@ -149,3 +150,28 @@ def jsonschema_validator(
     validator_kwargs: ValidatorKwargs
     validator_kwargs = {"format_checker": validator_cls.FORMAT_CHECKER} if check_format else {}
     return validator_cls(schema, **validator_kwargs)  # type: ignore[call-arg]
+
+
+def in_context(context_manager):
+    """Convert a context manager into a function decorator.
+
+    Parameters
+    ----------
+    context_manager : context manager
+        The context manager to use.
+
+    Returns
+    -------
+    Callable
+        The function decorator.
+    """
+
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            with context_manager:
+                return func(*args, **kwargs)
+
+        return wrapper
+
+    return decorator
