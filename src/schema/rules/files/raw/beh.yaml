@@ -1,6 +1,7 @@
 ---
 # Non-continuous data
 noncontinuous:
+  $ref: meta.templates.raw.task
   suffixes:
     - beh
   extensions:
