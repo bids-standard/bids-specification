@@ -550,9 +550,9 @@ standard BIDS labels:
 
 ```tsv
 index	name	abbreviation
-137	pars	opercularis	IFGop
-138	pars	triangularis	IFGtr
-139	pars	orbitalis	IFGor
+137	pars opercularis	IFGop
+138	pars triangularis	IFGtr
+139	pars orbitalis	IFGor
 ```
 
 ## Derivatives from atlases
