@@ -495,7 +495,7 @@ def write_report(
     """
 
     report_path = report_path.format(
-        datetime=datetime.datetime.utcnow().strftime(datetime_format),
+        datetime=datetime.datetime.now(datetime.timezone.utc).strftime(datetime_format),
         pid=os.getpid(),
     )
     report_path = os.path.abspath(os.path.expanduser(report_path))
