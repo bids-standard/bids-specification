@@ -3,7 +3,7 @@
 import math
 import posixpath
 import re
-from functools import cache
+from functools import cache, wraps
 
 import pandas as pd
 
@@ -453,3 +453,18 @@ def num2words(integer, to="ordinal"):
         return mapper[integer]
     except KeyError:
         raise ValueError(f"Input {integer} is not supported.")
+
+
+def propagate_fence_exception(func):
+    """Decorator to prevent superfences from swallowing exceptions."""
+
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except Exception as e:
+            from pymdownx.superfences import SuperFencesException
+
+            raise SuperFencesException from e
+
+    return wrapper

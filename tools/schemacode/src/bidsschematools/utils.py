@@ -5,6 +5,8 @@ from __future__ import annotations
 import logging
 import os
 import sys
+import warnings
+from contextlib import contextmanager
 from functools import wraps
 
 from . import data
@@ -175,3 +177,16 @@ def in_context(context_manager):
         return wrapper
 
     return decorator
+
+
+@contextmanager
+def filter_warnings(*filters):
+    """Context manager to apply warning filters.
+
+    Arguments are lists of positional arguments to :func:`warnings.filterwarnings`.
+    """
+
+    with warnings.catch_warnings():
+        for filt in filters:
+            warnings.filterwarnings(*filt)
+        yield
