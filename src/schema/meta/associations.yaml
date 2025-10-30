@@ -100,3 +100,12 @@ electrodes:
     entities:
       - space
   inherit: true
+
+atlas_description:
+  selectors:
+    - entities.atlas
+    - extension != '.json'
+  target:
+    suffix: description
+    extension: .json
+  inherit: true
