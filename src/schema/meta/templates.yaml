@@ -119,7 +119,6 @@ deriv:
       - dseg
     entities:
       $ref: meta.templates.deriv.volumetric.entities
-      cohort: optional
       atlas: optional
       segmentation: optional
       scale: optional
@@ -134,7 +133,6 @@ deriv:
       - probseg
     entities:
       $ref: meta.templates.deriv.volumetric.entities
-      cohort: optional
       atlas: optional
       segmentation: optional
       scale: optional
@@ -151,7 +149,6 @@ deriv:
       - dseg
     entities:
       $ref: meta.templates.deriv.surface.entities
-      cohort: optional
       atlas: optional
       segmentation: optional
       scale: optional
