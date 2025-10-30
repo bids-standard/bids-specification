@@ -209,7 +209,7 @@ requires-dist = [
     { name = "mkdocs-material", specifier = ">=5.4" },
     { name = "mkdocs-redirects" },
     { name = "numpy" },
-    { name = "pymdown-extensions", specifier = ">=7.0.0" },
+    { name = "pymdown-extensions", specifier = ">=9.2.0" },
 ]
 
 [package.metadata.requires-dev]
@@ -239,6 +239,7 @@ expressions = [
 render = [
     { name = "markdown-it-py" },
     { name = "pandas" },
+    { name = "pymdown-extensions" },
     { name = "tabulate" },
 ]
 
@@ -255,6 +256,7 @@ requires-dist = [
     { name = "jsonschema", extras = ["format"], marker = "extra == 'validation'" },
     { name = "markdown-it-py", marker = "extra == 'render'" },
     { name = "pandas", marker = "extra == 'render'" },
+    { name = "pymdown-extensions", marker = "extra == 'render'", specifier = ">=9.2" },
     { name = "pyparsing", marker = "extra == 'expressions'" },
     { name = "pytest", marker = "extra == 'tests'", specifier = ">6" },
     { name = "pytest-cov", marker = "extra == 'tests'" },
