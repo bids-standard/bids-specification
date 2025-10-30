@@ -51,6 +51,9 @@ nav:
       - Website: https://bids-standard.github.io/bids-starter-kit/
       - Tutorials: https://bids-standard.github.io/bids-starter-kit/tutorials/tutorials.html
       - GitHub repository: https://github.com/bids-standard/bids-starter-kit
+exclude_docs: |
+  README.md
+  pregh-changes.md
 theme:
   name: material
   favicon: images/favicon.png
