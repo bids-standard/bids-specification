@@ -283,8 +283,8 @@ Template:
 
 ```Text
 <pipeline_name>/
+    atlas-<label>_description.json
     tpl-<label>/
-        atlas-<label>_description.json
         [cohort-<label>/]
            [<datatype>/]
                tpl-<label>_[cohort-<label>][_space-<label>][_atlas-<label>][seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
