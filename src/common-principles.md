@@ -591,7 +591,7 @@ Example:
 ```
 
 Each level can be described with a string as in the example above,
-or with an object containing the fields [`Description`](./glossary.md#description-metadata)
+or with an object containing the fields [`Description`](./glossary.md#description-sense-1-metadata)
 and [`TermURL`](./glossary.md#termurl-metadata)
 like in the example below.
 
@@ -1159,8 +1159,8 @@ to suppress warnings or provide interpretations of your filenames.
 
 <!-- Link Definitions -->
 
-[dataset-description]: modality-agnostic-files/data-summary-files.md
-[dataset_description.json]: modality-agnostic-files/data-summary-files.md#dataset_descriptionjson
-[derived-dataset-description]: modality-agnostic-files/data-summary-files.md#derived-dataset-and-pipeline-description
+[dataset-description]: modality-agnostic-files/dataset-description.md
+[dataset_description.json]: modality-agnostic-files/dataset-description.md#dataset_descriptionjson
+[derived-dataset-description]: modality-agnostic-files/dataset-description.md#derived-dataset-and-pipeline-description
 [deprecated]: #definitions
 [uris]: #uniform-resource-indicator
