@@ -35,9 +35,10 @@ jobs:
               uvx linkchecker -t 1 ~/project/site/
               # check external separately by pointing to all *html so no
               # failures for local file:/// -- yoh found no better way,
-              linkchecker -t 1 --check-extern \
+              uvx linkchecker -t 1 --check-extern \
                 --ignore-url 'file:///.*' \
                 --ignore-url 'https://bids-specification.readthedocs.io/en/stable/.*' \
+                --ignore-url "https://bids-specification.readthedocs.io/en/v${CIRCLE_BRANCH#rel/}/" \
                 --ignore-url 'https://doi.org/.*' \
                 --ignore-url 'https://fonts.gstatic.com' \
                 --ignore-url 'https://github.com/[^/]*' \
@@ -45,6 +46,8 @@ jobs:
                 --ignore-url 'https://www.incf.org' \
                 --ignore-url 'https://dicomlookup.com/dicomtags/.*' \
                 --ignore-url 'https://www.instagram.com/bidsstandard/' \
+                --ignore-url 'https://jsoneditoronline.org' \
+                --ignore-url 'https://rrid.site.*' \
                 ~/project/site/*html ~/project/site/*/*.html
             else
               echo "Release PR - do nothing"

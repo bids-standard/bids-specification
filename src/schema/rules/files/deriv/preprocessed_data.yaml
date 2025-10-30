@@ -172,11 +172,11 @@ pet_blood_common:
       - meta.templates.deriv.spatial.entities
       - rules.files.raw.pet.blood.entities
 
-task_events_common:
+events_common:
   $ref:
     - meta.templates.deriv.base
-    - rules.files.raw.task.events
+    - rules.files.raw.events.events
   entities:
     $ref:
       - meta.templates.deriv.base.entities
-      - rules.files.raw.task.events.entities
+      - rules.files.raw.events.events.entities
