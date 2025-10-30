@@ -298,9 +298,7 @@ def make_entity_table(schema, tablefmt="github", src_path=None, **kwargs):
     formats = ["Format"]
     table = [formats]
 
-    suffix_map = {
-        obj.value: key for key, obj in schema.objects.suffixes.items()
-    }
+    suffix_map = {obj.value: key for key, obj in schema.objects.suffixes.items()}
 
     # Compose header and formats first
     for long_name in schema.rules.entities:
@@ -325,7 +323,8 @@ def make_entity_table(schema, tablefmt="github", src_path=None, **kwargs):
 
     for (dtype, entities), suffixes in rows.items():
         suf_str = " ".join(
-            f"[{suffix}]({GLOSSARY_PATH}.md#objects.suffixes.{suffix_map[suffix]})" for suffix in suffixes
+            f"[{suffix}]({GLOSSARY_PATH}.md#objects.suffixes.{suffix_map[suffix]})"
+            for suffix in suffixes
         )
         # TODO: <br> is specific for html form
         fmt_str = f"[{dtype}]({GLOSSARY_PATH}.md#objects.datatypes.{dtype})<br>({suf_str})"
