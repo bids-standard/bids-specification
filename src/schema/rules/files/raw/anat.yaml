@@ -92,17 +92,11 @@ mese:
   datatypes:
     - anat
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.mri.entities
     task: optional
-    acquisition: optional
-    ceagent: optional
-    reconstruction: optional
     direction: optional
-    run: optional
     echo: required
     part: optional
-    chunk: optional
 
 multiflip:
   suffixes:

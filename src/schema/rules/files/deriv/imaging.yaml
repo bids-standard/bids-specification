@@ -52,21 +52,37 @@ anat_defacemask_volumetric_atlas:
       - meta.templates.atlas.base.entities
       - rules.files.deriv.imaging.anat_defacemask_volumetric.entities
 
-anat_multiecho_volumetric:
+anat_mese_volumetric:
   $ref:
     - meta.templates.deriv.volumetric
-    - rules.files.raw.anat.multiecho
+    - rules.files.raw.anat.mese
   entities:
     $ref:
       - meta.templates.deriv.volumetric.entities
-      - rules.files.raw.anat.multiecho.entities
+      - rules.files.raw.anat.mese.entities
 
-anat_multiecho_volumetric_atlas:
-  $ref: rules.files.deriv.imaging.anat_multiecho_volumetric
+anat_mese_volumetric_atlas:
+  $ref: rules.files.deriv.imaging.anat_mese_volumetric
   entities:
     $ref:
       - meta.templates.atlas.base.entities
-      - rules.files.deriv.imaging.anat_multiecho_volumetric.entities
+      - rules.files.deriv.imaging.anat_mese_volumetric.entities
+
+anat_megre_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.anat.megre
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.anat.megre.entities
+
+anat_megre_volumetric_atlas:
+  $ref: rules.files.deriv.imaging.anat_megre_volumetric
+  entities:
+    $ref:
+      - meta.templates.atlas.base.entities
+      - rules.files.deriv.imaging.anat_megre_volumetric.entities
 
 anat_multiflip_volumetric:
   $ref:
