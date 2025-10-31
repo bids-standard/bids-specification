@@ -502,6 +502,12 @@ VFA:
     Depending on the provided metadata fields and the sequence type,
     data may be eligible for DESPOT1, DESPOT2 and their variants
     ([Deoni et al. 2005](https://doi.org/10.1002/mrm.20314)).
+act:
+  value: act
+  display_name: Activities
+  description: |
+    A JSON file containing provenance objects describing activities.
+    (See the [`Activities`](SPEC_ROOT/modality-agnostic-files/provenance.md#activities) section).
 angio:
   value: angio
   display_name: Angiogram
@@ -612,6 +618,18 @@ electrodes:
   display_name: Electrodes
   description: |
     File that gives the location of (i)EEG electrodes.
+ent:
+  value: ent
+  display_name: ProvEntities
+  description: |
+    A JSON file containing provenance objects describing provEntities.
+    (See the [`ProvEntities`](SPEC_ROOT/modality-agnostic-files/provenance.md#proventities) section).
+env:
+  value: env
+  display_name: Environments
+  description: |
+    A JSON file containing provenance objects describing environments.
+    (See the [`Environments`](SPEC_ROOT/modality-agnostic-files/provenance.md#environments) section).
 epi:
   value: epi
   display_name: EPI
@@ -817,6 +835,12 @@ probseg:
     A probabilistic segmentation.
 
     This suffix may only be used in derivative datasets.
+soft:
+  value: soft
+  display_name: Software
+  description: |
+    A JSON file containing provenance objects describing software.
+    (See the [`Software`](SPEC_ROOT/modality-agnostic-files/provenance.md#software) section).
 sbref:
   value: sbref
   display_name: Single-band reference image
