@@ -100,3 +100,11 @@ electrodes:
     entities:
       - space
   inherit: true
+
+physio:
+  selectors:
+    - extension != '.json'
+  target:
+    suffix: physio
+    extension: .tsv.gz
+  inherit: false
