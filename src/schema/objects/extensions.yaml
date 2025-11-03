@@ -231,6 +231,12 @@ nwb:
     A [Neurodata Without Borders](https://nwb-schema.readthedocs.io/en/latest/) file.
 
     Each recording consists of a single `.nwb` file.
+ogg:
+  value: .ogg
+  display_name: Ogg Vorbis
+  description: |
+    An [Ogg Vorbis](https://en.wikipedia.org/wiki/Vorbis) audio file.
+    This format is commonly used for behavioral audio recordings.
 OMEBigTiff:
   value: .ome.btf
   display_name: Open Microscopy Environment BigTIFF

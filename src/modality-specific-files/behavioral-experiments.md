@@ -95,6 +95,7 @@ Audio recordings MUST use one of the following extensions:
 
 -   `.flac` - Free Lossless Audio Codec
 -   `.mp3` - MPEG Audio Layer III
+-   `.ogg` - Ogg Vorbis
 -   `.wav` - Waveform Audio File Format
 
 Video recordings MUST use one of the following extensions:

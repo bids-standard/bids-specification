@@ -21,9 +21,10 @@ audio:
   suffixes:
     - audio
   extensions:
-    - .mp3
-    - .wav
     - .flac
+    - .mp3
+    - .ogg
+    - .wav
     - .json
   datatypes:
     - beh
