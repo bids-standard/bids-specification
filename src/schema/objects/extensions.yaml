@@ -176,7 +176,7 @@ mp3:
   display_name: MPEG Audio Layer III
   description: |
     An [MP3](https://en.wikipedia.org/wiki/MP3) audio file.
-    This format is commonly used for behavioral audio recordings.
+    This format is commonly used for behavioral audio recordings or auditory stimuli.
 mp4:
   value: .mp4
   display_name: MPEG-4 Part 14
