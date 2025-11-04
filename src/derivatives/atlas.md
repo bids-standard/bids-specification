@@ -38,7 +38,7 @@ Template:
     tpl-<label>/
         [cohort-<label>/]
            [<datatype>/]
-               tpl-<label>_[cohort-<label>][_space-<label>][_atlas-<label>][seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
+               tpl-<label>[_cohort-<label>][_space-<label>][_atlas-<label>][_seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
 ```
 
 where [`suffix`](../glossary.md#suffix-common_principles) SHOULD be an existing BIDS modality
@@ -287,7 +287,7 @@ Template:
     tpl-<label>/
         [cohort-<label>/]
            [<datatype>/]
-               tpl-<label>_[cohort-<label>][_space-<label>][_atlas-<label>][seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
+               tpl-<label>[_cohort-<label>][_space-<label>][_atlas-<label>][_seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
 ```
 
 Atlas metadata fields:
@@ -374,14 +374,14 @@ A guide for using macros can be found at
 {{ MACROS___make_filetree_example({
    "suit-pipeline": {
       "tpl-SUIT": {
+         "atlas-Diedrichsen2009_description.json": "",
          "anat": {
-            "atlas-Diedrichsen2009_description.json": "",
             "tpl-SUIT_T1w.nii.gz": "",
-            "tpl-SUIT_dseg.json": "",
-            "tpl-SUIT_dseg.label.gii": "",
-            "tpl-SUIT_dseg.nii.gz": "",
-            "tpl-SUIT_dseg.tsv": "",
-            "tpl-SUIT_probseg.nii.gz": "",
+            "tpl-SUIT_atlas-Diedrichsen2009_dseg.json": "",
+            "tpl-SUIT_atlas-Diedrichsen2009_dseg.label.gii": "",
+            "tpl-SUIT_atlas-Diedrichsen2009_dseg.nii.gz": "",
+            "tpl-SUIT_atlas-Diedrichsen2009_dseg.tsv": "",
+            "tpl-SUIT_atlas-Diedrichsen2009_probseg.nii.gz": "",
             "tpl-SUIT_flat.surf.gii": "",
             "tpl-SUIT_sulc.shape.gii": "",
          },
@@ -424,9 +424,9 @@ A guide for using macros can be found at
 {{ MACROS___make_filetree_example({
    "suit-pipeline": {
       "tpl-SUIT": {
+         "atlas-Buckner2011_description.json": "",
+         "atlas-Diedrichsen2009_description.json": "",
          "anat": {
-            "atlas-Buckner2011_description.json": "",
-            "atlas-Diedrichsen2009_description.json": "",
             "tpl-SUIT_T1w.nii.gz": "",
             "tpl-SUIT_atlas-Buckner2011_dseg.json": "",
             "tpl-SUIT_atlas-Buckner2011_seg-17n_dseg.label.gii": "",
