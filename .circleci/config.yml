@@ -47,6 +47,7 @@ jobs:
                 --ignore-url 'https://dicomlookup.com/dicomtags/.*' \
                 --ignore-url 'https://www.instagram.com/bidsstandard/' \
                 --ignore-url 'https://jsoneditoronline.org' \
+                --ignore-url 'https://rrid.site.*' \
                 ~/project/site/*html ~/project/site/*/*.html
             else
               echo "Release PR - do nothing"
