@@ -54,9 +54,8 @@ the smallest unit of acquisition). In other words:
 -   If more than one of the same measurement tool is acquired within
     the same `session_id`, a `run_id` column MUST be added.
 
--   Encoding the acquisition time for a measurement tool’s `session_id`,
-    is RECOMMENDED. This information MUST be stored in the `sessions.tsv`
-    file at the root level of the dataset in the `acq_time` column.
+-   A measurement tool’s acquisition time SHOULD be stored in the `sessions.tsv`
+    file at the root-level of the dataset in the `acq_time` column.
 
 <!-- This block generates a columns table.
 The definitions of these fields can be found in
@@ -69,7 +68,7 @@ and a guide for using macros can be found at
 Furthermore, if you have to add a `session_id` column to the tabular phenotypic data,
 you then MUST also introduce a session directory to the imaging data,
 even if only one imaging session has been created.
-This rule can be considered as "**if anyone uses sessions, everyone uses sessions.**"
+This guideline can be considered as "**if anyone uses sessions, everyone uses sessions.**"
 And vice versa, if imaging data has session directories,
 all imaging data and tabular phenotypic data MUST have sessions.
 
@@ -108,27 +107,13 @@ The sessions file MUST list all sessions for all subjects across
 imaging and tabular phenotypic data. The data dictionary JSON file’s
 `session_id` field MUST include `Levels` with the description of each `session_id`.
 
-### 8. Use either root-level sessions file or participant-level sessions files, but not both
-
-When you use a sessions file at the dataset-level,
-you MUST NOT provide additional sessions files at the participant-level
-as this might conflict with the inheritance principle.
-
-### 9. Record acquisition time of all sessions with `acq_time`
+### 8. Record acquisition time of all sessions with `acq_time`
 
 It is RECOMMENDED to store acquisition time[<sup>2</sup>](#footnotes)
 for tabular phenotypic data and store the time of acquisition of each row
 inside a column named `acq_time` in the sessions file.
 This is consistent with how acquisition time is recorded for MRI data
 and other time-sensitive measurements (for example systolic blood pressure).
-
-### 10. Respect participant privacy when recording acquisition times
-
-When needed to preserve participant privacy, you SHOULD record
-relative acquisition times with respect to the earliest session.
-Relative session acquisition times MAY be listed as durations from
-the earliest session (baseline) in days, months, or years
-using the `acq_time` column.
 
 ## Summary
 

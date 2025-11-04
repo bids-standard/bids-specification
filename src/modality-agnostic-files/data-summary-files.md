@@ -325,15 +325,8 @@ apply to sessions files:
 -   [7.](../appendices/phenotype.md#7-use-the-sessions-file-at-the-root-level)
     Use the sessions file at the root-level
 
--   [8.](../appendices/phenotype.md#8-use-either-root-level-sessions-file-or-participant-level-sessions-files-but-not-both)
-    Use either root-level sessions file or
-    participant-level sessions files, but not both
-
--   [9.](../appendices/phenotype.md#9-record-acquisition-time-of-all-sessions-with-acq_time)
+-   [8.](../appendices/phenotype.md#8-record-acquisition-time-of-all-sessions-with-acq_time)
     Record acquisition time of all sessions with `acq_time`
-
--   [10.](../appendices/phenotype.md#10-respect-participant-privacy-when-recording-acquisition-times)
-    Respect participant privacy when recording acquisition times
 
 To read more about the guidelines for tabular phenotypic data and examples,
 see the [tabular phenotypic data guidelines appendix](../appendices/phenotype.md).
