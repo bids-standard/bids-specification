@@ -563,5 +563,5 @@ anat_discrete_surface_atlas:
   $ref: rules.files.deriv.imaging.anat_discrete_surface
   entities:
     $ref:
-      - meta.templates.deriv.volumetric.entities
+      - meta.templates.atlas.base.entities
       - rules.files.deriv.imaging.anat_discrete_surface.entities
