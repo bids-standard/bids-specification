@@ -1,0 +1,12 @@
+AtlasDescription:
+  issue:
+    code: MISSING_ATLAS_DESCRIPTION
+    message: |
+      No /atlas-{entities.atlas}_description.json could be found.
+    level: error
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - entities.atlas
+    - extension != '.json'
+  checks:
+    - associations.atlas_description
