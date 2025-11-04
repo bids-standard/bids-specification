@@ -18,7 +18,7 @@ contains `"Phenotype"` in the `dataset_description.json`.
 
 Aggregate participant information across all sessions into one tabular TSV file per
 measurement or phenotypic assessment and store this file in the `/phenotype` directory.
-Demographic information is a special case and  MUST be aggregated
+Demographic information is a special case and SHOULD be aggregated
 in the `participants.tsv` file at the root level of the dataset.
 It is RECOMMENDED to use the `age` column in the `participants.tsv` file
 to record participant age at every session in longitudinal or multi-session data sets.
@@ -51,8 +51,8 @@ the smallest unit of acquisition). In other words:
     in the data set regardless of whether those sessions are in
     the `phenotype/` data, `sub-<label>/` data, or a combination of the two.
 
--   If more than one of the same measurement tool is acquired within
-    the same `session_id`, a `run_id` column MUST be added.
+-   If a measurement tool is acquired multiple times within a single session,
+    a `run_id` column MUST be added to disambiguate the separate acquisitions.
 
 -   A measurement tool’s acquisition time SHOULD be stored in the `sessions.tsv`
     file at the root-level of the dataset in the `acq_time` column.
@@ -74,8 +74,6 @@ all imaging data and tabular phenotypic data MUST have sessions.
 
 This produces a file in which same-participant entries can take up as many rows as needed
 according to the smallest unit of acquisition.
-The combination of values in the `participant_id`, `session_id`, and `run_id` (if present)
-columns MUST be unique for the entire tabular file.
 
 ### 5. Store demographic data in the participants file and instrument data in the phenotype directory
 

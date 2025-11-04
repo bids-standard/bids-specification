@@ -14,7 +14,7 @@ If the dataset includes multiple sets of participant level measurements (for
 example responses from multiple questionnaires) they can be split into
 individual files separate from `participants.tsv`.
 
-Each of the measurement files MUST be kept in a `/phenotype` directory placed
+Each of the measurement tool files MUST be kept in a `/phenotype` directory placed
 at the root of the BIDS dataset and MUST end with the `.tsv` extension.
 Filenames SHOULD be chosen to reflect the contents of the file.
 For example, the "Adult ADHD Clinical Diagnostic Scale" could be saved in a file
