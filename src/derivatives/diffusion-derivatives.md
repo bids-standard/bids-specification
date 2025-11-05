@@ -271,7 +271,7 @@ The following table defines reserved fields within the `"Model"` sub-dictionary.
         "LongName": "URL",
         "Description": (
         "OPTIONAL",
-        "Description": "String. URL to the specific implementation of the model utilized.",
+        "String. URL to the specific implementation of the model utilized.",
         )
     }
    }
