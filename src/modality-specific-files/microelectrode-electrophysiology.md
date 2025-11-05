@@ -456,7 +456,7 @@ There are two major anatomical markers on the dorsal surface of the brain that a
 
 **Lambda**: the meeting point of the sagittal suture (between left and right parietal bones) and the lambdoid suture (between parietal and occipital bones).
 
-Both points serve as standard reference points for stereotaxic coordinates in neuroscience research. `(0,0,0)` is assumed to be Bregma when working with rodents. It may optionally be defined differently using `coordinate_reference_point`, and MUST be defined for other species.
+Both points serve as standard reference points for stereotaxic coordinates in neuroscience research. `(0,0,0)` is assumed to be Bregma when working with rodents. It may optionally be defined differently using `anatomical_reference_point`, and MUST be defined for other species.
 
 ### Stereotaxic Coordinate System Conventions
 
