@@ -44,7 +44,7 @@ _StandardTemplateCoordSys:
     - $ref: objects.enums.MNI152NLin2009bAsym.value
     - $ref: objects.enums.MNI152NLin2009cAsym.value
     - $ref: objects.enums.MNI152NLin6Sym.value
-    - $ref: objects.enums.MNI152NLin6ASym.value
+    - $ref: objects.enums.MNI152NLin6Asym.value
     - $ref: objects.enums.MNI305.value
     - $ref: objects.enums.NIHPD.value
     - $ref: objects.enums.OASIS30AntsOASISAnts.value
@@ -518,9 +518,9 @@ MNI152NLin6Sym:
     Also known as symmetric ICBM 6th generation (non-linear coregistration).
 
     Used by FSL.
-MNI152NLin6ASym:
-  value: MNI152NLin6ASym
-  display_name: MNI152NLin6ASym
+MNI152NLin6Asym:
+  value: MNI152NLin6Asym
+  display_name: MNI152NLin6Asym
   description: |
     A variation of `MNI152NLin6Sym` built by A. Janke that is released as the _MNI template_ of FSL.
     Volumetric templates included with
