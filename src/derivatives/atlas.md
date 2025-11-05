@@ -221,9 +221,6 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_json_table('json.atlas.AtlasDescription') }}
 
-Additionally, `SpatialReference` serves the important purpose of unambiguously identifying
-the space the atlas is labeled in.
-
 Example `atlas-MyAtlas2025_description.json`:
 
 ```JSON
@@ -233,12 +230,23 @@ Example `atlas-MyAtlas2025_description.json`:
     "Jane Doe",
     "John Doe"
   ],
-  "SpatialReference": "https://templateflow.s3.amazonaws.com/tpl-MNI152NLin6Asym_res-02_T1w.nii.gz",
   "License": "CC0",
   "RRID": "SCR_002823",
   "Species": "Human"
 }
 ```
+
+Atlases are often aligned to a common spatial reference
+to allow for the ready application of atlas data.
+A file may indicate the spatial reference to which it has been aligned using the
+[`tpl` entity](../appendices/entities.md#template) and/or the `SpatialReference` metadata.
+
+The [`tpl` entity](../appendices/entities.md#template) may take any value in
+[Image-Based Coordinate Systems][coordsys].
+
+If the [`tpl` entity](../appendices/entities.md#template) is not in the
+[Standard template identifiers][templates] table,
+then the `SpatialReference` metadata is REQUIRED.
 
 ### Deriving templates and atlases
 
@@ -304,7 +312,6 @@ where `atlas-Diedrichsen2009_description.json` could contain:
      "Narender Ramnani"
   ],
   "Sample Size": 20,
-  "SpatialReference": "https://templateflow.s3.amazonaws.com/tpl-MNI152Lin_res-01_T1w.nii.gz",
   "License": "LICENSE file",
   "ReferencesAndLinks": [
      "https://doi.org/10.1016/j.neuroimage.2009.01.045",

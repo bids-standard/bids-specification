@@ -1,0 +1,7 @@
+---
+TemplateNonStandard:
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - '!intersects(schema.objects.metadata._StandardTemplateCoordSys, [entities.tpl])'
+  fields:
+    SpatialReference: required
