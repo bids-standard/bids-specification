@@ -303,7 +303,7 @@ Dictionary `"Model["Parameters"]"` has the following reserved keywords that may 
      "outlier_rejection_method": {
         "LongName": "OutlierRejectionMethod",
         "Description": ("OPTIONAL",
-        "Description": "String. Text describing any form of rejection of outlier values that was performed during fitting of the model.",
+        "String. Text describing any form of rejection of outlier values that was performed during fitting of the model.",
         )
     },
      "samples": {
@@ -311,7 +311,7 @@ Dictionary `"Model["Parameters"]"` has the following reserved keywords that may 
         "Description":
         (
             "OPTIONAL",
-            "Description": "Integer. The number of realizations of a diffusion model from which statistical summaries (such as mean, standard deviation) of those parameters were computed.",
+            "Integer. The number of realizations of a diffusion model from which statistical summaries (such as mean, standard deviation) of those parameters were computed.",
         )
     }
    }
