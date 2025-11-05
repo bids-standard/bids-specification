@@ -15,3 +15,4 @@ AtlasDescription:
     Species: optional
     DerivedFrom: optional
     LevelType: optional
+    RRID: optional

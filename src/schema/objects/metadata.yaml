@@ -2919,6 +2919,14 @@ Purity:
   type: number
   minimum: 0
   maximum: 100
+RRID:
+  name: RRID
+  display_name: RRID
+  description: |
+    [Research Resource Identifier](https://rrid.site) of the file,
+    dataset or atlas being described.
+  type: string
+  format: rrid
 RandomRate:
   name: RandomRate
   display_name: Random Rate
