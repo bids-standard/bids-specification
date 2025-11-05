@@ -285,7 +285,7 @@ Dictionary `"Model["Parameters"]"` has the following reserved keywords that may 
         "Description": (
             "OPTIONAL",
             "String. The optimization procedure used to fit the intrinsic model parameters to the empirical diffusion-weighted signal.",
-        )
+        ),
         "Levels":
         {"ols": "Ordinary Least Squares",
          "wls": "Weighted Least Squares",
