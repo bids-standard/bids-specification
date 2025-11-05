@@ -1,5 +1,6 @@
 ---
 channels:
+  $ref: meta.templates.raw.task
   suffixes:
     - channels
   extensions:
@@ -9,12 +10,6 @@ channels:
     - eeg
     - ieeg
     - nirs
-  entities:
-    subject: required
-    session: optional
-    task: required
-    acquisition: optional
-    run: optional
 
 # MEG has an additional entity available
 channels__meg:
@@ -43,8 +38,7 @@ coordsystem:
     - meg
     - nirs
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.base.entities
     task: optional
     acquisition: optional
 
@@ -68,11 +62,8 @@ electrodes:
     - eeg
     - ieeg
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.recording.entities
     task: optional
-    acquisition: optional
-    run: optional
     space: optional
 
 # MEG has an additional entity available
@@ -93,6 +84,5 @@ optodes:
   datatypes:
     - nirs
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.base.entities
     acquisition: optional

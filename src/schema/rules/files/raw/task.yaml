@@ -12,11 +12,7 @@ timeseries:
     - ieeg
     - nirs
   entities:
-    subject: required
-    session: optional
-    task: required
-    acquisition: optional
-    run: optional
+    $ref: meta.templates.raw.task.entities
     recording: optional
 
 timeseries__mri_no_task:
@@ -30,10 +26,7 @@ timeseries__mri_no_task:
     - dwi
     - perf
   entities:
-    subject: required
-    session: optional
-    acquisition: optional
-    run: optional
+    $ref: meta.templates.raw.recording.entities
     reconstruction: optional
     direction: optional
     recording: optional
@@ -46,12 +39,11 @@ timeseries__anat:
   datatypes:
     - anat
   entities:
-    $ref: rules.files.raw.task.timeseries.entities
-    ceagent: optional
-    reconstruction: optional
+    $ref:
+      - rules.files.raw.task.timeseries.entities
+      - meta.templates.raw.mri.entities
     echo: optional
     part: optional
-    chunk: optional
     modality: optional
 
 timeseries__func:
@@ -85,11 +77,8 @@ timeseries__pet:
   datatypes:
     - pet
   entities:
-    # Most timeseries allow acquisition, PET doesn't
-    subject: required
-    session: optional
-    task: required
+    $ref: rules.files.raw.task.timeseries.entities
     tracer: optional
     reconstruction: optional
-    run: optional
-    recording: optional
+    # Most timeseries allow acquisition, PET doesn't
+    acquisition: null
