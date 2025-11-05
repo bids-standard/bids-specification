@@ -88,26 +88,18 @@ A guide for using macros can be found at
 {{ MACROS___make_filetree_example({
    "mni152nlin2009casym-pipeline": {
       "tpl-MNI152NLin2009cAsym": {
-         "anat": {
-            "tpl-MNI152NLin2009cAsym_res-1_label-brain_mask.nii.gz": "",
-            "tpl-MNI152NLin2009cAsym_res-1_label-eye_mask.nii.gz": "",
-            "tpl-MNI152NLin2009cAsym_res-1_label-face_mask.nii.gz": "",
-            "tpl-MNI152NLin2009cAsym_res-1_label-head_mask.nii.gz": "",
-            "tpl-MNI152NLin2009cAsym_res-1_label-CSF_probseg.nii.gz": "",
-            "tpl-MNI152NLin2009cAsym_res-1_label-GM_probseg.nii.gz": "",
-            "tpl-MNI152NLin2009cAsym_res-1_label-WM_probseg.nii.gz": "",
-            "tpl-MNI152NLin2009cAsym_res-1_T1w.nii.gz": "",
-            "tpl-MNI152NLin2009cAsym_res-1_T1w.json": "",
-            "tpl-MNI152NLin2009cAsym_res-2_label-brain_mask.nii.gz": "",
-            "tpl-MNI152NLin2009cAsym_res-2_label-eye_mask.nii.gz": "",
-            "tpl-MNI152NLin2009cAsym_res-2_label-face_mask.nii.gz": "",
-            "tpl-MNI152NLin2009cAsym_res-2_label-head_mask.nii.gz": "",
-            "tpl-MNI152NLin2009cAsym_res-2_label-CSF_probseg.nii.gz": "",
-            "tpl-MNI152NLin2009cAsym_res-2_label-GM_probseg.nii.gz": "",
-            "tpl-MNI152NLin2009cAsym_res-2_label-WM_probseg.nii.gz": "",
-            "tpl-MNI152NLin2009cAsym_res-2_T1w.nii.gz": "",
-            "tpl-MNI152NLin2009cAsym_res-2_T1w.json": "",
-         },
+         "tpl-MNI152NLin2009cAsym_res-1_T1w.nii.gz": "",
+         "tpl-MNI152NLin2009cAsym_res-1_T1w.json": "",
+         "tpl-MNI152NLin2009cAsym_res-1_label-brain_mask.nii.gz": "",
+         "tpl-MNI152NLin2009cAsym_res-1_label-brain_mask.json": "",
+         "tpl-MNI152NLin2009cAsym_res-1_probseg.nii.gz": "",
+         "tpl-MNI152NLin2009cAsym_res-1_probseg.json": "",
+         "tpl-MNI152NLin2009cAsym_res-2_T1w.nii.gz": "",
+         "tpl-MNI152NLin2009cAsym_res-2_T1w.json": "",
+         "tpl-MNI152NLin2009cAsym_res-2_label-brain_mask.nii.gz": "",
+         "tpl-MNI152NLin2009cAsym_res-2_label-brain_mask.json": "",
+         "tpl-MNI152NLin2009cAsym_res-2_probseg.nii.gz": "",
+         "tpl-MNI152NLin2009cAsym_res-2_probseg.json": "",
       },
    }
 })
@@ -127,41 +119,21 @@ A guide for using macros can be found at
    "mnipediatricasym-pipeline": {
       "tpl-MNIPediatricAsym": {
          "cohort-1": {
-            "anat": {
-               "tpl-MNIPediatricAsym_cohort-1_res-1_PD.nii.gz": "",
-               "tpl-MNIPediatricAsym_cohort-1_res-1_T1w.nii.gz": "",
-               "tpl-MNIPediatricAsym_cohort-1_res-1_T2w.nii.gz": "",
-               "tpl-MNIPediatricAsym_cohort-1_res-1_desc-brain_mask.nii.gz": "",
-               "tpl-MNIPediatricAsym_cohort-1_res-1_label-CSF_probseg.nii.gz": "",
-               "tpl-MNIPediatricAsym_cohort-1_res-1_label-GM_probseg.nii.gz": "",
-               "tpl-MNIPediatricAsym_cohort-1_res-1_label-WM_probseg.nii.gz": "",
-               "tpl-MNIPediatricAsym_cohort-1_res-2_PD.nii.gz": "",
-               "tpl-MNIPediatricAsym_cohort-1_res-2_T1w.nii.gz": "",
-               "tpl-MNIPediatricAsym_cohort-1_res-2_T2w.nii.gz": "",
-               "tpl-MNIPediatricAsym_cohort-1_res-2_desc-brain_mask.nii.gz": "",
-               "tpl-MNIPediatricAsym_cohort-1_res-2_label-CSF_probseg.nii.gz": "",
-               "tpl-MNIPediatricAsym_cohort-1_res-2_label-GM_probseg.nii.gz": "",
-               "tpl-MNIPediatricAsym_cohort-1_res-2_label-WM_probseg.nii.gz": "",
-            },
+            "tpl-MNIPediatricAsym_cohort-1_T1w.nii.gz": "",
+            "tpl-MNIPediatricAsym_cohort-1_T2w.nii.gz": "",
+            "tpl-MNIPediatricAsym_cohort-1_PDw.nii.gz": "",
+            "tpl-MNIPediatricAsym_cohort-1_desc-brain_mask.nii.gz": "",
+            "tpl-MNIPediatricAsym_cohort-1_probseg.nii.gz": "",
+            "tpl-MNIPediatricAsym_cohort-1_probseg.json": "",
          },
          "...": "",
          "cohort-6": {
-            "anat": {
-               "tpl-MNIPediatricAsym_cohort-6_res-1_PD.nii.gz": "",
-               "tpl-MNIPediatricAsym_cohort-6_res-1_T1w.nii.gz": "",
-               "tpl-MNIPediatricAsym_cohort-6_res-1_T2w.nii.gz": "",
-               "tpl-MNIPediatricAsym_cohort-6_res-1_desc-brain_mask.nii.gz": "",
-               "tpl-MNIPediatricAsym_cohort-6_res-1_label-CSF_probseg.nii.gz": "",
-               "tpl-MNIPediatricAsym_cohort-6_res-1_label-GM_probseg.nii.gz": "",
-               "tpl-MNIPediatricAsym_cohort-6_res-1_label-WM_probseg.nii.gz": "",
-               "tpl-MNIPediatricAsym_cohort-6_res-2_PD.nii.gz": "",
-               "tpl-MNIPediatricAsym_cohort-6_res-2_T1w.nii.gz": "",
-               "tpl-MNIPediatricAsym_cohort-6_res-2_T2w.nii.gz": "",
-               "tpl-MNIPediatricAsym_cohort-6_res-2_desc-brain_mask.nii.gz": "",
-               "tpl-MNIPediatricAsym_cohort-6_res-2_label-CSF_probseg.nii.gz": "",
-               "tpl-MNIPediatricAsym_cohort-6_res-2_label-GM_probseg.nii.gz": "",
-               "tpl-MNIPediatricAsym_cohort-6_res-2_label-WM_probseg.nii.gz": "",
-            },
+            "tpl-MNIPediatricAsym_cohort-6_T1w.nii.gz": "",
+            "tpl-MNIPediatricAsym_cohort-6_T2w.nii.gz": "",
+            "tpl-MNIPediatricAsym_cohort-6_PDw.nii.gz": "",
+            "tpl-MNIPediatricAsym_cohort-6_desc-brain_mask.nii.gz": "",
+            "tpl-MNIPediatricAsym_cohort-6_probseg.nii.gz": "",
+            "tpl-MNIPediatricAsym_cohort-6_probseg.json": "",
          },
       },
    }
@@ -196,11 +168,9 @@ A guide for using macros can be found at
          },
       },
       "tpl-MNI152NLin2009cAsym": {
-         "anat": {
-            "tpl-MNI152NLin2009cAsym_res-1_label-brain_mask.nii.gz": "",
-            "...": "",
-            "tpl-MNI152NLin2009cAsym_res-2_T1w.json": "",
-         },
+         "tpl-MNI152NLin2009cAsym_res-1_label-brain_mask.nii.gz": "",
+         "...": "",
+         "tpl-MNI152NLin2009cAsym_res-2_T1w.json": "",
       },
    }
 })
@@ -211,59 +181,6 @@ A guide for using macros can be found at
     Please note that the specification for spatial transforms (BEP 014) is currently
     under development, and therefore, the specification of transforms files may
     change in the future.
-
-### Single-subject templates
-
-Early digital templates and atlases such as MNI's
-'[Colin 27 Average Brain, Stereotaxic Registration Model](https://www.mcgill.ca/bic/software/tools-data-analysis/anatomical-mri/atlases/colin-27)'
-([Holmes et al., 1998](https://doi.org/10.1097/00004728-199803000-00032)) were built by examining single individuals.
-For example, the outputs of the pipeline that generated 'Colin27' would have been organized as follows:
-
-<!-- This block generates a file tree.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filetree_example({
-   "colin27-pipeline": {
-      "sub-01": {
-         "ses-01": {
-            "anat": {
-               "sub-01_ses-01_label-brain_mask.nii.gz": "",
-               "sub-01_ses-01_label-head_mask.nii.gz": "",
-               "sub-01_ses-01_T1w.nii.gz": "",
-               "sub-01_ses-01_T1w.json": "",
-            },
-         },
-         "ses-02": {
-            "anat": {
-               "sub-01_ses-02_label-brain_mask.nii.gz": "",
-               "sub-01_ses-02_label-head_mask.nii.gz": "",
-               "sub-01_ses-02_T1w.nii.gz": "",
-               "sub-01_ses-02_T1w.json": "",
-            },
-         },
-         "...": "",
-         "ses-27": {
-            "anat": {
-               "sub-01_ses-27_label-brain_mask.nii.gz": "",
-               "sub-01_ses-27_label-head_mask.nii.gz": "",
-               "sub-01_ses-27_T1w.nii.gz": "",
-               "sub-01_ses-27_T1w.json": "",
-            },
-         },
-      },
-      "tpl-Colin27": {
-         "anat": {
-            "tpl-Colin27_probseg.nii.gz": "",
-            "tpl-Colin27_label-brain_mask.nii.gz": "",
-            "tpl-Colin27_label-head_mask.nii.gz": "",
-            "tpl-Colin27_T1w.nii.gz": "",
-            "tpl-Colin27_T1w.json": "",
-         },
-      },
-   }
-})
-}}
 
 ## Derived atlases
 
