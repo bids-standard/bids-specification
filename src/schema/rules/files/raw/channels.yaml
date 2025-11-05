@@ -1,5 +1,6 @@
 ---
 channels:
+  $ref: meta.templates.raw.task
   suffixes:
     - channels
   extensions:
@@ -9,12 +10,6 @@ channels:
     - eeg
     - ieeg
     - nirs
-  entities:
-    subject: required
-    session: optional
-    task: required
-    acquisition: optional
-    run: optional
 
 # microephys has an additional 'sample' entity but excludes task/run
 channels__microephys:
@@ -60,8 +55,7 @@ coordsystem:
     - meg
     - nirs
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.base.entities
     task: optional
     acquisition: optional
 
@@ -94,11 +88,8 @@ electrodes:
     - eeg
     - ieeg
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.recording.entities
     task: optional
-    acquisition: optional
-    run: optional
     space: optional
 
 # MEG has an additional entity available
@@ -138,6 +129,5 @@ optodes:
   datatypes:
     - nirs
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.base.entities
     acquisition: optional

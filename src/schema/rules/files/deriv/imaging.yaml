@@ -1,280 +1,327 @@
+# This document implements general imaging derivatives.
+#
+# The _volumetric rules cover supersets of files that would be covered by the
+# common derivatives spec, namely, the space and description entities.
 ---
+# Preprocessed and/or resampled volumes
 anat_parametric_volumetric:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.anat.parametric
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.anat.parametric
   entities:
-    $ref: rules.files.raw.anat.parametric.entities
-    space: optional
-    resolution: optional
-    density: optional
-    description: optional
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.anat.parametric.entities
 
 anat_nonparametric_volumetric:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.anat.nonparametric
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.anat.nonparametric
   entities:
-    $ref: rules.files.raw.anat.nonparametric.entities
-    space: optional
-    resolution: optional
-    density: optional
-    description: optional
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.anat.nonparametric.entities
 
-dwi_volumetric:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.dwi.dwi
+anat_defacemask_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.anat.defacemask
   entities:
-    $ref: rules.files.raw.dwi.dwi.entities
-    space: optional
-    resolution: optional
-    density: optional
-    description: optional
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.anat.defacemask.entities
+
+anat_mese_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.anat.mese
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.anat.mese.entities
+
+anat_megre_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.anat.megre
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.anat.megre.entities
+
+anat_multiflip_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.anat.multiflip
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.anat.multiflip.entities
+
+anat_multiinversion_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.anat.multiinversion
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.anat.multiinversion.entities
+
+anat_mp2rage_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.anat.mp2rage
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.anat.mp2rage.entities
+
+anat_vfamt_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.anat.vfamt
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.anat.vfamt.entities
+
+anat_mtr_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.anat.mtr
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.anat.mtr.entities
+
+dwi_dwi_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.dwi.dwi
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.dwi.dwi.entities
+
+dwi_sbref_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.dwi.sbref
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.dwi.sbref.entities
 
 dwi_scannerderivatives:
-  $ref: rules.files.raw.dwi.ScannerDerivatives
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.dwi.ScannerDerivatives
   entities:
-    $ref: rules.files.raw.dwi.ScannerDerivatives.entities
-    space: optional
-    resolution: optional
-    density: optional
-    description: optional
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.dwi.ScannerDerivatives.entities
 
 func_volumetric:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.func.func
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.func.func
   entities:
-    $ref: rules.files.raw.func.func.entities
-    space: optional
-    resolution: optional
-    density: optional
-    description: optional
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.func.func.entities
 
-anat_parametric_mask:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.anat.parametric
-  suffixes:
-    - mask
+func_phase_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.func.phase
   entities:
-    $ref: rules.files.raw.anat.parametric.entities
-    space: optional
-    resolution: optional
-    label: optional
-    description: optional
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.func.phase.entities
 
-anat_nonparametric_mask:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.anat.nonparametric
-  suffixes:
-    - mask
+fmap_fieldmaps_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.fmap.fieldmaps
   entities:
-    $ref: rules.files.raw.anat.nonparametric.entities
-    space: optional
-    resolution: optional
-    label: optional
-    description: optional
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.fmap.fieldmaps.entities
+
+fmap_pepolar_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.fmap.pepolar
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.fmap.pepolar.entities
+
+fmap_pepolar_m0scan:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.fmap.pepolar_m0scan
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.fmap.pepolar.entities
+
+fmap_TB1DAM_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.fmap.TB1DAM
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.fmap.TB1DAM.entities
+
+fmap_TB1EPI_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.fmap.TB1EPI
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.fmap.TB1EPI.entities
+
+fmap_RFFieldMaps_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.fmap.RFFieldMaps
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.fmap.RFFieldMaps.entities
+
+fmap_TB1SRGE_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.fmap.TB1SRGE
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.fmap.TB1SRGE.entities
+
+fmap_parametric_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.fmap.parametric
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.fmap.parametric.entities
+
+perf_asl_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.perf.asl
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.perf.asl.entities
+
+pet_pet_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+    - rules.files.raw.pet.pet
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.pet.pet.entities
+
+# Masks
+anat_mask:
+  $ref:
+    - meta.templates.deriv.mask
+    - rules.files.raw.anat.nonparametric
+  entities:
+    # The nonparametric entities are a superset of parametric entities,
+    # so no need to duplicate.
+    $ref:
+      - meta.templates.deriv.mask.entities
+      - rules.files.raw.anat.nonparametric.entities
 
 dwi_mask:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.dwi.dwi
-  suffixes:
-    - mask
-  extensions:
-    - .nii.gz
-    - .nii
-    - .json
+  $ref:
+    - meta.templates.deriv.mask
+    - rules.files.raw.dwi.dwi
   entities:
-    $ref: rules.files.raw.dwi.dwi.entities
-    space: optional
-    resolution: optional
-    label: optional
-    description: optional
+    $ref:
+      - meta.templates.deriv.mask.entities
+      - rules.files.raw.dwi.dwi.entities
 
 func_mask:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.func.func
-  suffixes:
-    - mask
+  $ref:
+    - meta.templates.deriv.mask
+    - rules.files.raw.func.func
   entities:
-    $ref: rules.files.raw.func.func.entities
-    space: optional
-    resolution: optional
-    label: optional
-    description: optional
+    $ref:
+      - meta.templates.deriv.mask.entities
+      - rules.files.raw.func.func.entities
 
-anat_parametric_discrete_segmentation:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.anat.parametric
-  suffixes:
-    - dseg
+# Discrete and probabilistic segmentations
+anat_discrete_segmentation:
+  $ref:
+    - meta.templates.deriv.dseg
+    - rules.files.raw.anat.nonparametric
   entities:
-    $ref: rules.files.raw.anat.parametric.entities
-    space: optional
-    segmentation: optional
-    resolution: optional
-    description: optional
-  extensions:
-    - .nii.gz
-    - .nii
-    - .json
-    - .tsv
-
-anat_nonparametric_discrete_segmentation:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.anat.nonparametric
-  suffixes:
-    - dseg
-  entities:
-    $ref: rules.files.raw.anat.nonparametric.entities
-    space: optional
-    segmentation: optional
-    resolution: optional
-    description: optional
-  extensions:
-    - .nii.gz
-    - .nii
-    - .json
-    - .tsv
+    # ibid
+    $ref:
+      - meta.templates.deriv.dseg.entities
+      - rules.files.raw.anat.nonparametric.entities
 
 func_discrete_segmentation:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.func.func
-  suffixes:
-    - dseg
+  $ref:
+    - meta.templates.deriv.dseg
+    - rules.files.raw.func.func
   entities:
-    $ref: rules.files.raw.func.func.entities
-    space: optional
-    segmentation: optional
-    resolution: optional
-    description: optional
-  extensions:
-    - .nii.gz
-    - .nii
-    - .json
-    - .tsv
+    $ref:
+      - meta.templates.deriv.dseg.entities
+      - rules.files.raw.func.func.entities
 
 dwi_discrete_segmentation:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.dwi.dwi
-  suffixes:
-    - dseg
+  $ref:
+    - meta.templates.deriv.dseg
+    - rules.files.raw.dwi.dwi
   entities:
-    $ref: rules.files.raw.dwi.dwi.entities
-    space: optional
-    resolution: optional
-    description: optional
-  extensions:
-    - .nii.gz
-    - .nii
-    - .json
-    - .tsv
+    $ref:
+      - meta.templates.deriv.dseg.entities
+      - rules.files.raw.dwi.dwi.entities
 
-anat_parametric_probabilistic_segmentation:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.anat.parametric
-  suffixes:
-    - probseg
+anat_probabilistic_segmentation:
+  $ref:
+    - meta.templates.deriv.probseg
+    - rules.files.raw.anat.nonparametric
   entities:
-    $ref: rules.files.raw.anat.parametric.entities
-    space: optional
-    segmentation: optional
-    resolution: optional
-    label: optional
-    description: optional
-
-anat_nonparametric_probabilistic_segmentation:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.anat.nonparametric
-  suffixes:
-    - probseg
-  entities:
-    $ref: rules.files.raw.anat.nonparametric.entities
-    space: optional
-    segmentation: optional
-    resolution: optional
-    label: optional
-    description: optional
+    # ibid
+    $ref:
+      - meta.templates.deriv.probseg.entities
+      - rules.files.raw.anat.nonparametric.entities
 
 func_probabilistic_segmentation:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.func.func
-  suffixes:
-    - probseg
+  $ref:
+    - meta.templates.deriv.probseg
+    - rules.files.raw.func.func
   entities:
-    $ref: rules.files.raw.func.func.entities
-    space: optional
-    segmentation: optional
-    resolution: optional
-    label: optional
-    description: optional
+    $ref:
+      - meta.templates.deriv.probseg.entities
+      - rules.files.raw.func.func.entities
 
 dwi_probabilistic_segmentation:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.dwi.dwi
-  suffixes:
-    - probseg
+  $ref:
+    - meta.templates.deriv.probseg
+    - rules.files.raw.dwi.dwi
   entities:
-    $ref: rules.files.raw.dwi.dwi.entities
-    space: optional
-    segmentation: optional
-    resolution: optional
-    label: optional
-    description: optional
-  extensions:
-    - .nii.gz
-    - .nii
-    - .json
+    $ref:
+      - meta.templates.deriv.probseg.entities
+      - rules.files.raw.dwi.dwi.entities
 
-anat_parametric_discrete_surface:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.anat.parametric
-  suffixes:
-    - dseg
-  extensions:
-    - .label.gii
-    - .dlabel.nii
-    - .json
-    - .tsv
+anat_discrete_surface:
+  $ref:
+    - meta.templates.deriv.dseg_surface
+    - rules.files.raw.anat.nonparametric
   entities:
-    $ref: rules.files.raw.anat.parametric.entities
-    hemisphere: optional
-    space: optional
-    segmentation: optional
-    resolution: optional
-    density: optional
-    description: optional
-
-anat_nonparametric_discrete_surface:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.anat.nonparametric
-  suffixes:
-    - dseg
-  extensions:
-    - .label.gii
-    - .dlabel.nii
-    - .json
-    - .tsv
-  entities:
-    $ref: rules.files.raw.anat.nonparametric.entities
-    hemisphere: optional
-    space: optional
-    segmentation: optional
-    resolution: optional
-    density: optional
-    description: optional
+    # ibid
+    $ref:
+      - meta.templates.deriv.dseg_surface.entities
+      - rules.files.raw.anat.nonparametric.entities

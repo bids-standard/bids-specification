@@ -1,0 +1,148 @@
+---
+# This section is unstructured, for inclusion in rules by reference
+
+# Entities that apply to most raw files
+# Include thus:
+#
+# filerule:
+#   entities:
+#     $ref: meta.templates.raw.base.entities
+#     task: optional
+#     ...
+#   datatypes:
+#     ...
+raw:
+  base:
+    entities:
+      subject: required
+      session: optional
+
+  recording:
+    entities:
+      $ref: meta.templates.raw.base.entities
+      acquisition: optional
+      run: optional
+
+  task:
+    entities:
+      $ref: meta.templates.raw.recording.entities
+      task: required
+
+  mri:
+    entities:
+      $ref: meta.templates.raw.recording.entities
+      ceagent: optional
+      reconstruction: optional
+      chunk: optional
+
+  epi:
+    entities:
+      $ref: meta.templates.raw.mri.entities
+      direction: optional
+      part: optional
+
+  pet:
+    entities:
+      $ref: meta.templates.raw.base.entities
+      task: optional
+      tracer: optional
+      reconstruction: optional
+      run: optional
+
+  mrs:
+    entities:
+      $ref: meta.templates.raw.recording.entities
+      task: optional
+      nucleus: optional
+      volume: optional
+      reconstruction: optional
+
+# Entities that apply to most derivative files
+# Include thus:
+#
+# filerule:
+#   entities:
+#     $ref: meta.templates.deriv.base.entities
+#     task: optional
+#     ...
+#   datatypes:
+#     ...
+deriv:
+  base:
+    selectors:
+      - dataset.dataset_description.DatasetType == 'derivative'
+    entities:
+      subject: optional
+      session: optional
+      description: optional
+
+  spatial:
+    $ref: meta.templates.deriv.base
+    entities:
+      $ref: meta.templates.deriv.base.entities
+      space: optional
+
+  # Imaging derivatives
+  volumetric:
+    $ref: meta.templates.deriv.spatial
+    extensions:
+      - .nii.gz
+      - .nii
+      - .json
+    entities:
+      $ref: meta.templates.deriv.spatial.entities
+      resolution: optional
+
+  surface:
+    $ref: meta.templates.deriv.spatial
+    entities:
+      $ref: meta.templates.deriv.spatial.entities
+      hemisphere: optional
+      density: optional
+
+  mask:
+    $ref: meta.templates.deriv.volumetric
+    suffixes:
+      - mask
+    entities:
+      $ref: meta.templates.deriv.volumetric.entities
+      label: optional
+
+  dseg:
+    $ref: meta.templates.deriv.volumetric
+    extensions:
+      - .nii.gz
+      - .nii
+      - .tsv
+      - .json
+    suffixes:
+      - dseg
+    entities:
+      $ref: meta.templates.deriv.volumetric.entities
+      segmentation: optional
+
+  probseg:
+    $ref: meta.templates.deriv.volumetric
+    extensions:
+      - .nii.gz
+      - .nii
+      - .json
+    suffixes:
+      - probseg
+    entities:
+      $ref: meta.templates.deriv.volumetric.entities
+      segmentation: optional
+      label: optional
+
+  dseg_surface:
+    $ref: meta.templates.deriv.surface
+    extensions:
+      - .label.gii
+      - .dlabel.nii
+      - .tsv
+      - .json
+    suffixes:
+      - dseg
+    entities:
+      $ref: meta.templates.deriv.surface.entities
+      segmentation: optional
