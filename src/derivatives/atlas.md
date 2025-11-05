@@ -298,22 +298,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "AtlasName": "REQUIRED",
-      "AtlasSampleSize": "REQUIRED",
-      "SpatialReference": "REQUIRED",
-      "Description": "RECOMMENDED",
-      "Authors": "RECOMMENDED",
-      "Curators": "RECOMMENDED",
-      "Funding": "RECOMMENDED",
-      "License": "RECOMMENDED",
-      "ReferencesAndLinks": "RECOMMENDED",
-      "Species": "RECOMMENDED",
-      "DerivedFrom": "RECOMMENDED",
-      "LevelType": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_json_table('json.atlas.AtlasDescription') }}
 
 Additionally, `SpatialReference` serves the important purpose of unambiguously identifying
 the space the atlas is labeled in.

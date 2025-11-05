@@ -1,0 +1,17 @@
+---
+AtlasDescription:
+  selectors:
+    - entities.atlas
+    - suffix == 'description'
+  fields:
+    AtlasName: required
+    License: required
+    AtlasSampleSize: required
+    Description: recommended
+    Authors: recommended
+    Curators: optional
+    Funding: optional
+    ReferencesAndLinks: optional
+    Species: optional
+    DerivedFrom: optional
+    LevelType: optional
