@@ -3,5 +3,6 @@ TemplateNonStandard:
   selectors:
     - dataset.dataset_description.DatasetType == "derivative"
     - '!intersects(schema.objects.metadata._StandardTemplateCoordSys, [entities.tpl])'
+    - type(entities.space) == 'null' || !intersects(schema.objects.metadata._StandardTemplateCoordSys, [entities.space])
   fields:
     SpatialReference: required

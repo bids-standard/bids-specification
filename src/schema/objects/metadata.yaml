@@ -3650,6 +3650,7 @@ SpatialReference:
   name: SpatialReference
   display_name: Spatial Reference
   description: |
+    String or object describing the reference image to which the current image is aligned.
     For images with a single reference, the value MUST be a single string.
     For images with multiple references, such as surface and volume references,
     a JSON object MUST be used.

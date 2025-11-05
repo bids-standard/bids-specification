@@ -367,7 +367,6 @@ and `atlas-Buckner2011_description.json` could contain:
      "B T Thomas Yeo"
   ],
   "Sample Size": 1000,
-  "SpatialReference": "https://templateflow.s3.amazonaws.com/tpl-MNI152Lin_res-01_T1w.nii.gz",
   "License": "LICENSE file",
   "ReferencesAndLinks": [
      "https://doi.org/10.1152/jn.00339.2011",
