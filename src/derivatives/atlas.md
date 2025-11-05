@@ -38,13 +38,16 @@ Template:
     tpl-<label>/
         [cohort-<label>/]
            [<datatype>/]
-               tpl-<label>[_cohort-<label>][_space-<label>][_atlas-<label>][_seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
+               tpl-<label>[_cohort-<label>][_<entities>]_<suffix>.<extension>
 ```
 
-where [`suffix`](../glossary.md#suffix-common_principles) SHOULD be an existing BIDS modality
+where [`suffix`](../glossary.md#suffix-common_principles) is any valid BIDS suffix
 such as `T1w` or `PET`; and
-[`extension`](../glossary.md#extension-common_principles) MAY take values such as `nii[.gz]`, `dscalar.nii[.gz]`,
-`dlabel.nii[.gz]`, `label.gii[.gz]`, `tsv`, or `json`.
+[`extension`](../glossary.md#extension-common_principles) is a valid BIDS extension
+such as `nii[.gz]`, `dscalar.nii[.gz]`, `dlabel.nii[.gz]`, `label.gii[.gz]`, `tsv`, or `json`.
+Templates and atlases do not establish new suffixes or extensions,
+but any valid BIDS/BIDS Derivatives filename is permitted in a template directory,
+substituting `tpl` for `sub` and `cohort` for `ses`.
 
 The [`<datatype>/` directory](../glossary.md#data_type-common_principles) MAY be omitted in the case
 only one data type (such as `anat/`) is stored under the `tpl-<label>/` directory.
@@ -73,7 +76,7 @@ as described in the [Derived atlases](#derived-atlases) section, below.
 For uses of the `atlas-` entity without the `tpl-` entity,
 see [Imaging derivatives - Derivatives from atlases](imaging.md#derivatives-from-atlases).
 
-### Example: the `MNI152NLin2009cAsym` template
+### Example: Single-cohort template
 
 For the pipeline that generated [`MNI152NLin2009cAsym`](../appendices/coordinate-systems.md#standard-template-identifiers),
 the outputs could look like the following example:
@@ -110,7 +113,7 @@ A guide for using macros can be found at
 })
 }}
 
-### Example: multi-cohort templates
+### Example: Multi-cohort template
 
 In the case that the template-generating pipeline derives
 several cohorts, the file structure must employ the
@@ -165,12 +168,11 @@ A guide for using macros can be found at
 })
 }}
 
-### Subject-level and template derivatives
+### Example: Subject-level and template derivatives
 
-Both subject-level and template-level results MAY coexist in a single pipeline directory.
-If the subject-level results based on which a template was generated are to be
-shared with the template, it is RECOMMENDED to store both families of results within the
-pipeline directory:
+Both subject-level and template-level results MAY coexist in a single derivatives dataset.
+For example, it is possible to share the subject-level results used to generate the template
+alongside the template:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
