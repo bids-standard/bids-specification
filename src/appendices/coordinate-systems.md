@@ -248,6 +248,60 @@ Please note that `space-scanner` SHOULD NOT be used, it is mentioned in this spe
 | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | scanner               | The intrinsic coordinate system of the original image (the first entry of `RawSources`) after reconstruction and conversion to NIfTI or equivalent for the case of surfaces and dual volume/surface files. |
 
+## Microelectrode Electrophysiology Specific Coordinate Systems
+
+Restricted keywords for the `MicroephysCoordinateSystem` field in the
+`coordsystem.json` file for microelectrode electrophysiology datasets (both `icephys` and `ecephys`):
+
+-   `Pixels`: If electrodes are localized in 2D space (only x and y are
+    specified and z is n/a), then the positions in this file must correspond to
+    the locations expressed in pixels on the photo/drawing/rendering of the
+    electrodes on the brain. In this case, coordinates must be (row,column)
+    pairs, with (0,0) corresponding to the upper left pixel and (N,0)
+    corresponding to the lower left pixel.
+
+-   `AllenCCFv3`: Allen Common Coordinate Framework version 3 (RRID:SCR_020999), a 3D reference space for
+    the mouse brain based on average anatomy. The framework provides a systematic way to
+    map and compare data across different experiments and labs. Origin and orientation
+    follow the Allen Institute conventions. For more information, see
+    [http://help.brain-map.org/](http://help.brain-map.org/).
+    Reference: Wang Q, Ding SL, Li Y, Royall J, Feng D, Lesnar P, Graddis N, Naeemi M, Facer B,
+    Ho A, Dolbeare T, Blanchard B, Dee N, Wakeman W, Hirokawa KE, Szafer A, Sunkin SM, Oh SW,
+    Bernard A, Phillips JW, Hawrylycz M, Koch C, Zeng H, Harris JA, Ng L. The Allen Mouse Brain
+    Common Coordinate Framework: A 3D Reference Atlas. Cell. 2020 May 14;181(4):936-953.e20.
+    [doi:10.1016/j.cell.2020.04.007](https://doi.org/10.1016/j.cell.2020.04.007).
+
+-   `WaxholmSpace`: A standardized 3D coordinate system for the rat brain (RRID:SCR_001592) based on
+    high-resolution imaging data. Part of the Waxholm Space atlas of the Sprague Dawley
+    rat brain. For more information, see
+    [https://www.nitrc.org/projects/whs-sd-atlas](https://www.nitrc.org/projects/whs-sd-atlas).
+    Reference: Hawrylycz M, Baldock RA, Burger A, Hashikawa T, Johnson GA, Martone M, Ng L,
+    Lau C, Larson SD, Nissanov J, Puelles L, Ruffins S, Verbeek F, Zaslavsky I, Boline J.
+    Digital atlasing and standardization in the mouse brain. PLoS Comput Biol. 2011 Feb 3;7(2):e1001065.
+    [doi:10.1371/journal.pcbi.1001065](https://doi.org/10.1371/journal.pcbi.1001065).
+
+-   `WistarRatAtlas`: A multidimensional magnetic resonance histology atlas of the adult Wistar rat brain
+    (RRID:SCR_006288). This atlas provides high-resolution anatomical reference for rat brain studies.
+    Reference: Johnson GA, Calabrese E, Badea A, Paxinos G, Watson C. A multidimensional magnetic resonance
+    histology atlas of the Wistar rat brain. Neuroimage. 2012 Sep;62(3):1848-56.
+    [doi:10.1016/j.neuroimage.2012.05.041](https://doi.org/10.1016/j.neuroimage.2012.05.041).
+
+-   `individual`: Subject-specific anatomical coordinate system derived from the
+    individual subject's anatomy. The origin and orientation should be specified in
+    `MicroephysCoordinateSystemDescription`. This coordinate system requires specifying
+    an additional, subject-specific file to be fully defined.
+
+-   `Other`: Use this for other coordinate systems and specify all required details in
+    the `MicroephysCoordinateSystemDescription` field.
+
+If you believe a specific coordinate system should be added to the list
+of restricted keywords for microelectrode electrophysiology, please open a new issue on the
+[bids-standard/bids-specification GitHub repository](https://github.com/bids-standard/bids-specification/issues/new/choose).
+
+For detailed information about coordinate systems in microelectrode electrophysiology,
+including probe angles and anatomical reference points, see the
+[Microelectrode Electrophysiology specification](../modality-specific-files/microelectrode-electrophysiology.md#coordinate-systems-for-electrode-positions).
+
 <!-- Link Definitions -->
 
 [common file level metadata fields]: ../derivatives/common-data-types.md#common-file-level-metadata-fields

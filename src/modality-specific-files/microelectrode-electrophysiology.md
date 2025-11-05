@@ -223,7 +223,7 @@ When electrode positions are known in anatomical or stereotaxic space:
 
 -   `*_space-<label>_electrodes.tsv`: Electrode positions in the specified coordinate system
 -   `*_space-<label>_coordsystem.json`: **REQUIRED** to define the coordinate system
--   Examples of `<label>` values include `StereoTaxic`, `AllenCCFv3`, `PaxinosWatson`, `individual`, or other standard spaces listed in the [Coordinate Systems Appendix](../appendices/coordinate-systems.md)
+-   Examples of `<label>` values include `AllenCCFv3`, `WaxholmSpace`, `WistarRatAtlas`, `individual`, or other standard spaces listed in the [Coordinate Systems Appendix](../appendices/coordinate-systems.md#microelectrode-electrophysiology-specific-coordinate-systems)
 
 Multiple coordinate systems can coexist in the same dataset.
 
@@ -596,11 +596,12 @@ between `*_electrodes.tsv` and `*_coordsystem.json` if they refer to the same
 data.
 
 For examples:
--   `*_space-StereoTaxic` (electrodes are localized in stereotactic coordinate system with bregma origin)
-  <!-- TODO: Add 'StereoTaxic', 'AllenCCFv3', 'PaxinosWatson', etc coordinate systems to appendix coordinate-systems.md under "Microelectrode Electrophysiology Specific Coordinate Systems" with appropriate definitions for each standard reference frame used in animal electrophysiology -->
--   `*_space-individual` (electrodes are localized in subject-specific anatomical coordinate system)
 -   `*_space-AllenCCFv3` (electrodes are mapped to Allen Common Coordinate Framework v3)
--   `*_space-PaxinosWatson` (electrodes are mapped to Paxinos-Watson rat brain atlas coordinates)
+-   `*_space-WaxholmSpace` (electrodes are mapped to Waxholm Space rat brain atlas)
+-   `*_space-WistarRatAtlas` (electrodes are mapped to Wistar rat brain atlas)
+-   `*_space-individual` (electrodes are localized in subject-specific anatomical coordinate system)
+
+For a complete list of available coordinate systems, see the [Microelectrode Electrophysiology Specific Coordinate Systems](../appendices/coordinate-systems.md#microelectrode-electrophysiology-specific-coordinate-systems) section in the appendix.
 
 When referring to the `*_electrodes.tsv` file in a certain *space* as defined
 above, the [`space-<label>`](../appendices/entities.md#space) of the accompanying `*_coordsystem.json` MUST
