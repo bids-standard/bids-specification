@@ -248,8 +248,9 @@ dimension_unit:
   name: dimension_unit
   display_name: Dimension unit
   description: |
-    Units of the physical dimensions  'width', 'height' and 'depth' of the probe.
-    For example, `mm`.
+    Spatial units for a position or a physical dimension of electrodes, such as
+    'width', 'height' or 'depth' of the probe.
+    For example, `um`.
   type: string
 duration:
   name: duration
@@ -602,14 +603,14 @@ internal_pipette_diameter:
   description: |
     The internal diameter of the pipette in micrometers.
   type: number
-  unit: mm
+  unit: um
 external_pipette_diameter:
   name: external_pipette_diameter
   display_name: External pipette diameter
   description: |
     The external diameter of the pipette in micrometers.
   type: number
-  unit: mm
+  unit: um
 placement__motion:
   name: placement
   display_name: Placement
@@ -792,6 +793,7 @@ short_channel:
     The total number of channels listed as short channels
     SHOULD be stored in `ShortChannelCount` in `*_nirs.json`.
   type: boolean
+# TODO: might need to dup for microephys__size and have it um^2
 size:
   name: size
   display_name: Electrode size
@@ -1194,12 +1196,16 @@ z__optodes:
     `"n/a"` if not available.
   type: number
 # TODO: Remove the overspecified entries for electrode positions if not used in microephys
+# TODO: finish up setup below
 x__electrodes:
   name: x
   display_name: Electrode X position
   description: |
-    Recorded position along the local width-axis relative
-    to the probe origin (see `_probes.tsv`)
+    If no `_space` entity used, it is the position along the local width-axis relative
+    to the probe origin (see `_probes.tsv`, also `dimension_unit` column there in).
+    Otherwise, the position relative to the origin of the coordinate system along
+    the first axis relative to the in the `MicroephysCoordinateUnits` of the corresponding
+    `_coordsystem.json` file.
   type: number
 y__electrodes:
   name: y
