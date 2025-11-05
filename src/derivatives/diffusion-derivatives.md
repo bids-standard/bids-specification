@@ -359,40 +359,55 @@ Dictionary `"OrientationEncoding"` has the following reserved keywords:
 
 Field `"OrientationEncoding"["Reference"]` MUST contain one of the following values:
 
-{{ MACROS___make_sidecar_table("derivatives.diffusion_derivatives.OrientationEncodingReference") }}
-
-| **Value** | **Interpretation**                                                                                                                                                                                                                                                            |
-| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| bvec      | The three spatial image axes; **unless** those axes form a right-handed coordinate system (that is, the 3x3 linear component of the NIfTI header transformation has a positive determinant), in which case the negative of the first axis orientation is the first reference. |
-| ijk       | The three spatial image axes define the orientation reference.                                                                                                                                                                                                                |
-| xyz       | The "real" / "scanner" space axes, which are independent of the NIfTI image header transform, define the orientation reference.                                                                                                                                               |
+{{ MACROS___make_metadata_table(
+   {
+    "bvec": {
+        "LongName": "bvec",
+        "Description": (
+            "The three spatial image axes; **unless** those axes form a right-handed coordinate system (that is, the 3x3 linear component of the NIfTI header transformation has a positive determinant), in which case the negative of the first axis orientation is the first reference.",
+        )
+    },
+    "ijk": {
+        "LongName": "ijk",
+        "Description": (
+            "The three spatial image axes define the orientation.",
+        )
+    },
+    "xyz": {
+        "LongName": "ijk",
+        "Description": (
+            "The 'real' / 'scanner' space axes, which are independent of the NIfTI image header transform, define the orientation reference.",
+        )
+    }
+   }
+) }}
 
 Dictionary `"ResponseFunction"` has the following reserved keywords:
 
-{{ MACROS___make_sidecar_table("derivatives.diffusion_derivatives.ResponseFunction") }}
+{{ MACROS___make_metadata_table(
+   {
+    "coefficients": {
+        "LongName": "Coefficients",
+        "Description": (
+            "REQUIRED",
+            "Either a list of floats, or a list of lists of floats, depending on the mathematical form of the response function and possibly the data to which it applies; see further below.",
+        )
+    },
+    "type": {
+        "LongName": "Type",
+        "Description": (
+            "REQUIRED",
+            "String. The mathematical form in which the response function coefficients are provided; see further below. ",
+        ),
+        "Levels": {
+            `eigen`: "list of 4 floating-point values must be specified; these are interpreted as three ordered eigenvalues of a rank 2 tensor, followed by a reference *b*=0 intensity.",
+            `zsh`: "Either of (1) a list of floating-point values: Values correspond to the response function coefficient for each consecutive even zonal spherical harmonic degree starting from zero; OR (2) List of lists of floating-point values. One list per unique *b*-value. Each individual list contains a coefficient per even zonal spherical harmonic degree starting from zero. If the response function utilized has a different number of non-zero zonal spherical harmonic coefficients for different *b*-values, these must be padded with zeroes such that all lists contain the same number of floating-point values."
+        }
+        }
+    },
+) }}
 
 
-| **Key name** | **Description**                                                                                                                                                                            |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Coefficients | REQUIRED. Either a list of floats, or a list of lists of floats, depending on the mathematical form of the response function and possibly the data to which it applies; see further below. |
-| Type         | REQUIRED. String. Options are: { `eigen`, `zsh` }. The mathematical form in which the response function coefficients are provided; see further below.                                      |
-
--   If `"ResponseFunction"["Type"]: "eigen"`,
-    then a list of 4 floating-point values must be specified;
-    these are interpreted as three ordered eigenvalues of a rank 2 tensor,
-    followed by a reference *b*=0 intensity.
-
--   If `"ResponseFunction"["Type"]": "zsh`",
-    then the values provided can be one of the following:
-
-    -   List of floating-point values.
-        Values correspond to the response function coefficient for each consecutive even zonal spherical harmonic degree starting from zero.
-
-    -   List of lists of floating-point values.
-        One list per unique *b*-value.
-        Each individual list contains a coefficient per even zonal spherical harmonic degree starting from zero.
-        If the response function utilized has a different number of non-zero zonal spherical harmonic coefficients for different *b*-values,
-        these must be padded with zeroes such that all lists contain the same number of floating-point values.
 
 ### Demonstrative examples
 
