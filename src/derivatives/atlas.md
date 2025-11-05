@@ -44,7 +44,7 @@ Template:
 where [`suffix`](../glossary.md#suffix-common_principles) is any valid BIDS suffix
 such as `T1w` or `PET`; and
 [`extension`](../glossary.md#extension-common_principles) is a valid BIDS extension
-such as `nii[.gz]`, `dscalar.nii[.gz]`, `dlabel.nii[.gz]`, `label.gii[.gz]`, `tsv`, or `json`.
+such as `nii[.gz]`, `dscalar.nii[.gz]`, `dlabel.nii[.gz]`, `label.gii`, `tsv`, or `json`.
 Templates and atlases do not establish new suffixes or extensions,
 but any valid BIDS/BIDS Derivatives filename is permitted in a template directory,
 substituting `tpl` for `sub` and `cohort` for `ses`.
@@ -262,8 +262,6 @@ A guide for using macros can be found at
       "tpl-SUIT": {
          "anat": {
             "tpl-SUIT_T1w.nii.gz": "",
-            "tpl-SUIT_flat.surf.gii": "",
-            "tpl-SUIT_sulc.shape.gii": "",
          },
       },
    }
@@ -284,12 +282,9 @@ A guide for using macros can be found at
          "anat": {
             "tpl-SUIT_T1w.nii.gz": "",
             "tpl-SUIT_atlas-Diedrichsen2009_dseg.json": "",
-            "tpl-SUIT_atlas-Diedrichsen2009_dseg.label.gii": "",
             "tpl-SUIT_atlas-Diedrichsen2009_dseg.nii.gz": "",
             "tpl-SUIT_atlas-Diedrichsen2009_dseg.tsv": "",
             "tpl-SUIT_atlas-Diedrichsen2009_probseg.nii.gz": "",
-            "tpl-SUIT_flat.surf.gii": "",
-            "tpl-SUIT_sulc.shape.gii": "",
          },
       },
    }
@@ -335,21 +330,16 @@ A guide for using macros can be found at
          "anat": {
             "tpl-SUIT_T1w.nii.gz": "",
             "tpl-SUIT_atlas-Buckner2011_dseg.json": "",
-            "tpl-SUIT_atlas-Buckner2011_seg-17n_dseg.label.gii": "",
             "tpl-SUIT_atlas-Buckner2011_seg-17n_dseg.nii.gz": "",
             "tpl-SUIT_atlas-Buckner2011_seg-17n_dseg.tsv": "",
             "tpl-SUIT_atlas-Buckner2011_seg-17n_stat-confidence_probseg.nii.gz": "",
-            "tpl-SUIT_atlas-Buckner2011_seg-7n_dseg.label.gii": "",
             "tpl-SUIT_atlas-Buckner2011_seg-7n_dseg.nii.gz": "",
             "tpl-SUIT_atlas-Buckner2011_seg-7n_dseg.tsv": "",
             "tpl-SUIT_atlas-Buckner2011_seg-7n_stat-confidence_probseg.nii.gz": "",
             "tpl-SUIT_atlas-Diedrichsen2009_dseg.json": "",
-            "tpl-SUIT_atlas-Diedrichsen2009_dseg.label.gii": "",
             "tpl-SUIT_atlas-Diedrichsen2009_dseg.nii.gz": "",
             "tpl-SUIT_atlas-Diedrichsen2009_dseg.tsv": "",
             "tpl-SUIT_atlas-Diedrichsen2009_probseg.nii.gz": "",
-            "tpl-SUIT_flat.surf.gii": "",
-            "tpl-SUIT_sulc.shape.gii": "",
          },
       },
    }
@@ -623,38 +613,6 @@ A guide for using macros can be found at
 {{ MACROS___make_filetree_example({
    "ps13-pipeline": {
       "atlas-ps13_description.json": "",
-      "tpl-fsaverage": {
-         "pet": {
-            "tpl-fsaverage_desc-nopvc_pet.json": "",
-            "tpl-fsaverage_desc-nopvc_pet.nii.gz": "",
-            "tpl-fsaverage_desc-pvc_pet.json": "",
-            "tpl-fsaverage_desc-pvc_pet.nii.gz": "",
-            "tpl-fsaverage_dseg.json": "",
-            "tpl-fsaverage_dseg.tsv": "",
-            "tpl-fsaverage_hemi-L_den-164k_desc-nopvc_pet.json": "",
-            "tpl-fsaverage_hemi-L_den-164k_desc-nopvc_pet.shape.gii": "",
-            "tpl-fsaverage_hemi-L_den-164k_desc-pvc_pet.json": "",
-            "tpl-fsaverage_hemi-L_den-164k_desc-pvc_pet.shape.gii": "",
-            "tpl-fsaverage_hemi-L_den-164k_stat-std_desc-nopvc_pet.json": "",
-            "tpl-fsaverage_hemi-L_den-164k_stat-std_desc-nopvc_pet.shape.gii": "",
-            "tpl-fsaverage_hemi-L_den-164k_stat-std_desc-pvc_pet.json": "",
-            "tpl-fsaverage_hemi-L_den-164k_stat-std_desc-pvc_pet.shape.gii": "",
-            "tpl-fsaverage_hemi-R_den-164k_desc-nopvc_pet.json": "",
-            "tpl-fsaverage_hemi-R_den-164k_desc-nopvc_pet.shape.gii": "",
-            "tpl-fsaverage_hemi-R_den-164k_desc-pvc_pet.json": "",
-            "tpl-fsaverage_hemi-R_den-164k_desc-pvc_pet.shape.gii": "",
-            "tpl-fsaverage_hemi-R_den-164k_stat-std_desc-nopvc_pet.json": "",
-            "tpl-fsaverage_hemi-R_den-164k_stat-std_desc-nopvc_pet.shape.gii": "",
-            "tpl-fsaverage_hemi-R_den-164k_stat-std_desc-pvc_pet.json": "",
-            "tpl-fsaverage_hemi-R_den-164k_stat-std_desc-pvc_pet.shape.gii": "",
-            "tpl-fsaverage_seg-nopvc_dseg.nii.gz": "",
-            "tpl-fsaverage_seg-pvc_dseg.nii.gz": "",
-            "tpl-fsaverage_stat-std_desc-nopvc_pet.json": "",
-            "tpl-fsaverage_stat-std_desc-nopvc_pet.nii.gz": "",
-            "tpl-fsaverage_stat-std_desc-pvc_pet.json": "",
-            "tpl-fsaverage_stat-std_desc-pvc_pet.nii.gz": "",
-         },
-      },
       "tpl-MNI152Lin": {
          "pet": {
             "tpl-MNI152Lin_dseg.json": "",
@@ -708,17 +666,6 @@ A guide for using macros can be found at
    "ps13rev2034-pipeline": {
       "atlas-ps13_description.json": "",
       "atlas-ps13rev2034_description.json": "",
-      "tpl-fsaverage": {
-         "pet": {
-            "tpl-fsaverage_seg-nopvc_dseg.nii.gz": "",
-            "tpl-fsaverage_seg-pvc_dseg.nii.gz": "",
-            "tpl-fsaverage_dseg.json": "",
-            "tpl-fsaverage_dseg.tsv": "",
-            "tpl-fsaverage_hemi-L_den-164k_desc-nopvc_pet.json": "",
-            "...": "",
-            "tpl-fsaverage_stat-std_desc-pvc_pet.nii.gz": "",
-         },
-      },
       "tpl-MNI152Lin": {
          "pet": {
             "tpl-MNI152Lin_atlas-ps13_seg-nopvc_dseg.nii.gz": "",
@@ -761,34 +708,6 @@ A guide for using macros can be found at
             "tpl-ps13_desc-nopvc_pet.nii.gz": "",
             "tpl-ps13_desc-pvc_pet.json": "",
             "tpl-ps13_desc-pvc_pet.nii.gz": "",
-            "tpl-ps13_space-fsaverage_desc-nopvc_pet.json": "",
-            "tpl-ps13_space-fsaverage_desc-nopvc_pet.nii.gz": "",
-            "tpl-ps13_space-fsaverage_desc-pvc_pet.json": "",
-            "tpl-ps13_space-fsaverage_desc-pvc_pet.nii.gz": "",
-            "tpl-ps13_space-fsaverage_dseg.json": "",
-            "tpl-ps13_space-fsaverage_dseg.tsv": "",
-            "tpl-ps13_space-fsaverage_hemi-L_den-164k_desc-nopvc_pet.json": "",
-            "tpl-ps13_space-fsaverage_hemi-L_den-164k_desc-nopvc_pet.shape.gii": "",
-            "tpl-ps13_space-fsaverage_hemi-L_den-164k_desc-pvc_pet.json": "",
-            "tpl-ps13_space-fsaverage_hemi-L_den-164k_desc-pvc_pet.shape.gii": "",
-            "tpl-ps13_space-fsaverage_hemi-L_den-164k_stat-std_desc-nopvc_pet.json": "",
-            "tpl-ps13_space-fsaverage_hemi-L_den-164k_stat-std_desc-nopvc_pet.shape.gii": "",
-            "tpl-ps13_space-fsaverage_hemi-L_den-164k_stat-std_desc-pvc_pet.json": "",
-            "tpl-ps13_space-fsaverage_hemi-L_den-164k_stat-std_desc-pvc_pet.shape.gii": "",
-            "tpl-ps13_space-fsaverage_hemi-R_den-164k_desc-nopvc_pet.json": "",
-            "tpl-ps13_space-fsaverage_hemi-R_den-164k_desc-nopvc_pet.shape.gii": "",
-            "tpl-ps13_space-fsaverage_hemi-R_den-164k_desc-pvc_pet.json": "",
-            "tpl-ps13_space-fsaverage_hemi-R_den-164k_desc-pvc_pet.shape.gii": "",
-            "tpl-ps13_space-fsaverage_hemi-R_den-164k_stat-std_desc-nopvc_pet.json": "",
-            "tpl-ps13_space-fsaverage_hemi-R_den-164k_stat-std_desc-nopvc_pet.shape.gii": "",
-            "tpl-ps13_space-fsaverage_hemi-R_den-164k_stat-std_desc-pvc_pet.json": "",
-            "tpl-ps13_space-fsaverage_hemi-R_den-164k_stat-std_desc-pvc_pet.shape.gii": "",
-            "tpl-ps13_space-fsaverage_seg-nopvc_dseg.nii.gz": "",
-            "tpl-ps13_space-fsaverage_seg-pvc_dseg.nii.gz": "",
-            "tpl-ps13_space-fsaverage_stat-std_desc-nopvc_pet.json": "",
-            "tpl-ps13_space-fsaverage_stat-std_desc-nopvc_pet.nii.gz": "",
-            "tpl-ps13_space-fsaverage_stat-std_desc-pvc_pet.json": "",
-            "tpl-ps13_space-fsaverage_stat-std_desc-pvc_pet.nii.gz": "",
             "tpl-ps13_space-MNI152Lin_dseg.json": "",
             "tpl-ps13_space-MNI152Lin_dseg.tsv": "",
             "tpl-ps13_space-MNI152Lin_res-1p5_desc-spmvbmNopvc_pet.json": "",
@@ -840,13 +759,6 @@ A guide for using macros can be found at
       "atlas-ps13rev2034_description.json": "",
       "tpl-ps13": {
          "pet": {
-            "tpl-ps13_space-fsaverage_atlas-ps13_seg-nopvc_dseg.nii.gz": "",
-            "tpl-ps13_space-fsaverage_atlas-ps13_seg-pvc_dseg.nii.gz": "",
-            "tpl-ps13_space-fsaverage_atlas-ps13_dseg.json": "",
-            "tpl-ps13_space-fsaverage_atlas-ps13_dseg.tsv": "",
-            "tpl-ps13_space-fsaverage_atlas-ps13_hemi-L_den-164k_desc-nopvc_pet.json": "",
-            "...": "",
-            "tpl-ps13_space-fsaverage_atlas-ps13_stat-std_desc-pvc_pet.nii.gz": "",
             "tpl-ps13_space-MNI152Lin_atlas-ps13_seg-nopvc_dseg.nii.gz": "",
             "tpl-ps13_space-MNI152Lin_atlas-ps13_seg-pvc_dseg.nii.gz": "",
             "tpl-ps13_space-MNI152Lin_atlas-ps13_dseg.json": "",
