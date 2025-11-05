@@ -29,6 +29,7 @@ microephysProbes:
     dimension_unit: optional
     rotation_angle: recommended
     coordinate_reference_point: recommended
+    anatomical_reference_point: optional
     hemisphere__probes: recommended
     associated_brain_region: recommended
     associated_brain_region_id: recommended

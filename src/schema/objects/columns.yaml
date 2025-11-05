@@ -152,6 +152,14 @@ coordinate_reference_point:
     Point of the probe that is described by the probe coordinates and
     on which the yaw, pitch, and roll rotations are applied.
   type: string
+anatomical_reference_point:
+  name: anatomical_reference_point
+  display_name: Anatomical reference point
+  description: |
+    Anatomical reference point for stereotaxic coordinates (for example, `Bregma`, `Lambda`).
+    If not specified, `Bregma` is assumed for rodents.
+    MUST be defined for species other than rodents.
+  type: string
 data_entity_id:
   name: data_entity_id
   display_name: Data entity ID
