@@ -389,11 +389,11 @@ for each volume:
 
 ```JSON
 {
-    "LabelMap": [
-        "BG",
-        "WM",
-        "GM"
-        ]
+  "LabelMap": [
+    "BG",
+    "WM",
+    "GM"
+  ]
 }
 ```
 
@@ -710,8 +710,8 @@ node/parcel/region within the atlas.
 This file will be essential for downstream workflows that generate matrices or other derived files within
 which node/parcel/region information is required, as the index/label fields will be used to reference
 the original anatomy the index/labels are derived from.
-Atlas-derived results SHOULD encode this information with the `[probseg|dseg|mask].tsv` files following
-the prescriptions of the [Common image-derived labels](#common-image-derived-labels) section above.
+Atlas-derived results SHOULD encode this information with the `dseg.tsv` or `probseg.json` files
+following the prescriptions of the [Common image-derived labels](#common-image-derived-labels) section above.
 Additional fields can be added with their respective definition/description in the sidecar JSON file.
 
 Template:
