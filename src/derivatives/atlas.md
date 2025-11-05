@@ -358,8 +358,8 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example({
    "suit-pipeline": {
+      "atlas-Diedrichsen2009_description.json": "",
       "tpl-SUIT": {
-         "atlas-Diedrichsen2009_description.json": "",
          "anat": {
             "tpl-SUIT_T1w.nii.gz": "",
             "tpl-SUIT_atlas-Diedrichsen2009_dseg.json": "",
@@ -408,9 +408,9 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example({
    "suit-pipeline": {
+      "atlas-Buckner2011_description.json": "",
+      "atlas-Diedrichsen2009_description.json": "",
       "tpl-SUIT": {
-         "atlas-Buckner2011_description.json": "",
-         "atlas-Diedrichsen2009_description.json": "",
          "anat": {
             "tpl-SUIT_T1w.nii.gz": "",
             "tpl-SUIT_atlas-Buckner2011_dseg.json": "",
@@ -471,6 +471,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example({
    "mial67thalamicnuclei-pipeline": {
+      "atlas-MIAL67ThalamicNuclei_description.json": "",
       "sub-01": {
          "anat": {
             "sub-01_seg-ThalamicNuclei_dseg.json": "",
@@ -492,7 +493,6 @@ A guide for using macros can be found at
       },
       "tpl-MNI152NLin2009cAsym": {
          "anat": {
-            "atlas-MIAL67ThalamicNuclei_description.json": "",
             "tpl-MNI152NLin2009cAsym_dseg.json": "",
             "tpl-MNI152NLin2009cAsym_dseg.tsv": "",
             "tpl-MNI152NLin2009cAsym_res-1_dseg.nii.gz": "",
@@ -556,6 +556,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example({
    "mial67thalamicnuclei-pipeline": {
+      "atlas-MIAL67ThalamicNuclei_description.json": "",
       "atlas-MIAL67ThalamicNuclei_dseg.json": "",
       "atlas-MIAL67ThalamicNuclei_dseg.tsv": "",
       "seg-ThalamicNuclei_dseg.json": "",
@@ -579,7 +580,6 @@ A guide for using macros can be found at
       },
       "tpl-MNI152NLin2009cAsym": {
          "anat": {
-            "atlas-MIAL67ThalamicNuclei_description.json": "",
             "tpl-MNI152NLin2009cAsym_res-1_dseg.nii.gz": "",
             "tpl-MNI152NLin2009cAsym_res-1_probseg.nii.gz": "",
          },
@@ -599,6 +599,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example({
    "mial67thalamicnuclei-pipeline": {
+      "atlas-MIAL67ThalamicNuclei_description.json": "",
       "atlas-MIAL67ThalamicNuclei_dseg.json": "",
       "atlas-MIAL67ThalamicNuclei_dseg.tsv": "",
       "seg-ThalamicNuclei_dseg.json": "",
@@ -622,14 +623,12 @@ A guide for using macros can be found at
       },
       "tpl-MNI152NLin2009cAsym": {
          "anat": {
-            "atlas-MIAL67ThalamicNuclei_description.json": "",
             "tpl-MNI152NLin2009cAsym_res-1_dseg.nii.gz": "",
             "tpl-MNI152NLin2009cAsym_res-1_probseg.nii.gz": "",
          },
       },
       "tpl-MNI152NLin6Asym": {
          "anat": {
-            "atlas-MIAL67ThalamicNuclei_description.json": "",
             "tpl-MNI152NLin6Asym_res-1_dseg.nii.gz": "",
             "tpl-MNI152NLin6Asym_res-1_probseg.nii.gz": "",
          },
@@ -787,6 +786,7 @@ A guide for using macros can be found at
 {{ MACROS___make_filetree_example({
    "ps13rev2034-pipeline": {
       "atlas-ps13_description.json": "",
+      "atlas-ps13rev2034_description.json": "",
       "tpl-fsaverage": {
          "pet": {
             "tpl-fsaverage_seg-nopvc_dseg.nii.gz": "",
@@ -800,7 +800,6 @@ A guide for using macros can be found at
       },
       "tpl-MNI152Lin": {
          "pet": {
-            "atlas-ps13rev2034_description.json": "",
             "tpl-MNI152Lin_atlas-ps13_seg-nopvc_dseg.nii.gz": "",
             "tpl-MNI152Lin_atlas-ps13_seg-pvc_dseg.nii.gz": "",
             "tpl-MNI152Lin_atlas-ps13_dseg.json": "",
