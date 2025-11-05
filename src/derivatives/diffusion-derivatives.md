@@ -245,6 +245,9 @@ REQUIRED field `"Model"` defines a dictionary that contains relevant information
 about what the model is and how it was fit to empirical image data.
 The following table defines reserved fields within the `"Model"` sub-dictionary.
 
+{{ MACROS___make_sidecar_table("derivatives.diffusion_derivatives.ModelMetadata") }}
+
+
 | **Key name**        | **Description**                                                                                                                 |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | BootstrapParameters | OPTIONAL. Dictionary. Parameters relating to the generation of multiple realizations of the model fit using bootstrapping.      |
@@ -253,6 +256,9 @@ The following table defines reserved fields within the `"Model"` sub-dictionary.
 | URL                 | OPTIONAL. String. URL to the specific implementation of the model utilized.                                                     |
 
 Dictionary `"Model["Parameters"]"` has the following reserved keywords that may be applicable to a broad range of models:
+
+{{ MACROS___make_sidecar_table("derivatives.diffusion_derivatives.ModelParameters") }}
+
 
 | **Key name**        | **Description**                                                                                                                 |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
@@ -273,6 +279,8 @@ Some fields are relevant only to specific [orientation encoding types](#orientat
 -   Where a field is *not* relevant for the corresponding image,
     that metadata field MUST NOT be specified.
 
+{{ MACROS___make_sidecar_table("derivatives.diffusion_derivatives.OrientationEncodingTypes") }}
+
 | **Key name**        | Relevant [orientation encoding types](#orientation-encoding-types)                         | **Description**                                                                                                                                                                                                                       |
 | ------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | BootstrapAxis       | Any                                                                                        | OPTIONAL. Integer. If multiple realizations of a given parameter are stored in a NIfTI image, this field nominates the image axis (indexed from zero) along which those multiple realizations are stored.                             |
@@ -283,6 +291,9 @@ Some fields are relevant only to specific [orientation encoding types](#orientat
 | ResponseFunction    | [Spherical harmonics](#encoding-sh)                                                        | OPTIONAL. Dictionary. Specifies a response function that was utilized by a deconvolution algorithm; more details below.                                                                                                               |
 
 Dictionary `"OrientationEncoding"` has the following reserved keywords:
+
+{{ MACROS___make_sidecar_table("derivatives.diffusion_derivatives.OrientationEncoding") }}
+
 
 | **Key name**            | Relevant [orientation encoding types](#orientation-encoding-types)                                                                                                         | **Description**                                                                                                                                                                                                                                                                                                                                                                                                              |
 | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -298,6 +309,8 @@ Dictionary `"OrientationEncoding"` has the following reserved keywords:
 
 Field `"OrientationEncoding"["Reference"]` MUST contain one of the following values:
 
+{{ MACROS___make_sidecar_table("derivatives.diffusion_derivatives.OrientationEncodingReference") }}
+
 | **Value** | **Interpretation**                                                                                                                                                                                                                                                            |
 | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | bvec      | The three spatial image axes; **unless** those axes form a right-handed coordinate system (that is, the 3x3 linear component of the NIfTI header transformation has a positive determinant), in which case the negative of the first axis orientation is the first reference. |
@@ -305,6 +318,9 @@ Field `"OrientationEncoding"["Reference"]` MUST contain one of the following val
 | xyz       | The "real" / "scanner" space axes, which are independent of the NIfTI image header transform, define the orientation reference.                                                                                                                                               |
 
 Dictionary `"ResponseFunction"` has the following reserved keywords:
+
+{{ MACROS___make_sidecar_table("derivatives.diffusion_derivatives.ResponseFunction") }}
+
 
 | **Key name** | **Description**                                                                                                                                                                            |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -557,6 +573,75 @@ Notes:
     where the length of each list is one;
     storing these values as a list of floats would be erroneously interpreted
     as coefficients of different zonal spherical harmonic degrees for a single *b*-value shell.
+
+
+#### A NODDI fit
+
+A fit of the Neurite Orientation and Dispersion Imaging model.
+
+{{ MACROS___make_filetree_example(
+    {
+    "noddi_pipeline": {
+        "sub-01": {
+        "dwi": {
+            "sub-01_model-noddi_param-direction_dwimap.nii.gz": "",
+            "sub-01_model-noddi_param-direction_dwimap.json": "",
+            "sub-01_model-noddi_param-odi_dwimap.nii.gz": "",
+            "sub-01_model-noddi_param-odi_dwimap.json": "",
+            "sub-01_model-noddi_param-icvf_dwimap.nii.gz": "",
+            "sub-01_model-noddi_param-icvf_dwimap.json": "",
+        },
+        },
+    },
+    }
+) }}
+
+Dimensions of NIfTI image "`sub-01_model-noddi_param-direction_dwimap.nii.gz`": *I*x*J*x*K*3 ([unit vector](#encoding-3vector))
+Dimensions of NIfTI image "`sub-01_model-noddi_param-odi_dwimap.nii.gz`": *I*x*J*x*K*1 ([scalar](#encoding-scalar))
+Dimensions of NIfTI image "`sub-01_model-noddi_param-icvf_dwimap.nii.gz`": *I*x*J*x*K*1 ([scalar](#encoding-scalar))
+
+
+Contents of JSON file "`sub-01_model-noddi_param-direction_dwimap.json`":
+
+```JSON
+{
+    "Model": {
+        "Description": "Neurite Orientation Dispersion and Density Imaging (NODDI)",
+        "URL": "https://www.sciencedirect.com/science/article/pii/S1053811914008519",
+    },
+    "Description": "Direction",
+    "OrientationEncoding": {
+        "EncodingAxis": 3,
+        "Type": "unit3vector",
+        "Reference": "xyz",
+    },
+}
+```
+
+Contents of JSON file "`sub-01_model-noddi_param-odi_dwimap.json`":
+
+```JSON
+{
+    "Model": {
+        "Description": "Neurite Orientation Dispersion and Density Imaging (NODDI)",
+        "URL": "https://www.sciencedirect.com/science/article/pii/S1053811914008519",
+    },
+    "Description": "Orientation dispersion index",
+}
+```
+
+Contents of JSON file "`sub-01_model-noddi_param-icvf_dwimap.json`":
+
+```JSON
+{
+    "Model": {
+        "Description": "Neurite Orientation Dispersion and Density Imaging (NODDI)",
+        "URL": "https://www.sciencedirect.com/science/article/pii/S1053811914008519",
+    },
+    "Description": "Intra-cellular volume fraction CVF",
+}
+```
+
 
 #### An FSL `bedpostx` Ball-And-Sticks fit
 
