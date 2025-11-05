@@ -245,27 +245,78 @@ REQUIRED field `"Model"` defines a dictionary that contains relevant information
 about what the model is and how it was fit to empirical image data.
 The following table defines reserved fields within the `"Model"` sub-dictionary.
 
-{{ MACROS___make_sidecar_table("derivatives.diffusion_derivatives.ModelMetadata") }}
-
-
-| **Key name**        | **Description**                                                                                                                 |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| BootstrapParameters | OPTIONAL. Dictionary. Parameters relating to the generation of multiple realizations of the model fit using bootstrapping.      |
-| Description         | OPTIONAL. String. Extended text-based information to describe the model.                                                        |
-| Parameters          | OPTIONAL. Dictionary. Parameters that influenced the process of fitting the model to empirical image data (see examples below). |
-| URL                 | OPTIONAL. String. URL to the specific implementation of the model utilized.                                                     |
+{{ MACROS___make_metadata_table(
+   { "bootstrap": {
+        "LongName": "BootstrapParameters",
+        "Description": (
+            "OPTIONAL",
+            "Dictionary. Parameters relating to the generation of multiple realizations of the model fit using bootstrapping.",
+            )
+    },
+     "description": {
+        "LongName": "Description",
+        "Description":(
+            "OPTIONAL",
+            "String. Extended text-based information to describe the model.",
+        )
+    },
+     "description": {
+        "LongName": "Parameters",
+        "Description":(
+            "OPTIONAL",
+            "Dictionary. Parameters that influenced the process of fitting the model to empirical image data (see examples below).",
+        )
+    },
+     "url": {
+        "LongName": "URL",
+        "Description": (
+        "OPTIONAL",
+        "Description": "String. URL to the specific implementation of the model utilized.",
+        )
+    }
+   }
+) }}
 
 Dictionary `"Model["Parameters"]"` has the following reserved keywords that may be applicable to a broad range of models:
 
-{{ MACROS___make_sidecar_table("derivatives.diffusion_derivatives.ModelParameters") }}
+{{ MACROS___make_metadata_table(
+   { "fit_method": {
+        "LongName": "FitMethod",
+        "Description": (
+            "OPTIONAL",
+            "String. The optimization procedure used to fit the intrinsic model parameters to the empirical diffusion-weighted signal.",
+        )
+        "Levels":
+        {"ols": "Ordinary Least Squares",
+         "wls": "Weighted Least Squares",
+         "iwls": "Iterative Weighted Least Squares",
+         "nlls": "Non-Linear Least Squares"
+        }
+    },
+     "iterations": {
+        "LongName": "Iterations",
+        "Description": (
+            "OPTIONAL",
+            "Integer. The number of iterations used for any form of model fitting procedure where the number of iterations is a fixed input parameter.",
+        )
+    },
+     "outlier_rejection_method": {
+        "LongName": "OutlierRejectionMethod",
+        "Description": ("OPTIONAL",
+        "Description": "String. Text describing any form of rejection of outlier values that was performed during fitting of the model.",
+        )
+    },
+     "samples": {
+        "LongName": "Samples",
+        "Description":
+        (
+            "OPTIONAL",
+            "Description": "Integer. The number of realizations of a diffusion model from which statistical summaries (such as mean, standard deviation) of those parameters were computed.",
+        )
+    }
+   }
+) }}
 
-
-| **Key name**        | **Description**                                                                                                                 |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| FitMethod              | OPTIONAL. String. The optimization procedure used to fit the intrinsic model parameters to the empirical diffusion-weighted signal. Reserved values are: "`ols`" (Ordinary Least Squares); "`wls`" (Weighted Least Squares); "`iwls`" (Iterative Weighted Least Squares); "`nlls`" (Non-Linear Least Squares). |
-| Iterations             | OPTIONAL. Integer. The number of iterations used for any form of model fitting procedure where the number of iterations is a fixed input parameter.                                                                                                                                                           |
-| OutlierRejectionMethod | OPTIONAL. String. Text describing any form of rejection of outlier values that was performed during fitting of the model.                                                                                                                                                                                     |
-| Samples                | OPTIONAL. Integer. The number of realizations of a diffusion model from which statistical summaries (such as mean, standard deviation) of those parameters were computed.                                                                                                                                        |
 
 #### Parameter metadata
 
@@ -279,7 +330,6 @@ Some fields are relevant only to specific [orientation encoding types](#orientat
 -   Where a field is *not* relevant for the corresponding image,
     that metadata field MUST NOT be specified.
 
-{{ MACROS___make_sidecar_table("derivatives.diffusion_derivatives.OrientationEncodingTypes") }}
 
 | **Key name**        | Relevant [orientation encoding types](#orientation-encoding-types)                         | **Description**                                                                                                                                                                                                                       |
 | ------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -577,7 +627,8 @@ Notes:
 
 #### A NODDI fit
 
-A fit of the Neurite Orientation and Dispersion Imaging model.
+A fit of the Neurite Orientation and Dispersion Imaging model using the AMICO
+software.
 
 {{ MACROS___make_filetree_example(
     {
