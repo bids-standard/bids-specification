@@ -179,10 +179,12 @@ A guide for using macros can be found at
 !!! warning "Warning"
 
     Please note that the specification for spatial transforms (BEP 014) is currently
-    under development, and therefore, the specification of transforms files may
-    change in the future.
+    under development, and therefore, the specification of transforms files (`xfm` suffix above)
+    may change in the future.
 
 ## Derived atlases
+
+{{ MACROS___render_text('objects.common_principles.atlas.description') }}
 
 ### Atlas identification and metadata
 
