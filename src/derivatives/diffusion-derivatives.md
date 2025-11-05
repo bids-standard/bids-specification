@@ -453,11 +453,11 @@ A guide for using macros can be found at
     }
 ) }}
 
-Dimensions of NIfTI image "`sub-01_model-csd_param-wm_model.nii.gz`": *I*x*J*x*K*x45 ([spherical harmonics](#encoding-sh))
-Dimensions of NIfTI image "`sub-01_model-csd_param-gm_model.nii.gz`": *I*x*J*x*K*x1 ([spherical harmonics](#encoding-sh))
-Dimensions of NIfTI image "`sub-01_model-csd_param-csf_model.nii.gz`": *I*x*J*x*K*x1 ([spherical harmonics](#encoding-sh))
+Dimensions of NIfTI image "`sub-01_model-csd_param-wm_dwimap.nii.gz`": *I*x*J*x*K*x45 ([spherical harmonics](#encoding-sh))
+Dimensions of NIfTI image "`sub-01_model-csd_param-gm_dwimap.nii.gz`": *I*x*J*x*K*x1 ([spherical harmonics](#encoding-sh))
+Dimensions of NIfTI image "`sub-01_model-csd_param-csf_dwimap.nii.gz`": *I*x*J*x*K*x1 ([spherical harmonics](#encoding-sh))
 
-Contents of JSON file "`sub-01_model-csd_param-wm_model.json`":
+Contents of JSON file "`sub-01_model-csd_param-wm_dwimap.json`":
 
 ```JSON
 {
