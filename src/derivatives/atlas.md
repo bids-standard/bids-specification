@@ -186,6 +186,17 @@ A guide for using macros can be found at
 
 {{ MACROS___render_text('objects.common_principles.atlas.description') }}
 
+Template:
+
+```Text
+<pipeline_name>/
+    atlas-<label>_description.json
+    tpl-<label>/
+        [cohort-<label>/]
+           [<datatype>/]
+               tpl-<label>[_cohort-<label>][_<entities>]_<suffix>.<extension>
+```
+
 ### Atlas identification and metadata
 
 The `atlas-<label>_description.json` file provides metadata to uniquely identify,
@@ -199,17 +210,6 @@ corresponding to the atlas or atlases in the structure.
     for the [`atlas-<label>` entity](../appendices/entities.md#atlas)
     in downstream derivatives from this particular atlas (see previous section
     [Derivatives from atlases](imaging.md#derivatives-from-atlases)).
-
-Template:
-
-```Text
-<pipeline_name>/
-    atlas-<label>_description.json
-    tpl-<label>/
-        [cohort-<label>/]
-           [<datatype>/]
-               tpl-<label>[_cohort-<label>][_space-<label>][_atlas-<label>][_seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
-```
 
 Atlas metadata fields:
 
@@ -236,6 +236,8 @@ Example `atlas-MyAtlas2025_description.json`:
 }
 ```
 
+### Atlas spatial reference
+
 Atlases are often aligned to a common spatial reference
 to allow for the ready application of atlas data.
 A file may indicate the spatial reference to which it has been aligned using the
@@ -246,9 +248,9 @@ The [`tpl` entity](../appendices/entities.md#template) may take any value in
 
 If the [`tpl` entity](../appendices/entities.md#template) is not in the
 [Standard template identifiers][templates] table,
-then the `SpatialReference` metadata is REQUIRED.
+then the `SpatialReference` metadata is REQUIRED for files with that entity.
 
-### Deriving templates and atlases
+### Example: Deriving templates and atlases
 
 A common use-case of brain templates is establishing stereotaxy for the creation
 of atlases.
@@ -270,11 +272,20 @@ A guide for using macros can be found at
       "tpl-SUIT": {
          "anat": {
             "tpl-SUIT_T1w.nii.gz": "",
+            "tpl-SUIT_T1w.json": "",
          },
       },
    }
 })
 }}
+
+Where `tpl-SUIT_T1w.json` contains (at minimum):
+
+```json
+{
+  "SpatialReference": "https://templateflow.s3.amazonaws.com/tpl-MNI152NLin6Asym_res-02_T1w.nii.gz"
+}
+```
 
 Once the standard space of analysis was prepared, a first atlas was
 developed in 2009, integrating some segmentations and parcellations:
@@ -321,9 +332,8 @@ where `atlas-Diedrichsen2009_description.json` could contain:
 }
 ```
 
-Finally, in 2011 a second atlas was developed integrating new segmentations.
-Now, to disambiguate between the two atlases,
-the [`atlas-<label>` entity](../appendices/entities.md#atlas) MUST be used:
+Later, in 2011 a second atlas was developed integrating new segmentations,
+so the template dataset can be updated to contain a second atlas:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -339,10 +349,10 @@ A guide for using macros can be found at
             "tpl-SUIT_atlas-Buckner2011_dseg.json": "",
             "tpl-SUIT_atlas-Buckner2011_seg-17n_dseg.nii.gz": "",
             "tpl-SUIT_atlas-Buckner2011_seg-17n_dseg.tsv": "",
-            "tpl-SUIT_atlas-Buckner2011_seg-17n_stat-confidence_probseg.nii.gz": "",
+            "tpl-SUIT_atlas-Buckner2011_seg-17n_desc-confidence_probseg.nii.gz": "",
             "tpl-SUIT_atlas-Buckner2011_seg-7n_dseg.nii.gz": "",
             "tpl-SUIT_atlas-Buckner2011_seg-7n_dseg.tsv": "",
-            "tpl-SUIT_atlas-Buckner2011_seg-7n_stat-confidence_probseg.nii.gz": "",
+            "tpl-SUIT_atlas-Buckner2011_seg-7n_desc-confidence_probseg.nii.gz": "",
             "tpl-SUIT_atlas-Diedrichsen2009_dseg.json": "",
             "tpl-SUIT_atlas-Diedrichsen2009_dseg.nii.gz": "",
             "tpl-SUIT_atlas-Diedrichsen2009_dseg.tsv": "",
@@ -376,7 +386,7 @@ and `atlas-Buckner2011_description.json` could contain:
 }
 ```
 
-### Deriving a new atlas referenced in an existing template
+### Example: Deriving a new atlas referenced in an existing template
 
 For example, the `MIAL67ThalamicNuclei`
 ([Najdenovska et al., 2018](https://doi.org/10.1038/sdata.2018.270))
@@ -410,10 +420,10 @@ A guide for using macros can be found at
       },
       "tpl-MNI152NLin2009cAsym": {
          "anat": {
-            "tpl-MNI152NLin2009cAsym_dseg.json": "",
-            "tpl-MNI152NLin2009cAsym_dseg.tsv": "",
-            "tpl-MNI152NLin2009cAsym_res-1_dseg.nii.gz": "",
-            "tpl-MNI152NLin2009cAsym_res-1_probseg.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_dseg.json": "",
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_dseg.tsv": "",
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz": "",
          },
       },
    }
@@ -433,6 +443,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example({
    "mial67thalamicnuclei-pipeline": {
+      "atlas-MIAL67ThalamicNuclei_description.json": "",
       "seg-ThalamicNuclei_dseg.json": "",
       "seg-ThalamicNuclei_dseg.tsv": "",
       "sub-01": {
@@ -452,11 +463,10 @@ A guide for using macros can be found at
       },
       "tpl-MNI152NLin2009cAsym": {
          "anat": {
-            "atlas-MIAL67ThalamicNuclei_description.json": "",
-            "tpl-MNI152NLin2009cAsym_dseg.json": "",
-            "tpl-MNI152NLin2009cAsym_dseg.tsv": "",
-            "tpl-MNI152NLin2009cAsym_res-1_dseg.nii.gz": "",
-            "tpl-MNI152NLin2009cAsym_res-1_probseg.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_dseg.json": "",
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_dseg.tsv": "",
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz": "",
          },
       },
    }
@@ -497,15 +507,15 @@ A guide for using macros can be found at
       },
       "tpl-MNI152NLin2009cAsym": {
          "anat": {
-            "tpl-MNI152NLin2009cAsym_res-1_dseg.nii.gz": "",
-            "tpl-MNI152NLin2009cAsym_res-1_probseg.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz": "",
          },
       },
    }
 })
 }}
 
-### Deriving one atlas from two or more existing templates
+### Example: Distributing one atlas aligned to two or more existing templates
 
 This directory structure can be generally applied when the atlas is derived into several
 template spaces, for example:
@@ -519,89 +529,25 @@ A guide for using macros can be found at
       "atlas-MIAL67ThalamicNuclei_description.json": "",
       "atlas-MIAL67ThalamicNuclei_dseg.json": "",
       "atlas-MIAL67ThalamicNuclei_dseg.tsv": "",
-      "seg-ThalamicNuclei_dseg.json": "",
-      "seg-ThalamicNuclei_dseg.tsv": "",
-      "sub-01": {
-         "anat": {
-            "sub-01_seg-ThalamicNuclei_dseg.nii.gz": "",
-            "sub-01_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
-            "sub-01_space-MNI152NLin6Asym_T1w.nii.gz": "",
-            "sub-01_T1w.nii.gz": "",
-         },
-      },
-      "...": "",
-      "sub-67": {
-         "anat": {
-            "sub-67_seg-ThalamicNuclei_dseg.nii.gz": "",
-            "sub-67_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
-            "sub-67_space-MNI152NLin6Asym_T1w.nii.gz": "",
-            "sub-67_T1w.nii.gz": "",
-         },
-      },
+      "atlas-MIAL67ThalamicNuclei_probseg.json": "",
       "tpl-MNI152NLin2009cAsym": {
          "anat": {
-            "tpl-MNI152NLin2009cAsym_res-1_dseg.nii.gz": "",
-            "tpl-MNI152NLin2009cAsym_res-1_probseg.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz": "",
+            "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz": "",
          },
       },
       "tpl-MNI152NLin6Asym": {
          "anat": {
-            "tpl-MNI152NLin6Asym_res-1_dseg.nii.gz": "",
-            "tpl-MNI152NLin6Asym_res-1_probseg.nii.gz": "",
+            "tpl-MNI152NLin6Asym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz": "",
+            "tpl-MNI152NLin6Asym_atlas-MIAL67ThalamicNuclei_res-1_probseg.nii.gz": "",
          },
       },
    }
 })
 }}
 
-Without any loss in generality, we can store subjects' spatially normalizing
-transforms, as well as transforms between template spaces:
+<!-- Link Definitions -->
 
-<!-- This block generates a file tree.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filetree_example({
-   "mial67thalamicnuclei-pipeline": {
-      "atlas-MIAL67ThalamicNuclei_description.json": "",
-      "atlas-MIAL67ThalamicNuclei_dseg.json": "",
-      "atlas-MIAL67ThalamicNuclei_dseg.tsv": "",
-      "seg-ThalamicNuclei_dseg.json": "",
-      "seg-ThalamicNuclei_dseg.tsv": "",
-      "sub-01": {
-         "anat": {
-            "sub-01_from-T1w_to-MNI152NLin2009cAsym_mode-image_xfm.h5": "",
-            "sub-01_from-T1w_to-MNI152NLin6Asym_mode-image_xfm.h5": "",
-            "sub-01_seg-ThalamicNuclei_dseg.nii.gz": "",
-            "sub-01_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
-            "sub-01_space-MNI152NLin6Asym_T1w.nii.gz": "",
-            "sub-01_T1w.nii.gz": "",
-         },
-      },
-      "...": "",
-      "sub-67": {
-         "anat": {
-            "sub-67_from-T1w_to-MNI152NLin2009cAsym_mode-image_xfm.h5": "",
-            "sub-67_from-T1w_to-MNI152NLin6Asym_mode-image_xfm.h5": "",
-            "sub-67_seg-ThalamicNuclei_dseg.nii.gz": "",
-            "sub-67_space-MNI152NLin2009cAsym_T1w.nii.gz": "",
-            "sub-67_space-MNI152NLin6Asym_T1w.nii.gz": "",
-            "sub-67_T1w.nii.gz": "",
-         },
-      },
-      "tpl-MNI152NLin2009cAsym": {
-         "anat": {
-            "tpl-MNI152NLin2009cAsym_from-MNI152NLin6Asym_mode-image_xfm.h5": "",
-            "tpl-MNI152NLin2009cAsym_res-1_dseg.nii.gz": "",
-            "tpl-MNI152NLin2009cAsym_res-1_probseg.nii.gz": "",
-         },
-      },
-      "tpl-MNI152NLin6Asym": {
-         "anat": {
-            "tpl-MNI152NLin6Asym_res-1_dseg.nii.gz": "",
-            "tpl-MNI152NLin6Asym_res-1_probseg.nii.gz": "",
-         },
-      },
-   }
-})
-}}
+[coordsys]: ../appendices/coordinate-systems.md#image-based-coordinate-systems
+
+[templates]: ../appendices/coordinate-systems.md#standard-template-identifiers
