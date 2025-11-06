@@ -715,6 +715,7 @@ Contents of JSON file "`sub-01_model-noddi_param-odi_dwimap.json`":
             },
     },
     "Description": "Orientation dispersion index",
+    "ParameterURL": "https://doi.org/10.1016/j.neuroimage.2012.03.072"
 }
 ```
 
@@ -731,6 +732,7 @@ Contents of JSON file "`sub-01_model-noddi_param-icvf_dwimap.json`":
             },
         },
     "Description": "Intra-cellular volume fraction CVF",
+    "ParameterURL": "https://doi.org/10.1016/j.neuroimage.2012.03.072"
 }
 ```
 
