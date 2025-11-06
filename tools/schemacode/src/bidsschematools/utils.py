@@ -6,7 +6,6 @@ import logging
 import os
 import sys
 import warnings
-from contextlib import contextmanager
 from functools import wraps
 
 from . import data
@@ -184,6 +183,7 @@ class WarningsFilter:
 
     Arguments are lists of positional arguments to :func:`warnings.filterwarnings`.
     """
+
     def __init__(self, *filters):
         self.filters = filters
 
