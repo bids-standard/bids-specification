@@ -66,14 +66,14 @@ atlas_description:
     - entities.atlas
   fields:
     AtlasName: required
+    License: required
     AtlasSampleSize: required
-    SpatialReference: required
     Description: recommended
     Authors: recommended
-    Curators: recommended
-    Funding: recommended
-    License: recommended
-    ReferencesAndLinks: recommended
-    Species: recommended
-    DerivedFrom: recommended
-    LevelType: recommended
+    Curators: optional
+    Funding: optional
+    ReferencesAndLinks: optional
+    Species: optional
+    DerivedFrom: optional
+    LevelType: optional
+    RRID: optional
