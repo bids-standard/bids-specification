@@ -527,7 +527,7 @@ The uniqueness of this identifier MUST be used to distinguish any activity, soft
 
 Provenance objects as defined in this specification can be aggregated into [JSON-LD](https://www.w3.org/TR/json-ld11/) files ; which allows to represent provenance as a RDF graph.
 
-Moreover, the terms defined in this specification to describe provenance objects are based on the [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/) standard. They can be resolved to [IRIs](https://www.w3.org/TR/json-ld11/#iris) using the JSON-LD context file [`provenance-context.json`](/provenance-context.json) provided with this specification.
+Moreover, the terms defined in this specification to describe provenance objects are based on the [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/) standard. They can be resolved to [IRIs](https://www.w3.org/TR/json-ld11/#iris) using the JSON-LD context file [`provenance-context.json`](../../provenance-context.json) provided with this specification.
 
 All BIDS examples related to provenance (see. [bids-examples, provenance section](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#provenance)) show the aggregated version of the provenance metadata they contain. This comes as a JSON-LD file and a visualization of the graph.
 
@@ -702,7 +702,7 @@ Inside the `sub-001/anat/c1sub-001_T1w.json` file, the metadata field `Generated
 !!! example
     This section shows a snippet from the [Provenance of manual annotations](https://github.com/bclenet/bids-examples/tree/BEP028_manual/provenance_manual) example.
 
-In this example, we explain provenance metadata of brain segmentation performed by three experts on the same T1w file. Consider the following BIDS study dataset:
+In this example, we explain provenance metadata of brain segmentation performed by two experts on the same T1w file. Consider the following BIDS study dataset:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -712,27 +712,27 @@ A guide for using macros can be found at
     {
         "dataset_description.json": "",
         "derivatives": {
-            "segmentations": {
+            "seg": {
                 "dataset_description.json": "",
+                "descrptions.tsv": "",
+                "...": "",
+                "prov": {
+                    "provenance.tsv": "",
+                    "prov-seg_desc-exp1_act.json": "",
+                    "prov-seg_desc-exp1_soft.json": "",
+                    "prov-seg_desc-exp2_act.json": "",
+                    "prov-seg_desc-exp2_soft.json": "",
+                    "prov-seg_ent.json": "",
+                },
                 "sub-001": {
                     "sub-001_space-orig_desc-exp1_dseg.json": "",
                     "sub-001_space-orig_desc-exp1_dseg.nii.gz": "",
                     "sub-001_space-orig_desc-exp2_dseg.json": "",
-                    "sub-001_space-orig_desc-exp2_dseg.nii.gz": "",
-                    "sub-001_space-orig_desc-exp3_dseg.json": "",
-                    "sub-001_space-orig_desc-exp3_dseg.nii.gz": ""
+                    "sub-001_space-orig_desc-exp2_dseg.nii.gz": ""
                 }
             }
         },
-        "prov": {
-            "provenance.tsv": "",
-            "prov-seg1_act.json": "",
-            "prov-seg1_soft.json": "",
-            "prov-seg2_act.json": "",
-            "prov-seg2_soft.json": "",
-            "prov-seg3_act.json": "",
-            "prov-seg3_soft.json": ""
-        },
+        "...": "",
         "sourcedata": {
             "raw": {
                 "dataset_description.json": "",
@@ -746,19 +746,18 @@ A guide for using macros can be found at
     }
 ) }}
 
-Inside the `dataset_description.json` file of the study dataset, the `DatasetLinks` metadata field defines aliases to refer to the two nested datasets using BIDS URIs.
+Inside the `dataset_description.json` file of the `seg` derivative dataset, the `DatasetLinks` metadata field defines an alias that is needed to refer to the raw dataset using BIDS URIs.
 
 ```JSON
 {
     ...
     "DatasetLinks": {
-        "raw": "sourcedata/raw",
-        "segmentations": "derivatives/segmentations"
+        "raw": "../../sourcedata/raw"
     }
 }
 ```
 
-The `prov/prov-seg1_act.json` file describes the activity that generated the brain segmentation for expert 1.
+The `prov/prov-seg_desc-exp1_act.json` file describes the activity during which expert #1 generated the brain segmentation.
 
 ```JSON
 {
@@ -778,13 +777,27 @@ The `prov/prov-seg1_act.json` file describes the activity that generated the bra
 }
 ```
 
-Under the `derivatives/segmentations` dataset, the `sub-001_space-orig_desc-exp1_dseg.json` file describes that this activity generated the `sub-001_space-orig_desc-exp1_dseg.nii.gz` file.
+Note that a description of the `sub-001/anat/sub-001_T1w.nii.gz` file is needed inside `derivatives/seg/prov/prov-seg_ent.json` because this data file is not in the `derivative/seg` dataset.
 
-The `prov/provenance.tsv` file indicates which `prov-<label>` entity corresponds to provenance files describing each of the brain segmentation processes.
+Under the `derivatives/seg` dataset, the `sub-001_space-orig_desc-exp1_dseg.json` file describes that this activity generated the `sub-001_space-orig_desc-exp1_dseg.nii.gz` file.
+
+```JSON
+{
+    "GeneratedBy": "bids::prov#segmentation-nO5RGsrb"
+}
+```
+
+The `derivatives/seg/prov/provenance.tsv` gives a description of the `prov-seg`.
 
 ```TXT
 provenance_label    description
-prov-seg1   Manual brain segmentation performed by expert #1
-prov-seg2   Manual brain segmentation performed by expert #2
-...
+prov-seg   Manual brain segmentation performed by two experts
+```
+
+The `descriptions.tsv` gives descriptions of the `desc` entities used both for provenance files and datafiles.
+
+```TXT
+desc_id    description
+desc-seg1   Files generated by expert #1
+desc-seg2   Files generated by expert #2
 ```
