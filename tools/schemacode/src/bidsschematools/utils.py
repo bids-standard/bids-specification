@@ -179,14 +179,19 @@ def in_context(context_manager):
     return decorator
 
 
-@contextmanager
-def filter_warnings(*filters):
+class WarningsFilter:
     """Context manager to apply warning filters.
 
     Arguments are lists of positional arguments to :func:`warnings.filterwarnings`.
     """
+    def __init__(self, *filters):
+        self.filters = filters
 
-    with warnings.catch_warnings():
-        for filt in filters:
+    def __enter__(self):
+        self.catcher = warnings.catch_warnings()
+        self.catcher.__enter__()
+        for filt in self.filters:
             warnings.filterwarnings(*filt)
-        yield
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        self.catcher.__exit__(exc_type, exc_value, traceback)
