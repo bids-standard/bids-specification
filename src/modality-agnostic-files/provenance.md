@@ -520,15 +520,16 @@ The uniqueness of this identifier MUST be used to distinguish any activity, soft
     - `bids::prov#fedora-uldfv058` - a Fedora based environment described inside the current dataset.
     - `bids:preprocessing:prov#fmriprep-r4kzzMt8` - the fMRIPrep software described inside the `preprocessing` dataset.
 
-## BIDS provenance from a RDF perspective
+## Provenance from a RDF perspective
 
-The Resource Description Framework (RDF) is a method to describe and exchange graph data.
+!!! note
+    The [Resource Description Framework (RDF)](https://www.w3.org/RDF/) is a method to describe and exchange graph data.
 
-The terms defined in this part of the BIDS specification are based on the [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/) standard. Their relations with W3C Prov terms are defined in the [`provenance-context.json`]() file.
+Provenance objects as defined in this specification can be aggregated into [JSON-LD](https://www.w3.org/TR/json-ld11/) files ; which allows to represent provenance as a RDF graph.
 
-Provenance metadata can be aggregated into JSON-LD files that represent RDF graphs.
+Moreover, the terms defined in this specification to describe provenance objects are based on the [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/) standard. They can be resolved to [IRIs](https://www.w3.org/TR/json-ld11/#iris) using the JSON-LD context file [`provenance-context.json`](/provenance-context.json) provided with this specification.
 
-Insert examples and links to bids-examples here.
+All BIDS examples related to provenance (see. [bids-examples, provenance section](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#provenance)) show the aggregated version of the provenance metadata they contain. This comes as a JSON-LD file and a visualization of the graph.
 
 ## Minimal examples
 
@@ -641,8 +642,8 @@ A guide for using macros can be found at
 
 The `prov/prov-spm_act.json` file describes the preprocessing steps as activities provenance objects. Among them:
 
--   the `bids::prov#movefile-bac3f385` activity used a T1w file from the ds000011 dataset;
--   the brain segmentation -identified by `bids::prov#segment-7d5d4ac5`- needed two files listed as provEntities inside the `Used` array.
+-   the `bids::prov#movefile-bac3f385` activity needed a T1w file from the ds000011 dataset identified by `bids:ds000011:sub-01/anat/sub-01_T1w.nii.gz`;
+-   the `bids::prov#segment-7d5d4ac5` brain segmentation activity needed two files listed as provEntities inside the `Used` array.
 
 ```JSON
 {
@@ -670,7 +671,7 @@ The `prov/prov-spm_act.json` file describes the preprocessing steps as activitie
 }
 ```
 
-The BIDS file described by provEntity `bids::sub-01/anat/sub-01_T1w.nii` is available in the current dataset. The file described by provEntity `urn:c1d082a5-34ee-4282-99df-28c0ba289210` is not inside the dataset. The provEntity is stored inside `prov/prov-spm_ent.json`:
+The BIDS file described by provEntity `bids::sub-01/anat/sub-01_T1w.nii` is available in the current dataset. The file described by provEntity `urn:c1d082a5-34ee-4282-99df-28c0ba289210` is not inside the dataset ; the provEntity is stored inside `prov/prov-spm_ent.json`:
 
 ```JSON
 {
@@ -698,7 +699,10 @@ Inside the `sub-001/anat/c1sub-001_T1w.json` file, the metadata field `Generated
 
 ### Provenance of a BIDS study dataset
 
-In this example, we explain provenance metadata of fMRI preprocessing steps performed with `fMRIPrep`. Consider the following BIDS study dataset:
+!!! example
+    This section shows a snippet from the [Provenance of manual annotations](https://github.com/bclenet/bids-examples/tree/BEP028_manual/provenance_manual) example.
+
+In this example, we explain provenance metadata of brain segmentation performed by three experts on the same T1w file. Consider the following BIDS study dataset:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -708,68 +712,79 @@ A guide for using macros can be found at
     {
         "dataset_description.json": "",
         "derivatives": {
-            "fmriprep": {
-                "sub-01": {},
-                "sub-02": {},
-                "...": ""
+            "segmentations": {
+                "dataset_description.json": "",
+                "sub-001": {
+                    "sub-001_space-orig_desc-exp1_dseg.json": "",
+                    "sub-001_space-orig_desc-exp1_dseg.nii.gz": "",
+                    "sub-001_space-orig_desc-exp2_dseg.json": "",
+                    "sub-001_space-orig_desc-exp2_dseg.nii.gz": "",
+                    "sub-001_space-orig_desc-exp3_dseg.json": "",
+                    "sub-001_space-orig_desc-exp3_dseg.nii.gz": ""
+                }
             }
         },
         "prov": {
-            "prov-fmriprep_act.json": "",
-            "prov-fmriprep_ent.json": ""
+            "provenance.tsv": "",
+            "prov-seg1_act.json": "",
+            "prov-seg1_soft.json": "",
+            "prov-seg2_act.json": "",
+            "prov-seg2_soft.json": "",
+            "prov-seg3_act.json": "",
+            "prov-seg3_soft.json": ""
         },
         "sourcedata": {
             "raw": {
-                "sub-01": {},
-                "sub-02": {},
-                "...": ""
+                "dataset_description.json": "",
+                "sub-001": {
+                    "sub-001_T1w.json": "",
+                    "sub-001_T1w.nii.gz": ""
+                }
             }
         },
         "...": ""
-   }
+    }
 ) }}
 
-Inside the `dataset_description.json` file of the study dataset, dataset names are defined in the `DatasetLinks` metadata field in order to refer to two nested datasets using BIDS URIs.
+Inside the `dataset_description.json` file of the study dataset, the `DatasetLinks` metadata field defines aliases to refer to the two nested datasets using BIDS URIs.
 
 ```JSON
 {
     ...
     "DatasetLinks": {
         "raw": "sourcedata/raw",
-        "fmriprep": "derivatives/fmriprep"
+        "segmentations": "derivatives/segmentations"
     }
 }
 ```
 
-The `prov/prov-fmriprep_ent.json` file describes two provEntities: one per nested dataset.
-
-```JSON
-{
-    "ProvEntities": [
-        {
-            "Id": "bids:raw:.",
-            "Label": "Raw data"
-        },
-        {
-            "Id": "bids:fmriprep:.",
-            "Label": "Preprocessed data",
-            "GeneratedBy": "bids::prov#preprocessing-00f3a18f"
-        },
-    ]
-}
-```
-
-The `prov/prov-fmriprep_act.json` file describes the activity that generated the derivative dataset using the raw dataset.
+The `prov/prov-seg1_act.json` file describes the activity that generated the brain segmentation for expert 1.
 
 ```JSON
 {
     "Activities": [
         {
-            "Id": "bids::prov#preprocessing-00f3a18f",
-            "Label": "Preprocessing with fMRIprep",
-            "Command": "docker run  -v sourcedata/raw:/data:ro -v derivatives/fmriprep:/out poldracklab/fmriprep:1.1.4 /data /out",
-            "Used": "bids:raw:."
+            "Id": "bids::prov#segmentation-nO5RGsrb",
+            "Label": "Semi-automatic brain segmentation",
+            "Command": "itk-snap sourcedata/raw/sub-001/anat/sub-001_T1w.nii.gz",
+            "AssociatedWith": [
+                "bids::prov#itksnap-Lfs6FRMn"
+            ],
+            "Used": [
+                "bids:raw:sub-001/anat/sub-001_T1w.nii.gz"
+            ]
         }
     ]
 }
+```
+
+Under the `derivatives/segmentations` dataset, the `sub-001_space-orig_desc-exp1_dseg.json` file describes that this activity generated the `sub-001_space-orig_desc-exp1_dseg.nii.gz` file.
+
+The `prov/provenance.tsv` file indicates which `prov-<label>` entity corresponds to provenance files describing each of the brain segmentation processes.
+
+```
+provenance_label    description
+prov-seg1   Manual brain segmentation performed by expert #1
+prov-seg2   Manual brain segmentation performed by expert #2
+...
 ```
