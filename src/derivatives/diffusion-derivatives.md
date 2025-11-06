@@ -260,7 +260,7 @@ The following table defines reserved fields within the `"Model"` sub-dictionary.
             "String. Extended text-based information to describe the model.",
         )
     },
-     "description": {
+     "parameters": {
         "LongName": "Parameters",
         "Description":(
             "OPTIONAL",
