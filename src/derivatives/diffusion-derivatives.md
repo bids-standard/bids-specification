@@ -179,7 +179,7 @@ see [parameter metadata](#parameter-metadata).
         *D<sub>11</sub>*, *D<sub>12</sub>*, *D<sub>13</sub>*, *D<sub>21</sub>*, *D<sub>22</sub>*, *D<sub>23</sub>, *D<sub>31</sub>*, *D<sub>32</sub>*, *D<sub>33</sub>,
         with subscripts indexing row then column.
 
-1.  <a name="encoding-sh">*Spherical Harmonics (SH)*</a>:
+2.  <a name="encoding-sh">*Spherical Harmonics (SH)*</a>:
 
     Image where data across volumes within each voxel encode
     a continuous function spanning the 2-sphere
@@ -189,7 +189,7 @@ see [parameter metadata](#parameter-metadata).
     and the maximal spherical harmonic degree *l<sub>max</sub>*
     (see [spherical harmonics bases](#spherical-harmonics-bases)).
 
-1.  <a name="encoding-amp">*Amplitudes*</a>:
+3.  <a name="encoding-amp">*Amplitudes*</a>:
 
     Image where data across volumes within each voxel encode
     amplitudes of a discrete function spanning the 2-sphere.
@@ -313,7 +313,24 @@ Dictionary `"Model["Parameters"]"` has the following reserved keywords that may 
             "OPTIONAL",
             "Integer. The number of realizations of a diffusion model from which statistical summaries (such as mean, standard deviation) of those parameters were computed.",
         )
+    },
+     "diso": {
+        "LongName": "IsotropicDiffusivity",
+        "Description":
+        (
+            "OPTIONAL",
+            "Float. Diffusivity of an isotropic component (in the SI units of m^2/s)",
+        )
+    },
+     "dpar": {
+        "LongName": "ParallelDiffusivity",
+        "Description":
+        (
+            "OPTIONAL",
+            "Float. Diffusivity of a axial/parallel component (in the SI units of m^2/s)",
+        )
     }
+
    }
 ) }}
 
@@ -637,9 +654,9 @@ Notes:
     as coefficients of different zonal spherical harmonic degrees for a single *b*-value shell.
 
 
-#### A NODDI fit
+#### A Neurite Orientation and Dispersion Imaging (NODDI) fit
 
-A fit of the Neurite Orientation and Dispersion Imaging model using the AMICO
+A fit of the  model using the AMICO
 software.
 
 {{ MACROS___make_filetree_example(
@@ -673,6 +690,8 @@ Contents of JSON file "`sub-01_model-noddi_param-direction_dwimap.json`":
         "URL": "https://www.sciencedirect.com/science/article/pii/S1053811914008519",
     },
     "Description": "Direction",
+    "ParallelDiffusivity": 0.0017,
+    "IsotropicDiffusivity": 0.003,
     "OrientationEncoding": {
         "EncodingAxis": 3,
         "Type": "unit3vector",
