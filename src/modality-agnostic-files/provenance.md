@@ -782,7 +782,7 @@ Under the `derivatives/segmentations` dataset, the `sub-001_space-orig_desc-exp1
 
 The `prov/provenance.tsv` file indicates which `prov-<label>` entity corresponds to provenance files describing each of the brain segmentation processes.
 
-```
+```TXT
 provenance_label    description
 prov-seg1   Manual brain segmentation performed by expert #1
 prov-seg2   Manual brain segmentation performed by expert #2
