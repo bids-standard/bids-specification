@@ -400,8 +400,8 @@ Dictionary `"ResponseFunction"` has the following reserved keywords:
             "String. The mathematical form in which the response function coefficients are provided; see further below. ",
         ),
         "Levels": {
-            `eigen`: "list of 4 floating-point values must be specified; these are interpreted as three ordered eigenvalues of a rank 2 tensor, followed by a reference *b*=0 intensity.",
-            `zsh`: "Either of (1) a list of floating-point values: Values correspond to the response function coefficient for each consecutive even zonal spherical harmonic degree starting from zero; OR (2) List of lists of floating-point values. One list per unique *b*-value. Each individual list contains a coefficient per even zonal spherical harmonic degree starting from zero. If the response function utilized has a different number of non-zero zonal spherical harmonic coefficients for different *b*-values, these must be padded with zeroes such that all lists contain the same number of floating-point values."
+            "eigen": "list of 4 floating-point values must be specified; these are interpreted as three ordered eigenvalues of a rank 2 tensor, followed by a reference *b*=0 intensity.",
+            "zsh": "Either of (1) a list of floating-point values: Values correspond to the response function coefficient for each consecutive even zonal spherical harmonic degree starting from zero; OR (2) List of lists of floating-point values. One list per unique *b*-value. Each individual list contains a coefficient per even zonal spherical harmonic degree starting from zero. If the response function utilized has a different number of non-zero zonal spherical harmonic coefficients for different *b*-values, these must be padded with zeroes such that all lists contain the same number of floating-point values."
         }
         }
     },
