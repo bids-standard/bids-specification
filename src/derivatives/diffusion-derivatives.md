@@ -22,8 +22,8 @@
     sub-<participant_label>/
         dwi/
             <source_keywords>[_space-<space>]_desc-preproc_dwi.nii[.gz]
-            <source_keywords>[_space-<space>]_desc-preproc_dwi.bvals
-            <source_keywords>[_space-<space>]_desc-preproc_dwi.bvecs
+            <source_keywords>[_space-<space>]_desc-preproc_dwi.bval
+            <source_keywords>[_space-<space>]_desc-preproc_dwi.bvec
             <source_keywords>[_space-<space>]_desc-preproc_dwi.json
 ```
 
