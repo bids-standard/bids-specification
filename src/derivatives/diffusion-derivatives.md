@@ -688,10 +688,12 @@ Contents of JSON file "`sub-01_model-noddi_param-direction_dwimap.json`":
     "Model": {
         "Description": "Neurite Orientation Dispersion and Density Imaging (NODDI)",
         "URL": "https://www.sciencedirect.com/science/article/pii/S1053811914008519",
+        "Parameters": {
+            "ParallelDiffusivity": 0.0017,
+            "IsotropicDiffusivity": 0.003
+            },
     },
     "Description": "Direction",
-    "ParallelDiffusivity": 0.0017,
-    "IsotropicDiffusivity": 0.003,
     "OrientationEncoding": {
         "EncodingAxis": 3,
         "Type": "unit3vector",
@@ -707,6 +709,10 @@ Contents of JSON file "`sub-01_model-noddi_param-odi_dwimap.json`":
     "Model": {
         "Description": "Neurite Orientation Dispersion and Density Imaging (NODDI)",
         "URL": "https://www.sciencedirect.com/science/article/pii/S1053811914008519",
+        "Parameters": {
+            "ParallelDiffusivity": 0.0017,
+            "IsotropicDiffusivity": 0.003
+            },
     },
     "Description": "Orientation dispersion index",
 }
@@ -719,7 +725,11 @@ Contents of JSON file "`sub-01_model-noddi_param-icvf_dwimap.json`":
     "Model": {
         "Description": "Neurite Orientation Dispersion and Density Imaging (NODDI)",
         "URL": "https://www.sciencedirect.com/science/article/pii/S1053811914008519",
-    },
+        "Parameters": {
+            "ParallelDiffusivity": 0.0017,
+            "IsotropicDiffusivity": 0.003
+            },
+        },
     "Description": "Intra-cellular volume fraction CVF",
 }
 ```
