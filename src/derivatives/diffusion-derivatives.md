@@ -319,7 +319,7 @@ Dictionary `"Model["Parameters"]"` has the following reserved keywords that may 
         "Description":
         (
             "OPTIONAL",
-            "Float. Diffusivity of an isotropic component (in the SI units of m^2/s)",
+            "Float. Diffusivity of an isotropic component (in units of mm^2/s)",
         )
     },
      "dpar": {
@@ -327,7 +327,7 @@ Dictionary `"Model["Parameters"]"` has the following reserved keywords that may 
         "Description":
         (
             "OPTIONAL",
-            "Float. Diffusivity of a axial/parallel component (in the SI units of m^2/s)",
+            "Float. Diffusivity of a axial/parallel component (in units of mm^2/s)",
         )
     }
 
