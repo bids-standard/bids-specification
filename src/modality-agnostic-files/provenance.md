@@ -714,7 +714,7 @@ A guide for using macros can be found at
         "derivatives": {
             "seg": {
                 "dataset_description.json": "",
-                "descrptions.tsv": "",
+                "descriptions.tsv": "",
                 "...": "",
                 "prov": {
                     "provenance.tsv": "",
