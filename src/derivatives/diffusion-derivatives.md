@@ -179,7 +179,7 @@ see [parameter metadata](#parameter-metadata).
         *D<sub>11</sub>*, *D<sub>12</sub>*, *D<sub>13</sub>*, *D<sub>21</sub>*, *D<sub>22</sub>*, *D<sub>23</sub>, *D<sub>31</sub>*, *D<sub>32</sub>*, *D<sub>33</sub>,
         with subscripts indexing row then column.
 
-2.  <a name="encoding-sh">*Spherical Harmonics (SH)*</a>:
+1.  <a name="encoding-sh">*Spherical Harmonics (SH)*</a>:
 
     Image where data across volumes within each voxel encode
     a continuous function spanning the 2-sphere
@@ -189,7 +189,7 @@ see [parameter metadata](#parameter-metadata).
     and the maximal spherical harmonic degree *l<sub>max</sub>*
     (see [spherical harmonics bases](#spherical-harmonics-bases)).
 
-3.  <a name="encoding-amp">*Amplitudes*</a>:
+1.  <a name="encoding-amp">*Amplitudes*</a>:
 
     Image where data across volumes within each voxel encode
     amplitudes of a discrete function spanning the 2-sphere.
@@ -245,95 +245,11 @@ REQUIRED field `"Model"` defines a dictionary that contains relevant information
 about what the model is and how it was fit to empirical image data.
 The following table defines reserved fields within the `"Model"` sub-dictionary.
 
-{{ MACROS___make_metadata_table(
-   { "bootstrap": {
-        "LongName": "BootstrapParameters",
-        "Description": (
-            "OPTIONAL",
-            "Dictionary. Parameters relating to the generation of multiple realizations of the model fit using bootstrapping.",
-            )
-    },
-     "description": {
-        "LongName": "Description",
-        "Description":(
-            "OPTIONAL",
-            "String. Extended text-based information to describe the model.",
-        )
-    },
-     "parameters": {
-        "LongName": "Parameters",
-        "Description":(
-            "OPTIONAL",
-            "Dictionary. Parameters that influenced the process of fitting the model to empirical image data (see examples below).",
-        )
-    },
-     "url": {
-        "LongName": "URL",
-        "Description": (
-        "OPTIONAL",
-        "String. URL to the specific implementation of the model utilized.",
-        )
-    }
-   }
-) }}
+{{ MACROS___make_subobject_table("metadata.Model") }}
 
 Dictionary `"Model["Parameters"]"` has the following reserved keywords that may be applicable to a broad range of models:
 
-{{ MACROS___make_metadata_table(
-   { "fit_method": {
-        "LongName": "FitMethod",
-        "Description": (
-            "OPTIONAL",
-            "String. The optimization procedure used to fit the intrinsic model parameters to the empirical diffusion-weighted signal.",
-        ),
-        "Levels":
-        {"ols": "Ordinary Least Squares",
-         "wls": "Weighted Least Squares",
-         "iwls": "Iterative Weighted Least Squares",
-         "nlls": "Non-Linear Least Squares"
-        }
-    },
-     "iterations": {
-        "LongName": "Iterations",
-        "Description": (
-            "OPTIONAL",
-            "Integer. The number of iterations used for any form of model fitting procedure where the number of iterations is a fixed input parameter.",
-        )
-    },
-     "outlier_rejection_method": {
-        "LongName": "OutlierRejectionMethod",
-        "Description": ("OPTIONAL",
-        "String. Text describing any form of rejection of outlier values that was performed during fitting of the model.",
-        )
-    },
-     "samples": {
-        "LongName": "Samples",
-        "Description":
-        (
-            "OPTIONAL",
-            "Integer. The number of realizations of a diffusion model from which statistical summaries (such as mean, standard deviation) of those parameters were computed.",
-        )
-    },
-     "diso": {
-        "LongName": "IsotropicDiffusivity",
-        "Description":
-        (
-            "OPTIONAL",
-            "Float. Diffusivity of an isotropic component (in units of mm^2/s)",
-        )
-    },
-     "dpar": {
-        "LongName": "ParallelDiffusivity",
-        "Description":
-        (
-            "OPTIONAL",
-            "Float. Diffusivity of a axial/parallel component (in units of mm^2/s)",
-        )
-    }
-
-   }
-) }}
-
+{{ MACROS___make_subobject_table("metadata.Model.properties.Parameters") }}
 
 #### Parameter metadata
 
@@ -347,6 +263,16 @@ Some fields are relevant only to specific [orientation encoding types](#orientat
 -   Where a field is *not* relevant for the corresponding image,
     that metadata field MUST NOT be specified.
 
+{{ MACROS___make_metadata_table(
+    {
+        "BootstrapAxis": ("OPTIONAL", "Applicable to any orientation encoding type"),
+        "Description": ("OPTIONAL", "Applicable to any orientation encoding type"),
+        "NonNegativity": ("OPTIONAL", "Applicable to all orientation encoding types except [spherical coordinates](#encoding-spherical) and [3-vectors](#encoding-3vector)"),
+        "OrientationEncoding": ("REQUIRED", "Applicable to any orientation encoding type"),
+        "ParameterURL": ("OPTIONAL", "Applicable to any orientation encoding type"),
+        "ResponseFunction": ("OPTIONAL", "Applicable to [spherical harmonics](#encoding-sh)"),
+    }
+) }}
 
 | **Key name**        | Relevant [orientation encoding types](#orientation-encoding-types)                         | **Description**                                                                                                                                                                                                                       |
 | ------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -358,6 +284,8 @@ Some fields are relevant only to specific [orientation encoding types](#orientat
 | ResponseFunction    | [Spherical harmonics](#encoding-sh)                                                        | OPTIONAL. Dictionary. Specifies a response function that was utilized by a deconvolution algorithm; more details below.                                                                                                               |
 
 Dictionary `"OrientationEncoding"` has the following reserved keywords:
+
+{{ MACROS___make_subobject_table("metadata.OrientationEncoding") }}
 
 | **Key name**            | Relevant [orientation encoding types](#orientation-encoding-types)                                                                                                         | **Description**                                                                                                                                                                                                                                                                                                                                                                                                              |
 | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -373,55 +301,20 @@ Dictionary `"OrientationEncoding"` has the following reserved keywords:
 
 Field `"OrientationEncoding"["Reference"]` MUST contain one of the following values:
 
-{{ MACROS___make_metadata_table(
-   {
-    "bvec": {
-        "LongName": "bvec",
-        "Description": (
-            "The three spatial image axes; **unless** those axes form a right-handed coordinate system (that is, the 3x3 linear component of the NIfTI header transformation has a positive determinant), in which case the negative of the first axis orientation is the first reference.",
-        )
-    },
-    "ijk": {
-        "LongName": "ijk",
-        "Description": (
-            "The three spatial image axes define the orientation.",
-        )
-    },
-    "xyz": {
-        "LongName": "ijk",
-        "Description": (
-            "The 'real' / 'scanner' space axes, which are independent of the NIfTI image header transform, define the orientation reference.",
-        )
-    }
-   }
-) }}
+| **Key name** | **LongName** | **Description**                                                                                                                                                                                                                                                               |
+| ------------ | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| bvec         | bvec         | The three spatial image axes; **unless** those axes form a right-handed coordinate system (that is, the 3x3 linear component of the NIfTI header transformation has a positive determinant), in which case the negative of the first axis orientation is the first reference. |
+| ijk          | ijk          | The three spatial image axes define the orientation.                                                                                                                                                                                                                          |
+| xyz          | xyz          | The 'real' / 'scanner' space axes, which are independent of the NIfTI image header transform, define the orientation reference.                                                                                                                                               |
 
 Dictionary `"ResponseFunction"` has the following reserved keywords:
 
-{{ MACROS___make_metadata_table(
-   {
-    "coefficients": {
-        "LongName": "Coefficients",
-        "Description": (
-            "REQUIRED",
-            "Either a list of floats, or a list of lists of floats, depending on the mathematical form of the response function and possibly the data to which it applies; see further below.",
-        )
-    },
-    "type": {
-        "LongName": "Type",
-        "Description": (
-            "REQUIRED",
-            "String. The mathematical form in which the response function coefficients are provided; see further below. ",
-        ),
-        "Levels": {
-            "eigen": "list of 4 floating-point values must be specified; these are interpreted as three ordered eigenvalues of a rank 2 tensor, followed by a reference *b*=0 intensity.",
-            "zsh": "Either of (1) a list of floating-point values: Values correspond to the response function coefficient for each consecutive even zonal spherical harmonic degree starting from zero; OR (2) List of lists of floating-point values. One list per unique *b*-value. Each individual list contains a coefficient per even zonal spherical harmonic degree starting from zero. If the response function utilized has a different number of non-zero zonal spherical harmonic coefficients for different *b*-values, these must be padded with zeroes such that all lists contain the same number of floating-point values."
-        }
-        }
-    },
-) }}
+{{ MACROS___make_subobject_table("metadata.ResponseFunction") }}
 
-
+| **Key name** | **LongName** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| ------------ | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| coefficients | coefficients | REQUIRED. Either a list of floats, or a list of lists of floats, depending on the mathematical form of the response function and possibly the data to which it applies; see further below.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| type         | type         | REQUIRED. String. The mathematical form in which the response function coefficients are provided; see further below. Levels are "eigen" (list of 4 floating-point values must be specified; these are interpreted as three ordered eigenvalues of a rank 2 tensor, followed by a reference *b*=0 intensity.) and "zsh" (Either of (1) a list of floating-point values: Values correspond to the response function coefficient for each consecutive even zonal spherical harmonic degree starting from zero; OR (2) List of lists of floating-point values. One list per unique *b*-value. Each individual list contains a coefficient per even zonal spherical harmonic degree starting from zero. If the response function utilized has a different number of non-zero zonal spherical harmonic coefficients for different *b*-values, these must be padded with zeroes such that all lists contain the same number of floating-point values.) |
 
 ### Demonstrative examples
 
@@ -449,7 +342,9 @@ A guide for using macros can be found at
 ) }}
 
 Dimensions of NIfTI image "`sub-01_model-tensor_param-diffusivity_dwimap.nii.gz`": *I*x*J*x*K*x6 ([symmetric rank 2 tensor image](#encoding-tensor))
+
 Dimensions of NIfTI image "`sub-01_model-tensor_param-s0_dwimap.nii.gz`": *I*x*J*x*K* ([scalar](#encoding-scalar))
+
 Dimensions of NIfTI image "`sub-01_model-tensor_param-fa_dwimap.nii.gz`": *I*x*J*x*K* ([scalar](#encoding-scalar))
 
 Contents of file `sub-01_model-tensor_param-diffusivity_dwimap.json`:
@@ -549,7 +444,9 @@ A guide for using macros can be found at
 ) }}
 
 Dimensions of NIfTI image "`sub-01_model-csd_param-wm_dwimap.nii.gz`": *I*x*J*x*K*x45 ([spherical harmonics](#encoding-sh))
+
 Dimensions of NIfTI image "`sub-01_model-csd_param-gm_dwimap.nii.gz`": *I*x*J*x*K*x1 ([spherical harmonics](#encoding-sh))
+
 Dimensions of NIfTI image "`sub-01_model-csd_param-csf_dwimap.nii.gz`": *I*x*J*x*K*x1 ([spherical harmonics](#encoding-sh))
 
 Contents of JSON file "`sub-01_model-csd_param-wm_dwimap.json`":
@@ -625,10 +522,12 @@ Contents of JSON file "`sub-01_model-csd_param-csf_dwimap.json`":
         "Type": "sh"
     },
     "ResponseFunction": {
-        "Coefficients": [ [ 3544.90770181 ],
-                            [ 134.441453035 ],
-                            [ 32.0826839826 ],
-                            [ 29.3674604452 ] ],
+        "Coefficients": [
+            [ 3544.90770181 ],
+            [ 134.441453035 ],
+            [ 32.0826839826 ],
+            [ 29.3674604452 ]
+        ],
         "Type": "zsh"
     }
 }
@@ -653,33 +552,32 @@ Notes:
     storing these values as a list of floats would be erroneously interpreted
     as coefficients of different zonal spherical harmonic degrees for a single *b*-value shell.
 
-
 #### A Neurite Orientation and Dispersion Imaging (NODDI) fit
 
-A fit of the  model using the AMICO
-software.
+A fit of the model using the AMICO software.
 
 {{ MACROS___make_filetree_example(
     {
-    "noddi_pipeline": {
-        "sub-01": {
-        "dwi": {
-            "sub-01_model-noddi_param-direction_dwimap.nii.gz": "",
-            "sub-01_model-noddi_param-direction_dwimap.json": "",
-            "sub-01_model-noddi_param-odi_dwimap.nii.gz": "",
-            "sub-01_model-noddi_param-odi_dwimap.json": "",
-            "sub-01_model-noddi_param-icvf_dwimap.nii.gz": "",
-            "sub-01_model-noddi_param-icvf_dwimap.json": "",
+        "noddi_pipeline": {
+            "sub-01": {
+                "dwi": {
+                    "sub-01_model-noddi_param-direction_dwimap.nii.gz": "",
+                    "sub-01_model-noddi_param-direction_dwimap.json": "",
+                    "sub-01_model-noddi_param-odi_dwimap.nii.gz": "",
+                    "sub-01_model-noddi_param-odi_dwimap.json": "",
+                    "sub-01_model-noddi_param-icvf_dwimap.nii.gz": "",
+                    "sub-01_model-noddi_param-icvf_dwimap.json": "",
+                },
+            },
         },
-        },
-    },
     }
 ) }}
 
 Dimensions of NIfTI image "`sub-01_model-noddi_param-direction_dwimap.nii.gz`": *I*x*J*x*K*3 ([unit vector](#encoding-3vector))
-Dimensions of NIfTI image "`sub-01_model-noddi_param-odi_dwimap.nii.gz`": *I*x*J*x*K*1 ([scalar](#encoding-scalar))
-Dimensions of NIfTI image "`sub-01_model-noddi_param-icvf_dwimap.nii.gz`": *I*x*J*x*K*1 ([scalar](#encoding-scalar))
 
+Dimensions of NIfTI image "`sub-01_model-noddi_param-odi_dwimap.nii.gz`": *I*x*J*x*K*1 ([scalar](#encoding-scalar))
+
+Dimensions of NIfTI image "`sub-01_model-noddi_param-icvf_dwimap.nii.gz`": *I*x*J*x*K*1 ([scalar](#encoding-scalar))
 
 Contents of JSON file "`sub-01_model-noddi_param-direction_dwimap.json`":
 
@@ -736,7 +634,6 @@ Contents of JSON file "`sub-01_model-noddi_param-icvf_dwimap.json`":
 }
 ```
 
-
 #### An FSL `bedpostx` Ball-And-Sticks fit
 
 This example includes both bootstrap realizations of the model fit,
@@ -776,13 +673,21 @@ A guide for using macros can be found at
 ) }}
 
 Dimensions of NIfTI image "`sub-01_model-bs_desc-mean_param-s0_dwimap.nii.gz`": *I*x*J*x*K* ([scalar](#encoding-scalar))
+
 Dimensions of NIfTI image "`sub-01_model-bs_desc-mean_param-polar_dwimap.nii.gz`": *I*x*J*x*K*x(*2*x*N*) ([spherical coordinates](#encoding-spherical), orientations only; *N* orientations per voxel)
+
 Dimensions of NIfTI image "`sub-01_model-bs_desc-mean_param-vector_dwimap.nii.gz`": *I*x*J*x*K*x(*3*x*N*) ([3-vectors](#encoding-3vectors), unit norm; *N* orientations per voxel)
+
 Dimensions of NIfTI image "`sub-01_model-bs_desc-mean_param-vf_dwimap.nii.gz`": *I*x*J*x*K*x*N* ([scalar](#encoding-scalar); *N* values per voxel)
+
 Dimensions of NIfTI image "`sub-01_model-bs_desc-mean_param-vfsum_dwimap.nii.gz`": *I*x*J*x*K* ([scalar](#encoding-scalar))
+
 Dimensions of NIfTI image "`sub-01_model-bs_desc-mean_param-diffusivity_dwimap.nii.gz`": *I*x*J*x*K* ([scalar](#encoding-scalar))
+
 Dimensions of NIfTI image "`sub-01_model-bs_desc-mean_param-dstd_dwimap.nii.gz`": *I*x*J*x*K* ([scalar](#encoding-scalar))
+
 Dimensions of NIfTI image "`sub-01_model-bs_desc-merged_param-polar_dwimap.nii.gz`": *I*x*J*x*K*x(*2*x*N*)x*R* ([spherical coordinates](#encoding-spherical), orientations only; *N* orientations per voxel; *R* bootstrap realizations)
+
 Dimensions of NIfTI image "`sub-01_model-bs_desc-merged_param-vf_dwimap.nii.gz`": *I*x*J*x*K*x*N*x*R* ([scalar](#encoding-scalar); *N* values per voxel; *R* bootstrap realizations)
 
 Contents of JSON file "`sub-01_model-bs_desc-mean_param-s0_dwimap.json`":
@@ -945,6 +850,7 @@ Contents of JSON file "`sub-01_model-bs_desc-mean_param-dstd_dwimap.json`":
     },
     "Units": "TODO"
 }
+```
 
 Contents of JSON file "`sub-01_model-bs_desc-merged_param-polar_dwimap.json`":
 
@@ -971,6 +877,7 @@ Contents of JSON file "`sub-01_model-bs_desc-merged_param-polar_dwimap.json`":
         "Type": "unitspherical"
     }
 }
+```
 
 Contents of JSON file "`sub-01_model-bs_desc-merged_param-vf_dwimap.json`":
 
@@ -995,6 +902,7 @@ Contents of JSON file "`sub-01_model-bs_desc-merged_param-vf_dwimap.json`":
         "Type": "scalar"
     }
 }
+```
 
 Notes:
 
