@@ -179,7 +179,7 @@ see [parameter metadata](#parameter-metadata).
         *D<sub>11</sub>*, *D<sub>12</sub>*, *D<sub>13</sub>*, *D<sub>21</sub>*, *D<sub>22</sub>*, *D<sub>23</sub>, *D<sub>31</sub>*, *D<sub>32</sub>*, *D<sub>33</sub>,
         with subscripts indexing row then column.
 
-2.  <a name="encoding-sh">*Spherical Harmonics (SH)*</a>:
+1.  <a name="encoding-sh">*Spherical Harmonics (SH)*</a>:
 
     Image where data across volumes within each voxel encode
     a continuous function spanning the 2-sphere
@@ -189,7 +189,7 @@ see [parameter metadata](#parameter-metadata).
     and the maximal spherical harmonic degree *l<sub>max</sub>*
     (see [spherical harmonics bases](#spherical-harmonics-bases)).
 
-3.  <a name="encoding-amp">*Amplitudes*</a>:
+1.  <a name="encoding-amp">*Amplitudes*</a>:
 
     Image where data across volumes within each voxel encode
     amplitudes of a discrete function spanning the 2-sphere.
@@ -250,7 +250,6 @@ The following table defines reserved fields within the `"Model"` sub-dictionary.
 Dictionary `"Model["Parameters"]"` has the following reserved keywords that may be applicable to a broad range of models:
 
 {{ MACROS___make_subobject_table("metadata.Model.properties.Parameters") }}
-
 
 #### Parameter metadata
 
@@ -316,7 +315,6 @@ Dictionary `"ResponseFunction"` has the following reserved keywords:
 | ------------ | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | coefficients | coefficients | REQUIRED. Either a list of floats, or a list of lists of floats, depending on the mathematical form of the response function and possibly the data to which it applies; see further below.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | type         | type         | REQUIRED. String. The mathematical form in which the response function coefficients are provided; see further below. Levels are "eigen" (list of 4 floating-point values must be specified; these are interpreted as three ordered eigenvalues of a rank 2 tensor, followed by a reference *b*=0 intensity.) and "zsh" (Either of (1) a list of floating-point values: Values correspond to the response function coefficient for each consecutive even zonal spherical harmonic degree starting from zero; OR (2) List of lists of floating-point values. One list per unique *b*-value. Each individual list contains a coefficient per even zonal spherical harmonic degree starting from zero. If the response function utilized has a different number of non-zero zonal spherical harmonic coefficients for different *b*-values, these must be padded with zeroes such that all lists contain the same number of floating-point values.) |
-
 
 ### Demonstrative examples
 
@@ -554,7 +552,6 @@ Notes:
     storing these values as a list of floats would be erroneously interpreted
     as coefficients of different zonal spherical harmonic degrees for a single *b*-value shell.
 
-
 #### A Neurite Orientation and Dispersion Imaging (NODDI) fit
 
 A fit of the model using the AMICO software.
@@ -581,7 +578,6 @@ Dimensions of NIfTI image "`sub-01_model-noddi_param-direction_dwimap.nii.gz`": 
 Dimensions of NIfTI image "`sub-01_model-noddi_param-odi_dwimap.nii.gz`": *I*x*J*x*K*1 ([scalar](#encoding-scalar))
 
 Dimensions of NIfTI image "`sub-01_model-noddi_param-icvf_dwimap.nii.gz`": *I*x*J*x*K*1 ([scalar](#encoding-scalar))
-
 
 Contents of JSON file "`sub-01_model-noddi_param-direction_dwimap.json`":
 
@@ -637,7 +633,6 @@ Contents of JSON file "`sub-01_model-noddi_param-icvf_dwimap.json`":
     "ParameterURL": "https://doi.org/10.1016/j.neuroimage.2012.03.072"
 }
 ```
-
 
 #### An FSL `bedpostx` Ball-And-Sticks fit
 
