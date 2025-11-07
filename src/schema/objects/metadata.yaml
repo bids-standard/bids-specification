@@ -4225,7 +4225,8 @@ Model:
           name: FitMethod
           display_name: Fit Method
           description: |
-            The optimization procedure used to fit the intrinsic model parameters to the empirical diffusion-weighted signal.
+            The optimization procedure used to fit the intrinsic model parameters to the empirical
+            diffusion-weighted signal.
           type: string
           enum:
             - ols
@@ -4236,7 +4237,8 @@ Model:
           name: Iterations
           display_name: Iterations
           description: |
-            The number of iterations used for any form of model fitting procedure where the number of iterations is a fixed input parameter.
+            The number of iterations used for any form of model fitting procedure where the number of iterations is a
+            fixed input parameter.
           type: integer
           minimum: 0
         OutlierRejectionMethod:
@@ -4249,7 +4251,8 @@ Model:
           name: Samples
           display_name: Samples
           description: |
-            The number of realizations of a diffusion model from which statistical summaries (such as mean, standard deviation) of those parameters were computed.
+            The number of realizations of a diffusion model from which statistical summaries
+            (such as mean, standard deviation) of those parameters were computed.
           type: integer
           minimum: 0
         IsotropicDiffusivity:
@@ -4278,7 +4281,8 @@ NonNegativity:
   name: NonNegativity
   display_name: Non-Negativity
   description: |
-    Specifies whether, during model fitting, the parameter was regularized to not take extreme negative values, or was explicitly forbidden from taking negative values.
+    Specifies whether, during model fitting, the parameter was regularized to not take extreme negative values, or was
+    explicitly forbidden from taking negative values.
   type: string
   enum:
     - regularized
@@ -4294,7 +4298,10 @@ OrientationEncoding:
       name: AmplitudesDirections
       display_name: Amplitudes Directions
       description: |
-        List of lists of floats. Data are either [spherical coordinates (directions only)](#encoding-spherical) or [3-vectors](#encoding-3vector) with unit norm. Defines the dense directional basis set on which samples of a spherical function within each voxel are provided. The length of the list must be equal to the number of volumes in the image.
+        List of lists of floats. Data are either [spherical coordinates (directions only)](#encoding-spherical) or
+        [3-vectors](#encoding-3vector) with unit norm. Defines the dense directional basis set on which samples of a
+        spherical function within each voxel are provided. The length of the list must be equal to the number of
+        volumes in the image.
       type: array
       items:
         type: array
@@ -4304,20 +4311,23 @@ OrientationEncoding:
       name: AntipodalSymmetry
       display_name: Antipodal Symmetry
       description: |
-        Boolean. Indicates whether orientation information should be interpreted as being antipodally symmetric. Assumed to be True if omitted.
+        Boolean. Indicates whether orientation information should be interpreted as being antipodally symmetric.
+        Assumed to be True if omitted.
       type: boolean
     EncodingAxis:
       name: EncodingAxis
       display_name: Encoding Axis
       description: |
-        Integer. Indicates the image axis (indexed from zero) along which image intensities should be interpreted as corresponding to orientation encoding.
+        Integer. Indicates the image axis (indexed from zero) along which image intensities should be interpreted as
+        corresponding to orientation encoding.
       type: integer
       minimum: 0
     FillValue:
       name: FillValue
       display_name: Fill Value
       description: |
-        Float. Value stored in image when the number of discrete orientations in a given voxel is fewer than the maximal number for that image.
+        Float. Value stored in image when the number of discrete orientations in a given voxel is fewer than the
+        maximal number for that image.
       type: number
     Reference:
       name: Reference
@@ -4330,7 +4340,9 @@ OrientationEncoding:
           value: bvec
           display_name: bvec
           description: |
-            The three spatial image axes; **unless** those axes form a right-handed coordinate system (that is, the 3x3 linear component of the NIfTI header transformation has a positive determinant), in which case the negative of the first axis orientation is the first reference.
+            The three spatial image axes; **unless** those axes form a right-handed coordinate system
+            (that is, the 3x3 linear component of the NIfTI header transformation has a positive determinant),
+            in which case the negative of the first axis orientation is the first reference.
         - ijk:
           value: ijk
           display_name: ijk
@@ -4340,12 +4352,14 @@ OrientationEncoding:
           value: xyz
           display_name: xyz
           description: |
-            The 'real' / 'scanner' space axes, which are independent of the NIfTI image header transform, define the orientation reference.
+            The 'real' / 'scanner' space axes, which are independent of the NIfTI image header transform,
+            define the orientation reference.
     SphericalHarmonicBasis:
       name: SphericalHarmonicBasis
       display_name: Spherical Harmonic Basis
       description: |
-        String. Options are: { `mrtrix3`, `descoteaux` }. Details are provided in the [spherical harmonics bases](#spherical-harmonics-bases) section.
+        String. Options are: { `mrtrix3`, `descoteaux` }. Details are provided in the
+        [spherical harmonics bases](#spherical-harmonics-bases) section.
       type: string
       enum:
         - mrtrix3
@@ -4354,7 +4368,9 @@ OrientationEncoding:
       name: SphericalHarmonicDegree
       display_name: Spherical Harmonic Degree
       description: |
-        Integer. The maximal spherical harmonic order *l<sub>max</sub>*; the number of volumes in the associated NIfTI image must correspond to this value as per the relationship described in [spherical harmonics bases](#spherical-harmonics-bases) section.
+        Integer. The maximal spherical harmonic order *l<sub>max</sub>*; the number of volumes in the associated NIfTI
+        image must correspond to this value as per the relationship described in
+        [spherical harmonics bases](#spherical-harmonics-bases) section.
       type: integer
       minimum: 0
     TensorRank:
@@ -4368,7 +4384,7 @@ OrientationEncoding:
       name: Type
       display_name: Type
       description: |
-        Specifies the type of orientation information (if any) encoded in the NIfTI image. Permitted values: { `scalar`, `dec`, `unitspherical`, `spherical`, `unit3vector`, `3vector`, `tensor`, `sh`, `amplitudes` }.
+        Specifies the type of orientation information (if any) encoded in the NIfTI image.
       type: string
       enum:
         - scalar
@@ -4405,7 +4421,8 @@ ResponseFunction:
       description: |
         The coefficients of the response function.
         Either a list of floats, or a list of lists of floats,
-        depending on the mathematical form of the response function and possibly the data to which it applies; see further below.
+        depending on the mathematical form of the response function and possibly the data to which it applies;
+        see further below.
       type: array
       items:
         anyOf:
@@ -4421,11 +4438,13 @@ ResponseFunction:
         Levels are "eigen" (list of 4 floating-point values must be specified;
         these are interpreted as three ordered eigenvalues of a rank 2 tensor, followed by a reference b=0 intensity.)
         and "zsh" (Either of (1) a list of floating-point values:
-        Values correspond to the response function coefficient for each consecutive even zonal spherical harmonic degree starting from zero;
+        Values correspond to the response function coefficient for each consecutive even zonal spherical harmonic
+        degree starting from zero;
         OR (2) List of lists of floating-point values.
         One list per unique b-value.
         Each individual list contains a coefficient per even zonal spherical harmonic degree starting from zero.
-        If the response function utilized has a different number of non-zero zonal spherical harmonic coefficients for different b-values,
+        If the response function utilized has a different number of non-zero zonal spherical harmonic coefficients for
+        different b-values,
         these must be padded with zeroes such that all lists contain the same number of floating-point values.)
       type: string
       enum:
@@ -4433,15 +4452,18 @@ ResponseFunction:
           value: eigen
           display_name: eigen
           description: |
-            List of 4 floating-point values must be specified; these are interpreted as three ordered eigenvalues of a rank 2 tensor, followed by a reference b=0 intensity.
+            List of 4 floating-point values must be specified; these are interpreted as three ordered eigenvalues of a
+            rank 2 tensor, followed by a reference b=0 intensity.
         - zsh:
           value: zsh
           display_name: zsh
           description: |
             Either of (1) a list of floating-point values:
-            Values correspond to the response function coefficient for each consecutive even zonal spherical harmonic degree starting from zero;
+            Values correspond to the response function coefficient for each consecutive even zonal spherical harmonic
+            degree starting from zero;
             OR (2) List of lists of floating-point values.
             One list per unique b-value.
             Each individual list contains a coefficient per even zonal spherical harmonic degree starting from zero.
-            If the response function utilized has a different number of non-zero zonal spherical harmonic coefficients for different b-values,
+            If the response function utilized has a different number of non-zero zonal spherical harmonic coefficients
+            for different b-values,
             these must be padded with zeroes such that all lists contain the same number of floating-point values.
