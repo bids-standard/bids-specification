@@ -263,16 +263,20 @@ Some fields are relevant only to specific [orientation encoding types](#orientat
 -   Where a field is *not* relevant for the corresponding image,
     that metadata field MUST NOT be specified.
 
+Auto-generated table:
+
 {{ MACROS___make_metadata_table(
     {
-        "BootstrapAxis": ("OPTIONAL", "Applicable to any orientation encoding type"),
-        "Description": ("OPTIONAL", "Applicable to any orientation encoding type"),
-        "NonNegativity": ("OPTIONAL", "Applicable to all orientation encoding types except [spherical coordinates](#encoding-spherical) and [3-vectors](#encoding-3vector)"),
-        "OrientationEncoding": ("REQUIRED", "Applicable to any orientation encoding type"),
-        "ParameterURL": ("OPTIONAL", "Applicable to any orientation encoding type"),
-        "ResponseFunction": ("OPTIONAL", "Applicable to [spherical harmonics](#encoding-sh)"),
+        "BootstrapAxis": ("OPTIONAL", "Applicable to any orientation encoding type."),
+        "Description": ("OPTIONAL", "Applicable to any orientation encoding type."),
+        "NonNegativity": ("OPTIONAL", "Applicable to all orientation encoding types except [spherical coordinates](#encoding-spherical) and [3-vectors](#encoding-3vector)."),
+        "OrientationEncoding": ("REQUIRED", "Applicable to any orientation encoding type."),
+        "ParameterURL": ("OPTIONAL", "Applicable to any orientation encoding type."),
+        "ResponseFunction": ("OPTIONAL", "Applicable to [spherical harmonics](#encoding-sh)."),
     }
 ) }}
+
+Manual table:
 
 | **Key name**        | Relevant [orientation encoding types](#orientation-encoding-types)                         | **Description**                                                                                                                                                                                                                       |
 | ------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -285,7 +289,11 @@ Some fields are relevant only to specific [orientation encoding types](#orientat
 
 Dictionary `"OrientationEncoding"` has the following reserved keywords:
 
+Auto-generated table:
+
 {{ MACROS___make_subobject_table("metadata.OrientationEncoding") }}
+
+Manual table:
 
 | **Key name**            | Relevant [orientation encoding types](#orientation-encoding-types)                                                                                                         | **Description**                                                                                                                                                                                                                                                                                                                                                                                                              |
 | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -309,7 +317,11 @@ Field `"OrientationEncoding"["Reference"]` MUST contain one of the following val
 
 Dictionary `"ResponseFunction"` has the following reserved keywords:
 
+Auto-generated table:
+
 {{ MACROS___make_subobject_table("metadata.ResponseFunction") }}
+
+Manual table:
 
 | **Key name** | **LongName** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | ------------ | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -468,10 +480,12 @@ Contents of JSON file "`sub-01_model-csd_param-wm_dwimap.json`":
     },
     "ParameterURL": "http://www.sciencedirect.com/science/article/pii/S1053811911012092",
     "ResponseFunction": {
-        "Coefficients": [ [ 600.2 0.0 0.0 0.0 0.0 0.0 ],
-                            [ 296.3 -115.2 24.7 -4.4 -0.5 1.8 ],
-                            [ 199.8 -111.3 41.8 -10.2 2.1 -0.7 ],
-                            [ 158.3 -98.7 48.4 -17.1 4.5 -1.4 ] ],
+        "Coefficients": [
+            [600.2, 0.0, 0.0, 0.0, 0.0, 0.0],
+            [296.3, -115.2, 24.7, -4.4, -0.5, 1.8],
+            [199.8, -111.3, 41.8, -10.2, 2.1, -0.7],
+            [158.3, -98.7, 48.4, -17.1, 4.5, -1.4]
+        ],
         "Type": "zsh"
     }
 }
@@ -495,10 +509,12 @@ Contents of JSON file "`sub-01_model-csd_param-gm_dwimap.json`":
         "Type": "sh",
     },
     "ResponseFunction": {
-        "Coefficients": [ [ 1041.0 ],
-                            [ 436.6 ],
-                            [ 224.9 ],
-                            [ 128.8 ] ],
+        "Coefficients": [
+            [1041.0],
+            [436.6],
+            [224.9],
+            [128.8]
+        ],
         "Type": "zsh"
     }
 }
@@ -523,10 +539,10 @@ Contents of JSON file "`sub-01_model-csd_param-csf_dwimap.json`":
     },
     "ResponseFunction": {
         "Coefficients": [
-            [ 3544.90770181 ],
-            [ 134.441453035 ],
-            [ 32.0826839826 ],
-            [ 29.3674604452 ]
+            [3544.90770181],
+            [134.441453035],
+            [32.0826839826],
+            [29.3674604452]
         ],
         "Type": "zsh"
     }
@@ -993,8 +1009,8 @@ Notes:
 
         *N* = ((*l<sub>max</sub>*+1) x (*l<sub>max</sub>*+2)) / 2
 
-        | ***l<sub>max</sub>*** | 0 | 2 | 4  | 6  | 8  | 10 | ... |
-        | --------------------- |--:|--:|--: |--: |--: |--: | :--: |
+        | ***l<sub>max</sub>*** | 0 | 2 | 4 | 6 | 8 | 10 | ... |
+        | --------------------- | --:| --:| --: | --: | --: | --: | :--: |
         | ***N***               | 1 | 6 | 15 | 28 | 45 | 66 | ... |
 
     -   Relationship between maximal degree of *zonal* spherical harmonic
@@ -1005,5 +1021,5 @@ Notes:
         *N* = 1 + (*l<sub>max</sub>* / 2)
 
         | ***l<sub>max</sub>*** | 0 | 2 | 4 | 6 | 8 | 10 | ... |
-        | --------------------- |--:|--:|--:|--:|--:|--: | :--: |
+        | --------------------- | --: | --: | --: | --: | --: | --: | :--: |
         | ***N***               | 1 | 2 | 3 | 4 | 5 | 6  | ... |
