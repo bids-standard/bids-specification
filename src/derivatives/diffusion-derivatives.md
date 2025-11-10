@@ -935,30 +935,6 @@ Notes:
         do not have any anisotropy,
         and therefore field `"OrientationEncoding"["Type"]` MUST be specified as `"scalar"`.
 
--   TODO CONFIRM WHETHER WE WANT TO ENFORCE THIS OR INCLUDE EXPLICIT METADATA FIELDS
-    THAT INDICATE THE AXIS / AXES OF DIRECTION ENCODING VS. BOOTSTRAP REALIZATIONS
-
--   TODO DISCUSS
-    The example presented here is not necessarily a unique solution
-    for the storage of the outcomes of the FSL `bedpostx` command as BIDS Derivatives:
-
-    -   WOULD SPLITTING STICK COMPONENTS ACROSS NIFTIS
-        REQUIRE A NEW ENTITY BY WHICH TO INDEX THEM?
-        OR JUST GIVE THEM EG. `_param-spherical1`, `_param-spherical2`?
-
-    -   While the FSL `bedpostx` command yields the fibre orientation for each individual stick
-        as polar angles within separate NIfTI images,
-        for BIDS it is RECOMMENDED that such orientation information be encoded
-        either as [spherical coordinates](#encoding-spherical) or [3-vectors](#encoding-3vector).
-
-    -   Given that it is possible to encode a scalar parameter
-        into either [spherical coordinates](#encoding-spherical) or [3-vectors](#encoding-3vector) encodings,
-        it is possible to store an image that encodes,
-        for each stick component,
-        both volume fraction and orientation.
-        It is however RECOMMENDED to encode this information in separate files,
-        given that in the more general case there may be multiple scalar parameters
-        individually attributed to each component.
 
 ### Appendix
 
