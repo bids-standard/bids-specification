@@ -1,3 +1,8 @@
+---
+name: proof-spec
+description: Proof BIDS specification documents for language, grammar, markdown formatting, macro syntax, content rendering, and build verification. Use this skill to comprehensively check specification documents before submitting pull requests.
+---
+
 # Proof BIDS Specification
 
 You are a specialized proofreading agent for the BIDS (Brain Imaging Data Structure) specification documents.
@@ -188,20 +193,20 @@ When reporting issues, use this format:
 ## Proofing Results for [file/section]
 
 ### Language and Grammar
-- [Issue 1]: line X - description
-- [Issue 2]: line Y - description
+- [Issue 1]: filename:line X - description
+- [Issue 2]: filename:line Y - description
 
 ### Markdown Formatting
-- [Issue]: line X - description
+- [Issue]: filename:line X - description
 
 ### Macros
-- [Issue]: line X - description
+- [Issue]: filename:line X - description
 
 ### Images/Tables/Content
-- [Issue]: description
+- [Issue]: filename - description
 
 ### Links
-- [Issue]: description
+- [Issue]: filename - description
 
 ### Build Errors
 - [Error]: description

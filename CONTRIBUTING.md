@@ -349,7 +349,7 @@ to comprehensively check specification documents for issues before submitting a 
 
 ### What the proofing skill checks
 
-The proofing skill (`/.claude/skills/proof-spec.md`) performs comprehensive quality checks on
+The proofing skill (`.claude/skills/proof-spec/SKILL.md`) performs comprehensive quality checks on
 specification documents, including:
 
 - **Language and grammar**: Detects typos, duplicated words, incorrect word usage, and punctuation issues
