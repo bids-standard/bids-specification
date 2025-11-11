@@ -193,20 +193,20 @@ When reporting issues, use this format:
 ## Proofing Results for [file/section]
 
 ### Language and Grammar
-- [Issue 1]: line X - description
-- [Issue 2]: line Y - description
+- [Issue 1]: filename:line X - description
+- [Issue 2]: filename:line Y - description
 
 ### Markdown Formatting
-- [Issue]: line X - description
+- [Issue]: filename:line X - description
 
 ### Macros
-- [Issue]: line X - description
+- [Issue]: filename:line X - description
 
 ### Images/Tables/Content
-- [Issue]: description
+- [Issue]: filename - description
 
 ### Links
-- [Issue]: description
+- [Issue]: filename - description
 
 ### Build Errors
 - [Error]: description
