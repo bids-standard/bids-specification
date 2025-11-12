@@ -322,7 +322,7 @@ where `atlas-Diedrichsen2009_description.json` could contain:
      "Emma Cussans",
      "Narender Ramnani"
   ],
-  "Sample Size": 20,
+  "SampleSize": 20,
   "License": "LICENSE file",
   "ReferencesAndLinks": [
      "https://doi.org/10.1016/j.neuroimage.2009.01.045",
