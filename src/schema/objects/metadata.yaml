@@ -208,6 +208,8 @@ Authors:
   display_name: Authors
   description: |
     List of individuals who contributed to the creation/curation of the dataset.
+    It is RECOMMENDED to use `Last, First` form to ensure clear separation of
+    First (Given) from Last (Family) name(s).
   type: array
   items:
     type: string
