@@ -376,7 +376,7 @@ and `atlas-Buckner2011_description.json` could contain:
      "Julio C Diaz",
      "B T Thomas Yeo"
   ],
-  "Sample Size": 1000,
+  "SampleSize": 1000,
   "License": "LICENSE file",
   "ReferencesAndLinks": [
      "https://doi.org/10.1152/jn.00339.2011",
