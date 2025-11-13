@@ -19,12 +19,13 @@
 
 ```Text
 <pipeline_name>/
-    sub-<participant_label>/
-        dwi/
-            <source_keywords>[_space-<space>]_desc-preproc_dwi.nii[.gz]
-            <source_keywords>[_space-<space>]_desc-preproc_dwi.bval
-            <source_keywords>[_space-<space>]_desc-preproc_dwi.bvec
-            <source_keywords>[_space-<space>]_desc-preproc_dwi.json
+    sub-<label>/
+        [ses-<label>/]
+            dwi/
+                <source-entities>[_space-<space>]_desc-preproc_dwi.nii[.gz]
+                <source-entities>[_space-<space>]_desc-preproc_dwi.bval
+                <source-entities>[_space-<space>]_desc-preproc_dwi.bvec
+                <source-entities>[_space-<space>]_desc-preproc_dwi.json
 ```
 
 ## Diffusion models
@@ -52,17 +53,18 @@ that warrant explicit mention due to their consequence in how they are represent
 
 ```Text
 <pipeline_name>/
-    sub-<participant_label>/
-        dwi/
-            <source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label1>_dwimap.nii[.gz]
-            <source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label1>_dwimap.json
-            <source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label2>_dwimap.nii[.gz]
-            <source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label2>_dwimap.json
-            <source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label3>_dwimap.nii[.gz]
-            <source_keywords>[_space-<space>]_model-<label>[_desc-<desc>]_param-<label3>_dwimap.json
+    sub-<label>/
+        [ses-<label>/]
+            dwi/
+                <source-entities>[_space-<space>]_model-<label>_param-<label1>[_desc-<label>]_dwimap.nii[.gz]
+                <source-entities>[_space-<space>]_model-<label>_param-<label1>[_desc-<label>]_dwimap.json
+                <source-entities>[_space-<space>]_model-<label>_param-<label2>[_desc-<label>]_dwimap.nii[.gz]
+                <source-entities>[_space-<space>]_model-<label>_param-<label2>[_desc-<label>]_dwimap.json
+                <source-entities>[_space-<space>]_model-<label>_param-<label3>[_desc-<label>]_dwimap.nii[.gz]
+                <source-entities>[_space-<space>]_model-<label>_param-<label3>[_desc-<label>]_dwimap.json
 ```
 
--   Files "`<source_keywords>_model-<label>_param-<label*>_dwimap.nii[.gz]`"
+-   Files "`<source-entities>_model-<label>_param-<label*>_dwimap.nii[.gz]`"
     provide image data encoding the different parameters that may be estimated by the model.
     If the image is a three-dimensional volume,
     then in the absence of any metadata indicating to the contrary,
@@ -72,7 +74,7 @@ that warrant explicit mention due to their consequence in how they are represent
     indicating how data across dimensions beyond the three spatial dimensions
     should be interpreted.
 
--   Files "`<source_keywords>_model-<label>_param-<label*>_dwimap.json`"
+-   Files "`<source-entities>_model-<label>_param-<label*>_dwimap.json`"
     MUST provide information about the model,
     and SHOULD provide information about how it was fit to the empirical image data.
     In circumstances where the dimensionality of the corresponding NIfTI image is greater than three,
@@ -338,18 +340,18 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example(
     {
-    "dti_pipeline": {
-        "sub-01": {
-        "dwi": {
-            "sub-01_model-tensor_param-diffusivity_dwimap.nii.gz": "",
-            "sub-01_model-tensor_param-diffusivity_dwimap.json": "",
-            "sub-01_model-tensor_param-s0_dwimap.nii.gz": "",
-            "sub-01_model-tensor_param-s0_dwimap.json": "",
-            "sub-01_model-tensor_param-fa_dwimap.nii.gz": "",
-            "sub-01_model-tensor_param-fa_dwimap.json": "",
+        "dti_pipeline": {
+            "sub-01": {
+                "dwi": {
+                    "sub-01_model-tensor_param-diffusivity_dwimap.nii.gz": "",
+                    "sub-01_model-tensor_param-diffusivity_dwimap.json": "",
+                    "sub-01_model-tensor_param-s0_dwimap.nii.gz": "",
+                    "sub-01_model-tensor_param-s0_dwimap.json": "",
+                    "sub-01_model-tensor_param-fa_dwimap.nii.gz": "",
+                    "sub-01_model-tensor_param-fa_dwimap.json": "",
+                },
+            },
         },
-        },
-    },
     }
 ) }}
 
@@ -440,18 +442,18 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example(
     {
-    "msmtcsd_pipeline": {
-        "sub-01": {
-        "dwi": {
-            "sub-01_model-csd_param-wm_dwimap.nii.gz": "",
-            "sub-01_model-csd_param-wm_dwimap.json": "",
-            "sub-01_model-csd_param-gm_dwimap.nii.gz": "",
-            "sub-01_model-csd_param-gm_dwimap.json": "",
-            "sub-01_model-csd_param-csf_dwimap.nii.gz": "",
-            "sub-01_model-csd_param-csf_dwimap.nii.gz": "",
+        "msmtcsd_pipeline": {
+            "sub-01": {
+                "dwi": {
+                    "sub-01_model-csd_param-wm_dwimap.nii.gz": "",
+                    "sub-01_model-csd_param-wm_dwimap.json": "",
+                    "sub-01_model-csd_param-gm_dwimap.nii.gz": "",
+                    "sub-01_model-csd_param-gm_dwimap.json": "",
+                    "sub-01_model-csd_param-csf_dwimap.nii.gz": "",
+                    "sub-01_model-csd_param-csf_dwimap.nii.gz": "",
+                },
+            },
         },
-        },
-    },
     }
 ) }}
 
@@ -661,30 +663,30 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example(
     {
-    "bedpostx_pipeline": {
-        "sub-01": {
-        "dwi": {
-            "sub-01_model-bs_desc-mean_param-s0_dwimap.nii.gz": "",
-            "sub-01_model-bs_desc-mean_param-s0_dwimap.json": "",
-            "sub-01_model-bs_desc-mean_param-polar_dwimap.nii.gz": "",
-            "sub-01_model-bs_desc-mean_param-polar_dwimap.json": "",
-            "sub-01_model-bs_desc-mean_param-vector_dwimap.nii.gz": "",
-            "sub-01_model-bs_desc-mean_param-vector_dwimap.json": "",
-            "sub-01_model-bs_desc-mean_param-vf_dwimap.nii.gz": "",
-            "sub-01_model-bs_desc-mean_param-vf_dwimap.json": "",
-            "sub-01_model-bs_desc-mean_param-vfsum_dwimap.nii.gz": "",
-            "sub-01_model-bs_desc-mean_param-vfsum_dwimap.json": "",
-            "sub-01_model-bs_desc-mean_param-diffusivity_dwimap.nii.gz": "",
-            "sub-01_model-bs_desc-mean_param-diffusivity_dwimap.json": "",
-            "sub-01_model-bs_desc-mean_param-dstd_dwimap.nii.gz": "",
-            "sub-01_model-bs_desc-mean_param-dstd_dwimap.json": "",
-            "sub-01_model-bs_desc-merged_param-polar_dwimap.nii.gz": "",
-            "sub-01_model-bs_desc-merged_param-polar_dwimap.json": "",
-            "sub-01_model-bs_desc-merged_param-vf_dwimap.nii.gz": "",
-            "sub-01_model-bs_desc-merged_param-vf_dwimap.json": "",
+        "bedpostx_pipeline": {
+            "sub-01": {
+                "dwi": {
+                    "sub-01_model-bs_desc-mean_param-s0_dwimap.nii.gz": "",
+                    "sub-01_model-bs_desc-mean_param-s0_dwimap.json": "",
+                    "sub-01_model-bs_desc-mean_param-polar_dwimap.nii.gz": "",
+                    "sub-01_model-bs_desc-mean_param-polar_dwimap.json": "",
+                    "sub-01_model-bs_desc-mean_param-vector_dwimap.nii.gz": "",
+                    "sub-01_model-bs_desc-mean_param-vector_dwimap.json": "",
+                    "sub-01_model-bs_desc-mean_param-vf_dwimap.nii.gz": "",
+                    "sub-01_model-bs_desc-mean_param-vf_dwimap.json": "",
+                    "sub-01_model-bs_desc-mean_param-vfsum_dwimap.nii.gz": "",
+                    "sub-01_model-bs_desc-mean_param-vfsum_dwimap.json": "",
+                    "sub-01_model-bs_desc-mean_param-diffusivity_dwimap.nii.gz": "",
+                    "sub-01_model-bs_desc-mean_param-diffusivity_dwimap.json": "",
+                    "sub-01_model-bs_desc-mean_param-dstd_dwimap.nii.gz": "",
+                    "sub-01_model-bs_desc-mean_param-dstd_dwimap.json": "",
+                    "sub-01_model-bs_desc-merged_param-polar_dwimap.nii.gz": "",
+                    "sub-01_model-bs_desc-merged_param-polar_dwimap.json": "",
+                    "sub-01_model-bs_desc-merged_param-vf_dwimap.nii.gz": "",
+                    "sub-01_model-bs_desc-merged_param-vf_dwimap.json": "",
+                },
+            },
         },
-        },
-    },
     }
 ) }}
 
@@ -931,7 +933,7 @@ Notes:
 -   Care must be taken for images of greater than three dimensions
     where additional dimensions do *not* encode anisotropy information:
 
-    -   In image `"*_desc-mean*_param-vf_*"`,
+    -   In image `"*_param-vf_desc-mean*_*"`,
         the fourth image axis encodes scalar information across stick components.
         Since this is *not* coefficients in some orientation encoding,
         but the image possesses more than three axes,
@@ -950,7 +952,6 @@ Notes:
         being the volume fractions of individual stick components,
         do not have any anisotropy,
         and therefore field `"OrientationEncoding"["Type"]` MUST be specified as `"scalar"`.
-
 
 ### Appendix
 
@@ -1009,9 +1010,9 @@ Notes:
 
         *N* = ((*l<sub>max</sub>*+1) x (*l<sub>max</sub>*+2)) / 2
 
-        | ***l<sub>max</sub>*** | 0 | 2 | 4 | 6 | 8 | 10 | ... |
-        | --------------------- | --:| --:| --: | --: | --: | --: | :--: |
-        | ***N***               | 1 | 6 | 15 | 28 | 45 | 66 | ... |
+        | ***l<sub>max</sub>*** | 0   | 2   | 4   | 6   | 8   | 10  | ...  |
+        | --------------------- | --- | --- | --- | --- | --- | --- | ---- |
+        | ***N***               | 1   | 6   | 15  | 28  | 45  | 66  | ...  |
 
     -   Relationship between maximal degree of *zonal* spherical harmonic
         function (spherical harmonics function where all *m* != 0 terms are
@@ -1020,6 +1021,6 @@ Notes:
 
         *N* = 1 + (*l<sub>max</sub>* / 2)
 
-        | ***l<sub>max</sub>*** | 0 | 2 | 4 | 6 | 8 | 10 | ... |
-        | --------------------- | --: | --: | --: | --: | --: | --: | :--: |
-        | ***N***               | 1 | 2 | 3 | 4 | 5 | 6  | ... |
+        | ***l<sub>max</sub>*** | 0   | 2   | 4   | 6   | 8   | 10  | ...  |
+        | --------------------- | --- | --- | --- | --- | --- | --- | ---- |
+        | ***N***               | 1   | 2   | 3   | 4   | 5   | 6   | ...  |

@@ -177,6 +177,13 @@ modality:
     For example, `sub-01_mod-T1w_defacemask.nii.gz`.
   type: string
   format: label
+model:
+  name: model
+  display_name: Model
+  description: |
+    The `model-<label>` entity can be used to distinguish different models.
+  type: string
+  format: label
 mtransfer:
   name: mt
   display_name: Magnetization Transfer
@@ -204,6 +211,13 @@ nucleus:
     The label is the name of the nucleus or nuclei, which corresponds to DICOM Tag `0018, 9100`.
     If present in the filename, `"ResonantNucleus"` MUST also be included in
     the associated metadata.
+  type: string
+  format: label
+parameter:
+  name: param
+  display_name: Parameter
+  description: |
+    The `param-<label>` entity can be used to distinguish different parameters.
   type: string
   format: label
 part:
