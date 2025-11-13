@@ -568,7 +568,7 @@ Template:
 <pipeline_name>/
     sub-<label>/
         <datatype>/
-            <source_entities>[_space-<space>][_atlas-<label>][seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
+            <source_entities>[_space-<space>][_atlas-<label>][_seg-<label>][_scale-<label>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
 ```
 
 -   [`space-<label>`](../appendices/entities.md#space) is REQUIRED to disambiguate derivatives defined with
