@@ -43,25 +43,3 @@ EMGChildCoordSystem:
   fields:
     AnchorCoordinates: required
     AnchorElectrode: required
-
-# ensure presence of fields relating to EMG placement
-EMGPlacementSchemeInfo:
-  selectors:
-    - datatype == "emg"
-    - suffix == "emg"
-  fields:
-    EMGPlacementScheme: required
-    EMGPlacementSchemeDescription:
-      level: optional
-      level_addendum: required if `EMGPlacementScheme` is `"Other"`
-
-# ensure description is present when EMGPlacementScheme is "other"
-EMGPlacementSchemeDescription:
-  selectors:
-    - datatype == "emg"
-    - suffix == "emg"
-    - '"EMGPlacementScheme" in json'
-    - json.EMGPlacementScheme == "Other"
-  fields:
-    EMGPlacementSchemeDescription:
-      level: required
