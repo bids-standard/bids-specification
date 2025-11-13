@@ -121,6 +121,20 @@ dwi_scannerderivatives:
       - meta.templates.deriv.volumetric.entities
       - rules.files.raw.dwi.ScannerDerivatives.entities
 
+dwimap_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+  datatypes:
+    - dwi
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.dwi.dwi.entities
+    model: required
+    parameter: required
+  suffixes:
+    - dwimap
+
 func_volumetric:
   $ref:
     - meta.templates.deriv.volumetric

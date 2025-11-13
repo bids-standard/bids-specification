@@ -4209,66 +4209,82 @@ Model:
     TermURL:
       $ref: objects.metadata.TermURL
     BootstrapParameters:
-      name: BootstrapParameters
-      display_name: Bootstrap Parameters
-      description: |
-        Parameters relating to the generation of multiple realizations of the model fit using bootstrapping.
-      type: object
+      $ref: objects.metadata.BootstrapParameters__Model
     Parameters:
-      name: Parameters
-      display_name: Model Parameters
-      description: |
-        Dictionary containing information about the parameters of the model.
-      type: object
-      properties:
-        FitMethod:
-          name: FitMethod
-          display_name: Fit Method
-          description: |
-            The optimization procedure used to fit the intrinsic model parameters to the empirical
-            diffusion-weighted signal.
-          type: string
-          enum:
-            - ols
-            - wls
-            - iwls
-            - nlls
-        Iterations:
-          name: Iterations
-          display_name: Iterations
-          description: |
-            The number of iterations used for any form of model fitting procedure where the number of iterations is a
-            fixed input parameter.
-          type: integer
-          minimum: 0
-        OutlierRejectionMethod:
-          name: OutlierRejectionMethod
-          display_name: Outlier Rejection Method
-          description: |
-            Text describing any form of rejection of outlier values that was performed during fitting of the model.
-          type: string
-        Samples:
-          name: Samples
-          display_name: Samples
-          description: |
-            The number of realizations of a diffusion model from which statistical summaries
-            (such as mean, standard deviation) of those parameters were computed.
-          type: integer
-          minimum: 0
-        IsotropicDiffusivity:
-          name: IsotropicDiffusivity
-          display_name: Isotropic Diffusivity
-          description: |
-            Diffusivity of an isotropic component (in units of mm^2/s).
-          type: number
-          unit: mm^2/s
-        ParallelDiffusivity:
-          name: ParallelDiffusivity
-          display_name: Parallel Diffusivity
-          description: |
-            Diffusivity of a axial/parallel component (in units of mm^2/s).
-          type: number
-          unit: mm^2/s
+      $ref: objects.metadata.Parameters__Model
+BootstrapParameters__Model:
+  name: BootstrapParameters
+  display_name: Bootstrap Parameters
+  description: |
+    Parameters relating to the generation of multiple realizations of the model fit using bootstrapping.
+  type: object
+Parameters__Model:
+  name: Parameters
+  display_name: Model Parameters
+  description: |
+    Dictionary containing information about the parameters of the model.
+  type: object
+  properties:
+    FitMethod:
+      $ref: objects.metadata.FitMethod__ModelParameters
+    Iterations:
+      $ref: objects.metadata.Iterations__ModelParameters
+    OutlierRejectionMethod:
+      $ref: objects.metadata.OutlierRejectionMethod__ModelParameters
+    Samples:
+      $ref: objects.metadata.Samples__ModelParameters
+    IsotropicDiffusivity:
+      $ref: objects.metadata.IsotropicDiffusivity__ModelParameters
+    ParallelDiffusivity:
+      $ref: objects.metadata.ParallelDiffusivity__ModelParameters
+FitMethod__ModelParameters:
+  name: FitMethod
+  display_name: Fit Method
+  description: |
+    The optimization procedure used to fit the intrinsic model parameters to the empirical
+    diffusion-weighted signal.
+  type: string
+  enum:
+    - ols
+    - wls
+    - iwls
+    - nlls
+Iterations__ModelParameters:
+  name: Iterations
+  display_name: Iterations
+  description: |
+    The number of iterations used for any form of model fitting procedure where the number of iterations is a
+    fixed input parameter.
+  type: integer
+  minimum: 0
+OutlierRejectionMethod__ModelParameters:
+  name: OutlierRejectionMethod
+  display_name: Outlier Rejection Method
+  description: |
+    Text describing any form of rejection of outlier values that was performed during fitting of the model.
+  type: string
+Samples__ModelParameters:
+  name: Samples
+  display_name: Samples
+  description: |
+    The number of realizations of a diffusion model from which statistical summaries
+    (such as mean, standard deviation) of those parameters were computed.
+  type: integer
+  minimum: 0
+IsotropicDiffusivity__ModelParameters:
+  name: IsotropicDiffusivity
+  display_name: Isotropic Diffusivity
+  description: |
+    Diffusivity of an isotropic component (in units of mm^2/s).
+  type: number
+  unit: mm^2/s
+ParallelDiffusivity__ModelParameters:
+  name: ParallelDiffusivity
+  display_name: Parallel Diffusivity
+  description: |
+    Diffusivity of a axial/parallel component (in units of mm^2/s).
+  type: number
+  unit: mm^2/s
 BootstrapAxis:
   name: BootstrapAxis
   display_name: Bootstrap Axis
@@ -4293,115 +4309,115 @@ OrientationEncoding:
   description: |
     Dictionary containing information about the orientation encoding of the model.
   type: object
+  required: [EncodingAxis, Reference, Type]
   properties:
     AmplitudesDirections:
-      name: AmplitudesDirections
-      display_name: Amplitudes Directions
-      description: |
-        List of lists of floats. Data are either [spherical coordinates (directions only)](#encoding-spherical) or
-        [3-vectors](#encoding-3vector) with unit norm. Defines the dense directional basis set on which samples of a
-        spherical function within each voxel are provided. The length of the list must be equal to the number of
-        volumes in the image.
-      type: array
-      items:
-        type: array
-        items:
-          type: number
+      $ref: objects.metadata.AmplitudesDirections__OrientationEncoding
     AntipodalSymmetry:
-      name: AntipodalSymmetry
-      display_name: Antipodal Symmetry
-      description: |
-        Boolean. Indicates whether orientation information should be interpreted as being antipodally symmetric.
-        Assumed to be True if omitted.
-      type: boolean
+      $ref: objects.metadata.AntipodalSymmetry__OrientationEncoding
     EncodingAxis:
-      name: EncodingAxis
-      display_name: Encoding Axis
-      description: |
-        Integer. Indicates the image axis (indexed from zero) along which image intensities should be interpreted as
-        corresponding to orientation encoding.
-      type: integer
-      minimum: 0
+      $ref: objects.metadata.EncodingAxis__OrientationEncoding
     FillValue:
-      name: FillValue
-      display_name: Fill Value
-      description: |
-        Float. Value stored in image when the number of discrete orientations in a given voxel is fewer than the
-        maximal number for that image.
-      type: number
+      $ref: objects.metadata.FillValue__OrientationEncoding
     Reference:
-      name: Reference
-      display_name: Reference
-      description: |
-        The reference coordinate system for the orientation encoding.
-      type: string
-      enum:
-        - bvec:
-          value: bvec
-          display_name: bvec
-          description: |
-            The three spatial image axes; **unless** those axes form a right-handed coordinate system
-            (that is, the 3x3 linear component of the NIfTI header transformation has a positive determinant),
-            in which case the negative of the first axis orientation is the first reference.
-        - ijk:
-          value: ijk
-          display_name: ijk
-          description: |
-            The three spatial image axes define the orientation.
-        - xyz:
-          value: xyz
-          display_name: xyz
-          description: |
-            The 'real' / 'scanner' space axes, which are independent of the NIfTI image header transform,
-            define the orientation reference.
-    SphericalHarmonicBasis:
-      name: SphericalHarmonicBasis
-      display_name: Spherical Harmonic Basis
-      description: |
-        String. Options are: { `mrtrix3`, `descoteaux` }. Details are provided in the
-        [spherical harmonics bases](#spherical-harmonics-bases) section.
-      type: string
-      enum:
-        - mrtrix3
-        - descoteaux
-    SphericalHarmonicDegree:
-      name: SphericalHarmonicDegree
-      display_name: Spherical Harmonic Degree
-      description: |
-        Integer. The maximal spherical harmonic order *l<sub>max</sub>*; the number of volumes in the associated NIfTI
-        image must correspond to this value as per the relationship described in
-        [spherical harmonics bases](#spherical-harmonics-bases) section.
-      type: integer
-      minimum: 0
+      $ref: objects.metadata.Reference__OrientationEncoding
+    SphericalHarmonicsBasis:
+      $ref: objects.metadata.SphericalHarmonicsBasis__OrientationEncoding
+    SphericalHarmonicsDegree:
+      $ref: objects.metadata.SphericalHarmonicsDegree__OrientationEncoding
     TensorRank:
-      name: TensorRank
-      display_name: Tensor Rank
-      description: |
-        Integer. Rank of tensor reporesentation. Specification currently only supports a value of 2.
-      type: integer
-      minimum: 0
+      $ref: objects.metadata.TensorRank__OrientationEncoding
     Type:
-      name: Type
-      display_name: Type
-      description: |
-        Specifies the type of orientation information (if any) encoded in the NIfTI image.
-      type: string
-      enum:
-        - scalar
-        - dec
-        - unitspherical
-        - spherical
-        - unit3vector
-        - 3vector
-        - tensor
-        - sh
-        - amplitudes
-Parameters:
-  name: Parameters
-  display_name: Parameters
+      $ref: objects.metadata.Type__OrientationEncoding
+AmplitudesDirections__OrientationEncoding:
+  name: AmplitudesDirections
+  display_name: Amplitudes Directions
   description: |
-    Dictionary containing information about the parameters of the model.
-  type: object
+    List of lists of floats. Data are either [spherical coordinates (directions only)](#encoding-spherical) or
+    [3-vectors](#encoding-3vector) with unit norm. Defines the dense directional basis set on which samples of a
+    spherical function within each voxel are provided. The length of the list must be equal to the number of
+    volumes in the image.
+
+    REQUIRED for "Type": "amplitudes"; MUST NOT be specified otherwise.
+  type: array
+  items:
+    type: array
+    items:
+      type: number
+AntipodalSymmetry__OrientationEncoding:
+  name: AntipodalSymmetry
+  display_name: Antipodal Symmetry
+  description: |
+    Boolean. Indicates whether orientation information should be interpreted as being antipodally symmetric.
+    Assumed to be True if omitted.
+  type: boolean
+EncodingAxis__OrientationEncoding:
+  name: EncodingAxis
+  display_name: Encoding Axis
+  description: |
+    Integer. Indicates the image axis (indexed from zero) along which image intensities should be interpreted as
+    corresponding to orientation encoding.
+  type: integer
+  minimum: 0
+FillValue__OrientationEncoding:
+  name: FillValue
+  display_name: Fill Value
+  description: |
+    Float. Value stored in image when the number of discrete orientations in a given voxel is fewer than the
+    maximal number for that image.
+  type: number
+Reference__OrientationEncoding:
+  name: Reference
+  display_name: Reference
+  description: |
+    The reference coordinate system for the orientation encoding.
+  type: string
+  enum:
+    - $ref: objects.enums.bvec.value
+    - $ref: objects.enums.ijk.value
+    - $ref: objects.enums.xyz.value
+SphericalHarmonicsBasis__OrientationEncoding:
+  name: SphericalHarmonicsBasis
+  display_name: Spherical Harmonics Basis
+  description: |
+    String. Options are: { `mrtrix3`, `descoteaux` }.
+    Details are provided in the [spherical harmonics bases](#spherical-harmonics-bases) section.
+  type: string
+  enum:
+    - mrtrix3
+    - descoteaux
+SphericalHarmonicsDegree__OrientationEncoding:
+  name: SphericalHarmonicsDegree
+  display_name: Spherical Harmonics Degree
+  description: |
+    Integer. The maximal spherical harmonic order *l<sub>max</sub>*; the number of volumes in the associated NIfTI image must correspond to this value as per the relationship described in [spherical harmonics bases](#spherical-harmonics-bases) section.
+  type: integer
+  minimum: 0
+TensorRank__OrientationEncoding:
+  name: TensorRank
+  display_name: Tensor Rank
+  description: |
+    Integer. Rank of tensor reporesentation. Specification currently only supports a value of 2.
+
+    REQUIRED for `"Type": "tensor"; MUST NOT be specified otherwise.
+  type: integer
+  minimum: 0
+Type__OrientationEncoding:
+  name: Type
+  display_name: Type
+  description: |
+    Specifies the type of orientation information (if any) encoded in the NIfTI image.
+  type: string
+  enum:
+    - scalar
+    - dec
+    - unitspherical
+    - spherical
+    - unit3vector
+    - 3vector
+    - tensor
+    - sh
+    - amplitudes
 ParameterURL:
   name: ParameterURL
   display_name: Parameter URL
@@ -4414,56 +4430,44 @@ ResponseFunction:
   description: |
     Dictionary containing information about the response function used to fit the model.
   type: object
+  required: [Coefficients, Type]
   properties:
     Coefficients:
-      name: Coefficients
-      display_name: Coefficients
-      description: |
-        The coefficients of the response function.
-        Either a list of floats, or a list of lists of floats,
-        depending on the mathematical form of the response function and possibly the data to which it applies;
-        see further below.
-      type: array
-      items:
-        anyOf:
-          - type: array
-            items:
-              type: number
-          - type: number
+      $ref: objects.metadata.Coefficients__ResponseFunction
     Type:
-      name: Type
-      display_name: Response Function Type
-      description: |
-        The mathematical form in which the response function coefficients are provided; see further below.
-        Levels are "eigen" (list of 4 floating-point values must be specified;
-        these are interpreted as three ordered eigenvalues of a rank 2 tensor, followed by a reference b=0 intensity.)
-        and "zsh" (Either of (1) a list of floating-point values:
-        Values correspond to the response function coefficient for each consecutive even zonal spherical harmonic
-        degree starting from zero;
-        OR (2) List of lists of floating-point values.
-        One list per unique b-value.
-        Each individual list contains a coefficient per even zonal spherical harmonic degree starting from zero.
-        If the response function utilized has a different number of non-zero zonal spherical harmonic coefficients for
-        different b-values,
-        these must be padded with zeroes such that all lists contain the same number of floating-point values.)
-      type: string
-      enum:
-        - eigen:
-          value: eigen
-          display_name: eigen
-          description: |
-            List of 4 floating-point values must be specified; these are interpreted as three ordered eigenvalues of a
-            rank 2 tensor, followed by a reference b=0 intensity.
-        - zsh:
-          value: zsh
-          display_name: zsh
-          description: |
-            Either of (1) a list of floating-point values:
-            Values correspond to the response function coefficient for each consecutive even zonal spherical harmonic
-            degree starting from zero;
-            OR (2) List of lists of floating-point values.
-            One list per unique b-value.
-            Each individual list contains a coefficient per even zonal spherical harmonic degree starting from zero.
-            If the response function utilized has a different number of non-zero zonal spherical harmonic coefficients
-            for different b-values,
-            these must be padded with zeroes such that all lists contain the same number of floating-point values.
+      $ref: objects.metadata.Type__ResponseFunction
+Coefficients__ResponseFunction:
+  name: Coefficients
+  display_name: Coefficients
+  description: |
+    The coefficients of the response function.
+    Either a list of floats, or a list of lists of floats,
+    depending on the mathematical form of the response function and possibly the data to which it applies;
+    see further below.
+  type: array
+  items:
+    anyOf:
+      - type: array
+        items:
+          type: number
+      - type: number
+Type__ResponseFunction:
+  name: Type
+  display_name: Response Function Type
+  description: |
+    The mathematical form in which the response function coefficients are provided; see further below.
+    Levels are "eigen" (list of 4 floating-point values must be specified;
+    these are interpreted as three ordered eigenvalues of a rank 2 tensor, followed by a reference b=0 intensity.)
+    and "zsh" (Either of (1) a list of floating-point values:
+    Values correspond to the response function coefficient for each consecutive even zonal spherical harmonic
+    degree starting from zero;
+    OR (2) List of lists of floating-point values.
+    One list per unique b-value.
+    Each individual list contains a coefficient per even zonal spherical harmonic degree starting from zero.
+    If the response function utilized has a different number of non-zero zonal spherical harmonic coefficients for
+    different b-values,
+    these must be padded with zeroes such that all lists contain the same number of floating-point values.)
+  type: string
+  enum:
+    - $ref: objects.enums.eigen.value
+    - $ref: objects.enums.zsh.value
