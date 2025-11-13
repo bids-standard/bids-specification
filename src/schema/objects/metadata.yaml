@@ -213,6 +213,7 @@ Authors:
   type: array
   items:
     type: string
+    format: person_name
 B0FieldIdentifier:
   name: B0FieldIdentifier
   display_name: B0 Field Identifier
@@ -1327,6 +1328,7 @@ Format:
     - stimuli_relative
     # Miscellaneous
     - hed_version
+    - person_name
 FrameAcquisitionDuration:
   name: FrameAcquisitionDuration
   display_name: Frame Acquisition Duration

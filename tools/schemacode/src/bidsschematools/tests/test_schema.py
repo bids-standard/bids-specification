@@ -107,6 +107,7 @@ def test_formats(schema_obj):
         "stimuli_relative": ["any/arbitrary/path/file.txt"],
         "dataset_relative": ["any/arbitrary/path/file.txt"],
         "participant_relative": ["any/arbitrary/path/file.txt"],
+        "person_name": ["Last, First", "Many Last, a Few Firsts"],
         "rrid": ["RRID:SCR_017398"],
         "uri": ["foo://example.com:8042/over/there?name=ferret#nose"],
         "bids_uri": [
