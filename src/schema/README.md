@@ -167,21 +167,43 @@ references (the cases in which they are used will be presented later):
     (which are in turn references to individual values), and the references inside `GeneticLevel.anyOf` indicate that there may be a single
     such value or a list of values.
 
-1.  In [`rules.files.deriv.preprocessed_data`][preprocessed_data]:
+1.  In [`rules.files.deriv.imaging`](./rules/files/deriv/imaging.yaml):
     ```YAML
-    anat_nonparametric_common:
-      $ref: rules.files.raw.anat.nonparametric
+    anat_parametric_volumetric:
+      $ref: rules.files.raw.anat.parametric
       entities:
-        $ref: rules.files.raw.anat.nonparametric.entities
-        space: optional
-        description: optional
+        $ref:
+          - meta.templates.deriv.volumetric.entities
+          - rules.files.raw.anat.parametric.entities
     ```
     Here, the derivative datatype rule starts by copying the raw datatype rule
     `rules.files.raw.anat.nonparametric`.
     It then *overrides* the `entities` portion of that rule with a new object.
-    To *extend* the original `entities`, it again begins
-    by referencing `rules.files.raw.anat.nonparametric.entities`,
-    and adding the new entities `space` and `description`.
+    To *extend* the original `entities`, it composes
+    `meta.templates.deriv.volumetric.entities`
+    and `rules.files.raw.anat.nonparametric.entities`.
+    When multiple references are aggregated, the first reference takes
+    precedence.
+
+    Note also that `value: null` can be used to "delete" a key from a template.
+    For example, in `rules.files.raw.events`:
+
+    ```YAML
+    events__pet:
+      $ref: rules.files.raw.events.events
+      datatypes:
+        - pet
+      entities:
+        $ref: meta.templates.raw.task.entities
+        tracer: optional
+        reconstruction: optional
+        # Most events allow acquisition, PET doesn't
+        acquisition: null
+    ```
+
+    This technique should be used judiciously, preferring semantic clarity to brevity.
+    Templates should be expected to grow as BIDS evolves,
+    and should thus be used only where those changes should propagate.
 
 ### Expressions
 
@@ -650,6 +672,7 @@ as part of a larger rule.
 In these cases, the `level` field should be omitted from the issue
 to avoid duplication or conflict.
 
+(filename-construction-rules)=
 ### Filename construction rules
 
 A significant portion of BIDS is devoted to the naming of files,
@@ -985,7 +1008,7 @@ They additionally have a `checks` list, and an explicit issue.
 
 | Field       | Description                                                                                    |
 | ----------- | ---------------------------------------------------------------------------------------------- |
-| `issue`     | Issue code object (see [Issues](#issues)                                                       |
+| `issue`     | Issue code object (see [Issues](#issues))                                                      |
 | `selectors` | List of expressions; any evaluating false indicate rule does not apply                         |
 | `checks`    | List of expressions; any evaluating false indicate rule is violated and issue should be raised |
 
@@ -1073,5 +1096,4 @@ ensuring consistency across the entire schema directory. Validation of the schem
 incorporated into the CI, so any changes that are inconsistent will be flagged before
 inclusion.
 
-[preprocessed_data]: https://github.com/bids-standard/bids-specification/tree/master/src/schema/rules/files/deriv/preprocessed_data.yaml
 [tabular files]: https://bids-specification.readthedocs.io/en/stable/common-principles.html#tabular-files

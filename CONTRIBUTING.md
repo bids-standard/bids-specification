@@ -293,17 +293,10 @@ NodeJS.
 Remark-CLI can be installed via [npm](https://www.npmjs.com/), which is part of
 the NodeJS distribution.
 
-To install the packages we use for our style guide, the following command will
-work on most command lines:
+To install the packages we use for our style guide, use the following command:
 
 ```shell
-npm install `cat npm-requirements.txt`
-```
-
-The equivalent command on PowerShell is:
-
-```shell
-npm install @(cat npm-requirements.txt)
+npm install
 ```
 
 ### 3. Find documents that are failing the check
@@ -311,7 +304,7 @@ npm install @(cat npm-requirements.txt)
 Run the following from the root directory of `bids-specification`:
 
 ```shell
-npx remark ./src/*.md ./src/*/*.md
+npm run remark
 ```
 
 ### 4. Fix the flagged document
@@ -319,13 +312,13 @@ npx remark ./src/*.md ./src/*/*.md
 Please go to the directory where the flagged file is and run remark like this:
 
 ```shell
-npx remark flagged_file.md -o flagged_file_fixed.md
+npx remark path/to/flagged_file.md -o path/to/flagged_file_fixed.md
 ```
 
-Please confirm this has fixed the file. To do this, please run this:
+To confirm this has fixed the file, run:
 
 ```shell
-npx remark flagged_file_fixed.md --frail
+npx remark path/to/flagged_file_fixed.md --frail
 ```
 
 This command will indicate whether this file now conforms to the style guide.
@@ -333,8 +326,8 @@ If it passes, replace `flagged_file.md` with the contents of
 `flagged_file_fixed.md`, add and commit the change:
 
 ```shell
-mv flagged_file_fixed.md flagged_file.md
-git add flagged_file.md
+mv path/to/flagged_file_fixed.md path/to/flagged_file.md
+git add path/to/flagged_file.md
 git commit -m 'STY: Fixed Markdown style'
 ```
 

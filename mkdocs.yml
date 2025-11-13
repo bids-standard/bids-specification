@@ -52,6 +52,9 @@ nav:
       - Website: https://bids.neuroimaging.io/getting_started/
       - Tutorials: https://bids.neuroimaging.io/getting_started/tutorials/
       - GitHub repository: https://github.com/bids-standard/bids-starter-kit
+exclude_docs: |
+  README.md
+  pregh-changes.md
 theme:
   name: material
   favicon: images/favicon.png
@@ -108,6 +111,7 @@ extra_javascript:
   - js/jquery-3.6.0.min.js
 extra_css:
   - css/tsv.css
+  - css/dynamic-width.css
 markdown_extensions:
   - toc:
       anchorlink: true

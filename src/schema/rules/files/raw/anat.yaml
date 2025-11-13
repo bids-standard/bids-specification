@@ -20,16 +20,10 @@ nonparametric:
   datatypes:
     - anat
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.mri.entities
     task: optional
-    acquisition: optional
-    ceagent: optional
-    reconstruction: optional
-    run: optional
     echo: optional
     part: optional
-    chunk: optional
 
 parametric:
   suffixes:
@@ -56,14 +50,8 @@ parametric:
   datatypes:
     - anat
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.mri.entities
     task: optional
-    acquisition: optional
-    ceagent: optional
-    reconstruction: optional
-    run: optional
-    chunk: optional
 
 defacemask:
   suffixes:
@@ -75,15 +63,9 @@ defacemask:
   datatypes:
     - anat
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.mri.entities
     task: optional
-    acquisition: optional
-    ceagent: optional
-    reconstruction: optional
-    run: optional
     modality: optional
-    chunk: optional
 
 megre:
   suffixes:
@@ -95,16 +77,10 @@ megre:
   datatypes:
     - anat
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.mri.entities
     task: optional
-    acquisition: optional
-    ceagent: optional
-    reconstruction: optional
-    run: optional
     echo: required
     part: optional
-    chunk: optional
 
 mese:
   suffixes:
@@ -116,17 +92,11 @@ mese:
   datatypes:
     - anat
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.mri.entities
     task: optional
-    acquisition: optional
-    ceagent: optional
-    reconstruction: optional
     direction: optional
-    run: optional
     echo: required
     part: optional
-    chunk: optional
 
 multiflip:
   suffixes:
@@ -138,17 +108,11 @@ multiflip:
   datatypes:
     - anat
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.mri.entities
     task: optional
-    acquisition: optional
-    ceagent: optional
-    reconstruction: optional
-    run: optional
     echo: optional
     flip: required
     part: optional
-    chunk: optional
 
 multiinversion:
   suffixes:
@@ -160,16 +124,10 @@ multiinversion:
   datatypes:
     - anat
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.mri.entities
     task: optional
-    acquisition: optional
-    ceagent: optional
-    reconstruction: optional
-    run: optional
     inversion: required
     part: optional
-    chunk: optional
 
 mp2rage:
   suffixes:
@@ -181,18 +139,12 @@ mp2rage:
   datatypes:
     - anat
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.mri.entities
     task: optional
-    acquisition: optional
-    ceagent: optional
-    reconstruction: optional
-    run: optional
     echo: optional
     flip: optional
     inversion: required
     part: optional
-    chunk: optional
 
 vfamt:
   suffixes:
@@ -205,18 +157,12 @@ vfamt:
   datatypes:
     - anat
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.mri.entities
     task: optional
-    acquisition: optional
-    ceagent: optional
-    reconstruction: optional
-    run: optional
     echo: optional
     flip: required
     mtransfer: required
     part: optional
-    chunk: optional
 
 mtr:
   suffixes:
@@ -228,13 +174,7 @@ mtr:
   datatypes:
     - anat
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.mri.entities
     task: optional
-    acquisition: optional
-    ceagent: optional
-    reconstruction: optional
-    run: optional
     mtransfer: required
     part: optional
-    chunk: optional
