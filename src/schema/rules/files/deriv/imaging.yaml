@@ -211,6 +211,19 @@ dwi_scannerderivatives_volumetric_atlas:
     $ref:
       - meta.templates.atlas.base.entities
       - rules.files.deriv.imaging.dwi_scannerderivatives_volumetric.entities
+dwimap_volumetric:
+  $ref:
+    - meta.templates.deriv.volumetric
+  datatypes:
+    - dwi
+  entities:
+    $ref:
+      - meta.templates.deriv.volumetric.entities
+      - rules.files.raw.dwi.dwi.entities
+    model: required
+    parameter: required
+  suffixes:
+    - dwimap
 
 func_volumetric:
   $ref:

@@ -1,0 +1,46 @@
+---
+OrientationEncodingTypeAmplitudes:
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - suffix == "dwimap"
+    - sidecar.OrientationEncoding.Type == "amplitudes"
+  fields:
+    AmplitudesDirections__OrientationEncoding:
+      level: required
+      level_addendum: if `OrientationEncoding.Type` is `"amplitudes"`
+
+OrientationEncodingTypeSphericalHarmonics:
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - suffix == "dwimap"
+    - sidecar.OrientationEncoding.Type == "sh"
+  fields:
+    SphericalHarmonicsBasis__OrientationEncoding:
+      level: required
+      level_addendum: if `OrientationEncoding.Type` is `"sh"`
+    SphericalHarmonicsDegree__OrientationEncoding:
+      level: optional
+      level_addendum: if `OrientationEncoding.Type` is `"sh"`
+
+OrientationEncodingTypeTensor:
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - suffix == "dwimap"
+    - sidecar.OrientationEncoding.Type == "tensor"
+  fields:
+    TensorRank__OrientationEncoding:
+      level: required
+      level_addendum: if `OrientationEncoding.Type` is `"tensor"`
+
+OrientationEncodingTypeNotScalar:
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - suffix == "dwimap"
+    - sidecar.OrientationEncoding.Type != "scalar"
+  fields:
+    EncodingAxis__OrientationEncoding:
+      level: required
+      level_addendum: if `OrientationEncoding.Type` is not `"scalar"`
+    Reference__OrientationEncoding:
+      level: required
+      level_addendum: if `OrientationEncoding.Type` is not `"scalar"`
