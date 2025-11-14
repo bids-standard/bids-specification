@@ -4390,7 +4390,9 @@ SphericalHarmonicsDegree__OrientationEncoding:
   name: SphericalHarmonicsDegree
   display_name: Spherical Harmonics Degree
   description: |
-    Integer. The maximal spherical harmonic order *l<sub>max</sub>*; the number of volumes in the associated NIfTI image must correspond to this value as per the relationship described in [spherical harmonics bases](#spherical-harmonics-bases) section.
+    Integer. The maximal spherical harmonic order *l<sub>max</sub>*;
+    the number of volumes in the associated NIfTI image must correspond to this value as per the relationship
+    described in the [spherical harmonics bases](#spherical-harmonics-bases) section.
   type: integer
   minimum: 0
 TensorRank__OrientationEncoding:
