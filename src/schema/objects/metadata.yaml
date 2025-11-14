@@ -72,8 +72,13 @@ Activities:
         format: label
       Command:
         name: Command
-        description: Command (or commands) used to run the tool, including all parameters.
-        type: string
+        description: |
+          Command (or commands) used to run the tool, including all parameters.
+          Set to `null` to describe that the activity was performed manually.
+        anyOf:
+          - type: string
+            format: string
+          - type: "null"
       AssociatedWith:
         name: AssociatedWith
         description: |
