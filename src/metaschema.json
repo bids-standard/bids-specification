@@ -458,6 +458,10 @@
                 "common_derivatives": { "$ref": "#/definitions/json" }
               },
               "required": ["atlas", "common_derivatives"],
+                "common_derivatives": { "$ref": "#/definitions/json" },
+                "diffusion": { "$ref": "#/definitions/json" }
+              },
+              "required": ["common_derivatives", "diffusion"],
               "additionalProperties": false
             },
             "^(?!derivatives$)[a-z_]+$": {
