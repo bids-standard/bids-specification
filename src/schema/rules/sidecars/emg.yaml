@@ -74,8 +74,6 @@ EMGRecommended:
     EMGGround: recommended
     EpochLength: recommended
     HardwareFilters: recommended
-    Preamplification: recommended
-    Gain: recommended
     InterelectrodeDistance: recommended
     RecordingDuration: recommended
     RecordingType: recommended
@@ -88,6 +86,8 @@ EMGOptional:
     - datatype == "emg"
     - suffix == "emg"
   fields:
+    Gain: optional
+    Preamplification: optional
     SkinPreparation: optional
 
 EMGPlacementSchemeDescription:
