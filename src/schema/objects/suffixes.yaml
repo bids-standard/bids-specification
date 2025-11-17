@@ -112,6 +112,16 @@ MESE:
     times and is primarily used for T2 mapping.
     Please note that this suffix is not intended for the logical grouping of
     images acquired using an Echo Planar Imaging (EPI) readout.
+MImap:
+  value: MImap
+  display_name: Molecular Imaging map
+  description: |
+    MImaps can have different units, e.g. unitless, ml/ml or pmol/ml. See 
+    [Innis et al. 2007](https://journals.sagepub.com/doi/full/10.1038/sj.jcbfm.9600493) for unit descriptions.
+    MImaps are derivatives of molecular imaging (PET or SPECT) raw data. They can 
+    either be unitless, e.g. a BP_ND or SUVR, or have the units ml/cm^3 for a V_T or pmol/ml 
+    for average density maps (see e.g. [Beliveau et al. 2017](https://pmc.ncbi.nlm.nih.gov/articles/PMC5214625/)).     
+  unit: arbitrary
 MP2RAGE:
   value: MP2RAGE
   display_name: Magnetization Prepared Two Gradient Echoes
