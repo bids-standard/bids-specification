@@ -4,21 +4,10 @@ Support for provenance was developed as a [BIDS Extension Proposal](../extension
 Please see [Citing BIDS](../introduction.md#citing-bids) on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
-!!! bug
-    Change example links below once they are merged to bids-examples
-
 !!! example "Example datasets"
 
-    The following examples have been formatted using this specification
-    and can be used for practical guidance when curating a new dataset.
+    Several [example BIDS-Prov datasets](https://bids-standard.github.io/bids-examples/#prov) have been formatted using this specification and can be used for practical guidance when curating a new dataset.
 
-    - [Provenance of DICOM to Nifti conversion with `dcm2niix`](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix) - [Associated Pull Request #494](https://github.com/bids-standard/bids-examples/pull/494)
-    - [Provenance of DICOM to Nifti conversion with `heudiconv`](https://github.com/bclenet/bids-examples/tree/BEP028_heudiconv/provenance_heudiconv) - [Associated Pull Request #496](https://github.com/bids-standard/bids-examples/pull/496)
-    - [Provenance of fMRI preprocessing with `SPM`](https://github.com/bclenet/bids-examples/tree/BEP028_spm/provenance_spm) - [Associated Pull Request #497](https://github.com/bids-standard/bids-examples/pull/497)
-    - [Provenance of fMRI preprocessing with `fMRIPrep`](https://github.com/bclenet/bids-examples/tree/BEP028_fmriprep/provenance_fmriprep) - [Associated Pull Request#502](https://github.com/bids-standard/bids-examples/pull/502)
-
-    Further datasets are available from
-    the [BIDS examples repository](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#provenance).
 
 ## Overview
 
