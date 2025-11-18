@@ -14,7 +14,7 @@ Provenance information SHOULD be included in a BIDS dataset when possible. If pr
 
 ## Key concepts
 
-Provenance information is encoded using **provenance objects** of 4 types:
+Provenance information is encoded in metadata fields in sidecar JSONs and in provenance JSON files. The provenance information is encoded using **provenance objects** of 4 types:
 
 -   **Activities**: transformations that have been applied to data.
 -   **ProvEntities**: input or output data for activities (Note: this corresponds to Entities in [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/), the prefix "Prov" is used here to disambiguate with [BIDS entities](../appendices/entities.md)).
