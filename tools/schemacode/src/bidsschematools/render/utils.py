@@ -221,6 +221,7 @@ def get_link(string):
         "object": "https://www.json.org/json-en.html",
         "integer": "https://www.w3schools.com/js/js_json_datatypes.asp",
         "boolean": "https://www.w3schools.com/js/js_json_datatypes.asp",
+        "null": "https://www.w3schools.com/js/js_json_datatypes.asp"
     }
     # Allow plurals (e.g., strings -> links to string)
     dtype = string[:-1] if string[-1] == "s" else string
