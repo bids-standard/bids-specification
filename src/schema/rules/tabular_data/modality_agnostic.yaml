@@ -83,7 +83,10 @@ Provenance:
   initial_columns:
     - provenance_label
   columns:
-    provenance_label: required
+    provenance_label:
+      level: required
+      description_addendum: |
+        There MUST be exactly one row for each `prov-<label>` entity.
     description__provenance: optional
   index_columns: [provenance_label]
   additional_columns: allowed
