@@ -4,51 +4,20 @@ Support for provenance was developed as a [BIDS Extension Proposal](../extension
 Please see [Citing BIDS](../introduction.md#citing-bids) on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
-!!! bug
-    Change example links below once they are merged to bids-examples
-
 !!! example "Example datasets"
 
-    The following examples have been formatted using this specification
-    and can be used for practical guidance when curating a new dataset.
+    Several [example BIDS-Prov datasets](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#provenance) have been formatted using this specification and can be used for practical guidance when curating a new dataset.
 
-    - [Provenance of DICOM to Nifti conversion with `dcm2niix`](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix) - [Associated Pull Request #494](https://github.com/bids-standard/bids-examples/pull/494)
-    - [Provenance of DICOM to Nifti conversion with `heudiconv`](https://github.com/bclenet/bids-examples/tree/BEP028_heudiconv/provenance_heudiconv) - [Associated Pull Request #496](https://github.com/bids-standard/bids-examples/pull/496)
-    - [Provenance of fMRI preprocessing with `SPM`](https://github.com/bclenet/bids-examples/tree/BEP028_spm/provenance_spm) - [Associated Pull Request #497](https://github.com/bids-standard/bids-examples/pull/497)
-    - [Provenance of fMRI preprocessing with `fMRIPrep`](https://github.com/bclenet/bids-examples/tree/BEP028_fmriprep/provenance_fmriprep) - [Associated Pull Request#502](https://github.com/bids-standard/bids-examples/pull/502)
+This part of the BIDS specification is aimed at describing the provenance of a BIDS dataset. This description is retrospective: it describes a set of steps that were executed in order to obtain the dataset. Note: This is different from prospective provenance that focuses describing workflows that may be run on a dataset. This description is based on the [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/) standard (see [Section RDF](#provenance-from-a-rdf-perspective) for more info).
 
-    Further datasets are available from
-    the [BIDS examples repository](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#provenance).
+Provenance information SHOULD be included in a BIDS dataset when possible. If provenance information is included, it MUST be described using the conventions detailed by this specification. Provenance information reflects the provenance of a full dataset and/or of specific files at any level of the BIDS hierarchy. Provenance information SHOULD not include human subject identifying data.
 
-## Overview
+## Key concepts
 
-This part of the BIDS specification is aimed at describing the provenance of a BIDS dataset.
-
-This description is retrospective: it describes a set of steps that were executed in order to obtain the dataset.
-
-!!! note
-    This is different from prospective provenance that focuses describing workflows that may be run on a dataset.
-
-This description is based on the [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/) standard.
-
-### General principles
-
-Provenance information SHOULD be included in a BIDS dataset when possible.
-
-If provenance information is included, it MUST be described using the conventions detailed by this specification.
-
-Provenance information reflects the provenance of a full dataset and/or of specific files at any level of the BIDS hierarchy.
-
-Provenance information SHOULD not include human subject identifying data.
-
-### Key concepts
-
-Provenance information is encoded using metadata fields.
-
-For the most part, this metadata consists of **provenance objects** of 4 types:
+Provenance information is encoded in metadata fields in sidecar JSONs and in provenance JSON files. The provenance information is encoded using **provenance objects** of 4 types:
 
 -   **Activities**: transformations that have been applied to data.
--   **ProvEntities**: input or output data for activities (Note: this corresponds to Entities as per the Prov W3C standard, the prefix "Prov" is used to disambiguate with [BIDS entities](../appendices/entities.md)).
+-   **ProvEntities**: input or output data for activities (Note: this corresponds to Entities in [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/), the prefix "Prov" is used here to disambiguate with [BIDS entities](../appendices/entities.md)).
 -   **Software**: software packages used to compute the activities.
 -   **Environments**: software environments in which activities were performed.
 
@@ -397,7 +366,7 @@ The `dataset_description.json` file of a **BIDS derivative dataset** MUST includ
 
 The `GeneratedBy` field MAY contain either of the following values:
 
--   Identifier(s) of the activity (one or more) responsible for the creation of the dataset (see the [Description using provenance objects](#description-using-provenance-objects) section).
+-   Identifier(s) of the activity(ies) responsible for the creation of the dataset (see the [Description using provenance objects](#description-using-provenance-objects) section).
 -   A description of pipelines or processes responsible for the creation of the dataset (see the [Description of pipelines or processes](#description-of-pipelines-or-processes) section).
 
 ### Description using provenance objects
@@ -520,12 +489,12 @@ The uniqueness of this identifier MUST be used to distinguish any activity, soft
     - `bids::prov#fedora-uldfv058` - a Fedora based environment described inside the current dataset.
     - `bids:preprocessing:prov#fmriprep-r4kzzMt8` - the fMRIPrep software described inside the `preprocessing` dataset.
 
-## Provenance from a RDF perspective
+## Provenance from an RDF perspective
 
 !!! note
     The [Resource Description Framework (RDF)](https://www.w3.org/RDF/) is a method to describe and exchange graph data.
 
-Provenance objects as defined in this specification can be aggregated into [JSON-LD](https://www.w3.org/TR/json-ld11/) files ; which allows to represent provenance as a RDF graph.
+Provenance objects as defined in this specification can be aggregated into [JSON-LD](https://www.w3.org/TR/json-ld11/) files ; which allows to represent provenance as an RDF graph.
 
 Moreover, the terms defined in this specification to describe provenance objects are based on the [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/) standard. They can be resolved to [IRIs](https://www.w3.org/TR/json-ld11/#iris) using the JSON-LD context file [`provenance-context.json`](../../provenance-context.json) provided with this specification.
 
