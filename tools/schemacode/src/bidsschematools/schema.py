@@ -3,9 +3,8 @@
 from __future__ import annotations
 
 import json
-import os
 import re
-from collections.abc import Iterable, Mapping
+from collections.abc import Iterable, Mapping, MutableMapping
 from copy import deepcopy
 from functools import cache, lru_cache
 from pathlib import Path
@@ -15,6 +14,9 @@ from .types import Namespace
 
 TYPE_CHECKING = False
 if TYPE_CHECKING:
+    from typing import Any, Callable
+
+    from acres import typ as at
     from jsonschema.protocols import Validator as JsonschemaValidator
 
 lgr = utils.get_logger()
@@ -24,39 +26,38 @@ class BIDSSchemaError(Exception):
     """Errors indicating invalid values in the schema itself"""
 
 
-def _get_schema_version(schema_dir):
+def _get_schema_version(schema_dir: str | at.Traversable) -> str:
     """
     Determine schema version for given schema directory, based on file specification.
     """
+    if isinstance(schema_dir, str):
+        schema_dir = Path(schema_dir)
 
-    schema_version_path = os.path.join(schema_dir, "SCHEMA_VERSION")
-    with open(schema_version_path) as f:
-        schema_version = f.readline().rstrip()
-    return schema_version
+    schema_version_path = schema_dir / "SCHEMA_VERSION"
+    return schema_version_path.read_text().strip()
 
 
-def _get_bids_version(schema_dir):
+def _get_bids_version(schema_dir: str | at.Traversable) -> str:
     """
     Determine BIDS version for given schema directory, with directory name, file specification,
     and string fallback.
     """
+    if isinstance(schema_dir, str):
+        schema_dir = Path(schema_dir)
 
-    bids_version_path = os.path.join(schema_dir, "BIDS_VERSION")
+    bids_version_path = schema_dir / "BIDS_VERSION"
     try:
-        with open(bids_version_path) as f:
-            bids_version = f.readline().rstrip()
+        return bids_version_path.read_text().strip()
     # If this file is not in the schema, fall back to placeholder heuristics:
     except FileNotFoundError:
         # Maybe the directory encodes the version, as in:
         # https://github.com/bids-standard/bids-schema
-        _, bids_version = os.path.split(schema_dir)
-        if not re.match(r"^.*?[0-9]*?\.[0-9]*?\.[0-9]*?.*?$", bids_version):
-            # Then we don't know, really.
-            bids_version = schema_dir
-    return bids_version
+        if re.match(r"^.*?[0-9]*?\.[0-9]*?\.[0-9]*?.*?$", schema_dir.name):
+            return schema_dir.name
+    return str(schema_dir)
 
 
-def _find(obj, predicate):
+def _find(obj: object, predicate: Callable[[Any], bool]) -> Iterable[object]:
     """Find objects in an arbitrary object that satisfy a predicate.
 
     Note that this does not cut branches, so every iterable sub-object
@@ -78,7 +79,7 @@ def _find(obj, predicate):
     except Exception:
         pass
 
-    iterable = ()
+    iterable: Iterable[object] = ()
     if isinstance(obj, Mapping):
         iterable = obj.values()
     elif not isinstance(obj, str) and isinstance(obj, Iterable):
@@ -88,16 +89,17 @@ def _find(obj, predicate):
         yield from _find(item, predicate)
 
 
-def _dereference(namespace, base_schema):
+def _dereference(namespace: MutableMapping, base_schema: Namespace) -> None:
     # In-place, recursively dereference objects
     # This allows a referenced object to itself contain a reference
     # A dependency graph could be constructed, but would likely be slower
     # to build than to duplicate a couple dereferences
     for struct in _find(namespace, lambda obj: "$ref" in obj):
+        assert isinstance(struct, MutableMapping)
         target = base_schema.get(struct["$ref"])
         if target is None:
             raise ValueError(f"Reference {struct['$ref']} not found in schema.")
-        if isinstance(target, Mapping):
+        if isinstance(target, MutableMapping):
             struct.pop("$ref")
             _dereference(target, base_schema)
             struct.update({**target, **struct})
@@ -110,7 +112,7 @@ def get_schema_validator() -> JsonschemaValidator:
     return utils.jsonschema_validator(metaschema, check_format=True)
 
 
-def dereference(namespace, inplace=True):
+def dereference(namespace: Namespace, inplace: bool = True) -> Namespace:
     """Replace references in namespace with the contents of the referred object.
 
     Parameters
@@ -133,6 +135,8 @@ def dereference(namespace, inplace=True):
 
     # At this point, any remaining refs are one-off objects in lists
     for struct in _find(namespace, lambda obj: any("$ref" in sub for sub in obj)):
+        assert isinstance(struct, list)
+        item: MutableMapping[str, object]
         for i, item in enumerate(struct):
             try:
                 target = item.pop("$ref")
@@ -144,7 +148,7 @@ def dereference(namespace, inplace=True):
     return namespace
 
 
-def flatten_enums(namespace, inplace=True):
+def flatten_enums(namespace: Namespace, inplace=True) -> Namespace:
     """Replace enum collections with a single enum, merging enums contents.
 
     The function helps reducing the complexity of the schema by assuming
@@ -175,6 +179,7 @@ def flatten_enums(namespace, inplace=True):
     if not inplace:
         namespace = deepcopy(namespace)
     for struct in _find(namespace, lambda obj: "anyOf" in obj):
+        assert isinstance(struct, MutableMapping)
         try:
             # Deduplicate because JSON schema validators may not like duplicates
             # Long run, we should get rid of this function and have the rendering
@@ -189,7 +194,7 @@ def flatten_enums(namespace, inplace=True):
 
 
 @lru_cache
-def load_schema(schema_path=None):
+def load_schema(schema_path: at.Traversable | str | None = None) -> Namespace:
     """Load the schema into a dict-like structure.
 
     This function allows the schema, like BIDS itself, to be specified in
@@ -221,6 +226,7 @@ def load_schema(schema_path=None):
 
             # Probably a Windows checkout with a git link. Resolve first.
             if schema_path.is_file() and (content := schema_path.read_text()).startswith("../"):
+                assert isinstance(schema_path, Path)
                 schema_path = Path.resolve(schema_path.parent / content)
         lgr.info("No schema path specified, defaulting to the bundled schema, `%s`.", schema_path)
     elif isinstance(schema_path, str):

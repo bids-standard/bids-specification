@@ -18,6 +18,7 @@ from textwrap import dedent, indent
 
 TYPE_CHECKING = False
 if TYPE_CHECKING:
+    from collections.abc import Mapping
     from typing import Any, Callable, Protocol
 
     class Spec(Protocol):
@@ -241,7 +242,7 @@ def generate_protocols(
     return protocols
 
 
-def generate_module(schema: dict[str, Any], class_type: str) -> str:
+def generate_module(schema: Mapping[str, Any], class_type: str) -> str:
     """Generate a context module source code from a BIDS schema.
 
     Returns a tuple containing the module source code and a list of protocol names.
