@@ -6,14 +6,14 @@ site/
 venvs
 .vscode/
 
+.~lock*
+
 pdf_build_src/bids-spec.pdf
 pdf_build_src/bids-spec_pandoc_log.json
 pdf_build_src/src_copy
 pdf_build_src/tests/data/output
 
 # JS/NPM
-package-lock.json
-package.json
 node_modules/
 
 # Python gitignore
@@ -144,6 +144,7 @@ venv.bak/
 
 # schema docs documentation
 tools/schemacode/build/*
+_build/
 
 # mypy
 .mypy_cache/

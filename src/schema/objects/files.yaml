@@ -131,5 +131,5 @@ stimuli:
   file_type: directory
   description: |
     A directory to store any stimulus files used during an experiment.
-    See the [relevant section](SPEC_ROOT/modality-specific-files/task-events.md#stimuli-directory)
+    See the [relevant section](SPEC_ROOT/modality-agnostic-files/events.md#stimuli-directory)
     for more information.

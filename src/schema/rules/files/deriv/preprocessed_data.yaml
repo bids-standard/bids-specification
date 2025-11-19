@@ -1,330 +1,156 @@
+# This document implements the common derivatives specification,
+# generally adding space and description entities to most raw data.
+#
+# Imaging files are generally omitted, due to redundancy with imaging.yaml
 ---
-anat_nonparametric_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.anat.nonparametric
-  entities:
-    $ref: rules.files.raw.anat.nonparametric.entities
-    space: optional
-    description: optional
-
-anat_parametric_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.anat.parametric
-  entities:
-    $ref: rules.files.raw.anat.parametric.entities
-    space: optional
-    description: optional
-
-anat_defacemask_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.anat.defacemask
-  entities:
-    $ref: rules.files.raw.anat.defacemask.entities
-    space: optional
-    description: optional
-
-anat_multiecho_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.anat.multiecho
-  entities:
-    $ref: rules.files.raw.anat.multiecho.entities
-    space: optional
-    description: optional
-
-anat_multiflip_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.anat.multiflip
-  entities:
-    $ref: rules.files.raw.anat.multiflip.entities
-    space: optional
-    description: optional
-
-anat_multiinversion_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.anat.multiinversion
-  entities:
-    $ref: rules.files.raw.anat.multiinversion.entities
-    space: optional
-    description: optional
-
-anat_mp2rage_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.anat.mp2rage
-  entities:
-    $ref: rules.files.raw.anat.mp2rage.entities
-    space: optional
-    description: optional
-
-anat_vfamt_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.anat.vfamt
-  entities:
-    $ref: rules.files.raw.anat.vfamt.entities
-    space: optional
-    description: optional
-
-anat_mtr_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.anat.mtr
-  entities:
-    $ref: rules.files.raw.anat.mtr.entities
-    space: optional
-    description: optional
-
 beh_noncontinuous_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.beh.noncontinuous
+  $ref:
+    - meta.templates.deriv.base
+    - rules.files.raw.beh.noncontinuous
   entities:
-    $ref: rules.files.raw.beh.noncontinuous.entities
-    space: optional
-    description: optional
+    $ref:
+      - meta.templates.deriv.base.entities
+      - rules.files.raw.beh.noncontinuous.entities
 
 channels_channels_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.channels.channels
+  $ref:
+    - meta.templates.deriv.base
+    - rules.files.raw.channels.channels
   entities:
-    $ref: rules.files.raw.channels.channels.entities
-    description: optional
+    $ref:
+      - meta.templates.deriv.base.entities
+      - rules.files.raw.channels.channels.entities
 
 channels_channels__meg_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.channels.channels__meg
+  $ref:
+    - meta.templates.deriv.base
+    - rules.files.raw.channels.channels__meg
   entities:
-    $ref: rules.files.raw.channels.channels__meg.entities
-    description: optional
+    $ref:
+      - meta.templates.deriv.base.entities
+      - rules.files.raw.channels.channels__meg.entities
 
 channels_channels__motion_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.channels.channels__motion
+  $ref:
+    - meta.templates.deriv.base
+    - rules.files.raw.channels.channels__motion
   entities:
-    $ref: rules.files.raw.channels.channels__motion.entities
-    description: optional
+    $ref:
+      - meta.templates.deriv.base.entities
+      - rules.files.raw.channels.channels__motion.entities
 
 channels_coordsystem_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.channels.coordsystem
+  $ref:
+    - meta.templates.deriv.base
+    - rules.files.raw.channels.coordsystem
   entities:
-    $ref: rules.files.raw.channels.coordsystem.entities
-    description: optional
+    $ref:
+      - meta.templates.deriv.base.entities
+      - rules.files.raw.channels.coordsystem.entities
 
 channels_coordsystem__eeg_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.channels.coordsystem__eeg
+  $ref:
+    - meta.templates.deriv.base
+    - rules.files.raw.channels.coordsystem__eeg
   entities:
-    $ref: rules.files.raw.channels.coordsystem__eeg.entities
-    description: optional
+    $ref:
+      - meta.templates.deriv.base.entities
+      - rules.files.raw.channels.coordsystem__eeg.entities
 
 channels_electrodes_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.channels.electrodes
+  $ref:
+    - meta.templates.deriv.base
+    - rules.files.raw.channels.electrodes
   entities:
-    $ref: rules.files.raw.channels.electrodes.entities
-    description: optional
+    $ref:
+      - meta.templates.deriv.base.entities
+      - rules.files.raw.channels.electrodes.entities
 
 channels_electrodes__meg_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.channels.electrodes__meg
+  $ref:
+    - meta.templates.deriv.base
+    - rules.files.raw.channels.electrodes__meg
   entities:
-    $ref: rules.files.raw.channels.electrodes__meg.entities
-    description: optional
+    $ref:
+      - meta.templates.deriv.base.entities
+      - rules.files.raw.channels.electrodes__meg.entities
 
-channels_electrodes_optodes_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.channels.optodes
+channels_optodes_common:
+  $ref:
+    - meta.templates.deriv.base
+    - rules.files.raw.channels.optodes
   entities:
-    $ref: rules.files.raw.channels.optodes.entities
-    description: optional
-
-dwi_dwi_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.dwi.dwi
-  entities:
-    $ref: rules.files.raw.dwi.dwi.entities
-    space: optional
-    description: optional
-
-dwi_sbref_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.dwi.sbref
-  entities:
-    $ref: rules.files.raw.dwi.sbref.entities
-    space: optional
-    description: optional
+    $ref:
+      - meta.templates.deriv.base.entities
+      - rules.files.raw.channels.optodes.entities
 
 eeg_eeg_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.eeg.eeg
+  $ref:
+    - meta.templates.deriv.spatial
+    - rules.files.raw.eeg.eeg
   entities:
-    $ref: rules.files.raw.eeg.eeg.entities
-    space: optional
-    description: optional
-
-fmap_fieldmaps_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.fmap.fieldmaps
-  entities:
-    $ref: rules.files.raw.fmap.fieldmaps.entities
-    space: optional
-    description: optional
-
-fmap_pepolar_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.fmap.pepolar
-  entities:
-    $ref: rules.files.raw.fmap.pepolar.entities
-    space: optional
-    description: optional
-
-fmap_pepolar_m0scan:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.fmap.pepolar_m0scan
-  entities:
-    $ref: rules.files.raw.fmap.pepolar.entities
-    space: optional
-    description: optional
-
-fmap_TB1DAM_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.fmap.TB1DAM
-  entities:
-    $ref: rules.files.raw.fmap.TB1DAM.entities
-    space: optional
-    description: optional
-
-fmap_TB1EPI_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.fmap.TB1EPI
-  entities:
-    $ref: rules.files.raw.fmap.TB1EPI.entities
-    space: optional
-    description: optional
-
-fmap_RFFieldMaps_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.fmap.RFFieldMaps
-  entities:
-    $ref: rules.files.raw.fmap.RFFieldMaps.entities
-    space: optional
-    description: optional
-
-fmap_TB1SRGE_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.fmap.TB1SRGE
-  entities:
-    $ref: rules.files.raw.fmap.TB1SRGE.entities
-    space: optional
-    description: optional
-
-fmap_parametric_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.fmap.parametric
-  entities:
-    $ref: rules.files.raw.fmap.parametric.entities
-    space: optional
-    description: optional
-
-func_func_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.func.func
-  entities:
-    $ref: rules.files.raw.func.func.entities
-    space: optional
-    description: optional
-
-func_phase_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.func.phase
-  entities:
-    $ref: rules.files.raw.func.phase.entities
-    space: optional
-    description: optional
+    $ref:
+      - meta.templates.deriv.spatial.entities
+      - rules.files.raw.eeg.eeg.entities
 
 ieeg_ieeg_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.ieeg.ieeg
+  $ref:
+    - meta.templates.deriv.spatial
+    - rules.files.raw.ieeg.ieeg
   entities:
-    $ref: rules.files.raw.ieeg.ieeg.entities
-    space: optional
-    description: optional
+    $ref:
+      - meta.templates.deriv.spatial.entities
+      - rules.files.raw.ieeg.ieeg.entities
 
 meg_meg_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.meg.meg
+  $ref:
+    - meta.templates.deriv.spatial
+    - rules.files.raw.meg.meg
   entities:
-    $ref: rules.files.raw.meg.meg.entities
-    space: optional
-    description: optional
+    $ref:
+      - meta.templates.deriv.spatial.entities
+      - rules.files.raw.meg.meg.entities
 
 meg_calibration_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.meg.calibration
+  $ref:
+    - meta.templates.deriv.spatial
+    - rules.files.raw.meg.calibration
   entities:
-    $ref: rules.files.raw.meg.calibration.entities
-    space: optional
-    description: optional
+    $ref:
+      - meta.templates.deriv.spatial.entities
+      - rules.files.raw.meg.calibration.entities
 
 meg_crosstalk_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.meg.crosstalk
+  $ref:
+    - meta.templates.deriv.spatial
+    - rules.files.raw.meg.crosstalk
   entities:
-    $ref: rules.files.raw.meg.crosstalk.entities
-    space: optional
-    description: optional
+    $ref:
+      - meta.templates.deriv.spatial.entities
+      - rules.files.raw.meg.crosstalk.entities
 
 meg_headshape_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.meg.headshape
+  $ref:
+    - meta.templates.deriv.spatial
+    - rules.files.raw.meg.headshape
   entities:
-    $ref: rules.files.raw.meg.headshape.entities
-    space: optional
-    description: optional
+    $ref:
+      - meta.templates.deriv.spatial.entities
+      - rules.files.raw.meg.headshape.entities
 
 meg_markers_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.meg.markers
+  $ref:
+    - meta.templates.deriv.spatial
+    - rules.files.raw.meg.markers
   entities:
-    $ref: rules.files.raw.meg.markers.entities
-    space: optional
-    description: optional
+    $ref:
+      - meta.templates.deriv.spatial.entities
+      - rules.files.raw.meg.markers.entities
 
 micr_microscopy_common:
+  $ref:
+    - meta.templates.deriv.spatial
+    - rules.files.raw.micr.microscopy
   selectors:
     - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.micr.microscopy
@@ -362,23 +188,24 @@ pet_pet_common:
     - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.pet.pet
   entities:
-    $ref: rules.files.raw.pet.pet.entities
-    space: optional
-    description: optional
+    $ref:
+      - meta.templates.deriv.spatial.entities
+      - rules.files.raw.micr.microscopy.entities
 
 pet_blood_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.pet.blood
+  $ref:
+    - meta.templates.deriv.spatial
+    - rules.files.raw.pet.blood
   entities:
-    $ref: rules.files.raw.pet.blood.entities
-    space: optional
-    description: optional
+    $ref:
+      - meta.templates.deriv.spatial.entities
+      - rules.files.raw.pet.blood.entities
 
 task_events_common:
-  selectors:
-    - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.task.events
+  $ref:
+    - meta.templates.deriv.base
+    - rules.files.raw.events.events
   entities:
-    $ref: rules.files.raw.task.events.entities
-    description: optional
+    $ref:
+      - meta.templates.deriv.base.entities
+      - rules.files.raw.events.events.entities

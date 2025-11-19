@@ -44,7 +44,7 @@ MRIFuncVolumeTiming:
       description_addendum: |
         This field is mutually exclusive with `"DelayTime"`.
         If defined, this requires acquisition time (TA) be defined via either
-        `"SliceTiming"` or `"AcquisitionDuration"`.
+        `"SliceTiming"` or `"FrameAcquisitionDuration"`.
 
 # Timing Parameters
 MRIFuncTimingParameters:
@@ -56,13 +56,18 @@ MRIFuncTimingParameters:
     NumberOfVolumesDiscardedByScanner: optional
     NumberOfVolumesDiscardedByUser: optional
     DelayTime: optional
-    AcquisitionDuration:
+    FrameAcquisitionDuration:
       level: optional
       level_addendum: |
         required for sequences that are described with the `VolumeTiming`
         field and that do not have the `SliceTiming` field set to allow for
         accurate calculation of "acquisition time"
     DelayAfterTrigger: optional
+    AcquisitionDuration:
+      level: deprecated
+      description_addendum: |
+        This field was previously used to indicate volume acquisition duration
+        for BOLD data. The `FrameAcquisitionDuration` field should be used instead.
 
 # fMRI task information
 MRIFuncTaskInformation:

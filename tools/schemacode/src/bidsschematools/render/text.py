@@ -152,6 +152,8 @@ def make_glossary(schema, src_path=None):
         if obj_desc is None:
             raise ValueError(f"{obj_marker} has no description.")
 
+        if "sense 1" in obj_key:
+            text += f'\n<a name="{obj_marker.split("__", 1)[0]}"></a>'
         text += f'\n<a name="{obj_marker}"></a>'
         text += f"\n## {obj_key}\n\n"
         text += f"**Name**: {obj_def['display_name']}\n\n"
@@ -266,7 +268,7 @@ def make_filename_template(
         If True, placeholder meta-entities will replace keyword-value entities in the
         filename.
         If ``dstype`` is ``"raw"``, the placeholder meta-entity is ``<matches>``.
-        If ``dstype`` is ``"derivatives"``, the placeholder meta-entity is ``<source_entities>``.
+        If ``dstype`` is ``"derivatives"``, the placeholder meta-entity is ``<source-entities>``.
         Default is False.
     empty_dirs: bool, optional
         If False, empty datatype directories are not included. If ``placeholders`` is True,
@@ -333,7 +335,7 @@ def make_filename_template(
     entity_list = schema.rules.entities
     start_string = ""
     if placeholders:
-        metaentity_name = "matches" if dstype == "raw" else "source_entities"
+        metaentity_name = "matches" if dstype == "raw" else "source-entities"
         start_string = (
             lt
             + utils._link_with_html(
@@ -501,7 +503,7 @@ def append_filename_template_legend(text, pdf_format=False):
     legend = f"""{info_str}
 - `<matches>` is a placeholder to denote an arbitrary (and valid) sequence of entities
   and labels at the beginning of the filename (only BIDS "raw").
-- `<source_entities>` is a placeholder to denote an arbitrary sequence of entities and labels
+- `<source-entities>` is a placeholder to denote an arbitrary sequence of entities and labels
   at the beginning of the filename matching a source file from which the file derives
   (only BIDS-Derivatives).
 - Filename entities or directories between square brackets

@@ -3,6 +3,47 @@
 import math
 import posixpath
 import re
+from functools import cache, wraps
+
+import pandas as pd
+
+from ..utils import in_context
+
+
+def _pandas_3_0():
+    """Silence pandas warnings and opt in to future behavior.
+
+    This sets pandas behavior to 3.0+ defaults.
+    Prior to pandas 3.0, the fillna() and replace() methods would convert
+    object columns to float64 if the resulting series was all float64.
+    In 3.0+, you need to use infer_objects() to do this.
+
+    This also opts-in to copy-on-write, which previously required `copy=False`
+    to be set.
+    """
+    if args := _pandas_3_0_options():
+        return pd.option_context(*args)
+
+    import contextlib
+
+    return contextlib.nullcontext()
+
+
+@cache
+def _pandas_3_0_options():
+    options = [
+        ("future.no_silent_downcasting", True),
+        ("mode.copy_on_write", True),
+    ]
+
+    args = []
+    for option in options:
+        try:
+            pd.get_option(option[0])
+        except KeyError:
+            continue
+        args.extend(option)
+    return args
 
 
 def _link_with_html(string, html_path=None, heading=None, pdf_format=False):
@@ -113,6 +154,7 @@ def combine_extensions(lst, html_path=None, heading_lst=None, pdf_format=True):
     return new_lst
 
 
+@in_context(_pandas_3_0())
 def drop_unused_entities(df):
     """Remove columns from a dataframe where all values in the column are NaNs.
 
@@ -130,8 +172,7 @@ def drop_unused_entities(df):
     df : pandas.DataFrame
         DataFrame with columns associated with unused entities removed.
     """
-    df = df.replace("", math.nan).dropna(axis=1, how="all").fillna("")
-    return df
+    return df.replace("", math.nan).dropna(axis=1, how="all").fillna("")
 
 
 def flatten_multiindexed_columns(df):
@@ -180,6 +221,7 @@ def get_link(string):
         "object": "https://www.json.org/json-en.html",
         "integer": "https://www.w3schools.com/js/js_json_datatypes.asp",
         "boolean": "https://www.w3schools.com/js/js_json_datatypes.asp",
+        "null": "https://www.w3schools.com/js/js_json_datatypes.asp",
     }
     # Allow plurals (e.g., strings -> links to string)
     dtype = string[:-1] if string[-1] == "s" else string
@@ -412,3 +454,18 @@ def num2words(integer, to="ordinal"):
         return mapper[integer]
     except KeyError:
         raise ValueError(f"Input {integer} is not supported.")
+
+
+def propagate_fence_exception(func):
+    """Decorator to prevent superfences from swallowing exceptions."""
+
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except Exception as e:
+            from pymdownx.superfences import SuperFencesException
+
+            raise SuperFencesException from e
+
+    return wrapper

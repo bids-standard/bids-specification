@@ -16,28 +16,28 @@ jobs:
   codespell:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: codespell-project/actions-codespell@master
 
   # Markdown formatting
   remark:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
       - name: Install dependencies
-        run: npm install `cat npm-requirements.txt`
+        run: npm install
       - name: Run style checks
-        run: npx remark src/**/*.md --frail --rc-path .remarkrc
+        run: npm run remark
 
   # YAML
   yamllint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v6
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@v7
       - name: Lint yml files in src/schema
         run: uvx yamllint -f standard src/schema/ -c .yamllint.yml
 
@@ -45,8 +45,8 @@ jobs:
   python-style:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v6
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@v7
       - run: uvx ruff format --diff
       - run: uvx ruff check
 
@@ -54,8 +54,8 @@ jobs:
   latin-phrases:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v6
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@v7
       - name: Check for Latin phrases
         run: uv run tools/no-bad-latin.py
 
@@ -63,7 +63,9 @@ jobs:
   validate_cff:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v6
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@v7
       - name: Validate CITATION.cff
         run: uvx cffconvert --validate
+      - name: Check for Zenodo compatibility
+        run: uv run tools/validate_citation.py

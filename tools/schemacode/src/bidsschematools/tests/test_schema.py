@@ -182,6 +182,11 @@ def test_formats(schema_obj):
             )
 
 
+def test_format_consistency(schema_obj):
+    """Test that the "Format" field is consistent with objects.formats."""
+    assert set(schema_obj.objects.metadata.Format.enum) == schema_obj.objects.formats.keys()
+
+
 def test_dereferencing():
     orig = {
         "ReferencedObject": {
@@ -407,18 +412,18 @@ def test_valid_schema_with_check_jsonschema(tmp_path, regex_variant):
 def test_add_legal_field():
     """Test that adding a legal field does not raise an error."""
     namespace = schema.load_schema()
-    namespace["rules"]["files"]["deriv"]["preprocessed_data"]["anat_nonparametric_common"][
-        "entities"
-    ]["density"] = "optional"
+    namespace["rules"]["files"]["deriv"]["imaging"]["anat_nonparametric_volumetric"]["entities"][
+        "density"
+    ] = "optional"
     schema.validate_schema(namespace)
 
 
 def test_invalid_value():
     """Test that an invalid value raises an error."""
     namespace = schema.load_schema()
-    namespace["rules"]["files"]["deriv"]["preprocessed_data"]["anat_nonparametric_common"][
-        "entities"
-    ]["density"] = "invalid"
+    namespace["rules"]["files"]["deriv"]["imaging"]["anat_nonparametric_volumetric"]["entities"][
+        "density"
+    ] = "invalid"
     with pytest.raises(ValidationError) as e:
         schema.validate_schema(namespace)
     print(e.value)

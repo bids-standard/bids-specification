@@ -4,14 +4,22 @@ The purpose of the :class:`~Namespace` type is to make a directory of
 YAML files available as a single dictionary and allow attribute (``.``)
 lookups.
 """
+from __future__ import annotations
 
 import json
-import typing as ty
+import os.path
 from collections.abc import ItemsView, KeysView, Mapping, MutableMapping, ValuesView
 from pathlib import Path
 
+TYPE_CHECKING = False
+if TYPE_CHECKING:
+    from collections.abc import Iterator
+    from typing import Any, Self
 
-def _expand_dots(entry: tuple[str, ty.Any]) -> tuple[str, ty.Any]:
+    from acres import typ as at
+
+
+def _expand_dots(entry: tuple[str, Any]) -> tuple[str, Any]:
     # Helper function for expand
     key, val = entry
     if "." in key:
@@ -20,7 +28,7 @@ def _expand_dots(entry: tuple[str, ty.Any]) -> tuple[str, ty.Any]:
     return key, expand(val)
 
 
-def expand(element):
+def expand(element: dict[str, Any]) -> dict[str, Any]:
     """Expand a dict, recursively, to replace dots in keys with recursive dictionaries
 
     Parameters
@@ -46,18 +54,18 @@ def expand(element):
 
 
 class NsItemsView(ItemsView):
-    def __init__(self, namespace, level):
+    def __init__(self, namespace: Mapping, level: int):
         self._mapping = namespace
         self._level = level
 
-    def __contains__(self, item):
+    def __contains__(self, item: Any) -> bool:
         key, val = item
         keys = key.split(".", self._level - 1)
         if "." in keys[-1]:
             return False
         return self._mapping[key] == val
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator[tuple[str, Any]]:
         l1 = ItemsView(self._mapping)
         if self._level == 1:
             yield from l1
@@ -73,30 +81,30 @@ class NsItemsView(ItemsView):
 
 
 class NsKeysView(KeysView):
-    def __init__(self, namespace, level):
+    def __init__(self, namespace: Mapping, level: int):
         self._mapping = namespace
         self._level = level
 
-    def __contains__(self, key):
+    def __contains__(self, key: Any) -> bool:
         keys = key.split(".", self._level - 1)
         if "." in keys[-1]:
             return False
         return key in self._mapping
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator[str]:
         yield from (key for key, val in NsItemsView(self._mapping, self._level))
 
 
 class NsValuesView(ValuesView):
-    def __init__(self, namespace, level):
+    def __init__(self, namespace: Mapping, level: int):
         self._mapping = namespace
         self._level = level
         self._items = NsItemsView(namespace, level)
 
-    def __contains__(self, val):
+    def __contains__(self, val: object) -> bool:
         return any(val == item[1] for item in self._items)
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator[Any]:
         yield from (val for key, val in self._items)
 
 
@@ -162,7 +170,7 @@ class Namespace(MutableMapping):
     >>> del ns['d']
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         self._properties = dict(*args, **kwargs)
 
     def to_dict(self) -> dict:
@@ -177,7 +185,7 @@ class Namespace(MutableMapping):
 
         return _to_dict(self)
 
-    def __deepcopy__(self, memo):
+    def __deepcopy__(self, memo) -> Self:
         return self.build(self.to_dict())
 
     @classmethod
@@ -218,42 +226,43 @@ class Namespace(MutableMapping):
         except KeyError:
             raise err
 
-    def _get_mapping(self, key: str) -> tuple[Mapping, str]:
+    def _get_mapping(self, key: str) -> tuple[MutableMapping, str]:
         subkeys = key.split(".")
         mapping = self._properties
         for subkey in subkeys[:-1]:
             mapping = mapping.setdefault(subkey, {})
-            mapping = getattr(mapping, "_properties", mapping)
+            if isinstance(mapping, Namespace):
+                mapping = mapping._properties
             if not isinstance(mapping, Mapping):
                 raise KeyError(f"{key} (subkey={subkey})")
         return mapping, subkeys[-1]
 
-    def __getitem__(self, key):
+    def __getitem__(self, key: str) -> Any:
         mapping, subkey = self._get_mapping(key)
         val = mapping[subkey]
         if isinstance(val, dict):
             val = self.view(val)
         return val
 
-    def __setitem__(self, key, val):
+    def __setitem__(self, key: str, val: Any):
         mapping, subkey = self._get_mapping(key)
         mapping[subkey] = val
 
-    def __delitem__(self, key):
+    def __delitem__(self, key: str):
         mapping, subkey = self._get_mapping(key)
         del mapping[subkey]
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"<Namespace {self._properties}>"
 
-    def __len__(self):
+    def __len__(self) -> int:
         return len(self._properties)
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator[str]:
         return iter(self._properties)
 
     @classmethod
-    def from_directory(cls, path, fmt="yaml"):
+    def from_directory(cls, path: at.Traversable | str, fmt: str = "yaml") -> Self:
         if fmt == "yaml":
             if isinstance(path, str):
                 path = Path(path)
@@ -264,27 +273,27 @@ class Namespace(MutableMapping):
         return json.dumps(self, cls=MappingEncoder, **kwargs)
 
     @classmethod
-    def from_json(cls, jsonstr: str):
+    def from_json(cls, jsonstr: str) -> Self:
         return cls.build(json.loads(jsonstr))
 
 
-def _read_yaml_dir(path: Path) -> dict:
+def _read_yaml_dir(path: at.Traversable) -> dict:
     mapping = {}
-    for subpath in sorted(path.iterdir()):
+    for subpath in sorted(path.iterdir(), key=lambda p: p.name):
         if subpath.is_dir():
             mapping[subpath.name] = _read_yaml_dir(subpath)
         elif subpath.name.endswith("yaml"):
             import yaml
 
             try:
-                mapping[subpath.stem] = yaml.safe_load(subpath.read_text())
+                mapping[os.path.splitext(subpath.name)[0]] = yaml.safe_load(subpath.read_text())
             except Exception as e:
                 raise ValueError(f"There was an error reading the file: {subpath}") from e
     return mapping
 
 
 class MappingEncoder(json.JSONEncoder):
-    def default(self, o):
+    def default(self, o: object) -> object:
         try:
             return super().default(o)
         except TypeError as e:

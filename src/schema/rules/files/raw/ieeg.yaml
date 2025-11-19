@@ -1,5 +1,6 @@
 ---
 ieeg:
+  $ref: meta.templates.raw.task
   suffixes:
     - ieeg
   extensions:
@@ -14,9 +15,3 @@ ieeg:
     - .nwb
   datatypes:
     - ieeg
-  entities:
-    subject: required
-    session: optional
-    task: required
-    acquisition: optional
-    run: optional

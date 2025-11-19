@@ -8,11 +8,11 @@ extent and resolution.
 Template:
 
 ```Text
-<pipeline_name>/
+<pipeline-name>/
     sub-<label>/
         [ses-<label>/]
             <datatype>/
-                <source_entities>[_space-<space>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
+                <source-entities>[_space-<space>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<extension>
 ```
 
 Volumetric preprocessing does not modify the number of dimensions, and so
@@ -146,12 +146,12 @@ And the corresponding `sub-001_task-rest_run-1_space-fsLR_bold.json` file:
 Template:
 
 ```Text
-<pipeline_name>/
+<pipeline-name>/
     sub-<label>/
         [ses-<label>/]
             anat|func|dwi/
-                <source_entities>[_space-<space>][_res-<label>][_label-<label>][_desc-<label>]_mask.json
-                <source_entities>[_space-<space>][_res-<label>][_label-<label>][_desc-<label>]_mask.nii[.gz]
+                <source-entities>[_space-<space>][_res-<label>][_label-<label>][_desc-<label>]_mask.json
+                <source-entities>[_space-<space>][_res-<label>][_label-<label>][_desc-<label>]_mask.nii[.gz]
 ```
 
 A binary (1 - inside, 0 - outside) mask in the space defined by the [`space` entity](../appendices/entities.md#space).
@@ -265,13 +265,13 @@ of how integer values map to anatomical structures.
 Template:
 
 ```Text
-<pipeline_name>/
+<pipeline-name>/
     sub-<label>/
         [ses-<label>/]
             anat|func|dwi/
-                <source_entities>[_space-<space>][_seg-<label>][_res-<label>][_desc-<label>]_dseg.json
-                <source_entities>[_space-<space>][_seg-<label>][_res-<label>][_desc-<label>]_dseg.nii[.gz]
-                <source_entities>[_space-<space>][_seg-<label>][_res-<label>][_desc-<label>]_dseg.tsv
+                <source-entities>[_space-<space>][_seg-<label>][_res-<label>][_desc-<label>]_dseg.json
+                <source-entities>[_space-<space>][_seg-<label>][_res-<label>][_desc-<label>]_dseg.nii[.gz]
+                <source-entities>[_space-<space>][_seg-<label>][_res-<label>][_desc-<label>]_dseg.tsv
 ```
 
 Example:
@@ -332,12 +332,12 @@ the structure.
 Template:
 
 ```Text
-<pipeline_name>/
+<pipeline-name>/
     sub-<label>/
         [ses-<label>/]
             func|anat|dwi/
-                <source_entities>[_space-<space>][_seg-<label>][_res-<label>][_label-<label>][_desc-<label>]_probseg.json
-                <source_entities>[_space-<space>][_seg-<label>][_res-<label>][_label-<label>][_desc-<label>]_probseg.nii[.gz]
+                <source-entities>[_space-<space>][_seg-<label>][_res-<label>][_label-<label>][_desc-<label>]_probseg.json
+                <source-entities>[_space-<space>][_seg-<label>][_res-<label>][_label-<label>][_desc-<label>]_probseg.nii[.gz]
 ```
 
 Example:
@@ -408,14 +408,14 @@ CIFTI-2 dense label files, with the extension `.dlabel.nii`.
 Template:
 
 ```Text
-<pipeline_name>/
+<pipeline-name>/
     sub-<label>/
         [ses-<label>/]
             anat/
-                <source_entities>[_hemi-{L|R}][_space-<space>][_seg-<label>][_res-<label>][_den-<label>][_desc-<label>]_dseg.json
-                <source_entities>[_hemi-{L|R}][_space-<space>][_seg-<label>][_den-<label>][_desc-<label>]_dseg.label.gii
-                <source_entities>[_hemi-{L|R}][_space-<space>][_seg-<label>][_res-<label>][_den-<label>][_desc-<label>]_dseg.dlabel.nii
-                <source_entities>[_hemi-{L|R}][_space-<space>][_seg-<label>][_res-<label>][_den-<label>][_desc-<label>]_dseg.tsv
+                <source-entities>[_hemi-{L|R}][_space-<space>][_seg-<label>][_res-<label>][_den-<label>][_desc-<label>]_dseg.json
+                <source-entities>[_hemi-{L|R}][_space-<space>][_seg-<label>][_den-<label>][_desc-<label>]_dseg.label.gii
+                <source-entities>[_hemi-{L|R}][_space-<space>][_seg-<label>][_res-<label>][_den-<label>][_desc-<label>]_dseg.dlabel.nii
+                <source-entities>[_hemi-{L|R}][_space-<space>][_seg-<label>][_res-<label>][_den-<label>][_desc-<label>]_dseg.tsv
 ```
 
 The [`hemi-<label>`](../appendices/entities.md#hemi) entity is REQUIRED for GIFTI files storing information about
@@ -555,9 +555,9 @@ standard BIDS labels:
 
 ```tsv
 index	name	abbreviation
-137	pars	opercularis	IFGop
-138	pars	triangularis	IFGtr
-139	pars	orbitalis	IFGor
+137	pars opercularis	IFGop
+138	pars triangularis	IFGtr
+139	pars orbitalis	IFGor
 ```
 
 <!-- Link Definitions -->

@@ -83,7 +83,23 @@ direction:
     This entity represents the `"PhaseEncodingDirection"` metadata field.
     Therefore, if the `dir-<label>` entity is present in a filename,
     `"PhaseEncodingDirection"` MUST be defined in the associated metadata.
-    Please note that the `<label>` does not need to match the actual value of the field.
+
+    Labels need not follow any particular convention and in case of conflict,
+    JSON metadata MUST take precedence in interpreting an image.
+
+    For example, `dir-j0` and `dir-j1` can indicate `"PhaseEncodingDirection": "j"` and `"j-"` (or vice versa),
+    identifying the phase-encoding axis while avoiding indicating polarity.
+    However, in case of a dataset indicating `dir-j0` with `"PhaseEncodingDirection": "i"`, the
+    JSON metadata overrides the entity `dir-` setting.
+
+    The use of generic labels, such as `dir-reference` and `dir-reversed`, is RECOMMENDED
+    to avoid any possible inconsistency.
+
+    To avoid inconsistency, if the `<label>` is `AP`, `PA`, `LR`, `RL`, `SI`, or `IS`,
+    then the `"PhaseEncodingDirection"` SHOULD correspond to the data
+    axis that most closely aligns with the cardinal direction and orientation.
+    For example, `dir-PA` and `dir-AP` for an image in RAS+ orientation SHOULD have
+    `"PhaseEncodingDirection": "j"` and `"j-"`, respectively.
   type: string
   format: label
 echo:
@@ -272,7 +288,8 @@ recording:
   description: |
     The `recording-<label>` entity can be used to distinguish continuous recording files.
 
-    This entity is commonly applied when continuous recordings have different sampling frequencies or start times.
+    This entity is commonly applied when continuous recordings are from different acquisition instruments,
+    or have different sampling frequencies or start times.
     For example, physiological recordings with different sampling frequencies may be distinguished using
     labels like `recording-100Hz` and `recording-500Hz`.
   type: string
@@ -430,7 +447,7 @@ task:
     The `task-<label>` MUST be consistent across subjects and sessions.
 
     Files with the `task-<label>` entity SHOULD have an associated
-    [events file](SPEC_ROOT/modality-specific-files/task-events.md#task-events),
+    [events file](SPEC_ROOT/modality-agnostic-files/events.md#events),
     as well as certain metadata fields in the associated JSON file.
 
     For the purpose of this specification we consider the so-called "resting state" a task,

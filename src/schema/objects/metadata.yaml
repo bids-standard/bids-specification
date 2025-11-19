@@ -20,9 +20,8 @@ AcquisitionDuration:
   name: AcquisitionDuration
   display_name: Acquisition Duration
   description: |
-    Duration (in seconds) of volume acquisition.
+    Duration (in seconds) of scan acquisition, including all volumes for multi-volume scans.
     Corresponds to [DICOM Tag 0018, 9073](https://dicomlookup.com/dicomtags/(0018,9073)) `Acquisition Duration`.
-    This field is mutually exclusive with `"RepetitionTime"`.
   type: number
   exclusiveMinimum: 0
   unit: s
@@ -484,6 +483,42 @@ Code:
     revision-specific URIs are recommended.
   type: string
   format: uri
+CodeValue:
+  name: CodeValue
+  display_name: Code Value
+  description: |
+    An identifier that is unambiguous within the Coding Scheme
+    denoted by Coding Scheme Designator and Coding Scheme Version.
+    Corresponds to [DICOM Tag 0008, 0100](https://dicomlookup.com/dicomtags/(0008,0100)) `Code Value`.
+  type: string
+CodeMeaning:
+  name: CodeMeaning
+  display_name: Code Meaning
+  description: |
+    Text that has meaning to a human and conveys the meaning of the term
+    Corresponds to [DICOM Tag 0008, 0104](https://dicomlookup.com/dicomtags/(0008,0104)) `Code Meaning`.
+  type: string
+CodingSchemeDesignator:
+  name: CodingSchemeDesignator
+  display_name: Coding Scheme Designator
+  description: |
+    The identifier of the coding scheme in which the coded entry is defined.
+    Corresponds to [DICOM Tag 0008, 0102](https://dicomlookup.com/dicomtags/(0008,0102))
+    `Coding Scheme Designator`.
+  type: string
+CodingSchemeVersion:
+  name: CodingSchemeVersion
+  display_name: Coding Scheme version
+  description: |
+    An identifier of the version of the coding scheme if necessary to resolve ambiguity.
+    Corresponds to [DICOM Tag 0008, 0103](https://dicomlookup.com/dicomtags/(0008,0103)) `Coding Scheme Version`.
+  type: string
+CodeURL:
+  name: CodeURL
+  display_name: Code URL
+  description: URL where the code used to generate the dataset may be found.
+  type: string
+  format: uri
 CogAtlasID:
   name: CogAtlasID
   display_name: Cognitive Atlas ID
@@ -519,6 +554,44 @@ Columns:
   type: array
   items:
     type: string
+Container:
+  name: Container
+  display_name: Container
+  description: |
+    Used to specify the location and relevant attributes of software container image
+    used to produce the dataset. Valid keys in this object include `Type`, `Tag` and
+    [`URI`][uri] with [string][] values.
+  type: object
+  recommended:
+    - Type
+    - Tag
+    - URI
+  properties:
+    ContainerType:
+      $ref: objects.metadata.ContainerType
+    ContainerTag:
+      $ref: objects.metadata.ContainerTag
+    ContainerURI:
+      $ref: objects.metadata.ContainerURI
+ContainerTag:
+  name: ContainerTag
+  display_name: Container Tag
+  description: |
+    Tag of software container image used to produce the dataset
+  type: string
+ContainerType:
+  name: ContainerType
+  display_name: Container Type
+  description: |
+    Type of software container image used to produce the dataset
+  type: string
+ContainerURI:
+  name: ContainerURI
+  display_name: Container URI
+  description: |
+    URI for software container image used to produce the dataset
+  type: string
+  format: uri
 CommandLine:
   name: CommandLine
   display_name: Command Line
@@ -556,6 +629,22 @@ DCOffsetCorrection:
     If the method used was subtracting the mean value for each channel,
     use "mean".
   type: string
+Database:
+  name: Database
+  display_name: Database
+  description: |
+    [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
+    of database where the dataset is hosted.
+  type: string
+  format: uri
+Dataset:
+  name: Dataset
+  display_name: Dataset
+  description: |
+    [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
+    where data can be retrieved.
+  type: string
+  format: uri
 DatasetDOI:
   name: DatasetDOI
   display_name: DatasetDOI
@@ -589,6 +678,7 @@ DatasetType:
   enum:
     - $ref: objects.enums.raw.value
     - $ref: objects.enums.derivative.value
+    - $ref: objects.enums.study__datasettype.value
 DecayCorrectionFactor:
   name: DecayCorrectionFactor
   display_name: Decay Correction Factor
@@ -616,38 +706,20 @@ DeidentificationMethodCodeSequence:
   type: array
   items:
     type: object
-    recommended_fields:
+    recommended:
       - CodeValue
       - CodeMeaning
       - CodingSchemeDesignator
       - CodingSchemeVersion
     properties:
       CodeValue:
-        name: CodeValue
-        type: string
-        description: |
-          An identifier that is unambiguous within the Coding Scheme
-          denoted by Coding Scheme Designator and Coding Scheme Version.
-          Corresponds to [DICOM Tag 0008, 0100](https://dicomlookup.com/dicomtags/(0008,0100)) `Code Value`.
+        $ref: objects.metadata.CodeValue
       CodeMeaning:
-        name: CodeMeaning
-        type: string
-        description: |
-          Text that has meaning to a human and conveys the meaning of the term
-          Corresponds to [DICOM Tag 0008, 0104](https://dicomlookup.com/dicomtags/(0008,0104)) `Code Meaning`.
+        $ref: objects.metadata.CodeMeaning
       CodingSchemeDesignator:
-        name: CodingSchemeDesignator
-        type: string
-        description: |
-          The identifier of the coding scheme in which the coded entry is defined.
-          Corresponds to [DICOM Tag 0008, 0102](https://dicomlookup.com/dicomtags/(0008,0102))
-          `Coding Scheme Designator`.
+        $ref: objects.metadata.CodingSchemeDesignator
       CodingSchemeVersion:
-        name: CodingSchemeVersion
-        type: string
-        description: |
-          An identifier of the version of the coding scheme if necessary to resolve ambiguity.
-          Corresponds to [DICOM Tag 0008, 0103](https://dicomlookup.com/dicomtags/(0008,0103)) `Coding Scheme Version`.
+        $ref: objects.metadata.CodingSchemeVersion
 DelayAfterTrigger:
   name: DelayAfterTrigger
   display_name: Delay After Trigger
@@ -706,6 +778,13 @@ Description:
   description: |
     Free-form natural language description.
   type: string
+Description__GeneratedBy:
+  name: Description
+  display_name: Pipeline Description
+  description: |
+    Plain-text description of the pipeline or process that generated the outputs.
+    RECOMMENDED if `Name` is `"Manual"`.
+  type: string
 DetectorType:
   name: DetectorType
   display_name: Detector Type
@@ -721,6 +800,19 @@ DetectorType:
     - type: string
       enum:
         - $ref: objects.enums.mixed.value
+Descriptors:
+  name: Descriptors
+  display_name: Descriptors
+  description: |
+    List of relevant descriptors (for example, journal articles) for dataset
+    using a valid
+    [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
+    when possible.
+  anyOf:
+    - type: string
+    - type: array
+      items:
+        type: string
 DeviceSerialNumber:
   name: DeviceSerialNumber
   display_name: Device Serial Number
@@ -811,6 +903,13 @@ DispersionCorrected:
     Boolean flag specifying whether the blood data have been dispersion-corrected.
     NOTE: not customary for manual samples, and hence should be set to `false`.
   type: boolean
+DOI:
+  name: DOI
+  display_name: DOI
+  description: |
+    A Digital Object Identifier (DOI) is a persistent, resolvable name for a digital resource.
+    (see [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator))
+  type: string
 DoseCalibrationFactor:
   name: DoseCalibrationFactor
   display_name: Dose Calibration Factor
@@ -1007,19 +1106,12 @@ EditPulse:
   type: object
   additionalProperties:
     type: object
-    recommended_fields: [FrequencyOffset, PulseDuration]
+    recommended: [FrequencyOffset, PulseDuration]
     properties:
       FrequencyOffset:
-        anyOf:
-          - type: number
-            unit: ppm
-          - type: array
-            items:
-              type: number
-              unit: ppm
+        $ref: objects.metadata.FrequencyOffset
       PulseDuration:
-        type: number
-        unit: ms
+        $ref: objects.metadata.PulseDuration
 EditTarget:
   name: EditTarget
   display_name: Editing Target
@@ -1206,6 +1298,48 @@ FlipAngle:
         unit: degree
         exclusiveMinimum: 0
         maximum: 360
+Format:
+  name: Format
+  display_name: Value format
+  description: |
+    Permitted formats for values in the described column.
+  type: string
+  # Keep synced with objects.formats
+  enum:
+    # Type formats
+    - string
+    - number
+    - integer
+    - boolean
+    # Numeric/alphanumeric strings
+    - index
+    - label
+    # Dates/times
+    - date
+    - datetime
+    - time
+    # Units
+    - unit
+    # URIs
+    - uri
+    - rrid
+    - bids_uri
+    # Paths
+    - dataset_relative
+    - file_relative
+    - participant_relative
+    - stimuli_relative
+    # Miscellaneous
+    - hed_version
+FrameAcquisitionDuration:
+  name: FrameAcquisitionDuration
+  display_name: Frame Acquisition Duration
+  description: |
+    Duration (in seconds) of volume acquisition.
+    Corresponds to DICOM Tag 0018, 9220 `Frame Acquisition Duration`.
+  type: number
+  exclusiveMinimum: 0
+  unit: s
 FrameDuration:
   name: FrameDuration
   display_name: Frame Duration
@@ -1226,6 +1360,18 @@ FrameTimesStart:
   items:
     type: number
   unit: s
+FrequencyOffset:
+  name: FrequencyOffset
+  display_name: Frequency Offset
+  description: |
+    List or value for frequency offset for spectral editing in ppm. See EditPulse
+  anyOf:
+    - type: number
+      unit: ppm
+    - type: array
+      items:
+        type: number
+        unit: ppm
 FullWidthHalfMaximum:
   name: FWHM
   display_name: Full Width Half Maximum
@@ -1256,46 +1402,15 @@ GeneratedBy:
     recommended: [Version]
     properties:
       Name:
-        name: Name
-        description: |
-          Name of the pipeline or process that generated the outputs. Use `"Manual"` to
-          indicate the derivatives were generated by hand, or adjusted manually after an
-          initial run of an automated pipeline.
-        type: string
+        $ref: objects.metadata.Name__GeneratedBy
       Version:
-        name: Version
-        description: Version of the pipeline
-        type: string
+        $ref: objects.metadata.Version__GeneratedBy
       Description:
-        name: Description
-        description: |
-          Plain-text description of the pipeline or process that generated the outputs.
-          RECOMMENDED if `Name` is `"Manual"`.
-        type: string
+        $ref: objects.metadata.Description__GeneratedBy
       CodeURL:
-        name: CodeURL
-        description: URL where the code used to generate the dataset may be found.
-        type: string
-        format: uri
+        $ref: objects.metadata.CodeURL
       Container:
-        name: Container
-        description: |
-          Used to specify the location and relevant attributes of software container image
-          used to produce the dataset. Valid keys in this object include `Type`, `Tag` and
-          [`URI`][uri] with [string][] values.
-        type: object
-        recommended:
-          - Type
-          - Tag
-          - URI
-        properties:
-          Type:
-            type: string
-          Tag:
-            type: string
-          URI:
-            type: string
-            format: uri
+        $ref: objects.metadata.Container
 GeneticLevel:
   name: GeneticLevel
   display_name: Genetic Level
@@ -1321,31 +1436,11 @@ Genetics:
   required: [Dataset]
   properties:
     Dataset:
-      name: Dataset
-      description: |
-        [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
-        where data can be retrieved.
-      type: string
-      format: uri
+      $ref: objects.metadata.Dataset
     Database:
-      name: Database
-      description: |
-        [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
-        of database where the dataset is hosted.
-      type: string
-      format: uri
+      $ref: objects.metadata.Database
     Descriptors:
-      name: Descriptors
-      description: |
-        List of relevant descriptors (for example, journal articles) for dataset
-        using a valid
-        [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
-        when possible.
-      anyOf:
-        - type: string
-        - type: array
-          items:
-            type: string
+      $ref: objects.metadata.Descriptors
 GradientSetType:
   name: GradientSetType
   display_name: Gradient Set Type
@@ -1750,6 +1845,15 @@ JNTANGChannelCount:
     Number of joint angle channels.
   type: integer
   minimum: 0
+Keywords:
+  name: Keywords
+  display_name: Keywords
+  description: |
+    A list of keywords that describe the content or subject matter of the dataset.
+    These may be used to enhance the findability of the dataset on public archives.
+  type: array
+  items:
+    type: string
 LabelingDistance:
   name: LabelingDistance
   display_name: Labeling Distance
@@ -1900,10 +2004,9 @@ Levels:
       - type: object
         properties:
           TermURL:
-            type: string
-            format: uri
+            $ref: objects.metadata.TermURL
           Description:
-            type: string
+            $ref: objects.metadata.Description
 License:
   name: License
   display_name: License
@@ -2158,6 +2261,12 @@ MaxMovement:
     as measured by the head localization coils (for example, `4.8`).
   type: number
   unit: mm
+Maximum:
+  name: Maximum
+  display_name: Maximum value
+  description: |
+    Maximum value a column entry is permitted to have.
+  type: number
 MeasurementToolMetadata:
   name: MeasurementToolMetadata
   display_name: Measurement Tool Metadata
@@ -2169,10 +2278,9 @@ MeasurementToolMetadata:
   type: object
   properties:
     TermURL:
-      type: string
-      format: uri
+      $ref: objects.metadata.TermURL
     Description:
-      type: string
+      $ref: objects.metadata.Description
 MetaboliteAvail:
   name: MetaboliteAvail
   display_name: Metabolite Available
@@ -2196,6 +2304,12 @@ MetaboliteRecoveryCorrectionApplied:
     If `true`, the `hplc_recovery_fractions` column MUST be present in the
     corresponding `*_blood.tsv` file.
   type: boolean
+Minimum:
+  name: Minimum
+  display_name: Minimum value
+  description: |
+    Minimum value a column entry is permitted to have.
+  type: number
 MiscChannelCount:
   name: MiscChannelCount
   display_name: Misc Channel Count
@@ -2270,6 +2384,14 @@ Name:
   display_name: Name
   description: |
     Name of the dataset.
+  type: string
+Name__GeneratedBy:
+  name: Name
+  display_name: Pipeline Name
+  description: |
+    Name of the pipeline or process that generated the outputs. Use `"Manual"` to
+    indicate the derivatives were generated by hand, or adjusted manually after an
+    initial run of an automated pipeline.
   type: string
 NegativeContrast:
   name: NegativeContrast
@@ -2719,6 +2841,13 @@ PromptRate:
   type: array
   items:
     type: number
+PulseDuration:
+  name: PulseDuration
+  display_name: Pulse Duration
+  description: |
+    Pulse duration if spectral editing was applied, in milliseconds
+  type: number
+  unit: ms
 PulseSequenceDetails:
   name: PulseSequenceDetails
   display_name: Pulse Sequence Details
@@ -3005,9 +3134,13 @@ ResonantNucleus:
     For multi-nuclei experiments such as <sup>1</sup>H-[<sup>13</sup>C] MR,
     an array can be used: `["1H", "13C"]`.
     Corresponds to [DICOM Tag 0018, 9100](https://dicomlookup.com/dicomtags/(0018,9100)) `Resonant Nucleus`.
-  type: array
-  items:
-    type: string
+  anyOf:
+    - type: string
+    - type: array
+      items:
+        type: string
+        minItems: 1
+        maxItems: 2
 RotationOrder:
   name: RotationOrder
   display_name: RotationOrder
@@ -3432,7 +3565,7 @@ SourceDatasets:
   name: SourceDatasets
   display_name: Source Datasets
   description: |
-    Used to specify the locations and relevant attributes of all source datasets.
+    Used to specify the locations and relevant attributes of all source datasets (BIDS or not).
     Valid keys in each object include `"URL"`, `"DOI"` (see
     [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)), and
     `"Version"` with
@@ -3443,12 +3576,11 @@ SourceDatasets:
     type: object
     properties:
       URL:
-        type: string
-        format: uri
+        $ref: objects.metadata.URL
       DOI:
-        type: string
+        $ref: objects.metadata.DOI
       Version:
-        type: string
+        $ref: objects.metadata.Version__Dataset
 Sources:
   name: Sources
   display_name: Sources
@@ -3571,10 +3703,15 @@ SpectrometerFrequency:
     to the resonant frequency of <sup>1</sup>H.
     For multi-nuclei experiments such as <sup>1</sup>H-[<sup>13</sup>C] MR at 3T,
     an array can be used: `[127.731, 32.125]`.
-  type: array
-  items:
-    type: number
-    unit: MHz
+  anyOf:
+    - type: number
+      unit: MHz
+    - type: array
+      items:
+        type: number
+        unit: MHz
+        minItems: 1
+        maxItems: 2
 SpoilingGradientDuration:
   name: SpoilingGradientDuration
   display_name: Spoiling Gradient Duration
@@ -3721,7 +3858,7 @@ TaskName:
   description: |
     Name of the task.
     No two tasks should have the same name.
-    The task label included in the filename is derived from this `"TaskName"` field
+    The task label included in the filename MAY be derived from this `"TaskName"` field
     by removing all non-alphanumeric or `+` characters (that is, all except those matching `[0-9a-zA-Z+]`),
     and potentially replacing spaces with `+` to ease readability.
     For example `"TaskName"` `"faces n-back"` or `"head nodding"` could correspond to task labels
@@ -3884,6 +4021,15 @@ Units:
     (see [Units](SPEC_ROOT/common-principles.md#units)).
   type: string
   format: unit
+URL:
+  name: URL
+  display_name: URL
+  description: |
+    A Uniform Resource Locator (URL) is a structured reference to an object that
+    includes a resource transfer scheme and a location.
+    (see [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator))
+  type: string
+  format: uri
 VascularCrushing:
   name: VascularCrushing
   display_name: Vascular Crushing
@@ -3907,6 +4053,16 @@ VascularCrushingVENC:
       items:
         type: number
         unit: cm/s
+Version__Dataset:
+  name: Version
+  display_name: Dataset Version
+  description: Version of the dataset.
+  type: string
+Version__GeneratedBy:
+  name: Version
+  display_name: Pipeline Version
+  description: Version of the pipeline
+  type: string
 VolumeAffineMatrix:
   name: VolumeAffineMatrix
   display_name: Volume Affine Matrix
