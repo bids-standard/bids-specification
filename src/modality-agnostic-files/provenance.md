@@ -8,13 +8,13 @@ context of the academic literature.
 
     Several [example BIDS-Prov datasets](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#provenance) have been formatted using this specification and can be used for practical guidance when curating a new dataset.
 
-This part of the BIDS specification is aimed at describing the provenance of a BIDS dataset. This description is retrospective: it describes a set of steps that were executed in order to obtain the dataset. Note: This is different from prospective provenance that focuses describing workflows that may be run on a dataset. This description is based on the [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/) standard (see [Section RDF](#provenance-from-a-rdf-perspective) for more info).
+This part of the BIDS specification is aimed at describing the provenance of a BIDS dataset. This description is retrospective: it describes a set of steps that were executed in order to obtain the dataset. Note: This is different from prospective provenance that focuses describing workflows that may be run on a dataset. This description is based on the [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/) standard (see the [Provenance from an RDF perspective](#provenance-from-a-rdf-perspective) section for more information).
 
 Provenance information SHOULD be included in a BIDS dataset when possible. If provenance information is included, it MUST be described using the conventions detailed by this specification. Provenance information reflects the provenance of a full dataset and/or of specific files at any level of the BIDS hierarchy. Provenance information SHOULD not include human subject identifying data.
 
 ## Provenance of a BIDS file
 
-Metadata of a provEntity describing a BIDS file SHOULD be stored inside its sidecar JSON.
+Provenance of a BIDS file SHOULD be stored inside its sidecar JSON.
 
 Any sidecar JSON file MAY include the following keys:
 
@@ -50,7 +50,7 @@ and a guide for using macros can be found at
 
 ## Provenance of a BIDS dataset
 
-Metadata of a provEntity describing a BIDS dataset (raw, derivative, or study) SHOULD be stored inside its `dataset_description.json` file. This metadata describes the provenance of the whole dataset.
+Provenance of a BIDS dataset (raw, derivative, or study) SHOULD be stored inside its `dataset_description.json` file. This metadata describes the provenance of the whole dataset.
 
 The `dataset_description.json` file of a **BIDS raw dataset** or **BIDS study dataset** MAY include the `GeneratedBy` key to describe provenance.
 
@@ -139,27 +139,9 @@ and a guide for using macros can be found at
     }
     ```
 
-## Key concepts
-
-!!! example "Minimal provenance example"
-
-    ```mermaid
-    flowchart BT
-        B[Brain extraction] -->|wasAssociatedWith| S{FSL<br>}
-        B -->|used| T1([sub-001_T1w.nii])
-        B -->|used| L((Linux))
-        T1p([sub-001_T1w_preproc.nii]) -->|wasGeneratedBy| B
-    ```
-
-    In this example, a brain extraction algorithm was applied on a T1-weighted image:
-
-    - *sub-001_T1w.nii* is the original T1-weighted image;
-    - *sub-001_T1w_preproc.nii* is the skull striped image;
-    - the *"Brain extraction"* activity was performed using the *FSL* software within a *Linux* software environment.
-
-Provenance objects are described as JSON objects in BIDS. They are stored inside **provenance files** (see [Provenance files](#provenance-files)). Additionally, metadata for provEntities can be stored inside the JSON sidecar file for any BIDS data file (see [Provenance of a BIDS file](#provenance-of-a-bids-file)), as well as in `dataset_description.json` files (see [Provenance of a BIDS dataset](#provenance-of-a-bids-dataset)).
-
 ## Provenance files
+
+When not inside sidecar JSONs or `dataset_description.json`, provenance information MUST be stored inside provenance files.
 
 <!--
 This block generates a filename templates.
@@ -175,7 +157,7 @@ and a guide for using macros can be found at
 }}
 
 !!! note
-    The `prov` BIDS entity allows to group related provenance files, using an arbitrary value for `<label>`. A subdirectory MAY be used to group provenance files sharing the same `prov` entity.
+    The [`prov entity`](../appendices/entities.md#prov) allows to group related provenance files, using an arbitrary value for `<label>`. A subdirectory MAY be used to group provenance files sharing the same `prov entity`.
 
 The following suffixes specify the contents of provenance files.
 
@@ -206,73 +188,9 @@ and a guide for using macros can be found at
     └─ ...
     ```
 
-Provenance information is encoded in metadata fields in sidecar JSONs and in provenance JSON files. The provenance information is encoded using **provenance objects** of 4 types:
-
--   **Activities**: transformations that have been applied to data.
--   **ProvEntities**: input or output data for activities (Note: this corresponds to Entities in [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/), the prefix "Prov" is used here to disambiguate with [BIDS entities](../appendices/entities.md)).
--   **Software**: software packages used to compute the activities.
--   **Environments**: software environments in which activities were performed.
-
-
-
-
-
-
-
-
-
-
-
-### Provenance description file
-
-Template:
-
-```text
-prov/
-    provenance.tsv
-    provenance.json
-```
-
-The purpose of this RECOMMENDED file is to describe properties of provenance files. It MUST contain the column `provenance_label`, which MUST consist of `prov-<label>` values identifying one row for each `prov` entity in the dataset, followed by an optional column containing a description for the entity. Each entity MUST be described by one and only one row.
-
-We RECOMMEND to make use of these columns, and
-in case that you do use them, we RECOMMEND to use the following values
-for them:
-
-<!-- This block generates a columns table.
-The definitions of these fields can be found in
-  src/schema/rules/tabular_data/*.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_columns_table("modality_agnostic.Provenance") }}
-
-Throughout BIDS you can indicate missing values with `n/a` (for "not
-available").
-
-`provenance.tsv` example:
-
-```tsv
-provenance_label    description
-prov-preprocspm Provenance of preprocessing performed with SPM.
-prov-preprocfsl Provenance of preprocessing performed with FSL.
-```
-
-It is RECOMMENDED to accompany each `provenance.tsv` file with a sidecar
-`provenance.json` file to describe the TSV column names and properties of their values
-(see also the [section on tabular files](../common-principles.md#tabular-files)).
-
-`provenance.json` example:
-
-```JSON
-{
-    "description": {
-        "Description": "Description of the provenance file(s)."
-    }
-}
-```
-
 ### Activities
+
+Activities are JSON objects representing the transformations that have been applied to data.
 
 Each file with a `act` suffix is a JSON file describing activities.
 
@@ -322,6 +240,8 @@ and a guide for using macros can be found at
     This snippet is similar to Activities described in the [DICOM to Nifti conversion with `dcm2niix` example](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix).
 
 ### ProvEntities
+
+ProvEntities are JSON objects representing input or output data for activities (Note: this corresponds to Entities in [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/), the prefix "Prov" is used here to disambiguate with [BIDS entities](../appendices/entities.md)).
 
 Each file with a `ent` suffix is a JSON file describing provEntities.
 
@@ -374,6 +294,8 @@ and a guide for using macros can be found at
 
 ### Software
 
+Software are JSON objects representing software packages used to compute the [activities](#activities).
+
 Each file with a `soft` suffix is a JSON file describing software.
 
 Each file MUST include the following key:
@@ -417,6 +339,8 @@ and a guide for using macros can be found at
 
 ### Environments
 
+Environments are JSON objects representing software environments in which activities were performed.
+
 Each file with a `env` suffix is a JSON file describing environments.
 
 Each file MUST include the following key:
@@ -456,6 +380,55 @@ and a guide for using macros can be found at
     }
     ```
     This is a snippet from the [DICOM to Nifti conversion with `dcm2niix` example](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix)
+
+### Provenance description file
+
+Template:
+
+```text
+prov/
+    provenance.tsv
+    provenance.json
+```
+
+The purpose of this RECOMMENDED file is to describe properties of provenance files. It MUST contain the column `provenance_label`, which MUST consist of `prov-<label>` values identifying one row for each [`prov entity`](../appendices/entities.md#prov) in the dataset, followed by an optional column containing a description for the entity. Each entity MUST be described by one and only one row.
+
+We RECOMMEND to make use of these columns, and
+in case that you do use them, we RECOMMEND to use the following values
+for them:
+
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/rules/tabular_data/*.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_columns_table("modality_agnostic.Provenance") }}
+
+Throughout BIDS you can indicate missing values with `n/a` (for "not
+available").
+
+`provenance.tsv` example:
+
+```tsv
+provenance_label    description
+prov-preprocspm Provenance of preprocessing performed with SPM.
+prov-preprocfsl Provenance of preprocessing performed with FSL.
+```
+
+It is RECOMMENDED to accompany each `provenance.tsv` file with a sidecar
+`provenance.json` file to describe the TSV column names and properties of their values
+(see also the [section on tabular files](../common-principles.md#tabular-files)).
+
+`provenance.json` example:
+
+```JSON
+{
+    "description": {
+        "Description": "Description of the provenance file(s)."
+    }
+}
+```
 
 ## Consistency and uniqueness of identifiers
 
@@ -505,6 +478,22 @@ The uniqueness of this identifier MUST be used to distinguish any activity, soft
     The [Resource Description Framework (RDF)](https://www.w3.org/RDF/) is a method to describe and exchange graph data.
 
 Provenance objects as defined in this specification can be aggregated into [JSON-LD](https://www.w3.org/TR/json-ld11/) files ; which allows to represent provenance as an RDF graph.
+
+!!! example "Minimal provenance graph"
+
+    ```mermaid
+    flowchart BT
+        B[Brain extraction] -->|wasAssociatedWith| S{FSL<br>}
+        B -->|used| T1([sub-001_T1w.nii])
+        B -->|used| L((Linux))
+        T1p([sub-001_T1w_preproc.nii]) -->|wasGeneratedBy| B
+    ```
+
+    In this example, a brain extraction algorithm was applied on a T1-weighted image:
+
+    - *sub-001_T1w.nii* is the original T1-weighted image;
+    - *sub-001_T1w_preproc.nii* is the skull striped image;
+    - the *"Brain extraction"* activity was performed using the *FSL* software within a *Linux* software environment.
 
 Moreover, the terms defined in this specification to describe provenance objects are based on the [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/) standard. They can be resolved to [IRIs](https://www.w3.org/TR/json-ld11/#iris) using the JSON-LD context file [`provenance-context.json`](../../provenance-context.json) provided with this specification.
 
