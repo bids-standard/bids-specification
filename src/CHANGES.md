@@ -1,3 +1,8 @@
+---
+search:
+  boost: -5
+---
+
 # Changelog
 
 ## [v1.10.1](https://bids-specification.readthedocs.io/en/v1.10.1/) (2025-09-03)
