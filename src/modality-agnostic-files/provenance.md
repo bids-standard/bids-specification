@@ -495,7 +495,7 @@ Provenance objects as defined in this specification can be aggregated into [JSON
     - *sub-001_T1w_preproc.nii* is the skull striped image;
     - the *"Brain extraction"* activity was performed using the *FSL* software within a *Linux* software environment.
 
-Moreover, the terms defined in this specification to describe provenance objects are based on the [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/) standard. They can be resolved to [IRIs](https://www.w3.org/TR/json-ld11/#iris) using the JSON-LD context file [`provenance-context.json`](../../provenance-context.json) provided with this specification.
+Moreover, the terms defined in this specification to describe provenance objects are based on the [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/) standard. They can be resolved to [IRIs](https://www.w3.org/TR/json-ld11/#iris) using the JSON-LD context file [`provenance-context.json`](../provenance-context.json) provided with this specification.
 
 All BIDS examples related to provenance (see. [bids-examples, provenance section](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#provenance)) show the aggregated version of the provenance metadata they contain. This comes as a JSON-LD file and a visualization of the graph.
 
