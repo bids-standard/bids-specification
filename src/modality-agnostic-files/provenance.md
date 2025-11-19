@@ -12,14 +12,134 @@ This part of the BIDS specification is aimed at describing the provenance of a B
 
 Provenance information SHOULD be included in a BIDS dataset when possible. If provenance information is included, it MUST be described using the conventions detailed by this specification. Provenance information reflects the provenance of a full dataset and/or of specific files at any level of the BIDS hierarchy. Provenance information SHOULD not include human subject identifying data.
 
+## Provenance of a BIDS file
+
+Metadata of a provEntity describing a BIDS file SHOULD be stored inside its sidecar JSON.
+
+Any sidecar JSON file MAY include the following keys:
+
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_metadata_table(
+   {
+      "GeneratedById": "OPTIONAL",
+      "SidecarGeneratedBy": "OPTIONAL",
+      "Digest": "OPTIONAL",
+      "ProvEntityType": "OPTIONAL"
+   }
+) }}
+
+!!! example "Example of metadata in a sidecar JSON file"
+    ```JSON
+    {
+        "GeneratedBy": "bids::prov#conversion-00f3a18f",
+        "SidecarGeneratedBy": [
+            "bids::prov#preparation-conversion-1xkhm1ft",
+            "bids::prov#conversion-00f3a18f"
+        ],
+        "Digest": {
+            "sha256": "66eeafb465559148e0222d4079558a8354eb09b9efabcc47cd5b8af6eed51907"
+        }
+    }
+    ```
+    This snippet is similar to fields described in [DICOM to Nifti conversion with `heudiconv` example](https://github.com/bclenet/bids-examples/tree/BEP028_heudiconv/provenance_heudiconv).
+
+## Provenance of a BIDS dataset
+
+Metadata of a provEntity describing a BIDS dataset (raw, derivative, or study) SHOULD be stored inside its `dataset_description.json` file. This metadata describes the provenance of the whole dataset.
+
+The `dataset_description.json` file of a **BIDS raw dataset** or **BIDS study dataset** MAY include the `GeneratedBy` key to describe provenance.
+
+The `dataset_description.json` file of a **BIDS derivative dataset** MUST include the `GeneratedBy` key to describe provenance.
+
+The `GeneratedBy` field MAY contain either of the following values:
+
+-   Identifier(s) of the activity/activities responsible for the creation of the dataset (see the [Description using provenance objects](#description-using-provenance-objects) section).
+-   A description of pipelines or processes responsible for the creation of the dataset (see the [Description of pipelines or processes](#description-of-pipelines-or-processes) section).
+
+### Description using provenance objects
+
+This section details the way to describe provenance of a dataset in the `GeneratedBy` field, using provenance objects.
+
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_metadata_table(
+   {
+      "GeneratedById": "RECOMMENDED for BIDS raw datasets and BIDS study datasets, REQUIRED for BIDS derivative datasets"
+   }
+) }}
+
+!!! example "Example of `GeneratedBy` contents in a `dataset_description.json`"
+    ```JSON
+    {
+        "GeneratedBy": "bids::prov#preprocessing-xMpFqB5q"
+    }
+    ```
+    This is a snippet from the [fMRI preprocessing with `fMRIPrep` example](https://github.com/bclenet/bids-examples/tree/BEP028_fmriprep/provenance_fmriprep).
+
+### Description of processes or pipelines
+
+This section details a way to describe the provenance of a dataset, providing `GeneratedBy` with an array of objects representing pipelines or processes that generated the dataset.
+
+!!! note
+    This description can be equivalently represented using the previous section. This modeling is kept for backward-compatibility but might be removed in future BIDS releases (see BIDS 2.0).
+
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_metadata_table(
+   {
+      "GeneratedBy": "RECOMMENDED for BIDS raw datasets and BIDS study datasets, REQUIRED for BIDS derivative datasets"
+   }
+) }}
+
+Each object in the `GeneratedBy` array includes the following REQUIRED, RECOMMENDED
+and OPTIONAL keys:
+
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_metadata_table(
+   {
+      "Name__GeneratedBy": "REQUIRED",
+      "Version__GeneratedBy": "RECOMMENDED",
+      "Description__GeneratedBy": 'RECOMMENDED if `Name` is `"Manual"`, OPTIONAL otherwise',
+      "CodeURL": "OPTIONAL",
+      "Container": "OPTIONAL"
+   }
+) }}
+
+!!! example "Example of `GeneratedBy` contents in a `dataset_description.json`"
+    ```JSON
+    {
+        "GeneratedBy": [
+            {
+              "Name": "reproin",
+              "Version": "0.6.0",
+              "Container": {
+                "Type": "docker",
+                "Tag": "repronim/reproin:0.6.0"
+              }
+            }
+        ]
+    }
+    ```
+
 ## Key concepts
-
-Provenance information is encoded in metadata fields in sidecar JSONs and in provenance JSON files. The provenance information is encoded using **provenance objects** of 4 types:
-
--   **Activities**: transformations that have been applied to data.
--   **ProvEntities**: input or output data for activities (Note: this corresponds to Entities in [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/), the prefix "Prov" is used here to disambiguate with [BIDS entities](../appendices/entities.md)).
--   **Software**: software packages used to compute the activities.
--   **Environments**: software environments in which activities were performed.
 
 !!! example "Minimal provenance example"
 
@@ -86,6 +206,23 @@ and a guide for using macros can be found at
     └─ ...
     ```
 
+Provenance information is encoded in metadata fields in sidecar JSONs and in provenance JSON files. The provenance information is encoded using **provenance objects** of 4 types:
+
+-   **Activities**: transformations that have been applied to data.
+-   **ProvEntities**: input or output data for activities (Note: this corresponds to Entities in [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/), the prefix "Prov" is used here to disambiguate with [BIDS entities](../appendices/entities.md)).
+-   **Software**: software packages used to compute the activities.
+-   **Environments**: software environments in which activities were performed.
+
+
+
+
+
+
+
+
+
+
+
 ### Provenance description file
 
 Template:
@@ -116,9 +253,9 @@ available").
 `provenance.tsv` example:
 
 ```tsv
-provenance_label	description
-prov-preprocspm	Provenance of preprocessing performed with SPM.
-prov-preprocfsl	Provenance of preprocessing performed with FSL.
+provenance_label    description
+prov-preprocspm Provenance of preprocessing performed with SPM.
+prov-preprocfsl Provenance of preprocessing performed with FSL.
 ```
 
 It is RECOMMENDED to accompany each `provenance.tsv` file with a sidecar
@@ -319,133 +456,6 @@ and a guide for using macros can be found at
     }
     ```
     This is a snippet from the [DICOM to Nifti conversion with `dcm2niix` example](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix)
-
-## Provenance of a BIDS file
-
-Metadata of a provEntity describing a BIDS file SHOULD be stored inside its sidecar JSON.
-
-Any sidecar JSON file MAY include the following keys:
-
-<!-- This block generates a metadata table.
-The definitions of these fields can be found in
-  src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_metadata_table(
-   {
-      "GeneratedById": "OPTIONAL",
-      "SidecarGeneratedBy": "OPTIONAL",
-      "Digest": "OPTIONAL",
-      "ProvEntityType": "OPTIONAL"
-   }
-) }}
-
-!!! example "Example of metadata in a sidecar JSON file"
-    ```JSON
-    {
-        "GeneratedBy": "bids::prov#conversion-00f3a18f",
-        "SidecarGeneratedBy": [
-            "bids::prov#preparation-conversion-1xkhm1ft",
-            "bids::prov#conversion-00f3a18f"
-        ],
-        "Digest": {
-            "sha256": "66eeafb465559148e0222d4079558a8354eb09b9efabcc47cd5b8af6eed51907"
-        }
-    }
-    ```
-    This snippet is similar to fields described in [DICOM to Nifti conversion with `heudiconv` example](https://github.com/bclenet/bids-examples/tree/BEP028_heudiconv/provenance_heudiconv).
-
-## Provenance of a BIDS dataset
-
-Metadata of a provEntity describing a BIDS dataset (raw, derivative, or study) SHOULD be stored inside its `dataset_description.json` file. This metadata describes the provenance of the whole dataset.
-
-The `dataset_description.json` file of a **BIDS raw dataset** or **BIDS study dataset** MAY include the `GeneratedBy` key to describe provenance.
-
-The `dataset_description.json` file of a **BIDS derivative dataset** MUST include the `GeneratedBy` key to describe provenance.
-
-The `GeneratedBy` field MAY contain either of the following values:
-
--   Identifier(s) of the activity/activities responsible for the creation of the dataset (see the [Description using provenance objects](#description-using-provenance-objects) section).
--   A description of pipelines or processes responsible for the creation of the dataset (see the [Description of pipelines or processes](#description-of-pipelines-or-processes) section).
-
-### Description using provenance objects
-
-This section details the way to describe provenance of a dataset in the `GeneratedBy` field, using provenance objects.
-
-<!-- This block generates a metadata table.
-The definitions of these fields can be found in
-  src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_metadata_table(
-   {
-      "GeneratedById": "RECOMMENDED for BIDS raw datasets and BIDS study datasets, REQUIRED for BIDS derivative datasets"
-   }
-) }}
-
-!!! example "Example of `GeneratedBy` contents in a `dataset_description.json`"
-    ```JSON
-    {
-        "GeneratedBy": "bids::prov#preprocessing-xMpFqB5q"
-    }
-    ```
-    This is a snippet from the [fMRI preprocessing with `fMRIPrep` example](https://github.com/bclenet/bids-examples/tree/BEP028_fmriprep/provenance_fmriprep).
-
-### Description of processes or pipelines
-
-This section details a way to describe the provenance of a dataset, providing `GeneratedBy` with an array of objects representing pipelines or processes that generated the dataset.
-
-!!! note
-    This description can be equivalently represented using the previous section. This modeling is kept for backward-compatibility but might be removed in future BIDS releases (see BIDS 2.0).
-
-<!-- This block generates a metadata table.
-The definitions of these fields can be found in
-  src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_metadata_table(
-   {
-      "GeneratedBy": "RECOMMENDED for BIDS raw datasets and BIDS study datasets, REQUIRED for BIDS derivative datasets"
-   }
-) }}
-
-Each object in the `GeneratedBy` array includes the following REQUIRED, RECOMMENDED
-and OPTIONAL keys:
-
-<!-- This block generates a metadata table.
-The definitions of these fields can be found in
-  src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_metadata_table(
-   {
-      "Name__GeneratedBy": "REQUIRED",
-      "Version__GeneratedBy": "RECOMMENDED",
-      "Description__GeneratedBy": 'RECOMMENDED if `Name` is `"Manual"`, OPTIONAL otherwise',
-      "CodeURL": "OPTIONAL",
-      "Container": "OPTIONAL"
-   }
-) }}
-
-!!! example "Example of `GeneratedBy` contents in a `dataset_description.json`"
-    ```JSON
-    {
-        "GeneratedBy": [
-            {
-              "Name": "reproin",
-              "Version": "0.6.0",
-              "Container": {
-                "Type": "docker",
-                "Tag": "repronim/reproin:0.6.0"
-              }
-            }
-        ]
-    }
-    ```
 
 ## Consistency and uniqueness of identifiers
 
