@@ -152,6 +152,8 @@ def make_glossary(schema, src_path=None):
         if obj_desc is None:
             raise ValueError(f"{obj_marker} has no description.")
 
+        if "sense 1" in obj_key:
+            text += f'\n<a name="{obj_marker.split("__", 1)[0]}"></a>'
         text += f'\n<a name="{obj_marker}"></a>'
         text += f"\n## {obj_key}\n\n"
         text += f"**Name**: {obj_def['display_name']}\n\n"

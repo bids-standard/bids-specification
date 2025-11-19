@@ -29,10 +29,7 @@ microscopy:
   datatypes:
     - micr
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.recording.entities
     sample: required
-    acquisition: optional
     stain: optional
-    run: optional
     chunk: optional
