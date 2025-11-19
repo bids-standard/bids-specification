@@ -306,3 +306,45 @@ PETTask:
     TaskDescription: recommended
     CogAtlasID: recommended
     CogPOID: recommended
+
+PETDerivativesMotionCorrection:
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - 'intersects([modality], ["pet"])'
+    - 'intersects(entities.desc, ["mc"])'
+  fields:
+    Description:
+      level: required
+    Sources:
+      level: optional
+    TargetImage:
+      level: optional
+    TargetImageDescription:
+      level: optional
+    SpatialInterpolation:
+      level: optional
+    ImageSimilarityMetric:
+      level: optional
+    CommandLine:
+      level: optional
+
+PETDerivativesRegistration:
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - 'intersects([modality], ["pet"])'
+    - '"space" in entities || ("from" in entities && "to" in entities)'
+  fields:
+    Description: optional
+
+PETDerivativesSmoothing:
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - 'intersects([modality], ["pet"])'
+    - suffix == "pet"
+    - 'intersects(entities.desc, ["+sm"])'
+  fields:
+    FullWidthHalfMaximum:
+      level: required
+      level_addendum: if `TargetImageDescription` contains `"FWHM"`
+      description_addendum: |
+        FWHM of spatial filter, applied to the data

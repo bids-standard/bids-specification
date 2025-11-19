@@ -592,6 +592,12 @@ ContainerURI:
     URI for software container image used to produce the dataset
   type: string
   format: uri
+CommandLine:
+  name: CommandLine
+  display_name: Command Line
+  description: |
+    The command line used to generate the derivative.
+  type: string
 ContinuousHeadLocalization:
   name: ContinuousHeadLocalization
   display_name: Continuous Head Localization
@@ -1366,6 +1372,15 @@ FrequencyOffset:
       items:
         type: number
         unit: ppm
+FullWidthHalfMaximum:
+  name: FWHM
+  display_name: Full Width Half Maximum
+  description: |
+    FWHM of spatial filter, applied to the data
+  type: array
+  items:
+    type: number
+  unit: mm
 Funding:
   name: Funding
   display_name: Funding
@@ -1617,6 +1632,13 @@ ImageDecayCorrectionTime:
     `"TimeZero"` in the default unit seconds.
   type: number
   unit: s
+ImageSimilarityMetric:
+  name: ImageSimilarityMetric
+  display_name: Image Similarity Metric
+  description: |
+    Final image similarity metric used to determine the similarity 
+    between the moving and target images as part of the registration.
+  type: string
 Immersion:
   name: Immersion
   display_name: Immersion
@@ -3600,6 +3622,12 @@ SpatialAxes:
     only specify the used axes and use the character "_" for unused axes
     ("F_R" when the Y axis is not used, for instance).
   type: string
+SpatialInterpolation:
+  name: SpatialInterpolation
+  display_name: Spatial Interpolation
+  description: |
+    Final spatial interpolation applied to the moving image(s).
+  type: string
 SpatialReference:
   name: SpatialReference
   display_name: Spatial Reference
@@ -3806,6 +3834,18 @@ TablePosition:
   items:
     type: number
     unit: mm
+TargetImage:
+  name: TargetImage
+  display_name: Target Image
+  description: |
+    String with the path to the reference image used for the motion correction.
+  type: string
+TargetImageDescription:
+  name: TargetImageDescription
+  display_name: Target Image Description
+  description: |
+    Free-form natural language description of how the target image was generated (e.g. average across all frames)
+  type: string
 TaskDescription:
   name: TaskDescription
   display_name: Task Description

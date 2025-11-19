@@ -151,6 +151,42 @@ micr_microscopy_common:
   $ref:
     - meta.templates.deriv.spatial
     - rules.files.raw.micr.microscopy
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
+  $ref: rules.files.raw.micr.microscopy
+  entities:
+    $ref: rules.files.raw.micr.microscopy.entities
+    space: optional
+    description: optional
+
+perf_asl_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
+  $ref: rules.files.raw.perf.asl
+  entities:
+    $ref: rules.files.raw.perf.asl.entities
+    space: optional
+    description: optional
+
+pet_petref_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
+  $ref: rules.files.raw.pet.pet
+  suffixes:
+    - petref
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  entities:
+    $ref: rules.files.raw.pet.pet.entities
+    space: optional
+    description: optional
+
+pet_pet_common:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
+  $ref: rules.files.raw.pet.pet
   entities:
     $ref:
       - meta.templates.deriv.spatial.entities
