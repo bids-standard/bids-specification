@@ -31,3 +31,17 @@ OnsetSourceConsistency:
     - sidecar.OnsetSource
   checks:
     - intersects([sidecar.OnsetSource], associations.physio.sidecar.Columns)
+
+PupilSizeDescription:
+  issue:
+    code: UNKNOWN_PUPIL_SIZE
+    level: warning
+    message: >
+      The `pupil_size` description in the JSON sidecar does not clearly indicate
+      whether the size is area or diameter.
+  selectors:
+    - suffix == 'physio'
+    - sidecar.PhysioType == "eyetrack"
+    - columns.pupil_size
+  checks:
+    - match(sidecar.pupil_size.Description, '.*(area|diameter).*')

@@ -182,7 +182,7 @@ pupil_size:
   name: pupil_size
   display_name: Pupil size
   description: |
-    Pupil size or area of the recorded eye, in the
+    Pupil size, as area or diameter, of the recorded eye, in the
     units specified in the corresponding metadata sidecar.
     It is RECOMMENDED to indicate the particular type of pupil size that is
     being recorded in the `Description` field of this column.
