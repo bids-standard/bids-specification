@@ -15,7 +15,7 @@ REQUIRED, RECOMMENDED, and OPTIONAL.
 The guiding principles for when particular data is placed under a given requirement level
 can be loosely described as below:
 
--   REQUIRED: Data cannot be be interpreted without this information (or the ambiguity is unacceptably high)
+-   REQUIRED: Data cannot be interpreted without this information (or the ambiguity is unacceptably high)
 -   RECOMMENDED: Interpretation/utility would be dramatically improved with this information
 -   OPTIONAL: Users and/or tools might find it useful to have this information
 
@@ -93,7 +93,7 @@ be reviewed to include common data types in the future releases of the BIDS
 specification.
 
 It is RECOMMENDED that non-compulsory metadata fields (like `notch` in `channels.tsv` files)
-and/or files (like `events.tsv`) are fully omitted *when they are unavailable or unapplicable*,
+and/or files (like `events.tsv`) are fully omitted *when they are unavailable or inapplicable*,
 instead of specified with an `n/a` value, or included as an empty file
 (for example an empty `events.tsv` file with only the headers included).
 
@@ -631,7 +631,7 @@ Rules for formatting plain-text tabular files apply to TSVGZ files with three ex
 !!! warning "Attention"
 
     In contrast to plain-text TSV files,
-    compressed tabular files files MUST NOT include a header line.
+    compressed tabular files MUST NOT include a header line.
     Column names MUST be provided in the JSON file with the
     [`Columns`](glossary.md#columns-metadata) field.
     Each column MAY additionally be described with a column description,
@@ -1067,7 +1067,7 @@ Describing dates and timestamps:
 -   Dates can be shifted by a random number of days for privacy protection
     reasons.
     To distinguish real dates from shifted dates,
-    is is RECOMMENDED to set shifted dates to the year 1925 or earlier.
+    it is RECOMMENDED to set shifted dates to the year 1925 or earlier.
     Note that some data formats do not support arbitrary recording dates.
     For example, the [EDF](https://www.edfplus.info/)
     data format can only contain recording dates after 1985.

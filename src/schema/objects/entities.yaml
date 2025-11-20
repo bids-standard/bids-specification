@@ -150,7 +150,7 @@ inversion:
     If files belonging to an entity-linked file collection are acquired at different inversion times,
     the `inv-<index>` entity MUST be used to distinguish individual files.
 
-    This entity represents the `"InversionTime` metadata field.
+    This entity represents the `"InversionTime"` metadata field.
     Therefore, if the `inv-<index>` entity is present in a filename,
     `"InversionTime"` MUST be defined in the associated metadata.
     Please note that the `<index>` denotes the number/index (in the form of a nonnegative integer),
