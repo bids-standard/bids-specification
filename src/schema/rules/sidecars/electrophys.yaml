@@ -2,7 +2,14 @@
 ---
 EpochedData:
   selectors:
-    - intersects([datatype], ['eeg', 'emg', 'meg', 'ieeg'])
+    - intersects([datatype], ['eeg', 'meg', 'ieeg'])
     - sidecar.RecordingType == 'epoched'
   fields:
     EpochLength: recommended
+
+EpochLengthRequired:
+  selectors:
+    - intersects([datatype], ['emg'])
+    - sidecar.RecordingType == 'epoched'
+  fields:
+    EpochLength: required
