@@ -1,4 +1,18 @@
 ---
+EMGChannelCountReq:
+  issue:
+    code: EMG_CHANNEL_COUNT_MISMATCH
+    message: |
+      The EMGChannelCount metadata does not match the number of channels
+      with type EMG in the associated channels.tsv file.
+    level: warning
+  selectors:
+    - suffix == "emg"
+    - type(sidecar.EMGChannelCount) != "null"
+    - associations.channels.type
+  checks:
+    - sidecar.EMGChannelCount == count(associations.channels.type, "EMG")
+
 EMGCoordSysMatch:
   issue:
     code: EMG_COORD_SYS_MISMATCH
