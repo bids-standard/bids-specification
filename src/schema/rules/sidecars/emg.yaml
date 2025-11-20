@@ -60,6 +60,7 @@ EMGRequired:
         The sampling frequency of data channels that deviate from the main sampling
         frequency SHOULD be specified in the `channels.tsv` file.
     PowerLineFrequency: required
+    RecordingType: required
     SoftwareFilters: required
 
 # Specific EMG fields SHOULD be present
@@ -68,17 +69,17 @@ EMGRecommended:
     - datatype == "emg"
     - suffix == "emg"
   fields:
-    ElectrodeMaterial: recommended
-    ElectrodeType: recommended
     EMGChannelCount: recommended
-    EMGGround: recommended
-    EpochLength: recommended
     HardwareFilters: recommended
-    InterelectrodeDistance: recommended
     RecordingDuration: recommended
-    RecordingType: recommended
-    SubjectArtefactDescription: recommended
-    TriggerChannelCount: recommended
+
+EMGEpoched:
+  selectors:
+    - datatype == "emg"
+    - suffix == "emg"
+    - sidecar.RecordingType == "epoched"
+  fields:
+    EpochLength: required
 
 # Specific EMG fields MAY be present
 EMGOptional:
@@ -86,9 +87,18 @@ EMGOptional:
     - datatype == "emg"
     - suffix == "emg"
   fields:
+    ElectrodeMaterial: optional
+    ElectrodeType: optional
+    EMGGround: optional
+    EpochLength:
+      level: optional
+      level_addendum: required if `RecordingType` is `"epoched"`
     Gain: optional
+    InterelectrodeDistance: optional
     Preamplification: optional
     SkinPreparation: optional
+    SubjectArtefactDescription: optional
+    TriggerChannelCount: optional
 
 EMGPlacementSchemeDescription:
   selectors:
