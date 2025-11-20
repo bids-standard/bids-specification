@@ -201,16 +201,18 @@ ASLTotalAcquiredPairsASLContextLength:
     code: TOTAL_ACQUIRED_VOLUMES_NOT_CONSISTENT
     message: |
       The number of values for 'TotalAcquiredPairs' for this file does not match number of
-      volumes in the associated 'aslcontext.tsv'.
-      'TotalAcquiredPairs' is the original number of 3D volumes acquired for each volume defined in the
-      associated 'aslcontext.tsv'.
+      control-label pairs in the associated 'aslcontext.tsv'.
+      'TotalAcquiredPairs' is the original number of control-label pairs
+      defined in the associated 'aslcontext.tsv'.
     level: warning
   selectors:
     - suffix == "asl"
     - type(associations.aslcontext) != "null"
     - '"TotalAcquiredPairs" in sidecar'
+    - count(associations.aslcontext.volume_type, "control") > 0
   checks:
-    - aslcontext.n_rows == sidecar.TotalAcquiredPairs
+    - count(associations.aslcontext.volume_type, "control") == sidecar.TotalAcquiredPairs
+    - count(associations.aslcontext.volume_type, "label") == sidecar.TotalAcquiredPairs
 
 # 184
 PostLabelingDelayGreater:
@@ -223,7 +225,7 @@ PostLabelingDelayGreater:
     - suffix == "asl"
     - sidecar.PostLabelingDelay != null
   checks:
-    - sidecar.PostLabelingDelay <= 10
+    - max(sidecar.PostLabelingDelay) <= 10
 
 # 186
 BolusCutOffDelayTimeGreater:
@@ -235,7 +237,7 @@ BolusCutOffDelayTimeGreater:
   selectors:
     - sidecar.BolusCutOffDelayTime != null
   checks:
-    - sidecar.BolusCutOffDelayTime <= 10
+    - max(sidecar.BolusCutOffDelayTime) <= 10
 
 # 187
 LabelingDurationGreater:
@@ -247,7 +249,7 @@ LabelingDurationGreater:
   selectors:
     - sidecar.LabelingDuration != null
   checks:
-    - sidecar.LabelingDuration <= 10
+    - max(sidecar.LabelingDuration) <= 10
 
 # 196
 ASLEchoTimeASLContextLength:
