@@ -51,7 +51,7 @@ AcquisitionVoxelSize:
 Activities:
   name: Activities
   display_name: Activities
-  description: Provenance objects describing activities.
+  description: Objects describing activities.
   type: array
   minItems: 1
   items:
@@ -1267,7 +1267,7 @@ EncodingTechnique:
 ProvEntities:
   name: ProvEntities
   display_name: ProvEntities
-  description: Provenance objects describing provEntities.
+  description: Objects describing provEntities.
   type: array
   minItems: 1
   items:
@@ -1331,7 +1331,7 @@ ProvEntityType:
 Environments:
   name: Environments
   display_name: Environments
-  description: Provenance objects describing environments.
+  description: Objects describing environments.
   type: array
   minItems: 1
   items:
@@ -3712,7 +3712,7 @@ SliceTiming:
 Software:
   name: Software
   display_name: Software
-  description: Provenance objects describing software.
+  description: Objects describing software.
   type: array
   minItems: 1
   items:

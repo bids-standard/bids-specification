@@ -506,7 +506,7 @@ act:
   value: act
   display_name: Activities
   description: |
-    A JSON file containing provenance objects describing activities.
+    A JSON file containing objects describing activities.
     (See the [`Activities`](SPEC_ROOT/modality-agnostic-files/provenance.md#activities) section).
 angio:
   value: angio
@@ -622,13 +622,13 @@ ent:
   value: ent
   display_name: ProvEntities
   description: |
-    A JSON file containing provenance objects describing provEntities.
+    A JSON file containing objects describing provEntities.
     (See the [`ProvEntities`](SPEC_ROOT/modality-agnostic-files/provenance.md#proventities) section).
 env:
   value: env
   display_name: Environments
   description: |
-    A JSON file containing provenance objects describing environments.
+    A JSON file containing objects describing environments.
     (See the [`Environments`](SPEC_ROOT/modality-agnostic-files/provenance.md#environments) section).
 epi:
   value: epi
@@ -839,7 +839,7 @@ soft:
   value: soft
   display_name: Software
   description: |
-    A JSON file containing provenance objects describing software.
+    A JSON file containing objects describing software.
     (See the [`Software`](SPEC_ROOT/modality-agnostic-files/provenance.md#software) section).
 sbref:
   value: sbref

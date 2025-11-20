@@ -58,12 +58,12 @@ The `dataset_description.json` file of a **BIDS derivative dataset** MUST includ
 
 The `GeneratedBy` field MAY contain either of the following values:
 
--   Identifier(s) of the activity/activities responsible for the creation of the dataset (see the [Description using provenance objects](#description-using-provenance-objects) section).
+-   Identifier(s) of the activity/activities responsible for the creation of the dataset (see the [Description using identifiers](#description-using-provenance-objects) section).
 -   A description of pipelines or processes responsible for the creation of the dataset (see the [Description of pipelines or processes](#description-of-pipelines-or-processes) section).
 
-### Description using provenance objects
+### Description using identifiers
 
-This section details the way to describe provenance of a dataset in the `GeneratedBy` field, using provenance objects.
+This section details the way to describe provenance of a dataset in the `GeneratedBy` field, using identifiers.
 
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in
@@ -141,7 +141,7 @@ and a guide for using macros can be found at
 
 ## Provenance files
 
-When not inside sidecar JSONs or `dataset_description.json`, provenance information MUST be stored inside provenance files.
+When not inside sidecar JSON files or `dataset_description.json`, provenance information MUST be stored inside provenance files.
 
 <!--
 This block generates a filename templates.
@@ -432,10 +432,10 @@ It is RECOMMENDED to accompany each `provenance.tsv` file with a sidecar
 
 ## Consistency and uniqueness of identifiers
 
-The following rules and conventions are provided in order to have consistent, human readable, and explicit [IRIs](https://www.w3.org/TR/json-ld11/#iris) as identifiers for provenance objects.
+The following rules and conventions are provided in order to have consistent, human readable, and explicit [IRIs](https://www.w3.org/TR/json-ld11/#iris) as identifiers for JSON objects related to provenance.
 
 !!! note
-    The `Id` field contains the identifier of a provenance objects.
+    The `Id` field contains the identifier of a JSON object related to provenance.
 
 ### Identifiers for provEntities
 
@@ -457,7 +457,7 @@ bids:[<dataset-name>]:prov#provEntity-<label>
     - `bids:fmriprep:sub-001/func/sub-001_task-MGT_run-01_bold_space-MNI152NLin2009cAsym_preproc.nii.gz` - a provEntity describing a bold file for subject `sub-001` in the `fmriprep` dataset;
     - `bids::prov#provEntity-acea8093` - a provEntity describing a file that is not available in the dataset.
 
-### Identifiers for other provenance objects
+### Identifiers for other objects
 
 The identifier of an activity, software, or environment described in a BIDS dataset `<dataset-name>` SHOULD have the following form, where `<label>` is a human readable name for coherently identifying the provenance object and `<uid>` is a unique group of chars.
 
@@ -477,7 +477,7 @@ The uniqueness of this identifier MUST be used to distinguish any activity, soft
 !!! note
     The [Resource Description Framework (RDF)](https://www.w3.org/RDF/) is a method to describe and exchange graph data.
 
-Provenance objects as defined in this specification can be aggregated into [JSON-LD](https://www.w3.org/TR/json-ld11/) files ; which allows to represent provenance as an RDF graph.
+Objects describing provenance as defined in this specification can be aggregated into [JSON-LD](https://www.w3.org/TR/json-ld11/) files ; which allows to represent provenance as an RDF graph.
 
 !!! example "Minimal provenance graph"
 
@@ -495,7 +495,7 @@ Provenance objects as defined in this specification can be aggregated into [JSON
     - *sub-001_T1w_preproc.nii* is the skull striped image;
     - the *"Brain extraction"* activity was performed using the *FSL* software within a *Linux* software environment.
 
-Moreover, the terms defined in this specification to describe provenance objects are based on the [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/) standard. They can be resolved to [IRIs](https://www.w3.org/TR/json-ld11/#iris) using the JSON-LD context file [`provenance-context.json`](../provenance-context.json) provided with this specification.
+Moreover, the terms defined in this specification to describe provenance are based on the [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/) standard. They can be resolved to [IRIs](https://www.w3.org/TR/json-ld11/#iris) using the JSON-LD context file [`provenance-context.json`](../provenance-context.json) provided with this specification.
 
 All BIDS examples related to provenance (see. [bids-examples, provenance section](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#provenance)) show the aggregated version of the provenance metadata they contain. This comes as a JSON-LD file and a visualization of the graph.
 
@@ -608,7 +608,7 @@ A guide for using macros can be found at
     }
 ) }}
 
-The `prov/prov-spm_act.json` file describes the preprocessing steps as activities provenance objects. Among them:
+The `prov/prov-spm_act.json` file describes the preprocessing steps (activities) as JSON objects. Among them:
 
 -   the `bids::prov#movefile-bac3f385` activity needed a T1w file from the ds000011 dataset identified by `bids:ds000011:sub-01/anat/sub-01_T1w.nii.gz`;
 -   the `bids::prov#segment-7d5d4ac5` brain segmentation activity needed two files listed as provEntities inside the `Used` array.
