@@ -73,14 +73,6 @@ EMGRecommended:
     HardwareFilters: recommended
     RecordingDuration: recommended
 
-EMGEpoched:
-  selectors:
-    - datatype == "emg"
-    - suffix == "emg"
-    - sidecar.RecordingType == "epoched"
-  fields:
-    EpochLength: required
-
 # Specific EMG fields MAY be present
 EMGOptional:
   selectors:
@@ -92,7 +84,8 @@ EMGOptional:
     EMGGround: optional
     EpochLength:
       level: optional
-      level_addendum: required if `RecordingType` is `"epoched"`
+      # Implemented in rules.sidecars.electrophys
+      level_addendum: recommended if RecordingType is "epoched"
     Gain: optional
     InterelectrodeDistance: optional
     Preamplification: optional
