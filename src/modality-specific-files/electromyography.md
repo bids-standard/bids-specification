@@ -171,6 +171,13 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("emg.EMGRequired") }}
 
+Note the `RecordingType`, which depends on whether the data stream on disk is interrupted or not.
+Continuous data is by definition 1 segment without interruption.
+Epoched data consists of multiple segments that all have the same length
+(for example, corresponding to trials) and that have gaps in between.
+Discontinuous data consists of multiple segments of different length,
+for example due to a pause in the acquisition.
+
 These fields SHOULD be present:
 
 <!-- This block generates a metadata table.
@@ -182,13 +189,6 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_sidecar_table("emg.EMGRecommended") }}
-
-Note the `RecordingType`, which depends on whether the data stream on disk is interrupted or not.
-Continuous data is by definition 1 segment without interruption.
-Epoched data consists of multiple segments that all have the same length
-(for example, corresponding to trials) and that have gaps in between.
-Discontinuous data consists of multiple segments of different length,
-for example due to a pause in the acquisition.
 
 These fields MAY be present:
 
