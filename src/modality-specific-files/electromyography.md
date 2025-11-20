@@ -248,8 +248,6 @@ A guide for using macros can be found at
 
 #### Example `*_emg.json`
 
-<!-- TODO do we need separate ElectrodeManufacturer and Manufacturer fields like iEEG? -->
-<!-- TODO check if hardware filters are plausible for an EMG system -->
 ```JSON
 {
   "EMGChannelCount":4,
