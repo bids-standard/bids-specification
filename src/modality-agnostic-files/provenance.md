@@ -16,7 +16,7 @@ Provenance information SHOULD be included in a BIDS dataset when possible. If pr
 
 Provenance of a BIDS file SHOULD be stored inside its sidecar JSON.
 
-Any sidecar JSON file MAY include the following keys:
+For that purpose, any sidecar JSON file MAY include the following keys:
 
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in
@@ -50,7 +50,7 @@ and a guide for using macros can be found at
 
 ## Provenance of a BIDS dataset
 
-Provenance of a BIDS dataset (raw, derivative, or study) SHOULD be stored inside its `dataset_description.json` file. This metadata describes the provenance of the whole dataset.
+Provenance of a BIDS dataset (raw, derivative, or study) SHOULD be stored inside its `dataset_description.json` file. Corresponding metadata describes the provenance of the whole dataset.
 
 The `dataset_description.json` file of a **BIDS raw dataset** or **BIDS study dataset** MAY include the `GeneratedBy` key to describe provenance.
 
