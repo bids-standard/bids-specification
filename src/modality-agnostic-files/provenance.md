@@ -190,7 +190,7 @@ and a guide for using macros can be found at
 
 ### Activities
 
-Activities are JSON objects representing the transformations that have been applied to data.
+Activities are JSON objects representing transformations that have been applied to data.
 
 Each file with a `act` suffix is a JSON file describing activities.
 
@@ -241,7 +241,7 @@ and a guide for using macros can be found at
 
 ### ProvEntities
 
-ProvEntities are JSON objects representing input or output data for activities (Note: this corresponds to Entities in [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/), the prefix "Prov" is used here to disambiguate with [BIDS entities](../appendices/entities.md)).
+ProvEntities are JSON objects representing input or output data for activities (note: this corresponds to Entities in [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/), the prefix "Prov" is used here to disambiguate with [BIDS entities](../appendices/entities.md)).
 
 Each file with a `ent` suffix is a JSON file describing provEntities.
 
