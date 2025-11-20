@@ -218,7 +218,7 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_subobject_table("metadata.Activities.items") }}
 
-!!! example "Example: a provenance object in a `prov/[<subdir>/]prov-<label>_act.json` file"
+!!! example "Example: an object describing an activity in a `prov/[<subdir>/]prov-<label>_act.json` file"
     ```JSON
     {
         "Activities": [
@@ -274,7 +274,7 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_subobject_table("metadata.ProvEntities.items") }}
 
-!!! example "Example: a provenance object in a `prov/[<subdir>/]prov-<label>_ent.json` file"
+!!! example "Example: an object describing a provEntity in a `prov/[<subdir>/]prov-<label>_ent.json` file"
     ```JSON
     {
         "ProvEntities": [
@@ -322,7 +322,7 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_subobject_table("metadata.Software.items") }}
 
-!!! example "Example: a provenance object in a `prov/[<subdir>/]prov-<label>_soft.json` file"
+!!! example "Example: an object describing a software package in a `prov/[<subdir>/]prov-<label>_soft.json` file"
     ```JSON
     {
         "Software": [
@@ -367,7 +367,7 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_subobject_table("metadata.Environments.items") }}
 
-!!! example "Example: a provenance object in a `prov/[<subdir>/]prov-<label>_env.json` file"
+!!! example "Example: an object describing an environment in a `prov/[<subdir>/]prov-<label>_env.json` file"
     ```JSON
     {
         "Environments": [
@@ -459,7 +459,7 @@ bids:[<dataset-name>]:prov#provEntity-<label>
 
 ### Identifiers for other objects
 
-The identifier of an activity, software, or environment described in a BIDS dataset `<dataset-name>` SHOULD have the following form, where `<label>` is a human readable name for coherently identifying the provenance object and `<uid>` is a unique group of chars.
+The identifier of an activity, software, or environment described in a BIDS dataset `<dataset-name>` SHOULD have the following form, where `<label>` is a human readable name for coherently identifying the object and `<uid>` is a unique group of chars.
 
 ```text
 bids:[<dataset-name>]:prov#<label>-<uid>
@@ -534,7 +534,7 @@ A guide for using macros can be found at
     }
 ) }}
 
-The `prov/prov-dcm2niix_soft.json` file describes `dcm2niix`, the software package used for the DICOM conversion. As per the [Consistency and uniqueness of identifiers](#consistency-and-uniqueness-of-identifiers) section, the identifier for the associated software provenance object SHOULD start with `bids:<dataset>:prov#` (`bids::` refers to the current dataset).
+The `prov/prov-dcm2niix_soft.json` file describes `dcm2niix`, the software package used for the DICOM conversion. As per the [Consistency and uniqueness of identifiers](#consistency-and-uniqueness-of-identifiers) section, the identifier for the associated software object SHOULD start with `bids:<dataset>:prov#` (`bids::` refers to the current dataset).
 
 ```JSON
 {
