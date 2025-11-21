@@ -36,6 +36,9 @@ code:
 derivatives:
   level: optional
   path: derivatives
+prov:
+  level: optional
+  path: prov
 docs:
   level: optional
   path: docs

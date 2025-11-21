@@ -1,0 +1,19 @@
+# Rules for provenance files
+---
+
+ProvenanceEntityMissing:
+  issue:
+    code: PROVENANCE_ENTITY_MISSING
+    message: |
+      A provenance.tsv file lists prov entities that were not found in
+      the dataset.
+    level: error
+  selectors:
+    - datatype == 'provenance'
+    - suffix == '.tsv'
+  checks:
+    - |
+      allequal(
+        sorted(intersects(columns.provenance_label, dataset.subjects.participant_id)),
+        sorted(dataset.subjects.participant_id)
+      )
