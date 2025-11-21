@@ -10,6 +10,7 @@ PhysioColumns:
 
 PhysioEyeTracking:
   selectors:
+    - suffix == "physio"
     - sidecar.PhysioType == "eyetrack"
   columns:
     timestamp__eyetrack: required
