@@ -654,7 +654,7 @@ XPCT:
     X-ray phase-contrast tomography imaging data
 icephys:
   value: icephys
-  display_name: Inracellular Electrophysiology
+  display_name: Intracellular Electrophysiology
   description: |
     Intracellular electrophysiological data.
 ieeg:
