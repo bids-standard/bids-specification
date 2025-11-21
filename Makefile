@@ -46,7 +46,7 @@ validateschema:
 	bst export > bep-23_schema.json
 	bids-validator-deno --schema file://${PWD}/bep-23_schema.json ../bids-examples/petprep/ --ignoreWarnings --ignoreNiftiHeaders; \
 	example_status=$$?; \
-	mkdocs build; \
+	uv run mkdocs build; \
 	build_status=$$?; \
 	echo "example_status: $$example_status"; \
 	echo "build_status: $$build_status"; \

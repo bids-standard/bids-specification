@@ -325,6 +325,10 @@ PETDerivativesMotionCorrection:
       level: optional
     ImageSimilarityMetric:
       level: optional
+    SoftwareName:
+      level: optional
+    SoftwareVersion:
+      level: optional
     CommandLine:
       level: optional
 
@@ -335,6 +339,24 @@ PETDerivativesRegistration:
     - '"space" in entities || ("from" in entities && "to" in entities)'
   fields:
     Description: optional
+    Sources: optional
+    ImageSimilarityMetric:
+      level: optional
+    DOF:
+      level: optional
+      description_addendum: |
+        Degrees of freedom of the affine registration. 3 = translation only, 
+        6 = translation and rotation only, 7 = translation, rotation, and 
+        global scaling only, 9 = translation, rotation, and scaling only, 
+        12 = full affine.
+    SpatialInterpolation:
+      level: optional
+    SoftwareName:
+      level: optional
+    SoftwareVersion:
+      level: optional
+    CommandLine:
+      level: optional
 
 PETDerivativesSmoothing:
   selectors:
@@ -348,3 +370,247 @@ PETDerivativesSmoothing:
       level_addendum: if `TargetImageDescription` contains `"FWHM"`
       description_addendum: |
         FWHM of spatial filter, applied to the data
+    Kernel:
+      level: required
+      description_addendum: |
+        Shape of smoothing kernel, applied to the data (for example "gaussian")
+    SoftwareName:
+      level: optional
+    SoftwareVersion:
+      level: optional
+    CommandLine:
+      level: optional
+
+PETDerivativesDseg:
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - 'intersects([modality], ["pet"])'
+    - suffix == "pet"
+    - 'intersects(entities.desc, ["+dseg"])'
+  fields:
+    Description:
+      level: recommended
+      description_addendum: |
+        Free-form natural language description. This describes the nature of the file.
+    Sources:
+      level: optional
+      description_addendum: |
+        A list of files with the paths specified using BIDS URIs; these files were 
+        directly used in the creation of this derivative data file. For example,
+        if a derivative A is used in the creation of another derivative B, which
+        is in turn used to generate C in a chain of A->B->C, C should only list B 
+        in "Sources", and B should only list A in "Sources". However, in case both 
+        X and Y are directly used in the creation of Z, then Z should list X and 
+        Y in "Sources", regardless of whether X was used to generate Y.
+    Manual:
+      level: optional
+      description_addendum: |
+        Indicates if the segmentation was performed manually or via an automated process. 
+        Must be one of: "true", "false".
+    Segmentation:
+      level: recommended
+      description: recommended if `seg` is present.
+      description_addendum: |
+        Which segmentation (if any) was use to generate the mask.
+    SoftwareName:
+      level: optional
+    SoftwareVersion:
+      level: optional
+    CommandLine:
+      level: optional
+
+PETDerivativesTimeActivityCurves:
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - 'intersects([modality], ["pet"])'
+    - suffix == "pet"
+    - 'intersects(entities.desc, ["+tacs"])'
+  fields:
+    time:
+    radioactivity:
+    InjectedRadioactivity:
+    InjectedRadioactivityUnits:
+    BodyWeight:
+    BodyWeightUnits:
+
+PETDerivativesPartialVolumeCorrection:
+  Description:
+    level: recommended
+    description_addendum: |
+      Free-form natural language description. This describes the nature of the file.
+    Sources:
+      level: optional
+      description_addendum: |
+        A list of files with the paths specified using BIDS URIs; these files were 
+        directly used in the creation of this derivative data file. For example,
+        if a derivative A is used in the creation of another derivative B, which
+        is in turn used to generate C in a chain of A->B->C, C should only list B 
+        in "Sources", and B should only list A in "Sources". However, in case both 
+        X and Y are directly used in the creation of Z, then Z should list X and 
+        Y in "Sources", regardless of whether X was used to generate Y.
+    PVCMethod:
+      level: recommended
+    FWHM_x:
+      level: optional
+    FWHM_y:
+      level: optional
+    FWHM_z:
+      level: optional
+    SoftwareName:
+      level: optional
+    SoftwareVersion:
+      level: optional
+    CommandLine:
+      level: optional
+
+PETDerivativesKineticModeling:
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - 'intersects([modality], ["pet"])'
+    - suffix == "pet"
+    - 'intersects(entities.desc, ["+kinpar"])'
+  fields:
+    Description:
+      level: recommended
+      description_addendum: |
+        Free-form natural language description. This describes the nature of the 
+        model fitting, including its purpose (e.g. parameter estimation, estimate
+        delay, k2prime estimation, global K1/k2 ratio estimation, global k4 
+        estimation, fit reference region, iterative weighting, SIME for AIF, 
+        SIME for Vnd)
+    Sources:
+      level: recommended
+      description_addendum: |
+        A list of files with the paths specified using BIDS URIs; these files were 
+        directly used in the creation of this derivative data file. For example,
+        if a derivative A is used in the creation of another derivative B, which
+        is in turn used to generate C in a chain of A->B->C, C should only list B 
+        in "Sources", and B should only list A in "Sources". However, in case both 
+        X and Y are directly used in the creation of Z, then Z should list X and 
+        Y in "Sources", regardless of whether X was used to generate Y.
+    ModelName:
+      level: recommended
+      description_addendum: |
+        Specifies the name of the kinetic model used (For example, 1TCM, SRTM:
+        see the “Kinetic Model and Parameter Names Guidelines” section below).
+        This field is intended to broadly define the applied model, and does
+        not need to be exhaustive. Please use the aforementioned abbreviations
+        when applicable, and for other models please use only letters and numbers.
+    ReferenceRegion:
+      level: recommended
+      description_addendum: |
+        Specifies the name of the kinetic model used (e.g., 1TCM, SRTM etc.: 
+        see the “Kinetic Model and Parameter Names Guidelines” section below). 
+        This field is intended to broadly define the applied model, and does 
+        not need to be exhaustive. Please use the aforementioned abbreviations 
+        when applicable, and for other models please use only letters and 
+        numbers.
+    BloodType:
+      level: optional
+      description_addendum: |
+        Indicates the type of blood input used (arterial, venous, plasma, or other)
+    AdditionalModelDetails:
+      level: optional
+      description_addendum: |
+        Provides additional details about the model, such as specific fitting procedures
+        or contraints such as, "fit to first 5 minutes".
+    InputValues:
+      level: recommended
+      description_addendum: |
+        Contains fixd values used as inputs for the model, such as k2prime, VB, or 
+        delay.
+    InputValuesLabels:
+      level: recommended
+      description_addendum: |
+        Contains the labels for fixed values used as inputs fro the model such as k2prime, VB, or delay.
+    InputValuesUnits:
+      level: recommended
+      description_addendum: |
+        Contains the units for fixed values used as inputs for the model, such as k2prime, VB, or delay.
+    Weights:
+      level: recommended
+      description_addendum: |
+        Lists any weights applied during the modeling process.
+    SoftwareName:
+      level: optional
+    SoftwareVersion:
+      level: optional
+    CommandLine:
+      level: optional
+
+PETDerivativesBloodProcessing:
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - 'intersects([modality], ["pet"])'
+    - suffix == "pet"
+    - 'intersects(entities.desc, ["+bloodproc"])'
+  fields:
+    time:
+      level: required
+      description_addendum: |
+        Time point of each interpolated estimate.
+    whole_blood_radioactivity:
+      level: recommended
+      description_addendum: |
+        Radioactivity in whole blood samples.
+    whole_plasma_radioactivity:
+      level: recommended
+      description_addendum: |
+        Radioactivity in wholeplasma samples.
+    metabolite_parent_fraction:
+      level: optional
+      description_addendum: |
+        Parent fraction in plasma samples.
+    input_function:
+      level: recommended
+
+PETDeravitivesBloodProcessingConfig:
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - 'intersects([modality], ["pet"])'
+    - suffix == "pet"
+    - 'intersects(entities.desc, ["+bloodconfig"])'
+  fields:
+    Description:
+      level: recommended
+    Sources:
+      level: optional
+    Method:
+      level: required
+      level_addendum: |
+        Free-form natural language specification of the method(s) used for each blood 
+        modeling step (“Bi-exponential model”, “Hill Model Mean Population Estimate”, 
+        “Linear interpolation”, “Fit Individually: Feng”)
+    StartTime:
+      level: optional
+      description_addendum: |
+        Specifies the start time used for modeling, if applicable.
+    EndTime:
+      level: optional
+      description_addendum: |
+        Specifies the end time used for modeling, if applicable.
+    Parameters:
+      level: optional
+      description_addendum: |
+        Contains key-value pairs of fitted parameters for each method, such as 
+        coefficients and decay constants.
+    ParametersUnits:
+      level: optional
+      description_addendum: |
+        Specifies the units for the parameters usedin each modeling step, for example:
+        "time": ["s"] or "AIF": ["Bq"].
+    SetInitialValue:
+      level: optional
+      description_addendum: |
+        Indicates if an initialvalue was set for specific parameters in each, for example:
+        "set_ppf0": "true".
+    FitDetails:
+      level: optional
+      description_addendum: |
+        Provides additional details about the fitting process for the relevant software 
+        packages.
+    BloodType:
+      level: optional
+
+
+    
