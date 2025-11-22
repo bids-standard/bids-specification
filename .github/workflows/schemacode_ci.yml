@@ -29,11 +29,11 @@ jobs:
       attestations: write
       id-token: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - name: Install the latest version of uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
         if: ${{ startsWith(github.ref, 'refs/tags/schema-') }}
       - name: "Build archive on tag"
         run: |
@@ -57,36 +57,41 @@ jobs:
         python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
         include:
           - os: macos-latest
-            python-version: 3
+            python-version: 3.13
           - os: windows-latest
-            python-version: 3
+            python-version: 3.13
     name: ${{ matrix.os }} with Python ${{ matrix.python-version }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - name: "Set up Python"
-        uses: actions/setup-python@v5
+      - name: Set up Python ${{ matrix.python-version }} (uv)
+        uses: astral-sh/setup-uv@v7
         with:
           python-version: ${{ matrix.python-version }}
-          allow-prereleases: true
+          activate-environment: true
 
       - name: "Display Python version"
         run: python -c "import sys; print(sys.version)"
 
       - name: "Fetch packages"
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: Packages
           path: dist
 
       - name: "Install package"
         run: |
-          pip install $( ls dist/*.whl )[all]
+          uv pip install $( ls dist/*.whl )[all]
 
       - name: "Run tests"
         run: |
           python -m pytest -vs --doctest-modules -m "not validate_schema" \
               --cov-append --cov-report=xml --cov-report=term --cov=src/bidsschematools
+        working-directory: tools/schemacode
+
+      - name: "Validate generated types"
+        run: |
+          uvx --with=. mypy tests
         working-directory: tools/schemacode
 
       - name: Upload artifacts
@@ -107,7 +112,7 @@ jobs:
 
     steps:
       - name: Download packages built by build-and-inspect-python-package
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: Packages
           path: dist
@@ -126,10 +131,10 @@ jobs:
     runs-on: ubuntu-latest
     name: Validate schema
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Set Up Python environment
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.11"
 
@@ -140,7 +145,7 @@ jobs:
 
       - name: Run schema validation tests
         run: |
-          python -m pytest -vs --doctest-modules -m "not validate_schema" \
+          python -m pytest -vs --doctest-modules -m "validate_schema" \
               --cov-append --cov-report=xml --cov-report=term --cov=src/bidsschematools
         working-directory: tools/schemacode
 
@@ -157,10 +162,10 @@ jobs:
     needs: [test, validate_schema]
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Download artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
 
       - name: Upload to CodeCov
         uses: codecov/codecov-action@v5

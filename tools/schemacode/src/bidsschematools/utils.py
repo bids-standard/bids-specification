@@ -5,12 +5,16 @@ from __future__ import annotations
 import logging
 import os
 import sys
+import warnings
+from functools import wraps
 
 from . import data
 
 TYPE_CHECKING = False
 if TYPE_CHECKING:
-    from typing import Any, NotRequired, TypedDict
+    from contextlib import AbstractContextManager
+    from typing import Any, Callable, NotRequired, TypedDict
+    from typing import Literal as L
 
     from jsonschema import FormatChecker
     from jsonschema.protocols import Validator as JsonschemaValidator
@@ -21,7 +25,7 @@ if TYPE_CHECKING:
         format_checker: NotRequired[FormatChecker]
 
 
-def get_bundled_schema_path():
+def get_bundled_schema_path() -> str:
     """Get the path to the schema directory.
 
     Returns
@@ -29,10 +33,10 @@ def get_bundled_schema_path():
     str
         Absolute path to the directory containing schema-related files.
     """
-    return str(data.load_resource("schema"))
+    return str(data.load("schema"))
 
 
-def get_logger(name=None, level=None):
+def get_logger(name: str | None = None, level: int | str | None = None) -> logging.Logger:
     """Return a logger to use.
 
     Parameters
@@ -57,7 +61,7 @@ def get_logger(name=None, level=None):
     return logger
 
 
-def configure_logger(lgr):
+def configure_logger(lgr: logging.Logger) -> None:
     """Configuring formatting and stream handler for the logger.
 
     Should not be used when bidsschematools is used as a library.
@@ -76,7 +80,7 @@ def configure_logger(lgr):
         lh.setFormatter(logging.Formatter("%(asctime)-15s [%(levelname)8s] %(message)s"))
 
 
-def set_logger_level(lgr, level):
+def set_logger_level(lgr: logging.Logger, level: int | str) -> None:
     """Set the logger level.
 
     Parameters
@@ -148,4 +152,51 @@ def jsonschema_validator(
 
     validator_kwargs: ValidatorKwargs
     validator_kwargs = {"format_checker": validator_cls.FORMAT_CHECKER} if check_format else {}
-    return validator_cls(schema, **validator_kwargs)
+    return validator_cls(schema, **validator_kwargs)  # type: ignore[call-arg]
+
+
+def in_context(context_manager: AbstractContextManager) -> Callable[[Callable], Callable]:
+    """Convert a context manager into a function decorator.
+
+    Parameters
+    ----------
+    context_manager : context manager
+        The context manager to use.
+
+    Returns
+    -------
+    Callable
+        The function decorator.
+    """
+
+    def decorator(func: Callable) -> Callable:
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            with context_manager:
+                return func(*args, **kwargs)
+
+        return wrapper
+
+    return decorator
+
+
+class WarningsFilter:
+    """Context manager to apply warning filters.
+
+    Arguments are lists of positional arguments to :func:`warnings.filterwarnings`.
+    """
+
+    # Only using one positional arg for now. This type can get more complex.
+    def __init__(
+        self, *filters: tuple[L["default", "error", "ignore", "always", "all", "module", "once"]]
+    ) -> None:
+        self.filters = filters
+
+    def __enter__(self) -> None:
+        self.catcher = warnings.catch_warnings()
+        self.catcher.__enter__()
+        for filt in self.filters:
+            warnings.filterwarnings(*filt)
+
+    def __exit__(self, exc_type, exc_value, traceback) -> None:
+        self.catcher.__exit__(exc_type, exc_value, traceback)

@@ -43,6 +43,7 @@ render = [
   "tabulate",
   "pandas",
   "markdown-it-py",
+  "pymdown-extensions>=9.2",
 ]
 tests = [
   "bidsschematools[validation,render,expressions]",
@@ -104,7 +105,7 @@ exclude_also = [
 # uvx bump-my-version bump <patch|minor|major>
 # git push upstream <current-branch>
 [tool.bumpversion]
-current_version = "1.1.0-dev"
+current_version = "1.2.0-dev"
 parse = """(?x)
     (?P<major>[0-9]+)
     \\.(?P<minor>[0-9]+)

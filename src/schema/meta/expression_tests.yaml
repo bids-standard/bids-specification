@@ -46,6 +46,8 @@
   result: null
 - expression: length(null)
   result: null
+- expression: unique(null)
+  result: null
 - expression: type(null)
   result: 'null'
 - expression: null == false
@@ -74,6 +76,14 @@
 # General expressions
 - expression: 1 + 2
   result: 3
+- expression: 1 - 2
+  result: -1
+- expression: 3 * 4
+  result: 12
+- expression: 3 / 2
+  result: 1.5
+- expression: 3 % 2
+  result: 1
 - expression: '"cat" + "dog"'
   result: 'catdog'
 - expression: match('string', '.*')
@@ -129,7 +139,21 @@
   result: -1
 - expression: max([-1, "n/a", 1])
   result: 1
+- expression: min(42)
+  result: 42
+- expression: max(42)
+  result: 42
 - expression: '[3, 2, 1][0]'
   result: 3
 - expression: '"string"[0]'
   result: 's'
+- expression: unique([])
+  result: []
+- expression: unique([52, -4, 3, 8, -4, 52, 9])
+  result: [52, -4, 3, 8, 9]
+- expression: unique(["52", "-4", "3", "8", "-4", "52", "9"])
+  result: ["52", "-4", "3", "8", "9"]
+- expression: unique([1, 1.0])
+  result: [1]
+- expression: unique([1.0, 1])
+  result: [1.0]

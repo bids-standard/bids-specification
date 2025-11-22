@@ -262,6 +262,7 @@ MRITimingParameters:
       level: optional
       level_addendum: required if `inv` entity is present
     DwellTime: recommended
+    AcquisitionDuration: optional
 
 EchoTimeRequiredASL:
   selectors:

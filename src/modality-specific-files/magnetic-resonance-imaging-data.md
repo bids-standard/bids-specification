@@ -332,8 +332,6 @@ and a guide for using macros can be found at
          "MWFmap",
          "MTVmap",
          "Chimap",
-         "TB1map",
-         "RB1map",
          "S0map",
          "M0map",
       ])
@@ -600,13 +598,13 @@ to be populated for functional sequences. Note that all these options can be
 used for non sparse sequences but that only options B, D and E are valid for
 sparse sequences.
 
-|          | **`RepetitionTime`** | **`SliceTiming`** | **`AcquisitionDuration`** | **`DelayTime`** | **`VolumeTiming`** |
-| -------- | -------------------- | ----------------- | ------------------------- | --------------- | ------------------ |
-| option A | \[ X ]               |                   | \[ ]                      |                 | \[ ]               |
-| option B | \[ ]                 | \[ X ]            |                           | \[ ]            | \[ X ]             |
-| option C | \[ ]                 |                   | \[ X ]                    | \[ ]            | \[ X ]             |
-| option D | \[ X ]               | \[ X ]            | \[ ]                      |                 | \[ ]               |
-| option E | \[ X ]               |                   | \[ ]                      | \[ X ]          | \[ ]               |
+|          | **`RepetitionTime`** | **`SliceTiming`** | **`FrameAcquisitionDuration`** | **`DelayTime`** | **`VolumeTiming`** |
+| -------- | -------------------- | ----------------- | ------------------------------ | --------------- | ------------------ |
+| option A | \[ X ]               |                   | \[ ]                           |                 | \[ ]               |
+| option B | \[ ]                 | \[ X ]            |                                | \[ ]            | \[ X ]             |
+| option C | \[ ]                 |                   | \[ X ]                         | \[ ]            | \[ X ]             |
+| option D | \[ X ]               | \[ X ]            | \[ ]                           |                 | \[ ]               |
+| option E | \[ X ]               |                   | \[ ]                           | \[ X ]          | \[ ]               |
 
 **Legend**
 
@@ -1090,7 +1088,14 @@ form of flowcharts.
 
 ## Fieldmap data
 
-Data acquired to correct for *B<sub>0</sub>* inhomogeneities can come in different forms.
+Data acquired to correct for inhomogeneities in the magnetic field can come in different forms.
+These "fieldmaps" can characterize different magnetic fields in the scanner,
+including the main static magnetic field (B<sub>0</sub>)
+and the transmit (B<sub>1</sub><sup>+</sup>) and receive (B<sub>1</sub><sup>-</sup>) components of
+the radiofrequency magnetic field (B<sub>1</sub>).
+
+### B<sub>0</sub> fieldmaps
+
 The current version of this standard considers four different scenarios:
 
 1.  [Phase-difference map](#case-1-phase-difference-map-and-at-least-one-magnitude-image)
@@ -1122,13 +1127,13 @@ and a guide for using macros can be found at
    )
 }}
 
-### Expressing the MR protocol intent for fieldmaps
+#### Expressing the MR protocol intent for fieldmaps
 
 Fieldmaps are typically acquired with the purpose of correcting one or more EPI
 scans under `dwi/`, `func/`, or `perf/` for distortions derived from *B<sub>0</sub>*
 nonuniformity.
 
-#### Using `B0FieldIdentifier` metadata
+##### Using `B0FieldIdentifier` metadata
 
 The general purpose [`B0FieldIdentifier` MRI metadata](#echo-planar-imaging-and-b0-mapping)
 is RECOMMENDED for the prescription of the *B<sub>0</sub>* field estimation intent of the
@@ -1139,7 +1144,7 @@ complex use cases.
 It is RECOMMENDED to use both approaches to maintain compatibility with
 tools that support older datasets.
 
-#### Using `IntendedFor` metadata
+##### Using `IntendedFor` metadata
 
 Fieldmap data MAY be linked to the specific scan(s) it was acquired for by
 filling the `IntendedFor` field in the corresponding JSON file.
@@ -1165,9 +1170,9 @@ For example:
 }
 ```
 
-### Types of fieldmaps
+#### Types of B<sub>0</sub> fieldmaps
 
-#### Case 1: Phase-difference map and at least one magnitude image
+##### Case 1: Phase-difference map and at least one magnitude image
 
 !!! example "Example datasets"
 
@@ -1218,7 +1223,7 @@ For example:
 }
 ```
 
-#### Case 2: Two phase maps and two magnitude images
+##### Case 2: Two phase maps and two magnitude images
 
 Similar to case 1, but instead of a precomputed phase-difference map, two
 separate phase images and two magnitude images corresponding to first and
@@ -1255,7 +1260,7 @@ For example, `sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phase2.json`
 }
 ```
 
-#### Case 3: Direct *field mapping*
+##### Case 3: Direct *field mapping*
 
 In some cases (for example GE), the scanner software will directly reconstruct a
 *B<sub>0</sub>* field map along with a magnitude image used for anatomical reference.
@@ -1294,7 +1299,7 @@ For example:
 See [Using `IntendedFor` metadata](#using-intendedfor-metadata)
 for details on the `IntendedFor` field.
 
-#### Case 4: Multiple phase encoded directions ("pepolar")
+##### Case 4: Multiple phase encoded directions ("pepolar")
 
 !!! example "Example datasets"
 
@@ -1357,3 +1362,265 @@ As for other EPI sequences, these field mapping sequences may have any of the
 [in-plane spatial encoding](#in-and-out-of-plane-spatial-encoding) metadata keys.
 However, please note that `PhaseEncodingDirection` and `TotalReadoutTime` keys
 are REQUIRED for these field mapping sequences.
+
+### Radiofrequency (RF) field mapping
+
+Fieldmaps may be acquired to measure the inhomogeneity in the RF (B<sub>1</sub>) field.
+These fieldmaps may be divided into two categories: transmit (B<sub>1</sub><sup>+</sup>) and receive (B<sub>1</sub><sup>-</sup>) fieldmaps.
+
+Some B1 fieldmap acquisitions call for the use of special notations that cannot be resolved by
+by entities that can generalize to other applications.
+The `acq` entity is used to distinguish the individual files in these cases.
+These suffixes include: `TB1AFI`, `TB1TFL`, `TB1RFM`, and `RB1COR`.
+
+#### B<sub>1</sub><sup>+</sup> fieldmaps
+
+<!--
+This block generates a suffix table.
+The definitions of these fields can be found in
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_suffix_table(
+      [
+         "TB1AFI",
+         "TB1DAM",
+         "TB1EPI",
+         "TB1RFM",
+         "TB1SRGE",
+         "TB1TFL",
+         "TB1map",
+      ]
+   )
+}}
+
+| **Suffix**           | **REQUIRED metadata**                                                                                |
+| -------------------- | ---------------------------------------------------------------------------------------------------- |
+| TB1DAM               | `FlipAngle`                                                                                          |
+| TB1EPI               | `EchoTime`, `FlipAngle`, `TotalReadoutTime`, `MixingTime`                                            |
+| TB1AFI               | `RepetitionTimeExcitation`                                                                           |
+| TB1TFL               |                                                                                                      |
+| TB1RFM               |                                                                                                      |
+| TB1SRGE<sup>\*</sup> | `FlipAngle`, `InversionTime`, `RepetitionTimeExcitation`, `RepetitionTimePreperation`, `NumberShots` |
+
+<sup>\*</sup> Please see TB1SRGE-specific notes for the calculation of `NumberShots`.
+
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the directory
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filename_template("raw", datatypes=["fmap"], suffixes=[
+         "TB1AFI",
+         "TB1DAM",
+         "TB1EPI",
+         "TB1RFM",
+         "TB1SRGE",
+         "TB1TFL",
+         "TB1map",
+      ])
+}}
+
+##### `TB1SRGE` specific notes
+
+Calculation of `before` and `after` entries for `NumberShots` metadata field of `TB1SRGE` is more involved than that of `MP2RAGE`.
+The formula can be found in a
+[reference implementation](https://github.com/JosePMarques/MP2RAGE-related-scripts/blob/a405df30ac2c617d29d8b1b16025aaa911e86370/DemoForR1Correction.m#L17),
+which requires information about `BaseResolution` (that is, image matrix size in PE direction),
+partial Fourier fraction in the PE direction, number of reference lines for parallel imaging acceleration,
+and the parallel imaging acceleration factor in PE direction.
+
+##### `TB1EPI` specific notes
+
+The `flip` and `echo` entities MUST be used to distinguish images with this suffix.
+The use of `flip` follows the default convention. However, this suffix defines a
+specific use case for the `echo` entity:
+
+| **`echo-1`**         | **`echo-2`**                |
+| -------------------- | --------------------------- |
+| Lower `EchoTime`     | Higher `EchoTime`           |
+| Spin Echo (SE) image | Stimulated Echo (STE) image |
+
+At each `FlipAngle`, the `TB1EPI` suffix lists two images acquired at two echo times.
+The first echo is a spin echo (SE) formed by the pulses alpha-2alpha. However, the
+second echo in this method is generated in a different fashion compared to a typical
+MESE acquisition. The second echo is a stimulated echo (STE) that is formed by an
+additional alpha pulse (that is, alpha-2alpha-alpha).
+
+The `FlipAngle` value corresponds to the nominal flip angle value of the STE pulse.
+The nominal FA value of the SE pulse is twice this value.
+
+Note that the following metadata fields MUST be defined in the accompanying JSON
+files:
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("fmap.TB1EPI") }}
+
+To properly identify constituents of this particular method, values of the `echo`
+entity MUST index the images as follows:
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+   {
+    "sub-01": {
+        "fmap": {
+            "sub-01_echo-1_flip-1_TB1EPI.nii.gz": "# SE",
+            "sub-01_echo-1_flip-1_TB1EPI.json":   "",
+            "sub-01_echo-2_flip-1_TB1EPI.nii.gz": "# STE",
+            "sub-01_echo-2_flip-1_TB1EPI.json":   "",
+            "sub-01_echo-1_flip-2_TB1EPI.nii.gz": "# SE",
+            "sub-01_echo-1_flip_2_TB1EPI.json":   "",
+            "sub-01_echo-2_flip-2_TB1EPI.nii.gz": "# STE",
+            "sub-01_echo-2_flip-2_TB1EPI.json":   "",
+            },
+        },
+   }
+) }}
+
+##### `TB1AFI` specific notes
+
+This method calculates a B1<sup>+</sup> map from two images acquired at two interleaved excitation repetition times (TR).
+Note that there is no entity for the TR that can be used to label the files corresponding to the two
+repetition times and the definition of repetition time depends on the modality
+(`functional` or `anatomical`) in the specification.
+
+Therefore, to properly identify constituents of this particular method,
+values of the `acq` entity SHOULD begin with either `tr1` (lower TR) or `tr2` (higher TR)
+and MAY be followed by freeform entries:
+
+| **First `TR`**   | **Second `TR`**  | **Use case**         |
+| ---------------- | ---------------- | -------------------- |
+| `_acq-tr1`       | `_acq-tr2`       | Single acquisition   |
+| `_acq-tr1Test`   | `_acq-tr2Test`   | Acquisition `Test`   |
+| `_acq-tr1Retest` | `_acq-tr2Retest` | Acquisition `Retest` |
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+   {
+    "sub-01": {
+        "fmap": {
+            "sub-01_acq-tr1_TB1AFI.nii.gz": "",
+            "sub-01_acq-tr1_TB1AFI.json": "",
+            "sub-01_acq-tr2_TB1AFI.nii.gz": "",
+            "sub-01_acq-tr2_TB1AFI.json": "",
+            },
+        },
+   }
+) }}
+
+##### `TB1TFL` and `TB1RFM` specific notes
+
+These suffixes describe two outputs generated by Siemens `tfl_b1_map` and `rf_map` product sequences, respectively.
+Both sequences output two images.
+The first image appears like an anatomical image and the second output is a scaled flip angle map.
+
+To properly identify files of this particular file collection,
+values of the `acq` entity SHOULD begin with either `anat` or `famp` and MAY be followed by freeform entries:
+
+| **Anatomical (like) image** | **Scaled flip angle map** | **Use case**         |
+| --------------------------- | ------------------------- | -------------------- |
+| `_acq-anat`                 | `_acq-famp`               | Single acquisition   |
+| `_acq-anatTest`             | `_acq-fampTest`           | Acquisition `Test`   |
+| `_acq-anatRetest`           | `_acq-fampRetest`         | Acquisition `Retest` |
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+   {
+    "sub-01": {
+        "fmap": {
+            "sub-01_acq-anat_TB1TFL.nii.gz": "",
+            "sub-01_acq-anat_TB1TFL.json": "",
+            "sub-01_acq-famp_TB1TFL.nii.gz": "",
+            "sub-01_acq-famp_TB1TFL.json": "",
+            },
+        },
+   }
+) }}
+
+The example above applies to the `TB1RFM` suffix as well.
+
+#### B<sub>1</sub><sup>-</sup> fieldmaps
+
+<!--
+This block generates a suffix table.
+The definitions of these fields can be found in
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_suffix_table(
+      [
+         "RB1COR",
+         "RB1map",
+      ]
+   )
+}}
+
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the directory
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filename_template("raw", datatypes=["fmap"], suffixes=[
+         "RB1COR",
+         "RB1map",
+      ])
+}}
+
+##### `RB1COR` specific notes
+
+This method generates a receive sensitivity map by combining two low resolution images
+collected sequentially by two different RF coils in receive mode (the body and the head coil)
+with otherwise identical acquisition parameters.
+To correct for dynamic changes in the receive sensitivity over time due to, for example,
+subject motion, separate receive sensitivity maps may be acquired for each anatomical
+acquisition in a file collection.
+
+To properly identify constituents of this particular method, values of the `acq`
+entity SHOULD begin with either `body` or `head` and MAY be followed by freeform
+entries:
+
+| **Body coil**  | **Head coil**  | **Use case**       |
+| -------------- | -------------- | ------------------ |
+| `_acq-body`    | `_acq-head`    | Single acquisition |
+| `_acq-bodyMTw` | `_acq-headMTw` | `MTw` for `MPM`    |
+| `_acq-bodyPDw` | `_acq-headPDw` | `PDw` for `MPM`    |
+| `_acq-bodyT1w` | `_acq-headT1w` | `T1w` for `MPM`    |
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+   {
+    "sub-01": {
+        "fmap": {
+            "sub-01_acq-body_RB1COR.nii.gz": "# Body coil",
+            "sub-01_acq-body_RB1COR.json": "",
+            "sub-01_acq-head_RB1COR.nii.gz": "# Head coil",
+            "sub-01_acq-head_RB1COR.json": "",
+            },
+        },
+   }
+) }}

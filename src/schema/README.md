@@ -167,21 +167,43 @@ references (the cases in which they are used will be presented later):
     (which are in turn references to individual values), and the references inside `GeneticLevel.anyOf` indicate that there may be a single
     such value or a list of values.
 
-1.  In [`rules.files.deriv.preprocessed_data`][preprocessed_data]:
+1.  In [`rules.files.deriv.imaging`](./rules/files/deriv/imaging.yaml):
     ```YAML
-    anat_nonparametric_common:
-      $ref: rules.files.raw.anat.nonparametric
+    anat_parametric_volumetric:
+      $ref: rules.files.raw.anat.parametric
       entities:
-        $ref: rules.files.raw.anat.nonparametric.entities
-        space: optional
-        description: optional
+        $ref:
+          - meta.templates.deriv.volumetric.entities
+          - rules.files.raw.anat.parametric.entities
     ```
     Here, the derivative datatype rule starts by copying the raw datatype rule
     `rules.files.raw.anat.nonparametric`.
     It then *overrides* the `entities` portion of that rule with a new object.
-    To *extend* the original `entities`, it again begins
-    by referencing `rules.files.raw.anat.nonparametric.entities`,
-    and adding the new entities `space` and `description`.
+    To *extend* the original `entities`, it composes
+    `meta.templates.deriv.volumetric.entities`
+    and `rules.files.raw.anat.nonparametric.entities`.
+    When multiple references are aggregated, the first reference takes
+    precedence.
+
+    Note also that `value: null` can be used to "delete" a key from a template.
+    For example, in `rules.files.raw.events`:
+
+    ```YAML
+    events__pet:
+      $ref: rules.files.raw.events.events
+      datatypes:
+        - pet
+      entities:
+        $ref: meta.templates.raw.task.entities
+        tracer: optional
+        reconstruction: optional
+        # Most events allow acquisition, PET doesn't
+        acquisition: null
+    ```
+
+    This technique should be used judiciously, preferring semantic clarity to brevity.
+    Templates should be expected to grow as BIDS evolves,
+    and should thus be used only where those changes should propagate.
 
 ### Expressions
 
@@ -259,20 +281,21 @@ The following operators should be defined by an interpreter:
 
 The following functions should be defined by an interpreter:
 
-| Function                                          | Definition                                                                                                                                | Example                                                | Note                                                                           |
-| ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `count(arg: array, val: any) -> int`              | Number of elements in an array equal to `val`                                                                                             | `count(columns.type, "EEG")`                           | The number of times "EEG" appears in the column "type" of the current TSV file |
-| `exists(arg: str \| array, rule: str) -> int`     | Count of files in an array that exist in the dataset. String is array with length 1. See following section for the meanings of rules.     | `exists(sidecar.IntendedFor, "subject")`               | True if all files in `IntendedFor` exist, relative to the subject directory.   |
-| `index(arg: array, val: any) -> int`              | Index of first element in an array equal to `val`, `null` if not found                                                                    | `index(["i", "j", "k"], axis)`                         | The number, from 0-2 corresponding to the string `axis`                        |
-| `intersects(a: array, b: array) -> array \| bool` | The intersection of arrays `a` and `b`, or `false` if there are no shared values.                                                         | `intersects(dataset.modalities, ["pet", "mri"])`       | Non-empty array if either PET or MRI data is found in dataset, otherwise false |
-| `allequal(a: array, b: array) -> bool`            | `true` if arrays have the same length and paired elements are equal                                                                       | `intersects(dataset.modalities, ["pet", "mri"])`       | True if either PET or MRI data is found in dataset                             |
-| `length(arg: array) -> int`                       | Number of elements in an array                                                                                                            | `length(columns.onset) > 0`                            | True if there is at least one value in the onset column                        |
-| `match(arg: str, pattern: str) -> bool`           | `true` if `arg` matches the regular expression `pattern` (anywhere in string)                                                             | `match(extension, ".gz$")`                             | True if the file extension ends with `.gz`                                     |
-| `max(arg: array) -> number`                       | The largest non-`n/a` value in an array                                                                                                   | `max(columns.onset)`                                   | The time of the last onset in an events.tsv file                               |
-| `min(arg: array) -> number`                       | The smallest non-`n/a` value in an array                                                                                                  | `min(sidecar.SliceTiming) == 0`                        | A check that the onset of the first slice is 0s                                |
-| `sorted(arg: array, method: str) -> array`        | The sorted values of the input array; defaults to type-determined sort. If method is "lexical", or "numeric" use lexical or numeric sort. | `sorted(sidecar.VolumeTiming) == sidecar.VolumeTiming` | True if `sidecar.VolumeTiming` is sorted                                       |
-| `substr(arg: str, start: int, end: int) -> str`   | The portion of the input string spanning from start position to end position                                                              | `substr(path, 0, length(path) - 3)`                    | `path` with the last three characters dropped                                  |
-| `type(arg: Any) -> str`                           | The name of the type, including `"array"`, `"object"`, `"null"`                                                                           | `type(datatypes)`                                      | Returns `"array"`                                                              |
+| Function                                          | Definition                                                                                                                                | Example                                                     | Note                                                                           |
+| ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| `allequal(a: array, b: array) -> bool`            | `true` if arrays have the same length and paired elements are equal                                                                       | `allequal(sorted(columns.onset, "numeric"), columns.onset)` | True if the array columns.onset is sorted numerically.                         |
+| `count(arg: array, val: any) -> int`              | Number of elements in an array equal to `val`                                                                                             | `count(columns.type, "EEG")`                                | The number of times "EEG" appears in the column "type" of the current TSV file |
+| `exists(arg: str \| array, rule: str) -> int`     | Count of files in an array that exist in the dataset. String is array with length 1. See following section for the meanings of rules.     | `exists(sidecar.IntendedFor, "subject")`                    | True if all files in `IntendedFor` exist, relative to the subject directory.   |
+| `index(arg: array, val: any) -> int`              | Index of first element in an array equal to `val`, `null` if not found                                                                    | `index(["i", "j", "k"], axis)`                              | The number, from 0-2 corresponding to the string `axis`                        |
+| `intersects(a: array, b: array) -> array \| bool` | The intersection of arrays `a` and `b`, or `false` if there are no shared values.                                                         | `intersects(dataset.modalities, ["pet", "mri"])`            | Non-empty array if either PET or MRI data is found in dataset, otherwise false |
+| `length(arg: array) -> int`                       | Number of elements in an array                                                                                                            | `length(columns.onset) > 0`                                 | True if there is at least one value in the onset column                        |
+| `match(arg: str, pattern: str) -> bool`           | `true` if `arg` matches the regular expression `pattern` (anywhere in string)                                                             | `match(extension, ".gz$")`                                  | True if the file extension ends with `.gz`                                     |
+| `max(arg: array) -> number`                       | The largest non-`n/a` value in an array                                                                                                   | `max(columns.onset)`                                        | The time of the last onset in an events.tsv file                               |
+| `min(arg: array) -> number`                       | The smallest non-`n/a` value in an array                                                                                                  | `min(sidecar.SliceTiming) == 0`                             | A check that the onset of the first slice is 0s                                |
+| `sorted(arg: array, method: str) -> array`        | The sorted values of the input array; defaults to type-determined sort. If method is "lexical", or "numeric" use lexical or numeric sort. | `sorted(sidecar.VolumeTiming) == sidecar.VolumeTiming`      | True if `sidecar.VolumeTiming` is sorted                                       |
+| `substr(arg: str, start: int, end: int) -> str`   | The portion of the input string spanning from start position to end position                                                              | `substr(path, 0, length(path) - 3)`                         | `path` with the last three characters dropped                                  |
+| `type(arg: Any) -> str`                           | The name of the type, including `"array"`, `"object"`, `"null"`                                                                           | `type(datatypes)`                                           | Returns `"array"`                                                              |
+| `unique(arg: array) -> array)`                    | The unique values of the input array, retaining their input order. Equal float and int values are not considered distinct.                | `length(unique(columns.X)) == length(columns.X)`            | True if column `X` contains no duplicate values.                               |
 
 #### The `exists()` function
 
@@ -325,6 +348,7 @@ Most operations involving `null` simply resolve to `null`:
 | `index([], val)`           | `null` |
 | `min(null)`                | `null` |
 | `max(null)`                | `null` |
+| `unique(null)`             | `null` |
 | `exists(null, "bids-uri")` | `null` |
 | `exists("/path", null)`    | `null` |
 
@@ -648,6 +672,7 @@ as part of a larger rule.
 In these cases, the `level` field should be omitted from the issue
 to avoid duplication or conflict.
 
+(filename-construction-rules)=
 ### Filename construction rules
 
 A significant portion of BIDS is devoted to the naming of files,
@@ -983,7 +1008,7 @@ They additionally have a `checks` list, and an explicit issue.
 
 | Field       | Description                                                                                    |
 | ----------- | ---------------------------------------------------------------------------------------------- |
-| `issue`     | Issue code object (see [Issues](#issues)                                                       |
+| `issue`     | Issue code object (see [Issues](#issues))                                                      |
 | `selectors` | List of expressions; any evaluating false indicate rule does not apply                         |
 | `checks`    | List of expressions; any evaluating false indicate rule is violated and issue should be raised |
 
@@ -1071,5 +1096,4 @@ ensuring consistency across the entire schema directory. Validation of the schem
 incorporated into the CI, so any changes that are inconsistent will be flagged before
 inclusion.
 
-[preprocessed_data]: https://github.com/bids-standard/bids-specification/tree/master/src/schema/rules/files/deriv/preprocessed_data.yaml
 [tabular files]: https://bids-specification.readthedocs.io/en/stable/common-principles.html#tabular-files

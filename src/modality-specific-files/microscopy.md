@@ -420,8 +420,8 @@ Additional optional columns MAY be used to describe other subjects' attributes.
 `participants.tsv` example:
 ```tsv
 participant_id	species	strain	strain_rrid
-sub-01	mus	musculus	C57BL/6J	RRID:IMSR_JAX:000664
-sub-02	mus	musculus	C57BL/6J	RRID:IMSR_JAX:000664
+sub-01	mus musculus	C57BL/6J	RRID:IMSR_JAX:000664
+sub-02	mus musculus	C57BL/6J	RRID:IMSR_JAX:000664
 ```
 
 `participants.json` example:
