@@ -8,6 +8,6 @@
     "./citation": "./citation/mod.ts"
   },
   "exclude": [
-    "package*.json",
+    "package*.json"
   ]
 }
