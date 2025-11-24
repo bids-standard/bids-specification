@@ -58,7 +58,7 @@ The `dataset_description.json` file of a **BIDS derivative dataset** MUST includ
 
 The `GeneratedBy` field MAY contain either of the following values:
 
--   Identifier(s) of the activity/activities responsible for the creation of the dataset (see the [Description using identifiers](#description-using-provenance-objects) section).
+-   Identifier(s) of the activity/activities responsible for the creation of the dataset (see the [Description using identifiers](#description-using-identifiers) section).
 -   A description of pipelines or processes responsible for the creation of the dataset (see the [Description of pipelines or processes](#description-of-pipelines-or-processes) section).
 
 ### Description using identifiers
