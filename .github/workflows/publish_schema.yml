@@ -5,6 +5,7 @@ on:
     branches:
       - "master"
       - "maint/*"
+      - debug/jsr-dist
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -40,7 +41,7 @@ jobs:
       - name: Determine master/maintenance branch
         id: branch
         run: |
-          if [[ "$GITHUB_REF_NAME" = "master" ]]; then
+          if [[ "$GITHUB_REF_NAME" = "master" || "$GITHUB_REF_NAME" = "debug/jsr-dist" ]]; then
             echo "branch=jsr-dist" | tee -a $GITHUB_OUTPUT
             echo "mode=dev" | tee -a $GITHUB_OUTPUT
           else
@@ -78,6 +79,7 @@ jobs:
       - name: Determine next version
         id: version
         run: |
+          set -x
           BASE=$( jq -r .schema_version schema.json )
           if [[ "$BASE" =~ ^[0-9]*\.[0-9]*\.[0-9]*$ ]]; then
             # Release, so unconditionally update version
@@ -109,13 +111,14 @@ jobs:
       - name: Bump version (${{ steps.version.outputs.version }}) if changed
         if: steps.version.outputs.release == 'true'
         run: |
+          set -x
           if ! git diff -s --exit-code; then
             jq ".version = \"$VERSION\"" jsr.json > tmp.json && mv tmp.json jsr.json
             git add jsr.json schema.json context.ts metaschema.ts
             git commit -m "Update schema JSR distribution ($VERSION)"
-            git push
+            # git push
           fi
-      - name: Publish to JSR
-        if: success() && steps.version.outputs.release == 'true'
-        run: |
-          npx jsr publish
+      # - name: Publish to JSR
+      #   if: success() && steps.version.outputs.release == 'true'
+      #   run: |
+      #     npx jsr publish
