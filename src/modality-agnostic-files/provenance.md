@@ -10,7 +10,7 @@ context of the academic literature.
 
 This part of the BIDS specification is aimed at describing the provenance of a BIDS dataset. This description is retrospective: it describes a set of steps that were executed in order to obtain the dataset. Note: this is different from prospective provenance that focuses describing workflows that may be run on a dataset. This description is based on the [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/) standard (see the [Provenance from an RDF perspective](#provenance-from-a-rdf-perspective) section for more information).
 
-Provenance information SHOULD be included in a BIDS dataset when possible. If provenance information is included, it MUST be described using the conventions detailed by this specification. Provenance information reflects the provenance of a full dataset and/or of specific files at any level of the BIDS hierarchy. Provenance information SHOULD not include human subject identifying data.
+Provenance information SHOULD be included in a BIDS dataset when possible. If provenance information is included, it MUST be described using the conventions detailed hereafter. Provenance information reflects the provenance of a full dataset and/or of specific files at any level of the BIDS hierarchy. Provenance information SHOULD not include human subject identifying data.
 
 ## Provenance of a BIDS file
 
