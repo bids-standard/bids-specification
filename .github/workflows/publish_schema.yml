@@ -35,10 +35,6 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: 3
-      - uses: actions/setup-node@v6
-        with:
-          node-version: 24
-          cache: 'npm'
       - run: env
       - run: git status
       - name: Determine master/maintenance branch
@@ -60,6 +56,10 @@ jobs:
           git checkout -t origin/$JSR_BRANCH
         env:
           JSR_BRANCH: ${{ steps.branch.outputs.branch }}
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: 'npm'
       - name: Install npm tools
         run: npm install
       - name: Verify installed versions
