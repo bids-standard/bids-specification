@@ -50,7 +50,7 @@ SHOULD be documented in an accompanying JSON sidecar file.
 !!! note "Regarding the precision of numeric metadata"
 
     For the precision of numeric metadata,
-    it is RECOMMENDENDED that dataset curators specify numeric metadata like `onset` and
+    it is RECOMMENDED that dataset curators specify numeric metadata like `onset` and
     `duration` with as much decimal precision as is reasonable in the context of the experiment.
     For example in an EEG experiment with devices operating at 1000 Hz sampling frequency,
     dataset curators SHOULD specify **at least** 3 figures after the decimal point.
