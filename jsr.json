@@ -6,5 +6,8 @@
     "./context": "./context.ts",
     "./metaschema": "./metaschema.ts",
     "./citation": "./citation/mod.ts"
-  }
+  },
+  "exclude": [
+    "package*.json",
+  ]
 }
