@@ -1,4 +1,5 @@
 {
+  "name": "@bids/schema",
   "dependencies": {
     "json-schema-to-typescript": "^15.0.4",
     "jsr": "^0.13.5",
