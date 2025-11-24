@@ -20,17 +20,48 @@ the attribute will trigger an import.
 import sys
 
 __all__ = (
+    # typing
     "Any",
-    "TYPE_CHECKING",
+    "Callable",
+    "Literal",
+    "NotRequired",
+    "Protocol",
     "Self",
+    "TYPE_CHECKING",
     "TypeVar",
+    "TypedDict",
+    # collections.abc
+    "Iterator",
+    "Mapping",
+    # contextlib
+    "AbstractContextManager",
+    # third-party
+    "FormatChecker",
+    "JsonschemaValidator",
+    "Traversable",
 )
+
+_type_map = {
+    "AbstractContextManager": ("contextlib", "AbstractContextManager"),
+    "Iterator": ("collections.abc", "Iterator"),
+    "Mapping": ("collections.abc", "Mapping"),
+    "Traversable": ("acres.typ", "Traversable"),
+    "FormatChecker": ("jsonschema", "FormatChecker"),
+    "JsonschemaValidator": ("jsonschema.protocols", "JsonschemaValidator"),
+}
 
 RUNTIME_IMPORT: bool
 
 TYPE_CHECKING = False
 if TYPE_CHECKING or "sphinx.ext.autodoc" in sys.modules:  # pragma: no cover
-    from typing import Any, Self, TypeVar
+    from typing import Any, Callable, Literal, NotRequired, Protocol, Self, TypeVar, TypedDict
+
+    from collections.abc import Iterator, Mapping
+    from contextlib import AbstractContextManager
+
+    from acres.typ import Traversable
+    from jsonschema import FormatChecker
+    from jsonschema.protocols import Validator as JsonschemaValidator
 
     # Helpful TypeVars for generic classes and functions.
     # These should never be accessed at runtime, only for type checking, so exclude from __all__.
@@ -44,21 +75,27 @@ else:  # pragma: no cover
         # crash out if attributes are ever accessed at runtime.
         # Currently, we do not use this feature.
         global RUNTIME_IMPORT
-        if name == "RUNTIME_IMPORT":
+        try:
+            throw = not RUNTIME_IMPORT
+        except NameError:
             import os
 
             RUNTIME_IMPORT = not os.getenv("BIDSSCHEMATOOLS_DISABLE_RUNTIME_TYPES", "")
-            return RUNTIME_IMPORT
+            if name == "RUNTIME_IMPORT":
+                return RUNTIME_IMPORT
+            throw = not RUNTIME_IMPORT
 
-        if not RUNTIME_IMPORT:
-            raise RuntimeError(
+        if throw:
+            raise AttributeError(
                 f"Attribute {name!r} in module {__name__!r} should only be used for type checking."
             )
 
         if name in __all__:
-            import typing
-
-            globals()[name] = getattr(typing, name)
+            if name in _type_map:
+                mod, attr = _type_map[name]
+            else:
+                mod, attr = "typing", name
+            globals()[name] = getattr(__import__(mod), attr)
             return globals()[name]
 
         msg = f"Module {__name__!r} has no attribute {name!r}"
