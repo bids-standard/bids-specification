@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "json-schema-to-typescript": "^15.0.4",
+    "jsr": "^0.13.5",
     "quicktype": "^23.2.6"
   }
 }
