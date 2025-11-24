@@ -59,6 +59,10 @@ jobs:
           JSR_BRANCH: ${{ steps.branch.outputs.branch }}
       - name: Install npm tools
         run: npm install
+      - name: Show diff
+        run: |
+          ls -l
+          git diff
       - name: Verify installed versions
         run: |
           npx quicktype --version
@@ -66,16 +70,28 @@ jobs:
           npx jsr --version
       - name: Regenerate schema
         run: bst export > schema.json
+      - name: Show diff
+        run: |
+          ls -l
+          git diff
       - name: Regenerate context types
         run: |
           jq .meta.context schema.json \
           | npx quicktype --src-lang schema --lang ts -t Context --just-types \
           > context.ts
+      - name: Show diff
+        run: |
+          ls -l
+          git diff
       - name: Regenerate metaschema types
         run: |
           # Name the file schema so the type will be named Schema
           bst export-metaschema > /tmp/schema.json
           npx json2ts --unknownAny /tmp/schema.json > metaschema.ts
+      - name: Show diff
+        run: |
+          ls -l
+          git diff
       - name: Determine next version
         id: version
         run: |
