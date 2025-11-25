@@ -112,7 +112,9 @@ Activities:
               type: string
               format: uri
       Type:
-        $ref: objects.metadata.ProvObjectType
+        description: Term from a controlled vocabulary that more specifically describes the activity.
+        type: string
+        format: uri
       StartedAtTime:
         name: StartedAtTime
         description: Timestamp tracking when the activity started.
@@ -1294,14 +1296,10 @@ ProvEntities:
       GeneratedBy:
         $ref: objects.metadata.GeneratedById
       Type:
-        $ref: objects.metadata.ProvObjectType
-ProvObjectType:
-  name: Type
-  display_name: Type
-  description: |
-    Term from a controlled vocabulary that more specifically describes the object.
-  type: string
-  format: uri
+        description: |
+          Term from a controlled vocabulary that more specifically describes the [provEntity](SPEC_ROOT/modality-agnostic-files/provenance.md#proventities).
+        type: string
+        format: uri
 Environments:
   name: Environments
   display_name: Environments
