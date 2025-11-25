@@ -1304,7 +1304,7 @@ ProvEntities:
       GeneratedBy:
         name: GeneratedBy
         description: |
-          Identifier(s) of the activity/activities responsible for the creation of the provEntity.
+          Identifier(s) of the activity/activities responsible for the creation of the data (e.g. a BIDS file, another file or a dataset).
 
           Related activities MUST be described as specified in the
           [Activities](SPEC_ROOT/modality-agnostic-files/provenance.md#activities) section.
