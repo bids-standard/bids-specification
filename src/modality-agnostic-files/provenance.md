@@ -235,7 +235,7 @@ and a guide for using macros can be found at
 
 ### Software
 
-Software computed the [activities](#activities).
+Software are software packages that computed the [activities](#activities).
 
 Each file with a `soft` suffix is a JSON file describing software. It MUST include the following key:
 
@@ -320,7 +320,7 @@ and a guide for using macros can be found at
 
 ### ProvEntities
 
-ProvEntities are input or output data for [activities](#activities)
+ProvEntities are input or output data for [activities](#activities).
 
 !!! note
     This corresponds to Entities in [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/), the prefix "Prov" is used here to disambiguate with [BIDS entities](../appendices/entities.md)).
@@ -429,7 +429,7 @@ The following rules and conventions are provided in order to have consistent, hu
 
 ### Identifiers for provEntities
 
-The identifier for a provEntity which is a BIDS file or a BIDS dataset MUST be a [BIDS URI](../common-principles.md#bids-uri). The identifier of a provEntity which is a no longer existing BIDS file or BIDS dataset SHOULD be a [BIDS URI](../common-principles.md#bids-uri) with a fragment part.
+The identifier for a provEntity which is a BIDS file or a BIDS dataset MUST be a [BIDS URI](../common-principles.md#bids-uri). The identifier for a provEntity which is a no longer existing BIDS file or BIDS dataset SHOULD be a [BIDS URI](../common-principles.md#bids-uri) with a fragment part.
 
 !!! warning
     The use of BIDS URIs may require to define the `DatasetLinks` object in [`dataset_description.json`](dataset-description.md#dataset_descriptionjson).
@@ -534,7 +534,7 @@ The `prov/prov-dcm2niix_soft.json` file describes `dcm2niix`, the software packa
 }
 ```
 
-The `prov/prov-dcm2niix_act.json` file describes the conversion activity. Note that the identifier of the previously described software package is used here to describe that the software package was used to compute this activity.
+The `prov/prov-dcm2niix_act.json` file describes the conversion activity. Note that the identifier for the previously described software package is used here to describe that the software package was used to compute this activity.
 
 ```JSON
 {
