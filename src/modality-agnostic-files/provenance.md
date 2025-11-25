@@ -186,7 +186,7 @@ and a guide for using macros can be found at
 
 ### Activities
 
-Activities are JSON objects representing transformations that have been applied to data.
+Activities are transformations that have been applied to data.
 
 Each file with a `act` suffix is a JSON file describing activities. It MUST include the following key:
 
@@ -235,7 +235,7 @@ and a guide for using macros can be found at
 
 ### Software
 
-Software are JSON objects representing software packages used to compute the [activities](#activities).
+Software computed the [activities](#activities).
 
 Each file with a `soft` suffix is a JSON file describing software. It MUST include the following key:
 
@@ -278,7 +278,7 @@ and a guide for using macros can be found at
 
 ### Environments
 
-Environments are JSON objects representing software environments in which activities were performed.
+Environments are software environments in which [activities](#activities) were performed.
 
 Each file with a `env` suffix is a JSON file describing environments. It MUST include the following key:
 
@@ -320,14 +320,17 @@ and a guide for using macros can be found at
 
 ### ProvEntities
 
-ProvEntities are JSON objects representing input or output data for activities (note: this corresponds to Entities in [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/), the prefix "Prov" is used here to disambiguate with [BIDS entities](../appendices/entities.md)).
+ProvEntities are input or output data for [activities](#activities)
+
+!!! note
+    This corresponds to Entities in [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/), the prefix "Prov" is used here to disambiguate with [BIDS entities](../appendices/entities.md)).
 
 Each file with a `ent` suffix is a JSON file describing provEntities.
 
 !!! warning
-    These files SHOULD not contain provEntities describing data files that are available in the dataset. Use sidecar JSON files instead for this purpose (see [Provenance of a BIDS file](#provenance-of-a-bids-file)).
+    These files SHOULD not describe files that are available in the dataset. See [Provenance of a BIDS file](#provenance-of-a-bids-file) for this purpose.
 
-    These files SHOULD not contain provEntities describing the current dataset. Use `dataset_description.json` files instead for this purpose (see [Provenance of a BIDS dataset](#provenance-of-a-bids-dataset)).
+    These files SHOULD not describe the current dataset. See [Provenance of a BIDS dataset](#provenance-of-a-bids-dataset) for this purpose.
 
 Each file MUST include the following key:
 
@@ -426,13 +429,12 @@ The following rules and conventions are provided in order to have consistent, hu
 
 ### Identifiers for provEntities
 
-The identifier of a provEntity describing a BIDS file or a BIDS dataset MUST be a [BIDS URI](../common-principles.md#bids-uri).
-A provEntity MAY describe a no longer existing BIDS file or BIDS dataset ; in this case its identifier SHOULD be a [BIDS URI](../common-principles.md#bids-uri) with a fragment part.
+The identifier for a provEntity which is a BIDS file or a BIDS dataset MUST be a [BIDS URI](../common-principles.md#bids-uri). The identifier of a provEntity which is a no longer existing BIDS file or BIDS dataset SHOULD be a [BIDS URI](../common-principles.md#bids-uri) with a fragment part.
 
 !!! warning
     The use of BIDS URIs may require to define the `DatasetLinks` object in [`dataset_description.json`](dataset-description.md#dataset_descriptionjson).
 
-The identifier of a provEntity described in a BIDS dataset `<dataset-name>` MAY have the following form, where `<label>` is an arbitrary value for identifying the provEntity.
+The identifier for a provEntity in a BIDS dataset `<dataset-name>` MAY have the following form, where `<label>` is an arbitrary value for identifying the provEntity.
 
 ```text
 bids:[<dataset-name>]:prov#provEntity-<label>
@@ -446,7 +448,7 @@ bids:[<dataset-name>]:prov#provEntity-<label>
 
 ### Identifiers for other objects
 
-The identifier of an activity, software, or environment described in a BIDS dataset `<dataset-name>` SHOULD have the following form, where `<label>` is a human readable name for coherently identifying the object and `<uid>` is a unique group of chars.
+The identifier for an activity, software, or environment described in a BIDS dataset `<dataset-name>` SHOULD have the following form, where `<label>` is a human readable name for coherently identifying the object and `<uid>` is a unique group of chars.
 
 ```text
 bids:[<dataset-name>]:prov#<label>-<uid>
@@ -623,7 +625,7 @@ The `prov/prov-spm_act.json` file describes the preprocessing steps (activities)
 }
 ```
 
-The BIDS file described by provEntity `bids::sub-01/anat/sub-01_T1w.nii` is available in the current dataset. The file described by provEntity `urn:c1d082a5-34ee-4282-99df-28c0ba289210` is not inside the dataset ; the provEntity is stored inside `prov/prov-spm_ent.json`:
+The provEntity `bids::sub-01/anat/sub-01_T1w.nii` is a BIDS file available in the current dataset. The provEntity `urn:c1d082a5-34ee-4282-99df-28c0ba289210` is a file that is not inside the dataset ; hence its description is stored inside `prov/prov-spm_ent.json`:
 
 ```JSON
 {
