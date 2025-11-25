@@ -29,7 +29,7 @@ and a guide for using macros can be found at
       "GeneratedById": "OPTIONAL",
       "SidecarGeneratedBy": "OPTIONAL",
       "Digest": "OPTIONAL",
-      "ProvEntityType": "OPTIONAL"
+      "ProvObjectType": "OPTIONAL"
    }
 ) }}
 
@@ -439,13 +439,13 @@ The following rules and conventions are provided in order to have consistent, hu
 
 ### Identifiers for provEntities
 
-The identifier of a provEntity describing a BIDS file available in the dataset MUST be a [BIDS URI](../common-principles.md#bids-uri).
-The identifier of a provEntity describing a BIDS file not available in the dataset SHOULD be a [BIDS URI](../common-principles.md#bids-uri) with a fragment part.
+The identifier of a provEntity describing a BIDS file or a BIDS dataset MUST be a [BIDS URI](../common-principles.md#bids-uri).
+A provEntity MAY describe a no longer existing BIDS file or BIDS dataset ; in this case its identifier SHOULD be a [BIDS URI](../common-principles.md#bids-uri) with a fragment part.
 
 !!! warning
     The use of BIDS URIs may require to define the `DatasetLinks` object in [`dataset_description.json`](dataset-description.md#dataset_descriptionjson).
 
-In other cases, the identifier of a provEntity described in a BIDS dataset `<dataset-name>` MAY have the following form, where `<label>` is an arbitrary value for identifying the provEntity.
+The identifier of a provEntity described in a BIDS dataset `<dataset-name>` MAY have the following form, where `<label>` is an arbitrary value for identifying the provEntity.
 
 ```text
 bids:[<dataset-name>]:prov#provEntity-<label>
