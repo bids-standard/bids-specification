@@ -50,11 +50,7 @@ and a guide for using macros can be found at
 
 ## Provenance of a BIDS dataset
 
-Provenance of a BIDS dataset (raw, derivative, or study) SHOULD be stored inside its `dataset_description.json` file. Corresponding metadata describes the provenance of the whole dataset.
-
-The `dataset_description.json` file of a **BIDS raw dataset** or **BIDS study dataset** MAY include the `GeneratedBy` key to describe provenance.
-
-The `dataset_description.json` file of a **BIDS derivative dataset** MUST include the `GeneratedBy` key to describe provenance.
+Provenance of a BIDS dataset (raw, derivative, or study) SHOULD be stored inside its `dataset_description.json` file. Corresponding metadata describes the provenance of the whole dataset. The `dataset_description.json` file of a **BIDS raw dataset** or **BIDS study dataset** MAY include the `GeneratedBy` key to describe provenance. The `dataset_description.json` file of a **BIDS derivative dataset** MUST include the `GeneratedBy` key to describe provenance.
 
 The `GeneratedBy` field MAY contain either of the following values:
 
@@ -89,7 +85,7 @@ and a guide for using macros can be found at
 
 This section details a way to describe the provenance of a dataset, providing `GeneratedBy` with an array of objects representing pipelines or processes that generated the dataset.
 
-!!! note
+!!! warning
     This description can be equivalently represented using the previous section. This modeling is kept for backward-compatibility but might be removed in future BIDS releases (see BIDS 2.0).
 
 <!-- This block generates a metadata table.
@@ -141,7 +137,7 @@ and a guide for using macros can be found at
 
 ## Provenance files
 
-When not inside sidecar JSON files or `dataset_description.json`, provenance information MUST be stored inside provenance files.
+In addition to storing provenance in sidecar JSON files (see the [Provenance of BIDS file](#provenance-of-a-bids-file)) or in `dataset_description.json` (see [Provenance of BIDS dataset](#provenance-of-a-bids-dataset) section), other provenance information MUST be stored inside provenance files.
 
 <!--
 This block generates a filename templates.
@@ -192,9 +188,7 @@ and a guide for using macros can be found at
 
 Activities are JSON objects representing transformations that have been applied to data.
 
-Each file with a `act` suffix is a JSON file describing activities.
-
-Each file MUST include the following key:
+Each file with a `act` suffix is a JSON file describing activities. It MUST include the following key:
 
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in
@@ -239,66 +233,11 @@ and a guide for using macros can be found at
     ```
     This snippet is similar to Activities described in the [DICOM to Nifti conversion with `dcm2niix` example](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix).
 
-### ProvEntities
-
-ProvEntities are JSON objects representing input or output data for activities (note: this corresponds to Entities in [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/), the prefix "Prov" is used here to disambiguate with [BIDS entities](../appendices/entities.md)).
-
-Each file with a `ent` suffix is a JSON file describing provEntities.
-
-!!! warning
-    These files SHOULD not contain provEntities describing data files that are available in the dataset. Use sidecar JSON files instead for this purpose (see [Provenance of a BIDS file](#provenance-of-a-bids-file)).
-
-    These files SHOULD not contain provEntities describing the current dataset. Use `dataset_description.json` files instead for this purpose (see [Provenance of a BIDS dataset](#provenance-of-a-bids-dataset)).
-
-Each file MUST include the following key:
-
-<!-- This block generates a metadata table.
-The definitions of these fields can be found in
-  src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_metadata_table(
-   {
-      "ProvEntities": "REQUIRED"
-   }
-) }}
-
-Each object in the `ProvEntities` array includes the following keys:
-
-<!-- This block generates a table describing subfields within a metadata field.
-The definitions of these fields can be found in
-  src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_subobject_table("metadata.ProvEntities.items") }}
-
-!!! example "Example: an object describing a provEntity in a `prov/[<subdir>/]prov-<label>_ent.json` file"
-    ```JSON
-    {
-        "ProvEntities": [
-            {
-                "Id": "bids::prov#provEntity-9rfe8szz",
-                "Label": "sub-01_task-tonecounting_bold.nii",
-                "AtLocation": "sub-01/func/sub-01_task-tonecounting_bold.nii",
-                "GeneratedBy": "bids::prov#realign-acea8093",
-                "Digest": {
-                    "sha256": "a4e801438b9c36df010309c94fc4ef8b07d95e7d9cb2edb8c212a5e5efc78d90"
-                }
-            }
-        ]
-    }
-    ```
-    This is a snippet from the [fMRI preprocessing with `SPM` example](https://github.com/bclenet/bids-examples/tree/BEP028_spm/provenance_spm)
-
 ### Software
 
 Software are JSON objects representing software packages used to compute the [activities](#activities).
 
-Each file with a `soft` suffix is a JSON file describing software.
-
-Each file MUST include the following key:
+Each file with a `soft` suffix is a JSON file describing software. It MUST include the following key:
 
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in
@@ -341,9 +280,7 @@ and a guide for using macros can be found at
 
 Environments are JSON objects representing software environments in which activities were performed.
 
-Each file with a `env` suffix is a JSON file describing environments.
-
-Each file MUST include the following key:
+Each file with a `env` suffix is a JSON file describing environments. It MUST include the following key:
 
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in
@@ -380,6 +317,59 @@ and a guide for using macros can be found at
     }
     ```
     This is a snippet from the [DICOM to Nifti conversion with `dcm2niix` example](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix)
+
+### ProvEntities
+
+ProvEntities are JSON objects representing input or output data for activities (note: this corresponds to Entities in [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/), the prefix "Prov" is used here to disambiguate with [BIDS entities](../appendices/entities.md)).
+
+Each file with a `ent` suffix is a JSON file describing provEntities.
+
+!!! warning
+    These files SHOULD not contain provEntities describing data files that are available in the dataset. Use sidecar JSON files instead for this purpose (see [Provenance of a BIDS file](#provenance-of-a-bids-file)).
+
+    These files SHOULD not contain provEntities describing the current dataset. Use `dataset_description.json` files instead for this purpose (see [Provenance of a BIDS dataset](#provenance-of-a-bids-dataset)).
+
+Each file MUST include the following key:
+
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_metadata_table(
+   {
+      "ProvEntities": "REQUIRED"
+   }
+) }}
+
+Each object in the `ProvEntities` array includes the following keys:
+
+<!-- This block generates a table describing subfields within a metadata field.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_subobject_table("metadata.ProvEntities.items") }}
+
+!!! example "Example: a provEntity in a `prov/[<subdir>/]prov-<label>_ent.json` file"
+    ```JSON
+    {
+        "ProvEntities": [
+            {
+                "Id": "bids::prov#provEntity-9rfe8szz",
+                "Label": "sub-01_task-tonecounting_bold.nii",
+                "AtLocation": "sub-01/func/sub-01_task-tonecounting_bold.nii",
+                "GeneratedBy": "bids::prov#realign-acea8093",
+                "Digest": {
+                    "sha256": "a4e801438b9c36df010309c94fc4ef8b07d95e7d9cb2edb8c212a5e5efc78d90"
+                }
+            }
+        ]
+    }
+    ```
+    This is a snippet from the [fMRI preprocessing with `SPM` example](https://github.com/bclenet/bids-examples/tree/BEP028_spm/provenance_spm)
 
 ### Provenance description file
 
@@ -434,9 +424,6 @@ It is RECOMMENDED to accompany each `provenance.tsv` file with a sidecar
 
 The following rules and conventions are provided in order to have consistent, human readable, and explicit [IRIs](https://www.w3.org/TR/json-ld11/#iris) as identifiers for JSON objects related to provenance.
 
-!!! note
-    The `Id` field contains the identifier of a JSON object related to provenance.
-
 ### Identifiers for provEntities
 
 The identifier of a provEntity describing a BIDS file or a BIDS dataset MUST be a [BIDS URI](../common-principles.md#bids-uri).
@@ -452,10 +439,10 @@ bids:[<dataset-name>]:prov#provEntity-<label>
 ```
 
 !!! example "Examples of identifiers for provEntities"
-    - `bids:ds001734:sub-002/anat/sub-02_T1w.nii` - a provEntity describing a T1w file for subject `sub-002` in the `ds001734` dataset;
-    - `bids::sub-014/func/sub-014_task-MGT_run-01_events.tsv` - a provEntity describing an events file for subject `sub-014` in the current dataset;
-    - `bids:fmriprep:sub-001/func/sub-001_task-MGT_run-01_bold_space-MNI152NLin2009cAsym_preproc.nii.gz` - a provEntity describing a bold file for subject `sub-001` in the `fmriprep` dataset;
-    - `bids::prov#provEntity-acea8093` - a provEntity describing a file that is not available in the dataset.
+    - `bids:ds001734:sub-002/anat/sub-02_T1w.nii` - identifier for a T1w file for subject `sub-002` in the `ds001734` dataset;
+    - `bids::sub-014/func/sub-014_task-MGT_run-01_events.tsv` - identifier for an events file for subject `sub-014` in the current dataset;
+    - `bids:fmriprep:sub-001/func/sub-001_task-MGT_run-01_bold_space-MNI152NLin2009cAsym_preproc.nii.gz` - identifier for a bold file for subject `sub-001` in the `fmriprep` dataset;
+    - `bids::prov#provEntity-acea8093` - identifier for a file that is not available in the dataset.
 
 ### Identifiers for other objects
 
@@ -474,10 +461,7 @@ The uniqueness of this identifier MUST be used to distinguish any activity, soft
 
 ## Provenance from an RDF perspective
 
-!!! note
-    The [Resource Description Framework (RDF)](https://www.w3.org/RDF/) is a method to describe and exchange graph data.
-
-Objects describing provenance as defined in this specification can be aggregated into [JSON-LD](https://www.w3.org/TR/json-ld11/) files ; which allows to represent provenance as an RDF graph.
+Objects describing provenance as defined in this specification can be aggregated into [JSON-LD](https://www.w3.org/TR/json-ld11/) files ; which allows to represent provenance as an RDF graph (see [Resource Description Framework (RDF)](https://www.w3.org/RDF/)).
 
 !!! example "Minimal provenance graph"
 
