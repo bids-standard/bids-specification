@@ -112,6 +112,7 @@ Activities:
               type: string
               format: uri
       Type:
+        name: Type
         description: Term from a controlled vocabulary that more specifically describes the activity.
         type: string
         format: uri
@@ -1296,9 +1297,8 @@ ProvEntities:
       GeneratedBy:
         $ref: objects.metadata.GeneratedById
       Type:
-        description: |
-          Term from a controlled vocabulary that more specifically describes
-          the [provEntity](SPEC_ROOT/modality-agnostic-files/provenance.md#proventities).
+        name: Type
+        description: Term from a controlled vocabulary that more specifically describes the provEntity.
         type: string
         format: uri
 Environments:
@@ -2993,6 +2993,14 @@ PromptRate:
   type: array
   items:
     type: number
+ProvObjectType:
+  name: Type
+  display_name: Type
+  description: |
+    Term from a controlled vocabulary that more specifically describes
+    the [provEntity](SPEC_ROOT/modality-agnostic-files/provenance.md#proventities).
+  type: string
+  format: uri
 PulseDuration:
   name: PulseDuration
   display_name: Pulse Duration

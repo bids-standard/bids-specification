@@ -5,7 +5,7 @@ ProvenanceEntityMissing:
   issue:
     code: PROVENANCE_ENTITY_MISSING
     message: |
-      A provenance.tsv file lists prov entities that were not found in
+      A provenance.tsv file lists a "prov" entity that was not found in
       the dataset.
     level: error
   selectors:
