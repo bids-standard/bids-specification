@@ -212,7 +212,7 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_subobject_table("metadata.Activities.items") }}
 
-!!! example "Example: an object describing an activity in a `prov/[<subdir>/]prov-<label>_act.json` file"
+!!! example "Example: description of an activity in a `prov/[<subdir>/]prov-<label>_act.json` file"
     ```JSON
     {
         "Activities": [
@@ -261,7 +261,7 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_subobject_table("metadata.Software.items") }}
 
-!!! example "Example: an object describing a software package in a `prov/[<subdir>/]prov-<label>_soft.json` file"
+!!! example "Example: description of a software package in a `prov/[<subdir>/]prov-<label>_soft.json` file"
     ```JSON
     {
         "Software": [
@@ -304,7 +304,7 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_subobject_table("metadata.Environments.items") }}
 
-!!! example "Example: an object describing an environment in a `prov/[<subdir>/]prov-<label>_env.json` file"
+!!! example "Example: description of an environment in a `prov/[<subdir>/]prov-<label>_env.json` file"
     ```JSON
     {
         "Environments": [
@@ -356,7 +356,7 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_subobject_table("metadata.ProvEntities.items") }}
 
-!!! example "Example: a provEntity in a `prov/[<subdir>/]prov-<label>_ent.json` file"
+!!! example "Example: description of a provEntity in a `prov/[<subdir>/]prov-<label>_ent.json` file"
     ```JSON
     {
         "ProvEntities": [
@@ -597,7 +597,7 @@ A guide for using macros can be found at
 The `prov/prov-spm_act.json` file describes the preprocessing steps (activities) as JSON objects. Among them:
 
 -   the `bids::prov#movefile-bac3f385` activity needed a T1w file from the ds000011 dataset identified by `bids:ds000011:sub-01/anat/sub-01_T1w.nii.gz`;
--   the `bids::prov#segment-7d5d4ac5` brain segmentation activity needed two files listed as provEntities inside the `Used` array.
+-   the `bids::prov#segment-7d5d4ac5` brain segmentation activity needed the two files listed inside the `Used` array.
 
 ```JSON
 {
@@ -625,7 +625,7 @@ The `prov/prov-spm_act.json` file describes the preprocessing steps (activities)
 }
 ```
 
-The provEntity `bids::sub-01/anat/sub-01_T1w.nii` is a BIDS file available in the current dataset. The provEntity `urn:c1d082a5-34ee-4282-99df-28c0ba289210` is a file that is not inside the dataset ; hence its description is stored inside `prov/prov-spm_ent.json`:
+`bids::sub-01/anat/sub-01_T1w.nii` is a BIDS file available in the current dataset. The `spm12/tpm/TPM.nii` file is not inside the dataset ; hence its description is stored inside `prov/prov-spm_ent.json` and its identifier is not a BIDS URI:
 
 ```JSON
 {

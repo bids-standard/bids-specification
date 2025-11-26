@@ -102,7 +102,7 @@ Activities:
           Related provEntities MUST be described as specified in the
           [ProvEntities](SPEC_ROOT/modality-agnostic-files/provenance.md#proventities) section.
 
-          Related environments MUST be described as specified in the
+          Related environment(s) MUST be described as specified in the
           [Environments](SPEC_ROOT/modality-agnostic-files/provenance.md#environments) section.
         anyOf:
           - type: string
@@ -904,7 +904,7 @@ Digest:
   name: Digest
   display_name: Digest
   description: |
-    Object containing digests of the data described by the provEntity.
+    Object containing digests of the provEntity.
     Each key in the object MUST be the name of a checksum function if present in this list:
     `MD5`; `SHA1`; `SHA-224` ; `SHA-256` ; `SHA-384` ; `SHA-512` ;
     `SHA3-224`; `SHA3-256`; `SHA3-384`; `SHA3-512`; `BLAKE2B-256`; `BLAKE3-256`;
