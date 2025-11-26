@@ -1297,7 +1297,8 @@ ProvEntities:
         $ref: objects.metadata.GeneratedById
       Type:
         description: |
-          Term from a controlled vocabulary that more specifically describes the [provEntity](SPEC_ROOT/modality-agnostic-files/provenance.md#proventities).
+          Term from a controlled vocabulary that more specifically describes
+          the [provEntity](SPEC_ROOT/modality-agnostic-files/provenance.md#proventities).
         type: string
         format: uri
 Environments:
