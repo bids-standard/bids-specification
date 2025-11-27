@@ -12,7 +12,7 @@ from .utils import propagate_fence_exception
 
 
 @propagate_fence_exception
-@in_context(WarningsFilter(["error"]))
+@in_context(WarningsFilter(("error",)))
 def fence(
     source: str,
     language: str,
