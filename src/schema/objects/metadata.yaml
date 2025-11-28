@@ -337,6 +337,19 @@ BodyPartDetailsOntology:
     BodyPartDetails (for example: `"https://www.ebi.ac.uk/ols/ontologies/uberon"`).
   type: string
   format: uri
+BodyWeight:
+  name: BodyWeight
+  display_name: Body Weight
+  description: |
+    Body weight measurement.
+  type: number
+BodyWeightUnits:
+  name: BodyWeightUnits
+  display_name: Body Weight Units
+  description: |
+    Unit of body weight measurement (for example, "kg").
+  type: string
+  format: unit
 BolusCutOffDelayTime:
   name: BolusCutOffDelayTime
   display_name: Bolus Cut Off Delay Time
@@ -903,6 +916,20 @@ DispersionCorrected:
     Boolean flag specifying whether the blood data have been dispersion-corrected.
     NOTE: not customary for manual samples, and hence should be set to `false`.
   type: boolean
+DOF:
+  name: DOF
+  display_name: Degrees of freedom
+  description: |
+    Degrees of freedom of the affine registration. 3 = translation only, 
+    6 = translation and rotation only, 7 = translation, rotation, and global scaling only, 
+    9 = translation, rotation, and scaling only, 12 = full affine.
+  type: integer
+  enum: 
+    - "3"
+    - "6"
+    - "7"
+    - "9"
+    - "12"
 DOI:
   name: DOI
   display_name: DOI
@@ -1845,6 +1872,12 @@ JNTANGChannelCount:
     Number of joint angle channels.
   type: integer
   minimum: 0
+Kernel:
+  name: Kernel
+  display_name: Kernel
+  description: |
+    Shape of the smoothing kernel applied to data (for example "gaussian").
+  type: string
 Keywords:
   name: Keywords
   display_name: Keywords
@@ -3421,6 +3454,12 @@ ScreenSize:
     - type: string
       enum:
         - n/a
+Segmentation:
+  name: Segmentation
+  display_name: Segmentation
+  description: |
+    Which segmentation was used to generate a mask.
+  type: string
 SequenceName:
   name: SequenceName
   display_name: Sequence Name

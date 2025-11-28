@@ -426,18 +426,30 @@ PETDerivativesTimeActivityCurves:
     - suffix == "pet"
     - 'intersects(entities.desc, ["+tacs"])'
   fields:
-    time:
-    radioactivity:
-    InjectedRadioactivity:
-    InjectedRadioactivityUnits:
+    time: 
+      level: required
+    radioactivity: 
+      level: required
+    InjectedRadioactivity: 
+      level: required
+    InjectedRadioactivityUnits: 
+      level: required
     BodyWeight:
+      level: required
     BodyWeightUnits:
+      level: required
 
 PETDerivativesPartialVolumeCorrection:
-  Description:
-    level: recommended
-    description_addendum: |
-      Free-form natural language description. This describes the nature of the file.
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - 'intersects([modality], ["pet"])'
+    - suffix == "pet"
+    - 'intersects(entities.desc, ["+pvc"])' # TODO check to see if this is right or if it should only reference the PVC entity   
+  fields:
+    Description:
+      level: recommended
+      description_addendum: |
+        Free-form natural language description. This describes the nature of the file.
     Sources:
       level: optional
       description_addendum: |
@@ -564,7 +576,7 @@ PETDerivativesBloodProcessing:
     input_function:
       level: recommended
 
-PETDeravitivesBloodProcessingConfig:
+PETDerivativesBloodProcessingConfig:
   selectors:
     - dataset.dataset_description.DatasetType == "derivative"
     - 'intersects([modality], ["pet"])'

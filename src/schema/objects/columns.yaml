@@ -171,6 +171,27 @@ filename:
     Relative paths to files.
   type: string
   format: participant_relative
+frame_start:
+  name: frame_start
+  display_name: Frame start
+  description: |
+    Start time of the frame in seconds.
+  type: number
+  unit: s
+frame_end:
+  name: frame_end
+  display_name: Frame end
+  description: |
+    End time of the frame in seconds.
+  type: number
+  unit: s
+region_name:
+  name: region_name
+  display_name: Region name
+  description: |
+    Name of region, which should match the naming convention of the corresponding _dseg.tsv
+    file.
+  type: string
 group__channel:
   name: group
   display_name: Channel group

@@ -65,20 +65,21 @@ BloodWholeBlood:
     whole_blood_radioactivity: required
   additional_columns: n/a
 
-PETDerivativesTimeActivityCurves:
+PETDerivativesTimeActivityCurvesTab:
   selectors:
     - dataset.dataset_description.DatasetType == "derivative"
     - 'intersects([modality], ["pet"])'
     - suffix == "tacs"
     - intersects(entities.seg)
     - extension == ".tsv"
-  fields:
+  columns:
     frame_start:
       level: required
     frame_end:
       level: required
     region_name:
       level: required
+  additional_columns: not_allowed
 
 PETDerivativesKineticModeling:
   selectors:
@@ -87,7 +88,7 @@ PETDerivativesKineticModeling:
     - suffix == "kinpar"
     - intersects(entities.model)
     - extension == ".tsv"
-  fields:
+  columns:
     index:
       level: recommended
     name:
@@ -113,7 +114,7 @@ PETDerivativesBloodProcessing:
     - 'intersects([modality], ["pet"])'
     - suffix == "bloodproc"
     - extension == ".tsv"
-  fields:
+  columns:
     time:
       level: required
     whole_blood_radioactivity:
