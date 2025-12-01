@@ -28,6 +28,7 @@ nav:
           - BIDS Derivatives: derivatives/introduction.md
           - Common data types and metadata: derivatives/common-data-types.md
           - Imaging data types: derivatives/imaging.md
+          - Diffusion MRI: derivatives/diffusion-derivatives.md
       - Longitudinal and multi-site studies: longitudinal-and-multi-site-studies.md
       - Glossary: glossary.md
       - BIDS Extension Proposals: extensions.md
@@ -156,6 +157,7 @@ plugins:
         "05-derivatives/01-introduction.md": "derivatives/introduction.md"
         "05-derivatives/02-common-data-types.md": "derivatives/common-data-types.md"
         "05-derivatives/03-imaging.md": "derivatives/imaging.md"
+        "05-derivatives/04-diffusion.md": "derivatives/diffusion-derivatives.md"
         "06-longitudinal-and-multi-site-studies.md": "longitudinal-and-multi-site-studies.md"
         "07-extensions.md": "extensions.md"
         "99-appendices/14-glossary.md": "glossary.md"
