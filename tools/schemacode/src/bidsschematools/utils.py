@@ -9,20 +9,14 @@ import warnings
 from functools import wraps
 
 from . import data
+from . import _lazytypes as lt
 
-TYPE_CHECKING = False
-if TYPE_CHECKING:
-    from contextlib import AbstractContextManager
-    from typing import Any, Callable, NotRequired, TypedDict
-    from typing import Literal as L
+if lt.TYPE_CHECKING:
 
-    from jsonschema import FormatChecker
-    from jsonschema.protocols import Validator as JsonschemaValidator
-
-    class ValidatorKwargs(TypedDict):
+    class ValidatorKwargs(lt.TypedDict):
         """Type for the keyword arguments used to create a JSON schema validator."""
 
-        format_checker: NotRequired[FormatChecker]
+        format_checker: lt.NotRequired[lt.FormatChecker]
 
 
 def get_bundled_schema_path() -> str:
@@ -103,11 +97,11 @@ def set_logger_level(lgr: logging.Logger, level: int | str) -> None:
 
 
 def jsonschema_validator(
-    schema: dict[str, Any],
+    schema: dict[str, lt.Any],
     *,
     check_format: bool,
-    default_cls: type[JsonschemaValidator] | None = None,
-) -> JsonschemaValidator:
+    default_cls: type[lt.JsonschemaValidator] | None = None,
+) -> lt.JsonschemaValidator:
     """
     Create a jsonschema validator appropriate for validating instances against a given
     JSON schema
@@ -155,7 +149,9 @@ def jsonschema_validator(
     return validator_cls(schema, **validator_kwargs)  # type: ignore[call-arg]
 
 
-def in_context(context_manager: AbstractContextManager) -> Callable[[Callable], Callable]:
+def in_context(
+    context_manager: lt.AbstractContextManager,
+) -> lt.Callable[[lt.Callable], lt.Callable]:
     """Convert a context manager into a function decorator.
 
     Parameters
@@ -169,7 +165,7 @@ def in_context(context_manager: AbstractContextManager) -> Callable[[Callable], 
         The function decorator.
     """
 
-    def decorator(func: Callable) -> Callable:
+    def decorator(func: lt.Callable) -> lt.Callable:
         @wraps(func)
         def wrapper(*args, **kwargs):
             with context_manager:
@@ -188,7 +184,10 @@ class WarningsFilter:
 
     # Only using one positional arg for now. This type can get more complex.
     def __init__(
-        self, *filters: tuple[L["default", "error", "ignore", "always", "all", "module", "once"]]
+        self,
+        *filters: tuple[
+            lt.Literal["default", "error", "ignore", "always", "all", "module", "once"]
+        ],
     ) -> None:
         self.filters = filters
 
