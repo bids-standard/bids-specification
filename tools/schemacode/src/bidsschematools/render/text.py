@@ -177,6 +177,10 @@ def make_glossary(schema, src_path=None):
         ]
         levels = list(obj_def.get("enum", []) or obj_def.get("definition", {}).get("Levels", {}))
         if levels:
+            for level in levels:
+                if isinstance(level, dict) and not hasattr(level, "name"):
+                    raise ValueError(f"level {level} has no name")
+
             levels = [level["name"] if isinstance(level, dict) else level for level in levels]
             text += f"**Allowed values**: `{'`, `'.join(levels)}`\n\n"
 
@@ -326,6 +330,10 @@ def make_filename_template(
     file_rules = schema.rules.files[dstype]
     file_groups = {}
     for rule in file_rules.values(level=2):
+        if not hasattr(rule, "datatypes"):
+            # Just ignore any rules that do not have a datatypes field
+            continue
+
         for datatype in rule.datatypes:
             file_groups.setdefault(datatype, []).append(rule)
 
