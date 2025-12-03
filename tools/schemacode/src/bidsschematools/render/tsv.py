@@ -7,12 +7,12 @@ import pandas as pd
 from markdown_it import MarkdownIt
 from tabulate import tabulate
 
-from ..utils import filter_warnings, in_context
+from ..utils import WarningsFilter, in_context
 from .utils import propagate_fence_exception
 
 
-@in_context(filter_warnings(["error"]))
 @propagate_fence_exception
+@in_context(WarningsFilter(("error",)))
 def fence(
     source: str,
     language: str,
