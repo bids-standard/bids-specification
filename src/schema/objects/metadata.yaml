@@ -4253,7 +4253,7 @@ Height:
   name: Height
   display_name: Video Height
   description: |
-    Height of the video in pixels (for example, `1920`).
+    Height of the video in pixels (for example, `1080`).
   type: integer
   minimum: 1
 
