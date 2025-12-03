@@ -1222,6 +1222,13 @@ EncodingTechnique:
     For example, `"Cartesian"`, `"EPSI"`, `"Spiral"`,
     or `"Density-weighted concentric ring trajectory"`.
   type: string
+EndTime__blood_data_processing:
+  name: EndTime
+  display_name: End Time
+  description: |
+    Specifies the end time used for modeling, if applicable.
+  type: number
+  unit: s
 EpochLength:
   name: EpochLength
   display_name: Epoch Length
@@ -1316,6 +1323,15 @@ FiducialsDescription:
     and how the position of the fiducials were measured
     (for example, `"both with Polhemus and with T1w MRI"`).
   type: string
+FitDetails__blood_data_processing:
+  name: FitDetails__blood_data_processing
+  display_name: Fit Details
+  description: |
+    Provides additional details about the fitting process for the relevant software package, 
+    such as constraints or specific fitting procedures ("expdecay_props": [null, null]).
+  anyOf:
+    - type: string
+    - type: array
 FlipAngle:
   name: FlipAngle
   display_name: Flip Angle
@@ -2395,6 +2411,14 @@ MetaboliteRecoveryCorrectionApplied:
     If `true`, the `hplc_recovery_fractions` column MUST be present in the
     corresponding `*_blood.tsv` file.
   type: boolean
+Method__blood_data_processing:
+  name: Method__blood_data_processing
+  display_name: Method
+  description: |
+    Free-form natural language specification of the method(s) used for each blood modeling step
+    (Bi-exponential model, Hill Model Mean Population Estimate, Linear interpolation
+    Fit Individually: Feng)
+  type: string
 Minimum:
   name: Minimum
   display_name: Minimum value
@@ -2748,6 +2772,30 @@ ParallelReductionFactorOutOfPlane:
     Corresponds to [DICOM Tag 0018, 9155](https://dicomlookup.com/dicomtags/(0018,9155))
     `Parallel Reduction Factor out-of-plane`.
   type: number
+Parameters__blood_data_processing:
+  name: Parameters__blood_data_processing
+  display_name: Parameters
+  description: |
+    Contains key-value pairs of fitted parameters for each method, such as 
+    coefficients and decay constants.
+  type: array
+  items:
+    type: object
+    properties:
+      key:
+        type: string
+      value:
+        type: number
+ParametersUnits__blood_data_processing:
+  name: ParametersUnits__blood_data_processing
+  display_name: Parameters Units
+  description: |
+    Specifies the units for the parameters used in each modeling step, for example:
+    "time": ["s"] or "AIF": ["Bq"].
+  type: array
+  items:
+    type: object
+    properties:
 PartialFourier:
   name: PartialFourier
   display_name: Partial Fourier
@@ -3559,6 +3607,17 @@ SequenceVariant:
     - type: array
       items:
         type: string
+SetInitialValue__blood_data_processing:
+  name: SetInitialValue__blood_data_processing
+  display_name: Set Initial Value
+  description: |
+    Indicates if an initial value was set for specific parameters in each modeling step, for example:
+    "set_ppf0": "true".
+  anyOf:
+    - type: boolean
+    - type: array
+      items:
+        type: boolean
 ShortChannelCount:
   name: ShortChannelCount
   display_name: Short Channel Count
@@ -3883,6 +3942,13 @@ StartTime:
     data sample in the corresponding (neural) dataset (negative values are allowed).
     This data MAY be specified with sub-second precision using the syntax `s[.000000]`,
     where `s` reflects whole seconds, and `.000000` reflects OPTIONAL fractional seconds.
+  type: number
+  unit: s
+StartTime__blood_data_processing:
+  name: StartTime__blood_data_processing
+  display_name: Start Time
+  description: |
+    Specifies the start time used for modeling, if applicable.
   type: number
   unit: s
 StationName:

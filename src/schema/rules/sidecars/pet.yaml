@@ -426,7 +426,8 @@ PETDerivativesTimeActivityCurves:
     - suffix == "pet"
     - 'intersects(entities.desc, ["+tacs"])'
   fields:
-    time: 
+    time:
+      $ref: objects.columns.time
       level: required
     radioactivity: 
       level: required
@@ -561,36 +562,36 @@ PETDerivativesBloodProcessingConfig:
       level: recommended
     Sources:
       level: optional
-    Method:
+    Method__blood_data_processing:
       level: required
       level_addendum: |
         Free-form natural language specification of the method(s) used for each blood 
         modeling step (“Bi-exponential model”, “Hill Model Mean Population Estimate”, 
         “Linear interpolation”, “Fit Individually: Feng”)
-    StartTime:
+    StartTime__blood_data_processing:
       level: optional
       description_addendum: |
         Specifies the start time used for modeling, if applicable.
-    EndTime:
+    EndTime__blood_data_processing:
       level: optional
       description_addendum: |
         Specifies the end time used for modeling, if applicable.
-    Parameters:
+    Parameters__blood_data_processing:
       level: optional
       description_addendum: |
         Contains key-value pairs of fitted parameters for each method, such as 
         coefficients and decay constants.
-    ParametersUnits:
+    ParametersUnits__blood_data_processing:
       level: optional
       description_addendum: |
         Specifies the units for the parameters usedin each modeling step, for example:
         "time": ["s"] or "AIF": ["Bq"].
-    SetInitialValue:
+    SetInitialValue__blood_data_processing:
       level: optional
       description_addendum: |
         Indicates if an initialvalue was set for specific parameters in each, for example:
         "set_ppf0": "true".
-    FitDetails:
+    FitDetails__blood_data_processing:
       level: optional
       description_addendum: |
         Provides additional details about the fitting process for the relevant software 
@@ -598,5 +599,3 @@ PETDerivativesBloodProcessingConfig:
     BloodType:
       level: optional
 
-
-    
