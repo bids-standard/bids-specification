@@ -1,5 +1,15 @@
 .PHONY:  tools/contributors.tsv
+
+.PHONY: all serve install update_contributors
+
 all:
+	@echo "Nothing is done by default. Consider following targets:"
+	@echo "  install -- prep environment"
+	@echo "  serve   -- prep environment and build and serve docs"
+	@echo "  formatschema -- format and commit(!) schema"
+
+serve: install
+	uv run mkdocs serve
 
 install: .venv node_modules
 
