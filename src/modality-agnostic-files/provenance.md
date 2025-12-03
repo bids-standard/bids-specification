@@ -26,10 +26,10 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_metadata_table(
    {
-      "GeneratedById": "OPTIONAL",
+      "FileGeneratedById": "OPTIONAL",
       "SidecarGeneratedBy": "OPTIONAL",
-      "Digest": "OPTIONAL",
-      "ProvObjectType": "OPTIONAL"
+      "FileDigest": "OPTIONAL",
+      "FileType": "OPTIONAL"
    }
 ) }}
 
@@ -42,7 +42,7 @@ and a guide for using macros can be found at
             "bids::prov#conversion-00f3a18f"
         ],
         "Digest": {
-            "sha256": "66eeafb465559148e0222d4079558a8354eb09b9efabcc47cd5b8af6eed51907"
+            "SHA-256": "66eeafb465559148e0222d4079558a8354eb09b9efabcc47cd5b8af6eed51907"
         }
     }
     ```
@@ -69,7 +69,9 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_metadata_table(
    {
-      "GeneratedById": "RECOMMENDED for BIDS raw datasets and BIDS study datasets, REQUIRED for BIDS derivative datasets"
+      "DatasetGeneratedById": "RECOMMENDED for BIDS raw datasets and BIDS study datasets, REQUIRED for BIDS derivative datasets",
+      "DatasetDigest": "OPTIONAL",
+      "DatasetProvType": "OPTIONAL"
    }
 ) }}
 
@@ -149,7 +151,7 @@ and a guide for using macros can be found at
 {{ MACROS___make_filename_template(
    "common",
    datatypes=["prov"],
-   suffixes=["act", "ent", "env", "soft"])
+   suffixes=["act", "soft", "env", "ent"])
 }}
 
 !!! note
@@ -235,7 +237,7 @@ and a guide for using macros can be found at
 
 ### Software
 
-Software are software packages that computed the [activities](#activities).
+This section specifies how to describe software packages that computed the [activities](#activities).
 
 Each file with a `soft` suffix is a JSON file describing software. It MUST include the following key:
 
@@ -278,7 +280,7 @@ and a guide for using macros can be found at
 
 ### Environments
 
-Environments are software environments in which [activities](#activities) were performed.
+This section specifies how to describe software environments in which [activities](#activities) were performed.
 
 Each file with a `env` suffix is a JSON file describing environments. It MUST include the following key:
 
@@ -318,21 +320,21 @@ and a guide for using macros can be found at
     ```
     This is a snippet from the [DICOM to Nifti conversion with `dcm2niix` example](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix)
 
-### ProvEntities
+### Input and output data
 
-ProvEntities are input or output data for [activities](#activities).
+This section specifies how to describe input and output data for [activities](#activities). This includes files, datasets and other types of data that correspond to the  W3C Prov [prov:Entity](https://www.w3.org/TR/2013/REC-prov-o-20130430/#Entity) class. Types of data other than files or datasets are referred to as prov:Entity.
+
+Each file with a `ent` suffix is a JSON file describing input and output data.
 
 !!! note
-    This corresponds to Entities in [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/), the prefix "Prov" is used here to disambiguate with [BIDS entities](../appendices/entities.md)).
-
-Each file with a `ent` suffix is a JSON file describing provEntities.
+    The `ent` suffix stands for prov:Entity.
 
 !!! warning
     These files SHOULD not describe files that are available in the dataset. See [Provenance of a BIDS file](#provenance-of-a-bids-file) for this purpose.
 
     These files SHOULD not describe the current dataset. See [Provenance of a BIDS dataset](#provenance-of-a-bids-dataset) for this purpose.
 
-Each file MUST include the following key:
+Each file MUST include at least one of the following key:
 
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in
@@ -342,11 +344,33 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_metadata_table(
    {
-      "ProvEntities": "REQUIRED"
+      "FileProvEntities": "REQUIRED if `Datasets` and `Entities` are not included",
+      "DatasetProvEntities": "REQUIRED if `Files` and `Entities` are not included",
+      "ProvEntities": "REQUIRED if `Files` and `Datasets` are not included"
    }
 ) }}
 
-Each object in the `ProvEntities` array includes the following keys:
+Each object in the `Files` array includes the following keys:
+
+<!-- This block generates a table describing subfields within a metadata field.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_subobject_table("metadata.FileProvEntities.items") }}
+
+Each object in the `Datasets` array includes the following keys:
+
+<!-- This block generates a table describing subfields within a metadata field.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_subobject_table("metadata.DatasetProvEntities.items") }}
+
+Each object in the `Entities` array includes the following keys:
 
 <!-- This block generates a table describing subfields within a metadata field.
 The definitions of these fields can be found in
@@ -356,23 +380,36 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_subobject_table("metadata.ProvEntities.items") }}
 
-!!! example "Example: description of a provEntity in a `prov/[<subdir>/]prov-<label>_ent.json` file"
+!!! example "Example: description of a file in a `prov/[<subdir>/]prov-<label>_ent.json` file"
     ```JSON
     {
-        "ProvEntities": [
+        "Files": [
             {
-                "Id": "bids::prov#provEntity-9rfe8szz",
-                "Label": "sub-01_task-tonecounting_bold.nii",
-                "AtLocation": "sub-01/func/sub-01_task-tonecounting_bold.nii",
-                "GeneratedBy": "bids::prov#realign-acea8093",
+                "Id": "bids::sub-01/anat/sub-01_T1w.nii#00f98a97",
+                "Label": "sub-01_T1w.nii",
+                "AtLocation": "sub-01/anat/sub-01_T1w.nii",
+                "GeneratedBy": "bids::prov#gunzip-e9264918",
                 "Digest": {
-                    "sha256": "a4e801438b9c36df010309c94fc4ef8b07d95e7d9cb2edb8c212a5e5efc78d90"
+                    "SHA-256": "45485541db5734f565b7cac3e009f8b02907245fc6db435c700e84d1037773b5"
                 }
             }
         ]
     }
     ```
     This is a snippet from the [fMRI preprocessing with `SPM` example](https://github.com/bclenet/bids-examples/tree/BEP028_spm/provenance_spm)
+
+!!! example "Example: description of a dataset in a `prov/[<subdir>/]prov-<label>_ent.json` file"
+    ```JSON
+    {
+        "Datasets": [
+            {
+                "Id": "bids:ds001734:.",
+                "Label": "NARPS"
+            }
+        ]
+    }
+    ```
+    This is a snippet from the [fMRI preprocessing with `fMRIPrep` example](https://github.com/bclenet/bids-examples/tree/BEP028_fmriprep/provenance_fmriprep).
 
 ### Provenance description file
 
@@ -427,24 +464,25 @@ It is RECOMMENDED to accompany each `provenance.tsv` file with a sidecar
 
 The following rules and conventions are provided in order to have consistent, human readable, and explicit [IRIs](https://www.w3.org/TR/json-ld11/#iris) as identifiers for JSON objects related to provenance.
 
-### Identifiers for provEntities
+### Identifiers for input and output data
 
-The identifier for a provEntity which is a BIDS file or a BIDS dataset MUST be a [BIDS URI](../common-principles.md#bids-uri). The identifier for a provEntity which is a no longer existing BIDS file or BIDS dataset SHOULD be a [BIDS URI](../common-principles.md#bids-uri) with a fragment part.
+The identifier for a BIDS file or a BIDS dataset MUST be a [BIDS URI](../common-principles.md#bids-uri). The identifier for a no longer existing BIDS file or BIDS dataset SHOULD be a [BIDS URI](../common-principles.md#bids-uri) with a fragment part.
 
 !!! warning
     The use of BIDS URIs may require to define the `DatasetLinks` object in [`dataset_description.json`](dataset-description.md#dataset_descriptionjson).
 
-The identifier for a provEntity in a BIDS dataset `<dataset-name>` MAY have the following form, where `<label>` is an arbitrary value for identifying the provEntity.
+The identifier for a prov:Entity (see [Input and output data](#input-and-output-data)) that is described in a BIDS dataset `<dataset-name>` MAY have the following form, where `<label>` is an arbitrary value for identifying the prov:Entity.
 
 ```text
-bids:[<dataset-name>]:prov#provEntity-<label>
+bids:[<dataset-name>]:prov#entity-<label>
 ```
 
-!!! example "Examples of identifiers for provEntities"
+!!! example "Examples of identifiers for input and output data"
     - `bids:ds001734:sub-002/anat/sub-02_T1w.nii` - identifier for a T1w file for subject `sub-002` in the `ds001734` dataset;
     - `bids::sub-014/func/sub-014_task-MGT_run-01_events.tsv` - identifier for an events file for subject `sub-014` in the current dataset;
     - `bids:fmriprep:sub-001/func/sub-001_task-MGT_run-01_bold_space-MNI152NLin2009cAsym_preproc.nii.gz` - identifier for a bold file for subject `sub-001` in the `fmriprep` dataset;
-    - `bids::prov#provEntity-acea8093` - identifier for a file that is not available in the dataset.
+    - `bids:raw:.` - identifier for the `raw` dataset;
+    - `bids::prov#entity-acea8093` - identifier for a prov:Entity that is described in the current dataset.
 
 ### Identifiers for other objects
 
@@ -524,13 +562,13 @@ The `prov/prov-dcm2niix_soft.json` file describes `dcm2niix`, the software packa
 
 ```JSON
 {
-  "Software": [
-    {
-      "Id": "bids::prov#dcm2niix-khhkm7u1",
-      "Label": "dcm2niix",
-      ...
-    }
-  ]
+    "Software": [
+        {
+            "Id": "bids::prov#dcm2niix-khhkm7u1",
+            "Label": "dcm2niix",
+            ...
+        }
+    ]
 }
 ```
 
@@ -629,13 +667,13 @@ The `prov/prov-spm_act.json` file describes the preprocessing steps (activities)
 
 ```JSON
 {
-    "ProvEntities": [
+    "Files": [
         ...
         {
-          "Id": "urn:c1d082a5-34ee-4282-99df-28c0ba289210",
-          "Label": "TPM.nii",
-          "AtLocation": "spm12/tpm/TPM.nii",
-          ...
+            "Id": "urn:c1d082a5-34ee-4282-99df-28c0ba289210",
+            "Label": "TPM.nii",
+            "AtLocation": "spm12/tpm/TPM.nii",
+            ...
         },
         ...
     ]
@@ -690,6 +728,9 @@ A guide for using macros can be found at
         "sourcedata": {
             "raw": {
                 "dataset_description.json": "",
+                "prov": {
+                    "prov-raw_ent.json": "",
+                },
                 "sub-001": {
                     "sub-001_T1w.json": "",
                     "sub-001_T1w.nii.gz": ""
@@ -731,7 +772,7 @@ The `prov/prov-seg_desc-exp1_act.json` file describes the activity during which 
 }
 ```
 
-Note that a description of the `sub-001/anat/sub-001_T1w.nii.gz` file is needed inside `derivatives/seg/prov/prov-seg_ent.json` because this data file is not in the `derivative/seg` dataset.
+Note that a minimal description of the `sub-001/anat/sub-001_T1w.nii.gz` file is needed inside `derivatives/seg/prov/prov-seg_ent.json` because this data file is not in the `derivative/seg` dataset. This is compatible with a supplementary description of the data file being stored in its dataset, inside `sourcedata/raw/prov/prov-raw_ent.json`.
 
 Under the `derivatives/seg` dataset, the `sub-001_space-orig_desc-exp1_dseg.json` file describes that this activity generated the `sub-001_space-orig_desc-exp1_dseg.nii.gz` file.
 
