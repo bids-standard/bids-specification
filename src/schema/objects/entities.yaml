@@ -44,18 +44,6 @@ ceagent:
     `"ContrastBolusIngredient"` MAY also be added in the JSON file, with the same label.
   type: string
   format: label
-cohort:
-  name: cohort
-  display_name: Cohort
-  description: |
-    A set of subjects sharing one or more common characteristics.
-
-    In the context of a template, the `cohort-<label>` entity identifies a subset of
-    subjects or sessions that were used to construct template variations.
-    For example, a developmental template may use scans from participants of different ages,
-    longitudinal sessions of the same participants, or a combination of the two.
-  type: string
-  format: label
 chunk:
   name: chunk
   display_name: Chunk

@@ -130,8 +130,7 @@ in that directory.
 
 **Specific structure of derived data**.
 In the case of [storing derived data (see below)](#source-vs-raw-vs-derived-data),
-template (`tpl-<label>`) directories may be found at the root of the dataset,
-and these may include cohort (`cohort-<label>`) subdirectories.
+template (`tpl-<label>`) directories may be found at the root of the dataset.
 These directories are described in [Templates and atlases](derivatives/atlas.md).
 
 ### Other top level directories
@@ -415,9 +414,7 @@ possible (that is, unless explicitly contradicted for derivatives).
 Any subject-specific derivatives SHOULD be housed within each subject's directory;
 if session-specific derivatives are generated, they SHOULD be deposited under a
 session subdirectory within the corresponding subject directory; and so on.
-Likewise, any template-specific derivatives SHOULD be housed within each template's directory;
-if cohort-specific derivatives are generated, they SHOULD be deposited under a
-cohort subdirectory within the corresponding template directory; and so on.
+Likewise, any template-specific derivatives SHOULD be housed within each template's directory.
 
 ### Non-compliant derivatives
 

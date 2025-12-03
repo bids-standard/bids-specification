@@ -163,4 +163,3 @@ atlas:
   base:
     entities:
       template: required
-      cohort: optional

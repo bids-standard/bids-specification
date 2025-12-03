@@ -36,9 +36,8 @@ Template:
 ```Text
 <pipeline_name>/
     tpl-<label>/
-        [cohort-<label>/]
-           [<datatype>/]
-               tpl-<label>[_cohort-<label>][_<entities>]_<suffix>.<extension>
+        [<datatype>/]
+            tpl-<label>[_<entities>]_<suffix>.<extension>
 ```
 
 where [`suffix`](../glossary.md#suffix-common_principles) is any valid BIDS suffix
@@ -47,23 +46,10 @@ such as `T1w` or `PET`; and
 such as `nii[.gz]`, `dscalar.nii[.gz]`, `dlabel.nii[.gz]`, `label.gii`, `tsv`, or `json`.
 Templates and atlases do not establish new suffixes or extensions,
 but any valid BIDS/BIDS Derivatives filename is permitted in a template directory,
-substituting `tpl` for `sub` and `cohort` for `ses`.
+substituting `tpl` for `sub`.
 
 The [`<datatype>/` directory](../glossary.md#data_type-common_principles) MAY be omitted in the case
 only one data type (such as `anat/`) is stored under the `tpl-<label>/` directory.
-
-The [`cohort-<label>` directory and entity](../appendices/entities.md#cohort) MUST be specified for templates
-with several cohorts.
-
-!!! note "Dataset structure"
-
-    In templates/atlases the [`tpl-<label>`](../appendices/entities.md#tpl) and
-    [`cohort-<label>`](../appendices/entities.md#cohort) entities are structurally
-    analogous to the [`sub-<label>`](../appendices/entities.md#sub)
-    and [`ses-<label>`](../appendices/entities.md#ses) entities,
-    appearing as both directories and entities.
-    The [`cohort-<label>`](../appendices/entities.md#cohort) entity is used
-    to track mappings of arbitrary subject/session pairs.
 
 In BIDS, a template is considered *any* aggregation of data and the `tpl-` entity
 replaces the subject-level `sub-` entity when aggregating data across subjects.
@@ -107,9 +93,9 @@ A guide for using macros can be found at
 
 ### Example: Multi-cohort template
 
-In the case that the template-generating pipeline derives
-several cohorts, the file structure must employ the
-[`cohort-<label>` directory and entity](../appendices/entities.md#cohort).
+In the case that the template-generating pipeline derives several related templates,
+each template is assigned a unique label.
+In this example, a common prefix is used to indicate a family of related templates:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -117,24 +103,22 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example({
    "mnipediatricasym-pipeline": {
-      "tpl-MNIPediatricAsym": {
-         "cohort-1": {
-            "tpl-MNIPediatricAsym_cohort-1_T1w.nii.gz": "",
-            "tpl-MNIPediatricAsym_cohort-1_T2w.nii.gz": "",
-            "tpl-MNIPediatricAsym_cohort-1_PDw.nii.gz": "",
-            "tpl-MNIPediatricAsym_cohort-1_desc-brain_mask.nii.gz": "",
-            "tpl-MNIPediatricAsym_cohort-1_probseg.nii.gz": "",
-            "tpl-MNIPediatricAsym_cohort-1_probseg.json": "",
-         },
-         "...": "",
-         "cohort-6": {
-            "tpl-MNIPediatricAsym_cohort-6_T1w.nii.gz": "",
-            "tpl-MNIPediatricAsym_cohort-6_T2w.nii.gz": "",
-            "tpl-MNIPediatricAsym_cohort-6_PDw.nii.gz": "",
-            "tpl-MNIPediatricAsym_cohort-6_desc-brain_mask.nii.gz": "",
-            "tpl-MNIPediatricAsym_cohort-6_probseg.nii.gz": "",
-            "tpl-MNIPediatricAsym_cohort-6_probseg.json": "",
-         },
+      "tpl-MNIPediatricAsym+1": {
+         "tpl-MNIPediatricAsym+1_T1w.nii.gz": "",
+         "tpl-MNIPediatricAsym+1_T2w.nii.gz": "",
+         "tpl-MNIPediatricAsym+1_PDw.nii.gz": "",
+         "tpl-MNIPediatricAsym+1_desc-brain_mask.nii.gz": "",
+         "tpl-MNIPediatricAsym+1_probseg.nii.gz": "",
+         "tpl-MNIPediatricAsym+1_probseg.json": "",
+      },
+      "...": "",
+      "tpl-MNIPediatricAsym+6": {
+         "tpl-MNIPediatricAsym+6_T1w.nii.gz": "",
+         "tpl-MNIPediatricAsym+6_T2w.nii.gz": "",
+         "tpl-MNIPediatricAsym+6_PDw.nii.gz": "",
+         "tpl-MNIPediatricAsym+6_desc-brain_mask.nii.gz": "",
+         "tpl-MNIPediatricAsym+6_probseg.nii.gz": "",
+         "tpl-MNIPediatricAsym+6_probseg.json": "",
       },
    }
 })
@@ -192,9 +176,8 @@ Template:
 <pipeline_name>/
     atlas-<label>_description.json
     tpl-<label>/
-        [cohort-<label>/]
-           [<datatype>/]
-               tpl-<label>[_cohort-<label>][_<entities>]_<suffix>.<extension>
+        [<datatype>/]
+            tpl-<label>[_<entities>]_<suffix>.<extension>
 ```
 
 ### Atlas identification and metadata
