@@ -4261,6 +4261,6 @@ Width:
   name: Width
   display_name: Video Width
   description: |
-    Width of the video in pixels (for example, `1080`).
+    Width of the video in pixels (for example, `1920`).
   type: integer
   minimum: 1
