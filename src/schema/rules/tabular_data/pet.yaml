@@ -91,7 +91,7 @@ PETDerivativesKineticModeling:
   columns:
     index:
       level: recommended
-    name:
+    name__kinetic_modeling:
       level: recommended
     parameter:
       level: recommended

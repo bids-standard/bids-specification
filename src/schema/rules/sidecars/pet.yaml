@@ -502,47 +502,21 @@ PETDerivativesKineticModeling:
         Y in "Sources", regardless of whether X was used to generate Y.
     ModelName:
       level: recommended
-      description_addendum: |
-        Specifies the name of the kinetic model used (For example, 1TCM, SRTM:
-        see the “Kinetic Model and Parameter Names Guidelines” section below).
-        This field is intended to broadly define the applied model, and does
-        not need to be exhaustive. Please use the aforementioned abbreviations
-        when applicable, and for other models please use only letters and numbers.
     ReferenceRegion:
       level: recommended
-      description_addendum: |
-        Specifies the name of the kinetic model used (e.g., 1TCM, SRTM etc.: 
-        see the “Kinetic Model and Parameter Names Guidelines” section below). 
-        This field is intended to broadly define the applied model, and does 
-        not need to be exhaustive. Please use the aforementioned abbreviations 
-        when applicable, and for other models please use only letters and 
-        numbers.
     BloodType:
       level: optional
-      description_addendum: |
-        Indicates the type of blood input used (arterial, venous, plasma, or other)
     AdditionalModelDetails:
       level: optional
-      description_addendum: |
-        Provides additional details about the model, such as specific fitting procedures
-        or contraints such as, "fit to first 5 minutes".
     InputValues:
       level: recommended
       description_addendum: |
-        Contains fixd values used as inputs for the model, such as k2prime, VB, or 
-        delay.
     InputValuesLabels:
       level: recommended
-      description_addendum: |
-        Contains the labels for fixed values used as inputs fro the model such as k2prime, VB, or delay.
     InputValuesUnits:
       level: recommended
-      description_addendum: |
-        Contains the units for fixed values used as inputs for the model, such as k2prime, VB, or delay.
     Weights:
       level: recommended
-      description_addendum: |
-        Lists any weights applied during the modeling process.
     SoftwareName:
       level: optional
     SoftwareVersion:

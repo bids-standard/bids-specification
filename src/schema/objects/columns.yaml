@@ -274,6 +274,12 @@ index:
   description: |
     The label integer index.
   type: integer
+input_function:
+  name: input_function
+  display_name: Input function
+  description: |
+    The input function used in blood processing.
+  type: string
 low_cutoff:
   name: low_cutoff
   display_name: Low cutoff
@@ -337,6 +343,12 @@ name__optodes:
   description: |
     Name of the optode, must be unique.
   type: string
+name__kinetic_modeling:
+  name: name
+  display_name: ROI name
+  description: |
+    Name of the region analyzed (e.g., "Cerebellum", "Frontal Cortex", etc.).
+  type: string
 # name column for dseg.tsv files
 name__segmentations:
   name: name
@@ -387,6 +399,27 @@ pathology:
     "Description": "Description of the pathology of the sample or type of control.",
     "Format": "string",
   }
+parameter:
+  name: parameter
+  display_name: Parameter
+  description: |
+    The name of the parameter estimated in long format (for example, "K1", "k2prime", "VB").
+  type: string
+parameter_name:
+  name: parameter_name
+  display_name: Parameter name
+  description: |
+    The estimated value for each parameter. Each parameter should be represented by a column 
+    (for example, R1, k2, BPND). See the “Kinetic Model and Parameter Name Guidelines”
+  type: string
+parameter_name-se:
+  name: parameter_name-se
+  display_name: Parameter name standard error
+  description: |
+    The estimated standard error of the parameter as a percentage of its value,
+    i.e. the %SE. The column name should be the same as for the parameter name,
+    but with the addition of “-se”.
+  type: string
 participant_id:
   name: participant_id
   display_name: Participant ID
@@ -815,6 +848,13 @@ whole_blood_radioactivity:
   description: |
     Radioactivity in whole blood samples,
     in unit of radioactivity measurements in whole blood samples (for example, `kBq/mL`).
+  type: number
+whole_plasma_radioactivity:
+  name: whole_blood_radioactivity
+  display_name: Whole plasma radioactivity
+  description: |
+    Radioactivity in whole plasma samples,
+    in unit of radioactivity measurements in whole plasma samples (for example, `kBq/mL`).
   type: number
 x:
   name: x
