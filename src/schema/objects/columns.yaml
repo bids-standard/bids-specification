@@ -1149,6 +1149,13 @@ wavelength_emission_actual:
     `n/a` for channels that do not contain raw NIRS signals (acceleration).
     This field is equivalent to `measurementList.wavelengthEmissionActual` in the SNIRF specification.
   type: number
+width__probes:
+  name: width
+  display_name: Width
+  description: |
+    Physical width of the probe, for example, '5'.
+    This dimension corresponds to the x-axis of the probe's local coordinate frame.
+  type: number
 whole_blood_radioactivity:
   name: whole_blood_radioactivity
   display_name: Whole blood radioactivity
