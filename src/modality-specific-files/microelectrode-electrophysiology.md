@@ -368,6 +368,27 @@ Probes are electrode-bearing devices that interface with neural tissue to record
 The probe positions and properties are stored in a `.tsv` file.
 This file contains the probe ID, the type of recording (acute/chronic), and the probe coordinates.
 
+{{ MACROS___make_columns_table("microephys.microephysProbes") }}
+
+### Example `*_probes.tsv`
+
+**Extracellular electrophysiology example:**
+
+```tsv
+probe_name	type	AP	ML	DV	AP_angle	ML_angle	rotation_angle	hemisphere	manufacturer	device_serial_number	electrode_count	width	height	depth	dimension_unit	coordinate_reference_point	anatomical_reference_point	associated_brain_region	associated_brain_region_id	reference_atlas	material
+probe01	silicon-probe	-2.5	1.5	-4.0	15	0	0	L	IMEC	NP1100-2205	384	70	20	10000	um	tip	Bregma	Primary Motor Cortex	MOp	Franklin-Paxinos	silicon
+probe02	tetrode	-1.2	-2.1	-3.5	0	10	45	R	Neuralynx	TT-12345	4	n/a	n/a	n/a	um	tip	Bregma	Hippocampus CA1	CA1	Paxinos-Watson	tungsten
+```
+
+**Intracellular electrophysiology example:**
+
+```tsv
+probe_name	type	AP	ML	DV	AP_angle	ML_angle	rotation_angle	hemisphere	manufacturer	electrode_count	coordinate_reference_point	associated_brain_region	associated_brain_region_id	reference_atlas
+pipette01	patch-pipette	-1.8	0.5	-2.2	30	0	0	L	Sutter	1	tip	Visual Cortex Layer 2/3	VISp2/3	AllenCCFv3
+pipette02	patch-pipette	-1.8	-0.5	-2.2	30	0	0	R	Sutter	1	tip	Visual Cortex Layer 2/3	VISp2/3	AllenCCFv3
+pipette03	sharp-electrode	-3.2	1.2	-3.8	20	5	0	L	WPI	1	tip	Prefrontal Cortex Layer 5	PL5	Franklin-Paxinos
+```
+
 ### ProbeInterface Library
 
 [ProbeInterface](https://github.com/SpikeInterface/probeinterface) is a standard for specifying electrode layouts on probes.
@@ -418,27 +439,6 @@ A guide for using macros can be found at
       },
    }
 ) }}
-
-{{ MACROS___make_columns_table("microephys.microephysProbes") }}
-
-### Example `*_probes.tsv`
-
-**Extracellular electrophysiology example:**
-
-```tsv
-probe_name	type	AP	ML	DV	AP_angle	ML_angle	rotation_angle	hemisphere	manufacturer	device_serial_number	electrode_count	width	height	depth	dimension_unit	coordinate_reference_point	anatomical_reference_point	associated_brain_region	associated_brain_region_id	reference_atlas	material
-probe01	silicon-probe	-2.5	1.5	-4.0	15	0	0	L	IMEC	NP1100-2205	384	70	20	10000	um	tip	Bregma	Primary Motor Cortex	MOp	Franklin-Paxinos	silicon
-probe02	tetrode	-1.2	-2.1	-3.5	0	10	45	R	Neuralynx	TT-12345	4	n/a	n/a	n/a	um	tip	Bregma	Hippocampus CA1	CA1	Paxinos-Watson	tungsten
-```
-
-**Intracellular electrophysiology example:**
-
-```tsv
-probe_name	type	AP	ML	DV	AP_angle	ML_angle	rotation_angle	hemisphere	manufacturer	electrode_count	coordinate_reference_point	associated_brain_region	associated_brain_region_id	reference_atlas
-pipette01	patch-pipette	-1.8	0.5	-2.2	30	0	0	L	Sutter	1	tip	Visual Cortex Layer 2/3	VISp2/3	AllenCCFv3
-pipette02	patch-pipette	-1.8	-0.5	-2.2	30	0	0	R	Sutter	1	tip	Visual Cortex Layer 2/3	VISp2/3	AllenCCFv3
-pipette03	sharp-electrode	-3.2	1.2	-3.8	20	5	0	L	WPI	1	tip	Prefrontal Cortex Layer 5	PL5	Franklin-Paxinos
-```
 
 ## Surgical Coordinates System
 
