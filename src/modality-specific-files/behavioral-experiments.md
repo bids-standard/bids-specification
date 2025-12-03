@@ -185,8 +185,8 @@ For a video file containing both video and audio streams:
   "AudioChannelCount": 2,
   "AudioSampleRate": 48000,
   "FrameRate": 30.0,
-  "Height": 1920,
-  "Width": 1080,
+  "Height": 1080,
+  "Width": 1920,
   "Duration": 600.5
 }
 ```
