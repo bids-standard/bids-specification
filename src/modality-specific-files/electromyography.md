@@ -202,7 +202,6 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("emg.EMGOptional") }}
 
-
 #### Hardware information
 
 <!-- This block generates a metadata table.
