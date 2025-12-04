@@ -94,9 +94,13 @@ export interface Associations {
      */
     channels?: Channels;
     /**
-     * Coordinate system file
+     * Coordinate system file (first found)
      */
     coordsystem?: Coordsystem;
+    /**
+     * Coordinate system files (all)
+     */
+    coordsystems?: Coordsystems;
     /**
      * Electrodes file
      */
@@ -200,13 +204,31 @@ export interface Channels {
 }
 
 /**
- * Coordinate system file
+ * Coordinate system file (first found)
  */
 export interface Coordsystem {
     /**
      * Path to associated coordsystem file
      */
     path: string;
+}
+
+/**
+ * Coordinate system files (all)
+ */
+export interface Coordsystems {
+    /**
+     * ParentCoordinateSystem fields loaded from files
+     */
+    ParentCoordinateSystems: string[];
+    /**
+     * Paths to associated coordsystem files
+     */
+    paths: string[];
+    /**
+     * Space entity labels extracted from file names
+     */
+    spaces: string[];
 }
 
 /**
