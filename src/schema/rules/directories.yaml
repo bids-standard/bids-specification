@@ -45,6 +45,12 @@ study:
     name: prov
     level: optional
     opaque: false
+    subdirs:
+      - subprov
+  subprov:
+    entity: prov
+    level: optional
+    opaque: false
   sourcedata:
     name: sourcedata
     level: optional
@@ -84,6 +90,12 @@ raw:
     opaque: false
   prov:
     name: prov
+    level: optional
+    opaque: false
+    subdirs:
+      - subprov
+  subprov:
+    entity: prov
     level: optional
     opaque: false
   sourcedata:
@@ -147,6 +159,12 @@ derivative:
     opaque: false
   prov:
     name: prov
+    level: optional
+    opaque: false
+    subdirs:
+      - subprov
+  subprov:
+    entity: prov
     level: optional
     opaque: false
   sourcedata:
