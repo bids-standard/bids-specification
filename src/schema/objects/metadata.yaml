@@ -2176,7 +2176,7 @@ LevelType:
   name: LevelType
   display_name: LevelType
   description: |
-    Indicate what analysis level the atlas was derived from, for example, "group", "individual".
+    Indicate what analysis level the atlas was derived from; for example, "group" or "individual".
   type: string
 License:
   name: License
