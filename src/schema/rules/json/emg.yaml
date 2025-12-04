@@ -12,9 +12,9 @@ EMGCoordsystemPositions:
     - suffix == "coordsystem"
   fields:
     EMGCoordinateSystem:
-        level: required
-        description_addendum: |
-            `"Other"` is the only valid value until standardized names become available for EMG coordinate systems.
+      level: required
+      description_addendum: |
+          `"Other"` is the only valid value until standardized names become available for EMG coordinate systems.
     EMGCoordinateUnits: required
     EMGCoordinateSystemDescription:
       level: recommended
