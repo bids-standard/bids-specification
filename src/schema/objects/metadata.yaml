@@ -823,7 +823,7 @@ DerivedFrom:
   name: DerivedFrom
   display_name: DerivedFrom
   description: |
-    Indicate what data modality the atlas was derived from, for example, "cytoarchitecture", "resting-state", "task".
+    Indicate what data modality the atlas was derived from; for example, "cytoarchitecture", "resting-state", or "task".
   type: string
 Description:
   name: Description
