@@ -202,9 +202,6 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("emg.EMGOptional") }}
 
-Note that the date and time information SHOULD be stored in the study key file
-([`scans.tsv`](../modality-agnostic-files/data-summary-files.md#scans-file)).
-Date time information MUST be expressed as indicated in [Units](../common-principles.md#units).
 
 #### Hardware information
 
@@ -308,16 +305,16 @@ Note that upper-case is REQUIRED:
 
 | **Keyword** | **Description**                                                                                                                                                                                                                                                                   |
 | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| VEOG        | Vertical EOG (electrooculogram)                                                                                                                                                                                                                                                   |
-| HEOG        | Horizontal EOG                                                                                                                                                                                                                                                                    |
-| EOG         | Generic EOG channel if HEOG or VEOG information not available                                                                                                                                                                                                                     |
 | ECG         | ElectroCardioGram (heart)                                                                                                                                                                                                                                                         |
 | EMG         | ElectroMyoGram (muscle)                                                                                                                                                                                                                                                           |
-| TRIG        | Analog (TTL in Volt) or digital (binary TTL) trigger channel                                                                                                                                                                                                                      |
-| MISC        | Miscellaneous                                                                                                                                                                                                                                                                     |
-| SYSCLOCK    | Elapsed time since trial/recording start, as provided by the recording device.                                                                                                                                                                                                    |
+| EOG         | Generic EOG channel if HEOG or VEOG information not available                                                                                                                                                                                                                     |
+| HEOG        | Horizontal EOG                                                                                                                                                                                                                                                                    |
 | LATENCY     | Latency of sample, in seconds from recording onset, typically from an _external_ clock source. See `acq_time` column of the respective `*_scans.tsv` file. MUST be in form of `s[.000000]`, where `s` reflects whole seconds, and `.000000` reflects OPTIONAL fractional seconds. |
+| MISC        | Miscellaneous                                                                                                                                                                                                                                                                     |
 | REF         | Reference channel                                                                                                                                                                                                                                                                 |
+| SYSCLOCK    | Elapsed time since trial/recording start, as provided by the recording device.                                                                                                                                                                                                    |
+| TRIG        | Analog (TTL in Volt) or digital (binary TTL) trigger channel                                                                                                                                                                                                                      |
+| VEOG        | Vertical EOG (electrooculogram)                                                                                                                                                                                                                                                   |
 
 Examples of common free-form text for the `description` column (these should occur _without enclosing quotation marks_):
 
