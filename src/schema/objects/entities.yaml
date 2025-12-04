@@ -340,7 +340,7 @@ segmentation:
     [atlases](SPEC_ROOT/common-principles.md#definitions),
     please refer to the [template and atlas section](SPEC_ROOT/derivatives/atlas.md)
     for detailed specifications on their combined use.
-    When a segmentation *is a realization* of an atlas' segmentation or parcellation,
+    When a segmentation is a *realization* of an atlas' segmentation or parcellation,
     `seg-<label>` SHOULD be employed to distinguish them.
     For example, the [Yeo 2011 atlas](https://doi.org/10.1152/jn.00338.2011)
     is distributed within *FreeSurfer* with two different parcellations:
