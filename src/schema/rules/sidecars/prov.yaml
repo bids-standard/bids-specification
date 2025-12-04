@@ -1,0 +1,7 @@
+---
+CommonProvenanceFields:
+  fields:
+    FileGeneratedById: optional
+    SidecarGeneratedBy: optional
+    FileDigest: optional
+    FileType: optional
