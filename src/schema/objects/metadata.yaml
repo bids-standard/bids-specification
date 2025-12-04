@@ -3567,10 +3567,10 @@ ScreenOrigin:
     refer to the top-left corner of the screen, or ("center", "center") if the position
     (0, 0) is at the center or the screen's extent.
   type: array
+  maxItems: 2
+  minItems: 2
   items:
     type: string
-    maxItems: 2
-    minItems: 2
     enum:
       - "top"
       - "bottom"
