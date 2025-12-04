@@ -335,10 +335,10 @@ segmentation:
     (segmentations or parcellations).
 
     Segmentations and parcellations MAY or MAY NOT be associated with
-    [atlases](SPEC_ROOT/common-principles.md#definitions),
+    [atlases](SPEC_ROOT/common-principles.md#definitions).
     Therefore, `seg-<label>` SHOULD NOT be used to designate
-    [atlases](SPEC_ROOT/common-principles.md#definitions),
-    please refer to the [template and atlas section](SPEC_ROOT/derivatives/atlas.md)
+    [atlases](SPEC_ROOT/common-principles.md#definitions).
+    Please refer to the [template and atlas section](SPEC_ROOT/derivatives/atlas.md)
     for detailed specifications on their combined use.
     When a segmentation is a *realization* of an atlas' segmentation or parcellation,
     `seg-<label>` SHOULD be employed to distinguish them.
