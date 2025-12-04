@@ -218,7 +218,7 @@ AtlasName:
   type: string
 AtlasSampleSize:
   name: SampleSize
-  display_name: Atlas' sample size
+  display_name: The sample size of the reference dataset used to generate the atlas
   description: |
       Number of items (typically, independent participants,
       although it could also refer, for example, to sessions)
