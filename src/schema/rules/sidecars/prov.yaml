@@ -1,5 +1,6 @@
 ---
 CommonProvenanceFields:
+  selectors: null
   fields:
     FileGeneratedById: optional
     SidecarGeneratedBy: optional
