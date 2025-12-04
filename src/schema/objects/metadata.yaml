@@ -220,9 +220,9 @@ AtlasSampleSize:
   name: SampleSize
   display_name: Atlas' sample size
   description: |
-      Number of items (typically, independent participants,
-      although it could also refer, for example, to sessions)
-      that employed to create the corresponding atlas.
+      Number of items (typically, independent participants;
+      although it could also refer to, for example, sessions)
+      that were employed to create the corresponding atlas.
   type: number
 AttenuationCorrection:
   name: AttenuationCorrection
