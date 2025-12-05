@@ -19,7 +19,7 @@ dataset_description:
     DatasetDOI: optional
     Type__Dataset: optional
     Digest__Dataset: optional
-    Dataset__GeneratedBy: recommended
+    GeneratedBy__Dataset: recommended
     SourceDatasets: recommended
 
 dataset_authors:
@@ -41,7 +41,7 @@ derivative_description:
     - path == "/dataset_description.json"
     - json.DatasetType == "derivative"
   fields:
-    Dataset__GeneratedBy: required
+    GeneratedBy__Dataset: required
 
 dataset_description_with_genetics:
   selectors:
