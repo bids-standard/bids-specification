@@ -17,8 +17,28 @@ ProvEntitiesProvenanceFile:
   selectors:
     - datatype == "prov"
     - suffix == "ent"
+    - '"Files" not in json'
+    - '"Datasets" not in json'
   fields:
-    ProvEntities: required
+    Entities__ProvEntities: required
+
+FilesProvenanceFile:
+  selectors:
+    - datatype == "prov"
+    - suffix == "ent"
+    - '"Datasets" not in json'
+    - '"Entities" not in json'
+  fields:
+    Files__ProvEntities: required
+
+DatasetsProvenanceFile:
+  selectors:
+    - datatype == "prov"
+    - suffix == "ent"
+    - '"Files" not in json'
+    - '"Entities" not in json'
+  fields:
+    Datasets__ProvEntities: required
 
 SoftwareProvenanceFile:
   selectors:
