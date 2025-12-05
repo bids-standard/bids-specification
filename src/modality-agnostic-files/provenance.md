@@ -34,6 +34,7 @@ and a guide for using macros can be found at
 ) }}
 
 !!! example "Example of metadata in a sidecar JSON file"
+
     ```JSON
     {
         "GeneratedBy": "bids::prov#conversion-00f3a18f",
