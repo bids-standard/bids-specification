@@ -631,6 +631,11 @@ env:
   description: |
     A JSON file containing objects describing environments in the context of provenance.
     (See the [`Environments`](SPEC_ROOT/modality-agnostic-files/provenance.md#environments) section).
+emg:
+  value: emg
+  display_name: Electromyography
+  description: |
+    Electromyography recording data.
 epi:
   value: epi
   display_name: EPI

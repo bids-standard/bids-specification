@@ -192,6 +192,10 @@ For example:
     Scientific Data 12, (13841).
     [doi:10.1038/s41597-025-05543-2](https://doi.org/10.1038/s41597-025-05543-2)
 
+#### EMG
+
+-   (publication forthcoming)
+
 ### Other extensions specific publications
 
 #### Provenance
