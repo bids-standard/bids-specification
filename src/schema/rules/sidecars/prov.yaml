@@ -3,7 +3,7 @@ CommonProvenanceFields:
   selectors:
     - true == true # rule is validated for all sidecars files
   fields:
-    FileGeneratedById: optional
+    GeneratedBy__Id__File: optional
     SidecarGeneratedBy: optional
-    FileDigest: optional
-    FileType: optional
+    Digest__File: optional
+    Type__File: optional

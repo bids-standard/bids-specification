@@ -26,10 +26,10 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_metadata_table(
    {
-      "FileGeneratedById": "OPTIONAL",
+      "GeneratedBy__Id__File": "OPTIONAL",
       "SidecarGeneratedBy": "OPTIONAL",
-      "FileDigest": "OPTIONAL",
-      "FileType": "OPTIONAL"
+      "Digest__File": "OPTIONAL",
+      "Type__File": "OPTIONAL"
    }
 ) }}
 
@@ -70,9 +70,9 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_metadata_table(
    {
-      "DatasetGeneratedById": "RECOMMENDED for BIDS raw datasets and BIDS study datasets, REQUIRED for BIDS derivative datasets",
-      "DatasetDigest": "OPTIONAL",
-      "DatasetProvType": "OPTIONAL"
+      "GeneratedBy__Id__Dataset": "RECOMMENDED for BIDS raw datasets and BIDS study datasets, REQUIRED for BIDS derivative datasets",
+      "Digest__Dataset": "OPTIONAL",
+      "Type__Dataset": "OPTIONAL"
    }
 ) }}
 
@@ -355,9 +355,9 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_metadata_table(
    {
-      "FileProvEntities": "REQUIRED if `Datasets` and `Entities` are not included",
-      "DatasetProvEntities": "REQUIRED if `Files` and `Entities` are not included",
-      "ProvEntities": "REQUIRED if `Files` and `Datasets` are not included"
+      "Files__ProvEntities": "REQUIRED if `Datasets` and `Entities` are not included",
+      "Datasets__ProvEntities": "REQUIRED if `Files` and `Entities` are not included",
+      "Entities__ProvEntities": "REQUIRED if `Files` and `Datasets` are not included"
    }
 ) }}
 
@@ -369,7 +369,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_subobject_table("metadata.FileProvEntities.items") }}
+{{ MACROS___make_subobject_table("metadata.Files__ProvEntities.items") }}
 
 Each object in the `Datasets` array includes the following keys:
 
@@ -379,7 +379,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_subobject_table("metadata.DatasetProvEntities.items") }}
+{{ MACROS___make_subobject_table("metadata.Datasets__ProvEntities.items") }}
 
 Each object in the `Entities` array includes the following keys:
 
@@ -389,7 +389,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_subobject_table("metadata.ProvEntities.items") }}
+{{ MACROS___make_subobject_table("metadata.Entities__ProvEntities.items") }}
 
 !!! example "Example: description of a file in a `prov/[<subdir>/]prov-<label>_ent.json` file"
 
