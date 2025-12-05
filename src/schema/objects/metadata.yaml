@@ -981,7 +981,7 @@ Digest__File:
     `SHA3-224`; `SHA3-256`; `SHA3-384`; `SHA3-512`; `BLAKE2B-256`; `BLAKE3-256`;
     `SHAKE128`; `SHAKE256`. Otherwise, key MAY be an arbitrary label.
     The corresponding value is the checksum as computed by the function identified by the key.
-  type: object  
+  type: object
 DigitizedHeadPoints:
   name: DigitizedHeadPoints
   display_name: Digitized Head Points
