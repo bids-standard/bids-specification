@@ -1,6 +1,11 @@
 ---
 # This file defines valid BIDS file suffixes.
 # For rules regarding how suffixes relate to datatypes, see files in `rules/files/raw/`.
+OnePE:
+  value: 1PE
+  display_name: 1-photon excitation microscopy
+  description: |
+    1-photon excitation microscopy imaging data
 TwoPE:
   value: 2PE
   display_name: 2-photon excitation microscopy
