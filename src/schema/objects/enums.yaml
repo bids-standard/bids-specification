@@ -75,6 +75,16 @@ _iEEGCoordSys:
     - $ref: objects.enums.ACPC.value
     - $ref: objects.enums.ScanRAS.value
     - $ref: objects.enums.Other.value
+_MicroephysCoordSys:
+  type: string
+  enum:
+    - $ref: objects.enums.Pixels.value
+    - $ref: objects.enums.Stereotaxic.value
+    - $ref: objects.enums.AllenCCFv3.value
+    - $ref: objects.enums.WaxholmSpace.value
+    - $ref: objects.enums.WistarRatAtlas.value
+    - $ref: objects.enums.individual.value
+    - $ref: objects.enums.Other.value
 left_hemisphere:
   value: 'L'
   display_name: Left Hemisphere
@@ -1542,3 +1552,50 @@ microvascular:
   display_name: microvascular
   description: |
     The origin of a tissue: microvascular
+Stereotaxic:
+  value: Stereotaxic
+  display_name: Stereotaxic
+  description: |
+    A generic stereotaxic coordinate system commonly used in animal neuroscience for surgical
+    targeting and electrode localization. The origin is at bregma, a skull landmark defined as
+    the intersection of the coronal and sagittal sutures. The x-axis corresponds to the
+    anterior-posterior (AP) axis with posterior being positive. The y-axis corresponds to the
+    dorsal-ventral (DV) or superior-inferior (SI) axis with ventral/inferior being positive.
+    The z-axis corresponds to the medial-lateral (ML) axis with right being positive.
+    Units are typically in millimeters or micrometers. When using this coordinate system,
+    the specific anatomical reference point and units should be specified in
+    `MicroephysCoordinateSystemDescription`.
+AllenCCFv3:
+  value: AllenCCFv3
+  display_name: Allen CCF v3
+  description: |
+    Allen Common Coordinate Framework version 3 (RRID:SCR_020999), a 3D reference space for
+    the mouse brain based on average anatomy. The framework provides a systematic way to
+    map and compare data across different experiments and labs. Origin and orientation
+    follow the Allen Institute conventions.
+    Reference: Wang Q, Ding SL, Li Y, Royall J, Feng D, Lesnar P, Graddis N, Naeemi M, Facer B,
+    Ho A, Dolbeare T, Blanchard B, Dee N, Wakeman W, Hirokawa KE, Szafer A, Sunkin SM, Oh SW,
+    Bernard A, Phillips JW, Hawrylycz M, Koch C, Zeng H, Harris JA, Ng L. The Allen Mouse Brain
+    Common Coordinate Framework: A 3D Reference Atlas. Cell. 2020 May 14;181(4):936-953.e20.
+    [doi:10.1016/j.cell.2020.04.007](https://doi.org/10.1016/j.cell.2020.04.007).
+WaxholmSpace:
+  value: WaxholmSpace
+  display_name: Waxholm Space
+  description: |
+    A standardized 3D coordinate system for the rat brain (RRID:SCR_001592) based on
+    high-resolution imaging data. Part of the Waxholm Space atlas of the Sprague Dawley
+    rat brain. For more information, see
+    [https://www.nitrc.org/projects/whs-sd-atlas](https://www.nitrc.org/projects/whs-sd-atlas).
+    Reference: Hawrylycz M, Baldock RA, Burger A, Hashikawa T, Johnson GA, Martone M, Ng L,
+    Lau C, Larson SD, Nissanov J, Puelles L, Ruffins S, Verbeek F, Zaslavsky I, Boline J.
+    Digital atlasing and standardization in the mouse brain. PLoS Comput Biol. 2011 Feb 3;7(2):e1001065.
+    [doi:10.1371/journal.pcbi.1001065](https://doi.org/10.1371/journal.pcbi.1001065).
+WistarRatAtlas:
+  value: WistarRatAtlas
+  display_name: Wistar Rat Atlas
+  description: |
+    A multidimensional magnetic resonance histology atlas of the adult Wistar rat brain
+    (RRID:SCR_006288). This atlas provides high-resolution anatomical reference for rat brain studies.
+    Reference: Johnson GA, Calabrese E, Badea A, Paxinos G, Watson C. A multidimensional magnetic resonance
+    histology atlas of the Wistar rat brain. Neuroimage. 2012 Sep;62(3):1848-56.
+    [doi:10.1016/j.neuroimage.2012.05.041](https://doi.org/10.1016/j.neuroimage.2012.05.041).

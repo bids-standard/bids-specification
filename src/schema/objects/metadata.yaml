@@ -2109,7 +2109,7 @@ MicroephysCoordinateSystem:
     on 2D coordinate systems.
     For a list of valid values for this field, see the associated glossary entry.
   anyOf:
-    # - $ref: objects.enums._MicroephysCoordSys
+    - $ref: objects.enums._MicroephysCoordSys
     - $ref: objects.enums._StandardTemplateCoordSys
 MicroephysCoordinateSystemDescription:
   name: MicroephysCoordinateSystemDescription
