@@ -6,3 +6,10 @@ EpochedData:
     - sidecar.RecordingType == 'epoched'
   fields:
     EpochLength: recommended
+
+EpochLengthRequired:
+  selectors:
+    - intersects([datatype], ['emg'])
+    - sidecar.RecordingType == 'epoched'
+  fields:
+    EpochLength: required

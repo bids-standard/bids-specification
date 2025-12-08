@@ -9,6 +9,25 @@ ACCELChannelCount:
     Number of acceleration channels.
   type: integer
   minimum: 0
+AnchorCoordinates:
+  name: AnchorCoordinates
+  display_name: Anchor Coordinates
+  description: |
+    Coordinates of the `AnchorElectrode` in the parent (anatomical) coordinate system.
+    This should be an array of numbers of length 3, in the units given in
+    `EMGCoordinateSystemUnits` within the JSON object named in `ParentCoordinateSystem`.
+  type: array
+  minItems: 1
+  maxItems: 3
+  items:
+    type: number
+AnchorElectrode:
+  name: AnchorElectrode
+  display_name: Anchor Electrode
+  description: |
+    Name of the electrode in the child (device) coordinate system whose coordinates in
+    the parent (anatomical) coordinate system are given in `AnchorCoordinates`.
+  type: string
 Acknowledgements:
   name: Acknowledgements
   display_name: Acknowledgements
@@ -1010,6 +1029,25 @@ EEGReference:
     this field should have a general description and the channel specific
     reference should be defined in the `channels.tsv` file.
   type: string
+ElectrodeMaterial:
+  name: ElectrodeMaterial
+  display_name: Electrode Material
+  description: |
+    Material of the electrode (for example, `Tin`, `Ag/AgCl`, `Gold`).
+    If multiple sensor devices with heterogeneous electrode materials are recorded into
+    the same data file,
+    electrode material SHOULD be recorded in the `material` column of `*_electrodes.tsv` instead.
+    If instead those devices were recorded into separate data files (distinguished for example
+    by the `recording` entity),
+    separate `*_emg.json` files (similarly distinguished) MAY be included,
+    each with their own `ElectrodeMaterial` values.
+  type: string
+ElectrodeType:
+  name: ElectrodeType
+  display_name: Electrode type
+  description: |
+    Type of the electrode (for example, cup, ring, clip-on, wire, needle).
+  type: string
 EMGChannelCount:
   name: EMGChannelCount
   display_name: EMG Channel Count
@@ -1017,6 +1055,92 @@ EMGChannelCount:
     Number of EMG channels.
   type: integer
   minimum: 0
+EMGCoordinateSystem:
+  name: EMGCoordinateSystem
+  display_name: EMG Coordinate System
+  description: |
+    Defines the coordinate system for the EMG sensors.
+
+    See the
+    [Coordinate Systems Appendix](SPEC_ROOT/appendices/coordinate-systems.md)
+    for a list of restricted keywords for coordinate systems.
+    If `"Other"`, provide definition of the coordinate system in
+    `EMGCoordinateSystemDescription`.
+  anyOf:
+    - $ref: objects.enums._EMGCoordSys
+EMGCoordinateSystemDescription:
+  name: EMGCoordinateSystemDescription
+  display_name: EMG Coordinate System Description
+  description: |
+    Free-form text description of the coordinate system, typically defining the origin
+    and positive x,y,z axis directions, relative to anatomical landmarks.
+    May also include a link to a documentation page or paper describing the
+    system in greater detail.
+  type: string
+EMGCoordinateUnits:
+  name: EMGCoordinateUnits
+  display_name: EMG Coordinate Units
+  description: |
+    Units of the coordinates of `EMGCoordinateSystem`.
+  type: string
+  enum:
+    - m
+    - mm
+    - cm
+    - percent
+    - n/a
+EMGGround:
+  name: EMGGround
+  display_name: EMG Ground
+  description: |
+    Description of the location of the ground electrode
+    (for example, `"right radial styloid process"`).
+  type: string
+EMGPlacementScheme:
+  name: EMGPlacementScheme
+  display_name: EMG Placement Scheme
+  description: |
+    The way in which electrode placement locations were determined.
+    If electrode locations are provided as coordinates in `*_electrodes.tsv` in reference
+    to a coordinate system defined in `*_coordsystem.json`, then specify `"Measured"`.
+    If approach to placement varied across sensor devices, specify `"ChannelSpecific"`
+    and include placement details in the `placement_scheme` column of `*_channels.tsv`.
+    If a standardized electrode placement procedure (for example, SENIAM 8) was followed,
+    or if an ad-hoc procedure was followed, specify `"Other"` and provide details in
+    `EMGPlacementSchemeDescription`.
+  type: string
+  enum:
+    - ChannelSpecific
+    - Measured
+    - Other
+EMGPlacementSchemeDescription:
+  name: EMGPlacementSchemeDescription
+  display_name: EMG Placement Scheme Description
+  description: |
+    Additional details of the approach to EMG sensor placement.
+    Descriptions SHOULD NOT simply give the name of the targeted muscle (use the
+    `target_muscle` column in `*_channels.tsv` for that), but rather SHOULD reflect the
+    process used by the researcher(s) when placing electrodes.
+    For example, EMG electrode sites may be chosen by *measured distance* from anatomical
+    landmarks, by *visual reference* to (parts of) target muscles, by *palpation* of the
+    skin to locate target muscles, or by *functional localization* (temporary electrode
+    placement at several sites during prescribed behavior, until a site yielding strong
+    EMG signal is found).
+  type: string
+EMGReference:
+  name: EMGReference
+  display_name: EMG Reference
+  description: |
+    Description of the approach to signal referencing.
+    If the same signal source is used as reference for all channels (often called a
+    "monopolar" recording), specify the signal source (typically an electrode name).
+    If different channels have different reference electrodes, this field SHOULD contain
+    the string `"ChannelSpecific"` and each channel's reference SHOULD be given in the
+    `reference` column of `*_channels.tsv`.
+    For bipolar recording devices (where a single sensor unit contains two rigidly
+    separated contacts, and the paired contacts are not listed independently in
+    `*_electrodes.tsv`), this field SHOULD be `"Bipolar"`.
+  type: string
 EOGChannelCount:
   name: EOGChannelCount
   display_name: EOG Channel Count
@@ -1374,6 +1498,14 @@ Funding:
   type: array
   items:
     type: string
+Gain:
+  name: Gain
+  display_name: Gain
+  description: |
+    Signal gain from an in-line amplifier, applied between the EMG sensor/device and the data acquisition computer.
+    See also Preamplification.
+  type: number
+  unit: arbitrary
 GeneratedBy:
   name: GeneratedBy
   display_name: Generated By
@@ -1804,6 +1936,21 @@ IntendedFor__ds_relative:
             format: bids_uri
           - type: string
             format: dataset_relative
+InterelectrodeDistance:
+  name: InterelectrodeDistance
+  display_name: Inter-electrode Distance
+  description: |
+    Distance between pairs or grids of electrodes rigidly attached to the same sensor device.
+    If multiple sensor devices with heterogeneous inter-electrode distances are recorded into
+    the same data file,
+    inter-electrode distance SHOULD be recorded in the `interelectrode_distance` column of
+    `*_electrodes.tsv` instead.
+    If instead those devices were recorded into separate data files (distinguished for example
+    by the `recording` entity),
+    separate `*_emg.json` files (similarly distinguished) MAY be included,
+    each with their own `InterelectrodeDistance` values.
+  type: number
+  unit: mm
 InversionTime:
   name: InversionTime
   display_name: Inversion Time
@@ -2679,6 +2826,13 @@ ParallelReductionFactorOutOfPlane:
     Corresponds to [DICOM Tag 0018, 9155](https://dicomlookup.com/dicomtags/(0018,9155))
     `Parallel Reduction Factor out-of-plane`.
   type: number
+ParentCoordinateSystem:
+  name: ParentCoordinateSystem
+  display_name: Parent Coordinate System
+  description: |
+    The name of a JSON mapping key that defines the parent (anatomical) coordinate system
+    in which this child (device) coordinate system is anchored.
+  type: string
 PartialFourier:
   name: PartialFourier
   display_name: Partial Fourier
@@ -2865,6 +3019,14 @@ PowerLineFrequency:
     - type: string
       enum:
         - n/a
+Preamplification:
+  name: Preamplification
+  display_name: Preamplification
+  description: |
+    Amplification built into an EMG bipolar sensor, electrode grid, or other device.
+    See also Gain.
+  type: number
+  unit: arbitrary
 PromptRate:
   name: PromptRate
   display_name: Prompt Rate
@@ -3492,6 +3654,13 @@ SinglesRate:
   type: array
   items:
     type: number
+SkinPreparation:
+  name: SkinPreparation
+  display_name: Skin Preparation
+  description: |
+    How skin was prepared prior to sensor device placement, for example, `"alcohol wipe"`
+    or `"abrasive gel"`.
+  type: string
 SkullStripped:
   name: SkullStripped
   display_name: Skull Stripped

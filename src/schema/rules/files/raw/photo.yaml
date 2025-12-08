@@ -15,6 +15,14 @@ photo:
     $ref: meta.templates.raw.base.entities
     acquisition: optional
 
+photo__emg:
+  $ref: rules.files.raw.photo.photo
+  datatypes:
+    - emg
+  entities:
+    $ref: rules.files.raw.photo.photo.entities
+    recording: optional
+
 photo__micr:
   $ref: rules.files.raw.photo.photo
   extensions:
