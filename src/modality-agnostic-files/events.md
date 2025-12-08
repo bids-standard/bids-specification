@@ -397,3 +397,35 @@ A guide for using macros can be found at
 Additional metadata may be included as in
 [any TSV file](../common-principles.md#tabular-files) to specify, for
 example, the units of the recorded time series for each column.
+
+## Stimulus Organization
+
+For standardized organization and reuse of stimulus files, events may reference stimuli using two approaches:
+
+### Using `stim_file`
+
+Reference stimulus files directly using the `stim_file` column, where values represent the relative path to the stimulus file within the `/stimuli` directory:
+
+```JSON
+{
+    "stim_file": {
+        "LongName": "Stimulus file",
+        "Description": "Location of stimulus file presented at the given onset time, relative to /stimuli directory."
+    }
+}
+```
+
+### Using `stim_id`
+
+Reference stimulus identifiers using the `stim_id` column to link events to comprehensive stimulus metadata and annotations:
+
+```JSON
+{
+    "stim_id": {
+        "LongName": "Stimulus identifier",
+        "Description": "Unique identifier linking to stimulus files and annotations in /stimuli directory."
+    }
+}
+```
+
+For detailed information on stimulus file organization, metadata, and annotations, see the [Stimuli](./stimuli.md) specification.
