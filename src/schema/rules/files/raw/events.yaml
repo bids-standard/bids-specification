@@ -28,6 +28,13 @@ events__microephys:
     task: optional
     acquisition: optional
     run: optional
+events__emg:
+  $ref: rules.files.raw.events.events
+  datatypes:
+    - emg
+  entities:
+    $ref: rules.files.raw.events.events.entities
+    recording: optional
 
 events__mri:
   $ref: rules.files.raw.events.events

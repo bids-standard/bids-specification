@@ -7,6 +7,10 @@ _EEGCoordSys:
     - $ref: objects.enums.EEGLAB.value
     - $ref: objects.enums.EEGLAB-HJ.value
     - $ref: objects.enums.Other.value
+_EMGCoordSys:
+  type: string
+  enum:
+    - $ref: objects.enums.Other.value
 _GeneticLevelEnum:
   type: string
   enum:
@@ -756,11 +760,14 @@ LATENCY:
   value: LATENCY
   display_name: LATENCY
   tags:
+    - emg
     - motion
   description: |
     Latency of samples in seconds from recording onset.
     MUST be in form of `ss[.000000]`,
     where `[.000000]` is an optional subsecond resolution between 1 and 6 decimal points.
+    Note that `LATENCY` channels typically contain timestamps from an _external_ clock
+    source, often with the intent of synchronizing data across multiple devices.
 MAGN:
   value: MAGN
   display_name: MAGN
@@ -775,6 +782,7 @@ MISC:
   display_name: MISC
   tags:
     - eeg
+    - emg
     - meg
     - ieeg
     - fnirs
@@ -796,6 +804,7 @@ POS:
   value: POS
   display_name: POS
   tags:
+    - emg
     - motion
   description: |
     Position in space, one channel for each spatial axis.
@@ -834,6 +843,7 @@ EOG:
   display_name: EOG
   tags:
     - eeg
+    - emg
     - meg
     - ieeg
     - fnirs
@@ -845,6 +855,7 @@ ECG:
   display_name: ECG
   tags:
     - eeg
+    - emg
     - meg
     - ieeg
     - fnirs
@@ -856,6 +867,7 @@ EMG:
   display_name: EMG
   tags:
     - eeg
+    - emg
     - meg
     - ieeg
     - fnirs
@@ -885,6 +897,7 @@ HEOG:
   display_name: HEOG
   tags:
     - eeg
+    - emg
     - meg
     - ieeg
     - fnirs
@@ -914,6 +927,7 @@ REF:
   display_name: REF
   tags:
     - eeg
+    - emg
     - ieeg
     - microephys
   description: |
@@ -930,12 +944,15 @@ SYSCLOCK:
   display_name: SYSCLOCK
   tags:
     - eeg
+    - emg
     - meg
     - ieeg
     - fnirs
     - microephys
   description: |
-    System time showing elapsed time since trial started.
+    Elapsed time since trial/recording start, as provided by the recording device.
+    For device-external timestamp signals, use `LATENCY`.
+    For TTL-based synchronization signals, use `TRIG`.
 TEMP:
   value: TEMP
   display_name: TEMP
@@ -948,6 +965,7 @@ TRIG:
   display_name: TRIG
   tags:
     - eeg
+    - emg
     - meg
     - ieeg
     - fnirs
@@ -959,6 +977,7 @@ VEOG:
   display_name: VEOG
   tags:
     - eeg
+    - emg
     - meg
     - ieeg
     - fnirs
