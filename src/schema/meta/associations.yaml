@@ -108,7 +108,7 @@ probes:
   target:
     suffix: probes
     extension: .tsv
-    
+
 coordsystems:
   selectors:
     - datatype == 'emg'

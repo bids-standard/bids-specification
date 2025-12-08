@@ -354,7 +354,7 @@ pipette02	patch-pipette	-1.8	-0.5	-2.2	30	0	0	R	Sutter	1	tip	Visual Cortex Layer
 pipette03	sharp-electrode	-3.2	1.2	-3.8	20	5	0	L	WPI	1	tip	Prefrontal Cortex Layer 5	PL5	Franklin-Paxinos
 ```
 
-For details on the surgical coordinate system used to describe probe placement during surgery (AP, ML, DV, angles, and 
+For details on the surgical coordinate system used to describe probe placement during surgery (AP, ML, DV, angles, and
 anatomical reference points), see the [Microelectrode Surgical Coordinates](../appendices/microelectrode-surgical-coordinates.md)
 appendix.
 
