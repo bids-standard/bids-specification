@@ -1,6 +1,6 @@
 .PHONY:  tools/contributors.tsv
 
-.PHONY: all serve install update_contributors
+.PHONY: all serve install update_contributors formatschema
 
 all:
 	@echo "Nothing is done by default. Consider following targets:"
