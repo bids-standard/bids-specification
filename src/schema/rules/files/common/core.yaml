@@ -48,3 +48,6 @@ sourcedata:
 stimuli:
   level: optional
   path: stimuli
+probes:
+  level: optional
+  path: probes
