@@ -44,6 +44,7 @@ nav:
           - MEG file formats: appendices/meg-file-formats.md
           - MEG systems: appendices/meg-systems.md
           - Coordinate systems: appendices/coordinate-systems.md
+          - Microelectrode surgical coordinates: appendices/microelectrode-surgical-coordinates.md
           - Quantitative MRI: appendices/qmri.md
           - Arterial Spin Labeling: appendices/arterial-spin-labeling.md
           - Cross modality correspondence: appendices/cross-modality-correspondence.md
