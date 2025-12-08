@@ -215,6 +215,24 @@ Columns in the `*_channels.tsv` file are:
 
 {{ MACROS___make_columns_table("microephys.microephysChannels") }}
 
+### The `stream_id` Column
+
+The `stream_id` column links each channel to its corresponding data stream within the data file. The format of `stream_id` depends on the data file format:
+
+**For NWB files (`.nwb`):**
+The `stream_id` SHOULD be the internal HDF5 path to the neurodata object (typically an `ElectricalSeries`) that contains the voltage recordings for that channel, for example `/acquisition/ElectricalSeries`.
+If no path is provided, it is assumed to be `/acquisition/ElectricalSeries`.
+If the directory contains multiple NWB files, and not all of those files contain data from the channel, the `stream_id` SHOULD include the filename(s) that do followed by a colon and the internal path, for example `sub-01_ses-01_run-02_ecephys.nwb:/acquisition/ElectricalSeries`.
+
+**For NIX files (`.nix`):**
+The `stream_id` SHOULD reference the data array or signal within the NIX file structure that contains the recordings for that channel, following the NIX/Neo data organization.
+
+**Multiple data streams:**
+If a single channel's data spans multiple neurodata objects within a file or across multiple files,
+the `stream_id` MUST be specified as a comma-separated list.
+For example: `/acquisition/ElectricalSeries1,/acquisition/ElectricalSeries2` or
+`file1.nwb:/acquisition/ElectricalSeries,file2.nwb:/acquisition/ElectricalSeries`.
+
 ### Example `*_channels.tsv`
 
 **Extracellular electrophysiology example:**
