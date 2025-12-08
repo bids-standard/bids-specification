@@ -1,0 +1,9 @@
+---
+CommonProvenanceFields:
+  selectors:
+    - true == true # rule is validated for all sidecars files
+  fields:
+    GeneratedBy__Id__File: optional
+    SidecarGeneratedBy: optional
+    Digest__File: optional
+    Type__File: optional
