@@ -198,51 +198,7 @@ If the OPTIONAL [` task-<label>`](../appendices/entities.md#task) is used, the f
   "SliceThickness": 300,
   "TaskName": "MembraneProperties",
   "TaskDescription": "Characterization of intrinsic properties"
-}
 ```
-
-## Coordinate Systems for Electrode Positions
-
-Microelectrode electrophysiology supports two approaches for specifying electrode positions:
-
-### Default: Probe-Relative Coordinates
-
-By default, when no `space-<label>` entity is used:
-
--   `*_electrodes.tsv`: Electrode positions (`x`, `y`, `z`) are **relative to the probe origin**
--   `*_coordsystem.json`: **NOT REQUIRED** (probe-relative is the default)
--   The probe origin (0, 0, 0) is typically at the probe tip or a standard reference point
--   The reference point can be specified in the `coordinate_reference_point` column of `*_probes.tsv`
--   Units can be specified in the `dimension_unit` column of `*_probes.tsv`
-
-This is the most common case for in-vivo recordings where absolute anatomical localization is not available.
-
-### Optional: Anatomical Coordinate Systems
-
-When electrode positions are known in anatomical or stereotaxic space:
-
--   `*_space-<label>_electrodes.tsv`: Electrode positions in the specified coordinate system
--   `*_space-<label>_coordsystem.json`: **REQUIRED** to define the coordinate system
--   Examples of `<label>` values include `StereoTaxic`, `AllenCCFv3`, `PaxinosWatson`, `individual`, or other standard spaces listed in the [Coordinate Systems Appendix](../appendices/coordinate-systems.md)
-
-Multiple coordinate systems can coexist in the same dataset.
-
-Example file structure with both probe-relative and stereotaxic coordinates:
-
-{{ MACROS___make_filetree_example(
-   {
-   "sub-01": {
-      "ses-01": {
-         "ecephys": {
-            "sub-01_ses-01_electrodes.tsv": "",
-            "sub-01_ses-01_space-StereoTaxic_electrodes.tsv": "",
-            "sub-01_ses-01_space-StereoTaxic_coordsystem.json": "",
-            "sub-01_ses-01_probes.tsv": "",
-            },
-         },
-      },
-   }
-) }}
 
 ## Channels description (`*_channels.tsv`)
 
@@ -331,10 +287,19 @@ The electrode positions and properties are stored in a `.tsv` file (amplifier in
 This file contains the following information:
 
 -   The electrode name
--   The electrode coordinates in 3 columns (`xyz`) (use `n/a` for values if a dimension is absent). By default, this is the position on the probe (not the brain).
+-   The electrode coordinates in 3 columns (`xyz`) (use `n/a` for values if a dimension is absent).
 -   The ID of the probe the electrode is located on
 
 {{ MACROS___make_columns_table("microephys.microephysElectrodes") }}
+
+### Electrode Position Coordinates
+
+The `x`, `y`, and `z` columns in the electrodes table specify electrode positions, but their meaning depends on whether a `space-<label>` entity is used in the filename. When no `space-<label>` entity is used in the filename, the `x`, `y`, `z` coordinates describe the relative position of electrodes on the probe, NOT their position in the brain or any anatomical coordinate system. These probe-relative positions are REQUIRED for all electrodes. The probe origin (0, 0, 0) is typically at the probe tip or a standard reference point on the probe and SHOULD be specified in the `coordinate_reference_point` column of `*_probes.tsv`. Units SHOULD be specified in the `dimension_unit` column of `*_probes.tsv`. The `*_coordsystem.json` file should not be provided for probe-relative coordinates.
+
+This rule is different from the electrodes.tsv table of the [iEEG modality](intracranial-electroencephalography.md#electrodes-description-_electrodestsv), where electrode positions are always specified in anatomical space. The distinction is necessary because microelectrode probes often have many electrodes with known relative positions on the probe, but their anatomical positions may not be precisely known without additional localization procedures. The probe-relative positions are essential for interpreting the recorded signals in relation to the probe geometry and for analyses such as spike sorting.
+
+To specify electrode positions in surgical space, individual anatomical space, or a common coordinate system (such as the Allen CCF), use an additional `*_electrodes.tsv` file with a [`space-<label>`](../appendices/entities.md#space) entity. See the [`*_coordsystem.json` section](#coordinate-system-json-_coordsystemjson) for details on defining these coordinate systems.
+
 
 ### Example `*_electrodes.tsv`
 
@@ -513,12 +478,12 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_filename_template("raw", datatypes=["icephys", "ecephys"], suffixes=["coordsystem"]) }}
 
-This `*_coordsystem.json` file contains the coordinate system in which electrode
-positions are expressed. The associated MRI, CT, X-Ray, or operative photo can
-also be specified.
+To describe the location of electrodes in an anatomical or stereotaxic coordinate system, a space entity
+is used in the filename, and a corresponding `*_coordsystem.json` file is used alongside the corresponding
+`*_electrodes.tsv` file. This `*_coordsystem.json` file contains the coordinate system in which electrode
+positions are expressed. The associated MRI, CT, X-Ray, or operative photo can also be specified.
 
-This file is **OPTIONAL** when using default probe-relative coordinates (no `space-<label>` entity).
-This file is **REQUIRED** when the [`space-<label>`](../appendices/entities.md#space) entity is used
+This file is REQUIRED when the [`space-<label>`](../appendices/entities.md#space) entity is used
 in the filename to specify electrode positions in an anatomical or stereotaxic coordinate system.
 When a `*_space-<label>_coordsystem.json` file is present, the corresponding `*_space-<label>_electrodes.tsv`
 file with the same space label MUST also be present.
@@ -555,24 +520,24 @@ The [inheritance principle](../common-principles.md#the-inheritance-principle) M
 be used to find the appropriate coordinate system description for a given data file.
 If electrodes are repositioned, it is RECOMMENDED to use multiple sessions to indicate this.
 
-### Default probe-relative coordinate systems
-
-When no [`space-<label>`](../appendices/entities.md#space) entity is specified in the filename,
-electrode positions in `*_electrodes.tsv` are **probe-relative coordinates**:
-
--   The origin (0, 0, 0) SHOULD be at the probe tip or a standard reference point on the probe
--   The reference point SHOULD be specified in the `coordinate_reference_point` column of `*_probes.tsv`
--   The `x`, `y`, and `z` coordinates describe electrode positions relative to this probe origin
--   The x, y, z axes correspond to the probe's local coordinate frame (width, height, depth)
--   This is the most common case for in-vivo recordings where electrodes are not localized in anatomical space
--   **No `*_coordsystem.json` file is required** for probe-relative coordinates
-
 ### Recommended 3D coordinate systems
 
-It is preferred that electrodes are localized in a 3D coordinate system (with
+It is preferred that electrodes are localized in a 3D coordinate system, with
 respect to anatomical reference images, stereotactic coordinates, or in a
-standard space as specified in the BIDS [Coordinate Systems Appendix](../appendices/coordinate-systems.md)
-about preferred names of coordinate systems, such as StereoTaxic).
+standard space as specified in the BIDS [Coordinate Systems Appendix](../appendices/coordinate-systems.md).
+
+For example:
+
+-   `*_space-StereoTaxic` (electrodes are localized in stereotactic coordinate system with bregma origin)
+  <!-- TODO: Add 'StereoTaxic', 'AllenCCFv3', 'PaxinosWatson', etc coordinate systems to appendix coordinate-systems.md under "Microelectrode Electrophysiology Specific Coordinate Systems" with appropriate definitions for each standard reference frame used in animal electrophysiology -->
+-   `*_space-individual` (electrodes are localized in subject-specific anatomical coordinate system)
+-   `*_space-AllenCCFv3` (electrodes are mapped to Allen Common Coordinate Framework v3)
+-   `*_space-PaxinosWatson` (electrodes are mapped to Paxinos-Watson rat brain atlas coordinates)
+
+When referring to the `*_electrodes.tsv` file in a certain *space* as defined
+above, the [`space-<label>`](../appendices/entities.md#space) of the accompanying `*_coordsystem.json` MUST
+correspond.
+
 
 ### Allowed 2D coordinate systems
 
@@ -588,23 +553,11 @@ with (0,0) corresponding to the upper left pixel and (N,0) corresponding to the 
 ### Multiple coordinate systems
 
 If electrode positions are known in multiple coordinate systems (for example, probe-relative, StereoTaxic,
-and AllenCCFv3), these spaces can be distinguished by the optional [`space-<label>`](../appendices/entities.md#space)
-field, see the [`*_electrodes.tsv`-section](#electrodes-description-_electrodestsv)
-for more information.
+and AllenCCFv3), these spaces can be distinguished by the [`space-<label>`](../appendices/entities.md#space)
+entity.
 Note that the [`space-<label>`](../appendices/entities.md#space) fields must correspond
 between `*_electrodes.tsv` and `*_coordsystem.json` if they refer to the same
 data.
-
-For examples:
--   `*_space-StereoTaxic` (electrodes are localized in stereotactic coordinate system with bregma origin)
-  <!-- TODO: Add 'StereoTaxic', 'AllenCCFv3', 'PaxinosWatson', etc coordinate systems to appendix coordinate-systems.md under "Microelectrode Electrophysiology Specific Coordinate Systems" with appropriate definitions for each standard reference frame used in animal electrophysiology -->
--   `*_space-individual` (electrodes are localized in subject-specific anatomical coordinate system)
--   `*_space-AllenCCFv3` (electrodes are mapped to Allen Common Coordinate Framework v3)
--   `*_space-PaxinosWatson` (electrodes are mapped to Paxinos-Watson rat brain atlas coordinates)
-
-When referring to the `*_electrodes.tsv` file in a certain *space* as defined
-above, the [`space-<label>`](../appendices/entities.md#space) of the accompanying `*_coordsystem.json` MUST
-correspond.
 
 For example:
 
@@ -625,22 +578,6 @@ A guide for using macros can be found at
 
 The order of the required columns in the `*_electrodes.tsv` file MUST be as listed below.
 The `x`, `y`, and `z` columns indicate the positions of the center of each electrode in Cartesian coordinates.
-
-!!! note "Coordinate system specification"
-
-    By default, `*_electrodes.tsv` contains probe-relative coordinates:
-
-    - No `*_coordsystem.json` file is required
-    - Units SHOULD be specified in the `dimension_unit` column of `*_probes.tsv`
-    - The probe origin SHOULD be defined in the `coordinate_reference_point` column of `*_probes.tsv`
-
-    When electrode positions are expressed in anatomical or stereotaxic space:
-
-    - Use `*_space-<label>_electrodes.tsv` with the appropriate space label
-    - A corresponding `*_space-<label>_coordsystem.json` file MUST be present
-    - Units are specified in the `coordsystem.json` file
-
-    Multiple coordinate systems MAY coexist in the same dataset.
 
 ## Photos of the electrode positions (`*_photo.<extension>`)
 
