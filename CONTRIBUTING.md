@@ -267,7 +267,7 @@ such as when you build the documentation locally.
 
 ### 4. Ready to build!
 
-Using the terminal (command line) please enter `uv run mkdocs serve` or if you would like to use `make` - `make serve` would ensure node and `uv` environments being present and trigger the `mkdocs` build.
+Using the terminal (command line) please enter `uv run mkdocs serve`. Alternatively, if you would like to use `make`, run `make serve` which will ensure the node and `uv` environments are present and trigger the `mkdocs` build.
 This will allow you to see a local version of the specification.
 The local address will be `http://127.0.0.1:8000`.
 You may enter that into your browser and this will bring up the specification!
