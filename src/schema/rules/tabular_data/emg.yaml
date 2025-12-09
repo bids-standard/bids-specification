@@ -29,17 +29,41 @@ EMGChannels:
   index_columns: [name__channels]
   additional_columns: allowed_if_defined
 
+# EMG electrodes without group column - name must be unique
 EMGElectrodes:
   selectors:
     - datatype == "emg"
     - suffix == "electrodes"
     - extension == ".tsv"
+    - '!columns.group'
   initial_columns:
     - name__electrodes
     - x
     - y
-    - z
-    - coordinate_system
+  columns:
+    name__electrodes: required
+    x: required
+    y: required
+    z: optional
+    coordinate_system: recommended
+    type__electrodes: recommended
+    material: recommended
+    impedance: recommended
+    group__emg: recommended
+  index_columns: [name__electrodes]
+  additional_columns: allowed_if_defined
+
+# EMG electrodes with group column - (name, group) must be unique
+EMGElectrodes__grouped:
+  selectors:
+    - datatype == "emg"
+    - suffix == "electrodes"
+    - extension == ".tsv"
+    - columns.group
+  initial_columns:
+    - name__electrodes
+    - x
+    - y
   columns:
     name__electrodes: required
     x: required

@@ -118,6 +118,9 @@ sub-<label>/
             continue
         if line.startswith("    [ses-<label>/]"):
             continue
+        # Skip patterns with optional subject (EMG coordsystem allows root-level placement)
+        if line.lstrip().startswith("[sub-<label>]"):
+            continue
 
         if line in datatype_bases:
             datatype_bases_found += 1
@@ -153,6 +156,9 @@ sub-<label>/
         if line.startswith("sub-<label>"):
             continue
         if line.startswith("    [ses-<label>/]"):
+            continue
+        # Skip patterns with optional subject (EMG coordsystem allows root-level placement)
+        if line.lstrip().startswith("[sub-<label>]"):
             continue
 
         if line in datatype_bases:

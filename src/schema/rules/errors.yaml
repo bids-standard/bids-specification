@@ -142,8 +142,8 @@ SidecarWithoutDatafile:
   level: error
   selectors:
     - extension == ".json"
-    - suffix != "coordsystem" || modality != "emg"
-    # ↑ EMG allows multiple coordsys files per data file (distinguished via `space` entity)
+    - suffix != "coordsystem"
+    # ↑ coordsystem files can be shared via inheritance principle and may not have direct data files
 
 # BIDS Validator Original Issue Code #97
 MissingSession:

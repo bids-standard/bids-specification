@@ -62,12 +62,29 @@ coordsystem__eeg:
     space: optional
 
 # emg may have a `recording` entity
+# EMG coordsystem files can be at root level (no subject) when using
+# the inheritance principle for shared coordinate systems across subjects
 coordsystem__emg:
   $ref: rules.files.raw.channels.coordsystem__eeg
   datatypes:
     - emg
   entities:
     $ref: rules.files.raw.channels.coordsystem__eeg.entities
+    subject: optional
+    recording: optional
+    space: optional
+
+# EMG coordsystem files at dataset root level (no datatype directory)
+# Used for sharing coordinate systems across all subjects via inheritance
+# Example: /space-leftForearm_coordsystem.json
+coordsystem__emg_root:
+  suffixes:
+    - coordsystem
+  extensions:
+    - .json
+  datatypes: []
+  entities:
+    session: optional
     recording: optional
     space: optional
 
