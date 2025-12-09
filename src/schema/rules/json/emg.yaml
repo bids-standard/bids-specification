@@ -1,0 +1,48 @@
+#
+# Groups of related metadata fields
+#
+# Assumptions: never need disjunction of selectors
+# Assumptions: top-to-bottom overrides is sufficient logic
+
+---
+# ensure presence of fields relating to the EMG electrode positions
+EMGCoordsystemPositions:
+  selectors:
+    - datatype == "emg"
+    - suffix == "coordsystem"
+  fields:
+    EMGCoordinateSystem:
+      level: required
+      description_addendum: |
+          `"Other"` is the only valid value until standardized names become available for EMG coordinate systems.
+    EMGCoordinateUnits: required
+    EMGCoordinateSystemDescription:
+      level: recommended
+      level_addendum: required if `EMGCoordinateSystem` is `"Other"`
+    ParentCoordinateSystem: optional
+    AnchorCoordinates:
+      level: optional
+      level_addendum: required if `ParentCoordinateSystem` is present
+    AnchorElectrode:
+      level: optional
+      level_addendum: required if `ParentCoordinateSystem` is present
+
+# ensure description is present when coordsys is "other"
+EMGCoordsystemOther:
+  selectors:
+    - datatype == "emg"
+    - suffix == "coordsystem"
+    - '"EMGCoordinateSystem" in json'
+    - json.EMGCoordinateSystem == "Other"
+  fields:
+    EMGCoordinateSystemDescription: required
+
+# ensure linkage between child (device) and parent (anatomical) coordinate systems
+EMGChildCoordSystem:
+  selectors:
+    - datatype == "emg"
+    - suffix == "coordsystem"
+    - '"ParentCoordinateSystem" in json'
+  fields:
+    AnchorCoordinates: required
+    AnchorElectrode: required
