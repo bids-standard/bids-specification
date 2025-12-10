@@ -1,0 +1,102 @@
+---
+microephysProbes:
+  selectors:
+    - datatype == ["ecephys", "icephys"]
+    - suffix == "probes"
+    - extension == ".tsv"
+  initial_columns:
+    - probe_name
+    - type__probes
+    - AP__probes
+    - ML__probes
+    - DV__probes
+    - AP_angle
+    - ML_angle
+  columns:
+    probe_name: required
+    type__probes: required
+    AP__probes: recommended
+    ML__probes: recommended
+    DV__probes: recommended
+    AP_angle: recommended
+    ML_angle: recommended
+    manufacturer__probes: recommended
+    device_serial_number: recommended
+    electrode_count: optional
+    width__probes: optional
+    height__probes: optional
+    depth__probes: optional
+    dimension_unit: optional
+    rotation_angle: recommended
+    coordinate_reference_point: recommended
+    anatomical_reference_point: optional
+    hemisphere__probes: recommended
+    associated_brain_region: recommended
+    associated_brain_region_id: recommended
+    associated_brain_region_quality_type: recommended
+    reference_atlas: recommended
+    material__probes: optional
+  index_columns: [probe_name]
+  additional_columns: allowed_if_defined
+
+microephysElectrodes:
+  selectors:
+    - datatype == ["ecephys", "icephys"]
+    - suffix == "electrodes"
+    - extension == ".tsv"
+  initial_columns:
+    - name__electrodes
+    - probe_name
+    - x
+    - y
+    - z
+  columns:
+    name__electrodes: required
+    probe_name: required
+    x: required
+    y: required
+    z: required
+    hemisphere: recommended
+    impedance: recommended
+    shank_id: optional
+    size: optional
+    electrode_shape: optional
+    material: optional
+    location: recommended
+    pipette_solution: optional
+    internal_pipette_diameter: optional
+    external_pipette_diameter: optional
+  index_columns: [name__electrodes]
+  additional_columns: allowed_if_defined
+
+microephysChannels:
+  selectors:
+    - datatype == ["ecephys", "icephys"]
+    - suffix == "channels"
+    - extension == ".tsv"
+  initial_columns:
+    - name__channels
+    - reference__microephys
+    - type__channels
+    - units__channels
+    - sampling_frequency
+  columns:
+    name__channels: required
+    reference__microephys: required
+    type__channels: required
+    units__channels: required
+    sampling_frequency: optional
+    channel_label: optional
+    stream_id: optional
+    description: optional
+    hardware_filters: recommended
+    software_filters: recommended
+    status: optional
+    status_description: optional
+    gain: recommended
+    time_offset: optional
+    time_reference_channel: optional
+    ground: optional
+    recording_mode: recommended
+  index_columns: [name__channels]
+  additional_columns: allowed_if_defined
