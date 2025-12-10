@@ -47,17 +47,16 @@ microephysElectrodes:
   initial_columns:
     - name__electrodes
     - probe_name
-    - hemisphere
     - x
     - y
     - z
   columns:
     name__electrodes: required
     probe_name: required
-    hemisphere: required
     x: required
     y: required
     z: required
+    hemisphere: recommended
     impedance: recommended
     shank_id: optional
     size: optional

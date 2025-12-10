@@ -215,6 +215,24 @@ Columns in the `*_channels.tsv` file are:
 
 {{ MACROS___make_columns_table("microephys.microephysChannels") }}
 
+### The `stream_id` Column
+
+The `stream_id` column links each channel to its corresponding data stream within the data file. The format of `stream_id` depends on the data file format:
+
+**For NWB files (`.nwb`):**
+The `stream_id` SHOULD be the internal HDF5 path to the neurodata object (typically an `ElectricalSeries`) that contains the voltage recordings for that channel, for example `/acquisition/ElectricalSeries`.
+If no path is provided, it is assumed to be `/acquisition/ElectricalSeries`.
+If the directory contains multiple NWB files, and not all of those files contain data from the channel, the `stream_id` SHOULD include the filename(s) that do followed by a colon and the internal path, for example `sub-01_ses-01_run-02_ecephys.nwb:/acquisition/ElectricalSeries`.
+
+**For NIX files (`.nix`):**
+The `stream_id` SHOULD reference the data array or signal within the NIX file structure that contains the recordings for that channel, following the NIX/Neo data organization.
+
+**Multiple data streams:**
+If a single channel's data spans multiple neurodata objects within a file or across multiple files,
+the `stream_id` MUST be specified as a comma-separated list.
+For example: `/acquisition/ElectricalSeries1,/acquisition/ElectricalSeries2` or
+`file1.nwb:/acquisition/ElectricalSeries,file2.nwb:/acquisition/ElectricalSeries`.
+
 ### Example `*_channels.tsv`
 
 **Extracellular electrophysiology example:**
@@ -296,7 +314,7 @@ The electrode `name` MUST be unique within the `*_electrodes.tsv` file. When a d
 
 ### Electrode Position Coordinates
 
-The `x`, `y`, and `z` columns in the electrodes table specify electrode positions, but their meaning depends on whether a `space-<label>` entity is used in the filename. When no `space-<label>` entity is used in the filename, the `x`, `y`, `z` coordinates describe the relative position of electrodes on the probe, NOT their position in the brain or any anatomical coordinate system. These probe-relative positions are REQUIRED for all electrodes. The probe origin (0, 0, 0) is typically at the probe tip or a standard reference point on the probe and SHOULD be specified in the `coordinate_reference_point` column of `*_probes.tsv`. Units SHOULD be specified in the `dimension_unit` column of `*_probes.tsv`. The `*_coordsystem.json` file should not be provided for probe-relative coordinates.
+The `x`, `y`, and `z` columns in the electrodes table specify electrode positions, but their meaning depends on whether a `space-<label>` entity is used in the filename. When no `space-<label>` entity is used in the filename, the `x`, `y`, `z` coordinates describe the relative position of electrodes on the probe, NOT their position in the brain or any anatomical coordinate system. These probe-relative positions are REQUIRED for all electrodes. The probe origin (0, 0, 0) is typically at the probe tip or a standard reference point on the probe and SHOULD be specified in the `coordinate_reference_point` column of `*_probes.tsv`. Units SHOULD be specified in the `dimension_unit` column of `*_probes.tsv`. The `*_coordsystem.json` file should not be provided for probe-relative coordinates. If there is just one electrode, the `x`, `y`, and `z` values should be `0`.
 
 This rule is different from the electrodes.tsv table of the [iEEG modality](intracranial-electroencephalography.md#electrodes-description-_electrodestsv), where electrode positions are always specified in anatomical space. The distinction is necessary because microelectrode probes often have many electrodes with known relative positions on the probe, but their anatomical positions may not be precisely known without additional localization procedures. The probe-relative positions are essential for interpreting the recorded signals in relation to the probe geometry and for analyses such as spike sorting.
 

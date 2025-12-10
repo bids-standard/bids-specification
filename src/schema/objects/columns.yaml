@@ -694,7 +694,7 @@ reference__microephys:
   description: |
     The reference for the given channel.
     When the reference is an electrode in `*_electrodes.tsv`, use the name of that electrode.
-    If a corresponding electrode is not not applicable, use "n/a"
+    If a corresponding electrode is not applicable, use "n/a"
   type: string
 # reference column for channels.tsv files for EMG data
 reference__emg:
