@@ -42,7 +42,9 @@ AudioVideoStreams:
   fields:
     AudioChannelCount: optional
     AudioSampleRate: optional
+    AudioBitDepth: optional
     FrameRate: optional
     Height: optional
     Width: optional
+    CameraPosition: optional
     Duration: optional

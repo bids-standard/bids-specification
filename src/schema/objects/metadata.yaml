@@ -4400,6 +4400,25 @@ AudioSampleRate:
   exclusiveMinimum: 0
   unit: Hz
 
+AudioBitDepth:
+  name: AudioBitDepth
+  display_name: Audio Bit Depth
+  description: |
+    Number of bits per sample in the audio recording.
+
+    Common values include `16`, `24`, or `32`.
+  type: integer
+  minimum: 1
+
+CameraPosition:
+  name: CameraPosition
+  display_name: Camera Position
+  description: |
+    Free-form description of the camera placement relative to the subject or scene.
+
+    Examples include "front", "profile-left", "ceiling", "room-corner", or "overhead".
+  type: string
+
 Duration:
   name: Duration
   display_name: Duration
