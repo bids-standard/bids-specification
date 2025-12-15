@@ -45,10 +45,32 @@ The native file format is used in case conversion elicits the loss of crucial me
 Metadata should be included alongside the data in the `.json` and `.tsv` files.
 The current list of allowed data file formats:
 
-| **Format**                                                                           | **Extension(s)** | **Description**                                                                                                                                                                                                           |
-| ------------------------------------------------------------------------------------ | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Neuroscience Information Exchange Format](https://nixio.readthedocs.io/en/latest/)  | `.nix`            | A generic and open framework with an hdf5 backend and a defined interface to many microephys formats via the [Neo library](https://neo.readthedocs.io/en/latest/). The `.nix` file has to contain a valid Neo structure. |
-| [Neurodata Without Borders](https://www.nwb.org)                                     | `.nwb`            | An open data standard for neurophysiology, including data from intracellular and extracellular electrophysiology experiments.                                                                                            |
+<table>
+  <thead>
+    <tr>
+      <th><strong>Format</strong></th>
+      <th><strong>Extension(s)</strong></th>
+      <th><strong>Description</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://nixio.readthedocs.io/en/latest/">Neuroscience Information Exchange Format</a></td>
+      <td><code>.nix</code></td>
+      <td>
+        A generic and open framework with an hdf5 backend and a defined interface to many microephys formats via the
+        <a href="https://neo.readthedocs.io/en/latest/">Neo library</a>. The <code>.nix</code> file has to contain a valid Neo structure.
+      </td>
+    </tr>
+    <tr>
+      <td><a href="https://www.nwb.org">Neurodata Without Borders</a></td>
+      <td><code>.nwb</code></td>
+      <td>
+        An open data standard for neurophysiology, including data from intracellular and extracellular electrophysiology experiments.
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 Both of these formats can also store essential metadata of the datasets.
 Some of this metadata needs to be duplicated in BIDS `.tsv` and `.json` sidecar files.
@@ -318,7 +340,6 @@ This rule is different from the electrodes.tsv table of the [iEEG modality](intr
 
 To specify electrode positions in surgical space, individual anatomical space, or a common coordinate system (such as the Allen CCF), use an additional `*_electrodes.tsv` file with a [`space-<label>`](../appendices/entities.md#space) entity. See the [`*_coordsystem.json` section](#coordinate-system-json-_coordsystemjson) for details on defining these coordinate systems.
 
-
 ### Example `*_electrodes.tsv`
 
 **Extracellular electrophysiology example (probe-relative coordinates):**
@@ -427,7 +448,6 @@ A guide for using macros can be found at
    }
 ) }}
 
-
 ## Coordinate System JSON (`*_coordsystem.json`)
 
 <!--
@@ -498,7 +518,6 @@ For example:
 When referring to the `*_electrodes.tsv` file in a certain *space* as defined
 above, the [`space-<label>`](../appendices/entities.md#space) of the accompanying `*_coordsystem.json` MUST
 correspond.
-
 
 ### Allowed 2D coordinate systems
 

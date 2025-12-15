@@ -253,15 +253,84 @@ Please note that `space-scanner` SHOULD NOT be used, it is mentioned in this spe
 Restricted keywords for the `MicroephysCoordinateSystem` field in the
 `coordsystem.json` file for microelectrode electrophysiology datasets (both `icephys` and `ecephys`):
 
-| **Coordinate System** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | **Reference**                                                                                                                  |
-| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| Pixels                | If electrodes are localized in 2D space (only x and y are specified and z is `n/a`), then the positions in this file must correspond to the locations expressed in pixels on the photo/drawing/rendering of the electrodes on the brain. In this case, coordinates must be (row,column) pairs, with (0,0) corresponding to the upper left pixel and (N,0) corresponding to the lower left pixel.                                                                                        |                                                                                                                                |
-| Stereotaxic           | A generic stereotaxic coordinate system commonly used in animal neuroscience for surgical targeting and electrode localization. The origin is at bregma, a skull landmark defined as the intersection of the coronal and sagittal sutures. The x-axis corresponds to the anterior-posterior (AP) axis with posterior being positive. The y-axis corresponds to the dorsal-ventral (DV) or superior-inferior (SI) axis with ventral/inferior being positive. The z-axis corresponds to the medial-lateral (ML) axis with right being positive. Units are typically in millimeters or micrometers. |                                                                                                                                |
-| AllenCCFv3            | Allen Common Coordinate Framework version 3 ([RRID:SCR_020999](https://scicrunch.org/resolver/RRID:SCR_020999)), a 3D reference space for the mouse brain based on average anatomy. The framework provides a systematic way to map and compare data across different experiments and labs. Origin and orientation follow the Allen Institute conventions.                                                                                                                                                                                  | [doi:10.1016/j.cell.2020.04.007](https://doi.org/10.1016/j.cell.2020.04.007)                                                   |
-| WaxholmSpace          | A standardized 3D coordinate system for the rat brain ([RRID:SCR_001592](https://scicrunch.org/resolver/RRID:SCR_001592)) based on high-resolution imaging data. Part of the Waxholm Space atlas of the Sprague Dawley rat brain.                                                                                                                                                                                                                                                                                                          | [doi:10.1371/journal.pcbi.1001065](https://doi.org/10.1371/journal.pcbi.1001065)                                               |
-| WistarRatAtlas        | A multidimensional magnetic resonance histology atlas of the adult Wistar rat brain ([RRID:SCR_006288](https://scicrunch.org/resolver/RRID:SCR_006288)). This atlas provides high-resolution anatomical reference for rat brain studies.                                                                                                                                                                                                                                                                                                    | [doi:10.1016/j.neuroimage.2012.05.041](https://doi.org/10.1016/j.neuroimage.2012.05.041)                                       |
-| individual            | Subject-specific anatomical coordinate system derived from the individual subject's anatomy. The origin and orientation should be specified in `MicroephysCoordinateSystemDescription`. This coordinate system requires specifying an additional, subject-specific file to be fully defined.                                                                                                                                                                                             |                                                                                                                                |
-| Other                 | Use this for other coordinate systems and specify all required details in the `MicroephysCoordinateSystemDescription` field.                                                                                                                                                                                                                                                                                                                                                              |                                                                                                                                |
+<table>
+  <thead>
+    <tr>
+      <th><strong>Coordinate System</strong></th>
+      <th><strong>Description</strong></th>
+      <th><strong>Reference</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Pixels</td>
+      <td>
+        If electrodes are localized in 2D space (x and y are specified and z is <code>n/a</code>), then the
+        positions in this file must correspond to the locations expressed in pixels on the
+        photo/drawing/rendering of the electrodes on the brain. In this case, coordinates must be
+        (row,column) pairs, with (0,0) corresponding to the upper left pixel and (N,0) corresponding
+        to the lower left pixel.
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Stereotaxic</td>
+      <td>
+        A generic stereotaxic coordinate system commonly used in animal neuroscience for surgical targeting
+        and electrode localization. The origin is at bregma, a skull landmark defined as the intersection
+        of the coronal and sagittal sutures. The x-axis corresponds to the anterior-posterior (AP) axis with
+        posterior being positive. The y-axis corresponds to the dorsal-ventral (DV) or superior-inferior (SI)
+        axis with ventral/inferior being positive. The z-axis corresponds to the medial-lateral (ML) axis with
+        right being positive. Units are typically in millimeters or micrometers.
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>AllenCCFv3</td>
+      <td>
+        Allen Common Coordinate Framework version 3 (<a href="https://scicrunch.org/resolver/RRID:SCR_020999">RRID:SCR_020999</a>),
+        a 3D reference space for the mouse brain based on average anatomy. The framework provides a systematic
+        way to map and compare data across different experiments and labs. Origin and orientation follow the
+        Allen Institute conventions.
+      </td>
+      <td><a href="https://doi.org/10.1016/j.cell.2020.04.007">doi:10.1016/j.cell.2020.04.007</a></td>
+    </tr>
+    <tr>
+      <td>WaxholmSpace</td>
+      <td>
+        A standardized 3D coordinate system for the rat brain (<a href="https://scicrunch.org/resolver/RRID:SCR_001592">RRID:SCR_001592</a>)
+        based on high-resolution imaging data. Part of the Waxholm Space atlas of the Sprague Dawley rat brain.
+      </td>
+      <td><a href="https://doi.org/10.1371/journal.pcbi.1001065">doi:10.1371/journal.pcbi.1001065</a></td>
+    </tr>
+    <tr>
+      <td>WistarRatAtlas</td>
+      <td>
+        A multidimensional magnetic resonance histology atlas of the adult Wistar rat brain
+        (<a href="https://scicrunch.org/resolver/RRID:SCR_006288">RRID:SCR_006288</a>). This atlas provides
+        high-resolution anatomical reference for rat brain studies.
+      </td>
+      <td><a href="https://doi.org/10.1016/j.neuroimage.2012.05.041">doi:10.1016/j.neuroimage.2012.05.041</a></td>
+    </tr>
+    <tr>
+      <td>individual</td>
+      <td>
+        Subject-specific anatomical coordinate system derived from the individual subject's anatomy. The origin
+        and orientation should be specified in <code>MicroephysCoordinateSystemDescription</code>. This coordinate
+        system requires specifying an additional, subject-specific file to be fully defined.
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Other</td>
+      <td>
+        Use this for other coordinate systems and specify all required details in the
+        <code>MicroephysCoordinateSystemDescription</code> field.
+      </td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
 
 If you believe a specific coordinate system should be added to the list
 of restricted keywords for microelectrode electrophysiology, please open a new issue on the
