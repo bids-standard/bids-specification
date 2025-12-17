@@ -2272,7 +2272,7 @@ MicroephysCoordinateUnits:
   description: |
     Units of the coordinates of `"MicroephysCoordinateSystem"`.
   type: string
-# TODO: Clarify if units need to be used or enums, if units, define pixels
+  # TODO: Clarify if units need to be used or enums, if units, define pixels
   enum:
     - m
     - mm

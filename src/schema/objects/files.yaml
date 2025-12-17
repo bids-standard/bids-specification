@@ -137,6 +137,7 @@ probes:
   display_name: Probes
   file_type: directory
   description: |
-    A directory to store probe using the ProbeInterface specification format. This folder can be used to also store the associated probe figures.
+    A directory to store probe using the ProbeInterface specification format.
+    This directory can be used to also store the associated probe figures.
     This is primarily intended for use with Microelectrode Electrophysiology data, see more information in the
     [relevant section](SPEC_ROOT/modality-specific-files/microelectrode-electrophysiology.md#probeinterface-library).
