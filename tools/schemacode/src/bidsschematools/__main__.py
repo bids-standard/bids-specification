@@ -187,6 +187,27 @@ def migrate():
     pass
 
 
+def _validate_bids_dataset(dataset_path: Path) -> None:
+    """Validate that a path contains a BIDS dataset.
+
+    Parameters
+    ----------
+    dataset_path : Path
+        Path to check for BIDS dataset
+
+    Raises
+    ------
+    SystemExit
+        If dataset_description.json is not found
+    """
+    if not (dataset_path / "dataset_description.json").exists():
+        lgr.error(
+            f"No dataset_description.json found in {dataset_path}. "
+            "Is this a valid BIDS dataset?"
+        )
+        sys.exit(1)
+
+
 @migrate.command("list")
 def migrate_list():
     """List all available migrations"""
@@ -215,22 +236,16 @@ def migrate_list():
 )
 def migrate_run(migration_name, dataset_path, dry_run):
     """Run a specific migration on a BIDS dataset
-    
+
     MIGRATION_NAME is the name of the migration to run (use 'migrate list' to see available)
-    
+
     DATASET_PATH is the path to the BIDS dataset root directory
     """
     from .migrate import registry
     from . import migrations  # noqa: F401 - Import to register migrations
-    
+
     dataset_path = Path(dataset_path).resolve()
-    
-    if not (dataset_path / "dataset_description.json").exists():
-        lgr.error(
-            f"No dataset_description.json found in {dataset_path}. "
-            "Is this a valid BIDS dataset?"
-        )
-        sys.exit(1)
+    _validate_bids_dataset(dataset_path)
     
     try:
         result = registry.run(migration_name, dataset_path, dry_run=dry_run)
@@ -275,20 +290,14 @@ def migrate_run(migration_name, dataset_path, dry_run):
 )
 def migrate_all(dataset_path, dry_run, skip):
     """Run all available migrations on a BIDS dataset
-    
+
     DATASET_PATH is the path to the BIDS dataset root directory
     """
     from .migrate import registry
     from . import migrations  # noqa: F401 - Import to register migrations
-    
+
     dataset_path = Path(dataset_path).resolve()
-    
-    if not (dataset_path / "dataset_description.json").exists():
-        lgr.error(
-            f"No dataset_description.json found in {dataset_path}. "
-            "Is this a valid BIDS dataset?"
-        )
-        sys.exit(1)
+    _validate_bids_dataset(dataset_path)
     
     migrations_list = registry.list_migrations()
     skip_set = set(skip)

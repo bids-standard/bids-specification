@@ -49,9 +49,9 @@ def migrate_generatedby(dataset_path: Path, dry_run: bool = False) -> dict[str, 
     issues = []
 
     # Look for dataset_description.json files (including in derivatives)
-    desc_files = list(dataset_path.glob("dataset_description.json"))
-    desc_files.extend(dataset_path.glob("derivatives/*/dataset_description.json"))
-    desc_files.extend(dataset_path.glob("derivatives/*/*/dataset_description.json"))
+    # Use rglob to handle arbitrary nesting depths
+    desc_files = list(dataset_path.rglob("dataset_description.json"))
+
 
     if not desc_files:
         return {
@@ -261,13 +261,12 @@ def check_inheritance_overloading(dataset_path: Path, dry_run: bool = False) -> 
     # Check for overloading (same field with different values in different scopes)
     for field, scopes in metadata_by_scope.items():
         if len(scopes) > 1:
-            # Get unique values across scopes
-            all_values = []
+            # Get unique values across scopes using a set for O(1) lookup
+            all_values = set()
             for scope_data in scopes.values():
                 for item in scope_data:
                     value_str = json.dumps(item["value"], sort_keys=True)
-                    if value_str not in all_values:
-                        all_values.append(value_str)
+                    all_values.add(value_str)
 
             # If multiple different values, this is potential overloading
             if len(all_values) > 1:
