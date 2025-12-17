@@ -5,17 +5,16 @@ to newer standardized forms, helping users adopt new conventions and metadata fi
 """
 
 import json
-import os
-from pathlib import Path
-from typing import Callable, Dict, List, Optional, Any
 import logging
+from pathlib import Path
+from typing import Any, Callable, Optional
 
 lgr = logging.getLogger(__name__)
 
 
 class Migration:
     """Represents a single migration operation.
-    
+
     Attributes
     ----------
     name : str
@@ -27,16 +26,16 @@ class Migration:
     func : Callable
         The function that performs the migration
     """
-    
+
     def __init__(
         self,
         name: str,
         version: str,
         description: str,
-        func: Callable[[Path], Dict[str, Any]],
+        func: Callable[[Path], dict[str, Any]],
     ):
         """Initialize a migration.
-        
+
         Parameters
         ----------
         name : str
@@ -53,17 +52,17 @@ class Migration:
         self.version = version
         self.description = description
         self.func = func
-    
-    def __call__(self, dataset_path: Path, **kwargs) -> Dict[str, Any]:
+
+    def __call__(self, dataset_path: Path, **kwargs) -> dict[str, Any]:
         """Execute the migration.
-        
+
         Parameters
         ----------
         dataset_path : Path
             Path to the BIDS dataset root
         **kwargs
             Additional keyword arguments for the migration function
-            
+
         Returns
         -------
         dict
@@ -77,11 +76,11 @@ class Migration:
 
 class MigrationRegistry:
     """Registry for BIDS dataset migrations."""
-    
+
     def __init__(self):
         """Initialize the migration registry."""
-        self._migrations: Dict[str, Migration] = {}
-    
+        self._migrations: dict[str, Migration] = {}
+
     def register(
         self,
         name: str,
@@ -89,7 +88,7 @@ class MigrationRegistry:
         description: str,
     ) -> Callable:
         """Decorator to register a migration function.
-        
+
         Parameters
         ----------
         name : str
@@ -98,12 +97,12 @@ class MigrationRegistry:
             BIDS version when this migration applies
         description : str
             Description of what this migration does
-            
+
         Returns
         -------
         Callable
             Decorator function
-            
+
         Examples
         --------
         >>> registry = MigrationRegistry()
@@ -122,25 +121,25 @@ class MigrationRegistry:
             lgr.debug(f"Registered migration: {name} (version {version})")
             return migration
         return decorator
-    
+
     def get(self, name: str) -> Optional[Migration]:
         """Get a migration by name.
-        
+
         Parameters
         ----------
         name : str
             Name of the migration
-            
+
         Returns
         -------
         Migration or None
             The migration if found, None otherwise
         """
         return self._migrations.get(name)
-    
-    def list_migrations(self) -> List[Dict[str, str]]:
+
+    def list_migrations(self) -> list[dict[str, str]]:
         """List all registered migrations.
-        
+
         Returns
         -------
         list of dict
@@ -154,16 +153,16 @@ class MigrationRegistry:
             }
             for mig in self._migrations.values()
         ]
-    
+
     def run(
         self,
         name: str,
         dataset_path: Path,
         dry_run: bool = False,
         **kwargs,
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Run a specific migration.
-        
+
         Parameters
         ----------
         name : str
@@ -174,12 +173,12 @@ class MigrationRegistry:
             If True, don't actually modify files, default False
         **kwargs
             Additional keyword arguments for the migration
-            
+
         Returns
         -------
         dict
             Result of the migration
-            
+
         Raises
         ------
         ValueError
@@ -188,21 +187,21 @@ class MigrationRegistry:
         migration = self.get(name)
         if migration is None:
             raise ValueError(f"Migration '{name}' not found")
-        
+
         lgr.info(f"Running migration: {migration.name} (version {migration.version})")
         lgr.info(f"Description: {migration.description}")
-        
+
         if dry_run:
             lgr.info("DRY RUN: No files will be modified")
             kwargs["dry_run"] = True
-        
+
         result = migration(dataset_path, **kwargs)
-        
+
         if result.get("success"):
             lgr.info(f"Migration completed successfully: {result.get('message', '')}")
         else:
             lgr.warning(f"Migration failed or had issues: {result.get('message', '')}")
-        
+
         return result
 
 
@@ -210,30 +209,30 @@ class MigrationRegistry:
 registry = MigrationRegistry()
 
 
-def load_json(filepath: Path) -> Optional[Dict]:
+def load_json(filepath: Path) -> Optional[dict]:
     """Load JSON file safely.
-    
+
     Parameters
     ----------
     filepath : Path
         Path to JSON file
-        
+
     Returns
     -------
     dict or None
         Loaded JSON data, or None if error
     """
     try:
-        with open(filepath, 'r') as f:
+        with open(filepath) as f:
             return json.load(f)
     except (json.JSONDecodeError, FileNotFoundError) as e:
         lgr.error(f"Error loading {filepath}: {e}")
         return None
 
 
-def save_json(filepath: Path, data: Dict, indent: int = 2) -> bool:
+def save_json(filepath: Path, data: dict, indent: int = 2) -> bool:
     """Save JSON file safely.
-    
+
     Parameters
     ----------
     filepath : Path
@@ -242,16 +241,16 @@ def save_json(filepath: Path, data: Dict, indent: int = 2) -> bool:
         Data to save
     indent : int, optional
         JSON indentation, default 2
-        
+
     Returns
     -------
     bool
         True if successful, False otherwise
     """
     try:
-        with open(filepath, 'w') as f:
+        with open(filepath, "w") as f:
             json.dump(data, f, indent=indent, ensure_ascii=False)
-            f.write('\n')  # Add newline at end of file
+            f.write("\n")  # Add newline at end of file
         return True
     except Exception as e:
         lgr.error(f"Error saving {filepath}: {e}")
