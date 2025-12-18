@@ -202,8 +202,7 @@ def _validate_bids_dataset(dataset_path: Path) -> None:
     """
     if not (dataset_path / "dataset_description.json").exists():
         lgr.error(
-            f"No dataset_description.json found in {dataset_path}. "
-            "Is this a valid BIDS dataset?"
+            f"No dataset_description.json found in {dataset_path}. Is this a valid BIDS dataset?"
         )
         sys.exit(1)
 
@@ -211,15 +210,15 @@ def _validate_bids_dataset(dataset_path: Path) -> None:
 @migrate.command("list")
 def migrate_list():
     """List all available migrations"""
-    from .migrate import registry
     from . import migrations  # noqa: F401 - Import to register migrations
-    
+    from .migrate import registry
+
     migrations_list = registry.list_migrations()
-    
+
     if not migrations_list:
         lgr.info("No migrations available")
         return
-    
+
     click.echo("Available migrations:\n")
     for mig in sorted(migrations_list, key=lambda x: x["version"]):
         click.echo(f"  {mig['name']} (version {mig['version']})")
@@ -241,37 +240,37 @@ def migrate_run(migration_name, dataset_path, dry_run):
 
     DATASET_PATH is the path to the BIDS dataset root directory
     """
-    from .migrate import registry
     from . import migrations  # noqa: F401 - Import to register migrations
+    from .migrate import registry
 
     dataset_path = Path(dataset_path).resolve()
     _validate_bids_dataset(dataset_path)
-    
+
     try:
         result = registry.run(migration_name, dataset_path, dry_run=dry_run)
     except ValueError as e:
         lgr.error(str(e))
         lgr.info("Use 'bst migrate list' to see available migrations")
         sys.exit(1)
-    
+
     # Display results
     if result.get("modified_files"):
         click.echo(f"\nModified files ({len(result['modified_files'])}):")
         for filepath in result["modified_files"]:
             click.echo(f"  - {filepath}")
-    
+
     if result.get("warnings"):
         click.echo(f"\nWarnings ({len(result['warnings'])}):")
         for warning in result["warnings"]:
             click.echo(f"  - {warning}")
-    
+
     if result.get("suggestions"):
         click.echo(f"\nSuggestions ({len(result['suggestions'])}):")
         for suggestion in result["suggestions"]:
             click.echo(f"  - {suggestion}")
-    
+
     click.echo(f"\n{result['message']}")
-    
+
     if not result["success"]:
         sys.exit(1)
 
@@ -293,33 +292,33 @@ def migrate_all(dataset_path, dry_run, skip):
 
     DATASET_PATH is the path to the BIDS dataset root directory
     """
-    from .migrate import registry
     from . import migrations  # noqa: F401 - Import to register migrations
+    from .migrate import registry
 
     dataset_path = Path(dataset_path).resolve()
     _validate_bids_dataset(dataset_path)
-    
+
     migrations_list = registry.list_migrations()
     skip_set = set(skip)
-    
+
     if not migrations_list:
         click.echo("No migrations available")
         return
-    
+
     click.echo(f"Running {len(migrations_list)} migration(s) on {dataset_path}")
     if dry_run:
         click.echo("DRY RUN: No files will be modified\n")
-    
+
     results = []
     for mig in sorted(migrations_list, key=lambda x: x["version"]):
         if mig["name"] in skip_set:
             click.echo(f"Skipping: {mig['name']}")
             continue
-        
+
         click.echo(f"\nRunning: {mig['name']} (version {mig['version']})")
         result = registry.run(mig["name"], dataset_path, dry_run=dry_run)
         results.append((mig["name"], result))
-        
+
         if result.get("modified_files"):
             click.echo(f"  Modified {len(result['modified_files'])} file(s)")
         if result.get("warnings"):
@@ -327,12 +326,12 @@ def migrate_all(dataset_path, dry_run, skip):
         if result.get("suggestions"):
             click.echo(f"  {len(result['suggestions'])} suggestion(s)")
         click.echo(f"  {result['message']}")
-    
+
     # Summary
     click.echo("\n" + "=" * 60)
     click.echo("Migration Summary:")
     click.echo("=" * 60)
-    
+
     for name, result in results:
         status = "✓" if result["success"] else "✗"
         click.echo(f"{status} {name}: {result['message']}")

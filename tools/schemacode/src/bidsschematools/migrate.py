@@ -115,11 +115,13 @@ class MigrationRegistry:
         ...     # migration code here
         ...     return {"success": True, "modified_files": [], "message": "Done"}
         """
+
         def decorator(func: Callable) -> Migration:
             migration = Migration(name, version, description, func)
             self._migrations[name] = migration
             lgr.debug(f"Registered migration: {name} (version {version})")
             return migration
+
         return decorator
 
     def get(self, name: str) -> Optional[Migration]:

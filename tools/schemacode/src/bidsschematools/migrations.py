@@ -52,12 +52,11 @@ def migrate_generatedby(dataset_path: Path, dry_run: bool = False) -> dict[str, 
     # Use rglob to handle arbitrary nesting depths
     desc_files = list(dataset_path.rglob("dataset_description.json"))
 
-
     if not desc_files:
         return {
             "success": True,
             "modified_files": [],
-            "message": "No dataset_description.json files found"
+            "message": "No dataset_description.json files found",
         }
 
     for desc_file in desc_files:
@@ -92,10 +91,7 @@ def migrate_generatedby(dataset_path: Path, dry_run: bool = False) -> dict[str, 
                 # Convert to GeneratedBy format
                 if isinstance(value, str):
                     # Simple string, create basic entry
-                    entry = {
-                        "Name": value,
-                        "Description": f"Migrated from {old_field} field"
-                    }
+                    entry = {"Name": value, "Description": f"Migrated from {old_field} field"}
                     generated_by.append(entry)
                 elif isinstance(value, dict):
                     # Already structured, try to map fields
@@ -128,10 +124,9 @@ def migrate_generatedby(dataset_path: Path, dry_run: bool = False) -> dict[str, 
                     # List of entries
                     for item in value:
                         if isinstance(item, str):
-                            generated_by.append({
-                                "Name": item,
-                                "Description": f"Migrated from {old_field} field"
-                            })
+                            generated_by.append(
+                                {"Name": item, "Description": f"Migrated from {old_field} field"}
+                            )
                         elif isinstance(item, dict):
                             entry = {}
                             entry["Name"] = item.get("Name", item.get("name", old_field))
@@ -139,7 +134,7 @@ def migrate_generatedby(dataset_path: Path, dry_run: bool = False) -> dict[str, 
                                 entry["Version"] = item.get("Version", item.get("version"))
                             entry["Description"] = item.get(
                                 "Description",
-                                item.get("description", f"Migrated from {old_field} field")
+                                item.get("description", f"Migrated from {old_field} field"),
                             )
                             if "Container" in item or "container" in item:
                                 entry["Container"] = item.get("Container", item.get("container"))
@@ -226,7 +221,7 @@ def check_inheritance_overloading(dataset_path: Path, dry_run: bool = False) -> 
         return {
             "success": True,
             "modified_files": [],
-            "message": "No JSON sidecar files found to check"
+            "message": "No JSON sidecar files found to check",
         }
 
     # Analyze metadata fields across different scopes
@@ -253,10 +248,12 @@ def check_inheritance_overloading(dataset_path: Path, dry_run: bool = False) -> 
             if scope not in metadata_by_scope[field]:
                 metadata_by_scope[field][scope] = []
 
-            metadata_by_scope[field][scope].append({
-                "file": str(json_file.relative_to(dataset_path)),
-                "value": value,
-            })
+            metadata_by_scope[field][scope].append(
+                {
+                    "file": str(json_file.relative_to(dataset_path)),
+                    "value": value,
+                }
+            )
 
     # Check for overloading (same field with different values in different scopes)
     for field, scopes in metadata_by_scope.items():
