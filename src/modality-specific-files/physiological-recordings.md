@@ -16,7 +16,6 @@ An example of the physio directory structure is shown below:
    )
 }}
 
-```
 {{ MACROS___make_filetree_example(
 {
 "dataset":{
@@ -46,8 +45,6 @@ An example of the physio directory structure is shown below:
    }
 }
 ) }}
-
-```
 
 When recording physiological data, we **RECOMMEND** to always record and save the data with the least amount of processing possible applied to it following this specification. If derivatives are computed in real time, we **RECOMMEND** to save them following the derivatives BEP, and to also store raw data following this concBEP.
 
@@ -98,7 +95,7 @@ We **RECOMMEND** to store trigger signals recorded alongside physiological chann
       }
    }
 ) }}
-```
+
 {{ MACROS___make_filetree_example(
 {
 "dataset":{
@@ -113,8 +110,6 @@ We **RECOMMEND** to store trigger signals recorded alongside physiological chann
    }
 }
 ) }}
-
-```
 
 It is possible that the `recording-<label>` entity uses terms that could be confused with metadata field values, such as `MeasurementType` or `SamplingFrequency`. In that case, the lowest metadata level available should always be interpreted as the most reliable information. For instance, if the file name contains `recording-1000hz` but the `SamplingFrequency` metadata indicates a sampling frequency of 100Hz, data **MUST** be interpreted as being sampled at 100 Hz. Similarly, if the entity `recording-ecg` is used, but the `MeasurementType` metadata of the contained columns indicate “ppg” and “Ventilation”, the data **MUST** be interpreted as PPG and Ventilation, and not ECG.
 
