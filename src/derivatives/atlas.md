@@ -108,7 +108,7 @@ A guide for using macros can be found at
 ### Example: Multi-cohort template
 
 In the case that the template-generating pipeline derives
-several cohorts, the file structure must employ the
+results for several cohorts, the file structure must employ the
 [`cohort-<label>` directory and entity](../appendices/entities.md#cohort).
 
 <!-- This block generates a file tree.
