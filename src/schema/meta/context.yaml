@@ -298,15 +298,8 @@ properties:
             type: array
             items:
               type: string
-      atlas_description:
-        description: 'Atlas description file'
-        type: object
-        required: [path]
-        additionalProperties: false
-        properties:
-          path:
-            description: 'Path to associated atlas description file'
-            type: string
+  # atlas_description association has been replaced by atlases.tsv pattern
+  # See src/derivatives/atlas.md for the specification.
   # The following properties are populated if the current file is of an appropriate type
   columns:
     description: 'TSV columns, indexed by column header, values are arrays with column contents'

@@ -521,6 +521,16 @@ aslcontext:
   display_name: Arterial Spin Labeling Context
   description: |
     A TSV file defining the image types for volumes in an associated ASL file.
+atlases:
+  value: atlases
+  display_name: Atlas Entity Definitions
+  description: |
+    A TSV file describing labels found for the `atlas` entity in a Derivatives dataset.
+
+    This file MAY be located at the root of the derivative dataset,
+    or at the template level.
+
+    The `atlases.tsv` file provides metadata to identify and describe atlases in the dataset.
 asllabeling:
   value: asllabeling
   display_name: ASL Labeling Screenshot
@@ -557,15 +567,6 @@ channels:
   display_name: Channels File
   description: |
     Channel information.
-colFA:
-  value: colFA
-  display_name: Colored Fractional Anisotropy image
-  description: |
-    Scanner-derived parametric map encoding both the anisotropy and principal direction of the diffusion tensor.
-    Image intensity is proportional to the Fractional Anisotropy (FA) measure;
-    image color is determined by the principal eigenvector of the diffusion tensor,
-    where red encodes the magnitude of the left-right component of that orientation,
-    with green and blue similarly encoding the anterior-posterior and inferior-superior components respectively.
 cohorts:
   value: cohorts
   display_name: Cohort Entity Definitions
@@ -575,6 +576,15 @@ cohorts:
     This file MUST be located within a `tpl-<label>/` directory.
 
     The `cohorts.tsv` file provides metadata to identify and describe cohorts in the template.
+colFA:
+  value: colFA
+  display_name: Colored Fractional Anisotropy image
+  description: |
+    Scanner-derived parametric map encoding both the anisotropy and principal direction of the diffusion tensor.
+    Image intensity is proportional to the Fractional Anisotropy (FA) measure;
+    image color is determined by the principal eigenvector of the diffusion tensor,
+    where red encodes the magnitude of the left-right component of that orientation,
+    with green and blue similarly encoding the anterior-posterior and inferior-superior components respectively.
 coordsystem:
   value: coordsystem
   display_name: Coordinate System File

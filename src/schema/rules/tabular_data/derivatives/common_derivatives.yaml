@@ -12,6 +12,30 @@ SegmentationLookup:
   index_columns: [index]
   additional_columns: allowed
 
+Atlases:
+  selectors:
+    - suffix == "atlases"
+    - extension == ".tsv"
+  initial_columns:
+    - atlas_id
+    - name__atlases
+  columns:
+    atlas_id: required
+    name__atlases: required
+    license__atlases: required
+    description__atlases: recommended
+    authors__atlases: recommended
+    curators__atlases: optional
+    funding__atlases: optional
+    references_and_links__atlases: optional
+    species: optional
+    sample_size__atlases: optional
+    derived_from__atlases: optional
+    level_type__atlases: optional
+    rrid__atlases: optional
+  index_columns: [atlas_id]
+  additional_columns: allowed
+
 Templates:
   selectors:
     - suffix == "templates"

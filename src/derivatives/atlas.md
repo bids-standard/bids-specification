@@ -267,49 +267,106 @@ Template:
 
 ```Text
 <pipeline_name>/
-    atlas-<label>_description.json
+    atlases.tsv
+    atlases.json
     tpl-<label>/
+        [tpl-<label>_atlases.tsv]
+        [tpl-<label>_atlases.json]
         [cohort-<label>/]
            [<datatype>/]
                tpl-<label>[_cohort-<label>][_<entities>]_<suffix>.<extension>
 ```
 
-### Atlas identification and metadata
+### Atlas identification and metadata (`atlases.tsv`)
 
-The `atlas-<label>_description.json` file provides metadata to uniquely identify,
-describe and characterize the atlas, as well as give proper attribution to the creators.
-Atlases MUST include `atlas-<label>_description.json` files
-corresponding to the atlas or atlases in the structure.
+Template:
+
+```Text
+<pipeline_name>/
+    atlases.tsv
+    atlases.json
+```
+
+or at the template level:
+
+```Text
+<pipeline_name>/
+    tpl-<label>/
+        tpl-<label>_atlases.tsv
+        tpl-<label>_atlases.json
+```
+
+Optional: Yes
+
+To keep a record of atlases in the dataset, an `atlases.tsv` file MAY be used.
+The `atlases.tsv` file consists of one row for each unique `atlas-<label>`
+entity used in the dataset and a set of REQUIRED, RECOMMENDED, and OPTIONAL columns:
+
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/rules/tabular_data/*.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_columns_table("derivatives.common_derivatives.Atlases") }}
+
+This file MAY be located at the root of the derivative dataset as `atlases.tsv`,
+or within a `tpl-<label>/` directory as `tpl-<label>_atlases.tsv`
+([Inheritance Principle](../common-principles.md#the-inheritance-principle)).
+
+!!! note "Array fields"
+
+    For columns that represent arrays (such as `authors`, `curators`, `funding`,
+    and `references_and_links`), the value MUST be a JSON-encoded array of strings.
+    For example: `["Jane Doe", "John Doe"]`.
 
 !!! tip "Recommendation"
 
-    The selected `<label>` in the `atlas-<label>_description.json` file is RECOMMENDED
+    The selected `<label>` in the `atlases.tsv` file is RECOMMENDED
     for the [`atlas-<label>` entity](../appendices/entities.md#atlas)
     in downstream derivatives from this particular atlas (see previous section
     [Derivatives from atlases](imaging.md#derivatives-from-atlases)).
 
-Atlas metadata fields:
+`atlases.tsv` example:
 
-<!-- This block generates a metadata table.
-The definitions of these fields can be found in
-  src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_json_table('dataset_metadata.atlas_description') }}
+```tsv
+atlas_id	name	license	description	authors	species	sample_size	references_and_links
+atlas-Diedrichsen2009	A probabilistic MR atlas of the human cerebellum	LICENSE file	Probabilistic atlas of the human cerebellum	["Jörn Diedrichsen", "Joshua H Balsters", "Jonathan Flavell", "Emma Cussans", "Narender Ramnani"]	human	20	["https://doi.org/10.1016/j.neuroimage.2009.01.045"]
+atlas-Buckner2011	Atlas of the human cerebellum estimated by intrinsic functional connectivity	LICENSE file	Cerebellar atlas estimated by intrinsic functional connectivity	["Randy L Buckner", "Fenna M Krienen", "Angela Castellanos", "Julio C Diaz", "B T Thomas Yeo"]	human	1000	["https://doi.org/10.1152/jn.00339.2011"]
+```
 
-Example `atlas-MyAtlas2025_description.json`:
+It is RECOMMENDED to accompany each `atlases.tsv` file with a sidecar
+`atlases.json` file to describe the TSV column names and properties of their values
+(see also the [section on tabular files](../common-principles.md#tabular-files)).
+
+`atlases.json` example:
 
 ```JSON
 {
-  "Name": "A new atlas of the human brain",
-  "Authors": [
-    "Jane Doe",
-    "John Doe"
-  ],
-  "License": "CC0",
-  "RRID": "SCR_002823",
-  "Species": "Human"
+    "atlas_id": {
+        "Description": "Atlas identifier matching the atlas-<label> entity"
+    },
+    "name": {
+        "Description": "Name of the atlas"
+    },
+    "license": {
+        "Description": "License for the atlas"
+    },
+    "description": {
+        "Description": "Brief description of the atlas"
+    },
+    "authors": {
+        "Description": "JSON-encoded array of authors who created the atlas"
+    },
+    "species": {
+        "Description": "Species from which the atlas was derived"
+    },
+    "sample_size": {
+        "Description": "Number of participants used to create the atlas"
+    },
+    "references_and_links": {
+        "Description": "JSON-encoded array of references and links"
+    }
 }
 ```
 
@@ -346,6 +403,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example({
    "suit-pipeline": {
+      "templates.tsv": "",
       "tpl-SUIT": {
          "anat": {
             "tpl-SUIT_T1w.nii.gz": "",
@@ -373,7 +431,8 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example({
    "suit-pipeline": {
-      "atlas-Diedrichsen2009_description.json": "",
+      "atlases.tsv": "",
+      "templates.tsv": "",
       "tpl-SUIT": {
          "anat": {
             "tpl-SUIT_T1w.nii.gz": "",
@@ -387,26 +446,11 @@ A guide for using macros can be found at
 })
 }}
 
-where `atlas-Diedrichsen2009_description.json` could contain:
+where `atlases.tsv` could contain:
 
-```JSON
-{
-  "Name": "A probabilistic MR atlas of the human cerebellum",
-  "Authors": [
-     "Jörn Diedrichsen",
-     "Joshua H Balsters",
-     "Jonathan Flavell",
-     "Emma Cussans",
-     "Narender Ramnani"
-  ],
-  "SampleSize": 20,
-  "License": "LICENSE file",
-  "ReferencesAndLinks": [
-     "https://doi.org/10.1016/j.neuroimage.2009.01.045",
-     "https://github.com/jdiedrichsen/suit"
-  ],
-  "Species": "Human"
-}
+```tsv
+atlas_id	name	license	description	authors	species	sample_size	references_and_links
+atlas-Diedrichsen2009	A probabilistic MR atlas of the human cerebellum	LICENSE file	Probabilistic atlas of the human cerebellum	["Jörn Diedrichsen", "Joshua H Balsters", "Jonathan Flavell", "Emma Cussans", "Narender Ramnani"]	human	20	["https://doi.org/10.1016/j.neuroimage.2009.01.045", "https://github.com/jdiedrichsen/suit"]
 ```
 
 Later, in 2011 a second atlas was developed integrating new segmentations,
@@ -418,8 +462,8 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example({
    "suit-pipeline": {
-      "atlas-Buckner2011_description.json": "",
-      "atlas-Diedrichsen2009_description.json": "",
+      "atlases.tsv": "",
+      "templates.tsv": "",
       "tpl-SUIT": {
          "anat": {
             "tpl-SUIT_T1w.nii.gz": "",
@@ -440,27 +484,12 @@ A guide for using macros can be found at
 })
 }}
 
-where `atlas-Diedrichsen2009_description.json` remains as above,
-and `atlas-Buckner2011_description.json` could contain:
+where `atlases.tsv` now contains both atlases:
 
-```JSON
-{
-  "Name": "Atlas of the human cerebellum estimated by intrinsic functional connectivity",
-  "Authors": [
-     "Randy L Buckner",
-     "Fenna M Krienen",
-     "Angela Castellanos",
-     "Julio C Diaz",
-     "B T Thomas Yeo"
-  ],
-  "SampleSize": 1000,
-  "License": "LICENSE file",
-  "ReferencesAndLinks": [
-     "https://doi.org/10.1152/jn.00339.2011",
-     "https://github.com/jdiedrichsen/suit"
-  ],
-  "Species": "Human"
-}
+```tsv
+atlas_id	name	license	description	authors	species	sample_size	references_and_links
+atlas-Buckner2011	Atlas of the human cerebellum estimated by intrinsic functional connectivity	LICENSE file	Cerebellar atlas estimated by intrinsic functional connectivity	["Randy L Buckner", "Fenna M Krienen", "Angela Castellanos", "Julio C Diaz", "B T Thomas Yeo"]	human	1000	["https://doi.org/10.1152/jn.00339.2011", "https://github.com/jdiedrichsen/suit"]
+atlas-Diedrichsen2009	A probabilistic MR atlas of the human cerebellum	LICENSE file	Probabilistic atlas of the human cerebellum	["Jörn Diedrichsen", "Joshua H Balsters", "Jonathan Flavell", "Emma Cussans", "Narender Ramnani"]	human	20	["https://doi.org/10.1016/j.neuroimage.2009.01.045", "https://github.com/jdiedrichsen/suit"]
 ```
 
 ### Example: Deriving a new atlas referenced in an existing template
@@ -475,7 +504,8 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example({
    "mial67thalamicnuclei-pipeline": {
-      "atlas-MIAL67ThalamicNuclei_description.json": "",
+      "atlases.tsv": "",
+      "templates.tsv": "",
       "sub-01": {
          "anat": {
             "sub-01_seg-ThalamicNuclei_dseg.json": "",
@@ -520,9 +550,10 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example({
    "mial67thalamicnuclei-pipeline": {
-      "atlas-MIAL67ThalamicNuclei_description.json": "",
+      "atlases.tsv": "",
       "seg-ThalamicNuclei_dseg.json": "",
       "seg-ThalamicNuclei_dseg.tsv": "",
+      "templates.tsv": "",
       "sub-01": {
          "anat": {
             "sub-01_seg-ThalamicNuclei_dseg.nii.gz": "",
@@ -560,11 +591,12 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example({
    "mial67thalamicnuclei-pipeline": {
-      "atlas-MIAL67ThalamicNuclei_description.json": "",
       "atlas-MIAL67ThalamicNuclei_dseg.json": "",
       "atlas-MIAL67ThalamicNuclei_dseg.tsv": "",
+      "atlases.tsv": "",
       "seg-ThalamicNuclei_dseg.json": "",
       "seg-ThalamicNuclei_dseg.tsv": "",
+      "templates.tsv": "",
       "sub-01": {
          "anat": {
             "sub-01_atlas-MIAL67ThalamicNuclei_dseg.nii.gz": "",
@@ -603,10 +635,11 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example({
    "mial67thalamicnuclei-pipeline": {
-      "atlas-MIAL67ThalamicNuclei_description.json": "",
       "atlas-MIAL67ThalamicNuclei_dseg.json": "",
       "atlas-MIAL67ThalamicNuclei_dseg.tsv": "",
       "atlas-MIAL67ThalamicNuclei_probseg.json": "",
+      "atlases.tsv": "",
+      "templates.tsv": "",
       "tpl-MNI152NLin2009cAsym": {
          "anat": {
             "tpl-MNI152NLin2009cAsym_atlas-MIAL67ThalamicNuclei_res-1_dseg.nii.gz": "",

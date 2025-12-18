@@ -120,6 +120,105 @@ derived_from:
     for example a slice of tissue (`sample-02`) derived from a block of tissue (`sample-01`).
   type: string
   pattern: ^sample-[0-9a-zA-Z+]+$
+atlas_id:
+  name: atlas_id
+  display_name: Atlas ID
+  description: |
+    An atlas identifier of the form `atlas-<label>`,
+    matching an atlas entity found in the dataset.
+
+    The `atlas_id` column contains the labels used with the
+    [`atlas` entity](SPEC_ROOT/appendices/entities.md#atlas),
+    within the particular nesting that the `atlases.tsv` file is placed.
+
+    For example, if the `atlases.tsv` file is placed at the root of the derivative dataset,
+    its `atlas_id` column SHOULD contain all labels of the `atlas` entity
+    used across the entire derivative dataset.
+    If the file is placed within a `tpl-<label>/` directory,
+    it MUST be named `tpl-<label>_atlases.tsv`.
+  type: string
+  pattern: ^atlas-[0-9a-zA-Z+]+$
+name__atlases:
+  name: name
+  display_name: Atlas Name
+  description: |
+    Name of the atlas.
+  type: string
+license__atlases:
+  name: license
+  display_name: License
+  description: |
+    The license for the atlas.
+    The use of license name abbreviations is RECOMMENDED for specifying a license
+    (see [Licenses](SPEC_ROOT/appendices/licenses.md)).
+  type: string
+description__atlases:
+  name: description
+  display_name: Description
+  description: |
+    Free-form natural language description of the atlas.
+  type: string
+authors__atlases:
+  name: authors
+  display_name: Authors
+  description: |
+    List of individuals who contributed to the creation/curation of the atlas.
+    The value MUST be a JSON-encoded array of strings (for example,
+    `["Jane Doe", "John Doe"]`).
+  type: string
+curators__atlases:
+  name: curators
+  display_name: Curators
+  description: |
+    List of curators who helped make the atlas accessible in a database or dataset.
+    The value MUST be a JSON-encoded array of strings (for example,
+    `["Jane Doe", "John Doe"]`).
+  type: string
+funding__atlases:
+  name: funding
+  display_name: Funding
+  description: |
+    List of sources of funding (grant numbers) for the atlas.
+    The value MUST be a JSON-encoded array of strings (for example,
+    `["NIH R01 NS12345", "EU H2020 123456"]`).
+  type: string
+references_and_links__atlases:
+  name: references_and_links
+  display_name: References and Links
+  description: |
+    List of references to publications that contain information on the atlas.
+    A reference may be textual or a URI.
+    The value MUST be a JSON-encoded array of strings (for example,
+    `["https://doi.org/10.1000/xyz123", "Smith et al. (2020)"]`).
+  type: string
+sample_size__atlases:
+  name: sample_size
+  display_name: Sample Size
+  description: |
+    Number of items (typically, independent participants;
+    although it could also refer to, for example, sessions)
+    that were employed to create the corresponding atlas.
+  type: number
+derived_from__atlases:
+  name: derived_from
+  display_name: Derived From
+  description: |
+    Indicate what data modality the atlas was derived from;
+    for example, `"cytoarchitecture"`, `"resting-state"`, or `"task"`.
+  type: string
+level_type__atlases:
+  name: level_type
+  display_name: Level Type
+  description: |
+    Indicate what analysis level the atlas was derived from;
+    for example, `"group"` or `"individual"`.
+  type: string
+rrid__atlases:
+  name: rrid
+  display_name: RRID
+  description: |
+    [Research Resource Identifier](https://rrid.site) of the atlas being described.
+  type: string
 cohort_id:
   name: cohort_id
   display_name: Cohort ID

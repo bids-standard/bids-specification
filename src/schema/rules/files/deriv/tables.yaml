@@ -1,4 +1,16 @@
 ---
+atlases:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
+  level: optional
+  suffixes:
+    - atlases
+  extensions:
+    - .tsv
+    - .json
+  entities:
+    template: optional
+
 templates:
   selectors:
     - dataset.dataset_description.DatasetType == 'derivative'
