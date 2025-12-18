@@ -17,20 +17,36 @@ An example of the physio directory structure is shown below:
 }}
 
 ```
-dataset/
-[...]
-sub-<label>/[ses-<label>/]
-physio/
-sub-<label>[_ses-<label>]_task-<label>_[recording-<label>]_physio.json
-sub-<label>[_ses-<label>]_task-<label>_[recording-<label>]_physio.tsv.gz
+{{ MACROS___make_filetree_example(
+{
+"dataset":{
+   "sub-<label>": {
+      "ses-<label>": {
+         "physio": {
+            "sub-<label>[_ses-<label>]_task-<label>_[recording-<label>]_physio.json": "",
+            "sub-<label>[_ses-<label>]_task-<label>_[recording-<label>]_physio.tsv.gz": "",
+            },
+         },
+      }
+   }
+}
+) }}
 
-dataset/
-[...]
-sub-<label>/[ses-<label>/]
-func/
-   [...]
-<matches>_[recording-<label>]_physio.json
-<matches>_[recording-<label>]_physio.tsv.gz
+{{ MACROS___make_filetree_example(
+{
+"dataset":{
+   "sub-<label>": {
+      "ses-<label>": {
+         "func": {
+            "<matches>_[recording-<label>]_physio.json": "",
+            "<matches>_[recording-<label>]_physio.tsv.gz": "",
+            },
+         },
+      }
+   }
+}
+) }}
+
 ```
 
 When recording physiological data, we **RECOMMEND** to always record and save the data with the least amount of processing possible applied to it following this specification. If derivatives are computed in real time, we **RECOMMEND** to save them following the derivatives BEP, and to also store raw data following this concBEP.
@@ -95,12 +111,21 @@ sub-001_ses-01_recording-resp_physio.tsv.gz
    }
 ) }}
 ```
-dataset/
-[...]
-sub-<label>/[ses-<label>/]
-physio/
-sub-001_ses-01_physio.json
-sub-001_ses-01_physio.tsv.gz
+{{ MACROS___make_filetree_example(
+{
+"dataset":{
+   "sub-<label>": {
+      "ses-<label>": {
+         "physio": {
+            "sub-001_ses-01_physio.json": "",
+            "sub-001_ses-01_physio.tsv.gz": "",
+            },
+         },
+      }
+   }
+}
+) }}
+
 ```
 
 It is possible that the `recording-<label>` entity uses terms that could be confused with metadata field values, such as `MeasurementType` or `SamplingFrequency`. In that case, the lowest metadata level available should always be interpreted as the most reliable information. For instance, if the file name contains `recording-1000hz` but the `SamplingFrequency` metadata indicates a sampling frequency of 100Hz, data **MUST** be interpreted as being sampled at 100 Hz. Similarly, if the entity `recording-ecg` is used, but the `MeasurementType` metadata of the contained columns indicate “ppg” and “Ventilation”, the data **MUST** be interpreted as PPG and Ventilation, and not ECG.
@@ -189,18 +214,8 @@ More information about the metadata entities contained in the JSON files can be 
 
 ### 2.1 Metadata fields used in top level metadata 
 
-We highlight in *italics* the changes from the current specification.
-
 {{ MACROS___make_sidecar_table(["continuous.Continuous"]) }}
-| Key name | Requirement level | Data type | Description |
-|----------|----------|----------|----------|
-| Row 1-A  | Row 1-B  | Row 1-C  | Row 1-D  |
 
 ### 2.2 Metadata fields for column description
-
-{{ MACROS___make_columns_table("physio.PhysioColumns") }}
-| Key name | Requirement level | Data type | Description |
-|----------|----------|----------|----------|
-| Row 1-A  | Row 1-B  | Row 1-C  | Row 1-D  |
 
 ---
