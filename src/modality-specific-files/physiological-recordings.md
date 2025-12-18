@@ -205,4 +205,21 @@ More information about the metadata entities contained in the JSON files can be 
 
 ### 2.3 MeasureType descriptions
 
+| **MeasureType** | **Name** | **Description** |
+|-----------------|----------|-----------------|
+| Trigger | Trigger | Digital (binary TTL) or analog (TTL in Volt) values indicating scanner triggers. |
+| PPG | Photoplethysmography | Continuous optical signal capturing the cardiac pulsation. |
+| ECG | Electrocardiography | Continuous electrical signal capturing the cardiac activity. |
+| Ventilation | Ventilation | Continuous breathing measurement. |
+| CO2 | Carbon dioxide | Continuous measurement of the carbon dioxide concentration in expired air. |
+| O2 | Oxygen | Continuous measurement of the oxygen concentration from respiratory gases. |
+| PetCO2 | End-tidal carbon dioxide | Continuous measurement of the end-tidal pressure of carbon dioxide at the end of an exhalation. |
+| PetO2 | End-tidal oxygen | Continuous measurement of the end-tidal pressure of oxygen at the end of an inhalation. |
+| EDA-tonic | Electrodermal activity, tonic component | Continuous measurement of low-frequency changes in electrodermal activity, also known as skin conductance level. |
+| EDA-phasic | Electrodermal activity, phasic component | Continuous measurement of high-frequency changes in electrodermal activity, also known as skin conductance response. |
+| EDA-total | Electrodermal activity | Continuous measurement of the changes in electrical properties of the skin. |
+| BP | Blood pressure | Continuous measurement of the blood pressure waveform representing the changes in arterial pressure over time. |
+| Other | Other | Any other type of channel. |
+
+
 ---
