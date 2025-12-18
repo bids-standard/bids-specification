@@ -83,18 +83,6 @@ We **RECOMMEND** to store trigger signals recorded alongside physiological chann
       }
    }
 ) }}
-```
-dataset/
-[...]
-sub-<label>/[ses-<label>/]
-physio/
-sub-001_ses-01_recording-scr_physio.json
-sub-001_ses-01_recording-scr_physio.tsv.gz
-sub-001_ses-01_recording-ecg_physio.json
-sub-001_ses-01_recording-ecg_physio.tsv.gz
-sub-001_ses-01_recording-resp_physio.json
-sub-001_ses-01_recording-resp_physio.tsv.gz
-```
 
 **Combining recorded data into one pair of physio data files**
 
