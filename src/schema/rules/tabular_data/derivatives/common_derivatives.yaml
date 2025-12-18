@@ -12,6 +12,38 @@ SegmentationLookup:
   index_columns: [index]
   additional_columns: allowed
 
+Templates:
+  selectors:
+    - suffix == "templates"
+    - extension == ".tsv"
+  initial_columns:
+    - template_id
+    - description__entities
+  columns:
+    template_id: required
+    description__entities:
+      level: required
+      description_addendum: |
+        The corresponding label column is `template_id`.
+  index_columns: [template_id]
+  additional_columns: allowed
+
+Cohorts:
+  selectors:
+    - suffix == "cohorts"
+    - extension == ".tsv"
+  initial_columns:
+    - cohort_id
+    - description__entities
+  columns:
+    cohort_id: required
+    description__entities:
+      level: required
+      description_addendum: |
+        The corresponding label column is `cohort_id`.
+  index_columns: [cohort_id]
+  additional_columns: allowed
+
 Descriptions:
   selectors:
     - suffix == "descriptions"
