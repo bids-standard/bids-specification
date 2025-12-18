@@ -206,4 +206,6 @@ More information about the metadata entities contained in the JSON files can be 
 
 ### 2.2 Metadata fields for column description
 
+{{ MACROS___make_columns_table("physio.PhysioColumns") }}
+
 ---
