@@ -208,4 +208,6 @@ More information about the metadata entities contained in the JSON files can be 
 
 {{ MACROS___make_columns_table("physio.PhysioColumns") }}
 
+### 2.3 MeasureType descriptions
+
 ---
