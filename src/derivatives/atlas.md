@@ -34,7 +34,7 @@ aggregation thereof.
 Template:
 
 ```Text
-<pipeline_name>/
+<pipeline-name>/
     tpl-<label>/
         [cohort-<label>/]
            [<datatype>/]

@@ -352,8 +352,8 @@ Derivatives can be stored/distributed in two ways:
     [`MNI152NLin2009cAsym` standard space](appendices/coordinate-systems.md):
 
     ```Plain
-    <dataset>/derivatives/atlas-generator/sub-0001
-    <dataset>/derivatives/atlas-generator/tpl-MNI152NLin2009cAsym
+    <dataset>/derivatives/atlasgenerator/sub-0001
+    <dataset>/derivatives/atlasgenerator/tpl-MNI152NLin2009cAsym
     ```
 
     Example of a pipeline with nested derivative directories:
