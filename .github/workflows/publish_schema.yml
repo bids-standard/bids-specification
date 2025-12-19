@@ -61,7 +61,7 @@ jobs:
           node-version: 24
           cache: 'npm'
       - name: Install npm tools
-        run: npm install
+        run: npm install --no-save
       - name: Verify installed versions
         run: |
           npx quicktype --version

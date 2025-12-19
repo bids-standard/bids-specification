@@ -4,6 +4,7 @@ import os
 import re
 import sys
 from itertools import chain
+from pathlib import Path
 
 import click
 
@@ -18,19 +19,19 @@ lgr = get_logger()
 @click.group()
 @click.option("-v", "--verbose", count=True)
 @click.option("-q", "--quiet", count=True)
-def cli(verbose, quiet):
+def cli(verbose: int, quiet: int) -> None:
     """BIDS Schema Tools"""
     verbose = verbose - quiet
     configure_logger(get_logger(level=logging.WARNING - verbose * 10))
 
 
 @cli.command()
-@click.option("--schema")
+@click.option("--schema", "-s", "schema_path", type=click.Path(), help="Path to the BIDS schema")
 @click.option("--output", default="-")
 @click.pass_context
-def export(ctx, schema, output):
+def export(ctx: click.Context, schema_path: Path | None, output: Path | str) -> None:
     """Export BIDS schema to JSON document"""
-    schema = load_schema(schema)
+    schema = load_schema(schema_path)
     text = schema.to_json()
     if output == "-":
         lgr.debug("Writing to stdout")
@@ -45,7 +46,7 @@ def export(ctx, schema, output):
 @cli.command()
 @click.option("--output", default="-")
 @click.pass_context
-def export_metaschema(ctx, output):
+def export_metaschema(ctx: click.Context, output: Path | str) -> None:
     """Export BIDS schema to JSON document"""
     from .data import load
 
@@ -59,7 +60,7 @@ def export_metaschema(ctx, output):
 
 
 @cli.command("pre-receive-hook")
-@click.option("--schema", "-s", type=click.Path(), help="Path to the BIDS schema")
+@click.option("--schema", "-s", "schema_path", type=click.Path(), help="Path to the BIDS schema")
 @click.option(
     "--input", "-i", "input_", default="-", type=click.Path(), help="Input file (default: stdin)"
 )
@@ -71,7 +72,7 @@ def export_metaschema(ctx, output):
     type=click.Path(),
     help="Output file (default: stdout)",
 )
-def pre_receive_hook(schema, input_, output):
+def pre_receive_hook(schema_path: Path | None, input_: Path | str, output: Path | str) -> None:
     """Validate filenames from a list of files against the BIDS schema
 
     The expected input takes the following form:
@@ -101,7 +102,7 @@ def pre_receive_hook(schema, input_, output):
 
     This is intended to be used in a git pre-receive hook.
     """
-    schema = load_schema(schema)
+    schema = load_schema(schema_path)
 
     # Slurp inputs for now; we can think about streaming later
     if input_ == "-":
@@ -151,12 +152,12 @@ def pre_receive_hook(schema, input_, output):
 
     regexes = [rule["regex"] for rule in all_rules]
 
-    output = sys.stdout if output == "-" else open(output, "w")
+    out_stream = sys.stdout if output == "-" else open(output, "w")
 
     rc = 0
     any_files = False
     valid_files = 0
-    with output:
+    with out_stream:
         for filename in stream:
             if not any_files:
                 lgr.debug("Validating files, first file: %s", filename)
@@ -167,7 +168,7 @@ def pre_receive_hook(schema, input_, output):
             ):
                 continue
             if not any(re.match(regex, filename) for regex in regexes):
-                print(filename, file=output)
+                print(filename, file=out_stream)
                 rc = 1
             else:
                 valid_files += 1
