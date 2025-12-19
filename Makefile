@@ -8,7 +8,7 @@ all:
 	@echo "  serve   -- prep environment and build and serve docs"
 	@echo "  formatschema -- format and commit(!) schema"
 
-serve: install
+serve: .venv
 	uv run mkdocs serve
 
 install: .venv node_modules
