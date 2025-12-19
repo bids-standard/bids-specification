@@ -48,7 +48,6 @@ SegmentationCommon:
     Manual: optional
     CoordinateReportStrategy: optional
 
-
 # Derivatives -> Imaging data types
 ImageDerivatives:
   selectors:
