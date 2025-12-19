@@ -54,10 +54,9 @@ RUNTIME_IMPORT: bool
 
 TYPE_CHECKING = False
 if TYPE_CHECKING or "sphinx.ext.autodoc" in sys.modules:  # pragma: no cover
-    from typing import Any, Callable, Literal, NotRequired, Protocol, Self, TypeVar, TypedDict
-
     from collections.abc import Iterator, Mapping
     from contextlib import AbstractContextManager
+    from typing import Any, Callable, Literal, NotRequired, Protocol, Self, TypedDict, TypeVar
 
     from acres.typ import Traversable
     from jsonschema import FormatChecker
