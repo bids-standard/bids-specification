@@ -224,6 +224,10 @@ part:
 
     When there is only a magnitude image of a given type, the `part` entity MAY be
     omitted.
+
+    For stimulus files, `part-<label>` can be used to distinguish different parts of a single stimulus, such as
+    chapters in an audiobook or segments of a long movie (for example, `part-1`, `part-2`, `part-epilog`,
+    `part-chapter1`).
   type: string
   format: label
   enum:
@@ -231,6 +235,14 @@ part:
     - $ref: objects.enums.phase.value
     - $ref: objects.enums.real.value
     - $ref: objects.enums.imaginary.value
+part__stimuli:
+  name: part
+  display_name: Stimulus Part
+  description: |
+    For stimulus files, `part-<label>` can be used to distinguish different parts of a single stimulus,
+    such as chapters in an audiobook or segments of a long movie (for example, `part-1`, `part-2`, `part-epilog`).
+  type: string
+  format: label
 processing:
   name: proc
   display_name: Processed (on device)
@@ -393,6 +405,19 @@ stain:
     and/or `"SampleSecondaryAntibodies"` metadata fields, as appropriate.
   type: string
   format: label
+stimulus:
+  name: stim
+  display_name: Stimulus
+  description: |
+    The `stim-<label>` entity can be used to distinguish different stimulus files
+    or annotations. The label is a unique identifier for the stimulus or annotation.
+
+    This entity represents the `"Stimulus"` metadata field and requires corresponding
+    entries in the `stimuli.tsv` file. Therefore, if the `stim-<label>` entity is
+    present in a filename, `"Stimulus"` MUST be defined in the associated metadata,
+    and a matching entry MUST exist in the `stimuli.tsv` file.
+  type: string
+  format: label
 subject:
   name: sub
   display_name: Subject
@@ -461,5 +486,15 @@ tracksys:
     This entity corresponds to the `"TrackingSystemName"` metadata field in a *_motion.json file.
     `tracksys-<label>` entity is a concise string whereas `"TrackingSystemName"`
     may be longer and more human readable.
+  type: string
+  format: label
+annotation:
+  name: annot
+  display_name: Annotation
+  description: |
+    The `annot-<label>` entity accommodates multiple annotations for a single
+    (usually, but not necessarily, time-varying) stimulus id. Similar to `stimuli.tsv`,
+    there can be one or multiple `annotations.tsv` files with `annotation_id`, providing
+    a list of the annotations in the directory, or for a specific stimulus respectively.
   type: string
   format: label
