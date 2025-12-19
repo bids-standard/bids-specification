@@ -13,12 +13,7 @@ from pathlib import Path
 from . import data, utils
 from .types import Namespace
 
-TYPE_CHECKING = False
-if TYPE_CHECKING:
-    from typing import Any, Callable
-
-    from acres import typ as at
-    from jsonschema.protocols import Validator as JsonschemaValidator
+from . import _lazytypes as lt
 
 lgr = utils.get_logger()
 
@@ -27,7 +22,7 @@ class BIDSSchemaError(Exception):
     """Errors indicating invalid values in the schema itself"""
 
 
-def _get_schema_version(schema_dir: str | at.Traversable) -> str:
+def _get_schema_version(schema_dir: str | lt.Traversable) -> str:
     """
     Determine schema version for given schema directory, based on file specification.
     """
@@ -38,7 +33,7 @@ def _get_schema_version(schema_dir: str | at.Traversable) -> str:
     return schema_version_path.read_text().strip()
 
 
-def _get_bids_version(schema_dir: str | at.Traversable) -> str:
+def _get_bids_version(schema_dir: str | lt.Traversable) -> str:
     """
     Determine BIDS version for given schema directory, with directory name, file specification,
     and string fallback.
@@ -58,7 +53,7 @@ def _get_bids_version(schema_dir: str | at.Traversable) -> str:
     return str(schema_dir)
 
 
-def _find(obj: object, predicate: Callable[[Any], bool]) -> Iterable[object]:
+def _find(obj: object, predicate: lt.Callable[[lt.Any], bool]) -> Iterable[object]:
     """Find objects in an arbitrary object that satisfy a predicate.
 
     Note that this does not cut branches, so every iterable sub-object
@@ -122,7 +117,7 @@ def _dereference(namespace: MutableMapping, base_schema: Namespace) -> None:
 
 
 @cache
-def get_schema_validator() -> JsonschemaValidator:
+def get_schema_validator() -> lt.JsonschemaValidator:
     """Get the jsonschema validator for validating BIDS schemas."""
     metaschema = json.loads(data.load.readable("metaschema.json").read_text())
     return utils.jsonschema_validator(metaschema, check_format=True)
@@ -210,7 +205,7 @@ def flatten_enums(namespace: Namespace, inplace=True) -> Namespace:
 
 
 @lru_cache
-def load_schema(schema_path: at.Traversable | str | None = None) -> Namespace:
+def load_schema(schema_path: lt.Traversable | str | None = None) -> Namespace:
     """Load the schema into a dict-like structure.
 
     This function allows the schema, like BIDS itself, to be specified in

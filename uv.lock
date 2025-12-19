@@ -284,6 +284,16 @@ requires-dist = [
 ]
 provides-extras = ["validation", "dev", "expressions", "render", "tests", "all"]
 
+[package.metadata.requires-dev]
+types = [
+    { name = "lxml", specifier = ">=6.0.2" },
+    { name = "mypy", specifier = ">=1.18.2" },
+    { name = "pandas-stubs", specifier = ">=2.2.2.240807" },
+    { name = "types-jsonschema", specifier = ">=4.25.1.20251009" },
+    { name = "types-pyyaml", specifier = ">=6.0.12.20250915" },
+    { name = "types-tabulate", specifier = ">=0.9.0.20241207" },
+]
+
 [[package]]
 name = "certifi"
 version = "2025.8.3"
