@@ -113,10 +113,5 @@ coordsystems:
       - space
   inherit: true
 
-atlas_description:
-  selectors:
-    - entities.atlas
-    - extension != '.json'
-  target:
-    suffix: description
-    extension: .json
+# atlas_description association has been replaced by atlases.tsv pattern
+# See src/derivatives/atlas.md for the specification.
