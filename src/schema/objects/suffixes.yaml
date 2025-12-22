@@ -602,6 +602,12 @@ dwi:
   display_name: Diffusion-weighted image
   description: |
     Diffusion-weighted imaging contrast (specialized T2 weighting).
+dwimap:
+  value: dwimap
+  display_name: Diffusion-weighted derivative image
+  description: |
+    Diffusion-weighted derivative image.
+    This suffix is used to indicate that the image is a derivative of a diffusion-weighted image.
 eeg:
   value: eeg
   display_name: Electroencephalography
