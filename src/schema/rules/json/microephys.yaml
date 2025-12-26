@@ -13,7 +13,8 @@ microephysCoordsystemGeneral:
     IntendedFor:
       level: optional
       description_addendum: |
-        # TODO
+        This field can be used to indicate the data files for which
+        this coordinate system applies.
 
 # Fields relating to the microephys electrode positions
 microephysCoordsystemPositions:
