@@ -278,10 +278,12 @@ Restricted keywords for the `MicroephysCoordinateSystem` field in the
       <td>
         A generic stereotaxic coordinate system commonly used in animal neuroscience for surgical targeting
         and electrode localization. The origin is at bregma, a skull landmark defined as the intersection
-        of the coronal and sagittal sutures. The x-axis corresponds to the anterior-posterior (AP) axis with
-        posterior being positive. The y-axis corresponds to the dorsal-ventral (DV) or superior-inferior (SI)
-        axis with ventral/inferior being positive. The z-axis corresponds to the medial-lateral (ML) axis with
-        right being positive. Units are typically in millimeters or micrometers.
+        of the coronal and sagittal sutures. The three axes are: AP (Anterior-Posterior) with positive values
+        anterior to the reference point, ML (Medial-Lateral) with positive values to the right of midline,
+        and DV (Dorsal-Ventral) with positive values ventral to the reference point.
+        See the <a href="./microelectrode-surgical-coordinates.md">Microelectrode Surgical Coordinates</a>
+        appendix for detailed axis conventions and angle definitions.
+        Units are typically in millimeters or micrometers.
       </td>
       <td></td>
     </tr>
