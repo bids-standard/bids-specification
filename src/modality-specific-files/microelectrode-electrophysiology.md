@@ -520,11 +520,11 @@ standard space as specified in the BIDS [Coordinate Systems Appendix](../appendi
 
 For example:
 
--   `*_space-StereoTaxic` (electrodes are localized in stereotactic coordinate system with bregma origin)
-  <!-- TODO: Add 'StereoTaxic', 'AllenCCFv3', 'PaxinosWatson', etc coordinate systems to appendix coordinate-systems.md under "Microelectrode Electrophysiology Specific Coordinate Systems" with appropriate definitions for each standard reference frame used in animal electrophysiology -->
+-   `*_space-Stereotaxic` (electrodes are localized in stereotaxic coordinate system with bregma origin)
 -   `*_space-individual` (electrodes are localized in subject-specific anatomical coordinate system)
 -   `*_space-AllenCCFv3` (electrodes are mapped to Allen Common Coordinate Framework v3)
--   `*_space-PaxinosWatson` (electrodes are mapped to Paxinos-Watson rat brain atlas coordinates)
+-   `*_space-WaxholmSpace` (electrodes are mapped to Waxholm Space rat brain atlas coordinates)
+-   `*_space-WistarRatAtlas` (electrodes are mapped to Wistar Rat Atlas coordinates)
 
 When referring to the `*_electrodes.tsv` file in a certain *space* as defined
 above, the [`space-<label>`](../appendices/entities.md#space) of the accompanying `*_coordsystem.json` MUST
@@ -543,7 +543,7 @@ with (0,0) corresponding to the upper left pixel and (N,0) corresponding to the 
 
 ### Multiple coordinate systems
 
-If electrode positions are known in multiple coordinate systems (for example, probe-relative, StereoTaxic,
+If electrode positions are known in multiple coordinate systems (for example, probe-relative, Stereotaxic,
 and AllenCCFv3), these spaces can be distinguished by the [`space-<label>`](../appendices/entities.md#space)
 entity.
 Note that the [`space-<label>`](../appendices/entities.md#space) fields must correspond
@@ -560,8 +560,8 @@ A guide for using macros can be found at
    {
    "sub-01": {
       "sub-01_electrodes.tsv": "",
-      "sub-01_space-StereoTaxic_electrodes.tsv": "",
-      "sub-01_space-StereoTaxic_coordsystem.json": "",
+      "sub-01_space-Stereotaxic_electrodes.tsv": "",
+      "sub-01_space-Stereotaxic_coordsystem.json": "",
       "...": "",
       },
    }
