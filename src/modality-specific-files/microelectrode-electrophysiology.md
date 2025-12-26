@@ -271,13 +271,13 @@ For example: `/acquisition/ElectricalSeries1,/acquisition/ElectricalSeries2` or
 **Extracellular electrophysiology example:**
 
 ```tsv
-name	reference	type	units	sampling_frequency	hardware_filters	software_filters	gain	status	status_description
-ch001	ref01	LFP	uV	1000	HighpassFilter	LowpassFilter	500	good	n/a
-ch002	ref01	LFP	uV	1000	HighpassFilter	LowpassFilter	500	good	n/a
-ch003	ref01	HP	uV	30000	HighpassFilter	n/a	500	good	n/a
-ch004	ref01	HP	uV	30000	HighpassFilter	n/a	500	bad	high_noise
-ch005	ref02	LFP	uV	1000	HighpassFilter	LowpassFilter	500	good	n/a
-ch006	n/a	SYNC	V	30000	n/a	n/a	1	good	n/a
+name	reference	type	units	sampling_frequency	gain	status	status_description
+ch001	ref01	LFP	uV	1000	500	good	n/a
+ch002	ref01	LFP	uV	1000	500	good	n/a
+ch003	ref01	HP	uV	30000	500	good	n/a
+ch004	ref01	HP	uV	30000	500	bad	high_noise
+ch005	ref02	LFP	uV	1000	500	good	n/a
+ch006	n/a	SYNC	V	30000	1	good	n/a
 ```
 
 **Intracellular electrophysiology example:**
