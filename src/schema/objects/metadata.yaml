@@ -2277,6 +2277,7 @@ MicroephysCoordinateUnits:
     - m
     - mm
     - cm
+    - um
     - pixels
 MicroephysCoordinateSystemPhoto:
   name: MicroephysCoordinateSystemPhoto
