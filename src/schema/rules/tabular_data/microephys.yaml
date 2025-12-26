@@ -21,6 +21,7 @@ microephysProbes:
     AP_angle: recommended
     ML_angle: recommended
     manufacturer__probes: recommended
+    model__probes: recommended
     device_serial_number: recommended
     electrode_count: optional
     width__probes: optional

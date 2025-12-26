@@ -496,6 +496,12 @@ material__probes:
   description: |
     A textual description of the base material of the probe.
   type: string
+model__probes:
+  name: model
+  display_name: Probe model
+  description: |
+    The model name or number of the probe (for example, `Neuropixels 1.0`, `A1x32-Poly3-5mm-25s-177`).
+  type: string
 ML_angle:
   name: ML_angle
   display_name: ML angle
@@ -1287,9 +1293,9 @@ x__electrodes:
   display_name: Electrode X position
   description: |
     If no `_space` entity used, it is the position along the local width-axis relative
-    to the probe origin (see `_probes.tsv`, also `dimension_unit` column there in).
+    to the probe origin (see `_probes.tsv`, also `dimension_unit` column therein).
     Otherwise, the position relative to the origin of the coordinate system along
-    the first axis relative to the in the `MicroephysCoordinateUnits` of the corresponding
+    the first axis, in the units specified by `MicroephysCoordinateUnits` in the corresponding
     `_coordsystem.json` file.
   type: number
 y__electrodes:
