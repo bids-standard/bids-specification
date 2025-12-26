@@ -315,6 +315,71 @@ Restricted keywords for the `MicroephysCoordinateSystem` field in the
       <td><a href="https://doi.org/10.1016/j.neuroimage.2012.05.041">doi:10.1016/j.neuroimage.2012.05.041</a></td>
     </tr>
     <tr>
+      <td>PaxinosWatson</td>
+      <td>
+        The Paxinos and Watson rat brain atlas (<a href="https://scicrunch.org/resolver/RRID:SCR_006369">RRID:SCR_006369</a>),
+        a widely used stereotaxic coordinate system for the rat brain.
+        Provides standardized coordinates based on skull landmarks (bregma, lambda) for targeting brain structures.
+        Multiple editions available; users should specify the edition used in <code>MicroephysCoordinateSystemDescription</code>.
+      </td>
+      <td>Paxinos G, Watson C. The Rat Brain in Stereotaxic Coordinates. Academic Press.</td>
+    </tr>
+    <tr>
+      <td>FranklinPaxinos</td>
+      <td>
+        The Franklin and Paxinos mouse brain atlas (<a href="https://scicrunch.org/resolver/RRID:SCR_007127">RRID:SCR_007127</a>),
+        a widely used stereotaxic coordinate system for the mouse brain.
+        Provides standardized coordinates based on skull landmarks (bregma, lambda) for targeting brain structures.
+        Multiple editions available; users should specify the edition used in <code>MicroephysCoordinateSystemDescription</code>.
+      </td>
+      <td>Franklin KBJ, Paxinos G. The Mouse Brain in Stereotaxic Coordinates. Academic Press.</td>
+    </tr>
+    <tr>
+      <td>SwansonRat</td>
+      <td>
+        The Swanson rat brain atlas (<a href="https://scicrunch.org/resolver/RRID:SCR_007367">RRID:SCR_007367</a>),
+        a widely used stereotaxic coordinate system for the rat brain.
+        Provides detailed cytoarchitectonic parcellation and standardized coordinates for targeting brain structures.
+        Multiple editions available; users should specify the edition used in <code>MicroephysCoordinateSystemDescription</code>.
+      </td>
+      <td>Swanson LW. Brain Maps: Structure of the Rat Brain. Elsevier.</td>
+    </tr>
+    <tr>
+      <td>CHARM</td>
+      <td>
+        Cortical Hierarchy Atlas of the Rhesus Macaque (<a href="https://scicrunch.org/resolver/RRID:SCR_023283">RRID:SCR_023283</a>),
+        a modern MRI-based atlas for the macaque brain.
+        Provides hierarchical cortical parcellation based on anatomical connectivity patterns.
+      </td>
+      <td><a href="https://doi.org/10.1016/j.neuroimage.2021.117997">doi:10.1016/j.neuroimage.2021.117997</a></td>
+    </tr>
+    <tr>
+      <td>D99</td>
+      <td>
+        Digital version of the Saleem and Logothetis macaque brain atlas (<a href="https://scicrunch.org/resolver/RRID:SCR_014606">RRID:SCR_014606</a>).
+        Provides detailed parcellation of the rhesus macaque brain based on histological sections.
+      </td>
+      <td><a href="https://doi.org/10.1093/cercor/bhw248">doi:10.1093/cercor/bhw248</a></td>
+    </tr>
+    <tr>
+      <td>PaxinosMacaque</td>
+      <td>
+        The Paxinos rhesus macaque brain atlas (<a href="https://scicrunch.org/resolver/RRID:SCR_016249">RRID:SCR_016249</a>),
+        a stereotaxic coordinate system for the macaque brain.
+        Provides standardized coordinates based on stereotaxic landmarks for targeting brain structures.
+        Multiple editions available; users should specify the edition used in <code>MicroephysCoordinateSystemDescription</code>.
+      </td>
+      <td>Paxinos G, Huang XF, Petrides M, Toga AW. The Rhesus Monkey Brain in Stereotaxic Coordinates. Academic Press.</td>
+    </tr>
+    <tr>
+      <td>MarmosetBrainAtlas</td>
+      <td>
+        A standardized 3D coordinate system for the common marmoset brain (<a href="https://scicrunch.org/resolver/RRID:SCR_023286">RRID:SCR_023286</a>).
+        Provides high-resolution anatomical reference for marmoset brain studies.
+      </td>
+      <td><a href="https://doi.org/10.1016/j.neuroimage.2017.12.004">doi:10.1016/j.neuroimage.2017.12.004</a></td>
+    </tr>
+    <tr>
       <td>individual</td>
       <td>
         Subject-specific anatomical coordinate system derived from the individual subject's anatomy. The origin
