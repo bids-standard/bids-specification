@@ -73,12 +73,12 @@ associated_brain_region:
     preferably species-independent terms as obtained, for example from Uberon.
   type: string
 associated_brain_region_id:
-  name: associated_uberon_brain_region_id
+  name: associated_brain_region_id
   display_name: Associated brain region identifier
   description: |
     An identifier of the associated brain region based on the Uberon ontology
     for anatomical structures in animals, for example "UBERON:0010415"
-  type: number
+  type: string
 associated_brain_region_quality_type:
   name: associated_brain_region_quality_type
   display_name: Associated brain region quality type
