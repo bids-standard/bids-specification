@@ -871,6 +871,14 @@ software_filters:
     modality sidecar JSON (for example, `*_ieeg.json`, `*_ecephys.json`, `*_icephys.json`).
 
     Use `n/a` if no software filters were applied.
+software_filter_types:
+  name: software_filter_types
+  display_name: Software filter types
+  description: |
+    The types of software filters applied to this channel.
+    The `Levels` for this column SHOULD be defined in the accompanying
+    `*_channels.json` file, mapping each filter type key to its description.
+    Use `n/a` if no software filters were applied to this channel.
   anyOf:
     - type: string
     - type: string

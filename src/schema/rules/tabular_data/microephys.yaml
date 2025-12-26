@@ -86,11 +86,13 @@ microephysChannels:
     type__channels: required
     units__channels: required
     sampling_frequency: optional
+    low_cutoff: optional
+    high_cutoff: optional
+    notch: optional
     channel_label: optional
     stream_id: optional
     description: optional
-    hardware_filters: recommended
-    software_filters: recommended
+    software_filter_types: optional
     status: optional
     status_description: optional
     gain: recommended

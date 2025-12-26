@@ -237,6 +237,16 @@ Columns in the `*_channels.tsv` file are:
 
 {{ MACROS___make_columns_table("microephys.microephysChannels") }}
 
+### Filtering Information
+
+The global filter parameters for all channels are specified in the sidecar JSON file using `HardwareFilters` and `SoftwareFilters` fields. Channel-specific filtering information in the `*_channels.tsv` file can override or supplement these global settings.
+
+Channel-level filtering can be specified in multiple complementary ways:
+
+1.  **Cutoff frequencies**: Use `low_cutoff` (high-pass filter frequency), `high_cutoff` (low-pass filter frequency), and `notch` (notch filter frequencies) columns to specify the filter cutoff frequencies applied to each channel. These columns are consistent with the iEEG specification.
+
+2.  **Software filter types with Levels**: Use the `software_filter_types` column to specify which software filters were applied to each channel. The values should correspond to keys defined in the `SoftwareFilters` field of the `*_channels.json` JSON file. The `Levels` for this column SHOULD be defined there, mapping each filter type key to its description.
+
 ### The `stream_id` Column
 
 The `stream_id` column links each channel to its corresponding data stream within the data file. The format of `stream_id` depends on the data file format:
