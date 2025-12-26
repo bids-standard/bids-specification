@@ -220,6 +220,7 @@ If the OPTIONAL [` task-<label>`](../appendices/entities.md#task) is used, the f
   "SliceThickness": 300,
   "TaskName": "MembraneProperties",
   "TaskDescription": "Characterization of intrinsic properties"
+}
 ```
 
 ## Channels description (`*_channels.tsv`)
