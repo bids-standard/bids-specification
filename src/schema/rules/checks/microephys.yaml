@@ -49,3 +49,42 @@ MatchingSpaceLabels:
     - associations.coordsystem != null
   checks:
     - associations.coordsystem.entities.space == entities.space
+
+# Validate electrode-probe relationship
+# All probe_name values in electrodes.tsv must reference valid entries in probes.tsv
+ElectrodeProbeReference:
+  issue:
+    code: MICROEPHYS_ELECTRODE_PROBE_INVALID
+    message: |
+      The probe_name column in electrodes.tsv must reference valid probe names
+      defined in the associated probes.tsv file. Each electrode must be associated
+      with an existing probe.
+    level: error
+  selectors:
+    - intersects([datatype], ["ecephys", "icephys"])
+    - suffix == "electrodes"
+    - extension == ".tsv"
+    - columns.probe_name != null
+    - associations.probes != null
+    - associations.probes.probe_name != null
+  checks:
+    - |
+      length(intersects(unique(columns.probe_name), associations.probes.probe_name))
+      == length(unique(columns.probe_name))
+
+# Ensure probes.tsv exists when electrodes.tsv is present
+RequiredProbesFile:
+  issue:
+    code: MICROEPHYS_PROBES_REQUIRED
+    message: |
+      For microelectrode electrophysiology data, if an electrodes.tsv file is present,
+      an associated probes.tsv file must also be present to define the probes
+      referenced by the electrodes.
+    level: error
+  selectors:
+    - intersects([datatype], ["ecephys", "icephys"])
+    - suffix == "electrodes"
+    - extension == ".tsv"
+    - columns.probe_name != null
+  checks:
+    - associations.probes != null

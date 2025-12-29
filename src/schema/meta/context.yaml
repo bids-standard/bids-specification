@@ -298,6 +298,20 @@ properties:
             type: array
             items:
               type: string
+      probes:
+        description: 'Probes file for microelectrode electrophysiology'
+        type: object
+        required: [path]
+        additionalProperties: false
+        properties:
+          path:
+            description: 'Path to associated probes.tsv file'
+            type: string
+          probe_name:
+            description: 'Contents of the probe_name column (index column)'
+            type: array
+            items:
+              type: string
   # The following properties are populated if the current file is of an appropriate type
   columns:
     description: 'TSV columns, indexed by column header, values are arrays with column contents'
