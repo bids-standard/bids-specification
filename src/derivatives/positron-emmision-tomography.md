@@ -247,6 +247,7 @@ Example:
 ```Text
 bids_dataset/derivatives/petprep_extract_tacs
     sub-01/
+      pet/
         sub-01_seg-brainstem_dseg.nii.gz
         sub-01_seg-brainstem_dseg.json
         sub-01_seg-brainstem_dseg.tsv
