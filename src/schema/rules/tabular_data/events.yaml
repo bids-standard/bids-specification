@@ -9,6 +9,7 @@ Events:
     response_time: optional
     HED: optional
     stim_file: optional
+    stim_id: optional
     channel:
       level: optional
       description_addendum: |

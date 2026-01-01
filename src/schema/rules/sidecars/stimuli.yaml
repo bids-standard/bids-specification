@@ -1,0 +1,12 @@
+---
+# Sidecar tables for stim-<label>_suffix.json, the stimuli.json and annotations.json do not need additional fields
+# as the fields have been already defined in the tabular data
+
+Stimuli:
+  selectors:
+    - intersects([suffix], ["audio", "video", "audiovideo", "image"])
+  fields:
+    StimulusLicense: recommended
+    Copyright: recommended
+    StimulusURL: optional
+    Description: optional

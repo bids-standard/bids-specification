@@ -396,7 +396,12 @@
                 "^[a-z]+$": {
                   "type": "object",
                   "patternProperties": {
-                    "^[a-zA-Z0-9_]+$": { "$ref": "#/definitions/suffixRule" }
+                    "^[a-zA-Z0-9_]+$": {
+                      "anyOf": [
+                        { "$ref": "#/definitions/suffixRule" },
+                        { "$ref": "#/definitions/stemRule" }
+                      ]
+                    }
                   },
                   "additionalProperties": false
                 }
@@ -692,7 +697,30 @@
           "items": { "type": "string", "pattern": "^[a-z]+$" }
         },
         "stem": { "type": "string" },
-        "extensions": { "type": "array", "items": { "type": "string" } }
+        "path": { "type": "string" },
+        "extensions": { "type": "array", "items": { "type": "string" } },
+        "entities": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-z]+$": {
+              "anyOf": [
+                { "enum": ["optional", "required"] },
+                {
+                  "type": "object",
+                  "properties": {
+                    "level": { "enum": ["optional", "required"] },
+                    "enum": {
+                      "type": "array",
+                      "items": { "type": "string" }
+                    }
+                  },
+                  "required": ["level", "enum"]
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
       },
       "required": ["level", "stem", "extensions"],
       "additionalProperties": false
@@ -710,6 +738,7 @@
           "type": "array",
           "items": { "type": "string", "pattern": "^[a-zA-Z0-9]+$" }
         },
+        "path": { "type": "string" },
         "extensions": { "type": "array", "items": { "type": "string" } },
         "entities": {
           "type": "object",

@@ -83,7 +83,7 @@ raw:
   stimuli:
     name: stimuli
     level: optional
-    opaque: true
+    opaque: false
   subject:
     entity: subject
     level: required
@@ -141,7 +141,7 @@ derivative:
   stimuli:
     name: stimuli
     level: optional
-    opaque: true
+    opaque: false
   subject:
     entity: subject
     level: optional
