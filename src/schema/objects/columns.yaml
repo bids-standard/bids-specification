@@ -855,6 +855,17 @@ size:
     Surface area of the electrode, units MUST be in `mm^2`.
   type: number
   unit: 'mm^2'
+software_filters:
+  name: software_filters
+  display_name: Software filters
+  description: |
+    List of temporal and/or spatial software filters applied.
+
+    For detailed filter parameters, use the `SoftwareFilters` field in the
+    modality sidecar JSON (for example, `*_ieeg.json`, `*_ecephys.json`, `*_icephys.json`).
+
+    Use `n/a` if no software filters were applied.
+  type: string
 software_filter_types:
   name: software_filter_types
   display_name: Software filter types
