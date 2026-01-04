@@ -87,6 +87,13 @@ _MicroephysCoordSys:
     - $ref: objects.enums.AllenCCFv3.value
     - $ref: objects.enums.WaxholmSpace.value
     - $ref: objects.enums.WistarRatAtlas.value
+    - $ref: objects.enums.PaxinosWatson.value
+    - $ref: objects.enums.FranklinPaxinos.value
+    - $ref: objects.enums.SwansonRat.value
+    - $ref: objects.enums.CHARM.value
+    - $ref: objects.enums.D99.value
+    - $ref: objects.enums.PaxinosMacaque.value
+    - $ref: objects.enums.MarmosetBrainAtlas.value
     - $ref: objects.enums.individual.value
     - $ref: objects.enums.Other.value
 left_hemisphere:
@@ -1578,9 +1585,9 @@ Stereotaxic:
     A generic stereotaxic coordinate system commonly used in animal neuroscience for surgical
     targeting and electrode localization. The origin is at bregma, a skull landmark defined as
     the intersection of the coronal and sagittal sutures. The x-axis corresponds to the
-    anterior-posterior (AP) axis with posterior being positive. The y-axis corresponds to the
-    dorsal-ventral (DV) or superior-inferior (SI) axis with ventral/inferior being positive.
-    The z-axis corresponds to the medial-lateral (ML) axis with right being positive.
+    anterior-posterior (AP) axis with anterior being positive. The y-axis corresponds to the
+    medial-lateral (ML) axis with right being positive. The z-axis corresponds to the
+    dorsal-ventral (DV) axis with ventral/inferior being positive.
     Units are typically in millimeters or micrometers. When using this coordinate system,
     the specific anatomical reference point and units should be specified in
     `MicroephysCoordinateSystemDescription`.
@@ -1618,3 +1625,65 @@ WistarRatAtlas:
     Reference: Johnson GA, Calabrese E, Badea A, Paxinos G, Watson C. A multidimensional magnetic resonance
     histology atlas of the Wistar rat brain. Neuroimage. 2012 Sep;62(3):1848-56.
     [doi:10.1016/j.neuroimage.2012.05.041](https://doi.org/10.1016/j.neuroimage.2012.05.041).
+PaxinosWatson:
+  value: PaxinosWatson
+  display_name: Paxinos-Watson
+  description: |
+    The Paxinos and Watson rat brain atlas (RRID:SCR_006369),
+    a widely used stereotaxic coordinate system for the rat brain.
+    Provides standardized coordinates based on skull landmarks (bregma, lambda) for targeting brain structures.
+    Reference: Paxinos G, Watson C. The Rat Brain in Stereotaxic Coordinates. Academic Press.
+    Multiple editions available; users should specify the edition used in `MicroephysCoordinateSystemDescription`.
+FranklinPaxinos:
+  value: FranklinPaxinos
+  display_name: Franklin-Paxinos
+  description: |
+    The Franklin and Paxinos mouse brain atlas (RRID:SCR_007127),
+    a widely used stereotaxic coordinate system for the mouse brain.
+    Provides standardized coordinates based on skull landmarks (bregma, lambda) for targeting brain structures.
+    Reference: Franklin KBJ, Paxinos G. The Mouse Brain in Stereotaxic Coordinates. Academic Press.
+    Multiple editions available; users should specify the edition used in `MicroephysCoordinateSystemDescription`.
+SwansonRat:
+  value: SwansonRat
+  display_name: Swanson Rat
+  description: |
+    The Swanson rat brain atlas (RRID:SCR_007367), a widely used stereotaxic coordinate system for the rat brain.
+    Provides detailed cytoarchitectonic parcellation and standardized coordinates for targeting brain structures.
+    Reference: Swanson LW. Brain Maps: Structure of the Rat Brain. Elsevier.
+    Multiple editions available; users should specify the edition used in `MicroephysCoordinateSystemDescription`.
+CHARM:
+  value: CHARM
+  display_name: CHARM
+  description: |
+    Cortical Hierarchy Atlas of the Rhesus Macaque (RRID:SCR_023283), a modern MRI-based atlas for the macaque brain.
+    Provides hierarchical cortical parcellation based on anatomical connectivity patterns.
+    Reference: Jung B, Taylor PA, Seidlitz J, Sponheim C, Perkins P, Ungerleider LG, Glen D, Messinger A.
+    A comprehensive macaque fMRI pipeline and hierarchical atlas. NeuroImage. 2021;235:117997.
+    [doi:10.1016/j.neuroimage.2021.117997](https://doi.org/10.1016/j.neuroimage.2021.117997).
+D99:
+  value: D99
+  display_name: D99
+  description: |
+    Digital version of the Saleem and Logothetis macaque brain atlas (RRID:SCR_014606).
+    Provides detailed parcellation of the rhesus macaque brain based on histological sections.
+    Reference: Reveley C, Gruslys A, Ye FQ, Glen D, Samaha J, Russ BE, Saad Z, Seth AK, Leopold DA, Saleem KS.
+    Three-Dimensional Digital Template Atlas of the Macaque Brain. Cereb Cortex. 2017;27(9):4463-4477.
+    [doi:10.1093/cercor/bhw248](https://doi.org/10.1093/cercor/bhw248).
+PaxinosMacaque:
+  value: PaxinosMacaque
+  display_name: Paxinos Macaque
+  description: |
+    The Paxinos rhesus macaque brain atlas (RRID:SCR_016249), a stereotaxic coordinate system for the macaque brain.
+    Provides standardized coordinates based on stereotaxic landmarks for targeting brain structures.
+    Reference: Paxinos G, Huang XF, Petrides M, Toga AW.
+    The Rhesus Monkey Brain in Stereotaxic Coordinates. Academic Press.
+    Multiple editions available; users should specify the edition used in `MicroephysCoordinateSystemDescription`.
+MarmosetBrainAtlas:
+  value: MarmosetBrainAtlas
+  display_name: Marmoset Brain Atlas
+  description: |
+    A standardized 3D coordinate system for the common marmoset brain (RRID:SCR_023286).
+    Provides high-resolution anatomical reference for marmoset brain studies.
+    Reference: Liu C, Ye FQ, Yen CC, Newman JD, Glen D, Leopold DA, Silva AC.
+    A digital 3D atlas of the marmoset brain based on multi-modal MRI. NeuroImage. 2018;169:106-116.
+    [doi:10.1016/j.neuroimage.2017.12.004](https://doi.org/10.1016/j.neuroimage.2017.12.004).

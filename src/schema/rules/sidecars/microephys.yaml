@@ -45,6 +45,11 @@ microephysSetup:
          The name of the software suite used to
          record the data.
     SoftwareVersions: recommended
+    RecordingDuration: recommended
+    RecordingType: recommended
+    EpochLength:
+      level: optional
+      level_addendum: recommended if RecordingType is "epoched"
 
 microephysProcessing:
   selectors:

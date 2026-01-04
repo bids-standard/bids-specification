@@ -2272,19 +2272,22 @@ MicroephysCoordinateUnits:
   description: |
     Units of the coordinates of `"MicroephysCoordinateSystem"`.
   type: string
-# TODO: Clarify if units need to be used or enums, if units, define pixels
+  # TODO: Clarify if units need to be used or enums, if units, define pixels
   enum:
     - m
     - mm
     - cm
+    - um
     - pixels
 MicroephysCoordinateSystemPhoto:
   name: MicroephysCoordinateSystemPhoto
   display_name: Microephys Coordinate System Photo
   description: |
-    A link to a photo or drawing of the microelectrode probe system.
+    Path to the photo or image file defining the coordinate system when
+    `MicroephysCoordinateUnits` is `"pixels"`.
+    Should be a [BIDS URI](SPEC_ROOT/common-principles.md#bids-uri).
   type: string
-  format: uri
+  format: bids_uri
 MISCChannelCount:
   name: MISCChannelCount
   display_name: Miscellaneous channel count

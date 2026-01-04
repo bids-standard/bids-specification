@@ -21,6 +21,7 @@ microephysProbes:
     AP_angle: recommended
     ML_angle: recommended
     manufacturer__probes: recommended
+    model__probes: recommended
     device_serial_number: recommended
     electrode_count: optional
     width__probes: optional
@@ -47,15 +48,15 @@ microephysElectrodes:
   initial_columns:
     - name__electrodes
     - probe_name
-    - x
-    - y
-    - z
+    - x__electrodes
+    - y__electrodes
+    - z__electrodes
   columns:
     name__electrodes: required
     probe_name: required
-    x: required
-    y: required
-    z: required
+    x__electrodes: required
+    y__electrodes: required
+    z__electrodes: required
     hemisphere: recommended
     impedance: recommended
     shank_id: optional
@@ -86,11 +87,13 @@ microephysChannels:
     type__channels: required
     units__channels: required
     sampling_frequency: optional
+    low_cutoff: optional
+    high_cutoff: optional
+    notch: optional
     channel_label: optional
     stream_id: optional
     description: optional
-    hardware_filters: recommended
-    software_filters: recommended
+    software_filter_types: optional
     status: optional
     status_description: optional
     gain: recommended

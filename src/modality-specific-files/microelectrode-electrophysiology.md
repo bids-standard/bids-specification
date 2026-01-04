@@ -45,10 +45,32 @@ The native file format is used in case conversion elicits the loss of crucial me
 Metadata should be included alongside the data in the `.json` and `.tsv` files.
 The current list of allowed data file formats:
 
-| **Format**                                                                           | **Extension(s)** | **Description**                                                                                                                                                                                                           |
-| ------------------------------------------------------------------------------------ | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Neuroscience Information Exchange Format](https://nixio.readthedocs.io/en/latest/)  | `.nix`            | A generic and open framework with an hdf5 backend and a defined interface to many microephys formats via the [Neo library](https://neo.readthedocs.io/en/latest/). The `.nix` file has to contain a valid Neo structure. |
-| [Neurodata Without Borders](https://www.nwb.org)                                     | `.nwb`            | An open data standard for neurophysiology, including data from intracellular and extracellular electrophysiology experiments.                                                                                            |
+<table>
+  <thead>
+    <tr>
+      <th><strong>Format</strong></th>
+      <th><strong>Extension(s)</strong></th>
+      <th><strong>Description</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://nixio.readthedocs.io/en/latest/">Neuroscience Information Exchange Format</a></td>
+      <td><code>.nix</code></td>
+      <td>
+        A generic and open framework with an hdf5 backend and a defined interface to many microephys formats via the
+        <a href="https://neo.readthedocs.io/en/latest/">Neo library</a>. The <code>.nix</code> file has to contain a valid Neo structure.
+      </td>
+    </tr>
+    <tr>
+      <td><a href="https://www.nwb.org">Neurodata Without Borders</a></td>
+      <td><code>.nwb</code></td>
+      <td>
+        An open data standard for neurophysiology, including data from intracellular and extracellular electrophysiology experiments.
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 Both of these formats can also store essential metadata of the datasets.
 Some of this metadata needs to be duplicated in BIDS `.tsv` and `.json` sidecar files.
@@ -92,7 +114,7 @@ We propose to store all metadata that is not directly related to one of the othe
 
 There should be one such JSON file for each data file.
 
-The `*_ephys.json` file can be used to store any microephys-specific metadata for the dataset. We recommend storing all setup-related metadata in a dedicated node of the JSON file called `Setup`.
+The `*_ecephys.json` or `*_icephys.json` file can be used to store any microephys-specific metadata for the dataset. We recommend storing all setup-related metadata in a dedicated node of the JSON file called `Setup`.
 We recommend using the following keys to describe the setup:
 
 ### Institution Information
@@ -116,7 +138,7 @@ We RECOMMEND to use a dedicated `Procedure` node with the following keys:
 -   `Sample`
 -   `Supplementary`
 
-<!-- TODO: Yarik replaced Pharmaceuticals with PharmaceuticalName and others for now but we might look to define list of Pharmaceuticals of records with PharmaceuticalDoseAmount and PharmaceuticalDoseUnit -->
+<!-- TODO: Yarik replaced Pharmaceuticals with PharmaceuticalName and others for now but we might look to define list of Pharmaceuticals of records with PharmaceuticalDoseAmount and PharmaceuticalDoseUnits -->
 
 #### Pharmaceuticals
 
@@ -198,6 +220,7 @@ If the OPTIONAL [` task-<label>`](../appendices/entities.md#task) is used, the f
   "SliceThickness": 300,
   "TaskName": "MembraneProperties",
   "TaskDescription": "Characterization of intrinsic properties"
+}
 ```
 
 ## Channels description (`*_channels.tsv`)
@@ -214,6 +237,15 @@ This table stores information about the recorded signals, *not* the electrodes. 
 Columns in the `*_channels.tsv` file are:
 
 {{ MACROS___make_columns_table("microephys.microephysChannels") }}
+
+### Filtering Information
+
+The global filter parameters for all channels are specified in the sidecar JSON file using `HardwareFilters` and `SoftwareFilters` fields. Channel-specific filtering information in the `*_channels.tsv` file can override or supplement these global settings.
+
+Channel-level filtering can be specified in multiple complementary ways:
+
+1.  **Cutoff frequencies**: Use `low_cutoff` (high-pass filter frequency), `high_cutoff` (low-pass filter frequency), and `notch` (notch filter frequencies) columns to specify the filter cutoff frequencies applied to each channel. These columns are consistent with the iEEG specification.
+1.  **Software filter types with Levels**: Use the `software_filter_types` column to specify which software filters were applied to each channel. The values should correspond to keys defined in the `SoftwareFilters` field of the `*_channels.json` JSON file. The `Levels` for this column SHOULD be defined there, mapping each filter type key to its description.
 
 ### The `stream_id` Column
 
@@ -238,13 +270,13 @@ For example: `/acquisition/ElectricalSeries1,/acquisition/ElectricalSeries2` or
 **Extracellular electrophysiology example:**
 
 ```tsv
-name	reference	type	units	sampling_frequency	hardware_filters	software_filters	gain	status	status_description
-ch001	ref01	LFP	uV	1000	HighpassFilter	LowpassFilter	500	good	n/a
-ch002	ref01	LFP	uV	1000	HighpassFilter	LowpassFilter	500	good	n/a
-ch003	ref01	HP	uV	30000	HighpassFilter	n/a	500	good	n/a
-ch004	ref01	HP	uV	30000	HighpassFilter	n/a	500	bad	high_noise
-ch005	ref02	LFP	uV	1000	HighpassFilter	LowpassFilter	500	good	n/a
-ch006	n/a	SYNC	V	30000	n/a	n/a	1	good	n/a
+name	reference	type	units	sampling_frequency	gain	status	status_description
+ch001	ref01	LFP	uV	1000	500	good	n/a
+ch002	ref01	LFP	uV	1000	500	good	n/a
+ch003	ref01	HP	uV	30000	500	good	n/a
+ch004	ref01	HP	uV	30000	500	bad	high_noise
+ch005	ref02	LFP	uV	1000	500	good	n/a
+ch006	n/a	SYNC	V	30000	1	good	n/a
 ```
 
 **Intracellular electrophysiology example:**
@@ -319,7 +351,6 @@ The `x`, `y`, and `z` columns in the electrodes table specify electrode position
 This rule is different from the electrodes.tsv table of the [iEEG modality](intracranial-electroencephalography.md#electrodes-description-_electrodestsv), where electrode positions are always specified in anatomical space. The distinction is necessary because microelectrode probes often have many electrodes with known relative positions on the probe, but their anatomical positions may not be precisely known without additional localization procedures. The probe-relative positions are essential for interpreting the recorded signals in relation to the probe geometry and for analyses such as spike sorting.
 
 To specify electrode positions in surgical space, individual anatomical space, or a common coordinate system (such as the Allen CCF), use an additional `*_electrodes.tsv` file with a [`space-<label>`](../appendices/entities.md#space) entity. See the [`*_coordsystem.json` section](#coordinate-system-json-_coordsystemjson) for details on defining these coordinate systems.
-
 
 ### Example `*_electrodes.tsv`
 
@@ -429,7 +460,6 @@ A guide for using macros can be found at
    }
 ) }}
 
-
 ## Coordinate System JSON (`*_coordsystem.json`)
 
 <!--
@@ -491,16 +521,15 @@ standard space as specified in the BIDS [Coordinate Systems Appendix](../appendi
 
 For example:
 
--   `*_space-StereoTaxic` (electrodes are localized in stereotactic coordinate system with bregma origin)
-  <!-- TODO: Add 'StereoTaxic', 'AllenCCFv3', 'PaxinosWatson', etc coordinate systems to appendix coordinate-systems.md under "Microelectrode Electrophysiology Specific Coordinate Systems" with appropriate definitions for each standard reference frame used in animal electrophysiology -->
+-   `*_space-Stereotaxic` (electrodes are localized in stereotaxic coordinate system with bregma origin)
 -   `*_space-individual` (electrodes are localized in subject-specific anatomical coordinate system)
 -   `*_space-AllenCCFv3` (electrodes are mapped to Allen Common Coordinate Framework v3)
--   `*_space-PaxinosWatson` (electrodes are mapped to Paxinos-Watson rat brain atlas coordinates)
+-   `*_space-WaxholmSpace` (electrodes are mapped to Waxholm Space rat brain atlas coordinates)
+-   `*_space-WistarRatAtlas` (electrodes are mapped to Wistar Rat Atlas coordinates)
 
 When referring to the `*_electrodes.tsv` file in a certain *space* as defined
 above, the [`space-<label>`](../appendices/entities.md#space) of the accompanying `*_coordsystem.json` MUST
 correspond.
-
 
 ### Allowed 2D coordinate systems
 
@@ -515,7 +544,7 @@ with (0,0) corresponding to the upper left pixel and (N,0) corresponding to the 
 
 ### Multiple coordinate systems
 
-If electrode positions are known in multiple coordinate systems (for example, probe-relative, StereoTaxic,
+If electrode positions are known in multiple coordinate systems (for example, probe-relative, Stereotaxic,
 and AllenCCFv3), these spaces can be distinguished by the [`space-<label>`](../appendices/entities.md#space)
 entity.
 Note that the [`space-<label>`](../appendices/entities.md#space) fields must correspond
@@ -532,8 +561,8 @@ A guide for using macros can be found at
    {
    "sub-01": {
       "sub-01_electrodes.tsv": "",
-      "sub-01_space-StereoTaxic_electrodes.tsv": "",
-      "sub-01_space-StereoTaxic_coordsystem.json": "",
+      "sub-01_space-Stereotaxic_electrodes.tsv": "",
+      "sub-01_space-Stereotaxic_coordsystem.json": "",
       "...": "",
       },
    }

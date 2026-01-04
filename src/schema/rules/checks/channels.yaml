@@ -42,7 +42,7 @@ RequiredCoordsystem:
   selectors:
     - suffix == "electrodes"
     - extension == ".tsv"
-    - '!intersects([datatype], ["ecephys", "icephys"])' #TODO: need to verify and unify how selector is used EMG
+    - '!intersects([datatype], ["ecephys", "icephys"])' # TODO: need to verify and unify how selector is used EMG
     - datatype != "emg" # coordsys file may have space entity that electrodes.tsv lacks
   checks:
     - associations.coordsystem != null || associations.coordsystems != null

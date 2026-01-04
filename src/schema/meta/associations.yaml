@@ -83,7 +83,7 @@ channels:
 
 coordsystem:
   selectors:
-    - intersects([suffix], ['eeg', 'ieeg', 'meg', 'nirs', 'motion', 'electrodes', 'optodes', 'ecephys', 'icephys']])
+    - intersects([suffix], ['eeg', 'ieeg', 'meg', 'nirs', 'motion', 'electrodes', 'optodes', 'ecephys', 'icephys'])
     - extension != '.json'
   target:
     suffix: coordsystem

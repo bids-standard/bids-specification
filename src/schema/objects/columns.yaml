@@ -73,12 +73,12 @@ associated_brain_region:
     preferably species-independent terms as obtained, for example from Uberon.
   type: string
 associated_brain_region_id:
-  name: associated_uberon_brain_region_id
+  name: associated_brain_region_id
   display_name: Associated brain region identifier
   description: |
     An identifier of the associated brain region based on the Uberon ontology
     for anatomical structures in animals, for example "UBERON:0010415"
-  type: number
+  type: string
 associated_brain_region_quality_type:
   name: associated_brain_region_quality_type
   display_name: Associated brain region quality type
@@ -371,18 +371,6 @@ handedness:
 
     For "ambidextrous", use one of these values: `ambidextrous`, `a`, `A`, `AMBIDEXTROUS`,
     `Ambidextrous`.
-hardware_filters:
-  name: hardware_filters
-  display_name: Hardware filters
-  description: |
-    List of hardware (amplifier) filter keys applied.
-    Note that parameters should be defined in the general microephys sidecar .json file.
-    Indicate `n/a` in the absence of hardware filters applied.
-  anyOf:
-    - type: string
-    - type: string
-      enum:
-        - n/a
 height__probes:
   name: height
   display_name: Probe height
@@ -491,10 +479,16 @@ material:
     Material of the electrode (for example, `Tin`, `Ag/AgCl`, `Gold`).
   type: string
 material__probes:
-  name: material__probes
+  name: material
   display_name: Material
   description: |
     A textual description of the base material of the probe.
+  type: string
+model__probes:
+  name: model
+  display_name: Probe model
+  description: |
+    The model name or number of the probe (for example, `Neuropixels 1.0`, `A1x32-Poly3-5mm-25s-177`).
   type: string
 ML_angle:
   name: ML_angle
@@ -870,15 +864,14 @@ software_filters:
     Note that parameters should be defined in the general MEG sidecar .json file.
     Indicate `n/a` in the absence of software filters applied.
   type: string
-# TODO: This seems very confusing. Should be merge with the column above?
-software_filters__channels:
-  name: software_filters
-  display_name: Software filters
+software_filter_types:
+  name: software_filter_types
+  display_name: Software filter types
   description: |
-    List of temporal and/or spatial software filters applied
-    (for example, `SSS`, `SpatialCompensation`).
-    Note that parameters should be defined in the general microephys sidecar .json file.
-    Indicate `n/a` in the absence of software filters applied.
+    The types of software filters applied to this channel.
+    The `Levels` for this column SHOULD be defined in the accompanying
+    `*_channels.json` file, mapping each filter type key to its description.
+    Use `n/a` if no software filters were applied to this channel.
   anyOf:
     - type: string
     - type: string
@@ -1248,7 +1241,13 @@ z:
   display_name: Z position
   description: |
     Recorded position along the z-axis.
-  type: number
+
+    For 2D electrode localizations, this SHOULD be a column of `n/a` values.
+  anyOf:
+    - type: number
+    - type: string
+      enum:
+        - n/a
 x__optodes:
   name: x
   display_name: X position
@@ -1268,34 +1267,60 @@ z__optodes:
   display_name: Z position
   description: |
     Recorded position along the z-axis.
-    `"n/a"` if not available.
-  type: number
+    "`n/a`" if not available.
+  anyOf:
+    - type: number
+    - type: string
+      enum:
+        - n/a
 # TODO: Remove the overspecified entries for electrode positions if not used in microephys
 # TODO: finish up setup below
 x__electrodes:
   name: x
   display_name: Electrode X position
   description: |
-    If no `_space` entity used, it is the position along the local width-axis relative
-    to the probe origin (see `_probes.tsv`, also `dimension_unit` column there in).
-    Otherwise, the position relative to the origin of the coordinate system along
-    the first axis relative to the in the `MicroephysCoordinateUnits` of the corresponding
-    `_coordsystem.json` file.
+    When no [`space-<label>`](SPEC_ROOT/appendices/entities.md#space) entity is used in the filename,
+    the position along the local width-axis relative to the probe origin
+    (see `coordinate_reference_point` in `*_probes.tsv`).
+    Units are specified by the `dimension_unit` column in `*_probes.tsv`.
+
+    When a `space-<label>` entity is used in the filename,
+    the position relative to the origin of the coordinate system along the first axis.
+    Units are specified by `MicroephysCoordinateUnits` in the corresponding `*_coordsystem.json` file.
   type: number
 y__electrodes:
   name: y
   display_name: Electrode Y position
   description: |
-    Recorded position along the local height-axis relative
-    to the probe origin (see `_probes.tsv`)
+    When no [`space-<label>`](SPEC_ROOT/appendices/entities.md#space) entity is used in the filename,
+    the position along the local height-axis relative to the probe origin
+    (see `coordinate_reference_point` in `*_probes.tsv`).
+    Units are specified by the `dimension_unit` column in `*_probes.tsv`.
+
+    When a `space-<label>` entity is used in the filename,
+    the position relative to the origin of the coordinate system along the second axis.
+    Units are specified by `MicroephysCoordinateUnits` in the corresponding `*_coordsystem.json` file.
   type: number
 z__electrodes:
   name: z
   display_name: Electrode Z position
   description: |
-    Recorded position along the local depth-axis relative
-    to the probe origin (see `_probes.tsv`)
-  type: number
+    When no [`space-<label>`](SPEC_ROOT/appendices/entities.md#space) entity is used in the filename,
+    the position along the local depth-axis relative to the probe origin
+    (see `coordinate_reference_point` in `*_probes.tsv`).
+    Units are specified by the `dimension_unit` column in `*_probes.tsv`.
+
+    When a `space-<label>` entity is used in the filename,
+    the position relative to the origin of the coordinate system along the third axis.
+    Units are specified by `MicroephysCoordinateUnits` in the corresponding `*_coordsystem.json` file.
+
+    For 2D electrode localizations (for example, when the coordinate system is
+    `Pixels`), this SHOULD be a column of `n/a` values.
+  anyOf:
+    - type: number
+    - type: string
+      enum:
+        - n/a
 template_x:
   name: template_x
   display_name: X template position
