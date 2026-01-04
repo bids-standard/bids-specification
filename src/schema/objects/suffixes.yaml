@@ -825,11 +825,6 @@ physio:
   display_name: Physiological recording
   description: |
     Physiological recordings such as cardiac and respiratory signals.
-probe:
-  value: probe
-  display_name: A recording probe
-  description: |
-    A probe with one or more recording contacts.
 probes:
   value: probes
   display_name: Implanted physical devices
