@@ -1629,7 +1629,8 @@ PaxinosWatson:
   value: PaxinosWatson
   display_name: Paxinos-Watson
   description: |
-    The Paxinos and Watson rat brain atlas (RRID:SCR_006369), a widely used stereotaxic coordinate system for the rat brain.
+    The Paxinos and Watson rat brain atlas (RRID:SCR_006369),
+    a widely used stereotaxic coordinate system for the rat brain.
     Provides standardized coordinates based on skull landmarks (bregma, lambda) for targeting brain structures.
     Reference: Paxinos G, Watson C. The Rat Brain in Stereotaxic Coordinates. Academic Press.
     Multiple editions available; users should specify the edition used in `MicroephysCoordinateSystemDescription`.
@@ -1637,7 +1638,8 @@ FranklinPaxinos:
   value: FranklinPaxinos
   display_name: Franklin-Paxinos
   description: |
-    The Franklin and Paxinos mouse brain atlas (RRID:SCR_007127), a widely used stereotaxic coordinate system for the mouse brain.
+    The Franklin and Paxinos mouse brain atlas (RRID:SCR_007127),
+    a widely used stereotaxic coordinate system for the mouse brain.
     Provides standardized coordinates based on skull landmarks (bregma, lambda) for targeting brain structures.
     Reference: Franklin KBJ, Paxinos G. The Mouse Brain in Stereotaxic Coordinates. Academic Press.
     Multiple editions available; users should specify the edition used in `MicroephysCoordinateSystemDescription`.
@@ -1673,7 +1675,8 @@ PaxinosMacaque:
   description: |
     The Paxinos rhesus macaque brain atlas (RRID:SCR_016249), a stereotaxic coordinate system for the macaque brain.
     Provides standardized coordinates based on stereotaxic landmarks for targeting brain structures.
-    Reference: Paxinos G, Huang XF, Petrides M, Toga AW. The Rhesus Monkey Brain in Stereotaxic Coordinates. Academic Press.
+    Reference: Paxinos G, Huang XF, Petrides M, Toga AW.
+    The Rhesus Monkey Brain in Stereotaxic Coordinates. Academic Press.
     Multiple editions available; users should specify the edition used in `MicroephysCoordinateSystemDescription`.
 MarmosetBrainAtlas:
   value: MarmosetBrainAtlas
