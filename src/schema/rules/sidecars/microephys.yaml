@@ -9,8 +9,8 @@
 
 microephysInstitutionInformation:
   selectors:
-    - datatype == ["ecephys", "icephys"]
-    - suffix == ["ecephys", "icephys"]
+    - intersects([datatype], ["ecephys", "icephys"])
+    - intersects([suffix], ["ecephys", "icephys"])
   fields:
     InstitutionName: recommended
     InstitutionAddress: recommended
@@ -18,8 +18,8 @@ microephysInstitutionInformation:
 
 microephysSetup:
   selectors:
-    - datatype == ["ecephys", "icephys"]
-    - suffix == ["ecephys", "icephys"]
+    - intersects([datatype], ["ecephys", "icephys"])
+    - intersects([suffix], ["ecephys", "icephys"])
   fields:
     PowerLineFrequency: required
     Manufacturer:
@@ -53,16 +53,16 @@ microephysSetup:
 
 microephysProcessing:
   selectors:
-    - datatype == ["ecephys", "icephys"]
-    - suffix == ["ecephys", "icephys"]
+    - intersects([datatype], ["ecephys", "icephys"])
+    - intersects([suffix], ["ecephys", "icephys"])
   fields:
     SoftwareFilters: required
     HardwareFilters: recommended
 
 microephysPharmaceuticals:
   selectors:
-    - datatype == ["ecephys", "icephys"]
-    - suffix == ["ecephys", "icephys"]
+    - intersects([datatype], ["ecephys", "icephys"])
+    - intersects([suffix], ["ecephys", "icephys"])
   fields:
     PharmaceuticalName: recommended
     PharmaceuticalDoseAmount: recommended
@@ -72,15 +72,15 @@ microephysPharmaceuticals:
 
 microephysSupplementary:
   selectors:
-    - datatype == ["ecephys", "icephys"]
-    - suffix == ["ecephys", "icephys"]
+    - intersects([datatype], ["ecephys", "icephys"])
+    - intersects([suffix], ["ecephys", "icephys"])
   fields:
     SupplementarySignals: optional
 
 microephysSample:
   selectors:
-    - datatype == ["ecephys", "icephys"]
-    - suffix == ["ecephys", "icephys"]
+    - intersects([datatype], ["ecephys", "icephys"])
+    - intersects([suffix], ["ecephys", "icephys"])
   fields:
     BodyPart: recommended
     BodyPartDetails: recommended
@@ -92,8 +92,8 @@ microephysSample:
 
 microephysTaskInformation:
   selectors:
-    - datatype == ["ecephys", "icephys"]
-    - suffix == ["ecephys", "icephys"]
+    - intersects([datatype], ["ecephys", "icephys"])
+    - intersects([suffix], ["ecephys", "icephys"])
   fields:
     TaskName:
       level: recommended

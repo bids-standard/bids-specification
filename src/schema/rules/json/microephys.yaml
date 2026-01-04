@@ -7,8 +7,8 @@
 ---
 microephysCoordsystemGeneral:
   selectors:
-    - datatype == ["ecephys", "icephys"]
-    - suffix == ["coordsystem"]
+    - intersects([datatype], ["ecephys", "icephys"])
+    - suffix == "coordsystem"
   fields:
     IntendedFor:
       level: optional
@@ -19,8 +19,8 @@ microephysCoordsystemGeneral:
 # Fields relating to the microephys electrode positions
 microephysCoordsystemPositions:
   selectors:
-    - datatype == ["ecephys", "icephys"]
-    - suffix == ["coordsystem"]
+    - intersects([datatype], ["ecephys", "icephys"])
+    - suffix == "coordsystem"
   fields:
     MicroephysCoordinateSystem: required
     MicroephysCoordinateUnits: required
@@ -33,8 +33,8 @@ microephysCoordsystemPositions:
 
 microephysCoordsystemOther:
   selectors:
-    - datatype == ["ecephys", "icephys"]
-    - suffix == ["coordsystem"]
+    - intersects([datatype], ["ecephys", "icephys"])
+    - suffix == "coordsystem"
     - '"MicroephysCoordinateSystem" in json'
     - json.MicroephysCoordinateSystem == "Other"
   fields:

@@ -1,7 +1,7 @@
 ---
 microephysProbes:
   selectors:
-    - datatype == ["ecephys", "icephys"]
+    - intersects([datatype], ["ecephys", "icephys"])
     - suffix == "probes"
     - extension == ".tsv"
   initial_columns:
@@ -42,7 +42,7 @@ microephysProbes:
 
 microephysElectrodes:
   selectors:
-    - datatype == ["ecephys", "icephys"]
+    - intersects([datatype], ["ecephys", "icephys"])
     - suffix == "electrodes"
     - extension == ".tsv"
   initial_columns:
@@ -72,7 +72,7 @@ microephysElectrodes:
 
 microephysChannels:
   selectors:
-    - datatype == ["ecephys", "icephys"]
+    - intersects([datatype], ["ecephys", "icephys"])
     - suffix == "channels"
     - extension == ".tsv"
   initial_columns:
