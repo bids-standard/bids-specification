@@ -77,7 +77,7 @@ coordsystem__eeg:
     $ref: rules.files.raw.channels.coordsystem.entities
     space: optional
 
-coordsystem_microephys:
+coordsystem__microephys:
   $ref: rules.files.raw.channels.coordsystem
   datatypes:
     - icephys
