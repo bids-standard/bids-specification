@@ -139,12 +139,6 @@ component:
     - $ref: objects.enums.quat_y.value
     - $ref: objects.enums.quat_z.value
     - $ref: objects.enums.quat_w.value
-contact_count:
-  name: contact_count
-  display_name: Contact count
-  description: |
-    Number of miscellaneous analog contacts for auxiliary signals.
-  type: number
 coordinate_reference_point:
   name: coordinate_reference_point
   display_name: Coordinate reference point
