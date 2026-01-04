@@ -1,8 +1,5 @@
 ---
-# Microelectrode electrophysiology validation rules
-
-# Override the general RequiredCoordsystem rule for microephys
-# Allow electrodes.tsv without coordsystem.json for microephys datatypes
+# For non-microephys modalities, electrodes.tsv always requires coordsystem.json
 RequiredCoordsystem:
   issue:
     code: REQUIRED_COORDSYSTEM
@@ -12,40 +9,23 @@ RequiredCoordsystem:
   selectors:
     - suffix == "electrodes"
     - extension == ".tsv"
-    - '!intersects([datatype], ["ecephys", "icephys"])'  # Exclude microephys datatypes
+    - '!intersects([datatype], ["ecephys", "icephys"])'
   checks:
     - associations.coordsystem != null
 
-# For microephys: if coordsystem.json with space exists, require matching electrodes.tsv
-RequiredElectrodesWithSpace:
+# For microephys, only space-labeled electrodes.tsv requires coordsystem.json
+MicroephysRequiredCoordsystemWithSpace:
   issue:
-    code: MICROEPHYS_ELECTRODES_SPACE_REQUIRED
+    code: MICROEPHYS_COORDSYSTEM_REQUIRED
     message: |
-      If a coordsystem.json file with a space entity is present for microelectrode
-      electrophysiology data, a corresponding electrodes.tsv file with the same
-      space entity must also be present.
-    level: error
-  selectors:
-    - intersects([datatype], ["ecephys", "icephys"])
-    - suffix == "coordsystem"
-    - extension == ".json"
-    - '"space" in entities'
-  checks:
-    - associations.electrodes != null
-
-# Ensure space labels match between coordsystem.json and electrodes.tsv
-MatchingSpaceLabels:
-  issue:
-    code: MICROEPHYS_SPACE_MISMATCH
-    message: |
-      The space entity in electrodes.tsv must match the space entity in the
-      corresponding coordsystem.json file for microelectrode electrophysiology data.
+      For microelectrode electrophysiology data, if an electrodes.tsv file has a
+      space-<label> entity, a corresponding coordsystem.json file with the same
+      space label must also be present.
     level: error
   selectors:
     - intersects([datatype], ["ecephys", "icephys"])
     - suffix == "electrodes"
     - extension == ".tsv"
     - '"space" in entities'
-    - associations.coordsystem != null
   checks:
-    - associations.coordsystem.entities.space == entities.space
+    - associations.coordsystem != null

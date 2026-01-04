@@ -88,6 +88,8 @@ coordsystem:
   target:
     suffix: coordsystem
     extension: .json
+    entities:
+      - space
   inherit: true
 
 electrodes:
