@@ -371,18 +371,6 @@ handedness:
 
     For "ambidextrous", use one of these values: `ambidextrous`, `a`, `A`, `AMBIDEXTROUS`,
     `Ambidextrous`.
-hardware_filters:
-  name: hardware_filters
-  display_name: Hardware filters
-  description: |
-    List of hardware (amplifier) filter keys applied.
-    Note that parameters should be defined in the general microephys sidecar .json file.
-    Indicate `n/a` in the absence of hardware filters applied.
-  anyOf:
-    - type: string
-    - type: string
-      enum:
-        - n/a
 height__probes:
   name: height
   display_name: Probe height
@@ -867,16 +855,6 @@ size:
     Surface area of the electrode, units MUST be in `mm^2`.
   type: number
   unit: 'mm^2'
-software_filters:
-  name: software_filters
-  display_name: Software filters
-  description: |
-    List of temporal and/or spatial software filters applied.
-
-    For detailed filter parameters, use the `SoftwareFilters` field in the
-    modality sidecar JSON (for example, `*_ieeg.json`, `*_ecephys.json`, `*_icephys.json`).
-
-    Use `n/a` if no software filters were applied.
 software_filter_types:
   name: software_filter_types
   display_name: Software filter types
