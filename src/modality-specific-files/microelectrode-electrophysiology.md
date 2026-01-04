@@ -340,6 +340,8 @@ This file contains the following information:
 -   The electrode coordinates in 3 columns (`xyz`) (use `n/a` for values if a dimension is absent).
 -   The ID of the probe the electrode is located on
 
+The electrode `name` MUST be unique within the `*_electrodes.tsv` file. When a dataset contains multiple probes, electrode names can be constructed by combining the contact identifier (as provided by the probe manufacturer or user-defined) with the `probe_name` to ensure uniqueness. For example, if two probes each have a contact labeled "1", the electrode names could be "probe01_e1" and "probe02_e1" to distinguish them.
+
 {{ MACROS___make_columns_table("microephys.microephysElectrodes") }}
 
 ### Electrode Position Coordinates
