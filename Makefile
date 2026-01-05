@@ -45,20 +45,5 @@ schemacodedocs_serve: schemacodedocs_build
 
 validateschema:
 	uv run bst export > bep-23_schema.json
-	../bids-validator/local-run --schema file://${PWD}/bep-23_schema.json ../bids-examples/petprep/ --ignoreWarnings --verbose --ignoreNiftiHeaders -r; \
+	../bids-validator/local-run --schema file://${PWD}/bep-23_schema.json ../bids-examples/petprep/ --ignoreWarnings --verbose --ignoreNiftiHeaders -r ; \
 	example_status=$$?; 
-
-validatepd:
-	uv run bst export > bep-23_schema.json
-	../bids-validator/local-run --schema file://${PWD}/bep-23_schema.json ~/Data/petprep-combined-datasets/ -r --ignoreNiftiHeaders --ignoreWarnings; \
-	example_status=$$?; \
-	echo "example_status: $$example_status"; \
-	if [ $$example_status -eq 0 ]; then \
-		echo "Schema validates real dataset examples"; \
-	else \
-		echo "Schema does not validate real dataset examples"; \
-		exit 1; \
-	fi
-
-
-
