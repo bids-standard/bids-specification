@@ -825,7 +825,6 @@ short_channel:
     The total number of channels listed as short channels
     SHOULD be stored in `ShortChannelCount` in `*_nirs.json`.
   type: boolean
-# TODO: might need to dup for microephys__size and have it um^2
 signal_electrode:
   name: signal_electrode
   display_name: Signal electrode
@@ -840,6 +839,13 @@ size:
     Surface area of the electrode, units MUST be in `mm^2`.
   type: number
   unit: 'mm^2'
+size__microephys:
+  name: size
+  display_name: Electrode size
+  description: |
+    Surface area of the electrode, units MUST be in `um^2`.
+  type: number
+  unit: 'um^2'
 software_filters:
   name: software_filters
   display_name: Software filters

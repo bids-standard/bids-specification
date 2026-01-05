@@ -60,7 +60,7 @@ microephysElectrodes:
     hemisphere: recommended
     impedance: recommended
     shank_id: optional
-    size: optional
+    size__microephys: optional
     electrode_shape: optional
     material: optional
     location: recommended
