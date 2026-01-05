@@ -457,6 +457,7 @@ mapping:
   description: |
     Corresponding integer label in the standard BIDS label lookup.
   type: integer
+# consider unifying with base `material` column between electrodes and probes
 material:
   name: material
   display_name: Electrode material
