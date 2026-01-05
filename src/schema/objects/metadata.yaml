@@ -2237,8 +2237,6 @@ MEGREFChannelCount:
     `MEGREFChannelCount` should be set to `0`.
   type: integer
   minimum: 0
-# TODO: Change if needs to be broken down into ecephys and icephys
-# TODO: Add enums for the valid values specific to microephys
 MicroephysCoordinateSystem:
   name: MicroephysCoordinateSystem
   display_name: Microephys Coordinate System
