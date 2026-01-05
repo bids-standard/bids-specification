@@ -60,7 +60,7 @@ The `GeneratedBy` field MAY contain either of the following values:
 
 ### Description using identifiers
 
-This section details the way to describe provenance of a dataset in the `GeneratedBy` field, using identifiers.
+This section details how to describe provenance of a dataset using identifiers.
 
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in
@@ -87,7 +87,7 @@ and a guide for using macros can be found at
 
 ### Description of processes or pipelines
 
-This section details a way to describe the provenance of a dataset, providing `GeneratedBy` with an array of objects representing pipelines or processes that generated the dataset.
+This section details how to describe the provenance of a dataset using an array of objects representing pipelines or processes that generated the dataset.
 
 !!! warning
 
