@@ -4020,7 +4020,7 @@ Software:
         type: string
       AltIdentifier:
         name: AltIdentifier
-        description: URI of the RRID for the software package (cf. https://rrid.site/).
+        description: URI of an alternative identifier (such as [RRID](https://rrid.site/)) for the software package.
         type: string
         format: uri
       ActedOnBehalfOf:
