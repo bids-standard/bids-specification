@@ -373,7 +373,7 @@ hemisphere:
   enum:
     - $ref: objects.enums.left_hemisphere.value
     - $ref: objects.enums.right_hemisphere.value
-# TODO: Should the hemisphere details be unified for electrodes and probes or will it break other modality?
+# TODO (future schema cleanup): unify with `hemisphere` for electrodes.tsv files by generalizing its description.
 hemisphere__probes:
   name: hemisphere
   display_name: Hemisphere
