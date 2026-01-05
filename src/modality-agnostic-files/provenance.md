@@ -83,7 +83,7 @@ and a guide for using macros can be found at
         "GeneratedBy": "bids::prov#preprocessing-xMpFqB5q"
     }
     ```
-    This is a snippet from the [fMRI preprocessing with `fMRIPrep` example](https://github.com/bclenet/bids-examples/tree/BEP028_fmriprep/provenance_fmriprep).
+    For a complete example see [fMRI preprocessing with `fMRIPrep` example](https://github.com/bclenet/bids-examples/tree/BEP028_fmriprep/provenance_fmriprep).
 
 ### Description of processes or pipelines
 
