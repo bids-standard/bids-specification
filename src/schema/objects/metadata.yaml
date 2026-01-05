@@ -92,7 +92,7 @@ Activities:
       Command:
         name: Command
         description: |
-          Command (or commands) used to run the tool, including all parameters.
+          Command (or commands) performed by the activity, including all parameters.
 
           Set to `null` to describe that the activity was performed manually.
         anyOf:
