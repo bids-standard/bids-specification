@@ -240,7 +240,7 @@ and a guide for using macros can be found at
         ]
     }
     ```
-    This snippet is similar to Activities described in the [DICOM to Nifti conversion with `dcm2niix` example](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix).
+    For a complete example, see [DICOM to Nifti conversion with `dcm2niix` example](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix).
 
 ### Software
 
@@ -284,7 +284,7 @@ and a guide for using macros can be found at
         ]
     }
     ```
-    This is a snippet from the [DICOM to Nifti conversion with `dcm2niix` example](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix)
+    For a complete example, see [DICOM to Nifti conversion with `dcm2niix` example](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix)
 
 ### Environments
 
@@ -327,7 +327,7 @@ and a guide for using macros can be found at
         ]
     }
     ```
-    This is a snippet from the [DICOM to Nifti conversion with `dcm2niix` example](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix)
+    For a complete example, see [DICOM to Nifti conversion with `dcm2niix` example](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix)
 
 ### Input and output data
 
@@ -408,7 +408,7 @@ and a guide for using macros can be found at
         ]
     }
     ```
-    This is a snippet from the [fMRI preprocessing with `SPM` example](https://github.com/bclenet/bids-examples/tree/BEP028_spm/provenance_spm)
+    For a complete example, see [fMRI preprocessing with `SPM` example](https://github.com/bclenet/bids-examples/tree/BEP028_spm/provenance_spm)
 
 !!! example "Example: description of a dataset in a `prov/[<subdir>/]prov-<label>_ent.json` file"
 
@@ -422,7 +422,7 @@ and a guide for using macros can be found at
         ]
     }
     ```
-    This is a snippet from the [fMRI preprocessing with `fMRIPrep` example](https://github.com/bclenet/bids-examples/tree/BEP028_fmriprep/provenance_fmriprep).
+    For a complete example, see [fMRI preprocessing with `fMRIPrep` example](https://github.com/bclenet/bids-examples/tree/BEP028_fmriprep/provenance_fmriprep).
 
 ### Provenance description file
 
@@ -545,7 +545,7 @@ All BIDS examples related to provenance (see. [bids-examples, provenance section
 
 !!! example
 
-    This section shows a snippet from the [Provenance of DICOM to Nifti conversion with `dcm2niix`](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix) example.
+    For a complete example, see [Provenance of DICOM to Nifti conversion with `dcm2niix`](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix).
 
 In this example, we explain provenance metadata of a DICOM to Nifti conversion with `dcm2niix`. Consider the following BIDS raw dataset:
 
@@ -618,7 +618,7 @@ Inside the `sub-001/anat/sub-001_T1w.json` file, the metadata field `GeneratedBy
 
 !!! example
 
-    This section shows a snippet from the [Provenance of fMRI preprocessing with `SPM`](https://github.com/bclenet/bids-examples/tree/BEP028_spm/provenance_spm) example.
+    For a complete example, see [Provenance of fMRI preprocessing with `SPM`](https://github.com/bclenet/bids-examples/tree/BEP028_spm/provenance_spm).
 
 In this example, we explain provenance metadata of fMRI preprocessing steps performed with `SPM`. Consider the following BIDS derivative dataset:
 
@@ -711,7 +711,7 @@ Inside the `sub-001/anat/c1sub-001_T1w.json` file, the metadata field `Generated
 
 !!! example
 
-    This section shows a snippet from the [Provenance of manual annotations](https://github.com/bclenet/bids-examples/tree/BEP028_manual/provenance_manual) example.
+    For a complete example, see [Provenance of manual annotations](https://github.com/bclenet/bids-examples/tree/BEP028_manual/provenance_manual).
 
 In this example, we explain provenance metadata of brain segmentation performed by two experts on the same T1w file. Consider the following BIDS study dataset:
 
