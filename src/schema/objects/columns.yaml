@@ -373,7 +373,7 @@ hemisphere:
   enum:
     - $ref: objects.enums.left_hemisphere.value
     - $ref: objects.enums.right_hemisphere.value
-# TODO (future schema cleanup): unify with `hemisphere` for electrodes.tsv files by generalizing its description.
+# consider unifying with base `hemisphere` column between electrodes and probes
 hemisphere__probes:
   name: hemisphere
   display_name: Hemisphere
@@ -444,7 +444,7 @@ manufacturer:
     The manufacturer for each electrode.
     Can be used if electrodes were manufactured by more than one company.
   type: string
-# TODO: Should the manufacturer details be unified for electrodes and probes?
+# consider unifying with base `manufacturer` column between electrodes and probes
 manufacturer__probes:
   name: manufacturer
   display_name: Manufacturer
