@@ -953,16 +953,6 @@ stream_id:
   description: |
     Data stream of the recording the signal.
   type: string
-# TODO: Clarify if column values can be arrays.
-surgery_date:
-  name: surgery_date
-  display_name: Surgery date
-  description: |
-    Date(s) of surgery. Datetime format and their anonymization
-    are described in [Units](SPEC_ROOT/common-principles.md#units).
-    The details of the surgery should be described in the sidecar json file.
-  type: string
-  format: datetime
 target_muscle:
   name: target_muscle
   display_name: Target muscle
