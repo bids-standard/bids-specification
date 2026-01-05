@@ -166,10 +166,11 @@ depth__probes:
   name: depth
   display_name: Depth
   description: |
-    Physical depth of the probe, for example, '0.3'.
+    Physical depth of the probe in mm, for example, '0.3'.
     This dimension should be omitted or set to 0 for two-dimensional (shank-type) probes.
     This dimension corresponds to the z-axis of the probe's local coordinate frame.
   type: number
+  unit: mm
 coordinate_system:
   name: coordinate_system
   display_name: Coordinate System
@@ -243,15 +244,6 @@ dimension:
   description: |
     Size of the group (grid/strip/probe) that this electrode belongs to.
     Must be of form `[AxB]` with the smallest dimension first (for example, `[1x8]`).
-  type: string
-# TODO: Add unit enums if everyone agrees to keep this column.
-dimension_unit:
-  name: dimension_unit
-  display_name: Dimension unit
-  description: |
-    Spatial units for a position or a physical dimension of electrodes, such as
-    'width', 'height' or 'depth' of the probe.
-    For example, `um`.
   type: string
 duration:
   name: duration
@@ -369,10 +361,11 @@ height__probes:
   name: height
   display_name: Probe height
   description: |
-    Physical height of the probe, for example, '0.3'.
+    Physical height of the probe in mm, for example, '0.3'.
     This dimension should be omitted or set to 0 for one-dimensional (linear) probes.
     This dimension corresponds to the y-axis of the probe's local coordinate frame.
   type: number
+  unit: mm
 hemisphere:
   name: hemisphere
   display_name: Electrode hemisphere
@@ -1208,9 +1201,10 @@ width__probes:
   name: width
   display_name: Width
   description: |
-    Physical width of the probe, for example, '5'.
+    Physical width of the probe in mm, for example, '5'.
     This dimension corresponds to the x-axis of the probe's local coordinate frame.
   type: number
+  unit: mm
 whole_blood_radioactivity:
   name: whole_blood_radioactivity
   display_name: Whole blood radioactivity
