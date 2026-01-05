@@ -47,15 +47,44 @@ microephysElectrodes:
   initial_columns:
     - name__electrodes
     - probe_name
-    - x__electrodes
-    - y__electrodes
-    - z__electrodes
+    - x
+    - y
+    - z
   columns:
     name__electrodes: required
     probe_name: required
-    x__electrodes: required
-    y__electrodes: required
-    z__electrodes: required
+    x:
+      level: required
+      description_addendum: |
+        When no [`space-<label>`](SPEC_ROOT/appendices/entities.md#space) entity is used in the filename,
+        the position along the local width-axis relative to the probe origin
+        (see `coordinate_reference_point` in `*_probes.tsv`).
+        Units are specified by the `dimension_unit` column in `*_probes.tsv`.
+        When a `space-<label>` entity is used in the filename,
+        the position relative to the origin of the coordinate system along the first axis.
+        Units are specified by `MicroephysCoordinateUnits` in the corresponding `*_coordsystem.json` file.
+    y:
+      level: required
+      description_addendum: |
+        When no [`space-<label>`](SPEC_ROOT/appendices/entities.md#space) entity is used in the filename,
+        the position along the local height-axis relative to the probe origin
+        (see `coordinate_reference_point` in `*_probes.tsv`).
+        Units are specified by the `dimension_unit` column in `*_probes.tsv`.
+        When a `space-<label>` entity is used in the filename,
+        the position relative to the origin of the coordinate system along the second axis.
+        Units are specified by `MicroephysCoordinateUnits` in the corresponding `*_coordsystem.json` file.
+    z:
+      level: required
+      description_addendum: |
+        When no [`space-<label>`](SPEC_ROOT/appendices/entities.md#space) entity is used in the filename,
+        the position along the local depth-axis relative to the probe origin
+        (see `coordinate_reference_point` in `*_probes.tsv`).
+        Units are specified by the `dimension_unit` column in `*_probes.tsv`.
+        When a `space-<label>` entity is used in the filename,
+        the position relative to the origin of the coordinate system along the third axis.
+        Units are specified by `MicroephysCoordinateUnits` in the corresponding `*_coordsystem.json` file.
+        For 2D electrode localizations (for example, when the coordinate system is
+        `Pixels`), this SHOULD be a column of `n/a` values.
     hemisphere: recommended
     impedance: recommended
     shank_id: optional
