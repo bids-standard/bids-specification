@@ -104,13 +104,13 @@ microephysChannels:
     - name__channels
     - reference__microephys
     - type__channels
-    - units__channels
+    - units
     - sampling_frequency
   columns:
     name__channels: required
     reference__microephys: required
     type__channels: required
-    units__channels: required
+    units: required
     sampling_frequency: optional
     low_cutoff: optional
     high_cutoff: optional

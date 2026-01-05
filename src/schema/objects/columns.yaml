@@ -1120,15 +1120,6 @@ units:
     (see [Units](SPEC_ROOT/common-principles.md#units)).
   type: string
   format: unit
-units__channels:
-  name: units
-  display_name: Units
-  description: |
-    Physical unit of the value represented in this channel,
-    for example, `V` for Volt, or `uV` for micro Volt
-    (see [Units](SPEC_ROOT/common-principles.md#units)).
-  type: string
-  format: unit
 units__nirs:
   name: units
   display_name: Units
