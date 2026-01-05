@@ -289,7 +289,6 @@ filename:
     Relative paths to files.
   type: string
   format: participant_relative
-# TODO: Figure out and add rule for default values.
 gain:
   name: gain
   display_name: Gain
