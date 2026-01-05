@@ -47,7 +47,7 @@ and a guide for using macros can be found at
         }
     }
     ```
-    This snippet is similar to fields described in [DICOM to Nifti conversion with `heudiconv` example](https://github.com/bclenet/bids-examples/tree/BEP028_heudiconv/provenance_heudiconv).
+    For a complete example see [DICOM to Nifti conversion with `heudiconv` example](https://github.com/bclenet/bids-examples/tree/BEP028_heudiconv/provenance_heudiconv).
 
 ## Provenance of a BIDS dataset
 
