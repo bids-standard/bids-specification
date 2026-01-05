@@ -297,7 +297,6 @@ gain:
     to the signal stored in the data file.
     If no gain factor is provided it is assumed to be 1.
   type: number
-# TODO: Clarify if the optionality of the column be defined here or as an addendum in the rules.
 ground:
   name: ground
   display_name: Ground
