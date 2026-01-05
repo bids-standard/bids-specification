@@ -27,7 +27,6 @@ microephysProbes:
     width__probes: optional
     height__probes: optional
     depth__probes: optional
-    dimension_unit: optional
     rotation_angle: recommended
     coordinate_reference_point: recommended
     anatomical_reference_point: optional
