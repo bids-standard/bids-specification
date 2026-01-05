@@ -2238,7 +2238,6 @@ MEGREFChannelCount:
   type: integer
   minimum: 0
 # TODO: Change if needs to be broken down into ecephys and icephys
-# TODO: Add links to the 2D coordinate system, Pixels and glossary entry.
 # TODO: Add enums for the valid values specific to microephys
 MicroephysCoordinateSystem:
   name: MicroephysCoordinateSystem
@@ -2253,7 +2252,8 @@ MicroephysCoordinateSystem:
     pixel indices in a 2D image (of either a volume-rendering,
     surface-rendering, operative photo, or operative drawing),
     this MUST be "Pixels". For more information, see the section
-    on 2D coordinate systems.
+    [allowed 2D coordinate systems](SPEC_ROOT/modality-specific-files/\
+    microelectrode-electrophysiology.md#allowed-2d-coordinate-systems).
     For a list of valid values for this field, see the associated glossary entry.
   anyOf:
     - $ref: objects.enums._MicroephysCoordSys
