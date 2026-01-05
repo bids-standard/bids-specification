@@ -3850,11 +3850,10 @@ SpatialReference:
           - type: string
             format: dataset_relative
 Species:
+  $ref: objects.columns.species
   name: Species
-  display_name: Species
-  description: |
-    The species from which the atlas was derived. For example, "human", "macaque", "rat", or "mouse".
   type: string
+  definition: null
 SpecificRadioactivity:
   name: SpecificRadioactivity
   display_name: Specific Radioactivity
