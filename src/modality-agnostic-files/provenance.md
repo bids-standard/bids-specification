@@ -331,7 +331,7 @@ and a guide for using macros can be found at
 
 ### Input and output data
 
-This section specifies how to describe input and output data for [activities](#activities). This includes files, datasets and other types of data that correspond to the  W3C Prov [prov:Entity](https://www.w3.org/TR/2013/REC-prov-o-20130430/#Entity) class. Types of data other than files or datasets are referred to as prov:Entity.
+This section specifies how to describe input and output data for [activities](#activities). This data corresponds to the W3C Prov [prov:Entity](https://www.w3.org/TR/2013/REC-prov-o-20130430/#Entity) class that includes files, datasets and other types of data.
 
 Each file with a `ent` suffix is a JSON file describing input and output data.
 
