@@ -286,49 +286,6 @@ and a guide for using macros can be found at
     ```
     For a complete example, see [DICOM to Nifti conversion with `dcm2niix` example](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix)
 
-### Environments
-
-This section specifies how to describe software environments in which [activities](#activities) were performed.
-
-Each file with a `env` suffix is a JSON file describing environments. It MUST include the following key:
-
-<!-- This block generates a metadata table.
-The definitions of these fields can be found in
-  src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_metadata_table(
-   {
-      "Environments": "REQUIRED"
-   }
-) }}
-
-Each object in the `Environments` array includes the following keys:
-
-<!-- This block generates a table describing subfields within a metadata field.
-The definitions of these fields can be found in
-  src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_subobject_table("metadata.Environments.items") }}
-
-!!! example "Example: description of an environment in a `prov/[<subdir>/]prov-<label>_env.json` file"
-
-    ```JSON
-    {
-        "Environments": [
-            {
-                "Id": "bids::prov#fedora-uldfv058",
-                "Label": "Fedora release 36 (Thirty Six)",
-                "OperatingSystem": "GNU/Linux 6.2.15-100.fc36.x86_64"
-            }
-        ]
-    }
-    ```
-    For a complete example, see [DICOM to Nifti conversion with `dcm2niix` example](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix)
-
 ### Input and output data
 
 This section specifies how to describe input and output data for [activities](#activities). This data corresponds to the W3C Prov [prov:Entity](https://www.w3.org/TR/2013/REC-prov-o-20130430/#Entity) class that includes files, datasets and other types of data.
@@ -424,7 +381,50 @@ and a guide for using macros can be found at
     ```
     For a complete example, see [fMRI preprocessing with `fMRIPrep` example](https://github.com/bclenet/bids-examples/tree/BEP028_fmriprep/provenance_fmriprep).
 
-### Provenance description file
+### Environments
+
+This section specifies how to describe software environments in which [activities](#activities) were performed.
+
+Each file with a `env` suffix is a JSON file describing environments. It MUST include the following key:
+
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_metadata_table(
+   {
+      "Environments": "REQUIRED"
+   }
+) }}
+
+Each object in the `Environments` array includes the following keys:
+
+<!-- This block generates a table describing subfields within a metadata field.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_subobject_table("metadata.Environments.items") }}
+
+!!! example "Example: description of an environment in a `prov/[<subdir>/]prov-<label>_env.json` file"
+
+    ```JSON
+    {
+        "Environments": [
+            {
+                "Id": "bids::prov#fedora-uldfv058",
+                "Label": "Fedora release 36 (Thirty Six)",
+                "OperatingSystem": "GNU/Linux 6.2.15-100.fc36.x86_64"
+            }
+        ]
+    }
+    ```
+    For a complete example, see [DICOM to Nifti conversion with `dcm2niix` example](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix)
+
+### Provenance label file
 
 Template:
 
