@@ -8,7 +8,7 @@ context of the academic literature.
 
     Several [example BIDS-Prov datasets](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#provenance) have been formatted using this specification and can be used for practical guidance when curating a new dataset.
 
-This part of the BIDS specification is aimed at describing the provenance of a BIDS dataset. This description is retrospective: it describes a set of steps that were executed in order to obtain the dataset. Note: this is different from prospective provenance that focuses describing workflows that may be run on a dataset. This description is based on the [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/) standard (see the [Provenance from an RDF perspective](#provenance-from-a-rdf-perspective) section for more information).
+This part of the BIDS specification is aimed at describing the provenance of a BIDS dataset. This description is retrospective: it describes a set of steps that were executed in order to obtain the dataset and is based on [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/) (see [Provenance from an RDF perspective](#provenance-from-a-rdf-perspective)). Note: this is different from prospective provenance that focuses describing workflows that may be run on a dataset.
 
 Provenance information SHOULD be included in a BIDS dataset when possible. If provenance information is included, it MUST be described using the conventions detailed hereafter. Provenance information reflects the provenance of a full dataset and/or of specific files at any level of the BIDS hierarchy. Provenance information SHOULD not include human subject identifying data.
 
@@ -47,20 +47,20 @@ and a guide for using macros can be found at
         }
     }
     ```
-    This snippet is similar to fields described in [DICOM to Nifti conversion with `heudiconv` example](https://github.com/bclenet/bids-examples/tree/BEP028_heudiconv/provenance_heudiconv).
+    For a complete example see [DICOM to Nifti conversion with `heudiconv` example](https://github.com/bclenet/bids-examples/tree/BEP028_heudiconv/provenance_heudiconv).
 
 ## Provenance of a BIDS dataset
 
-Provenance of a BIDS dataset (raw, derivative, or study) SHOULD be stored inside its `dataset_description.json` file. Corresponding metadata describes the provenance of the whole dataset. The `dataset_description.json` file of a **BIDS raw dataset** or **BIDS study dataset** MAY include the `GeneratedBy` key to describe provenance. The `dataset_description.json` file of a **BIDS derivative dataset** MUST include the `GeneratedBy` key to describe provenance.
+Provenance of a BIDS dataset (raw, derivative, or study) SHOULD be stored inside its `dataset_description.json` file. The `dataset_description.json` file of a **BIDS raw dataset** or **BIDS study dataset** MAY include the `GeneratedBy` key to describe provenance. The `dataset_description.json` file of a **BIDS derivative dataset** MUST include the `GeneratedBy` key to describe provenance.
 
 The `GeneratedBy` field MAY contain either of the following values:
 
--   Identifier(s) of the activity/activities responsible for the creation of the dataset (see the [Description using identifiers](#description-using-identifiers) section).
--   A description of pipelines or processes responsible for the creation of the dataset (see the [Description of pipelines or processes](#description-of-pipelines-or-processes) section).
+-   Identifier(s) of the activity/activities responsible for the creation of the dataset (see [Description using identifiers](#description-using-identifiers)).
+-   A description of pipelines or processes responsible for the creation of the dataset (see [Description of pipelines or processes](#description-of-pipelines-or-processes)).
 
 ### Description using identifiers
 
-This section details the way to describe provenance of a dataset in the `GeneratedBy` field, using identifiers.
+This section details how to describe provenance of a dataset using identifiers.
 
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in
@@ -83,11 +83,11 @@ and a guide for using macros can be found at
         "GeneratedBy": "bids::prov#preprocessing-xMpFqB5q"
     }
     ```
-    This is a snippet from the [fMRI preprocessing with `fMRIPrep` example](https://github.com/bclenet/bids-examples/tree/BEP028_fmriprep/provenance_fmriprep).
+    For a complete example see [fMRI preprocessing with `fMRIPrep` example](https://github.com/bclenet/bids-examples/tree/BEP028_fmriprep/provenance_fmriprep).
 
 ### Description of processes or pipelines
 
-This section details a way to describe the provenance of a dataset, providing `GeneratedBy` with an array of objects representing pipelines or processes that generated the dataset.
+This section details how to describe the provenance of a dataset using an array of objects representing pipelines or processes that generated the dataset.
 
 !!! warning
 
@@ -143,7 +143,7 @@ and a guide for using macros can be found at
 
 ## Provenance files
 
-In addition to storing provenance in sidecar JSON files (see the [Provenance of BIDS file](#provenance-of-a-bids-file)) or in `dataset_description.json` (see [Provenance of BIDS dataset](#provenance-of-a-bids-dataset) section), other provenance information MUST be stored inside provenance files.
+In addition to storing provenance in sidecar JSON files (see [Provenance of BIDS file](#provenance-of-a-bids-file)) or in `dataset_description.json` (see [Provenance of BIDS dataset](#provenance-of-a-bids-dataset)), other provenance information MUST be stored inside provenance files.
 
 <!--
 This block generates a filename templates.
@@ -240,7 +240,7 @@ and a guide for using macros can be found at
         ]
     }
     ```
-    This snippet is similar to Activities described in the [DICOM to Nifti conversion with `dcm2niix` example](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix).
+    For a complete example, see [DICOM to Nifti conversion with `dcm2niix` example](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix).
 
 ### Software
 
@@ -284,7 +284,7 @@ and a guide for using macros can be found at
         ]
     }
     ```
-    This is a snippet from the [DICOM to Nifti conversion with `dcm2niix` example](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix)
+    For a complete example, see [DICOM to Nifti conversion with `dcm2niix` example](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix)
 
 ### Environments
 
@@ -327,7 +327,7 @@ and a guide for using macros can be found at
         ]
     }
     ```
-    This is a snippet from the [DICOM to Nifti conversion with `dcm2niix` example](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix)
+    For a complete example, see [DICOM to Nifti conversion with `dcm2niix` example](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix)
 
 ### Input and output data
 
@@ -408,7 +408,7 @@ and a guide for using macros can be found at
         ]
     }
     ```
-    This is a snippet from the [fMRI preprocessing with `SPM` example](https://github.com/bclenet/bids-examples/tree/BEP028_spm/provenance_spm)
+    For a complete example, see [fMRI preprocessing with `SPM` example](https://github.com/bclenet/bids-examples/tree/BEP028_spm/provenance_spm)
 
 !!! example "Example: description of a dataset in a `prov/[<subdir>/]prov-<label>_ent.json` file"
 
@@ -422,7 +422,7 @@ and a guide for using macros can be found at
         ]
     }
     ```
-    This is a snippet from the [fMRI preprocessing with `fMRIPrep` example](https://github.com/bclenet/bids-examples/tree/BEP028_fmriprep/provenance_fmriprep).
+    For a complete example, see [fMRI preprocessing with `fMRIPrep` example](https://github.com/bclenet/bids-examples/tree/BEP028_fmriprep/provenance_fmriprep).
 
 ### Provenance description file
 
@@ -461,7 +461,7 @@ prov-preprocfsl Provenance of preprocessing performed with FSL.
 
 It is RECOMMENDED to accompany each `provenance.tsv` file with a sidecar
 `provenance.json` file to describe the TSV column names and properties of their values
-(see also the [section on tabular files](../common-principles.md#tabular-files)).
+(see also [tabular files](../common-principles.md#tabular-files)).
 
 `provenance.json` example:
 
@@ -545,7 +545,7 @@ All BIDS examples related to provenance (see. [bids-examples, provenance section
 
 !!! example
 
-    This section shows a snippet from the [Provenance of DICOM to Nifti conversion with `dcm2niix`](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix) example.
+    For a complete example, see [Provenance of DICOM to Nifti conversion with `dcm2niix`](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix).
 
 In this example, we explain provenance metadata of a DICOM to Nifti conversion with `dcm2niix`. Consider the following BIDS raw dataset:
 
@@ -618,7 +618,7 @@ Inside the `sub-001/anat/sub-001_T1w.json` file, the metadata field `GeneratedBy
 
 !!! example
 
-    This section shows a snippet from the [Provenance of fMRI preprocessing with `SPM`](https://github.com/bclenet/bids-examples/tree/BEP028_spm/provenance_spm) example.
+    For a complete example, see [Provenance of fMRI preprocessing with `SPM`](https://github.com/bclenet/bids-examples/tree/BEP028_spm/provenance_spm).
 
 In this example, we explain provenance metadata of fMRI preprocessing steps performed with `SPM`. Consider the following BIDS derivative dataset:
 
@@ -711,7 +711,7 @@ Inside the `sub-001/anat/c1sub-001_T1w.json` file, the metadata field `Generated
 
 !!! example
 
-    This section shows a snippet from the [Provenance of manual annotations](https://github.com/bclenet/bids-examples/tree/BEP028_manual/provenance_manual) example.
+    For a complete example, see [Provenance of manual annotations](https://github.com/bclenet/bids-examples/tree/BEP028_manual/provenance_manual).
 
 In this example, we explain provenance metadata of brain segmentation performed by two experts on the same T1w file. Consider the following BIDS study dataset:
 

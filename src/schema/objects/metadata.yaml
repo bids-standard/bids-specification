@@ -92,7 +92,7 @@ Activities:
       Command:
         name: Command
         description: |
-          Command (or commands) used to run the tool, including all parameters.
+          Command (or commands) performed by the activity, including all parameters.
 
           Set to `null` to describe that the activity was performed manually.
         anyOf:
@@ -4020,14 +4020,13 @@ Software:
         type: string
       AltIdentifier:
         name: AltIdentifier
-        description: URI of the RRID for the software package (cf. https://rrid.site/).
+        description: URI of an alternative identifier (such as [RRID](https://rrid.site/)) for the software package.
         type: string
         format: uri
       ActedOnBehalfOf:
         name: ActedOnBehalfOf
         description: |
-          Identifier of another software package that was responsible for using the software package
-          in the context of the activities associated to it.
+          Identifier of another software package that triggered the use of the software package.
 
           Example: if software A launches software B to perform activity C, then B ActedOnBehalfOf A.
 
