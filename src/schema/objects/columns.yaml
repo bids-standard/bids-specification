@@ -166,10 +166,11 @@ depth__probes:
   name: depth
   display_name: Depth
   description: |
-    Physical depth of the probe, for example, '0.3'.
+    Physical depth of the probe in mm, for example, '0.3'.
     This dimension should be omitted or set to 0 for two-dimensional (shank-type) probes.
     This dimension corresponds to the z-axis of the probe's local coordinate frame.
   type: number
+  unit: mm
 coordinate_system:
   name: coordinate_system
   display_name: Coordinate System
@@ -244,15 +245,6 @@ dimension:
     Size of the group (grid/strip/probe) that this electrode belongs to.
     Must be of form `[AxB]` with the smallest dimension first (for example, `[1x8]`).
   type: string
-# TODO: Add unit enums if everyone agrees to keep this column.
-dimension_unit:
-  name: dimension_unit
-  display_name: Dimension unit
-  description: |
-    Spatial units for a position or a physical dimension of electrodes, such as
-    'width', 'height' or 'depth' of the probe.
-    For example, `um`.
-  type: string
 duration:
   name: duration
   display_name: Event duration
@@ -297,7 +289,6 @@ filename:
     Relative paths to files.
   type: string
   format: participant_relative
-# TODO: Figure out and add rule for default values.
 gain:
   name: gain
   display_name: Gain
@@ -306,7 +297,6 @@ gain:
     to the signal stored in the data file.
     If no gain factor is provided it is assumed to be 1.
   type: number
-# TODO: Clarify if the optionality of the column be defined here or as an addendum in the rules.
 ground:
   name: ground
   display_name: Ground
@@ -369,10 +359,11 @@ height__probes:
   name: height
   display_name: Probe height
   description: |
-    Physical height of the probe, for example, '0.3'.
+    Physical height of the probe in mm, for example, '0.3'.
     This dimension should be omitted or set to 0 for one-dimensional (linear) probes.
     This dimension corresponds to the y-axis of the probe's local coordinate frame.
   type: number
+  unit: mm
 hemisphere:
   name: hemisphere
   display_name: Electrode hemisphere
@@ -382,7 +373,7 @@ hemisphere:
   enum:
     - $ref: objects.enums.left_hemisphere.value
     - $ref: objects.enums.right_hemisphere.value
-# TODO: Should the hemisphere details be unified for electrodes and probes or will it break other modality?
+# consider unifying with base `hemisphere` column between electrodes and probes
 hemisphere__probes:
   name: hemisphere
   display_name: Hemisphere
@@ -453,7 +444,7 @@ manufacturer:
     The manufacturer for each electrode.
     Can be used if electrodes were manufactured by more than one company.
   type: string
-# TODO: Should the manufacturer details be unified for electrodes and probes?
+# consider unifying with base `manufacturer` column between electrodes and probes
 manufacturer__probes:
   name: manufacturer
   display_name: Manufacturer
@@ -466,6 +457,7 @@ mapping:
   description: |
     Corresponding integer label in the standard BIDS label lookup.
   type: integer
+# consider unifying with base `material` column between electrodes and probes
 material:
   name: material
   display_name: Electrode material
@@ -834,7 +826,6 @@ short_channel:
     The total number of channels listed as short channels
     SHOULD be stored in `ShortChannelCount` in `*_nirs.json`.
   type: boolean
-# TODO: might need to dup for microephys__size and have it um^2
 signal_electrode:
   name: signal_electrode
   display_name: Signal electrode
@@ -849,6 +840,13 @@ size:
     Surface area of the electrode, units MUST be in `mm^2`.
   type: number
   unit: 'mm^2'
+size__microephys:
+  name: size
+  display_name: Electrode size
+  description: |
+    Surface area of the electrode, units MUST be in `um^2`.
+  type: number
+  unit: 'um^2'
 software_filters:
   name: software_filters
   display_name: Software filters
@@ -956,16 +954,6 @@ stream_id:
   description: |
     Data stream of the recording the signal.
   type: string
-# TODO: Clarify if column values can be arrays.
-surgery_date:
-  name: surgery_date
-  display_name: Surgery date
-  description: |
-    Date(s) of surgery. Datetime format and their anonymization
-    are described in [Units](SPEC_ROOT/common-principles.md#units).
-    The details of the surgery should be described in the sidecar json file.
-  type: string
-  format: datetime
 target_muscle:
   name: target_muscle
   display_name: Target muscle
@@ -1132,15 +1120,6 @@ units:
     (see [Units](SPEC_ROOT/common-principles.md#units)).
   type: string
   format: unit
-units__channels:
-  name: units
-  display_name: Units
-  description: |
-    Physical unit of the value represented in this channel,
-    for example, `V` for Volt, or `uV` for micro Volt
-    (see [Units](SPEC_ROOT/common-principles.md#units)).
-  type: string
-  format: unit
 units__nirs:
   name: units
   display_name: Units
@@ -1208,9 +1187,10 @@ width__probes:
   name: width
   display_name: Width
   description: |
-    Physical width of the probe, for example, '5'.
+    Physical width of the probe in mm, for example, '5'.
     This dimension corresponds to the x-axis of the probe's local coordinate frame.
   type: number
+  unit: mm
 whole_blood_radioactivity:
   name: whole_blood_radioactivity
   display_name: Whole blood radioactivity
@@ -1262,54 +1242,6 @@ z__optodes:
   description: |
     Recorded position along the z-axis.
     "`n/a`" if not available.
-  anyOf:
-    - type: number
-    - type: string
-      enum:
-        - n/a
-# TODO: Remove the overspecified entries for electrode positions if not used in microephys
-# TODO: finish up setup below
-x__electrodes:
-  name: x
-  display_name: Electrode X position
-  description: |
-    When no [`space-<label>`](SPEC_ROOT/appendices/entities.md#space) entity is used in the filename,
-    the position along the local width-axis relative to the probe origin
-    (see `coordinate_reference_point` in `*_probes.tsv`).
-    Units are specified by the `dimension_unit` column in `*_probes.tsv`.
-
-    When a `space-<label>` entity is used in the filename,
-    the position relative to the origin of the coordinate system along the first axis.
-    Units are specified by `MicroephysCoordinateUnits` in the corresponding `*_coordsystem.json` file.
-  type: number
-y__electrodes:
-  name: y
-  display_name: Electrode Y position
-  description: |
-    When no [`space-<label>`](SPEC_ROOT/appendices/entities.md#space) entity is used in the filename,
-    the position along the local height-axis relative to the probe origin
-    (see `coordinate_reference_point` in `*_probes.tsv`).
-    Units are specified by the `dimension_unit` column in `*_probes.tsv`.
-
-    When a `space-<label>` entity is used in the filename,
-    the position relative to the origin of the coordinate system along the second axis.
-    Units are specified by `MicroephysCoordinateUnits` in the corresponding `*_coordsystem.json` file.
-  type: number
-z__electrodes:
-  name: z
-  display_name: Electrode Z position
-  description: |
-    When no [`space-<label>`](SPEC_ROOT/appendices/entities.md#space) entity is used in the filename,
-    the position along the local depth-axis relative to the probe origin
-    (see `coordinate_reference_point` in `*_probes.tsv`).
-    Units are specified by the `dimension_unit` column in `*_probes.tsv`.
-
-    When a `space-<label>` entity is used in the filename,
-    the position relative to the origin of the coordinate system along the third axis.
-    Units are specified by `MicroephysCoordinateUnits` in the corresponding `*_coordsystem.json` file.
-
-    For 2D electrode localizations (for example, when the coordinate system is
-    `Pixels`), this SHOULD be a column of `n/a` values.
   anyOf:
     - type: number
     - type: string

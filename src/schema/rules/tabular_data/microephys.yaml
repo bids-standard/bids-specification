@@ -27,7 +27,6 @@ microephysProbes:
     width__probes: optional
     height__probes: optional
     depth__probes: optional
-    dimension_unit: optional
     rotation_angle: recommended
     coordinate_reference_point: recommended
     anatomical_reference_point: optional
@@ -48,19 +47,45 @@ microephysElectrodes:
   initial_columns:
     - name__electrodes
     - probe_name
-    - x__electrodes
-    - y__electrodes
-    - z__electrodes
+    - x
+    - y
+    - z
   columns:
     name__electrodes: required
     probe_name: required
-    x__electrodes: required
-    y__electrodes: required
-    z__electrodes: required
+    x:
+      level: required
+      description_addendum: |
+        When no [`space-<label>`](SPEC_ROOT/appendices/entities.md#space) entity is used in the filename,
+        the position along the local width-axis relative to the probe origin
+        (see `coordinate_reference_point` in `*_probes.tsv`) in micrometers (um).
+        When a `space-<label>` entity is used in the filename,
+        the position relative to the origin of the coordinate system along the first axis.
+        Units are specified by `MicroephysCoordinateUnits` in the corresponding `*_coordsystem.json` file.
+    y:
+      level: required
+      description_addendum: |
+        When no [`space-<label>`](SPEC_ROOT/appendices/entities.md#space) entity is used in the filename,
+        the position along the local height-axis relative to the probe origin
+        (see `coordinate_reference_point` in `*_probes.tsv`) in micrometers (um).
+        When a `space-<label>` entity is used in the filename,
+        the position relative to the origin of the coordinate system along the second axis.
+        Units are specified by `MicroephysCoordinateUnits` in the corresponding `*_coordsystem.json` file.
+    z:
+      level: required
+      description_addendum: |
+        When no [`space-<label>`](SPEC_ROOT/appendices/entities.md#space) entity is used in the filename,
+        the position along the local depth-axis relative to the probe origin
+        (see `coordinate_reference_point` in `*_probes.tsv`) in micrometers (um).
+        When a `space-<label>` entity is used in the filename,
+        the position relative to the origin of the coordinate system along the third axis.
+        Units are specified by `MicroephysCoordinateUnits` in the corresponding `*_coordsystem.json` file.
+        For 2D electrode localizations (for example, when the coordinate system is
+        `Pixels`), this SHOULD be a column of `n/a` values.
     hemisphere: recommended
     impedance: recommended
     shank_id: optional
-    size: optional
+    size__microephys: optional
     electrode_shape: optional
     material: optional
     location: recommended
@@ -79,13 +104,13 @@ microephysChannels:
     - name__channels
     - reference__microephys
     - type__channels
-    - units__channels
+    - units
     - sampling_frequency
   columns:
     name__channels: required
     reference__microephys: required
     type__channels: required
-    units__channels: required
+    units: required
     sampling_frequency: optional
     low_cutoff: optional
     high_cutoff: optional

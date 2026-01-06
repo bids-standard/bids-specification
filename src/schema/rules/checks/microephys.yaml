@@ -1,19 +1,6 @@
 ---
-# For non-microephys modalities, electrodes.tsv always requires coordsystem.json
-RequiredCoordsystem:
-  issue:
-    code: REQUIRED_COORDSYSTEM
-    message: |
-      If an electrodes.tsv file is provided, an associated coordsystem.json must also be present.
-    level: error
-  selectors:
-    - suffix == "electrodes"
-    - extension == ".tsv"
-    - '!intersects([datatype], ["ecephys", "icephys"])'
-  checks:
-    - associations.coordsystem != null
-
 # For microephys, only space-labeled electrodes.tsv requires coordsystem.json
+# Non-microephys modalities are handled by RequiredCoordsystem in channels.yaml
 MicroephysRequiredCoordsystemWithSpace:
   issue:
     code: MICROEPHYS_COORDSYSTEM_REQUIRED
