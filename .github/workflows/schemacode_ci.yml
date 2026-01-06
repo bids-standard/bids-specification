@@ -29,7 +29,7 @@ jobs:
       attestations: write
       id-token: write
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: Install the latest version of uv
@@ -62,7 +62,7 @@ jobs:
             python-version: 3.13
     name: ${{ matrix.os }} with Python ${{ matrix.python-version }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: Set up Python ${{ matrix.python-version }} (uv)
         uses: astral-sh/setup-uv@v7
@@ -74,7 +74,7 @@ jobs:
         run: python -c "import sys; print(sys.version)"
 
       - name: "Fetch packages"
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: Packages
           path: dist
@@ -95,7 +95,7 @@ jobs:
         working-directory: tools/schemacode
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: unit_${{ matrix.os }}_${{ matrix.python-version }}
           path: tools/schemacode/coverage.xml
@@ -112,7 +112,7 @@ jobs:
 
     steps:
       - name: Download packages built by build-and-inspect-python-package
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: Packages
           path: dist
@@ -131,7 +131,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Validate schema
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: Set Up Python environment
         uses: actions/setup-python@v6
@@ -150,7 +150,7 @@ jobs:
         working-directory: tools/schemacode
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: schema_validation
           path: tools/schemacode/coverage.xml
@@ -162,10 +162,10 @@ jobs:
     needs: [test, validate_schema]
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Download artifacts
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
 
       - name: Upload to CodeCov
         uses: codecov/codecov-action@v5
