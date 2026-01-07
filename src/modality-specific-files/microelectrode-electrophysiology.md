@@ -114,7 +114,7 @@ All metadata that is not directly related to one of the other metadata files (pr
 
 There should be one such JSON file for each data file.
 
-The `*_ecephys.json` or `*_icephys.json` file can be used to store any microephys-specific metadata for the dataset. We recommend storing all setup-related metadata in a dedicated node of the JSON file called `Setup`.
+The `*_ecephys.json` or `*_icephys.json` file can be used to store any microephys-specific metadata for the dataset. All setup-related metadata should be stored in a dedicated node of the JSON file called `Setup`.
 We recommend using the following keys to describe the setup:
 
 ### Institution Information
