@@ -127,6 +127,7 @@ PETPharmaceuticals:
     PharmaceuticalDoseAmount:
       level: recommended
       description_addendum: |
+        For pharmaceutical co-administered with tracer.
         Corresponds to [DICOM Tag 0008, 0028](https://dicomlookup.com/dicomtags/(0008,0028)) `Intervention Drug Dose`.
     PharmaceuticalDoseUnits: recommended
     PharmaceuticalDoseRegimen: recommended

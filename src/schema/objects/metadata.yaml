@@ -2796,7 +2796,7 @@ PharmaceuticalDoseAmount:
   name: PharmaceuticalDoseAmount
   display_name: Pharmaceutical Dose Amount
   description: |
-    Dose amount of pharmaceutical coadministered with tracer.
+    Dose amount of administered pharmaceutical.
   anyOf:
     - type: number
     - type: array
