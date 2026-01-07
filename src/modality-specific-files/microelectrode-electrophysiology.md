@@ -110,7 +110,7 @@ suffixes=["ecephys", "events", "channels", "electrodes","scans","probes","coords
 
 ## Sidecar JSON (`*_icephys.json` and `*_ecephys.json`)
 
-We propose to store all metadata that is not directly related to one of the other metadata files (probe/electrode/channel information) into a single JSON file corresponding to the datatype: `_icephys.json` or `_ecephys.json` for intracellular and extracellular correspondingly.
+All metadata that is not directly related to one of the other metadata files (probe/electrode/channel information) should be stored in a single JSON file corresponding to the datatype: `_icephys.json` or `_ecephys.json` for intracellular and extracellular, respectively.
 
 There should be one such JSON file for each data file.
 
