@@ -352,7 +352,7 @@ and a guide for using macros can be found at
     {
         "Files": [
             {
-                "Id": "bids::sub-01/anat/sub-01_T1w.nii#00f98a97",
+                "Id": "bids::sub-01/anat/sub-01_T1w.nii#97a89211",
                 "Label": "sub-01_T1w.nii",
                 "AtLocation": "sub-01/anat/sub-01_T1w.nii",
                 "GeneratedBy": "bids::prov#gunzip-e9264918",
@@ -669,7 +669,7 @@ The `prov/prov-spm_act.json` file describes the preprocessing steps (activities)
             "Id": "bids::prov#segment-7d5d4ac5",
             "Label": "Segment",
             "Used": [
-                "urn:c1d082a5-34ee-4282-99df-28c0ba289210",
+                "bids::prov#entity-28c0ba28",
                 "bids::sub-01/anat/sub-01_T1w.nii"
             ],
             ...
@@ -686,7 +686,7 @@ The `prov/prov-spm_act.json` file describes the preprocessing steps (activities)
     "Files": [
         ...
         {
-            "Id": "urn:c1d082a5-34ee-4282-99df-28c0ba289210",
+            "Id": "bids::prov#entity-28c0ba28",
             "Label": "TPM.nii",
             "AtLocation": "spm12/tpm/TPM.nii",
             ...
