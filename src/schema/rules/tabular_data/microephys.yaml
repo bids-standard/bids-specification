@@ -52,7 +52,12 @@ microephysElectrodes:
     - z
   columns:
     name__electrodes: required
-    probe_name: required
+    probe_name:
+      level: required
+      description_addendum: |
+        The value MUST match a `probe_name` entry in the corresponding `*_probes.tsv` file,
+        linking this electrode to its associated probe.
+        For electrodes not associated with a probe, use `n/a`.
     x:
       level: required
       description_addendum: |
@@ -102,14 +107,20 @@ microephysChannels:
     - extension == ".tsv"
   initial_columns:
     - name__channels
-    - reference__microephys
+    - electrode_name
     - type__channels
     - units
     - sampling_frequency
   columns:
     name__channels: required
-    reference__microephys: required
+    electrode_name:
+      level: required
+      description_addendum: |
+        The value MUST match a `name` entry in the corresponding `*_electrodes.tsv` file,
+        linking this channel to its associated electrode contact point.
+        For channels not associated with an electrode, use `n/a`.
     type__channels: required
+    reference__microephys: optional
     units: required
     sampling_frequency: optional
     low_cutoff: optional

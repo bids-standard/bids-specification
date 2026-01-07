@@ -270,6 +270,12 @@ DV__probes:
     Positive values are ventral.
   type: number
   unit: mm
+electrode_name:
+  name: electrode_name
+  display_name: Electrode name
+  description: |
+    Name of the electrode contact point.
+  type: string
 electrode_count:
   name: electrode_count
   display_name: Electrode count
@@ -652,7 +658,6 @@ probe_name:
   display_name: Probe name
   description: |
     A unique identifier of the probe, can be identical with the `device_serial_number`.
-    (expected to match probe_name listed in `*_electrodes.tsv`).
   type: string
 recording_mode:
   name: recording_mode
