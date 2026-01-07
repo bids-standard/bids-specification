@@ -22,13 +22,13 @@ This modality is primarily used in animal research.
 
 Within this modality, BIDS defines two datatypes based on fundamentally different recording techniques (see [Issue #1800](https://github.com/bids-standard/bids-specification/issues/1800)):
 
--   **`ecephys`** (Extracellular Electrophysiology): Electrodes remain in the extracellular space,
-    measuring field potentials (μV) from nearby neurons without membrane penetration.
-    Examples: Neuropixels probes, tetrodes, multi-electrode arrays.
+-   **`ecephys`** (Extracellular Electrophysiology): Electrodes remain in the extracellular space without 
+    specifically targeting the membrane of neurons, measuring field potentials (μV) from nearby neurons.
+    Examples: Recordings with microelectrode probes, tetrodes, multi-electrode arrays.
 
 -   **`icephys`** (Intracellular Electrophysiology): Electrodes penetrate or attach to cell membranes to directly measure
     intracellular potentials (mV) and cellular dynamics.
-    Examples: cell-attached patch clamp, whole-cell patch clamp, sharp electrode recordings.
+    Examples: cell-attached patch clamp, whole-cell patch clamp, intracellular sharp electrode recordings.
 
 These datatypes differ in recording technique, signal amplitude, required metadata
 (for example, `pipette_solution` and `recording_mode` for icephys; probe geometry for ecephys),
