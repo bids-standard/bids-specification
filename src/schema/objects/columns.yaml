@@ -154,14 +154,6 @@ anatomical_reference_point:
     If not specified, `Bregma` is assumed for rodents.
     MUST be defined for species other than rodents.
   type: string
-data_entity_id:
-  name: data_entity_id
-  display_name: Data entity ID
-  description: |
-    The corresponding (UUID) identifier of the recording trace in the data file.
-    The same `data_entity_id` can be listed multiple times with different
-    `onset` and `duration` values to select a subset of a recording trace.
-  type: string
 depth__probes:
   name: depth
   display_name: Depth
@@ -256,12 +248,6 @@ duration:
   type: number
   unit: s
   minimum: 0
-duration_index:
-  name: duration_index
-  display_name: Duration index
-  description: |
-    Number of recording samples included in the event.
-  type: number
 DV__probes:
   name: DV
   display_name: Probe DV position
@@ -574,12 +560,6 @@ onset:
     A value of `n/a` value indicates the onset time is unknown or unavailable.
   type: number
   unit: s
-onset_index:
-  name: onset_index
-  display_name: Onset index
-  description: |
-    Index of the onset recording sample (0 based) within the data entity.
-  type: integer
 pathology:
   name: pathology
   display_name: Pathology
@@ -994,18 +974,6 @@ tracked_point__channels:
   description: |
     Label of the point that is being tracked, for example, label of a tracker
     or a marker (for example,`"LeftFoot"`, `"RightWrist"`).
-  type: string
-# TODO: Add relative links to `trial_type` column and events.tsv description.
-trial_id:
-  name: trial_id
-  display_name: Trial ID
-  description: |
-    If the data entity belongs to set of data_entities forming a trial,
-    they have to be linked to the same trial_id.
-    This can be used for example for group stimulation and response records.
-    The optional `trial_type` events.tsv column can be used to provide
-    further information on the trial like such as `electric stimulation`,
-    `rest`, or `pharmaceutical stimulation`.
   type: string
 trial_type:
   name: trial_type
