@@ -58,4 +58,4 @@ Proper understanding and application of these angles is critical for accurate pr
 
 !!! note "Source Attribution"
 
-    The coordinate system conventions and angle definitions presented in this section are adapted from the [BrainSTEM documentation](https://support.brainstem.org/datamodel/schemas/coordinates/).
+    The coordinate system conventions and angle definitions presented in this section are adapted from the [BrainSTEM documentation](https://support.brainstem.org/datamodel/schemas/coordinates/). MIT License; Copyright (c) 2025 Peter C. Petersen
