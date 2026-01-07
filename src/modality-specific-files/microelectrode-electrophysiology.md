@@ -339,13 +339,13 @@ This file contains the following information:
 -   The electrode coordinates in 3 columns (`xyz`) (use `n/a` for values if a dimension is absent).
 -   The ID of the probe the electrode is located on
 
-The electrode `name` MUST be unique within the `*_electrodes.tsv` file. When a dataset contains multiple probes, electrode names can be constructed by combining the contact identifier (as provided by the probe manufacturer or user-defined) with the `probe_name` to ensure uniqueness. For example, if two probes each have a contact labeled "1", the electrode names could be "probe01_e1" and "probe02_e1" to distinguish them.
+The electrode `name` MUST be unique within the `*_electrodes.tsv` file. When a dataset contains multiple probes, electrode names can be constructed by combining the contact identifier (as provided by the probe manufacturer or user-defined) with the `probe_name` to ensure uniqueness. For example, if two probes each have a contact labeled "1", the electrode names could be "probe01_e1" and "probe02_e1" to distinguish them. The order of the required columns in the `*_electrodes.tsv` file MUST be as listed below.
 
 {{ MACROS___make_columns_table("microephys.microephysElectrodes") }}
 
 ### Electrode Position Coordinates
 
-The `x`, `y`, and `z` columns in the electrodes table specify electrode positions, but their meaning depends on whether a `space-<label>` entity is used in the filename. When no `space-<label>` entity is used in the filename, the `x`, `y`, `z` coordinates describe the relative positions of electrodes on the probe, NOT their position in the brain or any anatomical coordinate system. These probe-relative positions are REQUIRED for all electrodes. The probe origin (0, 0, 0) is typically at the probe tip or a standard reference point on the probe and SHOULD be specified in the `coordinate_reference_point` column of `*_probes.tsv`. Units SHOULD be specified in the `dimension_unit` column of `*_probes.tsv`. The `*_coordsystem.json` file should not be provided for probe-relative coordinates. If there is just one electrode, the `x`, `y`, and `z` values should be `0`.
+The `x`, `y`, and `z` columns in the electrodes table specify electrode positions, but their meaning depends on whether a `space-<label>` entity is used in the filename. When no `space-<label>` entity is used in the filename, the `x`, `y`, `z` coordinates describe the relative positions of electrodes on the probe, NOT their position in the brain or any anatomical coordinate system. These probe-relative positions are REQUIRED for all electrodes. The probe origin (0, 0, 0) is typically at the probe tip or a standard reference point on the probe and SHOULD be specified in the `coordinate_reference_point` column of `*_probes.tsv`. The `*_coordsystem.json` file should not be provided for probe-relative coordinates. If there is just one electrode, the `x`, `y`, and `z` values should be `0`.
 
 This rule is different from the electrodes.tsv table of the [iEEG modality](intracranial-electroencephalography.md#electrodes-description-_electrodestsv), where electrode positions are always specified in anatomical space. The distinction is necessary because microelectrode probes often have many electrodes with known relative positions on the probe, but their anatomical positions may not be precisely known without additional localization procedures. The probe-relative positions are essential for interpreting the recorded signals in relation to the probe geometry and for analyses such as spike sorting.
 
@@ -390,9 +390,9 @@ This file contains the probe ID, the type of recording (acute/chronic), and the 
 **Extracellular electrophysiology example:**
 
 ```tsv
-probe_name	type	AP	ML	DV	AP_angle	ML_angle	rotation_angle	hemisphere	manufacturer	device_serial_number	electrode_count	width	height	depth	dimension_unit	coordinate_reference_point	anatomical_reference_point	associated_brain_region	associated_brain_region_id	reference_atlas	material
-probe01	silicon-probe	-2.5	1.5	-4.0	15	0	0	L	IMEC	NP1100-2205	384	70	20	10000	um	tip	Bregma	Primary Motor Cortex	MOp	Franklin-Paxinos	silicon
-probe02	tetrode	-1.2	-2.1	-3.5	0	10	45	R	Neuralynx	TT-12345	4	n/a	n/a	n/a	um	tip	Bregma	Hippocampus CA1	CA1	Paxinos-Watson	tungsten
+probe_name	type	AP	ML	DV	AP_angle	ML_angle	rotation_angle	hemisphere	manufacturer	device_serial_number	electrode_count	width	height	depth	coordinate_reference_point	anatomical_reference_point	associated_brain_region	associated_brain_region_id	reference_atlas	material
+probe01	silicon-probe	-2.5	1.5	-4.0	15	0	0	L	IMEC	NP1100-2205	384	70	20	10	tip	Bregma	Primary Motor Cortex	MOp	Franklin-Paxinos	silicon
+probe02	tetrode	-1.2	-2.1	-3.5	0	10	45	R	Neuralynx	TT-12345	4	n/a	n/a	n/a	tip	Bregma	Hippocampus CA1	CA1	Paxinos-Watson	tungsten
 ```
 
 **Intracellular electrophysiology example:**
