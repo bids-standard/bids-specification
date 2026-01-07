@@ -138,11 +138,7 @@ We RECOMMEND to use a dedicated `Procedure` node with the following keys:
 -   `Sample`
 -   `Supplementary`
 
-<!-- TODO: Yarik replaced Pharmaceuticals with PharmaceuticalName and others for now but we might look to define list of Pharmaceuticals of records with PharmaceuticalDoseAmount and PharmaceuticalDoseUnits -->
-
 #### Pharmaceuticals
-
-For each pharmaceutical we RECOMMEND to use a dedicated node with the name of the Pharmaceuticals containing the following administration details:
 
 {{ MACROS___make_sidecar_table("microephys.microephysPharmaceuticals") }}
 
