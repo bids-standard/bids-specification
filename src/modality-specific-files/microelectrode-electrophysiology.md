@@ -567,7 +567,6 @@ A guide for using macros can be found at
    }
 ) }}
 
-The order of the required columns in the `*_electrodes.tsv` file MUST be as listed below.
 The `x`, `y`, and `z` columns indicate the positions of the center of each electrode in Cartesian coordinates.
 
 ## Photos of the electrode positions (`*_photo.<extension>`)
