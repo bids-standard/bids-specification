@@ -474,6 +474,7 @@ To describe the location of electrodes in an anatomical or stereotaxic coordinat
 is used in the filename, and a corresponding `*_coordsystem.json` file is used alongside the corresponding
 `*_electrodes.tsv` file. This `*_coordsystem.json` file contains the coordinate system in which electrode
 positions are expressed. The associated MRI, CT, X-Ray, or operative photo can also be specified.
+The `x`, `y`, and `z` columns indicate the positions of the center of each electrode in Cartesian coordinates.
 
 This file is REQUIRED when the [`space-<label>`](../appendices/entities.md#space) entity is used
 in the filename to specify electrode positions in an anatomical or stereotaxic coordinate system.
@@ -566,8 +567,6 @@ A guide for using macros can be found at
       },
    }
 ) }}
-
-The `x`, `y`, and `z` columns indicate the positions of the center of each electrode in Cartesian coordinates.
 
 ## Photos of the electrode positions (`*_photo.<extension>`)
 
