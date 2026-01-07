@@ -181,10 +181,8 @@ and a guide for using macros can be found at
     ```
     prov/
     ├─ prov-preprocspm/
-    │  ├─ prov-preprocspm_desc-v1_act.json
-    │  ├─ prov-preprocspm_desc-v1_ent.json
-    │  ├─ prov-preprocspm_desc-v2_act.json
-    │  └─ prov-preprocspm_desc-v2_ent.json
+    │  ├─ prov-preprocspm_act.json
+    │  └─ prov-preprocspm_ent.json
     ├─ prov-preprocfsl_act.json
     ├─ prov-preprocfsl_ent.json
     ├─ prov-preprocfsl_env.json
@@ -729,10 +727,8 @@ A guide for using macros can be found at
                 "...": "",
                 "prov": {
                     "provenance.tsv": "",
-                    "prov-seg_desc-exp1_act.json": "",
-                    "prov-seg_desc-exp1_soft.json": "",
-                    "prov-seg_desc-exp2_act.json": "",
-                    "prov-seg_desc-exp2_soft.json": "",
+                    "prov-seg_act.json": "",
+                    "prov-seg_soft.json": "",
                     "prov-seg_ent.json": "",
                 },
                 "sub-001": {
@@ -771,18 +767,23 @@ Inside the `dataset_description.json` file of the `seg` derivative dataset, the 
 }
 ```
 
-The `prov/prov-seg_desc-exp1_act.json` file describes the activity during which expert #1 generated the brain segmentation.
+The `prov/prov-seg_act.json` file describes the activities during which experts generated the brain segmentations.
 
 ```JSON
 {
     "Activities": [
         {
             "Id": "bids::prov#segmentation-nO5RGsrb",
-            "Label": "Semi-automatic brain segmentation",
-            "Command": "itk-snap sourcedata/raw/sub-001/anat/sub-001_T1w.nii.gz",
-            "AssociatedWith": [
-                "bids::prov#itksnap-Lfs6FRMn"
-            ],
+            "Label": "Manual brain segmentation",
+            "Command": null,
+            "Used": [
+                "bids:raw:sub-001/anat/sub-001_T1w.nii.gz"
+            ]
+        },
+        {
+            "Id": "bids::prov#segmentation-mOOypIYB",
+            "Label": "Manual brain segmentation",
+            "Command": null,
             "Used": [
                 "bids:raw:sub-001/anat/sub-001_T1w.nii.gz"
             ]
@@ -793,7 +794,7 @@ The `prov/prov-seg_desc-exp1_act.json` file describes the activity during which 
 
 Note that a minimal description of the `sub-001/anat/sub-001_T1w.nii.gz` file is needed inside `derivatives/seg/prov/prov-seg_ent.json` because this data file is not in the `derivative/seg` dataset. This is compatible with a supplementary description of the data file being stored in its dataset, inside `sourcedata/raw/prov/prov-raw_ent.json`.
 
-Under the `derivatives/seg` dataset, the `sub-001_space-orig_desc-exp1_dseg.json` file describes that this activity generated the `sub-001_space-orig_desc-exp1_dseg.nii.gz` file.
+Under the `derivatives/seg` dataset, the `sub-001_space-orig_desc-exp1_dseg.json` file describes which activity generated the `sub-001_space-orig_desc-exp1_dseg.nii.gz` file.
 
 ```JSON
 {
@@ -808,7 +809,7 @@ provenance_label    description
 prov-seg   Manual brain segmentation performed by two experts
 ```
 
-The `descriptions.tsv` gives descriptions of the `desc` entities used both for provenance files and datafiles.
+The `descriptions.tsv` gives descriptions of the `desc` entities used for datafiles.
 
 ```TXT
 desc_id    description
