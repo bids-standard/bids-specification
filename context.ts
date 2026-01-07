@@ -82,6 +82,10 @@ export interface Associations {
      */
     aslcontext?: Aslcontext;
     /**
+     * Atlas description file
+     */
+    atlas_description?: AtlasDescription;
+    /**
      * B value file
      */
     bval?: Bval;
@@ -139,6 +143,16 @@ export interface Aslcontext {
      * Contents of the volume_type column
      */
     volume_type?: string[];
+}
+
+/**
+ * Atlas description file
+ */
+export interface AtlasDescription {
+    /**
+     * Path to associated atlas description file
+     */
+    path: string;
 }
 
 /**
