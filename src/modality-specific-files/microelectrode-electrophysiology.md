@@ -22,7 +22,7 @@ This modality is primarily used in animal research.
 
 Within this modality, BIDS defines two datatypes based on fundamentally different recording techniques (see [Issue #1800](https://github.com/bids-standard/bids-specification/issues/1800)):
 
--   **`ecephys`** (Extracellular Electrophysiology): Electrodes remain in the extracellular space without 
+-   **`ecephys`** (Extracellular Electrophysiology): Electrodes remain in the extracellular space without
     specifically targeting the membrane of neurons, measuring field potentials (μV) from nearby neurons.
     Examples: Recordings with microelectrode probes, tetrodes, multi-electrode arrays.
 
