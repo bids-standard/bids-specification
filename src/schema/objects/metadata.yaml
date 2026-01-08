@@ -767,7 +767,7 @@ DatasetLinks:
   additionalProperties:
     type: string
     format: uri
-Datasets__ProvEntities:
+Datasets:
   name: Datasets
   display_name: Datasets
   description: Objects describing datasets.
@@ -1440,9 +1440,9 @@ EncodingTechnique:
     For example, `"Cartesian"`, `"EPSI"`, `"Spiral"`,
     or `"Density-weighted concentric ring trajectory"`.
   type: string
-Entities__ProvEntities:
-  name: "prov:Entity"
-  display_name: "prov:Entity"
+ProvEntities:
+  name: "prov:Entities"
+  display_name: "prov:Entities"
   description: Objects describing prov:Entity objects other than files or datasets.
   type: array
   minItems: 1
@@ -1629,7 +1629,7 @@ FiducialsDescription:
     and how the position of the fiducials were measured
     (for example, `"both with Polhemus and with T1w MRI"`).
   type: string
-Files__ProvEntities:
+Files:
   name: Files
   display_name: Files
   description: Objects describing files.

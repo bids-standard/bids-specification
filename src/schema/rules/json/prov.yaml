@@ -20,7 +20,7 @@ ProvEntitiesProvenanceFile:
     - '!("Files" in json)'
     - '!("Datasets" in json)'
   fields:
-    Entities__ProvEntities: required
+    ProvEntities: required
 
 FilesProvenanceFile:
   selectors:
@@ -29,7 +29,7 @@ FilesProvenanceFile:
     - '!("Datasets" in json)'
     - '!("Entities" in json)'
   fields:
-    Files__ProvEntities: required
+    Files: required
 
 DatasetsProvenanceFile:
   selectors:
@@ -38,7 +38,7 @@ DatasetsProvenanceFile:
     - '!("Files" in json)'
     - '!("Entities" in json)'
   fields:
-    Datasets__ProvEntities: required
+    Datasets: required
 
 SoftwareProvenanceFile:
   selectors:
