@@ -123,7 +123,7 @@ PETPharmaceuticals:
     PharmaceuticalName:
       level: recommended
       description_addendum: |
-        Corresponds to [DICOM Tag 0008, 0034](https://dicomlookup.com/dicomtags/(0008,0034)) `Intervention Drug Name`.
+        Corresponds to [DICOM Tag 0018, 0034](https://dicomlookup.com/dicomtags/(0018,0034)) `Intervention Drug Name`.
     PharmaceuticalDoseAmount:
       level: recommended
       description_addendum: |
@@ -134,8 +134,9 @@ PETPharmaceuticals:
     PharmaceuticalDoseTime:
       level: recommended
       description_addendum: |
-        Corresponds to a combination of DICOM Tags (0008,0027) `Intervention Drug Stop Time`
-        and (0008,0035) `Intervention Drug Start Time`.
+        Corresponds to a combination of DICOM Tags
+        [0018, 0027](https://dicomlookup.com/dicomtags/(0018,0027)) `Intervention Drug Stop Time` and
+        [0018, 0035](https://dicomlookup.com/dicomtags/(0018,0035)) `Intervention Drug Start Time`.
     Anaesthesia: optional
 
 PETTime:
