@@ -310,8 +310,8 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_metadata_table(
    {
-      "Files__ProvEntities": "REQUIRED if `Datasets` and `Entities` are not included",
-      "Datasets__ProvEntities": "REQUIRED if `Files` and `Entities` are not included",
+      "Files__ProvEntities": "REQUIRED if `Datasets` and `prov:Entity` are not included",
+      "Datasets__ProvEntities": "REQUIRED if `Files` and `prov:Entity` are not included",
       "Entities__ProvEntities": "REQUIRED if `Files` and `Datasets` are not included"
    }
 ) }}
@@ -336,7 +336,7 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_subobject_table("metadata.Datasets__ProvEntities.items") }}
 
-Each object in the `Entities` array includes the following keys:
+Each object in the `prov:Entity` array includes the following keys:
 
 <!-- This block generates a table describing subfields within a metadata field.
 The definitions of these fields can be found in
@@ -491,11 +491,11 @@ bids:[<dataset-name>]:prov#entity-<label>
 
 !!! example "Examples of identifiers for input and output data"
 
-    - `bids:ds001734:sub-002/anat/sub-02_T1w.nii` - identifier for a T1w file for subject `sub-002` in the `ds001734` dataset;
+    - `bids:ds000011:sub-01/anat/sub-01_T1w.nii.gz` - identifier for a T1w file for subject `sub-01` in the `ds000011` dataset;
     - `bids::sub-014/func/sub-014_task-MGT_run-01_events.tsv` - identifier for an events file for subject `sub-014` in the current dataset;
     - `bids:fmriprep:sub-001/func/sub-001_task-MGT_run-01_bold_space-MNI152NLin2009cAsym_preproc.nii.gz` - identifier for a bold file for subject `sub-001` in the `fmriprep` dataset;
-    - `bids:raw:.` - identifier for the `raw` dataset;
-    - `bids::prov#entity-acea8093` - identifier for a prov:Entity that is described in the current dataset.
+    - `bids:ds001734:.` - identifier for the `ds001734` dataset;
+    - `bids::prov#entity-28c0ba28` - identifier for a prov:Entity that is described in the current dataset.
 
 ### Identifiers for other objects
 
@@ -709,7 +709,7 @@ Inside the `sub-001/anat/c1sub-001_T1w.json` file, the metadata field `Generated
 
 !!! example
 
-    For a complete example, see [Provenance of manual annotations](https://github.com/bclenet/bids-examples/tree/BEP028_manual/provenance_manual).
+    For a complete example, see [Provenance of manual brain segmentations](https://github.com/bclenet/bids-examples/tree/BEP028_manual/provenance_manual).
 
 In this example, we explain provenance metadata of brain segmentation performed by two experts on the same T1w file. Consider the following BIDS study dataset:
 

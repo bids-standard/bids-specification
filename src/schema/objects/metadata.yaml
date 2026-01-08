@@ -1441,8 +1441,8 @@ EncodingTechnique:
     or `"Density-weighted concentric ring trajectory"`.
   type: string
 Entities__ProvEntities:
-  name: Entities
-  display_name: Entities
+  name: "prov:Entity"
+  display_name: "prov:Entity"
   description: Objects describing prov:Entity objects other than files or datasets.
   type: array
   minItems: 1
