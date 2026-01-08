@@ -320,18 +320,14 @@ anat_discrete_surface:
   $ref:
     - meta.templates.deriv.dseg_surface
     - rules.files.raw.anat.nonparametric
-  entities:
-    # ibid
-    $ref:
-      - meta.templates.deriv.dseg_surface.entities
-      - rules.files.raw.anat.nonparametric.entities
   selectors:
     - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.dwi.dwi
   suffixes:
     - probseg
   entities:
-    $ref: rules.files.raw.dwi.dwi.entities
+    $ref:
+      - meta.templates.deriv.dseg_surface.entities
+      - rules.files.raw.anat.nonparametric.entities
     space: optional
     segmentation: optional
     resolution: optional
@@ -386,6 +382,8 @@ pet_petref:
   selectors:
     - dataset.dataset_description.DatasetType == 'derivative'
   $ref: rules.files.raw.pet.pet
+  datatypes:
+    - pet
   suffixes:
     - petref
   extensions:
