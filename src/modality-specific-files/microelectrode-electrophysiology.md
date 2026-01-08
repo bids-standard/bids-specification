@@ -228,7 +228,7 @@ These may be of neuronal origin (for example, online filtered LFP signals) or ge
 The channel properties are stored in a `.tsv` file.
 It should contain information about reference electrodes, amplifier, filtering, time alignment and other metadata pertinent to the data for each channel.
 
-This table stores information about the recorded signals, *not* the electrodes. The distinction is particularly important in cases where multiple signals are recorded from a single electrode (such as Neuropixel probes). For more information about the distinction between electrodes and channels, see [the corresponding section in iEEG](./intracranial-electroencephalography.md#terminology-electrodes-vs-channels).
+This table stores information about the recorded signals, *not* the electrodes. The distinction is particularly important in cases where multiple signals (such as LFP and high-frequency band-pass filtered signals) are recorded from the same electrode. For more information about the distinction between electrodes and channels, see [the corresponding section in iEEG](./intracranial-electroencephalography.md#terminology-electrodes-vs-channels).
 
 Columns in the `*_channels.tsv` file are:
 
