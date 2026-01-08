@@ -282,6 +282,7 @@ name	type	units	sampling_frequency	recording_mode	gain	ground	status
 patch01	VM	mV	20000	current-clamp	10	AgCl	good
 patch02	VM	mV	20000	current-clamp	10	AgCl	good
 sharp01	IM	pA	20000	voltage-clamp	5	AgCl	good
+```
 
 Note: In many datasets multiple sets of identifiers are used for probes, electrodes and channels.
 We RECOMMEND to include alternative sets of identifiers, for instance identifiers that enumerate electrodes according to their spatial arrangement, as additional custom columns in the `.tsv` file.
