@@ -375,7 +375,7 @@ sharp01	pipette03	L	0	0	0	80	3M KCl	0.5	1.0	borosilicate-glass	PL5
 
 ## Probes description (`*_probes.tsv`)
 
-Probes are electrode-bearing devices that interface with neural tissue to record electrophysiological activity, ranging from multi-electrode arrays to single recording pipettes. They can be permanently implanted (chronic recordings) or inserted temporarily for the recording (acute recordings).
+Probes are electrode-bearing devices that interface with neural tissue to record electrophysiological activity, ranging from single recording pipettes to multi-electrode arrays. They can be permanently implanted (chronic recordings) or inserted temporarily for the recording (acute recordings).
 
 The probe positions and properties are stored in a `.tsv` file.
 This file contains the probe ID, the type of recording (acute/chronic), and the probe coordinates.
