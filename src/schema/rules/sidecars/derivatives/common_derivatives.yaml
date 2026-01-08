@@ -23,7 +23,8 @@ SpatialReferenceEntity:
 SpatialReferenceNonStandard:
   selectors:
     - dataset.dataset_description.DatasetType == "derivative"
-    - '!intersects(schema.objects.metadata._StandardTemplateCoordSys, [entities.space])'
+    - '!intersects(schema.objects.enums._StandardTemplateCoordSys.enum, [entities.space])'
+    - type(entities.tpl) == 'null' || !intersects(schema.objects.enums._StandardTemplateCoordSys.enum, [entities.tpl])
   fields:
     SpatialReference: required
 
@@ -41,9 +42,11 @@ MaskDerivatives:
 SegmentationCommon:
   selectors:
     - dataset.dataset_description.DatasetType == "derivative"
-    - 'intersects([suffix], ["dseg", "probseg"])'
+    - 'intersects([suffix], ["dseg", "probseg", "mask"])'
   fields:
+    SpatialReference: recommended
     Manual: optional
+    CoordinateReportStrategy: optional
 
 # Derivatives -> Imaging data types
 ImageDerivatives:
