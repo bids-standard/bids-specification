@@ -1,0 +1,9 @@
+atlas_description:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
+  suffixes:
+    - description
+  extensions:
+    - .json
+  entities:
+    atlas: required

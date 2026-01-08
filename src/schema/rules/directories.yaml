@@ -119,10 +119,17 @@ derivative:
       - sourcedata
       - stimuli
       - subject
+      - template
   code:
     name: code
     level: optional
     opaque: true
+  cohort:
+    entity: cohort
+    level: optional
+    opaque: false
+    subdirs:
+      - datatype
   docs:
     name: docs
     level: optional
@@ -159,6 +166,13 @@ derivative:
     level: optional
     opaque: false
     subdirs:
+      - datatype
+  template:
+    entity: template
+    level: optional
+    opaque: false
+    subdirs:
+      - cohort
       - datatype
   datatype:
     value: datatype
