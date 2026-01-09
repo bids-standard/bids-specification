@@ -1,0 +1,24 @@
+{
+    "Name": "fMRIPrep - fMRI PREProcessing workflow",
+    "BIDSVersion": "1.9.0",
+    "DatasetType": "derivative",
+    "GeneratedBy": [
+        {
+            "Name": "fMRIPrep",
+            "Version": "25.0.0.dev298+g5be3d4c",
+            "CodeURL": "https://github.com/nipreps/fmriprep/archive/25.0.0.dev298+g5be3d4c.tar.gz"
+        }
+    ],
+    "HowToAcknowledge": "Please cite our paper (https://doi.org/10.1038/s41592-018-0235-4), and include the generated citation boilerplate within the Methods section of the text.",
+    "SourceDatasets": [
+        {
+            "URL": "https://doi.org/",
+            "DOI": ""
+        }
+    ],
+    "License": "CC0",
+    "DatasetLinks": {
+        "raw": "/Users/martinnorgaard/Desktop/ses-baseline/test_data",
+        "templateflow": "https://github.com/templateflow/templateflow"
+    }
+}

@@ -135,6 +135,11 @@ ThreeD:
   display_name: Three-dimensional
   description: |
     Three-dimensional MR acquisition.
+image_mode:
+  value: image
+  display_name: image mode
+  description: |
+    Transformation defined in an image domain.
 HARD:
   value: HARD
   display_name: Hard pulse
@@ -684,6 +689,12 @@ ScanRAS:
     strongly encouraged to align the subject's T1w to ACPC so that the `ACPC`
     coordinate system can be used. If the subject's T1w in the BIDS dataset
     is not aligned to ACPC, `ScanRAS` should be used.
+petref:
+  value: petref
+  display_name: PETREF
+  description: |
+    The PET reference space is the space of the PET image that is used to
+    register the PET image to the MRI image and/or for alignment for head motion correction. 
 on__mtransfer:
   value: 'on'
   display_name: 'On'

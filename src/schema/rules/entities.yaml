@@ -31,4 +31,7 @@
 - resolution
 - density
 - label
+- from
+- to
+- mode
 - description

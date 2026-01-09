@@ -1,0 +1,6 @@
+{
+  "Sources": [
+    "bids:raw:sub-010/ses-baseline/pet/sub-010_ses-baseline_pet.nii.gz"
+  ],
+  "SkullStripped": true,
+}

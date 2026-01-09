@@ -320,8 +320,94 @@ anat_discrete_surface:
   $ref:
     - meta.templates.deriv.dseg_surface
     - rules.files.raw.anat.nonparametric
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
+  suffixes:
+    - probseg
   entities:
-    # ibid
     $ref:
       - meta.templates.deriv.dseg_surface.entities
       - rules.files.raw.anat.nonparametric.entities
+    space: optional
+    segmentation: optional
+    resolution: optional
+    label: optional
+    description: optional
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+
+anat_parametric_discrete_surface:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
+  $ref: rules.files.raw.anat.parametric
+  suffixes:
+    - dseg
+  extensions:
+    - .label.gii
+    - .dlabel.nii
+    - .json
+    - .tsv
+  entities:
+    $ref: rules.files.raw.anat.parametric.entities
+    hemisphere: optional
+    space: optional
+    segmentation: optional
+    resolution: optional
+    density: optional
+    description: optional
+
+anat_nonparametric_discrete_surface:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
+  $ref: rules.files.raw.anat.nonparametric
+  suffixes:
+    - dseg
+  extensions:
+    - .label.gii
+    - .dlabel.nii
+    - .json
+    - .tsv
+  entities:
+    $ref: rules.files.raw.anat.nonparametric.entities
+    hemisphere: optional
+    space: optional
+    segmentation: optional
+    resolution: optional
+    density: optional
+    description: optional
+
+pet_petref:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
+  $ref: rules.files.raw.pet.pet
+  datatypes:
+    - pet
+  suffixes:
+    - petref
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  entities:
+    $ref: rules.files.raw.pet.pet.entities
+    space: optional
+    description: optional
+
+spatial_transform_image:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
+  $ref: rules.files.raw.pet.pet
+  suffixes:
+    - xfm
+  extensions:
+    - .txt
+    - .json
+  entities:
+    $ref: rules.files.raw.pet.pet.entities
+    space: optional
+    from: required
+    to: required
+    mode: required
+    description: optional

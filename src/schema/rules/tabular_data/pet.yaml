@@ -64,3 +64,64 @@ BloodWholeBlood:
   columns:
     whole_blood_radioactivity: required
   additional_columns: n/a
+
+PETDerivativesTimeActivityCurvesTab:
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - 'intersects([modality], ["pet"])'
+    - suffix == "tacs"
+    - intersects(entities.seg)
+    - extension == ".tsv"
+  columns:
+    frame_start:
+      level: required
+    frame_end:
+      level: required
+    region_name:
+      level: required
+  additional_columns: not_allowed
+
+PETDerivativesKineticModeling:
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - 'intersects([modality], ["pet"])'
+    - suffix == "kinpar"
+    - intersects(entities.model)
+    - extension == ".tsv"
+  columns:
+    index:
+      level: recommended
+    name__kinetic_modeling:
+      level: recommended
+    parameter:
+      level: recommended
+    parameter_name:
+      level: required
+      level_addendum: |
+        The estimated value for each parameter. Each parameter should be represented
+        by a column (e.g. R1, k2, BPND). See the
+        “Kinetic Model and Parameter Name Guidelines” section below.
+    parameter_name-se:
+      level: recommended
+      level_addendum: |
+        The estimated standard error of the parameter as a percentage of its value,
+        i.e. the %SE. The column name should be the same as for the parameter name,
+        but with the addition of “-se”.
+
+PETDerivativesBloodProcessing:
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - 'intersects([modality], ["pet"])'
+    - suffix == "bloodproc"
+    - extension == ".tsv"
+  columns:
+    time:
+      level: required
+    whole_blood_radioactivity:
+      level: recommended
+    whole_plasma_radioactivity:
+      level: optional
+    metabolite_parent_fraction:
+      level: optional
+    input_function:
+      level: recommended
