@@ -119,7 +119,9 @@ deriv:
       - dseg
     entities:
       $ref: meta.templates.deriv.volumetric.entities
+      atlas: optional
       segmentation: optional
+      scale: optional
 
   probseg:
     $ref: meta.templates.deriv.volumetric
@@ -131,7 +133,9 @@ deriv:
       - probseg
     entities:
       $ref: meta.templates.deriv.volumetric.entities
+      atlas: optional
       segmentation: optional
+      scale: optional
       label: optional
 
   dseg_surface:
@@ -145,4 +149,18 @@ deriv:
       - dseg
     entities:
       $ref: meta.templates.deriv.surface.entities
+      atlas: optional
       segmentation: optional
+      scale: optional
+
+# Entities that apply to most atlas files
+# Include thus:
+#
+# filerule:
+#   entities:
+#     $ref: meta.templates.atlas.base.entities
+atlas:
+  base:
+    entities:
+      template: required
+      cohort: optional

@@ -3,6 +3,17 @@
 # WARNING: The terms are presented here in alphabetical order!
 # The order in which these terms are presented in the specification is defined in `rules/common_principles.yaml`,
 # rather than this file (`objects/common_principles.yaml`).
+atlas:
+  display_name: Atlas
+  description: |
+    An *atlas* is structured neuroanatomical or neurofunctional information expressed as spatial annotations,
+    such as anatomical landmarks, segmentations, parcellations, probabilistic maps, or feature maps,
+    typically defined in relation to a *space* engendered by a specific *template*.
+    Within BIDS, atlases provide standardized spatially-organized knowledge to label, localize,
+    and interpret data features.
+    Atlases often rely on or embed templates as their reference framework.
+    In BIDS, templates establish the spatial coordinate frames for atlases,
+    independently of whether or not they are considered part of specific atlases' outcomes.
 data_acquisition:
   display_name: Data acquisition
   description: |
@@ -147,6 +158,12 @@ session:
     often in the case of some intervention between sessions (for example, training).
     In the [PET](SPEC_ROOT/modality-specific-files/positron-emission-tomography.md) context,
     a session may also indicate a group of related scans, taken in one or more visits.
+space:
+  display_name: Space
+  description: |
+    A space in BIDS is a reference [coordinate system](SPEC_ROOT/appendices/coordinate-systems.md)
+    defined by neuroimaging data, which may originate from an individual participant (native space)
+    or a standardized reference derived from multiple participants (template space).
 suffix:
   display_name: suffix
   description: |
@@ -168,3 +185,11 @@ task:
     In the context of brain scanning, a task is always tied to one data acquisition.
     Therefore, even if during one acquisition the subject performed multiple conceptually different behaviors
     (with different sets of instructions) they will be considered one (combined) task.
+template:
+  display_name: Template
+  description: |
+    A template (sometimes called an *atlas template*) is any aggregation of data across subjects.
+    Templates MAY operationalize the notion of a common spatial frame of reference
+    (see *space*) beyond individual subjects.
+    In practical BIDS usage, templates can be recognized (via the `tpl-` entity) as
+    standard spaces that enable analyses of data from multiple individuals.
