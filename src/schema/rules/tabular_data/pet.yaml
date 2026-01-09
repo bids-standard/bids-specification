@@ -108,6 +108,7 @@ PETDerivativesKineticModeling:
         i.e. the %SE. The column name should be the same as for the parameter name,
         but with the addition of “-se”.
 
+
 PETDerivativesBloodProcessing:
   selectors:
     - dataset.dataset_description.DatasetType == "derivative"
@@ -117,11 +118,19 @@ PETDerivativesBloodProcessing:
   columns:
     time:
       level: required
+      description_addendum: |
+        Time point of each interpolated estimate.
     whole_blood_radioactivity:
       level: recommended
+      description_addendum: |
+        Radioactivity in whole blood samples.
     whole_plasma_radioactivity:
-      level: optional
+      level: recommended
+      description_addendum: |
+        Radioactivity in wholeplasma samples.
     metabolite_parent_fraction:
       level: optional
+      description_addendum: |
+        Parent fraction in plasma samples.
     input_function:
       level: recommended

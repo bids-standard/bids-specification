@@ -429,11 +429,6 @@ PETDerivativesTimeActivityCurves:
     - suffix == "pet"
     - 'intersects(entities.desc, ["+tacs"])'
   fields:
-    time:
-      $ref: objects.columns.time
-      level: required
-    radioactivity:
-      level: required
     InjectedRadioactivity:
       level: required
     InjectedRadioactivityUnits:
@@ -528,31 +523,6 @@ PETDerivativesKineticModeling:
     CommandLine:
       level: optional
 
-PETDerivativesBloodProcessing:
-  selectors:
-    - dataset.dataset_description.DatasetType == "derivative"
-    - 'intersects([modality], ["pet"])'
-    - suffix == "pet"
-    - 'intersects(entities.desc, ["+bloodproc"])'
-  fields:
-    time:
-      level: required
-      description_addendum: |
-        Time point of each interpolated estimate.
-    whole_blood_radioactivity:
-      level: recommended
-      description_addendum: |
-        Radioactivity in whole blood samples.
-    whole_plasma_radioactivity:
-      level: recommended
-      description_addendum: |
-        Radioactivity in wholeplasma samples.
-    metabolite_parent_fraction:
-      level: optional
-      description_addendum: |
-        Parent fraction in plasma samples.
-    input_function:
-      level: recommended
 
 PETDerivativesBloodProcessingConfig:
   selectors:
