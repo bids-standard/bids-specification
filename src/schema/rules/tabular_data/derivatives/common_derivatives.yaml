@@ -26,7 +26,7 @@ Templates:
       description_addendum: |
         The corresponding label column is `template_id`.
   index_columns: [template_id]
-  additional_columns: allowed
+  additional_columns: allowed_if_defined
 
 Cohorts:
   selectors:
@@ -42,7 +42,7 @@ Cohorts:
       description_addendum: |
         The corresponding label column is `cohort_id`.
   index_columns: [cohort_id]
-  additional_columns: allowed
+  additional_columns: allowed_if_defined
 
 Descriptions:
   selectors:
