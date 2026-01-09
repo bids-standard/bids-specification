@@ -18,10 +18,6 @@ PETHardware:
       description_addendum: |
         SI unit for radioactivity (Becquerel) should be used (for example, "Bq/mL").
         Corresponds to [DICOM Tag 0054, 1001](https://dicomlookup.com/dicomtags/(0054,1001)) `Units`.
-    BodyPart:
-      level: recommended
-      description_addendum: |
-        Corresponds to [DICOM Tag 0018, 0015](https://dicomlookup.com/dicomtags/(0018,0015)) `Body Part Examined`.
 
 PETInstitutionInformation:
   selectors:
@@ -47,10 +43,7 @@ PETSample:
     - modality == "pet"
     - suffix == "pet"
   fields:
-    BodyPart:
-      level: optional
-      description_addendum: |
-        Corresponds to [DICOM Tag 0018, 0015](https://dicomlookup.com/dicomtags/(0018,0015)) `Body Part Examined`.
+    BodyPart: optional
     BodyPartDetails: optional
     BodyPartDetailsOntology: optional
 

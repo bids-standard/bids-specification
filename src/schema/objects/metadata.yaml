@@ -357,6 +357,7 @@ BodyPart:
   display_name: Body Part
   description: |
     Body part of the organ / body region scanned.
+    Corresponds to [DICOM Tag 0018, 0015](https://dicomlookup.com/dicomtags/(0018,0015)) `Body Part Examined`.
   type: string
 BodyPartDetails:
   name: BodyPartDetails
