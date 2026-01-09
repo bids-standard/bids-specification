@@ -466,7 +466,6 @@ Spatial transformations between coordinate spaces SHOULD be stored using the pat
 
 For example: `sub-01_ses-01_from-T1w_to-MNI152NLin6Asym_mode-image_xfm.txt`
 
-
 ### Common image-derived labels
 
 BIDS supplies a standard, generic label-index mapping, defined in the table
