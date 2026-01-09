@@ -4259,7 +4259,8 @@ TargetImageDescription:
   name: TargetImageDescription
   display_name: Target Image Description
   description: |
-    Free-form natural language description of how the target image was generated (for example, average across all frames)
+    Free-form natural language description of how the target image was generated
+    (for example, average across all frames)
   type: string
 TaskDescription:
   name: TaskDescription
