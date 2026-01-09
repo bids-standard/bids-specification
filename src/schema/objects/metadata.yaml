@@ -1440,9 +1440,9 @@ EncodingTechnique:
     For example, `"Cartesian"`, `"EPSI"`, `"Spiral"`,
     or `"Density-weighted concentric ring trajectory"`.
   type: string
-ProvEntities:
-  name: "prov:Entities"
-  display_name: "prov:Entities"
+ProvEntity:
+  name: "prov:Entity"
+  display_name: "prov:Entity"
   description: Objects describing prov:Entity objects other than files or datasets.
   type: array
   minItems: 1

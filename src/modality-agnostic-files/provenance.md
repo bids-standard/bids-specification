@@ -310,9 +310,9 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_metadata_table(
    {
-      "Files": "REQUIRED if `Datasets` and `prov:Entities` are not included",
-      "Datasets": "REQUIRED if `Files` and `prov:Entities` are not included",
-      "ProvEntities": "REQUIRED if `Files` and `Datasets` are not included"
+      "Files": "REQUIRED if `Datasets` and `prov:Entity` are not included",
+      "Datasets": "REQUIRED if `Files` and `prov:Entity` are not included",
+      "ProvEntity": "REQUIRED if `Files` and `Datasets` are not included"
    }
 ) }}
 
@@ -336,7 +336,7 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_subobject_table("metadata.Datasets.items") }}
 
-Each object in the `prov:Entities` array includes the following keys:
+Each object in the `prov:Entity` array includes the following keys:
 
 <!-- This block generates a table describing subfields within a metadata field.
 The definitions of these fields can be found in
@@ -344,7 +344,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_subobject_table("metadata.ProvEntities.items") }}
+{{ MACROS___make_subobject_table("metadata.ProvEntity.items") }}
 
 !!! example "Example: description of a file in a `prov/[<subdir>/]prov-<label>_ent.json` file"
 

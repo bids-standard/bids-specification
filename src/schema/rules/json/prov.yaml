@@ -13,21 +13,21 @@ EnvironmentsProvenanceFile:
   fields:
     Environments: required
 
-ProvEntitiesProvenanceFile:
+ProvEntityProvenanceFile:
   selectors:
     - datatype == "prov"
     - suffix == "ent"
     - '!("Files" in json)'
     - '!("Datasets" in json)'
   fields:
-    ProvEntities: required
+    ProvEntity: required
 
 FilesProvenanceFile:
   selectors:
     - datatype == "prov"
     - suffix == "ent"
     - '!("Datasets" in json)'
-    - '!("Entities" in json)'
+    - '!("prov:Entity" in json)'
   fields:
     Files: required
 
@@ -36,7 +36,7 @@ DatasetsProvenanceFile:
     - datatype == "prov"
     - suffix == "ent"
     - '!("Files" in json)'
-    - '!("Entities" in json)'
+    - '!("prov:Entity" in json)'
   fields:
     Datasets: required
 
