@@ -122,9 +122,9 @@ microephysChannels:
     type__channels: required
     units: required
     sampling_frequency: optional
-    reference__microephys: optional
     low_cutoff: optional
     high_cutoff: optional
+    reference__microephys: optional
     notch: optional
     channel_label: optional
     stream_id: optional
