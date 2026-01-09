@@ -36,7 +36,7 @@ dataset_authors:
 
 derivative_description:
   selectors:
-    - match(path, ".*dataset_description.json$")
+    - path == "/dataset_description.json"
     - json.DatasetType == "derivative"
   fields:
     GeneratedBy: required
