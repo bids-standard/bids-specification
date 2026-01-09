@@ -87,7 +87,7 @@ A guide for using macros can be found at
    https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 
-{{ MACROS__make_sidecar_table("pet.PETDerivativesMotionCorrection") }}
+{{ MACROS___make_sidecar_table("pet.PETDerivativesMotionCorrection") }}
 
 ### Motion-related time series
 
@@ -142,7 +142,7 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 
-{{ MACROS__make_sidecar_table("pet.PETDerivativesRegistration") }}
+{{ MACROS___make_sidecar_table("pet.PETDerivativesRegistration") }}
 
 Example of *\*space-T1w_desc-mc_pet.json* content:
 
@@ -195,7 +195,7 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 
-{{ MACROS__make_sidecar_table("pet.PETDerivativesSmoothing") }}
+{{ MACROS___make_sidecar_table("pet.PETDerivativesSmoothing") }}
 
 Example of \*desc-mc+sm8\_pet.json content:
 
@@ -273,7 +273,7 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 
-{{ MACROS__make_sidecar_table("pet.PETDerivativesDseg") }}
+{{ MACROS___make_sidecar_table("pet.PETDerivativesDseg") }}
 
 The *\*\_tacs.tsv* file should contain the following columns:
 
@@ -286,7 +286,7 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 
-{{ MACROS__make_columns_table("pet.PETDerivativesTimeActivityCurvesTab") }}
+{{ MACROS___make_columns_table("pet.PETDerivativesTimeActivityCurvesTab") }}
 
 The accompanying *\*\_tacs.json* file should contain the following columns:
 
@@ -299,7 +299,7 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 
-{{ MACROS__make_sidecar_table("pet.PETDerivativesTimeActivityCurves") }}
+{{ MACROS___make_sidecar_table("pet.PETDerivativesTimeActivityCurves") }}
 
 ## Partial Volume Correction
 
@@ -343,7 +343,7 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 
-{{ MACROS__make_sidecar_table("pet.PETDerivativesPartialVolumeCorrection") }}
+{{ MACROS___make_sidecar_table("pet.PETDerivativesPartialVolumeCorrection") }}
 
 ## Kinetic Modeling
 
@@ -383,7 +383,7 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 
-{{ MACROS__make_sidecar_table("pet.PETDerivativesKineticModeling") }}
+{{ MACROS___make_sidecar_table("pet.PETDerivativesKineticModeling") }}
 
 The accompanying *\*\_kinpar.tsv* file should contain the following columns:
 
@@ -396,7 +396,7 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 
-{{ MACROS__make_columns_table("pet.PETDerivativesKineticModeling") }}
+{{ MACROS___make_columns_table("pet.PETDerivativesKineticModeling") }}
 
 ### Kinetic Model and Parameter Name Guidelines
 
@@ -515,7 +515,7 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 
-{{ MACROS__make_columns_table("pet.PETDerivativesBloodProcessing") }}
+{{ MACROS___make_columns_table("pet.PETDerivativesBloodProcessing") }}
 
 The accompanying *\*\_bloodproc.json* file should contain labels for each of the
 columns in the *\*\_bloodproc.tsv* file with at at least a sub-heading describing the units.:
@@ -560,7 +560,7 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 
-{{ MACROS__make_sidecar_table("pet.PETDerivativesBloodProcessingConfig") }}
+{{ MACROS___make_sidecar_table("pet.PETDerivativesBloodProcessingConfig") }}
 
 Example:
 
