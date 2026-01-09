@@ -348,9 +348,9 @@ PETDerivativesRegistration:
     DOF:
       level: optional
       description_addendum: |
-        Degrees of freedom of the affine registration. 3 = translation only, 
-        6 = translation and rotation only, 7 = translation, rotation, and 
-        global scaling only, 9 = translation, rotation, and scaling only, 
+        Degrees of freedom of the affine registration. 3 = translation only,
+        6 = translation and rotation only, 7 = translation, rotation, and
+        global scaling only, 9 = translation, rotation, and scaling only,
         12 = full affine.
     SpatialInterpolation:
       level: optional
@@ -398,17 +398,17 @@ PETDerivativesDseg:
     Sources:
       level: optional
       description_addendum: |
-        A list of files with the paths specified using BIDS URIs; these files were 
+        A list of files with the paths specified using BIDS URIs; these files were
         directly used in the creation of this derivative data file. For example,
         if a derivative A is used in the creation of another derivative B, which
-        is in turn used to generate C in a chain of A->B->C, C should only list B 
-        in "Sources", and B should only list A in "Sources". However, in case both 
-        X and Y are directly used in the creation of Z, then Z should list X and 
+        is in turn used to generate C in a chain of A->B->C, C should only list B
+        in "Sources", and B should only list A in "Sources". However, in case both
+        X and Y are directly used in the creation of Z, then Z should list X and
         Y in "Sources", regardless of whether X was used to generate Y.
     Manual:
       level: optional
       description_addendum: |
-        Indicates if the segmentation was performed manually or via an automated process. 
+        Indicates if the segmentation was performed manually or via an automated process.
         Must be one of: "true", "false".
     Segmentation:
       level: recommended
@@ -432,11 +432,11 @@ PETDerivativesTimeActivityCurves:
     time:
       $ref: objects.columns.time
       level: required
-    radioactivity: 
+    radioactivity:
       level: required
-    InjectedRadioactivity: 
+    InjectedRadioactivity:
       level: required
-    InjectedRadioactivityUnits: 
+    InjectedRadioactivityUnits:
       level: required
     BodyWeight:
       level: required
@@ -448,7 +448,7 @@ PETDerivativesPartialVolumeCorrection:
     - dataset.dataset_description.DatasetType == "derivative"
     - 'intersects([modality], ["pet"])'
     - suffix == "pet"
-    - 'intersects(entities.desc, ["+pvc"])' # TODO check to see if this is right or if it should only reference the PVC entity   
+    - 'intersects(entities.desc, ["+pvc"])' # TODO check to see if this is right or if it should only reference the PVC entity
   fields:
     Description:
       level: recommended
@@ -457,12 +457,12 @@ PETDerivativesPartialVolumeCorrection:
     Sources:
       level: optional
       description_addendum: |
-        A list of files with the paths specified using BIDS URIs; these files were 
+        A list of files with the paths specified using BIDS URIs; these files were
         directly used in the creation of this derivative data file. For example,
         if a derivative A is used in the creation of another derivative B, which
-        is in turn used to generate C in a chain of A->B->C, C should only list B 
-        in "Sources", and B should only list A in "Sources". However, in case both 
-        X and Y are directly used in the creation of Z, then Z should list X and 
+        is in turn used to generate C in a chain of A->B->C, C should only list B
+        in "Sources", and B should only list A in "Sources". However, in case both
+        X and Y are directly used in the creation of Z, then Z should list X and
         Y in "Sources", regardless of whether X was used to generate Y.
     PVCMethod:
       level: recommended
@@ -489,20 +489,20 @@ PETDerivativesKineticModeling:
     Description:
       level: recommended
       description_addendum: |
-        Free-form natural language description. This describes the nature of the 
+        Free-form natural language description. This describes the nature of the
         model fitting, including its purpose (e.g. parameter estimation, estimate
-        delay, k2prime estimation, global K1/k2 ratio estimation, global k4 
-        estimation, fit reference region, iterative weighting, SIME for AIF, 
+        delay, k2prime estimation, global K1/k2 ratio estimation, global k4
+        estimation, fit reference region, iterative weighting, SIME for AIF,
         SIME for Vnd)
     Sources:
       level: recommended
       description_addendum: |
-        A list of files with the paths specified using BIDS URIs; these files were 
+        A list of files with the paths specified using BIDS URIs; these files were
         directly used in the creation of this derivative data file. For example,
         if a derivative A is used in the creation of another derivative B, which
-        is in turn used to generate C in a chain of A->B->C, C should only list B 
-        in "Sources", and B should only list A in "Sources". However, in case both 
-        X and Y are directly used in the creation of Z, then Z should list X and 
+        is in turn used to generate C in a chain of A->B->C, C should only list B
+        in "Sources", and B should only list A in "Sources". However, in case both
+        X and Y are directly used in the creation of Z, then Z should list X and
         Y in "Sources", regardless of whether X was used to generate Y.
     ModelName:
       level: recommended
@@ -568,8 +568,8 @@ PETDerivativesBloodProcessingConfig:
     Method__blood_data_processing:
       level: required
       level_addendum: |
-        Free-form natural language specification of the method(s) used for each blood 
-        modeling step (“Bi-exponential model”, “Hill Model Mean Population Estimate”, 
+        Free-form natural language specification of the method(s) used for each blood
+        modeling step (“Bi-exponential model”, “Hill Model Mean Population Estimate”,
         “Linear interpolation”, “Fit Individually: Feng”)
     StartTime__blood_data_processing:
       level: optional
@@ -582,7 +582,7 @@ PETDerivativesBloodProcessingConfig:
     Parameters__blood_data_processing:
       level: optional
       description_addendum: |
-        Contains key-value pairs of fitted parameters for each method, such as 
+        Contains key-value pairs of fitted parameters for each method, such as
         coefficients and decay constants.
     ParametersUnits__blood_data_processing:
       level: optional
@@ -597,8 +597,7 @@ PETDerivativesBloodProcessingConfig:
     FitDetails__blood_data_processing:
       level: optional
       description_addendum: |
-        Provides additional details about the fitting process for the relevant software 
+        Provides additional details about the fitting process for the relevant software
         packages.
     BloodType:
       level: optional
-
