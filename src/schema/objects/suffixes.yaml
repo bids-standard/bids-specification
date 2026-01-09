@@ -578,6 +578,15 @@ defacemask:
   description: |
     A binary mask that was used to remove facial features from an anatomical MRI
     image.
+description:
+  value: description
+  display_name: Description file
+  description: |
+    A JSON file describing the entities that occur in the filename.
+
+    At present, this is used for atlas descriptions.
+
+    This file MUST be located at the root of the dataset.
 descriptions:
   value: descriptions
   display_name: Description Entity Definitions
@@ -611,7 +620,12 @@ electrodes:
   value: electrodes
   display_name: Electrodes
   description: |
-    File that gives the location of (i)EEG electrodes.
+    File that gives the location of (i)EEG or EMG electrodes.
+emg:
+  value: emg
+  display_name: Electromyography
+  description: |
+    Electromyography recording data.
 epi:
   value: epi
   display_name: EPI

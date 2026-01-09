@@ -74,7 +74,7 @@ bvec:
 
 channels:
   selectors:
-    - intersects([suffix], ['eeg', 'ieeg', 'meg', 'nirs', 'motion', 'optodes'])
+    - intersects([suffix], ['eeg', 'emg', 'ieeg', 'meg', 'nirs', 'motion', 'optodes'])
     - extension != '.json'
   target:
     suffix: channels
@@ -92,7 +92,7 @@ coordsystem:
 
 electrodes:
   selectors:
-    - intersects([suffix], ['eeg', 'ieeg', 'meg'])
+    - intersects([suffix], ['eeg', 'emg', 'ieeg', 'meg'])
     - extension != '.json'
   target:
     suffix: electrodes
@@ -100,3 +100,23 @@ electrodes:
     entities:
       - space
   inherit: true
+
+coordsystems:
+  selectors:
+    - datatype == 'emg'
+    - intersects([suffix], ['emg', 'electrodes'])
+    - extension != '.json'
+  target:
+    suffix: coordsystem
+    extension: .json
+    entities:
+      - space
+  inherit: true
+
+atlas_description:
+  selectors:
+    - entities.atlas
+    - extension != '.json'
+  target:
+    suffix: description
+    extension: .json

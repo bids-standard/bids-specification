@@ -9,6 +9,25 @@ ACCELChannelCount:
     Number of acceleration channels.
   type: integer
   minimum: 0
+AnchorCoordinates:
+  name: AnchorCoordinates
+  display_name: Anchor Coordinates
+  description: |
+    Coordinates of the `AnchorElectrode` in the parent (anatomical) coordinate system.
+    This should be an array of numbers of length 3, in the units given in
+    `EMGCoordinateSystemUnits` within the JSON object named in `ParentCoordinateSystem`.
+  type: array
+  minItems: 1
+  maxItems: 3
+  items:
+    type: number
+AnchorElectrode:
+  name: AnchorElectrode
+  display_name: Anchor Electrode
+  description: |
+    Name of the electrode in the child (device) coordinate system whose coordinates in
+    the parent (anatomical) coordinate system are given in `AnchorCoordinates`.
+  type: string
 Acknowledgements:
   name: Acknowledgements
   display_name: Acknowledgements
@@ -198,6 +217,20 @@ AssociatedEmptyRoom:
       format: dataset_relative
     - type: string
       format: bids_uri
+AtlasName:
+  name: Name
+  display_name: Name
+  description: |
+    Name of the atlas.
+  type: string
+AtlasSampleSize:
+  name: SampleSize
+  display_name: Atlas' sample size
+  description: |
+    Number of items (typically, independent participants;
+    although it could also refer to, for example, sessions)
+    that were employed to create the corresponding atlas.
+  type: number
 AttenuationCorrection:
   name: AttenuationCorrection
   display_name: Attenuation Correction
@@ -647,6 +680,26 @@ ContrastBolusIngredient:
     # TODO: Add definitions for these values. (perhaps don't specify)
     - UNKNOWN
     - NONE
+CoordinateReportStrategy:
+  name: CoordinateReportStrategy
+  display_name: CoordinateReportStrategy
+  description: |
+    Indicate the method of coordinate reporting in statistically significant clusters.
+    Could be the "peak" statistical coordinate in the cluster or the
+    "center_of_mass" of the cluster.
+  enum:
+    - peak
+    - center_of_mass
+    - other
+  type: string
+Curators:
+  name: Curators
+  display_name: Curators
+  description: |
+    List of curators who helped make the atlas accessible in a database or dataset.
+  type: array
+  items:
+    type: string
 DCOffsetCorrection:
   name: DCOffsetCorrection
   display_name: DC Offset Correction
@@ -798,6 +851,12 @@ Derivative:
     from other columns (for example a summary score based on a subset of items in a
     questionnaire).
   type: boolean
+DerivedFrom:
+  name: DerivedFrom
+  display_name: DerivedFrom
+  description: |
+    Indicate what data modality the atlas was derived from; for example, "cytoarchitecture", "resting-state", or "task".
+  type: string
 Description:
   name: Description
   display_name: Description
@@ -1056,6 +1115,25 @@ EEGReference:
     this field should have a general description and the channel specific
     reference should be defined in the `channels.tsv` file.
   type: string
+ElectrodeMaterial:
+  name: ElectrodeMaterial
+  display_name: Electrode Material
+  description: |
+    Material of the electrode (for example, `Tin`, `Ag/AgCl`, `Gold`).
+    If multiple sensor devices with heterogeneous electrode materials are recorded into
+    the same data file,
+    electrode material SHOULD be recorded in the `material` column of `*_electrodes.tsv` instead.
+    If instead those devices were recorded into separate data files (distinguished for example
+    by the `recording` entity),
+    separate `*_emg.json` files (similarly distinguished) MAY be included,
+    each with their own `ElectrodeMaterial` values.
+  type: string
+ElectrodeType:
+  name: ElectrodeType
+  display_name: Electrode type
+  description: |
+    Type of the electrode (for example, cup, ring, clip-on, wire, needle).
+  type: string
 EMGChannelCount:
   name: EMGChannelCount
   display_name: EMG Channel Count
@@ -1063,6 +1141,92 @@ EMGChannelCount:
     Number of EMG channels.
   type: integer
   minimum: 0
+EMGCoordinateSystem:
+  name: EMGCoordinateSystem
+  display_name: EMG Coordinate System
+  description: |
+    Defines the coordinate system for the EMG sensors.
+
+    See the
+    [Coordinate Systems Appendix](SPEC_ROOT/appendices/coordinate-systems.md)
+    for a list of restricted keywords for coordinate systems.
+    If `"Other"`, provide definition of the coordinate system in
+    `EMGCoordinateSystemDescription`.
+  anyOf:
+    - $ref: objects.enums._EMGCoordSys
+EMGCoordinateSystemDescription:
+  name: EMGCoordinateSystemDescription
+  display_name: EMG Coordinate System Description
+  description: |
+    Free-form text description of the coordinate system, typically defining the origin
+    and positive x,y,z axis directions, relative to anatomical landmarks.
+    May also include a link to a documentation page or paper describing the
+    system in greater detail.
+  type: string
+EMGCoordinateUnits:
+  name: EMGCoordinateUnits
+  display_name: EMG Coordinate Units
+  description: |
+    Units of the coordinates of `EMGCoordinateSystem`.
+  type: string
+  enum:
+    - m
+    - mm
+    - cm
+    - percent
+    - n/a
+EMGGround:
+  name: EMGGround
+  display_name: EMG Ground
+  description: |
+    Description of the location of the ground electrode
+    (for example, `"right radial styloid process"`).
+  type: string
+EMGPlacementScheme:
+  name: EMGPlacementScheme
+  display_name: EMG Placement Scheme
+  description: |
+    The way in which electrode placement locations were determined.
+    If electrode locations are provided as coordinates in `*_electrodes.tsv` in reference
+    to a coordinate system defined in `*_coordsystem.json`, then specify `"Measured"`.
+    If approach to placement varied across sensor devices, specify `"ChannelSpecific"`
+    and include placement details in the `placement_scheme` column of `*_channels.tsv`.
+    If a standardized electrode placement procedure (for example, SENIAM 8) was followed,
+    or if an ad-hoc procedure was followed, specify `"Other"` and provide details in
+    `EMGPlacementSchemeDescription`.
+  type: string
+  enum:
+    - ChannelSpecific
+    - Measured
+    - Other
+EMGPlacementSchemeDescription:
+  name: EMGPlacementSchemeDescription
+  display_name: EMG Placement Scheme Description
+  description: |
+    Additional details of the approach to EMG sensor placement.
+    Descriptions SHOULD NOT simply give the name of the targeted muscle (use the
+    `target_muscle` column in `*_channels.tsv` for that), but rather SHOULD reflect the
+    process used by the researcher(s) when placing electrodes.
+    For example, EMG electrode sites may be chosen by *measured distance* from anatomical
+    landmarks, by *visual reference* to (parts of) target muscles, by *palpation* of the
+    skin to locate target muscles, or by *functional localization* (temporary electrode
+    placement at several sites during prescribed behavior, until a site yielding strong
+    EMG signal is found).
+  type: string
+EMGReference:
+  name: EMGReference
+  display_name: EMG Reference
+  description: |
+    Description of the approach to signal referencing.
+    If the same signal source is used as reference for all channels (often called a
+    "monopolar" recording), specify the signal source (typically an electrode name).
+    If different channels have different reference electrodes, this field SHOULD contain
+    the string `"ChannelSpecific"` and each channel's reference SHOULD be given in the
+    `reference` column of `*_channels.tsv`.
+    For bipolar recording devices (where a single sensor unit contains two rigidly
+    separated contacts, and the paired contacts are not listed independently in
+    `*_electrodes.tsv`), this field SHOULD be `"Bipolar"`.
+  type: string
 EOGChannelCount:
   name: EOGChannelCount
   display_name: EOG Channel Count
@@ -1466,6 +1630,14 @@ FWHM_z:
     Full width half maximum for Z-axis.
   type: number
   unit: mm
+Gain:
+  name: Gain
+  display_name: Gain
+  description: |
+    Signal gain from an in-line amplifier, applied between the EMG sensor/device and the data acquisition computer.
+    See also Preamplification.
+  type: number
+  unit: arbitrary
 GeneratedBy:
   name: GeneratedBy
   display_name: Generated By
@@ -1927,6 +2099,21 @@ IntendedFor__ds_relative:
             format: bids_uri
           - type: string
             format: dataset_relative
+InterelectrodeDistance:
+  name: InterelectrodeDistance
+  display_name: Inter-electrode Distance
+  description: |
+    Distance between pairs or grids of electrodes rigidly attached to the same sensor device.
+    If multiple sensor devices with heterogeneous inter-electrode distances are recorded into
+    the same data file,
+    inter-electrode distance SHOULD be recorded in the `interelectrode_distance` column of
+    `*_electrodes.tsv` instead.
+    If instead those devices were recorded into separate data files (distinguished for example
+    by the `recording` entity),
+    separate `*_emg.json` files (similarly distinguished) MAY be included,
+    each with their own `InterelectrodeDistance` values.
+  type: number
+  unit: mm
 InversionTime:
   name: InversionTime
   display_name: Inversion Time
@@ -2114,6 +2301,12 @@ Levels:
             $ref: objects.metadata.TermURL
           Description:
             $ref: objects.metadata.Description
+LevelType:
+  name: LevelType
+  display_name: LevelType
+  description: |
+    Indicate what analysis level the atlas was derived from; for example, "group" or "individual".
+  type: string
 License:
   name: License
   display_name: License
@@ -2796,6 +2989,13 @@ ParametersUnits__blood_data_processing:
   items:
     type: object
     properties:
+ParentCoordinateSystem:
+  name: ParentCoordinateSystem
+  display_name: Parent Coordinate System
+  description: |
+    The name of a JSON mapping key that defines the parent (anatomical) coordinate system
+    in which this child (device) coordinate system is anchored.
+  type: string
 PartialFourier:
   name: PartialFourier
   display_name: Partial Fourier
@@ -2813,7 +3013,7 @@ PharmaceuticalDoseAmount:
   name: PharmaceuticalDoseAmount
   display_name: Pharmaceutical Dose Amount
   description: |
-    Dose amount of pharmaceutical coadministered with tracer.
+    Dose amount of administered pharmaceutical.
   anyOf:
     - type: number
     - type: array
@@ -2856,7 +3056,7 @@ PharmaceuticalName:
   name: PharmaceuticalName
   display_name: Pharmaceutical Name
   description: |
-    Name of pharmaceutical coadministered with tracer.
+    Name of pharmaceutical.
   type: string
 PhaseEncodingDirection:
   name: PhaseEncodingDirection
@@ -2982,6 +3182,14 @@ PowerLineFrequency:
     - type: string
       enum:
         - n/a
+Preamplification:
+  name: Preamplification
+  display_name: Preamplification
+  description: |
+    Amplification built into an EMG bipolar sensor, electrode grid, or other device.
+    See also Gain.
+  type: number
+  unit: arbitrary
 PromptRate:
   name: PromptRate
   display_name: Prompt Rate
@@ -3051,6 +3259,14 @@ Purity:
   type: number
   minimum: 0
   maximum: 100
+RRID:
+  name: RRID
+  display_name: RRID
+  description: |
+    [Research Resource Identifier](https://rrid.site) of the file,
+    dataset or atlas being described.
+  type: string
+  format: rrid
 RandomRate:
   name: RandomRate
   display_name: Random Rate
@@ -3633,6 +3849,13 @@ SinglesRate:
   type: array
   items:
     type: number
+SkinPreparation:
+  name: SkinPreparation
+  display_name: Skin Preparation
+  description: |
+    How skin was prepared prior to sensor device placement, for example, `"alcohol wipe"`
+    or `"abrasive gel"`.
+  type: string
 SkullStripped:
   name: SkullStripped
   display_name: Skull Stripped
@@ -3811,6 +4034,7 @@ SpatialReference:
   name: SpatialReference
   display_name: Spatial Reference
   description: |
+    String or object describing the reference image to which the current image is aligned.
     For images with a single reference, the value MUST be a single string.
     For images with multiple references, such as surface and volume references,
     a JSON object MUST be used.
@@ -3832,6 +4056,11 @@ SpatialReference:
             format: uri
           - type: string
             format: dataset_relative
+Species:
+  $ref: objects.columns.species
+  name: Species
+  type: string
+  definition: null
 SpecificRadioactivity:
   name: SpecificRadioactivity
   display_name: Specific Radioactivity

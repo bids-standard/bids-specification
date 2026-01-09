@@ -177,6 +177,13 @@ pet_pet_common:
       - meta.templates.deriv.spatial.entities
       - rules.files.raw.micr.microscopy.entities
 
+micr_microscopy_atlas:
+  $ref: rules.files.deriv.preprocessed_data.micr_microscopy_common
+  entities:
+    $ref:
+      - meta.templates.atlas.base.entities
+      - rules.files.deriv.preprocessed_data.micr_microscopy_common.entities
+
 pet_blood_common:
   $ref:
     - meta.templates.deriv.spatial
@@ -186,7 +193,7 @@ pet_blood_common:
       - meta.templates.deriv.spatial.entities
       - rules.files.raw.pet.blood.entities
 
-task_events_common:
+events_common:
   $ref:
     - meta.templates.deriv.base
     - rules.files.raw.events.events
