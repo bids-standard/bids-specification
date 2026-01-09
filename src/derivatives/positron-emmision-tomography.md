@@ -68,12 +68,12 @@ petprep_hmc/
             sub-01_from-orig_to-petpref_mode-image_xfm.json
 ```
 
-*sub-<participant_label>_desc-hmc_pet.nii.gz*
+*sub-\<participant_label>\_desc-hmc_pet.nii.gz*
 This file represents the PET data after motion correction has been applied. It is crucial
 for eliminating artifacts due to patient movement, thereby improving the accuracy of
 subsequent analyses.
 
-*sub-<participant_label>_desc-hmc_pet.json*
+*sub-\<participant_label>\_desc-hmc_pet.json*
 This file should include details such as the type of motion correction algorithm used,
 parameters of the motion model, and reference frame or volume used for correction. This
 file enhances reproducibility and allows for critical assessment of the preprocessing steps.
@@ -87,7 +87,7 @@ A guide for using macros can be found at
    https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 
-{{ MACROS___make_sidecar_table("pet.PETDerivativesMotionCorrection") }}
+{{ MACROS\_\__make_sidecar_table("pet.PETDerivativesMotionCorrection") }}
 
 ### Motion-related time series
 
@@ -102,7 +102,7 @@ Template:
 ```
 
 For more information, motion-related time series derivatives is specified here:
-[https://bids-specification--519.org.readthedocs.build/en/519/05-derivatives/05-functional-derivatives.html#motion-related-time-series](https://bids-specification--519.org.readthedocs.build/en/519/05-derivatives/05-functional-derivatives.html#motion-related-time-series)
+<https://bids-specification--519.org.readthedocs.build/en/519/05-derivatives/05-functional-derivatives.html#motion-related-time-series>
 
 ## Registration
 
@@ -131,7 +131,7 @@ petsurfer/
             sub-01_space-T1w_petref.nii.gz
 ```
 
-The *\*sub-01_space-T1w_desc-mc_pet.json* file should contain the following columns
+The *\*sub-01\_space-T1w_desc-mc_pet.json* file should contain the following columns
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -141,7 +141,8 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("pet.PETDerivativesRegistration") }}
+
+{{ MACROS\_\__make_sidecar_table("pet.PETDerivativesRegistration") }}
 
 Example of *\*space-T1w_desc-mc_pet.json* content:
 
@@ -163,7 +164,7 @@ Example of *\*space-T1w_desc-mc_pet.json* content:
 
 ## Smoothing
 
-Smoothing is a common preprocessing step in PET data analysis, used to reduce noise and enhance signal detection by applying a spatial filter to the data. The smoothing process is typically defined by the full width at half maximum (FWHM) of the smoothing kernel. The outputs of the smoothing process should be stored in a BIDS-compliant manner, with filenames reflecting the applied smoothing as indicated by the *_desc- entity.
+Smoothing is a common preprocessing step in PET data analysis, used to reduce noise and enhance signal detection by applying a spatial filter to the data. The smoothing process is typically defined by the full width at half maximum (FWHM) of the smoothing kernel. The outputs of the smoothing process should be stored in a BIDS-compliant manner, with filenames reflecting the applied smoothing as indicated by the \*\_desc- entity.
 
 ```Text
 Template:
@@ -183,7 +184,7 @@ petsurfer/
 			sub-01_space-fsaverage_desc-sm8_pet.json
 ```
 
-The *\*-sm8_pet.json* file should contain the following columns
+The *\*-sm8\_pet.json* file should contain the following columns
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -193,9 +194,10 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("pet.PETDerivativesSmoothing") }}
 
-Example of *desc-mc+sm8_pet.json content:
+{{ MACROS\_\__make_sidecar_table("pet.PETDerivativesSmoothing") }}
+
+Example of \*desc-mc+sm8\_pet.json content:
 
 ```json
 {
@@ -216,7 +218,7 @@ Example of *desc-mc+sm8_pet.json content:
 Following image processing, regional time activity curves (TACs) extracted from volumes of interest are
 commonly used as inputs for kinetic modeling tools in PET analysis. These TACs provide valuable
 information about the dynamic uptake of tracers within specific brain regions or other areas of
-interest. For these outputs, the suffix *_tacs is reserved, and it is important to follow the BIDS
+interest. For these outputs, the suffix \*\_tacs is reserved, and it is important to follow the BIDS
 naming conventions to maintain consistency and clarity across datasets. Additionally, specific
 suffixes are reserved to indicate particular regions of interest:
 
@@ -227,12 +229,13 @@ binding, used as a baseline or comparison in kinetic modeling.
 binding. A high-binding region is often used in reference tissue modeling to estimate k2’, which can
 subsequently be fixed when modeling other regions.
 
-The segmentation of volumes of interest can be found in the _dseg.[nii.gz/json] file
-[https://bids-specification.readthedocs.io/en/stable/derivatives/imaging.html](https://bids-specification.readthedocs.io/en/stable/derivatives/imaging.html), and the corresponding structural
+The segmentation of volumes of interest can be found in the \_dseg.\[nii.gz/json] file
+<https://bids-specification.readthedocs.io/en/stable/derivatives/imaging.html>, and the corresponding structural
 statistics produced by segmentation routines should be stored within tsv files using the
-_morph suffix (BEP11).
+\_morph suffix (BEP11).
 
 Template:
+
 ```Text
 <pipeline_name>/
 sub-<participant_label>/
@@ -259,7 +262,7 @@ bids_dataset/derivatives/petprep_extract_tacs
         sub-01_seg-gtm_label-thalamus_desc-hb_mask.nii.gz
 ```
 
-The *_dseg.json file should contain the following columns:
+The \*\_dseg.json file should contain the following columns:
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -269,21 +272,10 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("pet.PETDerivativesDseg") }}
 
-The *\*_tacs.tsv* file should contain the following columns:
+{{ MACROS\_\__make_sidecar_table("pet.PETDerivativesDseg") }}
 
-<!-- This block generates a metadata table.
-These tables are defined in
-  src/schema/rules/sidecars
-The definitions of the fields specified in these tables may be found in
-  src/schema/objects/metadata.yaml
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_columns_table("pet.PETDerivativesTimeActivityCurvesTab") }}
-
-The accompanying *\*_tacs.json* file should contain the following columns:
+The *\*\_tacs.tsv* file should contain the following columns:
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -293,11 +285,25 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("pet.PETDerivativesTimeActivityCurves") }}
+
+{{ MACROS\_\__make_columns_table("pet.PETDerivativesTimeActivityCurvesTab") }}
+
+The accompanying *\*\_tacs.json* file should contain the following columns:
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+
+{{ MACROS\_\__make_sidecar_table("pet.PETDerivativesTimeActivityCurves") }}
 
 ## Partial Volume Correction
 
-Partial Volume Correction (PVC) is a crucial step in PET image processing to account for the blurring effects caused by the limited spatial resolution of PET scanners. PVC aims to improve the quantitative accuracy of PET images by correcting for the partial volume effect, which can cause underestimation or overestimation of tracer concentration, particularly in small structures. In PET-BIDS-compliant datasets, PVC outputs should follow specific naming conventions to ensure consistency and clarity. The suffix *_pvc-<pvc-label>* is used to indicate that partial volume correction has been applied, and the *<pvc-label>* specifies the method used for the correction.
+Partial Volume Correction (PVC) is a crucial step in PET image processing to account for the blurring effects caused by the limited spatial resolution of PET scanners. PVC aims to improve the quantitative accuracy of PET images by correcting for the partial volume effect, which can cause underestimation or overestimation of tracer concentration, particularly in small structures. In PET-BIDS-compliant datasets, PVC outputs should follow specific naming conventions to ensure consistency and clarity. The suffix *\_pvc-<pvc-label>* is used to indicate that partial volume correction has been applied, and the *<pvc-label>* specifies the method used for the correction.
 
 Template:
 
@@ -326,7 +332,7 @@ petsurfer/
             sub-01_space-T1w_probseg.json
 ```
 
-The accompanying *\*_pvc-[pvc-label]_<suffix>.json* file should contain the following columns:
+The accompanying *\**pvc-\[pvc-label]*<suffix>.json* file should contain the following columns:
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -336,11 +342,12 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("pet.PETDerivativesPartialVolumeCorrection") }}
+
+{{ MACROS\_\__make_sidecar_table("pet.PETDerivativesPartialVolumeCorrection") }}
 
 ## Kinetic Modeling
 
-This section provides guidelines for organizing and documenting the outputs of kinetic modeling processes applied to PET data. Kinetic modeling is essential for quantifying dynamic PET data, allowing researchers to estimate physiological parameters such as blood flow, receptor density, and metabolic rates. For these outputs, *\*_kinpar* is reserved as the suffix for regional outputs, where the model name must be provided as an entity in the filename. For voxelwise and surface-based analyses, the *_mimap* suffix is reserved (molecular imaging map). Output parameters from kinetic modeling include e.g. VT, BPND, BPP, BPF, R1, K1, k2 etc (as specified in Innis et al. 2007, JCBFM and should be in provided in the units specified in Table 2 of Innis et al.), but SUV and SUVR can also be used. If the *\*_mimap* suffix is used, the filename should include a *\*_meas* entity to encode the parameter being modeled (e.g. *\*_meas-BPND*). By standardizing the structure and metadata of these outputs, this section ensures that results are easily interpretable across different studies and modeling approaches. The guidelines accommodate a wide range of models and methodologies, including parameter estimation, delay estimation, and specialized modeling techniques, all within a unified framework.
+This section provides guidelines for organizing and documenting the outputs of kinetic modeling processes applied to PET data. Kinetic modeling is essential for quantifying dynamic PET data, allowing researchers to estimate physiological parameters such as blood flow, receptor density, and metabolic rates. For these outputs, *\*\_kinpar* is reserved as the suffix for regional outputs, where the model name must be provided as an entity in the filename. For voxelwise and surface-based analyses, the *\_mimap* suffix is reserved (molecular imaging map). Output parameters from kinetic modeling include e.g. VT, BPND, BPP, BPF, R1, K1, k2 etc (as specified in Innis et al. 2007, JCBFM and should be in provided in the units specified in Table 2 of Innis et al.), but SUV and SUVR can also be used. If the *\*\_mimap* suffix is used, the filename should include a *\*\_meas* entity to encode the parameter being modeled (e.g. *\*\_meas-BPND*). By standardizing the structure and metadata of these outputs, this section ensures that results are easily interpretable across different studies and modeling approaches. The guidelines accommodate a wide range of models and methodologies, including parameter estimation, delay estimation, and specialized modeling techniques, all within a unified framework.
 
 Template:
 
@@ -365,7 +372,7 @@ petsurfer/
             sub-01_space-T1w_desc-mc_model-SRTM2_kinpar.json
 ```
 
-The *_kinpar.json file should contain the following columns:
+The \*\_kinpar.json file should contain the following columns:
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -375,9 +382,10 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("pet.PETDerivativesKineticModeling") }}
 
-The accompanying *\*_kinpar.tsv* file should contain the following columns:
+{{ MACROS\_\__make_sidecar_table("pet.PETDerivativesKineticModeling") }}
+
+The accompanying *\*\_kinpar.tsv* file should contain the following columns:
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -387,67 +395,68 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_columns_table("pet.PETDerivativesKineticModeling") }}
+
+{{ MACROS\_\__make_columns_table("pet.PETDerivativesKineticModeling") }}
 
 ### Kinetic Model and Parameter Name Guidelines
 
-In order to promote standardisation without sacrificing flexibility, we provide the following guidelines for defining the names of kinetic models and their parameters in either filenames or column names in .tsv files.
+In order to promote standardization without sacrificing flexibility, we provide the following guidelines for defining the names of kinetic models and their parameters in either filenames or column names in .tsv files.
 
 Kinetic model parameters
 
-Parameter names should be defined with the accepted capitalisation without the need for indicating subscript and superscripts, i.e. VT, BPND, Ki,  K1, k4, VB, fP and fND.
+Parameter names should be defined with the accepted capitalization without the need for indicating subscript and superscripts, i.e. VT, BPND, Ki,  K1, k4, VB, fP and fND.
 
-For column titles in *_kinpar.tsv documents, auxiliary estimates such as the standard error should be designated with a hyphen, i.e. VT-se.
+For column titles in \*\_kinpar.tsv documents, auxiliary estimates such as the standard error should be designated with a hyphen, i.e. VT-se.
 
 For parameter ratios, this can be described by the parameter names followed by ratio, i.e. K1k2ratio, k2k3ratio, or for a standard error estimate, k2k3ratio-se.  When possible, please use the accepted macroparameter name when applicable (i.e. K1k2ratio should preferably be designated as VND for the 2TCM whenever appropriate).
 
 For inverse parameter values, such as 1/k4, this can be described by the parameter name followed by inv, e.g. k4inv or k4inv-se
 
-For unconventional parameter names, please use an appropriate abbreviated name, and provide a more full description of what the parameter represents in the accompanying *_kinpar.json file.
+For unconventional parameter names, please use an appropriate abbreviated name, and provide a more full description of what the parameter represents in the accompanying \*\_kinpar.json file.
 
 Kinetic model names
 
-Although there are many ways of fitting conventional kinetic models, e.g. by fixing one parameter to a common value, the kinetic model name is intended to just broadly define which model was used, allowing for a fuller description in the relevant *.json file. We RECOMMEND using the following abbreviations for these common models.
+Although there are many ways of fitting conventional kinetic models, e.g. by fixing one parameter to a common value, the kinetic model name is intended to just broadly define which model was used, allowing for a fuller description in the relevant \*.json file. We RECOMMEND using the following abbreviations for these common models.
 
-| Model Abbreviation | Model Name |
-| ------------------ | ---------- |
-| 1TCM | One-Tissue Compartment Model |
-| 2TCM | Two-Tissue Compartment Model |
-| 3TCM | Three-Tissue Compartment Model |
-| 2TCM3k | Irreversible Two-Tissue Compartment Model (i.e. k4=0) |
-| LS2TCM | Least Squares Estimation of the Two-Tissue Compartment Model |
-| Logan | Logan Graphical Analysis (Invasive) |
-| MA1 | Ichise Multilinear Analysis 1 |
-| MA2 | Ichise Multilinear Analysis 2 |
-| LEGA | Likelihood Estimation Graphical Analysis |
-| Patlak | Patlak Plot (Invasive) |
-| MLAIR1 | Multiple Linear Analysis for Irreversible Radiotracers 1 |
-| MLAIR2 | Multiple Linear Analysis for Irreversible Radiotracers 2 |
-| SRTM | Simplified Reference Tissue Model |
-| SRTM2 | Simplified Reference Tissue Model 2 |
-| FRTM | Full Reference Tissue Model |
-| LoganRef | Logan Graphical Analysis (Non-Invasive) |
-| MRTM0 | Ichise Multilinear Reference Tissue Model 0 |
-| MRTM1 | Ichise Multilinear Reference Tissue Model 1 |
-| MRTM2 | Ichise Multilinear Reference Tissue Model 2 |
-| PatlakRef | Patlak Plot (Non-Invasive) |
-| SIMEVND | Simultaneous Estimation for Estimation of Non-Displaceable Binding |
-| SIMEAIF | Simultaneous Estimation for Estimation of the Arterial Input Function |
-| Novel Models | For models not included on this list, please make use of a short abbreviation consisting of only letters and numbers|
+| Model Abbreviation | Model Name                                                                                                           |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------- |
+| 1TCM               | One-Tissue Compartment Model                                                                                         |
+| 2TCM               | Two-Tissue Compartment Model                                                                                         |
+| 3TCM               | Three-Tissue Compartment Model                                                                                       |
+| 2TCM3k             | Irreversible Two-Tissue Compartment Model (i.e. k4=0)                                                                |
+| LS2TCM             | Least Squares Estimation of the Two-Tissue Compartment Model                                                         |
+| Logan              | Logan Graphical Analysis (Invasive)                                                                                  |
+| MA1                | Ichise Multilinear Analysis 1                                                                                        |
+| MA2                | Ichise Multilinear Analysis 2                                                                                        |
+| LEGA               | Likelihood Estimation Graphical Analysis                                                                             |
+| Patlak             | Patlak Plot (Invasive)                                                                                               |
+| MLAIR1             | Multiple Linear Analysis for Irreversible Radiotracers 1                                                             |
+| MLAIR2             | Multiple Linear Analysis for Irreversible Radiotracers 2                                                             |
+| SRTM               | Simplified Reference Tissue Model                                                                                    |
+| SRTM2              | Simplified Reference Tissue Model 2                                                                                  |
+| FRTM               | Full Reference Tissue Model                                                                                          |
+| LoganRef           | Logan Graphical Analysis (Non-Invasive)                                                                              |
+| MRTM0              | Ichise Multilinear Reference Tissue Model 0                                                                          |
+| MRTM1              | Ichise Multilinear Reference Tissue Model 1                                                                          |
+| MRTM2              | Ichise Multilinear Reference Tissue Model 2                                                                          |
+| PatlakRef          | Patlak Plot (Non-Invasive)                                                                                           |
+| SIMEVND            | Simultaneous Estimation for Estimation of Non-Displaceable Binding                                                   |
+| SIMEAIF            | Simultaneous Estimation for Estimation of the Arterial Input Function                                                |
+| Novel Models       | For models not included on this list, please make use of a short abbreviation consisting of only letters and numbers |
 
 ## PET volumes and surfaces
 
 PET imaging involves the acquisition and processing of PET data, which can be analyzed at various stages, including before and after kinetic modeling. The data can be represented as volumes or surfaces, and different naming conventions are used to ensure consistency and clarity.
 
-### Pre-modeling data:
+### Pre-modeling data
 
-Volumes and Surfaces: Before kinetic modeling, PET data may be represented as volumes (e.g., preprocessed PET data with _pet.nii file extension) and surfaces (_pet.func.gii file extension).
+Volumes and Surfaces: Before kinetic modeling, PET data may be represented as volumes (e.g., preprocessed PET data with \_pet.nii file extension) and surfaces (\_pet.func.gii file extension).
 
-### Parametric Images and Surfaces (Post-Modeling):
+### Parametric Images and Surfaces (Post-Modeling)
 
 Parametric images: Derived from dynamic PET data using kinetic models, these images estimate physiological parameters such as receptor density, blood flow, and metabolic rates. Parametric images can be either unitless (e.g., SUVR, BPND, DVR, R1) or have physical units (e.g., K1, k2). For voxelwise parameter estimates, the suffix mimap should be used. The filename should include a meas entity to encode the specific parameter being modeled (e.g., meas-BPND, meas-K1). See the “Kinetic Model and Parameter Name Guidelines” section above.
 
-Surface-based analyses: Surface representations of parametric data can be stored in GIFTI format, which allows for a variety of data types such as functional data, shapes, and surface coordinates. The suffixes used for GIFTI files include _mimap.surf.gii for modeled PET data.
+Surface-based analyses: Surface representations of parametric data can be stored in GIFTI format, which allows for a variety of data types such as functional data, shapes, and surface coordinates. The suffixes used for GIFTI files include \_mimap.surf.gii for modeled PET data.
 
 Template:
 
@@ -478,8 +487,8 @@ Blood data processing in PET studies is required for generating arterial input
 functions (AIFs) and other blood-related measures, which are necessary for invasive
 kinetic modeling. This process involves interpolating measurements derived from
 blood samples to be used as inputs for subsequent modeling. The resulting data is
-stored in specific files, with *\*_bloodproc.tsv* and *\*_bloodproc.json* being the primary
-outputs, and *\*_bloodconfig.json* used to document the blood modeling parameters.
+stored in specific files, with *\*\_bloodproc.tsv* and *\*\_bloodproc.json* being the primary
+outputs, and *\*\_bloodconfig.json* used to document the blood modeling parameters.
 
 Template:
 
@@ -495,7 +504,7 @@ Template:
                         <raw_file_name>_<variant-label>_bloodconfig.json
 ```
 
-The columns of the *\*_bloodproc.tsv* file should follow the following column naming conventions when the following data outputs are present and estimated for each time point. Only the time column is required.
+The columns of the *\*\_bloodproc.tsv* file should follow the following column naming conventions when the following data outputs are present and estimated for each time point. Only the time column is required.
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -505,14 +514,15 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_columns_table("pet.PETDerivativesBloodProcessing") }}
 
-The accompanying *\*_bloodproc.json* file should contain labels for each of the
-columns in the *\*_bloodproc.tsv* file with at at least a sub-heading describing the units.:
+{{ MACROS\_\__make_columns_table("pet.PETDerivativesBloodProcessing") }}
 
-| Label Name | Sub-group Name | Description |
-| ---------- | -------------- | ----------- |
-| <column name> | Units | the units of the column |
+The accompanying *\*\_bloodproc.json* file should contain labels for each of the
+columns in the *\*\_bloodproc.tsv* file with at at least a sub-heading describing the units.:
+
+| Label Name    | Sub-group Name | Description             |
+| ------------- | -------------- | ----------------------- |
+| <column name> | Units          | the units of the column |
 
 Example:
 
@@ -539,7 +549,7 @@ Example:
 
 ### Blood Modeling Parameters Configuration File
 
-The *\*_bloodconfig.json* file should contain the following columns:
+The *\*\_bloodconfig.json* file should contain the following columns:
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -549,7 +559,8 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("pet.PETDerivativesBloodProcessingConfig") }}
+
+{{ MACROS\_\__make_sidecar_table("pet.PETDerivativesBloodProcessingConfig") }}
 
 Example:
 

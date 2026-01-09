@@ -153,7 +153,6 @@ micr_microscopy_common:
     - rules.files.raw.micr.microscopy
   selectors:
     - dataset.dataset_description.DatasetType == 'derivative'
-  $ref: rules.files.raw.micr.microscopy
   entities:
     $ref: rules.files.raw.micr.microscopy.entities
     space: optional

@@ -72,7 +72,7 @@ AdditionalModelDetails:
   display_name: Additional Model Details
   description: |
     Provides additional details about the model, such as specific fitting procedures
-    or contraints such as, "fit to first 5 minutes".
+    or constraints such as, "fit to first 5 minutes".
   type: string
 Anaesthesia:
   name: Anaesthesia
@@ -4259,7 +4259,7 @@ TargetImageDescription:
   name: TargetImageDescription
   display_name: Target Image Description
   description: |
-    Free-form natural language description of how the target image was generated (e.g. average across all frames)
+    Free-form natural language description of how the target image was generated (for example, average across all frames)
   type: string
 TaskDescription:
   name: TaskDescription

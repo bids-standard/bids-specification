@@ -372,7 +372,7 @@ name__kinetic_modeling:
   name: name
   display_name: ROI name
   description: |
-    Name of the region analyzed (e.g., "Cerebellum", "Frontal Cortex", etc.).
+    Name of the region analyzed (for example, "Cerebellum", "Frontal Cortex").
   type: string
 # name column for dseg.tsv files
 name__segmentations:

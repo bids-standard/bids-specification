@@ -443,7 +443,10 @@ PETDerivativesPartialVolumeCorrection:
     - dataset.dataset_description.DatasetType == "derivative"
     - 'intersects([modality], ["pet"])'
     - suffix == "pet"
-    - 'intersects(entities.desc, ["+pvc"])' # TODO check to see if this is right or if it should only reference the PVC entity
+    - 'intersects(entities.desc, ["+pvc"])'
+    # TODO check to see if
+    # this is right or if it should only
+    # reference the PVC entity
   fields:
     Description:
       level: recommended
@@ -485,7 +488,7 @@ PETDerivativesKineticModeling:
       level: recommended
       description_addendum: |
         Free-form natural language description. This describes the nature of the
-        model fitting, including its purpose (e.g. parameter estimation, estimate
+        model fitting, including its purpose (for example, parameter estimation, estimate
         delay, k2prime estimation, global K1/k2 ratio estimation, global k4
         estimation, fit reference region, iterative weighting, SIME for AIF,
         SIME for Vnd)

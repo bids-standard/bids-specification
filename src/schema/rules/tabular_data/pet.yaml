@@ -99,7 +99,7 @@ PETDerivativesKineticModeling:
       level: required
       level_addendum: |
         The estimated value for each parameter. Each parameter should be represented
-        by a column (e.g. R1, k2, BPND). See the
+        by a column (for example, R1, k2, BPND). See the
         “Kinetic Model and Parameter Name Guidelines” section below.
     parameter_name-se:
       level: recommended
