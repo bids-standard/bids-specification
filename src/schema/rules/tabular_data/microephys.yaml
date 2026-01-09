@@ -120,9 +120,9 @@ microephysChannels:
         linking this channel to its associated electrode contact point.
         For channels not associated with an electrode, use `n/a`.
     type__channels: required
-    reference__microephys: optional
     units: required
     sampling_frequency: optional
+    reference__microephys: optional
     low_cutoff: optional
     high_cutoff: optional
     notch: optional
