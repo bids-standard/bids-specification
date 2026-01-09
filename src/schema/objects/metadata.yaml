@@ -2849,7 +2849,7 @@ PharmaceuticalDoseAmount:
   name: PharmaceuticalDoseAmount
   display_name: Pharmaceutical Dose Amount
   description: |
-    Dose amount of pharmaceutical coadministered with tracer.
+    Dose amount of administered pharmaceutical.
   anyOf:
     - type: number
     - type: array
@@ -2892,7 +2892,7 @@ PharmaceuticalName:
   name: PharmaceuticalName
   display_name: Pharmaceutical Name
   description: |
-    Name of pharmaceutical coadministered with tracer.
+    Name of pharmaceutical.
   type: string
 PhaseEncodingDirection:
   name: PhaseEncodingDirection
