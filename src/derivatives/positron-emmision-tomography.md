@@ -393,7 +393,7 @@ A guide for using macros can be found at
 
 In order to promote standardisation without sacrificing flexibility, we provide the following guidelines for defining the names of kinetic models and their parameters in either filenames or column names in .tsv files.
 
-Kinetic model parameters 
+Kinetic model parameters
 
 Parameter names should be defined with the accepted capitalisation without the need for indicating subscript and superscripts, i.e. VT, BPND, Ki,  K1, k4, VB, fP and fND.
 
@@ -405,7 +405,7 @@ For inverse parameter values, such as 1/k4, this can be described by the paramet
 
 For unconventional parameter names, please use an appropriate abbreviated name, and provide a more full description of what the parameter represents in the accompanying *_kinpar.json file.
 
-Kinetic model names 
+Kinetic model names
 
 Although there are many ways of fitting conventional kinetic models, e.g. by fixing one parameter to a common value, the kinetic model name is intended to just broadly define which model was used, allowing for a fuller description in the relevant *.json file. We RECOMMEND using the following abbreviations for these common models.
 
@@ -441,11 +441,11 @@ PET imaging involves the acquisition and processing of PET data, which can be an
 
 ### Pre-modeling data:
 
-Volumes and Surfaces: Before kinetic modeling, PET data may be represented as volumes (e.g., preprocessed PET data with _pet.nii file extension) and surfaces (_pet.func.gii file extension). 
+Volumes and Surfaces: Before kinetic modeling, PET data may be represented as volumes (e.g., preprocessed PET data with _pet.nii file extension) and surfaces (_pet.func.gii file extension).
 
 ### Parametric Images and Surfaces (Post-Modeling):
 
-Parametric images: Derived from dynamic PET data using kinetic models, these images estimate physiological parameters such as receptor density, blood flow, and metabolic rates. Parametric images can be either unitless (e.g., SUVR, BPND, DVR, R1) or have physical units (e.g., K1, k2). For voxelwise parameter estimates, the suffix mimap should be used. The filename should include a meas entity to encode the specific parameter being modeled (e.g., meas-BPND, meas-K1). See the “Kinetic Model and Parameter Name Guidelines” section above. 
+Parametric images: Derived from dynamic PET data using kinetic models, these images estimate physiological parameters such as receptor density, blood flow, and metabolic rates. Parametric images can be either unitless (e.g., SUVR, BPND, DVR, R1) or have physical units (e.g., K1, k2). For voxelwise parameter estimates, the suffix mimap should be used. The filename should include a meas entity to encode the specific parameter being modeled (e.g., meas-BPND, meas-K1). See the “Kinetic Model and Parameter Name Guidelines” section above.
 
 Surface-based analyses: Surface representations of parametric data can be stored in GIFTI format, which allows for a variety of data types such as functional data, shapes, and surface coordinates. The suffixes used for GIFTI files include _mimap.surf.gii for modeled PET data.
 
@@ -537,7 +537,7 @@ Example:
 }
 ```
 
-### Blood Modeling Parameters Configuration File 
+### Blood Modeling Parameters Configuration File
 
 The *\*_bloodconfig.json* file should contain the following columns:
 

@@ -992,11 +992,11 @@ DOF:
   name: DOF
   display_name: Degrees of freedom
   description: |
-    Degrees of freedom of the affine registration. 3 = translation only, 
-    6 = translation and rotation only, 7 = translation, rotation, and global scaling only, 
+    Degrees of freedom of the affine registration. 3 = translation only,
+    6 = translation and rotation only, 7 = translation, rotation, and global scaling only,
     9 = translation, rotation, and scaling only, 12 = full affine.
   type: integer
-  enum: 
+  enum:
     - "3"
     - "6"
     - "7"
@@ -1491,7 +1491,7 @@ FitDetails__blood_data_processing:
   name: FitDetails__blood_data_processing
   display_name: Fit Details
   description: |
-    Provides additional details about the fitting process for the relevant software package, 
+    Provides additional details about the fitting process for the relevant software package,
     such as constraints or specific fitting procedures ("expdecay_props": [null, null]).
   anyOf:
     - type: string
@@ -1885,7 +1885,7 @@ ImageSimilarityMetric:
   name: ImageSimilarityMetric
   display_name: Image Similarity Metric
   description: |
-    Final image similarity metric used to determine the similarity 
+    Final image similarity metric used to determine the similarity
     between the moving and target images as part of the registration.
   type: string
 Immersion:
@@ -2969,7 +2969,7 @@ Parameters__blood_data_processing:
   name: Parameters__blood_data_processing
   display_name: Parameters
   description: |
-    Contains key-value pairs of fitted parameters for each method, such as 
+    Contains key-value pairs of fitted parameters for each method, such as
     coefficients and decay constants.
   type: array
   items:
@@ -3231,7 +3231,7 @@ PVCMethod:
   name: PVCMethod
   display_name: Partial Volume Correction Method
   description: |
-    Method used to perform partial volume correction, such as Recovery Coefficient (RC) or Geometric 
+    Method used to perform partial volume correction, such as Recovery Coefficient (RC) or Geometric
     Transfer Matrix.
   type: string
 PulseSequenceTiming:

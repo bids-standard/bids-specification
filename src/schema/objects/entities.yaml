@@ -160,7 +160,7 @@ from:
     The label should be descriptive of the source, such as `from-anat` or `from-func`.
   type: string
   format: label
-to: 
+to:
   name: to
   display_name: To
   description: |

@@ -698,7 +698,7 @@ petref:
   display_name: PETREF
   description: |
     The PET reference space is the space of the PET image that is used to
-    register the PET image to the MRI image and/or for alignment for head motion correction. 
+    register the PET image to the MRI image and/or for alignment for head motion correction.
 on__mtransfer:
   value: 'on'
   display_name: 'On'

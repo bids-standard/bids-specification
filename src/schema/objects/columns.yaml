@@ -434,7 +434,7 @@ parameter_name:
   name: parameter_name
   display_name: Parameter name
   description: |
-    The estimated value for each parameter. Each parameter should be represented by a column 
+    The estimated value for each parameter. Each parameter should be represented by a column
     (for example, R1, k2, BPND). See the “Kinetic Model and Parameter Name Guidelines”
   type: string
 parameter_name-se:
