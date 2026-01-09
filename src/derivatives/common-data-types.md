@@ -331,9 +331,9 @@ Contents of the `descriptions.tsv` file:
 
 ```tsv
 desc_id	description
-Filt	low-pass filtered at 30Hz
-FiltDs	low-pass filtered at 30Hz, downsampled to 250Hz
-preproc	low-pass filtered at 30Hz, downsampled to 250Hz, and rereferenced to a common average reference
+desc-Filt	low-pass filtered at 30Hz
+desc-FiltDs	low-pass filtered at 30Hz, downsampled to 250Hz
+desc-preproc	low-pass filtered at 30Hz, downsampled to 250Hz, and rereferenced to a common average reference
 ```
 
 <!-- Link Definitions -->
