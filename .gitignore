@@ -161,3 +161,7 @@ dmypy.json
 cython_debug/
 
 .*.swp
+
+
+# BEP ignores
+bep-23_schema.json

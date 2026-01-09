@@ -781,6 +781,13 @@ pet:
     (or 3D, if only one volume was acquired) NIfTI files with the `_pet` suffix.
     Volumes MUST be stored in chronological order
     (the order they were acquired in).
+petref:
+  value: petref
+  display_name: PET reference acquisition
+  description: |
+    A PET acquisition collected to serve as a concentration reference for absolute quantification
+    or as a calibration reference for preprocessing (for example, motion correction).
+    This acquisition is typically a static PET scan of a phantom with known radioactivity concentration.
 phase:
   value: phase
   display_name: Phase image
@@ -891,3 +898,10 @@ unloc:
   description: |
     MRS acquisitions run without localization.
     This includes signals detected using coil sensitivity only.
+xfm:
+  value: xfm
+  display_name: Transformation File
+  description: |
+    A transformation file that describes the transformation from one coordinate system to another.
+    This file is typically used to transform anatomical images into a common space, such as MNI or Talairach.
+    The transformation can be linear or nonlinear, and the file format can vary depending on the software used.
