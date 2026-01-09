@@ -509,9 +509,9 @@ The uniqueness of this identifier MUST be used to distinguish any activity, soft
 
 !!! example "Examples of identifiers for activities, environments and software"
 
-    - `bids:ds001734:prov#conversion-xfMMbHK1` - a conversion activity described inside the `ds001734` dataset;
-    - `bids::prov#fedora-uldfv058` - a Fedora based environment described inside the current dataset.
-    - `bids:preprocessing:prov#fmriprep-r4kzzMt8` - the fMRIPrep software described inside the `preprocessing` dataset.
+    - `bids::prov#conversion-00f3a18f` - a conversion activity described inside the current dataset;
+    - `bids::prov#fedora-uldfv058` - a Fedora based environment described inside the current dataset;
+    - `bids::prov#fmriprep-awf6cvk6` - the fMRIPrep software described inside the current dataset.
 
 ## Provenance from an RDF perspective
 
