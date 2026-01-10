@@ -174,9 +174,9 @@ A guide for using macros can be found at
    }
 ) }}
 
-### Sidecar JSON for audio, video, and audio-video recordings
+### Sidecar JSON for audio, video, audio-video recordings, and images
 
-The following metadata fields are available for audio, video, and audio-video recordings:
+The following metadata fields are available for audio, video, audio-video recordings, and images:
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -187,6 +187,14 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_sidecar_table("beh.AudioVideoImageDevice") }}
+
+!!! note "Licensing for recordings containing participants"
+
+    Audio, video, and image recordings of participants may have different licensing
+    restrictions than the main dataset due to privacy considerations. The optional
+    `License` field can be used to specify different terms for individual recordings
+    that contain identifiable participant data. If not specified, the recording
+    inherits the license from `dataset_description.json`.
 
 {{ MACROS___make_sidecar_table("beh.AudioVideoDuration") }}
 

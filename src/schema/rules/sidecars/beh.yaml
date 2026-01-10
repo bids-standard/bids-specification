@@ -34,6 +34,7 @@ AudioVideoImageDevice:
   fields:
     Device: optional
     DeviceSerialNumber: optional
+    License: optional
 
 AudioVideoDuration:
   selectors:
