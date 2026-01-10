@@ -541,6 +541,13 @@ audiovideo:
   description: |
     Combined audio and video recording of a behaving subject.
     This suffix is used for files that contain both audio and video streams.
+behimage:
+  value: image
+  display_name: Behavioral Image
+  description: |
+    Still image captured during behavioral experiments.
+    This may include training frames for pose estimation, snapshots of behavioral setups,
+    or individual frames extracted from video recordings.
 beh:
   value: beh
   display_name: Behavioral recording

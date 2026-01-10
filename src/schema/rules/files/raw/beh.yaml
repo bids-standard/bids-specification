@@ -76,3 +76,21 @@ audiovideo:
     run: optional
     recording: optional
     split: optional
+
+# Still images
+image:
+  suffixes:
+    - behimage
+  extensions:
+    - .jpg
+    - .png
+    - .json
+  datatypes:
+    - beh
+  entities:
+    subject: required
+    session: optional
+    task: optional
+    acquisition: optional
+    run: optional
+    recording: optional

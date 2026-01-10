@@ -26,14 +26,20 @@ BEHInstitutionInformation:
     InstitutionAddress: recommended
     InstitutionalDepartmentName: recommended
 
-# Audio and Video metadata
-AudioVideoDevice:
+# Audio, Video, and Image metadata
+AudioVideoImageDevice:
+  selectors:
+    - datatype == "beh"
+    - intersects([suffix], ["audio", "video", "audiovideo", "behimage"])
+  fields:
+    Device: optional
+    DeviceSerialNumber: optional
+
+AudioVideoDuration:
   selectors:
     - datatype == "beh"
     - intersects([suffix], ["audio", "video", "audiovideo"])
   fields:
-    Device: optional
-    DeviceSerialNumber: optional
     Duration: optional
 
 AudioStreams:
@@ -51,6 +57,15 @@ VideoStreams:
     - intersects([suffix], ["video", "audiovideo"])
   fields:
     FrameRate: optional
+    Height: optional
+    Width: optional
+    CameraPosition: optional
+
+ImageProperties:
+  selectors:
+    - datatype == "beh"
+    - suffix == "behimage"
+  fields:
     Height: optional
     Width: optional
     CameraPosition: optional

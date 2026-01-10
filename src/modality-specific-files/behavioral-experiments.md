@@ -15,8 +15,8 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_filename_template("raw", datatypes=["beh"]) }}
 
-The `beh` directory MAY store behavioral recordings such as audio (`_audio.*`), video (`_video.*`), and combined audio-video (`_audiovideo.*`) recordings, physiological (`_physio.*`) recordings, and other continuous recordings (`_stim.tsv.gz`, `_stim.json`).
-Audio, video, and audio-video recordings MAY be of subjects performing tasks, resting-state behavior, or recordings of stimuli being presented to the subject.
+The `beh` directory MAY store behavioral recordings such as audio (`_audio.*`), video (`_video.*`), combined audio-video (`_audiovideo.*`), and still image (`_image.*`) recordings, physiological (`_physio.*`) recordings, and other continuous recordings (`_stim.tsv.gz`, `_stim.json`).
+Audio, video, audio-video, and image recordings MAY be of subjects performing tasks, resting-state behavior, or recordings of stimuli being presented to the subject.
 Audio/video recordings MAY occur simultaneously with other recordings, such as BOLD or EEG.
 Relative timing between files may be determined by consulting the `scans.tsv` file.
 If no `scans.tsv` file is present, the alignment is undefined.
@@ -71,7 +71,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("beh.BEHInstitutionInformation") }}
 
-## Audio, video, and audio-video recordings
+## Audio, video, and audio-video recordings and images
 
 Audio and video recordings of behaving subjects MAY be stored in the `beh` directory
 using the `_audio`, `_video`, and `_audiovideo` suffixes.
@@ -80,9 +80,14 @@ and `_audiovideo` for recordings that contain both audio and video streams.
 These recordings are typically used to capture vocalizations, speech, facial expressions,
 body movements, or other behavioral aspects during experimental tasks or rest periods.
 
+Still images captured during behavioral experiments MAY be stored in the `beh` directory
+using the `_image` suffix.
+These images are typically used for training frames for pose estimation,
+snapshots of behavioral setups, or individual frames extracted from video recordings.
+
 !!! warning "Privacy and personally identifiable information"
 
-    Audio and video recordings of human subjects often contain personally identifiable
+    Audio and video recordings and images of human subjects often contain personally identifiable
     information (PII) such as faces, voices, and other identifying features.
     Data curators MUST take special care to ensure compliance with applicable privacy
     regulations (such as HIPAA in the United States, GDPR in the European Union, or other
@@ -100,11 +105,16 @@ Audio recordings MUST use one of the following extensions:
 -   `.ogg` - Ogg Vorbis
 -   `.wav` - Waveform Audio File Format
 
-Video (and audio-video) recordings MUST use one of the following extensions:
+Video and audio-video recordings MUST use one of the following extensions:
 
 -   `.mp4` - MPEG-4 Part 14
 -   `.mkv` - Matroska video container
 -   `.avi` - Audio Video Interleave
+
+Image files MUST use one of the following extensions:
+
+-   `.jpg` - JPEG image
+-   `.png` - Portable Network Graphics
 
 ### Entities
 
@@ -134,6 +144,8 @@ A guide for using macros can be found at
          "sub-01_task-stroop_recording-face_video.json": "",
          "sub-01_task-stroop_recording-room_video.mp4": "",
          "sub-01_task-stroop_recording-room_video.json": "",
+         "sub-01_task-rest_image.jpg": "",
+         "sub-01_task-rest_image.json": "",
          "sub-01_task-vocalization_audio.wav": "",
          "sub-01_task-vocalization_audio.json": "",
          },
@@ -174,7 +186,9 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("beh.AudioVideoDevice") }}
+{{ MACROS___make_sidecar_table("beh.AudioVideoImageDevice") }}
+
+{{ MACROS___make_sidecar_table("beh.AudioVideoDuration") }}
 
 The following fields are available for audio recordings (`_audio`) and audio-video recordings (`_audiovideo`):
 
@@ -183,6 +197,12 @@ The following fields are available for audio recordings (`_audio`) and audio-vid
 The following fields are available for video recordings (`_video`) and audio-video recordings (`_audiovideo`):
 
 {{ MACROS___make_sidecar_table("beh.VideoStreams") }}
+
+The following fields are available for image files (`_image`):
+
+{{ MACROS___make_sidecar_table("beh.AudioVideoImageDevice") }}
+
+{{ MACROS___make_sidecar_table("beh.ImageProperties") }}
 
 ### Example audio-video sidecar JSON
 
@@ -227,6 +247,20 @@ For an audio-only recording:
   "AudioChannelCount": 2,
   "AudioSampleRate": 44100,
   "Duration": 300.2
+}
+```
+
+### Example image sidecar JSON
+
+For a still image:
+
+```JSON
+{
+  "TaskName": "Reaching",
+  "Device": "GoPro Hero 10",
+  "Height": 1080,
+  "Width": 1920,
+  "CameraPosition": "overhead"
 }
 ```
 
