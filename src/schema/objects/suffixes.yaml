@@ -535,6 +535,12 @@ audio:
     Audio recording of a behaving subject.
     This may include vocalizations, speech, or environmental sounds.
     The audio stream may be from a standalone audio recording or extracted from a video file.
+audiovideo:
+  value: audiovideo
+  display_name: Audio-Video Recording
+  description: |
+    Combined audio and video recording of a behaving subject.
+    This suffix is used for files that contain both audio and video streams.
 beh:
   value: beh
   display_name: Behavioral recording

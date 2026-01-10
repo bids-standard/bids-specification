@@ -15,8 +15,8 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_filename_template("raw", datatypes=["beh"]) }}
 
-The `beh` directory MAY store behavioral recordings such as audio (`_audio.*`) and video (`_video.*`) recordings, physiological (`_physio.*`) recordings, and other continuous recordings (`_stim.tsv.gz`, `_stim.json`).
-Audio and video recordings MAY be of subjects performing tasks, resting-state behavior, or recordings of stimuli being presented to the subject.
+The `beh` directory MAY store behavioral recordings such as audio (`_audio.*`), video (`_video.*`), and combined audio-video (`_audiovideo.*`) recordings, physiological (`_physio.*`) recordings, and other continuous recordings (`_stim.tsv.gz`, `_stim.json`).
+Audio, video, and audio-video recordings MAY be of subjects performing tasks, resting-state behavior, or recordings of stimuli being presented to the subject.
 Audio/video recordings MAY occur simultaneously with other recordings, such as BOLD or EEG.
 Relative timing between files may be determined by consulting the `scans.tsv` file.
 If no `scans.tsv` file is present, the alignment is undefined.
@@ -71,10 +71,12 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("beh.BEHInstitutionInformation") }}
 
-## Audio and video recordings
+## Audio, video, and audio-video recordings
 
 Audio and video recordings of behaving subjects MAY be stored in the `beh` directory
-using the `_audio` and `_video` suffixes respectively.
+using the `_audio`, `_video`, and `_audiovideo` suffixes.
+The `_audio` suffix is for audio-only recordings, `_video` for video-only recordings,
+and `_audiovideo` for recordings that contain both audio and video streams.
 These recordings are typically used to capture vocalizations, speech, facial expressions,
 body movements, or other behavioral aspects during experimental tasks or rest periods.
 
@@ -98,7 +100,7 @@ Audio recordings MUST use one of the following extensions:
 -   `.ogg` - Ogg Vorbis
 -   `.wav` - Waveform Audio File Format
 
-Video recordings MUST use one of the following extensions:
+Video (and audio-video) recordings MUST use one of the following extensions:
 
 -   `.mp4` - MPEG-4 Part 14
 -   `.mkv` - Matroska video container
@@ -126,6 +128,8 @@ A guide for using macros can be found at
       "beh": {
          "sub-01_task-rest_video.mp4": "",
          "sub-01_task-rest_video.json": "",
+         "sub-01_task-interview_audiovideo.mp4": "",
+         "sub-01_task-interview_audiovideo.json": "",
          "sub-01_task-stroop_recording-face_video.mp4": "",
          "sub-01_task-stroop_recording-face_video.json": "",
          "sub-01_task-stroop_recording-room_video.mp4": "",
@@ -158,9 +162,9 @@ A guide for using macros can be found at
    }
 ) }}
 
-### Sidecar JSON for audio and video recordings
+### Sidecar JSON for audio, video, and audio-video recordings
 
-The following metadata fields are available for audio and video recordings:
+The following metadata fields are available for audio, video, and audio-video recordings:
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -172,11 +176,17 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("beh.AudioVideoDevice") }}
 
-{{ MACROS___make_sidecar_table("beh.AudioVideoStreams") }}
+The following fields are available for audio recordings (`_audio`) and audio-video recordings (`_audiovideo`):
 
-### Example video sidecar JSON
+{{ MACROS___make_sidecar_table("beh.AudioStreams") }}
 
-For a video file containing both video and audio streams:
+The following fields are available for video recordings (`_video`) and audio-video recordings (`_audiovideo`):
+
+{{ MACROS___make_sidecar_table("beh.VideoStreams") }}
+
+### Example audio-video sidecar JSON
+
+For an audio-video file containing both video and audio streams:
 
 ```JSON
 {
@@ -184,6 +194,21 @@ For a video file containing both video and audio streams:
   "Device": "Sony FDR-AX53",
   "AudioChannelCount": 2,
   "AudioSampleRate": 48000,
+  "FrameRate": 30.0,
+  "Height": 1080,
+  "Width": 1920,
+  "Duration": 600.5
+}
+```
+
+### Example video sidecar JSON
+
+For a video-only recording:
+
+```JSON
+{
+  "TaskName": "RestingState",
+  "Device": "Sony FDR-AX53",
   "FrameRate": 30.0,
   "Height": 1080,
   "Width": 1920,

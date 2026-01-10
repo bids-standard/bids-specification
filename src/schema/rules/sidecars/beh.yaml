@@ -30,21 +30,27 @@ BEHInstitutionInformation:
 AudioVideoDevice:
   selectors:
     - datatype == "beh"
-    - intersects([suffix], ["audio", "video"])
+    - intersects([suffix], ["audio", "video", "audiovideo"])
   fields:
     Device: optional
     DeviceSerialNumber: optional
+    Duration: optional
 
-AudioVideoStreams:
+AudioStreams:
   selectors:
     - datatype == "beh"
-    - intersects([suffix], ["audio", "video"])
+    - intersects([suffix], ["audio", "audiovideo"])
   fields:
     AudioChannelCount: optional
     AudioSampleRate: optional
     AudioBitDepth: optional
+
+VideoStreams:
+  selectors:
+    - datatype == "beh"
+    - intersects([suffix], ["video", "audiovideo"])
+  fields:
     FrameRate: optional
     Height: optional
     Width: optional
     CameraPosition: optional
-    Duration: optional

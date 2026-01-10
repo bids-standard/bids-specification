@@ -56,3 +56,23 @@ video:
     run: optional
     recording: optional
     split: optional
+
+# Combined audio-video recordings
+audiovideo:
+  suffixes:
+    - audiovideo
+  extensions:
+    - .mp4
+    - .mkv
+    - .avi
+    - .json
+  datatypes:
+    - beh
+  entities:
+    subject: required
+    session: optional
+    task: optional
+    acquisition: optional
+    run: optional
+    recording: optional
+    split: optional
