@@ -288,7 +288,7 @@ Restricted keywords for the `MicroephysCoordinateSystem` field in the
         of the coronal and sagittal sutures. The three axes are: AP (Anterior-Posterior) with positive values
         anterior to the reference point, ML (Medial-Lateral) with positive values to the right of midline,
         and DV (Dorsal-Ventral) with positive values ventral to the reference point.
-        See the <a href="./microelectrode-surgical-coordinates.md">Microelectrode Surgical Coordinates</a>
+        See the [Microelectrode Surgical Coordinates](microelectrode-surgical-coordinates.md)
         appendix for detailed axis conventions and angle definitions.
         Units are typically in millimeters or micrometers.
       </td>
