@@ -2895,7 +2895,7 @@ PharmaceuticalName:
   description: |
     Name of administered pharmaceutical.
     Note that this is distinct from any radiotracer or contrast agent used in the scan protocol.
-    Corresponds to [DICOM Tag 0018, 0034](https://dicomlookup.com/dicomtags/(0018,0034)) `Intervention Drug Name`.
+    This partly matches [DICOM Tag 0018, 0034](https://dicomlookup.com/dicomtags/(0018,0034)) `Intervention Drug Name`.
   type: string
 PhaseEncodingDirection:
   name: PhaseEncodingDirection
