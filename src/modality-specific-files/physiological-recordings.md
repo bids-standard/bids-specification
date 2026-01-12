@@ -27,8 +27,8 @@ corresponding tabular file but with a `.json` extension.
    )
 }}
 
-The [`recording-<label>`](../appendices/entities.md#recording)
-entity is OPTIONAL, and is [described below](#continuous-physiological-recordings).
+The [`recording-<label>`](../appendices/entities.md#recording) entity is OPTIONAL,
+and is described in [Continuous physiological recordings](#continuous-physiological-recordings), below.
 
 !!! warning "Caution"
 
