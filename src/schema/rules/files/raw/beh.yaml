@@ -80,7 +80,7 @@ audiovideo:
 # Still images
 image:
   suffixes:
-    - behimage
+    - image
   extensions:
     - .jpg
     - .png

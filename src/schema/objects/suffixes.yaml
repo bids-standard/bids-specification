@@ -541,7 +541,7 @@ audiovideo:
   description: |
     Combined audio and video recording of a behaving subject.
     This suffix is used for files that contain both audio and video streams.
-behimage:
+image:
   value: image
   display_name: Behavioral Image
   description: |
