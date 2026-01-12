@@ -52,10 +52,8 @@ PETRadioChemistry:
     - datatype == "pet"
     - suffix == "pet"
   fields:
-    TracerName:
-      level: required
-    TracerRadionuclide:
-      level: required
+    TracerName: required
+    TracerRadionuclide: required
     InjectedRadioactivity: required
     InjectedRadioactivityUnits: required
     InjectedMass: required
