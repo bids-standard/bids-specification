@@ -58,12 +58,8 @@ EyeTrack:
     CalibrationPosition: recommended
     CalibrationType: recommended
     CalibrationUnit: recommended
-    EyeCameraSettings: recommended
     EyeTrackerDistance: recommended
     EyeTrackingMethod: recommended
-    FeatureDetectionSettings: recommended
-    GazeMappingSettings: recommended
     MaximalCalibrationError: recommended
     PupilFitMethod: recommended
     RawDataFilters: recommended
-    ScreenAOIDefinition: recommended
