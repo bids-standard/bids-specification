@@ -4157,7 +4157,7 @@ TracerName:
     Name of the tracer compound used (for example, `"CIMBI-36"`)
     Corresponds to [DICOM Tag 0054, 0300](https://dicomlookup.com/dicomtags/(0054,0300)) `Radionuclide Code Sequence`,
     extracted from the fields [0008, 0122](https://dicomlookup.com/dicomtags/(0008,0122)) `Mapping Resource Name`
-     and/or [0008, 0105](https://dicomlookup.com/dicomtags/(0008,0105)) `Mapping Resource`.
+    and/or [0008, 0105](https://dicomlookup.com/dicomtags/(0008,0105)) `Mapping Resource`.
   type: string
 TracerRadLex:
   name: TracerRadLex
@@ -4170,7 +4170,9 @@ TracerRadionuclide:
   display_name: Tracer Radionuclide
   description: |
     Radioisotope labeling tracer (for example, `"C11"`).
-    Corresponds to DICOM Tags (0008,0104) `CodeValue` and (0008,0104) `CodeMeaning`.
+    Corresponds to [DICOM Tag 0054, 0300](https://dicomlookup.com/dicomtags/(0054,0300)) `Radionuclide Code Sequence`,
+    extracted from the fields [0008, 0100](https://dicomlookup.com/dicomtags/(0008,0100)) `Code Value`
+    and/or [0008, 0104](https://dicomlookup.com/dicomtags/(0008,0104)) `Code Meaning`.
   type: string
 TracerSNOMED:
   name: TracerSNOMED
