@@ -8,8 +8,8 @@ import sys
 import warnings
 from functools import wraps
 
-from . import data
 from . import _lazytypes as lt
+from . import data
 
 if lt.TYPE_CHECKING:
 

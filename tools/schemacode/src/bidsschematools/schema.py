@@ -9,10 +9,9 @@ from copy import deepcopy
 from functools import cache, lru_cache
 from pathlib import Path
 
+from . import _lazytypes as lt
 from . import data, utils
 from .types import Namespace
-
-from . import _lazytypes as lt
 
 lgr = utils.get_logger()
 

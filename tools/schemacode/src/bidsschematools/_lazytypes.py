@@ -54,14 +54,26 @@ RUNTIME_IMPORT: bool
 
 TYPE_CHECKING = False
 if TYPE_CHECKING or "sphinx.ext.autodoc" in sys.modules:  # pragma: no cover
-    from typing import Any, Callable, Literal, NotRequired, Protocol, Self, TypeVar, TypedDict
-
-    from collections.abc import Iterator, Mapping
+    from collections.abc import Callable, Iterator, Mapping
     from contextlib import AbstractContextManager
+    from typing import Any, Literal, Protocol, TypedDict, TypeVar
+
+    # Missing imports in 3.10. Avoid breaking third-party autodoc generation.
+    try:
+        from typing import NotRequired, Self
+    except ImportError:  # PY310
+        NotRequired = tuple  # type: ignore[misc,assignment]
+        Self = object  # type: ignore[misc,assignment]
 
     from acres.typ import Traversable
-    from jsonschema import FormatChecker
-    from jsonschema.protocols import Validator as JsonschemaValidator
+
+    # Optional dependency, avoid breaking third-party autodoc generation.
+    try:
+        from jsonschema import FormatChecker
+        from jsonschema.protocols import Validator as JsonschemaValidator
+    except ImportError:
+        FormatChecker = object  # type: ignore[misc,assignment]
+        JsonschemaValidator = object  # type: ignore[misc,assignment]
 
     # Helpful TypeVars for generic classes and functions.
     # These should never be accessed at runtime, only for type checking, so exclude from __all__.
