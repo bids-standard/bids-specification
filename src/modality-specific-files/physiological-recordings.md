@@ -614,10 +614,6 @@ could read:
     "SampleCoordinateSystem": "gaze-on-screen",
     "SamplingFrequency": 1000,
     "SoftwareVersion": "SREB1.10.1630 WIN32 LID:F2AE011 Mod:2017.04.21 15:19 CEST",
-    "ScreenAOIDefinition": [
-        "square",
-        [100, 150, 300, 350]
-    ],
     "timestamp": {
         "Description": "a continuously increasing identifier of the sampling time registered by the device",
         "Units": "ms",
