@@ -112,6 +112,12 @@ participant_relative:
     without starting with "/" (an absolute path) or "sub/"
     (a relative path starting with the participant directory, rather than relative to that directory).
   pattern: '(?!/)(?!sub-)[0-9a-zA-Z+/_\-.]+'
+person_name:
+  display_name: Name of a person
+  description: |
+    Name for a person in a single string with clear disambiguation of First (Given) and Last (Family)
+    name(s).  Should follow `Last Names, First Names` convention.
+  pattern: '.+, .+'
 rrid:
   display_name: Research resource identifier
   description: |

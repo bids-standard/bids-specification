@@ -548,6 +548,7 @@
           "datetime",
           "file_relative",
           "participant_relative",
+          "person_name",
           "rrid",
           "stimuli_relative",
           "time",

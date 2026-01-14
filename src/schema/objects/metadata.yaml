@@ -241,9 +241,12 @@ Authors:
   display_name: Authors
   description: |
     List of individuals who contributed to the creation/curation of the dataset.
+    It is RECOMMENDED to use `Last, First` form to ensure clear separation of
+    First (Given) from Last (Family) name(s).
   type: array
   items:
     type: string
+    format: person_name
 B0FieldIdentifier:
   name: B0FieldIdentifier
   display_name: B0 Field Identifier
@@ -1489,6 +1492,7 @@ Format:
     - stimuli_relative
     # Miscellaneous
     - hed_version
+    - person_name
 FrameAcquisitionDuration:
   name: FrameAcquisitionDuration
   display_name: Frame Acquisition Duration
