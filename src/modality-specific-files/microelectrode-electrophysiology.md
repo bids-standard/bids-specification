@@ -266,22 +266,22 @@ For example: `/acquisition/ElectricalSeries1,/acquisition/ElectricalSeries2` or
 **Extracellular electrophysiology example:**
 
 ```tsv
-name	elecrode_name	reference	type	units	sampling_frequency	gain	status	status_description
-ch001	e001  ref01 LFP	uV	1000	500	good	n/a
-ch002	e002  ref01 LFP	uV	1000	500	good	n/a
-ch003	e003  ref01 HP	uV	30000	500	good	n/a
-ch004	e004  ref01 HP	uV	30000	500	bad	high_noise
-ch005	e005  ref02 LFP	uV	1000	500	good	n/a
-ch006	n/a	SYNC	V 30000	1	good	n/a
+name	electrode_name	reference	type	units	sampling_frequency	gain	status	status_description
+ch001	e001	ref01	LFP	uV	1000	500	good	n/a
+ch002	e002	ref01	LFP	uV	1000	500	good	n/a
+ch003	e003	ref01	HP	uV	30000	500	good	n/a
+ch004	e004	ref01	HP	uV	30000	500	bad	high_noise
+ch005	e005	ref02	LFP	uV	1000	500	good	n/a
+ch006	n/a	n/a	SYNC	V	30000	1	good	n/a
 ```
 
 **Intracellular electrophysiology example:**
 
 ```tsv
-name	type	units	sampling_frequency	recording_mode	gain	ground	status
-patch01	VM	mV	20000	current-clamp	10	AgCl	good
-patch02	VM	mV	20000	current-clamp	10	AgCl	good
-sharp01	IM	pA	20000	voltage-clamp	5	AgCl	good
+name	electrode_name	type	units	sampling_frequency	recording_mode	gain	ground	status
+patch01	patch01	VM	mV	20000	current-clamp	10	AgCl	good
+patch02	patch02	VM	mV	20000	current-clamp	10	AgCl	good
+sharp01	sharp01	IM	pA	20000	voltage-clamp	5	AgCl	good
 ```
 
 Note: In many datasets multiple sets of identifiers are used for probes, electrodes and channels.
