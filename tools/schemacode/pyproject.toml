@@ -131,6 +131,7 @@ filename = "../../src/schema/SCHEMA_VERSION"
 line-length = 99
 
 [tool.ruff.lint]
+# Recognize imports from _lazytypes as coming from typing
 typing-modules = ["bidsschematools._lazytypes"]
 select = [
   "E",   # pycodestyle errors
