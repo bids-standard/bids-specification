@@ -47,7 +47,7 @@ and a guide for using macros can be found at
         }
     }
     ```
-    For a complete example see [DICOM to Nifti conversion with `heudiconv` example](https://github.com/bclenet/bids-examples/tree/BEP028_heudiconv/provenance_heudiconv).
+    For a complete example see [DICOM to NIfTI conversion with `heudiconv` example](https://github.com/bclenet/bids-examples/tree/BEP028_heudiconv/provenance_heudiconv).
 
 ## Provenance of a BIDS dataset
 
@@ -225,7 +225,7 @@ and a guide for using macros can be found at
         "Activities": [
             {
                 "Id": "bids::prov#conversion-00f3a18f",
-                "Label": "Dicom to Nifti conversion",
+                "Label": "Dicom to NIfTI conversion",
                 "Command": "dcm2niix -o . -f sub-%i/anat/sub-%i_T1w sourcedata/dicoms",
                 "AssociatedWith": "bids::prov#dcm2niix-khhkm7u1",
                 "Used": [
@@ -238,7 +238,7 @@ and a guide for using macros can be found at
         ]
     }
     ```
-    For a complete example, see [DICOM to Nifti conversion with `dcm2niix` example](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix).
+    For a complete example, see [DICOM to NIfTI conversion with `dcm2niix` example](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix).
 
 ### Software
 
@@ -282,7 +282,7 @@ and a guide for using macros can be found at
         ]
     }
     ```
-    For a complete example, see [DICOM to Nifti conversion with `dcm2niix` example](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix)
+    For a complete example, see [DICOM to NIfTI conversion with `dcm2niix` example](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix)
 
 ### Input and output data
 
@@ -420,7 +420,7 @@ and a guide for using macros can be found at
         ]
     }
     ```
-    For a complete example, see [DICOM to Nifti conversion with `dcm2niix` example](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix)
+    For a complete example, see [DICOM to NIfTI conversion with `dcm2niix` example](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix)
 
 ### Provenance label file
 
@@ -533,7 +533,7 @@ Objects describing provenance as defined in this specification can be aggregated
     - *sub-001_T1w_preproc.nii* is the skull striped image;
     - the *"Brain extraction"* activity was performed using the *FSL* software within a *Linux* software environment.
 
-Moreover, the terms defined in this specification to describe provenance are based on the [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/) standard. The corresponding [IRIs](https://www.w3.org/TR/json-ld11/#iris) are describing in the JSON-LD context file [`provenance-context.json`](../provenance-context.json) provided with this specification.
+Moreover, the terms defined in this specification to describe provenance are based on the [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/) standard. The corresponding [IRIs](https://www.w3.org/TR/json-ld11/#iris) are described in the JSON-LD context file [`provenance-context.json`](../provenance-context.json) provided with this specification.
 
 All BIDS examples related to provenance (see. [bids-examples, provenance section](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#provenance)) show the aggregated version of the provenance metadata they contain. This comes as a JSON-LD file and a visualization of the graph.
 
@@ -543,9 +543,9 @@ All BIDS examples related to provenance (see. [bids-examples, provenance section
 
 !!! example
 
-    For a complete example, see [Provenance of DICOM to Nifti conversion with `dcm2niix`](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix).
+    For a complete example, see [Provenance of DICOM to NIfTI conversion with `dcm2niix`](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix).
 
-In this example, we explain provenance metadata of a DICOM to Nifti conversion with `dcm2niix`. Consider the following BIDS raw dataset:
+In this example, we explain provenance metadata of a DICOM to NIfTI conversion with `dcm2niix`. Consider the following BIDS raw dataset:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
