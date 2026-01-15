@@ -1608,14 +1608,14 @@ WaxholmSpace:
   value: WaxholmSpace
   display_name: Waxholm Space
   description: |
-    A standardized 3D coordinate system for the rat brain (RRID:SCR_001592) based on
+    A standardized 3D coordinate system for the mouse brain (RRID:SCR_001592) based on
     high-resolution imaging data. Part of the Waxholm Space atlas of the Sprague Dawley
     rat brain. For more information, see
     [https://www.nitrc.org/projects/whs-sd-atlas](https://www.nitrc.org/projects/whs-sd-atlas).
     Reference: Hawrylycz M, Baldock RA, Burger A, Hashikawa T, Johnson GA, Martone M, Ng L,
     Lau C, Larson SD, Nissanov J, Puelles L, Ruffins S, Verbeek F, Zaslavsky I, Boline J.
     Digital atlasing and standardization in the mouse brain. PLoS Comput Biol. 2011 Feb 3;7(2):e1001065.
-    [doi:10.1371/journal.pcbi.1001065](https://doi.org/10.1371/journal.pcbi.1001065).
+    [doi:10.1016/j.neuroimage.2010.06.067](https://doi.org/10.1016/j.neuroimage.2010.06.067).
 WistarRatAtlas:
   value: WistarRatAtlas
   display_name: Wistar Rat Atlas
@@ -1647,15 +1647,15 @@ SwansonRat:
   value: SwansonRat
   display_name: Swanson Rat
   description: |
-    The Swanson rat brain atlas (RRID:SCR_007367), a widely used stereotaxic coordinate system for the rat brain.
+    The Swanson rat brain atlas, a widely used stereotaxic coordinate system for the rat brain.
     Provides detailed cytoarchitectonic parcellation and standardized coordinates for targeting brain structures.
-    Reference: Swanson LW. Brain Maps: Structure of the Rat Brain. Elsevier.
+    Reference: [Swanson LW. Brain Maps: Structure of the Rat Brain. Elsevier](https://doi.org/10.1002/cne.24381).
     Multiple editions available; users should specify the edition used in `MicroephysCoordinateSystemDescription`.
 CHARM:
   value: CHARM
   display_name: CHARM
   description: |
-    Cortical Hierarchy Atlas of the Rhesus Macaque (RRID:SCR_023283), a modern MRI-based atlas for the macaque brain.
+    Cortical Hierarchy Atlas of the Rhesus Macaque, a modern MRI-based atlas for the macaque brain.
     Provides hierarchical cortical parcellation based on anatomical connectivity patterns.
     Reference: Jung B, Taylor PA, Seidlitz J, Sponheim C, Perkins P, Ungerleider LG, Glen D, Messinger A.
     A comprehensive macaque fMRI pipeline and hierarchical atlas. NeuroImage. 2021;235:117997.
@@ -1664,7 +1664,7 @@ D99:
   value: D99
   display_name: D99
   description: |
-    Digital version of the Saleem and Logothetis macaque brain atlas (RRID:SCR_014606).
+    Digital version of the Saleem and Logothetis macaque brain atlas.
     Provides detailed parcellation of the rhesus macaque brain based on histological sections.
     Reference: Reveley C, Gruslys A, Ye FQ, Glen D, Samaha J, Russ BE, Saad Z, Seth AK, Leopold DA, Saleem KS.
     Three-Dimensional Digital Template Atlas of the Macaque Brain. Cereb Cortex. 2017;27(9):4463-4477.
@@ -1673,16 +1673,16 @@ PaxinosMacaque:
   value: PaxinosMacaque
   display_name: Paxinos Macaque
   description: |
-    The Paxinos rhesus macaque brain atlas (RRID:SCR_016249), a stereotaxic coordinate system for the macaque brain.
+    The Paxinos rhesus macaque brain atlas, a stereotaxic coordinate system for the macaque brain.
     Provides standardized coordinates based on stereotaxic landmarks for targeting brain structures.
-    Reference: Paxinos G, Huang XF, Petrides M, Toga AW.
+    Reference: Paxinos G, Huang XF, Petrides M, Evrard, H.
     The Rhesus Monkey Brain in Stereotaxic Coordinates. Academic Press.
     Multiple editions available; users should specify the edition used in `MicroephysCoordinateSystemDescription`.
 MarmosetBrainAtlas:
   value: MarmosetBrainAtlas
   display_name: Marmoset Brain Atlas
   description: |
-    A standardized 3D coordinate system for the common marmoset brain (RRID:SCR_023286).
+    A standardized 3D coordinate system for the common marmoset brain.
     Provides high-resolution anatomical reference for marmoset brain studies.
     Reference: Liu C, Ye FQ, Yen CC, Newman JD, Glen D, Leopold DA, Silva AC.
     A digital 3D atlas of the marmoset brain based on multi-modal MRI. NeuroImage. 2018;169:106-116.

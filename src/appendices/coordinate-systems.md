@@ -307,10 +307,10 @@ Restricted keywords for the `MicroephysCoordinateSystem` field in the
     <tr>
       <td>WaxholmSpace</td>
       <td>
-        A standardized 3D coordinate system for the rat brain (<a href="https://scicrunch.org/resolver/RRID:SCR_001592">RRID:SCR_001592</a>)
-        based on high-resolution imaging data. Part of the Waxholm Space atlas of the Sprague Dawley rat brain.
+        A standardized 3D coordinate system for the mouse brain (<a href="https://scicrunch.org/resolver/RRID:SCR_001592">RRID:SCR_001592</a>)
+        based on high-resolution imaging data.
       </td>
-      <td><a href="https://doi.org/10.1371/journal.pcbi.1001065">doi:10.1371/journal.pcbi.1001065</a></td>
+      <td><a href="https://doi.org/10.1016/j.neuroimage.2010.06.067">doi:10.1016/j.neuroimage.2010.06.067</a></td>
     </tr>
     <tr>
       <td>WistarRatAtlas</td>
@@ -344,18 +344,16 @@ Restricted keywords for the `MicroephysCoordinateSystem` field in the
     <tr>
       <td>SwansonRat</td>
       <td>
-        The Swanson rat brain atlas (<a href="https://scicrunch.org/resolver/RRID:SCR_007367">RRID:SCR_007367</a>),
-        a widely used stereotaxic coordinate system for the rat brain.
+        The Swanson rat brain atlas, a widely used stereotaxic coordinate system for the rat brain.
         Provides detailed cytoarchitectonic parcellation and standardized coordinates for targeting brain structures.
         Multiple editions available; users should specify the edition used in <code>MicroephysCoordinateSystemDescription</code>.
       </td>
-      <td>Swanson LW. Brain Maps: Structure of the Rat Brain. Elsevier.</td>
+      <td><a href="https://doi.org/10.1002/cne.24381">Swanson LW. Brain Maps: Structure of the Rat Brain. Elsevier.</a></td>
     </tr>
     <tr>
       <td>CHARM</td>
       <td>
-        Cortical Hierarchy Atlas of the Rhesus Macaque (<a href="https://scicrunch.org/resolver/RRID:SCR_023283">RRID:SCR_023283</a>),
-        a modern MRI-based atlas for the macaque brain.
+        Cortical Hierarchy Atlas of the Rhesus Macaque, a modern MRI-based atlas for the macaque brain.
         Provides hierarchical cortical parcellation based on anatomical connectivity patterns.
       </td>
       <td><a href="https://doi.org/10.1016/j.neuroimage.2021.117997">doi:10.1016/j.neuroimage.2021.117997</a></td>
@@ -363,7 +361,7 @@ Restricted keywords for the `MicroephysCoordinateSystem` field in the
     <tr>
       <td>D99</td>
       <td>
-        Digital version of the Saleem and Logothetis macaque brain atlas (<a href="https://scicrunch.org/resolver/RRID:SCR_014606">RRID:SCR_014606</a>).
+        Digital version of the Saleem and Logothetis macaque brain atlas.
         Provides detailed parcellation of the rhesus macaque brain based on histological sections.
       </td>
       <td><a href="https://doi.org/10.1093/cercor/bhw248">doi:10.1093/cercor/bhw248</a></td>
@@ -371,17 +369,16 @@ Restricted keywords for the `MicroephysCoordinateSystem` field in the
     <tr>
       <td>PaxinosMacaque</td>
       <td>
-        The Paxinos rhesus macaque brain atlas (<a href="https://scicrunch.org/resolver/RRID:SCR_016249">RRID:SCR_016249</a>),
-        a stereotaxic coordinate system for the macaque brain.
+        The Paxinos rhesus macaque brain atlas, a stereotaxic coordinate system for the macaque brain.
         Provides standardized coordinates based on stereotaxic landmarks for targeting brain structures.
         Multiple editions available; users should specify the edition used in <code>MicroephysCoordinateSystemDescription</code>.
       </td>
-      <td>Paxinos G, Huang XF, Petrides M, Toga AW. The Rhesus Monkey Brain in Stereotaxic Coordinates. Academic Press.</td>
+      <td>Paxinos G, Huang XF, Petrides M, Evrard, H. The Rhesus Monkey Brain in Stereotaxic Coordinates. Academic Press.</td>
     </tr>
     <tr>
       <td>MarmosetBrainAtlas</td>
       <td>
-        A standardized 3D coordinate system for the common marmoset brain (<a href="https://scicrunch.org/resolver/RRID:SCR_023286">RRID:SCR_023286</a>).
+        A standardized 3D coordinate system for the common marmoset brain.
         Provides high-resolution anatomical reference for marmoset brain studies.
       </td>
       <td><a href="https://doi.org/10.1016/j.neuroimage.2017.12.004">doi:10.1016/j.neuroimage.2017.12.004</a></td>
