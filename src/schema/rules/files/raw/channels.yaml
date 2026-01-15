@@ -11,6 +11,22 @@ channels:
     - ieeg
     - nirs
 
+# microephys has an additional 'sample' entity but excludes task/run
+channels__microephys:
+  $ref: rules.files.raw.channels.channels
+  suffixes:
+    - channels
+  extensions:
+    - .json
+    - .tsv
+  datatypes:
+    - icephys
+    - ecephys
+  entities:
+    subject: required
+    session: optional
+    sample: optional
+    acquisition: optional
 # emg may have a `recording` entity
 channels__emg:
   $ref: rules.files.raw.channels.channels
@@ -61,6 +77,14 @@ coordsystem__eeg:
     $ref: rules.files.raw.channels.coordsystem.entities
     space: optional
 
+coordsystem__microephys:
+  $ref: rules.files.raw.channels.coordsystem
+  datatypes:
+    - icephys
+    - ecephys
+  entities:
+    $ref: rules.files.raw.channels.coordsystem.entities
+    space: required
 # emg may have a `recording` entity
 coordsystem__emg:
   $ref: rules.files.raw.channels.coordsystem__eeg
@@ -109,6 +133,25 @@ electrodes__meg:
   entities:
     $ref: rules.files.raw.channels.electrodes__eeg.entities
     processing: optional
+
+# microephys electrodes exclude task/run entities
+electrodes__microephys:
+  $ref: rules.files.raw.channels.electrodes
+  suffixes:
+    - electrodes
+  extensions:
+    - .json
+    - .tsv
+  datatypes:
+    - ecephys
+    - icephys
+  entities:
+    subject: required
+    session: optional
+    sample: optional
+    acquisition: optional
+    processing: optional
+    space: optional
 
 optodes:
   suffixes:

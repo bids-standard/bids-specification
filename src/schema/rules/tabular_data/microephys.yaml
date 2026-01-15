@@ -1,0 +1,141 @@
+---
+microephysProbes:
+  selectors:
+    - intersects([datatype], ["ecephys", "icephys"])
+    - suffix == "probes"
+    - extension == ".tsv"
+  initial_columns:
+    - probe_name
+    - type__probes
+    - AP__probes
+    - ML__probes
+    - DV__probes
+    - AP_angle
+    - ML_angle
+  columns:
+    probe_name: required
+    type__probes: required
+    AP__probes: recommended
+    ML__probes: recommended
+    DV__probes: recommended
+    AP_angle: recommended
+    ML_angle: recommended
+    manufacturer__probes: recommended
+    model__probes: recommended
+    device_serial_number: recommended
+    electrode_count: optional
+    width__probes: optional
+    height__probes: optional
+    depth__probes: optional
+    rotation_angle: recommended
+    coordinate_reference_point: recommended
+    anatomical_reference_point: optional
+    hemisphere__probes: recommended
+    associated_brain_region: recommended
+    associated_brain_region_id: recommended
+    associated_brain_region_quality_type: recommended
+    reference_atlas: recommended
+    material__probes: optional
+  index_columns: [probe_name]
+  additional_columns: allowed_if_defined
+
+microephysElectrodes:
+  selectors:
+    - intersects([datatype], ["ecephys", "icephys"])
+    - suffix == "electrodes"
+    - extension == ".tsv"
+  initial_columns:
+    - name__electrodes
+    - probe_name
+    - x
+    - y
+    - z
+  columns:
+    name__electrodes: required
+    probe_name:
+      level: required
+      description_addendum: |
+        The value MUST match a `probe_name` entry in the corresponding `*_probes.tsv` file,
+        linking this electrode to its associated probe.
+        For electrodes not associated with a probe, use `n/a`.
+    x:
+      level: required
+      description_addendum: |
+        When no [`space-<label>`](SPEC_ROOT/appendices/entities.md#space) entity is used in the filename,
+        the position along the local width-axis relative to the probe origin
+        (see `coordinate_reference_point` in `*_probes.tsv`) in micrometers (um).
+        When a `space-<label>` entity is used in the filename,
+        the position relative to the origin of the coordinate system along the first axis.
+        Units are specified by `MicroephysCoordinateUnits` in the corresponding `*_coordsystem.json` file.
+    y:
+      level: required
+      description_addendum: |
+        When no [`space-<label>`](SPEC_ROOT/appendices/entities.md#space) entity is used in the filename,
+        the position along the local height-axis relative to the probe origin
+        (see `coordinate_reference_point` in `*_probes.tsv`) in micrometers (um).
+        When a `space-<label>` entity is used in the filename,
+        the position relative to the origin of the coordinate system along the second axis.
+        Units are specified by `MicroephysCoordinateUnits` in the corresponding `*_coordsystem.json` file.
+    z:
+      level: required
+      description_addendum: |
+        When no [`space-<label>`](SPEC_ROOT/appendices/entities.md#space) entity is used in the filename,
+        the position along the local depth-axis relative to the probe origin
+        (see `coordinate_reference_point` in `*_probes.tsv`) in micrometers (um).
+        When a `space-<label>` entity is used in the filename,
+        the position relative to the origin of the coordinate system along the third axis.
+        Units are specified by `MicroephysCoordinateUnits` in the corresponding `*_coordsystem.json` file.
+        For 2D electrode localizations (for example, when the coordinate system is
+        `Pixels`), this SHOULD be a column of `n/a` values.
+    hemisphere: recommended
+    impedance: recommended
+    shank_id: optional
+    size__microephys: optional
+    electrode_shape: optional
+    material: optional
+    location: recommended
+    pipette_solution: optional
+    internal_pipette_diameter: optional
+    external_pipette_diameter: optional
+  index_columns: [name__electrodes]
+  additional_columns: allowed_if_defined
+
+microephysChannels:
+  selectors:
+    - intersects([datatype], ["ecephys", "icephys"])
+    - suffix == "channels"
+    - extension == ".tsv"
+  initial_columns:
+    - name__channels
+    - electrode_name
+    - type__channels
+    - units
+    - sampling_frequency
+  columns:
+    name__channels: required
+    electrode_name:
+      level: required
+      description_addendum: |
+        The value MUST match a `name` entry in the corresponding `*_electrodes.tsv` file,
+        linking this channel to its associated electrode contact point.
+        For channels not associated with an electrode, use `n/a`.
+    type__channels: required
+    units: required
+    sampling_frequency: optional
+    low_cutoff: optional
+    high_cutoff: optional
+    reference__microephys: optional
+    notch: optional
+    channel_label: optional
+    stream_id: optional
+    description: optional
+    software_filter_types: optional
+    status: optional
+    status_description: optional
+    gain: recommended
+    time_offset: optional
+    time_reference_channel: optional
+    ground: optional
+    recording_mode: recommended
+  index_columns: [name__channels]
+  additional_columns: allowed_if_defined
