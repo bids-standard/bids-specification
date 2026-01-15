@@ -77,33 +77,41 @@ To clarify the usage and interaction of these fields, the following examples are
 
 -   If a commercial cap such as EasyCap actiCAP 64 Ch Standard-2 was used:
     ```JSON
-    "CapManufacturer": "EasyCap",
-    "CapManufacturersModelName": "actiCAP 64 Ch Standard-2",
-    "NIRSPlacementScheme": "10-20"
+    {
+        "CapManufacturer": "EasyCap",
+        "CapManufacturersModelName": "actiCAP 64 Ch Standard-2",
+        "NIRSPlacementScheme": "10-20"
+    }
     ```
 
 -   If an Artinis Medical Systems cap with custom positions,
 as may be done by cutting custom holes in the cap,
 was used:
     ```JSON
-    "CapManufacturer": "Artinis Medical Systems",
-    "CapManufacturersModelName": "headcap with print, size L, it was modified by adding holes for the optodes according to the NIRSPlacementScheme and optode_layout.pdf",
-    "NIRSPlacementScheme": "see optode_layout.pdf: 2 groups over the left and right dlPFC, 2 groups over the left and right PPC, 1 group over the left M1 and PMC"
+    {
+        "CapManufacturer": "Artinis Medical Systems",
+        "CapManufacturersModelName": "headcap with print, size L, it was modified by adding holes for the optodes according to the NIRSPlacementScheme and optode_layout.pdf",
+        "NIRSPlacementScheme": "see optode_layout.pdf: 2 groups over the left and right dlPFC, 2 groups over the left and right PPC, 1 group over the left M1 and PMC"
+    }
     ```
 
 -   If a completely custom cap was knitted:
     ```JSON
-    "CapManufacturer": "custom",
-    "CapManufacturersModelName": "custom knitted cap with holes for optodes according to the NIRSPlacementScheme and optode_knitted_layout.jpg",
-    "NIRSPlacementScheme": "see optode_knitted_layout.jpg: 2 groups over the left and right dlPFC, 2 groups over the left and right PPC."
+    {
+        "CapManufacturer": "custom",
+        "CapManufacturersModelName": "custom knitted cap with holes for optodes according to the NIRSPlacementScheme and optode_knitted_layout.jpg",
+        "NIRSPlacementScheme": "see optode_knitted_layout.jpg: 2 groups over the left and right dlPFC, 2 groups over the left and right PPC."
+    }
     ```
 
 -   If no cap was used and optodes were taped to the scalp
     at positions Cz, C1 and C2:
     ```JSON
-    "CapManufacturer": "none",
-    "CapManufacturersModelName": "none",
-    "NIRSPlacementScheme": ["Cz", "C1", "C2"],
+    {
+        "CapManufacturer": "none",
+        "CapManufacturersModelName": "none",
+        "NIRSPlacementScheme": ["Cz", "C1", "C2"]
+    }
     ```
     In these cases additional information regarding channels and optodes SHOULD be placed in `*_channels.tsv` and `*_optodes.tsv` files.
 
@@ -219,7 +227,7 @@ A guide for using macros can be found at
   "HardwareFilters": {"Highpass RC filter": {"Half amplitude cutoff (Hz)": 0.0159, "Roll-off": "6dBOctave"}},
   "CapManafacturer": "NIRx",
   "CapManufacturersModelName": "Headband with print (S-M)",
-  "NIRSPlacementScheme": "n/a",
+  "NIRSPlacementScheme": "n/a"
 }
 ```
 
