@@ -709,9 +709,9 @@ Inside the `sub-001/anat/c1sub-001_T1w.json` file, the metadata field `Generated
 
 !!! example
 
-    For a complete example, see [Provenance of manual brain segmentations](https://github.com/bclenet/bids-examples/tree/BEP028_manual/provenance_manual).
+    For a complete example, see [Provenance of manual segmentations](https://github.com/bclenet/bids-examples/tree/BEP028_manual/provenance_manual).
 
-In this example, we explain provenance metadata of brain segmentation performed by two experts on the same T1w file. Consider the following BIDS study dataset:
+In this example, we explain provenance metadata of manual segmentations performed by two experts on the same T1w file. Consider the following BIDS study dataset:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -721,7 +721,7 @@ A guide for using macros can be found at
     {
         "dataset_description.json": "",
         "derivatives": {
-            "seg": {
+            "seg-brain": {
                 "dataset_description.json": "",
                 "descriptions.tsv": "",
                 "...": "",
@@ -737,6 +737,9 @@ A guide for using macros can be found at
                     "sub-001_space-orig_desc-exp2_dseg.json": "",
                     "sub-001_space-orig_desc-exp2_dseg.nii.gz": ""
                 }
+            },
+            "seg-lesions": {
+                "...": ""
             }
         },
         "...": "",
@@ -756,7 +759,7 @@ A guide for using macros can be found at
     }
 ) }}
 
-Inside the `dataset_description.json` file of the `seg` derivative dataset, the `DatasetLinks` metadata field defines an alias that is needed to refer to the raw dataset using BIDS URIs.
+Inside the `dataset_description.json` file of the `seg-brain` derivative dataset, the `DatasetLinks` metadata field defines an alias that is needed to refer to the raw dataset using BIDS URIs.
 
 ```JSON
 {
@@ -767,7 +770,7 @@ Inside the `dataset_description.json` file of the `seg` derivative dataset, the 
 }
 ```
 
-The `prov/prov-seg_act.json` file describes the activities during which experts generated the brain segmentations.
+The `prov/prov-seg_act.json` file describes activities during which the experts generated segmentations.
 
 ```JSON
 {
@@ -792,9 +795,9 @@ The `prov/prov-seg_act.json` file describes the activities during which experts 
 }
 ```
 
-Note that a minimal description of the `sub-001/anat/sub-001_T1w.nii.gz` file is needed inside `derivatives/seg/prov/prov-seg_ent.json` because this data file is not in the `derivative/seg` dataset. This is compatible with a supplementary description of the data file being stored in its dataset, inside `sourcedata/raw/prov/prov-raw_ent.json`.
+Note that a minimal description of the `sub-001/anat/sub-001_T1w.nii.gz` file is needed inside `derivatives/seg-brain/prov/prov-seg_ent.json` because this data file is not in the `derivative/seg-brain` dataset. This is compatible with a supplementary description of the data file inside its sidecar JSON and of its provenance being stored in the `sourcedata/raw` dataset.
 
-Under the `derivatives/seg` dataset, the `sub-001_space-orig_desc-exp1_dseg.json` file describes which activity generated the `sub-001_space-orig_desc-exp1_dseg.nii.gz` file.
+Under the `derivatives/seg-brain` dataset, the `sub-001_space-orig_desc-exp1_dseg.json` file describes which activity generated the `sub-001_space-orig_desc-exp1_dseg.nii.gz` file.
 
 ```JSON
 {
@@ -802,14 +805,14 @@ Under the `derivatives/seg` dataset, the `sub-001_space-orig_desc-exp1_dseg.json
 }
 ```
 
-The `derivatives/seg/prov/provenance.tsv` gives a description of the `prov-seg`.
+The `derivatives/seg-brain/prov/provenance.tsv` gives a description of the `prov-seg` entity.
 
 ```TXT
 provenance_label    description
 prov-seg   Manual brain segmentation performed by two experts
 ```
 
-The `descriptions.tsv` gives descriptions of the `desc` entities used for datafiles.
+The `descriptions.tsv` gives descriptions of the `desc-` entities used for datafiles.
 
 ```TXT
 desc_id    description
