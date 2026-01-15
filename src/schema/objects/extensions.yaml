@@ -20,7 +20,7 @@ bval:
   value: .bval
   display_name: FSL-Format Gradient Amplitudes
   description: |
-    A space-delimited file containing gradient directions (b-vectors) of diffusion measurement.
+    A space-delimited file containing gradient amplitudes (b-values) of diffusion measurement.
 
     The `bval` file contains the *b*-values (in s/mm<sup>2</sup>) corresponding to the
     volumes in the relevant NIfTI file, with 0 designating *b*=0 volumes.
