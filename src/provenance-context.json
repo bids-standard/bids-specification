@@ -7,13 +7,13 @@
         },
         "prov" : "http://www.w3.org/ns/prov#",
         "xsd": "http://www.w3.org/2001/XMLSchema#",
-        "RRID": "http://scicrunch.org/resolver/",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema",
         "Id": "@id",
         "Type": "@type",
-        "Label": "http://www.w3.org/2000/01/rdf-schema#label",
+        "Label": "rdfs:label",
         "StartedAtTime" : {
           "@id": "prov:startedAtTime",
-          "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+          "@type": "xsd:dateTime"
         },
         "EndedAtTime" : {
           "@id": "prov:endedAtTime",
