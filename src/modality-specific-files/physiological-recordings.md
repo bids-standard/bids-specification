@@ -16,22 +16,35 @@ An example of the physio directory structure is shown below:
    )
 }}
 
-```
-dataset/
-[...]
-sub-<label>/[ses-<label>/]
-physio/
-sub-<label>[_ses-<label>]_task-<label>_[recording-<label>]_physio.json
-sub-<label>[_ses-<label>]_task-<label>_[recording-<label>]_physio.tsv.gz
+{{ MACROS___make_filetree_example(
+{
+"dataset":{
+   "sub-<label>": {
+      "ses-<label>": {
+         "physio": {
+            "sub-<label>[_ses-<label>]_task-<label>_[recording-<label>]_physio.json": "",
+            "sub-<label>[_ses-<label>]_task-<label>_[recording-<label>]_physio.tsv.gz": "",
+            },
+         },
+      }
+   }
+}
+) }}
 
-dataset/
-[...]
-sub-<label>/[ses-<label>/]
-func/
-   [...]
-<matches>_[recording-<label>]_physio.json
-<matches>_[recording-<label>]_physio.tsv.gz
-```
+{{ MACROS___make_filetree_example(
+{
+"dataset":{
+   "sub-<label>": {
+      "ses-<label>": {
+         "func": {
+            "<matches>_[recording-<label>]_physio.json": "",
+            "<matches>_[recording-<label>]_physio.tsv.gz": "",
+            },
+         },
+      }
+   }
+}
+) }}
 
 When recording physiological data, we **RECOMMEND** to always record and save the data with the least amount of processing possible applied to it following this specification. If derivatives are computed in real time, we **RECOMMEND** to save them following the derivatives BEP, and to also store raw data following this concBEP.
 
@@ -67,18 +80,6 @@ We **RECOMMEND** to store trigger signals recorded alongside physiological chann
       }
    }
 ) }}
-```
-dataset/
-[...]
-sub-<label>/[ses-<label>/]
-physio/
-sub-001_ses-01_recording-scr_physio.json
-sub-001_ses-01_recording-scr_physio.tsv.gz
-sub-001_ses-01_recording-ecg_physio.json
-sub-001_ses-01_recording-ecg_physio.tsv.gz
-sub-001_ses-01_recording-resp_physio.json
-sub-001_ses-01_recording-resp_physio.tsv.gz
-```
 
 **Combining recorded data into one pair of physio data files**
 
@@ -94,14 +95,21 @@ sub-001_ses-01_recording-resp_physio.tsv.gz
       }
    }
 ) }}
-```
-dataset/
-[...]
-sub-<label>/[ses-<label>/]
-physio/
-sub-001_ses-01_physio.json
-sub-001_ses-01_physio.tsv.gz
-```
+
+{{ MACROS___make_filetree_example(
+{
+"dataset":{
+   "sub-<label>": {
+      "ses-<label>": {
+         "physio": {
+            "sub-001_ses-01_physio.json": "",
+            "sub-001_ses-01_physio.tsv.gz": "",
+            },
+         },
+      }
+   }
+}
+) }}
 
 It is possible that the `recording-<label>` entity uses terms that could be confused with metadata field values, such as `MeasurementType` or `SamplingFrequency`. In that case, the lowest metadata level available should always be interpreted as the most reliable information. For instance, if the file name contains `recording-1000hz` but the `SamplingFrequency` metadata indicates a sampling frequency of 100Hz, data **MUST** be interpreted as being sampled at 100 Hz. Similarly, if the entity `recording-ecg` is used, but the `MeasurementType` metadata of the contained columns indicate “ppg” and “Ventilation”, the data **MUST** be interpreted as PPG and Ventilation, and not ECG.
 
@@ -189,18 +197,29 @@ More information about the metadata entities contained in the JSON files can be 
 
 ### 2.1 Metadata fields used in top level metadata 
 
-We highlight in *italics* the changes from the current specification.
-
 {{ MACROS___make_sidecar_table(["continuous.Continuous"]) }}
-| Key name | Requirement level | Data type | Description |
-|----------|----------|----------|----------|
-| Row 1-A  | Row 1-B  | Row 1-C  | Row 1-D  |
 
 ### 2.2 Metadata fields for column description
 
 {{ MACROS___make_columns_table("physio.PhysioColumns") }}
-| Key name | Requirement level | Data type | Description |
-|----------|----------|----------|----------|
-| Row 1-A  | Row 1-B  | Row 1-C  | Row 1-D  |
+
+### 2.3 MeasureType descriptions
+
+| **MeasureType** | **Name** | **Description** |
+|-----------------|----------|-----------------|
+| Trigger | Trigger | Digital (binary TTL) or analog (TTL in Volt) values indicating scanner triggers. |
+| PPG | Photoplethysmography | Continuous optical signal capturing the cardiac pulsation. |
+| ECG | Electrocardiography | Continuous electrical signal capturing the cardiac activity. |
+| Ventilation | Ventilation | Continuous breathing measurement. |
+| CO2 | Carbon dioxide | Continuous measurement of the carbon dioxide concentration in expired air. |
+| O2 | Oxygen | Continuous measurement of the oxygen concentration from respiratory gases. |
+| PetCO2 | End-tidal carbon dioxide | Continuous measurement of the end-tidal pressure of carbon dioxide at the end of an exhalation. |
+| PetO2 | End-tidal oxygen | Continuous measurement of the end-tidal pressure of oxygen at the end of an inhalation. |
+| EDA-tonic | Electrodermal activity, tonic component | Continuous measurement of low-frequency changes in electrodermal activity, also known as skin conductance level. |
+| EDA-phasic | Electrodermal activity, phasic component | Continuous measurement of high-frequency changes in electrodermal activity, also known as skin conductance response. |
+| EDA-total | Electrodermal activity | Continuous measurement of the changes in electrical properties of the skin. |
+| BP | Blood pressure | Continuous measurement of the blood pressure waveform representing the changes in arterial pressure over time. |
+| Other | Other | Any other type of channel. |
+
 
 ---
