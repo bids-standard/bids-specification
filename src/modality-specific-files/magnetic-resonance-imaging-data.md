@@ -900,7 +900,7 @@ A guide for using macros can be found at
    }
 ) }}
 
-### Other RECOMMENDED metadata
+### Other RECOMMENDED and OPTIONAL metadata
 
 The `PhaseEncodingDirection` and `TotalReadoutTime` metadata
 fields are RECOMMENDED to enable the correction of geometrical distortions
