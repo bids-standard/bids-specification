@@ -1,0 +1,48 @@
+---
+ActivitiesProvenanceFile:
+  selectors:
+    - datatype == "prov"
+    - suffix == "act"
+  fields:
+    Activities: required
+
+EnvironmentsProvenanceFile:
+  selectors:
+    - datatype == "prov"
+    - suffix == "env"
+  fields:
+    Environments: required
+
+ProvEntityProvenanceFile:
+  selectors:
+    - datatype == "prov"
+    - suffix == "ent"
+    - '!("Files" in json)'
+    - '!("Datasets" in json)'
+  fields:
+    ProvEntity: required
+
+FilesProvenanceFile:
+  selectors:
+    - datatype == "prov"
+    - suffix == "ent"
+    - '!("Datasets" in json)'
+    - '!("prov:Entity" in json)'
+  fields:
+    Files: required
+
+DatasetsProvenanceFile:
+  selectors:
+    - datatype == "prov"
+    - suffix == "ent"
+    - '!("Files" in json)'
+    - '!("prov:Entity" in json)'
+  fields:
+    Datasets: required
+
+SoftwareProvenanceFile:
+  selectors:
+    - datatype == "prov"
+    - suffix == "soft"
+  fields:
+    Software: required
