@@ -6,7 +6,8 @@ PETFrameConsistency:
   issue:
     code: PET_FRAME_CONSISTENCY
     message: |
-      The number of frames in this scan does not match the number of frames (as defined by FrameDuration and FrameTimesStart) in the
+      The number of frames in this scan does not match the number of frames
+      (as defined by FrameDuration and FrameTimesStart) in the
       associated '.json' file.
     level: error
   selectors:
@@ -16,8 +17,8 @@ PETFrameConsistency:
     - sidecar.FrameTimesStart
   checks:
     - |
-      length(sidecar.FrameDuration) == nifti_header.dim[4] && 
-      length(sidecar.FrameTimesStart) == nifti_header.dim[4] && 
+      length(sidecar.FrameDuration) == nifti_header.dim[4] &&
+      length(sidecar.FrameTimesStart) == nifti_header.dim[4] &&
       length(sidecar.FrameDuration) == length(sidecar.FrameTimesStart)
 
 PETFrameConsistencyFrameDuration:
