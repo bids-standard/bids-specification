@@ -376,7 +376,7 @@ Derivatives can be stored/distributed in two ways:
     Extra documentation (and relevant images) MAY be included in the `docs/` subdirectory.
     Logs from running the code or other commands MAY be stored under `logs/` subdirectory.
 
-    Example of a derivative dataset including the raw dataset as source:
+    Example of a derivative dataset including the BIDS raw dataset as source:
 
     <!-- This block generates a file tree.
     A guide for using macros can be found at
@@ -391,9 +391,11 @@ Derivatives can be stored/distributed in two ways:
                 "...": "",
             },
             "sourcedata": {
-                "sub-01": {},
-                "sub-02": {},
-                "...": "",
+                "raw": {
+                    "sub-01": {},
+                    "sub-02": {},
+                    "...": "",
+                },
             },
             "sub-01": {},
             "sub-02": {},
