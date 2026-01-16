@@ -74,9 +74,9 @@ and the raw original file.
 ```JSON
 {
     "Sources": [
-        "bids::sub-01/anat/sub-01_desc-preproc_T1w.nii.gz"
+        "bids::sub-01/anat/sub-01_desc-preproc_T1w.nii.gz",
         "bids:raw:sub-01/func/sub-01_task-rest_bold.nii.gz"
-    ],
+    ]
 }
 ```
 
