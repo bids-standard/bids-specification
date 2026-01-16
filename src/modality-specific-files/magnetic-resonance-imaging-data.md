@@ -912,6 +912,8 @@ JSON example:
 
 ```JSON
 {
+  "DiffGradientDuration": 11.0,
+  "DiffGradientSeparation": 15.2,
   "PhaseEncodingDirection": "j-",
   "TotalReadoutTime": 0.095,
   "B0FieldSource": ["phasediff_fmap0", "pepolar_fmap0"]
