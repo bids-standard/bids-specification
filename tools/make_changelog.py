@@ -17,6 +17,7 @@ import asyncio
 import os
 import re
 import subprocess as sp
+import sys
 from dataclasses import dataclass
 from datetime import date, datetime, timedelta, UTC
 from pathlib import Path
@@ -140,6 +141,12 @@ async def get_merged_prs(
 
 async def main() -> None:
     github_token = os.getenv("GITHUB_TOKEN")
+    if not github_token:
+        print("GITHUB_TOKEN environment variable is not set.")
+        github_token = input("Please enter your GitHub token: ").strip()
+        if not github_token:
+            sys.exit(1)
+
     transport = AIOHTTPTransport(
         url="https://api.github.com/graphql",
         headers={"Authorization": f"Bearer {github_token}"},
