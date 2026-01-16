@@ -1,5 +1,17 @@
 # Changelog
 
+## Upcoming
+
+-   \[ENH] BEP020 - Eye Tracking [#1128](https://github.com/bids-standard/bids-specification/pull/1128) ([mszinte](https://github.com/mszinte))
+-   \[ENH] Make Pharmaceutical metadata terms less PET-specific [#2294](https://github.com/bids-standard/bids-specification/pull/2294) ([yarikoptic](https://github.com/yarikoptic))
+-   \[ENH] BEP038 - Atlases [#1714](https://github.com/bids-standard/bids-specification/pull/1714) ([effigies](https://github.com/effigies))
+-   \[ENH] Updated HED Version to 8.4.0 in examples [#2237](https://github.com/bids-standard/bids-specification/pull/2237) ([VisLab](https://github.com/VisLab))
+-   \[ENH] BEP042 - extension for electromyography (EMG) [#1998](https://github.com/bids-standard/bids-specification/pull/1998) ([drammock](https://github.com/drammock))
+-   \[ENH] Clarify that "source datasets" do not have to be BIDS, and provide definitions for DOI and URL [#2203](https://github.com/bids-standard/bids-specification/pull/2203) ([yarikoptic](https://github.com/yarikoptic))
+-   \[ENH] Clearly define dual templates (fsaverage, fsaverageSym, and fsLR) in coordinate systems appendix [#1927](https://github.com/bids-standard/bids-specification/pull/1927) ([tsalo](https://github.com/tsalo))
+-   \[ENH] Add entity tables for motion, NIRS and MRS [#2209](https://github.com/bids-standard/bids-specification/pull/2209) ([JuliusWelzel](https://github.com/JuliusWelzel))
+-   \[FIX] Add DWI recommended metadata table [#2308](https://github.com/bids-standard/bids-specification/pull/2308) ([kabilar](https://github.com/kabilar))
+
 ## [v1.10.1](https://bids-specification.readthedocs.io/en/v1.10.1/) (2025-09-03)
 
 -   \[ENH] Expand fieldmaps section to include B1 maps, including qMRI maps [#2183](https://github.com/bids-standard/bids-specification/pull/2183) ([tsalo](https://github.com/tsalo))
