@@ -436,9 +436,9 @@ plasma_radioactivity:
   description: |
     Radioactivity in plasma, in unit of plasma radioactivity (for example, `kBq/mL`).
   type: number
-provenance_label:
-  name: provenance_label
-  display_name: Provenance label
+provenance_id:
+  name: provenance_id
+  display_name: Provenance ID
   description: |
     An identifier of the form `prov-<label>`,
     matching a `prov` entity found in the dataset.
