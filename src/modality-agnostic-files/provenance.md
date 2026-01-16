@@ -796,7 +796,7 @@ The `prov/prov-seg_act.json` file describes activities during which the experts 
 }
 ```
 
-Note that a minimal description of the `sub-001/anat/sub-001_T1w.nii.gz` file is needed inside `derivatives/seg-brain/prov/prov-seg_ent.json` because this data file is not in the `derivative/seg-brain` dataset. This is compatible with a supplementary description of the data file inside its sidecar JSON and of its provenance being stored in the `sourcedata/raw` dataset.
+Note that a description of the `sub-001/anat/sub-001_T1w.nii.gz` file is needed because this data file is related to the activities. Here we rely on the `sourcedata/raw` dataset to provide a description of the data file.
 
 Under the `derivatives/seg-brain` dataset, the `sub-001_space-orig_desc-exp1_dseg.json` file describes which activity generated the `sub-001_space-orig_desc-exp1_dseg.nii.gz` file.
 
