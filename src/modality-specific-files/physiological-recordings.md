@@ -717,8 +717,8 @@ would read:
       "Description": "Gives status of the eye.",
       "Levels": {
           "0": "Indicates if the eye was open.",
-          "1": "Indicates if the eye was closed.",
-      },
+          "1": "Indicates if the eye was closed."
+      }
     },
     "message": {
       "Description": "String messages logged by the eye-tracker."
@@ -727,8 +727,8 @@ would read:
       "Description": "Event type as identified by the eye-tracker's model.",
       "Levels": {
           "fixation": "Indicates a fixation.",
-          "saccade": "Indicates a saccade.",
-      },
+          "saccade": "Indicates a saccade."
+      }
     }
 }
 ```
