@@ -1,0 +1,47 @@
+EyetrackingStimulusPresentation:
+  issue:
+    code: INCOMPLETE_STIMULUS_PRESENTATION
+    level: error
+    message: |
+      `StimulusPresentation` metadata for the events file associated with {path}
+      ({associations.events.path}) must have `ScreenDistance`, `ScreenOrigin`,
+      `ScreenResolution` and `ScreenSize` fields.
+  selectors:
+    - suffix == 'physio'
+    - extension == '.tsv.gz'
+    - sidecar.PhysioType == 'eyetrack'
+    - sidecar.SampleCoordinateSystem == 'gaze-on-screen'
+  checks:
+    - associations.events.sidecar.StimulusPresentation.ScreenDistance != 'n/a'
+    - '"ScreenOrigin" in associations.events.sidecar.StimulusPresentation'
+    - associations.events.sidecar.StimulusPresentation.ScreenResolution != 'n/a'
+    - associations.events.sidecar.StimulusPresentation.ScreenSize != 'n/a'
+
+OnsetSourceConsistency:
+  issue:
+    code: MISSING_ONSET_COLUMN
+    level: error
+    message: >
+      The `physioevents.tsv.gz` file declared a `OnsetSource` of
+      {sidecar.OnsetSource}, but no such column was found in
+      {associations.physio.path}.
+  selectors:
+    - suffix == 'physioevents'
+    - extension == '.tsv.gz'
+    - sidecar.OnsetSource
+  checks:
+    - intersects([sidecar.OnsetSource], associations.physio.sidecar.Columns)
+
+PupilSizeDescription:
+  issue:
+    code: UNKNOWN_PUPIL_SIZE
+    level: warning
+    message: >
+      The `pupil_size` description in the JSON sidecar does not clearly indicate
+      whether the size is area or diameter.
+  selectors:
+    - suffix == 'physio'
+    - sidecar.PhysioType == "eyetrack"
+    - columns.pupil_size
+  checks:
+    - match(sidecar.pupil_size.Description, '.*(area|diameter).*')
