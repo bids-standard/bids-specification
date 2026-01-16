@@ -16,8 +16,8 @@ PETFrameConsistency:
     - sidecar.FrameTimesStart
   checks:
     - |
-      length(sidecar.FrameDuration) == nifti_header.dim[4] && 
-      length(sidecar.FrameTimesStart) == nifti_header.dim[4] && 
+      length(sidecar.FrameDuration) == nifti_header.dim[4] &&
+      length(sidecar.FrameTimesStart) == nifti_header.dim[4] &&
       length(sidecar.FrameDuration) == length(sidecar.FrameTimesStart)
 
 PETFrameConsistencyFrameDuration:
