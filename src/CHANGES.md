@@ -1,6 +1,6 @@
 # Changelog
 
-## Upcoming
+## [v1.11.0](https://bids-specification.readthedocs.io/en/v1.11.0/) (Upcoming)
 
 -   \[ENH] Add another example to inheritance principle for .json without entities [#2019](https://github.com/bids-standard/bids-specification/pull/2019) ([yarikoptic](https://github.com/yarikoptic))
 -   \[ENH] Clarify that "raw dataset" source data in example layout is a raw BIDS dataset [#2210](https://github.com/bids-standard/bids-specification/pull/2210) ([yarikoptic](https://github.com/yarikoptic))
