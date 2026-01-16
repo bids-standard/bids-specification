@@ -1,6 +1,6 @@
 # Changelog
 
-## Upcoming
+## [v1.11.0](https://bids-specification.readthedocs.io/en/v1.11.0/) (Upcoming)
 
 -   \[ENH] BEP020 - Eye Tracking [#1128](https://github.com/bids-standard/bids-specification/pull/1128) ([mszinte](https://github.com/mszinte))
 -   \[ENH] Make Pharmaceutical metadata terms less PET-specific [#2294](https://github.com/bids-standard/bids-specification/pull/2294) ([yarikoptic](https://github.com/yarikoptic))
