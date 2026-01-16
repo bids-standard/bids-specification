@@ -303,6 +303,20 @@ AssociatedEmptyRoom:
       format: dataset_relative
     - type: string
       format: bids_uri
+AtlasName:
+  name: Name
+  display_name: Name
+  description: |
+    Name of the atlas.
+  type: string
+AtlasSampleSize:
+  name: SampleSize
+  display_name: Atlas' sample size
+  description: |
+    Number of items (typically, independent participants;
+    although it could also refer to, for example, sessions)
+    that were employed to create the corresponding atlas.
+  type: number
 AttenuationCorrection:
   name: AttenuationCorrection
   display_name: Attenuation Correction
@@ -727,6 +741,26 @@ ContrastBolusIngredient:
     # TODO: Add definitions for these values. (perhaps don't specify)
     - UNKNOWN
     - NONE
+CoordinateReportStrategy:
+  name: CoordinateReportStrategy
+  display_name: CoordinateReportStrategy
+  description: |
+    Indicate the method of coordinate reporting in statistically significant clusters.
+    Could be the "peak" statistical coordinate in the cluster or the
+    "center_of_mass" of the cluster.
+  enum:
+    - peak
+    - center_of_mass
+    - other
+  type: string
+Curators:
+  name: Curators
+  display_name: Curators
+  description: |
+    List of curators who helped make the atlas accessible in a database or dataset.
+  type: array
+  items:
+    type: string
 DCOffsetCorrection:
   name: DCOffsetCorrection
   display_name: DC Offset Correction
@@ -910,6 +944,12 @@ Derivative:
     from other columns (for example a summary score based on a subset of items in a
     questionnaire).
   type: boolean
+DerivedFrom:
+  name: DerivedFrom
+  display_name: DerivedFrom
+  description: |
+    Indicate what data modality the atlas was derived from; for example, "cytoarchitecture", "resting-state", or "task".
+  type: string
 Description:
   name: Description
   display_name: Description
@@ -2455,6 +2495,12 @@ Levels:
             $ref: objects.metadata.TermURL
           Description:
             $ref: objects.metadata.Description
+LevelType:
+  name: LevelType
+  display_name: LevelType
+  description: |
+    Indicate what analysis level the atlas was derived from; for example, "group" or "individual".
+  type: string
 License:
   name: License
   display_name: License
@@ -3119,7 +3165,7 @@ PharmaceuticalDoseAmount:
   name: PharmaceuticalDoseAmount
   display_name: Pharmaceutical Dose Amount
   description: |
-    Dose amount of pharmaceutical coadministered with tracer.
+    Dose amount of administered pharmaceutical.
   anyOf:
     - type: number
     - type: array
@@ -3162,7 +3208,7 @@ PharmaceuticalName:
   name: PharmaceuticalName
   display_name: Pharmaceutical Name
   description: |
-    Name of pharmaceutical coadministered with tracer.
+    Name of pharmaceutical.
   type: string
 PhaseEncodingDirection:
   name: PhaseEncodingDirection
@@ -3358,6 +3404,14 @@ Purity:
   type: number
   minimum: 0
   maximum: 100
+RRID:
+  name: RRID
+  display_name: RRID
+  description: |
+    [Research Resource Identifier](https://rrid.site) of the file,
+    dataset or atlas being described.
+  type: string
+  format: rrid
 RandomRate:
   name: RandomRate
   display_name: Random Rate
@@ -4161,6 +4215,7 @@ SpatialReference:
   name: SpatialReference
   display_name: Spatial Reference
   description: |
+    String or object describing the reference image to which the current image is aligned.
     For images with a single reference, the value MUST be a single string.
     For images with multiple references, such as surface and volume references,
     a JSON object MUST be used.
@@ -4182,6 +4237,11 @@ SpatialReference:
             format: uri
           - type: string
             format: dataset_relative
+Species:
+  $ref: objects.columns.species
+  name: Species
+  type: string
+  definition: null
 SpecificRadioactivity:
   name: SpecificRadioactivity
   display_name: Specific Radioactivity
