@@ -432,7 +432,8 @@ prov/
     provenance.json
 ```
 
-The purpose of this RECOMMENDED file is to describe properties of provenance files. It MUST contain the column `provenance_label`, which MUST consist of `prov-<label>` values identifying one row for each [`prov entity`](../appendices/entities.md#prov) in the dataset, followed by an optional column containing a description for the entity. Each entity MUST be described by one and only one row.
+The purpose of this RECOMMENDED file is to describe properties of [`_prov-`](../appendices/entities.md#prov) entities used in the names of provenance files.
+It MUST contain the column `provenance_id`, which MUST consist of `prov-<label>` values identifying one row for each [`prov entity`](../appendices/entities.md#prov) in the dataset, followed by an optional column containing a description for the entity. Each entity MUST be described by one and only one row.
 
 We RECOMMEND to make use of these columns, and
 in case that you do use them, we RECOMMEND to use the following values
@@ -452,7 +453,7 @@ available").
 `provenance.tsv` example:
 
 ```tsv
-provenance_label    description
+provenance_id    description
 prov-preprocspm Provenance of preprocessing performed with SPM.
 prov-preprocfsl Provenance of preprocessing performed with FSL.
 ```
@@ -808,7 +809,7 @@ Under the `derivatives/seg-brain` dataset, the `sub-001_space-orig_desc-exp1_dse
 The `derivatives/seg-brain/prov/provenance.tsv` gives a description of the `prov-seg` entity.
 
 ```TXT
-provenance_label    description
+provenance_id    description
 prov-seg   Manual brain segmentation performed by two experts
 ```
 
