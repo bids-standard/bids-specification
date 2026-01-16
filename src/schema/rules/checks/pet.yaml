@@ -1,7 +1,6 @@
 ---
 # Rules for PET data that are not defined in tables.
 
-
 PETFrameConsistency:
   issue:
     code: PET_FRAME_CONSISTENCY
@@ -59,7 +58,7 @@ PETFrameConsistencyFrameDurationAndFrameTimesStart:
     level: error
   selectors:
     - suffix == 'pet'
-    - sidecar.FrameDuration || sidecar.FrameTimesStart
+    - sidecar.FrameDuration
     - sidecar.FrameTimesStart
   checks:
     - length(sidecar.FrameDuration) == length(sidecar.FrameTimesStart)
