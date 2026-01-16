@@ -275,7 +275,7 @@ and a guide for using macros can be found at
         "Software": [
             {
                 "Id": "bids::prov#dcm2niix-khhkm7u1",
-                "AltIdentifier": "RRID:SCR_023517",
+                "AltIdentifier": ["RRID:SCR_023517"],
                 "Label": "dcm2niix",
                 "Version": "v1.0.20220720"
             }

@@ -4027,9 +4027,17 @@ Software:
         type: string
       AltIdentifier:
         name: AltIdentifier
-        description: URI of an alternative identifier (such as [RRID](https://rrid.site/)) for the software package.
-        type: string
-        format: uri
+        description: |
+          URI(s) of (an) alternative identifier(s) (such as [RRID](https://rrid.site/))
+          for the software package.
+        anyOf:
+          - type: string
+            format: uri
+          - type: array
+            minItems: 1
+            items:
+              type: string
+              format: uri
       ActedOnBehalfOf:
         name: ActedOnBehalfOf
         description: |
