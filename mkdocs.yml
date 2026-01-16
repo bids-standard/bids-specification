@@ -49,10 +49,9 @@ nav:
           - Arterial Spin Labeling: appendices/arterial-spin-labeling.md
           - Cross modality correspondence: appendices/cross-modality-correspondence.md
       - Changelog: CHANGES.md
-  - The BIDS Starter Kit:
-      - Website: https://bids.neuroimaging.io/getting_started/
+  - The BIDS Website:
+      - Getting started: https://bids.neuroimaging.io/getting_started/
       - Tutorials: https://bids.neuroimaging.io/getting_started/tutorials/
-      - GitHub repository: https://github.com/bids-standard/bids-starter-kit
 exclude_docs: |
   README.md
   pregh-changes.md
