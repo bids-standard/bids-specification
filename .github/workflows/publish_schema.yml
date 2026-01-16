@@ -28,7 +28,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
           filter: "blob:none"
@@ -56,6 +56,17 @@ jobs:
           git checkout -t origin/$JSR_BRANCH
         env:
           JSR_BRANCH: ${{ steps.branch.outputs.branch }}
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: 'npm'
+      - name: Install npm tools
+        run: npm install --no-save
+      - name: Verify installed versions
+        run: |
+          npx quicktype --version
+          npx json2ts --help | head -n2
+          npx jsr --version
       - name: Regenerate schema
         run: bst export > schema.json
       - name: Regenerate context types
@@ -67,7 +78,7 @@ jobs:
         run: |
           # Name the file schema so the type will be named Schema
           bst export-metaschema > /tmp/schema.json
-          npx --package=json-schema-to-typescript json2ts --unknownAny /tmp/schema.json > metaschema.ts
+          npx json2ts --unknownAny /tmp/schema.json > metaschema.ts
       - name: Determine next version
         id: version
         run: |

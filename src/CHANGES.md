@@ -82,7 +82,7 @@ search:
 -   \[FIX] Add misssing files in filename template for NIRS [1716](https://github.com/bids-standard/bids-specification/pull/1716) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[FIX] Remove task entity from DWI and PERF time series file templates [1703](https://github.com/bids-standard/bids-specification/pull/1703) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[FIX] Add `part-<value>` to the PEPOLAR fieldmaps [1685](https://github.com/bids-standard/bids-specification/pull/1685) ([oesteban](https://github.com/oesteban))
--   \[INFRA] Publish schema to Javascript Registry (https://jsr.io/@bids/schema) on changes and releases [1899](https://github.com/bids-standard/bids-specification/pull/1899) ([effigies](https://github.com/effigies))
+-   \[INFRA] Publish schema to Javascript Registry (<https://jsr.io/@bids/schema>) on changes and releases [1899](https://github.com/bids-standard/bids-specification/pull/1899) ([effigies](https://github.com/effigies))
 -   \[INFRA] Introduce metaschema [1787](https://github.com/bids-standard/bids-specification/pull/1787) ([bendichter](https://github.com/bendichter))
 -   \[MISC] Restructure MEG empty room example texts [1677](https://github.com/bids-standard/bids-specification/pull/1677) ([guiomar](https://github.com/guiomar))
 

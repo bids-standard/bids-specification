@@ -9,6 +9,25 @@ ACCELChannelCount:
     Number of acceleration channels.
   type: integer
   minimum: 0
+AnchorCoordinates:
+  name: AnchorCoordinates
+  display_name: Anchor Coordinates
+  description: |
+    Coordinates of the `AnchorElectrode` in the parent (anatomical) coordinate system.
+    This should be an array of numbers of length 3, in the units given in
+    `EMGCoordinateSystemUnits` within the JSON object named in `ParentCoordinateSystem`.
+  type: array
+  minItems: 1
+  maxItems: 3
+  items:
+    type: number
+AnchorElectrode:
+  name: AnchorElectrode
+  display_name: Anchor Electrode
+  description: |
+    Name of the electrode in the child (device) coordinate system whose coordinates in
+    the parent (anatomical) coordinate system are given in `AnchorCoordinates`.
+  type: string
 Acknowledgements:
   name: Acknowledgements
   display_name: Acknowledgements
@@ -191,6 +210,20 @@ AssociatedEmptyRoom:
       format: dataset_relative
     - type: string
       format: bids_uri
+AtlasName:
+  name: Name
+  display_name: Name
+  description: |
+    Name of the atlas.
+  type: string
+AtlasSampleSize:
+  name: SampleSize
+  display_name: Atlas' sample size
+  description: |
+    Number of items (typically, independent participants;
+    although it could also refer to, for example, sessions)
+    that were employed to create the corresponding atlas.
+  type: number
 AttenuationCorrection:
   name: AttenuationCorrection
   display_name: Attenuation Correction
@@ -211,6 +244,13 @@ Authors:
   type: array
   items:
     type: string
+AverageCalibrationError:
+  name: AverageCalibrationError
+  display_name: Average Calibration Error
+  description: |
+    Average calibration error in degrees of visual angle.
+  type: number
+  unit: degree
 B0FieldIdentifier:
   name: B0FieldIdentifier
   display_name: B0 Field Identifier
@@ -385,6 +425,46 @@ BrainLocation:
     or layer to refer to layer-specific gene expression,
     which can also tie up with laminar fMRI.
   type: string
+CalibrationCount:
+  name: CalibrationCount
+  display_name: Calibration Count
+  description: |
+    The number of calibrations corresponding to this run.
+  type: integer
+  minimum: 0
+CalibrationPosition:
+  name: CalibrationPosition
+  display_name: Calibration Position
+  description: |
+    A list of `[x, y]` coordinates in the `CalibrationUnit`.
+    For example, using 5 positions calibration presented on an HD screen,
+    it could be `[[960,50],[960,540],[960,1030],[50,540],[1870,540]]`.
+  type: array
+  items:
+    type: array
+    minItems: 2
+    maxItems: 2
+    items:
+      type: number
+CalibrationType:
+  name: CalibrationType
+  display_name: Calibration Type
+  description: |
+    The type of the calibration procedure executed last.
+    For example the `"H3"` for horizontal calibration with 3 positions
+    or `"HV9"` for horizontal and vertical calibration with 9 positions,
+    or one point calibration.
+  type: string
+CalibrationUnit:
+  name: CalibrationUnit
+  display_name: Calibration Unit
+  description: |
+    Unit of `"CalibrationPosition"`.
+  type: string
+  enum:
+    - pixel
+    - mm
+    - cm
 CASLType:
   name: CASLType
   display_name: CASL Type
@@ -615,6 +695,26 @@ ContrastBolusIngredient:
     # TODO: Add definitions for these values. (perhaps don't specify)
     - UNKNOWN
     - NONE
+CoordinateReportStrategy:
+  name: CoordinateReportStrategy
+  display_name: CoordinateReportStrategy
+  description: |
+    Indicate the method of coordinate reporting in statistically significant clusters.
+    Could be the "peak" statistical coordinate in the cluster or the
+    "center_of_mass" of the cluster.
+  enum:
+    - peak
+    - center_of_mass
+    - other
+  type: string
+Curators:
+  name: Curators
+  display_name: Curators
+  description: |
+    List of curators who helped make the atlas accessible in a database or dataset.
+  type: array
+  items:
+    type: string
 DCOffsetCorrection:
   name: DCOffsetCorrection
   display_name: DC Offset Correction
@@ -766,6 +866,12 @@ Derivative:
     from other columns (for example a summary score based on a subset of items in a
     questionnaire).
   type: boolean
+DerivedFrom:
+  name: DerivedFrom
+  display_name: DerivedFrom
+  description: |
+    Indicate what data modality the atlas was derived from; for example, "cytoarchitecture", "resting-state", or "task".
+  type: string
 Description:
   name: Description
   display_name: Description
@@ -1010,6 +1116,25 @@ EEGReference:
     this field should have a general description and the channel specific
     reference should be defined in the `channels.tsv` file.
   type: string
+ElectrodeMaterial:
+  name: ElectrodeMaterial
+  display_name: Electrode Material
+  description: |
+    Material of the electrode (for example, `Tin`, `Ag/AgCl`, `Gold`).
+    If multiple sensor devices with heterogeneous electrode materials are recorded into
+    the same data file,
+    electrode material SHOULD be recorded in the `material` column of `*_electrodes.tsv` instead.
+    If instead those devices were recorded into separate data files (distinguished for example
+    by the `recording` entity),
+    separate `*_emg.json` files (similarly distinguished) MAY be included,
+    each with their own `ElectrodeMaterial` values.
+  type: string
+ElectrodeType:
+  name: ElectrodeType
+  display_name: Electrode type
+  description: |
+    Type of the electrode (for example, cup, ring, clip-on, wire, needle).
+  type: string
 EMGChannelCount:
   name: EMGChannelCount
   display_name: EMG Channel Count
@@ -1017,6 +1142,92 @@ EMGChannelCount:
     Number of EMG channels.
   type: integer
   minimum: 0
+EMGCoordinateSystem:
+  name: EMGCoordinateSystem
+  display_name: EMG Coordinate System
+  description: |
+    Defines the coordinate system for the EMG sensors.
+
+    See the
+    [Coordinate Systems Appendix](SPEC_ROOT/appendices/coordinate-systems.md)
+    for a list of restricted keywords for coordinate systems.
+    If `"Other"`, provide definition of the coordinate system in
+    `EMGCoordinateSystemDescription`.
+  anyOf:
+    - $ref: objects.enums._EMGCoordSys
+EMGCoordinateSystemDescription:
+  name: EMGCoordinateSystemDescription
+  display_name: EMG Coordinate System Description
+  description: |
+    Free-form text description of the coordinate system, typically defining the origin
+    and positive x,y,z axis directions, relative to anatomical landmarks.
+    May also include a link to a documentation page or paper describing the
+    system in greater detail.
+  type: string
+EMGCoordinateUnits:
+  name: EMGCoordinateUnits
+  display_name: EMG Coordinate Units
+  description: |
+    Units of the coordinates of `EMGCoordinateSystem`.
+  type: string
+  enum:
+    - m
+    - mm
+    - cm
+    - percent
+    - n/a
+EMGGround:
+  name: EMGGround
+  display_name: EMG Ground
+  description: |
+    Description of the location of the ground electrode
+    (for example, `"right radial styloid process"`).
+  type: string
+EMGPlacementScheme:
+  name: EMGPlacementScheme
+  display_name: EMG Placement Scheme
+  description: |
+    The way in which electrode placement locations were determined.
+    If electrode locations are provided as coordinates in `*_electrodes.tsv` in reference
+    to a coordinate system defined in `*_coordsystem.json`, then specify `"Measured"`.
+    If approach to placement varied across sensor devices, specify `"ChannelSpecific"`
+    and include placement details in the `placement_scheme` column of `*_channels.tsv`.
+    If a standardized electrode placement procedure (for example, SENIAM 8) was followed,
+    or if an ad-hoc procedure was followed, specify `"Other"` and provide details in
+    `EMGPlacementSchemeDescription`.
+  type: string
+  enum:
+    - ChannelSpecific
+    - Measured
+    - Other
+EMGPlacementSchemeDescription:
+  name: EMGPlacementSchemeDescription
+  display_name: EMG Placement Scheme Description
+  description: |
+    Additional details of the approach to EMG sensor placement.
+    Descriptions SHOULD NOT simply give the name of the targeted muscle (use the
+    `target_muscle` column in `*_channels.tsv` for that), but rather SHOULD reflect the
+    process used by the researcher(s) when placing electrodes.
+    For example, EMG electrode sites may be chosen by *measured distance* from anatomical
+    landmarks, by *visual reference* to (parts of) target muscles, by *palpation* of the
+    skin to locate target muscles, or by *functional localization* (temporary electrode
+    placement at several sites during prescribed behavior, until a site yielding strong
+    EMG signal is found).
+  type: string
+EMGReference:
+  name: EMGReference
+  display_name: EMG Reference
+  description: |
+    Description of the approach to signal referencing.
+    If the same signal source is used as reference for all channels (often called a
+    "monopolar" recording), specify the signal source (typically an electrode name).
+    If different channels have different reference electrodes, this field SHOULD contain
+    the string `"ChannelSpecific"` and each channel's reference SHOULD be given in the
+    `reference` column of `*_channels.tsv`.
+    For bipolar recording devices (where a single sensor unit contains two rigidly
+    separated contacts, and the paired contacts are not listed independently in
+    `*_electrodes.tsv`), this field SHOULD be `"Bipolar"`.
+  type: string
 EOGChannelCount:
   name: EOGChannelCount
   display_name: EOG Channel Count
@@ -1207,6 +1418,34 @@ EthicsApprovals:
   type: array
   items:
     type: string
+EyeTrackerDistance:
+  name: EyeTrackerDistance
+  display_name: Eye-Tracker Distance
+  description: |
+    Distance (in meters) between the eye-tracker and the participant eye(s).
+    Distance can either be expressed as a single numeric value indicating the shortest distance
+    between the participant's eye and the eye-tracker's camera, or a three-coordinates array
+    indicating the X, Y, Z distances between the participant's eye and the eye-tracker's
+    camera.
+  anyOf:
+    - type: number
+      unit: m
+    - type: array
+      items:
+        type: number
+        unit: m
+      minItems: 3
+      maxItems: 3
+EyeTrackingMethod:
+  name: EyeTrackingMethod
+  display_name: Eye-Tracking Method
+  description: |
+    Method used to track gaze or pupil position:
+    "P–CR" for video based eye-tracking using pupil and corneal reflection;
+    "DPI" for Dual-Purkinje Imaging system, "SSC" for scleral search coils;
+    "EOG" for electro-oculogram; "Limbus" for trackers estimating limbus borders
+    between the iris and sclera; or other.
+  type: string
 FiducialsCoordinateSystem:
   name: FiducialsCoordinateSystem
   display_name: Fiducials Coordinate System
@@ -1292,6 +1531,14 @@ FlipAngle:
         unit: degree
         exclusiveMinimum: 0
         maximum: 360
+OnsetSource:
+  name: OnsetSource
+  display_name: Column Name of the Onset Source
+  description: |
+    An existing column name in an corresponding recoding data TSV file that
+    indexes or is correspondent to the `"onset"` column of the present TSV file.
+    For example, `"timestamp"` column.
+  type: string
 Format:
   name: Format
   display_name: Value format
@@ -1374,6 +1621,14 @@ Funding:
   type: array
   items:
     type: string
+Gain:
+  name: Gain
+  display_name: Gain
+  description: |
+    Signal gain from an in-line amplifier, applied between the EMG sensor/device and the data acquisition computer.
+    See also Preamplification.
+  type: number
+  unit: arbitrary
 GeneratedBy:
   name: GeneratedBy
   display_name: Generated By
@@ -1804,6 +2059,21 @@ IntendedFor__ds_relative:
             format: bids_uri
           - type: string
             format: dataset_relative
+InterelectrodeDistance:
+  name: InterelectrodeDistance
+  display_name: Inter-electrode Distance
+  description: |
+    Distance between pairs or grids of electrodes rigidly attached to the same sensor device.
+    If multiple sensor devices with heterogeneous inter-electrode distances are recorded into
+    the same data file,
+    inter-electrode distance SHOULD be recorded in the `interelectrode_distance` column of
+    `*_electrodes.tsv` instead.
+    If instead those devices were recorded into separate data files (distinguished for example
+    by the `recording` entity),
+    separate `*_emg.json` files (similarly distinguished) MAY be included,
+    each with their own `InterelectrodeDistance` values.
+  type: number
+  unit: mm
 InversionTime:
   name: InversionTime
   display_name: Inversion Time
@@ -1985,6 +2255,12 @@ Levels:
             $ref: objects.metadata.TermURL
           Description:
             $ref: objects.metadata.Description
+LevelType:
+  name: LevelType
+  display_name: LevelType
+  description: |
+    Indicate what analysis level the atlas was derived from; for example, "group" or "individual".
+  type: string
 License:
   name: License
   display_name: License
@@ -2239,6 +2515,13 @@ MaxMovement:
     as measured by the head localization coils (for example, `4.8`).
   type: number
   unit: mm
+MaximalCalibrationError:
+  name: MaximalCalibrationError
+  display_name: Maximal Calibration Error
+  description: |
+    Maximal calibration error in degrees of visual angle.
+  type: number
+  unit: degree
 Maximum:
   name: Maximum
   display_name: Maximum value
@@ -2625,6 +2908,13 @@ ParallelReductionFactorOutOfPlane:
     Corresponds to [DICOM Tag 0018, 9155](https://dicomlookup.com/dicomtags/(0018,9155))
     `Parallel Reduction Factor out-of-plane`.
   type: number
+ParentCoordinateSystem:
+  name: ParentCoordinateSystem
+  display_name: Parent Coordinate System
+  description: |
+    The name of a JSON mapping key that defines the parent (anatomical) coordinate system
+    in which this child (device) coordinate system is anchored.
+  type: string
 PartialFourier:
   name: PartialFourier
   display_name: Partial Fourier
@@ -2642,7 +2932,7 @@ PharmaceuticalDoseAmount:
   name: PharmaceuticalDoseAmount
   display_name: Pharmaceutical Dose Amount
   description: |
-    Dose amount of pharmaceutical coadministered with tracer.
+    Dose amount of administered pharmaceutical.
   anyOf:
     - type: number
     - type: array
@@ -2685,7 +2975,7 @@ PharmaceuticalName:
   name: PharmaceuticalName
   display_name: Pharmaceutical Name
   description: |
-    Name of pharmaceutical coadministered with tracer.
+    Name of pharmaceutical.
   type: string
 PhaseEncodingDirection:
   name: PhaseEncodingDirection
@@ -2715,6 +3005,16 @@ PhotoDescription:
   description: |
     Description of the photo.
   type: string
+PhysioType:
+  name: PhysioType
+  display_name: Physiological Recording Type
+  description: |
+    Defines the specific type of physiological recording.
+    For backwards compatibility, the default value is `"generic"`.
+  type: string
+  enum:
+    - $ref: objects.enums.PhysioTypeGeneric.value
+    - $ref: objects.enums.PhysioTypeEyetrack.value
 PixelSize:
   name: PixelSize
   display_name: Pixel Size
@@ -2811,6 +3111,14 @@ PowerLineFrequency:
     - type: string
       enum:
         - n/a
+Preamplification:
+  name: Preamplification
+  display_name: Preamplification
+  description: |
+    Amplification built into an EMG bipolar sensor, electrode grid, or other device.
+    See also Gain.
+  type: number
+  unit: arbitrary
 PromptRate:
   name: PromptRate
   display_name: Prompt Rate
@@ -2865,6 +3173,15 @@ PulseSequenceType:
   description: |
     A general description of the pulse sequence used for the scan.
   type: string
+PupilFitMethod:
+  name: PupilFitMethod
+  display_name: Pupil Fit Method
+  description: |
+    The method employed for fitting the pupil, for example
+    `"centre-of-mass"` or `"ellipse"`.
+    If `"centre-of-mass"` or `"ellipse"` method is used, it is RECOMMENDED to
+    use these exact labels.
+  type: string
 Purity:
   name: Purity
   display_name: Purity
@@ -2873,6 +3190,14 @@ Purity:
   type: number
   minimum: 0
   maximum: 100
+RRID:
+  name: RRID
+  display_name: RRID
+  description: |
+    [Research Resource Identifier](https://rrid.site) of the file,
+    dataset or atlas being described.
+  type: string
+  format: rrid
 RandomRate:
   name: RandomRate
   display_name: Random Rate
@@ -2881,6 +3206,12 @@ RandomRate:
   type: array
   items:
     type: number
+RawDataFilters:
+  name: RawDataFilters
+  display_name: Raw Data Filters
+  description: |
+    Filter settings applied to eye-movement raw data.
+  type: string
 RawSources:
   name: RawSources
   display_name: Raw Sources
@@ -2983,6 +3314,18 @@ ReconMethodParameterValues:
   type: array
   items:
     type: number
+RecordedEye:
+  name: RecordedEye
+  display_name: Recorded Eye
+  description: |
+    Indicates the eye being tracked, for example, `"left"` or `"right"`.
+    It SHOULD be set to `"cyclopean"` for recordings combining both eyes
+    as potentially generated by binocular eye-trackers.
+  type: string
+  enum:
+    - left
+    - right
+    - cyclopean
 RecordingDuration:
   name: RecordingDuration
   display_name: Recording Duration
@@ -3153,6 +3496,22 @@ SEEGChannelCount:
     Number of SEEG channels.
   type: integer
   minimum: 0
+SampleCoordinateSystem:
+  name: SampleCoordinateSystem
+  display_name: Coordinate System of the Gaze Position
+  description: |
+    Coordinate system of the gaze position recordings.
+    Generally eye-trackers are set to use `"gaze-on-screen"` coordinate system, but you may use
+    `"eye-in-head"` or `"gaze-in-world"`.
+    If none of the three default options properly describe the coordinate system, the
+    `"custom"` keyword MUST be employed and the coordinate system MUST be described
+    using additional metadata entries.
+  type: string
+  enum:
+    - gaze-on-screen
+    - eye-in-head
+    - gaze-in-world
+    - custom
 SampleEmbedding:
   name: SampleEmbedding
   display_name: Sample Embedding
@@ -3353,12 +3712,39 @@ ScreenDistance:
   display_name: Screen Distance
   description: |
     Distance between the participant's eye and the screen. If no screen was used, use `n/a`.
+    Distance can either be expressed as a single numeric value indicating the shortest distance between
+    the participant's eye and the screen, or a three-coordinates array indicating the X, Y, Z distances
+    between the participant's eye and the center of the screen.
   anyOf:
     - type: number
       unit: m
+    - type: array
+      items:
+        type: number
+      minItems: 3
+      maxItems: 3
     - type: string
       enum:
         - n/a
+ScreenOrigin:
+  name: ScreenOrigin
+  display_name: Screen Coordinate System's Origin
+  description: |
+    Location of the spatial coordinates' origin for the visual stimuli presentation,
+    described by a list of two keywords such as ("top", "left") if the coordinates
+    refer to the top-left corner of the screen, or ("center", "center") if the position
+    (0, 0) is at the center or the screen's extent.
+  type: array
+  maxItems: 2
+  minItems: 2
+  items:
+    type: string
+    enum:
+      - "top"
+      - "bottom"
+      - "left"
+      - "right"
+      - "center"
 ScreenRefreshRate:
   name: ScreenRefreshRate
   display_name: Screen Refresh Rate
@@ -3373,6 +3759,8 @@ ScreenResolution:
     Screen resolution in pixel
     (for example `[1920, 1200]` for a screen of 1920-width by 1080-height pixels),
     if no screen use `n/a`.
+    `ScreenResolution` is REQUIRED when the experiment included simultaneous eye-tracking
+    recordings with `SampleCoordinateSystem` matching `"gaze-on-screen"`.
   anyOf:
     - type: array
       items:
@@ -3389,6 +3777,8 @@ ScreenSize:
     Screen size in m, excluding potential screen borders
     (for example `[0.472, 0.295]` for a screen of 47.2-width by 29.5-height cm),
     if no screen use `n/a`.
+    `ScreenSize` is REQUIRED when the experiment included simultaneous eye-tracking
+    recordings with `SampleCoordinateSystem` matching `"gaze-on-screen"`.
   anyOf:
     - type: array
       items:
@@ -3432,6 +3822,13 @@ SinglesRate:
   type: array
   items:
     type: number
+SkinPreparation:
+  name: SkinPreparation
+  display_name: Skin Preparation
+  description: |
+    How skin was prepared prior to sensor device placement, for example, `"alcohol wipe"`
+    or `"abrasive gel"`.
+  type: string
 SkullStripped:
   name: SkullStripped
   display_name: Skull Stripped
@@ -3604,6 +4001,7 @@ SpatialReference:
   name: SpatialReference
   display_name: Spatial Reference
   description: |
+    String or object describing the reference image to which the current image is aligned.
     For images with a single reference, the value MUST be a single string.
     For images with multiple references, such as surface and volume references,
     a JSON object MUST be used.
@@ -3625,6 +4023,11 @@ SpatialReference:
             format: uri
           - type: string
             format: dataset_relative
+Species:
+  $ref: objects.columns.species
+  name: Species
+  type: string
+  definition: null
 SpecificRadioactivity:
   name: SpecificRadioactivity
   display_name: Specific Radioactivity
@@ -3753,6 +4156,7 @@ StimulusPresentation:
   recommended:
     - OperatingSystem
     - ScreenDistance
+    - ScreenOrigin
     - ScreenRefreshRate
     - ScreenResolution
     - ScreenSize
@@ -3766,6 +4170,8 @@ StimulusPresentation:
       $ref: objects.metadata.OperatingSystem
     ScreenDistance:
       $ref: objects.metadata.ScreenDistance
+    ScreenOrigin:
+      $ref: objects.metadata.ScreenOrigin
     ScreenRefreshRate:
       $ref: objects.metadata.ScreenRefreshRate
     ScreenResolution:
