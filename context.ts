@@ -125,6 +125,10 @@ export interface Associations {
      * Magnitude1 image file
      */
     magnitude1?: Magnitude1;
+    /**
+     * Physiological recording file
+     */
+    physio?: Physio;
 }
 
 /**
@@ -267,6 +271,10 @@ export interface Events {
      * Path to associated events file
      */
     path: string;
+    /**
+     * Sidecar metadata constructed via the inheritance principle
+     */
+    sidecar?: { [key: string]: any };
 }
 
 /**
@@ -297,6 +305,21 @@ export interface Magnitude1 {
      * Path to associated magnitude1 file
      */
     path: string;
+}
+
+/**
+ * Physiological recording file
+ */
+export interface Physio {
+    /**
+     * Path to associated physio file
+     */
+    path: string;
+    /**
+     * Sidecar metadata constructed via the inheritance principle
+     */
+    sidecar?: { [key: string]: any };
+    [property: string]: any;
 }
 
 /**
