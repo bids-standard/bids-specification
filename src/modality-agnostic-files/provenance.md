@@ -6,7 +6,7 @@ context of the academic literature.
 
 !!! example "Example datasets"
 
-    Several [example BIDS-Prov datasets](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#provenance) have been formatted using this specification and can be used for practical guidance when curating a new dataset.
+    Several [example datasets](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#provenance) have been formatted using this specification and can be used for practical guidance when curating a new dataset.
 
 This part of the BIDS specification is aimed at describing the provenance of a BIDS dataset. This description is retrospective: it describes a set of steps that were executed in order to establish the dataset and is based on [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/) (see [Provenance from an RDF perspective](#provenance-from-a-rdf-perspective)).
 
@@ -47,7 +47,7 @@ and a guide for using macros can be found at
         }
     }
     ```
-    For a complete example see [DICOM to NIfTI conversion with `heudiconv` example](https://github.com/bclenet/bids-examples/tree/BEP028_heudiconv/provenance_heudiconv).
+    For a complete example see [Provenance of DICOM to NIfTI conversion with `heudiconv`](https://github.com/bclenet/bids-examples/tree/BEP028_heudiconv/provenance_heudiconv).
 
 ## Provenance of a BIDS dataset
 
@@ -83,7 +83,7 @@ and a guide for using macros can be found at
         "GeneratedBy": "bids::prov#preprocessing-xMpFqB5q"
     }
     ```
-    For a complete example see [fMRI preprocessing with `fMRIPrep` example](https://github.com/bclenet/bids-examples/tree/BEP028_fmriprep/provenance_fmriprep).
+    For a complete example see [Provenance of fMRI preprocessing with `fMRIPrep`](https://github.com/bclenet/bids-examples/tree/BEP028_fmriprep/provenance_fmriprep).
 
 ### Description of processes or pipelines
 
@@ -238,7 +238,7 @@ and a guide for using macros can be found at
         ]
     }
     ```
-    For a complete example, see [DICOM to NIfTI conversion with `dcm2niix` example](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix).
+    For a complete example, see [Provenance of DICOM to NIfTI conversion with `dcm2niix`](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix).
 
 ### Software
 
@@ -282,7 +282,7 @@ and a guide for using macros can be found at
         ]
     }
     ```
-    For a complete example, see [DICOM to NIfTI conversion with `dcm2niix` example](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix)
+    For a complete example, see [Provenance of DICOM to NIfTI conversion with `dcm2niix`](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix)
 
 ### Input and output data
 
@@ -363,7 +363,7 @@ and a guide for using macros can be found at
         ]
     }
     ```
-    For a complete example, see [fMRI preprocessing with `SPM` example](https://github.com/bclenet/bids-examples/tree/BEP028_spm/provenance_spm)
+    For a complete example, see [Provenance of fMRI preprocessing with `SPM`](https://github.com/bclenet/bids-examples/tree/BEP028_spm/provenance_spm)
 
 !!! example "Example: description of a dataset in a `prov/[<subdir>/]prov-<label>_ent.json` file"
 
@@ -377,7 +377,7 @@ and a guide for using macros can be found at
         ]
     }
     ```
-    For a complete example, see [fMRI preprocessing with `fMRIPrep` example](https://github.com/bclenet/bids-examples/tree/BEP028_fmriprep/provenance_fmriprep).
+    For a complete example, see [Provenance of fMRI preprocessing with `fMRIPrep`](https://github.com/bclenet/bids-examples/tree/BEP028_fmriprep/provenance_fmriprep).
 
 ### Environments
 
@@ -420,7 +420,7 @@ and a guide for using macros can be found at
         ]
     }
     ```
-    For a complete example, see [DICOM to NIfTI conversion with `dcm2niix` example](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix)
+    For a complete example, see [Provenance of DICOM to NIfTI conversion with `dcm2niix`](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix)
 
 ### Provenance label file
 
