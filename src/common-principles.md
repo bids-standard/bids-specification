@@ -15,7 +15,7 @@ REQUIRED, RECOMMENDED, and OPTIONAL.
 The guiding principles for when particular data is placed under a given requirement level
 can be loosely described as below:
 
--   REQUIRED: Data cannot be be interpreted without this information (or the ambiguity is unacceptably high)
+-   REQUIRED: Data cannot be interpreted without this information (or the ambiguity is unacceptably high)
 -   RECOMMENDED: Interpretation/utility would be dramatically improved with this information
 -   OPTIONAL: Users and/or tools might find it useful to have this information
 
@@ -85,7 +85,7 @@ saved under a particular filename specified in the standard. This standard
 aspires to describe a majority of datasets, but acknowledges that there will be
 cases that do not fit. In such cases one can include additional files and
 subdirectories to the existing directory structure following common sense. For example
-one may want to include eye tracking data in a vendor specific format that is
+one may want to include eye-tracking data in a vendor specific format that is
 not covered by this standard. The most sensible place to put it is next to the
 continuous recording file with the same naming scheme but different extensions.
 The solutions will change from case to case and publicly available datasets will
@@ -93,7 +93,7 @@ be reviewed to include common data types in the future releases of the BIDS
 specification.
 
 It is RECOMMENDED that non-compulsory metadata fields (like `notch` in `channels.tsv` files)
-and/or files (like `events.tsv`) are fully omitted *when they are unavailable or unapplicable*,
+and/or files (like `events.tsv`) are fully omitted *when they are unavailable or inapplicable*,
 instead of specified with an `n/a` value, or included as an empty file
 (for example an empty `events.tsv` file with only the headers included).
 
@@ -127,6 +127,12 @@ session subdirectories are present) are subdirectories named according to
 data type as defined above.
 A data type directory SHOULD NOT be defined if there are no files to be placed
 in that directory.
+
+**Specific structure of derived data**.
+In the case of [storing derived data (see below)](#source-vs-raw-vs-derived-data),
+template (`tpl-<label>`) directories may be found at the root of the dataset,
+and these may include cohort (`cohort-<label>`) subdirectories.
+These directories are described in [Templates and atlases](derivatives/atlas.md).
 
 ### Other top level directories
 
@@ -297,6 +303,15 @@ However, in the case that these data are to be included:
     through the `sourcedata/` directory mechanism.
     In the case of source data, these aspects are likely more stringent.
 
+**Templates and atlases as derived data.**
+Templates and atlases are key neuroscientific tools to carry out group-level inferences
+and also employed in many atlas-based methodologies (such as atlas-based segmentation).
+Original templates and atlases employed as primary data to the analysis MAY be stored
+within the `sourcedata/atlases/` directory.
+Atlases and artifacts derived from atlases are considered derived data
+and MUST be stored as derivative datasets,
+as described in the next section.
+
 ### Storage of derived datasets
 
 Derivatives can be stored/distributed in two ways:
@@ -330,6 +345,15 @@ Derivatives can be stored/distributed in two ways:
     ```Plain
     <dataset>/derivatives/spm-preproc/sub-0001
     <dataset>/derivatives/spm-stats/sub-0001
+    ```
+
+    Example of an atlas-generating pipeline, including outputs for individual subjects
+    prior to aggregation in the
+    [`MNI152NLin2009cAsym` standard space](appendices/coordinate-systems.md):
+
+    ```Plain
+    <dataset>/derivatives/atlasgenerator/sub-0001
+    <dataset>/derivatives/atlasgenerator/tpl-MNI152NLin2009cAsym
     ```
 
     Example of a pipeline with nested derivative directories:
@@ -386,11 +410,14 @@ Case 2.
 In both cases, every derivatives dataset is considered a BIDS dataset and must
 include a `dataset_description.json` file at the root level (see
 [Dataset description][dataset-description]).
-Consequently, files should be organized to comply with BIDS to the full extent
+Consequently, files SHOULD be organized to comply with BIDS to the full extent
 possible (that is, unless explicitly contradicted for derivatives).
-Any subject-specific derivatives should be housed within each subject's directory;
-if session-specific derivatives are generated, they should be deposited under a
+Any subject-specific derivatives SHOULD be housed within each subject's directory;
+if session-specific derivatives are generated, they SHOULD be deposited under a
 session subdirectory within the corresponding subject directory; and so on.
+Likewise, any template-specific derivatives SHOULD be housed within each template's directory;
+if cohort-specific derivatives are generated, they SHOULD be deposited under a
+cohort subdirectory within the corresponding template directory; and so on.
 
 ### Non-compliant derivatives
 
@@ -631,7 +658,7 @@ Rules for formatting plain-text tabular files apply to TSVGZ files with three ex
 !!! warning "Attention"
 
     In contrast to plain-text TSV files,
-    compressed tabular files files MUST NOT include a header line.
+    compressed tabular files MUST NOT include a header line.
     Column names MUST be provided in the JSON file with the
     [`Columns`](glossary.md#columns-metadata) field.
     Each column MAY additionally be described with a column description,
@@ -1067,7 +1094,7 @@ Describing dates and timestamps:
 -   Dates can be shifted by a random number of days for privacy protection
     reasons.
     To distinguish real dates from shifted dates,
-    is is RECOMMENDED to set shifted dates to the year 1925 or earlier.
+    it is RECOMMENDED to set shifted dates to the year 1925 or earlier.
     Note that some data formats do not support arbitrary recording dates.
     For example, the [EDF](https://www.edfplus.info/)
     data format can only contain recording dates after 1985.

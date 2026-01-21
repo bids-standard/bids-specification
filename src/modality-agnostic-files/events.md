@@ -50,7 +50,7 @@ SHOULD be documented in an accompanying JSON sidecar file.
 !!! note "Regarding the precision of numeric metadata"
 
     For the precision of numeric metadata,
-    it is RECOMMENDENDED that dataset curators specify numeric metadata like `onset` and
+    it is RECOMMENDED that dataset curators specify numeric metadata like `onset` and
     `duration` with as much decimal precision as is reasonable in the context of the experiment.
     For example in an EEG experiment with devices operating at 1000 Hz sampling frequency,
     dataset curators SHOULD specify **at least** 3 figures after the decimal point.
@@ -263,6 +263,22 @@ and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_subobject_table("metadata.StimulusPresentation") }}
+
+!!! warning "Important"
+
+    Some metadata of the `StimulusPresentation` object become REQUIRED with the presence of
+    "gaze-on-screen"
+    [eye-tracking data](../modality-specific-files/physiological-recordings.md#eye-tracking),
+    as identified by the `"SampleCoordinateSystem"` metadata.
+
+    The following fields pertaining to `<matches>_events.json` of tasks that were acquired
+    with the simultaneous recording of eye-tracking escalate to REQUIRED as they are considered
+    essential in eye-tracking data analysis:
+
+    -   `StimulusPresentation.ScreenDistance`,
+    -   `StimulusPresentation.ScreenOrigin`,
+    -   `StimulusPresentation.ScreenResolution`,
+    -   `StimulusPresentation.ScreenSize`.
 
 The operating system description SHOULD include the following attributes:
 

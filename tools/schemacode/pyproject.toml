@@ -131,6 +131,8 @@ filename = "../../src/schema/SCHEMA_VERSION"
 line-length = 99
 
 [tool.ruff.lint]
+# Recognize imports from _lazytypes as coming from typing
+typing-modules = ["bidsschematools._lazytypes"]
 select = [
   "E",   # pycodestyle errors
   "W",   # pycodestyle warnings
@@ -155,3 +157,13 @@ select = [
 
 [tool.ruff.lint.extend-per-file-ignores]
 "*/__init__.py" = ["F401"]
+
+[dependency-groups]
+types = [
+  "lxml>=6.0.2",
+  "mypy>=1.18.2",
+  "pandas-stubs>=2.2.2.240807",
+  "types-jsonschema>=4.25.1.20251009",
+  "types-pyyaml>=6.0.12.20250915",
+  "types-tabulate>=0.9.0.20241207",
+]

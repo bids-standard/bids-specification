@@ -59,3 +59,22 @@ genetic_info:
     TissueOrigin: optional
     BrainLocation: optional
     CellType: optional
+
+atlas_description:
+  selectors:
+    - suffix == 'description'
+    - extension == '.json'
+    - entities.atlas
+  fields:
+    AtlasName: required
+    License: required
+    Description: recommended
+    Authors: recommended
+    Curators: optional
+    Funding: optional
+    ReferencesAndLinks: optional
+    Species: optional
+    AtlasSampleSize: optional
+    DerivedFrom: optional
+    LevelType: optional
+    RRID: optional

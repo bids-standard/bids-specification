@@ -66,7 +66,9 @@ def test_selectors(schema_obj):
         for key in keys:
             for selector in rules[key]:
                 ast = expression.parse_string(selector)[0]
-                assert isinstance(ast, ASTNode)
+                # A literal `false` or `0` value may be used to ensure an expression
+                # always fails. These show up as strings and ints.
+                assert isinstance(ast, (ASTNode, str, int))
 
 
 def test_checks(schema_obj):
@@ -108,25 +110,26 @@ def test_valid_sidecar_field(schema_obj):
 
     Test failures are usually due to typos.
     """
-    field_names = {field.name for key, field in schema_obj.objects.metadata.items()}
+    field_names = {field.name for field in schema_obj.objects.metadata.values()}
+    # Sidecars can have column descriptions
+    column_names = {column.name for column in schema_obj.objects.columns.values()}
+    field_or_column_names = field_names | column_names
 
     for key, rule in walk_schema(
         schema_obj.rules, lambda k, v: isinstance(v, Mapping) and v.get("selectors")
     ):
-        for selector in rule["selectors"]:
-            ast = expression.parse_string(selector)[0]
-            for name in find_names(ast):
-                if name.startswith(("json.", "sidecar.")):
-                    assert name.split(".", 1)[1] in field_names, (
-                        f"Bad field in selector: {name} ({key})"
-                    )
-        for check in rule.get("checks", []):
-            ast = expression.parse_string(check)[0]
-            for name in find_names(ast):
-                if name.startswith(("json.", "sidecar.")):
-                    assert name.split(".", 1)[1] in field_names, (
-                        f"Bad field in check: {name} ({key})"
-                    )
+        for expr_type in ("selector", "check"):
+            for expr in rule.get(f"{expr_type}s", []):
+                ast = expression.parse_string(expr)[0]
+                for name in find_names(ast):
+                    if name.startswith("json."):
+                        assert name.split(".", 2)[1] in field_names, (
+                            f"Bad field in {expr_type}: {name} ({key})"
+                        )
+                    elif name.startswith("sidecar."):
+                        assert name.split(".", 2)[1] in field_or_column_names, (
+                            f"Bad field in {expr_type}: {name} ({key})"
+                        )
 
 
 def test_test_valid_sidecar_field():
@@ -135,7 +138,10 @@ def test_test_valid_sidecar_field():
             "objects": {
                 "metadata": {
                     "a": {"name": "a"},
-                }
+                },
+                "columns": {
+                    "column": {"name": "column"},
+                },
             },
             "rules": {"myruleA": {"selectors": ["sidecar.a"], "checks": ["json.a == sidecar.a"]}},
         }
