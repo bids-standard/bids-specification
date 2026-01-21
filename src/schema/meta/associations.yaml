@@ -111,6 +111,14 @@ probes:
     suffix: probes
     extension: .tsv
 
+physio:
+  selectors:
+    - extension != '.json'
+  target:
+    suffix: physio
+    extension: .tsv.gz
+  inherit: false
+
 coordsystems:
   selectors:
     - datatype == 'emg'

@@ -274,6 +274,37 @@ electrode_shape:
   description: |
     Description of the shape of the electrode (for example, `square`, `circle`).
   type: string
+x_coordinate:
+  name: x_coordinate
+  display_name: Gaze x-coordinate
+  description: |
+    Gaze position x-coordinate of the recorded eye, in the coordinate
+    units specified in the corresponding metadata sidecar.
+  type: number
+y_coordinate:
+  name: y_coordinate
+  display_name: Gaze y-coordinate
+  description: |
+    Gaze position y-coordinate of the recorded eye, in the coordinate
+    units specified in the corresponding metadata sidecar.
+  type: number
+pupil_size:
+  name: pupil_size
+  display_name: Pupil size
+  description: |
+    Pupil size, as area or diameter, of the recorded eye, in the
+    units specified in the corresponding metadata sidecar.
+    It is RECOMMENDED to indicate the particular type of pupil size that is
+    being recorded in the `Description` field of this column.
+    It is RECOMMENDED to specify the `Units` field corresponding to this column.
+  type: number
+timestamp__eyetrack:
+  name: timestamp
+  display_name: Eye-tracking recording timestamp
+  description: |
+    Timestamp issued by the eye-tracker indexing the continuous recordings corresponding to
+    the sampled eye.
+  type: number
 filename:
   name: filename
   display_name: Filename
@@ -449,7 +480,13 @@ mapping:
   description: |
     Corresponding integer label in the standard BIDS label lookup.
   type: integer
-# consider unifying with base `material` column between electrodes and probes
+message:
+  name: message
+  display_name: Message
+  description: |
+    Brief free-text description of a message (for example in a log generated
+    by a device), or other information of interest.
+  type: string
 material:
   name: material
   display_name: Electrode material
@@ -602,6 +639,15 @@ external_pipette_diameter:
     The external diameter of the pipette in micrometers.
   type: number
   unit: um
+onset__physioevents:
+  name: onset
+  display_name: Onset of events in physiological recordings
+  description: |
+    Onset of the event relative to the timeline defined by the corresponding
+    physiological recording file.
+
+    Typically, it will correspond to a timestamp issued by the recording device.
+  type: number
 placement_description:
   name: placement_description
   display_name: Placement Scheme Description

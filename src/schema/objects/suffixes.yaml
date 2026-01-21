@@ -839,6 +839,12 @@ probes:
   display_name: Implanted physical devices
   description: |
     Physical devices used for recording microelectrode electrophysiology data, whether chronically or acutely implanted.
+physioevents:
+  value: physioevents
+  display_name: Physiological events and asynchronous data
+  description: |
+    Event timing information corresponding to physiological recordings and other
+    asynchronous data such as messages.
 probseg:
   value: probseg
   display_name: Probabilistic Segmentation

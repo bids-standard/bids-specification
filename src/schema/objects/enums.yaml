@@ -1687,3 +1687,13 @@ MarmosetBrainAtlas:
     Reference: Liu C, Ye FQ, Yen CC, Newman JD, Glen D, Leopold DA, Silva AC.
     A digital 3D atlas of the marmoset brain based on multi-modal MRI. NeuroImage. 2018;169:106-116.
     [doi:10.1016/j.neuroimage.2017.12.004](https://doi.org/10.1016/j.neuroimage.2017.12.004).
+PhysioTypeGeneric:
+  value: generic
+  display_name: Generic Physiological Recording
+  description: |
+    Unspecified physiological recording.
+PhysioTypeEyetrack:
+  value: eyetrack
+  display_name: Eye-tracking recording
+  description: |
+    A specific physiological recording type: eye-tracking.
