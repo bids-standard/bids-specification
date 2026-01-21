@@ -12,7 +12,7 @@ and phenotypic and assessment data.
 They are recommendations and are by default ignored during validation.
 You can make them mandatory during validation by setting the
 [`AdditionalValidation` key](../modality-agnostic-files/dataset-description.md#additional-validation)
-contains `"Phenotype"` in the `dataset_description.json`.
+to contain `"Phenotype"` in the `dataset_description.json`.
 
 ### 1. Aggregate data across sessions
 
@@ -46,10 +46,9 @@ the smallest unit of acquisition). In other words:
 
 -   Each row MUST start with `participant_id`.
 
--   Each TSV file MUST contain a `session_id` column when
+-   Each TSV file SHOULD contain a `session_id` column when
     multiple [sessions](../glossary.md#session-entities)[<sup>1</sup>](#footnotes) are present
-    in the data set regardless of whether those sessions are in
-    the `phenotype/` data, `sub-<label>/` data, or a combination of the two.
+    in the data set.
 
 -   If a measurement tool is acquired multiple times within a single session,
     a `run_id` column MUST be added to disambiguate the separate acquisitions.
@@ -65,12 +64,11 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_columns_table("modality_agnostic.Phenotypes") }}
 
-Furthermore, if you have to add a `session_id` column to the tabular phenotypic data,
-you then MUST also introduce a session directory to the imaging data,
+Furthermore, if you add a `session_id` column to the tabular phenotypic data,
+you SHOULD introduce a session directory to the imaging data,
 even if only one imaging session has been created.
-This guideline can be considered as "**if anyone uses sessions, everyone uses sessions.**"
 And vice versa, if imaging data has session directories,
-all imaging data and tabular phenotypic data MUST have sessions.
+all imaging data and tabular phenotypic data SHOULD have sessions.
 
 This produces a file in which same-participant entries can take up as many rows as needed
 according to the smallest unit of acquisition.
@@ -101,7 +99,7 @@ and indoor or outdoor experimental conditions.
 
 If there is more than one session for any one participant, then
 it is RECOMMENDED to provide a sessions file at the dataset root.
-The sessions file MUST list all sessions for all subjects across
+The sessions file SHOULD list all sessions for all subjects across
 imaging and tabular phenotypic data. The data dictionary JSON file’s
 `session_id` field MUST include `Levels` with the description of each `session_id`.
 
