@@ -22,3 +22,16 @@ blood:
   entities:
     $ref: meta.templates.raw.pet.entities
     recording: required
+
+tac:
+  suffixes:
+    - tacs
+  extensions:
+    - .tsv
+    - .json
+  datatypes:
+    - pet
+  entities:
+    $ref:
+      - meta.templates.raw.pet.entities
+      - meta.templates.deriv.tac.entities
