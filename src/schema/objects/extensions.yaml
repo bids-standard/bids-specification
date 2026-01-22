@@ -303,7 +303,9 @@ tsmalldelta:
     for the acquisition.
 
     The `tsmalldelta` file contains the δ values (in ms) corresponding to the
-    volumes in the relevant NIfTI file. If a single value is used for the entire acquisition, it MUST be specified in the sidecar JSON file under the `DiffGradientDuration` key.
+    volumes in the relevant NIfTI file. If a single value is used for the 
+    entire acquisition, it MUST be specified in the sidecar JSON file under the 
+    `DiffGradientDuration` key.
 tsv:
   value: .tsv
   display_name: Tab-Delimited
