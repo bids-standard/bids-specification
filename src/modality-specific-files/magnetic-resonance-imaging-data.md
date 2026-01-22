@@ -900,6 +900,43 @@ A guide for using macros can be found at
    }
 ) }}
 
+### Combined DWI schemes
+
+Some DWI schemes are acquired by varying parameters including the
+[echo time (TE)](../glossary.html#objects.metadata.EchoTime),
+[duration of the diffusion-encoding gradient pulse (δ)](../glossary.md#diffgradientduration-metadata),
+the [time between the leading edges of two successive diffusion-encoding gradient pulses (Δ)](../glossary.md#diffgradientseparation-metadata);
+in addition to varying the diffusion-encoding weightings (b-values) and
+gradients (b-vectors).
+
+For instance, in a single run the
+[Connectome 2.0 scanner](https://doi.org/10.1016/j.neuroimage.2021.118530)
+collects DWI volumes where the TE, δ, and Δ parameters can be varied. The DWI
+volumes are concatenated in a single file and processed together with the TE, δ,
+and Δ values.
+
+BIDS permits saving the TE, δ, and Δ as paired files corresponding to the *N*
+volumes in the NIfTI file (similar to the `[*_]dwi.bval` and `[*_]dwi.bvec`
+files - see [REQUIRED gradient orientation information](#required-gradient-orientation-information)
+). The TE, δ, and Δ values MUST be stored using spaced-delimited files named as
+`[*_]dwi.techo`, `[*_]dwi.tsmalldelta`, and `[*_]dwi.tbigdelta`, respectively.
+The TE, δ, and Δ values are specified in seconds, milliseconds, and
+milliseconds, respectively.
+
+If a single TE, δ, or Δ value is used for the entire acquisition, the value
+MUST be specified in the sidecar JSON file under the respective key (i.e.
+`EchoTime`, `DiffGradientDuration`, `DiffGradientSeparation`).
+
+The `[*_]dwi.techo`, `[*_]dwi.tsmalldelta`, and `[*_]dwi.tbigdelta` files MAY be
+saved on any level of the directory structure and thus define those values for
+all sessions and/or subjects in one place (see
+[the inheritance principle](../common-principles.md#the-inheritance-principle)).
+
+As an exception to the [common principles](../common-principles.md#definitions)
+that parameters are constant across runs, the TE, δ, and Δ values (stored
+within the `[*_]dwi.techo`, `[*_]dwi.tsmalldelta`, and `[*_]dwi.tbigdelta`
+files) MAY change across the DWI run.
+
 ### Other RECOMMENDED metadata
 
 <!-- This block generates a metadata table.
