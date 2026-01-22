@@ -372,7 +372,7 @@ sub-01_T1map.json:
 
 "MagneticFieldStrength": "3",
 "Manufacturer": "Siemens",
-"ManufacturerModelName": "TrioTim",
+"ManufacturersModelName": "TrioTim",
 "InstitutionName": "xxx",
 "PulseSequenceType": "SPGR",
 "PulseSequenceDetails": "Information beyond the sequence type that identifies
