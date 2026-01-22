@@ -258,6 +258,27 @@ sqd:
     marker information.
 
     Used by KIT, Yokogawa, and Ricoh MEG systems.
+tbigdelta:
+  value: .tbigdelta
+  display_name: Diffusion Gradient Separations
+  description: |
+    A space-delimited file containing diffusion-encoding gradient separations
+    (Δ) for the acquisition.
+
+    The `tbigdelta` file contains the Δ values (in ms) corresponding to the
+    volumes in the relevant NIfTI file. If a single value is used for the
+    entire acquisition, it MUST be specified in the sidecar JSON file under the
+    `DiffGradientSeparation` key.
+techo:
+  value: .techo
+  display_name: Echo Times
+  description: |
+    A space-delimited file containing the echo times (TE) for the acquisition.
+
+    The `techo` file contains the TE values (in s) corresponding to the
+    volumes in the relevant NIfTI file. If a single value is used for the
+    entire acquisition, it MUST be specified in the sidecar JSON file under the
+    `EchoTime` key.
 tif:
   value: .tif
   display_name: Tag Image File Format
@@ -274,6 +295,17 @@ trg:
     the digitized positions of the head points (`\_digitizer.txt`),
     the position of the center of the MEG coils (`.chn`),
     and the event markers (`.trg`).
+tsmalldelta:
+  value: .tsmalldelta
+  display_name: Diffusion Gradient Durations
+  description: |
+    A space-delimited file containing diffusion-encoding gradient durations (δ)
+    for the acquisition.
+
+    The `tsmalldelta` file contains the δ values (in ms) corresponding to the
+    volumes in the relevant NIfTI file. If a single value is used for the
+    entire acquisition, it MUST be specified in the sidecar JSON file under the
+    `DiffGradientDuration` key.
 tsv:
   value: .tsv
   display_name: Tab-Delimited
