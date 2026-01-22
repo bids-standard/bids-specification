@@ -411,6 +411,18 @@ anat_mask:
       - meta.templates.deriv.mask.entities
       - rules.files.raw.anat.nonparametric.entities
 
+anat_mask_pet:
+  $ref:
+    - meta.templates.deriv.mask
+    - rules.files.raw.anat.nonparametric
+  datatypes:
+    - pet
+  entities:
+    $ref:
+      - meta.templates.deriv.mask.entities
+      - rules.files.raw.anat.nonparametric.entities
+      - meta.templates.raw.pet.entities
+
 anat_mask_atlas:
   $ref: rules.files.deriv.imaging.anat_mask
   entities:
