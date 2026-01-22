@@ -23,6 +23,7 @@ SpatialReferenceEntity:
 SpatialReferenceNonStandard:
   selectors:
     - dataset.dataset_description.DatasetType == "derivative"
+    - '"space" in entities'
     - '!intersects(schema.objects.metadata._StandardTemplateCoordSys, [entities.space])'
   fields:
     SpatialReference: required
