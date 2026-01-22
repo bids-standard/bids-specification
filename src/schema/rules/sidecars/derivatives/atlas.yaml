@@ -2,10 +2,10 @@
 TemplateNonStandard:
   selectors:
     - dataset.dataset_description.DatasetType == "derivative"
-    - '!intersects(schema.objects.enums._StandardTemplateCoordSys.enum, [entities.template])'
+    - '!intersects(schema.objects.enums._StandardTemplateCoordSys.enum, [entities.template.value])'
     - >
       type(entities.space) == 'null' ||
-      !intersects(schema.objects.enums._StandardTemplateCoordSys.enum, [entities.space])
+      !intersects(schema.objects.enums._StandardTemplateCoordSys.enum, [entities.space.value])
     - '"template" in entities' # was greedy this helps to remove this error for tacs and other derivative files
   fields:
     SpatialReference: required

@@ -24,7 +24,7 @@ SpatialReferenceNonStandard:
   selectors:
     - dataset.dataset_description.DatasetType == "derivative"
     - '"space" in entities'
-    - '!intersects(schema.objects.metadata._StandardTemplateCoordSys, [entities.space])'
+    - '!intersects(schema.objects.metadata._StandardTemplateCoordSys, [entities.space.value])'
   fields:
     SpatialReference: required
 
