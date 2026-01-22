@@ -6,5 +6,6 @@ TemplateNonStandard:
     - >
       type(entities.space) == 'null' ||
       !intersects(schema.objects.enums._StandardTemplateCoordSys.enum, [entities.space])
+    - '"space" in entities' # was greedy this helps to remove this error for tacs and other derivative files
   fields:
     SpatialReference: required
