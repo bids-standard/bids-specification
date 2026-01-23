@@ -180,9 +180,9 @@ A guide for using macros can be found at
 {{ MACROS___render_text("objects.files.CITATION.description") }}
 
 If `CITATION.cff` is present,
-the `"HowToAcknowledge"`, `"License"` and `"ReferencesAndLinks"` SHOULD be omitted
-in favor of the `CITATION.cff` fields `message`/`preferred-citation`, `license` and
-`references`.
+the `"HowToAcknowledge"`, `"License"` and `"ReferencesAndLinks"` fields SHOULD be omitted
+from `dataset_description.json` in favor of the `CITATION.cff` fields
+`message`/`preferred-citation`, `license` and `references`.
 
 ### `datacite.yml`
 
@@ -192,8 +192,8 @@ A guide for using macros can be found at
 -->
 {{ MACROS___render_text("objects.files.datacite.description") }}
 
-If `datacite.yml` is present, the `"License"` SHOULD be omitted
-in favor of the `datacite.yml` field `rightsList`.
+If `datacite.yml` is present, the `"License"` field SHOULD be omitted
+from `dataset_description.json` in favor of the `datacite.yml` field `rightsList`.
 
 ## `CHANGES`
 
