@@ -74,12 +74,24 @@ SingleSourceAuthors:
     code: AUTHORS_AND_CITATION_FILE_MUTUALLY_EXCLUSIVE
     level: error
     message: |
-      'CITATION.cff' file found. The "Authors" field of 'dataset_description.json'
+      {path} file found. The "Authors" field of 'dataset_description.json'
       must be removed to avoid inconsistency.
   selectors:
-    - path == '/CITATION.cff'
+    - intersects([path], ['/CITATION.cff', '/datacite.yml'])
   checks:
     - '!("Authors" in dataset.dataset_description)'
+
+SingleSourceDataciteFields:
+  issue:
+    code: SINGLE_SOURCE_CITATION_FIELDS
+    level: warning
+    message: |
+      datacite.yml file found. The "License" field of 'dataset_description.json'
+      should be removed to avoid inconsistency.
+  selectors:
+    - path == '/datacite.yml'
+  checks:
+    - '!("License" in dataset.dataset_description)'
 
 SingleSourceCitationFields:
   issue:

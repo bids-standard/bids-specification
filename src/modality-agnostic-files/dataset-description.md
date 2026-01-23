@@ -5,6 +5,7 @@ Templates:
 -   `dataset_description.json`
 -   `README[.md|.rst|.txt]`
 -   `CITATION.cff`
+-   `datacite.yml`
 -   `CHANGES`
 -   `LICENSE[.md|.rst|.txt]`
 
@@ -24,26 +25,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "Name": "REQUIRED",
-      "BIDSVersion": "REQUIRED",
-      "HEDVersion": "RECOMMENDED",
-      "DatasetLinks": "REQUIRED if [BIDS URIs][] are used",
-      "DatasetType": "RECOMMENDED",
-      "License": "RECOMMENDED",
-      "Authors": "RECOMMENDED if CITATION.cff is not present",
-      "Keywords": "OPTIONAL",
-      "Acknowledgements": "OPTIONAL",
-      "HowToAcknowledge": "OPTIONAL",
-      "Funding": "OPTIONAL",
-      "EthicsApprovals": "OPTIONAL",
-      "ReferencesAndLinks": "OPTIONAL",
-      "DatasetDOI": "OPTIONAL",
-      "GeneratedBy": "RECOMMENDED",
-      "SourceDatasets": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_json_table('dataset_metadata.dataset_description') }}
 
 Each object in the `GeneratedBy` array includes the following REQUIRED, RECOMMENDED
 and OPTIONAL keys:
@@ -172,7 +154,24 @@ A guide for using macros can be found at
 -->
 {{ MACROS___render_text("objects.files.README.description") }}
 
-## `CITATION.cff`
+## Structured citation files
+
+BIDS permits structured citation files that may improve interoperability with
+dataset indexing utilities or afford higher precision than fields in
+`dataset_description.json`.
+
+If these files are used, fields that provide information that is redundant with
+`dataset_description.json` fields SHOULD be preferred to those in `dataset_description.json`.
+
+To avoid inconsistency, metadata present in one of the following files SHOULD NOT be
+be included in `dataset_description.json`, with the exception of `Name` and
+`DatasetDOI`, to ensure that tools that are only aware of `dataset_description.json`
+can generate references to the dataset.
+
+In particular, if a structured citation file is present,
+the `"Authors"` field of `dataset_description.json` MUST be omitted.
+
+### `CITATION.cff`
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -180,17 +179,21 @@ A guide for using macros can be found at
 -->
 {{ MACROS___render_text("objects.files.CITATION.description") }}
 
-For most redundant fields between `CITATION.cff` and `dataset_description.json`,
-the `CITATION.cff` SHOULD take precedence.
-To avoid inconsistency, metadata present in `CITATION.cff` SHOULD NOT be
-be included in `dataset_description.json`, with the exception of `Name` and
-`DatasetDOI`, to ensure that `CITATION.cff`-unaware tools can generate
-references to the dataset.
-In particular, if `CITATION.cff` is present,
-the `"Authors"` field of `dataset_description.json` MUST be omitted,
-and the `"HowToAcknowledge"`, `"License"` and `"ReferencesAndLinks"` SHOULD be omitted
-in favor of the `CITATION.cff` fields `message`/`preferred-citation`, `license` and
-`references`.
+If `CITATION.cff` is present,
+the `"HowToAcknowledge"`, `"License"` and `"ReferencesAndLinks"` fields SHOULD be omitted
+from `dataset_description.json` in favor of the `CITATION.cff` fields
+`message`/`preferred-citation`, `license` and `references`.
+
+### `datacite.yml`
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___render_text("objects.files.datacite.description") }}
+
+If `datacite.yml` is present, the `"License"` field SHOULD be omitted
+from `dataset_description.json` in favor of the `datacite.yml` field `rightsList`.
 
 ## `CHANGES`
 
@@ -217,7 +220,3 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___render_text("objects.files.LICENSE.description") }}
-
-<!-- Link Definitions -->
-
-[bids uris]: ../common-principles.md#bids-uri
