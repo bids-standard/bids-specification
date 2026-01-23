@@ -936,8 +936,15 @@ DiffGradientDuration:
     In the context of a diffusion-weighted pulsed gradient spin echo sequence,
     corresponds to the duration of a diffusion-encoding gradient pulse (δ),
     specified in milliseconds.
-  type: number
-  unit: ms
+  anyOf:
+    - type: number
+      unit: ms
+      exclusiveMinimum: 0
+    - type: array
+      items:
+        type: number
+        unit: ms
+        exclusiveMinimum: 0
 DiffGradientSeparation:
   name: DiffGradientSeparation
   display_name: Diffusion Gradient Separation
@@ -945,8 +952,15 @@ DiffGradientSeparation:
     In the context of a diffusion-weighted pulsed gradient spin echo sequence,
     corresponds to the time between the leading edges of two successive
     diffusion-encoding gradient pulses (Δ), specified in milliseconds.
-  type: number
-  unit: ms
+  anyOf:
+    - type: number
+      unit: ms
+      exclusiveMinimum: 0
+    - type: array
+      items:
+        type: number
+        unit: ms
+        exclusiveMinimum: 0
 DigitizedHeadPoints:
   name: DigitizedHeadPoints
   display_name: Digitized Head Points
